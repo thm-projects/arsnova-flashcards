@@ -8,6 +8,7 @@ import "../cardset/cardset.js";
 import {cleanModal} from "../forms/cardsetCourseIterationForm.js";
 import "./cardsets.html";
 import {Filter} from "../../api/filter";
+import {Route} from "../../api/route";
 import {BertAlertVisuals} from "../../api/bertAlertVisuals";
 
 Session.setDefault('cardsetId', undefined);
@@ -157,10 +158,6 @@ Template.shuffle.helpers({
 		return TAPi18n.__('set-list.shuffleInfoText');
 	},
 	shuffleList: function (resultType) {
-		if (Router.current().route.getName() === "editshuffle") {
-			Session.set("ShuffledCardsets", Cardsets.findOne({_id: Router.current().params._id}).cardGroups);
-		}
-
 		let query = Filter.getFilterQuery();
 		switch (resultType) {
 			case 0:
@@ -207,10 +204,14 @@ Template.shuffle.helpers({
 	}
 });
 
-Template.shuffle.created = function () {
-	Session.set("ShuffledCardsets", []);
+Template.shuffle.onCreated(function () {
+	if (Route.isEditShuffle()) {
+		Session.set("ShuffledCardsets", Cardsets.findOne({_id: Router.current().params._id}).cardGroups);
+	} else {
+		Session.set("ShuffledCardsets", []);
+	}
 	Session.set("ShuffledCardsetsExclude", []);
-};
+});
 
 /*
  * ############################################################################
@@ -219,6 +220,10 @@ Template.shuffle.created = function () {
  */
 
 Template.cardsets.onCreated(function () {
+	Session.set('ratingsLoaded', false);
+	Meteor.subscribe('ratings', function () {
+		Session.set('ratingsLoaded', true);
+	});
 	Session.set("selectingCardsetToLearn", false);
 });
 

@@ -121,7 +121,7 @@ export let FilterNavigation = class FilterNavigation {
 		if (Route.isAllCardsets()) {
 			return 4;
 		}
-		if (Route.isShuffle()) {
+		if (Route.isShuffle() || Route.isEditShuffle()) {
 			return 5;
 		}
 	}

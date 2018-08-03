@@ -77,6 +77,10 @@ export let Route = class Route {
 		return Router.current().route.getName() === "shuffle";
 	}
 
+	static isEditShuffle () {
+		return Router.current().route.getName() === "editshuffle";
+	}
+
 	static isPool () {
 		return Router.current().route.getName() === "pool";
 	}

@@ -59,6 +59,9 @@ $themes: (
     $shuffled_text: map-get($map, "shuffled_text");
     $bonus_background: map-get($map, "bonus_background");
     $bonus_text: map-get($map, "bonus_text");
+    //ratings
+    $current_rating: map-get($map, "current_rating");
+    $hover_rating: map-get($map, "$hover_rating");
     //navbar
     $navbar_background: map-get($map, "navbar_background");
     $navbar_text: map-get($map, "navbar_text");
@@ -396,6 +399,14 @@ $themes: (
     $presentation_clock_hour_arm: map-get($map, "presentation_clock_hour_arm");
     $presentation_clock_minute_arm: map-get($map, "presentation_clock_minute_arm");
     $presentation_clock_second_arm: map-get($map, "presentation_clock_second_arm");
+
+    .star-ratings .current-rating {
+      color: $current_rating !important;
+    }
+
+    .star-ratings .active {
+      color: $hover_rating !important;
+    }
 
     li.active {
       a {

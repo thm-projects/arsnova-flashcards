@@ -40,7 +40,7 @@
     "learndecks": "Lernpensum",
     "alldecks": "Alle Karteien",
     "pool": "Themen-Pool",
-    "course": "Kurse",
+    "course": "Repetitorien",
     "myprofile": "Konto",
     "billing": "Abrechnung",
     "search": "Thema…",
@@ -53,7 +53,7 @@
     "about": ".__lastAppTitle__",
     "demo": "Demo",
     "home": "Startseite",
-    "demoTitle": "Zettel, Kartons, Regale versus Karten, Karteien, Kurse",
+    "demoTitle": "Zettel, Kartons, Regale versus Karten, Karteien, Repetitorien",
     "learning": "Lernen",
     "help": "Hilfe",
     "faq": "FAQ",
@@ -130,17 +130,17 @@
   },
   "complete-profile": {
     "btn-txt": "Schließen",
-    "title": "Nutzerprofil unvollständig",
-    "text": "Dein Benutzerprofil ist unvollständig. Um einen Lernmodus mit automatischer Erinnerungsnachricht nutzen zu können, fülle bitte die Felder für Vorname, Nachname und E-Mail aus."
+    "title": "Benutzerprofil unvollständig",
+    "text": "Dein Benutzerprofil ist noch unvollständig. Um den Lernmodus mit automatischer Erinnerungsnachricht nutzen zu können, fülle in den Kontoeinstellungen die Felder für Vorname, Nachname und E-Mail aus."
   },
   "confirm-form-profile": {
     "title": "Benutzerkonto löschen",
-    "text": "Falls du sicher bist, dass du .__lastAppTitle__ nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto löschen. Alle persönlichen Daten und private Karteien werden unwiderruflich gelöscht. Die von dir veröffentlichten Karteien bleiben erhalten.",
+    "text": "Falls du sicher bist, dass du .__lastAppTitle__ nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto löschen. Alle persönlichen Daten, private Karteien und deine Lernstatistiken werden unwiderruflich gelöscht. Die von dir veröffentlichten Karteien bleiben erhalten.",
     "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerkonto löschen\". Du wirst automatisch aus .__lastAppTitle__ abgemeldet."
   },
   "confirmLearn-form": {
     "title": "Bonus-Lernphase starten",
-    "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen der Kartei geht hierbei verloren! ",
+    "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen der Kartei geht hierbei verloren!",
     "confirm": "Starten",
     "cancel": "Abbrechen",
     "maxCards": "Tagespensum",
@@ -231,10 +231,10 @@
     "newset": "Neue Kartei anlegen"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "Zum Lernen wähle ein Thema aus dem Themen-Pool oder die Karteien eines Kurses.",
-    "emptytextlistNoShuffle": "Wähle eine einzelne Kartei aus dem Themen-Pool aus oder die Karteien eines Kurses.",
+    "emptytextlist": "Zum Lernen wähle ein Thema aus dem Themen-Pool oder die Karteien eines Repetitoriums.",
+    "emptytextlistNoShuffle": "Wähle eine einzelne Kartei aus dem Themen-Pool aus oder die Karteien eines Repetitoriums.",
     "browseCardset": "Thema auswählen",
-    "browseCourse": "Kurs auswählen"
+    "browseCourse": "Repetitorium auswählen"
   },
   "modal-dialog": {
     "missingFields": "Bitte fülle die folgenden Felder aus",
@@ -489,8 +489,8 @@
     "private": "Privat",
     "license": " Lizenz",
     "bonus": "Bonus",
-    "startLearning": "Lernphase starten",
-    "stopLearning": "Lernphase beenden",
+    "startLearning": "Bonus-Lernphase starten",
+    "stopLearning": "Bonus-Lernphase beenden",
     "poolLicense": "Lizenz für ",
     "leaveEditors": "Bearbeitergruppe verlassen",
     "preview": "Kostenpflichtige Kartei"
@@ -566,7 +566,7 @@
     },
     "shuffled": {
       "long": "Gemischter Kartensatz",
-      "short": "Gemischt"
+      "short": "Repetitorium"
     },
     "bonus": {
       "long": "Bonus-Lernphase",
@@ -892,19 +892,19 @@
     }
   },
   "courseIteration": {
-    "name": "Kurs",
-    "targetAudience": "Kurstyp",
+    "name": "Repetitorium",
+    "targetAudience": "Erstellt für…",
     "confirm-form-delete": {
-      "title": "Kurs löschen",
+      "title": "Repetitorium löschen",
       "alsoDeleteAssociatedDecks": "Dazugehörige Karteien löschen",
-      "text": "Willst du diesen Kurs wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für diesen Kurs gelöscht. Die zum Kurs gehörenden Karteien bleiben erhalten, es sei denn, du aktivierst die folgende Option."
+      "text": "Willst du dieses Repetitorium wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für dieses Repetitorium gelöscht. Die zum Repetitorium gehörenden Karteien bleiben erhalten, es sei denn, du aktivierst die folgende Option."
     },
-    "manage": "Kurs verwalten",
+    "manage": "Repetitorium verwalten",
     "list": {
-      "selectCourse": "Kurs auswählen",
-      "createCourse": "Neuen Kurs anlegen",
-      "empty": "Ein Kurs fasst mehrere Themen (= Karteien) zusammen. Jeder kann Kurse auf .cards anlegen. Informiere dich unter \"Hilfe\", was du mit einem Kurs tun kannst.",
-      "courseIteration": "Thema des Kurses",
+      "selectCourse": "Repetitorium auswählen",
+      "createCourse": "Neues Repetitorium anlegen",
+      "empty": "Ein Repetitorium fasst mehrere Themen (= Karteien) zusammen. Jeder kann Repetitorien zur Vorbereitung auf eine Modulprüfung auf .cards anlegen.",
+      "courseIteration": "Thema des Repetitoriums",
       "module": "Modul",
       "course": "Studiengang",
       "progress": "Statistik",
@@ -913,11 +913,11 @@
       "semesterList": "__count__. Semester"
     },
     "modal": {
-      "new": "Neuen Kurs anlegen (Zusammenfassung mehrerer Karteien)",
-      "saveNew": "Kurs anlegen",
+      "new": "Neues Repetitorium anlegen (Sammlung mehrerer Karteien)",
+      "saveNew": "Repetitorium anlegen",
       "placeholder": {
-        "name": "Das Thema des Kurses mit einem Wort",
-        "description": "Nenne die Kompetenzziele des Kurses: Was willst du nach dem Lernen aller Karteien, die zum Kurs gehören, langfristig wissen und können?"
+        "name": "Das Thema des Repetitoriums mit einem Wort",
+        "description": "Nenne die Kompetenzziele des Repetitoriums: Was willst du nach dem Lernen aller Karteien, die zum Repetitorium gehören, langfristig wissen und können?"
       }
     },
     "targetAudience1": {
@@ -954,7 +954,7 @@
     "save": "Speichern",
     "cancel": "Zurück"
   },
-  "permission": "Zugriff verweigert",
+  "permission": "Kein Zugang",
   "nocards": "Keine Karten vorhanden",
   "learnPhaseActiveHeader": "Lernphase mit Bonusvergabe",
   "learnPhaseActiveBody": "Lernen mit geplanten Wiederholungen ist deaktiviert.",
@@ -1295,11 +1295,11 @@
     }
   },
   "access-denied": {
-    "title": "Zugriff verweigert",
+    "title": "Kein Zugang",
     "text": "Du hast keine Berechtigung, diese Seite zu öffnen!",
     "button": "Schließen",
     "reason": "Grund für die Sperrung: ",
-    "memo": "Lernen nach Woźniak ist gesperrt, solange die Bonusoption aktiv ist.",
+    "memo": "Lernen nach Woźniak ist gesperrt, solange die Bonusphase aktiv ist.",
     "back": "Zurück"
   },
   "first-login": {
@@ -1404,7 +1404,7 @@
       Hier kannst du Karten zu einem bestimmten Thema lernen und Karteien für dein Studium anlegen.
       </br>
       </br>
-      Die Navigationsleiste mit den Tabs \"Themen-Pool\", \"Kartei anlegen\", \"Kurse\" und \"Lernpensum\"
+      Die Navigationsleiste mit den Tabs \"Themen-Pool\", \"Kartei anlegen\", \"Repetitorien\" und \"Lernpensum\"
       dient dir als Einstieg in die großartigen Features von .__lastAppTitle__, schau dir dazu auch die Hilfe und Demo-Kartei an!
       </br>
       </br>
@@ -1413,6 +1413,9 @@
       Mit einem Klick auf das Thema gelangst du zu den Karten.
       </br>
       </br>"
+    },
+    "publishBonus": {
+      "message": "Um die Bonus-Lernphase zu starten, müssen mindestens __cardcount__ erstellt und die Kartei als \"Frei\", \"__edu__\" oder \"Pro\" veröffentlicht worden sein."
     }
   },
   "backdoor": {

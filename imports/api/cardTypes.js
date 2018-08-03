@@ -363,6 +363,15 @@ export let CardType = class CardType {
 			return cardQuantity >= publishLimit;
 		}
 	}
+
+	static getPublishLimit (cardType) {
+		if (cardTypesWithAlternativePublishLimit.includes(cardType)) {
+			return alternativePublishLimit;
+		} else {
+			return publishLimit;
+		}
+	}
+
 	static getCardTypesOrder () {
 		return cardTypesOrder;
 	}

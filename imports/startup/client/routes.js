@@ -145,6 +145,7 @@ Router.route('/cardset/:_id/editshuffle', {
 	name: 'editshuffle',
 	template: 'shuffle',
 	data: function () {
+		Filter.resetMaxItemCounter();
 		return Cardsets.findOne({_id: this.params._id});
 	}
 });
