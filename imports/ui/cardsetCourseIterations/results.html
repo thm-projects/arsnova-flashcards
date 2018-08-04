@@ -6,11 +6,11 @@
             </div>
         {{/if}}
         <div class="hidden-xs {{#if isActiveRoute regex="alldecks"}}col-sm-4 col-md-2{{else}}{{#if isActiveRoute
-                                                                                                   regex="course|pool|learn"}}col-sm-4{{else}}{{#if
+                                                                                                   regex="pool|learn"}}col-sm-4{{else}}{{#if
                 isActiveRoute
                 regex="create"}}col-xs-7 col-sm-6 col-md-7{{else}}col-xs-7 col-sm-6{{/if}}{{/if}}{{/if}} resultsHeader">
             <strong>
-                {{#if isActiveRoute regex="course|pool"}}
+                {{#if isActiveRoute regex="repetitorium"}}
                     {{_ "courseIteration.list.courseIteration"}}
                 {{else}}
                     {{_ "set-list.topic"}}
@@ -19,22 +19,18 @@
         </div>
         {{#unless isActiveRoute regex="create"}}
             <div class="hidden-xs {{#if isActiveRoute
-                                        regex="course|pool|alldecks"}}col-sm-2{{else}}col-sm-3{{/if}} {{#if
+                                        regex="pool|alldecks"}}col-sm-2{{else}}col-sm-3{{/if}} {{#if
                     isActiveRoute
-                    regex="course|pool"}}col-lg-3{{/if}} resultsHeader">
+                    regex="pool"}}col-lg-3{{/if}} resultsHeader">
                 <strong>{{_ "set-list.author"}}</strong>
             </div>
         {{/unless}}
-        {{#if isActiveRoute regex="create|course|pool|alldecks"}}
+        {{#if isActiveRoute regex="create|pool|alldecks"}}
             <div class="hidden-xs {{#if isActiveRoute
                                         regex="alldecks"}}hidden-sm col-md-2{{else}}{{#if isActiveRoute
                                                                                           regex="create"}}col-sm-3 col-md-2{{else}}col-sm-3{{/if}}{{/if}} col-lg-2 resultsHeader">
                 <strong>
-                    {{#if isActiveRoute regex="course"}}
-                        {{_ "courseIteration.targetAudience"}}
-                    {{else}}
-                        {{_ "cardType"}}
-                    {{/if}}
+                    {{_ "cardType"}}
                 </strong>
             </div>
         {{/if}}
@@ -67,7 +63,7 @@
         <div class="resultItemHeader resultItemHeaderLeftArea col-xs-12 {{#if isActiveRoute
                                                                               regex="alldecks"}}col-sm-4 col-md-2{{else}}{{#if
                 isActiveRoute
-                regex="course|pool"}}col-sm-4{{else}}{{#if
+                regex="pool"}}col-sm-4{{else}}{{#if
                 isActiveRoute
                 regex="learn"}}col-xs-8 col-sm-4{{/if}} {{#if isActiveRoute
                                                               regex="create"}}col-sm-6 col-md-7{{else}}col-sm-6{{/if}}{{/if}}{{/if}} collapseButton {{getCardsetBackground
@@ -78,27 +74,21 @@
                   regex="create"}}
             <div class="resultItemHeader authorProfile resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs {{#if
                     isActiveRoute
-                    regex="course|pool|alldecks"}}col-sm-2{{else}}col-sm-3{{/if}} {{#if isActiveRoute
-                                                                                        regex="course|pool"}}col-lg-3{{/if}} collapseButton {{getCardsetBackground
+                    regex="pool|alldecks"}}col-sm-2{{else}}col-sm-3{{/if}} {{#if isActiveRoute
+                                                                                 regex="pool"}}col-lg-3{{/if}} collapseButton {{getCardsetBackground
                     this.difficulty this.cardType 1}}"
                  data-id="{{this.owner}}">
                 {{getAuthorName this.owner}}
             </div>
         {{/unless}}
-        {{#if isActiveRoute regex="create|course|pool|alldecks"}}
+        {{#if isActiveRoute regex="create|pool|alldecks"}}
             <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName hidden-xs {{#if
                     isActiveRoute
                     regex="alldecks"}}hidden-sm col-md-2{{else}}{{#if isActiveRoute
                                                                       regex="create"}}col-sm-3 col-md-2{{else}}col-sm-3{{/if}}{{/if}} col-lg-2 {{getCardsetBackground
                     this.difficulty this.cardType 1}}"
-                 data-type="{{#if isActiveRoute
-                                  regex="course"}}{{this.targetAudience}}{{else}}{{this.cardType}}{{/if}}">
-                {{#if isActiveRoute regex="course"}}
-                    {{getTargetAudienceName}}
-                {{else}}
-                    {{getCardTypeName}}
-                {{/if}}
-
+                 data-type="{{this.cardType}}">
+                {{getCardTypeName}}
             </div>
         {{/if}}
         {{#if isActiveRoute
@@ -122,7 +112,6 @@
         <div class="resultItemHeader resultItemHeaderRightArea collapseButton col-xs-12 col-sm-3">
             <div class="resultItemHeaderRightAreaTop col-xs-6 col-sm-12">
                 {{{getKind this.kind 0}}}
-                {{{getShuffleLabel this.shuffled}}}
                 {{{getBonusLabel this.learningActive}}}
             </div>
             <div class="resultItemHeaderRightAreaBottom col-xs-6 col-sm-12">
@@ -222,7 +211,7 @@
 
 <template name="poolTitleContent">
     <a href="#" id="cardsetLink{{this.index}}"
-       class="col-xs-12 {{#unless isActiveRoute regex="course"}}resultName{{/unless}}" data-id="{{this._id}}">
+       class="col-xs-12 resultName" data-id="{{this._id}}">
         {{this.name}}
     </a>
     <span class="badge resultBadge cardsetBadge" data-id="{{this._id}}">
@@ -250,7 +239,7 @@
             {{#if isActiveRoute regex='alldecks|pool'}}
                 {{_ "set-list-empty.emptypooltextlist"}}
             {{/if}}
-            {{#if isActiveRoute 'courseIterations'}}
+            {{#if isActiveRoute 'repetitorium'}}
                 {{_ "courseIteration.list.empty"}}
             {{/if}}
         </div>

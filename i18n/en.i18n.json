@@ -208,6 +208,7 @@
     "inactiveLearnphase": "Inactive",
     "learnphaseInfo": "About this Learning-Phase",
     "cardsetInfo": "About this __type__ Cardset",
+    "cardsetInfoRepetitorium": "About this Repetitorium",
     "cardsetInfoStatic": "About this Cardset",
     "shuffleCardsets": "Shuffle Cardsets",
     "shuffle": "Shuffle",

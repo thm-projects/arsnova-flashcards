@@ -85,7 +85,7 @@
     <a id="collapseCardsetInfoButton"
        class="col-xs-12 card btn-default btn-raised {{getColors}} collapseButton collapsed" href="#collapseCardsetInfo"
        data-toggle="collapse">
-        <strong>{{_ "set-list.cardsetInfo" type=getName}}</strong>
+        <strong>{{#if this.shuffled}}{{_ "set-list.cardsetInfoRepetitorium"}}{{else}}{{_ "set-list.cardsetInfoStatic"}}{{/if}}</strong>
         <i id="collapseCardsetInfoIcon" class="glyphicon glyphicon-collapse-down pull-right"></i>
     </a>
     <div class="collapse" id="collapseCardsetInfo">
