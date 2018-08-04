@@ -95,6 +95,9 @@ Template.flashcards.helpers({
 	isCardset: function () {
 		return Route.isCardset();
 	},
+	gotIncreasedFontSize: function () {
+		return CardType.gotIncreasedFontSize(this.cardType);
+	},
 	getCards: function () {
 		let result;
 		if (Route.isBox()) {

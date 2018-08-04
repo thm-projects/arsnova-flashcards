@@ -36,7 +36,7 @@
                                      data-cardtype="{{cardType}}">
                                     {{> flashcardHeader this}}
                                 </div>
-                                <div class="cardContent detail{{cardsIndex this._id}} {{#if
+                                <div class="cardContent {{#if gotIncreasedFontSize}}increased-font-size{{/if}} detail{{cardsIndex this._id}} {{#if
                                         isActiveCard false}}{{getCardSideColorActive}}{{else}}{{getCardSideColorInactive}}{{/if}}">
                                     {{#if isActiveCard false}}
                                         {{#if isDictionary}}
