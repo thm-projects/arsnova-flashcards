@@ -22,6 +22,14 @@ export function setLightBoxes(content) {
 	return $('<div/>').append(element).html();
 }
 
+export function displayVideoControls(content) {
+	var element = $(content);
+	$(element).find('video').each(function () {
+		$(this).attr('controls', true);
+	});
+	return $('<div/>').append(element).html();
+}
+
 /** Adds target _blank to all links
  *  @param {string} content - Text that contains the href
  *  @returns {string} - The modified text
