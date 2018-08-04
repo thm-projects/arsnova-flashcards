@@ -5,10 +5,13 @@
 export function setLightBoxes(content) {
 	var element = $(content);
 	$(element).find('img').each(function () {
-		var imageTitle = $(this).attr('alt');
-		var imageUrl = $(this).attr('src');
+		let imageTitleElement = $(this).closest('.image');
+		imageTitleElement = imageTitleElement.last();
+		let imageTitle = imageTitleElement.text();
+		console.log(imageTitle);
+		let imageUrl = $(this).attr('src');
 		$(this).attr('data-type', 'cardImage');
-		var wrapped = $(this).wrap('<div class="lightbox-container"><a href="' + imageUrl + '" class="lightbox-img" title="' + imageTitle + '" target="_blank" data-lightbox="' + imageUrl + '"></a></div>').parent().prop('outerHTML');
+		let wrapped = $(this).wrap('<div class="lightbox-container"><a href="' + imageUrl + '" class="lightbox-img" title="' + imageTitle + '" target="_blank" data-lightbox="' + imageUrl + '"></a></div>').parent().prop('outerHTML');
 		$(this).text(wrapped);
 	});
 
