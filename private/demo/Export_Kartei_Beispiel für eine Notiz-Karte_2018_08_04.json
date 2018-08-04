@@ -1,0 +1,63 @@
+[{
+  "name": "P: Beispiel für eine Notiz-Karte",
+  "description": "Diese Notiz dient als Abschlusskarte in der Demo-Kartei.",
+  "date": "2018-07-05T04:33:28.173Z",
+  "dateUpdated": "2018-08-04T16:56:14.270Z",
+  "editors": [],
+  "owner": "jCZ6oHcbZhJaKKodN",
+  "visible": false,
+  "ratings": true,
+  "kind": "personal",
+  "price": 0,
+  "reviewed": false,
+  "reviewer": "undefined",
+  "request": false,
+  "relevance": 0,
+  "raterCount": 0,
+  "quantity": 1,
+  "license": [
+    "by",
+    "nc",
+    "nd"
+  ],
+  "userDeleted": false,
+  "learningActive": false,
+  "maxCards": 0,
+  "daysBeforeReset": 0,
+  "learningStart": "1970-01-01T00:00:00.000Z",
+  "learningEnd": "1970-01-01T00:00:00.000Z",
+  "learningInterval": [],
+  "learners": 0,
+  "wordcloud": false,
+  "shuffled": false,
+  "cardType": 8,
+  "difficulty": 1,
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  },
+  "noDifficulty": true
+}, {
+  "subject": "Letzte Karte",
+  "front": " \n\n!!! Note Los geht's!\n   Klick auf «Startseite». Du siehst, wie sich eine **bunte Wolke** aus Karteinamen aufbaut. Die Größe der Schrift entspricht der Kartenanzahl. Die Wolke ist nur ein kleiner Ausschnitt aus der Menge der auf .cards veröffentlichen Themen. Klick auf ein Thema in der Wolke, um dessen Beschreibung zu sehen. \n\nLog dich jetzt mit deinem **THM-Konto** ein und erstelle eigene Karteien für dein Studium. Lerne die Karten **regelmäßig**, so dass du das Wissen aus dem Studium sehr, sehr lange behältst. Schau dir dazu die Infos und Videos auf den Seiten [Lernen](https://informatik.cards/learning) und [FAQ](https://staging.arsnova.cards/faq) an!\n\n!!! Tip\n   Folge dem Slogan von .cards: **Organize. Learn. Memorize.**",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "date": "2018-07-05T04:43:37.045Z",
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "dateUpdated": "2018-08-04T16:56:14.253Z",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  }
+}]

@@ -1,0 +1,59 @@
+[{
+  "name": "B: Aus dem Portal .cards",
+  "description": "Dient in der Demo-Kartei als Inhaltsverzeichnis der Beispielkarten.",
+  "date": "2018-07-08T06:28:46.220Z",
+  "dateUpdated": "2018-08-04T17:34:11.714Z",
+  "editors": [],
+  "owner": "jCZ6oHcbZhJaKKodN",
+  "visible": false,
+  "ratings": true,
+  "kind": "personal",
+  "price": 0,
+  "reviewed": false,
+  "reviewer": "undefined",
+  "request": false,
+  "relevance": 0,
+  "raterCount": 0,
+  "quantity": 1,
+  "license": [],
+  "userDeleted": false,
+  "learningActive": false,
+  "maxCards": 0,
+  "daysBeforeReset": 0,
+  "learningStart": "1970-01-01T00:00:00.000Z",
+  "learningEnd": "1970-01-01T00:00:00.000Z",
+  "learningInterval": [],
+  "learners": 0,
+  "wordcloud": false,
+  "shuffled": false,
+  "cardType": 8,
+  "difficulty": 1,
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  },
+  "noDifficulty": true
+}, {
+  "subject": "Beispiel-Karten",
+  "front": "<br />\n<br />\n\n(##) Es folgen Beispiele für Kartentypen aus Kursen der Informatik\n\n!!! TIP Navigieren mit der Tastatur \n   Zur nächsten oder zur vorherigen Karte gelangst du mit den <kbd>Pfeiltasten</kbd>. <br />Vorwärts geht auch einfach mit der <kbd>Leertaste</kbd>.  <br />Die Seiten einer Karte durchwanderst du bequem mit der <kbd>Tab-Taste</kbd>.",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "date": "2018-07-08T06:03:49.254Z",
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "dateUpdated": "2018-08-04T17:34:11.698Z",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  }
+}]
