@@ -26,7 +26,7 @@
     <div class="flip-container"
          id="set-details-region">
         <div>
-            <div id="cardCarousel" class="carousel slide" data-interval="false">
+            <div id="cardCarousel" class="carousel slide" data-keyboard="false" data-interval="false">
                 <div class="carousel-inner">
                     {{#each getCards}}
                         <div class="item {{#if isActiveCard true}}active{{/if}}" data-id="{{_id}}">
@@ -36,7 +36,7 @@
                                      data-cardtype="{{cardType}}">
                                     {{> flashcardHeader this}}
                                 </div>
-                                <div class="cardContent detail{{cardsIndex this._id}} {{#if
+                                <div class="cardContent {{#if gotIncreasedFontSize}}increased-font-size{{/if}} detail{{cardsIndex this._id}} {{#if
                                         isActiveCard false}}{{getCardSideColorActive}}{{else}}{{getCardSideColorInactive}}{{/if}}">
                                     {{#if isActiveCard false}}
                                         {{#if isDictionary}}

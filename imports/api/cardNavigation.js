@@ -4,6 +4,7 @@ import {Route} from "./route";
 import {CardVisuals} from "./cardVisuals";
 import {CardEditor} from "./cardEditor";
 import * as screenfull from "screenfull";
+import {CardIndex} from "./cardIndex";
 
 export let CardNavigation = class CardNavigation {
 
@@ -123,7 +124,11 @@ export let CardNavigation = class CardNavigation {
 	}
 
 	static toggleVisibility (status) {
-		Session.set('navigationVisible', status);
+		if (CardIndex.getCardIndex().length > 1) {
+			Session.set('navigationVisible', status);
+		} else {
+			Session.set('navigationVisible', true);
+		}
 	}
 
 	static skipAnswer (scrollRight = true) {
@@ -180,7 +185,7 @@ export let CardNavigation = class CardNavigation {
 
 	static keyEvents (event) {
 		let keyCodes = [];
-		if (!$('#input-search').is(":focus")) {
+		if (!$('#input-search').is(":focus") && !$('#lightbox').is(":visible")) {
 			if (Route.isCardset() || Route.isBox() || Route.isMemo() || Route.isEditMode()) {
 				keyCodes = [9];
 			}
