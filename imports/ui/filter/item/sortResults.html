@@ -7,7 +7,11 @@
         <ul class="dropdown-menu">
             <li>
                 <a href="#" id="topicBtn">
-                    {{_ "set-list.topic"}}
+                    {{#if isActiveRoute 'repetitorium'}}
+                        {{_ "courseIteration.list.courseIteration"}}
+                    {{else}}
+                        {{_ "set-list.topic"}}
+                    {{/if}}
                     {{{getSortTopicIcon}}}
                 </a>
                 <a href="#" class="createdDateBtn">

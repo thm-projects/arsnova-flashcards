@@ -198,6 +198,7 @@
     "inactiveLearnphase": "Bonusphase beendet",
     "learnphaseInfo": "Über diese Lernphase mit Bonusvergabe",
     "cardsetInfo": "Über diese __type__ Kartei",
+    "cardsetInfoRepetitorium": "Über dieses Repetitorium",
     "cardsetInfoStatic": "Über diese Kartei",
     "shuffleCardsets": "Karteien mischen",
     "shuffle": "Mischen",
