@@ -2,7 +2,7 @@
   "name": "A: Quiz zum Kennenlernen von .cards",
   "description": "Die Quizfragen sind Teil der Demo-Kartei, siehe den roten Button auf der .cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2018-08-03T15:44:47.995Z",
+  "dateUpdated": "2018-08-04T10:14:59.522Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -85,7 +85,7 @@
 }, {
   "subject": "3. Digitale Schuhkartons: Karteien",
   "front": "Welche **Karteitypen** gibt es auf .cards?",
-  "back": "Es gibt **14 Karteitypen**, die beim Anlegen einer Kartei zur Auswahl stehen. \nJede Kartei beinhaltet ausschließlich Karten desselben Typs, es sei denn sie wurde aus mehreren Karteien unterschiedlichen Typs gemischt wie diese Demo-Kartei. Einige Karteitypen haben eine **Schwierigkeitsstufe (Level)**, die an der Kartenfarbe erkennbar ist: Grün für Basics, Blau für Fortgeschritten und Rot für Expert*in. \n\nKarteitypen unterscheiden sich in der Anzahl der Kartenseiten: nicht nur Vorder- und Rückseiten sind möglich, sondern auch weitere virtuelle Seiten zur Vertiefung des Lerninhalts oder zur Angabe von Web-Ressourcen und Literatur. Lern- und Prüfungskarten haben zusätzlich eine **Lernzielstufe** in Anlehnung an die [Taxonomie von Anderson & Krathwohl](https://thesecondprinciple.com/teaching-essentials/beyond-bloom-cognitive-taxonomy-revised/):  Verstehen, Anwenden, Analysieren, Synthetisieren, Bewerten, Innovieren. Für die Formulierung des Lernziels auf der gewählten Lernzielstufe werden passende Verben im Editor vorgeschlagen.\n\n<div style=\"columns:2;-webkit-columns:2;-moz-columns:2;column-gap:3em;-webkit-column-gap:3em;-moz-column-gap:3em\">\nKarteitypen und Seitentitel  der Karten:\n\n1. **Mitschrift**: Foto der Mitschrift | Nachbearbeitung | To-dos\n+ **Lerneinheit**: Lernziel | Vertiefung | Zusammenfassung | Literatur\n+ **Glossar**: Fachbegriff | Beschreibung | Literatur\n+ **Anweisungssatz**: Semantik | Syntax | Online-API\n+ **Formelsammlung**: Aufgabe | Formel | Lösung | Links\n+ **Entwurfsmuster**: Problem | Kontext | Kräfte | Lösung | Verwendung | Verweise\n+ **Quiz**: Frage | Antwort\n+ **Prüfung**: Prüfungsfrage | Erwartete Antwort | Begründung\n+ **Vokabelkartei**: Fremdwort | Übersetzung\n+ **Fotokartei**: Foto | Lizenz\n+ **Zitatensammlung**: Zitat | Zitierte Person | Bibliografische Angaben\n+ **Exzerpte**: Exzerpt | Anmerkungen | Quellenangabe\n+ **Notizen**: 1 Seite\n+ **To-dos**: 1 Seite\n</div>",
+  "back": "Es gibt **15 Karteitypen**, die beim Anlegen einer Kartei zur Auswahl stehen. \nJede Kartei beinhaltet ausschließlich Karten desselben Typs, es sei denn sie wurde aus mehreren Karteien unterschiedlichen Typs gemischt wie diese Demo-Kartei. Einige Karteitypen haben eine **Schwierigkeitsstufe (Level)**, die an der Kartenfarbe erkennbar ist: Grün für Basics, Blau für Fortgeschritten und Rot für Expert*in. \n\nKarteitypen unterscheiden sich in der Anzahl der Kartenseiten: nicht nur Vorder- und Rückseiten sind möglich, sondern auch weitere virtuelle Seiten zur Vertiefung des Lerninhalts oder zur Angabe von Web-Ressourcen und Literatur. Lern- und Prüfungskarten haben zusätzlich eine **Lernzielstufe** in Anlehnung an die [Taxonomie von Anderson & Krathwohl](https://thesecondprinciple.com/teaching-essentials/beyond-bloom-cognitive-taxonomy-revised/):  Verstehen, Anwenden, Analysieren, Synthetisieren, Bewerten, Innovieren. Für die Formulierung des Lernziels auf der gewählten Lernzielstufe werden passende Verben im Editor vorgeschlagen.\n\n<div style=\"columns:2;-webkit-columns:2;-moz-columns:2;column-gap:3em;-webkit-column-gap:3em;-moz-column-gap:3em\">\nKarteitypen und Seitentitel  der Karten:\n\n1. **Mitschrift**: Foto der Mitschrift | Nachbearbeitung | To-dos\n+ **Lerneinheit**: Lernziel | Vertiefung | Zusammenfassung | Literatur\n+ **Glossar**: Fachbegriff | Beschreibung | Literatur\n+ **Anweisungssatz**: Semantik | Syntax | Online-API\n+ **Formelsammlung**: Aufgabe | Formel | Lösung | Links\n+ **Entwurfsmuster**: Problem | Kontext | Kräfte | Lösung | Verwendung | Verweise\n+ **Quiz**: Frage | Antwort\n+ **Prüfung**: Prüfungsfrage | Erwartete Antwort | Begründung\n+ **Vokabelkartei**: Fremdwort | Übersetzung\n+ **Fotokartei**: Foto | Lizenz\n+ **Zitatensammlung**: Zitat | Zitierte Person | Bibliografische Angaben\n+ **Exzerpte**: Exzerpt | Anmerkungen | Quellenangabe\n+ **Notizen**: 1 Seite\n+ **To-dos**: 1 Seite\n+ **Vortrag**: 1 Seite\n</div>",
   "centerTextElement": [
     true,
     false,
@@ -97,7 +97,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2018-08-01T04:44:15.955Z",
+  "dateUpdated": "2018-08-04T10:02:27.420Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -106,7 +106,7 @@
 }, {
   "subject": "4. Digitale Regale: Repetitorien",
   "front": "Was wird auf .cards unter einem **Repetitorium** verstanden?",
-  "back": "\n> \"**Repetitorium** (von lateinisch *repetere:* „wiederholen“) bedeutet die \n> Wiederholung von Wissen und Kenntnissen, meist um eine [Prüfung](https://de.wikipedia.org/wiki/Pr%C3%BCfung) zu bestehen.\"\n>  -- Wikipedia\n\n!!! NOTE Repetitorium vs. Kartei\n   Ein Repetitorium auf .cards fasst **mehrere** Karteien (= Themen) zusammen. Um im Bild zu bleiben: In deinem IKEA-Regal wären das alle Schuhkartons, die inhaltlich zu einem bestimmten Modul deines Studiums gehören (Mitschriften, Lernkarteien, Glossare etc.) und deshalb nebeneinander stehen. \n\n\n!!! TIP\n   Du kannst deine eigenen Repetitorien zusammenstellen. Es bedarf hierzu keiner Lehrperson! Repetitorien ermöglichen dir eine **einfache und übersichtliche Organisation deiner Karteien** für die Vorbereitung auf Modulprüfungen.\n\n\n\n \n",
+  "back": "> \"**Repetitorium** (von lateinisch *repetere:* „wiederholen“) bedeutet die \n> Wiederholung von Wissen und Kenntnissen, meist um eine [Prüfung](https://de.wikipedia.org/wiki/Pr%C3%BCfung) zu bestehen.\"\n>  -- Wikipedia\n\n!!! NOTE Repetitorium vs. Kartei\n   Ein Repetitorium auf .cards fasst **mehrere** Karteien (= Themen) zusammen. Um im Bild zu bleiben: In deinem IKEA-Regal wären das alle Schuhkartons, die inhaltlich zu einem bestimmten Modul deines Studiums gehören (Mitschriften, Lernkarteien, Glossare, Exzerpte etc.) und deshalb nebeneinander stehen. Im Lernmodus werden die Karten aller Karteien, die zum Repetitorium gehören, gemäß dem Wiederholungs-Algorithmus zum Lernen vorgelegt. Dein Dozent oder deine Dozentin kann dir -- wie bei einzelnen Karteien -- Bonuspunkte für das regelmäßige Lernen eines Repetitoriums geben.\n\n!!! TIP\n   Du kannst deine eigenen Repetitorien zusammenstellen. Es bedarf hierzu keiner Lehrperson! Repetitorien ermöglichen dir eine **einfache und übersichtliche Organisation deiner Karteien** für die Vorbereitung auf Modulprüfungen.\n\n\n\n \n",
   "centerTextElement": [
     true,
     false,
@@ -118,7 +118,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2018-08-03T15:44:47.973Z",
+  "dateUpdated": "2018-08-04T10:14:59.418Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
