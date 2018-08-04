@@ -99,7 +99,7 @@ Template.subjectEditor.helpers({
 });
 
 Template.subjectEditor.events({
-	'keyup #subjectEditor': function () {
+	'input #subjectEditor': function () {
 		$('#subjectEditor').css('border', 0);
 		Session.set('subject', $('#subjectEditor').val());
 	},

@@ -111,3 +111,15 @@
   }
 
 }
+
+.increased-font-size {
+  p {
+    font-size: $font_size_markdeep_large !important;
+    line-height: $line_height_markdeep !important;
+  }
+
+  li {
+    font-size: $font_size_markdeep_large !important;
+    line-height: $line_height_markdeep !important;
+  }
+}
