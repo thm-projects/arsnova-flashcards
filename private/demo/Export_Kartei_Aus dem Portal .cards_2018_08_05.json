@@ -2,7 +2,7 @@
   "name": "B: Aus dem Portal .cards",
   "description": "Dient in der Demo-Kartei als Inhaltsverzeichnis der Beispielkarten.",
   "date": "2018-07-08T06:28:46.220Z",
-  "dateUpdated": "2018-08-04T17:34:11.714Z",
+  "dateUpdated": "2018-08-05T10:31:56.390Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -36,7 +36,7 @@
   "noDifficulty": true
 }, {
   "subject": "Beispiel-Karten",
-  "front": "<br />\n<br />\n\n(##) Es folgen Beispiele für Kartentypen aus Kursen der Informatik\n\n!!! TIP Navigieren mit der Tastatur \n   Zur nächsten oder zur vorherigen Karte gelangst du mit den <kbd>Pfeiltasten</kbd>. <br />Vorwärts geht auch einfach mit der <kbd>Leertaste</kbd>.  <br />Die Seiten einer Karte durchwanderst du bequem mit der <kbd>Tab-Taste</kbd>.",
+  "front": "<br />\n<br />\n\n(##) Es folgen Beispiele für Kartentypen aus Kursen der Informatik\n\n!!! TIP Navigieren mit der Tastatur \n   Zur nächsten oder vorherigen Karte gelangst du mit den <kbd>Pfeiltasten</kbd>. <br />Vorwärts geht es auch einfach mit der <kbd>Leertaste</kbd>.  <br />Die Seiten einer Karte durchwanderst du bequem mit der <kbd>Tab-Taste</kbd>.",
   "centerTextElement": [
     false,
     false,
@@ -50,7 +50,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2018-08-04T17:34:11.698Z",
+  "dateUpdated": "2018-08-05T10:31:56.372Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
