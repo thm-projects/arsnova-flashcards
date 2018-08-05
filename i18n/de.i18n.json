@@ -1332,7 +1332,7 @@
     "textEnding": "heute endet die Lernphase der Kartei ",
     "subjectReset": "Deine Lernstatistik wird in Kürze zurückgesetzt für die Kartei ",
     "textReset": "wegen Inaktivität wurde deine Lernstatistik zurückgesetzt. ",
-    "newCards1": "Nach Überprüfung deiner aktuellen Lernphasen haben wir festgestellt, dass ",
+    "newCards1": "Nach Überprüfung deiner aktuellen Lernphasen hat der Wiederholungs-Algorithmus berechnet, dass ",
     "service": "Der Newsletter ist ein Service von .__lastAppTitle__. \n\nDu erhältst diese Mail, weil du dich angemeldet hast auf ",
     "unsubscribe": "Nicht interessiert? Beende die Lernphase, um den Newsletter nicht mehr zu erhalten.",
     "copyright": "© 2018 .__lastAppTitle__",
@@ -1405,8 +1405,8 @@
       Hier kannst du Karten zu einem bestimmten Thema lernen und Karteien für dein Studium anlegen.
       </br>
       </br>
-      Die Navigationsleiste mit den Tabs \"Themen-Pool\", \"Kartei anlegen\", \"Repetitorien\" und \"Lernpensum\"
-      dient dir als Einstieg in die großartigen Features von .__lastAppTitle__, schau dir dazu auch die Hilfe und Demo-Kartei an!
+      Die Navigationsleiste mit den Tabs \"Themen-Pool\", \"Repetitorien\", \"Lernpensum\" und \"Kartei anlegen\"
+      dient dir als Einstieg in die großartigen Features von .__lastAppTitle__. Schau dir dazu auch die Demo unter \"Hilfe\" an!
       </br>
       </br>
       Suche im Themen-Pool nach einem Thema, das dich interessiert.
