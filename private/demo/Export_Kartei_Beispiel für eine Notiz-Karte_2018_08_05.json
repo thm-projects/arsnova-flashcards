@@ -2,7 +2,7 @@
   "name": "P: Beispiel für eine Notiz-Karte",
   "description": "Diese Notiz dient als Abschlusskarte in der Demo-Kartei.",
   "date": "2018-07-05T04:33:28.173Z",
-  "dateUpdated": "2018-08-04T16:56:14.270Z",
+  "dateUpdated": "2018-08-05T10:35:59.358Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -40,7 +40,7 @@
   "noDifficulty": true
 }, {
   "subject": "Letzte Karte",
-  "front": " \n\n!!! Note Los geht's!\n   Klick auf «Startseite». Du siehst, wie sich eine **bunte Wolke** aus Karteinamen aufbaut. Die Größe der Schrift entspricht der Kartenanzahl. Die Wolke ist nur ein kleiner Ausschnitt aus der Menge der auf .cards veröffentlichen Themen. Klick auf ein Thema in der Wolke, um dessen Beschreibung zu sehen. \n\nLog dich jetzt mit deinem **THM-Konto** ein und erstelle eigene Karteien für dein Studium. Lerne die Karten **regelmäßig**, so dass du das Wissen aus dem Studium sehr, sehr lange behältst. Schau dir dazu die Infos und Videos auf den Seiten [Lernen](https://informatik.cards/learning) und [FAQ](https://staging.arsnova.cards/faq) an!\n\n!!! Tip\n   Folge dem Slogan von .cards: **Organize. Learn. Memorize.**",
+  "front": " \n\n!!! Note Los geht's!\n   Klick auf «Startseite». Du siehst, wie sich eine **bunte Wolke** aus Karteinamen aufbaut. Die Größe der Schrift entspricht der Kartenanzahl. Die Wolke ist nur ein kleiner Ausschnitt aus der Menge der auf .cards veröffentlichen Themen. **Klick auf ein Thema in der Wolke, um dessen Beschreibung zu sehen.** \n\nLog dich jetzt mit deinem **THM-Konto** ein und erstelle eigene Karteien für dein Studium. Lerne die Karten **regelmäßig**, so dass du das Wissen aus dem Studium sehr, sehr lange behältst. Schau dir dazu die Infos und Videos auf den Seiten [Lernen](https://informatik.cards/learning) und [FAQ](https://staging.arsnova.cards/faq) an!\n\n!!! Tip\n   Folge dem Slogan von .cards: **Organize. Learn. Memorize.**",
   "centerTextElement": [
     false,
     false,
@@ -54,7 +54,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2018-08-04T16:56:14.253Z",
+  "dateUpdated": "2018-08-05T10:35:59.335Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
