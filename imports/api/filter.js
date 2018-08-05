@@ -220,7 +220,9 @@ export let Filter = class Filter {
 			filter.dateUpdated = -1;
 		}
 		filter.noModule = undefined;
-		filter.shuffled = Route.isRepetitorium();
+		if (!Route.isWorkload()) {
+			filter.shuffled = Route.isRepetitorium();
+		}
 		this.setActiveFilter(filter);
 	}
 
@@ -272,7 +274,9 @@ export let Filter = class Filter {
 		if (FilterNavigation.gotKindFilter(FilterNavigation.getRouteId()) && activeFilter.kind !== undefined) {
 			query.kind = {$in: activeFilter.kind};
 		}
-		query.shuffled = activeFilter.shuffled;
+		if (!Route.isWorkload()) {
+			query.shuffled = activeFilter.shuffled;
+		}
 		return query;
 	}
 
