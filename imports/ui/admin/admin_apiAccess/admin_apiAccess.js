@@ -1,6 +1,7 @@
 //------------------------ IMPORTS
 
 import {Meteor} from "meteor/meteor";
+import {Session} from "meteor/session";
 import {APIAccess} from "../../../api/cardsetAPI.js";
 import {Cardsets} from "../../../api/cardsets.js";
 import "./admin_apiAccess.html";
@@ -37,7 +38,7 @@ Template.admin_apiAccess.helpers({
 			rowsPerPage: 20,
 			fields: [
 				{key: 'cardset', label: TAPi18n.__('admin.cardset.header')},
-				{key: 'token', label: TAPi18n.__('admin.apiToken')},
+				{key: 'token', label: TAPi18n.__('admin.api.token')},
 				{
 					key: 'cardset_id',
 					label: TAPi18n.__('admin.api.exportCardset'),
@@ -48,8 +49,11 @@ Template.admin_apiAccess.helpers({
 					}
 				},
 				{
-					key: 'delete', label: TAPi18n.__('admin.delete'), sortable: false, fn: function () {
-						return new Spacebars.SafeString("<a class='deleteApiAccessAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecardset') + "' data-toggle='modal' data-target='#cardsetConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
+					key: '_id',
+					label: TAPi18n.__('admin.delete'),
+					sortable: false,
+					fn: function (value) {
+						return new Spacebars.SafeString("<a id='" + value + "' class='deleteApiAccessAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.api.delete') + "' data-toggle='modal' data-target='#admin_deleteApiAccessForm'><i class='glyphicon glyphicon-ban-circle'></i></a>");
 					}
 				}
 			]
@@ -58,7 +62,7 @@ Template.admin_apiAccess.helpers({
 });
 
 Template.admin_apiAccess.events({
-	'click .exportAPICardset': function (e) {
+	'click .exportAPICardset': function () {
 		let cId = event.target.id;
 		Meteor.call('exportCards', cId, true, function (error, result) {
 			if (error) {
@@ -70,5 +74,35 @@ Template.admin_apiAccess.events({
 				saveAs(exportData, TAPi18n.__('export.filename.export') + "_" + TAPi18n.__('export.filename.cards') + "_" + name + moment().format('_YYYY_MM_DD') + ".json");
 			}
 		});
+	},
+	'click .deleteApiAccessAdmin': function (event) {
+		event.preventDefault();
+		let apiAccessId = $(event.target).closest("a").attr("id");
+		Session.set("apiAccessId", apiAccessId);
+
+		$('#apiAccessConfirmModalAdmin').modal('show');
+	}
+});
+
+Template.admin_newApiAccessForm.events({
+	'click #apiAccessSave': function () {
+		Meteor.call('newAPIAccess', $("#apiCardsetId").val(), function (error) {
+			if (error) {
+				Bert.alert(TAPi18n.__('admin.api.createFailure'), 'danger', 'growl-top-left');
+			}
+		});
+	}
+});
+
+Template.admin_deleteApiAccessForm.events({
+	'click #apiAccessDeleteAdmin': function () {
+		let apiAccessId = Session.get("apiAccessId");
+
+		Meteor.call('deleteAPIAccess', apiAccessId, function (error) {
+			if (error) {
+				Bert.alert(TAPi18n.__('admin.api.createFailure'), 'danger', 'growl-top-left');
+			}
+		});
+		$('#apiAccessConfirmModalAdmin').modal('hide');
 	}
 });

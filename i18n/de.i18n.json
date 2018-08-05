@@ -1148,7 +1148,15 @@
     "api": {
       "access": "API Zugänge",
       "token": "Schlüssel",
-      "exportCardset": "Export der Kartei für API"
+      "exportCardset": "Export der Kartei für API",
+      "description": "Aktiviert den API Zugang zu einer Kartei",
+      "new": "Neuer API Zugang",
+      "delete": "Zugang löschen",
+      "modal": {
+        "cardsetId": "ID des Kartensatzes",
+        "save": "Zugang erstellen"
+      },
+      "createFailure": "Fehler beim Erstellen des Zugangs"
     },
     "confirm-form": {
       "cardsets": {
