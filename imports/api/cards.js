@@ -271,6 +271,15 @@ Meteor.methods({
 			}
 		});
 		Meteor.call('updateShuffledCardsetQuantity', cardset_id);
+		let cardsets = Cardsets.find({
+			$or: [
+				{_id: cardset_id},
+				{cardGroups: {$in: [cardset_id]}}
+			]
+		}, {fields: {_id: 1}}).fetch();
+		for (let i = 0; i < cardsets.length; i++) {
+			Meteor.call('updateLeitnerCardIndex', cardsets[i]._id);
+		}
 		return card_id;
 	},
 	copyCard: function (sourceCardset_id, targetCardset_id, card_id) {
