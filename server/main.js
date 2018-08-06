@@ -10,7 +10,6 @@ import "../imports/api/cards.js";
 import "../imports/api/cardsets.js";
 import "../imports/api/cardsetUserlist.js";
 import "../imports/api/colleges_courses.js";
-import "../imports/api/courseIterations.js";
 import "../imports/api/serverInventory.js";
 import "../imports/api/import.js";
 import "../imports/api/learned.js";

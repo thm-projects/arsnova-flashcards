@@ -13,10 +13,9 @@ import {ReactiveVar} from "meteor/reactive-var";
 import "../card/card.js";
 import "../learn/learn.js";
 import "../presentation/presentation.js";
-import "../forms/cardsetCourseIterationForm.js";
+import "../forms/cardsetForm.js";
 import "./cardset.html";
 import {CardType} from "../../api/cardTypes";
-import {TargetAudience} from "../../api/targetAudience";
 import {CardNavigation} from "../../api/cardNavigation";
 import {CardVisuals} from "../../api/cardVisuals";
 import {CardsetVisuals} from "../../api/cardsetVisuals";
@@ -160,7 +159,7 @@ Template.cardset.events({
 		$("#cardSetDelete").css('display', "none");
 		$("#cardSetConfirm").css('display', "");
 
-		$('#setCardsetCourseIterationFormModal').on('hidden.bs.modal', function () {
+		$('#setCardsetFormModal').on('hidden.bs.modal', function () {
 			$("#cardSetDelete").css('display', "");
 			$("#cardSetConfirm").css('display', "none");
 		});
@@ -168,7 +167,7 @@ Template.cardset.events({
 	'click #cardSetConfirm': function () {
 		var id = this._id;
 
-		$('#setCardsetCourseIterationFormModal').on('hidden.bs.modal', function () {
+		$('#setCardsetFormModal').on('hidden.bs.modal', function () {
 			Meteor.call("deleteCardset", id);
 			Router.go('create');
 		}).modal('hide');
@@ -693,9 +692,6 @@ Template.cardsetInfoBoxContentOne.helpers({
 		var reviewer = Meteor.users.findOne(this.reviewer);
 		return (reviewer !== undefined) ? reviewer.profile.name : undefined;
 	},
-	gotModuleLink: function () {
-		return this.moduleLink !== "" && this.moduleLink !== undefined;
-	},
 	getCardType: function () {
 		return CardType.getCardTypeName(this.cardType);
 	},
@@ -737,9 +733,6 @@ Template.cardsetInfoBoxContentOne.helpers({
 			case 3:
 				return TAPi18n.__('set-list.both');
 		}
-	},
-	getTargetAudience: function () {
-		return TargetAudience.getTargetAudienceName(this.targetAudience);
 	}
 });
 
@@ -820,9 +813,6 @@ Template.cardsetInfoBoxContentTwo.helpers({
 	getReviewer: function () {
 		var reviewer = Meteor.users.findOne(this.reviewer);
 		return (reviewer !== undefined) ? reviewer.profile.name : undefined;
-	},
-	gotModuleLink: function () {
-		return this.moduleLink !== "" && this.moduleLink !== undefined;
 	},
 	getCardType: function () {
 		return CardType.getCardTypeName(this.cardType);

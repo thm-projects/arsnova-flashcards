@@ -1,8 +1,6 @@
 import "./filterAuthor.html";
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
-import {Route} from "../../../api/route";
-import {CourseIterations} from "../../../api/courseIterations";
 import {Filter} from "../../../api/filter";
 import {Cardsets} from "../../../api/cardsets";
 import {getAuthorName} from "../../../api/userdata";
@@ -23,11 +21,7 @@ Template.filterItemFilterAuthors.helpers({
 	filterAuthors: function (id) {
 		let query = Filter.getFilterQuery();
 		query.owner = id;
-		if (Route.isCourseIteration()) {
-			return CourseIterations.findOne(query);
-		} else {
-			return Cardsets.findOne(query);
-		}
+		return Cardsets.findOne(query);
 	},
 	getAuthorName: function () {
 		return getAuthorName(this._id);

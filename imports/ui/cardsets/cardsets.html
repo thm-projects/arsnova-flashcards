@@ -8,7 +8,7 @@
             {{> showLicense}}
             {{#if isActiveRoute regex='alldecks|create'}}
                 {{> cardsetDeleteForm}}
-                {{> cardsetCourseIterationForm}}
+                {{> cardsetForm}}
                 {{> create}}
             {{/if}}
 
@@ -22,7 +22,7 @@
             {{/if}}
 
             {{#if isActiveRoute 'shuffle'}}
-                {{> cardsetCourseIterationForm}}
+                {{> cardsetForm}}
                 {{> shuffle}}
             {{/if}}
         {{/if}}
@@ -43,7 +43,7 @@
                         {{#if gotShuffledCards}}
                             <a href="#" id="createShuffledCardset" class="btn btn-raised btn-success" role="button"
                                data-toggle="modal"
-                               data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}}>{{_
+                               data-target="#setCardsetFormModal" {{disableIfOffline}}>{{_
                                     "set-list.shuffle"}}</a>
                         {{/if}}
                         <span class="text">
@@ -88,7 +88,7 @@
     <div class="col-md-12" id="set-list-region">
         {{#if isActiveRoute 'create'}}
             <button id="newCardSet" type="button" class="btn btn-raised btn-success saveSet" data-toggle="modal"
-                    data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}} {{disableIfShuffle}}>
+                    data-target="#setCardsetFormModal" {{disableIfOffline}} {{disableIfShuffle}}>
                 {{_ "set-list-empty.newset"}}
             </button>
             <label class="btn btn-raised btn-import btn-success {{disableIfOffline}}">

@@ -2,7 +2,6 @@ import {Meteor} from "meteor/meteor";
 import {FilterNavigation} from "./filterNavigation";
 import {Session} from "meteor/session";
 import {Cardsets} from "./cardsets";
-import {CourseIterations} from "./courseIterations";
 import {Route} from "./route";
 import {Leitner, Wozniak} from "./learned";
 
@@ -73,20 +72,8 @@ export let Filter = class Filter {
 				case "author":
 					filter.owner = content;
 					break;
-				case "course":
-					filter.course = content;
-					break;
-				case "college":
-					filter.college = content;
-					break;
-				case "module":
-					filter.module = content;
-					break;
 				case "noDifficulty":
 					filter.noDifficulty = content;
-					break;
-				case "noModule":
-					filter.noModule = content;
 					break;
 				case "wordcloud":
 					filter.wordcloud = content;
@@ -96,15 +83,6 @@ export let Filter = class Filter {
 					break;
 				case "kind":
 					filter.kind = content;
-					break;
-				case "targetAudience":
-					filter.targetAudience = content;
-					break;
-				case "semester":
-					filter.semester = content;
-					break;
-				case "noSemester":
-					filter.noSemester = content;
 					break;
 			}
 		}
@@ -166,25 +144,6 @@ export let Filter = class Filter {
 		if (FilterNavigation.gotCardTypeFilter(filterType)) {
 			filter.cardType = undefined;
 		}
-		if (FilterNavigation.gotTargetAudienceFilter(filterType)) {
-			filter.targetAudience = undefined;
-		}
-		if (FilterNavigation.gotCollegeFilter(filterType)) {
-			filter.college = undefined;
-			filter.noCollege = undefined;
-		}
-		if (FilterNavigation.gotCourseFilter(filterType)) {
-			filter.course = undefined;
-			filter.noCourse = undefined;
-		}
-		if (FilterNavigation.gotSemesterFilter(filterType)) {
-			filter.semester = undefined;
-			filter.noSemester = undefined;
-		}
-		if (FilterNavigation.gotModuleFilter(filterType)) {
-			filter.module = undefined;
-			filter.noModule = undefined;
-		}
 		if (FilterNavigation.gotDifficultyFilter(filterType)) {
 			filter.difficulty = undefined;
 			filter.noDifficulty = undefined;
@@ -237,27 +196,6 @@ export let Filter = class Filter {
 		}
 		if (FilterNavigation.gotCardTypeFilter(FilterNavigation.getRouteId()) && activeFilter.cardType !== undefined) {
 			query.cardType = activeFilter.cardType;
-		}
-		if (FilterNavigation.gotTargetAudienceFilter(FilterNavigation.getRouteId()) && activeFilter.targetAudience !== undefined) {
-			query.targetAudience = activeFilter.targetAudience;
-		}
-		if (FilterNavigation.gotCollegeFilter(FilterNavigation.getRouteId()) && activeFilter.college !== undefined) {
-			query.college = activeFilter.college;
-		}
-		if (FilterNavigation.gotCourseFilter(FilterNavigation.getRouteId()) && activeFilter.course !== undefined) {
-			query.course = activeFilter.course;
-		}
-		if (FilterNavigation.gotSemesterFilter(FilterNavigation.getRouteId()) && activeFilter.semester !== undefined) {
-			query.semester = activeFilter.semester;
-		}
-		if (FilterNavigation.gotSemesterFilter(FilterNavigation.getRouteId()) && activeFilter.noSemester !== undefined) {
-			query.noSemester = activeFilter.noSemester;
-		}
-		if (FilterNavigation.gotModuleFilter(FilterNavigation.getRouteId()) && activeFilter.module !== undefined) {
-			query.module = activeFilter.module;
-		}
-		if (FilterNavigation.gotModuleFilter(FilterNavigation.getRouteId()) && activeFilter.noModule !== undefined) {
-			query.noModule = activeFilter.noModule;
 		}
 		if (FilterNavigation.gotDifficultyFilter(FilterNavigation.getRouteId()) && activeFilter.difficulty !== undefined) {
 			query.difficulty = activeFilter.difficulty;
@@ -366,12 +304,7 @@ export let Filter = class Filter {
 		if (Route.isWorkload() && Session.get('cardsetIdFilter') !== undefined) {
 			query._id = {$in: Session.get('cardsetIdFilter')};
 		}
-		let totalResults;
-		if (Route.isCourseIteration()) {
-			totalResults = CourseIterations.find(query).count();
-		} else {
-			totalResults = Cardsets.find(query).count();
-		}
+		let totalResults = Cardsets.find(query).count();
 		if (totalResults > Session.get("itemsLimit")) {
 			$(".showMoreResults").data("visible", true);
 			Session.set("totalResults", totalResults);

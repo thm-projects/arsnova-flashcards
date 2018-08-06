@@ -10,9 +10,8 @@ import "../impressum/impressum.js";
 import "../cardsets/cardsets.js";
 import "../markdeepEditor/navigation/navigation.js";
 import "../markdeepEditor/content/content.js";
-import "../cardsetCourseIterations/results.js";
+import "../cardsets/resultItem.js";
 import "../cardTypesList/cardTypesList.js";
-import "../courseIterations/coursesIterations.js";
 import "../learn/progress.js";
 import "../pool/pool.js";
 import "../profile/profile.js";
@@ -110,9 +109,6 @@ Template.main.events({
 					break;
 				case "create":
 					target += "createCardset";
-					break;
-				case "courseIterations":
-					target += "courseIterations";
 					break;
 				case "editCard":
 					target += "editCard";

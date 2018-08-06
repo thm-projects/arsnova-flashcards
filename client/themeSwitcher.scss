@@ -2044,7 +2044,7 @@ $themes: (
     .navigationFilterIcon {
       color: $filter_navigation_icon !important;
     }
-    //forms - cardsetCourseIterationForm
+    //forms - cardsetForm
     #setDifficulty .btn, #cardType .btn {
       background-color: $button_difficulty_inactive !important;
     }
@@ -2085,7 +2085,7 @@ $themes: (
       background-color: $button_difficulty3 !important;
     }
 
-    #setCardsetCourseIterationFormModal, #showSelectLearningUnitModal {
+    #setCardsetFormModal, #showSelectLearningUnitModal {
       ul > li {
         background-color: $cardset_form_list_background !important;
         border-bottom-color: $cardset_form_border !important;
