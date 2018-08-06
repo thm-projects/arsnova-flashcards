@@ -84,6 +84,9 @@ export let Filter = class Filter {
 				case "kind":
 					filter.kind = content;
 					break;
+				case "_id":
+					filter._id = {$in: content};
+					break;
 			}
 		}
 		switch (FilterNavigation.getRouteId()) {
@@ -109,30 +112,38 @@ export let Filter = class Filter {
 		this.resetInfiniteBar();
 	}
 
+	static workloadFilter () {
+		let learnCardsets = [];
+		let leitnerCards = Leitner.find({
+			user_id: Meteor.userId()
+		});
+
+		let wozniakCards = Wozniak.find({
+			user_id: Meteor.userId()
+		});
+		leitnerCards.forEach(function (leitnerCard) {
+			if ($.inArray(leitnerCard.cardset_id, learnCardsets) === -1) {
+				learnCardsets.push(leitnerCard.cardset_id);
+			}
+		});
+
+		wozniakCards.forEach(function (wozniakCard) {
+			if ($.inArray(wozniakCard.cardset_id, learnCardsets) === -1) {
+				learnCardsets.push(wozniakCard.cardset_id);
+			}
+		});
+		return learnCardsets;
+	}
+
+	static updateWorkloadFilter () {
+		this.setActiveFilter(this.workloadFilter(), "_id");
+	}
+
 	static setDefaultFilter (filterType) {
 		let filter = {};
 		filter.topic = undefined;
 		if (Route.isWorkload()) {
-			let leitnerCards = Leitner.find({
-				user_id: Meteor.userId()
-			});
-
-			let wozniakCards = Wozniak.find({
-				user_id: Meteor.userId()
-			});
-			let learnCardsets = [];
-			leitnerCards.forEach(function (leitnerCard) {
-				if ($.inArray(leitnerCard.cardset_id, learnCardsets) === -1) {
-					learnCardsets.push(leitnerCard.cardset_id);
-				}
-			});
-
-			wozniakCards.forEach(function (wozniakCard) {
-				if ($.inArray(wozniakCard.cardset_id, learnCardsets) === -1) {
-					learnCardsets.push(wozniakCard.cardset_id);
-				}
-			});
-			filter._id = {$in: learnCardsets};
+			filter._id = {$in: this.workloadFilter()};
 		}
 		if (Route.isMyCardsets() || FilterNavigation.gotAuthorFilter(filterType)) {
 			if (Route.isMyCardsets()) {

@@ -129,6 +129,10 @@ Template.repetitorium.onDestroyed(function () {
  * ############################################################################
  */
 
+Template.learn.onCreated(function () {
+	Filter.updateWorkloadFilter();
+});
+
 Template.learn.helpers({
 	learnList: function (returnType) {
 		let query = {};
@@ -273,8 +277,16 @@ Template.cardsets.onCreated(function () {
 Template.cardsetsConfirmLearnForm.events({
 	'click #learnDelete': function () {
 		$('#confirmLearnModal').on('hidden.bs.modal', function () {
-			Meteor.call("deleteLeitner", Session.get('cardsetId'));
-			Meteor.call("deleteWozniak", Session.get('cardsetId'));
+			Meteor.call("deleteLeitner", Session.get('cardsetId'), function (error, result) {
+				if (result) {
+					Filter.updateWorkloadFilter();
+				}
+			});
+			Meteor.call("deleteWozniak", Session.get('cardsetId'), function (error, result) {
+				if (result) {
+					Filter.updateWorkloadFilter();
+				}
+			});
 		}).modal('hide');
 	}
 });

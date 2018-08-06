@@ -154,6 +154,7 @@ if (Meteor.isServer) {
 				user_id: Meteor.userId()
 			}, {multi: true});
 			Meteor.call("updateLearnerCount", cardset_id);
+			return true;
 		},
 		deleteWozniak: function (cardset_id) {
 			check(cardset_id, String);
@@ -167,6 +168,7 @@ if (Meteor.isServer) {
 				user_id: Meteor.userId()
 			}, {multi: true});
 			Meteor.call("updateLearnerCount", cardset_id);
+			return true;
 		},
 		updateWozniak: function (cardset_id, card_id, grade) {
 			check(cardset_id, String);
