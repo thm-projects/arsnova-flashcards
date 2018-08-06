@@ -20,8 +20,14 @@ let freeKindTag = "free";
 let proKindTag = "pro";
 
 export let Filter = class Filter {
-	static getActiveFilter () {
-		switch (FilterNavigation.getRouteId()) {
+	static getActiveFilter (_id = undefined) {
+		let route;
+		if (_id === undefined) {
+			route = FilterNavigation.getRouteId();
+		} else {
+			route = _id;
+		}
+		switch (route) {
 			case 0:
 				if (Session.get('poolFilter') === undefined) {
 					this.setDefaultFilter(FilterNavigation.getRouteId());
@@ -85,7 +91,7 @@ export let Filter = class Filter {
 					filter.kind = content;
 					break;
 				case "_id":
-					filter._id = {$in: content};
+					filter._id = content;
 					break;
 			}
 		}
@@ -143,7 +149,7 @@ export let Filter = class Filter {
 		let filter = {};
 		filter.topic = undefined;
 		if (Route.isWorkload()) {
-			filter._id = {$in: this.workloadFilter()};
+			filter._id = this.workloadFilter();
 		}
 		if (Route.isMyCardsets() || FilterNavigation.gotAuthorFilter(filterType)) {
 			if (Route.isMyCardsets()) {
@@ -200,7 +206,12 @@ export let Filter = class Filter {
 		let query = {};
 		let activeFilter = this.getActiveFilter();
 		if (Route.isWorkload()) {
-			query._id = activeFilter._id;
+			query._id = {$in: activeFilter._id};
+		} else {
+			if (Session.get("selectingCardsetToLearn")) {
+				let learnFilter = this.getActiveFilter(3);
+				query._id = {$nin: learnFilter._id};
+			}
 		}
 		if (Route.isMyCardsets() || FilterNavigation.gotAuthorFilter(FilterNavigation.getRouteId()) && activeFilter.owner !== undefined) {
 			query.owner = activeFilter.owner;
