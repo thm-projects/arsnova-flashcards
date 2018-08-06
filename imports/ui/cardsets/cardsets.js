@@ -159,6 +159,10 @@ Template.learn.events({
 	'click #browseCardset': function () {
 		Session.set("selectingCardsetToLearn", true);
 		Router.go('pool');
+	},
+	'click #browseShuffledCardset': function () {
+		Session.set("selectingCardsetToLearn", true);
+		Router.go('repetitorium');
 	}
 });
 
@@ -195,6 +199,9 @@ Template.shuffle.events({
 });
 
 Template.shuffle.helpers({
+	selectShuffleCardset: function () {
+		return Session.get('selectingCardsetToLearn');
+	},
 	shuffleInfoText: function () {
 		return TAPi18n.__('set-list.shuffleInfoText');
 	},
@@ -266,6 +273,13 @@ Template.cardsets.onCreated(function () {
 		Session.set('ratingsLoaded', true);
 	});
 	Session.set("selectingCardsetToLearn", false);
+});
+
+Template.cardsets.events({
+	'click #cancelSelection': function () {
+		Session.set('selectingCardsetToLearn', false);
+		Router.go('learn');
+	}
 });
 
 /*

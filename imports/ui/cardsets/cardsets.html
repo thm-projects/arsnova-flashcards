@@ -32,8 +32,10 @@
 <template name="shuffle">
     {{#if canShuffle}}
         {{#unless isShuffleRoute}}
-            <a href="shuffle" id="shuffleCardsets" class="btn btn-raised btn-success" role="button">{{_
-                    "set-list.shuffleCardsets"}}</a>
+            {{#unless selectShuffleCardset}}
+                <a href="shuffle" id="shuffleCardsets" class="btn btn-raised btn-success" role="button">{{_
+                        "set-list.shuffleCardsets"}}</a>
+            {{/unless}}
         {{else}}
             <div class="col-md-12" id="set-list-region">
                 <div class="bs-callout bs-callout-info selectionInfo">
@@ -136,8 +138,7 @@
     <div id="learn-list-region" class="col-md-12">
         <a id="browseCardset" class="btn btn-raised btn-success">{{_
                 "set-list-learn-empty.browseCardset"}}</a>
-        <a id="browseCourse" class="btn btn-raised btn-success" data-toggle="modal"
-           data-target="#underDevelopmentModal">{{_
+        <a id="browseShuffledCardset" class="btn btn-raised btn-success">{{_
                 "set-list-learn-empty.browseCourse"}}</a>
         {{#if learnList 0}}
             {{> filterNavigation}}

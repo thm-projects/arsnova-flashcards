@@ -524,7 +524,8 @@
     "license": "License",
     "dateUpdated": "Last updated",
     "activeLearners": "Active learners",
-    "selectCardToLearn": "Add cardset to Workload"
+    "selectCardToLearn": "Add cardset to Workload",
+    "selectShuffledCardsetToLearn": "Add shuffled cardset to Workload"
   },
   "cardset": {
     "info": {

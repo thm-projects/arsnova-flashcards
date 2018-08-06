@@ -187,6 +187,11 @@ Template.main.events({
 });
 
 Template.main.helpers({
+	checkIfUserIsSelectingACardset: function () {
+		if (!Route.isCardset() && !Route.isRepetitorium() && !Route.isPool()) {
+			Session.set('selectingCardsetToLearn', false);
+		}
+	},
 	getTheme: function () {
 		if (Session.get('theme')) {
 			if (Session.get('theme') === "default" && Router.current().route.getName() !== "presentation" && Router.current().route.getName() !== "presentationlist") {

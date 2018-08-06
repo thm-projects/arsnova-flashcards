@@ -16,6 +16,10 @@ import {Route} from "../../api/route";
 
 Meteor.subscribe("collegesCourses");
 
+Template.registerHelper('isSelectingCardsetToLearn', function () {
+	return Session.get("selectingCardsetToLearn");
+});
+
 Template.registerHelper('getFirstAppTitle', function () {
 	return Meteor.settings.public.welcome.title.first;
 });
