@@ -360,10 +360,10 @@ Meteor.methods({
 
 		Leitner.remove({
 			card_id: card_id
-		});
+		}, {multi: true});
 		Wozniak.remove({
 			card_id: card_id
-		});
+		}, {multi: true});
 		return result;
 	},
 	deleteCardAdmin: function (card_id) {
@@ -388,10 +388,10 @@ Meteor.methods({
 			Meteor.call('updateShuffledCardsetQuantity', card.cardset_id);
 			Leitner.remove({
 				card_id: card_id
-			});
+			}, {multi: true});
 			Wozniak.remove({
 				card_id: card_id
-			});
+			}, {multi: true});
 		}
 	},
 	updateCard: function (card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {
