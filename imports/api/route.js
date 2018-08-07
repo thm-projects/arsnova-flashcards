@@ -7,7 +7,7 @@ export let Route = class Route {
 	 * @return {Boolean} Return true, when route is a Cardset.
 	 */
 	static isCardset () {
-		return Router.current().route.getName() === "cardsetdetailsid" || Router.current().route.getName() === "cardsetcard";
+		return Router.current().route.getName() === 'cardsetlistid' || Router.current().route.getName() === 'cardsetdetailsid' || Router.current().route.getName() === "cardsetcard" || Router.current().route.getName() === 'admin_cardset';
 	}
 	/**
 	 * Function checks if route is a card edit Mode
@@ -87,10 +87,6 @@ export let Route = class Route {
 
 	static isPool () {
 		return Router.current().route.getName() === "pool";
-	}
-
-	static isCourseIteration () {
-		return Router.current().route.getName() === "courseIterations";
 	}
 
 	static isFirstTimeVisit () {

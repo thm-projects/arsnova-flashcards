@@ -1,13 +1,11 @@
 import {Meteor} from "meteor/meteor";
 import {Cards} from "../../api/cards.js";
 import {Cardsets} from "../../api/cardsets.js";
-import {CourseIterations} from "../../api/courseIterations.js";
 import {ColorThemes} from "../../api/theme.js";
 import {Learned, Leitner, Wozniak} from "../../api/learned.js";
 import {AdminSettings} from "../../api/adminSettings";
 import {CronScheduler} from "../../../server/cronjob.js";
 import {Ratings} from "../../api/ratings";
-import {TargetAudience} from "../../api/targetAudience";
 import {CardType} from "../../api/cardTypes";
 
 var initColorThemes = function () {
@@ -582,48 +580,6 @@ Meteor.startup(function () {
 			{
 				$unset: {
 					skipped: ""
-				}
-			}
-		);
-	}
-
-	let courseIterations = CourseIterations.find({price: {$exists: false}}).fetch();
-	for (let i = 0; i < courseIterations.length; i++) {
-		CourseIterations.update({
-				_id: courseIterations[i]._id
-			},
-			{
-				$set: {
-					kind: "personal",
-					price: Number(0),
-					semester: Number(1)
-				}
-			}
-		);
-	}
-
-	courseIterations = CourseIterations.find({targetAudience: {$exists: false}}).fetch();
-	for (let i = 0; i < courseIterations.length; i++) {
-		CourseIterations.update({
-				_id: courseIterations[i]._id
-			},
-			{
-				$set: {
-					targetAudience: Number(1)
-				}
-			}
-		);
-	}
-
-	courseIterations = CourseIterations.find({}, {fields: {_id: 1, targetAudience: 1}}).fetch();
-	for (let i = 0; i < courseIterations.length; i++) {
-		CourseIterations.update({
-				_id: courseIterations[i]._id
-			},
-			{
-				$set: {
-					noModule: !TargetAudience.gotModule(courseIterations[i].targetAudience),
-					noSemester: !TargetAudience.gotSemester(courseIterations[i].targetAudience)
 				}
 			}
 		);

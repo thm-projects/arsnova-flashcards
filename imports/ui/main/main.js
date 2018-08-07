@@ -10,9 +10,8 @@ import "../impressum/impressum.js";
 import "../cardsets/cardsets.js";
 import "../markdeepEditor/navigation/navigation.js";
 import "../markdeepEditor/content/content.js";
-import "../cardsetCourseIterations/results.js";
+import "../cardsets/resultItem.js";
 import "../cardTypesList/cardTypesList.js";
-import "../courseIterations/coursesIterations.js";
 import "../learn/progress.js";
 import "../pool/pool.js";
 import "../profile/profile.js";
@@ -111,9 +110,6 @@ Template.main.events({
 				case "create":
 					target += "createCardset";
 					break;
-				case "courseIterations":
-					target += "courseIterations";
-					break;
 				case "editCard":
 					target += "editCard";
 					break;
@@ -191,6 +187,11 @@ Template.main.events({
 });
 
 Template.main.helpers({
+	checkIfUserIsSelectingACardset: function () {
+		if (!Route.isCardset() && !Route.isRepetitorium() && !Route.isPool()) {
+			Session.set('selectingCardsetToLearn', false);
+		}
+	},
 	getTheme: function () {
 		if (Session.get('theme')) {
 			if (Session.get('theme') === "default" && Router.current().route.getName() !== "presentation" && Router.current().route.getName() !== "presentationlist") {

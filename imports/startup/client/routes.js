@@ -116,6 +116,7 @@ Router.route('/shuffle', {
 	name: 'shuffle',
 	template: 'cardsets',
 	data: function () {
+		Session.set('isNewCardset', true);
 		Filter.resetMaxItemCounter();
 	}
 });
@@ -128,6 +129,7 @@ Router.route('/cardset/:_id', {
 	name: 'cardsetdetailsid',
 	template: 'cardsetAccess',
 	data: function () {
+		Session.set('isNewCardset', false);
 		return Cardsets.findOne({_id: this.params._id});
 	}
 });
@@ -136,6 +138,7 @@ Router.route('/cardset/:_id/card/:card_id', {
 	name: 'cardsetcard',
 	template: 'cardsetAccess',
 	data: function () {
+		Session.set('isNewCardset', false);
 		Session.set('activeCard', this.params.card_id);
 		return Cardsets.findOne({_id: this.params._id});
 	}
@@ -174,6 +177,7 @@ Router.route('/cardsetlist/:_id', {
 	name: 'cardsetlistid',
 	template: 'cardsetAccess',
 	data: function () {
+		Session.set('isNewCardset', false);
 		return Cardsets.findOne({_id: this.params._id});
 	}
 });
@@ -278,6 +282,7 @@ Router.route('/admin/cardset/:_id', {
 	template: 'admin_cardset',
 	layoutTemplate: 'admin_main',
 	data: function () {
+		Session.set('isNewCardset', false);
 		return Cardsets.findOne({_id: this.params._id});
 	}
 });

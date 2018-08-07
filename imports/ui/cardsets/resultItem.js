@@ -6,9 +6,8 @@ import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import {Leitner, Wozniak} from "../../api/learned.js";
 import "../cardset/cardset.js";
-import "./results.html";
+import "../cardsets/resultItem.html";
 import {CardType} from "../../api/cardTypes";
-import {TargetAudience} from "../../api/targetAudience";
 import {BertAlertVisuals} from "../../api/bertAlertVisuals";
 
 Session.setDefault('cardsetId', undefined);
@@ -137,6 +136,11 @@ Template.cardsetCourseIterationResultRow.events({
 			_id: $(event.target).data('id')
 		});
 	},
+	'click .editCardset': function (event) {
+		Session.set('isNewCardset', false);
+		Session.set('cardsetId', $(event.target).data('id'));
+		Session.set('previousCardsetData', Cardsets.findOne($(event.target).data('id')));
+	},
 	'click .collapseCardsetInfoButton': function (event) {
 		if ($(event.target).hasClass('glyphicon-collapse-up')) {
 			$(event.target).addClass('glyphicon-collapse-down').removeClass('glyphicon-collapse-up');
@@ -225,9 +229,6 @@ Template.cardsetCourseIterationResultRow.helpers({
 		} else {
 			return CardType.getCardTypeName(this.cardType);
 		}
-	},
-	getTargetAudienceName: function () {
-		return TargetAudience.getTargetAudienceName(this.targetAudience);
 	},
 	getColors: function () {
 		switch (this.kind) {

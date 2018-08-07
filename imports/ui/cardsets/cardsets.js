@@ -5,7 +5,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import "../cardset/cardset.js";
-import {cleanModal} from "../forms/cardsetCourseIterationForm.js";
+import {cleanModal} from "../forms/cardsetForm.js";
 import "./cardsets.html";
 import {Filter} from "../../api/filter";
 import {Route} from "../../api/route";
@@ -46,6 +46,9 @@ Template.create.helpers({
 });
 
 Template.create.events({
+	'click #newCardSet': function () {
+		Session.set('isNewCardset', true);
+	},
 	'change #importCardset': function (evt) {
 		if (Session.get('importCards') === undefined) {
 			if (evt.target.files[0].name.match(/\.(json)$/)) {
@@ -126,6 +129,10 @@ Template.repetitorium.onDestroyed(function () {
  * ############################################################################
  */
 
+Template.learn.onCreated(function () {
+	Filter.updateWorkloadFilter();
+});
+
 Template.learn.helpers({
 	learnList: function (returnType) {
 		let query = {};
@@ -152,6 +159,10 @@ Template.learn.events({
 	'click #browseCardset': function () {
 		Session.set("selectingCardsetToLearn", true);
 		Router.go('pool');
+	},
+	'click #browseShuffledCardset': function () {
+		Session.set("selectingCardsetToLearn", true);
+		Router.go('repetitorium');
 	}
 });
 
@@ -173,6 +184,7 @@ Template.shuffle.events({
 				BertAlertVisuals.displayBertAlert(TAPi18n.__('set-list.shuffleUpdateFailure'), 'danger', 'growl-top-left');
 			}
 			if (result) {
+				Session.set('activeCard', undefined);
 				BertAlertVisuals.displayBertAlert(TAPi18n.__('set-list.shuffleUpdateSuccess'), 'success', 'growl-top-left');
 				Router.go('cardsetdetailsid', {_id: Router.current().params._id});
 			}
@@ -187,6 +199,9 @@ Template.shuffle.events({
 });
 
 Template.shuffle.helpers({
+	selectShuffleCardset: function () {
+		return Session.get('selectingCardsetToLearn');
+	},
 	shuffleInfoText: function () {
 		return TAPi18n.__('set-list.shuffleInfoText');
 	},
@@ -260,6 +275,13 @@ Template.cardsets.onCreated(function () {
 	Session.set("selectingCardsetToLearn", false);
 });
 
+Template.cardsets.events({
+	'click #cancelSelection': function () {
+		Session.set('selectingCardsetToLearn', false);
+		Router.go('learn');
+	}
+});
+
 /*
  * ############################################################################
  * cardsetsConfirmLearnForm
@@ -269,8 +291,16 @@ Template.cardsets.onCreated(function () {
 Template.cardsetsConfirmLearnForm.events({
 	'click #learnDelete': function () {
 		$('#confirmLearnModal').on('hidden.bs.modal', function () {
-			Meteor.call("deleteLeitner", Session.get('cardsetId'));
-			Meteor.call("deleteWozniak", Session.get('cardsetId'));
+			Meteor.call("deleteLeitner", Session.get('cardsetId'), function (error, result) {
+				if (result) {
+					Filter.updateWorkloadFilter();
+				}
+			});
+			Meteor.call("deleteWozniak", Session.get('cardsetId'), function (error, result) {
+				if (result) {
+					Filter.updateWorkloadFilter();
+				}
+			});
 		}).modal('hide');
 	}
 });
