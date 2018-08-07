@@ -132,13 +132,13 @@
                     {{/if}}
                     {{#if isActiveRoute regex="alldecks|create|repetitorium"}}
                         {{#if canSeeNavigationItems}}
-                            <a class="resultNavigationElement manageCourseIteration" {{disableIfOffline}}
+                            <a class="resultNavigationElement editCardset" {{disableIfOffline}}
                                title='{{_ "courseIteration.manage"}}' data-id="{{this._id}}" data-toggle="modal"
-                               data-target="#underDevelopmentModal">
+                               data-target="#setCardsetFormModal">
                                 <i class="glyphicon glyphicon-pencil" data-id="{{this._id}}"></i>
                             </a>
                             {{#if isActiveRoute regex="repetitorium"}}
-                                <a class="resultNavigationElement manageCourseIteration editShuffle"
+                                <a class="resultNavigationElement editShuffle"
                                    title='{{_ "set-list.shuffleCardsets"}}' data-id="{{this._id}}">
                                     <i class="glyphicon glyphicon-plus editShuffle" data-id="{{this._id}}"></i>
                                 </a>

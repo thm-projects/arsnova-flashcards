@@ -140,9 +140,7 @@ Template.cardset.rendered = function () {
 
 Template.cardset.helpers({
 	'onEditmodalClose': function () {
-		Session.set('previousName', Cardsets.findOne(Router.current().params._id).name);
-		Session.set('previousDescription', Cardsets.findOne(Router.current().params._id).description);
-		Session.set('previousCardType', Cardsets.findOne(Router.current().params._id).cardType);
+		Session.set('previousCardsetData', Cardsets.findOne($(event.target).data('id')));
 	},
 	'selectedForLearning': function () {
 		if (Session.get('selectingCardsetToLearn')) {

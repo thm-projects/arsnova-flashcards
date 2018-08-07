@@ -136,6 +136,11 @@ Template.cardsetCourseIterationResultRow.events({
 			_id: $(event.target).data('id')
 		});
 	},
+	'click .editCardset': function (event) {
+		Session.set('isNewCardset', false);
+		Session.set('cardsetId', $(event.target).data('id'));
+		Session.set('previousCardsetData', Cardsets.findOne($(event.target).data('id')));
+	},
 	'click .collapseCardsetInfoButton': function (event) {
 		if ($(event.target).hasClass('glyphicon-collapse-up')) {
 			$(event.target).addClass('glyphicon-collapse-down').removeClass('glyphicon-collapse-up');

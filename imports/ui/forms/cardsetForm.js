@@ -2,34 +2,34 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./cardsetForm.html";
-import {Cardsets} from "../../api/cardsets.js";
 import {CardType} from '../../api/cardTypes.js';
 import {Route} from '../../api/route.js';
 import {BertAlertVisuals} from "../../api/bertAlertVisuals";
+import {Cardsets} from "../../api/cardsets";
 
 export function isNewCardset() {
 	return Session.get('isNewCardset');
 }
 
-function adjustDifficultyColor() {
-	if (Route.isCardset()) {
-		Session.set('difficultyColor', Cardsets.findOne({_id: Router.current().params._id}).difficulty);
-	} else {
-		let difficulty = 0;
-		if (!CardType.gotNotesForDifficultyLevel(Session.get('cardType'))) {
-			difficulty = 1;
-		}
-		Session.set('difficultyColor', difficulty);
-	}
-}
-
 export function cleanModal() {
+	if (isNewCardset() && !Route.isShuffle()) {
+		let cardset = {
+			name: '',
+			description: '',
+			difficulty: 1,
+			cardType: -1
+		};
+		Session.set('previousCardsetData', cardset);
+	}
+	if (Route.isCardset()) {
+		Session.set('previousCardsetData', Cardsets.findOne(Router.current().params._id));
+	}
 	if (Route.isShuffle()) {
 		$('#setName').val(Session.get("ShuffleTemplate").name);
 	} else if (isNewCardset()) {
 		$('#setName').val('');
 	} else {
-		$('#setName').val(Session.get('previousName'));
+		$('#setName').val(Session.get('previousCardsetData').name);
 	}
 	$('#setNameLabel').removeClass('text-warning');
 	$('#helpSetName').html('');
@@ -38,11 +38,12 @@ export function cleanModal() {
 		$('#setCardType').html(CardType.getCardTypeLongName(-1));
 		$('#setCardType').val(-1);
 	} else {
-		$('#setCardType').html(CardType.getCardTypeLongName(Session.get('previousCardType')));
-		$('#setCardType').val(Session.get('previousCardType'));
-		if (Session.get('previousCardType') !== -1) {
-			Session.set('cardType', Session.get('previousCardType'));
+		$('#setCardType').html(CardType.getCardTypeLongName(Session.get('previousCardsetData').cardType));
+		$('#setCardType').val(Session.get('previousCardsetData').cardType);
+		if (Session.get('previousCardsetData').cardType !== -1) {
+			Session.set('cardType', Session.get('previousCardsetData').cardType);
 		}
+		$('#helpSetCardType').html('');
 	}
 
 	$('#setCardTypeLabel').removeClass('text-warning');
@@ -52,7 +53,7 @@ export function cleanModal() {
 	} else if (isNewCardset()) {
 		$('#contentEditor').val('');
 	} else {
-		$('#contentEditor').val(Session.get('previousDescription'));
+		$('#contentEditor').val(Session.get('previousCardsetData').description);
 	}
 	$('#setDescriptionLabel').removeClass('text-warning');
 	$('#helpSetDescription').html('');
@@ -76,7 +77,7 @@ export function cleanModal() {
 		Session.set('cardType', Number(0));
 	}
 
-	adjustDifficultyColor();
+	Session.set('difficultyColor', Session.get('previousCardsetData').difficulty);
 	$('#contentEditor').css('height', 'unset');
 }
 
@@ -141,10 +142,10 @@ export function saveCardset() {
 			});
 			return true;
 		} else {
-			if (Cardsets.findOne(Router.current().params._id).shuffled) {
+			if (Session.get('previousCardsetData').shuffled) {
 				cardType = -1;
 			}
-			Meteor.call("updateCardset", Router.current().params._id, name, description, Number(cardType), Session.get('difficultyColor'));
+			Meteor.call("updateCardset", Session.get('previousCardsetData')._id, name, description, Number(cardType), Session.get('difficultyColor'));
 			if (Number(cardType) !== -1) {
 				Session.set('cardType', Number(cardType));
 			}
@@ -164,7 +165,7 @@ export function saveCardset() {
 
 Template.cardsetForm.helpers({
 	isShuffleRoute: function () {
-		return Route.isShuffle();
+		return Route.isShuffle() || Route.isRepetitorium();
 	},
 	isNew: function () {
 		return isNewCardset();
@@ -189,6 +190,7 @@ Template.cardsetFormContent.onRendered(function () {
 		}
 		$('#importCardset').val('');
 		Session.set('importCards', undefined);
+		Session.get('previousCardsetData', undefined);
 	});
 });
 
@@ -196,8 +198,8 @@ Template.cardsetFormContent.helpers({
 	isNew: function () {
 		return isNewCardset();
 	},
-	getCardTypeName: function (cardType) {
-		return CardType.getCardTypeName(cardType);
+	getCardTypeName: function () {
+		return CardType.getCardTypeName(Session.get('previousCardsetData').cardType);
 	},
 	getShuffleName: function () {
 		if (Session.get("ShuffleTemplate") !== undefined) {
@@ -206,7 +208,7 @@ Template.cardsetFormContent.helpers({
 	},
 	learningActive: function () {
 		if (Route.isCardset()) {
-			return Cardsets.findOne({_id: Router.current().params._id}).learningActive;
+			return Session.get('previousCardsetData').learningActive;
 		} else {
 			return false;
 		}
@@ -228,7 +230,7 @@ Template.cardsetFormContent.events({
 		$('#setCardType').html($(evt.currentTarget).text());
 		$('#setCardType').val(cardType);
 		Session.set('cardType', Number(cardType));
-		adjustDifficultyColor();
+		Session.set('difficultyColor', Session.get('previousCardsetData').difficulty);
 		$('#setCardTypeLabel').removeClass('text-warning');
 		$('#helpSetCardType').html('');
 	},

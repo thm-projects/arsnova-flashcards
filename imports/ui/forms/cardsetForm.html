@@ -40,7 +40,7 @@
                     <span id="helpSetName" class="text-warning"></span>
                 </div>
                 <br>
-                {{#unless isActiveRoute regex='shuffle'}}
+                {{#unless isActiveRoute regex='shuffle|repetitorium'}}
                     {{#unless isShuffledCardset this._id}}
                         {{#unless learningActive}}
                             <label id="setCardTypeLabel" class="col-md-3 control-label" for="setCardType">{{_
@@ -89,9 +89,11 @@
         <div class="modal-footer">
             {{#unless isNew}}
                 {{#unless learningActive}}
-                    <button id="cardSetDelete"
-                            class="btn btn-raised btn-danger btn-block btn-setDelete col-xs-12 col-sm-3">{{_
-                            "modal-dialog.delete"}}</button>
+                    {{#if isActiveRoute regex='cardsetdetailsid|cardsetlistid'}}
+                        <button id="cardSetDelete"
+                                class="btn btn-raised btn-danger btn-block btn-setDelete col-xs-12 col-sm-3">{{_
+                                "modal-dialog.delete"}}</button>
+                    {{/if}}
                     <button id="cardSetConfirm"
                             class="btn btn-raised btn-warning btn-block col-xs-12 col-sm-3"
                             style="display:none">{{_
@@ -99,7 +101,7 @@
                 {{/unless}}
             {{/unless}}
             <button id="cardSetCancel" class="btn btn-raised {{#unless
-                    isNew}}cardSetCancel{{/unless}} btn-default btn-block col-xs-12 col-sm-3"
+                    isNew}}{{#if isActiveRoute regex='cardsetdetailsid|cardsetlistid'}}cardSetCancel{{/if}}{{/unless}} btn-default btn-block col-xs-12 col-sm-3"
                     data-dismiss="modal">{{_
                     "modal-dialog.cancel"}}</button>
             <button id="cardSetSave"
