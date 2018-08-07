@@ -1,0 +1,59 @@
+[{
+  "name": "F: Beispiel für eine Fotokarte",
+  "description": "Für die Demo-Kartei",
+  "date": "2018-08-06T15:27:18.512Z",
+  "dateUpdated": "2018-08-07T11:13:28.456Z",
+  "editors": [],
+  "owner": "jCZ6oHcbZhJaKKodN",
+  "visible": false,
+  "ratings": true,
+  "kind": "personal",
+  "price": 0,
+  "reviewed": false,
+  "reviewer": "undefined",
+  "request": false,
+  "relevance": 0,
+  "raterCount": 0,
+  "quantity": 1,
+  "license": [],
+  "userDeleted": false,
+  "learningActive": false,
+  "maxCards": 0,
+  "daysBeforeReset": 0,
+  "learningStart": "1970-01-01T00:00:00.000Z",
+  "learningEnd": "1970-01-01T00:00:00.000Z",
+  "learningInterval": [],
+  "learners": 0,
+  "wordcloud": false,
+  "shuffled": false,
+  "cardType": 10,
+  "difficulty": 1,
+  "noDifficulty": true,
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  }
+}, {
+  "subject": "Exkursion zur CloudNativeCon '18",
+  "front": "![Schlechtes Wetter in Kopenhagen. </br>Aber unsere Cloud bleibt **Native und Hype**](https://arsnova-uploads.mni.thm.de/KubeCon/Foto%2001.05.18,%2016%2044%2035.jpg width=325pt) \nAnfang Mai hatten Christoph Thelen, Daniel Gerhardt und Tom Käsler von der Forschungsgruppe „Cloud-Native Computing“ die Gelegenheit, an der [KubeCon / CloudNativeCon Europe 2018](https://events.linuxfoundation.org/events/kubecon-cloudnativecon-europe-2018/) in Kopenhagen teilzunehmen. Die Konferenz ist die größte in Europa rund um das Thema “Cloud Native Apps”. Das ist das aktuelle Hype-Thema schlechthin: die Containerisierung (z. B. mit Docker) von Microservices auf einer dynamischen Cluster-Infrastruktur.\n\n(##) Hier ihre Eindrücke\n\nKlick auf ein Foto und navigiere mit den <kbd>Pfeiltasten</kbd> durch die Lightbox.\n\n![Der Chaos-Monkey begrüßt uns zur Konferenz](https://arsnova-uploads.mni.thm.de/KubeCon/Foto%2001.05.18,%2016%2059%2018.jpg width=100) \n![Ernstes Gesicht zu ernsten Themen](https://arsnova-uploads.mni.thm.de/KubeCon/Foto%2001.05.18,%2016%2059%2030.jpg width=100) \n![Einsammeln von Werbematerialien am offiziellen Start der Konferenz](https://c1.staticflickr.com/1/863/41811095522_15826f7836_o.jpg width=100) \n![CSI, but not what you think...](https://arsnova-uploads.mni.thm.de/KubeCon/Foto%2002.05.18,%2008%2037%2009.jpg width=100) \n![Der Informatiker -- Please don't talk to me! ;-)](https://arsnova-uploads.mni.thm.de/KubeCon/Foto%2002.05.18,%2008%2037%2026.jpg width=100)\n![Der riesige Keynote-Saal füllt sich langsam](https://arsnova-uploads.mni.thm.de/KubeCon/Foto%2002.05.18,%2008%2046%2022.jpg width=100)\n![Entwickler aus ganz Europa und aus allen Teilen der Welt nahmen teil](https://c1.staticflickr.com/1/963/28082501388_64bebfccc3_o.jpg width=100)\n![Am Ende sollten über 4.500 Teilnehmer dabei sein!](https://arsnova-uploads.mni.thm.de/KubeCon/Foto%2002.05.18,%2009%2007%2019.jpg width=100)\n![Keynote-Speaker unter sich. Erste Reihe v.l.n.r.: Dan Cohn, Executive Director der Cloud Native Computing Foundation; Kelsey Hightower, Master of Ceremony; Liz Rice, Aqua Security.](https://c1.staticflickr.com/1/827/41054463555_8beff7d672_o.jpg width=100)\n![Kubernetes @ CERN: Die Experten erklären, wie die Daten des Large Hadron Collider (LHC) verarbeitet werden.](https://c1.staticflickr.com/1/823/41909012862_62ede6616c_o.jpg width=100)\n![Orientierung: Wo muss ich nach den Keynotes hin?](https://arsnova-uploads.mni.thm.de/KubeCon/IMG_20180502_083857.jpg width=100)\n![Die Konferenz verteilte sich auf zahllose kleine Vortragsräume.](https://arsnova-uploads.mni.thm.de/KubeCon/Foto%2002.05.18,%2013%2053%2007.jpg width=100)\n![CI/CD war eines der wichtigsten Themen](https://c1.staticflickr.com/1/976/28082201008_1ffed7edff_o.jpg width=100)\n![Lunch Time](https://arsnova-uploads.mni.thm.de/KubeCon/Foto%2002.05.18,%2012%2043%2003.jpg width=100)\n![Don't be these people](https://c1.staticflickr.com/1/825/28082450248_33134649a4_o.jpg width=100)\n![gVisor wurde als neuestes Open-Source-Projekt von Google angekündigt. Es wurde sehr positiv aufgenommen und war immer wieder Thema unter den Teilnehmern.](https://arsnova-uploads.mni.thm.de/KubeCon/Foto%2003.05.18,%2009%2015%2046.jpg width=100)\n![Am Abend nach einem langen Konferenztag ging es Richtung Tivoli!](https://arsnova-uploads.mni.thm.de/KubeCon/Foto%2003.05.18,%2017%2035%2014.jpg width=100)\n![Auf diesem Wimmelbild verbirgt sich irgendwo die kleine Meerjungfrau...](https://arsnova-uploads.mni.thm.de/KubeCon/Foto%2005.05.18,%2013%2027%2000.jpg width=100)",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "date": "2018-08-06T15:13:58.028Z",
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "dateUpdated": "2018-08-07T11:13:28.409Z",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  }
+}]
