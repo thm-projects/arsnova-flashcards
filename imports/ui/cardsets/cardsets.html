@@ -8,12 +8,13 @@
             {{> showLicense}}
             {{#if isActiveRoute regex='alldecks|create'}}
                 {{> cardsetDeleteForm}}
-                {{> cardsetCourseIterationForm}}
+                {{> cardsetForm}}
                 {{> create}}
             {{/if}}
 
             {{#if isActiveRoute regex='repetitorium'}}
                 {{> cardsetDeleteForm}}
+                {{> cardsetForm}}
                 {{> repetitorium}}
             {{/if}}
 
@@ -22,7 +23,7 @@
             {{/if}}
 
             {{#if isActiveRoute 'shuffle'}}
-                {{> cardsetCourseIterationForm}}
+                {{> cardsetForm}}
                 {{> shuffle}}
             {{/if}}
         {{/if}}
@@ -32,8 +33,10 @@
 <template name="shuffle">
     {{#if canShuffle}}
         {{#unless isShuffleRoute}}
-            <a href="shuffle" id="shuffleCardsets" class="btn btn-raised btn-success" role="button">{{_
-                    "set-list.shuffleCardsets"}}</a>
+            {{#unless selectShuffleCardset}}
+                <a href="shuffle" id="shuffleCardsets" class="btn btn-raised btn-success" role="button">{{_
+                        "set-list.shuffleCardsets"}}</a>
+            {{/unless}}
         {{else}}
             <div class="col-md-12" id="set-list-region">
                 <div class="bs-callout bs-callout-info selectionInfo">
@@ -43,7 +46,7 @@
                         {{#if gotShuffledCards}}
                             <a href="#" id="createShuffledCardset" class="btn btn-raised btn-success" role="button"
                                data-toggle="modal"
-                               data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}}>{{_
+                               data-target="#setCardsetFormModal" {{disableIfOffline}}>{{_
                                     "set-list.shuffle"}}</a>
                         {{/if}}
                         <span class="text">
@@ -88,7 +91,7 @@
     <div class="col-md-12" id="set-list-region">
         {{#if isActiveRoute 'create'}}
             <button id="newCardSet" type="button" class="btn btn-raised btn-success saveSet" data-toggle="modal"
-                    data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}} {{disableIfShuffle}}>
+                    data-target="#setCardsetFormModal" {{disableIfOffline}} {{disableIfShuffle}}>
                 {{_ "set-list-empty.newset"}}
             </button>
             <label class="btn btn-raised btn-import btn-success {{disableIfOffline}}">
@@ -136,8 +139,7 @@
     <div id="learn-list-region" class="col-md-12">
         <a id="browseCardset" class="btn btn-raised btn-success">{{_
                 "set-list-learn-empty.browseCardset"}}</a>
-        <a id="browseCourse" class="btn btn-raised btn-success" data-toggle="modal"
-           data-target="#underDevelopmentModal">{{_
+        <a id="browseShuffledCardset" class="btn btn-raised btn-success">{{_
                 "set-list-learn-empty.browseCourse"}}</a>
         {{#if learnList 0}}
             {{> filterNavigation}}

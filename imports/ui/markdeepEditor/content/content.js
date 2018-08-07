@@ -2,7 +2,6 @@ import {Session} from "meteor/session";
 import {CardType} from "../../../api/cardTypes";
 import {Template} from "meteor/templating";
 import {CardVisuals} from "../../../api/cardVisuals";
-import {courseIterationRoute, newCardsetCourseIterationRoute} from "../../forms/cardsetCourseIterationForm";
 import "./content.html";
 
 /*
@@ -38,10 +37,7 @@ Template.markdeepContent.helpers({
 			return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").description : "";
 		}
 	},
-	isCourseIteration: function () {
-		return courseIterationRoute();
-	},
 	isNew: function () {
-		return newCardsetCourseIterationRoute();
+		return Session.get('isNewCardset');
 	}
 });

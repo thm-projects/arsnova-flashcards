@@ -12,8 +12,13 @@ import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../../api/dompurify.js";
 import "/client/markdeep.min.js";
 import {getAuthorName} from "../../api/userdata";
+import {Route} from "../../api/route";
 
 Meteor.subscribe("collegesCourses");
+
+Template.registerHelper('isSelectingCardsetToLearn', function () {
+	return Session.get("selectingCardsetToLearn");
+});
 
 Template.registerHelper('getFirstAppTitle', function () {
 	return Meteor.settings.public.welcome.title.first;
@@ -114,6 +119,9 @@ Template.registerHelper("getKindText", function (kind, displayType = 0) {
 });
 
 Template.registerHelper("getShuffleLabel", function (shuffled = false) {
+	if (Route.isRepetitorium()) {
+		shuffled = false;
+	}
 	if (shuffled) {
 		return '<span class="label label-shuffled" data-id="shuffled" title="' + TAPi18n.__('cardset.shuffled.long') + '">' + TAPi18n.__('cardset.shuffled.short') + '</span>';
 	}

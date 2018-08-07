@@ -112,43 +112,46 @@
         <div class="resultItemHeader resultItemHeaderRightArea collapseButton col-xs-12 col-sm-3">
             <div class="resultItemHeaderRightAreaTop col-xs-6 col-sm-12">
                 {{{getKind this.kind 0}}}
+                {{{getShuffleLabel this.shuffled}}}
                 {{{getBonusLabel this.learningActive}}}
             </div>
             <div class="resultItemHeaderRightAreaBottom col-xs-6 col-sm-12">
-                {{#if isActiveRoute regex="shuffle"}}
-                    {{#if inShuffleSelection this._id}}
-                        <a class="btn btn-xs btn-raised btn-danger shuffleButton removeShuffleCardset"
-                           data-id="{{this._id}}">
-                            <i class="fa fa-minus" data-id="{{this._id}}"></i>
-                        </a>
-                    {{else}}
-                        <a class="btn btn-xs btn-raised btn-success shuffleButton addShuffleCardset"
-                           data-id="{{this._id}}">
-                            <i class="fa fa-plus" data-id="{{this._id}}"></i>
-                        </a>
-                    {{/if}}
-                {{/if}}
-                {{#if isActiveRoute regex="alldecks|create|repetitorium"}}
-                    {{#if canSeeNavigationItems}}
-                        <a class="resultNavigationElement manageCourseIteration" {{disableIfOffline}}
-                           title='{{_ "courseIteration.manage"}}' data-id="{{this._id}}" data-toggle="modal"
-                           data-target="#underDevelopmentModal">
-                            <i class="glyphicon glyphicon-pencil" data-id="{{this._id}}"></i>
-                        </a>
-                        {{#if isActiveRoute regex="repetitorium"}}
-                            <a class="resultNavigationElement manageCourseIteration editShuffle"
-                               title='{{_ "set-list.shuffleCardsets"}}' data-id="{{this._id}}">
-                                <i class="glyphicon glyphicon-plus editShuffle" data-id="{{this._id}}"></i>
+                {{#unless isSelectingCardsetToLearn}}
+                    {{#if isActiveRoute regex="shuffle"}}
+                        {{#if inShuffleSelection this._id}}
+                            <a class="btn btn-xs btn-raised btn-danger shuffleButton removeShuffleCardset"
+                               data-id="{{this._id}}">
+                                <i class="fa fa-minus" data-id="{{this._id}}"></i>
+                            </a>
+                        {{else}}
+                            <a class="btn btn-xs btn-raised btn-success shuffleButton addShuffleCardset"
+                               data-id="{{this._id}}">
+                                <i class="fa fa-plus" data-id="{{this._id}}"></i>
                             </a>
                         {{/if}}
-                        <a class="resultNavigationElement deleteCardset" {{disableIfOffline}}
-                           title='{{_ "courseIteration.confirm-form-delete.title"}}' data-toggle="modal"
-                           data-target="#confirmDeleteCardsetModal"
-                           data-id="{{this._id}}">
-                            <i class="result fa fa-trash" data-id="{{this._id}}"></i>
-                        </a>
                     {{/if}}
-                {{/if}}
+                    {{#if isActiveRoute regex="alldecks|create|repetitorium"}}
+                        {{#if canSeeNavigationItems}}
+                            <a class="resultNavigationElement editCardset" {{disableIfOffline}}
+                               title='{{_ "courseIteration.manage"}}' data-id="{{this._id}}" data-toggle="modal"
+                               data-target="#setCardsetFormModal">
+                                <i class="glyphicon glyphicon-pencil" data-id="{{this._id}}"></i>
+                            </a>
+                            {{#if isActiveRoute regex="repetitorium"}}
+                                <a class="resultNavigationElement editShuffle"
+                                   title='{{_ "set-list.shuffleCardsets"}}' data-id="{{this._id}}">
+                                    <i class="glyphicon glyphicon-plus editShuffle" data-id="{{this._id}}"></i>
+                                </a>
+                            {{/if}}
+                            <a class="resultNavigationElement deleteCardset" {{disableIfOffline}}
+                               title='{{_ "courseIteration.confirm-form-delete.title"}}' data-toggle="modal"
+                               data-target="#confirmDeleteCardsetModal"
+                               data-id="{{this._id}}">
+                                <i class="result fa fa-trash" data-id="{{this._id}}"></i>
+                            </a>
+                        {{/if}}
+                    {{/if}}
+                {{/unless}}
                 {{#if isActiveRoute regex="alldecks|create"}}
                     {{#unless this.shuffled}}
                         <a class="resultNavigationElement exportCardset" data-id="{{this._id}}"

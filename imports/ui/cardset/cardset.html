@@ -28,7 +28,7 @@
     {{#unless fullscreenActive}}
         {{> cardsetInfo}}
         {{> showLicense}}
-        {{> cardsetCourseIterationForm}}
+        {{> cardsetForm}}
         {{> cardsetImportForm}}
         {{> cardsetPublishForm}}
         {{> cardsetStartLearnForm}}
@@ -62,7 +62,8 @@
         {{/if}}
         {{#if isActiveRoute 'cardsetlistid'}}
             <div class="col-xs-12">
-                <button class="btn btn-raised btn-danger" id="{{#if fullscreenActive}}backToCardsetDetailViewFullscreen{{else}}backToCardsetDetailView{{/if}}">
+                <button class="btn btn-raised btn-danger" id="{{#if
+                        fullscreenActive}}backToCardsetDetailViewFullscreen{{else}}backToCardsetDetailView{{/if}}">
                     <span class="pull-left"><i class="fa fa-arrow-left"></i> {{_ "cardset.list.back"}}</span>
                 </button>
                 {{> cardsetList}}
@@ -85,7 +86,8 @@
     <a id="collapseCardsetInfoButton"
        class="col-xs-12 card btn-default btn-raised {{getColors}} collapseButton collapsed" href="#collapseCardsetInfo"
        data-toggle="collapse">
-        <strong>{{#if this.shuffled}}{{_ "set-list.cardsetInfoRepetitorium"}}{{else}}{{_ "set-list.cardsetInfoStatic"}}{{/if}}</strong>
+        <strong>{{#if this.shuffled}}{{_ "set-list.cardsetInfoRepetitorium"}}{{else}}{{_
+                "set-list.cardsetInfoStatic"}}{{/if}}</strong>
         <i id="collapseCardsetInfoIcon" class="glyphicon glyphicon-collapse-down pull-right"></i>
     </a>
     <div class="collapse" id="collapseCardsetInfo">
@@ -176,112 +178,46 @@
             </tr>
         {{/unless}}
     {{/unless}}
-    {{#if isActiveRoute regex="course"}}
+    {{#unless isActiveRoute regex="create|learn|pool|shuffle"}}
         <tr>
-            <td>{{_ "courseIteration.targetAudience"}}:</td>
-            <td>
-                {{getTargetAudience}}
-            </td>
-        </tr>
-        <tr>
-            <td>{{_ "courseIteration.list.semester"}}:</td>
-            <td>
-                {{_ "courseIteration.list.semesterList" count=this.semester}}
-            </td>
-        </tr>
-    {{/if}}
-    {{#unless isActiveRoute regex="course"}}
-        {{#unless isActiveRoute regex="create|learn|pool|shuffle"}}
-            <tr>
-                <td>{{_ "cardset.info.quantity"}}:</td>
-                <td class="cardsetCardQuantity" data-quantity="{{this.quantity}}">{{this.quantity}}</td>
-            </tr>
-        {{/unless}}
-        {{#unless isActiveRoute regex="home|create|learn|pool|shuffle"}}
-            {{#if hasAmount}}
-                {{#unless canViewForFree}}
-                    <tr>
-                        <td>{{_ "cardset.info.amount"}}:</td>
-                        <td>{{getPrice this.price}}</td>
-                    </tr>
-                {{/unless}}
-            {{/if}}
-            {{#if isPurchased}}
-                <tr>
-                    <td>{{_ "cardset.info.bought"}}:</td>
-                    <td>{{getDateOfPurchase}}</td>
-                </tr>
-            {{/if}}
-        {{/unless}}
-        <tr>
-            <td>{{_ "cardset.info.license"}}:</td>
-            <td>
-                {{#unless isShuffledCardset _id}}
-                    {{#if isActiveRoute "home"}}
-                        <span class="info_license showLicense">{{getLicense this._id this.license}}</span>
-                    {{else}}
-                        <a class="info_license showLicense" href="#" data-id="{{this._id}}" data-toggle="modal"
-                           data-target="#showLicenseModal">{{getLicense this._id this.license}}</a>
-                    {{/if}}
-                {{else}}
-                    {{_ "cardset.info.shuffleLicense"}}
-                {{/unless}}
-            </td>
+            <td>{{_ "cardset.info.quantity"}}:</td>
+            <td class="cardsetCardQuantity" data-quantity="{{this.quantity}}">{{this.quantity}}</td>
         </tr>
     {{/unless}}
+    {{#unless isActiveRoute regex="home|create|learn|pool|shuffle"}}
+        {{#if hasAmount}}
+            {{#unless canViewForFree}}
+                <tr>
+                    <td>{{_ "cardset.info.amount"}}:</td>
+                    <td>{{getPrice this.price}}</td>
+                </tr>
+            {{/unless}}
+        {{/if}}
+        {{#if isPurchased}}
+            <tr>
+                <td>{{_ "cardset.info.bought"}}:</td>
+                <td>{{getDateOfPurchase}}</td>
+            </tr>
+        {{/if}}
+    {{/unless}}
+    <tr>
+        <td>{{_ "cardset.info.license"}}:</td>
+        <td>
+            {{#unless isShuffledCardset _id}}
+                {{#if isActiveRoute "home"}}
+                    <span class="info_license showLicense">{{getLicense this._id this.license}}</span>
+                {{else}}
+                    <a class="info_license showLicense" href="#" data-id="{{this._id}}" data-toggle="modal"
+                       data-target="#showLicenseModal">{{getLicense this._id this.license}}</a>
+                {{/if}}
+            {{else}}
+                {{_ "cardset.info.shuffleLicense"}}
+            {{/unless}}
+        </td>
+    </tr>
 </template>
 
 <template name="cardsetInfoBoxContentTwo">
-    {{#if isActiveRoute regex="courseIterations"}}
-        {{#if this.moduleActive}}
-            {{#unless singleUniversity}}
-                <tr>
-                    <td>{{_ "cardset.info.college"}}:</td>
-                    <td>{{this.college}}</td>
-                </tr>
-            {{/unless}}
-            <tr>
-                <td>{{_ "cardset.info.course"}}:</td>
-                <td>{{this.course}}</td>
-            </tr>
-            <tr>
-                <td>{{_ "cardset.info.module"}}:</td>
-                <td>
-                    {{#if gotModuleLink}}
-                        <a href="{{this.moduleLink}}" target="_blank">
-                            {{this.module}}
-                        </a>
-                    {{else}}
-                        {{this.module}}
-                    {{/if}}
-                </td>
-            </tr>
-            <tr>
-                <td>{{_ "cardset.info.moduleShort"}}:</td>
-                <td>
-                    {{#if gotModuleLink}}
-                        <a href="{{this.moduleLink}}" target="_blank">
-                            {{this.moduleToken}}
-                        </a>
-                    {{else}}
-                        {{this.moduleToken}}
-                    {{/if}}
-                </td>
-            </tr>
-            <tr>
-                <td>{{_ "cardset.info.moduleNum"}}:</td>
-                <td>
-                    {{#if gotModuleLink}}
-                        <a href="{{this.moduleLink}}" target="_blank">
-                            {{this.moduleNum}}
-                        </a>
-                    {{else}}
-                        {{this.moduleNum}}
-                    {{/if}}
-                </td>
-            </tr>
-        {{/if}}
-    {{/if}}
     <tr>
         <td>{{_ "cardset.info.release"}}:</td>
         <td>{{getMomentsDate this.date}}</td>
@@ -437,7 +373,7 @@
                         <div class="hidden-xs btn-group">
                             <button id="editCardset" class="btn btn-sm btn-raised eidtCardsetBtn"
                                     data-toggle="modal"
-                                    data-target="#setCardsetCourseIterationFormModal" {{disableIfOffline}}>
+                                    data-target="#setCardsetFormModal" {{disableIfOffline}}>
                                 <i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}
                             </button>
                         </div>

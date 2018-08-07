@@ -1,4 +1,5 @@
 <template name="main">
+    {{checkIfUserIsSelectingACardset}}
     <div id="{{#if currentUser}}{{#if isInRole
                                       'firstLogin'}}theme-wrapper-no-nav{{else if isInRole 'blocked'}}theme-wrapper-no-nav{{else}}theme-wrapper{{/if}}{{else}}{{#if
             isActiveRoute regex='home'}}theme-wrapper-no-nav-welcome{{else}}{{#if

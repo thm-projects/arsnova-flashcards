@@ -1,22 +1,28 @@
 <template name="filterNavigation">
     <div class="buttonHeader">
-        {{#if selectingCardsetToLearn}}
+        {{#if isSelectingCardsetToLearn}}
             <div class="bs-callout bs-callout-info selectionInfo">
                 <a id="cancelSelection" class="btn btn-raised btn-danger">
                     {{_ "confirmLearn-form.cancel"}}
                 </a>
                 <span class="text">
-                    {{_ "pool.selectCardToLearn"}}
+                    {{#if isActiveRoute regex='pool'}}
+                        {{_ "pool.selectCardToLearn"}}
+                    {{else}}
+                        {{_ "pool.selectShuffledCardsetToLearn"}}
+                    {{/if}}
                 </span>
             </div>
             <br>
         {{/if}}
-        <nav class="navbar navbar-default {{#if isActiveRoute regex='pool|alldecks'}}no-navigation{{/if}}">
+        <nav class="navbar navbar-default {{#if isActiveRoute regex='pool|alldecks'}}{{#unless
+                isSelectingCardsetToLearn}}no-navigation{{/unless}}{{/if}}">
             <div class="container-fluid" id="filter-nav-wrapper">
                 <div class="navbar-header">
                     <p class="navbar-text visible-sm-inline-block">{{_
                             "set-list.filter-info-small"}}</p>
-                    <p class="navbar-text visible-xs-inline-block filter-text-xs">{{_ "set-list.filter-info-extra-small"}}</p>
+                    <p class="navbar-text visible-xs-inline-block filter-text-xs">{{_
+                            "set-list.filter-info-extra-small"}}</p>
                     {{#if gotResetButton}}
                         <button class="resetFilters btn btn-raised btn-sm btn-danger hidden-md hidden-lg float-left"
                                 id="resetBtnMobile"

@@ -2,7 +2,6 @@ import {Meteor} from "meteor/meteor";
 import {FilterNavigation} from "./filterNavigation";
 import {Session} from "meteor/session";
 import {Cardsets} from "./cardsets";
-import {CourseIterations} from "./courseIterations";
 import {Route} from "./route";
 import {Leitner, Wozniak} from "./learned";
 
@@ -21,8 +20,14 @@ let freeKindTag = "free";
 let proKindTag = "pro";
 
 export let Filter = class Filter {
-	static getActiveFilter () {
-		switch (FilterNavigation.getRouteId()) {
+	static getActiveFilter (_id = undefined) {
+		let route;
+		if (_id === undefined) {
+			route = FilterNavigation.getRouteId();
+		} else {
+			route = _id;
+		}
+		switch (route) {
 			case 0:
 				if (Session.get('poolFilter') === undefined) {
 					this.setDefaultFilter(FilterNavigation.getRouteId());
@@ -73,20 +78,8 @@ export let Filter = class Filter {
 				case "author":
 					filter.owner = content;
 					break;
-				case "course":
-					filter.course = content;
-					break;
-				case "college":
-					filter.college = content;
-					break;
-				case "module":
-					filter.module = content;
-					break;
 				case "noDifficulty":
 					filter.noDifficulty = content;
-					break;
-				case "noModule":
-					filter.noModule = content;
 					break;
 				case "wordcloud":
 					filter.wordcloud = content;
@@ -97,14 +90,8 @@ export let Filter = class Filter {
 				case "kind":
 					filter.kind = content;
 					break;
-				case "targetAudience":
-					filter.targetAudience = content;
-					break;
-				case "semester":
-					filter.semester = content;
-					break;
-				case "noSemester":
-					filter.noSemester = content;
+				case "_id":
+					filter._id = content;
 					break;
 			}
 		}
@@ -131,30 +118,38 @@ export let Filter = class Filter {
 		this.resetInfiniteBar();
 	}
 
+	static workloadFilter () {
+		let learnCardsets = [];
+		let leitnerCards = Leitner.find({
+			user_id: Meteor.userId()
+		});
+
+		let wozniakCards = Wozniak.find({
+			user_id: Meteor.userId()
+		});
+		leitnerCards.forEach(function (leitnerCard) {
+			if ($.inArray(leitnerCard.cardset_id, learnCardsets) === -1) {
+				learnCardsets.push(leitnerCard.cardset_id);
+			}
+		});
+
+		wozniakCards.forEach(function (wozniakCard) {
+			if ($.inArray(wozniakCard.cardset_id, learnCardsets) === -1) {
+				learnCardsets.push(wozniakCard.cardset_id);
+			}
+		});
+		return learnCardsets;
+	}
+
+	static updateWorkloadFilter () {
+		this.setActiveFilter(this.workloadFilter(), "_id");
+	}
+
 	static setDefaultFilter (filterType) {
 		let filter = {};
 		filter.topic = undefined;
 		if (Route.isWorkload()) {
-			let leitnerCards = Leitner.find({
-				user_id: Meteor.userId()
-			});
-
-			let wozniakCards = Wozniak.find({
-				user_id: Meteor.userId()
-			});
-			let learnCardsets = [];
-			leitnerCards.forEach(function (leitnerCard) {
-				if ($.inArray(leitnerCard.cardset_id, learnCardsets) === -1) {
-					learnCardsets.push(leitnerCard.cardset_id);
-				}
-			});
-
-			wozniakCards.forEach(function (wozniakCard) {
-				if ($.inArray(wozniakCard.cardset_id, learnCardsets) === -1) {
-					learnCardsets.push(wozniakCard.cardset_id);
-				}
-			});
-			filter._id = {$in: learnCardsets};
+			filter._id = this.workloadFilter();
 		}
 		if (Route.isMyCardsets() || FilterNavigation.gotAuthorFilter(filterType)) {
 			if (Route.isMyCardsets()) {
@@ -165,25 +160,6 @@ export let Filter = class Filter {
 		}
 		if (FilterNavigation.gotCardTypeFilter(filterType)) {
 			filter.cardType = undefined;
-		}
-		if (FilterNavigation.gotTargetAudienceFilter(filterType)) {
-			filter.targetAudience = undefined;
-		}
-		if (FilterNavigation.gotCollegeFilter(filterType)) {
-			filter.college = undefined;
-			filter.noCollege = undefined;
-		}
-		if (FilterNavigation.gotCourseFilter(filterType)) {
-			filter.course = undefined;
-			filter.noCourse = undefined;
-		}
-		if (FilterNavigation.gotSemesterFilter(filterType)) {
-			filter.semester = undefined;
-			filter.noSemester = undefined;
-		}
-		if (FilterNavigation.gotModuleFilter(filterType)) {
-			filter.module = undefined;
-			filter.noModule = undefined;
 		}
 		if (FilterNavigation.gotDifficultyFilter(filterType)) {
 			filter.difficulty = undefined;
@@ -230,34 +206,18 @@ export let Filter = class Filter {
 		let query = {};
 		let activeFilter = this.getActiveFilter();
 		if (Route.isWorkload()) {
-			query._id = activeFilter._id;
+			query._id = {$in: activeFilter._id};
+		} else {
+			if (Session.get("selectingCardsetToLearn")) {
+				let learnFilter = this.getActiveFilter(3);
+				query._id = {$nin: learnFilter._id};
+			}
 		}
 		if (Route.isMyCardsets() || FilterNavigation.gotAuthorFilter(FilterNavigation.getRouteId()) && activeFilter.owner !== undefined) {
 			query.owner = activeFilter.owner;
 		}
 		if (FilterNavigation.gotCardTypeFilter(FilterNavigation.getRouteId()) && activeFilter.cardType !== undefined) {
 			query.cardType = activeFilter.cardType;
-		}
-		if (FilterNavigation.gotTargetAudienceFilter(FilterNavigation.getRouteId()) && activeFilter.targetAudience !== undefined) {
-			query.targetAudience = activeFilter.targetAudience;
-		}
-		if (FilterNavigation.gotCollegeFilter(FilterNavigation.getRouteId()) && activeFilter.college !== undefined) {
-			query.college = activeFilter.college;
-		}
-		if (FilterNavigation.gotCourseFilter(FilterNavigation.getRouteId()) && activeFilter.course !== undefined) {
-			query.course = activeFilter.course;
-		}
-		if (FilterNavigation.gotSemesterFilter(FilterNavigation.getRouteId()) && activeFilter.semester !== undefined) {
-			query.semester = activeFilter.semester;
-		}
-		if (FilterNavigation.gotSemesterFilter(FilterNavigation.getRouteId()) && activeFilter.noSemester !== undefined) {
-			query.noSemester = activeFilter.noSemester;
-		}
-		if (FilterNavigation.gotModuleFilter(FilterNavigation.getRouteId()) && activeFilter.module !== undefined) {
-			query.module = activeFilter.module;
-		}
-		if (FilterNavigation.gotModuleFilter(FilterNavigation.getRouteId()) && activeFilter.noModule !== undefined) {
-			query.noModule = activeFilter.noModule;
 		}
 		if (FilterNavigation.gotDifficultyFilter(FilterNavigation.getRouteId()) && activeFilter.difficulty !== undefined) {
 			query.difficulty = activeFilter.difficulty;
@@ -366,12 +326,7 @@ export let Filter = class Filter {
 		if (Route.isWorkload() && Session.get('cardsetIdFilter') !== undefined) {
 			query._id = {$in: Session.get('cardsetIdFilter')};
 		}
-		let totalResults;
-		if (Route.isCourseIteration()) {
-			totalResults = CourseIterations.find(query).count();
-		} else {
-			totalResults = Cardsets.find(query).count();
-		}
+		let totalResults = Cardsets.find(query).count();
 		if (totalResults > Session.get("itemsLimit")) {
 			$(".showMoreResults").data("visible", true);
 			Session.set("totalResults", totalResults);
