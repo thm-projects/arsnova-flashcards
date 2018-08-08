@@ -884,6 +884,8 @@
       "delete": "Lösche die Karte",
       "dictionary": "Zeige die BEOLINGUS Übersetzung",
       "copy": "Erstelle eine Kopie von dieser Karte",
+      "zoomText": "Ändere die Schriftgröße der Karte",
+      "zoomTextReset": "Zurücksetzen",
       "markdeepEditor": {
         "help": "Zeige alle Formatierungsoptionen von Markdeep",
         "center": "Zentriere den Inhalt",

@@ -1,0 +1,32 @@
+.zoomSliderContainer {
+  position: absolute;
+  padding: 10px;
+  width: 140px;
+  border-radius: 10px;
+  z-index: 9000;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.zoomSlider {
+  height: 200px;
+  margin-left: 55px;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.zoomSliderLabelContainer {
+  display: block;
+  height: 25px;
+}
+
+.zoomSliderPercentage {
+  margin: 0;
+}
+
+.zoomSliderContainer {
+  .zoomSlider:hover, .zoomSlider .ui-slider-handle:hover {
+    cursor: pointer;
+  }
+}

@@ -13,6 +13,7 @@ import {DOMPurifyConfig} from "../../api/dompurify.js";
 import "/client/markdeep.min.js";
 import {getAuthorName} from "../../api/userdata";
 import {Route} from "../../api/route";
+import {CardVisuals} from "../../api/cardVisuals";
 
 Meteor.subscribe("collegesCourses");
 
@@ -659,6 +660,7 @@ const helper = new MeteorMathJax.Helper({
 		x = DOMPurify.sanitize(x, DOMPurifyConfig);
 		x = lib.setLightBoxes(x);
 		x = lib.displayVideoControls(x);
+		CardVisuals.setTextZoom();
 		return lib.setLinkTarget(x);
 	}
 });

@@ -93,6 +93,7 @@ Template.cardSubject.helpers({
  * cardContentActive
  * ############################################################################
  */
+
 Template.cardContentActive.helpers({
 	isCentered: function () {
 		return CardVisuals.isCentered(Session.get('activeCardContentId'), this.centerTextElement);
@@ -143,6 +144,7 @@ Template.cardContentActive.helpers({
  * cardContentInactive
  * ############################################################################
  */
+
 Template.cardContentInactive.helpers({
 	isCentered: function () {
 		let cubeSides = CardType.getCardTypeCubeSides(this.cardType);

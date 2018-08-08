@@ -13,6 +13,7 @@ export let CardNavigation = class CardNavigation {
 	}
 
 	static switchCardSide (contentId, navigationId, cardStyle) {
+		CardVisuals.toggleZoomContainer(true);
 		CardVisuals.isTextCentered();
 		Session.set('dictionaryPreview', 0);
 		Session.set('activeCardStyle', cardStyle);
@@ -185,6 +186,7 @@ export let CardNavigation = class CardNavigation {
 
 	static keyEvents (event) {
 		let keyCodes = [];
+		CardVisuals.toggleZoomContainer(true);
 		if (!$('#input-search').is(":focus") && !$('#lightbox').is(":visible")) {
 			if (Route.isCardset() || Route.isBox() || Route.isMemo() || Route.isEditMode()) {
 				keyCodes = [9];

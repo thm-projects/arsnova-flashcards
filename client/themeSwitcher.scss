@@ -354,6 +354,12 @@ $themes: (
     $card_header_second_row: map-get($map, "card_header_second_row");
     $card_header_subject: map-get($map, "card_header_subject");
     $card_header_subject_placeholder: map-get($map, "card_header_subject_placeholder");
+    $card_content_zoom_button_active: map-get($map, "card_content_zoom_button_active");
+    $card_content_zoom_slider_container_background: map-get($map, "card_content_zoom_slider_container_background");
+    $card_content_zoom_slider_container_text: map-get($map, "card_content_zoom_slider_container_text");
+    $card_content_zoom_slider_container_percentage: map-get($map, "card_content_zoom_slider_container_percentage");
+    $card_content_zoom_slider_container_bar: map-get($map, "card_content_zoom_slider_container_bar");
+    $card_content_zoom_slider_container_handle: map-get($map, "card_content_zoom_slider_container_handle");
     //markdeep colors
     $markdeep_inline_code_background: map-get($map, "markdeep_inline_code_background");
     $markdeep_inline_code_text: map-get($map, "markdeep_inline_code_text");
@@ -1031,7 +1037,7 @@ $themes: (
       }
 
       .leaveLearnPhaseList {
-        background-color: $cardset_footer_navigation_manage_list_leave_learn_phase_background!important;
+        background-color: $cardset_footer_navigation_manage_list_leave_learn_phase_background !important;
         color: $cardset_footer_navigation_manage_list_leave_learn_phase_text !important;
       }
 
@@ -1041,7 +1047,7 @@ $themes: (
       }
 
       .leaveCardsetList {
-        background-color: $cardset_footer_navigation_manage_list_leave_cardset_background!important;
+        background-color: $cardset_footer_navigation_manage_list_leave_cardset_background !important;
         color: $cardset_footer_navigation_manage_list_leave_cardset_text !important;
       }
 
@@ -1051,7 +1057,7 @@ $themes: (
       }
 
       .leaveEditorsList {
-        background-color: $cardset_footer_navigation_manage_list_leave_editors_background!important;
+        background-color: $cardset_footer_navigation_manage_list_leave_editors_background !important;
         color: $cardset_footer_navigation_manage_list_leave_editors_text !important;
       }
 
@@ -1061,7 +1067,7 @@ $themes: (
       }
 
       .exportCardsBtn {
-        background-color: $cardset_footer_navigation_export_cards_background!important;
+        background-color: $cardset_footer_navigation_export_cards_background !important;
         color: $cardset_footer_navigation_export_cards_text !important;
       }
 
@@ -1071,7 +1077,7 @@ $themes: (
       }
 
       .deleteAllCardsBtn {
-        background-color: $cardset_footer_navigation_delete_all_cards_background!important;
+        background-color: $cardset_footer_navigation_delete_all_cards_background !important;
         color: $cardset_footer_navigation_delete_all_cards_text !important;
       }
 
@@ -1695,6 +1701,29 @@ $themes: (
       }
     }
 
+    .zoomText.active {
+      border-color: $card_content_zoom_button_active !important;
+      background-color: $card_content_zoom_button_active !important;
+      color: white !important;
+    }
+    .zoomSliderContainer {
+      background-color: $card_content_zoom_slider_container_background !important;
+      .zoomSliderPercentageLabel {
+        color: $card_content_zoom_slider_container_text !important;
+      }
+      .zoomSliderPercentage {
+        color: $card_content_zoom_slider_container_percentage !important;
+      }
+      .zoomSlider {
+        background: $card_content_zoom_slider_container_bar !important;
+        border-color: $card_content_zoom_slider_container_bar !important;
+      }
+      .zoomSlider .ui-slider-handle {
+        background: $card_content_zoom_slider_container_handle !important;
+        border-color: $card_content_zoom_slider_container_handle !important;
+      }
+    }
+
     #subjectEditor:disabled {
       background-color: $athens_gray_approx !important;
     }
@@ -1871,7 +1900,7 @@ $themes: (
       color: $item_content_link !important;
     }
 
-    .resultDemo{
+    .resultDemo {
       background-color: $demo_background !important;
     }
 
@@ -2122,7 +2151,7 @@ $themes: (
       }
       #slogan {
         color: white !important;
-	    text-shadow: 2px 2px 5px $welcome_page_login_label_shadow !important;
+        text-shadow: 2px 2px 5px $welcome_page_login_label_shadow !important;
       }
       .panel-heading {
         background-color: transparent !important;
