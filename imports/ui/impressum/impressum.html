@@ -341,6 +341,7 @@
 
         <div class="panel-body info-tab">
             {{#if isActiveLanguage 'de'}}
+                <h2>Lernmethoden</h2>
                 <p>
                     Auf .cards kannst du die Karten deiner Karteien (Mitschriften, Lernkarteien, Glossare, Anweisungen
                     aus
@@ -383,7 +384,8 @@
                             frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen>
                     </iframe>
                 </div>
-                <br/>
+                <br />
+                <h2>Wiederholungs-Algorithmus von Leitner</h2>
                 <p>
                     Die <b>5-Fächer-Lernmethode von Leitner</b> legt bereits gelernte Karten in bestimmten länger
                     werdenden
@@ -406,6 +408,8 @@
                     Bildquelle: <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">Wikipedia:
                     "Lernkartei"</a> — Am Anfang befinden sich alle Karten im Fach 1.
                 </p>
+
+                <h2>Wiederholungs-Algorithmus von Woźniak</h2>
                 <p>
                     Bei der <b>SuperMemo-Lernmethode von Woźniak</b> werden die Abstände aufgrund deiner Einschätzung,
                     wie
@@ -525,58 +529,60 @@
         </div>
         <div class="panel-body info-tab">
             {{#if isActiveLanguage 'de'}}
-                <a id="startPageHelp" href="/img/help/de/Startseite.jpg" data-lightbox="img-1" data-title="Startseite der
+                <h2 id="startPageHelp">Startseite</h2>
+                <a href="/img/help/de/Startseite.jpg" data-lightbox="img-1" data-title="Startseite der
                 Lernplattform .cards">
                     <img src="/img/help/de/Startseite.jpg" alt="Startseite von .cards"
                          class="img-responsive center-block">
                 </a>
                 <ul class="thm-numbering">
-                    <li><strong>Demo-Kartei:</strong> ...
+                    <li><strong>Demo:</strong> Die Demo-Kartei wird nur auf Tablets und Desktops angeboten.
+                        Sie zeigt dir auf rund 20 Karten, was .cards von anderen Lernkartei-Apps unterscheidet.
+                        Die 15 (!) Karteitypen werden an realen Beispielen aus Informatik-Kursen vorgestellt.
+                        Nimm dir ein paar Minuten Zeit, um die großartigen Möglichkeiten kennen zu lernen,
+                        wie du dein Studium effektiv und nachhaltig mit Lernkarteien und Repetitorien betreiben kannst.
                     </li>
-                    <li><strong>Wortwolke:</strong> Sie erscheint nur auf großen Displays ab Tablet-Größe und zeigt die
-                        aktuell populärsten Karteien der Plattform. Die Schriftgröße ist proportional zur Anzahl der
-                        Karten.
-                        Wenn du ein Wort in der Wolke anklickst oder antippst, siehst du die Beschreibung der Kartei.
+                    <li><strong>Wortwolke:</strong> Auch sie erscheint nur auf großen Displays ab Tablet-Größe und zeigt die
+                        aktuell populärsten Karteien der Plattform.
+                        Die Schriftgröße ist proportional zur Anzahl der Karten.
+                        Wenn du ein Wort in der Wolke anklickst oder antippst, siehst du die vollständige Beschreibung der Kartei.
                     </li>
-                    <li><strong>Anmeldung:</strong> .cards unterscheidet zwei Anmeldeoptionen.
+                    <li><strong>Login:</strong> .cards unterscheidet zwei Anmeldeoptionen.
                         Mit dem grünen Button können sich alle Mitglieder der THM anmelden.
-                        Als THM-Mitglied hast du kostenlosen freien Zugang zu allen von THM-Lehrenden veröffentlichen
-                        Karteien.
-                        THM-Karteien tragen das grüne Label "THM". Wer sich über ein Konto eines sozialen
-                        Netzwerks anmeldet,
-                        hat nur Zugang zu Karteien mit dem blauen Label "Frei", es sei denn, er oder sie hat ein
-                        Abonnement
-                        oder zahlt einzeln für Edu- oder Pro-Karteien, siehe die Allgemeinen Geschäftsbedingungen.
+                        Als THM-Mitglied hast du kostenlosen freien Zugang zu allen von THM-Lehrenden veröffentlichen Karteien.
+                        THM-Karteien tragen das grüne Label "THM".
+                        Wer sich über ein Konto eines sozialen Netzwerks anmeldet,
+                        hat nur Zugang zu Karteien mit dem blauen Label "Frei", es sei denn, er oder sie hat ein Abonnement
+                        oder zahlt einzeln für "THM"- oder "Pro"-Karteien, siehe die Allgemeinen Geschäftsbedingungen.
                     </li>
-                    <li><strong>Online-Check:</strong> Die Lernplattform ist eine HTML5-App, die WebSocket-Technologie
-                        im
-                        Online-Betrieb
-                        verwendet. Ohne WebSocket-Verbindung arbeitest du offline und die Karteien werden in deinem
-                        Browser verwaltet. Die Synchronisation mit dem Server erfolgt automatisch, sobald du wieder Netz
-                        hast.
+                    <li><strong>Online-Check:</strong> Die Lernplattform ist eine moderne HTML5-App, die WebSocket-Technologie
+                        im Online-Betrieb verwendet.
+                        Ohne WebSocket-Verbindung arbeitest du offline und die Karteien werden in deinem Browser verwaltet.
+                        Die Synchronisation mit dem Server erfolgt automatisch, sobald du wieder Netz hast.
                     </li>
                 </ul>
 
-                <hr/>
-                <br/>
-
-                <h2 id="poolHelp">Pool der veröffentlichten Karteien</h2>
-                <a href="/img/help/de/Themen-Pool.jpg" data-lightbox="img-1" data-title="Veröffentlichte Karteien">
-                    <img src="/img/help/de/Themen-Pool.jpg" alt="Veröffentlichte Karteien"
+                <h2 id="poolHelp">Themen-Pool</h2>
+                <a href="/img/help/de/Themen-Pool.jpg" data-lightbox="img-1" data-title="Themen-Pool">
+                    <img src="/img/help/de/Themen-Pool.jpg" alt="Themen-Pool"
                          class="img-responsive center-block">
                 </a>
                 <ul class="thm-numbering">
-                    <li><strong>Suchfunktion:</strong> ...
-                    </li><li><strong>Filteroptionen:</strong> Karteien können im Tabellenkopf gefiltert werden
-                        (Karteityp, Autor/in, Studiengang, Modul, Bonus, Level, Zugang).
+                    <li><strong>Suchfunktion:</strong> Tipp ein, was dich interessiert und schau, ob zu diesem Thema eine Lernkartei oder ein Repertitorium existiert.
+                        Gesucht wir in den Titeln und Beschreibungstexten aller veröffentlichter Karteien und Repositorien.
+                        Klick auf einen Treffer und du gelangst zu den Karten.
+                    </li><li><strong>Sortier- und Filteroptionen:</strong> Karteien können im Tabellenkopf sortiert und gefiltert werden.
+                        Die Sortieroptionen sind: alphabetisch nach Karteititel, Erstellungs- oder Aktualisierungsdatum.
+                        Die Filteroptionen sind Karteityp, Level, Autor/in, Bonus, Empholen und Zugangsart.
+                        Du kannst mehrere Filter gleichzeitig aktivieren. Die App merkt sich deine Einstellungen:
+                        Wenn du auf eine andere Seite wechselst und wieder zurückkehrst, sind die Filter noch aktiv.
                     </li>
                     <li><strong>Auswahl einer Kartei:</strong> Klickst du auf das Thema einer bestimmten Kartei, so
-                        wird die Detailansicht geöffnet.
+                        gelangst du zur Detailansicht.
+                        Je nach deinen Benutzerrechten, kannst du dort die Kartei und ihre Karten editieren oder die Karten nur anschauen.
+                        Der Button ganz rechts mit der Pfeilspitze nach unten öffnet die vollständige Beschreibung der Kartei.
                     </li>
                 </ul>
-
-                <hr/>
-                <br/>
 
                 <h2 id="courseIterationsHelp">Repetitorien</h2>
                 <a href="/img/help/de/Repetitorien.jpg" data-lightbox="img-1" data-title="Repetitorien">
@@ -584,14 +590,17 @@
                          class="img-responsive center-block">
                 </a>
                 <ul class="thm-numbering">
-                    <li><strong>Repetitorium mit und ohne Modulbezug:</strong> ...
+                    <li><strong>Repetitorium:</strong> Repetitorien fassen mehrere Karteien (auch unterschiedlichen Typs) thematisch zusammen und dienen zur Vorbereitung auf eine Prüfung.
+                        Wenn eine Lehrperson das Repetitorium angelegt hat, kann damit die Vergabe von Bonuspunkten für kontinuierliches Lernen verbunden sein.
+                        Du erkennst dies am roten Label "Bonus".
                     </li>
-                    <li><strong>Zielgruppen:</strong> ...
+                    <li><strong>Beschreibung:</strong> Der Button ganz rechts mit der Pfeilspitze nach unten öffnet die vollständige Beschreibung des Repetitoriums.
+                        Häufig weist die Lehrperson in der Beschreibung auf eine Bonusoption hin.
+                        Welche Karteien zusammengefasst wurden kann du im Inhaltsverzeichnis des Repetitoriums klar erkennen.
+                        Sie sind nach Karteizugehörigkeit sortiert.
+                        Das Inhaltsverzeichnis findest du in der Detailansicht, die du per Klick auf das Thema aufrufst.
                     </li>
                 </ul>
-
-                <hr/>
-                <br/>
 
                 <h2 id="createHelp">Eine Kartei anlegen</h2>
                 <a href="/img/help/de/Kartei_anlegen.jpg" data-lightbox="img-1" data-title="Eine Kartei anlegen">
@@ -604,9 +613,6 @@
                     <li><strong>Karteitypen:</strong> ...
                     </li>
                 </ul>
-
-                <hr/>
-                <br/>
 
                 <h2 id="studyWorkloadHelp">Lernpensum</h2>
                 <a href="/img/help/de/Lernpensum.jpg" data-lightbox="img-1" data-title="Lernpensum">
@@ -622,9 +628,6 @@
                     </li>
                 </ul>
 
-                <hr/>
-                <br/>
-
                 <h2 id="cardsetHelp">Karteiansicht</h2>
                 <a href="/img/help/de/Kartei.jpg" data-lightbox="img-1" data-title="Karteiansicht">
                     <img src="/img/help/de/Kartei.jpg" alt="Karteiansicht"
@@ -639,9 +642,6 @@
                     </li>
                 </ul>
 
-                <hr/>
-                <br/>
-
                 <h2 id="editorHelp">Editor</h2>
                 <a href="/img/help/de/Editor.jpg" data-lightbox="img-1" data-title="Editor">
                     <img src="/img/help/de/Editor.jpg" alt="Editor"
@@ -655,6 +655,21 @@
                     <li><strong>...:</strong> ...
                     </li>
                 </ul>
+
+                <h2 id="bonusHelp">Bonus</h2>
+                <a href="/img/help/de/Bonus.jpg" data-lightbox="img-1" data-title="Bonus">
+                    <img src="/img/help/de/Bonus.jpg" alt="Bonus"
+                         class="img-responsive center-block">
+                </a>
+                <ul class="thm-numbering">
+                    <li><strong>...:</strong> ...
+                    </li>
+                    <li><strong>...:</strong> ...
+                    </li>
+                    <li><strong>...:</strong> ...
+                    </li>
+                </ul>
+
 
                 <!--
                     <h2 id="createHelp">Meine Karteien</h2>
@@ -700,6 +715,7 @@
         </div>
         <div class="panel-body info-tab">
             {{#if isActiveLanguage 'de'}}
+                <h2>FAQ</h2>
                 <ol>
                     <li>
                         <p style="color: #9C132D;">
@@ -818,6 +834,7 @@
                     <hr/>
                 </ol>
             {{else}}
+                <h2>FAQ</h2>
                 <ol>
                     <li>
                         <p style="color: #9C132D;">
