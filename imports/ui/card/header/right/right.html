@@ -1,14 +1,14 @@
 <template name="flashcardHeaderPresentationRight">
     <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
-        <div class="cardHeaderRowHalf hiddenOnVerySmallDevices" data-cardtype="{{cardType}}">
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
             {{> cardHeaderItemCountCards this}}
         </div>
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
             {{> cardHeaderItemCardList this}}
             <span class="hidden-xs" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemZoomText}}
                 {{> cardHeaderItemContrast}}
             </span>
-            {{> cardHeaderItemZoomText}}
             {{> cardHeaderItemEndPresentation this}}
         </div>
     </div>
@@ -16,23 +16,26 @@
 
 <template name="flashcardHeaderDemoRight">
     <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
-        <div class="cardHeaderRowHalf hiddenOnVerySmallDevices" data-cardtype="{{cardType}}">
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
             {{> cardHeaderItemCountCards this}}
         </div>
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-            {{> cardHeaderItemZoomText}}
             {{> cardHeaderItemCardList this}}
+            <span class="hidden-xs">
+                {{> cardHeaderItemZoomText}}
+            </span>
             {{> cardHeaderItemToggleFullscreen this}}
         </div>
     </div>
 </template>
 
 <template name="flashcardHeaderDefaultRight">
-    <div class="col-xs-3 cardHeaderRight hiddenOnVerySmallDevices" data-cardtype="{{cardType}}">
+    <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
             {{> cardHeaderItemCountCards this}}
         </div>
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            {{> cardHeaderItemCardList this}}
             {{> cardHeaderItemZoomText}}
             {{> cardHeaderItemToggleFullscreen this}}
         </div>
@@ -41,7 +44,7 @@
 
 <template name="flashcardHeaderEditorRight">
     <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
-        <div class="cardHeaderRowHalf hiddenOnVerySmallDevices" data-cardtype="{{cardType}}">
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
         </div>
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
             {{> cardHeaderItemZoomText}}
@@ -52,11 +55,13 @@
 
 <template name="flashcardHeaderLeitnerRight">
     <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
-        <div class="cardHeaderRowHalf hiddenOnVerySmallDevices" data-cardtype="{{cardType}}">
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
             {{> cardHeaderItemCountCardsLeitner this}}
         </div>
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-            {{> cardHeaderItemZoomText}}
+            <span class="hidden-xs">
+                {{> cardHeaderItemZoomText}}
+            </span>
             {{> cardHeaderItemToggleFullscreen this}}
             {{> cardHeaderItemBackToCardset}}
         </div>
@@ -65,10 +70,12 @@
 
 <template name="flashcardHeaderWozniakRight">
     <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
-        <div class="cardHeaderRowHalf hiddenOnVerySmallDevices" data-cardtype="{{cardType}}">
+        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
         </div>
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-            {{> cardHeaderItemZoomText}}
+            <span class="hidden-xs">
+                {{> cardHeaderItemZoomText}}
+            </span>
             {{> cardHeaderItemToggleFullscreen this}}
             {{> cardHeaderItemBackToCardset}}
         </div>
