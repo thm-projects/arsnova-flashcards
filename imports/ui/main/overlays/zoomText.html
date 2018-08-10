@@ -1,0 +1,11 @@
+<template name="zoomTextOverlay">
+    <div class="zoomText zoomSliderContainer" style="display: none;">
+        <div class="zoomText zoomSliderLabelContainer">
+            <label class="zoomText zoomSliderPercentage">{{getPercentage}}</label>
+        </div>
+        <div class="zoomText zoomSlider" data-keyboard="false"></div>
+        {{#unless isDefaultZoomTextValue}}
+            <div class="zoomText btn btn-raised btn-sm btn-danger resetTextZoom">{{_ "card.tooltip.zoomTextReset"}}</div>
+        {{/unless}}
+    </div>
+</template>

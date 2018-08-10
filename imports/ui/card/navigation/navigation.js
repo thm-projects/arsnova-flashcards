@@ -151,6 +151,7 @@ Template.cardArrowNavigation.helpers({
 
 Template.cardArrowNavigation.events({
 	"click #leftCarouselControl, click #rightCarouselControl": function () {
+		CardVisuals.toggleZoomContainer(true);
 		CardNavigation.switchCard();
 	}
 });

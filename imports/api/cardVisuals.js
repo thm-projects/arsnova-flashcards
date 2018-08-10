@@ -6,6 +6,8 @@ import {NavigatorCheck} from "./navigatorCheck";
 import {Cardsets} from "./cardsets";
 
 let editorFullScreenActive = false;
+let defaultFontSize = 16;
+let defaultTextZoomValue = 100;
 
 export let CardVisuals = class CardVisuals {
 
@@ -263,5 +265,51 @@ export let CardVisuals = class CardVisuals {
 			.replace(/`(.+?)`/g, '$1')
 			// Remove rest of mark-up
 			.replace(/[\][\$=~`#|*_+-]/g, " ");
+	}
+
+	static setTextZoom () {
+		let newFontSize = Math.round((defaultFontSize * Session.get('currentZoomValue')) / 100);
+		$('.cardContent').css("font-size", newFontSize + "px");
+	}
+
+	static resetCurrentTextZoomValue () {
+		Session.set('currentZoomValue', defaultTextZoomValue);
+		$('.zoomSlider').slider("value", defaultTextZoomValue);
+		CardVisuals.setTextZoom();
+	}
+
+	static getDefaultTextZoomValue () {
+		return defaultTextZoomValue;
+	}
+
+	static zoomCardText () {
+		$(".zoomSlider").slider({
+			orientation: "vertical",
+			value: Session.get('currentZoomValue'),
+			min: 50,
+			max: 300,
+			slide: function (event, ui) {
+				Session.set('currentZoomValue',ui.value);
+				CardVisuals.setTextZoom();
+			}
+		});
+		$('.zoomSlider .ui-slider-handle').unbind('keydown');
+	}
+
+	static toggleZoomContainer (forceOff = false) {
+		let zoomSliderContainer = $('.zoomSliderContainer');
+		if (zoomSliderContainer.css('display') === 'none' && forceOff === false) {
+			zoomSliderContainer.css('display', 'block');
+			Session.set('zoomTextContainerVisible', true);
+		} else {
+			zoomSliderContainer.css('display', 'none');
+			Session.set('zoomTextContainerVisible', false);
+		}
+		let cardHeader = $('.cardHeader');
+		let zoomTextButton = $('.zoomTextButton');
+		zoomSliderContainer.css({
+			'top': cardHeader.offset().top + cardHeader.height() + "px",
+			'left': zoomTextButton.offset().left - zoomSliderContainer.width() + "px"
+		});
 	}
 };
