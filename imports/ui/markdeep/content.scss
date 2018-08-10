@@ -1,10 +1,24 @@
+.cardContent .md * {
+  font-size: 100% !important;
+}
+
+.cardContent .placeholder {
+  line-height: $line_height_card_content !important;
+}
+
 .md {
+  line-height: $line_height_card_content !important;
+  @media(max-width: 767px) {
+    padding: $padding_card_content_vertical_mobile $padding_card_content_horizontal_mobile !important;
+    line-height: $line_height_card_content_mobile !important;
+  }
   table {
     width: unset;
     background-color: unset;
   }
 
   code {
+    font-size: 100%;
     padding: $padding_inline_code !important;
     white-space: pre-wrap;
     word-break: keep-all;
@@ -28,15 +42,15 @@
 
   blockquote {
     border-left: 0;
-    font-size: $font_size_blockquote_markdeep !important;
-    line-height: $line_height_blockquote_markdeep !important;
     font-family: cursive;
     font-weight: normal;
     @media(max-width: 767px) {
-      font-size: $font_size_blockquote_markdeep_mobile !important;
-      line-height: $line_height_blockquote_markdeep_mobile !important;
       font-weight: bold;
     }
+  }
+
+  blockquote.fancyquote::before, blockquote .fancyquote::after {
+    font-size: 200% !important;
   }
 
   blockquote.fancyquote .author{
@@ -49,13 +63,6 @@
     box-sizing: unset;
     display: block;
     margin: 1em auto;
-    line-height: $line_height_card_content !important;
-    font-size: $font_size_markdeep !important;
-    @media(max-width: 767px) {
-      padding: $padding_card_content_vertical_mobile $padding_card_content_horizontal_mobile !important;
-      line-height: $line_height_card_content_mobile !important;
-      font-size: $font_size_markdeep_mobile !important;
-    }
   }
 
   pre.listing.backtick {
@@ -108,18 +115,5 @@
 
   a {
     font-family: unset;
-  }
-
-}
-
-.increased-font-size {
-  p {
-    font-size: $font_size_markdeep_large !important;
-    line-height: $line_height_markdeep !important;
-  }
-
-  li {
-    font-size: $font_size_markdeep_large !important;
-    line-height: $line_height_markdeep !important;
   }
 }

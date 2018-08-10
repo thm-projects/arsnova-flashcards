@@ -16,7 +16,7 @@ import "./item/dictionary.js";
 import "./item/edit.js";
 import "./item/endPresentation.js";
 import "./item/toggleFullscreen.js";
-
+import "./item/zoomText.js";
 
 /*
  * ############################################################################

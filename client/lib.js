@@ -9,7 +9,6 @@ export function setLightBoxes(content) {
 		let imageTitleElement = $(this).closest('.image');
 		imageTitleElement = imageTitleElement.last();
 		let imageTitle = imageTitleElement.text();
-		console.log(imageTitle);
 		let imageUrl = $(this).attr('src');
 		$(this).attr('data-type', 'cardImage');
 		let wrapped = $(this).wrap('<div class="lightbox-container"><a href="' + imageUrl + '" class="lightbox-img" title="' + imageTitle + '" target="_blank" data-lightbox="' + item_id + '"></a></div>').parent().prop('outerHTML');

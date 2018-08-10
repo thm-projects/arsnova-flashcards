@@ -885,6 +885,8 @@
       "delete": "",
       "dictionary": "",
       "copy": "",
+      "zoomText": "",
+      "zoomTextReset": "Zurücksetzen",
       "markdeepEditor": {
         "help": "",
         "center": " ",

@@ -23,8 +23,10 @@ import "../editor/editor.js";
 import "../editor/cardEditor.js";
 import "../../api/groundDB.js";
 import "../../api/cardIndex.js";
+import "./overlays/zoomText.js";
 import {Cardsets} from "../../api/cardsets.js";
 import {Route} from "../../api/route";
+import {CardVisuals} from "../../api/cardVisuals";
 
 Meteor.subscribe("Users");
 Meteor.subscribe("notifications");
@@ -37,6 +39,7 @@ Session.setDefault("previousRouteName", undefined);
 Session.setDefault("connectionStatus", 2);
 Session.setDefault("selectingCardsetToLearn", false);
 Session.setDefault('helpTarget', undefined);
+Session.setDefault('currentZoomValue', CardVisuals.getDefaultTextZoomValue());
 
 
 function adjustSearchResultWindowSize() {
@@ -183,6 +186,11 @@ Template.main.events({
 		let language = $(event.target).data('lang');
 		TAPi18n.setLanguage(language);
 		Session.set('activeLanguage', language);
+	},
+	"click": function (evt) {
+		if (!$(evt.target).is('.zoomText'))  {
+			CardVisuals.toggleZoomContainer(true);
+		}
 	}
 });
 

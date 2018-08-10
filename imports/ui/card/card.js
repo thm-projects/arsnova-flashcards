@@ -67,6 +67,7 @@ Template.flashcards.onRendered(function () {
 		CardVisuals.resizeFlashcard();
 	});
 	CardVisuals.resizeFlashcard();
+	CardVisuals.setTextZoom();
 });
 
 Template.flashcards.onDestroyed(function () {
@@ -94,9 +95,6 @@ Template.flashcards.helpers({
 	},
 	isCardset: function () {
 		return Route.isCardset();
-	},
-	gotIncreasedFontSize: function () {
-		return CardType.gotIncreasedFontSize(this.cardType);
 	},
 	getCards: function () {
 		let result;
