@@ -2,7 +2,7 @@
   "name": "B: Aus dem Portal .cards",
   "description": "Dient in der Demo-Kartei als Inhaltsverzeichnis der Beispielkarten.",
   "date": "2018-07-08T06:28:46.220Z",
-  "dateUpdated": "2018-08-07T10:31:36.590Z",
+  "dateUpdated": "2018-08-10T05:51:49.868Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -36,7 +36,7 @@
   "noDifficulty": true
 }, {
   "subject": "Beispiel-Karten",
-  "front": "Es folgen Beispiele für Kartentypen aus Kursen der Informatik. Vorher noch zwei Hinweise zum Navigieren im Karten-Karussell:\n\n!!! TIP Tastatur \n   Zur nächsten oder vorherigen Karte gelangst du mit den <kbd>Pfeiltasten</kbd>. <br />Vorwärts geht es auch einfach mit der <kbd>Leertaste</kbd>.  <br />Die Seiten einer Karte durchwanderst du bequem mit der <kbd>Tab-Taste</kbd>.<br />Die Vollbildansicht rufst du mit dem Button oben rechts auf; zurück kommst du mit <kbd>esc</kbd>.<br />Die **Bilder** auf einer Karte können durch Anklicken maximiert und dann mit den <kbd>Pfeiltasten</kbd> in der **Lightbox** durchwandert werden. \n\n!!! TIP Inhaltsverzeichnis\n   Die Karten sind nach ihren Titeln geordnet und können im Inhaltsverzeichnis direkt angesprungen werden.\n",
+  "front": "Es folgen Beispiele für Kartentypen aus Kursen der Informatik. Vorher noch zwei Hinweise zum **Navigieren im Karten-Karussell**:\n\n!!! TIP Tastatur \n   Zur nächsten oder vorherigen Karte gelangst du mit den <kbd>Pfeiltasten</kbd> links und rechts. <br />Vorwärts geht es auch einfach mit der <kbd>Leertaste</kbd>.  <br />Die Seiten einer Karte durchwanderst du bequem mit der <kbd>Tab-Taste</kbd>.<br />Den Inhalt einer Seite scrollst du mit den <kbd>Pfeiltasten</kbd> abwärts und aufwärts.<br />Die Vollbildansicht rufst du mit dem entsprechenden Button oben rechts auf; zurück kommst du mit <kbd>esc</kbd>.<br />Mit der Lupe oben rechts kannst du den Seiteninhalt vergrößern. </kbd><br />Die **Bilder** auf einer Karte können durch Anklicken maximiert und dann mit den <kbd>Pfeiltasten</kbd> links und rechts in der **Lightbox** durchwandert werden. \n\n!!! TIP Inhaltsverzeichnis\n   Die Karten sind nach ihren Titeln geordnet und können im Inhaltsverzeichnis direkt angesprungen werden.\n",
   "centerTextElement": [
     false,
     false,
@@ -50,7 +50,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2018-08-07T10:31:36.578Z",
+  "dateUpdated": "2018-08-10T05:51:49.857Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",

@@ -229,17 +229,17 @@
   "set-list-empty": {
     "emptytextlist": "Du hast noch keine Kartei erstellt. Informiere dich unter \"Hilfe\", was du mit einer eigenen Kartei tun kannst.",
     "emptypooltextlist": "Keine Kartei vorhanden",
-    "newset": "Neue Kartei anlegen"
+    "newset": "Kartei anlegen"
   },
   "set-list-learn-empty": {
     "emptytextlist": "Zum Lernen wähle ein Thema aus dem Themen-Pool oder die Karteien eines Repetitoriums.",
     "emptytextlistNoShuffle": "Wähle eine einzelne Kartei aus dem Themen-Pool aus oder die Karteien eines Repetitoriums.",
     "browseCardset": "Thema auswählen",
-    "browseCourse": "Repetitorium auswählen"
+    "browseCourse": "Rep auswählen"
   },
   "modal-dialog": {
     "missingFields": "Bitte fülle die folgenden Felder aus",
-    "newcarddeck": "Neue Kartei anlegen",
+    "newcarddeck": "Kartei anlegen",
     "editcard": "Beschreibung editieren",
     "editreferences": "Repetitorium neu zusammenstellen",
     "name": "Thema",
@@ -517,7 +517,7 @@
     "activeLearners": "Aktive Lerner/innen",
     "dateUpdated": "Aktualisiert",
     "selectCardToLearn": "Mit einem Klick auf das Thema einer Kartei nimmst du sie in dein Lernpensum auf.",
-    "selectShuffledCardsetToLearn": "Mit einem Klick auf das Thema eines Repetitorium nimmst du es in dein Lernpensum auf."
+    "selectShuffledCardsetToLearn": "Mit einem Klick auf das Thema eines Repetitoriums nimmst du es in dein Lernpensum auf."
   },
   "cardset": {
     "info": {
@@ -631,7 +631,7 @@
     "wordcloudFalse": "Ohne Empfehlung",
     "wordcloudEveryting": "Alle",
     "from": "Ab",
-    "noResults": "Keine Karteien vorhanden oder keine Ergebnisse für diese Filtereinstellung",
+    "noResults": "Keine Karteien oder Repetitorien vorhanden oder keine Ergebnisse für diese Filtereinstellung",
     "sort": "Sortieren "
   },
   "infinite-scroll": {
