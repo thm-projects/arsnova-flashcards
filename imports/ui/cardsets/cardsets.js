@@ -5,7 +5,6 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import "../cardset/cardset.js";
-import {cleanModal} from "../forms/cardsetForm.js";
 import "./cardsets.html";
 import {Filter} from "../../api/filter";
 import {Route} from "../../api/route";
@@ -175,7 +174,6 @@ Template.learn.events({
 Template.shuffle.events({
 	'click #createShuffledCardset': function () {
 		Session.set("ShuffleTemplate", Cardsets.findOne({_id: Session.get("ShuffledCardsets")[0]}));
-		cleanModal();
 	},
 	'click #updateShuffledCardset': function () {
 		let removedCardsets = $(Cardsets.findOne({_id: Router.current().params._id}).cardGroups).not(Session.get("ShuffledCardsets")).get();

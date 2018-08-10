@@ -139,9 +139,6 @@ Template.cardset.rendered = function () {
 };
 
 Template.cardset.helpers({
-	'onEditmodalClose': function () {
-		Session.set('previousCardsetData', Cardsets.findOne($(event.target).data('id')));
-	},
 	'selectedForLearning': function () {
 		if (Session.get('selectingCardsetToLearn')) {
 			addToLeitner(this._id);
@@ -631,29 +628,38 @@ Template.cardsetInfoBoxContentOne.helpers({
 	gotMultipleAuthorsAndIsHome: function (cardset) {
 		if (cardset !== undefined && cardset !== null) {
 			let cardsets = cardset.cardGroups;
-			cardsets.push(cardset._id);
-			let owners = _.uniq(Cardsets.find({_id: {$in: cardsets}}, {fields: {owner: 1}}).fetch(), function (item) {
-				return item.owner;
-			});
-			return owners.length > 1 && Route.isHome();
+			if (cardsets !== undefined) {
+				cardsets.push(cardset._id);
+				let owners = _.uniq(Cardsets.find({_id: {$in: cardsets}}, {fields: {owner: 1}}).fetch(), function (item) {
+					return item.owner;
+				});
+				return owners.length > 1 && Route.isHome();
+			}
 		}
 	},
 	getAuthors: function (cardset) {
 		if (cardset !== undefined && cardset !== null) {
 			let cardsets = cardset.cardGroups;
 			let owner_id = [];
-			cardsets.push(cardset._id);
-			let owners = _.uniq(Cardsets.find({_id: {$in: cardsets}}, {fields: {owner: 1}}).fetch(), function (item) {
-				return item.owner;
-			});
-			owners.forEach(function (element) {
-				owner_id.push(element.owner);
-			});
-			return owners;
+			if (cardsets !== undefined) {
+				cardsets.push(cardset._id);
+				let owners = _.uniq(Cardsets.find({_id: {$in: cardsets}}, {fields: {owner: 1}}).fetch(), function (item) {
+					return item.owner;
+				});
+				owners.forEach(function (element) {
+					owner_id.push(element.owner);
+				});
+				return owners;
+			}
 		}
 	},
 	canRateCardset: function () {
-		return Cardsets.findOne({_id: this._id}).owner !== Meteor.userId();
+		let result = Cardsets.findOne({_id: this._id}, {fields: {owner: 1}});
+		if (result !== undefined) {
+			return result.owner !== Meteor.userId();
+		} else {
+			return false;
+		}
 	},
 	getAverageRating: function () {
 		let ratings = Ratings.find({cardset_id: this._id}).fetch();
@@ -675,7 +681,11 @@ Template.cardsetInfoBoxContentOne.helpers({
 		}
 	},
 	gotOriginalAuthorData: function () {
-		return (this.originalAuthorName.birthname !== undefined || this.originalAuthorName.legacyName !== undefined);
+		if (this.originalAuthorName !== undefined) {
+			return (this.originalAuthorName.birthname !== undefined || this.originalAuthorName.legacyName !== undefined);
+		} else {
+			return "";
+		}
 	},
 	hasAmount: function () {
 		return this.kind === 'pro' || this.kind === 'edu';
@@ -778,7 +788,12 @@ Template.cardsetInfoBoxContentTwo.helpers({
 		}
 	},
 	canRateCardset: function () {
-		return Cardsets.findOne({_id: this._id}).owner !== Meteor.userId();
+		let result = Cardsets.findOne({_id: this._id}, {fields: {owner: 1}});
+		if (result !== undefined) {
+			return result.owner !== Meteor.userId();
+		} else {
+			return false;
+		}
 	},
 	getAverageRating: function () {
 		let ratings = Ratings.find({cardset_id: this._id}).fetch();

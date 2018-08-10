@@ -46,7 +46,7 @@ function adjustSearchResultWindowSize() {
 	if (Meteor.userId()) {
 		let destination = $('#input-search');
 		let target = $('#searchResults');
-		if (destination !== undefined && target !== undefined) {
+		if (destination.length && target.length) {
 			let offsetTop = (destination.offset().top + destination.height());
 			target.css('max-height', ($(window).height() - offsetTop));
 			target.css('left', destination.offset().left);

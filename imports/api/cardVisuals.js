@@ -144,6 +144,9 @@ export let CardVisuals = class CardVisuals {
 	}
 
 	static isCentered (contentId, centerTextElement) {
+		if (centerTextElement == undefined) {
+			return false;
+		}
 		--contentId;
 		if (Route.isEditMode()) {
 			return Session.get('centerTextElement')[contentId];

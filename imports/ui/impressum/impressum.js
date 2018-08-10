@@ -59,8 +59,11 @@ Template.contactNavigation.events({
 Template.help.onRendered(function () {
 	let target = Session.get('helpTarget');
 	if (target !== undefined) {
-		$(window).scrollTop(($(target).offset().top - 70));
-		Session.set('helpTarget', undefined);
+		let anchor = $(target);
+		if (anchor.length) {
+			$(window).scrollTop((anchor.offset().top - 70));
+			Session.set('helpTarget', undefined);
+		}
 	}
 });
 
