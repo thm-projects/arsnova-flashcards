@@ -1,9 +1,15 @@
 <template name="cardHeaderItemDictionary">
     {{#if gotDictionary}}
-        <img class="showLecture card-button cardHeaderItem {{#if isDictionary}}pressed{{/if}}"
-             data-type="cardNavigation"
-             data-toggle="collapse"
-             data-target="#collapseLecture-{{_id}}"
-             src="/img/beolingus.png" title="{{_ "card.tooltip.dictionary"}}">
+        <span class="hidden-xs">
+                    <img class="showLecture card-button cardHeaderItem {{#if isDictionary}}pressed{{/if}}"
+                         data-type="cardNavigation"
+                         data-toggle="collapse"
+                         data-target="#collapseLecture-{{_id}}"
+                         src="/img/beolingus.png" title="{{_ "card.tooltip.dictionary"}}">
+        </span>
+        <span class="visible-xs">
+                    <i class="card-button cardHeaderItem fa fa-book showLecture {{#if isDictionary}}pressed{{/if}}"
+                       data-id="{{this._id}}" title="{{_ "card.tooltip.dictionary"}}"></i>
+        </span>
     {{/if}}
 </template>

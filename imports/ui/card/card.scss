@@ -185,14 +185,18 @@ img.cardside {
   }
 }
 
+.cardHeaderLeft .cardHeaderGroup {
+  float: left;
+}
+
+.cardHeaderRight .cardHeaderGroup {
+  float: right;
+}
+
 .cardHeaderGroup {
   display: inline-block;
   height: 100%;
   vertical-align: top;
-  margin-right: $card_header_item_margin_horizontal;
-  @media(max-width: 767px) {
-    margin-right: $card_header_item_margin_horizontal / 2;
-  }
 }
 
 .cardHeaderSmallText {
@@ -222,11 +226,9 @@ img.cardside {
 
 .card-button {
   cursor: pointer;
+  font-size: $font_size_card_header_button !important;
   @media(max-width: 767px) {
-    font-size: 16px;
-  }
-  @media(max-width: 320px) {
-    font-size: 12px;
+    font-size: $font_size_card_header_mobile_button !important;
   }
 }
 

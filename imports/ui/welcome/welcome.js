@@ -63,83 +63,85 @@ function createTagCloud() {
 		if (newWidth > 1024) {
 			newWidth = 1024;
 		}
-		document.getElementById('tag-cloud-canvas').width = newWidth;
-		document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('#welcome').outerHeight(true) + $('#welcome-login').outerHeight(true));
-		if ($(window).width() > 700 && $(window).height() > 700) {
-			let cloud = {};
-			let minimumSize = 1;
-			let biggestCardsetSize = 1;
-			let list = [];
-			if (Meteor.settings.public.welcome.fakeStatistics) {
-				cloud = new ReactiveVar(fakeWordCloud).curValue.default;
-			} else {
-				cloud = Cardsets.find({wordcloud: true}, {fields: {name: 1, quantity: 1}}).fetch();
-			}
-			cloud.forEach(function (cloud) {
-				if (cloud.quantity > biggestCardsetSize) {
-					biggestCardsetSize = cloud.quantity;
+		if (document.getElementById('tag-cloud-canvas') !== null) {
+			document.getElementById('tag-cloud-canvas').width = newWidth;
+			document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('#welcome').outerHeight(true) + $('#welcome-login').outerHeight(true));
+			if ($(window).width() > 700 && $(window).height() > 700) {
+				let cloud = {};
+				let minimumSize = 1;
+				let biggestCardsetSize = 1;
+				let list = [];
+				if (Meteor.settings.public.welcome.fakeStatistics) {
+					cloud = new ReactiveVar(fakeWordCloud).curValue.default;
+				} else {
+					cloud = Cardsets.find({wordcloud: true}, {fields: {name: 1, quantity: 1}}).fetch();
 				}
-			});
+				cloud.forEach(function (cloud) {
+					if (cloud.quantity > biggestCardsetSize) {
+						biggestCardsetSize = cloud.quantity;
+					}
+				});
 
-			cloud.forEach(function (cloud) {
-				let name = cloud.name;
+				cloud.forEach(function (cloud) {
+					let name = cloud.name;
 
-				if (name.length > 20) {
-					name = name.substring(0, 20) + "…";
-				}
-				let quantitiy = cloud.quantity / biggestCardsetSize * 5;
-				quantitiy = (quantitiy > minimumSize ? quantitiy : minimumSize);
-				list.push([name, Number(quantitiy), cloud._id, cloud.color]);
-			});
-			list.sort(function (a, b) {
-				return (b[0].length * b[1]) - (a[0].length * a[1]);
-			});
+					if (name.length > 20) {
+						name = name.substring(0, 20) + "…";
+					}
+					let quantitiy = cloud.quantity / biggestCardsetSize * 5;
+					quantitiy = (quantitiy > minimumSize ? quantitiy : minimumSize);
+					list.push([name, Number(quantitiy), cloud._id, cloud.color]);
+				});
+				list.sort(function (a, b) {
+					return (b[0].length * b[1]) - (a[0].length * a[1]);
+				});
 
-			let clearCanvas = true;
-			let drawOutOfBound = false;
-			let gridSize = 24;
-			let weightFactor = 24;
-			let rotateRatio = 0;
-			let fontFamily = 'Roboto Condensed, Arial Narrow, sans-serif';
-			let color = "random-light";
-			let backgroundColor = 'rgba(255,255,255, 0)';
-			let wait = 400;
-			if (Meteor.settings.public.welcome.fakeStatistics) {
-				WordCloud(document.getElementById('tag-cloud-canvas'),
-					{
-						clearCanvas: clearCanvas,
-						drawOutOfBound: drawOutOfBound,
-						list: list,
-						gridSize: gridSize,
-						weightFactor: weightFactor,
-						rotateRatio: rotateRatio,
-						fontFamily: fontFamily,
-						color: function (word) {
-							for (let i = 0; i < list.length; i++) {
-								if (word === list[i][0]) {
-									return list[i][3];
+				let clearCanvas = true;
+				let drawOutOfBound = false;
+				let gridSize = 24;
+				let weightFactor = 24;
+				let rotateRatio = 0;
+				let fontFamily = 'Roboto Condensed, Arial Narrow, sans-serif';
+				let color = "random-light";
+				let backgroundColor = 'rgba(255,255,255, 0)';
+				let wait = 400;
+				if (Meteor.settings.public.welcome.fakeStatistics) {
+					WordCloud(document.getElementById('tag-cloud-canvas'),
+						{
+							clearCanvas: clearCanvas,
+							drawOutOfBound: drawOutOfBound,
+							list: list,
+							gridSize: gridSize,
+							weightFactor: weightFactor,
+							rotateRatio: rotateRatio,
+							fontFamily: fontFamily,
+							color: function (word) {
+								for (let i = 0; i < list.length; i++) {
+									if (word === list[i][0]) {
+										return list[i][3];
+									}
 								}
-							}
-						},
-						backgroundColor: backgroundColor,
-						wait: wait
-					});
-			} else {
-				WordCloud(document.getElementById('tag-cloud-canvas'),
-					{
-						clearCanvas: clearCanvas,
-						drawOutOfBound: drawOutOfBound,
-						list: list,
-						gridSize: gridSize,
-						weightFactor: weightFactor,
-						rotateRatio: rotateRatio,
-						fontFamily: fontFamily,
-						color: color,
-						hover: wordcloudHover,
-						click: wordcloudClick,
-						backgroundColor: backgroundColor,
-						wait: wait
-					});
+							},
+							backgroundColor: backgroundColor,
+							wait: wait
+						});
+				} else {
+					WordCloud(document.getElementById('tag-cloud-canvas'),
+						{
+							clearCanvas: clearCanvas,
+							drawOutOfBound: drawOutOfBound,
+							list: list,
+							gridSize: gridSize,
+							weightFactor: weightFactor,
+							rotateRatio: rotateRatio,
+							fontFamily: fontFamily,
+							color: color,
+							hover: wordcloudHover,
+							click: wordcloudClick,
+							backgroundColor: backgroundColor,
+							wait: wait
+						});
+				}
 			}
 		}
 	}
