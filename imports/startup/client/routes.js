@@ -29,18 +29,25 @@ Router.route('/home', {
 	name: 'home',
 	template: 'welcome',
 	data: function () {
+		Session.set('helpTarget', Router.current().route.getName());
 		return Cardsets.findOne({_id: Session.get('wordcloudItem')});
 	}
 });
 
 Router.route('about', {
 	name: 'about',
-	template: 'contact'
+	template: 'contact',
+	data: function () {
+		Session.set('helpTarget', undefined);
+	}
 });
 
 Router.route('learning', {
 	name: 'learning',
-	template: 'contact'
+	template: 'contact',
+	data: function () {
+		Session.set('helpTarget', undefined);
+	}
 });
 
 Router.route('help', {
@@ -50,41 +57,58 @@ Router.route('help', {
 
 Router.route('faq', {
 	name: 'faq',
-	template: 'contact'
+	template: 'contact',
+	data: function () {
+		Session.set('helpTarget', undefined);
+	}
 });
 
 Router.route('impressum', {
 	name: 'impressum',
-	template: 'contact'
+	template: 'contact',
+	data: function () {
+		Session.set('helpTarget', undefined);
+	}
 });
 
 Router.route('demo', {
 	name: 'demo',
-	template: 'demo'
+	template: 'demo',
+	data: function () {
+		Session.set('helpTarget', undefined);
+	}
 });
 
 Router.route('demolist', {
 	name: 'demolist',
 	template: 'demo',
 	data: function () {
+		Session.set('helpTarget', undefined);
 		return Cardsets.findOne({kind: 'demo', name: "DemoCardset", shuffled: true});
 	}
 });
 
 Router.route('agb', {
 	name: 'agb',
-	template: 'contact'
+	template: 'contact',
+	data: function () {
+		Session.set('helpTarget', undefined);
+	}
 });
 
 Router.route('datenschutz', {
 	name: 'datenschutz',
-	template: 'contact'
+	template: 'contact',
+	data: function () {
+		Session.set('helpTarget', undefined);
+	}
 });
 
 Router.route('/alldecks', {
 	name: 'alldecks',
 	template: 'cardsets',
 	data: function () {
+		Session.set('helpTarget', undefined);
 		Filter.resetMaxItemCounter();
 	}
 });
@@ -93,6 +117,7 @@ Router.route('/create', {
 	name: 'create',
 	template: 'cardsets',
 	data: function () {
+		Session.set('helpTarget', "create");
 		Filter.resetMaxItemCounter();
 	}
 });
@@ -101,6 +126,7 @@ Router.route('/repetitorium', {
 	name: 'repetitorium',
 	template: 'cardsets',
 	data: function () {
+		Session.set('helpTarget', "repetitorium");
 		Filter.resetMaxItemCounter();
 	}
 });
@@ -109,6 +135,7 @@ Router.route('/learn', {
 	name: 'learn',
 	template: 'cardsets',
 	data: function () {
+		Session.set('helpTarget', "workload");
 		Filter.resetMaxItemCounter();
 	}
 });
@@ -117,6 +144,7 @@ Router.route('/shuffle', {
 	name: 'shuffle',
 	template: 'cardsets',
 	data: function () {
+		Session.set('helpTarget', "shuffle");
 		Session.set('isNewCardset', true);
 		Filter.resetMaxItemCounter();
 	}
@@ -131,6 +159,7 @@ Router.route('/cardset/:_id', {
 	template: 'cardsetAccess',
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
+		Session.set('helpTarget', "cardset");
 		Session.set('isNewCardset', false);
 		return Cardsets.findOne({_id: this.params._id});
 	}
@@ -141,6 +170,7 @@ Router.route('/cardset/:_id/card/:card_id', {
 	template: 'cardsetAccess',
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
+		Session.set('helpTarget', "cardset");
 		Session.set('isNewCardset', false);
 		Session.set('activeCard', this.params.card_id);
 		return Cardsets.findOne({_id: this.params._id});
@@ -151,6 +181,7 @@ Router.route('/cardset/:_id/editshuffle', {
 	name: 'editshuffle',
 	template: 'shuffle',
 	data: function () {
+		Session.set('helpTarget', "shuffle");
 		Filter.resetMaxItemCounter();
 		return Cardsets.findOne({_id: this.params._id});
 	}
@@ -160,6 +191,7 @@ Router.route('/cardset/:_id/editors', {
 	name: 'cardseteditors',
 	template: 'cardsetManageEditors',
 	data: function () {
+		Session.set('helpTarget', "cardset");
 		return Cardsets.findOne({_id: this.params._id});
 	}
 });
@@ -168,6 +200,7 @@ Router.route('/cardset/:_id/stats', {
 	name: 'cardsetstats',
 	template: 'cardsetLearnActivityStatistic',
 	data: function () {
+		Session.set('helpTarget', "workloadProgress");
 		return Cardsets.findOne({_id: this.params._id});
 	}
 });
@@ -180,6 +213,7 @@ Router.route('/cardsetlist/:_id', {
 	name: 'cardsetlistid',
 	template: 'cardsetAccess',
 	data: function () {
+		Session.set('helpTarget', "cardset");
 		Session.set('isNewCardset', false);
 		return Cardsets.findOne({_id: this.params._id});
 	}
@@ -189,6 +223,7 @@ Router.route('/cardset/:_id/newcard', {
 	name: 'newCard',
 	template: 'newCard',
 	data: function () {
+		Session.set('helpTarget', "cardEditor");
 		return Cardsets.findOne({_id: this.params._id});
 	}
 });
@@ -197,16 +232,24 @@ Router.route('/cardset/:_id/editcard/:card_id', {
 	name: 'editCard',
 	template: 'editCard',
 	data: function () {
+		Session.set('helpTarget', "cardEditor");
 		CardEditor.loadEditModeContent(Cards.findOne({_id: this.params.card_id}));
 	}
 });
 
-Router.route('pool');
+Router.route('/pool', {
+	name: 'pool',
+	template: 'pool',
+	data: function () {
+		Session.set('helpTarget', "pool");
+	}
+});
 
 Router.route('/progress/:_id/:user_id', {
 	name: 'progress',
 	template: 'progress',
 	data: function () {
+		Session.set('helpTarget', "workloadProgress");
 		return Cardsets.findOne({_id: this.params._id});
 	}
 });
@@ -216,6 +259,7 @@ Router.route('/box/:_id', {
 	template: 'learnAlgorithmAccess',
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
+		Session.set('helpTarget', "leitner");
 		return Cardsets.findOne({_id: this.params._id});
 	}
 });
@@ -225,6 +269,7 @@ Router.route('/memo/:_id', {
 	template: 'learnAlgorithmAccess',
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
+		Session.set('helpTarget', "wozniak");
 		return Cardsets.findOne({_id: this.params._id});
 	}
 });
@@ -233,6 +278,7 @@ Router.route('/presentationlist/:_id', {
 	name: 'presentationlist',
 	template: 'presentation',
 	data: function () {
+		Session.set('helpTarget', undefined);
 		return Cardsets.findOne({_id: this.params._id});
 	}
 });
@@ -242,6 +288,7 @@ Router.route('/presentation/:_id', {
 	template: 'presentation',
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
+		Session.set('helpTarget', undefined);
 		return Cardsets.findOne({_id: this.params._id});
 	}
 });
@@ -251,6 +298,7 @@ Router.route('makingofcards', {
 	template: 'makingOfCards',
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
+		Session.set('helpTarget', undefined);
 		return Cardsets.findOne({kind: 'demo', name: "MakingOfCardset", shuffled: true});
 	}
 });
@@ -259,45 +307,70 @@ Router.route('makingofcardslist', {
 	name: 'makinglist',
 	template: 'makingOfCards',
 	data: function () {
+		Session.set('helpTarget', undefined);
 		return Cardsets.findOne({kind: 'demo', name: "MakingOfCardset", shuffled: true});
 	}
 });
 
 Router.route('/profile/:_id/overview', {
 	name: 'profileOverview',
-	template: 'profile'
+	template: 'profile',
+	data: function () {
+		Session.set('helpTarget', "workloadProgress");
+	}
 });
 Router.route('/profile/:_id/billing', {
 	name: 'profileBilling',
-	template: 'profile'
+	template: 'profile',
+	data: function () {
+		Session.set('helpTarget', "billing");
+	}
 });
 Router.route('/profile/:_id/membership', {
 	name: 'profileMembership',
-	template: 'profile'
+	template: 'profile',
+	data: function () {
+		Session.set('helpTarget', "membership");
+	}
 });
 Router.route('/profile/:_id/notifications', {
 	name: 'profileNotifications',
-	template: 'profile'
+	template: 'profile',
+	data: function () {
+		Session.set('helpTarget', "notifications");
+	}
 });
 Router.route('/profile/:_id/settings', {
 	name: 'profileSettings',
-	template: 'profile'
+	template: 'profile',
+	data: function () {
+		Session.set('helpTarget', "settings");
+	}
 });
 Router.route('/profile/:_id/requests', {
 	name: 'profileRequests',
-	template: 'profile'
+	template: 'profile',
+	data: function () {
+		Session.set('helpTarget', "requests");
+	}
 });
 
 Router.route('/admin/dashboard', {
 	name: 'admin_dashboard',
 	template: 'admin_dashboard',
-	layoutTemplate: 'admin_main'
+	layoutTemplate: 'admin_main',
+	data: function () {
+		Session.set('helpTarget', undefined);
+	}
 });
 
 Router.route('/admin/cardsets', {
 	name: 'admin_cardsets',
 	template: 'admin_cardsets',
-	layoutTemplate: 'admin_main'
+	layoutTemplate: 'admin_main',
+	data: function () {
+		Session.set('helpTarget', undefined);
+	}
 });
 
 Router.route('/admin/cardset/:_id', {
@@ -305,6 +378,7 @@ Router.route('/admin/cardset/:_id', {
 	template: 'admin_cardset',
 	layoutTemplate: 'admin_main',
 	data: function () {
+		Session.set('helpTarget', undefined);
 		Session.set('isNewCardset', false);
 		return Cardsets.findOne({_id: this.params._id});
 	}
@@ -313,7 +387,10 @@ Router.route('/admin/cardset/:_id', {
 Router.route('/admin/cards', {
 	name: 'adminCards',
 	template: 'admin_cards',
-	layoutTemplate: 'admin_main'
+	layoutTemplate: 'admin_main',
+	data: function () {
+		Session.set('helpTarget', undefined);
+	}
 });
 
 Router.route('/admin/card/:_id', {
@@ -321,6 +398,7 @@ Router.route('/admin/card/:_id', {
 	template: 'admin_card',
 	layoutTemplate: 'admin_main',
 	data: function () {
+		Session.set('helpTarget', undefined);
 		return Cards.findOne({_id: this.params._id});
 	}
 });
@@ -328,7 +406,10 @@ Router.route('/admin/card/:_id', {
 Router.route('/admin/users', {
 	name: 'admin_users',
 	template: 'admin_users',
-	layoutTemplate: 'admin_main'
+	layoutTemplate: 'admin_main',
+	data: function () {
+		Session.set('helpTarget', undefined);
+	}
 });
 
 Router.route('/admin/user/:_id', {
@@ -336,6 +417,7 @@ Router.route('/admin/user/:_id', {
 	template: 'admin_user',
 	layoutTemplate: 'admin_main',
 	data: function () {
+		Session.set('helpTarget', undefined);
 		return Meteor.users.findOne({_id: this.params._id});
 	}
 });
@@ -343,25 +425,37 @@ Router.route('/admin/user/:_id', {
 Router.route('/admin/learningStatistics', {
 	name: 'admin_learningStatistics',
 	template: 'admin_learningStatistics',
-	layoutTemplate: 'admin_main'
+	layoutTemplate: 'admin_main',
+	data: function () {
+		Session.set('helpTarget', undefined);
+	}
 });
 
 Router.route('/admin/notifications', {
 	name: 'admin_notifications',
 	template: 'admin_notifications',
-	layoutTemplate: 'admin_main'
+	layoutTemplate: 'admin_main',
+	data: function () {
+		Session.set('helpTarget', undefined);
+	}
 });
 
 Router.route('/admin/university', {
 	name: 'admin_university',
 	template: 'admin_university',
-	layoutTemplate: 'admin_main'
+	layoutTemplate: 'admin_main',
+	data: function () {
+		Session.set('helpTarget', undefined);
+	}
 });
 
 Router.route('/admin/settings', {
 	name: 'admin_settings',
 	template: 'admin_settings',
-	layoutTemplate: 'admin_main'
+	layoutTemplate: 'admin_main',
+	data: function () {
+		Session.set('helpTarget', undefined);
+	}
 });
 
 

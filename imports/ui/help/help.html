@@ -1,0 +1,58 @@
+<template name="help">
+    <div class="panel panel-default">
+        <div class="panel-heading info-tab">
+            <h1>Falls sich die App nicht von selbst erklärt</h1>
+        </div>
+        <div class="panel-body info-tab">
+            {{#if displayHelpCategory "start"}}
+                {{> helpStart}}
+            {{/if}}
+            {{#if displayHelpCategory "pool"}}
+                {{> helpPool}}
+            {{/if}}
+            {{#if displayHelpCategory "repetitorium"}}
+                {{> helpRepetitorium}}
+            {{/if}}
+            {{#if displayHelpCategory "shuffle"}}
+                {{> helpShuffle}}
+            {{/if}}
+            {{#if displayHelpCategory "create"}}
+                {{> helpMyCardsets}}
+            {{/if}}
+            {{#if displayHelpCategory "cardset"}}
+                {{> helpCardset}}
+                {{> helpBonus}}
+            {{/if}}
+            {{#if displayHelpCategory "cardEditor"}}
+                {{> helpCardEditor}}
+            {{/if}}
+            {{#if displayHelpCategory "leitner"}}
+                {{> helpLeitner}}
+            {{/if}}
+            {{#if displayHelpCategory "wozniak"}}
+                {{> helpWozniak}}
+            {{/if}}
+            {{#if displayHelpCategory "workload"}}
+                {{> helpWorkload}}
+            {{/if}}
+            {{#if displayHelpCategory "workloadProgress"}}
+                {{> helpWorkloadProgress}}
+            {{/if}}
+            {{#if displayHelpCategory "billing"}}
+                {{> helpProfileBilling}}
+            {{/if}}
+            {{#if displayHelpCategory "membership"}}
+                {{> helpProfileMembership}}
+            {{/if}}
+            {{#if displayHelpCategory "notifications"}}
+                {{> helpProfileNotifications}}
+            {{/if}}
+            {{#if displayHelpCategory "requests"}}
+                {{> helpProfileRequests}}
+            {{/if}}
+            {{#if displayHelpCategory "settings"}}
+                {{> helpProfileSettings}}
+            {{/if}}
+        </div>
+    </div>
+</template>

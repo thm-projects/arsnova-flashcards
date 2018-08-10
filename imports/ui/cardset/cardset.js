@@ -204,7 +204,6 @@ Template.cardsetPreview.events({
 	},
 	"click #showPreviewHelp": function () {
 		event.stopPropagation();
-		Session.set('helpTarget', '#previewHelp');
 		Router.go('help');
 	}
 });
@@ -1106,7 +1105,6 @@ Template.cardsetLearnActivityStatistic.events({
 	},
 	"click #showIntervalHelp": function (event) {
 		event.stopPropagation();
-		Session.set('helpTarget', '#leitnerIntervalHelp');
 		Router.go('help');
 	}
 });

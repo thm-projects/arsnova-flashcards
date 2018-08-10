@@ -49,7 +49,7 @@
                                 <h1 style="text-align: center">{{_ "contact.demoTitle"}}</h1>
                             </div>
                         </div>
-                        <br />
+                        <br/>
                     </div>
                 {{/unless}}
             {{/unless}}
@@ -88,7 +88,7 @@
                        route='about'}}">{{_
                     "contact.about" lastAppTitle=(getLastAppTitle)}}</a></li>
         <li class="sm-12 md-2  {{#if isActiveRoute 'home'}}footer-info-navigation{{else}}{{#if isActiveRoute
-                                                                                                   'learning'}}active{{/if}}{{/if}}">
+                                                                                               'learning'}}active{{/if}}{{/if}}">
             <a id="learning"
                href="{{pathFor
                        route='learning'}}">{{_
@@ -385,7 +385,7 @@
                             frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen>
                     </iframe>
                 </div>
-                <br />
+                <br/>
                 <h2>Wiederholungs-Algorithmus von Leitner</h2>
                 <p>
                     Die <b>5-Fächer-Lernmethode von Leitner</b> legt bereits gelernte Karten in bestimmten länger
@@ -519,254 +519,6 @@
     </div>
 </template>
 
-<template name="help">
-    <div class="panel panel-default">
-        <div class="panel-heading info-tab">
-            {{#if isActiveLanguage 'de'}}
-                <h1>Falls sich die App nicht von selbst erklärt</h1>
-            {{else}}
-                <h1>Help</h1>
-            {{/if}}
-        </div>
-        <div class="panel-body info-tab">
-            {{#if isActiveLanguage 'de'}}
-                <h2 id="startPageHelp">Startseite</h2>
-                <a href="/img/help/de/Startseite.jpg" data-lightbox="img-1" data-title="Startseite der
-                Lernplattform .cards">
-                    <img src="/img/help/de/Startseite.jpg" alt="Startseite von .cards"
-                         class="img-responsive center-block">
-                </a>
-                <ul class="thm-numbering">
-                    <li><strong>Demo:</strong> Die Demo-Kartei wird nur auf Tablets und Desktops angeboten.
-                        Sie zeigt dir auf rund 20 Karten, was .cards von anderen Lernkartei-Apps unterscheidet.
-                        Die 15 (!) Karteitypen werden an realen Beispielen aus Informatik-Kursen vorgestellt.
-                        Nimm dir ein paar Minuten Zeit, um die großartigen Möglichkeiten kennen zu lernen,
-                        wie du dein Studium effizient und nachhaltig mit Lernkarteien und Repetitorien betreiben kannst.
-                    </li>
-                    <li><strong>Wortwolke:</strong> Auch sie erscheint nur auf großen Displays ab Tablet-Größe und zeigt die
-                        aktuell populärsten Karteien und Repetitorien (Reps) der Plattform.
-                        Die Schriftgröße ist proportional zur Anzahl der Karten.
-                        Wenn du ein Wort in der Wolke anklickst oder antippst, siehst du die vollständige Beschreibung der Kartei mit allen Metadaten.
-                    </li>
-                    <li><strong>Login:</strong> .cards unterscheidet zwei Anmeldeoptionen.
-                        Mit dem grünen Button können sich alle Mitglieder der THM anmelden.
-                        Als THM-Mitglied hast du kostenlosen freien Zugang zu allen von THM-Lehrenden veröffentlichen Karteien und Reps.
-                        THM-Karteien und -Reps tragen das grüne Label "THM".
-                        Wer sich über ein Konto eines sozialen Netzwerks anmeldet,
-                        hat nur Zugang zu Karteien und Reps mit dem blauen Label "Frei", es sei denn, er oder sie hat ein Abonnement
-                        oder zahlt einzeln für "THM"- oder "Pro"-Karteien, siehe die Allgemeinen Geschäftsbedingungen.
-                    </li>
-                    <li><strong>Online-Check:</strong> Die Lernplattform ist eine moderne HTML5-App, die WebSocket-Technologie
-                        im Online-Betrieb verwendet.
-                        Ohne WebSocket-Verbindung arbeitest du offline und die Karteien werden in deinem Browser verwaltet.
-                        Die Synchronisation mit dem Server erfolgt automatisch, sobald du wieder Netz hast.
-                    </li>
-                </ul>
-
-                <h2 id="poolHelp">Themen-Pool</h2>
-                <a href="/img/help/de/Themen-Pool.jpg" data-lightbox="img-1" data-title="Themen-Pool">
-                    <img src="/img/help/de/Themen-Pool.jpg" alt="Themen-Pool"
-                         class="img-responsive center-block">
-                </a>
-                <ul class="thm-numbering">
-                    <li><strong>Suchfunktion:</strong> Tippe ein, was dich interessiert und schau, ob zu diesem Thema eine Lernkartei oder ein Repetitorium existiert.
-                        Gesucht wird im Titel und Beschreibungstext aller veröffentlichter Karteien und Repetitorien.
-                        Klick auf einen Treffer und du gelangst zu den Karten.
-                    </li><li><strong>Sortier- und Filteroptionen:</strong> Karteien können im Tabellenkopf sortiert und gefiltert werden.
-                        Die Sortieroptionen sind: alphabetisch nach Karteititel, Erstellungs- oder Aktualisierungsdatum.
-                        Die Filteroptionen sind: Karteityp, Level, Autor/in, Bonus, Empholen und Zugangsart.
-                        Du kannst mehrere Filter gleichzeitig aktivieren. Die App merkt sich deine Einstellungen.
-                        Wenn du auf eine andere Seite wechselst und wieder zurückkehrst, sind die Filter noch aktiv.
-                    </li>
-                    <li><strong>Auswahl einer Kartei:</strong> Klickst du auf das Thema einer bestimmten Kartei, so
-                        gelangst du zur Detailansicht.
-                        Je nach deinen Benutzerrechten, kannst du dort die Kartei und ihre Karten editieren oder die Karten nur anschauen.
-                        Der Button ganz rechts mit der Pfeilspitze nach unten öffnet die vollständige Beschreibung der Kartei.
-                    </li>
-                </ul>
-
-                <h2 id="courseIterationsHelp">Repetitorien</h2>
-                <a href="/img/help/de/Repetitorien.jpg" data-lightbox="img-1" data-title="Repetitorien">
-                    <img src="/img/help/de/Repetitorien.jpg" alt="Repetitorien"
-                         class="img-responsive center-block">
-                </a>
-                <ul class="thm-numbering">
-                    <li><strong>Repetitorium:</strong> Repetitorien fassen mehrere Karteien (auch unterschiedlichen Typs) thematisch zusammen und dienen zur Vorbereitung auf eine Prüfung.
-                        Wenn eine Lehrperson das Repetitorium angelegt hat, kann damit die Vergabe von Bonuspunkten für kontinuierliches Lernen verbunden sein.
-                        Du erkennst dies am roten Label "Bonus".
-                    </li>
-                    <li><strong>Beschreibung:</strong> Der Button ganz rechts mit der Pfeilspitze nach unten öffnet die vollständige Beschreibung des Repetitoriums mit allen Metadaten.
-                        Häufig weist die Lehrperson in der Beschreibung auf eine Bonusoption hin, wie im Screenshot zu sehen.
-                        Welche Karteien zusammengefasst wurden, kannst du im Inhaltsverzeichnis des Repetitoriums klar erkennen:
-                        Sie sind nach Karteizugehörigkeit sortiert.
-                        Das Inhaltsverzeichnis findest du in der Detailansicht, die du per Klick auf das Thema aufrufst.
-                    </li>
-                </ul>
-
-                <h2 id="studyWorkloadHelp">Lernpensum</h2>
-                <a href="/img/help/de/Lernpensum.jpg" data-lightbox="img-1" data-title="Lernpensum">
-                    <img src="/img/help/de/Lernpensum.jpg" alt="Lernpensum"
-                         class="img-responsive center-block">
-                </a>
-                <ul class="thm-numbering">
-                    <li><strong>Kartei auswählen:</strong> Einzelne Karteien kannst du aus dem Themen-Pool per Klick auf das Thema der Kartei zu deinem Lernpensum hinzufügen.
-                    </li>
-                    <li><strong>Repetitorium auswählen:</strong> Ein Repetitorium, bestehend aus thematisch gebündelten Karteien (keine Kopien,
-                        nur Referenzen, Änderungen sind nur in der jeweiligen Kartei möglich)
-                        nimmst du über diesen Button und per Klick auf das Thema in dein Lernpensum auf.
-                    </li>
-                    <li><strong>Heutiges Lernpensum:</strong> Hier wird dir für jede Kartei und für jedes Repetitorium die Anzahl der heute zu lernenden Karten angezeigt.
-                        Schau in deine Mailbox oder aufs Smartphone: Dort solltest du auf die bis zu einem bestimmten Termin zu lernenden Karten hingewiesen werden.
-                        Lies auf der Seite "Lernen", wie der Wiederholungs-Algorithmus die Karten bestimmt, die du täglich lernen solltest, um die Inhalte langfristig zu memorieren.
-                        Weiter rechts findest du zwei Buttons: einen für die Visualisierung deines Lernfortschritts und einen,
-                        falls du die Kartei oder das Repetitorium aus deinem Lernpensum wieder entfernen willst.
-                    </li>
-                </ul>
-
-                <h2 id="createHelp">Kartei anlegen</h2>
-                <a href="/img/help/de/Kartei_anlegen.jpg" data-lightbox="img-1" data-title="Kartei anlegen">
-                    <img src="/img/help/de/Kartei_anlegen.jpg" alt="Kartei anlegen"
-                         class="img-responsive center-block">
-                </a>
-                <ul class="thm-numbering">
-                    <li><strong>Angaben zur Kartei:</strong> Der Titel einer Kartei sollte möglichst kurz und prägnant sein.
-                        Für eine ausführliche Beschreibung ist Platz im Beschreibungsfeld.
-                        Du solltest die Karteibeschreibung anspruchsvoll mit Markdeep gestalten, besonders wenn du die Kartei veröffentlichen willst,
-                        vielleicht sogar als "Pro"-Kartei im kostenpflichtigen Abonnement?
-                        Titel und Beschreibung werden bei einer Suche durchforstet, achte also darauf, dass du einschlägige Fachbegriffe verwendest.
-                    </li>
-                    <li><strong>Karteitypen:</strong> .cards wartet mit zahlreichen Karteitypen auf und unterscheidet sich dadurch von allen anderen Lernkartei-Apps.
-                        Nutze die Vielfalt, um den diversen Wissensaspekten eines Themas gerecht zu werden.
-                        Bei einigen Karteitypen kannst du den Schwierigkeitsgrad (Level) angeben. Die Karten werden dann unterschiedlich eingefärbt:
-                        grün für Basics, blau für Fortgeschritten und rot für Expert*in.
-                        In der Demo-Kartei findest du zu jedem Karteityp ein repräsentatives Beispiel aus Bachelor- und Mastermodulen.
-                        Ein Blick in die Demo lohnt sich!
-                    </li>
-                </ul>
-
-                <h2 id="cardsetHelp">Karteiansicht</h2>
-                <a href="/img/help/de/Kartei.jpg" data-lightbox="img-1" data-title="Karteiansicht">
-                    <img src="/img/help/de/Kartei.jpg" alt="Karteiansicht"
-                         class="img-responsive center-block">
-                </a>
-                <ul class="thm-numbering">
-                    <li><strong>Kartei-Optionen:</strong> Dies ist die Ansicht für den Ersteller oder die Erstellerin der Kartei.
-                        Alle anderen sehen nur die Buttons: "Karten präsentieren", "Lernmodus" und "Verwalten".
-                        Wurde eine Bonusphase für die Kartei gestartet, dann ist der Lernmodus (Leitner oder Woźniak) bereits festgelegt und der entsprechende Button wird nicht mehr angezeigt.
-                        Unter "Verwalten" kannst du Karten an die Plattformverwalter melden, wenn rechtswidrige Inhalte zu sehen sind.
-                    </li>
-                    <li><strong>Auswahl der Kartenseite:</strong> Karten sind typisiert und unterscheiden sich unter anderem in der Anzahl der Seiten,
-                        siehe die Beispiele in der Demo-Kartei.
-                        Mit der Tab-Taste kannst du durch die Seiten einer Karte navigieren.
-                    </li>
-                    <li><strong>Karten-Optionen:</strong> Das Bleistift-Icon führt zum Editor.
-                        Mit dem Listen-Icon rufst du das Inhaltsverzeichnis der Kartei auf und kannst dort direkt zu einer Karte springen.
-                        Mit dem Mülleimer-Icon löscht du die angezeigte Karte nach einer Sicherheitsabfrage.
-                        Der rechte Button versetzt die Karte in die Vollbildansicht.
-                    </li>
-                </ul>
-
-                <h2 id="editCardHelp">Karteneditor</h2>
-                <a href="/img/help/de/Editor.jpg" data-lightbox="img-1" data-title="Editor">
-                    <img src="/img/help/de/Editor.jpg" alt="Editor"
-                         class="img-responsive center-block">
-                </a>
-                <ul class="thm-numbering">
-                    <li><strong>Titel der Karte:</strong> Jede Karte hat einen individuellen Titel.
-                        Formuliere ihn kurz und prägnant.
-                        Er wird auf der Karte und im Inhaltsverzeichnis der Kartei angezeigt.
-                    </li>
-                    <li><strong>Editor:</strong> Der Karteneditor unterstützt Markdeep-Auszeichnungen, eine Obermenge von Markdown.
-                        Ruf den Link "Formatiere deinen Text mit Markdeep" auf, um die Feature-Demo zu sehen.
-                        Als Kenner von HTML wirst du staunen, wie vielfältig die Formatierungsmöglichkeiten von Markdeep sind.
-                        Im Themen-Pool findest du die Kartei "Markdown| Markdeep".
-                        Mit ihrer Hilfe kannst du schnell die wichtigsten Formatierungen lernen.
-                    </li>
-                    <li><strong>Vorschau:</strong> Synchron zum Inhalt des Editors, also während du tippst, wird die Karte formatiert angezeigt.
-                        So siehst du sofort, ob alles so ausieht, wie beabsichtigt.
-                        Zum Editor-Prinzip <strong>WYSIWYM</strong> siehe die <a href="{{pathFor route='faq'}}">5. FAQ</a>.
-                        Unsere App wurde nach dem "Mobile first"-Ansatz entworfen:
-                        Das primäre Medium für die Nutzung von .cards ist das Smartphone in der Portrait-Ansicht.
-                        Deshalb zeigen wir in der Standard-Vorschau die Karte im <strong>Lernmodus auf dem Smartphone</strong>.
-                        Achte darauf, den Karteninhalt kompakt und gut lesbar darzustellen, so dass man möglichst wenig nach unten oder gar zur Seite scrollen muss:
-                        <a href="https://en.wikipedia.org/wiki/Above_the_fold#In_web_design" target="_blank">"Above the Fold"</a>.
-                        Du kannst mit dem Handy-Icon in der Editorleiste zwischen Smartphone- und Desktop-Ansicht umschalten.
-                    </li>
-                </ul>
-
-                <h2 id="bonusHelp">Bonus</h2>
-                <a href="/img/help/de/Bonus.jpg" data-lightbox="img-1" data-title="Bonus">
-                    <img src="/img/help/de/Bonus.jpg" alt="Bonus"
-                         class="img-responsive center-block">
-                </a>
-                <ul class="thm-numbering">
-                    <li><strong>Detailansichten:</strong> Klick die Drop-down-Menüs an,
-                        um alle Details des Repetitoriums und der Lernphase mit Bonusvergabe einzusehen.
-                    </li>
-                    <li><strong>Nachträgliche Zusammenstellung der Karteien des Repetitoriums:</strong> Auch wenn die Bonusphase bereits läuft,
-                        kannst du weitere Karteien hinzufügen oder einzelne Karteien wieder herausnehmen. Wohlgemerkt, es handelt sich bei den Karteien nicht um Kopien dieser, sondern um Referenzen.
-                        Das heißt, wenn du Karten ändern willst, muss du das in der jeweiligen Kartei tun.
-                    </li>
-                    <li><strong>Optionen der Bonus-Lernphase:</strong> Hier kannst du den Lernfortschritt der Lernenden des Repetitoriums einsehen und als Excel-Tabelle exportieren.
-                        In der Tabelle wird die Anzahl der Karten gemäß der 5-Fächer-Lernkarteimethode von Leitner in den einzelnen Fächern, hier Boxen genannt, aufgeführt.
-                        Die Tabelle dient dir als Lehrperson für die geordnete Bonusvergabe.
-                    </li>
-                </ul>
-
-                <h2 id="presentationHelp">Präsentation</h2>
-                <a href="/img/help/de/Praesentation.jpg" data-lightbox="img-1" data-title="Präsentation">
-                    <img src="/img/help/de/Praesentation.jpg" alt="Präsentation"
-                         class="img-responsive center-block">
-                </a>
-                <ul class="thm-numbering">
-                    <li><strong>Navigation:</strong> Im Präsentationsmodus einer Karte steuerst du den Seitenwechsel mit der Tab-Taste, den Kartenwechsel mit den Pfeiltasten oder der Leertaste.
-                        Die Uhr ist sehr praktisch, um deine Lernphase oder deinen Vortrag zu timen.
-                        Das Inhaltsverzeichnis rufst du mit dem ersten Button auf der rechten Seite auf.
-                        Dort kannst du schnell zu einer beliebigen Karte springen.
-                        Mit dem orangefarbenen Button oder der ESC-Taste verlässt du den Präsentationsmodus.
-                    </li>
-                    <li><strong>Optionen:</strong> Es gibt eine Reihe von Optionen, um die Projektion deiner Karten zu optimieren:
-                        Mit dem Kontrast-Button entfernst du die Kartenlinierung und die Färbung der Karte.
-                        Mit dem Skalierungs-Button passt du den Inhalt der Karten (Text und Grafik) so an, dass dein Publikum ihn gut sehen kann.
-                        Die Größenskalierung des Karteninhalts nimmst du mit dem Regler im Bereich von 50 % bis 300 % vor.
-                        Willst du die ganze Karte vergrößern oder verkleinern, geht das im Browser wie gewohnt mit der STR-Taste und gleichzeitigem Drücken der Plus- bzw. Minus-Taste.
-                    </li>
-                </ul>
-
-                <!--
-                    <h2 id="createHelp">Meine Karteien</h2>
-                    <h3 id="shuffleHelp">Karteien mischen</h3>
-
-                    <h2 id="studyWorkloadHelp">Mein Lernpensum</h2>
-                    <h3 id="progressUserHelp">Mein Lernstand</h3>
-
-                    <h2 id="cardsetHelp">Kartei</h2>
-                    <h3 id="editCardHelp">Karte bearbeiten</h3>
-                    <h3 id="previewHelp">Kostenpflichtige Kartei</h3>
-                    <h3 id="leitnerHelp">Wiederholungen nach Leitner</h3>
-                    <h3 id="leitnerIntervalHelp">Leitner Intervall</h3>
-                    <h3 id="cardsetManageHelp">Kartei Vvrwalten</h3>
-                    <h3 id="wozniakHelp">Wiederholungen nach Woźniak</h3>
-                    <h3 id="selectionHelp">Karten fürs Lernen auswählen</h3>
-                    <h3 id="cardsetEditorsHelp">Bearbeitungsrechte</h3>
-                    <h3 id="progressCardsetHelp">Lernstatistik der Lernphase</h3>
-
-                    <h2>Profil</h2>
-                    <h3 id="profileOverviewHelp">Lernaktivität</h3>
-                    <h3 id="profileMembershipHelp">Mitgliedschaft</h3>
-                    <h3 id="profileBillingHelp">Abrechnung</h3>
-                    <h3 id="profileNotificationsHelp">Benachrichtigungen</h3>
-                    <h3 id="profileSettingsHelp">Mein Profil</h3>
-                    <h3 id="profileRequestHelp">Pro-Anfragen / Karteifreigabe</h3>
-                    <h2 id="learningHelp">Lernmodus</h2>
-                -->
-
-            {{else}}
-            {{/if}}
-        </div>
-    </div>
-</template>
-
 <template name="faq">
     <div class="panel panel-default">
         <div class="panel-heading info-tab">
@@ -785,8 +537,10 @@
                             Warum sollen einmal gelernte Karten in immer längeren Abständen wiederholt werden?
                         </p>
                         <p>
-                            Eine ausführliche Erklärung, warum <b>Wiederholungen des Gelernten</b> in länger werdenden Intervallen so wichtig sind, findest du in unserem
-                            <a href="https://git.thm.de/arsnova/flashcards/blob/master/docs/ARSnova.pdf" target="_blank">Paper mit wissenschaftlichen Belegen</a>,
+                            Eine ausführliche Erklärung, warum <b>Wiederholungen des Gelernten</b> in länger werdenden
+                            Intervallen so wichtig sind, findest du in unserem
+                            <a href="https://git.thm.de/arsnova/flashcards/blob/master/docs/ARSnova.pdf"
+                               target="_blank">Paper mit wissenschaftlichen Belegen</a>,
                             siehe auch den Tab <a href="{{pathFor route='about'}}">.cards</a>.
                             Schneller und cooler erklärt das aber Daniel Hunold in seinem Video:
                         </p>
@@ -803,7 +557,8 @@
                             Wie kann ich eine Vorlesung mit .cards sinnvoll mitschreiben?
                         </p>
                         <p>
-                            Als digital-affiner Mensch, als "digital native", könntest du Notizen mit deinem Laptop oder Tablet schreiben.
+                            Als digital-affiner Mensch, als "digital native", könntest du Notizen mit deinem Laptop oder
+                            Tablet schreiben.
                             Handschriftlich mit Farben und Bildern ist aber besser, wie Daniel Hunold im Video erklärt.
                             Fotografiere nach der Vorlesung deine Mitschrift ab und lade sie hoch in deine Cloud.
                             Das Foto kannst du dann auf eine Karte vom Typ Mitschrift per Link einfügen.
@@ -829,7 +584,8 @@
                             Du wirst in diesem Fall per <strong>Nachricht</strong> auf dein Handy
                             (wenn du zuvor .cards im Browser deines Smartphones aufgerufen hast)
                             und/oder per <strong>E-Mail</strong> auf dein Lernpensum hingewiesen.
-                            Den Bonus erhälst du nur, wenn sich am Ende der aktiven Lernphase alle Karten im letzten Fach "Gelernt" befinden,
+                            Den Bonus erhälst du nur, wenn sich am Ende der aktiven Lernphase alle Karten im letzten
+                            Fach "Gelernt" befinden,
                             siehe den Statistik-Button "Mein Lernstand nach Leitner".
                         </p>
                     </li>
@@ -839,26 +595,36 @@
                             Wie kann ich Karteien an meine Kommilitonen weitergeben?
                         </p>
                         <p>
-                            Entweder du veröffentlichst die Kartei im "Themen-Pool", indem du die Zugangskategorie "Frei"
+                            Entweder du veröffentlichst die Kartei im "Themen-Pool", indem du die Zugangskategorie
+                            "Frei"
                             einstellst, oder du exportierst die Kartei.
                         </p>
                     </li>
                     <hr/>
                     <li>
                         <p style="color: #9C132D;">
-                            Warum bietet ihr <strong>Markdown / Markdeep</strong> für die Textformatierung an und nicht einen
+                            Warum bietet ihr <strong>Markdown / Markdeep</strong> für die Textformatierung an und nicht
+                            einen
                             <a href="https://de.wikipedia.org/wiki/WYSIWYG" target="_blank">WYSIWYG</a>-Editor?
                         </p>
                         <p>
-                            Alle Kartentexte sollen der besseren Lernbarkeit wegen <strong>einheitlich</strong> strukturiert und formatiert sein.
+                            Alle Kartentexte sollen der besseren Lernbarkeit wegen <strong>einheitlich</strong>
+                            strukturiert und formatiert sein.
                             Da dies in einem WYSIWYG-Editor nicht erzwungen werden kann,
-                            bieten wir <strong>typisierte</strong> Karten an mit vorgegebenen Seitentiteln (siehe Demo-Kartei) und erlauben nur Formatierungen mit <a href="https://casual-effects.com/markdeep/features.md.html" target="_blank">Markdeep</a> –
-                            also <a href="https://de.wikipedia.org/wiki/WYSIWYM" target="_blank">WYSIWYM</a>, beachte das "M", statt WYSIWYG.
-                            Im akademischen Bereich, besonders in <a href="https://de.wikipedia.org/wiki/MINT-F%C3%A4cher" target="_blank">MINT-Fächern</a>, solltest du stets ein Textsatzsystem einem Textverarbeitungsprogramm vorziehen:
+                            bieten wir <strong>typisierte</strong> Karten an mit vorgegebenen Seitentiteln (siehe
+                            Demo-Kartei) und erlauben nur Formatierungen mit <a
+                                href="https://casual-effects.com/markdeep/features.md.html" target="_blank">Markdeep</a>
+                            –
+                            also <a href="https://de.wikipedia.org/wiki/WYSIWYM" target="_blank">WYSIWYM</a>, beachte
+                            das "M", statt WYSIWYG.
+                            Im akademischen Bereich, besonders in <a
+                                href="https://de.wikipedia.org/wiki/MINT-F%C3%A4cher" target="_blank">MINT-Fächern</a>,
+                            solltest du stets ein Textsatzsystem einem Textverarbeitungsprogramm vorziehen:
                             LaTeX statt WORD. Aber noch einfacher geht WYSIWYM mit Markdown:
                         </p>
                         <div class="embed-responsive embed-responsive-16by9">
-                            <iframe src="https://www.youtube.com/embed/hpAJMSS8pvs?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+                            <iframe src="https://www.youtube.com/embed/hpAJMSS8pvs?rel=0" frameborder="0"
+                                    allow="autoplay; encrypted-media" allowfullscreen>
                             </iframe>
                         </div>
                     </li>
@@ -868,18 +634,21 @@
                             Kann ich als Student/in einer anderen Hochschule .cards nutzen?
                         </p>
                         <p>
-                            Ja, siehe den letzten Absatz unter <a href="{{pathFor route='about'}}">.cards</a> oder die <a href="{{pathFor route='agb'}}">AGB</a>.
+                            Ja, siehe den letzten Absatz unter <a href="{{pathFor route='about'}}">.cards</a> oder die
+                            <a href="{{pathFor route='agb'}}">AGB</a>.
                         </p>
                     </li>
                     <hr/>
                     <li>
                         <p style="color: #9C132D;">
                             Ich kenne mich mit der Linux-Konsole gut aus. Kann ich .cards auf meinem Laptop installieren
-                            und anpassen (als <strong>"My Cards"</strong>) und offline mit den lokal gehaltenen Karteien lernen?
+                            und anpassen (als <strong>"My Cards"</strong>) und offline mit den lokal gehaltenen Karteien
+                            lernen?
                         </p>
                         <p>
                             Ja, .cards ist Open Source.
-                            Eine <a href="https://git.thm.de/arsnova/flashcards/blob/staging/README.md" target="_blank">Installationsanleitung</a> findest du im THM-GitLab.
+                            Eine <a href="https://git.thm.de/arsnova/flashcards/blob/staging/README.md" target="_blank">Installationsanleitung</a>
+                            findest du im THM-GitLab.
                         </p>
                     </li>
                     <hr/>
@@ -889,8 +658,11 @@
                             oder Weiterentwicklung von .cards</strong> habe, an wen kann ich mich wenden?
                         </p>
                         <p>
-                            Schreibe einfach eine Mail an eine der im <a href="{{pathFor route='impressum'}}">Impressum</a> genannten Personen.
-                            Bug Reports, Feature und Pull Requests kannst du auch auf <a href="https://github.com/thm-projects/arsnova-flashcards/issues" target="_blank">GitHub</a> schreiben.
+                            Schreibe einfach eine Mail an eine der im <a
+                                href="{{pathFor route='impressum'}}">Impressum</a> genannten Personen.
+                            Bug Reports, Feature und Pull Requests kannst du auch auf <a
+                                href="https://github.com/thm-projects/arsnova-flashcards/issues"
+                                target="_blank">GitHub</a> schreiben.
                         </p>
                     </li>
                     <hr/>
@@ -1268,7 +1040,8 @@
                 <p>
                 <ul>
                     <li>Es werden keine Passwörter abgefragt oder gespeichert.
-                        Die Authentifizierung erfolgt über einen Anmeldedienst (THM-CAS, Facebook, Twitter oder Google +).
+                        Die Authentifizierung erfolgt über einen Anmeldedienst (THM-CAS, Facebook, Twitter oder Google
+                        +).
                         Nach dort wird weitergeleitet, nur dort wird ein Passwort gefordert.
                     </li>
                     <li>Sollte ein Benutzer darauf aufmerksam werden, dass das Benutzerkonto unbefugt durch einen
