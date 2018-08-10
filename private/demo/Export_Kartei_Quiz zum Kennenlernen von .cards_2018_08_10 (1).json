@@ -2,7 +2,7 @@
   "name": "A: Quiz zum Kennenlernen von .cards",
   "description": "Die Quizfragen sind Teil der Demo-Kartei, siehe den roten Button auf der .cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2018-08-06T19:13:29.861Z",
+  "dateUpdated": "2018-08-10T05:56:59.556Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -75,8 +75,8 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2018-07-15T08:37:06.854Z",
-  "back": "1. Im Gegensatz zu Lernkartei-Apps wie [Quizlet](https://quizlet.com/) oder [SuperMemo](https://www.supermemo.com/) unterstützt die .cards-Plattform auch das **Mitschreiben in Vorlesungen**. Weiter hinten in dieser Demo-Kartei haben wir ein Beispiel für eine Mitschrift eingefügt. Sie wurde handschriftlich in einer Bachelor-Vorlesung erstellt, abfotografiert und zu Hause digital auf .cards zum Lernen nachbearbeitet.\n\n+ Die Plattform .cards ist eine **vorlesungsbegleitende persönliche Lernumgebung**, ein virtueller Ort, an dem Lernzeit mit kognitiven Tätigkeiten -- Mitschreiben, Nachbearbeiten, Lernkarten erstellen, Lernfragen wiederholt beantworten -- intensiv verbracht wird. \n\n+ Es gibt auf .cards eine Option, die es der Lehrperson ermöglicht, kontinuierliches und wiederholtes Lernen mit **Bonuspunkten** zu honorieren. Wir haben .cards mit dem Ziel entwickelt, der **Aufschieberitis** und dem **Bulimie-Lernen** im Studium entgegen zu wirken, siehe dazu unsere beiden Veröffentlichungen:\n\n[#HFD18]: Quibeldey-Cirkel, K. (2018).\nDigital gegen das Bulimie-Lernen: Quizzen im Hörsaal und zu Hause, Podcasts für unterwegs.\nIn: Hochschulforum Digitalisierung (Hrsg.): [_HFD Winter School E-Book. Hochschullehre im digitalen Zeitalter gestalten._](https://hochschulforumdigitalisierung.de/sites/default/files/dateien/HFD_Winter_School_E-Book_Version_2.pdf) Arbeitspapier Nr. 31. Version 2. Berlin: Hochschulforum Digitalisierung. (S. 91-98).</br></br>\n\n[#SITE18]: Quibeldey-Cirkel, K., Heiny, J. & Thelen, C. (2018).\nAgainst Academic Procrastination: Pedagogical Apps to Implement Distributed Learning in Course Design.\nIn E. Langran & J. Borup (Eds.), _Proceedings of Society for Information Technology & Teacher Education International Conference_ (pp. 1617-1622).\nWashington, D.C., United States: Association for the Advancement of Computing in Education (AACE). http://www.learntechlib.org/p/182756/",
+  "dateUpdated": "2018-08-10T05:32:02.360Z",
+  "back": "Im Gegensatz zu Lernkartei-Apps wie [Quizlet](https://quizlet.com/) oder [SuperMemo](https://www.supermemo.com/) unterstützt die .cards-Plattform auch das **Mitschreiben in Vorlesungen**. Weiter hinten in dieser Demo-Kartei haben wir ein Beispiel für eine Mitschrift eingefügt. Sie wurde handschriftlich in einer Bachelor-Vorlesung erstellt, abfotografiert und zu Hause digital auf .cards zum Lernen nachbearbeitet.\n\nDie Plattform .cards ist eine **vorlesungsbegleitende persönliche Lernumgebung**, ein virtueller Ort, an dem Lernzeit mit kognitiven Tätigkeiten -- Mitschreiben, Nachbearbeiten, Lernkarten erstellen, Lernfragen wiederholt beantworten -- intensiv verbracht wird. \n\nEs gibt auf .cards eine Option, die es der Lehrperson ermöglicht, kontinuierliches und wiederholtes Lernen mit **Bonuspunkten** zu honorieren. Wir haben .cards mit dem Ziel entwickelt, der **Aufschieberitis** und dem **Bulimie-Lernen** im Studium entgegen zu wirken, siehe dazu unsere beiden Veröffentlichungen:\n\n\n[#HFD18]: Quibeldey-Cirkel, K. (2018).\nDigital gegen das Bulimie-Lernen: Quizzen im Hörsaal und zu Hause, Podcasts für unterwegs.\nIn: Hochschulforum Digitalisierung (Hrsg.): [_HFD Winter School E-Book. Hochschullehre im digitalen Zeitalter gestalten._](https://hochschulforumdigitalisierung.de/sites/default/files/dateien/HFD_Winter_School_E-Book_Version_2.pdf) Arbeitspapier Nr. 31. Version 2. Berlin: Hochschulforum Digitalisierung. (S. 91-98).</br></br>\n\n[#SITE18]: Quibeldey-Cirkel, K., Heiny, J. & Thelen, C. (2018).\nAgainst Academic Procrastination: Pedagogical Apps to Implement Distributed Learning in Course Design.\nIn E. Langran & J. Borup (Eds.), _Proceedings of Society for Information Technology & Teacher Education International Conference_ (pp. 1617-1622).\nWashington, D.C., United States: Association for the Advancement of Computing in Education (AACE). http://www.learntechlib.org/p/182756/",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -106,7 +106,7 @@
 }, {
   "subject": "4. Digitale Regale: Repetitorien",
   "front": "Was wird auf .cards unter einem **Repetitorium** verstanden?",
-  "back": "> \"**Repetitorium** (von lateinisch *repetere:* „wiederholen“) bedeutet die \n> Wiederholung von Wissen und Kenntnissen, meist um eine [Prüfung](https://de.wikipedia.org/wiki/Pr%C3%BCfung) zu bestehen.\"\n>  -- Wikipedia\n\n!!! NOTE Repetitorium vs. Kartei\n   Ein Repetitorium auf .cards fasst **mehrere** Karteien (= Themen) zusammen. Um im Bild zu bleiben: In deinem IKEA-Regal wären das alle Schuhkartons, die inhaltlich zu einem bestimmten Modul deines Studiums gehören (Mitschriften, Lernkarteien, Glossare, Exzerpte etc.) und deshalb nebeneinander stehen. Im Lernmodus werden die Karten aller Karteien, die zum Repetitorium gehören, gemäß dem Wiederholungs-Algorithmus zum Lernen vorgelegt. Dein Dozent oder deine Dozentin kann dir -- wie bei einzelnen Karteien -- Bonuspunkte für das regelmäßige Lernen eines Repetitoriums geben.\n\n!!! TIP\n   Du kannst deine eigenen Repetitorien mit ein paar Klicks schnell zusammenstellen. Es bedarf hierzu keiner Lehrperson! Repetitorien ermöglichen dir eine **einfache und übersichtliche Organisation deiner Karteien** für die Vorbereitung auf Modulprüfungen.\n\n\n\n \n",
+  "back": "> \"**Repetitorium** (von lateinisch *repetere:* „wiederholen“) bedeutet die \n> Wiederholung von Wissen und Kenntnissen, meist um eine [Prüfung](https://de.wikipedia.org/wiki/Pr%C3%BCfung) zu bestehen.\"\n>  -- Wikipedia\n\n!!! NOTE Repetitorium vs. Kartei\n   Ein Repetitorium (kurz Rep) auf .cards fasst **mehrere** Karteien (= Themen) zusammen. Um im Bild zu bleiben: In deinem IKEA-Regal wären das alle Schuhkartons, die inhaltlich zu einem bestimmten Modul deines Studiums gehören (Mitschriften, Lernkarteien, Glossare, Exzerpte etc.) und deshalb nebeneinander stehen. Im Lernmodus werden die Karten aller Karteien, die zum Rep gehören, gemäß dem Wiederholungs-Algorithmus zum Lernen vorgelegt. Dein Dozent oder deine Dozentin kann dir -- wie bei einzelnen Karteien -- Bonuspunkte für das regelmäßige Lernen eines Repetitoriums geben.\n\n!!! TIP\n   Du kannst deine eigenen Repetitorien mit ein paar Klicks schnell zusammenstellen. Es bedarf hierzu keiner Lehrperson! Repetitorien ermöglichen dir eine **einfache und übersichtliche Organisation deiner Karteien** für die Vorbereitung auf Modulprüfungen.\n\n\n\n \n",
   "centerTextElement": [
     true,
     false,
@@ -118,7 +118,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2018-08-04T16:54:44.619Z",
+  "dateUpdated": "2018-08-10T05:56:59.548Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
