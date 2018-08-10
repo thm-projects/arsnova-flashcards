@@ -306,7 +306,12 @@ Template.registerHelper("getSignal", function () {
 
 Template.registerHelper("isShuffledCardset", function (cardset_id) {
 	if (cardset_id !== undefined) {
-		return Cardsets.findOne({_id: cardset_id}).shuffled;
+		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {shuffled: 1}});
+		if (cardset !== undefined) {
+			return cardset.shuffled;
+		} else {
+			return false;
+		}
 	}
 });
 
@@ -502,7 +507,7 @@ Template.registerHelper("getAuthor", function (owner) {
 Template.registerHelper("getLicense", function (_id, license) {
 	var licenseString = "";
 
-	if (license.length > 0) {
+	if (license !== undefined && license !== null && license.length > 0) {
 		if (license.includes('by')) {
 			licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" data-id="' + _id + '" />');
 		}
@@ -545,6 +550,9 @@ Template.registerHelper("getType", function (type) {
 });
 
 Template.registerHelper("getPrice", function (price, returnCurrency = false) {
+	if (price === undefined || price === null) {
+		return;
+	}
 	if (TAPi18n.getLanguage() === 'de') {
 		if (returnCurrency) {
 			return price.toString().replace(".", ",") + ' €';

@@ -254,7 +254,7 @@ Meteor.methods({
 				}
 			});
 
-			if (user === undefined) {
+			if (user === undefined && Meteor.user() !== undefined) {
 				Meteor.users.update(Meteor.user()._id, {
 					$set: {
 						visible: false,

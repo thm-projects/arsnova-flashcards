@@ -58,26 +58,15 @@ export function cleanModal() {
 	$('#setDescriptionLabel').removeClass('text-warning');
 	$('#helpSetDescription').html('');
 
-	$('#setModuleLabel').removeClass('text-warning');
-	$('#helpSetModule').html('');
-
-	$('#setModuleShortLabel').removeClass('text-warning');
-	$('#helpSetModuleShort').html('');
-
-	$('#setModuleNumLabel').removeClass('text-warning');
-	$('#helpSetModuleNum').html('');
-
-	$('#setCollegeLabel').removeClass('text-warning');
-	$('#helpSetCollege').html('');
-
-	$('#setCourseLabel').removeClass('text-warning');
-	$('#helpSetCourse').html('');
-
 	if (isNewCardset()) {
 		Session.set('cardType', Number(0));
 	}
 
-	Session.set('difficultyColor', Session.get('previousCardsetData').difficulty);
+	if (Session.get('previousCardsetData') !== undefined) {
+		Session.set('difficultyColor', Session.get('previousCardsetData').difficulty);
+	} else {
+		Session.set('difficultyColor', 1);
+	}
 	$('#contentEditor').css('height', 'unset');
 }
 
@@ -180,14 +169,10 @@ Template.cardsetForm.helpers({
 
 Template.cardsetFormContent.onRendered(function () {
 	$('#setCardsetFormModal').on('show.bs.modal', function () {
-		if (!Route.isShuffle()) {
-			cleanModal();
-		}
+		cleanModal();
 	});
 	$('#setCardsetFormModal').on('hidden.bs.modal', function () {
-		if (!Route.isShuffle()) {
-			cleanModal();
-		}
+		cleanModal();
 		$('#importCardset').val('');
 		Session.set('importCards', undefined);
 		Session.get('previousCardsetData', undefined);
@@ -199,7 +184,9 @@ Template.cardsetFormContent.helpers({
 		return isNewCardset();
 	},
 	getCardTypeName: function () {
-		return CardType.getCardTypeName(Session.get('previousCardsetData').cardType);
+		if (Session.get('previousCardsetData') !== undefined) {
+			return CardType.getCardTypeName(Session.get('previousCardsetData').cardType);
+		}
 	},
 	getShuffleName: function () {
 		if (Session.get("ShuffleTemplate") !== undefined) {
@@ -207,7 +194,7 @@ Template.cardsetFormContent.helpers({
 		}
 	},
 	learningActive: function () {
-		if (Route.isCardset()) {
+		if (Route.isCardset() && Session.get("previousCardsetData") !== undefined) {
 			return Session.get('previousCardsetData').learningActive;
 		} else {
 			return false;

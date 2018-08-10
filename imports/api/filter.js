@@ -234,7 +234,7 @@ export let Filter = class Filter {
 		if (FilterNavigation.gotKindFilter(FilterNavigation.getRouteId()) && activeFilter.kind !== undefined) {
 			query.kind = {$in: activeFilter.kind};
 		}
-		if (!Route.isWorkload()) {
+		if (!Route.isWorkload() && activeFilter !== undefined) {
 			query.shuffled = activeFilter.shuffled;
 		}
 		return query;
@@ -276,14 +276,16 @@ export let Filter = class Filter {
 
 	static getSortFilter () {
 		let filter = this.getActiveFilter();
-		if (filter.name !== undefined) {
-			return {name: filter.name};
-		}
-		if (filter.date !== undefined) {
-			return {date: filter.date};
-		}
-		if (filter.dateUpdated !== undefined) {
-			return {dateUpdated: filter.dateUpdated};
+		if (filter !== undefined) {
+			if (filter.name !== undefined) {
+				return {name: filter.name};
+			}
+			if (filter.date !== undefined) {
+				return {date: filter.date};
+			}
+			if (filter.dateUpdated !== undefined) {
+				return {dateUpdated: filter.dateUpdated};
+			}
 		}
 	}
 
