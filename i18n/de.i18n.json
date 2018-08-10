@@ -1068,6 +1068,8 @@
   "box_status_plural": "__count__ Karten zu lernen",
   "leitner_status": "Noch eine Karte zu lernen",
   "leitner_status_plural": "Noch __count__ Karten zu lernen",
+  "leitner_status_short": "Noch eine Karte",
+  "leitner_status_short_plural": "Noch __count__ Karten",
   "box_export": "Lernstatistik exportieren",
   "box_export_birth_name": "Name",
   "box_export_given_name": "Vorname",

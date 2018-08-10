@@ -56,13 +56,8 @@ export let CardVisuals = class CardVisuals {
 			let flashcardBodyHeight = 0;
 			if ($(window).width() < 768) {
 				newFlashcardHeight = $(window).height() - (flashcard.offset().top + 10);
-				if ($(window).width() < 450) {
-					flashcardHeaderHeight = 30;
-					flashcardBodyHeight = newFlashcardHeight - flashcardHeaderHeight;
-				} else {
-					flashcardHeaderHeight = 60;
-					flashcardBodyHeight = newFlashcardHeight - flashcardHeaderHeight;
-				}
+				flashcardHeaderHeight = 60;
+				flashcardBodyHeight = newFlashcardHeight - flashcardHeaderHeight;
 				flashcard.css('height', newFlashcardHeight);
 				flashcardHeader.css('height', flashcardHeaderHeight);
 				flashcardBody.css('height', flashcardBodyHeight);
@@ -310,11 +305,17 @@ export let CardVisuals = class CardVisuals {
 				Session.set('zoomTextContainerVisible', false);
 			}
 			let cardHeader = $('.cardHeader');
-			let zoomTextButton = $('.zoomTextButton');
+			let zoomTextButton = $('.zoomTextButton:visible');
 			if (cardHeader.length && zoomTextButton.length) {
+				let leftPosition;
+				if ($(window).width() < 768) {
+					leftPosition = zoomTextButton.offset().left;
+				} else {
+					leftPosition = zoomTextButton.offset().left - zoomSliderContainer.width();
+				}
 				zoomSliderContainer.css({
 					'top': cardHeader.offset().top + cardHeader.height() + "px",
-					'left': zoomTextButton.offset().left - zoomSliderContainer.width() + "px"
+					'left': leftPosition + "px"
 				});
 			}
 		}

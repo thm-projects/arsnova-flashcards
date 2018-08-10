@@ -1,5 +1,8 @@
 <template name="cardHeaderItemCountCardsLeitner">
-    <span class="cardHeaderSmallText">
+    <span class="cardHeaderSmallText hidden-xs">
         {{_ "leitner_status" count=countLeitner}}
+    </span>
+    <span class="cardHeaderSmallText visible-xs">
+        {{_ "leitner_status_short" count=countLeitner}}
     </span>
 </template>

@@ -4,7 +4,7 @@
             {{_ "preview"}}:
             {{cardsIndex this._id}} {{_ "of"}} {{getCardsetCount true}}
         {{else}}
-            {{_ "admin.card.header"}} {{cardsIndex this._id}} {{_
+            <span class="hidden-xs">{{_ "admin.card.header"}}</span> {{cardsIndex this._id}} {{_
                 "of"}} {{getCardsetCount false}}
         {{/unless}}
     </span>
