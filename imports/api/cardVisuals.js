@@ -298,18 +298,22 @@ export let CardVisuals = class CardVisuals {
 
 	static toggleZoomContainer (forceOff = false) {
 		let zoomSliderContainer = $('.zoomSliderContainer');
-		if (zoomSliderContainer.css('display') === 'none' && forceOff === false) {
-			zoomSliderContainer.css('display', 'block');
-			Session.set('zoomTextContainerVisible', true);
-		} else {
-			zoomSliderContainer.css('display', 'none');
-			Session.set('zoomTextContainerVisible', false);
+		if (zoomSliderContainer.length) {
+			if (zoomSliderContainer.css('display') === 'none' && forceOff === false) {
+				zoomSliderContainer.css('display', 'block');
+				Session.set('zoomTextContainerVisible', true);
+			} else {
+				zoomSliderContainer.css('display', 'none');
+				Session.set('zoomTextContainerVisible', false);
+			}
+			let cardHeader = $('.cardHeader');
+			let zoomTextButton = $('.zoomTextButton');
+			if (cardHeader.length && zoomTextButton.length) {
+				zoomSliderContainer.css({
+					'top': cardHeader.offset().top + cardHeader.height() + "px",
+					'left': zoomTextButton.offset().left - zoomSliderContainer.width() + "px"
+				});
+			}
 		}
-		let cardHeader = $('.cardHeader');
-		let zoomTextButton = $('.zoomTextButton');
-		zoomSliderContainer.css({
-			'top': cardHeader.offset().top + cardHeader.height() + "px",
-			'left': zoomTextButton.offset().left - zoomSliderContainer.width() + "px"
-		});
 	}
 };
