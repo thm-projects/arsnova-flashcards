@@ -184,8 +184,18 @@ export let CardNavigation = class CardNavigation {
 		this.answerCard(2, answer);
 	}
 
+	static scrollCardContent (scrollDown = true) {
+		let scrollValue = 30;
+		if (!scrollDown) {
+			scrollValue = -1 * scrollValue;
+		}
+		let cardContent = $('.active .cardContent');
+		cardContent.scrollTop(cardContent.scrollTop() + scrollValue);
+	}
+
 	static keyEvents (event) {
 		let keyCodes = [];
+
 		CardVisuals.toggleZoomContainer(true);
 		if (!$('#input-search').is(":focus") && !$('#lightbox').is(":visible")) {
 			if (Route.isCardset() || Route.isBox() || Route.isMemo() || Route.isEditMode()) {
@@ -227,7 +237,7 @@ export let CardNavigation = class CardNavigation {
 						}
 						break;
 					case 38:
-						CardNavigation.cardSideNavigation();
+						CardNavigation.scrollCardContent(false);
 						break;
 					case 39:
 						if (CardNavigation.isVisible()) {
@@ -242,7 +252,7 @@ export let CardNavigation = class CardNavigation {
 						}
 						break;
 					case 40:
-						CardNavigation.cardSideNavigation(false);
+						CardNavigation.scrollCardContent();
 						break;
 					case 48:
 						if (!Session.get('isQuestionSide')) {
