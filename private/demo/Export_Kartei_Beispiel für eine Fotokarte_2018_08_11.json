@@ -2,7 +2,7 @@
   "name": "F: Beispiel für eine Fotokarte",
   "description": "Für die Demo-Kartei",
   "date": "2018-08-06T15:27:18.512Z",
-  "dateUpdated": "2018-08-07T11:13:28.456Z",
+  "dateUpdated": "2018-08-11T06:51:56.958Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -50,10 +50,11 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2018-08-07T11:13:28.409Z",
+  "dateUpdated": "2018-08-11T06:51:56.928Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
     "givenname": "Klaus"
-  }
+  },
+  "back": "\n*  CC BY-NC, Christoph Thelen \n*  CC BY-NC, Daniel Gerhardt \n* [CC BY-NC by Cloud Native Computing Foundation](https://www.flickr.com/photos/143247548@N03/)"
 }]
