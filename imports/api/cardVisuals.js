@@ -307,14 +307,19 @@ export let CardVisuals = class CardVisuals {
 			let cardHeader = $('.cardHeader');
 			let zoomTextButton = $('.zoomTextButton:visible');
 			if (cardHeader.length && zoomTextButton.length) {
-				let leftPosition;
+				let leftPosition = 0;
+				let topPosition = cardHeader.offset().top + cardHeader.height();
 				if ($(window).width() < 768) {
 					leftPosition = zoomTextButton.offset().left;
+					if ($(window).height() < 450) {
+						topPosition = 0;
+						leftPosition += zoomTextButton.width() * 2;
+					}
 				} else {
 					leftPosition = zoomTextButton.offset().left - zoomSliderContainer.width();
 				}
 				zoomSliderContainer.css({
-					'top': cardHeader.offset().top + cardHeader.height() + "px",
+					'top': topPosition + "px",
 					'left': leftPosition + "px"
 				});
 			}
