@@ -200,7 +200,7 @@
     "cardsetInfo": "Über diese __type__ Kartei",
     "cardsetInfoRepetitorium": "Über dieses Repetitorium",
     "cardsetInfoStatic": "Über diese Kartei",
-    "shuffleCardsets": "Neues Repetitorium erstellen",
+    "shuffleCardsets": "Repetitorium erstellen",
     "shuffle": "Auswahl speichern",
     "shuffleInfoTextNew": "Erstell dir ein Repetitorium durch Hinzufügen von Karteien mit dem Plus-Button.",
     "shuffleInfoTextEdit": "Inhalt des Repetitoriums erweitern oder einschränken",
@@ -906,7 +906,7 @@
     "manage": "Repetitorium verwalten",
     "list": {
       "selectCourse": "Repetitorium auswählen",
-      "createCourse": "Neues Repetitorium anlegen",
+      "createCourse": "Repetitorium anlegen",
       "empty": "Ein Repetitorium fasst mehrere Themen (= Karteien) zusammen. Jeder kann Repetitorien zur Vorbereitung auf eine Modulprüfung auf .cards anlegen.",
       "courseIteration": "Thema des Repetitoriums",
       "module": "Modul",
@@ -917,7 +917,7 @@
       "semesterList": "__count__. Semester"
     },
     "modal": {
-      "new": "Neues Repetitorium anlegen (Sammlung mehrerer Karteien)",
+      "new": "Repetitorium anlegen (Sammlung mehrerer Karteien)",
       "saveNew": "Repetitorium anlegen",
       "placeholder": {
         "name": "Das Thema des Repetitoriums mit einem Wort",
