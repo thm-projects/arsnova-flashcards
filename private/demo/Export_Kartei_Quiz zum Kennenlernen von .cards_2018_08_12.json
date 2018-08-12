@@ -2,7 +2,7 @@
   "name": "A: Quiz zum Kennenlernen von .cards",
   "description": "Die Quizfragen sind Teil der Demo-Kartei, siehe den roten Button auf der .cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2018-08-11T13:04:22.818Z",
+  "dateUpdated": "2018-08-12T08:27:02.798Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -148,7 +148,7 @@
 }, {
   "subject": "6. Mobile Learning",
   "front": ".cards ist eine **responsive WebApp**. Was heißt das?",
-  "back": "![.cards auf einem iPhone X](https://arsnova-uploads.mni.thm.de/cards_on_iPhone.png width=200).cards ist eine [responsive](https://de.wikipedia.org/wiki/Responsive_Webdesign) **WebApp**, eine [HTML5-App](https://de.wikipedia.org/wiki/HTML5), das heißt, die App läuft in jedem modernen Browser -- auf deinem Smartphone, Tablet oder Desktop. \n![HTML5-Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/480px-HTML5_logo_and_wordmark.svg.png width=100)\nEine Implementierung als native Android- oder iPhone-App ist wenig sinnvoll, da die Nutzung auf die Betriebssysteme Android oder iOS beschränkt und der Aufwand für die jeweilige plattformspezifische Entwicklung und Wartung viel zu hoch wären.\n\n.cards ist eine [Progressive Web App (PWA)](https://de.wikipedia.org/wiki/Progressive_Web_App), das heißt, sie fühlt sich an wie eine native App aus dem Store: Du kannst sie aus dem Browser heraus dem **Homescreen** deines Smartphones hinzufügen (\"Add-to-Homescreen\") und von dort wie die anderen installierten Apps aufrufen. Sie startet fast so schnell wie eine native App und zeigt sich **ohne Browser-Rahmen**.\nUnd wenn du die Benachrichtigungsfunktion (\"Push Notifications\") für .cards zulässt, wirst du zuverlässig auf deinem Smartphone ans Lernen erinnert.\n\nEs gibt nur eine Einschränkung für die mobile Nutzung: Auf kleinen Displays ist die Erstellung von Karteien und Karten ergonomisch nicht sinnvoll, deswegen bieten wir sie auch gar nicht erst an. Auf deinem Smartphone stehen dir ausschließlich die Seiten \"Themen-Pool\", \"Repetitorien\" und \"Lernpensum\" zur Verfügung. Das reicht auch vollkommen für das Unterwegs-Lernen in der Bahn, im Bus oder sonst wo -- neudeutsch: **Mobile Learning**.\n\n",
+  "back": "![Responsive WebApp .cards](https://arsnova-uploads.mni.thm.de/cards_on_iPhone.png width=200).cards ist eine [responsive](https://de.wikipedia.org/wiki/Responsive_Webdesign) **WebApp**, eine [HTML5-App](https://de.wikipedia.org/wiki/HTML5), das heißt, sie läuft in jedem modernen Browser -- auf deinem Smartphone, Tablet oder Desktop. \n![HTML5-Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/480px-HTML5_logo_and_wordmark.svg.png width=100)\nEine Implementierung als native Android- oder iPhone-App ist wenig sinnvoll, da die Nutzung auf die Betriebssysteme Android oder iOS beschränkt und der Aufwand für die jeweilige Entwicklung und Wartung viel zu hoch wären.\n\n.cards ist eine [Progressive Web App (PWA)](https://de.wikipedia.org/wiki/Progressive_Web_App), das heißt, sie fühlt sich an wie eine native App aus dem Store: Du kannst sie aus dem Browser heraus dem **Homescreen** deines Smartphones hinzufügen (\"Add-to-Homescreen\") und von dort wie eine installierte App aufrufen. Sie startet so schnell wie eine native App und zeigt sich **ohne Browser-Rahmen**.\nUnd wenn du die Benachrichtigungsfunktion (\"Push Notifications\") für .cards zulässt, wirst du zuverlässig auf deinem Smartphone ans Lernen erinnert.\n\nEs gibt nur eine Einschränkung für die mobile Nutzung: Auf kleinen Displays ist die Erstellung von Karteien und Karten ergonomisch nicht sinnvoll, deswegen bieten wir sie auch gar nicht erst an. Auf deinem Smartphone stehen dir ausschließlich die Seiten \"Themen-Pool\", \"Repetitorien\" und \"Lernpensum\" zur Verfügung. Das reicht auch vollkommen für das Unterwegs-Lernen in der Bahn, im Bus oder sonst wo -- neudeutsch: **Mobile Learning**.\n\n\n![](https://arsnova-uploads.mni.thm.de/Mobile_Learning.png)\n",
   "centerTextElement": [
     true,
     false,
@@ -162,7 +162,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2018-08-11T13:04:22.801Z",
+  "dateUpdated": "2018-08-12T08:27:02.788Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
