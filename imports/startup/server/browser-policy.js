@@ -1,6 +1,6 @@
 import {BrowserPolicy} from 'meteor/browser-policy-common';
 
-BrowserPolicy.framing.disallow();
+BrowserPolicy.framing.allowAll();
 BrowserPolicy.content.disallowEval();
 BrowserPolicy.content.allowInlineStyles();
 BrowserPolicy.content.allowFontDataUrl();
