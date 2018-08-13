@@ -403,7 +403,7 @@ Template.registerHelper("getCourses", function () {
 });
 
 Template.registerHelper("hasCardsetPermission", function () {
-	if (Router.current().route.getName() === "demo") {
+	if (Router.current().route.getName() === "demo" || Router.current().route.getName() === "making") {
 		return true;
 	}
 	let cardset = Cardsets.findOne({_id: Router.current().params._id});

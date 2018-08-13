@@ -17,7 +17,9 @@ Template.cardHeaderItemCardList.events({
 			});
 		} else if (Route.isDemo()) {
 			Router.go('demolist');
-		} else {
+		} else if (Route.isMakingOf()) {
+			Router.go('makinglist');
+		}  else {
 			Router.go('presentationlist', {
 				_id: Router.current().params._id
 			});

@@ -304,6 +304,6 @@ Template.footer.helpers({
 		return languages;
 	},
 	displayFooterNavigation: function () {
-		return (Route.isHome() || (Route.isFirstTimeVisit() && Route.isDemo()));
+		return (Route.isHome() || (Route.isFirstTimeVisit() && Route.isDemo() || Route.isMakingOf()));
 	}
 });

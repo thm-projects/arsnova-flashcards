@@ -25,6 +25,10 @@ export let Route = class Route {
 		return Router.current().route.getName() === "demo" || Router.current().route.getName() === "demolist";
 	}
 
+	static isMakingOf () {
+		return Router.current().route.getName() === "making" || Router.current().route.getName() === "makinglist";
+	}
+
 	/**
 	 * Function checks if route is a presentation view
 	 * @return {Boolean} Return true, when route is a presentation view.
@@ -34,7 +38,7 @@ export let Route = class Route {
 	}
 
 	static isPresentationOrDemo () {
-		return this.isPresentation() || this.isDemo();
+		return this.isPresentation() || this.isDemo() || this.isMakingOf();
 	}
 
 	static isEditModeOrPresentation () {
@@ -90,6 +94,9 @@ export let Route = class Route {
 	}
 
 	static isFirstTimeVisit () {
+		if (Route.isMakingOf()) {
+			return false;
+		}
 		if (localStorage.getItem(firstTimeVisit) === undefined || localStorage.getItem(firstTimeVisit) === null) {
 			localStorage.setItem(firstTimeVisit, "true");
 		}

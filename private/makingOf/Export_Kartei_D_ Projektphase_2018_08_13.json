@@ -1,0 +1,232 @@
+[{
+  "name": "D: Projektphase",
+  "description": "Meine Projektphase vom 01.04.2018 bis 30.06.2018",
+  "date": "2018-08-04T09:38:59.349Z",
+  "dateUpdated": "2018-08-13T14:16:11.697Z",
+  "editors": [],
+  "owner": "BR5LPH9Rok4arwDqW",
+  "visible": false,
+  "ratings": true,
+  "kind": "personal",
+  "price": 0,
+  "reviewed": false,
+  "reviewer": "undefined",
+  "request": false,
+  "relevance": 0,
+  "raterCount": 0,
+  "quantity": 9,
+  "license": [],
+  "userDeleted": false,
+  "learningActive": false,
+  "maxCards": 0,
+  "daysBeforeReset": 0,
+  "learningStart": "1970-01-01T00:00:00.000Z",
+  "learningEnd": "1970-01-01T00:00:00.000Z",
+  "learningInterval": [],
+  "learners": 0,
+  "wordcloud": false,
+  "shuffled": false,
+  "cardType": 14,
+  "difficulty": 1,
+  "noDifficulty": true,
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "Adam",
+    "givenname": "Curtis"
+  }
+}, {
+  "subject": "01: Markdeep, Lightbox und DOMPurify",
+  "front": "(#) Markdeep\n\n- Größerer Funktionsumfang im Vergleich zu Markdown\n- Benutzer können Ihrer Karten mit CSS stylen\n- Wird regelmäßig aktualisiert und mit neuen Funktion erweitert\n!!! Tip Formatieren mit Markdeep\n    Beispiele zur Formatierung findest du auf der [Markdeep-Demo](https://casual-effects.com/markdeep/features.md.html)\n(#) Lightbox\n\n<div style=\"columns:2;-webkit-columns:2;-moz-columns:2;column-gap:3em;-webkit-column-gap:3em;-moz-column-gap:3em\">\n\n- Der Benutzer kann die Bilder Zoomen\n- Navigation zwischen den Bildern innerhalb des aktiven Karte\n![](/makingOf/img/new/tablet/learn.jpg height=370px\")\n</div>\n(#) DOMPurify\n\n- Überprüft den mit Markdeep umgewandelten Text auf script Tags\n- Verhindert Cross-site scripting (XSS)\n- Wird außerhalb von Markdeep für alle Felder benutzt, die vom Benutzer modifiziert werden können:\n - Kontaktdaten\n - Beschreibung über die Kartei\n\n",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T09:42:12.190Z",
+  "dateUpdated": "2018-08-13T13:21:03.804Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "02: Präsentationsmodus",
+  "front": "- Ausblenden aller .cards 4.0 Elemente bis auf die Karte und Kartennavigation\n- Benutzung des Fullscreen Modes auf moderneren Browser\n- Einblenden einer Minutensprunguhr\n\n![Der Präsentationsmodus von .cards 4.0](/makingOf/img/presentation.png width=80%)",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T13:13:57.840Z",
+  "dateUpdated": "2018-08-13T14:16:11.687Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "03: Refactoring von Karteitypen",
+  "front": "(#) Refactoring\n\n- Alle Karteityp Abfragen befinden sich nun in <kbd>cardType.js</kbd>\n- Die Eigenschaften eines Karteityps lassen sich nun über Array-Einträge anpassen\n- Das Template für Karten wurde durch das Auslagern übersichtlicher gestaltet\n~~~~~~~~~~~~~~~~~~~~~~~\nlet cardTypesWithDictionary = [1];\nlet cardTypesWithDifficultyLevel = [0, 1, 2, 5, 6, 11, 12, 13];\nlet cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12, 13];\nlet cardTypesWithLearningGoal = [0, 5, 12];\nlet cardTypesWithLearningUnit = [];\nlet cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14];\nlet cardTypesWithNotesForDifficultyLevel = [2];\nlet cardTypesWithAlternativePublishLimit = [0];\nlet cardTypesWithIncreasedFontSize = [14];\nlet cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 13}, {cardType: 12}, {cardType: 11}, {cardType: 5}, {cardType: 1}, {cardType: 10}, {cardType: 7}, {cardType: 4}, {cardType: 8}, {cardType: 9}, {cardType: 14}];\nlet publishLimit = 5;\nlet alternativePublishLimit = 1;\n~~~~~~~~~~~~~~~~~~~~~~~\n",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T13:13:57.840Z",
+  "dateUpdated": "2018-08-13T11:12:51.944Z",
+  "learningIndex": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "03: Refactoring von Karten",
+  "front": "(#) Refactoring\n\n- Navigation und die Position des Inhaltes lässt sich nun pro Karteityp einstellen\n- Vorbereitung für ein zukünftiges Feature \"Ansicht als 3D-Würfel\"\n- Es müssen nur noch 2 Stellen bearbeitet werden, um einen neuen Karteityp mit bereits bestehenden Funktionen hinzuzufügen:\n 1. <kbd>cardType.js</kbd> für die Eigenschaften\n 2. <kbd>i18n</kbd> für die Beschriftung der Buttons und Placeholder\n\n(#) Eigenschaften des Kartenobjekts für den Karteityp \"Entwurfsmuster\"\n\n~~~~~~~~~~~~~~~~~~~~~~~\n//12: Entwurfsmuster / Design pattern\n\t[\n\t\t{\n\t\t\t\"contentId\": 1,\n\t\t\t\"side\": \"front\",\n\t\t\t\"defaultStyle\": \"default\",\n\t\t\t\"defaultCentered\": false\n\t\t},\n\t\t{\n\t\t\t\"contentId\": 3,\n\t\t\t\"side\": \"right\",\n\t\t\t\"defaultStyle\": \"default\",\n\t\t\t\"defaultCentered\": false\n\t\t},\n\t\t{\n\t\t\t\"contentId\": 4,\n\t\t\t\"side\": \"back\",\n\t\t\t\"defaultStyle\": \"default\",\n\t\t\t\"defaultCentered\": false\n\t\t},\n\t\t{\n\t\t\t\"contentId\": 2,\n\t\t\t\"side\": \"left\",\n\t\t\t\"defaultStyle\": \"default\",\n\t\t\t\"defaultCentered\": false,\n\t\t\t\"isAnswer\": true,\n\t\t\t\"isAnswerFocus\": true\n\t\t},\n\t\t{\n\t\t\t\"contentId\": 5,\n\t\t\t\"side\": \"top\",\n\t\t\t\"defaultStyle\": \"default\",\n\t\t\t\"defaultCentered\": false,\n\t\t\t\"isAnswer\": true\n\t\t},\n\t\t{\n\t\t\t\"contentId\": 6,\n\t\t\t\"side\": \"bottom\",\n\t\t\t\"defaultStyle\": \"hint\",\n\t\t\t\"defaultCentered\": false,\n\t\t\t\"isAnswer\": true\n\t\t}\n\t]\n~~~~~~~~~~~~~~~~~~~~~~~\n\n(#) Neues Template für Karten\n\n| | |\n|:-:|:-:|\n|![Alter aufbau besteht nur aus einem Template](/makingOf/img/card_templates_old.png width=90%)|![Neuer Aufbau benutzt ein Template für fast jedes Element](/makingOf/img/card_templates_new.png width=90%)|\n",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-06T17:21:42.506Z",
+  "dateUpdated": "2018-08-13T14:12:47.743Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "05: Neue Ansicht für Kartei Informationen",
+  "front": "\n- Darstellung als Tabelle\n- Verwenden von Bootstrap-Collapse\n- Ein einzelnes Spacebars Template für alle Ansichten\n\n|||\n|:-:|:-:|\n|![Themen-Pool](/makingOf/img/cardset_info_search.jpg)| ![Kartei](/makingOf/img/cardset_info.png height=200px)|\n|![Wortwolke](/makingOf/img/cardset_info_wordcloud.png)||\n\n\n\n\n\n\n\n",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T13:13:57.840Z",
+  "dateUpdated": "2018-08-13T14:05:25.326Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "07: Import und Export von Karteien",
+  "front": "Vor .cards 4.0 konnte man nur Karten importieren und exportieren. Seit 4.0 sind nun folgende Import-Abläufe möglich:\n<div style=\"columns:2;-webkit-columns:2;-moz-columns:2;column-gap:3em;-webkit-column-gap:3em;-moz-column-gap:3em\">\n![Kartei-Import](/makingOf/img/kartei_import.png)\n![Karten-Import](/makingOf/img/karten_import.png)\n</div>\n\n\n",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T13:13:57.840Z",
+  "dateUpdated": "2018-08-13T11:30:57.231Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "08: Demo-Kartei",
+  "front": "- Exportierte Karteien werden in einen Ordner innerhalb der Server-App abgelegt:\n****************************\n*+----------------------+\n*|                      |\n*| /                    |\n*| |                    |\n*| +---/private         |\n*|     |                |\n*|     +---/demo        |\n*|     +---/newsletter  |\n*|                      |\n*+----------------------+\n****************************\n- Der Server importiert während der Initialisierung die Karteien\n- Die importierten Karteien wird mit einem Repetitorium verknüpft\n- Die Demo Kartei ist ohne Anmeldung erreichbar und wird beim ersten Besucht als Landing Page benutzt\n\n![Demo-Kartei Landing Page](/makingOf/img/demo_kartei.jpg width=60%)",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T13:13:57.840Z",
+  "dateUpdated": "2018-08-13T13:23:16.497Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "08: Verbesserung der UX",
+  "front": "(#) Performance\n\n- Darstellen von maximal 3 Karten anstelle des gesamten Inhalts der Kartei\n - Eine aktive Karte\n - Zwei weitere für die Navigation nach Links oder Rechts\n- Kartennavigation durch das Erstellen eines Indexes der Karten _id's \n- Weniger MongoDB Calls für das Anlegen neuer Dokumente\n(#) Navigation\n\n - Weniger scrollen für Mobilgeräte: [Above the Fold](https://en.wikipedia.org/wiki/Above_the_fold)\n - Aufteilung der Funktionen anhand verschieder Gerätetypen:\n|Gerätetyp|Betrachten|Erstellen|Lernen|\n|-|:-:|:-:|:-:|\n|Smartphone|X| |X|\n|Tablet|X|X |X|\n|Desktop|X|X |X|\n\n!!! Tip Info\n    Mehr Details dazu in \"D: .cards 3.0 vs 4.0 Benutzeroberfläche\"\n",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T13:13:57.840Z",
+  "dateUpdated": "2018-08-13T11:13:22.950Z",
+  "learningIndex": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "09: Probleme während der Projektphase",
+  "front": "1. Benutzung von [Meteor-Sessions](https://docs.meteor.com/api/session.html) an unangebrachten Stellen\n - Unübersichtlicher Aufruf von Templates\n - Erschwertes Debugging\n- Falsche Zeitabschätzung für das Refactoring von Templates\n - Größerer Zeitaufwand für das Refactoring von Karteitypen\n- Wechselnde Prioritäten innerhalb der Projektphase\n - Zuerst: Entwickeln von Antwortoptionen\n - Am Ende: Markdeep, Demo-Kartei, UX\n- Vorhandene Automatisierte Tests eher Nutzlos\n- Viele Namen für Variablen stimmen nicht mehr mit den i18n Übersetzungen überein",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T13:13:57.840Z",
+  "dateUpdated": "2018-08-12T19:12:04.759Z",
+  "learningIndex": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}]

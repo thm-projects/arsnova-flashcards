@@ -26,7 +26,9 @@ import {BertAlertVisuals} from "../../api/bertAlertVisuals";
 
 Template.flashcards.onCreated(function () {
 	if (Route.isDemo()) {
-		Session.set('activeCardset', Cardsets.findOne({kind: 'demo', shuffled: true}));
+		Session.set('activeCardset', Cardsets.findOne({kind: 'demo', name: 'DemoCardset', shuffled: true}));
+	} else if (Route.isMakingOf()) {
+		Session.set('activeCardset', Cardsets.findOne({kind: 'demo', name: 'MakingOfCardset', shuffled: true}));
 	} else {
 		Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
 	}
@@ -101,7 +103,7 @@ Template.flashcards.helpers({
 		if (Route.isBox()) {
 			result = CardIndex.getLeitnerCards();
 		}
-		if (Route.isCardset() || Route.isPresentation() || Route.isDemo()) {
+		if (Route.isCardset() || Route.isPresentation() || Route.isDemo() || Route.isMakingOf()) {
 			result = CardIndex.getCardsetCards();
 		}
 		if (Route.isMemo()) {

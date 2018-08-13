@@ -17,7 +17,9 @@ Template.cardHeaderItemCountCards.helpers({
 	},
 	getCardsetCount: function (isPreview) {
 		if (Route.isDemo()) {
-			return Cardsets.findOne({kind: 'demo', shuffled: true}).quantity;
+			return Cardsets.findOne({kind: 'demo', name: 'DemoCardset', shuffled: true}).quantity;
+		} else if (Route.isMakingOf()) {
+			return Cardsets.findOne({kind: 'demo', name: 'MakingOfCardset', shuffled: true}).quantity;
 		}
 		if (isPreview) {
 			return Cards.find({cardset_id: Router.current().params._id}).count();

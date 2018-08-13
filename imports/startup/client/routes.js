@@ -66,7 +66,7 @@ Router.route('demolist', {
 	name: 'demolist',
 	template: 'demo',
 	data: function () {
-		return Cardsets.findOne({kind: 'demo', shuffled: true});
+		return Cardsets.findOne({kind: 'demo', name: "DemoCardset", shuffled: true});
 	}
 });
 
@@ -237,6 +237,22 @@ Router.route('/presentation/:_id', {
 	template: 'presentation',
 	data: function () {
 		return Cardsets.findOne({_id: this.params._id});
+	}
+});
+
+Router.route('makingofcards', {
+	name: 'making',
+	template: 'makingOfCards',
+	data: function () {
+		return Cardsets.findOne({kind: 'demo', name: "MakingOfCardset", shuffled: true});
+	}
+});
+
+Router.route('makingofcardslist', {
+	name: 'makinglist',
+	template: 'makingOfCards',
+	data: function () {
+		return Cardsets.findOne({kind: 'demo', name: "MakingOfCardset", shuffled: true});
 	}
 });
 
@@ -422,7 +438,9 @@ Router.onBeforeAction(isSignedIn, {
 		'demo',
 		'demolist',
 		'agb',
-		'datenschutz'
+		'datenschutz',
+		'making',
+		'makinglist'
 	]
 });
 
