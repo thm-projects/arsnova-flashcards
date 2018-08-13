@@ -1,4 +1,5 @@
 import "./endPresentation.html";
+import {Route} from "../../../../api/route";
 
 /*
  * ############################################################################
@@ -8,8 +9,12 @@ import "./endPresentation.html";
 
 Template.cardHeaderItemEndPresentation.events({
 	"click .endPresentation": function () {
-		Router.go('cardsetdetailsid', {
-			_id: Router.current().params._id
-		});
+		if (Route.isMakingOf()) {
+			Router.go('home');
+		} else {
+			Router.go('cardsetdetailsid', {
+				_id: Router.current().params._id
+			});
+		}
 	}
 });

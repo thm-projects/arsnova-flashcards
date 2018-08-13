@@ -551,7 +551,7 @@
                 {{#if isShuffledCardset this._id}}
                     <div class="cardListName btn-raised {{getColors}}">
                         {{this.name}}
-                        {{#unless isActiveRoute regex='demo|demolist'}}
+                        {{#unless isActiveRoute regex='demo|demolist|making|makinglist'}}
                             <span class="cardListOwner hidden-xs">
                                 {{getAuthorName this.owner}}
                             </span>

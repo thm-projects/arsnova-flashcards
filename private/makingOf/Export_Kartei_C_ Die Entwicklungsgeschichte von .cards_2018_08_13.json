@@ -1,0 +1,100 @@
+[{
+  "name": "C: Die Entwicklungsgeschichte von .cards",
+  "description": "Ein Überblick über die älteren .cards Versionen und deren Entwicklung zum heutigen Stand.",
+  "date": "2018-08-04T09:37:27.868Z",
+  "dateUpdated": "2018-08-12T21:21:47.322Z",
+  "editors": [],
+  "owner": "BR5LPH9Rok4arwDqW",
+  "visible": false,
+  "ratings": true,
+  "kind": "personal",
+  "price": 0,
+  "reviewed": false,
+  "reviewer": "undefined",
+  "request": false,
+  "relevance": 0,
+  "raterCount": 0,
+  "quantity": 3,
+  "license": [],
+  "userDeleted": false,
+  "learningActive": false,
+  "maxCards": 0,
+  "daysBeforeReset": 0,
+  "learningStart": "1970-01-01T00:00:00.000Z",
+  "learningEnd": "1970-01-01T00:00:00.000Z",
+  "learningInterval": [],
+  "learners": 0,
+  "wordcloud": false,
+  "shuffled": false,
+  "cardType": 14,
+  "difficulty": 1,
+  "noDifficulty": true,
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "Adam",
+    "givenname": "Curtis"
+  }
+}, {
+  "subject": "01: Public Release 1 (cards 2.0)",
+  "front": "- Projektarbeit von 2 Masterstudenten\n- Gamification als Zielsetzung\n- Damals noch unter dem Namen **THMcards** entwickelt\n- Backbone.js, Marionette.js als JavaScript-Framework \n- CouchDB für Datenbank\n- Mangelhafte Softwarequalität\n - Schlechte Wartbarkeit: Die gesamte Applikation besteht nur aus zwei Dateien\n - Nichteinhaltung vorgegebener Programmierparadigmen\n- Verwendung von veraltetem JavaScript-Framework\n\n\n!!! WARNING Resultat\n   Eine Re-Implementierung ist für die Weiterentwicklung notwendig!\n",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T13:13:57.840Z",
+  "dateUpdated": "2018-08-12T21:21:22.219Z",
+  "learningIndex": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "02: Public Release 2 (cards 3.0)",
+  "front": "- Re-Implementierung durch zwei weitere Masterstudenten\n- Benutzt [Meteor](https://www.meteor.com/) als JavaScript-Framework\n- MongoDB für die Datenbank\n- Implementierung eines Backends und einer Sales Platform\n- Aufteilung des Codes in kleinere Dateien:\n******************************************************\n*+------------------------------------------+\n*|      Ordnerstruktur von .cards 3.0       |\n*+------------------------------------------+      \n*|    /                                     |\n*|    |                                     |\n*|    +--- client/                          |\n*|    |    |                                |\n*|    |    +---head.html                    |\n*|    |    +---head.js                      |\n*|    |    +---head.scss                    |\n*|    +---i18n/                             |\n*|    +---imports/                          |\n*|    |   |                                 |\n*|    |   +---api/                          |\n*|    |   +---startup/                      |\n*|    |   |   |                             |\n*|    |   |   +---client/                   |\n*|    |   |   |   |                         |\n*|    |   |   |   +---i18n.js               |\n*|    |   |   |   +---registerhelper.js     |\n*|    |   |   |   +---router.js             |\n*|    |   |   +---server/                   |\n*|    |   |       |                         |\n*|    |   |       +---acounts-config.js     |\n*|    |   |       +---initialize.js         |\n*|    |   +---ui/                           |\n*|    +---public/                           |\n*|    +---server/                           |\n*|        |                                 |\n*|        +---main.js                       |\n*|                                          |\n*|                                          |\n*+------------------------------------------+\n******************************************************\n",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T13:13:57.840Z",
+  "dateUpdated": "2018-08-12T21:21:47.305Z",
+  "learningIndex": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "03: Public Release 3 (cards 4.0)",
+  "front": "(#) Meine Geschichte mit dem Projekt\n\n- Erste Arbeiten an dem Projekt Mitte 2016 durch das Fach Softwaretechnik Projekt\n- Weiterentwicklung durch ein Praktikum in einem späteren Semester\n- Weiterentwicklung mit mir als Hauptentwickler seit Anfang 2017\n\n(#) Änderungen gegenüber .cards 3.0\n\n- Regelmäßiges Lernen durch Leitner und Wozniak mit Bonusvergabe\n- Präsentationsmodus\n- Gemischte Karteien\n- Benutzung von Markdeep\n- Einführung von verschiedenen Karteitypen\n- Kopfzeile mit Navigation für Karten\n- Wortkwolke\n- Optimierung der Navigation für Mobilgeräte\n- Neues Design für das gesamte Frontend",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T13:13:57.840Z",
+  "dateUpdated": "2018-08-12T21:21:40.157Z",
+  "learningIndex": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}]

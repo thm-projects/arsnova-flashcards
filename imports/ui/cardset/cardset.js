@@ -224,17 +224,23 @@ Template.cardsetPreview.onCreated(function () {
 Template.cardsetList.helpers({
 	isShuffledCardset: function () {
 		if (Router.current().route.getName() === "demolist") {
-			return Cardsets.findOne({kind: 'demo', shuffled: true}).shuffled;
+			return Cardsets.findOne({kind: 'demo', name: "DemoCardset", shuffled: true}).shuffled;
+		} else if (Router.current().route.getName() === "makinglist") {
+			return Cardsets.findOne({kind: 'demo', name: "MakingOfCardset", shuffled: true}).shuffled;
 		} else {
 			return Cardsets.findOne({_id: Router.current().params._id}).shuffled;
 		}
 	},
 	cardsetList: function () {
-		let isDemo = (Router.current().route.getName() === "demolist");
+		let isDemo = (Router.current().route.getName() === "demolist" || Router.current().route.getName() === "makinglist");
 		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || isDemo) {
 			let cardsetId = Router.current().params._id;
 			if (isDemo) {
-				cardsetId = Cardsets.findOne({kind: 'demo', shuffled: true})._id;
+				if (Route.isDemo()) {
+					cardsetId = Cardsets.findOne({kind: 'demo', name: "DemoCardset", shuffled: true})._id;
+				} else {
+					cardsetId = Cardsets.findOne({kind: 'demo', name: "MakingOfCardset", shuffled: true})._id;
+				}
 			}
 			if (this.shuffled) {
 				let cardsetFilter = [];
@@ -261,7 +267,7 @@ Template.cardsetList.helpers({
 		return CardVisuals.removeMarkdeepTags(text);
 	},
 	gotCards: function () {
-		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || Router.current().route.getName() === "demolist") {
+		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || Router.current().route.getName() === "demolist" || Router.current().route.getName() === "makinglist") {
 			if (this.shuffled) {
 				return Cards.find({cardset_id: {$in: this.cardGroups}}).count();
 			} else {
@@ -272,7 +278,7 @@ Template.cardsetList.helpers({
 		}
 	},
 	cardSubject: function () {
-		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || Router.current().route.getName() === "demolist") {
+		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || Router.current().route.getName() === "demolist" || Router.current().route.getName() === "makinglist") {
 			return _.uniq(Cards.find({
 				cardset_id: this._id
 			}, {
@@ -374,7 +380,7 @@ Template.cardsetList.events({
 		let cubeSides = CardType.getCardTypeCubeSides($(evt.target).data('card-type'));
 		Session.set('cardType', $(evt.target).data('card-type'));
 		Session.set('activeCardContentId', cubeSides[0].contentId);
-		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || Router.current().route.getName() === "demolist") {
+		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || Router.current().route.getName() === "demolist" || Router.current().route.getName() === "makinglist") {
 			Session.set('activeCard', $(evt.target).data('id'));
 			if (Router.current().route.getName() === "presentationlist") {
 				Router.go('presentation', {
@@ -382,6 +388,8 @@ Template.cardsetList.events({
 				});
 			} else if (Router.current().route.getName() === "demolist") {
 				Router.go('demo');
+			} else if (Router.current().route.getName() === "makinglist") {
+				Router.go('making');
 			} else {
 				Router.go('cardsetcard', {
 					_id: Router.current().params._id,

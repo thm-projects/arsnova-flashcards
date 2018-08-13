@@ -679,6 +679,8 @@ Meteor.startup(function () {
 
 	Meteor.users.remove(demoCardsetUser[0]._id);
 	Meteor.users.insert(demoCardsetUser[0]);
-	Meteor.call('importDemo');
+	Meteor.call('deleteDemoCardsets');
+	Meteor.call('importDemoCardset', 'demo');
+	Meteor.call('importDemoCardset', 'making');
 	cronScheduler.startCron();
 });

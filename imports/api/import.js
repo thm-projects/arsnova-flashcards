@@ -210,21 +210,40 @@ Meteor.methods({
 			return importCards(data, cardset, importType);
 		}
 	},
-	importDemo: function () {
+	deleteDemoCardsets: function () {
 		if (Meteor.isServer) {
 			let oldDemoCardsets = Cardsets.find({kind: 'demo'}, {fields: {_id: 1}}).fetch();
 			for (let i = 0; i < oldDemoCardsets.length; i++) {
 				Cards.remove({cardset_id: oldDemoCardsets[i]._id});
 			}
 			Cardsets.remove({kind: 'demo'});
+		}
+	},
+	importDemoCardset: function (type) {
+		if (Meteor.isServer) {
+			let demoPath;
+			let demoCardsetName;
+			if (type === 'demo') {
+				demoCardsetName = 'DemoCardset';
+			} else {
+				demoCardsetName = 'MakingOfCardset';
+			}
 			try {
 				let fs = Npm.require("fs");
 				let cardGroups = [];
 				let totalQuantity = 0;
-				let demoPath = process.env.PWD + '/private/demo/';
+				if (type === 'demo') {
+					demoPath = process.env.PWD + '/private/demo/';
+				} else {
+					demoPath = process.env.PWD + '/private/makingOf/';
+				}
 				let doesPathExist = fs.existsSync(demoPath);
 				if (!doesPathExist) {
-					demoPath = process.env.PWD + '/programs/server/assets/app/demo/';
+					if (type === 'demo') {
+						demoPath = process.env.PWD + '/programs/server/assets/app/demo/';
+					} else {
+						demoPath = process.env.PWD + '/programs/server/assets/app/makingOf/';
+					}
 					doesPathExist = fs.existsSync(demoPath);
 				}
 				if (doesPathExist) {
@@ -290,7 +309,7 @@ Meteor.methods({
 					}
 				}
 				Cardsets.insert({
-					name: "DemoCardset",
+					name: demoCardsetName,
 					description: "",
 					date: new Date(),
 					dateUpdated: new Date(),

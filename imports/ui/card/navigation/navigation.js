@@ -135,7 +135,7 @@ Template.cardNavigationItem.helpers({
  */
 Template.cardArrowNavigation.helpers({
 	isCardsetOrPresentation: function () {
-		return Route.isCardset() || Route.isPresentationOrDemo();
+		return Route.isCardset() || Route.isPresentationOrDemo() || Route.isMakingOf();
 	},
 	cardCountOne: function () {
 		var cardset = Session.get('activeCardset');

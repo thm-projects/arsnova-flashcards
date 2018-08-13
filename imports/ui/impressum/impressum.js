@@ -38,7 +38,7 @@ Template.contact.onCreated(function () {
 
 Template.contactNavigation.helpers({
 	displayAsFooter: function () {
-		return (Route.isHome() || Route.isFirstTimeVisit());
+		return (Route.isHome() || Route.isFirstTimeVisit() || Route.isMakingOf());
 	}
 });
 
@@ -78,7 +78,7 @@ Template.demo.helpers({
 		return Route.isFirstTimeVisit();
 	},
 	gotDemoCardsetData: function () {
-		let cardset = Cardsets.findOne({shuffled: true, kind:  "demo"});
+		let cardset = Cardsets.findOne({shuffled: true, kind:  "demo", name: "DemoCardset"});
 		if (cardset !== undefined) {
 			let cardCount = Cards.find({cardset_id: {$in: cardset.cardGroups}}).count();
 			return cardCount === cardset.quantity;
