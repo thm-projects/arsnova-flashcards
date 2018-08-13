@@ -1,0 +1,257 @@
+[{
+  "name": "E: .cards 3.0 vs 4.0 Benutzeroberfläche",
+  "description": "Änderungen der Oberfläche von .cards 3.0 bis 4.0 für Mobile, Tablet und Laptop Geräte.",
+  "date": "2018-08-01T11:53:17.941Z",
+  "dateUpdated": "2018-08-13T13:38:37.007Z",
+  "editors": [],
+  "owner": "BR5LPH9Rok4arwDqW",
+  "visible": false,
+  "ratings": true,
+  "kind": "personal",
+  "price": 0,
+  "reviewed": false,
+  "reviewer": "undefined",
+  "request": false,
+  "relevance": 0,
+  "raterCount": 0,
+  "quantity": 10,
+  "license": [],
+  "userDeleted": false,
+  "learningActive": false,
+  "maxCards": 0,
+  "daysBeforeReset": 0,
+  "learningStart": "1970-01-01T00:00:00.000Z",
+  "learningEnd": "1970-01-01T00:00:00.000Z",
+  "learningInterval": [],
+  "learners": 0,
+  "wordcloud": false,
+  "shuffled": false,
+  "cardType": 10,
+  "difficulty": 1,
+  "noDifficulty": true,
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "Adam",
+    "givenname": "Curtis"
+  }
+}, {
+  "subject": "01: Landing Page",
+  "front": "(#) Desktop\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/welcome.jpg)| ![](/makingOf/img/new/desktop/welcome.jpg)\n\n(#) Tablet\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/welcome.jpg height=370px\")| ![](/makingOf/img/new/tablet/welcome.jpg height=370px\")\n\n(#) Smartphone\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/welcome.jpg height=370px\")| ![](/makingOf/img/new/smartphone/welcome.jpg height=370px\")",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T11:58:08.544Z",
+  "dateUpdated": "2018-08-13T13:25:54.178Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "02: Themen-Pool",
+  "front": "(#) Desktop\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/pool.jpg)| ![](/makingOf/img/new/desktop/pool.jpg)\n\n(#) Tablet\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/pool.jpg height=370px\")| ![](/makingOf/img/new/tablet/pool.jpg height=370px\")\n\n(#) Smartphone\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/pool.jpg height=370px\")| ![](/makingOf/img/new/smartphone/pool.jpg height=370px\")",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T11:58:08.544Z",
+  "dateUpdated": "2018-08-13T13:27:23.081Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "03: Meine Karteien",
+  "front": "(#) Desktop\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/cardset.jpg)| ![](/makingOf/img/new/desktop/cardset.jpg)\n\n(#) Tablet\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/cardset.jpg height=370px\")| ![](/makingOf/img/new/tablet/cardset.jpg height=370px\")\n\n(#) Smartphone\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/cardset.jpg height=370px\")| ![](/makingOf/img/new/smartphone/cardset.jpg height=370px\")",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T11:58:08.544Z",
+  "dateUpdated": "2018-08-13T13:28:23.129Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "04: Lernpensum",
+  "front": "(#) Desktop\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/learn.jpg)| ![](/makingOf/img/new/desktop/learn.jpg)\n\n(#) Tablet\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/learn.jpg height=370px\")| ![](/makingOf/img/new/tablet/learn.jpg height=370px\")\n\n(#) Smartphone\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/learn.jpg height=370px\")| ![](/makingOf/img/new/smartphone/learn.jpg height=370px\")",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T11:58:08.544Z",
+  "dateUpdated": "2018-08-13T13:30:45.667Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "05: Kartei",
+  "front": "(#) Desktop\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/cardset.jpg)| ![](/makingOf/img/new/desktop/cardset.jpg)\n\n(#) Tablet\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/cardset.jpg height=370px\")| ![](/makingOf/img/new/tablet/cardset.jpg height=370px\")\n\n(#) Smartphone\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/cardset.jpg height=370px\")| ![](/makingOf/img/new/smartphone/cardset.jpg height=370px\")",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T11:58:08.544Z",
+  "dateUpdated": "2018-08-13T13:31:52.758Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "06: Kartei-Index",
+  "front": "(#) Desktop\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/index.jpg)| ![](/makingOf/img/new/desktop/index.jpg)\n\n(#) Tablet\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/index.jpg height=370px\")| ![](/makingOf/img/new/tablet/index.jpg height=370px\")\n\n(#) Smartphone\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/index.jpg height=370px\")| ![](/makingOf/img/new/smartphone/index.jpg height=370px\")",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T11:58:08.544Z",
+  "dateUpdated": "2018-08-13T13:33:24.658Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "07: Editor für Karten",
+  "front": "(#) Desktop\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/editor.jpg)| ![](/makingOf/img/new/desktop/editor.jpg)\n\n(#) Tablet\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/editor.jpg height=370px\")| ![](/makingOf/img/new/tablet/editor.jpg height=370px\")\n\n(#) Smartphone\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/editor.jpg height=370px\")| .cards 4.0 ist nur für das Lernen von Karten auf Smartphones ausgelegt. Für das erstellen von Karten muss der Benutzer ein Tablet oder einen Desktop verwenden.",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T11:58:08.544Z",
+  "dateUpdated": "2018-08-13T13:34:48.520Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "08: Leitner Lernmodus",
+  "front": "(#) Desktop\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/leitner.jpg)| ![](/makingOf/img/new/desktop/leitner.jpg)\n\n(#) Tablet\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/leitner.jpg height=370px)| ![](/makingOf/img/new/tablet/leitner.jpg height=370px\")\n\n(#) Smartphone\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/leitner.jpg height=370px)| ![](/makingOf/img/new/smartphone/leitner.jpg height=370px)",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T11:58:08.544Z",
+  "dateUpdated": "2018-08-13T13:36:13.597Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "09: Wozniak Lernmodus",
+  "front": "(#) Desktop\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/wozniak.jpg)| ![](/makingOf/img/new/desktop/wozniak.jpg)\n\n(#) Tablet\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/wozniak.jpg height=370px)| ![](/makingOf/img/new/tablet/wozniak.jpg height=370px)\n\n(#) Smartphone\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/wozniak.jpg height=370px)| ![](/makingOf/img/new/smartphone/wozniak.jpg height=370px)",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T11:58:08.544Z",
+  "dateUpdated": "2018-08-13T13:37:37.424Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "10: Benuzerprofl",
+  "front": "(#) Desktop\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/profile.jpg)| ![](/makingOf/img/new/desktop/profile.jpg)\n\n(#) Tablet\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/profile.jpg height=370px)| ![](/makingOf/img/new/tablet/profile.jpg height=370px)\n\n(#) Smartphone\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/profile.jpg height=370px)| ![](/makingOf/img/new/smartphone/profile.jpg height=370px)",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T11:58:08.544Z",
+  "dateUpdated": "2018-08-13T13:38:37.000Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}]

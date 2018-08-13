@@ -34,7 +34,9 @@ export let CardIndex = class CardIndex {
 		let indexCards = [];
 		let cardset;
 		if (Route.isDemo()) {
-			cardset = Cardsets.findOne({kind: 'demo', shuffled: true});
+			cardset = Cardsets.findOne({kind: 'demo', name: 'DemoCardset', shuffled: true});
+		} else if (Route.isMakingOf()) {
+			cardset = Cardsets.findOne({kind: 'demo', name: 'MakingOfCardset', shuffled: true});
 		} else {
 			cardset = Cardsets.findOne(Router.current().params._id);
 		}

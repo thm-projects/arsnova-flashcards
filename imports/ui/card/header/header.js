@@ -31,6 +31,9 @@ Template.flashcardHeader.helpers({
 	isPresentation: function () {
 		return Route.isPresentation();
 	},
+	isMakingOf: function () {
+		return Route.isMakingOf();
+	},
 	isDemo: function () {
 		return Route.isDemo();
 	},

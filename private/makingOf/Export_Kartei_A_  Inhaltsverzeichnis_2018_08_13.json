@@ -1,0 +1,59 @@
+[{
+  "name": "A:  Inhaltsverzeichnis",
+  "description": "Ein Überblick über die Lernplattform .cards: Karteien, Kartentypen und dessen Lernalgorithmen.",
+  "date": "2018-08-04T09:41:53.016Z",
+  "dateUpdated": "2018-08-13T16:17:52.778Z",
+  "editors": [],
+  "owner": "BR5LPH9Rok4arwDqW",
+  "visible": false,
+  "ratings": true,
+  "kind": "personal",
+  "price": 0,
+  "reviewed": false,
+  "reviewer": "undefined",
+  "request": false,
+  "relevance": 0,
+  "raterCount": 0,
+  "quantity": 1,
+  "license": [],
+  "userDeleted": false,
+  "learningActive": false,
+  "maxCards": 0,
+  "daysBeforeReset": 0,
+  "learningStart": "1970-01-01T00:00:00.000Z",
+  "learningEnd": "1970-01-01T00:00:00.000Z",
+  "learningInterval": [],
+  "learners": 0,
+  "wordcloud": false,
+  "shuffled": false,
+  "cardType": 14,
+  "difficulty": 1,
+  "noDifficulty": false,
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "Adam",
+    "givenname": "Curtis"
+  }
+}, {
+  "subject": "01: Inhaltsverzeichnis",
+  "front": "(#) The Making of .cards 4.0\n \n1. Über .cards\n1. Die Entwicklungsgeschichte von .cards\n1. Projektphase\n1. .cards 3.0 vs 4.0 Benutzeroberfläche\n1. Zukünftige Features\n\n!!! Tip Tip zum verfolgen der Präsentation \n    \n    Sie erreichen die Präsentation unter [informatik.cards/makingofcards](https://informatik.cards/makingofcards). Hierfür ist keine Anmeldung erforderlich.",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-06T18:43:26.289Z",
+  "dateUpdated": "2018-08-13T16:17:52.674Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}]

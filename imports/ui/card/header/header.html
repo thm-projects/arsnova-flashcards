@@ -5,6 +5,9 @@
     {{#if isPresentation}}
         {{> flashcardHeaderPresentation this}}
     {{/if}}
+    {{#if isMakingOf}}
+        {{> flashcardHeaderDemo this}}
+    {{/if}}
     {{#if isDemo}}
         {{> flashcardHeaderDemo this}}
     {{/if}}

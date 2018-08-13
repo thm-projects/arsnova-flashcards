@@ -1,0 +1,146 @@
+[{
+  "name": "B: Über .cards",
+  "description": "Vorstellung der .cards 4.0 Features:\n\n- Karteien\n- Karteitypen & Karten\n- Leitner und Wozniak\n- Repetitorien",
+  "date": "2018-08-07T21:06:10.280Z",
+  "dateUpdated": "2018-08-13T13:19:58.451Z",
+  "editors": [],
+  "owner": "BR5LPH9Rok4arwDqW",
+  "visible": false,
+  "ratings": true,
+  "kind": "personal",
+  "price": 0,
+  "reviewed": false,
+  "reviewer": "undefined",
+  "request": false,
+  "relevance": 0,
+  "raterCount": 0,
+  "quantity": 5,
+  "license": [],
+  "userDeleted": false,
+  "learningActive": false,
+  "maxCards": 0,
+  "daysBeforeReset": 0,
+  "learningStart": "1970-01-01T00:00:00.000Z",
+  "learningEnd": "1970-01-01T00:00:00.000Z",
+  "learningInterval": [],
+  "learners": 0,
+  "wordcloud": false,
+  "shuffled": false,
+  "cardType": 14,
+  "difficulty": 1,
+  "noDifficulty": true,
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "Adam",
+    "givenname": "Curtis"
+  }
+}, {
+  "subject": "01: Was ist .cards?",
+  "front": "\n\n\n- Ist eine **Lernkartei-App**\n- Ist eine **vorlesungsbegleitende persönliche Lernumgebung**\n- Bietet die Option zum **kontinuierliches und wiederholten Lernen** mit Vergabe von Bonuspunkten \n- Soll der Aufschieberitis und dem Bulimie-Lernen entgegenwirken\n\n![](/makingOf/img/new/desktop/welcome.jpg height=370px\")\n\n!!! Tip Demo-Repetitorium\n    Mehr Informationen finden Sie auf dem [offiziellem Demo-Repetitorium](/demo).",
+  "centerTextElement": [
+    false,
+    true,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-12T18:23:31.080Z",
+  "dateUpdated": "2018-08-13T13:19:58.442Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "02: Kartei",
+  "front": "- Kann nur einen Karteityp verwalten\n- Erlaubt es Karten zu erstellen / verwalten\n- Kann die Karten präsentieren (Nur Karten anzeigen)\n- **Abhängig vom Karteityp:** Benutzer können das lernen nach Leitner oder Wozniak auf die Karten anwenden\n\n![Ansicht einer Kartei](/makingOf/img/new/desktop/cardset.jpg width=60%)",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-12T18:23:31.080Z",
+  "dateUpdated": "2018-08-13T13:19:13.021Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "03: Karteitypen",
+  "front": "|Karteityp|Seiten|Schwierigkeits-Stufen|[Lernziel-Taxonomie](https://dbs-lin.ruhr-uni-bochum.de/lehreladen/planung-durchfuehrung-kompetenzorientierter-lehre/lehr-und-lernziele/typen-und-stufen/)|[Spaced Learning](https://www.webcampus.de/blog/123/spaced-learning-mit-intelligenter-lerntechnik-besser-erinnern)|Extras|\n|-|:-:|:-:|:-:|:-:|:-:|\n|Mitschrift|3|X ||||\n|Lerneinheit| 4|X |X |X||\n|Glossar| 3| ||X||\n|Anweisungssatz| 3|X ||X||\n|Formelsammlung| 4|X | |X||\n|Entwurfsmuster| 6|X |X |X||\n|Quiz| 2| X| |X||\n|Prüfung| 3|X | X|X||\n|Vokabelkartei| 2|X||X|[BEOLINGUS-Integration](https://dict.tu-chemnitz.de/)|\n|Fotokartei| 2|||||\n|Zitatensammlung| 3|||X||\n|Exzerpte| 3|||||\n|Notizen|1|||||\n|To-dos| 1||||[Task-Liste à la GitHub](https://casual-effects.com/markdeep/features.md.html#toc1.3)|\n|Vortrag| 1||||für den Beamer optimiert|\n[Ausstattungsmerkmale der Karteitypen]",
+  "centerTextElement": [
+    false,
+    true,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-12T18:23:31.080Z",
+  "dateUpdated": "2018-08-12T18:51:16.209Z",
+  "learningIndex": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "04: Repetitorium",
+  "front": "- Kann Karteien unterschiedlicher Typen mischen\n- Enthält nur Referenzen auf die Karten\n- Verwendet eigene Leitner und Wozniak Statistiken\n![Ansicht eines Repetitorium](/makingOf/img/repetitorium.jpg width=60%)",
+  "centerTextElement": [
+    true,
+    true,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-12T18:23:31.080Z",
+  "dateUpdated": "2018-08-13T13:19:30.207Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}, {
+  "subject": "05: Leitner und Wozniak",
+  "front": "(#) Leitner\n\n- 5- Fächer-Lernmethode\n- Ein unsichtbares sechstes Fach enthält die vollständig gelernten Karten\n- Nicht erinnerte Karten werden in das erste Fach zurückgelegt\n- Der Inhalt der einzelnen Fächer wird in festgelegten Intervallen abgerufen. Fächer mit höheren Nummern haben einen größeren Intervall\n- Tagespensum, Intervalle und Deadlines können pro Kartei festgelegt werden\n\n![Bildquelle: Wikipedia: \"Lernkartei\" — Am Anfang befinden sich alle Karten im Fach 1](/makingOf/img/leitnerBox.png width=80%)\n\n(#) Wozniak\n\n- Abstände aufgrund der eigenen Einschätzung des Benutzers berechnet\n- Zur Berechnung wird der SM-2-Algorithmus verwendet\n- Die Antwort wird anhand einer 6-stufigen Skala festgelegt:\n 1. Blackout\n 2. Falsche Antwort, aber an die richtige erinnert\n 3. Falsche Antwort, aber **leicht** an die richtige erinnert\n 4. Richtige Antwort nach längerem Überlegen\n 5. Richtige Antwort nach kurzem Zögern\n 6. Sofort und richtig",
+  "centerTextElement": [
+    false,
+    true,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-12T18:23:31.080Z",
+  "dateUpdated": "2018-08-13T13:19:44.318Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}]
