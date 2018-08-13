@@ -248,7 +248,7 @@ img.cardside {
   width: 100%;
   vertical-align: bottom;
   overflow-y: scroll;
-  overflow-x: hidden;
+  overflow-x: auto;
   p:nth-child(n+3) {
     margin: 0;
     margin-top: $font_size_markdeep * 1.5;
