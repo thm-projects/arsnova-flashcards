@@ -2,7 +2,7 @@
   "name": "D: Projektphase",
   "description": "Meine Projektphase vom 01.04.2018 bis 30.06.2018",
   "date": "2018-08-04T09:38:59.349Z",
-  "dateUpdated": "2018-08-13T14:16:11.697Z",
+  "dateUpdated": "2018-08-14T16:25:46.585Z",
   "editors": [],
   "owner": "BR5LPH9Rok4arwDqW",
   "visible": false,
@@ -50,7 +50,6 @@
   "date": "2018-08-04T09:42:12.190Z",
   "dateUpdated": "2018-08-13T13:21:03.804Z",
   "learningIndex": "0",
-  "learningUnit": "0",
   "originalAuthorName": {
     "title": "",
     "birthname": "User",
@@ -72,7 +71,6 @@
   "date": "2018-08-04T13:13:57.840Z",
   "dateUpdated": "2018-08-13T14:16:11.687Z",
   "learningIndex": "0",
-  "learningUnit": "0",
   "originalAuthorName": {
     "title": "",
     "birthname": "User",
@@ -115,14 +113,35 @@
   "date": "2018-08-06T17:21:42.506Z",
   "dateUpdated": "2018-08-13T14:12:47.743Z",
   "learningIndex": "0",
-  "learningUnit": "0",
   "originalAuthorName": {
     "title": "",
     "birthname": "User",
     "givenname": "Super Admin"
   }
 }, {
-  "subject": "05: Neue Ansicht für Kartei Informationen",
+  "subject": "05: Verbesserung der UX",
+  "front": "(#) Performance\n\n- Darstellen von maximal 3 Karten anstelle des gesamten Inhalts der Kartei\n - Eine aktive Karte\n - Zwei weitere für die Navigation nach Links oder Rechts\n- Kartennavigation durch das Erstellen eines Indexes der Karten _id's \n- Weniger MongoDB Calls für das Anlegen neuer Dokumente\n(#) Navigation und Usability\n\n - Weniger scrollen: [Above the Fold](https://en.wikipedia.org/wiki/Above_the_fold)\n - Verbesserter Preview-Modus für den Karteneditor\n - Aufteilung der Funktionen anhand verschieder Gerätetypen:\n\n|Gerätetyp|Betrachten|Erstellen|Lernen|\n|-|:-:|:-:|:-:|\n|Smartphone|X| |X|\n|Tablet|X|X |X|\n|Desktop|X|X |X|\n\n(#) Beispiel: Karteneditor\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/editor.jpg)| ![](/makingOf/img/new/desktop/editor.jpg)\n!!! Tip Info\n    Mehr Details dazu in \"D: .cards 3.0 vs 4.0 Benutzeroberfläche\"\n",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T13:13:57.840Z",
+  "dateUpdated": "2018-08-14T16:24:10.510Z",
+  "learningIndex": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  },
+  "learningUnit": "0"
+}, {
+  "subject": "06: Neue Ansicht für Kartei Informationen",
   "front": "\n- Darstellung als Tabelle\n- Verwenden von Bootstrap-Collapse\n- Ein einzelnes Spacebars Template für alle Ansichten\n\n|||\n|:-:|:-:|\n|![Themen-Pool](/makingOf/img/cardset_info_search.jpg)| ![Kartei](/makingOf/img/cardset_info.png height=200px)|\n|![Wortwolke](/makingOf/img/cardset_info_wordcloud.png)||\n\n\n\n\n\n\n\n",
   "centerTextElement": [
     false,
@@ -135,81 +154,16 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-08-04T13:13:57.840Z",
-  "dateUpdated": "2018-08-13T14:05:25.326Z",
-  "learningIndex": "0",
-  "learningUnit": "0",
-  "originalAuthorName": {
-    "title": "",
-    "birthname": "User",
-    "givenname": "Super Admin"
-  }
-}, {
-  "subject": "07: Import und Export von Karteien",
-  "front": "Vor .cards 4.0 konnte man nur Karten importieren und exportieren. Seit 4.0 sind nun folgende Import-Abläufe möglich:\n<div style=\"columns:2;-webkit-columns:2;-moz-columns:2;column-gap:3em;-webkit-column-gap:3em;-moz-column-gap:3em\">\n![Kartei-Import](/makingOf/img/kartei_import.png)\n![Karten-Import](/makingOf/img/karten_import.png)\n</div>\n\n\n",
-  "centerTextElement": [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false
-  ],
-  "learningGoalLevel": 0,
-  "backgroundStyle": 1,
-  "date": "2018-08-04T13:13:57.840Z",
-  "dateUpdated": "2018-08-13T11:30:57.231Z",
-  "learningIndex": "0",
-  "learningUnit": "0",
-  "originalAuthorName": {
-    "title": "",
-    "birthname": "User",
-    "givenname": "Super Admin"
-  }
-}, {
-  "subject": "08: Demo-Kartei",
-  "front": "- Exportierte Karteien werden in einen Ordner innerhalb der Server-App abgelegt:\n****************************\n*+----------------------+\n*|                      |\n*| /                    |\n*| |                    |\n*| +---/private         |\n*|     |                |\n*|     +---/demo        |\n*|     +---/newsletter  |\n*|                      |\n*+----------------------+\n****************************\n- Der Server importiert während der Initialisierung die Karteien\n- Die importierten Karteien wird mit einem Repetitorium verknüpft\n- Die Demo Kartei ist ohne Anmeldung erreichbar und wird beim ersten Besucht als Landing Page benutzt\n\n![Demo-Kartei Landing Page](/makingOf/img/demo_kartei.jpg width=60%)",
-  "centerTextElement": [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false
-  ],
-  "learningGoalLevel": 0,
-  "backgroundStyle": 1,
-  "date": "2018-08-04T13:13:57.840Z",
-  "dateUpdated": "2018-08-13T13:23:16.497Z",
-  "learningIndex": "0",
-  "learningUnit": "0",
-  "originalAuthorName": {
-    "title": "",
-    "birthname": "User",
-    "givenname": "Super Admin"
-  }
-}, {
-  "subject": "08: Verbesserung der UX",
-  "front": "(#) Performance\n\n- Darstellen von maximal 3 Karten anstelle des gesamten Inhalts der Kartei\n - Eine aktive Karte\n - Zwei weitere für die Navigation nach Links oder Rechts\n- Kartennavigation durch das Erstellen eines Indexes der Karten _id's \n- Weniger MongoDB Calls für das Anlegen neuer Dokumente\n(#) Navigation\n\n - Weniger scrollen für Mobilgeräte: [Above the Fold](https://en.wikipedia.org/wiki/Above_the_fold)\n - Aufteilung der Funktionen anhand verschieder Gerätetypen:\n|Gerätetyp|Betrachten|Erstellen|Lernen|\n|-|:-:|:-:|:-:|\n|Smartphone|X| |X|\n|Tablet|X|X |X|\n|Desktop|X|X |X|\n\n!!! Tip Info\n    Mehr Details dazu in \"D: .cards 3.0 vs 4.0 Benutzeroberfläche\"\n",
-  "centerTextElement": [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false
-  ],
-  "learningGoalLevel": 0,
-  "backgroundStyle": 1,
-  "date": "2018-08-04T13:13:57.840Z",
-  "dateUpdated": "2018-08-13T11:13:22.950Z",
+  "dateUpdated": "2018-08-14T16:24:04.824Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "",
     "birthname": "User",
     "givenname": "Super Admin"
-  }
+  },
+  "learningUnit": "0"
 }, {
-  "subject": "09: Probleme während der Projektphase",
+  "subject": "07: Probleme während der Projektphase",
   "front": "1. Benutzung von [Meteor-Sessions](https://docs.meteor.com/api/session.html) an unangebrachten Stellen\n - Unübersichtlicher Aufruf von Templates\n - Erschwertes Debugging\n- Falsche Zeitabschätzung für das Refactoring von Templates\n - Größerer Zeitaufwand für das Refactoring von Karteitypen\n- Wechselnde Prioritäten innerhalb der Projektphase\n - Zuerst: Entwickeln von Antwortoptionen\n - Am Ende: Markdeep, Demo-Kartei, UX\n- Vorhandene Automatisierte Tests eher Nutzlos\n- Viele Namen für Variablen stimmen nicht mehr mit den i18n Übersetzungen überein",
   "centerTextElement": [
     false,
@@ -222,11 +176,56 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-08-04T13:13:57.840Z",
-  "dateUpdated": "2018-08-12T19:12:04.759Z",
+  "dateUpdated": "2018-08-14T16:25:12.692Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "",
     "birthname": "User",
     "givenname": "Super Admin"
-  }
+  },
+  "learningUnit": "0"
+}, {
+  "subject": "08: Import und Export von Karteien",
+  "front": "Vor .cards 4.0 konnte man nur Karten importieren und exportieren. Seit 4.0 sind nun folgende Import-Abläufe möglich:\n<div style=\"columns:2;-webkit-columns:2;-moz-columns:2;column-gap:3em;-webkit-column-gap:3em;-moz-column-gap:3em\">\n![Kartei-Import](/makingOf/img/kartei_import.png)\n![Karten-Import](/makingOf/img/karten_import.png)\n</div>\n\n\n",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T13:13:57.840Z",
+  "dateUpdated": "2018-08-14T16:25:31.203Z",
+  "learningIndex": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  },
+  "learningUnit": "0"
+}, {
+  "subject": "09: Demo-Kartei",
+  "front": "- Exportierte Karteien werden in einen Ordner innerhalb der Server-App abgelegt:\n****************************\n*+----------------------+\n*|                      |\n*| /                    |\n*| |                    |\n*| +---/private         |\n*|     |                |\n*|     +---/demo        |\n*|     +---/newsletter  |\n*|                      |\n*+----------------------+\n****************************\n- Der Server importiert während der Initialisierung die Karteien\n- Die importierten Karteien wird mit einem Repetitorium verknüpft\n- Die Demo Kartei ist ohne Anmeldung erreichbar und wird beim ersten Besucht als Landing Page benutzt\n\n![Demo-Kartei Landing Page](/makingOf/img/demo_kartei.jpg width=60%)",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-04T13:13:57.840Z",
+  "dateUpdated": "2018-08-14T16:25:46.575Z",
+  "learningIndex": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  },
+  "learningUnit": "0"
 }]
