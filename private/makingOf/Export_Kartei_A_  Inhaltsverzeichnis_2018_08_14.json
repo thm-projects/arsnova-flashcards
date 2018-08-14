@@ -1,0 +1,81 @@
+[{
+  "name": "A:  Inhaltsverzeichnis",
+  "description": "Ein Überblick über die Lernplattform .cards: Karteien, Kartentypen und dessen Lernalgorithmen.",
+  "date": "2018-08-04T09:41:53.016Z",
+  "dateUpdated": "2018-08-14T19:05:15.290Z",
+  "editors": [],
+  "owner": "BR5LPH9Rok4arwDqW",
+  "visible": false,
+  "ratings": true,
+  "kind": "personal",
+  "price": 0,
+  "reviewed": false,
+  "reviewer": "undefined",
+  "request": false,
+  "relevance": 0,
+  "raterCount": 0,
+  "quantity": 2,
+  "license": [],
+  "userDeleted": false,
+  "learningActive": false,
+  "maxCards": 0,
+  "daysBeforeReset": 0,
+  "learningStart": "1970-01-01T00:00:00.000Z",
+  "learningEnd": "1970-01-01T00:00:00.000Z",
+  "learningInterval": [],
+  "learners": 0,
+  "wordcloud": false,
+  "shuffled": false,
+  "cardType": 14,
+  "difficulty": 1,
+  "noDifficulty": true,
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "Adam",
+    "givenname": "Curtis"
+  }
+}, {
+  "subject": "01: Übersicht",
+  "front": "(#) The Making of .cards 4.0\n \n1. Über .cards\n1. Die Entwicklungsgeschichte von .cards\n1. Projektphase\n(##) Anhang\n\n1. To-dos\n1. .cards 3.0 vs 4.0 Benutzeroberfläche\n\n!!! Tip Tip zum verfolgen der Präsentation \n    \n    Sie erreichen die Präsentation unter [informatik.cards/makingofcards](https://informatik.cards/makingofcards). Hierfür ist keine Anmeldung erforderlich.",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-06T18:43:26.289Z",
+  "dateUpdated": "2018-08-14T17:05:20.265Z",
+  "learningIndex": "0",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  },
+  "learningUnit": "0"
+}, {
+  "subject": "02: Allgemeines",
+  "front": "(#) Über mich\n\n- Curtis Adam\n- Informatik Bachelor\n- Studiert seit Sommer 2015 an der Technische Hochschule Mittelhessen\n\n(#) Über meinen Arbeitsort\n\n<div style=\"columns:2;-webkit-columns:2;-moz-columns:2;column-gap:3em;-webkit-column-gap:3em;-moz-column-gap:3em\">\n\n- Technische Hochschule Mittelhessen\n- Gebäude A12 Raum 1.12a (ARSnova-helpdesk)\n- Projektphase: 01. April 2018 bis 30. Juni 2018 \n\n![ARSnova Arbeitsplatz](/makingOf/img/arbeitsplatz.jpg)\n</div>",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "date": "2018-08-14T15:13:16.971Z",
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "dateUpdated": "2018-08-14T19:05:15.276Z",
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "User",
+    "givenname": "Super Admin"
+  }
+}]
