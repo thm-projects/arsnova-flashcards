@@ -2,7 +2,7 @@
   "name": "B: Über .cards",
   "description": "Vorstellung der .cards 4.0 Features:\n\n- Karteien\n- Karteitypen & Karten\n- Leitner und Wozniak\n- Repetitorien",
   "date": "2018-08-07T21:06:10.280Z",
-  "dateUpdated": "2018-08-13T13:19:58.451Z",
+  "dateUpdated": "2018-08-14T19:07:06.642Z",
   "editors": [],
   "owner": "BR5LPH9Rok4arwDqW",
   "visible": false,
@@ -36,7 +36,7 @@
   }
 }, {
   "subject": "01: Was ist .cards?",
-  "front": "\n\n\n- Ist eine **Lernkartei-App**\n- Ist eine **vorlesungsbegleitende persönliche Lernumgebung**\n- Bietet die Option zum **kontinuierliches und wiederholten Lernen** mit Vergabe von Bonuspunkten \n- Soll der Aufschieberitis und dem Bulimie-Lernen entgegenwirken\n\n![](/makingOf/img/new/desktop/welcome.jpg height=370px\")\n\n!!! Tip Demo-Repetitorium\n    Mehr Informationen finden Sie auf dem [offiziellem Demo-Repetitorium](/demo).",
+  "front": "- Ist eine **Lernkartei-App**\n- Ist eine **vorlesungsbegleitende persönliche Lernumgebung**\n- Bietet die Option zum **kontinuierliches und wiederholten Lernen** mit Vergabe von Bonuspunkten \n- Soll der Aufschieberitis und dem Bulimie-Lernen entgegenwirken\n- Ist [Open-source](https://git.thm.de/arsnova/flashcards) und demnächst als **Docker Compose File** verfügbar\n\n![](/makingOf/img/new/desktop/welcome.jpg height=370px\")\n\n\n\n        mnemosyne|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/mnemosyne.png)| ![](/makingOf/img/new/smartphone/wozniak.jpg height=350px)\n\n!!! Tip Demo-Repetitorium\n    Mehr Informationen finden Sie auf dem [offiziellem Demo-Repetitorium](/demo).",
   "centerTextElement": [
     false,
     true,
@@ -48,14 +48,14 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-08-12T18:23:31.080Z",
-  "dateUpdated": "2018-08-13T13:19:58.442Z",
+  "dateUpdated": "2018-08-14T19:07:06.634Z",
   "learningIndex": "0",
-  "learningUnit": "0",
   "originalAuthorName": {
     "title": "",
     "birthname": "User",
     "givenname": "Super Admin"
-  }
+  },
+  "learningUnit": "0"
 }, {
   "subject": "02: Kartei",
   "front": "- Kann nur einen Karteityp verwalten\n- Erlaubt es Karten zu erstellen / verwalten\n- Kann die Karten präsentieren (Nur Karten anzeigen)\n- **Abhängig vom Karteityp:** Benutzer können das lernen nach Leitner oder Wozniak auf die Karten anwenden\n\n![Ansicht einer Kartei](/makingOf/img/new/desktop/cardset.jpg width=60%)",
@@ -72,7 +72,6 @@
   "date": "2018-08-12T18:23:31.080Z",
   "dateUpdated": "2018-08-13T13:19:13.021Z",
   "learningIndex": "0",
-  "learningUnit": "0",
   "originalAuthorName": {
     "title": "",
     "birthname": "User",
@@ -115,7 +114,6 @@
   "date": "2018-08-12T18:23:31.080Z",
   "dateUpdated": "2018-08-13T13:19:30.207Z",
   "learningIndex": "0",
-  "learningUnit": "0",
   "originalAuthorName": {
     "title": "",
     "birthname": "User",
@@ -137,7 +135,6 @@
   "date": "2018-08-12T18:23:31.080Z",
   "dateUpdated": "2018-08-13T13:19:44.318Z",
   "learningIndex": "0",
-  "learningUnit": "0",
   "originalAuthorName": {
     "title": "",
     "birthname": "User",
