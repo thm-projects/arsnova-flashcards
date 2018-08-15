@@ -2,7 +2,7 @@
   "name": "O: Beispiel für eine Vortragskarte",
   "description": "Für die Demo-Kartei",
   "date": "2018-08-06T14:57:31.346Z",
-  "dateUpdated": "2018-08-07T10:38:31.398Z",
+  "dateUpdated": "2018-08-15T10:38:23.666Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -36,7 +36,7 @@
   }
 }, {
   "subject": "The Making of .cards",
-  "front": "**Ressourcen und Aktivität: August 2015 - August 2018**\n\n![[OpenHub-Statistiken zu .cards](https://www.openhub.net/p/arsnova-cards\n)](https://arsnova-uploads.mni.thm.de/Demo-Kartei/OpenHub-Statistiken.png)\n",
+  "front": "!!! Tip\n   Vortrag von Curtis Adam im Rahmen des BA-Projektseminars 8/2018:<br /> https://informatik.cards/makingofcards\n\n**Ressourcen und Aktivität: August 2015 - August 2018**\n\n![[OpenHub-Statistiken zu .cards](https://www.openhub.net/p/arsnova-cards\n)](https://arsnova-uploads.mni.thm.de/Demo-Kartei/OpenHub-Statistiken.png)\n",
   "centerTextElement": [
     true,
     false,
@@ -50,7 +50,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2018-08-07T10:38:31.390Z",
+  "dateUpdated": "2018-08-15T10:38:23.650Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",

@@ -2,7 +2,7 @@
   "name": "E: Beispiel für eine Quizkarte",
   "description": "Beispielkarte für die Demo-Kartei",
   "date": "2018-07-30T17:15:09.922Z",
-  "dateUpdated": "2018-07-30T18:11:12.816Z",
+  "dateUpdated": "2018-08-15T14:16:32.312Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -37,10 +37,10 @@
 }, {
   "subject": "Die Millionenfrage",
   "front": "(##) Aus wie vielen Steinchen besteht der klassische  **Zauberwürfel**?\n\n![Zauberwürfel von Ernő Rubik (Bildquelle: [Wikipedia](\"https://de.wikipedia.org/wiki/Zauberw%C3%BCrfel\"))](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Rubik's_cube_v3.svg/435px-Rubik's_cube_v3.svg.png width=250px)\n",
-  "back": "How a Rubik's Cube Works | Time to solve the cube !\n-------------------------|-------------------------\n![How a Rubik's Cube Works](https://www.youtube.com/watch?v=1p0qN1_qWoA)  |  ![Time to solve the cube!](https://www.youtube.com/watch?v=1t1OL2zN0LQ)  \n",
+  "back": "How a Rubik's Cube Works | Time to solve the cube!\n:-----------------------:|:-----------------------:\n![](https://www.youtube.com/watch?v=1p0qN1_qWoA) | ![](https://www.youtube.com/watch?v=1t1OL2zN0LQ)\n\n",
   "centerTextElement": [
     false,
-    false,
+    true,
     false,
     false,
     false,
@@ -51,7 +51,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2018-07-30T18:11:12.805Z",
+  "dateUpdated": "2018-08-15T14:16:32.290Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
