@@ -26,6 +26,11 @@ module.exports = function () {
 		navigation.setContent('#setName', title);
 	});
 
+	this.Then(/^he should be able to edit the card type$/, function () {
+		navigation.clickElement('#setCardType');
+		navigation.clickElement('.cardType');
+	});
+
 	this.Then(/^he should be able to edit the cardset description$/, function () {
 		navigation.setContent('#contentEditor', description);
 	});

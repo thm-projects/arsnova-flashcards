@@ -32,58 +32,36 @@
 
 <template name="shuffle">
     {{#if canShuffle}}
-        {{#unless isShuffleRoute}}
-            {{#unless selectShuffleCardset}}
-                <a href="shuffle" id="shuffleCardsets" class="btn btn-raised btn-success" role="button">{{_
-                        "set-list.shuffleCardsets"}}</a>
-            {{/unless}}
-        {{else}}
-            <div class="col-md-12" id="set-list-region">
-                <div class="bs-callout bs-callout-info selectionInfo">
-                    {{#if isActiveRoute 'shuffle'}}
-                        <a href="repetitorium" id="cancelShuffle" class="btn btn-raised btn-danger" role="button">{{_
-                                "declinecard"}}</a>
-                        {{#if gotShuffledCards}}
-                            <a href="#" id="createShuffledCardset" class="btn btn-raised btn-success" role="button"
-                               data-toggle="modal"
-                               data-target="#setCardsetFormModal" {{disableIfOffline}}>{{_
-                                    "set-list.shuffle"}}</a>
-                        {{/if}}
-                        <span class="text">
-                            {{_ "set-list.shuffleInfoTextNew"}}
-                        </span>
-                    {{/if}}
-                    {{#if isActiveRoute 'editshuffle'}}
-                        {{#if gotShuffledCards}}
-                            <button href="#" id="updateShuffledCardset" class="btn btn-raised btn-success"
-                                    role="button" {{disableIfOffline}}>{{_
-                                    "set-list.shuffle"}}</button>
-                        {{/if}}
-                        <button id="cancelUpdateShuffle" class="btn btn-raised btn-danger" role="button">{{_
-                                "declinecard"}}</button>
-                        <span class="text">
-                            {{_ "set-list.shuffleInfoTextEdit"}}
-                        </span>
-                    {{/if}}
-                    {{#if displayRemoveButton}}
-                        <button href="#" id="removeShuffledCards" class="btn btn-raised btn-danger"
-                                role="button" {{disableIfOffline}}>{{_
-                                "set-list.shuffleRemove"}}</button>
-                    {{/if}}
-                </div>
-                {{> filterNavigation}}
-                {{#if shuffleList 1}}
-                    {{#each shuffleList 2}}
-                        {{#unless isActiveCardset}}
-                            {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
-                        {{/unless}}
-                    {{/each}}
-                    {{> infiniteScroll}}
-                {{else}}
-                    {{> noFilterResults}}
+        <div class="col-md-12" id="set-list-region">
+            <div class="bs-callout bs-callout-info selectionInfo">
+                {{#if gotShuffledCards}}
+                    <button href="#" id="updateShuffledCardset" class="btn btn-raised btn-success"
+                            role="button" {{disableIfOffline}}>{{_
+                            "set-list.shuffle"}}</button>
+                {{/if}}
+                <button id="cancelUpdateShuffle" class="btn btn-raised btn-danger" role="button">{{_
+                        "declinecard"}}</button>
+                <span class="text">
+                    {{_ "set-list.shuffleInfoTextEdit"}}
+                </span>
+                {{#if displayRemoveButton}}
+                    <button href="#" id="removeShuffledCards" class="btn btn-raised btn-danger"
+                            role="button" {{disableIfOffline}}>{{_
+                            "set-list.shuffleRemove"}}</button>
                 {{/if}}
             </div>
-        {{/unless}}
+            {{> filterNavigation}}
+            {{#if shuffleList 1}}
+                {{#each shuffleList 2}}
+                    {{#unless isActiveCardset}}
+                        {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
+                    {{/unless}}
+                {{/each}}
+                {{> infiniteScroll}}
+            {{else}}
+                {{> noFilterResults}}
+            {{/if}}
+        </div>
     {{/if}}
 </template>
 
@@ -116,7 +94,10 @@
 
 <template name="repetitorium">
     <div class="col-md-12" id="set-list-region">
-        {{> shuffle}}
+        <button id="newRepetitorium" type="button" class="btn btn-raised btn-success saveSet" data-toggle="modal"
+                data-target="#setCardsetFormModal" {{disableIfOffline}} {{disableIfShuffle}}>
+            {{_ "set-list.shuffleCardsets"}}
+        </button>
         {{#if cardsetList 0}}
             {{> filterNavigation}}
             {{#if cardsetList 1}}
