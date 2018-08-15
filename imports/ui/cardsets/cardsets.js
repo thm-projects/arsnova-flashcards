@@ -118,6 +118,12 @@ Template.repetitorium.helpers({
 	}
 });
 
+Template.repetitorium.events({
+	'click #newRepetitorium': function () {
+		Session.set('isNewCardset', true);
+	}
+});
+
 Template.repetitorium.onDestroyed(function () {
 	Filter.resetMaxItemCounter();
 });
@@ -172,9 +178,6 @@ Template.learn.events({
  */
 
 Template.shuffle.events({
-	'click #createShuffledCardset': function () {
-		Session.set("ShuffleTemplate", Cardsets.findOne({_id: Session.get("ShuffledCardsets")[0]}));
-	},
 	'click #updateShuffledCardset': function () {
 		let removedCardsets = $(Cardsets.findOne({_id: Router.current().params._id}).cardGroups).not(Session.get("ShuffledCardsets")).get();
 		Meteor.call("updateShuffleGroups", Router.current().params._id, Session.get("ShuffledCardsets"), removedCardsets, function (error, result) {

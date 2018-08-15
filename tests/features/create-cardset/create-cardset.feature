@@ -13,6 +13,7 @@ Scenario: User creates a new deck of cards
     When User clicks on the create cardset button
     Then he is redirected to the new cardset form
     Then he should be able to edit the cardset title
+    And he should be able to edit the card type
     And he should be able to edit the cardset description
     And he should push the create new cardset button
     And he should see the details of that cardset with the correct values
