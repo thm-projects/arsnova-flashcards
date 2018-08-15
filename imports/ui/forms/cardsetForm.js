@@ -83,6 +83,7 @@ export function saveCardset() {
 		$('#helpSetName').html(TAPi18n.__('modal-dialog.name_required'));
 	}
 	if ($('#setCardType').val() < 0) {
+		error = true;
 		errorMessage += "<li>" + TAPi18n.__('modal-dialog.cardType') + "</li>";
 		bertDelayMultiplier++;
 		$('#setCardTypeLabel').addClass('text-warning');
@@ -101,16 +102,20 @@ export function saveCardset() {
 	if (!error) {
 		let name, cardType, description, shuffled, cardGroups;
 		name = $('#setName').val();
-		if (Route.isShuffle()) {
+		if (Route.isShuffle() || Route.isRepetitorium()) {
 			cardType = -1;
 		} else {
 			cardType = $('#setCardType').val();
 		}
 		description = $('#contentEditor').val();
 		if (isNewCardset()) {
-			if (Route.isShuffle()) {
+			if (Route.isShuffle() || Route.isRepetitorium()) {
 				shuffled = true;
-				cardGroups = Session.get("ShuffledCardsets");
+				if (Route.isRepetitorium()) {
+					cardGroups = [];
+				} else {
+					cardGroups = Session.get("ShuffledCardsets");
+				}
 			} else {
 				shuffled = false;
 				cardGroups = [];
