@@ -130,7 +130,7 @@
   },
   "complete-profile": {
     "btn-txt": "Schließen",
-    "title": "Benutzerprofil unvollständig",
+    "title": "Profil unvollständig",
     "text": "Dein Benutzerprofil ist noch unvollständig. Um den Lernmodus mit automatischer Erinnerungsnachricht nutzen zu können, fülle in den Kontoeinstellungen die Felder für Vorname, Nachname und E-Mail aus."
   },
   "confirm-form-profile": {
@@ -667,7 +667,7 @@
       "placeholders": {
         "subject": "Gib das Thema oder die Sprachsituation an !",
         "content1": "Zu übersetzende Vokabel oder Phrase \n\nWenn du nur ein einzelnes Wort eingibst und auf das Buch-Icon klicksts, wird in der Vorschau \"BEOLINGUS\", das Online-Wörterbuch der TU Chemnitz, mit diesem Wort aufgerufen.",
-        "content2": "Empfehlung für die Übersetzung eines Textes: deepl.com"
+        "content2": "Unsere Empfehlung für die Übersetzung eines Textes, nicht nur eines Wortes: deepl.com"
       },
       "editorLabels": {
         "subject": "Thema oder Sprachsituation"
