@@ -137,9 +137,10 @@
     "text": "Do you want to remove your editor privilege for the cardset \"__name__\"?"
   },
   "complete-profile": {
-    "btn-txt": "Close",
     "title": "User profile incomplete",
-    "text": "Your user profile is incomplete. Please enter your first, last name and email in order to use a learning mode."
+    "text": "Your user profile is incomplete. Please enter your first, last name and email in order to use a learning mode.",
+    "goToProfile": "Profile",
+    "cancel": "Close"
   },
   "confirm-form-profile": {
     "title": "Delete user profile",
