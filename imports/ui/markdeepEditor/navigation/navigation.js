@@ -30,7 +30,7 @@ Template.markdeepNavigation.events({
 
 Template.markdeepNavigation.helpers({
 	isCenterTextActive: function () {
-		return CardVisuals.isCentered(Session.get('activeCardContentId'));
+		return CardVisuals.isCentered(Session.get('activeCardContentId'), true);
 	},
 	isDictionaryActive: function () {
 		return Session.get('dictionaryPreview');

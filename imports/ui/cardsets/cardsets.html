@@ -94,10 +94,12 @@
 
 <template name="repetitorium">
     <div class="col-md-12" id="set-list-region">
-        <button id="newRepetitorium" type="button" class="btn btn-raised btn-success saveSet" data-toggle="modal"
-                data-target="#setCardsetFormModal" {{disableIfOffline}} {{disableIfShuffle}}>
-            {{_ "set-list.shuffleCardsets"}}
-        </button>
+        {{#unless selectingCardsetToLearn}}
+            <button id="newRepetitorium" type="button" class="btn btn-raised btn-success saveSet" data-toggle="modal"
+                    data-target="#setCardsetFormModal" {{disableIfOffline}} {{disableIfShuffle}}>
+                {{_ "set-list.shuffleCardsets"}}
+            </button>
+        {{/unless}}
         {{#if cardsetList 0}}
             {{> filterNavigation}}
             {{#if cardsetList 1}}

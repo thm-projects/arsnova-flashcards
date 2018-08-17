@@ -129,9 +129,10 @@
     "text": "Willst du deine Berechtigung für die Kartei <strong>\"__name__\"</strong> entfernen?"
   },
   "complete-profile": {
-    "btn-txt": "Schließen",
     "title": "Profil unvollständig",
-    "text": "Dein Benutzerprofil ist noch unvollständig. Um den Lernmodus mit automatischer Erinnerungsnachricht nutzen zu können, fülle in den Kontoeinstellungen die Felder für Vorname, Nachname und E-Mail aus."
+    "text": "Dein Benutzerprofil ist noch unvollständig. Um den Lernmodus mit automatischer Erinnerungsnachricht nutzen zu können, fülle in den Kontoeinstellungen die Felder für Vorname, Nachname und E-Mail aus.",
+    "goToProfile": "Konto",
+    "cancel": "Schließen"
   },
   "confirm-form-profile": {
     "title": "Benutzerkonto löschen",

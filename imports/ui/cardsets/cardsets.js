@@ -115,6 +115,9 @@ Template.repetitorium.helpers({
 					limit: Filter.getMaxItemCounter()
 				});
 		}
+	},
+	selectingCardsetToLearn: function () {
+		return Session.get('selectingCardsetToLearn');
 	}
 });
 

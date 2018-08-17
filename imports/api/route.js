@@ -14,11 +14,15 @@ export let Route = class Route {
 	 * @return {Boolean} Return true, when route is new Card or edit Card.
 	 */
 	static isEditMode () {
-		return Router.current().route.getName() === "newCard" || Router.current().route.getName() === "editCard";
+		return this.isNewCard() || this.isEditCard();
 	}
 
 	static isNewCard () {
 		return Router.current().route.getName() === "newCard";
+	}
+
+	static isEditCard () {
+		return Router.current().route.getName() === "editCard";
 	}
 
 	static isDemo () {
