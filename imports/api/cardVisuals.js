@@ -139,7 +139,7 @@ export let CardVisuals = class CardVisuals {
 	}
 
 	static isCentered (contentId, centerTextElement) {
-		if (centerTextElement == undefined) {
+		if (centerTextElement === undefined) {
 			return false;
 		}
 		--contentId;

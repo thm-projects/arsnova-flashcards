@@ -211,7 +211,7 @@ export let CardIndex = class CardIndex {
 	 */
 	static getEditModeCard () {
 		let id = "-1";
-		if (ActiveRoute.name('editCard')) {
+		if (Route.isEditMode()) {
 			id = Session.get('activeCard');
 		} else {
 			Session.set('activeCard', undefined);
