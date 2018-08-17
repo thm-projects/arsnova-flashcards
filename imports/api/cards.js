@@ -271,6 +271,15 @@ Meteor.methods({
 			}
 		});
 		Meteor.call('updateShuffledCardsetQuantity', cardset_id);
+		let cardsets = Cardsets.find({
+			$or: [
+				{_id: cardset_id},
+				{cardGroups: {$in: [cardset_id]}}
+			]
+		}, {fields: {_id: 1}}).fetch();
+		for (let i = 0; i < cardsets.length; i++) {
+			Meteor.call('updateLeitnerCardIndex', cardsets[i]._id);
+		}
 		return card_id;
 	},
 	copyCard: function (sourceCardset_id, targetCardset_id, card_id) {
@@ -360,10 +369,10 @@ Meteor.methods({
 
 		Leitner.remove({
 			card_id: card_id
-		});
+		}, {multi: true});
 		Wozniak.remove({
 			card_id: card_id
-		});
+		}, {multi: true});
 		return result;
 	},
 	deleteCardAdmin: function (card_id) {
@@ -388,10 +397,10 @@ Meteor.methods({
 			Meteor.call('updateShuffledCardsetQuantity', card.cardset_id);
 			Leitner.remove({
 				card_id: card_id
-			});
+			}, {multi: true});
 			Wozniak.remove({
 				card_id: card_id
-			});
+			}, {multi: true});
 		}
 	},
 	updateCard: function (card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {

@@ -345,16 +345,16 @@ Meteor.methods({
 		Meteor.call('updateShuffledCardsetQuantity', id);
 		Leitner.remove({
 			cardset_id: id
-		});
+		}, {multi: true});
 		Wozniak.remove({
 			cardset_id: id
-		});
+		}, {multi: true});
 		Notifications.remove({
 			link_id: id
-		});
+		}, {multi: true});
 		Ratings.remove({
 			cardset_id: id
-		});
+		}, {multi: true});
 	},
 	deleteCards: function (id) {
 		check(id, String);
@@ -388,10 +388,10 @@ Meteor.methods({
 		Meteor.call('updateShuffledCardsetQuantity', cardset._id);
 		Leitner.remove({
 			cardset_id: id
-		});
+		}, {multi: true});
 		Wozniak.remove({
 			cardset_id: id
-		});
+		}, {multi: true});
 	},
 	/**
 	 * Deactivate the learning phase for the selected cardset.

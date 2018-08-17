@@ -559,6 +559,11 @@ Meteor.startup(function () {
 		);
 	}
 
+	cardsets = Cardsets.find({shuffled: true}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Meteor.call('updateLeitnerCardIndex', cardsets[i]._id);
+	}
+
 	let leitner = Leitner.find({skipped: {$exists: true}}).fetch();
 	for (let i = 0; i < leitner.length; i++) {
 		Leitner.update({

@@ -132,6 +132,15 @@ function importCards(data, cardset, importType) {
 			}
 		});
 		Meteor.call('updateShuffledCardsetQuantity', cardset._id);
+		let cardsets = Cardsets.find({
+			$or: [
+				{_id: cardset._id},
+				{cardGroups: {$in: [cardset._id]}}
+			]
+		}, {fields: {_id: 1}}).fetch();
+		for (let i = 0; i < cardsets.length; i++) {
+			Meteor.call('updateLeitnerCardIndex', cardsets[i]._id);
+		}
 		return cardset._id;
 	}
 }
