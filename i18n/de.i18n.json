@@ -47,7 +47,7 @@
     "frontend": "Frontend",
     "backend": "Backend",
     "none": "Ohne",
-    "info-extra-small": "Hauptmenü"
+    "info-extra-small": "Hauptmenü ➔"
   },
   "contact": {
     "about": ".__lastAppTitle__",
@@ -223,8 +223,8 @@
     "noCourse": "ohne Studiengang",
     "noModuleLong": "ohne Modul",
     "noModuleShort": "ohne",
-    "filter-info-small": "Karteien sortieren und filtern…",
-    "filter-info-extra-small": "Sortieren und filtern…"
+    "filter-info-small": "Karteien sortieren und filtern",
+    "filter-info-extra-small": "Sortieren und filtern"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keine Kartei erstellt. Informiere dich unter \"Hilfe\", was du mit einer eigenen Kartei tun kannst.",
