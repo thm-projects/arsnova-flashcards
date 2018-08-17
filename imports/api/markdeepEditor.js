@@ -19,6 +19,18 @@ export let MarkdeepEditor = class MarkdeepEditor {
 		}
 	}
 
+	static changeMobilePreview (forceOff = false) {
+		if (Session.get('mobilePreview') === 1 || forceOff) {
+			Session.set('mobilePreview', 0);
+		} else {
+			Session.set('mobilePreview', 1);
+		}
+	}
+
+	static getMobilePreview () {
+		return Session.get('mobilePreview');
+	}
+
 	static changeBackgroundStyle () {
 		if (Session.get('backgroundStyle') === 1) {
 			Session.set('backgroundStyle', 0);

@@ -889,6 +889,7 @@
       "markdeepEditor": {
         "help": "Zeige alle Formatierungsoptionen von Markdeep",
         "center": "Zentriere den Inhalt",
+        "mobilePreview": "Zeige die Karte in einer iPhone 6/7/8 Ansicht",
         "dictionary": "Zeige die BEOLINGUS Übersetzung",
         "style": "Ändere den Hintergrund für die Karte",
         "fullscreen": "Mit der Taste ESC (oben links) kommst du wieder in die Normalansicht."

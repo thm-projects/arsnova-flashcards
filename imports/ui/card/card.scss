@@ -242,7 +242,6 @@ img.cardside {
     padding: $padding_card_content_vertical_mobile $padding_card_content_horizontal_mobile !important;
   }
 }
-
 .cardContent {
   box-sizing: border-box;
   width: 100%;
@@ -453,3 +452,55 @@ img.cardside {
   top: 15px;
 }
 
+.mobilePreviewFrame {
+  width: 375px;
+  height: 667px;
+  margin: auto;
+}
+
+.mobilePreviewContent {
+  position: absolute;
+  width: 375px;
+  height: 667px;
+
+  .cardContent {
+    padding: $padding_card_content_vertical_mobile $padding_card_content_horizontal_mobile !important;
+  }
+  .card-button {
+    font-size: $font_size_card_header_mobile_button !important;
+  }
+  .cardHeaderSmallText {
+    font-size: $font_size_card_header_small_text_mobile;
+  }
+
+  .cardHeaderSmallerText {
+    font-size: $font_size_card_header_smaller_text_mobile;
+  }
+
+  .cardHeader {
+    h2 {
+      font-size: $font_size_card_header_subject_mobile;
+    }
+  }
+
+  .cardHeaderLeft {
+    padding: ($card_header_padding / 2) 0 0 ($card_header_padding / 2);
+    .cardHeaderItem {
+      margin-right: $card_header_item_margin_horizontal / 2;
+    }
+    line-height: $line_height_card_header_mobile !important;
+  }
+
+  .cardHeaderCenter {
+    padding: ($card_header_padding / 2) ($card_header_padding / 2) 0 ($card_header_padding / 2);
+    line-height: $line_height_card_header_mobile !important;
+  }
+
+  .cardHeaderRight {
+    padding: ($card_header_padding / 2) ($card_header_padding / 2) 0 0;
+    .cardHeaderItem {
+      margin-left: $card_header_item_margin_horizontal / 2;
+    }
+    line-height: $line_height_card_header_mobile !important;
+  }
+}

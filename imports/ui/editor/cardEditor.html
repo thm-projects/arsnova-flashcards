@@ -148,3 +148,25 @@
         </div>
     </div>
 </template>
+
+<template name="btnCard">
+    <div id="button-row" class="col-xs-12 actionButtons editorElement">
+        <div class="col-xs-12 col-sm-9 col-md-6">
+            <br>
+            <button id="cardSave"
+                    class="btn btn-success btn-raised saveFirst col-xs-12 col-sm-4" {{disableIfOffline}}
+                    tabindex="13">
+                {{_ "savecard"}}
+            </button>
+            <button id="cardSaveReturn"
+                    class="btn btn-default btn-raised save col-xs-12 col-sm-4" {{disableIfOffline}}
+                    tabindex="14">
+                {{_ "savecardReturn"}}
+            </button>
+            <button id="cardCancel" class="btn btn-danger btn-raised cancel col-xs-12 col-sm-3 pull-right"
+                    tabindex="15" data-toggle="modal"
+                    data-target="#cancelEditModal">{{_
+                    "declinecard"}}</button>
+        </div>
+    </div>
+</template>

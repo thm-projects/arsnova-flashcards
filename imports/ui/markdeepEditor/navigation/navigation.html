@@ -5,6 +5,8 @@
         </div>
         <div class="btn-group">
             {{#if isActiveRoute regex="editCard|newCard"}}
+                <i class="markdeep-mobile-preview fa fa-mobile card-button {{#if
+                        isMobilePreviewActive}}pressed{{/if}}" title="{{_ "card.tooltip.markdeepEditor.mobilePreview"}}"></i>
                 <i class="card-button material-icons markdeep-center {{#if isCenterTextActive}}pressed{{/if}}" title="{{_ "card.tooltip.markdeepEditor.center"}}">vertical_align_center</i>
                 {{#unless isFullscreenActive}}
                     {{#if gotDictionary}}
