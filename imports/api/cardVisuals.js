@@ -317,7 +317,7 @@ export let CardVisuals = class CardVisuals {
 			if (cardHeader.length && zoomTextButton.length) {
 				let leftPosition = 0;
 				let topPosition = cardHeader.offset().top + cardHeader.height();
-				if ($(window).width() < 768) {
+				if ($(window).width() < 768 || Session.get('mobilePreview')) {
 					leftPosition = zoomTextButton.offset().left;
 					if ($(window).height() < 450) {
 						topPosition = 0;

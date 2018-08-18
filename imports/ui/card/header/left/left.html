@@ -22,9 +22,21 @@
         <div class="cardHeaderGroup">
             {{#unless isMobilePreview}}
                 {{> cardHeaderItemClock}}
+                {{#if fullscreenActive}}
+                    {{> cardHeaderItemDictionary this}}
+                {{/if}}
             {{/unless}}
-            {{#if fullscreenActive}}
-                {{> cardHeaderItemDictionary this}}
+            {{#if isMobilePreview}}
+                <div class="cardHeaderGroup">
+                    <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+                        {{#if fullscreenActive}}
+                            {{> cardHeaderItemDictionary this}}
+                        {{/if}}
+                    </div>
+                    <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+                        {{> cardHeaderItemZoomText}}
+                    </div>
+                </div>
             {{/if}}
         </div>
     </div>
