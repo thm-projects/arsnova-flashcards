@@ -177,6 +177,12 @@ body {
   }
 }
 
+#first_login_content {
+  @media(max-width: 767px) {
+    margin-bottom: 70px;
+  }
+}
+
 .btn {
   text-transform: unset !important;
 }
