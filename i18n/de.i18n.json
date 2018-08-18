@@ -42,7 +42,7 @@
     "pool": "Themen-Pool",
     "course": "Repetitorien",
     "myprofile": "Konto",
-    "billing": "Abrechnung",
+    "billing": "Abrechnung (Testbetrieb)",
     "search": "Thema…",
     "frontend": "Frontend",
     "backend": "Backend",
@@ -316,8 +316,8 @@
     "logout": "Ausloggen",
     "activity": "Lernaktivität",
     "overview": "Lernaktivität",
-    "billing": "Abrechnung",
-    "membership": "Mitgliedschaft",
+    "billing": "Abrechnung (Testbetrieb)",
+    "membership": "Mitgliedschaft (Testbetrieb)",
     "notifications": "Benachrichtigungen",
     "requests": "Pro-Karteifreigabe",
     "norequests": "Keine Anfragen vorhanden",
@@ -364,8 +364,8 @@
       "edu": "THM-Karteien frei erhältlich",
       "back": "Kostenfreie Mitgliedschaft",
       "pro": "Erstelle und erhalte Pro-Karteien",
-      "month": "Monat",
-      "subscribe": "Pro-Abonnement bestellen",
+      "month": "Monat (Testbetrieb)",
+      "subscribe": "Pro-Abonnement bestellen (Testbetrieb)",
       "lecturer": "Dozentenstatus anfragen für das Anlegen von THM-Karteien und das Prüfen (mit Umsatzbeteiligung) von Pro-Karteien",
       "send": "Anfrage abschicken",
       "lecturerActivatet": "Du bist als THM-Dozent/in und Prüfer/in für Pro-Karteien freigeschaltet.",
@@ -373,30 +373,30 @@
       "prename": "Vorname"
     },
     "payment": {
-      "header": "Zahlungsmethode",
+      "header": "Zahlungsmethode (Testbetrieb)",
       "empty": "Du hast bisher keine Zahlungsmethode hinzugefügt!",
       "save": "Zahlungsmethode speichern",
       "saveMsg": "Deine Zahlungsmethode wurde gespeichert",
       "progress": "Änderungen werden verarbeitet",
       "actual": "Deine Zahlungsmethode:",
-      "add": "Zahlungsmethoden hinzufügen oder auswählen:"
+      "add": "Zahlungsmethoden hinzufügen oder auswählen (Testbetrieb):"
     },
     "balance": {
-      "header": "Kontostand",
+      "header": "Kontostand (Testbetrieb)",
       "disburse": "Auszahlen",
       "progress": "Auszahlung wird bearbeitet",
       "success": "Auszahlung wurde durchgeführt",
       "failed": "Auszahlung nicht freigeschaltet. Wende dich bitte an den Administrator."
     },
     "revenue": {
-      "header": "Umsatzhistorie",
+      "header": "Umsatzhistorie (Testbetrieb)",
       "empty": "Du hast bisher noch keine Einnahmen generiert!",
       "boughtFrom": "Gekauft von",
       "for": "für",
       "at": "am"
     },
     "purchases": {
-      "header": "Zahlungshistorie",
+      "header": "Zahlungshistorie (Testbetrieb)",
       "empty": "Du hast bisher noch keine Karteien gekauft.",
       "boughtFor": "Gekauft für",
       "at": "am"
@@ -1327,7 +1327,7 @@
     "newCards2Singular": " Karte in der Kartei ",
     "newCards2Plural": " Karten in der Kartei ",
     "textIntro": "Hallo, ",
-    "textIntro1": "es wird mal wieder Zeit, einen Blick auf deine Lernkarten zu werfen! \n\n",
+    "textIntro1": "es ist an der Zeit, einen Blick auf deine Lernkarten zu werfen! \n\n",
     "textDate1": "Du hast noch bis zum <strong>",
     "textDate2": "</strong> Zeit, um die derzeit freigegebenen Karten zu lernen, sonst wird deine Lernstatistik zurückgesetzt!",
     "mailCard": "die Kartei <strong>",
