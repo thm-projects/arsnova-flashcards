@@ -318,8 +318,8 @@
     "overview": "Lernaktivität",
     "billing": "Abrechnung (Testbetrieb)",
     "membership": "Mitgliedschaft (Testbetrieb)",
-    "notifications": "Benachrichtigungen",
-    "requests": "Pro-Karteifreigabe",
+    "notifications": "Nachrichten",
+    "requests": "Pro-Freigabe",
     "norequests": "Keine Anfragen vorhanden",
     "lecturer": "Dozenten-Freigabe",
     "accept": "Akzeptieren",
@@ -330,7 +330,7 @@
     "canceled": "Änderungen wurden verworfen!",
     "error": "Fehlerhafte Einträge!",
     "settings": {
-      "name": "Profil- & Kontoverwaltung",
+      "name": "Profil & Konto",
       "delete": "Benutzerkonto löschen",
       "deleteText": "Falls du sicher bist, dass du .__lastAppTitle__ nicht weiter verwenden möchtest, kannst du hier dein Benutzerkonto löschen.",
       "appearance": "Einstellungen",
@@ -1408,7 +1408,7 @@
     "firstLogin": {
       "title": "Willkommen auf __firstAppTitle__.__lastAppTitle__ !",
       "message": "Schau dich in Ruhe auf der Plattform um.
-      Hier kannst du Karten zu einem bestimmten Thema lernen und Karteien oder Repetitorien (= lose Sammlung von Karteien zur Prüfungsvorbereitung) für dein Studium anlegen.
+      Hier kannst du Karten zu einem bestimmten Thema lernen und Karteien oder Repetitorien (= lose Sammlungen von Karteien zur Prüfungsvorbereitung) für dein Studium anlegen.
       </br>
       </br>
       Die Navigationsleiste mit den Tabs \"Themen-Pool\", \"Repetitorien\", \"Lernpensum\" und \"Kartei anlegen\"
