@@ -6,6 +6,7 @@ import {Template} from "meteor/templating";
 import {Cardsets} from "../../api/cardsets";
 import {CardEditor} from "../../api/cardEditor.js";
 import {CardVisuals} from "../../api/cardVisuals";
+import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
 
 
 /*
@@ -39,6 +40,12 @@ Template.editor.events({
 	'click .editorBrush': function () {
 		CardEditor.checkBackgroundStyle();
 	}
+});
+
+Template.editor.onRendered(function () {
+	new ResizeSensor($('#preview'), function () {
+		CardVisuals.resizeFlashcard();
+	});
 });
 
 /*
