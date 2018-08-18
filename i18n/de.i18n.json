@@ -136,7 +136,7 @@
   },
   "confirm-form-profile": {
     "title": "Benutzerkonto löschen",
-    "text": "Falls du sicher bist, dass du .__lastAppTitle__ nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto löschen. Alle persönlichen Daten, private Karteien und deine Lernstatistiken werden unwiderruflich gelöscht. Die von dir veröffentlichten Karteien bleiben erhalten.",
+    "text": "Falls du sicher bist, dass du .__lastAppTitle__ nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto löschen. Alle persönlichen Daten, privaten Karteien  und Repetitorien sowie deine Lernstatistiken werden unwiderruflich gelöscht. Die von dir veröffentlichten Karteien und Repetitorien bleiben erhalten.",
     "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerkonto löschen\". Du wirst automatisch aus .__lastAppTitle__ abgemeldet."
   },
   "confirmLearn-form": {
@@ -330,7 +330,7 @@
     "canceled": "Änderungen wurden verworfen!",
     "error": "Fehlerhafte Einträge!",
     "settings": {
-      "name": "Mein Profil",
+      "name": "Profil- & Kontoverwaltung",
       "delete": "Benutzerkonto löschen",
       "deleteText": "Falls du sicher bist, dass du .__lastAppTitle__ nicht weiter verwenden möchtest, kannst du hier dein Benutzerkonto löschen.",
       "appearance": "Einstellungen",
@@ -495,7 +495,7 @@
     "stopLearning": "Bonus-Lernphase beenden",
     "poolLicense": "Lizenz für ",
     "leaveEditors": "Bearbeitergruppe verlassen",
-    "preview": "Kostenpflichtige Kartei"
+    "preview": "Kostenpflichtige Kartei (Testbetrieb)"
   },
   "presentation": {
     "title": "Präsentation",
@@ -1378,7 +1378,7 @@
     },
     "pro": {
       "short": "Pro",
-      "long": "Kostenpflichtiger Zugang"
+      "long": "Kostenpflichtiger Zugang (Testbetrieb)"
     },
     "private": {
       "short": "Privat",
@@ -1408,7 +1408,7 @@
     "firstLogin": {
       "title": "Willkommen auf __firstAppTitle__.__lastAppTitle__ !",
       "message": "Schau dich in Ruhe auf der Plattform um.
-      Hier kannst du Karten zu einem bestimmten Thema lernen und Karteien für dein Studium anlegen.
+      Hier kannst du Karten zu einem bestimmten Thema lernen und Karteien oder Repetitorien (= lose Sammlung von Karteien zur Prüfungsvorbereitung) für dein Studium anlegen.
       </br>
       </br>
       Die Navigationsleiste mit den Tabs \"Themen-Pool\", \"Repetitorien\", \"Lernpensum\" und \"Kartei anlegen\"
