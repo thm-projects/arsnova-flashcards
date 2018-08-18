@@ -90,7 +90,11 @@ export let CardVisuals = class CardVisuals {
 					flashcardControls.css('height', newFlashcardHeight * flashcardBodyHeight);
 				}
 			}
-			contentEditor.css('height', newFlashcardHeight - $('#markdeepNavigation').height());
+			if (Session.get('mobilePreview') && $(window).width() >= 1200) {
+				contentEditor.css('height', $('.mobilePreviewFrame').height() - ($('#button-row').height() + $('#markdeepNavigation').height() + 9));
+			} else {
+				contentEditor.css('height', newFlashcardHeight - $('#markdeepNavigation').height());
+			}
 		}
 	}
 

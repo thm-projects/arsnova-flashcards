@@ -32,17 +32,6 @@ Template.cardNavigation.onCreated(function () {
 	CardNavigation.toggleVisibility(true);
 });
 
-Template.cardNavigation.onRendered(function () {
-	$(window).resize(function () {
-		if ($(window).width() <= 1200) {
-			$("#button-row").insertBefore($("#preview"));
-		} else {
-			$("#button-row").insertAfter($("#preview"));
-		}
-	});
-});
-
-
 /*
  * ############################################################################
  * cardNavigationEnabled

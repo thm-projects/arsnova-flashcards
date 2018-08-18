@@ -22,6 +22,7 @@
             {{/unless}}
             {{>markdeepNavigation}}
             {{> markdeepContent}}
+            {{> btnCard}}
         </div>
         {{isTextCentered}}
         <div id="preview" class="col-xs-12 {{#unless fullscreenActive}}col-lg-6{{/unless}} cardtext">
@@ -38,7 +39,6 @@
                 {{> flashcards cardset=this}}
             {{/if}}
         </div>
-        {{> btnCard}}
     </div>
 </template>
 

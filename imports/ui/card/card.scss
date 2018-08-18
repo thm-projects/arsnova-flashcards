@@ -453,14 +453,18 @@ img.cardside {
 }
 
 .mobilePreviewFrame {
-  width: 375px;
-  height: 667px;
+  background: url("/img/mobile_preview.png") no-repeat;
+  background-size: 431px;
+  width: 431px;
+  height: 815px;
   margin: auto;
 }
 
 .mobilePreviewContent {
   position: absolute;
   width: 375px;
+  margin-left: 28px;
+  margin-top: 63px;
   height: 667px;
 
   .cardContent {
@@ -503,4 +507,8 @@ img.cardside {
     }
     line-height: $line_height_card_header_mobile !important;
   }
+}
+
+#button-row {
+  padding: 0;
 }
