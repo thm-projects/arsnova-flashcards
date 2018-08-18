@@ -7,6 +7,7 @@ import {CardVisuals} from "../../api/cardVisuals.js";
 import {Route} from "../../api/route.js";
 import {CardEditor} from "../../api/cardEditor";
 import {Filter} from "../../api/filter";
+import {MarkdeepEditor} from "../../api/markdeepEditor";
 
 Router.route('/', function () {
 	this.redirect('home');
@@ -129,6 +130,7 @@ Router.route('/cardset/:_id', {
 	name: 'cardsetdetailsid',
 	template: 'cardsetAccess',
 	data: function () {
+		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('isNewCardset', false);
 		return Cardsets.findOne({_id: this.params._id});
 	}
@@ -138,6 +140,7 @@ Router.route('/cardset/:_id/card/:card_id', {
 	name: 'cardsetcard',
 	template: 'cardsetAccess',
 	data: function () {
+		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('isNewCardset', false);
 		Session.set('activeCard', this.params.card_id);
 		return Cardsets.findOne({_id: this.params._id});
@@ -212,6 +215,7 @@ Router.route('/box/:_id', {
 	name: 'box',
 	template: 'learnAlgorithmAccess',
 	data: function () {
+		MarkdeepEditor.changeMobilePreview(true);
 		return Cardsets.findOne({_id: this.params._id});
 	}
 });
@@ -220,6 +224,7 @@ Router.route('/memo/:_id', {
 	name: 'memo',
 	template: 'learnAlgorithmAccess',
 	data: function () {
+		MarkdeepEditor.changeMobilePreview(true);
 		return Cardsets.findOne({_id: this.params._id});
 	}
 });
@@ -236,6 +241,7 @@ Router.route('/presentation/:_id', {
 	name: 'presentation',
 	template: 'presentation',
 	data: function () {
+		MarkdeepEditor.changeMobilePreview(true);
 		return Cardsets.findOne({_id: this.params._id});
 	}
 });
@@ -244,6 +250,7 @@ Router.route('makingofcards', {
 	name: 'making',
 	template: 'makingOfCards',
 	data: function () {
+		MarkdeepEditor.changeMobilePreview(true);
 		return Cardsets.findOne({kind: 'demo', name: "MakingOfCardset", shuffled: true});
 	}
 });

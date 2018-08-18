@@ -891,6 +891,7 @@
       "markdeepEditor": {
         "help": "",
         "center": " ",
+        "mobilePreview": "",
         "dictionary": "",
         "style": "",
         "fullscreen": ""

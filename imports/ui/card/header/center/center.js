@@ -5,6 +5,7 @@ import {Route} from "../../../../api/route";
 import {Cardsets} from "../../../../api/cardsets";
 import {CardType} from "../../../../api/cardTypes";
 import "./center.html";
+import {MarkdeepEditor} from "../../../../api/markdeepEditor";
 
 /*
  * ############################################################################
@@ -39,5 +40,8 @@ Template.flashcardHeaderCenter.helpers({
 	},
 	getPlaceholder: function (mode) {
 		CardEditor.getPlaceholder(mode);
+	},
+	isMobilePreview: function () {
+		return MarkdeepEditor.getMobilePreview();
 	}
 });

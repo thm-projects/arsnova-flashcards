@@ -2,10 +2,12 @@
     <div class="col-xs-6 cardHeaderCenter" data-cardtype="{{cardType}}">
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
             <strong class="cardHeaderSmallText" data-cardtype="{{cardType}}">{{getCardsetName}}</strong><br>
-            {{#if gotLearningGoal}}
-                <span class="hidden-xs cardHeaderSmallerText" data-cardtype="{{cardType}}">
+            {{#unless isMobilePreview}}
+                {{#if gotLearningGoal}}
+                    <span class="hidden-xs cardHeaderSmallerText" data-cardtype="{{cardType}}">
                     {{_ "learning-goal.cardName"}}: {{getLearningGoalName}}</span>
-            {{/if}}
+                {{/if}}
+            {{/unless}}
         </div>
         <h2 data-cardtype="{{cardType}}">
             {{> cardSubject this}}

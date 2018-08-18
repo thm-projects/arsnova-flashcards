@@ -17,6 +17,9 @@ Template.cardHeaderItemDictionary.helpers({
 		if (CardType.gotDictionary(this.cardType)) {
 			return Session.get('dictionaryPreview');
 		}
+	},
+	isMobilePreview: function () {
+		return MarkdeepEditor.getMobilePreview();
 	}
 });
 

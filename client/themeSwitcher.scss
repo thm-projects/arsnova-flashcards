@@ -334,6 +334,7 @@ $themes: (
     $card_list_number_background: map-get($map, "card_list_number_background");
     $card_list_number_text: map-get($map, "card_list_number_text");
     //card colors
+    $background_mobile_preview: map-get($map, "background_mobile_preview");
     $background_lecture: map-get($map, "background_lecture");
     $background_hint: map-get($map, "background_hint");
     $background_hint_alternative: map-get($map, "background_hint_alternative");
@@ -1464,6 +1465,12 @@ $themes: (
       }
     }
 
+    .mobilePreviewContent {
+      .box-difficultyLined0 {
+        background: $background_difficulty0 !important;
+      }
+    }
+
     .box-difficultyLinedNote0 {
       background: repeating-linear-gradient(
                       to bottom,
@@ -1473,6 +1480,12 @@ $themes: (
                       $background_difficulty0_lines_note 28px
       ) local !important;
       @media(max-width: 767px) {
+        background: $background_difficulty0_note !important;
+      }
+    }
+
+    .mobilePreviewContent {
+      .box-difficultyLinedNote0 {
         background: $background_difficulty0_note !important;
       }
     }
@@ -1522,6 +1535,12 @@ $themes: (
       }
     }
 
+    .mobilePreviewContent {
+      .box-difficultyLined1 {
+        background: $background_difficulty1 !important;
+      }
+    }
+
     .box-difficultyBlank0 {
       background-color: $background_difficulty0 !important;
     }
@@ -1551,6 +1570,12 @@ $themes: (
       }
     }
 
+    .mobilePreviewContent {
+      .box-difficultyLined2 {
+        background: $background_difficulty2 !important;
+      }
+    }
+
     .box-difficultyBlank2 {
       background-color: $background_difficulty2 !important;
     }
@@ -1576,6 +1601,12 @@ $themes: (
       }
     }
 
+    .mobilePreviewContent {
+      .box-difficultyLined3 {
+          background: $background_difficulty3 !important;
+      }
+    }
+
     .box-difficultyBlank3 {
       background: $background_difficulty3 !important;
     }
@@ -1595,9 +1626,21 @@ $themes: (
       }
     }
 
+    .mobilePreviewContent {
+      .box-white-header {
+        background: linear-gradient(to top, $background_white_lines 0px, $background_white_lines 2px, $background_white 3px, $background_white 100%) !important;
+      }
+    }
+
     .box-hint-header {
       background: linear-gradient(to top, $hint_presentation_header_lines 0px, $hint_presentation_header_lines 4px, $background_hint 5px, $background_hint 100%) !important;
       @media(max-width: 767px) {
+        background: linear-gradient(to top, $hint_presentation_header_lines 0px, $hint_presentation_header_lines 2px, $background_hint 3px, $background_hint 100%) !important;
+      }
+    }
+
+    .mobilePreviewContent {
+      .box-hint-header {
         background: linear-gradient(to top, $hint_presentation_header_lines 0px, $hint_presentation_header_lines 2px, $background_hint 3px, $background_hint 100%) !important;
       }
     }
@@ -1609,9 +1652,21 @@ $themes: (
       }
     }
 
+    .mobilePreviewContent {
+      .box-hint-alternative-header {
+        background: linear-gradient(to top, $hint_alternative_presentation_header_lines 0px, $hint_alternative_presentation_header_lines 2px, $background_hint_alternative 3px, $background_hint_alternative 100%) !important;
+      }
+    }
+
     .box-pink-header {
       background: linear-gradient(to top, $background_pink_lines 0px, $background_pink_lines 4px, $background_pink 5px, $background_pink 100%) !important;
       @media(max-width: 767px) {
+        background: linear-gradient(to top, $background_pink_lines 0px, $background_pink_lines 2px, $background_pink 3px, $background_pink 100%) !important;
+      }
+    }
+
+    .mobilePreviewContent {
+      .box-pink-header {
         background: linear-gradient(to top, $background_pink_lines 0px, $background_pink_lines 2px, $background_pink 3px, $background_pink 100%) !important;
       }
     }
@@ -1623,9 +1678,21 @@ $themes: (
       }
     }
 
+    .mobilePreviewContent {
+      .box-post-it-header {
+        background: linear-gradient(to top, $background_post_it_lines 0px, $background_post_it_lines 2px, $background_post_it 3px, $background_post_it 100%) !important;
+      }
+    }
+
     .box-lecture-header {
       background: linear-gradient(to top, $lecture_presentation_header_lines 0px, $lecture_presentation_header_lines 4px, $background_lecture 5px, $background_lecture 100%) !important;
       @media(max-width: 767px) {
+        background: linear-gradient(to top, $lecture_presentation_header_lines 0px, $lecture_presentation_header_lines 2px, $background_lecture 3px, $background_lecture 100%) !important;
+      }
+    }
+
+    .mobilePreviewContent {
+      .box-lecture-header {
         background: linear-gradient(to top, $lecture_presentation_header_lines 0px, $lecture_presentation_header_lines 2px, $background_lecture 3px, $background_lecture 100%) !important;
       }
     }
@@ -1637,9 +1704,21 @@ $themes: (
       }
     }
 
+    .mobilePreviewContent {
+      .box-difficultyBlank0-header, .box-difficultyLined0-header {
+        background: linear-gradient(to top, $background_difficulty0_lines 0px, $background_difficulty0_lines 2px, $background_difficulty0 3px, $background_difficulty0 100%) !important;
+      }
+    }
+
     .box-difficultyBlankNote0-header, .box-difficultyLinedNote0-header {
       background: linear-gradient(to top, $background_difficulty0_lines_note 0px, $background_difficulty0_lines_note 4px, $background_difficulty0_note 5px, $background_difficulty0_note 100%) !important;
       @media(max-width: 767px) {
+        background: linear-gradient(to top, $background_difficulty0_lines_note 0px, $background_difficulty0_lines_note 2px, $background_difficulty0_note 3px, $background_difficulty0_note 100%) !important;
+      }
+    }
+
+    .mobilePreviewContent {
+      .box-difficultyBlankNote0-header, .box-difficultyLinedNote0-header {
         background: linear-gradient(to top, $background_difficulty0_lines_note 0px, $background_difficulty0_lines_note 2px, $background_difficulty0_note 3px, $background_difficulty0_note 100%) !important;
       }
     }
@@ -1651,6 +1730,12 @@ $themes: (
       }
     }
 
+    .mobilePreviewContent {
+      .box-difficultyBlank1-header, .box-difficultyLined1-header {
+        background: linear-gradient(to top, $background_difficulty1_lines 0px, $background_difficulty1_lines 2px, $background_difficulty1 3px, $background_difficulty1 100%) !important;
+      }
+    }
+
     .box-difficultyBlank2-header, .box-difficultyLined2-header {
       background: linear-gradient(to top, $background_difficulty2_lines 0px, $background_difficulty2_lines 4px, $background_difficulty2 5px, $background_difficulty2 100%) !important;
       @media(max-width: 767px) {
@@ -1658,9 +1743,21 @@ $themes: (
       }
     }
 
+    .mobilePreviewContent {
+      .box-difficultyBlank2-header, .box-difficultyLined2-header {
+        background: linear-gradient(to top, $background_difficulty2_lines 0px, $background_difficulty2_lines 2px, $background_difficulty2 3px, $background_difficulty2 100%) !important;
+      }
+    }
+
     .box-difficultyBlank3-header, .box-difficultyLined3-header {
       background: linear-gradient(to top, $background_difficulty3_lines 0px, $background_difficulty3_lines 4px, $background_difficulty3 5px, $background_difficulty3 100%) !important;
       @media(max-width: 767px) {
+        background: linear-gradient(to top, $background_difficulty3_lines 0px, $background_difficulty3_lines 2px, $background_difficulty3 3px, $background_difficulty3 100%) !important;
+      }
+    }
+
+    .mobilePreviewContent {
+      .box-difficultyBlank3-header, .box-difficultyLined3-header {
         background: linear-gradient(to top, $background_difficulty3_lines 0px, $background_difficulty3_lines 2px, $background_difficulty3 3px, $background_difficulty3 100%) !important;
       }
     }
@@ -2320,5 +2417,9 @@ $themes: (
       }
     }
 
+    //card editor
+    .mobilePreviewContent {
+      background-color: $background_mobile_preview !important;
+    }
   }
 }

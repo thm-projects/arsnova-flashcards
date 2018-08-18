@@ -47,7 +47,9 @@
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
         </div>
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-            {{> cardHeaderItemZoomText}}
+            {{#unless isMobilePreview}}
+                {{> cardHeaderItemZoomText}}
+            {{/unless}}
             {{> cardHeaderItemToggleFullscreen this}}
         </div>
     </div>
