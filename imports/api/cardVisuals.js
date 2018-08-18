@@ -54,8 +54,12 @@ export let CardVisuals = class CardVisuals {
 			let flashcardControls = $('.carousel-control');
 			let flashcardHeaderHeight = 0;
 			let flashcardBodyHeight = 0;
-			if ($(window).width() < 768) {
-				newFlashcardHeight = $(window).height() - (flashcard.offset().top + 10);
+			if ($(window).width() < 768 || Session.get('mobilePreview')) {
+				if (Session.get('mobilePreview')) {
+					newFlashcardHeight = $('.mobilePreviewContent').innerHeight() - 50;
+				} else {
+					newFlashcardHeight = $(window).height() - (flashcard.offset().top + 10);
+				}
 				flashcardHeaderHeight = 60;
 				flashcardBodyHeight = newFlashcardHeight - flashcardHeaderHeight;
 				flashcard.css('height', newFlashcardHeight);
@@ -85,6 +89,10 @@ export let CardVisuals = class CardVisuals {
 					flashcardControls.css('margin-top', newFlashcardHeight * flashcardHeaderHeight);
 					flashcardControls.css('height', newFlashcardHeight * flashcardBodyHeight);
 				}
+			}
+			if (Session.get('mobilePreview') && $(window).width() >= 1200) {
+				contentEditor.css('height', $('.mobilePreviewFrame').height() - ($('#button-row').height() + $('#markdeepNavigation').height() + 9));
+			} else {
 				contentEditor.css('height', newFlashcardHeight - $('#markdeepNavigation').height());
 			}
 		}
@@ -309,7 +317,7 @@ export let CardVisuals = class CardVisuals {
 			if (cardHeader.length && zoomTextButton.length) {
 				let leftPosition = 0;
 				let topPosition = cardHeader.offset().top + cardHeader.height();
-				if ($(window).width() < 768) {
+				if ($(window).width() < 768 || Session.get('mobilePreview')) {
 					leftPosition = zoomTextButton.offset().left;
 					if ($(window).height() < 450) {
 						topPosition = 0;

@@ -14,18 +14,31 @@
         {{/if}}
     </div>
     <div class="row">
-        <div class="{{#if isEditorView}}cardEditorHeader{{/if}} col-xs-12 {{#unless fullscreenActive}}col-lg-6{{/unless}}">
+        <div class="{{#if isEditorView}}cardEditorHeader{{/if}} col-xs-12 {{#unless
+                fullscreenActive}}col-lg-6{{/unless}}">
             <h5 class="editorElement editorHeader">{{_ "content"}}</h5>
-            {{> cardNavigation}}
+            {{#unless isMobilePreviewActiveAndFullscreen}}
+                {{> cardNavigation}}
+            {{/unless}}
             {{>markdeepNavigation}}
             {{> markdeepContent}}
+            {{> btnCard}}
         </div>
         {{isTextCentered}}
         <div id="preview" class="col-xs-12 {{#unless fullscreenActive}}col-lg-6{{/unless}} cardtext">
             <h5 class="editorElement">{{_ "previewEdit"}}</h5>
-            {{> flashcards cardset=this}}
+            {{#if isMobilePreviewActive}}
+                <div class="mobilePreviewContainer">
+                    <div class="mobilePreviewFrame">
+                        <div class="mobilePreviewContent">
+                            {{> presentationView}}
+                        </div>
+                    </div>
+                </div>
+            {{else}}
+                {{> flashcards cardset=this}}
+            {{/if}}
         </div>
-        {{> btnCard}}
     </div>
 </template>
 

@@ -36,3 +36,16 @@
 .cardNavigation .btn-primary {
   cursor: default;
 }
+
+.mobilePreviewContent {
+  .cardNavigation {
+    margin-top: 10px;
+    margin-bottom: $margin_bottom_card_navigation_mobile !important;
+  }
+  .cardNavigation > li {
+    a {
+      font-size: $font_size_card_navigation_mobile !important;
+      padding: $padding_vertical_card_navigation_mobile $padding_horizontal_card_navigation_mobile !important;
+    }
+  }
+}

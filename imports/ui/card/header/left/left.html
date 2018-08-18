@@ -20,9 +20,23 @@
 <template name="flashcardHeaderEditorLeft">
     <div class="col-xs-3 cardHeaderLeft" data-cardtype="{{cardType}}">
         <div class="cardHeaderGroup">
-            {{> cardHeaderItemClock}}
-            {{#if fullscreenActive}}
-                {{> cardHeaderItemDictionary this}}
+            {{#unless isMobilePreview}}
+                {{> cardHeaderItemClock}}
+                {{#if fullscreenActive}}
+                    {{> cardHeaderItemDictionary this}}
+                {{/if}}
+            {{/unless}}
+            {{#if isMobilePreview}}
+                <div class="cardHeaderGroup">
+                    <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+                        {{#if fullscreenActive}}
+                            {{> cardHeaderItemDictionary this}}
+                        {{/if}}
+                    </div>
+                    <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+                        {{> cardHeaderItemZoomText}}
+                    </div>
+                </div>
             {{/if}}
         </div>
     </div>
