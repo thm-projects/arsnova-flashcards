@@ -6,10 +6,13 @@ import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
 import {Chart} from "chart.js";
 import {getAuthorName} from "../../api/userdata";
+import {CardType} from "../../api/cardTypes";
 
 let chart;
 
 let chartColors = {
+	difficulty0: 'rgba(238, 173, 14, 1)',
+	difficulty0Background: 'rgba(238, 173, 14, 0.2)',
 	difficulty1: 'rgba(92, 184, 92, 1)',
 	difficulty1Background: 'rgba(92, 184, 92, 0.2)',
 	difficulty2: 'rgba(91, 192, 222, 1)',
@@ -31,6 +34,13 @@ function drawGraph() {
 		data: {
 			labels: [TAPi18n.__('subject1') + " (" + TAPi18n.__('subjectNotLearned') + ")", TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
 			datasets: [
+				{
+					backgroundColor: chartColors.difficulty0Background,
+					borderColor: chartColors.difficulty0,
+					borderWidth: 2,
+					data: [0, 0, 0, 0, 0, 0],
+					label: TAPi18n.__('difficulty0')
+				},
 				{
 					backgroundColor: chartColors.difficulty1Background,
 					borderColor: chartColors.difficulty1,
@@ -88,23 +98,43 @@ function updateGraph() {
 			return leitner.card_id;
 		});
 	}
-	for (let k = 0; k < 3; k++) {
+	for (let k = 0; k < 4; k++) {
 		if (Router.current().route.getName() === "progress") {
 			let cardset = Cardsets.findOne({_id: Router.current().params._id}, {Fields: {shuffled: 1, cardGroups: 1}});
 			if (cardset.shuffled) {
-				filterCards = Cards.find({
-					cardset_id: {$in: cardset.cardGroups},
-					difficulty: k + 1
-				}, {_id: 1}).map(function (card) {
-					return card._id;
-				});
+				if (k === 0) {
+					filterCards = Cards.find({
+						cardset_id: {$in: cardset.cardGroups},
+						cardType: {$nin: CardType.getCardTypesWithDifficultyLevel()}
+					}, {_id: 1}).map(function (card) {
+						return card._id;
+					});
+				} else {
+					filterCards = Cards.find({
+						cardset_id: {$in: cardset.cardGroups},
+						difficulty: k,
+						cardType: {$in: CardType.getCardTypesWithDifficultyLevel()}
+					}, {_id: 1}).map(function (card) {
+						return card._id;
+					});
+				}
 			} else {
-				filterCards = Cards.find({
-					cardset_id: Router.current().params._id,
-					difficulty: k + 1
-				}, {_id: 1}).map(function (card) {
-					return card._id;
-				});
+				if (k === 0) {
+					filterCards = Cards.find({
+						cardset_id: Router.current().params._id,
+						cardType: {$nin: CardType.getCardTypesWithDifficultyLevel()}
+					}, {_id: 1}).map(function (card) {
+						return card._id;
+					});
+				} else {
+					filterCards = Cards.find({
+						cardset_id: Router.current().params._id,
+						difficulty: k,
+						cardType: {$in: CardType.getCardTypesWithDifficultyLevel()}
+					}, {_id: 1}).map(function (card) {
+						return card._id;
+					});
+				}
 			}
 		} else if (Router.current().route.getName() === "profileOverview") {
 			filterCards = Cards.find({_id: {$in: prepareFilter}, difficulty: k}, {_id: 1}).map(function (card) {
