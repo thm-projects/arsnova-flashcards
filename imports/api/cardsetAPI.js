@@ -67,6 +67,13 @@ if (Meteor.isServer) {
 
 			Cards.remove({_id: {$in: cardsetCards}});
 
+			Cardsets.update(id, {
+				$set: {
+					quantity: cards.length,
+					dateUpdated: new Date()
+				}
+			});
+
 			JsonRoutes.sendResult(res, {
 				data: "success"
 			});
