@@ -385,6 +385,10 @@ export let CardType = class CardType {
 		return cardTypesWithLearningModes;
 	}
 
+	static getCardTypesWithDifficultyLevel () {
+		return cardTypesWithDifficultyLevel;
+	}
+
 	static getSortQuery (cardType) {
 		let sortQuery = {};
 		sortQuery.subject = 1;
