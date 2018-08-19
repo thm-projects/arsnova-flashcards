@@ -45,9 +45,18 @@ if (Meteor.isServer) {
 		} else {
 			var cards = req.body;
 
+			// get all current card ids to eliminate old ones
+			var cardsetCards = Cards.find({cardset_id: id}, {fields: {_id: 1}}).fetch().map(c => c._id);
+
 			cards.forEach(function (card) {
 				card.cardset_id = id;
 				if (card._id != null && card._id !== "") {
+					for (let i = 0; i < cardsetCards.length; i++) {
+						if (cardsetCards[i]._id === card._id) {
+							cardsetCards.remove(card._id);
+							break;
+						}
+					}
 					var oldCard = Cards.findOne({_id: card._id});
 					var modifier = mongoReplacementModifier(card, oldCard);
 					Cards.update(card._id, modifier);
@@ -55,6 +64,8 @@ if (Meteor.isServer) {
 					Cards.insert(card);
 				}
 			});
+
+			Cards.remove({_id: {$in: cardsetCards}});
 
 			JsonRoutes.sendResult(res, {
 				data: "success"
