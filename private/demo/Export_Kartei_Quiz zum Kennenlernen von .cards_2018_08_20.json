@@ -2,7 +2,7 @@
   "name": "A: Quiz zum Kennenlernen von .cards",
   "description": "Die Quizfragen sind Teil der Demo-Kartei, siehe den roten Button auf der .cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2018-08-13T13:10:34.094Z",
+  "dateUpdated": "2018-08-20T14:11:52.518Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -42,7 +42,7 @@
   "noDifficulty": false
 }, {
   "subject": "1. Gesammeltes Wissen",
-  "front": "**Was bleibt?**\n\n![Zettelkästen](https://arsnova.cards/img/background/zettelkasten_wikipedia_original.jpg width=\"500px\")\n",
+  "front": "**Was bleibt?**\n\n![Klick auf das Foto für die Vollansicht!](https://arsnova.cards/img/background/zettelkasten_wikipedia_original.jpg width=300)\n",
   "back": "![Angesammeltes Wissen](https://arsnova.cards/img/background/zettelkasten_wikipedia_original.jpg width=\"200 pt\") \nEin Studierzimmer [^Foto-Quelle] kann eine kreative persönliche Lernumgebung sein. Das auf tausenden Zetteln in dutzenden Kartons gesammelte Wissen ist zumindest der Bewohnerin des abgebildeten Zimmers zugänglich (ein Klick auf das Foto zeigt die Schuhgröße 4½ auf den Kartons). Warum also nicht mit Zetteln in Schuhkartons studieren? Den digitalen Karten fehlt doch die Haptik des Papiers und die Gesamtschau  -- im Regal und auf dem Boden. \n\nStimmt. Dafür haben digitale Karten aber auch **unbestreitbare Vorteile** -- gemäß dem Slogan unserer Plattform:\n\n+ **`Organize`**: Das Wissen aus deinem Studium kannst du jederzeit und überall mit wenigen Klicks wiederfinden, auch noch viele Jahre nach deinem Studium, wenn du aus deiner Studierbude längst ausgezogen bist, womöglich dein Zettelarchiv bis auf das IKEA-Regal entsorgt hast. Eines Tages -- im Job, in einer Teambesprechung -- brauchst du sicherlich das Wissen aus deinem Studium wieder.\n\n+ **`Learn`**: Die Karten sind multimedial: Du kannst Bilder, Podcasts und Videos einfügen. Du studierst ein MINT-Fach? Schreib mit $\\TeX$ die kompliziertesten mathematischen Formeln und mit Syntax-Highlighting beliebigen Programmiercode schnell und sauber auf eine Karte. Du darfst kostenlos die [Open Source Software](https://github.com/thm-projects/arsnova-flashcards) .cards als persönliche Lernumgebung auf deinem Laptop installieren. So kannst du deine Karten auch ohne Internet überall lernen.\n\n+ **`Memorize`**: Die Karten deines Lernpensums werden dir zum dauerhaften Memorieren an [kognitionswissenschaftlich berechneten Tagen](https://en.wikipedia.org/wiki/Spaced_repetition) wieder vorgelegt. Push-Nachrichten auf dein Handy oder E-Mails erinnern dich ans Lernen.\n\n[^Foto-Quelle]: Foto zum Wikipedia-Begriff [Zettelkasten](https://de.wikipedia.org/wiki/Zettelkasten), Kai Schreiber, CC BY-SA 2.0",
   "centerTextElement": [
     true,
@@ -55,7 +55,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2018-08-06T19:13:29.835Z",
+  "dateUpdated": "2018-08-20T14:11:52.502Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
