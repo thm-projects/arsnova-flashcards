@@ -53,7 +53,7 @@
     "about": ".__lastAppTitle__",
     "demo": "Demo",
     "home": "Startseite",
-    "demoTitle": "Zettel, Kartons, Regale versus Karten, Karteien, Repetitorien",
+    "demoTitle": "Zettel・Kartons・Regale │ Karten・Karteien・Repetitorien",
     "learning": "Lernen",
     "help": "Hilfe",
     "faq": "FAQ",
@@ -758,7 +758,7 @@
     "cardType8": {
       "name": "Notizen",
       "longName": "Notizen (1 Seite)",
-      "content1": "Notizen",
+      "content1": "Notiz",
       "placeholders": {
         "subject": "Gib das Thema deiner Notiz an !",
         "content1": "Diese Karte ist einseitig für Notizen konzipiert. Es gibt keine Rückseite."
@@ -1418,17 +1418,17 @@
     "skip": "Überspringen",
     "rate": "Bewerte deine Antwort",
     "answer": {
-      "0": "0: Blackout",
+      "0": "0: Blackout, keine Ahnung",
       "0Mobile": "0",
-      "1": "1: Falsch",
+      "1": "1: Falsch, obwohl man sich sicher war",
       "1Mobile": "1",
-      "2": "2: Falsch, aber…",
+      "2": "2: Falsch, aber wieder an die richtige Antwort erinnert",
       "2Mobile": "2",
-      "3": "3: Richtig, aber…",
+      "3": "3: Richtig, aber nach langem Nachdenken",
       "3Mobile": "3",
-      "4": "4: Richtig",
+      "4": "4: Richtig, kurz nachgedacht",
       "4Mobile": "4",
-      "5": "5: Perfekt",
+      "5": "5: Perfekt, sofort gewusst",
       "5Mobile": "5"
     },
     "endscreen": {
