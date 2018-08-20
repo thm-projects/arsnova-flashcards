@@ -61,6 +61,9 @@
     "datenschutz": "Datenschutz",
     "agb": "AGB"
   },
+  "help": {
+    "resetFilter": "Zeige die Hilfe für alle Seiten…"
+  },
   "notifications": {
     "title": "Nachrichten",
     "clearAll": "Leeren",
@@ -1418,17 +1421,17 @@
     "skip": "Überspringen",
     "rate": "Bewerte deine Antwort",
     "answer": {
-      "0": "0: Blackout, keine Ahnung",
+      "0": "Keine Ahnung",
       "0Mobile": "0",
-      "1": "1: Falsch, obwohl man sich sicher war",
+      "1": "Falsch",
       "1Mobile": "1",
-      "2": "2: Falsch, aber wieder an die richtige Antwort erinnert",
+      "2": "Falsch, aber…",
       "2Mobile": "2",
-      "3": "3: Richtig, aber nach langem Nachdenken",
+      "3": "Richtig, aber…",
       "3Mobile": "3",
-      "4": "4: Richtig, kurz nachgedacht",
+      "4": "Richtig",
       "4Mobile": "4",
-      "5": "5: Perfekt, sofort gewusst",
+      "5": "Perfekt",
       "5Mobile": "5"
     },
     "endscreen": {

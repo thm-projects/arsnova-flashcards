@@ -3,7 +3,6 @@ import {Template} from "meteor/templating";
 import "./impressum.html";
 import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
-import {Session} from "meteor/session";
 import {Route} from "../../api/route.js";
 
 /*
@@ -52,23 +51,6 @@ Template.contactNavigation.events({
 
 /*
  * ############################################################################
- * help
- * ############################################################################
- */
-
-Template.help.onRendered(function () {
-	let target = Session.get('helpTarget');
-	if (target !== undefined) {
-		let anchor = $(target);
-		if (anchor.length) {
-			$(window).scrollTop((anchor.offset().top - 70));
-			Session.set('helpTarget', undefined);
-		}
-	}
-});
-
-/*
- * ############################################################################
  * demo
  * ############################################################################
  */
@@ -78,7 +60,7 @@ Template.demo.helpers({
 		return Route.isFirstTimeVisit();
 	},
 	gotDemoCardsetData: function () {
-		let cardset = Cardsets.findOne({shuffled: true, kind:  "demo", name: "DemoCardset"});
+		let cardset = Cardsets.findOne({shuffled: true, kind: "demo"});
 		if (cardset !== undefined) {
 			let cardCount = Cards.find({cardset_id: {$in: cardset.cardGroups}}).count();
 			return cardCount === cardset.quantity;

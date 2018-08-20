@@ -7,6 +7,7 @@ import {Notifications} from "../../api/notifications.js";
 import "./main.html";
 import "../welcome/welcome.js";
 import "../impressum/impressum.js";
+import "../help/help.js";
 import "../cardsets/cardsets.js";
 import "../markdeepEditor/navigation/navigation.js";
 import "../markdeepEditor/content/content.js";
@@ -38,7 +39,7 @@ Session.setDefault("fullscreen", false);
 Session.setDefault("previousRouteName", undefined);
 Session.setDefault("connectionStatus", 2);
 Session.setDefault("selectingCardsetToLearn", false);
-Session.setDefault('helpTarget', undefined);
+Session.setDefault('helpFilter', undefined);
 Session.setDefault('currentZoomValue', CardVisuals.getDefaultTextZoomValue());
 
 
@@ -90,73 +91,10 @@ $(document).on('click', '.navbar-collapse.in', function (e) {
 });
 
 Template.main.events({
-	'click #helpBtn': function (event) {
-		event.preventDefault();
-		let activeRouteName = Router.current().route.getName();
-		if (activeRouteName === "box" || activeRouteName === "memo") {
-			Router.go('learning');
-		} else {
-			let target = "#";
-			switch (Router.current().route.getName()) {
-				case "cardsetdetailsid":
-					target += "cardset";
-					break;
-				case "cardseteditors":
-					target += "cardsetEditors";
-					break;
-				case "cardsetlist":
-					target += "cardset";
-					break;
-				case "cardsetstats":
-					target += "progressCardset";
-					break;
-				case "create":
-					target += "createCardset";
-					break;
-				case "editCard":
-					target += "editCard";
-					break;
-				case "learn":
-					target += "studyWorkload";
-					break;
-				case "pool":
-					target += "pool";
-					break;
-				case "profileOverview":
-					target += "profileOverview";
-					break;
-				case "profileMembership":
-					target += "profileMembership";
-					break;
-				case "profileBilling":
-					target += "profileBilling";
-					break;
-				case "profileNotifications":
-					target += "profileNotifications";
-					break;
-				case "profileSettings":
-					target += "profileSettings";
-					break;
-				case "profileRequests":
-					target += "profileRequests";
-					break;
-				case "progress":
-					target += "progressUser";
-					break;
-				case "shuffle":
-					target += "shuffle";
-					break;
-				default:
-					target = "";
-			}
-			target += "Help";
-			Session.set('helpTarget', target);
-			Router.go('help');
-		}
-	},
 	'click .logout': function (event) {
 		event.preventDefault();
 		Meteor.logout();
+		Session.set('helpFilter', undefined);
 	},
 	'keyup #input-search': function (event) {
 		event.preventDefault();
