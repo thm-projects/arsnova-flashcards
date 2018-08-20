@@ -25,7 +25,16 @@ import "./help.html";
  */
 
 Template.help.helpers({
+	isHelpFilterActive: function () {
+		return Session.get('helpFilter') !== undefined;
+	},
 	displayHelpCategory: function (category) {
-		return Session.get('helpTarget') === undefined || Session.get('helpTarget') === category;
+		return Session.get('helpFilter') === undefined || Session.get('helpFilter') === category;
+	}
+});
+
+Template.help.events({
+	'click #resethelpFilter': function () {
+		Session.set('helpFilter', undefined);
 	}
 });

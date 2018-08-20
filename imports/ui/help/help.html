@@ -4,6 +4,11 @@
             <h1>Falls sich die App nicht von selbst erklärt</h1>
         </div>
         <div class="panel-body info-tab">
+            {{#if isHelpFilterActive}}
+                <button id="resethelpFilter" class="btn btn-raised btn-info">
+                    {{_ "help.resetFilter"}}
+                </button>
+            {{/if}}
             {{#if displayHelpCategory "start"}}
                 {{> helpStart}}
             {{/if}}

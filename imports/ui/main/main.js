@@ -39,7 +39,7 @@ Session.setDefault("fullscreen", false);
 Session.setDefault("previousRouteName", undefined);
 Session.setDefault("connectionStatus", 2);
 Session.setDefault("selectingCardsetToLearn", false);
-Session.setDefault('helpTarget', undefined);
+Session.setDefault('helpFilter', undefined);
 Session.setDefault('currentZoomValue', CardVisuals.getDefaultTextZoomValue());
 
 
@@ -94,6 +94,7 @@ Template.main.events({
 	'click .logout': function (event) {
 		event.preventDefault();
 		Meteor.logout();
+		Session.set('helpFilter', undefined);
 	},
 	'keyup #input-search': function (event) {
 		event.preventDefault();
