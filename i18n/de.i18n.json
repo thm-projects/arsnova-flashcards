@@ -61,6 +61,9 @@
     "datenschutz": "Datenschutz",
     "agb": "AGB"
   },
+  "help": {
+    "resetFilter": "Zeige die Hilfe für alle Seiten…"
+  },
   "notifications": {
     "title": "Nachrichten",
     "clearAll": "Leeren",

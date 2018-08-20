@@ -69,6 +69,9 @@
     "datenschutz": "Privacy",
     "agb": "GTC"
   },
+  "help": {
+    "resetFilter": ""
+  },
   "notifications": {
     "title": "Notifications",
     "clearAll": "Clear all",
