@@ -5,6 +5,7 @@ import "./categories/algorithms/wozniak.html";
 import "./categories/card/editor.html";
 import "./categories/cardset/bonus.html";
 import "./categories/cardset/cardset.html";
+import "./categories/cardset/preview.html";
 import "./categories/filterResults/myCardsets.html";
 import "./categories/filterResults/pool.html";
 import "./categories/filterResults/repetitorium.html";

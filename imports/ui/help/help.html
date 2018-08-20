@@ -28,6 +28,9 @@
                 {{> helpCardset}}
                 {{> helpBonus}}
             {{/if}}
+            {{#if displayHelpCategory "previewCardset"}}
+                {{> helpCardsetPreview}}
+            {{/if}}
             {{#if displayHelpCategory "cardEditor"}}
                 {{> helpCardEditor}}
             {{/if}}
