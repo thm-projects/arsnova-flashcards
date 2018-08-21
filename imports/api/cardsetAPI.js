@@ -44,6 +44,7 @@ if (Meteor.isServer) {
 			});
 		} else {
 			var cards = req.body;
+			var retCards = [];
 
 			// get all current card ids to eliminate old ones
 			var cardsetCards = Cards.find({cardset_id: id}, {fields: {_id: 1}}).fetch().map(c => c._id);
@@ -61,8 +62,9 @@ if (Meteor.isServer) {
 					var modifier = mongoReplacementModifier(card, oldCard);
 					Cards.update(card._id, modifier);
 				} else {
-					Cards.insert(card);
+					card.id = Cards.insert(card);
 				}
+				retCards.push(card);
 			});
 
 			Cards.remove({_id: {$in: cardsetCards}});
@@ -75,7 +77,7 @@ if (Meteor.isServer) {
 			});
 
 			JsonRoutes.sendResult(res, {
-				data: "success"
+				data: JSON.stringify(retCards)
 			});
 		}
 	});
