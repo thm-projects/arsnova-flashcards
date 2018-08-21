@@ -17,6 +17,9 @@ Template.markdeepNavigation.events({
 	'click .markdeep-mobile-preview': function () {
 		MarkdeepEditor.changeMobilePreview();
 	},
+	'click .markdeep-rotate-mobile-preview': function () {
+		MarkdeepEditor.changeMobilePreviewRotation();
+	},
 	'click .markdeep-center': function () {
 		MarkdeepEditor.center();
 	},
@@ -34,6 +37,9 @@ Template.markdeepNavigation.events({
 Template.markdeepNavigation.helpers({
 	isMobilePreviewActive: function () {
 		return Session.get('mobilePreview');
+	},
+	isMobilePreviewRotated: function () {
+		return Session.get('mobilePreviewRotated');
 	},
 	isCenterTextActive: function () {
 		return CardVisuals.isCentered(Session.get('activeCardContentId'), true);

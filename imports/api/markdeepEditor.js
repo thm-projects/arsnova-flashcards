@@ -22,8 +22,17 @@ export let MarkdeepEditor = class MarkdeepEditor {
 	static changeMobilePreview (forceOff = false) {
 		if (Session.get('mobilePreview') === 1 || forceOff) {
 			Session.set('mobilePreview', 0);
+			Session.set('mobilePreviewRotated', 0);
 		} else {
 			Session.set('mobilePreview', 1);
+		}
+	}
+
+	static changeMobilePreviewRotation () {
+		if (Session.get('mobilePreviewRotated')) {
+			Session.set('mobilePreviewRotated', 0);
+		} else {
+			Session.set('mobilePreviewRotated', 1);
 		}
 	}
 
