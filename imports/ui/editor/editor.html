@@ -29,8 +29,8 @@
             <h5 class="editorElement">{{_ "previewEdit"}}</h5>
             {{#if isMobilePreviewActive}}
                 <div class="mobilePreviewContainer">
-                    <div class="mobilePreviewFrame">
-                        <div class="mobilePreviewContent">
+                    <div class="mobilePreviewFrame {{#if isMobilePreviewRotated}}portrait{{else}}landscape{{/if}}">
+                        <div class="mobilePreviewContent {{#if isMobilePreviewRotated}}portrait{{else}}landscape{{/if}}">
                             {{> presentationView}}
                         </div>
                     </div>
