@@ -15,16 +15,17 @@ import {Session} from "meteor/session";
 //12: Entwurfsmuster / Design pattern
 //13: Formelsammlung / Formulary
 //14: Vortrag
+//15: Aufgabensammlung
 let cardTypesWithDictionary = [1];
-let cardTypesWithDifficultyLevel = [0, 1, 2, 5, 6, 11, 12, 13];
-let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12, 13];
+let cardTypesWithDifficultyLevel = [0, 1, 2, 5, 6, 11, 12, 13, 15];
+let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12, 13, 15];
 let cardTypesWithLearningGoal = [0, 5, 12];
 let cardTypesWithLearningUnit = [];
-let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14];
-let cardTypesWithContrastButton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15];
+let cardTypesWithContrastButton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15];
 let cardTypesWithNotesForDifficultyLevel = [2];
 let cardTypesWithAlternativePublishLimit = [0];
-let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 3}, {cardType: 6}, {cardType: 13}, {cardType: 12}, {cardType: 11}, {cardType: 5}, {cardType: 1}, {cardType: 10}, {cardType: 7}, {cardType: 4}, {cardType: 8}, {cardType: 9}, {cardType: 14}];
+let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 15}, {cardType: 3}, {cardType: 6}, {cardType: 13}, {cardType: 12}, {cardType: 11}, {cardType: 5}, {cardType: 1}, {cardType: 10}, {cardType: 7}, {cardType: 4}, {cardType: 8}, {cardType: 9}, {cardType: 14}];
 let publishLimit = 5;
 let alternativePublishLimit = 1;
 
@@ -353,6 +354,24 @@ let cardTypeCubeSides = [
 			"defaultCentered": false
 		}
 
+	],
+	//15: Aufgabensammlung
+	[
+		{
+			"contentId": 1,
+			"side": "front",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"gotLearningGoalPlaceholder": true
+		},
+		{
+			"contentId": 2,
+			"side": "back",
+			"defaultStyle": "default",
+			"defaultCentered": false,
+			"isAnswer": true,
+			"isAnswerFocus": true
+		}
 	]
 ];
 

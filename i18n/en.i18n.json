@@ -931,6 +931,20 @@
       "subject": ""
     }
   },
+  "cardType15": {
+    "name": "Collection of tasks",
+    "longName": "Collection of tasks  (Task | Solution)",
+    "content1": "Task",
+    "content2": "Solution",
+    "placeholders": {
+      "subject": "",
+      "content1": "",
+      "content2": ""
+    },
+    "editorLabels": {
+      "subject": ""
+    }
+  },
   "courseIteration": {
     "name": "Course",
     "targetAudience": "Audience",
