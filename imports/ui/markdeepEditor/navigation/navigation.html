@@ -1,21 +1,30 @@
 <template name="markdeepNavigation">
     <div id="markdeepNavigation">
         <div class="btn-group">
-            <i class="btn fa fa-lightbulb-o card-button markdeep-help" title="{{_ "card.tooltip.markdeepEditor.help"}}">&nbsp;{{_ "markdeep.editor.help"}}</i>
+            <i class="btn fa fa-lightbulb-o card-button markdeep-help" title="{{_ "card.tooltip.markdeepEditor.help"}}">&nbsp;{{_
+                    "markdeep.editor.help"}}</i>
         </div>
         <div class="btn-group">
             {{#if isActiveRoute regex="editCard|newCard"}}
                 <i class="markdeep-mobile-preview fa fa-mobile card-button {{#if
-                        isMobilePreviewActive}}pressed{{/if}}" title="{{_ "card.tooltip.markdeepEditor.mobilePreview"}}"></i>
-                <i class="card-button material-icons markdeep-center {{#if isCenterTextActive}}pressed{{/if}}" title="{{_ "card.tooltip.markdeepEditor.center"}}">vertical_align_center</i>
+                        isMobilePreviewActive}}pressed{{/if}}"
+                   title="{{_ "card.tooltip.markdeepEditor.mobilePreview"}}"></i>
+                {{#if isMobilePreviewActive}}
+                    <i class="markdeep-rotate-mobile-preview fa fa-refresh card-button {{#if isMobilePreviewRotated}}pressed{{/if}}"
+                       title="{{_ "card.tooltip.markdeepEditor.rotateMobilePreview"}}"></i>
+                {{/if}}
+                <i class="card-button material-icons markdeep-center {{#if isCenterTextActive}}pressed{{/if}}"
+                   title="{{_ "card.tooltip.markdeepEditor.center"}}">vertical_align_center</i>
                 {{#unless isFullscreenActive}}
                     {{#if gotDictionary}}
                         <i class="markdeep-dictionary fa fa-book card-button {{#if
-                                isDictionaryActive}}pressed{{/if}}" title="{{_ "card.tooltip.markdeepEditor.dictionary"}}"></i>
+                                isDictionaryActive}}pressed{{/if}}"
+                           title="{{_ "card.tooltip.markdeepEditor.dictionary"}}"></i>
                     {{/if}}
                 {{/unless}}
-                    <i class="card-button fa fa-paint-brush markdeep-background-style {{#if
-                            isAlternativeBackgroundStyle}}pressed{{/if}}" title="{{_ "card.tooltip.markdeepEditor.style"}}"></i>
+                <i class="card-button fa fa-paint-brush markdeep-background-style {{#if
+                        isAlternativeBackgroundStyle}}pressed{{/if}}"
+                   title="{{_ "card.tooltip.markdeepEditor.style"}}"></i>
                 <i class="card-button glyphicon glyphicon-fullscreen markdeep-fullscreen {{#if
                         isFullscreenActive}}pressed{{/if}}" title="{{_ "card.tooltip.markdeepEditor.fullscreen"}}"></i>
             {{/if}}

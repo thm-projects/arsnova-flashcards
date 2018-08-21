@@ -895,6 +895,7 @@
         "help": "",
         "center": " ",
         "mobilePreview": "",
+        "rotateMobilePreview": "",
         "dictionary": "",
         "style": "",
         "fullscreen": ""

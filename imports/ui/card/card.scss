@@ -86,7 +86,7 @@ img.cardside {
   width: 95%;
   transform-origin: right center;
   transform-style: preserve-3d;
-  transition: all .5s;
+  transition: all 0s;
 }
 
 .flipped {
@@ -452,21 +452,49 @@ img.cardside {
   top: 15px;
 }
 
-.mobilePreviewFrame {
-  background: url("/img/mobile_preview.png") no-repeat;
+.mobilePreviewFrame.landscape {
+  background: url("/img/mobile_preview_landscape.png") no-repeat;
+  background-size: 765px;
+  background-position-y: 150px;
+  width: 765px;
+  height: 765px;
+  margin: auto;
+  padding-top: 150px;
+  @media(max-width: 1199px) {
+    height: 431px;
+    background-position-y: 0;
+    padding-top: 0;
+    @media(max-width: 800px) {
+      margin: 0 auto auto -14px !important;
+    }
+  }
+}
+
+.mobilePreviewFrame.portrait {
+  background: url("/img/mobile_preview_portrait.png") no-repeat;
   background-size: 431px;
   width: 431px;
-  height: 815px;
+  height: 765px;
   margin: auto;
 }
 
-.mobilePreviewContent {
+.mobilePreviewContent.landscape {
+  position: absolute;
+  width: 667px;
+  margin-left: 42px;
+  margin-top: 28px;
+  height: 375px;
+}
+
+.mobilePreviewContent.portrait {
   position: absolute;
   width: 375px;
   margin-left: 28px;
-  margin-top: 63px;
+  margin-top: 42px;
   height: 667px;
+}
 
+.mobilePreviewContent {
   .cardContent {
     padding: $padding_card_content_vertical_mobile $padding_card_content_horizontal_mobile !important;
   }
@@ -479,12 +507,6 @@ img.cardside {
 
   .cardHeaderSmallerText {
     font-size: $font_size_card_header_smaller_text_mobile;
-  }
-
-  .cardHeader {
-    h2 {
-      font-size: $font_size_card_header_subject_mobile;
-    }
   }
 
   .cardHeaderLeft {

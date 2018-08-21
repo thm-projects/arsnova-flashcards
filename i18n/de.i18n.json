@@ -893,6 +893,7 @@
         "help": "Zeige alle Formatierungsoptionen von Markdeep",
         "center": "Zentriere den Karteninhalt vertikal",
         "mobilePreview": "Zeige die Karte in der Smartphone-Ansicht (iPhone 6/7/8)",
+        "rotateMobilePreview": "Drehe die Smartphone-Ansicht (iPhone 6/7/8)",
         "dictionary": "Zeige die BEOLINGUS-Übersetzung",
         "style": "Ändere den Hintergrund der Karte (liniert oder blanko)",
         "fullscreen": "Mit der Taste ESC (oben links) kommst du wieder in die Normalansicht."

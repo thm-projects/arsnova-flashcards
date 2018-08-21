@@ -33,6 +33,9 @@ Template.editor.helpers({
 	},
 	isMobilePreviewActiveAndFullscreen: function () {
 		return CardVisuals.isFullscreen() && Session.get('mobilePreview') && !CardVisuals.isEditorFullscreen();
+	},
+	isMobilePreviewRotated: function () {
+		return Session.get('mobilePreviewRotated');
 	}
 });
 
@@ -58,6 +61,7 @@ Template.newCard.onCreated(function () {
 	Session.set('difficultyColor', Cardsets.findOne({_id: Router.current().params._id}).difficulty);
 	CardEditor.resetSessionData(true);
 	Session.set('mobilePreview', 1);
+	Session.set('mobilePreviewRotated', 0);
 });
 
 /*
@@ -69,4 +73,5 @@ Template.editCard.onCreated(function () {
 	Session.set('cardType', Cardsets.findOne({_id: Router.current().params._id}).cardType);
 	Session.set('difficultyColor', Cardsets.findOne({_id: Router.current().params._id}).difficulty);
 	Session.set('mobilePreview', 1);
+	Session.set('mobilePreviewRotated', 0);
 });
