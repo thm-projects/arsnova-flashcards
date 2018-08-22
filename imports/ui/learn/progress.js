@@ -7,6 +7,7 @@ import {Meteor} from "meteor/meteor";
 import {Chart} from "chart.js";
 import {getAuthorName} from "../../api/userdata";
 import {CardType} from "../../api/cardTypes";
+import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
 
 let chart;
 
@@ -27,8 +28,7 @@ let chartColors = {
  * ############################################################################
  */
 
-function drawGraph() {
-	let ctx = document.getElementById("boxChart").getContext("2d");
+function updateGraphLabels() {
 	let learningInterval = Cardsets.findOne({_id: Router.current().params._id}).learningInterval;
 	let firstInterval = "";
 	let box1Label = [], box2Label = [], box3Label = [], box4Label = [], box5Label = [], box6Label;
@@ -51,10 +51,15 @@ function drawGraph() {
 		box5Label = [TAPi18n.__('leitnerProgress.box', {number: 5})];
 	}
 	box6Label = [TAPi18n.__('leitnerProgress.learned')];
+	chart.config.data.labels = [box1Label, box2Label, box3Label, box4Label, box5Label, box6Label];
+	chart.update();
+}
+
+function drawGraph() {
+	let ctx = document.getElementById("boxChart").getContext("2d");
 	chart = new Chart(ctx, {
 		type: 'bar',
 		data: {
-			labels: [box1Label, box2Label, box3Label, box4Label, box5Label, box6Label],
 			datasets: [
 				{
 					backgroundColor: chartColors.difficulty0Background,
@@ -92,6 +97,7 @@ function drawGraph() {
 				intersect: false
 			},
 			responsive: true,
+			maintainAspectRatio: false,
 			scales: {
 				xAxes: [{
 					stacked: true
@@ -110,9 +116,10 @@ function drawGraph() {
 			}
 		}
 	});
+	updateGraphLabels();
 }
 
-function updateGraph() {
+function updateGraphData() {
 	let filterCards;
 	let prepareFilter;
 	if (Router.current().route.getName() === "profileOverview") {
@@ -223,8 +230,11 @@ Template.graph.onRendered(function () {
 	var self = this;
 	self.subscribe("leitner", function () {
 		self.autorun(function () {
-			updateGraph();
+			updateGraphData();
 		});
+	});
+	new ResizeSensor($('#boxChart'), function () {
+		updateGraphLabels();
 	});
 });
 
