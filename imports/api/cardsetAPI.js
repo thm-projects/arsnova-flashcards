@@ -47,7 +47,7 @@ if (Meteor.isServer) {
 			var retCards = [];
 
 			// get all current card ids to eliminate old ones
-			var cardsetCards = Cards.find({cardset_id: id}, {fields: {_id: 1}}).fetch().map(c => c._id);
+			var cardsetCards = Cards.find({cardset_id: id}, {fields: {_id: 1}}).fetch().map((c) => c._id);
 
 			cards.forEach(function (card) {
 				card.cardset_id = id;
@@ -71,7 +71,7 @@ if (Meteor.isServer) {
 
 			Cardsets.update(id, {
 				$set: {
-					quantity: cards.length,
+					quantity: retCards.length,
 					dateUpdated: new Date()
 				}
 			});
