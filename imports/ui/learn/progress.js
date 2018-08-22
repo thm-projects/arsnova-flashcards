@@ -1,4 +1,5 @@
 import "./progress.html";
+import {Session} from "meteor/session";
 import {Leitner} from "../../api/learned";
 import {Cards} from "../../api/cards";
 import {Cardsets} from "../../api/cardsets";
@@ -33,24 +34,24 @@ function updateGraphLabels() {
 	let firstInterval = "";
 	let box1Label = [], box2Label = [], box3Label = [], box4Label = [], box5Label = [], box6Label;
 	if (learningInterval[0] <= 1) {
-		firstInterval = TAPi18n.__('leitnerProgress.subjectIntervalDaily');
+		firstInterval = TAPi18n.__('leitnerProgress.subjectIntervalDaily', Session.get('activeLanguage'));
 	} else {
-		firstInterval = TAPi18n.__('leitnerProgress.subjectInterval', {days: learningInterval[0]});
+		firstInterval = TAPi18n.__('leitnerProgress.subjectInterval', {days: learningInterval[0]}, Session.get('activeLanguage'));
 	}
 	if ($(window).width() >= 768) {
-		box1Label = [TAPi18n.__('leitnerProgress.box', {number: 1}), TAPi18n.__('leitnerProgress.subjectNotLearned'), firstInterval];
-		box2Label = [TAPi18n.__('leitnerProgress.box', {number: 2}), TAPi18n.__('leitnerProgress.subjectInterval', {days: learningInterval[1]})];
-		box3Label = [TAPi18n.__('leitnerProgress.box', {number: 3}), TAPi18n.__('leitnerProgress.subjectInterval', {days: learningInterval[2]})];
-		box4Label = [TAPi18n.__('leitnerProgress.box', {number: 4}), TAPi18n.__('leitnerProgress.subjectInterval', {days: learningInterval[3]})];
-		box5Label = [TAPi18n.__('leitnerProgress.box', {number: 5}), TAPi18n.__('leitnerProgress.subjectInterval', {days: learningInterval[4]})];
+		box1Label = [TAPi18n.__('leitnerProgress.box', {number: 1}, Session.get('activeLanguage')), TAPi18n.__('leitnerProgress.subjectNotLearned'), firstInterval, Session.get('activeLanguage')];
+		box2Label = [TAPi18n.__('leitnerProgress.box', {number: 2}, Session.get('activeLanguage')), TAPi18n.__('leitnerProgress.subjectInterval', {days: learningInterval[1]}, Session.get('activeLanguage'))];
+		box3Label = [TAPi18n.__('leitnerProgress.box', {number: 3}, Session.get('activeLanguage')), TAPi18n.__('leitnerProgress.subjectInterval', {days: learningInterval[2]}, Session.get('activeLanguage'))];
+		box4Label = [TAPi18n.__('leitnerProgress.box', {number: 4}, Session.get('activeLanguage')), TAPi18n.__('leitnerProgress.subjectInterval', {days: learningInterval[3]}, Session.get('activeLanguage'))];
+		box5Label = [TAPi18n.__('leitnerProgress.box', {number: 5}, Session.get('activeLanguage')), TAPi18n.__('leitnerProgress.subjectInterval', {days: learningInterval[4]}, Session.get('activeLanguage'))];
 	} else {
-		box1Label = [TAPi18n.__('leitnerProgress.box', {number: 1})];
-		box2Label = [TAPi18n.__('leitnerProgress.box', {number: 2})];
-		box3Label = [TAPi18n.__('leitnerProgress.box', {number: 3})];
-		box4Label = [TAPi18n.__('leitnerProgress.box', {number: 4})];
-		box5Label = [TAPi18n.__('leitnerProgress.box', {number: 5})];
+		box1Label = [TAPi18n.__('leitnerProgress.box', {number: 1}, Session.get('activeLanguage'))];
+		box2Label = [TAPi18n.__('leitnerProgress.box', {number: 2}, Session.get('activeLanguage'))];
+		box3Label = [TAPi18n.__('leitnerProgress.box', {number: 3}, Session.get('activeLanguage'))];
+		box4Label = [TAPi18n.__('leitnerProgress.box', {number: 4}, Session.get('activeLanguage'))];
+		box5Label = [TAPi18n.__('leitnerProgress.box', {number: 5}, Session.get('activeLanguage'))];
 	}
-	box6Label = [TAPi18n.__('leitnerProgress.learned')];
+	box6Label = [TAPi18n.__('leitnerProgress.learned', Session.get('activeLanguage'))];
 	chart.config.data.labels = [box1Label, box2Label, box3Label, box4Label, box5Label, box6Label];
 	chart.update();
 }
@@ -226,10 +227,10 @@ Template.graph.helpers({
 });
 
 Template.graph.onRendered(function () {
-	drawGraph();
 	var self = this;
 	self.subscribe("leitner", function () {
 		self.autorun(function () {
+			drawGraph();
 			updateGraphData();
 		});
 	});
