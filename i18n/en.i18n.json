@@ -1011,9 +1011,10 @@
   "leitnerProgress": {
     "box": "Box __number__",
     "learned": "learned",
-    "subjectIntervalDaily": "Daily",
-    "subjectInterval": "Every __days__ Days",
-    "subjectNotLearned": "untrained"
+    "boxIntervalDaily": "Daily",
+    "boxInterval": "Every __days__ Days",
+    "boxNotLearned": "untrained",
+    "boxNotLearnedShort": "untrained"
   },
   "permission": "Permission denied",
   "nocards": "No cards available",

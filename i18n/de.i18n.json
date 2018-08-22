@@ -966,9 +966,10 @@
   "leitnerProgress": {
     "box": "Box __number__",
     "learned": "gelernt",
-    "subjectIntervalDaily": "täglich",
-    "subjectInterval": "Alle __days__ Tage",
-    "subjectNotLearned": "(neu | vergessen)"
+    "boxIntervalDaily": "täglich",
+    "boxInterval": "Alle __days__ Tage",
+    "boxNotLearned": "[neu oder vergessen]",
+    "boxNotLearnedShort": "[neu | vergessen]"
   },
   "permission": "Kein Zugang",
   "nocards": "Keine Karten vorhanden",
