@@ -106,7 +106,11 @@ Template.cardNavigationEnabledQuestion.onRendered(function () {
 
 Template.cardNavigationItem.helpers({
 	getTitle: function () {
-		return TAPi18n.__('card.cardType' + Session.get('cardType') + '.content' + this.contentId);
+		if (CardType.gotCardsetTitleNavigation(Session.get('cardType'))) {
+			return Session.get('activeCardsetName');
+		} else {
+			return TAPi18n.__('card.cardType' + Session.get('cardType') + '.content' + this.contentId);
+		}
 	},
 	getTabIndex: function (index) {
 		return CardNavigation.getTabIndex(++index);

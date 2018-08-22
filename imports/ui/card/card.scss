@@ -329,6 +329,13 @@ img.cardside {
   }
 }
 
+.cardHeaderCenter .center-align {
+  h2 {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
 #learningGoalLevelGroup {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
