@@ -29,10 +29,32 @@ let chartColors = {
 
 function drawGraph() {
 	let ctx = document.getElementById("boxChart").getContext("2d");
+	let learningInterval = Cardsets.findOne({_id: Router.current().params._id}).learningInterval;
+	let firstInterval = "";
+	let box1Label = [], box2Label = [], box3Label = [], box4Label = [], box5Label = [], box6Label;
+	if (learningInterval[0] <= 1) {
+		firstInterval = TAPi18n.__('leitnerProgress.subjectIntervalDaily');
+	} else {
+		firstInterval = TAPi18n.__('leitnerProgress.subjectInterval', {days: learningInterval[0]});
+	}
+	if ($(window).width() >= 768) {
+		box1Label = [TAPi18n.__('leitnerProgress.box', {number: 1}), TAPi18n.__('leitnerProgress.subjectNotLearned'), firstInterval];
+		box2Label = [TAPi18n.__('leitnerProgress.box', {number: 2}), TAPi18n.__('leitnerProgress.subjectInterval', {days: learningInterval[1]})];
+		box3Label = [TAPi18n.__('leitnerProgress.box', {number: 3}), TAPi18n.__('leitnerProgress.subjectInterval', {days: learningInterval[2]})];
+		box4Label = [TAPi18n.__('leitnerProgress.box', {number: 4}), TAPi18n.__('leitnerProgress.subjectInterval', {days: learningInterval[3]})];
+		box5Label = [TAPi18n.__('leitnerProgress.box', {number: 5}), TAPi18n.__('leitnerProgress.subjectInterval', {days: learningInterval[4]})];
+	} else {
+		box1Label = [TAPi18n.__('leitnerProgress.box', {number: 1})];
+		box2Label = [TAPi18n.__('leitnerProgress.box', {number: 2})];
+		box3Label = [TAPi18n.__('leitnerProgress.box', {number: 3})];
+		box4Label = [TAPi18n.__('leitnerProgress.box', {number: 4})];
+		box5Label = [TAPi18n.__('leitnerProgress.box', {number: 5})];
+	}
+	box6Label = [TAPi18n.__('leitnerProgress.learned')];
 	chart = new Chart(ctx, {
 		type: 'bar',
 		data: {
-			labels: [TAPi18n.__('subject1') + " (" + TAPi18n.__('subjectNotLearned') + ")", TAPi18n.__('subject2'), TAPi18n.__('subject3'), TAPi18n.__('subject4'), TAPi18n.__('subject5'), TAPi18n.__('subject6')],
+			labels: [box1Label, box2Label, box3Label, box4Label, box5Label, box6Label],
 			datasets: [
 				{
 					backgroundColor: chartColors.difficulty0Background,
