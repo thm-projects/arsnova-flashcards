@@ -13,15 +13,19 @@
 .cardNavigation > li {
   flex: 1 auto;
   text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   @media(max-width: 767px) {
     a {
       font-size: $font_size_card_navigation_mobile !important;
       padding: $padding_vertical_card_navigation_mobile $padding_horizontal_card_navigation_mobile !important;
     }
   }
+}
+
+.cardNavigation a {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
 }
 
 .cardEditorHeader .cardNavigation {
