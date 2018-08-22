@@ -1,16 +1,30 @@
 <template name="flashcardHeaderCenter">
     <div class="col-xs-6 cardHeaderCenter" data-cardtype="{{cardType}}">
-        <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-            <strong class="cardHeaderSmallText" data-cardtype="{{cardType}}">{{getCardsetName}}</strong><br>
-            {{#unless isMobilePreview}}
-                {{#if gotLearningGoal}}
-                    <span class="hidden-xs cardHeaderSmallerText" data-cardtype="{{cardType}}">
+        {{#if gotCardsetTitleNavigation}}
+            <span class="center-align">
+                            {{#unless isMobilePreview}}
+                                {{#if gotLearningGoal}}
+                                    <span class="hidden-xs cardHeaderSmallerText" data-cardtype="{{cardType}}">
                     {{_ "learning-goal.cardName"}}: {{getLearningGoalName}}</span>
-                {{/if}}
-            {{/unless}}
-        </div>
-        <h2 data-cardtype="{{cardType}}">
-            {{> cardSubject this}}
-        </h2>
+                                {{/if}}
+                            {{/unless}}
+                <h2 data-cardtype="{{cardType}}">
+                    {{> cardSubject this}}
+                </h2>
+            </span>
+        {{else}}
+            <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+                <strong class="cardHeaderSmallText" data-cardtype="{{cardType}}">{{getCardsetName}}</strong><br>
+                {{#unless isMobilePreview}}
+                    {{#if gotLearningGoal}}
+                        <span class="hidden-xs cardHeaderSmallerText" data-cardtype="{{cardType}}">
+                    {{_ "learning-goal.cardName"}}: {{getLearningGoalName}}</span>
+                    {{/if}}
+                {{/unless}}
+            </div>
+            <h2 data-cardtype="{{cardType}}">
+                {{> cardSubject this}}
+            </h2>
+        {{/if}}
     </div>
 </template>

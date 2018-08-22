@@ -5,6 +5,8 @@ import {CardVisuals} from "./cardVisuals";
 import {CardEditor} from "./cardEditor";
 import * as screenfull from "screenfull";
 import {CardIndex} from "./cardIndex";
+import {Cards} from "./cards";
+import {Cardsets} from "./cardsets";
 
 export let CardNavigation = class CardNavigation {
 
@@ -107,7 +109,7 @@ export let CardNavigation = class CardNavigation {
 			CardNavigation.toggleVisibility(false);
 		});
 		flashcardCarousel.on('slid.bs.carousel', function () {
-			Session.set('activeCard', $(".item.active").data('id'));
+			CardNavigation.setActiveCardData();
 			Session.set('isQuestionSide', true);
 			if (updateLearningMode === 1) {
 				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, answer);
@@ -118,6 +120,21 @@ export let CardNavigation = class CardNavigation {
 				CardNavigation.toggleVisibility(true);
 			}, 300);
 		});
+	}
+
+	static setActiveCardData (_id = undefined) {
+		if (_id !== undefined) {
+			Session.set('activeCard', _id);
+		} else {
+			Session.set('activeCard', $(".item.active").data('id'));
+		}
+		let cardset_id;
+		if (Session.get('activeCard') === -1) {
+			Session.set('activeCardsetName', Cardsets.findOne({_id: Router.current().params._id}).name);
+		} else {
+			cardset_id = Cards.findOne({_id: Session.get('activeCard')}).cardset_id;
+			Session.set('activeCardsetName', Cardsets.findOne({_id: cardset_id}).name);
+		}
 	}
 
 	static isVisible () {

@@ -113,7 +113,7 @@ Template.flashcards.helpers({
 			result = CardIndex.getEditModeCard();
 		}
 		if (Session.get('activeCard') === undefined) {
-			Session.set('activeCard', result[0]._id);
+			CardNavigation.setActiveCardData(result[0]._id);
 		}
 		return CardVisuals.setTypeAndDifficulty(result);
 	},

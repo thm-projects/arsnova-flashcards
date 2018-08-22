@@ -33,7 +33,9 @@ Template.flashcardHeaderCenter.helpers({
 		return CardType.gotLearningGoal(this.cardType);
 	},
 	getCardsetName: function () {
-		return Cardsets.findOne({_id: this.cardset_id}).name;
+		if (!CardType.gotCardsetTitleNavigation(this.cardType)) {
+			return Cardsets.findOne({_id: this.cardset_id}).name;
+		}
 	},
 	getLearningGoalName: function () {
 		return TAPi18n.__('learning-goal.level' + (this.learningGoalLevel + 1));
@@ -43,5 +45,8 @@ Template.flashcardHeaderCenter.helpers({
 	},
 	isMobilePreview: function () {
 		return MarkdeepEditor.getMobilePreview();
+	},
+	gotCardsetTitleNavigation: function () {
+		return CardType.gotCardsetTitleNavigation(this.cardType);
 	}
 });
