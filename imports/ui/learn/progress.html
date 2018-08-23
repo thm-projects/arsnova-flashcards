@@ -7,7 +7,9 @@
         {{else}}
             {{#if gotCards}}
                 <div class="container">
-                    {{> graph}}
+                    <div class="well">
+                        {{> graph}}
+                    </div>
                     <button class="btn btn-block btn-raised btn-danger" id="backButton">
                         <span class="pull-left">{{#if isStatsOwner}}{{_ "backbutton"}}{{else}}{{_
                                 "backbuttonStatistics"}}{{/if}}</span>
@@ -21,10 +23,8 @@
 </template>
 
 <template name="graph">
-    <div class="well">
-        <h4>{{getChartTitle}}</h4>
-        <canvas id="boxChart" data-box1="{{countBox 1}}"
-                data-box2="{{countBox 2}}" data-box3="{{countBox 3}}" data-box4="{{countBox 4}}"
-                data-box5="{{countBox 5}}" data-box6="{{countBox 6}}"></canvas>
-    </div>
+    <h4>{{getChartTitle}}</h4>
+    <canvas id="boxChart" data-box1="{{countBox 1}}"
+            data-box2="{{countBox 2}}" data-box3="{{countBox 3}}" data-box4="{{countBox 4}}"
+            data-box5="{{countBox 5}}" data-box6="{{countBox 6}}"></canvas>
 </template>

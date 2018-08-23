@@ -581,14 +581,14 @@ Meteor.startup(function () {
 	for (let i = 0; i < cardsets.length; i++) {
 		leitner = Leitner.find({cardset_id: cardsets[i]._id, original_cardset_id: {$exists: false}}, {fields: {_id: 1, card_id: 1}}).fetch();
 		for (let k = 0; k < leitner.length; k++) {
-			let shuffledCardsetId = Cards.findOne({_id: leitner[k].card_id}).cardset_id;
-			if (shuffledCardsetId !== undefined) {
+			let originalCardsetId = Cards.findOne({_id: leitner[k].card_id}).cardset_id;
+			if (originalCardsetId !== undefined) {
 				Leitner.update({
 						_id: leitner[k]._id
 					},
 					{
 						$set: {
-							original_cardset_id: shuffledCardsetId
+							original_cardset_id: originalCardsetId
 						}
 					}
 				);
