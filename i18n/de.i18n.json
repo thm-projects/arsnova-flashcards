@@ -969,7 +969,9 @@
     "boxIntervalDaily": "täglich",
     "boxInterval": "nach __days__ Tagen",
     "boxNotLearned": "[neu oder vergessen]",
-    "boxNotLearnedShort": "[neu | vergessen]"
+    "boxNotLearnedShort": "[neu | vergessen]",
+    "index": "Inhalt",
+    "indexDefault": "Alle Karteien"
   },
   "permission": "Kein Zugang",
   "nocards": "Keine Karten vorhanden",

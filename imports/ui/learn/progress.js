@@ -5,6 +5,9 @@ import {Meteor} from "meteor/meteor";
 import {getAuthorName} from "../../api/userdata";
 import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
 import {LeitnerProgress} from "../../api/leitnerProgress";
+import {Cardsets} from "../../api/cardsets";
+import {CardType} from "../../api/cardTypes";
+import {Route} from "../../api/route";
 
 /*
  * ############################################################################
@@ -65,6 +68,7 @@ Template.progress.helpers({
 		return Meteor.userId() === Router.current().params.user_id;
 	}
 });
+
 Template.progress.events({
 	"click #backButton": function () {
 		if (Meteor.userId() === Router.current().params.user_id) {
@@ -76,5 +80,46 @@ Template.progress.events({
 				_id: Router.current().params._id
 			});
 		}
+	}
+});
+
+/*
+ * ############################################################################
+ * graphCardsetFilter
+ * ############################################################################
+ */
+
+Template.graphCardsetFilter.helpers({
+	getCardsets: function () {
+		let cardsetList = "";
+		let cardGroups = Cardsets.findOne({_id: Router.current().params._id}).cardGroups;
+		let cardsets = Cardsets.find({_id: {$in: cardGroups}}, {
+			fields: {_id: 1, name: 1, cardType: 1},
+			sort: {name: 1}
+		}).fetch();
+		for (let i = 0; i < cardsets.length; i++) {
+			if (CardType.gotLearningModes(cardsets[i].cardType)) {
+				cardsetList += '<li class="cardset" value="' + cardsets[i]._id + ' + " data="' + cardsets[i]._id + '"><a href="#">' + cardsets[i].name + '</a></li>';
+			}
+		}
+		return cardsetList;
+	},
+	isShuffledCardset: function () {
+		if (Route.isLeitnerProgress()) {
+			let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {shuffled: 1}});
+			if (cardset !== undefined) {
+				return cardset.shuffled;
+			} else {
+				return false;
+			}
+		}
+	}
+});
+Template.graphCardsetFilter.events({
+	'click .cardset': function (evt) {
+		let cardset = $(evt.currentTarget).attr("data");
+		$('#setCardsetFiter').html($(evt.currentTarget).text());
+		$('#setCardsetFiter').val(cardset);
+		LeitnerProgress.updateGraph(cardset);
 	}
 });

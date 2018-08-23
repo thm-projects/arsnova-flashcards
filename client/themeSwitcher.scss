@@ -2211,7 +2211,7 @@ $themes: (
       background-color: $button_difficulty3 !important;
     }
 
-    #setCardsetFormModal, #showSelectLearningUnitModal {
+    #setCardsetFormModal, #showSelectLearningUnitModal, #setLeitnerProgressCardsetFilter {
       ul > li {
         background-color: $cardset_form_list_background !important;
         border-bottom-color: $cardset_form_border !important;

@@ -1014,7 +1014,9 @@
     "boxIntervalDaily": "Daily",
     "boxInterval": "Every __days__ Days",
     "boxNotLearned": "untrained",
-    "boxNotLearnedShort": "untrained"
+    "boxNotLearnedShort": "untrained",
+    "index": "Index",
+    "indexDefault": "All cardsets"
   },
   "permission": "Permission denied",
   "nocards": "No cards available",

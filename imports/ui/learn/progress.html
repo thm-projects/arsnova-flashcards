@@ -24,7 +24,38 @@
 
 <template name="graph">
     <h4>{{getChartTitle}}</h4>
+    {{> graphCardsetFilter}}
     <canvas id="boxChart" data-box1="{{countBox 1}}"
             data-box2="{{countBox 2}}" data-box3="{{countBox 3}}" data-box4="{{countBox 4}}"
             data-box5="{{countBox 5}}" data-box6="{{countBox 6}}"></canvas>
+</template>
+
+<template name="graphCardsetFilter">
+    {{#if isShuffledCardset}}
+        <div id="setLeitnerProgressCardsetFilter">
+            <label id="setCardsetFiterlLabel" class="col-sm-4 control-label" for="setCardsetFiter">{{_
+                    "leitnerProgress.index"}}</label>
+            <div class="dropdown">
+                <div class="btn-group col-xs-12 col-sm-8">
+                    <button id="setCardsetFiter" type="button"
+                            class="btn btn-raised btn-default setCardsetFiterDropdown longButton"
+                            data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"
+                            value="-1">{{_ "leitnerProgress.indexDefault"}}
+                    </button>
+                    <button type="button"
+                            class="btn btn-raised dropdown-toggle setCardsetFiterDropdown"
+                            data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only"></span>
+                    </button>
+                    <ul class="dropdown-menu btn-raised longButton">
+                        <li class="cardset" value="-1" data="-1"><a href="#">{{_ "leitnerProgress.indexDefault"}}</a></li>
+                        {{{getCardsets}}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {{/if}}
 </template>
