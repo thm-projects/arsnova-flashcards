@@ -121,7 +121,6 @@ function drawGraph() {
 			}
 		}
 	});
-	updateGraphLabels();
 }
 
 function updateGraphData() {
@@ -231,10 +230,11 @@ Template.graph.helpers({
 });
 
 Template.graph.onRendered(function () {
+	drawGraph();
 	var self = this;
 	self.subscribe("leitner", function () {
 		self.autorun(function () {
-			drawGraph();
+			updateGraphLabels();
 			updateGraphData();
 		});
 	});
