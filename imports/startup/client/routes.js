@@ -250,6 +250,7 @@ Router.route('/progress/:_id/:user_id', {
 	template: 'progress',
 	data: function () {
 		Session.set('helpFilter', "workloadProgress");
+		Meteor.subscribe('leitner');
 		return Cardsets.findOne({_id: this.params._id});
 	}
 });

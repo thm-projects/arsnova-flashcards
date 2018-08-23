@@ -57,6 +57,14 @@ export let Route = class Route {
 		return Router.current().route.getName() === "box";
 	}
 
+	static isLeitnerProgress () {
+		return Router.current().route.getName() === "progress";
+	}
+
+	static isLeitnerProgressProfileOverview () {
+		return Router.current().route.getName() === "profileOverview";
+	}
+
 	/**
 	 * Function checks if route is a Cardset
 	 * @return {Boolean} Return true, when route is a Memo.
