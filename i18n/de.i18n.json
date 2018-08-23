@@ -967,7 +967,7 @@
     "box": "Box __number__",
     "learned": "gelernt",
     "boxIntervalDaily": "täglich",
-    "boxInterval": "Alle __days__ Tage",
+    "boxInterval": "nach __days__ Tagen",
     "boxNotLearned": "[neu oder vergessen]",
     "boxNotLearnedShort": "[neu | vergessen]"
   },

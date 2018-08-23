@@ -8,7 +8,7 @@ import {Session} from "meteor/session";
 import {Route} from "./route";
 
 let chart;
-let borderWidth = 2;
+let borderWidth = 1;
 let difficultyGotCards;
 
 let chartColors = {
@@ -120,7 +120,7 @@ export let LeitnerProgress = class LeitnerProgress {
 			if ($(window).width() < 993) {
 				firstBoxDescription = TAPi18n.__('leitnerProgress.boxNotLearnedShort');
 			}
-			box1Label = [TAPi18n.__('leitnerProgress.box', {number: 1}, Session.get('activeLanguage')), firstBoxDescription, firstInterval];
+			box1Label = [TAPi18n.__('leitnerProgress.box', {number: 1}, Session.get('activeLanguage')), firstInterval, firstBoxDescription];
 			box2Label = [TAPi18n.__('leitnerProgress.box', {number: 2}, Session.get('activeLanguage')), TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[1]}, Session.get('activeLanguage'))];
 			box3Label = [TAPi18n.__('leitnerProgress.box', {number: 3}, Session.get('activeLanguage')), TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[2]}, Session.get('activeLanguage'))];
 			box4Label = [TAPi18n.__('leitnerProgress.box', {number: 4}, Session.get('activeLanguage')), TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[3]}, Session.get('activeLanguage'))];
