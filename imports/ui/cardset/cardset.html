@@ -322,8 +322,8 @@
                                         <li id="learnMemo" class="wozniakList" {{disableIfOffline}}>{{_
                                                 "memo"}}</li>
                                         {{#if learningLeitner}}
-                                            <li id="leitnerProgress" class="hidden-xs progressList" {{disableIfOffline}}>{{_
-                                                    "leitnerProgress"}}</li>
+                                            <li id="leitnerProgress" class="progressList" {{disableIfOffline}}>{{_
+                                                    "admin.myProgress"}}</li>
                                         {{/if}}
                                         {{#if learningLeitner}}
                                             <li id="resetLeitner" class="resetLeitnerList"
@@ -1431,17 +1431,17 @@
                                         <i class="glyphicon glyphicon-info-sign"></i>
                                     </a>
                                 </th>
-                                <th>{{_ "subject1"}} [{{this.learningInterval.[0]}}]
+                                <th>{{_ "leitnerProgress.box" number=1}} [{{this.learningInterval.[0]}}]
                                 </th>
-                                <th>{{_ "subject2"}} [{{this.learningInterval.[1]}}]
+                                <th>{{_ "leitnerProgress.box" number=2}} [{{this.learningInterval.[1]}}]
                                 </th>
-                                <th>{{_ "subject3"}} [{{this.learningInterval.[2]}}]
+                                <th>{{_ "leitnerProgress.box" number=3}} [{{this.learningInterval.[2]}}]
                                 </th>
-                                <th>{{_ "subject4"}} [{{this.learningInterval.[3]}}]
+                                <th>{{_ "leitnerProgress.box" number=4}} [{{this.learningInterval.[3]}}]
                                 </th>
-                                <th>{{_ "subject5"}} [{{this.learningInterval.[4]}}]
+                                <th>{{_ "leitnerProgress.box" number=5}} [{{this.learningInterval.[4]}}]
                                 </th>
-                                <th>{{_ "subject6"}}</th>
+                                <th>{{_ "leitnerProgress.learned"}}</th>
                                 <th>{{_ "details"}}</th>
                             </tr>
                             {{#each getCardsetStats}}
