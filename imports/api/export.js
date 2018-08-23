@@ -4,23 +4,40 @@ import {Cards} from "./cards.js";
 import {check} from "meteor/check";
 import {exportAuthorName} from "./userdata";
 
-function exportCards(cardset_id, isCardsExport = true) {
+function exportCards(cardset_id, isCardsExport = true, exportWithIds = false) {
 	if (Meteor.isServer) {
 		let owner = Cardsets.findOne(cardset_id).owner;
-		let cards = Cards.find({
-			cardset_id: cardset_id
-		}, {
-			fields: {
-				'cardset_id': 0,
-				'cardGroup': 0,
-				'_id': 0,
-				'cardType': 0,
-				'difficulty': 0
-			}, sort: {
-				'subject': 1,
-				'front': 1
-			}
-		}).fetch();
+		var cards = [];
+		if (exportWithIds) {
+			cards = Cards.find({
+				cardset_id: cardset_id
+			}, {
+				fields: {
+					'cardset_id': 0,
+					'cardGroup': 0,
+					'cardType': 0,
+					'difficulty': 0
+				}, sort: {
+					'subject': 1,
+					'front': 1
+				}
+			}).fetch();
+		} else {
+			cards = Cards.find({
+				cardset_id: cardset_id
+			}, {
+				fields: {
+					'cardset_id': 0,
+					'cardGroup': 0,
+					'_id': 0,
+					'cardType': 0,
+					'difficulty': 0
+				}, sort: {
+					'subject': 1,
+					'front': 1
+				}
+			}).fetch();
+		}
 
 		let cardsString = '';
 
@@ -42,13 +59,14 @@ function exportCards(cardset_id, isCardsExport = true) {
 }
 
 Meteor.methods({
-	exportCards: function (cardset_id) {
+	exportCards: function (cardset_id, exportWithIds = false) {
 		check(cardset_id, String);
+		check(exportWithIds, Boolean);
 		let cardset = Cardsets.findOne(cardset_id);
 		if (cardset.owner !== Meteor.userId() && !Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || cardset.shuffled) {
 			throw new Meteor.Error("not-authorized");
 		}
-		return exportCards(cardset._id);
+		return exportCards(cardset._id, true, exportWithIds);
 	},
 	exportCardset: function (cardset_id) {
 		check(cardset_id, String);

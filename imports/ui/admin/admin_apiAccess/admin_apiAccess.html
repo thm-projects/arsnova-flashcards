@@ -1,0 +1,92 @@
+<template name="admin_apiAccess">
+    <div class="content-header">
+        <h1>
+            {{_ "admin.api.access"}}
+        </h1>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading panel-heading-mail">
+
+            <h3 class="panel-title">{{_ "admin.api.description"}}</h3>
+        </div>
+        <div class="panel-body panel-body-mail">
+            <div class="row" style="margin-bottom:10px; margin-left: 5px">
+                <button id="newApiAccess" type="button" class="btn btn-raised btn-success saveSet" data-toggle="modal"
+                        data-target="#newApiAccessFormModal">
+                    {{_ "admin.api.new"}}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="admin_table">
+            {{> reactiveTable collection=apiAccessTokens settings=tableSettings}}
+        </div>
+    </div>
+    {{> admin_newApiAccessForm}}
+    {{> admin_deleteApiAccessForm}}
+</template>
+
+<template name="admin_newApiAccessForm">
+    <div class="modal fade" id="newApiAccessFormModal" tabindex="-1" data-backdrop="static" role="dialog"
+         aria-labelledby="newApiAccessFormModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="setCardsetCourseIterationFormModalTitle" class="modal-title">
+                        {{_ "admin.api.description"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group setdetails name">
+                            <label id="setNameLabel" class="col-md-3 control-label"
+                                   for="setName">{{_ "admin.api.modal.cardsetId"}}</label>
+                            <div class="col-md-9">
+                                <input class="form-control" type="text" id="apiCardsetId">
+                                <span id="helpSetName" class="text-warning"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="apiAccessCancel" class="btn btn-raised cardSetCancel btn-default btn-block col-xs-12 col-sm-3"
+                            data-dismiss="modal">{{_ "modal-dialog.cancel"}}
+                    </button>
+                    <button id="apiAccessSave" class="btn btn-raised btn-success btn-block col-xs-12 col-sm-3 pull-right">
+                        {{_ "admin.api.modal.save"}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="admin_deleteApiAccessForm">
+    <div class="modal fade" id="apiAccessConfirmModalAdmin" tabindex="-1" role="dialog"
+         aria-labelledby="cardsetConfirmModalTitleAdmin">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="cardsetConfirmModalTitleAdmin" class="modal-title">{{_
+                            "admin.confirm-form.cardsets.title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{_ "admin.confirm-form.cardsets.text"}}</p>
+                    <br/>
+                    <hr/>
+
+                    <button id="apiAccessDeleteAdmin" class="btn btn-danger btn-setDelete" style="width:150px">
+                        {{_ "admin.confirm-form.cardsets.title"}}
+                    </button>
+                    <button id="apiAccessCancelAdmin" class="btn btn-default pull-right" data-dismiss="modal">
+                        {{_ "admin.confirm-form.cancel"}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

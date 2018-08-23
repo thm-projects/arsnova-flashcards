@@ -1211,6 +1211,19 @@
     "no": "No",
     "editLearning": "Learning-phase settings",
     "updateLearning": "Update Learning-phase",
+    "api": {
+      "access": "API Access",
+      "token": "Token",
+      "exportCardset": "Export cardset for API",
+      "description": "Enable API access to a cardset",
+      "new": "New API access",
+      "delete": "Delete API access",
+      "modal": {
+        "cardsetId": "Cardset ID",
+        "save": "Create Access"
+      },
+      "createFailure": "Error creating the API access"
+    },
     "confirm-form": {
       "cardsets": {
         "title": "Delete cardset",

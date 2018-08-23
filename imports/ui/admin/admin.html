@@ -124,6 +124,13 @@
                                 </a>
                             </li>
                             <li>
+                                <a class="{{#if isActiveRoute regex='admin_apiAccess'}}active{{/if}}"
+                                   href="{{pathFor route='admin_apiAccess'}}">
+                                    <i class="fa fa-cog"></i>
+                                    <span>{{_ "admin.api.access"}}</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a class="{{#if isActiveRoute regex='admin_notifications'}}active{{/if}}"
                                    href="{{pathFor route='admin_notifications'}}">
                                     <i class="fa fa-bell"></i>
