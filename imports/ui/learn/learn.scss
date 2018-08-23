@@ -66,3 +66,10 @@
 .disabledAnswer {
   opacity: 0;
 }
+
+#boxChart {
+  height: 550px !important;
+  @media(max-width: 767px) {
+    height: 240px !important;
+  }
+}
