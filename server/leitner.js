@@ -88,13 +88,14 @@ function addLeitnerCards(cardset, user_id) {
 		});
 
 		let newItems = [];
+		let newItemObject;
 		let nextDate = new Date();
 		cards = Cards.find({
 			_id: {$nin: excludedCards},
 			cardset_id: {$in: cardsetsWithLearningMode}
-		}, {fields: {_id: 1}}).fetch();
+		}, {fields: {_id: 1, cardset_id: 1}}).fetch();
 		cards.forEach(function (card) {
-			newItems.push({
+			newItemObject = {
 				card_id: card._id,
 				cardset_id: cardset._id,
 				user_id: user_id,
@@ -103,7 +104,11 @@ function addLeitnerCards(cardset, user_id) {
 				nextDate: nextDate,
 				currentDate: nextDate,
 				skipped: 0
-			});
+			};
+			if (cardset.shuffled) {
+				newItemObject.original_cardset_id = card.cardset_id;
+			}
+			newItems.push(newItemObject);
 		});
 		if (newItems.length > 0) {
 			Leitner.batchInsert(newItems);
