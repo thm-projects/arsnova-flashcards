@@ -2,7 +2,6 @@ import {Chart} from "chart.js";
 import {Cardsets} from "./cardsets";
 import {CardType} from "./cardTypes";
 import {Leitner} from "./learned";
-import {Cards} from "./cards";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Route} from "./route";
@@ -107,24 +106,35 @@ export let LeitnerProgress = class LeitnerProgress {
 	}
 
 	static updateGraphLabels (returnData = false) {
-		let learningInterval = Cardsets.findOne({_id: Router.current().params._id}).learningInterval;
-		let firstInterval = "";
+		let learningInterval;
+		let boxInterval1 = "";
+		let boxInterval2 = "";
+		let boxInterval3 = "";
+		let boxInterval4 = "";
+		let boxInterval5 = "";
+		if (Route.isLeitnerProgress()) {
+			learningInterval = Cardsets.findOne({_id: Router.current().params._id}).learningInterval;
+			if (learningInterval[0] <= 1) {
+				boxInterval1 = TAPi18n.__('leitnerProgress.boxIntervalDaily', Session.get('activeLanguage'));
+			} else {
+				boxInterval1 = TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[0]}, Session.get('activeLanguage'));
+			}
+			boxInterval2 = TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[1]}, Session.get('activeLanguage'));
+			boxInterval3 = TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[2]}, Session.get('activeLanguage'));
+			boxInterval4 = TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[3]}, Session.get('activeLanguage'));
+			boxInterval5 = TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[4]}, Session.get('activeLanguage'));
+		}
 		let firstBoxDescription = TAPi18n.__('leitnerProgress.boxNotLearned');
 		let box1Label = [], box2Label = [], box3Label = [], box4Label = [], box5Label = [], box6Label;
-		if (learningInterval[0] <= 1) {
-			firstInterval = TAPi18n.__('leitnerProgress.boxIntervalDaily', Session.get('activeLanguage'));
-		} else {
-			firstInterval = TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[0]}, Session.get('activeLanguage'));
-		}
 		if ($(window).width() >= 768) {
 			if ($(window).width() < 993) {
 				firstBoxDescription = TAPi18n.__('leitnerProgress.boxNotLearnedShort');
 			}
-			box1Label = [TAPi18n.__('leitnerProgress.box', {number: 1}, Session.get('activeLanguage')), firstInterval, firstBoxDescription];
-			box2Label = [TAPi18n.__('leitnerProgress.box', {number: 2}, Session.get('activeLanguage')), TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[1]}, Session.get('activeLanguage'))];
-			box3Label = [TAPi18n.__('leitnerProgress.box', {number: 3}, Session.get('activeLanguage')), TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[2]}, Session.get('activeLanguage'))];
-			box4Label = [TAPi18n.__('leitnerProgress.box', {number: 4}, Session.get('activeLanguage')), TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[3]}, Session.get('activeLanguage'))];
-			box5Label = [TAPi18n.__('leitnerProgress.box', {number: 5}, Session.get('activeLanguage')), TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[4]}, Session.get('activeLanguage'))];
+			box1Label = [TAPi18n.__('leitnerProgress.box', {number: 1}, Session.get('activeLanguage')), firstBoxDescription, boxInterval1];
+			box2Label = [TAPi18n.__('leitnerProgress.box', {number: 2}, Session.get('activeLanguage')), boxInterval2];
+			box3Label = [TAPi18n.__('leitnerProgress.box', {number: 3}, Session.get('activeLanguage')), boxInterval3];
+			box4Label = [TAPi18n.__('leitnerProgress.box', {number: 4}, Session.get('activeLanguage')), boxInterval4];
+			box5Label = [TAPi18n.__('leitnerProgress.box', {number: 5}, Session.get('activeLanguage')), boxInterval5];
 		} else {
 			box1Label = [TAPi18n.__('leitnerProgress.box', {number: 1}, Session.get('activeLanguage'))];
 			box2Label = [TAPi18n.__('leitnerProgress.box', {number: 2}, Session.get('activeLanguage'))];
@@ -141,75 +151,87 @@ export let LeitnerProgress = class LeitnerProgress {
 		}
 	}
 
-	static prepareCardFilter (difficulty) {
-		let prepareFilter;
+	static prepareDifficultyFilter (difficulty, cardset) {
 		let cardsetFilter = {};
-		let filterQuery = {};
-
-		if (Route.isLeitnerProgress()) {
-			let cardset = Cardsets.findOne({_id: Router.current().params._id}, {
-				Fields: {
-					_id: 1,
-					shuffled: 1,
-					cardGroups: 1
-				}
-			});
-
-			if (cardset.shuffled) {
-				cardsetFilter._id = {$in: cardset.cardGroups};
-			} else {
-				cardsetFilter._id = cardset._id;
-			}
-
-			if (difficulty === 0) {
-				cardsetFilter.cardType = {$nin: CardType.getCardTypesWithDifficultyLevel()};
-			} else {
-				cardsetFilter.cardType = {$in: CardType.getCardTypesWithDifficultyLevel()};
-				cardsetFilter.difficulty = difficulty;
-			}
-
-			filterQuery.cardset_id = {
-				$in: Cardsets.find(cardsetFilter, {_id: 1}).map(function (cardset) {
-					return cardset._id;
-				})
-			};
-		} else if (Route.isLeitnerProgressProfileOverview()) {
-			prepareFilter = Leitner.find({user_id: Meteor.userId()}, {_id: 1}).map(function (leitner) {
-				return leitner.card_id;
-			});
-			filterQuery._id = {$in: prepareFilter};
+		if (cardset.shuffled) {
+			cardsetFilter._id = {$in: cardset.cardGroups};
+		} else {
+			cardsetFilter._id = cardset._id;
 		}
 
-		return Cards.find(filterQuery, {_id: 1}).map(function (card) {
-			return card._id;
+		if (difficulty === 0) {
+			cardsetFilter.cardType = {$nin: CardType.getCardTypesWithDifficultyLevel()};
+		} else {
+			cardsetFilter.cardType = {$in: CardType.getCardTypesWithDifficultyLevel()};
+			cardsetFilter.difficulty = difficulty;
+		}
+
+		return Cardsets.find(cardsetFilter, {_id: 1}).map(function (cardset) {
+			return cardset._id;
 		});
 	}
 
 	static getCardCount (difficulty) {
-		let filterQuery = {};
+		let user_id;
 		let boxCount = 0;
+		let cardset;
+		let cardsets;
 		let cardCount = [0, 0, 0, 0, 0, 0];
-		let cardFilter;
+		let originalCardsetsIds = [];
+		let cardsetsIds = [];
+		let difficultyFilterResult;
 		difficultyGotCards = false;
 
-		cardFilter = this.prepareCardFilter(difficulty);
-		if (cardFilter.length !== 0) {
-			filterQuery.card_id = {$in: cardFilter};
-			if (Route.isLeitnerProgress()) {
-				filterQuery.cardset_id = Router.current().params._id;
-				filterQuery.user_id = Router.current().params.user_id;
-			} else if (Route.isLeitnerProgressProfileOverview()) {
-				filterQuery.user_id = Meteor.userId();
-			}
-
-			for (let i = 0; i < 6; i++) {
-				filterQuery.box = (i + 1);
-				boxCount = Leitner.find(filterQuery).count();
-				if (boxCount !== 0) {
-					difficultyGotCards = true;
+		if (Route.isLeitnerProgress()) {
+			cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {_id: 1, shuffled: 1, cardGroups: 1}});
+			if (cardset !== undefined) {
+				difficultyFilterResult = this.prepareDifficultyFilter(difficulty, cardset);
+				if (cardset.shuffled) {
+					originalCardsetsIds = originalCardsetsIds.concat(difficultyFilterResult);
+				} else {
+					cardsetsIds = cardsetsIds.concat(difficultyFilterResult);
 				}
-				cardCount[i] = boxCount;
 			}
+			user_id = Router.current().params.user_id;
+		} else {
+			let userFilter = {};
+			if (Route.isLeitnerProgressProfileOverview()) {
+				userFilter.user_id = Meteor.userId();
+			}
+			cardsets = _.uniq(Leitner.find(userFilter, {
+				fields: {cardset_id: 1}
+			}).fetch(), function (cardsets) {
+				return cardsets.cardset_id;
+			});
+
+			for (let i = 0; i < cardsets.length; i++) {
+				cardset = Cardsets.findOne({_id: cardsets[i].cardset_id}, {fields: {_id: 1, shuffled: 1, cardGroups: 1}});
+				if (cardset !== undefined) {
+					difficultyFilterResult = this.prepareDifficultyFilter(difficulty, cardset);
+					if (cardset.shuffled) {
+						originalCardsetsIds = originalCardsetsIds.concat(difficultyFilterResult);
+					} else {
+						cardsetsIds = cardsetsIds.concat(difficultyFilterResult);
+					}
+				}
+			}
+		}
+		let filterQuery = {
+			$or: [
+				{cardset_id: {$in: cardsetsIds}},
+				{original_cardset_id: {$in: originalCardsetsIds}}
+			]
+		};
+		if (user_id !== undefined) {
+			filterQuery.user_id = user_id;
+		}
+		for (let i = 0; i < 6; i++) {
+			filterQuery.box = (i + 1);
+			boxCount = Leitner.find(filterQuery).count();
+			if (boxCount !== 0) {
+				difficultyGotCards = true;
+			}
+			cardCount[i] = boxCount;
 		}
 		return cardCount;
 	}
