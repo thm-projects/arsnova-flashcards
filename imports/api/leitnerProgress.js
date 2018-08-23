@@ -56,10 +56,21 @@ export let LeitnerProgress = class LeitnerProgress {
 		});
 	}
 
-	static getGraphData () {
+	static updateGraph (filterCardset) {
+		let datasets;
+		if (filterCardset === "-1") {
+			datasets = this.getGraphData();
+		} else {
+			datasets = this.getGraphData(filterCardset);
+		}
+		chart.data.datasets = datasets;
+		chart.update();
+	}
+
+	static getGraphData (filterCardset = undefined) {
 		let graphData = [];
 
-		let cardDifficultyCount = this.getCardCount(0);
+		let cardDifficultyCount = this.getCardCount(0, filterCardset);
 		if (difficultyGotCards) {
 			graphData.push({
 				backgroundColor: chartColors.difficulty0Background,
@@ -70,7 +81,7 @@ export let LeitnerProgress = class LeitnerProgress {
 			});
 		}
 
-		cardDifficultyCount = this.getCardCount(1);
+		cardDifficultyCount = this.getCardCount(1, filterCardset);
 		if (difficultyGotCards) {
 			graphData.push({
 				backgroundColor: chartColors.difficulty1Background,
@@ -81,7 +92,7 @@ export let LeitnerProgress = class LeitnerProgress {
 			});
 		}
 
-		cardDifficultyCount = this.getCardCount(2);
+		cardDifficultyCount = this.getCardCount(2, filterCardset);
 		if (difficultyGotCards) {
 			graphData.push({
 				backgroundColor: chartColors.difficulty2Background,
@@ -92,7 +103,7 @@ export let LeitnerProgress = class LeitnerProgress {
 			});
 		}
 
-		cardDifficultyCount = this.getCardCount(3);
+		cardDifficultyCount = this.getCardCount(3, filterCardset);
 		if (difficultyGotCards) {
 			graphData.push({
 				backgroundColor: chartColors.difficulty3Background,
@@ -115,7 +126,7 @@ export let LeitnerProgress = class LeitnerProgress {
 		if (Route.isLeitnerProgress()) {
 			learningInterval = Cardsets.findOne({_id: Router.current().params._id}).learningInterval;
 			if (learningInterval[0] <= 1) {
-				boxInterval1 = TAPi18n.__('leitnerProgress.boxIntervalDaily', Session.get('activeLanguage'));
+				boxInterval1 = TAPi18n.__('leitnerProgress.boxIntervalDaily', {}, Session.get('activeLanguage'));
 			} else {
 				boxInterval1 = TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[0]}, Session.get('activeLanguage'));
 			}
@@ -124,11 +135,11 @@ export let LeitnerProgress = class LeitnerProgress {
 			boxInterval4 = TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[3]}, Session.get('activeLanguage'));
 			boxInterval5 = TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[4]}, Session.get('activeLanguage'));
 		}
-		let firstBoxDescription = TAPi18n.__('leitnerProgress.boxNotLearned');
+		let firstBoxDescription = TAPi18n.__('leitnerProgress.boxNotLearned', {}, Session.get('activeLanguage'));
 		let box1Label = [], box2Label = [], box3Label = [], box4Label = [], box5Label = [], box6Label;
 		if ($(window).width() >= 768) {
 			if ($(window).width() < 993) {
-				firstBoxDescription = TAPi18n.__('leitnerProgress.boxNotLearnedShort');
+				firstBoxDescription = TAPi18n.__('leitnerProgress.boxNotLearnedShort', {}, Session.get('activeLanguage'));
 			}
 			box1Label = [TAPi18n.__('leitnerProgress.box', {number: 1}, Session.get('activeLanguage')), firstBoxDescription, boxInterval1];
 			box2Label = [TAPi18n.__('leitnerProgress.box', {number: 2}, Session.get('activeLanguage')), boxInterval2];
@@ -142,7 +153,7 @@ export let LeitnerProgress = class LeitnerProgress {
 			box4Label = [TAPi18n.__('leitnerProgress.box', {number: 4}, Session.get('activeLanguage'))];
 			box5Label = [TAPi18n.__('leitnerProgress.box', {number: 5}, Session.get('activeLanguage'))];
 		}
-		box6Label = [TAPi18n.__('leitnerProgress.learned', Session.get('activeLanguage'))];
+		box6Label = [TAPi18n.__('leitnerProgress.learned', {}, Session.get('activeLanguage'))];
 		if (returnData) {
 			return [box1Label, box2Label, box3Label, box4Label, box5Label, box6Label];
 		} else {
@@ -171,7 +182,7 @@ export let LeitnerProgress = class LeitnerProgress {
 		});
 	}
 
-	static getCardCount (difficulty) {
+	static getCardCount (difficulty, filterCardset = undefined) {
 		let user_id;
 		let boxCount = 0;
 		let cardset;
@@ -182,14 +193,24 @@ export let LeitnerProgress = class LeitnerProgress {
 		let difficultyFilterResult;
 		difficultyGotCards = false;
 
-		if (Route.isLeitnerProgress()) {
-			cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {_id: 1, shuffled: 1, cardGroups: 1}});
+		if (Route.isLeitnerProgress() || filterCardset !== undefined) {
+			let cardset_id;
+			if (filterCardset !== undefined) {
+				cardset_id = filterCardset;
+			} else {
+				cardset_id = Router.current().params._id;
+			}
+			cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, shuffled: 1, cardGroups: 1}});
 			if (cardset !== undefined) {
 				difficultyFilterResult = this.prepareDifficultyFilter(difficulty, cardset);
 				if (cardset.shuffled) {
 					originalCardsetsIds = originalCardsetsIds.concat(difficultyFilterResult);
 				} else {
-					cardsetsIds = cardsetsIds.concat(difficultyFilterResult);
+					if (filterCardset !== undefined) {
+						originalCardsetsIds = originalCardsetsIds.concat(difficultyFilterResult);
+					} else {
+						cardsetsIds = cardsetsIds.concat(difficultyFilterResult);
+					}
 				}
 			}
 			user_id = Router.current().params.user_id;
