@@ -9,7 +9,6 @@ import {Cardsets} from "../../api/cardsets";
 import {Cards} from "../../api/cards";
 
 Meteor.subscribe("cardsets");
-Meteor.subscribe("cards");
 Session.set('animationPlaying', false);
 
 

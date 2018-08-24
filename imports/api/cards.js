@@ -6,125 +6,97 @@ import {Leitner, Wozniak} from "./learned.js";
 import {Paid} from "./paid.js";
 import {check} from "meteor/check";
 import {CardEditor} from "./cardEditor";
-import {getShuffledCardsetReferences} from "./cardsets";
 
 export const Cards = new Mongo.Collection("cards");
 
+function getPreviewCards(filterQuery) {
+	let count = Cards.find(filterQuery).count();
+	let cardIdArray = Cards.find(filterQuery, {_id: 1}).map(function (card) {
+		return card._id;
+	});
+	let limit;
+
+	if (count < 10) {
+		limit = 2;
+	} else {
+		limit = 5;
+	}
+
+	let j, x, i;
+	for (i = cardIdArray.length - 1; i > 0; i--) {
+		j = Math.floor(Math.random() * (i + 1));
+		x = cardIdArray[i];
+		cardIdArray[i] = cardIdArray[j];
+		cardIdArray[j] = x;
+	}
+	while (cardIdArray.length > limit) {
+		cardIdArray.pop();
+	}
+	return Cards.find({_id: {$in: cardIdArray}});
+}
+
 if (Meteor.isServer) {
-	Meteor.publish("cards", function () {
-		if (this.userId) {
-			if (!Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-				let paidCardsets = Paid.find({user_id: this.userId}).map(function (paid) {
-					return paid.cardset_id;
-				});
-				if (Roles.userIsInRole(this.userId, [
-					'admin',
-					'editor',
-					'lecturer'
-				])) {
-					return Cards.find({
-						cardset_id: {
-							$in: Cardsets.find({kind: {$nin: ['server']}}).map(function (cardset) {
-								return cardset._id;
-							})
-						}
-					});
-				} else if (Roles.userIsInRole(this.userId, 'pro')) {
-					return Cards.find({
-						cardset_id: {
-							$in: Cardsets.find(
-								{
-									$or: [
-										{owner: this.userId},
-										{visible: true},
-										{_id: {$in: paidCardsets}},
-										{_id: {$in: getShuffledCardsetReferences(['free', 'edu', 'pro'])}}
-									]
-								}).map(function (cardset) {
-								return cardset._id;
-							})
-						}
-					});
-				} else if (Roles.userIsInRole(this.userId, 'university')) {
-					return Cards.find({
-						cardset_id: {
-							$in: Cardsets.find(
-								{
-									$or: [
-										{owner: this.userId},
-										{
-											visible: true,
-											kind: {$in: ['demo', 'free', 'edu']}
-										},
-										{_id: {$in: paidCardsets}},
-										{_id: {$in: getShuffledCardsetReferences(['free', 'edu'])}}
-									]
-								}).map(function (cardset) {
-								return cardset._id;
-							})
-						}
-					});
-				} else {
-					return Cards.find({
-						cardset_id: {
-							$in: Cardsets.find(
-								{
-									$or: [
-										{owner: this.userId},
-										{
-											visible: true,
-											kind: {$in: ['demo', 'free']}
-										},
-										{_id: {$in: paidCardsets}},
-										{_id: {$in: getShuffledCardsetReferences(['free'])}}
-									]
-								}).map(function (cardset) {
-								return cardset._id;
-							})
-						}
-					});
-				}
+	Meteor.publish("demoCards", function () {
+		return Cards.find({
+			cardset_id: {
+				$in: Cardsets.find({kind: "demo"}).map(function (cardset) {
+					return cardset._id;
+				})
 			}
-		} else {
-			return Cards.find({
-				cardset_id: {
-					$in: Cardsets.find(
-						{
-							kind: {$in: ['demo']}
-						}).map(function (cardset) {
-						return cardset._id;
-					})
-				}
-			});
+		});
+	});
+	Meteor.publish("allCards", function () {
+		if (this.userId) {
+			if (Roles.userIsInRole(this.userId, [
+				'admin',
+				'editor'
+			])) {
+				return Cards.find();
+			}
 		}
 	});
-
-	Meteor.publish("previewCards", function (cardset_id) {
-		check(cardset_id, String);
-		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]) && Cardsets.findOne({_id: cardset_id}).visible === true) {
-			let count = Cards.find({cardset_id: cardset_id}).count();
-			let cardIdArray = Cards.find({cardset_id: cardset_id}, {_id: 1}).map(function (card) {
-				return card._id;
-			});
-			let limit;
-
-			if (count < 10) {
-				limit = 2;
+	Meteor.publish("cardsetCards", function (cardset_id) {
+		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1, cardGroups: 1, kind: 1}});
+		if (this.userId && cardset !== undefined) {
+			let user = Meteor.users.findOne({_id: this.userId}, {fields: {_id: 1}});
+			let paidCardsets = Paid.findOne({user_id: user._id, cardset_id: cardset._id});
+			let filterQuery = {
+				$or: [
+					{cardset_id: cardset._id},
+					{cardset_id: {$in: cardset.cardGroups}}
+				]
+			};
+			if (Roles.userIsInRole(this.userId, [
+				'admin',
+				'editor',
+				'lecturer'
+			])) {
+				return Cards.find(filterQuery);
+			} else if (Roles.userIsInRole(this.userId, 'pro')) {
+				if (cardset.owner === user._id || !cardset.kind.includes("personal")) {
+					return Cards.find(filterQuery);
+				}
+			} else if (Roles.userIsInRole(this.userId, 'university')) {
+				if (cardset.owner === user._id || cardset.kind.includes("free") || cardset.kind.includes("edu") || paidCardsets !== undefined) {
+					return Cards.find(filterQuery);
+				}
 			} else {
-				limit = 5;
+				if (cardset.owner === user._id || cardset.kind.includes("free") || paidCardsets !== undefined) {
+					return Cards.find(filterQuery);
+				}
 			}
-
-			let j, x, i;
-			for (i = cardIdArray.length - 1; i > 0; i--) {
-				j = Math.floor(Math.random() * (i + 1));
-				x = cardIdArray[i];
-				cardIdArray[i] = cardIdArray[j];
-				cardIdArray[j] = x;
-			}
-			while (cardIdArray.length > limit) {
-				cardIdArray.pop();
-			}
-			return Cards.find({cardset_id: cardset_id, _id: {$in: cardIdArray}});
+		}
+	});
+	Meteor.publish("previewCards", function (cardset_id) {
+		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1, cardGroups: 1, kind: 1}});
+		if (this.userId && !cardset.kind.includes("personal")) {
+			let filterQuery = {
+				$or: [
+					{cardset_id: cardset._id},
+					{cardset_id: {$in: cardset.cardGroups}}
+				]
+			};
+			return getPreviewCards(filterQuery);
 		}
 	});
 }
