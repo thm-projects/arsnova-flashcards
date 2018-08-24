@@ -141,7 +141,7 @@ export let LeitnerProgress = class LeitnerProgress {
 			if ($(window).width() < 993) {
 				firstBoxDescription = TAPi18n.__('leitnerProgress.boxNotLearnedShort', {}, Session.get('activeLanguage'));
 			}
-			box1Label = [TAPi18n.__('leitnerProgress.box', {number: 1}, Session.get('activeLanguage')), firstBoxDescription, boxInterval1];
+			box1Label = [TAPi18n.__('leitnerProgress.box', {number: 1}, Session.get('activeLanguage')), boxInterval1, firstBoxDescription];
 			box2Label = [TAPi18n.__('leitnerProgress.box', {number: 2}, Session.get('activeLanguage')), boxInterval2];
 			box3Label = [TAPi18n.__('leitnerProgress.box', {number: 3}, Session.get('activeLanguage')), boxInterval3];
 			box4Label = [TAPi18n.__('leitnerProgress.box', {number: 4}, Session.get('activeLanguage')), boxInterval4];
