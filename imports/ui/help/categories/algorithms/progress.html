@@ -1,4 +1,19 @@
 <template name="helpWorkloadProgress">
-    <h2>Lernaktivität</h2>
-    <p>Sorry, Hilfe folgt in Kürze.</p>
-</template>
+    <h2>Lernstand</h2>
+    <a href="/img/help/de/Lernstand.jpg" data-lightbox="img-1" data-title="Lernstandsanzeige">
+        <img src="/img/help/de/Lernstand.jpg" alt="Lernstandsanzeige"
+             class="img-responsive center-block">
+    </a>
+    <ul class="thm-numbering">
+        <li><strong>Kartenstapel:</strong> Das Balkendiagramm zeigt deinen Lernstand nach dem Wiederholungs-Algorithmus der 5-Fächer-Lernmethode von Leitner an:
+            Die Höhe eines Balkens (y-Achse) steht für die Anzahl der Karten, seine abschnittsweise Färbung für den Schwierigkeitsgrad der Karten.
+            Der Tooltipp zeigt alle Details.
+        </li>
+        <li><strong>Karteiauswahl bei Repetitorien:</strong> Da sich Repetitorien aus verschiedenen Karteien zusammensetzen,
+            kannst du mit diesem Auswahlmenü deinen Lernstand zum ausgewählten Karteithema anzeigen lassen.
+        </li>
+        <li><strong>Leitner-Intervalle:</strong> Die x-Achse des Balkendiagramms zeigt dir, wann du Karten gelernt hast.
+            Die Zeitintervalle werden – falls nicht anders von dir oder der Lehrperson festgelegt – nach den Vorgaben des Leitner-Algorithmus bestimmt,
+            siehe hierzu auch die Seite <a href="{{pathFor route='learning'}}">Lernen</a>.
+        </li>
+    </ul></template>
