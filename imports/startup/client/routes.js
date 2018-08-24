@@ -74,6 +74,9 @@ Router.route('impressum', {
 Router.route('demo', {
 	name: 'demo',
 	template: 'demo',
+	subscriptions: function () {
+		return [Meteor.subscribe('demoCards')];
+	},
 	data: function () {
 		Session.set('helpFilter', undefined);
 	}
@@ -82,6 +85,9 @@ Router.route('demo', {
 Router.route('demolist', {
 	name: 'demolist',
 	template: 'demo',
+	subscriptions: function () {
+		return [Meteor.subscribe('demoCards')];
+	},
 	data: function () {
 		Session.set('helpFilter', undefined);
 		return Cardsets.findOne({kind: 'demo', name: "DemoCardset", shuffled: true});
@@ -157,6 +163,9 @@ Router.route('/cardset', function () {
 Router.route('/cardset/:_id', {
 	name: 'cardsetdetailsid',
 	template: 'cardsetAccess',
+	subscriptions: function () {
+		return [Meteor.subscribe('cardsetCards', this.params._id)];
+	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', "cardset");
@@ -168,6 +177,9 @@ Router.route('/cardset/:_id', {
 Router.route('/cardset/:_id/card/:card_id', {
 	name: 'cardsetcard',
 	template: 'cardsetAccess',
+	subscriptions: function () {
+		return [Meteor.subscribe('cardsetCards', this.params._id)];
+	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', "cardset");
@@ -212,6 +224,9 @@ Router.route('/cardsetlist', function () {
 Router.route('/cardsetlist/:_id', {
 	name: 'cardsetlistid',
 	template: 'cardsetAccess',
+	subscriptions: function () {
+		return [Meteor.subscribe('cardsetCards', this.params._id)];
+	},
 	data: function () {
 		Session.set('helpFilter', "cardset");
 		Session.set('isNewCardset', false);
@@ -222,6 +237,9 @@ Router.route('/cardsetlist/:_id', {
 Router.route('/cardset/:_id/newcard', {
 	name: 'newCard',
 	template: 'newCard',
+	subscriptions: function () {
+		return [Meteor.subscribe('cardsetCards', this.params._id)];
+	},
 	data: function () {
 		Session.set('helpFilter', "cardEditor");
 		return Cardsets.findOne({_id: this.params._id});
@@ -231,6 +249,9 @@ Router.route('/cardset/:_id/newcard', {
 Router.route('/cardset/:_id/editcard/:card_id', {
 	name: 'editCard',
 	template: 'editCard',
+	subscriptions: function () {
+		return [Meteor.subscribe('cardsetCards', this.params._id)];
+	},
 	data: function () {
 		Session.set('helpFilter', "cardEditor");
 		CardEditor.loadEditModeContent(Cards.findOne({_id: this.params.card_id}));
@@ -258,6 +279,9 @@ Router.route('/progress/:_id/:user_id', {
 Router.route('/box/:_id', {
 	name: 'box',
 	template: 'learnAlgorithmAccess',
+	subscriptions: function () {
+		return [Meteor.subscribe('cardsetCards', this.params._id)];
+	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', "leitner");
@@ -268,6 +292,9 @@ Router.route('/box/:_id', {
 Router.route('/memo/:_id', {
 	name: 'memo',
 	template: 'learnAlgorithmAccess',
+	subscriptions: function () {
+		return [Meteor.subscribe('cardsetCards', this.params._id)];
+	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', "wozniak");
@@ -278,6 +305,9 @@ Router.route('/memo/:_id', {
 Router.route('/presentationlist/:_id', {
 	name: 'presentationlist',
 	template: 'presentation',
+	subscriptions: function () {
+		return [Meteor.subscribe('cardsetCards', this.params._id)];
+	},
 	data: function () {
 		Session.set('helpFilter', undefined);
 		return Cardsets.findOne({_id: this.params._id});
@@ -287,6 +317,9 @@ Router.route('/presentationlist/:_id', {
 Router.route('/presentation/:_id', {
 	name: 'presentation',
 	template: 'presentation',
+	subscriptions: function () {
+		return [Meteor.subscribe('cardsetCards', this.params._id)];
+	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', undefined);
@@ -297,6 +330,9 @@ Router.route('/presentation/:_id', {
 Router.route('makingofcards', {
 	name: 'making',
 	template: 'makingOfCards',
+	subscriptions: function () {
+		return [Meteor.subscribe('demoCards')];
+	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', undefined);
@@ -307,6 +343,9 @@ Router.route('makingofcards', {
 Router.route('makingofcardslist', {
 	name: 'makinglist',
 	template: 'makingOfCards',
+	subscriptions: function () {
+		return [Meteor.subscribe('demoCards')];
+	},
 	data: function () {
 		Session.set('helpFilter', undefined);
 		return Cardsets.findOne({kind: 'demo', name: "MakingOfCardset", shuffled: true});
@@ -378,6 +417,9 @@ Router.route('/admin/cardset/:_id', {
 	name: 'admin_cardset',
 	template: 'admin_cardset',
 	layoutTemplate: 'admin_main',
+	subscriptions: function () {
+		return [Meteor.subscribe('allCards')];
+	},
 	data: function () {
 		Session.set('helpFilter', undefined);
 		Session.set('isNewCardset', false);
@@ -389,6 +431,9 @@ Router.route('/admin/cards', {
 	name: 'adminCards',
 	template: 'admin_cards',
 	layoutTemplate: 'admin_main',
+	subscriptions: function () {
+		return [Meteor.subscribe('allCards')];
+	},
 	data: function () {
 		Session.set('helpFilter', undefined);
 	}
@@ -398,6 +443,9 @@ Router.route('/admin/card/:_id', {
 	name: 'adminCard',
 	template: 'admin_card',
 	layoutTemplate: 'admin_main',
+	subscriptions: function () {
+		return [Meteor.subscribe('allCards')];
+	},
 	data: function () {
 		Session.set('helpFilter', undefined);
 		return Cards.findOne({_id: this.params._id});
@@ -493,7 +541,10 @@ export function firstLoginBertAlert() {
 			if (localStorage.getItem(firstTimeLogin) === "true") {
 				Bert.defaults.hideDelay = 97200;
 				Bert.alert({
-					title: TAPi18n.__('bertAlert.firstLogin.title', {firstAppTitle: Meteor.settings.public.welcome.title.first, lastAppTitle: Meteor.settings.public.welcome.title.last}),
+					title: TAPi18n.__('bertAlert.firstLogin.title', {
+						firstAppTitle: Meteor.settings.public.welcome.title.first,
+						lastAppTitle: Meteor.settings.public.welcome.title.last
+					}),
 					message: TAPi18n.__('bertAlert.firstLogin.message', {lastAppTitle: Meteor.settings.public.welcome.title.last}),
 					type: 'warning',
 					style: 'growl-top-left',
