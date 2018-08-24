@@ -14,7 +14,6 @@ import * as fakeInventory from '../../../public/fakeStatistics/inventory.json';
 import * as fakeWordCloud from '../../../public/fakeStatistics/wordcloud.json';
 
 Meteor.subscribe("cardsets");
-Meteor.subscribe("cards");
 Meteor.subscribe("userData");
 Meteor.subscribe("serverInventory");
 

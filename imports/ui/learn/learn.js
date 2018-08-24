@@ -9,7 +9,6 @@ import {CardNavigation} from "../../api/cardNavigation";
 import "./learn.html";
 
 Meteor.subscribe("cardsets");
-Meteor.subscribe("cards");
 Session.set('animationPlaying', false);
 
 /*

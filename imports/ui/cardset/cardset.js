@@ -211,8 +211,24 @@ Template.cardsetPreview.events({
 
 Template.cardsetPreview.onCreated(function () {
 	if (Router.current().params._id) {
-		Cards._collection.remove({cardset_id: Router.current().params._id});
-		Meteor.subscribe("previewCards", Router.current().params._id);
+		let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {_id: 1, cardGroups: 1}});
+		if (cardset !== undefined) {
+			let filterQuery = {
+				$or: [
+					{cardset_id: cardset._id},
+					{cardset_id: {$in: cardset.cardGroups}}
+				]
+			};
+			Cards._collection.remove(filterQuery);
+			Meteor.subscribe("previewCards", cardset._id);
+		}
+	}
+});
+
+Template.cardsetPreview.onDestroyed(function () {
+	if (Router.current().params._id) {
+		Meteor.subscribe('cardsetCards', Router.current().params._id);
+		Session.set('activeCard', undefined);
 	}
 });
 
@@ -415,7 +431,6 @@ Template.cardsetInfo.onCreated(function () {
 	$('[data-toggle="tooltip"]').tooltip({
 		container: 'body'
 	});
-	Meteor.subscribe("cards");
 });
 
 Template.cardsetInfo.onRendered(function () {

@@ -22,7 +22,16 @@ Template.cardHeaderItemCountCards.helpers({
 			return Cardsets.findOne({kind: 'demo', name: 'MakingOfCardset', shuffled: true}).quantity;
 		}
 		if (isPreview) {
-			return Cards.find({cardset_id: Router.current().params._id}).count();
+			let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {_id: 1, cardGroups: 1}});
+			if (cardset !== undefined) {
+				let filterQuery = {
+					$or: [
+						{cardset_id: cardset._id},
+						{cardset_id: {$in: cardset.cardGroups}}
+					]
+				};
+				return Cards.find(filterQuery).count();
+			}
 		} else {
 			return Cardsets.findOne({_id: Router.current().params._id}).quantity;
 		}

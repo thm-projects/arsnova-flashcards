@@ -26,7 +26,6 @@ Template.contact.events({
 
 Template.contact.onCreated(function () {
 	this.subscribe("cardsets");
-	this.subscribe("cards");
 });
 
 /*
