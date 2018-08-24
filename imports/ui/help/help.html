@@ -25,15 +25,15 @@
                 {{> helpMyCardsets}}
             {{/if}}
             {{#if displayHelpCategory "cardset"}}
-                {{> helpBonus}}
-                {{> helpPresentation}}
                 {{> helpCardView}}
-            {{/if}}
-            {{#if displayHelpCategory "cardEditor"}}
-                {{> helpCardEditor}}
+                {{> helpPresentation}}
+                {{> helpBonus}}
             {{/if}}
             {{#if displayHelpCategory "workloadProgress"}}
                 {{> helpWorkloadProgress}}
+            {{/if}}
+            {{#if displayHelpCategory "cardEditor"}}
+                {{> helpCardEditor}}
             {{/if}}
         </div>
     </div>

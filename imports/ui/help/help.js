@@ -4,6 +4,7 @@ import "./categories/algorithms/progress.html";
 import "./categories/algorithms/wozniak.html";
 import "./categories/card/editor.html";
 import "./categories/cardset/bonus.html";
+import "./categories/cardset/cardView.html";
 import "./categories/cardset/presentation.html";
 import "./categories/cardset/preview.html";
 import "./categories/filterResults/myCardsets.html";
