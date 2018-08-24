@@ -317,8 +317,8 @@
   },
   "profile": {
     "logout": "Ausloggen",
-    "activity": "Lernaktivität",
-    "overview": "Lernaktivität",
+    "activity": "Lernstand",
+    "overview": "Summativer Lernstand",
     "billing": "Abrechnung (Testbetrieb)",
     "membership": "Mitgliedschaft (Testbetrieb)",
     "notifications": "Nachrichten",
@@ -970,7 +970,7 @@
     "boxInterval": "nach __days__ Tagen",
     "boxNotLearned": "[neu oder vergessen]",
     "boxNotLearnedShort": "[neu | vergessen]",
-    "index": "Inhalt",
+    "index": "Ausgewählte Kartei:",
     "indexDefault": "Alle Karteien"
   },
   "permission": "Kein Zugang",
@@ -1107,7 +1107,7 @@
     "private": "Privat",
     "shuffled": "gemischte",
     "lecturer": "Dozent/in",
-    "learningStatistics": "Lernstatistik",
+    "learningStatistics": "Lernstand-Statistik",
     "mail": "Mail",
     "joined": "Beigetreten",
     "blocked": "Blockiert",
