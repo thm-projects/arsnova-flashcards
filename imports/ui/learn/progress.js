@@ -46,6 +46,7 @@ Template.graph.helpers({
 
 Template.graph.onRendered(function () {
 	LeitnerProgress.drawGraph();
+	LeitnerProgress.updateGraphLabels();
 	new ResizeSensor($('#boxChart'), function () {
 		LeitnerProgress.updateGraphLabels();
 	});
