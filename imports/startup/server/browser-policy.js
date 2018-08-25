@@ -19,7 +19,6 @@ BrowserPolicy.content.allowOriginForAll('https://fonts.googleapis.com');
 BrowserPolicy.content.allowOriginForAll('https://fonts.gstatic.com');
 BrowserPolicy.content.allowOriginForAll('https://dict.tu-chemnitz.de');
 BrowserPolicy.content.allowOriginForAll('https://casual-effects.com');
-BrowserPolicy.content.allowOriginForAll('https://homepages.thm.de');
-BrowserPolicy.content.allowOriginForAll('https://homepages-fb.thm.de');
 
 BrowserPolicy.content.allowImageOrigin('*');
+BrowserPolicy.content.allowMediaOrigin('*');
