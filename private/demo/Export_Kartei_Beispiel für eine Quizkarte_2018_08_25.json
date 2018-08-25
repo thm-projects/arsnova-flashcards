@@ -2,7 +2,7 @@
   "name": "E: Beispiel für eine Quizkarte",
   "description": "Beispielkarte für die Demo-Kartei",
   "date": "2018-07-30T17:15:09.922Z",
-  "dateUpdated": "2018-08-19T09:55:38.438Z",
+  "dateUpdated": "2018-08-25T12:16:49.227Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -36,7 +36,7 @@
   }
 }, {
   "subject": "Die Millionenfrage",
-  "front": "Aus wie vielen Steinchen besteht der **Zauberwürfel** von Ernő Rubik?\n\n![Rubiks Zauberwürfel, [Wikipedia](https://de.wikipedia.org/wiki/Zauberw%C3%BCrfel)](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Rubik's_cube_v3.svg/435px-Rubik's_cube_v3.svg.png width=350px)\n",
+  "front": "Aus insgesamt wie vielen Steinchen besteht der klassische von Ernö Rubik erfundene **Zauberwürfel**?[^RTL-Show]\n\n![Rubiks Zauberwürfel, [Wikipedia](https://de.wikipedia.org/wiki/Zauberw%C3%BCrfel)](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Rubik's_cube_v3.svg/435px-Rubik's_cube_v3.svg.png width=350px)\n\n<br />\n\n[^RTL-Show]: 14. Millionenfrage in der RTL-Show [Wer wird Millionär?](https://de.wikipedia.org/wiki/Wer_wird_Million%C3%A4r%3F#Bisherige_Hauptgewinner) \n(gesendet am 7. Dezember 2015)\n",
   "back": "![How a Rubik's Cube Works](\"https://www.youtube.com/watch?v=1p0qN1_qWoA\")",
   "centerTextElement": [
     true,
@@ -51,7 +51,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2018-08-19T09:55:38.415Z",
+  "dateUpdated": "2018-08-25T12:16:49.204Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
