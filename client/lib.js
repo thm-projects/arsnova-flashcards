@@ -21,9 +21,12 @@ export function setLightBoxes(content) {
 	return $('<div/>').append(element).html();
 }
 
-export function displayVideoControls(content) {
-	var element = $(content);
+export function displayMediaControls(content) {
+	let element = $(content);
 	$(element).find('video').each(function () {
+		$(this).attr('controls', true);
+	});
+	$(element).find('audio').each(function () {
 		$(this).attr('controls', true);
 	});
 	return $('<div/>').append(element).html();

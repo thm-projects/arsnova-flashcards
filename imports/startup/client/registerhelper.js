@@ -667,7 +667,7 @@ const helper = new MeteorMathJax.Helper({
 		x = window.markdeep.format(x, true);
 		x = DOMPurify.sanitize(x, DOMPurifyConfig);
 		x = lib.setLightBoxes(x);
-		x = lib.displayVideoControls(x);
+		x = lib.displayMediaControls(x);
 		CardVisuals.setTextZoom();
 		return lib.setLinkTarget(x);
 	}
