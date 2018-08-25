@@ -1148,11 +1148,11 @@
     "editLearning": "Bonus-Einstellungen",
     "updateLearning": "Bonus-Einstellungen aktualisieren",
     "api": {
-      "access": "API Zugänge",
+      "access": "API-Zugänge",
       "token": "Schlüssel",
       "exportCardset": "Export der Kartei für API",
-      "description": "Aktiviert den API Zugang zu einer Kartei",
-      "new": "Neuer API Zugang",
+      "description": "Aktiviert den API-Zugang zu einer Kartei",
+      "new": "Neuer API-Zugang",
       "delete": "Zugang löschen",
       "modal": {
         "cardsetId": "ID des Kartensatzes",
