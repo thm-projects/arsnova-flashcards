@@ -255,6 +255,7 @@
     "missingFields": "Missing Fields",
     "newcarddeck": "Create a new deck of cards",
     "editcard": "Edit deck of cards",
+    "adminEditCardset": "Admin-Settings",
     "editreferences": "Edit references",
     "name": "Title",
     "nameplaceholder": "Title of the cardset",

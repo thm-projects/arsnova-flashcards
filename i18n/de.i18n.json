@@ -245,6 +245,7 @@
     "missingFields": "Bitte fülle die folgenden Felder aus",
     "newcarddeck": "Kartei anlegen",
     "editcard": "Beschreibung editieren",
+    "adminEditCardset": "Admin-Einstellungen",
     "editreferences": "Repetitorium neu zusammenstellen",
     "name": "Thema",
     "nameplaceholder": "Das Thema der Kartei mit einem Wort",

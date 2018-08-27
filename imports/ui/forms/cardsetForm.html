@@ -25,6 +25,55 @@
     </div>
 </template>
 
+<template name="cardsetFormAdmin">
+    <div class="modal fade" id="setCardsetFormAdminModal" tabindex="-1" data-backdrop="static" role="dialog"
+         aria-labelledby="setCardsetFormAdminModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="setCardsetFormAdminModalTitle" class="modal-title">
+                        {{_ "modal-dialog.adminEditCardset"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label id="editCardsetUserLabelAdmin">{{_ "admin.cardset.username"}}</label>
+                        {{#if userExists}}
+                            <a href="/admin/user/{{getOwnerId}}" target="_blank">{{getAuthorName getOwnerId}}</a>
+                        {{else}}
+                            {{username}} ({{_ "admin.deleted"}})
+                        {{/if}}
+                    </div>
+                    <div class="form-group">
+                        <label id="cardsetOwnerAdminLabel">{{_ "admin.cardset.userID"}}</label>
+                        {{#if userExists}}
+                            <input class="form-control" type="text" id="editOwnerAdmin"
+                                   value="{{getOwnerId}}">
+                        {{else}}
+                            {{username}} ({{_ "admin.deleted"}})
+                        {{/if}}
+                        <a id="cardsetChangeOwnerAdmin" class="btn btn-raised btn-success">
+                            {{_ "admin.cardset.changeOwner"}}</a>
+                        <label id="cardsetChangeOwnerAdminLabel" for="cardsetChangeOwnerAdmin"
+                               style="visibility: hidden;"></label>
+                    </div>
+                    <div class="form-group">
+                        <label id="cardsetWordcloud">{{_ "admin.cardset.wordcloud"}}</label>
+                        {{#if isInWordcloud}}
+                            <a id="cardsetRemoveFromWordcloude" class="btn btn-raised btn-danger">
+                                {{_ "admin.cardset.removeFromWordcloud"}}</a>
+                        {{else}}
+                            <a id="cardsetAddToWordcloude" class="btn btn-raised btn-success">
+                                {{_ "admin.cardset.addToWordcloud"}}</a>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
 <template name="cardsetFormContent">
     <div class="modal-body">
         <div class="form-horizontal">
@@ -101,7 +150,8 @@
                 {{/unless}}
             {{/unless}}
             <button id="cardSetCancel" class="btn btn-raised {{#unless
-                    isNew}}{{#if isActiveRoute regex='cardsetdetailsid|cardsetlistid'}}cardSetCancel{{/if}}{{/unless}} btn-default btn-block col-xs-12 col-sm-3"
+                    isNew}}{{#if isActiveRoute
+                                 regex='cardsetdetailsid|cardsetlistid'}}cardSetCancel{{/if}}{{/unless}} btn-default btn-block col-xs-12 col-sm-3"
                     data-dismiss="modal">{{_
                     "modal-dialog.cancel"}}</button>
             <button id="cardSetSave"

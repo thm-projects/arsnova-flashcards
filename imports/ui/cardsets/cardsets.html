@@ -6,6 +6,9 @@
             {{> access_denied_content_only}}
         {{else}}
             {{> showLicense}}
+            {{#if isActiveRoute regex='alldecks|repetitorium'}}
+                {{> cardsetFormAdmin}}
+            {{/if}}
             {{#if isActiveRoute regex='alldecks|create'}}
                 {{> cardsetDeleteForm}}
                 {{> cardsetForm}}

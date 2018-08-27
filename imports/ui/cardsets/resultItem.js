@@ -136,7 +136,7 @@ Template.cardsetCourseIterationResultRow.events({
 			_id: $(event.target).data('id')
 		});
 	},
-	'click .editCardset': function (event) {
+	'click .editCardset, click .editAdminCardset': function (event) {
 		Session.set('isNewCardset', false);
 		Session.set('activeCardset', Cardsets.findOne($(event.target).data('id')));
 		Session.set('previousCardsetData', Cardsets.findOne($(event.target).data('id')));

@@ -165,6 +165,53 @@ Template.cardsetForm.helpers({
 		return isNewCardset();
 	}
 });
+/*
+ * ############################################################################
+ * cardsetFormAdmin
+ * ############################################################################
+ */
+Template.cardsetFormAdmin.onRendered(function () {
+	$('#setCardsetFormAdminModal').on('show.bs.modal', function () {
+		$('#cardsetChangeOwnerAdminLabel').html("");
+	});
+	$('#setCardsetFormAdminModal').on('hidden.bs.modal', function () {
+		Session.get('activeCardset', undefined);
+	});
+});
+
+Template.cardsetFormAdmin.helpers({
+	isInWordcloud: function () {
+		return Session.get('activeCardset').wordcloud;
+	},
+	getOwnerId: function () {
+		return Session.get('activeCardset').owner;
+	}
+});
+
+Template.cardsetFormAdmin.events({
+	'click #cardsetChangeOwnerAdmin': function (evt, tmpl) {
+		let owner = tmpl.find('#editOwnerAdmin').value;
+		Meteor.call('changeOwner', Session.get('activeCardset')._id, owner, function (error, result) {
+			if (error || result === false) {
+				$('#cardsetChangeOwnerAdminLabel').css({'visibility': 'visible', 'color': '#b94a48'});
+				$('#cardsetChangeOwnerAdminLabel').html(TAPi18n.__('admin.cardset.changeOwnerFailure'));
+			} else {
+				$('#cardsetChangeOwnerAdminLabel').css({'visibility': 'visible', 'color': '#4ab948'});
+				$('#cardsetChangeOwnerAdminLabel').html(TAPi18n.__('admin.cardset.changeOwnerSuccess'));
+				Session.set('activeCardset', Cardsets.findOne(Session.get('activeCardset')._id));
+			}
+		});
+	},
+	'click #cardsetAddToWordcloude': function () {
+		Meteor.call('updateWordcloudStatus', Session.get('activeCardset')._id, true);
+		Session.set('activeCardset', Cardsets.findOne(Session.get('activeCardset')._id));
+	},
+	'click #cardsetRemoveFromWordcloude': function () {
+		Meteor.call('updateWordcloudStatus', Session.get('activeCardset')._id, false);
+		Session.set('activeCardset', Cardsets.findOne(Session.get('activeCardset')._id));
+	}
+});
+
 
 /*
  * ############################################################################
