@@ -9,37 +9,35 @@ export const Wozniak = new Mongo.Collection("wozniak");
 
 
 if (Meteor.isServer) {
-	Meteor.publish("leitner", function () {
-		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]) && Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
-			return Leitner.find({
-				$or: [
-					{user_id: this.userId},
-					{
-						cardset_id: {
-							$in: Cardsets.find(
-								{
-									id: {$nin: ['NotificationsTestCardset']},
-									$or: [
-										{owner: this.userId},
-										{editors: {$in: [this.userId]}}
-									],
-									learningActive: true
-								}).map(function (cardset) {
-								return cardset._id;
-							})
-						}
-					}
-				]
-			});
-		} else if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-			return Leitner.find({
-				user_id: this.userId,
-				cardset_id: {
-					$in: Cardsets.find({}).map(function (cardset) {
-						return cardset._id;
-					})
-				}
-			});
+	Meteor.publish("cardsetLeitner", function (cardset_id) {
+		if (this.userId) {
+			return Leitner.find({cardset_id: cardset_id, user_id: this.userId});
+		}
+	});
+	Meteor.publish("userCardsetLeitner", function (cardset_id, user_id) {
+		if (this.userId) {
+			if (this.userId === user_id || Roles.userIsInRole(this.userId, [
+				'admin',
+				'editor',
+				'lecturer'
+			])) {
+				return Leitner.find({cardset_id: cardset_id, user_id: user_id});
+			}
+		}
+	});
+	Meteor.publish("userLeitner", function () {
+		if (this.userId) {
+			return Leitner.find({user_id: this.userId});
+		}
+	});
+	Meteor.publish("allLeitner", function () {
+		if (this.userId) {
+			if (Roles.userIsInRole(this.userId, [
+				'admin',
+				'editor'
+			])) {
+				return Leitner.find({});
+			}
 		}
 	});
 	Meteor.publish("wozniak", function () {
@@ -66,17 +64,6 @@ if (Meteor.isServer) {
 				user_id: this.userId,
 				cardset_id: {
 					$in: Cardsets.find({}).map(function (cardset) {
-						return cardset._id;
-					})
-				}
-			});
-		}
-	});
-	Meteor.publish("allLearned", function () {
-		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]) && Roles.userIsInRole(this.userId, ["admin", "editor"])) {
-			return Leitner.find({
-				cardset_id: {
-					$in: Cardsets.find({_id: {$nin: ['NotificationsTestCardset']}}).map(function (cardset) {
 						return cardset._id;
 					})
 				}

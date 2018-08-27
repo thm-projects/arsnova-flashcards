@@ -17,9 +17,6 @@ Meteor.subscribe("colorThemes");
 Meteor.subscribe('default_db_data', function () {
 	Session.set('data_loaded', true);
 });
-Meteor.subscribe('leitner', function () {
-	Session.set('data_ready', true);
-});
 
 Template.registerHelper("getUser", function () {
 	var user = Meteor.users.findOne(Router.current().params._id);

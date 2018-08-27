@@ -5,19 +5,15 @@
         {{#if isInRole 'blocked'}}
             {{> access_denied_content_only}}
         {{else}}
-            {{#if gotCards}}
-                <div class="container">
-                    <div class="well">
-                        {{> graph}}
-                    </div>
-                    <button class="btn btn-block btn-raised btn-danger" id="backButton">
+            <div class="container">
+                <div class="well">
+                    {{> graph}}
+                </div>
+                <button class="btn btn-block btn-raised btn-danger" id="backButton">
                         <span class="pull-left">{{#if isStatsOwner}}{{_ "backbutton"}}{{else}}{{_
                                 "backbuttonStatistics"}}{{/if}}</span>
-                    </button>
-                </div>
-            {{else}}
-                {{> access_denied_content_only}}
-            {{/if}}
+                </button>
+            </div>
         {{/if}}
     {{/if}}
 </template>
@@ -51,7 +47,8 @@
                         <span class="sr-only"></span>
                     </button>
                     <ul class="dropdown-menu btn-raised longButton">
-                        <li class="cardset" value="-1" data="-1"><a href="#">{{_ "leitnerProgress.indexDefault"}}</a></li>
+                        <li class="cardset" value="-1" data="-1"><a href="#">{{_ "leitnerProgress.indexDefault"}}</a>
+                        </li>
                         {{{getCardsets}}}
                     </ul>
                 </div>
