@@ -3,6 +3,8 @@ import {CardType} from "../../../api/cardTypes";
 import {Template} from "meteor/templating";
 import {CardVisuals} from "../../../api/cardVisuals";
 import "./content.html";
+import {Route} from "../../../api/route";
+import {isNewCardset} from "../../forms/cardsetForm";
 
 /*
  * ############################################################################
@@ -39,5 +41,14 @@ Template.markdeepContent.helpers({
 	},
 	isNew: function () {
 		return Session.get('isNewCardset');
+	},
+	isRepetitorium: function () {
+		if (isNewCardset()) {
+			return Route.isRepetitorium();
+		} else {
+			if (Session.get('activeCardset') !== undefined) {
+				return Session.get('activeCardset').shuffled;
+			}
+		}
 	}
 });

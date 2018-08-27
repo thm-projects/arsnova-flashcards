@@ -116,7 +116,7 @@ Template.cardsetCourseIterationResultRow.events({
 		});
 	},
 	"click .learnSelect": function (event) {
-		Session.set("activeCardset", $(event.target).data('id'));
+		Session.set("activeCardset", Cardsets.findOne($(event.target).data('id')));
 	},
 	'click .authorProfile': function (event) {
 		event.preventDefault();
@@ -138,7 +138,7 @@ Template.cardsetCourseIterationResultRow.events({
 	},
 	'click .editCardset': function (event) {
 		Session.set('isNewCardset', false);
-		Session.set('cardsetId', $(event.target).data('id'));
+		Session.set('activeCardset', Cardsets.findOne($(event.target).data('id')));
 		Session.set('previousCardsetData', Cardsets.findOne($(event.target).data('id')));
 	},
 	'click .collapseCardsetInfoButton': function (event) {

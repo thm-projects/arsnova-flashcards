@@ -8,7 +8,7 @@
             </form>
         {{else}}
             <textarea class="form-control" data-provide="markdown" rows="10"
-                      placeholder="{{_ "modal-dialog.descriptionplaceholder" lastAppTitle=(getLastAppTitle)}}"
+                      placeholder="{{#if isRepetitorium}}{{_ "courseIteration.modal.placeholder.description"}}{{else}}{{_ "modal-dialog.descriptionplaceholder" lastAppTitle=(getLastAppTitle)}}{{/if}}"
                       id="contentEditor"
                       value="{{#if
                               isNew}}{{getShuffleDescription}}{{else}}{{description}}{{/if}}"></textarea>
