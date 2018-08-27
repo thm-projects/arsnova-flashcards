@@ -140,6 +140,9 @@ Router.route('/repetitorium', {
 Router.route('/learn', {
 	name: 'learn',
 	template: 'cardsets',
+	subscriptions: function () {
+		return [Meteor.subscribe('userLeitner')];
+	},
 	data: function () {
 		Session.set('helpFilter', "workload");
 		Filter.resetMaxItemCounter();
@@ -164,7 +167,7 @@ Router.route('/cardset/:_id', {
 	name: 'cardsetdetailsid',
 	template: 'cardsetAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetCards', this.params._id)];
+		return [Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id)];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
@@ -225,7 +228,7 @@ Router.route('/cardsetlist/:_id', {
 	name: 'cardsetlistid',
 	template: 'cardsetAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetCards', this.params._id)];
+		return [Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id)];
 	},
 	data: function () {
 		Session.set('helpFilter', "cardset");
@@ -269,9 +272,16 @@ Router.route('/pool', {
 Router.route('/progress/:_id/:user_id', {
 	name: 'progress',
 	template: 'progress',
+	subscriptions: function () {
+		return [Meteor.subscribe('userCardsetLeitner', this.params._id, this.params.user_id)];
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		}
+	},
 	data: function () {
 		Session.set('helpFilter', "workloadProgress");
-		Meteor.subscribe('leitner');
 		return Cardsets.findOne({_id: this.params._id});
 	}
 });
@@ -280,7 +290,7 @@ Router.route('/box/:_id', {
 	name: 'box',
 	template: 'learnAlgorithmAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetCards', this.params._id)];
+		return [Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id)];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
@@ -355,6 +365,14 @@ Router.route('makingofcardslist', {
 Router.route('/profile/:_id/overview', {
 	name: 'profileOverview',
 	template: 'profile',
+	subscriptions: function () {
+		return [Meteor.subscribe('userLeitner')];
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		}
+	},
 	data: function () {
 		Session.set('helpFilter', "workloadProgress");
 	}
@@ -475,6 +493,14 @@ Router.route('/admin/learningStatistics', {
 	name: 'admin_learningStatistics',
 	template: 'admin_learningStatistics',
 	layoutTemplate: 'admin_main',
+	subscriptions: function () {
+		return [Meteor.subscribe('allLeitner')];
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		}
+	},
 	data: function () {
 		Session.set('helpFilter', undefined);
 	}

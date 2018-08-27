@@ -20,9 +20,6 @@ Session.set('animationPlaying', false);
 Template.learnAlgorithms.onCreated(function () {
 	Session.set('activeCard', undefined);
 	Session.set('isQuestionSide', true);
-	if (ActiveRoute.name('box')) {
-		Meteor.subscribe('leitner');
-	}
 	if (ActiveRoute.name('memo')) {
 		Meteor.subscribe("wozniak");
 	}

@@ -59,12 +59,6 @@ Template.graph.onRendered(function () {
  */
 
 Template.progress.helpers({
-	gotCards: function () {
-		return Leitner.find({
-			cardset_id: Router.current().params._id,
-			user_id: Router.current().params.user_id
-		}).count();
-	},
 	isStatsOwner: function () {
 		return Meteor.userId() === Router.current().params.user_id;
 	}

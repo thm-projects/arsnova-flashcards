@@ -24,7 +24,6 @@ import {BertAlertVisuals} from "../../api/bertAlertVisuals";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
-Meteor.subscribe("allLearned");
 Meteor.subscribe("notifications");
 
 /**
