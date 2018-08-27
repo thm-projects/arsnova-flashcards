@@ -40,37 +40,16 @@ if (Meteor.isServer) {
 			}
 		}
 	});
-	Meteor.publish("wozniak", function () {
-		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]) && Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
-			return Wozniak.find({
-				$or: [
-					{user_id: this.userId},
-					{
-						cardset_id: {
-							$in: Cardsets.find(
-								{
-									$or: [
-										{owner: this.userId}
-									]
-								}).map(function (cardset) {
-								return cardset._id;
-							})
-						}
-					}
-				]
-			});
-		} else if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-			return Wozniak.find({
-				user_id: this.userId,
-				cardset_id: {
-					$in: Cardsets.find({}).map(function (cardset) {
-						return cardset._id;
-					})
-				}
-			});
+	Meteor.publish("cardsetWozniak", function (cardset_id) {
+		if (this.userId) {
+			return Wozniak.find({cardset_id: cardset_id, user_id: this.userId});
 		}
 	});
-
+	Meteor.publish("userWozniak", function () {
+		if (this.userId) {
+			return Wozniak.find({user_id: this.userId});
+		}
+	});
 
 	Meteor.methods({
 		clearLeitnerProgress: function (cardset_id) {

@@ -20,9 +20,6 @@ Session.set('animationPlaying', false);
 Template.learnAlgorithms.onCreated(function () {
 	Session.set('activeCard', undefined);
 	Session.set('isQuestionSide', true);
-	if (ActiveRoute.name('memo')) {
-		Meteor.subscribe("wozniak");
-	}
 	Session.set('animationPlaying', false);
 	Session.set('cardType', Cardsets.findOne(Router.current().params._id).cardType);
 	Session.set('shuffled', Cardsets.findOne(Router.current().params._id).shuffled);
