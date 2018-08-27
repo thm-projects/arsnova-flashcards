@@ -312,19 +312,3 @@ Template.admin_user.events({
 		Session.set('userBlocked', $('#editUserBlockedAdmin input[name=blockedUser]:checked').val() === 'true');
 	}
 });
-
-/*
- * ############################################################################
- * cardsetConfirmFormUserAdmin
- * ############################################################################
- */
-
-Template.cardsetConfirmFormUserAdmin.events({
-	'click #cardsetDeleteUserAdmin': function () {
-		var id = Session.get('cardsetId');
-
-		$('#cardsetConfirmModalUserAdmin').on('hidden.bs.modal', function () {
-			Meteor.call("deleteCardset", id);
-		}).modal('hide');
-	}
-});
