@@ -141,7 +141,7 @@ Router.route('/learn', {
 	name: 'learn',
 	template: 'cardsets',
 	subscriptions: function () {
-		return [Meteor.subscribe('userLeitner')];
+		return [Meteor.subscribe('userLeitner'), Meteor.subscribe('userWozniak')];
 	},
 	data: function () {
 		Session.set('helpFilter', "workload");
@@ -167,7 +167,7 @@ Router.route('/cardset/:_id', {
 	name: 'cardsetdetailsid',
 	template: 'cardsetAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id)];
+		return [Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
@@ -181,7 +181,7 @@ Router.route('/cardset/:_id/card/:card_id', {
 	name: 'cardsetcard',
 	template: 'cardsetAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetCards', this.params._id)];
+		return [Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
@@ -228,7 +228,7 @@ Router.route('/cardsetlist/:_id', {
 	name: 'cardsetlistid',
 	template: 'cardsetAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id)];
+		return [Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
 	},
 	data: function () {
 		Session.set('helpFilter', "cardset");
@@ -303,7 +303,7 @@ Router.route('/memo/:_id', {
 	name: 'memo',
 	template: 'learnAlgorithmAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetCards', this.params._id)];
+		return [Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
