@@ -6,6 +6,7 @@ import {CardType} from "../../../api/cardTypes";
 import {Route} from "../../../api/route.js";
 import '/client/hammer.js';
 import "./content.html";
+import {CardNavigation} from "../../../api/cardNavigation";
 
 /*
  * ############################################################################
@@ -136,6 +137,12 @@ Template.cardContentActive.helpers({
 	},
 	getPlaceholder: function () {
 		return CardType.getPlaceholderText(Session.get('activeCardContentId'), this.cardType, this.learningGoalLevel);
+	}
+});
+
+Template.cardContentActive.events({
+	'click a': function (evt) {
+		CardNavigation.linkNavigation(evt);
 	}
 });
 

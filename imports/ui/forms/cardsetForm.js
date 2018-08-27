@@ -188,6 +188,15 @@ Template.cardsetFormContent.helpers({
 	isNew: function () {
 		return isNewCardset();
 	},
+	isRepetitorium: function () {
+		if (isNewCardset()) {
+			return Route.isRepetitorium();
+		} else {
+			if (Session.get('activeCardset') !== undefined) {
+				return Session.get('activeCardset').shuffled;
+			}
+		}
+	},
 	getCardTypeName: function () {
 		if (Session.get('previousCardsetData') !== undefined) {
 			return CardType.getCardTypeName(Session.get('previousCardsetData').cardType);

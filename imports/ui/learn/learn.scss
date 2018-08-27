@@ -45,13 +45,6 @@
   border-right: 4px solid;
 }
 
-#answerButtons {
-  margin-top: 0;
-  @media(max-width: 767px) {
-    margin-bottom: $margin_bottom_card_navigation_mobile;
-  }
-}
-
 #answerOptions {
   top: 0;
   z-index: 15;

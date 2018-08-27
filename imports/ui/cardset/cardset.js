@@ -595,6 +595,9 @@ Template.cardsetInfo.events({
 			Bert.defaults.hideDelay = 15000;
 			BertAlertVisuals.displayBertAlert(TAPi18n.__('bertAlert.publishBonus.message', {cardcount: cardCountMessage, edu: Meteor.settings.public.university.default}), 'warning', 'growl-top-left');
 		}
+	},
+	'click a': function (evt) {
+		CardNavigation.linkNavigation(evt);
 	}
 });
 
