@@ -659,6 +659,7 @@ $themes: (
     .panel-body.info-tab {
       color: $info_content_body_text !important;
       background-color: $info_content_body_background !important;
+      padding: 20px 40px 30px 40px;
     }
 
     .thm-numbering li:before {
