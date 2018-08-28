@@ -9,6 +9,17 @@ import {check} from "meteor/check";
 import {CardType} from "../imports/api/cardTypes";
 
 
+function gotBonusAccess(cardset, user_id) {
+	let hasAccess = true;
+	if (cardset.registrationPeriod.getTime() <= new Date().getTime())  {
+		let userAlreadyJoinedBonus = Leitner.findOne({cardset_id: cardset._id, user_id: user_id}, {fields: {_id: 1}});
+		if (userAlreadyJoinedBonus === undefined) {
+			hasAccess = false;
+		}
+	}
+	return hasAccess;
+}
+
 /** Function returns the amount of cards inside a box that are valid to learn
  *  @param {string} cardset_id - The id of the cardset with active learners
  *  @param {string} user_id - The id of the user
@@ -298,13 +309,15 @@ function defaultCardsetLeitnerData(cardset) {
 	if (!Meteor.isServer) {
 		throw new Meteor.Error("not-authorized");
 	} else {
+		let endDate = (new Date().setFullYear(2038, 0, 19));
 		Cardsets.update(cardset._id, {
 			$set: {
 				maxCards: Math.ceil(cardset.quantity / 3),
 				daysBeforeReset: 7,
 				learningStart: cardset.date,
-				learningEnd: (new Date().setFullYear(2038, 0, 19)),
-				learningInterval: [1, 3, 7, 28, 84]
+				learningEnd: endDate,
+				learningInterval: [1, 3, 7, 28, 84],
+				registrationPeriod: endDate
 			}
 		});
 		return Cardsets.findOne({_id: cardset._id});
@@ -372,7 +385,7 @@ Meteor.methods({
 				if (!Leitner.findOne({
 					cardset_id: cardset._id,
 					user_id: Meteor.userId()
-				}) && cardset.learningEnd.getTime() > new Date().getTime()) {
+				}) && gotBonusAccess(cardset, Meteor.userId())) {
 					if (addLeitnerCards(cardset, Meteor.userId())) {
 						setCards(cardset, Meteor.user(), false);
 					}

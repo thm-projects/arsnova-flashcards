@@ -48,6 +48,7 @@ var initTestNotificationsCardset = function () {
 			"daysBeforeReset": 0,
 			"learningStart": (new Date().setFullYear(2017, 9, 5)),
 			"learningEnd": (new Date().setFullYear(2038, 0, 19)),
+			"registrationPeriod": (new Date().setFullYear(2038, 0, 19)),
 			"learningInterval": [],
 			"wordcloud": false,
 			"learners": 0,
@@ -594,6 +595,19 @@ Meteor.startup(function () {
 				);
 			}
 		}
+	}
+
+	cardsets = Cardsets.find({registrationPeriod:  {$exists: false}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					registrationPeriod: cardsets[i].learningEnd
+				}
+			}
+		);
 	}
 
 	let wozniak = Wozniak.find({skipped: {$exists: true}}).fetch();

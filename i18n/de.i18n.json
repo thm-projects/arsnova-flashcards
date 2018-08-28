@@ -543,14 +543,18 @@
         "label": "Ende der Lernphase",
         "placeholder": "In 3 Monaten"
       },
+      "registrationPeriod": {
+        "label": "Anmeldefrist",
+        "placeholder": ""
+      },
       "intervals": {
-        "label": "Lernintervalle in Tagen",
-        "error": "Die angegebenen Intervalle sind in falscher Reihenfolge! Sie werden automatisch umsortiert."
+        "label": "Lernintervalle in Tagen"
       },
       "button": {
         "start": "Starten",
         "cancel": "Abbrechen",
-        "update": "Aktualisieren"
+        "update": "Aktualisieren",
+        "reset": "Zurücksetzen"
       }
     }
   },

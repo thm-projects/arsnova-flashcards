@@ -566,14 +566,18 @@
         "label": "",
         "placeholder": ""
       },
-      "intervals": {
+      "registrationPeriod": {
         "label": "",
-        "error": ""
+        "placeholder": ""
+      },
+      "intervals": {
+        "label": ""
       },
       "button": {
         "start": "",
         "cancel": "",
-        "update": ""
+        "update": "",
+        "reset": ""
       }
     }
   },

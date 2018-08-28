@@ -1570,6 +1570,9 @@ Template.learningPhaseInfoBox.helpers({
 	getDateStart: function () {
 		return moment(this.learningStart).format("DD.MM.YYYY");
 	},
+	getRegistrationPeriod: function () {
+		return moment(this.registrationPeriod).format("DD.MM.YYYY");
+	},
 	getDeadline: function () {
 		if (this.daysBeforeReset === 1) {
 			return this.daysBeforeReset + " " + TAPi18n.__('panel-body-experience.day');

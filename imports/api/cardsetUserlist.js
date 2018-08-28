@@ -34,7 +34,8 @@ function getLearningPhaseInfo(cardset) {
 		[TAPi18n.__('bonus.form.maxWorkload.label', {}, "de"), cardset.maxCards],
 		[TAPi18n.__('bonus.form.daysBeforeReset.label', {}, "de"), cardset.daysBeforeReset],
 		[TAPi18n.__('bonus.form.startDate.label', {}, "de"), moment(cardset.learningStart).locale("de").format('LL')],
-		[TAPi18n.__('bonus.form.endDate.label', {}, "de"), moment(cardset.learningEnd).locale("de").format('LL')]
+		[TAPi18n.__('bonus.form.endDate.label', {}, "de"), moment(cardset.learningEnd).locale("de").format('LL')],
+		[TAPi18n.__('bonus.form.registrationPeriod.label', {}, "de"), moment(cardset.registrationPeriod).locale("de").format('LL')]
 	];
 }
 
@@ -104,7 +105,7 @@ Meteor.methods({
 			let infoCardsetCounter = 0;
 			let infoCardsetLength = 6;
 			let infoLearningPhaseCounter = 0;
-			let infoLearningPhaseLength = 7;
+			let infoLearningPhaseLength = 8;
 			content = header[6] + colSep + header[7] + colSep + header[8] + colSep;
 			for (let i = 0; i <= 4; i++) {
 				content += header[i] + " [" + cardset.learningInterval[i] + "]" + colSep;

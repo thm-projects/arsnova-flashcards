@@ -13,14 +13,17 @@
                     <div class="form-horizontal">
                         {{> bonusFormMaxWorkload}}
                         {{> bonusFormDaysBeforeReset}}
-                        {{> bonusFormStartEndDate}}
+                        {{> bonusFormStartDate}}
+                        {{> bonusFormEndDate}}
+                        {{> bonusFormRegistrationPeriod}}
                         {{> bonusFormIntervals}}
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button id="cancelBonus" class="btn btn-default btn-raised btn-block col-xs-12 col-sm-3"
                             data-dismiss="modal">{{_ "bonus.form.button.cancel"}}</button>
-
+                    <button id="resetBonus" class="btn btn-danger btn-raised btn-block col-xs-12 col-sm-3">{{_
+                            "bonus.form.button.reset"}}</button>
                     <button id="startBonus"
                             class="btn btn-success btn-raised btn-block col-xs-12 col-sm-3 pull-right"
                             data-dismiss="modal">{{#if isNewBonus}}{{_ "bonus.form.button.start"}}{{else}}{{_
@@ -57,7 +60,7 @@
     </div>
 </template>
 
-<template name="bonusFormStartEndDate">
+<template name="bonusFormStartDate">
     <div class="form-group">
         <label class="col-md-3 control-label">{{_ "bonus.form.startDate.label"}}</label>
         <div class="col-md-9">
@@ -65,6 +68,9 @@
                    placeholder="{{_ "bonus.form.startDate.placeholder"}}" value="">
         </div>
     </div>
+</template>
+
+<template name="bonusFormEndDate">
     <div class="form-group">
         <label class="col-md-3 control-label">{{_ "bonus.form.endDate.label"}}</label>
         <div class="col-md-9">
@@ -99,8 +105,15 @@
                    class="form-control interval" id="interval5"
                    placeholder="84" value="84">
         </div>
-        <div class="col-md-12">
-            <span id="errorInterval" class="help-block name"></span>
+    </div>
+</template>
+
+<template name="bonusFormRegistrationPeriod">
+    <div class="form-group">
+        <label class="col-md-3 control-label">{{_ "bonus.form.registrationPeriod.label"}}</label>
+        <div class="col-md-9 form-inline">
+            <input type="date" class="form-control" id="dateRegistrationPeriod"
+                   placeholder="{{_ "bonus.form.registrationPeriod.placeholder"}}" value="">
         </div>
     </div>
 </template>
