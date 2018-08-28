@@ -843,6 +843,6 @@ Meteor.methods({
 				wordcloud: status
 			}
 		});
-		Meteor.call("updateWordsForWordcloud");
+		return id;
 	}
 });
