@@ -797,7 +797,7 @@ Meteor.methods({
 		check(id, String);
 		check(owner, String);
 
-		if (!Roles.userIsInRole(this.userId, ["admin"])) {
+		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
 			throw new Meteor.Error("not-authorized");
 		}
 

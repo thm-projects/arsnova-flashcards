@@ -138,11 +138,13 @@
                                 <i class="glyphicon glyphicon-pencil" data-id="{{this._id}}"></i>
                             </a>
                             {{#if isActiveRoute regex="alldecks|repetitorium"}}
-                                <a class="resultNavigationElement editAdminCardset"
-                                   title='{{_ "courseIteration.manage"}}' data-id="{{this._id}}" data-toggle="modal"
-                                   data-target="#setCardsetFormAdminModal">
-                                    <i class="fa fa-cog editAdminCardset" data-id="{{this._id}}"></i>
-                                </a>
+                                {{#if isAdmin}}
+                                    <a class="resultNavigationElement editAdminCardset"
+                                       title='{{_ "courseIteration.manage"}}' data-id="{{this._id}}" data-toggle="modal"
+                                       data-target="#setCardsetFormAdminModal">
+                                        <i class="fa fa-cog editAdminCardset" data-id="{{this._id}}"></i>
+                                    </a>
+                                {{/if}}
                             {{/if}}
                             {{#if isActiveRoute regex="repetitorium"}}
                                 <a class="resultNavigationElement editShuffle"
