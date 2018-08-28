@@ -524,7 +524,7 @@
     "create": "Start a presentation",
     "start": "Start",
     "list": {
-      "back":"Back to the presentation",
+      "back": "Back to the presentation",
       "backDemo": "Back to the demo cardset"
     }
   },
@@ -544,7 +544,12 @@
   },
   "bonus": {
     "form": {
-      "title": "",
+      "new": {
+        "title": ""
+      },
+      "edit": {
+        "title": ""
+      },
       "maxWorkload": {
         "label": "",
         "placeholder": ""
@@ -567,7 +572,8 @@
       },
       "button": {
         "start": "",
-        "cancel": ""
+        "cancel": "",
+        "update": ""
       }
     }
   },
@@ -1521,17 +1527,82 @@
     "firstLogin": {
       "title": "Welcome to __firstAppTitle__.__lastAppTitle__ !",
       "message": "Take a look around the platform.
-      Here you can learn cards on a specific topic or create sets of cards for your studies.
+      Here
+      you
+      can
+      learn
+      cards
+      on
+      a
+      specific
+      topic
+      or
+      create
+      sets
+      of
+      cards
+      for
+      your
+      studies.
       </br>
       </br>
-      The help above in the middle explains why this platform is so unique !
+      The
+      help
+      above
+      in
+      the
+      middle
+      explains
+      why
+      this
+      platform
+      is
+      so
+      unique
+      !
       </br>
       </br>
-      Search the topic pool for a topic that interests you.
-      Click on the small arrow to the far right of the topic to see the description of the card index.
-      Click on the topic to see the cards.
+      Search
+      the
+      topic
+      pool
+      for
+      a
+      topic
+      that
+      interests
+      you.
+      Click
+      on
+      the
+      small
+      arrow
+      to
+      the
+      far
+      right
+      of
+      the
+      topic
+      to
+      see
+      the
+      description
+      of
+      the
+      card
+      index.
+      Click
+      on
+      the
+      topic
+      to
+      see
+      the
+      cards.
       </br>
-      </br>"
+      </br>
+      "
     },
     "publishBonus": {
       "message": ""

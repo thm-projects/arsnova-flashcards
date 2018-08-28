@@ -521,7 +521,12 @@
   },
   "bonus": {
     "form": {
-      "title": "Bonus-Lernphase starten",
+      "new": {
+        "title": "Bonus-Lernphase starten"
+      },
+      "edit": {
+        "title": "Bonus-Lernphase verwalten"
+      },
       "maxWorkload": {
         "label": "Tagespensum",
         "placeholder": "Maximal an einem Tag zu lernende Karten"
@@ -544,7 +549,8 @@
       },
       "button": {
         "start": "Starten",
-        "cancel": "Abbrechen"
+        "cancel": "Abbrechen",
+        "update": "Aktualisieren"
       }
     }
   },
@@ -606,8 +612,7 @@
     },
     "bonus": {
       "long": "Bonus-Lernphase",
-      "short": "Bonus",
-      "manage": "Bonus-Lernphase verwalten"
+      "short": "Bonus"
     },
     "list": {
       "back": "Zurück zur Karte"

@@ -419,7 +419,7 @@
                                                             class="startLearn startLearningList"
                                                             data-toggle="modal"
                                                             data-target="#bonusFormModal">
-                                                            {{_ "sidebar-nav.startLearning"}}
+                                                            {{_ "bonus.form.new.title"}}
                                                         </li>
                                                     {{/unless}}
                                                 {{/if}}
@@ -433,6 +433,12 @@
                                         {{#if isCardsetOwner _id}}
                                             {{#if isInRole 'admin, editor, lecturer'}}
                                                 {{#if learningActive}}
+                                                    <li id="manageBonus"
+                                                        class="manageLearn manageLearningList learnBoxActive"
+                                                        data-toggle="modal"
+                                                        data-target="#bonusFormModal">
+                                                        {{_ "bonus.form.edit.title"}}
+                                                    </li>
                                                     <li id="stopBonus"
                                                         class="stopLearn stopLearningList learnBoxActive"
                                                         data-toggle="modal"

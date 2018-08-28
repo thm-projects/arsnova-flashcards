@@ -1,5 +1,7 @@
 import {Meteor} from "meteor/meteor";
+import {Session} from "meteor/session";
 import {BonusForm} from "../../api/bonusForm";
+import {Cardsets} from "../../api/cardsets";
 import "./bonusForm.html";
 
 /*
@@ -15,6 +17,12 @@ Template.bonusForm.onRendered(function () {
 	$('#bonusFormModal').on('hidden.bs.modal', function () {
 		BonusForm.cleanModal();
 	});
+});
+
+Template.bonusForm.helpers({
+	isNewBonus: function () {
+		return Session.get('isNewBonus');
+	}
 });
 
 Template.bonusForm.events({
@@ -36,7 +44,15 @@ Template.bonusForm.events({
 			}
 		}
 
-		Meteor.call("activateLearning", Router.current().params._id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval);
+		if (Session.get('isNewBonus')) {
+			Meteor.call("activateBonus", Router.current().params._id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval);
+		} else {
+			Meteor.call("updateBonus", Router.current().params._id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval, function (error, result) {
+				if (result) {
+					Session.set('activeCardset', Cardsets.findOne(result));
+				}
+			});
+		}
 		$('#bonusFormModal').modal('hide');
 		$('body').removeClass('modal-open');
 		$('.modal-backdrop').remove();

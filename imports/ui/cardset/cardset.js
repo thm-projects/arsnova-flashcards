@@ -563,6 +563,12 @@ Template.cardsetInfo.events({
 	"click #manageEditors": function () {
 		Router.go('cardseteditors', {_id: Router.current().params._id});
 	},
+	"click #startBonus": function () {
+		Session.set('isNewBonus', true);
+	},
+	"click #manageBonus": function () {
+		Session.set('isNewBonus', false);
+	},
 	"click #collapseManageButton": function () {
 		changeCollapseIcon("#collapseMangeIcon");
 	},
@@ -1172,7 +1178,7 @@ Template.cardsetManageEditors.created = function () {
 Template.cardsetEndLearnForm.events({
 	"click #confirmEndLearn": function () {
 		if (Cardsets.findOne(Router.current().params._id).learningActive) {
-			Meteor.call("deactivateLearning", Router.current().params._id);
+			Meteor.call("deactivateBonus", Router.current().params._id);
 		}
 		$('#confirmEndLearnModal').modal('hide');
 		$('body').removeClass('modal-open');

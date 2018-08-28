@@ -397,7 +397,7 @@ Meteor.methods({
 	 * Deactivate the learning phase for the selected cardset.
 	 * @param {String} id - ID of the cardset for which the learning phase is to be deactivated.
 	 */
-	deactivateLearning: function (id) {
+	deactivateBonus: function (id) {
 		check(id, String);
 
 		let cardset = Cardsets.findOne(id);
@@ -421,7 +421,7 @@ Meteor.methods({
 	 * @param {Date} learningEnd - End date of the learning phase
 	 * @param {String} learningInterval - Learning interval in days
 	 */
-	activateLearning: function (id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval) {
+	activateBonus: function (id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval) {
 		check(id, String);
 		check(maxCards, String);
 		check(daysBeforeReset, String);
@@ -477,7 +477,7 @@ Meteor.methods({
 	 * @param {Date} learningEnd - End date of the learning phase
 	 * @param {String} learningInterval - Learning interval in days
 	 */
-	updateLearning: function (id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval) {
+	updateBonus: function (id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval) {
 		check(id, String);
 		check(maxCards, String);
 		check(daysBeforeReset, String);
@@ -501,10 +501,10 @@ Meteor.methods({
 					learningInterval: learningInterval
 				}
 			});
+			return cardset._id;
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
-		return true;
 	},
 	/**
 	 * Updates the selected cardset if user is authorized.

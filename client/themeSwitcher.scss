@@ -287,6 +287,10 @@ $themes: (
     $cardset_footer_navigation_bonus_list_start_learning_text: map-get($map, "cardset_footer_navigation_bonus_list_start_learning_text");
     $cardset_footer_navigation_bonus_list_start_learning_background_hover: map-get($map, "cardset_footer_navigation_bonus_list_start_learning_background_hover");
     $cardset_footer_navigation_bonus_list_start_learning_text_hover: map-get($map, "cardset_footer_navigation_bonus_list_start_learning_text_hover");
+    $cardset_footer_navigation_bonus_list_manage_learning_background: map-get($map, "cardset_footer_navigation_bonus_list_manage_learning_background");
+    $cardset_footer_navigation_bonus_list_manage_learning_text: map-get($map, "cardset_footer_navigation_bonus_list_manage_learning_text");
+    $cardset_footer_navigation_bonus_list_manage_learning_background_hover: map-get($map, "cardset_footer_navigation_bonus_list_manage_learning_background_hover");
+    $cardset_footer_navigation_bonus_list_manage_learning_text_hover: map-get($map, "cardset_footer_navigation_bonus_list_manage_learning_text_hover");
     $cardset_footer_navigation_bonus_list_stop_learning_background: map-get($map, "cardset_footer_navigation_bonus_list_stop_learning_background");
     $cardset_footer_navigation_bonus_list_stop_learning_text: map-get($map, "cardset_footer_navigation_bonus_list_stop_learning_text");
     $cardset_footer_navigation_bonus_list_stop_learning_background_hover: map-get($map, "cardset_footer_navigation_bonus_list_stop_learning_background_hover");
@@ -1006,6 +1010,16 @@ $themes: (
       .startLearningList:hover {
         background-color: $cardset_footer_navigation_bonus_list_start_learning_background_hover !important;
         color: $cardset_footer_navigation_bonus_list_start_learning_text_hover !important;
+      }
+
+      .manageLearningList {
+        background-color: $cardset_footer_navigation_bonus_list_manage_learning_background !important;
+        color: $cardset_footer_navigation_bonus_list_manage_learning_text !important;
+      }
+
+      .manageLearningList:hover {
+        background-color: $cardset_footer_navigation_bonus_list_manage_learning_background_hover !important;
+        color: $cardset_footer_navigation_bonus_list_manage_learning_text_hover !important;
       }
 
       .stopLearningList {
