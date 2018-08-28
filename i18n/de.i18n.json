@@ -241,6 +241,27 @@
     "browseCardset": "Thema auswählen",
     "browseCourse": "Rep auswählen"
   },
+  "modal-admin-dialog": {
+    "cardsetTitle": "Admin-Einstellungen für Kartei: __cardset__",
+    "repetitoriumTitle": "Admin-Einstellungen für Repetitorium: __cardset__",
+    "owner": {
+      "title": "__owner__ verwalten",
+      "current": "Derzeitiger __owner__",
+      "id": "__owner__ - ID",
+      "button": "__owner__ wechseln",
+      "message": {
+        "success": "__owner__ wurde erfolgreich gewechselt",
+        "failure": "__owner__ nicht gefunden"
+      }
+    },
+    "wordcloud": {
+      "title": "Wortwolke-Einstellungen",
+      "button": {
+        "add": "Hinzufügen",
+        "remove": "Entfernen"
+      }
+    }
+  },
   "modal-dialog": {
     "missingFields": "Bitte fülle die folgenden Felder aus",
     "newcarddeck": "Kartei anlegen",

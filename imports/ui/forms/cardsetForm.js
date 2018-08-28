@@ -185,6 +185,12 @@ Template.cardsetFormAdmin.helpers({
 	},
 	getOwnerId: function () {
 		return Session.get('activeCardset').owner;
+	},
+	getCardsetName: function () {
+		return Session.get('activeCardset').name;
+	},
+	getAuthorLabel: function () {
+		return TAPi18n.__('modal-dialog.cardsetowner');
 	}
 });
 
@@ -194,10 +200,10 @@ Template.cardsetFormAdmin.events({
 		Meteor.call('changeOwner', Session.get('activeCardset')._id, owner, function (error, result) {
 			if (error || result === false) {
 				$('#cardsetChangeOwnerAdminLabel').css({'visibility': 'visible', 'color': '#b94a48'});
-				$('#cardsetChangeOwnerAdminLabel').html(TAPi18n.__('admin.cardset.changeOwnerFailure'));
+				$('#cardsetChangeOwnerAdminLabel').html(TAPi18n.__('modal-admin-dialog.owner.message.failure', {owner: TAPi18n.__('modal-dialog.cardsetowner')}));
 			} else {
 				$('#cardsetChangeOwnerAdminLabel').css({'visibility': 'visible', 'color': '#4ab948'});
-				$('#cardsetChangeOwnerAdminLabel').html(TAPi18n.__('admin.cardset.changeOwnerSuccess'));
+				$('#cardsetChangeOwnerAdminLabel').html(TAPi18n.__('modal-admin-dialog.owner.message.success', {owner: TAPi18n.__('modal-dialog.cardsetowner')}));
 				Session.set('activeCardset', Cardsets.findOne(Session.get('activeCardset')._id));
 			}
 		});

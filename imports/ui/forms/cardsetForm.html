@@ -32,41 +32,50 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 id="setCardsetFormAdminModalTitle" class="modal-title">
-                        {{_ "modal-dialog.adminEditCardset"}}
+                        {{#if isActiveRoute regex='alldecks'}}
+                            {{_ "modal-admin-dialog.cardsetTitle" cardset=getCardsetName}}
+                        {{else}}
+                            {{_ "modal-admin-dialog.repetitoriumTitle" cardset=getCardsetName}}
+                        {{/if}}
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label id="editCardsetUserLabelAdmin">{{_ "admin.cardset.username"}}</label>
-                        {{#if userExists}}
-                            <a href="/admin/user/{{getOwnerId}}" target="_blank">{{getAuthorName getOwnerId}}</a>
-                        {{else}}
-                            {{username}} ({{_ "admin.deleted"}})
-                        {{/if}}
-                    </div>
-                    <div class="form-group">
-                        <label id="cardsetOwnerAdminLabel">{{_ "admin.cardset.userID"}}</label>
-                        {{#if userExists}}
-                            <input class="form-control" type="text" id="editOwnerAdmin"
-                                   value="{{getOwnerId}}">
-                        {{else}}
-                            {{username}} ({{_ "admin.deleted"}})
-                        {{/if}}
-                        <a id="cardsetChangeOwnerAdmin" class="btn btn-raised btn-success">
-                            {{_ "admin.cardset.changeOwner"}}</a>
-                        <label id="cardsetChangeOwnerAdminLabel" for="cardsetChangeOwnerAdmin"
-                               style="visibility: hidden;"></label>
-                    </div>
-                    <div class="form-group">
-                        <label id="cardsetWordcloud">{{_ "admin.cardset.wordcloud"}}</label>
-                        {{#if isInWordcloud}}
-                            <a id="cardsetRemoveFromWordcloude" class="btn btn-raised btn-danger">
-                                {{_ "admin.cardset.removeFromWordcloud"}}</a>
-                        {{else}}
-                            <a id="cardsetAddToWordcloude" class="btn btn-raised btn-success">
-                                {{_ "admin.cardset.addToWordcloud"}}</a>
-                        {{/if}}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">{{_ "modal-admin-dialog.owner.title" owner=getAuthorLabel}}</div>
+                        <div class="panel-body">
+                            <label id="editCardsetUserLabelAdmin">{{_ "modal-admin-dialog.owner.current"
+                                                                      owner=getAuthorLabel}}:</label>
+                            {{#if userExists}}
+                                <a href="/admin/user/{{getOwnerId}}" target="_blank">{{getAuthorName getOwnerId}}</a>
+                            {{else}}
+                                {{username}} ({{_ "admin.deleted"}})
+                            {{/if}}
+                            <br>
+                            <label id="cardsetOwnerAdminLabel">{{_ "modal-admin-dialog.owner.id"
+                                                                   owner=getAuthorLabel}}:</label>
+                            {{#if userExists}}
+                                <input class="form-control" type="text" id="editOwnerAdmin"
+                                       value="{{getOwnerId}}">
+                            {{else}}
+                                {{username}} ({{_ "admin.deleted"}})
+                            {{/if}}
+                            <a id="cardsetChangeOwnerAdmin" class="btn btn-raised btn-success">
+                                {{_ "modal-admin-dialog.owner.button" owner=getAuthorLabel}}</a>
+                            <label id="cardsetChangeOwnerAdminLabel" for="cardsetChangeOwnerAdmin"
+                                   style="visibility: hidden;"></label>
+                        </div>
+                        <div class="panel-heading" id="cardsetWordcloud">{{_
+                                "modal-admin-dialog.wordcloud.title"}}</div>
+                        <div class="panel-body">
+                            {{#if isInWordcloud}}
+                                <a id="cardsetRemoveFromWordcloude" class="btn btn-raised btn-danger">
+                                    {{_ "modal-admin-dialog.wordcloud.button.remove"}}</a>
+                            {{else}}
+                                <a id="cardsetAddToWordcloude" class="btn btn-raised btn-success">
+                                    {{_ "modal-admin-dialog.wordcloud.button.add"}}</a>
+                            {{/if}}
+                        </div>
                     </div>
                 </div>
             </div>

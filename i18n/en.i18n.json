@@ -251,6 +251,27 @@
     "browseCardset": "Choose a deck of cards",
     "browseCourse": "Select all files of a course"
   },
+  "modal-admin-dialog": {
+    "cardsetTitle": "Admin-Settings for Cardset: __cardset__",
+    "repetitoriumTitle": "Admin-Settings for  Repetitorium: __cardset__",
+    "owner": {
+      "title": "__owner__ settings",
+      "current": "Current __owner__",
+      "id": "__owner__ - ID",
+      "button": "change __owner__",
+      "message": {
+        "success": "__owner__ changed successfully",
+        "failure": "__owner__ not found"
+      }
+    },
+    "wordcloud": {
+      "title": "Wordcloud-Settings",
+      "button": {
+        "add": "Add",
+        "remove": "Remove"
+      }
+    }
+  },
   "modal-dialog": {
     "missingFields": "Missing Fields",
     "newcarddeck": "Create a new deck of cards",
