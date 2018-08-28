@@ -578,6 +578,11 @@
       "college": "College",
       "course": "Course"
     },
+    "tooltip": {
+      "editCardset": "Manage Card Set",
+      "editRepetitorium": "Manage Repetitorium",
+      "editAdminSettings": "Admin-Settings"
+    },
     "request": {
       "alert": "Set of cards released for review",
       "accept": "Release cardset",

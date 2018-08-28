@@ -555,6 +555,11 @@
       "course": "Studiengang",
       "undefinedAuthor": "Bitte füll dein Profil aus!"
     },
+    "tooltip": {
+      "editCardset": "Kartei verwalten",
+      "editRepetitorium": "Repetitorium verwalten",
+      "editAdminSettings": "Admin-Einstellungen"
+    },
     "request": {
       "alert": "Kartei zur Überprüfung freigegeben",
       "accept": "Kartei freigeben",
