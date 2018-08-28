@@ -53,6 +53,12 @@ Template.registerHelper("isLecturer", function () {
 	}
 });
 
+Template.registerHelper("isAdmin", function () {
+	if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
+		return true;
+	}
+});
+
 Template.registerHelper("isActiveLanguage", function (language) {
 	if (Session.get('activeLanguage') === undefined) {
 		Session.set('activeLanguage', 'de');

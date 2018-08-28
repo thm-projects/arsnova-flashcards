@@ -241,10 +241,32 @@
     "browseCardset": "Thema auswählen",
     "browseCourse": "Rep auswählen"
   },
+  "modal-admin-dialog": {
+    "cardsetTitle": "Admin-Einstellungen für Kartei: __cardset__",
+    "repetitoriumTitle": "Admin-Einstellungen für Repetitorium: __cardset__",
+    "owner": {
+      "title": "__owner__ verwalten",
+      "current": "Derzeitiger __owner__",
+      "id": "__owner__ - ID",
+      "button": "__owner__ wechseln",
+      "message": {
+        "success": "__owner__ wurde erfolgreich gewechselt",
+        "failure": "__owner__ nicht gefunden"
+      }
+    },
+    "wordcloud": {
+      "title": "Wortwolke-Einstellungen",
+      "button": {
+        "add": "Hinzufügen",
+        "remove": "Entfernen"
+      }
+    }
+  },
   "modal-dialog": {
     "missingFields": "Bitte fülle die folgenden Felder aus",
     "newcarddeck": "Kartei anlegen",
     "editcard": "Beschreibung editieren",
+    "adminEditCardset": "Admin-Einstellungen",
     "editreferences": "Repetitorium neu zusammenstellen",
     "name": "Thema",
     "nameplaceholder": "Das Thema der Kartei mit einem Wort",
@@ -532,6 +554,11 @@
       "college": "Hochschule",
       "course": "Studiengang",
       "undefinedAuthor": "Bitte füll dein Profil aus!"
+    },
+    "tooltip": {
+      "editCardset": "Kartei verwalten",
+      "editRepetitorium": "Repetitorium verwalten",
+      "editAdminSettings": "Admin-Einstellungen"
     },
     "request": {
       "alert": "Kartei zur Überprüfung freigegeben",
