@@ -143,20 +143,9 @@
     "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerkonto löschen\". Du wirst automatisch aus .__lastAppTitle__ abgemeldet."
   },
   "confirmLearn-form": {
-    "title": "Bonus-Lernphase starten",
     "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen der Kartei geht hierbei verloren!",
     "confirm": "Starten",
     "cancel": "Abbrechen",
-    "maxCards": "Tagespensum",
-    "maxCardsDesc": "Maximal an einem Tag zu lernende Karten",
-    "daysBeforeReset": "Terminüberschreitung",
-    "daysBeforeResetDesc": "Maximale Terminüberschreitung in Tagen",
-    "learningStart": "Beginn der Lernphase",
-    "learningStartDesc": "Heute",
-    "learningEnd": "Ende der Lernphase",
-    "learningEndDesc": "In 3 Monaten",
-    "learningInterval": "Lernintervalle in Tagen",
-    "wrongOrder": "Die angegebenen Intervalle sind in falscher Reihenfolge! Sie werden automatisch umsortiert.",
     "notification": "Wie willst du benachrichtigt werden?",
     "mailNotificationCheckbox": "per E-Mail",
     "webNotificationCheckbox": "per Push-Nachricht",
@@ -530,6 +519,35 @@
     "selectCardToLearn": "Mit einem Klick auf das Thema einer Kartei nimmst du sie in dein Lernpensum auf.",
     "selectShuffledCardsetToLearn": "Mit einem Klick auf das Thema eines Repetitoriums nimmst du es in dein Lernpensum auf."
   },
+  "bonus": {
+    "form": {
+      "title": "Bonus-Lernphase starten",
+      "maxWorkload": {
+        "label": "Tagespensum",
+        "placeholder": "Maximal an einem Tag zu lernende Karten"
+      },
+      "daysBeforeReset": {
+        "label": "Terminüberschreitung",
+        "placeholder": "Maximale Terminüberschreitung in Tagen"
+      },
+      "startDate": {
+        "label": "Beginn der Lernphase",
+        "placeholder": "Heute"
+      },
+      "endDate": {
+        "label": "Ende der Lernphase",
+        "placeholder": "In 3 Monaten"
+      },
+      "intervals": {
+        "label": "Lernintervalle in Tagen",
+        "error": "Die angegebenen Intervalle sind in falscher Reihenfolge! Sie werden automatisch umsortiert."
+      },
+      "button": {
+        "start": "Starten",
+        "cancel": "Abbrechen"
+      }
+    }
+  },
   "cardset": {
     "info": {
       "author": "Autor/in",
@@ -588,7 +606,8 @@
     },
     "bonus": {
       "long": "Bonus-Lernphase",
-      "short": "Bonus"
+      "short": "Bonus",
+      "manage": "Bonus-Lernphase verwalten"
     },
     "list": {
       "back": "Zurück zur Karte"

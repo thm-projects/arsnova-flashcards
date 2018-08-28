@@ -31,7 +31,7 @@
         {{> cardsetForm}}
         {{> cardsetImportForm}}
         {{> cardsetPublishForm}}
-        {{> cardsetStartLearnForm}}
+        {{> bonusForm}}
         {{> cardsetEndLearnForm}}
         {{> selectLicenseForm}}
         {{> reportCardsetForm}}
@@ -415,10 +415,10 @@
                                             {{#if isCardsetOwner _id}}
                                                 {{#if isInRole 'admin, editor, lecturer'}}
                                                     {{#unless learningActive}}
-                                                        <li id="startLearning"
+                                                        <li id="startBonus"
                                                             class="startLearn startLearningList"
                                                             data-toggle="modal"
-                                                            data-target="#confirmLearnModal">
+                                                            data-target="#bonusFormModal">
                                                             {{_ "sidebar-nav.startLearning"}}
                                                         </li>
                                                     {{/unless}}
@@ -433,7 +433,7 @@
                                         {{#if isCardsetOwner _id}}
                                             {{#if isInRole 'admin, editor, lecturer'}}
                                                 {{#if learningActive}}
-                                                    <li id="stopLearning"
+                                                    <li id="stopBonus"
                                                         class="stopLearn stopLearningList learnBoxActive"
                                                         data-toggle="modal"
                                                         data-target="#confirmEndLearnModal">
@@ -900,93 +900,6 @@
             </div>
         </div>
     </div>
-</template>
-
-<template name="cardsetStartLearnForm">
-    <div class="modal fade" id="confirmLearnModal" tabindex="-1" data-backdrop="static" role="dialog"
-         aria-labelledby="confirmLearnModalTitle">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 id="confirmLearnModalTitle" class="modal-title">{{_ "confirmLearn-form.title"}}
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.maxCards"}}</label>
-                            <div class="col-md-9">
-                                <input type="number" min="1" max="100" data-bind="value:replyNumber"
-                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                       class="form-control" id="inputMaxCards"
-                                       placeholder="{{_ "confirmLearn-form.maxCardsDesc"}}" value="">
-                                <span id="errorMaxCards" class="help-block name"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.daysBeforeReset"}}</label>
-                            <div class="col-md-9">
-                                <input type="number" min="1" max="100" data-bind="value:replyNumber"
-                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                       class="form-control" id="inputDaysBeforeReset"
-                                       placeholder="{{_ "confirmLearn-form.daysBeforeResetDesc"}}" value="">
-                                <span id="errorDaysBeforeReset" class="help-block name"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.learningStart"}}</label>
-                            <div class="col-md-9">
-                                <input type="date" class="form-control" id="inputLearningStart"
-                                       placeholder="{{_ "confirmLearn-form.learningStartDesc"}}" value="">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.learningEnd"}}</label>
-                            <div class="col-md-9">
-                                <input type="date" class="form-control" id="inputLearningEnd"
-                                       placeholder="{{_ "confirmLearn-form.learningEndDesc"}}" value="">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">{{_ "confirmLearn-form.learningInterval"}}</label>
-                            <div class="col-md-9 form-inline">
-                                <input type="number" min="1" max="999" data-bind="value:replyNumber"
-                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                       class="form-control interval" id="inputLearningInterval1"
-                                       placeholder="1" value="1">
-                                <input type="number" min="1" max="999" data-bind="value:replyNumber"
-                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                       class="form-control interval" id="inputLearningInterval2"
-                                       placeholder="3" value="3">
-                                <input type="number" min="1" max="999" data-bind="value:replyNumber"
-                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                       class="form-control interval" id="inputLearningInterval3"
-                                       placeholder="7" value="7">
-                                <input type="number" min="1" max="999" data-bind="value:replyNumber"
-                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                       class="form-control interval" id="inputLearningInterval4"
-                                       placeholder="28" value="28">
-                                <input type="number" min="1" max="999" data-bind="value:replyNumber"
-                                       onkeypress="return  (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                                       class="form-control interval" id="inputLearningInterval5"
-                                       placeholder="84" value="84">
-                            </div>
-                            <div class="col-md-12">
-                                <span id="errorInputLearningInterval" class="help-block name"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button id="cancelLearn" class="btn btn-default btn-raised btn-block col-xs-12 col-sm-3"
-                            data-dismiss="modal">{{_ "confirmLearn-form.cancel"}}</button>
-                    <button id="confirmLearn" class="btn btn-success btn-raised btn-block col-xs-12 col-sm-3 pull-right"
-                            data-dismiss="modal">{{_ "confirmLearn-form.confirm"}}</button>
-                </div>
-            </div>
-        </div>
-    </div><!-- /form group -->
 </template>
 
 <template name="cardsetEndLearnForm">
@@ -1511,19 +1424,19 @@
                     <td>{{this.learners}}</td>
                 </tr>
                 <tr>
-                    <td>{{_ "confirmLearn-form.maxCards"}}:</td>
+                    <td>{{_ "bonus.form.maxWorkload.label"}}:</td>
                     <td>{{getWorkload}}</td>
                 </tr>
                 <tr>
-                    <td>{{_ "confirmLearn-form.daysBeforeReset"}}:</td>
+                    <td>{{_ "bonus.form.daysBeforeReset.label"}}:</td>
                     <td>{{getDeadline}}</td>
                 </tr>
                 <tr>
-                    <td>{{_ "confirmLearn-form.learningStart"}}:</td>
+                    <td>{{_ "bonus.form.startDate.label"}}:</td>
                     <td>{{getDateStart}}</td>
                 </tr>
                 <tr>
-                    <td>{{_ "confirmLearn-form.learningEnd"}}:</td>
+                    <td>{{_ "bonus.form.endDate.label"}}:</td>
                     <td>{{getDateEnd}}</td>
                 </tr>
                 </tbody>

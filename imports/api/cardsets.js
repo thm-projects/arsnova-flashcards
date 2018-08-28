@@ -400,7 +400,8 @@ Meteor.methods({
 	deactivateLearning: function (id) {
 		check(id, String);
 
-		if ((Roles.userIsInRole(Meteor.userId(), ["admin", "editor"])) || (Roles.userIsInRole(Meteor.userId(), "lecturer") && Cardsets.findOne(id).owner === Meteor.userId())) {
+		let cardset = Cardsets.findOne(id);
+		if (cardset !== undefined && cardset.learningActive && (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || cardset.owner === Meteor.userId())) {
 			Cardsets.update(id, {
 				$set: {
 					learningActive: false
@@ -428,7 +429,8 @@ Meteor.methods({
 		check(learningEnd, Date);
 		check(learningInterval, [String]);
 
-		if ((Roles.userIsInRole(Meteor.userId(), ["admin", "editor"])) || (Roles.userIsInRole(Meteor.userId(), "lecturer") && Cardsets.findOne(id).owner === Meteor.userId())) {
+		let cardset = Cardsets.findOne(id);
+		if (cardset !== undefined && !cardset.learningActive && (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || cardset.owner === Meteor.userId())) {
 			if (!maxCards) {
 				maxCards = 5;
 			}
@@ -483,7 +485,8 @@ Meteor.methods({
 		check(learningEnd, Date);
 		check(learningInterval, [String]);
 
-		if (Roles.userIsInRole(Meteor.userId(), ["admin", "lecturer"]) && ((Cardsets.findOne(id).owner === Meteor.userId()) || Roles.userIsInRole(Meteor.userId(), "admin"))) {
+		let cardset = Cardsets.findOne(id);
+		if (cardset !== undefined && cardset.learningActive && (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || cardset.owner === Meteor.userId())) {
 			learningInterval = learningInterval.sort(
 				function (a, b) {
 					return a - b;

@@ -13,6 +13,7 @@ import {ReactiveVar} from "meteor/reactive-var";
 import "../card/card.js";
 import "../learn/learn.js";
 import "../presentation/presentation.js";
+import "../forms/bonusForm.js";
 import "../forms/cardsetForm.js";
 import "./cardset.html";
 import {CardType} from "../../api/cardTypes";
@@ -555,20 +556,6 @@ Template.cardsetInfo.events({
 			_id: this._id,
 			user_id: Meteor.userId()
 		});
-	},
-	"click #startLearning": function () {
-		if ((Roles.userIsInRole(Meteor.userId(), ["admin", "editor"])) || (Roles.userIsInRole(Meteor.userId(), "lecturer") && this.owner === Meteor.userId())) {
-			let start = moment().format("YYYY-MM-DD");
-			let nextDay = moment().add(1, 'day').format("YYYY-MM-DD");
-			let end = moment().add(3, 'months').format("YYYY-MM-DD");
-			document.getElementById('inputLearningStart').setAttribute("min", start);
-			document.getElementById('inputLearningStart').setAttribute("max", end);
-			$('#inputLearningStart').val(start);
-			document.getElementById('inputLearningEnd').setAttribute("min", nextDay);
-			$('#inputLearningEnd').val(end);
-		} else {
-			throw new Meteor.Error("not-authorized");
-		}
 	},
 	"click #showStats": function () {
 		Router.go('cardsetstats', {_id: Router.current().params._id});
@@ -1175,111 +1162,6 @@ Template.cardsetManageEditors.created = function () {
 		}
 	});
 };
-
-/*
-* ############################################################################
-* cardsetStartLearnForm
-* ############################################################################
-*/
-
-Template.cardsetStartLearnForm.events({
-	"input #inputLearningStart": function () {
-		const start = new Date($('#inputLearningStart').val());
-		const end = new Date($('#inputLearningEnd').val());
-		if (isNaN(start.getTime()) || start < new Date()) {
-			const today = new Date();
-			$('#inputLearningStart').val(today.getFullYear() + "-" + ((today.getMonth() + 1) < 10 ? '0' : '') + (today.getMonth() + 1) + "-" + (today.getDate() < 10 ? '0' : '') + end.getDate());
-		}
-		if (start >= end) {
-			end.setDate(end.getDate() - 1);
-			$('#inputLearningStart').val(end.getFullYear() + "-" + ((end.getMonth() + 1) < 10 ? '0' : '') + (end.getMonth() + 1) + "-" + (end.getDate() < 10 ? '0' : '') + end.getDate());
-		}
-		document.getElementById('inputLearningEnd').setAttribute("min", (start.getFullYear() + "-" + (start.getMonth() + 1) + "-" + start.getDate()));
-	},
-	"input #inputLearningEnd": function () {
-		const start = new Date($('#inputLearningStart').val());
-		let end = new Date($('#inputLearningEnd').val());
-		if (isNaN(end.getTime()) || start >= end) {
-			end = start;
-			end.setDate(end.getDate() + 1);
-			$('#inputLearningEnd').val(end.getFullYear() + "-" + ((end.getMonth() + 1) < 10 ? '0' : '') + (end.getMonth() + 1) + "-" + (end.getDate() < 10 ? '0' : '') + end.getDate());
-		}
-		document.getElementById('inputLearningStart').setAttribute("max", (end.getFullYear() + "-" + (end.getMonth() + 1) + "-" + (end.getDate() - 1)));
-	},
-	"click #confirmLearn": function () {
-		if (!Cardsets.findOne(Router.current().params._id).learningActive) {
-			var maxCards = $('#inputMaxCards').val();
-			var daysBeforeReset = $('#inputDaysBeforeReset').val();
-			var learningStart = new Date($('#inputLearningStart').val());
-			var learningEnd = new Date($('#inputLearningEnd').val());
-			var learningInterval = [];
-			for (let i = 0; i < 5; ++i) {
-				learningInterval[i] = $('#inputLearningInterval' + (i + 1)).val();
-			}
-			if (!learningInterval[0]) {
-				learningInterval[0] = 1;
-			}
-			for (let i = 1; i < 5; ++i) {
-				if (!learningInterval[i]) {
-					learningInterval[i] = (parseInt(learningInterval[i - 1]) + 1);
-				}
-			}
-
-			Meteor.call("activateLearning", this._id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval);
-		}
-		$('#confirmLearnModal').modal('hide');
-		$('body').removeClass('modal-open');
-		$('.modal-backdrop').remove();
-	},
-	"click #cancelLearn": function () {
-		$('#inputMaxCards').val(null);
-		$('#inputDaysBeforeReset').val(null);
-
-		$('#inputLearningInterval1').val(1);
-		$('#inputLearningInterval2').val(3);
-		$('#inputLearningInterval3').val(7);
-		$('#inputLearningInterval4').val(28);
-		$('#inputLearningInterval5').val(84);
-	},
-	"input #inputMaxCards": function () {
-		if (parseInt($('#inputMaxCards').val()) <= 0) {
-			$('#inputMaxCards').val(1);
-		} else if (parseInt($('#inputMaxCards').val()) > 100) {
-			$('#inputMaxCards').val(100);
-		}
-	},
-	"input #inputDaysBeforeReset": function () {
-		if (parseInt($('#inputDaysBeforeReset').val()) <= 0) {
-			$('#inputDaysBeforeReset').val(1);
-		} else if (parseInt($('#inputDaysBeforeReset').val()) > 100) {
-			$('#inputDaysBeforeReset').val(100);
-		}
-	},
-	"input #inputLearningInterval1, input #inputLearningInterval2, input #inputLearningInterval3, input #inputLearningInterval4, input #inputLearningInterval5": function () {
-		var error = false;
-		for (let i = 1; i < 5; ++i) {
-			if (parseInt($('#inputLearningInterval' + i).val()) <= 0) {
-				$('#inputLearningInterval' + i).val(1);
-			} else if (parseInt($('#inputLearningInterval' + i).val()) > 999) {
-				$('#inputLearningInterval' + i).val(999);
-			}
-			if (parseInt($('#inputLearningInterval' + i).val()) > parseInt($('#inputLearningInterval' + (i + 1)).val())) {
-				error = true;
-			}
-		}
-		if (error) {
-			for (let j = 1; j <= 5; ++j) {
-				$('#inputLearningInterval' + j).parent().parent().addClass('has-warning');
-				$('#errorInputLearningInterval').html(TAPi18n.__('confirmLearn-form.wrongOrder'));
-			}
-		} else {
-			for (let k = 1; k <= 5; ++k) {
-				$('#inputLearningInterval' + k).parent().parent().removeClass('has-warning');
-				$('#errorInputLearningInterval').html('');
-			}
-		}
-	}
-});
 
 /*
  * ############################################################################
