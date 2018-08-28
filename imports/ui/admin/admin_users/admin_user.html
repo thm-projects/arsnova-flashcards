@@ -96,16 +96,6 @@
                     </div>
                     <div class="col-md-12">
                         <div class="panel panel-default">
-                            <div class="panel-heading">{{_ "admin.cardsets"}}</div>
-                            <div class="panel-body">
-                                <div class="admin_table_cards">
-                                    {{> reactiveTable collection=cardsetListUserAdmin settings=tableSettings}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
                             <div class="panel-heading">{{_ "admin.user.roles"}}</div>
                             <div class="panel-body">
                                 <div class="form-group">
@@ -248,35 +238,4 @@
             </div>
         </div>
     </div>
-    {{> cardsetConfirmFormUserAdmin}}
 </template>
-
-<template name="cardsetConfirmFormUserAdmin">
-    <div class="modal fade" id="cardsetConfirmModalUserAdmin" tabindex="-1" role="dialog"
-         aria-labelledby="cardsetConfirmModalTitleUserAdmin">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="cardsetConfirmModalTitleUserAdmin"
-                        class="modal-title">{{_ "admin.confirm-form.cardsets.title"}}</h4>
-                </div>
-                <div class="modal-body">
-                    <p>{{_ "admin.confirm-form.cardsets.text"}}</p>
-                    <br/>
-                    <hr/>
-
-                    <button id="cardsetDeleteUserAdmin" class="btn btn-danger btn-setDelete"
-                            style="width:150px">{{_ "admin.confirm-form.cardsets.title"}}</button>
-                    <button id="cardsetCancelUserAdmin" class="btn btn-default pull-right"
-                            data-dismiss="modal">{{_ "admin.confirm-form.cancel"}}</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-</template>
-
-

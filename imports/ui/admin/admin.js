@@ -5,8 +5,6 @@ import {Template} from "meteor/templating";
 import {Notifications} from "../../api/notifications.js";
 import "./admin.html";
 import "./admin_dashboard/admin_dashboard.js";
-import "./admin_cardsets/admin_cardsets.js";
-import "./admin_cards/admin_cards.js";
 import "./admin_users/admin_users.js";
 import "./admin_learningStatistics/admin_learningStatistics.js";
 import "./admin_apiAccess/admin_apiAccess.js";

@@ -422,54 +422,6 @@ Router.route('/admin/dashboard', {
 	}
 });
 
-Router.route('/admin/cardsets', {
-	name: 'admin_cardsets',
-	template: 'admin_cardsets',
-	layoutTemplate: 'admin_main',
-	data: function () {
-		Session.set('helpFilter', undefined);
-	}
-});
-
-Router.route('/admin/cardset/:_id', {
-	name: 'admin_cardset',
-	template: 'admin_cardset',
-	layoutTemplate: 'admin_main',
-	subscriptions: function () {
-		return [Meteor.subscribe('allCards')];
-	},
-	data: function () {
-		Session.set('helpFilter', undefined);
-		Session.set('isNewCardset', false);
-		return Cardsets.findOne({_id: this.params._id});
-	}
-});
-
-Router.route('/admin/cards', {
-	name: 'adminCards',
-	template: 'admin_cards',
-	layoutTemplate: 'admin_main',
-	subscriptions: function () {
-		return [Meteor.subscribe('allCards')];
-	},
-	data: function () {
-		Session.set('helpFilter', undefined);
-	}
-});
-
-Router.route('/admin/card/:_id', {
-	name: 'adminCard',
-	template: 'admin_card',
-	layoutTemplate: 'admin_main',
-	subscriptions: function () {
-		return [Meteor.subscribe('allCards')];
-	},
-	data: function () {
-		Session.set('helpFilter', undefined);
-		return Cards.findOne({_id: this.params._id});
-	}
-});
-
 Router.route('/admin/users', {
 	name: 'admin_users',
 	template: 'admin_users',

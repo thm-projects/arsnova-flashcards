@@ -165,6 +165,77 @@ Template.cardsetForm.helpers({
 		return isNewCardset();
 	}
 });
+/*
+ * ############################################################################
+ * cardsetFormAdmin
+ * ############################################################################
+ */
+Template.cardsetFormAdmin.onRendered(function () {
+	$('#setCardsetFormAdminModal').on('show.bs.modal', function () {
+		$('#cardsetChangeOwnerAdminLabel').html("");
+	});
+	$('#setCardsetFormAdminModal').on('hidden.bs.modal', function () {
+		Session.get('activeCardset', undefined);
+	});
+});
+
+Template.cardsetFormAdmin.helpers({
+	isInWordcloud: function () {
+		if (Session.get('activeCardset') !== undefined) {
+			return Session.get('activeCardset').wordcloud;
+		}
+	},
+	getOwnerId: function () {
+		if (Session.get('activeCardset') !== undefined) {
+			return Session.get('activeCardset').owner;
+		}
+	},
+	getCardsetName: function () {
+		if (Session.get('activeCardset') !== undefined) {
+			return Session.get('activeCardset').name;
+		}
+	},
+	getAuthorLabel: function () {
+		return TAPi18n.__('modal-dialog.cardsetowner');
+	}
+});
+
+Template.cardsetFormAdmin.events({
+	'click #cardsetChangeOwnerAdmin': function (evt, tmpl) {
+		let owner = tmpl.find('#editOwnerAdmin').value;
+		if (Session.get('activeCardset') !== undefined) {
+			Meteor.call('changeOwner', Session.get('activeCardset')._id, owner, function (error, result) {
+				if (error || result === false) {
+					$('#cardsetChangeOwnerAdminLabel').css({'visibility': 'visible', 'color': '#b94a48'});
+					$('#cardsetChangeOwnerAdminLabel').html(TAPi18n.__('modal-admin-dialog.owner.message.failure', {owner: TAPi18n.__('modal-dialog.cardsetowner')}));
+				} else {
+					$('#cardsetChangeOwnerAdminLabel').css({'visibility': 'visible', 'color': '#4ab948'});
+					$('#cardsetChangeOwnerAdminLabel').html(TAPi18n.__('modal-admin-dialog.owner.message.success', {owner: TAPi18n.__('modal-dialog.cardsetowner')}));
+					Session.set('activeCardset', Cardsets.findOne(Session.get('activeCardset')._id));
+				}
+			});
+		}
+	},
+	'click #cardsetAddToWordcloude': function () {
+		if (Session.get('activeCardset') !== undefined) {
+			Meteor.call('updateWordcloudStatus', Session.get('activeCardset')._id, true, function (error, result) {
+				if (result) {
+					Session.set('activeCardset', Cardsets.findOne(result));
+				}
+			});
+		}
+	},
+	'click #cardsetRemoveFromWordcloude': function () {
+		if (Session.get('activeCardset') !== undefined) {
+			Meteor.call('updateWordcloudStatus', Session.get('activeCardset')._id, false, function (error, result) {
+				if (result) {
+					Session.set('activeCardset', Cardsets.findOne(result));
+				}
+			});
+		}
+	}
+});
+
 
 /*
  * ############################################################################
