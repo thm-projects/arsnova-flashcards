@@ -58,9 +58,14 @@ export let BonusForm = class BonusForm {
 	}
 
 	static adjustRegistrationPeriod () {
+		let dateBonusStart = $('#bonusFormModal #dateBonusStart');
 		let dateBonusEnd = $('#bonusFormModal #dateBonusEnd');
 		let dateRegistrationPeriodExpires = $('#bonusFormModal #dateRegistrationPeriod');
+		dateRegistrationPeriodExpires.attr("min", moment(dateBonusStart.val()).add(1, 'day').format(dateFormat));
 		dateRegistrationPeriodExpires.attr("max", dateBonusEnd.val());
+		if (this.getDateStart().getTime() >= this.getRegistrationPeriod().getTime()) {
+			dateRegistrationPeriodExpires.val(moment(dateBonusStart.val()).add(1, 'day').format(dateFormat));
+		}
 		if (this.getDateEnd().getTime() < this.getRegistrationPeriod().getTime()) {
 			dateRegistrationPeriodExpires.val(moment(dateBonusEnd.val()).format(dateFormat));
 		}
