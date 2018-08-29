@@ -1640,6 +1640,13 @@ Template.leitnerLearning.onRendered(function () {
 			setTimeout(function () {
 				Bert.defaults.hideDelay = 97200;
 				let bertType = "success";
+				if (Session.get('activeCardset').registrationPeriod.getTime() < new Date()) {
+					if (Leitner.findOne({cardset_id: Session.get('activeCardset')._id, user_id: Meteor.userId()}, {fields: {_id: 1}}) === undefined) {
+						bertType = "warning";
+						BertAlertVisuals.displayBertAlert(TAPi18n.__('bonus.message.registrationPeriodExpired'), bertType, 'growl-top-left');
+						return;
+					}
+				}
 				if (Session.get('activeCardset').learningEnd.getTime() > new Date().getTime()) {
 					let text = "";
 					if (Leitner.find({
@@ -1665,7 +1672,7 @@ Template.leitnerLearning.onRendered(function () {
 							user_id: Meteor.userId(),
 							box: {$ne: 6}
 						}).count() === 0) {
-							text += TAPi18n.__('learnedEverything');
+							text += TAPi18n.__('bonus.message.learnedEverything');
 						} else {
 							let nextCardDate = Leitner.findOne({
 								cardset_id: Router.current().params._id,
@@ -1692,7 +1699,7 @@ Template.leitnerLearning.onRendered(function () {
 					}
 					BertAlertVisuals.displayBertAlert(text, bertType, 'growl-top-left');
 				} else {
-					BertAlertVisuals.displayBertAlert(TAPi18n.__('learnPhaseEnded'), bertType, 'growl-top-left');
+					BertAlertVisuals.displayBertAlert(TAPi18n.__('bonus.message.bonusEnded'), bertType, 'growl-top-left');
 				}
 				Bert.defaults.hideDelay = 7;
 			}, 2000);

@@ -520,6 +520,11 @@
     "selectShuffledCardsetToLearn": "Mit einem Klick auf das Thema eines Repetitoriums nimmst du es in dein Lernpensum auf."
   },
   "bonus": {
+    "message": {
+      "registrationPeriodExpired": "Die Anmeldefrist ist abgelaufen. Du kannst der Bonusphase nicht mehr beitreten.",
+      "bonusEnded": "Die Bonus-Lernphase ist zuende",
+      "learnedEverything": "Perfekt! Du hast alle Karten aus dieser Kartei gelernt."
+    },
     "form": {
       "new": {
         "title": "Bonus-Lernphase starten"
@@ -1037,7 +1042,6 @@
   "deadlinePrologue": "Du hast noch bis zum <strong>",
   "deadlineEpilogue1": "</strong> Zeit, um die derzeit freigegebenen Karten zu lernen.",
   "deadlineEpilogue2": "</strong> Zeit, um die derzeit freigegebenen Karten zu lernen, sonst wird deine Lernstatistik für diese Kartei zurückgesetzt.",
-  "learnedEverything": "Perfekt! Du hast alle Karten aus dieser Kartei gelernt.",
   "cardsToLearn": "Meine zu lernenden Karten",
   "noCardsToLearn": "Die nächsten Karten werden am ",
   "at": " um ",

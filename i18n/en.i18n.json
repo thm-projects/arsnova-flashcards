@@ -543,6 +543,11 @@
     "selectShuffledCardsetToLearn": "Add shuffled cardset to Workload"
   },
   "bonus": {
+    "message": {
+      "registrationPeriodExpired": "",
+      "bonusEnded": "",
+      "learnedEverything": ""
+    },
     "form": {
       "new": {
         "title": ""
