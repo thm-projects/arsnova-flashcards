@@ -151,20 +151,9 @@
     "text2": "If you would still like to delete your user profile, please click the button \"Delete user profile\". After the process you will be automatically logged out of .__lastAppTitle__."
   },
   "confirmLearn-form": {
-    "title": "Start Learning-Phase",
     "text": "Do you really want to start the Learn-Phase? All users of this deck will lose their progress!",
     "confirm": "Start",
     "cancel": "Cancel",
-    "maxCards": "Daily workload",
-    "maxCardsDesc": "Maximum number of daily learnable cards",
-    "daysBeforeReset": "Overrun",
-    "daysBeforeResetDesc": "Maximum overrun in days",
-    "learningStart": "Start of Learning-Phase",
-    "learningStartDesc": "Today",
-    "learningEnd": "End of Learning-Phase",
-    "learningEndDesc": "In 3 months",
-    "learningInterval": "Learning-Interval in days",
-    "wrongOrder": "The intervals are set in the wrong order! They will be sorted automatically.",
     "notification": "Notifications",
     "mailNotificationRadio": "E-Mail",
     "webNotificationRadio": "Browser",
@@ -535,7 +524,7 @@
     "create": "Start a presentation",
     "start": "Start",
     "list": {
-      "back":"Back to the presentation",
+      "back": "Back to the presentation",
       "backDemo": "Back to the demo cardset"
     }
   },
@@ -552,6 +541,50 @@
     "activeLearners": "Active learners",
     "selectCardToLearn": "Add cardset to Workload",
     "selectShuffledCardsetToLearn": "Add shuffled cardset to Workload"
+  },
+  "bonus": {
+    "message": {
+      "registrationPeriodExpired": "",
+      "bonusEnded": "",
+      "learnedEverything": ""
+    },
+    "form": {
+      "new": {
+        "title": ""
+      },
+      "edit": {
+        "title": ""
+      },
+      "maxWorkload": {
+        "label": "",
+        "placeholder": ""
+      },
+      "daysBeforeReset": {
+        "label": "",
+        "placeholder": ""
+      },
+      "startDate": {
+        "label": "",
+        "placeholder": ""
+      },
+      "endDate": {
+        "label": "",
+        "placeholder": ""
+      },
+      "registrationPeriod": {
+        "label": "",
+        "placeholder": ""
+      },
+      "intervals": {
+        "label": ""
+      },
+      "button": {
+        "start": "",
+        "cancel": "",
+        "update": "",
+        "reset": ""
+      }
+    }
   },
   "cardset": {
     "info": {
@@ -1503,17 +1536,82 @@
     "firstLogin": {
       "title": "Welcome to __firstAppTitle__.__lastAppTitle__ !",
       "message": "Take a look around the platform.
-      Here you can learn cards on a specific topic or create sets of cards for your studies.
+      Here
+      you
+      can
+      learn
+      cards
+      on
+      a
+      specific
+      topic
+      or
+      create
+      sets
+      of
+      cards
+      for
+      your
+      studies.
       </br>
       </br>
-      The help above in the middle explains why this platform is so unique !
+      The
+      help
+      above
+      in
+      the
+      middle
+      explains
+      why
+      this
+      platform
+      is
+      so
+      unique
+      !
       </br>
       </br>
-      Search the topic pool for a topic that interests you.
-      Click on the small arrow to the far right of the topic to see the description of the card index.
-      Click on the topic to see the cards.
+      Search
+      the
+      topic
+      pool
+      for
+      a
+      topic
+      that
+      interests
+      you.
+      Click
+      on
+      the
+      small
+      arrow
+      to
+      the
+      far
+      right
+      of
+      the
+      topic
+      to
+      see
+      the
+      description
+      of
+      the
+      card
+      index.
+      Click
+      on
+      the
+      topic
+      to
+      see
+      the
+      cards.
       </br>
-      </br>"
+      </br>
+      "
     },
     "publishBonus": {
       "message": ""

@@ -6,35 +6,36 @@ import {getAuthorName} from "./userdata";
 
 function getLearningStatus(learningEnd) {
 	if (learningEnd.getTime() > new Date().getTime()) {
-		return TAPi18n.__('set-list.activeLearnphase');
+		return TAPi18n.__('set-list.activeLearnphase', {}, "de");
 	} else {
-		return TAPi18n.__('set-list.inactiveLearnphase');
+		return TAPi18n.__('set-list.inactiveLearnphase', {}, "de");
 	}
 }
 
 function getCardsetInfo(cardset) {
 	return [
-		[TAPi18n.__('set-list.cardsetInfoStatic'), ""],
-		[TAPi18n.__('set-list.name'), cardset.name],
-		[TAPi18n.__('modal-dialog.kind'), cardset.kind],
-		[TAPi18n.__('cardset.info.rating'), cardset.relevance],
-		[TAPi18n.__('cardset.info.quantity'), cardset.quantity],
-		[TAPi18n.__('cardset.info.author'), getAuthorName(cardset.owner)],
-		[TAPi18n.__('cardset.info.release'), moment(cardset.date).locale("de").format('LL')],
-		[TAPi18n.__('cardset.info.dateUpdated'), moment(cardset.dateUpdated).locale("de").format('LL')]
+		[TAPi18n.__('set-list.cardsetInfoStatic', {}, "de"), ""],
+		[TAPi18n.__('set-list.name', {}, "de"), cardset.name],
+		[TAPi18n.__('modal-dialog.kind', {}, "de"), cardset.kind],
+		[TAPi18n.__('cardset.info.rating', {}, "de"), cardset.relevance],
+		[TAPi18n.__('cardset.info.quantity', {}, "de"), cardset.quantity],
+		[TAPi18n.__('cardset.info.author', {}, "de"), getAuthorName(cardset.owner)],
+		[TAPi18n.__('cardset.info.release', {}, "de"), moment(cardset.date).locale("de").format('LL')],
+		[TAPi18n.__('cardset.info.dateUpdated', {}, "de"), moment(cardset.dateUpdated).locale("de").format('LL')]
 	];
 }
 
 function getLearningPhaseInfo(cardset) {
 	return [
 		["", ""],
-		[TAPi18n.__('set-list.learnphaseInfo'), ""],
-		[TAPi18n.__('set-list.learnphase'), getLearningStatus(cardset.learningEnd)],
-		[TAPi18n.__('pool.activeLearners'), cardset.learners],
-		[TAPi18n.__('confirmLearn-form.maxCards'), cardset.maxCards],
-		[TAPi18n.__('confirmLearn-form.daysBeforeReset'), cardset.daysBeforeReset],
-		[TAPi18n.__('confirmLearn-form.learningStart'), moment(cardset.learningStart).locale("de").format('LL')],
-		[TAPi18n.__('confirmLearn-form.learningEnd'), moment(cardset.learningEnd).locale("de").format('LL')]
+		[TAPi18n.__('set-list.learnphaseInfo', {}, "de"), ""],
+		[TAPi18n.__('set-list.learnphase', {}, "de"), getLearningStatus(cardset.learningEnd)],
+		[TAPi18n.__('pool.activeLearners', {}, "de"), cardset.learners],
+		[TAPi18n.__('bonus.form.maxWorkload.label', {}, "de"), cardset.maxCards],
+		[TAPi18n.__('bonus.form.daysBeforeReset.label', {}, "de"), cardset.daysBeforeReset],
+		[TAPi18n.__('bonus.form.startDate.label', {}, "de"), moment(cardset.learningStart).locale("de").format('LL')],
+		[TAPi18n.__('bonus.form.endDate.label', {}, "de"), moment(cardset.learningEnd).locale("de").format('LL')],
+		[TAPi18n.__('bonus.form.registrationPeriod.label', {}, "de"), moment(cardset.registrationPeriod).locale("de").format('LL')]
 	];
 }
 
@@ -104,7 +105,7 @@ Meteor.methods({
 			let infoCardsetCounter = 0;
 			let infoCardsetLength = 6;
 			let infoLearningPhaseCounter = 0;
-			let infoLearningPhaseLength = 7;
+			let infoLearningPhaseLength = 8;
 			content = header[6] + colSep + header[7] + colSep + header[8] + colSep;
 			for (let i = 0; i <= 4; i++) {
 				content += header[i] + " [" + cardset.learningInterval[i] + "]" + colSep;

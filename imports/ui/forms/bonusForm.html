@@ -1,0 +1,119 @@
+<template name="bonusForm">
+    <div class="modal fade" id="bonusFormModal" tabindex="-1" data-backdrop="static" role="dialog"
+         aria-labelledby="bonusFormModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="bonusFormModalTitle" class="modal-title">{{#if isNewBonus}}{{_
+                            "bonus.form.new.title"}}{{else}}{{_ "bonus.form.edit.title"}}{{/if}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        {{> bonusFormMaxWorkload}}
+                        {{> bonusFormDaysBeforeReset}}
+                        {{> bonusFormStartDate}}
+                        {{> bonusFormEndDate}}
+                        {{> bonusFormRegistrationPeriod}}
+                        {{> bonusFormIntervals}}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancelBonus" class="btn btn-default btn-raised btn-block col-xs-12 col-sm-3"
+                            data-dismiss="modal">{{_ "bonus.form.button.cancel"}}</button>
+                    <button id="resetBonus" class="btn btn-danger btn-raised btn-block col-xs-12 col-sm-3">{{_
+                            "bonus.form.button.reset"}}</button>
+                    <button id="startBonus"
+                            class="btn btn-success btn-raised btn-block col-xs-12 col-sm-3 pull-right"
+                            data-dismiss="modal">{{#if isNewBonus}}{{_ "bonus.form.button.start"}}{{else}}{{_
+                            "bonus.form.button.update"}}{{/if}}</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- /form group -->
+</template>
+
+<template name="bonusFormMaxWorkload">
+    <div class="form-group">
+        <label class="col-md-3 control-label">{{_ "bonus.form.maxWorkload.label"}}</label>
+        <div class="col-md-9">
+            <input type="number" min="1" max="100" data-bind="value:replyNumber"
+                   onkeypress="return  (event.charCode === 8 || event.charCode === 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                   class="form-control" id="maxWorkload"
+                   placeholder="{{_ "bonus.form.maxWorkload.placeholder"}}" value="">
+            <span id="errorMaxCards" class="help-block name"></span>
+        </div>
+    </div>
+</template>
+
+<template name="bonusFormDaysBeforeReset">
+    <div class="form-group">
+        <label class="col-md-3 control-label">{{_ "bonus.form.daysBeforeReset.label"}}</label>
+        <div class="col-md-9">
+            <input type="number" min="1" max="100" data-bind="value:replyNumber"
+                   onkeypress="return  (event.charCode === 8 || event.charCode === 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                   class="form-control" id="daysBeforeReset"
+                   placeholder="{{_ "bonus.form.daysBeforeReset.placeholder"}}" value="">
+            <span id="errorDaysBeforeReset" class="help-block name"></span>
+        </div>
+    </div>
+</template>
+
+<template name="bonusFormStartDate">
+    <div class="form-group">
+        <label class="col-md-3 control-label">{{_ "bonus.form.startDate.label"}}</label>
+        <div class="col-md-9">
+            <input type="date" class="form-control" id="dateBonusStart"
+                   placeholder="{{_ "bonus.form.startDate.placeholder"}}" value="">
+        </div>
+    </div>
+</template>
+
+<template name="bonusFormEndDate">
+    <div class="form-group">
+        <label class="col-md-3 control-label">{{_ "bonus.form.endDate.label"}}</label>
+        <div class="col-md-9">
+            <input type="date" class="form-control" id="dateBonusEnd"
+                   placeholder="{{_ "bonus.form.endDate.placeholder"}}" value="">
+        </div>
+    </div>
+</template>
+
+<template name="bonusFormIntervals">
+    <div class="form-group">
+        <label class="col-md-3 control-label">{{_ "bonus.form.intervals.label"}}</label>
+        <div class="col-md-9 form-inline">
+            <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                   onkeypress="return  (event.charCode === 8 || event.charCode === 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                   class="form-control interval" id="interval1"
+                   placeholder="1" value="1">
+            <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                   onkeypress="return  (event.charCode === 8 || event.charCode === 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                   class="form-control interval" id="interval2"
+                   placeholder="3" value="3">
+            <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                   onkeypress="return  (event.charCode === 8 || event.charCode === 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                   class="form-control interval" id="interval3"
+                   placeholder="7" value="7">
+            <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                   onkeypress="return  (event.charCode === 8 || event.charCode === 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                   class="form-control interval" id="interval4"
+                   placeholder="28" value="28">
+            <input type="number" min="1" max="999" data-bind="value:replyNumber"
+                   onkeypress="return  (event.charCode === 8 || event.charCode === 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                   class="form-control interval" id="interval5"
+                   placeholder="84" value="84">
+        </div>
+    </div>
+</template>
+
+<template name="bonusFormRegistrationPeriod">
+    <div class="form-group">
+        <label class="col-md-3 control-label">{{_ "bonus.form.registrationPeriod.label"}}</label>
+        <div class="col-md-9 form-inline">
+            <input type="date" class="form-control" id="dateRegistrationPeriod"
+                   placeholder="{{_ "bonus.form.registrationPeriod.placeholder"}}" value="">
+        </div>
+    </div>
+</template>

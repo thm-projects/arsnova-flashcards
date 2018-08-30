@@ -178,6 +178,9 @@ const CardsetsSchema = new SimpleSchema({
 	learningInterval: {
 		type: [Number]
 	},
+	registrationPeriod: {
+		type: Date
+	},
 	learners: {
 		type: Number
 	},
@@ -308,6 +311,7 @@ Meteor.methods({
 			daysBeforeReset: 0,
 			learningStart: 0,
 			learningEnd: 0,
+			registrationPeriod: 0,
 			learningInterval: [],
 			learners: 0,
 			mailNotification: true,
@@ -397,10 +401,11 @@ Meteor.methods({
 	 * Deactivate the learning phase for the selected cardset.
 	 * @param {String} id - ID of the cardset for which the learning phase is to be deactivated.
 	 */
-	deactivateLearning: function (id) {
+	deactivateBonus: function (id) {
 		check(id, String);
 
-		if ((Roles.userIsInRole(Meteor.userId(), ["admin", "editor"])) || (Roles.userIsInRole(Meteor.userId(), "lecturer") && Cardsets.findOne(id).owner === Meteor.userId())) {
+		let cardset = Cardsets.findOne(id);
+		if (cardset !== undefined && cardset.learningActive && (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || cardset.owner === Meteor.userId())) {
 			Cardsets.update(id, {
 				$set: {
 					learningActive: false
@@ -414,38 +419,25 @@ Meteor.methods({
 	/**
 	 * Activate the learning phase for the selected cardset.
 	 * @param {String} id - ID of the cardset for which the learning phase is to be activated.
-	 * @param {String} maxCards - Maximum number of daily learnable cards
-	 * @param {String} daysBeforeReset - Maximum overrun in days
-	 * @param {Date} learningStart - Start date of the learnin gphase
-	 * @param {Date} learningEnd - End date of the learning phase
-	 * @param {String} learningInterval - Learning interval in days
+	 * @param {Number} maxWorkload - Maximum number of daily learnable cards
+	 * @param {Number} daysBeforeReset - Maximum overrun in days
+	 * @param {Date} dateStart - Start date of the learnin gphase
+	 * @param {Date} dateEnd - End date of the learning phase
+	 * @param {Number} intervals - Learning interval in days
+	 * @param {Date} registrationPeriod - Period in which new users can join the bonus phase
 	 */
-	activateLearning: function (id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval) {
+	activateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod) {
 		check(id, String);
-		check(maxCards, String);
-		check(daysBeforeReset, String);
-		check(learningStart, Date);
-		check(learningEnd, Date);
-		check(learningInterval, [String]);
+		check(maxWorkload, Number);
+		check(daysBeforeReset, Number);
+		check(dateStart, Date);
+		check(dateEnd, Date);
+		check(intervals, [Number]);
+		check(registrationPeriod, Date);
 
-		if ((Roles.userIsInRole(Meteor.userId(), ["admin", "editor"])) || (Roles.userIsInRole(Meteor.userId(), "lecturer") && Cardsets.findOne(id).owner === Meteor.userId())) {
-			if (!maxCards) {
-				maxCards = 5;
-			}
-			if (!daysBeforeReset) {
-				daysBeforeReset = 7;
-			}
-			if (!learningStart) {
-				learningStart = new Date();
-			}
-			if (!learningEnd) {
-				learningEnd = new Date();
-				learningEnd.setMonth(learningEnd.getMonth() + 3);
-			}
-			if (!learningInterval) {
-				learningInterval = [1, 3, 7, 4 * 7, 3 * 4 * 7];
-			}
-			learningInterval = learningInterval.sort(
+		let cardset = Cardsets.findOne(id);
+		if (cardset !== undefined && !cardset.learningActive && (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || cardset.owner === Meteor.userId())) {
+			intervals = intervals.sort(
 				function (a, b) {
 					return a - b;
 				}
@@ -453,11 +445,12 @@ Meteor.methods({
 			Cardsets.update(id, {
 				$set: {
 					learningActive: true,
-					maxCards: maxCards,
+					maxCards: maxWorkload,
 					daysBeforeReset: daysBeforeReset,
-					learningStart: learningStart,
-					learningEnd: learningEnd,
-					learningInterval: learningInterval
+					learningStart: dateStart,
+					learningEnd: dateEnd,
+					learningInterval: intervals,
+					registrationPeriod: registrationPeriod
 				}
 			});
 			Meteor.call("clearLeitnerProgress", id);
@@ -469,39 +462,43 @@ Meteor.methods({
 	/**
 	 * Updates the settings of a learning phase for the selected cardset.
 	 * @param {String} id - ID of the cardset for which the learning phase is to be activated.
-	 * @param {String} maxCards - Maximum number of daily learnable cards
-	 * @param {String} daysBeforeReset - Maximum overrun in days
-	 * @param {Date} learningStart - Start date of the learnin gphase
-	 * @param {Date} learningEnd - End date of the learning phase
-	 * @param {String} learningInterval - Learning interval in days
+	 * @param {Number} maxWorkload - Maximum number of daily learnable cards
+	 * @param {Number} daysBeforeReset - Maximum overrun in days
+	 * @param {Date} dateStart - Start date of the learnin gphase
+	 * @param {Date} dateEnd - End date of the learning phase
+	 * @param {Number} intervals - Learning interval in days
+	 * @param {Date} registrationPeriod - Period in which new users can join the bonus phase
 	 */
-	updateLearning: function (id, maxCards, daysBeforeReset, learningStart, learningEnd, learningInterval) {
+	updateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod) {
 		check(id, String);
-		check(maxCards, String);
-		check(daysBeforeReset, String);
-		check(learningStart, Date);
-		check(learningEnd, Date);
-		check(learningInterval, [String]);
+		check(maxWorkload, Number);
+		check(daysBeforeReset, Number);
+		check(dateStart, Date);
+		check(dateEnd, Date);
+		check(intervals, [Number]);
+		check(registrationPeriod, Date);
 
-		if (Roles.userIsInRole(Meteor.userId(), ["admin", "lecturer"]) && ((Cardsets.findOne(id).owner === Meteor.userId()) || Roles.userIsInRole(Meteor.userId(), "admin"))) {
-			learningInterval = learningInterval.sort(
+		let cardset = Cardsets.findOne(id);
+		if (cardset !== undefined && cardset.learningActive && (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || cardset.owner === Meteor.userId())) {
+			intervals = intervals.sort(
 				function (a, b) {
 					return a - b;
 				}
 			);
 			Cardsets.update(id, {
 				$set: {
-					maxCards: maxCards,
+					maxCards: maxWorkload,
 					daysBeforeReset: daysBeforeReset,
-					learningStart: learningStart,
-					learningEnd: learningEnd,
-					learningInterval: learningInterval
+					learningStart: dateStart,
+					learningEnd: dateEnd,
+					learningInterval: intervals,
+					registrationPeriod: registrationPeriod
 				}
 			});
+			return cardset._id;
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
-		return true;
 	},
 	/**
 	 * Updates the selected cardset if user is authorized.

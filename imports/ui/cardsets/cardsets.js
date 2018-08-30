@@ -294,7 +294,7 @@ Template.cardsets.events({
 
 Template.cardsetsConfirmLearnForm.events({
 	'click #learnDelete': function () {
-		$('#confirmLearnModal').on('hidden.bs.modal', function () {
+		$('#bonusFormModal').on('hidden.bs.modal', function () {
 			Meteor.call("deleteLeitner", Session.get('cardsetId'), function (error, result) {
 				if (result) {
 					Filter.updateWorkloadFilter();
