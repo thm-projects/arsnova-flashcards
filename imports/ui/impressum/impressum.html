@@ -137,7 +137,7 @@
             {{#if isActiveLanguage 'de'}}
                 <h2>Das Projekt</h2>
                 <p>
-                    .cards ist für das <b>Mitschreiben und Lernen mit Karten</b> in den Studiengängen der
+                    .cards (gesprochen: Punkt cards) ist für das <b>Mitschreiben und Lernen</b> in den Studiengängen der
                     Technischen Hochschule Mittelhessen, THM, entwickelt worden.
                     Das <a href="https://github.com/thm-projects/arsnova-flashcards"
                            target="_blank">Open-Source-Projekt</a>
@@ -154,27 +154,22 @@
                     <a href="https://www.supermemo.com/" target="_blank">SuperMemo</a>.
                     Denn .cards unterstützt nicht nur das Lernen von Studieninhalten mit digitalen Karteikarten, sondern auch das
                     Nachbearbeiten und Lernen von Mitschriften.
-                    Um einen anhaltenden Lernprozess zu motivieren,
-                    bietet die Plattform eine Bonusvergabe für kontinuierliches Mitschreiben und Lernen an.
                     .cards versteht sich als <b>vorlesungsbegleitende persönliche Lernumgebung</b>, als
                     ein virtueller Ort, wo Lernzeit mit kognitiven Tätigkeiten (Nachbearbeiten der Mitschrift, Lernkarten
                     erstellen, repetitives Beantworten von Lernfragen) intensiv verbracht wird
-                    — im Gegensatz zu sogenannten Lernplattformen wie Moodle oder ILIAS, die meist nur als
-                    Verteilungsplattformen für Skripte dienen.
+                    — im Gegensatz zu Moodle, das meist nur als Verteilungsplattform für Skripte dient.
                 </p>
                 <h2>Das Lehr- und Lernkonzept</h2>
                 <p>
                     Das didaktische Konzept von .cards erlaubt der Lehrperson, den Lernprozess der Studierenden objektiv
                     zu bewerten, um so gegebenenfalls <b>Bonuspunkte für regelmäßiges Mitschreiben und wiederholtes
-                    Lernen</b> über
-                    den Semesterverlauf zu vergeben.
+                    Lernen</b> über den Semesterverlauf zu vergeben.
                     Das Lernen gemäß den in .cards implementierten Wiederholungs-Algorithmen von
                     <a href="https://de.wikipedia.org/wiki/Lernkartei" target="_blank">Sebastian Leitner</a> oder
                     <a href="https://en.wikipedia.org/wiki/Piotr_Wo%C5%BAniak_(researcher)" target="_blank">Piotr
                         Woźniak</a> ist nachweislich die effektivste Lernstrategie, um Studieninhalte langfristig — über
                     die Klausuren und das Studium hinaus — im Gedächtnis zu behalten,
-                    siehe unseren Beitrag für die <a href="http://site.aace.org/" target="_blank">SITE Conference
-                    2018</a>, hieraus das Abstract:
+                    siehe unseren Beitrag für die <a href="http://site.aace.org/" target="_blank">SITE Conference</a>, hieraus das Abstract:
                 </p>
 
                 <blockquote style="font-size: inherit; font-style: italic">
@@ -213,37 +208,37 @@
                 </blockquote>
 
                 <h2>Die Integration in die Präsenzlehre</h2>
-                <p>.cards kann auch zum Präsentieren von Lerninhalten am Beamer eingesetzt werden – als Ersatz für PowerPoint oder Keynote.
-                    Die Darstellung wurde für die Projektion optimiert (Vollansicht, Kontrast, Textskalierung, Tastatursteuerung).
-                    Wenn Studierende eine Kartei vom Typ "Mitschrift" für sich anlegen,
-                    können sie per Auswahlmenü ihre Mitschrift mit der Präsentation verlinken und so alle Mitschriften, die zu einem Modul gehören, als Einheit organisieren.
+                <p>.cards wurde auch zum Präsentieren von Lerninhalten am Beamer entwickelt – als Ersatz für PowerPoint oder Keynote.
+                    Die Ansicht der Karten ist für die Projektion optimiert: Vollansicht, Kontrast, Textskalierung, Tastatursteuerung.
+                    Wenn Studierende eine Kartei vom Typ "Mitschrift" anlegen,
+                    können sie per Auswahlmenü ihre Mitschrift mit der Präsentation verlinken und so alle Mitschriften,
+                    die zu einem Modul gehören, als Einheit organisieren.
                     Eine weitere Organisationform ist das <strong>Repetitorium</strong> auf .cards:
                     Karteien beliebigen Typs können zur Prüfungsvorbereitung zusammengefasst und zusammen gelernt werden.
                     Die dabei erzielten Lernstände können durch Auswahl einer zum Repetitorium gehörenden Kartei differenziert angezeigt werden.
                 </p>
                 <h2>Das Nutzungskonzept</h2>
                 <p>
-                    Die Studierenden der THM haben über ihren <b>Uni-Zugang</b> (CAS) kostenlosen Zugriff auf alle
-                    <b>THM-Karteien</b> im Pool von .cards.
+                    Die Studierenden der THM haben über ihren <b>Uni-Zugang</b> kostenlosen Zugriff auf alle
+                    <b>THM-Karteien und -Repetitorien</b>.
                     Hierbei handelt es sich um Karteien, die von Lehrenden der THM für ihre Module angelegt wurden.
                     Studierende anderer Hochschulen, die sich über ein Konto eines Netzwerks (Facebook, Twitter oder
-                    Google+) anmelden, können THM-Karteien einzeln oder im <b>Pro-Abonnement</b> erwerben (<b>bis SoSe
-                    2019 im kostenlosen Testbetrieb</b>),
-                    siehe die <a href="{{pathFor route='agb'}}">AGB</a>.
-                    THM-Studierende können private Karteien anlegen und diese in einem Pool der Allgemeinheit zur
+                    Google+) anmelden, können THM-Karteien einzeln oder im <b>Pro-Abonnement</b> erwerben (bis zum SoSem
+                    2019 im kostenlosen Testbetrieb), siehe die <a href="{{pathFor route='agb'}}">AGB</a>.
+                    THM-Studierende können ihre Karteien in einem Themen-Pool der Allgemeinheit zur
                     freien Verfügung stellen.
-                    Abonnentinnen und Abonnenten können ihre Karteien, deren formale und inhaltliche Qualität von
-                    einer
-                    Lehrperson der THM geprüft wurde, auch als Pro-Karteien zum Kauf anbieten.
+                    Abonnentinnen und Abonnenten können Karteien, deren formale und inhaltliche Qualität von einer
+                    Lehrperson zuvor geprüft wurde, auch als Pro-Karteien zum Kauf anbieten.
                 </p>
                 <h2>Der Name</h2>
                 <p>
                     <strong>.cards</strong> steht für das zentrale Medium der Lernplattform
                     und ist seit 2014 eine der neuen <strong>generischen Top-Level-Domains</strong>
                     (<a href="https://de.wikipedia.org/wiki/Neue_Top-Level-Domains" target="_blank">gTLD</a>) im Web.
-                    Diese Koinzidenz der Namen ermöglicht kurze und prägnante Webadressen für themenspezifische Installationen von .cards,
+                    Die Koinzidenz der Namen ermöglicht kurze und prägnante Webadressen für themenspezifische Installationen von .cards,
                     zum Beispiel <a href="https://informatik.cards" target="_blank">informatik.cards</a>
-                    oder <a href="https://linux.cards" target="_blank">linux.cards</a>, wobei die Subdomain für das Thema steht.
+                    oder <a href="https://linux.cards" target="_blank">linux.cards</a>,
+                    wobei die Subdomain für die Widmung der Plattform steht.
                     Erfreulich sind auch die derzeitigen Domainkosten: ca. 25 € pro Jahr.
                 </p>
             {{else}}
