@@ -48,9 +48,32 @@
                         <span class="sr-only"></span>
                     </button>
                     <ul class="dropdown-menu btn-raised longButton">
-                        <li class="cardset" value="-1" data="-1"><a href="#">{{_ "leitnerProgress.indexDefault"}}</a>
+                        <li class="cardset" value="-1" data="-1" data-name="{{_ "leitnerProgress.indexDefault"}}">
+                            <a href="#">
+                                <div id="activeCardset">
+                                    {{_ "leitnerProgress.indexDefault"}}
+                                </div>
+                                <div class="col-xs-12 cardset-details">
+                                        <span class="badge" title="{{_ "cardset.info.quantity"}}">
+                                            {{getCardsets true}}
+                                        </span>
+                                </div>
+                            </a>
                         </li>
-                        {{{getCardsets}}}
+                        {{#each getCardsets}}
+                            <li class="cardset" value="{{this._id}}" data-id="{{this._id}}" data-name="{{this.name}}">
+                                <a href="#">
+                                    {{this.name}}
+                                    <div class="col-xs-12 cardset-details">
+                                        <span class="badge" title="{{_ "cardset.info.quantity"}}">
+                                            {{this.quantity}}
+                                        </span>
+                                        {{{getCardTypeLabel this.cardType}}}
+                                        {{{getDifficultyLabel this.cardType this.difficulty}}}
+                                    </div>
+                                </a>
+                            </li>
+                        {{/each}}
                     </ul>
                 </div>
             </div>

@@ -59,6 +59,8 @@ $themes: (
     $shuffled_text: map-get($map, "shuffled_text");
     $bonus_background: map-get($map, "bonus_background");
     $bonus_text: map-get($map, "bonus_text");
+    $card_type_background: map-get($map, "card_type_background");
+    $card_type_text: map-get($map, "card_type_text");
     //ratings
     $current_rating: map-get($map, "current_rating");
     $hover_rating: map-get($map, "$hover_rating");
@@ -1618,7 +1620,7 @@ $themes: (
 
     .mobilePreviewContent {
       .box-difficultyLined3 {
-          background: $background_difficulty3 !important;
+        background: $background_difficulty3 !important;
       }
     }
 
@@ -2116,6 +2118,11 @@ $themes: (
       color: $bonus_text !important;
     }
 
+    .label-card-type {
+      background-color: $card_type_background !important;
+      color: $card_type_text !important;
+    }
+
     .moduleRadioButtonLabel {
       color: $white !important;
     }
@@ -2194,7 +2201,7 @@ $themes: (
       color: $button_difficulty0_note !important;
     }
 
-    #setDifficulty .btn-orange.active {
+    #setDifficulty .btn-orange.active, .label-difficulty0 {
       color: $white !important;
       background-color: $button_difficulty0_note !important;
     }
@@ -2203,7 +2210,7 @@ $themes: (
       color: $button_difficulty1 !important;
     }
 
-    #setDifficulty .btn-info.active {
+    #setDifficulty .btn-info.active, .label-difficulty1 {
       color: $white !important;
       background-color: $button_difficulty1 !important;
     }
@@ -2212,7 +2219,7 @@ $themes: (
       color: $button_difficulty2 !important;
     }
 
-    #setDifficulty .btn-success.active {
+    #setDifficulty .btn-success.active, .label-difficulty2 {
       color: $white !important;
       background-color: $button_difficulty2 !important;
     }
@@ -2221,7 +2228,7 @@ $themes: (
       color: $button_difficulty3 !important;
     }
 
-    #setDifficulty .btn-danger.active {
+    #setDifficulty .btn-danger.active, .label-difficulty3 {
       color: $white !important;
       background-color: $button_difficulty3 !important;
     }

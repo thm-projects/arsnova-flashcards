@@ -1,0 +1,14 @@
+#setLeitnerProgressCardsetFilter {
+  .cardset-details {
+    padding: 0 !important;
+  }
+
+  .cardset {
+    padding-top: 2px !important;
+    padding-bottom: 7px !important;
+  }
+
+  .label, .badge {
+    font-size: $font_size_cardset_badges !important;
+  }
+}
