@@ -117,6 +117,16 @@
             </div>
             <div class="resultItemHeaderRightAreaBottom col-xs-6 col-sm-12">
                 {{#unless isSelectingCardsetToLearn}}
+                    {{#if isActiveRoute regex="repetitorium"}}
+                        {{#if gotBonus this.learningActive}}
+                            {{#if isCardsetOwner this._id}}
+                                <a class="resultNavigationElement" href="cardset/{{this._id}}/stats" title="{{_
+                                        "admin.myProgress"}}">
+                                    <i class="glyphicon glyphicon glyphicon-stats"></i>
+                                </a>
+                            {{/if}}
+                        {{/if}}
+                    {{/if}}
                     {{#if isActiveRoute regex="shuffle"}}
                         {{#if inShuffleSelection this._id}}
                             <a class="btn btn-xs btn-raised btn-danger shuffleButton removeShuffleCardset"
@@ -133,14 +143,18 @@
                     {{#if isActiveRoute regex="alldecks|create|repetitorium"}}
                         {{#if canSeeNavigationItems}}
                             <a class="resultNavigationElement editCardset" {{disableIfOffline}}
-                               title='{{#if isActiveRoute regex="repetitorium"}}{{_ "cardset.tooltip.editRepetitorium"}}{{else}}{{_ "cardset.tooltip.editCardset"}}{{/if}}' data-id="{{this._id}}" data-toggle="modal"
+                               title='{{#if isActiveRoute regex="repetitorium"}}{{_
+                                       "cardset.tooltip.editRepetitorium"}}{{else}}{{_
+                                       "cardset.tooltip.editCardset"}}{{/if}}' data-id="{{this._id}}"
+                               data-toggle="modal"
                                data-target="#setCardsetFormModal">
                                 <i class="glyphicon glyphicon-pencil" data-id="{{this._id}}"></i>
                             </a>
                             {{#if isActiveRoute regex="alldecks|repetitorium"}}
                                 {{#if isAdmin}}
                                     <a class="resultNavigationElement editAdminCardset"
-                                       title='{{_ "cardset.tooltip.editAdminSettings"}}' data-id="{{this._id}}" data-toggle="modal"
+                                       title='{{_ "cardset.tooltip.editAdminSettings"}}' data-id="{{this._id}}"
+                                       data-toggle="modal"
                                        data-target="#setCardsetFormAdminModal">
                                         <i class="fa fa-cog editAdminCardset" data-id="{{this._id}}"></i>
                                     </a>
