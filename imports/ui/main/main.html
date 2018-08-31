@@ -247,9 +247,10 @@
 </template>
 
 <template name="footer">
-    <div id="footer" class="footer">
-        <ul class="container dropup">
-            {{#if displayFooterNavigation}}
+    {{#if displayFooterNavigation}}
+        <div id="footer" class="footer">
+            <ul class="container dropup">
+
                 <li class="hidden-xs col-sm-11">
                     {{> contactNavigation}}
                 </li>
@@ -259,13 +260,13 @@
                         <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
                     </a>
                 </li>
-            {{/if}}
-            <li class="col-xs-1 {{#if isActiveRoute
-                                      'home'}}icon-container{{else}}icon-container-info{{/if}} pull-right">
-                {{> connectionStatus}}
-            </li>
-        </ul>
-    </div>
+                <li class="col-xs-1 {{#if isActiveRoute
+                                          'home'}}icon-container{{else}}icon-container-info{{/if}} pull-right">
+                    {{> connectionStatus}}
+                </li>
+            </ul>
+        </div>
+    {{/if}}
 </template>
 
 <template name="connectionStatus">
