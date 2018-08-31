@@ -2194,7 +2194,7 @@ $themes: (
       color: $button_difficulty0_note !important;
     }
 
-    #setDifficulty .btn-orange.active {
+    #setDifficulty .btn-orange.active, .label-difficulty0 {
       color: $white !important;
       background-color: $button_difficulty0_note !important;
     }
@@ -2203,7 +2203,7 @@ $themes: (
       color: $button_difficulty1 !important;
     }
 
-    #setDifficulty .btn-info.active {
+    #setDifficulty .btn-info.active, .label-difficulty1 {
       color: $white !important;
       background-color: $button_difficulty1 !important;
     }
@@ -2212,7 +2212,7 @@ $themes: (
       color: $button_difficulty2 !important;
     }
 
-    #setDifficulty .btn-success.active {
+    #setDifficulty .btn-success.active, .label-difficulty2 {
       color: $white !important;
       background-color: $button_difficulty2 !important;
     }
@@ -2221,7 +2221,7 @@ $themes: (
       color: $button_difficulty3 !important;
     }
 
-    #setDifficulty .btn-danger.active {
+    #setDifficulty .btn-danger.active, .label-difficulty3 {
       color: $white !important;
       background-color: $button_difficulty3 !important;
     }

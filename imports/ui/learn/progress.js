@@ -94,19 +94,28 @@ Template.progress.events({
  */
 
 Template.graphCardsetFilter.helpers({
-	getCardsets: function () {
-		let cardsetList = "";
+	getCardsets: function (countLeitnerCards = false) {
+		let cardsetList = [];
+		let cardsetLeitnerCount = 0;
 		let cardGroups = Cardsets.findOne({_id: Router.current().params._id}).cardGroups;
 		let cardsets = Cardsets.find({_id: {$in: cardGroups}}, {
-			fields: {_id: 1, name: 1, cardType: 1},
+			fields: {_id: 1, name: 1, cardType: 1, difficulty: 1, quantity: 1},
 			sort: {name: 1}
 		}).fetch();
 		for (let i = 0; i < cardsets.length; i++) {
 			if (CardType.gotLearningModes(cardsets[i].cardType)) {
-				cardsetList += '<li class="cardset" value="' + cardsets[i]._id + ' + " data="' + cardsets[i]._id + '"><a href="#">' + cardsets[i].name + '</a></li>';
+				if (countLeitnerCards) {
+					cardsetLeitnerCount += cardsets[i].quantity;
+				} else {
+					cardsetList.push(cardsets[i]);
+				}
 			}
 		}
-		return cardsetList;
+		if (countLeitnerCards) {
+			return cardsetLeitnerCount;
+		} else {
+			return cardsetList;
+		}
 	},
 	isShuffledCardset: function () {
 		if (Route.isLeitnerProgress()) {
@@ -121,9 +130,10 @@ Template.graphCardsetFilter.helpers({
 });
 Template.graphCardsetFilter.events({
 	'click .cardset': function (evt) {
-		let cardset = $(evt.currentTarget).attr("data");
-		$('#setCardsetFiter').html($(evt.currentTarget).text());
-		$('#setCardsetFiter').val(cardset);
-		LeitnerProgress.updateGraph(cardset);
+		let cardset_id = $(evt.currentTarget).attr("data-id");
+		let cardset_name = $(evt.currentTarget).attr("data-name");
+		$('#setCardsetFiter').html(cardset_name);
+		$('#setCardsetFiter').val(cardset_id);
+		LeitnerProgress.updateGraph(cardset_id);
 	}
 });
