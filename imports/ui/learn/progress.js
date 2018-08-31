@@ -2,6 +2,7 @@ import "./progress.html";
 import {Leitner} from "../../api/learned";
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
+import {Session} from "meteor/session";
 import {getAuthorName} from "../../api/userdata";
 import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
 import {LeitnerProgress} from "../../api/leitnerProgress";
@@ -40,6 +41,14 @@ Template.graph.helpers({
 			}
 		} else {
 			return TAPi18n.__('admin.allLearnedCardsets');
+		}
+	},
+	getMaxWorkload: function () {
+		let maxWorkload = Cardsets.findOne({_id: Router.current().params._id}).maxCards;
+		if (maxWorkload === 1) {
+			return TAPi18n.__('bonus.progress.maxWorkload.single', {amount: maxWorkload}, Session.get('activeLanguage'));
+		} else {
+			return TAPi18n.__('bonus.progress.maxWorkload.plural', {amount: maxWorkload}, Session.get('activeLanguage'));
 		}
 	}
 });
