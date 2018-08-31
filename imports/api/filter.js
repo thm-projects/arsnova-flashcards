@@ -138,7 +138,6 @@ export let Filter = class Filter {
 				learnCardsets.push(wozniakCard.cardset_id);
 			}
 		});
-		console.log(learnCardsets);
 		return learnCardsets;
 	}
 
