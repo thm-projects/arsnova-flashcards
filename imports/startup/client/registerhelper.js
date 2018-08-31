@@ -125,6 +125,10 @@ Template.registerHelper("getKindText", function (kind, displayType = 0) {
 	}
 });
 
+Template.registerHelper("getCardTypeLabel", function (cardType) {
+	return '<span class="label label-card-type" data-id="difficulty" title="' + TAPi18n.__('card.cardType' + cardType + '.longName') + '">' + TAPi18n.__('card.cardType' + cardType + '.name') + '</span>';
+});
+
 Template.registerHelper("getDifficultyLabel", function (cardType, difficulty) {
 	if (!CardType.gotDifficultyLevel(cardType)) {
 		difficulty = 0;

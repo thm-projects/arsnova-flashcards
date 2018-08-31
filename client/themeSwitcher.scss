@@ -59,6 +59,8 @@ $themes: (
     $shuffled_text: map-get($map, "shuffled_text");
     $bonus_background: map-get($map, "bonus_background");
     $bonus_text: map-get($map, "bonus_text");
+    $card_type_background: map-get($map, "card_type_background");
+    $card_type_text: map-get($map, "card_type_text");
     //ratings
     $current_rating: map-get($map, "current_rating");
     $hover_rating: map-get($map, "$hover_rating");
@@ -1618,7 +1620,7 @@ $themes: (
 
     .mobilePreviewContent {
       .box-difficultyLined3 {
-          background: $background_difficulty3 !important;
+        background: $background_difficulty3 !important;
       }
     }
 
@@ -2114,6 +2116,11 @@ $themes: (
     .label-bonus {
       background-color: $bonus_background !important;
       color: $bonus_text !important;
+    }
+
+    .label-card-type {
+      background-color: $card_type_background !important;
+      color: $card_type_text !important;
     }
 
     .moduleRadioButtonLabel {
