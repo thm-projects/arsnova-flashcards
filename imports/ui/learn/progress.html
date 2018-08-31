@@ -21,6 +21,7 @@
 <template name="graph">
     <h4>{{getChartTitle}}</h4>
     {{> graphCardsetFilter}}
+    <div class="col-xs-12">{{{getMaxWorkload}}}</div>
     <canvas id="boxChart" data-box1="{{countBox 1}}"
             data-box2="{{countBox 2}}" data-box3="{{countBox 3}}" data-box4="{{countBox 4}}"
             data-box5="{{countBox 5}}" data-box6="{{countBox 6}}"></canvas>

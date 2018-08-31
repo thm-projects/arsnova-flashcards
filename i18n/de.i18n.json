@@ -525,6 +525,12 @@
       "bonusEnded": "Die Bonus-Lernphase ist zuende",
       "learnedEverything": "Perfekt! Du hast alle Karten aus dieser Kartei gelernt."
     },
+    "progress": {
+      "maxWorkload": {
+        "single": "Tägliches Lernpensum: max. __amount__ Karte",
+        "plural": "Tägliches Lernpensum: max. __amount__ Karten"
+      }
+    },
     "form": {
       "new": {
         "title": "Bonus-Lernphase starten"
