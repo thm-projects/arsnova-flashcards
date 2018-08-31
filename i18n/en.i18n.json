@@ -548,6 +548,12 @@
       "bonusEnded": "",
       "learnedEverything": ""
     },
+    "progress": {
+      "maxWorkload": {
+        "single": "Daily workload: __amount__ Card max",
+        "plural": "Daily workload: __amount__ Cards max"
+      }
+    },
     "form": {
       "new": {
         "title": ""
