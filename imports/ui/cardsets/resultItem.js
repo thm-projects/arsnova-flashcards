@@ -254,5 +254,8 @@ Template.cardsetCourseIterationResultRow.helpers({
 	},
 	canSeeNavigationItems: function () {
 		return (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']) || this.owner === Meteor.userId());
+	},
+	gotBonus: function (learningActive) {
+		return learningActive === true;
 	}
 });
