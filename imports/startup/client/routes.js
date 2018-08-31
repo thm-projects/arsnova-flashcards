@@ -418,6 +418,10 @@ Router.route('/admin/dashboard', {
 	name: 'admin_dashboard',
 	template: 'admin_dashboard',
 	layoutTemplate: 'admin_main',
+	loadingTemplate: 'admin_dashboard',
+	waitOn: function () {
+		return [Meteor.subscribe("serverInventory")];
+	},
 	data: function () {
 		Session.set('helpFilter', undefined);
 	}

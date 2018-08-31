@@ -1,23 +1,18 @@
 //------------------------ IMPORTS
-
-import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
-import {Cardsets} from "../../../api/cardsets.js";
-import {Cards} from "../../../api/cards.js";
 import "./admin_dashboard.html";
-
 
 Template.admin_dashboard.helpers({
 	totalCardsets: function () {
-		return Cardsets.find().count();
+		return Counts.get('cardsetsCounter');
 	},
 	totalCards: function () {
-		return Cards.find().count();
+		return Counts.get('cardsCounter');
 	},
 	totalUser: function () {
-		return Meteor.users.find().count();
+		return Counts.get('usersCounter');
 	},
 	getOnlineStatusTotal: function () {
-		return Meteor.users.find({'status.online': {$ne: false}}).count();
+		return Counts.get('usersOnlineCounter');
 	}
 });
