@@ -140,12 +140,13 @@ Router.route('/repetitorium', {
 Router.route('/learn', {
 	name: 'learn',
 	template: 'cardsets',
-	subscriptions: function () {
+	loadingTemplate: 'cardsets',
+	waitOn: function () {
 		return [Meteor.subscribe('userLeitner'), Meteor.subscribe('userWozniak')];
 	},
 	data: function () {
 		Session.set('helpFilter', "workload");
-		Filter.resetMaxItemCounter();
+		Filter.setActiveFilter();
 	}
 });
 
@@ -543,21 +544,29 @@ var goToCreated = function () {
 		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
 			Router.go('alldecks');
 		} else {
-			let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-			actualDate.setHours(0, 0, 0, 0);
-			let count = Leitner.find({
-				user_id: Meteor.userId(),
-				active: true
-			}).count() + Wozniak.find({
-				user_id: Meteor.userId(), nextDate: {
-					$lte: actualDate
+			Meteor.subscribe("userLeitner", {
+				onReady: function () {
+					Meteor.subscribe("userWozniak", {
+						onReady: function () {
+							let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+							actualDate.setHours(0, 0, 0, 0);
+							let count = Leitner.find({
+								user_id: Meteor.userId(),
+								active: true
+							}).count() + Wozniak.find({
+								user_id: Meteor.userId(), nextDate: {
+									$lte: actualDate
+								}
+							}).count();
+							if (count) {
+								Router.go('learn');
+							} else {
+								Router.go('pool');
+							}
+						}
+					});
 				}
-			}).count();
-			if (count) {
-				Router.go('learn');
-			} else {
-				Router.go('pool');
-			}
+			});
 		}
 	} else {
 		this.next();

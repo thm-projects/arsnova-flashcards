@@ -320,7 +320,7 @@ Template.selectModeForm.events({
 		$('#selectModeToLearnModal').on('hidden.bs.modal', function () {
 			Session.set("workloadFullscreenMode", true);
 			Router.go('box', {
-				_id: Session.get("activeCardset")
+				_id: Session.get("activeCardset")._id
 			});
 		}).modal('hide');
 	},
@@ -328,7 +328,7 @@ Template.selectModeForm.events({
 		$('#selectModeToLearnModal').on('hidden.bs.modal', function () {
 			Session.set("workloadFullscreenMode", true);
 			Router.go('memo', {
-				_id: Session.get("activeCardset")
+				_id: Session.get("activeCardset")._id
 			});
 		}).modal('hide');
 	}
