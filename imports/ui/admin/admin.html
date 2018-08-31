@@ -5,160 +5,152 @@
         {{#if isInRole 'blocked'}}
             {{> access_denied}}
         {{else}}
-        <div class="{{getTheme}}">
-            {{#if isInRole 'admin, editor'}}
-                <nav id="backendNavigation" class="navbar navbar-default navbar-fixed-top">
-                    <div class="container-fluid">
+            <div class="{{getTheme}}">
+                {{#if isInRole 'admin, editor'}}
+                    <nav id="backendNavigation" class="navbar navbar-default navbar-fixed-top">
                         <div class="container-fluid">
-                            <!-- Brand and toggle get grouped for better mobile display -->
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                        data-target="#thm-top-navigation" aria-expanded="false">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
+                            <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                            data-target="#thm-top-navigation" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
 
-                            <!-- Collect the nav links, forms, and other content for toggling -->
-                            <div class="collapse navbar-collapse" id="thm-top-navigation">
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li><a href="{{pathFor route='home'}}">{{_ "navbar-collapse.frontend"}}</a></li>
-                                    <li id="notificationsBtn_admin" class="dropdown">
-                                        <a role="button" class="dropdown-toggle" data-toggle="dropdown">
-                                            <i class="fa fa-bell"></i> {{#if countNotifications}}
-                                            <span class="badge">{{countNotifications}}</span>{{/if}}
-                                        </a>
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="thm-top-navigation">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li><a href="{{pathFor route='home'}}">{{_ "navbar-collapse.frontend"}}</a></li>
+                                        <li id="notificationsBtn_admin" class="dropdown">
+                                            <a role="button" class="dropdown-toggle" data-toggle="dropdown">
+                                                <i class="fa fa-bell"></i> {{#if countNotifications}}
+                                                <span class="badge">{{countNotifications}}</span>{{/if}}
+                                            </a>
 
-                                        <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
-                                            <div class="notification-heading">
-                                                <h4 class="menu-title">{{_ "notifications.title"}}</h4>
-                                                {{#if getNotifications.count}}
-                                                    <button id="clearBtn_admin" type="button"
-                                                            class="btn btn-default pull-right">{{_
-                                                            "notifications.clearAll"}}</button>
-                                                {{/if}}
-                                            </div>
-                                            <li class="divider"></li>
-                                            {{#if getNotifications.count}}
-                                                <div class="notifications-wrapper">
-                                                    {{#each getNotifications}}
-                                                        <a href="{{getLink _id}}" class="content">
-                                                            <div class="notification-item">
-                                                                <h4 class="item-title">{{getType type}}</h4>
-                                                                <p class="item-info">{{text}}</p>
-                                                            </div>
-                                                        </a>
-                                                    {{/each}}
-                                                </div>
-                                            {{else}}
+                                            <ul class="dropdown-menu notifications" role="menu"
+                                                aria-labelledby="dLabel">
                                                 <div class="notification-heading">
-                                                    <h4 class="menu-title">{{_ "notifications.noNotification"}}</h4>
+                                                    <h4 class="menu-title">{{_ "notifications.title"}}</h4>
+                                                    {{#if getNotifications.count}}
+                                                        <button id="clearBtn_admin" type="button"
+                                                                class="btn btn-default pull-right">{{_
+                                                                "notifications.clearAll"}}</button>
+                                                    {{/if}}
                                                 </div>
-                                            {{/if}}
-                                            <li class="divider"></li>
-                                            <div class="notification-footer">
-                                                <a href="{{pathFor route='admin_notifications'}}" type="button"
-                                                   class="btn btn-info"
-                                                   data-toggle="collapse" data-target="#thm-top-navigation">
-                                                    {{_ "notifications.viewAll"}} <i
-                                                        class="glyphicon glyphicon-circle-arrow-right"></i>
-                                                </a>
-                                            </div>
-                                        </ul>
-                                    </li>
-                                    {{#if currentUser}}
-                                        <li><a href="{{pathFor 'admin_user' _id=currentUser._id}}"
-                                               id="usr-profile-admin" data-toggle="collapse"
-                                               data-target="#thm-top-navigation">
-                                            {{getUsername}}</a></li>
-                                    {{/if}}
-                                    <li><a href="#" id="logout_admin"><i class="glyphicon glyphicon-log-out"></i></a>
-                                    </li>
-                                </ul>
+                                                <li class="divider"></li>
+                                                {{#if getNotifications.count}}
+                                                    <div class="notifications-wrapper">
+                                                        {{#each getNotifications}}
+                                                            <a href="{{getLink _id}}" class="content">
+                                                                <div class="notification-item">
+                                                                    <h4 class="item-title">{{getType type}}</h4>
+                                                                    <p class="item-info">{{text}}</p>
+                                                                </div>
+                                                            </a>
+                                                        {{/each}}
+                                                    </div>
+                                                {{else}}
+                                                    <div class="notification-heading">
+                                                        <h4 class="menu-title">{{_ "notifications.noNotification"}}</h4>
+                                                    </div>
+                                                {{/if}}
+                                                <li class="divider"></li>
+                                                <div class="notification-footer">
+                                                    <a href="{{pathFor route='admin_notifications'}}" type="button"
+                                                       class="btn btn-info"
+                                                       data-toggle="collapse" data-target="#thm-top-navigation">
+                                                        {{_ "notifications.viewAll"}} <i
+                                                            class="glyphicon glyphicon-circle-arrow-right"></i>
+                                                    </a>
+                                                </div>
+                                            </ul>
+                                        </li>
+                                        {{#if currentUser}}
+                                            <li><a href="{{pathFor 'admin_user' _id=currentUser._id}}"
+                                                   id="usr-profile-admin" data-toggle="collapse"
+                                                   data-target="#thm-top-navigation">
+                                                {{getUsername}}</a></li>
+                                        {{/if}}
+                                        <li><a href="#" id="logout_admin"><i
+                                                class="glyphicon glyphicon-log-out"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </nav>
+                    </nav>
 
-                <div id="wrapper">
+                    <div id="wrapper">
 
-                    <!-- Sidebar -->
-                    <div id="admin-sidebar-wrapper">
+                        <!-- Sidebar -->
+                        <div id="admin-sidebar-wrapper">
 
-                        <ul class="sidebar-nav">
-                            <li>
-                                <a class="{{#if isActiveRoute regex='admin_dashboard'}}active{{/if}}"
-                                   href="{{pathFor route='admin_dashboard'}}">
-                                    <i class="fa fa-dashboard"></i>
-                                    <span>{{_ "admin.dashboard"}}</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="{{#if isActiveRoute regex='admin_users|admin_user'}}active{{/if}}"
-                                   href="{{pathFor route='admin_users'}}">
-                                    <i class="fa fa-users"></i>
-                                    <span>{{_ "admin.users"}}</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="{{#if isActiveRoute regex='admin_learningStatistics'}}active{{/if}}"
-                                   href="{{pathFor route='admin_learningStatistics'}}">
-                                    <i class="glyphicon glyphicon-stats"></i>
-                                    <span>{{_ "admin.learningStatistics"}}</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="{{#if isActiveRoute regex='admin_apiAccess'}}active{{/if}}"
-                                   href="{{pathFor route='admin_apiAccess'}}">
-                                    <i class="fa fa-cog"></i>
-                                    <span>{{_ "admin.api.access"}}</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="{{#if isActiveRoute regex='admin_notifications'}}active{{/if}}"
-                                   href="{{pathFor route='admin_notifications'}}">
-                                    <i class="fa fa-bell"></i>
-                                    <span>{{_ "admin.notifications"}}</span>
-                                </a>
-                            </li>
-                            {{#unless singleUniversity}}
+                            <ul class="sidebar-nav">
+                                <li>
+                                    <a class="{{#if isActiveRoute regex='admin_dashboard'}}active{{/if}}"
+                                       href="{{pathFor route='admin_dashboard'}}">
+                                        <i class="fa fa-dashboard"></i>
+                                        <span>{{_ "admin.dashboard"}}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="{{#if isActiveRoute regex='admin_users|admin_user'}}active{{/if}}"
+                                       href="{{pathFor route='admin_users'}}">
+                                        <i class="fa fa-users"></i>
+                                        <span>{{_ "admin.users"}}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="{{#if isActiveRoute regex='admin_learningStatistics'}}active{{/if}}"
+                                       href="{{pathFor route='admin_learningStatistics'}}">
+                                        <i class="glyphicon glyphicon-stats"></i>
+                                        <span>{{_ "admin.learningStatistics"}}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="{{#if isActiveRoute regex='admin_apiAccess'}}active{{/if}}"
+                                       href="{{pathFor route='admin_apiAccess'}}">
+                                        <i class="fa fa-key"></i>
+                                        <span>{{_ "admin.api.access"}}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="{{#if isActiveRoute regex='admin_notifications'}}active{{/if}}"
+                                       href="{{pathFor route='admin_notifications'}}">
+                                        <i class="fa fa-bell"></i>
+                                        <span>{{_ "admin.notifications"}}</span>
+                                    </a>
+                                </li>
                                 <li>
                                     <a class="{{#if isActiveRoute regex='admin_university'}}active{{/if}}"
                                        href="{{pathFor route='admin_university'}}">
-                                        <i class="fa fa-cog"></i>
+                                        <i class="fa fa-graduation-cap"></i>
                                         <span>{{_ "admin.manageUniversity"}}</span>
                                     </a>
                                 </li>
-                            {{else}}
                                 <li>
-                                    <a class="{{#if isActiveRoute regex='admin_university'}}active{{/if}}"
-                                       href="{{pathFor route='admin_university'}}">
+                                    <a class="{{#if isActiveRoute regex='admin_settings'}}active{{/if}}"
+                                       href="{{pathFor route='admin_settings'}}">
                                         <i class="fa fa-cog"></i>
-                                        <span>{{_ "admin.manageCourse"}}</span>
+                                        <span>{{_ "admin.settings"}}</span>
                                     </a>
                                 </li>
-                            {{/unless}}
-                            <li>
-                                <a class="{{#if isActiveRoute regex='admin_settings'}}active{{/if}}"
-                                   href="{{pathFor route='admin_settings'}}">
-                                    <i class="fa fa-cog"></i>
-                                    <span>{{_ "admin.settings"}}</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /#sidebar-wrapper -->
+                            </ul>
+                        </div>
+                        <!-- /#sidebar-wrapper -->
 
-                    <div id='admin-content-wrapper'>
-                        {{> yield}}
+                        <div id='admin-content-wrapper'>
+                            {{> yield}}
+                        </div>
                     </div>
-                </div>
-            {{else}}
-                {{> access_denied}}
-            {{/if}}
-        </div>
+                {{else}}
+                    {{> access_denied}}
+                {{/if}}
+            </div>
         {{/if}}
     {{/if}}
 </template>
