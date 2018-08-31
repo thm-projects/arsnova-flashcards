@@ -122,11 +122,11 @@ export let Filter = class Filter {
 		let learnCardsets = [];
 		let leitnerCards = Leitner.find({
 			user_id: Meteor.userId()
-		});
+		}, {fields: {cardset_id: 1}});
 
 		let wozniakCards = Wozniak.find({
 			user_id: Meteor.userId()
-		});
+		}, {fields: {cardset_id: 1}});
 		leitnerCards.forEach(function (leitnerCard) {
 			if ($.inArray(leitnerCard.cardset_id, learnCardsets) === -1) {
 				learnCardsets.push(leitnerCard.cardset_id);
@@ -138,6 +138,7 @@ export let Filter = class Filter {
 				learnCardsets.push(wozniakCard.cardset_id);
 			}
 		});
+		console.log(learnCardsets);
 		return learnCardsets;
 	}
 

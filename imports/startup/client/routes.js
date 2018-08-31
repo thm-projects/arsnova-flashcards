@@ -140,12 +140,13 @@ Router.route('/repetitorium', {
 Router.route('/learn', {
 	name: 'learn',
 	template: 'cardsets',
-	subscriptions: function () {
+	loadingTemplate: 'cardsets',
+	waitOn: function () {
 		return [Meteor.subscribe('userLeitner'), Meteor.subscribe('userWozniak')];
 	},
 	data: function () {
 		Session.set('helpFilter', "workload");
-		Filter.resetMaxItemCounter();
+		Filter.setActiveFilter();
 	}
 });
 
