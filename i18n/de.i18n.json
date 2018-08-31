@@ -133,7 +133,7 @@
   },
   "complete-profile": {
     "title": "Profil unvollständig",
-    "text": "Dein Benutzerprofil ist noch unvollständig. Um den Lernmodus mit automatischer Erinnerungsnachricht nutzen zu können, fülle in den Kontoeinstellungen die Felder für Vorname, Nachname und E-Mail aus.",
+    "text": "Dein Benutzerprofil ist noch unvollständig. Um den Lernmodus mit automatischer Erinnerungsnachricht nutzen zu können, fülle in den Kontoeinstellungen die Felder für Vorname, Nachname und E-Mail aus. Versuche es dann noch einmal.",
     "goToProfile": "Konto",
     "cancel": "Schließen"
   },
@@ -1120,7 +1120,7 @@
   "subjectInfo": "Karten in der Box __box__ werden täglich wieder vorgelegt.",
   "subjectInfo_plural": "Karten in der Box __box__ werden nach __count__ Tagen wieder vorgelegt.",
   "leitnerCard": "Karte für derzeitige Lernphase",
-  "backbutton": "Zurück zur Kartei",
+  "backbutton": "Zur Kartei",
   "backbuttonStatistics": "Zurück zur Lernstatistik",
   "know": "Gewusst",
   "notknow": "Nicht gewusst",
