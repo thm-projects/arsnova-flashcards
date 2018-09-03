@@ -18,7 +18,9 @@ Template.markdeepContent.rendered = function () {
 
 Template.markdeepContent.events({
 	'click #contentEditor': function () {
-		Session.set('dictionaryPreview', 0);
+		Session.set('dictionaryBeolingus', 0);
+		Session.set('dictionaryLinguee', 0);
+		Session.set('dictionaryGoogle', 0);
 	},
 	'input #contentEditor': function () {
 		let content = $('#contentEditor').val();

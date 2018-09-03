@@ -14,7 +14,7 @@ import {CardNavigation} from "../../../api/cardNavigation";
  * ############################################################################
  */
 
-Template.cardDictionaryContent.helpers({
+Template.cardDictionaryContentBeolingus.helpers({
 	getDictionarySearchText: function () {
 		let searchText;
 		switch (Session.get('activeCardContentId')) {
@@ -40,6 +40,88 @@ Template.cardDictionaryContent.helpers({
 		let wordCount = searchText.split(/\s+/);
 		if (wordCount.length === 1) {
 			return "&query=" + CardVisuals.removeMarkdeepTags(searchText);
+		}
+	}
+});
+
+Template.cardDictionaryContentLinguee.helpers({
+	getDictionaryQuery: function () {
+		let searchText;
+		switch (Session.get('activeCardContentId')) {
+			case 1:
+				searchText = this.front.trim();
+				break;
+			case 2:
+				searchText = this.back.trim();
+				break;
+			case 3:
+				searchText = this.hint.trim();
+				break;
+			case 4:
+				searchText = this.lecture.trim();
+				break;
+			case 5:
+				searchText = this.top.trim();
+				break;
+			case 6:
+				searchText = this.bottom.trim();
+				break;
+		}
+		let rawQuery = searchText.split(/\s+/);
+		let wordCount = rawQuery.length;
+		if (wordCount === 1) {
+			return "&query=" + CardVisuals.removeMarkdeepTags(searchText);
+		} else if (wordCount > 1) {
+			let query = "";
+			for (let i = 0; i < wordCount; i++) {
+				if (i === 0) {
+					query = CardVisuals.removeMarkdeepTags(rawQuery[i]).trim();
+				} else {
+					query = query + "+" + CardVisuals.removeMarkdeepTags(rawQuery[i]).trim();
+				}
+			}
+			return "&query=" + query;
+		}
+	}
+});
+
+Template.cardDictionaryContentGoogle.helpers({
+	getDictionaryQuery: function () {
+		let searchText;
+		switch (Session.get('activeCardContentId')) {
+			case 1:
+				searchText = this.front.trim();
+				break;
+			case 2:
+				searchText = this.back.trim();
+				break;
+			case 3:
+				searchText = this.hint.trim();
+				break;
+			case 4:
+				searchText = this.lecture.trim();
+				break;
+			case 5:
+				searchText = this.top.trim();
+				break;
+			case 6:
+				searchText = this.bottom.trim();
+				break;
+		}
+		let rawQuery = searchText.split(/\s+/);
+		let wordCount = rawQuery.length;
+		if (wordCount === 1) {
+			return CardVisuals.removeMarkdeepTags(searchText);
+		} else if (wordCount > 1) {
+			let query = "";
+			for (let i = 0; i < wordCount; i++) {
+				if (i === 0) {
+					query = CardVisuals.removeMarkdeepTags(rawQuery[i]).trim();
+				} else {
+					query = query + "+" + CardVisuals.removeMarkdeepTags(rawQuery[i]).trim();
+				}
+			}
+			return query;
 		}
 	}
 });
