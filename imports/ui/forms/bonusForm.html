@@ -117,3 +117,50 @@
         </div>
     </div>
 </template>
+
+
+<template name="joinBonusForm">
+    <div class="modal fade" id="joinBonusModal" tabindex="-1" role="dialog" aria-labelledby="joinBonusTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons xs-12">
+                <div class="modal-header">
+                    <h4 id="joinBonusTitle" class="modal-title">{{_ "bonus.form-join.title"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{_ "bonus.form-join.message"}}</p>
+                    <br>
+                    <hr>
+                    <button id="joinBonusConfirm" class="btn btn-block btn-raised btn-default btn-success">{{_
+                            "bonus.form-join.button.confirm"}}</button>
+                    <button id="joinBonusCancel" class="btn btn-default btn-block btn-raised"
+                            data-dismiss="modal">{{_ "bonus.form-join.button.cancel"}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="leaveBonusForm">
+    <div class="modal fade" id="leaveBonusModal" tabindex="-1" role="dialog" aria-labelledby="leaveBonusTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons xs-12">
+                <div class="modal-header">
+                    <h4 id="leaveBonusTitle" class="modal-title">{{_ "bonus.form-leave.title"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{_ "bonus.form-leave.message"}}</p>
+                    <br>
+                    <hr>
+                    <button id="leaveBonusConfirm" class="btn btn-block btn-raised btn-default btn-danger">{{_
+                            "bonus.form-leave.button.confirm"}}</button>
+                    <button id="leaveBonusCancel" class="btn btn-default btn-block btn-raised"
+                            data-dismiss="modal">{{_ "bonus.form-leave.button.cancel"}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
