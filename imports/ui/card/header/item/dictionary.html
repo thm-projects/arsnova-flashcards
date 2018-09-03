@@ -12,7 +12,7 @@
             </span>
         {{/unless}}
         <span class="{{#unless isMobilePreview}}visible-xs-inline-block{{/unless}}">
-            <i class="card-button cardHeaderItem fa fa-book showBeolingusTranslation {{#if
+            <i class="card-button cardHeaderItem fa fa-bookmark showBeolingusTranslation {{#if
                     isBeolingusActive}}pressed{{/if}}"
                data-id="{{this._id}}" title="{{_ "card.tooltip.dictionaryBeolingus"}}"></i>
         </span>
@@ -57,6 +57,27 @@
             <i class="card-button cardHeaderItem fa fa-google showGoogleTranslation {{#if
                     isGoogleActive}}pressed{{/if}}"
                data-id="{{this._id}}" title="{{_ "card.tooltip.dictionaryGoogle"}}"></i>
+        </span>
+    {{/if}}
+</template>
+
+<template name="cardHeaderItemDictionaryDeepL">
+    {{#if gotDictionary}}
+        {{#unless isMobilePreview}}
+            <span class="cardHeaderTranslatorBtnGroup hidden-xs">
+                <span class="hidden-xs">
+                    <img class="showDeepLTranslation card-button cardHeaderItem {{#if isDeepLActive}}pressed{{/if}}"
+                         data-type="cardNavigation"
+                         data-toggle="collapse"
+                         data-target="#collapseLecture-{{_id}}"
+                         src="/img/deepl.png" title="{{_ "card.tooltip.dictionaryDeepL"}}">
+                </span>
+            </span>
+        {{/unless}}
+        <span class="{{#unless isMobilePreview}}visible-xs-inline-block{{/unless}}">
+            <i class="card-button cardHeaderItem fa fa-book showDeepLTranslation {{#if
+                    isDeepLActive}}pressed{{/if}}"
+               data-id="{{this._id}}" title="{{_ "card.tooltip.dictionaryDeepL"}}"></i>
         </span>
     {{/if}}
 </template>

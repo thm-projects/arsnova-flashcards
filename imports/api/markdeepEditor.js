@@ -1,5 +1,4 @@
 import {Session} from "meteor/session";
-import {CardVisuals} from "./cardVisuals.js";
 
 export let MarkdeepEditor = class MarkdeepEditor {
 	static help () {
@@ -46,21 +45,5 @@ export let MarkdeepEditor = class MarkdeepEditor {
 		} else {
 			Session.set('backgroundStyle', 1);
 		}
-	}
-
-	//1 = Beolingus
-	//2 = Linguee
-	//3 = Google
-	static changeDictionaryMode (mode) {
-		if (Session.get('dictionaryMode') === mode) {
-			Session.set('dictionaryMode', 0);
-		} else {
-			Session.set('dictionaryMode', mode);
-		}
-		$('#contentEditor').focus();
-	}
-
-	static toggleFullscreen () {
-		CardVisuals.toggleFullscreen(false, true);
 	}
 };

@@ -136,6 +136,11 @@ Template.flashcards.helpers({
 			return Session.get('dictionaryMode') === 3;
 		}
 	},
+	isDeepLDictionary: function () {
+		if (CardType.gotDictionary(this.cardType)) {
+			return Session.get('dictionaryMode') === 4;
+		}
+	},
 	getCardSideColorActive: function () {
 		return CardVisuals.getCardSideColor(this.difficulty, this.cardType, this.backgroundStyle, true);
 	},

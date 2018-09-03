@@ -1,6 +1,6 @@
 import "./dictionary.html";
-import {Session} from "meteor/session";
 import {CardType} from "../../../../api/cardTypes";
+import {Dictionary} from "../../../../api/dictionary";
 import {MarkdeepEditor} from "../../../../api/markdeepEditor";
 
 /*
@@ -15,7 +15,7 @@ Template.cardHeaderItemDictionaryBeolingus.helpers({
 	},
 	isBeolingusActive: function () {
 		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryMode') === 1;
+			return Dictionary.checkMode(1);
 		}
 	},
 	isMobilePreview: function () {
@@ -25,7 +25,7 @@ Template.cardHeaderItemDictionaryBeolingus.helpers({
 
 Template.cardHeaderItemDictionaryBeolingus.events({
 	"click .showBeolingusTranslation": function () {
-		MarkdeepEditor.changeDictionaryMode(1);
+		Dictionary.setMode(1);
 	}
 });
 
@@ -41,7 +41,7 @@ Template.cardHeaderItemDictionaryLinguee.helpers({
 	},
 	isLingueeActive: function () {
 		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryMode') === 2;
+			return Dictionary.checkMode(2);
 		}
 	},
 	isMobilePreview: function () {
@@ -51,7 +51,7 @@ Template.cardHeaderItemDictionaryLinguee.helpers({
 
 Template.cardHeaderItemDictionaryLinguee.events({
 	"click .showLingueeTranslation": function () {
-		MarkdeepEditor.changeDictionaryMode(2);
+		Dictionary.setMode(2);
 	}
 });
 
@@ -67,7 +67,7 @@ Template.cardHeaderItemDictionaryGoogle.helpers({
 	},
 	isGoogleActive: function () {
 		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryMode') === 3;
+			return Dictionary.checkMode(3);
 		}
 	},
 	isMobilePreview: function () {
@@ -77,6 +77,32 @@ Template.cardHeaderItemDictionaryGoogle.helpers({
 
 Template.cardHeaderItemDictionaryGoogle.events({
 	"click .showGoogleTranslation": function () {
-		MarkdeepEditor.changeDictionaryMode(3);
+		Dictionary.setMode(3);
+	}
+});
+
+/*
+ * ############################################################################
+ * cardHeaderItemDictionaryDeepL
+ * ############################################################################
+ */
+
+Template.cardHeaderItemDictionaryDeepL.helpers({
+	gotDictionary: function () {
+		return CardType.gotDictionary(this.cardType);
+	},
+	isDeepLActive: function () {
+		if (CardType.gotDictionary(this.cardType)) {
+			return Dictionary.checkMode(4);
+		}
+	},
+	isMobilePreview: function () {
+		return MarkdeepEditor.getMobilePreview();
+	}
+});
+
+Template.cardHeaderItemDictionaryDeepL.events({
+	"click .showDeepLTranslation": function () {
+		Dictionary.setMode(4);
 	}
 });
