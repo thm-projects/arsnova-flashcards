@@ -454,43 +454,45 @@
                         {{/if}}
                     {{/if}}
                     {{#unless isCardsetOwner _id}}
-                        <div class="hidden-xs btn-group">
-                            <button class="btn btn-sm btn-raised manageBtn" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-cog"></i> {{_ "manage"}} <span
-                                    class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                {{#if enableIfPublished}}
-                                    {{#unless isEditor}}
-                                        <li id="report_button" class="reportList" data-toggle="modal"
-                                            data-target="#reportModal">{{_
-                                                "report"}}</li>
-                                        {{#if learningActive}}
-                                            <li id="leaveLearnPhaseButton" class="leaveLearnPhaseList"
-                                                data-toggle="modal" data-target="#leaveModal">{{_
-                                                    "confirm-leave-learnphase.btn-txt"}}</li>
-                                        {{else}}
-                                            {{#if learning}}
-                                                <li id="leaveCardsetModalButton" class="leaveCardsetList"
-                                                    data-toggle="modal" data-target="#leaveCardsetModal">{{_
-                                                        "confirm-leave-cardset.btn-txt"}}</li>
+                        {{#if gotAccessToManageButton}}
+                            <div class="hidden-xs btn-group">
+                                <button class="btn btn-sm btn-raised manageBtn" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-cog"></i> {{_ "manage"}} <span
+                                        class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    {{#if enableIfPublished}}
+                                        {{#unless isEditor}}
+                                            <li id="report_button" class="reportList" data-toggle="modal"
+                                                data-target="#reportModal">{{_
+                                                    "report"}}</li>
+                                            {{#if learningActive}}
+                                                <li id="leaveLearnPhaseButton" class="leaveLearnPhaseList"
+                                                    data-toggle="modal" data-target="#leaveModal">{{_
+                                                        "confirm-leave-learnphase.btn-txt"}}</li>
                                             {{else}}
-                                                <li id="leaveCardsetButton" class="leaveCardsetList">{{_
-                                                        "confirm-leave-cardset.btn-txt"}}</li>
+                                                {{#if learning}}
+                                                    <li id="leaveCardsetModalButton" class="leaveCardsetList"
+                                                        data-toggle="modal" data-target="#leaveCardsetModal">{{_
+                                                            "confirm-leave-cardset.btn-txt"}}</li>
+                                                {{else}}
+                                                    <li id="leaveCardsetButton" class="leaveCardsetList">{{_
+                                                            "confirm-leave-cardset.btn-txt"}}</li>
+                                                {{/if}}
                                             {{/if}}
-                                        {{/if}}
-                                    {{/unless}}
-                                    {{#if isEditor}}
-                                        {{#unless isCardsetOwner _id}}
-                                            <li id="leaveEditors" class="leaveEditorsList"
-                                                data-toggle="modal" data-target="#leaveEditorsModal">{{_
-                                                    "sidebar-nav.leaveEditors"}}</li>
                                         {{/unless}}
+                                        {{#if isEditor}}
+                                            {{#unless isCardsetOwner _id}}
+                                                <li id="leaveEditors" class="leaveEditorsList"
+                                                    data-toggle="modal" data-target="#leaveEditorsModal">{{_
+                                                        "sidebar-nav.leaveEditors"}}</li>
+                                            {{/unless}}
+                                        {{/if}}
                                     {{/if}}
-                                {{/if}}
-                            </ul>
-                        </div>
+                                </ul>
+                            </div>
+                        {{/if}}
                     {{/unless}}
                     {{#unless learningActive}}
                         {{#unless isShuffledCardset this._id}}

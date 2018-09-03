@@ -513,6 +513,17 @@ Template.cardsetInfo.helpers({
 	},
 	enableIfPublished: function () {
 		return this.kind !== 'personal';
+	},
+	gotAccessToManageButton: function () {
+		if (Session.get('activeCardset').learningActive) {
+			let leitnerCount = Leitner.find({cardset_id: Session.get('activeCardset')._id, user_id: Meteor.userId()}).count();
+			let wozniakCount = Wozniak.find({cardset_id: Session.get('activeCardset')._id, user_id: Meteor.userId()}).count();
+			if ((leitnerCount + wozniakCount) > 0) {
+				return true;
+			}
+		} else {
+			return true;
+		}
 	}
 });
 

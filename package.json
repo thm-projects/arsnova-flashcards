@@ -14,7 +14,8 @@
     "react": "^15.0.2",
     "screenfull": "^3.3.2",
     "web-push": "^3.2.2",
-    "wordcloud": "^1.0.6"
+    "wordcloud": "^1.0.6",
+    "fibers": "^2.0.0"
   },
   "version": "1.0.0",
   "main": "index.js",
@@ -25,7 +26,6 @@
     "gulp-watch": "^4.3.5",
     "jshint": "^2.9.5",
     "jshint-stylish": "^2.1.0",
-    "fibers": "^2.0.0",
     "chimp": "^0.50.2"
   },
   "author": "",
