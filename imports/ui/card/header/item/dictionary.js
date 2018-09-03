@@ -5,11 +5,11 @@ import {MarkdeepEditor} from "../../../../api/markdeepEditor";
 
 /*
  * ############################################################################
- * cardHeaderItemDictionary
+ * cardHeaderItemDictionaryBeolingus
  * ############################################################################
  */
 
-Template.cardHeaderItemDictionary.helpers({
+Template.cardHeaderItemDictionaryBeolingus.helpers({
 	gotDictionary: function () {
 		return CardType.gotDictionary(this.cardType);
 	},
@@ -18,10 +18,52 @@ Template.cardHeaderItemDictionary.helpers({
 			return Session.get('dictionaryBeolingus');
 		}
 	},
+	isMobilePreview: function () {
+		return MarkdeepEditor.getMobilePreview();
+	}
+});
+
+Template.cardHeaderItemDictionaryBeolingus.events({
+	"click .showBeolingusTranslation": function () {
+		MarkdeepEditor.displayBeolingusDictionary();
+	}
+});
+
+/*
+ * ############################################################################
+ * cardHeaderItemDictionaryLinguee
+ * ############################################################################
+ */
+
+Template.cardHeaderItemDictionaryLinguee.helpers({
+	gotDictionary: function () {
+		return CardType.gotDictionary(this.cardType);
+	},
 	isLingueeActive: function () {
 		if (CardType.gotDictionary(this.cardType)) {
 			return Session.get('dictionaryLinguee');
 		}
+	},
+	isMobilePreview: function () {
+		return MarkdeepEditor.getMobilePreview();
+	}
+});
+
+Template.cardHeaderItemDictionaryLinguee.events({
+	"click .showLingueeTranslation": function () {
+		MarkdeepEditor.displayLingueeDictionary();
+	}
+});
+
+/*
+ * ############################################################################
+ * cardHeaderItemDictionaryGoogle
+ * ############################################################################
+ */
+
+Template.cardHeaderItemDictionaryGoogle.helpers({
+	gotDictionary: function () {
+		return CardType.gotDictionary(this.cardType);
 	},
 	isGoogleActive: function () {
 		if (CardType.gotDictionary(this.cardType)) {
@@ -33,15 +75,8 @@ Template.cardHeaderItemDictionary.helpers({
 	}
 });
 
-Template.cardHeaderItemDictionary.events({
-	"click .showBeolingusTranslation": function () {
-		MarkdeepEditor.displayBeolingusDictionary();
-	},
-	"click .showLingueeTranslation": function () {
-		MarkdeepEditor.displayLingueeDictionary();
-	},
+Template.cardHeaderItemDictionaryGoogle.events({
 	"click .showGoogleTranslation": function () {
 		MarkdeepEditor.displayGoogleDictionary();
 	}
 });
-

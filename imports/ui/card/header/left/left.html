@@ -1,96 +1,85 @@
 <template name="flashcardHeaderPresentationLeft">
-    <div class="col-xs-4 cardHeaderLeft" data-cardtype="{{cardType}}">
+    <div class="col-xs-3 cardHeaderLeft" data-cardtype="{{cardType}}">
         <div class="cardHeaderGroup">
             {{> cardHeaderItemClock}}
-            <span class="hidden-xs">
-                {{> cardHeaderItemDictionary this}}
-            </span>
         </div>
         <div class="cardHeaderGroup">
-            <div class="cardHeaderRowHalf visible-xs" data-cardtype="{{cardType}}">
-                {{> cardHeaderItemDictionary this}}
+            <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemDictionaryBeolingus this}}
+                {{> cardHeaderItemDictionaryLinguee this}}
             </div>
-            <div class="cardHeaderRowHalf visible-xs" data-cardtype="{{cardType}}">
-                {{> cardHeaderItemZoomText}}
+            <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemDictionaryGoogle this}}
             </div>
         </div>
     </div>
 </template>
 
 <template name="flashcardHeaderEditorLeft">
-    <div class="col-xs-4 cardHeaderLeft" data-cardtype="{{cardType}}">
+    <div class="col-xs-3 cardHeaderLeft" data-cardtype="{{cardType}}">
         <div class="cardHeaderGroup">
             {{#unless isMobilePreview}}
                 {{> cardHeaderItemClock}}
-                {{#if fullscreenActive}}
-                    {{> cardHeaderItemDictionary this}}
-                {{/if}}
             {{/unless}}
-            {{#if isMobilePreview}}
-                <div class="cardHeaderGroup">
-                    <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-                        {{#if fullscreenActive}}
-                            {{> cardHeaderItemDictionary this}}
-                        {{/if}}
-                    </div>
-                    <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-                        {{> cardHeaderItemZoomText}}
-                    </div>
-                </div>
-            {{/if}}
+        </div>
+        <div class="cardHeaderGroup">
+            <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemDictionaryBeolingus this}}
+                {{> cardHeaderItemDictionaryLinguee this}}
+            </div>
+            <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemDictionaryGoogle this}}
+            </div>
         </div>
     </div>
 </template>
 
 <template name="flashcardHeaderDefaultLeft">
-    <div class="col-xs-4 cardHeaderLeft" data-cardtype="{{cardType}}">
+    <div class="col-xs-3 cardHeaderLeft" data-cardtype="{{cardType}}">
         <div class="cardHeaderGroup">
+            <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemDictionaryBeolingus this}}
+                {{> cardHeaderItemDictionaryLinguee this}}
+                {{> cardHeaderItemDictionaryGoogle this}}
+            </div>
             <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
                 {{> cardHeaderItemEdit this}}
                 {{> cardHeaderItemDelete this}}
+
             </div>
-            <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-            </div>
-        </div>
-        <div class="cardHeaderGroup">
-            {{> cardHeaderItemDictionary this}}
         </div>
     </div>
 </template>
 
 <template name="flashcardHeaderLeitnerLeft">
-    <div class="col-xs-4 cardHeaderLeft" data-cardtype="{{cardType}}">
+    <div class="col-xs-3 cardHeaderLeft" data-cardtype="{{cardType}}">
         <div class="cardHeaderGroup">
             {{> cardHeaderItemClock}}
-            <span class="hidden-xs">
-                {{> cardHeaderItemDictionary this}}
-            </span>
         </div>
         <div class="cardHeaderGroup">
-            <div class="cardHeaderRowHalf visible-xs" data-cardtype="{{cardType}}">
-                {{> cardHeaderItemDictionary this}}
+            <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemDictionaryBeolingus this}}
+                {{> cardHeaderItemDictionaryLinguee this}}
+                {{> cardHeaderItemDictionaryGoogle this}}
             </div>
-            <div class="cardHeaderRowHalf visible-xs" data-cardtype="{{cardType}}">
-                {{> cardHeaderItemZoomText}}
+            <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
             </div>
         </div>
     </div>
 </template>
 
 <template name="flashcardHeaderWozniakLeft">
-    <div class="col-xs-4 cardHeaderLeft" data-cardtype="{{cardType}}">
+    <div class="col-xs-3 cardHeaderLeft" data-cardtype="{{cardType}}">
         <div class="cardHeaderGroup">
             {{> cardHeaderItemClock}}
-            <span class="hidden-xs">
-                {{> cardHeaderItemDictionary this}}
-            </span>
         </div>
         <div class="cardHeaderGroup">
-            <div class="cardHeaderRowHalf visible-xs" data-cardtype="{{cardType}}">
-                {{> cardHeaderItemDictionary this}}
+            <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+                {{> cardHeaderItemDictionaryBeolingus this}}
+                {{> cardHeaderItemDictionaryLinguee this}}
+                {{> cardHeaderItemDictionaryGoogle this}}
             </div>
-            <div class="cardHeaderRowHalf visible-xs" data-cardtype="{{cardType}}">
-                {{> cardHeaderItemZoomText}}
+            <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
             </div>
         </div>
     </div>
