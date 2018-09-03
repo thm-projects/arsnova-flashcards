@@ -17,6 +17,9 @@ Change `settings.json` or `settings_debug.json` according to your needs
 
 > Warning: Never publish your settings file!
 
+## Meteor updates
+A simple update to the latest Meteor version is not always possible. Please do not update Meteor to the latest version and leave this to the owners of the repository.
+
 ## Starting the app
 Use one of the following commands inside the repository (flashcards folder), to start arsnova.cards on localhost:
 
