@@ -48,39 +48,17 @@ export let MarkdeepEditor = class MarkdeepEditor {
 		}
 	}
 
-	static displayBeolingusDictionary () {
-		if (Session.get('dictionaryBeolingus') === 0) {
-			Session.set('dictionaryLinguee', 0);
-			Session.set('dictionaryGoogle', 0);
-			Session.set('dictionaryBeolingus', 1);
+	//1 = Beolingus
+	//2 = Linguee
+	//3 = Google
+	static changeDictionaryMode (mode) {
+		if (Session.get('dictionaryMode') === mode) {
+			Session.set('dictionaryMode', 0);
 		} else {
-			Session.set('dictionaryBeolingus', 0);
+			Session.set('dictionaryMode', mode);
 		}
 		$('#contentEditor').focus();
 	}
-
-	static displayLingueeDictionary () {
-		if (Session.get('dictionaryLinguee') === 0) {
-			Session.set('dictionaryBeolingus', 0);
-			Session.set('dictionaryGoogle', 0);
-			Session.set('dictionaryLinguee', 1);
-		} else {
-			Session.set('dictionaryLinguee', 0);
-		}
-		$('#contentEditor').focus();
-	}
-
-	static displayGoogleDictionary () {
-		if (Session.get('dictionaryGoogle') === 0) {
-			Session.set('dictionaryBeolingus', 0);
-			Session.set('dictionaryLinguee', 0);
-			Session.set('dictionaryGoogle', 1);
-		} else {
-			Session.set('dictionaryGoogle', 0);
-		}
-		$('#contentEditor').focus();
-	}
-
 
 	static toggleFullscreen () {
 		CardVisuals.toggleFullscreen(false, true);

@@ -123,17 +123,17 @@ Template.flashcards.helpers({
 	},
 	isBeolingusDictionary: function () {
 		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryBeolingus');
+			return Session.get('dictionaryMode') === 1;
 		}
 	},
 	isLingueeDictionary: function () {
 		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryLinguee');
+			return Session.get('dictionaryMode') === 2;
 		}
 	},
 	isGoogleDictionary: function () {
 		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryGoogle');
+			return Session.get('dictionaryMode') === 3;
 		}
 	},
 	getCardSideColorActive: function () {

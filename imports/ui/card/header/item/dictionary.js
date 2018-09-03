@@ -15,7 +15,7 @@ Template.cardHeaderItemDictionaryBeolingus.helpers({
 	},
 	isBeolingusActive: function () {
 		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryBeolingus');
+			return Session.get('dictionaryMode') === 1;
 		}
 	},
 	isMobilePreview: function () {
@@ -25,7 +25,7 @@ Template.cardHeaderItemDictionaryBeolingus.helpers({
 
 Template.cardHeaderItemDictionaryBeolingus.events({
 	"click .showBeolingusTranslation": function () {
-		MarkdeepEditor.displayBeolingusDictionary();
+		MarkdeepEditor.changeDictionaryMode(1);
 	}
 });
 
@@ -41,7 +41,7 @@ Template.cardHeaderItemDictionaryLinguee.helpers({
 	},
 	isLingueeActive: function () {
 		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryLinguee');
+			return Session.get('dictionaryMode') === 2;
 		}
 	},
 	isMobilePreview: function () {
@@ -51,7 +51,7 @@ Template.cardHeaderItemDictionaryLinguee.helpers({
 
 Template.cardHeaderItemDictionaryLinguee.events({
 	"click .showLingueeTranslation": function () {
-		MarkdeepEditor.displayLingueeDictionary();
+		MarkdeepEditor.changeDictionaryMode(2);
 	}
 });
 
@@ -67,7 +67,7 @@ Template.cardHeaderItemDictionaryGoogle.helpers({
 	},
 	isGoogleActive: function () {
 		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryGoogle');
+			return Session.get('dictionaryMode') === 3;
 		}
 	},
 	isMobilePreview: function () {
@@ -77,6 +77,6 @@ Template.cardHeaderItemDictionaryGoogle.helpers({
 
 Template.cardHeaderItemDictionaryGoogle.events({
 	"click .showGoogleTranslation": function () {
-		MarkdeepEditor.displayGoogleDictionary();
+		MarkdeepEditor.changeDictionaryMode(3);
 	}
 });

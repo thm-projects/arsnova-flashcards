@@ -33,9 +33,9 @@
             </span>
         {{/unless}}
         <span class="{{#unless isMobilePreview}}visible-xs-inline-block{{/unless}}">
-            <i class="card-button cardHeaderItem fa fa-book showBeolingusTranslation {{#if
-                    isBeolingusActive}}pressed{{/if}}"
-               data-id="{{this._id}}" title="{{_ "card.tooltip.dictionaryBeolingus"}}"></i>
+            <i class="card-button cardHeaderItem fa fa-language showLingueeTranslation {{#if
+                    isLingueeActive}}pressed{{/if}}"
+               data-id="{{this._id}}" title="{{_ "card.tooltip.dictionaryLinguee"}}"></i>
         </span>
     {{/if}}
 </template>
