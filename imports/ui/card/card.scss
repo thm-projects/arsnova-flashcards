@@ -541,3 +541,20 @@ img.cardside {
 #button-row {
   padding: 0;
 }
+
+.btnCardGoogleTranslate {
+  white-space: normal !important;
+  word-wrap: break-word;
+}
+.cardHeaderTranslatorBtnGroup {
+  display: inline;
+  @media(max-width: 1199px) {
+    img {
+        height: 40%;
+      }
+    margin-left: 3px;
+  }
+  @media(max-width: 991px) {
+    height: 38%;
+  }
+}

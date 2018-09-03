@@ -13,9 +13,19 @@ Template.cardHeaderItemDictionary.helpers({
 	gotDictionary: function () {
 		return CardType.gotDictionary(this.cardType);
 	},
-	isDictionary: function () {
+	isBeolingusActive: function () {
 		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryPreview');
+			return Session.get('dictionaryBeolingus');
+		}
+	},
+	isLingueeActive: function () {
+		if (CardType.gotDictionary(this.cardType)) {
+			return Session.get('dictionaryLinguee');
+		}
+	},
+	isGoogleActive: function () {
+		if (CardType.gotDictionary(this.cardType)) {
+			return Session.get('dictionaryGoogle');
 		}
 	},
 	isMobilePreview: function () {
@@ -24,8 +34,14 @@ Template.cardHeaderItemDictionary.helpers({
 });
 
 Template.cardHeaderItemDictionary.events({
-	"click .showLecture": function () {
-		MarkdeepEditor.displayDictionary();
+	"click .showBeolingusTranslation": function () {
+		MarkdeepEditor.displayBeolingusDictionary();
+	},
+	"click .showLingueeTranslation": function () {
+		MarkdeepEditor.displayLingueeDictionary();
+	},
+	"click .showGoogleTranslation": function () {
+		MarkdeepEditor.displayGoogleDictionary();
 	}
 });
 

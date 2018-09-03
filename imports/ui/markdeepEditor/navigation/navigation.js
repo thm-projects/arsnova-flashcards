@@ -45,7 +45,7 @@ Template.markdeepNavigation.helpers({
 		return CardVisuals.isCentered(Session.get('activeCardContentId'), true);
 	},
 	isDictionaryActive: function () {
-		return Session.get('dictionaryPreview');
+		return (Session.get('dictionaryBeolingus') || Session.get('dictionaryLinguee') || Session.get('dictionaryGoogle'));
 	},
 	isAlternativeBackgroundStyle: function () {
 		return Session.get('backgroundStyle');
