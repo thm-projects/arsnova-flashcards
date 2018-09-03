@@ -2,7 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Cards} from "../../api/cards.js";
 import {Cardsets} from "../../api/cardsets.js";
 import {ColorThemes} from "../../api/theme.js";
-import {Learned, Leitner, Wozniak} from "../../api/learned.js";
+import {Learned, Leitner, Wozniak, Workload} from "../../api/learned.js";
 import {AdminSettings} from "../../api/adminSettings";
 import {CronScheduler} from "../../../server/cronjob.js";
 import {Ratings} from "../../api/ratings";
@@ -560,6 +560,37 @@ Meteor.startup(function () {
 		);
 	}
 
+	cardsets = Cardsets.find({learningActive: true}, {fields: {_id: 1, name: 1, learningActive: 1}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		if (Workload.find({cardset_id: cardsets[i]._id}).count() === 0) {
+			let learnerData = [];
+			let userData = {};
+			let usersLeitner = Leitner.find({cardset_id: cardsets[i]._id}, {
+				fields: {
+					user_id: 1,
+					cardset_id: 1
+				}
+			}).fetch();
+			let users = _.uniq(usersLeitner, false, function (d) {
+				return d.user_id;
+			});
+			for (let k = 0; k < users.length; k++) {
+				userData = {
+					cardset_id: cardsets[i]._id,
+					user_id: users[k].user_id,
+					leitner: {
+						bonus: true,
+						dateJoinedBonus: new Date()
+					}
+				};
+				learnerData.push(userData);
+			}
+			if (learnerData.length > 0) {
+				Workload.batchInsert(learnerData);
+			}
+		}
+	}
+
 	cardsets = Cardsets.find({shuffled: true}).fetch();
 	for (let i = 0; i < cardsets.length; i++) {
 		Meteor.call('updateLeitnerCardIndex', cardsets[i]._id);
@@ -580,7 +611,12 @@ Meteor.startup(function () {
 
 	cardsets = Cardsets.find({shuffled: true}, {fields: {_id: 1}}).fetch();
 	for (let i = 0; i < cardsets.length; i++) {
-		leitner = Leitner.find({cardset_id: cardsets[i]._id, original_cardset_id: {$exists: false}}, {fields: {_id: 1, card_id: 1}}).fetch();
+		leitner = Leitner.find({cardset_id: cardsets[i]._id, original_cardset_id: {$exists: false}}, {
+			fields: {
+				_id: 1,
+				card_id: 1
+			}
+		}).fetch();
 		for (let k = 0; k < leitner.length; k++) {
 			let originalCardsetId = Cards.findOne({_id: leitner[k].card_id}).cardset_id;
 			if (originalCardsetId !== undefined) {
@@ -597,7 +633,7 @@ Meteor.startup(function () {
 		}
 	}
 
-	cardsets = Cardsets.find({registrationPeriod:  {$exists: false}}).fetch();
+	cardsets = Cardsets.find({registrationPeriod: {$exists: false}}).fetch();
 	for (let i = 0; i < cardsets.length; i++) {
 		Cardsets.update({
 				_id: cardsets[i]._id
@@ -610,7 +646,8 @@ Meteor.startup(function () {
 		);
 	}
 
-	let wozniak = Wozniak.find({skipped: {$exists: true}}).fetch();
+	let wozniak;
+	wozniak = Wozniak.find({skipped: {$exists: true}}).fetch();
 	for (let i = 0; i < wozniak.length; i++) {
 		Wozniak.update({
 				_id: wozniak[i]._id

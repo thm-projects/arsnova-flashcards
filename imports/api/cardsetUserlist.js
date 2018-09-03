@@ -1,5 +1,5 @@
 import {Meteor} from "meteor/meteor";
-import {Leitner} from "./learned.js";
+import {Leitner, Workload} from "./learned.js";
 import {Cardsets} from "./cardsets.js";
 import {check} from "meteor/check";
 import {getAuthorName} from "./userdata";
@@ -58,17 +58,14 @@ function sortByBirthname(data) {
 
 function getLearners(data, cardset_id) {
 	let learningDataArray = [];
-	let distinctData = _.uniq(data, false, function (d) {
-		return d.user_id;
-	});
-	for (let i = 0; i < distinctData.length; i++) {
-		let user = Meteor.users.find({_id: distinctData[i].user_id}).fetch();
+	for (let i = 0; i < data.length; i++) {
+		let user = Meteor.users.find({_id: data[i].user_id}).fetch();
 
 		let filter = [];
-		for (let l = 1; l < 6; l++) {
+		for (let l = 1; l <= 6; l++) {
 			filter.push({
 				cardset_id: cardset_id,
-				user_id: distinctData[i].user_id,
+				user_id: data[i].user_id,
 				box: l
 			});
 		}
@@ -111,7 +108,7 @@ Meteor.methods({
 				content += header[i] + " [" + cardset.learningInterval[i] + "]" + colSep;
 			}
 			content += header[5] + colSep + colSep + cardsetInfo[infoCardsetCounter++][0] + newLine;
-			let learners = getLearners(Leitner.find({cardset_id: cardset_id}).fetch(), cardset_id);
+			let learners = getLearners(Workload.find({cardset_id: cardset_id, 'leitner.bonus': true}).fetch(), cardset_id);
 			for (let k = 0; k < learners.length; k++) {
 				content += learners[k].birthname + colSep + learners[k].givenname + colSep + learners[k].email + colSep;
 				content += learners[k].box1 + colSep + learners[k].box2 + colSep + learners[k].box3 + colSep + learners[k].box4 + colSep + learners[k].box5 + colSep + learners[k].box6 + colSep;
@@ -135,7 +132,7 @@ Meteor.methods({
 		check(cardset_id, String);
 		let cardset = Cardsets.findOne({_id: cardset_id});
 		if (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
-			return getLearners(Leitner.find({cardset_id: cardset_id}).fetch(), cardset_id);
+			return getLearners(Workload.find({cardset_id: cardset_id, 'leitner.bonus': true}).fetch(), cardset_id);
 		}
 	},
 	getEditors: function (cardset_id) {

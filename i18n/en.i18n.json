@@ -543,6 +543,28 @@
     "selectShuffledCardsetToLearn": "Add shuffled cardset to Workload"
   },
   "bonus": {
+    "info": {
+      "button": {
+        "join": "Join Bonus",
+        "leave": "Leave Bonus"
+      }
+    },
+    "form-join": {
+      "title": "Join Bonus",
+      "message": "",
+      "button": {
+        "confirm": "Join",
+        "cancel": "Cancel"
+      }
+    },
+    "form-leave": {
+      "title": "Leave Bonus",
+      "message": "",
+      "button": {
+        "confirm": "Leave",
+        "cancel": "Cancel"
+      }
+    },
     "message": {
       "registrationPeriodExpired": "",
       "bonusEnded": "",
