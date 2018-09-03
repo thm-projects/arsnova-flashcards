@@ -14,6 +14,7 @@ import "/client/markdeep.min.js";
 import {getAuthorName} from "../../api/userdata";
 import {Route} from "../../api/route";
 import {CardVisuals} from "../../api/cardVisuals";
+import {Wozniak} from "../../api/learned";
 
 Meteor.subscribe("collegesCourses");
 
@@ -186,14 +187,35 @@ Template.registerHelper("getKind", function (kind, displayType = 0) {
 });
 
 Template.registerHelper("isProfileCompleted", function (cardset_id) {
-	let cardset = Cardsets.findOne({_id: cardset_id});
+	if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
+		return true;
+	}
+	let cardset = Cardsets.findOne({_id: cardset_id}, {
+		fields: {
+			_id: 1,
+			owner: 1,
+			editors: 1,
+			registrationPeriod: 1,
+			learningActive: 1
+		}
+	});
 	if ((cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) && cardset.learningActive) {
 		return true;
 	}
-	if ((Meteor.user().profile.birthname !== "" && Meteor.user().profile.birthname !== undefined) && (Meteor.user().profile.givenname !== "" && Meteor.user().profile.givenname !== undefined) && (Meteor.user().email !== "" && Meteor.user().email !== undefined)) {
-		return true;
+	let leitnerCount = Leitner.find({cardset_id: cardset._id, user_id: Meteor.userId()}).count();
+	let wozniakCount = Wozniak.find({cardset_id: cardset._id, user_id: Meteor.userId()}).count();
+	let birtname = Meteor.user().profile.birthname !== "" && Meteor.user().profile.birthname !== undefined;
+	let givenname = Meteor.user().profile.givenname !== "" && Meteor.user().profile.givenname !== undefined;
+	let email = Meteor.user().email !== "" && Meteor.user().email !== undefined;
+	let isProfileComplete = (birtname && givenname && email);
+	if ((leitnerCount + wozniakCount) > 0) {
+		return isProfileComplete;
 	} else {
-		return false;
+		if (cardset.registrationPeriod < new Date()) {
+			return true;
+		} else {
+			return isProfileComplete;
+		}
 	}
 });
 
