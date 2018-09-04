@@ -7,40 +7,50 @@ import {Route} from "../../../api/route.js";
 import '/client/hammer.js';
 import "./content.html";
 import {CardNavigation} from "../../../api/cardNavigation";
+import {Dictionary} from "../../../api/dictionary";
+
 
 /*
  * ############################################################################
- * cardDictionaryContent
+ * cardDictionaryContentBeolingus
  * ############################################################################
  */
-
-Template.cardDictionaryContent.helpers({
+Template.cardDictionaryContentBeolingus.helpers({
 	getDictionarySearchText: function () {
-		let searchText;
-		switch (Session.get('activeCardContentId')) {
-			case 1:
-				searchText = this.front.trim();
-				break;
-			case 2:
-				searchText = this.back.trim();
-				break;
-			case 3:
-				searchText = this.hint.trim();
-				break;
-			case 4:
-				searchText = this.lecture.trim();
-				break;
-			case 5:
-				searchText = this.top.trim();
-				break;
-			case 6:
-				searchText = this.bottom.trim();
-				break;
-		}
-		let wordCount = searchText.split(/\s+/);
-		if (wordCount.length === 1) {
-			return "&query=" + CardVisuals.removeMarkdeepTags(searchText);
-		}
+		return Dictionary.getQuery(this, 1);
+	}
+});
+
+/*
+ * ############################################################################
+ * cardDictionaryContentLinguee
+ * ############################################################################
+ */
+Template.cardDictionaryContentLinguee.helpers({
+	getDictionaryQuery: function () {
+		return Dictionary.getQuery(this, 2);
+	}
+});
+
+/*
+ * ############################################################################
+ * cardDictionaryContentGoogle
+ * ############################################################################
+ */
+Template.cardDictionaryContentGoogle.helpers({
+	getDictionaryQuery: function () {
+		return Dictionary.getQuery(this, 3);
+	}
+});
+
+/*
+ * ############################################################################
+ * cardDictionaryContentDeepL
+ * ############################################################################
+ */
+Template.cardDictionaryContentDeepL.helpers({
+	getDictionaryQuery: function () {
+		return Dictionary.getQuery(this, 4);
 	}
 });
 

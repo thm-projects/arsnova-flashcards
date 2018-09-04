@@ -17,8 +17,14 @@
                                 <div class="cardContent detail{{cardsIndex this._id}} {{#if
                                         isActiveCard false}}{{getCardSideColorActive}}{{else}}{{getCardSideColorInactive}}{{/if}}">
                                     {{#if isActiveCard false}}
-                                        {{#if isDictionary}}
-                                            {{> cardDictionaryContent this}}
+                                        {{#if isBeolingusDictionary}}
+                                            {{> cardDictionaryContentBeolingus this}}
+                                        {{else if isLingueeDictionary}}
+                                            {{> cardDictionaryContentLinguee this}}
+                                        {{else if isGoogleDictionary}}
+                                            {{> cardDictionaryContentGoogle this}}
+                                        {{else if isDeepLDictionary}}
+                                            {{> cardDictionaryContentDeepL this}}
                                         {{else}}
                                             {{> cardContentActive this}}
                                         {{/if}}

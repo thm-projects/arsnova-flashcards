@@ -17,7 +17,9 @@ export let CardNavigation = class CardNavigation {
 	static switchCardSide (contentId, navigationId, cardStyle) {
 		CardVisuals.toggleZoomContainer(true);
 		CardVisuals.isTextCentered();
-		Session.set('dictionaryPreview', 0);
+		Session.set('dictionaryBeolingus', 0);
+		Session.set('dictionaryLinguee', 0);
+		Session.set('dictionaryGoogle', 0);
 		Session.set('activeCardStyle', cardStyle);
 		Session.set('activeCardContentId', contentId);
 		CardEditor.setEditorContent(navigationId);

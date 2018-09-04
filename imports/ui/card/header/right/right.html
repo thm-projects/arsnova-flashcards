@@ -4,9 +4,11 @@
             {{> cardHeaderItemCountCards this}}
         </div>
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-            {{> cardHeaderItemCardList this}}
-            <span class="hidden-xs" data-cardtype="{{cardType}}">
-                {{> cardHeaderItemZoomText}}
+            <span class="hidden-xs cardHeaderItem">
+                {{> cardHeaderItemCardList this}}
+            </span>
+            {{> cardHeaderItemZoomText}}
+            <span class="hidden-xs cardHeaderItem">
                 {{> cardHeaderItemContrast}}
             </span>
             {{> cardHeaderItemEndPresentation this}}
@@ -21,9 +23,7 @@
         </div>
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
             {{> cardHeaderItemCardList this}}
-            <span class="hidden-xs">
-                {{> cardHeaderItemZoomText}}
-            </span>
+            {{> cardHeaderItemZoomText}}
             {{> cardHeaderItemToggleFullscreen this}}
         </div>
     </div>
@@ -47,9 +47,7 @@
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
         </div>
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-            {{#unless isMobilePreview}}
-                {{> cardHeaderItemZoomText}}
-            {{/unless}}
+            {{> cardHeaderItemZoomText}}
             {{> cardHeaderItemToggleFullscreen this}}
         </div>
     </div>
@@ -61,9 +59,7 @@
             {{> cardHeaderItemCountCardsLeitner this}}
         </div>
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-            <span class="hidden-xs">
-                {{> cardHeaderItemZoomText}}
-            </span>
+            {{> cardHeaderItemZoomText}}
             {{> cardHeaderItemToggleFullscreen this}}
             {{> cardHeaderItemBackToCardset}}
         </div>
@@ -75,9 +71,7 @@
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
         </div>
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-            <span class="hidden-xs">
-                {{> cardHeaderItemZoomText}}
-            </span>
+            {{> cardHeaderItemZoomText}}
             {{> cardHeaderItemToggleFullscreen this}}
             {{> cardHeaderItemBackToCardset}}
         </div>

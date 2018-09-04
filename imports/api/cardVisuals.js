@@ -105,7 +105,9 @@ export let CardVisuals = class CardVisuals {
 		if (forceOff && (!Route.isBox() && !Route.isMemo())) {
 			Session.set("workloadFullscreenMode", false);
 		}
-		Session.set('dictionaryPreview', 0);
+		Session.set('dictionaryBeolingus', 0);
+		Session.set('dictionaryLinguee', 0);
+		Session.set('dictionaryGoogle', 0);
 		if ((Session.get('fullscreen') || forceOff) && (!Route.isPresentation()) && !Session.get('workloadFullscreenMode')) {
 			if (!NavigatorCheck.isIOS()) {
 				screenfull.exit();
@@ -317,15 +319,7 @@ export let CardVisuals = class CardVisuals {
 			if (cardHeader.length && zoomTextButton.length) {
 				let leftPosition = 0;
 				let topPosition = cardHeader.offset().top + cardHeader.height();
-				if ($(window).width() < 768 || Session.get('mobilePreview')) {
-					leftPosition = zoomTextButton.offset().left;
-					if ($(window).height() < 450) {
-						topPosition = 0;
-						leftPosition += zoomTextButton.width() * 2;
-					}
-				} else {
-					leftPosition = zoomTextButton.offset().left - zoomSliderContainer.width();
-				}
+				leftPosition = zoomTextButton.offset().left - zoomSliderContainer.width();
 				zoomSliderContainer.css({
 					'top': topPosition + "px",
 					'left': leftPosition + "px"

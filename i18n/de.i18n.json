@@ -951,7 +951,10 @@
       "showIndex": "Zeige das Inhaltsverzeichnis der Kartei",
       "edit": "Bearbeite die Karte",
       "delete": "Lösche die Karte",
-      "dictionary": "Zeige die BEOLINGUS-Übersetzung",
+      "dictionaryBeolingus": "Zeige die BEOLINGUS-Übersetzung",
+      "dictionaryLinguee": "Zeige die Linguee-Übersetzung",
+      "dictionaryGoogle": "Zeige die Google-Übersetzung",
+      "dictionaryDeepL": "Zeige die DeepL-Übersetzung",
       "copy": "Erstelle eine Kopie dieser Karte",
       "zoomText": "Ändere die Schriftgröße der Karte",
       "zoomTextReset": "Zurücksetzen",
@@ -960,7 +963,9 @@
         "center": "Zentriere den Karteninhalt vertikal",
         "mobilePreview": "Zeige die Karte in der Smartphone-Ansicht (iPhone 6/7/8)",
         "rotateMobilePreview": "Drehe die Smartphone-Ansicht (iPhone 6/7/8)",
-        "dictionary": "Zeige die BEOLINGUS-Übersetzung",
+        "dictionaryBeolingus": "Zeige die BEOLINGUS-Übersetzung",
+        "dictionaryLinguee": "Zeige die Linguee-Übersetzung",
+        "dictionaryGoogle": "Zeige den übersetzten Karteninhalt auf Google Translate an",
         "style": "Ändere den Hintergrund der Karte (liniert oder blanko)",
         "fullscreen": "Mit der Taste ESC (oben links) kommst du wieder in die Normalansicht."
       }

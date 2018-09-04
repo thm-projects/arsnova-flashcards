@@ -1,6 +1,34 @@
-<template name="cardDictionaryContent">
+<template name="cardDictionaryContentBeolingus">
     <iframe class="dictionaryFrame"
             src="https://dict.tu-chemnitz.de/?mini=1?service=deen{{getDictionarySearchText}}"
+            frameborder="0"
+            data-type="cardNavigation">
+    </iframe>
+</template>
+
+<template name="cardDictionaryContentLinguee">
+    <iframe class="dictionaryFrame"
+            src="https://www.linguee.de/deutsch-englisch/search?source=auto{{getDictionaryQuery}}"
+            frameborder="0"
+            data-type="cardNavigation">
+    </iframe>
+</template>
+
+<template name="cardDictionaryContentGoogle">
+    <span>
+        <a href="https://translate.google.com/#de/en/{{getDictionaryQuery}}" target="_blank"
+           title="{{_ "card.tooltip.markdeepEditor.dictionaryGoogle"}}">
+        <button type="button" class="btn btn-raised btn-lg btn-block centered btnCardGoogleTranslate">
+            <i class="fa fa-globe"></i>
+            {{_ "card.tooltip.markdeepEditor.dictionaryGoogle"}}
+        </button>
+        </a>
+    </span>
+</template>
+
+<template name="cardDictionaryContentDeepL">
+    <iframe class="dictionaryFrame"
+            src="https://www.deepl.com/translator#en/de/{{getDictionaryQuery}}"
             frameborder="0"
             data-type="cardNavigation">
     </iframe>

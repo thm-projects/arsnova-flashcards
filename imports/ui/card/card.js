@@ -121,9 +121,24 @@ Template.flashcards.helpers({
 		let cardIndex = CardIndex.getCardIndex();
 		return cardIndex.findIndex(item => item === card_id) + 1;
 	},
-	isDictionary: function () {
+	isBeolingusDictionary: function () {
 		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryPreview');
+			return Session.get('dictionaryMode') === 1;
+		}
+	},
+	isLingueeDictionary: function () {
+		if (CardType.gotDictionary(this.cardType)) {
+			return Session.get('dictionaryMode') === 2;
+		}
+	},
+	isGoogleDictionary: function () {
+		if (CardType.gotDictionary(this.cardType)) {
+			return Session.get('dictionaryMode') === 3;
+		}
+	},
+	isDeepLDictionary: function () {
+		if (CardType.gotDictionary(this.cardType)) {
+			return Session.get('dictionaryMode') === 4;
 		}
 	},
 	getCardSideColorActive: function () {
