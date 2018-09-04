@@ -1,5 +1,4 @@
 import {Session} from "meteor/session";
-import {CardVisuals} from "./cardVisuals.js";
 
 export let MarkdeepEditor = class MarkdeepEditor {
 	static help () {
@@ -46,43 +45,5 @@ export let MarkdeepEditor = class MarkdeepEditor {
 		} else {
 			Session.set('backgroundStyle', 1);
 		}
-	}
-
-	static displayBeolingusDictionary() {
-		if (Session.get('dictionaryBeolingus') === 0) {
-			Session.set('dictionaryLinguee', 0);
-			Session.set('dictionaryGoogle', 0);
-			Session.set('dictionaryBeolingus', 1);
-		} else {
-			Session.set('dictionaryBeolingus', 0);
-		}
-		$('#contentEditor').focus();
-	}
-
-	static displayLingueeDictionary() {
-		if (Session.get('dictionaryLinguee') === 0) {
-			Session.set('dictionaryBeolingus', 0);
-			Session.set('dictionaryGoogle', 0);
-			Session.set('dictionaryLinguee', 1);
-		} else {
-			Session.set('dictionaryLinguee', 0);
-		}
-		$('#contentEditor').focus();
-	}
-
-	static displayGoogleDictionary() {
-		if (Session.get('dictionaryGoogle') === 0) {
-			Session.set('dictionaryBeolingus', 0);
-			Session.set('dictionaryLinguee', 0);
-			Session.set('dictionaryGoogle', 1);
-		} else {
-			Session.set('dictionaryGoogle', 0);
-		}
-		$('#contentEditor').focus();
-	}
-
-
-	static toggleFullscreen() {
-		CardVisuals.toggleFullscreen(false, true);
 	}
 };

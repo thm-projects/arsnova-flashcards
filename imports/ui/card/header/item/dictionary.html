@@ -1,4 +1,4 @@
-<template name="cardHeaderItemDictionary">
+<template name="cardHeaderItemDictionaryBeolingus">
     {{#if gotDictionary}}
         {{#unless isMobilePreview}}
             <span class="cardHeaderTranslatorBtnGroup hidden-xs">
@@ -9,6 +9,20 @@
                          data-target="#collapseLecture-{{_id}}"
                          src="/img/beolingus.png" title="{{_ "card.tooltip.dictionaryBeolingus"}}">
                 </span>
+            </span>
+        {{/unless}}
+        <span class="{{#unless isMobilePreview}}visible-xs-inline-block{{/unless}}">
+            <i class="card-button cardHeaderItem fa fa-bookmark showBeolingusTranslation {{#if
+                    isBeolingusActive}}pressed{{/if}}"
+               data-id="{{this._id}}" title="{{_ "card.tooltip.dictionaryBeolingus"}}"></i>
+        </span>
+    {{/if}}
+</template>
+
+<template name="cardHeaderItemDictionaryLinguee">
+    {{#if gotDictionary}}
+        {{#unless isMobilePreview}}
+            <span class="cardHeaderTranslatorBtnGroup hidden-xs">
                 <span class="hidden-xs">
                     <img class="showLingueeTranslation card-button cardHeaderItem {{#if isLingueeActive}}pressed{{/if}}"
                          data-type="cardNavigation"
@@ -16,6 +30,20 @@
                          data-target="#collapseLecture-{{_id}}"
                          src="/img/linguee_appLogoSmall.png" title="{{_ "card.tooltip.dictionaryLinguee"}}">
                 </span>
+            </span>
+        {{/unless}}
+        <span class="{{#unless isMobilePreview}}visible-xs-inline-block{{/unless}}">
+            <i class="card-button cardHeaderItem fa fa-language showLingueeTranslation {{#if
+                    isLingueeActive}}pressed{{/if}}"
+               data-id="{{this._id}}" title="{{_ "card.tooltip.dictionaryLinguee"}}"></i>
+        </span>
+    {{/if}}
+</template>
+
+<template name="cardHeaderItemDictionaryGoogle">
+    {{#if gotDictionary}}
+        {{#unless isMobilePreview}}
+            <span class="cardHeaderTranslatorBtnGroup hidden-xs">
                 <span class="hidden-xs">
                     <img class="showGoogleTranslation card-button cardHeaderItem {{#if isGoogleActive}}pressed{{/if}}"
                          data-type="cardNavigation"
@@ -26,19 +54,30 @@
             </span>
         {{/unless}}
         <span class="{{#unless isMobilePreview}}visible-xs-inline-block{{/unless}}">
-            <i class="card-button cardHeaderItem fa fa-book showBeolingusTranslation {{#if
-                    isBeolingusActive}}pressed{{/if}}"
-               data-id="{{this._id}}" title="{{_ "card.tooltip.dictionaryBeolingus"}}"></i>
-        </span>
-        <span class="{{#unless isMobilePreview}}visible-xs-inline-block{{/unless}}">
-            <i class="card-button cardHeaderItem fa fa-language showLingueeTranslation {{#if
-                    isLingueeActive}}pressed{{/if}}"
-               data-id="{{this._id}}" title="{{_ "card.tooltip.dictionaryLinguee"}}"></i>
-        </span>
-        <span class="{{#unless isMobilePreview}}visible-xs-inline-block{{/unless}}">
-            <i class="card-button cardHeaderItem fa fa-google  showGoogleTranslation {{#if
+            <i class="card-button cardHeaderItem fa fa-google showGoogleTranslation {{#if
                     isGoogleActive}}pressed{{/if}}"
                data-id="{{this._id}}" title="{{_ "card.tooltip.dictionaryGoogle"}}"></i>
+        </span>
+    {{/if}}
+</template>
+
+<template name="cardHeaderItemDictionaryDeepL">
+    {{#if gotDictionary}}
+        {{#unless isMobilePreview}}
+            <span class="cardHeaderTranslatorBtnGroup hidden-xs">
+                <span class="hidden-xs">
+                    <img class="showDeepLTranslation card-button cardHeaderItem {{#if isDeepLActive}}pressed{{/if}}"
+                         data-type="cardNavigation"
+                         data-toggle="collapse"
+                         data-target="#collapseLecture-{{_id}}"
+                         src="/img/deepl.png" title="{{_ "card.tooltip.dictionaryDeepL"}}">
+                </span>
+            </span>
+        {{/unless}}
+        <span class="{{#unless isMobilePreview}}visible-xs-inline-block{{/unless}}">
+            <i class="card-button cardHeaderItem fa fa-book showDeepLTranslation {{#if
+                    isDeepLActive}}pressed{{/if}}"
+               data-id="{{this._id}}" title="{{_ "card.tooltip.dictionaryDeepL"}}"></i>
         </span>
     {{/if}}
 </template>

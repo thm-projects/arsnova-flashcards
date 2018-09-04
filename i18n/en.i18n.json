@@ -956,6 +956,7 @@
       "dictionaryBeolingus": "Show translated card content via BEOLINGUS dictionary",
       "dictionaryLinguee": "Show translated card content via Linguee",
       "dictionaryGoogle": "Show translated card content via Google Translate",
+      "dictionaryDeepL": "Show translated card content via DeepL Translate",
       "copy": "",
       "zoomText": "",
       "zoomTextReset": "Zurücksetzen",

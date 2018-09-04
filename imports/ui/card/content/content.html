@@ -26,6 +26,14 @@
     </span>
 </template>
 
+<template name="cardDictionaryContentDeepL">
+    <iframe class="dictionaryFrame"
+            src="https://www.deepl.com/translator#en/de/{{getDictionaryQuery}}"
+            frameborder="0"
+            data-type="cardNavigation">
+    </iframe>
+</template>
+
 <template name="cardContentActive">
                 <span class="{{#if gotContent}}{{#if
                         isCentered}}center-align{{/if}}{{else}}placeholder{{/if}}">

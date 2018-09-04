@@ -23,6 +23,8 @@
                                             {{> cardDictionaryContentLinguee this}}
                                         {{else if isGoogleDictionary}}
                                             {{> cardDictionaryContentGoogle this}}
+                                        {{else if isDeepLDictionary}}
+                                            {{> cardDictionaryContentDeepL this}}
                                         {{else}}
                                             {{> cardContentActive this}}
                                         {{/if}}
