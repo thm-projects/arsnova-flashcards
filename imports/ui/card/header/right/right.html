@@ -4,9 +4,13 @@
             {{> cardHeaderItemCountCards this}}
         </div>
         <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-            {{> cardHeaderItemCardList this}}
+            <span class="hidden-xs cardHeaderItem">
+                {{> cardHeaderItemCardList this}}
+            </span>
             {{> cardHeaderItemZoomText}}
-            {{> cardHeaderItemContrast}}
+            <span class="hidden-xs cardHeaderItem">
+                {{> cardHeaderItemContrast}}
+            </span>
             {{> cardHeaderItemEndPresentation this}}
         </div>
     </div>

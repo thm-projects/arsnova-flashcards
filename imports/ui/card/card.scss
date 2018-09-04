@@ -222,6 +222,15 @@ img.cardside {
 .cardHeaderRowHalf {
   padding: 0;
   height: 50%;
+
+}
+
+.cardHeaderLeft .cardHeaderRowHalf .card-button:last-child {
+      margin-right: 0;
+}
+
+.cardHeaderRight .cardHeaderRowHalf .card-button:first-child {
+      margin-left: 0;
 }
 
 .card-button {
@@ -229,6 +238,7 @@ img.cardside {
   font-size: $font_size_card_header_button !important;
   @media(max-width: 767px) {
     font-size: $font_size_card_header_mobile_button !important;
+    padding: 2px 4px !important;
   }
 }
 
