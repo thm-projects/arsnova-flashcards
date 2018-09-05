@@ -142,7 +142,7 @@ Router.route('/learn', {
 	template: 'cardsets',
 	loadingTemplate: 'cardsets',
 	waitOn: function () {
-		return [Meteor.subscribe('userLeitner'), Meteor.subscribe('userWozniak')];
+		return [Meteor.subscribe('userWorkload', this.params._id), Meteor.subscribe('userLeitner'), Meteor.subscribe('userWozniak')];
 	},
 	data: function () {
 		Session.set('helpFilter', "workload");
@@ -168,7 +168,7 @@ Router.route('/cardset/:_id', {
 	name: 'cardsetdetailsid',
 	template: 'cardsetAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
+		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
@@ -182,7 +182,7 @@ Router.route('/cardset/:_id/card/:card_id', {
 	name: 'cardsetcard',
 	template: 'cardsetAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
+		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
@@ -215,6 +215,9 @@ Router.route('/cardset/:_id/editors', {
 Router.route('/cardset/:_id/stats', {
 	name: 'cardsetstats',
 	template: 'cardsetLearnActivityStatistic',
+	subscriptions: function () {
+		return [Meteor.subscribe('cardsetWorkload', this.params._id)];
+	},
 	data: function () {
 		Session.set('helpFilter', "workloadProgress");
 		return Cardsets.findOne({_id: this.params._id});
@@ -229,7 +232,7 @@ Router.route('/cardsetlist/:_id', {
 	name: 'cardsetlistid',
 	template: 'cardsetAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
+		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
 	},
 	data: function () {
 		Session.set('helpFilter', "cardset");
@@ -242,7 +245,7 @@ Router.route('/cardset/:_id/newcard', {
 	name: 'newCard',
 	template: 'newCard',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetCards', this.params._id)];
+		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
 	},
 	data: function () {
 		Session.set('helpFilter', "cardEditor");
@@ -254,7 +257,7 @@ Router.route('/cardset/:_id/editcard/:card_id', {
 	name: 'editCard',
 	template: 'editCard',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetCards', this.params._id)];
+		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
 	},
 	data: function () {
 		Session.set('helpFilter', "cardEditor");
@@ -274,7 +277,7 @@ Router.route('/progress/:_id/:user_id', {
 	name: 'progress',
 	template: 'progress',
 	subscriptions: function () {
-		return [Meteor.subscribe('userCardsetLeitner', this.params._id, this.params.user_id)];
+		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('userCardsetLeitner', this.params._id, this.params.user_id)];
 	},
 	action: function () {
 		if (this.ready()) {
@@ -291,7 +294,7 @@ Router.route('/box/:_id', {
 	name: 'box',
 	template: 'learnAlgorithmAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id)];
+		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id)];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
@@ -304,7 +307,7 @@ Router.route('/memo/:_id', {
 	name: 'memo',
 	template: 'learnAlgorithmAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
+		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
@@ -317,7 +320,7 @@ Router.route('/presentationlist/:_id', {
 	name: 'presentationlist',
 	template: 'presentation',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetCards', this.params._id)];
+		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
 	},
 	data: function () {
 		Session.set('helpFilter', undefined);
@@ -329,7 +332,7 @@ Router.route('/presentation/:_id', {
 	name: 'presentation',
 	template: 'presentation',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetCards', this.params._id)];
+		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
