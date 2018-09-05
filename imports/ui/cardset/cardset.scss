@@ -300,16 +300,8 @@ $padding-card-list-row: 8px;
   float: none;
 }
 
-.infoBoxTable tr {
-  td:first-child {
-    padding-left: 15px !important;
-  }
-  td:last-child {
-    padding-right: 15px !important;
-  }
-}
-
 .infoBoxTable td {
+  padding-left: 15px !important;
   @media(max-width: 767px) {
     font-size: $font_size_collapse_button_content_mobile !important;
   }
