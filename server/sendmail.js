@@ -1,5 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {Email} from "meteor/email";
+import {Bonus} from "../imports/api/bonus.js";
 import {Leitner} from "../imports/api/learned.js";
 import {Notifications} from "./notifications.js";
 import {AdminSettings} from "../imports/api/adminSettings.js";
@@ -36,7 +37,7 @@ export class MailNotifier {
 		} else {
 			var active = Leitner.findOne({cardset_id: cardset._id, user_id: user_id, active: true});
 			var deadline = new Date(active.currentDate.getTime() + cardset.daysBeforeReset * 86400000);
-			if (deadline.getTime() > cardset.learningEnd.getTime()) {
+			if (deadline.getTime() > cardset.learningEnd.getTime() && Bonus.isInBonus(cardset._id, user_id)) {
 				return (TAPi18n.__('deadlinePrologue', null, Meteor.settings.mail.language) + moment(cardset.learningEnd).format("DD.MM.YYYY") + TAPi18n.__('deadlineEpilogue1', null, Meteor.settings.mail.language));
 			} else {
 				return (TAPi18n.__('mailNotification.textDate1', null, Meteor.settings.mail.language) + moment(deadline).format("DD.MM.YYYY") + TAPi18n.__('mailNotification.textDate2', null, Meteor.settings.mail.language));

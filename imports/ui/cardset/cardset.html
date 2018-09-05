@@ -42,13 +42,15 @@
         {{> leaveCardsetForm}}
         {{> leaveEditorsForm}}
         {{> chooseFlashcards}}
+        {{> joinBonusForm}}
+        {{> leaveBonusForm}}
     {{/unless}}
     {{#if hasCardsetPermission}}
         {{#unless learningActiveAndEditor}}
             {{selectedForLearning}}
         {{/unless}}
         {{#if isActiveRoute regex='cardsetdetailsid|cardsetcard'}}
-            {{#unless learningActiveAndNotEditor}}
+            {{#unless isInBonus}}
                 {{#if this.quantity}}
                     <div class="hidden-xs col-xs-12">
                         {{> cardNavigation}}
@@ -294,10 +296,10 @@
 
             <div class="cardsetInfoFooter panel-footer">
                 {{#if hasCardsetPermission}}
-                    {{#if learningActive}}
+                    {{#if isInBonus}}
                         {{> leitnerLearning}}
                     {{/if}}
-                    {{#unless learningActive}}
+                    {{#unless isInBonus}}
                         {{#if this.quantity}}
                             {{#if gotPresentation}}
                                 <div class="btn-group">
@@ -454,47 +456,41 @@
                         {{/if}}
                     {{/if}}
                     {{#unless isCardsetOwner _id}}
-                        {{#if gotAccessToManageButton}}
-                            <div class="hidden-xs btn-group">
-                                <button class="btn btn-sm btn-raised manageBtn" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-cog"></i> {{_ "manage"}} <span
-                                        class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    {{#if enableIfPublished}}
-                                        {{#unless isEditor}}
-                                            <li id="report_button" class="reportList" data-toggle="modal"
-                                                data-target="#reportModal">{{_
-                                                    "report"}}</li>
-                                            {{#if learningActive}}
-                                                <li id="leaveLearnPhaseButton" class="leaveLearnPhaseList"
-                                                    data-toggle="modal" data-target="#leaveModal">{{_
-                                                        "confirm-leave-learnphase.btn-txt"}}</li>
+                        <div class="hidden-xs btn-group">
+                            <button class="btn btn-sm btn-raised manageBtn" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-cog"></i> {{_ "manage"}} <span
+                                    class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                {{#if enableIfPublished}}
+                                    {{#unless isEditor}}
+                                        <li id="report_button" class="reportList" data-toggle="modal"
+                                            data-target="#reportModal">{{_
+                                                "report"}}</li>
+                                        {{#unless isInBonus}}
+                                            {{#if learning}}
+                                                <li id="leaveCardsetModalButton" class="leaveCardsetList"
+                                                    data-toggle="modal" data-target="#leaveCardsetModal">{{_
+                                                        "confirm-leave-cardset.btn-txt"}}</li>
                                             {{else}}
-                                                {{#if learning}}
-                                                    <li id="leaveCardsetModalButton" class="leaveCardsetList"
-                                                        data-toggle="modal" data-target="#leaveCardsetModal">{{_
-                                                            "confirm-leave-cardset.btn-txt"}}</li>
-                                                {{else}}
-                                                    <li id="leaveCardsetButton" class="leaveCardsetList">{{_
-                                                            "confirm-leave-cardset.btn-txt"}}</li>
-                                                {{/if}}
+                                                <li id="leaveCardsetButton" class="leaveCardsetList">{{_
+                                                        "confirm-leave-cardset.btn-txt"}}</li>
                                             {{/if}}
                                         {{/unless}}
-                                        {{#if isEditor}}
-                                            {{#unless isCardsetOwner _id}}
-                                                <li id="leaveEditors" class="leaveEditorsList"
-                                                    data-toggle="modal" data-target="#leaveEditorsModal">{{_
-                                                        "sidebar-nav.leaveEditors"}}</li>
-                                            {{/unless}}
-                                        {{/if}}
+                                    {{/unless}}
+                                    {{#if isEditor}}
+                                        {{#unless isCardsetOwner _id}}
+                                            <li id="leaveEditors" class="leaveEditorsList"
+                                                data-toggle="modal" data-target="#leaveEditorsModal">{{_
+                                                    "sidebar-nav.leaveEditors"}}</li>
+                                        {{/unless}}
                                     {{/if}}
-                                </ul>
-                            </div>
-                        {{/if}}
+                                {{/if}}
+                            </ul>
+                        </div>
                     {{/unless}}
-                    {{#unless learningActive}}
+                    {{#unless isInBonus}}
                         {{#unless isShuffledCardset this._id}}
                             {{#if this.quantity}}
                                 {{#if isCardsetOwner _id}}
@@ -1451,6 +1447,24 @@
                     <td>{{_ "bonus.form.registrationPeriod.label"}}:</td>
                     <td>{{getRegistrationPeriod}}</td>
                 </tr>
+                {{#if canJoinBonus}}
+                    <tr>
+                        <td colspan="2">
+                            <a class="btn btn-raised btn-block btn-success" data-toggle="modal"
+                               data-target="#joinBonusModal">{{_
+                                    "bonus.info.button.join"}}</a>
+                        </td>
+                    </tr>
+                {{/if}}
+                {{#if isInBonus}}
+                    <tr>
+                        <td colspan="2">
+                            <a class="btn btn-raised btn-block btn-danger" data-toggle="modal"
+                               data-target="#leaveBonusModal">{{_
+                                    "bonus.info.button.leave"}}</a>
+                        </td>
+                    </tr>
+                {{/if}}
                 </tbody>
             </table>
         </div>

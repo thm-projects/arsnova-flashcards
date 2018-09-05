@@ -6,9 +6,36 @@ import {check} from "meteor/check";
 export const Learned = new Mongo.Collection("learned");
 export const Leitner = new Mongo.Collection("leitner");
 export const Wozniak = new Mongo.Collection("wozniak");
-
+export const Workload = new Mongo.Collection("workload");
 
 if (Meteor.isServer) {
+	Meteor.publish("cardsetWorkload", function (cardset_id) {
+		if (this.userId) {
+			if (Roles.userIsInRole(this.userId, [
+				'admin',
+				'editor',
+				'lecturer'
+			])) {
+				return Workload.find({
+					cardset_id: cardset_id,
+					$or: [
+						{user_id: this.userId},
+						{'leitner.bonus': true}
+					]
+				});
+			} else {
+				return Workload.find({
+					cardset_id: cardset_id,
+					user_id: this.userId
+				});
+			}
+		}
+	});
+	Meteor.publish("userWorkload", function () {
+		if (this.userId) {
+			return Workload.find({user_id: this.userId});
+		}
+	});
 	Meteor.publish("cardsetLeitner", function (cardset_id) {
 		if (this.userId) {
 			return Leitner.find({cardset_id: cardset_id, user_id: this.userId});
@@ -52,15 +79,6 @@ if (Meteor.isServer) {
 	});
 
 	Meteor.methods({
-		clearLeitnerProgress: function (cardset_id) {
-			check(cardset_id, String);
-
-			if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
-				throw new Meteor.Error("not-authorized");
-			}
-			Leitner.remove({cardset_id: cardset_id});
-			Meteor.call("updateLearnerCount", cardset_id);
-		},
 		/** Function marks an active leitner card as learned
 		 *  @param {string} cardset_id - The cardset id from the card
 		 *  @param {string} card_id - The id from the card
@@ -114,11 +132,10 @@ if (Meteor.isServer) {
 			if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				throw new Meteor.Error("not-authorized");
 			}
-
 			Leitner.remove({
 				cardset_id: cardset_id,
 				user_id: Meteor.userId()
-			}, {multi: true});
+			});
 			Meteor.call("updateLearnerCount", cardset_id);
 			return true;
 		},
@@ -132,7 +149,7 @@ if (Meteor.isServer) {
 			Wozniak.remove({
 				cardset_id: cardset_id,
 				user_id: Meteor.userId()
-			}, {multi: true});
+			});
 			Meteor.call("updateLearnerCount", cardset_id);
 			return true;
 		},
