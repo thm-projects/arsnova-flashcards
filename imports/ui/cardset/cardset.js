@@ -22,7 +22,6 @@ import {CardVisuals} from "../../api/cardVisuals";
 import {CardsetVisuals} from "../../api/cardsetVisuals";
 import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
 import {BertAlertVisuals} from "../../api/bertAlertVisuals";
-import {Bonus} from "../../api/bonus";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
@@ -147,9 +146,6 @@ Template.cardset.helpers({
 			Session.set("selectingCardsetToLearn", false);
 			BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.alert.addedToWorkload'), 'success', 'growl-top-left');
 		}
-	},
-	isInBonus: function () {
-		return Bonus.isInBonus(Session.get('activeCardset')._id, Meteor.userId());
 	}
 });
 
@@ -501,7 +497,9 @@ Template.cardsetInfo.helpers({
 	learningMemo: function () {
 		return Wozniak.findOne({
 			cardset_id: Router.current().params._id,
-			user_id: Meteor.userId()});
+			user_id: Meteor.userId(),
+			interval: {$ne: 0}
+		});
 	},
 	learning: function () {
 		return (Leitner.findOne({
@@ -516,8 +514,16 @@ Template.cardsetInfo.helpers({
 	enableIfPublished: function () {
 		return this.kind !== 'personal';
 	},
-	isInBonus: function () {
-		return Bonus.isInBonus(Session.get('activeCardset')._id, Meteor.userId());
+	gotAccessToManageButton: function () {
+		if (Session.get('activeCardset').learningActive) {
+			let leitnerCount = Leitner.find({cardset_id: Session.get('activeCardset')._id, user_id: Meteor.userId()}).count();
+			let wozniakCount = Wozniak.find({cardset_id: Session.get('activeCardset')._id, user_id: Meteor.userId()}).count();
+			if ((leitnerCount + wozniakCount) > 0) {
+				return true;
+			}
+		} else {
+			return true;
+		}
 	}
 });
 
@@ -1545,7 +1551,7 @@ Template.reportCardsetForm.events({
 Template.resetLeitnerForm.events({
 	"click #resetLeitnerConfirm": function () {
 		$('#resetLeitnerModal').on('hidden.bs.modal', function () {
-			Meteor.call("deleteLeitner", Router.current().params._id);
+			Meteor.call("resetLeitner", Router.current().params._id);
 		}).modal('hide');
 	}
 });
@@ -1558,7 +1564,7 @@ Template.resetLeitnerForm.events({
 Template.resetMemoForm.events({
 	"click #resetMemoConfirm": function () {
 		$('#resetMemoModal').on('hidden.bs.modal', function () {
-			Meteor.call("deleteWozniak", Router.current().params._id);
+			Meteor.call("resetWozniak", Router.current().params._id);
 		}).modal('hide');
 	}
 });
@@ -1598,12 +1604,6 @@ Template.learningPhaseInfoBox.helpers({
 		} else {
 			return this.maxCards + " " + TAPi18n.__('confirmLearn-form.cards');
 		}
-	},
-	canJoinBonus: function () {
-		return Bonus.canJoinBonus(Session.get('activeCardset')._id);
-	},
-	isInBonus: function () {
-		return Bonus.isInBonus(Session.get('activeCardset')._id);
 	}
 });
 
