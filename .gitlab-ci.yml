@@ -17,7 +17,6 @@ jshint:
   stage: test
   tags:
     - nodejs
-  allow_failure: true
   dependencies: []
   script:
     - echo "{}" > package.json
