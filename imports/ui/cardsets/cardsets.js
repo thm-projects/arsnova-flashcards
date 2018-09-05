@@ -9,7 +9,6 @@ import "./cardsets.html";
 import {Filter} from "../../api/filter";
 import {Route} from "../../api/route";
 import {BertAlertVisuals} from "../../api/bertAlertVisuals";
-import {Workload} from "../../api/learned";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
@@ -296,20 +295,11 @@ Template.cardsets.events({
 Template.cardsetsConfirmLearnForm.events({
 	'click #learnDelete': function () {
 		$('#bonusFormModal').on('hidden.bs.modal', function () {
-			let workload = Workload.findOne({user_id: Meteor.userId(), cardset_id: Session.get('cardsetId')}, {fields: {_id: 1, 'leitner.bonus': 1}});
-			if (workload !== undefined && workload.leitner.bonus === true) {
-				Meteor.call("leaveBonus", Session.get('cardsetId'), function (error, result) {
-					if (result) {
-						Filter.updateWorkloadFilter();
-					}
-				});
-			} else {
-				Meteor.call("deleteLeitner", Session.get('cardsetId'), function (error, result) {
-					if (result) {
-						Filter.updateWorkloadFilter();
-					}
-				});
-			}
+			Meteor.call("deleteLeitner", Session.get('cardsetId'), function (error, result) {
+				if (result) {
+					Filter.updateWorkloadFilter();
+				}
+			});
 			Meteor.call("deleteWozniak", Session.get('cardsetId'), function (error, result) {
 				if (result) {
 					Filter.updateWorkloadFilter();
