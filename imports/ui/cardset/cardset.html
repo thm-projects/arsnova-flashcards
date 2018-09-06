@@ -390,7 +390,7 @@
                             </div>
                         {{/if}}
                     {{/unless}}
-                    {{#unless isDisabled}}
+                    {{#if canPublish}}
                         {{#unless learningActive}}
                             {{#if isCardsetOwner _id}}
                                 <div class="hidden-xs btn-group">
@@ -402,7 +402,7 @@
                                 </div>
                             {{/if}}
                         {{/unless}}
-                    {{/unless}}
+                    {{/if}}
                     {{#if isCardsetOwner _id}}
                         {{#if isInRole 'admin, editor, lecturer'}}
                             <div class="hidden-xs btn-group">

@@ -24,11 +24,8 @@ let cardTypesWithLearningUnit = [];
 let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15];
 let cardTypesWithContrastButton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15];
 let cardTypesWithNotesForDifficultyLevel = [2];
-let cardTypesWithAlternativePublishLimit = [0];
 let cardTypesWithCardsetTitleNavigation = [14];
 let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 15}, {cardType: 3}, {cardType: 6}, {cardType: 13}, {cardType: 12}, {cardType: 11}, {cardType: 5}, {cardType: 1}, {cardType: 10}, {cardType: 7}, {cardType: 4}, {cardType: 8}, {cardType: 9}, {cardType: 14}];
-let publishLimit = 5;
-let alternativePublishLimit = 1;
 
 let cardTypeCubeSides = [
 	//0: Lernkartei / Flashcard
@@ -377,22 +374,6 @@ let cardTypeCubeSides = [
 ];
 
 export let CardType = class CardType {
-	static gotPublishLimit (cardType, cardQuantity) {
-		if (cardTypesWithAlternativePublishLimit.includes(cardType)) {
-			return cardQuantity >= alternativePublishLimit;
-		} else {
-			return cardQuantity >= publishLimit;
-		}
-	}
-
-	static getPublishLimit (cardType) {
-		if (cardTypesWithAlternativePublishLimit.includes(cardType)) {
-			return alternativePublishLimit;
-		} else {
-			return publishLimit;
-		}
-	}
-
 	static getCardTypesOrder () {
 		return cardTypesOrder;
 	}

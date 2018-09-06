@@ -468,8 +468,14 @@ Template.cardsetInfo.helpers({
 			}
 		}
 	},
-	isDisabled: function () {
-		return (!CardType.gotPublishLimit(this.cardType, this.quantity) || this.reviewed || this.request);
+	canPublish: function () {
+		let cardCount;
+		if (this.shuffled) {
+			cardCount = 2;
+		} else {
+			cardCount = 1;
+		}
+		return (this.quantity >= cardCount || this.reviewed || this.request);
 	},
 	isLecturerAndHasRequest: function () {
 		return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true && this.owner !== Meteor.userId());
@@ -582,7 +588,12 @@ Template.cardsetInfo.events({
 	},
 	"click .bonusBtn": function () {
 		if (this.kind === "personal") {
-			let cardCount = CardType.getPublishLimit(this.cardType);
+			let cardCount;
+			if (this.shuffled) {
+				cardCount = 2;
+			} else {
+				cardCount = 1;
+			}
 			let cardCountMessage = "";
 			if (cardCount === 1) {
 				cardCountMessage = cardCount + " " + TAPi18n.__('confirmLearn-form.card');
