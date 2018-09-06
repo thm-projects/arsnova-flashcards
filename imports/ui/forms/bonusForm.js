@@ -1,6 +1,7 @@
 import {Session} from "meteor/session";
 import {BonusForm} from "../../api/bonusForm";
 import "./bonusForm.html";
+import {Meteor} from "meteor/meteor";
 
 /*
 * ############################################################################
@@ -97,5 +98,35 @@ Template.bonusFormEndDate.events({
 Template.bonusFormIntervals.events({
 	"input #interval1, input #interval2, input #interval3, input #interval4, input #interval5": function () {
 		BonusForm.adjustInterval();
+	}
+});
+
+/*
+* ############################################################################
+* joinBonusForm
+* ############################################################################
+*/
+
+Template.joinBonusForm.events({
+	"click #joinBonusConfirm": function () {
+		Meteor.call("joinBonus", Session.get('activeCardset')._id);
+		$('#joinBonusModal').modal('hide');
+		$('body').removeClass('modal-open');
+		$('.modal-backdrop').remove();
+	}
+});
+
+/*
+* ############################################################################
+* leaveBonusForm
+* ############################################################################
+*/
+
+Template.leaveBonusForm.events({
+	"click #leaveBonusConfirm": function () {
+		Meteor.call("leaveBonus", Session.get('activeCardset')._id);
+		$('#leaveBonusModal').modal('hide');
+		$('body').removeClass('modal-open');
+		$('.modal-backdrop').remove();
 	}
 });

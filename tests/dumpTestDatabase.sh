@@ -9,7 +9,7 @@ checkDirectory
 
 declare -a BLACKLISTEDFILES=("adminSettings.bson" "colorThemes.bson" "cronHistory.bson" "webPushSubscriptions.bson" "roles.bson"
 "meteor_accounts_loginServiceConfiguration.bson" "meteor_oauth_pendingCredentials.bson"
-"meteor_oauth_pendingRequestTokens.bson")
+"meteor_oauth_pendingRequestTokens.bson" "badges.bson" "experience.bson" "learned.bson" "wordcloud.bson")
 
 #Dump the Test-Database
 echo -e $GREEN"Dumping the Test-Database..." $NC

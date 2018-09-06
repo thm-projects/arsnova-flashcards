@@ -520,6 +520,28 @@
     "selectShuffledCardsetToLearn": "Mit einem Klick auf das Thema eines Repetitoriums nimmst du es in dein Lernpensum auf."
   },
   "bonus": {
+    "info": {
+      "button": {
+        "join": "Bonus-Lernphase beitreten",
+        "leave": "Bonus-Lernphase verlassen"
+      }
+    },
+    "form-join": {
+      "title": "Bonus-Lernphase beitreten",
+      "message": "Möchtest du der aktiven Bonus-Lernphase beitreten? Beim Beitritt wird dein derzeitiger Leitner und Wozniak Lernstand zurückgesetzt.",
+      "button": {
+        "confirm": "Beitreten",
+        "cancel": "Abbrechen"
+      }
+    },
+    "form-leave": {
+      "title": "Bonus-Lernphase verlassen",
+      "message": "Beim Verlassen einer aktiven Bonusphase wird dein derzeitiger Lernfortschritt gelöscht. Der Dozent kann dadurch diesen nicht mehr für die Bonusvergabe verwenden.",
+      "button": {
+        "confirm": "Verlassen",
+        "cancel": "Abbrechen"
+      }
+    },
     "message": {
       "registrationPeriodExpired": "Die Anmeldefrist ist abgelaufen. Du kannst der Bonusphase nicht mehr beitreten.",
       "bonusEnded": "Die Bonus-Lernphase ist zuende",

@@ -2,7 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Cards} from "./cards.js";
-import {Leitner, Wozniak} from "./learned.js";
+import {Leitner, Workload, Wozniak} from "./learned.js";
 import {Notifications} from "./notifications.js";
 import {Ratings} from "./ratings.js";
 import {check} from "meteor/check";
@@ -411,7 +411,27 @@ Meteor.methods({
 					learningActive: false
 				}
 			});
-			Meteor.call("clearLeitnerProgress", id);
+			let users = Workload.find({cardset_id: cardset._id, 'leitner.bonus': true}, {fields: {user_id: 1}}).fetch();
+			for (let i = 0; i < users.length; i++) {
+				Workload.update({
+						cardset_id: cardset._id,
+						user_id: users[i].user_id
+					},
+					{
+						$set: {
+							'leitner.bonus': false
+						}
+					}
+				);
+				Leitner.remove({
+					cardset_id: cardset._id,
+					user_id: users[i].user_id
+				});
+				Wozniak.remove({
+					cardset_id: cardset._id,
+					user_id: users[i].user_id
+				});
+			}
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -453,8 +473,6 @@ Meteor.methods({
 					registrationPeriod: registrationPeriod
 				}
 			});
-			Meteor.call("clearLeitnerProgress", id);
-			Meteor.call("activateLearningPeriodSetEdu", id);
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -621,22 +639,6 @@ Meteor.methods({
 				});
 			}
 		}
-	},
-	activateLearningPeriodSetEdu: function (cardset_id) {
-		check(cardset_id, String);
-
-		if (!Roles.userIsInRole(this.userId, ["admin", "editor", "lecturer"])) {
-			throw new Meteor.Error("not-authorized");
-		}
-		Cardsets.update({
-			_id: cardset_id
-		}, {
-			$set: {
-				kind: "edu"
-			}
-		}, {
-			multi: true
-		});
 	},
 	updateRelevance: function (cardset_id) {
 		check(cardset_id, String);
