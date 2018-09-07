@@ -22,7 +22,13 @@
                                         regex="pool|alldecks"}}col-sm-2{{else}}col-sm-3{{/if}} {{#if
                     isActiveRoute
                     regex="pool"}}col-lg-3{{/if}} resultsHeader">
-                <strong>{{_ "set-list.author"}}</strong>
+                <strong>
+                    {{#if isActiveRoute regex='repetitorium'}}
+                        {{_ "cardset.info.publisher"}}
+                    {{else}}
+                        {{_ "set-list.author"}}
+                    {{/if}}
+                </strong>
             </div>
         {{/unless}}
         {{#if isActiveRoute regex="create|pool|alldecks"}}
