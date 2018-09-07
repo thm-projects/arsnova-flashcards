@@ -1081,9 +1081,20 @@ Template.cardsetInfoBox.events({
 * cardsetLearnActivityStatistic
 * ############################################################################
 */
+
+Template.cardsetLearnActivityStatistic.onRendered(function () {
+	Session.set('activeCardset', Cardsets.findOne({_id: Router.current().params._id}));
+});
+
 Template.cardsetLearnActivityStatistic.helpers({
 	getCardsetStats: function () {
 		return Session.get("learnerStats");
+	},
+	getPercentage: function (count) {
+		let percentage = (count / Session.get('activeCardset').quantity * 100).toFixed(1);
+		if (percentage > 0) {
+			return '<span class="cardPercentage">[' + percentage + '%]</span>';
+		}
 	},
 	earnedTrophy: function () {
 		let totalCards = this.box1 + this.box2 + this.box3 + this.box4 + this.box5 + this.box6;
