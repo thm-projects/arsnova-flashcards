@@ -453,7 +453,7 @@ Meteor.startup(function () {
 		);
 	}
 
-	cardsets = Cardsets.find({learners: {$exists: false}}).fetch();
+	cardsets = Cardsets.find({learners: {$exists: false}}, {fields: {_id: 1}}).fetch();
 	for (let i = 0; i < cardsets.length; i++) {
 		Meteor.call("updateLearnerCount", cardsets[i]._id);
 	}
@@ -589,6 +589,7 @@ Meteor.startup(function () {
 				Workload.batchInsert(learnerData);
 			}
 		}
+		Meteor.call("updateLearnerCount", cardsets[i]._id);
 	}
 
 	cardsets = Cardsets.find({shuffled: true}).fetch();

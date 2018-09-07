@@ -223,16 +223,9 @@ if (Meteor.isServer) {
 			if (!Meteor.isServer) {
 				throw new Meteor.Error("not-authorized");
 			} else {
-				let leitner = Leitner.find({cardset_id: cardset_id}).fetch();
-				let wozniak = Wozniak.find({cardset_id: cardset_id}).fetch();
-				let data = leitner.concat(wozniak);
-				let distinctData = _.uniq(data, false, function (d) {
-					return d.user_id;
-				});
-				let learners = _.pluck(distinctData, "user_id");
 				Cardsets.update(cardset_id, {
 					$set: {
-						learners: learners.length
+						learners: Workload.find({cardset_id: cardset_id, 'leitner.bonus': true}).count()
 					}
 				});
 			}
