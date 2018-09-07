@@ -2,7 +2,11 @@
     <li class="dropdown">
         <a href="#" class="dropdown-toggle authorBtn" data-toggle="dropdown" role="button"
            aria-haspopup="true" aria-expanded="false">
-            {{_ "set-list.author"}}
+            {{#if isActiveRoute regex='repetitorium'}}
+                {{_ "cardset.info.publisher"}}
+            {{else}}
+                {{_ "set-list.author"}}
+            {{/if}}
             {{#if hasAuthorFilter}}
                 <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
             {{/if}}
