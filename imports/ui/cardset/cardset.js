@@ -1091,7 +1091,7 @@ Template.cardsetLearnActivityStatistic.helpers({
 		return Session.get("learnerStats");
 	},
 	getPercentage: function (count) {
-		let percentage = (count / Session.get('activeCardset').quantity * 100).toFixed(1);
+		let percentage = Math.round(count / Session.get('activeCardset').quantity * 100);
 		if (percentage > 0) {
 			return '<span class="cardPercentage">[' + percentage + '%]</span>';
 		}
