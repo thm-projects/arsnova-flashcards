@@ -254,7 +254,7 @@
   "modal-dialog": {
     "missingFields": "Bitte fülle die folgenden Felder aus",
     "newcarddeck": "Kartei anlegen",
-    "editcard": "Beschreibung editieren",
+    "editcard": "Metadaten editieren",
     "adminEditCardset": "Admin-Einstellungen",
     "editreferences": "Repetitorium neu zusammenstellen",
     "name": "Thema",
@@ -617,8 +617,8 @@
       "undefinedAuthor": "Bitte füll dein Profil aus!"
     },
     "tooltip": {
-      "editCardset": "Kartei verwalten",
-      "editRepetitorium": "Repetitorium verwalten",
+      "editCardset": "Metadaten der Kartei editieren",
+      "editRepetitorium": "Thema oder Beschreibung des Repetitoriums editieren",
       "editAdminSettings": "Admin-Einstellungen"
     },
     "request": {
@@ -743,8 +743,8 @@
       "content2": "Übersetzung",
       "placeholders": {
         "subject": "Gib das Thema oder die Sprachsituation an !",
-        "content1": "Zu übersetzende Vokabel oder Phrase \n\nWenn du nur ein einzelnes Wort eingibst und auf das Buch-Icon klicksts, wird in der Vorschau \"BEOLINGUS\", das Online-Wörterbuch der TU Chemnitz, mit diesem Wort aufgerufen.",
-        "content2": "Unsere Empfehlung für die Übersetzung eines Textes, nicht nur eines Wortes: deepl.com"
+        "content1": "Gib hier die zu übersetzende Vokabel oder Phrase ein. \n\nSchau dir für einzelne Wörter die Vorschläge aus den Wörterbüchern \"Linguee\" und \"BEOLINGUS\" an, für Texte die Übersetzungen von \"DeepL\" und \"Google Übersetzer\". Klick dazu auf die entsprechenden Buttons in der Kartenvorschau.",
+        "content2": "Schau dir für einzelne Wörter die Vorschläge aus den Wörterbüchern \"Linguee\" und \"BEOLINGUS\" an, für Texte die Übersetzungen von \"DeepL\" und \"Google Übersetzer\". Klick dazu auf die entsprechenden Buttons in der Kartenvorschau."
       },
       "editorLabels": {
         "subject": "Thema oder Sprachsituation"
@@ -1430,7 +1430,7 @@
     "textEnding": "heute endet die Lernphase der Kartei ",
     "subjectReset": "Deine Lernstatistik wird in Kürze zurückgesetzt für die Kartei ",
     "textReset": "wegen Inaktivität wurde deine Lernstatistik zurückgesetzt. ",
-    "newCards1": "Nach Überprüfung deiner aktuellen Lernphasen hat der Wiederholungs-Algorithmus berechnet, dass ",
+    "newCards1": "Nach Überprüfung deiner aktuellen Lernphase hat der Wiederholungs-Algorithmus berechnet, dass ",
     "service": "Der Newsletter ist ein Service von .__lastAppTitle__. \n\nDu erhältst diese Mail, weil du dich angemeldet hast auf ",
     "unsubscribe": "Nicht interessiert? Beende die Lernphase, um den Newsletter nicht mehr zu erhalten.",
     "copyright": "© 2018 .__lastAppTitle__",
@@ -1462,7 +1462,7 @@
     },
     "free": {
       "short": "Frei",
-      "long": "Frei"
+      "long": "Frei für alle"
     },
     "edu": {
       "short": "THM",
