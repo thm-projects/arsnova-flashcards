@@ -179,7 +179,7 @@
     "title": "Aktuell werden folgende Karteien angeboten:",
     "everyone": "Alle",
     "everything": "Alle",
-    "reset": "Zurücksetzen",
+    "reset": "Filter zurücksetzen",
     "rating": "Bewertung",
     "ratingFilter": "> 1 Stern",
     "ratingFilterPlural": "> __rating__ Sterne",
@@ -228,7 +228,7 @@
     "emptytextlist": "Zum Lernen wähle ein Thema aus dem Themen-Pool oder die Karteien eines Repetitoriums.",
     "emptytextlistNoShuffle": "Wähle eine einzelne Kartei aus dem Themen-Pool aus oder die Karteien eines Repetitoriums.",
     "browseCardset": "Thema auswählen",
-    "browseCourse": "Rep auswählen"
+    "browseCourse": "Repetitorium auswählen"
   },
   "modal-admin-dialog": {
     "cardsetTitle": "Admin-Einstellungen für Kartei: __cardset__",
@@ -328,7 +328,7 @@
   },
   "profile": {
     "logout": "Ausloggen",
-    "activity": "Lernstand",
+    "activity": "Lernstatistik",
     "overview": "Summativer Lernstand",
     "billing": "Abrechnung (Testbetrieb)",
     "membership": "Mitgliedschaft (Testbetrieb)",
@@ -479,7 +479,7 @@
     "view": "Ansicht",
     "viewmap": "Karte",
     "viewlist": "Liste",
-    "createcard": "Neue Karte",
+    "createcard": "Neue Karte anlegen",
     "importcard": "Karten importieren",
     "exportcard": "Karten exportieren",
     "manageEditors": "Bearbeitungsrechte",
@@ -488,8 +488,8 @@
     "published": "Veröffentlicht",
     "review": "In Überprüfung",
     "private": "Privat",
-    "license": " Lizenz",
-    "bonus": "Bonus",
+    "license": " Lizenz festlegen",
+    "bonus": "Bonus-Lernphase verwalten",
     "startLearning": "Bonus-Lernphase starten",
     "stopLearning": "Bonus-Lernphase beenden",
     "poolLicense": "Lizenz für ",
@@ -558,7 +558,7 @@
         "title": "Bonus-Lernphase starten"
       },
       "edit": {
-        "title": "Bonus-Lernphase verwalten"
+        "title": "Bonus-Lernphase konfigurieren"
       },
       "maxWorkload": {
         "label": "Tagespensum",
@@ -1079,8 +1079,8 @@
   "noCardsToLearn": "Die nächsten Karten werden am ",
   "at": " um ",
   "released": " freigeschaltet.",
-  "learn": "Lernmodus",
-  "manage": "Verwalten",
+  "learn": "Karten lernen",
+  "manage": "Kartei melden|verlassen",
   "selection": "Auswahl",
   "filter": "Filter",
   "learnfile": "Wiederholen nach Leitner",
