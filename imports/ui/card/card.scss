@@ -515,6 +515,9 @@ img.cardside {
 .mobilePreviewContent {
   .cardContent {
     padding: $padding_card_content_vertical_mobile $padding_card_content_horizontal_mobile !important;
+    ul, ol {
+      padding-left: 20px;
+    }
   }
   .card-button {
     font-size: $font_size_card_header_mobile_button !important;
