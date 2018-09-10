@@ -8,21 +8,21 @@ import {PomodoroTimer} from "../../api/pomodoroTimer";
  * pomodoroTimer
  * ############################################################################
  */
-
+let promodoroInterval;
 Template.pomodoroTimer.onCreated(function () {
-	PomodoroTimer.initialize();
-});
-
-Template.pomodoroTimer.onRendered(function () {
-});
-
-Template.pomodoroTimer.onDestroyed(function () {
-});
-
-Template.pomodoroTimer.helpers({
+	/*This initializes the tooltip over "pomodoro" in the startup modal.*/
+	$('[data-toggle="tooltip"]').tooltip();
+	if (promodoroInterval === undefined) {
+		promodoroInterval = setInterval(function () {
+			PomodoroTimer.interval();
+		}, 1000);
+	}
 });
 
 Template.pomodoroTimer.events({
+	'click #clock': function () {
+		PomodoroTimer.clickClock();
+	}
 });
 
 /*
@@ -31,17 +31,32 @@ Template.pomodoroTimer.events({
  * ############################################################################
  */
 
-Template.pomodoroTimerModal.onCreated(function () {
-});
-
 Template.pomodoroTimerModal.onRendered(function () {
-});
-
-Template.pomodoroTimerModal.onDestroyed(function () {
-});
-
-Template.pomodoroTimerModal.helpers({
+	$("#pomodoroTimerModal").on('hidden.bs.modal', function () {
+		PomodoroTimer.start();
+	});
 });
 
 Template.pomodoroTimerModal.events({
+	'input #pomNumSlider': function () {
+		PomodoroTimer.updatePomNumSlider();
+	},
+	'input #pomQuantity': function () {
+		PomodoroTimer.updatePomQuantity();
+	},
+	'click #settingsBtn': function () {
+		PomodoroTimer.updateSettingsBtn();
+	},
+	'input #workLength': function () {
+		PomodoroTimer.updateWorkLength();
+	},
+	'input #workSlider': function () {
+		PomodoroTimer.updateWorkSlider();
+	},
+	'input #playLength': function () {
+		PomodoroTimer.updatePlayLength();
+	},
+	'input #playSlider': function () {
+		PomodoroTimer.updatePlaySlider();
+	}
 });

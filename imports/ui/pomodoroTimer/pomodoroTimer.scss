@@ -1,0 +1,94 @@
+#pomodoroTimer {
+  h2,
+  h3,
+  h4 {
+    /*This font seemed a good fit to the simple geometric style I was going for.*/
+    font-family: 'Righteous', cursive !important;
+  }
+
+  #instructions {
+    /*have to make it important to override the bootstrap css*/
+    color: white !important;
+  }
+
+  h3 {
+    color: #FF9F30 !important;
+    text-align: center;
+  }
+
+  a:visited {
+    color: #FE5E3E !important;
+  }
+
+  a:hover {
+    text-decoration: none !important;
+  }
+
+  #face {
+    fill: #33D275;
+  }
+
+  .green {
+    color: #33D275;
+  }
+
+  #hour,
+  #min,
+  #sec,
+  #handCircle {
+    fill: #FDE016;
+  }
+
+  #pomArc {
+    stroke: #FF9F30;
+  }
+
+  #breakArc {
+    stroke: #178FFF;
+  }
+
+  #pomArc,
+  #breakArc {
+    stroke-width: 8px;
+    fill: none;
+  }
+
+  #progressArc {
+    fill: none;
+    stroke: #FE5E3E;
+    stroke-width: 2px;
+  }
+
+  b {
+    color: #FE5E3E;
+  }
+
+  #clock {
+    max-height: 87vh;
+    cursor: pointer;
+    /*width:100vw;*/
+  }
+
+  label {
+    width: 100vw;
+    color: #178FFF;
+  }
+
+  .numSlider {
+    margin-left: 5% !important;
+    width: 71% !important;
+    position: relative !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+  }
+
+  .quantity {
+    margin-bottom: 10px !important;
+    display: inline-block !important;
+    width: 17% !important;
+  }
+
+  #input {
+    text-align: center;
+  }
+}
