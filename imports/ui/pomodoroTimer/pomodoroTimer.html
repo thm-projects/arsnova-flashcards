@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-xs-12 text-center">
 
-                <h2 class="text-center" id="instructions">click clock to <span class="green">start</span></h2>
+                <h2 class="text-center" id="instructions"> {{_ "pomodoro.clickClock"}} <span class="green">{{_ "pomodoro.start"}}</span></h2>
 
                 <!--the whole clock and hands and arcs are all contained in the same svg viewbox-->
                 <svg id="clock" viewBox="0 0 100 100">
@@ -13,7 +13,7 @@
                     <filter id="drop-shadow">
                         <feGaussianBlur in="SourceAlpha" stdDeviation="1.5"/>
                         <feOffset dx="2" dy="2" result="offsetblur"/>
-                        <feFlood flood-color="rgba(0,0,0,0.25)"/>
+                        <feFlood flood-color="rgba(0,0,0,0. 25)"/>
                         <feComposite in2="offsetblur" operator="in"/>
                         <feMerge>
                             <feMergeNode/>
@@ -72,17 +72,16 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="modal-title" id="modalTitle">Choose your goal!</h3>
+                    <h3 class="modal-title" id="modalTitle">{{_ "pomodoro.goal" }}</h3>
                 </div>
                 <div class="modal-body">
                     <form id="input" autocomplete="off">
                         <div class="form-group">
                             <div id="goalDiv">
-                                <label for="pomQuantity">How many
+                                <label for="pomQuantity">{{_ "pomodoro.count"}}
                                     <a href="#" data-toggle="tooltip"
-                                       title='A "Pomodoro" is a work / break cycle. Default: 25 mins work and 5 mins break. After 4 pomodoros: 15 mins break.'>
-                                        <b>pomodoros<i class="fa fa-question-circle"></i></b></a> will you
-                                    do?</label>
+                                       title='A {{_ "pomodoro.pluralPomodoro" }} is a work / break cycle. Default: 25 mins work and 5 mins break. After 4 pomodoros: 15 mins break.'>
+                                        <b>{{_ "pomodoro.pluralPomodoro"}} <i class="fa fa-question-circle"></i></b></a> {{_ "pomodoro.make" }}</label>
                                 <input type="number" class="form-control quantity" id="pomQuantity" min="1" max="16"
                                        value=1>
                                 <input class="numSlider" type=range min=1 max=16 value=1 id="pomNumSlider" step=1>
@@ -110,9 +109,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="settingsBtn" class="btn btn-info fa fa-gear hvr-bounce-in"
-                            style="float:left;"> Settings
+                            style="float:left;"> {{_ "pomodoro.settings" }}
                     </button>
-                    <button type="button" id="startPom" class="btn btn-success" data-dismiss="modal">Let's go!
+                    <button type="button" id="startPom" class="btn btn-success" data-dismiss="modal"> {{_ "pomodoro.start"}}
                     </button>
                 </div>
             </div>

@@ -33,6 +33,16 @@
     "backButton": "Zurück",
     "backToStartButton": "Zurück zur Startseite"
   },
+  "pomodoro" :{
+    "clickClock" :"Drücke um zu",
+    "start" : "starten",
+    "goal" : "Wähle dein Lernpensum",
+    "pluralPomodoro" : "Pomodoro Einheiten",
+    "count" : "Wie viele",
+    "make" : "willst du machen?",
+    "settings" : "Einstellungen"
+  },
+
   "navbar-collapse": {
     "noCarddecks": "Kartei anlegen",
     "oneCarddeck": "Meine Kartei",
