@@ -236,10 +236,6 @@ img.cardside {
 .card-button {
   cursor: pointer;
   font-size: $font_size_card_header_button !important;
-  @media(max-width: 767px) {
-    font-size: $font_size_card_header_mobile_button !important;
-    padding: 2px 4px !important;
-  }
 }
 
 .cardHeader a:hover {
@@ -519,9 +515,6 @@ img.cardside {
       padding-left: 20px;
     }
   }
-  .card-button {
-    font-size: $font_size_card_header_mobile_button !important;
-  }
   .cardHeaderSmallText {
     font-size: $font_size_card_header_small_text_mobile;
   }
@@ -565,4 +558,16 @@ img.cardside {
         width: 35px;
         height: auto;
     }
+}
+
+.cardCounter {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  margin-left: -$padding_card_content_horizontal;
+  margin-top: -$padding_card_content_vertical;
+  @media(max-width: 767px) {
+    margin-left: -$padding_card_content_horizontal_mobile;
+    margin-top: -$padding_card_content_vertical_mobile;
+  }
 }

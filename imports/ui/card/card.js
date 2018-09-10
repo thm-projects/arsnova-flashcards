@@ -146,6 +146,9 @@ Template.flashcards.helpers({
 	},
 	getCardSideColorInactive: function () {
 		return CardVisuals.getCardSideColor(this.difficulty, this.cardType, this.backgroundStyle, false);
+	},
+	isMobilePreviewActive: function () {
+		return Session.get('mobilePreview') && Route.isEditMode();
 	}
 });
 

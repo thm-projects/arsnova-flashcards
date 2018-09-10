@@ -4,11 +4,11 @@ import {CardVisuals} from "../../../../api/cardVisuals";
 
 /*
  * ############################################################################
- * cardHeaderItemToggleFullscreen
+ * cardSidebarItemToggleFullscreen
  * ############################################################################
  */
 
-Template.cardHeaderItemToggleFullscreen.events({
+Template.cardSidebarItemToggleFullscreen.events({
 	"click .toggleFullscreen": function () {
 		if (Session.get("workloadFullscreenMode")) {
 			Session.set("workloadFullscreenMode", false);

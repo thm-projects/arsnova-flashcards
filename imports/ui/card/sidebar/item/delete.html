@@ -1,0 +1,8 @@
+<template name="cardSidebarItemDelete">
+{{#unless isShuffledCardset}}
+    {{#if isCardEditor getCardsetId}}
+        <span class="deleteCard fa fa-trash card-button cardHeaderItem"
+              data-type="cardNavigation" title="{{_ "card.tooltip.delete"}}"></span>
+    {{/if}}
+{{/unless}}
+</template>

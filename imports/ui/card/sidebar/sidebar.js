@@ -1,18 +1,29 @@
+//------------------------ IMPORTS
+
 import {Template} from "meteor/templating";
 import {Route} from "../../../api/route";
-import "./header.html";
-import "./left/left.js";
-import "./right/right.js";
-import "./center/center.js";
-import "./item/clock.js";
+import "./sidebar.html";
+import "./item/cardList.js";
+import "./item/contrast.js";
+import "./item/backToCardset.js";
+import "./item/dictionary.js";
+import ".//item/endPresentation.js";
+import "./item/toggleFullscreen.js";
+import "./item/zoomText.js";
+import "./item/leftRightNavigation.js";
+import "./item/copy.js";
+import "./item/delete.js";
+import "./item/edit.js";
+
+
 
 /*
  * ############################################################################
- * flashcardHeader
+ * flashcardSidebar
  * ############################################################################
  */
 
-Template.flashcardHeader.helpers({
+Template.flashcardSidebar.helpers({
 	isCardset: function () {
 		return Route.isCardset();
 	},

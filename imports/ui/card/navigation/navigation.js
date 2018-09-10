@@ -52,6 +52,7 @@ Template.cardNavigationEnabled.helpers({
 
 Template.cardNavigationEnabled.onRendered(function () {
 	CardNavigation.selectButton(1);
+	CardVisuals.setSidebarPosition();
 });
 
 /*

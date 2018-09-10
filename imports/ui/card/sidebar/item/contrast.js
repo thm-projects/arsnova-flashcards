@@ -5,11 +5,11 @@ import {CardType} from "../../../../api/cardTypes";
 
 /*
  * ############################################################################
- * cardHeaderItemContrast
+ * cardSidebarItemContrast
  * ############################################################################
  */
 
-Template.cardHeaderItemContrast.helpers({
+Template.cardSidebarItemContrast.helpers({
 	gotContrastButton: function (cardType) {
 		return CardType.gotContrastButton(cardType);
 	},
@@ -18,7 +18,7 @@ Template.cardHeaderItemContrast.helpers({
 	}
 });
 
-Template.cardHeaderItemContrast.events({
+Template.cardSidebarItemContrast.events({
 	"click .contrastMode": function () {
 		if (Session.get('contrastMode')) {
 			Session.set('contrastMode', false);

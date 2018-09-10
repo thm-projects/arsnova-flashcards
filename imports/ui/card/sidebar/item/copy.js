@@ -1,15 +1,13 @@
-import {Session} from "meteor/session";
 import "./copy.html";
 
 /*
  * ############################################################################
- * cardHeaderItemCopy
+ * cardSidebarItemCopy
  * ############################################################################
  */
 
-Template.cardHeaderItemCopy.events({
-	"click .copyCard": function (evt) {
-		Session.set('activeCard', $(evt.target).data('id'));
+Template.cardSidebarItemCopy.events({
+	"click .copyCard": function () {
 		$('#copyCard').children().addClass("pressed");
 		$('#showCopyCardModal').modal('show');
 	}
