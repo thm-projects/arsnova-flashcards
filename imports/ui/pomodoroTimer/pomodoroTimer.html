@@ -1,7 +1,121 @@
 <template name="pomodoroTimer">
+    <div id="pomodoroTimer" class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 text-center">
 
+                <h2 class="text-center" id="instructions">click clock to <span class="green">start</span></h2>
+
+                <!--the whole clock and hands and arcs are all contained in the same svg viewbox-->
+                <svg id="clock" viewBox="0 0 100 100">
+
+                    <!--drop shadow from http://demosthenes.info/ . Have to do the shadow using svg, or it wouldn't be able to follow the triangle hands-->
+
+                    <filter id="drop-shadow">
+                        <feGaussianBlur in="SourceAlpha" stdDeviation="1.5"/>
+                        <feOffset dx="2" dy="2" result="offsetblur"/>
+                        <feFlood flood-color="rgba(0,0,0,0.25)"/>
+                        <feComposite in2="offsetblur" operator="in"/>
+                        <feMerge>
+                            <feMergeNode/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+
+                    <!--have to put the filter in a style attribute so the url works-->
+                    <circle id="face" style="filter:url(#drop-shadow);" cx="50" cy="50" r="40"/>
+                    <g id="hands" style="filter:url(#drop-shadow);">
+                        <polygon id="pomodoroHour" points="50,25 53,50 47,50"/>
+                        <polygon id="pomodoroMin" points="50,10 53,50 47,50"/>
+                    </g>
+
+                    <circle id="handCircle" cx="50" cy="50" r="3"/>
+
+                    <!--these paths show the pomodoros and breaks around the circle and are assigned attributes in the javascript-->
+                    <path id="progressArc"/>
+                    <path id="pomArc"/>
+                    <path id="breakArc"/>
+                </svg>
+            </div>
+
+        </div>
+
+        <!--empty audio tag to make the sounds work on chrome for android-->
+        <audio id="chromeMobile" preload="auto">
+            <source src="" type="audio/mp3"/>
+        </audio>
+
+
+        <audio id="bell" preload="auto">
+            <source src="http://www.myinstants.com/media/sounds/boxing-bell.mp3" type="audio/mp3"/>
+        </audio>
+
+        <audio id="failure" preload="auto">
+            <source src="http://www.myinstants.com/media/sounds/you-have-failed.mp3" type="audio/mp3"/>
+        </audio>
+
+        <!-- <audio id="failure" preload="auto">
+  <source src="http://www.myinstants.com/media/sounds/sadtrombone.swf.mp3" type="audio/mp3" />
+</audio> -->
+
+        <audio id="success" preload="auto">
+            <source src="http://www.myinstants.com/media/sounds/039-a-victory-fanfare.mp3" type="audio/mp3"/>
+        </audio>
+
+    </div>
 </template>
 
 <template name="pomodoroTimerModal">
+    <!--this is the modal, hidden by default, that pops up when the user clicks the clock. Not too complicated.-->
+    <div id="pomodoroTimerModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title" id="modalTitle">Choose your goal!</h3>
+                </div>
+                <div class="modal-body">
+                    <form id="input" autocomplete="off">
+                        <div class="form-group">
+                            <div id="goalDiv">
+                                <label for="pomQuantity">How many
+                                    <a href="#" data-toggle="tooltip"
+                                       title='A "Pomodoro" is a work / break cycle. Default: 25 mins work and 5 mins break. After 4 pomodoros: 15 mins break.'>
+                                        <b>pomodoros<i class="fa fa-question-circle"></i></b></a> will you
+                                    do?</label>
+                                <input type="number" class="form-control quantity" id="pomQuantity" min="1" max="16"
+                                       value=1>
+                                <input class="numSlider" type=range min=1 max=16 value=1 id="pomNumSlider" step=1>
+                                <p id="workTime"></p>
+                            </div>
 
+                            <div id="settings" style="display: none">
+
+                                <label for="workLength" style="float:left;"><i class="fa fa-briefcase"></i>
+                                    Work</label>
+                                <input type="number" class="form-control quantity" id="workLength" min="1" max="59"
+                                       value="25">
+                                <input class="numSlider" type="range" min="1" max="59" value="25" id="workSlider"
+                                       step="1">
+
+                                <label for="playLength" style="float:left;"><i class="fa fa-coffee"></i>
+                                    Relax</label>
+                                <input type="number" class="form-control quantity" id="playLength" min="1" max="59"
+                                       value="5">
+                                <input class="numSlider" type="range" min="1" max="59" value="5" id="playSlider"
+                                       step="1">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="settingsBtn" class="btn btn-info fa fa-gear hvr-bounce-in"
+                            style="float:left;"> Settings
+                    </button>
+                    <button type="button" id="startPom" class="btn btn-success" data-dismiss="modal">Let's go!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
