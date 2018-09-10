@@ -1,94 +1,117 @@
-#pomodoroTimer {
-  h2,
-  h3,
-  h4 {
-    /*This font seemed a good fit to the simple geometric style I was going for.*/
-    font-family: 'Righteous', cursive !important;
-  }
+@import "../../../client/themes/theme-default";
+@import "../../../client/themes/theme-contrast";
+@import "../main/main.scss";
 
-  #instructions {
-    /*have to make it important to override the bootstrap css*/
-    color: white !important;
-  }
+$themes: (
+        theme-default: map-merge(changing-colors-definitions(), theme-default()),
+        theme-contrast: map-merge(changing-colors-definitions(), theme-contrast())
+);
 
-  h3 {
-    color: #FF9F30 !important;
-    text-align: center;
-  }
+@each $theme, $map in $themes {
+  .#{$theme} {
+  $pomodoro_yellow: map-get($map, "pomodoro_yellow");
+  $pomodoro_green: map-get($map, "pomodoro_green");
+  $pomodoro_white: map-get($map, "pomodoro_white");
+  $pomodoro_orange: map-get($map, "pomodoro_orange");
+  $pomodoro_dark_orange: map-get($map, "pomodoro_dark_orange");
+  $pomodoro_blue: map-get($map, "pomodoro_blue");
+  $pomodoro_orange_link: map-get($map, "pomodoro_orange_link");
+  $pomodoro_stroke_orange: map-get($map, "pomodoro_stroke_orange");
+  $pomodoro_stroke_blue: map-get($map, "pomodoro_stroke_blue");
 
-  a:visited {
-    color: #FE5E3E !important;
-  }
+    #pomodoroTimer {
+      h2,
+      h3,
+      h4 {
+        /*This font seemed a good fit to the simple geometric style I was going for.*/
+        font-family: 'Righteous', cursive !important;
+      }
 
-  a:hover {
-    text-decoration: none !important;
-  }
+      #instructions {
+        /*have to make it important to override the bootstrap css*/
+        color: $pomodoro_white !important;
+      }
 
-  #face {
-    fill: #33D275;
-  }
+      h3 {
+        color: $pomodoro_orange !important;
+        text-align: center;
+      }
 
-  .green {
-    color: #33D275;
-  }
+      a:visited {
+        color: $pomodoro_orange_link !important;
+      }
 
-  #hour,
-  #min,
-  #sec,
-  #handCircle {
-    fill: #FDE016;
-  }
+      a:hover {
+        text-decoration: none !important;
+      }
 
-  #pomArc {
-    stroke: #FF9F30;
-  }
+      #face {
+        fill: $pomodoro_green;
+      }
 
-  #breakArc {
-    stroke: #178FFF;
-  }
+      .green {
+        color: $pomodoro_green;
+      }
 
-  #pomArc,
-  #breakArc {
-    stroke-width: 8px;
-    fill: none;
-  }
+      #hour,
+      #min,
+      #sec,
+      #handCircle {
+        fill: $pomodoro_yellow;
+      }
 
-  #progressArc {
-    fill: none;
-    stroke: #FE5E3E;
-    stroke-width: 2px;
-  }
+      #pomArc {
+        stroke: $pomodoro_stroke_orange;
+      }
 
-  b {
-    color: #FE5E3E;
-  }
+      #breakArc {
+        stroke: $pomodoro_stroke_blue;
+      }
 
-  #clock {
-    max-height: 87vh;
-    cursor: pointer;
-    /*width:100vw;*/
-  }
+      #pomArc,
+      #breakArc {
+        stroke-width: 8px;
+        fill: none;
+      }
 
-  label {
-    width: 100vw;
-    color: #178FFF;
-  }
+      #progressArc {
+        fill: none;
+        stroke: $pomodoro_dark_orange;
+        stroke-width: 2px;
+      }
 
-  .numSlider {
-    margin-left: 5% !important;
-    width: 71% !important;
-    position: relative !important;
-    display: inline-block !important;
-    vertical-align: middle !important;
-  }
+      b {
+        color: $pomodoro_dark_orange;
+      }
 
-  .quantity {
-    margin-bottom: 10px !important;
-    display: inline-block !important;
-    width: 17% !important;
-  }
+      #clock {
+        max-height: 87vh;
+        cursor: pointer;
+        /*width:100vw;*/
+      }
 
-  #input {
-    text-align: center;
+      label {
+        width: 100vw;
+        color: $pomodoro_blue;
+      }
+
+      .numSlider {
+        margin-left: 5% !important;
+        width: 71% !important;
+        position: relative !important;
+        display: inline-block !important;
+        vertical-align: middle !important;
+      }
+
+      .quantity {
+        margin-bottom: 10px !important;
+        display: inline-block !important;
+        width: 17% !important;
+      }
+
+      #input {
+        text-align: center;
+      }
+    }
   }
 }
