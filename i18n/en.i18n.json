@@ -33,6 +33,16 @@
     "backButton": "Back",
     "backToStartButton": "Back to the start page"
   },
+  "pomodoro" :{
+    "Pluralpomodoro" : "pomodoros",
+    "clickClock" :"click clock to",
+    "start" : "start",
+    "goal" : "Choose your goal",
+    "count" : "How many",
+    "make" : "will you do",
+    "settings" : "Settings"
+
+  },
   "carousel-inner": {
     "carousel-header-0": " Your digital flashcards",
     "carousel-paragraph-0": "Create an learn your own digital flashcards.",
