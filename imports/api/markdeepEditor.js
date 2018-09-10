@@ -1,4 +1,5 @@
 import {Session} from "meteor/session";
+import {CardVisuals} from "./cardVisuals";
 
 export let MarkdeepEditor = class MarkdeepEditor {
 	static help () {
@@ -45,5 +46,9 @@ export let MarkdeepEditor = class MarkdeepEditor {
 		} else {
 			Session.set('backgroundStyle', 1);
 		}
+	}
+
+	static toggleFullscreen () {
+		CardVisuals.toggleFullscreen(false, true);
 	}
 };
