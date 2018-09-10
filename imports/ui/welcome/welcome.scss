@@ -127,3 +127,21 @@
 .welcome-title-no-padding {
   padding-bottom: 0 !important;
 }
+
+#pompdoroStart-container {
+  height: 150px;
+  width: 150px;
+
+  position: absolute;
+  bottom: 100px;
+  right: 50px;
+  z-index: 99;
+
+  @media (max-width: 1179px) {
+    display:none;
+  }
+}
+
+#pompdoroStart-container #instructions{
+  font-size: medium;
+}
