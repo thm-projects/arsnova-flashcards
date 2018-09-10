@@ -22,6 +22,7 @@ import "../access_denied/access_denied.js";
 import "../first_login/first_login.js";
 import "../editor/editor.js";
 import "../editor/cardEditor.js";
+import "../pomodoroTimer/pomodoroTimer.js";
 import "../../api/groundDB.js";
 import "../../api/cardIndex.js";
 import "./overlays/zoomText.js";
