@@ -1,7 +1,7 @@
 <template name="flashcardHeaderPresentationLeft">
     <div class="col-xs-3 cardHeaderLeft" data-cardtype="{{cardType}}">
         <div class="cardHeaderGroup">
-            {{> cardHeaderItemClock}}
+           {{> cardHeaderItemClock}}
         </div>
         <div class="cardHeaderGroup">
             <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
@@ -60,7 +60,7 @@
 <template name="flashcardHeaderLeitnerLeft">
     <div class="col-xs-3 cardHeaderLeft" data-cardtype="{{cardType}}">
         <div class="cardHeaderGroup">
-            {{> cardHeaderItemClock}}
+            <span class="pomodoroDisplay"> {{> pomodoroTimer}} </span>
         </div>
         <div class="cardHeaderGroup">
             <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
@@ -78,7 +78,7 @@
 <template name="flashcardHeaderWozniakLeft">
     <div class="col-xs-3 cardHeaderLeft" data-cardtype="{{cardType}}">
         <div class="cardHeaderGroup">
-            {{> cardHeaderItemClock}}
+            <span class="pomodoroDisplay"> {{> pomodoroTimer}} </span>
         </div>
         <div class="cardHeaderGroup">
             <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
