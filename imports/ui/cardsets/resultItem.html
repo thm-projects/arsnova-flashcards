@@ -10,10 +10,14 @@
                 isActiveRoute
                 regex="create"}}col-xs-7 col-sm-6 col-md-7{{else}}col-xs-7 col-sm-6{{/if}}{{/if}}{{/if}} resultsHeader">
             <strong>
-                {{#if isActiveRoute regex="repetitorium"}}
-                    {{_ "courseIteration.list.courseIteration"}}
+                {{#if isActiveRoute regex="learn"}}
+                    {{_ "set-list.topicWorkload"}}
                 {{else}}
-                    {{_ "set-list.topic"}}
+                    {{#if isActiveRoute regex="repetitorium"}}
+                        {{_ "courseIteration.list.courseIteration"}}
+                    {{else}}
+                        {{_ "set-list.topic"}}
+                    {{/if}}
                 {{/if}}
             </strong>
         </div>
@@ -23,10 +27,14 @@
                     isActiveRoute
                     regex="pool"}}col-lg-3{{/if}} resultsHeader">
                 <strong>
-                    {{#if isActiveRoute regex='repetitorium'}}
-                        {{_ "cardset.info.publisher"}}
+                    {{#if isActiveRoute regex="learn"}}
+                        {{_ "set-list.authorPublisher"}}
                     {{else}}
-                        {{_ "set-list.author"}}
+                        {{#if isActiveRoute regex='repetitorium'}}
+                            {{_ "cardset.info.publisher"}}
+                        {{else}}
+                            {{_ "set-list.author"}}
+                        {{/if}}
                     {{/if}}
                 </strong>
             </div>
@@ -46,7 +54,8 @@
             </div>
         {{/if}}
         <div class="hidden-xs col-sm-3 resultsHeader resultHeaderCategory">
-            <strong>{{_ "set-list.category"}}</strong>
+            <strong>{{#if isActiveRoute regex="pool"}}{{_ "set-list.category"}}{{else}}{{_
+                    "set-list.categoryOptions"}}{{/if}}</strong>
         </div>
     {{/if}}
     <div class="resultItem col-xs-12">
