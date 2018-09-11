@@ -128,20 +128,20 @@
   padding-bottom: 0 !important;
 }
 
-#pompdoroStart-container {
+#pomoB {
   height: 150px;
   width: 150px;
 
   position: absolute;
-  bottom: 100px;
-  right: 50px;
+  bottom: 8em;
+  right: 5em;
   z-index: 99;
 
-  @media (max-width: 1179px) {
+  @media (max-width: 850px) {
     display:none;
   }
 }
 
-#pompdoroStart-container #instructions{
-  font-size: medium;
+#pomoB #instructions{
+  font-size: small;
 }
