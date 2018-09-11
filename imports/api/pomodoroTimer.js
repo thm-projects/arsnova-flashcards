@@ -236,8 +236,10 @@ export let PomodoroTimer = class PomodoroTimer {
 						closeOnConfirm: false
 					},
 					function (isConfirm) {
+					
 						/*you succeeded so you get the success sound and a success message. good for you! */
 						if (isConfirm) {
+							if (sound1) 
 							document.getElementById("success").play();
 							sweetAlert({
 								title: "Great job!",
