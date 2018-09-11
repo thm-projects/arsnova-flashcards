@@ -2,9 +2,6 @@
     <div id="pomodoroTimer" class="container-fluid">
         <div class="row">
             <div class="col-xs-12 text-center">
-
-                <h2 class="text-center" id="instructions"> {{_ "pomodoro.clickClock"}} <span class="green">{{_ "pomodoro.start"}}</span></h2>
-
                 <!--the whole clock and hands and arcs are all contained in the same svg viewbox-->
                 <svg id="clock" viewBox="0 0 100 100">
 
@@ -36,7 +33,7 @@
                     <path id="breakArc"/>
                 </svg>
             </div>
-
+            <h2 class="text-center" id="instructions"> {{_ "pomodoro.clickClock"}} <span class="green">{{_ "pomodoro.start"}}</span></h2>
         </div>
 
         <!--empty audio tag to make the sounds work on chrome for android-->
