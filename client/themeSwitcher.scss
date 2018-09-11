@@ -211,6 +211,9 @@ $themes: (
     $background_post_it_lines: map-get($map, "background_post_it_lines");
     $background_pink: map-get($map, "background_pink");
     $background_pink_lines: map-get($map, "background_pink_lines");
+    //card sidebar colors
+    $card_sidebar_border: map-get($map, "card_sidebar_border");
+    $card_sidebar_background: map-get($map, "card_sidebar_background");
     //cardset colors
     $cardset_markdeep_background: map-get($map, "cardset_markdeep_background");
     $cardset_markdeep_header_border: map-get($map, "cardset_markdeep_header_border");
@@ -2442,6 +2445,12 @@ $themes: (
     //card editor
     .mobilePreviewContent {
       background-color: $background_mobile_preview !important;
+    }
+
+    //card sidebar
+    #flashcardSidebarLeft, #flashcardSidebarRight {
+      border-color: $card_sidebar_border !important;
+      background-color: $card_sidebar_background !important;
     }
   }
 }

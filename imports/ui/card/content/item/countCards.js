@@ -6,11 +6,11 @@ import {Cardsets} from "../../../../api/cardsets";
 
 /*
  * ############################################################################
- * cardHeaderItemCountCards
+ * cardContentItemCountCards
  * ############################################################################
  */
 
-Template.cardHeaderItemCountCards.helpers({
+Template.cardContentItemCountCards.helpers({
 	cardsIndex: function (card_id) {
 		let cardIndex = CardIndex.getCardIndex();
 		return cardIndex.findIndex(item => item === card_id) + 1;

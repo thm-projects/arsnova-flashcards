@@ -4,6 +4,7 @@ import {CardType} from "./cardTypes";
 import * as screenfull from 'screenfull';
 import {NavigatorCheck} from "./navigatorCheck";
 import {Cardsets} from "./cardsets";
+import {MarkdeepEditor} from "./markdeepEditor";
 
 let editorFullScreenActive = false;
 let defaultFontSize = 16;
@@ -95,6 +96,7 @@ export let CardVisuals = class CardVisuals {
 			} else {
 				contentEditor.css('height', newFlashcardHeight - $('#markdeepNavigation').height());
 			}
+			this.setSidebarPosition();
 		}
 	}
 
@@ -317,14 +319,41 @@ export let CardVisuals = class CardVisuals {
 			let cardHeader = $('.cardHeader');
 			let zoomTextButton = $('.zoomTextButton:visible');
 			if (cardHeader.length && zoomTextButton.length) {
-				let leftPosition = 0;
-				let topPosition = cardHeader.offset().top + cardHeader.height();
-				leftPosition = zoomTextButton.offset().left - zoomSliderContainer.width();
+				let topPosition = cardHeader.offset().top;
+				let leftPosition = zoomTextButton.offset().left - $('#flashcardSidebarRight').width() * 4.5;
 				zoomSliderContainer.css({
 					'top': topPosition + "px",
 					'left': leftPosition + "px"
 				});
 			}
 		}
+	}
+
+	static setSidebarPosition () {
+		let cardHeaderHeight = $('.cardHeader').height();
+		let leftSidebar = $('#flashcardSidebarLeft');
+		let rightSidebar = $('#flashcardSidebarRight');
+		let leftSidebarElementCount = $('#flashcardSidebarLeft .card-button').length;
+		let rightSidebarElementCount = $('#flashcardSidebarRight .card-button').length;
+		if (leftSidebarElementCount === 0) {
+			leftSidebar.css('display', 'none');
+		} else {
+			leftSidebar.css('display', 'block');
+		}
+		if (rightSidebarElementCount === 0) {
+			rightSidebar.css('display', 'none');
+		} else {
+			rightSidebar.css('display', 'block');
+		}
+		if (Route.isEditMode() && MarkdeepEditor.getMobilePreview()) {
+			cardHeaderHeight += $('.mobilePreviewContent .cardToolbar').height() + 15;
+			leftSidebar.addClass('flashcardSidebarPreviewLeft');
+			rightSidebar.addClass('flashcardSidebarPreviewRight');
+		} else {
+			leftSidebar.removeClass('flashcardSidebarPreviewLeft');
+			rightSidebar.removeClass('flashcardSidebarPreviewRight');
+		}
+		leftSidebar.css('margin-top', cardHeaderHeight + 'px');
+		rightSidebar.css('margin-top', cardHeaderHeight + 'px');
 	}
 };

@@ -111,6 +111,8 @@ export let CardNavigation = class CardNavigation {
 			CardNavigation.toggleVisibility(false);
 		});
 		flashcardCarousel.on('slid.bs.carousel', function () {
+			$('.scrollLeft').removeClass('pressed');
+			$('.scrollRight').removeClass('pressed');
 			CardNavigation.setActiveCardData();
 			Session.set('isQuestionSide', true);
 			if (updateLearningMode === 1) {
@@ -153,8 +155,10 @@ export let CardNavigation = class CardNavigation {
 
 	static skipAnswer (scrollRight = true) {
 		if (scrollRight) {
+			$('.scrollRight').addClass('pressed');
 			$('.carousel').carousel('next');
 		} else {
+			$('.scrollLeft').addClass('pressed');
 			$('.carousel').carousel('prev');
 		}
 		this.toggleVisibility(false);

@@ -5,11 +5,11 @@ import {Leitner} from "../../../../api/learned";
 
 /*
  * ############################################################################
- * cardHeaderItemCountCardsLeitner
+ * cardContentItemCountCardsLeitner
  * ############################################################################
  */
 
-Template.cardHeaderItemCountCardsLeitner.helpers({
+Template.cardContentItemCountCardsLeitner.helpers({
 	countLeitner: function () {
 		var maxIndex = Leitner.find({
 			cardset_id: Session.get('activeCardset')._id,

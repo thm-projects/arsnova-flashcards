@@ -972,6 +972,8 @@
       "backToCardset": "Zurück zur Karteiansicht",
       "endPresentation": "Präsentation beenden",
       "fullscreen": "Mit der Taste ESC (oben links) kommst du wieder in die Normalansicht.",
+      "nextCard": "Zur nächsten Karte wechseln",
+      "previousCard": "Zur vorherigen Karte wechseln",
       "lockSide": "Rückseite wird zur Vorderseite",
       "showIndex": "Zeige das Inhaltsverzeichnis der Kartei",
       "edit": "Bearbeite die Karte",
