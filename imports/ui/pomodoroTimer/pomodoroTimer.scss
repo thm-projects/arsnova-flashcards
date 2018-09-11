@@ -53,8 +53,8 @@ $themes: (
         color: $pomodoro_green;
       }
 
-      #hour,
-      #min,
+      #pomodoroHour,
+      #pomodoroMin,
       #sec,
       #handCircle {
         fill: $pomodoro_yellow;
