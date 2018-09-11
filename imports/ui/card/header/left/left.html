@@ -59,8 +59,7 @@
 
 <template name="flashcardHeaderLeitnerLeft">
     <div class="col-xs-3 cardHeaderLeft" data-cardtype="{{cardType}}">
-        <div class="cardHeaderGroup">
-            <span class="pomodoroDisplay cardHeaderItem hidden-xs"> {{> pomodoroTimerLearning}} </span>
+        <div class="cardHeaderGroup">  {{> pomodoroTimer}}
         </div>
         <div class="cardHeaderGroup">
             <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
@@ -77,8 +76,7 @@
 
 <template name="flashcardHeaderWozniakLeft">
     <div class="col-xs-3 cardHeaderLeft" data-cardtype="{{cardType}}">
-        <div class="cardHeaderGroup">
-            <span class="pomodoroDisplay cardHeaderItem hidden-xs"> {{> pomodoroTimerLearning}}} </span>
+        <div class="cardHeaderGroup"> {{> pomodoroTimer}}}
         </div>
         <div class="cardHeaderGroup">
             <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
