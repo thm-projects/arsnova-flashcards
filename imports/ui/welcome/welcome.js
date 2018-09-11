@@ -24,8 +24,6 @@ let cloudShown = true;
  * PomoSetup
  */
 function pomoPosition() {
-	//console.log("höhe:" + $(window).height());
-	console.log($('#tag-cloud-canvas').is(':visible'));
 	if (!cloudShown) {
 		$('#pomodoroTimer').detach().appendTo('#pomoA');
 	} else if (cloudShown) {
@@ -160,6 +158,10 @@ function createTagCloud() {
 							wait: wait
 						});
 				}
+			} else {
+				document.getElementById('tag-cloud-container').height = 0;
+				document.getElementById('tag-cloud-canvas').height = 0;
+				cloudShown = false;
 			}
 		}
 	}
