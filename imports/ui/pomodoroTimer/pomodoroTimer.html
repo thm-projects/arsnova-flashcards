@@ -6,7 +6,8 @@
                 <h2 class="text-center" id="instructions">click clock to <span class="green">start</span></h2>
 
                 <!--the whole clock and hands and arcs are all contained in the same svg viewbox-->
-                <svg id="clock" viewBox="0 0 100 100">
+                <svg class = "clock cardHeaderItem hidden-xs" id="clock" width="100" height="90"
+                     viewBox="0 0 100 100">
 
                     <!--drop shadow from http://demosthenes.info/ . Have to do the shadow using svg, or it wouldn't be able to follow the triangle hands-->
 
@@ -64,73 +65,6 @@
     </div>
 </template>
 
-
-<template name="pomodoroTimerLearning">
-    <div id="pomodoroTimer" class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12 text-center">
-
-                <h2 class="text-center" id="instructions">click clock to <span class="green">start</span></h2>
-
-                <!--the whole clock and hands and arcs are all contained in the same svg viewbox-->
-                <svg class = "clock cardHeaderItem hidden-xs" id="clock" width="100" height="100"
-                     viewBox="0 0 100 100">
-
-                    <!--drop shadow from http://demosthenes.info/ . Have to do the shadow using svg, or it wouldn't be able to follow the triangle hands-->
-
-                    <filter id="drop-shadow">
-                        <feGaussianBlur in="SourceAlpha" stdDeviation="1.5"/>
-                        <feOffset dx="2" dy="2" result="offsetblur"/>
-                        <feFlood flood-color="rgba(0,0,0,0.25)"/>
-                        <feComposite in2="offsetblur" operator="in"/>
-                        <feMerge>
-                            <feMergeNode/>
-                            <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                    </filter>
-
-                    <!--have to put the filter in a style attribute so the url works-->
-                    <circle id="face" style="filter:url(#drop-shadow);" cx="50" cy="50" r="40"/>
-                    <g id="hands" style="filter:url(#drop-shadow);">
-                        <polygon id="pomodoroHour" points="50,25 53,50 47,50"/>
-                        <polygon id="pomodoroMin" points="50,10 53,50 47,50"/>
-                    </g>
-
-                    <circle id="handCircle" cx="50" cy="50" r="3"/>
-
-                    <!--these paths show the pomodoros and breaks around the circle and are assigned attributes in the javascript-->
-                    <path id="progressArc"/>
-                    <path id="pomArc"/>
-                    <path id="breakArc"/>
-                </svg>
-            </div>
-
-        </div>
-
-        <!--empty audio tag to make the sounds work on chrome for android-->
-        <audio id="chromeMobile" preload="auto">
-            <source src="" type="audio/mp3"/>
-        </audio>
-
-
-        <audio id="bell">
-            <source src="/audio/Schulgong.mp3" type="audio/mp3">
-        </audio>
-
-        <audio id="failure" preload="auto">
-            <source src="http://www.myinstants.com/media/sounds/you-have-failed.mp3" type="audio/mp3"/>
-        </audio>
-
-        <!-- <audio id="failure" preload="auto">
-  <source src="http://www.myinstants.com/media/sounds/sadtrombone.swf.mp3" type="audio/mp3" />
-</audio> -->
-
-        <audio id="success" preload="auto">
-            <source src="http://www.myinstants.com/media/sounds/039-a-victory-fanfare.mp3" type="audio/mp3"/>
-        </audio>
-
-    </div>
-</template>
 
 
 <template name="pomodoroTimerModal">
