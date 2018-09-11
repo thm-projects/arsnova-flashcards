@@ -4,15 +4,15 @@ import {CardVisuals} from "../../../../api/cardVisuals";
 
 /*
  * ############################################################################
- * cardHeaderItemZoomText
+ * cardSidebarItemZoomText
  * ############################################################################
  */
 
-Template.cardHeaderItemZoomText.onRendered(function () {
+Template.cardSidebarItemZoomText.onRendered(function () {
 	CardVisuals.zoomCardText();
 });
 
-Template.cardHeaderItemZoomText.helpers({
+Template.cardSidebarItemZoomText.helpers({
 	getButtonColor: function () {
 		if (Session.get('zoomTextContainerVisible')) {
 			return 'pressed';
@@ -22,7 +22,7 @@ Template.cardHeaderItemZoomText.helpers({
 	}
 });
 
-Template.cardHeaderItemZoomText.events({
+Template.cardSidebarItemZoomText.events({
 	"click .zoomTextButton": function () {
 		CardVisuals.toggleZoomContainer();
 	}

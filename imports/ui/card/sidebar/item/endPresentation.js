@@ -3,11 +3,11 @@ import {Route} from "../../../../api/route";
 
 /*
  * ############################################################################
- * cardHeaderItemEndPresentation
+ * cardSidebarItemEndPresentation
  * ############################################################################
  */
 
-Template.cardHeaderItemEndPresentation.events({
+Template.cardSidebarItemEndPresentation.events({
 	"click .endPresentation": function () {
 		if (Route.isMakingOf()) {
 			Router.go('home');

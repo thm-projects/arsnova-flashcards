@@ -1,0 +1,53 @@
+#flashcardSidebarLeft, #flashcardSidebarRight {
+  position: absolute;
+  float: left;
+  z-index: 9001;
+  padding: 5px;
+  width: 45px;
+  @media(max-width: 1200px) {
+    position: fixed;
+  }
+  @media(max-width: 767px) {
+    padding: 3px;
+    width: 35px;
+  }
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  i, span, img {
+    width: 100%;
+    text-align: center;
+    margin-top: 6px;
+  }
+}
+
+#flashcardSidebarLeft > .card-button:first-child, #flashcardSidebarRight > .card-button:first-child {
+  margin-top: 0;
+}
+
+.mobilePreviewContent #flashcardSidebarLeft, .mobilePreviewContent #flashcardSidebarRight {
+  padding: 3px;
+  width: 35px;
+}
+
+#flashcardSidebarLeft {
+  border-right: 2px solid;
+  left: 0;
+  border-radius: 0 10px 10px 0;
+}
+
+#flashcardSidebarRight {
+  border-left: 2px solid;
+  right: 3px;
+  @media(max-width: 1200px) {
+    right: 0;
+  }
+  border-radius: 10px 0 0 10px;
+}
+
+.flashcardSidebarPreviewLeft {
+  position: absolute !important;
+}
+
+.flashcardSidebarPreviewRight {
+  position: absolute !important;
+}

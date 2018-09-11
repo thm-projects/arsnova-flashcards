@@ -6,16 +6,22 @@
         <div>
             <div id="cardCarousel" class="carousel slide" data-keyboard="false" data-interval="false">
                 <div class="carousel-inner">
+                    {{#unless isMobilePreviewActive}}
+                        {{> flashcardSidebar}}
+                    {{/unless}}
                     {{#each getCards}}
                         <div class="item {{#if isActiveCard true}}active{{/if}}" data-id="{{_id}}">
                             <div class="box flashcard">
                                 <div class="cardHeader {{#if
-                                        isActiveCard false}}{{getCardSideColorActive}}{{else}}{{getCardSideColorInactive}}{{/if}}-header"
+                                        isActiveCard
+                                        false}}{{getCardSideColorActive}}{{else}}{{getCardSideColorInactive}}{{/if}}-header"
                                      data-cardtype="{{cardType}}">
                                     {{> flashcardHeader this}}
                                 </div>
                                 <div class="cardContent detail{{cardsIndex this._id}} {{#if
-                                        isActiveCard false}}{{getCardSideColorActive}}{{else}}{{getCardSideColorInactive}}{{/if}}">
+                                        isActiveCard
+                                        false}}{{getCardSideColorActive}}{{else}}{{getCardSideColorInactive}}{{/if}}">
+                                    {{> cardContentCounter this}}
                                     {{#if isActiveCard false}}
                                         {{#if isBeolingusDictionary}}
                                             {{> cardDictionaryContentBeolingus this}}
@@ -36,7 +42,6 @@
                         </div>
                     {{/each}}
                 </div>
-                {{> cardArrowNavigation this}}
             </div>
         </div>
     </div>

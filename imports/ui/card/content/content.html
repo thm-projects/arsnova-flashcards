@@ -1,3 +1,21 @@
+<template name="cardContentCounter">
+    {{#if isCardset}}
+        {{> cardContentItemCountCards this}}
+    {{/if}}
+    {{#if isPresentation}}
+        {{> cardContentItemCountCards this}}
+    {{/if}}
+    {{#if isMakingOf}}
+        {{> cardContentItemCountCards this}}
+    {{/if}}
+    {{#if isDemo}}
+        {{> cardContentItemCountCards this}}
+    {{/if}}
+    {{#if isBox}}
+        {{> cardContentItemCountCardsLeitner this}}
+    {{/if}}
+</template>
+
 <template name="cardDictionaryContentBeolingus">
     <iframe class="dictionaryFrame"
             src="https://dict.tu-chemnitz.de/?mini=1?service=deen{{getDictionarySearchText}}"

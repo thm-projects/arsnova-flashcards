@@ -1,20 +1,21 @@
 import "./dictionary.html";
+import {Session} from "meteor/session";
 import {CardType} from "../../../../api/cardTypes";
 import {Dictionary} from "../../../../api/dictionary";
 import {MarkdeepEditor} from "../../../../api/markdeepEditor";
 
 /*
  * ############################################################################
- * cardHeaderItemDictionaryBeolingus
+ * cardSidebarItemDictionaryBeolingus
  * ############################################################################
  */
 
-Template.cardHeaderItemDictionaryBeolingus.helpers({
+Template.cardSidebarItemDictionaryBeolingus.helpers({
 	gotDictionary: function () {
-		return CardType.gotDictionary(this.cardType);
+		return CardType.gotDictionary(Session.get('cardType'));
 	},
 	isBeolingusActive: function () {
-		if (CardType.gotDictionary(this.cardType)) {
+		if (CardType.gotDictionary(Session.get('cardType'))) {
 			return Dictionary.checkMode(1);
 		}
 	},
@@ -23,7 +24,7 @@ Template.cardHeaderItemDictionaryBeolingus.helpers({
 	}
 });
 
-Template.cardHeaderItemDictionaryBeolingus.events({
+Template.cardSidebarItemDictionaryBeolingus.events({
 	"click .showBeolingusTranslation": function () {
 		Dictionary.setMode(1);
 	}
@@ -31,16 +32,16 @@ Template.cardHeaderItemDictionaryBeolingus.events({
 
 /*
  * ############################################################################
- * cardHeaderItemDictionaryLinguee
+ * cardSidebarItemDictionaryLinguee
  * ############################################################################
  */
 
-Template.cardHeaderItemDictionaryLinguee.helpers({
+Template.cardSidebarItemDictionaryLinguee.helpers({
 	gotDictionary: function () {
-		return CardType.gotDictionary(this.cardType);
+		return CardType.gotDictionary(Session.get('cardType'));
 	},
 	isLingueeActive: function () {
-		if (CardType.gotDictionary(this.cardType)) {
+		if (CardType.gotDictionary(Session.get('cardType'))) {
 			return Dictionary.checkMode(2);
 		}
 	},
@@ -49,7 +50,7 @@ Template.cardHeaderItemDictionaryLinguee.helpers({
 	}
 });
 
-Template.cardHeaderItemDictionaryLinguee.events({
+Template.cardSidebarItemDictionaryLinguee.events({
 	"click .showLingueeTranslation": function () {
 		Dictionary.setMode(2);
 	}
@@ -57,16 +58,16 @@ Template.cardHeaderItemDictionaryLinguee.events({
 
 /*
  * ############################################################################
- * cardHeaderItemDictionaryGoogle
+ * cardSidebarItemDictionaryGoogle
  * ############################################################################
  */
 
-Template.cardHeaderItemDictionaryGoogle.helpers({
+Template.cardSidebarItemDictionaryGoogle.helpers({
 	gotDictionary: function () {
-		return CardType.gotDictionary(this.cardType);
+		return CardType.gotDictionary(Session.get('cardType'));
 	},
 	isGoogleActive: function () {
-		if (CardType.gotDictionary(this.cardType)) {
+		if (CardType.gotDictionary(Session.get('cardType'))) {
 			return Dictionary.checkMode(3);
 		}
 	},
@@ -75,7 +76,7 @@ Template.cardHeaderItemDictionaryGoogle.helpers({
 	}
 });
 
-Template.cardHeaderItemDictionaryGoogle.events({
+Template.cardSidebarItemDictionaryGoogle.events({
 	"click .showGoogleTranslation": function () {
 		Dictionary.setMode(3);
 	}
@@ -83,16 +84,16 @@ Template.cardHeaderItemDictionaryGoogle.events({
 
 /*
  * ############################################################################
- * cardHeaderItemDictionaryDeepL
+ * cardSidebarItemDictionaryDeepL
  * ############################################################################
  */
 
-Template.cardHeaderItemDictionaryDeepL.helpers({
+Template.cardSidebarItemDictionaryDeepL.helpers({
 	gotDictionary: function () {
-		return CardType.gotDictionary(this.cardType);
+		return CardType.gotDictionary(Session.get('cardType'));
 	},
 	isDeepLActive: function () {
-		if (CardType.gotDictionary(this.cardType)) {
+		if (CardType.gotDictionary(Session.get('cardType'))) {
 			return Dictionary.checkMode(4);
 		}
 	},
@@ -101,7 +102,7 @@ Template.cardHeaderItemDictionaryDeepL.helpers({
 	}
 });
 
-Template.cardHeaderItemDictionaryDeepL.events({
+Template.cardSidebarItemDictionaryDeepL.events({
 	"click .showDeepLTranslation": function () {
 		Dictionary.setMode(4);
 	}
