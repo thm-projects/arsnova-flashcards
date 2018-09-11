@@ -101,7 +101,7 @@ export let PomodoroTimer = class PomodoroTimer {
 			/*the first sweet alert! This is what pops up when you finish a pomodoro. It congradulates the user and lets them start their break when they are ready. There is no option to stop the session in this box, that function is relegated to the second click on the clock, as noted by the title.*/
 			swal({
 					title: TAPi18n.__("pomodoro.goodJob"),
-					text: TAPi18n.__("pomodoro.success1") + "<b>" + totalPoms + TAPi18n.__("pomodoro.success2") + "</b> " + totalPoms * pomLength + " " + TAPi18n.__("pomodoro.seccess3"),
+					text: TAPi18n.__("pomodoro.success1") + "<b> " + totalPoms + TAPi18n.__("pomodoro.success2") + "</b> " + totalPoms * pomLength + " " + TAPi18n.__("pomodoro.success3"),
 					type: "success",
 					html: true,
 					confirmButtonText: TAPi18n.__("pomodoro.continue")

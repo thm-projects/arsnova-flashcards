@@ -66,7 +66,10 @@
     "notDone2": "You have not reached your goal of ",
     "notDone3": " pomodoro units!",
     "learn" : "learn",
-    "break1" : "break"
+    "break1" : "break",
+    "schoolBell" : "School Bell",
+    "learningSession" : "Learning session completed",
+    "cancelSession" : "Cancel learning session"
   },
   "carousel-inner": {
     "carousel-header-0": " Your digital flashcards",

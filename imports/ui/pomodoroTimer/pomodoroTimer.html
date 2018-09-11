@@ -3,7 +3,8 @@
         <div class="row">
             <div class="col-xs-12 text-center">
                 <!--the whole clock and hands and arcs are all contained in the same svg viewbox-->
-                <svg id="clock" viewBox="0 0 100 100">
+                <svg class = "clock cardHeaderItem hidden-xs" id="clock" width="100" height="90"
+                     viewBox="0 0 100 100">
 
                     <!--drop shadow from http://demosthenes.info/ . Have to do the shadow using svg, or it wouldn't be able to follow the triangle hands-->
 
@@ -63,6 +64,8 @@
     </div>
 </template>
 
+
+
 <template name="pomodoroTimerModal">
     <!--this is the modal, hidden by default, that pops up when the user clicks the clock. Not too complicated.-->
     <div id="pomodoroTimerModal" class="modal fade" role="dialog">
@@ -102,11 +105,12 @@
                                 <input class="numSlider" type="range" min="1" max="59" value="5" id="playSlider"
                                        step="1">
 
-                                <label for="" style="padding-top: 20px; padding-bottom: 5px;"><i class="fa fa-music"></i>
-                                    Sounds</label><br>
-                                <input type="checkbox" name="sound1" value="Clock" checked> School Clock<br>
-                                <input type="checkbox" name="sound2" value="Complete"> Learning session completed<br>
-                                <input type="checkbox" name="sound3" value="Cancel"> Cancel learning session
+
+                                <label for="" style=" padding-top: 5px;"><i class="fa fa-music"></i>
+                                    Sounds</label> <br>
+                                <input type="checkbox" name="sound1" value="Clock" checked> {{_ "pomodoro.schoolBell"}}<br>
+                                <input type="checkbox" name="sound2" value="Complete"> {{_ "pomodoro.learningSession"}}<br>
+                                <input type="checkbox" name="sound3" value="Cancel"> {{_ "pomodoro.cancelSession"}}
                             </div>
                         </div>
                     </form>
