@@ -28,8 +28,7 @@ function pomoPosition() {
 	console.log($('#tag-cloud-canvas').is(':visible'));
 	if (!cloudShown) {
 		$('#pomodoroTimer').detach().appendTo('#pomoA');
-	}
-	else if (cloudShown) {
+	} else if (cloudShown) {
 		$('#pomodoroTimer').detach().appendTo('#pomoB');
 	}
 }
