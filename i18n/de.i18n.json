@@ -33,15 +33,42 @@
     "backButton": "Zurück",
     "backToStartButton": "Zurück zur Startseite"
   },
-  "pomodoro" :{
-    "clickClock" :"Drücke um zu",
-    "start" : "starten",
-    "goal" : "Wähle dein Lernpensum",
-    "pluralPomodoro" : "Pomodoro Einheiten",
-    "count" : "Wie viele",
-    "make" : "willst du machen?",
-    "settings" : "Einstellungen"
+  "pomodoro" : {
+    "pluralPomodoro": "Pomodoro Einheiten",
+    "clickClock": "Drücke um zu",
+    "start": "starten",
+    "startBig" : "Starten",
+    "goal": "Wähle dein Lernpensum!",
+    "count": "Wie viele",
+    "make": "willst du machen?",
+    "settings": "Einstellungen",
+    "productivtiy": "Stopp den Lernfluss",
+    "reachedgoal": "Hey du hast dein Ziel von ",
+    "momentum": " Pomodoro Einheiten erreicht!",
+    "session": "Willst du deinen aktiven Lernfluss wirklich unterbrechen?",
+    "goodJob": "Super!",
+    "success1": "Du hast",
+    "success2": "Pomodoro Einheiten mit ",
+    "success3": "Minuten Arbeitszeit absolviert! Super! ",
+    "stop1": "Drücke nochmal um zu",
+    "stop2": " stoppen",
+    "minutes": "Zeiteinstellungen",
+    "continue": "Fortfahren",
+    "break": "Bereit für die Pause?",
+    "breakOver": "Ende der Pause!",
+    "breakRefresh": "Nach der erholenden Pause gehts weiter!",
+    "fastgoing": "Nicht so schnell!",
+    "stillOpen1": "Du hast noch",
+    "stillOpen2": " Pomodoro Einheit(en).",
+    "stillOpen3" : "Willst du wirklich schon aufgeben?",
+    "notDone": "Du bist noch nicht fertig!",
+    "notDone2": "Du hast dein Ziel von ",
+    "notDone3": " Pomodoro Einheit(en) nicht erreicht!",
+    "learn" : "Lernen",
+    "break1" : "Pause"
   },
+
+
 
   "navbar-collapse": {
     "noCarddecks": "Kartei anlegen",

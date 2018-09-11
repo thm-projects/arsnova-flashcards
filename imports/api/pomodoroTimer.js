@@ -100,11 +100,11 @@ export let PomodoroTimer = class PomodoroTimer {
 
 			/*the first sweet alert! This is what pops up when you finish a pomodoro. It congradulates the user and lets them start their break when they are ready. There is no option to stop the session in this box, that function is relegated to the second click on the clock, as noted by the title.*/
 			swal({
-					title: "Good job!",
-					text: "You have completed <b>" + totalPoms + " pomodoros</b> of work! Are you ready for a relaxing <b>" + breakLength + " minutes</b> of whatever the heck you feel like?",
+					title: TAPi18n.__("pomodoro.goodJob"),
+					text: TAPi18n.__("pomodoro.success1") + "<b>" + totalPoms +  TAPi18n.__("pomodoro.success2") + "</b> " + totalPoms * pomLength +" "+ TAPi18n.__("pomodoro.seccess3"),
 					type: "success",
 					html: true,
-					confirmButtonText: "Yes, I can't wait!"
+					confirmButtonText: TAPi18n.__("pomodoro.continue")
 				},
 
 				/*and this is what runs when the user clicks the confirm button on the popup. It starts the break, and gets the current time and sets the end from there.*/
@@ -141,10 +141,10 @@ export let PomodoroTimer = class PomodoroTimer {
 			}
 
 			swal({
-					title: "Break's over!",
-					text: "Hope that break left you feeling refreshed! Now it's time to get back to accomplishing your goals. Ready for<b> " + pomLength + " more minutes</b> of work?",
+					title: TAPi18n.__("pomodoro.breakOver"),
+					text: TAPi18n.__("pomodoro.breakRefresh"),
 					html: true,
-					confirmButtonText: "Let me at it!"
+					confirmButtonText: TAPi18n.__("pomodoro.continue")
 				},
 
 				/*starts the work cycle up again, automatically.*/
@@ -192,13 +192,13 @@ export let PomodoroTimer = class PomodoroTimer {
 			/*if you still haven't reached your goal, you are encouraged with an update of how many pomodoros and minutes you have left to reach it.*/
 			if (totalPoms < goalPoms) {
 				swal({
-						title: "Not so fast!",
+						title: TAPi18n.__("pomodoro.fastgoing"),
 						type: "warning",
-						text: "You are still <b>" + (goalPoms - totalPoms) + " pomodoros</b> short of your goal of <b>" + goalPoms + " pomodoros</b>! <br><br>Come on, you can do <b>" + (goalPoms - totalPoms) * pomLength + " more minutes</b> of work!",
+						text: TAPi18n.__("pomodoro.stillOpen1") + " <b>" + (goalPoms - totalPoms) + "</b>"  + TAPi18n.__("pomodoro.stillOpen2") + "<br>" + TAPi18n.__("pomodoro.stillOpen3"),
 						html: true,
 						showCancelButton: true,
-						confirmButtonText: "Continue!",
-						cancelButtonText: "Stop.",
+						confirmButtonText: TAPi18n.__("pomodoro.continue"),
+						cancelButtonText: TAPi18n.__("pomodoro.stop2"),
 						closeOnCancel: false
 					},
 
@@ -207,32 +207,32 @@ export let PomodoroTimer = class PomodoroTimer {
 						if (!isConfirm) {
 							document.getElementById("failure").play();
 							sweetAlert({
-								title: "You didn't make it.",
-								text: "You couldn't complete the <b>" + goalPoms + " pomodoros</b> you planned on doing. Sometimes life gets in the way, we get it! See you back here later!",
+								title: TAPi18n.__("pomodoro.notDone"),
+								text:  TAPi18n.__("pomodoro.notDone2") + "<b>" + goalPoms + " </b> " + TAPi18n.__("pomodoro.notDone3"),
 								html: true,
-								type: "error"
+								type: "error",
 							});
 
 							/*reset everything for new session*/
 							totalPoms = 0;
 							pomRunning = false;
 							breakRunning = false;
-							$("#instructions").html("click clock to <span class= 'green'>start</span>");
+							$("#instructions").html( TAPi18n.__('pomodoro.clickClock') + "<span class= 'green'> " + TAPi18n.__('pomodoro.start') + "</span>");
 							document.getElementById("progressArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
 							document.getElementById("pomArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
 							document.getElementById("breakArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
 						}
 					});
 			} else {
-				/*So if you've completed your goal for the session you get this friendlier pop up congradulating you and lightly suggesting you keep working.*/
+				/*So if you've completed your goal for the session you get this frien dlier pop up congradulating you and lightly suggesting you keep working.*/
 				swal({
-						title: "Stop the productivity train?",
+						title: TAPi18n.__("pomodoro.productivity"),
 						type: "warning",
-						text: "Hey, you've reached your goal of <b>" + goalPoms + " pomodoros</b>! You've built up some good momentum, are you sure you want to stop?",
+						text: TAPi18n.__("pomodoro.reachedgoal") + goalPoms + TAPi18n.__("pomodoro.momentum") + "! " + TAPi18n.__("pomodoro.session"),
 						html: true,
 						showCancelButton: true,
 						confirmButtonText: "Stop.",
-						cancelButtonText: "Continue!",
+						cancelButtonText: TAPi18n.__("pomodoro.continue"),
 						closeOnConfirm: false
 					},
 					function (isConfirm) {
@@ -240,8 +240,8 @@ export let PomodoroTimer = class PomodoroTimer {
 						if (isConfirm) {
 							document.getElementById("success").play();
 							sweetAlert({
-								title: "Great job!",
-								text: "In the end you did <b>" + totalPoms + " pomodoros</b>, for a total of <b>" + totalPoms * pomLength + " minutes</b> of work! You are awesome! Come back soon!",
+								title: TAPi18n.__("pomodoro.goodJob"),
+								text: TAPi18n.__("pomodoro.success1 ") + totalPoms + TAPi18n.__(" pomodoro.success2") + totalPoms * pomLength + TAPi18n.__("pomodoro.success3"),
 								html: true,
 								type: "success"
 							});
@@ -250,7 +250,7 @@ export let PomodoroTimer = class PomodoroTimer {
 							totalPoms = 0;
 							pomRunning = false;
 							breakRunning = false;
-							$("#instructions").html("click clock to <span class='green'>start</span>");
+							$("#instructions").html(TAPi18n.__('pomodoro.clickClock') + "<span class= 'green'> " + TAPi18n.__('pomodoro.start') + "</span>");
 							document.getElementById("progressArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
 							document.getElementById("pomArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
 							document.getElementById("breakArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
@@ -280,10 +280,10 @@ export let PomodoroTimer = class PomodoroTimer {
 	static updateSettingsBtn() {
 		$("#settings").toggle();
 		$("#goalDiv").toggle();
-		if ($("#modalTitle").html() === "Choose your goal!") {
-			$("#modalTitle").html("How many minutes?");
+		if ($("#modalTitle").html() === TAPi18n.__("pomodoro.goal")) {
+			$("#modalTitle").html(TAPi18n.__("pomodoro.minutes"));
 		} else {
-			$("#modalTitle").html("Choose your goal!");
+			$("#modalTitle").html(TAPi18n.__("pomodoro.goal"));
 		}
 	}
 
@@ -340,6 +340,6 @@ export let PomodoroTimer = class PomodoroTimer {
 		endBreak = (endPom + 6 * breakLength);
 		pomRunning = true;
 		pomBeginAngle = 6 * curTime.getMinutes() + curTime.getSeconds() / 10;
-		$("#instructions").html("click clock again to <b>stop</b>");
+		$("#instructions").html(TAPi18n.__("pomodoro.stop1") + "<b>" + TAPi18n.__("pomodoro.stop2") + "</b>");
 	}
 };

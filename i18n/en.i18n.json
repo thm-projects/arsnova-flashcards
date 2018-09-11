@@ -33,15 +33,40 @@
     "backButton": "Back",
     "backToStartButton": "Back to the start page"
   },
-  "pomodoro" :{
+
+  "pomodoro" : {
     "Pluralpomodoro" : "pomodoros",
     "clickClock" :"click clock to",
     "start" : "start",
+    "startBig" : "Start",
     "goal" : "Choose your goal",
     "count" : "How many",
     "make" : "will you do",
-    "settings" : "Settings"
-
+    "settings" : "Settings",
+    "productivity" : "Stop the prouctivity train",
+    "reachedgoal" : "Hey, you've reached your goal of",
+    "momentum" : " You've built up some good momentum, are you sure you want to stop?",
+    "session": "are you sure you want to stop?",
+    "goodJob" : "Good Job!",
+    "success1" : "In the End you did ",
+    "success2" : "pomodoros, for a total of ",
+    "success3" : " minutes of work! You are awesome! Come back soon!",
+    "stop1" : "Press again to",
+    "stop2" : "stop",
+    "minutes" : "How many Minutes?",
+    "continue" : "Continue",
+    "break" : "Ready for break?",
+    "breakOver" : "End of the break?",
+    "breakRefresh" : "After a relaxing break, Let's start again",
+    "fastgoing": "Not so fast!",
+    "stillOpen1" : "You have to do ",
+    "stillOpen2" : "pomodoros",
+    "stillOpen3" : "Do you really want to quit?",
+    "notDone": "You are not done yet!",
+    "notDone2": "You have not reached your goal of ",
+    "notDone3": " pomodoro units!",
+    "learn" : "learn",
+    "break1" : "break"
   },
   "carousel-inner": {
     "carousel-header-0": " Your digital flashcards",
