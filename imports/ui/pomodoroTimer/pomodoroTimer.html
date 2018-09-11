@@ -3,7 +3,8 @@
         <div class="row">
             <div class="col-xs-12 text-center">
                 <!--the whole clock and hands and arcs are all contained in the same svg viewbox-->
-                <svg id="clock" viewBox="0 0 100 100">
+                <svg class = "clock cardHeaderItem hidden-xs" id="clock" width="100" height="90"
+                     viewBox="0 0 100 100">
 
                     <!--drop shadow from http://demosthenes.info/ . Have to do the shadow using svg, or it wouldn't be able to follow the triangle hands-->
 
@@ -62,6 +63,8 @@
 
     </div>
 </template>
+
+
 
 <template name="pomodoroTimerModal">
     <!--this is the modal, hidden by default, that pops up when the user clicks the clock. Not too complicated.-->
