@@ -17,6 +17,24 @@ Meteor.subscribe("cardsets");
 Meteor.subscribe("userData");
 Meteor.subscribe("serverInventory");
 
+let cloudShown = true;
+
+
+/**
+ * PomoSetup
+ */
+function pomoPosition() {
+	//console.log("höhe:" + $(window).height());
+	console.log($('#tag-cloud-canvas').is(':visible'));
+	if (!cloudShown) {
+		$('#pomodoroTimer').detach().appendTo('#pomoA');
+	}
+	else if (cloudShown) {
+		$('#pomodoroTimer').detach().appendTo('#pomoB');
+	}
+}
+
+
 function setActiveLanguage() {
 	let language = getUserLanguage();
 	TAPi18n.setLanguage(language);
@@ -57,7 +75,9 @@ function createTagCloud() {
 	if ($(window).height() <= 450) {
 		document.getElementById('tag-cloud-container').height = 0;
 		document.getElementById('tag-cloud-canvas').height = 0;
+		cloudShown = false;
 	} else {
+		cloudShown = true;
 		let newWidth = $('#tag-cloud-container').width();
 		if (newWidth > 1024) {
 			newWidth = 1024;
@@ -282,14 +302,18 @@ Template.welcome.onCreated(function () {
 
 Template.welcome.onRendered(function () {
 	createTagCloud();
+	pomoPosition();
 	$(window).resize(function () {
 		createTagCloud();
+		pomoPosition();
 	});
 	new ResizeSensor($('#welcome'), function () {
 		createTagCloud();
+		pomoPosition();
 	});
 	new ResizeSensor($('#welcome-login'), function () {
 		createTagCloud();
+		pomoPosition();
 	});
 });
 
