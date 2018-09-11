@@ -133,15 +133,33 @@
   width: 150px;
 
   position: absolute;
-  bottom: 8em;
+  bottom: 5em;
   right: 5em;
   z-index: 99;
 
-  @media (max-width: 850px) {
+  @media (max-width: 768px) {
     display:none;
   }
 }
 
 #pomoB #instructions{
   font-size: small;
+}
+
+#pomoA  #clock{
+  height: 200px;
+  @media (max-height: 630px) {
+    height: 100px;
+  }
+  @media (max-height:550px){
+    display: none;
+  }
+
+}
+
+#pomoA #instructions{
+  font-size:small;
+  @media (max-height:550px){
+    display: none;
+  }
 }
