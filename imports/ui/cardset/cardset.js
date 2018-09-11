@@ -1093,7 +1093,7 @@ Template.cardsetLearnActivityStatistic.helpers({
 	getPercentage: function (count) {
 		let percentage = Math.round(count / Session.get('activeCardset').quantity * 100);
 		if (percentage > 0) {
-			return '<span class="cardPercentage">[' + percentage + '%]</span>';
+			return '<span class="cardPercentage">[' + percentage + ' %]</span>';
 		}
 	},
 	earnedTrophy: function () {
