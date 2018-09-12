@@ -218,7 +218,7 @@ export let PomodoroTimer = class PomodoroTimer {
 						html: true,
 						showCancelButton: true,
 						confirmButtonText: TAPi18n.__("pomodoro.continue"),
-						cancelButtonText: TAPi18n.__("pomodoro.stop2"),
+						cancelButtonText: TAPi18n.__("pomodoro.stopBig"),
 						closeOnCancel: false
 					},
 
