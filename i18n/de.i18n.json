@@ -232,7 +232,7 @@
     "bonusPointsPercentage": "Maximal 10 Prozentpunkte",
     "activeLearnphase": "Bonusphase aktiv",
     "inactiveLearnphase": "Bonusphase beendet",
-    "learnphaseInfo": "Über diese Lernphase mit Bonusvergabe",
+    "learnphaseInfo": "Über diese Bonus-Lernphase",
     "cardsetInfo": "Über diese __type__ Kartei",
     "cardsetInfoRepetitorium": "Über dieses Repetitorium",
     "cardsetInfoStatic": "Über diese Kartei",
@@ -299,7 +299,7 @@
     "newcarddeck": "Kartei anlegen",
     "editcard": "Metadaten editieren",
     "adminEditCardset": "Admin-Einstellungen",
-    "editreferences": "Repetitorium neu zusammenstellen",
+    "editreferences": "Repetitorium zusammenstellen",
     "name": "Thema",
     "nameplaceholder": "Das Thema der Kartei mit einem Wort",
     "descriptionplaceholder": "Worum geht es in dieser Kartei? Was soll gelernt werden? Wer ist die Zielgruppe? \n\nThema und Beschreibung der Kartei werden dir überall auf der .__lastAppTitle__-Plattform angezeigt. Um im Bild vom \"Schuhkarton als Zettelkasten\" zu bleiben: Was soll auf dem Etikett am Schuhkarton stehen? \n\nDie Kartei bleibt privat und für andere nicht sichtbar, solange du sie nicht veröffentlichst.",
@@ -541,7 +541,7 @@
   },
   "presentation": {
     "title": "Präsentation",
-    "create": "Karten präsentieren",
+    "create": "Präsentation starten",
     "start": "Starten",
     "list": {
       "back":"Zurück zur Präsentation",
@@ -763,7 +763,7 @@
     "chooseCardType": "Wähle den Zweck deiner Kartei aus…",
     "cardType0": {
       "name": "Lerneinheit",
-      "longName": "Lerneinheit (Lernziel | Vertiefung | Fazit | Literatur)",
+      "longName": "Lerneinheit: Lernziel | Vertiefung | Fazit | Literatur",
       "content1": "Lernziel",
       "content2": "Fazit",
       "content3": "Literatur ",
@@ -781,7 +781,7 @@
     },
     "cardType1": {
       "name": "Vokabelkartei",
-      "longName": "Vokabelkartei (Fremdwort | Übersetzung)",
+      "longName": "Vokabelkartei: Fremdwort | Übersetzung",
       "content1": "Fremdwort",
       "content2": "Übersetzung",
       "placeholders": {
@@ -795,7 +795,7 @@
     },
     "cardType2": {
       "name": "Mitschrift",
-      "longName": "Mitschrift (Foto der Mitschrift | Nachbearbeitung | To-dos)",
+      "longName": "Mitschrift: Foto der Mitschrift | Nachbearbeitung | To-dos",
       "content1": "Foto der Mitschrift",
       "content2": "Nachbearbeitung",
       "content3": "To-dos",
@@ -811,7 +811,7 @@
     },
     "cardType3": {
       "name": "Glossar",
-      "longName": "Glossar (Fachbegriff | Beschreibung | Literatur)",
+      "longName": "Glossar: Fachbegriff | Beschreibung | Literatur",
       "content1": "Fachbegriff",
       "content2": "Beschreibung",
       "content3": "Literatur",
@@ -827,7 +827,7 @@
     },
     "cardType4": {
       "name": "Zitatensammlung",
-      "longName": "Zitatensammlung (Zitat | Zitierte Person | Quellenangabe)",
+      "longName": "Zitatensammlung: Zitat | Zitierte Person | Quellenangabe",
       "content1": "Zitat",
       "content2": "Zitierte Person",
       "content3": "Quellenangabe",
@@ -843,7 +843,7 @@
     },
     "cardType5": {
       "name": "Prüfung",
-      "longName": "Prüfung (Prüfungsfrage | Erwartete Antwort | Begründung)",
+      "longName": "Prüfung: Prüfungsfrage | Erwartete Antwort | Begründung",
       "content1": "Prüfungsfrage",
       "content2": "Erwartete Antwort",
       "content3": "Begründung",
@@ -859,7 +859,7 @@
     },
     "cardType6": {
       "name": "Anweisungssatz",
-      "longName": "Anweisungssatz (Semantik | Syntax | Online-API)",
+      "longName": "Anweisungssatz: Semantik | Syntax | Online-API",
       "content1": "Syntax",
       "content2": "Semantik",
       "content3": "Online-API",
@@ -875,7 +875,7 @@
     },
     "cardType7": {
       "name": "Exzerpte",
-      "longName": "Exzerpte (Exzerpt | Anmerkungen | Bibliografie)",
+      "longName": "Exzerpte: Exzerpt | Anmerkungen | Bibliografie",
       "content1": "Exzerpt",
       "content2": "Anmerkungen",
       "content3": "Bibliografie",
@@ -891,7 +891,7 @@
     },
     "cardType8": {
       "name": "Notizen",
-      "longName": "Notizen (1 Seite)",
+      "longName": "Notizen: 1 Seite",
       "content1": "Notiz",
       "placeholders": {
         "subject": "Gib das Thema deiner Notiz an !",
@@ -903,7 +903,7 @@
     },
     "cardType9": {
       "name": "To-dos",
-      "longName": "To-dos (1 Seite)",
+      "longName": "To-dos: 1 Seite",
       "content1": "To-dos",
       "placeholders": {
         "subject": "Gib das Thema oder Datum der To-dos an !",
@@ -915,7 +915,7 @@
     },
     "cardType10": {
       "name": "Fotokartei",
-      "longName": "Fotokartei (Foto | Lizenz)",
+      "longName": "Fotokartei: Foto | Lizenz",
       "content1": "Foto",
       "content2": "Lizenz",
       "placeholders": {
@@ -929,7 +929,7 @@
     },
     "cardType11": {
       "name": "Quiz",
-      "longName": "Quiz (Frage | Antwort)",
+      "longName": "Quiz: Frage | Antwort",
       "content1": "Frage",
       "content2": "Antwort",
       "placeholders": {
@@ -943,7 +943,7 @@
     },
     "cardType12": {
       "name": "Entwurfsmuster",
-      "longName": "Entwurfsmuster (Problem | Kontext | Kräfte | Lösung | Beispiele | Literatur)",
+      "longName": "Entwurfsmuster: Problem | Kontext | Kräfte | Lösung | Beispiele | Literatur",
       "content1": "Problem",
       "content2": "Lösung",
       "content3": "Kontext",
@@ -965,7 +965,7 @@
     },
     "cardType13": {
       "name": "Formelsammlung",
-      "longName": "Formelsammlung (Aufgabe | Formel | Lösung | Literatur)",
+      "longName": "Formelsammlung: Aufgabe | Formel | Lösung | Literatur",
       "content1": "Aufgabe",
       "content2": "Formel",
       "content3": "Lösung",
@@ -983,7 +983,7 @@
     },
     "cardType14": {
       "name": "Vortrag",
-      "longName": "Vortrag  (1 Seite)",
+      "longName": "Vortrag: 1 Seite",
       "content1": "Vortrag",
       "placeholders": {
         "subject": "Gib das Thema der Folie an!",
@@ -995,7 +995,7 @@
     },
     "cardType15": {
       "name": "Aufgabensammlung",
-      "longName": "Aufgabensammlung  (Aufgabe | Lösung)",
+      "longName": "Aufgabensammlung: Aufgabe | Lösung",
       "content1": "Aufgabe",
       "content2": "Lösung",
       "placeholders": {
@@ -1012,6 +1012,8 @@
       "backToCardset": "Zurück zur Karteiansicht",
       "endPresentation": "Präsentation beenden",
       "fullscreen": "Mit der Taste ESC (oben links) kommst du wieder in die Normalansicht.",
+      "nextCard": "Zur nächsten Karte wechseln (auch mit der Leer-, Tab- oder Pfeiltaste)",
+      "previousCard": "Zur vorherigen Karte wechseln (auch mit der Pfeiltaste)",
       "lockSide": "Rückseite wird zur Vorderseite",
       "showIndex": "Zeige das Inhaltsverzeichnis der Kartei",
       "edit": "Bearbeite die Karte",
@@ -1218,7 +1220,7 @@
     "allLearnedCardsets": "Nach dem Leitner-Lernkarteisystem gelernte Karten über alle Karteien",
     "learnedCardsets": "Lernstatistik der Kartei",
     "userProgress": "Lernstand nach Leitner für: ",
-    "myProgress": "Mein Lernstand nach Leitner",
+    "myProgress": "Lernstatistik ansehen",
     "dashboard": "Dashboard",
     "cardsets": "Karteien",
     "cards": "Karten",

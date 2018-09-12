@@ -1,0 +1,69 @@
+<template name="cardSidebarItemDictionaryBeolingus">
+    {{#if gotDictionary}}
+        {{#unless isMobilePreview}}
+            <img class="hidden-xs showBeolingusTranslation card-button cardHeaderItem {{#if
+                    isBeolingusActive}}pressed{{/if}}"
+                 data-type="cardNavigation"
+                 data-toggle="collapse"
+                 data-target="#collapseLecture-{{_id}}"
+                 src="/img/beolingus.png" title="{{_ "card.tooltip.dictionaryBeolingus"}}">
+        {{/unless}}
+        <span class="{{#unless
+                isMobilePreview}}visible-xs-inline-block{{/unless}} card-button cardHeaderItem fa showBeolingusTranslation {{#if
+                isBeolingusActive}}pressed{{/if}}" data-id="{{this._id}}"
+              title="{{_ "card.tooltip.dictionaryBeolingus"}}"><strong>B</strong>
+        </span>
+    {{/if}}
+</template>
+
+<template name="cardSidebarItemDictionaryLinguee">
+    {{#if gotDictionary}}
+        {{#unless isMobilePreview}}
+            <img class="hidden-xs showLingueeTranslation card-button cardHeaderItem {{#if
+                    isLingueeActive}}pressed{{/if}}"
+                 data-type="cardNavigation"
+                 data-toggle="collapse"
+                 data-target="#collapseLecture-{{_id}}"
+                 src="/img/linguee_appLogoSmall.png" title="{{_ "card.tooltip.dictionaryLinguee"}}">
+        {{/unless}}
+        <span class="{{#unless
+                isMobilePreview}}visible-xs-inline-block{{/unless}} card-button cardHeaderItem fa showLingueeTranslation {{#if
+                isLingueeActive}}pressed{{/if}}" data-id="{{this._id}}"
+              title="{{_ "card.tooltip.dictionaryLinguee"}}"><strong>L</strong>
+        </span>
+    {{/if}}
+</template>
+
+<template name="cardSidebarItemDictionaryGoogle">
+    {{#if gotDictionary}}
+        {{#unless isMobilePreview}}
+            <img class="hidden-xs showGoogleTranslation card-button cardHeaderItem {{#if isGoogleActive}}pressed{{/if}}"
+                 data-type="cardNavigation"
+                 data-toggle="collapse"
+                 data-target="#collapseLecture-{{_id}}"
+                 src="/img/google_translate.png" title="{{_ "card.tooltip.dictionaryGoogle"}}">
+        {{/unless}}
+        <span class="{{#unless
+                isMobilePreview}}visible-xs-inline-block{{/unless}} card-button cardHeaderItem fa showGoogleTranslation {{#if
+                isGoogleActive}}pressed{{/if}}" data-id="{{this._id}}"
+              title="{{_ "card.tooltip.dictionaryGoogle"}}"><strong>G</strong>
+        </span>
+    {{/if}}
+</template>
+
+<template name="cardSidebarItemDictionaryDeepL">
+    {{#if gotDictionary}}
+        {{#unless isMobilePreview}}
+            <img class="hidden-xs showDeepLTranslation card-button cardHeaderItem {{#if isDeepLActive}}pressed{{/if}}"
+                 data-type="cardNavigation"
+                 data-toggle="collapse"
+                 data-target="#collapseLecture-{{_id}}"
+                 src="/img/deepl.png" title="{{_ "card.tooltip.dictionaryDeepL"}}">
+        {{/unless}}
+        <span class="{{#unless
+                isMobilePreview}}visible-xs-inline-block{{/unless}} card-button cardHeaderItem fa showDeepLTranslation {{#if
+                isDeepLActive}}pressed{{/if}}" data-id="{{this._id}}"
+              title="{{_ "card.tooltip.dictionaryDeepL"}}"><strong>D</strong>
+        </span>
+    {{/if}}
+</template>

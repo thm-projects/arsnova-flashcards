@@ -1,0 +1,120 @@
+<template name="flashcardSidebar">
+    <div id="flashcardSidebarLeft">
+        {{#if isCardset}}
+            {{> flashcardSidebarDefaultLeft}}
+        {{/if}}
+        {{#if isPresentation}}
+            {{> flashcardSidebarPresentationLeft}}
+        {{/if}}
+        {{#if isMakingOf}}
+            {{> flashcardSidebarDemoLeft}}
+        {{/if}}
+        {{#if isDemo}}
+            {{> flashcardSidebarDemoLeft}}
+        {{/if}}
+        {{#if isEditMode}}
+            {{> flashcardSidebarEditorLeft}}
+        {{/if}}
+        {{#if isBox}}
+            {{> flashcardSidebarLeitnerLeft}}
+        {{/if}}
+        {{#if isMemo}}
+            {{> flashcardSidebarWozniakLeft}}
+        {{/if}}
+    </div>
+    <div id="flashcardSidebarRight">
+        {{#if isCardset}}
+            {{> flashcardSidebarDefaultRight}}
+        {{/if}}
+        {{#if isPresentation}}
+            {{> flashcardSidebarPresentationRight}}
+        {{/if}}
+        {{#if isMakingOf}}
+            {{> flashcardSidebarDemoRight}}
+        {{/if}}
+        {{#if isDemo}}
+            {{> flashcardSidebarDemoRight}}
+        {{/if}}
+        {{#if isEditMode}}
+            {{> flashcardSidebarEditorRight}}
+        {{/if}}
+        {{#if isBox}}
+            {{> flashcardSidebarLeitnerRight}}
+        {{/if}}
+        {{#if isMemo}}
+            {{> flashcardSidebarWozniakRight}}
+        {{/if}}
+    </div>
+</template>
+
+<template name="flashcardSidebarDictionary">
+    {{> cardSidebarItemDictionaryDeepL}}
+    {{> cardSidebarItemDictionaryLinguee}}
+    {{> cardSidebarItemDictionaryBeolingus}}
+    {{> cardSidebarItemDictionaryGoogle}}
+</template>
+
+<template name="flashcardSidebarDefaultLeft">
+    {{> cardSidebarItemEdit}}
+    {{> cardSidebarLeftRightNavigation}}
+    {{> cardSidebarItemCardList}}
+    {{> flashcardSidebarDictionary}}
+    {{> cardSidebarItemDelete}}
+</template>
+
+<template name="flashcardSidebarDefaultRight">
+    {{> cardSidebarItemZoomText}}
+    {{> cardSidebarItemToggleFullscreen}}
+</template>
+
+<template name="flashcardSidebarPresentationLeft">
+    {{> cardSidebarLeftRightNavigation}}
+    {{> cardSidebarItemCardList}}
+    {{> flashcardSidebarDictionary}}
+</template>
+
+<template name="flashcardSidebarPresentationRight">
+    {{> cardSidebarItemZoomText}}
+    {{> cardSidebarItemContrast}}
+    {{> cardSidebarItemEndPresentation}}
+</template>
+
+<template name="flashcardSidebarDemoLeft">
+    {{> cardSidebarLeftRightNavigation}}
+    {{> cardSidebarItemCardList}}
+    {{> flashcardSidebarDictionary}}
+</template>
+
+<template name="flashcardSidebarDemoRight">
+    {{> cardSidebarItemZoomText}}
+    {{> cardSidebarItemToggleFullscreen}}
+</template>
+
+<template name="flashcardSidebarEditorLeft">
+    {{> flashcardSidebarDictionary}}
+</template>
+
+<template name="flashcardSidebarEditorRight">
+    {{> cardSidebarItemZoomText}}
+    {{> cardSidebarItemToggleFullscreen}}
+</template>
+
+<template name="flashcardSidebarLeitnerLeft">
+    {{> flashcardSidebarDictionary}}
+</template>
+
+<template name="flashcardSidebarLeitnerRight">
+    {{> cardSidebarItemZoomText}}
+    {{> cardSidebarItemToggleFullscreen}}
+    {{> cardSidebarItemBackToCardset}}
+</template>
+
+<template name="flashcardSidebarWozniakLeft">
+    {{> flashcardSidebarDictionary}}
+</template>
+
+<template name="flashcardSidebarWozniakRight">
+    {{> cardSidebarItemZoomText}}
+    {{> cardSidebarItemToggleFullscreen}}
+    {{> cardSidebarItemBackToCardset}}
+</template>

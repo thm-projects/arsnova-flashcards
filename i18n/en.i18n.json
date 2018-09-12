@@ -1012,6 +1012,8 @@
       "backToCardset": "",
       "endPresentation": "Close presentation",
       "fullscreen": "With ESCAPE you get back to the normal view.",
+      "nextCard": "Switch to the next card",
+      "previousCard": "Switch to the previous card",
       "lockSide": "Back of the card becomes the front side.",
       "showIndex": "",
       "edit": "",

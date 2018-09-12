@@ -26,6 +26,7 @@ import "../pomodoroTimer/pomodoroTimer.js";
 import "../../api/groundDB.js";
 import "../../api/cardIndex.js";
 import "./overlays/zoomText.js";
+import "../card/sidebar/sidebar.js";
 import {Cardsets} from "../../api/cardsets.js";
 import {Route} from "../../api/route";
 import {CardVisuals} from "../../api/cardVisuals";

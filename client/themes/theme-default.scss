@@ -101,7 +101,7 @@
           "bonus_background": $thm_red,
           "bonus_text": $white,
           "card_type_background": $thm_blue,
-          "card_type_text": black,
+          "card_type_text": white,
     //ratings
           "current_rating": $thm_orange,
           "$hover_rating": $thm_blue,
@@ -283,6 +283,9 @@
           "card_content_zoom_slider_container_percentage": $thm_orange,
           "card_content_zoom_slider_container_bar": white,
           "card_content_zoom_slider_container_handle": $thm_orange,
+    //card sidebar colors
+          "card_sidebar_border": $thm_gray,
+          "card_sidebar_background" : $mercury_approx,
     //cardset colors
           "cardset_markdeep_background": LightGoldenRodYellow,
           "cardset_markdeep_header_border": $thm_orange,
