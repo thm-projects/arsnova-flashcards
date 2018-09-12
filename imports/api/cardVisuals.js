@@ -99,8 +99,6 @@ export let CardVisuals = class CardVisuals {
 				contentEditor.css('height', newFlashcardHeight - $('#markdeepNavigation').height());
 			}
 			this.setSidebarPosition();
-			console.log("pomodoro height set to " + flashcardHeaderClock.height());
-
 		}
 	}
 
