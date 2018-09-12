@@ -42,6 +42,7 @@ export let CardVisuals = class CardVisuals {
 	 * Resizes flashcards to din a6 format
 	 */
 	static resizeFlashcard () {
+		console.log("resize card");
 		let contentEditor = $('#contentEditor');
 		let newFlashcardHeight;
 		if (editorFullScreenActive) {
@@ -56,7 +57,6 @@ export let CardVisuals = class CardVisuals {
 			let flashcardHeaderClock = $('#clock');
 			let flashcardHeaderHeight = 0;
 			let flashcardBodyHeight = 0;
-			let flashcardHeaderClockHeightFactor = 0.9;
 			if ($(window).width() < 768 || Session.get('mobilePreview')) {
 				if (Session.get('mobilePreview')) {
 					newFlashcardHeight = $('.mobilePreviewContent').innerHeight() - 50;
@@ -67,7 +67,6 @@ export let CardVisuals = class CardVisuals {
 				flashcardBodyHeight = newFlashcardHeight - flashcardHeaderHeight;
 				flashcard.css('height', newFlashcardHeight);
 				flashcardHeader.css('height', flashcardHeaderHeight);
-				flashcardHeaderClock.css('height', flashcardHeaderHeight * flashcardHeaderClockHeightFactor);
 				flashcardBody.css('height', flashcardBodyHeight);
 				flashcardLecture.css('height', flashcardBodyHeight);
 				flashcardControls.css('margin-top', flashcardHeaderHeight);
@@ -80,7 +79,6 @@ export let CardVisuals = class CardVisuals {
 					flashcardHeaderHeight = 0.12;
 					flashcardBodyHeight = 0.88;
 					flashcardHeader.css('height', newFlashcardHeight * flashcardHeaderHeight);
-					flashcardHeaderClock.css('height', newFlashcardHeight * flashcardHeaderHeight * flashcardHeaderClockHeightFactor);
 					flashcardBody.css('height', newFlashcardHeight * flashcardBodyHeight);
 					flashcardLecture.css('height', newFlashcardHeight * flashcardBodyHeight);
 					flashcardControls.css('margin-top', newFlashcardHeight * flashcardHeaderHeight);
@@ -89,7 +87,6 @@ export let CardVisuals = class CardVisuals {
 					flashcardHeaderHeight = 0.16;
 					flashcardBodyHeight = 0.84;
 					flashcardHeader.css('height', newFlashcardHeight * flashcardHeaderHeight);
-					flashcardHeaderClock.css('height', newFlashcardHeight * flashcardHeaderHeight * flashcardHeaderClockHeightFactor);
 					flashcardBody.css('height', newFlashcardHeight * flashcardBodyHeight);
 					flashcardLecture.css('height', newFlashcardHeight * flashcardBodyHeight);
 					flashcardControls.css('margin-top', newFlashcardHeight * flashcardHeaderHeight);
@@ -102,6 +99,8 @@ export let CardVisuals = class CardVisuals {
 				contentEditor.css('height', newFlashcardHeight - $('#markdeepNavigation').height());
 			}
 			this.setSidebarPosition();
+			console.log("pomodoro height set to " + flashcardHeaderClock.height());
+
 		}
 	}
 
