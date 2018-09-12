@@ -36,6 +36,7 @@ Meteor.subscribe("adminSettings");
 Meteor.subscribe("serverStatistics");
 
 Session.setDefault("theme", "default");
+Session.setDefault('activeRouteTitle', '');
 Session.setDefault("fullscreen", false);
 Session.setDefault("previousRouteName", undefined);
 Session.setDefault("connectionStatus", 2);
@@ -142,7 +143,7 @@ Template.main.helpers({
 	getTheme: function () {
 		if (Session.get('theme')) {
 			if (Session.get('theme') === "default") {
-				$("html").css("background-image", "url('/img/background/zettelkasten_wikipedia.jpg')");
+				$("html").css("background-image", "url('/img/background/zettelkasten_wikipedia_background.jpg')");
 			} else {
 				$("html").css("background-image", "none");
 			}
@@ -198,6 +199,9 @@ Template.main.helpers({
 	},
 	isNotFirstDemoVisit: function () {
 		return (!Route.isFirstTimeVisit() && Route.isDemo());
+	},
+	getMobileNavbarTitle: function () {
+		return Session.get('activeRouteTitle');
 	}
 });
 

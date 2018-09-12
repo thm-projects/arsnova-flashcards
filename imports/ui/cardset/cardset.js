@@ -191,6 +191,11 @@ Template.cardset.events({
 		Router.go('cardsetdetailsid', {
 			_id: Router.current().params._id
 		});
+	},
+	'click .projectorIcon': function () {
+		Router.go('presentation', {
+			_id: Router.current().params._id
+		});
 	}
 });
 
