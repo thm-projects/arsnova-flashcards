@@ -54,7 +54,6 @@ export let CardVisuals = class CardVisuals {
 			let flashcardBody = $('.cardContent');
 			let flashcardLecture = $('.cardContentCollapsed');
 			let flashcardControls = $('.carousel-control');
-			let flashcardHeaderClock = $('#clock');
 			let flashcardHeaderHeight = 0;
 			let flashcardBodyHeight = 0;
 			if ($(window).width() < 768 || Session.get('mobilePreview')) {
