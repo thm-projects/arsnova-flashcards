@@ -143,7 +143,7 @@ Template.main.helpers({
 	getTheme: function () {
 		if (Session.get('theme')) {
 			if (Session.get('theme') === "default") {
-				$("html").css("background-image", "url('/img/background/zettelkasten_wikipedia.jpg')");
+				$("html").css("background-image", "url('/img/background/zettelkasten_wikipedia_background.jpg')");
 			} else {
 				$("html").css("background-image", "none");
 			}
