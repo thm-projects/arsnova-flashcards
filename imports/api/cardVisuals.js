@@ -165,7 +165,7 @@ export let CardVisuals = class CardVisuals {
 	static getCardSideColor (difficulty, cardType, backgroundStyle, activeCard) {
 		let box = "box-";
 		let style;
-		if (Session.get('contrastMode')) {
+		if (Session.get('theme') === "contrast") {
 			return box + 'white';
 		}
 		if (activeCard) {

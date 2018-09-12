@@ -141,7 +141,7 @@ Template.main.helpers({
 	},
 	getTheme: function () {
 		if (Session.get('theme')) {
-			if (Session.get('theme') === "default" && Router.current().route.getName() !== "presentation" && Router.current().route.getName() !== "presentationlist") {
+			if (Session.get('theme') === "default") {
 				$("html").css("background-image", "url('/img/background/zettelkasten_wikipedia.jpg')");
 			} else {
 				$("html").css("background-image", "none");
