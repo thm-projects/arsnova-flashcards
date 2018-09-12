@@ -90,6 +90,7 @@ function addLeitnerCards(cardset, user_id) {
 	if (!Meteor.isServer) {
 		throw new Meteor.Error("not-authorized");
 	} else {
+		let isNewcomer = true;
 		Meteor.call('initializeWorkloadData', cardset._id, user_id);
 		let cards;
 		let cardsetFilter = [cardset._id];
@@ -116,6 +117,9 @@ function addLeitnerCards(cardset, user_id) {
 			excludedCards.push(existingItem.card_id);
 		});
 
+		if (Leitner.findOne({user_id: user_id, cardset_id: cardset._id}) !== undefined) {
+			isNewcomer = false;
+		}
 		let newItems = [];
 		let newItemObject;
 		let nextDate = new Date();
@@ -143,7 +147,7 @@ function addLeitnerCards(cardset, user_id) {
 			Leitner.batchInsert(newItems);
 		}
 		Meteor.call("updateLearnerCount", cardset._id);
-		return true;
+		return isNewcomer;
 	}
 }
 
@@ -151,8 +155,9 @@ function addLeitnerCards(cardset, user_id) {
  *  @param {Object} cardset - The cardset with active learners
  *  @param {Object} user - The user from the cardset who is currently learning
  *  @param {boolean} isReset - Sends a special notification if the card selection got called by missing the deadline
+ *  @param {boolean} isNewcomer - Did the user just start learning?
  * */
-function setCards(cardset, user, isReset) {
+function setCards(cardset, user, isReset, isNewcomer = false) {
 	if (!Meteor.isServer && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
 		throw new Meteor.Error("not-authorized");
 	} else {
@@ -229,7 +234,7 @@ function setCards(cardset, user, isReset) {
 				currentDate: new Date()
 			}
 		}, {multi: true});
-		if (user.mailNotification && mailsEnabled()) {
+		if (user.mailNotification && mailsEnabled() && !isNewcomer) {
 			try {
 				let mail = new MailNotifier();
 				if (isReset) {
@@ -241,7 +246,7 @@ function setCards(cardset, user, isReset) {
 				console.log("[" + TAPi18n.__('admin-settings.test-notifications.sendMail') + "] " + error);
 			}
 		}
-		if (user.webNotification) {
+		if (user.webNotification && !isNewcomer) {
 			try {
 				let web = new WebNotifier();
 				web.prepareWeb(cardset, user._id);
@@ -425,11 +430,10 @@ Meteor.methods({
 						throw new Meteor.Error("not-authorized");
 					}
 				}
-				if (addLeitnerCards(cardset, Meteor.userId())) {
-					cardset = defaultCardsetLeitnerData(cardset);
-					if (!getActiveCard(cardset._id, Meteor.userId()) && (!Bonus.isInBonus(cardset._id, Meteor.userId()) || cardset.learningEnd.getTime() > new Date().getTime())) {
-						setCards(cardset, Meteor.user(), false);
-					}
+				let isNewcomer = addLeitnerCards(cardset, Meteor.userId());
+				cardset = defaultCardsetLeitnerData(cardset);
+				if (isNewcomer && (!Bonus.isInBonus(cardset._id, Meteor.userId()) || cardset.learningEnd.getTime() > new Date().getTime())) {
+					setCards(cardset, Meteor.user(), false, isNewcomer);
 				}
 			}
 		}
