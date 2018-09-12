@@ -302,6 +302,7 @@ Template.welcome.onCreated(function () {
 });
 
 Template.welcome.onRendered(function () {
+	$('#clock').removeClass('clock');
 	createTagCloud();
 	pomoPosition();
 	$(window).resize(function () {
