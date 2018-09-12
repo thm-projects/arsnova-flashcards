@@ -59,13 +59,13 @@ Template.pomodoroTimerModal.events({
 	'input #playSlider': function () {
 		PomodoroTimer.updatePlaySlider();
 	},
-	'click #clock': function () {
+	'click #clockPreview': function () {
 		document.getElementById("bell").play();
 	},
-	'click #complete': function () {
+	'click #completePreview': function () {
 		document.getElementById("success").play();
 	},
-	'click #cancel': function () {
+	'click #cancelPreview': function () {
 		document.getElementById("failure").play();
 	},
 	'change #sound1': function () {
