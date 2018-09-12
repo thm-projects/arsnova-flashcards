@@ -364,8 +364,16 @@ th .field-tip {
   bottom: auto;
 }
 
+.cardListName {
+  margin-top: $margin_top_cardset_category;
+}
+
+.cardListName:first-child {
+  margin-top: 0;
+}
+
 .cardListSubject table {
-  margin-bottom: $margin_bottom_cardset_category !important;
+  margin-bottom: 0;
   table-layout: fixed;
 }
 
