@@ -4,7 +4,6 @@ import {Template} from "meteor/templating";
 import {Route} from "../../../api/route";
 import "./sidebar.html";
 import "./item/cardList.js";
-import "./item/contrast.js";
 import "./item/backToCardset.js";
 import "./item/dictionary.js";
 import ".//item/endPresentation.js";
