@@ -148,8 +148,11 @@
 
 #pomoA  #clock{
   height: 200px;
+  width:200px;
+  z-index:10000;
   @media (max-height: 630px) {
     height: 100px;
+    width:100px;
   }
   @media (max-height:550px){
     display: none;
@@ -157,9 +160,13 @@
 
 }
 
+.testing{
+  height: 300px;
+}
+
 #pomoA #instructions{
   font-size:small;
-  @media (max-height:550px){
+  @media (max-height:700px){
     display: none;
   }
 }

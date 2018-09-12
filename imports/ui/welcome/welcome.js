@@ -12,6 +12,7 @@ import "./welcome.html";
 import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
 import * as fakeInventory from '../../../public/fakeStatistics/inventory.json';
 import * as fakeWordCloud from '../../../public/fakeStatistics/wordcloud.json';
+import {PomodoroTimer} from "../../api/pomodoroTimer";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("userData");
@@ -26,8 +27,14 @@ let cloudShown = true;
 function pomoPosition() {
 	if (!cloudShown) {
 		$('#pomodoroTimer').detach().appendTo('#pomoA');
+		$('#clock').on('click',function () {
+			PomodoroTimer.clickClock();
+		});
 	} else if (cloudShown) {
 		$('#pomodoroTimer').detach().appendTo('#pomoB');
+		$('#clock').on('click',function () {
+			PomodoroTimer.clickClock();
+		});
 	}
 }
 
