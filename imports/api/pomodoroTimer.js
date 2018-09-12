@@ -25,7 +25,23 @@ let breakLength = 5;
 let pomRunning = false;
 let breakRunning = false;
 
+//which pomodoro sound
+let soundBell = true;
+let soundSuccess = false;
+let soundFail = false;
+
 export let PomodoroTimer = class PomodoroTimer {
+
+	static clockHandler(option) {
+		if (option === 0) {
+			soundBell = !soundBell;
+		} else if (option === 1) {
+			soundSuccess = !soundSuccess;
+		} else if (option === 2) {
+			soundFail = !soundFail;
+		}
+	}
+
 	/*The following code snippet is a life saver and was found on stack overflow. It allows you to draw an arc around a circle in svg using only the polar coordinates.*/
 	static polarToCartesian (centerX, centerY, radius, angleInDegrees) {
 		let angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
@@ -88,7 +104,9 @@ export let PomodoroTimer = class PomodoroTimer {
 			pomRunning = false;
 
 			/*the bell to signify the end of a period*/
-			document.getElementById("bell").play();
+			if (soundBell) {
+				document.getElementById("bell").play();
+			}
 
 			/*a work period just ended, so increase the total pomodoros done by one.*/
 			totalPoms++;
@@ -128,7 +146,9 @@ export let PomodoroTimer = class PomodoroTimer {
 		if ((6 * d.getMinutes() + d.getSeconds() / 10 >= endBreak - 0.1 && 6 * d.getMinutes() + d.getSeconds() / 10 <= endBreak + 0.1) && breakRunning) {
 			breakRunning = false;
 
-			document.getElementById("bell").play();
+			if (soundBell) {
+				document.getElementById("bell").play();
+			}
 
 			document.getElementById("progressArc").setAttribute("d", this.describeArc(0, 0, 0, 0, 0));
 			document.getElementById("breakArc").setAttribute("d", this.describeArc(0, 0, 0, 0, 0));
@@ -205,7 +225,9 @@ export let PomodoroTimer = class PomodoroTimer {
 					/*If you give up before you complete your goal you get a failure sound, taken from a show me and my lady have been watching lately, and a failure box. Shame!*/
 					function (isConfirm) {
 						if (!isConfirm) {
-							document.getElementById("failure").play();
+							if (soundFail) {
+								document.getElementById("failure").play();
+							}
 							sweetAlert({
 								title: TAPi18n.__("pomodoro.notDone"),
 								text: TAPi18n.__("pomodoro.notDone2") + "<b>" + goalPoms + " </b> " + TAPi18n.__("pomodoro.notDone3"),
@@ -238,7 +260,9 @@ export let PomodoroTimer = class PomodoroTimer {
 					function (isConfirm) {
 						/*you succeeded so you get the success sound and a success message. good for you! */
 						if (isConfirm) {
-							document.getElementById("success").play();
+							if (soundSuccess) {
+								document.getElementById("success").play();
+							}
 							sweetAlert({
 								title: TAPi18n.__("pomodoro.goodJob"),
 								text: TAPi18n.__("pomodoro.success1") + totalPoms + TAPi18n.__("pomodoro.success2") + totalPoms * pomLength + TAPi18n.__("pomodoro.success3"),
