@@ -41,9 +41,6 @@
             <source src="" type="audio/mp3"/>
         </audio>
 
-
-
-
         <audio id="bell">
            <source src="/audio/Schulgong.mp3" type="audio/mp3">
         </audio>
@@ -106,12 +103,15 @@
 
                                 <label for="" style=" padding-top: 20px; padding-bottom: 10px"><i class="fa fa-music"></i>
                                     Sounds</label><br>
-                                <input type="checkbox" id="sound1" value="Clock" checked> {{_ "pomodoro.schoolBell"}}
-                                <label for="playLength" style="padding-left: 5px"><i id ="clockPreview" class="fa fa-play-circle-o"></i></label><br>
-                                <input type="checkbox" id="sound2" value="Complete"> {{_ "pomodoro.learningSession"}}
-                                <label for="playLength" style="padding-left: 5px"><i id ="completePreview" class="fa fa-play-circle-o"></i></label><br>
-                                <input type="checkbox" id="sound3" value="Cancel"> {{_ "pomodoro.cancelSession"}}
-                                <label for="playLength" style="padding-left: 5px"><i id ="cancelPreview" class="fa fa-play-circle-o"></i></label><br>
+                                <input type="checkbox" id="sound1" value="Clock" checked>
+                                <label for="sound1">{{_ "pomodoro.schoolBell"}}</label><br>
+                                <input type="checkbox" id="sound2" value="Complete">
+                                <label for="sound2">{{_ "pomodoro.learningSession"}}</label><br>
+                                <input type="checkbox" id="sound3" value="Cancel">
+                                <label for="sound3">{{_ "pomodoro.cancelSession"}}</label>
+                                <audio id="failure" preload="auto" controls style=" padding-left: 30px; height:10px; width:100px">
+                                    <source src="/audio/fail.mp3" type="audio/mp3"/>
+                                </audio><br>
                             </div>
                         </div>
                     </form>
