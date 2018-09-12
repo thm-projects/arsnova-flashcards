@@ -35,13 +35,13 @@
   },
   "pomodoro" : {
     "pluralPomodoro": "Pomodoro-Einheiten",
-    "clickClock": "Klick, um zu",
+    "clickClock": "Klick auf die Uhr, \num den Pomodoro-Timer zu",
     "start": "starten",
-    "startBig" : "Starten",
+    "startBig" : "Los geht's!",
     "goal": "Wie lange willst du heute lernen?",
     "count": "Wie viele",
     "make": "willst du machen?",
-    "settings": "Einstellungen",
+    "settings": "Zeit- und Sound-Einstellungen",
     "productivity": "Willst du wirklich mit dem Lernen für heute aufhören?",
     "reachedgoal": "Hey, du hast dein Ziel von ",
     "momentum": " Pomodoro-Einheit(en) erreicht!",
@@ -61,14 +61,14 @@
     "stillOpen1": "Du hast noch",
     "stillOpen2": " Pomodoro-Einheit(en).",
     "stillOpen3" : "Willst du wirklich schon aufhören?",
-    "notDone": "Du bist noch nicht fertig!",
+    "notDone": "Du hast deine Lernzeit nicht eingehalten!",
     "notDone2": "Du hast dein Ziel von ",
     "notDone3": " Pomodoro-Einheit(en) nicht erreicht!",
-    "learn" : "Lernen",
-    "break1" : "Pause",
-    "schoolBell" : "Schulgong",
-    "learningSession" : "Ton zum Ende einer Lernphase",
-    "cancelSession" : "Ton beim Abbrechen der Lernphase"
+    "learn" : "Lernzeit in Minuten",
+    "break1" : "Pause in Minuten",
+    "schoolBell" : "Schulgong zum Ende der eingestellten Zeiten",
+    "learningSession" : "Ton beim Erreichen aller Pomodori",
+    "cancelSession" : "Ton beim vorzeitigen Abbrechen"
   },
 
 
