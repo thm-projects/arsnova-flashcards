@@ -365,7 +365,7 @@ th .field-tip {
 }
 
 .cardListSubject table {
-  margin-bottom: 0;
+  margin-bottom: $margin_bottom_cardset_category !important;
   table-layout: fixed;
 }
 
