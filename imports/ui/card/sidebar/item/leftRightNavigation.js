@@ -24,13 +24,15 @@ Template.cardSidebarLeftRightNavigation.helpers({
 		return CardIndex.getCardIndex().length > 1;
 	},
 	isFirstCardActive: function () {
-		CardIndex.initializeIndex();
-		let cardIndex = CardIndex.getCardIndex();
-		return cardIndex.indexOf(Session.get('activeCard')) === 0;
+		if (Session.get('activeCard') !== -1) {
+			let cardIndex = CardIndex.getCardIndex();
+			return cardIndex.indexOf(Session.get('activeCard')) === 0;
+		}
 	},
 	isLastCardActive: function () {
-		CardIndex.initializeIndex();
-		let cardIndex = CardIndex.getCardIndex();
-		return cardIndex.indexOf(Session.get('activeCard')) === cardIndex.length - 1;
+		if (Session.get('activeCard') !== -1) {
+			let cardIndex = CardIndex.getCardIndex();
+			return cardIndex.indexOf(Session.get('activeCard')) === cardIndex.length - 1;
+		}
 	}
 });
