@@ -366,4 +366,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		pomBeginAngle = 6 * curTime.getMinutes() + curTime.getSeconds() / 10;
 		$("#instructions").html(TAPi18n.__("pomodoro.stop1") + "<b>" + TAPi18n.__("pomodoro.stop2") + "</b>");
 	}
+
+	static close () {
+	}
 };

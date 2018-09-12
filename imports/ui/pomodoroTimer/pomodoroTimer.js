@@ -33,7 +33,7 @@ Template.pomodoroTimer.events({
 
 Template.pomodoroTimerModal.onRendered(function () {
 	$("#pomodoroTimerModal").on('hidden.bs.modal', function () {
-		PomodoroTimer.start();
+		PomodoroTimer.close();
 	});
 });
 
@@ -76,5 +76,9 @@ Template.pomodoroTimerModal.events({
 	},
 	'change #sound3': function () {
 		PomodoroTimer.clockHandler(2);
+	},
+	'click #startPom': function () {
+		PomodoroTimer.start();
 	}
+
 });

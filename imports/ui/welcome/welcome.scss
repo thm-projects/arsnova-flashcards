@@ -133,40 +133,77 @@
   width: 150px;
 
   position: absolute;
-  bottom: 5em;
-  right: 5em;
+  bottom: 7vh;
+  right: 5vw;
   z-index: 99;
 
   @media (max-width: 768px) {
+    right: 3vw;
+  }
+  @media (min-width: 950px) {
+    height: 200px;
+    width: 200px;
+  }
+
+}
+
+#pomoB #clock {
+
+}
+
+#pomoB #instructions {
+  font-size: small;
+
+}
+
+#pomoA #clock {
+
+  width: 60vw;
+  z-index: 10000;
+  max-height: 60vw;
+
+  @media (max-height:520px){
     display:none;
   }
-}
 
-#pomoB #instructions{
-  font-size: small;
-}
+  @media (max-width: 701px) {
 
-#pomoA  #clock{
-  height: 200px;
-  width:200px;
-  z-index:10000;
-  @media (max-height: 630px) {
-    height: 100px;
-    width:100px;
+    @media (max-height: 850px) {
+      width: 50vw;
+    }
+    @media (max-height: 780px) {
+      width: 40vw;
+    }
+    @media (max-height: 710px) {
+      width: 30vw;
+    }
+    @media (max-height: 595px) {
+      width: 20vw;
+    }
+
   }
-  @media (max-height:550px){
-    display: none;
+  @media (min-width: 702px) and (max-height:700px) {
+
+    @media (min-width: 702px) and (max-height:700px){
+      max-width: 20vw;
+    }
+    @media (min-width: 1200px) and (max-height:700px){
+      display:none;
+    }
+    @media (max-height: 645px){
+      width: 10vw;
+    }
   }
 
 }
 
-.testing{
+.testing {
   height: 300px;
 }
 
-#pomoA #instructions{
-  font-size:small;
-  @media (max-height:700px){
+#pomoA #instructions {
+  font-size: small;
+  @media (max-height: 700px) {
     display: none;
   }
 }
