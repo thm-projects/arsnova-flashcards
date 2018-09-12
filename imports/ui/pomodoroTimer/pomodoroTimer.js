@@ -69,8 +69,12 @@ Template.pomodoroTimerModal.events({
 		document.getElementById("failure").play();
 	},
 	'change #sound1': function () {
-		if (document.getElementById("sound1").checked) {
-			document.getElementById("bell").play();
-		}
+		PomodoroTimer.clockHandler(0);
+	},
+	'change #sound2': function () {
+		PomodoroTimer.clockHandler(1);
+	},
+	'change #sound3': function () {
+		PomodoroTimer.clockHandler(2);
 	}
 });
