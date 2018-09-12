@@ -36,6 +36,7 @@ Meteor.subscribe("adminSettings");
 Meteor.subscribe("serverStatistics");
 
 Session.setDefault("theme", "default");
+Session.setDefault('activeRouteTitle', '');
 Session.setDefault("fullscreen", false);
 Session.setDefault("previousRouteName", undefined);
 Session.setDefault("connectionStatus", 2);
@@ -198,6 +199,9 @@ Template.main.helpers({
 	},
 	isNotFirstDemoVisit: function () {
 		return (!Route.isFirstTimeVisit() && Route.isDemo());
+	},
+	getMobileNavbarTitle: function () {
+		return Session.get('activeRouteTitle');
 	}
 });
 
