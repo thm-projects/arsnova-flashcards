@@ -104,15 +104,14 @@
                                 <label for="" style=" padding-top: 20px; padding-bottom: 10px"><i class="fa fa-music"></i>
                                     Sounds</label><br>
                                 <input type="checkbox" id="sound1" value="Clock" checked>
-                                <label for="sound1">{{_ "pomodoro.schoolBell"}}</label>
-
-                                <audio id="failure" preload="auto" controls style=" height:20px; width:100px">
+                                <label for="sound1">{{_ "pomodoro.schoolBell"}}</label><br>
+                                <input type="checkbox" id="sound2" value="Complete">
+                                <label for="sound2">{{_ "pomodoro.learningSession"}}</label><br>
+                                <input type="checkbox" id="sound3" value="Cancel">
+                                <label for="sound3">{{_ "pomodoro.cancelSession"}}</label>
+                                <audio id="failure" preload="auto" controls style=" padding-left: 30px; height:10px; width:100px">
                                     <source src="/audio/fail.mp3" type="audio/mp3"/>
                                 </audio><br>
-                                <input type="checkbox" id="sound2" value="Complete">
-                                <label for="sound2">{{_ "pomodoro.learningSession"}}</label><i id ="completePreview" style="padding-left: 10px" class="fa fa-play-circle-o"></i><br>
-                                <input type="checkbox" id="sound3" value="Cancel">
-                                <label for="sound3">{{_ "pomodoro.cancelSession"}}</label><i id ="cancelPreview" style="padding-left: 10px" class="fa fa-play-circle-o"></i><br>
                             </div>
                         </div>
                     </form>
