@@ -30,7 +30,9 @@ Template.cardSidebarItemCardList.events({
 
 Template.cardSidebarItemCardList.helpers({
 	gotMultipleCards: function () {
-		return CardIndex.getCardIndex().length > 1;
+		if (Session.get('activeCard') !== -1) {
+			return CardIndex.getCardIndex().length > 1;
+		}
 	}
 });
 
