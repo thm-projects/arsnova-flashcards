@@ -241,7 +241,7 @@ export let PomodoroTimer = class PomodoroTimer {
 							document.getElementById("success").play();
 							sweetAlert({
 								title: TAPi18n.__("pomodoro.goodJob"),
-								text: TAPi18n.__("pomodoro.success1 ") + totalPoms + TAPi18n.__(" pomodoro.success2") + totalPoms * pomLength + TAPi18n.__("pomodoro.success3"),
+								text: TAPi18n.__("pomodoro.success1") + totalPoms + TAPi18n.__("pomodoro.success2") + totalPoms * pomLength + TAPi18n.__("pomodoro.success3"),
 								html: true,
 								type: "success"
 							});

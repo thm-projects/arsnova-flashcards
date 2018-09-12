@@ -567,9 +567,12 @@ img.cardside {
     }
 }
 
+.cardHeaderGroup > #pomodoroTimer > .row {
+  #clock {
 
-#instructions{
-  display: none;
-  visibility: hidden;
+  }
+  #instructions {
+    display: none;
+    visibility: hidden;
+  }
 }
-
