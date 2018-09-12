@@ -261,9 +261,12 @@
                 <div class="row markdeepCardset">
                     <div class="col-xs-12 {{#if
                             learningActive}}col-md-4{{else}}col-sm-6 col-md-8{{/if}} markdeepCardsetTitle">
-                        <div class="cardsetLabels">{{{getKind kind 0}}} {{{getShuffleLabel
-                                this.shuffled}}} {{{getBonusLabel this.learningActive}}}</div>
-                        <h4 id="cardsetTitle">{{name}}</h4>
+                        <div class="cardsetTitleContainer">
+                            <div class="cardsetLabels">{{{getKind kind 0}}} {{{getShuffleLabel
+                                    this.shuffled}}} {{{getBonusLabel this.learningActive}}}</div>
+                            <h4 id="cardsetTitle">{{name}}</h4>
+                        </div>
+                        <img src="/img/projector_blue.png" class="hidden-xs projectorIcon" title="{{_ "presentation.create"}}">
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 infoBox">
                     <span class="collapseCardsetInfoContainer">
@@ -304,8 +307,7 @@
                             {{#if gotPresentation}}
                                 <div class="btn-group">
                                     <button id="startPresentation"
-                                            class="btn btn-sm btn-raised presentationBtn" {{disableIfOffline}}><i
-                                            class="glyphicon glyphicon-blackboard"></i> {{_ "presentation.create"}}
+                                            class="btn btn-sm btn-raised presentationBtn" {{disableIfOffline}}><img src="/img/projector_white.png" class="projectorIconButton" title="{{_ "presentation.create"}}"> {{_ "presentation.create"}}
                                     </button>
                                 </div>
                             {{/if}}
