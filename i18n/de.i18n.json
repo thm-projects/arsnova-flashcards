@@ -35,7 +35,7 @@
   },
   "pomodoro" : {
     "pluralPomodoro": "Pomodoro-Einheiten",
-    "clickClock": "Klick, um den Timer zu",
+    "clickClock": "Pomodoro-Timer",
     "start": " starten",
     "startBig" : "Los geht's!",
     "goal": "Wie lange willst du heute lernen?",
