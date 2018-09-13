@@ -86,10 +86,17 @@ export let CardNavigation = class CardNavigation {
 		}
 	}
 
+	static getCardSideNavigationLength () {
+		return $(".cardNavigation a").length;
+	}
+
+	static getCardSideNavigationIndex () {
+		return ($(".card-navigation-active").index(".cardNavigation a")) + 1;
+	}
+
 	static cardSideNavigation (forward = true) {
-		let navigationLength = $(".cardNavigation a").length;
-		let index = ($(".card-navigation-active").index(".cardNavigation a"));
-		++index;
+		let navigationLength = this.getCardSideNavigationLength();
+		let index = this.getCardSideNavigationIndex();
 		if (forward) {
 			if (index >= navigationLength) {
 				index = 1;
@@ -225,6 +232,16 @@ export let CardNavigation = class CardNavigation {
 		cardContent.scrollTop(cardContent.scrollTop() + scrollValue);
 	}
 
+	static isFirstCard () {
+		let cardIndex = CardIndex.getCardIndex();
+		return cardIndex.indexOf(Session.get('activeCard')) === 0;
+	}
+
+	static isLastCard () {
+		let cardIndex = CardIndex.getCardIndex();
+		return cardIndex.indexOf(Session.get('activeCard')) === cardIndex.length - 1;
+	}
+
 	static enableKeyEvents () {
 		keyEventsUnlocked = true;
 	}
@@ -251,12 +268,13 @@ export let CardNavigation = class CardNavigation {
 						break;
 					case 32:
 						if (CardNavigation.isVisible()) {
-							if ($('#rightCarouselControl').click()) {
-								$('#showHintModal').modal('hide');
-								$('body').removeClass('modal-open');
-								$('.modal-backdrop').remove();
-							}
-							if (Session.get('isQuestionSide')) {
+							if (Route.isCardset() || Route.isPresentationOrDemo()) {
+								if (CardNavigation.getCardSideNavigationIndex() < CardNavigation.getCardSideNavigationLength()) {
+									CardNavigation.cardSideNavigation();
+								} else if (!CardNavigation.isLastCard()) {
+									CardNavigation.skipAnswer();
+								}
+							} else if ((Route.isBox() || Route.isMemo()) && Session.get('isQuestionSide')) {
 								CardNavigation.skipAnswer();
 							}
 						}
