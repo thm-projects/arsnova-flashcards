@@ -259,6 +259,7 @@ export let PomodoroTimer = class PomodoroTimer {
 							document.getElementById("progressArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
 							document.getElementById("pomArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
 							document.getElementById("breakArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
+							/* Method for WelcomePage */
 							StaticWelcomeMethod.showPomodoroNormal();
 						}
 					});
@@ -295,6 +296,7 @@ export let PomodoroTimer = class PomodoroTimer {
 							document.getElementById("progressArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
 							document.getElementById("pomArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
 							document.getElementById("breakArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
+							/* Method for WelcomePage */
 							StaticWelcomeMethod.showPomodoroNormal();
 						}
 					});
@@ -383,6 +385,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		pomRunning = true;
 		pomBeginAngle = 6 * curTime.getMinutes() + curTime.getSeconds() / 10;
 		$("#instructions").html(TAPi18n.__("pomodoro.stop1") + "<b>" + TAPi18n.__("pomodoro.stop2") + "</b>");
+		/* Method for WelcomePage */
 		StaticWelcomeMethod.showPomodoroFullsize();
 	}
 
