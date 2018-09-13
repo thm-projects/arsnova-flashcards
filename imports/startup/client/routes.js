@@ -52,7 +52,10 @@ Router.route('learning', {
 
 Router.route('help', {
 	name: 'help',
-	template: 'contact'
+	template: 'contact',
+	data: function () {
+		Session.set('activeRouteTitle', TAPi18n.__('contact.help', {}, Session.get('activeLanguage')));
+	}
 });
 
 Router.route('faq', {
@@ -115,6 +118,7 @@ Router.route('/alldecks', {
 	template: 'cardsets',
 	data: function () {
 		Session.set('helpFilter', undefined);
+		Session.set('activeRouteTitle', TAPi18n.__('navbar-collapse.alldecks', {}, Session.get('activeLanguage')));
 		Filter.resetMaxItemCounter();
 	}
 });
@@ -124,6 +128,16 @@ Router.route('/create', {
 	template: 'cardsets',
 	data: function () {
 		Session.set('helpFilter', "create");
+		switch (Cardsets.find({owner: Meteor.userId()}).count()) {
+			case 0:
+				Session.set('activeRouteTitle',  TAPi18n.__('navbar-collapse.noCarddecks', {}, Session.get('activeLanguage')));
+				break;
+			case 1:
+				Session.set('activeRouteTitle',  TAPi18n.__('navbar-collapse.oneCarddeck', {}, Session.get('activeLanguage')));
+				break;
+			default:
+				Session.set('activeRouteTitle',  TAPi18n.__('navbar-collapse.carddecks', {}, Session.get('activeLanguage')));
+		}
 		Filter.resetMaxItemCounter();
 	}
 });
@@ -133,6 +147,7 @@ Router.route('/repetitorium', {
 	template: 'cardsets',
 	data: function () {
 		Session.set('helpFilter', "repetitorium");
+		Session.set('activeRouteTitle', TAPi18n.__('navbar-collapse.course', {}, Session.get('activeLanguage')));
 		Filter.resetMaxItemCounter();
 	}
 });
@@ -146,6 +161,7 @@ Router.route('/learn', {
 	},
 	data: function () {
 		Session.set('helpFilter', "workload");
+		Session.set('activeRouteTitle', TAPi18n.__('navbar-collapse.learndecks', {}, Session.get('activeLanguage')));
 		Filter.setActiveFilter();
 	}
 });
@@ -270,6 +286,7 @@ Router.route('/pool', {
 	template: 'pool',
 	data: function () {
 		Session.set('helpFilter', "pool");
+		Session.set('activeRouteTitle', TAPi18n.__('navbar-collapse.pool', {}, Session.get('activeLanguage')));
 	}
 });
 
@@ -379,6 +396,7 @@ Router.route('/profile/:_id/overview', {
 	},
 	data: function () {
 		Session.set('helpFilter', "workloadProgress");
+		Session.set('activeRouteTitle', TAPi18n.__('profile.activity', {}, Session.get('activeLanguage')));
 	}
 });
 Router.route('/profile/:_id/billing', {
@@ -386,6 +404,7 @@ Router.route('/profile/:_id/billing', {
 	template: 'profile',
 	data: function () {
 		Session.set('helpFilter', "billing");
+		Session.set('activeRouteTitle', TAPi18n.__('profile.billing', {}, Session.get('activeLanguage')));
 	}
 });
 Router.route('/profile/:_id/membership', {
@@ -393,6 +412,7 @@ Router.route('/profile/:_id/membership', {
 	template: 'profile',
 	data: function () {
 		Session.set('helpFilter', "membership");
+		Session.set('activeRouteTitle', TAPi18n.__('profile.membership', {}, Session.get('activeLanguage')));
 	}
 });
 Router.route('/profile/:_id/notifications', {
@@ -400,6 +420,7 @@ Router.route('/profile/:_id/notifications', {
 	template: 'profile',
 	data: function () {
 		Session.set('helpFilter', "notifications");
+		Session.set('activeRouteTitle', TAPi18n.__('profile.notifications', {}, Session.get('activeLanguage')));
 	}
 });
 Router.route('/profile/:_id/settings', {
@@ -407,6 +428,7 @@ Router.route('/profile/:_id/settings', {
 	template: 'profile',
 	data: function () {
 		Session.set('helpFilter', "settings");
+		Session.set('activeRouteTitle', TAPi18n.__('profile.settings.name', {}, Session.get('activeLanguage')));
 	}
 });
 Router.route('/profile/:_id/requests', {
@@ -414,6 +436,7 @@ Router.route('/profile/:_id/requests', {
 	template: 'profile',
 	data: function () {
 		Session.set('helpFilter', "requests");
+		Session.set('activeRouteTitle', TAPi18n.__('profile.requests', {}, Session.get('activeLanguage')));
 	}
 });
 

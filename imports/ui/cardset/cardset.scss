@@ -364,6 +364,14 @@ th .field-tip {
   bottom: auto;
 }
 
+.cardListName {
+  margin-top: $margin_top_cardset_category;
+}
+
+.cardListName:first-child {
+  margin-top: 0;
+}
+
 .cardListSubject table {
   margin-bottom: 0;
   table-layout: fixed;
@@ -474,7 +482,7 @@ th .field-tip {
   padding-bottom: 15px;
 }
 
-,.markdeepCardsetTitle, .markdeepCardsetContent {
+.markdeepCardsetTitle, .markdeepCardsetContent {
   padding: $padding_cardset_content_vertical $padding_cardset_content_horizontal !important;
   font-size: $font_size_cardset_content !important;
    @media(max-width: 767px) {
@@ -536,4 +544,25 @@ th .field-tip {
 .cardPercentage {
   float: right;
   text-align: right;
+}
+
+.cardsetTitleContainer {
+  display: inline-block;
+}
+
+.projectorIcon {
+  position: absolute;
+  right: 0;
+  margin-top: 5px;
+  height: 53px;
+  cursor: pointer;
+  @media(max-width: 992px) {
+    margin-right: 10px;
+  }
+}
+
+.projectorIconButton {
+  height: 16px;
+  margin-top: -2px;
+  margin-right: 2px;
 }

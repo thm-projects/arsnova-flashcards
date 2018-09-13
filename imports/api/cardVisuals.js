@@ -111,7 +111,7 @@ export let CardVisuals = class CardVisuals {
 		Session.set('dictionaryBeolingus', 0);
 		Session.set('dictionaryLinguee', 0);
 		Session.set('dictionaryGoogle', 0);
-		if ((Session.get('fullscreen') || forceOff) && (!Route.isPresentation()) && !Session.get('workloadFullscreenMode')) {
+		if ((Session.get('fullscreen') || forceOff) && (!Route.isPresentation() && !Route.isBox() && !Route.isMemo()) && !Session.get('workloadFullscreenMode')) {
 			if (!NavigatorCheck.isIOS()) {
 				screenfull.exit();
 			}
@@ -166,7 +166,7 @@ export let CardVisuals = class CardVisuals {
 	static getCardSideColor (difficulty, cardType, backgroundStyle, activeCard) {
 		let box = "box-";
 		let style;
-		if (Session.get('contrastMode')) {
+		if (Session.get('theme') === "contrast") {
 			return box + 'white';
 		}
 		if (activeCard) {
