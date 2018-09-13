@@ -220,7 +220,7 @@ export let PomodoroTimer = class PomodoroTimer {
 						confirmButtonText: TAPi18n.__("pomodoro.continue"),
 						cancelButtonText: TAPi18n.__("pomodoro.stopBig"),
 						closeOnCancel: false,
-						closeOnClickOutside : false
+						closeOnClickOutside: false
 					},
 
 					/*If you give up before you complete your goal you get a failure sound, taken from a show me and my lady have been watching lately, and a failure box. Shame!*/
