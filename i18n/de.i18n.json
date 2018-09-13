@@ -34,7 +34,7 @@
     "backToStartButton": "Zurück zur Startseite"
   },
   "pomodoro" : {
-    "pluralPomodoro": "Pomodoro-Einheiten",
+    "pluralPomodoro": "Pomodori",
     "clickClock": "Pomodoro-Timer",
     "start": " starten",
     "startBig" : "Los geht's!",
