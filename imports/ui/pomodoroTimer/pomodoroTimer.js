@@ -59,15 +59,6 @@ Template.pomodoroTimerModal.events({
 	'input #playSlider': function () {
 		PomodoroTimer.updatePlaySlider();
 	},
-	'click #clockPreview': function () {
-		document.getElementById("bell").play();
-	},
-	'click #completePreview': function () {
-		document.getElementById("success").play();
-	},
-	'click #cancelPreview': function () {
-		document.getElementById("failure").play();
-	},
 	'change #sound1': function () {
 		PomodoroTimer.clockHandler(0);
 	},
