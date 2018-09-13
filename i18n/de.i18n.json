@@ -1563,14 +1563,14 @@
     }
   },
   "backdoor": {
-    "title": "Backdoor für den Rollentest",
-    "superAdmin": "SuperAdmin (Admin in der DB)",
-    "admin": "Admin (Editor in der DB)",
+    "title": "Rollentest",
+    "superAdmin": "SuperAdmin",
+    "admin": "Admin",
     "pro": "Pro-User",
-    "lecturer": "Dozent/in (CAS-Zugang)",
-    "edu": "Student/in (CAS-Zugang)",
-    "standard": "Standard-User (FB, Twitter, G+)",
-    "blocked": "Blockierter User",
+    "lecturer": "Dozent/in (CAS)",
+    "edu": "Student/in (CAS)",
+    "standard": "Standard-User",
+    "blocked": "Gesperrter User",
     "firstLogin": "Erstanmeldung"
   },
   "login": {
