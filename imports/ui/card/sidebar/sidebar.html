@@ -1,5 +1,5 @@
 <template name="flashcardSidebar">
-    <div id="flashcardSidebarLeft">
+    <div id="flashcardSidebarLeft" class="{{#if fullscreenActive}}fixed{{/if}}">
         {{#if isCardset}}
             {{> flashcardSidebarDefaultLeft}}
         {{/if}}
@@ -22,7 +22,7 @@
             {{> flashcardSidebarWozniakLeft}}
         {{/if}}
     </div>
-    <div id="flashcardSidebarRight">
+    <div id="flashcardSidebarRight" class="{{#if fullscreenActive}}fixed{{/if}}">
         {{#if isCardset}}
             {{> flashcardSidebarDefaultRight}}
         {{/if}}
