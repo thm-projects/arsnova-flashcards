@@ -19,24 +19,51 @@ Meteor.subscribe("userData");
 Meteor.subscribe("serverInventory");
 
 let cloudShown = true;
+let isClockInBigmode = false;
 
 
 /**
- * PomoSetup
+ * PomoSetup for switching from bottom right to middle
  */
 function pomoPosition() {
-	if (!cloudShown) {
-		$('#pomodoroTimer').detach().appendTo('#pomoA');
-		$('#clock').on('click',function () {
-			PomodoroTimer.clickClock();
-		});
-	} else if (cloudShown) {
-		$('#pomodoroTimer').detach().appendTo('#pomoB');
-		$('#clock').on('click',function () {
-			PomodoroTimer.clickClock();
-		});
+	if (!isClockInBigmode) {
+		if (!cloudShown) {
+			$('#pomodoroTimer').detach().appendTo('#pomoA');
+			$('#clock').on('click', function () {
+				PomodoroTimer.clickClock();
+			});
+		} else if (cloudShown) {
+			$('#pomodoroTimer').detach().appendTo('#pomoB');
+			$('#clock').on('click', function () {
+				PomodoroTimer.clickClock();
+			});
+		}
 	}
 }
+
+// Pomodoro full-size
+export let StaticWelcomeMethod = class StaticWelcomeMethod {
+	static showPomodoroFullsize() {
+		console.log("Full wurde aufgerufen vor dem if");
+		if ($(document).has('#pomoA').length) {
+			console.log("Full wurde aufgerufen in if");
+			$('#bigClockDiv').addClass('zIndexFirstPrio bigDiv');
+			$('#welcome').addClass('zIndexFirstPrio');
+			$('#pomodoroTimer').detach().appendTo('#bigClockDiv');
+			isClockInBigmode = true;
+		}
+	}
+
+	static showPomodoroNormal() {
+		if ($(document).has('#pomoA').length) {
+			console.log("normal wurde aufgerufen");
+			$('#bigClockDiv').removeClass('zIndexFirstPrio bigDiv');
+			$('#welcome').removeClass('zIndexFirstPrio');
+			isClockInBigmode = false;
+			pomoPosition();
+		}
+	}
+};
 
 
 function setActiveLanguage() {

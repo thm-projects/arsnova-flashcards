@@ -196,3 +196,15 @@
   }
 }
 
+// setting pomodoro in focus on start
+
+.zIndexFirstPrio {
+  z-index: 20;
+}
+
+.bigDiv {
+  position: absolute;
+  height: 100%;
+  width:  100%;
+  background-color:rgba(0, 0, 0, 0.8);
+}
