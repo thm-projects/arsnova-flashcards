@@ -27,8 +27,8 @@ let breakRunning = false;
 
 //which pomodoro sound
 let soundBell = true;
-let soundSuccess = false;
-let soundFail = false;
+let soundSuccess = true;
+let soundFail = true;
 
 export let PomodoroTimer = class PomodoroTimer {
 
