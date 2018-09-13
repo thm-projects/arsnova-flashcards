@@ -189,32 +189,45 @@ export let PomodoroTimer = class PomodoroTimer {
 		if (hourAmmount && minuteAmmount) {
 			isAnd = "and";
 		}
-		if (hourAmmount === 1 && isAnd === "") {
-			hourString = " <b>hour</b> ";
-		} else if (hourAmmount === 1) {
-			hourString = " <b>" + hourAmmount + " hour</b> ";
+		if (hourAmmount === 1) {
+			hourString = " <b>" + hourAmmount + TAPi18n.__("pomodoro.hour") +"</b>" ;
 		} else if (hourAmmount > 1) {
-			hourString = " <b>" + hourAmmount + " hours</b> ";
+			hourString = " <b>" + hourAmmount +  TAPi18n.__("pomodoro.hours") + "</b> ";
 		}
 		if (minuteAmmount === 1) {
-			minuteString = " <b>" + minuteAmmount + " minute</b> ";
+			minuteString = " <b>" + minuteAmmount +  TAPi18n.__("pomodoro.minute") + "</b> ";
 		} else if (minuteAmmount > 1) {
-			minuteString = " <b>" + minuteAmmount + " minutes</b> ";
+			minuteString = " <b>" + minuteAmmount +  TAPi18n.__("pomodoro.minutes2") + "</b> ";
 		}
-		$("#workTime").html("Reserve the next" + hourString + isAnd + minuteString + "for getting stuff done!");
+		if(minuteAmmount < 1) {
+			$("#workTime").html(TAPi18n.__("pomodoro.SessionTime1") + hourString + TAPi18n.__("pomodoro.SessionTime2"));
+		}else if(hourAmmount < 1){
+			$("#workTime").html(TAPi18n.__("pomodoro.SessionTime1")  + minuteString + TAPi18n.__("pomodoro.SessionTime2"));
+		}else{
+			$("#workTime").html(TAPi18n.__("pomodoro.SessionTime1") + hourString + TAPi18n.__("pomodoro.isAnd") + minuteString + TAPi18n.__("pomodoro.SessionTime2"));
+		}
 	}
 
 	/*if not in a session, clicking the clock opens the start up modal to begin one, and if you are in a session, clicking pops up a warning dialog before exiting the session  */
 	static clickClock () {
 		/*okay, so I tried this pen on my android phone and no sounds would play. Turns out that you need to attach sounds to a click function or they won't run on chrome for android. This empty sound allows the success and failure sounds to play, but not the bell sound. Oh well, this app wouldn't work on a phone anyway, because the screen would lock and exit it.*/
 		document.getElementById("chromeMobile").play();
+		let stillOpenString = "";
+		let notDoneString = "";
+		if ((goalPoms - totalPoms) > 1) {
+			stillOpenString ="<b>" + (goalPoms - totalPoms) + "</b>" + TAPi18n.__("pomodoro.stillOpen2");
+			notDoneString ="<b>" + goalPoms + "</b>" + TAPi18n.__("pomodoro.notDone3");
+		}else{
+			stillOpenString = "<b>" + TAPi18n.__("pomodoro.onePomo") + "</b>" + TAPi18n.__("pomodoro.stillOpen4");
+			notDoneString = "<b>" + TAPi18n.__("pomodoro.onePomo1") + "</b>" + TAPi18n.__("pomodoro.notDone4");
+		}
 		if (pomRunning || breakRunning) {
 			/*if you still haven't reached your goal, you are encouraged with an update of how many pomodoros and minutes you have left to reach it.*/
 			if (totalPoms < goalPoms) {
 				swal({
 						title: TAPi18n.__("pomodoro.fastgoing"),
 						type: "warning",
-						text: TAPi18n.__("pomodoro.stillOpen1") + " <b>" + (goalPoms - totalPoms) + "</b>" + TAPi18n.__("pomodoro.stillOpen2") + "<br>" + TAPi18n.__("pomodoro.stillOpen3"),
+						text: TAPi18n.__("pomodoro.stillOpen1") + " <b>" +  stillOpenString + "<br>" + TAPi18n.__("pomodoro.stillOpen3"),
 						html: true,
 						showCancelButton: true,
 						confirmButtonText: TAPi18n.__("pomodoro.continue"),
@@ -231,7 +244,7 @@ export let PomodoroTimer = class PomodoroTimer {
 							}
 							sweetAlert({
 								title: TAPi18n.__("pomodoro.notDone"),
-								text: TAPi18n.__("pomodoro.notDone2") + "<b>" + goalPoms + " </b> " + TAPi18n.__("pomodoro.notDone3"),
+								text: TAPi18n.__("pomodoro.notDone2")  + notDoneString,
 								html: true,
 								type: "error"
 							});
@@ -246,6 +259,9 @@ export let PomodoroTimer = class PomodoroTimer {
 							document.getElementById("breakArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
 						}
 					});
+
+
+
 			} else {
 				/*So if you've completed your goal for the session you get this frien dlier pop up congradulating you and lightly suggesting you keep working.*/
 				swal({
@@ -254,7 +270,7 @@ export let PomodoroTimer = class PomodoroTimer {
 						text: TAPi18n.__("pomodoro.reachedgoal") + goalPoms + TAPi18n.__("pomodoro.momentum") + "! " + TAPi18n.__("pomodoro.session"),
 						html: true,
 						showCancelButton: true,
-						confirmButtonText: "Stop.",
+						confirmButtonText: TAPi18n.__("pomodoro.stopBig"),
 						cancelButtonText: TAPi18n.__("pomodoro.continue"),
 						closeOnConfirm: false
 					},

@@ -62,14 +62,25 @@
     "stillOpen1": "Du hast noch",
     "stillOpen2": " Pomodori.",
     "stillOpen3" : "Willst du wirklich schon aufhören?",
+    "stillOpen4" : " Pomodoro.",
     "notDone": "Du hast deine Lernzeit nicht eingehalten!",
     "notDone2": "Du hast dein Ziel von ",
     "notDone3": " Pomodori leider nicht erreicht!",
+    "notDone4": " Pomodoro leider nicht erreicht!",
     "learn" : "Lernzeit in Minuten",
     "break1" : "Pause in Minuten",
     "schoolBell" : "Schulgong zum Ende der eingestellten Zeiten",
     "learningSession" : "Ton beim Erreichen aller Pomodori",
-    "cancelSession" : "Ton beim vorzeitigen Abbrechen"
+    "cancelSession" : "Ton beim vorzeitigen Abbrechen",
+    "SessionTime1": "Du brauchst",
+    "SessionTime2" : "um deine Pomodoro-Lerneinheit zu beenden",
+    "hour" : " Stunde ",
+    "hours" : " Stunden",
+    "minute" : " Minute",
+    "minutes2" : " Minuten",
+    "isAnd": "und",
+    "onePomo" : "eine",
+    "onePomo1" : "einer"
   },
 
 
