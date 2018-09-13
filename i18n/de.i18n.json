@@ -80,7 +80,8 @@
     "minutes2" : " Minuten",
     "isAnd": "und",
     "onePomo" : "eine",
-    "onePomo1" : "einer"
+    "onePomo1" : "einer",
+    "linkToPom" : "/learning#Pomodoro "
   },
 
 
