@@ -46,7 +46,6 @@ export let StaticWelcomeMethod = class StaticWelcomeMethod {
 	static showPomodoroFullsize() {
 		if ($(document).has('#pomoA').length) {
 			$('#bigClockDiv').addClass('zIndexFirstPrio bigDiv');
-			$('#welcome').addClass('zIndexFirstPrio');
 			$('#pomodoroTimer').detach().appendTo('#bigClockDiv');
 			isClockInBigmode = true;
 		}
@@ -55,7 +54,6 @@ export let StaticWelcomeMethod = class StaticWelcomeMethod {
 	static showPomodoroNormal() {
 		if ($(document).has('#pomoA').length) {
 			$('#bigClockDiv').removeClass('zIndexFirstPrio bigDiv');
-			$('#welcome').removeClass('zIndexFirstPrio');
 			isClockInBigmode = false;
 			pomoPosition();
 		}
