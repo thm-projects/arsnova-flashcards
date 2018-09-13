@@ -105,18 +105,18 @@
                                     Sounds</label><br>
                                 <input type="checkbox" id="sound1" value="Clock" checked>
                                 <label for="sound1">{{_ "pomodoro.schoolBell"}}</label><br>
-                                <audio id="bell" style="width: 260px;" controls controlsList="nodownload">
-                                    <source src="/audio/Schulgong.mp3" type="audio/mp3">
+                                <audio id="bell" style="width: 260px;" controls controlsList="nodownload noremoteplayback">
+                                    <source src="/audio/Schulgong.mp3" type="audio/mpeg">
                                 </audio><br>
                                 <input type="checkbox" id="sound2" value="Complete" checked>
                                 <label for="sound2">{{_ "pomodoro.learningSession"}}</label><br>
-                                <audio id="bell" style="width: 260px" controls controlsList="nodownload">
-                                    <source src="/audio/success.mp3" type="audio/mp3">
+                                <audio id="bell" style="width: 260px" controls controlsList="nodownload noremoteplayback">
+                                    <source src="/audio/success.mp3" type="audio/mpeg">
                                 </audio><br>
                                 <input type="checkbox" id="sound3" value="Cancel" checked>
                                 <label for="sound3">{{_ "pomodoro.cancelSession"}}</label><br>
-                                    <audio id="bell" style="width: 260px" controls controlsList="nodownload">
-                                        <source src="/audio/fail.mp3" type="audio/mp3">
+                                    <audio id="bell" style="width: 260px" controls controlsList="nodownload noremoteplayback">
+                                        <source src="/audio/fail.mp3" type="audio/mpeg">
                                     </audio><br>
                             </div>
                         </div>
