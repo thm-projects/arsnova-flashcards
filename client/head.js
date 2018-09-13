@@ -20,7 +20,7 @@ window.addEventListener("load", function () {
 			}
 		},
 		"theme": "classic",
-		"position": "bottom-right",
+		"position": "bottom-left",
 
 		"content": {
 			"message": Meteor.settings.public.welcome.title.first + "." + Meteor.settings.public.welcome.title.last + " verwendet Cookies. Wenn du auf dieser Seite bleibst, stimmst du der Cookie-Nutzung zu.",
