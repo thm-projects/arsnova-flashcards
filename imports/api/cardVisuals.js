@@ -129,7 +129,6 @@ export let CardVisuals = class CardVisuals {
 			$("#collapseLecture-" + card_id).removeClass('in');
 			editorFullScreenActive = false;
 			Session.set('fullscreen', false);
-			this.resizeFlashcard();
 		} else {
 			if (!NavigatorCheck.isIOS()) {
 				screenfull.request();
@@ -146,7 +145,6 @@ export let CardVisuals = class CardVisuals {
 				$("#markdeepEditorContent").css("display", 'none');
 			}
 			Session.set('fullscreen', true);
-			this.resizeFlashcard();
 		}
 	}
 
