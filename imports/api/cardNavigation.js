@@ -8,6 +8,8 @@ import {CardIndex} from "./cardIndex";
 import {Cards} from "./cards";
 import {Cardsets} from "./cardsets";
 
+let keyEventsUnlocked = true;
+
 export let CardNavigation = class CardNavigation {
 
 	static selectButton (index = 1) {
@@ -223,11 +225,16 @@ export let CardNavigation = class CardNavigation {
 		cardContent.scrollTop(cardContent.scrollTop() + scrollValue);
 	}
 
+	static enableKeyEvents () {
+		keyEventsUnlocked = true;
+	}
+
 	static keyEvents (event) {
 		let keyCodes = [];
 
 		CardVisuals.toggleZoomContainer(true);
-		if (!$('#input-search').is(":focus") && !$('#lightbox').is(":visible")) {
+		if (!$('#input-search').is(":focus") && !$('#lightbox').is(":visible") && keyEventsUnlocked) {
+			keyEventsUnlocked = false;
 			if (Route.isCardset() || Route.isBox() || Route.isMemo() || Route.isEditMode()) {
 				keyCodes = [9];
 			}
