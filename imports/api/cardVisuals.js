@@ -42,7 +42,6 @@ export let CardVisuals = class CardVisuals {
 	 * Resizes flashcards to din a6 format
 	 */
 	static resizeFlashcard () {
-		console.log("resize card");
 		let contentEditor = $('#contentEditor');
 		let newFlashcardHeight;
 		if (editorFullScreenActive) {
