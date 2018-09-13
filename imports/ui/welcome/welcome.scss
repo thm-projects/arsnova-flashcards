@@ -152,7 +152,7 @@
 }
 
 #pomoB #instructions {
-  font-size: small;
+  font-size: medium;
 
 }
 
@@ -162,8 +162,8 @@
   z-index: 10000;
   max-height: 60vw;
 
-  @media (max-height:520px){
-    display:none;
+  @media (max-height: 520px) {
+    display: none;
   }
 
   @media (max-width: 701px) {
@@ -175,35 +175,34 @@
       width: 40vw;
     }
     @media (max-height: 710px) {
+      width: 40vw;
+    }
+    @media (max-height: 620px) {
       width: 30vw;
     }
-    @media (max-height: 595px) {
-      width: 20vw;
-    }
 
   }
-  @media (min-width: 702px) and (max-height:700px) {
+  @media (min-width: 702px) and (max-height: 700px) {
 
-    @media (min-width: 702px) and (max-height:700px){
+    @media (min-width: 702px) and (max-height: 700px) {
       max-width: 20vw;
     }
-    @media (min-width: 1200px) and (max-height:700px){
-      display:none;
+    @media (min-width: 1200px) and (max-height: 700px) {
+      display: none;
     }
-    @media (max-height: 645px){
-      width: 10vw;
+    @media (max-height: 645px) {
+      width: 20vw;
     }
   }
 
-}
-
-.testing {
-  height: 300px;
 }
 
 #pomoA #instructions {
-  font-size: small;
-  @media (max-height: 700px) {
+  font-size: medium;
+  @media (max-height: 520px) {
+    display: none;
+  }
+  @media (min-width: 1200px) and (max-height: 700px) {
     display: none;
   }
 }
