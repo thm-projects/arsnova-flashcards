@@ -32,7 +32,7 @@ let soundFail = false;
 
 export let PomodoroTimer = class PomodoroTimer {
 
-	static clockHandler(option) {
+	static clockHandler (option) {
 		if (option === 0) {
 			soundBell = !soundBell;
 		} else if (option === 1) {
