@@ -266,7 +266,10 @@
                                     this.shuffled}}} {{{getBonusLabel this.learningActive}}}</div>
                             <h4 id="cardsetTitle">{{name}}</h4>
                         </div>
-                        <img src="/img/projector_blue.png" class="hidden-xs projectorIcon" title="{{_ "presentation.create"}}">
+                        {{#unless isInBonus}}
+                            <img src="/img/projector_blue.png" class="hidden-xs projectorIcon"
+                                 title="{{_ "presentation.create"}}">
+                        {{/unless}}
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4 infoBox">
                     <span class="collapseCardsetInfoContainer">
@@ -307,7 +310,9 @@
                             {{#if gotPresentation}}
                                 <div class="btn-group">
                                     <button id="startPresentation"
-                                            class="btn btn-sm btn-raised presentationBtn" {{disableIfOffline}}><img src="/img/projector_white.png" class="projectorIconButton" title="{{_ "presentation.create"}}"> {{_ "presentation.create"}}
+                                            class="btn btn-sm btn-raised presentationBtn" {{disableIfOffline}}><img
+                                            src="/img/projector_white.png" class="projectorIconButton"
+                                            title="{{_ "presentation.create"}}"> {{_ "presentation.create"}}
                                     </button>
                                 </div>
                             {{/if}}
