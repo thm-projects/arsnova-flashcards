@@ -133,12 +133,12 @@
   width: 150px;
 
   position: absolute;
-  bottom: 7vh;
-  right: 5vw;
+  bottom: 6rem;
+  left: 1rem;
   z-index: 99;
 
   @media (max-width: 768px) {
-    right: 3vw;
+    left: 3vw;
   }
   @media (min-width: 950px) {
     height: 200px;
@@ -147,54 +147,52 @@
 
 }
 
-#pomoB #clock {
-
+#pomoA > #pomodoroTimer > .row {
+  margin-top: -5.5rem;
+  div {
+    #clock {
+      width: 60vw;
+      z-index: 10000;
+      max-height: 60vw;
+      @media (max-height: 520px) {
+        display: none;
+      }
+      @media (max-width: 701px) {
+        @media (max-height: 850px) {
+          width: 50vw;
+        }
+        @media (max-height: 780px) {
+          width: 55vw;
+        }
+        @media (max-height: 710px) {
+          width: 50vw;
+        }
+        @media (max-height: 595px) {
+          width: 30vw;
+        }
+      }
+      @media (min-width: 702px) and (max-height: 700px) {
+        @media (min-width: 702px) and (max-height: 700px) {
+          max-width: 30vw;
+        }
+        @media (min-width: 1200px) and (max-height: 700px) {
+          display: none;
+        }
+        @media (max-height: 645px) {
+          width: 10vw;
+        }
+      }
+    }
+  }
 }
-
-
-
-#pomoA #clock {
-
-  width: 60vw;
-  z-index: 10000;
-  max-height: 60vw;
-
-  @media (max-height:520px){
-    display:none;
+#instructions {
+  @media (max-height: 520px) {
+    display: none;
   }
-
-  @media (max-width: 701px) {
-
-    @media (max-height: 850px) {
-      width: 50vw;
-    }
-    @media (max-height: 780px) {
-      width: 40vw;
-    }
-    @media (max-height: 710px) {
-      width: 30vw;
-    }
-    @media (max-height: 595px) {
-      width: 20vw;
-    }
-
-  }
-  @media (min-width: 702px) and (max-height:700px) {
-
-    @media (min-width: 702px) and (max-height:700px){
-      max-width: 20vw;
-    }
-    @media (min-width: 1200px) and (max-height:700px){
-      display:none;
-    }
-    @media (max-height: 645px){
-      width: 10vw;
+  @media (min-width: 702px) and (max-height: 700px) {
+    @media (min-width: 1200px) and (max-height: 700px) {
+      display: none;
     }
   }
-
-}
-
-.testing {
-  height: 300px;
 }
 
