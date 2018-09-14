@@ -34,6 +34,10 @@ let soundBell = true;
 let soundSuccess = true;
 let soundFail = true;
 
+let bellSound = new Audio('/audio/Schulgong.mp3');
+let failSound = new Audio('/audio/fail.mp3');
+let successSound = new Audio('/audio/success.mp3');
+
 export let PomodoroTimer = class PomodoroTimer {
 
 	static clockHandler(option) {
@@ -130,7 +134,7 @@ export let PomodoroTimer = class PomodoroTimer {
 
 			/*the bell to signify the end of a period*/
 			if (soundBell) {
-				document.getElementById("bell").play();
+				bellSound.play();
 			}
 
 			/*a work period just ended, so increase the total pomodoros done by one.*/
@@ -181,7 +185,7 @@ export let PomodoroTimer = class PomodoroTimer {
 			breakRunning = false;
 
 			if (soundBell) {
-				document.getElementById("bell").play();
+				bellSound.play();
 			}
 
 			document.getElementById("progressArc").setAttribute("d", this.describeArc(0, 0, 0, 0, 0));
@@ -276,7 +280,7 @@ export let PomodoroTimer = class PomodoroTimer {
 					function (isConfirm) {
 						if (!isConfirm) {
 							if (soundFail) {
-								new Audio('/audio/fail.mp3').play();
+								failSound.play();
 							}
 							sweetAlert({
 								title: TAPi18n.__("pomodoro.notDone"),
@@ -317,7 +321,7 @@ export let PomodoroTimer = class PomodoroTimer {
 					function (isConfirm) {
 						if (isConfirm) {
 							if (soundSuccess) {
-								new Audio('/audio/success.mp3').play();
+								successSound.play();
 							}
 
 							sweetAlert({
