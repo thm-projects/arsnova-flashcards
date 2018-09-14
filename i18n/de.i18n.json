@@ -508,7 +508,7 @@
       "backDemo": "Zurück zur Demo-Kartei"
     },
     "help": {
-      "title": "Präsentationsmodus-Hilfe",
+      "title": "Präsentationsmodus",
       "button": {
         "confirm": "Weiter zur Präsentation"
       }
@@ -1581,9 +1581,9 @@
       "text": "Aktuell keine nach Lernplan zu lernenden Karten"
     },
     "help": {
-      "title": "Wozniak-Hilfe",
+      "title": "Woźniak-Hilfe",
       "button": {
-        "confirm": "Weiter zum Wozniak-Lernmodus"
+        "confirm": "Weiter zum Woźniak-Lernmodus"
       }
     }
   }
