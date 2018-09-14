@@ -231,6 +231,9 @@ Meteor.startup(function () {
 	$(document).on('keydown', function (event) {
 		CardNavigation.keyEvents(event);
 	});
+	$(document).on('keyup', function () {
+		CardNavigation.enableKeyEvents();
+	});
 });
 
 /*

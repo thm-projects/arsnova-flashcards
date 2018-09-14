@@ -1,4 +1,6 @@
 import "./backToCardset.html";
+import {Route} from "../../../../api/route";
+import {PomodoroTimer} from "../../../../api/pomodoroTimer";
 
 /*
  * ############################################################################
@@ -8,8 +10,12 @@ import "./backToCardset.html";
 
 Template.cardSidebarItemBackToCardset.events({
 	"click .backToCardset": function () {
-		Router.go('cardsetdetailsid', {
-			_id: Router.current().params._id
-		});
+		if ((Route.isBox() || Route.isMemo()) && PomodoroTimer.isPomodoroRunning()) {
+			PomodoroTimer.clickClock();
+		} else {
+			Router.go('cardsetdetailsid', {
+				_id: Router.current().params._id
+			});
+		}
 	}
 });

@@ -2,6 +2,7 @@
 import "./pomodoroTimer.html";
 import {Template} from "meteor/templating";
 import {PomodoroTimer} from "../../api/pomodoroTimer";
+import {NavigatorCheck} from "../../api/navigatorCheck";
 
 /*
  * ############################################################################
@@ -31,6 +32,12 @@ Template.pomodoroTimer.events({
  * ############################################################################
  */
 
+Template.pomodoroTimerModal.helpers({
+	isiOS: function () {
+		return NavigatorCheck.isIOS();
+	}
+});
+
 Template.pomodoroTimerModal.onRendered(function () {
 	$("#pomodoroTimerModal").on('hidden.bs.modal', function () {
 		PomodoroTimer.close();
@@ -58,15 +65,6 @@ Template.pomodoroTimerModal.events({
 	},
 	'input #playSlider': function () {
 		PomodoroTimer.updatePlaySlider();
-	},
-	'click #clockPreview': function () {
-		document.getElementById("bell").play();
-	},
-	'click #completePreview': function () {
-		document.getElementById("success").play();
-	},
-	'click #cancelPreview': function () {
-		document.getElementById("failure").play();
 	},
 	'change #sound1': function () {
 		PomodoroTimer.clockHandler(0);

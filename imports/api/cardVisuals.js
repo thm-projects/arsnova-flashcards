@@ -42,7 +42,6 @@ export let CardVisuals = class CardVisuals {
 	 * Resizes flashcards to din a6 format
 	 */
 	static resizeFlashcard () {
-		console.log("resize card");
 		let contentEditor = $('#contentEditor');
 		let newFlashcardHeight;
 		if (editorFullScreenActive) {
@@ -130,7 +129,6 @@ export let CardVisuals = class CardVisuals {
 			$("#collapseLecture-" + card_id).removeClass('in');
 			editorFullScreenActive = false;
 			Session.set('fullscreen', false);
-			this.resizeFlashcard();
 		} else {
 			if (!NavigatorCheck.isIOS()) {
 				screenfull.request();
@@ -147,7 +145,6 @@ export let CardVisuals = class CardVisuals {
 				$("#markdeepEditorContent").css("display", 'none');
 			}
 			Session.set('fullscreen', true);
-			this.resizeFlashcard();
 		}
 	}
 

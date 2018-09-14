@@ -1,5 +1,8 @@
 /*This is a ton of script, mostly popups, so strap in for a wild ride!*/
 /*endPom is the angle of the minute hand at which the work period will end.*/
+import {StaticWelcomeMethod} from "../ui/welcome/welcome";
+import {Route} from "./route";
+
 let endPom = 0;
 
 /*the angle at which the break will end*/
@@ -24,15 +27,16 @@ let breakLength = 5;
 /*is it running?*/
 let pomRunning = false;
 let breakRunning = false;
-
+let success = "";
+let momentum = "";
 //which pomodoro sound
 let soundBell = true;
-let soundSuccess = false;
-let soundFail = false;
+let soundSuccess = true;
+let soundFail = true;
 
 export let PomodoroTimer = class PomodoroTimer {
 
-	static clockHandler (option) {
+	static clockHandler(option) {
 		if (option === 0) {
 			soundBell = !soundBell;
 		} else if (option === 1) {
@@ -43,7 +47,7 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	/*The following code snippet is a life saver and was found on stack overflow. It allows you to draw an arc around a circle in svg using only the polar coordinates.*/
-	static polarToCartesian (centerX, centerY, radius, angleInDegrees) {
+	static polarToCartesian(centerX, centerY, radius, angleInDegrees) {
 		let angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
 
 		return {
@@ -52,7 +56,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		};
 	}
 
-	static describeArc (x, y, radius, startAngle, endAngle) {
+	static describeArc(x, y, radius, startAngle, endAngle) {
 		let start = this.polarToCartesian(x, y, radius, endAngle);
 		let end = this.polarToCartesian(x, y, radius, startAngle);
 
@@ -67,12 +71,33 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	/*this function rotates the hands of the clock based on the time.*/
-	static r (el, deg) {
+	static r(el, deg) {
 		el.setAttribute('transform', 'rotate(' + deg + ' 50 50)');
 	}
 
 	/*the arcs around the clock get redrawn every second, as do the hands on the clock, thanks to this setInterval function. It runs every second.*/
-	static interval () {
+	static interval() {
+		/*you succeeded so you get the success sound and a success message. good for you! */
+		if (totalPoms <= 1 && (goalPoms - totalPoms) <= 1) {
+			success = TAPi18n.__("pomodoro.success1") + TAPi18n.__("pomodoro.onePomo") + TAPi18n.__("pomodoro.success4") + TAPi18n.__("pomodoro.onePomo1") + TAPi18n.__("pomodoro.success5");
+		} else if (totalPoms <= 1) {
+			success = TAPi18n.__("pomodoro.success1") + TAPi18n.__("pomodoro.onePomo") + TAPi18n.__("pomodoro.success4") + totalPoms * pomLength + TAPi18n.__("pomodoro.success5");
+		} else {
+			success = TAPi18n.__("pomodoro.success1") + totalPoms + TAPi18n.__("pomodoro.success4") + totalPoms * pomLength + TAPi18n.__("pomodoro.success5");
+		}
+
+		if (goalPoms === 1) {
+			momentum = TAPi18n.__("pomodoro.momentum1");
+		} else {
+			momentum = TAPi18n.__("pomodoro.momentum");
+		}
+
+		if (document.getElementById("pomodoroMin") == null) {
+			pomRunning = false;
+			breakRunning = false;
+			totalPoms = 0;
+			return;
+		}
 		/*here, we get the current time, and since there are 360 degrees around a circle, and 60 minutes in an hour, each minute is 360/60 = 6 degrees of rotation. multiply that by the number of minutes and add the seconds and their corresponding degree value and you get a minute hand that moves every second. Similar with the hour hand.*/
 		let d = new Date();
 		this.r(document.getElementById("pomodoroMin"), 6 * d.getMinutes() + d.getSeconds() / 10);
@@ -119,7 +144,7 @@ export let PomodoroTimer = class PomodoroTimer {
 			/*the first sweet alert! This is what pops up when you finish a pomodoro. It congradulates the user and lets them start their break when they are ready. There is no option to stop the session in this box, that function is relegated to the second click on the clock, as noted by the title.*/
 			swal({
 					title: TAPi18n.__("pomodoro.goodJob"),
-					text: TAPi18n.__("pomodoro.success1") + "<b> " + totalPoms + TAPi18n.__("pomodoro.success2") + "</b> " + totalPoms * pomLength + " " + TAPi18n.__("pomodoro.success3"),
+					text: success,
 					type: "success",
 					html: true,
 					confirmButtonText: TAPi18n.__("pomodoro.continue")
@@ -179,7 +204,7 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	/*updates the sentence in the modal under the place where you set your goal for the session with the correct total amount of time it will take to complete that many pomodoros. With correct grammar, which is why it's such a long function.*/
-	static updateTimeParagraph () {
+	static updateTimeParagraph() {
 		let longBreak = breakLength * 3;
 		let isAnd = "";
 		let hourAmmount = Math.floor(((pomLength + breakLength) * goalPoms + (Math.floor(goalPoms / 4) * longBreak)) / 60);
@@ -189,32 +214,47 @@ export let PomodoroTimer = class PomodoroTimer {
 		if (hourAmmount && minuteAmmount) {
 			isAnd = "and";
 		}
-		if (hourAmmount === 1 && isAnd === "") {
-			hourString = " <b>hour</b> ";
-		} else if (hourAmmount === 1) {
-			hourString = " <b>" + hourAmmount + " hour</b> ";
+		if (hourAmmount === 1) {
+			hourString = " <b>" + hourAmmount + TAPi18n.__("pomodoro.hour") + "</b>";
 		} else if (hourAmmount > 1) {
-			hourString = " <b>" + hourAmmount + " hours</b> ";
+			hourString = " <b>" + hourAmmount + TAPi18n.__("pomodoro.hours") + "</b> ";
 		}
 		if (minuteAmmount === 1) {
-			minuteString = " <b>" + minuteAmmount + " minute</b> ";
+			minuteString = " <b>" + minuteAmmount + TAPi18n.__("pomodoro.minute") + "</b> ";
 		} else if (minuteAmmount > 1) {
-			minuteString = " <b>" + minuteAmmount + " minutes</b> ";
+			minuteString = " <b>" + minuteAmmount + TAPi18n.__("pomodoro.minutes2") + "</b> ";
 		}
-		$("#workTime").html("Reserve the next" + hourString + isAnd + minuteString + "for getting stuff done!");
+		if (minuteAmmount < 1) {
+			$("#workTime").html(TAPi18n.__("pomodoro.SessionTime1") + hourString + TAPi18n.__("pomodoro.SessionTime2"));
+		} else if (hourAmmount < 1) {
+			$("#workTime").html(TAPi18n.__("pomodoro.SessionTime1") + minuteString + TAPi18n.__("pomodoro.SessionTime2"));
+		} else {
+			$("#workTime").html(TAPi18n.__("pomodoro.SessionTime1") + hourString + TAPi18n.__("pomodoro.isAnd") + minuteString + TAPi18n.__("pomodoro.SessionTime2"));
+		}
 	}
 
 	/*if not in a session, clicking the clock opens the start up modal to begin one, and if you are in a session, clicking pops up a warning dialog before exiting the session  */
-	static clickClock () {
+	static clickClock() {
 		/*okay, so I tried this pen on my android phone and no sounds would play. Turns out that you need to attach sounds to a click function or they won't run on chrome for android. This empty sound allows the success and failure sounds to play, but not the bell sound. Oh well, this app wouldn't work on a phone anyway, because the screen would lock and exit it.*/
 		document.getElementById("chromeMobile").play();
+		let stillOpenString = "";
+		let notDoneString = "";
+
+
+		if ((goalPoms - totalPoms) > 1) {
+			stillOpenString = "<b>" + (goalPoms - totalPoms) + "</b>" + TAPi18n.__("pomodoro.stillOpen2");
+			notDoneString = "<b>" + goalPoms + "</b>" + TAPi18n.__("pomodoro.notDone3");
+		} else {
+			stillOpenString = "<b>" + TAPi18n.__("pomodoro.onePomo") + "</b>" + TAPi18n.__("pomodoro.stillOpen4");
+			notDoneString = "<b>" + TAPi18n.__("pomodoro.onePomo1") + "</b>" + TAPi18n.__("pomodoro.notDone4");
+		}
 		if (pomRunning || breakRunning) {
 			/*if you still haven't reached your goal, you are encouraged with an update of how many pomodoros and minutes you have left to reach it.*/
 			if (totalPoms < goalPoms) {
 				swal({
 						title: TAPi18n.__("pomodoro.fastgoing"),
 						type: "warning",
-						text: TAPi18n.__("pomodoro.stillOpen1") + " <b>" + (goalPoms - totalPoms) + "</b>" + TAPi18n.__("pomodoro.stillOpen2") + "<br>" + TAPi18n.__("pomodoro.stillOpen3"),
+						text: TAPi18n.__("pomodoro.stillOpen1") + stillOpenString + TAPi18n.__("pomodoro.stillOpen3"),
 						html: true,
 						showCancelButton: true,
 						confirmButtonText: TAPi18n.__("pomodoro.continue"),
@@ -227,11 +267,11 @@ export let PomodoroTimer = class PomodoroTimer {
 					function (isConfirm) {
 						if (!isConfirm) {
 							if (soundFail) {
-								document.getElementById("failure").play();
+								new Audio('/audio/fail.mp3').play();
 							}
 							sweetAlert({
 								title: TAPi18n.__("pomodoro.notDone"),
-								text: TAPi18n.__("pomodoro.notDone2") + "<b>" + goalPoms + " </b> " + TAPi18n.__("pomodoro.notDone3"),
+								text: TAPi18n.__("pomodoro.notDone2") + notDoneString,
 								html: true,
 								type: "error"
 							});
@@ -244,6 +284,13 @@ export let PomodoroTimer = class PomodoroTimer {
 							document.getElementById("progressArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
 							document.getElementById("pomArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
 							document.getElementById("breakArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
+							/* Method for WelcomePage */
+							StaticWelcomeMethod.showPomodoroNormal();
+							if ((Route.isBox() || Route.isMemo())) {
+								Router.go('cardsetdetailsid', {
+									_id: Router.current().params._id
+								});
+							}
 						}
 					});
 			} else {
@@ -251,22 +298,22 @@ export let PomodoroTimer = class PomodoroTimer {
 				swal({
 						title: TAPi18n.__("pomodoro.productivity"),
 						type: "warning",
-						text: TAPi18n.__("pomodoro.reachedgoal") + goalPoms + TAPi18n.__("pomodoro.momentum") + "! " + TAPi18n.__("pomodoro.session"),
+						text: TAPi18n.__("pomodoro.reachedgoal") + goalPoms + momentum + "! " + TAPi18n.__("pomodoro.session"),
 						html: true,
 						showCancelButton: true,
-						confirmButtonText: "Stop.",
+						confirmButtonText: TAPi18n.__("pomodoro.stopBig"),
 						cancelButtonText: TAPi18n.__("pomodoro.continue"),
 						closeOnConfirm: false
 					},
 					function (isConfirm) {
-						/*you succeeded so you get the success sound and a success message. good for you! */
 						if (isConfirm) {
 							if (soundSuccess) {
-								document.getElementById("success").play();
+								new Audio('/audio/success.mp3').play();
 							}
+
 							sweetAlert({
 								title: TAPi18n.__("pomodoro.goodJob"),
-								text: TAPi18n.__("pomodoro.success1") + totalPoms + TAPi18n.__("pomodoro.success2") + totalPoms * pomLength + TAPi18n.__("pomodoro.success3"),
+								text: success,
 								html: true,
 								type: "success"
 							});
@@ -279,6 +326,13 @@ export let PomodoroTimer = class PomodoroTimer {
 							document.getElementById("progressArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
 							document.getElementById("pomArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
 							document.getElementById("breakArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
+							/* Method for WelcomePage */
+							StaticWelcomeMethod.showPomodoroNormal();
+							if ((Route.isBox() || Route.isMemo())) {
+								Router.go('cardsetdetailsid', {
+									_id: Router.current().params._id
+								});
+							}
 						}
 					});
 			}
@@ -289,20 +343,20 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	/*gets the goal number of pomodoros*/
-	static updatePomNumSlider () {
+	static updatePomNumSlider() {
 		$('#pomQuantity').val($('#pomNumSlider').val());
 		goalPoms = $('#pomNumSlider').val();
 		this.updateTimeParagraph();
 	}
 
-	static updatePomQuantity () {
+	static updatePomQuantity() {
 		$('#pomNumSlider').val($('#pomQuantity').val());
 		goalPoms = $('#pomQuantity').val();
 		this.updateTimeParagraph();
 	}
 
 	/*hides the goal box, shows the place where you can change the pomodoro length*/
-	static updateSettingsBtn () {
+	static updateSettingsBtn() {
 		$("#settings").toggle();
 		$("#goalDiv").toggle();
 		if ($("#modalTitle").html() === TAPi18n.__("pomodoro.goal")) {
@@ -313,7 +367,7 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	/*when you update the work slider or input box or the break ones, it updates the total time and makes sure you didn't go over 60 minutes total work and break time per cycle. I could probably refactor all the following code. Someday!*/
-	static updateWorkLength () {
+	static updateWorkLength() {
 		$('#workSlider').val($('#workLength').val());
 		pomLength = parseInt($('#workLength').val(), 10);
 
@@ -325,7 +379,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		this.updateTimeParagraph();
 	}
 
-	static updateWorkSlider () {
+	static updateWorkSlider() {
 		$('#workLength').val($('#workSlider').val());
 		pomLength = parseInt($('#workSlider').val(), 10);
 		if (pomLength + breakLength > 60) {
@@ -336,7 +390,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		this.updateTimeParagraph();
 	}
 
-	static updatePlayLength () {
+	static updatePlayLength() {
 		$('#playSlider').val($('#playLength').val());
 		breakLength = parseInt($('#playLength').val(), 10);
 		if (pomLength + breakLength > 60) {
@@ -347,7 +401,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		this.updateTimeParagraph();
 	}
 
-	static updatePlaySlider () {
+	static updatePlaySlider() {
 		$('#playLength').val($('#playSlider').val());
 		breakLength = parseInt($('#playSlider').val(), 10);
 		if (pomLength + breakLength > 60) {
@@ -359,15 +413,21 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	/*any way you close the modal, by clicking the close button, confirm button, or clicking outside the box, starts a session. Makes it faster when you just want to start working. This initializes the end positions of all the arcs, and changes the instructions at the top of the screen.*/
-	static start () {
+	static start() {
 		let curTime = new Date();
 		endPom = (6 * curTime.getMinutes() + curTime.getSeconds() / 10 + 6 * pomLength);
 		endBreak = (endPom + 6 * breakLength);
 		pomRunning = true;
 		pomBeginAngle = 6 * curTime.getMinutes() + curTime.getSeconds() / 10;
 		$("#instructions").html(TAPi18n.__("pomodoro.stop1") + "<b>" + TAPi18n.__("pomodoro.stop2") + "</b>");
+		/* Method for WelcomePage */
+		StaticWelcomeMethod.showPomodoroFullsize();
 	}
 
-	static close () {
+	static close() {
+	}
+
+	static isPomodoroRunning() {
+		return (pomRunning || breakRunning);
 	}
 };

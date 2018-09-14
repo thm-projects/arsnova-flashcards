@@ -19,24 +19,48 @@ Meteor.subscribe("userData");
 Meteor.subscribe("serverInventory");
 
 let cloudShown = true;
+let isClockInBigmode = false;
 
 
 /**
- * PomoSetup
+ * PomoSetup for switching from bottom right to middle
  */
 function pomoPosition() {
-	if (!cloudShown) {
-		$('#pomodoroTimer').detach().appendTo('#pomoA');
-		$('#clock').on('click',function () {
-			PomodoroTimer.clickClock();
-		});
-	} else if (cloudShown) {
-		$('#pomodoroTimer').detach().appendTo('#pomoB');
-		$('#clock').on('click',function () {
-			PomodoroTimer.clickClock();
-		});
+	if (!isClockInBigmode) {
+		if (!cloudShown) {
+			$('#pomodoroTimer').detach().appendTo('#pomoA');
+			$('#pomoB').addClass('zIndexLowPrio');
+			$('#clock').on('click', function () {
+				PomodoroTimer.clickClock();
+			});
+		} else if (cloudShown) {
+			$('#pomodoroTimer').detach().appendTo('#pomoB');
+			$('#pomoB').removeClass('zIndexLowPrio');
+			$('#clock').on('click', function () {
+				PomodoroTimer.clickClock();
+			});
+		}
 	}
 }
+
+// Pomodoro full-size Methods
+export let StaticWelcomeMethod = class StaticWelcomeMethod {
+	static showPomodoroFullsize() {
+		if ($(document).has('#pomoA').length) {
+			$('#bigClockDiv').addClass('zIndexFirstPrio bigDiv');
+			$('#pomodoroTimer').detach().appendTo('#bigClockDiv');
+			isClockInBigmode = true;
+		}
+	}
+
+	static showPomodoroNormal() {
+		if ($(document).has('#pomoA').length) {
+			$('#bigClockDiv').removeClass('zIndexFirstPrio bigDiv');
+			isClockInBigmode = false;
+			pomoPosition();
+		}
+	}
+};
 
 
 function setActiveLanguage() {

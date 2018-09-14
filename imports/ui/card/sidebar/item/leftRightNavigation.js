@@ -25,14 +25,12 @@ Template.cardSidebarLeftRightNavigation.helpers({
 	},
 	isFirstCardActive: function () {
 		if (Session.get('activeCard') !== -1) {
-			let cardIndex = CardIndex.getCardIndex();
-			return cardIndex.indexOf(Session.get('activeCard')) === 0;
+			return CardNavigation.isFirstCard();
 		}
 	},
 	isLastCardActive: function () {
 		if (Session.get('activeCard') !== -1) {
-			let cardIndex = CardIndex.getCardIndex();
-			return cardIndex.indexOf(Session.get('activeCard')) === cardIndex.length - 1;
+			return CardNavigation.isLastCard();
 		}
 	}
 });

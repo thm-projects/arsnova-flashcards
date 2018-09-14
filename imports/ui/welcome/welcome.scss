@@ -133,12 +133,11 @@
   width: 150px;
 
   position: absolute;
-  bottom: 7vh;
-  right: 5vw;
-  z-index: 99;
+  bottom: 6rem;
+  left: 1rem;
 
   @media (max-width: 768px) {
-    right: 3vw;
+    left: 3vw;
   }
   @media (min-width: 950px) {
     height: 200px;
@@ -147,54 +146,75 @@
 
 }
 
-#pomoB #clock {
-
-}
-
-
-
-#pomoA #clock {
-
-  width: 60vw;
-  z-index: 10000;
-  max-height: 60vw;
-
-  @media (max-height:520px){
-    display:none;
-  }
-
-  @media (max-width: 701px) {
-
-    @media (max-height: 850px) {
-      width: 50vw;
-    }
-    @media (max-height: 780px) {
-      width: 40vw;
-    }
-    @media (max-height: 710px) {
-      width: 30vw;
-    }
-    @media (max-height: 595px) {
-      width: 20vw;
-    }
-
-  }
-  @media (min-width: 702px) and (max-height:700px) {
-
-    @media (min-width: 702px) and (max-height:700px){
-      max-width: 20vw;
-    }
-    @media (min-width: 1200px) and (max-height:700px){
-      display:none;
-    }
-    @media (max-height: 645px){
-      width: 10vw;
+#pomoA > #pomodoroTimer > .row {
+  margin-top: -5.5rem;
+  div {
+    #clock {
+      width: 60vw;
+      z-index: 10000;
+      max-height: 60vw;
+      @media (max-height: 520px) {
+        display: none;
+      }
+      @media (max-width: 701px) {
+        @media (max-height: 850px) {
+          width: 45vw;
+        }
+        @media (max-height: 780px) {
+          width: 45vw;
+        }
+        @media (max-height: 710px) {
+          width: 40vw;
+        }
+        @media (max-height: 595px) {
+          width: 25vw;
+        }
+      }
+      @media (min-width: 702px) and (max-height: 700px) {
+        @media (min-width: 702px) and (max-height: 700px) {
+          max-width: 30vw;
+        }
+        @media (min-width: 1200px) and (max-height: 700px) {
+          display: none;
+        }
+        @media (max-height: 645px) {
+          width: 10vw;
+        }
+      }
     }
   }
-
+}
+#instructions {
+  @media (max-height: 520px) {
+    display: none;
+  }
+  @media (min-width: 702px) and (max-height: 700px) {
+    @media (min-width: 1200px) and (max-height: 700px) {
+      display: none;
+    }
+  }
 }
 
-.testing {
-  height: 300px;
+// setting pomodoro in focus on start
+
+.zIndexFirstPrio {
+  z-index: 20;
+}
+.zIndexLowPrio {
+  z-index: -20;
 }
 
+.bigDiv {
+  position: absolute;
+  height: 100%;
+  width:  100%;
+  background-color:rgba(0, 0, 0, 0.8);
+}
+
+.bigDiv > #pomodoroTimer {
+  padding-top:5%;
+}
+
+.bigDiv > #pomodoroTimer > .row > #instructions {
+  display: none !important;
+}
