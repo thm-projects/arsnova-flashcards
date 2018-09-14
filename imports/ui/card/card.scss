@@ -564,13 +564,16 @@ img.cardside {
   #clock {
     @media (max-width: 768px) {
       height: 5rem;
+      margin-left: -1.4rem;
       margin-top: 0.01rem;
     }
     @media (min-width: 769px) {
       height: 7.7rem;
+      margin-left: -2.1rem;
     }
     @media (min-width: 1200px) {
       height: 9.2rem;
+      margin-left: -2.1rem;
     }
   }
   #instructions {
