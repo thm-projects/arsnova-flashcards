@@ -78,6 +78,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		if (document.getElementById("pomodoroMin") == null) {
 			pomRunning = false;
 			breakRunning = false;
+			totalPoms = 0;
 			return;
 		}
 		/*here, we get the current time, and since there are 360 degrees around a circle, and 60 minutes in an hour, each minute is 360/60 = 6 degrees of rotation. multiply that by the number of minutes and add the seconds and their corresponding degree value and you get a minute hand that moves every second. Similar with the hour hand.*/
@@ -247,7 +248,7 @@ export let PomodoroTimer = class PomodoroTimer {
 					function (isConfirm) {
 						if (!isConfirm) {
 							if (soundFail) {
-								document.getElementById("failure").play();
+								new Audio('/audio/fail.mp3').play();
 							}
 							sweetAlert({
 								title: TAPi18n.__("pomodoro.notDone"),
@@ -284,7 +285,7 @@ export let PomodoroTimer = class PomodoroTimer {
 						/*you succeeded so you get the success sound and a success message. good for you! */
 						if (isConfirm) {
 							if (soundSuccess) {
-								document.getElementById("success").play();
+								new Audio('/audio/success.mp3').play();
 							}
 							sweetAlert({
 								title: TAPi18n.__("pomodoro.goodJob"),
