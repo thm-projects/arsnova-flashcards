@@ -167,6 +167,15 @@ export let PomodoroTimer = class PomodoroTimer {
 				.setAttribute("d", this.describeArc(50, 50, 44, 6 * d.getMinutes() + d.getSeconds() / 10, endBreak));
 		}
 
+		if (breakRunning){
+			document.getElementById("learnShowAnswer").setAttribute("style","background-color: grey; pointer-events:none;");
+			document.getElementById("skipAnswer").setAttribute("style","background-color: grey; pointer-events:none;");
+		} else {
+			document.getElementById("learnShowAnswer").removeAttribute("style", "background-color: grey; pointer-events:none;");
+			document.getElementById("skipAnswer").removeAttribute("style", "background-color: grey; pointer-events:none;");
+		}
+
+
 		/*this is what triggers when the angle of the minute hand matches the angle of the end of the break arc*/
 		if ((6 * d.getMinutes() + d.getSeconds() / 10 >= endBreak - 0.1 && 6 * d.getMinutes() + d.getSeconds() / 10 <= endBreak + 0.1) && breakRunning) {
 			breakRunning = false;
