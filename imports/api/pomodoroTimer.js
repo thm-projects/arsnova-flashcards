@@ -86,7 +86,7 @@ export let PomodoroTimer = class PomodoroTimer {
 			success = TAPi18n.__("pomodoro.success1") + totalPoms + TAPi18n.__("pomodoro.success4") + totalPoms * pomLength + TAPi18n.__("pomodoro.success5");
 		}
 
-		if (goalPoms = 1) {
+		if (goalPoms === 1) {
 			momentum = TAPi18n.__("pomodoro.momentum1");
 		} else {
 			momentum = TAPi18n.__("pomodoro.momentum");
