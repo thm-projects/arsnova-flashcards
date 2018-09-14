@@ -81,7 +81,8 @@
     "isAnd": "und",
     "onePomo" : "eine",
     "onePomo1" : "einer",
-    "linkToPom" : "/learning#Pomodoro "
+    "linkToPom" : "/learning#Pomodoro ",
+    "pomodoroEmoji" : "\ud83c\udf45"
   },
 
 
