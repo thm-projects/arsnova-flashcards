@@ -100,24 +100,25 @@
                                 <input class="numSlider" type="range" min="1" max="59" value="5" id="playSlider"
                                        step="1">
 
-
-                                <label for="" style=" padding-top: 20px; padding-bottom: 10px"><i class="fa fa-music"></i>
-                                    Sounds</label><br>
-                                <input type="checkbox" id="sound1" value="Clock" checked>
-                                <label for="sound1">{{_ "pomodoro.schoolBell"}}</label><br>
-                                <audio id="bell" style="width: 260px;" controls controlsList="nodownload noremoteplayback">
-                                    <source src="/audio/Schulgong.mp3" type="audio/mpeg">
-                                </audio><br>
-                                <input type="checkbox" id="sound2" value="Complete" checked>
-                                <label for="sound2">{{_ "pomodoro.learningSession"}}</label><br>
-                                <audio id="bell" style="width: 260px" controls controlsList="nodownload noremoteplayback">
-                                    <source src="/audio/success.mp3" type="audio/mpeg">
-                                </audio><br>
-                                <input type="checkbox" id="sound3" value="Cancel" checked>
-                                <label for="sound3">{{_ "pomodoro.cancelSession"}}</label><br>
-                                    <audio id="bell" style="width: 260px" controls controlsList="nodownload noremoteplayback">
-                                        <source src="/audio/fail.mp3" type="audio/mpeg">
+                                {{#unless isSafariOriOS}}
+                                    <label for="" style=" padding-top: 20px; padding-bottom: 10px"><i class="fa fa-music"></i>
+                                        Sounds</label><br>
+                                    <input type="checkbox" id="sound1" value="Clock" checked>
+                                    <label for="sound1">{{_ "pomodoro.schoolBell"}}</label><br>
+                                    <audio id="bell" style="width: 260px;" controls controlsList="nodownload noremoteplayback">
+                                        <source src="/audio/Schulgong.mp3" type="audio/mpeg">
                                     </audio><br>
+                                    <input type="checkbox" id="sound2" value="Complete" checked>
+                                    <label for="sound2">{{_ "pomodoro.learningSession"}}</label><br>
+                                    <audio id="bell" style="width: 260px" controls controlsList="nodownload noremoteplayback">
+                                        <source src="/audio/success.mp3" type="audio/mpeg">
+                                    </audio><br>
+                                    <input type="checkbox" id="sound3" value="Cancel" checked>
+                                    <label for="sound3">{{_ "pomodoro.cancelSession"}}</label><br>
+                                        <audio id="bell" style="width: 260px" controls controlsList="nodownload noremoteplayback">
+                                            <source src="/audio/fail.mp3" type="audio/mpeg">
+                                        </audio><br>
+                                {{/unless}}
                             </div>
                         </div>
                     </form>

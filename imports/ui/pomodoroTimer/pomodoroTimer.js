@@ -2,6 +2,7 @@
 import "./pomodoroTimer.html";
 import {Template} from "meteor/templating";
 import {PomodoroTimer} from "../../api/pomodoroTimer";
+import {NavigatorCheck} from "../../api/navigatorCheck";
 
 /*
  * ############################################################################
@@ -30,6 +31,12 @@ Template.pomodoroTimer.events({
  * pomodoroTimerModal
  * ############################################################################
  */
+
+Template.pomodoroTimerModal.helpers({
+	isSafariOriOS: function () {
+		return NavigatorCheck.isIOS() || NavigatorCheck.isSafari();
+	}
+});
 
 Template.pomodoroTimerModal.onRendered(function () {
 	$("#pomodoroTimerModal").on('hidden.bs.modal', function () {
