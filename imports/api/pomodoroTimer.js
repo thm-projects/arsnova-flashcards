@@ -26,7 +26,8 @@ let breakLength = 5;
 /*is it running?*/
 let pomRunning = false;
 let breakRunning = false;
-
+let success = "";
+let momentum = "";
 //which pomodoro sound
 let soundBell = true;
 let soundSuccess = true;
@@ -75,6 +76,21 @@ export let PomodoroTimer = class PomodoroTimer {
 
 	/*the arcs around the clock get redrawn every second, as do the hands on the clock, thanks to this setInterval function. It runs every second.*/
 	static interval() {
+		/*you succeeded so you get the success sound and a success message. good for you! */
+		if (totalPoms <= 1 && (goalPoms - totalPoms) <= 1) {
+			success = TAPi18n.__("pomodoro.success1") + TAPi18n.__("pomodoro.onePomo") + TAPi18n.__("pomodoro.success4") + TAPi18n.__("pomodoro.onePomo1") + TAPi18n.__("pomodoro.success5");
+		} else if (totalPoms <= 1) {
+			success = TAPi18n.__("pomodoro.success1") + TAPi18n.__("pomodoro.onePomo") + TAPi18n.__("pomodoro.success4") + totalPoms * pomLength + TAPi18n.__("pomodoro.success5");
+		} else {
+			success = TAPi18n.__("pomodoro.success1") + totalPoms + TAPi18n.__("pomodoro.success4") + totalPoms * pomLength + TAPi18n.__("pomodoro.success5");
+		}
+
+		if (goalPoms = 1) {
+			momentum = TAPi18n.__("pomodoro.momentum1");
+		} else {
+			momentum = TAPi18n.__("pomodoro.momentum");
+		}
+
 		if (document.getElementById("pomodoroMin") == null) {
 			pomRunning = false;
 			breakRunning = false;
@@ -127,7 +143,7 @@ export let PomodoroTimer = class PomodoroTimer {
 			/*the first sweet alert! This is what pops up when you finish a pomodoro. It congradulates the user and lets them start their break when they are ready. There is no option to stop the session in this box, that function is relegated to the second click on the clock, as noted by the title.*/
 			swal({
 					title: TAPi18n.__("pomodoro.goodJob"),
-					text: TAPi18n.__("pomodoro.success1") + "<b> " + totalPoms + TAPi18n.__("pomodoro.success2") + "</b> " + totalPoms * pomLength + " " + TAPi18n.__("pomodoro.success3"),
+					text: success,
 					type: "success",
 					html: true,
 					confirmButtonText: TAPi18n.__("pomodoro.continue")
@@ -222,6 +238,8 @@ export let PomodoroTimer = class PomodoroTimer {
 		document.getElementById("chromeMobile").play();
 		let stillOpenString = "";
 		let notDoneString = "";
+
+
 		if ((goalPoms - totalPoms) > 1) {
 			stillOpenString = "<b>" + (goalPoms - totalPoms) + "</b>" + TAPi18n.__("pomodoro.stillOpen2");
 			notDoneString = "<b>" + goalPoms + "</b>" + TAPi18n.__("pomodoro.notDone3");
@@ -235,7 +253,7 @@ export let PomodoroTimer = class PomodoroTimer {
 				swal({
 						title: TAPi18n.__("pomodoro.fastgoing"),
 						type: "warning",
-						text: TAPi18n.__("pomodoro.stillOpen1") + " <b>" + stillOpenString + "<br>" + TAPi18n.__("pomodoro.stillOpen3"),
+						text: TAPi18n.__("pomodoro.stillOpen1") + stillOpenString + TAPi18n.__("pomodoro.stillOpen3"),
 						html: true,
 						showCancelButton: true,
 						confirmButtonText: TAPi18n.__("pomodoro.continue"),
@@ -274,7 +292,7 @@ export let PomodoroTimer = class PomodoroTimer {
 				swal({
 						title: TAPi18n.__("pomodoro.productivity"),
 						type: "warning",
-						text: TAPi18n.__("pomodoro.reachedgoal") + goalPoms + TAPi18n.__("pomodoro.momentum") + "! " + TAPi18n.__("pomodoro.session"),
+						text: TAPi18n.__("pomodoro.reachedgoal") + goalPoms + momentum + "! " + TAPi18n.__("pomodoro.session"),
 						html: true,
 						showCancelButton: true,
 						confirmButtonText: TAPi18n.__("pomodoro.stopBig"),
@@ -282,14 +300,14 @@ export let PomodoroTimer = class PomodoroTimer {
 						closeOnConfirm: false
 					},
 					function (isConfirm) {
-						/*you succeeded so you get the success sound and a success message. good for you! */
 						if (isConfirm) {
 							if (soundSuccess) {
 								new Audio('/audio/success.mp3').play();
 							}
+
 							sweetAlert({
 								title: TAPi18n.__("pomodoro.goodJob"),
-								text: TAPi18n.__("pomodoro.success1") + totalPoms + TAPi18n.__("pomodoro.success2") + totalPoms * pomLength + TAPi18n.__("pomodoro.success3"),
+								text: success,
 								html: true,
 								type: "success"
 							});
