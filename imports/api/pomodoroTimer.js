@@ -75,6 +75,11 @@ export let PomodoroTimer = class PomodoroTimer {
 
 	/*the arcs around the clock get redrawn every second, as do the hands on the clock, thanks to this setInterval function. It runs every second.*/
 	static interval() {
+		if (document.getElementById("pomodoroMin") == null) {
+			pomRunning = false;
+			breakRunning = false;
+			return;
+		}
 		/*here, we get the current time, and since there are 360 degrees around a circle, and 60 minutes in an hour, each minute is 360/60 = 6 degrees of rotation. multiply that by the number of minutes and add the seconds and their corresponding degree value and you get a minute hand that moves every second. Similar with the hour hand.*/
 		let d = new Date();
 		this.r(document.getElementById("pomodoroMin"), 6 * d.getMinutes() + d.getSeconds() / 10);
