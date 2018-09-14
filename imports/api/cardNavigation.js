@@ -278,10 +278,8 @@ export let CardNavigation = class CardNavigation {
 								} else if (!CardNavigation.isLastCard()) {
 									CardNavigation.skipAnswer();
 								}
-								window.scrollTo(0, 0);
 							} else if ((Route.isBox() || Route.isMemo()) && Session.get('isQuestionSide')) {
 								CardNavigation.skipAnswer();
-								window.scrollTo(0, 0);
 							}
 						}
 						break;

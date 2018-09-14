@@ -1,7 +1,7 @@
 #flashcardSidebarLeft, #flashcardSidebarRight {
   position: absolute;
   float: left;
-  z-index: 9001;
+  z-index: 1001;
   padding: 5px;
   width: 45px;
   @media(max-width: 767px) {
