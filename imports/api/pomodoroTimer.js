@@ -171,7 +171,7 @@ export let PomodoroTimer = class PomodoroTimer {
 				.setAttribute("d", this.describeArc(50, 50, 44, 6 * d.getMinutes() + d.getSeconds() / 10, endBreak));
 		}
 
-		if((Route.isBox() || Route.isMemo())) {
+		if ((Route.isBox() || Route.isMemo())) {
 			if (breakRunning) {
 				document.getElementById("learnShowAnswer").setAttribute("style","background-color: grey; pointer-events:none;");
 				document.getElementById("skipAnswer").setAttribute("style","background-color: grey; pointer-events:none;");
