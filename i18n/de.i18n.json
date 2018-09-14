@@ -506,6 +506,20 @@
     "list": {
       "back":"Zurück zur Präsentation",
       "backDemo": "Zurück zur Demo-Kartei"
+    },
+    "help": {
+      "title": "Präsentationsmodus-Hilfe",
+      "button": {
+        "confirm": "Weiter zur Präsentation"
+      }
+    }
+  },
+  "leitner": {
+    "help": {
+      "title": "Leitner-Hilfe",
+      "button": {
+        "confirm": "Weiter zum Leitner-Lernmodus"
+      }
     }
   },
   "pool": {

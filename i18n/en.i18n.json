@@ -529,6 +529,20 @@
     "list": {
       "back": "Back to the presentation",
       "backDemo": "Back to the demo cardset"
+    },
+    "help": {
+      "title": "Presentation-Hilfe",
+      "button": {
+        "confirm": "Continue"
+      }
+    }
+  },
+  "leitner": {
+    "help": {
+      "title": "Leitner-Help",
+      "button": {
+        "confirm": "Continue"
+      }
     }
   },
   "pool": {

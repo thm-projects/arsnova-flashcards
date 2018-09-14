@@ -7,6 +7,7 @@ import {Leitner, Wozniak} from "../../api/learned.js";
 import {Cardsets} from "../../api/cardsets";
 import {CardNavigation} from "../../api/cardNavigation";
 import "./learn.html";
+import "./modal/help.js";
 
 Meteor.subscribe("cardsets");
 Session.set('animationPlaying', false);

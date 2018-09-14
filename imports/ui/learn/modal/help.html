@@ -1,0 +1,32 @@
+<template name="leitnerHelpModal">
+    <div class="modal fade" id="leitnerHelpModal" tabindex="-1" data-backdrop="static" role="dialog"
+         aria-labelledby="leitnerHelpTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons">
+                <div class="modal-header">
+                    <h4 id="leitnerHelp" class="modal-title">{{_ "leitner.help.title"}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    {{#mathjax}}
+                        {{#if isActiveLanguage 'de'}}
+                            {{> leitnerHelpModalContentGerman}}
+                        {{else}}
+                            {{> leitnerHelpModalContentEnglish}}
+                        {{/if}}
+                    {{/mathjax}}
+                    <button class="btn btn-raised btn-success"
+                            id="leitnerHelpConfirm">{{_ "leitner.help.button.confirm"}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="leitnerHelpModalContentGerman">
+
+</template>
+
+<template name="leitnerHelpModalContentEnglish">
+
+</template>
