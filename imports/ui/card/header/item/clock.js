@@ -21,8 +21,8 @@ function updatePresentationClock() {
  */
 
 Template.cardHeaderItemClock.helpers({
-	isSafariOriOS: function () {
-		return NavigatorCheck.isIOS() || NavigatorCheck.isSafari();
+	isiOS: function () {
+		return NavigatorCheck.isIOS();
 	}
 });
 
