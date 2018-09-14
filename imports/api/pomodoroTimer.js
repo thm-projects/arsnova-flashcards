@@ -1,6 +1,7 @@
 /*This is a ton of script, mostly popups, so strap in for a wild ride!*/
 /*endPom is the angle of the minute hand at which the work period will end.*/
 import {StaticWelcomeMethod} from "../ui/welcome/welcome";
+import {Route} from "./route";
 
 let endPom = 0;
 
@@ -267,6 +268,11 @@ export let PomodoroTimer = class PomodoroTimer {
 							document.getElementById("breakArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
 							/* Method for WelcomePage */
 							StaticWelcomeMethod.showPomodoroNormal();
+							if ((Route.isBox() || Route.isMemo())) {
+								Router.go('cardsetdetailsid', {
+									_id: Router.current().params._id
+								});
+							}
 						}
 					});
 			} else {
@@ -304,6 +310,11 @@ export let PomodoroTimer = class PomodoroTimer {
 							document.getElementById("breakArc").setAttribute("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
 							/* Method for WelcomePage */
 							StaticWelcomeMethod.showPomodoroNormal();
+							if ((Route.isBox() || Route.isMemo())) {
+								Router.go('cardsetdetailsid', {
+									_id: Router.current().params._id
+								});
+							}
 						}
 					});
 			}
@@ -396,5 +407,9 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	static close() {
+	}
+
+	static isPomodoroRunning() {
+		return (pomRunning || breakRunning);
 	}
 };
