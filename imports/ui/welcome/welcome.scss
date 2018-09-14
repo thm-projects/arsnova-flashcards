@@ -135,7 +135,6 @@
   position: absolute;
   bottom: 6rem;
   left: 1rem;
-  z-index: 99;
 
   @media (max-width: 768px) {
     left: 3vw;
@@ -200,6 +199,9 @@
 
 .zIndexFirstPrio {
   z-index: 20;
+}
+.zIndexLowPrio {
+  z-index: -20;
 }
 
 .bigDiv {
