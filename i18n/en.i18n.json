@@ -82,7 +82,8 @@
     "isAnd": "and",
     "onePomo" : "one",
     "onePomo1" : "one",
-    "linkToPom" : "/learning#Pomodoro "
+    "linkToPom" : "/learning#Pomodoro ",
+    "pomodoroEmoji" : "\uD83C\uDF45"
   },
   "carousel-inner": {
     "carousel-header-0": " Your digital flashcards",

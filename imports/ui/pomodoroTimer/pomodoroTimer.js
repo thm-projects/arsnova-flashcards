@@ -33,8 +33,8 @@ Template.pomodoroTimer.events({
  */
 
 Template.pomodoroTimerModal.helpers({
-	isSafariOriOS: function () {
-		return NavigatorCheck.isIOS() || NavigatorCheck.isSafari();
+	isiOS: function () {
+		return NavigatorCheck.isIOS();
 	}
 });
 
