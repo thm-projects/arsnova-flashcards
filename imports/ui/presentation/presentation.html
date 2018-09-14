@@ -21,6 +21,9 @@
 </template>
 
 <template name="presentationView">
+    {{#if isActiveRoute regex='presentation'}}
+        {{> presentationHelpModal}}
+    {{/if}}
     {{#if isActiveRoute regex='demolist|presentationlist|makinglist'}}
         <div class="{{#if isActiveRoute regex='demolist'}}row demo-padding{{else}}col-xs-12{{/if}}">
             <button class="btn btn-raised btn-danger"

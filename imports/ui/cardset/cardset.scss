@@ -550,22 +550,6 @@ th .field-tip {
   display: inline-block;
 }
 
-.projectorIcon {
-  position: absolute;
-  right: 0;
-  top: 10px;
-  margin-top: 5px;
-  height: 54px;
-  cursor: pointer;
-  padding-left: 2px !important;
-  padding-right: 2px !important;
-  @media(max-width: 992px) {
-    right: 10px;
-  }
-  -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
-  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
-}
-
 .projectorIconButton {
   height: 16px;
   margin-top: -2px;

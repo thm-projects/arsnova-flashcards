@@ -529,6 +529,20 @@
     "list": {
       "back": "Back to the presentation",
       "backDemo": "Back to the demo cardset"
+    },
+    "help": {
+      "title": "Presentation-Hilfe",
+      "button": {
+        "confirm": "Continue"
+      }
+    }
+  },
+  "leitner": {
+    "help": {
+      "title": "Leitner-Help",
+      "button": {
+        "confirm": "Continue"
+      }
     }
   },
   "pool": {
@@ -1698,6 +1712,12 @@
     },
     "empty": {
       "text": "After lesson plan there are no flashcards to learn at the moment"
+    },
+    "help": {
+      "title": "Wozniak-Help",
+      "button": {
+        "confirm": "Continue"
+      }
     }
   }
 }
