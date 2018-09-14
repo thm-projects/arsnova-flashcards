@@ -232,6 +232,10 @@ export let CardNavigation = class CardNavigation {
 		cardContent.scrollTop(cardContent.scrollTop() + scrollValue);
 	}
 
+	static isMobileView () {
+		return Session.get('windowWidth') <= 1200;
+	}
+
 	static isFirstCard () {
 		let cardIndex = CardIndex.getCardIndex();
 		return cardIndex.indexOf(Session.get('activeCard')) === 0;

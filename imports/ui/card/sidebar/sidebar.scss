@@ -4,9 +4,6 @@
   z-index: 9001;
   padding: 5px;
   width: 45px;
-  @media(max-width: 1200px) {
-    position: fixed;
-  }
   @media(max-width: 767px) {
     padding: 3px;
     width: 35px;
@@ -17,6 +14,16 @@
     width: 100%;
     text-align: center;
     margin-top: 6px;
+  }
+
+  .sidebarNavigationButton {
+    display: block;
+    height: 33px;
+    margin-top: 0;
+    i, span, img {
+      margin-top: 0;
+    }
+    margin-bottom: 25px;
   }
 }
 

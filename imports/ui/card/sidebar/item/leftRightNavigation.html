@@ -1,10 +1,5 @@
-<template name="cardSidebarLeftRightNavigation">
+<template name="cardSidebarLeftNavigation">
     {{#if gotMultipleCards}}
-        {{#unless isLastCardActive}}
-            <span class="fa fa-arrow-right card-button cardHeaderItem scrollRight"
-                  data-type="cardNavigation"
-                  title="{{_ "card.tooltip.nextCard"}}"></span>
-        {{/unless}}
         {{#unless isFirstCardActive}}
             <span class="fa fa-arrow-left card-button cardHeaderItem scrollLeft"
                   data-type="cardNavigation"
@@ -12,3 +7,14 @@
         {{/unless}}
     {{/if}}
 </template>
+
+<template name="cardSidebarRightNavigation">
+    {{#if gotMultipleCards}}
+        {{#unless isLastCardActive}}
+            <span class="fa fa-arrow-right card-button cardHeaderItem scrollRight"
+                  data-type="cardNavigation"
+                  title="{{_ "card.tooltip.nextCard"}}"></span>
+        {{/unless}}
+    {{/if}}
+</template>
+

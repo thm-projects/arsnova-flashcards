@@ -55,7 +55,8 @@ export let CardVisuals = class CardVisuals {
 			let flashcardControls = $('.carousel-control');
 			let flashcardHeaderHeight = 0;
 			let flashcardBodyHeight = 0;
-			if ($(window).width() < 768 || Session.get('mobilePreview')) {
+			Session.set('windowWidth', $(window).width());
+			if (Session.get('windowWidth') < 768 || Session.get('mobilePreview')) {
 				if (Session.get('mobilePreview')) {
 					newFlashcardHeight = $('.mobilePreviewContent').innerHeight() - 50;
 				} else {
