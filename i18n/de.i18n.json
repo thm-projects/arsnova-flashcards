@@ -1579,6 +1579,12 @@
     },
     "empty": {
       "text": "Aktuell keine nach Lernplan zu lernenden Karten"
+    },
+    "help": {
+      "title": "Wozniak-Hilfe",
+      "button": {
+        "confirm": "Weiter zum Wozniak-Lernmodus"
+      }
     }
   }
 }

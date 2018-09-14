@@ -1712,6 +1712,12 @@
     },
     "empty": {
       "text": "After lesson plan there are no flashcards to learn at the moment"
+    },
+    "help": {
+      "title": "Wozniak-Help",
+      "button": {
+        "confirm": "Continue"
+      }
     }
   }
 }

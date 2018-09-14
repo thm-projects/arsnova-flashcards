@@ -1,4 +1,6 @@
-import "./help.html";
+import "./presentationHelp.html";
+import "./content/english.html";
+import "./content/german.html";
 import {Template} from "meteor/templating";
 let firstTimePresentation = 'isFirstTimePresentation';
 

@@ -1,4 +1,6 @@
-import "./help.html";
+import "./leitnerHelp.html";
+import "./content/english.html";
+import "./content/german.html";
 import {Template} from "meteor/templating";
 let firstTimeLeitner = 'isFirstTimeLeitner';
 

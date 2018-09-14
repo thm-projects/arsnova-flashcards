@@ -18,6 +18,9 @@
     {{#if isActiveRoute 'box'}}
         {{> leitnerHelpModal}}
     {{/if}}
+    {{#if isActiveRoute 'memo'}}
+        {{> wozniakHelpModal}}
+    {{/if}}
     {{#if noCards}}
         <div class="col-xs-12">
             {{> flashcardsEmpty}}
