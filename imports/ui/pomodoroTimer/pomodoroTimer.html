@@ -41,7 +41,7 @@
             <source src="" type="audio/mp3"/>
         </audio>
 
-        <audio id="bell">
+        <audio id="bell" preload="auto">
            <source src="/audio/Schulgong.mp3" type="audio/mp3">
         </audio>
 
@@ -49,18 +49,12 @@
             <source src="/audio/fail.mp3" type="audio/mp3"/>
         </audio>
 
-        <!-- <audio id="failure" preload="auto">
-  <source src="http://www.myinstants.com/media/sounds/sadtrombone.swf.mp3" type="audio/mp3" />
-</audio> -->
-
         <audio id="success" preload="auto">
             <source src="/audio/success.mp3" type="audio/mp3"/>
         </audio>
 
     </div>
 </template>
-
-
 
 <template name="pomodoroTimerModal">
     <!--this is the modal, hidden by default, that pops up when the user clicks the clock. Not too complicated.-->
@@ -105,17 +99,17 @@
                                         Sounds</label><br>
                                     <input type="checkbox" id="sound1" value="Clock" checked>
                                     <label for="sound1">{{_ "pomodoro.schoolBell"}}</label><br>
-                                    <audio id="bell" style="width: 260px;" controls controlsList="nodownload noremoteplayback">
+                                    <audio id="bellPreview" style="width: 260px;" controls controlsList="nodownload noremoteplayback">
                                         <source src="/audio/Schulgong.mp3" type="audio/mpeg">
                                     </audio><br>
                                     <input type="checkbox" id="sound2" value="Complete" checked>
                                     <label for="sound2">{{_ "pomodoro.learningSession"}}</label><br>
-                                    <audio id="bell" style="width: 260px" controls controlsList="nodownload noremoteplayback">
+                                    <audio id="successPreview" style="width: 260px" controls controlsList="nodownload noremoteplayback">
                                         <source src="/audio/success.mp3" type="audio/mpeg">
                                     </audio><br>
                                     <input type="checkbox" id="sound3" value="Cancel" checked>
                                     <label for="sound3">{{_ "pomodoro.cancelSession"}}</label><br>
-                                        <audio id="bell" style="width: 260px" controls controlsList="nodownload noremoteplayback">
+                                        <audio id="failurePreview" style="width: 260px" controls controlsList="nodownload noremoteplayback">
                                             <source src="/audio/fail.mp3" type="audio/mpeg">
                                         </audio><br>
                                 {{/unless}}
