@@ -20,6 +20,10 @@
   }
 }
 
+#flashcardSidebarLeft.fixed, #flashcardSidebarRight.fixed {
+  position: fixed;
+}
+
 #flashcardSidebarLeft > .card-button:first-child, #flashcardSidebarRight > .card-button:first-child {
   margin-top: 0;
 }
