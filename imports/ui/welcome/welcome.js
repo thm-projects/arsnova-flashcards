@@ -29,11 +29,13 @@ function pomoPosition() {
 	if (!isClockInBigmode) {
 		if (!cloudShown) {
 			$('#pomodoroTimer').detach().appendTo('#pomoA');
+			$('#pomoB').addClass('zIndexLowPrio');
 			$('#clock').on('click', function () {
 				PomodoroTimer.clickClock();
 			});
 		} else if (cloudShown) {
 			$('#pomodoroTimer').detach().appendTo('#pomoB');
+			$('#pomoB').removeClass('zIndexLowPrio');
 			$('#clock').on('click', function () {
 				PomodoroTimer.clickClock();
 			});
