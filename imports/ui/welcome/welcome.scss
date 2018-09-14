@@ -212,3 +212,7 @@
 .bigDiv > #pomodoroTimer {
   padding-top:5%;
 }
+
+.bigDiv > #pomodoroTimer > .row > #instructions {
+  display: none !important;
+}
