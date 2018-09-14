@@ -168,7 +168,6 @@ html {
 
 body {
   background: unset;
-  margin: 0 0 70px;
   line-height: 170%;
   font-weight: normal;
   color: black;
@@ -286,6 +285,12 @@ body {
 
 #theme-wrapper {
   margin-top: 55px;
+  margin-bottom: 70px;
+}
+
+.theme-wrapper-fullscreen {
+  margin-top: 5px !important;
+  margin-bottom: 0 !important;
 }
 
 #theme-wrapper-no-nav {

@@ -1,5 +1,5 @@
 <template name="flashcardSidebar">
-    <div id="flashcardSidebarLeft" class="{{#if fullscreenActive}}fixed{{/if}}">
+    <div id="flashcardSidebarLeft" class="{{#if isFixedSidebar}}fixed{{/if}}">
         {{#if isCardset}}
             {{> flashcardSidebarDefaultLeft}}
         {{/if}}
@@ -22,7 +22,7 @@
             {{> flashcardSidebarWozniakLeft}}
         {{/if}}
     </div>
-    <div id="flashcardSidebarRight" class="{{#if fullscreenActive}}fixed{{/if}}">
+    <div id="flashcardSidebarRight" class="{{#if isFixedSidebar}}fixed{{/if}}">
         {{#if isCardset}}
             {{> flashcardSidebarDefaultRight}}
         {{/if}}
@@ -55,35 +55,72 @@
 </template>
 
 <template name="flashcardSidebarDefaultLeft">
-    {{> cardSidebarItemEdit}}
-    {{> cardSidebarLeftRightNavigation}}
+    {{#if isMobileView}}
+        <span class="sidebarNavigationButton">
+            {{> cardSidebarLeftNavigation}}
+        </span>
+        {{> cardSidebarItemEdit}}
+    {{else}}
+        {{> cardSidebarItemEdit}}
+        {{> cardSidebarRightNavigation}}
+        {{> cardSidebarLeftNavigation}}
+    {{/if}}
     {{> cardSidebarItemCardList}}
     {{> flashcardSidebarDictionary}}
     {{> cardSidebarItemDelete}}
 </template>
 
 <template name="flashcardSidebarDefaultRight">
+    {{#if isMobileView}}
+        <span class="sidebarNavigationButton">
+            {{> cardSidebarRightNavigation}}
+        </span>
+    {{/if}}
     {{> cardSidebarItemZoomText}}
 </template>
 
 <template name="flashcardSidebarPresentationLeft">
-    {{> cardSidebarLeftRightNavigation}}
+    {{#if isMobileView}}
+        <span class="sidebarNavigationButton">
+            {{> cardSidebarLeftNavigation}}
+        </span>
+    {{else}}
+        {{> cardSidebarRightNavigation}}
+        {{> cardSidebarLeftNavigation}}
+    {{/if}}
     {{> cardSidebarItemCardList}}
     {{> flashcardSidebarDictionary}}
 </template>
 
 <template name="flashcardSidebarPresentationRight">
+    {{#if isMobileView}}
+        <span class="sidebarNavigationButton">
+            {{> cardSidebarRightNavigation}}
+        </span>
+    {{/if}}
     {{> cardSidebarItemEndPresentation}}
     {{> cardSidebarItemZoomText}}
 </template>
 
 <template name="flashcardSidebarDemoLeft">
-    {{> cardSidebarLeftRightNavigation}}
+    {{#if isMobileView}}
+        <span class="sidebarNavigationButton">
+            {{> cardSidebarLeftNavigation}}
+        </span>
+    {{else}}
+        {{> cardSidebarRightNavigation}}
+        {{> cardSidebarLeftNavigation}}
+    {{/if}}
     {{> cardSidebarItemCardList}}
     {{> flashcardSidebarDictionary}}
 </template>
 
 <template name="flashcardSidebarDemoRight">
+    {{#if isMobileView}}
+        <span class="sidebarNavigationButton">
+            {{> cardSidebarRightNavigation}}
+        </span>
+    {{/if}}
     {{> cardSidebarItemToggleFullscreen}}
     {{> cardSidebarItemZoomText}}
 </template>

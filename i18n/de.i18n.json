@@ -506,6 +506,20 @@
     "list": {
       "back":"Zurück zur Präsentation",
       "backDemo": "Zurück zur Demo-Kartei"
+    },
+    "help": {
+      "title": "Präsentationsmodus",
+      "button": {
+        "confirm": "Weiter zur Präsentation"
+      }
+    }
+  },
+  "leitner": {
+    "help": {
+      "title": "Leitner-Hilfe",
+      "button": {
+        "confirm": "Weiter zum Leitner-Lernmodus"
+      }
     }
   },
   "pool": {
@@ -1565,6 +1579,12 @@
     },
     "empty": {
       "text": "Aktuell keine nach Lernplan zu lernenden Karten"
+    },
+    "help": {
+      "title": "Woźniak-Hilfe",
+      "button": {
+        "confirm": "Weiter zum Woźniak-Lernmodus"
+      }
     }
   }
 }

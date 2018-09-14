@@ -1,6 +1,7 @@
 //------------------------ IMPORTS
 
 import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
 import {Route} from "../../../api/route";
 import "./sidebar.html";
 import "./item/cardList.js";
@@ -13,6 +14,7 @@ import "./item/leftRightNavigation.js";
 import "./item/copy.js";
 import "./item/delete.js";
 import "./item/edit.js";
+import {CardNavigation} from "../../../api/cardNavigation";
 
 
 
@@ -43,5 +45,81 @@ Template.flashcardSidebar.helpers({
 	},
 	isMemo: function () {
 		return Route.isMemo();
+	},
+	isFixedSidebar: function () {
+		return Session.get('fullscreen') && !Route.isCardset();
+	}
+});
+
+/*
+ * ############################################################################
+ * flashcardSidebarDefaultLeft
+ * ############################################################################
+ */
+
+Template.flashcardSidebarDefaultLeft.helpers({
+	isMobileView: function () {
+		return CardNavigation.isMobileView();
+	}
+});
+
+
+/*
+ * ############################################################################
+ * flashcardSidebarDefaultRight
+ * ############################################################################
+ */
+
+Template.flashcardSidebarDefaultRight.helpers({
+	isMobileView: function () {
+		return CardNavigation.isMobileView();
+	}
+});
+
+/*
+ * ############################################################################
+ * flashcardSidebarPresentationLeft
+ * ############################################################################
+ */
+
+Template.flashcardSidebarPresentationLeft.helpers({
+	isMobileView: function () {
+		return CardNavigation.isMobileView();
+	}
+});
+
+/*
+ * ############################################################################
+ * flashcardSidebarPresentationRight
+ * ############################################################################
+ */
+
+Template.flashcardSidebarPresentationRight.helpers({
+	isMobileView: function () {
+		return CardNavigation.isMobileView();
+	}
+});
+
+/*
+ * ############################################################################
+ * flashcardSidebarDemoLeft
+ * ############################################################################
+ */
+
+Template.flashcardSidebarDemoLeft.helpers({
+	isMobileView: function () {
+		return CardNavigation.isMobileView();
+	}
+});
+
+/*
+ * ############################################################################
+ * flashcardSidebarDemoRight
+ * ############################################################################
+ */
+
+Template.flashcardSidebarDemoRight.helpers({
+	isMobileView: function () {
+		return CardNavigation.isMobileView();
 	}
 });

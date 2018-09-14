@@ -4,6 +4,7 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./presentation.html";
+import "./modal/presentationHelp.js";
 import {CardNavigation} from "../../api/cardNavigation";
 import {Cardsets} from "../../api/cardsets";
 import {Cards} from "../../api/cards";

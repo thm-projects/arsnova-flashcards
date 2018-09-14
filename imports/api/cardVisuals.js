@@ -51,52 +51,59 @@ export let CardVisuals = class CardVisuals {
 			let flashcard = $('.flashcard');
 			let flashcardHeader = $('.cardHeader');
 			let flashcardBody = $('.cardContent');
-			let flashcardLecture = $('.cardContentCollapsed');
-			let flashcardControls = $('.carousel-control');
-			let flashcardHeaderHeight = 0;
-			let flashcardBodyHeight = 0;
-			if ($(window).width() < 768 || Session.get('mobilePreview')) {
-				if (Session.get('mobilePreview')) {
-					newFlashcardHeight = $('.mobilePreviewContent').innerHeight() - 50;
+			if (flashcard.length && flashcardHeader.length && flashcardBody.length) {
+				let flashcardLecture = $('.cardContentCollapsed');
+				let flashcardControls = $('.carousel-control');
+				let flashcardHeaderHeight = 0;
+				let flashcardBodyHeight = 0;
+				Session.set('windowWidth', $(window).width());
+				if (Session.get('windowWidth') < 768 || Session.get('mobilePreview') || Session.get('fullscreen')) {
+					if (Session.get('mobilePreview')) {
+						newFlashcardHeight = $('.mobilePreviewContent').innerHeight() - 50;
+					} else {
+						newFlashcardHeight = $(window).height() - (flashcard.offset().top + 10);
+					}
+					if (Session.get('windowWidth') >= 768 && !Session.get('mobilePreview')) {
+						flashcardHeaderHeight = 100;
+					} else {
+						flashcardHeaderHeight = 60;
+					}
+					flashcardBodyHeight = newFlashcardHeight - flashcardHeaderHeight;
+					flashcard.css('height', newFlashcardHeight);
+					flashcardHeader.css('height', flashcardHeaderHeight);
+					flashcardBody.css('height', flashcardBodyHeight);
+					flashcardLecture.css('height', flashcardBodyHeight);
+					flashcardControls.css('margin-top', flashcardHeaderHeight);
+					flashcardControls.css('height', flashcardBodyHeight);
+					contentEditor.css('height', flashcardBodyHeight);
 				} else {
-					newFlashcardHeight = $(window).height() - (flashcard.offset().top + 10);
+					newFlashcardHeight = flashcard.width() / Math.sqrt(2);
+					flashcard.css('height', newFlashcardHeight);
+					if (flashcard.width() > 900) {
+						flashcardHeaderHeight = 0.12;
+						flashcardBodyHeight = 0.88;
+						flashcardHeader.css('height', newFlashcardHeight * flashcardHeaderHeight);
+						flashcardBody.css('height', newFlashcardHeight * flashcardBodyHeight);
+						flashcardLecture.css('height', newFlashcardHeight * flashcardBodyHeight);
+						flashcardControls.css('margin-top', newFlashcardHeight * flashcardHeaderHeight);
+						flashcardControls.css('height', newFlashcardHeight * flashcardBodyHeight);
+					} else {
+						flashcardHeaderHeight = 0.16;
+						flashcardBodyHeight = 0.84;
+						flashcardHeader.css('height', newFlashcardHeight * flashcardHeaderHeight);
+						flashcardBody.css('height', newFlashcardHeight * flashcardBodyHeight);
+						flashcardLecture.css('height', newFlashcardHeight * flashcardBodyHeight);
+						flashcardControls.css('margin-top', newFlashcardHeight * flashcardHeaderHeight);
+						flashcardControls.css('height', newFlashcardHeight * flashcardBodyHeight);
+					}
 				}
-				flashcardHeaderHeight = 60;
-				flashcardBodyHeight = newFlashcardHeight - flashcardHeaderHeight;
-				flashcard.css('height', newFlashcardHeight);
-				flashcardHeader.css('height', flashcardHeaderHeight);
-				flashcardBody.css('height', flashcardBodyHeight);
-				flashcardLecture.css('height', flashcardBodyHeight);
-				flashcardControls.css('margin-top', flashcardHeaderHeight);
-				flashcardControls.css('height', flashcardBodyHeight);
-				contentEditor.css('height', flashcardBodyHeight);
-			} else {
-				newFlashcardHeight = flashcard.width() / Math.sqrt(2);
-				flashcard.css('height', newFlashcardHeight);
-				if (flashcard.width() > 900) {
-					flashcardHeaderHeight = 0.12;
-					flashcardBodyHeight = 0.88;
-					flashcardHeader.css('height', newFlashcardHeight * flashcardHeaderHeight);
-					flashcardBody.css('height', newFlashcardHeight * flashcardBodyHeight);
-					flashcardLecture.css('height', newFlashcardHeight * flashcardBodyHeight);
-					flashcardControls.css('margin-top', newFlashcardHeight * flashcardHeaderHeight);
-					flashcardControls.css('height', newFlashcardHeight * flashcardBodyHeight);
+				if (Session.get('mobilePreview') && $(window).width() >= 1200) {
+					contentEditor.css('height', $('.mobilePreviewFrame').outerHeight() - ($('#button-row').height() + $('#markdeepNavigation').height() + 9));
 				} else {
-					flashcardHeaderHeight = 0.16;
-					flashcardBodyHeight = 0.84;
-					flashcardHeader.css('height', newFlashcardHeight * flashcardHeaderHeight);
-					flashcardBody.css('height', newFlashcardHeight * flashcardBodyHeight);
-					flashcardLecture.css('height', newFlashcardHeight * flashcardBodyHeight);
-					flashcardControls.css('margin-top', newFlashcardHeight * flashcardHeaderHeight);
-					flashcardControls.css('height', newFlashcardHeight * flashcardBodyHeight);
+					contentEditor.css('height', newFlashcardHeight - $('#markdeepNavigation').height());
 				}
+				this.setSidebarPosition();
 			}
-			if (Session.get('mobilePreview') && $(window).width() >= 1200) {
-				contentEditor.css('height', $('.mobilePreviewFrame').outerHeight() - ($('#button-row').height() + $('#markdeepNavigation').height() + 9));
-			} else {
-				contentEditor.css('height', newFlashcardHeight - $('#markdeepNavigation').height());
-			}
-			this.setSidebarPosition();
 		}
 	}
 
@@ -114,7 +121,7 @@ export let CardVisuals = class CardVisuals {
 			if (!NavigatorCheck.isIOS()) {
 				screenfull.exit();
 			}
-			$("#theme-wrapper").css("margin-top", "55px");
+			$("#theme-wrapper").removeClass('theme-wrapper-fullscreen');
 			$(".editorElement").css("display", '');
 			$("#preview").css("display", "unset");
 			$("#markdeepNavigation").css("display", '');
@@ -129,12 +136,13 @@ export let CardVisuals = class CardVisuals {
 			$("#collapseLecture-" + card_id).removeClass('in');
 			editorFullScreenActive = false;
 			Session.set('fullscreen', false);
+			this.resizeFlashcard();
 		} else {
 			if (!NavigatorCheck.isIOS()) {
 				screenfull.request();
 			}
 			$(".box").removeClass("disableCardTransition");
-			$("#theme-wrapper").css("margin-top", "5px");
+			$("#theme-wrapper").addClass('theme-wrapper-fullscreen');
 			$(".editorElement").css("display", "none");
 			if (isEditor) {
 				$("#preview").css("display", "none");
@@ -145,6 +153,7 @@ export let CardVisuals = class CardVisuals {
 				$("#markdeepEditorContent").css("display", 'none');
 			}
 			Session.set('fullscreen', true);
+			this.resizeFlashcard();
 		}
 	}
 
