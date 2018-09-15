@@ -12,7 +12,7 @@ let endBreak = 0;
 let totalPoms = 0;
 
 /*what goal was set in the session begin popup. default one.*/
-let goalPoms = 1;
+let goalPoms = 2;
 
 /*this is the beginning of the red progress tracking arc*/
 let pomBeginAngle = 0;
@@ -308,7 +308,7 @@ export let PomodoroTimer = class PomodoroTimer {
 						}
 					});
 			} else {
-				/*So if you've completed your goal for the session you get this frien dlier pop up congradulating you and lightly suggesting you keep working.*/
+				/*So if you've completed your goal for the session you get this friendlier pop up congradulating you and lightly suggesting you keep working.*/
 				swal({
 						title: TAPi18n.__("pomodoro.productivity"),
 						type: "warning",
