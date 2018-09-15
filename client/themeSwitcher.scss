@@ -450,7 +450,7 @@ $themes: (
 
     .btn-raised.btn-success {
       color: $success_text !important;
-      background-color: $success_background !important;
+      background-color: $success_background;
     }
 
     .btn-raised.btn-info {
@@ -470,7 +470,7 @@ $themes: (
 
     .btn-raised.btn-danger {
       color: $danger_text !important;
-      background-color: $danger_background !important;
+      background-color: $danger_background;
     }
 
     .search-divide {
