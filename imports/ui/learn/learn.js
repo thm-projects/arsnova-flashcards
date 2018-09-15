@@ -98,6 +98,10 @@ Template.learnAnswerOptions.helpers({
 		if (Session.get('isQuestionSide')) {
 			return $('.carousel-inner > .item').length === 1;
 		}
+	},
+	checkDisable: function () {
+		console.log("Hallo");
+		return false;
 	}
 });
 
