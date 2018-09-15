@@ -35,7 +35,7 @@
   },
   "pomodoro" : {
     "pluralPomodoro": "Pomodori",
-    "clickClock": "Pomodoro-Timer",
+    "clickClock": "Pomodoro",
     "start": "starten",
     "startBig" : "Los geht's!",
     "goal": "Wie lange willst du heute lernen?",
@@ -46,7 +46,7 @@
     "reachedgoal": "Hey, du hast deine Zeitvorgabe von ",
     "momentum": " Pomodori erreicht!",
     "momentum1" : " Pomodoro erreicht",
-    "session": "Du scheinst in einem Flow zu sein. Willst du wirklich aufhören?",
+    "session": "Du scheinst im Flow zu sein. Willst du wirklich aufhören?",
     "goodJob": "Super!",
     "success1": "Du hast ",
     "success2": " Pomodori in ",
@@ -565,7 +565,7 @@
       "backDemo": "Zurück zur Demo-Kartei"
     },
     "help": {
-      "title": "Präsentationsmodus",
+      "title": "Tipps für die Beamer-Präsentation",
       "button": {
         "confirm": "Weiter zur Präsentation"
       }
@@ -573,9 +573,9 @@
   },
   "leitner": {
     "help": {
-      "title": "Leitner-Hilfe",
+      "title": "Wie du mit dem Wiederholungs-Algorithmus von Leitner lernst",
       "button": {
-        "confirm": "Weiter zum Leitner-Lernmodus"
+        "confirm": "Weiter zu den Karten"
       }
     }
   },
@@ -1043,7 +1043,7 @@
       "backToCardset": "Zurück zur Karteiansicht",
       "endPresentation": "Präsentation beenden",
       "fullscreen": "Mit der Taste ESC (oben links) kommst du wieder in die Normalansicht.",
-      "nextCard": "Zur nächsten Karte wechseln (auch mit der Leer-, Tab- oder Pfeiltaste)",
+      "nextCard": "Zur nächsten Karte wechseln (auch mit der Leertaste)",
       "previousCard": "Zur vorherigen Karte wechseln (auch mit der Pfeiltaste)",
       "lockSide": "Rückseite wird zur Vorderseite",
       "showIndex": "Zeige das Inhaltsverzeichnis der Kartei",
@@ -1638,9 +1638,9 @@
       "text": "Aktuell keine nach Lernplan zu lernenden Karten"
     },
     "help": {
-      "title": "Woźniak-Hilfe",
+      "title": "Wie du mit dem Wiederholungs-Algorithmus von Woźniak lernst",
       "button": {
-        "confirm": "Weiter zum Woźniak-Lernmodus"
+        "confirm": "Weiter zu den Karten"
       }
     }
   }
