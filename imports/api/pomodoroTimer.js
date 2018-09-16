@@ -12,7 +12,7 @@ let endBreak = 0;
 let totalPoms = 0;
 
 /*what goal was set in the session begin popup. default one.*/
-let goalPoms = 2;
+let goalPoms = 1;
 
 /*this is the beginning of the red progress tracking arc*/
 let pomBeginAngle = 0;
