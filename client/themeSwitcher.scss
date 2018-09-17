@@ -415,7 +415,16 @@ $themes: (
     $presentation_clock_hour_arm: map-get($map, "presentation_clock_hour_arm");
     $presentation_clock_minute_arm: map-get($map, "presentation_clock_minute_arm");
     $presentation_clock_second_arm: map-get($map, "presentation_clock_second_arm");
-
+    //pomodoro colors
+    $pomodoro_yellow: map-get($map, "pomodoro_yellow");
+    $pomodoro_green: map-get($map, "pomodoro_green");
+    $pomodoro_white: map-get($map, "pomodoro_white");
+    $pomodoro_orange: map-get($map, "pomodoro_orange");
+    $pomodoro_dark_orange: map-get($map, "pomodoro_dark_orange");
+    $pomodoro_blue: map-get($map, "pomodoro_blue");
+    $pomodoro_orange_link: map-get($map, "pomodoro_orange_link");
+    $pomodoro_stroke_orange: map-get($map, "pomodoro_stroke_orange");
+    $pomodoro_stroke_blue: map-get($map, "pomodoro_stroke_blue");
     .star-ratings .current-rating {
       color: $current_rating !important;
     }
@@ -2451,6 +2460,53 @@ $themes: (
     #flashcardSidebarLeft, #flashcardSidebarRight {
       border-color: $card_sidebar_border !important;
       background-color: $card_sidebar_background !important;
+    }
+
+    //pomodoro
+    .pomodoroTimer {
+      .pomodoroInstructions {
+        color: $pomodoro_white !important;
+      }
+
+      h3 {
+        color: $pomodoro_orange !important;
+      }
+
+      a:visited {
+        color: $pomodoro_orange_link !important;
+      }
+
+      .pomodoroFace {
+        fill: $pomodoro_green !important;
+      }
+
+      .pomodoroGreen {
+        color: $pomodoro_green !important;
+      }
+
+      .pomodoroHour, .pomodoroMin, .handCircle {
+        fill: $pomodoro_yellow !important;
+      }
+
+      .pomArc {
+        stroke: $pomodoro_stroke_orange !important;
+      }
+
+      .breakArc {
+        stroke: $pomodoro_stroke_blue !important;
+      }
+
+      .progressArc {
+        stroke: $pomodoro_dark_orange !important;
+      }
+
+      b {
+        color: $pomodoro_dark_orange !important;
+      }
+
+      label {
+        color: $pomodoro_blue !important;
+      }
     }
   }
 }

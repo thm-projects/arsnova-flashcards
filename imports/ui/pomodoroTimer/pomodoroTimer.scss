@@ -2,113 +2,59 @@
 @import "../../../client/themes/theme-contrast";
 @import "../main/main.scss";
 
-$themes: (
-        theme-default: map-merge(changing-colors-definitions(), theme-default()),
-        theme-contrast: map-merge(changing-colors-definitions(), theme-contrast())
-);
+.pomodoroTimer {
+  .pomodoroInstructions {
+    /*have to make it important to override the bootstrap css*/
+    font-size: 100%;
+    padding: 0;
+    font-weight: bold;
+    text-shadow: black 0.1em 0.1em 0.2em;
+  }
 
-@each $theme, $map in $themes {
-  .#{$theme} {
-    $pomodoro_yellow: map-get($map, "pomodoro_yellow");
-    $pomodoro_green: map-get($map, "pomodoro_green");
-    $pomodoro_white: map-get($map, "pomodoro_white");
-    $pomodoro_orange: map-get($map, "pomodoro_orange");
-    $pomodoro_dark_orange: map-get($map, "pomodoro_dark_orange");
-    $pomodoro_blue: map-get($map, "pomodoro_blue");
-    $pomodoro_orange_link: map-get($map, "pomodoro_orange_link");
-    $pomodoro_stroke_orange: map-get($map, "pomodoro_stroke_orange");
-    $pomodoro_stroke_blue: map-get($map, "pomodoro_stroke_blue");
+  h3 {
+    text-align: center;
+  }
 
-    .pomodoroTimer {
-      .pomodoroInstructions {
-        /*have to make it important to override the bootstrap css*/
-        color: $pomodoro_white !important;
-        font-size: 100%;
-        padding: 0;
-        font-weight: bold;
-        text-shadow: black 0.1em 0.1em 0.2em;
-      }
+  h2 {
+    margin: 0;
+  }
 
-      h3 {
-        color: $pomodoro_orange !important;
-        text-align: center;
-      }
+  a:hover {
+    text-decoration: none !important;
+  }
 
-      h2 {
-        margin: 0;
-      }
+  .pomArc,
+  .breakArc {
+    stroke-width: 8px;
+    fill: none;
+  }
 
-      a:visited {
-        color: $pomodoro_orange_link !important;
-      }
+  .progressArc {
+    fill: none;
+    stroke-width: 2px;
+  }
 
-      a:hover {
-        text-decoration: none !important;
-      }
+  .pomodoroClock {
+    max-height: 87vh;
+    cursor: pointer;
+  }
 
-      .pomodoroFace {
-        fill: $pomodoro_green !important;
-      }
+  .numSlider {
+    margin-left: 5% !important;
+    width: 71% !important;
+    position: relative !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+  }
 
-      .pomodoroGreen {
-        color: $pomodoro_green !important;
-      }
+  .quantity {
+    margin-bottom: 10px !important;
+    display: inline-block !important;
+    width: 17% !important;
+  }
 
-      .pomodoroHour, .pomodoroMin, .handCircle {
-        fill: $pomodoro_yellow !important;
-      }
-
-      .pomArc {
-        stroke: $pomodoro_stroke_orange;
-      }
-
-      .breakArc {
-        stroke: $pomodoro_stroke_blue;
-      }
-
-      .pomArc,
-      .breakArc {
-        stroke-width: 8px;
-        fill: none;
-      }
-
-      .progressArc {
-        fill: none;
-        stroke: $pomodoro_dark_orange;
-        stroke-width: 2px;
-      }
-
-      b {
-        color: $pomodoro_dark_orange;
-      }
-
-      .pomodoroClock {
-        max-height: 87vh;
-        cursor: pointer;
-      }
-
-      label {
-        color: $pomodoro_blue;
-      }
-
-      .numSlider {
-        margin-left: 5% !important;
-        width: 71% !important;
-        position: relative !important;
-        display: inline-block !important;
-        vertical-align: middle !important;
-      }
-
-      .quantity {
-        margin-bottom: 10px !important;
-        display: inline-block !important;
-        width: 17% !important;
-      }
-
-      #input {
-        text-align: center;
-      }
-    }
+  #input {
+    text-align: center;
   }
 }
 
