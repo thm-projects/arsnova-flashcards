@@ -18,51 +18,6 @@ Meteor.subscribe("cardsets");
 Meteor.subscribe("userData");
 Meteor.subscribe("serverInventory");
 
-let cloudShown = true;
-let isClockInBigmode = false;
-
-
-/**
- * PomoSetup for switching from bottom right to middle
- */
-function pomoPosition() {
-	if (!isClockInBigmode) {
-		if (!cloudShown) {
-			$('#pomodoroTimer').detach().appendTo('#pomoA');
-			$('#pomoB').addClass('zIndexLowPrio');
-			$('#clock').on('click', function () {
-				PomodoroTimer.clickClock();
-			});
-		} else if (cloudShown) {
-			$('#pomodoroTimer').detach().appendTo('#pomoB');
-			$('#pomoB').removeClass('zIndexLowPrio');
-			$('#clock').on('click', function () {
-				PomodoroTimer.clickClock();
-			});
-		}
-	}
-}
-
-// Pomodoro full-size Methods
-export let StaticWelcomeMethod = class StaticWelcomeMethod {
-	static showPomodoroFullsize() {
-		if ($(document).has('#pomoA').length) {
-			$('#bigClockDiv').addClass('zIndexFirstPrio bigDiv');
-			$('#pomodoroTimer').detach().appendTo('#bigClockDiv');
-			isClockInBigmode = true;
-		}
-	}
-
-	static showPomodoroNormal() {
-		if ($(document).has('#pomoA').length) {
-			$('#bigClockDiv').removeClass('zIndexFirstPrio bigDiv');
-			isClockInBigmode = false;
-			pomoPosition();
-		}
-	}
-};
-
-
 function setActiveLanguage() {
 	let language = getUserLanguage();
 	TAPi18n.setLanguage(language);
@@ -103,9 +58,9 @@ function createTagCloud() {
 	if ($(window).height() <= 450) {
 		document.getElementById('tag-cloud-container').height = 0;
 		document.getElementById('tag-cloud-canvas').height = 0;
-		cloudShown = false;
+		PomodoroTimer.setCloudShown(false);
 	} else {
-		cloudShown = true;
+		PomodoroTimer.setCloudShown(true);
 		let newWidth = $('#tag-cloud-container').width();
 		if (newWidth > 1024) {
 			newWidth = 1024;
@@ -192,7 +147,7 @@ function createTagCloud() {
 			} else {
 				document.getElementById('tag-cloud-container').height = 0;
 				document.getElementById('tag-cloud-canvas').height = 0;
-				cloudShown = false;
+				PomodoroTimer.setCloudShown(false);
 			}
 		}
 	}
@@ -335,18 +290,18 @@ Template.welcome.onCreated(function () {
 Template.welcome.onRendered(function () {
 	$('#clock').removeClass('clock');
 	createTagCloud();
-	pomoPosition();
+	PomodoroTimer.pomoPosition();
 	$(window).resize(function () {
 		createTagCloud();
-		pomoPosition();
+		PomodoroTimer.pomoPosition();
 	});
 	new ResizeSensor($('#welcome'), function () {
 		createTagCloud();
-		pomoPosition();
+		PomodoroTimer.pomoPosition();
 	});
 	new ResizeSensor($('#welcome-login'), function () {
 		createTagCloud();
-		pomoPosition();
+		PomodoroTimer.pomoPosition();
 	});
 });
 

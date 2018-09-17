@@ -9,19 +9,18 @@ $themes: (
 
 @each $theme, $map in $themes {
   .#{$theme} {
-  $pomodoro_yellow: map-get($map, "pomodoro_yellow");
-  $pomodoro_green: map-get($map, "pomodoro_green");
-  $pomodoro_white: map-get($map, "pomodoro_white");
-  $pomodoro_orange: map-get($map, "pomodoro_orange");
-  $pomodoro_dark_orange: map-get($map, "pomodoro_dark_orange");
-  $pomodoro_blue: map-get($map, "pomodoro_blue");
-  $pomodoro_orange_link: map-get($map, "pomodoro_orange_link");
-  $pomodoro_stroke_orange: map-get($map, "pomodoro_stroke_orange");
-  $pomodoro_stroke_blue: map-get($map, "pomodoro_stroke_blue");
+    $pomodoro_yellow: map-get($map, "pomodoro_yellow");
+    $pomodoro_green: map-get($map, "pomodoro_green");
+    $pomodoro_white: map-get($map, "pomodoro_white");
+    $pomodoro_orange: map-get($map, "pomodoro_orange");
+    $pomodoro_dark_orange: map-get($map, "pomodoro_dark_orange");
+    $pomodoro_blue: map-get($map, "pomodoro_blue");
+    $pomodoro_orange_link: map-get($map, "pomodoro_orange_link");
+    $pomodoro_stroke_orange: map-get($map, "pomodoro_stroke_orange");
+    $pomodoro_stroke_blue: map-get($map, "pomodoro_stroke_blue");
 
-    #pomodoroTimer {
-
-      #instructions {
+    .pomodoroTimer {
+      .pomodoroInstructions {
         /*have to make it important to override the bootstrap css*/
         color: $pomodoro_white !important;
         font-size: 100%;
@@ -35,6 +34,10 @@ $themes: (
         text-align: center;
       }
 
+      h2 {
+        margin: 0;
+      }
+
       a:visited {
         color: $pomodoro_orange_link !important;
       }
@@ -43,36 +46,33 @@ $themes: (
         text-decoration: none !important;
       }
 
-      #face {
-        fill: $pomodoro_green;
+      .pomodoroFace {
+        fill: $pomodoro_green !important;
       }
 
-      .green {
-        color: $pomodoro_green;
+      .pomodoroGreen {
+        color: $pomodoro_green !important;
       }
 
-      #pomodoroHour,
-      #pomodoroMin,
-      #sec,
-      #handCircle {
-        fill: $pomodoro_yellow;
+      .pomodoroHour, .pomodoroMin, .handCircle {
+        fill: $pomodoro_yellow !important;
       }
 
-      #pomArc {
+      .pomArc {
         stroke: $pomodoro_stroke_orange;
       }
 
-      #breakArc {
+      .breakArc {
         stroke: $pomodoro_stroke_blue;
       }
 
-      #pomArc,
-      #breakArc {
+      .pomArc,
+      .breakArc {
         stroke-width: 8px;
         fill: none;
       }
 
-      #progressArc {
+      .progressArc {
         fill: none;
         stroke: $pomodoro_dark_orange;
         stroke-width: 2px;
@@ -82,15 +82,12 @@ $themes: (
         color: $pomodoro_dark_orange;
       }
 
-      #clock {
+      .pomodoroClock {
         max-height: 87vh;
         cursor: pointer;
-        /*width:100vw;*/
-
       }
 
       label {
-        width: 100vw;
         color: $pomodoro_blue;
       }
 
@@ -111,8 +108,6 @@ $themes: (
       #input {
         text-align: center;
       }
-
-
     }
   }
 }

@@ -46,14 +46,18 @@
     <div id="answerOptions">
         {{#unless isNavigationVisible}}
             {{#if isQuestionSide}}
-                <div id="answerButtons" class="btn-group btn-group-raised btn-group-justified">
-                    <a href="#" id="learnShowAnswer" class="btn btn-success btn-raised answer show-answer"
-                       title="{{_ "wozniak.show"}}">{{_ "wozniak.show"}} {{#if fullscreenActive}}
-                        <span class="hidden-xs">( {{_ "key" key='y'}} )</span>{{/if}}</a>
+                <div id="answerButtons" class="btn-group btn-group-justified">
+                    <div class="btn-group" role="group">
+                    <button id="learnShowAnswer" class="btn btn-success btn-block btn-raised answer show-answer"
+                       title="{{_ "wozniak.show"}}" {{isPomodoroBreakActive}}>{{_ "wozniak.show"}} {{#if fullscreenActive}}
+                        <span class="hidden-xs">( {{_ "key" key='y'}} )</span>{{/if}}</button>
+                    </div>
                     {{#unless gotOneCardLeft}}
-                        <a href="#" id="skipAnswer" class="btn btn-danger btn-raised answer show-answer"
-                           title="{{_ "wozniak.skip"}}">{{_ "wozniak.skip"}} {{#if fullscreenActive}}
-                            <span class="hidden-xs">( {{_ "arrowKeys"}} )</span>{{/if}}</a>
+                    <div class="btn-group" role="group">
+                        <button href="#" id="skipAnswer" class="btn btn-danger btn-block btn-raised answer show-answer"
+                           title="{{_ "wozniak.skip"}}" {{isPomodoroBreakActive}}>{{_ "wozniak.skip"}} {{#if fullscreenActive}}
+                            <span class="hidden-xs">( {{_ "arrowKeys"}} )</span>{{/if}}</button>
+                    </div>
                     {{/unless}}
                 </div>
             {{else}}
@@ -61,13 +65,13 @@
                     {{#if isActiveRoute 'box'}}
                         <div class="btn-group" role="group">
                             <button class="btn btn-raised btn-warning answer card-fail" id="notknown"
-                                    title="{{_ "notknow"}}">{{_
+                                    title="{{_ "notknow"}}" {{isPomodoroBreakActive}}>{{_
                                     "notknow"}} {{#if fullscreenActive}}
                                 <span class="hidden-xs">( {{_ "key" key='n'}} )</span>{{/if}}</button>
                         </div>
                         <div class="btn-group" role="group">
                             <button class="btn btn-raised btn-success answer card-success" id="known"
-                                    title="{{_ "know"}}">{{_
+                                    title="{{_ "know"}}" {{isPomodoroBreakActive}}>{{_
                                     "know"}} {{#if fullscreenActive}}
                                 <span class="hidden-xs">( {{_ "key" key='y'}} )</span>{{/if}}</button>
                         </div>
