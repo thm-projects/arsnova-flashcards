@@ -415,7 +415,18 @@ $themes: (
     $presentation_clock_hour_arm: map-get($map, "presentation_clock_hour_arm");
     $presentation_clock_minute_arm: map-get($map, "presentation_clock_minute_arm");
     $presentation_clock_second_arm: map-get($map, "presentation_clock_second_arm");
-
+    //pomodoro colors
+    $pomodoro_timer_face: map-get($map, "pomodoro_timer_face");
+    $pomodoro_timer_hand_circle: map-get($map, "pomodoro_timer_hand_circle");
+    $pomodoro_timer_hand_hour: map-get($map, "pomodoro_timer_hand_hour");
+    $pomodoro_timer_hand_min: map-get($map, "pomodoro_timer_hand_min");
+    $pomodoro_timer_arc: map-get($map, "pomodoro_timer_arc");
+    $pomodoro_timer_arc_progress: map-get($map, "pomodoro_timer_arc_progress");
+    $pomodoro_timer_arc_break: map-get($map, "pomodoro_timer_arc_break");
+    $pomodoro_timer_bold_text: map-get($map, "pomodoro_timer_bold_text");
+    $pomodoro_timer_label: map-get($map, "pomodoro_timer_label");
+    $pomodoro_timer_text: map-get($map, "pomodoro_timer_text");
+    $pomodoro_timer_title: map-get($map, "pomodoro_timer_title");
     .star-ratings .current-rating {
       color: $current_rating !important;
     }
@@ -2451,6 +2462,57 @@ $themes: (
     #flashcardSidebarLeft, #flashcardSidebarRight {
       border-color: $card_sidebar_border !important;
       background-color: $card_sidebar_background !important;
+    }
+
+    //pomodoro
+    .pomodoroTimer {
+      .pomodoroInstructions {
+        color: $pomodoro_timer_text !important;
+      }
+
+      h3 {
+        color: $pomodoro_timer_title !important;
+      }
+
+      a:visited {
+        color: $hyperlink !important;
+      }
+
+      .pomodoroFace {
+        fill: $pomodoro_timer_face !important;
+      }
+
+      .pomodoroHour {
+        fill: $pomodoro_timer_hand_hour !important;
+      }
+
+      .pomodoroMin {
+        fill: $pomodoro_timer_hand_min !important;
+      }
+
+      .handCircle {
+        fill: $pomodoro_timer_hand_circle !important;
+      }
+
+      .pomArc {
+        stroke: $pomodoro_timer_arc !important;
+      }
+
+      .breakArc {
+        stroke: $pomodoro_timer_arc_break !important;
+      }
+
+      .progressArc {
+        stroke: $pomodoro_timer_arc_progress !important;
+      }
+
+      b {
+        color: $pomodoro_timer_bold_text !important;
+      }
+
+      label {
+        color: $pomodoro_timer_label !important;
+      }
     }
   }
 }
