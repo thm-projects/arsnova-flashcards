@@ -99,9 +99,10 @@ Template.learnAnswerOptions.helpers({
 			return $('.carousel-inner > .item').length === 1;
 		}
 	},
-	checkDisable: function () {
-		console.log("Hallo");
-		return false;
+	isPomodoroBreakActive: function () {
+		if (Session.get('pomodoroBreakActive') === true) {
+			return "disabled";
+		}
 	}
 });
 

@@ -424,6 +424,18 @@
           "presentation_clock_hour_marks": black,
           "presentation_clock_hour_arm": black,
           "presentation_clock_minute_arm": black,
-          "presentation_clock_second_arm": $thm_red
+          "presentation_clock_second_arm": $thm_red,
+    //pomodoro colors
+          "pomodoro_timer_face":$thm_green,
+          "pomodoro_timer_hand_circle":$thm_orange,
+          "pomodoro_timer_hand_hour":white,
+          "pomodoro_timer_hand_min":white,
+          "pomodoro_timer_arc":$thm_orange,
+          "pomodoro_timer_arc_progress":$thm_red,
+          "pomodoro_timer_arc_break":$thm_dark_blue,
+          "pomodoro_timer_bold_text": $thm_red,
+          "pomodoro_timer_label": $thm_dark_blue,
+          "pomodoro_timer_text": white,
+          "pomodoro_timer_title": $thm_orange
   );
 }

@@ -30,26 +30,7 @@
   $divider: #BDBDBD;
   $accent_300: #f0efef;
   $background: yellow;
-  $pomodoro_yellow: #FDE016;
-  $pomodoro_green: #33D275;
-  $pomodoro_white: white;
-  $pomodoro_orange: #FFAA30;
-  $pomodoro_dark_orange: #FE5E3E;
-  $pomodoro_blue: #178FFF;
-  $pomodoro_orange_link: #FE5E3E;
-  $pomodoro_stroke_orange: #FF9F30;
-  $pomodoro_stroke_blue: #178FFF;
   @return (
-          //pomodoro colors
-          "pomodoro_yellow":$pomodoro_yellow,
-          "pomodoro_green":$pomodoro_green,
-          "pomodoro_white":$pomodoro_white,
-          "pomodoro_orange":$pomodoro_orange,
-          "pomodoro_dark_orange":$pomodoro_dark_orange,
-          "pomodoro_blue":$pomodoro_blue,
-          "pomodoro_orange_link":$pomodoro_orange_link,
-          "pomodoro_stroke_orange":$pomodoro_stroke_orange,
-          "pomodoro_stroke_blue":$pomodoro_stroke_blue,
     //global colors
           "thm_dark_blue":$thm_dark_blue,
           "thm_blue":$thm_blue,
@@ -445,6 +426,18 @@
           "presentation_clock_hour_marks": $thm_gray,
           "presentation_clock_hour_arm": $thm_gray,
           "presentation_clock_minute_arm": $thm_gray,
-          "presentation_clock_second_arm": $thm_red
+          "presentation_clock_second_arm": $thm_red,
+    //pomodoro colors
+          "pomodoro_timer_face":$thm_green,
+          "pomodoro_timer_hand_circle":$thm_orange,
+          "pomodoro_timer_hand_hour":white,
+          "pomodoro_timer_hand_min":white,
+          "pomodoro_timer_arc":$thm_orange,
+          "pomodoro_timer_arc_progress":$thm_red,
+          "pomodoro_timer_arc_break":$thm_dark_blue,
+          "pomodoro_timer_bold_text": $thm_red,
+          "pomodoro_timer_label": $thm_dark_blue,
+          "pomodoro_timer_text": white,
+          "pomodoro_timer_title": $thm_orange
   );
 }

@@ -10,6 +10,7 @@ import {NavigatorCheck} from "../../api/navigatorCheck";
  * ############################################################################
  */
 let promodoroInterval;
+
 Template.pomodoroTimer.onCreated(function () {
 	/*This initializes the tooltip over "pomodoro" in the startup modal.*/
 	$('[data-toggle="tooltip"]').tooltip();
@@ -20,8 +21,17 @@ Template.pomodoroTimer.onCreated(function () {
 	}
 });
 
+Template.pomodoroTimer.helpers({
+	getHourRotation: function () {
+		return 'rotate(' + PomodoroTimer.getHourRotation() + ' 50 50)';
+	},
+	getMinuteRotation: function () {
+		return 'rotate(' + PomodoroTimer.getMinuteRotation() + ' 50 50)';
+	}
+});
+
 Template.pomodoroTimer.events({
-	'click #clock': function () {
+	'click .pomodoroClock': function () {
 		PomodoroTimer.clickClock();
 	}
 });
@@ -32,16 +42,16 @@ Template.pomodoroTimer.events({
  * ############################################################################
  */
 
+Template.pomodoroTimerModal.onRendered(function () {
+	$("#pomodoroTimerModal").on('hidden.bs.modal', function () {
+		PomodoroTimer.start();
+	});
+});
+
 Template.pomodoroTimerModal.helpers({
 	isiOS: function () {
 		return NavigatorCheck.isIOS();
 	}
-});
-
-Template.pomodoroTimerModal.onRendered(function () {
-	$("#pomodoroTimerModal").on('hidden.bs.modal', function () {
-		PomodoroTimer.close();
-	});
 });
 
 Template.pomodoroTimerModal.events({
@@ -74,9 +84,5 @@ Template.pomodoroTimerModal.events({
 	},
 	'change #sound3': function () {
 		PomodoroTimer.clockHandler(2);
-	},
-	'click #startPom': function () {
-		PomodoroTimer.start();
 	}
-
 });

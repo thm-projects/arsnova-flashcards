@@ -102,8 +102,20 @@ export let CardVisuals = class CardVisuals {
 				} else {
 					contentEditor.css('height', newFlashcardHeight - $('#markdeepNavigation').height());
 				}
+				this.setPomodoroTimerSize();
 				this.setSidebarPosition();
 			}
+		}
+	}
+
+	static setPomodoroTimerSize () {
+		let pomodoroTimer = $('.pomodoroClock');
+		let flashcardHeader = $('.cardHeaderLeft');
+		if (pomodoroTimer.length && flashcardHeader.length) {
+			let newTimerSize = parseInt(flashcardHeader.innerHeight()) - (parseInt(flashcardHeader.css('padding-top')));
+			pomodoroTimer.css('height', newTimerSize + "px");
+			pomodoroTimer.css('width', newTimerSize + "px");
+			pomodoroTimer.css('margin-top', -parseInt(flashcardHeader.css('padding-top')) + "px");
 		}
 	}
 
