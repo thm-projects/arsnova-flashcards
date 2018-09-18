@@ -1,0 +1,60 @@
+[{
+  "name": "B: Mit Karten präsentieren",
+  "description": "Dient in der Demo-Kartei für die Beschreibung der Navigation per Tastatur und Inhaltsverzeichnis.",
+  "date": "2018-07-08T06:28:46.220Z",
+  "dateUpdated": "2018-09-18T14:32:39.684Z",
+  "editors": [],
+  "owner": "jCZ6oHcbZhJaKKodN",
+  "visible": false,
+  "ratings": true,
+  "kind": "personal",
+  "price": 0,
+  "reviewed": false,
+  "reviewer": "undefined",
+  "request": false,
+  "relevance": 0,
+  "raterCount": 0,
+  "quantity": 1,
+  "license": [],
+  "userDeleted": false,
+  "learningActive": false,
+  "maxCards": 0,
+  "daysBeforeReset": 0,
+  "learningStart": "1970-01-01T00:00:00.000Z",
+  "learningEnd": "1970-01-01T00:00:00.000Z",
+  "learningInterval": [],
+  "learners": 0,
+  "wordcloud": false,
+  "shuffled": false,
+  "cardType": 8,
+  "difficulty": 1,
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  },
+  "noDifficulty": true,
+  "registrationPeriod": "1970-01-01T00:00:00.000Z"
+}, {
+  "subject": "Navigieren im Karten-Karussell",
+  "front": "**Die Karte als Folie:**\n.cards wurde auch als Präsentationstool entwickelt.\nIn der Präsentation werden die Karten in der Vollansicht dargestellt.\nDas ist für ein ablenkungsfreies Betrachten sehr förderlich.\nMit dem Karteityp \"Vortrag\" kannst du sogar vollständige Folien-Präsentationen halten.\nDie <a href=\"/learning#Pomodoro\" target=\"_blank\"><strong>Pomodoro-Uhr</strong></a> dient dir dann für das Timing deines Vortrags.\nDurch die Präsentation navigierst du <strong>ohne Maus</strong> einfach mit der <kbd>Leertaste</kbd>: \n\n![](/img/help/de/presentation_key.jpg width=60%)\n\nDie Seiten einer Karte erreichst du mit der <kbd>Tabtaste</kbd>.\nLange Texte scrollst du mit den <kbd>Pfeiltasten</kbd>.\nZu einer beliebigen Karte wechselst du per Klick im <strong>Inhaltsverzeichnis</strong>, Button links.\nUnd mit <kbd>esc</kbd> (Escape) oder dem orangefarbenen Button rechts verlässt du den Präsentationsmodus.\n\n<strong>Lightbox:</strong>\nWenn du Bilder auf deiner Karte in einer Lightbox herausstellen willst,\nklick einfach auf das Bild. Zum Testen klick mal auf das Bild oben.\nSpeichere die Bilder möglichst großformatig,\ndamit sie in voller Beamer-Höhe vom Publikum gesehen werden können.\n\n<strong>Einstelloptionen:</strong>\nmit dem rechten Button (Lupe) die Schriftgröße,\nso dass dein Publikum in der hintersten Reihe alles gut sehen kann.\nSollte der Beamer die Farben nicht richtig darstellen,\nschalte in deinen Profil-Einstellungen die Darstellung um auf <strong>Schwarz-Weiß</strong>.\n\n----\n\nEs folgen Beispiele für Kartentypen aus Kursen der Informatik...:\n",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "date": "2018-07-08T06:03:49.254Z",
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "dateUpdated": "2018-09-18T14:32:39.674Z",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  }
+}]
