@@ -244,7 +244,7 @@ Template.welcome.helpers({
 			let standard = TAPi18n.__("backdoor.standard");
 			let blocked = TAPi18n.__("backdoor.blocked");
 			let firstLogin = TAPi18n.__("backdoor.firstLogin");
-			loginButtons += '<a id="BackdoorLogin" href=""><img src="img/backdoor-login.png" alt="use backdoor for' +
+			loginButtons += '<a id="BackdoorLogin" href=""><img src="img/backdoor_login_gray.png" alt="use backdoor for' +
 				' login"/></a>';
 			loginButtons += '<span class="btn-group backdoorLogin"><label id="backdoor-label" class="loginLabel">' + title + '</label><br><select class="btn btn-secondary btn-raised" id="TestingBackdoorUsername" aria-labelledby="backdoor-label">' +
 				'<option id="superAdminLogin" value="admin">' + superAdmin + '</option>' +
