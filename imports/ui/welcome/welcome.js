@@ -221,16 +221,16 @@ Template.welcome.helpers({
 	getLoginButtons: function () {
 		let loginButtons = "<label class='loginLabel' for='loginButtonRow'>" + TAPi18n.__('login.label') + "&nbsp;&nbsp;</label><span id='loginButtonRow'>";
 		if (Meteor.settings.public.displayLoginButtons.displayCas) {
-			loginButtons += '<a id="cas" href=""><img src="img/social_cas_box_grey.png" alt="use CAS for login"/></a>';
+			loginButtons += '<a id="cas" href=""><img src="img/login/grey/cas.png" alt="use CAS for login"/></a>';
 		}
 		if (Meteor.settings.public.displayLoginButtons.displayFacebook) {
-			loginButtons += '<a id="facebook" href=""><img src="img/social_facebook_box_white.png" alt="login using facebook"/></a>';
+			loginButtons += '<a id="facebook" href=""><img src="img/login/grey/facebook.png" alt="login using facebook"/></a>';
 		}
 		if (Meteor.settings.public.displayLoginButtons.displayTwitter) {
-			loginButtons += '<a id="twitter" href=""><img src="img/social_twitter_box_white.png" alt="use twitter for login"/></a>';
+			loginButtons += '<a id="twitter" href=""><img src="img/login/grey/twitter.png" alt="use twitter for login"/></a>';
 		}
 		if (Meteor.settings.public.displayLoginButtons.displayGoogle) {
-			loginButtons += '<a id="google" href=""><img src="img/social_google_box_white.png" alt="use google for login"/></a>';
+			loginButtons += '<a id="google" href=""><img src="img/login/grey/google.png" alt="use google for login"/></a>';
 		}
 
 		// Backdoor for login in acceptance tests
@@ -244,7 +244,7 @@ Template.welcome.helpers({
 			let standard = TAPi18n.__("backdoor.standard");
 			let blocked = TAPi18n.__("backdoor.blocked");
 			let firstLogin = TAPi18n.__("backdoor.firstLogin");
-			loginButtons += '<a id="BackdoorLogin" href=""><img src="img/backdoor-login.png" alt="use backdoor for' +
+			loginButtons += '<a id="BackdoorLogin" href=""><img src="img/login/grey/backdoor.png" alt="use backdoor for' +
 				' login"/></a>';
 			loginButtons += '<span class="btn-group backdoorLogin"><label id="backdoor-label" class="loginLabel">' + title + '</label><br><select class="btn btn-secondary btn-raised" id="TestingBackdoorUsername" aria-labelledby="backdoor-label">' +
 				'<option id="superAdminLogin" value="admin">' + superAdmin + '</option>' +
