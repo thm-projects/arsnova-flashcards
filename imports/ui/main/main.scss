@@ -34,6 +34,7 @@ $default_font:
         'Apple Color Emoji',
         'Segoe UI Emoji',
         'Segoe UI Symbol';
+$default_text_shadow: 1px 1px 1px #4A5C66;
 
 //navbar
 $size_navbar_alldecks_border: 3px;
@@ -187,6 +188,10 @@ body {
 
 .btn {
   text-transform: unset !important;
+}
+
+.btn-success, .btn-danger, .btn-warning, .btn-info, .learnBtn, .bonusBtn, .presentationBtn, .label-private, .label-edu, .label-free, .label-pro, #filter-nav .dropdown, .panel-heading.info-tab, #collapseLearningPhaseInfoButton, .deleteAllCardsBtn, .newCardBtn, .markdeep-help, .pomodoroTimer h2  {
+  text-shadow: $default_text_shadow;
 }
 
 .table {
