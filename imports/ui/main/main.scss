@@ -190,7 +190,15 @@ body {
   text-transform: unset !important;
 }
 
-.btn-success, .btn-danger, .btn-warning, .btn-info, .learnBtn, .bonusBtn, .presentationBtn, .label-private, .label-edu, .label-free, .label-pro, #filter-nav .dropdown, .panel-heading.info-tab, #collapseLearningPhaseInfoButton, .deleteAllCardsBtn, .newCardBtn, .markdeep-help, .pomodoroTimer h2  {
+.btn-success, .btn-danger, .btn-warning, .btn-info, .learnBtn, .bonusBtn, .presentationBtn, .label-private, .label-edu, .label-free, .label-pro, #filter-nav-wrapper .navbar-text, #filter-nav-wrapper .dropdown-toggle, .panel-heading.info-tab, #collapseLearningPhaseInfoButton, .deleteAllCardsBtn, .newCardBtn, .markdeep-help, .pomodoroTimer h2  {
+  text-shadow: $default_text_shadow;
+}
+
+#difficultyGroup label {
+  text-shadow: none;
+}
+
+#difficultyGroup label.active {
   text-shadow: $default_text_shadow;
 }
 
