@@ -416,15 +416,17 @@ $themes: (
     $presentation_clock_minute_arm: map-get($map, "presentation_clock_minute_arm");
     $presentation_clock_second_arm: map-get($map, "presentation_clock_second_arm");
     //pomodoro colors
-    $pomodoro_yellow: map-get($map, "pomodoro_yellow");
-    $pomodoro_green: map-get($map, "pomodoro_green");
-    $pomodoro_white: map-get($map, "pomodoro_white");
-    $pomodoro_orange: map-get($map, "pomodoro_orange");
-    $pomodoro_dark_orange: map-get($map, "pomodoro_dark_orange");
-    $pomodoro_blue: map-get($map, "pomodoro_blue");
-    $pomodoro_orange_link: map-get($map, "pomodoro_orange_link");
-    $pomodoro_stroke_orange: map-get($map, "pomodoro_stroke_orange");
-    $pomodoro_stroke_blue: map-get($map, "pomodoro_stroke_blue");
+    $pomodoro_timer_face: map-get($map, "pomodoro_timer_face");
+    $pomodoro_timer_hand_circle: map-get($map, "pomodoro_timer_hand_circle");
+    $pomodoro_timer_hand_hour: map-get($map, "pomodoro_timer_hand_hour");
+    $pomodoro_timer_hand_min: map-get($map, "pomodoro_timer_hand_min");
+    $pomodoro_timer_arc: map-get($map, "pomodoro_timer_arc");
+    $pomodoro_timer_arc_progress: map-get($map, "pomodoro_timer_arc_progress");
+    $pomodoro_timer_arc_break: map-get($map, "pomodoro_timer_arc_break");
+    $pomodoro_timer_bold_text: map-get($map, "pomodoro_timer_bold_text");
+    $pomodoro_timer_label: map-get($map, "pomodoro_timer_label");
+    $pomodoro_timer_text: map-get($map, "pomodoro_timer_text");
+    $pomodoro_timer_title: map-get($map, "pomodoro_timer_title");
     .star-ratings .current-rating {
       color: $current_rating !important;
     }
@@ -2465,47 +2467,51 @@ $themes: (
     //pomodoro
     .pomodoroTimer {
       .pomodoroInstructions {
-        color: $pomodoro_white !important;
+        color: $pomodoro_timer_text !important;
       }
 
       h3 {
-        color: $pomodoro_orange !important;
+        color: $pomodoro_timer_title !important;
       }
 
       a:visited {
-        color: $pomodoro_orange_link !important;
+        color: $hyperlink !important;
       }
 
       .pomodoroFace {
-        fill: $pomodoro_green !important;
+        fill: $pomodoro_timer_face !important;
       }
 
-      .pomodoroGreen {
-        color: $pomodoro_green !important;
+      .pomodoroHour {
+        fill: $pomodoro_timer_hand_hour !important;
       }
 
-      .pomodoroHour, .pomodoroMin, .handCircle {
-        fill: $pomodoro_yellow !important;
+      .pomodoroMin {
+        fill: $pomodoro_timer_hand_min !important;
+      }
+
+      .handCircle {
+        fill: $pomodoro_timer_hand_circle !important;
       }
 
       .pomArc {
-        stroke: $pomodoro_stroke_orange !important;
+        stroke: $pomodoro_timer_arc !important;
       }
 
       .breakArc {
-        stroke: $pomodoro_stroke_blue !important;
+        stroke: $pomodoro_timer_arc_break !important;
       }
 
       .progressArc {
-        stroke: $pomodoro_dark_orange !important;
+        stroke: $pomodoro_timer_arc_progress !important;
       }
 
       b {
-        color: $pomodoro_dark_orange !important;
+        color: $pomodoro_timer_bold_text !important;
       }
 
       label {
-        color: $pomodoro_blue !important;
+        color: $pomodoro_timer_label !important;
       }
     }
   }
