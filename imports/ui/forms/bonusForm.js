@@ -2,6 +2,7 @@ import {Session} from "meteor/session";
 import {BonusForm} from "../../api/bonusForm";
 import "./bonusForm.html";
 import {Meteor} from "meteor/meteor";
+import {PomodoroTimer} from "../../api/pomodoroTimer";
 
 /*
 * ############################################################################
@@ -13,9 +14,13 @@ Template.bonusForm.onRendered(function () {
 	BonusForm.cleanModal();
 	$('#bonusFormModal').on('show.bs.modal', function () {
 		BonusForm.cleanModal();
+		PomodoroTimer.initializeVariables();
+		PomodoroTimer.initializeModalContent();
 	});
 	$('#bonusFormModal').on('hidden.bs.modal', function () {
 		BonusForm.cleanModal();
+		PomodoroTimer.initializeVariables();
+		PomodoroTimer.initializeModalContent();
 	});
 });
 

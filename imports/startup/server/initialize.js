@@ -647,6 +647,22 @@ Meteor.startup(function () {
 		);
 	}
 
+	cardsets = Cardsets.find({pomodoroTimer: {$exists: false}, learningActive: true}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					'pomodoroTimer.quantity': 3,
+					'pomodoroTimer.workLength': 15,
+					'pomodoroTimer.breakLength': 5,
+					'pomodoroTimer.soundConfig': [true, true, true]
+				}
+			}
+		);
+	}
+
 	let wozniak;
 	wozniak = Wozniak.find({skipped: {$exists: true}}).fetch();
 	for (let i = 0; i < wozniak.length; i++) {

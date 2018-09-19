@@ -423,10 +423,6 @@ $themes: (
     $pomodoro_timer_arc: map-get($map, "pomodoro_timer_arc");
     $pomodoro_timer_arc_progress: map-get($map, "pomodoro_timer_arc_progress");
     $pomodoro_timer_arc_break: map-get($map, "pomodoro_timer_arc_break");
-    $pomodoro_timer_bold_text: map-get($map, "pomodoro_timer_bold_text");
-    $pomodoro_timer_label: map-get($map, "pomodoro_timer_label");
-    $pomodoro_timer_text: map-get($map, "pomodoro_timer_text");
-    $pomodoro_timer_title: map-get($map, "pomodoro_timer_title");
     .star-ratings .current-rating {
       color: $current_rating !important;
     }
@@ -2466,14 +2462,6 @@ $themes: (
 
     //pomodoro
     .pomodoroTimer {
-      .pomodoroInstructions {
-        color: $pomodoro_timer_text !important;
-      }
-
-      h3 {
-        color: $pomodoro_timer_title !important;
-      }
-
       a:visited {
         color: $hyperlink !important;
       }
@@ -2504,14 +2492,6 @@ $themes: (
 
       .progressArc {
         stroke: $pomodoro_timer_arc_progress !important;
-      }
-
-      b {
-        color: $pomodoro_timer_bold_text !important;
-      }
-
-      label {
-        color: $pomodoro_timer_label !important;
       }
     }
   }

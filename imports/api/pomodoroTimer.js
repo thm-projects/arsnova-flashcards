@@ -1,41 +1,54 @@
 import {Session} from "meteor/session";
+import {Bonus} from "./bonus.js";
+import {Cardsets} from "./cardsets.js";
 import {Route} from "./route.js";
 
 Session.set('pomodoroBreakActive', false);
 /*This is a ton of script, mostly popups, so strap in for a wild ride!*/
 /*endPom is the angle of the minute hand at which the work period will end.*/
-let endPom = 0;
+let defaultEndPom = 0;
+let endPom = defaultEndPom;
 
 /*the angle at which the break will end*/
-let endBreak = 0;
+let defaultEndBreak = 0;
+let endBreak = defaultEndBreak;
 
 /*the number of cycles completed since beginning the session*/
-let totalPoms = 0;
+let defaultTotalPoms = 0;
+let totalPoms = defaultTotalPoms;
 
 /*what goal was set in the session begin popup. default one.*/
-let goalPoms = 1;
+let defaultGoalPoms = 1;
+let goalPoms = defaultGoalPoms;
 
 /*this is the beginning of the red progress tracking arc*/
 let pomBeginAngle = 0;
 let breakBeginAngle = 0;
 
 /*how long to work in each cycle*/
-let pomLength = 25;
+let defaultPomLength = 25;
+let pomLength = defaultPomLength;
 
 /*how long to break each cycle*/
-let breakLength = 5;
+let defaultBreakLength = 5;
+let breakLength = defaultBreakLength;
 
 /*is it running?*/
-let pomRunning = false;
-let breakRunning = false;
+let defaultPomRunning = false;
+let pomRunning = defaultPomRunning;
+let defaultBreakRunning = false;
+let breakRunning = defaultBreakRunning;
 
 let isClockInBigmode = false;
 let cloudShown = true;
 
 //which pomodoro sound
-let isBellSoundEnabled = true;
-let isSuccessSoundEnabled = true;
-let isFailSoundEnabled = true;
+let DefaultIsBellSoundEnabled = true;
+let DefaultIsSuccessSoundEnabled = true;
+let DefaultIsFailSoundEnabled = true;
+let isBellSoundEnabled = DefaultIsBellSoundEnabled;
+let isSuccessSoundEnabled = DefaultIsSuccessSoundEnabled;
+let isFailSoundEnabled = DefaultIsFailSoundEnabled;
 
 let bellSound = new Audio('/audio/Schulgong.mp3');
 let failSound = new Audio('/audio/fail.mp3');
@@ -332,22 +345,22 @@ export let PomodoroTimer = class PomodoroTimer {
 					});
 			}
 		} else {
-			/*and if you're not currently in a session, this activates the starting pop up*/
-			$("#pomodoroTimerModal").modal();
+			if (!Bonus.isInBonus(Router.current().params._id)) {
+				/*and if you're not currently in a session, this activates the starting pop up*/
+				$("#pomodoroTimerModal").modal();
+			}
 		}
 	}
 
 	/*gets the goal number of pomodoros*/
 	static updatePomNumSlider () {
-		$('#pomQuantity').val($('#pomNumSlider').val());
+		$('#pomodoroCount').html($('#pomNumSlider').val());
 		goalPoms = $('#pomNumSlider').val();
 		this.updateTimeParagraph();
 	}
 
-	static updatePomQuantity () {
-		$('#pomNumSlider').val($('#pomQuantity').val());
-		goalPoms = $('#pomQuantity').val();
-		this.updateTimeParagraph();
+	static getGoalPoms () {
+		return parseInt($('#pomNumSlider').val());
 	}
 
 	/*hides the goal box, shows the place where you can change the pomodoro length*/
@@ -362,49 +375,81 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	/*when you update the work slider or input box or the break ones, it updates the total time and makes sure you didn't go over 60 minutes total work and break time per cycle. I could probably refactor all the following code. Someday!*/
-	static updateWorkLength () {
-		$('#workSlider').val($('#workLength').val());
-		pomLength = parseInt($('#workLength').val(), 10);
-
-		if (pomLength + breakLength > 60) {
-			breakLength = 60 - pomLength;
-			$('#playLength').val(breakLength);
-			$('#playSlider').val(breakLength);
-		}
-		this.updateTimeParagraph();
-	}
-
 	static updateWorkSlider () {
-		$('#workLength').val($('#workSlider').val());
+		$('#workLength').html($('#workSlider').val());
 		pomLength = parseInt($('#workSlider').val(), 10);
 		if (pomLength + breakLength > 60) {
 			breakLength = 60 - pomLength;
-			$('#playLength').val(breakLength);
-			$('#playSlider').val(breakLength);
+			$('#breakLength').html(breakLength);
+			$('#breakSlider').val(breakLength);
 		}
 		this.updateTimeParagraph();
 	}
 
-	static updatePlayLength () {
-		$('#playSlider').val($('#playLength').val());
-		breakLength = parseInt($('#playLength').val(), 10);
+	static getPomLength () {
+		return parseInt($('#workSlider').val(), 10);
+	}
+
+	static updateBreakSlider () {
+		$('#breakLength').html($('#breakSlider').val());
+		breakLength = parseInt($('#breakSlider').val(), 10);
 		if (pomLength + breakLength > 60) {
 			pomLength = 60 - breakLength;
-			$('#workLength').val(pomLength);
+			$('#workLength').html(pomLength);
 			$('#workSlider').val(pomLength);
 		}
 		this.updateTimeParagraph();
 	}
 
-	static updatePlaySlider () {
-		$('#playLength').val($('#playSlider').val());
-		breakLength = parseInt($('#playSlider').val(), 10);
-		if (pomLength + breakLength > 60) {
-			pomLength = 60 - breakLength;
-			$('#workLength').val(pomLength);
-			$('#workSlider').val(pomLength);
+	static getBreakLength () {
+		return parseInt($('#breakSlider').val(), 10);
+	}
+
+	static getSoundConfig () {
+		return [isBellSoundEnabled, isSuccessSoundEnabled, isFailSoundEnabled];
+	}
+
+	static initializeModalContent () {
+		$('#pomNumSlider').val(goalPoms);
+		this.updatePomNumSlider();
+		$('#workSlider').val(pomLength);
+		this.updateWorkSlider();
+		$('#breakSlider').val(breakLength);
+		this.updateBreakSlider();
+	}
+
+	static initializeVariables () {
+		Session.set('pomodoroBreakActive', false);
+		totalPoms = defaultTotalPoms;
+		endPom = defaultEndPom;
+		endBreak = defaultEndBreak;
+		pomRunning = defaultPomRunning;
+		breakRunning = defaultBreakRunning;
+		if (((Route.isBox() || Route.isMemo()) && Bonus.isInBonus(Router.current().params._id)) || Route.isCardset()) {
+			let cardset = Cardsets.findOne({_id: Router.current().params._id});
+			if (cardset.pomodoroTimer !== undefined) {
+				goalPoms = cardset.pomodoroTimer.quantity;
+				pomLength = cardset.pomodoroTimer.workLength;
+				breakLength = cardset.pomodoroTimer.breakLength;
+				isBellSoundEnabled = cardset.pomodoroTimer.soundConfig[0];
+				isSuccessSoundEnabled = cardset.pomodoroTimer.soundConfig[1];
+				isFailSoundEnabled = cardset.pomodoroTimer.soundConfig[2];
+			} else {
+				goalPoms = defaultGoalPoms;
+				pomLength = defaultPomLength;
+				breakLength = defaultBreakLength;
+				isBellSoundEnabled = DefaultIsBellSoundEnabled;
+				isSuccessSoundEnabled = DefaultIsSuccessSoundEnabled;
+				isFailSoundEnabled = DefaultIsFailSoundEnabled;
+			}
+		} else {
+			goalPoms = defaultGoalPoms;
+			pomLength = defaultPomLength;
+			breakLength = defaultBreakLength;
+			isBellSoundEnabled = DefaultIsBellSoundEnabled;
+			isSuccessSoundEnabled = DefaultIsSuccessSoundEnabled;
+			isFailSoundEnabled = DefaultIsFailSoundEnabled;
 		}
-		this.updateTimeParagraph();
 	}
 
 	/*any way you close the modal, by clicking the close button, confirm button, or clicking outside the box, starts a session. Makes it faster when you just want to start working. This initializes the end positions of all the arcs, and changes the instructions at the top of the screen.*/

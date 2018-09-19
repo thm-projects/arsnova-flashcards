@@ -3,26 +3,6 @@
 @import "../main/main.scss";
 
 .pomodoroTimer {
-  .pomodoroInstructions {
-    /*have to make it important to override the bootstrap css*/
-    font-size: 100%;
-    padding: 0;
-    font-weight: bold;
-    text-shadow: black 0.1em 0.1em 0.2em;
-  }
-
-  h3 {
-    text-align: center;
-  }
-
-  h2 {
-    margin: 0;
-  }
-
-  a:hover {
-    text-decoration: none !important;
-  }
-
   .pomArc,
   .breakArc {
     stroke-width: 8px;
@@ -66,5 +46,6 @@
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+  background-image: url('/img/pomodoro.png');
 }
 
