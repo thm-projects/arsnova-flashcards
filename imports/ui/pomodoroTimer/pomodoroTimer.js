@@ -3,6 +3,7 @@ import "./pomodoroTimer.html";
 import {Template} from "meteor/templating";
 import {PomodoroTimer} from "../../api/pomodoroTimer";
 import {NavigatorCheck} from "../../api/navigatorCheck";
+import {Route} from "../../api/route";
 
 /*
  * ############################################################################
@@ -43,9 +44,9 @@ Template.pomodoroTimer.events({
  */
 
 Template.pomodoroTimerModal.onRendered(function () {
-	$("#pomodoroTimerModal").on('hidden.bs.modal', function () {
-		PomodoroTimer.start();
-	});
+	if (Route.isBox() || Route.isMemo()) {
+		$('#pomodoroTimerModal').modal('show');
+	}
 });
 
 Template.pomodoroTimerModal.helpers({
@@ -84,5 +85,8 @@ Template.pomodoroTimerModal.events({
 	},
 	'change #sound3': function () {
 		PomodoroTimer.clockHandler(2);
+	},
+	'click #startPom': function () {
+		PomodoroTimer.start();
 	}
 });
