@@ -27,6 +27,10 @@ Template.learnAlgorithms.onCreated(function () {
 	CardNavigation.toggleVisibility(true);
 });
 
+Template.learnAlgorithms.onRendered(function () {
+	$('.pomodoroTimer').click();
+});
+
 Template.learnAlgorithms.helpers({
 	noCards: function () {
 		if (ActiveRoute.name('box')) {
