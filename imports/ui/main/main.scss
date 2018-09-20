@@ -156,6 +156,28 @@ $text_decoration_cookie_consent_link: none;
 //leitner_progress
 $font_size_cardset_badges: 11px;
 
+//sweet alert 2
+$font_size_sweet_alert_2_icon: 30px;
+$font_size_sweet_alert_2_title: 24px;
+$font_size_sweet_alert_2_text: 16px;
+
+.swal2-modal {
+  max-width: 640px !important;
+}
+
+.swal2-icon {
+  font-size: $font_size_sweet_alert_2_icon !important;
+}
+
+#swal2-title {
+  font-size: $font_size_sweet_alert_2_title !important;
+}
+
+#swal2-content, .swal2-confirm, .swal2-cancel {
+  font-size: $font_size_sweet_alert_2_text !important;
+}
+
+
 html {
   position: relative;
   min-height: 100%;

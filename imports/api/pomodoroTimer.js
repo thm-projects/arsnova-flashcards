@@ -2,6 +2,7 @@ import {Session} from "meteor/session";
 import {Bonus} from "./bonus.js";
 import {Cardsets} from "./cardsets.js";
 import {Route} from "./route.js";
+import swal from "sweetalert2";
 
 Session.set('pomodoroBreakActive', false);
 /*This is a ton of script, mostly popups, so strap in for a wild ride!*/
@@ -167,14 +168,12 @@ export let PomodoroTimer = class PomodoroTimer {
 			/*the first sweet alert! This is what pops up when you finish a pomodoro. It congradulates the user and lets them start their break when they are ready. There is no option to stop the session in this box, that function is relegated to the second click on the clock, as noted by the title.*/
 			swal({
 					title: "Good job!",
-					text: "You have completed <b>" + totalPoms + " pomodoros</b> of work! Are you ready for a relaxing <b>" + breakLength + " minutes</b> of whatever the heck you feel like?",
+					html: "You have completed <b>" + totalPoms + " pomodoros</b> of work! Are you ready for a relaxing <b>" + breakLength + " minutes</b> of whatever the heck you feel like?",
 					type: "success",
-					html: true,
-					confirmButtonText: "Yes, I can't wait!"
-				},
-
-				/*and this is what runs when the user clicks the confirm button on the popup. It starts the break, and gets the current time and sets the end from there.*/
-				function () {
+					confirmButtonText: "Yes, I can't wait!",
+					allowOutsideClick: false
+				}).then(() => {
+					/*and this is what runs when the user clicks the confirm button on the popup. It starts the break, and gets the current time and sets the end from there.*/
 					breakRunning = true;
 					Session.set('pomodoroBreakActive', breakRunning);
 					let popTime = new Date();
@@ -209,13 +208,11 @@ export let PomodoroTimer = class PomodoroTimer {
 
 			swal({
 					title: "Break's over!",
-					text: "Hope that break left you feeling refreshed! Now it's time to get back to accomplishing your goals. Ready for<b> " + pomLength + " more minutes</b> of work?",
-					html: true,
-					confirmButtonText: "Let me at it!"
-				},
-
-				/*starts the work cycle up again, automatically.*/
-				function () {
+					html: "Hope that break left you feeling refreshed! Now it's time to get back to accomplishing your goals. Ready for<b> " + pomLength + " more minutes</b> of work?",
+					confirmButtonText: "Let me at it!",
+					allowOutsideClick: false
+				}).then(() => {
+					/*starts the work cycle up again, automatically.*/
 					pomRunning = true;
 					let popTime = new Date();
 					endPom = 6 * popTime.getMinutes() + popTime.getSeconds() / 10 + 6 * pomLength;
@@ -261,28 +258,23 @@ export let PomodoroTimer = class PomodoroTimer {
 				swal({
 						title: "Not so fast!",
 						type: "warning",
-						text: "You are still <b>" + (goalPoms - totalPoms) + " pomodoros</b> short of your goal of <b>" + goalPoms + " pomodoros</b>! <br><br>Come on, you can do <b>" + (goalPoms - totalPoms) * pomLength + " more minutes</b> of work!",
-						html: true,
+						html: "You are still <b>" + (goalPoms - totalPoms) + " pomodoros</b> short of your goal of <b>" + goalPoms + " pomodoros</b>! <br><br>Come on, you can do <b>" + (goalPoms - totalPoms) * pomLength + " more minutes</b> of work!",
 						showCancelButton: true,
 						confirmButtonText: "Continue!",
 						cancelButtonText: "Stop.",
-						closeOnCancel: false
-					},
-
-					/*If you give up before you complete your goal you get a failure sound, taken from a show me and my lady have been watching lately, and a failure box. Shame!*/
-					function (isConfirm) {
-						if (!isConfirm) {
+						allowOutsideClick: false
+					}).then((result) => {
+						/*If you give up before you complete your goal you get a failure sound, taken from a show me and my lady have been watching lately, and a failure box. Shame!*/
+						if (!result.value) {
 							if (isFailSoundEnabled) {
 								failSound.play();
 							}
 							swal({
 								title: "You didn't make it.",
-								text: "You couldn't complete the <b>" + goalPoms + " pomodoros</b> you planned on doing. Sometimes life gets in the way, we get it! See you back here later!",
-								html: true,
+								html: "You couldn't complete the <b>" + goalPoms + " pomodoros</b> you planned on doing. Sometimes life gets in the way, we get it! See you back here later!",
 								type: "error",
-								showCancelButton: false,
 								allowOutsideClick: false
-							}, function () {
+							}).then(() => {
 								PomodoroTimer.showPomodoroNormal();
 								if ((Route.isBox() || Route.isMemo())) {
 									Session.set('pomodoroBreakActive', false);
@@ -306,25 +298,23 @@ export let PomodoroTimer = class PomodoroTimer {
 				swal({
 						title: "Stop the productivity train?",
 						type: "warning",
-						text: "Hey, you've reached your goal of <b>" + goalPoms + " pomodoros</b>! You've built up some good momentum, are you sure you want to stop?",
-						html: true,
+						html: "Hey, you've reached your goal of <b>" + goalPoms + " pomodoros</b>! You've built up some good momentum, are you sure you want to stop?",
 						showCancelButton: true,
 						confirmButtonText: "Stop.",
 						cancelButtonText: "Continue!",
-						closeOnConfirm: false
-					},
-					function (isConfirm) {
+						allowOutsideClick: false
+					}).then((result) => {
 						/*you succeeded so you get the success sound and a success message. good for you! */
-						if (isConfirm) {
+						if (result.value) {
 							if (isSuccessSoundEnabled) {
 								successSound.play();
 							}
 							swal({
 								title: "Great job!",
-								text: "In the end you did <b>" + totalPoms + " pomodoros</b>, for a total of <b>" + totalPoms * pomLength + " minutes</b> of work! You are awesome! Come back soon!",
-								html: true,
-								type: "success"
-							}, function () {
+								html: "In the end you did <b>" + totalPoms + " pomodoros</b>, for a total of <b>" + totalPoms * pomLength + " minutes</b> of work! You are awesome! Come back soon!",
+								type: "success",
+								allowOutsideClick: false
+							}).then(() => {
 								PomodoroTimer.showPomodoroNormal();
 								if ((Route.isBox() || Route.isMemo())) {
 									Session.set('pomodoroBreakActive', false);
