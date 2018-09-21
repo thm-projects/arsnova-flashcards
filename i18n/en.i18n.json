@@ -1180,7 +1180,8 @@
     "boxNotLearned": "untrained",
     "boxNotLearnedShort": "untrained",
     "index": "Index",
-    "indexDefault": "All cardsets"
+    "indexDefault": "All cardsets",
+    "percentage": "Percentage"
   },
   "permission": "Permission denied",
   "nocards": "No cards available",
