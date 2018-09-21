@@ -161,23 +161,6 @@ $font_size_sweet_alert_2_icon: 30px;
 $font_size_sweet_alert_2_title: 24px;
 $font_size_sweet_alert_2_text: 16px;
 
-.swal2-modal {
-  max-width: 640px !important;
-}
-
-.swal2-icon {
-  font-size: $font_size_sweet_alert_2_icon !important;
-}
-
-#swal2-title {
-  font-size: $font_size_sweet_alert_2_title !important;
-}
-
-#swal2-content, .swal2-confirm, .swal2-cancel {
-  font-size: $font_size_sweet_alert_2_text !important;
-}
-
-
 html {
   position: relative;
   min-height: 100%;
@@ -196,9 +179,6 @@ body {
   color: black;
   @media(max-width: 767px) {
     margin: 0;
-  }
-  > .container {
-    padding: 80px 15px 0;
   }
 }
 
@@ -318,22 +298,17 @@ body {
   }
 }
 
-#theme-wrapper {
-  margin-top: 55px;
-  margin-bottom: 70px;
+#theme-wrapper #main  {
+    margin-top: 55px;
+    margin-bottom: 70px;
 }
 
-.theme-wrapper-fullscreen {
-  margin-top: 5px !important;
-  margin-bottom: 0 !important;
+#theme-wrapper-no-nav #main {
+    margin-top: 20px !important;
 }
 
-#theme-wrapper-no-nav {
-  margin-top: 20px !important;
-}
-
-#theme-wrapper-no-nav-welcome {
-  margin-top: 0 !important;
+#theme-wrapper-no-nav-welcome #main  {
+    margin-top: 0 !important;
 }
 
 .modal-header .close {
