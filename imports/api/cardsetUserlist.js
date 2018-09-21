@@ -97,7 +97,7 @@ Meteor.methods({
 		if (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
 			let content;
 			let colSep = ";"; // Separates columns
-			let infoCol = ";;;;;;;;;;"; // Separates columns
+			let infoCol = ";;;;;;;;;;;"; // Separates columns
 			let newLine = "\r\n"; //Adds a new line
 			let infoCardsetCounter = 0;
 			let infoCardsetLength = 6;
@@ -107,11 +107,17 @@ Meteor.methods({
 			for (let i = 0; i <= 4; i++) {
 				content += header[i] + " [" + cardset.learningInterval[i] + "]" + colSep;
 			}
-			content += header[5] + colSep + colSep + cardsetInfo[infoCardsetCounter++][0] + newLine;
+			content += header[5] + colSep + header[9] + colSep + colSep + cardsetInfo[infoCardsetCounter++][0] + newLine;
 			let learners = getLearners(Workload.find({cardset_id: cardset_id, 'leitner.bonus': true}).fetch(), cardset_id);
 			for (let k = 0; k < learners.length; k++) {
+				let percentage = Math.round(learners[k].box6 / cardset.quantity * 100);
+				if (percentage > 0) {
+					percentage += " %";
+				} else {
+					percentage = "";
+				}
 				content += learners[k].birthname + colSep + learners[k].givenname + colSep + learners[k].email + colSep;
-				content += learners[k].box1 + colSep + learners[k].box2 + colSep + learners[k].box3 + colSep + learners[k].box4 + colSep + learners[k].box5 + colSep + learners[k].box6 + colSep;
+				content += learners[k].box1 + colSep + learners[k].box2 + colSep + learners[k].box3 + colSep + learners[k].box4 + colSep + learners[k].box5 + colSep + learners[k].box6 +  colSep + percentage +  colSep;
 				if (infoCardsetCounter <= infoCardsetLength) {
 					content += colSep + cardsetInfo[infoCardsetCounter][0] + colSep + cardsetInfo[infoCardsetCounter++][1];
 				} else if (infoLearningPhaseCounter <= infoLearningPhaseLength) {
