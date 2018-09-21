@@ -1122,6 +1122,7 @@ Template.cardsetLearnActivityStatistic.events({
 		header[6] = TAPi18n.__('box_export_birth_name');
 		header[7] = TAPi18n.__('box_export_given_name');
 		header[8] = TAPi18n.__('box_export_mail');
+		header[9] = TAPi18n.__('leitnerProgress.percentage');
 		Meteor.call("getCSVExport", cardset._id, header, function (error, result) {
 			if (error) {
 				throw new Meteor.Error(error.statusCode, 'Error could not receive content for .csv');
