@@ -235,7 +235,7 @@
     "college": "Hochschule",
     "course": "Studiengang",
     "author": "Autor/in",
-    "authorPublisher": "Autor/in oder Hrsg.",
+    "authorPublisher": "Autor/in | Herausgeber/in",
     "title": "Aktuell werden folgende Karteien angeboten:",
     "everyone": "Alle",
     "everything": "Alle",
@@ -777,9 +777,9 @@
     "sortMode1": "Alphanumerisch"
   },
   "filter-pool": {
-    "wordcloud": "Empfohlen",
-    "wordcloudTrue": "Von der Redaktion empfohlen",
-    "wordcloudFalse": "Ohne Empfehlung",
+    "wordcloud": "Community",
+    "wordcloudTrue": "von der Redaktion in die Themen-Wolke aufgenommen",
+    "wordcloudFalse": "von Studierenden für die Community freigegeben",
     "wordcloudEveryting": "Alle",
     "from": "Ab",
     "noResults": "Keine Karteien oder Repetitorien vorhanden oder keine Ergebnisse für diese Filtereinstellung",
