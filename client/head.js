@@ -11,15 +11,15 @@ window.addEventListener("load", function () {
 	window.cookieconsent.initialise({
 		"palette": {
 			"popup": {
-				"background": "#F5AA01",
+				"background": "#4A5C66",
 				"text": "#ffffff"
 			},
 			"button": {
-				"background": "#4A5C66",
+				"background": "#FF9F30",
 				"text": "#ffffff"
 			}
 		},
-		"theme": "classic",
+		"theme": "edgeless",
 		"position": "bottom-right",
 
 		"content": {
