@@ -25,7 +25,7 @@ window.addEventListener("load", function () {
 		"content": {
 			"message": Meteor.settings.public.welcome.title.first + "." + Meteor.settings.public.welcome.title.last + " verwendet Cookies. Wenn du auf dieser Seite bleibst, stimmst du der Cookie-Nutzung zu.",
 			"dismiss": "Ich stimme zu",
-			"link": "[Datenschutzerklärung]",
+			"link": "→ Datenschutz",
 			"href": "/datenschutz"
 		}
 	});
