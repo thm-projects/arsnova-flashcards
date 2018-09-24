@@ -49,6 +49,9 @@ Template.pomodoroTimerModal.onCreated(function () {
 });
 
 Template.pomodoroTimerModal.onRendered(function () {
+	$('#pomodoroTimerModal').on('show.bs.modal', function () {
+		PomodoroTimer.initializeModalContent();
+	});
 	if (Route.isBox() || Route.isMemo()) {
 		if (Bonus.isInBonus(Router.current().params._id)) {
 			PomodoroTimer.start();
@@ -56,9 +59,6 @@ Template.pomodoroTimerModal.onRendered(function () {
 			$('#pomodoroTimerModal').modal('show');
 		}
 	}
-	$('#pomodoroTimerModal').on('show.bs.modal', function () {
-		PomodoroTimer.initializeModalContent();
-	});
 });
 
 Template.pomodoroTimerModalContent.helpers({

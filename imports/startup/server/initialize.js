@@ -655,7 +655,7 @@ Meteor.startup(function () {
 			{
 				$set: {
 					'pomodoroTimer.quantity': 3,
-					'pomodoroTimer.workLength': 15,
+					'pomodoroTimer.workLength': 25,
 					'pomodoroTimer.breakLength': 5,
 					'pomodoroTimer.soundConfig': [true, true, true]
 				}
