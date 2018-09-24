@@ -236,7 +236,7 @@ if (Meteor.isServer) {
 		 *  @param {Number} pomodoroTimerQuantity - The amount of pomodoro runs for bonus users
 		 *  @param {Number} pomodoroTimerWorkLength - How many minutes are bonus users supposed to work
 		 *  @param {Number} pomodoroTimerBreakLength - How long is the break
-		 *  @param {[Boolean]} pomodoroTimerSoundConfig - Which sounds are enabled
+		 *  @param {boolean} pomodoroTimerSoundConfig - Which sounds are enabled
 		 * */
 		updateBonusPomodoroTimer: function (cardset_id, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig) {
 			check(cardset_id, String);
