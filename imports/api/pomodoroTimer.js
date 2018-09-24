@@ -223,9 +223,9 @@ export let PomodoroTimer = class PomodoroTimer {
 
 			/*in the pomodoro productivity set up, every 4 pomodoros you get a 15 minute break. I decided to make it proportional to the user chosen break length. If you just did 3 pomodoros, your next break will be longer, and if you have just completed your 4th break, this sets the break length back to 5mins*/
 			if ((totalPoms + 1) % 4 === 0) {
-				breakLength *= 3;
+				breakLength *= 4;
 			} else if (totalPoms % 4 === 0) {
-				breakLength /= 3;
+				breakLength /= 4;
 			}
 			if (Bonus.isInBonus(Router.current().params._id)) {
 				dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.break.end.title');
