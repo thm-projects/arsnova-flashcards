@@ -129,7 +129,12 @@ export let PomodoroTimer = class PomodoroTimer {
 		let d = new Date();
 		this.setMinutePoisition();
 		this.setHourPosition();
-
+		let dialogue = {
+			title: "",
+			html: "",
+			cancel: "",
+			confirm: ""
+		};
 		/*this if statement fixes a problem with drawing the arcs once the minute hand passes the hour. drawing the arcs only works if the second point on the circle is greater than the first, which is a problem if say, the beginning of the arc is at 300 degrees and the end passes 0 and ends at 15 degrees. this lets the arc get drawn correctly, and still trigger the end of work period event*/
 		if (d.getMinutes() === 0 && d.getSeconds() < 5) {
 			if (endPom >= 360) {
@@ -166,20 +171,37 @@ export let PomodoroTimer = class PomodoroTimer {
 			$(".breakArc").attr("d", this.describeArc(0, 0, 0, 0, 0));
 
 			/*the first sweet alert! This is what pops up when you finish a pomodoro. It congradulates the user and lets them start their break when they are ready. There is no option to stop the session in this box, that function is relegated to the second click on the clock, as noted by the title.*/
-			swal({
-					title: "Good job!",
-					html: "You have completed <b>" + totalPoms + " pomodoros</b> of work! Are you ready for a relaxing <b>" + breakLength + " minutes</b> of whatever the heck you feel like?",
-					type: "success",
-					confirmButtonText: "Yes, I can't wait!",
-					allowOutsideClick: false
-				}).then(() => {
-					/*and this is what runs when the user clicks the confirm button on the popup. It starts the break, and gets the current time and sets the end from there.*/
-					breakRunning = true;
-					Session.set('pomodoroBreakActive', breakRunning);
-					let popTime = new Date();
-					breakBeginAngle = 6 * popTime.getMinutes() + popTime.getSeconds() / 10;
-					endBreak = 6 * popTime.getMinutes() + popTime.getSeconds() / 10 + 6 * breakLength;
+			if (Bonus.isInBonus(Router.current().params._id)) {
+				dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.break.start.title');
+				dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.break.start.text', {
+					pomodoroBreak: breakLength,
+					pomodoroTotal: totalPoms,
+					pomodoro: TAPi18n.__('pomodoro.name', {count: totalPoms})
 				});
+				dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.break.start.button.confirm');
+			} else {
+				dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.break.start.title');
+				dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.break.start.text', {
+					pomodoroBreak: breakLength,
+					pomodoroTotal: totalPoms,
+					pomodoro: TAPi18n.__('pomodoro.name', {count: totalPoms})
+				});
+				dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.break.start.button.confirm');
+			}
+			swal({
+				title: dialogue.title,
+				html: dialogue.html,
+				type: "success",
+				confirmButtonText: dialogue.confirm,
+				allowOutsideClick: false
+			}).then(() => {
+				/*and this is what runs when the user clicks the confirm button on the popup. It starts the break, and gets the current time and sets the end from there.*/
+				breakRunning = true;
+				Session.set('pomodoroBreakActive', breakRunning);
+				let popTime = new Date();
+				breakBeginAngle = 6 * popTime.getMinutes() + popTime.getSeconds() / 10;
+				endBreak = 6 * popTime.getMinutes() + popTime.getSeconds() / 10 + 6 * breakLength;
+			});
 		}
 
 		/*this is what runs every second while the break is active. It just draws the break arc and the progress arc behind it.*/
@@ -205,134 +227,226 @@ export let PomodoroTimer = class PomodoroTimer {
 			} else if (totalPoms % 4 === 0) {
 				breakLength /= 3;
 			}
-
-			swal({
-					title: "Break's over!",
-					html: "Hope that break left you feeling refreshed! Now it's time to get back to accomplishing your goals. Ready for<b> " + pomLength + " more minutes</b> of work?",
-					confirmButtonText: "Let me at it!",
-					allowOutsideClick: false
-				}).then(() => {
-					/*starts the work cycle up again, automatically.*/
-					pomRunning = true;
-					let popTime = new Date();
-					endPom = 6 * popTime.getMinutes() + popTime.getSeconds() / 10 + 6 * pomLength;
-					endBreak = endPom + 6 * breakLength;
-					pomBeginAngle = 6 * popTime.getMinutes() + popTime.getSeconds() / 10;
+			if (Bonus.isInBonus(Router.current().params._id)) {
+				dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.break.end.title');
+				dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.break.end.text', {
+					pomodoroLength: pomLength
 				});
+				dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.break.end.button.confirm');
+			} else {
+				dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.break.end.title');
+				dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.break.end.text', {
+					pomodoroLength: pomLength
+				});
+				dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.break.end.button.confirm');
+			}
+			swal({
+				title: dialogue.title,
+				html: dialogue.html,
+				confirmButtonText: dialogue.confirm,
+				allowOutsideClick: false
+			}).then(() => {
+				/*starts the work cycle up again, automatically.*/
+				pomRunning = true;
+				let popTime = new Date();
+				endPom = 6 * popTime.getMinutes() + popTime.getSeconds() / 10 + 6 * pomLength;
+				endBreak = endPom + 6 * breakLength;
+				pomBeginAngle = 6 * popTime.getMinutes() + popTime.getSeconds() / 10;
+			});
 		}
 	}
 
 	/*updates the sentence in the modal under the place where you set your goal for the session with the correct total amount of time it will take to complete that many pomodoros. With correct grammar, which is why it's such a long function.*/
 	static updateTimeParagraph () {
 		let longBreak = breakLength * 3;
-		let isAnd = "";
+		let andString = "";
 		let hourAmmount = Math.floor(((pomLength + breakLength) * goalPoms + (Math.floor(goalPoms / 4) * longBreak)) / 60);
 		let minuteAmmount = ((pomLength + breakLength) * goalPoms + (Math.floor(goalPoms / 4) * longBreak)) % 60;
+		if (hourAmmount && minuteAmmount) {
+			andString = TAPi18n.__('pomodoro.form.time.and');
+		}
 		let hourString = "";
 		let minuteString = "";
-		if (hourAmmount && minuteAmmount) {
-			isAnd = "and";
+		if (hourAmmount !== 0) {
+			hourString = " <span class='pomodoroHighlight'>" + TAPi18n.__('pomodoro.form.time.hour', {count: hourAmmount}) + "</span> ";
 		}
-		if (hourAmmount === 1 && isAnd === "") {
-			hourString = " <b>hour</b> ";
-		} else if (hourAmmount === 1) {
-			hourString = " <b>" + hourAmmount + " hour</b> ";
-		} else if (hourAmmount > 1) {
-			hourString = " <b>" + hourAmmount + " hours</b> ";
+		if (minuteAmmount !== 0) {
+			minuteString = " <span class='pomodoroHighlight'>" + TAPi18n.__('pomodoro.form.time.minute', {count: minuteAmmount}) + "</span> ";
 		}
-		if (minuteAmmount === 1) {
-			minuteString = " <b>" + minuteAmmount + " minute</b> ";
-		} else if (minuteAmmount > 1) {
-			minuteString = " <b>" + minuteAmmount + " minutes</b> ";
+		if (Route.isCardset()) {
+			$("#workTime").html(TAPi18n.__('pomodoro.form.bonus.totalTime', {
+				time: hourString + andString + minuteString
+			}));
+		} else {
+			$("#workTime").html(TAPi18n.__('pomodoro.form.user.totalTime', {
+				time: hourString + andString + minuteString
+			}));
 		}
-		$("#workTime").html("Reserve the next" + hourString + isAnd + minuteString + "for getting stuff done!");
 	}
 
 	/*if not in a session, clicking the clock opens the start up modal to begin one, and if you are in a session, clicking pops up a warning dialog before exiting the session  */
 	static clickClock () {
 		/*okay, so I tried this pen on my android phone and no sounds would play. Turns out that you need to attach sounds to a click function or they won't run on chrome for android. This empty sound allows the success and failure sounds to play, but not the bell sound. Oh well, this app wouldn't work on a phone anyway, because the screen would lock and exit it.*/
-		document.getElementById("chromeMobile").play();
+		let dialogue = {
+			title: "",
+			html: "",
+			cancel: "",
+			confirm: ""
+		};
+		let count = (goalPoms - totalPoms);
 		if (pomRunning || breakRunning) {
 			/*if you still haven't reached your goal, you are encouraged with an update of how many pomodoros and minutes you have left to reach it.*/
 			if (totalPoms < goalPoms) {
-				swal({
-						title: "Not so fast!",
-						type: "warning",
-						html: "You are still <b>" + (goalPoms - totalPoms) + " pomodoros</b> short of your goal of <b>" + goalPoms + " pomodoros</b>! <br><br>Come on, you can do <b>" + (goalPoms - totalPoms) * pomLength + " more minutes</b> of work!",
-						showCancelButton: true,
-						confirmButtonText: "Continue!",
-						cancelButtonText: "Stop.",
-						allowOutsideClick: false
-					}).then((result) => {
-						/*If you give up before you complete your goal you get a failure sound, taken from a show me and my lady have been watching lately, and a failure box. Shame!*/
-						if (!result.value) {
-							if (isFailSoundEnabled) {
-								failSound.play();
-							}
-							swal({
-								title: "You didn't make it.",
-								html: "You couldn't complete the <b>" + goalPoms + " pomodoros</b> you planned on doing. Sometimes life gets in the way, we get it! See you back here later!",
-								type: "error",
-								allowOutsideClick: false
-							}).then(() => {
-								PomodoroTimer.showPomodoroNormal();
-								if ((Route.isBox() || Route.isMemo())) {
-									Session.set('pomodoroBreakActive', false);
-									Router.go('cardsetdetailsid', {
-										_id: Router.current().params._id
-									});
-								}
-							});
-							/*reset everything for new session*/
-							totalPoms = 0;
-							pomRunning = false;
-							breakRunning = false;
-							$(".pomodoroInstructions").html("click clock to <span class= 'pomodoroGreen'>start</span>");
-							$(".progressArc").attr("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
-							$(".pomArc").attr("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
-							$(".breakArc").attr("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
-						}
+				if (Bonus.isInBonus(Router.current().params._id)) {
+					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.title');
+					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.text', {
+						missingPomodoros: count,
+						pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
+						pomodoroGoal: goalPoms,
+						remainingMinutes: count * pomLength
 					});
+					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.button.confirm');
+					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.button.cancel');
+				} else {
+					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.quit.title');
+					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.quit.text', {
+						missingPomodoros: count,
+						pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
+						pomodoroGoal: goalPoms,
+						remainingMinutes: count * pomLength
+					});
+					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.quit.button.confirm');
+					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.user.quit.button.cancel');
+				}
+				swal({
+					title: dialogue.title,
+					type: "warning",
+					html: dialogue.html,
+					showCancelButton: true,
+					confirmButtonText: dialogue.confirm,
+					cancelButtonText: dialogue.cancel,
+					allowOutsideClick: false
+				}).then((result) => {
+					/*If you give up before you complete your goal you get a failure sound, taken from a show me and my lady have been watching lately, and a failure box. Shame!*/
+					if (!result.value) {
+						if (isFailSoundEnabled) {
+							failSound.play();
+						}
+						if (Bonus.isInBonus(Router.current().params._id)) {
+							dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.confirm.title');
+							dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.confirm.text', {
+								pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
+								pomodoroGoal: goalPoms
+							});
+							dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.confirm.button.confirm');
+						} else {
+							dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.quit.confirm.title');
+							dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.quit.confirm.text', {
+								pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
+								pomodoroGoal: goalPoms
+							});
+							dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.quit.confirm.button.confirm');
+						}
+						swal({
+							title: dialogue.title,
+							html: dialogue.html,
+							type: "error",
+							allowOutsideClick: false,
+							confirmButtonText: dialogue.confirm
+						}).then(() => {
+							PomodoroTimer.showPomodoroNormal();
+							if ((Route.isBox() || Route.isMemo())) {
+								Session.set('pomodoroBreakActive', false);
+								Router.go('cardsetdetailsid', {
+									_id: Router.current().params._id
+								});
+							}
+						});
+						/*reset everything for new session*/
+						totalPoms = 0;
+						pomRunning = false;
+						breakRunning = false;
+						$(".pomodoroInstructions").html(TAPi18n.__('pomodoro.timer.instructions.activate'));
+						$(".progressArc").attr("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
+						$(".pomArc").attr("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
+						$(".breakArc").attr("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
+					}
+				});
 			} else {
 				/*So if you've completed your goal for the session you get this friendlier pop up congradulating you and lightly suggesting you keep working.*/
-				swal({
-						title: "Stop the productivity train?",
-						type: "warning",
-						html: "Hey, you've reached your goal of <b>" + goalPoms + " pomodoros</b>! You've built up some good momentum, are you sure you want to stop?",
-						showCancelButton: true,
-						confirmButtonText: "Stop.",
-						cancelButtonText: "Continue!",
-						allowOutsideClick: false
-					}).then((result) => {
-						/*you succeeded so you get the success sound and a success message. good for you! */
-						if (result.value) {
-							if (isSuccessSoundEnabled) {
-								successSound.play();
-							}
-							swal({
-								title: "Great job!",
-								html: "In the end you did <b>" + totalPoms + " pomodoros</b>, for a total of <b>" + totalPoms * pomLength + " minutes</b> of work! You are awesome! Come back soon!",
-								type: "success",
-								allowOutsideClick: false
-							}).then(() => {
-								PomodoroTimer.showPomodoroNormal();
-								if ((Route.isBox() || Route.isMemo())) {
-									Session.set('pomodoroBreakActive', false);
-									Router.go('cardsetdetailsid', {
-										_id: Router.current().params._id
-									});
-								}
-							});
-							/*reset everything*/
-							totalPoms = 0;
-							pomRunning = false;
-							breakRunning = false;
-							$(".pomodoroInstructions").html("click clock to <span class='pomodoroGreen'>start</span>");
-							$(".progressArc").attr("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
-							$(".pomArc").attr("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
-							$(".breakArc").attr("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
-						}
+				if (Bonus.isInBonus(Router.current().params._id)) {
+					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.end.title');
+					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.end.text', {
+						pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
+						pomodoroGoal: goalPoms
 					});
+					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.bonus.end.button.cancel');
+					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.end.button.confirm');
+				} else {
+					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.end.title');
+					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.end.text', {
+						pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
+						pomodoroGoal: goalPoms
+					});
+					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.user.end.button.cancel');
+					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.end.button.confirm');
+				}
+				swal({
+					title: dialogue.title,
+					type: "warning",
+					html: dialogue.html,
+					showCancelButton: true,
+					confirmButtonText: dialogue.confirm,
+					cancelButtonText: dialogue.cancel,
+					allowOutsideClick: false
+				}).then((result) => {
+					/*you succeeded so you get the success sound and a success message. good for you! */
+					if (result.value) {
+						if (isSuccessSoundEnabled) {
+							successSound.play();
+						}
+						if (Bonus.isInBonus(Router.current().params._id)) {
+							dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.end.confirm.title');
+							dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.end.confirm.text', {
+								pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
+								pomodoroGoal: goalPoms,
+								pomodoroTotal: pomLength * totalPoms
+							});
+							dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.end.confirm.button.confirm');
+						} else {
+							dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.end.confirm.title');
+							dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.end.confirm.text', {
+								pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
+								pomodoroGoal: goalPoms,
+								pomodoroTotal: pomLength * totalPoms
+							});
+							dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.end.confirm.button.confirm');
+						}
+						swal({
+							title: dialogue.title,
+							html: dialogue.html,
+							type: "success",
+							allowOutsideClick: false,
+							confirmButtonText: dialogue.confirm
+						}).then(() => {
+							PomodoroTimer.showPomodoroNormal();
+							if ((Route.isBox() || Route.isMemo())) {
+								Session.set('pomodoroBreakActive', false);
+								Router.go('cardsetdetailsid', {
+									_id: Router.current().params._id
+								});
+							}
+						});
+						/*reset everything*/
+						totalPoms = 0;
+						pomRunning = false;
+						breakRunning = false;
+						$(".pomodoroInstructions").html(TAPi18n.__('pomodoro.timer.instructions.activate'));
+						$(".progressArc").attr("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
+						$(".pomArc").attr("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
+						$(".breakArc").attr("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
+					}
+				});
 			}
 		} else {
 			if (!Bonus.isInBonus(Router.current().params._id)) {
@@ -344,7 +458,21 @@ export let PomodoroTimer = class PomodoroTimer {
 
 	/*gets the goal number of pomodoros*/
 	static updatePomNumSlider () {
-		$('#pomodoroCount').html($('#pomNumSlider').val());
+		if (Route.isCardset()) {
+			$('#pomNumLabel').html(TAPi18n.__('pomodoro.form.bonus.count', {
+				count: $('#pomNumSlider').val(),
+				link: TAPi18n.__('pomodoro.form.link'),
+				tooltip: TAPi18n.__('pomodoro.form.tooltip.link', {pomodoro: TAPi18n.__('pomodoro.name')}),
+				pomodoro: TAPi18n.__('pomodoro.name', {count: parseInt($('#pomNumSlider').val())})
+			}));
+		} else {
+			$('#pomNumLabel').html(TAPi18n.__('pomodoro.form.user.count', {
+				count: $('#pomNumSlider').val(),
+				link: TAPi18n.__('pomodoro.form.link'),
+				tooltip: TAPi18n.__('pomodoro.form.tooltip.link', {pomodoro: TAPi18n.__('pomodoro.name')}),
+				pomodoro: TAPi18n.__('pomodoro.name', {count: parseInt($('#pomNumSlider').val())})
+			}));
+		}
 		goalPoms = $('#pomNumSlider').val();
 		this.updateTimeParagraph();
 	}
@@ -357,17 +485,26 @@ export let PomodoroTimer = class PomodoroTimer {
 	static updateSettingsBtn () {
 		$("#settings").toggle();
 		$("#goalDiv").toggle();
-		if ($("#modalTitle").html() === "Choose your goal!") {
-			$("#modalTitle").html("How many minutes?");
+		if ($("#modalTitle").html() === TAPi18n.__('pomodoro.form.user.title')) {
+			$("#modalTitle").html(TAPi18n.__('pomodoro.form.user.settings.title'));
 		} else {
-			$("#modalTitle").html("Choose your goal!");
+			$("#modalTitle").html(TAPi18n.__('pomodoro.form.user.title'));
 		}
 	}
 
 	/*when you update the work slider or input box or the break ones, it updates the total time and makes sure you didn't go over 60 minutes total work and break time per cycle. I could probably refactor all the following code. Someday!*/
 	static updateWorkSlider () {
-		$('#workLength').html($('#workSlider').val());
 		pomLength = parseInt($('#workSlider').val(), 10);
+		let minuteString = TAPi18n.__('pomodoro.form.time.minute', {count: pomLength});
+		if (Route.isCardset()) {
+			$('#workSliderLabel').html(TAPi18n.__('pomodoro.form.bonus.work', {
+				minutes: minuteString
+			}));
+		} else {
+			$('#workSliderLabel').html(TAPi18n.__('pomodoro.form.user.work', {
+				minutes: minuteString
+			}));
+		}
 		if (pomLength + breakLength > 60) {
 			breakLength = 60 - pomLength;
 			$('#breakLength').html(breakLength);
@@ -381,8 +518,17 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	static updateBreakSlider () {
-		$('#breakLength').html($('#breakSlider').val());
 		breakLength = parseInt($('#breakSlider').val(), 10);
+		let minuteString = TAPi18n.__('pomodoro.form.time.minute', {count: breakLength});
+		if (Route.isCardset()) {
+			$('#breakSliderLabel').html(TAPi18n.__('pomodoro.form.bonus.break', {
+				minutes: minuteString
+			}));
+		} else {
+			$('#breakSliderLabel').html(TAPi18n.__('pomodoro.form.user.break', {
+				minutes: minuteString
+			}));
+		}
 		if (pomLength + breakLength > 60) {
 			pomLength = 60 - breakLength;
 			$('#workLength').html(pomLength);
@@ -449,7 +595,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		endBreak = (endPom + 6 * breakLength);
 		pomRunning = true;
 		pomBeginAngle = 6 * curTime.getMinutes() + curTime.getSeconds() / 10;
-		$(".pomodoroInstructions").html("click clock again to <b>stop</b>");
+		$(".pomodoroInstructions").html(TAPi18n.__('pomodoro.timer.instructions.deactivate'));
 		/* Method for WelcomePage */
 		this.showPomodoroFullsize();
 	}

@@ -28,7 +28,7 @@
             <path class="breakArc"/>
         </svg>
         {{#unless isActiveRoute regex='box|memo'}}
-            <h2 class="text-center pomodoroInstructions">Pomodoro</h2>
+            <h2 class="text-center pomodoroInstructions">{{_ "pomodoro.timer.instructions.activate"}}</h2>
         {{/unless}}
         <!--empty audio tag to make the sounds work on chrome for android-->
         <audio id="chromeMobile" preload="auto">
@@ -54,7 +54,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="modal-title" id="modalTitle">Choose your goal!</h3>
+                    <h3 class="modal-title" id="modalTitle">{{_ "pomodoro.form.user.title"}}</h3>
                 </div>
                 <div class="modal-body">
                     <form id="input" autocomplete="off">
@@ -65,10 +65,11 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="settingsBtn" class="btn btn-info btn-raised fa fa-gear hvr-bounce-in"
-                            style="float:left;"> Settings
+                            style="float:left;">
+                        {{_ "pomodoro.form.user.button.settings"}}
                     </button>
-                    <button type="button" id="startPom" class="btn btn-success btn-raised" data-dismiss="modal">Let's
-                        go!
+                    <button type="button" id="startPom" class="btn btn-success btn-raised" data-dismiss="modal">
+                        {{_ "pomodoro.form.user.button.start"}}
                     </button>
                 </div>
             </div>
@@ -78,11 +79,7 @@
 
 <template name="pomodoroTimerModalContent">
     <div id="goalDiv" class="form-group row">
-        <label class="col-xs-12 control-label" for="pomNumSlider">I want to do <span id="pomodoroCount"></span>
-            <a href="/learning#Pomodoro" data-toggle="tooltip"
-               title='A "Pomodoro" is a work / break cycle. Default: 25 mins work and 5 mins break. After 4 pomodoros: 15 mins break.'
-               target="_blank">
-                <b>pomodoros<i>🍅</i></b></a>!</label>
+        <label class="col-xs-12 control-label" id="pomNumLabel" for="pomNumSlider"></label>
         <input class="numSlider col-xs-12" type=range min=1 max=16 value=1 id="pomNumSlider" step=1>
         <label id="workTime" class="col-xs-12 control-label"></label>
     </div>
@@ -90,38 +87,40 @@
          style="{{#if isHiddenByDefault}}display: none;{{/if}}">
         <div class="form-group row">
             <label for="workSlider" class="col-xs-12 control-label" style="float:left;"><i class="fa fa-briefcase"></i>
-                Work for: <b><span id="workLength"></span> Minutes</b> each pomodoro</label>
+                <span id="workSliderLabel"></span>
+            </label>
             <input class="numSlider col-xs-12" type="range" min="15" max="45" value="25" id="workSlider"
                    step="1">
         </div>
         <div class="form-group row">
             <label for="breakSlider" class="col-xs-12 control-label" style="float:left;"><i class="fa fa-coffee"></i>
-                Relax for: <b><span id="breakLength"></span> Minutes</b> each pomodoro</label>
+                <span id="breakSliderLabel"></span>
+            </label>
             <input class="numSlider col-xs-12" type="range" min="5" max="30" value="5" id="breakSlider"
                    step="1">
         </div>
         {{#unless isiOS}}
             <div class="form-group row">
                 <label for="" class="control-label"><i class="fa fa-music"></i>
-                    Sounds</label>
+                    {{_ "pomodoro.form.sounds.title"}}</label>
             </div>
             <div class="form-group row">
                 <input type="checkbox" id="sound1" value="Clock" checked>
-                <label for="sound1" class="control-label">{{_ "pomodoro.schoolBell"}}</label><br>
+                <label for="sound1" class="control-label">{{_ "pomodoro.form.sounds.break"}}</label><br>
                 <audio id="bellPreview" style="width: 260px;" controls controlsList="nodownload noremoteplayback">
                     <source src="/audio/Schulgong.mp3" type="audio/mpeg">
                 </audio>
             </div>
             <div class="form-group row">
                 <input type="checkbox" id="sound2" value="Complete" checked>
-                <label for="sound2" class="control-label">{{_ "pomodoro.learningSession"}}</label><br>
+                <label for="sound2" class="control-label">{{_ "pomodoro.form.sounds.success"}}</label><br>
                 <audio id="successPreview" style="width: 260px" controls controlsList="nodownload noremoteplayback">
                     <source src="/audio/success.mp3" type="audio/mpeg">
                 </audio>
             </div>
             <div class="form-group row">
                 <input type="checkbox" id="sound3" value="Cancel" checked>
-                <label for="sound3" class="control-label">{{_ "pomodoro.cancelSession"}}</label><br>
+                <label for="sound3" class="control-label">{{_ "pomodoro.form.sounds.abort"}}</label><br>
                 <audio id="failurePreview" style="width: 260px" controls controlsList="nodownload noremoteplayback">
                     <source src="/audio/fail.mp3" type="audio/mpeg">
                 </audio>
