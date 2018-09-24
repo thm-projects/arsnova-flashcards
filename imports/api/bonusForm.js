@@ -1,5 +1,6 @@
 import {Session} from "meteor/session";
 import {Cardsets} from "./cardsets";
+import {PomodoroTimer} from "./pomodoroTimer";
 
 let minWorkloadCap = 1;
 let defaultMaxWorkload = 30;
@@ -155,13 +156,27 @@ export let BonusForm = class BonusForm {
 	}
 
 	static startBonus () {
-		Meteor.call("activateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod());
+		Meteor.call("activateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), function (error, result) {
+			if (result) {
+				Session.set('activeCardset', Cardsets.findOne(result));
+				Meteor.call("updateBonusPomodoroTimer", Session.get('activeCardset')._id, PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), function (error, result) {
+					if (result) {
+						Session.set('activeCardset', Cardsets.findOne(result));
+					}
+				});
+			}
+		});
 	}
 
 	static updateBonus () {
 		Meteor.call("updateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), function (error, result) {
 			if (result) {
 				Session.set('activeCardset', Cardsets.findOne(result));
+				Meteor.call("updateBonusPomodoroTimer", Session.get('activeCardset')._id, PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), function (error, result) {
+					if (result) {
+						Session.set('activeCardset', Cardsets.findOne(result));
+					}
+				});
 			}
 		});
 	}

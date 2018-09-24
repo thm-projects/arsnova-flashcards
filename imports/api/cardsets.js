@@ -210,6 +210,11 @@ const CardsetsSchema = new SimpleSchema({
 	},
 	noDifficulty: {
 		type: Boolean
+	},
+	pomodoroTimer: {
+		type: Object,
+		optional: true,
+		blackbox: true
 	}
 });
 
@@ -473,6 +478,7 @@ Meteor.methods({
 					registrationPeriod: registrationPeriod
 				}
 			});
+			return cardset._id;
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}

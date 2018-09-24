@@ -156,6 +156,11 @@ $text_decoration_cookie_consent_link: none;
 //leitner_progress
 $font_size_cardset_badges: 11px;
 
+//sweet alert 2
+$font_size_sweet_alert_2_icon: 30px;
+$font_size_sweet_alert_2_title: 24px;
+$font_size_sweet_alert_2_text: 16px;
+
 html {
   position: relative;
   min-height: 100%;
@@ -175,9 +180,6 @@ body {
   @media(max-width: 767px) {
     margin: 0;
   }
-  > .container {
-    padding: 80px 15px 0;
-  }
 }
 
 #first_login_content {
@@ -190,7 +192,7 @@ body {
   text-transform: unset !important;
 }
 
-.btn-success, .btn-danger, .btn-warning, .btn-info, .label-bonus, .learnBtn, .bonusBtn, .presentationBtn, .label-private, .label-edu, .label-free, .label-pro, #filter-nav-wrapper .navbar-text, #filter-nav-wrapper .dropdown-toggle, .panel-heading.info-tab, #collapseLearningPhaseInfoButton, .deleteAllCardsBtn, .newCardBtn, .markdeep-help, .pomodoroTimer h2 {
+.btn-success, .btn-danger, .btn-warning, .btn-info, .label-bonus, .learnBtn, .bonusBtn, .presentationBtn, .label-private, .label-edu, .label-free, .label-pro, #filter-nav-wrapper .navbar-text, #filter-nav-wrapper .dropdown-toggle, .panel-heading.info-tab, #collapseLearningPhaseInfoButton, .deleteAllCardsBtn, .newCardBtn, .markdeep-help, .pomodoroTimer h2, #searchResults h4 {
   text-shadow: $default_text_shadow;
 }
 
@@ -296,22 +298,17 @@ body {
   }
 }
 
-#theme-wrapper {
-  margin-top: 55px;
-  margin-bottom: 70px;
+#theme-wrapper #main  {
+    margin-top: 55px;
+    margin-bottom: 70px;
 }
 
-.theme-wrapper-fullscreen {
-  margin-top: 5px !important;
-  margin-bottom: 0 !important;
+#theme-wrapper-no-nav #main {
+    margin-top: 20px !important;
 }
 
-#theme-wrapper-no-nav {
-  margin-top: 20px !important;
-}
-
-#theme-wrapper-no-nav-welcome {
-  margin-top: 0 !important;
+#theme-wrapper-no-nav-welcome #main  {
+    margin-top: 0 !important;
 }
 
 .modal-header .close {
