@@ -12,7 +12,6 @@ import "./admin_notifications/admin_notifications.js";
 import "./admin_university/admin_university.js";
 import "./admin_settings/admin_settings.js";
 import "../learn/progress.js";
-import {Session} from "meteor/session";
 
 
 Meteor.subscribe("notifications");
@@ -52,11 +51,6 @@ Template.admin_main.events({
 });
 
 Template.admin_main.helpers({
-	getTheme: function () {
-		if (Session.get('theme')) {
-			return "theme-" + Session.get("theme");
-		}
-	},
 	getUsername: function () {
 		if (Meteor.user()) {
 			return Meteor.user().profile.name;

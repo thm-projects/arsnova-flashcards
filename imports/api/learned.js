@@ -220,6 +220,7 @@ if (Meteor.isServer) {
 		 * */
 		updateLearnerCount: function (cardset_id) {
 			check(cardset_id, String);
+			// Make sure the user is logged in
 			if (!Meteor.isServer) {
 				throw new Meteor.Error("not-authorized");
 			} else {
@@ -228,6 +229,37 @@ if (Meteor.isServer) {
 						learners: Workload.find({cardset_id: cardset_id, 'leitner.bonus': true}).count()
 					}
 				});
+			}
+		},
+		/** Updates the pomodoro settings for a cardsets bonus mode
+		 *  @param {string} cardset_id - The cardset id of the cardset that is getting updated
+		 *  @param {Number} pomodoroTimerQuantity - The amount of pomodoro runs for bonus users
+		 *  @param {Number} pomodoroTimerWorkLength - How many minutes are bonus users supposed to work
+		 *  @param {Number} pomodoroTimerBreakLength - How long is the break
+		 *  @param {[Boolean]} pomodoroTimerSoundConfig - Which sounds are enabled
+		 * */
+		updateBonusPomodoroTimer: function (cardset_id, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig) {
+			check(cardset_id, String);
+			check(pomodoroTimerQuantity, Number);
+			check(pomodoroTimerWorkLength, Number);
+			check(pomodoroTimerBreakLength, Number);
+			check(pomodoroTimerSoundConfig, [Boolean]);
+			if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+				throw new Meteor.Error("not-authorized");
+			}
+			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1}});
+			if (cardset.owner === Meteor.userId() || Roles.userIsInRole(this.userId, ["admin", "editor"])) {
+				Cardsets.update({_id: cardset._id}, {
+					$set: {
+						'pomodoroTimer.quantity': pomodoroTimerQuantity,
+						'pomodoroTimer.workLength': pomodoroTimerWorkLength,
+						'pomodoroTimer.breakLength': pomodoroTimerBreakLength,
+						'pomodoroTimer.soundConfig': pomodoroTimerSoundConfig
+					}
+				});
+				return cardset._id;
+			} else {
+				throw new Meteor.Error("not-authorized");
 			}
 		}
 	});

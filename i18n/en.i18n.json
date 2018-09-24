@@ -33,57 +33,152 @@
     "backButton": "Back",
     "backToStartButton": "Back to the start page"
   },
-
-  "pomodoro" : {
-    "Pluralpomodoro" : "pomodoros",
-    "clickClock" :"click clock to",
-    "start" : "start",
-    "startBig" : "Start",
-    "goal" : "Choose your goal",
-    "count" : "How many",
-    "make" : "will you do",
-    "settings" : "Settings",
-    "productivity" : "Stop the prouctivity train",
-    "reachedgoal" : "Hey, you've reached your goal of",
-    "momentum" : " You've built up some good momentum, are you sure you want to stop?",
-    "session": "are you sure you want to stop?",
-    "goodJob" : "Good Job!",
-    "success1" : "In the End you did ",
-    "success2" : "pomodoros, for a total of ",
-    "success3" : " minutes of work! You are awesome! Come back soon!",
-    "stop1" : "Press again to",
-    "stop2" : "stop",
-    "stopBig" : "stop",
-    "minutes" : "How many Minutes?",
-    "continue" : "Continue",
-    "break" : "Ready for break?",
-    "breakOver" : "End of the break?",
-    "breakRefresh" : "After a relaxing break, Let's start again",
-    "fastgoing": "Not so fast!",
-    "stillOpen1" : "You have to do ",
-    "stillOpen2" : "pomodoros",
-    "stillOpen3" : "Do you really want to quit?",
-    "stillOpen4" : "pomodoro",
-    "notDone": "You are not done yet!",
-    "notDone2": "You have not reached your goal of ",
-    "notDone3": " pomodoros units!",
-    "notDone4" : " pomodoro",
-    "learn" : "learn",
-    "break1" : "break",
-    "schoolBell" : "School Bell",
-    "learningSession" : "Learning session completed",
-    "cancelSession" : "Cancel learning session",
-    "SessionTime1": "You need",
-    "SessionTime2" : "to finish",
-    "hour" : " hour ",
-    "hours" : " hour",
-    "minute" : " minute",
-    "minutes2" : " minutes",
-    "isAnd": "and",
-    "onePomo" : "one",
-    "onePomo1" : "one",
-    "linkToPom" : "/learning#Pomodoro ",
-    "pomodoroEmoji" : "\uD83C\uDF45"
+  "pomodoro": {
+    "name": "Pomodoro",
+    "name_plural": "Pomodoros",
+    "timer": {
+      "instructions": {
+        "activate": "Pomodoro",
+        "deactivate": ""
+      }
+    },
+    "form": {
+      "time": {
+        "hour": "hour",
+        "hour_plural": "__count__ hours",
+        "minute": "minute",
+        "minute_plural": "__count__ minutes",
+        "and": " and "
+      },
+      "sounds": {
+        "title": "Sounds",
+        "break": "Pause",
+        "success": "Lerneinheit erfolgreich",
+        "abort": "Abgebrochen"
+      },
+      "link": "/learning#Pomodoro",
+      "tooltip": {
+        "link": "A 'Pomodoro' is a work / break cycle. Default: 25 mins work and 5 mins break. After 4 __pomodoro__: 15 mins break."
+      },
+      "user": {
+        "title": "Choose your goal!",
+        "count": "I want to do <span class=\"pomodoroHighlight\">__count__</span> <a href=\"__link__\" data-toggle=\"tooltip\" title=\"__tooltip__\" target=\"_blank\"> <b>__pomodoro__<i>🍅</i></b></a>!",
+        "totalTime": "Reserve the next __time__ for getting stuff done!",
+        "work": "Work for: <span class=\"pomodoroHighlight\">__minutes__</span> each pomodoro",
+        "break": "Relax for: <span class=\"pomodoroHighlight\">__minutes__</span> each pomodoro",
+        "settings": {
+          "title": "How many minutes?"
+        },
+        "button": {
+          "start": "Let's go!",
+          "settings": "Settings"
+        }
+      },
+      "bonus": {
+        "count": "Set the bonus to <span class=\"pomodoroHighlight\">__count__</span> <a href=\"__link__\" data-toggle=\"tooltip\" title=\"__tooltip__\" target=\"_blank\"> <b>__pomodoro__<i>🍅</i></b></a>!",
+        "totalTime": "Set the pomodoro Session to __time__ for getting stuff done!",
+        "work": "Work during Bonus-Pomodoro: <span class=\"pomodoroHighlight\">__minutes__</span>",
+        "break": "Break during Bonus-Pomodoro: <span class=\"pomodoroHighlight\">__minutes__</span>"
+      }
+    },
+    "sweetAlert": {
+      "user": {
+        "quit": {
+          "title": "Not so fast!",
+          "text": "You are still <span class=\"pomodoroHighlight\">__missingPomodoros__ __pomodoro__</span> short of your goal of <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>! <br><br>Come on, you can do <span class=\"pomodoroHighlight\">__remainingMinutes__ more minutes</span> of work!",
+          "button": {
+            "cancel": "Stop.",
+            "confirm": "Continue!"
+          },
+          "confirm": {
+            "title": "You didn't make it.",
+            "text": "You couldn't complete the <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> you planned on doing. Sometimes life gets in the way, we get it! See you back here later!",
+            "button": {
+              "confirm": "OK!"
+            }
+          }
+        },
+        "end": {
+          "title": "Stop the productivity train?",
+          "text": "Hey, you've reached your goal of <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>! You've built up some good momentum, are you sure you want to stop?",
+          "button": {
+            "cancel": "Continue!",
+            "confirm": "Stop."
+          },
+          "confirm": {
+            "title": "Great job!",
+            "text": "In the end you did <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>, for a total of <span class=\"pomodoroHighlight\"> __pomodoroTotal__ minutes</span> of work! You are awesome! Come back soon!",
+            "button": {
+              "confirm": "OK!"
+            }
+          }
+        },
+        "break": {
+          "start": {
+            "title": "Good job!",
+            "text": "You have completed <span class=\"pomodoroHighlight\"> __pomodoroTotal__ __pomodoro__</span> of work! Are you ready for a relaxing <span class=\"pomodoroHighlight\"> __pomodoroBreak__ minutes</span> of whatever the heck you feel like?",
+            "button": {
+              "confirm": "Yes, I can't wait!"
+            }
+          },
+          "end": {
+            "title": "Break's over!",
+            "text": "Hope that break left you feeling refreshed! Now it's time to get back to accomplishing your goals. Ready for <span class=\"pomodoroHighlight\"> __pomodoroLength__ more minutes</span> of work?",
+            "button": {
+              "confirm": "Let me at it!"
+            }
+          }
+        }
+      },
+      "bonus": {
+        "quit": {
+          "title": "Not so fast!",
+          "text": "You are still <span class=\"pomodoroHighlight\">__missingPomodoros__ __pomodoro__</span> short of your goal of <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>! <br><br>Come on, you can do <span class=\"pomodoroHighlight\">__remainingMinutes__ more minutes</span> of work!",
+          "button": {
+            "cancel": "Stop.",
+            "confirm": "Continue!"
+          },
+          "confirm": {
+            "title": "You didn't make it.",
+            "text": "You couldn't complete the <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> you planned on doing. Sometimes life gets in the way, we get it! See you back here later!",
+            "button": {
+              "confirm": "OK!"
+            }
+          }
+        },
+        "end": {
+          "title": "Stop the productivity train?",
+          "text": "Hey, you've reached your goal of <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>! You've built up some good momentum, are you sure you want to stop?",
+          "button": {
+            "cancel": "Continue!",
+            "confirm": "Stop."
+          },
+          "confirm": {
+            "title": "Great job!",
+            "text": "In the end you did <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>, for a total of <span class=\"pomodoroHighlight\"> __pomodoroTotal__ minutes</span> of work! You are awesome! Come back soon!",
+            "button": {
+              "confirm": "OK!"
+            }
+          }
+        },
+        "break": {
+          "start": {
+            "title": "Good job!",
+            "text": "You have completed <span class=\"pomodoroHighlight\"> __pomodoroTotal__ __pomodoro__</span> of work! Are you ready for a relaxing <span class=\"pomodoroHighlight\"> __pomodoroBreak__ minutes</span> of whatever the heck you feel like?",
+            "button": {
+              "confirm": "Yes, I can't wait!"
+            }
+          },
+          "end": {
+            "title": "Break's over!",
+            "text": "Hope that break left you feeling refreshed! Now it's time to get back to accomplishing your goals. Ready for <span class=\"pomodoroHighlight\"> __pomodoroLength__ more minutes</span> of work?",
+            "button": {
+              "confirm": "Let me at it!"
+            }
+          }
+        }
+      }
+    }
   },
   "carousel-inner": {
     "carousel-header-0": " Your digital flashcards",

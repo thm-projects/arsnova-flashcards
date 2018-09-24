@@ -71,8 +71,7 @@ function connectionStatus() {
 	Session.set('connectionStatus', stat);
 }
 
-/** Function provides an reactive callback when a user loggs in and out */
-Meteor.autorun(function () {
+function setTheme() {
 	if (Meteor.userId()) {
 		// If there is no selectedColorTheme the Session var "theme" will stay NULL.
 		if (Meteor.users.findOne(Meteor.userId())) {
@@ -84,7 +83,33 @@ Meteor.autorun(function () {
 		// When user logged out, go back to default Theme
 		Session.set('theme', "default");
 	}
+	let themeId = "";
+	let themeClass = "theme-";
+	if (Meteor.userId()) {
+		if (Session.get('fullscreen')) {
+			themeId = 'theme-wrapper-no-nav';
+		} else {
+			themeId = 'theme-wrapper';
+		}
+	} else {
+		if (!Session.get('fullscreen')) {
+			themeId = 'theme-wrapper-no-nav-welcome';
+		} else {
+			themeId = 'theme-wrapper-no-nav';
+		}
+	}
+	if (Session.get('theme')) {
+		themeClass += Session.get("theme");
+	}
+	let html = $('html');
+	html.attr('id', themeId);
+	html.attr('class', themeClass);
+}
+
+/** Function provides an reactive callback when a user loggs in and out */
+Meteor.autorun(function () {
 	connectionStatus();
+	setTheme();
 });
 
 $(document).on('click', '.navbar-collapse.in', function (e) {
@@ -139,16 +164,6 @@ Template.main.helpers({
 	checkIfUserIsSelectingACardset: function () {
 		if (!Route.isCardset() && !Route.isRepetitorium() && !Route.isPool()) {
 			Session.set('selectingCardsetToLearn', false);
-		}
-	},
-	getTheme: function () {
-		if (Session.get('theme')) {
-			if (Session.get('theme') === "default") {
-				$("html").css("background-image", "url('/img/background/zettelkasten_wikipedia_background.jpg')");
-			} else {
-				$("html").css("background-image", "none");
-			}
-			return "theme-" + Session.get("theme");
 		}
 	},
 	getYear: function () {

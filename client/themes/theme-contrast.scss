@@ -29,6 +29,8 @@
   $accent_300: $thm_gray;
   $background: $mercury_approx;
   @return (
+    //background
+          "background_image" : "none",
     //global colors
           "thm_dark_blue":$thm_dark_blue,
           "thm_blue":$thm_blue,
@@ -433,9 +435,26 @@
           "pomodoro_timer_arc":$thm_orange,
           "pomodoro_timer_arc_progress":$thm_red,
           "pomodoro_timer_arc_break":$thm_dark_blue,
-          "pomodoro_timer_bold_text": $thm_red,
-          "pomodoro_timer_label": $thm_dark_blue,
-          "pomodoro_timer_text": white,
-          "pomodoro_timer_title": $thm_orange
+          "pomodoro_timer_text" :white,
+          "pomodoro_timer_text_highlight": $thm_orange,
+    //sweet alert 2 colors
+          "sweet_alert_2_title": black,
+          "sweet_alert_2_text": black,
+          "sweet_alert_2_modal_background": white,
+          "sweet_alert_2_modal_overlay": rgba(0, 0, 0, 0.4),
+          "sweet_alert_2_button_confirm_background": $thm_green,
+          "sweet_alert_2_button_confirm_text": $white,
+          "sweet_alert_2_button_cancel_background": $thm_orange,
+          "sweet_alert_2_button_cancel_text": $white,
+          "sweet_alert_2_icon_success_border": $thm_green,
+          "sweet_alert_2_icon_success_text": $thm_green,
+          "sweet_alert_2_icon_warning_border": $thm_orange,
+          "sweet_alert_2_icon_warning_text": $thm_orange,
+          "sweet_alert_2_icon_error_border": $thm_red,
+          "sweet_alert_2_icon_error_text": $thm_red,
+          "sweet_alert_2_icon_info_border": $thm_dark_blue,
+          "sweet_alert_2_icon_info_text": $thm_dark_blue,
+          "sweet_alert_2_icon_question_border": $thm_gray,
+          "sweet_alert_2_icon_question_text": $thm_gray
   );
 }
