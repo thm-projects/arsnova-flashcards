@@ -2,6 +2,7 @@ import "./leftRightNavigation.html";
 import {Session} from "meteor/session";
 import {CardNavigation} from "../../../../api/cardNavigation";
 import {CardIndex} from "../../../../api/cardIndex";
+import {Route} from "../../../../api/route";
 
 /*
  * ############################################################################
@@ -24,6 +25,12 @@ Template.cardSidebarLeftNavigation.helpers({
 		if (Session.get('activeCard') !== -1) {
 			return CardNavigation.isFirstCard();
 		}
+	},
+	isCardset: function () {
+		return Route.isCardset();
+	},
+	getPreviousCardHotkey: function () {
+		return TAPi18n.__('card.tooltip.previousCardHotkey');
 	}
 });
 
@@ -48,5 +55,11 @@ Template.cardSidebarRightNavigation.helpers({
 		if (Session.get('activeCard') !== -1) {
 			return CardNavigation.isLastCard();
 		}
+	},
+	isCardset: function () {
+		return Route.isCardset();
+	},
+	getNextCardHotkey: function () {
+		return TAPi18n.__('card.tooltip.nextCardHotkey');
 	}
 });

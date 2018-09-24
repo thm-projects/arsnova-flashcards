@@ -3,7 +3,7 @@
         {{#unless isFirstCardActive}}
             <span class="fa fa-arrow-left card-button cardHeaderItem scrollLeft"
                   data-type="cardNavigation"
-                  title="{{_ "card.tooltip.previousCard"}}"></span>
+                  title="{{#unless isCardset}}{{_ "card.tooltip.previousCard" hotkey=getPreviousCardHotkey}}{{else}}{{_ "card.tooltip.previousCard" hotkey=""}}{{/unless}}"></span>
         {{/unless}}
     {{/if}}
 </template>
@@ -13,7 +13,7 @@
         {{#unless isLastCardActive}}
             <span class="fa fa-arrow-right card-button cardHeaderItem scrollRight"
                   data-type="cardNavigation"
-                  title="{{_ "card.tooltip.nextCard"}}"></span>
+                  title="{{#unless isCardset}}{{_ "card.tooltip.nextCard" hotkey=getNextCardHotkey}}{{else}}{{_ "card.tooltip.nextCard" hotkey=""}}{{/unless}}"></span>
         {{/unless}}
     {{/if}}
 </template>
