@@ -7,11 +7,7 @@
         {{else}}
             {{#if hasPermission}}
                 {{#if learningActive}}
-                    {{#if isProfileCompleted this._id}}
-                        {{> cardset}}
-                    {{else}}
-                        {{> access_denied_profile_incomplete_content_only}}
-                    {{/if}}
+                    {{> cardset}}
                 {{else}}
                     {{> cardset}}
                 {{/if}}

@@ -238,19 +238,6 @@ Template.main.onRendered(function () {
 	});
 });
 
-Template.completeProfileModal.events({
-	"click #completeProfileGoToProfile": function () {
-		$('#completeProfileModal').modal('hide');
-		$('body').removeClass('modal-open');
-		$('.modal-backdrop').remove();
-		$('#completeProfileModal').on('hidden.bs.modal', function () {
-			Router.go('profileSettings', {
-				_id: Meteor.userId()
-			});
-		});
-	}
-});
-
 Template.footer.helpers({
 	getLanguages: function () {
 		const obj = TAPi18n.getLanguages();

@@ -278,12 +278,6 @@
     "title": "Bearbeitergruppe verlassen",
     "text": "Willst du deine Berechtigung für die Kartei <strong>\"__name__\"</strong> entfernen?"
   },
-  "complete-profile": {
-    "title": "Profil unvollständig",
-    "text": "Dein Benutzerprofil ist noch unvollständig. Um den Lernmodus mit automatischer Erinnerungsnachricht nutzen zu können, fülle in den Kontoeinstellungen die Felder für Vorname, Nachname und E-Mail aus. Versuche es dann noch einmal.",
-    "goToProfile": "Konto",
-    "cancel": "Schließen"
-  },
   "confirm-form-profile": {
     "title": "Benutzerkonto löschen",
     "text": "Falls du sicher bist, dass du .__lastAppTitle__ nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto löschen. Alle persönlichen Daten, privaten Karteien  und Repetitorien sowie deine Lernstatistiken werden unwiderruflich gelöscht. Die von dir veröffentlichten Karteien und Repetitorien bleiben erhalten.",
@@ -1722,6 +1716,16 @@
       "title": "Wie du mit dem Wiederholungs-Algorithmus von Woźniak lernst",
       "button": {
         "confirm": "Weiter zu den Karten"
+      }
+    }
+  },
+  "sweetAlert": {
+    "completeProfile": {
+      "title": "Profil unvollständig",
+      "text": "Dein Benutzerprofil ist noch unvollständig. Fülle in den Kontoeinstellungen die Felder für Vorname, Nachname und E-Mail aus. Versuche es dann noch einmal.",
+      "button": {
+        "confirm": "Konto",
+        "cancel": "Schließen"
       }
     }
   }
