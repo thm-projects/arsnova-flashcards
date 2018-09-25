@@ -181,9 +181,6 @@ const CardsetsSchema = new SimpleSchema({
 	registrationPeriod: {
 		type: Date
 	},
-	learners: {
-		type: Number
-	},
 	wordcloud: {
 		type: Boolean
 	},
@@ -215,6 +212,15 @@ const CardsetsSchema = new SimpleSchema({
 		type: Object,
 		optional: true,
 		blackbox: true
+	},
+	workload: {
+		type: Object,
+		optional: true,
+		blackbox: true
+	},
+	learners: {
+		type: Number,
+		optional: true
 	}
 });
 
@@ -318,7 +324,6 @@ Meteor.methods({
 			learningEnd: 0,
 			registrationPeriod: 0,
 			learningInterval: [],
-			learners: 0,
 			mailNotification: true,
 			webNotification: true,
 			wordcloud: false,

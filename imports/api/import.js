@@ -187,7 +187,6 @@ Meteor.methods({
 					learningEnd: 0,
 					registrationPeriod: 0,
 					learningInterval: [],
-					learners: 0,
 					mailNotification: true,
 					webNotification: true,
 					wordcloud: false,
@@ -200,6 +199,7 @@ Meteor.methods({
 				}, {trimStrings: false});
 				if (cardset_id) {
 					data.shift();
+					Meteor.call('updateLearnerCount', cardset_id);
 					return importCards(data, Cardsets.findOne(cardset_id), 0);
 				} else {
 					return false;
@@ -302,7 +302,6 @@ Meteor.methods({
 								learningEnd: 0,
 								registrationPeriod: 0,
 								learningInterval: [],
-								learners: 0,
 								mailNotification: true,
 								webNotification: true,
 								wordcloud: false,
@@ -315,6 +314,7 @@ Meteor.methods({
 							}, {trimStrings: false});
 							cardGroups.push(cardset_id);
 							cardset.shift();
+							Meteor.call('updateLearnerCount', cardset_id);
 							importCards(cardset, Cardsets.findOne(cardset_id), 0);
 						}
 					}
@@ -345,7 +345,6 @@ Meteor.methods({
 					learningEnd: 0,
 					registrationPeriod: 0,
 					learningInterval: [],
-					learners: 0,
 					mailNotification: true,
 					webNotification: true,
 					wordcloud: false,
