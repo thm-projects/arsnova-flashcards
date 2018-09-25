@@ -696,7 +696,6 @@
     "deleted": "Deleted",
     "license": "License",
     "dateUpdated": "Last updated",
-    "activeLearners": "Active learners",
     "selectCardToLearn": "Add cardset to Workload",
     "selectShuffledCardsetToLearn": "Add shuffled cardset to Workload"
   },
@@ -795,7 +794,15 @@
       "moduleNum": "Module number",
       "undefinedAuthor": "Please complete your profile",
       "college": "College",
-      "course": "Course"
+      "course": "Course",
+      "workload": {
+        "bonus": {
+          "count": "Active learners"
+        },
+        "normal": {
+          "count": "Learners"
+        }
+      }
     },
     "tooltip": {
       "editCardset": "Manage Card Set",

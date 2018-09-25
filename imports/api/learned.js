@@ -224,9 +224,12 @@ if (Meteor.isServer) {
 			if (!Meteor.isServer) {
 				throw new Meteor.Error("not-authorized");
 			} else {
+				let learnersTotal = Workload.find({cardset_id: cardset_id}).count();
+				let learnersBonus = Workload.find({cardset_id: cardset_id, 'leitner.bonus': true}).count();
 				Cardsets.update(cardset_id, {
 					$set: {
-						learners: Workload.find({cardset_id: cardset_id, 'leitner.bonus': true}).count()
+						"workload.bonus.count": learnersBonus,
+						"workload.normal.count": (learnersTotal - learnersBonus)
 					}
 				});
 			}

@@ -79,7 +79,8 @@ if (Meteor.isServer) {
 							license: 1,
 							shuffled: 1,
 							learningActive: 1,
-							originalAuthorName: 1
+							originalAuthorName: 1,
+							workload: 1
 						}
 				});
 		}
@@ -181,9 +182,6 @@ const CardsetsSchema = new SimpleSchema({
 	registrationPeriod: {
 		type: Date
 	},
-	learners: {
-		type: Number
-	},
 	wordcloud: {
 		type: Boolean
 	},
@@ -215,6 +213,15 @@ const CardsetsSchema = new SimpleSchema({
 		type: Object,
 		optional: true,
 		blackbox: true
+	},
+	workload: {
+		type: Object,
+		optional: true,
+		blackbox: true
+	},
+	learners: {
+		type: Number,
+		optional: true
 	}
 });
 
@@ -318,7 +325,6 @@ Meteor.methods({
 			learningEnd: 0,
 			registrationPeriod: 0,
 			learningInterval: [],
-			learners: 0,
 			mailNotification: true,
 			webNotification: true,
 			wordcloud: false,
