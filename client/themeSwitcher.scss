@@ -418,7 +418,6 @@ $themes: (
     $presentation_clock_minute_arm: map-get($map, "presentation_clock_minute_arm");
     $presentation_clock_second_arm: map-get($map, "presentation_clock_second_arm");
     //pomodoro colors
-    $pomodoro_timer_face: map-get($map, "pomodoro_timer_face");
     $pomodoro_timer_hand_circle: map-get($map, "pomodoro_timer_hand_circle");
     $pomodoro_timer_hand_hour: map-get($map, "pomodoro_timer_hand_hour");
     $pomodoro_timer_hand_min: map-get($map, "pomodoro_timer_hand_min");
@@ -2347,10 +2346,6 @@ $themes: (
       color: $thm_green !important;
     }
 
-    .color-dot {
-      color: $thm_orange !important;
-    }
-
     .color-cards {
       color: $thm_green !important;
     }
@@ -2498,10 +2493,6 @@ $themes: (
     .pomodoroTimer {
       a:visited {
         color: $hyperlink !important;
-      }
-
-      .pomodoroFace {
-        fill: $pomodoro_timer_face !important;
       }
 
       .pomodoroHour {

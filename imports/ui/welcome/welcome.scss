@@ -97,7 +97,14 @@
   font-size: 5vw;
   font-weight: bold;
   vertical-align: -6%;
-  text-shadow: 5px 5px 20px rgba(0, 0, 0, 0.7);
+  background-image: url("/img/pomodoro/pomodoro.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-y: 80%;
+  background-size: 60% 60%;
+  color: rgba(0,0,0,0);
+  -webkit-filter: drop-shadow(5px 5px 20px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(5px 5px 20px rgba(0, 0, 0, 0.7));
 }
 
 .logo-header-chars {
@@ -208,7 +215,8 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  background-color: #4A5C66; //rgba(0, 0, 0, 0.8);
+  background-color: #4A5C66;
+  text-align: center;
 }
 
 .bigDiv .pomodoroTimer {
