@@ -30,7 +30,7 @@ function getLearningPhaseInfo(cardset) {
 		["", ""],
 		[TAPi18n.__('set-list.learnphaseInfo', {}, "de"), ""],
 		[TAPi18n.__('set-list.learnphase', {}, "de"), getLearningStatus(cardset.learningEnd)],
-		[TAPi18n.__('pool.activeLearners', {}, "de"), cardset.learners],
+		[TAPi18n.__('cardset.info.workload.bonus.count', {}, "de"), cardset.workload.bonus.count],
 		[TAPi18n.__('bonus.form.maxWorkload.label', {}, "de"), cardset.maxCards],
 		[TAPi18n.__('bonus.form.daysBeforeReset.label', {}, "de"), cardset.daysBeforeReset],
 		[TAPi18n.__('bonus.form.startDate.label', {}, "de"), moment(cardset.learningStart).locale("de").format('LL')],

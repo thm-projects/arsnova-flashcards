@@ -79,7 +79,8 @@ if (Meteor.isServer) {
 							license: 1,
 							shuffled: 1,
 							learningActive: 1,
-							originalAuthorName: 1
+							originalAuthorName: 1,
+							workload: 1
 						}
 				});
 		}

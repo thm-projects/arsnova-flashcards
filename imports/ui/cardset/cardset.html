@@ -214,6 +214,16 @@
         <td>{{_ "cardset.info.dateUpdated"}}:</td>
         <td>{{getMomentsDate this.dateUpdated}}</td>
     </tr>
+    <tr>
+        <td>{{_ "cardset.info.workload.normal.count"}}:</td>
+        <td>{{this.workload.normal.count}}</td>
+    </tr>
+    {{#if this.learningActive}}
+        <tr>
+            <td>{{_ "cardset.info.workload.bonus.count"}}:</td>
+            <td>{{this.workload.bonus.count}}</td>
+        </tr>
+    {{/if}}
     {{#unless isActiveRoute regex="home|course"}}
         {{#if ratingEnabled}}
             <tr>
@@ -1409,10 +1419,6 @@
                     <td>
                         <a href="https://www.thm.de/site/hochschule/zentrale-bereiche/pruefungsamt/faq.html#bonuspunkte-an-der-thm"
                            target="_blank">{{_ "set-list.bonusPointsPercentage"}}</a></td>
-                </tr>
-                <tr>
-                    <td>{{_ "pool.activeLearners"}}:</td>
-                    <td>{{this.workload.bonus.count}}</td>
                 </tr>
                 <tr>
                     <td>{{_ "bonus.form.maxWorkload.label"}}:</td>

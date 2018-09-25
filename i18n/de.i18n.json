@@ -772,7 +772,15 @@
       "moduleNum": "Modulnummer",
       "college": "Hochschule",
       "course": "Studiengang",
-      "undefinedAuthor": "Bitte füll dein Profil aus!"
+      "undefinedAuthor": "Bitte füll dein Profil aus!",
+      "workload": {
+        "bonus": {
+          "count": "Engeschrieben in Bonus"
+        },
+        "normal": {
+          "count": "Engeschrieben"
+        }
+      }
     },
     "tooltip": {
       "editCardset": "Metadaten der Kartei editieren",
