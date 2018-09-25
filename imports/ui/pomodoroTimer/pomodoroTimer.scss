@@ -17,6 +17,12 @@
   .pomodoroClock {
     max-height: 87vh;
     cursor: pointer;
+    background-image: url("/img/pomodoro/pomodoro.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80% 80%;
+    -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.25));
   }
 
   .numSlider {
