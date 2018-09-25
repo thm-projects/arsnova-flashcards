@@ -4,7 +4,8 @@ import {Cards} from "./cards";
 
 if (Meteor.isServer) {
 	Meteor.publish('serverInventory', function () {
-		Counts.publish(this, 'cardsetsCounter', Cardsets.find({kind: {$nin: ['server', 'demo']}}), {fastCount: true});
+		Counts.publish(this, 'cardsetsCounter', Cardsets.find({kind: {$nin: ['server', 'demo']}, shuffled: false}), {fastCount: true});
+		Counts.publish(this, 'repetitoriumCounter', Cardsets.find({kind: {$nin: ['server', 'demo']}, shuffled: true}), {fastCount: true});
 		Counts.publish(this, 'cardsCounter', Cards.find({
 			cardset_id: {
 				$in: Cardsets.find({kind: {$nin: ['server', 'demo']}}).map(function (cardset) {

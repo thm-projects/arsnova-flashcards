@@ -41,6 +41,9 @@ Template.contactNavigation.helpers({
 });
 
 Template.contactNavigation.events({
+	'click a': function () {
+		window.scrollTo(0, 0);
+	},
 	'click #backToStartButton': function (event) {
 		event.preventDefault();
 		Route.setFirstTimeVisit();

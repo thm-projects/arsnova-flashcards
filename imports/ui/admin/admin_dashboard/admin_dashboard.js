@@ -6,6 +6,9 @@ Template.admin_dashboard.helpers({
 	totalCardsets: function () {
 		return Counts.get('cardsetsCounter');
 	},
+	totalReps: function () {
+		return Counts.get('repetitoriumCounter');
+	},
 	totalCards: function () {
 		return Counts.get('cardsCounter');
 	},
