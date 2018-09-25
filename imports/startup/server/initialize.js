@@ -51,7 +51,6 @@ var initTestNotificationsCardset = function () {
 			"registrationPeriod": (new Date().setFullYear(2038, 0, 19)),
 			"learningInterval": [],
 			"wordcloud": false,
-			"learners": 0,
 			"editors": [],
 			"shuffled": false,
 			"cardGroups": [],
@@ -453,11 +452,6 @@ Meteor.startup(function () {
 		);
 	}
 
-	cardsets = Cardsets.find({learners: {$exists: false}}, {fields: {_id: 1}}).fetch();
-	for (let i = 0; i < cardsets.length; i++) {
-		Meteor.call("updateLearnerCount", cardsets[i]._id);
-	}
-
 	cardsets = Cardsets.find({editors: {$exists: false}}).fetch();
 	for (let i = 0; i < cardsets.length; i++) {
 		Cardsets.update({
@@ -658,6 +652,24 @@ Meteor.startup(function () {
 					'pomodoroTimer.workLength': 25,
 					'pomodoroTimer.breakLength': 5,
 					'pomodoroTimer.soundConfig': [true, true, true]
+				}
+			}
+		);
+	}
+
+	cardsets = Cardsets.find({'workload.bonus.count': {$exists: false}}, {fields: {_id: 1}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Meteor.call('updateLearnerCount', cardsets[i]._id);
+	}
+
+	cardsets = Cardsets.find({learners: {$exists: true}}, {fields: {_id: 1}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$unset: {
+					learners: ""
 				}
 			}
 		);
