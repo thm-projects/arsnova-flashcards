@@ -38,7 +38,7 @@
     "name_plural": "Pomodoros",
     "timer": {
       "instructions": {
-        "activate": "Pomodoro",
+        "activate": "Pomodoro Timer",
         "deactivate": ""
       }
     },
@@ -53,8 +53,8 @@
       "sounds": {
         "title": "Sounds",
         "break": "Pause",
-        "success": "Lerneinheit erfolgreich",
-        "abort": "Abgebrochen"
+        "success": "Lernzeit eingehalten",
+        "abort": "Lernzeit vorzeitig beendet"
       },
       "link": "/learning#Pomodoro",
       "tooltip": {
