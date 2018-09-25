@@ -664,34 +664,6 @@ Template.cardsetInfoBoxContentOne.helpers({
 	ratingEnabled: function () {
 		return this.ratings === true;
 	},
-	gotMultipleAuthorsAndIsHome: function (cardset) {
-		if (cardset !== undefined && cardset !== null) {
-			let cardsets = cardset.cardGroups;
-			if (cardsets !== undefined) {
-				cardsets.push(cardset._id);
-				let owners = _.uniq(Cardsets.find({_id: {$in: cardsets}}, {fields: {owner: 1}}).fetch(), function (item) {
-					return item.owner;
-				});
-				return owners.length > 1 && Route.isHome();
-			}
-		}
-	},
-	getAuthors: function (cardset) {
-		if (cardset !== undefined && cardset !== null) {
-			let cardsets = cardset.cardGroups;
-			let owner_id = [];
-			if (cardsets !== undefined) {
-				cardsets.push(cardset._id);
-				let owners = _.uniq(Cardsets.find({_id: {$in: cardsets}}, {fields: {owner: 1}}).fetch(), function (item) {
-					return item.owner;
-				});
-				owners.forEach(function (element) {
-					owner_id.push(element.owner);
-				});
-				return owners;
-			}
-		}
-	},
 	canRateCardset: function () {
 		let result = Cardsets.findOne({_id: this._id}, {fields: {owner: 1}});
 		if (result !== undefined) {
