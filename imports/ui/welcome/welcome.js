@@ -269,7 +269,7 @@ Template.welcome.helpers({
 			userCount = inventory.curValue.users;
 			onlineCount = inventory.curValue.online;
 		} else {
-			cardsetCount = Counts.get('cardsetsCounter');
+			cardsetCount = Counts.get('cardsetsCounter') + Counts.get('repetitoriumCounter');
 			cardCount = Counts.get('cardsCounter');
 			userCount = Counts.get('usersCounter');
 			onlineCount = Counts.get('usersOnlineCounter');
