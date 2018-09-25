@@ -10,6 +10,8 @@ import {Filter} from "../../api/filter";
 import {Route} from "../../api/route";
 import {BertAlertVisuals} from "../../api/bertAlertVisuals";
 import {Workload} from "../../api/learned";
+import {SweetAlertMessages} from "../../api/sweetAlert";
+import {Profile} from "../../api/profile";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
@@ -42,12 +44,23 @@ Template.create.helpers({
 					limit: Filter.getMaxItemCounter()
 				});
 		}
+	},
+	isProfileComplete: function () {
+		return Profile.isCompleted();
 	}
 });
 
 Template.create.events({
 	'click #newCardSet': function () {
-		Session.set('isNewCardset', true);
+		if (Profile.isCompleted()) {
+			Session.set('isNewCardset', true);
+			$('#setCardsetFormModal').modal('show');
+		} else {
+			SweetAlertMessages.completeProfile();
+		}
+	},
+	'click #importCardsetCompleteProfile': function () {
+		SweetAlertMessages.completeProfile();
 	},
 	'change #importCardset': function (evt) {
 		if (Session.get('importCards') === undefined) {
@@ -124,7 +137,12 @@ Template.repetitorium.helpers({
 
 Template.repetitorium.events({
 	'click #newRepetitorium': function () {
-		Session.set('isNewCardset', true);
+		if (Profile.isCompleted()) {
+			Session.set('isNewCardset', true);
+			$('#setCardsetFormModal').modal('show');
+		} else {
+			SweetAlertMessages.completeProfile();
+		}
 	}
 });
 
