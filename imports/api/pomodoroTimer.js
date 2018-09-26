@@ -507,8 +507,8 @@ export let PomodoroTimer = class PomodoroTimer {
 		}
 		if (pomLength + breakLength > 60) {
 			breakLength = 60 - pomLength;
-			$('#breakLength').html(breakLength);
 			$('#breakSlider').val(breakLength);
+			this.updateBreakSlider();
 		}
 		this.updateTimeParagraph();
 	}
@@ -531,8 +531,8 @@ export let PomodoroTimer = class PomodoroTimer {
 		}
 		if (pomLength + breakLength > 60) {
 			pomLength = 60 - breakLength;
-			$('#workLength').html(pomLength);
 			$('#workSlider').val(pomLength);
+			this.updateWorkSlider();
 		}
 		this.updateTimeParagraph();
 	}
