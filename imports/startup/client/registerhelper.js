@@ -678,26 +678,11 @@ const helper = new MeteorMathJax.Helper({
 });
 
 Template.registerHelper('mathjax', helper.getTemplate());
-MeteorMathJax.sourceUrl = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js';
+MeteorMathJax.sourceUrl = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML-full';
 MeteorMathJax.defaultConfig = {
-	config: ["TeX-AMS-MML_HTMLorMML.js"],
-	jax: ["input/TeX", "input/MathML", "output/HTML-CSS", "output/NativeMML", "output/PreviewHTML"],
-	extensions: ["tex2jax.js", "enclose.js", "Safe.js", "mml2jax.js", "fast-preview.js", "AssistiveMML.js", "[Contrib]/a11y/accessibility-menu.js"],
 	TeX: {
-		extensions: ["AMSmath.js", "AMSsymbols.js", "autoload-all.js"]
+		extensions: ["action.js", "AMSmath.js", "AMSsymbols.js", "AMScd.js", "autobold.js", "bbox.js", "begingroup.js", "cancel.js", "colors.js", "enclose.js", "extpfeil.js", "mhchem.js", "mediawiki-texvc.js", "noErrors.js", "noUndefined.js", "autoload-all.js"]
 	},
-	tex2jax: {
-		inlineMath: [['$', '$'], ["\\(", "\\)"]],
-		displayMath: [['$$', '$$'], ["\\[", "\\]"]],
-		processEscapes: true,
-		preview: 'none'
-	},
-	styles: {
-		".MathJax_Display": {
-			display: "table"
-		}
-	},
-	messageStyle: 'none',
 	showProcessingMessages: false,
 	showMathMenu: false
 };
