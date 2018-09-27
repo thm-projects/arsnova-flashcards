@@ -684,5 +684,5 @@ MeteorMathJax.defaultConfig = {
 		extensions: ["action.js", "AMSmath.js", "AMSsymbols.js", "AMScd.js", "autobold.js", "bbox.js", "begingroup.js", "cancel.js", "colors.js", "enclose.js", "extpfeil.js", "mhchem.js", "mediawiki-texvc.js", "noErrors.js", "noUndefined.js", "autoload-all.js"]
 	},
 	showProcessingMessages: false,
-	showMathMenu: false
+	showMathMenu: true
 };
