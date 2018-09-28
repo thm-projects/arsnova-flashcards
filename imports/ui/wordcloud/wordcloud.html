@@ -1,0 +1,56 @@
+<template name="wordcloud">
+    {{> wordcloudModal}}
+    <div id="wordcloud-container" class="col-xs-12">
+        <canvas id="wordcloud-canvas" class="needsclick"></canvas>
+    </div>
+    <div id="pomodoroTimerWordcloudContainer"></div>
+</template>
+
+<template name="wordcloudModal">
+    <div class="modal fade" id="wordcloudModal" role="dialog">
+        {{#each getContent}}
+            <div class="modal-dialog" aria-labelledby="wordcloudTitle">
+                <div class="modal-content hintContent">
+                    <div class="modal-header">
+                        <h4 id="wordcloudTitle" class="modal-title">
+                            {{{getKind this.kind 0}}}
+                            {{{getShuffleLabel this.shuffled}}}
+                            {{{getBonusLabel this.learningActive}}}
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <br>
+                            {{#if currentUser}}
+                                <a href="/cardset/{{this._id}}" id="cardsetLink">{{this.name}}</a>
+                            {{else}}
+                                {{this.name}}
+                            {{/if}}
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-md-12 wordCloudDescription">
+                                    <table class="table">
+                                        <tr>
+                                            <td>
+                                                {{#mathjax}}
+                                                    {{this.description}}
+                                                {{/mathjax}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-md-12">
+                                    <br>
+                                    <table class="table">
+                                        {{> cardsetInfoBoxContentOne}}
+                                        {{> cardsetInfoBoxContentTwo}}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</template>

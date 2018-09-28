@@ -16,13 +16,17 @@
 <template name="category">
     {{#if getDecks 0}}
         {{> filterNavigation}}
-        {{#if getDecks 1}}
-            {{#each getDecks 2}}
-                {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
-            {{/each}}
-            {{> infiniteScroll}}
+        {{#if displayWordcloud}}
+            {{> wordcloud}}
         {{else}}
-            {{> noFilterResults}}
+            {{#if getDecks 1}}
+                {{#each getDecks 2}}
+                    {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
+                {{/each}}
+                {{> infiniteScroll}}
+            {{else}}
+                {{> noFilterResults}}
+            {{/if}}
         {{/if}}
     {{else}}
         {{> noResults}}

@@ -1,0 +1,14 @@
+#wordcloudTitle {
+  padding: 0;
+}
+
+#wordcloud-container {
+  text-align: center;
+}
+
+#welcome-container #wordcloud-container {
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+  }
+}

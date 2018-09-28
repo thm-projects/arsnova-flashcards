@@ -12,6 +12,7 @@ import {BertAlertVisuals} from "../../api/bertAlertVisuals";
 import {Workload} from "../../api/learned";
 import {SweetAlertMessages} from "../../api/sweetAlert";
 import {Profile} from "../../api/profile";
+import {FilterNavigation} from "../../api/filterNavigation";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
@@ -47,6 +48,9 @@ Template.create.helpers({
 	},
 	isProfileComplete: function () {
 		return Profile.isCompleted();
+	},
+	displayWordcloud: function () {
+		return FilterNavigation.gotDisplayModeButton(FilterNavigation.getRouteId()) && Session.get('filterDisplayWordcloud');
 	}
 });
 
@@ -132,6 +136,9 @@ Template.repetitorium.helpers({
 	},
 	selectingCardsetToLearn: function () {
 		return Session.get('selectingCardsetToLearn');
+	},
+	displayWordcloud: function () {
+		return FilterNavigation.gotDisplayModeButton(FilterNavigation.getRouteId()) && Session.get('filterDisplayWordcloud');
 	}
 });
 

@@ -29,6 +29,9 @@ Template.pomodoroTimer.onRendered(function () {
 	if (Route.isPresentation() || Route.isBox() || Route.isMemo()) {
 		CardVisuals.resizeFlashcard();
 	}
+	$('.pomodoroTimer').unbind().on('click', function () {
+		PomodoroTimer.clickClock();
+	});
 });
 
 Template.pomodoroTimer.helpers({
@@ -37,12 +40,6 @@ Template.pomodoroTimer.helpers({
 	},
 	getMinuteRotation: function () {
 		return 'rotate(' + PomodoroTimer.getMinuteRotation() + ' 50 50)';
-	}
-});
-
-Template.pomodoroTimer.events({
-	'click .pomodoroClock': function () {
-		PomodoroTimer.clickClock();
 	}
 });
 

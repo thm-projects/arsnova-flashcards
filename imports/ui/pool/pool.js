@@ -7,6 +7,7 @@ import {Cardsets} from "../../api/cardsets.js";
 import "./pool.html";
 import {firstLoginBertAlert} from "../../startup/client/routes";
 import {Filter} from "../../api/filter";
+import {FilterNavigation} from "../../api/filterNavigation";
 
 Meteor.subscribe("cardsets");
 
@@ -32,6 +33,9 @@ Template.category.helpers({
 			case 2:
 				return Cardsets.find(query, {sort: Filter.getSortFilter(), limit: Filter.getMaxItemCounter()});
 		}
+	},
+	displayWordcloud: function () {
+		return FilterNavigation.gotDisplayModeButton(FilterNavigation.getRouteId()) && Session.get('filterDisplayWordcloud');
 	}
 });
 
