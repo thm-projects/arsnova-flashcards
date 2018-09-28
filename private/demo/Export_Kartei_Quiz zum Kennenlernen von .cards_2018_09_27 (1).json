@@ -2,7 +2,7 @@
   "name": "A: Quiz zum Kennenlernen von .cards",
   "description": "Die Quizfragen sind Teil der Demo-Kartei, siehe den roten Button auf der .cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2018-09-24T14:17:18.655Z",
+  "dateUpdated": "2018-09-27T16:11:13.171Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -18,10 +18,10 @@
   "license": [],
   "userDeleted": false,
   "learningActive": false,
-  "maxCards": 2,
+  "maxCards": 40,
   "daysBeforeReset": 7,
   "learningStart": "2018-06-08T13:51:09.335Z",
-  "learningEnd": "2038-01-19T15:33:57.156Z",
+  "learningEnd": "2038-01-19T21:30:35.623Z",
   "learningInterval": [
     1,
     3,
@@ -29,7 +29,6 @@
     28,
     84
   ],
-  "learners": 0,
   "wordcloud": false,
   "shuffled": false,
   "cardType": 11,
@@ -40,7 +39,15 @@
     "givenname": "Klaus"
   },
   "noDifficulty": false,
-  "registrationPeriod": "2038-01-19T15:33:57.156Z"
+  "registrationPeriod": "2038-01-19T21:30:35.623Z",
+  "workload": {
+    "bonus": {
+      "count": 0
+    },
+    "normal": {
+      "count": 1
+    }
+  }
 }, {
   "subject": "1. Gesammeltes Wissen",
   "front": "**Was bleibt?**\n\n![Klick auf das Foto für die Vollansicht!](/img/background/zettelkasten_wikipedia_original.jpg width=300)\n",
@@ -64,7 +71,7 @@
   }
 }, {
   "subject": "2. Worum es geht",
-  "front": "![Bildmarke von .cards ](https://git.thm.de/arsnova/flashcards/raw/master/public/img/cards512x512.png width=200pt)\n\nWas unterscheidet **.cards** von anderen Lernkartei-Apps?",
+  "front": "![](https://arsnova-uploads.mni.thm.de/Bildlogo%20Punkt%20cards.png)\n\nWas unterscheidet **.cards** von anderen Lernkartei-Apps?\n\n<br />\n<br />\n\n\n(Bildquelle: [Emoji One](https://de.wikipedia.org/wiki/Datei:Emojione_1F345.svg))",
   "centerTextElement": [
     true,
     false,
@@ -76,7 +83,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2018-09-24T13:50:01.306Z",
+  "dateUpdated": "2018-09-27T16:11:13.152Z",
   "back": "Im Gegensatz zu Lernkartei-Apps wie [Quizlet](https://quizlet.com/) oder [SuperMemo](https://www.supermemo.com/) unterstützt die .cards-Plattform auch das **Mitschreiben in Vorlesungen**. Weiter hinten in dieser Demo-Kartei haben wir ein Beispiel für eine Mitschrift eingefügt. Sie wurde handschriftlich in einer Bachelor-Vorlesung erstellt, abfotografiert und zu Hause digital auf .cards zum Lernen nachbearbeitet.\n\nDie Plattform .cards ist eine **vorlesungsbegleitende persönliche Lernumgebung**, ein virtueller Ort, an dem Lernzeit mit kognitiven Tätigkeiten -- Mitschreiben, Nachbearbeiten, Lernkarten erstellen, Lernfragen wiederholt beantworten -- intensiv verbracht wird. \n\nEs gibt auf .cards eine Option, die es der Lehrperson ermöglicht, kontinuierliches und wiederholtes Lernen mit **Bonuspunkten** zu honorieren. Wir haben .cards mit dem Ziel entwickelt, der **Aufschieberitis** und dem **Bulimie-Lernen** im Studium entgegen zu wirken, siehe dazu unsere beiden Veröffentlichungen:\n\n\n[#HFD18]: Quibeldey-Cirkel, K. (2018).\nDigital gegen das Bulimie-Lernen: Quizzen im Hörsaal und zu Hause, Podcasts für unterwegs.\nIn: Hochschulforum Digitalisierung (Hrsg.): [_HFD Winter School E-Book. Hochschullehre im digitalen Zeitalter gestalten._](https://hochschulforumdigitalisierung.de/sites/default/files/dateien/HFD_Winter_School_E-Book_Version_2.pdf) Arbeitspapier Nr. 31. Version 2. Berlin: Hochschulforum Digitalisierung. (S. 91-98).</br></br>\n\n[#SITE18]: Quibeldey-Cirkel, K., Heiny, J. & Thelen, C. (2018).\nAgainst Academic Procrastination: Pedagogical Apps to Implement Distributed Learning in Course Design.\nIn E. Langran & J. Borup (Eds.), _Proceedings of Society for Information Technology & Teacher Education International Conference_ (pp. 1617-1622).\nWashington, D.C., United States: Association for the Advancement of Computing in Education (AACE). http://www.learntechlib.org/p/182756/",
   "originalAuthorName": {
     "title": "Dr.",
@@ -151,7 +158,7 @@
 }, {
   "subject": "6. Digitale Zettel: Karten",
   "front": "Wie kannst du den Text auf einer Karte **formatieren**?\n\n![](https://casual-effects.com/image/project/icon-markdeep.png width=\"130 pt\")\n\nWie lässt sich eine Karte **multimedial** mit Bildern, Podcasts oder Videos anreichern?",
-  "back": "Kurze Antwort: mit **Markdeep**.\n\n---\n\nKarteien (im Hintergrund sind das die Schuhkartons im IKEA-Regal) und Karten (die Zettel in den Kartons) kannst du auf  **.cards** vielfältig gestalten -- fast wie in Microsoft Word™ oder in Pages™ von Apple. Diese Karte zeigt dir beispielhaft einige Formatierungen mit [Markdeep](http://casual-effects.com/markdeep/), der vereinfachten [Auszeichnungssprache](https://de.wikipedia.org/wiki/Auszeichnungssprache) im **.cards**-Editor. Du kannst deinen Text mit etwas Magie (ein paar Tastaturzeichen genügen wie <code>* _ # [ ]  > | ~ $ ˋ</code>) sehr einfach formatieren -- **ohne Maus**. \n\nWas alles mit Markdeep möglich ist,  zeigt die  [Demo-Seite](http://casual-effects.com/markdeep/features.md.html). So geht zum Beispiel auch $\\TeX$, inline: $\\sigma = \\sqrt{ \\frac{1}{N} \\sum_{i=1}^N (x_i -\\mu)^2}$ (Standardabweichung) oder abgesetzt die Maxwell-Faraday-Gleichung:\n\n$$\\oint_{\\partial \\Sigma} \\mathbf{E} \\cdot \\mathrm{d}\\boldsymbol{\\ell}  = - \\frac{d}{dt} \\iint_{\\Sigma} \\mathbf{B} \\cdot \\mathrm{d}\\mathbf{S}$$\n\n!!! NOTE\n   Eine sorgfältige Gestaltung deiner Karten mit Text, Bildern, Podcasts oder Erklärvideos motiviert und fördert zugleich dein Lernen. Nutze also die Formatierungsoptionen für die Beschriftung deiner Karteien ( -> Etikett am Karton) und für die anschauliche Gestaltung der Lerninhalte deiner Karten. \n\nUnd jetzt kommt der [Entwickler von Markdeep](https://csci.williams.edu/people/faculty/morgan-mcguire/) zu Wort:\n\n> \"Markdeep\n> is a technology for writing plain text documents\n> that will look good in any web browser, whether \n> local or remote. It supports diagrams, calendars, equations, and\n> other  features as extensions of [Markdown](https://de.wikipedia.org/wiki/Markdown) syntax.\"\n>        -- Morgan McGuire\n\nVideos auf YouTube und Vimeo lassen sich sehr einfach mit einem Einzeiler in die Seite einbinden:\n\n![Figure [Markdown]: Erklärvideo über Markdown, auf dem Markdeep aufbaut](https://youtu.be/hpAJMSS8pvs)\n\nBilder können abgesetzt, rechtsbündig zum Absatz und skaliert eingebunden werden:\n\n![Figure [examplePicture]:  Klick auf das Bild, um es in Vollansicht zu sehen!](https://pbs.twimg.com/media/CXzB2rZWsAERiV8.png  width=\"400 pt\")\n\nWie im Bild zu sehen, zeigt dir die Vorschau des Editors -- **synchron** zu deiner Eingabe --, wie deine Textformatierung aussehen wird. \n\nUnd natürlich lassen sich auch **Podcasts** einbinden und im Browser abspielen. Die Syntax ist für alle Medien gleich: \n\n`![Beschriftung](Adresse im Web)`. \n\nFür einen Podcast also:\n\n````\n![The Personal Best CBC Podcast](https://podcast-a.akamaihd.net/mp3/podcasts/personalbest-GRHHTnR3-20180415.mp3)\n````\n\nDer browsereigene Audio-Player wird aufgerufen:\n\n![The Personal Best CBC Podcast](https://podcast-a.akamaihd.net/mp3/podcasts/personalbest-GRHHTnR3-20180415.mp3)\n\n!!! TIP\n   Im Themen-Pool auf .cards steht dir die Kartei \"Markdown | Markdeep\" als Hilfe zur Verfügung.\n\n!!! ERROR Warum bietet ihr Markdown / Markdeep für die Textformatierung an und nicht einen [WYSIWYG](https://de.wikipedia.org/wiki/WYSIWYG)-Editor?\n    Siehe Antwort zur 5. [FAQ](/faq).",
+  "back": "Kurze Antwort: mit **Markdeep**.\n\n---\n\nKarteien (im Hintergrund sind das die Schuhkartons im IKEA-Regal) und Karten (die Zettel in den Kartons) kannst du auf  **.cards** vielfältig gestalten -- fast wie in Microsoft Word™ oder in Pages™ von Apple. Diese Karte zeigt dir beispielhaft einige Formatierungen mit [Markdeep](http://casual-effects.com/markdeep/), der vereinfachten [Auszeichnungssprache](https://de.wikipedia.org/wiki/Auszeichnungssprache) im **.cards**-Editor. Du kannst deinen Text mit etwas Magie (ein paar Tastaturzeichen genügen wie <code>* _ # [ ]  > | ~ $ ˋ</code>) sehr einfach formatieren -- **ohne Maus**. \n\nWas alles mit Markdeep möglich ist,  zeigt die  [Demo-Seite](http://casual-effects.com/markdeep/features.md.html). So geht zum Beispiel auch $\\TeX$, inline: $\\sigma = \\sqrt{ \\frac{1}{N} \\sum_{i=1}^N (x_i -\\mu)^2}$ (Standardabweichung) oder abgesetzt die Maxwell-Faraday-Gleichung:\n\n$$\\oint_{\\partial \\Sigma} \\mathbf{E} \\cdot \\mathrm{d}\\boldsymbol{\\ell}  = - \\frac{d}{dt} \\iint_{\\Sigma} \\mathbf{B} \\cdot \\mathrm{d}\\mathbf{S}$$\n\nDie Anzeige einer $\\TeX$-Formel erfolgt mit [MathJax](https://www.mathjax.org/).\nMathJax fügt ein Kontextmenü hinzu. Um es anzuzeigen, klicke mit der rechten Maustaste oder halte beim Klicken die <kbd>Strg</kbd>-Taste gedrückt. Probiere es gleich einmal mit der Formel oben aus!\n\n!!! NOTE\n   Eine sorgfältige Gestaltung deiner Karten mit Text, Bildern, Podcasts oder Erklärvideos motiviert und fördert zugleich dein Lernen. Nutze also die Formatierungsoptionen für die Beschriftung deiner Karteien ( -> Etikett am Karton) und für die anschauliche Gestaltung der Lerninhalte deiner Karten. \n\nUnd jetzt kommt der [Entwickler von Markdeep](https://csci.williams.edu/people/faculty/morgan-mcguire/) zu Wort:\n\n> \"Markdeep\n> is a technology for writing plain text documents\n> that will look good in any web browser, whether \n> local or remote. It supports diagrams, calendars, equations, and\n> other  features as extensions of [Markdown](https://de.wikipedia.org/wiki/Markdown) syntax.\"\n>        -- Morgan McGuire\n\nVideos auf YouTube und Vimeo lassen sich sehr einfach mit einem Einzeiler in die Seite einbinden:\n\n![Figure [Markdown]: Erklärvideo über Markdown, auf dem Markdeep aufbaut](https://youtu.be/hpAJMSS8pvs)\n\nBilder können abgesetzt, rechtsbündig zum Absatz und skaliert eingebunden werden:\n\n![Figure [examplePicture]:  Klick auf das Bild, um es in Vollansicht zu sehen!](https://pbs.twimg.com/media/CXzB2rZWsAERiV8.png  width=\"400 pt\")\n\nWie im Bild zu sehen, zeigt dir die Vorschau des Editors -- **synchron** zu deiner Eingabe --, wie deine Textformatierung aussehen wird. \n\nUnd natürlich lassen sich auch **Podcasts** einbinden und im Browser abspielen. Die Syntax ist für alle Medien gleich: \n\n`![Beschriftung](Adresse im Web)`. \n\nFür einen Podcast also:\n\n````\n![The Personal Best CBC Podcast](https://podcast-a.akamaihd.net/mp3/podcasts/personalbest-GRHHTnR3-20180415.mp3)\n````\n\nDer browsereigene Audio-Player wird aufgerufen:\n\n![The Personal Best CBC Podcast](https://podcast-a.akamaihd.net/mp3/podcasts/personalbest-GRHHTnR3-20180415.mp3)\n\n!!! TIP\n   Im Themen-Pool auf .cards steht dir die Kartei \"Markdown | Markdeep\" als Hilfe zur Verfügung.\n\n!!! ERROR Warum bietet ihr Markdown / Markdeep für die Textformatierung an und nicht einen [WYSIWYG](https://de.wikipedia.org/wiki/WYSIWYG)-Editor?\n    Siehe Antwort zur 5. [FAQ](/faq).",
   "centerTextElement": [
     true,
     false,
@@ -163,7 +170,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2018-09-24T14:17:18.648Z",
+  "dateUpdated": "2018-09-27T08:54:52.542Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
