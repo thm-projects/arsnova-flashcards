@@ -683,6 +683,26 @@ MeteorMathJax.defaultConfig = {
 	TeX: {
 		extensions: ["action.js", "AMSmath.js", "AMSsymbols.js", "AMScd.js", "autobold.js", "bbox.js", "begingroup.js", "cancel.js", "colors.js", "enclose.js", "extpfeil.js", "mhchem.js", "mediawiki-texvc.js", "noErrors.js", "noUndefined.js", "autoload-all.js"]
 	},
+	menuSettings: {
+		zoom: "click",        //  when to do MathZoom
+		CTRL: false,         //    require CTRL for MathZoom?
+		ALT: false,          //    require Alt or Option?
+		CMD: false,          //    require CMD?
+		Shift: false,        //    require Shift?
+		discoverable: false, //  make math menu discoverable on hover?
+		zscale: "200%",      //  the scaling factor for MathZoom
+		renderer: "CommonHTML",      //  set when Jax are loaded
+		font: "Auto",        //  what font HTML-CSS should use
+		context: "MathJax",  //  or "Browser" for pass-through to browser menu
+		locale: "de",        //  the language to use for messages
+		mpContext: false,    //  true means pass menu events to MathPlayer in IE
+		mpMouse: false,      //  true means pass mouse events to MathPlayer in IE
+		texHints: true,      //  include class names for TeXAtom elements
+		FastPreview: null,   //  use PreviewHTML output as preview?
+		assistiveMML: true,  //  include hidden MathML for screen readers?
+		inTabOrder: true,    //  set to true if math elements should be included in the tabindex
+		semantics: false     //  add semantics tag with original form in MathML output
+	},
 	showProcessingMessages: false,
 	showMathMenu: true
 };
