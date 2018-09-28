@@ -1,4 +1,4 @@
-.cardContent .md *:not(svg) {
+.cardContent .md *:not(svg)*:not(.mjx-chtml) {
   font-size: 100% !important;
 }
 
