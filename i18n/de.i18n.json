@@ -35,43 +35,43 @@
   },
   "pomodoro": {
     "name": "Pomodoro",
-    "name_plural": "Pomodoros",
+    "name_plural": "Pomodori",
     "timer": {
       "instructions": {
-        "activate": "Pomodoro Timer",
+        "activate": "",
         "deactivate": ""
       }
     },
     "form": {
       "time": {
-        "hour": "hour",
-        "hour_plural": "__count__ hours",
-        "minute": "minute",
-        "minute_plural": "__count__ minutes",
-        "and": " and "
+        "hour": "1 Stunde",
+        "hour_plural": "__count__ Stunden",
+        "minute": "1 Minute",
+        "minute_plural": "__count__ Minuten",
+        "and": " und "
       },
       "sounds": {
-        "title": "Sounds",
-        "break": "Pause",
-        "success": "Lernzeit eingehalten",
-        "abort": "Lernzeit vorzeitig beendet"
+        "title": "Klänge",
+        "break": "Pausenton:",
+        "success": "Ton , wenn Lernzeit eingehalten:",
+        "abort": "Ton, wenn Lernzeit vorzeitig beendet:"
       },
       "link": "/learning#Pomodoro",
       "tooltip": {
-        "link": "A 'Pomodoro' is a work / break cycle. Default: 25 mins work and 5 mins break. After 4 __pomodoro__: 15 mins break."
+        "link": "»Pomodoro« (italienisch für Tomate) ist ein Arbeits-Pausen-Zyklus. Standard: 25 Minuten Arbeit, 5 Minuten Pause. Nach 4 Pomodori: 15 Minuten Pause."
       },
       "user": {
-        "title": "Choose your goal!",
-        "count": "I want to do <span class=\"pomodoroHighlight\">__count__</span> <a href=\"__link__\" data-toggle=\"tooltip\" title=\"__tooltip__\" target=\"_blank\"> <b>__pomodoro__<i>🍅</i></b></a>!",
-        "totalTime": "Reserve the next __time__ for getting stuff done!",
-        "work": "Work for: <span class=\"pomodoroHighlight\">__minutes__</span> each pomodoro",
-        "break": "Relax for: <span class=\"pomodoroHighlight\">__minutes__</span> each pomodoro",
+        "title": "Wie lange willst du heute lernen?",
+        "count": "Ich will <span class=\"pomodoroHighlight\">__count__</span> <a href=\"__link__\" data-toggle=\"tooltip\" title=\"__tooltip__\" target=\"_blank\"> <b>__pomodoro__<i>🍅</i></b></a>schaffen!",
+        "totalTime": "Reserviere __time__ für den Lernstoff!",
+        "work": "Lernen: <span class=\"pomodoroHighlight\">__minutes__</span> pro Pomodoro",
+        "break": "Erholen: <span class=\"pomodoroHighlight\">__minutes__</span> pro Pomodoro",
         "settings": {
-          "title": "How many minutes?"
+          "title": "Wie viele Minuten?"
         },
         "button": {
-          "start": "Let's go!",
-          "settings": "Settings"
+          "start": "Los geht's!",
+          "settings": "Einstellungen"
         }
       },
       "bonus": {
@@ -84,48 +84,48 @@
     "sweetAlert": {
       "user": {
         "quit": {
-          "title": "Not so fast!",
-          "text": "You are still <span class=\"pomodoroHighlight\">__missingPomodoros__ __pomodoro__</span> short of your goal of <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>! <br><br>Come on, you can do <span class=\"pomodoroHighlight\">__remainingMinutes__ more minutes</span> of work!",
+          "title": "Gib nicht so schnell auf!",
+          "text": "Du hast noch <span class=\"pomodoroHighlight\">__missingPomodoros__ __pomodoro__</span> vor dir.  <br>Dein gesetztes Ziel: <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>! <br><br>Komm schon, du schaffst die verbleibenden <span class=\"pomodoroHighlight\">__remainingMinutes__ Minuten</span> Lernzeit!",
           "button": {
-            "cancel": "Stop.",
-            "confirm": "Continue!"
+            "cancel": "Stopp.",
+            "confirm": "Ich mache weiter!"
           },
           "confirm": {
-            "title": "You didn't make it.",
-            "text": "You couldn't complete the <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> you planned on doing. Sometimes life gets in the way, we get it! See you back here later!",
+            "title": "Du hast es nicht geschafft.",
+            "text": "Du hattest dir <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> vorgenommen. <br><br>Manchmal kommt halt was dazwischen, wir verstehen das! Komm bald wieder zum Lernen hierher zurück!",
             "button": {
-              "confirm": "OK!"
+              "confirm": "Okay!"
             }
           }
         },
         "end": {
-          "title": "Stop the productivity train?",
-          "text": "Hey, you've reached your goal of <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>! You've built up some good momentum, are you sure you want to stop?",
+          "title": "Deinen Lernfluss beenden?",
+          "text": "Hey, du hast dein Ziel von <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> geschafft! <br><br>Du hast eine gute Ausdauer entwickelt, bist du sicher, dass du aufhören willst?",
           "button": {
-            "cancel": "Continue!",
-            "confirm": "Stop."
+            "cancel": "Ich mache weiter!",
+            "confirm": "Stopp."
           },
           "confirm": {
-            "title": "Great job!",
-            "text": "In the end you did <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>, for a total of <span class=\"pomodoroHighlight\"> __pomodoroTotal__ minutes</span> of work! You are awesome! Come back soon!",
+            "title": "Großartig!",
+            "text": "Am Ende hast du <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> geschafft, in Summe <span class=\"pomodoroHighlight\"> __pomodoroTotal__ Minuten</span> Lernzeit! <br><br>Du bist klasse! Komm bald zurück!",
             "button": {
-              "confirm": "OK!"
+              "confirm": "Okay!"
             }
           }
         },
         "break": {
           "start": {
-            "title": "Good job!",
-            "text": "You have completed <span class=\"pomodoroHighlight\"> __pomodoroTotal__ __pomodoro__</span> of work! Are you ready for a relaxing <span class=\"pomodoroHighlight\"> __pomodoroBreak__ minutes</span> of whatever the heck you feel like?",
+            "title": "Gut gelernt!",
+            "text": "Du hast <span class=\"pomodoroHighlight\"> __pomodoroTotal__ __pomodoro__</span> Lernzeit geschafft! <br><br>Bist du bereit für erholsame <span class=\"pomodoroHighlight\"> __pomodoroBreak__ Minuten</span> Pause, in der du tun kannst, wonach auch immer dir der Sinn steht?",
             "button": {
-              "confirm": "Yes, I can't wait!"
+              "confirm": "Ja, ich kann nicht länger warten!"
             }
           },
           "end": {
-            "title": "Break's over!",
-            "text": "Hope that break left you feeling refreshed! Now it's time to get back to accomplishing your goals. Ready for <span class=\"pomodoroHighlight\"> __pomodoroLength__ more minutes</span> of work?",
+            "title": "Die Pause ist vorbei!",
+            "text": "Wir hoffen, dass dich die Pause erfrischt hat! Jetzt ist es an der Zeit, wieder zu lernen. <br><br>Bereit für die nächsten <span class=\"pomodoroHighlight\"> __pomodoroLength__ Minuten</span> Lernzeit?",
             "button": {
-              "confirm": "Let me at it!"
+              "confirm": "Lass mich anfangen!"
             }
           }
         }
