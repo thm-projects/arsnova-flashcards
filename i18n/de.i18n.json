@@ -51,21 +51,21 @@
         "and": " und "
       },
       "sounds": {
-        "title": "Klänge",
-        "break": "Pausenton:",
-        "success": "Ton , wenn Lernzeit eingehalten:",
-        "abort": "Ton, wenn Lernzeit vorzeitig beendet:"
+        "title": " Klänge",
+        "break": " Pausenton",
+        "success": " Ton , wenn Lernzeit eingehalten",
+        "abort": " Ton, wenn Lernzeit vorzeitig beendet"
       },
       "link": "/learning#Pomodoro",
       "tooltip": {
-        "link": "»Pomodoro« (italienisch für Tomate) ist ein Arbeits-Pausen-Zyklus. Standard: 25 Minuten Arbeit, 5 Minuten Pause. Nach 4 Pomodori: 15 Minuten Pause."
+        "link": "»Pomodoro« (italienisch für Tomate) ist ein Arbeits-Pausen-Zyklus. Standard: 25 Minuten Arbeit, 5 Minuten Pause. Nach 4 Pomodori: 30 Minuten Pause."
       },
       "user": {
         "title": "Wie lange willst du heute lernen?",
-        "count": "Ich will <span class=\"pomodoroHighlight\">__count__</span> <a href=\"__link__\" data-toggle=\"tooltip\" title=\"__tooltip__\" target=\"_blank\"> <b>__pomodoro__<i>🍅</i></b></a>schaffen!",
+        "count": "Ich will <span class=\"pomodoroHighlight\">__count__</span> <a href=\"__link__\" data-toggle=\"tooltip\" title=\"__tooltip__\" target=\"_blank\"> <b>__pomodoro__<i>🍅</i></b></a> schaffen!",
         "totalTime": "Reserviere __time__ für den Lernstoff!",
-        "work": "Lernen: <span class=\"pomodoroHighlight\">__minutes__</span> pro Pomodoro",
-        "break": "Erholen: <span class=\"pomodoroHighlight\">__minutes__</span> pro Pomodoro",
+        "work": " Lernen: <span class=\"pomodoroHighlight\">__minutes__</span> pro Pomodoro",
+        "break": " Erholen: <span class=\"pomodoroHighlight\">__minutes__</span> pro Pomodoro",
         "settings": {
           "title": "Wie viele Minuten?"
         },
@@ -85,29 +85,29 @@
       "user": {
         "quit": {
           "title": "Gib nicht so schnell auf!",
-          "text": "Du hast noch <span class=\"pomodoroHighlight\">__missingPomodoros__ __pomodoro__</span> vor dir.  <br>Dein gesetztes Ziel: <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>! <br><br>Komm schon, du schaffst die verbleibenden <span class=\"pomodoroHighlight\">__remainingMinutes__ Minuten</span> Lernzeit!",
+          "text": "Du hast noch <span class=\"pomodoroHighlight\">__missingPomodoros__ __pomodoro__</span> vor dir. <br>Dein Ziel: <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>! <br><br>Komm schon, du schaffst noch die verbleibenden <span class=\"pomodoroHighlight\">__remainingMinutes__ Minuten</span> Lernzeit!",
           "button": {
-            "cancel": "Stopp.",
+            "cancel": "Stopp!",
             "confirm": "Ich mache weiter!"
           },
           "confirm": {
-            "title": "Du hast es nicht geschafft.",
-            "text": "Du hattest dir <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> vorgenommen. <br><br>Manchmal kommt halt was dazwischen, wir verstehen das! Komm bald wieder zum Lernen hierher zurück!",
+            "title": "Du hast es leider nicht geschafft.",
+            "text": "Du hattest dir <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> vorgenommen. <br><br>Manchmal kommt halt was dazwischen. Wir verstehen das. Komm bald wieder zum Lernen hierher zurück!",
             "button": {
               "confirm": "Okay!"
             }
           }
         },
         "end": {
-          "title": "Deinen Lernfluss beenden?",
-          "text": "Hey, du hast dein Ziel von <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> geschafft! <br><br>Du hast eine gute Ausdauer entwickelt, bist du sicher, dass du aufhören willst?",
+          "title": "Willst du deinen Lernfluss beenden?",
+          "text": "Hey, du hast dein Ziel von <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> geschafft! <br><br>Du hast eine gute Ausdauer entwickelt. Bist du sicher, dass du aufhören willst?",
           "button": {
             "cancel": "Ich mache weiter!",
-            "confirm": "Stopp."
+            "confirm": "Stopp!"
           },
           "confirm": {
             "title": "Großartig!",
-            "text": "Am Ende hast du <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> geschafft, in Summe <span class=\"pomodoroHighlight\"> __pomodoroTotal__ Minuten</span> Lernzeit! <br><br>Du bist klasse! Komm bald zurück!",
+            "text": "Insgesamt hast du <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> geschafft. Das sind <span class=\"pomodoroHighlight\"> __pomodoroTotal__ Minuten</span> Lernzeit. <br><br>Du bist klasse! Komm bald zurück!",
             "button": {
               "confirm": "Okay!"
             }
@@ -116,14 +116,14 @@
         "break": {
           "start": {
             "title": "Gut gelernt!",
-            "text": "Du hast <span class=\"pomodoroHighlight\"> __pomodoroTotal__ __pomodoro__</span> Lernzeit geschafft! <br><br>Bist du bereit für erholsame <span class=\"pomodoroHighlight\"> __pomodoroBreak__ Minuten</span> Pause, in der du tun kannst, wonach auch immer dir der Sinn steht?",
+            "text": "Du hast <span class=\"pomodoroHighlight\"> __pomodoroTotal__ __pomodoro__</span> Lernzeit geschafft. <br><br>Bist du bereit für erholsame <span class=\"pomodoroHighlight\"> __pomodoroBreak__ Minuten</span> Pause? Du kannst tun, wonach auch immer dir der Sinn steht.",
             "button": {
               "confirm": "Ja, ich kann nicht länger warten!"
             }
           },
           "end": {
             "title": "Die Pause ist vorbei!",
-            "text": "Wir hoffen, dass dich die Pause erfrischt hat! Jetzt ist es an der Zeit, wieder zu lernen. <br><br>Bereit für die nächsten <span class=\"pomodoroHighlight\"> __pomodoroLength__ Minuten</span> Lernzeit?",
+            "text": "Wir hoffen, dass du erfrischt aus der Pause zurück bist. Jetzt ist es an der Zeit, wieder zu lernen. <br><br>Bereit für die nächsten <span class=\"pomodoroHighlight\"> __pomodoroLength__ Minuten</span> Lernzeit?",
             "button": {
               "confirm": "Lass mich anfangen!"
             }
