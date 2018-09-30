@@ -85,18 +85,18 @@
     <div id="settings" class="pomodoroBackground"
          style="{{#if isHiddenByDefault}}display: none;{{/if}}">
         <div class="form-group row">
-            <label for="workSlider" class="col-xs-12 control-label" style="float:left;"><i class="fa fa-briefcase"></i>
+            <label for="workSlider" class="col-xs-12 control-label" style="float:left;"><i class="fa fa-book"></i>
                 <span id="workSliderLabel"></span>
             </label>
             <input class="numSlider col-xs-12" type="range" min="15" max="45" value="25" id="workSlider"
-                   step="1">
+                   step="5">
         </div>
         <div class="form-group row">
             <label for="breakSlider" class="col-xs-12 control-label" style="float:left;"><i class="fa fa-coffee"></i>
                 <span id="breakSliderLabel"></span>
             </label>
             <input class="numSlider col-xs-12" type="range" min="5" max="15" value="5" id="breakSlider"
-                   step="1">
+                   step="5">
         </div>
         {{#unless isiOS}}
             <div class="form-group row">

@@ -85,14 +85,14 @@
       "user": {
         "quit": {
           "title": "Gib nicht so schnell auf!",
-          "text": "Du hast noch <span class=\"pomodoroHighlight\">__missingPomodoros__ __pomodoro__</span> vor dir. <br>Dein Ziel: <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>! <br><br>Komm schon, du schaffst noch die verbleibenden <span class=\"pomodoroHighlight\">__remainingMinutes__ Minuten</span> Lernzeit!",
+          "text": "Du hast noch <span class=\"pomodoroHighlight\">__missingPomodoros__ __pomodoro__</span> vor dir. <br>Dein Ziel: <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>! <br><br>Komm schon, du schaffst die verbleibenden <span class=\"pomodoroHighlight\">__remainingMinutes__ Minuten</span> Lernzeit!",
           "button": {
             "cancel": "Stopp!",
             "confirm": "Ich mache weiter!"
           },
           "confirm": {
             "title": "Du hast es leider nicht geschafft.",
-            "text": "Du hattest dir <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> vorgenommen. <br><br>Manchmal kommt halt was dazwischen. Wir verstehen das. Komm bald wieder zum Lernen hierher zurück!",
+            "text": "Du hattest dir <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> vorgenommen. <br><br>Manchmal kommt halt was dazwischen. Wir verstehen das. Komm bald wieder zum Lernen zurück!",
             "button": {
               "confirm": "Okay!"
             }
