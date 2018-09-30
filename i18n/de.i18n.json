@@ -53,21 +53,21 @@
       "sounds": {
         "title": " Klänge",
         "break": " Pausenton",
-        "success": " Ton , wenn Lernzeit eingehalten",
-        "abort": " Ton, wenn Lernzeit vorzeitig beendet"
+        "success": " Ton, wenn du deine Lernzeit einhältst",
+        "abort": " Ton, wenn du deine Lernzeit vorzeitig beendest"
       },
       "link": "/learning#Pomodoro",
       "tooltip": {
-        "link": "»Pomodoro« (italienisch für Tomate) ist ein Arbeits-Pausen-Zyklus. Standard: 25 Minuten Arbeit, 5 Minuten Pause. Nach 4 Pomodori: 30 Minuten Pause."
+        "link": "»Pomodoro« (italienisch für Tomate) ist ein Arbeits-Pausen-Zyklus. Standard: 25 Minuten Arbeit, 5 Minuten Pause. Nach 4 Pomodori: 30 Minuten Pause. Klick auf den Link, um mehr über die Zeitmanagement-Technik zu erfahren!"
       },
       "user": {
         "title": "Wie lange willst du heute lernen?",
-        "count": "Ich will <span class=\"pomodoroHighlight\">__count__</span> <a href=\"__link__\" data-toggle=\"tooltip\" title=\"__tooltip__\" target=\"_blank\"> <b>__pomodoro__<i>🍅</i></b></a> schaffen!",
+        "count": "Ich will <span class=\"pomodoroHighlight\">__count__</span> <a href=\"__link__\" data-toggle=\"tooltip\" title=\"__tooltip__\" target=\"_blank\"> <b>__pomodoro__ </b>🍅❓</a> schaffen!",
         "totalTime": "Reserviere __time__ für den Lernstoff!",
         "work": " Lernen: <span class=\"pomodoroHighlight\">__minutes__</span> pro Pomodoro",
-        "break": " Erholen: <span class=\"pomodoroHighlight\">__minutes__</span> pro Pomodoro",
+        "break": " Pausieren: <span class=\"pomodoroHighlight\">__minutes__</span> pro Pomodoro",
         "settings": {
-          "title": "Wie viele Minuten?"
+          "title": "Wie viele Minuten fürs Lernen und Pausieren?"
         },
         "button": {
           "start": "Los geht's!",
@@ -75,7 +75,7 @@
         }
       },
       "bonus": {
-        "count": "Set the bonus to <span class=\"pomodoroHighlight\">__count__</span> <a href=\"__link__\" data-toggle=\"tooltip\" title=\"__tooltip__\" target=\"_blank\"> <b>__pomodoro__<i>🍅</i></b></a>!",
+        "count": "Set the bonus to <span class=\"pomodoroHighlight\">__count__</span> <a href=\"__link__\" data-toggle=\"tooltip\" title=\"__tooltip__\" target=\"_blank\"> <b>__pomodoro__</b>🍅</a>!",
         "totalTime": "Set the pomodoro Session to __time__ for getting stuff done!",
         "work": "Work during Bonus-Pomodoro: <span class=\"pomodoroHighlight\">__minutes__</span>",
         "break": "Break during Bonus-Pomodoro: <span class=\"pomodoroHighlight\">__minutes__</span>"
