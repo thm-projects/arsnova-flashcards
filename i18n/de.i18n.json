@@ -67,7 +67,7 @@
         "work": " Lernen: <span class=\"pomodoroHighlight\">__minutes__</span> pro Pomodoro",
         "break": " Pausieren: <span class=\"pomodoroHighlight\">__minutes__</span> pro Pomodoro",
         "settings": {
-          "title": "Wie viele Minuten fürs Lernen und Pausieren?"
+          "title": "Wieviel Zeit planst du fürs Lernen und Pausieren?"
         },
         "button": {
           "start": "Los geht's!",
@@ -123,7 +123,7 @@
           },
           "end": {
             "title": "Die Pause ist vorbei!",
-            "text": "Wir hoffen, dass du erfrischt aus der Pause zurück bist. Jetzt ist es an der Zeit, wieder zu lernen. <br><br>Bereit für die nächsten <span class=\"pomodoroHighlight\"> __pomodoroLength__ Minuten</span> Lernzeit?",
+            "text": "Wir hoffen, dass du erfrischt aus der Pause zurück bist. Jetzt ist es an der Zeit, weiter zu lernen. <br><br>Bereit für die nächsten <span class=\"pomodoroHighlight\"> __pomodoroLength__ Minuten</span>?",
             "button": {
               "confirm": "Lass mich anfangen!"
             }
@@ -659,7 +659,7 @@
     "help": {
       "title": "Wie du mit dem Wiederholungs-Algorithmus von Leitner lernst",
       "button": {
-        "confirm": "Weiter zu den Karten"
+        "confirm": "Ich hab's verstanden."
       }
     }
   },
@@ -1723,7 +1723,7 @@
     "help": {
       "title": "Wie du mit dem Wiederholungs-Algorithmus von Woźniak lernst",
       "button": {
-        "confirm": "Weiter zu den Karten"
+        "confirm": "Ich hab's verstanden."
       }
     }
   },
