@@ -7,6 +7,7 @@ import {Notifications} from "./notifications.js";
 import {Ratings} from "./ratings.js";
 import {check} from "meteor/check";
 import {CardType} from "./cardTypes";
+import {UserPermissions} from "./permissions";
 
 export const Cardsets = new Mongo.Collection("cardsets");
 
@@ -342,71 +343,60 @@ Meteor.methods({
 	deleteCardset: function (id) {
 		check(id, String);
 		// Make sure only the task owner can make a task private
-		var cardset = Cardsets.findOne(id);
-
-		if (!Roles.userIsInRole(this.userId, [
-			'admin',
-			'editor'
-		])) {
-			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-				throw new Meteor.Error("not-authorized");
-			}
+		let cardset = Cardsets.findOne(id);
+		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+			Cardsets.remove(id);
+			Cards.remove({
+				cardset_id: id
+			});
+			Meteor.call('updateShuffledCardsetQuantity', id);
+			Leitner.remove({
+				cardset_id: id
+			}, {multi: true});
+			Wozniak.remove({
+				cardset_id: id
+			}, {multi: true});
+			Notifications.remove({
+				link_id: id
+			}, {multi: true});
+			Ratings.remove({
+				cardset_id: id
+			}, {multi: true});
+		} else {
+			throw new Meteor.Error("not-authorized");
 		}
-
-		Cardsets.remove(id);
-		Cards.remove({
-			cardset_id: id
-		});
-		Meteor.call('updateShuffledCardsetQuantity', id);
-		Leitner.remove({
-			cardset_id: id
-		}, {multi: true});
-		Wozniak.remove({
-			cardset_id: id
-		}, {multi: true});
-		Notifications.remove({
-			link_id: id
-		}, {multi: true});
-		Ratings.remove({
-			cardset_id: id
-		}, {multi: true});
 	},
 	deleteCards: function (id) {
 		check(id, String);
 		// Make sure only the task owner can make a task private
-		var cardset = Cardsets.findOne(id);
-
-		if (!Roles.userIsInRole(this.userId, [
-			'admin',
-			'editor'
-		])) {
-			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-				throw new Meteor.Error("not-authorized");
-			}
-		}
-		Cards.remove({
-			cardset_id: id
-		});
-		Cardsets.update({
-				_id: id
-			},
-			{
-				$set: {
-					quantity: 0,
-					kind: 'personal',
-					reviewed: false,
-					request: false,
-					visible: false
+		let cardset = Cardsets.findOne(id);
+		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+			Cards.remove({
+				cardset_id: id
+			});
+			Cardsets.update({
+					_id: id
+				},
+				{
+					$set: {
+						quantity: 0,
+						kind: 'personal',
+						reviewed: false,
+						request: false,
+						visible: false
+					}
 				}
-			}
-		);
-		Meteor.call('updateShuffledCardsetQuantity', cardset._id);
-		Leitner.remove({
-			cardset_id: id
-		}, {multi: true});
-		Wozniak.remove({
-			cardset_id: id
-		}, {multi: true});
+			);
+			Meteor.call('updateShuffledCardsetQuantity', cardset._id);
+			Leitner.remove({
+				cardset_id: id
+			}, {multi: true});
+			Wozniak.remove({
+				cardset_id: id
+			}, {multi: true});
+		} else {
+			throw new Meteor.Error("not-authorized");
+		}
 	},
 	/**
 	 * Deactivate the learning phase for the selected cardset.
@@ -416,7 +406,7 @@ Meteor.methods({
 		check(id, String);
 
 		let cardset = Cardsets.findOne(id);
-		if (cardset !== undefined && cardset.learningActive && (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || cardset.owner === Meteor.userId())) {
+		if (cardset !== undefined && cardset.learningActive && (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner))) {
 			Cardsets.update(id, {
 				$set: {
 					learningActive: false
@@ -467,7 +457,7 @@ Meteor.methods({
 		check(registrationPeriod, Date);
 
 		let cardset = Cardsets.findOne(id);
-		if (cardset !== undefined && !cardset.learningActive && (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || cardset.owner === Meteor.userId())) {
+		if (cardset !== undefined && !cardset.learningActive && (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner))) {
 			intervals = intervals.sort(
 				function (a, b) {
 					return a - b;
@@ -509,7 +499,7 @@ Meteor.methods({
 		check(registrationPeriod, Date);
 
 		let cardset = Cardsets.findOne(id);
-		if (cardset !== undefined && cardset.learningActive && (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || cardset.owner === Meteor.userId())) {
+		if (cardset !== undefined && cardset.learningActive && (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner))) {
 			intervals = intervals.sort(
 				function (a, b) {
 					return a - b;
@@ -547,30 +537,24 @@ Meteor.methods({
 
 		// Make sure only the task owner can make a task private
 		let cardset = Cardsets.findOne(id);
-
-		if (!Roles.userIsInRole(this.userId, [
-			'admin',
-			'editor'
-		])) {
-			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-				throw new Meteor.Error("not-authorized");
+		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+			if (cardset.learningActive) {
+				cardType = cardset.cardType;
 			}
-		}
 
-		if (cardset.learningActive) {
-			cardType = cardset.cardType;
+			Cardsets.update(id, {
+				$set: {
+					name: name.trim(),
+					description: description,
+					dateUpdated: new Date(),
+					cardType: cardType,
+					difficulty: difficulty,
+					noDifficulty: !CardType.gotDifficultyLevel(cardType)
+				}
+			}, {trimStrings: false});
+		} else {
+			throw new Meteor.Error("not-authorized");
 		}
-
-		Cardsets.update(id, {
-			$set: {
-				name: name.trim(),
-				description: description,
-				dateUpdated: new Date(),
-				cardType: cardType,
-				difficulty: difficulty,
-				noDifficulty: !CardType.gotDifficultyLevel(cardType)
-			}
-		}, {trimStrings: false});
 	},
 	/**
 	 * Update the cardGroups of the shuffled cardset
@@ -583,44 +567,40 @@ Meteor.methods({
 		check(cardGroups, [String]);
 		check(removedCardsets, [String]);
 		let cardset = Cardsets.findOne(id);
-		if (!Roles.userIsInRole(this.userId, [
-			'admin',
-			'editor'
-		])) {
-			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-				throw new Meteor.Error("not-authorized");
+		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+			let quantity = Cards.find({cardset_id: {$in: cardGroups}}).count();
+			let kind = cardset.kind;
+			let visible = cardset.visible;
+			if (cardGroups.length === 0) {
+				kind = "personal";
+				visible = false;
 			}
-		}
-		let quantity = Cards.find({cardset_id: {$in: cardGroups}}).count();
-		let kind = cardset.kind;
-		let visible = cardset.visible;
-		if (cardGroups.length === 0) {
-			kind = "personal";
-			visible = false;
-		}
-		Cardsets.update({
-			_id: cardset._id
-		}, {
-			$set: {
-				visible: visible,
-				kind: kind,
-				quantity: quantity,
-				cardGroups: cardGroups
+			Cardsets.update({
+				_id: cardset._id
+			}, {
+				$set: {
+					visible: visible,
+					kind: kind,
+					quantity: quantity,
+					cardGroups: cardGroups
+				}
+			});
+			let removedCards = Cards.find({cardset_id: {$in: removedCardsets}}).fetch();
+			for (let i = 0; i < removedCards.length; i++) {
+				Leitner.remove({
+					cardset_id: cardset._id,
+					card_id: removedCards[i]._id
+				});
+				Wozniak.remove({
+					cardset_id: cardset._id,
+					card_id: removedCards[i]._id
+				});
 			}
-		});
-		let removedCards = Cards.find({cardset_id: {$in: removedCardsets}}).fetch();
-		for (let i = 0; i < removedCards.length; i++) {
-			Leitner.remove({
-				cardset_id: cardset._id,
-				card_id: removedCards[i]._id
-			});
-			Wozniak.remove({
-				cardset_id: cardset._id,
-				card_id: removedCards[i]._id
-			});
+			Meteor.call("updateLeitnerCardIndex", cardset._id);
+			return true;
+		} else {
+			throw new Meteor.Error("not-authorized");
 		}
-		Meteor.call("updateLeitnerCardIndex", cardset._id);
-		return true;
 	},
 	updateShuffledCardsetQuantity: function (cardset_id) {
 		check(cardset_id, String);
@@ -655,20 +635,20 @@ Meteor.methods({
 	updateRelevance: function (cardset_id) {
 		check(cardset_id, String);
 
-		var relevance = 0;
+		let relevance = 0;
 
-		var ratings = Ratings.find({cardset_id: cardset_id});
-		var count = ratings.count();
+		let ratings = Ratings.find({cardset_id: cardset_id});
+		let count = ratings.count();
 		if (count !== 0) {
-			var amount = 0;
+			let amount = 0;
 			ratings.forEach(function (rate) {
 				amount = amount + rate.rating;
 			});
-			var result = (amount / count).toFixed(2);
+			let result = (amount / count).toFixed(2);
 			relevance = Number(result);
 		}
 
-		var kind = Cardsets.findOne(cardset_id).kind;
+		let kind = Cardsets.findOne(cardset_id).kind;
 
 		switch (kind) {
 			case 'free':
@@ -691,113 +671,97 @@ Meteor.methods({
 		check(visible, Boolean);
 
 		// Make sure only the task owner can make a task private
-		var cardset = Cardsets.findOne(id);
-
-		if (!Roles.userIsInRole(this.userId, [
-			'admin',
-			'editor'
-		])) {
-			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-				throw new Meteor.Error("not-authorized");
-			}
-		}
-
-		Meteor.call("updateRelevance", id, function (error, relevance) {
-			if (!error) {
-				Cardsets.update(id, {
+		let cardset = Cardsets.findOne(id);
+		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+			Meteor.call("updateRelevance", id, function (error, relevance) {
+				if (!error) {
+					Cardsets.update(id, {
+						$set: {
+							kind: kind,
+							price: price.toString().replace(",", "."),
+							visible: visible,
+							relevance: relevance,
+							raterCount: Number(Ratings.find({cardset_id: id}).count())
+						}
+					});
+				}
+			});
+			if (kind !== "personal") {
+				Meteor.users.update(Meteor.user()._id, {
 					$set: {
-						kind: kind,
-						price: price.toString().replace(",", "."),
-						visible: visible,
-						relevance: relevance,
-						raterCount: Number(Ratings.find({cardset_id: id}).count())
+						visible: true
 					}
 				});
 			}
-		});
-		if (kind !== "personal") {
-			Meteor.users.update(Meteor.user()._id, {
-				$set: {
-					visible: true
-				}
-			});
+		} else {
+			throw new Meteor.Error("not-authorized");
 		}
 	},
 	makeProRequest: function (cardset_id) {
 		check(cardset_id, String);
 
-		var cardset = Cardsets.findOne(cardset_id);
-
-		if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+		let cardset = Cardsets.findOne(cardset_id);
+		if (UserPermissions.isOwner(cardset.owner)) {
+			Cardsets.update(cardset._id, {
+				$set: {
+					reviewed: false,
+					request: true,
+					visible: false
+				}
+			});
+		} else {
 			throw new Meteor.Error("not-authorized");
 		}
-
-		Cardsets.update(cardset_id, {
-			$set: {
-				reviewed: false,
-				request: true,
-				visible: false
-			}
-		});
 	},
 	acceptProRequest: function (cardset_id) {
 		check(cardset_id, String);
 
-		var cardset = Cardsets.findOne(cardset_id);
-
-		if (!Roles.userIsInRole(this.userId, 'lecturer')) {
-			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-				throw new Meteor.Error("not-authorized");
-			}
+		let cardset = Cardsets.findOne(cardset_id);
+		if (UserPermissions.isLecturer()) {
+			Cardsets.update(cardset._id, {
+				$set: {
+					reviewed: true,
+					reviewer: this.userId,
+					request: false,
+					visible: true
+				}
+			});
+		} else {
+			throw new Meteor.Error("not-authorized");
 		}
-
-		Cardsets.update(cardset_id, {
-			$set: {
-				reviewed: true,
-				reviewer: this.userId,
-				request: false,
-				visible: true
-			}
-		});
 	},
 	declineProRequest: function (cardset_id) {
 		check(cardset_id, String);
 
-		var cardset = Cardsets.findOne(cardset_id);
-		if ((!Roles.userIsInRole(this.userId, 'lecturer')) && (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"]))) {
+		let cardset = Cardsets.findOne(cardset_id);
+		if (UserPermissions.isLecturer()) {
+			Cardsets.update(cardset._id, {
+				$set: {
+					reviewed: false,
+					reviewer: this.userId,
+					request: false,
+					visible: false
+				}
+			});
+		} else {
 			throw new Meteor.Error("not-authorized");
 		}
-
-		Cardsets.update(cardset_id, {
-			$set: {
-				reviewed: false,
-				reviewer: this.userId,
-				request: false,
-				visible: false
-			}
-		});
 	},
 	updateLicense: function (id, license) {
 		check(id, String);
 		check(license, [String]);
 
-		var cardset = Cardsets.findOne(id);
-
-		if (!Roles.userIsInRole(this.userId, [
-			'admin',
-			'editor'
-		])) {
-			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-				throw new Meteor.Error("not-authorized");
-			}
+		let cardset = Cardsets.findOne(id);
+		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+			Cardsets.update(cardset._id, {
+				$set: {
+					license: license,
+					dateUpdated: new Date()
+				}
+			});
+		} else {
+			throw new Meteor.Error("not-authorized");
 		}
-
-		Cardsets.update(id, {
-			$set: {
-				license: license,
-				dateUpdated: new Date()
-			}
-		});
 	},
 	/**
 	 * Changes the owner of the selected cardset. Only the super admin got access to this feature.
@@ -807,33 +771,32 @@ Meteor.methods({
 	changeOwner: function (id, owner) {
 		check(id, String);
 		check(owner, String);
-
-		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
-			throw new Meteor.Error("not-authorized");
-		}
-
-		if (Cardsets.findOne(id) && Meteor.users.findOne(owner)) {
-			let cardset = Cardsets.findOne({_id: id});
-			if (cardset.editors.includes(owner)) {
-				Cardsets.update(
-					{_id: id},
-					{
-						$pull: {editors: owner}
-					});
-				Cardsets.update(
-					{_id: id},
-					{
-						$push: {editors: cardset.owner}
-					});
-			}
-			Cardsets.update(id, {
-				$set: {
-					owner: owner
+		if (UserPermissions.isAdmin()) {
+			if (Cardsets.findOne(id) && Meteor.users.findOne(owner)) {
+				let cardset = Cardsets.findOne({_id: id});
+				if (cardset.editors.includes(owner)) {
+					Cardsets.update(
+						{_id: id},
+						{
+							$pull: {editors: owner}
+						});
+					Cardsets.update(
+						{_id: id},
+						{
+							$push: {editors: cardset.owner}
+						});
 				}
-			});
-			return true;
+				Cardsets.update(id, {
+					$set: {
+						owner: owner
+					}
+				});
+				return true;
+			} else {
+				return false;
+			}
 		} else {
-			return false;
+			throw new Meteor.Error("not-authorized");
 		}
 	},
 	/**
@@ -844,16 +807,15 @@ Meteor.methods({
 	updateWordcloudStatus: function (id, status) {
 		check(id, String);
 		check(status, Boolean);
-
-		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
+		if (UserPermissions.isAdmin()) {
+			Cardsets.update(id, {
+				$set: {
+					wordcloud: status
+				}
+			});
+			return id;
+		} else {
 			throw new Meteor.Error("not-authorized");
 		}
-
-		Cardsets.update(id, {
-			$set: {
-				wordcloud: status
-			}
-		});
-		return id;
 	}
 });

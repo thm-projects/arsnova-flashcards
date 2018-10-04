@@ -71,11 +71,13 @@
 <template name="create">
     <div class="col-md-12" id="set-list-region">
         {{#if isActiveRoute 'create'}}
-            <button id="newCardSet" type="button" class="btn btn-raised btn-success saveSet" {{disableIfOffline}} {{disableIfShuffle}}>
+            <button id="newCardSet" type="button"
+                    class="btn btn-raised btn-success saveSet" {{disableIfOffline}} {{disableIfShuffle}}>
                 {{_ "set-list-empty.newset"}}
             </button>
             <label class="btn btn-raised btn-import btn-success {{disableIfOffline}}">
-                {{_ "import.cardset"}} <input type="{{#if isProfileComplete}}file{{else}}button{{/if}}" id="{{#if isProfileComplete}}importCardset{{else}}importCardsetCompleteProfile{{/if}}" style="display: none;">
+                {{_ "import.cardset"}} <input type="{{#if isProfileComplete}}file{{else}}button{{/if}}" id="{{#if
+                    isProfileComplete}}importCardset{{else}}importCardsetCompleteProfile{{/if}}" style="display: none;">
             </label>
         {{/if}}
         {{#if cardsetList 0}}
@@ -97,9 +99,14 @@
 <template name="repetitorium">
     <div class="col-md-12" id="set-list-region">
         {{#unless selectingCardsetToLearn}}
-            <button id="newRepetitorium" type="button" class="btn btn-raised btn-success saveSet hidden-xs" {{disableIfOffline}} {{disableIfShuffle}}>
-                {{_ "set-list.shuffleCardsets"}}
-            </button>
+            {{#if canCreateContent}}
+                <button id="newRepetitorium" type="button"
+                        class="btn btn-raised btn-success saveSet hidden-xs" {{disableIfOffline}} {{disableIfShuffle}}>
+                    {{_ "set-list.shuffleCardsets"}}
+                </button>
+            {{else}}
+                <div class="empty-button-placeholder"></div>
+            {{/if}}
         {{/unless}}
         {{#if cardsetList 0}}
             {{> filterNavigation}}

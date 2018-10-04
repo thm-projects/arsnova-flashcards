@@ -14,6 +14,7 @@ import "/client/markdeep.min.js";
 import {getAuthorName} from "../../api/userdata";
 import {Route} from "../../api/route";
 import {CardVisuals} from "../../api/cardVisuals";
+import {UserPermissions} from "../../api/permissions";
 Meteor.subscribe("collegesCourses");
 
 Template.registerHelper('isSelectingCardsetToLearn', function () {
@@ -263,6 +264,10 @@ Template.registerHelper("isLecturerOrPro", function () {
 	if (Roles.userIsInRole(Meteor.userId(), 'lecturer') || Cardsets.findOne(Router.current().params._id).owner != Meteor.userId()) {
 		return true;
 	}
+});
+
+Template.registerHelper("canCreateContent", function () {
+	return UserPermissions.canCreateContent();
 });
 
 Template.registerHelper("getRoles", function (roles) {

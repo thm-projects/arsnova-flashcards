@@ -83,13 +83,15 @@
                                                 {{_ "navbar-collapse.learndecks"}}
                                             </a>
                                         </li>
-                                        <li id="navbar-own-decks"
-                                            class="{{#if isActiveRoute regex='home|create'}}active{{/if}} hidden-xs"
-                                            data-toggle="collapse" data-target="#thm-top-navigation">
-                                            <a href="{{pathFor route='create'}}" id="cardsets">
-                                                {{getMyCardsetName}}
-                                            </a>
-                                        </li>
+                                        {{#if canCreateContent}}
+                                            <li id="navbar-own-decks"
+                                                class="{{#if isActiveRoute regex='home|create'}}active{{/if}} hidden-xs"
+                                                data-toggle="collapse" data-target="#thm-top-navigation">
+                                                <a href="{{pathFor route='create'}}" id="cardsets">
+                                                    {{getMyCardsetName}}
+                                                </a>
+                                            </li>
+                                        {{/if}}
                                     </ul>
                                     <ul class="nav navbar-nav">
                                         <li id="navbar-help"
