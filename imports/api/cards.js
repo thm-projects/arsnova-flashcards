@@ -6,6 +6,7 @@ import {Leitner, Wozniak} from "./learned.js";
 import {Paid} from "./paid.js";
 import {check} from "meteor/check";
 import {CardEditor} from "./cardEditor";
+import {UserPermissions} from "./permissions";
 
 export const Cards = new Mongo.Collection("cards");
 
@@ -199,67 +200,63 @@ Meteor.methods({
 		check(learningIndex, String);
 		check(learningUnit, String);
 		// Make sure the user is logged in and is authorized
-		var cardset = Cardsets.findOne(cardset_id);
+		let cardset = Cardsets.findOne(cardset_id);
 		let card_id = "";
-		if (!Roles.userIsInRole(this.userId, [
-			'admin',
-			'editor'
-		])) {
-			if (cardset.owner !== Meteor.userId() || Roles.userIsInRole(Meteor.userId(), ["firstLogin", "blocked"])) {
-				throw new Meteor.Error("not-authorized");
+		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+			if (cardset.cardType !== 2 || cardset.cardType !== 3 || cardset.cardType !== 5) {
+				if (subject === "") {
+					throw new Meteor.Error("Missing subject");
+				}
+			} else {
+				if (subject === "" && learningUnit === "") {
+					throw new Meteor.Error("Missing subject or reference");
+				}
 			}
-		}
-		if (cardset.cardType !== 2 || cardset.cardType !== 3 || cardset.cardType !== 5) {
-			if (subject === "") {
-				throw new Meteor.Error("Missing subject");
+			Cards.insert({
+				subject: subject.trim(),
+				front: content1,
+				back: content2,
+				hint: content3,
+				lecture: content4,
+				top: content5,
+				bottom: content6,
+				cardset_id: cardset_id,
+				centerTextElement: centerTextElement,
+				date: date,
+				learningGoalLevel: learningGoalLevel,
+				backgroundStyle: backgroundStyle,
+				learningIndex: learningIndex,
+				learningUnit: learningUnit
+			}, {trimStrings: false}, function (err, card) {
+				card_id = card;
+			});
+			Cardsets.update(cardset_id, {
+				$set: {
+					quantity: Cards.find({cardset_id: cardset_id}).count(),
+					dateUpdated: new Date()
+				}
+			});
+			Meteor.call('updateShuffledCardsetQuantity', cardset_id);
+			let cardsets = Cardsets.find({
+				$or: [
+					{_id: cardset_id},
+					{cardGroups: {$in: [cardset_id]}}
+				]
+			}, {fields: {_id: 1}}).fetch();
+			for (let i = 0; i < cardsets.length; i++) {
+				Meteor.call('updateLeitnerCardIndex', cardsets[i]._id);
 			}
+			return card_id;
 		} else {
-			if (subject === "" && learningUnit === "") {
-				throw new Meteor.Error("Missing subject or reference");
-			}
+			throw new Meteor.Error("not-authorized");
 		}
-		Cards.insert({
-			subject: subject.trim(),
-			front: content1,
-			back: content2,
-			hint: content3,
-			lecture: content4,
-			top: content5,
-			bottom: content6,
-			cardset_id: cardset_id,
-			centerTextElement: centerTextElement,
-			date: date,
-			learningGoalLevel: learningGoalLevel,
-			backgroundStyle: backgroundStyle,
-			learningIndex: learningIndex,
-			learningUnit: learningUnit
-		}, {trimStrings: false}, function (err, card) {
-			card_id = card;
-		});
-		Cardsets.update(cardset_id, {
-			$set: {
-				quantity: Cards.find({cardset_id: cardset_id}).count(),
-				dateUpdated: new Date()
-			}
-		});
-		Meteor.call('updateShuffledCardsetQuantity', cardset_id);
-		let cardsets = Cardsets.find({
-			$or: [
-				{_id: cardset_id},
-				{cardGroups: {$in: [cardset_id]}}
-			]
-		}, {fields: {_id: 1}}).fetch();
-		for (let i = 0; i < cardsets.length; i++) {
-			Meteor.call('updateLeitnerCardIndex', cardsets[i]._id);
-		}
-		return card_id;
 	},
 	copyCard: function (sourceCardset_id, targetCardset_id, card_id) {
 		check(sourceCardset_id, String);
 		check(targetCardset_id, String);
 		check(card_id, String);
 		let cardset = Cardsets.findOne(sourceCardset_id);
-		if (Roles.userIsInRole(Meteor.userId(), ['admin']) || cardset.owner === Meteor.userId()) {
+		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
 			let card = Cards.findOne(card_id);
 			if (card !== undefined) {
 				let content1 = "";
@@ -301,78 +298,44 @@ Meteor.methods({
 	deleteCard: function (card_id) {
 		check(card_id, String);
 
-		var card = Cards.findOne(card_id);
-		var cardset = Cardsets.findOne(card.cardset_id);
-
-		if (!Roles.userIsInRole(this.userId, [
-			'admin',
-			'editor'
-		])) {
-			if (!Meteor.userId() || cardset.owner !== Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-				throw new Meteor.Error("not-authorized");
-			}
-		}
-
-		if (cardset.learningActive) {
-			throw new Meteor.Error("not-possible active learnphase");
-		}
-
-		var countCards = Cards.find({cardset_id: cardset._id}).count();
-		if (countCards <= 5) {
-			Cardsets.update(cardset._id, {
-				$set: {
-					kind: 'personal',
-					reviewed: false,
-					request: false,
-					visible: false
-				}
-			});
-		}
-
-		let result = Cards.remove(card_id);
-		Cardsets.update(card.cardset_id, {
-			$set: {
-				quantity: Cards.find({cardset_id: card.cardset_id}).count(),
-				dateUpdated: new Date()
-			}
-		});
-
-		Meteor.call('updateShuffledCardsetQuantity', cardset._id);
-
-		Leitner.remove({
-			card_id: card_id
-		}, {multi: true});
-		Wozniak.remove({
-			card_id: card_id
-		}, {multi: true});
-		return result;
-	},
-	deleteCardAdmin: function (card_id) {
-		check(card_id, String);
-
-		var card = Cards.findOne({_id: card_id});
-		if (card !== undefined) {
-			if (!Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor'
-			])) {
-				throw new Meteor.Error("not-authorized");
+		let card = Cards.findOne(card_id);
+		let cardset = Cardsets.findOne(card.cardset_id);
+		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+			if (cardset.learningActive) {
+				throw new Meteor.Error("not-possible active learnphase");
 			}
 
-			Cards.remove(card_id);
+			var countCards = Cards.find({cardset_id: cardset._id}).count();
+			if (countCards <= 5) {
+				Cardsets.update(cardset._id, {
+					$set: {
+						kind: 'personal',
+						reviewed: false,
+						request: false,
+						visible: false
+					}
+				});
+			}
+
+			let result = Cards.remove(card_id);
 			Cardsets.update(card.cardset_id, {
 				$set: {
 					quantity: Cards.find({cardset_id: card.cardset_id}).count(),
 					dateUpdated: new Date()
 				}
 			});
-			Meteor.call('updateShuffledCardsetQuantity', card.cardset_id);
+
+			Meteor.call('updateShuffledCardsetQuantity', cardset._id);
+
 			Leitner.remove({
 				card_id: card_id
 			}, {multi: true});
 			Wozniak.remove({
 				card_id: card_id
 			}, {multi: true});
+			return result;
+		} else {
+			throw new Meteor.Error("not-authorized");
 		}
 	},
 	updateCard: function (card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {
@@ -389,48 +352,42 @@ Meteor.methods({
 		check(backgroundStyle, Number);
 		check(learningIndex, String);
 		check(learningUnit, String);
-		var card = Cards.findOne(card_id);
-		var cardset = Cardsets.findOne(card.cardset_id);
-
-		if (!Roles.userIsInRole(this.userId, [
-			'admin',
-			'editor'
-		])) {
-			// Make sure the user is logged in and is authorized
-			if (!Meteor.userId() || (cardset.owner !== Meteor.userId() || cardset.editors.includes(Meteor.userId())) || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-				throw new Meteor.Error("not-authorized");
+		let card = Cards.findOne(card_id);
+		let cardset = Cardsets.findOne(card.cardset_id);
+		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+			if (cardset.cardType !== 2 || cardset.cardType !== 3 || cardset.cardType !== 5) {
+				if (subject === "") {
+					throw new Meteor.Error("Missing subject");
+				}
+			} else {
+				if (subject === "" && learningUnit === "") {
+					throw new Meteor.Error("Missing subject or reference");
+				}
 			}
-		}
-		if (cardset.cardType !== 2 || cardset.cardType !== 3 || cardset.cardType !== 5) {
-			if (subject === "") {
-				throw new Meteor.Error("Missing subject");
-			}
+			Cards.update(card_id, {
+				$set: {
+					subject: subject.trim(),
+					front: content1,
+					back: content2,
+					hint: content3,
+					lecture: content4,
+					top: content5,
+					bottom: content6,
+					centerTextElement: centerTextElement,
+					learningGoalLevel: learningGoalLevel,
+					backgroundStyle: backgroundStyle,
+					learningIndex: learningIndex,
+					learningUnit: learningUnit,
+					dateUpdated: new Date()
+				}
+			}, {trimStrings: false});
+			Cardsets.update(card.cardset_id, {
+				$set: {
+					dateUpdated: new Date()
+				}
+			});
 		} else {
-			if (subject === "" && learningUnit === "") {
-				throw new Meteor.Error("Missing subject or reference");
-			}
+			throw new Meteor.Error("not-authorized");
 		}
-		Cards.update(card_id, {
-			$set: {
-				subject: subject.trim(),
-				front: content1,
-				back: content2,
-				hint: content3,
-				lecture: content4,
-				top: content5,
-				bottom: content6,
-				centerTextElement: centerTextElement,
-				learningGoalLevel: learningGoalLevel,
-				backgroundStyle: backgroundStyle,
-				learningIndex: learningIndex,
-				learningUnit: learningUnit,
-				dateUpdated: new Date()
-			}
-		}, {trimStrings: false});
-		Cardsets.update(card.cardset_id, {
-			$set: {
-				dateUpdated: new Date()
-			}
-		});
 	}
 });
