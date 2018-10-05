@@ -186,7 +186,7 @@
     "carddecks": "Meine Karteien",
     "learndecks": "Mein Lernpensum",
     "alldecks": "Alle Karteien",
-    "pool": "Themen-Pool",
+    "pool": "Themen",
     "course": "Repetitorien",
     "myprofile": "Konto",
     "billing": "Abrechnung (Testbetrieb)",
@@ -649,9 +649,9 @@
       "backDemo": "Zurück zur Demo-Kartei"
     },
     "help": {
-      "title": "Tipps für die Beamer-Präsentation",
+      "title": "Tastensteuerung",
       "button": {
-        "confirm": "Weiter zur Präsentation"
+        "confirm": "Weiter zum Pomodoro-Timer…"
       }
     }
   },
