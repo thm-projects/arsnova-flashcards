@@ -79,6 +79,14 @@
         "totalTime": "Set the pomodoro Session to __time__ for getting stuff done!",
         "work": "Work during Bonus-Pomodoro: <span class=\"pomodoroHighlight\">__minutes__</span>",
         "break": "Break during Bonus-Pomodoro: <span class=\"pomodoroHighlight\">__minutes__</span>"
+      },
+      "presentation": {
+        "title": "Wie lange willst du präsentieren?",
+        "work": " Präsentatieren: <span class=\"pomodoroHighlight\">__minutes__</span> pro Präsentation",
+        "break": " Pausieren: <span class=\"pomodoroHighlight\">__minutes__</span> pro Präsentation",
+        "button": {
+          "start": "Präsentation starten!"
+        }
       }
     },
     "sweetAlert": {
@@ -174,6 +182,24 @@
             "text": "Hope that break left you feeling refreshed! Now it's time to get back to accomplishing your goals. Ready for <span class=\"pomodoroHighlight\"> __pomodoroLength__ more minutes</span> of work?",
             "button": {
               "confirm": "Let me at it!"
+            }
+          }
+        }
+      },
+      "presentation": {
+        "break": {
+          "start": {
+            "title": "Pause beginnt!",
+            "text": "Bist du bereit für erholsame <span class=\"pomodoroHighlight\"> __pomodoroBreak__ Minuten</span> Pause?",
+            "button": {
+              "confirm": "Ja, Pause starten!"
+            }
+          },
+          "end": {
+            "title": "Die Pause ist vorbei!",
+            "text": "Wir hoffen, dass du erfrischt aus der Pause zurück bist. Jetzt ist es an der Zeit, weiter zu lernen. <br><br>Bereit für die nächsten <span class=\"pomodoroHighlight\"> __pomodoroLength__ Minuten</span>?",
+            "button": {
+              "confirm": "Weiter präsentieren!"
             }
           }
         }
@@ -1150,6 +1176,7 @@
       "copy": "Erstelle eine Kopie dieser Karte",
       "zoomText": "Ändere die Schriftgröße der Karte",
       "zoomTextReset": "Zurücksetzen",
+      "pomodoro": "Wechsel zwischen Minutensprunguhr | Pomodoro-Timer",
       "markdeepEditor": {
         "help": "Zeige alle Formatierungsoptionen von Markdeep",
         "center": "Zentriere den Karteninhalt vertikal",

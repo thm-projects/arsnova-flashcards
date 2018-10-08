@@ -1,7 +1,11 @@
 <template name="flashcardHeaderPresentationLeft">
     <div class="col-xs-3 cardHeaderLeft" data-cardtype="{{cardType}}">
         <div class="cardHeaderGroup">
-            {{> cardHeaderItemClock}}
+            {{#if pomodoroActive}}
+                {{> pomodoroTimer}}
+            {{else}}
+                {{> cardHeaderItemClock}}
+            {{/if}}
         </div>
     </div>
 </template>
