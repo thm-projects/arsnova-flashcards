@@ -79,6 +79,14 @@
         "totalTime": "Set the pomodoro Session to __time__ for getting stuff done!",
         "work": "Work during Bonus-Pomodoro: <span class=\"pomodoroHighlight\">__minutes__</span>",
         "break": "Break during Bonus-Pomodoro: <span class=\"pomodoroHighlight\">__minutes__</span>"
+      },
+      "presentation": {
+        "title": "Choose your goal!",
+        "work": "Work for: <span class=\"pomodoroHighlight\">__minutes__</span> each pomodoro",
+        "break": "Relax for: <span class=\"pomodoroHighlight\">__minutes__</span> each pomodoro",
+        "button": {
+          "start": "Let's go!"
+        }
       }
     },
     "sweetAlert": {
@@ -161,6 +169,24 @@
             }
           }
         },
+        "break": {
+          "start": {
+            "title": "Good job!",
+            "text": "You have completed <span class=\"pomodoroHighlight\"> __pomodoroTotal__ __pomodoro__</span> of work! Are you ready for a relaxing <span class=\"pomodoroHighlight\"> __pomodoroBreak__ minutes</span> of whatever the heck you feel like?",
+            "button": {
+              "confirm": "Yes, I can't wait!"
+            }
+          },
+          "end": {
+            "title": "Break's over!",
+            "text": "Hope that break left you feeling refreshed! Now it's time to get back to accomplishing your goals. Ready for <span class=\"pomodoroHighlight\"> __pomodoroLength__ more minutes</span> of work?",
+            "button": {
+              "confirm": "Let me at it!"
+            }
+          }
+        }
+      },
+      "presentation": {
         "break": {
           "start": {
             "title": "Good job!",
@@ -1149,6 +1175,7 @@
       "copy": "",
       "zoomText": "",
       "zoomTextReset": "Zurücksetzen",
+      "pomodoro": "",
       "markdeepEditor": {
         "help": "",
         "center": " ",

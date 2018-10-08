@@ -14,6 +14,7 @@ import "./item/leftRightNavigation.js";
 import "./item/copy.js";
 import "./item/delete.js";
 import "./item/edit.js";
+import "./item/pomodoroButton.js";
 import {CardNavigation} from "../../../api/cardNavigation";
 
 

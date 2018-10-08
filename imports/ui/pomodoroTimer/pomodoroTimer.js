@@ -5,6 +5,7 @@ import {PomodoroTimer} from "../../api/pomodoroTimer";
 import {NavigatorCheck} from "../../api/navigatorCheck";
 import {Bonus} from "../../api/bonus";
 import {Route} from "../../api/route";
+import {CardVisuals} from "../../api/cardVisuals";
 
 /*
  * ############################################################################
@@ -20,6 +21,12 @@ Template.pomodoroTimer.onCreated(function () {
 		pomodoroInterval = setInterval(function () {
 			PomodoroTimer.interval();
 		}, 1000);
+	}
+});
+
+Template.pomodoroTimer.onRendered(function () {
+	if (Route.isPresentation() || Route.isBox() || Route.isMemo()) {
+		CardVisuals.resizeFlashcard();
 	}
 });
 
@@ -84,7 +91,7 @@ Template.pomodoroTimerModal.events({
 
 Template.pomodoroTimerModalContent.helpers({
 	isHiddenByDefault: function () {
-		return !Route.isCardset();
+		return !Route.isCardset() && !Route.isPresentation();
 	}
 });
 Template.pomodoroTimerModalContent.events({
