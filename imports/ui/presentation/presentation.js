@@ -8,6 +8,7 @@ import "./modal/presentationHelp.js";
 import {CardNavigation} from "../../api/cardNavigation";
 import {Cardsets} from "../../api/cardsets";
 import {Cards} from "../../api/cards";
+import {PomodoroTimer} from "../../api/pomodoroTimer";
 
 Meteor.subscribe("cardsets");
 Session.set('animationPlaying', false);
@@ -22,6 +23,7 @@ Session.set('animationPlaying', false);
 Template.presentationView.onCreated(function () {
 	Session.set('activeCard', undefined);
 	CardNavigation.toggleVisibility(true);
+	PomodoroTimer.setPresentationPomodoro(true);
 });
 
 Template.presentationView.onRendered(function () {
