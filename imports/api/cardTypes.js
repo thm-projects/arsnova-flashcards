@@ -55,7 +55,7 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 3,
 			"side": "left",
-			"defaultStyle": "hint",
+			"defaultStyle": "default",
 			"defaultCentered": false,
 			"isAnswer": true
 		}
@@ -95,7 +95,7 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 3,
 			"side": "left",
-			"defaultStyle": "hint-alternative",
+			"defaultStyle": "default",
 			"defaultCentered": false
 		}
 	],
@@ -118,7 +118,7 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 3,
 			"side": "left",
-			"defaultStyle": "hint",
+			"defaultStyle": "default",
 			"defaultCentered": false,
 			"isAnswer": true
 		}
@@ -142,7 +142,7 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 3,
 			"side": "left",
-			"defaultStyle": "hint",
+			"defaultStyle": "default",
 			"defaultCentered": false,
 			"isAnswer": true
 		}
@@ -167,7 +167,7 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 3,
 			"side": "left",
-			"defaultStyle": "hint",
+			"defaultStyle": "default",
 			"defaultCentered": false,
 			"isAnswer": true
 		}
@@ -191,7 +191,7 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 3,
 			"side": "left",
-			"defaultStyle": "hint",
+			"defaultStyle": "default",
 			"defaultCentered": false,
 			"isAnswer": true
 		}
@@ -213,7 +213,7 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 3,
 			"side": "left",
-			"defaultStyle": "hint",
+			"defaultStyle": "default",
 			"defaultCentered": false
 		}
 	],
@@ -305,7 +305,7 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 6,
 			"side": "bottom",
-			"defaultStyle": "hint",
+			"defaultStyle": "default",
 			"defaultCentered": false,
 			"isAnswer": true
 		}
@@ -337,7 +337,7 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 4,
 			"side": "right",
-			"defaultStyle": "hint",
+			"defaultStyle": "default",
 			"defaultCentered": false,
 			"isAnswer": true
 		}

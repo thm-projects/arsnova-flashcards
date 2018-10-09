@@ -1177,6 +1177,7 @@
       "zoomText": "Ändere die Schriftgröße der Karte",
       "zoomTextReset": "Zurücksetzen",
       "pomodoro": "Wechsel zwischen Minutensprunguhr | Pomodoro-Timer",
+      "showHelp": "Hilfe",
       "markdeepEditor": {
         "help": "Zeige alle Formatierungsoptionen von Markdeep",
         "center": "Zentriere den Karteninhalt vertikal",
