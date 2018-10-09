@@ -80,25 +80,18 @@
 </template>
 
 <template name="flashcardSidebarPresentationLeft">
-    {{#if isMobileView}}
-        <span class="sidebarNavigationButton">
-            {{> cardSidebarLeftNavigation}}
-        </span>
-    {{else}}
-        {{> cardSidebarRightNavigation}}
+    <span class="sidebarNavigationButton">
         {{> cardSidebarLeftNavigation}}
-    {{/if}}
+    </span>
     {{> cardSidebarItemCardList}}
     {{> cardSidebarItemPomodoroButton}}
     {{> flashcardSidebarDictionary}}
 </template>
 
 <template name="flashcardSidebarPresentationRight">
-    {{#if isMobileView}}
-        <span class="sidebarNavigationButton">
-            {{> cardSidebarRightNavigation}}
-        </span>
-    {{/if}}
+    <span class="sidebarNavigationButton">
+        {{> cardSidebarRightNavigation}}
+    </span>
     {{> cardSidebarItemEndPresentation}}
     {{> cardSidebarItemZoomText}}
     {{> cardSidebarItemHelp}}

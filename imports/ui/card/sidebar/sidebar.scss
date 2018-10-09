@@ -3,10 +3,10 @@
   float: left;
   z-index: 1001;
   padding: 5px;
-  width: 45px;
+  width: $sidebar_width !important;
   @media(max-width: 767px) {
     padding: 3px;
-    width: 35px;
+    width: $sidebar_width_mobile !important;
   }
   border-top: 2px solid;
   border-bottom: 2px solid;

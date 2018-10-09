@@ -80,6 +80,10 @@ Template.pomodoroTimerModal.events({
 	},
 	'click #startPom': function () {
 		PomodoroTimer.start();
+	},
+	'click #cancelPomodoroBtn': function () {
+		$('#pomodoroTimerModal').modal('hide');
+		PomodoroTimer.setPresentationPomodoro(true);
 	}
 });
 

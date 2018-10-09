@@ -161,6 +161,10 @@ $font_size_sweet_alert_2_icon: 30px;
 $font_size_sweet_alert_2_title: 24px;
 $font_size_sweet_alert_2_text: 16px;
 
+//sidebar
+$sidebar_width: 45px;
+$sidebar_width_mobile: 35px;
+
 html {
   position: relative;
   min-height: 100%;
@@ -185,6 +189,15 @@ body {
 #first_login_content {
   @media(max-width: 767px) {
     margin-bottom: 70px;
+  }
+}
+
+.presentation-container {
+  padding-left: $sidebar_width !important;
+  padding-right: $sidebar_width !important;
+  @media(max-width: 767px) {
+    padding-left: $sidebar_width_mobile !important;
+    padding-right: $sidebar_width_mobile !important;
   }
 }
 

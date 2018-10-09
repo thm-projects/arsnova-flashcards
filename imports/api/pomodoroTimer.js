@@ -366,7 +366,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		let count = (goalPoms - totalPoms);
 		if (pomRunning || breakRunning) {
 			if (Route.isPresentation()) {
-				this.resetTimer();
+				this.setPresentationPomodoro(true);
 			} else {
 				/*if you still haven't reached your goal, you are encouraged with an update of how many pomodoros and minutes you have left to reach it.*/
 				if (totalPoms < goalPoms) {
@@ -761,8 +761,10 @@ export let PomodoroTimer = class PomodoroTimer {
 	static setPresentationPomodoro (forceOff = false) {
 		if (Session.get('presentationPomodoroActive') || forceOff) {
 			Session.set('presentationPomodoroActive', false);
+			this.resetTimer();
 		} else {
 			Session.set('presentationPomodoroActive', true);
+			$('#pomodoroTimerModal').modal('show');
 		}
 	}
 };

@@ -85,7 +85,8 @@
         "work": "Work for: <span class=\"pomodoroHighlight\">__minutes__</span> each pomodoro",
         "break": "Relax for: <span class=\"pomodoroHighlight\">__minutes__</span> each pomodoro",
         "button": {
-          "start": "Let's go!"
+          "start": "Let's go!",
+          "cancel": "Cancel"
         }
       }
     },

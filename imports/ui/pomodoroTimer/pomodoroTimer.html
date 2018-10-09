@@ -49,7 +49,8 @@
 
 <template name="pomodoroTimerModal">
     <!--this is the modal, hidden by default, that pops up when the user clicks the clock. Not too complicated.-->
-    <div id="pomodoroTimerModal" class="modal fade" role="dialog">
+    <div id="pomodoroTimerModal" class="modal fade" role="dialog"
+         data-backdrop="{{#if isActiveRoute regex='presentation'}}static{{/if}}">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -65,12 +66,16 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    {{#unless isActiveRoute regex='presentation'}}
+                    {{#if isActiveRoute regex='presentation'}}
+                        <button type="button" id="cancelPomodoroBtn" class="btn btn-danger btn-raised">
+                            {{_ "pomodoro.form.presentation.button.cancel"}}
+                        </button>
+                    {{else}}
                         <button type="button" id="settingsBtn" class="btn btn-info btn-raised fa fa-gear hvr-bounce-in"
                                 style="float:left;">
                             {{_ "pomodoro.form.user.button.settings"}}
                         </button>
-                    {{/unless}}
+                    {{/if}}
                     <button type="button" id="startPom" class="btn btn-success btn-raised" data-dismiss="modal">
                         {{#if isActiveRoute regex='presentation'}}
                             {{_ "pomodoro.form.presentation.button.start"}}

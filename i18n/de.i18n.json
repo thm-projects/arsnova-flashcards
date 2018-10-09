@@ -85,7 +85,8 @@
         "work": " Präsentatieren: <span class=\"pomodoroHighlight\">__minutes__</span> pro Präsentation",
         "break": " Pausieren: <span class=\"pomodoroHighlight\">__minutes__</span> pro Präsentation",
         "button": {
-          "start": "Präsentation starten!"
+          "start": "Präsentation starten!",
+          "cancel": "Abbrechen"
         }
       }
     },
