@@ -70,7 +70,7 @@
           "title": "Wieviel Zeit planst du fürs Lernen & Pausieren?"
         },
         "button": {
-          "start": "Los geht's!",
+          "start": "Los geht's",
           "settings": "Einstellungen"
         }
       },
@@ -85,7 +85,7 @@
         "work": " Präsentatieren: <span class=\"pomodoroHighlight\">__minutes__</span> pro Präsentation",
         "break": " Pausieren: <span class=\"pomodoroHighlight\">__minutes__</span> pro Präsentation",
         "button": {
-          "start": "Präsentation starten!",
+          "start": "Präsentation starten",
           "cancel": "Abbrechen"
         }
       }
@@ -190,17 +190,17 @@
       "presentation": {
         "break": {
           "start": {
-            "title": "Pause beginnt!",
+            "title": "Pause?",
             "text": "Bist du bereit für erholsame <span class=\"pomodoroHighlight\"> __pomodoroBreak__ Minuten</span> Pause?",
             "button": {
-              "confirm": "Ja, Pause starten!"
+              "confirm": "Ja, Zeit für die Pause!"
             }
           },
           "end": {
             "title": "Die Pause ist vorbei!",
-            "text": "Wir hoffen, dass du erfrischt aus der Pause zurück bist. Jetzt ist es an der Zeit, weiter zu lernen. <br><br>Bereit für die nächsten <span class=\"pomodoroHighlight\"> __pomodoroLength__ Minuten</span>?",
+            "text": "Wir hoffen, dass du erfrischt aus der Pause zurück bist. <br><br>Bereit für die nächsten <span class=\"pomodoroHighlight\"> __pomodoroLength__ Minuten</span>?",
             "button": {
-              "confirm": "Weiter präsentieren!"
+              "confirm": "Ja, weiter geht's"
             }
           }
         }
@@ -676,9 +676,9 @@
       "backDemo": "Zurück zur Demo-Kartei"
     },
     "help": {
-      "title": "Tastensteuerung",
+      "title": "Hilfe zum Präsentationsmodus",
       "button": {
-        "confirm": "Weiter zum Pomodoro-Timer…"
+        "confirm": "Weiter zur Präsentation…"
       }
     }
   },
