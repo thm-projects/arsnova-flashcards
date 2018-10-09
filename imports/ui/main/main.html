@@ -219,10 +219,11 @@
         {{/if}}
     {{/unless}}
     <div id="main" class="{{#if isActiveRoute
+                                regex='presentation'}}presentation-container{{else}}{{#if isActiveRoute
                                 regex='home'}}{{else}}{{#if isActiveRoute
                                                             regex='newCard|editCard'}}{{#if
             fullscreenActive}}container{{else}}container-fluid{{/if}}{{else}}{{#unless
-            isFirstTimeVisit}}container{{/unless}}{{/if}}{{/if}}">
+            isFirstTimeVisit}}container{{/unless}}{{/if}}{{/if}}{{/if}}">
         <!-- AREA BETWEEN NAVIGATION AND FOOTER -->
         <div class="{{#if isActiveRoute regex='home'}}{{else}}{{#unless isFirstTimeVisit}}row{{/unless}}{{#if
                 isActiveRoute
