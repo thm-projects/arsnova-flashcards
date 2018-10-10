@@ -22,7 +22,8 @@ BrowserPolicy.content.allowOriginForAll('https://casual-effects.com');
 BrowserPolicy.content.allowOriginForAll('https://www.linguee.de');
 BrowserPolicy.content.allowOriginForAll('https://translate.google.com');
 BrowserPolicy.content.allowOriginForAll('https://www.deepl.com');
-BrowserPolicy.content.allowOriginForAll('https:///panopto.thm.de');
+
+BrowserPolicy.content.allowFrameOrigin('https:///panopto.thm.de');
 
 BrowserPolicy.content.allowImageOrigin('*');
 BrowserPolicy.content.allowMediaOrigin('*');
