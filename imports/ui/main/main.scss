@@ -192,6 +192,14 @@ body {
   }
 }
 
+#pomodoroTimerModal {
+  z-index: 4000;
+}
+
+#presentationHelpModal, #leitnerHelpModal, #wozniakHelpModal {
+  z-index: 5000;
+}
+
 #first_login_content {
   @media(max-width: 767px) {
     margin-bottom: 70px;

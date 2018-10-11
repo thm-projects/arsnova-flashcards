@@ -59,7 +59,7 @@ Template.pomodoroTimerModal.onRendered(function () {
 	$('#pomodoroTimerModal').on('show.bs.modal', function () {
 		PomodoroTimer.initializeModalContent();
 	});
-	if (Route.isBox() || Route.isMemo()) {
+	if (Route.isBox() || Route.isMemo() || Route.isPresentation()) {
 		if (Bonus.isInBonus(Router.current().params._id)) {
 			PomodoroTimer.start();
 		} else {
