@@ -21,6 +21,14 @@ export function setLightBoxes(content) {
 	return $('<div/>').append(element).html();
 }
 
+export function adjustIframe(content) {
+	let element = $(content);
+	$(element).find('iframe').each(function () {
+		$(this).attr('frameBorder', 0);
+	});
+	return $('<div/>').append(element).html();
+}
+
 export function displayMediaControls(content) {
 	let element = $(content);
 	$(element).find('video').each(function () {
