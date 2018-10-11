@@ -6,6 +6,7 @@ import {NavigatorCheck} from "../../api/navigatorCheck";
 import {Bonus} from "../../api/bonus";
 import {Route} from "../../api/route";
 import {CardVisuals} from "../../api/cardVisuals";
+import {Session} from "meteor/session";
 
 /*
  * ############################################################################
@@ -80,6 +81,9 @@ Template.pomodoroTimerModal.events({
 	},
 	'click #startPom': function () {
 		PomodoroTimer.start();
+		if (Route.isPresentation()) {
+			Session.set('presentationPomodoroActive', true);
+		}
 	},
 	'click #cancelPomodoroBtn': function () {
 		$('#pomodoroTimerModal').modal('hide');
