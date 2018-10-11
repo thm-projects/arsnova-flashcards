@@ -329,10 +329,10 @@ Meteor.methods({
 
 			Leitner.remove({
 				card_id: card_id
-			}, {multi: true});
+			});
 			Wozniak.remove({
 				card_id: card_id
-			}, {multi: true});
+			});
 			return result;
 		} else {
 			throw new Meteor.Error("not-authorized");

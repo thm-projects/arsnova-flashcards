@@ -203,6 +203,7 @@ export let CardEditor = class CardEditor {
 			} else {
 				Meteor.call("updateCard", card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit);
 				BertAlertVisuals.displayBertAlert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
+				Session.set('activeCard', Router.current().params.card_id);
 				if (returnToCardset) {
 					Router.go('cardsetdetailsid', {
 						_id: Router.current().params._id
