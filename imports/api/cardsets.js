@@ -352,16 +352,16 @@ Meteor.methods({
 			Meteor.call('updateShuffledCardsetQuantity', id);
 			Leitner.remove({
 				cardset_id: id
-			}, {multi: true});
+			});
 			Wozniak.remove({
 				cardset_id: id
-			}, {multi: true});
+			});
 			Notifications.remove({
 				link_id: id
-			}, {multi: true});
+			});
 			Ratings.remove({
 				cardset_id: id
-			}, {multi: true});
+			});
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -390,10 +390,10 @@ Meteor.methods({
 			Meteor.call('updateShuffledCardsetQuantity', cardset._id);
 			Leitner.remove({
 				cardset_id: id
-			}, {multi: true});
+			});
 			Wozniak.remove({
 				cardset_id: id
-			}, {multi: true});
+			});
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}

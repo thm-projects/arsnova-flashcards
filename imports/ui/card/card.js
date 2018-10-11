@@ -266,6 +266,7 @@ Template.deleteCardForm.events({
 			if (result) {
 				BertAlertVisuals.displayBertAlert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
 				$('#deleteCardModal').modal('hide');
+				$('.modal-backdrop').css('display', 'none');
 				Session.set('activeCard', undefined);
 				$('#deleteCardModal').on('hidden.bs.modal', function () {
 					$('.deleteCard').removeClass("pressed");
