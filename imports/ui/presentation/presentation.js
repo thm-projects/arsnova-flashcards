@@ -31,7 +31,6 @@ Template.presentationView.onRendered(function () {
 });
 
 Template.presentationView.onDestroyed(function () {
-	Session.set('activeCard', undefined);
 	Session.set('contrastMode', false);
 });
 
