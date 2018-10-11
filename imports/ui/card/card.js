@@ -111,8 +111,9 @@ Template.flashcards.helpers({
 		}
 		if (Route.isEditMode()) {
 			result = CardIndex.getEditModeCard();
+			Session.set('activeCard', -1);
 		}
-		if (Session.get('activeCard') === undefined) {
+		if (Session.get('activeCard') === undefined && result[0] !== undefined) {
 			CardNavigation.setActiveCardData(result[0]._id);
 		}
 		return CardVisuals.setTypeAndDifficulty(result);
@@ -245,6 +246,7 @@ Meteor.startup(function () {
 Template.cancelEditForm.events({
 	'click #cancelEditConfirm': function () {
 		$('#cancelEditModal').on('hidden.bs.modal', function () {
+			Session.set('activeCard', Router.current().params.card_id);
 			Router.go('cardsetdetailsid', {
 				_id: Router.current().params._id
 			});
