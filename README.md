@@ -4,12 +4,14 @@ The [Progressive Web App](https://en.wikipedia.org/wiki/Progressive_web_app) ars
 
 arsnova.cards uses Meteor as application framework. Download and install [Meteor](https://www.meteor.com/) to get the app running in your local development environment.
 
+## System requirements
+- 4 GB RAM
 
 ## Initial setup
 1. Install [Meteor](https://www.meteor.com/)
-2. Install git
-3. Install python
-4. install the g++ build-essential
+2. Install git `sudo apt install git`
+3. Install python 2 `sudo apt install python`, Ubuntu only ships with python 3
+4. install the g++ build-essential `sudo apt install g++ build-essential`
 2. Make sure that you've added a [SSH key](https://git.thm.de/profile/keys)
 3. Clone the remote repository `git clone git@git.thm.de:arsnova/flashcards.git`
 4. Install the npm package dependencies inside the local repository **"flashcards folder"** `meteor npm install`
