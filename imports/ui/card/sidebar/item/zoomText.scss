@@ -5,9 +5,9 @@
   border-radius: 10px;
   z-index: 9000 !important;
   text-align: center;
-  opacity: 0.9;
+  //opacity: 0.9;
   .zoomSlider:hover, .zoomSlider .ui-slider-handle:hover {
-    cursor: pointer;
+    cursor: grabbing;
   }
 }
 

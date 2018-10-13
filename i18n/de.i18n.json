@@ -54,14 +54,14 @@
         "title": " Klänge",
         "break": " Pausenton",
         "success": " Ton, wenn du deine Lernzeit einhältst",
-        "abort": " Ton, wenn du deine Lernzeit vorzeitig beendest"
+        "abort": " Ton, wenn du vorzeitig aufhörst"
       },
       "link": "/learning#Pomodoro",
       "tooltip": {
-        "link": "»Pomodoro« (italienisch für Tomate) ist ein Arbeits-Pausen-Zyklus. Standard: 25 Minuten Arbeit, 5 Minuten Pause. Nach 4 Pomodori: 20 Minuten Pause. Klick auf den Link, um mehr über die Zeitmanagement-Technik zu erfahren!"
+        "link": "»Pomodoro« (italienisch für Tomate) ist ein Arbeits-Pausen-Zyklus. Standard: 25 Minuten Arbeit, 5 Minuten Pause. Nach 4 Pomodori: 30 Minuten Pause. Klick auf den Link, um mehr über diese populäre Zeitmanagement-Technik zu erfahren!"
       },
       "user": {
-        "title": "Wie lange willst du heute lernen?",
+        "title": "Wie lange willst du lernen?",
         "count": "Ich will <span class=\"pomodoroHighlight\">__count__</span> <a href=\"__link__\" data-toggle=\"tooltip\" title=\"__tooltip__\" target=\"_blank\"> <b>__pomodoro__ </b>🍅❓</a> schaffen!",
         "totalTime": "Reserviere __time__ für den Lernstoff!",
         "work": " Lernen: <span class=\"pomodoroHighlight\">__minutes__</span> pro Pomodoro",
@@ -81,9 +81,9 @@
         "break": "Break during Bonus-Pomodoro: <span class=\"pomodoroHighlight\">__minutes__</span>"
       },
       "presentation": {
-        "title": "Wie lange willst du präsentieren?",
-        "work": " Präsentatieren: <span class=\"pomodoroHighlight\">__minutes__</span> pro Präsentation",
-        "break": " Pausieren: <span class=\"pomodoroHighlight\">__minutes__</span> pro Präsentation",
+        "title": "Wie lange willst du vortragen?",
+        "work": " Vortrag: <span class=\"pomodoroHighlight\">__minutes__</span>",
+        "break": " Pause: <span class=\"pomodoroHighlight\">__minutes__</span>",
         "button": {
           "start": "Präsentation starten",
           "cancel": "Abbrechen"
@@ -191,16 +191,16 @@
         "break": {
           "start": {
             "title": "Pause?",
-            "text": "Bist du bereit für erholsame <span class=\"pomodoroHighlight\"> __pomodoroBreak__ Minuten</span> Pause?",
+            "text": "Bist du bereit für <span class=\"pomodoroHighlight\"> __pomodoroBreak__ Minuten</span> Pause?",
             "button": {
               "confirm": "Ja, Zeit für die Pause!"
             }
           },
           "end": {
             "title": "Die Pause ist vorbei!",
-            "text": "Wir hoffen, dass du erfrischt aus der Pause zurück bist. <br><br>Bereit für die nächsten <span class=\"pomodoroHighlight\"> __pomodoroLength__ Minuten</span>?",
+            "text": "Bereit für die nächsten <span class=\"pomodoroHighlight\"> __pomodoroLength__ Minuten</span>?",
             "button": {
-              "confirm": "Ja, weiter geht's"
+              "confirm": "Weiter geht's"
             }
           }
         }
@@ -676,9 +676,9 @@
       "backDemo": "Zurück zur Demo-Kartei"
     },
     "help": {
-      "title": "Hilfe zum Präsentationsmodus",
+      "title": "Hilfe zum Vortragen",
       "button": {
-        "confirm": "Weiter zur Präsentation…"
+        "confirm": "Weiter zum Pomodoro-Timer…"
       }
     }
   },
