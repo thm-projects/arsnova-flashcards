@@ -678,7 +678,7 @@
     "help": {
       "title": "Hilfe zum Vortragen",
       "button": {
-        "confirm": "Weiter zum Pomodoro-Timer…"
+        "confirm": "Fenster schließen"
       }
     }
   },
