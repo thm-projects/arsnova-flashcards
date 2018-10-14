@@ -676,9 +676,9 @@
       "backDemo": "Zurück zur Demo-Kartei"
     },
     "help": {
-      "title": "Hilfe zum Vortragen",
+      "title": "Hilfe zum Vortragen mit .cards",
       "button": {
-        "confirm": "Weiter zum Pomodoro-Timer…"
+        "confirm": "Fenster schließen"
       }
     }
   },

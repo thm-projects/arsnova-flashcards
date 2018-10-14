@@ -1,0 +1,70 @@
+[{
+  "name": "G: Beispiel für eine Formelsammlung",
+  "description": "Übungsaufgaben mit Musterlösungen zu einfachen Ableitungen.",
+  "date": "2018-09-22T21:05:25.474Z",
+  "dateUpdated": "2018-10-14T06:55:44.049Z",
+  "editors": [],
+  "owner": "jCZ6oHcbZhJaKKodN",
+  "visible": false,
+  "ratings": true,
+  "kind": "personal",
+  "price": 0,
+  "reviewed": false,
+  "reviewer": "undefined",
+  "request": false,
+  "relevance": 0,
+  "raterCount": 0,
+  "quantity": 1,
+  "license": [],
+  "userDeleted": false,
+  "learningActive": false,
+  "maxCards": 0,
+  "daysBeforeReset": 0,
+  "learningStart": "1970-01-01T00:00:00.000Z",
+  "learningEnd": "1970-01-01T00:00:00.000Z",
+  "registrationPeriod": "1970-01-01T00:00:00.000Z",
+  "learningInterval": [],
+  "wordcloud": false,
+  "shuffled": false,
+  "cardType": 13,
+  "difficulty": 2,
+  "noDifficulty": false,
+  "originalAuthorName": {
+    "title": "",
+    "birthname": "Hanke",
+    "givenname": "André"
+  },
+  "workload": {
+    "bonus": {
+      "count": 0
+    },
+    "normal": {
+      "count": 0
+    }
+  }
+}, {
+  "subject": "Quotientenregel",
+  "front": "**Leite die Funktion  $$f(x) = \\frac{(x^3+x)\\cdot \\sin(x)}{\\ln(x)}$$ nach der Variablen $x$ ab.**",
+  "back": "!!!\n   Sind die Funktionen $u ( x )$ und $v ( x )$ von einem Intervall $D$ in die reellen oder komplexen Zahlen an der Stelle $x = x_a$ mit $v ( x_a ) \\ne 0$  differenzierbar, dann ist auch die Funktion $f$ mit $$f(x)= \\frac {u(x)}{v(x)}$$ an der Stelle $x_a$ differenzierbar und es gilt:  $$f^\\prime(x_a)= \\frac{(u^\\prime(x_a)\\cdot v(x_a) - u(x_a) \\cdot v^\\prime(x_a))}{v(x(a))^2}$$ in Kurzschreibeweise: $$(\\frac uv)^\\prime= \\frac{u^\\prime \\cdot v - u\\cdot v^\\prime}{v² }$$",
+  "hint": "\nHier wird die Quotientenregel benutzt. Bei der Ableitung des Zählers $(g(x))$ muss die [Produktregel](https://de.wikipedia.org/wiki/Produktregel) berücksichtigt werden.\n\n\n\n$$f(x) = \\frac{(x^3+x) \\cdot \\sin(x)}{\\ln(x)}$$\n\n$$\\begin{alignat}{2}\ng(x) &= (x³+x) \\cdot \\sin(x) \\Rightarrow g^\\prime(x) = (3x² +1) \\cdot \\sin(x) + (x³ +x) \\cdot \\cos(x) &\\quad& \\text{Ableitung Zähler}\\\\\n\\\\\nh(x) &=\\ln(x) \\Rightarrow h^\\prime(x) = \\frac 1x && \\text{Ableitung Nenner} \\\\\n\\\\\n\\\\\n\\Rightarrow f^\\prime(x) &= \\frac{[(3x²+1) \\cdot \\sin(x) + (x³ +x) \\cdot \\cos(x)] \\cdot \\ln(x) - \\frac 1x\\cdot (x³ +x) \\cdot \\sin(x)}{(\\ln(x))² }\\\\\n&=\\frac{[(3x² +1) \\cdot \\sin(x) + (x³+x) \\cdot \\cos(x)] \\cdot ln(x) - (x^2+1) \\cdot sin(x)}{(\\ln(x))^2}\n\\end{alignat}$$\n\n\n",
+  "lecture": "- Seite [Quotientenregel](https://de.wikipedia.org/w/index.php?title=Quotientenregel&oldid=178446922). In: Wikipedia, Die freie Enzyklopädie. Bearbeitungsstand: 19. Juni 2018, 13:28 UTC. (Abgerufen: 22. September 2018) \n\n- Seite [Produktregel](https://de.wikipedia.org/w/index.php?title=Produktregel&oldid=175478922). In: Wikipedia, Die freie Enzyklopädie. Bearbeitungsstand: 27. März 2018, 22:41 UTC. (Abgerufen: 14. Oktober 2018)\n\n",
+  "centerTextElement": [
+    true,
+    true,
+    true,
+    true,
+    false,
+    false
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-09-22T17:28:53.685Z",
+  "dateUpdated": "2018-10-14T06:55:44.036Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  }
+}]
