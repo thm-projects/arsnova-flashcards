@@ -676,7 +676,7 @@
       "backDemo": "Zurück zur Demo-Kartei"
     },
     "help": {
-      "title": "Hilfe zum Vortragen",
+      "title": "Hilfe zum Vortragen mit .cards",
       "button": {
         "confirm": "Fenster schließen"
       }
