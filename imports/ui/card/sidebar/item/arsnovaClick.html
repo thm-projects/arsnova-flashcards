@@ -1,0 +1,17 @@
+<template name="cardSidebarItemArsnovaClick">
+    <img class="hidden-xs showArsnovaClick card-button cardHeaderItem"
+         data-type="cardNavigation"
+         src="/img/button/arsnova_click.png"
+         title="{{_ "card.tooltip.arsnovaClick"}}">
+</template>
+
+<template name="arsnovaClickModal">
+    <div class="modal fade" id="arsnovaClickModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            {{#if isArsnovaClickActive}}
+                <iframe src="https://arsnova.click">
+                </iframe>
+            {{/if}}
+        </div>
+    </div>
+</template>
