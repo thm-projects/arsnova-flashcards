@@ -5,6 +5,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {FilterNavigation} from "../../api/filterNavigation";
 import "./filter.html";
+import './item/displayModeButton.js';
 import './item/resetButton.js';
 import './item/sortResults.js';
 import './item/filterAuthor.js';
@@ -27,6 +28,9 @@ Meteor.subscribe("cardsets");
 Template.filterNavigation.helpers({
 	gotResetButton: function () {
 		return FilterNavigation.gotResetButton(FilterNavigation.getRouteId());
+	},
+	gotDisplayModeButton: function () {
+		return FilterNavigation.gotDisplayModeButton(FilterNavigation.getRouteId());
 	},
 	gotSortButton: function () {
 		return FilterNavigation.gotSortButton(FilterNavigation.getRouteId());

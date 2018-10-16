@@ -3,6 +3,8 @@ import {Bonus} from "./bonus.js";
 import {Cardsets} from "./cardsets.js";
 import {Route} from "./route.js";
 import swal from "sweetalert2";
+import {WordcloudCanvas} from "./wordcloudCanvas";
+import {AdminSettings} from "./adminSettings";
 
 let defaultSettings = {
 	goal: 2,
@@ -718,17 +720,24 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	static showPomodoroFullsize () {
-		if ($(document).has('#pomoA').length) {
-			$('#bigClockDiv').addClass('zIndexFirstPrio bigDiv');
-			$('.pomodoroTimer').detach().appendTo('#bigClockDiv');
+		if ($(document).has('#pomodoroTimerNormalContainer').length) {
+			$('.pomodoroTimer').detach().appendTo('#pomodoroTimerOverlay');
 			isClockInBigmode = true;
+			$('#pomodoroTimerOverlay').css('display', 'block');
+			if ($(window).height() > $(window).width()) {
+				$('#pomodoroTimerOverlay .pomodoroClock').css('height', $(window).width());
+			} else {
+				$('#pomodoroTimerOverlay .pomodoroClock').css('height', $(window).height());
+			}
 		}
 	}
 
 	static showPomodoroNormal () {
-		if ($(document).has('#pomoA').length) {
-			$('#bigClockDiv').removeClass('zIndexFirstPrio bigDiv');
+		if ($(document).has('#pomodoroTimerNormalContainer').length) {
 			isClockInBigmode = false;
+			$('#pomodoroTimerOverlay').css('display', 'none');
+			$('#pomodoroTimerOverlay .pomodoroClock').css('height', 'unset');
+			WordcloudCanvas.draw();
 			this.pomoPosition();
 		}
 	}
@@ -737,20 +746,18 @@ export let PomodoroTimer = class PomodoroTimer {
 	 * PomoSetup for switching from bottom right to middle
 	 */
 	static pomoPosition () {
-		if (!PomodoroTimer.isClockInBigmode()) {
-			if (!cloudShown) {
-				$('.pomodoroTimer').detach().appendTo('#pomoA');
-				$('#pomoB').addClass('zIndexLowPrio');
-				$('.pomodoroClock').on('click', function () {
-					PomodoroTimer.clickClock();
-				});
-			} else if (cloudShown) {
-				$('.pomodoroTimer').detach().appendTo('#pomoB');
-				$('#pomoB').removeClass('zIndexLowPrio');
-				$('.pomodoroClock').on('click', function () {
-					PomodoroTimer.clickClock();
-				});
+		if (!PomodoroTimer.isClockInBigmode() && !Meteor.userId()) {
+			if (AdminSettings.findOne({name: "wordcloudPomodoroSettings"}).enabled || !cloudShown) {
+				$('.pomodoroTimer').detach().appendTo('#pomodoroTimerWordcloudContainer');
+				$('#pomodoroTimerWordcloudContainer').css('display', 'block');
+				$('#wordcloud-container').css('display', 'none');
+			} else {
+				$('.pomodoroTimer').detach().appendTo('#pomodoroTimerNormalContainer');
+				$('#pomodoroTimerWordcloudContainer').css('display', 'none');
+				$('#wordcloud-container').css('display', 'block');
 			}
+		} else {
+			$('#wordcloud-container').css('display', 'block');
 		}
 	}
 

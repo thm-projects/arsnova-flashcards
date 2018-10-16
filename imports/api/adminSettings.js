@@ -5,6 +5,9 @@ import {check} from "meteor/check";
 export const AdminSettings = new Mongo.Collection("adminSettings");
 
 if (Meteor.isServer) {
+	Meteor.publish('pomodoroLandingPage', function () {
+		return AdminSettings.find({name: "wordcloudPomodoroSettings"});
+	});
 	Meteor.publish('default_db_data', function () {
 		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 			if (Roles.userIsInRole(this.userId, ["admin", "editor"])) {
@@ -17,6 +20,21 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
+	updateWordcloudPomodoroSettings: function (enableWordcloudPomodoro) {
+		check(enableWordcloudPomodoro, Boolean);
+
+		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
+			throw new Meteor.Error("not-authorized");
+		}
+		AdminSettings.upsert({
+				name: "wordcloudPomodoroSettings"
+			},
+			{
+				$set: {
+					enabled: enableWordcloudPomodoro
+				}
+			});
+	},
 	updateMailSettings: function (enableMails) {
 		check(enableMails, Boolean);
 

@@ -7,6 +7,26 @@
     <div class="panel panel-default">
         <div class="panel-heading panel-heading-mail">
 
+            <h3 class="panel-title">{{_ "pomodoro.backend.settings.title"}}</h3>
+        </div>
+        <div class="panel-body panel-body-mail">
+            <div class="row" style="margin-bottom:10px; margin-left: 5px">
+                <form>
+                    {{#if isWordcloudPomodoroEnabled}}
+                        <a id="disableWordcloudPomodoro" class="btn btn-raised btn-success">
+                            {{_ "pomodoro.backend.settings.button.enabled"}}</a>
+                    {{else}}
+                        <a id="enableWordcloudPomodoro" class="btn btn-raised btn-danger">
+                            {{_ "pomodoro.backend.settings.button.disabled"}}</a>
+                    {{/if}}
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading panel-heading-mail">
+
             <h3 class="panel-title">{{_ "admin.mail-settings.mail-settings"}}</h3>
         </div>
         <div class="panel-body panel-body-mail">

@@ -227,7 +227,7 @@ body {
   text-shadow: none;
 }
 
-#difficultyGroup label.active, #publishKind label.active, .panel.price .panel-heading, .alert-info, #profilepublicoption1.active, #profilepublicoption2.active {
+#difficultyGroup label.active, #publishKind label.active, .panel.price .panel-heading, .alert-info, #profilepublicoption1.active, #profilepublicoption2.active, #displayModeBtn {
   text-shadow: $default_text_shadow;
 }
 
@@ -328,6 +328,11 @@ body {
 #theme-wrapper #main  {
     margin-top: 55px;
     margin-bottom: 70px;
+}
+
+#theme-wrapper-wordcloud #main  {
+  margin-top: 55px;
+  margin-bottom: 0;
 }
 
 #theme-wrapper-no-nav #main {

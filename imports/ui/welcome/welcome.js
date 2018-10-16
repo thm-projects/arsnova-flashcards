@@ -3,20 +3,19 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import WordCloud from "wordcloud";
-import {Cardsets} from "../../api/cardsets.js";
 import {Route} from "../../api/route.js";
 import {getUserLanguage} from "../../startup/client/i18n";
 import {ReactiveVar} from 'meteor/reactive-var';
 import "./welcome.html";
 import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
 import * as fakeInventory from '../../../public/fakeStatistics/inventory.json';
-import * as fakeWordCloud from '../../../public/fakeStatistics/wordcloud.json';
 import {PomodoroTimer} from "../../api/pomodoroTimer";
 
+Meteor.subscribe("pomodoroLandingPage");
 Meteor.subscribe("cardsets");
 Meteor.subscribe("userData");
 Meteor.subscribe("serverInventory");
+
 
 function setActiveLanguage() {
 	let language = getUserLanguage();
@@ -32,125 +31,6 @@ function splitLargeNumbers(number) {
 		separator = ",";
 	}
 	return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator);
-}
-
-/**
- * This method nserts a hover message for the wordcloud content
- *  @param {Object} item - Array containing data of the wordcloud object (name, description, kind and color)
- */
-function wordcloudClick(item) {
-	Session.set('wordcloudItem', item[2]);
-	$('#wordcloudModal').modal('show');
-}
-
-function wordcloudHover(item, dimension) {
-	if (dimension !== undefined) {
-		$('#tag-cloud-canvas').css('cursor', 'pointer');
-	} else {
-		$('#tag-cloud-canvas').css('cursor', 'unset');
-	}
-}
-
-/**
- * This method fills the canvas with a wordcloud by using this library: https://github.com/timdream/wordcloud2.js
- */
-function createTagCloud() {
-	if ($(window).height() <= 450) {
-		document.getElementById('tag-cloud-container').height = 0;
-		document.getElementById('tag-cloud-canvas').height = 0;
-		PomodoroTimer.setCloudShown(false);
-	} else {
-		PomodoroTimer.setCloudShown(true);
-		let newWidth = $('#tag-cloud-container').width();
-		if (newWidth > 1024) {
-			newWidth = 1024;
-		}
-		if (document.getElementById('tag-cloud-canvas') !== null) {
-			document.getElementById('tag-cloud-canvas').width = newWidth;
-			document.getElementById('tag-cloud-canvas').height = $(window).height() - ($('#welcome').outerHeight(true) + $('#welcome-login').outerHeight(true));
-			if ($(window).width() > 700 && $(window).height() > 700) {
-				let cloud = {};
-				let minimumSize = 1;
-				let biggestCardsetSize = 1;
-				let list = [];
-				if (Meteor.settings.public.welcome.fakeStatistics) {
-					cloud = new ReactiveVar(fakeWordCloud).curValue.default;
-				} else {
-					cloud = Cardsets.find({wordcloud: true}, {fields: {name: 1, quantity: 1}}).fetch();
-				}
-				cloud.forEach(function (cloud) {
-					if (cloud.quantity > biggestCardsetSize) {
-						biggestCardsetSize = cloud.quantity;
-					}
-				});
-
-				cloud.forEach(function (cloud) {
-					let name = cloud.name;
-
-					if (name.length > 30) {
-						name = name.substring(0, 30) + "…";
-					}
-					let quantitiy = cloud.quantity / biggestCardsetSize * 5;
-					quantitiy = (quantitiy > minimumSize ? quantitiy : minimumSize);
-					list.push([name, Number(quantitiy), cloud._id, cloud.color]);
-				});
-				list.sort(function (a, b) {
-					return (b[0].length * b[1]) - (a[0].length * a[1]);
-				});
-
-				let clearCanvas = true;
-				let drawOutOfBound = false;
-				let gridSize = 24;
-				let weightFactor = 24;
-				let rotateRatio = 0;
-				let fontFamily = 'Roboto Condensed, Arial Narrow, sans-serif';
-				let color = "random-light";
-				let backgroundColor = 'rgba(255,255,255, 0)';
-				let wait = 400;
-				if (Meteor.settings.public.welcome.fakeStatistics) {
-					WordCloud(document.getElementById('tag-cloud-canvas'),
-						{
-							clearCanvas: clearCanvas,
-							drawOutOfBound: drawOutOfBound,
-							list: list,
-							gridSize: gridSize,
-							weightFactor: weightFactor,
-							rotateRatio: rotateRatio,
-							fontFamily: fontFamily,
-							color: function (word) {
-								for (let i = 0; i < list.length; i++) {
-									if (word === list[i][0]) {
-										return list[i][3];
-									}
-								}
-							},
-							backgroundColor: backgroundColor,
-							wait: wait
-						});
-				} else {
-					WordCloud(document.getElementById('tag-cloud-canvas'),
-						{
-							clearCanvas: clearCanvas,
-							drawOutOfBound: drawOutOfBound,
-							list: list,
-							gridSize: gridSize,
-							weightFactor: weightFactor,
-							rotateRatio: rotateRatio,
-							fontFamily: fontFamily,
-							color: color,
-							hover: wordcloudHover,
-							click: wordcloudClick,
-							backgroundColor: backgroundColor,
-							wait: wait
-						});
-				}
-			} else {
-				document.getElementById('tag-cloud-container').height = 0;
-				document.getElementById('tag-cloud-canvas').height = 0;
-				PomodoroTimer.setCloudShown(false);
-			}
-		}
-	}
 }
 
 //------------------------ LOGIN EVENT
@@ -289,18 +169,14 @@ Template.welcome.onCreated(function () {
 
 Template.welcome.onRendered(function () {
 	$('#clock').removeClass('clock');
-	createTagCloud();
 	PomodoroTimer.pomoPosition();
 	$(window).resize(function () {
-		createTagCloud();
 		PomodoroTimer.pomoPosition();
 	});
 	new ResizeSensor($('#welcome'), function () {
-		createTagCloud();
 		PomodoroTimer.pomoPosition();
 	});
 	new ResizeSensor($('#welcome-login'), function () {
-		createTagCloud();
 		PomodoroTimer.pomoPosition();
 	});
 });

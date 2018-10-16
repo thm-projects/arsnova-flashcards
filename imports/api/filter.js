@@ -3,6 +3,7 @@ import {FilterNavigation} from "./filterNavigation";
 import {Session} from "meteor/session";
 import {Cardsets} from "./cardsets";
 import {Route} from "./route";
+import {WordcloudCanvas} from "./wordcloudCanvas";
 import {Leitner, Wozniak} from "./learned";
 
 let itemIncrementCounter = 6;
@@ -116,6 +117,9 @@ export let Filter = class Filter {
 				break;
 		}
 		this.resetInfiniteBar();
+		if (FilterNavigation.isDisplayWordcloudActive(FilterNavigation.getRouteId())) {
+			WordcloudCanvas.draw();
+		}
 	}
 
 	static workloadFilter () {

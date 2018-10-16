@@ -35,7 +35,7 @@
 
 <template name="shuffle">
     {{#if canShuffle}}
-        <div class="col-md-12" id="set-list-region">
+        <div class="container" id="set-list-region">
             <div class="bs-callout bs-callout-info selectionInfo">
                 {{#if gotShuffledCards}}
                     <button href="#" id="updateShuffledCardset" class="btn btn-raised btn-success"
@@ -69,7 +69,7 @@
 </template>
 
 <template name="create">
-    <div class="col-md-12" id="set-list-region">
+    <div class="container" id="set-list-region">
         {{#if isActiveRoute 'create'}}
             <button id="newCardSet" type="button"
                     class="btn btn-raised btn-success saveSet" {{disableIfOffline}} {{disableIfShuffle}}>
@@ -82,13 +82,17 @@
         {{/if}}
         {{#if cardsetList 0}}
             {{> filterNavigation}}
-            {{#if cardsetList 1}}
-                {{#each cardsetList 2}}
-                    {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
-                {{/each}}
-                {{> infiniteScroll}}
+            {{#if displayWordcloud}}
+                {{> wordcloud}}
             {{else}}
-                {{> noFilterResults}}
+                {{#if cardsetList 1}}
+                    {{#each cardsetList 2}}
+                        {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
+                    {{/each}}
+                    {{> infiniteScroll}}
+                {{else}}
+                    {{> noFilterResults}}
+                {{/if}}
             {{/if}}
         {{else}}
             {{> noResults}}
@@ -97,7 +101,7 @@
 </template>
 
 <template name="repetitorium">
-    <div class="col-md-12" id="set-list-region">
+    <div class="container" id="set-list-region">
         {{#unless selectingCardsetToLearn}}
             {{#if canCreateContent}}
                 <button id="newRepetitorium" type="button"
@@ -110,13 +114,17 @@
         {{/unless}}
         {{#if cardsetList 0}}
             {{> filterNavigation}}
-            {{#if cardsetList 1}}
-                {{#each cardsetList 2}}
-                    {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
-                {{/each}}
-                {{> infiniteScroll}}
+            {{#if displayWordcloud}}
+                {{> wordcloud}}
             {{else}}
-                {{> noFilterResults}}
+                {{#if cardsetList 1}}
+                    {{#each cardsetList 2}}
+                        {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
+                    {{/each}}
+                    {{> infiniteScroll}}
+                {{else}}
+                    {{> noFilterResults}}
+                {{/if}}
             {{/if}}
         {{else}}
             {{> noResults}}
@@ -127,7 +135,7 @@
 <template name="learn">
     {{> selectModeForm}}
     {{> cardsetsConfirmLearnForm}}
-    <div id="learn-list-region" class="col-md-12">
+    <div id="learn-list-region" class="container">
         <a id="browseCardset" class="btn btn-raised btn-success">{{_
                 "set-list-learn-empty.browseCardset"}}</a>
         <a id="browseShuffledCardset" class="btn btn-raised btn-success">{{_
