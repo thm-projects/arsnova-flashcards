@@ -62,7 +62,7 @@ build:
   stage: build
   tags:
     - meteor
-  image: local-nodejs-meteor:1.6
+  image: local-nodejs-meteor:8_1.8
   dependencies: []
   script:
     - test -d package-metadata && rm -rf /opt/meteor/package-metadata && mv package-metadata /opt/meteor/
@@ -86,7 +86,7 @@ chimp:
     - nodejs
   allow_failure: true
   services:
-    - mongo:3.6
+    - mongo:4
   dependencies:
     - build
   variables:
