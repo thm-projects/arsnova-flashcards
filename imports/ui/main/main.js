@@ -107,7 +107,7 @@ function setTheme() {
 }
 
 /** Function provides an reactive callback when a user loggs in and out */
-Meteor.autorun(function () {
+Tracker.autorun(function () {
 	connectionStatus();
 	setTheme();
 });

@@ -58,6 +58,7 @@
     "Hammer": true,
     "Counts": true,
     "sweetAlert": true,
-    "swal": true
+    "swal": true,
+    "Tracker": true
   }
 }
