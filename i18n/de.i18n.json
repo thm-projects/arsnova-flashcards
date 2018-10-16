@@ -42,6 +42,15 @@
         "deactivate": ""
       }
     },
+    "backend": {
+      "settings": {
+        "title": "Zeige Pomodoro statt Wortwolke auf der Landing-Page",
+        "button": {
+          "enabled": "Aktiviert",
+          "disabled": "Deaktiviert"
+        }
+      }
+    },
     "form": {
       "time": {
         "hour": "1 Stunde",
@@ -902,7 +911,8 @@
     "wordcloudEveryting": "Alle",
     "from": "Ab",
     "noResults": "Keine Karteien oder Repetitorien vorhanden oder keine Ergebnisse für diese Filtereinstellung",
-    "sort": "Sortieren "
+    "sort": "Sortieren ",
+    "displayMode": "Liste | Wolke"
   },
   "infinite-scroll": {
     "remainingCardsets": "__current__ von __total__ Karteien",

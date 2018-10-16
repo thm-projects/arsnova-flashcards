@@ -1,12 +1,14 @@
 import {Route} from "./route.js";
+import {Session} from "meteor/session";
 
 //0: Themen-Pool / Pool
 //1: Kartei anlegen / My Cardsets
-//2: Kurse / Course
+//2: Repetitorien / Repetitorium
 //3: Lernpensum / Learning
 //4: Alle Karteien / All Cardsets
 //5: Kartei mischen / Shuffle
 let filtersWithResetButton = [0, 1, 2, 3, 4, 5];
+let filtersWithDisplayModeButton = [0, 2, 4];
 let filtersWithSortButton = [0, 1, 2, 3, 4, 5];
 let filtersWithDefaultSortName = [0, 1, 2, 3, 5];
 let filtersWithDefaultSortDateUpdated = [4];
@@ -88,7 +90,15 @@ export let FilterNavigation = class FilterNavigation {
 	}
 
 	static gotSortButton (filterType) {
-		return filtersWithSortButton.includes(filterType);
+		if (this.isDisplayWordcloudActive(filterType)) {
+			return false;
+		} else {
+			return filtersWithSortButton.includes(filterType);
+		}
+	}
+
+	static isDisplayWordcloudActive (filterType) {
+		return this.gotDisplayModeButton(filterType) && Session.get('filterDisplayWordcloud');
 	}
 
 	static gotDefaultSortName (filterType) {
@@ -100,9 +110,12 @@ export let FilterNavigation = class FilterNavigation {
 		return filtersWithDefaultSortDateUpdated.includes(filterType);
 	}
 
-
 	static gotResetButton (filterType) {
 		return filtersWithResetButton.includes(filterType);
+	}
+
+	static gotDisplayModeButton (filterType) {
+		return filtersWithDisplayModeButton.includes(filterType);
 	}
 
 	static getRouteId () {

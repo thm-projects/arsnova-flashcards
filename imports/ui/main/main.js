@@ -6,6 +6,7 @@ import {Session} from "meteor/session";
 import {Notifications} from "../../api/notifications.js";
 import "./main.html";
 import "../welcome/welcome.js";
+import "../wordcloud/wordcloud.js";
 import "../impressum/impressum.js";
 import "../help/help.js";
 import "../cardsets/cardsets.js";

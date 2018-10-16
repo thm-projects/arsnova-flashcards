@@ -42,6 +42,15 @@
         "deactivate": ""
       }
     },
+    "backend": {
+      "settings": {
+        "title": "Show Pomodoro instead of word cloud on landing page",
+        "button": {
+          "enabled": "Enabled",
+          "disabled": "Disabled"
+        }
+      }
+    },
     "form": {
       "time": {
         "hour": "hour",
@@ -949,7 +958,8 @@
     "wordcloudEveryting": "All",
     "from": "From",
     "noResults": "No results for this filter setting",
-    "sort": "Sort: "
+    "sort": "Sort: ",
+    "displayMode": "List | Cloud"
   },
   "infinite-scroll": {
     "remainingCardsets": "__current__ of __total__ Cardsets",

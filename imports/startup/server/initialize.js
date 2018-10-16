@@ -314,6 +314,13 @@ Meteor.startup(function () {
 		});
 	}
 
+	if (!AdminSettings.findOne({name: "wordcloudPomodoroSettings"})) {
+		AdminSettings.insert({
+			name: "wordcloudPomodoroSettings",
+			enabled: true
+		});
+	}
+
 	if (!AdminSettings.findOne({name: "testNotifications"})) {
 		AdminSettings.insert({
 			name: "testNotifications",

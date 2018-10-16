@@ -1,20 +1,17 @@
 <template name="welcome">
-    {{> wordcloudModal}}
     {{> pomodoroTimerModal}}
     {{> welcomeTitle}}
-    <div id="tag-cloud-container" class="col-xs-12">
-        <canvas id="tag-cloud-canvas" class="needsclick"></canvas>
-        <div id="pomoA" class=""></div>
+    <div id="welcome-container">
+        {{> wordcloud}}
     </div>
     <div id="welcome-login" class="col-xs-12">
         {{{getLoginButtons}}}
         {{{getServerInventory}}}
     </div>
 
-    <div id="pomoB">
+    <div id="pomodoroTimerNormalContainer">
         {{> pomodoroTimer}}
     </div>
-    <div id="bigClockDiv" class=""></div>
 </template>
 
 <template name="welcomeTitle">
@@ -38,48 +35,6 @@
                     <a href="about" class="visible-xs btn btn-lg btn-raised btn-primary">{{_
                             "intro.learnMoreMobile" lastAppTitle=(getLastAppTitle)}}</a>
                 {{/if}}
-            </div>
-        </div>
-    </div>
-</template>
-
-<template name="wordcloudModal">
-    <div class="modal fade" id="wordcloudModal" role="dialog">
-        <div class="modal-dialog" aria-labelledby="wordcloudTitle">
-            <div class="modal-content hintContent">
-                <div class="modal-header">
-                    <h4 id="wordcloudTitle" class="modal-title">
-                        {{{getKind this.kind 0}}}
-                        {{{getShuffleLabel this.shuffled}}}
-                        {{{getBonusLabel this.learningActive}}}
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><br>
-                        {{this.name}}
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <div class="col-md-12 wordCloudDescription">
-                                <table class="table">
-                                    <tr>
-                                        <td>
-                                            {{#mathjax}}
-                                                {{this.description}}
-                                            {{/mathjax}}
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="col-md-12">
-                                <br>
-                                <table class="table">
-                                    {{> cardsetInfoBoxContentOne}}
-                                    {{> cardsetInfoBoxContentTwo}}
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

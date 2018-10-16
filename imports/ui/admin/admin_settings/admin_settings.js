@@ -3,8 +3,11 @@ import {AdminSettings} from "../../../api/adminSettings.js";
 import "./admin_settings.html";
 
 Template.admin_settings.events({
-	'click #enableMail': function () {
-		Meteor.call("updateMailSettings", true);
+	'click #enableWordcloudPomodoro': function () {
+		Meteor.call("updateWordcloudPomodoroSettings", true);
+	},
+	'click #disableWordcloudPomodoro': function () {
+		Meteor.call("updateWordcloudPomodoroSettings", false);
 	},
 	'click #disableMail': function () {
 		Meteor.call("updateMailSettings", false);
@@ -57,6 +60,9 @@ Template.admin_settings.events({
 });
 
 Template.admin_settings.helpers({
+	isWordcloudPomodoroEnabled: function () {
+		return AdminSettings.findOne({name: "wordcloudPomodoroSettings"}).enabled;
+	},
 	isMailEnabled: function () {
 		return AdminSettings.findOne({name: "mailSettings"}).enabled;
 	},
