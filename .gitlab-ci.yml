@@ -86,7 +86,7 @@ chimp:
     - nodejs
   allow_failure: true
   services:
-    - mongo:4
+    - mongo:latest
   dependencies:
     - build
   variables:
