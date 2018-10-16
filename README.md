@@ -26,7 +26,7 @@ Change `settings.json` or `settings_debug.json` according to your needs
 A simple update to the latest Meteor version is not always possible. Please do not update Meteor to the latest version and leave this to the owners of the repository.
 
 ## Migrate a local Meteor 1.6 .cards database to Meteor 1.8
-1. Make sure that you meet foolowing conditions:
+1. Make sure that you meet following requirements:
    - You've selected the staging branch `git checkout staging`
    - Your staging branch is up to date `git pull`
    - Meteor is running
