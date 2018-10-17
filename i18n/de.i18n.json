@@ -197,6 +197,14 @@
         }
       },
       "presentation": {
+        "end": {
+          "title": "Möchtest du den Timer stoppen?",
+          "text": "",
+          "button": {
+            "cancel": "Ich präsentiere weiter!",
+            "confirm": "Timer stoppen!"
+          }
+        },
         "break": {
           "start": {
             "title": "Pause?",
@@ -675,6 +683,14 @@
     "poolLicense": "Lizenz für ",
     "leaveEditors": "Bearbeitergruppe verlassen",
     "preview": "Kostenpflichtige Kartei (Testbetrieb)"
+  },
+  "demo": {
+    "help": {
+      "title": ".cards Demo-Hilfe",
+      "button": {
+        "confirm": "Fenster schließen"
+      }
+    }
   },
   "presentation": {
     "title": "Präsentation",

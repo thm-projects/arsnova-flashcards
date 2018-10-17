@@ -367,46 +367,54 @@ export let PomodoroTimer = class PomodoroTimer {
 		};
 		let count = (goalPoms - totalPoms);
 		if (pomRunning || breakRunning) {
-			if (Route.isPresentation()) {
-				this.setPresentationPomodoro(true);
-			} else {
-				/*if you still haven't reached your goal, you are encouraged with an update of how many pomodoros and minutes you have left to reach it.*/
-				if (totalPoms < goalPoms) {
-					if (Bonus.isInBonus(Router.current().params._id)) {
-						dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.title');
-						dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.text', {
-							missingPomodoros: count,
-							pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
-							pomodoroGoal: goalPoms,
-							remainingMinutes: count * pomLength
-						});
-						dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.button.confirm');
-						dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.button.cancel');
-					} else {
-						dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.quit.title');
-						dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.quit.text', {
-							missingPomodoros: count,
-							pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
-							pomodoroGoal: goalPoms,
-							remainingMinutes: count * pomLength
-						});
-						dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.quit.button.confirm');
-						dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.user.quit.button.cancel');
-					}
-					swal({
-						title: dialogue.title,
-						type: "warning",
-						html: dialogue.html,
-						showCancelButton: true,
-						confirmButtonText: dialogue.confirm,
-						cancelButtonText: dialogue.cancel,
-						allowOutsideClick: false
-					}).then((result) => {
-						/*If you give up before you complete your goal you get a failure sound, taken from a show me and my lady have been watching lately, and a failure box. Shame!*/
-						if (!result.value) {
+			/*if you still haven't reached your goal, you are encouraged with an update of how many pomodoros and minutes you have left to reach it.*/
+			if (totalPoms < goalPoms) {
+				if (Route.isPresentation()) {
+					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.presentation.end.title');
+					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.presentation.end.text', {
+						pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
+						pomodoroGoal: goalPoms
+					});
+					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.presentation.end.button.cancel');
+					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.presentation.end.button.confirm');
+				} else if (Bonus.isInBonus(Router.current().params._id)) {
+					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.title');
+					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.text', {
+						missingPomodoros: count,
+						pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
+						pomodoroGoal: goalPoms,
+						remainingMinutes: count * pomLength
+					});
+					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.button.confirm');
+					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.button.cancel');
+				} else {
+					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.quit.title');
+					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.quit.text', {
+						missingPomodoros: count,
+						pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
+						pomodoroGoal: goalPoms,
+						remainingMinutes: count * pomLength
+					});
+					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.quit.button.confirm');
+					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.user.quit.button.cancel');
+				}
+				swal({
+					title: dialogue.title,
+					type: "warning",
+					html: dialogue.html,
+					showCancelButton: true,
+					confirmButtonText: dialogue.confirm,
+					cancelButtonText: dialogue.cancel,
+					allowOutsideClick: false
+				}).then((result) => {
+					/*If you give up before you complete your goal you get a failure sound, taken from a show me and my lady have been watching lately, and a failure box. Shame!*/
+					if (!result.value) {
+						this.setPresentationPomodoro(true);
+						if (!Route.isPresentation()) {
 							if (isFailSoundEnabled) {
 								failSound.play();
 							}
+
 							if (Bonus.isInBonus(Router.current().params._id)) {
 								dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.confirm.title');
 								dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.confirm.text', {
@@ -437,39 +445,49 @@ export let PomodoroTimer = class PomodoroTimer {
 									});
 								}
 							});
-							PomodoroTimer.resetTimer();
 						}
-					});
-				} else {
-					/*So if you've completed your goal for the session you get this friendlier pop up congradulating you and lightly suggesting you keep working.*/
-					if (Bonus.isInBonus(Router.current().params._id)) {
-						dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.end.title');
-						dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.end.text', {
-							pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
-							pomodoroGoal: goalPoms
-						});
-						dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.bonus.end.button.cancel');
-						dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.end.button.confirm');
-					} else {
-						dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.end.title');
-						dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.end.text', {
-							pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
-							pomodoroGoal: goalPoms
-						});
-						dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.user.end.button.cancel');
-						dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.end.button.confirm');
 					}
-					swal({
-						title: dialogue.title,
-						type: "warning",
-						html: dialogue.html,
-						showCancelButton: true,
-						confirmButtonText: dialogue.confirm,
-						cancelButtonText: dialogue.cancel,
-						allowOutsideClick: false
-					}).then((result) => {
-						/*you succeeded so you get the success sound and a success message. good for you! */
-						if (result.value) {
+				});
+			} else {
+				/*So if you've completed your goal for the session you get this friendlier pop up congradulating you and lightly suggesting you keep working.*/
+				if (Route.isPresentation()) {
+					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.presentation.end.title');
+					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.presentation.end.text', {
+						pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
+						pomodoroGoal: goalPoms
+					});
+					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.presentation.end.button.cancel');
+					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.presentation.end.button.confirm');
+				} else if (Bonus.isInBonus(Router.current().params._id)) {
+					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.end.title');
+					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.end.text', {
+						pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
+						pomodoroGoal: goalPoms
+					});
+					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.bonus.end.button.cancel');
+					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.end.button.confirm');
+				} else {
+					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.end.title');
+					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.end.text', {
+						pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
+						pomodoroGoal: goalPoms
+					});
+					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.user.end.button.cancel');
+					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.end.button.confirm');
+				}
+				swal({
+					title: dialogue.title,
+					type: "warning",
+					html: dialogue.html,
+					showCancelButton: true,
+					confirmButtonText: dialogue.confirm,
+					cancelButtonText: dialogue.cancel,
+					allowOutsideClick: false
+				}).then((result) => {
+					/*you succeeded so you get the success sound and a success message. good for you! */
+					if (result.value) {
+						this.setPresentationPomodoro(true);
+						if (!Route.isPresentation()) {
 							if (isSuccessSoundEnabled) {
 								successSound.play();
 							}
@@ -505,10 +523,9 @@ export let PomodoroTimer = class PomodoroTimer {
 									});
 								}
 							});
-							PomodoroTimer.resetTimer();
 						}
-					});
-				}
+					}
+				});
 			}
 		} else {
 			if (!Bonus.isInBonus(Router.current().params._id)) {
@@ -544,6 +561,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		totalPoms = 0;
 		pomRunning = false;
 		breakRunning = false;
+		Session.set('presentationPomodoroActive', false);
 		$(".pomodoroInstructions").html(TAPi18n.__('pomodoro.timer.instructions.activate'));
 		$(".progressArc").attr("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
 		$(".pomArc").attr("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
@@ -658,6 +676,10 @@ export let PomodoroTimer = class PomodoroTimer {
 		breakSlider.val(breakLength);
 		this.updateBreakSlider();
 		this.updateSettingsBtn();
+		if (!Route.isCardset() && !Route.isPresentation()) {
+			$("#settings").css('display', 'none');
+			$("#goalDiv").css('display', 'block');
+		}
 	}
 
 	static initializeVariables () {
@@ -711,6 +733,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		pomRunning = true;
 		pomBeginAngle = 6 * curTime.getMinutes() + curTime.getSeconds() / 10;
 		$(".pomodoroInstructions").html(TAPi18n.__('pomodoro.timer.instructions.deactivate'));
+		Session.set('presentationPomodoroActive', true);
 		/* Method for WelcomePage */
 		this.showPomodoroFullsize();
 	}
@@ -767,7 +790,6 @@ export let PomodoroTimer = class PomodoroTimer {
 
 	static setPresentationPomodoro (forceOff = false) {
 		if (Session.get('presentationPomodoroActive') || forceOff) {
-			Session.set('presentationPomodoroActive', false);
 			this.resetTimer();
 		} else {
 			Session.set('presentationPomodoroActive', true);

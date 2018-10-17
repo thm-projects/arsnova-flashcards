@@ -9,7 +9,7 @@ import {PomodoroTimer} from "../../../../api/pomodoroTimer";
 
 Template.cardSidebarItemPomodoroButton.events({
 	"click .showPomodoroButton": function () {
-		PomodoroTimer.setPresentationPomodoro();
+		PomodoroTimer.clickClock();
 	}
 });
 
