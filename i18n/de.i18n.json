@@ -197,6 +197,14 @@
         }
       },
       "presentation": {
+        "end": {
+          "title": "Möchtest du den Timer stoppen?",
+          "text": "",
+          "button": {
+            "cancel": "Ich präsentiere weiter!",
+            "confirm": "Timer stoppen!"
+          }
+        },
         "break": {
           "start": {
             "title": "Pause?",
@@ -678,7 +686,7 @@
   },
   "demo": {
     "help": {
-      "title": ".cards Hilfe",
+      "title": ".cards Demo-Hilfe",
       "button": {
         "confirm": "Fenster schließen"
       }

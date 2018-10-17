@@ -197,6 +197,14 @@
         }
       },
       "presentation": {
+        "end": {
+          "title": "Stop the productivity train?",
+          "text": "Hey, you've reached your goal of <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>! You've built up some good momentum, are you sure you want to stop?",
+          "button": {
+            "cancel": "Continue!",
+            "confirm": "Stop."
+          }
+        },
         "break": {
           "start": {
             "title": "Good job!",
