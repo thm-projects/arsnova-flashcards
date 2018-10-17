@@ -19,6 +19,19 @@ export let MarkdeepEditor = class MarkdeepEditor {
 		}
 	}
 
+	static leftAlign () {
+		let alignType = Session.get('alignType');
+		let contentId = Session.get('activeCardContentId');
+		--contentId;
+		if (alignType[contentId] === 1) {
+			alignType[contentId] = 0;
+			Session.set('alignType', alignType);
+		} else {
+			alignType[contentId] = 1;
+			Session.set('alignType', alignType);
+		}
+	}
+
 	static changeMobilePreview (forceOff = false) {
 		if (Session.get('mobilePreview') === 1 || forceOff) {
 			Session.set('mobilePreview', 0);

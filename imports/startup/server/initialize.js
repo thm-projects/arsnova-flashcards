@@ -71,7 +71,8 @@ var initTestNotificationsCards = function () {
 			"hint": "Hint of NotificationsTest: Card Nr. 1",
 			"cardset_id": "NotificationsTestCardset",
 			"lecture": "",
-			"centerTextElement": [false, false, false, false],
+			"centerTextElement": [false, false, false, false, false, false],
+			"alignType": [1, 1, 1, 1, 1, 1],
 			"learningGoalLevel": 0,
 			"backgroundStyle": 0
 		},
@@ -83,7 +84,8 @@ var initTestNotificationsCards = function () {
 			"hint": "Hint of NotificationsTest: Card Nr. 2",
 			"cardset_id": "NotificationsTestCardset",
 			"lecture": "",
-			"centerTextElement": [false, false, false, false],
+			"centerTextElement": [false, false, false, false, false, false],
+			"alignType": [1, 1, 1, 1, 1, 1],
 			"learningGoalLevel": 1,
 			"backgroundStyle": 0
 		},
@@ -95,7 +97,8 @@ var initTestNotificationsCards = function () {
 			"hint": "Hint of NotificationsTest: Card Nr. 3",
 			"cardset_id": "NotificationsTestCardset",
 			"lecture": "",
-			"centerTextElement": [false, false, false, false],
+			"centerTextElement": [false, false, false, false, false, false],
+			"alignType": [1, 1, 1, 1, 1, 1],
 			"learningGoalLevel": 2,
 			"backgroundStyle": 0
 		},
@@ -107,7 +110,8 @@ var initTestNotificationsCards = function () {
 			"hint": "Hint of NotificationsTest: Card Nr. 4",
 			"cardset_id": "NotificationsTestCardset",
 			"lecture": "",
-			"centerTextElement": [false, false, false, false],
+			"centerTextElement": [false, false, false, false, false, false],
+			"alignType": [1, 1, 1, 1, 1, 1],
 			"learningGoalLevel": 3,
 			"backgroundStyle": 0
 		},
@@ -119,7 +123,8 @@ var initTestNotificationsCards = function () {
 			"hint": "Hint of NotificationsTest: Card Nr. 5",
 			"cardset_id": "NotificationsTestCardset",
 			"lecture": "",
-			"centerTextElement": [false, false, false, false],
+			"centerTextElement": [false, false, false, false, false, false],
+			"alignType": [1, 1, 1, 1, 1, 1],
 			"learningGoalLevel": 4,
 			"backgroundStyle": 0
 		}
@@ -345,9 +350,9 @@ Meteor.startup(function () {
 	for (let i = 0; i < cards.length; i++) {
 		let centerTextElement;
 		if (Cardsets.findOne({_id: cards[i].cardset_id}).cardType === 2) {
-			centerTextElement = [true, true, false, false];
+			centerTextElement = [true, true, false, false, false, false];
 		} else {
-			centerTextElement = [false, false, false, false];
+			centerTextElement = [false, false, false, false, false, false];
 		}
 		Cards.update({
 				_id: cards[i]._id
@@ -358,6 +363,19 @@ Meteor.startup(function () {
 				},
 				$unset: {
 					centerText: 1
+				}
+			}
+		);
+	}
+
+	cards = Cards.find({alignType: {$exists: false}}).fetch();
+	for (let i = 0; i < cards.length; i++) {
+		Cards.update({
+				_id: cards[i]._id
+			},
+			{
+				$set: {
+					alignType: [1, 1, 1, 1, 1, 1]
 				}
 			}
 		);
