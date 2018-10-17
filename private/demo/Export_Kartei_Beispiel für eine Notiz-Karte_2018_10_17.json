@@ -2,7 +2,7 @@
   "name": "P: Beispiel für eine Notiz-Karte",
   "description": "Diese Notiz dient als Abschlusskarte in der Demo-Kartei.",
   "date": "2018-07-05T04:33:28.173Z",
-  "dateUpdated": "2018-10-14T10:01:05.765Z",
+  "dateUpdated": "2018-10-17T05:33:55.070Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -48,7 +48,7 @@
   }
 }, {
   "subject": "Letzte Karte",
-  "front": " \n\n!!! Note Los geht's!\n   Falls du in der Vollansicht bist, drück die Escape-Taste <kbd>esc</kbd> oder klick auf den orangefarbenen Button am rechten Rand. Klick auf «Startseite». Du siehst, wie sich eine **bunte Wolke** aus Karteinamen aufbaut. Die Größe der Schrift entspricht der Kartenanzahl. Die Wolke ist nur ein kleiner Ausschnitt aus der Menge der auf .cards veröffentlichen Themen. **Klick auf ein Thema in der Wolke, um dessen Beschreibung zu sehen.** \n\nLog dich jetzt mit deinem **THM-Konto** ein und erstelle eigene Karteien für dein Studium. Lerne die Karten **regelmäßig**, so dass du das Wissen aus dem Studium sehr, sehr lange behältst. Schau dir dazu die Infos und Videos auf den Seiten [Lernen](https://informatik.cards/learning) und [FAQ](https://staging.arsnova.cards/faq) an!\n\n!!! Tip\n   Folge dem Slogan von .cards: **Organize. Learn. Memorize. Present.**",
+  "front": " \n\n!!! Note Los geht's!\n   Falls du in der Vollansicht bist, drück die Escape-Taste <kbd>esc</kbd> oder klick auf den Button am rechten Rand. Gehe dann auf «Startseite». <br><br>Log dich mit deinem **THM-Konto** ein und erstelle eigene Karteien für dein Studium. Lerne die Karten **regelmäßig**, so dass du das Wissen aus dem Studium sehr, sehr lange behältst. Schau dir dazu die Infos und Videos auf den Seiten [Lernen](https://informatik.cards/learning) und [FAQ](https://staging.arsnova.cards/faq) an!\n\n!!! Tip\n   Folge dem Slogan von .cards: **Organize. Learn. Memorize. Present.**",
   "centerTextElement": [
     false,
     false,
@@ -62,7 +62,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2018-10-14T10:01:05.742Z",
+  "dateUpdated": "2018-10-17T05:33:55.047Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",

@@ -76,7 +76,7 @@
         "work": " Lernen: <span class=\"pomodoroHighlight\">__minutes__</span> pro Pomodoro",
         "break": " Pausieren: <span class=\"pomodoroHighlight\">__minutes__</span> pro Pomodoro",
         "settings": {
-          "title": "Wieviel Zeit planst du fürs Lernen & Pausieren?"
+          "title": "Wieviel Zeit planst du fürs Lernen?"
         },
         "button": {
           "start": "Los geht's",
@@ -125,9 +125,9 @@
           },
           "confirm": {
             "title": "Großartig!",
-            "text": "Insgesamt hast du <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> geschafft. Das sind <span class=\"pomodoroHighlight\"> __pomodoroTotal__ Minuten</span> Lernzeit. <br><br>Du bist klasse! Komm bald zurück!",
+            "text": "Insgesamt <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>. Das sind <span class=\"pomodoroHighlight\"> __pomodoroTotal__ Minuten</span> Lernzeit. <br><br>Du bist klasse! Komm bald zurück!",
             "button": {
-              "confirm": "Okay!"
+              "confirm": "Danke!"
             }
           }
         },
@@ -141,7 +141,7 @@
           },
           "end": {
             "title": "Die Pause ist vorbei!",
-            "text": "Wir hoffen, dass du erfrischt aus der Pause zurück bist. Jetzt ist es an der Zeit, weiter zu lernen. <br><br>Bereit für die nächsten <span class=\"pomodoroHighlight\"> __pomodoroLength__ Minuten</span>?",
+            "text": "Bereit für die nächsten <span class=\"pomodoroHighlight\"> __pomodoroLength__ Minuten</span>?",
             "button": {
               "confirm": "Lass mich weitermachen!"
             }
