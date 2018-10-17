@@ -4,6 +4,8 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Route} from "../../../api/route";
 import "./sidebar.html";
+import "./item/arsnovaClick.js";
+import "./item/arsnovaApp.js";
 import "./item/cardList.js";
 import "./item/backToCardset.js";
 import "./item/dictionary.js";

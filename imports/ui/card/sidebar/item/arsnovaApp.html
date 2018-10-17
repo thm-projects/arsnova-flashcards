@@ -1,0 +1,16 @@
+<template name="cardSidebarItemArsnovaApp">
+        <img class="hidden-xs showArsnovaApp card-button cardHeaderItem"
+             data-type="cardNavigation"
+             src="/img/button/arsnova_app.png" title="{{_ "card.tooltip.arsnovaApp"}}">
+</template>
+
+<template name="arsnovaAppModal">
+    <div class="modal fade" id="arsnovaAppModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            {{#if isArsnovaAppModalActive}}
+                <iframe src="https://arsnova.app">
+                </iframe>
+            {{/if}}
+        </div>
+    </div>
+</template>

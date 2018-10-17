@@ -2606,5 +2606,21 @@ $themes: (
         color: $wordcloud_tooltip_divider !important;
       }
     }
+
+    .showArsnovaApp.pressed {
+      background-color: #80BA24 !important;
+    }
+
+    .showArsnovaClick.pressed {
+      background-color: #637B89 !important;
+    }
+
+    .showArsnovaApp {
+      background-color: $white !important;
+    }
+
+    .showArsnovaClick {
+      background-color: $white !important;
+    }
   }
 }
