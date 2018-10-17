@@ -148,6 +148,10 @@ var CardsSchema = new SimpleSchema({
 	centerTextElement: {
 		type: [Boolean]
 	},
+	alignType: {
+		type: [Number],
+		optional: true
+	},
 	date: {
 		type: Date,
 		optional: true
@@ -184,7 +188,7 @@ var CardsSchema = new SimpleSchema({
 Cards.attachSchema(CardsSchema);
 
 Meteor.methods({
-	addCard: function (cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, date, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {
+	addCard: function (cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {
 		check(cardset_id, String);
 		check(subject, String);
 		check(content1, String);
@@ -194,6 +198,7 @@ Meteor.methods({
 		check(content5, String);
 		check(content6, String);
 		check(centerTextElement, [Boolean]);
+		check(alignType, [Number]);
 		check(date, Date);
 		check(learningGoalLevel, Number);
 		check(backgroundStyle, Number);
@@ -222,6 +227,7 @@ Meteor.methods({
 				bottom: content6,
 				cardset_id: cardset_id,
 				centerTextElement: centerTextElement,
+				alignType: alignType,
 				date: date,
 				learningGoalLevel: learningGoalLevel,
 				backgroundStyle: backgroundStyle,
@@ -288,7 +294,7 @@ Meteor.methods({
 				if (card.learningUnit !== undefined) {
 					learningUnit = card.learningUnit;
 				}
-				Meteor.call("addCard", targetCardset_id, card.subject, content1, content2, content3, content4, content5, content6, "0", card.centerTextElement, card.date, card.learningGoalLevel, card.backgroundStyle, learningIndex, learningUnit);
+				Meteor.call("addCard", targetCardset_id, card.subject, content1, content2, content3, content4, content5, content6, "0", card.centerTextElement, card.alignType, card.date, card.learningGoalLevel, card.backgroundStyle, learningIndex, learningUnit);
 				return true;
 			}
 		} else {
@@ -338,7 +344,7 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 	},
-	updateCard: function (card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {
+	updateCard: function (card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement,alignType, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {
 		check(card_id, String);
 		check(subject, String);
 		check(content1, String);
@@ -348,6 +354,7 @@ Meteor.methods({
 		check(content5, String);
 		check(content6, String);
 		check(centerTextElement, [Boolean]);
+		check(alignType, [Number]);
 		check(learningGoalLevel, Number);
 		check(backgroundStyle, Number);
 		check(learningIndex, String);
@@ -374,6 +381,7 @@ Meteor.methods({
 					top: content5,
 					bottom: content6,
 					centerTextElement: centerTextElement,
+					alignType: alignType,
 					learningGoalLevel: learningGoalLevel,
 					backgroundStyle: backgroundStyle,
 					learningIndex: learningIndex,

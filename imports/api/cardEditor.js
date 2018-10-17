@@ -48,6 +48,7 @@ export let CardEditor = class CardEditor {
 		Session.set('content6', card.bottom);
 		Session.set('cardType', cardset.cardType);
 		Session.set('centerTextElement', card.centerTextElement);
+		Session.set('alignType', card.alignType);
 		Session.set('difficultyColor', cardset.difficulty);
 		Session.set('learningGoalLevel', card.learningGoalLevel);
 		Session.set('backgroundStyle', card.backgroundStyle);
@@ -130,6 +131,7 @@ export let CardEditor = class CardEditor {
 		let content6 = Session.get('content6');
 		let cardType = Session.get('cardType');
 		let centerTextElement = Session.get('centerTextElement');
+		let alignType = Session.get('alignType');
 		let date = Session.get('cardDate');
 		let learningGoalLevel = Session.get('learningGoalLevel');
 		let backgroundStyle = Session.get('backgroundStyle');
@@ -183,7 +185,7 @@ export let CardEditor = class CardEditor {
 		let editorsValidLength = (content1.length <= contentMaxLength && content2.length <= contentMaxLength && content3.length <= contentMaxLength && $('#subjectEditor').val().length <= subjectMaxLength && content4.length <= contentMaxLength && content5.length <= contentMaxLength && content6.length <= contentMaxLength);
 		if (gotSubject && editorsValidLength) {
 			if (ActiveRoute.name('newCard')) {
-				Meteor.call("addCard", Router.current().params._id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, date, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit, function (error, result) {
+				Meteor.call("addCard", Router.current().params._id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit, function (error, result) {
 					if (result) {
 						BertAlertVisuals.displayBertAlert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 						Session.set('activeCard', result);
@@ -201,7 +203,7 @@ export let CardEditor = class CardEditor {
 					}
 				});
 			} else {
-				Meteor.call("updateCard", card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit);
+				Meteor.call("updateCard", card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit);
 				BertAlertVisuals.displayBertAlert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 				Session.set('activeCard', Router.current().params.card_id);
 				if (returnToCardset) {

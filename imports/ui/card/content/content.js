@@ -141,6 +141,9 @@ Template.cardContentActive.helpers({
 	isCentered: function () {
 		return CardVisuals.isCentered(Session.get('activeCardContentId'), this.centerTextElement);
 	},
+	isLeftAlign: function () {
+		return CardVisuals.isLeftAlign(Session.get('activeCardContentId'), this.alignType);
+	},
 	gotContent: function () {
 		if (!Route.isCardset()) {
 			return true;
@@ -198,6 +201,10 @@ Template.cardContentInactive.helpers({
 	isCentered: function () {
 		let cubeSides = CardType.getCardTypeCubeSides(this.cardType);
 		return CardVisuals.isCentered(cubeSides[0].contentId, this.centerTextElement);
+	},
+	isLeftAlign: function () {
+		let cubeSides = CardType.getCardTypeCubeSides(this.cardType);
+		return CardVisuals.isLeftAlign(cubeSides[0].contentId, this.alignType);
 	},
 	gotContent: function () {
 		if (!Route.isCardset()) {

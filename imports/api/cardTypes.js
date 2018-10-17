@@ -468,6 +468,7 @@ export let CardType = class CardType {
 
 	static setDefaultCenteredText (cardType) {
 		let centerTextElement = [false, false, false, false, false, false];
+		let alignType = [1, 1, 1, 1, 1, 1];
 		let cubeSides = this.getCardTypeCubeSides(cardType);
 		for (let i = 0; i < centerTextElement.length; i++) {
 			for (let l = 0; l < cubeSides.length; l++) {
@@ -477,6 +478,7 @@ export let CardType = class CardType {
 			}
 		}
 		Session.set('centerTextElement', centerTextElement);
+		Session.set('alignType', alignType);
 	}
 
 	static getSubjectPlaceholderText (cardType = -1) {
