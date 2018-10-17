@@ -699,6 +699,14 @@
     "leaveEditors": "Leave Editor Group",
     "preview": "Chargeable set of cards"
   },
+  "demo": {
+    "help": {
+      "title": "Demo-Help",
+      "button": {
+        "confirm": "Continue"
+      }
+    }
+  },
   "presentation": {
     "title": "Presentation",
     "create": "Start a presentation",
@@ -708,7 +716,7 @@
       "backDemo": "Back to the demo cardset"
     },
     "help": {
-      "title": "Presentation-Hilfe",
+      "title": "Presentation-Help",
       "button": {
         "confirm": "Continue"
       }

@@ -676,6 +676,14 @@
     "leaveEditors": "Bearbeitergruppe verlassen",
     "preview": "Kostenpflichtige Kartei (Testbetrieb)"
   },
+  "demo": {
+    "help": {
+      "title": ".cards Hilfe",
+      "button": {
+        "confirm": "Fenster schließen"
+      }
+    }
+  },
   "presentation": {
     "title": "Präsentation",
     "create": "Präsentation starten",

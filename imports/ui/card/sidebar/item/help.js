@@ -16,6 +16,8 @@ Template.cardSidebarItemHelp.events({
 			$('#leitnerHelpModal').modal('show');
 		} else if (Route.isMemo()) {
 			$('#wozniakHelpModal').modal('show');
+		} else if (Route.isDemo()) {
+			$('#demoHelpModal').modal('show');
 		}
 	}
 });

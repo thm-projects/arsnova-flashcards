@@ -1,0 +1,24 @@
+<template name="demoHelpModal">
+    <div class="modal fade" id="demoHelpModal" tabindex="-1" role="dialog"
+         aria-labelledby="presentationHelpTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons">
+                <div class="modal-header">
+                    <h4 id="demoHelp" class="modal-title">{{_ "demo.help.title"}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    {{#mathjax}}
+                        {{#if isActiveLanguage 'de'}}
+                            {{> demoHelpModalContentGerman}}
+                        {{else}}
+                            {{> demoHelpModalContentEnglish}}
+                        {{/if}}
+                    {{/mathjax}}
+                    <button class="btn btn-raised btn-success"
+                            id="demoHelpConfirm">{{_ "demo.help.button.confirm"}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
