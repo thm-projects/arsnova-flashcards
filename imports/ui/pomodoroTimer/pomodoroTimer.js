@@ -26,7 +26,7 @@ Template.pomodoroTimer.onCreated(function () {
 });
 
 Template.pomodoroTimer.onRendered(function () {
-	if (Route.isPresentation() || Route.isBox() || Route.isMemo()) {
+	if (Route.isPresentation() || Route.isBox() || Route.isMemo() || Route.isDemo()) {
 		CardVisuals.resizeFlashcard();
 	}
 	$('.pomodoroTimer').unbind().on('click', function () {
@@ -78,13 +78,10 @@ Template.pomodoroTimerModal.events({
 	},
 	'click #startPom': function () {
 		PomodoroTimer.start();
-		if (Route.isPresentation()) {
-			Session.set('presentationPomodoroActive', true);
-		}
 	},
 	'click #cancelPomodoroBtn': function () {
 		$('#pomodoroTimerModal').modal('hide');
-		PomodoroTimer.setPresentationPomodoro(true);
+		Session.set('presentationPomodoroActive', false);
 	}
 });
 

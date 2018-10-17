@@ -1,6 +1,7 @@
 //------------------------ IMPORTS
 import {Template} from "meteor/templating";
 import "./impressum.html";
+import "../card/modal/demoHelp.js";
 import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
 import {Route} from "../../api/route.js";
