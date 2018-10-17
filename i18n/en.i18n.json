@@ -1190,7 +1190,8 @@
       "showHelp": "Help",
       "markdeepEditor": {
         "help": "",
-        "center": " ",
+        "center": "",
+        "alignLeft": "",
         "mobilePreview": "",
         "rotateMobilePreview": "",
         "dictionaryBeolingus": "",

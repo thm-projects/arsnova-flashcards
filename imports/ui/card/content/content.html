@@ -54,7 +54,7 @@
 
 <template name="cardContentActive">
                 <span class="{{#if gotContent}}{{#if
-                        isCentered}}center-align{{/if}}{{else}}placeholder{{/if}}">
+                        isCentered}}center-align {{#if isLeftAlign}}left-text-align{{/if}}{{/if}}{{else}}placeholder{{/if}}">
                     {{#if gotContent}}
                         {{#mathjax}}{{getContent}}{{/mathjax}}
                     {{else}}
@@ -65,7 +65,7 @@
 
 <template name="cardContentInactive">
                 <span class="{{#if gotContent}}{{#if
-                        isCentered}}center-align{{/if}}{{else}}placeholder{{/if}}">
+                        isCentered}}center-align {{#if isLeftAlign}}left-text-align{{/if}}{{/if}}{{else}}placeholder{{/if}}">
                     {{#if gotContent}}
                         {{#mathjax}}{{getContent}}{{/mathjax}}
                     {{else}}

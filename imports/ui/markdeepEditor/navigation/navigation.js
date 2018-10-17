@@ -22,6 +22,9 @@ Template.markdeepNavigation.events({
 	'click .markdeep-center': function () {
 		MarkdeepEditor.center();
 	},
+	'click .fa-align-left': function () {
+		MarkdeepEditor.leftAlign();
+	},
 	'click .markdeep-background-style': function () {
 		MarkdeepEditor.changeBackgroundStyle();
 	},
@@ -39,6 +42,9 @@ Template.markdeepNavigation.helpers({
 	},
 	isCenterTextActive: function () {
 		return CardVisuals.isCentered(Session.get('activeCardContentId'), true);
+	},
+	isCenterTextAlignLeft: function () {
+		return CardVisuals.isLeftAlign(Session.get('activeCardContentId'), true);
 	},
 	isAlternativeBackgroundStyle: function () {
 		return Session.get('backgroundStyle');

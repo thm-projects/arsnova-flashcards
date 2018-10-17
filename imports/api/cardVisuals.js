@@ -181,6 +181,18 @@ export let CardVisuals = class CardVisuals {
 		}
 	}
 
+	static isLeftAlign (contentId, alignType) {
+		if (alignType === undefined) {
+			return false;
+		}
+		--contentId;
+		if (Route.isEditMode()) {
+			return Session.get('alignType')[contentId] === 0;
+		} else {
+			return alignType[contentId] === 0;
+		}
+	}
+
 	static getCardSideColor (difficulty, cardType, backgroundStyle, activeCard) {
 		let box = "box-";
 		let style;
