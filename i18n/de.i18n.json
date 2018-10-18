@@ -125,7 +125,7 @@
           },
           "confirm": {
             "title": "Großartig!",
-            "text": "Insgesamt <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>. Das sind <span class=\"pomodoroHighlight\"> __pomodoroTotal__ Minuten</span> Lernzeit. <br><br>Du bist klasse! Komm bald zurück!",
+            "text": "Insgesamt <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>. <br>Das sind <span class=\"pomodoroHighlight\"> __pomodoroTotal__ Minuten</span> Lernzeit. <br><br>Du bist klasse! Komm bald zurück!",
             "button": {
               "confirm": "Danke!"
             }
@@ -1205,7 +1205,7 @@
       "zoomTextReset": "Zurücksetzen",
       "pomodoro": "Wechsel zwischen Minutensprunguhr | Pomodoro-Timer",
       "showHelp": "Hilfe",
-      "arsnovaApp": "arsnova.app",
+      "arsnovaApp": "arsnova.thm.de",
       "arsnovaClick": "arsnova.click",
       "markdeepEditor": {
         "help": "Zeige alle Formatierungsoptionen von Markdeep",
