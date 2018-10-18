@@ -686,9 +686,9 @@
   },
   "demo": {
     "help": {
-      "title": ".cards Demo-Hilfe",
+      "title": "Willkommen auf der Lernkartei-Plattform deiner Hochschule!",
       "button": {
-        "confirm": "Fenster schließen"
+        "confirm": "Okay"
       }
     }
   },
@@ -1204,9 +1204,9 @@
       "zoomText": "Ändere die Schriftgröße der Karte",
       "zoomTextReset": "Zurücksetzen",
       "pomodoro": "Wechsel zwischen Minutensprunguhr | Pomodoro-Timer",
-      "showHelp": "Hilfe",
-      "arsnovaApp": "arsnova.thm.de",
-      "arsnovaClick": "arsnova.click",
+      "showHelp": "",
+      "arsnovaApp": "Befrage dein Publikum mit unserem Audience-Response-System ARSnova auf arsnova.thm.de",
+      "arsnovaClick": "Befrage dein Publikum mit arsnova.click, der spielbasierten Variante von ARSnova",
       "markdeepEditor": {
         "help": "Zeige alle Formatierungsoptionen von Markdeep",
         "center": "Zentriere den Karteninhalt vertikal",
