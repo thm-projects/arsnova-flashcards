@@ -31,6 +31,9 @@ Template.cardSidebarLeftNavigation.helpers({
 	},
 	getPreviousCardHotkey: function () {
 		return TAPi18n.__('card.tooltip.previousCardHotkey');
+	},
+	isCardNavigationVisible: function () {
+		return CardNavigation.isVisible();
 	}
 });
 
@@ -61,5 +64,8 @@ Template.cardSidebarRightNavigation.helpers({
 	},
 	getNextCardHotkey: function () {
 		return TAPi18n.__('card.tooltip.nextCardHotkey');
+	},
+	isCardNavigationVisible: function () {
+		return CardNavigation.isVisible();
 	}
 });

@@ -2,6 +2,7 @@ import "./delete.html";
 import {Route} from "../../../../api/route";
 import {Cardsets} from "../../../../api/cardsets";
 import {Template} from "meteor/templating";
+import {CardNavigation} from "../../../../api/cardNavigation";
 
 /*
  * ############################################################################
@@ -25,6 +26,9 @@ Template.cardSidebarItemDelete.helpers({
 	},
 	getCardsetId: function () {
 		return Router.current().params._id;
+	},
+	isCardNavigationVisible: function () {
+		return CardNavigation.isVisible();
 	}
 });
 

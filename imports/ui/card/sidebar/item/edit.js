@@ -2,6 +2,7 @@ import {Session} from "meteor/session";
 import "./edit.html";
 import {Route} from "../../../../api/route";
 import {Cardsets} from "../../../../api/cardsets";
+import {CardNavigation} from "../../../../api/cardNavigation";
 /*
  * ############################################################################
  * cardSidebarItemEdit
@@ -18,6 +19,9 @@ Template.cardSidebarItemEdit.helpers({
 	},
 	getCardsetId: function () {
 		return Router.current().params._id;
+	},
+	isCardNavigationVisible: function () {
+		return CardNavigation.isVisible();
 	}
 });
 
