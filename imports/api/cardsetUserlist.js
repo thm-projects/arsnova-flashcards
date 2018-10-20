@@ -3,6 +3,7 @@ import {Leitner, Workload} from "./learned.js";
 import {Cardsets} from "./cardsets.js";
 import {check} from "meteor/check";
 import {getAuthorName} from "./userdata";
+import {Profile} from "./profile";
 
 function getLearningStatus(learningEnd) {
 	if (learningEnd.getTime() > new Date().getTime()) {
@@ -70,7 +71,7 @@ function getLearners(data, cardset_id) {
 			});
 		}
 
-		if (user[0].profile.birthname === undefined && user[0].profile.name !== undefined) {
+		if (user[0].profile.name !== undefined && !Profile.isCompleted(user[0])) {
 			user[0].profile.birthname = user[0].profile.name;
 			user[0].profile.givenname = TAPi18n.__('leitnerProgress.user.missingName', {}, "de");
 			user[0].email = "";

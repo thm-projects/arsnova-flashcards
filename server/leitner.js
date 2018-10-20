@@ -8,6 +8,7 @@ import {WebNotifier} from "./sendwebpush.js";
 import {check} from "meteor/check";
 import {CardType} from "../imports/api/cardTypes";
 import {Bonus} from "../imports/api/bonus";
+import {Profile} from "../imports/api/profile";
 
 /** Function returns the amount of cards inside a box that are valid to learn
  *  @param {string} cardset_id - The id of the cardset with active learners
@@ -363,7 +364,7 @@ Meteor.methods({
 		check(cardset_id, String);
 		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1}});
 		if (cardset !== undefined) {
-			if (Bonus.canJoinBonus(cardset._id)) {
+			if (Bonus.canJoinBonus(cardset._id) && Profile.isCompleted(Meteor.user())) {
 				Meteor.call('initializeWorkloadData', cardset._id, Meteor.userId());
 				Meteor.call('deleteLeitner', cardset._id);
 				Meteor.call('deleteWozniak', cardset._id);

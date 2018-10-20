@@ -6,7 +6,11 @@
             {{> access_denied_content_only}}
         {{else}}
             {{#if hasPermission}}
-                {{> learnAlgorithms}}
+                {{#if isInBonusAndProfileIncomplete}}
+                        {{> access_denied_profile_incomplete_content_only}}
+                    {{else}}
+                        {{> learnAlgorithms}}
+                    {{/if}}
             {{else}}
                 <h4>{{_ "permission"}}</h4>
             {{/if}}

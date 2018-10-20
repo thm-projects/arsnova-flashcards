@@ -15,6 +15,8 @@ import {getAuthorName} from "../../api/userdata";
 import {Route} from "../../api/route";
 import {CardVisuals} from "../../api/cardVisuals";
 import {UserPermissions} from "../../api/permissions";
+import {Bonus} from "../../api/bonus";
+import {Profile} from "../../api/profile";
 Meteor.subscribe("collegesCourses");
 
 Template.registerHelper('isSelectingCardsetToLearn', function () {
@@ -33,6 +35,10 @@ Template.registerHelper('extendContext', function (key, value) {
 	let result = _.clone(this);
 	result[key] = value;
 	return result;
+});
+
+Template.registerHelper('isInBonusAndProfileIncomplete', function () {
+	return Bonus.isInBonus(Router.current().params._id) && !Profile.isCompleted();
 });
 
 // Check if user has permission to look at a cardset

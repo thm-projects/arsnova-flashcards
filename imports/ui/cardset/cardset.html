@@ -40,6 +40,7 @@
         {{> chooseFlashcards}}
         {{> joinBonusForm}}
         {{> leaveBonusForm}}
+        {{> profileIncompleteModal}}
     {{/unless}}
     {{#if hasCardsetPermission}}
         {{#unless learningActiveAndEditor}}
@@ -1444,7 +1445,7 @@
                     <tr>
                         <td colspan="2">
                             <a class="btn btn-raised btn-block btn-success" data-toggle="modal"
-                               data-target="#joinBonusModal">{{_
+                               data-target="{{#if isProfileCompleted}}#joinBonusModal{{else}}#profileIncompleteModal{{/if}}">{{_
                                     "bonus.info.button.join"}}</a>
                         </td>
                     </tr>
