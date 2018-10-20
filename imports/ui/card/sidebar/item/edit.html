@@ -1,8 +1,13 @@
 <template name="cardSidebarItemEdit">
     {{#unless isShuffledCardset}}
         {{#if isCardEditor getCardsetId}}
-            <span class="editCard glyphicon glyphicon-pencil card-button cardHeaderItem"
-                  data-type="cardNavigation" title="{{_ "card.tooltip.edit"}}"></span>
+            {{#if isCardNavigationVisible}}
+                <button class="editCard glyphicon glyphicon-pencil card-button cardHeaderItem"
+                      data-type="cardNavigation" title="{{_ "card.tooltip.edit"}}"></button>
+                {{else}}
+                <button class="editCard glyphicon glyphicon-pencil card-button cardHeaderItem"
+                      data-type="cardNavigation" title="{{_ "card.tooltip.edit"}}" disabled></button>
+                {{/if}}
         {{/if}}
     {{/unless}}
 </template>

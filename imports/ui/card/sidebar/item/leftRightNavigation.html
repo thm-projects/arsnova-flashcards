@@ -1,9 +1,19 @@
 <template name="cardSidebarLeftNavigation">
     {{#if gotMultipleCards}}
         {{#unless isFirstCardActive}}
-            <span class="fa fa-arrow-left card-button cardHeaderItem scrollLeft"
-                  data-type="cardNavigation"
-                  title="{{#unless isCardset}}{{_ "card.tooltip.previousCard" hotkey=getPreviousCardHotkey}}{{else}}{{_ "card.tooltip.previousCard" hotkey=""}}{{/unless}}"></span>
+            {{#if isCardNavigationVisible}}
+                <button class="fa fa-arrow-left card-button cardHeaderItem scrollLeft"
+                        data-type="cardNavigation"
+                        title="{{#unless isCardset}}{{_ "card.tooltip.previousCard"
+                                                        hotkey=getPreviousCardHotkey}}{{else}}{{_
+                                "card.tooltip.previousCard" hotkey=""}}{{/unless}}"></button>
+            {{else}}
+                <button class="fa fa-arrow-left card-button cardHeaderItem scrollLeft"
+                        data-type="cardNavigation"
+                        title="{{#unless isCardset}}{{_ "card.tooltip.previousCard"
+                                                        hotkey=getPreviousCardHotkey}}{{else}}{{_
+                                "card.tooltip.previousCard" hotkey=""}}{{/unless}}" disabled></button>
+            {{/if}}
         {{/unless}}
     {{/if}}
 </template>
@@ -11,9 +21,17 @@
 <template name="cardSidebarRightNavigation">
     {{#if gotMultipleCards}}
         {{#unless isLastCardActive}}
-            <span class="fa fa-arrow-right card-button cardHeaderItem scrollRight"
-                  data-type="cardNavigation"
-                  title="{{#unless isCardset}}{{_ "card.tooltip.nextCard" hotkey=getNextCardHotkey}}{{else}}{{_ "card.tooltip.nextCard" hotkey=""}}{{/unless}}"></span>
+            {{#if isCardNavigationVisible}}
+                <button class="fa fa-arrow-right card-button cardHeaderItem scrollRight"
+                        data-type="cardNavigation"
+                        title="{{#unless isCardset}}{{_ "card.tooltip.nextCard" hotkey=getNextCardHotkey}}{{else}}{{_
+                                "card.tooltip.nextCard" hotkey=""}}{{/unless}}"></button>
+            {{else}}
+                <button class="fa fa-arrow-right card-button cardHeaderItem scrollRight"
+                        data-type="cardNavigation"
+                        title="{{#unless isCardset}}{{_ "card.tooltip.nextCard" hotkey=getNextCardHotkey}}{{else}}{{_
+                                "card.tooltip.nextCard" hotkey=""}}{{/unless}}" disabled></button>
+            {{/if}}
         {{/unless}}
     {{/if}}
 </template>
