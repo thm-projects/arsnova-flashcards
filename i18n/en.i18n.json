@@ -1335,7 +1335,10 @@
     "boxNotLearnedShort": "untrained",
     "index": "Index",
     "indexDefault": "All cardsets",
-    "percentage": "Percentage"
+    "percentage": "Percentage",
+    "user": {
+      "missingName": "Incomplete"
+    }
   },
   "permission": "Permission denied",
   "nocards": "No cards available",
