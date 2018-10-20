@@ -70,18 +70,25 @@ function getLearners(data, cardset_id) {
 			});
 		}
 
-		learningDataArray.push({
-			user_id: user[0]._id,
-			birthname: user[0].profile.birthname,
-			givenname: user[0].profile.givenname,
-			email: user[0].email,
-			box1: Leitner.find(filter[0]).count(),
-			box2: Leitner.find(filter[1]).count(),
-			box3: Leitner.find(filter[2]).count(),
-			box4: Leitner.find(filter[3]).count(),
-			box5: Leitner.find(filter[4]).count(),
-			box6: Leitner.find(filter[5]).count()
-		});
+		if (user[0].profile.birthname === undefined && user[0].profile.name !== undefined) {
+			user[0].profile.birthname = user[0].profile.name;
+			user[0].profile.givenname = TAPi18n.__('leitnerProgress.user.missingName', {}, "de");
+			user[0].email = "";
+		}
+		if (user[0].profile.name !== undefined) {
+			learningDataArray.push({
+				user_id: user[0]._id,
+				birthname: user[0].profile.birthname,
+				givenname: user[0].profile.givenname,
+				email: user[0].email,
+				box1: Leitner.find(filter[0]).count(),
+				box2: Leitner.find(filter[1]).count(),
+				box3: Leitner.find(filter[2]).count(),
+				box4: Leitner.find(filter[3]).count(),
+				box5: Leitner.find(filter[4]).count(),
+				box6: Leitner.find(filter[5]).count()
+			});
+		}
 	}
 	return sortByBirthname(learningDataArray);
 }

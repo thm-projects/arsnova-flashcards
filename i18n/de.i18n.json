@@ -1293,7 +1293,10 @@
     "boxNotLearnedShort": "[neu | vergessen]",
     "index": "Ausgewählte Kartei:",
     "indexDefault": "Alle Karteien",
-    "percentage": "Prozent"
+    "percentage": "Prozent",
+    "user": {
+      "missingName": "Unvollständig"
+    }
   },
   "permission": "Kein Zugang",
   "nocards": "Keine Karten vorhanden",
