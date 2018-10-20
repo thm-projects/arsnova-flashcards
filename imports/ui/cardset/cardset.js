@@ -23,6 +23,7 @@ import {CardsetVisuals} from "../../api/cardsetVisuals";
 import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
 import {BertAlertVisuals} from "../../api/bertAlertVisuals";
 import {Bonus} from "../../api/bonus";
+import {Profile} from "../../api/profile";
 
 Meteor.subscribe("cardsets");
 Meteor.subscribe("paid");
@@ -1604,6 +1605,9 @@ Template.learningPhaseInfoBox.helpers({
 	},
 	isInBonus: function () {
 		return Bonus.isInBonus(Session.get('activeCardset')._id);
+	},
+	isProfileCompleted: function () {
+		return Profile.isCompleted();
 	}
 });
 
