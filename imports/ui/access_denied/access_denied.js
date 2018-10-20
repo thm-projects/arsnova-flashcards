@@ -145,6 +145,6 @@ Template.access_denied_profile_incomplete_content_only.events({
 		});
 	},
 	'click #completeProfileCancel': function () {
-		Router.go('home');
+		Router.go('learn');
 	}
 });

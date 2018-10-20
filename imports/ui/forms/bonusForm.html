@@ -165,3 +165,25 @@
         </div>
     </div>
 </template>
+
+<template name="profileIncompleteModal">
+    <div class="modal fade" id="profileIncompleteModal" tabindex="-1" role="dialog" aria-labelledby="joinBonusTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons xs-12">
+                <div class="modal-header">
+                    <h4 id="completeProfileTitle" class="modal-title">{{_ "sweetAlert.completeProfile.title"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{_ "sweetAlert.completeProfile.text"}}</p>
+                    <br>
+                    <hr>
+                    <button id="completeProfileGoToProfile" class="btn btn-block btn-raised btn-default btn-success">{{_ "sweetAlert.completeProfile.button.confirm"}}</button>
+                    <button id="completeProfileCancel" class="btn btn-default btn-block btn-raised"
+                            data-dismiss="modal">{{_ "sweetAlert.completeProfile.button.cancel"}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
