@@ -84,10 +84,10 @@
         }
       },
       "bonus": {
-        "count": "Set the bonus to <span class=\"pomodoroHighlight\">__count__</span> <a href=\"__link__\" data-toggle=\"tooltip\" title=\"__tooltip__\" target=\"_blank\"> <b>__pomodoro__</b>🍅</a>!",
-        "totalTime": "Set the pomodoro Session to __time__ for getting stuff done!",
-        "work": "Work during Bonus-Pomodoro: <span class=\"pomodoroHighlight\">__minutes__</span>",
-        "break": "Break during Bonus-Pomodoro: <span class=\"pomodoroHighlight\">__minutes__</span>"
+        "count": "Vorgesehene tägliche Lernzeit:  <span class=\"pomodoroHighlight\">__count__</span> <a href=\"__link__\" data-toggle=\"tooltip\" title=\"__tooltip__\" target=\"_blank\"> <b>__pomodoro__</b> 🍅</a>",
+        "totalTime": "Das sind insgesamt __time__ Lernzeit einschließlich der Pausen.",
+        "work": "Vorgesehene Lernzeit pro Pomodoro: <span class=\"pomodoroHighlight\">__minutes__</span>",
+        "break": "Vorgesehene Pausenlänge: <span class=\"pomodoroHighlight\">__minutes__</span>"
       },
       "presentation": {
         "title": "Wie lange willst du vortragen?",
@@ -150,59 +150,59 @@
       },
       "bonus": {
         "quit": {
-          "title": "Not so fast!",
-          "text": "You are still <span class=\"pomodoroHighlight\">__missingPomodoros__ __pomodoro__</span> short of your goal of <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>! <br><br>Come on, you can do <span class=\"pomodoroHighlight\">__remainingMinutes__ more minutes</span> of work!",
+          "title": "Gib nicht so schnell auf! <br>Du riskierst deinen Bonus.",
+          "text": "Du hast noch <span class=\"pomodoroHighlight\">__missingPomodoros__ __pomodoro__</span> vor dir. <br>Dein Ziel: <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> <br><br>Komm schon, du schaffst die verbleibenden <span class=\"pomodoroHighlight\">__remainingMinutes__ Minuten</span> Lernzeit!",
           "button": {
-            "cancel": "Stop.",
-            "confirm": "Continue!"
+            "cancel": "Stopp!",
+            "confirm": "Ich mache weiter!"
           },
           "confirm": {
-            "title": "You didn't make it.",
-            "text": "You couldn't complete the <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> you planned on doing. Sometimes life gets in the way, we get it! See you back here later!",
+            "title": "Du hast es leider nicht geschafft.",
+            "text": "Du solltest <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> lernen. <br><br>Manchmal kommt halt was dazwischen. Wir verstehen das. Komm bald wieder zum Lernen zurück!",
             "button": {
-              "confirm": "OK!"
+              "confirm": "Okay!"
             }
           }
         },
         "end": {
-          "title": "Stop the productivity train?",
-          "text": "Hey, you've reached your goal of <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>! You've built up some good momentum, are you sure you want to stop?",
+          "title": "Willst du deinen Lernfluss beenden?",
+          "text": "Hey, du hast das Ziel von <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> geschafft! <br><br>Du hast eine gute Ausdauer entwickelt. Bist du sicher, dass du aufhören willst?",
           "button": {
-            "cancel": "Continue!",
-            "confirm": "Stop."
+            "cancel": "Ich mache weiter!",
+            "confirm": "Stopp!"
           },
           "confirm": {
-            "title": "Great job!",
-            "text": "In the end you did <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>, for a total of <span class=\"pomodoroHighlight\"> __pomodoroTotal__ minutes</span> of work! You are awesome! Come back soon!",
+            "title": "Großartig!",
+            "text": "Insgesamt <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>. <br>Das sind <span class=\"pomodoroHighlight\"> __pomodoroTotal__ Minuten</span> Lernzeit. <br><br>Du bist klasse! Komm bald zurück!",
             "button": {
-              "confirm": "OK!"
+              "confirm": "Danke!"
             }
           }
         },
         "break": {
           "start": {
-            "title": "Good job!",
-            "text": "You have completed <span class=\"pomodoroHighlight\"> __pomodoroTotal__ __pomodoro__</span> of work! Are you ready for a relaxing <span class=\"pomodoroHighlight\"> __pomodoroBreak__ minutes</span> of whatever the heck you feel like?",
+            "title": "Gut gelernt!",
+            "text": "Du hast <span class=\"pomodoroHighlight\"> __pomodoroTotal__ __pomodoro__</span> Lernzeit geschafft. <br><br>Bist du bereit für erholsame <span class=\"pomodoroHighlight\"> __pomodoroBreak__ Minuten</span> Pause? Du kannst tun, wonach auch immer dir der Sinn steht.",
             "button": {
-              "confirm": "Yes, I can't wait!"
+              "confirm": "Ja, ich will in die Pause!"
             }
           },
           "end": {
-            "title": "Break's over!",
-            "text": "Hope that break left you feeling refreshed! Now it's time to get back to accomplishing your goals. Ready for <span class=\"pomodoroHighlight\"> __pomodoroLength__ more minutes</span> of work?",
+            "title": "Die Pause ist vorbei!",
+            "text": "Bereit für die nächsten <span class=\"pomodoroHighlight\"> __pomodoroLength__ Minuten</span>?",
             "button": {
-              "confirm": "Let me at it!"
+              "confirm": "Lass mich weitermachen!"
             }
           }
         }
       },
       "presentation": {
         "end": {
-          "title": "Möchtest du den Timer stoppen?",
+          "title": "Willst du den Pomodoro-Timer ausschalten?",
           "text": "",
           "button": {
-            "cancel": "Ich präsentiere weiter!",
-            "confirm": "Timer stoppen!"
+            "cancel": "Nein, ich präsentiere weiter!",
+            "confirm": "Timer ausschalten!"
           }
         },
         "break": {
@@ -678,7 +678,7 @@
     "private": "Privat",
     "license": " Lizenz festlegen",
     "bonus": "Bonus-Lernphase verwalten",
-    "startLearning": "Bonus-Lernphase starten",
+    "startLearning": "Bonus-Lernphase aktivieren",
     "stopLearning": "Bonus-Lernphase beenden",
     "poolLicense": "Lizenz für ",
     "leaveEditors": "Bearbeitergruppe verlassen",
@@ -753,8 +753,8 @@
       }
     },
     "message": {
-      "registrationPeriodExpired": "Die Anmeldefrist ist abgelaufen. Du kannst der Bonusphase nicht mehr beitreten.",
-      "bonusEnded": "Die Bonus-Lernphase ist zuende",
+      "registrationPeriodExpired": "Die Anmeldefrist ist abgelaufen. Du kannst der Bonus-Lernphase nicht mehr beitreten.",
+      "bonusEnded": "Die Bonus-Lernphase ist zu Ende",
       "learnedEverything": "Perfekt! Du hast alle Karten aus dieser Kartei gelernt."
     },
     "progress": {
@@ -765,25 +765,25 @@
     },
     "form": {
       "new": {
-        "title": "Bonus-Lernphase starten"
+        "title": "Bonus-Lernphase aktivieren"
       },
       "edit": {
         "title": "Bonus-Lernphase konfigurieren"
       },
       "maxWorkload": {
         "label": "Tagespensum",
-        "placeholder": "Maximal an einem Tag zu lernende Karten"
+        "placeholder": "maximal täglich zu lernende Karten"
       },
       "daysBeforeReset": {
         "label": "Terminüberschreitung",
-        "placeholder": "Maximale Terminüberschreitung in Tagen"
+        "placeholder": "in Tagen bis alle Karten wieder in Box 1"
       },
       "startDate": {
-        "label": "Beginn der Lernphase",
+        "label": "Beginn der Bonus-Lernphase",
         "placeholder": "Heute"
       },
       "endDate": {
-        "label": "Ende der Lernphase",
+        "label": "Ende der Bonus-Lernphase",
         "placeholder": "In 3 Monaten"
       },
       "registrationPeriod": {
@@ -791,10 +791,10 @@
         "placeholder": ""
       },
       "intervals": {
-        "label": "Lernintervalle in Tagen"
+        "label": "Wiederholungs-Intervalle in Tagen"
       },
       "button": {
-        "start": "Starten",
+        "start": "Bonus-Lernphase aktivieren",
         "cancel": "Abbrechen",
         "update": "Aktualisieren",
         "reset": "Zurücksetzen"
