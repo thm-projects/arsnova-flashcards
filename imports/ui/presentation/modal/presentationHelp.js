@@ -1,6 +1,7 @@
 import "./presentationHelp.html";
 import "./content/english.html";
 import "./content/german.html";
+import {Route} from "../../../api/route.js";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 let firstTimePresentation = 'isFirstTimePresentation';
@@ -18,7 +19,7 @@ Template.presentationHelpModal.onRendered(function () {
 	$('#presentationHelpModal').on('hidden.bs.modal', function () {
 		Session.set('helpModalActive', false);
 	});
-	if (localStorage.getItem(firstTimePresentation) !== "true") {
+	if (localStorage.getItem(firstTimePresentation) !== "true" && Route.isPresentation()) {
 		$('#presentationHelpModal').modal('show');
 	}
 });
@@ -33,6 +34,8 @@ Template.presentationHelpModal.onDestroyed(function () {
 Template.presentationHelpModal.events({
 	"click #presentationHelpConfirm": function () {
 		$('#presentationHelpModal').modal('hide');
-		localStorage.setItem(firstTimePresentation, "true");
+		if (Route.isPresentation()) {
+			localStorage.setItem(firstTimePresentation, "true");
+		}
 	}
 });
