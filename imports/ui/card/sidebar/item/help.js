@@ -10,14 +10,12 @@ import {Session} from "meteor/session";
 
 Template.cardSidebarItemHelp.events({
 	"click .showModalHelp": function () {
-		if (Route.isPresentation()) {
+		if (Route.isPresentation() || Route.isDemo()) {
 			$('#presentationHelpModal').modal('show');
 		} else if (Route.isBox()) {
 			$('#leitnerHelpModal').modal('show');
 		} else if (Route.isMemo()) {
 			$('#wozniakHelpModal').modal('show');
-		} else if (Route.isDemo()) {
-			$('#demoHelpModal').modal('show');
 		}
 	}
 });
