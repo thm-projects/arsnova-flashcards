@@ -348,37 +348,37 @@ Meteor.startup(function () {
 
 	cards = Cards.find({centerTextElement: {$exists: false}}).fetch();
 	for (let i = 0; i < cards.length; i++) {
-		let centerTextElement;
-		if (Cardsets.findOne({_id: cards[i].cardset_id}).cardType === 2) {
-			centerTextElement = [true, true, false, false, false, false];
-		} else {
-			centerTextElement = [false, false, false, false, false, false];
-		}
-		Cards.update({
-				_id: cards[i]._id
-			},
-			{
-				$set: {
-					centerTextElement: centerTextElement
+		let cardset = Cardsets.findOne({_id: cards[i].cardset_id}, {fields: {_id: 1, cardType: 1}});
+		if (cardset !== undefined) {
+			Cards.update({
+					_id: cards[i]._id
 				},
-				$unset: {
-					centerText: 1
+				{
+					$set: {
+						centerTextElement: CardType.setDefaultCenteredText(cardset.cardType, 1)
+					},
+					$unset: {
+						centerText: 1
+					}
 				}
-			}
-		);
+			);
+		}
 	}
 
 	cards = Cards.find({alignType: {$exists: false}}).fetch();
 	for (let i = 0; i < cards.length; i++) {
-		Cards.update({
-				_id: cards[i]._id
-			},
-			{
-				$set: {
-					alignType: [1, 1, 1, 1, 1, 1]
+		let cardset = Cardsets.findOne({_id: cards[i].cardset_id}, {fields: {_id: 1, cardType: 1}});
+		if (cardset !== undefined) {
+			Cards.update({
+					_id: cards[i]._id
+				},
+				{
+					$set: {
+						alignType: CardType.setDefaultCenteredText(cardset.cardType, 2)
+					}
 				}
-			}
-		);
+			);
+		}
 	}
 
 	cards = Cards.find({date: {$exists: false}}).fetch();
