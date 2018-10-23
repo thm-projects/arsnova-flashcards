@@ -9,6 +9,8 @@ import {CardEditor} from "../../api/cardEditor";
 import {Filter} from "../../api/filter";
 import {MarkdeepEditor} from "../../api/markdeepEditor";
 
+let loadingScreenTemplate = 'loadingScreen';
+
 Router.route('/', function () {
 	this.redirect('home');
 });
@@ -31,6 +33,13 @@ Router.route('/home', {
 	data: function () {
 		Session.set('helpFilter', Router.current().route.getName());
 		return Cardsets.findOne({_id: Session.get('wordcloudItem')});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -39,6 +48,13 @@ Router.route('about', {
 	template: 'contact',
 	data: function () {
 		Session.set('helpFilter', undefined);
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -47,6 +63,13 @@ Router.route('learning', {
 	template: 'contact',
 	data: function () {
 		Session.set('helpFilter', undefined);
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -55,6 +78,13 @@ Router.route('help', {
 	template: 'contact',
 	data: function () {
 		Session.set('activeRouteTitle', TAPi18n.__('contact.help', {}, Session.get('activeLanguage')));
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -63,6 +93,13 @@ Router.route('faq', {
 	template: 'contact',
 	data: function () {
 		Session.set('helpFilter', undefined);
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -71,6 +108,13 @@ Router.route('impressum', {
 	template: 'contact',
 	data: function () {
 		Session.set('helpFilter', undefined);
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -82,6 +126,13 @@ Router.route('demo', {
 	},
 	data: function () {
 		Session.set('helpFilter', undefined);
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -94,6 +145,13 @@ Router.route('demolist', {
 	data: function () {
 		Session.set('helpFilter', undefined);
 		return Cardsets.findOne({kind: 'demo', name: "DemoCardset", shuffled: true});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -102,6 +160,13 @@ Router.route('agb', {
 	template: 'contact',
 	data: function () {
 		Session.set('helpFilter', undefined);
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -110,6 +175,13 @@ Router.route('datenschutz', {
 	template: 'contact',
 	data: function () {
 		Session.set('helpFilter', undefined);
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -120,6 +192,13 @@ Router.route('/alldecks', {
 		Session.set('helpFilter', undefined);
 		Session.set('activeRouteTitle', TAPi18n.__('navbar-collapse.alldecks', {}, Session.get('activeLanguage')));
 		Filter.resetMaxItemCounter();
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -139,6 +218,13 @@ Router.route('/create', {
 				Session.set('activeRouteTitle',  TAPi18n.__('navbar-collapse.carddecks', {}, Session.get('activeLanguage')));
 		}
 		Filter.resetMaxItemCounter();
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -149,6 +235,13 @@ Router.route('/repetitorium', {
 		Session.set('helpFilter', "repetitorium");
 		Session.set('activeRouteTitle', TAPi18n.__('navbar-collapse.course', {}, Session.get('activeLanguage')));
 		Filter.resetMaxItemCounter();
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -156,13 +249,20 @@ Router.route('/learn', {
 	name: 'learn',
 	template: 'cardsets',
 	loadingTemplate: 'cardsets',
-	waitOn: function () {
+	subscriptions: function () {
 		return [Meteor.subscribe('userWorkload', this.params._id), Meteor.subscribe('userLeitner'), Meteor.subscribe('userWozniak')];
 	},
 	data: function () {
 		Session.set('helpFilter', "workload");
 		Session.set('activeRouteTitle', TAPi18n.__('navbar-collapse.learndecks', {}, Session.get('activeLanguage')));
 		Filter.setActiveFilter();
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -173,6 +273,13 @@ Router.route('/shuffle', {
 		Session.set('helpFilter', "shuffle");
 		Session.set('isNewCardset', true);
 		Filter.resetMaxItemCounter();
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -191,6 +298,13 @@ Router.route('/cardset/:_id', {
 		Session.set('helpFilter', "cardset");
 		Session.set('isNewCardset', false);
 		return Cardsets.findOne({_id: this.params._id});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -206,6 +320,13 @@ Router.route('/cardset/:_id/card/:card_id', {
 		Session.set('isNewCardset', false);
 		Session.set('activeCard', this.params.card_id);
 		return Cardsets.findOne({_id: this.params._id});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -216,6 +337,13 @@ Router.route('/cardset/:_id/editshuffle', {
 		Session.set('helpFilter', "shuffle");
 		Filter.resetMaxItemCounter();
 		return Cardsets.findOne({_id: this.params._id});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -225,6 +353,13 @@ Router.route('/cardset/:_id/editors', {
 	data: function () {
 		Session.set('helpFilter', "cardset");
 		return Cardsets.findOne({_id: this.params._id});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -237,6 +372,13 @@ Router.route('/cardset/:_id/stats', {
 	data: function () {
 		Session.set('helpFilter', "workloadProgress");
 		return Cardsets.findOne({_id: this.params._id});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -254,6 +396,13 @@ Router.route('/cardsetlist/:_id', {
 		Session.set('helpFilter', "cardset");
 		Session.set('isNewCardset', false);
 		return Cardsets.findOne({_id: this.params._id});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -266,6 +415,13 @@ Router.route('/cardset/:_id/newcard', {
 	data: function () {
 		Session.set('helpFilter', "cardEditor");
 		return Cardsets.findOne({_id: this.params._id});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -278,6 +434,13 @@ Router.route('/cardset/:_id/editcard/:card_id', {
 	data: function () {
 		Session.set('helpFilter', "cardEditor");
 		CardEditor.loadEditModeContent(Cards.findOne({_id: this.params.card_id}));
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -287,6 +450,13 @@ Router.route('/pool', {
 	data: function () {
 		Session.set('helpFilter', "pool");
 		Session.set('activeRouteTitle', TAPi18n.__('navbar-collapse.pool', {}, Session.get('activeLanguage')));
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -296,14 +466,16 @@ Router.route('/progress/:_id/:user_id', {
 	subscriptions: function () {
 		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('userCardsetLeitner', this.params._id, this.params.user_id)];
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		}
-	},
 	data: function () {
 		Session.set('helpFilter', "workloadProgress");
 		return Cardsets.findOne({_id: this.params._id});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -317,6 +489,13 @@ Router.route('/box/:_id', {
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', "leitner");
 		return Cardsets.findOne({_id: this.params._id});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -330,6 +509,13 @@ Router.route('/memo/:_id', {
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', "wozniak");
 		return Cardsets.findOne({_id: this.params._id});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -342,6 +528,13 @@ Router.route('/presentationlist/:_id', {
 	data: function () {
 		Session.set('helpFilter', undefined);
 		return Cardsets.findOne({_id: this.params._id});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -355,6 +548,13 @@ Router.route('/presentation/:_id', {
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', undefined);
 		return Cardsets.findOne({_id: this.params._id});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -368,6 +568,13 @@ Router.route('makingofcards', {
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', undefined);
 		return Cardsets.findOne({kind: 'demo', name: "MakingOfCardset", shuffled: true});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -380,6 +587,13 @@ Router.route('makingofcardslist', {
 	data: function () {
 		Session.set('helpFilter', undefined);
 		return Cardsets.findOne({kind: 'demo', name: "MakingOfCardset", shuffled: true});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -389,14 +603,16 @@ Router.route('/profile/:_id/overview', {
 	subscriptions: function () {
 		return [Meteor.subscribe('userLeitner')];
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		}
-	},
 	data: function () {
 		Session.set('helpFilter', "workloadProgress");
 		Session.set('activeRouteTitle', TAPi18n.__('profile.activity', {}, Session.get('activeLanguage')));
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 Router.route('/profile/:_id/billing', {
@@ -405,6 +621,13 @@ Router.route('/profile/:_id/billing', {
 	data: function () {
 		Session.set('helpFilter', "billing");
 		Session.set('activeRouteTitle', TAPi18n.__('profile.billing', {}, Session.get('activeLanguage')));
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 Router.route('/profile/:_id/membership', {
@@ -413,6 +636,13 @@ Router.route('/profile/:_id/membership', {
 	data: function () {
 		Session.set('helpFilter', "membership");
 		Session.set('activeRouteTitle', TAPi18n.__('profile.membership', {}, Session.get('activeLanguage')));
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 Router.route('/profile/:_id/notifications', {
@@ -421,6 +651,13 @@ Router.route('/profile/:_id/notifications', {
 	data: function () {
 		Session.set('helpFilter', "notifications");
 		Session.set('activeRouteTitle', TAPi18n.__('profile.notifications', {}, Session.get('activeLanguage')));
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 Router.route('/profile/:_id/settings', {
@@ -429,6 +666,13 @@ Router.route('/profile/:_id/settings', {
 	data: function () {
 		Session.set('helpFilter', "settings");
 		Session.set('activeRouteTitle', TAPi18n.__('profile.settings.name', {}, Session.get('activeLanguage')));
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 Router.route('/profile/:_id/requests', {
@@ -437,6 +681,13 @@ Router.route('/profile/:_id/requests', {
 	data: function () {
 		Session.set('helpFilter', "requests");
 		Session.set('activeRouteTitle', TAPi18n.__('profile.requests', {}, Session.get('activeLanguage')));
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -450,6 +701,13 @@ Router.route('/admin/dashboard', {
 	},
 	data: function () {
 		Session.set('helpFilter', undefined);
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -459,6 +717,13 @@ Router.route('/admin/users', {
 	layoutTemplate: 'admin_main',
 	data: function () {
 		Session.set('helpFilter', undefined);
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -469,6 +734,13 @@ Router.route('/admin/user/:_id', {
 	data: function () {
 		Session.set('helpFilter', undefined);
 		return Meteor.users.findOne({_id: this.params._id});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -479,20 +751,29 @@ Router.route('/admin/learningStatistics', {
 	subscriptions: function () {
 		return [Meteor.subscribe('allLeitner')];
 	},
+	data: function () {
+		Session.set('helpFilter', undefined);
+	},
 	action: function () {
 		if (this.ready()) {
 			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
 		}
-	},
-	data: function () {
-		Session.set('helpFilter', undefined);
 	}
 });
 
 Router.route('/admin/apiAccess', {
 	name: 'admin_apiAccess',
 	template: 'admin_apiAccess',
-	layoutTemplate: 'admin_main'
+	layoutTemplate: 'admin_main',
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
+	}
 });
 
 Router.route('/admin/notifications', {
@@ -501,6 +782,13 @@ Router.route('/admin/notifications', {
 	layoutTemplate: 'admin_main',
 	data: function () {
 		Session.set('helpFilter', undefined);
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -510,6 +798,13 @@ Router.route('/admin/university', {
 	layoutTemplate: 'admin_main',
 	data: function () {
 		Session.set('helpFilter', undefined);
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 
@@ -519,6 +814,13 @@ Router.route('/admin/settings', {
 	layoutTemplate: 'admin_main',
 	data: function () {
 		Session.set('helpFilter', undefined);
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
 	}
 });
 

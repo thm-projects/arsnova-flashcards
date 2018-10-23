@@ -27,6 +27,13 @@ let cardTypesWithNotesForDifficultyLevel = [2];
 let cardTypesWithCardsetTitleNavigation = [14];
 let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 15}, {cardType: 3}, {cardType: 6}, {cardType: 13}, {cardType: 12}, {cardType: 11}, {cardType: 5}, {cardType: 1}, {cardType: 10}, {cardType: 7}, {cardType: 4}, {cardType: 8}, {cardType: 9}, {cardType: 14}];
 
+//0: left
+//1: center
+//2: right
+//3: justify
+let defaultTextAlign = 0;
+let defaultCentered = true;
+
 let cardTypeCubeSides = [
 	//0: Lernkartei / Flashcard
 	[
@@ -34,21 +41,18 @@ let cardTypeCubeSides = [
 			"contentId": 1,
 			"side": "front",
 			"defaultStyle": "default",
-			"defaultCentered": false,
 			"gotLearningGoalPlaceholder": true
 		},
 		{
 			"contentId": 4,
 			"side": "right",
 			"defaultStyle": "lecture",
-			"defaultCentered": false,
 			"isAnswer": true
 		},
 		{
 			"contentId": 2,
 			"side": "back",
 			"defaultStyle": "default",
-			"defaultCentered": false,
 			"isAnswer": true,
 			"isAnswerFocus": true
 		},
@@ -56,7 +60,6 @@ let cardTypeCubeSides = [
 			"contentId": 3,
 			"side": "left",
 			"defaultStyle": "default",
-			"defaultCentered": false,
 			"isAnswer": true
 		}
 
@@ -67,13 +70,13 @@ let cardTypeCubeSides = [
 			"contentId": 1,
 			"side": "front",
 			"defaultStyle": "default",
-			"defaultCentered": true
+			"defaultTextAlign": "center"
 		},
 		{
 			"contentId": 2,
 			"side": "back",
 			"defaultStyle": "default",
-			"defaultCentered": true,
+			"defaultTextAlign": "center",
 			"isAnswer": true,
 			"isAnswerFocus": true
 		}
@@ -83,20 +86,17 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 1,
 			"side": "front",
-			"defaultStyle": "default",
-			"defaultCentered": false
+			"defaultStyle": "default"
 		},
 		{
 			"contentId": 2,
 			"side": "back",
-			"defaultStyle": "default",
-			"defaultCentered": false
+			"defaultStyle": "default"
 		},
 		{
 			"contentId": 3,
 			"side": "left",
-			"defaultStyle": "default",
-			"defaultCentered": false
+			"defaultStyle": "default"
 		}
 	],
 	//3: Glossar / Glossary
@@ -105,13 +105,13 @@ let cardTypeCubeSides = [
 			"contentId": 1,
 			"side": "front",
 			"defaultStyle": "default",
-			"defaultCentered": false
+			"defaultTextAlign": "center"
 		},
 		{
 			"contentId": 2,
 			"side": "back",
 			"defaultStyle": "default",
-			"defaultCentered": false,
+			"defaultTextAlign": "center",
 			"isAnswer": true,
 			"isAnswerFocus": true
 		},
@@ -119,7 +119,6 @@ let cardTypeCubeSides = [
 			"contentId": 3,
 			"side": "left",
 			"defaultStyle": "default",
-			"defaultCentered": false,
 			"isAnswer": true
 		}
 	],
@@ -128,14 +127,12 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 1,
 			"side": "front",
-			"defaultStyle": "default",
-			"defaultCentered": false
+			"defaultStyle": "default"
 		},
 		{
 			"contentId": 2,
 			"side": "back",
 			"defaultStyle": "default",
-			"defaultCentered": false,
 			"isAnswer": true,
 			"isAnswerFocus": true
 		},
@@ -143,7 +140,6 @@ let cardTypeCubeSides = [
 			"contentId": 3,
 			"side": "left",
 			"defaultStyle": "default",
-			"defaultCentered": false,
 			"isAnswer": true
 		}
 	],
@@ -153,14 +149,12 @@ let cardTypeCubeSides = [
 			"contentId": 1,
 			"side": "front",
 			"defaultStyle": "default",
-			"defaultCentered": false,
 			"gotLearningGoalPlaceholder": true
 		},
 		{
 			"contentId": 2,
 			"side": "back",
 			"defaultStyle": "default",
-			"defaultCentered": false,
 			"isAnswer": true,
 			"isAnswerFocus": true
 		},
@@ -168,7 +162,6 @@ let cardTypeCubeSides = [
 			"contentId": 3,
 			"side": "left",
 			"defaultStyle": "default",
-			"defaultCentered": false,
 			"isAnswer": true
 		}
 	],
@@ -177,14 +170,13 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 2,
 			"side": "front",
-			"defaultStyle": "default",
-			"defaultCentered": false
+			"defaultStyle": "default"
 		},
 		{
 			"contentId": 1,
 			"side": "back",
 			"defaultStyle": "default",
-			"defaultCentered": false,
+			"defaultTextAlign": "center",
 			"isAnswer": true,
 			"isAnswerFocus": true
 		},
@@ -192,7 +184,6 @@ let cardTypeCubeSides = [
 			"contentId": 3,
 			"side": "left",
 			"defaultStyle": "default",
-			"defaultCentered": false,
 			"isAnswer": true
 		}
 	],
@@ -201,20 +192,17 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 1,
 			"side": "front",
-			"defaultStyle": "default",
-			"defaultCentered": false
+			"defaultStyle": "default"
 		},
 		{
 			"contentId": 2,
 			"side": "back",
-			"defaultStyle": "default",
-			"defaultCentered": false
+			"defaultStyle": "default"
 		},
 		{
 			"contentId": 3,
 			"side": "left",
-			"defaultStyle": "default",
-			"defaultCentered": false
+			"defaultStyle": "default"
 		}
 	],
 	//8: Notizen / Notes
@@ -222,8 +210,7 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 1,
 			"side": "front",
-			"defaultStyle": "post-it",
-			"defaultCentered": false
+			"defaultStyle": "post-it"
 		}
 	],
 	//9: To-dos / To-do
@@ -231,8 +218,7 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 1,
 			"side": "front",
-			"defaultStyle": "pink",
-			"defaultCentered": false
+			"defaultStyle": "pink"
 		}
 	],
 	//10: Fotokartei / Photo library
@@ -240,14 +226,12 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 1,
 			"side": "front",
-			"defaultStyle": "white",
-			"defaultCentered": false
+			"defaultStyle": "white"
 		},
 		{
 			"contentId": 2,
 			"side": "back",
-			"defaultStyle": "white",
-			"defaultCentered": false
+			"defaultStyle": "white"
 		}
 	],
 	//11: Quiz
@@ -255,14 +239,12 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 1,
 			"side": "front",
-			"defaultStyle": "default",
-			"defaultCentered": true
+			"defaultStyle": "default"
 		},
 		{
 			"contentId": 2,
 			"side": "back",
 			"defaultStyle": "default",
-			"defaultCentered": true,
 			"isAnswer": true,
 			"isAnswerFocus": true
 		}
@@ -272,26 +254,22 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 1,
 			"side": "front",
-			"defaultStyle": "default",
-			"defaultCentered": false
+			"defaultStyle": "default"
 		},
 		{
 			"contentId": 3,
 			"side": "right",
-			"defaultStyle": "default",
-			"defaultCentered": false
+			"defaultStyle": "default"
 		},
 		{
 			"contentId": 4,
 			"side": "back",
-			"defaultStyle": "default",
-			"defaultCentered": false
+			"defaultStyle": "default"
 		},
 		{
 			"contentId": 2,
 			"side": "left",
 			"defaultStyle": "default",
-			"defaultCentered": false,
 			"isAnswer": true,
 			"isAnswerFocus": true
 		},
@@ -299,14 +277,12 @@ let cardTypeCubeSides = [
 			"contentId": 5,
 			"side": "top",
 			"defaultStyle": "default",
-			"defaultCentered": false,
 			"isAnswer": true
 		},
 		{
 			"contentId": 6,
 			"side": "bottom",
 			"defaultStyle": "default",
-			"defaultCentered": false,
 			"isAnswer": true
 		}
 	],
@@ -316,21 +292,18 @@ let cardTypeCubeSides = [
 			"contentId": 1,
 			"side": "front",
 			"defaultStyle": "default",
-			"defaultCentered": false,
 			"gotLearningGoalPlaceholder": true
 		},
 		{
 			"contentId": 2,
 			"side": "back",
 			"defaultStyle": "default",
-			"defaultCentered": false,
 			"isAnswer": true
 		},
 		{
 			"contentId": 3,
 			"side": "left",
 			"defaultStyle": "default",
-			"defaultCentered": false,
 			"isAnswer": true,
 			"isAnswerFocus": true
 		},
@@ -338,7 +311,6 @@ let cardTypeCubeSides = [
 			"contentId": 4,
 			"side": "right",
 			"defaultStyle": "default",
-			"defaultCentered": false,
 			"isAnswer": true
 		}
 
@@ -348,8 +320,7 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 1,
 			"side": "front",
-			"defaultStyle": "white",
-			"defaultCentered": false
+			"defaultStyle": "white"
 		}
 
 	],
@@ -359,14 +330,12 @@ let cardTypeCubeSides = [
 			"contentId": 1,
 			"side": "front",
 			"defaultStyle": "default",
-			"defaultCentered": false,
 			"gotLearningGoalPlaceholder": true
 		},
 		{
 			"contentId": 2,
 			"side": "back",
 			"defaultStyle": "default",
-			"defaultCentered": false,
 			"isAnswer": true,
 			"isAnswerFocus": true
 		}
@@ -466,19 +435,49 @@ export let CardType = class CardType {
 		return cardTypesWithDictionary.includes(cardType);
 	}
 
-	static setDefaultCenteredText (cardType) {
-		let centerTextElement = [false, false, false, false, false, false];
-		let alignType = [1, 1, 1, 1, 1, 1];
+	static setDefaultCenteredText (cardType, returnValue = undefined) {
+		let centerTextElement = Array(6).fill(defaultCentered);
+		let textAlignType = Array(6).fill(defaultTextAlign);
 		let cubeSides = this.getCardTypeCubeSides(cardType);
 		for (let i = 0; i < centerTextElement.length; i++) {
 			for (let l = 0; l < cubeSides.length; l++) {
 				if (cubeSides[l].contentId === (i + 1)) {
-					centerTextElement[i] = cubeSides[l].defaultCentered;
+					if (cubeSides[l].defaultCentered !== undefined) {
+						centerTextElement[i] = cubeSides[l].defaultCentered;
+					}
+					if (cubeSides[l].defaultTextAlign !== undefined) {
+						switch (cubeSides[l].defaultTextAlign) {
+							case "left":
+								textAlignType[i] = 0;
+								break;
+							case "center":
+								textAlignType[i] = 1;
+								break;
+							case "right":
+								textAlignType[i] = 2;
+								break;
+							case "justify":
+								textAlignType[i] = 3;
+								break;
+							case "default":
+								textAlignType[i] = defaultTextAlign;
+								break;
+						}
+					}
 				}
 			}
 		}
-		Session.set('centerTextElement', centerTextElement);
-		Session.set('alignType', alignType);
+		if (returnValue !== undefined) {
+			switch (returnValue) {
+				case 1:
+					return centerTextElement;
+				case 2:
+					return textAlignType;
+			}
+		} else {
+			Session.set('centerTextElement', centerTextElement);
+			Session.set('alignType', textAlignType);
+		}
 	}
 
 	static getSubjectPlaceholderText (cardType = -1) {
