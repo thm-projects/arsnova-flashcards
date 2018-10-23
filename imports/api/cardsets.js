@@ -231,9 +231,7 @@ Cardsets.attachSchema(CardsetsSchema);
 CardsetsIndex = new EasySearch.Index({
 	collection: Cardsets,
 	fields: [
-		'name',
-		'description',
-		'owner'
+		'name'
 	],
 	engine: new EasySearch.Minimongo({
 		selector: function (searchObject, options, aggregation) {
