@@ -407,7 +407,7 @@ Template.cardsetList.events({
 		Session.set('cardType', $(evt.target).data('card-type'));
 		Session.set('activeCardContentId', cubeSides[0].contentId);
 		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || Router.current().route.getName() === "demolist" || Router.current().route.getName() === "makinglist") {
-			Session.set('activeCard', $(evt.target).data('id'));
+			CardNavigation.setActiveCardData($(evt.target).data('id'));
 			if (Router.current().route.getName() === "presentationlist") {
 				Router.go('presentation', {
 					_id: Router.current().params._id

@@ -35,6 +35,9 @@ Template.flashcards.onCreated(function () {
 	Session.set('reverseViewOrder', false);
 	Session.set('selectedHint', undefined);
 	Session.set('isQuestionSide', true);
+	if (Session.get('activeCard') === undefined) {
+		CardNavigation.restoreActiveCard();
+	}
 });
 
 let resizeInterval;

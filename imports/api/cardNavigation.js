@@ -9,6 +9,7 @@ import {Cards} from "./cards";
 import {Cardsets} from "./cardsets";
 
 let keyEventsUnlocked = true;
+let lastActiveCardString = "lastActiveCard";
 
 export let CardNavigation = class CardNavigation {
 
@@ -141,12 +142,32 @@ export let CardNavigation = class CardNavigation {
 		} else {
 			Session.set('activeCard', $(".item.active").data('id'));
 		}
+		if (Route.isPresentation() || Route.isCardset()) {
+			let lastActiveCard = {
+				_id: Session.get('activeCard'),
+				cardset_id: Router.current().params._id
+			};
+			localStorage.setItem(lastActiveCardString, JSON.stringify(lastActiveCard));
+		}
 		let cardset_id;
 		if (Session.get('activeCard') === -1) {
 			Session.set('activeCardsetName', Cardsets.findOne({_id: Router.current().params._id}).name);
 		} else {
 			cardset_id = Cards.findOne({_id: Session.get('activeCard')}).cardset_id;
 			Session.set('activeCardsetName', Cardsets.findOne({_id: cardset_id}).name);
+		}
+	}
+
+	static restoreActiveCard () {
+		if (Route.isPresentation() || Route.isCardset()) {
+			if (localStorage.getItem(lastActiveCardString) !== undefined && localStorage.getItem(lastActiveCardString) !== null) {
+				let lastActiveCard = JSON.parse(localStorage.getItem(lastActiveCardString));
+				if (Router.current().params._id === lastActiveCard.cardset_id && Cards.findOne({_id: lastActiveCard._id})) {
+					Session.set('activeCard', lastActiveCard._id);
+				} else {
+					localStorage.removeItem(lastActiveCardString);
+				}
+			}
 		}
 	}
 

@@ -458,6 +458,8 @@ $themes: (
     $wordcloud_tooltip_backgroud: map-get($map, "wordcloud_tooltip_backgroud");
     $wordcloud_tooltip_border: map-get($map, "wordcloud_tooltip_border");
     $wordcloud_tooltip_divider: map-get($map, "wordcloud_tooltip_divider");
+    //loading screen
+    $loading_screen_icon: map-get($map, "loading_screen_icon");
     background-image: $background_image !important;
 
     .star-ratings .current-rating {
@@ -2621,6 +2623,11 @@ $themes: (
 
     .showArsnovaClick {
       background-color: $white !important;
+    }
+
+    //loading screen
+    .loadingScreenContainer .fa {
+      color: $loading_screen_icon !important;
     }
   }
 }

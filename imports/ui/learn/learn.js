@@ -27,6 +27,10 @@ Template.learnAlgorithms.onCreated(function () {
 	CardNavigation.toggleVisibility(true);
 });
 
+Template.learnAlgorithms.onDestroyed(function () {
+	Session.set('activeCard', undefined);
+});
+
 Template.learnAlgorithms.onRendered(function () {
 	$('.pomodoroTimer').click();
 });
