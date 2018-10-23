@@ -2629,5 +2629,12 @@ $themes: (
     .loadingScreenContainer .fa {
       color: $loading_screen_icon !important;
     }
+
+    .cardListName.btn-raised {
+      .badge {
+        background-color: $primary !important;
+        color: white !important;
+      }
+    }
   }
 }
