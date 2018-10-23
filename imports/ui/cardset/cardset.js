@@ -271,7 +271,7 @@ Template.cardsetList.helpers({
 			if (this.shuffled) {
 				let cardsetFilter = [];
 				let sortCardsets = Cardsets.find({_id: {$in: this.cardGroups}}, {
-					sort: {name: 1}, fields: {_id: 1, name: 1, kind: 1, owner: 1}
+					sort: {name: 1}, fields: {_id: 1, name: 1, kind: 1, owner: 1, quantity: 1, difficulty: 1, cardType: 1}
 				}).fetch();
 				sortCardsets.forEach(function (cardset) {
 					if (cardset._id !== cardsetId) {

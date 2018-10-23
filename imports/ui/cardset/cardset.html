@@ -561,6 +561,12 @@
                                 {{getAuthorName this.owner}}
                             </span>
                         {{/unless}}
+                        <br>
+                        <span class="badge" title="{{_ "cardset.info.quantity"}}">
+                            {{this.quantity}}
+                        </span>
+                        {{{getCardTypeLabel this.cardType}}}
+                        {{{getDifficultyLabel this.cardType this.difficulty}}}
                     </div>
                 {{/if}}
                 {{#each cardSubject}}
