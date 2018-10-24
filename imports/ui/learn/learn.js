@@ -9,6 +9,8 @@ import {CardNavigation} from "../../api/cardNavigation";
 import "./learn.html";
 import "./modal/leitner/leitnerHelp.js";
 import "./modal/wozniak/wozniakHelp.js";
+import {PomodoroTimer} from "../../api/pomodoroTimer";
+import {Bonus} from "../../api/bonus";
 Meteor.subscribe("cardsets");
 Session.set('animationPlaying', false);
 
@@ -32,7 +34,9 @@ Template.learnAlgorithms.onDestroyed(function () {
 });
 
 Template.learnAlgorithms.onRendered(function () {
-	$('.pomodoroTimer').click();
+	if (Bonus.isInBonus(Router.current().params._id)) {
+		PomodoroTimer.start();
+	}
 });
 
 Template.learnAlgorithms.helpers({

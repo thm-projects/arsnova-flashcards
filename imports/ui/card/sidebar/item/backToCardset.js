@@ -10,8 +10,8 @@ import {PomodoroTimer} from "../../../../api/pomodoroTimer";
 
 Template.cardSidebarItemBackToCardset.events({
 	"click .backToCardset": function () {
-		if ((Route.isBox() || Route.isMemo()) && PomodoroTimer.isPomodoroRunning()) {
-			PomodoroTimer.clickClock();
+		if (Route.isBox() || Route.isMemo()) {
+			PomodoroTimer.stop();
 		} else {
 			Router.go('cardsetdetailsid', {
 				_id: Router.current().params._id

@@ -356,6 +356,12 @@ export let PomodoroTimer = class PomodoroTimer {
 		}
 	}
 
+	static stop () {
+		if (this.isPomodoroRunning()) {
+			this.clickClock();
+		}
+	}
+
 	/*if not in a session, clicking the clock opens the start up modal to begin one, and if you are in a session, clicking pops up a warning dialog before exiting the session  */
 	static clickClock () {
 		/*okay, so I tried this pen on my android phone and no sounds would play. Turns out that you need to attach sounds to a click function or they won't run on chrome for android. This empty sound allows the success and failure sounds to play, but not the bell sound. Oh well, this app wouldn't work on a phone anyway, because the screen would lock and exit it.*/
