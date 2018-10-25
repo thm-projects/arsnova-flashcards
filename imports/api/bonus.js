@@ -21,7 +21,7 @@ export let Bonus = class Bonus {
 			return false;
 		}
 		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor', 'lecturer', 'university', 'pro'])) {
-			return !this.isInBonus(cardset._id) && cardset.registrationPeriod > new Date();
+			return !this.isInBonus(cardset._id) && moment(cardset.registrationPeriod).add(1, 'days') > new Date();
 		} else {
 			return false;
 		}
