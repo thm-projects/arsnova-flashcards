@@ -84,6 +84,9 @@ Template.pomodoroTimerModal.events({
 		PomodoroTimer.updateSettingsBtn();
 	},
 	'click #startPom': function () {
+		if (Route.isPresentation()) {
+			CardVisuals.toggleFullscreen();
+		}
 		PomodoroTimer.start();
 	},
 	'click #cancelPomodoroBtn': function () {

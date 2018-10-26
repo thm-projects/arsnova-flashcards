@@ -7,6 +7,7 @@ import * as screenfull from "screenfull";
 import {CardIndex} from "./cardIndex";
 import {Cards} from "./cards";
 import {Cardsets} from "./cardsets";
+import {SweetAlertMessages} from "./sweetAlert";
 
 let keyEventsUnlocked = true;
 let lastActiveCardString = "lastActiveCard";
@@ -231,7 +232,7 @@ export let CardNavigation = class CardNavigation {
 			screenfull.on('change', () => {
 				if (screenfull.element === null && Session.get('fullscreen')) {
 					if (Route.isPresentation()) {
-						$(".endPresentation").click();
+						SweetAlertMessages.continuePresentation();
 					} else {
 						$(".toggleFullscreen").click();
 					}
