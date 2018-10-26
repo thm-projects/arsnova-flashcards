@@ -7,6 +7,7 @@ import * as screenfull from "screenfull";
 import {CardIndex} from "./cardIndex";
 import {Cards} from "./cards";
 import {Cardsets} from "./cardsets";
+import {SweetAlertMessages} from "./sweetAlert";
 
 let keyEventsUnlocked = true;
 let lastActiveCardString = "lastActiveCard";
@@ -116,10 +117,13 @@ export let CardNavigation = class CardNavigation {
 
 	static switchCard (updateLearningMode = 0, answeredCard = 0, answer = 0) {
 		let flashcardCarousel = $('#cardCarousel');
+
 		flashcardCarousel.on('slide.bs.carousel', function () {
 			CardVisuals.resizeFlashcard();
 			CardNavigation.toggleVisibility(false);
+			flashcardCarousel.off('slide.bs.carousel');
 		});
+
 		flashcardCarousel.on('slid.bs.carousel', function () {
 			$('.scrollLeft').removeClass('pressed');
 			$('.scrollRight').removeClass('pressed');
@@ -132,6 +136,7 @@ export let CardNavigation = class CardNavigation {
 			}
 			setTimeout(function () {
 				CardNavigation.toggleVisibility(true);
+				flashcardCarousel.off('slid.bs.carousel');
 			}, 300);
 		});
 	}
@@ -231,7 +236,7 @@ export let CardNavigation = class CardNavigation {
 			screenfull.on('change', () => {
 				if (screenfull.element === null && Session.get('fullscreen')) {
 					if (Route.isPresentation()) {
-						$(".endPresentation").click();
+						SweetAlertMessages.continuePresentation();
 					} else {
 						$(".toggleFullscreen").click();
 					}

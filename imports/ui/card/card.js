@@ -41,6 +41,7 @@ Template.flashcards.onCreated(function () {
 });
 
 let resizeInterval;
+let windowResizeSensor;
 Template.flashcards.onRendered(function () {
 	if (window.innerWidth <= 1400) {
 		if (Router.current().route.getName() === "cardsetdetailsid") {
@@ -71,6 +72,9 @@ Template.flashcards.onRendered(function () {
 	new ResizeSensor($('#cardCarousel'), function () {
 		CardVisuals.resizeFlashcard();
 	});
+	windowResizeSensor = $(window).resize(function () {
+		CardVisuals.resizeFlashcard();
+	});
 	CardVisuals.resizeFlashcard();
 	CardVisuals.setTextZoom();
 });
@@ -79,6 +83,9 @@ Template.flashcards.onDestroyed(function () {
 	if (resizeInterval !== undefined) {
 		clearInterval(resizeInterval);
 		resizeInterval = undefined;
+	}
+	if (windowResizeSensor !== undefined) {
+		windowResizeSensor.off('resize');
 	}
 });
 
