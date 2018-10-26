@@ -117,10 +117,13 @@ export let CardNavigation = class CardNavigation {
 
 	static switchCard (updateLearningMode = 0, answeredCard = 0, answer = 0) {
 		let flashcardCarousel = $('#cardCarousel');
+
 		flashcardCarousel.on('slide.bs.carousel', function () {
 			CardVisuals.resizeFlashcard();
 			CardNavigation.toggleVisibility(false);
+			flashcardCarousel.off('slide.bs.carousel');
 		});
+
 		flashcardCarousel.on('slid.bs.carousel', function () {
 			$('.scrollLeft').removeClass('pressed');
 			$('.scrollRight').removeClass('pressed');
@@ -133,6 +136,7 @@ export let CardNavigation = class CardNavigation {
 			}
 			setTimeout(function () {
 				CardNavigation.toggleVisibility(true);
+				flashcardCarousel.off('slid.bs.carousel');
 			}, 300);
 		});
 	}
