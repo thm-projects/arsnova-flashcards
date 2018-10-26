@@ -1,5 +1,6 @@
 import "./endPresentation.html";
 import {Route} from "../../../../api/route";
+import {SweetAlertMessages} from "../../../../api/sweetAlert";
 
 /*
  * ############################################################################
@@ -12,9 +13,7 @@ Template.cardSidebarItemEndPresentation.events({
 		if (Route.isMakingOf()) {
 			Router.go('home');
 		} else {
-			Router.go('cardsetdetailsid', {
-				_id: Router.current().params._id
-			});
+			SweetAlertMessages.exitPresentation();
 		}
 	}
 });

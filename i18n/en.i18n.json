@@ -1938,6 +1938,24 @@
         "confirm": "Profile",
         "cancel": "Close"
       }
+    },
+    "presentation": {
+      "end": {
+        "title": "Stop the presentation?",
+        "text": "",
+        "button": {
+          "cancel": "I want to continue!",
+          "confirm": "Stop the presentation!"
+        }
+      },
+      "continue": {
+        "title": "Stop the presentation?",
+        "text": "",
+        "button": {
+          "cancel": "Stop the presentation!",
+          "confirm": "I want to continue!"
+        }
+      }
     }
   }
 }

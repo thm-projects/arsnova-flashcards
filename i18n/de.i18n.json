@@ -1796,6 +1796,24 @@
         "confirm": "Konto",
         "cancel": "Schließen"
       }
+    },
+    "presentation": {
+      "end": {
+        "title": "Willst du die Präsentation beenden?",
+        "text": "Eine Fortführung der Präsentation aktiviert den Vollbildmodus.",
+        "button": {
+          "cancel": "Nein, ich präsentiere weiter!",
+          "confirm": "Präsentation beenden!"
+        }
+      },
+      "continue": {
+        "title": "Die Präsentation wurde unterbrochen!",
+        "text": "Eine Fortführung der Präsentation aktiviert den Vollbildmodus.",
+        "button": {
+          "cancel": "Präsentation beenden!",
+          "confirm": "Präsentation fortführen!"
+        }
+      }
     }
   }
 }
