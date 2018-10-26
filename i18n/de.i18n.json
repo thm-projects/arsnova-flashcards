@@ -198,11 +198,11 @@
       },
       "presentation": {
         "end": {
-          "title": "Willst du den Pomodoro-Timer ausschalten?",
+          "title": "Timer ausschalten?",
           "text": "",
           "button": {
-            "cancel": "Nein, ich präsentiere weiter!",
-            "confirm": "Timer ausschalten!"
+            "cancel": "Nein, laufen lassen.",
+            "confirm": "Ja, ausschalten."
           }
         },
         "break": {
@@ -775,7 +775,7 @@
         "placeholder": "maximal täglich zu lernende Karten"
       },
       "daysBeforeReset": {
-        "label": "Terminüberschreitung",
+        "label": "Überschreitungsfrist",
         "placeholder": "in Tagen bis alle Karten wieder in Box 1"
       },
       "startDate": {
@@ -1799,19 +1799,19 @@
     },
     "presentation": {
       "end": {
-        "title": "Willst du die Präsentation beenden?",
-        "text": "Eine Fortführung der Präsentation aktiviert den Vollbildmodus.",
+        "title": "Präsentation beenden?",
+        "text": "",
         "button": {
-          "cancel": "Nein, ich präsentiere weiter!",
-          "confirm": "Präsentation beenden!"
+          "cancel": "Nein, es geht weiter.",
+          "confirm": "Ja, beenden."
         }
       },
       "continue": {
-        "title": "Die Präsentation wurde unterbrochen!",
-        "text": "Eine Fortführung der Präsentation aktiviert den Vollbildmodus.",
+        "title": "Zurück zur Präsentation?",
+        "text": "",
         "button": {
-          "cancel": "Präsentation beenden!",
-          "confirm": "Präsentation fortführen!"
+          "cancel": "Nein, Präsentation beenden!",
+          "confirm": "Ja, Präsentation fortsetzen!"
         }
       }
     }
