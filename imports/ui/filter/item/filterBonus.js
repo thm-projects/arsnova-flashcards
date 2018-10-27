@@ -13,26 +13,37 @@ Template.filterItemFilterBonus.helpers({
 	hasBonusFilter: function () {
 		return Filter.getFilterQuery().learningActive !== undefined;
 	},
-	resultsFilterBonus: function (bonus) {
-		return Filter.getFilterQuery().learningActive === bonus;
+	resultsFilterBonus: function (bonusType) {
+		let query = Filter.getFilterQuery();
+		switch (bonusType) {
+			case 0:
+				return (query.learningActive !== undefined && query.learningEnd.$gt !== undefined);
+			case 1:
+				return (query.learningActive !== undefined && query.learningEnd.$lte !== undefined);
+		}
 	},
 	gotBonusCardsets: function () {
 		let query = Filter.getFilterQuery();
 		query.learningActive = true;
+		query.learningEnd = {$gt: new Date()};
 		return Cardsets.findOne(query);
 	},
-	gotNoBonusCardsets: function () {
+	gotFinishedBonusCardsets: function () {
 		let query = Filter.getFilterQuery();
-		query.learningActive = false;
+		query.learningActive = true;
+		query.learningEnd = {$lte: new Date()};
 		return Cardsets.findOne(query);
 	}
 });
 
 Template.filterItemFilterBonus.events({
 	'click .noFilterBonus': function () {
-		Filter.setActiveFilter(undefined, "bonus");
+		Filter.setActiveFilter(undefined, "noBonus");
 	},
-	'click .filterBonus': function (event) {
-		Filter.setActiveFilter($(event.target).data('id'), "bonus");
+	'click .filterActiveBonus': function () {
+		Filter.setActiveFilter(undefined, "bonusActive");
+	},
+	'click .filterFinishedBonus': function () {
+		Filter.setActiveFilter(undefined, "bonusFinished");
 	}
 });

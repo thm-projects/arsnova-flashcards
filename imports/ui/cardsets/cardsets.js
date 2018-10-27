@@ -200,6 +200,10 @@ Template.learn.events({
 	}
 });
 
+Template.learn.onDestroyed(function () {
+	Filter.resetMaxItemCounter();
+});
+
 /*
  * ############################################################################
  * shuffle
