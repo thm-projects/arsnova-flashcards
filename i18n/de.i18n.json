@@ -51,6 +51,20 @@
         }
       }
     },
+    "cardsetInfo": {
+      "count": {
+        "label": "Tägliche Lernzeit",
+        "content": "__count__ <a href=\"__link__\" data-toggle=\"tooltip\" title=\"__tooltip__\" target=\"_blank\">__pomodoro__ 🍅</a>"
+      },
+      "work": {
+        "label": "Lernzeit pro Pomodoro",
+        "content": "__minutes__"
+      },
+      "break": {
+        "label": "Pausenlänge",
+        "content": "__minutes__"
+      }
+    },
     "form": {
       "time": {
         "hour": "1 Stunde",
