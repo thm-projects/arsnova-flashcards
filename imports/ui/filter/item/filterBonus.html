@@ -14,17 +14,17 @@
                         "set-list.everything"}}</a>
             </li>
             {{#if gotBonusCardsets}}
-                <li><a href="#" class="filterBonus" data-id="true">
+                <li><a href="#" class="filterActiveBonus">
                     {{_ "set-list.activeLearnphase"}}
-                    {{#if resultsFilterBonus true}}
+                    {{#if resultsFilterBonus 0}}
                         <span class="glyphicon glyphicon-filter"></span>
                     {{/if}}
                 </a></li>
             {{/if}}
-            {{#if gotNoBonusCardsets}}
-                <li><a href="#" class="filterBonus" data-id="false">
+            {{#if gotFinishedBonusCardsets}}
+                <li><a href="#" class="filterFinishedBonus">
                     {{_ "set-list.inactiveLearnphase"}}
-                    {{#if resultsFilterBonus false}}
+                    {{#if resultsFilterBonus 1}}
                         <span class="glyphicon glyphicon-filter"></span>
                     {{/if}}
                 </a></li>
