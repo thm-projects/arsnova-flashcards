@@ -40,6 +40,7 @@ Template.wordcloudModal.helpers({
 
 Template.wordcloudModal.events({
 	'click #cardsetLink': function () {
+		$('body').removeClass('modal-open');
 		$('#wordcloudModal').hide();
 		$('.modal-backdrop').css('display', 'none');
 	}
