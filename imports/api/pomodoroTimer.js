@@ -568,7 +568,6 @@ export let PomodoroTimer = class PomodoroTimer {
 		pomRunning = false;
 		breakRunning = false;
 		Session.set('presentationPomodoroActive', false);
-		$(".pomodoroInstructions").html(TAPi18n.__('pomodoro.timer.instructions.activate'));
 		$(".progressArc").attr("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
 		$(".pomArc").attr("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
 		$(".breakArc").attr("d", PomodoroTimer.describeArc(0, 0, 0, 0, 0));
@@ -738,7 +737,6 @@ export let PomodoroTimer = class PomodoroTimer {
 		endBreak = (endPom + 6 * breakLength);
 		pomRunning = true;
 		pomBeginAngle = 6 * curTime.getMinutes() + curTime.getSeconds() / 10;
-		$(".pomodoroInstructions").html(TAPi18n.__('pomodoro.timer.instructions.deactivate'));
 		Session.set('presentationPomodoroActive', true);
 		/* Method for WelcomePage */
 		this.showPomodoroFullsize();
