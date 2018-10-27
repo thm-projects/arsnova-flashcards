@@ -255,7 +255,7 @@ Router.route('/learn', {
 	data: function () {
 		Session.set('helpFilter', "workload");
 		Session.set('activeRouteTitle', TAPi18n.__('navbar-collapse.learndecks', {}, Session.get('activeLanguage')));
-		Filter.setActiveFilter();
+		Filter.resetMaxItemCounter();
 	},
 	action: function () {
 		if (this.ready()) {
