@@ -1,0 +1,12 @@
+<template name="cardsetInfoBoxItemActiveLearners">
+    <tr>
+        <td>{{_ "cardset.info.workload.normal.count"}}:</td>
+        <td>{{this.workload.normal.count}}</td>
+    </tr>
+    {{#if this.learningActive}}
+        <tr>
+            <td>{{_ "cardset.info.workload.bonus.count"}}:</td>
+            <td>{{this.workload.bonus.count}}</td>
+        </tr>
+    {{/if}}
+</template>

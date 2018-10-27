@@ -1,0 +1,12 @@
+<template name="cardsetInfoBoxItemReviewer">
+    {{#unless isActiveRoute regex="home"}}
+        {{#if getReviewer}}
+            <tr>
+                <td>{{_ "cardset.info.reviewer"}}:</td>
+                <td><a
+                        href="{{pathFor 'profileSettings' _id=reviewer}}">{{getAuthorName this.reviewer}}</a>
+                </td>
+            </tr>
+        {{/if}}
+    {{/unless}}
+</template>

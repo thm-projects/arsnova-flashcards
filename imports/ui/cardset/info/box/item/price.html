@@ -1,0 +1,12 @@
+<template name="cardsetInfoBoxItemPrice">
+    {{#unless isActiveRoute regex="home|create|learn|pool|shuffle"}}
+        {{#if hasAmount}}
+            {{#unless canViewForFree}}
+                <tr>
+                    <td>{{_ "cardset.info.amount"}}:</td>
+                    <td>{{getPrice this.price}}</td>
+                </tr>
+            {{/unless}}
+        {{/if}}
+    {{/unless}}
+</template>
