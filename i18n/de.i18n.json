@@ -870,7 +870,7 @@
       "short": "Bonus"
     },
     "list": {
-      "back": "Zurück zur Karte"
+      "back": " Zurück zur Karte"
     }
   },
   "rating-field": {
@@ -889,7 +889,7 @@
   },
   "learn-endscreen": {
     "success": "Lernpensum abgeschlossen",
-    "back2": "Zurück zur Kartei"
+    "back2": " Zurück zur Kartei"
   },
   "carddeck-table": {
     "name": "Name",
@@ -1379,8 +1379,8 @@
   "subjectInfo": "Karten in der Box __box__ werden täglich wieder vorgelegt.",
   "subjectInfo_plural": "Karten in der Box __box__ werden nach __count__ Tagen wieder vorgelegt.",
   "leitnerCard": "Karte für derzeitige Lernphase",
-  "backbutton": "Zur Kartei",
-  "backbuttonStatistics": "Zurück zur Lernstatistik",
+  "backbutton": " Zur Kartei",
+  "backbuttonStatistics": " Zurück zur Lernstatistik",
   "know": "Gewusst",
   "notknow": "Nicht gewusst",
   "box_status": "Eine Karte zu lernen",
