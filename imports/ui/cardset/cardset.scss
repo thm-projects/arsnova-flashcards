@@ -336,6 +336,12 @@ $padding-card-list-row: 8px;
   z-index: 50;
 }
 
+#collapseLearningPhaseInfo {
+  a {
+    display: inline;
+  }
+}
+
 .collapseCardsetInfoContainer {
   display: block;
   min-height: 58px;
