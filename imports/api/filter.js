@@ -85,8 +85,17 @@ export let Filter = class Filter {
 				case "wordcloud":
 					filter.wordcloud = content;
 					break;
-				case "bonus":
-					filter.learningActive = content;
+				case "noBonus":
+					filter.learningActive = undefined;
+					filter.learningEnd = undefined;
+					break;
+				case "bonusActive":
+					filter.learningActive = true;
+					filter.learningEnd = {$gt: true};
+					break;
+				case "bonusFinished":
+					filter.learningActive = true;
+					filter.learningEnd = {$lte: true};
 					break;
 				case "kind":
 					filter.kind = content;
@@ -231,6 +240,11 @@ export let Filter = class Filter {
 		}
 		if (FilterNavigation.gotBonusFilter(FilterNavigation.getRouteId()) && activeFilter.learningActive !== undefined) {
 			query.learningActive = activeFilter.learningActive;
+			if (activeFilter.learningEnd.$lte !== undefined) {
+				query.learningEnd = {$lte: new Date()};
+			} else {
+				query.learningEnd = {$gt: new Date()};
+			}
 		}
 		if (FilterNavigation.gotWordCloudFilter(FilterNavigation.getRouteId()) && activeFilter.wordcloud !== undefined) {
 			query.wordcloud = activeFilter.wordcloud;
