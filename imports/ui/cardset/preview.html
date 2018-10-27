@@ -1,0 +1,29 @@
+<template name="cardsetPreview">
+    <div id="cardsetPreview">
+        <div class="panel panel-default cardsetInfo">
+            <div class="panel-body">
+                    <span class="nav-header-cardset">{{_ "sidebar-nav.preview"}}<a id="showPreviewHelp" href="#"
+                                                                                   class="field-tip">
+                                        <i class="glyphicon glyphicon-info-sign"></i>
+                                    </a></span>
+                <form role="form">
+                    <div class="">
+                        <div class="">
+                            <div id="payment-form"></div>
+                            <button id="buyCardsetBtn" type="submit"
+                                    class="btn btn-success btn-block btn-raised">{{_
+                                    "cardset.money.buy"}} {{getPrice price}}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <button id="buyProBtn"
+                        class="btn btn-warning btn-block btn-raised">{{_ "cardset.money.pro"}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="btn-group"
+         role="group">
+    </div>
+</template>

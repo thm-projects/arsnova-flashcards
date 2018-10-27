@@ -1,0 +1,146 @@
+<template name="chooseFlashcards">
+    <div class="modal fade" id="chooseFlashcardsModal" tabindex="-1" role="dialog"
+         aria-labelledby="chooseFlashcardsTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons">
+                <div class="modal-header">
+                    <h4 id="chooseFlashcardsTitle" class="modal-title">{{#if isPresentationMode}}{{_
+                            "presentation.create"}}{{else}}{{_ "learnSelection"}}{{/if}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="bs-callout bs-callout-info selectionInfo">
+                        {{#if getCardCount -1 -1}}
+                            <button id="createCardFilter" class="btn btn-raised btn-success" {{disableIfOffline}}>{{#if
+                                    isPresentationMode}}{{_
+                                    "presentation.start"}}{{else}}{{_ "filter-cards.filter"}}{{/if}}
+                            </button>
+                        {{/if}}
+                        <a href="#" id="cancelCardFilter" class="btn btn-raised btn-danger" data-dismiss="modal"
+                           aria-hidden="true">{{_
+                                "declinecard"}}</a>
+                        <span class="text">
+                            {{_ "filter-cards.infoText"}} {{getCardCount -1 -1}}
+                        </span>
+                    </div>
+                    <br>
+                    <span class="col-xs-12 listHeader">
+                        {{_ "filter-cards.settings"}}
+                    </span>
+                    <div class="col-xs-12 panel panel-default cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                                            <span class="cell col-xs-6 poolText panelUnit">
+                                                {{_ "filter-cards.sortText"}}
+                                            </span>
+                        <span class="cell col-xs-6 poolText panelUnit">
+                                    <a class="btn btn-block btn-raised btn-default btn-sm shuffleButton sortFilter">{{getSortMode}}
+                                    </a>
+                        </span>
+                    </div>
+                    {{#if gotLearningGoal}}
+                        <span class="col-xs-12 listHeader">
+                            {{_ "learning-goal.name"}}
+                        </span>
+                        {{#if getCardCount 1 0}}
+                            <div class="col-xs-12 panel panel-default cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                                            <span class="cell col-xs-6 poolText panelUnit">
+                                                {{_ "learning-goal.level1"}}
+                                                <span class="cell badge cardsetBadge">
+                                                    {{getCardCount 1 0}}
+                                                </span>
+                                            </span>
+                                <span class="cell col-xs-6 poolText panelUnit">
+                                    {{> chooseFlashcardsButton category=1 item=0}}
+                                </span>
+                            </div>
+                        {{/if}}
+                        {{#if getCardCount 1 1}}
+                            <div class="col-xs-12 panel panel-default altPanel cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    <span class="cell col-xs-6 poolText panelUnit">
+                        {{_ "learning-goal.level2"}}
+                        <span class="cell badge cardsetBadge">
+                            {{getCardCount 1 1}}
+                        </span>
+                    </span>
+                                <span class="cell col-xs-6 poolText panelUnit">
+                                    {{> chooseFlashcardsButton category=1 item=1}}
+                                </span>
+                            </div>
+                        {{/if}}
+                        {{#if getCardCount 1 2}}
+                            <div class="col-xs-12 panel panel-default cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    <span class="cell col-xs-6 poolText panelUnit">
+                        {{_ "learning-goal.level3"}}
+                        <span class="cell badge cardsetBadge">
+                            {{getCardCount 1 2}}
+                        </span>
+                    </span>
+                                <span class="cell col-xs-6 poolText panelUnit">
+                                    {{> chooseFlashcardsButton category=1 item=2}}
+                                </span>
+                            </div>
+                        {{/if}}
+                        {{#if getCardCount 1 3}}
+                            <div class="col-xs-12 panel panel-default altPanel cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    <span class="cell col-xs-6 poolText panelUnit">
+                        {{_ "learning-goal.level4"}}
+                        <span class="cell badge cardsetBadge">
+                            {{getCardCount 1 3}}
+                        </span>
+                    </span>
+                                <span class="cell col-xs-6 poolText panelUnit">
+                                    {{> chooseFlashcardsButton category=1 item=3}}
+                                </span>
+                            </div>
+                        {{/if}}
+                        {{#if getCardCount 1 4}}
+                            <div class="col-xs-12 panel panel-default cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    <span class="cell col-xs-6 poolText panelUnit">
+                        {{_ "learning-goal.level5"}}
+                        <span class="cell badge cardsetBadge">
+                            {{getCardCount 1 4}}
+                        </span>
+                    </span>
+                                <span class="cell col-xs-6 poolText panelUnit">
+                                    {{> chooseFlashcardsButton category=1 item=4}}
+                                </span>
+                            </div>
+                        {{/if}}
+                        {{#if getCardCount 1 5}}
+                            <div class="col-xs-12 panel panel-default altPanel cardsetInfo cardsetRow responsive-utilities-test visible-on">
+                    <span class="cell col-xs-6 poolText panelUnit">
+                        {{_ "learning-goal.level6"}}
+                        <span class="cell badge cardsetBadge">
+                            {{getCardCount 1 5}}
+                        </span>
+                    </span>
+                                <span class="cell col-xs-6 poolText panelUnit">
+                                    {{> chooseFlashcardsButton category=1 item=5}}
+                                </span>
+                            </div>
+                        {{/if}}
+                    {{/if}}
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>
+
+<template name="chooseFlashcardsButton">
+    {{#if inFlashcardFilterSelection category item}}
+        <a class="btn btn-block btn-raised btn-danger btn-sm shuffleButton removeCardFilter"
+           data-category="{{category}}" data-item="{{item}}">
+            <i class="fa fa-minus" data-category="{{category}}" data-item="{{item}}"></i> {{_
+                "admin.cardset.removeFromWordcloud"}}
+        </a>
+    {{else}}
+        <a class="btn btn-block btn-raised btn-success btn-sm shuffleButton addCardFilter"
+           data-category="{{category}}" data-item="{{item}}">
+            <i class="fa fa-plus" data-category="{{category}}" data-item="{{item}}"></i> {{_
+                "admin.cardset.addToWordcloud"}}
+        </a>
+    {{/if}}
+</template>

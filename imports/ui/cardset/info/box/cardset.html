@@ -1,0 +1,171 @@
+<template name="cardsetInfoBox">
+    <a id="collapseCardsetInfoButton"
+       class="col-xs-12 card btn-default btn-raised {{getColors}} collapseButton collapsed" href="#collapseCardsetInfo"
+       data-toggle="collapse">
+        <strong>{{#if this.shuffled}}{{_ "set-list.cardsetInfoRepetitorium"}}{{else}}{{_
+                "set-list.cardsetInfoStatic"}}{{/if}}</strong>
+        <i id="collapseCardsetInfoIcon" class="glyphicon glyphicon-collapse-down pull-right"></i>
+    </a>
+    <div class="collapse" id="collapseCardsetInfo">
+        <div class="card card-block">
+            <table class="table table-condensed table-striped table-hover infoBoxTable">
+                <tbody>
+                {{> cardsetInfoBoxContentOne}}
+                {{> cardsetInfoBoxContentTwo}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</template>
+
+<template name="cardsetInfoBoxContentOne">
+    <tr>
+        <td>
+            {{#if this.shuffled}}
+                {{_ "cardset.info.publisher"}}
+            {{else}}
+                {{_ "cardset.info.author"}}
+            {{/if}}:
+        </td>
+        <td>
+            {{getAuthorName this.owner false}}
+        </td>
+    </tr>
+    {{#unless this.shuffled}}
+        {{#if gotOriginalAuthorData}}
+            <tr>
+                <td>{{_ "cardset.info.originalAuthor"}}:</td>
+                <td>
+                    {{getOriginalAuthorName this.originalAuthorName false}}
+                </td>
+            </tr>
+        {{/if}}
+    {{/unless}}
+    {{#if isActiveRoute regex="learn"}}
+        <tr>
+            <td>{{_ "set-list.learningMode"}}:</td>
+            <td>
+                {{getLearningMode}}
+            </td>
+        </tr>
+    {{/if}}
+    {{#unless isActiveRoute regex="home"}}
+        {{#if getReviewer}}
+            <tr>
+                <td>{{_ "cardset.info.reviewer"}}:</td>
+                <td><a
+                        href="{{pathFor 'profileSettings' _id=reviewer}}">{{getAuthorName this.reviewer}}</a>
+                </td>
+            </tr>
+        {{/if}}
+    {{/unless}}
+    {{#if isActiveRoute regex="home"}}
+        <tr>
+            <td>{{_ "set-list.category"}}:</td>
+            <td>
+                {{{getKindText this.kind 1}}}
+            </td>
+        </tr>
+    {{/if}}
+    {{#unless isShuffledCardset this._id}}
+        {{#unless isActiveRoute regex="course"}}
+            <tr>
+                <td>{{_ "cardType"}}:</td>
+                <td>
+                    {{getCardType}}
+                </td>
+            </tr>
+            <tr>
+                <td>{{#if gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
+                        "difficulty"}}{{/if}}:
+                </td>
+                <td>
+                    {{getDifficultyName}}
+                </td>
+            </tr>
+        {{/unless}}
+    {{/unless}}
+    {{#unless isActiveRoute regex="create|learn|pool|shuffle"}}
+        <tr>
+            <td>{{_ "cardset.info.quantity"}}:</td>
+            <td class="cardsetCardQuantity" data-quantity="{{this.quantity}}">{{this.quantity}}</td>
+        </tr>
+    {{/unless}}
+    {{#unless isActiveRoute regex="home|create|learn|pool|shuffle"}}
+        {{#if hasAmount}}
+            {{#unless canViewForFree}}
+                <tr>
+                    <td>{{_ "cardset.info.amount"}}:</td>
+                    <td>{{getPrice this.price}}</td>
+                </tr>
+            {{/unless}}
+        {{/if}}
+        {{#if isPurchased}}
+            <tr>
+                <td>{{_ "cardset.info.bought"}}:</td>
+                <td>{{getDateOfPurchase}}</td>
+            </tr>
+        {{/if}}
+    {{/unless}}
+    <tr>
+        <td>{{_ "cardset.info.license"}}:</td>
+        <td>
+            {{#unless isShuffledCardset _id}}
+                {{#if isActiveRoute "home"}}
+                    <span class="info_license showLicense">{{getLicense this._id this.license}}</span>
+                {{else}}
+                    <a class="info_license showLicense" href="#" data-id="{{this._id}}" data-toggle="modal"
+                       data-target="#showLicenseModal">{{getLicense this._id this.license}}</a>
+                {{/if}}
+            {{else}}
+                {{_ "cardset.info.shuffleLicense"}}
+            {{/unless}}
+        </td>
+    </tr>
+</template>
+
+<template name="cardsetInfoBoxContentTwo">
+    <tr>
+        <td>{{_ "cardset.info.release"}}:</td>
+        <td>{{getMomentsDate this.date}}</td>
+    </tr>
+    <tr>
+        <td>{{_ "cardset.info.dateUpdated"}}:</td>
+        <td>{{getMomentsDate this.dateUpdated}}</td>
+    </tr>
+    <tr>
+        <td>{{_ "cardset.info.workload.normal.count"}}:</td>
+        <td>{{this.workload.normal.count}}</td>
+    </tr>
+    {{#if this.learningActive}}
+        <tr>
+            <td>{{_ "cardset.info.workload.bonus.count"}}:</td>
+            <td>{{this.workload.bonus.count}}</td>
+        </tr>
+    {{/if}}
+    {{#unless isActiveRoute regex="home|course"}}
+        {{#if ratingEnabled}}
+            <tr>
+                <td>{{_ "cardset.info.rating"}}:</td>
+                <td>
+                    {{#if canRateCardset}}
+                        {{#if isActiveRoute regex="cardsetdetailsid|cardsetlistid"}}
+                            {{> starsRating id="rating" class='star-ratings' rating=getAverageRating mutable=true}}
+                        {{else}}
+                            {{> starsRating class='star-ratings' rating=getAverageRating mutable=false}}
+                        {{/if}}
+
+                    {{else}}
+                        {{> starsRating class='star-ratings' rating=getAverageRating mutable=false}}
+                    {{/if}} ({{this.raterCount}})
+                </td>
+            </tr>
+            <tr>
+                {{#if canRateCardset}}
+                    <td>{{_ "cardset.info.userRating"}}:</td>
+                    <td><span id="userRating">{{getUserRating}}</span></td>
+                {{/if}}
+            </tr>
+        {{/if}}
+    {{/unless}}
+</template>

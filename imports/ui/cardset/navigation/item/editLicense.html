@@ -1,0 +1,13 @@
+<template name="cardsetNavigationEditLicense">
+    {{#unless isShuffledCardset this._id}}
+        {{#if isCardsetOwner _id}}
+            <div class="hidden-xs btn-group">
+                <button id="selectLicense" class="btn btn-sm btn-raised selectLicenseBtn"
+                        data-toggle="modal"
+                        data-target="#selectLicenseModal" {{disableIfOffline}}>
+                    <i class="fa fa-cc"></i>{{_ "sidebar-nav.license"}}
+                </button>
+            </div>
+        {{/if}}
+    {{/unless}}
+</template>

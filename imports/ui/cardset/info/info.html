@@ -1,0 +1,45 @@
+<template name="cardsetInfo">
+    <div id="cardsetInfoDetail" class="col-md-12">
+        <div class="panel panel-default cardsetInfo">
+            <div class="panel-body">
+                <div class="row markdeepCardset">
+                    <div class="col-xs-12 {{#if
+                            learningActive}}col-md-4{{else}}col-sm-6 col-md-8{{/if}} markdeepCardsetTitle">
+                        <div class="cardsetTitleContainer">
+                            <div class="cardsetLabels">{{{getKind kind 0}}} {{{getShuffleLabel
+                                    this.shuffled}}} {{{getBonusLabel this.learningActive}}}</div>
+                            <h4 id="cardsetTitle">{{name}}</h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4 infoBox">
+                    <span class="collapseCardsetInfoContainer">
+                        {{> cardsetInfoBox}}
+                    </span>
+                    </div>
+                    {{#if learningActive}}
+                        <div class="col-xs-12 col-sm-6 col-md-4 infoBox">
+                            {{> learningPhaseInfoBox}}
+                        </div>
+                    {{/if}}
+                </div>
+                <div class="row markdeepCardset markdeepCardsetContent">
+                    <hr class="markdeepCardsetHeader">
+                    {{#mathjax}}{{description}}{{/mathjax}}
+                </div>
+            </div>
+            {{#if isLecturerAndHasRequest}}
+                <div class="panel-footer">
+                    <button id="acceptRequest" class="btn btn-raised btn-success"
+                            type="button">{{_
+                            "cardset.request.accept"}}</button>
+                    <button id="declineRequest" class="btn btn-raised btn-danger"
+                            type="button">{{_
+                            "cardset.request.decline"}}</button>
+                    <textarea id="declineRequestReason" type="text" class="form-control"
+                              placeholder="{{_ "cardset.request.reason"}}" rows="7"></textarea>
+                </div>
+            {{/if}}
+            {{> cardsetNavigation}}
+        </div>
+    </div>
+</template>

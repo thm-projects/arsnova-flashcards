@@ -1,0 +1,27 @@
+<template name="cardsetEndLearnForm">
+    <div class="modal fade" id="confirmEndLearnModal" tabindex="-1" role="dialog"
+         aria-labelledby="confirmEndLearnModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="confirmEndLearnModalTitle" class="modal-title">{{_ "confirmEndLearn-form.title"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <h5>{{_ "confirmEndLearn-form.warnTitle"}}</h5>
+                        <p>{{_ "confirmEndLearn-form.warning"}}</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancelEndLearn" class="btn btn-default btn-raised btn-block col-xs-12 col-sm-3"
+                            data-dismiss="modal">{{_ "confirmEndLearn-form.cancel"}}</button>
+                    <button id="confirmEndLearn"
+                            class="btn btn-danger btn-raised btn-block col-xs-12 col-sm-3 pull-right"
+                            data-dismiss="modal">{{_ "confirmEndLearn-form.confirm"}}</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- /form group -->
+</template>
