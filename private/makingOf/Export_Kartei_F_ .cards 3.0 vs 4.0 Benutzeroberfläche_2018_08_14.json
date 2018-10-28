@@ -1,6 +1,6 @@
 [{
-  "name": "F: .cards 3.0 vs 4.0 Benutzeroberfläche",
-  "description": "Änderungen der Oberfläche von .cards 3.0 bis 4.0 für Mobile, Tablet und Laptop Geräte.",
+  "name": "F: 🍅cards 3.0 vs 4.0 Benutzeroberfläche",
+  "description": "Änderungen der Oberfläche von 🍅cards 3.0 bis 4.0 für Mobile, Tablet und Laptop Geräte.",
   "date": "2018-08-01T11:53:17.941Z",
   "dateUpdated": "2018-08-14T15:36:54.050Z",
   "editors": [],
@@ -36,7 +36,7 @@
   }
 }, {
   "subject": "01: Landing Page",
-  "front": "(#) Desktop\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/welcome.jpg)| ![](/makingOf/img/new/desktop/welcome.jpg)\n\n(#) Tablet\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/welcome.jpg height=370px\")| ![](/makingOf/img/new/tablet/welcome.jpg height=370px\")\n\n(#) Smartphone\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/welcome.jpg height=370px\")| ![](/makingOf/img/new/smartphone/welcome.jpg height=370px\")",
+  "front": "(#) Desktop\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/welcome.jpg)| ![](/makingOf/img/new/desktop/welcome.jpg)\n\n(#) Tablet\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/welcome.jpg height=370px\")| ![](/makingOf/img/new/tablet/welcome.jpg height=370px\")\n\n(#) Smartphone\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/welcome.jpg height=370px\")| ![](/makingOf/img/new/smartphone/welcome.jpg height=370px\")",
   "centerTextElement": [
     false,
     false,
@@ -57,7 +57,7 @@
   }
 }, {
   "subject": "02: Themen-Pool",
-  "front": "(#) Desktop\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/pool.jpg)| ![](/makingOf/img/new/desktop/pool.jpg)\n\n(#) Tablet\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/pool.jpg height=370px\")| ![](/makingOf/img/new/tablet/pool.jpg height=370px\")\n\n(#) Smartphone\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/pool.jpg height=370px\")| ![](/makingOf/img/new/smartphone/pool.jpg height=370px\")",
+  "front": "(#) Desktop\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/pool.jpg)| ![](/makingOf/img/new/desktop/pool.jpg)\n\n(#) Tablet\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/pool.jpg height=370px\")| ![](/makingOf/img/new/tablet/pool.jpg height=370px\")\n\n(#) Smartphone\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/pool.jpg height=370px\")| ![](/makingOf/img/new/smartphone/pool.jpg height=370px\")",
   "centerTextElement": [
     false,
     false,
@@ -78,7 +78,7 @@
   }
 }, {
   "subject": "03: Meine Karteien",
-  "front": "(#) Desktop\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/cardset.jpg)| ![](/makingOf/img/new/desktop/cardset.jpg)\n\n(#) Tablet\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/cardset.jpg height=370px\")| ![](/makingOf/img/new/tablet/cardset.jpg height=370px\")\n\n(#) Smartphone\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/cardset.jpg height=370px\")| ![](/makingOf/img/new/smartphone/cardset.jpg height=370px\")",
+  "front": "(#) Desktop\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/cardset.jpg)| ![](/makingOf/img/new/desktop/cardset.jpg)\n\n(#) Tablet\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/cardset.jpg height=370px\")| ![](/makingOf/img/new/tablet/cardset.jpg height=370px\")\n\n(#) Smartphone\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/cardset.jpg height=370px\")| ![](/makingOf/img/new/smartphone/cardset.jpg height=370px\")",
   "centerTextElement": [
     false,
     false,
@@ -99,7 +99,7 @@
   }
 }, {
   "subject": "04: Lernpensum",
-  "front": "(#) Desktop\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/learn.jpg)| ![](/makingOf/img/new/desktop/learn.jpg)\n\n(#) Tablet\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/learn.jpg height=370px\")| ![](/makingOf/img/new/tablet/learn.jpg height=370px\")\n\n(#) Smartphone\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/learn.jpg height=370px\")| ![](/makingOf/img/new/smartphone/learn.jpg height=370px\")",
+  "front": "(#) Desktop\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/learn.jpg)| ![](/makingOf/img/new/desktop/learn.jpg)\n\n(#) Tablet\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/learn.jpg height=370px\")| ![](/makingOf/img/new/tablet/learn.jpg height=370px\")\n\n(#) Smartphone\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/learn.jpg height=370px\")| ![](/makingOf/img/new/smartphone/learn.jpg height=370px\")",
   "centerTextElement": [
     false,
     false,
@@ -120,7 +120,7 @@
   }
 }, {
   "subject": "05: Kartei",
-  "front": "(#) Desktop\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/cardset.jpg)| ![](/makingOf/img/new/desktop/cardset.jpg)\n\n(#) Tablet\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/cardset.jpg height=370px\")| ![](/makingOf/img/new/tablet/cardset.jpg height=370px\")\n\n(#) Smartphone\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/cardset.jpg height=370px\")| ![](/makingOf/img/new/smartphone/cardset.jpg height=370px\")",
+  "front": "(#) Desktop\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/cardset.jpg)| ![](/makingOf/img/new/desktop/cardset.jpg)\n\n(#) Tablet\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/cardset.jpg height=370px\")| ![](/makingOf/img/new/tablet/cardset.jpg height=370px\")\n\n(#) Smartphone\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/cardset.jpg height=370px\")| ![](/makingOf/img/new/smartphone/cardset.jpg height=370px\")",
   "centerTextElement": [
     false,
     false,
@@ -141,7 +141,7 @@
   }
 }, {
   "subject": "06: Kartei-Index",
-  "front": "(#) Desktop\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/index.jpg)| ![](/makingOf/img/new/desktop/index.jpg)\n\n(#) Tablet\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/index.jpg height=370px\")| ![](/makingOf/img/new/tablet/index.jpg height=370px\")\n\n(#) Smartphone\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/index.jpg height=370px\")| ![](/makingOf/img/new/smartphone/index.jpg height=370px\")",
+  "front": "(#) Desktop\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/index.jpg)| ![](/makingOf/img/new/desktop/index.jpg)\n\n(#) Tablet\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/index.jpg height=370px\")| ![](/makingOf/img/new/tablet/index.jpg height=370px\")\n\n(#) Smartphone\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/index.jpg height=370px\")| ![](/makingOf/img/new/smartphone/index.jpg height=370px\")",
   "centerTextElement": [
     false,
     false,
@@ -162,7 +162,7 @@
   }
 }, {
   "subject": "07: Editor für Karten",
-  "front": "(#) Desktop\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/editor.jpg)| ![](/makingOf/img/new/desktop/editor.jpg)\n\n(#) Tablet\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/editor.jpg height=370px\")| ![](/makingOf/img/new/tablet/editor.jpg height=370px\")\n\n(#) Smartphone\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/editor.jpg height=370px\")| .cards 4.0 ist nur für das Lernen von Karten auf Smartphones ausgelegt. Für das erstellen von Karten muss der Benutzer ein Tablet oder einen Desktop verwenden.",
+  "front": "(#) Desktop\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/editor.jpg)| ![](/makingOf/img/new/desktop/editor.jpg)\n\n(#) Tablet\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/editor.jpg height=370px\")| ![](/makingOf/img/new/tablet/editor.jpg height=370px\")\n\n(#) Smartphone\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/editor.jpg height=370px\")| 🍅cards 4.0 ist nur für das Lernen von Karten auf Smartphones ausgelegt. Für das erstellen von Karten muss der Benutzer ein Tablet oder einen Desktop verwenden.",
   "centerTextElement": [
     false,
     false,
@@ -183,7 +183,7 @@
   }
 }, {
   "subject": "08: Leitner Lernmodus",
-  "front": "(#) Desktop\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/leitner.jpg)| ![](/makingOf/img/new/desktop/leitner.jpg)\n\n(#) Tablet\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/leitner.jpg height=370px)| ![](/makingOf/img/new/tablet/leitner.jpg height=370px\")\n\n(#) Smartphone\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/leitner.jpg height=370px)| ![](/makingOf/img/new/smartphone/leitner.jpg height=370px)",
+  "front": "(#) Desktop\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/leitner.jpg)| ![](/makingOf/img/new/desktop/leitner.jpg)\n\n(#) Tablet\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/leitner.jpg height=370px)| ![](/makingOf/img/new/tablet/leitner.jpg height=370px\")\n\n(#) Smartphone\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/leitner.jpg height=370px)| ![](/makingOf/img/new/smartphone/leitner.jpg height=370px)",
   "centerTextElement": [
     false,
     false,
@@ -204,7 +204,7 @@
   }
 }, {
   "subject": "09: Wozniak Lernmodus",
-  "front": "(#) Desktop\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/wozniak.jpg)| ![](/makingOf/img/new/desktop/wozniak.jpg)\n\n(#) Tablet\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/wozniak.jpg height=370px)| ![](/makingOf/img/new/tablet/wozniak.jpg height=370px)\n\n(#) Smartphone\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/wozniak.jpg height=370px)| ![](/makingOf/img/new/smartphone/wozniak.jpg height=370px)",
+  "front": "(#) Desktop\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/wozniak.jpg)| ![](/makingOf/img/new/desktop/wozniak.jpg)\n\n(#) Tablet\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/wozniak.jpg height=370px)| ![](/makingOf/img/new/tablet/wozniak.jpg height=370px)\n\n(#) Smartphone\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/wozniak.jpg height=370px)| ![](/makingOf/img/new/smartphone/wozniak.jpg height=370px)",
   "centerTextElement": [
     false,
     false,
@@ -225,7 +225,7 @@
   }
 }, {
   "subject": "10: Benuzerprofl",
-  "front": "(#) Desktop\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/profile.jpg)| ![](/makingOf/img/new/desktop/profile.jpg)\n\n(#) Tablet\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/profile.jpg height=370px)| ![](/makingOf/img/new/tablet/profile.jpg height=370px)\n\n(#) Smartphone\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/profile.jpg height=370px)| ![](/makingOf/img/new/smartphone/profile.jpg height=370px)",
+  "front": "(#) Desktop\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/profile.jpg)| ![](/makingOf/img/new/desktop/profile.jpg)\n\n(#) Tablet\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/tablet/profile.jpg height=370px)| ![](/makingOf/img/new/tablet/profile.jpg height=370px)\n\n(#) Smartphone\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/smartphone/profile.jpg height=370px)| ![](/makingOf/img/new/smartphone/profile.jpg height=370px)",
   "centerTextElement": [
     false,
     false,

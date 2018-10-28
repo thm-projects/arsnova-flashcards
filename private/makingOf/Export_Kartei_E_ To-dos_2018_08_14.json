@@ -58,7 +58,7 @@
   "learningUnit": "0"
 }, {
   "subject": "02: Drag and drop Sortierung für den Index einer Kartei",
-  "front": "Durch die Erweiterung [JQuery Sortable](https://jqueryui.com/sortable/#placeholder) erhält der Besitzer einer Kartei die Möglichkeit, seine Karten innerhalb der Listenansicht zu sortieren:\n\n  Listenansicht einer .cards 4.0 Kartei    |     JQuery sortable\n:-----------------------------------------:|:------------------------------:\n![](/makingOf/img/new/desktop/index.jpg)                              | ![](/makingOf/vid/drag_and_drop.webm width=80% loop)",
+  "front": "Durch die Erweiterung [JQuery Sortable](https://jqueryui.com/sortable/#placeholder) erhält der Besitzer einer Kartei die Möglichkeit, seine Karten innerhalb der Listenansicht zu sortieren:\n\n  Listenansicht einer 🍅cards 4.0 Kartei    |     JQuery sortable\n:-----------------------------------------:|:------------------------------:\n![](/makingOf/img/new/desktop/index.jpg)                              | ![](/makingOf/vid/drag_and_drop.webm width=80% loop)",
   "centerTextElement": [
     false,
     false,
