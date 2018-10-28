@@ -1,8 +1,8 @@
-arsnova.cards
+arsnova🍅cards
 ---
-The [Progressive Web App](https://en.wikipedia.org/wiki/Progressive_web_app) arsnova.cards offers students a modern and intuitive access to one of the most successful and evidence based learning methods, i.e., [spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition).
+The [Progressive Web App](https://en.wikipedia.org/wiki/Progressive_web_app) arsnova🍅cards offers students a modern and intuitive access to one of the most successful and evidence based learning methods, i.e., [spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition).
 
-arsnova.cards uses Meteor as application framework. Download and install [Meteor](https://www.meteor.com/) to get the app running in your local development environment.
+arsnova🍅cards uses Meteor as application framework. Download and install [Meteor](https://www.meteor.com/) to get the app running in your local development environment.
 
 ## System requirements
 - 4 GB RAM
@@ -25,12 +25,12 @@ Change `settings.json` or `settings_debug.json` according to your needs
 ## Meteor updates
 A simple update to the latest Meteor version is not always possible. Please do not update Meteor to the latest version and leave this to the owners of the repository.
 
-## Migrate a local Meteor 1.6 .cards database to Meteor 1.8
+## Migrate a local Meteor 1.6 🍅cards database to Meteor 1.8
 1. Make sure that you meet following requirements:
    - You've selected the staging branch `git checkout staging`
    - Your staging branch is up to date `git pull`
    - Meteor is running
-   - Your terminal is inside the repository **flashcards folder** 
+   - Your terminal is inside the repository **flashcards folder**
 1. Move to your staging branch `git checkout staging`
 1. Install the mongodb-tools: `sudo apt-get install mongo-tools`
 1. Set your repository to the latest Meteor 1.6 version `git checkout 3a1751a2838ad595eda7d3ccd9e9191a3bf32271`
@@ -44,7 +44,7 @@ A simple update to the latest Meteor version is not always possible. Please do n
 1. Restore your backup `mongorestore --drop -h "localhost" --port "3001" -d "meteor" ~/flashcardsBackup/meteor`
 
 ## Starting the app
-Use one of the following commands inside the repository (flashcards folder), to start arsnova.cards on localhost:
+Use one of the following commands inside the repository (flashcards folder), to start arsnova🍅cards on localhost:
 
 - For development:
   - `meteor --settings settings_debug.json`
@@ -100,4 +100,4 @@ The documentation can be found [here](https://cards-staging.mni.thm.de/jsdoc/).
 - [Production](https://arsnova.cards)
 
 ## Credits
-arsnova.cards is powered by Technische Hochschule Mittelhessen - University of Applied Sciences.
+arsnova🍅cards is powered by Technische Hochschule Mittelhessen - University of Applied Sciences.

@@ -53,7 +53,7 @@
     },
     "cardsetInfo": {
       "count": {
-        "label": "Tägliche Lernzeit",
+        "label": "Zeitmanagement",
         "content": "__count__ <a href=\"__link__\" data-toggle=\"tooltip\" title=\"__tooltip__\" target=\"_blank\">__pomodoro__ 🍅</a>"
       },
       "work": {
@@ -255,7 +255,7 @@
     "info-extra-small": "Hauptmenü ➔"
   },
   "contact": {
-    "about": ".__lastAppTitle__",
+    "about": "🍅cards",
     "demo": "Demo",
     "home": "Startseite",
     "demoTitle": "Zettel・Kartons・Regale │ Karten・Karteien・Repetitorien",
@@ -387,8 +387,8 @@
     "ratingFilterPlural": "> __rating__ Sterne",
     "moreResults": "Zeige weitere Einträge",
     "learnphase": "Bonusphase",
-    "bonusPoints": "Bonuspunkte",
-    "bonusPointsPercentage": "Infos über Bonuspunkte vom Prüfungsamt der THM",
+    "bonusPoints": "FAQ zu Bonuspunkten",
+    "bonusPointsPercentage": "Prüfungsamt der THM",
     "activeLearnphase": "Bonusphase aktiv",
     "inactiveLearnphase": "Bonusphase beendet",
     "learnphaseInfo": "Über diese Bonus-Lernphase",
@@ -715,7 +715,7 @@
       "backDemo": "Zurück zur Demo-Kartei"
     },
     "help": {
-      "title": "Hilfe zum Vortragen mit .cards",
+      "title": "Hilfe zum Vortragen mit 🍅cards",
       "button": {
         "confirm": "Okay, ich hab's gelesen."
       }
@@ -1247,7 +1247,7 @@
     "list": {
       "selectCourse": "Repetitorium auswählen",
       "createCourse": "Repetitorium anlegen",
-      "empty": "Ein Repetitorium fasst mehrere Themen (= Karteien) zusammen. Jeder kann Repetitorien zur Vorbereitung auf eine Modulprüfung auf .cards anlegen.",
+      "empty": "Ein Repetitorium fasst mehrere Themen (= Karteien) zusammen. Jeder kann Repetitorien zur Vorbereitung auf eine Modulprüfung auf 🍅cards anlegen.",
       "courseIteration": "Thema des Repetitoriums",
       "module": "Modul",
       "course": "Studiengang",
@@ -1744,7 +1744,7 @@
   },
   "bertAlert": {
     "firstLogin": {
-      "title": "Willkommen auf __firstAppTitle__.__lastAppTitle__ !",
+      "title": "Willkommen auf __firstAppTitle__🍅__lastAppTitle__ !",
       "message": "Schau dich in Ruhe auf der Plattform um. Hier kannst du Karten zu einem bestimmten Thema lernen und Karteien oder Repetitorien (= lose Sammlungen von Karteien zur Prüfungsvorbereitung) für dein Studium anlegen. </br> </br> Die Navigationsleiste mit den Tabs \"Themen-Pool\", \"Repetitorien\", \"Mein Lernpensum\" und \"Kartei anlegen\" dient dir als Einstieg in die großartigen Features von .__lastAppTitle__. Schau dir dazu auch die Demo unter \"Hilfe\" an! </br> </br> Suche im Themen-Pool nach einem Thema, das dich interessiert. Klick auf den kleinen Pfeil ganz rechts vom Thema, um die Beschreibung der Kartei zu sehen. Mit einem Klick auf das Thema gelangst du zu den Karten. </br> </br>"
     },
     "publishBonus": {

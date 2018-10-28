@@ -29,7 +29,7 @@ Implementation of a backend and sales platform
 
 ## 2.1.0
 
-Migration of .cards to Meteor 1.3
+Migration of 🍅cards to Meteor 1.3
 
 #### Features
 * Implementation of GitLab CI
@@ -45,7 +45,7 @@ Migration of .cards to Meteor 1.3
 
 ## 2.0.0
 
-Reimplementation of .cards with the Meteor Framework
+Reimplementation of 🍅cards with the Meteor Framework
 
 #### Features
 * Responsive design
