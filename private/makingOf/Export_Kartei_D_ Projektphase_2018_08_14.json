@@ -57,7 +57,7 @@
   }
 }, {
   "subject": "02: Präsentationsmodus",
-  "front": "- Ausblenden aller .cards 4.0 Elemente bis auf die Karte und Kartennavigation\n- Benutzung des Fullscreen Modes auf moderneren Browser\n- Einblenden einer Minutensprunguhr\n\n![Der Präsentationsmodus von .cards 4.0](/makingOf/img/presentation.png width=80%)",
+  "front": "- Ausblenden aller 🍅cards 4.0 Elemente bis auf die Karte und Kartennavigation\n- Benutzung des Fullscreen Modes auf moderneren Browser\n- Einblenden einer Minutensprunguhr\n\n![Der Präsentationsmodus von 🍅cards 4.0](/makingOf/img/presentation.png width=80%)",
   "centerTextElement": [
     false,
     false,
@@ -120,7 +120,7 @@
   }
 }, {
   "subject": "05: Verbesserung der UX",
-  "front": "(#) Performance\n\n- Darstellen von maximal 3 Karten anstelle des gesamten Inhalts der Kartei\n - Eine aktive Karte\n - Zwei weitere für die Navigation nach Links oder Rechts\n- Kartennavigation durch das Erstellen eines Indexes der Karten _id's \n- Weniger MongoDB Calls für das Anlegen neuer Dokumente\n(#) Navigation und Usability\n\n - Weniger scrollen: [Above the Fold](https://en.wikipedia.org/wiki/Above_the_fold)\n - Verbesserter Preview-Modus für den Karteneditor\n - Aufteilung der Funktionen anhand verschieder Gerätetypen:\n\n|Gerätetyp|Betrachten|Erstellen|Lernen|\n|-|:-:|:-:|:-:|\n|Smartphone|X| |X|\n|Tablet|X|X |X|\n|Desktop|X|X |X|\n\n(#) Beispiel: Karteneditor\n\n        .cards 3.0|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/editor.jpg)| ![](/makingOf/img/new/desktop/editor.jpg)\n!!! Tip Info\n    Mehr Details dazu in \"D: .cards 3.0 vs 4.0 Benutzeroberfläche\"\n",
+  "front": "(#) Performance\n\n- Darstellen von maximal 3 Karten anstelle des gesamten Inhalts der Kartei\n - Eine aktive Karte\n - Zwei weitere für die Navigation nach Links oder Rechts\n- Kartennavigation durch das Erstellen eines Indexes der Karten _id's \n- Weniger MongoDB Calls für das Anlegen neuer Dokumente\n(#) Navigation und Usability\n\n - Weniger scrollen: [Above the Fold](https://en.wikipedia.org/wiki/Above_the_fold)\n - Verbesserter Preview-Modus für den Karteneditor\n - Aufteilung der Funktionen anhand verschieder Gerätetypen:\n\n|Gerätetyp|Betrachten|Erstellen|Lernen|\n|-|:-:|:-:|:-:|\n|Smartphone|X| |X|\n|Tablet|X|X |X|\n|Desktop|X|X |X|\n\n(#) Beispiel: Karteneditor\n\n        🍅cards 3.0|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/old/desktop/editor.jpg)| ![](/makingOf/img/new/desktop/editor.jpg)\n!!! Tip Info\n    Mehr Details dazu in \"D: 🍅cards 3.0 vs 4.0 Benutzeroberfläche\"\n",
   "centerTextElement": [
     false,
     false,
@@ -186,7 +186,7 @@
   "learningUnit": "0"
 }, {
   "subject": "08: Import und Export von Karteien",
-  "front": "Vor .cards 4.0 konnte man nur Karten importieren und exportieren. Seit 4.0 sind nun folgende Import-Abläufe möglich:\n<div style=\"columns:2;-webkit-columns:2;-moz-columns:2;column-gap:3em;-webkit-column-gap:3em;-moz-column-gap:3em\">\n![Kartei-Import](/makingOf/img/kartei_import.png)\n![Karten-Import](/makingOf/img/karten_import.png)\n</div>\n\n\n",
+  "front": "Vor 🍅cards 4.0 konnte man nur Karten importieren und exportieren. Seit 4.0 sind nun folgende Import-Abläufe möglich:\n<div style=\"columns:2;-webkit-columns:2;-moz-columns:2;column-gap:3em;-webkit-column-gap:3em;-moz-column-gap:3em\">\n![Kartei-Import](/makingOf/img/kartei_import.png)\n![Karten-Import](/makingOf/img/karten_import.png)\n</div>\n\n\n",
   "centerTextElement": [
     false,
     false,

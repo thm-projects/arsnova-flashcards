@@ -1,6 +1,6 @@
 [{
-  "name": "B: Über .cards",
-  "description": "Vorstellung der .cards 4.0 Features:\n\n- Karteien\n- Karteitypen & Karten\n- Leitner und Wozniak\n- Repetitorien",
+  "name": "B: Über 🍅cards",
+  "description": "Vorstellung der 🍅cards 4.0 Features:\n\n- Karteien\n- Karteitypen & Karten\n- Leitner und Wozniak\n- Repetitorien",
   "date": "2018-08-07T21:06:10.280Z",
   "dateUpdated": "2018-08-14T19:07:06.642Z",
   "editors": [],
@@ -35,8 +35,8 @@
     "givenname": "Curtis"
   }
 }, {
-  "subject": "01: Was ist .cards?",
-  "front": "- Ist eine **Lernkartei-App**\n- Ist eine **vorlesungsbegleitende persönliche Lernumgebung**\n- Bietet die Option zum **kontinuierliches und wiederholten Lernen** mit Vergabe von Bonuspunkten \n- Soll der Aufschieberitis und dem Bulimie-Lernen entgegenwirken\n- Ist [Open-source](https://git.thm.de/arsnova/flashcards) und demnächst als **Docker Compose File** verfügbar\n\n![](/makingOf/img/new/desktop/welcome.jpg height=370px\")\n\n\n\n        mnemosyne|   .cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/mnemosyne.png)| ![](/makingOf/img/new/smartphone/wozniak.jpg height=350px)\n\n!!! Tip Demo-Repetitorium\n    Mehr Informationen finden Sie auf dem [offiziellem Demo-Repetitorium](/demo).",
+  "subject": "01: Was ist 🍅cards?",
+  "front": "- Ist eine **Lernkartei-App**\n- Ist eine **vorlesungsbegleitende persönliche Lernumgebung**\n- Bietet die Option zum **kontinuierliches und wiederholten Lernen** mit Vergabe von Bonuspunkten \n- Soll der Aufschieberitis und dem Bulimie-Lernen entgegenwirken\n- Ist [Open-source](https://git.thm.de/arsnova/flashcards) und demnächst als **Docker Compose File** verfügbar\n\n![](/makingOf/img/new/desktop/welcome.jpg height=370px\")\n\n\n\n        mnemosyne|   🍅cards 4.0\n:-------------------------------------------:|:----------------------------------------:\n![](/makingOf/img/mnemosyne.png)| ![](/makingOf/img/new/smartphone/wozniak.jpg height=350px)\n\n!!! Tip Demo-Repetitorium\n    Mehr Informationen finden Sie auf dem [offiziellem Demo-Repetitorium](/demo).",
   "centerTextElement": [
     false,
     true,

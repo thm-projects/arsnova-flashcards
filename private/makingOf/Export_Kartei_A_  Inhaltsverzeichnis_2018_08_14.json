@@ -1,6 +1,6 @@
 [{
   "name": "A:  Inhaltsverzeichnis",
-  "description": "Ein Überblick über die Lernplattform .cards: Karteien, Kartentypen und dessen Lernalgorithmen.",
+  "description": "Ein Überblick über die Lernplattform 🍅cards: Karteien, Kartentypen und dessen Lernalgorithmen.",
   "date": "2018-08-04T09:41:53.016Z",
   "dateUpdated": "2018-08-14T19:05:15.290Z",
   "editors": [],
@@ -36,7 +36,7 @@
   }
 }, {
   "subject": "01: Übersicht",
-  "front": "(#) The Making of .cards 4.0\n \n1. Über .cards\n1. Die Entwicklungsgeschichte von .cards\n1. Projektphase\n(##) Anhang\n\n1. To-dos\n1. .cards 3.0 vs 4.0 Benutzeroberfläche\n\n!!! Tip Tip zum verfolgen der Präsentation \n    \n    Sie erreichen die Präsentation unter [informatik.cards/makingofcards](https://informatik.cards/makingofcards). Hierfür ist keine Anmeldung erforderlich.",
+  "front": "(#) The Making of 🍅cards 4.0\n \n1. Über 🍅cards\n1. Die Entwicklungsgeschichte von 🍅cards\n1. Projektphase\n(##) Anhang\n\n1. To-dos\n1. 🍅cards 3.0 vs 4.0 Benutzeroberfläche\n\n!!! Tip Tip zum verfolgen der Präsentation \n    \n    Sie erreichen die Präsentation unter [informatik.cards/makingofcards](https://informatik.cards/makingofcards). Hierfür ist keine Anmeldung erforderlich.",
   "centerTextElement": [
     false,
     false,
