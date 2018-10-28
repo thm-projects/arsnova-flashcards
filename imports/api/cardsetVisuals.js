@@ -7,4 +7,14 @@ export let CardsetVisuals = class CardsetVisuals {
 			$('.markdeepCardsetContent').css('height', 'auto');
 		}
 	}
+
+	static changeCollapseIcon (iconId) {
+		if ($(iconId).hasClass("glyphicon-collapse-down")) {
+			$(iconId).removeClass("glyphicon-collapse-down");
+			$(iconId).addClass("glyphicon-collapse-up");
+		} else {
+			$(iconId).removeClass("glyphicon-collapse-up");
+			$(iconId).addClass("glyphicon-collapse-down");
+		}
+	}
 };

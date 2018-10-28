@@ -1,0 +1,2 @@
+//------------------------ IMPORTS
+import "./kind.html";
