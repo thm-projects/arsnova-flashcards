@@ -1,0 +1,27 @@
+<template name="cardsetInfoBoxItemRatings">
+    {{#unless isActiveRoute regex="home|course"}}
+        {{#if ratingEnabled}}
+            <tr>
+                <td>{{_ "cardset.info.rating"}}:</td>
+                <td>
+                    {{#if canRateCardset}}
+                        {{#if isActiveRoute regex="cardsetdetailsid|cardsetlistid"}}
+                            {{> starsRating id="rating" class='star-ratings' rating=getAverageRating mutable=true}}
+                        {{else}}
+                            {{> starsRating class='star-ratings' rating=getAverageRating mutable=false}}
+                        {{/if}}
+
+                    {{else}}
+                        {{> starsRating class='star-ratings' rating=getAverageRating mutable=false}}
+                    {{/if}} ({{this.raterCount}})
+                </td>
+            </tr>
+            <tr>
+                {{#if canRateCardset}}
+                    <td>{{_ "cardset.info.userRating"}}:</td>
+                    <td><span id="userRating">{{getUserRating}}</span></td>
+                {{/if}}
+            </tr>
+        {{/if}}
+    {{/unless}}
+</template>

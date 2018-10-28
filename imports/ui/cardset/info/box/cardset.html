@@ -1,0 +1,40 @@
+<template name="cardsetInfoBox">
+    <a id="collapseCardsetInfoButton"
+       class="col-xs-12 card btn-default btn-raised {{getColors}} collapseButton collapsed" href="#collapseCardsetInfo"
+       data-toggle="collapse">
+        <strong>{{#if this.shuffled}}{{_ "set-list.cardsetInfoRepetitorium"}}{{else}}{{_
+                "set-list.cardsetInfoStatic"}}{{/if}}</strong>
+        <i id="collapseCardsetInfoIcon" class="glyphicon glyphicon-collapse-down pull-right"></i>
+    </a>
+    <div class="collapse" id="collapseCardsetInfo">
+        <div class="card card-block">
+            <table class="table table-condensed table-striped table-hover infoBoxTable">
+                <tbody>
+                {{> cardsetInfoBoxContentOne}}
+                {{> cardsetInfoBoxContentTwo}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</template>
+
+<template name="cardsetInfoBoxContentOne">
+    {{> cardsetInfoBoxItemAuthor}}
+    {{> cardsetInfoBoxItemOriginalAuthor}}
+    {{> cardsetInfoBoxItemLearningMode}}
+    {{> cardsetInfoBoxItemReviewer}}
+    {{> cardsetInfoBoxItemKind}}
+    {{> cardsetInfoBoxItemCardType}}
+    {{> cardsetInfoBoxItemDifficulty}}
+    {{> cardsetInfoBoxItemCardCount}}
+    {{> cardsetInfoBoxItemPrice}}
+    {{> cardsetInfoBoxItemPurchased}}
+    {{> cardsetInfoBoxItemLicense}}
+</template>
+
+<template name="cardsetInfoBoxContentTwo">
+    {{> cardsetInfoBoxItemDateCreated}}
+    {{> cardsetInfoBoxItemDateUpdated}}
+    {{> cardsetInfoBoxItemActiveLearners}}
+    {{> cardsetInfoBoxItemRatings}}
+</template>

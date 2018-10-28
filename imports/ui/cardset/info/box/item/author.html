@@ -1,0 +1,14 @@
+<template name="cardsetInfoBoxItemAuthor">
+    <tr>
+        <td>
+            {{#if this.shuffled}}
+                {{_ "cardset.info.publisher"}}
+            {{else}}
+                {{_ "cardset.info.author"}}
+            {{/if}}:
+        </td>
+        <td>
+            {{getAuthorName this.owner false}}
+        </td>
+    </tr>
+</template>

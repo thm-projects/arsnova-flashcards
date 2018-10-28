@@ -1,0 +1,10 @@
+<template name="cardsetInfoBoxItemLearningMode">
+    {{#if isActiveRoute regex="learn"}}
+        <tr>
+            <td>{{_ "set-list.learningMode"}}:</td>
+            <td>
+                {{getLearningMode}}
+            </td>
+        </tr>
+    {{/if}}
+</template>

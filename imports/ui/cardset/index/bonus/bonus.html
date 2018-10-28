@@ -1,0 +1,93 @@
+<template name="cardsetLearnActivityStatistic">
+    {{#if isInRole 'firstLogin'}}
+        {{> first_login_content_only}}
+    {{else}}
+        {{#if isInRole 'blocked'}}
+            {{> access_denied_content_only}}
+        {{else}}
+            {{#unless isEditor}}
+                {{> access_denied_content_only}}
+            {{else}}
+                <div class="container">
+                    <div id="cardsetInfoDetail">
+                        <div class="panel panel-default cardsetInfo">
+                            <div class="panel-body">
+                                <h4>{{this.name}}</h4>
+                                <hr>
+                                <div class="row">
+                                    <span class="col-sm-6 collapseCardsetInfoContainer">
+                                        {{> cardsetInfoBox}}
+                                    </span>
+                                    <span class="col-sm-6 collapseCardsetInfoContainer">
+                                        {{> bonusInfoBox}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <button id="exportCSV" class="btn btn-success btn-raised btn-default">{{_
+                                        "box_export"}}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="overflow-x:auto;">
+                        <table class="table table-striped table-hover table-user-list">
+                            <tbody>
+                            <tr class="active">
+                                <th>{{_ "panel-body.birthname"}}</th>
+                                <th>{{_ "panel-body.givenname"}}</th>
+                                <th>{{_ "panel-body.email"}}
+                                </th>
+                                <th>{{_ "leitnerProgress.box" number=1}} [{{this.learningInterval.[0]}}]
+                                </th>
+                                <th>{{_ "leitnerProgress.box" number=2}} [{{this.learningInterval.[1]}}]
+                                </th>
+                                <th>{{_ "leitnerProgress.box" number=3}} [{{this.learningInterval.[2]}}]
+                                </th>
+                                <th>{{_ "leitnerProgress.box" number=4}} [{{this.learningInterval.[3]}}]
+                                </th>
+                                <th>{{_ "leitnerProgress.box" number=5}} [{{this.learningInterval.[4]}}]
+                                </th>
+                                <th>{{_ "leitnerProgress.learned"}}</th>
+                                <th>{{_ "details"}}</th>
+                            </tr>
+                            {{#each getCardsetStats}}
+                                <tr>
+                                    <td>{{this.birthname}}</td>
+                                    <td>{{this.givenname}}</td>
+                                    <td><a href="mailto:{{this.email}}">{{this.email}}</a></td>
+                                    <td>{{this.box1}}</td>
+                                    <td>{{this.box2}}</td>
+                                    <td>{{this.box3}}</td>
+                                    <td>{{this.box4}}</td>
+                                    <td>{{this.box5}}</td>
+                                    <td>
+                                        {{#if earnedTrophy}}
+                                            <span class="green-learning-text">
+                                                {{this.box6}}{{{getPercentage this.box6}}}
+                                            </span>
+
+                                            <i class="fa fa-trophy pull-right"></i>
+                                        {{else}}
+                                            <span class="red-learning-text">
+                                                {{this.box6}}{{{getPercentage this.box6}}}
+                                            </span>
+                                        {{/if}}
+                                    </td>
+                                    <td>
+                                        <button data-id="{{this.user_id}}" class="btn btn-block detailed-stats"><i
+                                                class="glyphicon glyphicon glyphicon-stats"
+                                                data-id="{{this.user_id}}"></i></button>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                    <button class="btn btn-block btn-raised btn-danger" id="backButton">
+                        <span class="pull-left"><i class="fa fa-arrow-left"></i> {{_ "backbutton"}}</span>
+                    </button>
+                </div>
+            {{/unless}}
+        {{/if}}
+    {{/if}}
+</template>

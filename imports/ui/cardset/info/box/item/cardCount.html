@@ -1,0 +1,8 @@
+<template name="cardsetInfoBoxItemCardCount">
+    {{#unless isActiveRoute regex="create|learn|pool|shuffle"}}
+        <tr>
+            <td>{{_ "cardset.info.quantity"}}:</td>
+            <td class="cardsetCardQuantity" data-quantity="{{this.quantity}}">{{this.quantity}}</td>
+        </tr>
+    {{/unless}}
+</template>

@@ -1,0 +1,10 @@
+<template name="cardsetInfoBoxItemPurchased">
+    {{#unless isActiveRoute regex="home|create|learn|pool|shuffle"}}
+        {{#if isPurchased}}
+            <tr>
+                <td>{{_ "cardset.info.bought"}}:</td>
+                <td>{{getDateOfPurchase}}</td>
+            </tr>
+        {{/if}}
+    {{/unless}}
+</template>
