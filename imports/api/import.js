@@ -51,61 +51,59 @@ function importCards(data, cardset, importType) {
 			}
 
 			if (importType === 1) {
-				for (let i = 0; i < data.length; i++) {
-					let item = data[i];
-					let subject, front, back, hint, lecture, top, bottom;
-					try {
-						// If the string is UTF-8, this will work and not throw an error.
-						subject = decodeURIComponent(encodeURIComponent(item.subject));
-						front = decodeURIComponent(encodeURIComponent(item.front));
-						back = decodeURIComponent(encodeURIComponent(item.back));
-						hint = decodeURIComponent(encodeURIComponent(item.hint));
-						lecture = decodeURIComponent(encodeURIComponent(item.lecture));
-						top = decodeURIComponent(encodeURIComponent(item.top));
-						bottom = decodeURIComponent(encodeURIComponent(item.bottom));
-					} catch (e) {
-						// If it isn't, an error will be thrown, and we can assume that we have an ISO string.
-						subject = item.subject;
-						front = item.front;
-						back = item.back;
-						hint = item.hint;
-						lecture = item.lecture;
-						top = item.top;
-						bottom = item.bottom;
-					}
-
-					let hlcodeReplacement = "\n```\n";
-					let regex = /<hlcode>|<\/hlcode>/g;
-					front = front.replace(regex, hlcodeReplacement);
-					back = back.replace(regex, hlcodeReplacement);
-					let originalAuthorName;
-					if (item.originalAuthor !== undefined) {
-						originalAuthorName = {
-							legacyName: item.originalAuthor
-						};
-					} else {
-						originalAuthorName = item.originalAuthorName;
-					}
-					Cards.insert({
-						subject: subject.trim(),
-						front: front,
-						back: back,
-						hint: hint,
-						cardset_id: cardset._id,
-						cardGroup: -1,
-						lecture: lecture,
-						top: top,
-						bottom: bottom,
-						centerTextElement: item.centerTextElement,
-						alignType: item.alignType,
-						learningGoalLevel: item.learningGoalLevel,
-						backgroundStyle: item.backgroundStyle,
-						learningUnit: item.learningUnit,
-						date: item.date,
-						dateUpdated: item.dateUpdated,
-						originalAuthorName: originalAuthorName
-					}, {trimStrings: false});
+				let item = data[i];
+				let subject, front, back, hint, lecture, top, bottom;
+				try {
+					// If the string is UTF-8, this will work and not throw an error.
+					subject = decodeURIComponent(encodeURIComponent(item.subject));
+					front = decodeURIComponent(encodeURIComponent(item.front));
+					back = decodeURIComponent(encodeURIComponent(item.back));
+					hint = decodeURIComponent(encodeURIComponent(item.hint));
+					lecture = decodeURIComponent(encodeURIComponent(item.lecture));
+					top = decodeURIComponent(encodeURIComponent(item.top));
+					bottom = decodeURIComponent(encodeURIComponent(item.bottom));
+				} catch (e) {
+					// If it isn't, an error will be thrown, and we can assume that we have an ISO string.
+					subject = item.subject;
+					front = item.front;
+					back = item.back;
+					hint = item.hint;
+					lecture = item.lecture;
+					top = item.top;
+					bottom = item.bottom;
 				}
+
+				let hlcodeReplacement = "\n```\n";
+				let regex = /<hlcode>|<\/hlcode>/g;
+				front = front.replace(regex, hlcodeReplacement);
+				back = back.replace(regex, hlcodeReplacement);
+				let originalAuthorName;
+				if (item.originalAuthor !== undefined) {
+					originalAuthorName = {
+						legacyName: item.originalAuthor
+					};
+				} else {
+					originalAuthorName = item.originalAuthorName;
+				}
+				Cards.insert({
+					subject: subject.trim(),
+					front: front,
+					back: back,
+					hint: hint,
+					cardset_id: cardset._id,
+					cardGroup: -1,
+					lecture: lecture,
+					top: top,
+					bottom: bottom,
+					centerTextElement: item.centerTextElement,
+					alignType: item.alignType,
+					learningGoalLevel: item.learningGoalLevel,
+					backgroundStyle: item.backgroundStyle,
+					learningUnit: item.learningUnit,
+					date: item.date,
+					dateUpdated: item.dateUpdated,
+					originalAuthorName: originalAuthorName
+				}, {trimStrings: false});
 			} else {
 				Cards.insert({
 					subject: item.subject,

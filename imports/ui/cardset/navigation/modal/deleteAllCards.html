@@ -1,0 +1,25 @@
+<template name="deleteCardsForm">
+    <div class="modal fade" id="deleteCardsModal" tabindex="-1" role="dialog"
+         aria-labelledby="deleteCardsTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons">
+                <div class="modal-header">
+                    <h4 id="deleteCardsTitle" class="modal-title">{{_ "deleteCards"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    {{_ "modal-dialog.deleteCards" name= this.name}}
+                    <button id="deleteCardsConfirm" class="btn btn-raised btn-danger btn-block col-xs-12 col-sm-3">{{_
+                            "deleteCards"}}</button>
+                    <button id="deleteCardsCancel" class="btn btn-raised btn-default btn-block col-xs-12 col-sm-3"
+                            data-dismiss="modal">{{_
+                            "modal-dialog.cancel"}}</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>

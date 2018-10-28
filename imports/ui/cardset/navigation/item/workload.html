@@ -1,0 +1,37 @@
+<template name="cardsetNavigationWorkload">
+    {{#unless isInBonus}}
+        {{#if this.quantity}}
+            {{#if gotLearningModes}}
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-raised learnBtn"
+                            data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-graduation-cap"></i> {{_ "learn"}} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li id="learnBox" class="leitnerList" {{disableIfOffline}}>{{_
+                                "learnfile"}}</li>
+                        <li id="learnMemo" class="wozniakList" {{disableIfOffline}}>{{_
+                                "memo"}}</li>
+                        {{#if learningLeitner}}
+                            <li id="leitnerProgress" class="progressList" {{disableIfOffline}}>{{_
+                                    "admin.myProgress"}}</li>
+                        {{/if}}
+                        {{#if learningLeitner}}
+                            <li id="resetLeitner" class="resetLeitnerList"
+                                data-toggle="modal"
+                                data-target="#resetLeitnerModal" {{disableIfOffline}}>{{_
+                                    "resetLearnfile"}}</li>
+                        {{/if}}
+                        {{#if learningMemo}}
+                            <li id="resetMemo" class="resetWozniakList"
+                                data-toggle="modal"
+                                data-target="#resetMemoModal" {{disableIfOffline}}>{{_
+                                    "resetWozniak"}}</li>
+                        {{/if}}
+                    </ul>
+                </div>
+            {{/if}}
+        {{/if}}
+    {{/unless}}
+</template>

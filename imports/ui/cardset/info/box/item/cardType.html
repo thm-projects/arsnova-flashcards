@@ -1,0 +1,12 @@
+<template name="cardsetInfoBoxItemCardType">
+    {{#unless isShuffledCardset this._id}}
+        {{#unless isActiveRoute regex="course"}}
+            <tr>
+                <td>{{_ "cardType"}}:</td>
+                <td>
+                    {{getCardType}}
+                </td>
+            </tr>
+        {{/unless}}
+    {{/unless}}
+</template>

@@ -1,0 +1,12 @@
+<template name="cardsetNavigationEditRepetitorium">
+    {{#if isShuffledCardset this._id}}
+        {{#if isCardsetOwner _id}}
+            <div class="hidden-xs btn-group">
+                <button id="editShuffle" class="btn btn-sm btn-raised editShuffleBtn"
+                    {{disableIfOffline}}>
+                    <i class="fa fa-pencil"></i> {{_ "modal-dialog.editreferences"}}
+                </button>
+            </div>
+        {{/if}}
+    {{/if}}
+</template>
