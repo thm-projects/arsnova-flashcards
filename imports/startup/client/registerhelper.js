@@ -17,6 +17,7 @@ import {CardVisuals} from "../../api/cardVisuals";
 import {UserPermissions} from "../../api/permissions";
 import {Bonus} from "../../api/bonus";
 import {Profile} from "../../api/profile";
+import {BonusForm} from "../../api/bonusForm";
 Meteor.subscribe("collegesCourses");
 
 Template.registerHelper('isSelectingCardsetToLearn', function () {
@@ -591,6 +592,18 @@ Template.registerHelper("getLearnphase", function (state) {
 	} else {
 		return TAPi18n.__('set-list.learnphase');
 	}
+});
+
+Template.registerHelper("getDefaultMaxBonusPoints", function () {
+	return BonusForm.getDefaultMaxBonusPoints();
+});
+
+Template.registerHelper("getDefaultMinBonusPoints", function () {
+	return BonusForm.getDefaultMinBonusPoints();
+});
+
+Template.registerHelper("getCurrentMaxBonusPoints", function (cardset) {
+	return BonusForm.getCurrentMaxBonusPoints(cardset);
 });
 
 Template.registerHelper("getCardsetBackground", function (difficulty, cardType, backgroundStyle) {
