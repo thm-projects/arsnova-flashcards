@@ -1,2 +1,2 @@
 //------------------------ IMPORTS
-import "./bonusPoints.html";
+import "./bonusPointsFAQ.html";

@@ -1,0 +1,2 @@
+//------------------------ IMPORTS
+import "./bonusMaxPoints.html";

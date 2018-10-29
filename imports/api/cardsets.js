@@ -444,8 +444,9 @@ Meteor.methods({
 	 * @param {Date} dateEnd - End date of the learning phase
 	 * @param {Number} intervals - Learning interval in days
 	 * @param {Date} registrationPeriod - Period in which new users can join the bonus phase
+	 * @param {Number} maxBonusPoints - The maximum achieveable bonus points
 	 */
-	activateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod) {
+	activateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints) {
 		check(id, String);
 		check(maxWorkload, Number);
 		check(daysBeforeReset, Number);
@@ -453,6 +454,7 @@ Meteor.methods({
 		check(dateEnd, Date);
 		check(intervals, [Number]);
 		check(registrationPeriod, Date);
+		check(maxBonusPoints, Number);
 
 		let cardset = Cardsets.findOne(id);
 		if (cardset !== undefined && !cardset.learningActive && (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner))) {
@@ -469,7 +471,8 @@ Meteor.methods({
 					learningStart: dateStart,
 					learningEnd: dateEnd,
 					learningInterval: intervals,
-					registrationPeriod: registrationPeriod
+					registrationPeriod: registrationPeriod,
+					"workload.bonus.maxPoints": Math.floor(maxBonusPoints)
 				}
 			});
 			return cardset._id;
@@ -486,8 +489,9 @@ Meteor.methods({
 	 * @param {Date} dateEnd - End date of the learning phase
 	 * @param {Number} intervals - Learning interval in days
 	 * @param {Date} registrationPeriod - Period in which new users can join the bonus phase
+	 * @param {Number} maxBonusPoints - The maximum achieveable bonus points
 	 */
-	updateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod) {
+	updateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints) {
 		check(id, String);
 		check(maxWorkload, Number);
 		check(daysBeforeReset, Number);
@@ -495,6 +499,7 @@ Meteor.methods({
 		check(dateEnd, Date);
 		check(intervals, [Number]);
 		check(registrationPeriod, Date);
+		check(maxBonusPoints, Number);
 
 		let cardset = Cardsets.findOne(id);
 		if (cardset !== undefined && cardset.learningActive && (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner))) {
@@ -510,7 +515,8 @@ Meteor.methods({
 					learningStart: dateStart,
 					learningEnd: dateEnd,
 					learningInterval: intervals,
-					registrationPeriod: registrationPeriod
+					registrationPeriod: registrationPeriod,
+					"workload.bonus.maxPoints": Math.floor(maxBonusPoints)
 				}
 			});
 			return cardset._id;

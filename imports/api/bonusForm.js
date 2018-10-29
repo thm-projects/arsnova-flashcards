@@ -8,6 +8,8 @@ let defaultMaxWorkload = 30;
 let minDaysBeforeReset = 3;
 let maxDaysBeforeReset = 31;
 let defaultDaysBeforeReset = 7;
+let defaultMinBonusPoints = 1;
+let defaultMaxBonusPoints = 10;
 
 let dateFormat = "YYYY-MM-DD";
 let defaultRegistrationPeriod = [31, 'days'];
@@ -91,6 +93,14 @@ export let BonusForm = class BonusForm {
 		}
 	}
 
+	static adjustMaxBonusPoints () {
+		if (parseInt($('#bonusFormModal #maxBonusPoints').val()) <= (defaultMinBonusPoints - 1)) {
+			$('#bonusFormModal #maxBonusPoints').val(defaultMinBonusPoints);
+		} else if (parseInt($('#bonusFormModal #maxBonusPoints').val()) > defaultMaxBonusPoints) {
+			$('#bonusFormModal #maxBonusPoints').val(defaultMaxBonusPoints);
+		}
+	}
+
 	static adjustMaxWorkload () {
 		if (parseInt($('#bonusFormModal #maxWorkload').val()) <= (minWorkloadCap - 1)) {
 			$('#bonusFormModal #maxWorkload').val(minWorkloadCap);
@@ -154,9 +164,16 @@ export let BonusForm = class BonusForm {
 		}
 		return registrationPeriod;
 	}
+	static getMaxBonusPoints () {
+		let maxBonusPoints = Number($('#bonusFormModal #maxBonusPoints').val());
+		if (!maxBonusPoints) {
+			maxBonusPoints = Number(defaultMaxWorkload);
+		}
+		return maxBonusPoints;
+	}
 
 	static startBonus () {
-		Meteor.call("activateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), function (error, result) {
+		Meteor.call("activateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), function (error, result) {
 			if (result) {
 				Session.set('activeCardset', Cardsets.findOne(result));
 				Meteor.call("updateBonusPomodoroTimer", Session.get('activeCardset')._id, PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), function (error, result) {
@@ -169,7 +186,7 @@ export let BonusForm = class BonusForm {
 	}
 
 	static updateBonus () {
-		Meteor.call("updateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), function (error, result) {
+		Meteor.call("updateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), function (error, result) {
 			if (result) {
 				Session.set('activeCardset', Cardsets.findOne(result));
 				Meteor.call("updateBonusPomodoroTimer", Session.get('activeCardset')._id, PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), function (error, result) {
@@ -179,5 +196,21 @@ export let BonusForm = class BonusForm {
 				});
 			}
 		});
+	}
+
+	static getDefaultMaxBonusPoints () {
+		return defaultMaxBonusPoints;
+	}
+
+	static getDefaultMinBonusPoints () {
+		return defaultMinBonusPoints;
+	}
+
+	static getCurrentMaxBonusPoints (cardset) {
+		if (cardset.workload.bonus.maxPoints === undefined) {
+			return this.getDefaultMaxBonusPoints();
+		} else {
+			return cardset.workload.bonus.maxPoints;
+		}
 	}
 };
