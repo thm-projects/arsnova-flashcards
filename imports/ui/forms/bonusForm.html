@@ -17,6 +17,7 @@
                         {{> bonusFormEndDate}}
                         {{> bonusFormRegistrationPeriod}}
                         {{> bonusFormIntervals}}
+                        {{> bonusFormMaxPoints}}
                         {{> pomodoroTimerModalContent}}
                     </div>
                 </div>
@@ -119,6 +120,18 @@
     </div>
 </template>
 
+
+<template name="bonusFormMaxPoints">
+    <div class="form-group row">
+        <label class="col-md-3 control-label">{{_ "bonus.form.maxPoints.label"}}</label>
+        <div class="col-md-9 form-inline">
+            <input type="number" min="{{getDefaultMinBonusPoints}}" max="{{getDefaultMaxBonusPoints}}" data-bind="value:replyNumber"
+                   onkeypress="return  (event.charCode === 8 || event.charCode === 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                   class="form-control interval" id="maxBonusPoints"
+                   placeholder="{{getDefaultMaxBonusPoints}}" value="{{getCurrentMaxBonusPoints this}}">
+        </div>
+    </div>
+</template>
 
 <template name="joinBonusForm">
     <div class="modal fade" id="joinBonusModal" tabindex="-1" role="dialog" aria-labelledby="joinBonusTitle">

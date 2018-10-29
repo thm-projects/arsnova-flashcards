@@ -26,12 +26,21 @@ function getCardsetInfo(cardset) {
 	];
 }
 
+function getCurrentMaxBonusPoints(cardset) {
+	if (cardset.workload.bonus.maxPoints === undefined) {
+		return 10;
+	} else {
+		return cardset.workload.bonus.maxPoints;
+	}
+}
+
 function getLearningPhaseInfo(cardset) {
 	return [
 		["", ""],
 		[TAPi18n.__('set-list.learnphaseInfo', {}, "de"), ""],
 		[TAPi18n.__('set-list.learnphase', {}, "de"), getLearningStatus(cardset.learningEnd)],
 		[TAPi18n.__('cardset.info.workload.bonus.count', {}, "de"), cardset.workload.bonus.count],
+		[TAPi18n.__('set-list.bonusMaxPoints.label', {}, "de"), TAPi18n.__('set-list.bonusMaxPoints.content', {count: getCurrentMaxBonusPoints(cardset)}, "de")],
 		[TAPi18n.__('bonus.form.maxWorkload.label', {}, "de"), cardset.maxCards],
 		[TAPi18n.__('bonus.form.daysBeforeReset.label', {}, "de"), cardset.daysBeforeReset],
 		[TAPi18n.__('bonus.form.startDate.label', {}, "de"), moment(cardset.learningStart).locale("de").format('LL')],
@@ -110,7 +119,7 @@ Meteor.methods({
 			let infoCardsetCounter = 0;
 			let infoCardsetLength = 6;
 			let infoLearningPhaseCounter = 0;
-			let infoLearningPhaseLength = 8;
+			let infoLearningPhaseLength = 9;
 			content = header[6] + colSep + header[7] + colSep + header[8] + colSep;
 			for (let i = 0; i <= 4; i++) {
 				content += header[i] + " [" + cardset.learningInterval[i] + "]" + colSep;

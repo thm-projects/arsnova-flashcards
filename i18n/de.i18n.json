@@ -387,8 +387,12 @@
     "ratingFilterPlural": "> __rating__ Sterne",
     "moreResults": "Zeige weitere Einträge",
     "learnphase": "Bonusphase",
-    "bonusPoints": "FAQ zu Bonuspunkten",
-    "bonusPointsPercentage": "Prüfungsamt THM",
+    "bonusPointsFAQ": "FAQ zu Bonuspunkten",
+    "bonusPointsPercentageFAQ": "Prüfungsamt THM",
+    "bonusMaxPoints": {
+      "label": "Maximale Bonuspunkte",
+      "content": "__count__%"
+    },
     "activeLearnphase": "Bonusphase aktiv",
     "inactiveLearnphase": "Bonusphase beendet",
     "learnphaseInfo": "Über diese Bonus-Lernphase",
@@ -787,6 +791,9 @@
       "maxWorkload": {
         "label": "Tagespensum",
         "placeholder": "maximal täglich zu lernende Karten"
+      },
+      "maxPoints": {
+        "label": "Maximal erreichbare Bonuspunkte in Prozent"
       },
       "daysBeforeReset": {
         "label": "Überschreitungsfrist",
