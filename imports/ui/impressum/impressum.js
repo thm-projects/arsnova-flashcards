@@ -3,8 +3,6 @@ import {Template} from "meteor/templating";
 import "./impressum.html";
 import "../card/modal/demoHelp.js";
 import "../presentation/modal/presentationHelp.js";
-import {Cardsets} from "../../api/cardsets.js";
-import {Cards} from "../../api/cards.js";
 import {Route} from "../../api/route.js";
 
 /*
@@ -62,12 +60,5 @@ Template.contactNavigation.events({
 Template.demo.helpers({
 	isFirstTimeVisit: function () {
 		return Route.isFirstTimeVisit();
-	},
-	gotDemoCardsetData: function () {
-		let cardset = Cardsets.findOne({shuffled: true, kind: "demo"});
-		if (cardset !== undefined) {
-			let cardCount = Cards.find({cardset_id: {$in: cardset.cardGroups}}).count();
-			return cardCount === cardset.quantity;
-		}
 	}
 });
