@@ -46,7 +46,7 @@ Session.setDefault("connectionStatus", 2);
 Session.setDefault("selectingCardsetToLearn", false);
 Session.setDefault('helpFilter', undefined);
 Session.setDefault('currentZoomValue', CardVisuals.getDefaultTextZoomValue());
-
+Session.setDefault('demoFullscreen', false);
 
 function adjustSearchResultWindowSize() {
 	if (Meteor.userId()) {
