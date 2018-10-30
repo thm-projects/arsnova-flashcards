@@ -126,6 +126,7 @@ let bellSound = new Audio('/audio/Schulgong.mp3');
 let failSound = new Audio('/audio/fail.mp3');
 let successSound = new Audio('/audio/success.mp3');
 
+let pomodoroInterval;
 
 export let PomodoroTimer = class PomodoroTimer {
 
@@ -145,6 +146,20 @@ export let PomodoroTimer = class PomodoroTimer {
 		} else if (option === 2) {
 			isFailSoundEnabled = !isFailSoundEnabled;
 		}
+	}
+
+	static startInterval () {
+		PomodoroTimer.interval();
+		if (pomodoroInterval === undefined) {
+			pomodoroInterval = setInterval(function () {
+				PomodoroTimer.interval();
+			}, 1000);
+		}
+	}
+
+	static clearInterval () {
+		clearInterval(pomodoroInterval);
+		pomodoroInterval = undefined;
 	}
 
 	/*The following code snippet is a life saver and was found on stack overflow. It allows you to draw an arc around a circle in svg using only the polar coordinates.*/
@@ -446,7 +461,6 @@ export let PomodoroTimer = class PomodoroTimer {
 				}).then((result) => {
 					/*If you give up before you complete your goal you get a failure sound, taken from a show me and my lady have been watching lately, and a failure box. Shame!*/
 					if (!result.value) {
-						this.setPresentationPomodoro(true);
 						if (!Route.isPresentation()) {
 							if (isFailSoundEnabled) {
 								failSound.play();
@@ -474,6 +488,7 @@ export let PomodoroTimer = class PomodoroTimer {
 								allowOutsideClick: false,
 								confirmButtonText: dialogue.confirm
 							}).then(() => {
+								this.setPresentationPomodoro(true);
 								PomodoroTimer.showPomodoroNormal();
 								if ((Route.isBox() || Route.isMemo())) {
 									Session.set('pomodoroBreakActive', false);

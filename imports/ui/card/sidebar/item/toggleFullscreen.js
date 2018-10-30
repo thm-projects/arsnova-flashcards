@@ -26,7 +26,7 @@ Template.cardSidebarItemToggleFullscreen.events({
 		CardVisuals.toggleFullscreen();
 		if (Route.isDemo() && CardVisuals.isFullscreen()) {
 			PomodoroTimer.start();
-		} else {
+		} else if (PomodoroTimer.isPomodoroRunning()) {
 			PomodoroTimer.clickClock();
 		}
 	}
