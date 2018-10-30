@@ -10,6 +10,7 @@ import "./welcome.html";
 import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
 import * as fakeInventory from '../../../public/fakeStatistics/inventory.json';
 import {PomodoroTimer} from "../../api/pomodoroTimer";
+import {CardVisuals} from "../../api/cardVisuals";
 
 Meteor.subscribe("pomodoroLandingPage");
 Meteor.subscribe("cardsets");
@@ -195,5 +196,12 @@ Template.welcomeTitle.helpers({
 	},
 	isFirstTimeVisit: function () {
 		return Route.isFirstTimeVisit();
+	}
+});
+
+Template.welcomeTitle.events({
+	'click #showDemo': function () {
+		CardVisuals.toggleFullscreen();
+		Session.set('demoFullscreen', true);
 	}
 });

@@ -13,16 +13,11 @@ import {Session} from "meteor/session";
  * pomodoroTimer
  * ############################################################################
  */
-let pomodoroInterval;
 
 Template.pomodoroTimer.onCreated(function () {
 	/*This initializes the tooltip over "pomodoro" in the startup modal.*/
 	$('[data-toggle="tooltip"]').tooltip();
-	if (pomodoroInterval === undefined) {
-		pomodoroInterval = setInterval(function () {
-			PomodoroTimer.interval();
-		}, 1000);
-	}
+	PomodoroTimer.startInterval();
 });
 
 Template.pomodoroTimer.onRendered(function () {
@@ -32,6 +27,10 @@ Template.pomodoroTimer.onRendered(function () {
 	$('.pomodoroTimer').unbind().on('click', function () {
 		PomodoroTimer.clickClock();
 	});
+});
+
+Template.pomodoroTimer.onDestroyed(function () {
+	PomodoroTimer.clearInterval();
 });
 
 Template.pomodoroTimer.helpers({

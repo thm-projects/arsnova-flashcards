@@ -56,6 +56,31 @@ let defaultPresentationSettings = {
 	}
 };
 
+let defaultDemoSettings = {
+	goal: 4,
+	work: {
+		length: 10,
+		max: 45,
+		min: 10,
+		step: 5
+	},
+	break: {
+		length: 5,
+		max: 15,
+		min: 5,
+		step: 5
+	},
+	longBreak: {
+		goal: 4,
+		length: 10
+	},
+	sounds: {
+		bell: true,
+		success: true,
+		failure: true
+	}
+};
+
 Session.set('pomodoroBreakActive', false);
 /*This is a ton of script, mostly popups, so strap in for a wild ride!*/
 /*endPom is the angle of the minute hand at which the work period will end.*/
@@ -101,6 +126,7 @@ let bellSound = new Audio('/audio/Schulgong.mp3');
 let failSound = new Audio('/audio/fail.mp3');
 let successSound = new Audio('/audio/success.mp3');
 
+let pomodoroInterval;
 
 export let PomodoroTimer = class PomodoroTimer {
 
@@ -120,6 +146,20 @@ export let PomodoroTimer = class PomodoroTimer {
 		} else if (option === 2) {
 			isFailSoundEnabled = !isFailSoundEnabled;
 		}
+	}
+
+	static startInterval () {
+		PomodoroTimer.interval();
+		if (pomodoroInterval === undefined) {
+			pomodoroInterval = setInterval(function () {
+				PomodoroTimer.interval();
+			}, 1000);
+		}
+	}
+
+	static clearInterval () {
+		clearInterval(pomodoroInterval);
+		pomodoroInterval = undefined;
 	}
 
 	/*The following code snippet is a life saver and was found on stack overflow. It allows you to draw an arc around a circle in svg using only the polar coordinates.*/
@@ -278,7 +318,13 @@ export let PomodoroTimer = class PomodoroTimer {
 			$(".breakArc").attr("d", this.describeArc(0, 0, 0, 0, 0));
 
 			/*in the pomodoro productivity set up, every 4 pomodoros you get a 15 minute break. I decided to make it proportional to the user chosen break length. If you just did 3 pomodoros, your next break will be longer, and if you have just completed your 4th break, this sets the break length back to 5mins*/
-			if (Route.isPresentation()) {
+			if (Route.isDemo()) {
+				if ((totalPoms + 1) % defaultDemoSettings.longBreak.goal === 0) {
+					breakLength = defaultDemoSettings.longBreak.length;
+				} else if (totalPoms % defaultDemoSettings.longBreak.goal === 0) {
+					breakLength = defaultDemoSettings.break.length;
+				}
+			} else if (Route.isPresentation()) {
 				if ((totalPoms + 1) % defaultPresentationSettings.longBreak.goal === 0) {
 					breakLength = defaultPresentationSettings.longBreak.length;
 				} else if (totalPoms % defaultPresentationSettings.longBreak.goal === 0) {
@@ -415,7 +461,6 @@ export let PomodoroTimer = class PomodoroTimer {
 				}).then((result) => {
 					/*If you give up before you complete your goal you get a failure sound, taken from a show me and my lady have been watching lately, and a failure box. Shame!*/
 					if (!result.value) {
-						this.setPresentationPomodoro(true);
 						if (!Route.isPresentation()) {
 							if (isFailSoundEnabled) {
 								failSound.play();
@@ -443,6 +488,7 @@ export let PomodoroTimer = class PomodoroTimer {
 								allowOutsideClick: false,
 								confirmButtonText: dialogue.confirm
 							}).then(() => {
+								this.setPresentationPomodoro(true);
 								PomodoroTimer.showPomodoroNormal();
 								if ((Route.isBox() || Route.isMemo())) {
 									Session.set('pomodoroBreakActive', false);
@@ -657,7 +703,11 @@ export let PomodoroTimer = class PomodoroTimer {
 		$('#pomNumSlider').val(goalPoms);
 		this.updatePomNumSlider();
 		let workSlider = $('#workSlider');
-		if (Route.isPresentation()) {
+		if (Route.isDemo()) {
+			workSlider.attr('max', defaultDemoSettings.work.max);
+			workSlider.attr('min', defaultDemoSettings.work.min);
+			workSlider.attr('step', defaultDemoSettings.work.step);
+		} else if (Route.isPresentation()) {
 			workSlider.attr('max', defaultPresentationSettings.work.max);
 			workSlider.attr('min', defaultPresentationSettings.work.min);
 			workSlider.attr('step', defaultPresentationSettings.work.step);
@@ -669,7 +719,11 @@ export let PomodoroTimer = class PomodoroTimer {
 		$('#workSlider').val(pomLength);
 		this.updateWorkSlider();
 		let breakSlider = $('#breakSlider');
-		if (Route.isPresentation()) {
+		if (Route.isDemo()) {
+			breakSlider.attr('max', defaultDemoSettings.break.max);
+			breakSlider.attr('min', defaultDemoSettings.break.min);
+			breakSlider.attr('step', defaultDemoSettings.break.step);
+		} else if (Route.isPresentation()) {
 			breakSlider.attr('max', defaultPresentationSettings.break.max);
 			breakSlider.attr('min', defaultPresentationSettings.break.min);
 			breakSlider.attr('step', defaultPresentationSettings.break.step);
@@ -712,7 +766,14 @@ export let PomodoroTimer = class PomodoroTimer {
 				isFailSoundEnabled = defaultSettings.sounds.failure;
 			}
 		} else {
-			if (Route.isPresentation()) {
+			if (Route.isDemo()) {
+				goalPoms = defaultDemoSettings.goal;
+				pomLength = defaultDemoSettings.work.length;
+				breakLength = defaultDemoSettings.break.length;
+				isBellSoundEnabled = defaultDemoSettings.sounds.bell;
+				isSuccessSoundEnabled = defaultDemoSettings.sounds.success;
+				isFailSoundEnabled = defaultDemoSettings.sounds.failure;
+			} else if (Route.isPresentation()) {
 				goalPoms = defaultPresentationSettings.goal;
 				pomLength = defaultPresentationSettings.work.length;
 				breakLength = defaultPresentationSettings.break.length;
