@@ -1,0 +1,23 @@
+{
+    "name": "cards",
+    "short_name": "cards",
+    "description": "The ultimate app for learning with cards!",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png?v=3",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png?v=3",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/",
+    "theme_color": "#2ac55f",
+    "background_color": "#2ac55f",
+    "display": "standalone",
+    "gcm_sender_id": "142354287038",
+    "gcm_user_visible_only": true
+}
