@@ -122,7 +122,7 @@ Router.route('demo', {
 	name: 'demo',
 	template: 'demo',
 	subscriptions: function () {
-		return [Meteor.subscribe('demoCards')];
+		return [Meteor.subscribe('cardsets'), Meteor.subscribe('demoCards')];
 	},
 	data: function () {
 		Session.set('helpFilter', undefined);
@@ -140,7 +140,7 @@ Router.route('demolist', {
 	name: 'demolist',
 	template: 'demo',
 	subscriptions: function () {
-		return [Meteor.subscribe('demoCards')];
+		return [Meteor.subscribe('cardsets'), Meteor.subscribe('demoCards')];
 	},
 	data: function () {
 		Session.set('helpFilter', undefined);
