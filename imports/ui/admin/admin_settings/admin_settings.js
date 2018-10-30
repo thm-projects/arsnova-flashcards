@@ -9,6 +9,9 @@ Template.admin_settings.events({
 	'click #disableWordcloudPomodoro': function () {
 		Meteor.call("updateWordcloudPomodoroSettings", false);
 	},
+	'click #enableMail': function () {
+		Meteor.call("updateMailSettings", true);
+	},
 	'click #disableMail': function () {
 		Meteor.call("updateMailSettings", false);
 	},
