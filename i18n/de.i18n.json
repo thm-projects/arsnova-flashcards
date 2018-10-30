@@ -391,10 +391,10 @@
     "bonusPointsPercentageFAQ": "Prüfungsamt THM",
     "bonusMaxPoints": {
       "label": "Maximale Bonuspunkte",
-      "content": "__count__%"
+      "content": "__count__ %"
     },
-    "activeLearnphase": "Bonusphase aktiv",
-    "inactiveLearnphase": "Bonusphase beendet",
+    "activeLearnphase": "aktiv",
+    "inactiveLearnphase": "beendet",
     "learnphaseInfo": "Über diese Bonus-Lernphase",
     "cardsetInfo": "Über diese __type__ Kartei",
     "cardsetInfoRepetitorium": "Über dieses Repetitorium",
