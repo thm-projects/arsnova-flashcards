@@ -1,6 +1,4 @@
 import {Meteor} from "meteor/meteor";
-import {Cardsets} from "./cardsets.js";
-import {Cards} from "./cards.js";
 import {check} from "meteor/check";
 
 if (Meteor.isServer) {
@@ -43,49 +41,6 @@ Meteor.methods({
 				blockedtext: blockedtext
 			}
 		});
-	},
-	deleteUser: function (user_id) {
-		check(user_id, String);
-
-		if (!Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor'
-			])) {
-			throw new Meteor.Error("not-authorized");
-		}
-
-		var cardsets = Cardsets.find({
-			owner: user_id,
-			kind: 'personal'
-		});
-
-		cardsets.forEach(function (cardset) {
-			Cards.remove({
-				cardset_id: cardset._id
-			});
-		});
-
-		Cardsets.update({owner: user_id}, {
-			$set: {
-				userDeleted: true
-			}
-		}, {multi: true});
-
-		let allPrivateUserCardsets = Cardsets.find({
-			owner: user_id,
-			kind: 'personal'
-		}).fetch();
-
-		Cardsets.remove({
-			owner: user_id,
-			kind: 'personal'
-		});
-
-		for (let i = 0; i < allPrivateUserCardsets.length; i++) {
-			Meteor.call('updateShuffledCardsetQuantity', allPrivateUserCardsets[i]._id);
-		}
-
-		Meteor.users.remove(user_id);
 	},
 	updateRoles: function (user_id, newRole) {
 		check(user_id, String);

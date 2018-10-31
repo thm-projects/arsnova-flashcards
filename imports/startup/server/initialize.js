@@ -7,6 +7,7 @@ import {AdminSettings} from "../../api/adminSettings";
 import {CronScheduler} from "../../../server/cronjob.js";
 import {Ratings} from "../../api/ratings";
 import {CardType} from "../../api/cardTypes";
+import {WebPushSubscriptions} from "../../api/webPushSubscriptions";
 
 var initColorThemes = function () {
 	return [{
@@ -285,6 +286,41 @@ var initDemoCardsetUser = function () {
 		}
 	];
 };
+
+function removeDeletedUsers() {
+	let users = Meteor.users.find({}, {fields: {_id: 1}}).fetch();
+	let userFilter = [];
+	for (let i = 0; i < users.length; i++) {
+		userFilter.push(users[i]._id);
+	}
+	if (userFilter.length === Meteor.users.find({}).count()) {
+		Leitner.remove({
+			user_id: {$nin: userFilter}
+		});
+
+		Wozniak.remove({
+			user_id: {$nin: userFilter}
+		});
+
+		let workload = Workload.find({user_id: {$nin: userFilter}}, {fields: {cardset_id: 1}}).fetch();
+
+		Workload.remove({
+			user_id: {$nin: userFilter}
+		});
+
+		for (let i = 0; i < workload.length; i++) {
+			Meteor.call('updateLearnerCount', workload[i].cardset_id);
+		}
+
+		Ratings.remove({
+			user_id: {$nin: userFilter}
+		});
+
+		WebPushSubscriptions.remove({
+			user_id: {$nin: userFilter}
+		});
+	}
+}
 
 Meteor.startup(function () {
 	const cronScheduler = new CronScheduler();
@@ -811,5 +847,6 @@ Meteor.startup(function () {
 	Meteor.call('deleteDemoCardsets');
 	Meteor.call('importDemoCardset', 'demo');
 	Meteor.call('importDemoCardset', 'making');
+	removeDeletedUsers();
 	cronScheduler.startCron();
 });

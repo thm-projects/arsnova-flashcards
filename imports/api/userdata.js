@@ -5,6 +5,8 @@ import {Leitner, Workload, Wozniak} from "./learned.js";
 import {Ratings} from "./ratings.js";
 import {check} from "meteor/check";
 import {Session} from "meteor/session";
+import {UserPermissions} from "./permissions";
+import {WebPushSubscriptions} from "./webPushSubscriptions";
 
 /**
  * Returns the degree, the givenname and the birthname from the author of a cardset
@@ -349,13 +351,20 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 	},
-	deleteUserProfile: function () {
-		if (!this.userId || Roles.userIsInRole(this.userId, "blocked")) {
+	deleteUserProfile: function (targetUser = undefined) {
+		if (!Meteor.userId() || !UserPermissions.isNotBlocked()) {
 			throw new Meteor.Error("not-authorized");
 		}
 
+		let user_id;
+		if (UserPermissions.isAdmin() && targetUser !== undefined) {
+			user_id = targetUser;
+		} else {
+			user_id = Meteor.userId();
+		}
+
 		let cardsets = Cardsets.find({
-			owner: this.userId,
+			owner: user_id,
 			kind: 'personal'
 		});
 
@@ -365,19 +374,19 @@ Meteor.methods({
 			});
 		});
 
-		Cardsets.update({owner: this.userId}, {
+		Cardsets.update({owner: user_id}, {
 			$set: {
 				userDeleted: true
 			}
 		}, {multi: true});
 
 		let allPrivateUserCardsets = Cardsets.find({
-			owner: this.userId,
+			owner: user_id,
 			kind: 'personal'
 		}).fetch();
 
 		Cardsets.remove({
-			owner: this.userId,
+			owner: user_id,
 			kind: 'personal'
 		});
 
@@ -385,33 +394,43 @@ Meteor.methods({
 			Meteor.call('updateShuffledCardsetQuantity', allPrivateUserCardsets[i]._id);
 		}
 
-		Cardsets.update({editors: {$in: [this.userId]}}, {
-			$pull: {editors: this.userId}
+		Cardsets.update({editors: {$in: [user_id]}}, {
+			$pull: {editors: user_id}
 		});
 
-		Meteor.users.update(this.userId, {
+		Meteor.users.update(user_id, {
 			$set: {
 				"services.resume.loginTokens": []
 			}
 		});
 
 		Leitner.remove({
-			user_id: this.userId
+			user_id: user_id
 		});
 
 		Wozniak.remove({
-			user_id: this.userId
+			user_id: user_id
 		});
+
+		let workload = Workload.find({user_id: user_id}, {fields: {cardset_id: 1}}).fetch();
 
 		Workload.remove({
-			user_id: this.userId
+			user_id: user_id
 		});
+
+		for (let i = 0; i < workload.length; i++) {
+			Meteor.call("updateLearnerCount", workload[i].cardset_id);
+		}
 
 		Ratings.remove({
-			user: this.userId
+			user: user_id
 		});
 
-		Meteor.users.remove(this.userId);
+		WebPushSubscriptions.remove({
+			user: user_id
+		});
+
+		Meteor.users.remove(user_id);
 	},
 	removeFirstLogin: function () {
 		if (!this.userId || Roles.userIsInRole(this.userId, "blocked")) {

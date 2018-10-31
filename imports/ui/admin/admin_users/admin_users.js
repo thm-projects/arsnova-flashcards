@@ -162,7 +162,7 @@ Template.userConfirmFormAdmin.events({
 		var id = Session.get('userId');
 
 		$('#userConfirmModalAdmin').on('hidden.bs.modal', function () {
-			Meteor.call("deleteUser", id);
+			Meteor.call("deleteUserProfile", id);
 		}).modal('hide');
 	}
 });
