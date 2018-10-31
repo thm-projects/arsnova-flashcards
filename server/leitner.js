@@ -481,8 +481,7 @@ Meteor.methods({
 			let nextDate = new Date();
 			cards = Cards.find({
 				_id: {$nin: excludedCards},
-				cardset_id: {$in: cardsetFilter},
-				cardType: {$in: CardType.getCardTypesWithLearningModes()}
+				cardset_id: {$in: cardsetFilter}
 			}, {fields: {_id: 1}}).fetch();
 			cards.forEach(function (card) {
 				newItems.push({
