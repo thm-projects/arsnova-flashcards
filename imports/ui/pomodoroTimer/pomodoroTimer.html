@@ -33,7 +33,7 @@
         <audio id="bell" preload="auto">
             <source src="/audio/Schulgong.mp3" type="audio/mp3"/>
         </audio>
-        {{#unless isActiveRoute regex='presentation'}}
+        {{#unless isActiveRoute regex='presentation|demo'}}
             <audio id="failure" preload="auto">
                 <source src="/audio/fail.mp3" type="audio/mp3"/>
             </audio>
@@ -60,14 +60,6 @@
                             {{> pomodoroTimerModalContent}}
                         </div>
                     </form>
-                    {{#if isActiveRoute regex='demo'}}
-                        <button type="button" id="settingsBtn" class="btn btn-info btn-raised fa fa-gear hvr-bounce-in"
-                                style="float:left;">
-                            {{_ "pomodoro.form.user.button.settings"}}
-                        </button>
-                        <br>
-                        <br>
-                    {{/if}}
                 </div>
                 <div class="modal-footer">
                     {{#if isActiveRoute regex='demo|presentation'}}
@@ -81,7 +73,7 @@
                         </button>
                     {{/if}}
                     <button type="button" id="startPom" class="btn btn-success btn-raised" data-dismiss="modal">
-                        {{#if isActiveRoute regex='presentation'}}
+                        {{#if isActiveRoute regex='presentation|demo'}}
                             {{_ "pomodoro.form.presentation.button.start"}}
                         {{else}}
                             {{_ "pomodoro.form.user.button.start"}}
@@ -94,7 +86,7 @@
 </template>
 
 <template name="pomodoroTimerModalContent">
-    {{#unless isActiveRoute regex='presentation'}}
+    {{#unless isActiveRoute regex='presentation|demo'}}
         <div id="goalDiv" class="form-group row">
             <label class="col-xs-12 control-label" id="pomNumLabel" for="pomNumSlider"></label>
             <input class="numSlider col-xs-12" type=range min=1 max=16 value=1 id="pomNumSlider" step=1>
@@ -127,7 +119,7 @@
                     <source src="/audio/Schulgong.mp3" type="audio/mpeg">
                 </audio>
             </div>
-            {{#unless isActiveRoute regex='presentation'}}
+            {{#unless isActiveRoute regex='presentation|demo'}}
                 <div class="form-group row">
                     <input type="checkbox" id="sound2" value="Complete" checked>
                     <label for="sound2" class="control-label">{{_ "pomodoro.form.sounds.success"}}</label><br>

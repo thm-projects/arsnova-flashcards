@@ -257,7 +257,7 @@ export let PomodoroTimer = class PomodoroTimer {
 			$(".breakArc").attr("d", this.describeArc(0, 0, 0, 0, 0));
 
 			/*the first sweet alert! This is what pops up when you finish a pomodoro. It congradulates the user and lets them start their break when they are ready. There is no option to stop the session in this box, that function is relegated to the second click on the clock, as noted by the title.*/
-			if (Route.isPresentation()) {
+			if (Route.isPresentation() || Route.isDemo()) {
 				dialogue.title = TAPi18n.__('pomodoro.sweetAlert.presentation.break.start.title');
 				dialogue.html = TAPi18n.__('pomodoro.sweetAlert.presentation.break.start.text', {
 					pomodoroBreak: breakLength,
@@ -337,7 +337,7 @@ export let PomodoroTimer = class PomodoroTimer {
 					breakLength = defaultSettings.break.length;
 				}
 			}
-			if (Route.isPresentation()) {
+			if (Route.isPresentation() || Route.isDemo()) {
 				dialogue.title = TAPi18n.__('pomodoro.sweetAlert.presentation.break.end.title');
 				dialogue.html = TAPi18n.__('pomodoro.sweetAlert.presentation.break.end.text', {
 					pomodoroLength: pomLength
@@ -421,7 +421,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		if (pomRunning || breakRunning) {
 			/*if you still haven't reached your goal, you are encouraged with an update of how many pomodoros and minutes you have left to reach it.*/
 			if (totalPoms < goalPoms) {
-				if (Route.isPresentation()) {
+				if (Route.isPresentation() || Route.isDemo()) {
 					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.presentation.end.title');
 					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.presentation.end.text', {
 						pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
@@ -459,9 +459,14 @@ export let PomodoroTimer = class PomodoroTimer {
 					cancelButtonText: dialogue.cancel,
 					allowOutsideClick: false
 				}).then((result) => {
+					if (result.value) {
+						if (Route.isDemo()) {
+							this.setPresentationPomodoro(true);
+						}
+					}
 					/*If you give up before you complete your goal you get a failure sound, taken from a show me and my lady have been watching lately, and a failure box. Shame!*/
 					if (!result.value) {
-						if (!Route.isPresentation()) {
+						if (!Route.isPresentation() && !Route.isDemo()) {
 							if (isFailSoundEnabled) {
 								failSound.play();
 							}
@@ -502,7 +507,7 @@ export let PomodoroTimer = class PomodoroTimer {
 				});
 			} else {
 				/*So if you've completed your goal for the session you get this friendlier pop up congradulating you and lightly suggesting you keep working.*/
-				if (Route.isPresentation()) {
+				if (Route.isPresentation() || Route.isDemo()) {
 					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.presentation.end.title');
 					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.presentation.end.text', {
 						pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
@@ -539,7 +544,7 @@ export let PomodoroTimer = class PomodoroTimer {
 					/*you succeeded so you get the success sound and a success message. good for you! */
 					if (result.value) {
 						this.setPresentationPomodoro(true);
-						if (!Route.isPresentation()) {
+						if (!Route.isPresentation() && !Route.isDemo()) {
 							if (isSuccessSoundEnabled) {
 								successSound.play();
 							}
@@ -625,7 +630,7 @@ export let PomodoroTimer = class PomodoroTimer {
 
 	/*hides the goal box, shows the place where you can change the pomodoro length*/
 	static updateSettingsBtn () {
-		if (Route.isPresentation()) {
+		if (Route.isPresentation() || Route.isDemo()) {
 			$("#modalTitle").html(TAPi18n.__('pomodoro.form.presentation.title'));
 		} else if (!Route.isCardset()) {
 			$("#settings").toggle();
@@ -642,7 +647,7 @@ export let PomodoroTimer = class PomodoroTimer {
 	static updateWorkSlider () {
 		pomLength = parseInt($('#workSlider').val(), 10);
 		let minuteString = TAPi18n.__('pomodoro.form.time.minute', {count: pomLength});
-		if (Route.isPresentation()) {
+		if (Route.isPresentation() || Route.isDemo()) {
 			$('#workSliderLabel').html(TAPi18n.__('pomodoro.form.presentation.work', {
 				minutes: minuteString
 			}));
@@ -670,7 +675,7 @@ export let PomodoroTimer = class PomodoroTimer {
 	static updateBreakSlider () {
 		breakLength = parseInt($('#breakSlider').val(), 10);
 		let minuteString = TAPi18n.__('pomodoro.form.time.minute', {count: breakLength});
-		if (Route.isPresentation()) {
+		if (Route.isPresentation() || Route.isDemo()) {
 			$('#breakSliderLabel').html(TAPi18n.__('pomodoro.form.presentation.break', {
 				minutes: minuteString
 			}));
@@ -735,7 +740,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		breakSlider.val(breakLength);
 		this.updateBreakSlider();
 		this.updateSettingsBtn();
-		if (!Route.isCardset() && !Route.isPresentation()) {
+		if (!Route.isCardset() && !Route.isPresentation() && !Route.isDemo()) {
 			$("#settings").css('display', 'none');
 			$("#goalDiv").css('display', 'block');
 		}
