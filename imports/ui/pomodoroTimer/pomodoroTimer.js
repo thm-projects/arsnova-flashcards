@@ -102,7 +102,7 @@ Template.pomodoroTimerModal.events({
 
 Template.pomodoroTimerModalContent.helpers({
 	isHiddenByDefault: function () {
-		return !Route.isCardset() && !Route.isPresentation();
+		return !Route.isCardset() && !Route.isPresentation() && !Route.isDemo();
 	}
 });
 Template.pomodoroTimerModalContent.events({
