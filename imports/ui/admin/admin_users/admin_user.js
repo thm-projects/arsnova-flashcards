@@ -279,7 +279,7 @@ Template.admin_user.events({
 	},
 	'click #userConfirmAdmin': function () {
 		var id = this._id;
-		Meteor.call("deleteUser", id);
+		Meteor.call("deleteUserProfile", id);
 		window.history.go(-1);
 	},
 	'click .reactive-table tbody tr': function (event) {
