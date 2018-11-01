@@ -326,6 +326,8 @@ function setupDatabaseIndex() {
 	Leitner._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1});
 	Wozniak._ensureIndex({user_id: 1, cardset_id: 1});
 	Workload._ensureIndex({cardset_id: 1, user_id: 1});
+	Cards._ensureIndex({cardset_id: 1, subject: 1});
+	WebPushSubscriptions._ensureIndex({userId: 1});
 }
 
 Meteor.startup(function () {
