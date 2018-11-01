@@ -322,6 +322,12 @@ function removeDeletedUsers() {
 	}
 }
 
+function setupDatabaseIndex() {
+	Leitner._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1});
+	Wozniak._ensureIndex({user_id: 1, cardset_id: 1});
+	Workload._ensureIndex({cardset_id: 1, user_id: 1});
+}
+
 Meteor.startup(function () {
 	const cronScheduler = new CronScheduler();
 	let themes = initColorThemes();
@@ -330,7 +336,7 @@ Meteor.startup(function () {
 	let testNotificationsLearned = initTestNotificationsLearned();
 	let testNotificationsUser = initTestNotificationsUser();
 	let demoCardsetUser = initDemoCardsetUser();
-
+	setupDatabaseIndex();
 	process.env.MAIL_URL = Meteor.settings.mail.url;
 	SSR.compileTemplate("newsletter", Assets.getText("newsletter/newsletter.html"));
 	Template.newsletter.helpers({
