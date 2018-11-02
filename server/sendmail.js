@@ -63,14 +63,14 @@ export class MailNotifier {
 			var textEnd;
 			if (cards === 1) {
 				subject += TAPi18n.__('mailNotification.subjectSingular1', null, Meteor.settings.mail.language) + cards + TAPi18n.__('mailNotification.subjectSingular2', null, Meteor.settings.mail.language);
-				bold = cards + TAPi18n.__('mailNotification.newCards2Singular', null, Meteor.settings.mail.language) + '"' + cardset.name + '"';
+				bold = cards + TAPi18n.__('mailNotification.newCards2Singular', null, Meteor.settings.mail.language) + '»' + cardset.name + '«';
 			} else {
 				subject += TAPi18n.__('mailNotification.subjectPlural1', null, Meteor.settings.mail.language) + cards + TAPi18n.__('mailNotification.subjectPlural2', null, Meteor.settings.mail.language);
-				bold = cards + TAPi18n.__('mailNotification.newCards2Plural', null, Meteor.settings.mail.language) + '"' + cardset.name + '"';
+				bold = cards + TAPi18n.__('mailNotification.newCards2Plural', null, Meteor.settings.mail.language) + '»' + cardset.name + '«';
 			}
-			subject += TAPi18n.__('mailNotification.subjectCardset', null, Meteor.settings.mail.language) + '"' + cardset.name + '"' + TAPi18n.__('mailNotification.subjectEnd', null, Meteor.settings.mail.language);
+			subject += TAPi18n.__('mailNotification.subjectCardset', null, Meteor.settings.mail.language) + '»' + cardset.name + '«' + TAPi18n.__('mailNotification.subjectEnd', null, Meteor.settings.mail.language);
 			textEnd = TAPi18n.__('mailNotification.textEnd', null, Meteor.settings.mail.language) + this.getDeadline(cardset, user_id);
-			this.sendMail(name, this.getMail(user_id), subject, text, bold, textEnd, cardset._id, "#3d9c19", "#328114");
+			this.sendMail(name, this.getMail(user_id), subject, text, bold, textEnd, cardset._id, "#33D275", "#008000");
 		}
 	}
 
@@ -84,11 +84,11 @@ export class MailNotifier {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			var notifier = new Notifications();
-			var subject = TAPi18n.__('mailNotification.subjectReset', null, Meteor.settings.mail.language) + '"' + cardset.name + '"';
+			var subject = TAPi18n.__('mailNotification.subjectReset', null, Meteor.settings.mail.language) + '»' + cardset.name + '«';
 			var text = TAPi18n.__('mailNotification.mailCard', null, Meteor.settings.mail.language) + cardset.name + TAPi18n.__('mailNotification.mailCard1', null, Meteor.settings.mail.language) + "\n\n";
 			var name = TAPi18n.__('mailNotification.textIntro', null, Meteor.settings.mail.language) + notifier.getName(user_id) + ",";
 			text += this.getDeadline(cardset, user_id);
-			this.sendMail(name, this.getMail(user_id), subject, text, "", "", cardset._id, "#d70000", "#a40000");
+			this.sendMail(name, this.getMail(user_id), subject, text, "", "", cardset._id, "#FF0000", "#8B0000");
 		}
 	}
 
