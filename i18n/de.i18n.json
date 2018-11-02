@@ -1325,7 +1325,7 @@
   "learnPhaseActiveBody": "Lernen mit geplanten Wiederholungen ist deaktiviert.",
   "learnPhaseEnded": "Die Lernphase ist zu Ende.",
   "noMoreCardsBeforeEnd": "Es gibt keine Karten mehr, die vor dem Ende der Lernphase gelernt werden können.",
-  "deadlinePrologue": "Du hast noch bis zum <strong>",
+  "deadlinePrologue": "Du hast noch bis <strong>",
   "deadlineEpilogue1": "</strong> Zeit, um die derzeit freigegebenen Karten zu lernen.",
   "deadlineEpilogue2": "</strong> Zeit, um die derzeit freigegebenen Karten zu lernen, sonst wird deine Lernstatistik für diese Kartei zurückgesetzt.",
   "cardsToLearn": "Meine zu lernenden Karten",
