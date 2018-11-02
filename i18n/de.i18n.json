@@ -1659,7 +1659,7 @@
     "button": "Akzeptieren"
   },
   "mailNotification": {
-    "subjectTitle": "🍅__lastAppTitle__: Heute ",
+    "subjectTitle": "Heute ",
     "subjectSingular1": "ist ",
     "subjectPlural1": "sind ",
     "subjectSingular2": " Karte ",
@@ -1672,11 +1672,11 @@
     "newCards2Singular": " Karte in der Kartei ",
     "newCards2Plural": " Karten in der Kartei ",
     "textIntro": "Hallo, ",
-    "textIntro1": "es ist an der Zeit, einen Blick auf deine Lernkarten zu werfen!",
+    "textIntro1": "es ist an der Zeit, einen Blick auf deine Lernkarten zu werfen! ",
     "textDate1": "Du hast noch bis zum <strong>",
     "textDate2": "</strong> Zeit, um die derzeit freigegebenen Karten zu lernen, sonst wird deine Lernstatistik zurückgesetzt.",
     "mailCard": "die Kartei <strong>",
-    "mailCard1": "</strong> benötigt deine Aufmerksamkeit! \n\n",
+    "mailCard1": "</strong> benötigt deine Aufmerksamkeit! ",
     "greetings": " \n\nDein 🍅__lastAppTitle__-Team",
     "subjectEnding": "endet die Lernphase der Kartei ",
     "textIntroEnding": "Hallo, ",
@@ -1684,8 +1684,8 @@
     "subjectReset": "Deine Lernstatistik wird in Kürze zurückgesetzt für die Kartei ",
     "textReset": "wegen Inaktivität wurde deine Lernstatistik zurückgesetzt. ",
     "newCards1": "Nach Überprüfung deiner aktuellen Lernphase hat der Wiederholungs-Algorithmus berechnet, dass ",
-    "service": "Der Newsletter ist ein Service von 🍅__lastAppTitle__. \n\nDu erhältst diese Mail, weil du dich angemeldet hast auf ",
-    "unsubscribe": "Nicht mehr interessiert? Beende die Lernphase, um den Newsletter für diese Kartei nicht mehr zu erhalten.",
+    "service": "Du erhältst diese Mail, weil du dich angemeldet hast auf ",
+    "unsubscribe": "Nicht mehr interessiert? Beende die Lernphase, um den Newsletter dieser Kartei abzubestellen.",
     "copyright": "© 2018 🍅__lastAppTitle__",
     "my-cardset": "Zur Kartei…",
     "auto-generated": "Bitte antworte nicht auf diese Mail, sie wurde automatisch erstellt."
