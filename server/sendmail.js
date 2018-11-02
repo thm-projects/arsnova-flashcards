@@ -70,7 +70,7 @@ export class MailNotifier {
 			}
 			subject += TAPi18n.__('mailNotification.subjectCardset', null, Meteor.settings.mail.language) + '»' + cardset.name + '«' + TAPi18n.__('mailNotification.subjectEnd', null, Meteor.settings.mail.language);
 			textEnd = TAPi18n.__('mailNotification.textEnd', null, Meteor.settings.mail.language) + this.getDeadline(cardset, user_id);
-			this.sendMail(name, this.getMail(user_id), subject, text, bold, textEnd, cardset._id, "#33D275", "#008000");
+			this.sendMail(name, this.getMail(user_id), subject, text, bold, textEnd, cardset._id, "#33D275", "#00FF00");
 		}
 	}
 
@@ -88,7 +88,7 @@ export class MailNotifier {
 			var text = TAPi18n.__('mailNotification.mailCard', null, Meteor.settings.mail.language) + cardset.name + TAPi18n.__('mailNotification.mailCard1', null, Meteor.settings.mail.language) + "\n\n";
 			var name = TAPi18n.__('mailNotification.textIntro', null, Meteor.settings.mail.language) + notifier.getName(user_id) + ",";
 			text += this.getDeadline(cardset, user_id);
-			this.sendMail(name, this.getMail(user_id), subject, text, "", "", cardset._id, "#FF0000", "#8B0000");
+			this.sendMail(name, this.getMail(user_id), subject, text, "", "", cardset._id, "#FE5E3E", "#FF0000");
 		}
 	}
 
