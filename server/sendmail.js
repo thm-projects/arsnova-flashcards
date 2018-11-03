@@ -102,6 +102,7 @@ export class MailNotifier {
 	 * @param {string} buttonColor - The rgb color of the button background
 	 */
 	sendMail (name, mail, subject, text, bold, textEnd, cardsetId, titleColor, buttonColor) {
+		var faq = TAPi18n.__('contact.faq', null, Meteor.settings.mail.language);
 		var datenschutz = TAPi18n.__('contact.datenschutz', null, Meteor.settings.mail.language);
 		var agb = TAPi18n.__('contact.agb', null, Meteor.settings.mail.language);
 		var impressum = TAPi18n.__('contact.impressum', null, Meteor.settings.mail.language);
@@ -124,6 +125,7 @@ export class MailNotifier {
 					url: Meteor.settings.public.rooturl,
 					titlecolor: titleColor,
 					btncol: buttonColor,
+					faq: faq,
 					datenschutz: datenschutz,
 					impressum: impressum,
 					agb: agb,
