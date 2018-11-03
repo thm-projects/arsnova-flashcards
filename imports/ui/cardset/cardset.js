@@ -5,6 +5,7 @@ import {Session} from "meteor/session";
 import {Cardsets} from "../../api/cardsets.js";
 import {CardNavigation} from "../../api/cardNavigation";
 import {BertAlertVisuals} from "../../api/bertAlertVisuals";
+import {CardsetNavigation} from "../../api/cardsetNavigation";
 import {Bonus} from "../../api/bonus";
 import "../card/card.js";
 import "../learn/learn.js";
@@ -77,7 +78,7 @@ Template.cardset.rendered = function () {
 Template.cardset.helpers({
 	'selectedForLearning': function () {
 		if (Session.get('selectingCardsetToLearn')) {
-			CardNavigation.addToLeitner(this._id);
+			CardsetNavigation.addToLeitner(this._id);
 			Meteor.call("addWozniakCards", this._id);
 			Session.set("selectingCardsetToLearn", false);
 			BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.alert.addedToWorkload'), 'success', 'growl-top-left');

@@ -1,3 +1,5 @@
+import {Meteor} from "meteor/meteor";
+
 export let CardsetNavigation = class CardsetNavigation {
 	/**
 	 * Creates a web push subscription for the current device.
