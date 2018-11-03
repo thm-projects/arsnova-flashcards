@@ -1,4 +1,4 @@
-import "./admin_university.html";
+import "./university.html";
 import {Meteor} from "meteor/meteor";
 import {CollegesCourses} from "../../../api/colleges_courses.js";
 import {Session} from "meteor/session";

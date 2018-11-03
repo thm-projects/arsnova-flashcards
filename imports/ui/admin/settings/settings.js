@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {AdminSettings} from "../../../api/adminSettings.js";
-import "./admin_settings.html";
+import "./settings.html";
 
 Template.admin_settings.events({
 	'click #enableWordcloudPomodoro': function () {

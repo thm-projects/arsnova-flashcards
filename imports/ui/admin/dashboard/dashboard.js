@@ -1,6 +1,6 @@
 //------------------------ IMPORTS
 import {Template} from "meteor/templating";
-import "./admin_dashboard.html";
+import "./dashboard.html";
 
 Template.admin_dashboard.helpers({
 	totalCardsets: function () {

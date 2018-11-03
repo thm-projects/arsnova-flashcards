@@ -4,13 +4,13 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Notifications} from "../../api/notifications.js";
 import "./admin.html";
-import "./admin_dashboard/admin_dashboard.js";
-import "./admin_users/admin_users.js";
-import "./admin_learningStatistics/admin_learningStatistics.js";
-import "./admin_apiAccess/admin_apiAccess.js";
-import "./admin_notifications/admin_notifications.js";
-import "./admin_university/admin_university.js";
-import "./admin_settings/admin_settings.js";
+import "./dashboard/dashboard.js";
+import "./users/index.js";
+import "./learningStatistics/learningStatistics.js";
+import "./apiAccess/apiAccess.js";
+import "./notifications/notifications.js";
+import "./university/university.js";
+import "./settings/settings.js";
 import "../learn/progress.js";
 
 
