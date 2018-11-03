@@ -1,6 +1,7 @@
 //------------------------ IMPORTS
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
+import "../../modal/license.js";
 import "./license.html";
 
 /*

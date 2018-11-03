@@ -964,3 +964,7 @@ th {
   border: 0;
   box-shadow: $default_box_shadow !important;
 }
+
+#showLicenseModal {
+  z-index: 1060;
+}
