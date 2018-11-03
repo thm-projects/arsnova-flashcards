@@ -1,0 +1,40 @@
+
+<!--##################################################################-->
+<!--profileNotifications-->
+<!--##################################################################-->
+<template name="profileNotifications">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title pull-left">{{_ "profile.notifications"}}</h3>
+            {{#if getNotifications.count}}
+                <button id="clearBtn" type="button" class="btn btn-xs btn-danger pull-right">{{_
+                        "notifications.deleteAll"}}</button>
+            {{/if}}
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            {{#if getNotifications.count}}
+                <div class="list-group">
+                    {{#each getNotifications}}
+                        <div class="list-group-item">
+                            <h4 class="list-group-item-heading pull-left">{{getType type}}</h4>
+                            <button id="deleteNotificationBtn" class="btn btn-danger btn-xs pull-right"><i
+                                    class="fa fa-times"></i></button>
+                            <div class="clearfix"></div>
+                            <a href="{{getLink}}" class="list-group-item-text">{{text}}</a>
+                            <hr>
+                            <small class="list-group-item-text pull-left">{{getTimestamp}}</small>
+                            <small class="list-group-item-text pull-right"><p>Status: {{getStatus}}
+                            </p></small>
+                            <div class="clearfix"></div>
+                        </div>
+                    {{/each}}
+                </div>
+            {{else}}
+                <div class="notification-heading">
+                    <h4 class="menu-title">{{_ "notifications.noNotification"}}</h4>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</template>

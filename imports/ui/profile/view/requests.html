@@ -1,0 +1,27 @@
+
+<!--##################################################################-->
+<!--profileRequests-->
+<!--##################################################################-->
+<template name="profileRequests">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{_ "profile.requests"}}</h3>
+        </div>
+        <div class="panel-body">
+            {{#if getRequests.count}}
+                <div class="list-group">
+                    {{#each getRequests}}
+                        <a href="/cardset/{{_id}}" class="list-group-item">
+                            <h4 class="list-group-item-heading">{{name}}</h4>
+                            <p class="list-group-item-text">{{description}}</p>
+                        </a>
+                    {{/each}}
+                </div>
+            {{else}}
+                <div class="notification-heading">
+                    <h4 class="menu-title">{{_ "profile.norequests"}}</h4>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</template>

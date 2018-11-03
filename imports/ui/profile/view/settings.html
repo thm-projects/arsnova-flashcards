@@ -1,0 +1,160 @@
+
+<!--##################################################################-->
+<!--profileSettings-->
+<!--##################################################################-->
+<template name="profileSettings">
+    <div id="profile-info">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{_ "panel-heading.hallo"}}</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" role="form">
+                    {{#if isUser}}
+                        {{#unless isInRole 'pro,lecturer'}}
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">{{_ "panel-body.profilepublic"}}</label>
+                                <div class="col-md-8">
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label id="profilepublicoption1"
+                                               class="btn btn-success profile-public {{#if
+                                                       getUser.visible}}active profilepublic-rb-text-color{{/if}}">
+                                            <input type="radio" name="visible" value="true">
+                                            <div>{{_ "panel-body.profilepublicoption1"}}</div>
+                                        </label>
+                                        <label id="profilepublicoption2"
+                                               class="btn btn-danger profile-private {{#unless
+                                                       getUser.visible}}active profilepublic-rb-text-color{{/unless}}">
+                                            <input type="radio" name="visible" value="false">
+                                            <div>{{_ "panel-body.profilepublicoption2"}}</div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        {{/unless}}
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">{{_ "panel-body.email"}} <a
+                                    href="mailto:{{getUser.email}}"><span class="glyphicon glyphicon-envelope"
+                                                                          aria-hidden="true"></span></a></label>
+                            <div class="col-md-8">
+                                <input type="email" class="form-control" id="inputEmail"
+                                       placeholder="{{_ "panel-body.email-desc"}}" value="{{getUser.email}}">
+                                <span id="errorEmail" class="help-block name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group hidden" id="inputEmailValidationForm">
+                            <label class="col-md-4 control-label">{{_ "panel-body.emailValidation"}} </label>
+                            <div class="col-md-8">
+                                <input type="email" class="form-control" id="inputEmailValidation"
+                                       placeholder="{{_ "panel-body.emailValidation-desc"}}" value="">
+                                <span id="errorEmailValidation" class="help-block name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">{{_ "panel-body.name"}}</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="inputName"
+                                       placeholder="{{_ "panel-body.name"}}" value="{{getUser.profile.name}}">
+                                <span id="errorName" class="help-block name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">{{_ "panel-body.title"}}</label>
+                            <div class="col-md-8">
+                                <input disabled type="text" class="form-control" id="inputTitle"
+                                       placeholder="{{_ "panel-body.title-desc"}}" value="{{getUser.profile.title}}">
+                                <span id="errorTitle" class="help-block name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">{{_ "panel-body.birthname"}}</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="inputBirthName"
+                                       placeholder="{{_ "panel-body.birthname-desc"}}"
+                                       value="{{getUser.profile.birthname}}">
+                                <span id="errorBirthName" class="help-block name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">{{_ "panel-body.givenname"}}</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="inputGivenName"
+                                       placeholder="{{_ "panel-body.givenname-desc"}}"
+                                       value="{{getUser.profile.givenname}}">
+                                <span id="errorGivenName" class="help-block name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">{{_ "confirmLearn-form.notification"}}</label>
+                            <form>
+                                <fieldset>
+                                    <div class="col-md-9 form-group">
+                                        <div class="col-md-6">
+                                            <label class="checkbox-inline" for="mailNotificationCheckbox">
+                                                <input type="checkbox" name="notification" id="mailNotificationCheckbox"
+                                                    {{getMailNotifications}}>
+                                                {{_ "confirmLearn-form.mailNotificationCheckbox"}}
+                                            </label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="checkbox-inline" for="webNotificationCheckbox">
+                                                <input type="checkbox" name="notification" id="webNotificationCheckbox"
+                                                    {{getWebNotifications}}>
+                                                {{_ "confirmLearn-form.webNotificationCheckbox"}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <button id="profileCancel" type="button"
+                                class="btn btn-default btn-raised btn-block col-xs-12 col-sm3 profileSave"
+                                data-id="disabled">{{_
+                                "profile.cancel"}}</button>
+                        <button id="profileSave" type="button"
+                                class="btn btn-success btn-raised btn-block col-xs-12 col-sm3 pull-right"
+                            {{disableIfOffline}}>
+                            {{_ "profile.save"}}
+                        </button>
+                    {{/if}}
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">{{_ "profile.settings.appearance"}}</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group row">
+                    <label for="sel1">{{_ "profile.settings.theme"}}:</label>
+                    <select class="form-control" id="colorThemeSelect">
+                        {{#each getColorThemes}}
+                            <option {{getSelectedColorThemes}} value="{{_id}}">{{name}}</option>
+                        {{/each}}
+                    </select>
+                    {{#unless isDisabledSaveTheme}}
+                        <button id="colorThemeSave" type="button"
+                                class="btn btn-success btn-raised btn-block col-xs-12 col-sm-3 pull-right">{{_
+                                "profile.save"}}</button>
+                    {{/unless}}
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">{{_ "profile.settings.delete"}}</h4>
+            </div>
+            <div class="panel-body">
+                <p>{{_ "profile.settings.deleteText" lastAppTitle=(getLastAppTitle)}}</p>
+                <hr/>
+                <button id="profileDelete" type="button" class="btn btn-danger btn-raised btn-block col-xs-12 col-sm-3"
+                        data-toggle="modal"
+                        data-target="#profileDelteConfirmModal" {{disableIfOffline}}>
+                    {{_ "profile.settings.delete"}}
+                </button>
+            </div>
+            {{> profileDeleteConfirmForm}}
+        </div>
+    </div>
+</template>

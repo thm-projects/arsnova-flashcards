@@ -1,0 +1,44 @@
+<!--##################################################################-->
+<!--profilePublic-->
+<!--##################################################################-->
+<template name="profilePublic">
+    <div id="profile-info">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{_ "panel-heading.hallo"}}</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" role="form">
+                    {{#if getUser.profile.title}}
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">{{_ "panel-body.title"}}</label>
+                            <div class="col-md-8">
+                                <input disabled type="text" class="form-control" id="inputTitle"
+                                       placeholder="{{_ "panel-body.title-desc"}}" value="{{getUser.profile.title}}">
+                                <span id="errorTitle" class="help-block name"></span>
+                            </div>
+                        </div>
+                    {{/if}}
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">{{_ "panel-body.birthname"}}</label>
+                        <div class="col-md-8">
+                            <input disabled type="text" class="form-control" id="inputBirthName"
+                                   placeholder="{{_ "panel-body.birthname-desc"}}"
+                                   value="{{getUser.profile.birthname}}">
+                            <span id="errorBirthName" class="help-block name"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">{{_ "panel-body.givenname"}}</label>
+                        <div class="col-md-8">
+                            <input disabled type="text" class="form-control" id="inputGivenName"
+                                   placeholder="{{_ "panel-body.givenname-desc"}}"
+                                   value="{{getUser.profile.givenname}}">
+                            <span id="errorGivenName" class="help-block name"></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
