@@ -1,4 +1,4 @@
-<template name="cardsets">
+<template name="filterIndex">
     {{#if isInRole 'firstLogin'}}
         {{> first_login_content_only}}
     {{else}}
@@ -12,28 +12,52 @@
             {{#if isActiveRoute regex='alldecks|create'}}
                 {{> cardsetDeleteForm}}
                 {{> cardsetForm}}
-                {{> create}}
+                {{> filterIndexCreate}}
             {{/if}}
 
             {{#if isActiveRoute regex='repetitorium'}}
                 {{> cardsetDeleteForm}}
                 {{> cardsetForm}}
-                {{> repetitorium}}
+                {{> filterIndexRepetitorium}}
             {{/if}}
 
             {{#if isActiveRoute 'learn'}}
-                {{> learn}}
+                {{> filterIndexWorkload}}
             {{/if}}
 
             {{#if isActiveRoute 'shuffle'}}
                 {{> cardsetForm}}
-                {{> shuffle}}
+                {{> filterIndexShuffle}}
+            {{/if}}
+
+            {{#if isActiveRoute 'pool'}}
+                {{> filterIndexPool}}
             {{/if}}
         {{/if}}
     {{/if}}
 </template>
 
-<template name="shuffle">
+<template name="filterIndexPool">
+    {{#if getDecks 0}}
+        {{> filterNavigation}}
+        {{#if displayWordcloud}}
+            {{> wordcloud}}
+        {{else}}
+            {{#if getDecks 1}}
+                {{#each getDecks 2}}
+                    {{> filterIndexItemCardset extendContext 'index' @index}}
+                {{/each}}
+                {{> infiniteScroll}}
+            {{else}}
+                {{> noFilterResults}}
+            {{/if}}
+        {{/if}}
+    {{else}}
+        {{> noResults}}
+    {{/if}}
+</template>
+
+<template name="filterIndexShuffle">
     {{#if canShuffle}}
         <div class="container" id="set-list-region">
             <div class="bs-callout bs-callout-info selectionInfo">
@@ -57,7 +81,7 @@
             {{#if shuffleList 1}}
                 {{#each shuffleList 2}}
                     {{#unless isActiveCardset}}
-                        {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
+                        {{> filterIndexItemCardset extendContext 'index' @index}}
                     {{/unless}}
                 {{/each}}
                 {{> infiniteScroll}}
@@ -68,7 +92,7 @@
     {{/if}}
 </template>
 
-<template name="create">
+<template name="filterIndexCreate">
     <div class="container" id="set-list-region">
         {{#if isActiveRoute 'create'}}
             <button id="newCardSet" type="button"
@@ -87,7 +111,7 @@
             {{else}}
                 {{#if cardsetList 1}}
                     {{#each cardsetList 2}}
-                        {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
+                        {{> filterIndexItemCardset extendContext 'index' @index}}
                     {{/each}}
                     {{> infiniteScroll}}
                 {{else}}
@@ -100,7 +124,7 @@
     </div>
 </template>
 
-<template name="repetitorium">
+<template name="filterIndexRepetitorium">
     <div class="container" id="set-list-region">
         {{#unless selectingCardsetToLearn}}
             {{#if canCreateContent}}
@@ -119,7 +143,7 @@
             {{else}}
                 {{#if cardsetList 1}}
                     {{#each cardsetList 2}}
-                        {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
+                        {{> filterIndexItemCardset extendContext 'index' @index}}
                     {{/each}}
                     {{> infiniteScroll}}
                 {{else}}
@@ -132,7 +156,7 @@
     </div>
 </template>
 
-<template name="learn">
+<template name="filterIndexWorkload">
     {{> selectModeForm}}
     {{> cardsetsConfirmLearnForm}}
     <div id="learn-list-region" class="container">
@@ -144,7 +168,7 @@
             {{> filterNavigation}}
             {{#if learnList 1}}
                 {{#each learnList 2}}
-                    {{> cardsetCourseIterationResultRow extendContext 'index' @index}}
+                    {{> filterIndexItemCardset extendContext 'index' @index}}
                 {{/each}}
                 {{> infiniteScroll}}
             {{else}}
@@ -154,89 +178,4 @@
             {{> noResults}}
         {{/if}}
     </div>
-</template>
-
-<template name="selectModeForm">
-    <div class="modal fade" id="selectModeToLearnModal" tabindex="-1" role="dialog"
-         aria-labelledby="selectModeToLearnTitle">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 id="selectModeToLearnTitle" class="modal-title">{{_ "learn"}}
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <hr/>
-                    <button id="learnBox"
-                            class="btn btn-raised btn-success learn" {{disableIfOffline}} data-dismiss="modal">{{_
-                            "learnfile"}}</button>
-                    <button id="learnMemo"
-                            class="btn btn-raised btn-success memo pull-right" {{disableIfOffline}}
-                            data-dismiss="modal">{{_
-                            "memo"}}</button>
-                </div>
-                <br>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-</template>
-
-<template name="cardsetsConfirmLearnForm">
-    <div class="modal fade" id="bonusFormModal" tabindex="-1" role="dialog"
-         aria-labelledby="bonusFormModalTitle">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 id="bonusFormModalTitle" class="modal-title">{{_ "confirm-form-learn.title"}}
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <p>{{_ "confirm-form-learn.text"}}</p>
-                    <br/>
-                    <hr/>
-
-                    <button id="learnDelete" class="btn btn-danger btn-raised btn-setDelete" {{disableIfOffline}}>{{_
-                            "confirm-form-learn.title"}}</button>
-                    <button id="learnCancel" class="btn btn-raised pull-right" data-dismiss="modal">{{_
-                            "modal-dialog.cancel"}}</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
-</template>
-
-<template name="cardsetDeleteForm">
-    <div class="modal fade" id="confirmDeleteCardsetModal" tabindex="-1" role="dialog"
-         aria-labelledby="confirmDeleteCardsetModalTitle">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 id="confirmDeleteCardsetModalTitle" class="modal-title">{{_
-                            "cardset.confirm-form-delete.title"}}
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <p>{{_ "cardset.confirm-form-delete.text"}}</p>
-                    <hr/>
-                    <button id="deleteCardset"
-                            class="btn btn-danger btn-raised btn-setDelete" {{disableIfOffline}}>{{_
-                            "cardset.confirm-form-delete.title"}}</button>
-                    <button id="cancelDelete" class="btn btn-raised pull-right" data-dismiss="modal">{{_
-                            "modal-dialog.cancel"}}</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal -->
 </template>

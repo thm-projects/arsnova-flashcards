@@ -1,9 +1,9 @@
 import "./filterAuthor.html";
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
-import {Filter} from "../../../api/filter";
-import {Cardsets} from "../../../api/cardsets";
-import {getAuthorName} from "../../../api/userdata";
+import {Filter} from "../../../../api/filter";
+import {Cardsets} from "../../../../api/cardsets";
+import {getAuthorName} from "../../../../api/userdata";
 
 /*
  * ############################################################################

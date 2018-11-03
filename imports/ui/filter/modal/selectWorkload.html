@@ -1,0 +1,28 @@
+<template name="selectModeForm">
+    <div class="modal fade" id="selectModeToLearnModal" tabindex="-1" role="dialog"
+         aria-labelledby="selectModeToLearnTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="selectModeToLearnTitle" class="modal-title">{{_ "learn"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <hr/>
+                    <button id="learnBox"
+                            class="btn btn-raised btn-success learn" {{disableIfOffline}} data-dismiss="modal">{{_
+                            "learnfile"}}</button>
+                    <button id="learnMemo"
+                            class="btn btn-raised btn-success memo pull-right" {{disableIfOffline}}
+                            data-dismiss="modal">{{_
+                            "memo"}}</button>
+                </div>
+                <br>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>

@@ -1,6 +1,6 @@
 import "./filterCardType.html";
 import {Template} from "meteor/templating";
-import {Filter} from "../../../api/filter";
+import {Filter} from "../../../../api/filter";
 
 /*
  * ############################################################################

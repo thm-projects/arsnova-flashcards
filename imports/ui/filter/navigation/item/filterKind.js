@@ -1,7 +1,7 @@
 import "./filterKind.html";
 import {Template} from "meteor/templating";
-import {FilterNavigation} from "../../../api/filterNavigation";
-import {Filter} from "../../../api/filter";
+import {FilterNavigation} from "../../../../api/filterNavigation";
+import {Filter} from "../../../../api/filter";
 
 /*
  * ############################################################################

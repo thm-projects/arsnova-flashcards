@@ -187,7 +187,7 @@ Router.route('datenschutz', {
 
 Router.route('/alldecks', {
 	name: 'alldecks',
-	template: 'cardsets',
+	template: 'filterIndex',
 	data: function () {
 		Session.set('helpFilter', undefined);
 		Session.set('activeRouteTitle', TAPi18n.__('navbar-collapse.alldecks', {}, Session.get('activeLanguage')));
@@ -204,7 +204,7 @@ Router.route('/alldecks', {
 
 Router.route('/create', {
 	name: 'create',
-	template: 'cardsets',
+	template: 'filterIndex',
 	data: function () {
 		Session.set('helpFilter', "create");
 		switch (Cardsets.find({owner: Meteor.userId()}).count()) {
@@ -230,7 +230,7 @@ Router.route('/create', {
 
 Router.route('/repetitorium', {
 	name: 'repetitorium',
-	template: 'cardsets',
+	template: 'filterIndex',
 	data: function () {
 		Session.set('helpFilter', "repetitorium");
 		Session.set('activeRouteTitle', TAPi18n.__('navbar-collapse.course', {}, Session.get('activeLanguage')));
@@ -247,8 +247,7 @@ Router.route('/repetitorium', {
 
 Router.route('/learn', {
 	name: 'learn',
-	template: 'cardsets',
-	loadingTemplate: 'cardsets',
+	template: 'filterIndex',
 	subscriptions: function () {
 		return [Meteor.subscribe('userWorkload', this.params._id), Meteor.subscribe('userLeitner'), Meteor.subscribe('userWozniak')];
 	},
@@ -268,7 +267,7 @@ Router.route('/learn', {
 
 Router.route('/shuffle', {
 	name: 'shuffle',
-	template: 'cardsets',
+	template: 'filterIndex',
 	data: function () {
 		Session.set('helpFilter', "shuffle");
 		Session.set('isNewCardset', true);
@@ -332,7 +331,7 @@ Router.route('/cardset/:_id/card/:card_id', {
 
 Router.route('/cardset/:_id/editshuffle', {
 	name: 'editshuffle',
-	template: 'shuffle',
+	template: 'filterIndexShuffle',
 	data: function () {
 		Session.set('helpFilter', "shuffle");
 		Filter.resetMaxItemCounter();
@@ -446,7 +445,7 @@ Router.route('/cardset/:_id/editcard/:card_id', {
 
 Router.route('/pool', {
 	name: 'pool',
-	template: 'pool',
+	template: 'filterIndex',
 	data: function () {
 		Session.set('helpFilter', "pool");
 		Session.set('activeRouteTitle', TAPi18n.__('navbar-collapse.pool', {}, Session.get('activeLanguage')));

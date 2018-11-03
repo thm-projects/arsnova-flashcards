@@ -3,12 +3,12 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Cardsets} from "../../api/cardsets.js";
-import {Leitner, Wozniak} from "../../api/learned.js";
-import "../cardset/cardset.js";
-import "../cardsets/resultItem.html";
-import {CardType} from "../../api/cardTypes";
-import {BertAlertVisuals} from "../../api/bertAlertVisuals";
+import {Cardsets} from "../../../../api/cardsets.js";
+import {Leitner, Wozniak} from "../../../../api/learned.js";
+import {CardType} from "../../../../api/cardTypes";
+import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
+import "../../../cardset/cardset.js";
+import "./cardset.html";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
@@ -36,11 +36,11 @@ function getWozniakCount(cardset) {
 
 /*
  * ############################################################################
- * cardsetCourseIterationResultRow
+ * filterIndexItemCardset
  * ############################################################################
  */
 
-Template.cardsetCourseIterationResultRow.events({
+Template.filterIndexItemCardset.events({
 	"click .addShuffleCardset": function (event) {
 		let array = Session.get("ShuffledCardsets");
 		let arrayExclude = Session.get("ShuffledCardsetsExclude");
@@ -163,7 +163,7 @@ Template.cardsetCourseIterationResultRow.events({
 	}
 });
 
-Template.cardsetCourseIterationResultRow.helpers({
+Template.filterIndexItemCardset.helpers({
 	inShuffleSelection: function (cardset_id) {
 		if (Session.get("ShuffledCardsets").includes(cardset_id) || Session.get("ShuffledCardsetsExclude").includes(cardset_id)) {
 			return true;

@@ -3,16 +3,19 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Cardsets} from "../../api/cardsets.js";
-import "../cardset/cardset.js";
-import "./cardsets.html";
-import {Filter} from "../../api/filter";
-import {Route} from "../../api/route";
-import {BertAlertVisuals} from "../../api/bertAlertVisuals";
-import {Workload} from "../../api/learned";
-import {SweetAlertMessages} from "../../api/sweetAlert";
-import {Profile} from "../../api/profile";
-import {FilterNavigation} from "../../api/filterNavigation";
+import {Cardsets} from "../../../api/cardsets.js";
+import {Filter} from "../../../api/filter";
+import {Route} from "../../../api/route";
+import {BertAlertVisuals} from "../../../api/bertAlertVisuals";
+import {SweetAlertMessages} from "../../../api/sweetAlert";
+import {Profile} from "../../../api/profile";
+import {FilterNavigation} from "../../../api/filterNavigation";
+import {firstLoginBertAlert} from "../../../startup/client/routes";
+import "./item/cardset.js";
+import "../modal/deleteWorkload.js";
+import "../modal/deleteCardset.js";
+import "../modal/selectWorkload.js";
+import "./index.html";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
@@ -21,11 +24,50 @@ Meteor.subscribe("cardsets");
 
 /*
  * ############################################################################
- * create
+ * filterIndexPool
  * ############################################################################
  */
 
-Template.create.helpers({
+Template.filterIndexPool.helpers({
+	getDecks: function (resultType) {
+		let query = {};
+		if (resultType !== 0) {
+			query = Filter.getFilterQuery();
+		}
+		switch (resultType) {
+			case 0:
+			case 1:
+				return Cardsets.find(query, {
+					sort: Filter.getSortFilter(),
+					limit: Filter.getMaxItemCounter()
+				}).count();
+			case 2:
+				return Cardsets.find(query, {sort: Filter.getSortFilter(), limit: Filter.getMaxItemCounter()});
+		}
+	},
+	displayWordcloud: function () {
+		return FilterNavigation.gotDisplayModeButton(FilterNavigation.getRouteId()) && Session.get('filterDisplayWordcloud');
+	}
+});
+
+Template.filterIndexPool.events({
+	'click #cancelSelection': function () {
+		Session.set('selectingCardsetToLearn', false);
+		Router.go('learn');
+	}
+});
+
+Template.filterIndexPool.onRendered(function () {
+	firstLoginBertAlert();
+});
+
+/*
+ * ############################################################################
+ * filterIndexCreate
+ * ############################################################################
+ */
+
+Template.filterIndexCreate.helpers({
 	cardsetList: function (returnType) {
 		let query = {};
 		if (returnType !== 0) {
@@ -54,7 +96,7 @@ Template.create.helpers({
 	}
 });
 
-Template.create.events({
+Template.filterIndexCreate.events({
 	'click #newCardSet': function () {
 		if (Profile.isCompleted()) {
 			Session.set('isNewCardset', true);
@@ -103,17 +145,17 @@ Template.create.events({
 	}
 });
 
-Template.create.onDestroyed(function () {
+Template.filterIndexCreate.onDestroyed(function () {
 	Filter.resetMaxItemCounter();
 });
 
 /*
  * ############################################################################
- * repetitorium
+ * filterIndexRepetitorium
  * ############################################################################
  */
 
-Template.repetitorium.helpers({
+Template.filterIndexRepetitorium.helpers({
 	cardsetList: function (returnType) {
 		let query = {};
 		if (returnType !== 0) {
@@ -142,7 +184,7 @@ Template.repetitorium.helpers({
 	}
 });
 
-Template.repetitorium.events({
+Template.filterIndexRepetitorium.events({
 	'click #newRepetitorium': function () {
 		if (Profile.isCompleted()) {
 			Session.set('isNewCardset', true);
@@ -153,21 +195,21 @@ Template.repetitorium.events({
 	}
 });
 
-Template.repetitorium.onDestroyed(function () {
+Template.filterIndexRepetitorium.onDestroyed(function () {
 	Filter.resetMaxItemCounter();
 });
 
 /*
  * ############################################################################
- * learn
+ * filterIndexWorkload
  * ############################################################################
  */
 
-Template.learn.onCreated(function () {
+Template.filterIndexWorkload.onCreated(function () {
 	Filter.updateWorkloadFilter();
 });
 
-Template.learn.helpers({
+Template.filterIndexWorkload.helpers({
 	learnList: function (returnType) {
 		let query = {};
 		if (returnType !== 0) {
@@ -186,7 +228,7 @@ Template.learn.helpers({
 	}
 });
 
-Template.learn.events({
+Template.filterIndexWorkload.events({
 	'click .deleteLearned': function (event) {
 		Session.set('cardsetId', $(event.target).data('id'));
 	},
@@ -200,17 +242,17 @@ Template.learn.events({
 	}
 });
 
-Template.learn.onDestroyed(function () {
+Template.filterIndexWorkload.onDestroyed(function () {
 	Filter.resetMaxItemCounter();
 });
 
 /*
  * ############################################################################
- * shuffle
+ * filterIndexShuffle
  * ############################################################################
  */
 
-Template.shuffle.events({
+Template.filterIndexShuffle.events({
 	'click #updateShuffledCardset': function () {
 		let removedCardsets = $(Cardsets.findOne({_id: Router.current().params._id}).cardGroups).not(Session.get("ShuffledCardsets")).get();
 		Meteor.call("updateShuffleGroups", Router.current().params._id, Session.get("ShuffledCardsets"), removedCardsets, function (error, result) {
@@ -232,7 +274,7 @@ Template.shuffle.events({
 	}
 });
 
-Template.shuffle.helpers({
+Template.filterIndexShuffle.helpers({
 	selectShuffleCardset: function () {
 		return Session.get('selectingCardsetToLearn');
 	},
@@ -286,7 +328,7 @@ Template.shuffle.helpers({
 	}
 });
 
-Template.shuffle.onCreated(function () {
+Template.filterIndexShuffle.onCreated(function () {
 	if (Route.isEditShuffle()) {
 		Session.set("ShuffledCardsets", Cardsets.findOne({_id: Router.current().params._id}).cardGroups);
 	} else {
@@ -297,11 +339,11 @@ Template.shuffle.onCreated(function () {
 
 /*
  * ############################################################################
- * cardsets
+ * filterIndex
  * ############################################################################
  */
 
-Template.cardsets.onCreated(function () {
+Template.filterIndex.onCreated(function () {
 	Session.set('ratingsLoaded', false);
 	Meteor.subscribe('ratings', function () {
 		Session.set('ratingsLoaded', true);
@@ -309,85 +351,9 @@ Template.cardsets.onCreated(function () {
 	Session.set("selectingCardsetToLearn", false);
 });
 
-Template.cardsets.events({
+Template.filterIndex.events({
 	'click #cancelSelection': function () {
 		Session.set('selectingCardsetToLearn', false);
 		Router.go('learn');
-	}
-});
-
-/*
- * ############################################################################
- * cardsetsConfirmLearnForm
- * ############################################################################
- */
-
-Template.cardsetsConfirmLearnForm.events({
-	'click #learnDelete': function () {
-		$('#bonusFormModal').on('hidden.bs.modal', function () {
-			let workload = Workload.findOne({user_id: Meteor.userId(), cardset_id: Session.get('cardsetId')}, {fields: {_id: 1, 'leitner.bonus': 1}});
-			if (workload !== undefined && workload.leitner.bonus === true) {
-				Meteor.call("leaveBonus", Session.get('cardsetId'), function (error, result) {
-					if (result) {
-						Filter.updateWorkloadFilter();
-					}
-				});
-			} else {
-				Meteor.call("deleteLeitner", Session.get('cardsetId'), function (error, result) {
-					if (result) {
-						Filter.updateWorkloadFilter();
-					}
-				});
-			}
-			Meteor.call("deleteWozniak", Session.get('cardsetId'), function (error, result) {
-				if (result) {
-					Filter.updateWorkloadFilter();
-				}
-			});
-		}).modal('hide');
-	}
-});
-
-/*
- * ############################################################################
- * selectModeForm
- * ############################################################################
- */
-
-Template.selectModeForm.events({
-	'click #learnBox': function () {
-		$('#selectModeToLearnModal').on('hidden.bs.modal', function () {
-			Session.set("workloadFullscreenMode", true);
-			Router.go('box', {
-				_id: Session.get("activeCardset")._id
-			});
-		}).modal('hide');
-	},
-	'click #learnMemo': function () {
-		$('#selectModeToLearnModal').on('hidden.bs.modal', function () {
-			Session.set("workloadFullscreenMode", true);
-			Router.go('memo', {
-				_id: Session.get("activeCardset")._id
-			});
-		}).modal('hide');
-	}
-});
-
-/*
- * ############################################################################
- * cardsetDeleteForm
- * ############################################################################
- */
-
-Template.cardsetDeleteForm.events({
-	'click #deleteCardset': function () {
-		Meteor.call("deleteCardset", Session.get('cardsetId'), (error) => {
-			if (error) {
-				BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.confirm-form-delete.failure'), "danger", 'growl-top-left');
-			} else {
-				BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.confirm-form-delete.success'), "success", 'growl-top-left');
-			}
-			$('#confirmDeleteCardsetModal').modal('hide');
-		});
 	}
 });

@@ -1,0 +1,27 @@
+<template name="cardsetsConfirmLearnForm">
+    <div class="modal fade" id="bonusFormModal" tabindex="-1" role="dialog"
+         aria-labelledby="bonusFormModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="bonusFormModalTitle" class="modal-title">{{_ "confirm-form-learn.title"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{_ "confirm-form-learn.text"}}</p>
+                    <br/>
+                    <hr/>
+
+                    <button id="learnDelete" class="btn btn-danger btn-raised btn-setDelete" {{disableIfOffline}}>{{_
+                            "confirm-form-learn.title"}}</button>
+                    <button id="learnCancel" class="btn btn-raised pull-right" data-dismiss="modal">{{_
+                            "modal-dialog.cancel"}}</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>
