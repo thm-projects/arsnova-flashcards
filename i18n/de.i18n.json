@@ -345,9 +345,9 @@
     "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen der Kartei geht hierbei verloren!",
     "confirm": "Starten",
     "cancel": "Abbrechen",
-    "notification": "Wie willst du benachrichtigt werden?",
-    "mailNotificationCheckbox": "per E-Mail",
-    "webNotificationCheckbox": "per Push-Nachricht",
+    "notification": "Erinnerungsdienst: Wie willst du benachrichtigt werden?",
+    "mailNotificationCheckbox": "Newsletter per E-Mail",
+    "webNotificationCheckbox": "Push-Nachricht",
     "notificationError": "Es muss mindestens eine Benachrichtigungsart ausgewählt werden!",
     "card": "Karte",
     "cards": "Karten"
@@ -1684,7 +1684,7 @@
     "textReset": "wegen Inaktivität wurde deine Lernstatistik zurückgesetzt. ",
     "newCards1": "Der Wiederholungs-Algorithmus hat berechnet, dass ",
     "service": "Antworte nicht auf diese Mail, sie wurde automatisch erstellt. Du erhältst den Newsletter, weil du dich eingeschrieben hast auf ",
-    "unsubscribe": "Nicht mehr interessiert? Verlasse die Kartei, auf die sich der Newsletter bezieht. Willst du alle Newsletter abbestellen? Deaktiviere den Erinnerungsdienst in deinem Konto.",
+    "unsubscribe": "Nicht mehr interessiert? Verlasse die Kartei, auf die sich der Newsletter bezieht: Klick oben auf den Button »Zur Kartei…« und im Portal auf den Button »Kartei verlassen«. Wenn die Bonus-Option aktiviert wurde, findest du den Button zum Abmelden im Drop-down-Menü »Über diese Bonus-Lernphase«. Willst du alle Newsletter abbestellen? Deaktiviere den Erinnerungsdienst in deinem Konto.",
     "copyright": "Dein 🍅__lastAppTitle__-Lerntutor",
     "my-cardset": "Zur Kartei… (vorher anmelden)",
     "auto-generated": "Antworte nicht auf diese Mail, sie wurde automatisch erstellt."
