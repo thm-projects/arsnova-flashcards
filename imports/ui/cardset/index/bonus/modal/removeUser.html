@@ -1,0 +1,73 @@
+<template name="removeUserFromBonusModal">
+    <div class="modal fade" id="removeUserFromBonusModal" tabindex="-1" role="dialog"
+         aria-labelledby="removeUserFromBonusTitle">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content modal-content-for-buttons">
+                <div class="modal-header">
+                    <h4 id="removeUserFromBonusTitle" class="modal-title">{{_ "leitnerProgress.modal.removeUser.title"}}
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    {{_ "leitnerProgress.modal.removeUser.text"}}
+                    {{#with userData}}
+                        <table class="table table-striped table-hover table-user-list">
+                            <tbody>
+                            <tr>
+                                <th>{{_ "panel-body.birthname"}}</th>
+                                <th>{{_ "panel-body.givenname"}}</th>
+                                <th>{{_ "panel-body.email"}}</th>
+                                <th>{{_ "leitnerProgress.box" number=1}}</th>
+                                <th>{{_ "leitnerProgress.box" number=2}}</th>
+                                <th>{{_ "leitnerProgress.box" number=3}}</th>
+                                <th>{{_ "leitnerProgress.box" number=4}}</th>
+                                <th>{{_ "leitnerProgress.box" number=5}}</th>
+                                <th>{{_ "leitnerProgress.learned"}}</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    {{this.firstName}}
+                                </td>
+                                <td>
+                                    {{this.lastName}}
+                                </td>
+                                <td>
+                                    {{this.email}}
+                                </td>
+                                <td>
+                                    {{this.box1}}
+                                </td>
+                                <td>
+                                    {{this.box2}}
+                                </td>
+                                <td>
+                                    {{this.box3}}
+                                </td>
+                                <td>
+                                    {{this.box4}}
+                                </td>
+                                <td>
+                                    {{this.box5}}
+                                </td>
+                                <td>
+                                    {{this.box6}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <button id="removeUserFromBonusConfirm"
+                                class="btn btn-raised btn-danger btn-block col-xs-12 col-sm-3">{{_
+                                "leitnerProgress.modal.removeUser.button.confirm"}}</button>
+                        <button id="removeUserFromBonusCancel"
+                                class="btn btn-raised btn-default btn-block col-xs-12 col-sm-3"
+                                data-dismiss="modal">{{_
+                                "leitnerProgress.modal.removeUser.button.cancel"}}</button>
+                    {{/with}}
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>

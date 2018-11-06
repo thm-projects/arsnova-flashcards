@@ -2,6 +2,8 @@ import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 import {Cardsets} from "./cardsets.js";
 import {check} from "meteor/check";
+import {UserPermissions} from "./permissions";
+import {getLearners} from "./cardsetUserlist";
 
 export const Learned = new Mongo.Collection("learned");
 export const Leitner = new Mongo.Collection("leitner");
@@ -261,6 +263,29 @@ if (Meteor.isServer) {
 					}
 				});
 				return cardset._id;
+			} else {
+				throw new Meteor.Error("not-authorized");
+			}
+		},
+		/** Removes an user from an active bonus
+		 *  @param {string} cardset_id - The cardset id of the cardset that is getting updated
+		 *  @param {string} user_id - The _id of the user who should be removed
+		 * */
+		removeUserFromBonus: function (cardset_id, user_id) {
+			check(cardset_id, String);
+			check(user_id, String);
+			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1}});
+			if (cardset !== undefined && (UserPermissions.isOwner(cardset.owner) || UserPermissions.isAdmin())) {
+				Workload.update({
+					user_id: user_id,
+					cardset_id: cardset_id
+				}, {
+					$set: {
+						"leitner.bonus": false
+					}
+				});
+				Meteor.call("updateLearnerCount", cardset._id);
+				return getLearners(Workload.find({cardset_id: cardset._id, 'leitner.bonus': true}).fetch(), cardset._id);
 			} else {
 				throw new Meteor.Error("not-authorized");
 			}

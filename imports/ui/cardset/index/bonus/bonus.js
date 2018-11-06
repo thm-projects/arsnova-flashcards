@@ -3,6 +3,7 @@ import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {Cardsets} from "../../../../api/cardsets";
+import "./modal/removeUser.js";
 import "./bonus.html";
 
 /*
@@ -75,6 +76,20 @@ Template.cardsetLearnActivityStatistic.events({
 		event.stopPropagation();
 		Session.set('helpFilter', "leitner");
 		Router.go('help');
+	},
+	"click .removeBonusUser": function (event) {
+		let user = {};
+		user.user_id = $(event.target).data('user_id');
+		user.firstName = $(event.target).data('firstname');
+		user.lastName = $(event.target).data('lastname');
+		user.email = $(event.target).data('email');
+		user.box1 = $(event.target).data('box1');
+		user.box2 = $(event.target).data('box2');
+		user.box3 = $(event.target).data('box3');
+		user.box4 = $(event.target).data('box4');
+		user.box5 = $(event.target).data('box5');
+		user.box6 = $(event.target).data('box6');
+		Session.set('removeBonusUser', user);
 	}
 });
 

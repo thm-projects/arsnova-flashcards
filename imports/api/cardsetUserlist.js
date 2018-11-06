@@ -66,7 +66,7 @@ function sortByBirthname(data) {
 	return data;
 }
 
-function getLearners(data, cardset_id) {
+export function getLearners(data, cardset_id) {
 	let learningDataArray = [];
 	for (let i = 0; i < data.length; i++) {
 		let user = Meteor.users.find({_id: data[i].user_id}).fetch();
