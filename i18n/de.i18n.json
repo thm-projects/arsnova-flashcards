@@ -1317,6 +1317,24 @@
     "percentage": "Prozent",
     "user": {
       "missingName": "Unvollständig"
+    },
+    "manage": "Verwalten",
+    "modal": {
+      "removeUser": {
+        "title": "Benutzer aus der Bonusphase entfernen?",
+        "text": "Möchtest Du diesen Datensatz aus der Bonusphase entfernen?",
+        "button": {
+          "confirm": "Benutzer aus der Bonusphase entfernen",
+          "cancel": "Abbrechen"
+        }
+      }
+    },
+    "tooltip": {
+      "removeUser": "Benutzer aus der Bonusphase entfernen",
+      "graph": "Statistik anzeigen"
+    },
+    "bertAlert": {
+      "userRemoved": "Benutzer wurde aus der Bonusphase entfernt"
     }
   },
   "permission": "Kein Zugang",

@@ -8,7 +8,8 @@
             {{#unless isEditor}}
                 {{> access_denied_content_only}}
             {{else}}
-                <div class="container">
+                {{> removeUserFromBonusModal}}
+                <div class="cardsetstats-container">
                     <div id="cardsetInfoDetail">
                         <div class="panel panel-default cardsetInfo">
                             <div class="panel-body">
@@ -49,6 +50,7 @@
                                 </th>
                                 <th>{{_ "leitnerProgress.learned"}}</th>
                                 <th>{{_ "details"}}</th>
+                                <th>{{_ "leitnerProgress.manage"}}</th>
                             </tr>
                             {{#each getCardsetStats}}
                                 <tr>
@@ -76,7 +78,27 @@
                                     <td>
                                         <button data-id="{{this.user_id}}" class="btn btn-block detailed-stats"><i
                                                 class="glyphicon glyphicon glyphicon-stats"
-                                                data-id="{{this.user_id}}"></i></button>
+                                                data-id="{{this.user_id}}"
+                                                title="{{_ "leitnerProgress.tooltip.graph"}}"></i></button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-block removeBonusUser" data-toggle="modal"
+                                                href="#removeUserFromBonusModal" data-user_id="{{this.user_id}}"
+                                                data-firstname="{{this.birthname}}"
+                                                data-lastname="{{this.givenname}}"
+                                                data-email="{{this.email}}" data-box1="{{this.box1}}"
+                                                data-box2="{{this.box2}}" data-box3="{{this.box3}}"
+                                                data-box4="{{this.box4}}"
+                                                data-box5="{{this.box5}}" data-box6="{{this.box6}}"
+                                                title="{{_ "leitnerProgress.tooltip.removeUser"}}">
+                                            <i class="fa fa-trash" data-user_id="{{this.user_id}}"
+                                               data-firstname="{{this.birthname}}"
+                                               data-lastname="{{this.givenname}}"
+                                               data-email="{{this.email}}" data-box1="{{this.box1}}"
+                                               data-box2="{{this.box2}}" data-box3="{{this.box3}}"
+                                               data-box4="{{this.box4}}"
+                                               data-box5="{{this.box5}}" data-box6="{{this.box6}}">
+                                            </i></button>
                                     </td>
                                 </tr>
                             {{/each}}
