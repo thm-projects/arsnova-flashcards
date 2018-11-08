@@ -21,13 +21,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "chimp": "^0.50.2",
     "gulp-jscs": "^3.0.2",
     "gulp-jshint": "^2.0.0",
     "gulp-watch": "^4.3.5",
+    "gulp4": "^4.0.2",
     "jshint": "^2.9.5",
-    "jshint-stylish": "^2.1.0",
-    "chimp": "^0.50.2"
+    "jshint-stylish": "^2.1.0"
   },
   "author": "",
   "license": "ISC",
