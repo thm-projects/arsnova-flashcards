@@ -1,20 +1,22 @@
 <template name="cardsetInfoBoxItemBonusButton">
-    {{#if canJoinBonus}}
-        <tr>
-            <td colspan="2">
-                <a class="btn btn-raised btn-block btn-success" data-toggle="modal"
-                   data-target="{{#if isProfileCompleted}}#joinBonusModal{{else}}#profileIncompleteModal{{/if}}">{{_
-                        "bonus.info.button.join"}}</a>
-            </td>
-        </tr>
-    {{/if}}
-    {{#if isInBonus}}
-        <tr>
-            <td colspan="2">
-                <a class="btn btn-raised btn-block btn-danger" data-toggle="modal"
-                   data-target="#leaveBonusModal">{{_
-                        "bonus.info.button.leave"}}</a>
-            </td>
-        </tr>
+    {{#if isActiveRoute regex='cardsetdetailsid|cardsetcard'}}
+        {{#if canJoinBonus}}
+            <tr>
+                <td colspan="2">
+                    <a class="col-xs-12 btn btn-raised btn-block btn-success" data-toggle="modal"
+                       data-target="{{#if isProfileCompleted}}#joinBonusModal{{else}}#profileIncompleteModal{{/if}}">{{_
+                            "bonus.info.button.join"}}</a>
+                </td>
+            </tr>
+        {{/if}}
+        {{#if isInBonus}}
+            <tr>
+                <td colspan="2">
+                    <a class="col-xs-12 btn btn-raised btn-block btn-danger" data-toggle="modal"
+                       data-target="#leaveBonusModal">{{_
+                            "bonus.info.button.leave"}}</a>
+                </td>
+            </tr>
+        {{/if}}
     {{/if}}
 </template>
