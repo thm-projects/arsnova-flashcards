@@ -40,16 +40,6 @@ Template.cardsetNavigationLearning.onRendered(function () {
 	setTimeout(function () {
 		Bert.defaults.hideDelay = 97200;
 		let bertType = "success";
-		if (Session.get('activeCardset').registrationPeriod.getTime() < new Date()) {
-			if (Leitner.findOne({
-				cardset_id: Session.get('activeCardset')._id,
-				user_id: Meteor.userId()
-			}, {fields: {_id: 1}}) === undefined) {
-				bertType = "warning";
-				BertAlertVisuals.displayBertAlert(TAPi18n.__('bonus.message.registrationPeriodExpired'), bertType, 'growl-top-left');
-				return;
-			}
-		}
 		if (Session.get('activeCardset').learningEnd.getTime() > new Date().getTime()) {
 			let text = "";
 			if (Leitner.find({
