@@ -1,17 +1,15 @@
 <template name="cardsetNavigationDeleteAllCards">
-    {{#unless isInBonus}}
-        {{#unless isShuffledCardset this._id}}
-            {{#if this.quantity}}
-                {{#if isCardsetOwner _id}}
-                    <div class="hidden-xs btn-group">
-                        <button id="delete_cards" class="btn btn-sm btn-raised deleteAllCardsBtn"
-                                data-toggle="modal"
-                                data-target="#deleteCardsModal" {{disableIfOffline}}>
-                            <i class="fa fa-trash"></i> {{_ "deleteCards"}}
-                        </button>
-                    </div>
-                {{/if}}
+    {{#unless isShuffledCardset this._id}}
+        {{#if this.quantity}}
+            {{#if isCardsetOwner _id}}
+                <div class="hidden-xs btn-group">
+                    <button id="delete_cards" class="btn btn-sm btn-raised deleteAllCardsBtn"
+                            data-toggle="modal"
+                            data-target="#deleteCardsModal" {{disableIfOffline}}>
+                        <i class="fa fa-trash"></i> {{_ "deleteCards"}}
+                    </button>
+                </div>
             {{/if}}
-        {{/unless}}
+        {{/if}}
     {{/unless}}
 </template>

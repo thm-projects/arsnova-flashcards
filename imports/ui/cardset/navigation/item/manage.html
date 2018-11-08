@@ -12,16 +12,14 @@
                         <li id="report_button" class="reportList" data-toggle="modal"
                             data-target="#reportModal">{{_
                                 "report"}}</li>
-                        {{#unless isInBonus}}
-                            {{#if learning}}
-                                <li id="leaveCardsetModalButton" class="leaveCardsetList"
-                                    data-toggle="modal" data-target="#leaveCardsetModal">{{_
-                                        "confirm-leave-cardset.btn-txt"}}</li>
-                            {{else}}
-                                <li id="leaveCardsetButton" class="leaveCardsetList">{{_
-                                        "confirm-leave-cardset.btn-txt"}}</li>
-                            {{/if}}
-                        {{/unless}}
+                        {{#if learning}}
+                            <li id="leaveCardsetModalButton" class="leaveCardsetList"
+                                data-toggle="modal" data-target="#leaveCardsetModal">{{_
+                                    "confirm-leave-cardset.btn-txt"}}</li>
+                        {{else}}
+                            <li id="leaveCardsetButton" class="leaveCardsetList">{{_
+                                    "confirm-leave-cardset.btn-txt"}}</li>
+                        {{/if}}
                     {{/unless}}
                     {{#if isEditor}}
                         {{#unless isCardsetOwner _id}}

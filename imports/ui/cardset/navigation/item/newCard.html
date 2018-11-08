@@ -1,14 +1,12 @@
 <template name="cardsetNavigationNewCard">
-    {{#unless isInBonus}}
-        {{#if isCardsetOwner _id}}
-            {{#unless isShuffledCardset _id}}
-                <div class="hidden-xs btn-group">
-                    <a type="button" id="newCardBtn" class="btn btn-sm btn-raised newCardBtn"
-                       href="{{pathFor 'newCard'}}"
-                        {{disableIfOffline}}><i class="fa fa-plus"></i> {{_ "sidebar-nav.createcard"}}
-                    </a>
-                </div>
-            {{/unless}}
-        {{/if}}
-    {{/unless}}
+    {{#if isCardsetOwner _id}}
+        {{#unless isShuffledCardset _id}}
+            <div class="hidden-xs btn-group">
+                <a type="button" id="newCardBtn" class="btn btn-sm btn-raised newCardBtn"
+                   href="{{pathFor 'newCard'}}"
+                    {{disableIfOffline}}><i class="fa fa-plus"></i> {{_ "sidebar-nav.createcard"}}
+                </a>
+            </div>
+        {{/unless}}
+    {{/if}}
 </template>

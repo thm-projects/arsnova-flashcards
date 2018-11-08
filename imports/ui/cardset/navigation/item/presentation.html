@@ -1,15 +1,13 @@
 <template name="cardsetNavigationPresentation">
-    {{#unless isInBonus}}
-        {{#if this.quantity}}
-            {{#if gotPresentation}}
-                <div class="btn-group">
-                    <button id="startPresentation"
-                            class="btn btn-sm btn-raised presentationBtn" {{disableIfOffline}}><img
-                            src="/img/projector_white.png" class="projectorIconButton"
-                            title="{{_ "presentation.create"}}"> {{_ "presentation.create"}}
-                    </button>
-                </div>
-            {{/if}}
+    {{#if this.quantity}}
+        {{#if gotPresentation}}
+            <div class="btn-group">
+                <button id="startPresentation"
+                        class="btn btn-sm btn-raised presentationBtn" {{disableIfOffline}}><img
+                        src="/img/projector_white.png" class="projectorIconButton"
+                        title="{{_ "presentation.create"}}"> {{_ "presentation.create"}}
+                </button>
+            </div>
         {{/if}}
-    {{/unless}}
+    {{/if}}
 </template>

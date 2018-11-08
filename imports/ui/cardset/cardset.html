@@ -47,7 +47,7 @@
             {{selectedForLearning}}
         {{/unless}}
         {{#if isActiveRoute regex='cardsetdetailsid|cardsetcard'}}
-            {{#unless isInBonus}}
+            {{#unless isInBonusAndNotOwner}}
                 {{#if this.quantity}}
                     <div class="hidden-xs col-xs-12">
                         {{> cardNavigation}}

@@ -1,12 +1,10 @@
 //------------------------ IMPORTS
 import {Meteor} from "meteor/meteor";
-import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {CardType} from "../../../../api/cardTypes";
 import {Leitner, Wozniak} from "../../../../api/learned";
 import {Cardsets} from "../../../../api/cardsets";
 import {CardsetNavigation} from "../../../../api/cardsetNavigation";
-import {Bonus} from "../../../../api/bonus";
 import "../modal/leitner.js";
 import "../modal/wozniak.js";
 import "../modal/chooseFlashcards.js";
@@ -37,9 +35,6 @@ Template.cardsetNavigationWorkload.helpers({
 		return Wozniak.findOne({
 			cardset_id: Router.current().params._id,
 			user_id: Meteor.userId()});
-	},
-	isInBonus: function () {
-		return Bonus.isInBonus(Session.get('activeCardset')._id, Meteor.userId());
 	}
 });
 

@@ -32,6 +32,14 @@ Template.registerHelper('getLastAppTitle', function () {
 	return Meteor.settings.public.welcome.title.last;
 });
 
+Template.registerHelper('isInBonus', function () {
+	return Bonus.isInBonus(Router.current().params._id, Meteor.userId());
+});
+
+Template.registerHelper('isInBonusAndNotOwner', function () {
+	return Bonus.isInBonus(Router.current().params._id) && (!UserPermissions.isOwner(Cardsets.findOne({_id: Router.current().params._id}).owner) && !UserPermissions.isAdmin());
+});
+
 Template.registerHelper('extendContext', function (key, value) {
 	let result = _.clone(this);
 	result[key] = value;

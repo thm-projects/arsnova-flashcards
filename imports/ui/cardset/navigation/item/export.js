@@ -1,8 +1,6 @@
 //------------------------ IMPORTS
 import {Meteor} from "meteor/meteor";
-import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
-import {Bonus} from "../../../../api/bonus";
 import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
 import "./export.html";
 
@@ -11,12 +9,6 @@ import "./export.html";
  * cardsetNavigationExport
  * ############################################################################
  */
-
-Template.cardsetNavigationExport.helpers({
-	isInBonus: function () {
-		return Bonus.isInBonus(Session.get('activeCardset')._id, Meteor.userId());
-	}
-});
 
 Template.cardsetNavigationExport.events({
 	'click #exportCardsBtn': function () {
