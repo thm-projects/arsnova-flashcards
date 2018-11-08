@@ -55,9 +55,10 @@ export class MailNotifier {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			var notifier = new Notifications();
+			var firstName = getAuthorName(user_id, false, true);
 			var cards = notifier.getActiveCardsCount(cardset._id, user_id);
 			var subject = TAPi18n.__('mailNotification.subjectTitle', {lastAppTitle: Meteor.settings.public.welcome.title.last}, Meteor.settings.mail.language);
-			var name = TAPi18n.__('mailNotification.textIntro', null, Meteor.settings.mail.language) + getAuthorName(user_id, false) + ",";
+			var name = TAPi18n.__('mailNotification.textIntro', {firstName: firstName[0]}, Meteor.settings.mail.language);
 			var text = TAPi18n.__('mailNotification.textIntro1', null, Meteor.settings.mail.language) + TAPi18n.__('mailNotification.newCards1', null, Meteor.settings.mail.language);
 			var bold;
 			var textEnd;
@@ -83,10 +84,10 @@ export class MailNotifier {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			var notifier = new Notifications();
+			var firstName = getAuthorName(user_id, false, true);
 			var subject = TAPi18n.__('mailNotification.subjectReset', null, Meteor.settings.mail.language) + '»' + cardset.name + '«.';
 			var text = TAPi18n.__('mailNotification.mailCard', null, Meteor.settings.mail.language) + cardset.name + TAPi18n.__('mailNotification.mailCard1', null, Meteor.settings.mail.language) + "\n\n";
-			var name = TAPi18n.__('mailNotification.textIntro', null, Meteor.settings.mail.language) + notifier.getName(user_id) + ",";
+			var name = TAPi18n.__('mailNotification.textIntro', {firstName: firstName[0]}, Meteor.settings.mail.language);
 			text += this.getDeadline(cardset, user_id);
 			this.sendMail(name, this.getMail(user_id), subject, text, "", "", cardset._id, "#FE5E3E", "#33D275");
 		}
@@ -115,6 +116,7 @@ export class MailNotifier {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			if (mail) {
+				console.log(name);
 				var html = SSR.render("newsletter", {
 					name: name,
 					message: text,

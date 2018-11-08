@@ -12,9 +12,10 @@ import {WebPushSubscriptions} from "./webPushSubscriptions";
  * Returns the degree, the givenname and the birthname from the author of a cardset
  * @param owner - The database ID of the author
  * @param lastNameFirst - Display the last name first
+ * @param onlyFirstName - Return only the first name, used for E-Mail Notifications
  * @returns {*} - Degree + givenname + birthname
  */
-export function getAuthorName(owner, lastNameFirst = true) {
+export function getAuthorName(owner, lastNameFirst = true, onlyFirstName = false) {
 	let author;
 	if (Meteor.isServer) {
 		author = Meteor.users.findOne({"_id": owner});
@@ -32,6 +33,13 @@ export function getAuthorName(owner, lastNameFirst = true) {
 	}
 	if (author) {
 		let name = "";
+		if (onlyFirstName) {
+			if (author.profile.givenname) {
+				return author.profile.givenname.split(" ", 1);
+			} else {
+				return name;
+			}
+		}
 		if (lastNameFirst) {
 			if (author.profile.birthname) {
 				name += author.profile.birthname;
