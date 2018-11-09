@@ -65,7 +65,9 @@
         {{> cardSidebarRightNavigation}}
         {{> cardSidebarLeftNavigation}}
     {{/if}}
-    {{> cardSidebarItemCardList}}
+    {{#if hasCardsetPermission}}
+        {{> cardSidebarItemCardList}}
+    {{/if}}
     {{> flashcardSidebarDictionary}}
     {{> cardSidebarItemDelete}}
 </template>

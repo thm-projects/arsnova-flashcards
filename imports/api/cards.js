@@ -10,7 +10,14 @@ import {UserPermissions} from "./permissions";
 
 export const Cards = new Mongo.Collection("cards");
 
-function getPreviewCards(filterQuery) {
+function getPreviewCards(cardset_id) {
+	let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1, cardGroups: 1, kind: 1}});
+	let filterQuery = {
+		$or: [
+			{cardset_id: cardset._id},
+			{cardset_id: {$in: cardset.cardGroups}}
+		]
+	};
 	let count = Cards.find(filterQuery).count();
 	let cardIdArray = Cards.find(filterQuery, {_id: 1}).map(function (card) {
 		return card._id;
@@ -59,8 +66,7 @@ if (Meteor.isServer) {
 	Meteor.publish("cardsetCards", function (cardset_id) {
 		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1, cardGroups: 1, kind: 1}});
 		if (this.userId && cardset !== undefined) {
-			let user = Meteor.users.findOne({_id: this.userId}, {fields: {_id: 1}});
-			let paidCardsets = Paid.findOne({user_id: user._id, cardset_id: cardset._id});
+			let paidCardsets = Paid.findOne({user_id: this.userId, cardset_id: cardset._id});
 			let filterQuery = {
 				$or: [
 					{cardset_id: cardset._id},
@@ -74,30 +80,24 @@ if (Meteor.isServer) {
 			])) {
 				return Cards.find(filterQuery);
 			} else if (Roles.userIsInRole(this.userId, 'pro')) {
-				if (cardset.owner === user._id || !cardset.kind.includes("personal")) {
+				if (cardset.owner === this.userId || !cardset.kind.includes("personal")) {
 					return Cards.find(filterQuery);
+				} else {
+					return getPreviewCards(cardset._id);
 				}
 			} else if (Roles.userIsInRole(this.userId, 'university')) {
-				if (cardset.owner === user._id || cardset.kind.includes("free") || cardset.kind.includes("edu") || paidCardsets !== undefined) {
+				if (cardset.owner === this.userId || cardset.kind.includes("free") || cardset.kind.includes("edu") || paidCardsets !== undefined) {
 					return Cards.find(filterQuery);
+				} else {
+					return getPreviewCards(cardset._id);
 				}
 			} else {
-				if (cardset.owner === user._id || cardset.kind.includes("free") || paidCardsets !== undefined) {
+				if (cardset.owner === this.userId || cardset.kind.includes("free") || paidCardsets !== undefined) {
 					return Cards.find(filterQuery);
+				} else {
+					return getPreviewCards(cardset._id);
 				}
 			}
-		}
-	});
-	Meteor.publish("previewCards", function (cardset_id) {
-		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1, cardGroups: 1, kind: 1}});
-		if (this.userId && !cardset.kind.includes("personal")) {
-			let filterQuery = {
-				$or: [
-					{cardset_id: cardset._id},
-					{cardset_id: {$in: cardset.cardGroups}}
-				]
-			};
-			return getPreviewCards(filterQuery);
 		}
 	});
 }
