@@ -109,14 +109,6 @@ Meteor.users.after.insert(function (userId, doc) {
 			Roles.addUsersToRoles(doc._id, backdoorRoles);
 			Meteor.users.update(doc._id, {
 				$set: {
-					visible: false,
-					lvl: 1,
-					lastOnAt: new Date(),
-					daysInRow: 0,
-					selectedColorTheme: "default",
-					mailNotification: false,
-					webNotification: false,
-					"profile.locale": "de",
 					"profile.name": username,
 					"profile.givenname": firstName,
 					"profile.birthname": lastName,
@@ -125,6 +117,18 @@ Meteor.users.after.insert(function (userId, doc) {
 			});
 		}
 	}
+	Meteor.users.update(doc._id, {
+		$set: {
+			visible: false,
+			lvl: 1,
+			lastOnAt: new Date(),
+			daysInRow: 0,
+			selectedColorTheme: "default",
+			mailNotification: false,
+			webNotification: false,
+			"profile.locale": "de"
+		}
+	});
 	if (doc.services !== undefined && doc.services.cas !== undefined) {
 		if (doc.services.cas.id === Meteor.settings.admin.name) {
 			Roles.addUsersToRoles(doc._id, [
