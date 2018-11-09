@@ -198,7 +198,7 @@ Meteor.methods({
 				}, {trimStrings: false});
 				if (cardset_id) {
 					data.shift();
-					Meteor.call('updateLearnerCount', cardset_id);
+					Meteor.call('updateCardsetCount', Meteor.userId());
 					return importCards(data, Cardsets.findOne(cardset_id), 0);
 				} else {
 					return false;

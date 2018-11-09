@@ -798,6 +798,11 @@ Meteor.startup(function () {
 		);
 	}
 
+	users = Meteor.users.find({}, {fields: {_id: 1}}).fetch();
+	for (let i = 0; i < users.length; i++) {
+		Meteor.call('updateCardsetCount', users[i]._id);
+	}
+
 	ColorThemes.remove({});
 	for (let theme in themes) {
 		if (themes.hasOwnProperty(theme)) {

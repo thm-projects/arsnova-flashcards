@@ -27,7 +27,6 @@ import "../../api/cardIndex.js";
 import "./overlays/zoomText.js";
 import "../card/sidebar/sidebar.js";
 import "../loadingScreen/loadingScreen.js";
-import {Cardsets} from "../../api/cardsets.js";
 import {Route} from "../../api/route";
 import {CardVisuals} from "../../api/cardVisuals";
 
@@ -202,13 +201,15 @@ Template.main.helpers({
 		return "/cardset/" + this.link_id;
 	},
 	getMyCardsetName: function () {
-		switch (Cardsets.find({owner: Meteor.userId()}).count()) {
-			case 0:
-				return TAPi18n.__('navbar-collapse.noCarddecks');
-			case 1:
-				return TAPi18n.__('navbar-collapse.oneCarddeck');
-			default:
-				return TAPi18n.__('navbar-collapse.carddecks');
+		if (Meteor.user().count !== undefined) {
+			switch (Meteor.user().count.cardsets) {
+				case 0:
+					return TAPi18n.__('navbar-collapse.noCarddecks');
+				case 1:
+					return TAPi18n.__('navbar-collapse.oneCarddeck');
+				default:
+					return TAPi18n.__('navbar-collapse.carddecks');
+			}
 		}
 	},
 	isFirstTimeVisit: function () {

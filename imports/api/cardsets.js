@@ -305,7 +305,7 @@ Meteor.methods({
 		if (cardType < 0) {
 			cardType = 0;
 		}
-		return Cardsets.insert({
+		let cardset = Cardsets.insert({
 			name: name.trim(),
 			description: description,
 			date: new Date(),
@@ -340,6 +340,8 @@ Meteor.methods({
 			difficulty: difficulty,
 			noDifficulty: !CardType.gotDifficultyLevel(cardType)
 		}, {trimStrings: false});
+		Meteor.call('updateCardsetCount', Meteor.userId());
+		return cardset;
 	},
 	/**
 	 * Delete selected Cardset from database if user is auhorized.
@@ -367,6 +369,7 @@ Meteor.methods({
 			Ratings.remove({
 				cardset_id: id
 			});
+			Meteor.call('updateCardsetCount', Meteor.userId());
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}

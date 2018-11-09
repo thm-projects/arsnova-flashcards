@@ -91,6 +91,7 @@ if (Meteor.isServer) {
 						'profile.givenname': 1,
 						'profile.title': 1,
 						'profile.locale': 1,
+						'count.cardsets': 1,
 						'email': 1,
 						'services': 1,
 						'lvl': 1,
@@ -122,6 +123,7 @@ if (Meteor.isServer) {
 						'profile.givenname': 1,
 						'profile.title': 1,
 						'profile.locale': 1,
+						'count.cardsets': 1,
 						'email': 1,
 						'services': 1,
 						'lvl': 1,
@@ -465,6 +467,21 @@ Meteor.methods({
 				"profile.locale": selectedLanguage
 			}
 		});
+	},
+	updateCardsetCount: function (user_id) {
+		check(user_id, String);
+		if (Meteor.isServer) {
+			Meteor.users.update({
+					_id: user_id
+				},
+				{
+					$set: {
+						"count.cardsets": Cardsets.find({owner: user_id, shuffled: false}).count(),
+						"count.shuffled": Cardsets.find({owner: user_id, shuffled: true}).count()
+					}
+				}
+			);
+		}
 	},
 	/** Function saves the given colorTheme to the given user
 	 *  @param {string} selectedColorTheme - The id of the selected color theme

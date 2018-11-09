@@ -143,4 +143,5 @@ Meteor.users.after.insert(function (userId, doc) {
 	} else {
 		Roles.addUsersToRoles(doc._id, ['standard', 'firstLogin']);
 	}
+	Meteor.call('updateCardsetCount', doc._id);
 });
