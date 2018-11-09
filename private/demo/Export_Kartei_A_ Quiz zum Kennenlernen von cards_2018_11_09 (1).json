@@ -1,8 +1,8 @@
 [{
   "name": "A: Quiz zum Kennenlernen von 🍅cards",
-  "description": "Die Quizfragen sind Teil der Demo-Kartei, siehe den roten Button auf der 🍅cards-Startseite.",
+  "description": "Die Quizfragen sind Teil der Demo-Kartei auf der 🍅cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2018-10-23T07:13:50.946Z",
+  "dateUpdated": "2018-11-09T15:40:12.276Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -18,57 +18,40 @@
   "license": [],
   "userDeleted": false,
   "learningActive": false,
-  "maxCards": 40,
-  "daysBeforeReset": 7,
-  "learningStart": "2018-06-08T13:51:09.335Z",
-  "learningEnd": "2038-01-19T21:30:35.623Z",
-  "learningInterval": [
-    1,
-    3,
-    7,
-    28,
-    84
-  ],
+  "maxCards": 0,
+  "daysBeforeReset": 0,
+  "learningStart": "1970-01-01T00:00:00.000Z",
+  "learningEnd": "1970-01-01T00:00:00.000Z",
+  "registrationPeriod": "1970-01-01T00:00:00.000Z",
+  "learningInterval": [],
   "wordcloud": false,
   "shuffled": false,
   "cardType": 11,
   "difficulty": 1,
+  "noDifficulty": false,
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
     "givenname": "Klaus"
   },
-  "noDifficulty": false,
-  "registrationPeriod": "2038-01-19T21:30:35.623Z",
   "workload": {
     "bonus": {
       "count": 0
     },
     "normal": {
-      "count": 1
+      "count": 0
     }
   }
 }, {
   "subject": "1. Worum es geht",
   "front": "Die App fürs Studium und danach:\n<br>\nOrganisiere dein Wissen -- lerne, memoriere, präsentiere es!\n![](/img/Bildlogo.png width=75%)\nWas unterscheidet **🍅cards** von anderen Lernkartei-Apps?\n",
+  "back": "Im Gegensatz zu Lernkartei-Apps wie [Quizlet](https://quizlet.com/) oder [SuperMemo](https://www.supermemo.com/) unterstützt die 🍅cards-Plattform auch das **Mitschreiben in Vorlesungen**. Weiter hinten in dieser Demo-Kartei haben wir ein Beispiel für eine Mitschrift eingefügt. Sie wurde handschriftlich in einer Bachelor-Vorlesung erstellt, abfotografiert und zu Hause digital auf 🍅cards zum Lernen nachbearbeitet.\n\nDie Plattform 🍅cards ist eine **vorlesungsbegleitende persönliche Lernumgebung**, ein virtueller Ort, an dem Lernzeit mit kognitiven Tätigkeiten -- Mitschreiben, Nachbearbeiten, Lernkarten erstellen, Lernfragen wiederholt beantworten -- intensiv verbracht wird. \n\nEs gibt auf 🍅cards eine Option, die es der Lehrperson ermöglicht, kontinuierliches und wiederholtes Lernen mit **Bonuspunkten** zu honorieren. Wir haben 🍅cards mit dem Ziel entwickelt, der **Aufschieberitis** und dem **Bulimielernen** im Studium entgegen zu wirken. Deshalb haben wir [Spaced-Learning](https://www.webcampus.de/blog/123/spaced-learning-mit-intelligenter-lerntechnik-besser-erinnern) und die [Pomodoro-Technik&trade;](https://de.wikipedia.org/wiki/Pomodoro-Technik) in 🍅cards integriert, auf den nächsten Karten mehr darüber.\n\n![ ](https://arsnova-uploads.mni.thm.de/logos/Stifterverband.png width=130)![ ](https://arsnova-uploads.mni.thm.de/logos/DATEV-Stiftung.png width=130) Der Stifterverband für die Deutsche Wissenschaft und die DATEV-Stiftung Zukunft haben unser Lehr- und Lernprojekt »Digital gegen das Bulimie-Lernen: Quizzen im Hörsaal und zu Hause, Podcasts für unterwegs« mit einem [Senior-Fellowship](https://www.stifterverband.org/lehrfellowships) prämiert. Diese Förderung erlaubt uns, 🍅cards in den nächsten drei Semestern inhaltlich und technisch voranzutreiben, siehe unseren [Projektantrag](https://www.stifterverband.org/lehrfellowships/2018/quibeldey-cirkel).\n\n<br />\n\n**Veröffentlichungen zum 🍅cards-Projekt:**\n\n\n[#HFD18]: Quibeldey-Cirkel, K. (2018).\nDigital gegen das Bulimie-Lernen: Quizzen im Hörsaal und zu Hause, Podcasts für unterwegs.\nIn: Hochschulforum Digitalisierung (Hrsg.): [HFD Winter School E-Book. Hochschullehre im digitalen Zeitalter gestalten.](https://hochschulforumdigitalisierung.de/sites/default/files/dateien/HFD_Winter_School_E-Book_Version_2.pdf) Arbeitspapier Nr. 31. Version 2. Berlin: Hochschulforum Digitalisierung. (S. 91-98).</br></br>\n\n[#SITE18]: Quibeldey-Cirkel, K., Heiny, J. & Thelen, C. (2018).\nAgainst Academic Procrastination: Pedagogical Apps to Implement Distributed Learning in Course Design.\nIn E. Langran & J. Borup (Eds.), _Proceedings of Society for Information Technology & Teacher Education International Conference_ (pp. 1617-1622).\nWashington, D.C., United States: Association for the Advancement of Computing in Education (AACE). http://www.learntechlib.org/p/182756/",
   "centerTextElement": [
     true,
     false,
     false,
     false
   ],
-  "date": "2018-06-08T13:54:04.447Z",
-  "learningGoalLevel": 0,
-  "backgroundStyle": 1,
-  "learningIndex": "0",
-  "learningUnit": "0",
-  "dateUpdated": "2018-10-23T07:13:50.926Z",
-  "back": "Im Gegensatz zu Lernkartei-Apps wie [Quizlet](https://quizlet.com/) oder [SuperMemo](https://www.supermemo.com/) unterstützt die 🍅cards-Plattform auch das **Mitschreiben in Vorlesungen**. Weiter hinten in dieser Demo-Kartei haben wir ein Beispiel für eine Mitschrift eingefügt. Sie wurde handschriftlich in einer Bachelor-Vorlesung erstellt, abfotografiert und zu Hause digital auf 🍅cards zum Lernen nachbearbeitet.\n\nDie Plattform 🍅cards ist eine **vorlesungsbegleitende persönliche Lernumgebung**, ein virtueller Ort, an dem Lernzeit mit kognitiven Tätigkeiten -- Mitschreiben, Nachbearbeiten, Lernkarten erstellen, Lernfragen wiederholt beantworten -- intensiv verbracht wird. \n\nEs gibt auf 🍅cards eine Option, die es der Lehrperson ermöglicht, kontinuierliches und wiederholtes Lernen mit **Bonuspunkten** zu honorieren. Wir haben 🍅cards mit dem Ziel entwickelt, der **Aufschieberitis** und dem **Bulimielernen** im Studium entgegen zu wirken. Deshalb haben wir [Spaced-Learning](https://www.webcampus.de/blog/123/spaced-learning-mit-intelligenter-lerntechnik-besser-erinnern) und die [Pomodoro-Technik&trade;](https://de.wikipedia.org/wiki/Pomodoro-Technik) in 🍅cards integriert, auf den nächsten Karten mehr darüber.\n\n<br />\n\n**Veröffentlichungen zum 🍅cards-Projekt:**\n\n\n[#HFD18]: Quibeldey-Cirkel, K. (2018).\nDigital gegen das Bulimie-Lernen: Quizzen im Hörsaal und zu Hause, Podcasts für unterwegs.\nIn: Hochschulforum Digitalisierung (Hrsg.): [HFD Winter School E-Book. Hochschullehre im digitalen Zeitalter gestalten.](https://hochschulforumdigitalisierung.de/sites/default/files/dateien/HFD_Winter_School_E-Book_Version_2.pdf) Arbeitspapier Nr. 31. Version 2. Berlin: Hochschulforum Digitalisierung. (S. 91-98).</br></br>\n\n[#SITE18]: Quibeldey-Cirkel, K., Heiny, J. & Thelen, C. (2018).\nAgainst Academic Procrastination: Pedagogical Apps to Implement Distributed Learning in Course Design.\nIn E. Langran & J. Borup (Eds.), _Proceedings of Society for Information Technology & Teacher Education International Conference_ (pp. 1617-1622).\nWashington, D.C., United States: Association for the Advancement of Computing in Education (AACE). http://www.learntechlib.org/p/182756/",
-  "originalAuthorName": {
-    "title": "Dr.",
-    "birthname": "Quibeldey-Cirkel",
-    "givenname": "Klaus"
-  },
   "alignType": [
     1,
     1,
@@ -76,7 +59,18 @@
     1,
     1,
     1
-  ]
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-06-08T13:54:04.447Z",
+  "dateUpdated": "2018-11-09T15:40:12.264Z",
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  }
 }, {
   "subject": "2. Pomodoro",
   "front": "![![](https://upload.wikimedia.org/wikipedia/commons/8/83/It-un_pomodoro.ogg)](https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Emojione_1F345.svg/500px-Emojione_1F345.svg.png width=200)\n\nWas ist die **Pomodoro-Technik**&trade;?\n\n<br />\n<br />\n\n\n(Bildquelle: [Emoji One](https://de.wikipedia.org/wiki/Datei:Emojione_1F345.svg))",
@@ -89,17 +83,6 @@
     false,
     false
   ],
-  "date": "2018-09-22T15:21:18.473Z",
-  "learningGoalLevel": 0,
-  "backgroundStyle": 1,
-  "learningIndex": "0",
-  "learningUnit": "0",
-  "dateUpdated": "2018-10-14T09:02:06.846Z",
-  "originalAuthorName": {
-    "title": "Dr.",
-    "birthname": "Quibeldey-Cirkel",
-    "givenname": "Klaus"
-  },
   "alignType": [
     1,
     1,
@@ -107,7 +90,16 @@
     1,
     1,
     1
-  ]
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-09-22T15:21:18.473Z",
+  "dateUpdated": "2018-10-14T09:02:06.846Z",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  }
 }, {
   "subject": "3. Gesammeltes Wissen",
   "front": "**Was bleibt?**\n\n![Klick auf das Foto für die Vollansicht!](/img/background/zettelkasten_wikipedia_original.jpg width=300)\n",
@@ -118,17 +110,6 @@
     false,
     false
   ],
-  "date": "2018-06-10T05:23:42.665Z",
-  "learningGoalLevel": 0,
-  "backgroundStyle": 1,
-  "learningIndex": "0",
-  "learningUnit": "0",
-  "dateUpdated": "2018-10-14T09:54:20.070Z",
-  "originalAuthorName": {
-    "title": "Dr.",
-    "birthname": "Quibeldey-Cirkel",
-    "givenname": "Klaus"
-  },
   "alignType": [
     1,
     1,
@@ -136,7 +117,16 @@
     1,
     1,
     1
-  ]
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-06-10T05:23:42.665Z",
+  "dateUpdated": "2018-10-14T09:54:20.070Z",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  }
 }, {
   "subject": "4. Digitale Schuhkartons: Karteien",
   "front": "Welche **Karteitypen** gibt es auf 🍅cards?",
@@ -147,17 +137,6 @@
     false,
     false
   ],
-  "date": "2018-06-08T14:56:06.624Z",
-  "learningGoalLevel": 0,
-  "backgroundStyle": 1,
-  "learningIndex": "0",
-  "learningUnit": "0",
-  "dateUpdated": "2018-10-17T04:41:07.645Z",
-  "originalAuthorName": {
-    "title": "Dr.",
-    "birthname": "Quibeldey-Cirkel",
-    "givenname": "Klaus"
-  },
   "alignType": [
     1,
     1,
@@ -165,7 +144,16 @@
     1,
     1,
     1
-  ]
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-06-08T14:56:06.624Z",
+  "dateUpdated": "2018-10-17T04:41:07.645Z",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  }
 }, {
   "subject": "5. Digitale Regale: Repetitorien",
   "front": "Was wird auf 🍅cards unter einem **Repetitorium** verstanden?",
@@ -176,17 +164,6 @@
     false,
     false
   ],
-  "date": "2018-06-09T17:45:11.922Z",
-  "learningGoalLevel": 0,
-  "backgroundStyle": 1,
-  "learningIndex": "0",
-  "learningUnit": "0",
-  "dateUpdated": "2018-09-22T17:35:23.305Z",
-  "originalAuthorName": {
-    "title": "Dr.",
-    "birthname": "Quibeldey-Cirkel",
-    "givenname": "Klaus"
-  },
   "alignType": [
     1,
     1,
@@ -194,7 +171,16 @@
     1,
     1,
     1
-  ]
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-06-09T17:45:11.922Z",
+  "dateUpdated": "2018-09-22T17:35:23.305Z",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  }
 }, {
   "subject": "6. Digitale Zettel: Karten",
   "front": "Wie kannst du den Text auf einer Karte **formatieren**?\n\n![](https://casual-effects.com/image/project/icon-markdeep.png width=\"130 pt\")\n\nWie lässt sich eine Karte **multimedial** mit Bildern, Podcasts oder Videos anreichern?",
@@ -205,17 +191,6 @@
     false,
     false
   ],
-  "date": "2018-06-08T14:56:06.624Z",
-  "learningGoalLevel": 0,
-  "backgroundStyle": 1,
-  "learningIndex": "0",
-  "learningUnit": "0",
-  "dateUpdated": "2018-09-27T08:54:52.542Z",
-  "originalAuthorName": {
-    "title": "Dr.",
-    "birthname": "Quibeldey-Cirkel",
-    "givenname": "Klaus"
-  },
   "alignType": [
     1,
     1,
@@ -223,7 +198,16 @@
     1,
     1,
     1
-  ]
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-06-08T14:56:06.624Z",
+  "dateUpdated": "2018-09-27T08:54:52.542Z",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  }
 }, {
   "subject": "7. Mobile Learning",
   "front": "🍅cards ist eine **responsive WebApp**. Was heißt das?",
@@ -236,17 +220,6 @@
     false,
     false
   ],
-  "date": "2018-08-11T12:00:07.793Z",
-  "learningGoalLevel": 0,
-  "backgroundStyle": 1,
-  "learningIndex": "0",
-  "learningUnit": "0",
-  "dateUpdated": "2018-09-22T17:35:56.732Z",
-  "originalAuthorName": {
-    "title": "Dr.",
-    "birthname": "Quibeldey-Cirkel",
-    "givenname": "Klaus"
-  },
   "alignType": [
     1,
     1,
@@ -254,5 +227,14 @@
     1,
     1,
     1
-  ]
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-08-11T12:00:07.793Z",
+  "dateUpdated": "2018-09-22T17:35:56.732Z",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  }
 }]
