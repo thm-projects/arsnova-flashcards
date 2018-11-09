@@ -435,7 +435,7 @@ Meteor.methods({
 		});
 
 		WebPushSubscriptions.remove({
-			user: user_id
+			user_id: user_id
 		});
 
 		Meteor.users.remove(user_id);

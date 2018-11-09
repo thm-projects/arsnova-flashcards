@@ -14,7 +14,7 @@ Meteor.methods({
 	 * @param {string} subscription.authSecret auth secret of the subscription
 	 */
 	addWebPushSubscription: function (subscription) {
-		WebPushSubscriptions.upsert({userId: Meteor.userId()}, {
+		WebPushSubscriptions.upsert({user_id: Meteor.userId()}, {
 			$addToSet: {subscriptions: subscription}
 		});
 	},
@@ -26,7 +26,7 @@ Meteor.methods({
 	 */
 	sendPushNotificationsToUser: function (userId, message) {
 		webPush.setGCMAPIKey(Meteor.settings.private.FCM_API_KEY);
-		var data = WebPushSubscriptions.findOne({userId: userId});
+		var data = WebPushSubscriptions.findOne({user_id: userId});
 		data.subscriptions.forEach(function (sub) {
 			var subscription = {
 				endpoint: sub.endpoint,
