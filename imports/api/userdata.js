@@ -7,6 +7,7 @@ import {check} from "meteor/check";
 import {Session} from "meteor/session";
 import {UserPermissions} from "./permissions";
 import {WebPushSubscriptions} from "./webPushSubscriptions";
+import {Paid} from "./paid";
 
 /**
  * Returns the degree, the givenname and the birthname from the author of a cardset
@@ -435,6 +436,10 @@ Meteor.methods({
 		});
 
 		WebPushSubscriptions.remove({
+			user_id: user_id
+		});
+
+		Paid.remove({
 			user_id: user_id
 		});
 

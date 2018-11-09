@@ -8,6 +8,7 @@ import {CronScheduler} from "../../../server/cronjob.js";
 import {Ratings} from "../../api/ratings";
 import {CardType} from "../../api/cardTypes";
 import {WebPushSubscriptions} from "../../api/webPushSubscriptions";
+import {Paid} from "../../api/paid";
 
 var initColorThemes = function () {
 	return [{
@@ -317,6 +318,10 @@ function removeDeletedUsers() {
 		});
 
 		WebPushSubscriptions.remove({
+			user_id: {$nin: userFilter}
+		});
+
+		Paid.remove({
 			user_id: {$nin: userFilter}
 		});
 	}

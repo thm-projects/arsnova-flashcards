@@ -19,7 +19,6 @@ import "./preview.js";
 import "./index/bonus/bonus.js";
 import "./cardset.html";
 
-Meteor.subscribe("paid");
 Meteor.subscribe("notifications");
 
 /*
