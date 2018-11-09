@@ -1,6 +1,5 @@
 //------------------------ IMPORTS
 
-import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./presentation.html";
@@ -10,7 +9,6 @@ import {Cardsets} from "../../api/cardsets";
 import {Cards} from "../../api/cards";
 import {PomodoroTimer} from "../../api/pomodoroTimer";
 
-Meteor.subscribe("cardsets");
 Session.set('animationPlaying', false);
 
 

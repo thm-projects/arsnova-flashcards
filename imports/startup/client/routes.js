@@ -30,6 +30,9 @@ Router.configure({
 Router.route('/home', {
 	name: 'home',
 	template: 'welcome',
+	subscriptions: function () {
+		return [Meteor.subscribe('wordcloudCardsets')];
+	},
 	data: function () {
 		Session.set('helpFilter', Router.current().route.getName());
 		return Cardsets.findOne({_id: Session.get('wordcloudItem')});
@@ -122,7 +125,7 @@ Router.route('demo', {
 	name: 'demo',
 	template: 'demo',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsets'), Meteor.subscribe('demoCards')];
+		return [Meteor.subscribe('demoCardsets'), Meteor.subscribe('demoCards')];
 	},
 	data: function () {
 		Session.set('helpFilter', undefined);
@@ -140,7 +143,7 @@ Router.route('demolist', {
 	name: 'demolist',
 	template: 'demo',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsets'), Meteor.subscribe('demoCards')];
+		return [Meteor.subscribe('demoCardsets'), Meteor.subscribe('demoCards')];
 	},
 	data: function () {
 		Session.set('helpFilter', undefined);
@@ -188,6 +191,9 @@ Router.route('datenschutz', {
 Router.route('/alldecks', {
 	name: 'alldecks',
 	template: 'filterIndex',
+	subscriptions: function () {
+		return [Meteor.subscribe('allCardsets')];
+	},
 	data: function () {
 		Session.set('helpFilter', undefined);
 		Session.set('activeRouteTitle', TAPi18n.__('navbar-collapse.alldecks', {}, Session.get('activeLanguage')));
@@ -205,6 +211,9 @@ Router.route('/alldecks', {
 Router.route('/create', {
 	name: 'create',
 	template: 'filterIndex',
+	subscriptions: function () {
+		return [Meteor.subscribe('myCardsets')];
+	},
 	data: function () {
 		Session.set('helpFilter', "create");
 		switch (Cardsets.find({owner: Meteor.userId()}).count()) {
@@ -231,6 +240,9 @@ Router.route('/create', {
 Router.route('/repetitorium', {
 	name: 'repetitorium',
 	template: 'filterIndex',
+	subscriptions: function () {
+		return [Meteor.subscribe('repetitoriumCardsets')];
+	},
 	data: function () {
 		Session.set('helpFilter', "repetitorium");
 		Session.set('activeRouteTitle', TAPi18n.__('navbar-collapse.course', {}, Session.get('activeLanguage')));
@@ -249,28 +261,11 @@ Router.route('/learn', {
 	name: 'learn',
 	template: 'filterIndex',
 	subscriptions: function () {
-		return [Meteor.subscribe('userWorkload', this.params._id), Meteor.subscribe('userLeitner'), Meteor.subscribe('userWozniak')];
+		return [Meteor.subscribe('workloadCardsets'), Meteor.subscribe('userWorkload'), Meteor.subscribe('userLeitner'), Meteor.subscribe('userWozniak')];
 	},
 	data: function () {
 		Session.set('helpFilter', "workload");
 		Session.set('activeRouteTitle', TAPi18n.__('navbar-collapse.learndecks', {}, Session.get('activeLanguage')));
-		Filter.resetMaxItemCounter();
-	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
-	}
-});
-
-Router.route('/shuffle', {
-	name: 'shuffle',
-	template: 'filterIndex',
-	data: function () {
-		Session.set('helpFilter', "shuffle");
-		Session.set('isNewCardset', true);
 		Filter.resetMaxItemCounter();
 	},
 	action: function () {
@@ -290,7 +285,7 @@ Router.route('/cardset/:_id', {
 	name: 'cardsetdetailsid',
 	template: 'cardsetAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
+		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
@@ -311,7 +306,7 @@ Router.route('/cardset/:_id/card/:card_id', {
 	name: 'cardsetcard',
 	template: 'cardsetAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
+		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
@@ -332,6 +327,9 @@ Router.route('/cardset/:_id/card/:card_id', {
 Router.route('/cardset/:_id/editshuffle', {
 	name: 'editshuffle',
 	template: 'filterIndexShuffle',
+	subscriptions: function () {
+		return [Meteor.subscribe('editShuffleCardsets', this.params._id)];
+	},
 	data: function () {
 		Session.set('helpFilter', "shuffle");
 		Filter.resetMaxItemCounter();
@@ -349,6 +347,9 @@ Router.route('/cardset/:_id/editshuffle', {
 Router.route('/cardset/:_id/editors', {
 	name: 'cardseteditors',
 	template: 'cardsetManageEditors',
+	subscriptions: function () {
+		return [Meteor.subscribe('cardset', this.params._id)];
+	},
 	data: function () {
 		Session.set('helpFilter', "cardset");
 		return Cardsets.findOne({_id: this.params._id});
@@ -366,7 +367,7 @@ Router.route('/cardset/:_id/stats', {
 	name: 'cardsetstats',
 	template: 'cardsetLearnActivityStatistic',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetWorkload', this.params._id)];
+		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id)];
 	},
 	data: function () {
 		Session.set('helpFilter', "workloadProgress");
@@ -389,7 +390,7 @@ Router.route('/cardsetlist/:_id', {
 	name: 'cardsetlistid',
 	template: 'cardsetAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
+		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
 	},
 	data: function () {
 		Session.set('helpFilter', "cardset");
@@ -409,7 +410,7 @@ Router.route('/cardset/:_id/newcard', {
 	name: 'newCard',
 	template: 'newCard',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
+		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
 	},
 	data: function () {
 		Session.set('helpFilter', "cardEditor");
@@ -428,7 +429,7 @@ Router.route('/cardset/:_id/editcard/:card_id', {
 	name: 'editCard',
 	template: 'editCard',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
+		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
 	},
 	data: function () {
 		Session.set('helpFilter', "cardEditor");
@@ -446,6 +447,9 @@ Router.route('/cardset/:_id/editcard/:card_id', {
 Router.route('/pool', {
 	name: 'pool',
 	template: 'filterIndex',
+	subscriptions: function () {
+		return [Meteor.subscribe('poolCardsets')];
+	},
 	data: function () {
 		Session.set('helpFilter', "pool");
 		Session.set('activeRouteTitle', TAPi18n.__('navbar-collapse.pool', {}, Session.get('activeLanguage')));
@@ -463,7 +467,7 @@ Router.route('/progress/:_id/:user_id', {
 	name: 'progress',
 	template: 'progress',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('userCardsetLeitner', this.params._id, this.params.user_id)];
+		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('userCardsetLeitner', this.params._id, this.params.user_id)];
 	},
 	data: function () {
 		Session.set('helpFilter', "workloadProgress");
@@ -482,7 +486,7 @@ Router.route('/box/:_id', {
 	name: 'box',
 	template: 'learnAlgorithmAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id)];
+		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id)];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
@@ -502,7 +506,7 @@ Router.route('/memo/:_id', {
 	name: 'memo',
 	template: 'learnAlgorithmAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
+		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
@@ -522,7 +526,7 @@ Router.route('/presentationlist/:_id', {
 	name: 'presentationlist',
 	template: 'presentation',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
+		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
 	},
 	data: function () {
 		Session.set('helpFilter', undefined);
@@ -541,7 +545,7 @@ Router.route('/presentation/:_id', {
 	name: 'presentation',
 	template: 'presentation',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
+		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
@@ -561,7 +565,7 @@ Router.route('makingofcards', {
 	name: 'making',
 	template: 'makingOfCards',
 	subscriptions: function () {
-		return [Meteor.subscribe('demoCards')];
+		return [Meteor.subscribe('makingOfCardsets'), Meteor.subscribe('demoCards')];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
@@ -581,7 +585,7 @@ Router.route('makingofcardslist', {
 	name: 'makinglist',
 	template: 'makingOfCards',
 	subscriptions: function () {
-		return [Meteor.subscribe('demoCards')];
+		return [Meteor.subscribe('makingOfCardsets'), Meteor.subscribe('demoCards')];
 	},
 	data: function () {
 		Session.set('helpFilter', undefined);
@@ -600,7 +604,7 @@ Router.route('/profile/:_id/overview', {
 	name: 'profileOverview',
 	template: 'profile',
 	subscriptions: function () {
-		return [Meteor.subscribe('userLeitner')];
+		return [Meteor.subscribe('workloadCardsets'), Meteor.subscribe('userLeitner')];
 	},
 	data: function () {
 		Session.set('helpFilter', "workloadProgress");
@@ -748,7 +752,7 @@ Router.route('/admin/learningStatistics', {
 	template: 'admin_learningStatistics',
 	layoutTemplate: 'admin_main',
 	subscriptions: function () {
-		return [Meteor.subscribe('allLeitner')];
+		return [Meteor.subscribe('allCardsets'), Meteor.subscribe('allLeitner')];
 	},
 	data: function () {
 		Session.set('helpFilter', undefined);
@@ -766,6 +770,9 @@ Router.route('/admin/apiAccess', {
 	name: 'admin_apiAccess',
 	template: 'admin_apiAccess',
 	layoutTemplate: 'admin_main',
+	subscriptions: function () {
+		return [Meteor.subscribe('allCardsets')];
+	},
 	action: function () {
 		if (this.ready()) {
 			this.render();

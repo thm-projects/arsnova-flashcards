@@ -13,7 +13,6 @@ import "./cardset.html";
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
 
-Meteor.subscribe("cardsets");
 
 
 function getLeitnerCount(cardset) {

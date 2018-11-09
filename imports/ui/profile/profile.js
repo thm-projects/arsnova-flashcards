@@ -15,7 +15,6 @@ import "./modal/deleteProfile.js";
 import "./profile.html";
 
 Meteor.subscribe("notifications");
-Meteor.subscribe("cardsets");
 Meteor.subscribe("colorThemes");
 Meteor.subscribe('default_db_data', function () {
 	Session.set('data_loaded', true);

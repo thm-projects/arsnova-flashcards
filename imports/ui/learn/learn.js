@@ -11,7 +11,6 @@ import "./modal/leitner/leitnerHelp.js";
 import "./modal/wozniak/wozniakHelp.js";
 import {PomodoroTimer} from "../../api/pomodoroTimer";
 import {Bonus} from "../../api/bonus";
-Meteor.subscribe("cardsets");
 Session.set('animationPlaying', false);
 
 /*

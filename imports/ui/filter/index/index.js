@@ -20,7 +20,6 @@ import "./index.html";
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
 
-Meteor.subscribe("cardsets");
 
 /*
  * ############################################################################

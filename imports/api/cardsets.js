@@ -11,79 +11,81 @@ import {UserPermissions} from "./permissions";
 
 export const Cardsets = new Mongo.Collection("cardsets");
 
-export function getShuffledCardsetReferences(kind) {
-	let shuffleddCardsetReferences = [];
-	let shuffledCardsets = Cardsets.find({
-		shuffled: true,
-		visible: true,
-		kind: {$in: kind}
-	}, {fields: {cardGroups: 1}}).fetch();
-	for (let i = 0; i < shuffledCardsets.length; i++) {
-		for (let k = 0; k < shuffledCardsets[i].cardGroups.length; k++) {
-			shuffleddCardsetReferences.push(shuffledCardsets[i].cardGroups[k]);
-		}
-	}
-	return shuffleddCardsetReferences;
-}
-
 if (Meteor.isServer) {
-	Meteor.publish("cardsets", function () {
-		if (this.userId) {
-			if (Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor'
-			])) {
-				return Cardsets.find({kind: {$nin: ['server']}});
-			} else if (Roles.userIsInRole(this.userId, 'lecturer')) {
+	Meteor.publish("demoCardsets", function () {
+		return Cardsets.find({kind: {$in: ['demo']}});
+	});
+	Meteor.publish("makingOfCardsets", function () {
+		return Cardsets.find({kind: {$in: ['demo']}});
+	});
+	Meteor.publish("wordcloudCardsets", function () {
+		return Cardsets.find({wordcloud: true});
+	});
+	Meteor.publish("cardset", function (cardset_id) {
+		if (this.userId && UserPermissions.isNotBlocked()) {
+			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, kind: 1, owner: 1, cardGroups: 1}});
+			if (cardset.kind === 'personal') {
+				if (!UserPermissions.isOwner(cardset.owner) && !UserPermissions.isAdmin()) {
+					return 0;
+				}
+			}
+			return Cardsets.find({
+				$or: [
+					{_id: cardset._id},
+					{_id: {$in: cardset.cardGroups}}
+				]
+			});
+		}
+	});
+	Meteor.publish("allCardsets", function () {
+		if (this.userId && UserPermissions.isAdmin()) {
+			return Cardsets.find({shuffled: false});
+		}
+	});
+	Meteor.publish("workloadCardsets", function () {
+		if (this.userId && UserPermissions.isNotBlocked()) {
+			let workload = Workload.find({user_id: this.userId}, {fields: {cardset_id: 1}}).fetch();
+			let cardsets = [];
+			for (let i = 0; i < workload.length; i++) {
+				cardsets.push(workload[i].cardset_id);
+			}
+			return Cardsets.find({_id: {$in: cardsets}});
+		}
+	});
+	Meteor.publish("myCardsets", function () {
+		if (this.userId && UserPermissions.isNotBlocked()) {
+			return Cardsets.find({owner: this.userId, shuffled: false});
+		}
+	});
+	Meteor.publish("poolCardsets", function () {
+		if (this.userId && UserPermissions.isNotBlocked()) {
+			return Cardsets.find({kind: {$in: ['free', 'edu', 'pro']}, shuffled: false});
+		}
+	});
+	Meteor.publish("repetitoriumCardsets", function () {
+		if (this.userId && UserPermissions.isNotBlocked()) {
+			return Cardsets.find({kind: {$in: ['free', 'edu', 'pro']}, shuffled: true});
+		}
+	});
+	Meteor.publish("editShuffleCardsets", function (cardset_id) {
+		if (this.userId && UserPermissions.isNotBlocked()) {
+			if (UserPermissions.isAdmin()) {
+				return Cardsets.find({
+					$or: [
+						{_id: cardset_id},
+						{shuffled: false}
+					]
+				});
+			} else {
 				return Cardsets.find(
 					{
 						$or: [
-							{visible: true},
-							{request: true},
-							{owner: this.userId},
-							{_id: {$in: getShuffledCardsetReferences(['free', 'edu', 'pro'])}}
-						]
-					});
-			} else if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-				return Cardsets.find(
-					{
-						$or: [
-							{visible: true},
-							{owner: this.userId},
-							{_id: {$in: getShuffledCardsetReferences(['free', 'edu', 'pro'])}}
+							{_id: cardset_id},
+							{owner: this.userId, shuffled: false},
+							{kind: {$in: ['free', 'edu', 'pro']}, shuffled: false}
 						]
 					});
 			}
-		} else {
-			return Cardsets.find(
-				{
-					$or: [
-						{kind: {$in: ['demo']}},
-						{wordcloud: true}
-					]
-				},
-				{
-					fields:
-						{
-							_id: 1,
-							owner: 1,
-							name: 1,
-							quantity: 1,
-							kind: 1,
-							description: 1,
-							cardType: 1,
-							difficulty: 1,
-							date: 1,
-							dateUpdated: 1,
-							wordcloud: 1,
-							cardGroups: 1,
-							license: 1,
-							shuffled: 1,
-							learningActive: 1,
-							originalAuthorName: 1,
-							workload: 1
-						}
-				});
 		}
 	});
 	Meteor.publish("tags", function () {

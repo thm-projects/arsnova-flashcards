@@ -14,7 +14,6 @@ import {Template} from "meteor/templating";
  */
 
 Meteor.subscribe("apiAccess");
-Meteor.subscribe("cardsets");
 
 Template.admin_apiAccess.helpers({
 	apiAccessTokens: function () {

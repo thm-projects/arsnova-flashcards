@@ -1,6 +1,5 @@
 //------------------------ IMPORTS
 
-import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {FilterNavigation} from "../../../api/filterNavigation";
@@ -17,7 +16,6 @@ import './item/filterBonus.js';
 import './item/filterWordcloud.js';
 import './item/filterKind.js';
 
-Meteor.subscribe("cardsets");
 
 /*
  * ############################################################################

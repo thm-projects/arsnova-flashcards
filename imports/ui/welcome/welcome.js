@@ -13,7 +13,6 @@ import {PomodoroTimer} from "../../api/pomodoroTimer";
 import {CardVisuals} from "../../api/cardVisuals";
 
 Meteor.subscribe("pomodoroLandingPage");
-Meteor.subscribe("cardsets");
 Meteor.subscribe("userData");
 Meteor.subscribe("serverInventory");
 
