@@ -1,6 +1,6 @@
 <template name="presentation">
     {{#if isInRole 'firstLogin'}}
-        {{> first_login_content_only}}
+        {{> firstLoginContent}}
     {{else}}
         {{#if isInRole 'blocked'}}
             {{> access_denied_content_only}}

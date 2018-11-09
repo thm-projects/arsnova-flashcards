@@ -1,4 +1,4 @@
-<template name="first_login_content_only">
+<template name="firstLoginContent">
     {{> agb}}
     {{> datenschutz}}
     <div id="first_login" class="panel panel-default">
@@ -6,7 +6,7 @@
             <div class="form-group">
                 <div class="checkbox">
                     <label style="color:red" id="select_checkbox">
-                        <input type="checkbox" value="" id="accept_checkbox">
+                        <input type="checkbox" value="" id="acceptFirstLoginCheckbox">
                         <span class="checkbox-material">
                     <span class="check"></span>
                   </span>
@@ -15,8 +15,8 @@
                 </div>
             </div>
             <br/>
-            <button id="logout_first_login" type="button" class="btn btn-default">{{_ "access-denied.button"}}</button>
-            <button id="accept_button" type="button" class="btn btn-primary pull-right" disabled>{{_
+            <button id="cancelFirstLogin" type="button" class="btn btn-raised btn-warning">{{_ "access-denied.button"}}</button>
+            <button id="acceptFirstLogin" type="button" class="btn btn-raised btn-success pull-right" disabled>{{_
                     "first-login.button"}}</button>
         </div>
     </div>

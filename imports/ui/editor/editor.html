@@ -45,7 +45,7 @@
 
 <template name="newCard">
     {{#if isInRole 'firstLogin'}}
-        {{> first_login_content_only}}
+        {{> firstLoginContent}}
     {{else}}
         {{#if isInRole 'blocked'}}
             {{> access_denied_content_only}}
@@ -61,7 +61,7 @@
 
 <template name="editCard">
     {{#if isInRole 'firstLogin'}}
-        {{> first_login_content_only}}
+        {{> firstLoginContent}}
     {{else}}
         {{#if isInRole 'blocked'}}
             {{> access_denied_content_only}}

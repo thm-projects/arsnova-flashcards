@@ -8,7 +8,7 @@ export const Ratings = new Mongo.Collection("ratings");
 
 if (Meteor.isServer) {
 	Meteor.publish("cardsetUserRating", function (cardset_id) {
-		if (this.userId && UserPermissions.isNotBlocked()) {
+		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
 			return Ratings.find({cardset_id: cardset_id, user_id: this.userId});
 		}
 	});
@@ -19,7 +19,7 @@ Meteor.methods({
 		check(cardset_id, String);
 		check(rating, Number);
 
-		if (this.userId && UserPermissions.isNotBlocked() && !UserPermissions.isOwner(Cardsets.findOne({_id: cardset_id}).owner)) {
+		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin() && !UserPermissions.isOwner(Cardsets.findOne({_id: cardset_id}).owner)) {
 			if (Ratings.findOne({cardset_id: cardset_id, user_id: this.userId})) {
 				Ratings.update({cardset_id: cardset_id, user_id: this.userId}, {
 					$set: {

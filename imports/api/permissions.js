@@ -2,19 +2,23 @@ import {Meteor} from "meteor/meteor";
 
 export let UserPermissions = class UserPermissions {
 	static canCreateContent () {
-		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor', 'university', 'lecturer', 'pro']) && this.isNotBlocked()) {
+		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor', 'university', 'lecturer', 'pro']) && this.isNotBlockedOrFirstLogin()) {
 			return true;
 		}
 	}
 
 	static isAdmin () {
-		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']) && this.isNotBlocked()) {
+		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']) && this.isNotBlockedOrFirstLogin()) {
 			return true;
 		}
 	}
 
+	static isNotBlockedOrFirstLogin () {
+		return !Roles.userIsInRole(Meteor.userId(), ['blocked', 'firstLogin']);
+	}
+
 	static isNotBlocked () {
-		return !Roles.userIsInRole(Meteor.userId(), ['firstLogin', 'blocked']);
+		return !Roles.userIsInRole(Meteor.userId(), ['blocked']);
 	}
 
 	static isOwner (content_owner) {

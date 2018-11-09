@@ -2,31 +2,30 @@
 
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
-import "./first_login.html";
+import "./firstLogin.html";
 
 /*
  * ############################################################################
- * first_login_content_only
+ * firstLoginContent
  * ############################################################################
  */
 
-Template.first_login_content_only.events({
-	'click #accept_checkbox': function () {
-		if ($("#accept_checkbox").prop('checked') === true) {
-			$('#accept_button').removeAttr('disabled');
+Template.firstLoginContent.events({
+	'click #acceptFirstLoginCheckbox': function () {
+		if ($("#acceptFirstLoginCheckbox").prop('checked') === true) {
+			$('#acceptFirstLogin').removeAttr('disabled');
 		} else {
-			$('#accept_button').attr('disabled', 'disabled');
+			$('#acceptFirstLogin').attr('disabled', 'disabled');
 		}
 	},
-	'click #accept_button': function () {
+	'click #acceptFirstLogin': function () {
 		Meteor.call('removeFirstLogin');
 		localStorage.setItem("displayedFirstLoginBertAlert", "true");
 		Router.go('pool');
 		window.scrollTo(0, 0);
-		document.location.reload(true);
 	},
-	'click #logout_first_login': function () {
-		Meteor.call('deleteUserProfile');
+	'click #cancelFirstLogin': function () {
+		Meteor.call("deleteUserProfile");
 		document.location.reload(true);
 	}
 });

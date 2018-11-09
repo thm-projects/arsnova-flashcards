@@ -19,7 +19,7 @@ import "../profile/profile.js";
 import "../admin/admin.js";
 import "../filter/filter.js";
 import "../access_denied/access_denied.js";
-import "../first_login/first_login.js";
+import "../firstLogin/firstLogin.js";
 import "../editor/editor.js";
 import "../editor/cardEditor.js";
 import "../pomodoroTimer/pomodoroTimer.js";
@@ -123,6 +123,7 @@ Template.main.events({
 		event.preventDefault();
 		Meteor.logout();
 		Session.set('helpFilter', undefined);
+		document.location.reload(true);
 	},
 	'keyup #input-search': function (event) {
 		event.preventDefault();

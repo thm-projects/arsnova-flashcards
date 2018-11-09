@@ -27,6 +27,11 @@ Router.configure({
 	layoutTemplate: 'main'
 });
 
+Router.route('/firstLogin', {
+	name: 'firstLogin',
+	template: 'firstLoginContent'
+});
+
 Router.route('/home', {
 	name: 'home',
 	template: 'welcome',
@@ -850,6 +855,9 @@ var isSignedIn = function () {
 		}
 		TAPi18n.setLanguage(language);
 		Session.set('activeLanguage', language);
+		if (Roles.userIsInRole(Meteor.userId(), ['firstLogin'])) {
+			Router.go('firstLogin');
+		}
 		this.next();
 	}
 };

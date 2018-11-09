@@ -22,7 +22,7 @@ if (Meteor.isServer) {
 		return Cardsets.find({wordcloud: true});
 	});
 	Meteor.publish("cardset", function (cardset_id) {
-		if (this.userId && UserPermissions.isNotBlocked()) {
+		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
 			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, kind: 1, owner: 1, cardGroups: 1}});
 			if (cardset.kind === 'personal') {
 				if (!UserPermissions.isOwner(cardset.owner) && !UserPermissions.isAdmin()) {
@@ -43,7 +43,7 @@ if (Meteor.isServer) {
 		}
 	});
 	Meteor.publish("workloadCardsets", function () {
-		if (this.userId && UserPermissions.isNotBlocked()) {
+		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
 			let workload = Workload.find({user_id: this.userId}, {fields: {cardset_id: 1}}).fetch();
 			let cardsets = [];
 			for (let i = 0; i < workload.length; i++) {
@@ -53,22 +53,22 @@ if (Meteor.isServer) {
 		}
 	});
 	Meteor.publish("myCardsets", function () {
-		if (this.userId && UserPermissions.isNotBlocked()) {
+		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
 			return Cardsets.find({owner: this.userId, shuffled: false});
 		}
 	});
 	Meteor.publish("poolCardsets", function () {
-		if (this.userId && UserPermissions.isNotBlocked()) {
+		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
 			return Cardsets.find({kind: {$in: ['free', 'edu', 'pro']}, shuffled: false});
 		}
 	});
 	Meteor.publish("repetitoriumCardsets", function () {
-		if (this.userId && UserPermissions.isNotBlocked()) {
+		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
 			return Cardsets.find({kind: {$in: ['free', 'edu', 'pro']}, shuffled: true});
 		}
 	});
 	Meteor.publish("editShuffleCardsets", function (cardset_id) {
-		if (this.userId && UserPermissions.isNotBlocked()) {
+		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
 			if (UserPermissions.isAdmin()) {
 				return Cardsets.find({
 					$or: [
