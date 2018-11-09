@@ -148,6 +148,11 @@ const CardsetsSchema = new SimpleSchema({
 	},
 	relevance: {
 		type: Number,
+		decimal: true,
+		optional: true
+	},
+	rating: {
+		type: Number,
 		decimal: true
 	},
 	raterCount: {
@@ -314,7 +319,7 @@ Meteor.methods({
 			reviewed: false,
 			reviewer: 'undefined',
 			request: false,
-			relevance: 0,
+			rating: 0,
 			raterCount: 0,
 			quantity: quantity,
 			license: [],
@@ -638,39 +643,6 @@ Meteor.methods({
 			}
 		}
 	},
-	updateRelevance: function (cardset_id) {
-		check(cardset_id, String);
-
-		let relevance = 0;
-
-		let ratings = Ratings.find({cardset_id: cardset_id});
-		let count = ratings.count();
-		if (count !== 0) {
-			let amount = 0;
-			ratings.forEach(function (rate) {
-				amount = amount + rate.rating;
-			});
-			let result = (amount / count).toFixed(2);
-			relevance = Number(result);
-		}
-
-		let kind = Cardsets.findOne(cardset_id).kind;
-
-		switch (kind) {
-			case 'free':
-				break;
-			case 'edu':
-				relevance += 0.1;
-				break;
-			case 'pro':
-				relevance += 0.2;
-				break;
-			default:
-				break;
-		}
-
-		return relevance;
-	},
 	publishCardset: function (id, kind, price, visible) {
 		check(id, String);
 		check(kind, String);
@@ -679,17 +651,11 @@ Meteor.methods({
 		// Make sure only the task owner can make a task private
 		let cardset = Cardsets.findOne(id);
 		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
-			Meteor.call("updateRelevance", id, function (error, relevance) {
-				if (!error) {
-					Cardsets.update(id, {
-						$set: {
-							kind: kind,
-							price: price.toString().replace(",", "."),
-							visible: visible,
-							relevance: relevance,
-							raterCount: Number(Ratings.find({cardset_id: id}).count())
-						}
-					});
+			Cardsets.update(id, {
+				$set: {
+					kind: kind,
+					price: price.toString().replace(",", "."),
+					visible: visible
 				}
 			});
 			if (kind !== "personal") {

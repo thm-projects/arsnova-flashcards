@@ -29,10 +29,6 @@ Meteor.subscribe("notifications");
  */
 
 Template.cardset.onCreated(function () {
-	Session.set('ratingsLoaded', false);
-	Meteor.subscribe('ratings', function () {
-		Session.set('ratingsLoaded', true);
-	});
 	if (Session.get('activeCardset') === undefined || Session.get('activeCardset')._id !== Router.current().params._id) {
 		Session.set('activeCardset', Cardsets.findOne(Router.current().params._id));
 		Session.set('activeCard', undefined);

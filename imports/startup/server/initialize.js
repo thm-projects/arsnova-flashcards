@@ -35,7 +35,7 @@ var initTestNotificationsCardset = function () {
 			"reviewed": false,
 			"reviewer": "undefined",
 			"request": false,
-			"relevance": 0,
+			"rating": 0,
 			"raterCount": 0,
 			"quantity": 5,
 			"license": [
@@ -328,6 +328,7 @@ function setupDatabaseIndex() {
 	Workload._ensureIndex({cardset_id: 1, user_id: 1});
 	Cards._ensureIndex({cardset_id: 1, subject: 1});
 	WebPushSubscriptions._ensureIndex({userId: 1});
+	Ratings._ensureIndex({cardset_id: 1, user_id: 1});
 }
 
 Meteor.startup(function () {
@@ -742,6 +743,24 @@ Meteor.startup(function () {
 				}
 			}
 		);
+	}
+
+	cardsets = Cardsets.find({relevance: {$exists: true}}, {fields: {_id: 1}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$unset: {
+					relevance: ""
+				}
+			}
+		);
+	}
+
+	cardsets = Cardsets.find({}, {fields: {_id: 1}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Meteor.call('updateCardsetRating', cardsets[i]._id);
 	}
 
 	let wozniak;

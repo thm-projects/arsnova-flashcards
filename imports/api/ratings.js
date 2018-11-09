@@ -2,83 +2,59 @@ import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 import {Cardsets} from "./cardsets.js";
 import {check} from "meteor/check";
+import {UserPermissions} from "./permissions";
 
 export const Ratings = new Mongo.Collection("ratings");
 
 if (Meteor.isServer) {
-	Meteor.publish("ratings", function () {
-		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-			return Ratings.find();
-		} else {
-			return [];
+	Meteor.publish("cardsetUserRating", function (cardset_id) {
+		if (this.userId && UserPermissions.isNotBlocked()) {
+			return Ratings.find({cardset_id: cardset_id, user_id: this.userId});
 		}
 	});
 }
 
 Meteor.methods({
-	addRating: function (cardset_id, rating) {
+	rateCardset: function (cardset_id, rating) {
 		check(cardset_id, String);
 		check(rating, Number);
 
-		// Make sure the user is logged in
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-			throw new Meteor.Error("not-authorized");
-		}
-
-		if (Cardsets.findOne({_id: cardset_id}).owner === Meteor.userId()) {
-			throw new Meteor.Error("not-authorized");
-		}
-
-		Ratings.insert({
-			cardset_id: cardset_id,
-			user: Meteor.userId(),
-			rating: rating
-		});
-
-		Meteor.call("updateRelevance", cardset_id, function (error, relevance) {
-			if (!error) {
-				Cardsets.update(cardset_id, {
+		if (this.userId && UserPermissions.isNotBlocked() && !UserPermissions.isOwner(Cardsets.findOne({_id: cardset_id}).owner)) {
+			if (Ratings.findOne({cardset_id: cardset_id, user_id: this.userId})) {
+				Ratings.update({cardset_id: cardset_id, user_id: this.userId}, {
 					$set: {
-						relevance: Number(relevance),
-						raterCount: Number(Ratings.find({cardset_id: cardset_id}).count())
+						rating: rating
 					}
 				});
-			}
-		});
-	},
-	updateRating: function (cardset_id, rating) {
-		check(cardset_id, String);
-		check(rating, Number);
-
-		// Make sure the user is logged in
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-			throw new Meteor.Error("not-authorized");
-		}
-
-		if (Cardsets.findOne({_id: cardset_id}).owner === Meteor.userId()) {
-			throw new Meteor.Error("not-authorized");
-		}
-
-		Ratings.update({
-				cardset_id: cardset_id,
-				user: Meteor.userId()
-			},
-			{
-				$set: {
+			} else {
+				Ratings.insert({
+					cardset_id: cardset_id,
+					user_id: this.userId,
 					rating: rating
-				}
-			}
-		);
-
-		Meteor.call("updateRelevance", cardset_id, function (error, relevance) {
-			if (!error) {
-				Cardsets.update(cardset_id, {
-					$set: {
-						relevance: Number(relevance),
-						raterCount: Number(Ratings.find({cardset_id: cardset_id}).count())
-					}
 				});
 			}
-		});
+			Meteor.call('updateCardsetRating', cardset_id);
+		} else {
+			throw new Meteor.Error("not-authorized");
+		}
+	},
+	updateCardsetRating: function (cardset_id) {
+		check(cardset_id, String);
+		if (Meteor.isServer) {
+			let ratings = Ratings.find({cardset_id: cardset_id}).fetch();
+			let sum = 0;
+			for (let i = 0; i < ratings.length; i++) {
+				sum += ratings[i].rating;
+			}
+			if (sum !== 0) {
+				sum = (sum / ratings.length).toFixed(2);
+			}
+			Cardsets.update(cardset_id, {
+				$set: {
+					rating: sum,
+					raterCount: ratings.length
+				}
+			});
+		}
 	}
 });

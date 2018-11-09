@@ -343,10 +343,6 @@ Template.filterIndexShuffle.onCreated(function () {
  */
 
 Template.filterIndex.onCreated(function () {
-	Session.set('ratingsLoaded', false);
-	Meteor.subscribe('ratings', function () {
-		Session.set('ratingsLoaded', true);
-	});
 	Session.set("selectingCardsetToLearn", false);
 });
 

@@ -18,7 +18,7 @@ function getCardsetInfo(cardset) {
 		[TAPi18n.__('set-list.cardsetInfoStatic', {}, "de"), ""],
 		[TAPi18n.__('set-list.name', {}, "de"), cardset.name],
 		[TAPi18n.__('modal-dialog.kind', {}, "de"), cardset.kind],
-		[TAPi18n.__('cardset.info.rating', {}, "de"), cardset.relevance],
+		[TAPi18n.__('cardset.info.rating', {}, "de"), cardset.rating],
 		[TAPi18n.__('cardset.info.quantity', {}, "de"), cardset.quantity],
 		[TAPi18n.__('cardset.info.author', {}, "de"), getAuthorName(cardset.owner)],
 		[TAPi18n.__('cardset.info.release', {}, "de"), moment(cardset.date).locale("de").format('LL')],

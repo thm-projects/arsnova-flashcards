@@ -431,7 +431,7 @@ Meteor.methods({
 		}
 
 		Ratings.remove({
-			user: user_id
+			user_id: user_id
 		});
 
 		WebPushSubscriptions.remove({
