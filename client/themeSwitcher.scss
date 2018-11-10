@@ -816,9 +816,24 @@ $themes: (
       border-bottom-color: $search_results_separator !important;
     }
 
-    .search-subject {
-      background-color: $search_results_subject_background !important;
-      color: $search_results_subject_text !important;
+    .search-subject-personal {
+      background-color: $private_background !important;
+      color: $private_text !important;
+    }
+
+    .search-subject-edu {
+      background-color: $edu_background !important;
+      color: $edu_text !important;
+    }
+
+    .search-subject-pro {
+      background-color: $pro_background !important;
+      color: $pro_text !important;
+    }
+
+    .search-subject-free {
+      background-color: $free_background !important;
+      color: $free_text !important;
     }
 
     .search-content {

@@ -35,7 +35,7 @@
                                  data-toggle="collapse" data-target="#thm-top-navigation">
                                 {{#each searchCategories}}
                                     <a href="/cardset/{{_id}}" class="list-group-item clearfix">
-                                        <h4 class="list-group-item-heading search-subject">{{name}}</h4>
+                                        <h4 class="list-group-item-heading search-subject search-subject-{{kind}}">{{name}}</h4>
                                         <p class="list-group-item-text search-content">{{#mathjax}}{{description}}{{/mathjax}}</p>
                                         {{#with getAuthor this.owner}}
                                             <p class="list-group-item-text search-author">{{_
