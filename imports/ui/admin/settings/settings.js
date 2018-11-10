@@ -1,11 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {AdminSettings} from "../../../api/adminSettings.js";
-import {CardsetNavigation} from "../../../api/cardsetNavigation";
 import "./settings.html";
-
-Template.cardset.onCreated(function () {
-	CardsetNavigation.subscribeForPushNotification();
-});
 
 Template.admin_settings.events({
 	'click #enableWordcloudPomodoro': function () {
