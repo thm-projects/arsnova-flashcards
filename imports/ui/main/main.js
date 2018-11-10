@@ -126,7 +126,12 @@ Template.main.events({
 	'keyup #input-search': function (event) {
 		event.preventDefault();
 		Session.set("searchValue", $(event.currentTarget).val());
-		if ($(event.currentTarget).val() && CardsetsIndex.search(Session.get("searchValue")).count()) {
+		Meteor.call('getSearchCategoriesResult', Session.get("searchValue"), function (error, result) {
+			if (result) {
+				Session.set('searchCategoriesResult', result);
+			}
+		});
+		if ($(event.currentTarget).val() && Session.get('searchCategoriesResult') !== undefined) {
 			$('#searchDropdown').addClass("open");
 		} else {
 			$('#searchDropdown').removeClass("open");
@@ -174,11 +179,7 @@ Template.main.helpers({
 		}
 	},
 	searchCategories: function () {
-		if (Session.get("searchValue")) {
-			return CardsetsIndex.search(Session.get("searchValue")).fetch();
-		} else {
-			return undefined;
-		}
+		return Session.get('searchCategoriesResult');
 	},
 	searchActive: function () {
 		return Session.get("searchValue") !== "" && Session.get("searchValue") !== undefined;
@@ -236,6 +237,7 @@ Template.main.onRendered(function () {
 	$("html, body").click(function () {
 		$('#input-search').val('');
 		Session.set("searchValue", undefined);
+		Session.set('searchCategoriesResult', []);
 	});
 });
 

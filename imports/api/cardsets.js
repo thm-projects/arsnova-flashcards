@@ -235,37 +235,45 @@ const CardsetsSchema = new SimpleSchema({
 
 Cardsets.attachSchema(CardsetsSchema);
 
-CardsetsIndex = new EasySearch.Index({
-	collection: Cardsets,
-	fields: [
-		'name'
-	],
-	engine: new EasySearch.Minimongo({
-		selector: function (searchObject, options, aggregation) {
-			// Default selector
-			const defSelector = this.defaultConfiguration().selector(searchObject, options, aggregation);
-
-			// Filter selector
-			const selector = {};
-			selector.$and = [
-				defSelector,
-				{
-					$or: [
-						{
-							owner: Meteor.userId()
-						},
-						{
-							visible: true
-						}
-					]
-				}
-			];
-			return selector;
-		}
-	})
-});
-
 Meteor.methods({
+	getSearchCategoriesResult: function (searchValue) {
+		if (!Meteor.userId() || !UserPermissions.isNotBlockedOrFirstLogin()) {
+			throw new Meteor.Error("not-authorized");
+		} else if (searchValue !== undefined && searchValue !== null && searchValue.length > 0) {
+			let query = {};
+
+			if (UserPermissions.isAdmin()) {
+				query.name = {$regex: searchValue, $options: "i"};
+				query.kind = {$nin: ['demo', 'server']};
+			} else {
+				query = {
+					name: {$regex: searchValue, $options: "i"},
+					$or: [
+						{owner: Meteor.userId()},
+						{kind: {$nin: ['demo', 'server', 'personal']}}
+					]
+				};
+			}
+			let results = Cardsets.find(query, {fields: {_id: 1}}).fetch();
+			let filter = [];
+			if (results !== undefined) {
+				for (let i = 0; i < results.length; i++) {
+					filter.push(results[i]._id);
+				}
+				return Cardsets.find({_id: {$in: filter}}, {
+					fields: {
+						_id: 1,
+						name: 1,
+						owner: 1,
+						description: 1,
+						kind: 1
+					}
+				}).fetch();
+			}
+		} else {
+			return [];
+		}
+	},
 	/**
 	 * Adds a cardset to the personal deck of cards.
 	 * @param {String} name - Title of the cardset
@@ -420,7 +428,10 @@ Meteor.methods({
 					learningActive: false
 				}
 			});
-			let users = Workload.find({cardset_id: cardset._id, 'leitner.bonus': true}, {fields: {user_id: 1}}).fetch();
+			let users = Workload.find({
+				cardset_id: cardset._id,
+				'leitner.bonus': true
+			}, {fields: {user_id: 1}}).fetch();
 			for (let i = 0; i < users.length; i++) {
 				Workload.update({
 						cardset_id: cardset._id,
