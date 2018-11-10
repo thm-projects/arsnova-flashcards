@@ -2,7 +2,7 @@
   "name": "O: Dokumentation der Entwicklung von .cards (Beispiel für eine Vortragskarte)",
   "description": "Für die Demo-Kartei",
   "date": "2018-08-06T14:57:31.346Z",
-  "dateUpdated": "2018-11-09T20:01:24.643Z",
+  "dateUpdated": "2018-11-10T14:03:17.862Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -44,7 +44,7 @@
   }
 }, {
   "subject": "The Making of 🍅cards",
-  "front": "!!! Tip\n   Vortrag von Curtis Adam im Rahmen des BA-Projektseminars 8/2018:<br /> https://informatik.cards/makingofcards\n\n**Ressourcen und Aktivität: 2015-2018**\n\n![[Git History of the 🍅cards Project](https://git.thm.de/arsnova/flashcards)](https://www.youtube.com/watch?v=I2QyInqi1wA)\n\n\n\n![[OpenHub-Statistiken zu 🍅cards](https://www.openhub.net/p/arsnova-cards\n)](https://arsnova-uploads.mni.thm.de/Demo-Kartei/OpenHub-Statistiken.png width=500)\n\n",
+  "front": "(##) 🍅cards-Entwickler/innen und ihre Commit-Aktivitäten: von August 2015 bis Oktober 2018\n\n![Visualisierung des [Git-Logs](https://git.thm.de/arsnova/flashcards): Zweige = Verzeichnisse, Blätter = Dateien, Strahlen = Commits (erstellt mit [Gource](https://gource.io), [avconv](https://libav.org/avconv.html#Description) und [FFmpeg](https://ffmpeg.org/))](https://www.youtube.com/watch?v=I2QyInqi1wA)\n\n<br>\n\n![[OpenHub-Statistiken zu 🍅cards](https://www.openhub.net/p/arsnova-cards\n)](https://arsnova-uploads.mni.thm.de/Demo-Kartei/OpenHub-Statistiken.png width=500)\n\n",
   "centerTextElement": [
     true,
     false,
@@ -58,7 +58,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2018-11-09T20:01:24.633Z",
+  "dateUpdated": "2018-11-10T14:03:17.842Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
