@@ -26,7 +26,6 @@ Template.admin_main.events({
 	'click #logout_admin': function (event) {
 		event.preventDefault();
 		Meteor.logout();
-		Router.go('home');
 	},
 	'click #notificationsBtn_admin': function () {
 		var notifications = Notifications.find({

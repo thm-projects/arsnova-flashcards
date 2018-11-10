@@ -100,7 +100,7 @@ if (Meteor.isServer) {
 						'daysInRow': 1,
 						'customerId': 1,
 						'blockedtext': 1,
-						"selectedColorTheme": "default",
+						"selectedColorTheme": 1,
 						"selectedLanguage": 1,
 						"mailNotification": 1,
 						"webNotification": 1
@@ -133,7 +133,8 @@ if (Meteor.isServer) {
 						'balance': 1,
 						"mailNotification": 1,
 						"webNotification": 1,
-						"selectedLanguage": 1
+						"selectedLanguage": 1,
+						"selectedColorTheme": 1
 					}
 				});
 		} else {

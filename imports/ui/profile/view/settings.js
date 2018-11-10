@@ -57,9 +57,9 @@ Template.profileSettings.helpers({
 /** Function resets the temporary selected color theme */
 Template.profileSettings.onDestroyed(function () {
 	// Go back to last saved Theme
-	if (Meteor.userId()) {
-		Session.set("theme", Meteor.users.findOne(Meteor.userId()).selectedColorTheme);
-		Session.set("language", Meteor.users.findOne(Meteor.userId()).profile.locale);
+	if (Meteor.user()) {
+		Session.set("theme", Meteor.user().selectedColorTheme);
+		Session.set("language", Meteor.user().profile.locale);
 	}
 });
 

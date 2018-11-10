@@ -120,9 +120,8 @@ $(document).on('click', '.navbar-collapse.in', function (e) {
 Template.main.events({
 	'click .logout': function (event) {
 		event.preventDefault();
-		Meteor.logout();
 		Session.set('helpFilter', undefined);
-		document.location.reload(true);
+		Meteor.logout();
 	},
 	'keyup #input-search': function (event) {
 		event.preventDefault();

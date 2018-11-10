@@ -846,12 +846,16 @@ Router.route('/admin/settings', {
 
 var isSignedIn = function () {
 	CardVisuals.checkFullscreen();
-	if (Meteor.user()) {
-		Route.setFirstTimeVisit();
-	}
 	if (!(Meteor.user() || Meteor.loggingIn())) {
+		if (Session.get('activeLanguage') === undefined) {
+			let language = "de";
+			Session.set('activeLanguage', language);
+			TAPi18n.setLanguage(language);
+		}
+		Session.set('theme', "default");
 		Router.go('home');
 	} else {
+		Route.setFirstTimeVisit();
 		let language;
 		if (Meteor.user() !== undefined) {
 			language = Meteor.user().profile.locale;
