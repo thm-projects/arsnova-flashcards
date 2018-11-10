@@ -239,7 +239,7 @@ Meteor.methods({
 	getSearchCategoriesResult: function (searchValue) {
 		if (!Meteor.userId() || !UserPermissions.isNotBlockedOrFirstLogin()) {
 			throw new Meteor.Error("not-authorized");
-		} else if (searchValue !== undefined && searchValue !== null && searchValue.length > 0) {
+		} else if (searchValue !== undefined && searchValue !== null && searchValue.length > 1) {
 			let query = {};
 
 			if (UserPermissions.isAdmin()) {
