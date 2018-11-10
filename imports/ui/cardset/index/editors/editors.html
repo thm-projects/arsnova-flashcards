@@ -1,52 +1,44 @@
 <template name="cardsetManageEditors">
-    {{#if isInRole 'firstLogin'}}
-        {{> firstLoginContent}}
+    {{#unless isCardsetOwner _id}}
+        {{> accessDenied}}
     {{else}}
-        {{#if isInRole 'blocked'}}
-            {{> access_denied_content_only}}
-        {{else}}
-            {{#unless isCardsetOwner _id}}
-                {{> access_denied_content_only}}
-            {{else}}
-                <div class="container">
-                    <h3 class="modal-title">{{_ "modal-dialog.manageEditors" name = this.name}}</h3>
-                    <div style="overflow-x:auto;">
-                        <table class="table table-striped table-hover table-user-list">
-                            <tbody>
-                            <tr class="active">
-                                <th>{{_ "panel-body.givenname"}}</th>
-                                <th>{{_ "panel-body.birthname"}}</th>
-                                <th>{{_ "panel-body.roles"}}</th>
-                                <th></th>
-                            </tr>
-                            {{#each getEditors}}
-                                <tr>
-                                    <td>{{this.givenname}}</td>
-                                    <td>{{this.birthname}}</td>
-                                    <td> {{getRoles this.roles}}</td>
-                                    <td>
-                                        {{#if isCardsetEditor this.id}}
-                                            <a class="btn btn-block btn-raised btn-danger removeEditor"
-                                               data-id="{{this.id}}">
-                                                <i class="fa fa-minus"></i> {{_ "admin.cardset.removeFromWordcloud"}}
-                                            </a>
-                                        {{else}}
-                                            <a class="btn btn-block btn-raised btn-success addEditor"
-                                               data-id="{{this.id}}">
-                                                <i class="fa fa-plus"></i> {{_ "admin.cardset.addToWordcloud"}}
-                                            </a>
-                                        {{/if}}
-                                    </td>
-                                </tr>
-                            {{/each}}
-                            </tbody>
-                        </table>
-                    </div>
-                    <button class="btn btn-block btn-raised btn-danger" id="backButton">
-                        <span class="pull-left"><i class="fa fa-arrow-left"></i> {{_ "backbutton"}}</span>
-                    </button>
-                </div>
-            {{/unless}}
-        {{/if}}
-    {{/if}}
+        <div class="container">
+            <h3 class="modal-title">{{_ "modal-dialog.manageEditors" name = this.name}}</h3>
+            <div style="overflow-x:auto;">
+                <table class="table table-striped table-hover table-user-list">
+                    <tbody>
+                    <tr class="active">
+                        <th>{{_ "panel-body.givenname"}}</th>
+                        <th>{{_ "panel-body.birthname"}}</th>
+                        <th>{{_ "panel-body.roles"}}</th>
+                        <th></th>
+                    </tr>
+                    {{#each getEditors}}
+                        <tr>
+                            <td>{{this.givenname}}</td>
+                            <td>{{this.birthname}}</td>
+                            <td> {{getRoles this.roles}}</td>
+                            <td>
+                                {{#if isCardsetEditor this.id}}
+                                    <a class="btn btn-block btn-raised btn-danger removeEditor"
+                                       data-id="{{this.id}}">
+                                        <i class="fa fa-minus"></i> {{_ "admin.cardset.removeFromWordcloud"}}
+                                    </a>
+                                {{else}}
+                                    <a class="btn btn-block btn-raised btn-success addEditor"
+                                       data-id="{{this.id}}">
+                                        <i class="fa fa-plus"></i> {{_ "admin.cardset.addToWordcloud"}}
+                                    </a>
+                                {{/if}}
+                            </td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn btn-block btn-raised btn-danger" id="backButton">
+                <span class="pull-left"><i class="fa fa-arrow-left"></i> {{_ "backbutton"}}</span>
+            </button>
+        </div>
+    {{/unless}}
 </template>

@@ -18,7 +18,7 @@ import "../learn/progress.js";
 import "../profile/profile.js";
 import "../admin/admin.js";
 import "../filter/filter.js";
-import "../access_denied/access_denied.js";
+import "../accessDenied/accessDenied.js";
 import "../firstLogin/firstLogin.js";
 import "../editor/editor.js";
 import "../editor/cardEditor.js";

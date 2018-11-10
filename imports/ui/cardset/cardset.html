@@ -1,22 +1,12 @@
 <template name="cardsetAccess">
-    {{#if isInRole 'firstLogin'}}
-        {{> firstLoginContent}}
-    {{else}}
-        {{#if isInRole 'blocked'}}
-            {{> access_denied_content_only}}
+    {{#if hasPermission}}
+        {{#if learningActive}}
+            {{> cardset}}
         {{else}}
-            {{#if hasPermission}}
-                {{#if learningActive}}
-                    {{> cardset}}
-                {{else}}
-                    {{> cardset}}
-                {{/if}}
-            {{else}}
-                <div class="col-md-12">
-                    <h4>{{_ "permission"}}</h4>
-                </div>
-            {{/if}}
+            {{> cardset}}
         {{/if}}
+    {{else}}
+        {{> accessDenied}}
     {{/if}}
 </template>
 

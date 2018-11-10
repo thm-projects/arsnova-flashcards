@@ -1,16 +1,8 @@
 <template name="presentation">
-    {{#if isInRole 'firstLogin'}}
-        {{> firstLoginContent}}
+    {{#if hasPermission}}
+        {{> presentationView}}
     {{else}}
-        {{#if isInRole 'blocked'}}
-            {{> access_denied_content_only}}
-        {{else}}
-            {{#if hasPermission}}
-                {{> presentationView}}
-            {{else}}
-                <h4>{{_ "permission"}}</h4>
-            {{/if}}
-        {{/if}}
+        {{> accessDenied}}
     {{/if}}
 </template>
 

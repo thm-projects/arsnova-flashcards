@@ -1,39 +1,31 @@
 <template name="filterIndex">
-    {{#if isInRole 'firstLogin'}}
-        {{> firstLoginContent}}
-    {{else}}
-        {{#if isInRole 'blocked'}}
-            {{> access_denied_content_only}}
-        {{else}}
-            {{> showLicense}}
-            {{#if isActiveRoute regex='alldecks|repetitorium'}}
-                {{> cardsetFormAdmin}}
-            {{/if}}
-            {{#if isActiveRoute regex='alldecks|create'}}
-                {{> cardsetDeleteForm}}
-                {{> cardsetForm}}
-                {{> filterIndexCreate}}
-            {{/if}}
+    {{> showLicense}}
+    {{#if isActiveRoute regex='alldecks|repetitorium'}}
+        {{> cardsetFormAdmin}}
+    {{/if}}
+    {{#if isActiveRoute regex='alldecks|create'}}
+        {{> cardsetDeleteForm}}
+        {{> cardsetForm}}
+        {{> filterIndexCreate}}
+    {{/if}}
 
-            {{#if isActiveRoute regex='repetitorium'}}
-                {{> cardsetDeleteForm}}
-                {{> cardsetForm}}
-                {{> filterIndexRepetitorium}}
-            {{/if}}
+    {{#if isActiveRoute regex='repetitorium'}}
+        {{> cardsetDeleteForm}}
+        {{> cardsetForm}}
+        {{> filterIndexRepetitorium}}
+    {{/if}}
 
-            {{#if isActiveRoute 'learn'}}
-                {{> filterIndexWorkload}}
-            {{/if}}
+    {{#if isActiveRoute 'learn'}}
+        {{> filterIndexWorkload}}
+    {{/if}}
 
-            {{#if isActiveRoute 'shuffle'}}
-                {{> cardsetForm}}
-                {{> filterIndexShuffle}}
-            {{/if}}
+    {{#if isActiveRoute 'shuffle'}}
+        {{> cardsetForm}}
+        {{> filterIndexShuffle}}
+    {{/if}}
 
-            {{#if isActiveRoute 'pool'}}
-                {{> filterIndexPool}}
-            {{/if}}
-        {{/if}}
+    {{#if isActiveRoute 'pool'}}
+        {{> filterIndexPool}}
     {{/if}}
 </template>
 

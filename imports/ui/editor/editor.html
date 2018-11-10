@@ -30,7 +30,8 @@
             {{#if isMobilePreviewActive}}
                 <div class="mobilePreviewContainer">
                     <div class="mobilePreviewFrame {{#if isMobilePreviewRotated}}portrait{{else}}landscape{{/if}}">
-                        <div class="mobilePreviewContent {{#if isMobilePreviewRotated}}portrait{{else}}landscape{{/if}}">
+                        <div class="mobilePreviewContent {{#if
+                                isMobilePreviewRotated}}portrait{{else}}landscape{{/if}}">
                             {{> flashcardSidebar}}
                             {{> presentationView}}
                         </div>
@@ -44,33 +45,17 @@
 </template>
 
 <template name="newCard">
-    {{#if isInRole 'firstLogin'}}
-        {{> firstLoginContent}}
+    {{#if isCardsetOwner this._id}}
+        {{> editor}}
     {{else}}
-        {{#if isInRole 'blocked'}}
-            {{> access_denied_content_only}}
-        {{else}}
-            {{#if isCardsetOwner this._id}}
-                {{> editor}}
-            {{else}}
-                <h4>{{_ "permission"}}</h4>
-            {{/if}}
-        {{/if}}
+        <h4>{{_ "permission"}}</h4>
     {{/if}}
 </template>
 
 <template name="editCard">
-    {{#if isInRole 'firstLogin'}}
-        {{> firstLoginContent}}
+    {{#if isEditor}}
+        {{> editor}}
     {{else}}
-        {{#if isInRole 'blocked'}}
-            {{> access_denied_content_only}}
-        {{else}}
-            {{#if isEditor}}
-                {{> editor}}
-            {{else}}
-                <h4>{{_ "permission"}}</h4>
-            {{/if}}
-        {{/if}}
+        {{> accessDenied}}
     {{/if}}
 </template>

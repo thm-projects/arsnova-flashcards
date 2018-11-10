@@ -32,6 +32,11 @@ Router.route('/firstLogin', {
 	template: 'firstLoginContent'
 });
 
+Router.route('/accessDenied', {
+	name: 'accessDenied',
+	template: 'accessDenied'
+});
+
 Router.route('/home', {
 	name: 'home',
 	template: 'welcome',
@@ -857,6 +862,9 @@ var isSignedIn = function () {
 		Session.set('activeLanguage', language);
 		if (Roles.userIsInRole(Meteor.userId(), ['firstLogin'])) {
 			Router.go('firstLogin');
+		}
+		if (Roles.userIsInRole(Meteor.userId(), ['blocked'])) {
+			Router.go('accessDenied');
 		}
 		this.next();
 	}
