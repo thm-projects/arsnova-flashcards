@@ -33,9 +33,9 @@ export class WebNotifier {
 				deadline = new Date(active.currentDate.getTime() + cardset.daysBeforeReset * 86400000);
 			}
 			if (deadline.getTime() > cardset.learningEnd.getTime()) {
-				return (TAPi18n.__('notifications.deadline', null, Meteor.settings.mail.language) + getDateString(cardset.learningEnd));
+				return getDateString(cardset.learningEnd);
 			} else {
-				return (TAPi18n.__('notifications.deadline', null, Meteor.settings.mail.language) + getDateString(deadline));
+				return getDateString(deadline);
 			}
 		}
 	}
@@ -50,7 +50,7 @@ export class WebNotifier {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			let notifier = new Notifications();
-			let message = TAPi18n.__('notifications.content', null, Meteor.settings.mail.language) + cardset.name + TAPi18n.__('notifications.cards', null, Meteor.settings.mail.language) + notifier.getActiveCardsCount(cardset._id, user_id, testUser) + this.getDeadline(cardset, user_id, testUser);
+			let message = TAPi18n.__('webPushNotifications.content', {cardsetName: cardset.name, cardCount: notifier.getActiveCardsCount(cardset._id, user_id, testUser), deadline: this.getDeadline(cardset, user_id, testUser)}, Meteor.settings.mail.language);
 			Meteor.call("sendPushNotificationsToUser", user_id, message);
 		}
 	}

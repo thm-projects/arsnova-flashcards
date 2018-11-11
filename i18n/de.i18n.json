@@ -269,6 +269,9 @@
   "help": {
     "resetFilter": "Zeige die Hilfe für alle Seiten…"
   },
+  "webPushNotifications": {
+    "content": "Kartei: __cardsetName__\nKarten: __cardCount__\nFrist: __deadline__"
+  },
   "notifications": {
     "title": "Nachrichten",
     "clearAll": "Leeren",
@@ -283,11 +286,7 @@
     "reporteduseradmin": "Adminbenachrichtigung (Gemeldete/r Benutzer/in)",
     "reportedcardsetadmin": "Adminbenachrichtigung (Gemeldete Kartei)",
     "lecturer": "Dozenten-Anfrage",
-    "heading": "Aufgaben warten!",
-    "content": "Kartei: ",
-    "deadline": "\nFrist: ",
-    "admin": "Du bist angemeldet als Admin!",
-    "cards": "\nKarten: "
+    "admin": "Du bist angemeldet als Admin!"
   },
   "input-group": {
     "newcarddeck": "Neue Kartei"
