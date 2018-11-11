@@ -40,7 +40,7 @@ export class WebNotifier {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			var notifier = new Notifications();
-			var message = TAPi18n.__('notifications.content') + cardset.name + TAPi18n.__('notifications.cards') + notifier.getActiveCardsCount(cardset._id, user_id) + this.getDeadline(cardset, user_id);
+			var message = TAPi18n.__('notifications.content', null, Meteor.settings.mail.language) + cardset.name + TAPi18n.__('notifications.cards', null, Meteor.settings.mail.language) + notifier.getActiveCardsCount(cardset._id, user_id) + this.getDeadline(cardset, user_id);
 			Meteor.call("sendPushNotificationsToUser", user_id, message);
 		}
 	}
