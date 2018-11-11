@@ -12,10 +12,8 @@ export let CardsetNavigation = class CardsetNavigation {
 			navigator.serviceWorker.getRegistration()
 				.then(function (registration) {
 					return registration.pushManager.getSubscription()
-						.then(function (subscription) {
-							if (!subscription) {
-								return registration.pushManager.subscribe({userVisibleOnly: true});
-							}
+						.then(function () {
+							return registration.pushManager.subscribe({userVisibleOnly: true});
 						});
 				})
 				.then(function (subscription) {
