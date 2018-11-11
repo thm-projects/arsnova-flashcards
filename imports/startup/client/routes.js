@@ -8,7 +8,7 @@ import {Route} from "../../api/route.js";
 import {CardEditor} from "../../api/cardEditor";
 import {Filter} from "../../api/filter";
 import {MarkdeepEditor} from "../../api/markdeepEditor";
-import {CardsetNavigation} from "../../api/cardsetNavigation";
+import {WebPushNotifications} from "../../api/webPushSubscriptions";
 
 let loadingScreenTemplate = 'loadingScreen';
 
@@ -834,7 +834,7 @@ Router.route('/admin/settings', {
 	layoutTemplate: 'admin_main',
 	data: function () {
 		Session.set('helpFilter', undefined);
-		CardsetNavigation.subscribeForPushNotification();
+		WebPushNotifications.subscribeForPushNotification();
 	},
 	action: function () {
 		if (this.ready()) {
