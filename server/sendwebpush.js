@@ -15,16 +15,20 @@ function getDateString(date) {
 export class WebNotifier {
 
 	/** Function returns the deadline text-message depending on if the deadline goes beyond the cardsets learning-phase
-	 *  @param {string} cardset_id - The id of the cardset
+	 *  @param {Object} cardset - The cardset object for the deadline
 	 *  @param {string} user_id - The id of the user
+	 *  @param {string} testUser - id of the test user if the function got called by a test notification
 	 *  @returns {string} - The deadline text-message
 	 * */
-	getDeadline (cardset, user_id) {
+	getDeadline (cardset, user_id, testUser = undefined) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			var active = Leitner.findOne({cardset_id: cardset._id, user_id: user_id, active: true});
-			var deadline = new Date();
+			if (testUser !== undefined) {
+				user_id = testUser;
+			}
+			let active = Leitner.findOne({cardset_id: cardset._id, user_id: user_id, active: true});
+			let deadline = new Date();
 			if (active !== undefined) {
 				deadline = new Date(active.currentDate.getTime() + cardset.daysBeforeReset * 86400000);
 			}
@@ -39,13 +43,14 @@ export class WebNotifier {
 	/** Function creates and sends the Web-Push payload message
 	 *  @param {Object} cardset - The cardset from the active learning-phase
 	 *  @param {string} user_id - The id of the user
+	 *  @param {string} testUser - id of the test user if the function got called by a test notification
 	 * */
-	prepareWeb (cardset, user_id) {
+	prepareWeb (cardset, user_id, testUser = undefined) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			var notifier = new Notifications();
-			var message = TAPi18n.__('notifications.content', null, Meteor.settings.mail.language) + cardset.name + TAPi18n.__('notifications.cards', null, Meteor.settings.mail.language) + notifier.getActiveCardsCount(cardset._id, user_id) + this.getDeadline(cardset, user_id);
+			let notifier = new Notifications();
+			let message = TAPi18n.__('notifications.content', null, Meteor.settings.mail.language) + cardset.name + TAPi18n.__('notifications.cards', null, Meteor.settings.mail.language) + notifier.getActiveCardsCount(cardset._id, user_id, testUser) + this.getDeadline(cardset, user_id, testUser);
 			Meteor.call("sendPushNotificationsToUser", user_id, message);
 		}
 	}
@@ -59,6 +64,6 @@ Meteor.methods({
 		let web = new WebNotifier();
 		let settings = AdminSettings.findOne({name: "testNotifications"});
 		let cardset = Cardsets.findOne({_id: settings.testCardsetID});
-		web.prepareWeb(cardset, settings.target);
+		web.prepareWeb(cardset, settings.target, settings.testUserID);
 	}
 });

@@ -20,9 +20,13 @@ export class Notifications {
 	/** Function returns the amount of cards that the user has to learn from the cardset
 	 *  @param {string} cardset_id - The id of the cardset from which to get the card count from
 	 *  @param {string} user_id - The id of the user
+	 *  @param {string} testUser - id of the test user if the function got called by a test notification
 	 *  @returns {number} - The amount of cards that the user has to learn from the cardset
 	 * */
-	getActiveCardsCount (cardset_id, user_id) {
+	getActiveCardsCount (cardset_id, user_id, testUser = undefined) {
+		if (testUser !== undefined) {
+			user_id = testUser;
+		}
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {

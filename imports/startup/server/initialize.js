@@ -47,7 +47,7 @@ var initTestNotificationsCardset = function () {
 			"userDeleted": false,
 			"learningActive": false,
 			"maxCards": 0,
-			"daysBeforeReset": 0,
+			"daysBeforeReset": 30,
 			"learningStart": (new Date().setFullYear(2017, 9, 5)),
 			"learningEnd": (new Date().setFullYear(2038, 0, 19)),
 			"registrationPeriod": (new Date().setFullYear(2038, 0, 19)),
