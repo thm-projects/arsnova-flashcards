@@ -24,9 +24,9 @@ export class WebNotifier {
 				deadline = new Date(active.currentDate.getTime() + cardset.daysBeforeReset * 86400000);
 			}
 			if (deadline.getTime() > cardset.learningEnd.getTime()) {
-				return (TAPi18n.__('notifications.deadline') + cardset.learningEnd.toLocaleDateString());
+				return (TAPi18n.__('notifications.deadline', null, Meteor.settings.mail.language) + cardset.learningEnd.toLocaleDateString());
 			} else {
-				return (TAPi18n.__('notifications.deadline') + deadline.toLocaleDateString() + TAPi18n.__('notifications.warning'));
+				return (TAPi18n.__('notifications.deadline', null, Meteor.settings.mail.language) + deadline.toLocaleDateString() + TAPi18n.__('notifications.warning', null, Meteor.settings.mail.language));
 			}
 		}
 	}
