@@ -4,6 +4,11 @@ import {Leitner} from "../imports/api/learned.js";
 import {AdminSettings} from "../imports/api/adminSettings.js";
 import {Cardsets} from "../imports/api/cardsets.js";
 
+function getDateString(date) {
+	let dateFormat = "D. MMMM YYYY";
+	return moment(date).locale(Meteor.settings.mail.language).format(dateFormat);
+}
+
 /**
  * Class used for generating the text of web-push notifications
  */
@@ -24,9 +29,9 @@ export class WebNotifier {
 				deadline = new Date(active.currentDate.getTime() + cardset.daysBeforeReset * 86400000);
 			}
 			if (deadline.getTime() > cardset.learningEnd.getTime()) {
-				return (TAPi18n.__('notifications.deadline', null, Meteor.settings.mail.language) + cardset.learningEnd.toLocaleDateString());
+				return (TAPi18n.__('notifications.deadline', null, Meteor.settings.mail.language) + getDateString(cardset.learningEnd));
 			} else {
-				return (TAPi18n.__('notifications.deadline', null, Meteor.settings.mail.language) + deadline.toLocaleDateString() + TAPi18n.__('notifications.warning', null, Meteor.settings.mail.language));
+				return (TAPi18n.__('notifications.deadline', null, Meteor.settings.mail.language) + getDateString(deadline) + TAPi18n.__('notifications.warning', null, Meteor.settings.mail.language));
 			}
 		}
 	}
