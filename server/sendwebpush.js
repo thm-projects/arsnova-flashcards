@@ -35,7 +35,7 @@ export class WebNotifier {
 			if (deadline.getTime() > cardset.learningEnd.getTime()) {
 				return (TAPi18n.__('notifications.deadline', null, Meteor.settings.mail.language) + getDateString(cardset.learningEnd));
 			} else {
-				return (TAPi18n.__('notifications.deadline', null, Meteor.settings.mail.language) + getDateString(deadline) + TAPi18n.__('notifications.warning', null, Meteor.settings.mail.language));
+				return (TAPi18n.__('notifications.deadline', null, Meteor.settings.mail.language) + getDateString(deadline));
 			}
 		}
 	}
