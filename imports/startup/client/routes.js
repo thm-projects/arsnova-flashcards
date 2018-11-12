@@ -1,11 +1,9 @@
 import {Cardsets} from "../../api/cardsets.js";
-import {Cards} from "../../api/cards.js";
 import {Leitner, Wozniak} from "../../api/learned";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {CardVisuals} from "../../api/cardVisuals.js";
 import {Route} from "../../api/route.js";
-import {CardEditor} from "../../api/cardEditor";
 import {Filter} from "../../api/filter";
 import {MarkdeepEditor} from "../../api/markdeepEditor";
 import {WebPushNotifications} from "../../api/webPushSubscriptions";
@@ -444,7 +442,6 @@ Router.route('/cardset/:_id/editcard/:card_id', {
 	},
 	data: function () {
 		Session.set('helpFilter', "cardEditor");
-		CardEditor.loadEditModeContent(Cards.findOne({_id: this.params.card_id}));
 	},
 	action: function () {
 		if (this.ready()) {

@@ -7,6 +7,7 @@ import {Cardsets} from "../../api/cardsets";
 import {CardEditor} from "../../api/cardEditor.js";
 import {CardVisuals} from "../../api/cardVisuals";
 import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
+import {Cards} from "../../api/cards";
 
 
 /*
@@ -75,4 +76,5 @@ Template.editCard.onCreated(function () {
 	Session.set('difficultyColor', Cardsets.findOne({_id: Router.current().params._id}).difficulty);
 	Session.set('mobilePreview', 1);
 	Session.set('mobilePreviewRotated', 0);
+	CardEditor.loadEditModeContent(Cards.findOne({_id: Router.current().params.card_id}));
 });
