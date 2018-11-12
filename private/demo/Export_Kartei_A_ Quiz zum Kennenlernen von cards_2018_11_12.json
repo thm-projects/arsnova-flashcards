@@ -2,7 +2,7 @@
   "name": "A: Quiz zum Kennenlernen von 🍅cards",
   "description": "Die Quizfragen sind Teil der Demo-Kartei auf der 🍅cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2018-11-11T12:34:49.447Z",
+  "dateUpdated": "2018-11-12T11:04:04.270Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -13,7 +13,7 @@
   "reviewer": "undefined",
   "request": false,
   "raterCount": 0,
-  "quantity": 7,
+  "quantity": 8,
   "license": [],
   "userDeleted": false,
   "learningActive": false,
@@ -239,6 +239,37 @@
   "date": "2018-08-11T12:00:07.793Z",
   "dateUpdated": "2018-09-22T17:35:56.732Z",
   "learningIndex": "0",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  }
+}, {
+  "subject": "8. Softwarekosten",
+  "front": "Was **kostet** die Software 🍅cards?",
+  "back": "**Nichts.**\n\n![Lizenz von 🍅cards](https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/GPLv3_Logo.svg/800px-GPLv3_Logo.svg.png width=200) 🍅cards ist eine freie Open-Source-Software unter der [GNU General Public License](https://de.wikipedia.org/wiki/GNU_General_Public_License).\n\nDu kannst 🍅cards auf deinem Laptop installieren und ohne Internet betreiben. Derzeit brauchst du für die Installation noch [gute Linux-Kenntnisse](https://git.thm.de/arsnova/flashcards/blob/staging/README.md). Demnächst kann das aber auch ein Laie mit wenigen Mausklicks.\n\nWenn du an der THM lehrst und für deine Studierenden eine eigene Installation im Web gerne hättest, weil du vorhast, viele Karten zu vielen unterschiedlichen Themen zu schreiben, installieren wir 🍅cards für dich auf einem THM-Server. Schreib uns einfach eine Mail, siehe [Impressum](https://thm.cards/impressum).\n\nIn diesem Sinne betreiben wir selbst noch eine zweite Instanz von 🍅cards: [Linux.cards](https://linux.cards). Diese Lernkartei-Plattform bereitet auf die [LPI-Zertifizierungsprüfungen](https://www.lpice.eu/de/unsere-zertifizierungen/) vor.",
+  "centerTextElement": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "alignType": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "date": "2018-11-12T10:05:45.855Z",
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "dateUpdated": "2018-11-12T11:04:04.250Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
