@@ -89,30 +89,41 @@ export let CardNavigation = class CardNavigation {
 	}
 
 	static getCardSideNavigationLength () {
-		return $(".cardNavigation a").length;
+		return $(".cardNavigation:first a").length;
 	}
 
 	static getCardSideNavigationIndex () {
-		return ($(".card-navigation-active").index(".cardNavigation a")) + 1;
+		return ($(".card-navigation-active").index(".cardNavigation:first a")) + 1;
 	}
 
 	static cardSideNavigation (forward = true) {
 		let navigationLength = this.getCardSideNavigationLength();
 		let index = this.getCardSideNavigationIndex();
+		let editorButtonIndex = CardEditor.getEditorButtons().indexOf(CardEditor.getCardNavigationName());
 		if (forward) {
 			if (index >= navigationLength) {
 				index = 1;
+				if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
+					++editorButtonIndex;
+				}
 			} else {
 				++index;
 			}
 		} else {
 			if (index <= 1) {
 				index = navigationLength;
+				if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
+					--editorButtonIndex;
+				}
 			} else {
 				--index;
 			}
 		}
-		this.selectButton(index);
+		if (CardEditor.getEditorButtons()[editorButtonIndex] !== CardEditor.getCardNavigationName() && Route.isEditMode() && !CardVisuals.isFullscreen()) {
+			CardEditor.setEditorButtonIndex(editorButtonIndex);
+		} else {
+			this.selectButton(index);
+		}
 	}
 
 	static switchCard (updateLearningMode = 0, answeredCard = 0, answer = 0) {
@@ -282,8 +293,11 @@ export let CardNavigation = class CardNavigation {
 		CardVisuals.toggleZoomContainer(true);
 		if (!$('#input-search').is(":focus") && !$('#lightbox').is(":visible") && keyEventsUnlocked) {
 			keyEventsUnlocked = false;
-			if (Route.isCardset() || Route.isBox() || Route.isMemo() || Route.isEditMode()) {
+			if (Route.isCardset() || Route.isBox() || Route.isMemo()) {
 				keyCodes = [9];
+			}
+			if (Route.isEditMode()) {
+				keyCodes = [9, 37, 39];
 			}
 			if (Route.isDemo()) {
 				keyCodes = [9, 32, 37, 38, 39, 40];
@@ -294,7 +308,11 @@ export let CardNavigation = class CardNavigation {
 			if (keyCodes.indexOf(event.keyCode) > -1) {
 				switch (event.keyCode) {
 					case 9:
-						CardNavigation.cardSideNavigation();
+						if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
+							CardEditor.setEditorButtonFocus();
+						} else {
+							CardNavigation.cardSideNavigation();
+						}
 						break;
 					case 32:
 						if (CardNavigation.isVisible()) {
@@ -310,14 +328,20 @@ export let CardNavigation = class CardNavigation {
 						}
 						break;
 					case 37:
-						if (CardNavigation.isVisible()) {
-							if ($('#leftCarouselControl').click()) {
-								$('#showHintModal').modal('hide');
-								$('body').removeClass('modal-open');
-								$('.modal-backdrop').remove();
+						if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
+							if (CardEditor.getEditorButtons()[CardEditor.getEditorButtonIndex() - 1] === CardEditor.getLearningGoalLevelGroupName()) {
+								CardEditor.setLearningGoalLevel(false);
 							}
-							if (Session.get('isQuestionSide')) {
-								CardNavigation.skipAnswer(false);
+						} else {
+							if (CardNavigation.isVisible()) {
+								if ($('#leftCarouselControl').click()) {
+									$('#showHintModal').modal('hide');
+									$('body').removeClass('modal-open');
+									$('.modal-backdrop').remove();
+								}
+								if (Session.get('isQuestionSide')) {
+									CardNavigation.skipAnswer(false);
+								}
 							}
 						}
 						break;
@@ -325,14 +349,20 @@ export let CardNavigation = class CardNavigation {
 						CardNavigation.scrollCardContent(false);
 						break;
 					case 39:
-						if (CardNavigation.isVisible()) {
-							if ($('#rightCarouselControl').click()) {
-								$('#showHintModal').modal('hide');
-								$('body').removeClass('modal-open');
-								$('.modal-backdrop').remove();
+						if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
+							if (CardEditor.getEditorButtons()[CardEditor.getEditorButtonIndex() - 1] === CardEditor.getLearningGoalLevelGroupName()) {
+								CardEditor.setLearningGoalLevel();
 							}
-							if (Session.get('isQuestionSide')) {
-								CardNavigation.skipAnswer();
+						} else {
+							if (CardNavigation.isVisible()) {
+								if ($('#rightCarouselControl').click()) {
+									$('#showHintModal').modal('hide');
+									$('body').removeClass('modal-open');
+									$('.modal-backdrop').remove();
+								}
+								if (Session.get('isQuestionSide')) {
+									CardNavigation.skipAnswer();
+								}
 							}
 						}
 						break;

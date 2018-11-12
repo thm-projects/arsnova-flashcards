@@ -8,8 +8,89 @@ import {BertAlertVisuals} from "./bertAlertVisuals";
 
 const subjectMaxLength = 255;
 const contentMaxLength = 300000;
+let editorButtonIndex = 0;
+let editorButtons = [];
+let cardNavigationName = ".cardNavigation";
+let learningGoalLevelGroupName = '#learningGoalLevelGroup .active';
+let firstCardNavigationCall = false;
 
 export let CardEditor = class CardEditor {
+
+	static initializeEditorButtons () {
+		editorButtonIndex = 0;
+		editorButtons = [];
+		editorButtons.push('#subjectEditor');
+		if ($('#learningGoalLevelGroup').length) {
+			editorButtons.push(learningGoalLevelGroupName);
+		}
+		editorButtons.push(cardNavigationName);
+		editorButtons.push('#cardSave');
+		editorButtons.push('#cardSaveReturn');
+		editorButtons.push('#cardCancel');
+		this.setEditorButtonFocus();
+	}
+
+	static getEditorButtons () {
+		return editorButtons;
+	}
+
+	static getEditorButtonIndex () {
+		return editorButtonIndex;
+	}
+
+	static getCardNavigationName () {
+		return cardNavigationName;
+	}
+
+	static getLearningGoalLevelGroupName () {
+		return learningGoalLevelGroupName;
+	}
+
+	static setLearningGoalLevel (forward = true) {
+		let navigationLength = $('#learningGoalLevelGroup:first label').length;
+		let index = ($(".active").index("#learningGoalLevelGroup:first label")) + 1;
+		if (forward) {
+			if (index >= navigationLength) {
+				index = 1;
+			} else {
+				++index;
+			}
+		} else {
+			if (index <= 1) {
+				index = navigationLength;
+			} else {
+				--index;
+			}
+		}
+		--index;
+		$("#learningGoalLevel" + index).click();
+	}
+
+	static setEditorButtonIndex (index) {
+		editorButtonIndex = index;
+		this.setEditorButtonFocus();
+	}
+
+	static setEditorButtonFocus () {
+		if (editorButtons[editorButtonIndex] === cardNavigationName) {
+			if (firstCardNavigationCall) {
+				CardNavigation.setActiveNavigationButton(0);
+				firstCardNavigationCall = false;
+			}
+			CardNavigation.cardSideNavigation();
+		} else {
+			$(editorButtons[editorButtonIndex]).focus();
+			if (editorButtonIndex < (editorButtons.length - 1)) {
+				editorButtonIndex++;
+			} else {
+				editorButtonIndex = 0;
+			}
+			if (editorButtons[editorButtonIndex] === cardNavigationName) {
+				firstCardNavigationCall = true;
+			}
+		}
+	}
+
 	static getMaxTextLength (type) {
 		switch (type) {
 			case 1:

@@ -8,7 +8,6 @@ import {Cardsets} from "../../api/cardsets";
 import {CardEditor} from "../../api/cardEditor.js";
 import {Route} from "../../api/route.js";
 
-
 /*
  * ############################################################################
  * selectLearningUnit
@@ -99,8 +98,12 @@ Template.subjectEditor.helpers({
 });
 
 Template.subjectEditor.events({
+	'click #subjectEditor': function () {
+		CardEditor.setEditorButtonIndex(0);
+	},
 	'input #subjectEditor': function () {
 		$('#subjectEditor').css('border', 0);
+		CardEditor.setEditorButtonIndex(0);
 		Session.set('subject', $('#subjectEditor').val());
 	},
 	'click .subjectEditorButton': function () {
@@ -130,6 +133,7 @@ Template.learningGoalLevel.helpers({
 
 Template.learningGoalLevel.events({
 	'click #learningGoalLevelGroup': function (event) {
+		CardEditor.setEditorButtonIndex(1);
 		Session.set('learningGoalLevel', Number($(event.target).data('lvl')));
 	}
 });

@@ -49,6 +49,7 @@ Template.editor.onRendered(function () {
 	new ResizeSensor($('#preview'), function () {
 		CardVisuals.resizeFlashcard();
 	});
+	CardEditor.initializeEditorButtons();
 });
 
 /*
