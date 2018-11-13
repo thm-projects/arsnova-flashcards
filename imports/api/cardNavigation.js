@@ -297,7 +297,11 @@ export let CardNavigation = class CardNavigation {
 				keyCodes = [9];
 			}
 			if (Route.isEditMode()) {
-				keyCodes = [9, 37, 39];
+				if ($('.learningGoalLevelButton').is(":focus")) {
+					keyCodes = [9, 37, 39];
+				} else {
+					keyCodes = [9];
+				}
 			}
 			if (Route.isDemo()) {
 				keyCodes = [9, 32, 37, 38, 39, 40];
@@ -329,9 +333,7 @@ export let CardNavigation = class CardNavigation {
 						break;
 					case 37:
 						if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
-							if (CardEditor.getEditorButtons()[CardEditor.getEditorButtonIndex() - 1] === CardEditor.getLearningGoalLevelGroupName()) {
-								CardEditor.setLearningGoalLevel(false);
-							}
+							CardEditor.setLearningGoalLevel(false);
 						} else {
 							if (CardNavigation.isVisible()) {
 								if ($('#leftCarouselControl').click()) {
@@ -350,9 +352,7 @@ export let CardNavigation = class CardNavigation {
 						break;
 					case 39:
 						if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
-							if (CardEditor.getEditorButtons()[CardEditor.getEditorButtonIndex() - 1] === CardEditor.getLearningGoalLevelGroupName()) {
-								CardEditor.setLearningGoalLevel();
-							}
+							CardEditor.setLearningGoalLevel();
 						} else {
 							if (CardNavigation.isVisible()) {
 								if ($('#rightCarouselControl').click()) {
