@@ -175,6 +175,10 @@ $zoom_slider_handle_offset: -25px;
 //loading screen
 $loading_screen_size: 150px;
 
+//blur
+$blur_hide_answer_question: 16px;
+
+
 html {
   position: relative;
   min-height: 100%;
@@ -967,4 +971,16 @@ th {
 
 #showLicenseModal {
   z-index: 1060;
+}
+
+#cardSettingsModal {
+  z-index: 9000;
+}
+
+.blurHideAnswerQuestion {
+  -webkit-filter: blur($blur_hide_answer_question);
+  -moz-filter: blur($blur_hide_answer_question);
+  -o-filter: blur($blur_hide_answer_question);
+  -ms-filter: blur($blur_hide_answer_question);
+  filter: blur($blur_hide_answer_question);
 }

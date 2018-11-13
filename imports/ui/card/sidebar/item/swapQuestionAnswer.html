@@ -1,0 +1,8 @@
+<template name="cardSidebarItemSwapQuestionAnswer">
+    {{#if gotCardTypesWithSwapAnswerQuestionButton}}
+        <i class="card-button cardHeaderItem fa swapQuestionAnswer fa fa-exchange {{#if
+                questionAnswerSwapped}}pressed{{/if}}"
+           data-type="cardNavigation"
+           title="{{getTooltip}}"></i>
+    {{/if}}
+</template>

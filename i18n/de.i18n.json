@@ -1226,6 +1226,11 @@
       "showHelp": "",
       "arsnovaApp": "Befrage dein Publikum mit unserem Audience-Response-System ARSnova auf arsnova.thm.de",
       "arsnovaClick": "Befrage dein Publikum mit arsnova.click, der spielbasierten Variante von ARSnova",
+      "swapQuestionAnswer": {
+        "normal": "Zeige die Antwort zuerst",
+        "shuffled": "Zeige die Antwort zuerst für die Karteitypen: __cardTypes__",
+        "listSeparator": ", "
+      },
       "markdeepEditor": {
         "help": "Zeige alle Formatierungsoptionen von Markdeep",
         "center": "Zentriere den Karteninhalt vertikal",
@@ -1237,6 +1242,17 @@
         "dictionaryGoogle": "Zeige den übersetzten Karteninhalt auf Google Translate an",
         "style": "Ändere den Hintergrund der Karte (liniert oder blanko)",
         "fullscreen": "Mit der Taste ESC (oben links) kommst du wieder in die Normalansicht."
+      }
+    }
+  },
+  "swapQuestionAnswer": {
+    "modal": {
+      "title": "Karten rückwärts lernen?",
+      "normal": "Möchtest du die Kartei rückwärts lernen?",
+      "shuffled": "Möchtest du die Karten folgender Karteitypen rückwärts lernen?<br> <b>__cardTypes__</b>",
+      "button": {
+        "forward": "Vorwärts lernen",
+        "backward": "Rückwärts lernen"
       }
     }
   },

@@ -1,0 +1,21 @@
+<template name="cardSettingsModal">
+    <div class="modal fade" id="cardSettingsModal" tabindex="-1" role="dialog" aria-labelledby="cardSettingsModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="cardSettings" class="modal-title">{{_ "swapQuestionAnswer.modal.title"}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    {{{getText}}}
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-raised btn-success"
+                            id="cardSettingsForward">{{_ "swapQuestionAnswer.modal.button.forward"}}</button>
+                    <button class="btn btn-raised btn-success"
+                            id="cardSettingsBackward">{{_ "swapQuestionAnswer.modal.button.backward"}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

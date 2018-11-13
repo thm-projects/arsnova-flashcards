@@ -203,7 +203,7 @@ export let CardVisuals = class CardVisuals {
 			style = Session.get('activeCardStyle');
 		} else {
 			let cubeSides = CardType.getCardTypeCubeSides(cardType);
-			style = cubeSides[0].defaultStyle;
+			style = CardType.getActiveSideData(cubeSides, cardType, 1);
 		}
 		if (style === "default") {
 			if (!CardType.gotDifficultyLevel(cardType)) {

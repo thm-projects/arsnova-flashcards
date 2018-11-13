@@ -28,7 +28,6 @@ Template.cardNavigation.onCreated(function () {
 	if (Session.get('fullscreen') && !Route.isPresentationOrDemo()) {
 		CardVisuals.toggleFullscreen();
 	}
-	Session.set('reverseViewOrder', false);
 	CardNavigation.toggleVisibility(true);
 });
 
@@ -51,7 +50,7 @@ Template.cardNavigationEnabled.helpers({
 });
 
 Template.cardNavigationEnabled.onRendered(function () {
-	CardNavigation.selectButton(1);
+	CardNavigation.selectButton();
 	CardVisuals.setSidebarPosition();
 });
 
@@ -74,7 +73,11 @@ Template.cardNavigationEnabledAnswer.helpers({
 });
 
 Template.cardNavigationEnabledAnswer.onRendered(function () {
-	CardNavigation.selectButton(Session.get('answerFocus'));
+	if (Session.get('swapAnswerQuestion') && CardType.isCardTypesWithSwapAnswerQuestionButton(Session.get('cardType'))) {
+		CardNavigation.selectButton();
+	} else {
+		CardNavigation.selectButton(Session.get('answerFocus'));
+	}
 });
 
 /*
@@ -91,12 +94,16 @@ Template.cardNavigationEnabledQuestion.events({
 
 Template.cardNavigationEnabledQuestion.helpers({
 	getCardTypeSides: function () {
-		return CardNavigation.filterNavigation(CardType.getCardTypeCubeSides(Session.get('cardType')), false);
+		if (Session.get('swapAnswerQuestion') && CardType.isCardTypesWithSwapAnswerQuestionButton(Session.get('cardType'))) {
+			return CardNavigation.filterNavigation(CardType.getCardTypeCubeSides(Session.get('cardType')), true);
+		} else {
+			return CardNavigation.filterNavigation(CardType.getCardTypeCubeSides(Session.get('cardType')));
+		}
 	}
 });
 
 Template.cardNavigationEnabledQuestion.onRendered(function () {
-	CardNavigation.selectButton(1);
+	CardNavigation.selectButton();
 });
 
 /*
@@ -148,4 +155,14 @@ Template.cardArrowNavigation.events({
 		CardVisuals.toggleZoomContainer(true);
 		CardNavigation.switchCard();
 	}
+});
+
+/*
+ * ############################################################################
+ * cardNavigationDisabled
+ * ############################################################################
+ */
+
+Template.cardNavigationDisabled.onCreated(function () {
+	CardNavigation.checkIfReset();
 });

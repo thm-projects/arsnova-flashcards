@@ -1,0 +1,69 @@
+import {Template} from "meteor/templating";
+import {CardType} from "../../../../api/cardTypes";
+import {Cardsets} from "../../../../api/cardsets";
+import {Route} from "../../../../api/route";
+import {Session} from "meteor/session";
+import {CardNavigation} from "../../../../api/cardNavigation";
+import "./swapQuestionAnswer.html";
+
+Session.setDefault('swapAnswerQuestion', 0);
+
+/*
+ * ############################################################################
+ * cardSidebarItemSwapQuestionAnswer
+ * ############################################################################
+ */
+
+Template.cardSidebarItemSwapQuestionAnswer.onCreated(function () {
+	Session.set('swapAnswerQuestion', 0);
+	CardNavigation.resetNavigation();
+});
+
+Template.cardSidebarItemSwapQuestionAnswer.onDestroyed(function () {
+	Session.set('swapAnswerQuestion', 0);
+});
+
+Template.cardSidebarItemSwapQuestionAnswer.onRendered(function () {
+	if (!Route.isDemo() && CardType.gotCardTypesWithSwapAnswerQuestionButton(Router.current().params._id)) {
+		$('#cardSettingsModal').modal('show');
+		$('.carousel-inner .item .cardContent').addClass('blurHideAnswerQuestion');
+		$('#cardSettingsModal').on('hidden.bs.modal', function () {
+			$('.carousel-inner .item .cardContent').removeClass('blurHideAnswerQuestion');
+		});
+	}
+});
+
+Template.cardSidebarItemSwapQuestionAnswer.helpers({
+	gotCardTypesWithSwapAnswerQuestionButton: function () {
+		if (Route.isDemo()) {
+			return CardType.gotCardTypesWithSwapAnswerQuestionButton(Cardsets.findOne({
+				name: "DemoCardset",
+				kind: "demo",
+				shuffled: true
+			})._id);
+		} else {
+			return CardType.gotCardTypesWithSwapAnswerQuestionButton(Router.current().params._id);
+		}
+	},
+	questionAnswerSwapped: function () {
+		return Session.get('swapAnswerQuestion');
+	},
+	getTooltip: function () {
+		if (Route.isDemo() || Cardsets.findOne({_id: Router.current().params._id}).shuffled) {
+			return TAPi18n.__('card.tooltip.swapQuestionAnswer.shuffled', {cardTypes: CardType.getCardTypesWithSwapAnswerQuestionTooltip()});
+		} else {
+			return TAPi18n.__('card.tooltip.swapQuestionAnswer.normal');
+		}
+	}
+});
+
+Template.cardSidebarItemSwapQuestionAnswer.events({
+	"click .swapQuestionAnswer": function () {
+		if (Session.get('swapAnswerQuestion')) {
+			Session.set('swapAnswerQuestion', 0);
+		} else {
+			Session.set('swapAnswerQuestion', 1);
+		}
+		CardNavigation.resetNavigation();
+	}
+});

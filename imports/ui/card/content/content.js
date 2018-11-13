@@ -200,18 +200,18 @@ Template.cardContentActive.events({
 Template.cardContentInactive.helpers({
 	isCentered: function () {
 		let cubeSides = CardType.getCardTypeCubeSides(this.cardType);
-		return CardVisuals.isCentered(cubeSides[0].contentId, this.centerTextElement);
+		return CardVisuals.isCentered((CardType.getActiveSideData(cubeSides, this.cardType)), this.centerTextElement);
 	},
 	isLeftAlign: function () {
 		let cubeSides = CardType.getCardTypeCubeSides(this.cardType);
-		return CardVisuals.isLeftAlign(cubeSides[0].contentId, this.alignType);
+		return CardVisuals.isLeftAlign((CardType.getActiveSideData(cubeSides, this.cardType)), this.alignType);
 	},
 	gotContent: function () {
 		if (!Route.isCardset()) {
 			return true;
 		} else {
 			let cubeSides = CardType.getCardTypeCubeSides(this.cardType);
-			switch (cubeSides[0].contentId) {
+			switch (CardType.getActiveSideData(cubeSides, this.cardType)) {
 				case 1:
 					return this.front !== '' && this.front !== undefined;
 				case 2:
@@ -229,7 +229,7 @@ Template.cardContentInactive.helpers({
 	},
 	getContent: function () {
 		let cubeSides = CardType.getCardTypeCubeSides(this.cardType);
-		switch (cubeSides[0].contentId) {
+		switch (CardType.getActiveSideData(cubeSides, this.cardType)) {
 			case 1:
 				return this.front;
 			case 2:
@@ -246,6 +246,6 @@ Template.cardContentInactive.helpers({
 	},
 	getPlaceholder: function () {
 		let cubeSides = CardType.getCardTypeCubeSides(this.cardType);
-		return CardType.getPlaceholderText(cubeSides[0].contentId, this.cardType, this.learningGoalLevel);
+		return CardType.getPlaceholderText((CardType.getActiveSideData(cubeSides, this.cardType)), this.cardType, this.learningGoalLevel);
 	}
 });

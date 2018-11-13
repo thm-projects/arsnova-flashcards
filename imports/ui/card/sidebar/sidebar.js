@@ -3,6 +3,7 @@
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Route} from "../../../api/route";
+import {CardNavigation} from "../../../api/cardNavigation";
 import "./sidebar.html";
 import "./item/arsnovaClick.js";
 import "./item/arsnovaApp.js";
@@ -18,8 +19,7 @@ import "./item/delete.js";
 import "./item/edit.js";
 import "./item/pomodoroButton.js";
 import "./item/help.js";
-import {CardNavigation} from "../../../api/cardNavigation";
-
+import "./item/swapQuestionAnswer.js";
 
 
 /*

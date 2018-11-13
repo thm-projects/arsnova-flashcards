@@ -15,6 +15,7 @@ import '/client/hammer.js';
 import './header/header.js';
 import './content/content.js';
 import './navigation/navigation.js';
+import './modal/settings.js';
 import {BertAlertVisuals} from "../../api/bertAlertVisuals";
 
 /*
@@ -32,7 +33,6 @@ Template.flashcards.onCreated(function () {
 	} else {
 		Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
 	}
-	Session.set('reverseViewOrder', false);
 	Session.set('selectedHint', undefined);
 	Session.set('isQuestionSide', true);
 	if (Session.get('activeCard') === undefined) {
@@ -98,8 +98,8 @@ Template.flashcards.helpers({
 				if (resetData) {
 					let cubeSides = CardType.getCardTypeCubeSides(this.cardType);
 					Session.set('cardType', this.cardType);
-					Session.set('activeCardContentId', cubeSides[0].contentId);
-					Session.set('activeCardStyle', cubeSides[0].defaultStyle);
+					Session.set('activeCardContentId', CardType.getActiveSideData(cubeSides, this.cardType));
+					Session.set('activeCardStyle', CardType.getActiveSideData(cubeSides, this.cardType, 1));
 				}
 				return true;
 			}
@@ -173,7 +173,6 @@ Template.flashcardsEmpty.onCreated(function () {
 	if (Session.get('fullscreen')) {
 		CardVisuals.toggleFullscreen();
 	}
-	Session.set('reverseViewOrder', false);
 });
 
 Template.flashcardsEmpty.helpers({

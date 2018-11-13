@@ -1,4 +1,5 @@
 import {Session} from "meteor/session";
+import {Cardsets} from "./cardsets.js";
 
 //0: Lernkartei / Flashcard
 //1: Vokabelkartei / Vocabulary
@@ -25,6 +26,7 @@ let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14,
 let cardTypesWithContrastButton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15];
 let cardTypesWithNotesForDifficultyLevel = [2];
 let cardTypesWithCardsetTitleNavigation = [14];
+let cardTypesWithSwapAnswerQuestionButton = [1, 3, 6];
 let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 15}, {cardType: 3}, {cardType: 6}, {cardType: 13}, {cardType: 12}, {cardType: 11}, {cardType: 5}, {cardType: 1}, {cardType: 10}, {cardType: 7}, {cardType: 4}, {cardType: 8}, {cardType: 9}, {cardType: 14}];
 
 //0: left
@@ -33,6 +35,7 @@ let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 15}, {cardType: 3
 //3: justify
 let defaultTextAlign = 0;
 let defaultCentered = true;
+let swapAnserQuestionCardTypeResult = [];
 
 let cardTypeCubeSides = [
 	//0: Lernkartei / Flashcard
@@ -359,6 +362,37 @@ export let CardType = class CardType {
 		return cardTypesWithDifficultyLevel;
 	}
 
+	static isCardTypesWithSwapAnswerQuestionButton (cardType) {
+		return cardTypesWithSwapAnswerQuestionButton.includes(cardType);
+	}
+
+	/**
+	 *
+	 * @param cubeSides = The cube sides of the card
+	 * @param cardType = The card type
+	 * @param type = 0 = return the content ID, 1 = return the style
+	 * @returns {*}
+	 */
+	static getActiveSideData (cubeSides, cardType, type = 0) {
+		if (Session.get('swapAnswerQuestion') && this.isCardTypesWithSwapAnswerQuestionButton(cardType)) {
+			for (let i = 0, cubeSidesLength = cubeSides.length; i < cubeSidesLength; i++) {
+				if (cubeSides[i].isAnswerFocus) {
+					if (type) {
+						return cubeSides[i].defaultStyle;
+					} else {
+						return cubeSides[i].contentId;
+					}
+				}
+			}
+		} else {
+			if (type) {
+				return cubeSides[0].defaultStyle;
+			} else {
+				return cubeSides[0].contentId;
+			}
+		}
+	}
+
 	static getSortQuery (cardType) {
 		let sortQuery = {};
 		sortQuery.subject = 1;
@@ -388,7 +422,7 @@ export let CardType = class CardType {
 
 	static contentWithLearningGoalPlaceholder (contentId, cardType) {
 		let cubeSides = this.getCardTypeCubeSides(cardType);
-		for (let i = 0; i < cubeSides.length; i++) {
+		for (let i = 0, cubeSidesLength = cubeSides.length; i < cubeSidesLength; i++) {
 			if (cubeSides[i].contentId === contentId) {
 				return cubeSides[i].gotLearningGoalPlaceholder;
 			}
@@ -405,6 +439,55 @@ export let CardType = class CardType {
 
 	static gotCardsetTitleNavigation (cardType) {
 		return cardTypesWithCardsetTitleNavigation.includes(cardType);
+	}
+
+	static gotCardTypesWithSwapAnswerQuestionButton (cardset_id) {
+		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {shuffled: 1, cardGroups: 1, cardType: 1}});
+		if (cardset !== undefined) {
+			swapAnserQuestionCardTypeResult = [];
+			let foundCardset = false;
+			if (cardset.shuffled) {
+				for (let i = 0, cardGroupsLength = cardset.cardGroups.length; i < cardGroupsLength; i++) {
+					let cardType = Cardsets.findOne({_id: cardset.cardGroups[i]}).cardType;
+					if (cardTypesWithSwapAnswerQuestionButton.includes(cardType)) {
+						if (!swapAnserQuestionCardTypeResult.includes(cardType)) {
+							swapAnserQuestionCardTypeResult.push(cardType);
+						}
+						foundCardset = true;
+					}
+				}
+			} else {
+				foundCardset = cardTypesWithSwapAnswerQuestionButton.includes(cardset.cardType);
+				if (foundCardset) {
+					swapAnserQuestionCardTypeResult.push(cardset.cardType);
+				}
+			}
+			return foundCardset;
+		}
+	}
+
+	/**
+	 * Returns a description of all card types that can swap their answer and question
+	 * @param sortMode: 0 = Sort by name, 1 = Sort by card Type Order
+	 * @returns {string}
+	 */
+	static getCardTypesWithSwapAnswerQuestionTooltip (sortMode = 0) {
+		let array = [];
+		if (sortMode === 0) {
+			for (let i = 0, cardTypeLength = swapAnserQuestionCardTypeResult.length; i < cardTypeLength; i++) {
+				array.push(TAPi18n.__('card.cardType' + swapAnserQuestionCardTypeResult[i] + '.name'));
+			}
+			array.sort();
+		} else {
+			for (let i = 0, cardTypesOrderLength = cardTypesOrder.length; i < cardTypesOrderLength; i++) {
+				for (let k = 0, cardTypeLength = swapAnserQuestionCardTypeResult.length; k < cardTypeLength; k++) {
+					if (cardTypesOrder[i].cardType === swapAnserQuestionCardTypeResult[k]) {
+						array.push(TAPi18n.__('card.cardType' + swapAnserQuestionCardTypeResult[k] + '.name'));
+					}
+				}
+			}
+		}
+		return array.join(TAPi18n.__('card.tooltip.swapQuestionAnswer.listSeparator'));
 	}
 
 	static gotLearningModes (cardType) {
@@ -439,8 +522,8 @@ export let CardType = class CardType {
 		let centerTextElement = Array(6).fill(defaultCentered);
 		let textAlignType = Array(6).fill(defaultTextAlign);
 		let cubeSides = this.getCardTypeCubeSides(cardType);
-		for (let i = 0; i < centerTextElement.length; i++) {
-			for (let l = 0; l < cubeSides.length; l++) {
+		for (let i = 0, centerTextElementLength = centerTextElement.length; i < centerTextElementLength; i++) {
+			for (let l = 0, cubeSidesLength = cubeSides.length; l < cubeSidesLength; l++) {
 				if (cubeSides[l].contentId === (i + 1)) {
 					if (cubeSides[l].defaultCentered !== undefined) {
 						centerTextElement[i] = cubeSides[l].defaultCentered;

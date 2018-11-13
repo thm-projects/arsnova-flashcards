@@ -8,9 +8,11 @@ import {CardIndex} from "./cardIndex";
 import {Cards} from "./cards";
 import {Cardsets} from "./cardsets";
 import {SweetAlertMessages} from "./sweetAlert";
+import {CardType} from "./cardTypes";
 
 let keyEventsUnlocked = true;
 let lastActiveCardString = "lastActiveCard";
+let isReset = false;
 
 export let CardNavigation = class CardNavigation {
 
@@ -35,19 +37,23 @@ export let CardNavigation = class CardNavigation {
 		$(".cardNavigation > li:nth-child(" + index + ") a").removeClass('btn-default').addClass('btn-primary').addClass('card-navigation-active');
 	}
 
-	static filterNavigation (cubeSides, mode) {
+	static filterNavigation (cubeSides, mode = undefined) {
 		if (cubeSides === undefined) {
 			return [""];
-		}
-		if (mode === false) {
-			mode = undefined;
 		}
 		let filteredSides = [];
 		let index = 0;
 		for (let i = 0; i < cubeSides.length; i++) {
-			if (cubeSides[i].isAnswer === mode) {
-				cubeSides[i].index = index++;
-				filteredSides.push(cubeSides[i]);
+			if (Session.get('swapAnswerQuestion') && CardType.isCardTypesWithSwapAnswerQuestionButton(Session.get('cardType'))) {
+				if (cubeSides[i].isAnswerFocus !== undefined && cubeSides[i].isAnswerFocus === true) {
+					cubeSides[i].index = index++;
+					filteredSides.push(cubeSides[i]);
+				}
+			} else {
+				if (cubeSides[i].isAnswer === mode) {
+					cubeSides[i].index = index++;
+					filteredSides.push(cubeSides[i]);
+				}
 			}
 		}
 		return filteredSides;
@@ -199,6 +205,18 @@ export let CardNavigation = class CardNavigation {
 		}
 	}
 
+	static resetNavigation () {
+		isReset = true;
+		this.toggleVisibility(false);
+	}
+
+	static checkIfReset () {
+		if (isReset) {
+			isReset = false;
+			this.toggleVisibility(true);
+		}
+	}
+
 	static skipAnswer (scrollRight = true) {
 		if (scrollRight) {
 			$('.scrollRight').addClass('pressed');
@@ -291,7 +309,7 @@ export let CardNavigation = class CardNavigation {
 		let keyCodes = [];
 
 		CardVisuals.toggleZoomContainer(true);
-		if (!$('#input-search').is(":focus") && !$('#lightbox').is(":visible") && keyEventsUnlocked) {
+		if (!$('#input-search').is(":focus") && !$('#lightbox').is(":visible") && !$('#cardSettingsModal').is(":visible") && keyEventsUnlocked) {
 			keyEventsUnlocked = false;
 			if (Route.isCardset() || Route.isBox() || Route.isMemo()) {
 				keyCodes = [9];
