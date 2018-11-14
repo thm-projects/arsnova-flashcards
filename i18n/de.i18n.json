@@ -26,9 +26,9 @@
     }
   },
   "intro": {
-    "about": "Was ist .__lastAppTitle__?",
-    "learnMore": "Erfahre mehr über .__lastAppTitle__ in der Demo-Kartei…",
-    "learnMoreMobile": "Erfahre mehr über .__lastAppTitle__…",
+    "about": "Was ist 🍅__lastAppTitle__?",
+    "learnMore": "Erfahre mehr über 🍅__lastAppTitle__ in der Demo-Kartei…",
+    "learnMoreMobile": "Erfahre mehr über 🍅__lastAppTitle__…",
     "impressum": "Impressum",
     "backButton": "Zurück",
     "backToStartButton": "Zurück zur Startseite"
@@ -296,7 +296,7 @@
     "upload-title": "Karten importieren",
     "upload-card-title-placeholder": "Mnemosyne Import",
     "upload-type": "Dateiformat",
-    "upload-type1": ".__lastAppTitle__",
+    "upload-type1": "🍅__lastAppTitle__",
     "upload-type2": "Mnemosyne",
     "wait": "Dateien werden hochgeladen",
     "select-file": "Datei auswählen",
@@ -336,8 +336,8 @@
   },
   "confirm-form-profile": {
     "title": "Benutzerkonto löschen",
-    "text": "Falls du sicher bist, dass du .__lastAppTitle__ nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto löschen. Alle persönlichen Daten, privaten Karteien  und Repetitorien sowie deine Lernstatistiken werden unwiderruflich gelöscht. Die von dir veröffentlichten Karteien und Repetitorien bleiben erhalten.",
-    "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerkonto löschen\". Du wirst automatisch aus .__lastAppTitle__ abgemeldet."
+    "text": "Falls du sicher bist, dass du 🍅__lastAppTitle__ nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto löschen. Alle persönlichen Daten, privaten Karteien  und Repetitorien sowie deine Lernstatistiken werden unwiderruflich gelöscht. Die von dir veröffentlichten Karteien und Repetitorien bleiben erhalten.",
+    "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerkonto löschen\". Du wirst automatisch aus 🍅__lastAppTitle__ abgemeldet."
   },
   "confirmLearn-form": {
     "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen der Kartei geht hierbei verloren!",
@@ -463,7 +463,7 @@
     "editreferences": "Repetitorium zusammenstellen",
     "name": "Thema",
     "nameplaceholder": "Das Thema der Kartei mit einem Wort",
-    "descriptionplaceholder": "Worum geht es in dieser Kartei? Was soll gelernt werden? Wer ist die Zielgruppe? \n\nThema und Beschreibung der Kartei werden dir überall auf der .__lastAppTitle__-Plattform angezeigt. Um im Bild vom \"Schuhkarton als Zettelkasten\" zu bleiben: Was soll auf dem Etikett am Schuhkarton stehen? \n\nDie Kartei bleibt privat und für andere nicht sichtbar, solange du sie nicht veröffentlichst.",
+    "descriptionplaceholder": "Worum geht es in dieser Kartei? Was soll gelernt werden? Wer ist die Zielgruppe? \n\nThema und Beschreibung der Kartei werden dir überall auf der 🍅__lastAppTitle__-Plattform angezeigt. Um im Bild vom \"Schuhkarton als Zettelkasten\" zu bleiben: Was soll auf dem Etikett am Schuhkarton stehen? \n\nDie Kartei bleibt privat und für andere nicht sichtbar, solange du sie nicht veröffentlichst.",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung",
     "optional": "(Optional)",
@@ -550,7 +550,7 @@
     "settings": {
       "name": "Profil & Konto",
       "delete": "Benutzerkonto löschen",
-      "deleteText": "Falls du sicher bist, dass du .__lastAppTitle__ nicht weiter verwenden möchtest, kannst du hier dein Benutzerkonto löschen.",
+      "deleteText": "Falls du sicher bist, dass du 🍅__lastAppTitle__ nicht weiter verwenden möchtest, kannst du hier dein Benutzerkonto löschen.",
       "appearance": "Einstellungen",
       "theme": "Hintergrundbild",
       "language": "Sprache"
@@ -1435,7 +1435,7 @@
   "clickcart": "Klicke auf die Karte, um sie zu drehen",
   "carddecks": "Karteien",
   "connection": {
-    "title": "Um .__lastAppTitle__ online nutzen zu können, ist eine WebSocket-Verbindung zum Server erforderlich.",
+    "title": "Um 🍅__lastAppTitle__ online nutzen zu können, ist eine WebSocket-Verbindung zum Server erforderlich.",
     "webSocket": "WebSocket-Check",
     "connected": "okay",
     "disconnected": "keine Verbindung"
@@ -1642,8 +1642,8 @@
       "clock": " Uhr",
       "roles": "Benutzerrollen",
       "blocked": "Benutzer/in blockieren",
-      "blockedtext": "Willst du dem User den Zugang zu .__lastAppTitle__ verweigern?",
-      "editortext": "Willst du dem User Admin-Rechte geben? Als Admin User bekommt der User Zugang zum Administrationsbereich und es ist ihm oder ihr erlaubt, alle Inhalte von .__lastAppTitle__ zu bearbeiten.",
+      "blockedtext": "Willst du dem User den Zugang zu 🍅__lastAppTitle__ verweigern?",
+      "editortext": "Willst du dem User Admin-Rechte geben? Als Admin User bekommt der User Zugang zum Administrationsbereich und es ist ihm oder ihr erlaubt, alle Inhalte von 🍅__lastAppTitle__ zu bearbeiten.",
       "blocked_text": "Grund der Sperrung",
       "blockedtext_invalid": "Gib einen Grund für die Sperrung ein!",
       "cancel": "Abbrechen",
@@ -1706,7 +1706,7 @@
   },
   "footer": {
     "language": "Wähle deine Sprache",
-    "info": "Über .__lastAppTitle__",
+    "info": "Über 🍅__lastAppTitle__",
     "connection": "Verbindungsstatus"
   },
   "language": {
