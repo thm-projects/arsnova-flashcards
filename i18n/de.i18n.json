@@ -1227,8 +1227,8 @@
       "arsnovaApp": "Befrage dein Publikum mit unserem Audience-Response-System ARSnova auf arsnova.thm.de",
       "arsnovaClick": "Befrage dein Publikum mit arsnova.click, der spielbasierten Variante von ARSnova",
       "swapQuestionAnswer": {
-        "normal": "Zeige die Antwort zuerst",
-        "shuffled": "Zeige die Antwort zuerst für die Karteitypen: __cardTypes__",
+        "normal": "Zeige die Rückseite zuerst",
+        "shuffled": "Zeige die Rückseite zuerst für die Karteitypen: __cardTypes__",
         "listSeparator": ", "
       },
       "markdeepEditor": {
@@ -1248,11 +1248,11 @@
   "swapQuestionAnswer": {
     "modal": {
       "title": "Karten rückwärts lernen?",
-      "normal": "Möchtest du die Kartei rückwärts lernen?",
+      "normal": "Möchtest du die Kartei rückwärts lernen? <br>Das heißt, soll die Rückseite einer Karte zuerst angezeigt werden?",
       "shuffled": "Möchtest du die Karten folgender Karteitypen rückwärts lernen?<br> <b>__cardTypes__</b>",
       "button": {
-        "forward": "Vorwärts lernen",
-        "backward": "Rückwärts lernen"
+        "forward": "Nein, vorwärts lernen",
+        "backward": "Ja, rückwärts lernen"
       }
     }
   },
