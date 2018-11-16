@@ -1,6 +1,7 @@
 <template name="cardsetNavigation">
     <div class="cardsetInfoFooter panel-footer">
         {{#if hasCardsetPermission}}
+            {{> cardsetNavigationBonus}}
             {{#unless isInBonusAndNotOwner}}
                 {{> cardsetNavigationPresentation}}
             {{/unless}}
@@ -10,15 +11,14 @@
                 {{> cardsetNavigationWorkload}}
             {{/if}}
             {{> cardsetNavigationNewCard}}
-            {{> cardsetNavigationImport}}
             {{> cardsetNavigationEditRepetitorium}}
             {{> cardsetNavigationEditCardset}}
             {{> cardsetNavigationEditLicense}}
             {{> cardsetNavigationPublishCardset}}
-            {{> cardsetNavigationBonus}}
             {{#unless isInBonusAndNotOwner}}
                 {{> cardsetNavigationManage}}
             {{/unless}}
+            {{> cardsetNavigationImport}}
             {{> cardsetNavigationExport}}
             {{> cardsetNavigationDeleteAllCards}}
         {{else}}
