@@ -72,7 +72,10 @@
   position: absolute;
   bottom: 9rem;
   left: 1rem;
-
+  @media (max-width: 767px) {
+    height: 0;
+    width: 0;
+  }
   @media (max-width: 768px) {
     left: 3vw;
   }
