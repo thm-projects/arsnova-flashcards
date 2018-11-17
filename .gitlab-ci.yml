@@ -80,8 +80,8 @@ build:
 chimp:
   stage: chimptest
   only:
-    - staging
     - /^v[0-9]+/
+    - /^[[:digit:]]+?(?=-)/
   tags:
     - nodejs
   allow_failure: true

@@ -18,6 +18,10 @@ module.exports = {
 		if (click) {
 			browser.click('#learnMemo');
 		}
+		browser.waitForVisible('#wozniakHelpConfirm', global.threshold);
+		browser.click('#wozniakHelpConfirm');
+		browser.waitForVisible('#startPom', global.threshold);
+		browser.click('#startPom');
 	},
 	learnBox: function (click = true) {
 		browser.waitForVisible('.learnBtn', global.threshold);
@@ -28,6 +32,10 @@ module.exports = {
 		if (click) {
 			browser.click('#learnBox');
 		}
+		browser.waitForVisible('#leitnerHelpConfirm', global.threshold);
+		browser.click('#leitnerHelpConfirm');
+		browser.waitForVisible('#startPom', global.threshold);
+		browser.click('#startPom');
 	},
 	leitnerProgress: function (click = true) {
 		browser.waitForVisible('.learnBtn', global.threshold);

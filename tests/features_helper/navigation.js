@@ -12,22 +12,26 @@ function setResolution() {
 
 module.exports = {
 	login: function (userLogin) {
-		if (browser.getUrl() === "about:blank") {
-			browser.url(global.baseURL);
-			setResolution();
-			agreeCookies();
-			browser.waitForVisible('#backToStartButton', global.threshold);
-			browser.click("#backToStartButton");
-			userLogin += "Login";
-			browser.waitForVisible('#TestingBackdoorUsername', global.threshold);
-			this.clickElement('#TestingBackdoorUsername', global.threshold);
-			browser.waitForVisible('#' + userLogin);
-			this.clickElement('#' + userLogin);
-			browser.waitForVisible('#BackdoorLogin', global.threshold);
-			this.clickElement('#BackdoorLogin');
-			if (browser.isVisible(".bert-alert")) {
-				this.clickElement(".bert-alert");
-			}
+		browser.url(global.baseURL);
+		setResolution();
+		agreeCookies();
+		browser.waitForVisible('#demoHelpConfirm', global.threshold);
+		browser.click("#demoHelpConfirm");
+		browser.waitForVisible('.toggleFullscreen', global.threshold);
+		browser.click(".toggleFullscreen");
+		browser.waitForVisible('.swal2-confirm', global.threshold);
+		browser.click(".swal2-confirm");
+		browser.waitForVisible('#backToStartButton', global.threshold);
+		browser.click("#backToStartButton");
+		userLogin += "Login";
+		browser.waitForVisible('#TestingBackdoorUsername', global.threshold);
+		this.clickElement('#TestingBackdoorUsername', global.threshold);
+		browser.waitForVisible('#' + userLogin);
+		this.clickElement('#' + userLogin);
+		browser.waitForVisible('#BackdoorLogin', global.threshold);
+		this.clickElement('#BackdoorLogin');
+		if (browser.isVisible(".bert-alert")) {
+			this.clickElement(".bert-alert");
 		}
 	},
 	logout: function () {
@@ -60,8 +64,8 @@ module.exports = {
 	checkCardsetCardQuantity: function () {
 		browser.waitForExist("#collapseCardsetInfoButton", global.threshold);
 		browser.click('#collapseCardsetInfoButton');
-		browser.waitForExist(".cardsetCardQuantity", global.threshold);
-		return browser.getAttribute(".cardsetCardQuantity", "data-quantity");
+		browser.waitForExist(".cardsetCardCount", global.threshold);
+		return browser.getAttribute(".cardsetCardCount", "data-count");
 	},
 	checkUrl: function (url) {
 		browser.waitUntil(function () {
@@ -87,6 +91,10 @@ module.exports = {
 		browser.waitForVisible('.backToCardset', global.threshold);
 		if (click) {
 			browser.click('.backToCardset');
+			browser.waitForVisible('.swal2-cancel', global.threshold);
+			browser.click('.swal2-cancel');
+			browser.waitForVisible('.swal2-confirm', global.threshold);
+			browser.click('.swal2-confirm');
 		}
 	},
 	back: function (click = true) {
@@ -120,8 +128,8 @@ module.exports = {
 		}
 	},
 	compareContent: function (content1, content2, dataType, attribute = 0, isTrue = true) {
-		let errorMessage;
-		let receivedContent;
+		let errorMessage = '';
+		let receivedContent = '';
 		if (dataType < 4) {
 			browser.waitForVisible(content1, global.threshold);
 			errorMessage = 'Expected content of ' + content1 + ' to be ' + content2 + ' but got ';
@@ -131,15 +139,19 @@ module.exports = {
 		browser.waitUntil(function () {
 			switch (dataType) {
 				case 0:
+					browser.waitForVisible(content1, global.threshold);
 					receivedContent = browser.getText(content1);
 					return (receivedContent === content2) === isTrue;
 				case 1:
+					browser.waitForVisible(content1, global.threshold);
 					receivedContent = browser.elements(content1).value.length;
 					return (receivedContent === content2) === isTrue;
 				case 2:
+					browser.waitForVisible(content1, global.threshold);
 					receivedContent = browser.getAttribute(content1, attribute);
 					return (receivedContent === content2) === isTrue;
 				case 3:
+					browser.waitForVisible(content1, global.threshold);
 					receivedContent = browser.getAttribute(content1, attribute);
 					return (parseInt(receivedContent) === parseInt(content2)) === isTrue;
 				case 4:
@@ -147,6 +159,7 @@ module.exports = {
 				case 5:
 					return (parseInt(content1) === parseInt(content2)) === isTrue;
 				case 6:
+					browser.waitForVisible(content1, global.threshold);
 					receivedContent = browser.getText(content1);
 					return (parseInt(receivedContent) === parseInt(content2)) === isTrue;
 			}

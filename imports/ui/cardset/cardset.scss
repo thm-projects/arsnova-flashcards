@@ -329,11 +329,13 @@ $padding-card-list-row: 8px;
 #collapseCardsetInfoButton {
   float: none;
   z-index: 50;
+  cursor: pointer;
 }
 
 #collapseLearningPhaseInfoButton {
   float: none;
   z-index: 50;
+  cursor: pointer;
 }
 
 #collapseLearningPhaseInfo {
