@@ -332,12 +332,12 @@
   "confirm-leave-editors": {
     "btn-txt": "Bearbeitergruppe verlassen",
     "title": "Bearbeitergruppe verlassen",
-    "text": "Willst du deine Berechtigung für die Kartei <strong>\"__name__\"</strong> entfernen?"
+    "text": "Willst du deine Berechtigung für die Kartei <strong>»__name__«</strong> entfernen?"
   },
   "confirm-form-profile": {
     "title": "Benutzerkonto löschen",
     "text": "Falls du sicher bist, dass du 🍅__lastAppTitle__ nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto löschen. Alle persönlichen Daten, privaten Karteien  und Repetitorien sowie deine Lernstatistiken werden unwiderruflich gelöscht. Die von dir veröffentlichten Karteien und Repetitorien bleiben erhalten.",
-    "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche \"Benutzerkonto löschen\". Du wirst automatisch aus 🍅__lastAppTitle__ abgemeldet."
+    "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche »Benutzerkonto löschen«. Du wirst automatisch aus 🍅__lastAppTitle__ abgemeldet."
   },
   "confirmLearn-form": {
     "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen der Kartei geht hierbei verloren!",
@@ -424,7 +424,7 @@
     "filter-info-extra-small": "Sortieren und filtern"
   },
   "set-list-empty": {
-    "emptytextlist": "Du hast noch keine Kartei erstellt. Informiere dich unter \"Hilfe\", was du mit einer eigenen Kartei tun kannst.",
+    "emptytextlist": "Du hast noch keine Kartei erstellt. Informiere dich unter »Hilfe«, was du mit einer eigenen Kartei tun kannst.",
     "emptypooltextlist": "Keine Kartei vorhanden",
     "newset": "Kartei anlegen"
   },
@@ -463,7 +463,7 @@
     "editreferences": "Repetitorium zusammenstellen",
     "name": "Thema",
     "nameplaceholder": "Das Thema der Kartei mit einem Wort",
-    "descriptionplaceholder": "Worum geht es in dieser Kartei? Was soll gelernt werden? Wer ist die Zielgruppe? \n\nThema und Beschreibung der Kartei werden dir überall auf der 🍅__lastAppTitle__-Plattform angezeigt. Um im Bild vom \"Schuhkarton als Zettelkasten\" zu bleiben: Was soll auf dem Etikett am Schuhkarton stehen? \n\nDie Kartei bleibt privat und für andere nicht sichtbar, solange du sie nicht veröffentlichst.",
+    "descriptionplaceholder": "Worum geht es in dieser Kartei? Was soll gelernt werden? Wer ist die Zielgruppe? \n\nThema und Beschreibung der Kartei werden dir überall auf der 🍅__lastAppTitle__-Plattform angezeigt. Um im Bild vom »Schuhkarton als Zettelkasten« zu bleiben: Was soll auf dem Etikett am Schuhkarton stehen? \n\nDie Kartei bleibt privat und für andere nicht sichtbar, solange du sie nicht veröffentlichst.",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung",
     "optional": "(Optional)",
@@ -502,8 +502,8 @@
     "reason": "Grund",
     "reportuser": "Benutzer/in melden",
     "reportcardset": "Kartei melden",
-    "resetLeitner": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Leitner\" für diese Kartei \"__name__\" zurücksetzen?",
-    "resetWozniak": "Möchtest du wirklich deine Lernstatistik im Modus \"Lernen nach Woźniak\" für die Kartei \"__name__\" zurücksetzen?",
+    "resetLeitner": "Möchtest du wirklich deine Lernstatistik im Modus »Lernen nach Leitner« für diese Kartei »__name__« zurücksetzen?",
+    "resetWozniak": "Möchtest du wirklich deine Lernstatistik im Modus »Lernen nach Woźniak« für die Kartei »__name__« zurücksetzen?",
     "text": "Weitere Informationen",
     "text_chars": "Es sind 50 Zeichen erforderlich!",
     "submitcomplaint": "Nachricht absenden",
@@ -511,7 +511,7 @@
     "college_required": "Wähle eine Hochschule",
     "course": "Studiengang",
     "course_required": "Wähle einen Studiengang",
-    "manageEditors": "Bearbeitungsrechte verwalten für die Kartei \"__name__\"",
+    "manageEditors": "Bearbeitungsrechte verwalten für die Kartei »__name__«",
     "module": "Modul",
     "moduleActivated": "Zugehöriges Modul",
     "moduleDeactivated": "Ohne Modul",
@@ -525,7 +525,7 @@
     "moduleShortplaceholder": "Abkürzung des Modultitels",
     "moduleNumplaceholder": "Modulnummer laut Modulhandbuch",
     "moduleLinkplaceholder": "Link zur offiziellen Modulbeschreibung",
-    "deleteCards": "Möchtest du wirklich alle Karten in der Kartei \"__name__\" löschen?",
+    "deleteCards": "Möchtest du wirklich alle Karten in der Kartei »__name__« löschen?",
     "deleteCard": "Möchtest du wirklich die Karte löschen?",
     "cancelEditCard": "Möchtest du wirklich den Bearbeitungsmodus verlassen? Alle nicht gespeicherten Änderungen werden verworfen.",
     "cancelEditCardTitle": "Bearbeitungsmodus verlassen"
@@ -919,17 +919,17 @@
     "name": "Auf welcher Kompetenzstufe soll geprüft werden?",
     "cardName": "Kompetenzstufe",
     "level1": "Verstehen",
-    "level1Placeholder": "Du hast die Kompetenzstufe «Verstehen» gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\nabgrenzen, anordnen, beschreiben, bestimmen, charakterisieren, einordnen, erkennen, erklären, gegenüberstellen.",
+    "level1Placeholder": "Du hast die Kompetenzstufe »Verstehen« gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\nabgrenzen, anordnen, beschreiben, bestimmen, charakterisieren, einordnen, erkennen, erklären, gegenüberstellen.",
     "level2": "Anwenden",
-    "level2Placeholder": "Du hast die Kompetenzstufe «Anwenden» gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\nanwenden, anfertigen, ausführen, abbilden, berechnen, deuten, durchführen, erstellen.",
+    "level2Placeholder": "Du hast die Kompetenzstufe »Anwenden« gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\nanwenden, anfertigen, ausführen, abbilden, berechnen, deuten, durchführen, erstellen.",
     "level3": "Analysieren",
-    "level3Placeholder": "Du hast die Kompetenzstufe «Analysieren» gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\nableiten, analysieren, auswählen, auswerten, Aussagen auf Richtigkeit überprüfen, Bedeutung ermitteln, beweisen, Beziehungen klarlegen, gliedern.",
+    "level3Placeholder": "Du hast die Kompetenzstufe »Analysieren« gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\nableiten, analysieren, auswählen, auswerten, Aussagen auf Richtigkeit überprüfen, Bedeutung ermitteln, beweisen, Beziehungen klarlegen, gliedern.",
     "level4": "Synthetisieren",
-    "level4Placeholder": "Du hast die Kompetenzstufe «Synthetisieren» gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\narrangieren, einordnen, ergänzen, integrieren, planen, Thesen bilden, zusammenfügen, zusammensetzen.",
+    "level4Placeholder": "Du hast die Kompetenzstufe »Synthetisieren« gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\narrangieren, einordnen, ergänzen, integrieren, planen, Thesen bilden, zusammenfügen, zusammensetzen.",
     "level5": "Bewerten",
-    "level5Placeholder": "Du hast die Kompetenzstufe «Bewerten» gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\nabwägen, begründen, beurteilen, beweisen, diskutieren, einschätzen, entscheiden, evaluieren, gewichten.",
+    "level5Placeholder": "Du hast die Kompetenzstufe »Bewerten« gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\nabwägen, begründen, beurteilen, beweisen, diskutieren, einschätzen, entscheiden, evaluieren, gewichten.",
     "level6": "Innovieren",
-    "level6Placeholder": "Du hast die Kompetenzstufe «Innovieren» gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\nerfinden, entdecken, entwerfen, entwickeln, erzeugen, konstruieren, konzipieren, kreieren."
+    "level6Placeholder": "Du hast die Kompetenzstufe »Innovieren« gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\nerfinden, entdecken, entwerfen, entwickeln, erzeugen, konstruieren, konzipieren, kreieren."
   },
   "filter-cards": {
     "filter": "Filtern",
@@ -981,8 +981,8 @@
       "content2": "Übersetzung",
       "placeholders": {
         "subject": "Gib das Thema oder die Sprachsituation an !",
-        "content1": "Gib hier die zu übersetzende Vokabel oder Phrase ein. \n\nSchau dir für einzelne Wörter die Vorschläge aus den Wörterbüchern \"Linguee\" und \"BEOLINGUS\" an, für Texte die Übersetzungen von \"DeepL\" und \"Google Übersetzer\". Klick dazu auf die entsprechenden Buttons in der Kartenvorschau.",
-        "content2": "Schau dir für einzelne Wörter die Vorschläge aus den Wörterbüchern \"Linguee\" und \"BEOLINGUS\" an, für Texte die Übersetzungen von \"DeepL\" und \"Google Übersetzer\". Klick dazu auf die entsprechenden Buttons in der Kartenvorschau."
+        "content1": "Gib hier die zu übersetzende Vokabel oder Phrase ein. \n\nSchau dir für einzelne Wörter die Vorschläge aus den Wörterbüchern »Linguee« und »BEOLINGUS« an, für Texte die Übersetzungen von »DeepL« und »Google Übersetzer«. Klick dazu auf die entsprechenden Buttons in der Kartenvorschau.",
+        "content2": "Schau dir für einzelne Wörter die Vorschläge aus den Wörterbüchern »Linguee« und »BEOLINGUS« an, für Texte die Übersetzungen von »DeepL« und »Google Übersetzer«. Klick dazu auf die entsprechenden Buttons in der Kartenvorschau."
       },
       "editorLabels": {
         "subject": "Thema oder Sprachsituation"
@@ -998,7 +998,7 @@
         "subject": "Gib das Thema der Unterrichtsstunde an !",
         "content1": "Mach ein Foto von deiner Mitschrift und lade es hoch in deine Cloud. Füge es dann hier per direkten Link ein. Überprüfe, ob das Foto in der Kartenvorschau angezeigt wird, eventuell muss du es in deiner Cloud noch freigeben. \n\nÜberarbeite zu Hause deine Mitschrift in diesem Editor auf dem Tab «Nachbearbeitung». Erstelle dann für jedes Teilthema der mitgeschriebenen Vorlesung eine Lernkarte in der Lernkartei zur Veranstaltung.",
         "content2": "Überarbeite deine Mitschrift innerhalb von 36 Stunden. Nutze hierfür die Strukturierungs- und Formatierungsoptionen von Markdeep! \n\nKläre die offenen Fragen, die du dir während der Veranstaltung notiert hast, und arbeite die To-do-Liste ab!",
-        "content3": "Notiere hier, was du in der Veranstaltung nicht verstanden hast, und kläre die offenen Fragen in der Nachbereitungsphase. \n\nSchreibe die offenen Fragen und Hausaufgaben als «Task-Liste» auf! \n\n[] To-do 1 \n  [] To-do 2 \n  [] To-do … \n\nSetze ein \"x\" in die eckigen Klammern, wenn du die Aufgabe erledigt hast."
+        "content3": "Notiere hier, was du in der Veranstaltung nicht verstanden hast, und kläre die offenen Fragen in der Nachbereitungsphase. \n\nSchreibe die offenen Fragen und Hausaufgaben als «Task-Liste» auf! \n\n[] To-do 1 \n  [] To-do 2 \n  [] To-do … \n\nSetze ein »x« in die eckigen Klammern, wenn du die Aufgabe erledigt hast."
       },
       "editorLabels": {
         "subject": "Thema der Unterrichtsstunde"
@@ -1028,7 +1028,7 @@
       "content3": "Quellenangabe",
       "placeholders": {
         "subject": "Gib das Thema des Zitats an !",
-        "content1": "Setze ein wörtliches Zitat in Anführungszeichen, siehe \"Formatiere deinen Text mit Markdeep\".",
+        "content1": "Setze ein wörtliches Zitat in Anführungszeichen, siehe »Formatiere deinen Text mit Markdeep«.",
         "content2": "Zitierte Person",
         "content3": "Quellenangabe"
       },
@@ -1147,8 +1147,8 @@
       "content6": "Literatur",
       "placeholders": {
         "subject": "Wie heißt das Muster ?",
-        "content1": "Bevor du beginnst, recherchiere im Netz, was man unter einem Entwurfsmuster versteht und wie man es formal in strukturierter Prosa beschreibt! Erkunde dich dann eingehend über das hier zu beschreibende Muster. \n\nWelches häufig auftretende allgemeine Problem löst das Muster? \n\nBeschreibe das Muster in allen seinen Aspekten – \"Problem\", \"Kontext\", \"Kräfte\" und \"Lösung\" – so ausführlich, dass du die oben ausgewählte Kompetenzstufe \"Verstehen\", \"Anwenden\" usw. anhand deiner Beschreibung erreichen kannst!",
-        "content2": "Beschreibe die Lösung anhand eines Diagramms, in der Softwaretechnik mit der \"Unified Modeling Language\" (UML). \n\nErkäre an einem Anwendungsbeispiel, wie die Komponenten im Diagramm, ihre Beziehungen und Interaktionen das Problem lösen.",
+        "content1": "Bevor du beginnst, recherchiere im Netz, was man unter einem Entwurfsmuster versteht und wie man es formal in strukturierter Prosa beschreibt! Erkunde dich dann eingehend über das hier zu beschreibende Muster. \n\nWelches häufig auftretende allgemeine Problem löst das Muster? \n\nBeschreibe das Muster in allen seinen Aspekten – »Problem«, »Kontext«, »Kräfte« und »Lösung« – so ausführlich, dass du die oben ausgewählte Kompetenzstufe »Verstehen«, »Anwenden« usw. anhand deiner Beschreibung erreichen kannst!",
+        "content2": "Beschreibe die Lösung anhand eines Diagramms, in der Softwaretechnik mit der »Unified Modeling Language« (UML). \n\nErkäre an einem Anwendungsbeispiel, wie die Komponenten im Diagramm, ihre Beziehungen und Interaktionen das Problem lösen.",
         "content3": "In welcher Phase des Entwurfsprozesses und unter welchen Randbedingungen tritt das Problem im Allgemeinen auf?",
         "content4": "Diskutiere die Vor- und Nachteile der Lösung.",
         "content5": "Nenne mindestens zwei Beispiele für Implementierungen des Entwurfsmusters in der industriellen Praxis.",
@@ -1782,10 +1782,10 @@
   "bertAlert": {
     "firstLogin": {
       "title": "Willkommen auf __firstAppTitle__🍅__lastAppTitle__ !",
-      "message": "Schau dich in Ruhe auf der Plattform um. Hier kannst du Karten zu einem bestimmten Thema lernen und Karteien oder Repetitorien (= lose Sammlungen von Karteien zur Prüfungsvorbereitung) für dein Studium anlegen. </br> </br> Die Navigationsleiste mit den Tabs \"Themen-Pool\", \"Repetitorien\", \"Mein Lernpensum\" und \"Kartei anlegen\" dient dir als Einstieg in die großartigen Features von 🍅__lastAppTitle__. Schau dir dazu auch die Demo unter \"Hilfe\" an! </br> </br> Suche im Themen-Pool nach einem Thema, das dich interessiert. Klick auf den kleinen Pfeil ganz rechts vom Thema, um die Beschreibung der Kartei zu sehen. Mit einem Klick auf das Thema gelangst du zu den Karten. </br> </br>"
+      "message": "Schau dich in Ruhe auf der Plattform um. Hier kannst du Karten zu einem bestimmten Thema lernen und Karteien oder Repetitorien (= lose Sammlungen von Karteien zur Prüfungsvorbereitung) für dein Studium anlegen. </br> </br> Die Navigationsleiste mit den Tabs »Themen-Pool«, »Repetitorien«, »Mein Lernpensum« und »Kartei anlegen« dient dir als Einstieg in die großartigen Features von 🍅__lastAppTitle__. Schau dir dazu auch die Demo unter »Hilfe« an! </br> </br> Suche im Themen-Pool nach einem Thema, das dich interessiert. Klick auf den kleinen Pfeil ganz rechts vom Thema, um die Beschreibung der Kartei zu sehen. Mit einem Klick auf das Thema gelangst du zu den Karten. </br> </br>"
     },
     "publishBonus": {
-      "message": "Um die Bonus-Lernphase zu starten, müssen mindestens __cardcount__ erstellt und die Kartei als \"Frei\", \"__edu__\" oder \"Pro\" veröffentlicht worden sein."
+      "message": "Um die Bonus-Lernphase zu starten, müssen mindestens __cardcount__ erstellt und die Kartei als »Frei«, »__edu__« oder »Pro« veröffentlicht worden sein."
     }
   },
   "backdoor": {
