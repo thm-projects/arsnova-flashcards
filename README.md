@@ -13,8 +13,8 @@ arsnova🍅cards uses Meteor as application framework. Download and install [Met
 3. Install python 2 `sudo apt install python`, Ubuntu only ships with python 3
 4. install the g++ build-essential `sudo apt install g++ build-essential`
 2. Make sure that you've added a [SSH key](https://git.thm.de/profile/keys)
-3. Clone the remote repository `git clone git@git.thm.de:arsnova/flashcards.git`
-4. Install the npm package dependencies inside the local repository **"flashcards folder"** `meteor npm install`
+3. Clone the remote repository `git clone git@git.thm.de:arsnova/cards.git`
+4. Install the npm package dependencies inside the local repository **"cards folder"** `meteor npm install`
 5. Set your initial admin user in `settings.json` or `settings_debug.json` (cas account)
 
 ### Settings
@@ -30,21 +30,21 @@ A simple update to the latest Meteor version is not always possible. Please do n
    - You've selected the staging branch `git checkout staging`
    - Your staging branch is up to date `git pull`
    - Meteor is running
-   - Your terminal is inside the repository **flashcards folder**
+   - Your terminal is inside the repository **cards folder**
 1. Move to your staging branch `git checkout staging`
 1. Install the mongodb-tools: `sudo apt-get install mongo-tools`
-1. Set your repository to the latest Meteor 1.6 version `git checkout 3a1751a2838ad595eda7d3ccd9e9191a3bf32271`
-1. Dump your current Meteor 1.6 database `mongodump -h "localhost" --port "3001" -d "meteor" -o ~/flashcardsBackup/`
+1. Set your repository to the latest Meteor 1.6 version `git checkout 29db2ca369d25fa2f9dab2d964a3f131eeba1aa4`
+1. Dump your current Meteor 1.6 database `mongodump -h "localhost" --port "3001" -d "meteor" -o ~/cardsBackup/`
    - Make sure that mongodump created the folder and files
 1. Stop meteor
 1. Reset the meteor configuration `meteor reset`
 1. Move back to the latest staging branch version `git checkout staging`
 1. Update your node packages `meteor npm install`
 1. Start meteor
-1. Restore your backup `mongorestore --drop -h "localhost" --port "3001" -d "meteor" ~/flashcardsBackup/meteor`
+1. Restore your backup `mongorestore --drop -h "localhost" --port "3001" -d "meteor" ~/cardsBackup/meteor`
 
 ## Starting the app
-Use one of the following commands inside the repository (flashcards folder), to start arsnova🍅cards on localhost:
+Use one of the following commands inside the repository (cards folder), to start arsnova🍅cards on localhost:
 
 - For development:
   - `meteor --settings settings_debug.json`
@@ -57,7 +57,7 @@ You can then access the app from your host machine by visiting http://localhost:
 ## Loading the Test Database
 1. Make sure that you've installed the [MongoDB Community Tools](https://docs.mongodb.com/manual/administration/install-community/)
 2. Start the server with the development settings
-2. Open a new terminal in the flashcards folder and load the Test Database with: `./tests/loadTestDatabase.sh`
+2. Open a new terminal in the cards folder and load the Test Database with: `./tests/loadTestDatabase.sh`
 
 ## Optional features
 
@@ -82,22 +82,22 @@ You can then access the app from your host machine by visiting http://localhost:
 3. Insert the key into `settings.json` (`FCM_API_KEY`)
 
 ## Contribution guide
-The contribution guide can be found [here](https://git.thm.de/arsnova/flashcards/blob/staging/CONTRIBUTING.md).
+The contribution guide can be found [here](https://git.thm.de/arsnova/cards/blob/staging/CONTRIBUTING.md).
 
 ## Documentation
-The documentation can be found [here](https://cards-staging.mni.thm.de/jsdoc/).
+The documentation can be found [here](https://staging.arsnova.cards/jsdoc/).
 
 ### UML Diagrams
-- [Activity](https://git.thm.de/arsnova/flashcards/wikis/uml---activity-diagram)
-- [Domain model](https://git.thm.de/arsnova/flashcards/wikis/uml---domain-model-diagram)
-- [Use case](https://git.thm.de/arsnova/flashcards/wikis/uml---use-case-diagram)
+- [Activity](https://git.thm.de/arsnova/cards/wikis/uml---activity-diagram)
+- [Domain model](https://git.thm.de/arsnova/cards/wikis/uml---domain-model-diagram)
+- [Use case](https://git.thm.de/arsnova/cards/wikis/uml---use-case-diagram)
 
 ## CI Pipeline
-[![build status](https://git.thm.de/arsnova/flashcards/badges/staging/build.svg)](https://git.thm.de/arsnova/flashcards/commits/staging)
-
-
-- [Staging](http://cards-staging.mni.thm.de)
-- [Production](https://arsnova.cards)
+| Server | Status|
+|--------|----------------|
+|[Staging](https://staging.arsnova.cards)| [![build status](https://git.thm.de/arsnova/cards/badges/staging/build.svg)](https://git.thm.de/arsnova/cards/commits/staging)|
+|[Production](https://thm.cards)| [![build status](https://git.thm.de/arsnova/cards/badges/master/build.svg)](https://git.thm.de/arsnova/cards/commits/master)|
+|[Linux](https://linux.cards) |[![build status](https://git.thm.de/arsnova/cards/badges/master/build.svg)](https://git.thm.de/arsnova/cards/commits/master)|
 
 ## Credits
 arsnova🍅cards is powered by Technische Hochschule Mittelhessen - University of Applied Sciences.
