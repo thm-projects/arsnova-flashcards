@@ -12,15 +12,12 @@ Session.setDefault('arsnovaClickModalActive', false);
 
 Template.cardSidebarItemArsnovaClick.events({
 	"click .showArsnovaClick": function () {
-		Session.set('arsnovaClickModalActive', true);
 		$('#arsnovaClickModal').modal('show');
 	}
 });
 
 Template.cardSidebarItemArsnovaClick.onCreated(function () {
-	if ($(window).width() >= 768) {
-		Session.set('arsnovaClickModalActive', true);
-	}
+	Session.set('arsnovaClickModalActive', false);
 });
 
 Template.cardSidebarItemArsnovaClick.onDestroyed(function () {
@@ -41,11 +38,9 @@ Template.arsnovaClickModal.onRendered(function () {
 	$('#arsnovaClickModal').on('shown.bs.modal', function () {
 		$('.showArsnovaClick').attr('src', '/img/button/arsnova_click_pressed.png');
 		$('.showArsnovaClick').addClass('pressed');
+		if (!Session.get('arsnovaClickModalActive')) {
+			Session.set('arsnovaClickModalActive', true);
+			$('#arsnovaClickModal .modal-dialog').html('<iframe id="arsnovaClick" width="600px" height="800px" frameborder="0" src="https://arsnova.click"></iframe>');
+		}
 	});
-});
-
-Template.arsnovaClickModal.helpers({
-	isArsnovaClickActive: function () {
-		return Session.get('arsnovaClickModalActive');
-	}
 });
