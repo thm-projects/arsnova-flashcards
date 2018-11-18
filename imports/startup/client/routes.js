@@ -612,7 +612,7 @@ Router.route('/profile/:_id/overview', {
 	name: 'profileOverview',
 	template: 'profile',
 	subscriptions: function () {
-		return [Meteor.subscribe('workloadCardsets'), Meteor.subscribe('userLeitner')];
+		return [Meteor.subscribe('workloadCardsets'), Meteor.subscribe('userWorkload'), Meteor.subscribe('userLeitner')];
 	},
 	data: function () {
 		Session.set('helpFilter', "workloadProgress");
