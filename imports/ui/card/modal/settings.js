@@ -14,7 +14,7 @@ import "./settings.html";
 
 Template.cardSettingsModal.helpers({
 	getText: function () {
-		if (Route.isDemo() || Cardsets.findOne({_id: Router.current().params._id}).shuffled) {
+		if (Route.isDemo() || ((Route.isBox() || Route.isMemo()) && Cardsets.findOne({_id: Router.current().params._id}).shuffled)) {
 			if (Route.isDemo()) {
 				CardType.gotCardTypesWithSwapAnswerQuestionButton(Cardsets.findOne({name: "DemoCardset", shuffled: true})._id);
 			} else {
