@@ -46,8 +46,15 @@ if (Meteor.isServer) {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
 			let workload = Workload.find({user_id: this.userId}, {fields: {cardset_id: 1}}).fetch();
 			let cardsets = [];
-			for (let i = 0; i < workload.length; i++) {
+			let cardset;
+			for (let i = 0, workloadLength = workload.length; i < workloadLength; i++) {
+				cardset = Cardsets.findOne({_id: workload[i].cardset_id},{fields: {_id: 1, shuffled: 1, cardGroups: 1}});
 				cardsets.push(workload[i].cardset_id);
+				if (cardset.shuffled) {
+					for (let k = 0, cardGroupsLength = cardset.cardGroups.length; k < cardGroupsLength; k++) {
+						cardsets.push(cardset.cardGroups[k]);
+					}
+				}
 			}
 			return Cardsets.find({_id: {$in: cardsets}});
 		}
