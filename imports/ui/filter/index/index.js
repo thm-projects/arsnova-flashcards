@@ -342,10 +342,6 @@ Template.filterIndexShuffle.onCreated(function () {
  * ############################################################################
  */
 
-Template.filterIndex.onCreated(function () {
-	Session.set("selectingCardsetToLearn", false);
-});
-
 Template.filterIndex.events({
 	'click #cancelSelection': function () {
 		Session.set('selectingCardsetToLearn', false);
