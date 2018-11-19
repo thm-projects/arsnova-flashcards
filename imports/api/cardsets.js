@@ -48,7 +48,13 @@ if (Meteor.isServer) {
 			let cardsets = [];
 			let cardset;
 			for (let i = 0, workloadLength = workload.length; i < workloadLength; i++) {
-				cardset = Cardsets.findOne({_id: workload[i].cardset_id},{fields: {_id: 1, shuffled: 1, cardGroups: 1}});
+				cardset = Cardsets.findOne({_id: workload[i].cardset_id}, {
+					fields: {
+						_id: 1,
+						shuffled: 1,
+						cardGroups: 1
+					}
+				});
 				cardsets.push(workload[i].cardset_id);
 				if (cardset.shuffled) {
 					for (let k = 0, cardGroupsLength = cardset.cardGroups.length; k < cardGroupsLength; k++) {
@@ -71,7 +77,17 @@ if (Meteor.isServer) {
 	});
 	Meteor.publish("repetitoriumCardsets", function () {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
-			return Cardsets.find({kind: {$in: ['free', 'edu', 'pro']}, shuffled: true});
+
+			if (UserPermissions.isAdmin()) {
+				return Cardsets.find({shuffled: true});
+			} else {
+				return Cardsets.find({
+					$or: [
+						{owner: this.userId, shuffled: true},
+						{kind: {$in: ['free', 'edu', 'pro']}, shuffled: true}
+					]
+				});
+			}
 		}
 	});
 	Meteor.publish("editShuffleCardsets", function (cardset_id) {
