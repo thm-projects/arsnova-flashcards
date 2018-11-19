@@ -8,6 +8,9 @@ Modes:
 3 = Google
 4 = DeepL
 */
+
+Session.setDefault('wordCount', 0);
+
 export let Dictionary = class Dictionary {
 
 	static setMode (mode) {
@@ -23,7 +26,11 @@ export let Dictionary = class Dictionary {
 		return Session.get('dictionaryMode') === mode;
 	}
 
-	static getQuery (card, mode) {
+	static getWordCount () {
+		return Session.get('wordCount');
+	}
+
+	static initializeQuery (card) {
 		let searchText;
 		switch (Session.get('activeCardContentId')) {
 			case 1:
@@ -46,23 +53,29 @@ export let Dictionary = class Dictionary {
 				break;
 		}
 		let rawQuery = searchText.split(/\s+/);
-		let wordCount = rawQuery.length;
+		Session.set('wordCount', rawQuery.length);
+		return searchText;
+	}
+
+	static getQuery (card, mode) {
+		let searchText = this.initializeQuery(card);
 		let queryStart = "&query=";
 		let query = "";
 		switch (mode) {
 			case 1:
 			case 2:
-				if (wordCount === 1) {
+				if (this.getWordCount() === 1) {
 					return queryStart + CardVisuals.removeMarkdeepTags(searchText);
 				}
 				return;
 			case 3:
 			case 4:
 				queryStart = "";
-				for (let i = 0; i < wordCount; i++) {
+				for (let i = 0; i < this.getWordCount(); i++) {
 					if (i !== 0) {
 						query +=  "%20";
 					}
+					let rawQuery = searchText.split(/\s+/);
 					query += CardVisuals.removeMarkdeepTags(rawQuery[i]).trim();
 				}
 				return queryStart + query;

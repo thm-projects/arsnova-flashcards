@@ -145,6 +145,7 @@ Template.cardContentActive.helpers({
 		return CardVisuals.isLeftAlign(Session.get('activeCardContentId'), this.alignType);
 	},
 	gotContent: function () {
+		Dictionary.initializeQuery(this);
 		if (!Route.isCardset()) {
 			return true;
 		} else {
