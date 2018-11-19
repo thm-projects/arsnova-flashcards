@@ -109,7 +109,7 @@ review:
   stage: review
   script:
     # Generate port by using all digits in branch name till "-" is found
-    - METEOR_PORT=$(echo $CI_BUILD_REF_NAME | cut -f1 -d '-')0
+    - METEOR_PORT=$(($(echo $CI_BUILD_REF_NAME | cut -f1 -d '-') + 10000))
     # Set a variable that points to the appo directory
     - METEOR_HOME=/srv/review-apps/$METEOR_PORT
     # Make app directory
