@@ -21,6 +21,15 @@ Template.cardSidebarItemDictionaryBeolingus.helpers({
 	},
 	isMobilePreview: function () {
 		return MarkdeepEditor.getMobilePreview();
+	},
+	gotRequiredWordCount: function () {
+		if (Dictionary.getWordCount() === 1) {
+			return true;
+		} else {
+			if (Dictionary.checkMode(1)) {
+				Dictionary.setMode(0);
+			}
+		}
 	}
 });
 
@@ -47,6 +56,15 @@ Template.cardSidebarItemDictionaryLinguee.helpers({
 	},
 	isMobilePreview: function () {
 		return MarkdeepEditor.getMobilePreview();
+	},
+	gotRequiredWordCount: function () {
+		if (Dictionary.getWordCount() === 1) {
+			return true;
+		} else {
+			if (Dictionary.checkMode(2)) {
+				Dictionary.setMode(0);
+			}
+		}
 	}
 });
 
@@ -73,6 +91,15 @@ Template.cardSidebarItemDictionaryGoogle.helpers({
 	},
 	isMobilePreview: function () {
 		return MarkdeepEditor.getMobilePreview();
+	},
+	gotRequiredWordCount: function () {
+		if (Dictionary.getWordCount() > 1) {
+			return true;
+		} else {
+			if (Dictionary.checkMode(3)) {
+				Dictionary.setMode(0);
+			}
+		}
 	}
 });
 
@@ -99,6 +126,15 @@ Template.cardSidebarItemDictionaryDeepL.helpers({
 	},
 	isMobilePreview: function () {
 		return MarkdeepEditor.getMobilePreview();
+	},
+	gotRequiredWordCount: function () {
+		if (Dictionary.getWordCount() > 1) {
+			return true;
+		} else {
+			if (Dictionary.checkMode(4)) {
+				Dictionary.setMode(0);
+			}
+		}
 	}
 });
 
