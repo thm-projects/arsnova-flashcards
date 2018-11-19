@@ -1,10 +1,10 @@
 import {Session} from "meteor/session";
-import {CardType} from "../../../api/cardTypes";
+import {CardType} from "../../../../api/cardTypes";
 import {Template} from "meteor/templating";
-import {CardVisuals} from "../../../api/cardVisuals";
+import {CardVisuals} from "../../../../api/cardVisuals";
 import "./content.html";
-import {Route} from "../../../api/route";
-import {isNewCardset} from "../../forms/cardsetForm";
+import {Route} from "../../../../api/route";
+import {isNewCardset} from "../../../forms/cardsetForm";
 
 /*
  * ############################################################################

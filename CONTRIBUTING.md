@@ -13,10 +13,10 @@ ARSnova Flashcards needs you! If you are interested in helping, here is a short 
 
 If you don't feel like writing code, you could also update the documentation. And if you find any bugs, feel free to [open a new issue][new-issue].
 
-[build-section]: https://git.thm.de/arsnova/flashcards/builds
-[commit-message]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
-[merge-request]: https://git.thm.de/arsnova/flashcards/merge_requests/new
-[new-issue]: https://git.thm.de/arsnova/flashcards/issues/new?issue%5Bassignee_id%5D=&issue%5Bmilestone_id%5D=
+* [build-section](https://git.thm.de/arsnova/cards/builds)
+* [commit-message](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
+* [merge-request](https://git.thm.de/arsnova/cards/merge_requests/new)
+* [new-issue](https://git.thm.de/arsnova/cards/issues/new?issue%5Bassignee_id%5D=&issue%5Bmilestone_id%5D=)
 
 ## How we review merge requests
 
@@ -28,7 +28,7 @@ This is a no-brainer. Keep your branches up to date so that merges will never en
 
 ### Code Style
 
-[You can use following tutorial to test your code style with Webstorm](https://git.thm.de/arsnova/flashcards/wikis/testing-with-webstorm)
+[You can use following tutorial to test your code style with Webstorm](https://git.thm.de/arsnova/cards/wikis/testing-with-webstorm)
 
 This project makes use of both jscs and jshint. You can review your code with the defined rules by using gulp. Install:
 
@@ -40,7 +40,7 @@ npm install
 Then, you can either run the script one time with ```gulp --gulpfile .gulpfile.js``` or you can watch the directory with ```gulp watch --gulpfile .gulpfile.js```
 
 ### Automated User Acceptance Tests with chimp
-We use chimp to automatically test the Front End functionality of [arsnova.cards](https://arsnova.cards). `Merge Requests will be only accepted if all chimp tests have been passed`.
+We use chimp to automatically test the Front End functionality of [thm.cards](https://thm.cards). `Merge Requests will be only accepted if all chimp tests have been passed`.
 
 For more information about user acceptance tests have a look at [tests/HOWTOTEST.md](tests/HOWTOTEST.md).
 
@@ -78,7 +78,7 @@ Sadly, some editors still do not have UTF-8 as their default setting. Using the 
 ### Documenting your code
 
 We use [JSDoc](https://github.com/jsdoc3/jsdoc) with the [DocStrap](https://github.com/docstrap/docstrap) template to document our code! For more information, you can visit
-the [Wiki-Page](https://git.thm.de/arsnova/flashcards/wikis/code-documentation-with-jsdoc).
+the [Wiki-Page](https://git.thm.de/arsnova/cards/wikis/code-documentation-with-jsdoc).
 
 ### Summary
 
