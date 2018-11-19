@@ -1,14 +1,17 @@
-import "./editor.html";
-import "../card/card.js";
 import {Session} from "meteor/session";
-import {CardType} from "../../api/cardTypes";
+import {CardType} from "../../../api/cardTypes";
 import {Template} from "meteor/templating";
-import {Cardsets} from "../../api/cardsets";
-import {CardEditor} from "../../api/cardEditor.js";
-import {CardVisuals} from "../../api/cardVisuals";
-import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
-import {Cards} from "../../api/cards";
-
+import {Cardsets} from "../../../api/cardsets";
+import {CardEditor} from "../../../api/cardEditor.js";
+import {CardVisuals} from "../../../api/cardVisuals";
+import ResizeSensor from "../../../../client/resize_sensor/ResizeSensor";
+import {Cards} from "../../../api/cards";
+import "../card.js";
+import "./modal/learningUnit.js";
+import "./item/buttons.js";
+import "./item/learningGoalLevel.js";
+import "./item/subject.js";
+import "./editor.html";
 
 /*
  * ############################################################################

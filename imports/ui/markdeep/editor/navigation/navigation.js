@@ -1,8 +1,8 @@
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
-import {MarkdeepEditor} from "../../../api/markdeepEditor.js";
+import {MarkdeepEditor} from "../../../../api/markdeepEditor.js";
 import "./navigation.html";
-import {CardVisuals} from "../../../api/cardVisuals";
+import {CardVisuals} from "../../../../api/cardVisuals";
 
 /*
  * ############################################################################
