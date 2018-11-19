@@ -55,10 +55,12 @@ if (Meteor.isServer) {
 						cardGroups: 1
 					}
 				});
-				cardsets.push(workload[i].cardset_id);
-				if (cardset.shuffled) {
-					for (let k = 0, cardGroupsLength = cardset.cardGroups.length; k < cardGroupsLength; k++) {
-						cardsets.push(cardset.cardGroups[k]);
+				if (cardset !== undefined) {
+					cardsets.push(workload[i].cardset_id);
+					if (cardset.shuffled) {
+						for (let k = 0, cardGroupsLength = cardset.cardGroups.length; k < cardGroupsLength; k++) {
+							cardsets.push(cardset.cardGroups[k]);
+						}
 					}
 				}
 			}
@@ -397,6 +399,9 @@ Meteor.methods({
 				link_id: id
 			});
 			Ratings.remove({
+				cardset_id: id
+			});
+			Workload.remove({
 				cardset_id: id
 			});
 			Meteor.call('updateCardsetCount', Meteor.userId());
