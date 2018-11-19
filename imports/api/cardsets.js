@@ -77,7 +77,6 @@ if (Meteor.isServer) {
 	});
 	Meteor.publish("repetitoriumCardsets", function () {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
-
 			if (UserPermissions.isAdmin()) {
 				return Cardsets.find({shuffled: true});
 			} else {
