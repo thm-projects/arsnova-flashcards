@@ -18,46 +18,6 @@
     {{/if}}
 </template>
 
-<template name="cardSidebarItemDictionaryLinguee">
-    {{#if gotDictionary}}
-        {{#if gotRequiredWordCount this}}
-            {{#unless isMobilePreview}}
-                <img class="hidden-xs showLingueeTranslation card-button cardHeaderItem {{#if
-                        isLingueeActive}}pressed{{/if}}"
-                     data-type="cardNavigation"
-                     data-toggle="collapse"
-                     data-target="#collapseLecture-{{_id}}"
-                     src="/img/linguee_appLogoSmall.png" title="{{_ "card.tooltip.dictionaryLinguee"}}">
-            {{/unless}}
-            <span class="{{#unless
-                    isMobilePreview}}visible-xs-inline-block{{/unless}} card-button cardHeaderItem fa showLingueeTranslation {{#if
-                    isLingueeActive}}pressed{{/if}}" data-id="{{this._id}}"
-                  title="{{_ "card.tooltip.dictionaryLinguee"}}"><strong>L</strong>
-        </span>
-        {{/if}}
-    {{/if}}
-</template>
-
-<template name="cardSidebarItemDictionaryGoogle">
-    {{#if gotDictionary}}
-        {{#if gotRequiredWordCount this}}
-            {{#unless isMobilePreview}}
-                <img class="hidden-xs showGoogleTranslation card-button cardHeaderItem {{#if
-                        isGoogleActive}}pressed{{/if}}"
-                     data-type="cardNavigation"
-                     data-toggle="collapse"
-                     data-target="#collapseLecture-{{_id}}"
-                     src="/img/google_translate.png" title="{{_ "card.tooltip.dictionaryGoogle"}}">
-            {{/unless}}
-            <span class="{{#unless
-                    isMobilePreview}}visible-xs-inline-block{{/unless}} card-button cardHeaderItem fa showGoogleTranslation {{#if
-                    isGoogleActive}}pressed{{/if}}" data-id="{{this._id}}"
-                  title="{{_ "card.tooltip.dictionaryGoogle"}}"><strong>G</strong>
-        </span>
-        {{/if}}
-    {{/if}}
-</template>
-
 <template name="cardSidebarItemDictionaryDeepL">
     {{#if gotDictionary}}
         {{#if gotRequiredWordCount this}}
