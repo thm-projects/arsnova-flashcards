@@ -47,6 +47,11 @@ Template.cardContentCounter.helpers({
  * cardDictionaryContentBeolingus
  * ############################################################################
  */
+
+Template.cardDictionaryContentBeolingus.onRendered(function () {
+	Dictionary.setBlur();
+});
+
 Template.cardDictionaryContentBeolingus.helpers({
 	getDictionarySearchText: function () {
 		return Dictionary.getQuery(this, 1);
@@ -58,6 +63,11 @@ Template.cardDictionaryContentBeolingus.helpers({
  * cardDictionaryContentLinguee
  * ############################################################################
  */
+
+Template.cardDictionaryContentLinguee.onRendered(function () {
+	Dictionary.setBlur();
+});
+
 Template.cardDictionaryContentLinguee.helpers({
 	getDictionaryQuery: function () {
 		return Dictionary.getQuery(this, 2);
@@ -80,6 +90,12 @@ Template.cardDictionaryContentGoogle.helpers({
  * cardDictionaryContentDeepL
  * ############################################################################
  */
+
+Template.cardDictionaryContentDeepL.onRendered(function () {
+	Dictionary.setBlur();
+});
+
+
 Template.cardDictionaryContentDeepL.helpers({
 	getDictionaryQuery: function () {
 		return Dictionary.getQuery(this, 4);

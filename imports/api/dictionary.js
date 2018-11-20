@@ -1,4 +1,5 @@
 import {Session} from "meteor/session";
+import {Route} from "./route";
 import {CardVisuals} from "./cardVisuals";
 
 /*
@@ -28,6 +29,15 @@ export let Dictionary = class Dictionary {
 
 	static getWordCount () {
 		return Session.get('wordCount');
+	}
+
+	static setBlur () {
+		$('.dictionaryFrame').load(function () {
+			$('.dictionaryFrame').blur();
+			if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
+				$('#contentEditor').focus();
+			}
+		});
 	}
 
 	static initializeQuery (card) {
