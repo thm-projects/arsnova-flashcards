@@ -981,8 +981,8 @@
       "content2": "Übersetzung",
       "placeholders": {
         "subject": "Gib das Thema oder die Sprachsituation an !",
-        "content1": "Gib hier die zu übersetzende Vokabel oder Phrase ein. \n\nSchau dir für einzelne Wörter die Vorschläge aus den Wörterbüchern »Linguee« und »BEOLINGUS« an, für Texte die Übersetzungen von »DeepL« und »Google Übersetzer«. Klick dazu auf die entsprechenden Buttons in der Kartenvorschau.",
-        "content2": "Schau dir für einzelne Wörter die Vorschläge aus den Wörterbüchern »Linguee« und »BEOLINGUS« an, für Texte die Übersetzungen von »DeepL« und »Google Übersetzer«. Klick dazu auf die entsprechenden Buttons in der Kartenvorschau."
+        "content1": "Gib hier die zu übersetzende Vokabel oder Phrase ein. \n\nSchau dir für einzelne Wörter die Vorschläge aus dem Wörterbuch »BEOLINGUS« an, für Texte die Übersetzung von »DeepL«. Klick dazu auf den linken Rand-Button in der Kartenvorschau.",
+        "content2": "Schau dir für einzelne Wörter die Vorschläge aus dem Wörterbuch »BEOLINGUS« an, für Texte die Übersetzung von »DeepL«. Klick dazu auf die linken Rand-Button in der Kartenvorschau."
       },
       "editorLabels": {
         "subject": "Thema oder Sprachsituation"
@@ -1216,8 +1216,6 @@
       "edit": "Bearbeite die Karte",
       "delete": "Lösche die Karte",
       "dictionaryBeolingus": "Zeige die BEOLINGUS-Übersetzung",
-      "dictionaryLinguee": "Zeige die Linguee-Übersetzung",
-      "dictionaryGoogle": "Zeige die Google-Übersetzung",
       "dictionaryDeepL": "Zeige die DeepL-Übersetzung",
       "copy": "Erstelle eine Kopie dieser Karte",
       "zoomText": "Ändere die Schriftgröße der Karte",
@@ -1238,8 +1236,6 @@
         "mobilePreview": "Zeige die Karte in der Smartphone-Ansicht (iPhone 6/7/8)",
         "rotateMobilePreview": "Drehe die Smartphone-Ansicht (iPhone 6/7/8)",
         "dictionaryBeolingus": "Zeige die BEOLINGUS-Übersetzung",
-        "dictionaryLinguee": "Zeige die Linguee-Übersetzung",
-        "dictionaryGoogle": "Zeige den übersetzten Karteninhalt auf Google Translate an",
         "style": "Ändere den Hintergrund der Karte (liniert oder blanko)",
         "fullscreen": "Mit der Taste ESC (oben links) kommst du wieder in die Normalansicht."
       }

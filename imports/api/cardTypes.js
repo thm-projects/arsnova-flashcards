@@ -18,7 +18,7 @@ import {Cardsets} from "./cardsets.js";
 //14: Vortrag
 //15: Aufgabensammlung
 let cardTypesWithDictionary = [1];
-let cardTypesWithDifficultyLevel = [0, 1, 2, 5, 6, 11, 12, 13, 15];
+let cardTypesWithDifficultyLevel = [0, 1, 2, 3, 5, 6, 11, 12, 13, 15];
 let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12, 13, 15];
 let cardTypesWithLearningGoal = [0, 5, 12];
 let cardTypesWithLearningUnit = [];
