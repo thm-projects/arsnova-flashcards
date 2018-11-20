@@ -5,6 +5,7 @@ import {CardVisuals} from "../../../../api/cardVisuals";
 import "./content.html";
 import {Route} from "../../../../api/route";
 import {isNewCardset} from "../../../forms/cardsetForm";
+import {Dictionary} from "../../../../api/dictionary";
 
 /*
  * ############################################################################
@@ -26,6 +27,7 @@ Template.markdeepContent.events({
 		let content = $('#contentEditor').val();
 		$('#editor').attr('data-content', content);
 		Session.set('content' + Session.get('activeCardContentId'), content);
+		Dictionary.setMode(0);
 	}
 });
 

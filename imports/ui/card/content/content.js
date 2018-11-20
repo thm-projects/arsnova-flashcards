@@ -47,6 +47,11 @@ Template.cardContentCounter.helpers({
  * cardDictionaryContentBeolingus
  * ############################################################################
  */
+
+Template.cardDictionaryContentBeolingus.onRendered(function () {
+	Dictionary.setBlur();
+});
+
 Template.cardDictionaryContentBeolingus.helpers({
 	getDictionarySearchText: function () {
 		return Dictionary.getQuery(this, 1);
@@ -55,34 +60,18 @@ Template.cardDictionaryContentBeolingus.helpers({
 
 /*
  * ############################################################################
- * cardDictionaryContentLinguee
- * ############################################################################
- */
-Template.cardDictionaryContentLinguee.helpers({
-	getDictionaryQuery: function () {
-		return Dictionary.getQuery(this, 2);
-	}
-});
-
-/*
- * ############################################################################
- * cardDictionaryContentGoogle
- * ############################################################################
- */
-Template.cardDictionaryContentGoogle.helpers({
-	getDictionaryQuery: function () {
-		return Dictionary.getQuery(this, 3);
-	}
-});
-
-/*
- * ############################################################################
  * cardDictionaryContentDeepL
  * ############################################################################
  */
+
+Template.cardDictionaryContentDeepL.onRendered(function () {
+	Dictionary.setBlur();
+});
+
+
 Template.cardDictionaryContentDeepL.helpers({
 	getDictionaryQuery: function () {
-		return Dictionary.getQuery(this, 4);
+		return Dictionary.getQuery(this, 2);
 	}
 });
 

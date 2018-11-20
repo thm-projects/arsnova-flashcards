@@ -1,12 +1,11 @@
 import {Session} from "meteor/session";
+import {Route} from "./route";
 import {CardVisuals} from "./cardVisuals";
 
 /*
 Modes:
 1 = Beolingus
-2 = Linguee
-3 = Google
-4 = DeepL
+2 = DeepL
 */
 
 Session.setDefault('wordCount', 0);
@@ -28,6 +27,15 @@ export let Dictionary = class Dictionary {
 
 	static getWordCount () {
 		return Session.get('wordCount');
+	}
+
+	static setBlur () {
+		$('.dictionaryFrame').load(function () {
+			$('.dictionaryFrame').blur();
+			if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
+				$('#contentEditor').focus();
+			}
+		});
 	}
 
 	static initializeQuery (card) {
@@ -63,13 +71,11 @@ export let Dictionary = class Dictionary {
 		let query = "";
 		switch (mode) {
 			case 1:
-			case 2:
 				if (this.getWordCount() === 1) {
 					return queryStart + CardVisuals.removeMarkdeepTags(searchText);
 				}
 				return;
-			case 3:
-			case 4:
+			case 2:
 				queryStart = "";
 				for (let i = 0; i < this.getWordCount(); i++) {
 					if (i !== 0) {
