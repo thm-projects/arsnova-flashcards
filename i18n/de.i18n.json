@@ -1231,6 +1231,7 @@
       },
       "markdeepEditor": {
         "help": "Zeige alle Formatierungsoptionen von Markdeep",
+        "translate": "Eingabe Übersetzen",
         "center": "Zentriere den Karteninhalt vertikal",
         "alignLeft": "Text linksbündig ausrichten",
         "mobilePreview": "Zeige die Karte in der Smartphone-Ansicht (iPhone 6/7/8)",
@@ -1731,7 +1732,8 @@
   },
   "markdeep": {
     "editor": {
-      "help": "Formatiere deinen Text mit Markdeep…"
+      "help": "Formatiere deinen Text mit Markdeep…",
+      "translate": "Eingabe Übersetzen"
     }
   },
   "access-level": {
