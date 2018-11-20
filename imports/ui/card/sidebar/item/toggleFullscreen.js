@@ -4,6 +4,7 @@ import {CardVisuals} from "../../../../api/cardVisuals";
 import {PomodoroTimer} from "../../../../api/pomodoroTimer";
 import {Route} from "../../../../api/route";
 import {Template} from "meteor/templating";
+import {Dictionary} from "../../../../api/dictionary";
 
 /*
  * ############################################################################
@@ -24,6 +25,9 @@ Template.cardSidebarItemToggleFullscreen.events({
 			Session.set("workloadFullscreenMode", false);
 		}
 		CardVisuals.toggleFullscreen();
+		if (Route.isEditMode()) {
+			Dictionary.setMode(0);
+		}
 		if (Route.isDemo() && CardVisuals.isFullscreen()) {
 			PomodoroTimer.start();
 		} else if (PomodoroTimer.isPomodoroRunning()) {

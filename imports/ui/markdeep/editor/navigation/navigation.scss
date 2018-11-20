@@ -7,10 +7,29 @@
     text-align: center;
     vertical-align: top;
     margin-right: 5px;
+    font-size: 16px !important;
+    padding: 6px !important;
+  }
+
+  .btn-group .card-button:last-child {
+    margin-right: 0;
   }
 
   .markdeep-mobile-preview {
-    font-size: 26px !important;
+    font-size: 28px !important;
     padding: 0 10px !important;
+  }
+
+  .markdeep-rotate-mobile-preview {
+    padding: 6px 10px !important;
+  }
+
+  .markdeep-help, .markdeep-translate {
+    font-size: 16px;
+    height: 30px;
+  }
+
+  .markdeep-translate {
+    font-size: 14px !important;
   }
 }

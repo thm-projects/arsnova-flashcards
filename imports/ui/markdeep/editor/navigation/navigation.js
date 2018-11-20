@@ -1,8 +1,10 @@
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {MarkdeepEditor} from "../../../../api/markdeepEditor.js";
-import "./navigation.html";
 import {CardVisuals} from "../../../../api/cardVisuals";
+import {Dictionary} from "../../../../api/dictionary";
+import {CardType} from "../../../../api/cardTypes";
+import "./navigation.html";
 
 /*
  * ############################################################################
@@ -30,6 +32,9 @@ Template.markdeepNavigation.events({
 	},
 	'click .markdeep-fullscreen': function () {
 		MarkdeepEditor.toggleFullscreen();
+	},
+	'click .markdeep-translate': function () {
+		Dictionary.setMode(2);
 	}
 });
 
@@ -51,5 +56,11 @@ Template.markdeepNavigation.helpers({
 	},
 	isFullscreenActive: function () {
 		return Session.get('fullscreen');
+	},
+	isTranslationActive: function () {
+		return Dictionary.checkMode(2);
+	},
+	gotDictionary: function () {
+		return CardType.gotDictionary(Session.get('cardType'));
 	}
 });
