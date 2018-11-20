@@ -130,10 +130,7 @@ $font_size_card_list_cardset_owner: 14px;
 $margin_top_cardset_category: 25px;
 
 //markdeep editor
-$font_family_markdeep_help: $default_font;
 $font_family_markdeep_editor_content: 'Roboto Mono', monospace;
-$font_size_markdeep_help: 12pt;
-$font_weight_markdeep_help: normal;
 
 //search
 $font_size_search_results_subject: 16px;
@@ -227,7 +224,7 @@ body {
   text-transform: unset !important;
 }
 
-.btn-success, .btn-danger, .btn-warning, .btn-info, .label-bonus, .learnBtn, .bonusBtn, .presentationBtn, .label-private, .label-edu, .label-free, .label-pro, #filter-nav-wrapper .navbar-text, #filter-nav-wrapper .dropdown-toggle, .panel-heading.info-tab, #collapseLearningPhaseInfoButton, .deleteAllCardsBtn, .newCardBtn, .markdeep-help, .pomodoroTimer h2, #searchResults h4 {
+.btn-success, .btn-danger, .btn-warning, .btn-info, .label-bonus, .learnBtn, .bonusBtn, .presentationBtn, .label-private, .label-edu, .label-free, .label-pro, #filter-nav-wrapper .navbar-text, #filter-nav-wrapper .dropdown-toggle, .panel-heading.info-tab, #collapseLearningPhaseInfoButton, .deleteAllCardsBtn, .newCardBtn, .markdeep-help, .markdeep-translate.pressed, .pomodoroTimer h2, #searchResults h4 {
   text-shadow: $default_text_shadow;
 }
 
@@ -566,12 +563,6 @@ button {
   border-radius: 5px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-}
-
-.markdeep-help-text {
-  font-family: $font_family_markdeep_help !important;
-  font-size: $font_size_markdeep_help !important;
-  font-weight: $font_weight_markdeep_help !important;
 }
 
 .md-editor > textarea {
