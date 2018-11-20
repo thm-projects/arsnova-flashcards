@@ -137,19 +137,9 @@ Template.flashcards.helpers({
 			return Session.get('dictionaryMode') === 1;
 		}
 	},
-	isLingueeDictionary: function () {
-		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryMode') === 2;
-		}
-	},
-	isGoogleDictionary: function () {
-		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryMode') === 3;
-		}
-	},
 	isDeepLDictionary: function () {
 		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryMode') === 4;
+			return Session.get('dictionaryMode') === 2;
 		}
 	},
 	getCardSideColorActive: function () {
