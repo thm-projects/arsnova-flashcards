@@ -981,8 +981,8 @@
       "content2": "Übersetzung",
       "placeholders": {
         "subject": "Gib das Thema oder die Sprachsituation an !",
-        "content1": "Gib hier die zu übersetzende Vokabel oder Phrase ein. \n\nSchau dir für einzelne Wörter die Vorschläge aus dem Wörterbuch »BEOLINGUS« an, für Texte die Übersetzung von »DeepL«. Klick dazu auf den linken Rand-Button in der Kartenvorschau.",
-        "content2": "Schau dir für einzelne Wörter die Vorschläge aus dem Wörterbuch »BEOLINGUS« an, für Texte die Übersetzung von »DeepL«. Klick dazu auf die linken Rand-Button in der Kartenvorschau."
+        "content1": "Gib die zu übersetzende Vokabel oder den zu übersetzenden Text ein. \n\nRuf die Übersetzung von »DeepL« mit dem Button in der Editor-Menüleiste auf. \n\nKopiere die Übersetzung und füge sie auf der Rückseite dieser Karte ein (Tab »Übersetzung«).",
+        "content2": "Zur Kontrolle schau dir die Rückübersetzung von »DeepL« an."
       },
       "editorLabels": {
         "subject": "Thema oder Sprachsituation"
@@ -997,7 +997,7 @@
       "placeholders": {
         "subject": "Gib das Thema der Unterrichtsstunde an !",
         "content1": "Mach ein Foto von deiner Mitschrift und lade es hoch in deine Cloud. Füge es dann hier per direkten Link ein. Überprüfe, ob das Foto in der Kartenvorschau angezeigt wird, eventuell muss du es in deiner Cloud noch freigeben. \n\nÜberarbeite zu Hause deine Mitschrift in diesem Editor auf dem Tab »Nachbearbeitung«. Erstelle dann für jedes Teilthema der mitgeschriebenen Vorlesung eine Lernkarte in der Lernkartei zur Veranstaltung.",
-        "content2": "Überarbeite deine Mitschrift innerhalb von 36 Stunden. Nutze hierfür die Strukturierungs- und Formatierungsoptionen von Markdeep! \n\nKläre die offenen Fragen, die du dir während der Veranstaltung notiert hast, und arbeite die To-do-Liste ab!",
+        "content2": "Überarbeite deine Mitschrift innerhalb von 36 Stunden. Nutze hierfür die Strukturierungs- und Formatierungsoptionen von »Markdeep«! \n\nKläre die offenen Fragen, die du dir während der Veranstaltung notiert hast, und arbeite die To-do-Liste ab!",
         "content3": "Notiere hier, was du in der Veranstaltung nicht verstanden hast, und kläre die offenen Fragen in der Nachbereitungsphase. \n\nSchreibe die offenen Fragen und Hausaufgaben als »Task-Liste« auf! \n\n[] To-do 1 \n  [] To-do 2 \n  [] To-do … \n\nSetze ein »x« in die eckigen Klammern, wenn du die Aufgabe erledigt hast."
       },
       "editorLabels": {
@@ -1028,7 +1028,7 @@
       "content3": "Quellenangabe",
       "placeholders": {
         "subject": "Gib das Thema des Zitats an !",
-        "content1": "Setze ein wörtliches Zitat in Anführungszeichen, siehe »Formatiere deinen Text mit Markdeep«.",
+        "content1": "Setze ein wörtliches Zitat in Anführungszeichen, siehe »Formatiere den Text mit Markdeep«.",
         "content2": "Zitierte Person",
         "content3": "Quellenangabe"
       },
@@ -1060,7 +1060,7 @@
       "content3": "Online-API",
       "placeholders": {
         "subject": "Gib den Anwendungskontext der Anweisung an !",
-        "content1": "Wie lautet die Anweisung? \n\nVerwende die Code-Formatierung von Markdeep!",
+        "content1": "Wie lautet die Anweisung? \n\nVerwende die Code-Formatierung von »Markdeep«!",
         "content2": "Was soll die Anweisung bewirken?",
         "content3": "Gib die Quelle an oder verlinke auf die Online-API der Anweisung!"
       },
@@ -1215,8 +1215,8 @@
       "showIndex": "Zeige das Inhaltsverzeichnis der Kartei",
       "edit": "Bearbeite die Karte",
       "delete": "Lösche die Karte",
-      "dictionaryBeolingus": "Zeige die BEOLINGUS-Übersetzung",
-      "dictionaryDeepL": "Zeige die DeepL-Übersetzung",
+      "dictionaryBeolingus": "Zeige die »Beolingus«-Übersetzung",
+      "dictionaryDeepL": "Zeige die »DeepL«-Übersetzung",
       "copy": "Erstelle eine Kopie dieser Karte",
       "zoomText": "Ändere die Schriftgröße der Karte",
       "zoomTextReset": "Zurücksetzen",
@@ -1230,13 +1230,13 @@
         "listSeparator": ", "
       },
       "markdeepEditor": {
-        "help": "Zeige alle Formatierungsoptionen von Markdeep",
-        "translate": "Eingabe Übersetzen",
+        "help": "Zeige alle Formatierungsoptionen von »Markdeep«",
+        "translate": "Übersetze die Eingabe mit »DeepL«",
         "center": "Zentriere den Karteninhalt vertikal",
         "alignLeft": "Text linksbündig ausrichten",
         "mobilePreview": "Zeige die Karte in der Smartphone-Ansicht (iPhone 6/7/8)",
         "rotateMobilePreview": "Drehe die Smartphone-Ansicht (iPhone 6/7/8)",
-        "dictionaryBeolingus": "Zeige die BEOLINGUS-Übersetzung",
+        "dictionaryBeolingus": "Zeige die »Beolingus«-Übersetzung",
         "style": "Ändere den Hintergrund der Karte (liniert oder blanko)",
         "fullscreen": "Mit der Taste ESC (oben links) kommst du wieder in die Normalansicht."
       }
@@ -1732,8 +1732,8 @@
   },
   "markdeep": {
     "editor": {
-      "help": "Formatiere deinen Text mit Markdeep…",
-      "translate": "Eingabe Übersetzen"
+      "help": "Formatiere den Text mit »Markdeep«",
+      "translate": "Übersetze die Eingabe  mit »DeepL«"
     }
   },
   "access-level": {
