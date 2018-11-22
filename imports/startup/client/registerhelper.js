@@ -18,6 +18,7 @@ import {UserPermissions} from "../../api/permissions";
 import {Bonus} from "../../api/bonus";
 import {Profile} from "../../api/profile";
 import {BonusForm} from "../../api/bonusForm";
+
 Meteor.subscribe("collegesCourses");
 
 Template.registerHelper('isSelectingCardsetToLearn', function () {
@@ -706,7 +707,9 @@ const helper = new MeteorMathJax.Helper({
 		x = lib.displayMediaControls(x);
 		x = lib.adjustIframe(x);
 		CardVisuals.setTextZoom();
-		return lib.setLinkTarget(x);
+		x = lib.setLinkTarget(x);
+		x += lib.addCustomMathJax();
+		return x;
 	}
 });
 
@@ -714,10 +717,10 @@ Template.registerHelper('mathjax', helper.getTemplate());
 MeteorMathJax.sourceUrl = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_SVG';
 
 MeteorMathJax.defaultConfig = {
+	TeX: {equationNumbers: {autoNumber: "AMS"}},
 	menuSettings: {
 		zoom: "Hover",
 		zscale: "250%",
 		locale: "de"
 	}
 };
-

@@ -1,3 +1,28 @@
+let customMathJaxDefinitions = [
+	"{\\n}{\\hat{n}}",
+	"{\\thetai}{\\theta_\\mathrm{i}}",
+	"{\\thetao}{\\theta_\\mathrm{o}}",
+	"{\\d}[1]{\\mathrm{d}#1}",
+	"{\\w}{\\hat{\\omega}}",
+	"{\\wi}{\\w_\\mathrm{i}}",
+	"{\\wo}{\\w_\\mathrm{o}}",
+	"{\\wh}{\\w_\\mathrm{h}}",
+	"{\\Li}{L_\\mathrm{i}}",
+	"{\\Lo}{L_\\mathrm{o}}",
+	"{\\Le}{L_\\mathrm{e}}",
+	"{\\Lr}{L_\\mathrm{r}}",
+	"{\\Lt}{L_\\mathrm{t}}",
+	"{\\O}{\\mathrm{O}}",
+	"{\\degrees}{{^{\\large\\circ}}}",
+	"{\\T}{\\mathsf{T}}",
+	"{\\mathset}[1]{\\mathbb{#1}}",
+	"{\\Real}{\\mathset{R}}",
+	"{\\Integer}{\\mathset{Z}}",
+	"{\\Boolean}{\\mathset{B}}",
+	"{\\Complex}{\\mathset{C}}",
+	"{\\un}[1]{\\,\\mathrm{#1}}"
+];
+
 /** Wraps image files inside a lightbox-img class
  *  @param {string} content - Text that contains the image
  *  @returns {string} - The wrapped text
@@ -27,6 +52,14 @@ export function adjustIframe(content) {
 		$(this).attr('frameBorder', 0);
 	});
 	return $('<div/>').append(element).html();
+}
+
+
+export function addCustomMathJax() {
+	let mathJaxJoinString = '\\newcommand';
+	let mathJaxCostumCommands = '<span style="display:none">$$';
+	mathJaxCostumCommands += (mathJaxJoinString + customMathJaxDefinitions.join(mathJaxJoinString));
+	return (mathJaxCostumCommands + '$$\n</span>\n');
 }
 
 export function displayMediaControls(content) {
