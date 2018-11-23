@@ -206,7 +206,6 @@ Meteor.methods({
 		check(learningUnit, String);
 		// Make sure the user is logged in and is authorized
 		let cardset = Cardsets.findOne(cardset_id);
-		let card_id = "";
 		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
 			if (cardset.cardType !== 2 || cardset.cardType !== 3 || cardset.cardType !== 5) {
 				if (subject === "") {
@@ -217,7 +216,7 @@ Meteor.methods({
 					throw new Meteor.Error("Missing subject or reference");
 				}
 			}
-			Cards.insert({
+			let card_id = Cards.insert({
 				subject: subject.trim(),
 				front: content1,
 				back: content2,
@@ -233,9 +232,7 @@ Meteor.methods({
 				backgroundStyle: backgroundStyle,
 				learningIndex: learningIndex,
 				learningUnit: learningUnit
-			}, {trimStrings: false}, function (err, card) {
-				card_id = card;
-			});
+			}, {trimStrings: false});
 			Cardsets.update(cardset_id, {
 				$set: {
 					quantity: Cards.find({cardset_id: cardset_id}).count(),
