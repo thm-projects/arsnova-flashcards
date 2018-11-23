@@ -3,7 +3,7 @@ import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {Leitner, Wozniak} from "../../../api/learned";
-import ResizeSensor from "../../../../client/resize_sensor/ResizeSensor";
+import ResizeSensor from "../../../../client/thirdParty/resizeSensor/ResizeSensor";
 import {CardsetVisuals} from "../../../api/cardsetVisuals";
 import {Bonus} from "../../../api/bonus";
 import {CardNavigation} from "../../../api/cardNavigation";

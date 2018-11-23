@@ -39,7 +39,7 @@ export let Dictionary = class Dictionary {
 	}
 
 	static initializeQuery (card) {
-		let searchText;
+		let searchText = "";
 		switch (Session.get('activeCardContentId')) {
 			case 1:
 				searchText = card.front.trim();

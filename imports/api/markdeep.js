@@ -1,8 +1,7 @@
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "./dompurify";
-import {CardVisuals} from "./cardVisuals";
-import "/client/markdeep.min.js";
+import "/client/thirdParty/markdeep.min.js";
 
 let customMathJaxDefinitions = [
 	"{\\n}{\\hat{n}}",
@@ -37,7 +36,8 @@ MeteorMathJax.defaultConfig = {
 		zoom: "Hover",
 		zscale: "250%",
 		locale: "de"
-	}
+	},
+	messageStyle: "none"
 };
 
 export let MarkdeepContent = class MarkdeepContent {
@@ -113,7 +113,6 @@ export let MarkdeepContent = class MarkdeepContent {
 		content = this.setLightBoxes(content);
 		content = this.displayMediaControls(content);
 		content = this.adjustIframe(content);
-		CardVisuals.setTextZoom();
 		content = this.setLinkTarget(content);
 		content += this.addCustomMathJax();
 		return content;

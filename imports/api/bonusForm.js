@@ -207,7 +207,7 @@ export let BonusForm = class BonusForm {
 	}
 
 	static getCurrentMaxBonusPoints (cardset) {
-		if (cardset.workload.bonus.maxPoints === undefined) {
+		if (cardset.workload === undefined || cardset.workload.bonus === undefined) {
 			return this.getDefaultMaxBonusPoints();
 		} else {
 			return cardset.workload.bonus.maxPoints;

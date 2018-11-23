@@ -696,7 +696,7 @@ Template.registerHelper("getMaximumText", function (text) {
 });
 
 const markdeepHelper = new MeteorMathJax.Helper({
-	useCache: true,
+	useCache: false,
 	transform: function (content) {
 		return MarkdeepContent.convert(content);
 	}

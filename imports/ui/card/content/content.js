@@ -4,13 +4,12 @@ import {Cards} from "../../../api/cards.js";
 import {CardVisuals} from "../../../api/cardVisuals.js";
 import {CardType} from "../../../api/cardTypes";
 import {Route} from "../../../api/route.js";
-import '/client/hammer.js';
+import '/client/thirdParty/hammer.js';
 import "./content.html";
 import {CardNavigation} from "../../../api/cardNavigation";
 import {Dictionary} from "../../../api/dictionary";
 import "./item/countCards.js";
 import "./item/countCardsLeitner.js";
-
 
 /*
  * ############################################################################
@@ -126,6 +125,10 @@ Template.cardSubject.helpers({
  * ############################################################################
  */
 
+Template.cardContentActive.onCreated(function () {
+	CardVisuals.setTextZoom();
+});
+
 Template.cardContentActive.helpers({
 	isCentered: function () {
 		return CardVisuals.isCentered(Session.get('activeCardContentId'), this.centerTextElement);
@@ -186,6 +189,10 @@ Template.cardContentActive.events({
  * cardContentInactive
  * ############################################################################
  */
+
+Template.cardContentInactive.onCreated(function () {
+	CardVisuals.setTextZoom();
+});
 
 Template.cardContentInactive.helpers({
 	isCentered: function () {
