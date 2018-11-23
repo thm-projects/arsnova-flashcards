@@ -22,7 +22,8 @@ import "./bonus.html";
 */
 
 Template.bonusInfoBox.events({
-	"click #collapseLearningPhaseInfoButton": function () {
-		CardsetVisuals.changeCollapseIcon("#collapseLearningPhaseInfoIcon");
+	"click #collapseLearningPhaseInfoButton": function (event) {
+		event.preventDefault();
+		CardsetVisuals.changeCollapseElement("#collapseLearningPhaseInfo");
 	}
 });

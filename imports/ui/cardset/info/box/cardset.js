@@ -16,6 +16,7 @@ import "./item/purchased.js";
 import "./item/ratings.js";
 import "./item/reviewer.js";
 import "./cardset.html";
+import {CardsetVisuals} from "../../../../api/cardsetVisuals";
 
 /*
  * ############################################################################
@@ -50,5 +51,12 @@ Template.cardsetInfoBox.helpers({
 			shuffled = TAPi18n.__('admin.shuffled') + " ";
 		}
 		return shuffled;
+	}
+});
+
+
+Template.cardsetInfoBox.events({
+	"click #collapseCardsetInfoButton": function () {
+		CardsetVisuals.changeCollapseElement("#collapseCardsetInfo");
 	}
 });
