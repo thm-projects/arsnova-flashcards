@@ -4,7 +4,7 @@ import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {getAuthorName} from "../../api/userdata";
-import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
+import ResizeSensor from "../../../client/thirdParty/resizeSensor/ResizeSensor";
 import {LeitnerProgress} from "../../api/leitnerProgress";
 import {Cardsets} from "../../api/cardsets";
 import {CardType} from "../../api/cardTypes";

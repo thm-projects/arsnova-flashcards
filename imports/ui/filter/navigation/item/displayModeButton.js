@@ -3,7 +3,7 @@ import {Session} from "meteor/session";
 import {Filter} from "../../../../api/filter";
 import {Route} from "../../../../api/route";
 import {WordcloudCanvas} from "../../../../api/wordcloudCanvas";
-import ResizeSensor from "../../../../../client/resize_sensor/ResizeSensor";
+import ResizeSensor from "../../../../../client/thirdParty/resizeSensor/ResizeSensor";
 Session.setDefault('filterDisplayWordcloud', false);
 
 /*

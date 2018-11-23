@@ -7,7 +7,7 @@ import {Route} from "../../api/route.js";
 import {getUserLanguage} from "../../startup/client/i18n";
 import {ReactiveVar} from 'meteor/reactive-var';
 import "./welcome.html";
-import ResizeSensor from "../../../client/resize_sensor/ResizeSensor";
+import ResizeSensor from "../../../client/thirdParty/resizeSensor/ResizeSensor";
 import * as fakeInventory from '../../../public/fakeStatistics/inventory.json';
 import {PomodoroTimer} from "../../api/pomodoroTimer";
 import {CardVisuals} from "../../api/cardVisuals";
