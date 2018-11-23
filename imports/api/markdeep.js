@@ -1,7 +1,6 @@
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "./dompurify";
-import {CardVisuals} from "./cardVisuals";
 import "/client/thirdParty/markdeep.min.js";
 
 let customMathJaxDefinitions = [
@@ -113,7 +112,6 @@ export let MarkdeepContent = class MarkdeepContent {
 		content = this.setLightBoxes(content);
 		content = this.displayMediaControls(content);
 		content = this.adjustIframe(content);
-		CardVisuals.setTextZoom();
 		content = this.setLinkTarget(content);
 		content += this.addCustomMathJax();
 		return content;
