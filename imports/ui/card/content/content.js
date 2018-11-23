@@ -11,7 +11,6 @@ import {Dictionary} from "../../../api/dictionary";
 import "./item/countCards.js";
 import "./item/countCardsLeitner.js";
 
-
 /*
  * ############################################################################
  * cardContentCounter
@@ -126,6 +125,10 @@ Template.cardSubject.helpers({
  * ############################################################################
  */
 
+Template.cardContentActive.onCreated(function () {
+	CardVisuals.setTextZoom();
+});
+
 Template.cardContentActive.helpers({
 	isCentered: function () {
 		return CardVisuals.isCentered(Session.get('activeCardContentId'), this.centerTextElement);
@@ -186,6 +189,10 @@ Template.cardContentActive.events({
  * cardContentInactive
  * ############################################################################
  */
+
+Template.cardContentInactive.onCreated(function () {
+	CardVisuals.setTextZoom();
+});
 
 Template.cardContentInactive.helpers({
 	isCentered: function () {
