@@ -22,7 +22,8 @@ let jscs = require('gulp-jscs');
 let stylish = require('jshint-stylish');
 
 let paths = [
-	'./{client,imports,i18n,server,tests}/**/*.js'
+	'./{imports,i18n,server,tests}/**/*.js',
+	'./client/head.js'
 ];
 
 gulp.task('watch', function () {
