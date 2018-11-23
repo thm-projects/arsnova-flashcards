@@ -1,5 +1,3 @@
-// jscs:disable
-// jshint ignore: start
 'use strict';
 
 /**

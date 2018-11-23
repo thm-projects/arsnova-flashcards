@@ -1,5 +1,3 @@
-// jscs:disable
-// jshint ignore: start
 /*! Hammer.JS - v2.0.8 - 2016-04-23
  * http://hammerjs.github.io/
  *

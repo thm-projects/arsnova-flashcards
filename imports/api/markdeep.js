@@ -2,7 +2,7 @@ import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "./dompurify";
 import {CardVisuals} from "./cardVisuals";
-import "/client/markdeep.min.js";
+import "/client/thirdParty/markdeep.min.js";
 
 let customMathJaxDefinitions = [
 	"{\\n}{\\hat{n}}",

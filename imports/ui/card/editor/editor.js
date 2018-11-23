@@ -4,7 +4,7 @@ import {Template} from "meteor/templating";
 import {Cardsets} from "../../../api/cardsets";
 import {CardEditor} from "../../../api/cardEditor.js";
 import {CardVisuals} from "../../../api/cardVisuals";
-import ResizeSensor from "../../../../client/resize_sensor/ResizeSensor";
+import ResizeSensor from "../../../../client/thirdParty/resizeSensor/ResizeSensor";
 import {Cards} from "../../../api/cards";
 import "../card.js";
 import "./modal/learningUnit.js";
