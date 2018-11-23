@@ -28,6 +28,7 @@ import "../loadingScreen/loadingScreen.js";
 import "../card/editor/editor.js";
 import {Route} from "../../api/route";
 import {CardVisuals} from "../../api/cardVisuals";
+import {MarkdeepContent} from "../../api/markdeep";
 
 Meteor.subscribe("Users");
 Meteor.subscribe("notifications");
@@ -223,6 +224,7 @@ Template.main.helpers({
 });
 
 Template.main.onCreated(function () {
+	MarkdeepContent.initializeStylesheet();
 	document.title = Meteor.settings.public.welcome.title.first + "." + Meteor.settings.public.welcome.title.last;
 });
 

@@ -118,4 +118,8 @@ export let MarkdeepContent = class MarkdeepContent {
 		content += this.addCustomMathJax();
 		return content;
 	}
+
+	static initializeStylesheet () {
+		$('head').append(window.markdeep.stylesheet());
+	}
 };
