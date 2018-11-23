@@ -268,11 +268,6 @@ Template.cardsetFormContent.helpers({
 			}
 		}
 	},
-	getCardTypeName: function () {
-		if (Session.get('previousCardsetData') !== undefined) {
-			return CardType.getCardTypeName(Session.get('previousCardsetData').cardType);
-		}
-	},
 	getShuffleName: function () {
 		if (Session.get("ShuffleTemplate") !== undefined) {
 			return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").name : "";
