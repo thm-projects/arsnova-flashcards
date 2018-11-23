@@ -54,9 +54,6 @@ Template.cardsetInfo.helpers({
 });
 
 Template.cardsetInfo.events({
-	"click #collapseManageButton": function () {
-		CardsetVisuals.changeCollapseIcon("#collapseMangeIcon");
-	},
 	'click a': function (evt) {
 		CardNavigation.linkNavigation(evt);
 	}

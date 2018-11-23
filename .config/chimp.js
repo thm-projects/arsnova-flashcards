@@ -1,35 +1,14 @@
 module.exports = {
+	//Check https://www.seleniumhq.org/download/ for the latest version numbers
 	seleniumStandaloneOptions: {
-		version: '3.11.0',
+		version: '3.14.0',
 		drivers: {
 			chrome: {
-				version: '2.36'
-			},
-			ie: {
-				version: '3.6.0'
+				version: '2.44'
 			},
 			firefox: {
-				version: '0.20.0'
+				version: '0.23.0'
 			}
 		}
-	},
-	//
-	// SauceLabs:
-	// ==========
-	/*/
-
-	user: "SAUCE_USER_NAME",
-	key: "SAUCE_USER_KEY",
-
-	browser: 'firefox',
-	platform: 'Linux'
-
-	// When using Sauce Connect Proxy
-	port: 4445,
-	host: "localhost",
-
-	// Without proxy:
-	//port: 80,
-	//host: "ondemand.saucelabs.com"
-	//*/
+	}
 };

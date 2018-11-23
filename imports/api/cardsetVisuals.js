@@ -8,13 +8,16 @@ export let CardsetVisuals = class CardsetVisuals {
 		}
 	}
 
-	static changeCollapseIcon (iconId) {
+	static changeCollapseElement (elementId) {
+		let iconId = elementId + "Icon";
 		if ($(iconId).hasClass("glyphicon-collapse-down")) {
 			$(iconId).removeClass("glyphicon-collapse-down");
 			$(iconId).addClass("glyphicon-collapse-up");
+			$(elementId).slideDown();
 		} else {
 			$(iconId).removeClass("glyphicon-collapse-up");
 			$(iconId).addClass("glyphicon-collapse-down");
+			$(elementId).slideUp();
 		}
 	}
 };

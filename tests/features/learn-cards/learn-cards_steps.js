@@ -39,8 +39,8 @@ module.exports = function () {
 		box4After = navigation.getContent('#boxChart', 2, 'data-box4');
 		box5After = navigation.getContent('#boxChart', 2, 'data-box5');
 		box6After = navigation.getContent('#boxChart', 2, 'data-box6');
-		navigation.compareContent(box1Before, box1After, 4);
-		navigation.compareContent(box2Before, box2After, 4);
+		navigation.compareContent(--box1Before, box1After, 5);
+		navigation.compareContent(++box2Before, box2After, 5);
 		navigation.compareContent(box3Before, box3After, 4);
 		navigation.compareContent(box4Before, box4After, 4);
 		navigation.compareContent(box5Before, box5After, 4);
@@ -60,7 +60,8 @@ module.exports = function () {
 
 	this.Then(/^The algorithm should give me a new card$/, function () {
 		card2 = navigation.getContent('#cardCarousel > div > div', 2, 'data-id');
-		navigation.compareContent(card1, card2, 4, '', false);
+		navigation.compareContent(card1, card2, 5, '', false);
+		navigation.leitnerWozniakBackButton();
 		navigation.logout();
 	});
 };

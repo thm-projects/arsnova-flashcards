@@ -3,8 +3,9 @@ import * as navigation from "../../features_helper/navigation.js";
 
 module.exports = function () {
 	'use strict';
-	var countBeforeCreated = 0;
-	var url;
+	let countBeforeCreated = 0;
+	let countAfterCreated = 0;
+	let url;
 	/**
 	 * ---------------------------------------------------------------------
 	 * Background
@@ -44,7 +45,8 @@ module.exports = function () {
 		navigation.compareUrl(url, browser.getUrl());
 	});
 	this.Then(/^the card should be saved$/, function () {
-		navigation.compareContent(".detail" + (++countBeforeCreated), "FRONTOFTHECARD", 0);
+		countAfterCreated = navigation.checkCardsetCardQuantity();
+		navigation.compareContent(++countBeforeCreated, countAfterCreated, 5, '');
 	});
 	this.Then(/^they log out$/, function () {
 		navigation.logout();
