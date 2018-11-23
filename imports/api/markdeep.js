@@ -36,7 +36,8 @@ MeteorMathJax.defaultConfig = {
 		zoom: "Hover",
 		zscale: "250%",
 		locale: "de"
-	}
+	},
+	messageStyle: "none"
 };
 
 export let MarkdeepContent = class MarkdeepContent {
