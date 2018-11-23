@@ -5,19 +5,17 @@ import {CollegesCourses} from "../../api/colleges_courses.js";
 import {Leitner} from "../../api/learned.js";
 import {Session} from "meteor/session";
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
-import * as lib from '/client/lib.js';
 import {Paid} from "../../api/paid";
 import {CardType} from "../../api/cardTypes";
 import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../../api/dompurify.js";
-import "/client/markdeep.min.js";
 import {getAuthorName} from "../../api/userdata";
 import {Route} from "../../api/route";
-import {CardVisuals} from "../../api/cardVisuals";
 import {UserPermissions} from "../../api/permissions";
 import {Bonus} from "../../api/bonus";
 import {Profile} from "../../api/profile";
 import {BonusForm} from "../../api/bonusForm";
+import {MarkdeepContent} from "../../api/markdeep";
 
 Meteor.subscribe("collegesCourses");
 
@@ -697,30 +695,11 @@ Template.registerHelper("getMaximumText", function (text) {
 	return text;
 });
 
-const helper = new MeteorMathJax.Helper({
+const markdeepHelper = new MeteorMathJax.Helper({
 	useCache: true,
-	transform: function (x) {
-		x += "\n\n";
-		x = window.markdeep.format(x, true);
-		x = DOMPurify.sanitize(x, DOMPurifyConfig);
-		x = lib.setLightBoxes(x);
-		x = lib.displayMediaControls(x);
-		x = lib.adjustIframe(x);
-		CardVisuals.setTextZoom();
-		x = lib.setLinkTarget(x);
-		x += lib.addCustomMathJax();
-		return x;
+	transform: function (content) {
+		return MarkdeepContent.convert(content);
 	}
 });
 
-Template.registerHelper('mathjax', helper.getTemplate());
-MeteorMathJax.sourceUrl = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_SVG';
-
-MeteorMathJax.defaultConfig = {
-	TeX: {equationNumbers: {autoNumber: "AMS"}},
-	menuSettings: {
-		zoom: "Hover",
-		zscale: "250%",
-		locale: "de"
-	}
-};
+Template.registerHelper('markdeep', markdeepHelper.getTemplate());
