@@ -8,13 +8,13 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    {{#mathjax}}
+                    {{#markdeep}}
                         {{#if isActiveLanguage 'de'}}
                             {{> presentationHelpModalContentGerman}}
                         {{else}}
                             {{> presentationHelpModalContentEnglish}}
                         {{/if}}
-                    {{/mathjax}}
+                    {{/markdeep}}
                     <button class="btn btn-raised btn-success btn-block"
                             id="presentationHelpConfirm">{{_ "presentation.help.button.confirm"}}</button>
                 </div>

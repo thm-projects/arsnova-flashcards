@@ -8,13 +8,13 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    {{#mathjax}}
+                    {{#markdeep}}
                         {{#if isActiveLanguage 'de'}}
                             {{> leitnerHelpModalContentGerman}}
                         {{else}}
                             {{> leitnerHelpModalContentEnglish}}
                         {{/if}}
-                    {{/mathjax}}
+                    {{/markdeep}}
                     <button class="btn btn-raised btn-success"
                             id="leitnerHelpConfirm">{{_ "leitner.help.button.confirm"}}</button>
                 </div>

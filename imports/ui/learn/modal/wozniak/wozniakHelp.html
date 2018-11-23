@@ -8,13 +8,13 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    {{#mathjax}}
+                    {{#markdeep}}
                         {{#if isActiveLanguage 'de'}}
                             {{> wozniakHelpModalContentGerman}}
                         {{else}}
                             {{> wozniakHelpModalContentEnglish}}
                         {{/if}}
-                    {{/mathjax}}
+                    {{/markdeep}}
                     <button class="btn btn-raised btn-success"
                             id="wozniakHelpConfirm">{{_ "wozniak.help.button.confirm"}}</button>
                 </div>
