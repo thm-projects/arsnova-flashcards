@@ -67,6 +67,8 @@ export let MarkdeepContent = class MarkdeepContent {
 	static adjustIframe (content) {
 		let element = $(content);
 		$(element).find('iframe').each(function () {
+			$(this).attr('width', 560);
+			$(this).attr('height', 315);
 			$(this).attr('frameBorder', 0);
 		});
 		return $('<div/>').append(element).html();
