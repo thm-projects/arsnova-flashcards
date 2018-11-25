@@ -70,12 +70,11 @@ export let MarkdeepContent = class MarkdeepContent {
 			$(this).addClass('embed-responsive-item');
 			$(this).parent('.image').addClass('iframe-parent');
 			//Adjust the variables in cardVisuals.js if you change the aspect ratio
-			let wrapped = $(this).wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
+			let wrapped = $(this).wrap('<div class="responsive-iframe-container"><div class="embed-responsive embed-responsive-16by9"></div></div>');
 			$(this).text(wrapped);
 		});
 		return $('<div/>').append(element).html();
 	}
-
 
 	static addCustomMathJax () {
 		let mathJaxJoinString = '\\newcommand';
