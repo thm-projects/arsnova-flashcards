@@ -119,9 +119,9 @@ export let CardVisuals = class CardVisuals {
 			let aspectRatioHeight = (flashcardBody.width() / iFrameWidthRatio) * iFrameHeightRatio;
 			if (flashcardBody.height() < aspectRatioHeight) {
 				let newIframeWidth = ((aspectRatioHeight * iFrameMaxHeight) / iFrameHeightRatio) * iFrameWidthRatio;
-				$('.cardContent .iframe-parent').css('width', newIframeWidth);
+				$('.cardContent .responsive-iframe-container').css('width', newIframeWidth);
 			} else {
-				$('.cardContent .iframe-parent').css('width', 'unset');
+				$('.cardContent .responsive-iframe-container').css('width', 'unset');
 			}
 		}
 	}
