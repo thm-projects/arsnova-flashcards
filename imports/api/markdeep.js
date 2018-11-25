@@ -67,9 +67,11 @@ export let MarkdeepContent = class MarkdeepContent {
 	static adjustIframe (content) {
 		let element = $(content);
 		$(element).find('iframe').each(function () {
-			$(this).attr('width', 560);
-			$(this).attr('height', 315);
-			$(this).attr('frameBorder', 0);
+			$(this).addClass('embed-responsive-item');
+			$(this).parent('.image').addClass('iframe-parent');
+			//Adjust the variables in cardVisuals.js if you change the aspect ratio
+			let wrapped = $(this).wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
+			$(this).text(wrapped);
 		});
 		return $('<div/>').append(element).html();
 	}
