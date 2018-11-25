@@ -10,6 +10,10 @@ let editorFullScreenActive = false;
 let defaultFontSize = 16;
 let defaultTextZoomValue = 100;
 
+let iFrameWidthRatio = 16;
+let iFrameHeightRatio = 9;
+let iFrameMaxHeight = 0.8;
+
 export let CardVisuals = class CardVisuals {
 
 	static isEditorFullscreen () {
@@ -104,6 +108,20 @@ export let CardVisuals = class CardVisuals {
 				}
 				this.setPomodoroTimerSize();
 				this.setSidebarPosition();
+				this.setMaxIframeHeight();
+			}
+		}
+	}
+
+	static setMaxIframeHeight () {
+		let flashcardBody = $('.cardContent');
+		if (flashcardBody.length) {
+			let aspectRatioHeight = (flashcardBody.width() / iFrameWidthRatio) * iFrameHeightRatio;
+			if (flashcardBody.height() < aspectRatioHeight) {
+				let newIframeWidth = ((aspectRatioHeight * iFrameMaxHeight) / iFrameHeightRatio) * iFrameWidthRatio;
+				$('.cardContent .iframe-parent').css('width', newIframeWidth);
+			} else {
+				$('.cardContent .iframe-parent').css('width', 'unset');
 			}
 		}
 	}
