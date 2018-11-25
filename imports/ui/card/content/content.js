@@ -129,6 +129,10 @@ Template.cardContentActive.onCreated(function () {
 	CardVisuals.setTextZoom();
 });
 
+Template.cardContentActive.onRendered(function () {
+	CardVisuals.setMaxIframeHeight();
+});
+
 Template.cardContentActive.helpers({
 	isCentered: function () {
 		return CardVisuals.isCentered(Session.get('activeCardContentId'), this.centerTextElement);
@@ -192,6 +196,10 @@ Template.cardContentActive.events({
 
 Template.cardContentInactive.onCreated(function () {
 	CardVisuals.setTextZoom();
+});
+
+Template.cardContentInactive.onRendered(function () {
+	CardVisuals.setMaxIframeHeight();
 });
 
 Template.cardContentInactive.helpers({
