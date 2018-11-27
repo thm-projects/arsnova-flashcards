@@ -953,11 +953,10 @@ th {
   }
 }
 
-#arsnovaAppModal iframe, #arsnovaClickModal iframe {
-  width: 600px;
-  height: 800px;
-  border: 0;
-  box-shadow: $default_box_shadow !important;
+#arsnovaAppModal, #arsnovaClickModal {
+  iframe {
+    box-shadow: $default_box_shadow !important;
+  }
 }
 
 #showLicenseModal {

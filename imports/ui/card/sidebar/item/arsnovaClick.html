@@ -1,17 +1,17 @@
 <template name="cardSidebarItemArsnovaClick">
-    <img class="hidden-xs showArsnovaClick card-button cardHeaderItem"
-         data-type="cardNavigation"
-         src="/img/button/arsnova_click.png"
-         title="{{_ "card.tooltip.arsnovaClick"}}">
+    {{#unless isIOSSafari}}
+        <img class="hidden-xs showArsnovaClick card-button cardHeaderItem"
+             data-type="cardNavigation"
+             src="/img/button/arsnova_click.png"
+             title="{{_ "card.tooltip.arsnovaClick"}}">
+    {{/unless}}
 </template>
 
 <template name="arsnovaClickModal">
-    <div class="modal" id="arsnovaClickModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog">
-            {{#if isArsnovaClickActive}}
-                <iframe src="https://arsnova.click">
-                </iframe>
-            {{/if}}
+    {{#unless isIOSSafari}}
+        <div class="modal" id="arsnovaClickModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+            </div>
         </div>
-    </div>
+    {{/unless}}
 </template>
