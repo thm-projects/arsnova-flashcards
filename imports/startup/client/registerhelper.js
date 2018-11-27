@@ -16,6 +16,7 @@ import {Bonus} from "../../api/bonus";
 import {Profile} from "../../api/profile";
 import {BonusForm} from "../../api/bonusForm";
 import {MarkdeepContent} from "../../api/markdeep";
+import {NavigatorCheck} from "../../api/navigatorCheck";
 
 Meteor.subscribe("collegesCourses");
 
@@ -693,6 +694,10 @@ Template.registerHelper("getMaximumText", function (text) {
 		return textSplitted.slice(0, maxLength).toString().replace(/,/g, ' ') + "...";
 	}
 	return text;
+});
+
+Template.registerHelper("isIOSSafari", function () {
+	return (NavigatorCheck.isIOS() && NavigatorCheck.isSafari());
 });
 
 const markdeepHelper = new MeteorMathJax.Helper({

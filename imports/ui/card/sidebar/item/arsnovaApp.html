@@ -1,13 +1,17 @@
 <template name="cardSidebarItemArsnovaApp">
-    <img class="hidden-xs showArsnovaApp card-button cardHeaderItem"
-         data-type="cardNavigation"
-         src="/img/button/arsnova_app.png"
-         title="{{_ "card.tooltip.arsnovaApp"}}">
+    {{#unless isIOSSafari}}
+        <img class="hidden-xs showArsnovaApp card-button cardHeaderItem"
+             data-type="cardNavigation"
+             src="/img/button/arsnova_app.png"
+             title="{{_ "card.tooltip.arsnovaApp"}}">
+    {{/unless}}
 </template>
 
 <template name="arsnovaAppModal">
-    <div class="modal" id="arsnovaAppModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog">
+    {{#unless isIOSSafari}}
+        <div class="modal" id="arsnovaAppModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+            </div>
         </div>
-    </div>
+    {{/unless}}
 </template>
