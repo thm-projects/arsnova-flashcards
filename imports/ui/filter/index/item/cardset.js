@@ -117,12 +117,6 @@ Template.filterIndexItemCardset.events({
 	"click .learnSelect": function (event) {
 		Session.set("activeCardset", Cardsets.findOne($(event.target).data('id')));
 	},
-	'click .authorProfile': function (event) {
-		event.preventDefault();
-		Router.go('profileOverview', {
-			_id: $(event.target).data('id')
-		});
-	},
 	'click .resultName': function (event) {
 		event.preventDefault();
 		Router.go('cardsetdetailsid', {
