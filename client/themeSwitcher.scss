@@ -85,12 +85,12 @@ $themes: (
     $navbar_create_text: map-get($map, "navbar_create_text");
     $navbar_create_text_hover: map-get($map, "navbar_create_text_hover");
     $navbar_create_text_active: map-get($map, "navbar_create_text_active");
-    $navbar_course_background: map-get($map, "navbar_course_background");
-    $navbar_course_background_hover: map-get($map, "navbar_course_background_hover");
-    $navbar_course_background_active: map-get($map, "navbar_course_background_active");
-    $navbar_course_text: map-get($map, "navbar_course_text");
-    $navbar_course_text_hover: map-get($map, "navbar_course_text_hover");
-    $navbar_course_text_active: map-get($map, "navbar_course_text_active");
+    $navbar_repetitorium_background: map-get($map, "navbar_repetitorium_background");
+    $navbar_repetitorium_background_hover: map-get($map, "navbar_repetitorium_background_hover");
+    $navbar_repetitorium_background_active: map-get($map, "navbar_repetitorium_background_active");
+    $navbar_repetitorium_text: map-get($map, "navbar_repetitorium_text");
+    $navbar_repetitorium_text_hover: map-get($map, "navbar_repetitorium_text_hover");
+    $navbar_repetitorium_text_active: map-get($map, "navbar_repetitorium_text_active");
     $navbar_learn_background: map-get($map, "navbar_learn_background");
     $navbar_learn_background_hover: map-get($map, "navbar_learn_background_hover");
     $navbar_learn_background_active: map-get($map, "navbar_learn_background_active");
@@ -1297,17 +1297,17 @@ $themes: (
       color: $navbar_pool_text_active !important;
     }
 
-    #navbar-course-iterations a {
-      background-color: $navbar_course_background !important;
-      color: $navbar_course_text !important;
+    #navbar-repetitorium a {
+      background-color: $navbar_repetitorium_background !important;
+      color: $navbar_repetitorium_text !important;
     }
-    #navbar-course-iterations a:hover {
-      background-color: $navbar_course_background_hover !important;
-      color: $navbar_course_text_hover !important;
+    #navbar-repetitorium a:hover {
+      background-color: $navbar_repetitorium_background_hover !important;
+      color: $navbar_repetitorium_text_hover !important;
     }
-    #navbar-course-iterations.active a, #navbar-course-iterations.active a:hover {
-      background-color: $navbar_course_background_active !important;
-      color: $navbar_course_text_active !important;
+    #navbar-repetitorium.active a, #navbar-repetitorium.active a:hover {
+      background-color: $navbar_repetitorium_background_active !important;
+      color: $navbar_repetitorium_text_active !important;
     }
 
     #navbar-own-decks a {
@@ -1399,15 +1399,15 @@ $themes: (
       color: $info_text !important;
     }
 
-    #navbar-profile a {
+    #navbar-profile {
       background-color: $navbar_profile_background !important;
       color: $navbar_profile_text !important;
     }
-    #navbar-profile a:hover {
+    #navbar-profile:hover {
       background-color: $navbar_profile_background_hover !important;
       color: $navbar_profile_text_hover !important;
     }
-    #navbar-profile.active a, #navbar-profile.active a:hover {
+    #navbar-profile.active, #navbar-profile.active:hover {
       background-color: $navbar_profile_background_active !important;
       color: $navbar_profile_text_active !important;
     }

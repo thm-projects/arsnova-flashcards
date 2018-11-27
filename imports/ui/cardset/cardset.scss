@@ -398,6 +398,7 @@ th .field-tip {
 
 .cardListRow td {
   padding: $padding-card-list-row;
+  cursor: pointer;
 }
 
 .cardListNumber {
@@ -571,4 +572,8 @@ th .field-tip {
 .removeBonusUser {
   margin: 0;
   padding: 0 !important;
+}
+
+.disabled-stars .stars {
+  cursor: default !important;
 }
