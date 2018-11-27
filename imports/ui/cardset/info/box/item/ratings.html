@@ -8,10 +8,14 @@
                         {{#if canRateCardset}}
                             {{> starsRating id="rating" class='star-ratings' rating=this.rating mutable=true}}
                         {{else}}
-                            {{> starsRating class='star-ratings' rating=this.rating mutable=false}}
+                            <span class="disabled-stars">
+                                {{> starsRating class='star-ratings' rating=this.rating mutable=false}}
+                            </span>
                         {{/if}}
                     {{else}}
+                    <span class="disabled-stars">
                         {{> starsRating class='star-ratings' rating=this.rating mutable=false}}
+                    </span>
                     {{/if}} ({{this.raterCount}})
                 </td>
             </tr>
