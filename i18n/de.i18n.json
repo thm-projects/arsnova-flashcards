@@ -981,8 +981,8 @@
       "content2": "Übersetzung",
       "placeholders": {
         "subject": "Gib das Thema oder die Sprachsituation an !",
-        "content1": "Gib die zu übersetzende Vokabel oder den zu übersetzenden Text ein. \n\nRuf die Übersetzung von »DeepL« mit dem Button in der Editor-Menüleiste auf. \n\nKopiere die Übersetzung und füge sie auf der Rückseite dieser Karte ein (Tab »Übersetzung«).",
-        "content2": "Zur Kontrolle schau dir die Rückübersetzung von »DeepL« an."
+        "content1": "Gib die zu übersetzende Vokabel oder den zu übersetzenden Text ein. \n\nMit der Tab-Taste oder dem Button oben rufst du die Übersetzung von »DeepL« auf. \n\nKopiere die Übersetzung und füge sie auf der Rückseite der Karte ein.",
+        "content2": "Zur Kontrolle schau dir die Rückübersetzung von »DeepL« an (Tab-Taste drücken)."
       },
       "editorLabels": {
         "subject": "Thema oder Sprachsituation"
