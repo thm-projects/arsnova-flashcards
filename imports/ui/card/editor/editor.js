@@ -55,6 +55,12 @@ Template.editor.onRendered(function () {
 		CardVisuals.resizeFlashcard();
 	});
 	CardEditor.initializeEditorButtons();
+	if (CardType.gotDefaultMobilePreview(Session.get('cardType'))) {
+		Session.set('mobilePreview', 1);
+	} else {
+		Session.set('mobilePreview', 0);
+	}
+	Session.set('mobilePreviewRotated', 0);
 });
 
 /*
@@ -66,8 +72,6 @@ Template.newCard.onCreated(function () {
 	Session.set('cardType', Cardsets.findOne({_id: Router.current().params._id}).cardType);
 	Session.set('difficultyColor', Cardsets.findOne({_id: Router.current().params._id}).difficulty);
 	CardEditor.resetSessionData(true);
-	Session.set('mobilePreview', 1);
-	Session.set('mobilePreviewRotated', 0);
 });
 
 /*
@@ -78,7 +82,5 @@ Template.newCard.onCreated(function () {
 Template.editCard.onCreated(function () {
 	Session.set('cardType', Cardsets.findOne({_id: Router.current().params._id}).cardType);
 	Session.set('difficultyColor', Cardsets.findOne({_id: Router.current().params._id}).difficulty);
-	Session.set('mobilePreview', 1);
-	Session.set('mobilePreviewRotated', 0);
 	CardEditor.loadEditModeContent(Cards.findOne({_id: Router.current().params.card_id}));
 });
