@@ -4,6 +4,7 @@ import {MarkdeepEditor} from "../../../../api/markdeepEditor.js";
 import {CardVisuals} from "../../../../api/cardVisuals";
 import {Dictionary} from "../../../../api/dictionary";
 import {CardType} from "../../../../api/cardTypes";
+import {Route} from "../../../../api/route";
 import "./navigation.html";
 
 /*
@@ -62,6 +63,13 @@ Template.markdeepNavigation.helpers({
 		return Session.get('isDeepLModalVisible');
 	},
 	gotDictionary: function () {
-		return CardType.gotDictionary(Session.get('cardType'));
+		return CardType.gotDictionary(Session.get('cardType')) && Route.isEditMode();
+	},
+	gotMarkdeepHelp: function () {
+		if (Route.isEditMode()) {
+			return CardType.gotMarkdeepHelp(Session.get('cardType'));
+		} else {
+			return true;
+		}
 	}
 });

@@ -28,6 +28,7 @@ let cardTypesWithNotesForDifficultyLevel = [2];
 let cardTypesWithCardsetTitleNavigation = [14];
 let cardTypesWithSwapAnswerQuestionButton = [1, 3, 6];
 let cardTypesWithDefaultMobilePreview = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+let cardTypesWithMarkdeepHelp = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 15}, {cardType: 3}, {cardType: 6}, {cardType: 13}, {cardType: 12}, {cardType: 11}, {cardType: 5}, {cardType: 1}, {cardType: 10}, {cardType: 7}, {cardType: 4}, {cardType: 8}, {cardType: 9}, {cardType: 14}];
 
 //0: left
@@ -444,6 +445,10 @@ export let CardType = class CardType {
 
 	static gotDefaultMobilePreview (cardType) {
 		return cardTypesWithDefaultMobilePreview.includes(cardType);
+	}
+
+	static gotMarkdeepHelp (cardType) {
+		return cardTypesWithMarkdeepHelp.includes(cardType);
 	}
 
 	static gotCardTypesWithSwapAnswerQuestionButton (cardset_id) {
