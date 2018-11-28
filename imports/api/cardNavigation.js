@@ -330,8 +330,12 @@ export let CardNavigation = class CardNavigation {
 			if (keyCodes.indexOf(event.keyCode) > -1) {
 				switch (event.keyCode) {
 					case 9:
-						if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
-							CardEditor.setEditorButtonFocus();
+						if (Route.isEditMode()) {
+							if (Session.get('isDeepLModalVisible')) {
+								$('#cardEditorModalDeepLTranslation').modal('hide');
+							} else {
+								CardEditor.setEditorButtonFocus();
+							}
 						} else {
 							CardNavigation.cardSideNavigation();
 						}

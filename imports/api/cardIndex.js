@@ -5,10 +5,33 @@ import {Cards} from "./cards";
 import {Cardsets} from "./cardsets";
 import {Route} from "./route";
 import {CardType} from "./cardTypes";
+import {CardNavigation} from "./cardNavigation";
+import {CardVisuals} from "./cardVisuals";
 
 let cardIndex = [];
 
 export let CardIndex = class CardIndex {
+
+	static getCards () {
+		let result;
+		if (Route.isBox()) {
+			result = this.getLeitnerCards();
+		}
+		if (Route.isCardset() || Route.isPresentation() || Route.isDemo() || Route.isMakingOf()) {
+			result = this.getCardsetCards();
+		}
+		if (Route.isMemo()) {
+			result = this.getMemoCards();
+		}
+		if (Route.isEditMode()) {
+			result = this.getEditModeCard();
+			Session.set('activeCard', -1);
+		}
+		if (Session.get('activeCard') === undefined && result[0] !== undefined) {
+			CardNavigation.setActiveCardData(result[0]._id);
+		}
+		return CardVisuals.setTypeAndDifficulty(result);
+	}
 
 	static getCardIndex () {
 		return cardIndex;

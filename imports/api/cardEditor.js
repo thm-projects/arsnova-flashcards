@@ -5,6 +5,7 @@ import {Route} from "./route.js";
 import {CardNavigation} from "./cardNavigation";
 import {Cardsets} from "./cardsets";
 import {BertAlertVisuals} from "./bertAlertVisuals";
+import {CardVisuals} from "./cardVisuals";
 
 const subjectMaxLength = 255;
 const contentMaxLength = 300000;
@@ -42,6 +43,10 @@ export let CardEditor = class CardEditor {
 		return cardNavigationName;
 	}
 
+	static getCardNavigationNameIndex () {
+		return editorButtons.indexOf(this.getCardNavigationName());
+	}
+
 	static getLearningGoalLevelGroupName () {
 		return learningGoalLevelGroupName;
 	}
@@ -72,13 +77,25 @@ export let CardEditor = class CardEditor {
 	}
 
 	static setEditorButtonFocus () {
+		if (CardVisuals.isFullscreen() && editorButtons[editorButtonIndex] !== cardNavigationName) {
+			editorButtonIndex = this.getCardNavigationNameIndex();
+			firstCardNavigationCall = true;
+		}
 		if (editorButtons[editorButtonIndex] === cardNavigationName) {
 			if (firstCardNavigationCall) {
 				CardNavigation.setActiveNavigationButton(0);
 				firstCardNavigationCall = false;
+				CardNavigation.cardSideNavigation();
+			} else {
+				if (CardType.gotDictionary(Session.get('cardType')) && (!CardVisuals.isFullscreen() || (CardVisuals.isFullscreen() && CardVisuals.isEditorFullscreen()))) {
+					$('#cardEditorModalDeepLTranslation').modal('show').one('hidden.bs.modal', function () {
+						CardNavigation.cardSideNavigation();
+					});
+				} else {
+					CardNavigation.cardSideNavigation();
+				}
 			}
-			CardNavigation.cardSideNavigation();
-		} else {
+		} else if (!CardVisuals.isFullscreen()) {
 			$(editorButtons[editorButtonIndex]).focus();
 			if (editorButtonIndex < (editorButtons.length - 1)) {
 				editorButtonIndex++;

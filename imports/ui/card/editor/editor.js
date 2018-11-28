@@ -7,6 +7,7 @@ import {CardVisuals} from "../../../api/cardVisuals";
 import ResizeSensor from "../../../../client/thirdParty/resizeSensor/ResizeSensor";
 import {Cards} from "../../../api/cards";
 import "../card.js";
+import "./modal/deeplTranslation.js";
 import "./modal/learningUnit.js";
 import "./item/buttons.js";
 import "./item/learningGoalLevel.js";

@@ -35,6 +35,7 @@ Template.markdeepNavigation.events({
 	},
 	'click .markdeep-translate': function () {
 		Dictionary.setMode(2);
+		$('#cardEditorModalDeepLTranslation').modal('show');
 	}
 });
 
@@ -58,7 +59,7 @@ Template.markdeepNavigation.helpers({
 		return Session.get('fullscreen');
 	},
 	isTranslationActive: function () {
-		return Dictionary.checkMode(2);
+		return Session.get('isDeepLModalVisible');
 	},
 	gotDictionary: function () {
 		return CardType.gotDictionary(Session.get('cardType'));

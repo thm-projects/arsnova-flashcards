@@ -109,24 +109,7 @@ Template.flashcards.helpers({
 		return Route.isCardset();
 	},
 	getCards: function () {
-		let result;
-		if (Route.isBox()) {
-			result = CardIndex.getLeitnerCards();
-		}
-		if (Route.isCardset() || Route.isPresentation() || Route.isDemo() || Route.isMakingOf()) {
-			result = CardIndex.getCardsetCards();
-		}
-		if (Route.isMemo()) {
-			result = CardIndex.getMemoCards();
-		}
-		if (Route.isEditMode()) {
-			result = CardIndex.getEditModeCard();
-			Session.set('activeCard', -1);
-		}
-		if (Session.get('activeCard') === undefined && result[0] !== undefined) {
-			CardNavigation.setActiveCardData(result[0]._id);
-		}
-		return CardVisuals.setTypeAndDifficulty(result);
+		return CardIndex.getCards();
 	},
 	cardsIndex: function (card_id) {
 		let cardIndex = CardIndex.getCardIndex();
@@ -134,12 +117,12 @@ Template.flashcards.helpers({
 	},
 	isBeolingusDictionary: function () {
 		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryMode') === 1;
+			return Session.get('dictionaryMode') === 1 && !Route.isEditMode();
 		}
 	},
 	isDeepLDictionary: function () {
 		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryMode') === 2;
+			return Session.get('dictionaryMode') === 2 && !Route.isEditMode();
 		}
 	},
 	getCardSideColorActive: function () {
