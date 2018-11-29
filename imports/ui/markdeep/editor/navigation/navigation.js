@@ -4,6 +4,7 @@ import {MarkdeepEditor} from "../../../../api/markdeepEditor.js";
 import {CardVisuals} from "../../../../api/cardVisuals";
 import {Dictionary} from "../../../../api/dictionary";
 import {CardType} from "../../../../api/cardTypes";
+import {Route} from "../../../../api/route";
 import "./navigation.html";
 
 /*
@@ -35,6 +36,7 @@ Template.markdeepNavigation.events({
 	},
 	'click .markdeep-translate': function () {
 		Dictionary.setMode(2);
+		$('#cardEditorModalDeepLTranslation').modal('show');
 	}
 });
 
@@ -58,9 +60,16 @@ Template.markdeepNavigation.helpers({
 		return Session.get('fullscreen');
 	},
 	isTranslationActive: function () {
-		return Dictionary.checkMode(2);
+		return Session.get('isDeepLModalVisible');
 	},
 	gotDictionary: function () {
-		return CardType.gotDictionary(Session.get('cardType'));
+		return CardType.gotDictionary(Session.get('cardType')) && Route.isEditMode();
+	},
+	gotMarkdeepHelp: function () {
+		if (Route.isEditMode()) {
+			return CardType.gotMarkdeepHelp(Session.get('cardType'));
+		} else {
+			return true;
+		}
 	}
 });
