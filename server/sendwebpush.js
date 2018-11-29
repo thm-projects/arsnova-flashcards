@@ -5,7 +5,7 @@ import {AdminSettings} from "../imports/api/adminSettings.js";
 import {Cardsets} from "../imports/api/cardsets.js";
 
 function getDateString(date) {
-	let dateFormat = "D. MMMM YYYY";
+	let dateFormat = "dddd";
 	return moment(date).locale(Meteor.settings.mail.language).format(dateFormat);
 }
 
