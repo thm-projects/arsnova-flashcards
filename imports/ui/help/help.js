@@ -1,23 +1,6 @@
 import {Session} from "meteor/session";
-import "./categories/algorithms/leitner.html";
-import "./categories/algorithms/progress.html";
-import "./categories/algorithms/wozniak.html";
-import "./categories/card/editor.html";
-import "./categories/cardset/bonus.html";
-import "./categories/cardset/cardView.html";
-import "./categories/cardset/presentation.html";
-import "./categories/cardset/preview.html";
-import "./categories/filterResults/myCardsets.html";
-import "./categories/filterResults/pool.html";
-import "./categories/filterResults/repetitorium.html";
-import "./categories/filterResults/shuffle.html";
-import "./categories/filterResults/workload.html";
-import "./categories/profile/billing.html";
-import "./categories/profile/membership.html";
-import "./categories/profile/notifications.html";
-import "./categories/profile/requests.html";
-import "./categories/profile/settings.html";
-import "./categories/start.html";
+import "./content/helpContent.js";
+import "./modal/helpModal.js";
 import "./help.html";
 
 /*
@@ -29,9 +12,6 @@ import "./help.html";
 Template.help.helpers({
 	isHelpFilterActive: function () {
 		return Session.get('helpFilter') !== undefined;
-	},
-	displayHelpCategory: function (category) {
-		return Session.get('helpFilter') === undefined || Session.get('helpFilter') === category;
 	}
 });
 

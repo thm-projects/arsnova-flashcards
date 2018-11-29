@@ -5,9 +5,9 @@ import {CardType} from "../../../../api/cardTypes";
 import {Leitner, Wozniak} from "../../../../api/learned";
 import {Cardsets} from "../../../../api/cardsets";
 import {CardsetNavigation} from "../../../../api/cardsetNavigation";
+import "../modal/chooseFlashcards.js";
 import "../modal/leitner.js";
 import "../modal/wozniak.js";
-import "../modal/chooseFlashcards.js";
 import "./workload.html";
 
 /*

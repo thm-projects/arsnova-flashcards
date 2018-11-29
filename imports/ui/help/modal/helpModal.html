@@ -1,0 +1,46 @@
+<template name="helpModal">
+    <div class="modal fade" id="helpModal" tabindex="-1" role="dialog"
+         aria-labelledby="helpModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons">
+                <div class="modal-body">
+                    {{#if isActiveRoute regex='presentation|demo|making'}}
+                        {{#if isActiveRoute regex='presentationlist|demolist|makinglist'}}
+                            {{> helpContent}}
+                        {{else}}
+                            <h4 id="presentationHelp" class="modal-title">{{_ "presentation.help.title"}}
+                            </h4>
+                            {{#markdeep}}
+                                {{> helpContentCategoryPresentation}}
+                            {{/markdeep}}
+                            <button class="btn btn-raised btn-success btn-block"
+                                    id="presentationHelpConfirm">{{_ "presentation.help.button.confirm"}}</button>
+                        {{/if}}
+                    {{else}}
+                        {{#if isActiveRoute 'box'}}
+                            <h4 id="leitnerHelp" class="modal-title">{{_ "leitner.help.title"}}
+                            </h4>
+                            {{#markdeep}}
+                                {{> helpContentCategoryLeitner}}
+                            {{/markdeep}}
+                            <button class="btn btn-raised btn-success"
+                                    id="leitnerHelpConfirm">{{_ "leitner.help.button.confirm"}}</button>
+                        {{else}}
+                            {{#if isActiveRoute 'memo'}}
+                                <h4 id="wozniakHelp" class="modal-title">{{_ "wozniak.help.title"}}
+                                </h4>
+                                {{#markdeep}}
+                                    {{> helpContentCategoryWozniak}}
+                                {{/markdeep}}
+                                <button class="btn btn-raised btn-success"
+                                        id="wozniakHelpConfirm">{{_ "wozniak.help.button.confirm"}}</button>
+                            {{else}}
+                                {{> helpContent}}
+                            {{/if}}
+                        {{/if}}
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

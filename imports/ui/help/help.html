@@ -9,32 +9,7 @@
                     {{_ "help.resetFilter"}}
                 </button>
             {{/if}}
-            {{#if displayHelpCategory "start"}}
-                {{> helpStart}}
-            {{/if}}
-            {{#if displayHelpCategory "pool"}}
-                {{> helpPool}}
-            {{/if}}
-            {{#if displayHelpCategory "repetitorium"}}
-                {{> helpRepetitorium}}
-            {{/if}}
-            {{#if displayHelpCategory "workload"}}
-                {{> helpWorkload}}
-            {{/if}}
-            {{#if displayHelpCategory "create"}}
-                {{> helpMyCardsets}}
-            {{/if}}
-            {{#if displayHelpCategory "cardset"}}
-                {{> helpCardView}}
-                {{> helpPresentation}}
-                {{> helpBonus}}
-            {{/if}}
-            {{#if displayHelpCategory "workloadProgress"}}
-                {{> helpWorkloadProgress}}
-            {{/if}}
-            {{#if displayHelpCategory "cardEditor"}}
-                {{> helpCardEditor}}
-            {{/if}}
+            {{> helpContent}}
         </div>
     </div>
 </template>

@@ -4,7 +4,11 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Notifications} from "../../api/notifications.js";
-import "./main.html";
+import {Route} from "../../api/route";
+import {CardVisuals} from "../../api/cardVisuals";
+import {MarkdeepContent} from "../../api/markdeep";
+import {CardNavigation} from "../../api/cardNavigation";
+import {MainNavigation} from "../../api/mainNavigation";
 import "../welcome/welcome.js";
 import "../wordcloud/wordcloud.js";
 import "../impressum/impressum.js";
@@ -26,9 +30,7 @@ import "./overlays/zoomText.js";
 import "../card/sidebar/sidebar.js";
 import "../loadingScreen/loadingScreen.js";
 import "../card/editor/editor.js";
-import {Route} from "../../api/route";
-import {CardVisuals} from "../../api/cardVisuals";
-import {MarkdeepContent} from "../../api/markdeep";
+import "./main.html";
 
 Meteor.subscribe("Users");
 Meteor.subscribe("notifications");
@@ -256,4 +258,16 @@ Template.footer.helpers({
 	displayFooterNavigation: function () {
 		return (Route.isHome() || (Route.isFirstTimeVisit() && Route.isDemo() || Route.isMakingOf()));
 	}
+});
+
+Meteor.startup(function () {
+	CardNavigation.fullscreenExitEvents();
+	$(document).on('keydown', function (event) {
+		MainNavigation.keyEvents(event);
+		CardNavigation.keyEvents(event);
+	});
+	$(document).on('keyup', function () {
+		MainNavigation.enableKeyEvents();
+		CardNavigation.enableKeyEvents();
+	});
 });
