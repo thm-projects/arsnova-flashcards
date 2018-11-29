@@ -28,8 +28,8 @@ export let CardNavigation = class CardNavigation {
 		Session.set('dictionaryGoogle', 0);
 		Session.set('activeCardStyle', cardStyle);
 		Session.set('activeCardContentId', contentId);
-		CardEditor.setEditorContent(navigationId);
 		this.setActiveNavigationButton(navigationId);
+		CardEditor.setEditorContent(navigationId);
 	}
 
 	static setActiveNavigationButton (index) {
@@ -330,8 +330,12 @@ export let CardNavigation = class CardNavigation {
 			if (keyCodes.indexOf(event.keyCode) > -1) {
 				switch (event.keyCode) {
 					case 9:
-						if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
-							CardEditor.setEditorButtonFocus();
+						if (Route.isEditMode()) {
+							if (Session.get('isDeepLModalVisible')) {
+								$('#cardEditorModalDeepLTranslation').modal('hide');
+							} else {
+								CardEditor.setEditorButtonFocus();
+							}
 						} else {
 							CardNavigation.cardSideNavigation();
 						}

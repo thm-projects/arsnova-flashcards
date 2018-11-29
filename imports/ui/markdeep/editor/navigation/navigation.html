@@ -1,9 +1,12 @@
 <template name="markdeepNavigation">
     <div id="markdeepNavigation">
-        <div class="btn-group">
-            <span class="btn fa fa-lightbulb-o card-button markdeep-help" title="{{_ "card.tooltip.markdeepEditor.help"}}">&nbsp;{{_
+        {{#if gotMarkdeepHelp}}
+            <div class="btn-group">
+            <span class="btn fa fa-lightbulb-o card-button markdeep-help"
+                  title="{{_ "card.tooltip.markdeepEditor.help"}}">&nbsp;{{_
                     "markdeep.editor.help"}}</span>
-        </div>
+            </div>
+        {{/if}}
         <div class="btn-group">
             {{#if isActiveRoute regex="editCard|newCard"}}
                 <i class="markdeep-mobile-preview fa fa-mobile card-button {{#if
@@ -30,7 +33,7 @@
         {{#if gotDictionary}}
             <div class="btn-group">
                 <span class="btn card-button markdeep-translate {{#if isTranslationActive}}pressed{{/if}}"
-                   title="{{_ "card.tooltip.markdeepEditor.translate"}}">&nbsp;{{_
+                      title="{{_ "card.tooltip.markdeepEditor.translate"}}">&nbsp;{{_
                         "markdeep.editor.translate"}}</span>
             </div>
         {{/if}}
