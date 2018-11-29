@@ -112,9 +112,9 @@ self.addEventListener('fetch', (event) => {
 self.addEventListener('push', function (event) {
 	var payload = event.data ? event.data.text() : 'no payload';
 	event.waitUntil(
-		self.registration.showNotification('.cards', {
+		self.registration.showNotification('🍅cards', {
 			body: payload,
-			icon: '/img/webpush_icon.png'
+			icon: 'android-chrome-192x192.png'
 		})
 	);
 });

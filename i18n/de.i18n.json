@@ -270,7 +270,7 @@
     "resetFilter": "Zeige die Hilfe für alle Seiten…"
   },
   "webPushNotifications": {
-    "content": "Kartei: __cardsetName__\nKarten: __cardCount__\nFrist: __deadline__"
+    "content": "»__cardsetName__«: __cardCount__ Karten bis __deadline__"
   },
   "notifications": {
     "title": "Nachrichten",
