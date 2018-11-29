@@ -156,6 +156,7 @@ export let CardEditor = class CardEditor {
 
 	static setEditorContent (index) {
 		if (Route.isEditMode()) {
+			editorButtonIndex = this.getCardNavigationNameIndex();
 			$('#contentEditor').focus();
 			$('#contentEditor').attr('tabindex', CardNavigation.getTabIndex(index, true));
 		}

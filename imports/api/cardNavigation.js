@@ -28,8 +28,8 @@ export let CardNavigation = class CardNavigation {
 		Session.set('dictionaryGoogle', 0);
 		Session.set('activeCardStyle', cardStyle);
 		Session.set('activeCardContentId', contentId);
-		CardEditor.setEditorContent(navigationId);
 		this.setActiveNavigationButton(navigationId);
+		CardEditor.setEditorContent(navigationId);
 	}
 
 	static setActiveNavigationButton (index) {
