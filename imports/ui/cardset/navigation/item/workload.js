@@ -4,7 +4,6 @@ import {Template} from "meteor/templating";
 import {CardType} from "../../../../api/cardTypes";
 import {Leitner, Wozniak} from "../../../../api/learned";
 import {Cardsets} from "../../../../api/cardsets";
-import {CardsetNavigation} from "../../../../api/cardsetNavigation";
 import "../modal/chooseFlashcards.js";
 import "../modal/leitner.js";
 import "../modal/wozniak.js";
@@ -40,13 +39,11 @@ Template.cardsetNavigationWorkload.helpers({
 
 Template.cardsetNavigationWorkload.events({
 	"click #learnBox": function () {
-		CardsetNavigation.addToLeitner(this._id);
 		Router.go('box', {
 			_id: this._id
 		});
 	},
 	"click #learnMemo": function () {
-		Meteor.call("addWozniakCards", this._id);
 		Router.go('memo', {
 			_id: this._id
 		});
