@@ -429,6 +429,13 @@ Template.registerHelper("hasCardsetPermission", function () {
 	return UserPermissions.hasCardsetPermission(Router.current().params._id);
 });
 
+Template.registerHelper("isEditCard", function () {
+	return Route.isEditCard();
+});
+
+Template.registerHelper("isNewCard", function () {
+	return Route.isNewCard();
+});
 
 //Returns all Colleges
 Template.registerHelper("getColleges", function () {

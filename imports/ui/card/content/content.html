@@ -11,6 +11,9 @@
     {{#if isDemo}}
         {{> cardContentItemCountCards this}}
     {{/if}}
+    {{#if isEditCard}}
+        {{> cardContentItemCountCards this}}
+    {{/if}}
     {{#if isBox}}
         {{> cardContentItemCountCardsLeitner this}}
     {{/if}}

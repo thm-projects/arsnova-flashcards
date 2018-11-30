@@ -1414,6 +1414,7 @@
   "confirmcard": "Sicher?",
   "savecard": "Speichern & neue Karte",
   "savecardReturn": "Speichern & zurück",
+  "savecardNext": "Speichern & nächste Karte",
   "savecardSuccess": "Die Karte wurde gespeichert",
   "deletecardSuccess": "Die Karte wurde gelöscht",
   "valuation": "Bewertung",
