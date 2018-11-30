@@ -9,7 +9,9 @@
                     {{_ "help.resetFilter"}}
                 </button>
             {{/if}}
-            {{> helpContent}}
+            {{#markdeep}}
+                {{> helpContent}}
+            {{/markdeep}}
         </div>
     </div>
 </template>

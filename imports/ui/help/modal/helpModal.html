@@ -35,7 +35,9 @@
                                 <button class="btn btn-raised btn-success"
                                         id="wozniakHelpConfirm">{{_ "wozniak.help.button.confirm"}}</button>
                             {{else}}
-                                {{> helpContent}}
+                                {{#markdeep}}
+                                    {{> helpContent}}
+                                {{/markdeep}}
                             {{/if}}
                         {{/if}}
                     {{/if}}
