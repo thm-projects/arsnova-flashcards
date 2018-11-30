@@ -11,6 +11,7 @@ import {PomodoroTimer} from "../../api/pomodoroTimer";
 import {Bonus} from "../../api/bonus";
 import {Route} from "../../api/route";
 import {MainNavigation} from "../../api/mainNavigation";
+import {CardsetNavigation} from "../../api/cardsetNavigation";
 Session.set('animationPlaying', false);
 
 /*
@@ -41,6 +42,12 @@ Template.learnAlgorithms.onRendered(function () {
 	}
 	if (localStorage.getItem(MainNavigation.getFirstTimeWozniakString()) !== "true" && Route.isMemo()) {
 		$('#helpModal').modal('show');
+	}
+	if (Route.isBox()) {
+		CardsetNavigation.addToLeitner(Router.current().params._id);
+	}
+	if (Route.isMemo()) {
+		Meteor.call("addWozniakCards", Router.current().params._id);
 	}
 });
 

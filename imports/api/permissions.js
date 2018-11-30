@@ -1,4 +1,6 @@
 import {Meteor} from "meteor/meteor";
+import {Cardsets} from "./cardsets";
+import {Paid} from "./paid";
 
 export let UserPermissions = class UserPermissions {
 	static canCreateContent () {
@@ -27,5 +29,31 @@ export let UserPermissions = class UserPermissions {
 
 	static isLecturer () {
 		return (Roles.userIsInRole(Meteor.userId(), ['lecturer']));
+	}
+
+	static hasCardsetPermission (cardset_id) {
+		if (!Meteor.isServer) {
+			if (Router.current().route.getName() === "demo" || Router.current().route.getName() === "making") {
+				return true;
+			}
+		}
+		let cardset = Cardsets.findOne({_id: cardset_id});
+		if (cardset === undefined) {
+			return false;
+		}
+		let userId = Meteor.userId();
+		let cardsetKind = cardset.kind;
+
+		let hasRole = false;
+		if (Roles.userIsInRole(userId, 'pro') ||
+			(Roles.userIsInRole(userId, 'lecturer')) ||
+			(Roles.userIsInRole(userId, 'admin')) ||
+			(Roles.userIsInRole(userId, 'editor')) ||
+			(Roles.userIsInRole(userId, 'university') && (cardsetKind === 'edu' || cardsetKind === 'free')) ||
+			(cardsetKind === 'free') ||
+			(Paid.find({cardset_id: cardset._id, user_id: userId}).count())) {
+			hasRole = true;
+		}
+		return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) || hasRole;
 	}
 };

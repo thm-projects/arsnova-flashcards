@@ -1,6 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import swal from "sweetalert2";
 import * as screenfull from 'screenfull';
+import {CardVisuals} from "./cardVisuals";
 
 export let SweetAlertMessages = class SweetAlertMessages {
 	static completeProfile () {
@@ -33,6 +34,27 @@ export let SweetAlertMessages = class SweetAlertMessages {
 		}).then((result) => {
 			if (result.value) {
 				screenfull.request();
+			} else {
+				screenfull.exit();
+				Router.go('cardsetdetailsid', {
+					_id: Router.current().params._id
+				});
+			}
+		});
+	}
+
+	static activateFullscreen () {
+		swal({
+			title: TAPi18n.__('sweetAlert.fullscreen.title'),
+			html: TAPi18n.__('sweetAlert.fullscreen.text'),
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonText: TAPi18n.__('sweetAlert.fullscreen.button.confirm'),
+			cancelButtonText: TAPi18n.__('sweetAlert.fullscreen.button.cancel'),
+			allowOutsideClick: false
+		}).then((result) => {
+			if (result.value) {
+				CardVisuals.toggleFullscreen();
 			} else {
 				screenfull.exit();
 				Router.go('cardsetdetailsid', {

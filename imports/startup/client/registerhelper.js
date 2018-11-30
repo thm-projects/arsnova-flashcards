@@ -5,7 +5,6 @@ import {CollegesCourses} from "../../api/colleges_courses.js";
 import {Leitner} from "../../api/learned.js";
 import {Session} from "meteor/session";
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
-import {Paid} from "../../api/paid";
 import {CardType} from "../../api/cardTypes";
 import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../../api/dompurify.js";
@@ -427,27 +426,7 @@ Template.registerHelper("getCourses", function () {
 });
 
 Template.registerHelper("hasCardsetPermission", function () {
-	if (Router.current().route.getName() === "demo" || Router.current().route.getName() === "making") {
-		return true;
-	}
-	let cardset = Cardsets.findOne({_id: Router.current().params._id});
-	if (cardset === undefined) {
-		return false;
-	}
-	let userId = Meteor.userId();
-	let cardsetKind = cardset.kind;
-
-	let hasRole = false;
-	if (Roles.userIsInRole(userId, 'pro') ||
-		(Roles.userIsInRole(userId, 'lecturer')) ||
-		(Roles.userIsInRole(userId, 'admin')) ||
-		(Roles.userIsInRole(userId, 'editor')) ||
-		(Roles.userIsInRole(userId, 'university') && (cardsetKind === 'edu' || cardsetKind === 'free')) ||
-		(cardsetKind === 'free') ||
-		(Paid.find({cardset_id: cardset._id, user_id: userId}).count())) {
-		hasRole = true;
-	}
-	return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) || hasRole;
+	return UserPermissions.hasCardsetPermission(Router.current().params._id);
 });
 
 

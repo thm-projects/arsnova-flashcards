@@ -9,6 +9,7 @@ import {check} from "meteor/check";
 import {CardType} from "../imports/api/cardTypes";
 import {Bonus} from "../imports/api/bonus";
 import {Profile} from "../imports/api/profile";
+import {UserPermissions} from "../imports/api/permissions";
 
 /** Function returns the amount of cards inside a box that are valid to learn
  *  @param {string} cardset_id - The id of the cardset with active learners
@@ -468,7 +469,7 @@ Meteor.methods({
 	 * */
 	addToLeitner: function (cardset_id) {
 		check(cardset_id, String);
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked')) {
+		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked') || !UserPermissions.hasCardsetPermission(cardset_id)) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			let cardset = Cardsets.findOne({_id: cardset_id});
@@ -504,7 +505,7 @@ Meteor.methods({
 		check(cardset_id, String);
 		let cardset = Cardsets.findOne({_id: cardset_id});
 		let user_id = this.userId;
-		if (!Meteor.userId() || Roles.userIsInRole(user_id, 'blocked') || Bonus.isInBonus(cardset._id, Meteor.userId())) {
+		if (!Meteor.userId() || Roles.userIsInRole(user_id, 'blocked') || Bonus.isInBonus(cardset._id, Meteor.userId()) || !UserPermissions.hasCardsetPermission(cardset_id)) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			Meteor.call('initializeWorkloadData', cardset._id, Meteor.userId());

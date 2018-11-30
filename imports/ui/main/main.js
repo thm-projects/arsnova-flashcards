@@ -123,6 +123,7 @@ Template.main.events({
 	'click .logout': function (event) {
 		event.preventDefault();
 		Session.set('helpFilter', undefined);
+		MainNavigation.setLoginTarget(false);
 		Meteor.logout();
 	},
 	'keyup #input-search': function (event) {
@@ -203,7 +204,7 @@ Template.main.helpers({
 		return "/cardset/" + this.link_id;
 	},
 	getMyCardsetName: function () {
-		if (Meteor.user().count !== undefined) {
+		if (Meteor.user() && Meteor.user().count !== undefined) {
 			switch (Meteor.user().count.cardsets) {
 				case 0:
 					return TAPi18n.__('navbar-collapse.noCarddecks');

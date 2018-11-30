@@ -21,6 +21,10 @@ export let Route = class Route {
 		return Router.current().route.getName() === "newCard";
 	}
 
+	static requiresUserInputForFullscreen () {
+		return (this.isPresentation() || this.isBox() || this.isMemo());
+	}
+
 	static isEditCard () {
 		return Router.current().route.getName() === "editCard";
 	}

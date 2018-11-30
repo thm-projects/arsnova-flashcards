@@ -7,8 +7,25 @@ import {Route} from "../../api/route.js";
 import {Filter} from "../../api/filter";
 import {MarkdeepEditor} from "../../api/markdeepEditor";
 import {WebPushNotifications} from "../../api/webPushSubscriptions";
+import {UserPermissions} from "../../api/permissions";
+import {MainNavigation} from "../../api/mainNavigation";
 
 let loadingScreenTemplate = 'loadingScreen';
+
+let linksWithNoLoginRequirement = [
+	'home',
+	'about',
+	'learning',
+	'faq',
+	'help',
+	'impressum',
+	'demo',
+	'demolist',
+	'agb',
+	'datenschutz',
+	'making',
+	'makinglist'
+];
 
 Router.route('/', function () {
 	this.redirect('home');
@@ -48,6 +65,7 @@ Router.route('/home', {
 	},
 	action: function () {
 		if (this.ready()) {
+			CardVisuals.toggleFullscreen(true);
 			this.render();
 		} else {
 			this.render(loadingScreenTemplate);
@@ -201,7 +219,7 @@ Router.route('/alldecks', {
 	name: 'alldecks',
 	template: 'filterIndex',
 	subscriptions: function () {
-		return [Meteor.subscribe('allCardsets'), Meteor.subscribe('paidCardsets')];
+		return [Meteor.subscribe('allCardsets'), Meteor.subscribe('paidCardsets'), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		Session.set('helpFilter', "pool");
@@ -210,7 +228,12 @@ Router.route('/alldecks', {
 	},
 	action: function () {
 		if (this.ready()) {
-			this.render();
+			if (UserPermissions.isAdmin()) {
+				this.render();
+			} else {
+				MainNavigation.setLoginTarget(false);
+				this.redirect('home');
+			}
 		} else {
 			this.render(loadingScreenTemplate);
 		}
@@ -710,15 +733,20 @@ Router.route('/admin/dashboard', {
 	template: 'admin_dashboard',
 	layoutTemplate: 'admin_main',
 	loadingTemplate: 'admin_dashboard',
-	waitOn: function () {
-		return [Meteor.subscribe("serverInventory")];
+	subscriptions: function () {
+		return [Meteor.subscribe("serverInventory"), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
 		if (this.ready()) {
-			this.render();
+			if (UserPermissions.isAdmin()) {
+				this.render();
+			} else {
+				MainNavigation.setLoginTarget(false);
+				this.redirect('home');
+			}
 		} else {
 			this.render(loadingScreenTemplate);
 		}
@@ -729,12 +757,20 @@ Router.route('/admin/users', {
 	name: 'admin_users',
 	template: 'admin_users',
 	layoutTemplate: 'admin_main',
+	subscriptions: function () {
+		return [Meteor.subscribe('userData')];
+	},
 	data: function () {
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
 		if (this.ready()) {
-			this.render();
+			if (UserPermissions.isAdmin()) {
+				this.render();
+			} else {
+				MainNavigation.setLoginTarget(false);
+				this.redirect('home');
+			}
 		} else {
 			this.render(loadingScreenTemplate);
 		}
@@ -745,13 +781,21 @@ Router.route('/admin/user/:_id', {
 	name: 'admin_user',
 	template: 'admin_user',
 	layoutTemplate: 'admin_main',
+	subscriptions: function () {
+		return [Meteor.subscribe('userData')];
+	},
 	data: function () {
 		Session.set('helpFilter', undefined);
 		return Meteor.users.findOne({_id: this.params._id});
 	},
 	action: function () {
 		if (this.ready()) {
-			this.render();
+			if (UserPermissions.isAdmin()) {
+				this.render();
+			} else {
+				MainNavigation.setLoginTarget(false);
+				this.redirect('home');
+			}
 		} else {
 			this.render(loadingScreenTemplate);
 		}
@@ -763,14 +807,19 @@ Router.route('/admin/learningStatistics', {
 	template: 'admin_learningStatistics',
 	layoutTemplate: 'admin_main',
 	subscriptions: function () {
-		return [Meteor.subscribe('allCardsets'), Meteor.subscribe('allLeitner')];
+		return [Meteor.subscribe('allCardsets'), Meteor.subscribe('allLeitner'), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
 		if (this.ready()) {
-			this.render();
+			if (UserPermissions.isAdmin()) {
+				this.render();
+			} else {
+				MainNavigation.setLoginTarget(false);
+				this.redirect('home');
+			}
 		} else {
 			this.render(loadingScreenTemplate);
 		}
@@ -782,11 +831,16 @@ Router.route('/admin/apiAccess', {
 	template: 'admin_apiAccess',
 	layoutTemplate: 'admin_main',
 	subscriptions: function () {
-		return [Meteor.subscribe('allCardsets')];
+		return [Meteor.subscribe('allCardsets'), Meteor.subscribe('userData')];
 	},
 	action: function () {
 		if (this.ready()) {
-			this.render();
+			if (UserPermissions.isAdmin()) {
+				this.render();
+			} else {
+				MainNavigation.setLoginTarget(false);
+				this.redirect('home');
+			}
 		} else {
 			this.render(loadingScreenTemplate);
 		}
@@ -797,12 +851,20 @@ Router.route('/admin/notifications', {
 	name: 'admin_notifications',
 	template: 'admin_notifications',
 	layoutTemplate: 'admin_main',
+	subscriptions: function () {
+		return [Meteor.subscribe('userData')];
+	},
 	data: function () {
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
 		if (this.ready()) {
-			this.render();
+			if (UserPermissions.isAdmin()) {
+				this.render();
+			} else {
+				MainNavigation.setLoginTarget(false);
+				this.redirect('home');
+			}
 		} else {
 			this.render(loadingScreenTemplate);
 		}
@@ -813,12 +875,20 @@ Router.route('/admin/university', {
 	name: 'admin_university',
 	template: 'admin_university',
 	layoutTemplate: 'admin_main',
+	subscriptions: function () {
+		return [Meteor.subscribe('userData')];
+	},
 	data: function () {
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
 		if (this.ready()) {
-			this.render();
+			if (UserPermissions.isAdmin()) {
+				this.render();
+			} else {
+				MainNavigation.setLoginTarget(false);
+				this.redirect('home');
+			}
 		} else {
 			this.render(loadingScreenTemplate);
 		}
@@ -829,19 +899,26 @@ Router.route('/admin/settings', {
 	name: 'admin_settings',
 	template: 'admin_settings',
 	layoutTemplate: 'admin_main',
+	subscriptions: function () {
+		return [Meteor.subscribe('userData')];
+	},
 	data: function () {
 		Session.set('helpFilter', undefined);
 		WebPushNotifications.subscribeForPushNotification();
 	},
 	action: function () {
 		if (this.ready()) {
-			this.render();
+			if (UserPermissions.isAdmin()) {
+				this.render();
+			} else {
+				MainNavigation.setLoginTarget(false);
+				this.redirect('home');
+			}
 		} else {
 			this.render(loadingScreenTemplate);
 		}
 	}
 });
-
 
 var isSignedIn = function () {
 	CardVisuals.checkFullscreen();
@@ -852,6 +929,13 @@ var isSignedIn = function () {
 			TAPi18n.setLanguage(language);
 		}
 		Session.set('theme', "default");
+		if (MainNavigation.getLoginTarget() === undefined) {
+			if (linksWithNoLoginRequirement.includes(Router.current().route.getName())) {
+				MainNavigation.setLoginTarget(false);
+			} else {
+				MainNavigation.setLoginTarget(Router.current().url);
+			}
+		}
 		Router.go('home');
 	} else {
 		Route.setFirstTimeVisit();
@@ -898,35 +982,40 @@ export function firstLoginBertAlert() {
 
 var goToCreated = function () {
 	if (Meteor.user()) {
-		if (!Roles.userIsInRole(Meteor.userId(), ['firstLogin'])) {
+		if (!Roles.userIsInRole(Meteor.userId(), ['firstLogin', 'blocked'])) {
 			firstLoginBertAlert();
 		}
-		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
-			Router.go('alldecks');
+		if (!Roles.userIsInRole(Meteor.userId(), ['firstLogin', 'blocked']) && MainNavigation.getLoginTarget() !== undefined && MainNavigation.getLoginTarget() !== false) {
+			Router.go(MainNavigation.getLoginTarget());
+			MainNavigation.setLoginTarget(false);
 		} else {
-			Meteor.subscribe("userLeitner", {
-				onReady: function () {
-					Meteor.subscribe("userWozniak", {
-						onReady: function () {
-							let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-							actualDate.setHours(0, 0, 0, 0);
-							let count = Leitner.find({
-								user_id: Meteor.userId(),
-								active: true
-							}).count() + Wozniak.find({
-								user_id: Meteor.userId(), nextDate: {
-									$lte: actualDate
+			if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
+				Router.go('alldecks');
+			} else {
+				Meteor.subscribe("userLeitner", {
+					onReady: function () {
+						Meteor.subscribe("userWozniak", {
+							onReady: function () {
+								let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+								actualDate.setHours(0, 0, 0, 0);
+								let count = Leitner.find({
+									user_id: Meteor.userId(),
+									active: true
+								}).count() + Wozniak.find({
+									user_id: Meteor.userId(), nextDate: {
+										$lte: actualDate
+									}
+								}).count();
+								if (count) {
+									Router.go('learn');
+								} else {
+									Router.go('pool');
 								}
-							}).count();
-							if (count) {
-								Router.go('learn');
-							} else {
-								Router.go('pool');
 							}
-						}
-					});
-				}
-			});
+						});
+					}
+				});
+			}
 		}
 	} else {
 		this.next();
@@ -934,20 +1023,7 @@ var goToCreated = function () {
 };
 
 Router.onBeforeAction(isSignedIn, {
-	except: [
-		'home',
-		'about',
-		'learning',
-		'faq',
-		'help',
-		'impressum',
-		'demo',
-		'demolist',
-		'agb',
-		'datenschutz',
-		'making',
-		'makinglist'
-	]
+	except: linksWithNoLoginRequirement
 });
 
 Router.onBeforeAction(goToCreated, {
