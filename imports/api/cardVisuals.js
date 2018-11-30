@@ -24,6 +24,14 @@ export let CardVisuals = class CardVisuals {
 		return Session.get('fullscreen');
 	}
 
+	static isScreenfullActive () {
+		if (NavigatorCheck.isIOS()) {
+			return true;
+		} else {
+			return screenfull.isFullscreen;
+		}
+	}
+
 	static checkFullscreen () {
 		let currentRoute = Router.current().route.getName();
 		if (currentRoute === (Route.isPresentation())) {

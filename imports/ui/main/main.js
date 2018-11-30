@@ -123,6 +123,7 @@ Template.main.events({
 	'click .logout': function (event) {
 		event.preventDefault();
 		Session.set('helpFilter', undefined);
+		MainNavigation.setLoginTarget(false);
 		Meteor.logout();
 	},
 	'keyup #input-search': function (event) {

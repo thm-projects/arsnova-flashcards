@@ -2,7 +2,6 @@
 import "./pomodoroTimer.html";
 import {Template} from "meteor/templating";
 import {PomodoroTimer} from "../../api/pomodoroTimer";
-import {NavigatorCheck} from "../../api/navigatorCheck";
 import {Bonus} from "../../api/bonus";
 import {Route} from "../../api/route";
 import {CardVisuals} from "../../api/cardVisuals";
@@ -55,8 +54,11 @@ Template.pomodoroTimerModal.onCreated(function () {
 Template.pomodoroTimerModal.onRendered(function () {
 	$('#pomodoroTimerModal').on('show.bs.modal', function () {
 		PomodoroTimer.initializeModalContent();
+		if (Route.requiresUserInputForFullscreen() && !CardVisuals.isFullscreen()) {
+			CardVisuals.toggleFullscreen();
+		}
 	});
-	if (Route.isBox() || Route.isMemo() || Route.isPresentation()) {
+	if (Route.requiresUserInputForFullscreen()) {
 		if (Bonus.isInBonus(Router.current().params._id)) {
 			PomodoroTimer.start();
 		} else {
@@ -72,9 +74,9 @@ Template.pomodoroTimerModal.onRendered(function () {
 	});
 });
 
-Template.pomodoroTimerModalContent.helpers({
-	isiOS: function () {
-		return NavigatorCheck.isIOS();
+Template.pomodoroTimerModal.helpers({
+	requiresUserInputForFullscreen: function () {
+		return Route.requiresUserInputForFullscreen();
 	}
 });
 
@@ -83,12 +85,15 @@ Template.pomodoroTimerModal.events({
 		PomodoroTimer.updateSettingsBtn();
 	},
 	'click #startPom': function () {
-		if (Route.isPresentation()) {
+		if (Route.requiresUserInputForFullscreen) {
 			CardVisuals.toggleFullscreen();
 		}
 		PomodoroTimer.start();
 	},
 	'click #cancelPomodoroBtn': function () {
+		if (Route.requiresUserInputForFullscreen) {
+			CardVisuals.toggleFullscreen();
+		}
 		$('#pomodoroTimerModal').modal('hide');
 		Session.set('presentationPomodoroActive', false);
 	}

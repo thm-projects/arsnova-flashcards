@@ -6,6 +6,7 @@ let firstTimePresentation = 'isFirstTimePresentation';
 let firstTimeLeitner = 'isFirstTimeLeitner';
 let firstTimeWozniak = 'isFirstTimeWozniak';
 let firstTimeDemo = 'isFirstTimeDemo';
+let loginTarget;
 
 export let MainNavigation = class MainNavigation {
 
@@ -27,6 +28,14 @@ export let MainNavigation = class MainNavigation {
 
 	static getFirstTimeDemoString () {
 		return firstTimeDemo;
+	}
+
+	static setLoginTarget (target) {
+		loginTarget = target;
+	}
+
+	static getLoginTarget () {
+		return loginTarget;
 	}
 
 	static toggleHelp () {

@@ -1863,6 +1863,14 @@
           "confirm": "Ja, Präsentation fortsetzen!"
         }
       }
+    },
+    "fullscreen": {
+      "title": "Vollbildmodus ist nicht aktiv",
+      "text": "Für diese Ansicht wird der Vollbildmodus benötigt",
+      "button": {
+        "cancel": "Zurück",
+        "confirm": "Vollbildmodus aktivieren"
+      }
     }
   }
 }
