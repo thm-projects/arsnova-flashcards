@@ -52,10 +52,14 @@
                     <div class="item active">
                         <div class="box flashcard emptyCard">
                             {{#if isActiveRoute 'box'}}
-                                <h4>{{_ "learnedEverything"}}</h4>
+                                {{#if gotLeitnerWorkload}}
+                                    <h4>{{_ "bonus.message.learnedEverything"}}</h4>
+                                {{/if}}
                             {{/if}}
                             {{#if isActiveRoute 'memo'}}
-                                <h4>{{_ "wozniak.empty.text"}}</h4>
+                                {{#if gotWozniakWorkload}}
+                                    <h4>{{_ "wozniak.empty.text"}}</h4>
+                                {{/if}}
                             {{/if}}
                             {{> learnBackButton}}
                         </div>

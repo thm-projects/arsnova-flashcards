@@ -3,6 +3,7 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Notifications} from "../../api/notifications.js";
+import {MainNavigation} from "../../api/mainNavigation";
 import "./admin.html";
 import "./dashboard/dashboard.js";
 import "./users/index.js";
@@ -25,6 +26,7 @@ Meteor.subscribe("notifications");
 Template.admin_main.events({
 	'click #logout_admin': function (event) {
 		event.preventDefault();
+		MainNavigation.setLoginTarget(false);
 		Meteor.logout();
 	},
 	'click #notificationsBtn_admin': function () {

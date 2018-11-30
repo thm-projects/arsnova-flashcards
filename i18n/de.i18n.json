@@ -1714,7 +1714,7 @@
     "service": "Antworte nicht auf diese Mail, sie wurde automatisch erstellt. Du erhältst den Newsletter, weil du dich eingeschrieben hast auf ",
     "unsubscribe": "Nicht mehr interessiert? Verlasse die Kartei, auf die sich der Newsletter bezieht: Klick oben auf den Button »Zur Kartei…« und im Portal auf den Button »Kartei verlassen«. Wenn die Bonus-Option aktiviert wurde, findest du den Button zum Abmelden im Drop-down-Menü »Über diese Bonus-Lernphase«. Willst du alle Newsletter abbestellen? Deaktiviere den Erinnerungsdienst in deinem Konto. Willst du deine Mitgliedschaft beenden? Lösche dein Konto unter »Profil & Konto«.",
     "copyright": "Dein 🍅__lastAppTitle__-Lerntutor",
-    "my-cardset": "Zur Kartei… (vorher anmelden)",
+    "my-cardset": "Zur Kartei…",
     "auto-generated": "Antworte nicht auf diese Mail, sie wurde automatisch erstellt."
   },
   "footer": {
@@ -1862,6 +1862,14 @@
           "cancel": "Nein, Präsentation beenden!",
           "confirm": "Ja, Präsentation fortsetzen!"
         }
+      }
+    },
+    "fullscreen": {
+      "title": "Vollbildmodus ist nicht aktiv",
+      "text": "Diese Seite erfordert Vollansicht.",
+      "button": {
+        "cancel": "Zurück",
+        "confirm": "Vollbildmodus aktivieren"
       }
     }
   }

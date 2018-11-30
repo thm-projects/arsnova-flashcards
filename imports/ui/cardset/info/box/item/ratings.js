@@ -17,7 +17,11 @@ Template.cardsetInfoBoxItemRatings.helpers({
 		return this.ratings === true;
 	},
 	canRateCardset: function () {
-		return !UserPermissions.isOwner(Cardsets.findOne({_id: this._id}).owner);
+		if (Meteor.user()) {
+			return !UserPermissions.isOwner(Cardsets.findOne({_id: this._id}).owner);
+		} else {
+			return false;
+		}
 	},
 	getUserRating: function () {
 		var userrating = Ratings.findOne({

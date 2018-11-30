@@ -266,6 +266,8 @@ export let CardNavigation = class CardNavigation {
 				if (screenfull.element === null && Session.get('fullscreen')) {
 					if (Route.isPresentation()) {
 						SweetAlertMessages.continuePresentation();
+					} else if (Route.isBox() || Route.isMemo()) {
+						SweetAlertMessages.activateFullscreen();
 					} else {
 						$(".toggleFullscreen").click();
 					}
