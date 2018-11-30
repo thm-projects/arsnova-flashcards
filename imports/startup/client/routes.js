@@ -43,7 +43,7 @@ Router.route('/home', {
 		return [Meteor.subscribe('wordcloudCardsets')];
 	},
 	data: function () {
-		Session.set('helpFilter', Router.current().route.getName());
+		Session.set('helpFilter', "start");
 		return Cardsets.findOne({_id: Session.get('wordcloudItem')});
 	},
 	action: function () {
@@ -155,7 +155,7 @@ Router.route('demolist', {
 		return [Meteor.subscribe('demoCardsets'), Meteor.subscribe('demoCards')];
 	},
 	data: function () {
-		Session.set('helpFilter', undefined);
+		Session.set('helpFilter', "cardsetIndex");
 		return Cardsets.findOne({kind: 'demo', name: "DemoCardset", shuffled: true});
 	},
 	action: function () {
@@ -204,7 +204,7 @@ Router.route('/alldecks', {
 		return [Meteor.subscribe('allCardsets'), Meteor.subscribe('paidCardsets')];
 	},
 	data: function () {
-		Session.set('helpFilter', undefined);
+		Session.set('helpFilter', "pool");
 		Session.set('activeRouteTitle', TAPi18n.__('navbar-collapse.alldecks', {}, Session.get('activeLanguage')));
 		Filter.resetMaxItemCounter();
 	},
@@ -379,7 +379,7 @@ Router.route('/cardset/:_id/stats', {
 		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('cardsetUserRating', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id)];
 	},
 	data: function () {
-		Session.set('helpFilter', "workloadProgress");
+		Session.set('helpFilter', "bonusStatistics");
 		return Cardsets.findOne({_id: this.params._id});
 	},
 	action: function () {
@@ -402,7 +402,7 @@ Router.route('/cardsetlist/:_id', {
 		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetUserRating', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
 	},
 	data: function () {
-		Session.set('helpFilter', "cardset");
+		Session.set('helpFilter', "cardsetIndex");
 		Session.set('isNewCardset', false);
 		return Cardsets.findOne({_id: this.params._id});
 	},
@@ -498,7 +498,7 @@ Router.route('/box/:_id', {
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
-		Session.set('helpFilter', "leitner");
+		Session.set('helpFilter', undefined);
 		return Cardsets.findOne({_id: this.params._id});
 	},
 	action: function () {
@@ -518,7 +518,7 @@ Router.route('/memo/:_id', {
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
-		Session.set('helpFilter', "wozniak");
+		Session.set('helpFilter', undefined);
 		return Cardsets.findOne({_id: this.params._id});
 	},
 	action: function () {
@@ -537,7 +537,7 @@ Router.route('/presentationlist/:_id', {
 		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
 	},
 	data: function () {
-		Session.set('helpFilter', undefined);
+		Session.set('helpFilter', "cardsetIndex");
 		return Cardsets.findOne({_id: this.params._id});
 	},
 	action: function () {
@@ -596,7 +596,7 @@ Router.route('makingofcardslist', {
 		return [Meteor.subscribe('makingOfCardsets'), Meteor.subscribe('demoCards')];
 	},
 	data: function () {
-		Session.set('helpFilter', undefined);
+		Session.set('helpFilter', "cardsetIndex");
 		return Cardsets.findOne({kind: 'demo', name: "MakingOfCardset", shuffled: true});
 	},
 	action: function () {

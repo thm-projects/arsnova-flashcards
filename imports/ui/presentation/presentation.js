@@ -3,11 +3,13 @@
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./presentation.html";
-import "./modal/presentationHelp.js";
 import {CardNavigation} from "../../api/cardNavigation";
 import {Cardsets} from "../../api/cardsets";
 import {Cards} from "../../api/cards";
 import {PomodoroTimer} from "../../api/pomodoroTimer";
+import {Route} from "../../api/route";
+import {MainNavigation} from "../../api/mainNavigation";
+
 
 Session.set('animationPlaying', false);
 
@@ -26,6 +28,9 @@ Template.presentationView.onCreated(function () {
 
 Template.presentationView.onRendered(function () {
 	CardNavigation.toggleVisibility(true);
+	if (localStorage.getItem(MainNavigation.getFirstTimePresentationString()) !== "true" && Route.isPresentation()) {
+		$('#helpModal').modal('show');
+	}
 });
 
 Template.presentationView.onDestroyed(function () {

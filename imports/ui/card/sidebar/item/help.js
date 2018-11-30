@@ -1,6 +1,6 @@
-import "./help.html";
-import {Route} from "../../../../api/route";
 import {Session} from "meteor/session";
+import {MainNavigation} from "../../../../api/mainNavigation";
+import "./help.html";
 
 /*
  * ############################################################################
@@ -10,13 +10,7 @@ import {Session} from "meteor/session";
 
 Template.cardSidebarItemHelp.events({
 	"click .showModalHelp": function () {
-		if (Route.isPresentation() || Route.isDemo()) {
-			$('#presentationHelpModal').modal('show');
-		} else if (Route.isBox()) {
-			$('#leitnerHelpModal').modal('show');
-		} else if (Route.isMemo()) {
-			$('#wozniakHelpModal').modal('show');
-		}
+		MainNavigation.showHelp();
 	}
 });
 
