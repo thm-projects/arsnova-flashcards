@@ -302,20 +302,24 @@ export let CardVisuals = class CardVisuals {
 	static setTypeAndDifficulty (cards) {
 		let cardset_id = "";
 		let cardsetData;
-		for (let i = 0; i < cards.length; i++) {
-			if (cardset_id !== cards[i].cardset_id) {
-				cardset_id = cards[i].cardset_id;
-				cardsetData = Cardsets.findOne({_id: cardset_id}, {
-					fields: {
-						cardType: 1,
-						difficulty: 1
-					}
-				});
+		if (cards !== undefined) {
+			for (let i = 0; i < cards.length; i++) {
+				if (cardset_id !== cards[i].cardset_id) {
+					cardset_id = cards[i].cardset_id;
+					cardsetData = Cardsets.findOne({_id: cardset_id}, {
+						fields: {
+							cardType: 1,
+							difficulty: 1
+						}
+					});
+				}
+				cards[i].cardType = cardsetData.cardType;
+				cards[i].difficulty = cardsetData.difficulty;
 			}
-			cards[i].cardType = cardsetData.cardType;
-			cards[i].difficulty = cardsetData.difficulty;
+			return cards;
+		} else {
+			return [];
 		}
-		return cards;
 	}
 
 	static removeMarkdeepTags (content) {
