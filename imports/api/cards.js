@@ -304,10 +304,6 @@ Meteor.methods({
 		let card = Cards.findOne(card_id);
 		let cardset = Cardsets.findOne(card.cardset_id);
 		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
-			if (cardset.learningActive) {
-				throw new Meteor.Error("not-possible active learnphase");
-			}
-
 			var countCards = Cards.find({cardset_id: cardset._id}).count();
 			if (countCards <= 5) {
 				Cardsets.update(cardset._id, {
