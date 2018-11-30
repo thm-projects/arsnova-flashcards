@@ -700,6 +700,10 @@ Template.registerHelper("isIOSSafari", function () {
 	return (NavigatorCheck.isIOS() && NavigatorCheck.isSafari());
 });
 
+Template.registerHelper("isIOS", function () {
+	return NavigatorCheck.isIOS();
+});
+
 const markdeepHelper = new MeteorMathJax.Helper({
 	useCache: false,
 	transform: function (content) {

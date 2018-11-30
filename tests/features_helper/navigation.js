@@ -15,8 +15,8 @@ module.exports = {
 		browser.url(global.baseURL);
 		setResolution();
 		agreeCookies();
-		browser.waitForVisible('#demoHelpConfirm', global.threshold);
-		browser.click("#demoHelpConfirm");
+		browser.waitForVisible('#demoConfirm', global.threshold);
+		browser.click("#demoConfirm");
 		browser.waitForVisible('.toggleFullscreen', global.threshold);
 		browser.click(".toggleFullscreen");
 		browser.waitForVisible('.swal2-confirm', global.threshold);

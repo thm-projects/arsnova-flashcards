@@ -404,13 +404,8 @@ img.cardside {
   height: 100%;
   width: auto;
   @media(max-width: 900px) {
-    margin-left: -$card_header_padding / 2;
-    max-width: 82px;
-    max-height: 82px;
-  }
-  @media(min-width: 9001px) {
-    max-width: 95px;
-    max-height: 95px;
+    margin-top: -$card_header_padding / 2 !important;
+    margin-left: -$card_header_padding / 2 !important;
   }
   /* Clock styles */
   .circle {

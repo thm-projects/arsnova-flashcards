@@ -1,0 +1,56 @@
+<template name="helpContent">
+    {{#if displayHelpCategory "start"}}
+        {{> helpContentCategoryStart}}
+    {{/if}}
+    {{#if displayHelpCategory "pool"}}
+        {{> helpContentCategoryPool}}
+    {{/if}}
+    {{#if displayHelpCategory "repetitorium"}}
+        {{> helpContentCategoryRepetitorium}}
+    {{/if}}
+    {{#if displayHelpCategory "shuffle"}}
+        {{> helpContentCategoryShuffle}}
+    {{/if}}
+    {{#if displayHelpCategory "workload"}}
+        {{> helpContentCategoryWorkload}}
+    {{/if}}
+    {{#if displayHelpCategory "create"}}
+        {{> helpContentCategoryMyCardsets}}
+    {{/if}}
+    {{#if displayHelpCategory "cardset"}}
+        {{> helpContentCategoryCardView}}
+    {{/if}}
+    {{#if displayHelpCategory "cardsetIndex"}}
+        {{> helpContentCategoryCardsetIndex}}
+    {{/if}}
+    {{#if displayHelpCategory "bonus"}}
+        {{> helpContentCategoryBonus}}
+    {{/if}}
+    {{#if displayHelpCategory "bonusStatistics"}}
+        {{> helpContentCategoryBonusStatistics}}
+    {{/if}}
+    {{#if displayHelpCategory "workloadProgress"}}
+        {{> helpContentCategoryWorkloadProgress}}
+    {{/if}}
+    {{#if displayHelpCategory "cardEditor"}}
+        {{> helpContentCategoryCardEditor}}
+    {{/if}}
+    {{#if displayHelpCategory "progress"}}
+        {{> helpContentCategoryWorkloadProgress}}
+    {{/if}}
+    {{#if displayHelpCategory "billing"}}
+        {{> helpContentCategoryProfileBilling}}
+    {{/if}}
+    {{#if displayHelpCategory "membership"}}
+        {{> helpContentCategoryProfileMembership}}
+    {{/if}}
+    {{#if displayHelpCategory "notifications"}}
+        {{> helpContentCategoryProfileNotifications}}
+    {{/if}}
+    {{#if displayHelpCategory "requests"}}
+        {{> helpContentCategoryProfileRequests}}
+    {{/if}}
+    {{#if displayHelpCategory "settings"}}
+        {{> helpContentCategoryProfileSettings}}
+    {{/if}}
+</template>
