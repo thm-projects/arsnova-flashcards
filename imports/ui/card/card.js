@@ -10,6 +10,7 @@ import {CardIndex} from "../../api/cardIndex.js";
 import {Route} from "../../api/route.js";
 import {CardType} from "../../api/cardTypes";
 import {CardNavigation} from "../../api/cardNavigation";
+import {Leitner, Wozniak} from "../../api/learned.js";
 import "./card.html";
 import '/client/thirdParty/hammer.js';
 import './header/header.js';
@@ -154,6 +155,12 @@ Template.flashcardsEmpty.helpers({
 	},
 	isCardset: function () {
 		return Route.isCardset();
+	},
+	gotLeitnerWorkload: function () {
+		return Leitner.find({cardset_id: Router.current().params._id, user_id: Meteor.user()}).count();
+	},
+	gotWozniakWorkload: function () {
+		return Wozniak.find({cardset_id: Router.current().params._id, user_id: Meteor.user()}).count();
 	}
 });
 
