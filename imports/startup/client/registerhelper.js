@@ -93,16 +93,16 @@ Template.registerHelper("getNextCardTime", function () {
 	}
 	let nextDate;
 	if (nextCardDate.getTime() < new Date().getTime()) {
-		nextDate = moment(new Date());
+		nextDate = moment(new Date()).locale("de");
 	} else {
-		nextDate = moment(nextCardDate);
+		nextDate = moment(nextCardDate).locale("de");
 	}
 	if (nextDate.get('hour') >= Meteor.settings.public.leitner.dayIntervalHour) {
 		nextDate.add(1, 'day');
 	}
 	nextDate.hour(Meteor.settings.public.leitner.dayIntervalHour);
 	nextDate.minute(0);
-	return TAPi18n.__('noCardsToLearn') + nextDate.format("DD.MM.YYYY") + TAPi18n.__('at') + nextDate.format("HH:mm") + TAPi18n.__('released');
+	return TAPi18n.__('noCardsToLearn') + nextDate.format("D. MMMM") + TAPi18n.__('at') + nextDate.format("HH:mm") + TAPi18n.__('released');
 });
 
 Template.registerHelper("getKindText", function (kind, displayType = 0) {

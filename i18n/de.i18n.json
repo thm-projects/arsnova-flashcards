@@ -710,7 +710,7 @@
   },
   "presentation": {
     "title": "Präsentation",
-    "create": "Präsentation starten",
+    "create": "Vollbildmodus",
     "start": "Starten",
     "list": {
       "back": "Zurück zur Präsentation",
@@ -976,13 +976,13 @@
     },
     "cardType1": {
       "name": "Vokabelkartei",
-      "longName": "Vokabelkartei: Fremdwort | Übersetzung",
-      "content1": "Fremdwort",
-      "content2": "Übersetzung",
+      "longName": "Vokabelkartei: Sprache A | Sprache B",
+      "content1": "Sprache A",
+      "content2": "Sprache B",
       "placeholders": {
         "subject": "Gib das Thema oder die Sprachsituation an !",
-        "content1": "Gib die zu übersetzende Vokabel oder den zu übersetzenden Text ein. \n\nMit der Tab-Taste oder dem Button oben rufst du die Übersetzung von »DeepL« auf. \n\nKopiere die Übersetzung und füge sie auf der Rückseite der Karte ein.",
-        "content2": "Zur Kontrolle schau dir die Rückübersetzung von »DeepL« an (Tab-Taste drücken)."
+        "content1": "Gib den zu übersetzenden Text ein. Mit der Tab-Taste oder dem Button oben rufst du die Übersetzung von »DeepL« auf. Kopiere die Übersetzung und füge sie auf der Rückseite der Karte ein.",
+        "content2": "Du kannst Vokabelkarten in beide Richtungen lernen: Sprache A ⇔ Sprache B. Zur Kontrolle schau dir die Rückübersetzung von »DeepL« an (Tab-Taste drücken)."
       },
       "editorLabels": {
         "subject": "Thema oder Sprachsituation"
@@ -1211,14 +1211,14 @@
       "nextCardHotkey": "(auch mit der Leertaste)",
       "previousCard": "Zur vorherigen Karte wechseln __hotkey__",
       "previousCardHotkey": "(auch mit der Pfeiltaste)",
-      "lockSide": "Rückseite wird zur Vorderseite",
+      "lockSide": "Rückseite mit Vorderseite tauschen",
       "showIndex": "Zu einer beliebigen Karte wechseln",
-      "edit": "Bearbeite die Karte",
-      "delete": "Lösche die Karte",
+      "edit": "Karte editieren",
+      "delete": "Karte löschen",
       "dictionaryBeolingus": "Zeige die »Beolingus«-Übersetzung",
       "dictionaryDeepL": "Zeige die »DeepL«-Übersetzung",
       "copy": "Erstelle eine Kopie dieser Karte",
-      "zoomText": "Ändere die Schriftgröße der Karte",
+      "zoomText": "Schriftgröße ändern",
       "zoomTextReset": "Zurücksetzen",
       "pomodoro": "Zwischen Uhr und Timer wechseln",
       "showHelp": "Hilfe",
@@ -1226,7 +1226,7 @@
       "arsnovaClick": "Befrage dein Publikum mit arsnova.click, der spielbasierten Variante von ARSnova",
       "swapQuestionAnswer": {
         "normal": "Zeige die Rückseite zuerst",
-        "shuffled": "Zeige die Rückseite zuerst für die Karteitypen: __cardTypes__",
+        "shuffled": "Zeige zuerst die Rückseite für die Karteitypen: __cardTypes__",
         "listSeparator": ", "
       },
       "markdeepEditor": {
@@ -1361,7 +1361,7 @@
   "noCardsToLearn": "Die nächsten Karten werden am ",
   "at": " um ",
   "released": " freigeschaltet.",
-  "learn": "Karten lernen",
+  "learn": "Karten nach Plan lernen",
   "manage": "Kartei verlassen",
   "selection": "Auswahl",
   "filter": "Filter",
