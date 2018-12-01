@@ -40,28 +40,45 @@ export let Dictionary = class Dictionary {
 
 	static initializeQuery (card) {
 		let searchText = "";
-		switch (Session.get('activeCardContentId')) {
-			case 1:
-				searchText = card.front.trim();
-				break;
-			case 2:
-				searchText = card.back.trim();
-				break;
-			case 3:
-				searchText = card.hint.trim();
-				break;
-			case 4:
-				searchText = card.lecture.trim();
-				break;
-			case 5:
-				searchText = card.top.trim();
-				break;
-			case 6:
-				searchText = card.bottom.trim();
-				break;
+		if (card !== undefined) {
+			switch (Session.get('activeCardContentId')) {
+				case 1:
+					if (card.front !== undefined) {
+						searchText = card.front.trim();
+					}
+					break;
+				case 2:
+					if (card.back !== undefined) {
+						searchText = card.back.trim();
+					}
+					break;
+				case 3:
+					if (card.hint !== undefined) {
+						searchText = card.hint.trim();
+					}
+
+					break;
+				case 4:
+					if (card.lecture !== undefined) {
+						searchText = card.lecture.trim();
+					}
+					break;
+				case 5:
+					if (card.top !== undefined) {
+						searchText = card.top.trim();
+					}
+					break;
+				case 6:
+					if (card.bottom !== undefined) {
+						searchText = card.bottom.trim();
+					}
+					break;
+			}
+			let rawQuery = searchText.split(/\s+/);
+			Session.set('wordCount', rawQuery.length);
+		} else {
+			Session.set('wordCount', 0);
 		}
-		let rawQuery = searchText.split(/\s+/);
-		Session.set('wordCount', rawQuery.length);
 		return searchText;
 	}
 

@@ -23,7 +23,7 @@
             {{/unless}}
             {{>markdeepNavigation}}
             {{> markdeepContent}}
-            {{> btnCard}}
+            {{> editorButtonGroup}}
         </div>
         {{isTextCentered}}
         <div id="preview" class="col-xs-12 {{#unless fullscreenActive}}col-lg-6{{/unless}} cardtext">
@@ -59,4 +59,18 @@
     {{else}}
         {{> accessDenied}}
     {{/if}}
+</template>
+
+<template name="editorButtonGroup">
+    <div id="editorButtonGroup" class="col-xs-12 actionButtons editorElement">
+        {{#if isNewCard}}
+            {{> cardEditorItemButtonSave}}
+            {{> cardEditorItemButtonSaveReturn}}
+            {{> cardEditorItemButtonCancel}}
+        {{else}}
+            {{> cardEditorItemButtonSaveReturn}}
+            {{> cardEditorItemButtonSaveNext}}
+            {{> cardEditorItemButtonCancel}}
+        {{/if}}
+    </div>
 </template>

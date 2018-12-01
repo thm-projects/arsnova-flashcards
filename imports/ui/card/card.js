@@ -18,6 +18,7 @@ import './content/content.js';
 import './navigation/navigation.js';
 import './modal/settings.js';
 import {BertAlertVisuals} from "../../api/bertAlertVisuals";
+import {CardEditor} from "../../api/cardEditor";
 
 /*
  * ############################################################################
@@ -78,6 +79,9 @@ Template.flashcards.onRendered(function () {
 	});
 	CardVisuals.resizeFlashcard();
 	CardVisuals.setTextZoom();
+	if (Route.isEditMode()) {
+		CardEditor.setEditorButtonIndex(0);
+	}
 });
 
 Template.flashcards.onDestroyed(function () {
@@ -113,8 +117,7 @@ Template.flashcards.helpers({
 		return CardIndex.getCards();
 	},
 	cardsIndex: function (card_id) {
-		let cardIndex = CardIndex.getCardIndex();
-		return cardIndex.findIndex(item => item === card_id) + 1;
+		return CardIndex.getActiveCardIndex(card_id);
 	},
 	isBeolingusDictionary: function () {
 		if (CardType.gotDictionary(this.cardType)) {

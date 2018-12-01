@@ -1,0 +1,7 @@
+<template name="cardEditorItemButtonSaveNext">
+    {{#if gotMultipleCards}}
+        <button id="cardSaveNext"
+                class="btn btn-default btn-raised saveNext col-xs-12 col-sm-4" {{disableIfOffline}}
+                tabindex="15">{{_ "savecardNext"}}</button>
+    {{/if}}
+</template>
