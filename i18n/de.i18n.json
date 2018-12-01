@@ -982,7 +982,7 @@
       "placeholders": {
         "subject": "Gib das Thema oder die Sprachsituation an !",
         "content1": "Gib den zu übersetzenden Text ein. Mit der Tab-Taste oder dem Button oben rufst du die Übersetzung von »DeepL« auf. Kopiere die Übersetzung und füge sie auf der Rückseite der Karte ein.",
-        "content2": "Zur Kontrolle schau dir die Rückübersetzung von »DeepL« an (Tab-Taste drücken)."
+        "content2": "Du kannst Vokabelkarten in beide Richtungen lernen: Sprache A ⇔ Sprache B. Zur Kontrolle schau dir die Rückübersetzung von »DeepL« an (Tab-Taste drücken)."
       },
       "editorLabels": {
         "subject": "Thema oder Sprachsituation"
