@@ -78,16 +78,16 @@ Template.cardsetNavigationLearning.onRendered(function () {
 					}
 					let nextDate;
 					if (nextCardDate.getTime() < new Date().getTime()) {
-						nextDate = moment(new Date());
+						nextDate = moment(new Date()).locale("de");
 					} else {
-						nextDate = moment(nextCardDate);
+						nextDate = moment(nextCardDate).locale("de");
 					}
 					if (nextDate.get('hour') >= Meteor.settings.public.leitner.dayIntervalHour) {
 						nextDate.add(1, 'day');
 					}
 					nextDate.hour(Meteor.settings.public.leitner.dayIntervalHour);
 					nextDate.minute(0);
-					text += TAPi18n.__('noCardsToLearn') + nextDate.format("DD.MM.YYYY") + TAPi18n.__('at') + nextDate.format("HH:mm") + TAPi18n.__('released');
+					text += TAPi18n.__('noCardsToLearn') + nextDate.format("D. MMMM") + TAPi18n.__('at') + nextDate.format("HH:mm") + TAPi18n.__('released');
 				}
 			}
 			BertAlertVisuals.displayBertAlert(text, bertType, 'growl-top-left');
