@@ -27,14 +27,9 @@ export let CardEditor = class CardEditor {
 			editorButtons.push(learningGoalLevelGroupName);
 		}
 		editorButtons.push(cardNavigationName);
-		if (Route.isNewCard()) {
-			editorButtons.push('#cardSave');
-		}
-		editorButtons.push('#cardSaveReturn');
-		if (Route.isEditCard()) {
-			editorButtons.push('#cardSaveNext');
-		}
-		editorButtons.push('#cardCancel');
+		$('#editorButtonGroup').find('button').each(function () {
+			editorButtons.push('#' + $(this).attr('id'));
+		});
 		this.setEditorButtonFocus();
 	}
 

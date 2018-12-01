@@ -110,7 +110,7 @@ export let CardVisuals = class CardVisuals {
 					}
 				}
 				if (Session.get('mobilePreview') && $(window).width() >= 1200) {
-					contentEditor.css('height', $('.mobilePreviewFrame').outerHeight() - ($('#button-row').height() + $('#markdeepNavigation').height() + 9));
+					contentEditor.css('height', $('.mobilePreviewFrame').outerHeight() - ($('#editorButtonGroup').height() + $('#markdeepNavigation').height() + 9));
 				} else {
 					contentEditor.css('height', newFlashcardHeight - $('#markdeepNavigation').height());
 				}

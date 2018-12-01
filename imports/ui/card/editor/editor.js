@@ -5,14 +5,17 @@ import {Cardsets} from "../../../api/cardsets";
 import {CardEditor} from "../../../api/cardEditor.js";
 import {CardVisuals} from "../../../api/cardVisuals";
 import ResizeSensor from "../../../../client/thirdParty/resizeSensor/ResizeSensor";
+import {Cards} from "../../../api/cards";
 import "../card.js";
 import "./modal/deeplTranslation.js";
 import "./modal/learningUnit.js";
-import "./item/buttons.js";
+import "./item/buttonCancel.js";
+import "./item/buttonSave.js";
+import "./item/buttonSaveNext.js";
+import "./item/buttonSaveReturn.js";
 import "./item/learningGoalLevel.js";
 import "./item/subject.js";
 import "./editor.html";
-import {Cards} from "../../../api/cards";
 
 /*
  * ############################################################################
