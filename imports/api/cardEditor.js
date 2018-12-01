@@ -6,6 +6,8 @@ import {CardNavigation} from "./cardNavigation";
 import {Cardsets} from "./cardsets";
 import {BertAlertVisuals} from "./bertAlertVisuals";
 import {CardVisuals} from "./cardVisuals";
+import {CardIndex} from "./cardIndex";
+import {Cards} from "./cards";
 
 const subjectMaxLength = 255;
 const contentMaxLength = 300000;
@@ -21,13 +23,13 @@ export let CardEditor = class CardEditor {
 		editorButtonIndex = 0;
 		editorButtons = [];
 		editorButtons.push('#subjectEditor');
-		if ($('#learningGoalLevelGroup').length) {
+		if (CardType.gotLearningGoal(Session.get('cardType'))) {
 			editorButtons.push(learningGoalLevelGroupName);
 		}
 		editorButtons.push(cardNavigationName);
-		editorButtons.push('#cardSave');
-		editorButtons.push('#cardSaveReturn');
-		editorButtons.push('#cardCancel');
+		$('#editorButtonGroup').find('button').each(function () {
+			editorButtons.push('#' + $(this).attr('id'));
+		});
 		this.setEditorButtonFocus();
 	}
 
@@ -131,7 +133,7 @@ export let CardEditor = class CardEditor {
 		Session.set('content6', '');
 		Session.set('learningGoalLevel', 0);
 		Session.set('backgroundStyle', 1);
-		Session.set('cameFromEditMode');
+		Session.set('cameFromEditMode', false);
 		CardType.setDefaultCenteredText(Session.get('cardType'));
 	}
 
@@ -220,7 +222,7 @@ export let CardEditor = class CardEditor {
 	}
 
 
-	static saveCard (card_id, returnToCardset) {
+	static saveCard (card_id, navigationTarget) {
 		this.initializeContent();
 		let content1 = Session.get('content1');
 		let content2 = Session.get('content2');
@@ -287,17 +289,18 @@ export let CardEditor = class CardEditor {
 				Meteor.call("addCard", Router.current().params._id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit, function (error, result) {
 					if (result) {
 						BertAlertVisuals.displayBertAlert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
-						Session.set('activeCard', result);
-						if (returnToCardset) {
-							Router.go('cardsetdetailsid', {
-								_id: Router.current().params._id
-							});
-						} else {
+						if (navigationTarget === 0) {
 							$('#contentEditor').val('');
 							$('#editor').attr('data-content', '');
 							CardEditor.resetSessionData();
 							window.scrollTo(0, 0);
+							CardEditor.setEditorButtonIndex(0);
 							CardNavigation.selectButton();
+						} else {
+							Session.set('activeCard', result);
+							Router.go('cardsetdetailsid', {
+								_id: Router.current().params._id
+							});
 						}
 					}
 				});
@@ -305,15 +308,21 @@ export let CardEditor = class CardEditor {
 				Meteor.call("updateCard", card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit);
 				BertAlertVisuals.displayBertAlert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 				Session.set('activeCard', Router.current().params.card_id);
-				if (returnToCardset) {
+				if (navigationTarget === 1) {
 					Router.go('cardsetdetailsid', {
 						_id: Router.current().params._id
 					});
 				} else {
-					Session.set('cameFromEditMode', true);
-					Router.go('newCard', {
-						_id: Router.current().params._id
+					CardEditor.setEditorButtonIndex(0);
+					CardNavigation.selectButton();
+					window.scrollTo(0, 0);
+					let nextId = CardIndex.getNextCardID(card_id);
+					Router.go('editCard', {
+						_id: Router.current().params._id,
+						card_id: nextId
 					});
+					Session.set('activeCard', nextId);
+					CardEditor.loadEditModeContent(Cards.findOne({_id: nextId, cardset_id: Router.current().params._id}));
 				}
 			}
 		}

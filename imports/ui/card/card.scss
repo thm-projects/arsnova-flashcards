@@ -542,10 +542,11 @@ img.cardside {
     }
     line-height: $line_height_card_header_mobile !important;
   }
-}
 
-#button-row {
-  padding: 0;
+  .cardCounter {
+    margin-left: -$padding_card_content_horizontal_mobile;
+    margin-top: -$padding_card_content_vertical_mobile;
+  }
 }
 
 .btnCardGoogleTranslate {

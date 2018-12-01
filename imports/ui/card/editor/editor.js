@@ -9,7 +9,10 @@ import {Cards} from "../../../api/cards";
 import "../card.js";
 import "./modal/deeplTranslation.js";
 import "./modal/learningUnit.js";
-import "./item/buttons.js";
+import "./item/buttonCancel.js";
+import "./item/buttonSave.js";
+import "./item/buttonSaveNext.js";
+import "./item/buttonSaveReturn.js";
 import "./item/learningGoalLevel.js";
 import "./item/subject.js";
 import "./editor.html";
@@ -80,7 +83,7 @@ Template.newCard.onCreated(function () {
  * ############################################################################
  */
 Template.editCard.onCreated(function () {
+	CardEditor.loadEditModeContent(Cards.findOne({_id: Router.current().params.card_id, cardset_id: Router.current().params._id}));
 	Session.set('cardType', Cardsets.findOne({_id: Router.current().params._id}).cardType);
 	Session.set('difficultyColor', Cardsets.findOne({_id: Router.current().params._id}).difficulty);
-	CardEditor.loadEditModeContent(Cards.findOne({_id: Router.current().params.card_id}));
 });

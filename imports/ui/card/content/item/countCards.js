@@ -12,8 +12,7 @@ import {Cardsets} from "../../../../api/cardsets";
 
 Template.cardContentItemCountCards.helpers({
 	cardsIndex: function (card_id) {
-		let cardIndex = CardIndex.getCardIndex();
-		return cardIndex.findIndex(item => item === card_id) + 1;
+		return CardIndex.getActiveCardIndex(card_id);
 	},
 	getCardsetCount: function (isPreview) {
 		if (Route.isDemo()) {

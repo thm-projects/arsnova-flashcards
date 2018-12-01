@@ -25,7 +25,9 @@ export let CardIndex = class CardIndex {
 		}
 		if (Route.isEditMode()) {
 			result = this.getEditModeCard();
-			Session.set('activeCard', -1);
+			if (Route.isNewCard()) {
+				Session.set('activeCard', -1);
+			}
 		}
 		if (Session.get('activeCard') === undefined && result[0] !== undefined) {
 			CardNavigation.setActiveCardData(result[0]._id);
@@ -233,8 +235,12 @@ export let CardIndex = class CardIndex {
 	 * @return {Collection} The Session Data of the card.
 	 */
 	static getEditModeCard () {
+		this.initializeIndex();
 		let id = "-1";
-		if (Route.isEditMode()) {
+		if (Route.isEditCard()) {
+			if (Session.get('activeCard') === undefined) {
+				Session.set('activeCard', Router.current().params.card_id);
+			}
 			id = Session.get('activeCard');
 		} else {
 			Session.set('activeCard', undefined);
@@ -286,5 +292,21 @@ export let CardIndex = class CardIndex {
 			cards.push(card);
 		});
 		return cards;
+	}
+
+	static getNextCardID (card_id) {
+		let cardIndex = this.getCardIndex();
+		let index = cardIndex.findIndex(item => item === card_id);
+		++index;
+		if (index >= cardIndex.length) {
+			return cardIndex[0];
+		} else {
+			return cardIndex[index];
+		}
+	}
+
+	static getActiveCardIndex (card_id) {
+		let cardIndex = this.getCardIndex();
+		return cardIndex.findIndex(item => item === card_id) + 1;
 	}
 };

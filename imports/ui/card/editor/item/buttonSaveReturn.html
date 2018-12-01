@@ -1,0 +1,8 @@
+<template name="cardEditorItemButtonSaveReturn">
+    <button id="cardSaveReturn"
+            class="btn {{#if
+                    isEditCard}}btn-success{{else}}btn-default{{/if}} btn-raised save col-xs-12 col-sm-4" {{disableIfOffline}}
+            tabindex="14">
+        {{_ "savecardReturn"}}
+    </button>
+</template>
