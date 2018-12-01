@@ -393,7 +393,7 @@ th .field-tip {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-left: $padding-card-list-row * 3;
+  padding-left: $padding-card-list-row * 6;
 }
 
 .cardListRow td {
@@ -404,8 +404,8 @@ th .field-tip {
 .cardListNumber {
   position: absolute;
   float: left;
-  width: 15px;
-  padding: $padding-card-list-row $padding-card-list-row * 2 $padding-card-list-row $padding-card-list-row;
+  width: 30px;
+  padding: $padding-card-list-row $padding-card-list-row * 4 $padding-card-list-row $padding-card-list-row;
   margin-top: -$padding-card-list-row;
   margin-left: -$padding-card-list-row;
   vertical-align: middle;
