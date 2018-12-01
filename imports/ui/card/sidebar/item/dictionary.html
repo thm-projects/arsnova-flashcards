@@ -2,7 +2,7 @@
     {{#if gotDictionary}}
         {{#if gotRequiredWordCount this}}
             {{#unless isMobilePreview}}
-                <img class="hidden-xs showBeolingusTranslation card-button cardHeaderItem {{#if
+                <img class="hidden-xs showBeolingusTranslation card-button btn cardHeaderItem {{#if
                         isBeolingusActive}}pressed{{/if}}"
                      data-type="cardNavigation"
                      data-toggle="collapse"
@@ -10,7 +10,7 @@
                      src="/img/beolingus.png" title="{{_ "card.tooltip.dictionaryBeolingus"}}">
             {{/unless}}
             <span class="{{#unless
-                    isMobilePreview}}visible-xs-inline-block{{/unless}} card-button cardHeaderItem fa showBeolingusTranslation {{#if
+                    isMobilePreview}}visible-xs-inline-block{{/unless}} card-button cardHeaderItem btn fa showBeolingusTranslation {{#if
                     isBeolingusActive}}pressed{{/if}}" data-id="{{this._id}}"
                   title="{{_ "card.tooltip.dictionaryBeolingus"}}"><strong>B</strong>
         </span>
@@ -22,7 +22,7 @@
     {{#if gotDictionary}}
         {{#if gotRequiredWordCount this}}
             {{#unless isMobilePreview}}
-                <img class="hidden-xs showDeepLTranslation card-button cardHeaderItem {{#if
+                <img class="hidden-xs showDeepLTranslation card-button btn cardHeaderItem {{#if
                         isDeepLActive}}pressed{{/if}}"
                      data-type="cardNavigation"
                      data-toggle="collapse"
@@ -30,7 +30,7 @@
                      src="/img/deepl.png" title="{{_ "card.tooltip.dictionaryDeepL"}}">
             {{/unless}}
             <span class="{{#unless
-                    isMobilePreview}}visible-xs-inline-block{{/unless}} card-button cardHeaderItem fa showDeepLTranslation {{#if
+                    isMobilePreview}}visible-xs-inline-block{{/unless}} card-button btn cardHeaderItem fa showDeepLTranslation {{#if
                     isDeepLActive}}pressed{{/if}}" data-id="{{this._id}}"
                   title="{{_ "card.tooltip.dictionaryDeepL"}}"><strong>D</strong>
         </span>

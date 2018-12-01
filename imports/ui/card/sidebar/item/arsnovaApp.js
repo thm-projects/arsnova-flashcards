@@ -32,7 +32,7 @@ Template.cardSidebarItemArsnovaApp.onDestroyed(function () {
 
 Template.arsnovaAppModal.onRendered(function () {
 	$('#arsnovaAppModal').on('hidden.bs.modal', function () {
-		$('.showArsnovaApp').attr('src', '/img/button/arsnova_app.png');
+		$('.showArsnovaApp').attr('src', '/img/button/arsnova_app_v2.png');
 		$('.showArsnovaApp').removeClass('pressed');
 	});
 	$('#arsnovaAppModal').on('shown.bs.modal', function () {
