@@ -2,7 +2,7 @@
   "name": "A: Quiz zum Kennenlernen von 🍅cards",
   "description": "Die Quizfragen sind Teil der Demo-Kartei auf der 🍅cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2018-11-20T19:44:09.663Z",
+  "dateUpdated": "2018-12-02T15:26:42.126Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -13,7 +13,7 @@
   "reviewer": "undefined",
   "request": false,
   "raterCount": 0,
-  "quantity": 8,
+  "quantity": 9,
   "license": [],
   "userDeleted": false,
   "learningActive": false,
@@ -271,6 +271,37 @@
   "learningIndex": "0",
   "learningUnit": "0",
   "dateUpdated": "2018-11-12T11:04:04.250Z",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  }
+}, {
+  "subject": "9. Effizienz beim Erstellen von Karten",
+  "front": "Wenn es um **Vokabelkarten** geht, was macht 🍅cards anders als die anderen Apps?",
+  "centerTextElement": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "alignType": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "date": "2018-12-02T11:29:54.385Z",
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "dateUpdated": "2018-12-02T15:26:42.112Z",
+  "back": "\n🍅cards bietet dir den den optimalen Workflow: Neben dem Wörterbuch [Beolingus](https://dict.tu-chemnitz.de/) haben wir auch den Übersetzungsdienst [DeepL](https://www.deepl.com/translator) integriert. Mit DeepL kannst du mit nur einem Mausklick oder der <kbd>Tab</kbd>-Taste Übersetzungshilfen für Wörter und Texte in allen Verkehrssprachen der EU aufrufen -- in Echtzeit für Hin- und Rückübersetzung. Das Video zeigt wie:\n\n![Wie du mit 🍅cards effizient Vokabelkarten erstellst](https://youtu.be/uSRarW9fpFc)\n\n",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
