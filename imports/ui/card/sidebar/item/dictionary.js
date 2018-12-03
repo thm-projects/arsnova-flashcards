@@ -50,9 +50,7 @@ Template.cardSidebarItemDictionaryDeepL.helpers({
 		return CardType.gotDictionary(Session.get('cardType'));
 	},
 	isDeepLActive: function () {
-		if (CardType.gotDictionary(Session.get('cardType'))) {
-			return Dictionary.checkMode(2);
-		}
+		return Session.get('isDeepLModalVisible');
 	},
 	isMobilePreview: function () {
 		return MarkdeepEditor.getMobilePreview();
@@ -71,5 +69,7 @@ Template.cardSidebarItemDictionaryDeepL.helpers({
 Template.cardSidebarItemDictionaryDeepL.events({
 	"click .showDeepLTranslation": function () {
 		Dictionary.setMode(2);
+		$('#cardModalDeepLTranslation').modal('show');
+		Session.set('isDeepLModalVisible', true);
 	}
 });

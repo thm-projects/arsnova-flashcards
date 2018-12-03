@@ -59,23 +59,6 @@ Template.cardDictionaryContentBeolingus.helpers({
 
 /*
  * ############################################################################
- * cardDictionaryContentDeepL
- * ############################################################################
- */
-
-Template.cardDictionaryContentDeepL.onRendered(function () {
-	Dictionary.setBlur();
-});
-
-
-Template.cardDictionaryContentDeepL.helpers({
-	getDictionaryQuery: function () {
-		return Dictionary.getQuery(this, 2);
-	}
-});
-
-/*
- * ############################################################################
  * cardSubject
  * ############################################################################
  */

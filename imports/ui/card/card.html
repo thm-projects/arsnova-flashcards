@@ -2,6 +2,7 @@
     {{> copyCard}}
     {{> deleteCardForm}}
     {{> cardSettingsModal}}
+    {{>cardModalDeepLTranslation}}
     <div class="flip-container"
          id="set-details-region">
         <div>
@@ -26,8 +27,6 @@
                                     {{#if isActiveCard false}}
                                         {{#if isBeolingusDictionary}}
                                             {{> cardDictionaryContentBeolingus this}}
-                                        {{else if isDeepLDictionary}}
-                                            {{> cardDictionaryContentDeepL this}}
                                         {{else}}
                                             {{> cardContentActive this}}
                                         {{/if}}
