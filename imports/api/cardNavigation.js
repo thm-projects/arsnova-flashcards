@@ -33,8 +33,8 @@ export let CardNavigation = class CardNavigation {
 	}
 
 	static setActiveNavigationButton (index) {
-		$('.cardNavigation a').removeClass('btn-primary').removeClass('card-navigation-active').addClass('btn-default');
-		$(".cardNavigation > li:nth-child(" + index + ") a").removeClass('btn-default').addClass('btn-primary').addClass('card-navigation-active');
+		$('.cardNavigation a').removeClass('card-navigation-active').addClass('switchCardSide');
+		$(".cardNavigation > li:nth-child(" + index + ") a").removeClass('switchCardSide').addClass('card-navigation-active');
 	}
 
 	static filterNavigation (cubeSides, mode = undefined) {
@@ -357,7 +357,7 @@ export let CardNavigation = class CardNavigation {
 						break;
 					case 37:
 						if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
-							CardEditor.setLearningGoalLevel(false);
+							CardEditor.setLearningGoalLevelIndex(false);
 						} else {
 							if (CardNavigation.isVisible()) {
 								if ($('#leftCarouselControl').click()) {
@@ -376,7 +376,7 @@ export let CardNavigation = class CardNavigation {
 						break;
 					case 39:
 						if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
-							CardEditor.setLearningGoalLevel();
+							CardEditor.setLearningGoalLevelIndex();
 						} else {
 							if (CardNavigation.isVisible()) {
 								if ($('#rightCarouselControl').click()) {

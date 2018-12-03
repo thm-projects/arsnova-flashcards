@@ -53,7 +53,7 @@ export let CardEditor = class CardEditor {
 		return learningGoalLevelGroupName;
 	}
 
-	static setLearningGoalLevel (forward = true) {
+	static setLearningGoalLevelIndex (forward = true) {
 		let navigationLength = $('#learningGoalLevelGroup:first button').length;
 		let index = ($(".active").index("#learningGoalLevelGroup:first button")) + 1;
 		if (forward) {
@@ -70,7 +70,12 @@ export let CardEditor = class CardEditor {
 			}
 		}
 		--index;
+		this.setLearningGoalLevel(index);
+	}
+
+	static setLearningGoalLevel (index) {
 		$("#learningGoalLevel" + index).click();
+		$("#learningGoalLevel" + index).focus();
 	}
 
 	static setEditorButtonIndex (index) {
