@@ -32,7 +32,7 @@ Template.cardSidebarItemArsnovaClick.onDestroyed(function () {
 
 Template.arsnovaClickModal.onRendered(function () {
 	$('#arsnovaClickModal').on('hidden.bs.modal', function () {
-		$('.showArsnovaClick').attr('src', '/img/button/arsnova_click.png');
+		$('.showArsnovaClick').attr('src', '/img/button/arsnova_click_v2.png');
 		$('.showArsnovaClick').removeClass('pressed');
 	});
 	$('#arsnovaClickModal').on('shown.bs.modal', function () {

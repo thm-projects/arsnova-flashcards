@@ -63,6 +63,8 @@ $themes: (
     $bonus_text: map-get($map, "bonus_text");
     $card_type_background: map-get($map, "card_type_background");
     $card_type_text: map-get($map, "card_type_text");
+    $button_background_hover: map-get($map, "button_background_hover");
+    $button_text_hover: map-get($map, "button_text_hover");
     //ratings
     $current_rating: map-get($map, "current_rating");
     $hover_rating: map-get($map, "$hover_rating");
@@ -255,37 +257,30 @@ $themes: (
     $cardset_footer_navigation_learn_list_reset_wozniak_text: map-get($map, "cardset_footer_navigation_learn_list_reset_wozniak_text");
     $cardset_footer_navigation_learn_list_reset_wozniak_background_hover: map-get($map, "cardset_footer_navigation_learn_list_reset_wozniak_background_hover");
     $cardset_footer_navigation_learn_list_reset_wozniak_text_hover: map-get($map, "cardset_footer_navigation_learn_list_reset_wozniak_text_hover");
-
     $cardset_footer_navigation_new_card_background: map-get($map, "cardset_footer_navigation_new_card_background");
     $cardset_footer_navigation_new_card_text: map-get($map, "cardset_footer_navigation_new_card_text");
     $cardset_footer_navigation_new_card_background_hover: map-get($map, "cardset_footer_navigation_new_card_background_hover");
     $cardset_footer_navigation_new_card_text_hover: map-get($map, "cardset_footer_navigation_new_card_text_hover");
-
     $cardset_footer_navigation_import_cards_background: map-get($map, "cardset_footer_navigation_import_cards_background");
     $cardset_footer_navigation_import_cards_text: map-get($map, "cardset_footer_navigation_import_cards_text");
     $cardset_footer_navigation_import_cards_background_hover: map-get($map, "cardset_footer_navigation_import_cards_background_hover");
     $cardset_footer_navigation_import_cards_text_hover: map-get($map, "cardset_footer_navigation_import_cards_text_hover");
-
     $cardset_footer_navigation_edit_shuffle_background: map-get($map, "cardset_footer_navigation_edit_shuffle_background");
     $cardset_footer_navigation_edit_shuffle_text: map-get($map, "cardset_footer_navigation_edit_shuffle_text");
     $cardset_footer_navigation_edit_shuffle_background_hover: map-get($map, "cardset_footer_navigation_edit_shuffle_background_hover");
     $cardset_footer_navigation_edit_shuffle_text_hover: map-get($map, "cardset_footer_navigation_edit_shuffle_text_hover");
-
     $cardset_footer_navigation_edit_cardset_background: map-get($map, "cardset_footer_navigation_edit_cardset_background");
     $cardset_footer_navigation_edit_cardset_text: map-get($map, "cardset_footer_navigation_edit_cardset_text");
     $cardset_footer_navigation_edit_cardset_background_hover: map-get($map, "cardset_footer_navigation_edit_cardset_background_hover");
     $cardset_footer_navigation_edit_cardset_text_hover: map-get($map, "cardset_footer_navigation_edit_cardset_text_hover");
-
     $cardset_footer_navigation_select_license_background: map-get($map, "cardset_footer_navigation_select_license_background");
     $cardset_footer_navigation_select_license_text: map-get($map, "cardset_footer_navigation_select_license_text");
     $cardset_footer_navigation_select_license_background_hover: map-get($map, "cardset_footer_navigation_select_license_background_hover");
     $cardset_footer_navigation_select_license_text_hover: map-get($map, "cardset_footer_navigation_select_license_text_hover");
-
     $cardset_footer_navigation_publish_cardset_background: map-get($map, "cardset_footer_navigation_publish_cardset_background");
     $cardset_footer_navigation_publish_cardset_text: map-get($map, "cardset_footer_navigation_publish_cardset_text");
     $cardset_footer_navigation_publish_cardset_background_hover: map-get($map, "cardset_footer_navigation_publish_cardset_background_hover");
     $cardset_footer_navigation_publish_cardset_text_hover: map-get($map, "cardset_footer_navigation_publish_cardset_text_hover");
-
     $cardset_footer_navigation_bonus_background: map-get($map, "cardset_footer_navigation_bonus_background");
     $cardset_footer_navigation_bonus_text: map-get($map, "cardset_footer_navigation_bonus_text");
     $cardset_footer_navigation_bonus_background_hover: map-get($map, "cardset_footer_navigation_bonus_background_hover");
@@ -306,7 +301,6 @@ $themes: (
     $cardset_footer_navigation_bonus_list_show_stats_text: map-get($map, "cardset_footer_navigation_bonus_list_show_stats_text");
     $cardset_footer_navigation_bonus_list_show_stats_background_hover: map-get($map, "cardset_footer_navigation_bonus_list_show_stats_background_hover");
     $cardset_footer_navigation_bonus_list_show_stats_text_hover: map-get($map, "cardset_footer_navigation_bonus_list_show_stats_text_hover");
-
     $cardset_footer_navigation_manage_cardset_background: map-get($map, "cardset_footer_navigation_manage_cardset_background");
     $cardset_footer_navigation_manage_cardset_text: map-get($map, "cardset_footer_navigation_manage_cardset_text");
     $cardset_footer_navigation_manage_cardset_background_hover: map-get($map, "cardset_footer_navigation_manage_cardset_background_hover");
@@ -331,12 +325,10 @@ $themes: (
     $cardset_footer_navigation_manage_list_leave_editors_text: map-get($map, "cardset_footer_navigation_manage_list_leave_editors_text");
     $cardset_footer_navigation_manage_list_leave_editors_background_hover: map-get($map, "cardset_footer_navigation_manage_list_leave_editors_background_hover");
     $cardset_footer_navigation_manage_list_leave_editors_text_hover: map-get($map, "cardset_footer_navigation_manage_list_leave_editors_text_hover");
-
     $cardset_footer_navigation_export_cards_background: map-get($map, "cardset_footer_navigation_export_cards_background");
     $cardset_footer_navigation_export_cards_text: map-get($map, "cardset_footer_navigation_export_cards_text");
     $cardset_footer_navigation_export_cards_background_hover: map-get($map, "cardset_footer_navigation_export_cards_background_hover");
     $cardset_footer_navigation_export_cards_text_hover: map-get($map, "cardset_footer_navigation_export_cards_text_hover");
-
     $cardset_footer_navigation_delete_all_cards_background: map-get($map, "cardset_footer_navigation_delete_all_cards_background");
     $cardset_footer_navigation_delete_all_cards_text: map-get($map, "cardset_footer_navigation_delete_all_cards_text");
     $cardset_footer_navigation_delete_all_cards_background_hover: map-get($map, "cardset_footer_navigation_delete_all_cards_background_hover");
@@ -344,6 +336,15 @@ $themes: (
     //card list
     $card_list_number_background: map-get($map, "card_list_number_background");
     $card_list_number_text: map-get($map, "card_list_number_text");
+    //card-navigation colors
+    $card_navigation_active_background: map-get($map, "card_navigation_active_background");
+    $card_navigation_active_text: map-get($map, "card_navigation_active_text");
+    $card_navigation_active_background_hover: map-get($map, "card_navigation_active_background_hover");
+    $card_navigation_active_text_hover: map-get($map, "card_navigation_active_text_hover");
+    $card_navigation_background: map-get($map, "card_navigation_background");
+    $card_navigation_text: map-get($map, "card_navigation_text");
+    $card_navigation_background_hover: map-get($map, "card_navigation_background_hover");
+    $card_navigation_text_hover: map-get($map, "card_navigation_text_hover");
     //card colors
     $background_mobile_preview: map-get($map, "background_mobile_preview");
     $background_lecture: map-get($map, "background_lecture");
@@ -462,6 +463,11 @@ $themes: (
     $loading_screen_icon: map-get($map, "loading_screen_icon");
     background-image: $background_image !important;
 
+    button:hover, button:focus, .btn:hover, .btn:focus {
+      background-color: $button_background_hover;
+      color: $button_text_hover;
+    }
+
     .star-ratings .current-rating {
       color: $current_rating !important;
     }
@@ -530,7 +536,7 @@ $themes: (
         color: $navbar_text !important;
 
       }
-      &:hover {
+      &:hover, &:focus {
         color: $navbar_text_hover !important;
       }
     }
@@ -540,7 +546,7 @@ $themes: (
       background-color: $info_navigation_background !important;
     }
 
-    #contact-nav a:hover {
+    #contact-nav a:hover, #contact-nav a:focus {
       color: $info_navigation_text_hover !important;
       background-color: $info_navigation_background_hover !important;
     }
@@ -555,7 +561,7 @@ $themes: (
       background-color: $footer_info_navigation_background !important;
     }
 
-    #contact-nav-footer a:hover {
+    #contact-nav-footer a:hover, #contact-nav-footer a:focus {
       color: $footer_info_navigation_text_hover !important;
       background-color: $footer_info_navigation_background_hover !important;
       i {
@@ -653,23 +659,35 @@ $themes: (
       border-color: $markdeep_help_border !important;
     }
 
-    #markdeepNavigation .fa:hover, #markdeepNavigation .markdeep-center:hover, #markdeepNavigation .markdeep-fullscreen:hover, .card-button:hover {
-      background-color: $athens_gray_approx;
+    #markdeepNavigation .fa:hover, #markdeepNavigation .markdeep-center:hover, #markdeepNavigation .markdeep-help:hover,  #markdeepNavigation .markdeep-fullscreen:hover, .card-button:hover,
+    #markdeepNavigation .fa:focus, #markdeepNavigation .markdeep-center:focus, #markdeepNavigation .markdeep-help:focus,  #markdeepNavigation .markdeep-fullscreen:focus, .card-button:focus {
+      background-color: $button_background_hover !important;
+      color: $button_text_hover !important;
+      border-color: $button_background_hover !important;
     }
 
-    .material-icons.pressed, .fa.pressed, .glyphicon.pressed, .card-button.pressed, .material-icons.pressed:hover, .glyphicon.pressed:hover, .card-button.pressed:hover {
+    .material-icons.pressed, .fa.pressed, .glyphicon.pressed, .card-button.pressed, .material-icons.pressed:hover, .glyphicon.pressed:hover, .card-button.pressed:hover,
+    .material-icons.pressed:focus, .glyphicon.pressed:focus, .card-button.pressed:focus {
       background-color: lighten($thm_gray, 10%) !important;
       color: $white !important;
     }
 
-    .glyphicon-log-out.pressed, .glyphicon-log-out.pressed:hover, .glyphicon-fullscreen.pressed, .glyphicon-fullscreen.pressed:hover {
+    .glyphicon-log-out.pressed, .glyphicon-fullscreen.pressed {
       background-color: $thm_orange !important;
       border-color: $thm_orange !important;
       color: $white !important;
     }
 
+    .glyphicon-log-out.pressed:hover, .glyphicon-fullscreen.pressed:hover,
+    .glyphicon-log-out.pressed:focus, .glyphicon-fullscreen.pressed:focus {
+      background-color: $button_background_hover !important;
+      border-color: $button_background_hover !important;
+      color: $button_text_hover !important;
+    }
+
     #markdeepNavigation {
-      .material-icons.pressed, .fa.pressed, .glyphicon.pressed, .card-button.pressed, .material-icons.pressed:hover, .glyphicon.pressed:hover, .card-button.pressed:hover {
+      .material-icons.pressed, .fa.pressed, .glyphicon.pressed, .card-button.pressed, .material-icons.pressed:hover, .glyphicon.pressed:hover, .card-button.pressed:hover,
+      .material-icons.pressed:focus, .glyphicon.pressed:focus, .card-button.pressed:focus {
         background-color: $thm_orange !important;
         border-color: $thm_orange !important;
         color: $white !important;
@@ -772,7 +790,7 @@ $themes: (
         background-color: $footer_info_navigation_background !important;
         border-right-color: $footer_info_navigation_border !important;
       }
-      .footer-info-navigation a:hover {
+      .footer-info-navigation a:hover, .footer-info-navigation a:focus {
         color: $footer_info_navigation_text_hover !important;
         background-color: $footer_info_navigation_background_hover !important;
       }
@@ -783,7 +801,7 @@ $themes: (
         color: $footer_info_navigation_text !important;
         background-color: $footer_info_navigation_background !important;
       }
-      .icon-container:hover, .icon-container-info:hover {
+      .icon-container:hover, .icon-container-info:hover, .icon-container:focus, .icon-container-info:focus {
         color: $footer_info_navigation_text_hover !important;
         background-color: $footer_info_navigation_background_hover !important;
       }
@@ -795,7 +813,7 @@ $themes: (
         color: $footer_globe_dropdown_text !important;
         background-color: $footer_globe_dropdown_background !important;
       }
-      .icon-container .lang:hover {
+      .icon-container .lang:hover, .icon-container .lang:focus {
         color: $footer_globe_dropdown_text_hover !important;
         background-color: $footer_globe_dropdown_background_hover !important;
       }
@@ -805,7 +823,7 @@ $themes: (
       color: $home_button_icon !important;
     }
 
-    #backToStartButton:hover i, .fa-home:hover {
+    #backToStartButton:hover, .fa-home:hover, #backToStartButton:focus, .fa-home:focus {
       color: $home_button_icon_hover !important;
     }
 
@@ -880,13 +898,6 @@ $themes: (
       }
     }
 
-    .row {
-      a {
-        color: $primary !important;
-      }
-
-    }
-
     .panel-footer {
       background-color: $cardset_footer_navigation_background !important;
       border-color: $cardset_footer_navigation_background !important;
@@ -900,7 +911,7 @@ $themes: (
         color: $cardset_footer_navigation_presentation_text !important;
       }
 
-      .presentationBtn:hover {
+      .presentationBtn:hover, .presentationBtn:focus {
         background-color: $cardset_footer_navigation_presentation_background_hover !important;
         color: $cardset_footer_navigation_presentation_text_hover !important;
       }
@@ -910,7 +921,7 @@ $themes: (
         color: $cardset_footer_navigation_learn_text !important;
       }
 
-      .learnBtn:hover {
+      .learnBtn:hover, .learnBtn:focus {
         background-color: $cardset_footer_navigation_learn_background_hover !important;
         color: $cardset_footer_navigation_learn_text_hover !important;
       }
@@ -920,7 +931,7 @@ $themes: (
         color: $cardset_footer_navigation_learn_list_leitner_text !important;
       }
 
-      .leitnerList:hover {
+      .leitnerList:hover, .leitnerList:focus {
         background-color: $cardset_footer_navigation_learn_list_leitner_background_hover !important;
         color: $cardset_footer_navigation_learn_list_leitner_text_hover !important;
       }
@@ -930,7 +941,7 @@ $themes: (
         color: $cardset_footer_navigation_learn_list_wozniak_text !important;
       }
 
-      .wozniakList:hover {
+      .wozniakList:hover, .wozniakList:focus {
         background-color: $cardset_footer_navigation_learn_list_wozniak_background_hover !important;
         color: $cardset_footer_navigation_learn_list_wozniak_text_hover !important;
       }
@@ -940,7 +951,7 @@ $themes: (
         color: $cardset_footer_navigation_learn_list_choose_text !important;
       }
 
-      .chooseList:hover {
+      .chooseList:hover, .chooseList:focus {
         background-color: $cardset_footer_navigation_learn_list_choose_background_hover !important;
         color: $cardset_footer_navigation_learn_list_choose_text_hover !important;
       }
@@ -950,7 +961,7 @@ $themes: (
         color: $cardset_footer_navigation_learn_list_progress_text !important;
       }
 
-      .progressList:hover {
+      .progressList:hover, .progressList:focus {
         background-color: $cardset_footer_navigation_learn_list_progress_background_hover !important;
         color: $cardset_footer_navigation_learn_list_progress_text_hover !important;
       }
@@ -960,7 +971,7 @@ $themes: (
         color: $cardset_footer_navigation_new_card_text !important;
       }
 
-      .newCardBtn:hover {
+      .newCardBtn:hover, .newCardBtn:focus {
         background-color: $cardset_footer_navigation_new_card_background_hover !important;
         color: $cardset_footer_navigation_new_card_text_hover !important;
       }
@@ -970,7 +981,7 @@ $themes: (
         color: $cardset_footer_navigation_import_cards_text !important;
       }
 
-      .importCardBtn:hover {
+      .importCardBtn:hover, .importCardBtn:focus {
         background-color: $cardset_footer_navigation_import_cards_background_hover !important;
         color: $cardset_footer_navigation_import_cards_text_hover !important;
       }
@@ -980,17 +991,17 @@ $themes: (
         color: $cardset_footer_navigation_edit_shuffle_text !important;
       }
 
-      .editShuffleBtn:hover {
+      .editShuffleBtn:hover, .editShuffleBtn:focus {
         background-color: $cardset_footer_navigation_edit_shuffle_background_hover !important;
         color: $cardset_footer_navigation_edit_shuffle_text_hover !important;
       }
 
-      .eidtCardsetBtn {
+      .editCardsetBtn {
         background-color: $cardset_footer_navigation_edit_cardset_background !important;
         color: $cardset_footer_navigation_edit_cardset_text !important;
       }
 
-      .eidtCardsetBtn:hover {
+      .editCardsetBtn:hover, .editCardsetBtn:focus  {
         background-color: $cardset_footer_navigation_edit_cardset_background_hover !important;
         color: $cardset_footer_navigation_edit_cardset_text_hover !important;
       }
@@ -1000,7 +1011,7 @@ $themes: (
         color: $cardset_footer_navigation_select_license_text !important;
       }
 
-      .selectLicenseBtn:hover {
+      .selectLicenseBtn:hover, .selectLicenseBtn:focus {
         background-color: $cardset_footer_navigation_select_license_background_hover !important;
         color: $cardset_footer_navigation_select_license_text_hover !important;
       }
@@ -1010,7 +1021,7 @@ $themes: (
         color: $cardset_footer_navigation_publish_cardset_text !important;
       }
 
-      .publishCardsetBtn:hover {
+      .publishCardsetBtn:hover, .publishCardsetBtn:focus {
         background-color: $cardset_footer_navigation_publish_cardset_background_hover !important;
         color: $cardset_footer_navigation_publish_cardset_text_hover !important;
       }
@@ -1020,7 +1031,7 @@ $themes: (
         color: $cardset_footer_navigation_manage_cardset_text !important;
       }
 
-      .manageBtn:hover {
+      .manageBtn:hover, .manageBtn:focus {
         background-color: $cardset_footer_navigation_manage_cardset_background_hover !important;
         color: $cardset_footer_navigation_manage_cardset_text_hover !important;
       }
@@ -1030,7 +1041,7 @@ $themes: (
         color: $cardset_footer_navigation_manage_list_manage_editors_text !important;
       }
 
-      .manageEditorsList:hover {
+      .manageEditorsList:hover, .manageEditorsList:focus {
         background-color: $cardset_footer_navigation_manage_list_manage_editors_background_hover !important;
         color: $cardset_footer_navigation_manage_list_manage_editors_text_hover !important;
       }
@@ -1040,7 +1051,7 @@ $themes: (
         color: $cardset_footer_navigation_learn_list_reset_leitner_text !important;
       }
 
-      .resetLeitnerList:hover {
+      .resetLeitnerList:hover, .resetLeitnerList:focus {
         background-color: $cardset_footer_navigation_learn_list_reset_leitner_background_hover !important;
         color: $cardset_footer_navigation_learn_list_reset_leitner_text_hover !important;
       }
@@ -1050,7 +1061,7 @@ $themes: (
         color: $cardset_footer_navigation_learn_list_reset_wozniak_text !important;
       }
 
-      .resetWozniakList:hover {
+      .resetWozniakList:hover, .resetWozniakList:focus {
         background-color: $cardset_footer_navigation_learn_list_reset_wozniak_background_hover !important;
         color: $cardset_footer_navigation_learn_list_reset_wozniak_text_hover !important;
       }
@@ -1060,7 +1071,7 @@ $themes: (
         color: $cardset_footer_navigation_bonus_text !important;
       }
 
-      .bonusBtn:hover {
+      .bonusBtn:hover, .bonusBtn:focus {
         background-color: $cardset_footer_navigation_bonus_background_hover !important;
         color: $cardset_footer_navigation_bonus_text_hover !important;
       }
@@ -1070,7 +1081,7 @@ $themes: (
         color: $cardset_footer_navigation_bonus_list_start_learning_text !important;
       }
 
-      .startLearningList:hover {
+      .startLearningList:hover, .startLearningList:focus {
         background-color: $cardset_footer_navigation_bonus_list_start_learning_background_hover !important;
         color: $cardset_footer_navigation_bonus_list_start_learning_text_hover !important;
       }
@@ -1080,7 +1091,7 @@ $themes: (
         color: $cardset_footer_navigation_bonus_list_manage_learning_text !important;
       }
 
-      .manageLearningList:hover {
+      .manageLearningList:hover, .manageLearningList:focus {
         background-color: $cardset_footer_navigation_bonus_list_manage_learning_background_hover !important;
         color: $cardset_footer_navigation_bonus_list_manage_learning_text_hover !important;
       }
@@ -1090,7 +1101,7 @@ $themes: (
         color: $cardset_footer_navigation_bonus_list_stop_learning_text !important;
       }
 
-      .stopLearningList:hover {
+      .stopLearningList:hover, .stopLearningList:focus {
         background-color: $cardset_footer_navigation_bonus_list_stop_learning_background_hover !important;
         color: $cardset_footer_navigation_bonus_list_stop_learning_text_hover !important;
       }
@@ -1100,7 +1111,7 @@ $themes: (
         color: $cardset_footer_navigation_bonus_list_show_stats_text !important;
       }
 
-      .showStatsList:hover {
+      .showStatsList:hover, .showStatsList:focus {
         background-color: $cardset_footer_navigation_bonus_list_show_stats_background_hover !important;
         color: $cardset_footer_navigation_bonus_list_show_stats_text_hover !important;
       }
@@ -1110,7 +1121,7 @@ $themes: (
         color: $cardset_footer_navigation_manage_list_report_text !important;
       }
 
-      .reportList:hover {
+      .reportList:hover, .reportList:focus {
         background-color: $cardset_footer_navigation_manage_list_report_background_hover !important;
         color: $cardset_footer_navigation_manage_list_report_text_hover !important;
       }
@@ -1120,7 +1131,7 @@ $themes: (
         color: $cardset_footer_navigation_manage_list_leave_learn_phase_text !important;
       }
 
-      .leaveLearnPhaseList:hover {
+      .leaveLearnPhaseList:hover, .leaveLearnPhaseList:focus {
         background-color: $cardset_footer_navigation_manage_list_leave_learn_phase_background_hover !important;
         color: $cardset_footer_navigation_manage_list_leave_learn_phase_text_hover !important;
       }
@@ -1130,7 +1141,7 @@ $themes: (
         color: $cardset_footer_navigation_manage_list_leave_cardset_text !important;
       }
 
-      .leaveCardsetList:hover {
+      .leaveCardsetList:hover, .leaveCardsetList:focus {
         background-color: $cardset_footer_navigation_manage_list_leave_cardset_background_hover !important;
         color: $cardset_footer_navigation_manage_list_leave_cardset_text_hover !important;
       }
@@ -1140,7 +1151,7 @@ $themes: (
         color: $cardset_footer_navigation_manage_list_leave_editors_text !important;
       }
 
-      .leaveEditorsList:hover {
+      .leaveEditorsList:hover, .leaveEditorsList:focus {
         background-color: $cardset_footer_navigation_manage_list_leave_editors_background_hover !important;
         color: $cardset_footer_navigation_manage_list_leave_editors_text_hover !important;
       }
@@ -1150,7 +1161,7 @@ $themes: (
         color: $cardset_footer_navigation_export_cards_text !important;
       }
 
-      .exportCardsBtn:hover {
+      .exportCardsBtn:hover, .exportCardsBtn:focus {
         background-color: $cardset_footer_navigation_export_cards_background_hover !important;
         color: $cardset_footer_navigation_export_cards_text_hover !important;
       }
@@ -1160,7 +1171,7 @@ $themes: (
         color: $cardset_footer_navigation_delete_all_cards_text !important;
       }
 
-      .deleteAllCardsBtn:hover {
+      .deleteAllCardsBtn:hover, .deleteAllCardsBtn:focus {
         background-color: $cardset_footer_navigation_delete_all_cards_background_hover !important;
         color: $cardset_footer_navigation_delete_all_cards_text_hover !important;
       }
@@ -1184,6 +1195,11 @@ $themes: (
       color: $white !important;
     }
 
+    .btn.btn-raised.btn-primary:hover, .btn.btn-raised.btn-primary:focus {
+      background-color: $button_background_hover !important;
+      color: $button_text_hover !important;
+    }
+
     .panel.panel-primary > .panel-heading {
       background-color: $primary !important;
     }
@@ -1200,15 +1216,16 @@ $themes: (
       color: $primary !important;
     }
 
-    .dropdown-menu li a:hover {
-      color: $primary !important;
+    .dropdown-menu li a:hover, .dropdown-menu li a:focus {
+      background-color: $button_background_hover !important;
+      color: $button_text_hover !important;
     }
 
     .nav-tabs {
       background-color: $primary !important;
     }
 
-    .navbar-default .navbar-toggle:hover {
+    .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
       background-color: transparent !important;
     }
 
@@ -1216,20 +1233,23 @@ $themes: (
       color: $primary !important;
     }
 
-    .navbar.navbar-default .dropdown-menu li > a:hover {
-      color: $primary !important;
+    .navbar.navbar-default .dropdown-menu li > a:hover, .navbar.navbar-default .dropdown-menu li > a:focus {
+      background-color: $button_background_hover !important;
+      color: $button_text_hover !important;
     }
 
     .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
-      background-color: $primary !important;
+      background-color: $button_background_hover !important;
+      color: $button_text_hover !important;
     }
 
     li.dropdown.open a.dropdown-toggle {
-      background-color: $accent !important;
+      background-color: $button_background_hover !important;
     }
 
-    li.dropdown.open ul.dropdown-menu a:hover {
-      color: $primary-text !important;
+    li.dropdown.open ul.dropdown-menu a:hover, li.dropdown.open ul.dropdown-menu a:focus {
+      background-color: $button_background_hover !important;
+      color: $button_text_hover !important;
     }
 
     #collapseLearningPhaseInfoButton, #collapseManageButton {
@@ -1288,11 +1308,11 @@ $themes: (
       background-color: $navbar_pool_background !important;
       color: $navbar_pool_text !important;
     }
-    #navbar-pool a:hover {
+    #navbar-pool a:hover, #navbar-pool a:focus {
       background-color: $navbar_pool_background_hover !important;
       color: $navbar_pool_text_hover !important;
     }
-    #navbar-pool.active a, #navbar-pool.active a:hover {
+    #navbar-pool.active a, #navbar-pool.active a:hover, #navbar-pool.active a:focus {
       background-color: $navbar_pool_background_active !important;
       color: $navbar_pool_text_active !important;
     }
@@ -1301,11 +1321,11 @@ $themes: (
       background-color: $navbar_repetitorium_background !important;
       color: $navbar_repetitorium_text !important;
     }
-    #navbar-repetitorium a:hover {
+    #navbar-repetitorium a:hover, #navbar-repetitorium a:focus {
       background-color: $navbar_repetitorium_background_hover !important;
       color: $navbar_repetitorium_text_hover !important;
     }
-    #navbar-repetitorium.active a, #navbar-repetitorium.active a:hover {
+    #navbar-repetitorium.active a, #navbar-repetitorium.active a:hover, #navbar-repetitorium.active a:focus {
       background-color: $navbar_repetitorium_background_active !important;
       color: $navbar_repetitorium_text_active !important;
     }
@@ -1314,11 +1334,11 @@ $themes: (
       background-color: $navbar_create_background !important;
       color: $navbar_create_text !important;
     }
-    #navbar-own-decks a:hover {
+    #navbar-own-decks a:hover, #navbar-own-decks a:focus {
       background-color: $navbar_create_background_hover !important;
       color: $navbar_create_text_hover !important;
     }
-    #navbar-own-decks.active a, #navbar-own-decks.active a:hover {
+    #navbar-own-decks.active a, #navbar-own-decks.active a:hover, #navbar-own-decks.active a:focus {
       background-color: $navbar_create_background_active !important;
       color: $navbar_create_text_active !important;
     }
@@ -1327,11 +1347,11 @@ $themes: (
       background-color: $navbar_learn_background !important;
       color: $navbar_learn_text !important;
     }
-    #navbar-learn-decks a:hover {
+    #navbar-learn-decks a:hover, #navbar-learn-decks a:focus {
       background-color: $navbar_learn_background_hover !important;
       color: $navbar_learn_text_hover !important;
     }
-    #navbar-learn-decks.active a, #navbar-learn-decks.active a:hover {
+    #navbar-learn-decks.active a, #navbar-learn-decks.active a:hover,  #navbar-learn-decks.active a:focus {
       background-color: $navbar_learn_background_active !important;
       color: $navbar_learn_text_active !important;
     }
@@ -1352,12 +1372,12 @@ $themes: (
       color: $navbar_alldecks_text !important;
       border-color: $navbar_alldecks_border !important;
     }
-    #navbar-all-decks:hover {
+    #navbar-all-decks:hover, #navbar-all-decks:focus {
       background-color: $navbar_alldecks_background_hover !important;
       color: $navbar_alldecks_text_hover !important;
       border-color: $navbar_alldecks_border_hover !important;
     }
-    #navbar-all-decks.active, #navbar-all-decks.active a:hover {
+    #navbar-all-decks.active, #navbar-all-decks.active a:hover, #navbar-all-decks.active a:focus {
       background-color: $navbar_alldecks_background_active !important;
       color: $navbar_alldecks_text_active !important;
       border-color: $navbar_alldecks_border_active !important;
@@ -1367,11 +1387,11 @@ $themes: (
       background-color: $navbar_help_background !important;
       color: $navbar_help_text !important;
     }
-    #navbar-help a:hover {
+    #navbar-help a:hover, #navbar-help a:focus {
       background-color: $navbar_help_background_hover !important;
       color: $navbar_help_text_hover !important;
     }
-    #navbar-help.active a, #navbar-help.active a:hover {
+    #navbar-help.active a, #navbar-help.active a:hover,  #navbar-help.active a:focus {
       background-color: $navbar_help_background_active !important;
       color: $navbar_help_text_active !important;
     }
@@ -1380,7 +1400,7 @@ $themes: (
       background-color: $navbar_backend_background !important;
       color: $navbar_backend_text !important;
     }
-    #navbar-adminpanel a:hover {
+    #navbar-adminpanel a:hover, #navbar-adminpanel a:focus {
       background-color: $navbar_backend_background_hover !important;
       color: $navbar_backend_text_hover !important;
     }
@@ -1389,12 +1409,12 @@ $themes: (
       background-color: $navbar_notifications_background !important;
       color: $navbar_notifications_text !important;
     }
-    #notificationsBtn:hover > .dropdown-toggle {
+    #notificationsBtn:hover > .dropdown-toggle, #notificationsBtn:focus > .dropdown-toggle {
       background-color: $navbar_notifications_background_hover !important;
       color: $navbar_notifications_text_hover !important;
     }
 
-    .notification-button, .notification-button:hover {
+    .notification-button, .notification-button:hover, .notification-button:focus {
       background-color: $info_background !important;
       color: $info_text !important;
     }
@@ -1403,11 +1423,11 @@ $themes: (
       background-color: $navbar_profile_background !important;
       color: $navbar_profile_text !important;
     }
-    #navbar-profile:hover {
+    #navbar-profile:hover, #navbar-profile:focus {
       background-color: $navbar_profile_background_hover !important;
       color: $navbar_profile_text_hover !important;
     }
-    #navbar-profile.active, #navbar-profile.active:hover {
+    #navbar-profile.active, #navbar-profile.active:hover, #navbar-profile.active:focus {
       background-color: $navbar_profile_background_active !important;
       color: $navbar_profile_text_active !important;
     }
@@ -1416,7 +1436,7 @@ $themes: (
       background-color: $navbar_logout_background !important;
       color: $navbar_logout_text !important;
     }
-    #navbar-logout a:hover {
+    #navbar-logout a:hover, #navbar-logout a:focus {
       background-color: $navbar_logout_background_hover !important;
       color: $navbar_logout_text_hover !important;
     }
@@ -1437,7 +1457,7 @@ $themes: (
           li {
             a {
               color: white !important;
-              &:hover, &.active {
+              &:hover, &:focus, &.active {
                 color: white !important;
                 background: #F5AA01 !important;
               }
@@ -1495,7 +1515,7 @@ $themes: (
             .sidebar-nav {
               li {
                 a {
-                  &:hover, &.active {
+                  &:hover, &:focus, &.active {
                     border-left-color: #3d9c19 !important;
                   }
                 }
@@ -1521,9 +1541,10 @@ $themes: (
       background-color: $thm_orange !important;
     }
 
-    #cardType .btn-white.active, #learningGoalLevelGroup .btn-primary.active {
-      color: white !important;
-      background-color: $button_difficulty2 !important;
+    #cardType .btn-white.active:hover, #learningGoalLevelGroup .btn-primary.active:hover,
+    #cardType .btn-white.active:focus, #learningGoalLevelGroup .btn-primary.active:focus {
+      color: $button_text_hover !important;
+      background-color: $button_background_hover !important;
     }
 
     .carousel-control {
@@ -1596,11 +1617,11 @@ $themes: (
       background: $background_difficulty0_note !important;
     }
 
-    .box-difficulty-list0:hover {
+    .box-difficulty-list0:hover, .box-difficulty-list0:focus {
       background: darken($background_difficulty0_note, 15%) !important;
     }
 
-    .box-difficultyNote-list0:hover {
+    .box-difficultyNote-list0:hover, .box-difficultyNote-list0:focus {
       background: darken($background_difficulty0_note, 15%) !important;
     }
 
@@ -1635,7 +1656,7 @@ $themes: (
       background: $background_difficulty1_lines !important;
     }
 
-    .box-difficulty-list1:hover {
+    .box-difficulty-list1:hover, .box-difficulty-list1:focus {
       background: darken($background_difficulty1_lines, 15%) !important;
     }
 
@@ -1666,7 +1687,7 @@ $themes: (
       background: $background_difficulty2_lines !important;
     }
 
-    .box-difficulty-list2:hover {
+    .box-difficulty-list2:hover, .box-difficulty-list2:focus {
       background: darken($background_difficulty2_lines, 15%) !important;
     }
 
@@ -1697,7 +1718,7 @@ $themes: (
       background: $background_difficulty3_lines !important;
     }
 
-    .box-difficulty-list3:hover {
+    .box-difficulty-list3:hover, .box-difficulty-list3:focus {
       background: darken($background_difficulty3_lines, 15%) !important;
     }
 
@@ -2205,8 +2226,18 @@ $themes: (
         color: $white !important;
       }
 
+      .dropdown-toggle:hover, .navbar-text:hover, .dropdown-toggle:focus, .navbar-text:focus {
+        background-color: $button_background_hover !important;
+        color: $button_text_hover !important;
+      }
+
       #displayModeBtn {
         color: $white !important;
+      }
+
+      #displayModeBtn:hover, #displayModeBtn:focus {
+        background-color: $button_background_hover !important;
+        color: $button_text_hover !important;
       }
 
       .btn-demo, .btn-warning, .btn-info, .btn-success, .btn-danger {
@@ -2243,6 +2274,13 @@ $themes: (
         color: $warning_text !important;
         background-color: $warning_background !important;
         border-color: $warning_background !important;
+      }
+
+      .btn-demo:hover, .btn-warning:hover, .btn-info:hover, .btn-success:hover, .btn-danger:hover, #resetBtn:hover, #resetBtnMobile:hover,
+      .btn-demo:focus, .btn-warning:focus, .btn-info:focus, .btn-success:focus, .btn-danger:focus, #resetBtn:focus, #resetBtnMobile:focus {
+        color: $button_text_hover !important;
+        background-color: $button_background_hover !important;
+        border-color: $button_background_hover !important;
       }
     }
 
@@ -2310,7 +2348,7 @@ $themes: (
           color: $cardset_form_list_text !important;
         }
       }
-      ul > li:hover {
+      ul > li:hover, ul > li:focus {
         background-color: $cardset_form_list_background_hover !important;
         a {
           color: $cardset_form_list_text_hover !important;
@@ -2365,7 +2403,13 @@ $themes: (
     }
 
     #TestingBackdoorUsername {
-      background-color: #ffffff !important;
+      background-color: $white !important;
+      color: $primary_text !important;
+    }
+
+    #TestingBackdoorUsername option:hover, #TestingBackdoorUsername option:focus {
+      background-color: $button_background_hover !important;
+      color: $button_text_hover !important;
     }
 
     .color-THM {
@@ -2397,8 +2441,9 @@ $themes: (
       color: $white !important;
     }
 
-    .profilepublic-rb-text-color:hover {
-      color: black !important;
+    .profilepublic-rb-text-color:hover, .profilepublic-rb-text-color:focus {
+      background-color: $button_background_hover !important;
+      color: $button_text_hover !important;
     }
 
     .red-passage {
@@ -2490,7 +2535,7 @@ $themes: (
       @media(max-width: 767px) {
         opacity: 1 !important;
       }
-      tr:hover {
+      tr:hover, tr:focus {
         background-color: $navbar_profile_dropdown_background_hover !important;
         color: $navbar_profile_dropdown_text_hover !important;
       }
@@ -2498,7 +2543,7 @@ $themes: (
         background-color: $navbar_profile_dropdown_background_active !important;
         color: $navbar_profile_dropdown_text_active !important;
       }
-      .logout-dropdown:hover {
+      .logout-dropdown:hover, .logout-dropdown:focus {
         background-color: $navbar_logout_background_hover !important;
         color: $navbar_logout_text_hover !important;
       }
@@ -2647,6 +2692,27 @@ $themes: (
         background-color: $primary !important;
         color: white !important;
       }
+    }
+
+    //card-navigation colors
+    .switchCardSide {
+      color: $card_navigation_text !important;
+      background-color: $card_navigation_background !important;
+    }
+
+    .switchCardSide:hover, .switchCardSide:focus {
+      color: $card_navigation_text_hover !important;
+      background-color: $card_navigation_background_hover !important;
+    }
+
+    .card-navigation-active {
+      color: $card_navigation_active_text !important;
+      background-color: $card_navigation_active_background !important;
+    }
+
+    .card-navigation-active:hover, .card-navigation-active:focus {
+      color: $card_navigation_active_text_hover !important;
+      background-color: $card_navigation_active_background_hover !important
     }
   }
 }

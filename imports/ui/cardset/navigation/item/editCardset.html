@@ -1,7 +1,7 @@
 <template name="cardsetNavigationEditCardset">
     {{#if isCardsetOwner _id}}
         <div class="hidden-xs btn-group">
-            <button id="editCardset" class="btn btn-sm btn-raised eidtCardsetBtn"
+            <button id="editCardset" class="btn btn-sm btn-raised editCardsetBtn"
                     data-toggle="modal"
                     data-target="#setCardsetFormModal" {{disableIfOffline}}>
                 <i class="fa fa-pencil"></i> {{_ "modal-dialog.editcard"}}

@@ -20,6 +20,8 @@ Template.learningGoalLevel.helpers({
 Template.learningGoalLevel.events({
 	'click #learningGoalLevelGroup': function (event) {
 		CardEditor.setEditorButtonIndex(1);
-		Session.set('learningGoalLevel', Number($(event.target).data('lvl')));
+		let index = Number($(event.target).data('lvl'));
+		Session.set('learningGoalLevel', index);
+		$("#learningGoalLevel" + index).focus();
 	}
 });
