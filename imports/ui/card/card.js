@@ -9,16 +9,19 @@ import ResizeSensor from "../../../client/thirdParty/resizeSensor/ResizeSensor.j
 import {CardIndex} from "../../api/cardIndex.js";
 import {Route} from "../../api/route.js";
 import {CardType} from "../../api/cardTypes";
+import {Cards} from "../../api/cards";
 import {CardNavigation} from "../../api/cardNavigation";
 import {Leitner, Wozniak} from "../../api/learned.js";
-import "./card.html";
+import {BertAlertVisuals} from "../../api/bertAlertVisuals";
+import {CardEditor} from "../../api/cardEditor";
 import '/client/thirdParty/hammer.js';
 import './header/header.js';
 import './content/content.js';
 import './navigation/navigation.js';
 import './modal/settings.js';
-import {BertAlertVisuals} from "../../api/bertAlertVisuals";
-import {CardEditor} from "../../api/cardEditor";
+import "./modal/beolingusTranslation.js";
+import "./modal/deeplTranslation.js";
+import "./card.html";
 
 /*
  * ############################################################################
@@ -118,16 +121,6 @@ Template.flashcards.helpers({
 	},
 	cardsIndex: function (card_id) {
 		return CardIndex.getActiveCardIndex(card_id);
-	},
-	isBeolingusDictionary: function () {
-		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryMode') === 1 && !Route.isEditMode();
-		}
-	},
-	isDeepLDictionary: function () {
-		if (CardType.gotDictionary(this.cardType)) {
-			return Session.get('dictionaryMode') === 2 && !Route.isEditMode();
-		}
 	},
 	getCardSideColorActive: function () {
 		return CardVisuals.getCardSideColor(this.difficulty, this.cardType, this.backgroundStyle, true);
@@ -263,5 +256,50 @@ Template.deleteCardForm.events({
 				});
 			}
 		});
+	}
+});
+
+/*
+ * ############################################################################
+ * cardSubject
+ * ############################################################################
+ */
+Template.cardSubject.helpers({
+	getSubject: function () {
+		if (Session.get('selectedHint')) {
+			return Cards.findOne({_id: Session.get('selectedHint')}).subject;
+		} else {
+			if (this.subject) {
+				return this.subject;
+			} else {
+				return CardType.getSubjectPlaceholderText(Session.get('cardType'));
+			}
+		}
+	},
+	gotLearningUnit: function () {
+		if (Session.get('selectedHint')) {
+			let card = Cards.findOne({_id: Session.get('selectedHint')});
+			return (CardType.gotLearningUnit(card.cardType) && card.learningUnit !== "0");
+		} else {
+			return (CardType.gotLearningUnit(this.cardType) && this.learningUnit !== "0");
+		}
+	},
+	getLearningIndex: function () {
+		if (Route.isEditMode()) {
+			return Session.get('learningIndex');
+		} else if (Session.get('selectedHint')) {
+			return Cards.findOne({_id: Session.get('selectedHint')}).learningIndex;
+		} else {
+			return this.learningIndex;
+		}
+	},
+	getLearningUnit: function () {
+		if (Route.isEditMode()) {
+			return Session.get('learningUnit');
+		} else if (Session.get('selectedHint')) {
+			return Cards.findOne({_id: Session.get('selectedHint')}).learningUnit;
+		} else {
+			return this.learningUnit;
+		}
 	}
 });

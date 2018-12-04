@@ -592,3 +592,17 @@ img.cardside {
     margin-top: -$padding_card_content_vertical_mobile;
   }
 }
+
+#cardModalDeepLTranslation .modal-dialog, #cardModalBeolingusTranslation .modal-dialog  {
+  width: 80%;
+  height: 90%;
+  .modal-content{
+    height: 100%;
+  }
+  .modal-header {
+    height: 5%;
+  }
+  .modal-body {
+    height: 87%;
+  }
+}
