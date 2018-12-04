@@ -334,12 +334,22 @@ export let CardNavigation = class CardNavigation {
 					case 9:
 						if (Route.isEditMode()) {
 							if (Session.get('isDeepLModalVisible')) {
-								$('#cardEditorModalDeepLTranslation').modal('hide');
+								$('#cardModalDeepLTranslation').modal('hide');
 							} else {
 								CardEditor.setEditorButtonFocus();
 							}
 						} else {
-							CardNavigation.cardSideNavigation();
+							if (CardType.gotDictionary(Session.get('cardType'))) {
+								if (Session.get('isDeepLModalVisible')) {
+									$('#cardModalDeepLTranslation').modal('hide');
+								} else {
+									$('#cardModalDeepLTranslation').modal('show').one('hidden.bs.modal', function () {
+										CardNavigation.cardSideNavigation();
+									});
+								}
+							} else {
+								CardNavigation.cardSideNavigation();
+							}
 						}
 						break;
 					case 32:
