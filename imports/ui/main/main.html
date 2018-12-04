@@ -149,23 +149,25 @@
                                                                                _id=currentUser._id}}">{{_
                                                                 "profile.activity"}}</a></td>
                                                     </tr>
-                                                    <tr class="{{#if isActiveRoute
-                                                                     'profileMembership'}}active{{/if}}">
-                                                        <td><a class="dropdown-item"
-                                                               href="/profile/{{currentUser._id}}/membership"><i
-                                                                class="fa fa-users"></i></a></td>
-                                                        <td><a class="dropdown-item"
-                                                               href="/profile/{{currentUser._id}}/membership">{{_
-                                                                "profile.membership"}}</a></td>
-                                                    </tr>
-                                                    <tr class="{{#if isActiveRoute 'profileBilling'}}active{{/if}}">
-                                                        <td><a class="dropdown-item"
-                                                               href="/profile/{{currentUser._id}}/billing"><i
-                                                                class="fa fa-credit-card"></i></a></td>
-                                                        <td><a class="dropdown-item"
-                                                               href="/profile/{{currentUser._id}}/billing">{{_
-                                                                "profile.billing"}}</a></td>
-                                                    </tr>
+                                                    {{#if isInRole 'admin, editor'}}
+                                                        <tr class="{{#if isActiveRoute
+                                                                         'profileMembership'}}active{{/if}}">
+                                                            <td><a class="dropdown-item"
+                                                                   href="/profile/{{currentUser._id}}/membership"><i
+                                                                    class="fa fa-users"></i></a></td>
+                                                            <td><a class="dropdown-item"
+                                                                   href="/profile/{{currentUser._id}}/membership">{{_
+                                                                    "profile.membership"}}</a></td>
+                                                        </tr>
+                                                        <tr class="{{#if isActiveRoute 'profileBilling'}}active{{/if}}">
+                                                            <td><a class="dropdown-item"
+                                                                   href="/profile/{{currentUser._id}}/billing"><i
+                                                                    class="fa fa-credit-card"></i></a></td>
+                                                            <td><a class="dropdown-item"
+                                                                   href="/profile/{{currentUser._id}}/billing">{{_
+                                                                    "profile.billing"}}</a></td>
+                                                        </tr>
+                                                    {{/if}}
                                                     <tr class="{{#if isActiveRoute
                                                                      'profileNotifications'}}active{{/if}}">
                                                         <td><a class="dropdown-item notificationsBtn"
@@ -224,8 +226,9 @@
     {{/unless}}
     <div id="main" class="{{#if isActiveRoute
                                 regex='presentation'}}presentation-container{{else}}{{#if isActiveRoute
-                                regex='home'}}{{else}}{{#if isActiveRoute
-                                                            regex='newCard|editCard|cardsetstats'}}{{#if
+                                                                                          regex='home'}}{{else}}{{#if
+            isActiveRoute
+            regex='newCard|editCard|cardsetstats'}}{{#if
             fullscreenActive}}container{{else}}container-fluid{{/if}}{{else}}{{#unless
             isFirstTimeVisit}}container{{/unless}}{{/if}}{{/if}}{{/if}}">
         <!-- AREA BETWEEN NAVIGATION AND FOOTER -->
