@@ -7,6 +7,7 @@ import {Route} from "../../../api/route";
 import {CardIndex} from "../../../api/cardIndex";
 
 Session.setDefault('isDeepLModalVisible', false);
+Session.setDefault('isBeolingusModalVisible', false);
 
 /*
  * ############################################################################

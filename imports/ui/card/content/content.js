@@ -1,6 +1,5 @@
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Cards} from "../../../api/cards.js";
 import {CardVisuals} from "../../../api/cardVisuals.js";
 import {CardType} from "../../../api/cardTypes";
 import {Route} from "../../../api/route.js";
@@ -38,67 +37,6 @@ Template.cardContentCounter.helpers({
 	},
 	isMemo: function () {
 		return Route.isMemo();
-	}
-});
-
-/*
- * ############################################################################
- * cardDictionaryContentBeolingus
- * ############################################################################
- */
-
-Template.cardDictionaryContentBeolingus.onRendered(function () {
-	Dictionary.setBlur();
-});
-
-Template.cardDictionaryContentBeolingus.helpers({
-	getDictionarySearchText: function () {
-		return Dictionary.getQuery(this, 1);
-	}
-});
-
-/*
- * ############################################################################
- * cardSubject
- * ############################################################################
- */
-Template.cardSubject.helpers({
-	getSubject: function () {
-		if (Session.get('selectedHint')) {
-			return Cards.findOne({_id: Session.get('selectedHint')}).subject;
-		} else {
-			if (this.subject) {
-				return this.subject;
-			} else {
-				return CardType.getSubjectPlaceholderText(Session.get('cardType'));
-			}
-		}
-	},
-	gotLearningUnit: function () {
-		if (Session.get('selectedHint')) {
-			let card = Cards.findOne({_id: Session.get('selectedHint')});
-			return (CardType.gotLearningUnit(card.cardType) && card.learningUnit !== "0");
-		} else {
-			return (CardType.gotLearningUnit(this.cardType) && this.learningUnit !== "0");
-		}
-	},
-	getLearningIndex: function () {
-		if (Route.isEditMode()) {
-			return Session.get('learningIndex');
-		} else if (Session.get('selectedHint')) {
-			return Cards.findOne({_id: Session.get('selectedHint')}).learningIndex;
-		} else {
-			return this.learningIndex;
-		}
-	},
-	getLearningUnit: function () {
-		if (Route.isEditMode()) {
-			return Session.get('learningUnit');
-		} else if (Session.get('selectedHint')) {
-			return Cards.findOne({_id: Session.get('selectedHint')}).learningUnit;
-		} else {
-			return this.learningUnit;
-		}
 	}
 });
 

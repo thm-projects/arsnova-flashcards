@@ -15,9 +15,7 @@ Template.cardSidebarItemDictionaryBeolingus.helpers({
 		return CardType.gotDictionary(Session.get('cardType'));
 	},
 	isBeolingusActive: function () {
-		if (CardType.gotDictionary(Session.get('cardType'))) {
-			return Dictionary.checkMode(1);
-		}
+		return Session.get('isBeolingusModalVisible');
 	},
 	isMobilePreview: function () {
 		return MarkdeepEditor.getMobilePreview();
@@ -36,6 +34,8 @@ Template.cardSidebarItemDictionaryBeolingus.helpers({
 Template.cardSidebarItemDictionaryBeolingus.events({
 	"click .showBeolingusTranslation": function () {
 		Dictionary.setMode(1);
+		$('#cardModalBeolingusTranslation').modal('show');
+		Session.set('isBeolingusModalVisible', true);
 	}
 });
 

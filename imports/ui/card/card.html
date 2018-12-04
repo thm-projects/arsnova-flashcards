@@ -2,7 +2,8 @@
     {{> copyCard}}
     {{> deleteCardForm}}
     {{> cardSettingsModal}}
-    {{>cardModalDeepLTranslation}}
+    {{> cardModalBeolingusTranslation}}
+    {{> cardModalDeepLTranslation}}
     <div class="flip-container"
          id="set-details-region">
         <div>
@@ -25,11 +26,7 @@
                                         false}}{{getCardSideColorActive}}{{else}}{{getCardSideColorInactive}}{{/if}}">
                                     {{> cardContentCounter this}}
                                     {{#if isActiveCard false}}
-                                        {{#if isBeolingusDictionary}}
-                                            {{> cardDictionaryContentBeolingus this}}
-                                        {{else}}
-                                            {{> cardContentActive this}}
-                                        {{/if}}
+                                        {{> cardContentActive this}}
                                     {{else}}
                                         {{> cardContentInactive this}}
                                     {{/if}}
