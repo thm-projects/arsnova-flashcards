@@ -1,18 +1,20 @@
 <template name="cardModalBeolingusTranslation">
-    <div class="modal fade" id="cardModalBeolingusTranslation" role="dialog">
-        <div class="modal-dialog" aria-labelledby="cardModalBeolingusTranslationTitle">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                    {{#if isModalVisible}}
-                        {{> cardModalBeolingusContent}}
-                    {{/if}}
+    {{#unless isSmartphone}}
+        <div class="modal fade" id="cardModalBeolingusTranslation" role="dialog">
+            <div class="modal-dialog" aria-labelledby="cardModalBeolingusTranslationTitle">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        {{#if isModalVisible}}
+                            {{> cardModalBeolingusContent}}
+                        {{/if}}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    {{/unless}}
 </template>
 
 <template name="cardModalBeolingusContent">
