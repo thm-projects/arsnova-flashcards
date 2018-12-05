@@ -251,9 +251,9 @@ body {
 }
 
 #input-search {
-  width: 120px;
+  width: 105px;
   line-height: 30pt !important;
-  padding-right: 30px !important;
+  padding-right: 15px !important;
 }
 
 .navbar-default {
@@ -631,7 +631,7 @@ button {
   }
 
   a {
-    white-space: normal !important;
+    white-space: nowrap;
   }
 }
 
