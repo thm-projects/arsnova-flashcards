@@ -242,7 +242,7 @@
     "noCarddecks": "Kartei anlegen",
     "oneCarddeck": "Meine Kartei",
     "carddecks": "Meine Karteien",
-    "learndecks": "Mein Lernpensum",
+    "learndecks": "Lernpensum",
     "alldecks": "Alle Karteien",
     "pool": "Themen",
     "course": "Repetitorien",
@@ -702,9 +702,9 @@
   },
   "demo": {
     "help": {
-      "title": "Willkommen auf der Lernkartei-Plattform deiner Hochschule!",
+      "title": "",
       "button": {
-        "confirm": "Okay, ich schau mir die Demo an!"
+        "confirm": "Okay, ich schaue mir die Demo an!"
       }
     }
   },
@@ -717,7 +717,7 @@
       "backDemo": "Zurück zur Demo-Kartei"
     },
     "help": {
-      "title": "Hilfe zum Vortragen mit 🍅cards",
+      "title": "Navigieren mit Maus & Tastatur",
       "button": {
         "confirm": "Okay, ich hab's gelesen."
       }
@@ -1781,7 +1781,7 @@
   "bertAlert": {
     "firstLogin": {
       "title": "Willkommen auf __firstAppTitle__🍅__lastAppTitle__ !",
-      "message": "Schau dich in Ruhe auf der Plattform um. Hier kannst du Karten zu einem bestimmten Thema lernen und Karteien oder Repetitorien (= lose Sammlungen von Karteien zur Prüfungsvorbereitung) für dein Studium anlegen. </br> </br> Die Navigationsleiste mit den Tabs »Themen-Pool«, »Repetitorien«, »Mein Lernpensum« und »Kartei anlegen« dient dir als Einstieg in die großartigen Features von 🍅__lastAppTitle__. Schau dir dazu auch die Demo unter »Hilfe« an! </br> </br> Suche im Themen-Pool nach einem Thema, das dich interessiert. Klick auf den kleinen Pfeil ganz rechts vom Thema, um die Beschreibung der Kartei zu sehen. Mit einem Klick auf das Thema gelangst du zu den Karten. </br> </br>"
+      "message": "Schau dich in Ruhe auf der Plattform um. Hier kannst du Karten zu einem bestimmten Thema lernen und Karteien oder Repetitorien (= lose Sammlungen von Karteien zur Prüfungsvorbereitung) für dein Studium anlegen. </br> </br> Die Navigationsleiste mit den Tabs »Themen«, »Repetitorien«, »Lernpensum« und »Kartei anlegen« dient dir als Einstieg in die großartigen Features von 🍅__lastAppTitle__. Schau dir dazu auch die Demo unter »Hilfe« an! </br> </br> Suche im Themen-Pool nach einem Thema, das dich interessiert. Klick auf den kleinen Pfeil ganz rechts vom Thema, um die Beschreibung der Kartei zu sehen. Mit einem Klick auf das Thema gelangst du zu den Karten. </br> </br>"
     },
     "publishBonus": {
       "message": "Um die Bonus-Lernphase zu starten, müssen mindestens __cardcount__ erstellt und die Kartei als »Frei«, »__edu__« oder »Pro« veröffentlicht worden sein."
