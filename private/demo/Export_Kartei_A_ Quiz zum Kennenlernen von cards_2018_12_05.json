@@ -2,7 +2,7 @@
   "name": "A: Quiz zum Kennenlernen von 🍅cards",
   "description": "Die Quizfragen sind Teil der Demo-Kartei auf der 🍅cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2018-12-03T06:05:26.679Z",
+  "dateUpdated": "2018-12-05T12:06:56.241Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -17,12 +17,18 @@
   "license": [],
   "userDeleted": false,
   "learningActive": false,
-  "maxCards": 0,
-  "daysBeforeReset": 0,
-  "learningStart": "1970-01-01T00:00:00.000Z",
-  "learningEnd": "1970-01-01T00:00:00.000Z",
-  "registrationPeriod": "1970-01-01T00:00:00.000Z",
-  "learningInterval": [],
+  "maxCards": 40,
+  "daysBeforeReset": 7,
+  "learningStart": "2018-06-08T13:51:09.335Z",
+  "learningEnd": "2038-01-19T07:51:33.246Z",
+  "registrationPeriod": "2038-01-19T07:51:33.246Z",
+  "learningInterval": [
+    1,
+    3,
+    7,
+    28,
+    84
+  ],
   "wordcloud": false,
   "shuffled": false,
   "cardType": 11,
@@ -38,7 +44,7 @@
       "count": 0
     },
     "normal": {
-      "count": 0
+      "count": 1
     }
   },
   "rating": 0
@@ -133,7 +139,7 @@
 }, {
   "subject": "4. Digitale Schuhkartons: Karteien",
   "front": "Welche **Karteitypen** gibt es auf 🍅cards?",
-  "back": "Es gibt **17 Karteitypen**, die beim Anlegen einer Kartei zur Auswahl stehen. \nJede Kartei beinhaltet ausschließlich Karten desselben Typs, es sei denn sie wurde aus mehreren Karteien unterschiedlichen Typs gemischt wie diese Demo-Kartei. Einige Karteitypen haben eine **Schwierigkeitsstufe (Level)**, die an der Kartenfarbe erkennbar ist: Grün für Basics, Blau für Fortgeschritten und Rot für Expert*in. \n\nKarteitypen unterscheiden sich in der Anzahl der Kartenseiten: nicht nur Vorder- und Rückseiten sind möglich, sondern auch weitere virtuelle Seiten zur Vertiefung des Lerninhalts oder zur Angabe von Web-Ressourcen und Literatur. Lern- und Prüfungskarten haben zusätzlich eine **Lernzielstufe** in Anlehnung an die [Taxonomie von Anderson & Krathwohl](https://thesecondprinciple.com/teaching-essentials/beyond-bloom-cognitive-taxonomy-revised/):  Verstehen, Anwenden, Analysieren, Synthetisieren, Bewerten, Innovieren. Für die Formulierung des Lernziels auf der gewählten Lernzielstufe werden passende Verben im Editor vorgeschlagen.\n\n<div style=\"columns:2;-webkit-columns:2;-moz-columns:2;column-gap:2em;-webkit-column-gap:2em;-moz-column-gap:2em\">\n**Karteitypen und die Seitentitel  ihrer Karten:**\n\n1. **Mitschrift**: Foto der Mitschrift | Nachbearbeitung | To-dos\n+ **Lerneinheit**: Lernziel | Vertiefung | Zusammenfassung | Literatur\n+ **Aufgabensammlung**: Aufgabe | Lösung\n+ **Glossar**: Fachbegriff | Beschreibung | Literatur\n+ **Anweisungssatz**: Semantik | Syntax | Online-API\n+ **Formelsammlung**: Aufgabe | Formel | Lösung | Links\n+ **Entwurfsmuster**: Problem | Kontext | Kräfte | Lösung | Verwendung | Verweise\n+ **Beidseitiges Fragen**: Frage A | Frage B\n+ **Quiz**: Frage | Antwort\n+ **Prüfung**: Prüfungsfrage | Erwartete Antwort | Begründung\n+ **Vokabelkartei**: Sprache A | Sprache B\n+ **Fotokartei**: Foto | Lizenz\n+ **Zitatensammlung**: Zitat | Zitierte Person | Bibliografische Angaben\n+ **Exzerpte**: Exzerpt | Anmerkungen | Quellenangabe\n+ **Notizen**: 1 Seite\n+ **To-dos**: 1 Seite\n+ **Vortrag**: 1 Seite\n</div>\n\n\n|Karteityp|Seiten|Schwierigkeits-Stufen|[Lernziel-Taxonomie](https://dbs-lin.ruhr-uni-bochum.de/lehreladen/planung-durchfuehrung-kompetenzorientierter-lehre/lehr-und-lernziele/typen-und-stufen/)|[Spaced Learning](https://www.webcampus.de/blog/123/spaced-learning-mit-intelligenter-lerntechnik-besser-erinnern)|Besonderheiten / Beispiel|\n|-|:-:|:-:|:-:|:-:|:-|\n|Mitschrift|3|X ||||\n|Lerneinheit| 4|X |X |X||\n|Aufgabensammlung| 2| X||X||\n|Glossar| 3|X ||X||\n|Anweisungssatz| 3|X ||X||\n|Formelsammlung| 4|X | |X|$\\TeX$-Formelsatz mit [MathJax](https://mathjax.org) in SVG-Qualität|\n|Entwurfsmuster| 6|X |X |X||\n|Beidseitiges Fragen| 2| X| |X|Frage A: »Wie sieht das Klassendiagramm des Entwurfsmusters Observer aus?«<br>Frage B: »Welches Entwurfsmuster beschreibt dieses Klassendiagramm?«|\n|Quiz| 2| X| |X||\n|Prüfung| 3|X | X|X||\n|Vokabelkartei| 2|X||X|Integration des Wörterbuchs [BEOLINGUS](https://dict.tu-chemnitz.de/) und des Übersetzungsdienstes [DeepL](https://www.deepl.com/translator)|\n|Fotokartei| 2||||[Lightbox](https://de.wikipedia.org/wiki/Lightbox)|\n|Zitatensammlung| 3|||X||\n|Exzerpte| 3|||||\n|Notizen|1|||||\n|To-dos| 1||||[Task-Liste à la GitHub](https://casual-effects.com/markdeep/features.md.html#toc1.3)|\n|Vortrag| 1||||für die Beamer-Präsentation optimiert: Vollbild, Textskalierung, Tastensteuerung; direkter Aufruf der Audience-Response-Apps [ARSnova](https://arsnova.app) und [arsnova.click](https://arsnova.click)|\n[Ausstattungsmerkmale der Karteitypen]",
+  "back": "Es gibt **17 Karteitypen**, die beim Anlegen einer Kartei zur Auswahl stehen. \nJede Kartei beinhaltet ausschließlich Karten desselben Typs, es sei denn sie wurde aus mehreren Karteien unterschiedlichen Typs gemischt wie diese Demo-Kartei. Einige Karteitypen haben eine **Schwierigkeitsstufe (Level)**, die an der Kartenfarbe erkennbar ist: Grün für Basics, Blau für Fortgeschritten und Rot für Expert*in. \n\nKarteitypen unterscheiden sich in der Anzahl der Kartenseiten: nicht nur Vorder- und Rückseiten sind möglich, sondern auch weitere virtuelle Seiten zur Vertiefung des Lerninhalts oder zur Angabe von Web-Ressourcen und Literatur. Lern- und Prüfungskarten haben zusätzlich eine **Lernzielstufe** in Anlehnung an die [Taxonomie von Anderson & Krathwohl](https://thesecondprinciple.com/teaching-essentials/beyond-bloom-cognitive-taxonomy-revised/):  Verstehen, Anwenden, Analysieren, Synthetisieren, Bewerten, Innovieren. Für die Formulierung des Lernziels auf der gewählten Lernzielstufe werden passende Verben im Editor vorgeschlagen.\n\n<div style=\"columns:2;-webkit-columns:2;-moz-columns:2;column-gap:2em;-webkit-column-gap:2em;-moz-column-gap:2em\">\n**Karteitypen und die Seitentitel  ihrer Karten:**\n\n1. **Mitschrift**: Foto der Mitschrift | Nachbearbeitung | To-dos\n+ **Lerneinheit**: Lernziel | Vertiefung | Zusammenfassung | Literatur\n+ **Aufgabensammlung**: Aufgabe | Lösung\n+ **Glossar**: Fachbegriff | Beschreibung | Literatur\n+ **Anweisungssatz**: Semantik | Syntax | Online-API\n+ **Formelsammlung**: Aufgabe | Formel | Lösung | Links\n+ **Entwurfsmuster**: Problem | Kontext | Kräfte | Lösung | Verwendung | Verweise\n+ **Beidseitiges Fragen**: Frage A | Frage B\n+ **Quiz**: Frage | Antwort\n+ **Prüfung**: Prüfungsfrage | Erwartete Antwort | Begründung\n+ **Vokabelkartei**: Sprache A | Sprache B\n+ **Fotokartei**: Foto | Lizenz\n+ **Zitatensammlung**: Zitat | Zitierte Person | Bibliografische Angaben\n+ **Exzerpte**: Exzerpt | Anmerkungen | Quellenangabe\n+ **Notizen**: 1 Seite\n+ **To-dos**: 1 Seite\n+ **Vortrag**: 1 Seite\n</div>\n\n\n|Karteityp|Seiten|Schwierigkeits-Stufen|[Lernziel-Taxonomie](https://dbs-lin.ruhr-uni-bochum.de/lehreladen/planung-durchfuehrung-kompetenzorientierter-lehre/lehr-und-lernziele/typen-und-stufen/)|[Spaced Learning](https://www.webcampus.de/blog/123/spaced-learning-mit-intelligenter-lerntechnik-besser-erinnern)|Besonderheiten / Beispiel|\n|-|:-:|:-:|:-:|:-:|:-|\n|Mitschrift|3|X ||||\n|Lerneinheit| 4|X |X |X||\n|Aufgabensammlung| 2| X||X||\n|Glossar| 3|X ||X||\n|Anweisungssatz| 3|X ||X||\n|Formelsammlung| 4|X | |X|$\\TeX$-Formelsatz mit [MathJax](https://mathjax.org) in SVG-Qualität|\n|Entwurfsmuster| 6|X |X |X||\n|Beidseitiges Fragen| 2| X| |X|Frage A: »Wie sieht das Klassendiagramm des Entwurfsmusters Observer aus?«<br>Frage B: »Welches Entwurfsmuster beschreibt dieses Klassendiagramm?«|\n|Quiz| 2| X| |X||\n|Prüfung| 3|X | X|X||\n|Vokabelkartei| 2|X||X|Integration des Wörterbuchs [Beolingus](https://dict.tu-chemnitz.de/) und des Übersetzungsdienstes [DeepL](https://www.deepl.com/translator)|\n|Fotokartei| 2||||[Lightbox](https://de.wikipedia.org/wiki/Lightbox)|\n|Zitatensammlung| 3|||X||\n|Exzerpte| 3|||||\n|Notizen|1|||||\n|To-dos| 1||||[Task-Liste à la GitHub](https://casual-effects.com/markdeep/features.md.html#toc1.3)|\n|Vortrag| 1||||für die Beamer-Präsentation optimiert: Vollbild, Textskalierung, Tastensteuerung; direkter Aufruf der Audience-Response-Apps [ARSnova](https://arsnova.eu/blog) und [arsnova.click](https://arsnova.click)|\n[Ausstattungsmerkmale der Karteitypen]",
   "centerTextElement": [
     true,
     false,
@@ -151,7 +157,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-06-08T14:56:06.624Z",
-  "dateUpdated": "2018-12-03T05:51:18.822Z",
+  "dateUpdated": "2018-12-05T12:01:12.284Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -162,7 +168,7 @@
 }, {
   "subject": "5. Digitale Regale: Repetitorien",
   "front": "Was wird auf 🍅cards unter einem **Repetitorium** verstanden?",
-  "back": "> \"**Repetitorium** (von lateinisch *repetere:* „wiederholen“) bedeutet die \n> Wiederholung von Wissen und Kenntnissen, meist um eine [Prüfung](https://de.wikipedia.org/wiki/Pr%C3%BCfung) zu bestehen.\"\n>  -- Wikipedia\n\n!!! NOTE Repetitorium vs. Kartei\n   Ein Repetitorium (kurz Rep) auf 🍅cards fasst **mehrere** Karteien (= Themen) zusammen. Um im Bild zu bleiben: In deinem IKEA-Regal wären das alle Schuhkartons, die inhaltlich zu einem bestimmten Modul deines Studiums gehören (Mitschriften, Lernkarteien, Glossare, Exzerpte etc.) und deshalb nebeneinander stehen. Im Lernmodus werden die Karten aller Karteien, die zum Rep gehören, gemäß dem Wiederholungs-Algorithmus zum Lernen vorgelegt. Dein Dozent oder deine Dozentin kann dir -- wie bei einzelnen Karteien -- Bonuspunkte für das regelmäßige Lernen eines Repetitoriums geben.\n\n!!! TIP\n   Du kannst deine eigenen Repetitorien mit ein paar Klicks schnell zusammenstellen. Es bedarf hierzu keiner Lehrperson! Repetitorien ermöglichen dir eine **einfache und übersichtliche Organisation deiner Karteien** für die Vorbereitung auf Modulprüfungen.\n\n\n\n \n",
+  "back": "> \"**Repetitorium** (von lateinisch *repetere:* „wiederholen“) bedeutet die \n> Wiederholung von Wissen und Kenntnissen, meist um eine Prüfung zu bestehen.\"\n>  -- [Wikipedia](https://de.wikipedia.org/wiki/Repetitorium)\n\n!!! NOTE Repetitorium vs. Kartei\n   Ein Repetitorium (kurz Rep) auf 🍅cards fasst **mehrere** Karteien (= Themen) zusammen. Um im Bild zu bleiben: In deinem IKEA-Regal wären das alle Schuhkartons, die inhaltlich zu einem bestimmten Modul deines Studiums gehören (Mitschriften, Lernkarteien, Glossare, Exzerpte etc.) und deshalb nebeneinander stehen. Im Lernmodus werden die Karten aller Karteien, die zum Rep gehören, gemäß dem Wiederholungs-Algorithmus zum Lernen vorgelegt. Dein Dozent oder deine Dozentin kann dir -- wie bei einzelnen Karteien -- Bonuspunkte für das regelmäßige Lernen eines Repetitoriums geben.\n\n!!! TIP\n   Du kannst deine eigenen Repetitorien mit ein paar Klicks schnell zusammenstellen. Es bedarf hierzu keiner Lehrperson! Repetitorien ermöglichen dir eine **einfache und übersichtliche Organisation deiner Karteien** für die Vorbereitung auf Modulprüfungen.\n\n\n\n \n",
   "centerTextElement": [
     true,
     true,
@@ -180,7 +186,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-06-09T17:45:11.922Z",
-  "dateUpdated": "2018-12-03T06:05:26.663Z",
+  "dateUpdated": "2018-12-05T12:05:13.206Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -191,7 +197,7 @@
 }, {
   "subject": "6. Digitale Zettel: Karten",
   "front": "Wie kannst du den Text auf einer Karte **formatieren**?\n\n![](https://casual-effects.com/image/project/icon-markdeep.png width=\"130 pt\")\n\nWie lässt sich eine Karte **multimedial** mit Bildern, Podcasts oder Videos anreichern?",
-  "back": "Kurze Antwort: mit **Markdeep**.\n\n---\n\nKarteien (im Hintergrund sind das die Schuhkartons im IKEA-Regal) und Karten (die Zettel in den Kartons) kannst du auf  **🍅cards** vielfältig gestalten -- fast wie in Microsoft Word™ oder in Pages™ von Apple. Diese Karte zeigt dir beispielhaft einige Formatierungen mit [Markdeep](http://casual-effects.com/markdeep/), der vereinfachten [Auszeichnungssprache](https://de.wikipedia.org/wiki/Auszeichnungssprache) im **🍅cards**-Editor. Du kannst deinen Text mit etwas Magie (ein paar Tastaturzeichen genügen wie <code>* _ # [ ]  > | ~ $ ˋ</code>) sehr einfach formatieren -- **ohne Maus**. \n\nWas alles mit Markdeep möglich ist,  zeigt die  [Demo-Seite](http://casual-effects.com/markdeep/features.md.html). So geht zum Beispiel auch $\\TeX$, inline: $\\sigma = \\sqrt{ \\frac{1}{N} \\sum_{i=1}^N (x_i -\\mu)^2}$ (Standardabweichung) oder abgesetzt die Maxwell-Faraday-Gleichung:\n\n$$\\oint_{\\partial \\Sigma} \\mathbf{E} \\cdot \\mathrm{d}\\boldsymbol{\\ell}  = - \\frac{d}{dt} \\iint_{\\Sigma} \\mathbf{B} \\cdot \\mathrm{d}\\mathbf{S}$$\n\nDie Anzeige einer $\\TeX$-Formel erfolgt mit [MathJax](https://www.mathjax.org/).\nMathJax fügt ein Kontextmenü hinzu. Um es anzuzeigen, klicke mit der rechten Maustaste oder halte beim Klicken die <kbd>Strg</kbd>-Taste gedrückt. Probiere es gleich einmal mit der Formel oben aus!\n\n!!! NOTE\n   Eine sorgfältige Gestaltung deiner Karten mit Text, Bildern, Podcasts oder Erklärvideos motiviert und fördert zugleich dein Lernen. Nutze also die Formatierungsoptionen für die Beschriftung deiner Karteien ( -> Etikett am Karton) und für die anschauliche Gestaltung der Lerninhalte deiner Karten. \n\nUnd jetzt kommt der [Entwickler von Markdeep](https://csci.williams.edu/people/faculty/morgan-mcguire/) zu Wort:\n\n> \"Markdeep\n> is a technology for writing plain text documents\n> that will look good in any web browser, whether \n> local or remote. It supports diagrams, calendars, equations, and\n> other  features as extensions of [Markdown](https://de.wikipedia.org/wiki/Markdown) syntax.\"\n>        -- Morgan McGuire\n\nVideos auf YouTube und Vimeo lassen sich sehr einfach mit einem Einzeiler in die Seite einbinden:\n\n![Figure [Markdown]: Erklärvideo über Markdown, auf dem Markdeep aufbaut](https://youtu.be/hpAJMSS8pvs)\n\nBilder können abgesetzt, rechtsbündig zum Absatz und skaliert eingebunden werden:\n\n![Figure [examplePicture]:  Klick auf das Bild, um es in Vollansicht zu sehen!](https://pbs.twimg.com/media/CXzB2rZWsAERiV8.png  width=\"400 pt\")\n\nWie im Bild zu sehen, zeigt dir die Vorschau des Editors -- **synchron** zu deiner Eingabe --, wie deine Textformatierung aussehen wird. \n\nUnd natürlich lassen sich auch **Podcasts** einbinden und im Browser abspielen. Die Syntax ist für alle Medien gleich: \n\n`![Beschriftung](Adresse im Web)`. \n\nFür einen Podcast also:\n\n````\n![The Personal Best CBC Podcast](https://podcast-a.akamaihd.net/mp3/podcasts/personalbest-GRHHTnR3-20180415.mp3)\n````\n\nDer browsereigene Audio-Player wird aufgerufen:\n\n![The Personal Best CBC Podcast](https://podcast-a.akamaihd.net/mp3/podcasts/personalbest-GRHHTnR3-20180415.mp3)\n\n!!! TIP\n   Im Themen-Pool auf 🍅cards steht dir die Kartei \"Markdown | Markdeep\" als Hilfe zur Verfügung.\n\n!!! ERROR Warum bietet ihr Markdown / Markdeep für die Textformatierung an und nicht einen [WYSIWYG](https://de.wikipedia.org/wiki/WYSIWYG)-Editor?\n    Siehe Antwort zur 5. [FAQ](/faq).",
+  "back": "Kurze Antwort: mit **Markdeep**.\n\n---\n\nKarteien (im Hintergrund sind das die Schuhkartons im IKEA-Regal) und Karten (die Zettel in den Kartons) kannst du auf  **🍅cards** vielfältig gestalten -- fast wie in Microsoft Word™ oder in Pages™ von Apple. Diese Karte zeigt dir beispielhaft einige Formatierungen mit [Markdeep](http://casual-effects.com/markdeep/), der vereinfachten [Auszeichnungssprache](https://de.wikipedia.org/wiki/Auszeichnungssprache) im **🍅cards**-Editor. Du kannst deinen Text mit etwas Magie (ein paar Tastaturzeichen genügen wie <code>* _ # [ ]  > | ~ $ ˋ</code>) sehr einfach formatieren -- **ohne Maus**. \n\nWas alles mit Markdeep möglich ist,  zeigt die  [Demo-Seite](http://casual-effects.com/markdeep/features.md.html). So geht zum Beispiel auch $\\TeX$, inline: $\\sigma = \\sqrt{ \\frac{1}{N} \\sum_{i=1}^N (x_i -\\mu)^2}$ (Standardabweichung) oder abgesetzt die Maxwell-Faraday-Gleichung:\n\n$$\\oint_{\\partial \\Sigma} \\mathbf{E} \\cdot \\mathrm{d}\\boldsymbol{\\ell}  = - \\frac{d}{dt} \\iint_{\\Sigma} \\mathbf{B} \\cdot \\mathrm{d}\\mathbf{S}$$\n\nDie Anzeige einer $\\TeX$-Formel erfolgt mit [MathJax](https://www.mathjax.org/).\nMathJax fügt ein Kontextmenü hinzu. Um es anzuzeigen, klicke mit der rechten Maustaste oder halte beim Klicken die <kbd>Strg</kbd>-Taste gedrückt. Probiere es gleich einmal mit der Formel oben aus!\n\n!!! NOTE\n   Eine sorgfältige Gestaltung deiner Karten mit Text, Bildern, Podcasts oder Erklärvideos motiviert und fördert zugleich dein Lernen. Nutze also die Formatierungsoptionen für die Beschriftung deiner Karteien ( -> Etikett am Karton) und für die anschauliche Gestaltung der Lerninhalte deiner Karten. \n\nUnd jetzt kommt der [Entwickler von Markdeep](https://csci.williams.edu/people/faculty/morgan-mcguire/) zu Wort:\n\n> \"Markdeep\n> is a technology for writing plain text documents\n> that will look good in any web browser, whether \n> local or remote. It supports diagrams, calendars, equations, and\n> other  features as extensions of Markdown syntax.\"\n>        -- Morgan McGuire\n\nVideos auf YouTube und Vimeo lassen sich sehr einfach mit einem Einzeiler in die Seite einbinden:\n\n![Figure [Markdown]: Erklärvideo über Markdown, auf dem Markdeep aufbaut](https://youtu.be/hpAJMSS8pvs)\n\nBilder können abgesetzt, rechtsbündig zum Absatz und skaliert eingebunden werden:\n\n![Figure [examplePicture]:  Klick auf das Bild, um es in Vollansicht zu sehen!](https://pbs.twimg.com/media/CXzB2rZWsAERiV8.png  width=\"400 pt\")\n\nWie im Bild zu sehen, zeigt dir die Vorschau des Editors -- **synchron** zu deiner Eingabe --, wie deine Textformatierung aussehen wird. \n\nUnd natürlich lassen sich auch **Podcasts** einbinden und im Browser abspielen. Die Syntax ist für alle Medien gleich: \n\n`![Beschriftung](Adresse im Web)`. \n\nFür einen Podcast also:\n\n````\n![The Personal Best CBC Podcast](https://podcast-a.akamaihd.net/mp3/podcasts/personalbest-GRHHTnR3-20180415.mp3)\n````\n\nDer browsereigene Audio-Player wird aufgerufen:\n\n![The Personal Best CBC Podcast](https://podcast-a.akamaihd.net/mp3/podcasts/personalbest-GRHHTnR3-20180415.mp3)\n\n!!! TIP\n   Im Themen-Pool auf 🍅cards steht dir die Kartei \"Markdown | Markdeep\" als Hilfe zur Verfügung.\n\n!!! ERROR Warum bietet ihr Markdown / Markdeep für die Textformatierung an und nicht einen [WYSIWYG](https://de.wikipedia.org/wiki/WYSIWYG)-Editor?\n    Siehe Antwort zur 5. [FAQ](/faq).",
   "centerTextElement": [
     true,
     false,
@@ -209,13 +215,14 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-06-08T14:56:06.624Z",
-  "dateUpdated": "2018-09-27T08:54:52.542Z",
+  "dateUpdated": "2018-12-05T12:06:56.230Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
     "givenname": "Klaus"
-  }
+  },
+  "learningUnit": "0"
 }, {
   "subject": "7. Effizienz beim Erstellen von Karten",
   "front": "Wenn es um **Vokabelkarten** geht, was macht 🍅cards anders als die anderen Apps?",

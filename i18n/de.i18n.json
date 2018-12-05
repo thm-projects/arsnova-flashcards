@@ -104,11 +104,11 @@
         "break": "Vorgesehene Pausenlänge: <span class=\"pomodoroHighlight\">__minutes__</span>"
       },
       "presentation": {
-        "title": "Wie lange willst du vortragen?",
-        "work": " Vortrag: <span class=\"pomodoroHighlight\">__minutes__</span>",
+        "title": "Zeitmanagement",
+        "work": " Ansehen | Präsentieren: <span class=\"pomodoroHighlight\">__minutes__</span>",
         "break": " Pause: <span class=\"pomodoroHighlight\">__minutes__</span>",
         "button": {
-          "start": "Präsentation starten",
+          "start": "\uD83C\uDF45Timer starten",
           "cancel": "Abbrechen"
         }
       }
@@ -116,17 +116,17 @@
     "sweetAlert": {
       "user": {
         "quit": {
-          "title": "Gib nicht so schnell auf!",
-          "text": "Du hast noch <span class=\"pomodoroHighlight\">__missingPomodoros__ __pomodoro__</span> vor dir. <br>Dein Ziel: <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>! <br><br>Komm schon, du schaffst die verbleibenden <span class=\"pomodoroHighlight\">__remainingMinutes__ Minuten</span> Lernzeit!",
+          "title": "Gib nicht auf!",
+          "text": "Du hast noch <span class=\"pomodoroHighlight\">__missingPomodoros__ __pomodoro__</span> vor dir.<br>Dein Ziel: <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>!<br><br>Komm schon, du schaffst die verbleibenden <span class=\"pomodoroHighlight\">__remainingMinutes__ Minuten</span> Lernzeit!",
           "button": {
             "cancel": "Stopp!",
             "confirm": "Ich mache weiter!"
           },
           "confirm": {
-            "title": "Du hast es leider nicht geschafft.",
-            "text": "Du hattest dir <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> vorgenommen. <br><br>Manchmal kommt halt was dazwischen. Wir verstehen das. Komm bald wieder zum Lernen zurück!",
+            "title": "Schade!",
+            "text": "Du hattest dir <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> vorgenommen. <br><br>Manchmal kommt halt was dazwischen.<br>Wir verstehen das. Komm bald wieder zum Lernen zurück!",
             "button": {
-              "confirm": "Okay!"
+              "confirm": "Okay."
             }
           }
         },
@@ -548,7 +548,7 @@
     "canceled": "Änderungen wurden verworfen!",
     "error": "Fehlerhafte Einträge!",
     "settings": {
-      "name": "Profil & Konto",
+      "name": "Profil & Konto ",
       "delete": "Benutzerkonto löschen",
       "deleteText": "Falls du sicher bist, dass du 🍅__lastAppTitle__ nicht weiter verwenden möchtest, kannst du hier dein Benutzerkonto löschen.",
       "appearance": "Einstellungen",
@@ -725,7 +725,7 @@
   },
   "leitner": {
     "help": {
-      "title": "Wie du mit dem Wiederholungs-Algorithmus von Leitner lernst",
+      "title": "Wiederholtes Lernen nach Leitner",
       "button": {
         "confirm": "Ich hab's verstanden."
       }
@@ -1832,7 +1832,7 @@
       "text": "Aktuell keine nach Lernplan zu lernenden Karten"
     },
     "help": {
-      "title": "Wie du mit dem Wiederholungs-Algorithmus von Woźniak lernst",
+      "title": "Wiederholtes Lernen nach Woźniak",
       "button": {
         "confirm": "Ich hab's verstanden."
       }
@@ -1866,7 +1866,7 @@
       }
     },
     "fullscreen": {
-      "title": "Vollbildmodus ist nicht aktiv",
+      "title": "Vollbildmodus ist ausgeschaltet.",
       "text": "Diese Seite erfordert Vollansicht.",
       "button": {
         "cancel": "Zurück",
