@@ -1,18 +1,20 @@
 <template name="cardModalDeepLTranslation">
-    <div class="modal fade" id="cardModalDeepLTranslation" role="dialog">
-        <div class="modal-dialog" aria-labelledby="cardModalDeepLTranslationTitle">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                    {{#if isModalVisible}}
-                        {{> cardModalDeepLTranslationContent}}
-                    {{/if}}
+    {{#unless isSmartphone}}
+        <div class="modal fade" id="cardModalDeepLTranslation" role="dialog">
+            <div class="modal-dialog" aria-labelledby="cardModalDeepLTranslationTitle">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        {{#if isModalVisible}}
+                            {{> cardModalDeepLTranslationContent}}
+                        {{/if}}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    {{/unless}}
 </template>
 
 <template name="cardModalDeepLTranslationContent">

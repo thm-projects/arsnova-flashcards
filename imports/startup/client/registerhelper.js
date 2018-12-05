@@ -690,6 +690,10 @@ Template.registerHelper("isIOS", function () {
 	return NavigatorCheck.isIOS();
 });
 
+Template.registerHelper("isSmartphone", function () {
+	return NavigatorCheck.isSmartphone();
+});
+
 const markdeepHelper = new MeteorMathJax.Helper({
 	useCache: false,
 	transform: function (content) {
