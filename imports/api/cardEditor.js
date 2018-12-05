@@ -78,9 +78,11 @@ export let CardEditor = class CardEditor {
 		$("#learningGoalLevel" + index).focus();
 	}
 
-	static setEditorButtonIndex (index) {
+	static setEditorButtonIndex (index, clickButton = true) {
 		editorButtonIndex = index;
-		this.setEditorButtonFocus();
+		if (clickButton) {
+			this.setEditorButtonFocus();
+		}
 	}
 
 	static setEditorButtonFocus () {
@@ -299,7 +301,7 @@ export let CardEditor = class CardEditor {
 							$('#editor').attr('data-content', '');
 							CardEditor.resetSessionData();
 							window.scrollTo(0, 0);
-							CardEditor.setEditorButtonIndex(0);
+							CardEditor.setEditorButtonIndex(CardEditor.getCardNavigationNameIndex(), false);
 							CardNavigation.selectButton();
 						} else {
 							Session.set('activeCard', result);
@@ -318,7 +320,7 @@ export let CardEditor = class CardEditor {
 						_id: Router.current().params._id
 					});
 				} else {
-					CardEditor.setEditorButtonIndex(0);
+					CardEditor.setEditorButtonIndex(CardEditor.getCardNavigationNameIndex(), false);
 					CardNavigation.selectButton();
 					window.scrollTo(0, 0);
 					let nextId = CardIndex.getNextCardID(card_id);
