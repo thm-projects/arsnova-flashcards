@@ -65,9 +65,30 @@ $themes: (
     $card_type_text: map-get($map, "card_type_text");
     $button_background_hover: map-get($map, "button_background_hover");
     $button_text_hover: map-get($map, "button_text_hover");
+    //login
+    $login_facebook_background: map-get($map, "login_facebook_background");
+    $login_facebook_background_hover: map-get($map, "login_facebook_background_hover");
+    $login_facebook_icon: map-get($map, "login_facebook_icon");
+    $login_facebook_icon_hover: map-get($map, "login_facebook_icon_hover");
+    $login_twitter_background: map-get($map, "login_twitter_background");
+    $login_twitter_background_hover: map-get($map, "login_twitter_background_hover");
+    $login_twitter_icon: map-get($map, "login_twitter_icon");
+    $login_twitter_icon_hover: map-get($map, "login_twitter_icon_hover");
+    $login_google_background: map-get($map, "login_google_background");
+    $login_google_background_hover: map-get($map, "login_google_background_hover");
+    $login_google_icon: map-get($map, "login_google_icon");
+    $login_google_icon_hover: map-get($map, "login_google_icon_hover");
+    $login_cas_background: map-get($map, "login_cas_background");
+    $login_cas_background_hover: map-get($map, "login_cas_background_hover");
+    $login_cas_icon: map-get($map, "login_cas_icon");
+    $login_cas_icon_hover: map-get($map, "login_cas_icon_hover");
+    $login_backdoor_background: map-get($map, "login_backdoor_background");
+    $login_backdoor_background_hover: map-get($map, "login_backdoor_background_hover");
+    $login_backdoor_icon: map-get($map, "login_backdoor_icon");
+    $login_backdoor_icon_hover: map-get($map, "login_backdoor_icon_hover");
     //ratings
     $current_rating: map-get($map, "current_rating");
-    $hover_rating: map-get($map, "$hover_rating");
+    $hover_rating: map-get($map, "hover_rating");
     //navbar
     $navbar_background: map-get($map, "navbar_background");
     $navbar_text: map-get($map, "navbar_text");
@@ -713,6 +734,85 @@ $themes: (
     .backdoorLogin {
       label {
         color: white !important;
+      }
+    }
+
+    .login-button-icon {
+      width: 100%;
+      height: 100%;
+      background-color: green;
+      -webkit-mask-position: center;
+      mask-position: center;
+    }
+
+
+    #cas {
+      background-color: $login_cas_background !important;
+      .login-button-icon {
+        background-color: $login_cas_icon !important;
+      }
+    }
+
+    #cas:hover, #cas:focus {
+      background-color: $login_cas_background_hover !important;
+      .login-button-icon {
+        background-color: $login_cas_icon_hover !important;
+      }
+    }
+
+    #facebook {
+      background-color: $login_facebook_background !important;
+      .login-button-icon {
+        background-color: $login_facebook_icon !important;
+      }
+    }
+
+    #facebook:hover, #facebook:focus {
+      background-color: $login_facebook_background_hover !important;
+      .login-button-icon {
+        background-color: $login_facebook_icon_hover !important;
+      }
+    }
+
+    #twitter {
+      background-color: $login_twitter_background !important;
+      .login-button-icon {
+        background-color: $login_twitter_icon !important;
+      }
+    }
+
+    #twitter:hover, #twitter:focus {
+      background-color: $login_twitter_background_hover !important;
+      .login-button-icon {
+        background-color: $login_twitter_icon_hover !important;
+      }
+    }
+
+    #google {
+      background-color: $login_google_background !important;
+      .login-button-icon {
+        background-color: $login_google_icon !important;
+      }
+    }
+
+    #google:hover, #google:focus {
+      background-color: $login_google_background_hover !important;
+      .login-button-icon {
+        background-color: $login_google_icon_hover !important;
+      }
+    }
+
+    #BackdoorLogin {
+      background-color: $login_backdoor_background !important;
+      .login-button-icon {
+        background-color: $login_backdoor_icon !important;
+      }
+    }
+
+    #BackdoorLogin:hover, #BackdoorLogin:focus {
+      background-color: $login_backdoor_background_hover !important;
+      .login-button-icon {
+        background-color: $login_backdoor_icon_hover !important;
       }
     }
 
