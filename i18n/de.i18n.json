@@ -1677,7 +1677,7 @@
     }
   },
   "access-denied": {
-    "title": "Du bist nicht berechtigt, diese Kartei oder Funktion zu nutzen.",
+    "title": "Sorry, du hast keine Berechtigung für diese Kartei oder Funktion.",
     "text": "Du hast keine Berechtigung, diese Seite zu öffnen!",
     "button": "Schließen",
     "reason": "",
