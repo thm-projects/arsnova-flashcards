@@ -1005,8 +1005,3 @@ th {
   -ms-filter: blur($blur_hide_answer_question);
   filter: blur($blur_hide_answer_question);
 }
-
-.btn:focus, .btn:hover {
-  background: midnightblue !important;
-  color: white !important;
-}

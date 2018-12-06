@@ -60,8 +60,8 @@
                             {{else}}
                                 {{username}} ({{_ "admin.deleted"}})
                             {{/if}}
-                            <a id="cardsetChangeOwnerAdmin" class="btn btn-raised btn-success">
-                                {{_ "modal-admin-dialog.owner.button" owner=getAuthorLabel}}</a>
+                            <button id="cardsetChangeOwnerAdmin" class="btn btn-raised btn-success">
+                                {{_ "modal-admin-dialog.owner.button" owner=getAuthorLabel}}</button>
                             <label id="cardsetChangeOwnerAdminLabel" for="cardsetChangeOwnerAdmin"
                                    style="visibility: hidden;"></label>
                         </div>
@@ -69,11 +69,11 @@
                                 "modal-admin-dialog.wordcloud.title"}}</div>
                         <div class="panel-body">
                             {{#if isInWordcloud}}
-                                <a id="cardsetRemoveFromWordcloude" class="btn btn-raised btn-danger">
-                                    {{_ "modal-admin-dialog.wordcloud.button.remove"}}</a>
+                                <button id="cardsetRemoveFromWordcloude" class="btn btn-raised btn-danger">
+                                    {{_ "modal-admin-dialog.wordcloud.button.remove"}}</button>
                             {{else}}
-                                <a id="cardsetAddToWordcloude" class="btn btn-raised btn-success">
-                                    {{_ "modal-admin-dialog.wordcloud.button.add"}}</a>
+                                <button id="cardsetAddToWordcloude" class="btn btn-raised btn-success">
+                                    {{_ "modal-admin-dialog.wordcloud.button.add"}}</button>
                             {{/if}}
                         </div>
                     </div>
