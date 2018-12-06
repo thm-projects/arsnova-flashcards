@@ -65,9 +65,30 @@ $themes: (
     $card_type_text: map-get($map, "card_type_text");
     $button_background_hover: map-get($map, "button_background_hover");
     $button_text_hover: map-get($map, "button_text_hover");
+    //login
+    $login_facebook_background: map-get($map, "login_facebook_background");
+    $login_facebook_background_hover: map-get($map, "login_facebook_background_hover");
+    $login_facebook_icon: map-get($map, "login_facebook_icon");
+    $login_facebook_icon_hover: map-get($map, "login_facebook_icon_hover");
+    $login_twitter_background: map-get($map, "login_twitter_background");
+    $login_twitter_background_hover: map-get($map, "login_twitter_background_hover");
+    $login_twitter_icon: map-get($map, "login_twitter_icon");
+    $login_twitter_icon_hover: map-get($map, "login_twitter_icon_hover");
+    $login_google_background: map-get($map, "login_google_background");
+    $login_google_background_hover: map-get($map, "login_google_background_hover");
+    $login_google_icon: map-get($map, "login_google_icon");
+    $login_google_icon_hover: map-get($map, "login_google_icon_hover");
+    $login_cas_background: map-get($map, "login_cas_background");
+    $login_cas_background_hover: map-get($map, "login_cas_background_hover");
+    $login_cas_icon: map-get($map, "login_cas_icon");
+    $login_cas_icon_hover: map-get($map, "login_cas_icon_hover");
+    $login_backdoor_background: map-get($map, "login_backdoor_background");
+    $login_backdoor_background_hover: map-get($map, "login_backdoor_background_hover");
+    $login_backdoor_icon: map-get($map, "login_backdoor_icon");
+    $login_backdoor_icon_hover: map-get($map, "login_backdoor_icon_hover");
     //ratings
     $current_rating: map-get($map, "current_rating");
-    $hover_rating: map-get($map, "$hover_rating");
+    $hover_rating: map-get($map, "hover_rating");
     //navbar
     $navbar_background: map-get($map, "navbar_background");
     $navbar_text: map-get($map, "navbar_text");
@@ -186,6 +207,7 @@ $themes: (
     $infinite_scroll_text: map-get($map, "infinite_scroll_text");
     $item_background: map-get($map, "item_background");
     $item_icon: map-get($map, "item_icon");
+    $item_icon_hover: map-get($map, "item_icon_hover");
     $item_author_text: map-get($map, "item_author_text");
     $item_description_background: map-get($map, "item_description_background");
     $item_description_text: map-get($map, "item_description_text");
@@ -464,8 +486,8 @@ $themes: (
     background-image: $background_image !important;
 
     button:hover, button:focus, .btn:hover, .btn:focus {
-      background-color: $button_background_hover;
-      color: $button_text_hover;
+      background-color: $button_background_hover !important;
+      color: $button_text_hover !important;
     }
 
     .star-ratings .current-rating {
@@ -501,27 +523,27 @@ $themes: (
     }
 
     .btn-raised.btn-success {
-      color: $success_text !important;
+      color: $success_text;
       background-color: $success_background;
     }
 
     .btn-raised.btn-info {
-      color: $info_text !important;
-      background-color: $info_background !important;
+      color: $info_text;
+      background-color: $info_background;
     }
 
-    .btn-raised.btn-demo, .btn-demo.active {
-      color: $demo_text !important;
-      background-color: $demo_background !important;
+    .btn-raised.btn-demo {
+      color: $demo_text;
+      background-color: $demo_background;
     }
 
-    .btn-raised.btn-warning, .btn-warning.active {
-      color: $warning_text !important;
-      background-color: $warning_background !important;
+    .btn-raised.btn-warning {
+      color: $warning_text;
+      background-color: $warning_background;
     }
 
     .btn-raised.btn-danger {
-      color: $danger_text !important;
+      color: $danger_text;
       background-color: $danger_background;
     }
 
@@ -587,7 +609,7 @@ $themes: (
 
     .modal-body .form-group {
       label {
-        color: $form_group_label !important;
+        color: $form_group_label;
       }
       .import-type.active {
         color: white !important;
@@ -648,9 +670,9 @@ $themes: (
     }
 
     #markdeepNavigation .fa, #markdeepNavigation .markdeep-center, #markdeepNavigation .markdeep-fullscreen, .card-button {
-      color: $thm_gray !important;
-      border-color: $thm_gray !important;
-      background-color: $white !important;
+      color: $thm_gray ;
+      border-color: $thm_gray;
+      background-color: $white;
     }
 
     #markdeepNavigation .markdeep-help {
@@ -668,29 +690,29 @@ $themes: (
 
     .material-icons.pressed, .fa.pressed, .glyphicon.pressed, .card-button.pressed, .material-icons.pressed:hover, .glyphicon.pressed:hover, .card-button.pressed:hover,
     .material-icons.pressed:focus, .glyphicon.pressed:focus, .card-button.pressed:focus {
-      background-color: lighten($thm_gray, 10%) !important;
-      color: $white !important;
+      background-color: lighten($thm_gray, 10%);
+      color: $white;
     }
 
     .glyphicon-log-out.pressed, .glyphicon-fullscreen.pressed {
-      background-color: $thm_orange !important;
-      border-color: $thm_orange !important;
-      color: $white !important;
+      background-color: $thm_orange;
+      border-color: $thm_orange;
+      color: $white;
     }
 
     .glyphicon-log-out.pressed:hover, .glyphicon-fullscreen.pressed:hover,
     .glyphicon-log-out.pressed:focus, .glyphicon-fullscreen.pressed:focus {
-      background-color: $button_background_hover !important;
-      border-color: $button_background_hover !important;
-      color: $button_text_hover !important;
+      background-color: $button_background_hover;
+      border-color: $button_background_hover;
+      color: $button_text_hover;
     }
 
     #markdeepNavigation {
       .material-icons.pressed, .fa.pressed, .glyphicon.pressed, .card-button.pressed, .material-icons.pressed:hover, .glyphicon.pressed:hover, .card-button.pressed:hover,
       .material-icons.pressed:focus, .glyphicon.pressed:focus, .card-button.pressed:focus {
-        background-color: $thm_orange !important;
-        border-color: $thm_orange !important;
-        color: $white !important;
+        background-color: $thm_orange;
+        border-color: $thm_orange;
+        color: $white;
       }
     }
 
@@ -713,6 +735,85 @@ $themes: (
     .backdoorLogin {
       label {
         color: white !important;
+      }
+    }
+
+    .login-button-icon {
+      width: 100%;
+      height: 100%;
+      background-color: green;
+      -webkit-mask-position: center;
+      mask-position: center;
+    }
+
+
+    #cas {
+      background-color: $login_cas_background !important;
+      .login-button-icon {
+        background-color: $login_cas_icon !important;
+      }
+    }
+
+    #cas:hover, #cas:focus {
+      background-color: $login_cas_background_hover !important;
+      .login-button-icon {
+        background-color: $login_cas_icon_hover !important;
+      }
+    }
+
+    #facebook {
+      background-color: $login_facebook_background !important;
+      .login-button-icon {
+        background-color: $login_facebook_icon !important;
+      }
+    }
+
+    #facebook:hover, #facebook:focus {
+      background-color: $login_facebook_background_hover !important;
+      .login-button-icon {
+        background-color: $login_facebook_icon_hover !important;
+      }
+    }
+
+    #twitter {
+      background-color: $login_twitter_background !important;
+      .login-button-icon {
+        background-color: $login_twitter_icon !important;
+      }
+    }
+
+    #twitter:hover, #twitter:focus {
+      background-color: $login_twitter_background_hover !important;
+      .login-button-icon {
+        background-color: $login_twitter_icon_hover !important;
+      }
+    }
+
+    #google {
+      background-color: $login_google_background !important;
+      .login-button-icon {
+        background-color: $login_google_icon !important;
+      }
+    }
+
+    #google:hover, #google:focus {
+      background-color: $login_google_background_hover !important;
+      .login-button-icon {
+        background-color: $login_google_icon_hover !important;
+      }
+    }
+
+    #BackdoorLogin {
+      background-color: $login_backdoor_background !important;
+      .login-button-icon {
+        background-color: $login_backdoor_icon !important;
+      }
+    }
+
+    #BackdoorLogin:hover, #BackdoorLogin:focus {
+      background-color: $login_backdoor_background_hover !important;
+      .login-button-icon {
+        background-color: $login_backdoor_icon_hover !important;
       }
     }
 
@@ -1253,8 +1354,12 @@ $themes: (
     }
 
     #collapseLearningPhaseInfoButton, #collapseManageButton {
-      background-color: $bonus_background !important;
-      color: $bonus_text !important;
+      background-color: $bonus_background ;
+      color: $bonus_text;
+    }
+
+    #collapseLearningPhaseInfoButton:hover i, #collapseLearningPhaseInfoButton:focus i, #collapseManageButton:hover i, #collapseManageButton:focus i, #collapseCardsetInfoButton:hover i, #collapseCardsetInfoButton:focus i  {
+      color: $item_icon_hover !important;
     }
 
     .cardListSubject th {
@@ -1528,17 +1633,17 @@ $themes: (
 
     //card
     .btn-white.active {
-      color: black !important;
-      background-color: white !important;
+      color: black;
+      background-color: white;
     }
 
     .btn-orange {
-      color: $thm_orange !important;
+      color: $thm_orange;
     }
 
     .btn-orange.active {
-      color: $white !important;
-      background-color: $thm_orange !important;
+      color: $white;
+      background-color: $thm_orange;
     }
 
     #cardType .btn-white.active:hover, #learningGoalLevelGroup .btn-primary.active:hover,
@@ -2002,11 +2107,11 @@ $themes: (
 
     #publishKind, #publishKindAdmin {
       .btn-info {
-        color: $info_background !important;
+        color: $info_background;
       }
 
       .btn-default.active {
-        color: black !important;
+        color: black;
       }
 
       .btn-info.active {
@@ -2016,7 +2121,7 @@ $themes: (
       }
 
       .btn-success {
-        color: $success_background !important;
+        color: $success_background;
       }
 
       .btn-success.active {
@@ -2026,7 +2131,7 @@ $themes: (
       }
 
       .btn-danger {
-        color: $danger_background !important;
+        color: $danger_background;
       }
 
       .btn-danger.active {
@@ -2036,7 +2141,7 @@ $themes: (
       }
 
       .btn-demo {
-        color: $demo_background !important;
+        color: $demo_background;
       }
       .btn-demo.active {
         color: $demo_text !important;
@@ -2045,7 +2150,7 @@ $themes: (
       }
 
       .btn-warning {
-        color: $warning_background !important;
+        color: $warning_background;
       }
       .btn-warning.active {
         color: $warning_text !important;
@@ -2093,7 +2198,11 @@ $themes: (
     }
 
     .resultItemHeaderRightArea i {
-      color: $item_icon !important;
+      color: $item_icon;
+    }
+
+    .resultItemHeaderRightArea i:hover, .resultItemHeaderRightArea i:focus {
+      color: $item_icon_hover !important;
     }
 
     .resultTableContent a {
@@ -2226,7 +2335,7 @@ $themes: (
         color: $white !important;
       }
 
-      .dropdown-toggle:hover, .navbar-text:hover, .dropdown-toggle:focus, .navbar-text:focus {
+      .dropdown-toggle:hover, a:hover, .dropdown-toggle:focus, a:focus {
         background-color: $button_background_hover !important;
         color: $button_text_hover !important;
       }
@@ -2301,43 +2410,43 @@ $themes: (
     }
     //forms - cardsetForm
     #setDifficulty .btn, #cardType .btn {
-      background-color: $button_difficulty_inactive !important;
+      background-color: $button_difficulty_inactive;
     }
 
     #setDifficulty .btn-orange {
-      color: $button_difficulty0_note !important;
+      color: $button_difficulty0_note;
     }
 
     #setDifficulty .btn-orange.active, .label-difficulty0 {
-      color: $white !important;
-      background-color: $button_difficulty0_note !important;
+      color: $white;
+      background-color: $button_difficulty0_note;
     }
 
     #setDifficulty .btn-info {
-      color: $button_difficulty1 !important;
+      color: $button_difficulty1;
     }
 
     #setDifficulty .btn-info.active, .label-difficulty1 {
-      color: $white !important;
-      background-color: $button_difficulty1 !important;
+      color: $white;
+      background-color: $button_difficulty1;
     }
 
     #setDifficulty .btn-success {
-      color: $button_difficulty2 !important;
+      color: $button_difficulty2;
     }
 
     #setDifficulty .btn-success.active, .label-difficulty2 {
-      color: $white !important;
-      background-color: $button_difficulty2 !important;
+      color: $white;
+      background-color: $button_difficulty2;
     }
 
     #setDifficulty .btn-danger {
-      color: $button_difficulty3 !important;
+      color: $button_difficulty3;
     }
 
     #setDifficulty .btn-danger.active, .label-difficulty3 {
-      color: $white !important;
-      background-color: $button_difficulty3 !important;
+      color: $white;
+      background-color: $button_difficulty3 ;
     }
 
     #setCardsetFormModal, #showSelectLearningUnitModal, #setLeitnerProgressCardsetFilter {

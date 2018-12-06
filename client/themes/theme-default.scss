@@ -32,6 +32,7 @@
   $background: yellow;
   $button_background_hover: midnightblue;
   $button_text_hover: white;
+  $item_icon_hover: $thm_orange;
   @return (
     //background
           "background_image" : url('/img/background/zettelkasten_wikipedia_background.jpg'),
@@ -89,9 +90,30 @@
           "card_type_text": white,
           "button_background_hover": $button_background_hover,
           "button_text_hover": $button_text_hover,
+    //login
+          "login_facebook_background": $primary,
+          "login_facebook_background_hover": $button_background_hover,
+          "login_facebook_icon": white,
+          "login_facebook_icon_hover": $button_text_hover,
+          "login_twitter_background": $primary,
+          "login_twitter_background_hover": $button_background_hover,
+          "login_twitter_icon": white,
+          "login_twitter_icon_hover": $button_text_hover,
+          "login_google_background": $primary,
+          "login_google_background_hover": $button_background_hover,
+          "login_google_icon": white,
+          "login_google_icon_hover": $button_text_hover,
+          "login_cas_background": $primary,
+          "login_cas_background_hover": $button_background_hover,
+          "login_cas_icon": white,
+          "login_cas_icon_hover": $button_text_hover,
+          "login_backdoor_background": $primary,
+          "login_backdoor_background_hover": $button_background_hover,
+          "login_backdoor_icon": white,
+          "login_backdoor_icon_hover": $button_text_hover,
     //ratings
           "current_rating": $thm_orange,
-          "$hover_rating": $thm_blue,
+          "hover_rating": $thm_blue,
     //navbar
           "navbar_background": $thm_gray,
           "navbar_text": white,
@@ -210,6 +232,7 @@
           "infinite_scroll_text": white,
           "item_background": $thm_gray,
           "item_icon": white,
+          "item_icon_hover": $item_icon_hover,
           "item_author_text": black,
           "item_description_background": LightGoldenRodYellow,
           "item_description_text": $thm_gray,
@@ -327,12 +350,12 @@
           "cardset_footer_navigation_new_card_text_hover": $button_text_hover,
           "cardset_footer_navigation_import_cards_background": none,
           "cardset_footer_navigation_import_cards_text": black,
-          "cardset_footer_navigation_import_cards_background_hover": none,
-          "cardset_footer_navigation_import_cards_text_hover": black,
+          "cardset_footer_navigation_import_cards_background_hover": $button_background_hover,
+          "cardset_footer_navigation_import_cards_text_hover": $button_text_hover,
           "cardset_footer_navigation_edit_shuffle_background": $thm_orange,
           "cardset_footer_navigation_edit_shuffle_text": white,
-          "cardset_footer_navigation_edit_shuffle_background_hover": $thm_gray,
-          "cardset_footer_navigation_edit_shuffle_text_hover": white,
+          "cardset_footer_navigation_edit_shuffle_background_hover": $button_background_hover,
+          "cardset_footer_navigation_edit_shuffle_text_hover": $button_text_hover,
           "cardset_footer_navigation_edit_cardset_background": none,
           "cardset_footer_navigation_edit_cardset_text": black,
           "cardset_footer_navigation_edit_cardset_background_hover": $button_background_hover,

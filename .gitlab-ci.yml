@@ -108,10 +108,10 @@ chimp:
 review:
   stage: review
   script:
-    # Generate port by using all digits in branch name till "-" is found
-    - METEOR_PORT=$(($(echo $CI_BUILD_REF_NAME | cut -f1 -d '-') + 10000))
-    # Set a variable that points to the appo directory
-    - METEOR_HOME=/srv/review-apps/$METEOR_PORT
+    # Extract ID by using all digits in branch name till "-" is found
+    - REVIEW_ID=$(echo $CI_BUILD_REF_NAME | cut -f1 -d '-')
+    # Set a variable that points to the app directory
+    - METEOR_HOME=/srv/review-apps/$REVIEW_ID
     # Make app directory
     - mkdir -p $METEOR_HOME/app
     # Copy meteor settings into app directory
@@ -124,7 +124,7 @@ review:
     - rsync -aqv --delete "$DB_TEST_DUMP/"* $METEOR_HOME/dbdump
     # Call script to setup everything
     # First parameter is a unique port, second is used to generate the subdomain and the third points to the dbdump directory
-    - /srv/review-apps/review-app-setup.sh $METEOR_PORT $CI_PIPELINE_ID $METEOR_HOME/dbdump
+    - /srv/review-apps/review-app-setup.sh $REVIEW_ID $CI_PIPELINE_ID $METEOR_HOME/dbdump
   environment:
     name: review/$CI_BUILD_REF_NAME
     url: http://$CI_PIPELINE_ID.review.arsnova.cards/
@@ -140,8 +140,10 @@ review:
 stop_review:
   stage: review
   script:
-    - METEOR_PORT=$(echo $CI_BUILD_REF_NAME | cut -f1 -d '-')0
-    - METEOR_HOME=/srv/review-apps/$METEOR_PORT
+    # Extract ID by using all digits in branch name till "-" is found
+    - REVIEW_ID=$(echo $CI_BUILD_REF_NAME | cut -f1 -d '-')
+    # Set a variable that points to the app directory
+    - METEOR_HOME=/srv/review-apps/$REVIEW_ID
     - cd $METEOR_HOME
     - ./appctl.sh stop
     - cd /srv/review-apps
