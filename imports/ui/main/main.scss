@@ -50,6 +50,7 @@ $padding_horizontal_inventory: 15px;
 $padding_vertical_inventory: 5px;
 $margin_top_inventory: 10px;
 $padding_top_login: 10px;
+$login_button_size: 60px;
 
 //info page
 $font_size_info_h1: 20px;
@@ -1003,9 +1004,4 @@ th {
   -o-filter: blur($blur_hide_answer_question);
   -ms-filter: blur($blur_hide_answer_question);
   filter: blur($blur_hide_answer_question);
-}
-
-.btn:focus, .btn:hover {
-  background: midnightblue !important;
-  color: white !important;
 }

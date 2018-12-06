@@ -51,49 +51,69 @@
   padding-top: $padding_top_login !important;
   padding-bottom: $size_footer_height !important;
   text-align: center;
-  a {
-    margin-right: 14px;
+
+  .login-container {
+    display: inline-block;
+  }
+
+  .backdoorLogin {
+    vertical-align: top;
+  }
+
+  #loginButtonRow {
+    display: inline-block;
+  }
+
+  #loginButtonRow a, .loginLabel{
+    display: inline-block;
+    height: $login_button_size;
+    margin: 0 15px 0 0;
+  }
+
+  .loginLabel {
+    vertical-align: top;
+    padding-top: ($login_button_size / 2 - ($font_size_login_label / 2));
+  }
+
+  #loginButtonRow a{
+    width: $login_button_size;
+    border-radius: 10px;
     &:last-child {
       margin-right: 0;
     }
   }
-  img {
-    height: 60px;
-  }
-  @media (max-width: 360px) {
-    img {
-      height: 55px;
-    }
 
-    #BackdoorLogin img, #TestingBackdoorUsername {
-      margin-top: 15px;
-    }
-  }
-  #TestingBackdoorUsername {
-    padding: 12px 10px;
-  }
-  @media (min-width: 361px) and (max-width: 767px) {
-
-    #BackdoorLogin img, #TestingBackdoorUsername {
-      margin-left: -10px;
-    }
-  }
-  @media screen and (max-width: 320px) {
-    img {
-      padding-bottom: 14px;
-    }
-  }
-  .item {
-    height: 300px;
+  .login-button-icon {
+    //has to be an odd number to prevent the svg from looking pixelated
+    width: 99%;
+    height: 99%;
+    -webkit-mask-position: center;
+    mask-position: center;
   }
 
-  .item img {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+  #cas .login-button-icon {
+    -webkit-mask-image: url(/img/login/thm.svg);
+    mask-image: url(/img/login/thm.svg);
+  }
+
+  #facebook .login-button-icon {
+    -webkit-mask-image: url(/img/login/facebook.svg);
+    mask-image: url(/img/login/facebook.svg);
+  }
+
+  #twitter .login-button-icon {
+    -webkit-mask-image: url(/img/login/twitter.svg);
+    mask-image: url(/img/login/twitter.svg);
+  }
+
+  #google .login-button-icon {
+    -webkit-mask-image: url(/img/login/google.svg);
+    mask-image: url(/img/login/google.svg);
+  }
+
+  #BackdoorLogin .login-button-icon {
+    -webkit-mask-image: url(/img/login/backdoor.svg);
+    mask-image: url(/img/login/backdoor.svg);
   }
 }
 
