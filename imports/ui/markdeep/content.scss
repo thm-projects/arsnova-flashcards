@@ -124,4 +124,16 @@
     text-align: center;
     margin: auto;
   }
+
+  h1, .nonumberh1 {
+    font-size: 125%;
+  }
+
+  h2, .nonumberh2 {
+    font-size: 112%;
+  }
+
+  h3, h4, h5, h6, .nonumberh3, .nonumberh4, .nonumberh5, .nonumberh6 {
+    font-size: 100%;
+  }
 }
