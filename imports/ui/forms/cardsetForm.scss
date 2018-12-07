@@ -1,5 +1,4 @@
 #difficultyGroup {
-  margin-top: 0 !important;
   margin-bottom: 0 !important;
   padding: 0;
   width: 100%;
@@ -36,5 +35,14 @@
   }
   ul > li.active {
     cursor: unset;
+  }
+
+  label {
+    text-align: left;
+  }
+
+  #setNameLabel {
+    padding-top: 0;
+    margin-top: 0;
   }
 }

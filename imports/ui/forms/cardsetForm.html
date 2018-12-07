@@ -87,9 +87,9 @@
     <div class="modal-body">
         <div class="form-horizontal">
             <div class="form-group setdetails name">
-                <label id="setNameLabel" class="col-md-3 control-label"
+                <label id="setNameLabel" class="col-xs-12 control-label"
                        for="setName">{{_ "modal-dialog.name"}}</label>
-                <div class="col-md-9">
+                <div class="col-xs-12">
                     <input class="form-control" type="text" id="setName"
                            placeholder="{{#if isRepetitorium}}{{_
                                    "courseIteration.modal.placeholder.name"}}{{else}}{{_
@@ -101,10 +101,10 @@
                 {{#unless isActiveRoute regex='shuffle|repetitorium'}}
                     {{#unless isShuffledCardset this._id}}
                         {{#unless learningActive}}
-                            <label id="setCardTypeLabel" class="col-md-3 control-label" for="setCardType">{{_
+                            <label id="setCardTypeLabel" class="col-xs-12 control-label" for="setCardType">{{_
                                     "cardType"}}</label>
                             <div class="dropdown">
-                                <div class="btn-group col-xs-12 col-sm-12 col-md-9">
+                                <div class="btn-group col-xs-12">
                                     <button id="setCardType" type="button"
                                             class="btn btn-raised btn-default setCardTypeDropdown longButton"
                                             data-toggle="dropdown" aria-haspopup="true"
@@ -127,10 +127,10 @@
                         {{/unless}}
                         {{#if gotDifficultyLevel}}
                             <br>
-                            <label id="setDifficultyLabel" class="col-md-3 control-label" for="setDifficulty">{{#if
+                            <label id="setDifficultyLabel" class="col-xs-12 control-label" for="setDifficulty">{{#if
                                     gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
                                     "difficulty"}}{{/if}}</label>
-                            <div id="setDifficulty" class="col-md-9 cardtext editorElement">
+                            <div id="setDifficulty" class="cardtext editorElement">
                                 {{> difficultyEditor}}
                             </div>
                         {{/if}}
