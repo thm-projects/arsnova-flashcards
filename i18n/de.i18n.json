@@ -1202,6 +1202,20 @@
         "subject": "Thema der Aufgabe"
       }
     },
+    "cardType16": {
+      "name": "Ziel",
+      "longName": "Ziel: Strategie | Taktiken",
+      "content1": "Strategie",
+      "content2": "Taktiken",
+      "placeholders": {
+        "subject": "Gib das Thema des Ziels an!",
+        "content1": "",
+        "content2": ""
+      },
+      "editorLabels": {
+        "subject": "Thema des Ziels"
+      }
+    },
     "tooltip": {
       "contrast": "Setze die Präsentation in den Kontrastmodus",
       "backToCardset": "Zurück zur Karteiansicht",
