@@ -136,6 +136,7 @@ review:
     - master
   tags:
     - cards-review
+  allow_failure: true
 
 stop_review:
   stage: review
@@ -161,6 +162,7 @@ stop_review:
     - master
   tags:
     - cards-review
+  allow_failure: true
 
 deploy_staging:
   stage: deploy
