@@ -17,19 +17,38 @@ import {Cardsets} from "./cardsets.js";
 //13: Formelsammlung / Formulary
 //14: Vortrag
 //15: Aufgabensammlung
+//16: Ziel / Goal
 let cardTypesWithDictionary = [1];
 let cardTypesWithDifficultyLevel = [0, 1, 2, 3, 5, 6, 11, 12, 13, 15];
-let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12, 13, 15];
+let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12, 13, 15, 16];
 let cardTypesWithLearningGoal = [0, 5, 12];
 let cardTypesWithLearningUnit = [];
-let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15];
-let cardTypesWithContrastButton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15];
+let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15, 16];
+let cardTypesWithContrastButton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16];
 let cardTypesWithNotesForDifficultyLevel = [2];
 let cardTypesWithCardsetTitleNavigation = [14];
 let cardTypesWithSwapAnswerQuestionButton = [1, 3, 6];
-let cardTypesWithDefaultMobilePreview = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-let cardTypesWithMarkdeepHelp = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-let cardTypesOrder = [{cardType: 2}, {cardType: 0}, {cardType: 15}, {cardType: 3}, {cardType: 6}, {cardType: 13}, {cardType: 12}, {cardType: 11}, {cardType: 5}, {cardType: 1}, {cardType: 10}, {cardType: 7}, {cardType: 4}, {cardType: 8}, {cardType: 9}, {cardType: 14}];
+let cardTypesWithDefaultMobilePreview = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+let cardTypesWithMarkdeepHelp = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+let cardTypesOrder = [
+	{cardType: 2},
+	{cardType: 0},
+	{cardType: 15},
+	{cardType: 3},
+	{cardType: 6},
+	{cardType: 13},
+	{cardType: 12},
+	{cardType: 16},
+	{cardType: 11},
+	{cardType: 5},
+	{cardType: 1},
+	{cardType: 10},
+	{cardType: 7},
+	{cardType: 4},
+	{cardType: 8},
+	{cardType: 9},
+	{cardType: 14}
+	];
 
 //0: left
 //1: center
@@ -336,6 +355,21 @@ let cardTypeCubeSides = [
 			"side": "front",
 			"defaultStyle": "default",
 			"gotLearningGoalPlaceholder": true
+		},
+		{
+			"contentId": 2,
+			"side": "back",
+			"defaultStyle": "default",
+			"isAnswer": true,
+			"isAnswerFocus": true
+		}
+	],
+	//16: Ziel
+	[
+		{
+			"contentId": 1,
+			"side": "front",
+			"defaultStyle": "default"
 		},
 		{
 			"contentId": 2,

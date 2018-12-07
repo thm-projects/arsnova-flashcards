@@ -463,7 +463,7 @@
     "editreferences": "Repetitorium zusammenstellen",
     "name": "Thema",
     "nameplaceholder": "Thema der Kartei in wenigen Worten",
-    "descriptionplaceholder": "Worum geht es in dieser Kartei? Was soll gelernt werden? Wer ist die Zielgruppe? \n\nThema und Beschreibung der Kartei werden dir überall auf der 🍅__lastAppTitle__-Plattform angezeigt. Um im Bild vom »Schuhkarton als Zettelkasten« zu bleiben: Was soll auf dem Etikett am Schuhkarton stehen? \n\nDie Kartei bleibt privat und für andere nicht sichtbar, solange du sie nicht veröffentlichst.",
+    "descriptionplaceholder": "Worum geht es in dieser Kartei? Was soll gelernt werden? Wer ist die Zielgruppe? \n\nThema und Beschreibung der Kartei werden dir überall auf der 🍅__lastAppTitle__-Plattform angezeigt. Um im Bild vom »Schuhkarton als Zettelkasten« zu bleiben: Was soll auf dem Etikett am Schuhkarton stehen? Die Kartei bleibt privat; sie ist für andere nicht sichtbar, solange du sie nicht veröffentlichst.",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung",
     "optional": "(Optional)",
@@ -1200,6 +1200,20 @@
       },
       "editorLabels": {
         "subject": "Thema der Aufgabe"
+      }
+    },
+    "cardType16": {
+      "name": "Zielerreichung",
+      "longName": "Zielerreichung: Strategie | Taktiken",
+      "content1": "Strategie",
+      "content2": "Taktiken",
+      "placeholders": {
+        "subject": "Was soll erreicht werden?",
+        "content1": "Strategie, um das Ziel langfristig zu erreichen",
+        "content2": "Maßnahmen, um die Strategie umzusetzen"
+      },
+      "editorLabels": {
+        "subject": "Strategisches Ziel"
       }
     },
     "tooltip": {
