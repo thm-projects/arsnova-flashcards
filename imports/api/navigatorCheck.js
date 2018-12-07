@@ -14,4 +14,8 @@ export let NavigatorCheck = class CardVisuals {
 	static isSafari () {
 		return navigator.userAgent.indexOf("Safari") >= 0 && navigator.userAgent.indexOf("Chrome") === -1;
 	}
+
+	static isEdge () {
+		return navigator.userAgent.indexOf("Edge") >= 0;
+	}
 };
