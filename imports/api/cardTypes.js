@@ -27,7 +27,7 @@ let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14,
 let cardTypesWithContrastButton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16];
 let cardTypesWithNotesForDifficultyLevel = [2];
 let cardTypesWithCardsetTitleNavigation = [14];
-let cardTypesWithSwapAnswerQuestionButton = [1, 3, 6, 16];
+let cardTypesWithSwapAnswerQuestionButton = [1, 3, 6];
 let cardTypesWithDefaultMobilePreview = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 let cardTypesWithMarkdeepHelp = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 let cardTypesOrder = [
@@ -38,6 +38,7 @@ let cardTypesOrder = [
 	{cardType: 6},
 	{cardType: 13},
 	{cardType: 12},
+	{cardType: 16},
 	{cardType: 11},
 	{cardType: 5},
 	{cardType: 1},
@@ -46,8 +47,7 @@ let cardTypesOrder = [
 	{cardType: 4},
 	{cardType: 8},
 	{cardType: 9},
-	{cardType: 14},
-	{cardType: 16}
+	{cardType: 14}
 	];
 
 //0: left
