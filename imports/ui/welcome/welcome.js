@@ -11,6 +11,7 @@ import ResizeSensor from "../../../client/thirdParty/resizeSensor/ResizeSensor";
 import * as fakeInventory from '../../../public/fakeStatistics/inventory.json';
 import {PomodoroTimer} from "../../api/pomodoroTimer";
 import {CardVisuals} from "../../api/cardVisuals";
+import {NavigatorCheck} from "../../api/navigatorCheck";
 
 Meteor.subscribe("pomodoroLandingPage");
 Meteor.subscribe("userData");
@@ -31,6 +32,14 @@ function splitLargeNumbers(number) {
 		separator = ",";
 	}
 	return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator);
+}
+
+function getLoginClass() {
+	if (NavigatorCheck.isEdge()) {
+		return "login-button-legacy-icon";
+	} else {
+		return "login-button-icon";
+	}
 }
 
 //------------------------ LOGIN EVENT
@@ -100,16 +109,16 @@ Template.welcome.helpers({
 	getLoginButtons: function () {
 		let loginButtons = "<label class='loginLabel' for='loginButtonRow'>" + TAPi18n.__('login.label') + "</label><div id='loginButtonRow'>";
 		if (Meteor.settings.public.displayLoginButtons.displayCas) {
-			loginButtons += '<a id="cas" href=""><div class="login-button-icon"></div></a>';
+			loginButtons += '<a id="cas" href=""><div class="' + getLoginClass() + '"></div></a>';
 		}
 		if (Meteor.settings.public.displayLoginButtons.displayFacebook) {
-			loginButtons += '<a id="facebook" href=""><div class="login-button-icon"></div></a>';
+			loginButtons += '<a id="facebook" href=""><div class="' + getLoginClass() + '"></div></a>';
 		}
 		if (Meteor.settings.public.displayLoginButtons.displayTwitter) {
-			loginButtons += '<a id="twitter" href=""><div class="login-button-icon"></div></a>';
+			loginButtons += '<a id="twitter" href=""><div class="' + getLoginClass() + '"></div></a>';
 		}
 		if (Meteor.settings.public.displayLoginButtons.displayGoogle) {
-			loginButtons += '<a id="google" href=""><div class="login-button-icon"></div></a>';
+			loginButtons += '<a id="google" href=""><div class="' + getLoginClass() + '"></div></a>';
 		}
 
 		// Backdoor for login in acceptance tests
@@ -123,7 +132,7 @@ Template.welcome.helpers({
 			let standard = TAPi18n.__("backdoor.standard");
 			let blocked = TAPi18n.__("backdoor.blocked");
 			let firstLogin = TAPi18n.__("backdoor.firstLogin");
-			loginButtons += '<a id="BackdoorLogin" href=""><div class="login-button-icon"></div></a>';
+			loginButtons += '<a id="BackdoorLogin" href=""><div class="' + getLoginClass() + '"></div></a>';
 			loginButtons += '<div class="btn-group backdoorLogin"><label id="backdoor-label">' + title + '</label><br><select class="btn btn-secondary btn-raised" id="TestingBackdoorUsername" aria-labelledby="backdoor-label">' +
 				'<option id="superAdminLogin" value="admin">' + superAdmin + '</option>' +
 				'<option id="adminLogin" value="editor">' + admin + '</option>' +

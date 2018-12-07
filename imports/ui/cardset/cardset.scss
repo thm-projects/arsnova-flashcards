@@ -109,16 +109,17 @@ $padding-card-list-row: 8px;
 }
 
 #selectLicenseModal {
-  #cc-modules img {
-    width: 30px;
+  label {
+    text-align: left;
   }
-  #cc-description {
-    padding-top: 10px;
+
+  #cc-modules  {
+    width: 100%;
     img {
-      width: 58px;
+      width: 30px;
     }
-    p {
-      padding-bottom: 10px;
+    label {
+      text-align: center;
     }
   }
 }
@@ -261,16 +262,9 @@ $padding-card-list-row: 8px;
   width: 100%;
 }
 
-#showLicenseModal {
-  #cc-modules img {
+#cc-description {
+  img {
     width: 30px;
-  }
-  #cc-description {
-    padding-top: 10px;
-    img {
-      width: 58px;
-    }
-
   }
 }
 
