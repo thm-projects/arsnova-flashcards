@@ -1216,6 +1216,20 @@
         "subject": "Strategisches Ziel"
       }
     },
+      "cardType17": {
+        "name": "Inverses Fragen",
+        "longName": "Inverses Fragen: Frage A = Antwort B | Frage B = Antwort A",
+        "content1": "Frage A = Antwort B",
+        "content2": "Frage B = Antwort A",
+        "placeholders": {
+          "subject": "Was adressieren die Fragen A und B?",
+          "content1": "Vorwärtsfrage A bzw. die Antwort auf die Rückwärtsfrage B \n\n(Beispiel Entwurfsmuster: Vorwärtsfrage A »Wie sieht das UML-Klassendiagramm des Entwurfsmusters Observer aus?«)",
+          "content2": "Rückwärtsfrage B bzw. die Antwort auf die Vorwärtsfrage A \n\n(Beispiel Entwurfsmuster: Rückwärtsfrage B »Welches Entwurfsmuster beschreibt dieses Klassendiagramm?«)"
+        },
+        "editorLabels": {
+          "subject": "Befragtes Thema"
+        }
+    },
     "tooltip": {
       "contrast": "Setze die Präsentation in den Kontrastmodus",
       "backToCardset": "Zurück zur Karteiansicht",
