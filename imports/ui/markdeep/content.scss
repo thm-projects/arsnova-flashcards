@@ -19,7 +19,7 @@
   table {
     width: unset;
     background-color: unset;
-    border: 2px solid gray !important;
+    border: 2px solid gray;
   }
 
   table th {
@@ -30,6 +30,11 @@
 
   table td {
     border: 2px solid gray !important;
+  }
+
+  td:hover {
+    background-color: yellow;
+    color: black;
   }
 
   div.tablecaption {
