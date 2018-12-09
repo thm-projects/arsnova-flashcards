@@ -23,13 +23,17 @@
   }
 
   table th {
-    background-color: #178FFF !important;
-    font-weight: bolder !important;
+    background-color: #FF9F30 !important;
+    font-weight: bold !important;
     border: 2px solid gray !important;
   }
 
   table td {
     border: 2px solid gray !important;
+  }
+
+  div.tablecaption {
+    font-style: normal !important;
   }
 
   code {
