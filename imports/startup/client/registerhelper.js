@@ -682,6 +682,10 @@ Template.registerHelper("getMaximumText", function (text) {
 	return text;
 });
 
+Template.registerHelper("isIOSOrSafari", function () {
+	return (NavigatorCheck.isIOS() | NavigatorCheck.isSafari());
+});
+
 Template.registerHelper("isIOSSafari", function () {
 	return (NavigatorCheck.isIOS() && NavigatorCheck.isSafari());
 });
