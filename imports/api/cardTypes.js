@@ -1,24 +1,24 @@
 import {Session} from "meteor/session";
 import {Cardsets} from "./cardsets.js";
 
-//0: Lernkartei / Flashcard
-//1: Vokabelkartei / Vocabulary
-//2: Mitschrift / Notes
-//3: Glossar / Glossary
-//4: Zitatensammlung / Citation
-//5: Prüfung / Exam
-//6: Anweisungssatz / Command set
+//0: Lernkartei / flash card index
+//1: Vokabelkartei / vocabulary
+//2: Mitschrift / notes
+//3: Glossar / glossary
+//4: Zitatensammlung / citations
+//5: Prüfung / exam
+//6: Anweisungssatz / command set
 //7: Abstract
-//8: Notizen / Notes
-//9: To-dos / To-do
-//10: Fotokartei / Photo library
+//8: Notizen / notes
+//9: To-dos / to-dos
+//10: Fotokartei / photo library
 //11: Quiz
-//12: Entwurfsmuster / Design pattern
-//13: Formelsammlung / Formulary
-//14: Vortrag
-//15: Aufgabensammlung
-//16: Zielerreichung / Goal achievement
-//17: Inverses Fragen / Inverse questioning
+//12: Entwurfsmuster / design patterns
+//13: Formelsammlung / collection of formulas
+//14: Vortrag / talk
+//15: Aufgabensammlung / task collection
+//16: Zielerreichung / goal achievement
+//17: Inverses Fragen / inverse questioning
 let cardTypesWithDictionary = [1];
 let cardTypesWithDifficultyLevel = [0, 1, 2, 3, 5, 6, 11, 12, 13, 15, 17];
 let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12, 13, 15, 16, 17];
@@ -28,7 +28,7 @@ let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14,
 let cardTypesWithContrastButton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17];
 let cardTypesWithNotesForDifficultyLevel = [2];
 let cardTypesWithCardsetTitleNavigation = [14];
-let cardTypesWithSwapAnswerQuestionButton = [1, 3, 6, 16, 17];
+let cardTypesWithSwapAnswerQuestionButton = [1, 3, 4, 6, 17];
 let cardTypesWithDefaultMobilePreview = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 let cardTypesWithMarkdeepHelp = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
 let cardTypesOrder = [
