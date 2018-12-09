@@ -19,6 +19,17 @@
   table {
     width: unset;
     background-color: unset;
+    border: 2px solid gray !important;
+  }
+
+  table th {
+    background-color: #178FFF !important;
+    font-weight: bolder !important;
+    border: 2px solid gray !important;
+  }
+
+  table td {
+    border: 2px solid gray !important;
   }
 
   code {
