@@ -2,7 +2,7 @@
   "name": "I: Beispiel für eine Vokabelkarte",
   "description": "Die Vokabelkarte ist Teil der Demo-Kartei.",
   "date": "2018-04-24T11:05:15.991Z",
-  "dateUpdated": "2018-11-20T18:43:48.066Z",
+  "dateUpdated": "2018-12-10T17:53:25.260Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -37,7 +37,7 @@
   "wordcloud": false,
   "shuffled": false,
   "cardType": 1,
-  "difficulty": 2,
+  "difficulty": 1,
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -55,8 +55,8 @@
   },
   "rating": 0
 }, {
-  "subject": "Wörterbuch »Beolingus« & Übersetzungsdienst »DeepL«",
-  "back": "**sich an etwas erinnern**",
+  "subject": "Navigiere mit der Tab-Taste zu  »DeepL«",
+  "back": "sich an etwas erinnern",
   "centerTextElement": [
     true,
     true,
@@ -68,8 +68,8 @@
   "backgroundStyle": 0,
   "learningIndex": "0",
   "learningUnit": "0",
-  "front": "**remember**",
-  "dateUpdated": "2018-11-20T18:43:48.048Z",
+  "front": "remember something",
+  "dateUpdated": "2018-12-10T17:50:46.771Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",

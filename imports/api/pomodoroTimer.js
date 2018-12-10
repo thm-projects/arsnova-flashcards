@@ -59,7 +59,7 @@ let defaultPresentationSettings = {
 let defaultDemoSettings = {
 	goal: 1,
 	work: {
-		length: 15,
+		length: 20,
 		max: 45,
 		min: 10,
 		step: 5

@@ -37,8 +37,9 @@
     color: black;
   }
 
-  div.tablecaption {
+  div.tablecaption, div.imagecaption {
     font-style: normal !important;
+    text-align: center;
   }
 
   code {
