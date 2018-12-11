@@ -23,21 +23,19 @@
 <template name="cardSidebarItemDictionaryDeepL">
     {{#unless isSmartphone}}
         {{#if gotDictionary}}
-            {{#if gotRequiredWordCount this}}
-                {{#unless isMobilePreview}}
-                    <img class="hidden-xs showDeepLTranslation card-button btn cardHeaderItem {{#if
-                            isDeepLActive}}pressed{{/if}}"
-                         data-type="cardNavigation"
-                         data-toggle="collapse"
-                         data-target="#collapseLecture-{{_id}}"
-                         src="/img/deepl.png" title="{{_ "card.tooltip.dictionaryDeepL"}}">
-                {{/unless}}
-                <span class="{{#unless
-                        isMobilePreview}}visible-xs-inline-block{{/unless}} card-button btn cardHeaderItem fa showDeepLTranslation {{#if
-                        isDeepLActive}}pressed{{/if}}" data-id="{{this._id}}"
-                      title="{{_ "card.tooltip.dictionaryDeepL"}}"><strong>D</strong>
+            {{#unless isMobilePreview}}
+                <img class="hidden-xs showDeepLTranslation card-button btn cardHeaderItem {{#if
+                        isDeepLActive}}pressed{{/if}}"
+                     data-type="cardNavigation"
+                     data-toggle="collapse"
+                     data-target="#collapseLecture-{{_id}}"
+                     src="/img/deepl.png" title="{{_ "card.tooltip.dictionaryDeepL"}}">
+            {{/unless}}
+            <span class="{{#unless
+                    isMobilePreview}}visible-xs-inline-block{{/unless}} card-button btn cardHeaderItem fa showDeepLTranslation {{#if
+                    isDeepLActive}}pressed{{/if}}" data-id="{{this._id}}"
+                  title="{{_ "card.tooltip.dictionaryDeepL"}}"><strong>D</strong>
         </span>
-            {{/if}}
         {{/if}}
     {{/unless}}
 </template>
