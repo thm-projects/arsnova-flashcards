@@ -947,7 +947,10 @@
     "from": "Ab",
     "noResults": "Keine Karteien oder Repetitorien vorhanden oder keine Ergebnisse für diese Filtereinstellung",
     "sort": "Sortieren ",
-    "displayMode": "Wolke"
+    "displayMode": {
+      "wordcloud": "Wolke",
+      "list": "Liste"
+    }
   },
   "infinite-scroll": {
     "remainingCardsets": "__current__ von __total__ Karteien",

@@ -25,6 +25,12 @@ Template.filterItemDisplayModeButton.onRendered(function () {
 	});
 });
 
+Template.filterItemDisplayModeButton.helpers({
+	isWordcloudActive: function () {
+		return Session.get('filterDisplayWordcloud');
+	}
+});
+
 Template.filterItemDisplayModeButton.events({
 	'click #displayModeBtn': function () {
 		if (Session.get('filterDisplayWordcloud')) {

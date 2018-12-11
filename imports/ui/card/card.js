@@ -21,6 +21,8 @@ import './navigation/navigation.js';
 import './modal/settings.js';
 import "./modal/beolingusTranslation.js";
 import "./modal/deeplTranslation.js";
+import "./modal/deleteCard.js";
+import "./modal/copyCard.js";
 import "./card.html";
 
 /*
@@ -180,24 +182,6 @@ Template.flashcardsEnd.onRendered(function () {
 	$('.carousel-inner').css('min-height', 0);
 });
 
-/*
- * ############################################################################
- * copyCard
- * ############################################################################
- */
-
-Template.copyCard.helpers({
-	cardsetList: function () {
-		return Cardsets.find({
-			owner: Meteor.userId(),
-			shuffled: false,
-			_id: {$nin: [Router.current().params._id]}
-		}, {
-			fields: {name: 1},
-			sort: {name: 1}
-		});
-	}
-});
 
 Template.copyCard.events({
 	"click .copyCardset": function (evt) {
@@ -207,53 +191,6 @@ Template.copyCard.events({
 				$('body').removeClass('modal-open');
 				$('.modal-backdrop').remove();
 				BertAlertVisuals.displayBertAlert(TAPi18n.__('copycardSuccess'), "success", 'growl-top-left');
-			}
-		});
-	}
-});
-
-/*
- * ############################################################################
- * cancelEditForm
- * ############################################################################
- */
-
-Template.cancelEditForm.events({
-	'click #cancelEditConfirm': function () {
-		$('#cancelEditModal').on('hidden.bs.modal', function () {
-			Session.set('activeCard', Router.current().params.card_id);
-			Router.go('cardsetdetailsid', {
-				_id: Router.current().params._id
-			});
-		}).modal('hide');
-	}
-});
-
-/*
- * ############################################################################
- * deleteCardForm
- * ############################################################################
- */
-
-Template.deleteCardForm.events({
-	'click #deleteCardConfirm': function () {
-		Meteor.call("deleteCard", Session.get('activeCard'), function (error, result) {
-			if (result) {
-				BertAlertVisuals.displayBertAlert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
-				$('#deleteCardModal').modal('hide');
-				$('.modal-backdrop').css('display', 'none');
-				Session.set('activeCard', undefined);
-				$('#deleteCardModal').on('hidden.bs.modal', function () {
-					$('.deleteCard').removeClass("pressed");
-					if (Route.isEditMode()) {
-						Router.go('cardsetdetailsid', {
-							_id: Router.current().params._id
-						});
-					} else {
-						CardVisuals.resizeFlashcard();
-						CardNavigation.selectButton();
-					}
-				});
 			}
 		});
 	}

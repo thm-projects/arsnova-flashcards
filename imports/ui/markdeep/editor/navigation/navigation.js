@@ -36,7 +36,7 @@ Template.markdeepNavigation.events({
 	},
 	'click .markdeep-translate': function () {
 		Dictionary.setMode(2);
-		$('#cardEditorModalDeepLTranslation').modal('show');
+		$('#cardModalDeepLTranslation').modal('show');
 	}
 });
 
