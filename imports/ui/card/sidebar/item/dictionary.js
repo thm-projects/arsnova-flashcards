@@ -54,15 +54,6 @@ Template.cardSidebarItemDictionaryDeepL.helpers({
 	},
 	isMobilePreview: function () {
 		return MarkdeepEditor.getMobilePreview();
-	},
-	gotRequiredWordCount: function () {
-		if (Dictionary.getWordCount() > 1) {
-			return true;
-		} else {
-			if (Dictionary.checkMode(2)) {
-				Dictionary.setMode(0);
-			}
-		}
 	}
 });
 
