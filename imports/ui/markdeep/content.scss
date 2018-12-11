@@ -1,11 +1,6 @@
-.cardContent .md *:not(svg) *, .cardContent .md *:not(#MathJax_ZoomFrame) * {
-  font-size: 100% !important;
-}
-
 .cardContent .placeholder {
   line-height: $line_height_card_content !important;
 }
-
 
 .md {
   line-height: $line_height_card_content !important;

@@ -52,6 +52,7 @@ Template.cardContentActive.onCreated(function () {
 
 Template.cardContentActive.onRendered(function () {
 	CardVisuals.setMaxIframeHeight();
+	CardVisuals.resizeFlashcard();
 });
 
 Template.cardContentActive.helpers({
@@ -121,6 +122,7 @@ Template.cardContentInactive.onCreated(function () {
 
 Template.cardContentInactive.onRendered(function () {
 	CardVisuals.setMaxIframeHeight();
+	CardVisuals.resizeFlashcard();
 });
 
 Template.cardContentInactive.helpers({
