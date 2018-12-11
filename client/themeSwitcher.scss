@@ -2373,6 +2373,12 @@ $themes: (
         border-color: $danger_background !important;
       }
 
+      #resetBtn.btn-default, #resetBtnMobile.btn-default {
+        color: white !important;
+        background-color: $primary !important;
+        border-color: $primary !important;
+      }
+
       .btn-demo.active {
         color: $demo_text !important;
         background-color: $demo_background !important;

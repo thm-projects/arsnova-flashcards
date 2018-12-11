@@ -1,5 +1,6 @@
 import {Route} from "./route.js";
 import {Session} from "meteor/session";
+import {Filter} from "./filter";
 
 //0: Themen-Pool / Pool
 //1: Kartei anlegen / My Cardsets
@@ -136,6 +137,20 @@ export let FilterNavigation = class FilterNavigation {
 		}
 		if (Route.isShuffle() || Route.isEditShuffle()) {
 			return 5;
+		}
+	}
+
+	static getFilterButton () {
+		let activeFilter = Filter.getActiveFilter();
+		let defaultFilter = Filter.getDefaultFilter();
+		if (JSON.stringify(activeFilter) === JSON.stringify(defaultFilter)) {
+			$('#resetBtn').removeClass('btn-warning').addClass('btn-default');
+			$('#resetBtnMobile').removeClass('btn-warning').addClass('btn-default');
+			return {disabled: 'disabled'};
+		} else {
+			$('#resetBtn').removeClass('btn-default').addClass('btn-warning');
+			$('#resetBtnMobile').removeClass('btn-default').addClass('btn-warning');
+			return {};
 		}
 	}
 };

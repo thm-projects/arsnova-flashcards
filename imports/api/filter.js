@@ -158,31 +158,19 @@ export let Filter = class Filter {
 		this.setActiveFilter(this.workloadFilter(), "_id");
 	}
 
-	static setDefaultFilter (filterType) {
+	static getDefaultFilter () {
+		return this.setDefaultFilter(FilterNavigation.getRouteId(), true);
+	}
+
+	static setDefaultFilter (filterType, returnDefault = false) {
 		let filter = {};
-		filter.topic = undefined;
 		if (Route.isWorkload()) {
 			filter._id = this.workloadFilter();
 		}
 		if (Route.isMyCardsets() || FilterNavigation.gotAuthorFilter(filterType)) {
 			if (Route.isMyCardsets()) {
 				filter.owner = Meteor.userId();
-			} else {
-				filter.owner = undefined;
 			}
-		}
-		if (FilterNavigation.gotCardTypeFilter(filterType)) {
-			filter.cardType = undefined;
-		}
-		if (FilterNavigation.gotDifficultyFilter(filterType)) {
-			filter.difficulty = undefined;
-			filter.noDifficulty = undefined;
-		}
-		if (FilterNavigation.gotBonusFilter(filterType)) {
-			filter.learningActive = undefined;
-		}
-		if (FilterNavigation.gotWordCloudFilter(filterType)) {
-			filter.wordcloud = undefined;
 		}
 		if (FilterNavigation.gotKindFilter(filterType)) {
 			let kind = [];
@@ -199,8 +187,6 @@ export let Filter = class Filter {
 				kind.push(this.getProKindTag());
 			}
 			filter.kind = kind;
-		} else {
-			filter.kind = undefined;
 		}
 		if (FilterNavigation.gotDefaultSortName(filterType)) {
 			filter.name = 1;
@@ -208,11 +194,14 @@ export let Filter = class Filter {
 		if (FilterNavigation.gotDefaultSortDateUpdated(filterType)) {
 			filter.dateUpdated = -1;
 		}
-		filter.noModule = undefined;
 		if (!Route.isWorkload()) {
 			filter.shuffled = Route.isRepetitorium();
 		}
-		this.setActiveFilter(filter);
+		if (returnDefault) {
+			return filter;
+		} else {
+			this.setActiveFilter(filter);
+		}
 	}
 
 	static getFilterQuery () {
