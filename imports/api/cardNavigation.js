@@ -317,8 +317,10 @@ export let CardNavigation = class CardNavigation {
 				keyCodes = [9];
 			}
 			if (Route.isEditMode()) {
-				if ($('.learningGoalLevelButton').is(":focus")) {
-					keyCodes = [9, 37, 39];
+				if ($('#subjectEditor').is(":focus")) {
+					keyCodes = [9, 13];
+				} else if ($('.learningGoalLevelButton').is(":focus")) {
+					keyCodes = [9, 13, 37, 39];
 				} else {
 					keyCodes = [9];
 				}
@@ -351,6 +353,9 @@ export let CardNavigation = class CardNavigation {
 								CardNavigation.cardSideNavigation();
 							}
 						}
+						break;
+					case 13:
+						CardEditor.setEditorButtonFocus();
 						break;
 					case 32:
 						if (CardNavigation.isVisible()) {
