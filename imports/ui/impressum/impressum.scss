@@ -5,22 +5,18 @@
 }
 
 @media(min-width: 768px) {
-  #contact-nav, #contact-nav-footer {
+  #contact-nav {
     position: sticky;
     position: -webkit-sticky;
     z-index: 1000;
   }
 
+  #contact-nav {
+    top: 0;
+  }
+
   #theme-wrapper #contact-nav {
     top: 40px;
-  }
-
-  #theme-wrapper-no-nav-welcome #contact-nav {
-    top: 15px;
-  }
-
-  #theme-wrapper-no-nav #contact-nav, #contact-nav-footer {
-    top: 0;
   }
 }
 
@@ -36,7 +32,7 @@
   }
 }
 
-#contact-nav a, #contact-nav-footer a {
+#contact-nav a {
   border-radius: 0;
   margin-bottom: 0;
   outline: none;

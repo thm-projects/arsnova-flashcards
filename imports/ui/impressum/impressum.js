@@ -35,7 +35,7 @@ Template.contact.onCreated(function () {
 
 Template.contactNavigation.helpers({
 	displayAsFooter: function () {
-		return (Route.isHome() || Route.isFirstTimeVisit() || Route.isMakingOf());
+		return (Route.isHome() || (Route.isFirstTimeVisit() && Route.isDemo()) || Route.isMakingOf());
 	}
 });
 

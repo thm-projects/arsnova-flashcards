@@ -65,7 +65,7 @@
 
 
 <template name="contactNavigation">
-    <nav id="{{#if displayAsFooter}}contact-nav-footer{{else}}contact-nav{{/if}}" class="nav nav-justified">
+    <nav id="contact-nav" class="nav nav-justified {{#if displayAsFooter}}position-sticky-bottom{{else}}position-sticky-top{{/if}}">
         {{#unless currentUser}}
             {{#unless isActiveRoute 'home'}}
                 <li class="sm-12 md-2 inactive {{#if displayAsFooter}}footer-info-navigation{{/if}}"><a
