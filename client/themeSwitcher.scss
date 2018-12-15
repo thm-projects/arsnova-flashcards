@@ -1280,7 +1280,7 @@ $themes: (
 
     .panel-body, .cardContent, #showHintModal {
       a {
-        color: $hyperlink !important;
+        color: $hyperlink;
       }
       .placeholder {
         color: $cardset_markdeep_placeholder !important;
