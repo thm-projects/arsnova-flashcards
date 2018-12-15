@@ -1275,12 +1275,12 @@
   },
   "swapQuestionAnswer": {
     "modal": {
-      "title": "Karten rückwärts lernen?",
+      "title": "Vorwärts oder rückwärts lernen?",
       "normal": "Möchtest du die Kartei rückwärts lernen? <br>Das heißt, soll die Rückseite einer Karte zuerst angezeigt werden?",
-      "shuffled": "Möchtest du die Karten folgender Karteitypen rückwärts lernen?<br> <b>__cardTypes__</b>",
+      "shuffled": "Möchtest du die Karten folgender Karteitypen rückwärts lernen? Das heißt, soll die Rückseite einer Karte zuerst angezeigt werden?<br> <b>__cardTypes__</b>",
       "button": {
-        "forward": "Nein, vorwärts lernen",
-        "backward": "Ja, rückwärts lernen"
+        "forward": "Karten vorwärts lernen",
+        "backward": "Karten rückwärts lernen"
       }
     }
   },
