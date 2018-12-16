@@ -969,7 +969,7 @@ export function firstLoginBertAlert() {
 						lastAppTitle: Meteor.settings.public.welcome.title.last
 					}),
 					message: TAPi18n.__('bertAlert.firstLogin.message', {lastAppTitle: Meteor.settings.public.welcome.title.last}),
-					type: 'warning',
+					type: 'info',
 					style: 'growl-top-left',
 					icon: 'fa-heart'
 				});

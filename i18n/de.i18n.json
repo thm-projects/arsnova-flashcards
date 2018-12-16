@@ -948,8 +948,8 @@
     "noResults": "Keine Karteien oder Repetitorien vorhanden oder keine Ergebnisse für diese Filtereinstellung",
     "sort": "Sortieren ",
     "displayMode": {
-      "wordcloud": "Liste",
-      "list": "Wolke"
+      "wordcloud": "Wolke",
+      "list": "Liste"
     }
   },
   "infinite-scroll": {
