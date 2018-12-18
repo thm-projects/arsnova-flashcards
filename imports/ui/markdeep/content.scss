@@ -113,13 +113,8 @@
     fill: #FFF
   }
 
-  .admonition {
-    border-left-width: 43px !important;
-  }
-
   .admonition.tip::before, .admonition.warning::before, .admonition.error::before {
-    top: 2px;
-    left: -4.2rem;
+    content: "" !important;
   }
 
   .calendar a, .calendar .parenthesized {

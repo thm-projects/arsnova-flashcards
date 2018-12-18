@@ -910,7 +910,9 @@ th {
 }
 
 .cc-link {
-  text-decoration: $text_decoration_cookie_consent_link !important;
+  //text-decoration: $text_decoration_cookie_consent_link !important;
+  opacity: 1.0 !important;
+  color: white !important;
 }
 
 .panelIconColumn {
