@@ -2,7 +2,7 @@
   "name": "A: Quiz zum Kennenlernen von 🍅cards",
   "description": "Die Quizfragen sind Teil der Demo-Kartei auf der 🍅cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2018-12-10T17:38:33.607Z",
+  "dateUpdated": "2018-12-18T15:16:09.297Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -20,8 +20,8 @@
   "maxCards": 40,
   "daysBeforeReset": 7,
   "learningStart": "2018-06-08T13:51:09.335Z",
-  "learningEnd": "2038-01-19T07:51:33.246Z",
-  "registrationPeriod": "2038-01-19T07:51:33.246Z",
+  "learningEnd": "2038-01-19T12:13:11.846Z",
+  "registrationPeriod": "2038-01-19T12:13:11.846Z",
   "learningInterval": [
     1,
     3,
@@ -69,7 +69,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-06-08T13:54:04.447Z",
-  "dateUpdated": "2018-12-09T14:31:37.670Z",
+  "dateUpdated": "2018-12-18T15:16:09.273Z",
   "learningIndex": "0",
   "learningUnit": "0",
   "originalAuthorName": {
