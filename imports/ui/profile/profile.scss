@@ -64,14 +64,14 @@
   height: 20px;
 }
 
-.span6{
+.span6 {
   font-weight: bold;
   font-size: 13px;
   padding-top: 5px;
   display: inline-block;
 }
 
-.span7{
+.span7 {
   font-weight: bold;
   font-size: 13px;
   padding-top: 5px;
@@ -94,22 +94,22 @@
 
 .divPic {
   width: 36px;
-  height:36px;
-  background-image:url('/img/trophy_36x36.png');
+  height: 36px;
+  background-image: url('/img/trophy_36x36.png');
 }
 
-.progress{
+.progress {
   margin: 0;
   position: relative;
 }
 
-.divTrophy{
+.divTrophy {
   width: 36px;
   height: 36px;
   background-image: url('/img/trophy_36x36_gray.png');
 }
 
-#container{
+#container {
   min-width: 310px;
   max-width: 800px;
   min-height: 100%;
@@ -121,12 +121,12 @@
   padding: 15px;
 }
 
-.list-group li{
- margin: 1em;
+.list-group li {
+  margin: 1em;
 }
 
-.panel-footer{
- margin-top: 2em;
+.panel-footer {
+  margin-top: 2em;
 }
 
 #profilepublicoption1, #profilepublicoption2 {
@@ -134,6 +134,19 @@
 }
 
 .form-group .checkbox label, .form-group .radio label, .form-group label {
-  color: red !important;
   font-weight: bold !important;
+}
+
+label.col-md-4.control-label {
+  color: black;
+  margin-top: 6px;
+}
+
+h3.panel-title, h4.panel-title {
+  color: black;
+  font-weight: bold;
+}
+
+label.checkbox-inline {
+  color: black;
 }
