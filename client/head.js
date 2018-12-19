@@ -16,7 +16,7 @@ window.addEventListener("load", function () {
 			},
 			"button": {
 				"background": "#FF9F30",
-				"text": "#ffffff"
+				"text": "#4a5c66"
 			}
 		},
 		"theme": "edgeless",
