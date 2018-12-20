@@ -971,7 +971,7 @@ $themes: (
         border-bottom-color: $under_development_modal_text !important;
       }
       color: $under_development_modal_text !important;
-      background-color: midnightblue !important;
+      background-color: $under_development_modal_background !important;
     }
 
     ::placeholder {
