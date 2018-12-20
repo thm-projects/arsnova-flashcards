@@ -45,7 +45,7 @@ export function getAuthorName(owner, lastNameFirst = true, onlyFirstName = false
 			if (author.profile.birthname) {
 				name += author.profile.birthname;
 			} else {
-				return author.profile.name + " (" + TAPi18n.__('complete-profile.title') + ")";
+				return author.profile.name;
 			}
 			if (author.profile.givenname) {
 				name += (", " + author.profile.givenname);
