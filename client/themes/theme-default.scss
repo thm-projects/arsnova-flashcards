@@ -32,6 +32,12 @@
   $background: yellow;
   $button_background_hover: midnightblue;
   $button_text_hover: white;
+  $input_textarea_border_active: $thm_orange;
+  $input_textarea_border_inactive: $divider;
+  $input_textarea_background_active: white;
+  $input_textarea_background_inactive: white;
+  $input_textarea_text_active: #555;
+  $input_textarea_text_inactive: #555;
   $item_icon_hover: midnightblue;
   @return (
     //background
@@ -90,6 +96,12 @@
           "card_type_text": white,
           "button_background_hover": $button_background_hover,
           "button_text_hover": $button_text_hover,
+          "input_textarea_border_active": $input_textarea_border_active,
+          "input_textarea_border_inactive": $input_textarea_border_inactive,
+          "input_textarea_background_active": $input_textarea_background_active,
+          "input_textarea_background_inactive": $input_textarea_background_inactive,
+          "input_textarea_text_active": $input_textarea_text_active,
+          "input_textarea_text_inactive": $input_textarea_text_inactive,
     //login
           "login_facebook_background": $primary,
           "login_facebook_background_hover": $button_background_hover,
