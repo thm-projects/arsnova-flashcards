@@ -335,9 +335,9 @@
     "text": "Willst du deine Berechtigung für die Kartei <strong>»__name__«</strong> entfernen?"
   },
   "confirm-form-profile": {
-    "title": "Benutzerkonto löschen",
-    "text": "Falls du sicher bist, dass du 🍅__lastAppTitle__ nicht mehr verwenden möchtest, kannst du hier dein Benutzerkonto löschen. Alle persönlichen Daten, privaten Karteien  und Repetitorien sowie deine Lernstatistiken werden unwiderruflich gelöscht. Die von dir veröffentlichten Karteien und Repetitorien bleiben erhalten.",
-    "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche »Benutzerkonto löschen«. Du wirst automatisch aus 🍅__lastAppTitle__ abgemeldet."
+    "title": "Konto löschen",
+    "text": "Falls du sicher bist, dass du 🍅__lastAppTitle__ nicht mehr verwenden möchtest, kannst du hier dein Konto löschen. Alle persönlichen Daten, privaten Karteien  und Repetitorien sowie deine Lernstatistiken werden unwiderruflich gelöscht. Die von dir veröffentlichten Karteien und Repetitorien bleiben erhalten.",
+    "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche »Konto löschen«. Du wirst automatisch aus 🍅__lastAppTitle__ abgemeldet."
   },
   "confirmLearn-form": {
     "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen der Kartei geht hierbei verloren!",
@@ -549,8 +549,8 @@
     "error": "Fehlerhafte Einträge!",
     "settings": {
       "name": "Profil & Konto ",
-      "delete": "Benutzerkonto löschen",
-      "deleteText": "Falls du sicher bist, dass du 🍅__lastAppTitle__ nicht weiter verwenden möchtest, kannst du hier dein Benutzerkonto löschen.",
+      "delete": "Konto löschen",
+      "deleteText": "Falls du sicher bist, dass du 🍅__lastAppTitle__ nicht weiter verwenden möchtest, kannst du hier dein Konto löschen.",
       "appearance": "Einstellungen",
       "theme": "Hintergrundbild",
       "language": "Sprache"
@@ -1493,7 +1493,7 @@
     "dashboard": "Dashboard",
     "cardsets": "Karteien",
     "cards": "Karten",
-    "users": "Benutzer/innen",
+    "users": "User",
     "interval": "Lernintervalle",
     "notifications": "Benachrichtigungen",
     "settings": "Einstellungen",
