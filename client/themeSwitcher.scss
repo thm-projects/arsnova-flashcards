@@ -32,7 +32,7 @@ $themes: (
     $accent: map-get($map, "accent");
     $primary_text: map-get($map, "primary_text");
     $secondary_text: map-get($map, "secondary_text");
-    $divider: map-get($map, "divider_color");
+    $divider: map-get($map, "divider");
     $accent_300: map-get($map, "accent_300");
     $background: map-get($map, "background");
     $hyperlink: map-get($map, "hyperlink");
@@ -65,6 +65,12 @@ $themes: (
     $card_type_text: map-get($map, "card_type_text");
     $button_background_hover: map-get($map, "button_background_hover");
     $button_text_hover: map-get($map, "button_text_hover");
+    $input_textarea_border_active: map-get($map, "input_textarea_border_active");
+    $input_textarea_border_inactive: map-get($map, "input_textarea_border_inactive");
+    $input_textarea_background_active: map-get($map, "input_textarea_background_active");
+    $input_textarea_background_inactive: map-get($map, "input_textarea_background_inactive");
+    $input_textarea_text_active: map-get($map, "input_textarea_text_active");
+    $input_textarea_text_inactive: map-get($map, "input_textarea_text_inactive");
     //login
     $login_facebook_background: map-get($map, "login_facebook_background");
     $login_facebook_background_hover: map-get($map, "login_facebook_background_hover");
@@ -716,10 +722,6 @@ $themes: (
       }
     }
 
-    #contentEditor {
-      border-color: $primary !important;
-    }
-
     .disconnected {
       color: $footer_websocket_disconnected !important;
     }
@@ -1305,12 +1307,33 @@ $themes: (
       background-color: $primary !important;
     }
 
-    .form-group.is-focused .form-control {
-      background-image: linear-gradient($primary, $primary), linear-gradient($divider, $divider) !important;
+    .form-group .form-control {
+      background-color: $input_textarea_background_inactive !important;
+      color: $input_textarea_text_inactive !important;
+      border-color: $input_textarea_border_inactive !important;
+      background-image: linear-gradient($input_textarea_border_inactive, $input_textarea_border_inactive), linear-gradient($input_textarea_border_inactive, $input_textarea_border_inactive) !important;
     }
 
-    textarea {
+    .form-group.is-focused .form-control {
+      background-color: $input_textarea_background_active !important;
+      color: $input_textarea_text_active !important;
+      background-image: linear-gradient($input_textarea_border_active, $input_textarea_border_active), linear-gradient($input_textarea_border_inactive, $input_textarea_border_inactive) !important;
+    }
+
+    .form-group .form-control:disabled {
       background-image: none !important;
+    }
+
+    #contentEditor {
+      background-color: $input_textarea_background_inactive !important;
+      color: $input_textarea_text_inactive !important;
+      border-color: $primary !important;
+    }
+
+    #contentEditor:focus {
+      background-color: $input_textarea_background_active !important;
+      color: $input_textarea_text_active !important;
+      border-color: $input_textarea_border_active !important;
     }
 
     .form-group.is-focused label.control-label {
@@ -2035,10 +2058,6 @@ $themes: (
 
     .box-lecture, .cardContentDictionary {
       background-color: $background_lecture !important;
-    }
-
-    .editorBackground, #contentEditor {
-      background: #FFFFFF !important;
     }
 
     .cardtext > h5, .editorHeader {

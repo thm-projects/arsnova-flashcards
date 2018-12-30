@@ -1007,3 +1007,7 @@ th {
   -ms-filter: blur($blur_hide_answer_question);
   filter: blur($blur_hide_answer_question);
 }
+
+.form-group .form-control {
+  background-position: center bottom, center calc(100%);
+}
