@@ -27,17 +27,17 @@
   $accent: $thm_green;
   $primary_text: #212121;
   $secondary_text: $white;
-  $divider: #BDBDBD;
+  $divider: gray;
   $accent_300: #f0efef;
   $background: yellow;
   $button_background_hover: midnightblue;
   $button_text_hover: white;
   $input_textarea_border_active: $thm_orange;
   $input_textarea_border_inactive: $divider;
-  $input_textarea_background_active: white;
-  $input_textarea_background_inactive: white;
-  $input_textarea_text_active: #555;
-  $input_textarea_text_inactive: #555;
+  $input_textarea_background_active: lightgoldenrodyellow;
+  $input_textarea_background_inactive: #F0F0F0;
+  $input_textarea_text_active: black;
+  $input_textarea_text_inactive: black;
   $item_icon_hover: midnightblue;
   @return (
     //background
