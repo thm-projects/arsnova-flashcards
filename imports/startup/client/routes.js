@@ -638,7 +638,7 @@ Router.route('/profile/:_id/overview', {
 		return [Meteor.subscribe('workloadCardsets'), Meteor.subscribe('userWorkload'), Meteor.subscribe('userLeitner')];
 	},
 	data: function () {
-		Session.set('helpFilter', "workloadProgress");
+		Session.set('helpFilter', "summativeProgress");
 		Session.set('activeRouteTitle', TAPi18n.__('profile.activity', {}, Session.get('activeLanguage')));
 	},
 	action: function () {
