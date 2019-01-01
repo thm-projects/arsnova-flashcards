@@ -224,8 +224,7 @@
             {{/if}}
         {{/if}}
     {{/unless}}
-    <div id="main" class="{{#if isActiveRoute
-                                regex='presentation'}}presentation-container{{else}}{{#if isActiveRoute
+    <div id="main" class="{{#if isActiveRoute 'presentation'}}presentation-container{{else}}{{#if isActiveRoute
                                                                                           regex='home'}}{{else}}{{#if
             isActiveRoute
             regex='newCard|editCard|cardsetstats'}}{{#if
