@@ -267,7 +267,7 @@
     "agb": "AGB"
   },
   "help": {
-    "resetFilter": "Zeige die Hilfe für alle Seiten…"
+    "resetFilter": "Hilfe vollständig anzeigen…"
   },
   "webPushNotifications": {
     "content": "»__cardsetName__«: __cardCount__ Karten bis __deadline__"
@@ -393,7 +393,7 @@
     },
     "activeLearnphase": "aktiv",
     "inactiveLearnphase": "beendet",
-    "learnphaseInfo": "Über diese Bonus-Lernphase",
+    "learnphaseInfo": "Über die Bonus-Lernphase",
     "cardsetInfo": "Über diese __type__ Kartei",
     "cardsetInfoRepetitorium": "Über dieses Repetitorium",
     "cardsetInfoStatic": "Über diese Kartei",
@@ -500,11 +500,11 @@
     "cardsetowner": "Autor/in",
     "cardsetname": "Kartei",
     "reason": "Grund",
-    "reportuser": "Benutzer/in melden",
-    "reportcardset": "Kartei melden",
+    "reportuser": "Rechtswidriger Inhalt",
+    "reportcardset": "Inhaltliche Mängel",
     "resetLeitner": "Möchtest du wirklich deine Lernstatistik im Modus »Lernen nach Leitner« für diese Kartei »__name__« zurücksetzen?",
     "resetWozniak": "Möchtest du wirklich deine Lernstatistik im Modus »Lernen nach Woźniak« für die Kartei »__name__« zurücksetzen?",
-    "text": "Weitere Informationen",
+    "text": "Erläuterung",
     "text_chars": "Es sind 50 Zeichen erforderlich!",
     "submitcomplaint": "Nachricht absenden",
     "college": "Hochschule",
@@ -1486,7 +1486,7 @@
     "disconnected": "keine Verbindung"
   },
   "admin": {
-    "allLearnedCardsets": "Nach dem Leitner-Lernkarteisystem gelernte Karten über alle Karteien",
+    "allLearnedCardsets": "Nach dem Leitner-Lernkarteisystem gelernte Karten über alle Karteien und Repetitorien",
     "learnedCardsets": "Lernstatistik der Kartei",
     "userProgress": "Lernstand nach Leitner für: ",
     "myProgress": "Lernstatistik ansehen",
