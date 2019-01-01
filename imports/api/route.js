@@ -66,7 +66,7 @@ export let Route = class Route {
 	}
 
 	static isLeitnerProgressProfileOverview () {
-		return Router.current().route.getName() === "summativeProgress";
+		return Router.current().route.getName() === "profileOverview";
 	}
 
 	/**
