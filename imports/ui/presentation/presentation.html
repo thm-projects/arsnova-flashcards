@@ -17,7 +17,7 @@
         {{> pomodoroTimerModal}}
     {{/if}}
     {{#if isActiveRoute regex='demolist|presentationlist|makinglist'}}
-        <div class="{{#if isActiveRoute regex='demolist'}}row demo-padding{{else}}col-xs-12{{/if}}">
+        <div class="{{#if isActiveRoute regex='demolist'}}row demo-padding{{else}}col-xs-12 presentation-list-margin{{/if}}">
             <button class="btn btn-raised btn-danger"
                     id="{{#if fullscreenActive}}backToPresentationFullscreen{{else}}backToPresentation{{/if}}">
             <span class="pull-left"><i class="fa fa-arrow-left"></i> {{#if isActiveRoute regex='demolist'}}{{_
