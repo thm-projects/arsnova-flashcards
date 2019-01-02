@@ -37,7 +37,7 @@ Template.graph.helpers({
 			if (Meteor.userId() === Router.current().params.user_id) {
 				return title + TAPi18n.__('admin.myProgress');
 			} else {
-				return title + TAPi18n.__('admin.userProgress') + ' "' + getAuthorName(Router.current().params.user_id) + '"';
+				return title + TAPi18n.__('admin.userProgress') + ' »' + getAuthorName(Router.current().params.user_id) + '«';
 			}
 		} else {
 			return TAPi18n.__('admin.allLearnedCardsets');
