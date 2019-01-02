@@ -133,6 +133,7 @@ Template.learnAnswerOptions.helpers({
 Template.learnAnswerOptions.events({
 	"click #learnShowAnswer": function () {
 		Session.set('isQuestionSide', false);
+		CardNavigation.resetNavigation(false);
 		$('html, body').animate({scrollTop: '0px'}, 300);
 	},
 	"click #skipAnswer": function () {
