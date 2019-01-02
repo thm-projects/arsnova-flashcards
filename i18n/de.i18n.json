@@ -1489,7 +1489,7 @@
   "admin": {
     "allLearnedCardsets": "Nach dem Leitner-Lernkarteisystem gelernte Karten über alle Karteien und Repetitorien",
     "learnedCardsets": "Lernstatistik der Kartei",
-    "userProgress": "Lernstand nach Leitner für: ",
+    "userProgress": "Lernstand nach Leitner für ",
     "myProgress": "Lernstatistik ansehen",
     "dashboard": "Dashboard",
     "cardsets": "Karteien",
