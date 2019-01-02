@@ -33,11 +33,11 @@ Template.graph.helpers({
 	},
 	getChartTitle: function () {
 		if (Router.current().route.getName() === "progress") {
-			let title = this.name + ": ";
+			let title = '»' + this.name + '«';
 			if (Meteor.userId() === Router.current().params.user_id) {
-				return title + TAPi18n.__('admin.myProgress');
+				return TAPi18n.__('admin.myProgress') + title;
 			} else {
-				return title + TAPi18n.__('admin.userProgress') + ' »' + getAuthorName(Router.current().params.user_id) + '«';
+				return title + ' | ' + TAPi18n.__('admin.userProgress') + ' »' + getAuthorName(Router.current().params.user_id) + '«';
 			}
 		} else {
 			return TAPi18n.__('admin.allLearnedCardsets');
