@@ -5,7 +5,7 @@ import {CardType} from "../../../api/cardTypes";
 import {Route} from "../../../api/route.js";
 import '/client/thirdParty/hammer.js';
 import "./content.html";
-import {CardNavigation} from "../../../api/cardNavigation";
+import {MarkdeepContent} from "../../../api/markdeep";
 import {Dictionary} from "../../../api/dictionary";
 import "./item/countCards.js";
 import "./item/countCardsLeitner.js";
@@ -105,8 +105,8 @@ Template.cardContentActive.helpers({
 });
 
 Template.cardContentActive.events({
-	'click a': function (evt) {
-		CardNavigation.linkNavigation(evt);
+	'click a': function (event) {
+		MarkdeepContent.anchorTarget(event);
 	}
 });
 
