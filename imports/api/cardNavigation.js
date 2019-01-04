@@ -253,13 +253,6 @@ export let CardNavigation = class CardNavigation {
 		this.answerCard(1, answer);
 	}
 
-	static linkNavigation (evt) {
-		let target = evt.target.getAttribute('href');
-		if (/^#/.test(target) === true) {
-			location.hash = target;
-		}
-	}
-
 	static fullscreenExitEvents () {
 		if (screenfull.enabled) {
 			screenfull.on('change', () => {

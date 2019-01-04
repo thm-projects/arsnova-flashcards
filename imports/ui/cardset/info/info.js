@@ -6,7 +6,7 @@ import {Leitner, Wozniak} from "../../../api/learned";
 import ResizeSensor from "../../../../client/thirdParty/resizeSensor/ResizeSensor";
 import {CardsetVisuals} from "../../../api/cardsetVisuals";
 import {Bonus} from "../../../api/bonus";
-import {CardNavigation} from "../../../api/cardNavigation";
+import {MarkdeepContent} from "../../../api/markdeep";
 import "../navigation/navigation.js";
 import "./box/cardset.js";
 import "./box/bonus.js";
@@ -54,7 +54,7 @@ Template.cardsetInfo.helpers({
 });
 
 Template.cardsetInfo.events({
-	'click a': function (evt) {
-		CardNavigation.linkNavigation(evt);
+	'click a': function (event) {
+		MarkdeepContent.anchorTarget(event);
 	}
 });
