@@ -2,6 +2,7 @@
     <div class="pomodoroTimer">
         <!--the whole clock and hands and arcs are all contained in the same svg viewbox-->
         <svg class="pomodoroClock" viewBox="0 0 100 100">
+            <title>{{_ "pomodoro.tooltip"}}</title>
             <!--drop shadow from http://demosthenes.info/ . Have to do the shadow using svg, or it wouldn't be able to follow the triangle hands-->
             <filter id="drop-shadow">
                 <feGaussianBlur in="SourceAlpha" stdDeviation="1.5"/>
