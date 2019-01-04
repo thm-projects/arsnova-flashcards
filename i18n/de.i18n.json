@@ -34,6 +34,7 @@
     "backToStartButton": "Zurück zur Startseite"
   },
   "pomodoro": {
+    "tooltip": "Pomodoro-Timer für dein Zeitmanagement – »Pomodoro« ist italienisch für \uD83C\uDF45",
     "name": "Pomodoro",
     "name_plural": "Pomodori",
     "timer": {
