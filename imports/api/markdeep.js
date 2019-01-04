@@ -124,4 +124,19 @@ export let MarkdeepContent = class MarkdeepContent {
 	static initializeStylesheet () {
 		$('head').append(window.markdeep.stylesheet());
 	}
+
+	static anchorTarget (event) {
+		let targetName = event.target.getAttribute('href');
+		if (/^#/.test(targetName) === true) {
+			event.preventDefault();
+			let parent = $(event.target).closest('.md');
+			let target = $(parent).find("a[name='" + targetName.substring(1) + "'][class='target']");
+			if (target.length) {
+				$(target)[0].scrollIntoView();
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
 };
