@@ -579,15 +579,9 @@ img.cardside {
   }
 }
 .cardCounter {
-  position: absolute;
+  position: relative;
   width: 100%;
-  text-align: center;
-  margin-left: -$padding_card_content_horizontal;
-  margin-top: -$padding_card_content_vertical;
-  @media(max-width: 767px) {
-    margin-left: -$padding_card_content_horizontal_mobile;
-    margin-top: -$padding_card_content_vertical_mobile;
-  }
+  text-align: right;
 }
 
 #cardModalDeepLTranslation .modal-dialog, #cardModalBeolingusTranslation .modal-dialog  {
