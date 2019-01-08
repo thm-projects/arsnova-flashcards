@@ -5,6 +5,8 @@ import "./left/left.js";
 import "./right/right.js";
 import "./center/center.js";
 import "./item/clock.js";
+import "./item/countCards.js";
+import "./item/countCardsLeitner.js";
 
 /*
  * ############################################################################

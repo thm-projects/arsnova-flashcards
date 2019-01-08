@@ -7,38 +7,6 @@ import '/client/thirdParty/hammer.js';
 import "./content.html";
 import {MarkdeepContent} from "../../../api/markdeep";
 import {Dictionary} from "../../../api/dictionary";
-import "./item/countCards.js";
-import "./item/countCardsLeitner.js";
-
-/*
- * ############################################################################
- * cardContentCounter
- * ############################################################################
- */
-
-Template.cardContentCounter.helpers({
-	isCardset: function () {
-		return Route.isCardset();
-	},
-	isPresentation: function () {
-		return Route.isPresentation();
-	},
-	isMakingOf: function () {
-		return Route.isMakingOf();
-	},
-	isDemo: function () {
-		return Route.isDemo();
-	},
-	isEditMode: function () {
-		return Route.isEditMode();
-	},
-	isBox: function () {
-		return Route.isBox();
-	},
-	isMemo: function () {
-		return Route.isMemo();
-	}
-});
 
 /*
  * ############################################################################
