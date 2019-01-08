@@ -1,11 +1,9 @@
 <template name="cardContentItemCountCards">
     <span class="cardHeaderSmallText cardCounter">
         {{#unless hasCardsetPermission cardset_id}}
-            {{_ "preview"}}:
-            {{cardsIndex this._id}} {{_ "of"}} {{getCardsetCount true}}
+            {{_ "cardCounter.preview" current=(cardsIndex this._id) total=(getCardsetCount true)}}
         {{else}}
-            <span class="hidden-xs">{{_ "admin.card.header"}}</span> {{cardsIndex this._id}} {{_
-                "of"}} {{getCardsetCount false}}
+            {{_ "cardCounter.default" current=(cardsIndex this._id) total=(getCardsetCount false)}}
         {{/unless}}
     </span>
 </template>
