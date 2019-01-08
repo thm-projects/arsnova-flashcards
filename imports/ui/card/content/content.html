@@ -1,24 +1,3 @@
-<template name="cardContentCounter">
-    {{#if isCardset}}
-        {{> cardContentItemCountCards this}}
-    {{/if}}
-    {{#if isPresentation}}
-        {{> cardContentItemCountCards this}}
-    {{/if}}
-    {{#if isMakingOf}}
-        {{> cardContentItemCountCards this}}
-    {{/if}}
-    {{#if isDemo}}
-        {{> cardContentItemCountCards this}}
-    {{/if}}
-    {{#if isEditCard}}
-        {{> cardContentItemCountCards this}}
-    {{/if}}
-    {{#if isBox}}
-        {{> cardContentItemCountCardsLeitner this}}
-    {{/if}}
-</template>
-
 <template name="cardContentActive">
                 <span class="{{#if gotContent}}{{#if
                         isCentered}}center-align {{#if isLeftAlign}}left-text-align{{/if}}{{/if}}{{else}}placeholder{{/if}}">
