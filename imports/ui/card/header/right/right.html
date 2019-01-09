@@ -18,7 +18,9 @@
 
 <template name="flashcardHeaderEditorRight">
     <div class="col-xs-3 cardHeaderRight" data-cardtype="{{cardType}}">
-        {{> cardContentItemCountCards this}}
+        {{#if isEditCard}}
+            {{> cardContentItemCountCards this}}
+        {{/if}}
     </div>
 </template>
 
