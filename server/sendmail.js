@@ -116,7 +116,6 @@ export class MailNotifier {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			if (mail) {
-				console.log(name);
 				var html = SSR.render("newsletter", {
 					name: name,
 					message: text,
