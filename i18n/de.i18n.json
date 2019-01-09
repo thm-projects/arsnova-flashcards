@@ -127,7 +127,7 @@
             "title": "Schade!",
             "text": "Du hattest dir <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> vorgenommen. <br><br>Manchmal kommt halt was dazwischen.<br>Wir verstehen das. Komm bald wieder zum Lernen zurück!",
             "button": {
-              "confirm": "Okay."
+              "confirm": "Okay"
             }
           }
         },
@@ -1749,7 +1749,7 @@
     "textReset": "wegen Inaktivität wurde deine Lernstatistik zurückgesetzt. ",
     "newCards1": "Der Wiederholungs-Algorithmus hat berechnet, dass ",
     "service": "Antworte nicht auf diese Mail, sie wurde automatisch erstellt. Du erhältst den Newsletter, weil du dich eingeschrieben hast auf ",
-    "unsubscribe": "Nicht mehr interessiert? Verlasse die Kartei, auf die sich der Newsletter bezieht: Klick oben auf den Button »Zur Kartei…« und im Portal auf den Button »Kartei verlassen«. Wenn die Bonus-Option aktiviert wurde, findest du den Button zum Abmelden im Drop-down-Menü »Über diese Bonus-Lernphase«. Willst du alle Newsletter abbestellen? Deaktiviere den Erinnerungsdienst in deinem Konto. Willst du deine Mitgliedschaft beenden? Lösche dein Konto unter »Profil & Konto«.",
+    "unsubscribe": "Nicht mehr interessiert? Verlasse die Kartei, auf die sich der Newsletter bezieht: Klick oben auf den Button »Zur Kartei…« und im Portal auf den Button »Kartei verlassen«. Wenn die Bonus-Option aktiviert wurde, findest du den Button zum Abmelden im Drop-down-Menü »Über die Bonus-Lernphase«. Willst du alle Newsletter abbestellen? Deaktiviere den Erinnerungsdienst in deinem Konto. Willst du deine Mitgliedschaft beenden? Lösche dein Konto unter »Profil & Konto«.",
     "copyright": "Dein 🍅__lastAppTitle__-Lerntutor",
     "my-cardset": "Zur Kartei…",
     "auto-generated": "Antworte nicht auf diese Mail, sie wurde automatisch erstellt."
