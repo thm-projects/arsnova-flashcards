@@ -98,6 +98,12 @@
     overflow-x: hidden;
   }
 
+  pre.listing .linenumbers span.line:before {
+    width: unset !important;
+    margin-left: -10px !important;
+    color: #FF9F30 !important;
+  }
+
   hr {
     border-color: unset !important;
     height: 2px;
