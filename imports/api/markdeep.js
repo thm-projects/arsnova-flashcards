@@ -45,7 +45,7 @@ export let MarkdeepContent = class MarkdeepContent {
 	 *  @param {string} content - Text that contains the image
 	 *  @returns {string} - The wrapped text
 	 * */
-	static setLightBoxes (content) {
+	static setSSLAndLightBoxes (content) {
 		var element = $(content);
 		let item_id = Math.random().toString(36).substr(2);
 		$(element).find('img').each(function () {
@@ -53,6 +53,8 @@ export let MarkdeepContent = class MarkdeepContent {
 			imageTitleElement = imageTitleElement.last();
 			let imageTitle = imageTitleElement.text();
 			let imageUrl = $(this).attr('src');
+			imageUrl = imageUrl.replace("http://", "https://");
+			$(this).attr('src', imageUrl);
 			$(this).attr('data-type', 'cardImage');
 			let wrapped = $(this).wrap('<div class="lightbox-container"><a href="' + imageUrl + '" class="lightbox-img" title="' + imageTitle + '" target="_blank" data-lightbox="' + item_id + '"></a></div>').parent().prop('outerHTML');
 			$(this).text(wrapped);
@@ -113,7 +115,7 @@ export let MarkdeepContent = class MarkdeepContent {
 		content += "\n\n";
 		content = window.markdeep.format(content, true);
 		content = DOMPurify.sanitize(content, DOMPurifyConfig);
-		content = this.setLightBoxes(content);
+		content = this.setSSLAndLightBoxes(content);
 		content = this.displayMediaControls(content);
 		content = this.adjustIframe(content);
 		content = this.setLinkTarget(content);
