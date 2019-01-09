@@ -60,8 +60,14 @@ function prepareMail(cardset, user, isReset = false, isNewcomer = false) {
 		try {
 			let mail = new MailNotifier();
 			if (isReset) {
+				if (Meteor.settings.debugServer) {
+					console.log("===> Sending E-Mail reset Message");
+				}
 				mail.prepareMailReset(cardset, user._id);
 			} else {
+				if (Meteor.settings.debugServer) {
+					console.log("===> Sending E-Mail reminder Message");
+				}
 				mail.prepareMail(cardset, user._id);
 			}
 		} catch (error) {
@@ -74,6 +80,9 @@ function prepareWebpush(cardset, user, isNewcomer = false) {
 	if (user.webNotification && !isNewcomer) {
 		try {
 			let web = new WebNotifier();
+			if (Meteor.settings.debugServer) {
+				console.log("===> Sending Webpush reminder Message");
+			}
 			web.prepareWeb(cardset, user._id);
 		} catch (error) {
 			console.log("[" + TAPi18n.__('admin-settings.test-notifications.sendWeb') + "] " + error);
