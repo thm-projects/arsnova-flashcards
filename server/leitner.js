@@ -55,6 +55,31 @@ function mailsEnabled() {
 	}
 }
 
+function prepareMail(cardset, user, isReset = false, isNewcomer = false) {
+	if (user.mailNotification && mailsEnabled() && !isNewcomer) {
+		try {
+			let mail = new MailNotifier();
+			if (isReset) {
+				mail.prepareMailReset(cardset, user._id);
+			} else {
+				mail.prepareMail(cardset, user._id);
+			}
+		} catch (error) {
+			console.log("[" + TAPi18n.__('admin-settings.test-notifications.sendMail') + "] " + error);
+		}
+	}
+}
+
+function prepareWebpush(cardset, user, isNewcomer = false) {
+	if (user.webNotification && !isNewcomer) {
+		try {
+			let web = new WebNotifier();
+			web.prepareWeb(cardset, user._id);
+		} catch (error) {
+			console.log("[" + TAPi18n.__('admin-settings.test-notifications.sendWeb') + "] " + error);
+		}
+	}
+}
 
 /** Resets the Leitner data to default values (For an inactive learning-phase).
  *  @param {Object} cardset - The cardset for which we reset the leitner data
@@ -293,26 +318,8 @@ function setCards(cardset, user, isReset, isNewcomer = false) {
 				currentDate: new Date()
 			}
 		}, {multi: true});
-		if (user.mailNotification && mailsEnabled() && !isNewcomer) {
-			try {
-				let mail = new MailNotifier();
-				if (isReset) {
-					mail.prepareMailReset(cardset, user._id);
-				} else {
-					mail.prepareMail(cardset, user._id);
-				}
-			} catch (error) {
-				console.log("[" + TAPi18n.__('admin-settings.test-notifications.sendMail') + "] " + error);
-			}
-		}
-		if (user.webNotification && !isNewcomer) {
-			try {
-				let web = new WebNotifier();
-				web.prepareWeb(cardset, user._id);
-			} catch (error) {
-				console.log("[" + TAPi18n.__('admin-settings.test-notifications.sendWeb') + "] " + error);
-			}
-		}
+		prepareMail(cardset, user, isReset, isNewcomer);
+		prepareWebpush(cardset, user, isNewcomer);
 	}
 }
 
@@ -606,8 +613,12 @@ Meteor.methods({
 							setCards(cardsets[i], user, false);
 						} else if ((activeCard.currentDate.getTime() + (cardsets[i].daysBeforeReset + 1) * 86400000) < new Date().getTime()) {
 							resetCards(cardsets[i], user);
-						} else if (Meteor.settings.debugServer) {
-							console.log("===> Nothing to do");
+						} else {
+							prepareMail(cardsets[i], user);
+							prepareWebpush(cardsets[i], user);
+							if (Meteor.settings.debugServer) {
+								console.log("===> Nothing to do");
+							}
 						}
 					}
 				}
