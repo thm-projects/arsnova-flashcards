@@ -23,6 +23,7 @@ import "./modal/beolingusTranslation.js";
 import "./modal/deeplTranslation.js";
 import "./modal/deleteCard.js";
 import "./modal/copyCard.js";
+import './side/side.js';
 import "./card.html";
 
 /*
@@ -88,35 +89,11 @@ Template.flashcards.onDestroyed(function () {
 });
 
 Template.flashcards.helpers({
-	isActiveCard: function (resetData) {
-		if (Route.isEditMode()) {
-			return true;
-		} else {
-			if (Session.get('activeCard') === this._id) {
-				if (resetData) {
-					let cubeSides = CardType.getCardTypeCubeSides(this.cardType);
-					Session.set('cardType', this.cardType);
-					Session.set('activeCardContentId', CardType.getActiveSideData(cubeSides, this.cardType));
-					Session.set('activeCardStyle', CardType.getActiveSideData(cubeSides, this.cardType, 1));
-				}
-				return true;
-			}
-		}
-	},
 	isCardset: function () {
 		return Route.isCardset();
 	},
 	getCards: function () {
 		return CardIndex.getCards();
-	},
-	cardsIndex: function (card_id) {
-		return CardIndex.getActiveCardIndex(card_id);
-	},
-	getCardSideColorActive: function () {
-		return CardVisuals.getCardSideColor(this.difficulty, this.cardType, this.backgroundStyle, true);
-	},
-	getCardSideColorInactive: function () {
-		return CardVisuals.getCardSideColor(this.difficulty, this.cardType, this.backgroundStyle, false);
 	},
 	isMobilePreviewActive: function () {
 		return Session.get('mobilePreview') && Route.isEditMode();

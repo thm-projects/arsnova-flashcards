@@ -4,8 +4,8 @@ import {CardVisuals} from "../../../api/cardVisuals.js";
 import {CardType} from "../../../api/cardTypes";
 import {Route} from "../../../api/route.js";
 import "./content.html";
-import {MarkdeepContent} from "../../../api/markdeep";
-import {Dictionary} from "../../../api/dictionary";
+import {MarkdeepContent} from "../../../../api/markdeep";
+import {Dictionary} from "../../../../api/dictionary";
 
 /*
  * ############################################################################

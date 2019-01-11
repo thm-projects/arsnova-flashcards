@@ -1,5 +1,5 @@
 import {Template} from "meteor/templating";
-import {Route} from "../../../api/route";
+import {Route} from "../../../../api/route";
 import "./header.html";
 import "./left/left.js";
 import "./right/right.js";
