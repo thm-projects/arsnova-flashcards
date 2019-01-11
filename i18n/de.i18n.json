@@ -1403,6 +1403,7 @@
         }
     },
     "tooltip": {
+      "toggle3D": "3D-Ansicht aktivieren / deaktivieren",
       "contrast": "Setze die Präsentation in den Kontrastmodus",
       "backToCardset": "Zurück zur Karteiansicht",
       "endPresentation": "Präsentation beenden",
