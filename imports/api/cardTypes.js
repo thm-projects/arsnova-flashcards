@@ -24,8 +24,6 @@ let cardTypesWithDifficultyLevel = [0, 1, 2, 3, 5, 6, 11, 12, 13, 15, 17];
 let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12, 13, 15, 16, 17];
 let cardTypesWithLearningGoal = [0, 5, 12];
 let cardTypesWithLearningUnit = [];
-let cardTypesWithPresentationMode = [0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15, 16, 17];
-let cardTypesWithContrastButton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17];
 let cardTypesWithNotesForDifficultyLevel = [2];
 let cardTypesWithCardsetTitleNavigation = [14];
 let cardTypesWithSwapAnswerQuestionButton = [1, 3, 4, 6, 17];
@@ -555,20 +553,8 @@ export let CardType = class CardType {
 		return cardTypesWithLearningModes.includes(cardType);
 	}
 
-	static gotPresentationMode (cardType) {
-		return cardTypesWithPresentationMode.includes(cardType);
-	}
-
 	static gotDifficultyLevel (cardType) {
 		return cardTypesWithDifficultyLevel.includes(cardType);
-	}
-
-	static gotContrastButton (cardType) {
-		return cardTypesWithContrastButton.includes(cardType);
-	}
-
-	static withDifficultyLevel () {
-		return cardTypesWithDifficultyLevel;
 	}
 
 	static gotNotesForDifficultyLevel (cardType) {
