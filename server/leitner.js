@@ -535,6 +535,10 @@ Meteor.methods({
 				if (counter === 0) {
 					throw new Meteor.Error("not-authorized");
 				}
+			} else {
+				if (!CardType.gotLearningModes(cardset.cardType)) {
+					throw new Meteor.Error("not-authorized");
+				}
 			}
 			let cards;
 			let cardsetFilter = [cardset._id];

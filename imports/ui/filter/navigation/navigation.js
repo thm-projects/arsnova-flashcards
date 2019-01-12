@@ -5,6 +5,7 @@ import {Session} from "meteor/session";
 import {FilterNavigation} from "../../../api/filterNavigation";
 import {Filter} from "../../../api/filter";
 import {Cardsets} from "../../../api/cardsets";
+import {CardType} from "../../../api/cardTypes";
 import "./navigation.html";
 import './item/displayModeButton.js';
 import './item/resetButton.js';
@@ -15,7 +16,6 @@ import './item/filterDifficulty.js';
 import './item/filterBonus.js';
 import './item/filterWordcloud.js';
 import './item/filterKind.js';
-
 
 /*
  * ############################################################################
@@ -68,12 +68,20 @@ Template.filterNavigation.events({
 
 Template.infiniteScroll.helpers({
 	moreResults: function () {
-		return Filter.getMaxItemCounter() < Cardsets.find(Filter.getFilterQuery()).count();
+		let query = Filter.getFilterQuery();
+		if (Session.get("selectingCardsetToLearn") && query.cardType === undefined) {
+			query.cardType = {$in: CardType.getCardTypesWithLearningModes()};
+		}
+		return Filter.getMaxItemCounter() < Cardsets.find(query).count();
 	},
 	getCurrentResults: function () {
+		let query = Filter.getFilterQuery();
+		if (Session.get("selectingCardsetToLearn") && query.cardType === undefined) {
+			query.cardType = {$in: CardType.getCardTypesWithLearningModes()};
+		}
 		return TAPi18n.__('infinite-scroll.remainingCardsets', {
 			current: Filter.getMaxItemCounter(),
-			total: Cardsets.find(Filter.getFilterQuery()).count()
+			total: Cardsets.find(query).count()
 		});
 	}
 });

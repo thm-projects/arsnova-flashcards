@@ -11,6 +11,7 @@ import {SweetAlertMessages} from "../../../api/sweetAlert";
 import {Profile} from "../../../api/profile";
 import {FilterNavigation} from "../../../api/filterNavigation";
 import {firstLoginBertAlert} from "../../../startup/client/routes";
+import {CardType} from "../../../api/cardTypes";
 import "./item/cardset.js";
 import "../modal/deleteWorkload.js";
 import "../modal/deleteCardset.js";
@@ -32,6 +33,9 @@ Template.filterIndexPool.helpers({
 		let query = {};
 		if (resultType !== 0) {
 			query = Filter.getFilterQuery();
+		}
+		if (Session.get("selectingCardsetToLearn") && query.cardType === undefined) {
+			query.cardType = {$in: CardType.getCardTypesWithLearningModes()};
 		}
 		switch (resultType) {
 			case 0:

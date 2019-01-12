@@ -327,6 +327,26 @@ function removeDeletedUsers() {
 	}
 }
 
+function cleanWorkload() {
+	let cardsets = Cardsets.find({shuffled: false, cardType: {$nin: CardType.getCardTypesWithLearningModes()}}, {fields: {_id: 1}}).fetch();
+	let filter = [];
+	let cardsetsLength = cardsets.length;
+	for (let i = 0; i < cardsetsLength; i++) {
+		filter.push(cardsets[i]._id);
+	}
+	Leitner.remove({
+		cardset_id: {$in: filter}
+	});
+
+	Wozniak.remove({
+		cardset_id: {$in: filter}
+	});
+
+	Workload.remove({
+		cardset_id: {$in: filter}
+	});
+}
+
 function setupDatabaseIndex() {
 	Leitner._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, active: 1});
 	Wozniak._ensureIndex({user_id: 1, cardset_id: 1});
@@ -346,6 +366,7 @@ Meteor.startup(function () {
 	let testNotificationsUser = initTestNotificationsUser();
 	let demoCardsetUser = initDemoCardsetUser();
 	setupDatabaseIndex();
+	cleanWorkload();
 	process.env.MAIL_URL = Meteor.settings.mail.url;
 	SSR.compileTemplate("newsletter", Assets.getText("newsletter/newsletter.html"));
 	Template.newsletter.helpers({
