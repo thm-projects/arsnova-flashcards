@@ -220,7 +220,7 @@ export let WordcloudCanvas = class WordcloudCanvas {
 	static setDefaultView () {
 		if ($(window).width() < 768) {
 			this.disableWordcloud();
-		} else if (Cardsets.find(Filter.getFilterQuery()).count() > 20) {
+		} else if (Cardsets.find(Filter.getFilterQuery()).count() > 100) {
 			this.enableWordcloud();
 		} else {
 			this.disableWordcloud();
