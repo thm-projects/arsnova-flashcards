@@ -130,6 +130,20 @@ export let PomodoroTimer = class PomodoroTimer {
 		return 30 * (date.getHours() % 12) + date.getMinutes() / 2;
 	}
 
+	static updateArcs () {
+		let d = new Date();
+		if (pomRunning) {
+			/*goes and draws the necessary arcs around the circle*/
+			$(".progressArc").attr("d", this.describeArc(50, 50, 44, pomBeginAngle, endPom));
+			$(".pomArc").attr("d", this.describeArc(50, 50, 44, 6 * d.getMinutes() + d.getSeconds() / 10, endPom));
+			$(".breakArc").attr("d", this.describeArc(50, 50, 44, endPom, endBreak));
+		} else {
+			$(".pomArc").attr("d", this.describeArc(0, 0, 0, 0, 0));
+			$(".progressArc").attr("d", this.describeArc(0, 0, 0, 0, 0));
+			$(".breakArc").attr("d", this.describeArc(0, 0, 0, 0, 0));
+		}
+	}
+
 	/*the arcs around the clock get redrawn every second, as do the hands on the clock, thanks to this setInterval function. It runs every second.*/
 	static interval () {
 		/*here, we get the current time, and since there are 360 degrees around a circle, and 60 minutes in an hour, each minute is 360/60 = 6 degrees of rotation. multiply that by the number of minutes and add the seconds and their corresponding degree value and you get a minute hand that moves every second. Similar with the hour hand.*/
@@ -153,12 +167,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		}
 
 		/*this function runs every second as the work period progresses.*/
-		if (pomRunning) {
-			/*goes and draws the necessary arcs around the circle*/
-			$(".progressArc").attr("d", this.describeArc(50, 50, 44, pomBeginAngle, endPom));
-			$(".pomArc").attr("d", this.describeArc(50, 50, 44, 6 * d.getMinutes() + d.getSeconds() / 10, endPom));
-			$(".breakArc").attr("d", this.describeArc(50, 50, 44, endPom, endBreak));
-		}
+		this.updateArcs();
 
 		/*this is the trigger to end the work period. it ends when the polar coodinates of the minute hand match the polar coodinates of the end of the work arc*/
 		if ((6 * d.getMinutes() + d.getSeconds() / 10 >= endPom - 0.1 && 6 * d.getMinutes() + d.getSeconds() / 10 <= endPom + 0.1) && pomRunning) {
@@ -173,9 +182,7 @@ export let PomodoroTimer = class PomodoroTimer {
 			totalPoms++;
 
 			/*erase all the arcs, because you want the next period to start when the confirm button is clicked, not immediately after the previous period. That gives you time to finish what you were doing without being penalized.*/
-			$(".pomArc").attr("d", this.describeArc(0, 0, 0, 0, 0));
-			$(".progressArc").attr("d", this.describeArc(0, 0, 0, 0, 0));
-			$(".breakArc").attr("d", this.describeArc(0, 0, 0, 0, 0));
+			this.updateArcs();
 
 			/*the first sweet alert! This is what pops up when you finish a pomodoro. It congradulates the user and lets them start their break when they are ready. There is no option to stop the session in this box, that function is relegated to the second click on the clock, as noted by the title.*/
 			if (Route.isPresentation() || Route.isDemo()) {

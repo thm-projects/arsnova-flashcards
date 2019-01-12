@@ -80,9 +80,13 @@ img.cardside {
   transition: all 0s;
 }
 
+.flashcard-blur .md {
+  display: block;
+  filter: blur(25px);
+}
+
 .flipped {
   transform: translateX(-100%) rotateY(-180deg);
-
 }
 
 .disableCardTransition {
@@ -289,6 +293,10 @@ img.cardside {
 
 .item {
   width: 105% !important;
+}
+
+.scene.item {
+  width: 100% !important;
 }
 
 .actionButtons > button {

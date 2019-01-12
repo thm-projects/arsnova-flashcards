@@ -1,21 +1,10 @@
-<template name="cardContentActive">
-                <span class="{{#if gotContent}}{{#if
-                        isCentered}}center-align {{#if isLeftAlign}}left-text-align{{/if}}{{/if}}{{else}}placeholder{{/if}}">
-                    {{#if gotContent}}
-                        {{#markdeep}}{{getContent}}{{/markdeep}}
-                    {{else}}
-                        {{getPlaceholder}}
-                    {{/if}}
-                </span>
-</template>
-
-<template name="cardContentInactive">
-                <span class="{{#if gotContent}}{{#if
-                        isCentered}}center-align {{#if isLeftAlign}}left-text-align{{/if}}{{/if}}{{else}}placeholder{{/if}}">
-                    {{#if gotContent}}
-                        {{#markdeep}}{{getContent}}{{/markdeep}}
-                    {{else}}
-                        {{getPlaceholder}}
-                    {{/if}}
-                </span>
+<template name="cardContent">
+        <span class="{{#if gotContent}}{{#if
+                isCentered}}center-align {{#if isLeftAlign}}left-text-align{{/if}}{{/if}}{{else}}placeholder{{/if}}">
+            {{#if gotContent}}
+                {{#markdeep}}{{getContent}}{{/markdeep}}
+            {{else}}
+                {{getPlaceholder}}
+            {{/if}}
+        </span>
 </template>

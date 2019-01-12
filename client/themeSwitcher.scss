@@ -475,6 +475,8 @@ $themes: (
     $card_navigation_text: map-get($map, "card_navigation_text");
     $card_navigation_background_hover: map-get($map, "card_navigation_background_hover");
     $card_navigation_text_hover: map-get($map, "card_navigation_text_hover");
+    //cube colors
+    $cube_border: map-get($map, "cube_border");
     //card colors
     $background_mobile_preview: map-get($map, "background_mobile_preview");
     $background_lecture: map-get($map, "background_lecture");
@@ -3442,6 +3444,10 @@ $themes: (
       .BSParticle--5::after {
         background: $barfy_stars_particles_5;
       }
+    }
+    //cube colors
+    .flashcard-3d {
+      border-color: $cube_border;
     }
   }
 }

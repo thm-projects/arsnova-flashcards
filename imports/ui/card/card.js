@@ -15,8 +15,8 @@ import {Leitner, Wozniak} from "../../api/learned.js";
 import {BertAlertVisuals} from "../../api/bertAlertVisuals";
 import {CardEditor} from "../../api/cardEditor";
 import {TouchNavigation} from "../../api/touchNavigation";
-import './header/header.js';
-import './content/content.js';
+import './side/header/header.js';
+import './side/content/content.js';
 import './navigation/navigation.js';
 import './modal/settings.js';
 import "./modal/beolingusTranslation.js";
@@ -24,8 +24,24 @@ import "./modal/deeplTranslation.js";
 import "./modal/deleteCard.js";
 import "./modal/copyCard.js";
 import './side/side.js';
+import './cube/cube.js';
 import "./card.html";
 
+function isActiveCard(card, resetData) {
+	if (Route.isEditMode()) {
+		return true;
+	} else {
+		if (Session.get('activeCard') === card._id) {
+			if (resetData) {
+				let cubeSides = CardType.getCardTypeCubeSides(card.cardType);
+				Session.set('cardType', card.cardType);
+				Session.set('activeCardContentId', CardType.getActiveSideData(cubeSides, card.cardType));
+				Session.set('activeCardStyle', CardType.getActiveSideData(cubeSides, card.cardType, 1));
+			}
+			return true;
+		}
+	}
+}
 /*
  * ############################################################################
  * flashcards
@@ -71,11 +87,10 @@ Template.flashcards.onRendered(function () {
 	windowResizeSensor = $(window).resize(function () {
 		CardVisuals.resizeFlashcard();
 	});
-	CardVisuals.resizeFlashcard();
-	CardVisuals.setTextZoom();
 	if (Route.isEditMode()) {
 		CardEditor.setEditorButtonIndex(0);
 	}
+	CardVisuals.setDefaultViewingMode();
 });
 
 Template.flashcards.onDestroyed(function () {
@@ -92,11 +107,53 @@ Template.flashcards.helpers({
 	isCardset: function () {
 		return Route.isCardset();
 	},
+	isMobilePreviewActive: function () {
+		return Session.get('mobilePreview') && Route.isEditMode();
+	}
+});
+
+/*
+ * ############################################################################
+ * flashcardsCarouselContent
+ * ############################################################################
+ */
+
+Template.flashcardsCarouselContent.onRendered(function () {
+	CardVisuals.resizeFlashcard();
+	CardVisuals.setTextZoom();
+});
+
+Template.flashcardsCarouselContent.helpers({
 	getCards: function () {
 		return CardIndex.getCards();
 	},
-	isMobilePreviewActive: function () {
-		return Session.get('mobilePreview') && Route.isEditMode();
+	setCardStatus: function () {
+		this.isActive = isActiveCard(this,true);
+		return this;
+	}
+});
+
+/*
+ * ############################################################################
+ * flashcardsCarouselContent3D
+ * ############################################################################
+ */
+
+Template.flashcardsCarouselContent3D.onRendered(function () {
+	CardVisuals.resizeFlashcard();
+	CardVisuals.setTextZoom();
+});
+
+Template.flashcardsCarouselContent3D.helpers({
+	getCards: function () {
+		return CardIndex.getCards();
+	},
+	setCardStatus: function () {
+		this.isActive = isActiveCard(this,true);
+		return this;
+	},
+	isActiveCard: function () {
+		return isActiveCard(this,false);
 	}
 });
 

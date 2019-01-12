@@ -1,0 +1,13 @@
+#cube {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.cube-face {
+  position: absolute;
+}
+
+.flashcard-3d {
+  border-width: 3px;
+  border-style: solid;
+}

@@ -9,6 +9,7 @@ import {Cards} from "./cards";
 import {Cardsets} from "./cardsets";
 import {SweetAlertMessages} from "./sweetAlert";
 import {CardType} from "./cardTypes";
+import {NavigatorCheck} from "./navigatorCheck";
 
 let keyEventsUnlocked = true;
 let lastActiveCardString = "lastActiveCard";
@@ -20,22 +21,51 @@ export let CardNavigation = class CardNavigation {
 		$(".cardNavigation > li:nth-child(" + index + ") a").click();
 	}
 
-	static switchCardSide (contentId, navigationId, cardStyle) {
-		CardVisuals.toggleZoomContainer(true);
-		CardVisuals.toggleAspectRatioContainer(true);
-		CardVisuals.isTextCentered();
-		Session.set('dictionaryBeolingus', 0);
-		Session.set('dictionaryLinguee', 0);
-		Session.set('dictionaryGoogle', 0);
-		Session.set('activeCardStyle', cardStyle);
-		Session.set('activeCardContentId', contentId);
-		this.setActiveNavigationButton(navigationId);
-		CardEditor.setEditorContent(navigationId);
+	static switchCardSide (contentId, navigationId, cardStyle, cardSide) {
+		let allowTrigger = true;
+		if (!NavigatorCheck.gotFeatureSupport(5) && Session.get('is3DTransitionActive') && Session.get('is3DActive')) {
+			allowTrigger = false;
+		}
+		if (allowTrigger) {
+			CardVisuals.toggleZoomContainer(true);
+			CardVisuals.toggleAspectRatioContainer(true);
+			CardVisuals.isTextCentered();
+			Session.set('dictionaryBeolingus', 0);
+			Session.set('dictionaryLinguee', 0);
+			Session.set('dictionaryGoogle', 0);
+			Session.set('activeCardStyle', cardStyle);
+			Session.set('activeCardContentId', contentId);
+			this.setActiveNavigationButton(navigationId);
+			CardEditor.setEditorContent(navigationId);
+			if (Session.get('is3DActive')) {
+				if (!NavigatorCheck.gotFeatureSupport(5)) {
+					Session.set('is3DTransitionActive', 1);
+				}
+				CardVisuals.rotateCube(cardSide);
+			}
+		}
 	}
 
 	static setActiveNavigationButton (index) {
 		$('.cardNavigation a').removeClass('card-navigation-active').addClass('switchCardSide');
 		$(".cardNavigation > li:nth-child(" + index + ") a").removeClass('switchCardSide').addClass('card-navigation-active');
+	}
+
+	static getCubeSidePosition (index) {
+		switch (index) {
+			case 0:
+				return "front";
+			case 1:
+				return "right";
+			case 2:
+				return "back";
+			case 3:
+				return "left";
+			case 4:
+				return "top";
+			case 5:
+				return "bottom";
+		}
 	}
 
 	static filterNavigation (cubeSides, mode = undefined) {
@@ -56,6 +86,7 @@ export let CardNavigation = class CardNavigation {
 					filteredSides.push(cubeSides[i]);
 				}
 			}
+			cubeSides[i].side = this.getCubeSidePosition(i);
 		}
 		return filteredSides;
 	}
@@ -70,6 +101,7 @@ export let CardNavigation = class CardNavigation {
 			if (cubeSides[i].isAnswerFocus) {
 				Session.set('answerFocus', (i + 1));
 			}
+			cubeSides[i].side = this.getCubeSidePosition(i);
 		}
 		return cubeSides;
 	}

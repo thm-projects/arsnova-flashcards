@@ -12,15 +12,30 @@
         {{/unless}}
         <div id="cardCarousel" class="carousel slide" data-keyboard="false" data-interval="false">
             <div class="carousel-inner">
-                {{#unless isMobilePreviewActive}}
-                    {{> flashcardSidebar}}
-                {{/unless}}
-                {{#each getCards}}
-                    {{> cardSide this}}
-                {{/each}}
+                {{#if is3DActive}}
+                    {{> flashcardsCarouselContent3D}}
+                {{else}}
+                    {{> flashcardsCarouselContent}}
+                {{/if}}
             </div>
         </div>
     </div>
+</template>
+
+<template name="flashcardsCarouselContent">
+    {{#each getCards}}
+        {{> cardSide setCardStatus}}
+    {{/each}}
+</template>
+
+<template name="flashcardsCarouselContent3D">
+    {{#each getCards}}
+        {{#if isActiveCard}}
+            {{> cardCube setCardStatus}}
+        {{else}}
+            {{> cardSide setCardStatus}}
+        {{/if}}
+    {{/each}}
 </template>
 
 <template name="flashcardsEmpty">
