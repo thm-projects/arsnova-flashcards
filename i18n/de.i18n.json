@@ -884,7 +884,7 @@
     },
     "shuffled": {
       "long": "Gemischter Kartensatz",
-      "short": "Repetitorium"
+      "short": "Rep"
     },
     "bonus": {
       "long": "Bonus-Lernphase",
@@ -1406,8 +1406,8 @@
   "manage": "Kartei verlassen",
   "selection": "Auswahl",
   "filter": "Filtern",
-  "learnfile": "Wiederholen nach Leitner",
-  "memo": "Wiederholen nach Woźniak",
+  "learnfile": "Leitner-Plan",
+  "memo": "Woźniak-Plan",
   "learnSelection": "Karten auswählen",
   "resetLearnfile": "Leitner-Statistik löschen",
   "resetWozniak": "Woźniak-Statistik löschen",

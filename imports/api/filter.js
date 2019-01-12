@@ -6,7 +6,7 @@ import {Route} from "./route";
 import {WordcloudCanvas} from "./wordcloudCanvas";
 import {Leitner, Wozniak} from "./learned";
 
-let itemIncrementCounter = 6;
+let itemIncrementCounter = 5;
 Session.setDefault('maxItemsCounter', itemIncrementCounter);
 Session.setDefault('poolFilter', undefined);
 Session.setDefault('myCardsetFilter', undefined);
