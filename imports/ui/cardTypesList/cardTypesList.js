@@ -3,6 +3,7 @@ import {Template} from "meteor/templating";
 import {CardType} from "../../api/cardTypes";
 import {Cardsets} from "../../api/cardsets";
 import {Filter} from "../../api/filter";
+import {Session} from "meteor/session";
 
 /*
  * ############################################################################
@@ -18,6 +19,9 @@ Template.cardTypesList.helpers({
 		return CardType.getCardTypeLongName(this.cardType);
 	},
 	filterCardTypes: function (cardType) {
+		if (Session.get("selectingCardsetToLearn") && !CardType.gotLearningModes(cardType)) {
+			return;
+		}
 		let query = Filter.getFilterQuery();
 		query.cardType = cardType;
 		return Cardsets.find(query).count();
