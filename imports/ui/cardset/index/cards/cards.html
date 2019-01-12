@@ -32,7 +32,7 @@
                             <tbody>
                             {{#each cardList false}}
                                 <tr class="cardListRow">
-                                    <td class="{{getCardsetBackground this.difficulty this.cardType 1}}"
+                                    <td class="{{getCardsetBackground this.difficulty this.cardType}}"
                                         data-id="{{this._id}}" data-card-type="{{this.cardType}}">
                                         <div class="cardListNumber" data-id="{{this._id}}">
                                             {{getPriority @index}}

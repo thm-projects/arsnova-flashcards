@@ -61,7 +61,7 @@
     <div class="resultItem col-xs-12">
         {{#if isActiveRoute regex="learn"}}
             <div class="resultItemHeader resultItemHeaderLeftArea col-xs-4 col-sm-2 collapseButton {{getCardsetBackground
-                    this.difficulty this.cardType 1}}">
+                    this.difficulty this.cardType}}">
                 {{#if gotWorkload}}
                     <a class="{{getWorkloadType}}" data-toggle="{{#if gotWorkloadForBothTypes}}modal{{/if}}"
                        data-target="{{#if gotWorkloadForBothTypes}}#selectModeToLearnModal{{/if}}"
@@ -82,7 +82,7 @@
                 isActiveRoute
                 regex="learn"}}col-xs-8 col-sm-4{{/if}} {{#if isActiveRoute
                                                               regex="create"}}col-sm-6 col-md-7{{else}}col-sm-6{{/if}}{{/if}}{{/if}} collapseButton {{getCardsetBackground
-                this.difficulty this.cardType 1}}">
+                this.difficulty this.cardType}}">
             {{> poolTitleContent}}
         </div>
         {{#unless isActiveRoute
@@ -91,7 +91,7 @@
                     isActiveRoute
                     regex="pool|alldecks"}}col-sm-2{{else}}col-sm-3{{/if}} {{#if isActiveRoute
                                                                                  regex="pool"}}col-lg-3{{/if}} collapseButton {{getCardsetBackground
-                    this.difficulty this.cardType 1}}"
+                    this.difficulty this.cardType}}"
                  data-id="{{this.owner}}">
                 {{getAuthorName this.owner}}
             </div>
@@ -101,7 +101,7 @@
                     isActiveRoute
                     regex="alldecks"}}hidden-sm col-md-2{{else}}{{#if isActiveRoute
                                                                       regex="create"}}col-sm-3 col-md-2{{else}}col-sm-3{{/if}}{{/if}} col-lg-2 {{getCardsetBackground
-                    this.difficulty this.cardType 1}}"
+                    this.difficulty this.cardType}}"
                  data-type="{{this.cardType}}">
                 {{getCardTypeName}}
             </div>
@@ -109,7 +109,7 @@
         {{#if isActiveRoute
               regex="alldecks"}}
             <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs hidden-sm hidden-md col-sm-3 collapseButton {{getCardsetBackground
-                    this.difficulty this.cardType 1}}"
+                    this.difficulty this.cardType}}"
                  data-date="{{this.date}}" data-dateUpdated="{{this.dateUpdated}}">
                 {{#if isActiveRoute regex="alldecks"}}{{getMomentsDate  this.date true}}{{else}}{{getMomentsDate
                         this.date}}{{/if}}<span
@@ -118,7 +118,7 @@
                     this.dateUpdated}}{{/if}}</span>
             </div>
             <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs hidden-lg col-sm-3 collapseButton {{getCardsetBackground
-                    this.difficulty this.cardType 1}}"
+                    this.difficulty this.cardType}}"
                  data-date="{{this.date}}" data-dateUpdated="{{this.dateUpdated}}">
                 {{getMomentsDateShort  this.date}}<span class="resultDateRight">{{getMomentsDateShort
                     this.dateUpdated}}</span>
