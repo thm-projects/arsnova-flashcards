@@ -1293,6 +1293,10 @@ $themes: (
       color: $hyperlink !important;
     }
 
+    #cardsetLink::before {
+      content: "➔ " !important;
+    }
+
     .btn.btn-raised.btn-primary {
       background-color: $primary !important;
       color: $white !important;
