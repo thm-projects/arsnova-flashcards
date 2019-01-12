@@ -242,7 +242,7 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 1,
 			"side": "front",
-			"defaultStyle": "pink"
+			"defaultStyle": "default"
 		}
 	],
 	//10: Fotokartei / Photo library
