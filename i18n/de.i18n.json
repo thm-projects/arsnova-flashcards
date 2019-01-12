@@ -712,7 +712,7 @@
   },
   "presentation": {
     "title": "Präsentation",
-    "create": "Karten in Vollansicht",
+    "create": "Kartei präsentieren",
     "start": "Starten",
     "list": {
       "back": "Zurück zur Präsentation",
@@ -1356,7 +1356,7 @@
     "boxInterval": "nach __days__ Tagen",
     "boxNotLearned": "[neu oder vergessen]",
     "boxNotLearnedShort": "[neu | vergessen]",
-    "index": "Ausgewählte Kartei:",
+    "index": "",
     "indexDefault": "Alle Karteien",
     "percentage": "Prozent",
     "user": {
