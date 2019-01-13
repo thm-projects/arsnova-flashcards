@@ -341,6 +341,9 @@ $padding-card-list-row: 8px;
 .collapseCardsetInfoContainer {
   display: block;
   min-height: 58px;
+  a:hover {
+    text-decoration: underline !important;
+  }
   @media(max-width: 767px) {
     min-height: 35px;
   }
