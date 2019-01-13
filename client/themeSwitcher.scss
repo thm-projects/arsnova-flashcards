@@ -1284,6 +1284,9 @@ $themes: (
       a {
         color: $hyperlink;
       }
+      a:hover {
+        text-decoration: underline;
+      }
       .placeholder {
         color: $cardset_markdeep_placeholder !important;
       }
