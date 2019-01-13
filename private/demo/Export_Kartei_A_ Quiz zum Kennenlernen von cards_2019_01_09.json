@@ -1,8 +1,8 @@
 [{
-  "name": "A: Quiz zum Kennenlernen von 🍅cards",
+  "name": "A: Quiz zum Kennenlernen von »cards«",
   "description": "Die Quizfragen sind Teil der Demo-Kartei auf der 🍅cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2019-01-09T17:31:36.686Z",
+  "dateUpdated": "2019-01-13T15:00:46.375Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": true,
@@ -24,8 +24,8 @@
   "maxCards": 40,
   "daysBeforeReset": 7,
   "learningStart": "2018-06-08T13:51:09.335Z",
-  "learningEnd": "2038-01-19T12:13:11.846Z",
-  "registrationPeriod": "2038-01-19T12:13:11.846Z",
+  "learningEnd": "2038-01-19T14:50:18.805Z",
+  "registrationPeriod": "2038-01-19T14:50:18.805Z",
   "learningInterval": [
     1,
     3,
@@ -48,7 +48,7 @@
       "count": 0
     },
     "normal": {
-      "count": 1
+      "count": 4
     }
   },
   "rating": 5
@@ -115,7 +115,7 @@
 }, {
   "subject": "3. Gesammeltes Wissen",
   "front": "**Was bleibt?**\n\n![Klick auf das Foto für die Vollansicht!](/img/background/zettelkasten_wikipedia_original.jpg width=300)\n",
-  "back": "![Angesammeltes Wissen](/img/background/zettelkasten_wikipedia_original.jpg width=\"200 pt\") \nEin Studierzimmer [^Foto-Quelle] kann eine kreative persönliche Lernumgebung sein. Das auf tausenden Zetteln in dutzenden Kartons gesammelte Wissen ist zumindest der Bewohnerin des abgebildeten Zimmers zugänglich (ein Klick auf das Foto zeigt die Schuhgröße 4½ auf den Kartons). Warum also nicht mit Zetteln in Schuhkartons studieren? Den digitalen Karten fehlt doch die Haptik des Papiers und die Gesamtschau  -- im Regal und auf dem Boden. \n\nStimmt. Dafür haben digitale Karten aber auch **unbestreitbare Vorteile** -- gemäß dem Slogan unserer Plattform:\n\n+ **`Organize`**: Das Wissen aus deinem Studium kannst du jederzeit und überall mit wenigen Klicks wiederfinden, auch noch viele Jahre nach deinem Studium, wenn du aus deiner Studierbude längst ausgezogen bist, womöglich dein Zettelarchiv bis auf das IKEA-Regal entsorgt hast. Eines Tages -- im Job, in einer Teambesprechung -- brauchst du sicherlich das Wissen aus deinem Studium wieder.\n\n+ **`Learn`**: Die Karten sind multimedial: Du kannst Bilder, Podcasts und Videos einfügen. Du studierst ein MINT-Fach? Schreib mit $\\TeX$ die kompliziertesten mathematischen Formeln und mit Syntax-Highlighting beliebigen Programmcode schnell und sauber auf eine Karte. Du darfst kostenlos die [Open Source Software](https://github.com/thm-projects/arsnova-flashcards) 🍅cards als persönliche Lernumgebung auf deinem Laptop installieren. So kannst du deine Karten auch ohne Internet überall lernen.\n\n+ **`Memorize`**: Die Karten deines Lernpensums werden dir zum dauerhaften Memorieren an [kognitionswissenschaftlich berechneten Tagen](https://en.wikipedia.org/wiki/Spaced_repetition) wieder vorgelegt. Push-Nachrichten auf dein Handy oder E-Mails erinnern dich ans Lernen. Damit du fokussiert lernen kannst, ohne dich zu überfordern, haben wir die [Pomodoro-Technik](/learning#Pomodoro) -- ein populäres Zeitmanagement-Tool --- auf jeder Karte im Lernmodus integriert.\n\n+ **`Present`**: Wenn du 🍅cards für einen Beamer-Vortrag verwendest, behältst du die verbleibende Vortragszeit und die Pause stets im Blick. Auch wird es dir nie passieren, dass du deine Präsentation im Edit-Modus von PowerPoint oder Keynote hältst, denn Karten kannst du nur in der Vollbildansicht präsentieren. Neben einer Textskalierung steht dir auch die Skalierung der gesamten Karte mit allen medialen Inhalten (Bilder, Videos) zur Verfügung. Und als Highlight kannst du das **Audience-Response-System** [ARSnova](https://arsnova.eu) zum anonymen Befragen deines Publikums in der Präsentation aufrufen. \n\n![Live-Feedback mit ARSnova, siehe [Projektblog](https://arsnova.thm.de/blog/)](https://arsnova.thm.de/blog/wp-content/uploads/2015/05/Live-Feedback-1-550x550.png width=400)\n\n<br />\n<br />\n\n[^Foto-Quelle]: Foto zum Wikipedia-Begriff [<q>Zettelkasten</q>](https://de.wikipedia.org/wiki/Zettelkasten), Kai Schreiber, CC BY-SA 2.0",
+  "back": "![Angesammeltes Wissen](/img/background/zettelkasten_wikipedia_original.jpg width=\"200 pt\") \nEin Studierzimmer [^Foto-Quelle] kann eine kreative persönliche Lernumgebung sein. Das auf tausenden Zetteln in dutzenden Kartons gesammelte Wissen ist zumindest der Bewohnerin des abgebildeten Zimmers zugänglich (ein Klick auf das Foto zeigt die Schuhgröße 4½ auf den Kartons). Warum also nicht mit Zetteln in Schuhkartons studieren? Den digitalen Karten fehlt doch die Haptik des Papiers und die Gesamtschau  -- im Regal und auf dem Boden. \n\nStimmt. Dafür haben digitale Karten aber auch **unbestreitbare Vorteile** -- gemäß dem Slogan unserer Plattform:\n\n+ **`Organize`**: Das Wissen aus deinem Studium kannst du jederzeit und überall mit wenigen Klicks wiederfinden, auch noch viele Jahre nach deinem Studium, wenn du aus deiner Studierbude längst ausgezogen bist, womöglich dein Zettelarchiv bis auf das IKEA-Regal entsorgt hast. Eines Tages -- im Job, in einer Teambesprechung -- brauchst du sicherlich das Wissen aus deinem Studium wieder.\n\n+ **`Learn`**: Die Karten sind multimedial: Du kannst Bilder, Podcasts und Videos einfügen. Du studierst ein MINT-Fach? Schreib mit $\\TeX$ die kompliziertesten mathematischen Formeln und mit Syntax-Highlighting beliebigen Programmcode schnell und sauber auf eine Karte. Du darfst kostenlos die [Open Source Software](https://github.com/thm-projects/arsnova-flashcards) 🍅cards als persönliche Lernumgebung auf deinem Laptop installieren. So kannst du deine Karten auch ohne Internet überall lernen.\n\n+ **`Memorize`**: Die Karten deines Lernpensums werden dir zum dauerhaften Memorieren an [kognitionswissenschaftlich berechneten Tagen](https://en.wikipedia.org/wiki/Spaced_repetition) wieder vorgelegt. Push-Nachrichten auf dein Handy oder E-Mails erinnern dich ans Lernen. Damit du fokussiert lernen kannst, ohne dich zu überfordern, haben wir die [Pomodoro-Technik](/learning#Pomodoro) -- ein populäres Zeitmanagement-Tool --- auf jeder Karte im Lernmodus integriert.\n\n+ **`Present`**: Wenn du 🍅cards für einen Beamer-Vortrag verwendest, behältst du die verbleibende Vortragszeit und die Pause stets im Blick. Auch wird es dir nie passieren, dass du deine Präsentation im Edit-Modus von PowerPoint oder Keynote hältst, denn Karten kannst du nur in der Vollbildansicht präsentieren. Neben einer Textskalierung steht dir auch die Skalierung der gesamten Karte mit allen medialen Inhalten (Bilder, Videos) zur Verfügung. Und als Highlight kannst du unser [gamifiziertes](https://de.wikipedia.org/wiki/Gamification) **Audience-Response-System** [arsnova.click](https://arsnova.click) zum anonymen Befragen deines Publikums in der Präsentation aufrufen. \n\n![Live-Feedback mit ARSnova.click, siehe [Projektblog](https://arsnova.thm.de/blog/)](https://arsnova.thm.de/blog/wp-content/uploads/2015/05/Bildschirmfoto-2017-02-11-um-16.33.52.png width=400)\n\n<br />\n<br />\n\n[^Foto-Quelle]: Foto zum Wikipedia-Begriff [<q>Zettelkasten</q>](https://de.wikipedia.org/wiki/Zettelkasten), Kai Schreiber, CC BY-SA 2.0",
   "centerTextElement": [
     true,
     false,
@@ -133,7 +133,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-06-10T05:23:42.665Z",
-  "dateUpdated": "2019-01-03T07:46:52.656Z",
+  "dateUpdated": "2019-01-13T15:00:46.359Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
