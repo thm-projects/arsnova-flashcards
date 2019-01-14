@@ -947,7 +947,7 @@
     "wordcloudFalse": "von Studierenden für die Community freigegeben",
     "wordcloudEveryting": "Alle",
     "from": "Ab",
-    "noResults": "Keine Karteien oder Repetitorien vorhanden oder keine Ergebnisse für diese Filtereinstellung",
+    "noResults": "Keine Kartei oder Repetitorium ausgewählt oder Filtern liefert kein Ergebnis.",
     "sort": "Sortieren ",
     "displayMode": {
       "wordcloud": "Wolke",
