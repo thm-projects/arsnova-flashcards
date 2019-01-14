@@ -6,6 +6,7 @@ import {CardEditor} from "../../../api/cardEditor.js";
 import {CardVisuals} from "../../../api/cardVisuals";
 import ResizeSensor from "../../../../client/thirdParty/resizeSensor/ResizeSensor";
 import {Cards} from "../../../api/cards";
+import {MarkdeepEditor} from "../../../api/markdeepEditor";
 import "../card.js";
 import "./modal/cancelEdit.js";
 import "./modal/learningUnit.js";
@@ -63,7 +64,7 @@ Template.editor.onRendered(function () {
 	} else {
 		Session.set('mobilePreview', 0);
 	}
-	Session.set('mobilePreviewRotated', 0);
+	Session.set('mobilePreviewRotated', MarkdeepEditor.getDefaultMobilePreviewOrientation());
 });
 
 /*
