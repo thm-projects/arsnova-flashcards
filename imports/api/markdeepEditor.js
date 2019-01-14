@@ -1,6 +1,8 @@
 import {Session} from "meteor/session";
 import {CardVisuals} from "./cardVisuals";
 
+let mobilePreviewPortraitAsDefault = true;
+
 export let MarkdeepEditor = class MarkdeepEditor {
 	static help () {
 		window.open("https://casual-effects.com/markdeep/features.md.html", "_blank");
@@ -35,7 +37,6 @@ export let MarkdeepEditor = class MarkdeepEditor {
 	static changeMobilePreview (forceOff = false) {
 		if (Session.get('mobilePreview') === 1 || forceOff) {
 			Session.set('mobilePreview', 0);
-			Session.set('mobilePreviewRotated', 0);
 		} else {
 			Session.set('mobilePreview', 1);
 		}
@@ -63,5 +64,9 @@ export let MarkdeepEditor = class MarkdeepEditor {
 
 	static toggleFullscreen () {
 		CardVisuals.toggleFullscreen(false, true);
+	}
+
+	static getDefaultMobilePreviewOrientation () {
+		return mobilePreviewPortraitAsDefault;
 	}
 };
