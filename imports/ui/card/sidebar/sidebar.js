@@ -20,6 +20,7 @@ import "./item/edit.js";
 import "./item/pomodoroButton.js";
 import "./item/help.js";
 import "./item/swapQuestionAnswer.js";
+import "./item/presentation.js";
 
 
 /*

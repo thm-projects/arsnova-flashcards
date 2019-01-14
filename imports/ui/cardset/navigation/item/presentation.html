@@ -1,8 +1,7 @@
 <template name="cardsetNavigationPresentation">
     {{#if this.quantity}}
         <div class="btn-group">
-            <button id="startPresentation"
-                    class="btn btn-sm btn-raised presentationBtn" {{disableIfOffline}}><img
+            <button class="btn btn-sm btn-raised presentationBtn startPresentation" {{disableIfOffline}}><img
                     src="/img/projector_white.png" class="projectorIconButton"
                     title="{{_ "presentation.create"}}"> {{_ "presentation.create"}}
             </button>
