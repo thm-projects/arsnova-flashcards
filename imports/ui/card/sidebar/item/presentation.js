@@ -1,15 +1,13 @@
-//------------------------ IMPORTS
-import {Template} from "meteor/templating";
 import "./presentation.html";
 
 /*
  * ############################################################################
- * cardsetNavigationPresentation
+ * cardSidebarItemPresentation
  * ############################################################################
  */
 
-Template.cardsetNavigationPresentation.events({
+Template.cardSidebarItemPresentation.events({
 	"click .startPresentation": function () {
-		Router.go('presentation', {_id: this._id});
+		Router.go('presentation', {_id: Router.current().params._id});
 	}
 });
