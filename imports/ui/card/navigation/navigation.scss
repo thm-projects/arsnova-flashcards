@@ -1,9 +1,10 @@
 .cardNavigation {
-  margin-top: 0;
   display: flex;
   flex-flow: row nowrap;
+  margin-top: $margin_top_card_navigation;
   margin-bottom: $margin_bottom_card_navigation;
   @media(max-width: 767px) {
+    margin-top: $margin_top_card_navigation_mobile;
     margin-bottom: $margin_bottom_card_navigation_mobile;
   }
   padding-left: 0;
