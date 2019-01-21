@@ -28,6 +28,7 @@ Template.cardNavigation.onCreated(function () {
 	if (Session.get('fullscreen') && !Route.isPresentationOrDemo()) {
 		CardVisuals.toggleFullscreen();
 	}
+	CardNavigation.setActiveCardData();
 	CardNavigation.toggleVisibility(true);
 });
 

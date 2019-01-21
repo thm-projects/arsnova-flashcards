@@ -29,6 +29,7 @@
   left: 50%;
 
 }
+
 .mobilePreviewFrame.landscape:before {
   height: 60px;
   width: 5px;
@@ -76,6 +77,7 @@
   position: absolute;
   width: 667px;
   height: 375px;
+
   .cardContent {
     height: 265px;
   }
@@ -85,6 +87,7 @@
   position: absolute;
   width: 375px;
   height: 667px;
+
   .cardContent {
     height: 550px;
   }
@@ -93,10 +96,12 @@
 .mobilePreviewContent {
   .cardContent {
     padding: $padding_card_content_vertical_mobile $padding_card_content_horizontal_mobile !important;
+
     ul, ol {
       padding-left: 20px;
     }
   }
+
   .cardHeaderSmallText {
     font-size: $font_size_card_header_small_text_mobile;
   }
@@ -107,22 +112,27 @@
 
   .cardHeaderLeft {
     padding: ($card_header_padding / 2) 0 0 ($card_header_padding / 2);
+
     .cardHeaderItem {
       margin-right: $card_header_item_margin_horizontal / 2;
     }
+
     line-height: $line_height_card_header_mobile !important;
   }
 
   .cardHeaderCenter {
     padding: ($card_header_padding / 2) ($card_header_padding / 2) 0 ($card_header_padding / 2);
     line-height: $line_height_card_header_mobile !important;
+    white-space: nowrap;
   }
 
   .cardHeaderRight {
     padding: ($card_header_padding / 2) ($card_header_padding / 2) 0 0;
+
     .cardHeaderItem {
       margin-left: $card_header_item_margin_horizontal / 2;
     }
+
     line-height: $line_height_card_header_mobile !important;
   }
 
