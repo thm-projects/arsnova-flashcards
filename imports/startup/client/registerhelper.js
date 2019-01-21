@@ -259,6 +259,10 @@ Template.registerHelper("getCardsetIcons", function (isShuffled) {
 	}
 });
 
+Template.registerHelper("isUseCasesModalOpen", function () {
+	return Session.get('useCasesModalOpen');
+});
+
 Template.registerHelper("getServerInventory", function (type) {
 	return ServerInventoryTools.getServerInventory(type);
 });

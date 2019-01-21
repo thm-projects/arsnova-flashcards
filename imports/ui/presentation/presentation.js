@@ -23,6 +23,7 @@ Session.set('animationPlaying', false);
  */
 
 Template.presentation.onCreated(function () {
+	Session.set('firedUseCaseModal', true);
 	if (Session.get('aspectRatioMode') === 0) {
 		Session.set('aspectRatioMode', AspectRatio.getDefault());
 	}

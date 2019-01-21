@@ -13,7 +13,7 @@ import "./notifications/notifications.js";
 import "./university/university.js";
 import "./settings/settings.js";
 import "../learn/progress.js";
-
+import {Session} from "meteor/session";
 
 Meteor.subscribe("notifications");
 
@@ -78,4 +78,8 @@ Template.admin_main.helpers({
 			return "/admin/user/" + this.link_id;
 		}
 	}
+});
+
+Template.admin_main.onCreated(function () {
+	Session.set('firedUseCaseModal', true);
 });

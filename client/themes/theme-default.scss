@@ -598,6 +598,14 @@
           "wordcloud_background": "unset",
           "wordcloud_border": "unset",
           "wordcloud_hover_box_background":transparent,
-          "wordcloud_hover_box_border": white
+          "wordcloud_hover_box_border": white,
+          //useCases
+          "use_cases_button_background": $thm_green,
+          "use_cases_button_icon": white,
+          "use_cases_button_background_hover": $button_background_hover,
+          "use_cases_button_icon_hover": white,
+          "use_cases_table_header_background": $thm_green,
+          "use_cases_table_header_text": white
+
   );
 }

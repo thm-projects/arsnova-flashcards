@@ -1,3 +1,5 @@
+//can't be modified inside theme-switcher
+$background: rgb(153, 153, 153);
 //bert alert (Doesn't work in theme-switcher)
 
 .bert-alert.warning {
@@ -401,7 +403,7 @@ button {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .filterCardsHeader {
     font-size: 10px;
   }
@@ -715,6 +717,32 @@ th {
   font-style: normal;
 }
 
+#profile-drop {
+  overflow: hidden;
+  text-align: left;
+  min-width: auto;
+  @media(min-width: 768px) {
+    position: absolute;
+  }
+  padding-top: 0;
+  padding-bottom: 0;
+
+  a {
+    text-decoration: none;
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  td {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  td .fa, .glyphicon {
+    margin-left: 5px;
+  }
+}
 
 #arsnovaAppModal, #arsnovaClickModal {
   iframe {
@@ -752,24 +780,8 @@ th {
   }
 }
 
-.modal-content {
-  border-radius: 30px !important;
-}
-
-.no-results, .no-results-filtered {
-  border-radius: 15px;
-}
-
-.swal2-popup {
-  border-radius: 30px !important;
-}
-
 .mobile-websocket-container {
   margin-right: 15px;
-}
-
-.modal {
-  z-index: 3000 !important;
 }
 
 .modal-icon, .modal-icon-white {
@@ -783,6 +795,22 @@ th {
 
 #searchResults .search-result-item:not(:last-child) {
   margin-bottom: $margin_bottom_search_result_item !important;
+}
+
+.modal {
+  z-index: 10000 !important;
+}
+
+.modal-content {
+  border-radius: 30px !important;
+}
+
+.no-results, .no-results-filtered {
+  border-radius: 15px;
+}
+
+.swal2-popup {
+  border-radius: 30px !important;
 }
 
 .cc-theme-edgeless.cc-window {
@@ -817,3 +845,5 @@ blockquote {
   background-color: #2ac55f !important;
   border-radius: 10px !important;
 }
+
+

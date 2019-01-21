@@ -529,6 +529,28 @@
       }
     }
   },
+  "useCases": {
+    "modal": {
+      "title": "Use Cases",
+      "text": "Hello __firstName__, what would you like to do?",
+      "noName": "User",
+      "description": {
+        "create": "I want to create a card index with cards of the type:",
+        "myCardIndex": "I want to see all my card indexes.",
+        "pool": "I want to find a card index on a specific topic.",
+        "repetitorium": "I want to find a Repetitorium (= collection of card indexes) on a specific topic.",
+        "workload": "I want to see my learning workload."
+      },
+      "button": {
+        "cancel": "Thanks, I know my way around",
+        "create": "Go",
+        "myCardIndex": "Go",
+        "pool": "Go",
+        "repetitorium": "Go",
+        "workload": "Go"
+      }
+    }
+  },
   "modal-dialog": {
     "missingFields": "Bitte fülle die folgenden Felder aus",
     "newcarddeck": "Kartei erstellen (Box für Lernkarten)",

@@ -8,6 +8,8 @@ import {Route} from "../../../api/route";
 import {FilterNavigation} from "../../../api/filterNavigation";
 import {firstLoginBertAlert} from "../../../startup/client/routes";
 import {CardType} from "../../../api/cardTypes";
+import {Leitner, Wozniak} from "../../../api/learned";
+import {MainNavigation} from "../../../api/mainNavigation";
 import "./item/cardset.js";
 import "./item/createCardsetButton.js";
 import "./item/createRepetitoriumButton.js";
@@ -20,7 +22,6 @@ import "../modal/deleteWorkload.js";
 import "../modal/deleteCardset.js";
 import "../modal/selectWorkload.js";
 import "./index.html";
-import {Leitner, Wozniak} from "../../../api/learned";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
@@ -66,6 +67,10 @@ Template.filterIndexPool.events({
 
 Template.filterIndexPool.onRendered(function () {
 	firstLoginBertAlert();
+	if (Session.get('useCaseType') === 3) {
+		MainNavigation.focusSearchBar();
+		Session.set('useCaseType', 0);
+	}
 });
 
 /*
@@ -105,6 +110,12 @@ Template.filterIndexCreate.helpers({
 });
 
 
+Template.filterIndexCreate.onRendered(function () {
+	if (Route.isMyCardsets() && Session.get('useCaseType') === 1) {
+		$('#setCardsetFormModal').modal('show');
+	}
+});
+
 Template.filterIndexCreate.onDestroyed(function () {
 	Filter.resetMaxItemCounter();
 });
@@ -138,6 +149,13 @@ Template.filterIndexRepetitorium.helpers({
 	},
 	displayWordcloud: function () {
 		return FilterNavigation.gotDisplayModeButton(FilterNavigation.getRouteId()) && Session.get('filterDisplayWordcloud');
+	}
+});
+
+Template.filterIndexRepetitorium.onRendered(function () {
+	if (Session.get('useCaseType') === 2) {
+		MainNavigation.focusSearchBar();
+		Session.set('useCaseType', 0);
 	}
 });
 

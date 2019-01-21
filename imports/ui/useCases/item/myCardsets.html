@@ -1,0 +1,21 @@
+<template name="useCasesItemMyCardsets">
+    {{#if gotCardIndex}}
+        <tr>
+            <td>
+                {{_ "useCases.modal.description.myCardIndex"}}
+                <div class="visible-xs">
+                    {{> useCasesItemMyCardsetsButton}}
+                </div>
+            </td>
+            <td class="hidden-xs">
+                {{> useCasesItemMyCardsetsButton}}
+            </td>
+        </tr>
+    {{/if}}
+</template>
+
+<template name="useCasesItemMyCardsetsButton">
+    <button class="btn btn-raised btn-success useCaseGoToCardIndex" type="button" data-dismiss="modal"
+            aria-hidden="true">{{_
+            "useCases.modal.button.myCardIndex"}}</button>
+</template>

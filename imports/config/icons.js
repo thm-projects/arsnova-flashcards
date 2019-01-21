@@ -28,7 +28,8 @@ let topNavigation = {
 	profileNotifications: "<i class='fa fa-bell'></i>&nbsp;",
 	profileSettings: "<i class='fa fa-user'></i>&nbsp;",
 	profileRequests: "<i class='fa fa-check'></i>&nbsp;",
-	backend: "<i class='fa fa-server'></i>&nbsp;"
+	backend: "<i class='fa fa-server'></i>&nbsp;",
+	useCases: "<i class='fa fa-map-signs'></i>"
 };
 
 //Only used for the active route display on mobile. Will be carried over to desktop after the main template got refactored.

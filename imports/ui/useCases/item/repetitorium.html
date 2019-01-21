@@ -1,0 +1,21 @@
+<template name="useCasesItemRepetitorium">
+    {{#if gotRepetitorium}}
+        <tr>
+            <td>
+                {{_ "useCases.modal.description.repetitorium"}}
+                <div class="visible-xs">
+                    {{> useCasesItemRepetitoriumButton}}
+                </div>
+            </td>
+            <td class="hidden-xs">
+                {{> useCasesItemRepetitoriumButton}}
+            </td>
+        </tr>
+    {{/if}}
+</template>
+
+<template name="useCasesItemRepetitoriumButton">
+    <button class="btn btn-raised btn-success useCaseGoToRepetitorium" type="button" data-dismiss="modal"
+            aria-hidden="true">{{_
+            "useCases.modal.button.repetitorium"}}</button>
+</template>

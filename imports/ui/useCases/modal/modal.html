@@ -1,0 +1,42 @@
+<template name="useCasesModal">
+    <div class="modal fade" id="useCasesModal" tabindex="-1" role="dialog" aria-labelledby="useCasesTitle">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-icon">
+                        {{{getNavigationName "useCasesIcon"}}}
+                    </span>
+                    {{> mainModalItemCloseIcon}}
+                    <h4 id="useCasesTitle" class="modal-title">{{_ "useCases.modal.title"}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    {{_ "useCases.modal.text" firstName = getFirstName}}
+                                </th>
+                                <th class="hidden-xs">
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{> useCasesItemCreate}}
+                            {{> useCasesItemWorkload}}
+                            {{> useCasesItemMyCardsets}}
+                            {{> useCasesItemPool}}
+                            {{> useCasesItemRepetitorium}}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    {{> useCasesItemCancel}}
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>

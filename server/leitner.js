@@ -183,6 +183,7 @@ function addLeitnerCards(cardset, user_id) {
 			Leitner.batchInsert(newItems);
 		}
 		Meteor.call("updateLearnerCount", cardset._id);
+		Meteor.call('updateWorkloadCount', user_id);
 		return isNewcomer;
 	}
 }
@@ -586,6 +587,7 @@ Meteor.methods({
 				Wozniak.batchInsert(newItems);
 			}
 			Meteor.call("updateLearnerCount", cardset._id);
+			Meteor.call('updateWorkloadCount', user_id);
 			return true;
 		}
 	},

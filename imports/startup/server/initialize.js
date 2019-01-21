@@ -825,6 +825,10 @@ Meteor.startup(function () {
 		Meteor.call('updateCardsetCount', users[i]._id);
 	}
 
+	for (let i = 0; i < users.length; i++) {
+		Meteor.call('updateWorkloadCount', users[i]._id);
+	}
+
 	ColorThemes.remove({});
 	for (let theme in themes) {
 		if (themes.hasOwnProperty(theme)) {

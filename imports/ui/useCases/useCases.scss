@@ -1,0 +1,28 @@
+#useCasesModal {
+  @media(min-width: 768px) and (max-width: 899px) {
+    .dropdown-menu {
+      width: 500px !important;
+    }
+  }
+
+  .btn-group {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  th {
+    font-size: 16px;
+  }
+}
+
+.useCase-Navigation-Button {
+  padding-left: 7px !important;
+  padding-right: 7px !important;
+  margin: 0 !important;
+  font-size: 135% !important;
+  border-radius: 15px !important;
+  @media (min-width: 768px) {
+    margin-left: 5px !important;
+  }
+}
