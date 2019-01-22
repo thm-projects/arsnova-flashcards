@@ -209,7 +209,7 @@ Template.cardSubject.helpers({
 			if (this.subject) {
 				return this.subject;
 			} else {
-				return CardType.getSubjectPlaceholderText(Session.get('cardType'));
+				return CardType.getSubjectPlaceholderLabel(Session.get('cardType'));
 			}
 		}
 	},

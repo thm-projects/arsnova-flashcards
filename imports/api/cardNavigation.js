@@ -172,8 +172,14 @@ export let CardNavigation = class CardNavigation {
 			localStorage.setItem(lastActiveCardString, JSON.stringify(lastActiveCard));
 		}
 		let cardset_id;
-		if (Session.get('activeCard') === -1) {
-			Session.set('activeCardsetName', Cardsets.findOne({_id: Router.current().params._id}).name);
+		if (Session.get('activeCard') === -1 || Session.get('activeCard') === undefined) {
+			if (Route.isDemo()) {
+				Session.set('activeCardsetName', Cardsets.findOne({name: "DemoCardset", shuffled: true}).name);
+			} else if (Route.isMakingOf()) {
+				Session.set('activeCardsetName', Cardsets.findOne({name: "MakingOfCardset", shuffled: true}).name);
+			} else {
+				Session.set('activeCardsetName', Cardsets.findOne({_id: Router.current().params._id}).name);
+			}
 		} else {
 			cardset_id = Cards.findOne({_id: Session.get('activeCard')}).cardset_id;
 			Session.set('activeCardsetName', Cardsets.findOne({_id: cardset_id}).name);

@@ -610,6 +610,11 @@ export let CardType = class CardType {
 		}
 	}
 
+
+	static getSubjectPlaceholderLabel (cardType = -1) {
+		return TAPi18n.__('card.cardType' + cardType + '.editorLabels.subject');
+	}
+
 	static getSubjectPlaceholderText (cardType = -1) {
 		return TAPi18n.__('card.cardType' + cardType + '.placeholders.subject');
 	}
