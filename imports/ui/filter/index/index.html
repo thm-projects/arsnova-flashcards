@@ -126,7 +126,7 @@
             {{#if canCreateContent}}
                 <button id="newRepetitorium" type="button"
                         class="btn btn-raised btn-success saveSet hidden-xs" {{disableIfOffline}} {{disableIfShuffle}}>
-                    <i class="fa fa-archive"></i> <i class="fa fa-archive"></i> <i class="fa fa-archive"></i> {{_ "set-list.shuffleCardsets"}}
+                    <i class="fa fa-archive"></i> <i class="fa fa-archive"></i> <i class="fa fa-archive"></i> <i class="fa fa-ellipsis-h"></i> {{_ "set-list.shuffleCardsets"}}
                 </button>
             {{else}}
                 <div class="empty-button-placeholder"></div>
@@ -157,7 +157,7 @@
     {{> cardsetsConfirmLearnForm}}
     <div id="learn-list-region" class="container">
         <a id="browseCardset" class="btn btn-raised btn-success"><i class="fa fa-archive"></i> {{_ "set-list-learn-empty.browseCardset"}}</a>
-        <a id="browseShuffledCardset" class="btn btn-raised btn-success"><i class="fa fa-archive"></i> <i class="fa fa-archive"></i> <i class="fa fa-archive"></i> {{_ "set-list-learn-empty.browseCourse"}}</a>
+        <a id="browseShuffledCardset" class="btn btn-raised btn-success"><i class="fa fa-archive"></i> <i class="fa fa-archive"></i> <i class="fa fa-archive"></i>  <i class="fa fa-ellipsis-h"></i> {{_ "set-list-learn-empty.browseCourse"}}</a>
         {{#if learnList 0}}
             {{> filterNavigation}}
             {{#if learnList 1}}
