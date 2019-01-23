@@ -116,7 +116,7 @@ export let CardVisuals = class CardVisuals {
 					if (!Session.get('fullscreen') && $(window).width() > 1200 && Session.get('mobilePreviewRotated')) {
 						newFlashcardSize += 25;
 						flashcard.css('height', newFlashcardSize);
-						flashcardBody.css('height', newFlashcardSize * flashcardBodyHeight);
+						flashcardBody.css('height', newFlashcardSize - flashcardHeaderHeight);
 						newFlashcardSize += $('.mobilePreviewContent .cardNavigation').height() + 22;
 						$('.mobilePreviewContent').css('height', newFlashcardSize);
 						$('.mobilePreviewFrame').css('height', newFlashcardSize + (parseInt($('.mobilePreviewFrame').css('border-top-width'), 10) * 2));
