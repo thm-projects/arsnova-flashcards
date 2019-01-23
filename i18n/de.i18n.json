@@ -398,7 +398,7 @@
     "cardsetInfo": "Über diese __type__ Kartei",
     "cardsetInfoRepetitorium": "Über dieses Repetitorium",
     "cardsetInfoStatic": "Über diese Kartei",
-    "shuffleCardsets": "Repetitorium erstellen",
+    "shuffleCardsets": "Repetitorium anlegen (Sammlung von Karteien)",
     "shuffle": "Auswahl speichern",
     "shuffleInfoTextNew": "Erstell dir ein Repetitorium durch Hinzufügen von Karteien mit dem Plus-Button.",
     "shuffleInfoTextEdit": "Inhalt des Repetitoriums erweitern oder einschränken",
@@ -427,7 +427,7 @@
   "set-list-empty": {
     "emptytextlist": "Du hast noch keine Kartei erstellt. Informiere dich unter »Hilfe«, was du mit einer eigenen Kartei tun kannst.",
     "emptypooltextlist": "Keine Kartei vorhanden",
-    "newset": "Kartei anlegen"
+    "newset": "Kartei anlegen (Box für Karten)"
   },
   "set-list-learn-empty": {
     "emptytextlist": "Zum Lernen wähle ein Thema aus dem Themen-Pool oder die Karteien eines Repetitoriums.",
@@ -458,7 +458,7 @@
   },
   "modal-dialog": {
     "missingFields": "Bitte fülle die folgenden Felder aus",
-    "newcarddeck": "Kartei anlegen",
+    "newcarddeck": "Kartei anlegen (Box für Karten)",
     "editcard": "Einstellungen",
     "adminEditCardset": "Admin-Einstellungen",
     "editreferences": "Repetitorium zusammenstellen",
@@ -976,7 +976,7 @@
         "content4": "Erläutere hier den Lerngegenstand! \n\nStelle den Lerngegenstand strukturiert und anschaulich dar. Deine Darstellung sollte wie eine gut gemachte Vorlesungsfolie aussehen."
       },
       "editorLabels": {
-        "subject": "Was soll gelernt werden? (kurz gefasstes Lernziel)"
+        "subject": "Lernziel"
       }
     },
     "cardType1": {
@@ -990,7 +990,7 @@
         "content2": "Du kannst Vokabelkarten in beide Richtungen lernen: Sprache A ⇔ Sprache B. Zur Kontrolle schau dir die Rückübersetzung von »DeepL« an (Tab-Taste drücken)."
       },
       "editorLabels": {
-        "subject": "Thema oder Sprachsituation"
+        "subject": "Thema"
       }
     },
     "cardType2": {
@@ -1006,7 +1006,7 @@
         "content3": "Notiere hier, was du in der Veranstaltung nicht verstanden hast, und kläre die offenen Fragen in der Nachbereitungsphase. \n\nSchreibe die offenen Fragen und Hausaufgaben als »Task-Liste« auf! \n\n[] To-do 1 \n  [] To-do 2 \n  [] To-do … \n\nSetze ein »x« in die eckigen Klammern, wenn du die Aufgabe erledigt hast."
       },
       "editorLabels": {
-        "subject": "Thema der Unterrichtsstunde"
+        "subject": "Thema"
       }
     },
     "cardType3": {
@@ -1038,7 +1038,7 @@
         "content3": "Quellenangabe"
       },
       "editorLabels": {
-        "subject": "Thema des Zitats"
+        "subject": "Thema"
       }
     },
     "cardType5": {
@@ -1054,7 +1054,7 @@
         "content3": "Begründung oder Erläuterung der Antwort"
       },
       "editorLabels": {
-        "subject": "Zu prüfendes Kompetenzziel"
+        "subject": "Kompetenzziel"
       }
     },
     "cardType6": {
@@ -1070,7 +1070,7 @@
         "content3": "Gib die Quelle an oder verlinke auf die Online-API der Anweisung!"
       },
       "editorLabels": {
-        "subject": "Anwendungskontext der Anweisung"
+        "subject": "Anwendungskontext"
       }
     },
     "cardType7": {
@@ -1106,7 +1106,7 @@
       "longName": "To-dos: 1 Seite",
       "content1": "To-dos",
       "placeholders": {
-        "subject": "Gib das Thema oder Datum der To-dos an !",
+        "subject": "Gib das Thema oder das Datum der To-dos an !",
         "content1": "Diese Karte ist einseitig für eine Aufgabenliste konzipiert.Es gibt keine Rückseite."
       },
       "editorLabels": {
@@ -1124,7 +1124,7 @@
         "content2": "Wer hat die Rechte am Foto? \n\nUnter welcher Lizenz darf das Foto weitergegeben werden?"
       },
       "editorLabels": {
-        "subject": "Thema des Fotos"
+        "subject": "Thema"
       }
     },
     "cardType11": {
@@ -1138,7 +1138,7 @@
         "content2": "Gib hier die richtige Antwort ein!"
       },
       "editorLabels": {
-        "subject": "Thema des Quiz"
+        "subject": "Thema"
       }
     },
     "cardType12": {
@@ -1160,7 +1160,7 @@
         "content6": "Liste hier Links und Literatur zur Vertiefung des Entwurfsmusters auf."
       },
       "editorLabels": {
-        "subject": "Entwurfsmuster"
+        "subject": "Mustername"
       }
     },
     "cardType13": {
@@ -1178,7 +1178,7 @@
         "content4": "Verlinke auf ausführliche Erläuterungen der Formel im Web."
       },
       "editorLabels": {
-        "subject": "Gib das Themengebiet der Formel an !"
+        "subject": "Themengebiet"
       }
     },
     "cardType14": {
@@ -1190,7 +1190,7 @@
         "content1": ""
       },
       "editorLabels": {
-        "subject": "Thema der Folie"
+        "subject": "Thema"
       }
     },
     "cardType15": {
@@ -1204,7 +1204,7 @@
         "content2": ""
       },
       "editorLabels": {
-        "subject": "Thema der Aufgabe"
+        "subject": "Thema"
       }
     },
     "cardType16": {
@@ -1218,7 +1218,7 @@
         "content2": "Maßnahmen, um die Strategie umzusetzen"
       },
       "editorLabels": {
-        "subject": "Strategisches Ziel"
+        "subject": "Ziel"
       }
     },
       "cardType17": {
@@ -1232,7 +1232,7 @@
           "content2": "Rückwärtsfrage B bzw. die Antwort auf die Vorwärtsfrage A \n\n(Beispiel Entwurfsmuster: Rückwärtsfrage B »Welches Entwurfsmuster beschreibt dieses Klassendiagramm?«)"
         },
         "editorLabels": {
-          "subject": "Befragtes Thema"
+          "subject": "Thema"
         }
     },
     "tooltip": {
@@ -1308,7 +1308,7 @@
       "semesterList": "__count__. Semester"
     },
     "modal": {
-      "new": "Repetitorium anlegen (Sammlung mehrerer Karteien)",
+      "new": "Repetitorium anlegen (Sammlung von Karteien)",
       "saveNew": "Repetitorium anlegen",
       "placeholder": {
         "name": "Thema des Repetitoriums in wenigen Worten",
