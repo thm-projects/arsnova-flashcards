@@ -37,10 +37,6 @@
                         <hr/>
                         <h4>{{_ "upload-form.upload-type"}}</h4>
                         <p>{{_ "upload-form.popover-content"}}</p>
-                        <a role='button' target='_blank' class='btn btn-default'
-                           href='/examples/example.json'>JSON</a>
-                        <a role='button' target='_blank' class='btn btn-default'
-                           href='/examples/example.csv.txt'>CSV</a>
                     {{/if}}
                     <hr/>
                 </div>
@@ -50,7 +46,7 @@
                                 data-dismiss="modal">{{_
                                 "modal-dialog.cancel"}}</button>
                         <span class="btn btn-success btn-file btn-raised col-xs-12 col-sm-4 pull-right">
-							{{_ "upload-form.select-file"}}<input type="file" name="uploadFile">
+							{{_ "upload-form.select-file"}}<input type="file" accept=".json" name="uploadFile">
 					  </span>
                     {{else}}
                         <p><i class="fa fa-spin fa-refresh"></i>{{_ "upload-form.wait"}}</p>

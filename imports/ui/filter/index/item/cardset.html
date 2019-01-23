@@ -191,11 +191,13 @@
                     {{/if}}
                 {{/unless}}
                 {{#if isActiveRoute regex="alldecks|create"}}
-                    {{#unless this.shuffled}}
-                        <a class="resultNavigationElement exportCardset" data-id="{{this._id}}"
-                           data-name="{{this.name}}" title='{{_ "admin.cardset.export"}}'><i
-                                class="result fa fa-cloud-download" data-id="{{this._id}}"
-                                data-name="{{this.name}}"></i></a>
+                    {{#unless isIOS}}
+                        {{#unless this.shuffled}}
+                            <a class="resultNavigationElement exportCardset" data-id="{{this._id}}"
+                               data-name="{{this.name}}" title='{{_ "admin.cardset.export"}}'><i
+                                    class="result fa fa-cloud-download" data-id="{{this._id}}"
+                                    data-name="{{this.name}}"></i></a>
+                        {{/unless}}
                     {{/unless}}
                 {{/if}}
                 {{#if isActiveRoute regex="learn"}}

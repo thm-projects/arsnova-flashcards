@@ -293,7 +293,7 @@
     "newcarddeck": "Neue Kartei"
   },
   "upload-form": {
-    "popover-content": "Unterstützt werden die Dateiformate JSON und CSV (Excel, kommagetrennt). Die folgenden Links zeigen die erforderliche Dateistruktur:",
+    "popover-content": "Unterstützt wird das Dateiformat JSON.",
     "upload-title": "Karten importieren",
     "upload-card-title-placeholder": "Mnemosyne Import",
     "upload-type": "Dateiformat",
@@ -1801,7 +1801,11 @@
       "cardset": "Kartei wurde importiert",
       "cards": "Karten wurden importiert"
     },
-    "failure": "Fehlerhafte Dateistruktur"
+    "failure": "Fehlerhafte Dateistruktur",
+    "wrongFormat": {
+      "cardset": "Es wird nur das Dateiformat JSON unterstützt",
+      "cards": "Es wird nur das Dateiformat JSON unterstützt"
+    }
   },
   "export": {
     "failure": {
