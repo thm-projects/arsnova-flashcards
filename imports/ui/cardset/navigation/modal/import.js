@@ -71,25 +71,9 @@ Template.cardsetImportForm.events({
 					}
 				};
 				reader.readAsText(evt.target.files[0]);
-			} else if (evt.target.files[0].name.match(/\.(csv)$/)) {
-				Papa.parse(evt.target.files[0], {
-					header: true,
-					complete: function (results) {
-						Meteor.call('importCards', results.data, cardset_id, Number(importType), function (error) {
-							if (error) {
-								tmpl.uploading.set(false);
-								BertAlertVisuals.displayBertAlert(TAPi18n.__('import.failure'), 'danger', 'growl-top-left');
-							} else {
-								tmpl.uploading.set(false);
-								BertAlertVisuals.displayBertAlert(TAPi18n.__('import.success.cards'), 'success', 'growl-top-left');
-								$('#importModal').modal('toggle');
-							}
-						});
-					}
-				});
 			} else {
 				tmpl.uploading.set(false);
-				$('#uploadError').html('<br><div class="alert alert-danger" role="alert">' + TAPi18n.__('upload-form.wrong-file') + '</div>');
+				BertAlertVisuals.displayBertAlert(TAPi18n.__('import.wrongFormat.cards'), 'danger', 'growl-top-left');
 			}
 		} else {
 			tmpl.uploading.set(false);

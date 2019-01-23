@@ -123,6 +123,9 @@ Template.filterIndexCreate.events({
 						res = $.parseJSON('[' + this.result + ']');
 					}
 					let isCardset = true;
+					if (res[0] === undefined) {
+						BertAlertVisuals.displayBertAlert(TAPi18n.__('import.failure'), 'danger', 'growl-top-left');
+					}
 					if (!res[0].name) {
 						Session.set('importCards', res);
 						$("#newCardSet").click();
@@ -143,6 +146,8 @@ Template.filterIndexCreate.events({
 					}
 				};
 				reader.readAsText(evt.target.files[0]);
+			} else {
+				BertAlertVisuals.displayBertAlert(TAPi18n.__('import.wrongFormat.cardset'), 'danger', 'growl-top-left');
 			}
 		}
 	}
