@@ -432,7 +432,7 @@
   "set-list-learn-empty": {
     "emptytextlist": "Zum Lernen wähle ein Thema aus dem Themen-Pool oder die Karteien eines Repetitoriums.",
     "emptytextlistNoShuffle": "Wähle eine einzelne Kartei aus dem Themen-Pool aus oder die Karteien eines Repetitoriums.",
-    "browseCardset": "Thema auswählen",
+    "browseCardset": "Kartei auswählen",
     "browseCourse": "Repetitorium auswählen"
   },
   "modal-admin-dialog": {
@@ -1033,7 +1033,7 @@
       "content3": "Quellenangabe",
       "placeholders": {
         "subject": "Gib das Thema des Zitats an !",
-        "content1": "Setze ein wörtliches Zitat in Anführungszeichen, siehe »Formatiere den Text mit Markdeep«.",
+        "content1": "Setze ein wörtliches Zitat in Anführungszeichen, siehe »Textformatierung«.",
         "content2": "Zitierte Person",
         "content3": "Quellenangabe"
       },
@@ -1769,7 +1769,7 @@
   },
   "markdeep": {
     "editor": {
-      "help": "Formatiere den Text mit »Markdeep«",
+      "help": "Textformatierung",
       "translate": "Übersetze die Eingabe  mit »DeepL«"
     }
   },
