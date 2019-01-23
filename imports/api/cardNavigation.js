@@ -158,10 +158,10 @@ export let CardNavigation = class CardNavigation {
 		});
 	}
 
-	static setActiveCardData (_id = undefined) {
+	static setActiveCardData (_id = undefined, onlyUpdateCardset = false) {
 		if (_id !== undefined) {
 			Session.set('activeCard', _id);
-		} else {
+		} else if (!onlyUpdateCardset) {
 			Session.set('activeCard', $(".item.active").data('id'));
 		}
 		if (Route.isPresentation() || Route.isCardset()) {
