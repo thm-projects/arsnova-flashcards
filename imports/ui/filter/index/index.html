@@ -91,10 +91,14 @@
                     class="btn btn-raised btn-success saveSet" {{disableIfOffline}} {{disableIfShuffle}}>
                 {{_ "set-list-empty.newset"}}
             </button>
-            <label class="btn btn-raised btn-import btn-success {{disableIfOffline}}">
-                {{_ "import.cardset"}} <input type="{{#if isProfileComplete}}file{{else}}button{{/if}}" id="{{#if
-                    isProfileComplete}}importCardset{{else}}importCardsetCompleteProfile{{/if}}" style="display: none;">
-            </label>
+            {{#unless isIOS}}
+                <label class="btn btn-raised btn-import btn-success {{disableIfOffline}}">
+                    {{_ "import.cardset"}} <input type="{{#if isProfileComplete}}file{{else}}button{{/if}}"
+                                                  accept=".json" id="{{#if
+                        isProfileComplete}}importCardset{{else}}importCardsetCompleteProfile{{/if}}"
+                                                  style="display: none;">
+                </label>
+            {{/unless}}
         {{/if}}
         {{#if cardsetList 0}}
             {{> filterNavigation}}
