@@ -432,7 +432,7 @@
   "set-list-learn-empty": {
     "emptytextlist": "Zum Lernen wähle ein Thema aus dem Themen-Pool oder die Karteien eines Repetitoriums.",
     "emptytextlistNoShuffle": "Wähle eine einzelne Kartei aus dem Themen-Pool aus oder die Karteien eines Repetitoriums.",
-    "browseCardset": "Thema auswählen",
+    "browseCardset": "Kartei auswählen",
     "browseCourse": "Repetitorium auswählen"
   },
   "modal-admin-dialog": {
