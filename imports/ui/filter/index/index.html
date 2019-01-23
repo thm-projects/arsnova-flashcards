@@ -93,7 +93,7 @@
             </button>
             {{#unless isIOS}}
                 <label class="btn btn-raised btn-import btn-success {{disableIfOffline}}">
-                    {{_ "import.cardset"}} <input type="{{#if isProfileComplete}}file{{else}}button{{/if}}"
+                    <i class="fa fa-cloud-upload"></i> {{_ "import.cardset"}} <input type="{{#if isProfileComplete}}file{{else}}button{{/if}}"
                                                   accept=".json" id="{{#if
                         isProfileComplete}}importCardset{{else}}importCardsetCompleteProfile{{/if}}"
                                                   style="display: none;">
