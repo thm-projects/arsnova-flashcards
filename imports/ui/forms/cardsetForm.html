@@ -5,6 +5,7 @@
             <div class="modal-content">
                 {{#unless isActiveRoute 'admin_cardset'}}
                     <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 id="setCardsetFormModalTitle" class="modal-title">
                             {{#if isNew}}
                                 {{#if isShuffleRoute}}
@@ -15,7 +16,6 @@
                             {{else}}
                                 {{_ "modal-dialog.editcard"}}
                             {{/if}}
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </h4>
                     </div>
                 {{/unless}}
@@ -31,13 +31,13 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 id="setCardsetFormAdminModalTitle" class="modal-title">
                         {{#if isActiveRoute regex='alldecks'}}
                             {{_ "modal-admin-dialog.cardsetTitle" cardset=getCardsetName}}
                         {{else}}
                             {{_ "modal-admin-dialog.repetitoriumTitle" cardset=getCardsetName}}
                         {{/if}}
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </h4>
                 </div>
                 <div class="modal-body">
