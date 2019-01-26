@@ -971,7 +971,7 @@ export function firstLoginBertAlert() {
 					message: TAPi18n.__('bertAlert.firstLogin.message', {lastAppTitle: Meteor.settings.public.welcome.title.last}),
 					type: 'info',
 					style: 'growl-top-left',
-					icon: 'fa-comment'
+					icon: 'fa-remove'
 				});
 				Bert.defaults.hideDelay = 7;
 				localStorage.setItem(firstTimeLogin, "false");
