@@ -632,7 +632,7 @@
     "givenname-desc": "Vorname (öffentlich)",
     "login": "Du bist angemeldet über: ",
     "email": "E-Mail",
-    "email-desc": "für Erinnerungs-Nachrichten erforderlich (nicht öffentlich)",
+    "email-desc": "für den Erinnerungsdienst erforderlich (nicht öffentlich)",
     "emailValidation": "E-Mail bestätigen",
     "emailValidation-desc": "E-Mail-Adresse wiederholen",
     "emailValidationError": "E-Mail-Adressen stimmen nicht überein",
@@ -1881,10 +1881,10 @@
   "sweetAlert": {
     "completeProfile": {
       "title": "Profil unvollständig",
-      "text": "Dein Benutzerprofil ist noch unvollständig. Fülle in den Kontoeinstellungen die Felder für Vorname, Nachname und E-Mail aus. Versuche es dann noch einmal.",
+      "text": "Gib deinen Vornamen, Nachnamen und deine E-Mail-Adresse an. <br>Versuche es dann noch einmal. <br><br>Die Angaben werden für den Erinnerungsdienst von \uD83C\uDF45cards benötigt, siehe unter »Hilfe« → »FAQ 3«.",
       "button": {
-        "confirm": "Konto",
-        "cancel": "Schließen"
+        "confirm": "Zum Profil",
+        "cancel": "Abbrechen"
       }
     },
     "presentation": {
