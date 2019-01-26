@@ -4,15 +4,17 @@
         <div class="modal-dialog">
             <div class="modal-content modal-content-for-buttons">
                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 id="resetLeitnerTitle" class="modal-title">{{_ "resetLearnfile"}}
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </h4>
                 </div>
                 <div class="modal-body">
                     {{_ "modal-dialog.resetLeitner" name= this.name }}
-                    <button id="resetLeitnerConfirm" class="btn btn-raised btn-danger btn-block col-xs-12 col-sm-3">{{_
+                </div>
+                <div class="modal-footer">
+                    <button id="resetLeitnerConfirm" class="btn btn-raised btn-danger pull-right">{{_
                             "reset"}}</button>
-                    <button id="resetLeitnerCancel" class="btn btn-raised btn-default btn-block col-xs-12 col-sm-3"
+                    <button id="resetLeitnerCancel" class="btn btn-raised btn-default pull-left"
                             data-dismiss="modal">{{_
                             "modal-dialog.cancel"}}</button>
                 </div>

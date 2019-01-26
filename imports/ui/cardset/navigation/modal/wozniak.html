@@ -4,15 +4,17 @@
         <div class="modal-dialog">
             <div class="modal-content modal-content-for-buttons">
                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 id="resetMemoTitle" class="modal-title">{{_ "resetWozniak"}}
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </h4>
                 </div>
                 <div class="modal-body">
                     {{_ "modal-dialog.resetWozniak" name= this.name }}
-                    <button id="resetMemoConfirm" class="btn btn-raised btn-danger btn-block col-xs-12 col-sm-3">{{_
+                </div>
+                <div class="modal-footer">
+                    <button id="resetMemoConfirm" class="btn btn-raised btn-danger pull-right">{{_
                             "reset"}}</button>
-                    <button id="resetMemoCancel" class="btn btn-raised btn-default btn-block col-xs-12 col-sm-3"
+                    <button id="resetMemoCancel" class="btn btn-raised btn-default pull-left"
                             data-dismiss="modal">{{_
                             "modal-dialog.cancel"}}</button>
                 </div>

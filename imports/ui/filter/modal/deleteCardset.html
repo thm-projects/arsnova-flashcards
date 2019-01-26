@@ -4,18 +4,21 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 id="confirmDeleteCardsetModalTitle" class="modal-title">{{_
                             "cardset.confirm-form-delete.title"}}
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </h4>
                 </div>
                 <div class="modal-body">
                     <p>{{_ "cardset.confirm-form-delete.text"}}</p>
                     <hr/>
+
+                </div>
+                <div class="modal-footer">
                     <button id="deleteCardset"
-                            class="btn btn-danger btn-raised btn-setDelete" {{disableIfOffline}}>{{_
+                            class="btn btn-danger btn-raised btn-setDelete pull-right" {{disableIfOffline}}>{{_
                             "cardset.confirm-form-delete.title"}}</button>
-                    <button id="cancelDelete" class="btn btn-raised pull-right" data-dismiss="modal">{{_
+                    <button id="cancelDelete" class="btn btn-raised pull-left" data-dismiss="modal">{{_
                             "modal-dialog.cancel"}}</button>
                 </div>
             </div>
