@@ -37,7 +37,7 @@
             {{selectedForLearning}}
         {{/unless}}
         {{#if isActiveRoute regex='cardsetdetailsid|cardsetcard'}}
-            {{#unless isInBonusAndNotOwner}}
+            {{#if isCardsetOwner this._id}}
                 {{#if this.quantity}}
                     <div class="hidden-xs col-xs-12">
                         {{> cardNavigation}}
@@ -46,7 +46,7 @@
                         {{> flashcards cardset=this}}
                     </div>
                 {{/if}}
-            {{/unless}}
+            {{/if}}
         {{/if}}
         {{#if isActiveRoute 'cardsetlistid'}}
             <div class="col-xs-12">
@@ -55,15 +55,6 @@
                     <span class="pull-left"><i class="fa fa-arrow-left"></i> {{_ "cardset.list.back"}}</span>
                 </button>
                 {{> cardsetList}}
-            </div>
-        {{/if}}
-    {{else}}
-        {{#if this.quantity}}
-            <div class="col-xs-12">
-                {{> cardNavigation}}
-            </div>
-            <div class="col-xs-12">
-                {{> flashcards cardset=this}}
             </div>
         {{/if}}
     {{/if}}
