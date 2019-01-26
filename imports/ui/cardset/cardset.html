@@ -33,9 +33,7 @@
         {{> profileIncompleteModal}}
     {{/unless}}
     {{#if hasCardsetPermission}}
-        {{#unless learningActiveAndEditor}}
-            {{selectedForLearning}}
-        {{/unless}}
+        {{selectedForLearning}}
         {{#if isActiveRoute regex='cardsetdetailsid|cardsetcard'}}
             {{#if isCardsetOwner this._id}}
                 {{#if this.quantity}}

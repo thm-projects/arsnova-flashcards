@@ -1,5 +1,6 @@
 <template name="filterIndex">
     {{> showLicense}}
+    {{> filterItemSelectCardsetToLearnCallout}}
     {{#if isActiveRoute regex='alldecks|repetitorium'}}
         {{> cardsetFormAdmin}}
     {{/if}}
@@ -16,6 +17,8 @@
     {{/if}}
 
     {{#if isActiveRoute 'learn'}}
+        {{> selectModeForm}}
+        {{> cardsetsConfirmLearnForm}}
         {{> filterIndexWorkload}}
     {{/if}}
 
@@ -25,11 +28,13 @@
     {{/if}}
 
     {{#if isActiveRoute 'pool'}}
+        {{> cardsetForm}}
         {{> filterIndexPool}}
     {{/if}}
 </template>
 
 <template name="filterIndexPool">
+    {{> filterItemCreateCardsetButton}}
     {{#if getDecks 0}}
         {{> filterNavigation}}
         {{#if displayWordcloud}}
@@ -52,23 +57,7 @@
 <template name="filterIndexShuffle">
     {{#if canShuffle}}
         <div class="container" id="set-list-region">
-            <div class="bs-callout bs-callout-info selectionInfo">
-                {{#if gotShuffledCards}}
-                    <button href="#" id="updateShuffledCardset" class="btn btn-raised btn-success"
-                            role="button" {{disableIfOffline}}>{{_
-                            "set-list.shuffle"}}</button>
-                {{/if}}
-                <button id="cancelUpdateShuffle" class="btn btn-raised btn-danger" role="button">{{_
-                        "declinecard"}}</button>
-                <span class="text">
-                    {{_ "set-list.shuffleInfoTextEdit"}}
-                </span>
-                {{#if displayRemoveButton}}
-                    <button href="#" id="removeShuffledCards" class="btn btn-raised btn-danger"
-                            role="button" {{disableIfOffline}}>{{_
-                            "set-list.shuffleRemove"}}</button>
-                {{/if}}
-            </div>
+            {{> filterItemShuffleRepetitoriumCallout}}
             {{> filterNavigation}}
             {{#if shuffleList 1}}
                 {{#each shuffleList 2}}
@@ -87,18 +76,8 @@
 <template name="filterIndexCreate">
     <div class="container" id="set-list-region">
         {{#if isActiveRoute 'create'}}
-            <button id="newCardSet" type="button"
-                    class="btn btn-raised btn-success saveSet" {{disableIfOffline}} {{disableIfShuffle}}>
-                <i class="fa fa-cog fa-spin"></i><i class="fa fa-archive"></i> {{_ "set-list-empty.newset"}}
-            </button>
-            {{#unless isIOS}}
-                <label class="btn btn-raised btn-import btn-success {{disableIfOffline}}">
-                    <i class="fa fa-archive"></i> <i class="fa fa-cloud-upload"></i> {{_ "import.cardset"}} <input type="{{#if isProfileComplete}}file{{else}}button{{/if}}"
-                                                  accept=".json" id="{{#if
-                        isProfileComplete}}importCardset{{else}}importCardsetCompleteProfile{{/if}}"
-                                                  style="display: none;">
-                </label>
-            {{/unless}}
+            {{> filterItemCreateCardsetButton}}
+            {{> filterItemImportCardsetButton}}
         {{/if}}
         {{#if cardsetList 0}}
             {{> filterNavigation}}
@@ -122,16 +101,7 @@
 
 <template name="filterIndexRepetitorium">
     <div class="container" id="set-list-region">
-        {{#unless selectingCardsetToLearn}}
-            {{#if canCreateContent}}
-                <button id="newRepetitorium" type="button"
-                        class="btn btn-raised btn-success saveSet hidden-xs" {{disableIfOffline}} {{disableIfShuffle}}>
-                    <i class="fa fa-cog fa-spin"></i><i class="fa fa-archive"></i> <i class="fa fa-archive"></i> <i class="fa fa-archive"></i> <i class="fa fa-ellipsis-h"></i> {{_ "set-list.shuffleCardsets"}}
-                </button>
-            {{else}}
-                <div class="empty-button-placeholder"></div>
-            {{/if}}
-        {{/unless}}
+        {{> filterItemCreateRepetitoriumButton}}
         {{#if cardsetList 0}}
             {{> filterNavigation}}
             {{#if displayWordcloud}}
@@ -153,11 +123,9 @@
 </template>
 
 <template name="filterIndexWorkload">
-    {{> selectModeForm}}
-    {{> cardsetsConfirmLearnForm}}
     <div id="learn-list-region" class="container">
-        <a id="browseCardset" class="btn btn-raised btn-success"><i class="fa fa-archive"></i> {{_ "set-list-learn-empty.browseCardset"}}</a>
-        <a id="browseShuffledCardset" class="btn btn-raised btn-success"><i class="fa fa-archive"></i> <i class="fa fa-archive"></i> <i class="fa fa-archive"></i>  <i class="fa fa-ellipsis-h"></i> {{_ "set-list-learn-empty.browseCourse"}}</a>
+        {{> filterItemSelectCardsetButton}}
+        {{> filterItemSelectRepetitoriumButton}}
         {{#if learnList 0}}
             {{> filterNavigation}}
             {{#if learnList 1}}

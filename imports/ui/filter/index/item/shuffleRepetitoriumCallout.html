@@ -1,0 +1,19 @@
+<template name="filterItemShuffleRepetitoriumCallout">
+    <div class="bs-callout bs-callout-info selectionInfo">
+        {{#if gotShuffledCards}}
+            <button href="#" id="updateShuffledCardset" class="btn btn-raised btn-success"
+                    role="button" {{disableIfOffline}}>{{_
+                    "set-list.shuffle"}}</button>
+        {{/if}}
+        <button id="cancelUpdateShuffle" class="btn btn-raised btn-danger" role="button">{{_
+                "declinecard"}}</button>
+        <span class="text">
+            {{_ "set-list.shuffleInfoTextEdit"}}
+        </span>
+        {{#if displayRemoveButton}}
+            <button href="#" id="removeShuffledCards" class="btn btn-raised btn-danger"
+                    role="button" {{disableIfOffline}}>{{_
+                    "set-list.shuffleRemove"}}</button>
+        {{/if}}
+    </div>
+</template>
