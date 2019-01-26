@@ -50,9 +50,6 @@ Template.filterNavigation.helpers({
 	},
 	gotKindFilter: function () {
 		return FilterNavigation.gotKindFilter(FilterNavigation.getRouteId());
-	},
-	selectingCardsetToLearn: function () {
-		return Session.get('selectingCardsetToLearn');
 	}
 });
 

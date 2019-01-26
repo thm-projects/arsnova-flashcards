@@ -1,21 +1,6 @@
 <template name="filterNavigation">
     <div class="buttonHeader">
-        {{#if isSelectingCardsetToLearn}}
-            <div class="bs-callout bs-callout-info selectionInfo">
-                <a id="cancelSelection" class="btn btn-raised btn-danger">
-                    {{_ "confirmLearn-form.cancel"}}
-                </a>
-                <span class="text">
-                    {{#if isActiveRoute regex='pool'}}
-                        {{_ "pool.selectCardToLearn"}}
-                    {{else}}
-                        {{_ "pool.selectShuffledCardsetToLearn"}}
-                    {{/if}}
-                </span>
-            </div>
-            <br>
-        {{/if}}
-        <nav class="navbar navbar-default {{#if isActiveRoute regex='pool|alldecks'}}{{#unless
+        <nav class="navbar navbar-default {{#if isActiveRoute regex='alldecks'}}{{#unless
                 isSelectingCardsetToLearn}}no-navigation{{/unless}}{{/if}}">
             <div class="container-fluid" id="filter-nav-wrapper">
                 <div class="navbar-header">
