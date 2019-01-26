@@ -310,8 +310,8 @@
     "text": "Willst du diese Karte wirklich löschen?"
   },
   "confirm-form-learn": {
-    "title": "Kartei verlassen",
-    "text": "Willst du diese Kartei wirklich verlassen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diese Kartei gelöscht."
+    "title": "Aus dem Lernpensum entfernen",
+    "text": "Willst du diese Kartei wirklich aus deinem Lernpensum nehmen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diese Kartei gelöscht."
   },
   "confirm-enter-learnphase": {
     "title": "Lernphase mit Bonusvergabe beitreten",
@@ -326,9 +326,9 @@
     "text": "Willst du die Lernphase wirklich verlassen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diese Kartei gelöscht."
   },
   "confirm-leave-cardset": {
-    "btn-txt": "Kartei verlassen",
-    "title": "Kartei verlassen",
-    "text": "Willst du diesen Kartei verlassen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diese Kartei gelöscht."
+    "btn-txt": "Aus dem Lernpensum nehmen",
+    "title": "Aus dem Lernpensum nehmen",
+    "text": "Willst du diese Kartei aus deinem Lernpensum nehmen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diese Kartei gelöscht."
   },
   "confirm-leave-editors": {
     "btn-txt": "Bearbeitergruppe verlassen",
@@ -960,7 +960,7 @@
   },
   "card": {
     "navigationDisabled": "Karte wird gewechselt…",
-    "chooseCardType": "Wähle den Zweck deiner Kartei aus…",
+    "chooseCardType": "Wähle den Karteityp aus…",
     "cardType0": {
       "name": "Lerneinheit",
       "longName": "Lerneinheit: Lernziel | Vertiefung | Fazit | Literatur",
@@ -1749,7 +1749,7 @@
     "textReset": "wegen Inaktivität wurde deine Lernstatistik zurückgesetzt. ",
     "newCards1": "Der Wiederholungs-Algorithmus hat berechnet, dass ",
     "service": "Antworte nicht auf diese Mail, sie wurde automatisch erstellt. Du erhältst den Newsletter, weil du dich eingeschrieben hast auf ",
-    "unsubscribe": "Nicht mehr interessiert? Verlasse die Kartei, auf die sich der Newsletter bezieht: Klick oben auf den Button »Zur Kartei…« und im Portal auf den Button »Kartei verlassen«. Wenn die Bonus-Option aktiviert wurde, findest du den Button zum Abmelden im Drop-down-Menü »Über die Bonus-Lernphase«. Willst du alle Newsletter abbestellen? Deaktiviere den Erinnerungsdienst in deinem Konto. Willst du deine Mitgliedschaft beenden? Lösche dein Konto unter »Profil & Konto«.",
+    "unsubscribe": "Nicht mehr interessiert? Entferne die Kartei aus deinem Lernpensum: Gehe auf die Seite »Lernpensum« und klicke auf das entsprechende Icon unter »Optionen«. Wenn die Bonus-Option aktiviert wurde, findest du den Button zum Abmelden im Drop-down-Menü »Über die Bonus-Lernphase«. Willst du alle Newsletter abbestellen? Deaktiviere den Erinnerungsdienst in deinem Konto. Willst du deine Mitgliedschaft beenden? Lösche dein Konto unter »Profil & Konto«.",
     "copyright": "Dein 🍅__lastAppTitle__-Lerntutor",
     "my-cardset": "Zur Kartei…",
     "auto-generated": "Antworte nicht auf diese Mail, sie wurde automatisch erstellt."
