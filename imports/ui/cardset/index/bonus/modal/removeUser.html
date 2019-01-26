@@ -4,8 +4,8 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content modal-content-for-buttons">
                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 id="removeUserFromBonusTitle" class="modal-title">{{_ "leitnerProgress.modal.removeUser.title"}}
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </h4>
                 </div>
                 <div class="modal-body">
@@ -55,14 +55,16 @@
                             </tr>
                             </tbody>
                         </table>
-                        <button id="removeUserFromBonusConfirm"
-                                class="btn btn-raised btn-danger btn-block col-xs-12 col-sm-3">{{_
-                                "leitnerProgress.modal.removeUser.button.confirm"}}</button>
-                        <button id="removeUserFromBonusCancel"
-                                class="btn btn-raised btn-default btn-block col-xs-12 col-sm-3"
-                                data-dismiss="modal">{{_
-                                "leitnerProgress.modal.removeUser.button.cancel"}}</button>
                     {{/with}}
+                </div>
+                <div class="modal-footer">
+                    <button id="removeUserFromBonusConfirm"
+                            class="btn btn-raised btn-danger pull-right">{{_
+                            "leitnerProgress.modal.removeUser.button.confirm"}}</button>
+                    <button id="removeUserFromBonusCancel"
+                            class="btn btn-raised btn-default pull-left"
+                            data-dismiss="modal">{{_
+                            "leitnerProgress.modal.removeUser.button.cancel"}}</button>
                 </div>
             </div>
             <!-- /.modal-content -->

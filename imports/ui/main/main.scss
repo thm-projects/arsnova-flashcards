@@ -378,6 +378,9 @@ body {
 .modal-header, .modal-body, .modal-footer {
   margin: 0 !important;
   padding: 30px 50px 20px 50px !important;
+  @media (max-width: 767px) {
+    padding: 20px 15px 15px 15px !important;
+  }
 }
 
 .modal-body {
@@ -1024,4 +1027,10 @@ th {
 
 .presentation-list-margin {
   margin-bottom: 45px;
+}
+
+.modal-content .modal-footer button.pull-left {
+  @media(max-width: 767px) {
+    left: 0 !important;
+  }
 }

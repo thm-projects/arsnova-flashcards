@@ -4,9 +4,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 id="bonusFormModalTitle" class="modal-title">{{#if isNewBonus}}{{_
                             "bonus.form.new.title"}}{{else}}{{_ "bonus.form.edit.title"}}{{/if}}
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </h4>
                 </div>
                 <div class="modal-body">
@@ -22,12 +22,12 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="cancelBonus" class="btn btn-default btn-raised btn-block col-xs-12 col-sm-3"
+                    <button id="cancelBonus" class="btn btn-default btn-raised pull-left"
                             data-dismiss="modal">{{_ "bonus.form.button.cancel"}}</button>
-                    <button id="resetBonus" class="btn btn-danger btn-raised btn-block col-xs-12 col-sm-3">{{_
+                    <button id="resetBonus" class="btn btn-danger btn-raised pull-left">{{_
                             "bonus.form.button.reset"}}</button>
                     <button id="startBonus"
-                            class="btn btn-success btn-raised btn-block col-xs-12 col-sm-3 pull-right"
+                            class="btn btn-success btn-raised pull-right"
                             data-dismiss="modal">{{#if isNewBonus}}{{_ "bonus.form.button.start"}}{{else}}{{_
                             "bonus.form.button.update"}}{{/if}}</button>
                 </div>
@@ -138,17 +138,18 @@
         <div class="modal-dialog">
             <div class="modal-content modal-content-for-buttons xs-12">
                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 id="joinBonusTitle" class="modal-title">{{_ "bonus.form-join.title"}}
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </h4>
                 </div>
                 <div class="modal-body">
                     <p>{{_ "bonus.form-join.message"}}</p>
-                    <br>
                     <hr>
-                    <button id="joinBonusConfirm" class="btn btn-block btn-raised btn-default btn-success">{{_
+                </div>
+                <div class="modal-footer">
+                    <button id="joinBonusConfirm" class="btn btn-raised btn-default btn-success pull-right">{{_
                             "bonus.form-join.button.confirm"}}</button>
-                    <button id="joinBonusCancel" class="btn btn-default btn-block btn-raised"
+                    <button id="joinBonusCancel" class="btn btn-default btn-raised pull-left"
                             data-dismiss="modal">{{_ "bonus.form-join.button.cancel"}}</button>
                 </div>
             </div>
@@ -161,17 +162,18 @@
         <div class="modal-dialog">
             <div class="modal-content modal-content-for-buttons xs-12">
                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 id="leaveBonusTitle" class="modal-title">{{_ "bonus.form-leave.title"}}
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </h4>
                 </div>
                 <div class="modal-body">
                     <p>{{_ "bonus.form-leave.message"}}</p>
-                    <br>
                     <hr>
-                    <button id="leaveBonusConfirm" class="btn btn-block btn-raised btn-default btn-danger">{{_
+                </div>
+                <div class="modal-footer">
+                    <button id="leaveBonusConfirm" class="btn btn-raised btn-default btn-danger pull-right">{{_
                             "bonus.form-leave.button.confirm"}}</button>
-                    <button id="leaveBonusCancel" class="btn btn-default btn-block btn-raised"
+                    <button id="leaveBonusCancel" class="btn btn-default btn-raised pull-left"
                             data-dismiss="modal">{{_ "bonus.form-leave.button.cancel"}}</button>
                 </div>
             </div>
