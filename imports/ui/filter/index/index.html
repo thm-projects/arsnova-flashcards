@@ -89,7 +89,7 @@
         {{#if isActiveRoute 'create'}}
             <button id="newCardSet" type="button"
                     class="btn btn-raised btn-success saveSet" {{disableIfOffline}} {{disableIfShuffle}}>
-                <i class="fa fa-archive"></i> {{_ "set-list-empty.newset"}}
+                <i class="fa fa-cog fa-spin"></i><i class="fa fa-archive"></i> {{_ "set-list-empty.newset"}}
             </button>
             {{#unless isIOS}}
                 <label class="btn btn-raised btn-import btn-success {{disableIfOffline}}">
@@ -126,7 +126,7 @@
             {{#if canCreateContent}}
                 <button id="newRepetitorium" type="button"
                         class="btn btn-raised btn-success saveSet hidden-xs" {{disableIfOffline}} {{disableIfShuffle}}>
-                    <i class="fa fa-archive"></i> <i class="fa fa-archive"></i> <i class="fa fa-archive"></i> <i class="fa fa-ellipsis-h"></i> {{_ "set-list.shuffleCardsets"}}
+                    <i class="fa fa-cog fa-spin"></i><i class="fa fa-archive"></i> <i class="fa fa-archive"></i> <i class="fa fa-archive"></i> <i class="fa fa-ellipsis-h"></i> {{_ "set-list.shuffleCardsets"}}
                 </button>
             {{else}}
                 <div class="empty-button-placeholder"></div>
