@@ -1028,3 +1028,9 @@ th {
 .presentation-list-margin {
   margin-bottom: 45px;
 }
+
+.modal-content .modal-footer button.pull-left {
+  @media(max-width: 767px) {
+    left: 0 !important;
+  }
+}

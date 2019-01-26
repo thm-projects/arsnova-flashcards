@@ -10,12 +10,13 @@
                 </div>
                 <div class="modal-body">
                     <p>{{_ "confirm-form-learn.text"}}</p>
-                    <br/>
                     <hr/>
-                        <button id="learnDelete" class="btn btn-danger btn-raised btn-setDelete" {{disableIfOffline}}>{{_
-                                "confirm-form-learn.title"}}</button>
-                        <button id="learnCancel" class="btn btn-raised pull-right" data-dismiss="modal">{{_
-                                "modal-dialog.cancel"}}</button>
+                </div>
+                <div class="modal-footer">
+                    <button id="learnDelete" class="btn btn-danger btn-raised btn-setDelete pull-right" {{disableIfOffline}}>{{_
+                            "confirm-form-learn.title"}}</button>
+                    <button id="learnCancel" class="btn btn-raised pull-left" data-dismiss="modal">{{_
+                            "modal-dialog.cancel"}}</button>
                 </div>
             </div>
             <!-- /.modal-content -->
