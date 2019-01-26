@@ -719,9 +719,9 @@
       "backDemo": "Zurück zur Demo-Kartei"
     },
     "help": {
-      "title": "Navigieren mit Maus & Tastatur",
+      "title": "Rand-Buttons",
       "button": {
-        "confirm": "Okay, ich hab's gelesen."
+        "confirm": "Okay"
       }
     }
   },
