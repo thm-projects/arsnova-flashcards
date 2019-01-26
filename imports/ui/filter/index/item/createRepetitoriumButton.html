@@ -1,0 +1,16 @@
+<template name="filterItemCreateRepetitoriumButton">
+    {{#unless isSmartphone}}
+        {{#unless isSelectingCardsetToLearn}}
+            {{#if canCreateContent}}
+                <button id="newRepetitorium" type="button"
+                        class="btn btn-raised btn-success saveSet hidden-xs" {{disableIfOffline}} {{disableIfShuffle}}>
+                    <i class="fa fa-cog fa-spin"></i><i class="fa fa-archive"></i> <i class="fa fa-archive"></i> <i
+                        class="fa fa-archive"></i> <i
+                        class="fa fa-ellipsis-h"></i> {{_ "set-list.shuffleCardsets"}}
+                </button>
+            {{else}}
+                <div class="empty-button-placeholder"></div>
+            {{/if}}
+        {{/unless}}
+    {{/unless}}
+</template>

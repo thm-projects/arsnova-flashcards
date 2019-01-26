@@ -70,7 +70,7 @@ Template.cardset.rendered = function () {
 };
 
 Template.cardset.helpers({
-	'selectedForLearning': function () {
+	selectedForLearning: function () {
 		if (Session.get('selectingCardsetToLearn')) {
 			CardsetNavigation.addToLeitner(this._id);
 			Meteor.call("addWozniakCards", this._id);
