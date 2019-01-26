@@ -398,7 +398,7 @@
     "cardsetInfo": "Über diese __type__ Kartei",
     "cardsetInfoRepetitorium": "Über dieses Repetitorium",
     "cardsetInfoStatic": "Über diese Kartei",
-    "shuffleCardsets": "Repetitorium anlegen (Sammlung von Karteien)",
+    "shuffleCardsets": "Repetitorium anlegen (Auswahl an Karteikästen)",
     "shuffle": "Auswahl speichern",
     "shuffleInfoTextNew": "Erstell dir ein Repetitorium durch Hinzufügen von Karteien mit dem Plus-Button.",
     "shuffleInfoTextEdit": "Inhalt des Repetitoriums erweitern oder einschränken",
@@ -427,12 +427,12 @@
   "set-list-empty": {
     "emptytextlist": "Du hast noch keine Kartei erstellt. Informiere dich unter »Hilfe«, was du mit einer eigenen Kartei tun kannst.",
     "emptypooltextlist": "Keine Kartei vorhanden",
-    "newset": "Kartei anlegen (Box für Lernkarten)"
+    "newset": "Karteikasten erstellen (Box für Lernkarten)"
   },
   "set-list-learn-empty": {
     "emptytextlist": "Zum Lernen wähle ein Thema aus dem Themen-Pool oder die Karteien eines Repetitoriums.",
     "emptytextlistNoShuffle": "Wähle eine einzelne Kartei aus dem Themen-Pool aus oder die Karteien eines Repetitoriums.",
-    "browseCardset": "Kartei auswählen",
+    "browseCardset": "Karteikasten auswählen",
     "browseCourse": "Repetitorium auswählen"
   },
   "modal-admin-dialog": {
@@ -458,13 +458,13 @@
   },
   "modal-dialog": {
     "missingFields": "Bitte fülle die folgenden Felder aus",
-    "newcarddeck": "Kartei anlegen (Box für Lernkarten)",
+    "newcarddeck": "Karteikasten erstellen (Box für Lernkarten)",
     "editcard": "Einstellungen",
     "adminEditCardset": "Admin-Einstellungen",
     "editreferences": "Repetitorium zusammenstellen",
-    "name": "Beschriftung der Box (= Dateiname der Kartei)",
+    "name": "Etikett (= Dateiname)",
     "nameplaceholder": "Beschriftung der Box in wenigen Worten",
-    "descriptionplaceholder": "Worum geht es in dieser Kartei? Was soll gelernt werden? \n\nBeschriftung der Box und Beschreibung des Inhalts werden dir überall auf der 🍅__lastAppTitle__-Plattform angezeigt.  Die Kartei bleibt privat; sie ist für andere nicht sichtbar, solange du sie nicht veröffentlichst.",
+    "descriptionplaceholder": "Worum geht es in dieser Kartei? Was soll gelernt werden? \n\nEtikett des Karteikastens und Beschreibung des Inhalts werden dir überall auf der 🍅__lastAppTitle__-Plattform angezeigt.  Die Kartei bleibt privat; sie ist für andere nicht sichtbar, solange du sie nicht veröffentlichst.",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung des Inahlts der Box",
     "optional": "(Optional)",
@@ -1308,7 +1308,7 @@
       "semesterList": "__count__. Semester"
     },
     "modal": {
-      "new": "Repetitorium anlegen (Sammlung von Karteien)",
+      "new": "Repetitorium anlegen (Auswahl an Karteien)",
       "saveNew": "Repetitorium anlegen",
       "placeholder": {
         "name": "Thema des Repetitoriums in wenigen Worten",
@@ -1821,7 +1821,7 @@
   "bertAlert": {
     "firstLogin": {
       "title": "Willkommen auf __firstAppTitle__🍅__lastAppTitle__ !",
-      "message": "Schau dich in Ruhe auf der Plattform um. Hier kannst du Karten zu einem bestimmten Thema lernen und Karteien oder Repetitorien (= Sammlungen von Karteien zur Prüfungsvorbereitung) für dein Studium anlegen. </br> </br> Die Navigationsleiste mit den Tabs »Karteien«, »Repetitorien«, »Lernpensum« und »Kartei anlegen« (nur für THM-Mitglieder) dient dir als Einstieg in die großartigen Features von 🍅__lastAppTitle__. Schau dir dazu auch die Demo unter »Hilfe« an! </br> </br> Suche im Themen-Pool unter »Karteien« nach einem Thema, das dich interessiert. Klick auf den kleinen Pfeil ganz rechts vom Thema, um die Beschreibung der Kartei zu sehen. Mit einem Klick auf das Thema gelangst du zu den Karten. </br> </br>"
+      "message": "Schau dich in Ruhe auf der Plattform um. Hier kannst du Karten zu einem bestimmten Thema lernen und Karteien oder Repetitorien (= Auswahl an Karteien zur Prüfungsvorbereitung) für dein Studium anlegen. </br> </br> Die Navigationsleiste mit den Tabs »Karteien«, »Repetitorien«, »Lernpensum« und »Kartei anlegen« (nur für THM-Mitglieder) dient dir als Einstieg in die großartigen Features von 🍅__lastAppTitle__. Schau dir dazu auch die Demo unter »Hilfe« an! </br> </br> Suche im Themen-Pool unter »Karteien« nach einem Thema, das dich interessiert. Klick auf den kleinen Pfeil ganz rechts vom Thema, um die Beschreibung der Kartei zu sehen. Mit einem Klick auf das Thema gelangst du zu den Karten. </br> </br>"
     },
     "publishBonus": {
       "message": "Um die Bonus-Lernphase zu starten, müssen mindestens __cardcount__ erstellt und die Kartei als »Frei«, »__edu__« oder »Pro« veröffentlicht worden sein."
