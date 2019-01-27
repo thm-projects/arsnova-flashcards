@@ -20,6 +20,7 @@ import "../modal/deleteWorkload.js";
 import "../modal/deleteCardset.js";
 import "../modal/selectWorkload.js";
 import "./index.html";
+import {Leitner, Wozniak} from "../../../api/learned";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
@@ -158,6 +159,7 @@ Template.filterIndexWorkload.helpers({
 		}
 		switch (returnType) {
 			case 0:
+				return (Leitner.find({user_id: Meteor.userId()}).count() > 0 || Wozniak.find({user_id: Meteor.userId()}).count() > 0);
 			case 1:
 				return Cardsets.find(query, {
 					sort: Filter.getSortFilter(),
