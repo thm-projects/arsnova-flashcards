@@ -1,40 +1,46 @@
 <template name="filterIndex">
     {{> showLicense}}
     {{> filterItemSelectCardsetToLearnCallout}}
-    {{#if isActiveRoute regex='alldecks|repetitorium'}}
-        {{> cardsetFormAdmin}}
-    {{/if}}
-    {{#if isActiveRoute regex='alldecks|create'}}
-        {{> cardsetDeleteForm}}
-        {{> cardsetForm}}
-        {{> filterIndexCreate}}
-    {{/if}}
+    <div class="container" id="set-list-region">
+        {{#if isActiveRoute regex='alldecks|repetitorium'}}
+            {{> cardsetFormAdmin}}
+        {{/if}}
+        {{#if isActiveRoute regex='alldecks|create'}}
+            {{> cardsetDeleteForm}}
+            {{> cardsetForm}}
+            {{> filterIndexCreate}}
+        {{/if}}
 
-    {{#if isActiveRoute regex='repetitorium'}}
-        {{> cardsetDeleteForm}}
-        {{> cardsetForm}}
-        {{> filterIndexRepetitorium}}
-    {{/if}}
+        {{#if isActiveRoute regex='repetitorium'}}
+            {{> cardsetDeleteForm}}
+            {{> cardsetForm}}
+            {{> filterIndexRepetitorium}}
+        {{/if}}
 
-    {{#if isActiveRoute 'learn'}}
-        {{> selectModeForm}}
-        {{> cardsetsConfirmLearnForm}}
-        {{> filterIndexWorkload}}
-    {{/if}}
+        {{#if isActiveRoute 'learn'}}
+            {{> selectModeForm}}
+            {{> cardsetsConfirmLearnForm}}
+            {{> filterIndexWorkload}}
+        {{/if}}
 
-    {{#if isActiveRoute 'shuffle'}}
-        {{> cardsetForm}}
-        {{> filterIndexShuffle}}
-    {{/if}}
+        {{#if isActiveRoute 'shuffle'}}
+            {{> cardsetForm}}
+            {{> filterIndexShuffle}}
+        {{/if}}
 
-    {{#if isActiveRoute 'pool'}}
-        {{> cardsetForm}}
-        {{> filterIndexPool}}
-    {{/if}}
+        {{#if isActiveRoute 'pool'}}
+            {{> cardsetForm}}
+            {{> filterIndexPool}}
+        {{/if}}
+    </div>
 </template>
 
 <template name="filterIndexPool">
-    {{> filterItemCreateCardsetButton}}
+    {{#if canCreateContent}}
+        {{> filterItemCreateCardsetButton}}
+    {{else}}
+        <div class="empty-button-placeholder"></div>
+    {{/if}}
     {{#if getDecks 0}}
         {{> filterNavigation}}
         {{#if displayWordcloud}}
@@ -74,62 +80,17 @@
 </template>
 
 <template name="filterIndexCreate">
-    <div class="container" id="set-list-region">
-        {{#if isActiveRoute 'create'}}
-            {{> filterItemCreateCardsetButton}}
-            {{> filterItemImportCardsetButton}}
-        {{/if}}
-        {{#if cardsetList 0}}
-            {{> filterNavigation}}
-            {{#if displayWordcloud}}
-                {{> wordcloud}}
-            {{else}}
-                {{#if cardsetList 1}}
-                    {{#each cardsetList 2}}
-                        {{> filterIndexItemCardset extendContext 'index' @index}}
-                    {{/each}}
-                    {{> infiniteScroll}}
-                {{else}}
-                    {{> noFilterResults}}
-                {{/if}}
-            {{/if}}
+    {{#if isActiveRoute 'create'}}
+        {{> filterItemCreateCardsetButton}}
+        {{> filterItemImportCardsetButton}}
+    {{/if}}
+    {{#if cardsetList 0}}
+        {{> filterNavigation}}
+        {{#if displayWordcloud}}
+            {{> wordcloud}}
         {{else}}
-            {{> noResults}}
-        {{/if}}
-    </div>
-</template>
-
-<template name="filterIndexRepetitorium">
-    <div class="container" id="set-list-region">
-        {{> filterItemCreateRepetitoriumButton}}
-        {{#if cardsetList 0}}
-            {{> filterNavigation}}
-            {{#if displayWordcloud}}
-                {{> wordcloud}}
-            {{else}}
-                {{#if cardsetList 1}}
-                    {{#each cardsetList 2}}
-                        {{> filterIndexItemCardset extendContext 'index' @index}}
-                    {{/each}}
-                    {{> infiniteScroll}}
-                {{else}}
-                    {{> noFilterResults}}
-                {{/if}}
-            {{/if}}
-        {{else}}
-            {{> noResults}}
-        {{/if}}
-    </div>
-</template>
-
-<template name="filterIndexWorkload">
-    <div id="learn-list-region" class="container">
-        {{> filterItemSelectCardsetButton}}
-        {{> filterItemSelectRepetitoriumButton}}
-        {{#if learnList 0}}
-            {{> filterNavigation}}
-            {{#if learnList 1}}
-                {{#each learnList 2}}
+            {{#if cardsetList 1}}
+                {{#each cardsetList 2}}
                     {{> filterIndexItemCardset extendContext 'index' @index}}
                 {{/each}}
                 {{> infiniteScroll}}
@@ -137,5 +98,44 @@
                 {{> noFilterResults}}
             {{/if}}
         {{/if}}
-    </div>
+    {{else}}
+        {{> noResults}}
+    {{/if}}
+</template>
+
+<template name="filterIndexRepetitorium">
+    {{> filterItemCreateRepetitoriumButton}}
+    {{#if cardsetList 0}}
+        {{> filterNavigation}}
+        {{#if displayWordcloud}}
+            {{> wordcloud}}
+        {{else}}
+            {{#if cardsetList 1}}
+                {{#each cardsetList 2}}
+                    {{> filterIndexItemCardset extendContext 'index' @index}}
+                {{/each}}
+                {{> infiniteScroll}}
+            {{else}}
+                {{> noFilterResults}}
+            {{/if}}
+        {{/if}}
+    {{else}}
+        {{> noResults}}
+    {{/if}}
+</template>
+
+<template name="filterIndexWorkload">
+    {{> filterItemSelectCardsetButton}}
+    {{> filterItemSelectRepetitoriumButton}}
+    {{#if learnList 0}}
+        {{> filterNavigation}}
+        {{#if learnList 1}}
+            {{#each learnList 2}}
+                {{> filterIndexItemCardset extendContext 'index' @index}}
+            {{/each}}
+            {{> infiniteScroll}}
+        {{else}}
+            {{> noFilterResults}}
+        {{/if}}
+    {{/if}}
 </template>
