@@ -5,7 +5,7 @@ let mobilePreviewPortraitAsDefault = true;
 
 export let MarkdeepEditor = class MarkdeepEditor {
 	static help () {
-		window.open("https://casual-effects.com/markdeep/features.md.html", "_blank");
+		window.open("https://casual-effects.com/markdeep/features.md.html#basicformatting", "_blank");
 	}
 
 	static center () {
