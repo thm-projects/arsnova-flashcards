@@ -34,7 +34,11 @@
 </template>
 
 <template name="filterIndexPool">
-    {{> filterItemCreateCardsetButton}}
+    {{#if canCreateContent}}
+        {{> filterItemCreateCardsetButton}}
+    {{else}}
+        <div class="empty-button-placeholder"></div>
+    {{/if}}
     {{#if getDecks 0}}
         {{> filterNavigation}}
         {{#if displayWordcloud}}
