@@ -259,15 +259,6 @@ Template.cardsetFormContent.helpers({
 	isNew: function () {
 		return isNewCardset();
 	},
-	isRepetitorium: function () {
-		if (isNewCardset()) {
-			return Route.isRepetitorium();
-		} else {
-			if (Session.get('activeCardset') !== undefined) {
-				return Session.get('activeCardset').shuffled;
-			}
-		}
-	},
 	getShuffleName: function () {
 		if (Session.get("ShuffleTemplate") !== undefined) {
 			return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").name : "";
