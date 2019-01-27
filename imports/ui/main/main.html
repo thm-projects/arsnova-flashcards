@@ -19,13 +19,16 @@
                             <div class="navbar-header">
                                 {{#if currentUser}}
                                     <p class="navbar-text visible-xs-inline-block">{{getMobileNavbarTitle}}</p>
-                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                    <button type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse"
                                             data-target="#thm-top-navigation" aria-expanded="false">
                                         <span class="sr-only">Toggle navigation</span>
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
                                         <span class="icon-bar"></span>
                                     </button>
+                                    <div class="navbar-text visible-xs-inline-block mobile-websocket-container pull-right">
+                                        {{> connectionStatus}}
+                                    </div>
                                 {{/if}}
                             </div>
 
@@ -119,6 +122,9 @@
                                                 </a>
                                             </li>
                                         {{/if}}
+                                        <li class="hidden-xs">
+                                            {{> connectionStatus}}
+                                        </li>
                                         <li id="navbar-profile"
                                             class="dropdown {{#if isActiveProfile}}active{{/if}}">
                                             <a href="#" id="dropdownMenuLink" class="dropdown-toggle"
@@ -260,19 +266,15 @@
                         <p class="footer-icon"><span class="glyphicon glyphicon-info-sign"></span></p>
                     </a>
                 </li>
-                <li class="col-xs-1 {{#if isActiveRoute
-                                          'home'}}icon-container{{else}}icon-container-info{{/if}} pull-right">
-                    {{> connectionStatus}}
-                </li>
             </ul>
         </div>
     {{/if}}
 </template>
 
 <template name="connectionStatus">
-    <a id="connectionStatus" href="#" data-toggle="modal"
+    <a class="connectionStatus {{#if isModalOpen}}active{{/if}}" href="#" data-toggle="modal"
        data-target="#connectionStatusModal" aria-label="{{_ "footer.connection"}}">
-        <p class="footer-icon"><span class="glyphicon glyphicon-signal {{getSignal}}"></span></p>
+        <span class="glyphicon glyphicon-signal {{getSignal}}"></span>
     </a>
 </template>
 

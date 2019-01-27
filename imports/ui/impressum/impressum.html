@@ -65,7 +65,8 @@
 
 
 <template name="contactNavigation">
-    <nav id="contact-nav" class="nav nav-justified {{#if displayAsFooter}}position-sticky-bottom{{else}}position-sticky-top{{/if}}">
+    <nav id="contact-nav"
+         class="nav nav-justified {{#if displayAsFooter}}position-sticky-bottom{{else}}position-sticky-top{{/if}}">
         {{#unless currentUser}}
             {{#unless isActiveRoute 'home'}}
                 <li class="sm-12 md-2 inactive {{#if displayAsFooter}}footer-info-navigation{{/if}}"><a
@@ -75,36 +76,39 @@
                         "contact.home"}}</a></li>
             {{/unless}}
         {{/unless}}
-
-        <li class="hidden-xs sm-12 md-2  {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if
-                isActiveRoute
-                'demo'}}active{{/if}}">
-            <a id="demo"
-               href="{{pathFor
-                       route='demo'}}">{{_
-                    "contact.demo"}}</a></li>
+        {{#unless isActiveRoute 'home'}}
+            <li class="hidden-xs sm-12 md-2  {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if
+                    isActiveRoute
+                    'demo'}}active{{/if}}">
+                <a id="demo"
+                   href="{{pathFor
+                           route='demo'}}">{{_
+                        "contact.demo"}}</a></li>
+        {{/unless}}
         <li class="sm-12 md-2  {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if isActiveRoute
                                                                                           'about'}}active{{/if}}">
             <a id="about"
                href="{{pathFor
                        route='about'}}">{{_
                     "contact.about" lastAppTitle=(getLastAppTitle)}}</a></li>
-        <li class="sm-12 md-2  {{#if isActiveRoute 'home'}}footer-info-navigation{{else}}{{#if isActiveRoute
-                                                                                               'learning'}}active{{/if}}{{/if}}">
-            <a id="learning"
-               href="{{pathFor
-                       route='learning'}}">{{_
-                    "contact.learning"}}</a></li>
-        <li class="sm-12 md-2 {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if isActiveRoute
-                                                                                         'faq'}}active{{/if}}">
-            <a id="faq" href="{{pathFor
-                    route='faq'}}">{{_ "contact.faq"}}</a></li>
-        <li class="sm-12 md-2 {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if isActiveRoute
-                                                                                         'help'}}active{{/if}}">
-            <a id="help"
-               href="{{pathFor
-                       route='help'}}">{{_
-                    "contact.help"}}</a></li>
+        {{#if currentUser}}
+            <li class="sm-12 md-2  {{#if isActiveRoute 'home'}}footer-info-navigation{{else}}{{#if isActiveRoute
+                                                                                                   'learning'}}active{{/if}}{{/if}}">
+                <a id="learning"
+                   href="{{pathFor
+                           route='learning'}}">{{_
+                        "contact.learning"}}</a></li>
+            <li class="sm-12 md-2 {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if isActiveRoute
+                                                                                             'faq'}}active{{/if}}">
+                <a id="faq" href="{{pathFor
+                        route='faq'}}">{{_ "contact.faq"}}</a></li>
+            <li class="sm-12 md-2 {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if isActiveRoute
+                                                                                             'help'}}active{{/if}}">
+                <a id="help"
+                   href="{{pathFor
+                           route='help'}}">{{_
+                        "contact.help"}}</a></li>
+        {{/if}}
         <li class="sm-12 md-2 {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if isActiveRoute
                                                                                          'impressum'}}active{{/if}}">
             <a id="impressum"
@@ -140,7 +144,8 @@
             {{#if isActiveLanguage 'de'}}
                 <h2>Das Projekt</h2>
                 <p>
-                    🍅cards (gesprochen: &raquo;dot cards&laquo;) ist für das <b>Mitschreiben und Lernen</b> in den Studiengängen der
+                    🍅cards (gesprochen: &raquo;dot cards&laquo;) ist für das <b>Mitschreiben und Lernen</b> in den
+                    Studiengängen der
                     Technischen Hochschule Mittelhessen, THM, entwickelt worden.
                     Das <a href="https://github.com/thm-projects/arsnova-flashcards"
                            target="_blank">Open-Source-Projekt</a>
@@ -155,15 +160,19 @@
                     🍅cards ist keine herkömmliche Lernkartei-App wie <a href="https://quizlet.com/" target="_blank">Quizlet</a>
                     oder
                     <a href="https://www.supermemo.com/" target="_blank">SuperMemo</a>.
-                    Denn 🍅cards unterstützt nicht nur das Lernen von Studieninhalten mit digitalen Karteikarten, sondern auch das
+                    Denn 🍅cards unterstützt nicht nur das Lernen von Studieninhalten mit digitalen Karteikarten,
+                    sondern auch das
                     Nachbearbeiten und Lernen von Mitschriften:
                     🍅cards versteht sich als <b>vorlesungsbegleitende persönliche Lernumgebung</b>, als
-                    ein virtueller Ort, wo Lernzeit mit kognitiven Tätigkeiten (Nachbearbeiten der Mitschrift, Lernkarten
+                    ein virtueller Ort, wo Lernzeit mit kognitiven Tätigkeiten (Nachbearbeiten der Mitschrift,
+                    Lernkarten
                     erstellen, repetitives Beantworten von Lernfragen) intensiv verbracht wird
                     — im Gegensatz zu Moodle, das meist nur als Verteilungsplattform für Skripte dient.
                 </p>
                 <p>
-                    Der Stifterverband für die Deutsche Wissenschaft und die DATEV-Stiftung Zukunft haben das Projekt für ein <a href="https://www.stifterverband.org/lehrfellowships" target="_blank">Senior-Fellowship für Innovationen in der Hochschullehre</a> ausgewählt.
+                    Der Stifterverband für die Deutsche Wissenschaft und die DATEV-Stiftung Zukunft haben das Projekt
+                    für ein <a href="https://www.stifterverband.org/lehrfellowships" target="_blank">Senior-Fellowship
+                    für Innovationen in der Hochschullehre</a> ausgewählt.
                 </p>
 
                 <h2>Das Lehr- und Lernkonzept</h2>
@@ -176,53 +185,70 @@
                     <a href="https://en.wikipedia.org/wiki/Piotr_Wo%C5%BAniak_(researcher)" target="_blank">Piotr
                         Woźniak</a> ist nachweislich die effektivste Lernstrategie, um Studieninhalte langfristig — über
                     die Klausuren und das Studium hinaus — im Gedächtnis zu behalten,
-                    siehe unseren Beitrag für die <a href="http://site.aace.org/" target="_blank">SITE Conference</a>, hieraus das Abstract:
+                    siehe unseren Beitrag für die <a href="http://site.aace.org/" target="_blank">SITE Conference</a>,
+                    hieraus das Abstract:
                 </p>
 
                 <blockquote style="font-size: inherit; font-style: italic">
 
                     <p>
-                    <a href="https://git.thm.de/arsnova/flashcards/blob/staging/docs/ARSnova.pdf" target="_blank">
-                        Against Academic Procrastination: <br />
-                        Pedagogical Apps to Implement Distributed Learning in Course Design
-                    </a>
+                        <a href="https://git.thm.de/arsnova/flashcards/blob/staging/docs/ARSnova.pdf" target="_blank">
+                            Against Academic Procrastination: <br/>
+                            Pedagogical Apps to Implement Distributed Learning in Course Design
+                        </a>
                     </p>
 
                     <p>
-                    Most of the facts and figures, terms and concepts taught in college are learned in the
-                    week before examination and forgotten a month after. Although we have known about the very low long-term
-                    knowledge retention of cramming since Ebbinghaus’ &raquo;forgetting curve&laquo; in 1885, this learning tactic
-                    prevails because it works—at least for passing exams. As university lecturers, we seldom received a
-                    training on effective teaching and learning strategies. However, we can follow the evidence-based
-                    recommendations from cognitive and educational psychology on how to structure a course to distribute
-                    learning. With new pedagogical apps at hand, we can implement <a href="https://en.wikipedia.org/wiki/Spaced_repetition" target="_blank">spaced repetition</a>
-                    against procrastination in our course design. This paper outlines a pedagogical project to be conducted across
-                    several consecutive semesters. The project follows the &raquo;What Works Clearinghouse&laquo; practice guide on
-                    spacing learning events over time. The recommendations are implemented by using <a href="https://arsnova.eu" target="_blank">ARSnova</a>,
-                    a set of innovative web-based question-and-answer apps for quizzing in class and self-quizzing at home.
+                        Most of the facts and figures, terms and concepts taught in college are learned in the
+                        week before examination and forgotten a month after. Although we have known about the very low
+                        long-term
+                        knowledge retention of cramming since Ebbinghaus’ &raquo;forgetting curve&laquo; in 1885, this
+                        learning tactic
+                        prevails because it works—at least for passing exams. As university lecturers, we seldom
+                        received a
+                        training on effective teaching and learning strategies. However, we can follow the
+                        evidence-based
+                        recommendations from cognitive and educational psychology on how to structure a course to
+                        distribute
+                        learning. With new pedagogical apps at hand, we can implement <a
+                            href="https://en.wikipedia.org/wiki/Spaced_repetition" target="_blank">spaced repetition</a>
+                        against procrastination in our course design. This paper outlines a pedagogical project to be
+                        conducted across
+                        several consecutive semesters. The project follows the &raquo;What Works Clearinghouse&laquo;
+                        practice guide on
+                        spacing learning events over time. The recommendations are implemented by using <a
+                            href="https://arsnova.eu" target="_blank">ARSnova</a>,
+                        a set of innovative web-based question-and-answer apps for quizzing in class and self-quizzing
+                        at home.
                     </p>
 
                     <a href="https://www.gwern.net/images/spacedrepetition/forgetting-curve-wired-wozniak.jpg"
-                        data-lightbox="img-1" data-title="Die Vergessenskurve von Hermann Ebbinghaus. Die Kurve verdeutlicht den Rückgang der Gedächtnisspeicherung in der Zeit.">
+                       data-lightbox="img-1"
+                       data-title="Die Vergessenskurve von Hermann Ebbinghaus. Die Kurve verdeutlicht den Rückgang der Gedächtnisspeicherung in der Zeit.">
                         <img src="https://www.gwern.net/images/spacedrepetition/forgetting-curve-wired-wozniak.jpg"
-                         alt="forgetting curve" class="img-responsive center-block"/>
+                             alt="forgetting curve" class="img-responsive center-block"/>
                     </a>
 
                     <p class="text-center">
-                    Bildquelle: <a href="https://www.gwern.net/Spaced-repetition" target="_blank">Gwern Branwen: &raquo;Spaced
-                    Repetition&laquo;</a>
+                        Bildquelle: <a href="https://www.gwern.net/Spaced-repetition" target="_blank">Gwern Branwen:
+                        &raquo;Spaced
+                        Repetition&laquo;</a>
                     </p>
                 </blockquote>
 
                 <h2>Die Integration in die Präsenzlehre</h2>
-                <p>🍅cards wurde auch zum Präsentieren von Lerninhalten am Beamer entwickelt – als Ersatz für PowerPoint oder Keynote.
-                    Die Ansicht der Karten ist für die Projektion optimiert: Vollansicht, Kontrast, Textskalierung, Tastatursteuerung.
+                <p>🍅cards wurde auch zum Präsentieren von Lerninhalten am Beamer entwickelt – als Ersatz für PowerPoint
+                    oder Keynote.
+                    Die Ansicht der Karten ist für die Projektion optimiert: Vollansicht, Kontrast, Textskalierung,
+                    Tastatursteuerung.
                     Wenn Studierende eine Kartei vom Typ &raquo;Mitschrift&laquo; anlegen,
                     können sie per Auswahlmenü ihre Mitschrift mit der Präsentation verlinken und so alle Mitschriften,
                     die zu einem Modul gehören, als Einheit organisieren.
                     Eine weitere Organisationform ist das <strong>Repetitorium</strong> auf 🍅cards:
-                    Karteien beliebigen Typs können zur Prüfungsvorbereitung zusammengefasst und zusammen gelernt werden.
-                    Die dabei erzielten Lernstände können durch Auswahl einer zum Repetitorium gehörenden Kartei differenziert angezeigt werden.
+                    Karteien beliebigen Typs können zur Prüfungsvorbereitung zusammengefasst und zusammen gelernt
+                    werden.
+                    Die dabei erzielten Lernstände können durch Auswahl einer zum Repetitorium gehörenden Kartei
+                    differenziert angezeigt werden.
                 </p>
                 <h2>Das Nutzungskonzept</h2>
                 <p>
@@ -237,7 +263,8 @@
                     <strong>🍅cards</strong> steht für das zentrale Medium der Lernplattform
                     und ist seit 2014 eine der neuen <strong>generischen Top-Level-Domains</strong>
                     (<a href="https://de.wikipedia.org/wiki/Neue_Top-Level-Domains" target="_blank">gTLD</a>) im Web.
-                    Die Koinzidenz der Namen ermöglicht kurze und prägnante Webadressen für themenspezifische Installationen von 🍅cards,
+                    Die Koinzidenz der Namen ermöglicht kurze und prägnante Webadressen für themenspezifische
+                    Installationen von 🍅cards,
                     zum Beispiel <a href="https://linux.cards" target="_blank">linux.cards</a>,
                     wobei die Subdomain für die Widmung der Plattform steht.
                     Erfreulich sind auch die derzeitigen Domainkosten: ca. 25 € pro Jahr.
@@ -298,7 +325,8 @@
                     Abstract: Most of the facts and figures, terms and concepts taught in college are learned in the
                     week
                     before examination and forgotten a month after. Although we have known about the very low long-term
-                    knowledge retention of cramming since Ebbinghaus’ &raquo;forgetting curve&laquo; in 1885, this learning tactic
+                    knowledge retention of cramming since Ebbinghaus’ &raquo;forgetting curve&laquo; in 1885, this
+                    learning tactic
                     prevails because it works—at least for passing exams. As university lecturers, we seldom received a
                     training on effective teaching and learning strategies. However, we can follow the evidence-based
                     recommendations from cognitive and educational psychology on how to structure a course to distribute
@@ -307,7 +335,8 @@
                     against
                     procrastination in our course design. This paper outlines a pedagogical project to be conducted
                     across
-                    several consecutive semesters. The project follows the &raquo;What Works Clearinghouse&laquo; practice guide on
+                    several consecutive semesters. The project follows the &raquo;What Works Clearinghouse&laquo;
+                    practice guide on
                     spacing learning events over time. The recommendations are implemented by using <a
                         href="https://arsnova.eu" target="_blank">ARSnova</a>, a set of innovative web-based
                     question-and-answer apps for quizzing in class and self-quizzing at home.
@@ -436,23 +465,31 @@
                     berechnet. Du vergleichst deine Antwort mit der Antwort auf der Rückseite der Karte und bewertest
                     sie
                     auf
-                    einer 6-stufigen Skala von &raquo;Blackout&laquo;, &raquo;Falsche Antwort, aber an die richtige erinnert&laquo;, &raquo;Falsche
+                    einer 6-stufigen Skala von &raquo;Blackout&laquo;, &raquo;Falsche Antwort, aber an die richtige
+                    erinnert&laquo;, &raquo;Falsche
                     Antwort, aber
-                    leicht an die richtige erinnert (ach ja!)&laquo;, &raquo;Richtige Antwort nach längerem Überlegen&laquo;, &raquo;Richtige
+                    leicht an die richtige erinnert (ach ja!)&laquo;, &raquo;Richtige Antwort nach längerem Überlegen&laquo;,
+                    &raquo;Richtige
                     Antwort nach
-                    kurzem Zögern&laquo; bis &raquo;Sofort und richtig&laquo;. Anhand deiner Bewertung wird der Zeitpunkt für die nächste
+                    kurzem Zögern&laquo; bis &raquo;Sofort und richtig&laquo;. Anhand deiner Bewertung wird der
+                    Zeitpunkt für die nächste
                     Wiederholung der Lernkarte
                     berechnet.
                 </p>
                 <a name="Pomodoro"></a>
                 <h2>Zeitmanagement mit Pomodoro 🍅</h2>
-                <p>Francesco Cirillo entwickelte die populäre <a href="https://de.wikipedia.org/wiki/Pomodoro-Technik" target="_blank">Pomodoro-Technik</a>.
+                <p>Francesco Cirillo entwickelte die populäre <a href="https://de.wikipedia.org/wiki/Pomodoro-Technik"
+                                                                 target="_blank">Pomodoro-Technik</a>.
                     Pomodoro ist italienisch und heißt Tomate.
-                    Der Name rührt daher, dass Cirillo für seine Technik eine Eieruhr zu Hilfe nahm und diese die Form einer Tomate hatte.
-                    Wir haben die Pomodoro-Technik in die Analoguhr eingebaut, die dir auf jeder Karte im Lernmodus angezeigt wird.
+                    Der Name rührt daher, dass Cirillo für seine Technik eine Eieruhr zu Hilfe nahm und diese die Form
+                    einer Tomate hatte.
+                    Wir haben die Pomodoro-Technik in die Analoguhr eingebaut, die dir auf jeder Karte im Lernmodus
+                    angezeigt wird.
                     Wenn du eine Kartei zum Lernen öffnest, wird dir auf dem Zifferblatt visualisiert,
-                    wie lange du am Stück <strong>fokussiert und ohne Ablenkung</strong> (Musik hören, Videos schauen, WhatsApp-Nachrichten lesen) die Karten lernen solltest.
-                    Mit dem Lauf des Minutenzeigers verkürzt sich ein orangefarbener Kreisbogen von 25 Minuten Länge (= 1 Pomodoro-Zeiteinheit) bis zur ersten Kurzpause von 5 Minuten.
+                    wie lange du am Stück <strong>fokussiert und ohne Ablenkung</strong> (Musik hören, Videos schauen,
+                    WhatsApp-Nachrichten lesen) die Karten lernen solltest.
+                    Mit dem Lauf des Minutenzeigers verkürzt sich ein orangefarbener Kreisbogen von 25 Minuten Länge (=
+                    1 Pomodoro-Zeiteinheit) bis zur ersten Kurzpause von 5 Minuten.
                     Diese wird mit einem blauen Kreisbogen am Zifferblatt angezeigt.
                     Zu Beginn und am Ende einer Pause ertönt ein Gong aus deiner Schulzeit.
                     Nach vier Pomodori ist die Langpause von 30 Minuten vorgesehen.
@@ -538,12 +575,15 @@
                     is calculated. You compare your answer with the answer on the back of the card and rate it
                     she
                     up
-                    of a 6-stage scale of &raquo;Blackout&laquo;, &raquo;Wrong answer, but reminiscent of the right one&laquo;, &raquo;Wrong one
+                    of a 6-stage scale of &raquo;Blackout&laquo;, &raquo;Wrong answer, but reminiscent of the right one&laquo;,
+                    &raquo;Wrong one
                     Answer, but
-                    slightly reminds me of the right answer (after all, yes!)&laquo;, &raquo;Correct answer after a long time of
+                    slightly reminds me of the right answer (after all, yes!)&laquo;, &raquo;Correct answer after a long
+                    time of
                     deliberation&laquo;, &raquo;Right answer after a long period of reflection&laquo;,
                     &laquo;Right Answer after
-                    short hesitation&laquo; to &raquo;Immediately and correctly&laquo;. Based on your rating, the time will be set for the
+                    short hesitation&laquo; to &raquo;Immediately and correctly&laquo;. Based on your rating, the time
+                    will be set for the
                     next
                     Repeating the flashcard
                     is calculated.
@@ -587,11 +627,13 @@
 
                     <li>
                         <p style="color: #9C132D;">
-                            Ich habe gesehen, dass es auch den <b>Karteityp &raquo;Mitschrift&laquo;</b> gibt. Wie kann ich eine
+                            Ich habe gesehen, dass es auch den <b>Karteityp &raquo;Mitschrift&laquo;</b> gibt. Wie kann
+                            ich eine
                             Vorlesung mit 🍅cards sinnvoll mitschreiben?
                         </p>
                         <p>
-                            Als digital-affiner Mensch, als &raquo;digital native&laquo;, könntest du Notizen mit deinem Laptop oder
+                            Als digital-affiner Mensch, als &raquo;digital native&laquo;, könntest du Notizen mit deinem
+                            Laptop oder
                             Tablet schreiben.
                             Handschriftlich mit Farben und Bildern ist aber besser, wie Daniel Hunold im Video erklärt.
                             Fotografier nach der Vorlesung deine Mitschrift ab und lade sie hoch in deine Dropbox oder
@@ -611,7 +653,8 @@
 
                     <li>
                         <p style="color: #9C132D;">
-                            Was bedeutet es, wenn bei einer Kartei auf eine <b>&raquo;aktive Lernphase&laquo;</b> hingewiesen
+                            Was bedeutet es, wenn bei einer Kartei auf eine <b>&raquo;aktive Lernphase&laquo;</b>
+                            hingewiesen
                             wird?
                         </p>
                         <p>
@@ -620,14 +663,18 @@
                             von Sebastian Leitner</a> die vorgelegten Karten regelmäßig lernst, kannst du Bonuspunkte,
                             anrechenbar auf die Klausurnote, erwerben.
                             Das hängt natürlich von deiner Dozentin oder deinem Dozenten ab.
-                            Du wirst in diesem Fall per <b>Nachricht</b> auf dein Handy (wenn du zuvor 🍅cards im Browser
+                            Du wirst in diesem Fall per <b>Nachricht</b> auf dein Handy (wenn du zuvor 🍅cards im
+                            Browser
                             deines Smartphones aufgerufen hast) und/oder per <b>E-Mail</b> auf dein Lernpensum
                             hingewiesen.
-                            Den Bonus erhälst du nur, wenn sich am Ende der aktiven Lernphase alle Karten im letzten Fach
-                            &raquo;Gelernt&laquo; befinden, siehe den Button &raquo;Lernstatistik ansehen&laquo; auf der Seite &raquo;Mein Lernpensum&laquo;.
+                            Den Bonus erhälst du nur, wenn sich am Ende der aktiven Lernphase alle Karten im letzten
+                            Fach
+                            &raquo;Gelernt&laquo; befinden, siehe den Button &raquo;Lernstatistik ansehen&laquo; auf der
+                            Seite &raquo;Mein Lernpensum&laquo;.
                         </p>
                         <p>
-                            Auch in einer Lernphase ohne Bonus-Option (grüner Button &raquo;Karten lernen&laquo;) erhältst du den 🍅cards-Newsletter und Push-Nachrichten.
+                            Auch in einer Lernphase ohne Bonus-Option (grüner Button &raquo;Karten lernen&laquo;)
+                            erhältst du den 🍅cards-Newsletter und Push-Nachrichten.
                             Wenn es heute Karten zu lernen gibt, wirst du per E-Mail daran erinnert:
                             <br><br>
                             <a href="/img/newsletter/Erinnerung.jpg"
@@ -639,9 +686,11 @@
                             Wenn du die Lernfrist überschreitest, erhältst du eine Warnung:
                             <br><br>
                             <a href="/img/newsletter/Warnung.jpg"
-                               data-lightbox="newsletter-2" data-title="Warnung vor baldige Rücksetzung der Lernstatistik">
+                               data-lightbox="newsletter-2"
+                               data-title="Warnung vor baldige Rücksetzung der Lernstatistik">
                                 <img src="/img/newsletter/Warnung.jpg"
-                                     alt="Warnung vor baldige Rücksetzung der Lernstatistik" class="img-responsive center-block"/>
+                                     alt="Warnung vor baldige Rücksetzung der Lernstatistik"
+                                     class="img-responsive center-block"/>
                             </a>
                         </p>
                     </li>
@@ -652,7 +701,8 @@
                             Wie kann ich Karteien an meine Kommilitonen weitergeben?
                         </p>
                         <p>
-                            Entweder du veröffentlichst die Kartei im &raquo;Pool&laquo; von 🍅cards in der Kategorie &raquo;Frei&laquo;
+                            Entweder du veröffentlichst die Kartei im &raquo;Pool&laquo; von 🍅cards in der Kategorie
+                            &raquo;Frei&laquo;
                             oder du exportierst die einzelne Kartei als Datei.
                         </p>
                     </li>
@@ -660,19 +710,29 @@
 
                     <li>
                         <p style="color: #9C132D;">
-                            Warum bietet ihr <strong>Markdown / Markdeep</strong> für die Textformatierung an und nicht einen
+                            Warum bietet ihr <strong>Markdown / Markdeep</strong> für die Textformatierung an und nicht
+                            einen
                             <a href="https://de.wikipedia.org/wiki/WYSIWYG" target="_blank">WYSIWYG</a>-Editor?
                         </p>
                         <p>
-                            Alle Kartentexte sollen der besseren Lernbarkeit wegen <strong>einheitlich</strong> strukturiert und formatiert sein.
+                            Alle Kartentexte sollen der besseren Lernbarkeit wegen <strong>einheitlich</strong>
+                            strukturiert und formatiert sein.
                             Da dies in einem WYSIWYG-Editor nicht erzwungen werden kann,
-                            bieten wir typisierte Karten mit vorgegebenen Seitentiteln (siehe Demo-Kartei) und ausschließlich die Formatierungen von <a href="https://casual-effects.com/markdeep/features.md.html" target="_blank">Markdeep</a> an.
-                            Im Gegensatz zu WYSIWYG also <a href="https://de.wikipedia.org/wiki/WYSIWYM" target="_blank">WYSIWYM</a>, beachte das &raquo;M&laquo; am Wortende.
-                            Im akademischen Bereich, besonders in <a href="https://de.wikipedia.org/wiki/MINT-F%C3%A4cher" target="_blank">MINT-Fächern</a>, solltest du stets ein Textsatzsystem einem Textverarbeitungsprogramm vorziehen,
+                            bieten wir typisierte Karten mit vorgegebenen Seitentiteln (siehe Demo-Kartei) und
+                            ausschließlich die Formatierungen von <a
+                                href="https://casual-effects.com/markdeep/features.md.html" target="_blank">Markdeep</a>
+                            an.
+                            Im Gegensatz zu WYSIWYG also <a href="https://de.wikipedia.org/wiki/WYSIWYM"
+                                                            target="_blank">WYSIWYM</a>, beachte das &raquo;M&laquo; am
+                            Wortende.
+                            Im akademischen Bereich, besonders in <a
+                                href="https://de.wikipedia.org/wiki/MINT-F%C3%A4cher" target="_blank">MINT-Fächern</a>,
+                            solltest du stets ein Textsatzsystem einem Textverarbeitungsprogramm vorziehen,
                             also LaTeX statt WORD oder wesentlich simpler Markdown:
                         </p>
                         <div class="embed-responsive embed-responsive-16by9">
-                            <iframe src="https://www.youtube.com/embed/hpAJMSS8pvs?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+                            <iframe src="https://www.youtube.com/embed/hpAJMSS8pvs?rel=0" frameborder="0"
+                                    allow="autoplay; encrypted-media" allowfullscreen>
                             </iframe>
                         </div>
                     </li>
@@ -695,7 +755,8 @@
                         <p style="color: #9C132D;">
                             Ich kenne mich mit der Linux-Konsole gut aus. Kann ich 🍅cards auf meinem Laptop
                             installieren
-                            und anpassen (als <b>&raquo;My Cards&laquo;</b>) und offline mit den lokal gehaltenen Karteien
+                            und anpassen (als <b>&raquo;My Cards&laquo;</b>) und offline mit den lokal gehaltenen
+                            Karteien
                             lernen?
                         </p>
                         <p>
@@ -813,7 +874,8 @@
                             How can I pass on sets of cards to my fellow students?
                         </p>
                         <p>
-                            Either you publish the sets of cards in the &raquo;Pool&laquo; of 🍅cards in the category &raquo;Free&laquo;.
+                            Either you publish the sets of cards in the &raquo;Pool&laquo; of 🍅cards in the category
+                            &raquo;Free&laquo;.
                             or
                             you export the individual deck as a file.
                         </p>
@@ -821,11 +883,13 @@
                     <hr/>
                     <li>
                         <p style="color: #9C132D;">
-                            I have seen that there is also the type of <b>card &raquo;Mitschrift&laquo;</b>. How can I get a
+                            I have seen that there is also the type of <b>card &raquo;Mitschrift&laquo;</b>. How can I
+                            get a
                             Write your lecture with 🍅cards?
                         </p>
                         <p>
-                            As a digitally affine person, as a &raquo;digital native&laquo;, you could take notes with your laptop
+                            As a digitally affine person, as a &raquo;digital native&laquo;, you could take notes with
+                            your laptop
                             or computer.
                             Write tablet.
                             But handwriting with colours and pictures is better, as Daniel Hunold explains in the video.
@@ -858,7 +922,8 @@
                         <p style="color: #9C132D;">
                             I know a lot about the Linux console. Can I use 🍅cards on my laptop?
                             install
-                            and customize (as <b>&raquo;My Cards&laquo;</b>) and offline with the locally held decks of cards
+                            and customize (as <b>&raquo;My Cards&laquo;</b>) and offline with the locally held decks of
+                            cards
                             to learn?
                         </p>
                         <p>
@@ -906,7 +971,8 @@
                 <h2>Dienstanbieter</h2>
                 <p>
                     Der Betrieb der Webanwendung <b>🍅{{getLastAppTitle}}</b> unter <a href="home" target="_blank">
-                    {{getFirstAppTitle}}.{{getLastAppTitle}} </a> ist eine kostenlose Dienstleistung (&raquo;Software as a
+                    {{getFirstAppTitle}}.{{getLastAppTitle}} </a> ist eine kostenlose Dienstleistung (&raquo;Software as
+                    a
                     Service&laquo;) der
                     TransMIT-Gesellschaft
                     für Technologietransfer mbH, Projektbereich für mobile Anwendungen.
@@ -940,9 +1006,9 @@
                 <h2>Support</h2>
 
                 <p>
-                    Technische Fragen zur WebApp 🍅cards: <a href="mailto:curtis.adam@mni.thm.de">Curtis Adam</a><br />
+                    Technische Fragen zur WebApp 🍅cards: <a href="mailto:curtis.adam@mni.thm.de">Curtis Adam</a><br/>
                     Bugs &amp; Feature Requests: <a href="https://github.com/thm-projects/arsnova-flashcards/issues"
-                                                    target="_blank">GitHub</a><br />
+                                                    target="_blank">GitHub</a><br/>
                     Fragen zur didaktischen Konzeption von 🍅cards: <a
                         href="mailto:klaus.quibeldey-cirkel@mni.thm.de">Prof. Dr. Klaus Quibeldey-Cirkel</a>
                 </p>
@@ -987,7 +1053,7 @@
                     District court: Gießen HRB 3036 <br/>
                     USt-IdNr.: DE 188 685 037
                 </p>
-                <br />
+                <br/>
                 <h2>Support</h2>
                 <p>
                     Technical questions about WebApp: <a href="mailto:curtis.adam@mni.thm.de">Curtis Adam</a>
@@ -1612,7 +1678,8 @@
                     Die Internetseiten verwenden teilweise so genannte Cookies. Diese dienen dazu, unser Angebot
                     nutzerfreundlicher, effektiver und sicherer zu gestalten. Cookies sind kleine Textdateien, die auf
                     Ihrem Rechner abgelegt werden und die Ihr Browser speichert. Die meisten der von uns verwendeten
-                    Cookies sind so genannte &raquo;Session-Cookies&laquo;. Sie werden nach Ende Ihres Besuchs automatisch gelöscht.
+                    Cookies sind so genannte &raquo;Session-Cookies&laquo;. Sie werden nach Ende Ihres Besuchs
+                    automatisch gelöscht.
                     Cookies beeinträchtigen Ihren Rechner nicht und enthalten keine Viren.
                 </p>
                 <p>
@@ -1761,7 +1828,8 @@
                     more user-friendly, effective and safer. Cookies are small text files that are stored on your
                     computer.
                     on your computer and stored by your browser. The majority of the
-                    Cookies are so-called &raquo;session cookies&laquo;. They are automatically deleted at the end of your visit.
+                    Cookies are so-called &raquo;session cookies&laquo;. They are automatically deleted at the end of
+                    your visit.
                     Cookies do not affect your computer and do not contain viruses.
                 </p>
                 <p>

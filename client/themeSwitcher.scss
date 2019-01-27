@@ -167,6 +167,11 @@ $themes: (
     $navbar_profile_dropdown_text_active: map-get($map, "navbar_profile_dropdown_text_active");
     $navbar_logout_text: map-get($map, "navbar_logout_text");
     $navbar_logout_text_hover: map-get($map, "navbar_logout_text_hover");
+    $navbar_websocket_connected: map-get($map, "navbar_websocket_connected");
+    $navbar_websocket_connecting: map-get($map, "navbar_websocket_connecting");
+    $navbar_websocket_disconnected: map-get($map, "navbar_websocket_disconnected");
+    $navbar_websocket_background_hover: map-get($map, "navbar_websocket_background_hover");
+    $navbar_websocket_background_active: map-get($map, "navbar_websocket_background_active");
     //welcome page colors
     $welcome_page_login_label: map-get($map, "welcome_page_login_label");
     $welcome_page_login_label_shadow: map-get($map, "welcome_page_login_label_shadow");
@@ -184,9 +189,6 @@ $themes: (
     $footer_globe_dropdown_background: map-get($map, "footer_globe_dropdown_background");
     $footer_globe_dropdown_text_hover: map-get($map, "footer_globe_dropdown_text_hover");
     $footer_globe_dropdown_background_hover: map-get($map, "footer_globe_dropdown_background_hover");
-    $footer_websocket_connected: map-get($map, "footer_websocket_connected");
-    $footer_websocket_connecting: map-get($map, "footer_websocket_connecting");
-    $footer_websocket_disconnected: map-get($map, "footer_websocket_disconnected");
     $placeholder: map-get($map, "placeholder");
     $inventory_background: map-get($map, "inventory_background");
     $inventory_text: map-get($map, "inventory_text");
@@ -723,15 +725,23 @@ $themes: (
     }
 
     .disconnected {
-      color: $footer_websocket_disconnected !important;
+      color: $navbar_websocket_disconnected !important;
     }
 
     .connected {
-      color: $footer_websocket_connected !important;
+      color: $navbar_websocket_connected !important;
     }
 
     .connecting {
-      color: $footer_websocket_connecting !important;
+      color: $navbar_websocket_connecting !important;
+    }
+
+    .hidden-xs .connectionStatus:hover {
+      background-color: $navbar_websocket_background_hover !important;
+    }
+
+    .hidden-xs .connectionStatus.active {
+      background-color: $navbar_websocket_background_active !important;
     }
 
     .backdoorLogin {
