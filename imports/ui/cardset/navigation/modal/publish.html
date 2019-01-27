@@ -49,6 +49,7 @@
                         <div>{{_ 'access-level.edu.short'}}</div>
                     </label>
                 {{/if}}
+                {{!--
                 {{#if isInRole 'admin,editor,lecturer,pro'}}
                     <label id="kindoption3"
                            class="btn btn-danger {{#if kindIsActive 'pro'}}active{{/if}}">
@@ -56,9 +57,11 @@
                         <div>{{_ 'access-level.pro.short'}}</div>
                     </label>
                 {{/if}}
+                --}}
             </div>
         </div>
     </div>
+    {{!--
     {{#if kindWithPrice}}
         <div class="form-group">
             <label id="publishPriceLabel" class="col-md-3 control-label"
@@ -79,4 +82,5 @@
             </div>
         </div>
     {{/if}}
+    --}}
 </template>
