@@ -2,7 +2,7 @@
   "name": "I: Beispiel für eine Vokabelkarte",
   "description": "Die Vokabelkarte ist Teil der Demo-Kartei.",
   "date": "2018-04-24T11:05:15.991Z",
-  "dateUpdated": "2018-12-10T17:53:25.260Z",
+  "dateUpdated": "2019-01-27T14:40:52.778Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -56,7 +56,7 @@
   "rating": 0
 }, {
   "subject": "Navigiere mit der Tab-Taste zu  »DeepL«",
-  "back": "sich an etwas erinnern",
+  "back": "kürz und bündig",
   "centerTextElement": [
     true,
     true,
@@ -68,8 +68,8 @@
   "backgroundStyle": 0,
   "learningIndex": "0",
   "learningUnit": "0",
-  "front": "remember something",
-  "dateUpdated": "2018-12-10T17:50:46.771Z",
+  "front": "short and sweet",
+  "dateUpdated": "2019-01-27T14:40:52.666Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
