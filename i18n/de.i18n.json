@@ -462,11 +462,11 @@
     "editcard": "Einstellungen",
     "adminEditCardset": "Admin-Einstellungen",
     "editreferences": "Repetitorium zusammenstellen",
-    "name": "Etikett (= Dateiname)",
+    "name": "Etikett",
     "nameplaceholder": "Beschriftung der Box in wenigen Worten",
-    "descriptionplaceholder": "Worum geht es in dieser Kartei? Was soll gelernt werden? \n\nEtikett des Karteikastens und Beschreibung des Inhalts werden dir überall auf der 🍅__lastAppTitle__-Plattform angezeigt.  Die Kartei bleibt privat; sie ist für andere nicht sichtbar, solange du sie nicht veröffentlichst.",
+    "descriptionplaceholder": "Worum geht es in dieser Kartei? \n\nDas Etikett des Karteikastens und due Beschreibung des Inhalts werden dir überall auf 🍅__lastAppTitle__ angezeigt.  Die Kartei bleibt privat, das heißt, sie ist für andere nicht sichtbar, solange du sie nicht veröffentlichst.",
     "categoryplaceholder": "Wähle eine Kategorie",
-    "description": "Beschreibung des Inahlts der Box",
+    "description": "Beschreibung des Inhalts",
     "optional": "(Optional)",
     "category": "Kategorie",
     "visibility": "Sichtbar für",
@@ -480,7 +480,7 @@
     "cancel": "Abbrechen",
     "cardType": "Karteityp",
     "cardType_required": "Wähle einen Karteityp!",
-    "createcarddeck": "Anlegen",
+    "createcarddeck": "Speichern",
     "delete": "Kartei löschen",
     "confirm": "Sicher?",
     "save": "Kartei speichern",
@@ -1263,7 +1263,7 @@
         "listSeparator": ", "
       },
       "markdeepEditor": {
-        "help": "Zeige alle Formatierungsoptionen von »Markdeep«",
+        "help": "Öffnet ein neues Fenster und zeigt die Formatierungsoptionen von »Markdeep«",
         "translate": "Übersetze die Eingabe mit »DeepL«",
         "center": "Zentriere den Karteninhalt vertikal",
         "alignLeft": "Text linksbündig ausrichten",
@@ -1312,7 +1312,7 @@
       "saveNew": "Repetitorium anlegen",
       "placeholder": {
         "name": "Thema des Repetitoriums in wenigen Worten",
-        "description": "Nenne die Kompetenzziele des Repetitoriums: Was willst du nach dem Lernen aller Karteien, die zum Repetitorium gehören, langfristig wissen und können?"
+        "description": "Nenne die Kompetenzziele des Repetitoriums. \n\nWas willst du nach dem Lernen aller Karteien, die zum Repetitorium gehören, langfristig wissen und können?"
       }
     },
     "targetAudience1": {
@@ -1880,8 +1880,8 @@
   },
   "sweetAlert": {
     "completeProfile": {
-      "title": "Profil unvollständig",
-      "text": "Gib deinen Vornamen, Nachnamen und deine E-Mail-Adresse an. <br>Versuche es dann noch einmal. <br><br>Die Angaben werden für den Erinnerungsdienst von \uD83C\uDF45cards benötigt, siehe unter »Hilfe« → »FAQ 3«.",
+      "title": "Profil",
+      "text": "Gib deinen Vor- und Nachnamen und deine E-Mail-Adresse an. <br>Versuche es dann noch einmal. <br><br>Die Angaben werden für den Erinnerungsdienst von \uD83C\uDF45cards benötigt, siehe unter »Hilfe« → »FAQ 3«.",
       "button": {
         "confirm": "Zum Profil",
         "cancel": "Abbrechen"
