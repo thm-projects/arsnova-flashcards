@@ -10,7 +10,6 @@ BrowserPolicy.content.allowOriginForAll('https://*.youtube.com');
 BrowserPolicy.content.allowOriginForAll('https://*.vimeo.com');
 BrowserPolicy.content.allowOriginForAll('https://*.mxpnl.com');
 BrowserPolicy.content.allowOriginForAll('https://*.zendesk.com');
-BrowserPolicy.content.allowOriginForAll('https://*.braintreegateway.com');
 BrowserPolicy.content.allowOriginForAll('https://*.cloudflare.com');
 BrowserPolicy.content.allowOriginForAll('https://git.thm.de');
 BrowserPolicy.content.allowOriginForAll('https://cdn.mathjax.org');
