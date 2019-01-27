@@ -45,10 +45,16 @@ if (Meteor.isServer) {
 	Meteor.publish("workloadCardsets", function () {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
 			let workload = Workload.find({user_id: this.userId}, {fields: {cardset_id: 1}}).fetch();
+			let filter = [];
+			for (let i = 0, workloadLength = workload.length; i < workloadLength; i++) {
+				if ((Leitner.find({cardset_id: workload[i].cardset_id}).count() !== 0) || (Wozniak.find({cardset_id: workload[i].cardset_id}).count() !== 0)) {
+					filter.push(workload[i].cardset_id);
+				}
+			}
 			let cardsets = [];
 			let cardset;
-			for (let i = 0, workloadLength = workload.length; i < workloadLength; i++) {
-				cardset = Cardsets.findOne({_id: workload[i].cardset_id}, {
+			for (let i = 0, filterLength = filter.length; i < filterLength; i++) {
+				cardset = Cardsets.findOne({_id: filter[i]}, {
 					fields: {
 						_id: 1,
 						shuffled: 1,
@@ -56,7 +62,7 @@ if (Meteor.isServer) {
 					}
 				});
 				if (cardset !== undefined) {
-					cardsets.push(workload[i].cardset_id);
+					cardsets.push(filter[i]);
 					if (cardset.shuffled) {
 						for (let k = 0, cardGroupsLength = cardset.cardGroups.length; k < cardGroupsLength; k++) {
 							cardsets.push(cardset.cardGroups[k]);

@@ -16,8 +16,19 @@ import {Profile} from "../../api/profile";
 import {BonusForm} from "../../api/bonusForm";
 import {MarkdeepContent} from "../../api/markdeep";
 import {NavigatorCheck} from "../../api/navigatorCheck";
+import {isNewCardset} from "../../ui/forms/cardsetForm";
 
 Meteor.subscribe("collegesCourses");
+
+Template.registerHelper('isRepetitorium', function () {
+	if (isNewCardset()) {
+		return Route.isRepetitorium();
+	} else {
+		if (Session.get('activeCardset') !== undefined) {
+			return Session.get('activeCardset').shuffled;
+		}
+	}
+});
 
 Template.registerHelper('isSelectingCardsetToLearn', function () {
 	return Session.get("selectingCardsetToLearn");

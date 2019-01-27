@@ -5,6 +5,15 @@
             <div class="modal-content">
                 {{#unless isActiveRoute 'admin_cardset'}}
                     <div class="modal-header">
+                        <span class="cardsetFormIcons">
+                            {{#if isRepetitorium}}
+                                <i class="fa fa-archive"></i> <i class="fa fa-archive"></i> <i
+                                    class="fa fa-archive"></i> <i
+                                    class="fa fa-ellipsis-h"></i>
+                            {{else}}
+                                <i class="fa fa-archive"></i>
+                            {{/if}}
+                        </span>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 id="setCardsetFormModalTitle" class="modal-title">
                             {{#if isNew}}
