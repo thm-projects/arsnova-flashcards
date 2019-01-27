@@ -83,6 +83,10 @@ Template.filterIndexCreate.helpers({
 
 		switch (returnType) {
 			case 0:
+				if (Route.isMyCardsets()) {
+					return Cardsets.find(query).count() > 0;
+				}
+				return true;
 			case 1:
 				return Cardsets.find(query, {
 					sort: Filter.getSortFilter(),
