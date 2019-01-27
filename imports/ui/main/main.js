@@ -46,6 +46,7 @@ Session.setDefault("selectingCardsetToLearn", false);
 Session.setDefault('helpFilter', undefined);
 Session.setDefault('currentZoomValue', CardVisuals.getDefaultTextZoomValue());
 Session.setDefault('demoFullscreen', false);
+Session.setDefault('isConnectionModalOpen', false);
 
 function adjustSearchResultWindowSize() {
 	if (Meteor.userId()) {
@@ -270,5 +271,21 @@ Meteor.startup(function () {
 	$(document).on('keyup', function () {
 		MainNavigation.enableKeyEvents();
 		CardNavigation.enableKeyEvents();
+	});
+});
+
+Template.connectionStatus.helpers({
+	isModalOpen: function () {
+		return Session.get('isConnectionModalOpen');
+	}
+});
+
+
+Template.connectionStatusModal.onRendered(function () {
+	$('#connectionStatusModal').on('hidden.bs.modal', function () {
+		Session.set('isConnectionModalOpen', false);
+	});
+	$('#connectionStatusModal').on('shown.bs.modal', function () {
+		Session.set('isConnectionModalOpen', true);
 	});
 });
