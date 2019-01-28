@@ -30,6 +30,7 @@ import "./overlays/zoomText.js";
 import "../card/sidebar/sidebar.js";
 import "../loadingScreen/loadingScreen.js";
 import "../card/editor/editor.js";
+import "./item/search.js";
 import "./main.html";
 
 Meteor.subscribe("Users");
@@ -47,19 +48,6 @@ Session.setDefault('helpFilter', undefined);
 Session.setDefault('currentZoomValue', CardVisuals.getDefaultTextZoomValue());
 Session.setDefault('demoFullscreen', false);
 Session.setDefault('isConnectionModalOpen', false);
-
-function adjustSearchResultWindowSize() {
-	if (Meteor.userId()) {
-		let destination = $('#input-search');
-		let target = $('#searchResults');
-		if (destination.length && target.length) {
-			let offsetTop = (destination.offset().top + destination.height());
-			target.css('max-height', ($(window).height() - offsetTop));
-			target.css('left', destination.offset().left);
-			target.css('top', offsetTop);
-		}
-	}
-}
 
 function connectionStatus() {
 	let stat;
@@ -127,27 +115,9 @@ Template.main.events({
 		MainNavigation.setLoginTarget(false);
 		Meteor.logout();
 	},
-	'keyup #input-search': function (event) {
-		event.preventDefault();
-		Session.set("searchValue", $(event.currentTarget).val());
-		Meteor.call('getSearchCategoriesResult', Session.get("searchValue"), function (error, result) {
-			if (result) {
-				Session.set('searchCategoriesResult', result);
-			}
-		});
-		if ($(event.currentTarget).val() && Session.get('searchCategoriesResult') !== undefined) {
-			$('#searchDropdown').addClass("open");
-		} else {
-			$('#searchDropdown').removeClass("open");
-		}
-		adjustSearchResultWindowSize();
-	},
-	'click #input-search': function () {
-		adjustSearchResultWindowSize();
-	},
 	'click #searchResults': function () {
-		$('#searchDropdown').removeClass("open");
-		$('#input-search').val('');
+		$('.searchDropdown').removeClass("open");
+		$('.input-search').val('');
 	},
 	'click .notificationsBtn': function () {
 		var notifications = Notifications.find({read: false, target_type: 'user', target: Meteor.userId()});
@@ -181,12 +151,6 @@ Template.main.helpers({
 		if (Meteor.user()) {
 			return Meteor.user().profile.name;
 		}
-	},
-	searchCategories: function () {
-		return Session.get('searchCategoriesResult');
-	},
-	searchActive: function () {
-		return Session.get("searchValue") !== "" && Session.get("searchValue") !== undefined;
 	},
 	isActiveProfile: function () {
 		if (ActiveRoute.name(/^profile/)) {
@@ -233,14 +197,9 @@ Template.main.onCreated(function () {
 });
 
 Template.main.onRendered(function () {
-	Session.set("searchValue", undefined);
 	Meteor.call("initUser");
-	adjustSearchResultWindowSize();
-	$(window).resize(function () {
-		adjustSearchResultWindowSize();
-	});
 	$("html, body").click(function () {
-		$('#input-search').val('');
+		$('.input-search').val('');
 		Session.set("searchValue", undefined);
 		Session.set('searchCategoriesResult', []);
 	});

@@ -252,8 +252,8 @@ body {
   margin-top: 15px;
 }
 
-#input-search {
-  width: 105px;
+.input-search {
+  width: 105px !important;
   line-height: 30pt !important;
   padding-right: 15px !important;
 }
@@ -484,6 +484,13 @@ button {
   padding-right: 0;
 }
 
+
+.searchDropdown {
+  margin-top: 5px !important;
+  margin-bottom: 0 !important;
+  width: 140px !important;
+}
+
 @media (max-width: 767px) {
   .panel {
     margin-top: 3px;
@@ -517,18 +524,18 @@ button {
     font-size: 11px;
   }
 
-  #searchDropdown {
-    margin: 0 0 0 5px !important;
+  .searchDropdown {
+    margin-top: 8px !important;
+    width: 130px !important;
     padding: 0;
     border: none;
     box-shadow: none;
-    height: 36px;
   }
-  #input-search {
+  .input-search {
     margin: 0;
     border: none;
   }
-  #clearSearch {
+  .clearSearch {
     right: 20px !important;
   }
 }
@@ -611,12 +618,6 @@ button {
 
 #thm-top-navigation a {
   padding: 8px 7px !important;
-}
-
-#searchDropdown {
-  margin-top: 5px;
-  margin-bottom: 0;
-  width: 140px !important;
 }
 
 .dropup {
@@ -946,7 +947,7 @@ th {
   }
 }
 
-#clearSearch {
+.clearSearch {
   position: absolute;
   float: right;
   right: 5px;
