@@ -1501,14 +1501,19 @@ $themes: (
       color: $navbar_learn_text_active !important;
     }
 
-    #input-search {
+    .input-search {
       background-color: $navbar_search_background !important;
       color: $navbar_search_text !important;
     }
-    #input-search::placeholder {
+    .input-search::placeholder {
       color: $navbar_search_placeholder !important;
     }
-    #clearSearch {
+
+    .input-search:focus {
+      background-image: linear-gradient($input_textarea_border_active, $input_textarea_border_active), linear-gradient($input_textarea_border_inactive, $input_textarea_border_inactive) !important;
+    }
+
+    .clearSearch {
       color: $navbar_search_icon !important;
     }
 

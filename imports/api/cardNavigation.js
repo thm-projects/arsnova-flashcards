@@ -310,7 +310,7 @@ export let CardNavigation = class CardNavigation {
 		let keyCodes = [];
 
 		CardVisuals.toggleZoomContainer(true);
-		if (!$('#input-search').is(":focus") && !$('#lightbox').is(":visible") && !$('#cardSettingsModal').is(":visible") && keyEventsUnlocked) {
+		if (!$('.input-search').is(":focus") && !$('#lightbox').is(":visible") && !$('#cardSettingsModal').is(":visible") && keyEventsUnlocked) {
 			keyEventsUnlocked = false;
 			if (Route.isCardset() || Route.isBox() || Route.isMemo()) {
 				keyCodes = [9];
