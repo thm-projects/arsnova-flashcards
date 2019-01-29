@@ -19,7 +19,8 @@
                             <div class="navbar-header">
                                 {{#if currentUser}}
                                     <p class="navbar-text visible-xs-inline-block">{{getMobileNavbarTitle}}</p>
-                                    <button type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse"
+                                    <button type="button" class="navbar-toggle collapsed pull-right"
+                                            data-toggle="collapse"
                                             data-target="#thm-top-navigation" aria-expanded="false">
                                         <span class="sr-only">Toggle navigation</span>
                                         <span class="icon-bar"></span>
@@ -62,15 +63,18 @@
                                                 {{_ "navbar-collapse.learndecks"}}
                                             </a>
                                         </li>
-                                        {{#if canCreateContent}}
-                                            <li id="navbar-own-decks"
-                                                class="{{#if isActiveRoute regex='home|create'}}active{{/if}} hidden-xs"
-                                                data-toggle="collapse" data-target="#thm-top-navigation">
-                                                <a href="{{pathFor route='create'}}" id="cardsets">
-                                                    {{getMyCardsetName}}
-                                                </a>
-                                            </li>
-                                        {{/if}}
+                                        {{#unless isSmartPhoneAndOwnsNoCards}}
+                                            {{#if canCreateContent}}
+                                                <li id="navbar-own-decks"
+                                                    class="{{#if isActiveRoute
+                                                                 regex='home|create'}}active{{/if}}"
+                                                    data-toggle="collapse" data-target="#thm-top-navigation">
+                                                    <a href="{{pathFor route='create'}}" id="cardsets">
+                                                        {{getMyCardsetName}}
+                                                    </a>
+                                                </li>
+                                            {{/if}}
+                                        {{/unless}}
                                     </ul>
                                     <ul class="nav navbar-nav">
                                         <li id="navbar-help"
@@ -203,10 +207,11 @@
         {{/if}}
     {{/unless}}
     <div id="main" class="{{#if isActiveRoute 'presentation'}}presentation-container{{else}}{{#if isActiveRoute
-                                                                                          regex='home'}}{{else}}{{#if
+                                                                                                  regex='home'}}{{else}}{{#if
             isActiveRoute
             regex='newCard|editCard|cardsetstats'}}{{#if
-            fullscreenActive}}container{{else}}{{#if isActiveRoute regex='newCard|editCard'}}container-fluid-editor{{/if}} container-fluid{{/if}}{{else}}{{#unless
+            fullscreenActive}}container{{else}}{{#if isActiveRoute
+                                                     regex='newCard|editCard'}}container-fluid-editor{{/if}} container-fluid{{/if}}{{else}}{{#unless
             isFirstTimeVisit}}container{{/unless}}{{/if}}{{/if}}{{/if}}">
         <!-- AREA BETWEEN NAVIGATION AND FOOTER -->
         <div class="{{#if isActiveRoute regex='home'}}{{else}}{{#unless isFirstTimeVisit}}row{{/unless}}{{#if
