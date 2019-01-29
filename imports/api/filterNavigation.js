@@ -11,8 +11,9 @@ import {Filter} from "./filter";
 let filtersWithResetButton = [0, 1, 2, 3, 4, 5];
 let filtersWithDisplayModeButton = [0, 2, 4];
 let filtersWithSortButton = [0, 1, 2, 3, 4, 5];
-let filtersWithDefaultSortName = [0, 1, 2, 3, 5];
+let filtersWithDefaultSortName = [0, 2, 3, 5];
 let filtersWithDefaultSortDateUpdated = [4];
+let filtersWithDefaultSortDateCreated = [1];
 let filtersWithAuthor = [0, 2, 3, 4, 5];
 let filtersWithCardType = [0, 1, 3, 4, 5];
 let filtersWithDifficulty = [0, 1, 3, 4, 5];
@@ -106,9 +107,12 @@ export let FilterNavigation = class FilterNavigation {
 		return filtersWithDefaultSortName.includes(filterType);
 	}
 
-
 	static gotDefaultSortDateUpdated (filterType) {
 		return filtersWithDefaultSortDateUpdated.includes(filterType);
+	}
+
+	static gotDefaultSortDateCreated (filterType) {
+		return filtersWithDefaultSortDateCreated.includes(filterType);
 	}
 
 	static gotResetButton (filterType) {
