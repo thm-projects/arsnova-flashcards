@@ -32,6 +32,7 @@ import "../loadingScreen/loadingScreen.js";
 import "../card/editor/editor.js";
 import "./item/search.js";
 import "./main.html";
+import {NavigatorCheck} from "../../api/navigatorCheck";
 
 Meteor.subscribe("Users");
 Meteor.subscribe("notifications");
@@ -132,7 +133,7 @@ Template.main.events({
 		Session.set('activeLanguage', language);
 	},
 	"click": function (evt) {
-		if (!$(evt.target).is('.zoomText'))  {
+		if (!$(evt.target).is('.zoomText')) {
 			CardVisuals.toggleZoomContainer(true);
 		}
 	}
@@ -167,6 +168,13 @@ Template.main.helpers({
 	},
 	getLink: function () {
 		return "/cardset/" + this.link_id;
+	},
+	isSmartPhoneAndOwnsNoCards: function () {
+		if (NavigatorCheck.isSmartphone()) {
+			if (Meteor.user() && Meteor.user().count !== undefined) {
+				return Meteor.user().count.cardsets === 0;
+			}
+		}
 	},
 	getMyCardsetName: function () {
 		if (Meteor.user() && Meteor.user().count !== undefined) {

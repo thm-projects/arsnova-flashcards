@@ -1328,6 +1328,7 @@ $themes: (
       background-color: $input_textarea_background_inactive !important;
       color: $input_textarea_text_inactive !important;
       border-color: $input_textarea_border_inactive !important;
+      padding: 5px;
       background-image: linear-gradient($input_textarea_border_inactive, $input_textarea_border_inactive), linear-gradient($input_textarea_border_inactive, $input_textarea_border_inactive) !important;
     }
 

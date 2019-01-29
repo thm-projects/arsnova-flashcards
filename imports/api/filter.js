@@ -194,6 +194,9 @@ export let Filter = class Filter {
 		if (FilterNavigation.gotDefaultSortDateUpdated(filterType)) {
 			filter.dateUpdated = -1;
 		}
+		if (FilterNavigation.gotDefaultSortDateCreated(filterType)) {
+			filter.date = -1;
+		}
 		if (!Route.isWorkload()) {
 			filter.shuffled = Route.isRepetitorium();
 		}

@@ -157,7 +157,7 @@
                     {{/if}}
                     {{#if isActiveRoute regex="alldecks|create|repetitorium"}}
                         {{#if canSeeNavigationItems}}
-                            <a class="resultNavigationElement editCardset" {{disableIfOffline}}
+                            <a class="resultNavigationElement editCardset hidden-xs" {{disableIfOffline}}
                                title='{{#if isActiveRoute regex="repetitorium"}}{{_
                                        "cardset.tooltip.editRepetitorium"}}{{else}}{{_
                                        "cardset.tooltip.editCardset"}}{{/if}}' data-id="{{this._id}}"
@@ -195,7 +195,7 @@
                         {{#unless this.shuffled}}
                             <a class="resultNavigationElement exportCardset" data-id="{{this._id}}"
                                data-name="{{this.name}}" title='{{_ "admin.cardset.export"}}'><i
-                                    class="result fa fa-cloud-download" data-id="{{this._id}}"
+                                    class="result fa fa-cloud-download hidden-xs" data-id="{{this._id}}"
                                     data-name="{{this.name}}"></i></a>
                         {{/unless}}
                     {{/unless}}
