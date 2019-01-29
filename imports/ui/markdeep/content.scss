@@ -19,12 +19,15 @@
 
   table th {
     background-color: #FF9F30 !important;
+    color: white !important;
     font-weight: bold !important;
+    padding: 10px !important;
     border: 2px solid gray !important;
   }
 
   table td {
     border: 2px solid gray !important;
+    padding: 10px !important;
   }
 
   td:hover {
@@ -176,5 +179,9 @@
 
   q:after {
     content: "«";
+  }
+
+  h.md div.title, contents, .md .tocHeader, h1, h2, h3, h4, h5, h6, .md .shortTOC, .md .mediumTOC, .nonumberh1, .nonumberh2, .nonumberh3, .nonumberh4, .nonumberh5, .nonumberh6 {
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   }
 }
