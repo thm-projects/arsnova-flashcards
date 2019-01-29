@@ -13,7 +13,7 @@ import {Paid} from "../../api/paid";
 var initColorThemes = function () {
 	return [{
 		"_id": "default",
-		"name": "Foto aus Wikipedia zum Thema \"Zettelkasten\" von Kai Schreiber, CC BY-SA 2.0"
+		"name": "Foto »Zettelkasten« (Kai Schreiber, CC BY-SA 2.0)"
 	}, {
 		"_id": "contrast",
 		"name": "Ohne Hintergrundbild und mit mehr Kontrast"
