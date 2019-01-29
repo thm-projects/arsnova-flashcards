@@ -534,7 +534,7 @@
   "profile": {
     "logout": "Ausloggen",
     "activity": "Lernstatistik",
-    "overview": "Summativer Lernstand",
+    "overview": "Lernstand",
     "billing": "Abrechnung (Testbetrieb)",
     "membership": "Mitgliedschaft (Testbetrieb)",
     "notifications": "Nachrichten",
@@ -1491,7 +1491,7 @@
     "disconnected": "keine Verbindung"
   },
   "admin": {
-    "allLearnedCardsets": "Nach dem Leitner-Lernkarteisystem gelernte Karten über alle Karteien und Repetitorien",
+    "allLearnedCardsets": "Nach dem Leitner-Plan gelernte Karten über alle Karteien",
     "learnedCardsets": "Lernstatistik der Kartei",
     "userProgress": "Lernstand für ",
     "myProgress": "Lernstand ",
