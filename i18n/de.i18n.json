@@ -310,8 +310,8 @@
     "text": "Willst du diese Karte wirklich löschen?"
   },
   "confirm-form-learn": {
-    "title": "Aus dem Lernpensum entfernen",
-    "text": "Willst du diese Kartei wirklich aus deinem Lernpensum nehmen? Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diese Kartei gelöscht."
+    "title": "Aus dem Lernpensum entfernen?",
+    "text": "Wenn du den Vorgang bestätigst, wird deine Lernstatistik für diese Kartei gelöscht."
   },
   "confirm-enter-learnphase": {
     "title": "Lernphase mit Bonusvergabe beitreten",
@@ -632,7 +632,7 @@
     "givenname-desc": "Vorname (öffentlich)",
     "login": "Du bist angemeldet über: ",
     "email": "E-Mail",
-    "email-desc": "für den Erinnerungsdienst erforderlich",
+    "email-desc": "für den Erinnerungsdienst",
     "emailValidation": "E-Mail bestätigen",
     "emailValidation-desc": "E-Mail-Adresse wiederholen",
     "emailValidationError": "E-Mail-Adressen stimmen nicht überein",
