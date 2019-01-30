@@ -24,7 +24,7 @@
                             {{/if}}
                             {{#if learningActiveAndEditor}}
                                 <li id="showStats" class="showStatsList">
-                                    {{_ "box_stats"}}
+                                    <i class="glyphicon glyphicon-stats"></i> {{_ "box_stats"}}
                                 </li>
                             {{/if}}
                         {{/if}}
@@ -35,13 +35,13 @@
                                         class="manageLearn manageLearningList learnBoxActive"
                                         data-toggle="modal"
                                         data-target="#bonusFormModal">
-                                        {{_ "bonus.form.edit.title"}}
+                                        <i class="fa fa-cog fa-spin"></i> {{_ "bonus.form.edit.title"}}
                                     </li>
                                     <li id="stopBonus"
                                         class="stopLearn stopLearningList learnBoxActive"
                                         data-toggle="modal"
                                         data-target="#confirmEndLearnModal">
-                                        {{_ "sidebar-nav.stopLearning"}}
+                                        <i class="fa fa-exclamation-triangle"></i> {{_ "sidebar-nav.stopLearning"}}
                                     </li>
                                 {{/if}}
                             {{/if}}

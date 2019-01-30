@@ -3,6 +3,12 @@
          aria-labelledby="helpModalTitle">
         <div class="modal-dialog">
             <div class="modal-content modal-content-for-buttons">
+                <div class="modal-header">
+                    <span class="modal-icon">
+                        <i class="fa fa-question"></i>
+                    </span>
+                    <button type="button" class="close pull-right" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
                 <div class="modal-body">
                     {{#if isActiveRoute regex='presentation|demo|making'}}
                         {{#if isActiveRoute regex='presentationlist|demolist|makinglist'}}
