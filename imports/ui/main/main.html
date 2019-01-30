@@ -261,6 +261,9 @@
         <div class="modal-dialog" aria-labelledby="showHintTitle">
             <div class="modal-content hintContent">
                 <div class="modal-header">
+                    <span class="modal-icon">
+                        <i class="glyphicon glyphicon-signal"></i>
+                 </span>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 id="connectionStatusTitle" class="modal-title">{{_ "connection.title"
                                                                            lastAppTitle=(getLastAppTitle)}}
@@ -293,8 +296,11 @@
         <div class="modal-dialog" aria-labelledby="showUnderDevelopmentTitle">
             <div class="modal-content underDevelopmentContent">
                 <div class="modal-header">
+                    <span class="modal-icon-white">
+                        <i class="fa fa-exclamation-triangle"></i>
+                    </span>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 id="underDevelopmentTitle" class="modal-title">{{_ "underDevelopment.title"}}
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </h4>
                 </div>
                 <div class="modal-body">

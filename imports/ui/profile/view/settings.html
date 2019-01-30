@@ -113,7 +113,7 @@
                         <button id="profileSave" type="button"
                                 class="btn btn-success btn-raised btn-block col-xs-12 col-sm3 pull-right"
                             {{disableIfOffline}}>
-                            {{_ "profile.save"}}
+                            <i class="fa fa-floppy-o"></i> {{_ "profile.save"}}
                         </button>
                     {{/if}}
                 </form>
@@ -133,7 +133,7 @@
                     </select>
                     {{#unless isDisabledSaveTheme}}
                         <button id="colorThemeSave" type="button"
-                                class="btn btn-success btn-raised btn-block col-xs-12 col-sm-3 pull-right">{{_
+                                class="btn btn-success btn-raised btn-block col-xs-12 col-sm-3 pull-right"><i class="fa fa-floppy-o"></i> {{_
                                 "profile.save"}}</button>
                     {{/unless}}
                 </div>
@@ -149,7 +149,7 @@
                 <button id="profileDelete" type="button" class="btn btn-danger btn-raised btn-block col-xs-12 col-sm-3"
                         data-toggle="modal"
                         data-target="#profileDelteConfirmModal" {{disableIfOffline}}>
-                    {{_ "profile.settings.delete"}}
+                    <i class="fa fa-trash"></i> {{_ "profile.settings.delete"}}
                 </button>
             </div>
             {{> profileDeleteConfirmForm}}
