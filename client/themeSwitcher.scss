@@ -36,6 +36,7 @@ $themes: (
     $accent_300: map-get($map, "accent_300");
     $background: map-get($map, "background");
     $hyperlink: map-get($map, "hyperlink");
+    $modal_icon: map-get($map, "modal_icon");
     //global button and label colors
     $demo_background: map-get($map, "demo_background");
     $demo_text: map-get($map, "demo_text");
@@ -2870,6 +2871,10 @@ $themes: (
     .card-navigation-active:hover, .card-navigation-active:focus {
       color: $card_navigation_active_text_hover !important;
       background-color: $card_navigation_active_background_hover !important
+    }
+
+    .modal-icon, .modal-icon .fa, .modal-icon .glyphicon {
+      color: $modal_icon !important;
     }
   }
 }

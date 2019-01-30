@@ -35,6 +35,9 @@ Template.wordcloudModal.helpers({
 			result.push(cardset);
 		}
 		return result;
+	},
+	isRepetitorium: function () {
+		return Cardsets.findOne({_id: Session.get('wordcloudItem')}).shuffled;
 	}
 });
 

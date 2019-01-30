@@ -8,24 +8,24 @@
                     <i class="fa fa-graduation-cap"></i> {{_ "learn"}} <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li id="learnBox" class="leitnerList" {{disableIfOffline}}>{{_
+                    <li id="learnBox" class="leitnerList" {{disableIfOffline}}><i class="fa fa-graduation-cap"></i> {{_
                             "learnfile"}}</li>
-                    <li id="learnMemo" class="wozniakList" {{disableIfOffline}}>{{_
+                    <li id="learnMemo" class="wozniakList" {{disableIfOffline}}><i class="fa fa-graduation-cap"></i> {{_
                             "memo"}}</li>
                     {{#if learningLeitner}}
-                        <li id="leitnerProgress" class="progressList" {{disableIfOffline}}>{{_
+                        <li id="leitnerProgress" class="progressList" {{disableIfOffline}}><i class="glyphicon glyphicon-stats"></i> {{_
                                 "admin.myProgress"}}</li>
                     {{/if}}
                     {{#if learningLeitner}}
                         <li id="resetLeitner" class="resetLeitnerList"
                             data-toggle="modal"
-                            data-target="#resetLeitnerModal" {{disableIfOffline}}>{{_
+                            data-target="#resetLeitnerModal" {{disableIfOffline}}><i class="fa fa-trash"></i> {{_
                                 "resetLearnfile"}}</li>
                     {{/if}}
                     {{#if learningMemo}}
                         <li id="resetMemo" class="resetWozniakList"
                             data-toggle="modal"
-                            data-target="#resetMemoModal" {{disableIfOffline}}>{{_
+                            data-target="#resetMemoModal" {{disableIfOffline}}><i class="fa fa-trash"></i> {{_
                                 "resetWozniak"}}</li>
                     {{/if}}
                 </ul>
