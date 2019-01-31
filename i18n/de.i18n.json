@@ -503,8 +503,8 @@
     "reason": "Grund",
     "reportuser": "Rechtswidriger Inhalt",
     "reportcardset": "Inhaltliche Mängel",
-    "resetLeitner": "Möchtest du wirklich deine Lernstatistik im Modus »Lernen nach Leitner« für diese Kartei »__name__« zurücksetzen?",
-    "resetWozniak": "Möchtest du wirklich deine Lernstatistik im Modus »Lernen nach Woźniak« für die Kartei »__name__« zurücksetzen?",
+    "resetLeitner": "Willst du wirklich deine Lernstatistik im Modus »Leitner-Plan« für diese Kartei »__name__« zurücksetzen?",
+    "resetWozniak": "Willst du wirklich deine Lernstatistik im Modus »Woźniak-Plan« für die Kartei »__name__« zurücksetzen?",
     "text": "Erläuterung",
     "text_chars": "Es sind 50 Zeichen erforderlich!",
     "submitcomplaint": "Nachricht absenden",
@@ -526,9 +526,9 @@
     "moduleShortplaceholder": "Abkürzung des Modultitels",
     "moduleNumplaceholder": "Modulnummer laut Modulhandbuch",
     "moduleLinkplaceholder": "Link zur offiziellen Modulbeschreibung",
-    "deleteCards": "Möchtest du wirklich alle Karten in der Kartei »__name__« löschen?",
-    "deleteCard": "Möchtest du wirklich die Karte löschen?",
-    "cancelEditCard": "Möchtest du wirklich den Bearbeitungsmodus verlassen? Alle nicht gespeicherten Änderungen werden verworfen.",
+    "deleteCards": "Willst du wirklich alle Karten in der Kartei »__name__« löschen?",
+    "deleteCard": "Willst du wirklich diese Karte löschen?",
+    "cancelEditCard": "Willst du wirklich den Bearbeitungsmodus verlassen? Alle nicht gespeicherten Änderungen werden verworfen.",
     "cancelEditCardTitle": "Bearbeitungsmodus verlassen"
   },
   "profile": {
@@ -756,7 +756,7 @@
     },
     "form-join": {
       "title": "Bonus-Lernphase beitreten",
-      "message": "Möchtest du der aktiven Bonus-Lernphase beitreten? Beim Beitritt wird dein derzeitiger Leitner und Wozniak Lernstand zurückgesetzt.",
+      "message": "Willst du der aktiven Bonus-Lernphase beitreten? Beim Beitritt wird dein derzeitiger Leitner und Wozniak Lernstand zurückgesetzt.",
       "button": {
         "confirm": "Beitreten",
         "cancel": "Abbrechen"
@@ -1366,7 +1366,7 @@
     "modal": {
       "removeUser": {
         "title": "Benutzer aus der Bonusphase entfernen?",
-        "text": "Möchtest Du diesen Datensatz aus der Bonusphase entfernen?",
+        "text": "Willst du diesen Datensatz aus der Bonusphase entfernen?",
         "button": {
           "confirm": "Benutzer aus der Bonusphase entfernen",
           "cancel": "Abbrechen"
