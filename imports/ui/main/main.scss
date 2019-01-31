@@ -37,6 +37,10 @@ $default_text_shadow: 1px 1px 1px #4A5C66;
 $default_box_shadow: 0 40px 100px rgba(0, 0, 0, 0.30);
 $size_modal_icon: 36px;
 
+
+//search
+$margin_bottom_search_result_item: 30px;
+
 //navbar
 $size_navbar_alldecks_border: 3px;
 $font_size_filter_navbar_mobile: 12px;
@@ -1048,4 +1052,8 @@ th {
 
 .modal-icon-white, .modal-icon-white .fa {
   color: #ffffff !important;
+}
+
+#searchResults .search-result-item:not(:last-child) {
+  margin-bottom: $margin_bottom_search_result_item !important;
 }
