@@ -76,9 +76,10 @@ Template.infiniteScroll.helpers({
 		if (Session.get("selectingCardsetToLearn") && query.cardType === undefined) {
 			query.cardType = {$in: CardType.getCardTypesWithLearningModes()};
 		}
+		Session.set('totalResults', Cardsets.find(query).count());
 		return TAPi18n.__('infinite-scroll.remainingCardsets', {
 			current: Filter.getMaxItemCounter(),
-			total: Cardsets.find(query).count()
+			total: Session.get('totalResults')
 		});
 	}
 });
