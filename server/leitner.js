@@ -56,7 +56,7 @@ function mailsEnabled() {
 }
 
 function prepareMail(cardset, user, isReset = false, isNewcomer = false) {
-	if (user.mailNotification && mailsEnabled() && !isNewcomer) {
+	if (user.mailNotification && mailsEnabled() && !isNewcomer && Roles.userIsInRole(user._id, ['admin', 'editor', 'university', 'lecturer', 'pro']) && !Roles.userIsInRole(user._id, ['blocked', 'firstLogin'])) {
 		try {
 			let mail = new MailNotifier();
 			if (isReset) {

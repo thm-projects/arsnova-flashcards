@@ -1,13 +1,13 @@
 import {Meteor} from "meteor/meteor";
 import {FilterNavigation} from "./filterNavigation";
 import {Session} from "meteor/session";
-import {Cardsets} from "./cardsets";
 import {Route} from "./route";
 import {WordcloudCanvas} from "./wordcloudCanvas";
 import {Leitner, Wozniak} from "./learned";
 
-let itemIncrementCounter = 5;
-Session.setDefault('maxItemsCounter', itemIncrementCounter);
+let itemStartingValue = 5;
+let itemIncrementValue = 20;
+Session.setDefault('maxItemsCounter', itemStartingValue);
 Session.setDefault('poolFilter', undefined);
 Session.setDefault('myCardsetFilter', undefined);
 Session.setDefault('courseIterationFilter', undefined);
@@ -275,12 +275,15 @@ export let Filter = class Filter {
 	}
 
 	static resetMaxItemCounter () {
-		Session.set('maxItemsCounter', itemIncrementCounter);
+		Session.set('maxItemsCounter', itemStartingValue);
 	}
 
 	static incrementMaxItemCounter () {
 		let newCounter = Session.get('maxItemsCounter');
-		newCounter += itemIncrementCounter;
+		newCounter += itemIncrementValue;
+		if ((Session.get('totalResults') - newCounter) <= (itemIncrementValue / 2)) {
+			newCounter += itemIncrementValue;
+		}
 		Session.set('maxItemsCounter', newCounter);
 	}
 
@@ -333,24 +336,7 @@ export let Filter = class Filter {
 		this.setActiveFilter(filter);
 	}
 
-	static checkRemainingCards () {
-		let query = Filter.getFilterQuery();
-		if (Route.isWorkload() && Session.get('cardsetIdFilter') !== undefined) {
-			query._id = {$in: Session.get('cardsetIdFilter')};
-		}
-		let totalResults = Cardsets.find(query).count();
-		if (totalResults > Session.get("itemsLimit")) {
-			$(".showMoreResults").data("visible", true);
-			Session.set("totalResults", totalResults);
-			return true;
-		} else {
-			$(".showMoreResults").data("visible", false);
-			return false;
-		}
-	}
-
 	static resetInfiniteBar () {
 		this.resetMaxItemCounter();
-		this.checkRemainingCards();
 	}
 };
