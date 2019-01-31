@@ -1,4 +1,3 @@
-
 <!--##################################################################-->
 <!--profileSettings-->
 <!--##################################################################-->
@@ -88,9 +87,10 @@
                             <form>
                                 <fieldset>
                                     <div class="col-md-9 form-group">
-                                        <div class="col-md-6">
+                                        <div class="col-md-6" style="{{#unless canCreateContent}}display: none;{{/unless}}">
                                             <label class="checkbox-inline" for="mailNotificationCheckbox">
-                                                <input type="checkbox" name="notification" id="mailNotificationCheckbox"
+                                                <input type="checkbox" name="notification"
+                                                       id="mailNotificationCheckbox"
                                                     {{getMailNotifications}}>
                                                 {{_ "confirmLearn-form.mailNotificationCheckbox"}}
                                             </label>
@@ -133,7 +133,8 @@
                     </select>
                     {{#unless isDisabledSaveTheme}}
                         <button id="colorThemeSave" type="button"
-                                class="btn btn-success btn-raised btn-block col-xs-12 col-sm-3 pull-right"><i class="fa fa-floppy-o"></i> {{_
+                                class="btn btn-success btn-raised btn-block col-xs-12 col-sm-3 pull-right"><i
+                                class="fa fa-floppy-o"></i> {{_
                                 "profile.save"}}</button>
                     {{/unless}}
                 </div>
