@@ -187,10 +187,7 @@
 
   li.checked::before {
     content: "✔" !important;
-    color: limegreen;
+    color: limegreen !important;
   }
 
-  li.unchecked::before {
-    content: "☐" !important;
-  }
 }
