@@ -1,8 +1,8 @@
 [{
   "name": "M: Beispiel für eine Mitschrift-Karte",
-  "description": "In dieser Kartei werden die Mitschriften aus der SWT Vorlesung nachbearbeitet.",
+  "description": "Demo-Beispiel für eine Mitschrift",
   "date": "2018-05-09T16:59:37.158Z",
-  "dateUpdated": "2018-07-28T09:23:29.874Z",
+  "dateUpdated": "2019-02-01T09:00:19.591Z",
   "editors": [],
   "owner": "CYWvz28to9mWFAywP",
   "visible": false,
@@ -12,7 +12,6 @@
   "reviewed": false,
   "reviewer": "undefined",
   "request": false,
-  "relevance": 0,
   "raterCount": 0,
   "quantity": 1,
   "license": [
@@ -27,7 +26,6 @@
   "learningStart": "1970-01-01T00:00:00.000Z",
   "learningEnd": "1970-01-01T00:00:00.000Z",
   "learningInterval": [],
-  "learners": 0,
   "wordcloud": false,
   "shuffled": false,
   "cardType": 2,
@@ -36,7 +34,17 @@
     "birthname": "Klinge",
     "givenname": "Dominik"
   },
-  "noDifficulty": false
+  "noDifficulty": false,
+  "registrationPeriod": "1970-01-01T00:00:00.000Z",
+  "workload": {
+    "bonus": {
+      "count": 0
+    },
+    "normal": {
+      "count": 0
+    }
+  },
+  "rating": 0
 }, {
   "subject": "SWT-Mitschrift vom 08.05.2018",
   "front": "![](https://arsnova.thm.de/blog/wp-content/uploads/2018/07/SWT-Mitschrift-08.05.2018.jpg alt=\"Mitschrift der SWT-Vorlesung vom 08.05.2018\")",
@@ -52,10 +60,18 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "hint": "[x] Abbott-Analyse nachschlagen\n\n[x] Begriff \"Schlüsselabstraktionen\": Was ist das? Was machen diese?\n\n[x] Verdienst der drei Amigos? Wer sind sie? Was haben sie gemacht?\n",
-  "dateUpdated": "2018-07-28T09:23:29.858Z",
+  "hint": "[x] Abbott-Analyse nachschlagen\n\n[x] Begriff \"Schlüsselabstraktionen\": Was ist das? Was machen diese?\n\n[ ] Verdienst der drei Amigos? Wer sind sie? Was haben sie gemacht?\n",
+  "dateUpdated": "2019-02-01T06:51:05.100Z",
   "originalAuthorName": {
     "birthname": "Klinge",
     "givenname": "Dominik"
-  }
+  },
+  "alignType": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ]
 }]
