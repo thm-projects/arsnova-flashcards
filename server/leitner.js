@@ -332,7 +332,7 @@ function setCards(cardset, user, isReset, isNewcomer = false) {
 	}
 }
 
-/** Function resets all cards to the first box if the user missed the deadline and selects new ones by calling setCards
+/** Function resets all active cards to their previous box
  *  @param {Object} cardset - The cardset with learners
  *  @param {Object} user - The user from the cardset who is currently learning
  * */
@@ -343,15 +343,24 @@ function resetCards(cardset, user) {
 		if (Meteor.settings.debugServer) {
 			console.log("===> Reset cards");
 		}
-		Leitner.update({cardset_id: cardset._id, user_id: user._id}, {
-			$set: {
-				box: 1,
-				active: false,
-				nextDate: new Date(),
-				currentDate: new Date(),
-				skipped: 0
+		let cards = Leitner.find({cardset_id: cardset._id, user_id: user._id, active: true}, {fields: {card_id: 1, box: 1}}).fetch();
+		let box;
+		for (let i = 0; i < cards.length; i++) {
+			if (cards[i].box > 1) {
+				box = cards[i].box - 1;
+			} else {
+				box = 1;
 			}
-		}, {multi: true});
+			Leitner.update({card_id: cards[i].card_id, cardset_id: cardset._id, user_id: user._id}, {
+				$set: {
+					box: box,
+					active: false,
+					nextDate: new Date(),
+					currentDate: new Date(),
+					skipped: 0
+				}
+			}, {multi: true});
+		}
 		setCards(cardset, user, true);
 	}
 }
