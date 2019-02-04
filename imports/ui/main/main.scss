@@ -203,6 +203,14 @@ body {
   }
 }
 
+.flex-content {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
 #pomodoroTimerModal {
   z-index: 4000;
 }
@@ -221,8 +229,8 @@ body {
   padding-left: $sidebar_width !important;
   padding-right: $sidebar_width !important;
   @media(max-width: 767px) {
-    padding-left: $sidebar_width_mobile !important;
-    padding-right: $sidebar_width_mobile !important;
+    padding-left: $sidebar_width_mobile / 2 !important;
+    padding-right: $sidebar_width_mobile / 2 !important;
   }
 }
 
@@ -370,10 +378,6 @@ body {
 
 #theme-wrapper-no-nav-welcome #main {
   margin-top: 0 !important;
-}
-
-.modal-header .close {
-  margin-top: -10px;
 }
 
 .modal-header h4 {
@@ -771,6 +775,8 @@ th {
 .modal-content .close {
   opacity: 1;
   font-size: 30pt;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .hintContent .modal-header, .wordCloudDescription {

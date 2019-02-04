@@ -19,13 +19,13 @@
                                                class="btn btn-success profile-public {{#if
                                                        getUser.visible}}active profilepublic-rb-text-color{{/if}}">
                                             <input type="radio" name="visible" value="true">
-                                            <div>{{_ "panel-body.profilepublicoption1"}}</div>
+                                            <span class="flex-content">{{_ "panel-body.profilepublicoption1"}}</span>
                                         </label>
                                         <label id="profilepublicoption2"
                                                class="btn btn-danger profile-private {{#unless
                                                        getUser.visible}}active profilepublic-rb-text-color{{/unless}}">
                                             <input type="radio" name="visible" value="false">
-                                            <div>{{_ "panel-body.profilepublicoption2"}}</div>
+                                            <span class="flex-content">{{_ "panel-body.profilepublicoption2"}}</span>
                                         </label>
                                     </div>
                                 </div>
@@ -86,8 +86,8 @@
                             <label class="col-md-4 control-label">{{_ "confirmLearn-form.notification"}}</label>
                             <form>
                                 <fieldset>
-                                    <div class="col-md-9 form-group">
-                                        <div class="col-md-6" style="{{#unless canCreateContent}}display: none;{{/unless}}">
+                                    <div class="col-md-9 form-group notifications-form-group">
+                                        <div class="col-sm-6" style="{{#unless canCreateContent}}display: none;{{/unless}}">
                                             <label class="checkbox-inline" for="mailNotificationCheckbox">
                                                 <input type="checkbox" name="notification"
                                                        id="mailNotificationCheckbox"
@@ -95,7 +95,7 @@
                                                 {{_ "confirmLearn-form.mailNotificationCheckbox"}}
                                             </label>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-sm-6">
                                             <label class="checkbox-inline" for="webNotificationCheckbox">
                                                 <input type="checkbox" name="notification" id="webNotificationCheckbox"
                                                     {{getWebNotifications}}>

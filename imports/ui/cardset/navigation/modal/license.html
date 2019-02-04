@@ -7,7 +7,7 @@
                     <span class="modal-icon">
                         <i class="fa fa-cc"></i>
                     </span>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    {{> mainModalItemCloseIcon}}
                     <h4 id="selectLicenseModalTitle" class="modal-title">{{_ "sidebar-nav.license"}}
                     </h4>
                 </div>
@@ -18,26 +18,32 @@
                                    for="newSetDescription">{{_ "modal-dialog.modules"}}</label>
                             <div class="controls col-xs-12">
                                 <div id="cc-modules" class="btn-group" data-toggle="buttons">
+                                                    <span class="col-xs-3 btn-bootstrap-container">
                                     <label id="cc-option0"
-                                           class="col-xs-3 btn btn-success {{#if licenseIsActive 'by'}}active{{/if}}">
+                                           class="btn btn-block btn-success {{#if licenseIsActive 'by'}}active{{/if}}">
                                         <input type="checkbox" autocomplete="off" value="by" id="cc-by">
-                                        <img src="/img/by.large.png" alt="Namensnennung"/>
+                                        <span class="flex-content"><img src="/img/by.large.png" alt="Namensnennung"/></span>
                                     </label>
+                                                    </span>
+                                    <span class="col-xs-3 btn-bootstrap-container">
                                     <label id="cc-option1"
-                                           class="col-xs-3 btn btn-success {{#if licenseIsActive 'nc'}}active{{/if}}">
+                                           class="btn btn-block btn-success {{#if licenseIsActive 'nc'}}active{{/if}}">
                                         <input type="checkbox" autocomplete="off" value="nc" id="cc-nc">
-                                        <img src="/img/nc-eu.large.png" alt="Nicht kommerziell"/>
+                                        <span class="flex-content"><img src="/img/nc-eu.large.png" alt="Nicht kommerziell"/></span>
                                     </label>
+                                          </span> <span class="col-xs-3 btn-bootstrap-container">
                                     <label id="cc-option2"
-                                           class="col-xs-3 btn btn-success {{#if licenseIsActive 'nd'}}active{{/if}}">
+                                           class="btn btn-block btn-success {{#if licenseIsActive 'nd'}}active{{/if}}">
                                         <input type="checkbox" autocomplete="off" value="nd" id="cc-nd">
-                                        <img src="/img/nd.large.png" alt="Keine Bearbeitung"/>
+                                        <span class="flex-content"><img src="/img/nd.large.png" alt="Keine Bearbeitung"/></span>
                                     </label>
+                                         </span> <span class="col-xs-3 btn-bootstrap-container">
                                     <label id="cc-option3"
-                                           class="col-xs-3 btn btn-success {{#if licenseIsActive 'sa'}}active{{/if}}">
+                                           class="btn btn-block btn-success {{#if licenseIsActive 'sa'}}active{{/if}}">
                                         <input type="checkbox" autocomplete="off" value="sa" id="cc-sa">
-                                        <img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen"/>
+                                        <span class="flex-content"><img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen"/></span>
                                     </label>
+                                    </span>
                                 </div>
                                 <span id="helpCC-modules" class="help-block cc-modules"></span>
                             </div>

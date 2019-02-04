@@ -1,5 +1,6 @@
 @import 'modern-normalize.scss';
 @import '../imports/ui/main/main.scss';
+@import '../imports/ui/main/buttons.scss';
 @import '../imports/ui/impressum/impressum.scss';
 @import '../imports/ui/welcome/welcome.scss';
 @import '../imports/ui/wordcloud/wordcloud.scss';
@@ -7,10 +8,10 @@
 @import '../imports/ui/cardset/cardset.scss';
 @import '../imports/ui/filter/index/item/cardset.scss';
 @import '../imports/ui/card/card.scss';
+@import '../imports/ui/card/navigation/navigation.scss';
 @import '../imports/ui/card/editor/editor.scss';
 @import '../imports/ui/card/sidebar/sidebar.scss';
 @import '../imports/ui/card/sidebar/item/zoomText.scss';
-@import '../imports/ui/card/navigation/navigation.scss';
 @import '../imports/ui/markdeep/editor/content/content.scss';
 @import '../imports/ui/markdeep/editor/navigation/navigation.scss';
 @import '../imports/ui/filter/navigation/navigation.scss';

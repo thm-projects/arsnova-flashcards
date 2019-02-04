@@ -2017,32 +2017,6 @@ $themes: (
       }
     }
 
-    @media(max-width: 767px) {
-      #cardTypeGroup *, #difficultyGroup *, #learningGoalLevelGroup *, .cardNavigation * {
-        border-color: $item_selection_border !important;
-      }
-      #cardTypeGroup *:last-child:nth-child(odd), #difficultyGroup *:last-child:nth-child(odd), #learningGoalLevelGroup *:last-child:nth-child(odd), .cardNavigation *:last-child:nth-child(odd) {
-        border-right-color: $item_selection_border !important;
-      }
-
-      #cardTypeGroup *:nth-child(2), #cardTypeGroup *:nth-child(3) {
-        border-bottom-color: $thm_red !important;
-      }
-      #cardTypeGroup *:nth-child(3) {
-        border-right-color: $thm_red !important;
-      }
-    }
-
-    @media(min-width: 768px) {
-      #cardTypeGroup *, #difficultyGroup *, #learningGoalLevelGroup *, .cardNavigation * {
-        border-right-color: $item_selection_border !important;
-      }
-
-      #cardTypeGroup *:nth-child(3) {
-        border-right-color: $thm_red !important;
-      }
-    }
-
     .clicktoflip {
       color: $storm_dust_approx !important;
     }
@@ -2522,10 +2496,6 @@ $themes: (
     //learn
     .learn-cardHelptext {
       color: $storm_dust_approx !important;
-    }
-
-    #memoRate1 {
-      border-right-color: $thm_red !important;
     }
 
     //welcome

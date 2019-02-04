@@ -2,18 +2,18 @@
     <div class="bs-callout bs-callout-info selectionInfo">
         {{#if gotShuffledCards}}
             <button href="#" id="updateShuffledCardset" class="btn btn-raised btn-success"
-                    role="button" {{disableIfOffline}}>{{_
-                    "set-list.shuffle"}}</button>
+                    role="button" {{disableIfOffline}}><span class="flex-content">{{_
+                    "set-list.shuffle"}}</span></button>
         {{/if}}
-        <button id="cancelUpdateShuffle" class="btn btn-raised btn-danger" role="button">{{_
-                "declinecard"}}</button>
+        <button id="cancelUpdateShuffle" class="btn btn-raised btn-danger" role="button"><span class="flex-content">{{_
+                "declinecard"}}</span></button>
         <span class="text">
             {{_ "set-list.shuffleInfoTextEdit"}}
         </span>
         {{#if displayRemoveButton}}
             <button href="#" id="removeShuffledCards" class="btn btn-raised btn-danger"
-                    role="button" {{disableIfOffline}}>{{_
-                    "set-list.shuffleRemove"}}</button>
+                    role="button" {{disableIfOffline}}><span class="flex-content">{{_
+                    "set-list.shuffleRemove"}}</span></button>
         {{/if}}
     </div>
 </template>

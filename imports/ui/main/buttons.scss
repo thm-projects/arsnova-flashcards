@@ -1,0 +1,101 @@
+$btn-border-radius: 20px;
+$btn-group-margin: 5px;
+$btn-group-margin_card_navigation: 10px;
+$btn-height: 30px;
+$btn-horizontal-padding: 10px;
+$btn-icon-margin: 3px;
+
+button, .btn, #showMoreResults {
+  height: $btn-height !important;
+  border-radius: $btn-border-radius !important;
+  text-decoration: none !important;
+  padding: 0 $btn-horizontal-padding !important;
+
+  input[type="radio"], input[type="checkbox"] {
+    display: none !important;
+  }
+
+  i {
+    margin-right: $btn-icon-margin!important;
+  }
+
+  .caret {
+    margin-left: $btn-icon-margin!important;
+  }
+
+  img {
+    height: 75% !important;
+    width: auto !important;
+  }
+}
+
+button.presentationBtn img {
+  height: 50% !important;
+  width: auto !important;
+}
+
+.dropdown {
+  button, .btn {
+    margin-right: 0 !important;
+    text-align: left !important;
+  }
+}
+
+#profilepublicoption1 {
+  margin-right: $btn-group-margin !important;
+}
+
+#filterCheckbox {
+  padding: 0 !important;
+  margin-right: $btn-group-margin !important;
+  .btn {
+    width: 80px !important;
+    margin-right: $btn-group-margin !important;
+  }
+}
+
+.btn-bootstrap-container {
+  padding: 0 ($btn-group-margin * 0.5) !important;
+}
+
+.cardNavigation, #answerButtons, #learn-navigation {
+  .btn-bootstrap-container {
+    padding: 0 ($btn-group-margin-card_navigation * 0.5) !important;
+  }
+}
+
+.cardsetInfoFooter, .filter-index-buttons {
+  @media(min-width: 768px) {
+    .btn-group {
+      margin-right: $btn-group-margin !important;
+    }
+
+    .btn-group:last-child {
+      margin-right: 0 !important;
+    }
+  }
+  @media(max-width: 767px) {
+    .btn-group:first-child {
+      margin-right: $btn-group-margin !important;
+    }
+    .btn-group:not(.hidden-xs):last-child {
+      margin-right: 0 !important;
+    }
+  }
+
+  .btn {
+    margin-right: 0 !important;
+  }
+}
+
+.swal2-actions {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  @media(max-width: 767px) {
+    button, .btn {
+      margin-right: 0 !important;
+      margin-bottom: $btn-group-margin !important;
+      width: 100% !important;
+    }
+  }
+}

@@ -3,13 +3,15 @@
         {{#unless isSmartphone}}
             {{#unless isSelectingCardsetToLearn}}
                 {{#unless isIOS}}
+                <span class="btn-group">
                     <label class="btn btn-raised btn-import btn-success {{disableIfOffline}}">
-                        <i class="fa fa-archive"></i> <i class="fa fa-cloud-upload"></i> {{_ "import.cardset"}} <input
+                        <span class="flex-content"><i class="fa fa-archive"></i> <i class="fa fa-cloud-upload"></i> {{_ "import.cardset"}}</span> <input
                             type="{{#if isProfileComplete}}file{{else}}button{{/if}}"
                             accept=".json" id="{{#if
                             isProfileComplete}}importCardset{{else}}importCardsetCompleteProfile{{/if}}"
                             style="display: none;">
                     </label>
+                </span>
                 {{/unless}}
             {{/unless}}
         {{/unless}}

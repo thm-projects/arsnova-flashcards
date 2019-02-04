@@ -14,7 +14,7 @@
                                 <i class="fa fa-archive"></i>
                             {{/if}}
                         </span>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        {{> mainModalItemCloseIcon}}
                         <h4 id="setCardsetFormModalTitle" class="modal-title">
                             {{#if isNew}}
                                 {{#if isShuffleRoute}}
@@ -49,7 +49,7 @@
                             <i class="fa fa-archive"></i>
                         {{/if}}
                     </span>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    {{> mainModalItemCloseIcon}}
                     <h4 id="setCardsetFormAdminModalTitle" class="modal-title">
                         {{#if isActiveRoute regex='alldecks'}}
                             {{_ "modal-admin-dialog.cardsetTitle" cardset=getCardsetName}}
@@ -130,11 +130,11 @@
                                             value="{{cardType}}">
                                     </button>
                                     <button type="button"
-                                            class="btn btn-raised dropdown-toggle setCardTypeDropdown"
+                                            class="btn btn-raised dropdown-toggle setCardTypeDropdown setCardTypeDropdownCaret"
                                             data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only"></span>
+                                        <span class="flex-content"><span class="caret"></span>
+                                        <span class="sr-only"></span></span>
                                     </button>
                                     <ul class="dropdown-menu btn-raised longButton">
                                         {{> cardTypesList filter=false}}
@@ -192,8 +192,9 @@
 <template name="difficultyEditor">
     <div id="difficultyGroup" class="form-group btn-group" role="group" data-toggle="buttons">
         {{#if gotNotesForDifficultyLevel}}
+            <span class="col-xs-6 col-sm-3 btn-bootstrap-container">
             <label id="difficulty0"
-                   class="col-xs-6 col-sm-3 btn btn-default {{#if
+                   class="btn btn-block btn-default btn-raised {{#if
                            gotNotesForDifficultyLevel}}btn-orange{{else}}btn-white{{/if}} {{#if
                            isDifficultyChecked 0}}active{{/if}}"
                    data-color="0">
@@ -202,16 +203,19 @@
                 {{else}}
                     <input type="radio" name="difficulty" value="0">
                 {{/if}}
+                <span class="flex-content" data-color="0">
                 {{#unless gotNotesForDifficultyLevel}}
                     {{_ "difficulty0"}}
                 {{else}}
                     {{_ "difficultyNotes0"}}
                 {{/unless}}
+                </span>
             </label>
+                        </span>
         {{/if}}
+        <span class="col-xs-6 {{#if gotNotesForDifficultyLevel}}col-sm-3{{else}}col-sm-4{{/if}} btn-bootstrap-container">
         <label id="difficulty1"
-               class="col-xs-6 {{#if
-                       gotNotesForDifficultyLevel}}col-sm-3{{else}}col-sm-4{{/if}} btn btn-default btn-info {{#if
+               class="btn btn-default btn-block btn-info btn-raised {{#if
                        isDifficultyChecked 1}}active{{/if}}"
                data-color="1">
             {{#if isDifficultyChecked 1}}
@@ -219,15 +223,18 @@
             {{else}}
                 <input type="radio" name="difficulty" value="1">
             {{/if}}
+            <span class="flex-content" data-color="1">
             {{#unless gotNotesForDifficultyLevel}}
                 {{_ "difficulty1"}}
             {{else}}
                 {{_ "difficultyNotes1"}}
             {{/unless}}
+            </span>
         </label>
+        </span>
+        <span class="col-xs-6 {{#if gotNotesForDifficultyLevel}}col-sm-3{{else}}col-sm-4{{/if}} btn-bootstrap-container">
         <label id="difficulty2"
-               class="col-xs-6 {{#if
-                       gotNotesForDifficultyLevel}}col-sm-3{{else}}col-sm-4{{/if}} btn btn-default btn-success {{#if
+               class="btn btn-default btn-block btn-success btn-raised {{#if
                        isDifficultyChecked 2}}active{{/if}}"
                data-color="2">
             {{#if isDifficultyChecked 2}}
@@ -235,15 +242,18 @@
             {{else}}
                 <input type="radio" name="difficulty" value="2">
             {{/if}}
+            <span class="flex-content" data-color="2">
             {{#unless gotNotesForDifficultyLevel}}
                 {{_ "difficulty2"}}
             {{else}}
                 {{_ "difficultyNotes2"}}
             {{/unless}}
+            </span>
         </label>
+        </span>
+        <span class="col-xs-6 {{#if gotNotesForDifficultyLevel}}col-sm-3{{else}}col-sm-4{{/if}} btn-bootstrap-container">
         <label id="difficulty3"
-               class="col-xs-6 {{#if
-                       gotNotesForDifficultyLevel}}col-sm-3{{else}}col-sm-4{{/if}} btn btn-default btn-danger {{#if
+               class="btn btn-default btn-block btn-danger btn-raised {{#if
                        isDifficultyChecked 3}}active{{/if}}"
                data-color="3">
             {{#if isDifficultyChecked 3}}
@@ -251,11 +261,14 @@
             {{else}}
                 <input type="radio" name="difficulty" value="3">
             {{/if}}
+            <span class="flex-content" data-color="3">
             {{#unless gotNotesForDifficultyLevel}}
                 {{_ "difficulty3"}}
             {{else}}
                 {{_ "difficultyNotes3"}}
             {{/unless}}
+            </span>
         </label>
+        </span>
     </div>
 </template>

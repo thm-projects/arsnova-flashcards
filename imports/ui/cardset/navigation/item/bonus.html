@@ -3,9 +3,11 @@
         {{#if isInRole 'admin, editor, lecturer'}}
             <div class="hidden-xs btn-group">
                 <button class="btn btn-sm btn-raised bonusBtn" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-graduation-cap"></i> {{_ "sidebar-nav.bonus"}} <span
+                        aria-haspopup="true" aria-expanded="false"><span class="flex-content">
+                                        <i class="fa fa-graduation-cap"></i> {{_ "sidebar-nav.bonus"}} <span
                         class="caret"></span>
+                </span>
+
                 </button>
                 <ul class="dropdown-menu">
                     {{#if enableIfPublished}}
