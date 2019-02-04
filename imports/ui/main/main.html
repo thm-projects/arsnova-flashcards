@@ -151,15 +151,6 @@
                                                         </tr>
                                                     {{/if}}
                                                     <tr class="{{#if isActiveRoute
-                                                                     'profileNotifications'}}active{{/if}}">
-                                                        <td><a class="dropdown-item notificationsBtn"
-                                                               href="/profile/{{currentUser._id}}/notifications"><i
-                                                                class="fa fa-bell"></i></a></td>
-                                                        <td><a class="dropdown-item notificationsBtn"
-                                                               href="/profile/{{currentUser._id}}/notifications">{{_
-                                                                "profile.notifications"}}</a></td>
-                                                    </tr>
-                                                    <tr class="{{#if isActiveRoute
                                                                      'profileSettings'}}active{{/if}}">
                                                         <td><a class="dropdown-item"
                                                                href="/profile/{{currentUser._id}}/settings"><i
@@ -235,7 +226,7 @@
         <div id="footer" class="footer">
             <ul class="container dropup">
 
-                <li class="hidden-xs col-sm-11">
+                <li class="hidden-xs col-sm-12">
                     {{> contactNavigation}}
                 </li>
                 <li class="visible-xs col-xs-2 col-sm-1 icon-container">
