@@ -72,8 +72,8 @@
                 <li class="sm-12 md-2 inactive {{#if displayAsFooter}}footer-info-navigation{{/if}}"><a
                         id="backToStartButton"
                         href="#">
-                    <i class="fa fa-home"></i>&nbsp;{{_
-                        "contact.home"}}</a></li>
+                    {{_
+                        "contact.home"}}&nbsp;<i class="fa fa-home"></i></a></li>
             {{/unless}}
         {{/unless}}
         {{#unless isActiveRoute 'home'}}
@@ -83,8 +83,8 @@
                 <a id="demo"
                    href="{{pathFor
                            route='demo'}}">
-                    <i class="fa fa-tv"></i>&nbsp;{{_
-                        "contact.demo"}}</a></li>
+                    {{_
+                        "contact.demo"}}&nbsp;<i class="fa fa-tv"></i></a></li>
         {{/unless}}
         <li class="sm-12 md-2  {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if isActiveRoute
                                                                                           'about'}}active{{/if}}">
@@ -98,42 +98,42 @@
                 <a id="learning"
                    href="{{pathFor
                            route='learning'}}">
-                    <i class="fa fa-graduation-cap"></i>&nbsp;{{_
-                        "contact.learning"}}</a></li>
+                    {{_
+                        "contact.learning"}}&nbsp;<i class="fa fa-graduation-cap"></i></a></li>
             <li class="sm-12 md-2 {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if isActiveRoute
                                                                                              'faq'}}active{{/if}}">
                 <a id="faq" href="{{pathFor
                         route='faq'}}">
-                    <i class="fa fa-question"></i>&nbsp;{{_ "contact.faq"}}</a></li>
+                    {{_ "contact.faq"}}&nbsp;<i class="fa fa-question-circle"></i></a></li>
             <li class="sm-12 md-2 {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if isActiveRoute
                                                                                              'help'}}active{{/if}}">
                 <a id="help"
                    href="{{pathFor
                            route='help'}}">
-                    <i class="fa fa-medkit"></i>&nbsp;{{_
-                        "contact.help"}}</a></li>
+                    {{_
+                        "contact.help"}}&nbsp;<i class="fa fa-medkit"></i></a></li>
         {{/if}}
         <li class="sm-12 md-2 {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if isActiveRoute
                                                                                          'impressum'}}active{{/if}}">
             <a id="impressum"
                href="{{pathFor
                        route='impressum'}}">
-                <i class="fa fa-address-card"></i>&nbsp;{{_
-                    "contact.impressum"}}</a></li>
+                {{_
+                    "contact.impressum"}}&nbsp;<i class="fa fa-legal"></i></a></li>
         <li class="sm-12 md-2 {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if isActiveRoute
                                                                                          'agb'}}active{{/if}}">
             <a id="datenschutz"
                href="{{pathFor
                        route='agb'}}">
-                <i class="fa fa-legal"></i>&nbsp;{{_
-                    "contact.agb"}}</a></li>
+                {{_
+                    "contact.agb"}}&nbsp;<i class="fa fa-legal"></i></a></li>
         <li class="sm-12 md-2 {{#if displayAsFooter}}footer-info-navigation{{/if}} {{#if isActiveRoute
                                                                                          'datenschutz'}}active{{/if}}">
             <a id="agb"
                href="{{pathFor
                        route='datenschutz'}}">
-                <i class="fa fa-lock"></i>&nbsp;{{_
-                    "contact.datenschutz"}}</a></li>
+                {{_
+                    "contact.datenschutz"}}&nbsp;<i class="fa fa-lock"></i></a></li>
     </nav>
 </template>
 
