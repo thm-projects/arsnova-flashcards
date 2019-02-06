@@ -4,9 +4,22 @@
   z-index: 1001;
   padding: 5px;
   width: $sidebar_width !important;
-  @media(max-width: 767px) {
+  @media(max-width: 1439px) and (pointer: coarse) {
     padding: 3px;
     width: $sidebar_width_mobile !important;
+    .showArsnovaClick, .showArsnovaApp, .showDeepLTranslation, .showBeolingusTranslation {
+      padding-left: ($sidebar_width_mobile * 0.25) !important;
+      padding-right: ($sidebar_width_mobile * 0.25) !important;
+    }
+    @media (orientation: portrait) {
+      margin-bottom: $sidebar_yOffset_portrait_mobile !important;
+    }
+
+    @media (orientation: landscape) {
+      margin-bottom: $sidebar_yOffset_landscape_mobile !important;
+    }
+  }
+  @media(max-width: 767px) {
     transform: scaleY(-1);
   }
   border-top: 2px solid;
@@ -15,7 +28,7 @@
     width: 100%;
     text-align: center;
     margin-top: $sidebar_button_margin !important;
-    @media(max-width: 767px) {
+    @media(max-width: 1439px) and (pointer: coarse) {
       margin-top: $sidebar_button_margin_mobile !important;
     }
   }
@@ -52,6 +65,18 @@
   }
 }
 
+#flashcardSidebarLeft.workload, #flashcardSidebarRight.workload {
+  @media(max-width: 1439px) and (pointer: coarse) {
+    @media (orientation: portrait) {
+      margin-bottom: $sidebar_yOffset_workload_portrait_mobile !important;
+    }
+
+    @media (orientation: landscape) {
+      margin-bottom: $sidebar_yOffset_workload_landscape_mobile !important;
+    }
+  }
+}
+
 #flashcardSidebarLeft.fixed, #flashcardSidebarRight.fixed {
   position: fixed;
 }
@@ -74,7 +99,7 @@
 #flashcardSidebarRight {
   border-left: 2px solid;
   right: 3px;
-  @media(max-width: 1200px) {
+  @media(max-width: 1439px) {
     right: 0;
   }
   border-radius: 10px 0 0 10px;

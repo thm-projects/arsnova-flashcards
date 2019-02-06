@@ -9,7 +9,6 @@ import {MarkdeepEditor} from "./markdeepEditor";
 let editorFullScreenActive = false;
 let defaultFontSize = 16;
 let defaultTextZoomValue = 100;
-let sidebarMobileOffset = 40;
 let iFrameWidthRatio = 16;
 let iFrameHeightRatio = 9;
 let iFrameMaxHeight = 0.8;
@@ -399,7 +398,10 @@ export let CardVisuals = class CardVisuals {
 			let zoomTextButton = $('.zoomTextButton:visible');
 			if (cardHeader.length && zoomTextButton.length) {
 				let topPosition = cardHeader.offset().top;
-				let leftPosition = zoomTextButton.offset().left - $('#flashcardSidebarRight').width() * 4.5;
+				if ((NavigatorCheck.isSmartphone() && !NavigatorCheck.isLandscape()) || (Route.isEditMode() && MarkdeepEditor.getMobilePreview() && Session.get('mobilePreviewRotated'))) {
+					topPosition += ($('.cardContent').height() - zoomSliderContainer.innerHeight());
+				}
+				let leftPosition = zoomTextButton.offset().left - $('#flashcardSidebarRight').width() * 3;
 				zoomSliderContainer.css({
 					'top': topPosition + "px",
 					'left': leftPosition + "px"
@@ -409,10 +411,8 @@ export let CardVisuals = class CardVisuals {
 	}
 
 	static setSidebarPosition () {
-		let isMobile = $(window).width() < 768;
 		let cardHeight = $('.cardHeader').height();
-		let mobileOffset = sidebarMobileOffset;
-		if (isMobile || (Route.isEditMode() && MarkdeepEditor.getMobilePreview())) {
+		if (NavigatorCheck.isSmartphone() || (Route.isEditMode() && MarkdeepEditor.getMobilePreview())) {
 			cardHeight += $('.cardContent').height();
 		}
 		let leftSidebar = $('#flashcardSidebarLeft');
@@ -430,19 +430,16 @@ export let CardVisuals = class CardVisuals {
 			rightSidebar.css('display', 'block');
 		}
 		if (Route.isEditMode() && MarkdeepEditor.getMobilePreview()) {
-			cardHeight += $('.mobilePreviewContent .cardToolbar').height() + 15;
+			cardHeight += $('.mobilePreviewContent .cardToolbar').height() - 15;
 			leftSidebar.addClass('flashcardSidebarPreviewLeft');
 			rightSidebar.addClass('flashcardSidebarPreviewRight');
 		} else {
 			leftSidebar.removeClass('flashcardSidebarPreviewLeft');
 			rightSidebar.removeClass('flashcardSidebarPreviewRight');
 		}
-		if (Session.get('mobilePreview')) {
-			mobileOffset += 20;
-		}
-		if (isMobile || (Route.isEditMode() && MarkdeepEditor.getMobilePreview())) {
-			leftSidebar.css('margin-top', (cardHeight - leftSidebar.height() - mobileOffset) + 'px');
-			rightSidebar.css('margin-top', (cardHeight - rightSidebar.height() - mobileOffset) + 'px');
+		if (NavigatorCheck.isSmartphone() || (Route.isEditMode() && MarkdeepEditor.getMobilePreview())) {
+			leftSidebar.css('margin-top', (cardHeight - (leftSidebar.height() + parseInt(leftSidebar.css('margin-bottom')))) + 'px');
+			rightSidebar.css('margin-top', (cardHeight - (rightSidebar.height() + parseInt(rightSidebar.css('margin-bottom')))) + 'px');
 		} else {
 			leftSidebar.css('margin-top', (cardHeight) + 'px');
 			rightSidebar.css('margin-top', (cardHeight) + 'px');

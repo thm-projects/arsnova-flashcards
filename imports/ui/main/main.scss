@@ -170,7 +170,12 @@ $font_size_sweet_alert_2_text: 16px;
 $sidebar_width: 45px;
 $sidebar_button_margin: 6px;
 $sidebar_width_mobile: 60px;
-$sidebar_button_margin_mobile: 15px;
+$sidebar_button_margin_mobile: 12px;
+$sidebar_yOffset_portrait_mobile: 60px;
+$sidebar_yOffset_landscape_mobile: 40px;
+//For pages with an answer button row
+$sidebar_yOffset_workload_portrait_mobile: 40px;
+$sidebar_yOffset_workload_landscape_mobile: 20px;
 
 //zoom
 $zoom_slider_width: 12px;

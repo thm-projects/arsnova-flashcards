@@ -18,4 +18,8 @@ export let NavigatorCheck = class CardVisuals {
 	static isEdge () {
 		return navigator.userAgent.indexOf("Edge") >= 0;
 	}
+
+	static isLandscape () {
+		return window.innerWidth > window.innerHeight;
+	}
 };

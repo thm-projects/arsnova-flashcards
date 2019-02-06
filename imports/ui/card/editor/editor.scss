@@ -81,6 +81,10 @@
   .cardContent {
     height: 255px;
   }
+
+  #flashcardSidebarLeft, #flashcardSidebarRight {
+    margin-bottom: $sidebar_yOffset_landscape_mobile !important;
+  }
 }
 
 .mobilePreviewContent.portrait {
@@ -90,6 +94,10 @@
 
   .cardContent {
     height: 550px;
+  }
+
+  #flashcardSidebarLeft, #flashcardSidebarRight {
+    margin-bottom: $sidebar_yOffset_portrait_mobile !important;
   }
 }
 

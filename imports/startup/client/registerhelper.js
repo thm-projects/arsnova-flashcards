@@ -456,6 +456,11 @@ Template.registerHelper("isMobilePreview", function () {
 	return (Route.isNewCard() || Route.isEditCard()) && Session.get('mobilePreview');
 });
 
+
+Template.registerHelper("isLeitnerWozniakRoute", function () {
+	return (Route.isBox() || Route.isMemo());
+});
+
 //Returns all Colleges
 Template.registerHelper("getColleges", function () {
 	return _.uniq(CollegesCourses.find({}, {sort: {college: 1}}).fetch(), function (item) {
