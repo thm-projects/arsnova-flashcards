@@ -107,7 +107,7 @@ Template.welcome.events({
 
 Template.welcome.helpers({
 	getLoginButtons: function () {
-		let loginButtons = "<label class='loginLabel' for='loginButtonRow'>" + TAPi18n.__('login.label') + "</label><div id='loginButtonRow'>";
+		let loginButtons = "<div id='loginButtonRow'>";
 		if (Meteor.settings.public.displayLoginButtons.displayCas) {
 			loginButtons += '<a id="cas" href=""><div class="' + getLoginClass() + '"></div></a>';
 		}
