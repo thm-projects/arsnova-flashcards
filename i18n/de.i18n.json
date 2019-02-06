@@ -712,7 +712,7 @@
   },
   "presentation": {
     "title": "Präsentation",
-    "create": "Kartei präsentieren",
+    "create": "Kartenschau",
     "start": "Starten",
     "list": {
       "back": "Zurück zur Präsentation",
@@ -1027,7 +1027,7 @@
     },
     "cardType4": {
       "name": "Zitatensammlung",
-      "longName": "Zitatensammlung: Zitat | Zitierte Person | Quellenangabe",
+      "longName": "Zitatensammlung: Zitat | Zitierte Person | Quelle",
       "content1": "Zitat",
       "content2": "Zitierte Person",
       "content3": "Quellenangabe",
@@ -1043,9 +1043,9 @@
     },
     "cardType5": {
       "name": "Prüfung",
-      "longName": "Prüfung: Prüfungsfrage | Erwartete Antwort | Begründung",
+      "longName": "Prüfung: Prüfungsfrage | Antwort | Begründung",
       "content1": "Prüfungsfrage",
-      "content2": "Erwartete Antwort",
+      "content2": "Antwort",
       "content3": "Begründung",
       "placeholders": {
         "subject": "Gib das zu prüfende Kompetenzziel an !",
@@ -1143,12 +1143,12 @@
     },
     "cardType12": {
       "name": "Entwurfsmuster",
-      "longName": "Entwurfsmuster: Problem | Kontext | Kräfte | Lösung | Beispiele | Literatur",
+      "longName": "Entwurfsmuster: Problem | Kontext | Kräfte | Lösung | Beispiel | Literatur",
       "content1": "Problem",
       "content2": "Lösung",
       "content3": "Kontext",
       "content4": "Kräfte",
-      "content5": "Beispiele",
+      "content5": "Beispiel",
       "content6": "Literatur",
       "placeholders": {
         "subject": "Wie heißt das Muster ?",
