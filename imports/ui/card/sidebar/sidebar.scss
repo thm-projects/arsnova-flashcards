@@ -18,17 +18,23 @@
 
   .sidebarNavigationButton {
     display: block;
-    height: 33px;
     margin-top: 0;
+    height: 33px !important;
     i, span, img, button {
       margin-top: 0;
+      width: auto !important;
     }
     margin-bottom: 25px;
   }
 
+  .card-button {
+    border-radius: 5px !important;
+    height: 25px !important;
+  }
+
   .projectorIconButton {
-    margin-top: 0 !important;
-    height: auto;
+    margin-left: -1px !important;
+    margin-top: -5px !important;
   }
 }
 

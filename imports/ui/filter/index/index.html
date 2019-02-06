@@ -37,7 +37,9 @@
 
 <template name="filterIndexPool">
     {{#if canCreateContent}}
-        {{> filterItemCreateCardsetButton}}
+        <span class="filter-index-buttons">
+            {{> filterItemCreateCardsetButton}}
+        </span>
     {{else}}
         <div class="empty-button-placeholder"></div>
     {{/if}}
@@ -81,8 +83,10 @@
 
 <template name="filterIndexCreate">
     {{#if isActiveRoute 'create'}}
+        <span class="filter-index-buttons">
         {{> filterItemCreateCardsetButton}}
-        {{> filterItemImportCardsetButton}}
+            {{> filterItemImportCardsetButton}}
+    </span>
     {{/if}}
     {{#if cardsetList 0}}
         {{> filterNavigation}}
@@ -104,7 +108,9 @@
 </template>
 
 <template name="filterIndexRepetitorium">
-    {{> filterItemCreateRepetitoriumButton}}
+        <span class="filter-index-buttons">
+            {{> filterItemCreateRepetitoriumButton}}
+        </span>
     {{#if cardsetList 0}}
         {{> filterNavigation}}
         {{#if displayWordcloud}}
@@ -125,8 +131,10 @@
 </template>
 
 <template name="filterIndexWorkload">
+            <span class="filter-index-buttons">
     {{> filterItemSelectCardsetButton}}
-    {{> filterItemSelectRepetitoriumButton}}
+                {{> filterItemSelectRepetitoriumButton}}
+            </span>
     {{#if learnList 0}}
         {{> filterNavigation}}
         {{#if learnList 1}}

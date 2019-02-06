@@ -12,12 +12,11 @@
 }
 
 .cardNavigation > li {
-  flex: 1 auto;
-  text-align: center;
+  flex: auto;
   @media(max-width: 767px) {
     a {
       font-size: $font_size_card_navigation_mobile !important;
-      padding: $padding_vertical_card_navigation_mobile $padding_horizontal_card_navigation_mobile !important;
+      padding: ($btn-height * 0.25) $padding_horizontal_card_navigation_mobile !important;
     }
   }
 }
@@ -54,7 +53,7 @@
   .cardNavigation > li {
     a {
       font-size: $font_size_card_navigation_mobile !important;
-      padding: $padding_vertical_card_navigation_mobile $padding_horizontal_card_navigation_mobile !important;
+      padding: ($btn-height * 0.25) $padding_horizontal_card_navigation_mobile !important;
     }
   }
 }

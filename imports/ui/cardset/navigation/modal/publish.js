@@ -37,7 +37,7 @@ Template.cardsetPublishForm.events({
 		Session.set('kindWithPrice', false);
 	},
 	'click #cardsetPublish': function (evt, tmpl) {
-		let kind = tmpl.find('#publishKind > .active > input').value;
+		let kind = tmpl.find('#publishKind .active > input').value;
 		let price = 0;
 		let visible = true;
 		let license = [];

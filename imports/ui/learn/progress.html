@@ -3,8 +3,8 @@
         <div class="well">
             {{> graph}}
         </div>
-        <button class="btn btn-block btn-raised btn-danger" id="backButton">
-                        <span class="pull-left">{{#if isStatsOwner}}{{_ "backbutton"}}{{else}}{{_
+        <button class="btn btn-block btn-raised btn-danger" id="backButton"><span class="flex-content">
+            <i class="fa fa-arrow-left"></i> {{#if isStatsOwner}}{{_ "backbutton"}}{{else}}{{_
                                 "backbuttonStatistics"}}{{/if}}</span>
         </button>
     </div>
@@ -33,11 +33,11 @@
                             value="-1">{{_ "leitnerProgress.indexDefault"}}
                     </button>
                     <button type="button"
-                            class="btn btn-raised dropdown-toggle setCardsetFiterDropdown"
+                            class="btn btn-raised dropdown-toggle setCardsetFiterDropdown setCardTypeDropdownCaret"
                             data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                        <span class="caret"></span>
-                        <span class="sr-only"></span>
+                        <span class="flex-content"><span class="caret"></span>
+                            <span class="sr-only"></span></span>
                     </button>
                     <ul class="dropdown-menu btn-raised longButton">
                         <li class="cardset" value="-1" data="-1" data-name="{{_ "leitnerProgress.indexDefault"}}">
