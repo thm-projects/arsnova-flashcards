@@ -86,7 +86,7 @@ Template.admin_users.helpers({
 					sortable: false,
 					fn: function (value) {
 						if (Meteor.user()._id !== value) {
-							return new Spacebars.SafeString("<a class='mailtoUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#messageModalAdmin'><i class='fa fa-envelope'></i></a>");
+							return new Spacebars.SafeString("<a class='mailtoUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#messageModalAdmin'><span class='flex-content'><i class='fa fa-envelope'></i></span></a>");
 						}
 					}
 				},
@@ -110,7 +110,7 @@ Template.admin_users.helpers({
 					cellClass: 'edit',
 					sortable: false,
 					fn: function (value) {
-						return new Spacebars.SafeString("<a id='linkToAdminUser' class='editUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.edituser') + "' data-userid='" + value + "'><i class='glyphicon glyphicon-pencil'></i></a>");
+						return new Spacebars.SafeString("<a id='linkToAdminUser' class='editUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.edituser') + "' data-userid='" + value + "'><span class='flex-content'><i class='glyphicon glyphicon-pencil'></i></span></a>");
 					}
 				},
 				{
@@ -122,7 +122,7 @@ Template.admin_users.helpers({
 							if ((Meteor.user()._id !== value) &&
 								(!Roles.userIsInRole(value, 'admin')))
 							{
-								return new Spacebars.SafeString("<a class='deleteUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deleteuser') + "' data-toggle='modal' data-target='#userConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
+								return new Spacebars.SafeString("<a class='deleteUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deleteuser') + "' data-toggle='modal' data-target='#userConfirmModalAdmin'><span class='flex-content'><i class='glyphicon glyphicon-ban-circle'></i></span></a>");
 							}
 						}
 

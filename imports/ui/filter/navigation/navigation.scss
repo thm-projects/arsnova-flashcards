@@ -7,9 +7,20 @@
   }
 }
 
+.buttonHeader .navbar {
+  min-height: 10px !important;
+}
+
 #filter-nav-wrapper, #filter-nav {
   padding: 0;
   text-align: left;
+
+  .navbar-text {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    height: $btn-height !important;
+  }
+
   #resetBtn, #displayModeBtn {
     margin-left: 10px;
   }
@@ -24,7 +35,7 @@
   }
 
   .navbar-nav > li > a {
-    padding: 20px 10px;
+    padding: ($btn-height / 2) 10px;
   }
 
   @media (max-width: 900px) {
@@ -36,6 +47,9 @@
     }
     .navbar-toggle {
       display: block;
+      height: $btn-height !important;
+      margin-top: 10px !important;
+      margin-bottom: 10px !important;
     }
     .navbar-collapse {
       border-top: 1px solid transparent;
@@ -56,15 +70,14 @@
       float: none;
     }
     .navbar-nav > li > a {
-      padding-top: 10px;
-      padding-bottom: 10px;
+      margin-left: 0 !important;
     }
     .collapse.in {
       display: block !important;
     }
 
-    .resetBtn {
-      margin-top: 8px;
+    #filterCheckbox {
+      margin-left: 10px;
     }
   }
 
@@ -84,7 +97,6 @@
 
     #resetBtnMobile {
       right: 40px !important;
-      top: 3px;
     }
 
     .filter-text-xs {
@@ -96,17 +108,9 @@
     .navbar-nav.col-lg-12 {
       margin-left: 0 !important;
     }
-    #filterCheckbox {
-      margin-left: 0 !important;
-      padding-left: 10px !important;
-    }
-    .navbar-toggle,.navbar-toggle.collapsed {
-      margin-top: 15px;
-    }
     #resetBtnMobile {
       position: absolute;
       float: right;
-      top: 3px;
       right: 60px;
     }
     .visible-xs-inline-block {
@@ -120,23 +124,12 @@
     }
   }
 
-  @media (min-width: 900px) {
-    #filterCheckbox {
-      padding-bottom: 0;
-      padding-right: 10px;
-      margin-left: 15px;
-      margin-top: -5px !important;
-    }
-  }
-
   .dropdown-menu {
     min-width: 250px;
   }
 }
 
 .scrollArrow {
-  padding-top: 0px;
-  padding-bottom: 0px;
   font-size: 25px;
   text-align: center;
 }

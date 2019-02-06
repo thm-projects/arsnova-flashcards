@@ -14,10 +14,10 @@
                 <form>
                     {{#if isWordcloudPomodoroEnabled}}
                         <a id="disableWordcloudPomodoro" class="btn btn-raised btn-success">
-                            {{_ "pomodoro.backend.settings.button.enabled"}}</a>
+                            <span class="flex-content">{{_ "pomodoro.backend.settings.button.enabled"}}</span></a>
                     {{else}}
                         <a id="enableWordcloudPomodoro" class="btn btn-raised btn-danger">
-                            {{_ "pomodoro.backend.settings.button.disabled"}}</a>
+                            <span class="flex-content">{{_ "pomodoro.backend.settings.button.disabled"}}</span></a>
                     {{/if}}
                 </form>
             </div>
@@ -34,10 +34,10 @@
                 <form>
                     {{#if isMailEnabled}}
                         <a id="disableMail" class="btn btn-raised btn-success">
-                            {{_ "admin.mail-settings.enabled"}}</a>
+                            <span class="flex-content">{{_ "admin.mail-settings.enabled"}}</span></a>
                         {{else}}
                         <a id="enableMail" class="btn btn-raised btn-danger">
-                            {{_ "admin.mail-settings.disabled"}}</a>
+                            <span class="flex-content">{{_ "admin.mail-settings.disabled"}}</span></a>
                         {{/if}}
                 </form>
             </div>
@@ -61,7 +61,7 @@
                         <input class="form-control" type="text" id="notificationTarget"
                                value="">
                         <a id="setNotificationTarget" class="btn btn-raised btn-success">
-                            {{_ "admin-settings.test-notifications.setTarget"}}</a>
+                            <span class="flex-content">{{_ "admin-settings.test-notifications.setTarget"}}</span></a>
                         <label id="setTargetInfo" for="setNotificationTarget"
                                style="visibility: hidden;"></label>
                         <br>
@@ -69,9 +69,9 @@
                         {{#if checkNotificationTarget}}
                             <label id="targetInfo">{{_ "admin-settings.test-notifications.send"}}</label>
                             <a id="sendMail" class="btn btn-raised btn-success">
-                                {{_ "admin-settings.test-notifications.sendMail"}}</a>
+                                <span class="flex-content">{{_ "admin-settings.test-notifications.sendMail"}}</span></a>
                             <a id="sendWeb" class="btn btn-raised btn-success">
-                                {{_ "admin-settings.test-notifications.sendWeb"}}</a>
+                                <span class="flex-content">{{_ "admin-settings.test-notifications.sendWeb"}}</span></a>
                             <label id="sendInfo" style="visibility: hidden;"></label>
                         {{/if}}
                     </div>

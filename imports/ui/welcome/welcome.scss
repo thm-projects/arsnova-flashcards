@@ -37,6 +37,9 @@
 
   .show-more {
     z-index: 100;
+    @media (max-width: 767px) {
+      margin-top: 75px;
+    }
   }
 }
 

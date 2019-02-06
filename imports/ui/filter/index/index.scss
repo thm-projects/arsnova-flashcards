@@ -74,8 +74,17 @@ ul.nav-list li.active {
 .longButton {
   text-align: left;
   padding-left: 15px;
-  width: calc(100% - 25px);
+  width: calc(100% - 25px) !important;;
   margin-bottom: 7px;
+}
+
+.setCardTypeDropdownCaret {
+  width: 25px !important;
+  padding: 0 !important;
+  text-align: center !important;
+  .caret {
+    margin-left: 0 !important;
+  }
 }
 
 .dropdown-menu {
@@ -115,7 +124,9 @@ input, textarea {
 }
 
 .shuffleButton {
-  margin: -5px 0 0 0;
+  width: 45px !important;
+  height: 20px !important;
+  margin: -5px 0 0 0 !important;
 }
 
 .licenseInfoCreate {

@@ -21,7 +21,7 @@
                                 <i class="fa fa-archive"></i>
                             {{/if}}
                         </span>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        {{> mainModalItemCloseIcon}}
                         <h4 id="wordcloudTitle" class="modal-title">
                             {{{getKind this.kind 0}}}
                             {{{getShuffleLabel this.shuffled}}}

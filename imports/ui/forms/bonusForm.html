@@ -7,7 +7,7 @@
                     <span class="modal-icon">
                         <i class="fa fa-graduation-cap"></i>
                     </span>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    {{> mainModalItemCloseIcon}}
                     <h4 id="bonusFormModalTitle" class="modal-title">{{#if isNewBonus}}{{_
                             "bonus.form.new.title"}}{{else}}{{_ "bonus.form.edit.title"}}{{/if}}
                     </h4>
@@ -144,7 +144,7 @@
                     <span class="modal-icon">
                         <i class="fa fa-sign-in"></i>
                     </span>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    {{> mainModalItemCloseIcon}}
                     <h4 id="joinBonusTitle" class="modal-title">{{_ "bonus.form-join.title"}}
                     </h4>
                 </div>
@@ -171,7 +171,7 @@
                     <span class="modal-icon">
                         <i class="fa fa-sign-out"></i>
                     </span>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    {{> mainModalItemCloseIcon}}
                     <h4 id="leaveBonusTitle" class="modal-title">{{_ "bonus.form-leave.title"}}
                     </h4>
                 </div>
@@ -195,8 +195,8 @@
         <div class="modal-dialog">
             <div class="modal-content modal-content-for-buttons xs-12">
                 <div class="modal-header">
+                    {{> mainModalItemCloseIcon}}
                     <h4 id="completeProfileTitle" class="modal-title">{{_ "sweetAlert.completeProfile.title"}}
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </h4>
                 </div>
                 <div class="modal-body">

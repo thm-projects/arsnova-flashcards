@@ -31,6 +31,7 @@ import "../card/sidebar/sidebar.js";
 import "../loadingScreen/loadingScreen.js";
 import "../card/editor/editor.js";
 import "./item/search.js";
+import "./modal/item/closeIcon.js";
 import "./main.html";
 import {NavigatorCheck} from "../../api/navigatorCheck";
 

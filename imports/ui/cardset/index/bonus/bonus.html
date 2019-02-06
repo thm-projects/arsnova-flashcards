@@ -19,8 +19,9 @@
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <button id="exportCSV" class="btn btn-success btn-raised btn-default">{{_
-                                "box_export"}}</button>
+                        <button id="exportCSV" class="btn btn-success btn-raised btn-default"><span class="flex-content"><i class="glyphicon glyphicon-stats"></i> <i
+                                class="fa fa-cloud-download"></i>{{_
+                                "box_export"}}</span></button>
                     </div>
                 </div>
             </div>
@@ -70,13 +71,13 @@
                                 {{/if}}
                             </td>
                             <td>
-                                <button data-id="{{this.user_id}}" class="btn btn-block detailed-stats"><i
+                                <a data-id="{{this.user_id}}" class="detailed-stats"><i
                                         class="glyphicon glyphicon glyphicon-stats"
                                         data-id="{{this.user_id}}"
-                                        title="{{_ "leitnerProgress.tooltip.graph"}}"></i></button>
+                                        title="{{_ "leitnerProgress.tooltip.graph"}}"></i></a>
                             </td>
                             <td>
-                                <button class="btn btn-block removeBonusUser" data-toggle="modal"
+                                <a class="removeBonusUser" data-toggle="modal"
                                         href="#removeUserFromBonusModal" data-user_id="{{this.user_id}}"
                                         data-firstname="{{this.birthname}}"
                                         data-lastname="{{this.givenname}}"
@@ -92,7 +93,7 @@
                                        data-box2="{{this.box2}}" data-box3="{{this.box3}}"
                                        data-box4="{{this.box4}}"
                                        data-box5="{{this.box5}}" data-box6="{{this.box6}}">
-                                    </i></button>
+                                    </i></a>
                             </td>
                         </tr>
                     {{/each}}
@@ -100,7 +101,7 @@
                 </table>
             </div>
             <button class="btn btn-block btn-raised btn-danger" id="backButton">
-                <span class="pull-left"><i class="fa fa-arrow-left"></i> {{_ "backbutton"}}</span>
+                <span class="flex-content"><i class="fa fa-arrow-left"></i> {{_ "backbutton"}}</span>
             </button>
         </div>
     {{/unless}}

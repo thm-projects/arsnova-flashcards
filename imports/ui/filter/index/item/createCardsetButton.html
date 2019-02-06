@@ -2,10 +2,12 @@
     {{#if canCreateContent}}
         {{#unless isSmartphone}}
             {{#unless isSelectingCardsetToLearn}}
+                <span class="btn-group">
                 <button id="newCardSet" type="button"
                         class="btn btn-raised btn-success saveSet" {{disableIfOffline}} {{disableIfShuffle}}>
-                    <i class="fa fa-cog fa-spin"></i><i class="fa fa-archive"></i> {{_ "set-list-empty.newset"}}
+                    <span class="flex-content"><i class="fa fa-cog fa-spin"></i><i class="fa fa-archive"></i> {{_ "set-list-empty.newset"}}</span>
                 </button>
+                </span>
             {{/unless}}
         {{/unless}}
     {{/if}}

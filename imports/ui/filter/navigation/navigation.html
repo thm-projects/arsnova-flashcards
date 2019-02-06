@@ -3,11 +3,11 @@
         <nav class="navbar navbar-default {{#if isActiveRoute regex='alldecks'}}{{#unless
                 isSelectingCardsetToLearn}}no-navigation{{/unless}}{{/if}}">
             <div class="container-fluid" id="filter-nav-wrapper">
-                <div class="navbar-header">
-                    <p class="navbar-text visible-sm-inline-block">{{_
-                            "set-list.filter-info-small"}}</p>
-                    <p class="navbar-text visible-xs-inline-block filter-text-xs">{{_
-                            "set-list.filter-info-extra-small"}}</p>
+                <div class="navbar-header visible-xs visible-sm">
+                    <div class="navbar-text visible-sm-inline-block"><span class="flex-content">{{_
+                            "set-list.filter-info-small"}}</span></div>
+                    <div class="navbar-text visible-xs-inline-block filter-text-xs"><span class="flex-content">{{_
+                            "set-list.filter-info-extra-small"}}</span></div>
                     {{#if gotResetButton}}
                         <button class="resetFilters btn btn-raised btn-sm btn-danger hidden-md hidden-lg float-left"
                                 id="resetBtnMobile"
@@ -61,11 +61,13 @@
 
 <template name="infiniteScroll">
     {{#if moreResults}}
-        <a href="#" title="{{_ "set-list.moreResults"}}">
+        <a href="#" class="showMoreResultsContainer" title="{{_ "set-list.moreResults"}}">
             <div id="showMoreResults" class="showMoreResults col-xs-12 panel panel-default">
+                            <span class="flex-content">
                 <span class="scrollArrow col-xs-12 infinite-scroll-icon glyphicon glyphicon-chevron-down">
                     <span class="resultCounter">{{getCurrentResults}}</span>
                 </span>
+                            </span>
             </div>
         </a>
     {{/if}}

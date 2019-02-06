@@ -53,15 +53,6 @@
   border-radius: 4px;
 }
 
-#cardTypeGroup *, #difficultyGroup *, #learningGoalLevelGroup *, .cardNavigation * {
-  border-right: 2px solid !important;
-}
-
-#cardTypeGroup *:last-child, #difficultyGroup *:last-child, #learningGoalLevelGroup *:last-child, .cardNavigation *:last-child {
-  border-right: none !important;
-}
-
-
 .btn-showPictureDetails {
   position: absolute;
   left: 45px;

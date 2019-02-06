@@ -2,12 +2,14 @@
     {{#unless isSmartphone}}
         {{#unless isSelectingCardsetToLearn}}
             {{#if canCreateContent}}
+            <span class="btn-group">
                 <button id="newRepetitorium" type="button"
                         class="btn btn-raised btn-success saveSet hidden-xs" {{disableIfOffline}} {{disableIfShuffle}}>
-                    <i class="fa fa-cog fa-spin"></i><i class="fa fa-archive"></i> <i class="fa fa-archive"></i> <i
+                    <span class="flex-content"><i class="fa fa-cog fa-spin"></i><i class="fa fa-archive"></i> <i class="fa fa-archive"></i> <i
                         class="fa fa-archive"></i> <i
-                        class="fa fa-ellipsis-h"></i> {{_ "set-list.shuffleCardsets"}}
+                            class="fa fa-ellipsis-h"></i> {{_ "set-list.shuffleCardsets"}}</span>
                 </button>
+            </span>
             {{else}}
                 <div class="empty-button-placeholder"></div>
             {{/if}}
