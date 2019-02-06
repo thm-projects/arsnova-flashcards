@@ -365,6 +365,10 @@ body {
   margin-left: 60px;
   margin-right: 60px;
   margin-bottom: 30px;
+  @media (min-width: 1200px) and (max-width: 1440px) {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 #theme-wrapper-wordcloud #main {

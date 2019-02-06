@@ -1,13 +1,13 @@
 <template name="editor">
     {{> cancelEditForm}}
     <div class="row firstEditorRow editorElement">
-        <div id="subject" class="col-md-6 cardtext editorElement">
+        <div id="subject" class="col-lg-6 cardtext editorElement">
             <h5>{{getSubjectLabel}}</h5>
             {{> selectLearningUnit}}
             {{> subjectEditor}}
         </div>
         {{#if gotLearningGoal}}
-            <div id="learningGoalLevel" class="col-md-6 cardtext editorElement">
+            <div id="learningGoalLevel" class="col-lg-6 cardtext editorElement">
                 <h5>{{_ "learning-goal.name"}}</h5>
                 {{> learningGoalLevel}}
             </div>
