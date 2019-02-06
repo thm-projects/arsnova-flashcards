@@ -79,7 +79,7 @@
   height: 375px;
 
   .cardContent {
-    height: 265px;
+    height: 255px;
   }
 }
 
@@ -100,6 +100,10 @@
     ul, ol {
       padding-left: 20px;
     }
+  }
+
+  .flip-container {
+    margin-top: 10px;
   }
 
   .cardHeaderSmallText {
@@ -139,5 +143,19 @@
   .cardCounter {
     margin-left: -$padding_card_content_horizontal_mobile;
     margin-top: -$padding_card_content_vertical_mobile;
+  }
+
+  #flashcardSidebarLeft, #flashcardSidebarRight {
+    width: $sidebar_width_mobile !important;
+    transform: scaleY(-1);
+
+
+    i, span, img, button {
+      margin-top: $sidebar_button_margin_mobile !important;
+    }
+
+    .card-button {
+      transform: scaleY(-1);
+    }
   }
 }

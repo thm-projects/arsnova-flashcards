@@ -22,12 +22,16 @@
                 {{> flashcardsEnd}}
             </div>
         {{else}}
-            <div class="col-xs-12">
+            <div class="col-xs-12 hidden-xs">
                 {{> learnAnswerOptions}}
                 {{> cardNavigation}}
             </div>
             <div class="col-xs-12">
                 {{> flashcards cardset=this}}
+            </div>
+            <div class="col-xs-12 visible-xs cardNavigationContainer">
+                {{> cardNavigation}}
+                {{> learnAnswerOptions}}
             </div>
         {{/if}}
     {{/if}}

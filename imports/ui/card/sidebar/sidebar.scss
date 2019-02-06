@@ -7,22 +7,25 @@
   @media(max-width: 767px) {
     padding: 3px;
     width: $sidebar_width_mobile !important;
+    transform: scaleY(-1);
   }
   border-top: 2px solid;
   border-bottom: 2px solid;
   i, span, img, button {
     width: 100%;
     text-align: center;
-    margin-top: 6px;
+    margin-top: $sidebar_button_margin !important;
+    @media(max-width: 767px) {
+      margin-top: $sidebar_button_margin_mobile !important;
+    }
   }
 
   .sidebarNavigationButton {
     display: block;
-    margin-top: 0;
+    margin-top: 0 !important;
     height: 33px !important;
     i, span, img, button {
       margin-top: 0;
-      width: auto !important;
     }
     margin-bottom: 25px;
   }
@@ -30,6 +33,17 @@
   .card-button {
     border-radius: 5px !important;
     height: 25px !important;
+    @media(max-width: 767px) {
+      transform: scaleY(-1);
+    }
+  }
+
+  .card-button:first-child {
+    margin-top: 0 !important;
+  }
+
+  .card-button:last-child {
+    margin-bottom: 0 !important;
   }
 
   .projectorIconButton {

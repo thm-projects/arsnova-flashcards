@@ -9,7 +9,7 @@ import {MarkdeepEditor} from "./markdeepEditor";
 let editorFullScreenActive = false;
 let defaultFontSize = 16;
 let defaultTextZoomValue = 100;
-
+let sidebarMobileOffset = 40;
 let iFrameWidthRatio = 16;
 let iFrameHeightRatio = 9;
 let iFrameMaxHeight = 0.8;
@@ -72,7 +72,7 @@ export let CardVisuals = class CardVisuals {
 				if (Session.get('windowWidth') < 768 || Session.get('mobilePreview') || Session.get('fullscreen')) {
 					if (Session.get('mobilePreview')) {
 						if ($(window).width() >= 1200) {
-							newFlashcardSize = $(window).height() - (flashcard.offset().top + 30 + $('#editorButtonGroup').innerHeight());
+							newFlashcardSize = $(window).height() - (flashcard.offset().top  + $('#editorButtonGroup').innerHeight());
 						}
 					} else {
 						newFlashcardSize = $(window).height() - (flashcard.offset().top + 10);
@@ -82,6 +82,7 @@ export let CardVisuals = class CardVisuals {
 					} else {
 						flashcardHeaderHeight = 60;
 					}
+					newFlashcardSize -= $('.cardNavigationContainer:visible').outerHeight();
 					flashcardBodyHeight = newFlashcardSize - flashcardHeaderHeight;
 					flashcard.css('height', newFlashcardSize);
 					flashcardHeader.css('height', flashcardHeaderHeight);
@@ -114,10 +115,9 @@ export let CardVisuals = class CardVisuals {
 				if (Session.get('mobilePreview')) {
 					newFlashcardSize -= 48;
 					if (!Session.get('fullscreen') && $(window).width() > 1200 && Session.get('mobilePreviewRotated')) {
-						newFlashcardSize += 25;
 						flashcard.css('height', newFlashcardSize);
 						flashcardBody.css('height', newFlashcardSize - flashcardHeaderHeight);
-						newFlashcardSize += $('.mobilePreviewContent .cardNavigation').height() + 22;
+						newFlashcardSize += $('.mobilePreviewContent .cardNavigation').height() + 32;
 						$('.mobilePreviewContent').css('height', newFlashcardSize);
 						$('.mobilePreviewFrame').css('height', newFlashcardSize + (parseInt($('.mobilePreviewFrame').css('border-top-width'), 10) * 2));
 						newFlashcardSize -= 25;
@@ -409,7 +409,12 @@ export let CardVisuals = class CardVisuals {
 	}
 
 	static setSidebarPosition () {
-		let cardHeaderHeight = $('.cardHeader').height();
+		let isMobile = $(window).width() < 768;
+		let cardHeight = $('.cardHeader').height();
+		let mobileOffset = sidebarMobileOffset;
+		if (isMobile || (Route.isEditMode() && MarkdeepEditor.getMobilePreview())) {
+			cardHeight += $('.cardContent').height();
+		}
 		let leftSidebar = $('#flashcardSidebarLeft');
 		let rightSidebar = $('#flashcardSidebarRight');
 		let leftSidebarElementCount = $('#flashcardSidebarLeft .card-button').length;
@@ -425,14 +430,22 @@ export let CardVisuals = class CardVisuals {
 			rightSidebar.css('display', 'block');
 		}
 		if (Route.isEditMode() && MarkdeepEditor.getMobilePreview()) {
-			cardHeaderHeight += $('.mobilePreviewContent .cardToolbar').height() + 15;
+			cardHeight += $('.mobilePreviewContent .cardToolbar').height() + 15;
 			leftSidebar.addClass('flashcardSidebarPreviewLeft');
 			rightSidebar.addClass('flashcardSidebarPreviewRight');
 		} else {
 			leftSidebar.removeClass('flashcardSidebarPreviewLeft');
 			rightSidebar.removeClass('flashcardSidebarPreviewRight');
 		}
-		leftSidebar.css('margin-top', cardHeaderHeight + 'px');
-		rightSidebar.css('margin-top', cardHeaderHeight + 'px');
+		if (Session.get('mobilePreview')) {
+			mobileOffset += 20;
+		}
+		if (isMobile || (Route.isEditMode() && MarkdeepEditor.getMobilePreview())) {
+			leftSidebar.css('margin-top', (cardHeight - leftSidebar.height() - mobileOffset) + 'px');
+			rightSidebar.css('margin-top', (cardHeight - rightSidebar.height() - mobileOffset) + 'px');
+		} else {
+			leftSidebar.css('margin-top', (cardHeight) + 'px');
+			rightSidebar.css('margin-top', (cardHeight) + 'px');
+		}
 	}
 };
