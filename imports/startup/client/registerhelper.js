@@ -448,6 +448,10 @@ Template.registerHelper("isNewCard", function () {
 	return Route.isNewCard();
 });
 
+Template.registerHelper("getNotificationStatus", function (user) {
+	return Bonus.getNotificationStatus(user);
+});
+
 //Returns all Colleges
 Template.registerHelper("getColleges", function () {
 	return _.uniq(CollegesCourses.find({}, {sort: {college: 1}}).fetch(), function (item) {
