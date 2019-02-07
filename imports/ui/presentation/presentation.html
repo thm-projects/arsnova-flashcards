@@ -17,7 +17,8 @@
         {{> pomodoroTimerModal}}
     {{/if}}
     {{#if isActiveRoute regex='demolist|presentationlist|makinglist'}}
-        <div class="{{#if isActiveRoute regex='demolist'}}row demo-padding{{else}}col-xs-12 presentation-list-margin{{/if}}">
+        <div class="{{#if isActiveRoute
+                          regex='demolist'}}row demo-padding{{else}}col-xs-12 presentation-list-margin{{/if}}">
             <button class="btn btn-raised btn-danger"
                     id="{{#if fullscreenActive}}backToPresentationFullscreen{{else}}backToPresentation{{/if}}">
             <span class="pull-left"><i class="fa fa-arrow-left"></i> {{#if isActiveRoute regex='demolist'}}{{_
@@ -26,11 +27,17 @@
             {{> cardsetList}}
         </div>
     {{else}}
-        <div class="{{#if isActiveRoute regex='demo'}}row demo-padding{{else}}col-xs-12{{/if}}">
-            {{> cardNavigation}}
-        </div>
+        {{#unless isMobilePreview}}
+            <div class="hidden-xs {{#if isActiveRoute regex='demo'}}row demo-padding{{else}}col-xs-12{{/if}}">
+                {{> cardNavigation}}
+            </div>
+        {{/unless}}
         <div class="{{#if isActiveRoute regex='demo'}}row demo-padding{{else}}col-xs-12{{/if}}">
             {{> flashcards}}
+        </div>
+        <div class="{{#unless isMobilePreview}}visible-xs{{/unless}} cardNavigationContainer {{#if isActiveRoute
+                                                                                                   regex='demo'}}row demo-padding{{else}}col-xs-12{{/if}}">
+            {{> cardNavigation}}
         </div>
     {{/if}}
 </template>
