@@ -32,7 +32,10 @@
                 <br>
                 {{#if isActiveRoute
                       'home'}}
-                    <a href="demo" id="showDemo" class="btn btn-lg btn-raised btn-success show-more"><span class="flex-content">{{_
+                    <a href="about" class="visible-xs-inline-block btn btn-lg btn-raised btn-success show-more"><span class="flex-content">{{_
+                            "intro.learnMoreMobile" lastAppTitle=(getLastAppTitle)}}</span></a>
+
+                    <a href="demo" id="showDemo" class="hidden-xs btn btn-lg btn-raised btn-success show-more"><span class="flex-content">{{_
                             "intro.learnMore" lastAppTitle=(getLastAppTitle)}}</span></a>
                 {{/if}}
             </div>
