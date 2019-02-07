@@ -37,7 +37,7 @@
 
   .show-more {
     z-index: 100;
-    @media (max-width: 767px) {
+    @media (max-width: 767px) and (orientation: portrait) {
       margin-top: 40px;
     }
   }
