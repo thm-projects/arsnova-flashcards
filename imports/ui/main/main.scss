@@ -97,8 +97,8 @@ $text_transform_card_header_subject: none;
 $font_style_card_header_subject_placeholder: normal;
 
 //card mobile
-$margin_bottom_card_navigation_mobile: 5px;
-$margin_top_card_navigation_mobile: 15px;
+$margin_bottom_card_navigation_mobile: 20px;
+$margin_top_card_navigation_mobile: 10px;
 $font_size_card_navigation_mobile: 12px;
 $padding_vertical_card_navigation_mobile: 5px;
 $padding_horizontal_card_navigation_mobile: 3px;
@@ -168,7 +168,14 @@ $font_size_sweet_alert_2_text: 16px;
 
 //sidebar
 $sidebar_width: 45px;
-$sidebar_width_mobile: 35px;
+$sidebar_button_margin: 6px;
+$sidebar_width_mobile: 60px;
+$sidebar_button_margin_mobile: 12px;
+$sidebar_yOffset_portrait_mobile: 60px;
+$sidebar_yOffset_landscape_mobile: 40px;
+//For pages with an answer button row
+$sidebar_yOffset_workload_portrait_mobile: 40px;
+$sidebar_yOffset_workload_landscape_mobile: 20px;
 
 //zoom
 $zoom_slider_width: 12px;
@@ -229,8 +236,8 @@ body {
   padding-left: $sidebar_width !important;
   padding-right: $sidebar_width !important;
   @media(max-width: 767px) {
-    padding-left: $sidebar_width_mobile / 2 !important;
-    padding-right: $sidebar_width_mobile / 2 !important;
+    padding-left: $sidebar_width / 2 !important;
+    padding-right: $sidebar_width / 2 !important;
   }
 }
 
