@@ -1359,6 +1359,10 @@
     "index": "",
     "indexDefault": "Alle Karteien",
     "percentage": "Prozent",
+    "notification": {
+      "mail": "E-Mail",
+      "push": "Push"
+    },
     "user": {
       "missingName": "Unvollständig"
     },

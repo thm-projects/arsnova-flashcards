@@ -4,6 +4,7 @@ import {Cardsets} from "./cardsets.js";
 import {check} from "meteor/check";
 import {getAuthorName} from "./userdata";
 import {Profile} from "./profile";
+import {Bonus} from "./bonus";
 
 function getLearningStatus(learningEnd) {
 	if (learningEnd.getTime() > new Date().getTime()) {
@@ -96,7 +97,9 @@ export function getLearners(data, cardset_id) {
 				box3: Leitner.find(filter[2]).count(),
 				box4: Leitner.find(filter[3]).count(),
 				box5: Leitner.find(filter[4]).count(),
-				box6: Leitner.find(filter[5]).count()
+				box6: Leitner.find(filter[5]).count(),
+				mailNotification: user[0].mailNotification,
+				webNotification: user[0].webNotification
 			});
 		}
 	}
@@ -114,13 +117,13 @@ Meteor.methods({
 		if (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
 			let content;
 			let colSep = ";"; // Separates columns
-			let infoCol = ";;;;;;;;;;;"; // Separates columns
+			let infoCol = ";;;;;;;;;;;;"; // Separates columns
 			let newLine = "\r\n"; //Adds a new line
 			let infoCardsetCounter = 0;
 			let infoCardsetLength = 6;
 			let infoLearningPhaseCounter = 0;
 			let infoLearningPhaseLength = 9;
-			content = header[6] + colSep + header[7] + colSep + header[8] + colSep;
+			content = header[6] + colSep + header[7] + colSep + header[8] + colSep + header[10] + colSep;
 			for (let i = 0; i <= 4; i++) {
 				content += header[i] + " [" + cardset.learningInterval[i] + "]" + colSep;
 			}
@@ -133,7 +136,7 @@ Meteor.methods({
 				} else {
 					percentage = "";
 				}
-				content += learners[k].birthname + colSep + learners[k].givenname + colSep + learners[k].email + colSep;
+				content += learners[k].birthname + colSep + learners[k].givenname + colSep + learners[k].email + colSep + Bonus.getNotificationStatus(learners[k], true) + colSep;
 				content += learners[k].box1 + colSep + learners[k].box2 + colSep + learners[k].box3 + colSep + learners[k].box4 + colSep + learners[k].box5 + colSep + learners[k].box6 +  colSep + percentage +  colSep;
 				if (infoCardsetCounter <= infoCardsetLength) {
 					content += colSep + cardsetInfo[infoCardsetCounter][0] + colSep + cardsetInfo[infoCardsetCounter++][1];

@@ -48,6 +48,7 @@ Template.cardsetLearnActivityStatistic.events({
 		header[7] = TAPi18n.__('box_export_given_name');
 		header[8] = TAPi18n.__('box_export_mail');
 		header[9] = TAPi18n.__('leitnerProgress.percentage');
+		header[10] = TAPi18n.__('confirmLearn-form.notification');
 		Meteor.call("getCSVExport", cardset._id, header, function (error, result) {
 			if (error) {
 				throw new Meteor.Error(error.statusCode, 'Error could not receive content for .csv');
@@ -89,6 +90,8 @@ Template.cardsetLearnActivityStatistic.events({
 		user.box4 = $(event.target).data('box4');
 		user.box5 = $(event.target).data('box5');
 		user.box6 = $(event.target).data('box6');
+		user.mailNotification = $(event.target).data('mailnotification');
+		user.webNotification = $(event.target).data('webnotification');
 		Session.set('removeBonusUser', user);
 	}
 });
