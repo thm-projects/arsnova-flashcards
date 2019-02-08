@@ -173,6 +173,14 @@ Template.registerHelper("getBonusLabel", function (shuffled = false) {
 	}
 });
 
+Template.registerHelper("getCardsetIcons", function (isShuffled) {
+	if (isShuffled) {
+		return "<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;";
+	} else {
+		return "<i class='fa fa-archive'></i>&nbsp;";
+	}
+});
+
 Template.registerHelper("getKind", function (kind, displayType = 0) {
 	if (displayType === 0) {
 		switch (DOMPurify.sanitize(kind, DOMPurifyConfig)) {
