@@ -320,6 +320,10 @@
     //card sidebar colors
           "card_sidebar_border": rgba($thm_gray, 0.6),
           "card_sidebar_background" : rgba($mercury_approx, 0.6),
+          "card_sidebar_edit_button_background": $thm_green,
+          "card_sidebar_edit_button_text": white,
+          "card_sidebar_delete_button_background": $thm_red,
+          "card_sidebar_delete_button_text": white,
     //cardset colors
           "cardset_markdeep_background": LightGoldenRodYellow,
           "cardset_markdeep_header_border": $thm_orange,
