@@ -271,6 +271,10 @@ Template.registerHelper("learningActiveAndEditor", function () {
 	}
 });
 
+Template.registerHelper("isLegacyLoginActive", function () {
+	return Meteor.settings.public.login.legacyMode.enabled;
+});
+
 Template.registerHelper("isEditor", function () {
 	if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
 		return true;

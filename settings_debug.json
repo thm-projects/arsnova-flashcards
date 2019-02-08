@@ -7,12 +7,17 @@
       "popupWidth": 810,
       "popupHeight": 610
     },
-    "displayLoginButtons": {
-      "displayFacebook": true,
-      "displayTwitter": true,
-      "displayGoogle": true,
-      "displayCas": true,
-      "displayTestingBackdoor": true
+    "login": {
+      "legacyMode": {
+        "enabled": false,
+        "facebook": true,
+        "twitter": true,
+        "google": true
+      },
+      "cas": true,
+      "guest": true,
+      "pro": true,
+      "backdoor": true
     },
     "leitner": {
       "dayIntervalHour": 1
