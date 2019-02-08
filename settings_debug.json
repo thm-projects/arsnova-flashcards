@@ -29,7 +29,8 @@
     "welcome": {
       "title": {
         "first": "debug",
-        "last": "cards"
+        "last": "cards",
+        "slogan": "ORGANIZE. LEARN. MEMORIZE."
       },
       "fakeStatistics": false
     },

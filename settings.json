@@ -29,7 +29,8 @@
     "welcome": {
       "title": {
         "first": "informatik",
-        "last": "cards"
+        "last": "cards",
+        "slogan": "ORGANIZE. LEARN. MEMORIZE."
       },
       "fakeStatistics": false
     },

@@ -42,6 +42,10 @@ Template.registerHelper('getLastAppTitle', function () {
 	return Meteor.settings.public.welcome.title.last;
 });
 
+Template.registerHelper('getAppSlogan', function () {
+	return Meteor.settings.public.welcome.title.slogan;
+});
+
 Template.registerHelper('isInBonus', function () {
 	return Bonus.isInBonus(Router.current().params._id, Meteor.userId());
 });
