@@ -1270,7 +1270,7 @@
         "mobilePreview": "Zeige die Karte in der Smartphone-Ansicht (iPhone 6/7/8)",
         "rotateMobilePreview": "Drehe die Smartphone-Ansicht (iPhone 6/7/8)",
         "dictionaryBeolingus": "Zeige die »Beolingus«-Übersetzung",
-        "style": "Ändere den Hintergrund der Karte (liniert oder blanko)",
+        "style": "Ändere den Hintergrund der Karte (liniert oder blanko). Die Linierung ist für die Smartphone-Ansicht deaktiviert.",
         "fullscreen": "Mit der Taste ESC (oben links) kommst du wieder in die Normalansicht."
       }
     }
