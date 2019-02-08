@@ -42,11 +42,9 @@
                 <div class="modal-header">
                     <span class="modal-icon">
                         {{#if isActiveRoute regex='repetitorium'}}
-                            <i class="fa fa-archive"></i> <i class="fa fa-archive"></i> <i
-                                class="fa fa-archive"></i> <i
-                                class="fa fa-ellipsis-h"></i>
+                            {{{getCardsetIcons true}}}
                         {{else}}
-                            <i class="fa fa-archive"></i>
+                            {{{getCardsetIcons false}}}
                         {{/if}}
                     </span>
                     {{> mainModalItemCloseIcon}}
