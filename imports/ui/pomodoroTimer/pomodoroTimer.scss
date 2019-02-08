@@ -70,8 +70,8 @@
   width: 150px;
 
   position: absolute;
-  bottom: 4rem;
-  left: 1rem;
+  left: 25px;
+  bottom: $small_pomodoro_timer_bottom_margin !important;
   @media (max-width: 767px) {
     height: 0;
     width: 0;
@@ -86,6 +86,12 @@
   text-align: center;
   .pomodoroTimer {
     margin: auto;
+  }
+  label {
+    font-size: $font_size_wordcloud_and_pomodoro_label !important;
+    position: relative;
+    margin: 0;
+    bottom: 25px;
   }
 }
 

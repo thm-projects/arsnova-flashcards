@@ -12,11 +12,11 @@ import * as fakeInventory from '../../../public/fakeStatistics/inventory.json';
 import {PomodoroTimer} from "../../api/pomodoroTimer";
 import {CardVisuals} from "../../api/cardVisuals";
 import {NavigatorCheck} from "../../api/navigatorCheck";
+import {AdminSettings} from "../../api/adminSettings";
 
 Meteor.subscribe("pomodoroLandingPage");
 Meteor.subscribe("userData");
 Meteor.subscribe("serverInventory");
-
 
 function setActiveLanguage() {
 	let language = getUserLanguage();
@@ -123,13 +123,13 @@ Template.welcome.helpers({
 			}
 		} else {
 			if (Meteor.settings.public.login.cas) {
-				loginButtons += '<button id="cas" class="btn btn-large btn-raised btn-block"><span class="flex-content"><i class="fa fa-graduation-cap"></i>' + TAPi18n.__("landingPage.login.cas") + '</span></button>';
+				loginButtons += '<button id="cas" class="btn btn-large btn-raised btn-block"><span class="flex-content"><i class="fa fa-graduation-cap"></i>&nbsp;' + TAPi18n.__("landingPage.login.cas") + '</span></button>';
 			}
 			if (Meteor.settings.public.login.guest) {
-				loginButtons += '<button id="guest" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal"><span class="flex-content"><i class="fa fa-user"></i>' + TAPi18n.__("landingPage.login.guest") + '</span></button>';
+				loginButtons += '<button id="guest" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal"><span class="flex-content"><i class="fa fa-user"></i>&nbsp;' + TAPi18n.__("landingPage.login.guest") + '</span></button>';
 			}
 			if (Meteor.settings.public.login.pro) {
-				loginButtons += '<button id="pro" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal"><span class="flex-content"><i class="fa fa-credit-card"></i>' + TAPi18n.__("landingPage.login.pro") + '</span></button>';
+				loginButtons += '<button id="pro" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal"><span class="flex-content"><i class="fa fa-credit-card"></i>&nbsp;' + TAPi18n.__("landingPage.login.pro") + '</span></button>';
 			}
 		}
 		// Backdoor for login in acceptance tests
@@ -146,7 +146,7 @@ Template.welcome.helpers({
 			if (Meteor.settings.public.login.legacyMode.enabled) {
 				loginButtons += '<a id="BackdoorLogin" href=""><div class="' + getLoginClass() + '"></div></a>';
 			} else {
-				loginButtons += '<button id="BackdoorLogin" class="btn btn-large btn-raised btn-block"><span class="flex-content"><i class="fa fa-key"></i>' + TAPi18n.__("landingPage.login.backdoor") + '</span></button>';
+				loginButtons += '<button id="BackdoorLogin" class="btn btn-large btn-raised btn-block"><span class="flex-content"><i class="fa fa-key"></i>&nbsp;' + TAPi18n.__("landingPage.login.backdoor") + '</span></button>';
 			}
 			loginButtons += '<div class="btn-group backdoorLogin">';
 			if (Meteor.settings.public.login.legacyMode.enabled) {
@@ -191,6 +191,7 @@ Template.welcome.onCreated(function () {
 	if (Route.isFirstTimeVisit()) {
 		Router.go('demo');
 	}
+	Session.set('wordcloudMode', AdminSettings.findOne({name: "wordcloudPomodoroSettings"}).enabled);
 });
 
 Template.welcome.onRendered(function () {
@@ -205,6 +206,19 @@ Template.welcome.onRendered(function () {
 	new ResizeSensor($('#welcome-login'), function () {
 		PomodoroTimer.pomoPosition();
 	});
+});
+
+/*
+ * ############################################################################
+ * welcomeWordcloudButton
+ * ############################################################################
+ */
+
+Template.welcomeWordcloudButton.events({
+	'click .toggle-wordcloud': function () {
+		Session.set('wordcloudMode', !Session.get('wordcloudMode'));
+		PomodoroTimer.showPomodoroNormal();
+	}
 });
 
 /*

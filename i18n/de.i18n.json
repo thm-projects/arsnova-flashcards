@@ -39,6 +39,14 @@
       "guest": "Gast-Login",
       "pro": "Pro-Login",
       "backdoor": "Backdoor-Login"
+    },
+    "buttons": {
+      "wordcloud": "Karteien",
+      "pomodoro": "Pomodoro-Timer",
+      "tooltip": {
+        "wordcloud": "Wortwolke aktivieren / deaktivieren",
+        "pomodoro": "Pomodoro-Timer aktivieren (Vollansicht)"
+      }
     }
   },
   "pomodoro": {

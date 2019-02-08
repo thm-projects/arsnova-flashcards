@@ -7,7 +7,6 @@ import {ReactiveVar} from 'meteor/reactive-var';
 import {Meteor} from "meteor/meteor";
 import {PomodoroTimer} from "./pomodoroTimer";
 import {FilterNavigation} from "./filterNavigation";
-import {AdminSettings} from "./adminSettings";
 
 let clearCanvas;
 let drawOutOfBound;
@@ -69,7 +68,7 @@ export let WordcloudCanvas = class WordcloudCanvas {
 						backgroundColor: backgroundColor,
 						wait: wait
 					});
-			} else if ($(window).width() >= 768 && !AdminSettings.findOne({name: "wordcloudPomodoroSettings"}).enabled) {
+			} else if ($(window).width() >= 768 && !Session.get('wordcloudMode')) {
 				PomodoroTimer.setCloudShown(true);
 				this.setConfig();
 				let wordcloundContent = this.getContent();
@@ -134,7 +133,7 @@ export let WordcloudCanvas = class WordcloudCanvas {
 			}
 			document.getElementById('wordcloud-canvas').width = newWidth;
 			let newHeight = $(window).height() - ($('#welcome').outerHeight(true) + $('#welcome-login').outerHeight(true));
-			if ($(window).width() >= 768 && !AdminSettings.findOne({name: "wordcloudPomodoroSettings"}).enabled) {
+			if ($(window).width() >= 768 && !Session.get('wordcloudMode')) {
 				document.getElementById('wordcloud-canvas').height = newHeight;
 				$('.pomodoroClock').css('height', 'unset');
 			} else {

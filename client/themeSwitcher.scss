@@ -533,6 +533,10 @@ $themes: (
     $wozniak_rating_5_background_hover: map-get($map, "wozniak_rating_5_background_hover");
     $wozniak_rating_5_text: map-get($map, "wozniak_rating_5_text");
     $wozniak_rating_5_text_hover: map-get($map, "wozniak_rating_5_text_hover");
+    //landing page
+    $landing_page_wordcloud_button: map-get($map, "landing_page_wordcloud_button");
+    $landing_page_wordcloud_button_opacity: map-get($map, "landing_page_wordcloud_button_opacity");
+    $landing_page_label: map-get($map, "landing_page_label");
 
     background-image: $background_image !important;
 
@@ -3004,6 +3008,15 @@ $themes: (
     #memoRate5:hover {
       background-color: $wozniak_rating_5_background_hover !important;
       color: $wozniak_rating_5_text_hover !important;
+    }
+
+    .toggle-wordcloud i {
+      color: $landing_page_wordcloud_button !important;
+      opacity: $landing_page_wordcloud_button_opacity !important;
+    }
+
+    .toggle-wordcloud label, #pomodoroTimerNormalContainer label {
+      color: $landing_page_label !important;
     }
   }
 }
