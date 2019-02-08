@@ -8,6 +8,7 @@ import {MarkdeepEditor} from "./markdeepEditor";
 
 let editorFullScreenActive = false;
 let defaultFontSize = 16;
+let defaultFontSizeMobile = 12;
 let defaultTextZoomValue = 100;
 let iFrameWidthRatio = 16;
 let iFrameHeightRatio = 9;
@@ -134,6 +135,7 @@ export let CardVisuals = class CardVisuals {
 				this.setPomodoroTimerSize();
 				this.setSidebarPosition();
 				this.setMaxIframeHeight();
+				this.setTextZoom();
 			}
 		}
 	}
@@ -356,7 +358,13 @@ export let CardVisuals = class CardVisuals {
 	}
 
 	static setTextZoom () {
-		let newFontSize = Math.round((defaultFontSize * Session.get('currentZoomValue')) / 100);
+		let fontSize;
+		if (NavigatorCheck.isSmartphone() || (Route.isEditMode() && MarkdeepEditor.getMobilePreview())) {
+			fontSize = defaultFontSizeMobile;
+		} else {
+			fontSize = defaultFontSize;
+		}
+		let newFontSize = Math.round((fontSize * Session.get('currentZoomValue')) / 100);
 		$('.cardContent').css("font-size", newFontSize + "px");
 	}
 

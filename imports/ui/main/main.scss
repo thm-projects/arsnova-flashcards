@@ -70,8 +70,9 @@ $margin_bottom_item: 10px;
 
 //markdeep
 $padding_inline_code: 10px;
-//set the default font size for the text zoom in api/cardVisuals.js
+//You have to update these values and the variables "defaultFontSize" and "defaultFontSizeMobile" located at /imports/api/cardVisuals.js
 $font_size_markdeep: 16px;
+$font_size_markdeep_mobile: 12px;
 $line_height_markdeep: 170%;
 
 //card
