@@ -251,9 +251,12 @@ $themes: (
     $card_sidebar_background: map-get($map, "card_sidebar_background");
     $card_sidebar_edit_button_background: map-get($map, "card_sidebar_edit_button_background");
     $card_sidebar_edit_button_text: map-get($map, "card_sidebar_edit_button_text");
+    $card_sidebar_edit_button_background_hover: map-get($map, "card_sidebar_edit_button_background_hover");
+    $card_sidebar_edit_button_text_hover: map-get($map, "card_sidebar_edit_button_text_hover");
     $card_sidebar_delete_button_background: map-get($map, "card_sidebar_delete_button_background");
     $card_sidebar_delete_button_text: map-get($map, "card_sidebar_delete_button_text");
-    //cardset colors
+    $card_sidebar_delete_button_background_hover: map-get($map, "card_sidebar_delete_button_background_hover");
+    $card_sidebar_delete_button_text_hover: map-get($map, "card_sidebar_delete_button_text_hover");
     //cardset colors
     $cardset_markdeep_background: map-get($map, "cardset_markdeep_background");
     $cardset_markdeep_header_border: map-get($map, "cardset_markdeep_header_border");
@@ -2697,9 +2700,19 @@ $themes: (
         color: $card_sidebar_edit_button_text !important;
       }
 
+      .editCard:hover {
+        background-color: $card_sidebar_edit_button_background_hover !important;
+        color: $card_sidebar_edit_button_text_hover !important;
+      }
+
       .deleteCard {
         background-color: $card_sidebar_delete_button_background !important;
         color: $card_sidebar_delete_button_text !important;
+      }
+
+      .deleteCard:hover {
+        background-color: $card_sidebar_delete_button_background_hover !important;
+        color: $card_sidebar_delete_button_text_hover !important;
       }
     }
 
