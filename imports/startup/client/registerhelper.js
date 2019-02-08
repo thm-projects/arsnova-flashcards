@@ -162,9 +162,6 @@ Template.registerHelper("getDifficultyLabel", function (cardType, difficulty) {
 });
 
 Template.registerHelper("getShuffleLabel", function (shuffled = false) {
-	if (Route.isRepetitorium()) {
-		shuffled = false;
-	}
 	if (shuffled) {
 		return '<span class="label label-shuffled" data-id="shuffled" title="' + TAPi18n.__('cardset.shuffled.long') + '">' + TAPi18n.__('cardset.shuffled.short') + '</span>';
 	}
