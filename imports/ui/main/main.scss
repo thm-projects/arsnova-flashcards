@@ -339,6 +339,15 @@ body {
     }
   }
 }
+@media(min-width: 768px) and (max-width: 900px) {
+  .thm-header {
+    padding: 0;
+    .container-fluid {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+}
 
 @media(min-width: 768px) {
   .thm-header {
