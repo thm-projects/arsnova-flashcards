@@ -29,7 +29,11 @@
 <template name="flashcardHeaderLeitnerLeft">
     <div class="col-xs-2 cardHeaderLeft" data-cardtype="{{cardType}}">
         <div class="cardHeaderGroup">
-            {{> pomodoroTimer}}
+            {{#if pomodoroActive}}
+                {{> pomodoroTimer}}
+            {{else}}
+                {{> cardHeaderItemClock}}
+            {{/if}}
         </div>
     </div>
 </template>
@@ -37,7 +41,11 @@
 <template name="flashcardHeaderWozniakLeft">
     <div class="col-xs-2 cardHeaderLeft" data-cardtype="{{cardType}}">
         <div class="cardHeaderGroup">
-            {{> pomodoroTimer}}
+            {{#if pomodoroActive}}
+                {{> pomodoroTimer}}
+            {{else}}
+                {{> cardHeaderItemClock}}
+            {{/if}}
         </div>
     </div>
 </template>
