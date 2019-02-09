@@ -128,12 +128,9 @@
 
 }
 
-.collapseCardsetInfoLocation {
-  float: none;
-}
-
 .resultItemHeaderWrapper {
-  display: table;
+  display: block;
   width: 100%;
   float: none;
+  overflow: hidden;
 }
