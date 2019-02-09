@@ -536,6 +536,8 @@ $themes: (
     //landing page
     $landing_page_wordcloud_button: map-get($map, "landing_page_wordcloud_button");
     $landing_page_wordcloud_button_opacity: map-get($map, "landing_page_wordcloud_button_opacity");
+    $landing_page_wordcloud_button_hover: map-get($map, "landing_page_wordcloud_button_hover");
+    $landing_page_wordcloud_button_opacity_hover: map-get($map, "landing_page_wordcloud_button_opacity_hover");
     $landing_page_label: map-get($map, "landing_page_label");
 
     background-image: $background_image !important;
@@ -3013,6 +3015,11 @@ $themes: (
     .toggle-wordcloud i {
       color: $landing_page_wordcloud_button !important;
       opacity: $landing_page_wordcloud_button_opacity !important;
+    }
+
+    .toggle-wordcloud i:hover {
+      color: $landing_page_wordcloud_button_hover !important;
+      opacity: $landing_page_wordcloud_button_opacity_hover !important;
     }
 
     .toggle-wordcloud label, #pomodoroTimerNormalContainer label {
