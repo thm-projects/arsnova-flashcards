@@ -4,8 +4,6 @@ import {Cardsets} from "./cardsets.js";
 import {Route} from "./route.js";
 import swal from "sweetalert2";
 import {WordcloudCanvas} from "./wordcloudCanvas";
-import {AdminSettings} from "./adminSettings";
-
 let defaultSettings = {
 	goal: 2,
 	work: {
@@ -840,14 +838,17 @@ export let PomodoroTimer = class PomodoroTimer {
 	 */
 	static pomoPosition () {
 		if (!PomodoroTimer.isClockInBigmode() && !Meteor.userId()) {
-			if (AdminSettings.findOne({name: "wordcloudPomodoroSettings"}).enabled || !cloudShown) {
+			if ((Session.get('wordcloudMode') || !cloudShown)) {
 				$('.pomodoroTimer').detach().appendTo('#pomodoroTimerWordcloudContainer');
 				$('#pomodoroTimerWordcloudContainer').css('display', 'block');
 				$('#wordcloud-container').css('display', 'none');
+				$('#pomodoroTimerNormalContainer').css('display', 'none');
 			} else {
-				$('.pomodoroTimer').detach().appendTo('#pomodoroTimerNormalContainer');
+				$('#pomodoroTimerNormalContainer').css('display', 'block');
+				$('.pomodoroTimer').detach().prependTo('#pomodoroTimerNormalContainer');
 				$('#pomodoroTimerWordcloudContainer').css('display', 'none');
 				$('#wordcloud-container').css('display', 'block');
+				$('.pomodoroClock').removeAttr("style");
 			}
 		} else {
 			$('#wordcloud-container').css('display', 'block');

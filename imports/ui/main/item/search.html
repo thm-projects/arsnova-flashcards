@@ -22,7 +22,7 @@
          data-toggle="collapse" data-target="#thm-top-navigation">
         {{#each searchCategories}}
             <a href="/cardset/{{_id}}" class="list-group-item clearfix search-result-item">
-                <h4 class="list-group-item-heading search-subject search-subject-{{kind}}">{{name}}</h4>
+                <h4 class="list-group-item-heading search-subject search-subject-{{kind}}">{{{getCardsetIcons this.shuffled}}}{{name}}</h4>
                 <p class="list-group-item-text search-content markdeepCardset markdeepCardsetContent">{{#markdeep}}{{description}}{{/markdeep}}</p>
                 {{#with getAuthor this.owner}}
                     <p class="list-group-item-text search-author">{{_

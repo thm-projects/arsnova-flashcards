@@ -46,21 +46,22 @@
                                             class="{{#if isActivePath regex='^\\/pool'}}active{{/if}}"
                                             data-toggle="collapse" data-target="#thm-top-navigation">
                                             <a href="{{pathFor route='pool'}}" id="pool">
-                                                {{_ "navbar-collapse.pool"}}
+                                                {{{getCardsetIcons false}}}{{_ "navbar-collapse.pool"}}
                                             </a>
                                         </li>
                                         <li id="navbar-repetitorium"
                                             class="{{#if isActivePath regex='^\\/repetitorium'}}active{{/if}}"
                                             data-toggle="collapse" data-target="#thm-top-navigation">
                                             <a href="{{pathFor route='repetitorium'}}" id="repetitorium">
-                                                {{_ "navbar-collapse.course"}}
+                                                <span class="visible-xs">{{{getCardsetIcons true}}}{{_ "navbar-collapse.course"}}</span>
+                                                <span class="hidden-xs">{{{getCardsetIcons false}}}<i class="fa fa-ellipsis-h"></i>&nbsp;{{_ "navbar-collapse.course"}}</span>
                                             </a>
                                         </li>
                                         <li id="navbar-learn-decks"
                                             class="{{#if isActiveRoute regex='home|learn'}}active{{/if}}"
                                             data-toggle="collapse" data-target="#thm-top-navigation">
                                             <a href="{{pathFor route='learn'}}" id="learnsets">
-                                                {{_ "navbar-collapse.learndecks"}}
+                                                <i class="fa fa-graduation-cap"></i>&nbsp;{{_ "navbar-collapse.learndecks"}}
                                             </a>
                                         </li>
                                         {{#unless isSmartPhoneAndOwnsNoCards}}
@@ -70,7 +71,7 @@
                                                                  regex='home|create'}}active{{/if}}"
                                                     data-toggle="collapse" data-target="#thm-top-navigation">
                                                     <a href="{{pathFor route='create'}}" id="cardsets">
-                                                        {{getMyCardsetName}}
+                                                        {{{getCardsetIcons false}}}{{getMyCardsetName}}
                                                     </a>
                                                 </li>
                                             {{/if}}
@@ -79,7 +80,7 @@
                                     <ul class="nav navbar-nav">
                                         <li id="navbar-help"
                                             class="{{#if isActiveRoute regex='help'}}active{{/if}}">
-                                            <a href="/help" id="helpBtn">{{_ "contact.help"}}</a>
+                                            <a href="/help" id="helpBtn"><i class="fa fa-medkit"></i><span class="hidden-sm">&nbsp;{{_ "contact.help"}}</span></a>
                                         </li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
@@ -88,7 +89,7 @@
                                                 class="{{#if isActiveRoute regex='alldecks'}}active{{/if}}"
                                                 data-toggle="collapse" data-target="#thm-top-navigation">
                                                 <a href="{{pathFor route='alldecks'}}" id="alldecks">
-                                                    {{_ "navbar-collapse.alldecks"}}
+                                                    {{{getCardsetIcons false}}}{{_ "navbar-collapse.alldecks"}}
                                                 </a>
                                             </li>
                                         {{/if}}
@@ -107,7 +108,8 @@
                                             <a href="#" id="dropdownMenuLink" class="dropdown-toggle"
                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <span class="hidden-sm">
-                                                        {{getUsername}} <span class="caret"></span>
+                                                        <span class="visible-xs"><i class="fa fa-user"></i>&nbsp;{{getUsername}}&nbsp;<span class="caret"></span></span>
+                                                        <span class="hidden-xs">{{getUsername}}&nbsp;<span class="caret"></span></span>
                                                     </span>
                                                 <span class="visible-sm">
                                                         {{_ "navbar-collapse.myprofile"}} <span class="caret"></span>

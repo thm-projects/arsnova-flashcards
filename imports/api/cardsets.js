@@ -296,7 +296,8 @@ Meteor.methods({
 						name: 1,
 						owner: 1,
 						description: 1,
-						kind: 1
+						kind: 1,
+						shuffled: 1
 					}
 				}).fetch();
 			}

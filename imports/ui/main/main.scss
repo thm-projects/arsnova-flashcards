@@ -56,6 +56,10 @@ $padding_vertical_inventory: 5px;
 $margin_top_inventory: 10px;
 $padding_top_login: 10px;
 $login_button_size: 60px;
+$wordcloud_toggle_button_icon_size: 150px;
+$wordcloud_toggle_button_bottom_margin: 45px;
+$small_pomodoro_timer_bottom_margin: 70px;
+$font_size_wordcloud_and_pomodoro_label: 16px;
 
 //info page
 $font_size_info_h1: 20px;
@@ -70,8 +74,9 @@ $margin_bottom_item: 10px;
 
 //markdeep
 $padding_inline_code: 10px;
-//set the default font size for the text zoom in api/cardVisuals.js
+//You have to update these values and the variables "defaultFontSize" and "defaultFontSizeMobile" located at /imports/api/cardVisuals.js
 $font_size_markdeep: 16px;
+$font_size_markdeep_mobile: 12px;
 $line_height_markdeep: 170%;
 
 //card
@@ -335,6 +340,15 @@ body {
   @media(min-width: 768px) {
     #navbar-all-decks {
       border-left: $size_navbar_alldecks_border solid !important;
+    }
+  }
+}
+@media(min-width: 768px) and (max-width: 900px) {
+  .thm-header {
+    padding: 0;
+    .container-fluid {
+      padding-left: 10px;
+      padding-right: 10px;
     }
   }
 }

@@ -42,6 +42,10 @@ Template.registerHelper('getLastAppTitle', function () {
 	return Meteor.settings.public.welcome.title.last;
 });
 
+Template.registerHelper('getAppSlogan', function () {
+	return Meteor.settings.public.welcome.title.slogan;
+});
+
 Template.registerHelper('isInBonus', function () {
 	return Bonus.isInBonus(Router.current().params._id, Meteor.userId());
 });
@@ -162,9 +166,6 @@ Template.registerHelper("getDifficultyLabel", function (cardType, difficulty) {
 });
 
 Template.registerHelper("getShuffleLabel", function (shuffled = false) {
-	if (Route.isRepetitorium()) {
-		shuffled = false;
-	}
 	if (shuffled) {
 		return '<span class="label label-shuffled" data-id="shuffled" title="' + TAPi18n.__('cardset.shuffled.long') + '">' + TAPi18n.__('cardset.shuffled.short') + '</span>';
 	}
@@ -173,6 +174,14 @@ Template.registerHelper("getShuffleLabel", function (shuffled = false) {
 Template.registerHelper("getBonusLabel", function (shuffled = false) {
 	if (shuffled) {
 		return '<span class="label label-bonus" data-id="bonus" title="' + TAPi18n.__('cardset.bonus.long') + '">' + TAPi18n.__('cardset.bonus.short') + '</span>';
+	}
+});
+
+Template.registerHelper("getCardsetIcons", function (isShuffled) {
+	if (isShuffled) {
+		return "<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;";
+	} else {
+		return "<i class='fa fa-archive'></i>&nbsp;";
 	}
 });
 
@@ -264,6 +273,10 @@ Template.registerHelper("learningActiveAndEditor", function () {
 		}
 		return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) && cardset.learningActive;
 	}
+});
+
+Template.registerHelper("isLegacyLoginActive", function () {
+	return Meteor.settings.public.login.legacyMode.enabled;
 });
 
 Template.registerHelper("isEditor", function () {

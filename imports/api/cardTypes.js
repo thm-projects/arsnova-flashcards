@@ -70,7 +70,7 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 4,
 			"side": "right",
-			"defaultStyle": "lecture",
+			"defaultStyle": "default",
 			"isAnswer": true
 		},
 		{

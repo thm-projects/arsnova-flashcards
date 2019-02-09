@@ -7,12 +7,17 @@
       "popupWidth": 810,
       "popupHeight": 610
     },
-    "displayLoginButtons": {
-      "displayFacebook": false,
-      "displayTwitter": false,
-      "displayGoogle": false,
-      "displayCas": false,
-      "displayTestingBackdoor": true
+    "login": {
+      "legacyMode": {
+        "enabled": false,
+        "facebook": true,
+        "twitter": true,
+        "google": true
+      },
+      "cas": false,
+      "guest": false,
+      "pro": false,
+      "backdoor": true
     },
     "leitner": {
       "dayIntervalHour": 1
@@ -24,7 +29,8 @@
     "welcome": {
       "title": {
         "first": "review",
-        "last": "cards"
+        "last": "cards",
+        "slogan": "ORGANIZE. LEARN. MEMORIZE."
       },
       "fakeStatistics": false
     },

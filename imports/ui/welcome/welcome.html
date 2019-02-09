@@ -11,8 +11,19 @@
         {{{getServerInventory}}}
     </div>
 
-    <div id="pomodoroTimerNormalContainer">
+    <div id="pomodoroTimerNormalContainer" title="{{_ "landingPage.buttons.tooltip.pomodoro"}}">
         {{> pomodoroTimer}}
+        <label>{{_ "landingPage.buttons.pomodoro"}}</label>
+    </div>
+    {{> welcomeWordcloudButton}}
+</template>
+
+<template name="welcomeWordcloudButton">
+    <div class="hidden-xs">
+        <div class="toggle-wordcloud" title="{{_ "landingPage.buttons.tooltip.wordcloud"}}">
+            <div class="flex-content"><i class="fa fa-cloud"></i></div>
+            <label>{{_ "landingPage.buttons.wordcloud"}}</label>
+        </div>
     </div>
 </template>
 
@@ -27,15 +38,17 @@
                 </div>
 
                 <span id="slogan">
-                    <h2 class="pull-left">ORGANIZE. LEARN. MEMORIZE.</h2>
+                    <h2 class="pull-left">{{getAppSlogan}}</h2>
                   </span>
                 <br>
                 {{#if isActiveRoute
                       'home'}}
-                    <a href="about" class="visible-xs-inline-block btn btn-lg btn-raised btn-success show-more"><span class="flex-content">{{_
+                    <a href="about" class="visible-xs-inline-block btn btn-lg btn-raised btn-success show-more"><span
+                            class="flex-content">{{_
                             "intro.learnMoreMobile" lastAppTitle=(getLastAppTitle)}}</span></a>
 
-                    <a href="demo" id="showDemo" class="hidden-xs btn btn-lg btn-raised btn-success show-more"><span class="flex-content">{{_
+                    <a href="demo" id="showDemo" class="hidden-xs btn btn-lg btn-raised btn-success show-more"><span
+                            class="flex-content">{{_
                             "intro.learnMore" lastAppTitle=(getLastAppTitle)}}</span></a>
                 {{/if}}
             </div>

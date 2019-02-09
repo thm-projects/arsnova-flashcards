@@ -35,14 +35,14 @@
         <div class="controls col-md-9">
             <div id="publishKind" class="btn-group-justified"
                  data-toggle="buttons">
-                <div class="col-xs-4 btn-bootstrap-container">
+                <div class="{{#if isLegacyLoginActive}}col-xs-4{{else}}col-xs-3{{/if}} btn-bootstrap-container">
                     <label id="kindoption0"
                            class="btn btn-block btn-warning {{#if kindIsActive 'personal'}}active{{/if}}">
                         <input type="radio" name="kind" value="personal" id="kind_private">
                         <span class="flex-content">{{_ 'access-level.private.short'}}</span>
                     </label>
                 </div>
-                <div class="col-xs-4 btn-bootstrap-container">
+                <div class="{{#if isLegacyLoginActive}}col-xs-4{{else}}col-xs-3{{/if}} btn-bootstrap-container">
                     <label id="kindoption1"
                            class="btn btn-block btn-info {{#if kindIsActive 'free'}}active{{/if}}">
                         <input type="radio" name="kind" value="free" id="free">
@@ -50,7 +50,7 @@
                     </label>
                 </div>
                 {{#if isInRole 'admin,editor,lecturer'}}
-                    <div class="col-xs-4 btn-bootstrap-container">
+                    <div class="{{#if isLegacyLoginActive}}col-xs-4{{else}}col-xs-3{{/if}} btn-bootstrap-container">
                         <label id="kindoption2"
                                class="btn btn-block btn-success {{#if kindIsActive 'edu'}}active{{/if}}">
                             <input type="radio" name="kind" value="edu" id="kind_edu">
@@ -58,17 +58,17 @@
                         </label>
                     </div>
                 {{/if}}
-                {{!--
-                {{#if isInRole 'admin,editor,lecturer,pro'}}
-                                <div class="col-xs-3 btn-bootstrap-container">
-                    <label id="kindoption3"
-                           class="btn btn-block btn-danger {{#if kindIsActive 'pro'}}active{{/if}}">
-                        <input type="radio" name="kind" value="pro" id="kind_pro">
-                        <span class="flex-content">{{_ 'access-level.pro.short'}}</span>
-                    </label>
-                                    </div>
-                {{/if}}
-                --}}
+                {{#unless isLegacyLoginActive}}
+                    {{#if isInRole 'admin,editor,lecturer,pro'}}
+                        <div class="col-xs-3 btn-bootstrap-container">
+                            <label id="kindoption3"
+                                   class="btn btn-block btn-danger {{#if kindIsActive 'pro'}}active{{/if}}">
+                                <input type="radio" name="kind" value="pro" id="kind_pro">
+                                <span class="flex-content">{{_ 'access-level.pro.short'}}</span>
+                            </label>
+                        </div>
+                    {{/if}}
+                {{/unless}}
             </div>
         </div>
     </div>

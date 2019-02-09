@@ -33,6 +33,22 @@
     "backButton": "Zurück",
     "backToStartButton": "Zurück zur Startseite"
   },
+  "landingPage": {
+    "login": {
+      "cas": "Uni-Login",
+      "guest": "Gast-Login",
+      "pro": "Pro-Login",
+      "backdoor": "Backdoor-Login"
+    },
+    "buttons": {
+      "wordcloud": "Karteien",
+      "pomodoro": "Pomodoro-Timer",
+      "tooltip": {
+        "wordcloud": "Wortwolke aktivieren / deaktivieren",
+        "pomodoro": "Pomodoro-Timer aktivieren (Vollansicht)"
+      }
+    }
+  },
   "pomodoro": {
     "tooltip": "Pomodoro-Timer für dein Zeitmanagement – »Pomodoro« ist italienisch für \uD83C\uDF45",
     "name": "Pomodoro",
@@ -544,7 +560,7 @@
     "accept": "Akzeptieren",
     "decline": "Ablehnen",
     "save": "Speichern",
-    "cancel": "Abbrechen",
+    "cancel": "Zurücksetzen",
     "saved": "Deine Änderungen wurden gespeichert!",
     "canceled": "Deine Änderungen wurden verworfen!",
     "error": "Deine Angaben sind noch unvollständig!",
@@ -1270,7 +1286,7 @@
         "mobilePreview": "Zeige die Karte in der Smartphone-Ansicht (iPhone 6/7/8)",
         "rotateMobilePreview": "Drehe die Smartphone-Ansicht (iPhone 6/7/8)",
         "dictionaryBeolingus": "Zeige die »Beolingus«-Übersetzung",
-        "style": "Ändere den Hintergrund der Karte (liniert oder blanko)",
+        "style": "Ändere den Hintergrund der Karte (liniert oder blanko). Die Linierung ist für die Smartphone-Ansicht deaktiviert.",
         "fullscreen": "Mit der Taste ESC (oben links) kommst du wieder in die Normalansicht."
       }
     }
