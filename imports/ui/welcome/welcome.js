@@ -129,7 +129,7 @@ Template.welcome.helpers({
 				loginButtons += '<button id="guest" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal" title="' + TAPi18n.__("landingPage.login.tooltip.guest") + '"><span class="flex-content"><i class="fa fa-user"></i>&nbsp;' + TAPi18n.__("landingPage.login.guest") + '</span></button>';
 			}
 			if (Meteor.settings.public.login.pro) {
-				loginButtons += '<button id="pro" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal" title="' + TAPi18n.__("landingPage.login.tooltip.pro") + '"><span class="flex-content"><i class="fa fa-credit-card"></i>&nbsp;' + TAPi18n.__("landingPage.login.pro") + '</span></button>';
+				loginButtons += '<button id="pro" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal" title="' + TAPi18n.__("landingPage.login.tooltip.pro") + '"><span class="flex-content"><i class="fa fa-paypal"></i>&nbsp;' + TAPi18n.__("landingPage.login.pro") + '</span></button>';
 			}
 		}
 		// Backdoor for login in acceptance tests
