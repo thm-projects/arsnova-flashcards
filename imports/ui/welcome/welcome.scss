@@ -189,3 +189,21 @@
 .welcome-title-no-padding {
   padding-bottom: 0 !important;
 }
+
+.toggle-wordcloud {
+  position: absolute;
+  text-align: center;
+  right: 25px;
+  bottom: $wordcloud_toggle_button_bottom_margin !important;
+  i {
+    font-size: $wordcloud_toggle_button_icon_size !important;
+  }
+  cursor: pointer;
+  text-decoration: none;
+  label {
+    font-size: $font_size_wordcloud_and_pomodoro_label !important;
+    position: relative;
+    margin: 0;
+    bottom: 15px;
+  }
+}

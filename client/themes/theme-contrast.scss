@@ -118,6 +118,14 @@
           "login_cas_background_hover": $button_background_hover,
           "login_cas_icon": white,
           "login_cas_icon_hover": $button_text_hover,
+          "login_guest_background": $primary,
+          "login_guest_background_hover": $button_background_hover,
+          "login_guest_icon": white,
+          "login_guest_icon_hover": $button_text_hover,
+          "login_pro_background": $primary,
+          "login_pro_background_hover": $button_background_hover,
+          "login_pro_icon": white,
+          "login_pro_icon_hover": $button_text_hover,
           "login_backdoor_background": $primary,
           "login_backdoor_background_hover": $button_background_hover,
           "login_backdoor_icon": white,
@@ -544,5 +552,9 @@
           "wozniak_rating_5_background_hover": $button_background_hover,
           "wozniak_rating_5_text": white,
           "wozniak_rating_5_text_hover": $button_text_hover,
+    //landing page
+          "landing_page_wordcloud_button": white,
+          "landing_page_wordcloud_button_opacity": 1,
+          "landing_page_label": white
   );
 }

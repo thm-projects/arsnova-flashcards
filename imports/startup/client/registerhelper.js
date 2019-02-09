@@ -42,6 +42,10 @@ Template.registerHelper('getLastAppTitle', function () {
 	return Meteor.settings.public.welcome.title.last;
 });
 
+Template.registerHelper('getAppSlogan', function () {
+	return Meteor.settings.public.welcome.title.slogan;
+});
+
 Template.registerHelper('isInBonus', function () {
 	return Bonus.isInBonus(Router.current().params._id, Meteor.userId());
 });
@@ -269,6 +273,10 @@ Template.registerHelper("learningActiveAndEditor", function () {
 		}
 		return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) && cardset.learningActive;
 	}
+});
+
+Template.registerHelper("isLegacyLoginActive", function () {
+	return Meteor.settings.public.login.legacyMode.enabled;
 });
 
 Template.registerHelper("isEditor", function () {

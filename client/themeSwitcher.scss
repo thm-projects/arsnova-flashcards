@@ -89,6 +89,14 @@ $themes: (
     $login_cas_background_hover: map-get($map, "login_cas_background_hover");
     $login_cas_icon: map-get($map, "login_cas_icon");
     $login_cas_icon_hover: map-get($map, "login_cas_icon_hover");
+    $login_guest_background: map-get($map, "login_guest_background");
+    $login_guest_background_hover: map-get($map, "login_guest_background_hover");
+    $login_guest_icon: map-get($map, "login_guest_icon");
+    $login_guest_icon_hover: map-get($map, "login_guest_icon_hover");
+    $login_pro_background: map-get($map, "login_pro_background");
+    $login_pro_background_hover: map-get($map, "login_pro_background_hover");
+    $login_pro_icon: map-get($map, "login_pro_icon");
+    $login_pro_icon_hover: map-get($map, "login_pro_icon_hover");
     $login_backdoor_background: map-get($map, "login_backdoor_background");
     $login_backdoor_background_hover: map-get($map, "login_backdoor_background_hover");
     $login_backdoor_icon: map-get($map, "login_backdoor_icon");
@@ -525,6 +533,10 @@ $themes: (
     $wozniak_rating_5_background_hover: map-get($map, "wozniak_rating_5_background_hover");
     $wozniak_rating_5_text: map-get($map, "wozniak_rating_5_text");
     $wozniak_rating_5_text_hover: map-get($map, "wozniak_rating_5_text_hover");
+    //landing page
+    $landing_page_wordcloud_button: map-get($map, "landing_page_wordcloud_button");
+    $landing_page_wordcloud_button_opacity: map-get($map, "landing_page_wordcloud_button_opacity");
+    $landing_page_label: map-get($map, "landing_page_label");
 
     background-image: $background_image !important;
 
@@ -796,6 +808,7 @@ $themes: (
 
     #cas {
       background-color: $login_cas_background !important;
+      color: $login_cas_icon !important;
       .login-button-icon {
         background-color: $login_cas_icon !important;
       }
@@ -803,13 +816,47 @@ $themes: (
 
     #cas:hover, #cas:focus {
       background-color: $login_cas_background_hover !important;
+      color: $login_cas_icon_hover !important;
       .login-button-icon {
         background-color: $login_cas_icon_hover !important;
       }
     }
 
+    #guest {
+      background-color: $login_guest_background !important;
+      color: $login_guest_icon !important;
+      .login-button-icon {
+        background-color: $login_guest_icon !important;
+      }
+    }
+
+    #guest:hover, #guest:focus {
+      background-color: $login_guest_background_hover !important;
+      color: $login_guest_icon_hover !important;
+      .login-button-icon {
+        background-color: $login_guest_icon_hover !important;
+      }
+    }
+
+    #pro {
+      background-color: $login_pro_background !important;
+      color: $login_pro_icon !important;
+      .login-button-icon {
+        background-color: $login_pro_icon !important;
+      }
+    }
+
+    #pro:hover, #pro:focus {
+      background-color: $login_pro_background_hover !important;
+      color: $login_pro_icon_hover !important;
+      .login-button-icon {
+        background-color: $login_pro_icon_hover !important;
+      }
+    }
+
     #facebook {
       background-color: $login_facebook_background !important;
+      color: $login_facebook_icon !important;
       .login-button-icon {
         background-color: $login_facebook_icon !important;
       }
@@ -817,6 +864,7 @@ $themes: (
 
     #facebook:hover, #facebook:focus {
       background-color: $login_facebook_background_hover !important;
+      color: $login_facebook_icon_hover !important;
       .login-button-icon {
         background-color: $login_facebook_icon_hover !important;
       }
@@ -824,6 +872,7 @@ $themes: (
 
     #twitter {
       background-color: $login_twitter_background !important;
+      color: $login_twitter_icon !important;
       .login-button-icon {
         background-color: $login_twitter_icon !important;
       }
@@ -831,6 +880,7 @@ $themes: (
 
     #twitter:hover, #twitter:focus {
       background-color: $login_twitter_background_hover !important;
+      color: $login_twitter_icon_hover !important;
       .login-button-icon {
         background-color: $login_twitter_icon_hover !important;
       }
@@ -838,6 +888,7 @@ $themes: (
 
     #google {
       background-color: $login_google_background !important;
+      color: $login_google_icon !important;
       .login-button-icon {
         background-color: $login_google_icon !important;
       }
@@ -845,6 +896,7 @@ $themes: (
 
     #google:hover, #google:focus {
       background-color: $login_google_background_hover !important;
+      color: $login_google_icon_hover !important;
       .login-button-icon {
         background-color: $login_google_icon_hover !important;
       }
@@ -852,6 +904,7 @@ $themes: (
 
     #BackdoorLogin {
       background-color: $login_backdoor_background !important;
+      color: $login_backdoor_icon !important;
       .login-button-icon {
         background-color: $login_backdoor_icon !important;
       }
@@ -859,6 +912,7 @@ $themes: (
 
     #BackdoorLogin:hover, #BackdoorLogin:focus {
       background-color: $login_backdoor_background_hover !important;
+      color: $login_backdoor_icon_hover !important;
       .login-button-icon {
         background-color: $login_backdoor_icon_hover !important;
       }
@@ -2954,6 +3008,15 @@ $themes: (
     #memoRate5:hover {
       background-color: $wozniak_rating_5_background_hover !important;
       color: $wozniak_rating_5_text_hover !important;
+    }
+
+    .toggle-wordcloud i {
+      color: $landing_page_wordcloud_button !important;
+      opacity: $landing_page_wordcloud_button_opacity !important;
+    }
+
+    .toggle-wordcloud label, #pomodoroTimerNormalContainer label {
+      color: $landing_page_label !important;
     }
   }
 }

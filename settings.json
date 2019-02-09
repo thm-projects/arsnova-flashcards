@@ -7,11 +7,17 @@
       "popupWidth": 810,
       "popupHeight": 610
     },
-    "displayLoginButtons": {
-      "displayFacebook": true,
-      "displayTwitter": true,
-      "displayGoogle": true,
-      "displayCas": true
+    "login": {
+      "legacyMode": {
+        "enabled": false,
+        "facebook": true,
+        "twitter": true,
+        "google": true
+      },
+      "cas": true,
+      "guest": true,
+      "pro": true,
+      "backdoor": false
     },
     "leitner": {
       "dayIntervalHour": 1
@@ -23,7 +29,8 @@
     "welcome": {
       "title": {
         "first": "informatik",
-        "last": "cards"
+        "last": "cards",
+        "slogan": "ORGANIZE. LEARN. MEMORIZE."
       },
       "fakeStatistics": false
     },

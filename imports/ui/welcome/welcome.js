@@ -12,11 +12,11 @@ import * as fakeInventory from '../../../public/fakeStatistics/inventory.json';
 import {PomodoroTimer} from "../../api/pomodoroTimer";
 import {CardVisuals} from "../../api/cardVisuals";
 import {NavigatorCheck} from "../../api/navigatorCheck";
+import {AdminSettings} from "../../api/adminSettings";
 
 Meteor.subscribe("pomodoroLandingPage");
 Meteor.subscribe("userData");
 Meteor.subscribe("serverInventory");
-
 
 function setActiveLanguage() {
 	let language = getUserLanguage();
@@ -87,7 +87,7 @@ Template.welcome.events({
 
 	// Backdoor for login in acceptance tests
 	'click #BackdoorLogin': function () {
-		if (Meteor.settings.public.displayLoginButtons.displayTestingBackdoor) {
+		if (Meteor.settings.public.login.backdoor) {
 			Meteor.insecureUserLogin($("#TestingBackdoorUsername").val(), function (err, result) {
 				if (result) {
 					setActiveLanguage();
@@ -108,21 +108,32 @@ Template.welcome.events({
 Template.welcome.helpers({
 	getLoginButtons: function () {
 		let loginButtons = "<div id='loginButtonRow'>";
-		if (Meteor.settings.public.displayLoginButtons.displayCas) {
-			loginButtons += '<a id="cas" href=""><div class="' + getLoginClass() + '"></div></a>';
+		if (Meteor.settings.public.login.legacyMode.enabled) {
+			if (Meteor.settings.public.login.cas) {
+				loginButtons += '<a id="cas" href=""><div class="' + getLoginClass() + '"></div></a>';
+			}
+			if (Meteor.settings.public.login.legacyMode.facebook) {
+				loginButtons += '<a id="facebook" href=""><div class="' + getLoginClass() + '"></div></a>';
+			}
+			if (Meteor.settings.public.login.legacyMode.twitter) {
+				loginButtons += '<a id="twitter" href=""><div class="' + getLoginClass() + '"></div></a>';
+			}
+			if (Meteor.settings.public.login.legacyMode.google) {
+				loginButtons += '<a id="google" href=""><div class="' + getLoginClass() + '"></div></a>';
+			}
+		} else {
+			if (Meteor.settings.public.login.cas) {
+				loginButtons += '<button id="cas" class="btn btn-large btn-raised btn-block"><span class="flex-content"><i class="fa fa-graduation-cap"></i>&nbsp;' + TAPi18n.__("landingPage.login.cas") + '</span></button>';
+			}
+			if (Meteor.settings.public.login.guest) {
+				loginButtons += '<button id="guest" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal"><span class="flex-content"><i class="fa fa-user"></i>&nbsp;' + TAPi18n.__("landingPage.login.guest") + '</span></button>';
+			}
+			if (Meteor.settings.public.login.pro) {
+				loginButtons += '<button id="pro" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal"><span class="flex-content"><i class="fa fa-credit-card"></i>&nbsp;' + TAPi18n.__("landingPage.login.pro") + '</span></button>';
+			}
 		}
-		if (Meteor.settings.public.displayLoginButtons.displayFacebook) {
-			loginButtons += '<a id="facebook" href=""><div class="' + getLoginClass() + '"></div></a>';
-		}
-		if (Meteor.settings.public.displayLoginButtons.displayTwitter) {
-			loginButtons += '<a id="twitter" href=""><div class="' + getLoginClass() + '"></div></a>';
-		}
-		if (Meteor.settings.public.displayLoginButtons.displayGoogle) {
-			loginButtons += '<a id="google" href=""><div class="' + getLoginClass() + '"></div></a>';
-		}
-
 		// Backdoor for login in acceptance tests
-		if (Meteor.settings.public.displayLoginButtons.displayTestingBackdoor) {
+		if (Meteor.settings.public.login.backdoor) {
 			let title = TAPi18n.__("backdoor.title");
 			let superAdmin = TAPi18n.__("backdoor.superAdmin");
 			let admin = TAPi18n.__("backdoor.admin");
@@ -132,8 +143,16 @@ Template.welcome.helpers({
 			let standard = TAPi18n.__("backdoor.standard");
 			let blocked = TAPi18n.__("backdoor.blocked");
 			let firstLogin = TAPi18n.__("backdoor.firstLogin");
-			loginButtons += '<a id="BackdoorLogin" href=""><div class="' + getLoginClass() + '"></div></a>';
-			loginButtons += '<div class="btn-group backdoorLogin"><label id="backdoor-label">' + title + '</label><br><select class="btn btn-secondary btn-raised" id="TestingBackdoorUsername" aria-labelledby="backdoor-label">' +
+			if (Meteor.settings.public.login.legacyMode.enabled) {
+				loginButtons += '<a id="BackdoorLogin" href=""><div class="' + getLoginClass() + '"></div></a>';
+			} else {
+				loginButtons += '<button id="BackdoorLogin" class="btn btn-large btn-raised btn-block"><span class="flex-content"><i class="fa fa-key"></i>&nbsp;' + TAPi18n.__("landingPage.login.backdoor") + '</span></button>';
+			}
+			loginButtons += '<div class="btn-group backdoorLogin">';
+			if (Meteor.settings.public.login.legacyMode.enabled) {
+				loginButtons += '<label id="backdoor-label">' + title + '</label><br>';
+			}
+			loginButtons += '<select class="btn btn-secondary btn-raised" id="TestingBackdoorUsername" aria-labelledby="backdoor-label">' +
 				'<option id="superAdminLogin" value="admin">' + superAdmin + '</option>' +
 				'<option id="adminLogin" value="editor">' + admin + '</option>' +
 				'<option id="proLogin" value="pro">' + pro + '</option>' +
@@ -172,6 +191,7 @@ Template.welcome.onCreated(function () {
 	if (Route.isFirstTimeVisit()) {
 		Router.go('demo');
 	}
+	Session.set('wordcloudMode', AdminSettings.findOne({name: "wordcloudPomodoroSettings"}).enabled);
 });
 
 Template.welcome.onRendered(function () {
@@ -186,6 +206,19 @@ Template.welcome.onRendered(function () {
 	new ResizeSensor($('#welcome-login'), function () {
 		PomodoroTimer.pomoPosition();
 	});
+});
+
+/*
+ * ############################################################################
+ * welcomeWordcloudButton
+ * ############################################################################
+ */
+
+Template.welcomeWordcloudButton.events({
+	'click .toggle-wordcloud': function () {
+		Session.set('wordcloudMode', !Session.get('wordcloudMode'));
+		PomodoroTimer.showPomodoroNormal();
+	}
 });
 
 /*
