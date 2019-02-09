@@ -67,11 +67,6 @@ Template.pomodoroTimerModal.onRendered(function () {
 			}
 		}
 	}
-	$('#pomodoroTimerModal').on('hidden.bs.modal', function () {
-		if (Route.isBox() || Route.isMemo() && !PomodoroTimer.isPomodoroRunning()) {
-			PomodoroTimer.start();
-		}
-	});
 });
 
 Template.pomodoroTimerModal.helpers({
@@ -89,6 +84,12 @@ Template.pomodoroTimerModal.events({
 			CardVisuals.toggleFullscreen();
 		}
 		PomodoroTimer.start();
+	},
+	'click .closePomodoro': function () {
+		if (Route.requiresUserInputForFullscreen) {
+			CardVisuals.toggleFullscreen();
+		}
+		PomodoroTimer.setPresentationPomodoro(true);
 	},
 	'click #cancelPomodoroBtn': function () {
 		if (Route.requiresUserInputForFullscreen) {

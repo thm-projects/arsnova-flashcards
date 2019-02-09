@@ -12,3 +12,27 @@ Template.flashcardHeaderPresentationLeft.helpers({
 		return PomodoroTimer.isPresentationPomodoroActive();
 	}
 });
+
+/*
+ * ############################################################################
+ * flashcardHeaderLeitnerLeft
+ * ############################################################################
+ */
+
+Template.flashcardHeaderLeitnerLeft.helpers({
+	pomodoroActive: function () {
+		return PomodoroTimer.isPresentationPomodoroActive();
+	}
+});
+
+/*
+ * ############################################################################
+ * flashcardHeaderWozniakLeft
+ * ############################################################################
+ */
+
+Template.flashcardHeaderWozniakLeft.helpers({
+	pomodoroActive: function () {
+		return PomodoroTimer.isPresentationPomodoroActive();
+	}
+});

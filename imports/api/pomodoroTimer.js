@@ -495,9 +495,11 @@ export let PomodoroTimer = class PomodoroTimer {
 								PomodoroTimer.showPomodoroNormal();
 								if ((Route.isBox() || Route.isMemo())) {
 									Session.set('pomodoroBreakActive', false);
-									Router.go('cardsetdetailsid', {
-										_id: Router.current().params._id
-									});
+									if (Bonus.isInBonus(Router.current().params._id, Meteor.userId())) {
+										Router.go('cardsetdetailsid', {
+											_id: Router.current().params._id
+										});
+									}
 								}
 							});
 						}
@@ -573,9 +575,11 @@ export let PomodoroTimer = class PomodoroTimer {
 								PomodoroTimer.showPomodoroNormal();
 								if ((Route.isBox() || Route.isMemo())) {
 									Session.set('pomodoroBreakActive', false);
-									Router.go('cardsetdetailsid', {
-										_id: Router.current().params._id
-									});
+									if (Bonus.isInBonus(Router.current().params._id, Meteor.userId())) {
+										Router.go('cardsetdetailsid', {
+											_id: Router.current().params._id
+										});
+									}
 								}
 							});
 						}
