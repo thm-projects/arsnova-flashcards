@@ -17,7 +17,7 @@
       "cas": true,
       "guest": true,
       "pro": true,
-      "backdoor": false
+      "backdoor": true
     },
     "leitner": {
       "dayIntervalHour": 1
