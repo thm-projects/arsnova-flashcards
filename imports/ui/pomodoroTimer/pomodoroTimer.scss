@@ -106,6 +106,9 @@
   .pomodoroTimer {
     margin: auto;
   }
+  @media (max-width: 823px) and (max-height: 414px) and (orientation: landscape) {
+    display: none !important;
+  }
 }
 
 .pomodoroInstructions {
