@@ -131,7 +131,7 @@
         "work": " Ansehen | Präsentieren: <span class=\"pomodoroHighlight\">__minutes__</span>",
         "break": " Pause: <span class=\"pomodoroHighlight\">__minutes__</span>",
         "button": {
-          "start": "\uD83C\uDF45Timer starten",
+          "start": "Timer starten",
           "cancel": "Abbrechen"
         }
       }
