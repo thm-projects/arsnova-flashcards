@@ -123,13 +123,13 @@ Template.welcome.helpers({
 			}
 		} else {
 			if (Meteor.settings.public.login.cas) {
-				loginButtons += '<button id="cas" class="btn btn-large btn-raised btn-block"><span class="flex-content"><i class="fa fa-graduation-cap"></i>&nbsp;' + TAPi18n.__("landingPage.login.cas") + '</span></button>';
+				loginButtons += '<button id="cas" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.cas") + '"><span class="flex-content"><i class="fa fa-university"></i>&nbsp;' + TAPi18n.__("landingPage.login.cas") + '</span></button>';
 			}
 			if (Meteor.settings.public.login.guest) {
-				loginButtons += '<button id="guest" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal"><span class="flex-content"><i class="fa fa-user"></i>&nbsp;' + TAPi18n.__("landingPage.login.guest") + '</span></button>';
+				loginButtons += '<button id="guest" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal" title="' + TAPi18n.__("landingPage.login.tooltip.guest") + '"><span class="flex-content"><i class="fa fa-user"></i>&nbsp;' + TAPi18n.__("landingPage.login.guest") + '</span></button>';
 			}
 			if (Meteor.settings.public.login.pro) {
-				loginButtons += '<button id="pro" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal"><span class="flex-content"><i class="fa fa-credit-card"></i>&nbsp;' + TAPi18n.__("landingPage.login.pro") + '</span></button>';
+				loginButtons += '<button id="pro" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal" title="' + TAPi18n.__("landingPage.login.tooltip.pro") + '"><span class="flex-content"><i class="fa fa-credit-card"></i>&nbsp;' + TAPi18n.__("landingPage.login.pro") + '</span></button>';
 			}
 		}
 		// Backdoor for login in acceptance tests
@@ -146,7 +146,7 @@ Template.welcome.helpers({
 			if (Meteor.settings.public.login.legacyMode.enabled) {
 				loginButtons += '<a id="BackdoorLogin" href=""><div class="' + getLoginClass() + '"></div></a>';
 			} else {
-				loginButtons += '<button id="BackdoorLogin" class="btn btn-large btn-raised btn-block"><span class="flex-content"><i class="fa fa-key"></i>&nbsp;' + TAPi18n.__("landingPage.login.backdoor") + '</span></button>';
+				loginButtons += '<button id="BackdoorLogin" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.backdoor") + '"><span class="flex-content"><i class="fa fa-key"></i>&nbsp;' + TAPi18n.__("landingPage.login.backdoor") + '</span></button>';
 			}
 			loginButtons += '<div class="btn-group backdoorLogin">';
 			if (Meteor.settings.public.login.legacyMode.enabled) {

@@ -12,6 +12,7 @@ import {Bonus} from "../../api/bonus";
 import {Route} from "../../api/route";
 import {MainNavigation} from "../../api/mainNavigation";
 import {CardsetNavigation} from "../../api/cardsetNavigation";
+import {NavigatorCheck} from "../../api/navigatorCheck";
 Session.set('animationPlaying', false);
 
 /*
@@ -37,10 +38,10 @@ Template.learnAlgorithms.onRendered(function () {
 	if (Bonus.isInBonus(Router.current().params._id)) {
 		PomodoroTimer.start();
 	}
-	if (localStorage.getItem(MainNavigation.getFirstTimeLeitnerString()) !== "true" && Route.isBox()) {
+	if (localStorage.getItem(MainNavigation.getFirstTimeLeitnerString()) !== "true" && Route.isBox() && !NavigatorCheck.isSmartphone()) {
 		$('#helpModal').modal('show');
 	}
-	if (localStorage.getItem(MainNavigation.getFirstTimeWozniakString()) !== "true" && Route.isMemo()) {
+	if (localStorage.getItem(MainNavigation.getFirstTimeWozniakString()) !== "true" && Route.isMemo() && !NavigatorCheck.isSmartphone()) {
 		$('#helpModal').modal('show');
 	}
 	if (Route.isBox()) {

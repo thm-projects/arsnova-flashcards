@@ -9,6 +9,7 @@ import {Cards} from "../../api/cards";
 import {PomodoroTimer} from "../../api/pomodoroTimer";
 import {Route} from "../../api/route";
 import {MainNavigation} from "../../api/mainNavigation";
+import {NavigatorCheck} from "../../api/navigatorCheck";
 
 
 Session.set('animationPlaying', false);
@@ -28,7 +29,7 @@ Template.presentationView.onCreated(function () {
 
 Template.presentationView.onRendered(function () {
 	CardNavigation.toggleVisibility(true);
-	if (localStorage.getItem(MainNavigation.getFirstTimePresentationString()) !== "true" && Route.isPresentation()) {
+	if (localStorage.getItem(MainNavigation.getFirstTimePresentationString()) !== "true" && Route.isPresentation() && !NavigatorCheck.isSmartphone()) {
 		$('#helpModal').modal('show');
 	}
 });
