@@ -35,23 +35,23 @@
   },
   "landingPage": {
     "login": {
-      "cas": "Uni-Login",
-      "guest": "Gast-Login",
-      "pro": "Pro-Login",
+      "cas": "Login mit Uni-Account",
+      "guest": "Login als Gast",
+      "pro": "Premium-Login",
       "backdoor": "Backdoor-Login",
       "tooltip": {
-        "cas": "Uni-Login",
-        "guest": "Gast-Login",
-        "pro": "Pro-Login",
+        "cas": "Du wirst zum CAS-Server der THM weitergeleitet...",
+        "guest": "Als Gast kannst du »freie« Kartensätze anschauen.",
+        "pro": "Wenn du keinen Uni-Account hast, kannst du dich hier für ein Abo registrieren.",
         "backdoor": "Backdoor-Login"
       }
     },
     "buttons": {
-      "wordcloud": "Karteien",
+      "wordcloud": "»Best-of«-Karteien",
       "pomodoro": "Pomodoro-Timer",
       "tooltip": {
-        "wordcloud": "Wortwolke aktivieren / deaktivieren",
-        "pomodoro": "Pomodoro-Timer aktivieren (Vollansicht)"
+        "wordcloud": "Schau dir die »Best-of«-Auswahl der \uD83C\uDF45cards-Redaktion an. Ein Klick auf eine Kartei öffnet deren vollständige Beschreibung.",
+        "pomodoro": ""
       }
     }
   },
@@ -602,14 +602,14 @@
       "desc": "Wähle deine Mitgliedsart:",
       "actual": "Derzeit ausgewählt",
       "free": "Organize | Learn | Memorize",
-      "edu": "THM-Karteien frei erhältlich",
+      "edu": "Uni-Karteien frei erhältlich",
       "back": "Kostenfreie Mitgliedschaft",
       "pro": "Erstelle und erhalte Pro-Karteien",
       "month": "Monat (Testbetrieb)",
       "subscribe": "Pro-Abonnement bestellen (Testbetrieb)",
-      "lecturer": "Dozentenstatus anfragen für das Anlegen von THM-Karteien und das Prüfen (mit Umsatzbeteiligung) von Pro-Karteien",
+      "lecturer": "Dozentenstatus anfragen für das Anlegen von Uni-Karteien und das Prüfen (mit Umsatzbeteiligung) von Pro-Karteien",
       "send": "Anfrage abschicken",
-      "lecturerActivatet": "Du bist als THM-Dozent/in und Prüfer/in für Pro-Karteien freigeschaltet.",
+      "lecturerActivatet": "Du bist als Uni-Dozent/in und Prüfer/in für Pro-Karteien freigeschaltet.",
       "name": "Name",
       "prename": "Vorname"
     },
@@ -672,7 +672,7 @@
     "roles": "Berechtigungen"
   },
   "panel-heading-experience": {
-    "experience": "Belohnungspunkte: 10 Punkte für das vollständige Lernen einer THM-Kartei nach Leitner",
+    "experience": "Belohnungspunkte: 10 Punkte für das vollständige Lernen einer Uni-Kartei nach Leitner",
     "interval": "Einstellungen der Intervalle für den Lernzeitraum (XP)",
     "preview": "Vorschau"
   },
@@ -1539,7 +1539,7 @@
     "admin": "Admin",
     "superAdmin": "Hauptverwalter",
     "pro": "Pro",
-    "university": "THM",
+    "university": "Uni",
     "free": "Frei",
     "private": "Privat",
     "shuffled": "gemischte",
@@ -1809,8 +1809,8 @@
       "long": "Frei für alle"
     },
     "edu": {
-      "short": "THM",
-      "long": "Mitglieder der THM"
+      "short": "Uni",
+      "long": "Uni-Mitglieder"
     },
     "pro": {
       "short": "Pro",

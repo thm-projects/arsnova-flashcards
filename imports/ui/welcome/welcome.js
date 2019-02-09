@@ -123,7 +123,7 @@ Template.welcome.helpers({
 			}
 		} else {
 			if (Meteor.settings.public.login.cas) {
-				loginButtons += '<button id="cas" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.cas") + '"><span class="flex-content"><i class="fa fa-graduation-cap"></i>&nbsp;' + TAPi18n.__("landingPage.login.cas") + '</span></button>';
+				loginButtons += '<button id="cas" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.cas") + '"><span class="flex-content"><i class="fa fa-university"></i>&nbsp;' + TAPi18n.__("landingPage.login.cas") + '</span></button>';
 			}
 			if (Meteor.settings.public.login.guest) {
 				loginButtons += '<button id="guest" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal" title="' + TAPi18n.__("landingPage.login.tooltip.guest") + '"><span class="flex-content"><i class="fa fa-user"></i>&nbsp;' + TAPi18n.__("landingPage.login.guest") + '</span></button>';
