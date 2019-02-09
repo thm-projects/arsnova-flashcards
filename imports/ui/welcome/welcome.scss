@@ -207,3 +207,20 @@
     bottom: 15px;
   }
 }
+
+@media (max-width: 823px) and (max-height: 411px) and (orientation: landscape) {
+  #welcome {
+    .show-more {
+      display: none !important;
+    }
+  }
+  #welcome-login {
+    padding-bottom: 5px !important;
+    .serverInventory {
+      display: none !important;
+    }
+  }
+  .toggle-wordcloud {
+    display: none !important;
+  }
+}
