@@ -47,7 +47,7 @@
       }
     },
     "buttons": {
-      "wordcloud": "»Best-of«-Karteien",
+      "wordcloud": "Best of \uD83C\uDF45cards",
       "pomodoro": "Pomodoro-Timer",
       "tooltip": {
         "wordcloud": "Schau dir die »Best-of«-Auswahl der \uD83C\uDF45cards-Redaktion an. Ein Klick auf eine Kartei öffnet deren vollständige Beschreibung.",
@@ -1879,17 +1879,17 @@
     "rate": "Bewerte deine Antwort",
     "answer": {
       "0": "Keine Ahnung",
-      "0Mobile": "0",
+      "0Mobile": "👎",
       "1": "Falsch",
-      "1Mobile": "1",
+      "1Mobile": "",
       "2": "Falsch, aber…",
-      "2Mobile": "2",
+      "2Mobile": "",
       "3": "Richtig, aber…",
-      "3Mobile": "3",
+      "3Mobile": "",
       "4": "Richtig",
-      "4Mobile": "4",
+      "4Mobile": "",
       "5": "Perfekt",
-      "5Mobile": "5"
+      "5Mobile": "👍"
     },
     "endscreen": {
       "text": "Lernpensum abgeschlossen"
