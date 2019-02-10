@@ -47,7 +47,7 @@
       }
     },
     "buttons": {
-      "wordcloud": "Best of \uD83C\uDF45cards",
+      "wordcloud": "Best in \uD83C\uDF45cards",
       "pomodoro": "Pomodoro-Timer",
       "tooltip": {
         "wordcloud": "Schau dir die »Best-of«-Auswahl der \uD83C\uDF45cards-Redaktion an. Ein Klick auf eine Kartei öffnet deren vollständige Beschreibung.",
