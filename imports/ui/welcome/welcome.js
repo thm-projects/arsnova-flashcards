@@ -191,7 +191,11 @@ Template.welcome.onCreated(function () {
 	if (Route.isFirstTimeVisit()) {
 		Router.go('demo');
 	}
-	Session.set('wordcloudMode', AdminSettings.findOne({name: "wordcloudPomodoroSettings"}).enabled);
+	if (NavigatorCheck.gotFeatureSupport(1)) {
+		Session.set('isLandingPagePomodoroActive', AdminSettings.findOne({name: "wordcloudPomodoroSettings"}).enabled);
+	} else {
+		Session.set('isLandingPagePomodoroActive', true);
+	}
 });
 
 Template.welcome.onRendered(function () {
@@ -216,7 +220,7 @@ Template.welcome.onRendered(function () {
 
 Template.welcomeWordcloudButton.events({
 	'click .toggle-wordcloud': function () {
-		Session.set('wordcloudMode', !Session.get('wordcloudMode'));
+		Session.set('isLandingPagePomodoroActive', !Session.get('isLandingPagePomodoroActive'));
 		PomodoroTimer.showPomodoroNormal();
 	}
 });

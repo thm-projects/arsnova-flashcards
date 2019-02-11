@@ -54,6 +54,10 @@ Template.registerHelper('isInBonusAndNotOwner', function () {
 	return Bonus.isInBonus(Router.current().params._id) && (!UserPermissions.isOwner(Cardsets.findOne({_id: Router.current().params._id}).owner) && !UserPermissions.isAdmin());
 });
 
+Template.registerHelper('gotFeatureSupport', function (feature) {
+	return NavigatorCheck.gotFeatureSupport(feature);
+});
+
 Template.registerHelper('extendContext', function (key, value) {
 	let result = _.clone(this);
 	result[key] = value;

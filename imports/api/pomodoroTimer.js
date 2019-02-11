@@ -842,7 +842,7 @@ export let PomodoroTimer = class PomodoroTimer {
 	 */
 	static pomoPosition () {
 		if (!PomodoroTimer.isClockInBigmode() && !Meteor.userId()) {
-			if ((Session.get('wordcloudMode') || !cloudShown)) {
+			if ((Session.get('isLandingPagePomodoroActive') || !cloudShown)) {
 				$('.pomodoroTimer').detach().appendTo('#pomodoroTimerWordcloudContainer');
 				$('#pomodoroTimerWordcloudContainer').css('display', 'block');
 				$('#wordcloud-container').css('display', 'none');
