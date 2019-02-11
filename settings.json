@@ -16,7 +16,7 @@
       },
       "cas": true,
       "guest": true,
-      "pro": true,
+      "pro": false,
       "backdoor": false
     },
     "leitner": {
