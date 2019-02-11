@@ -7,7 +7,7 @@ import {Session} from "meteor/session";
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import {CardType} from "../../api/cardTypes";
 import DOMPurify from 'dompurify';
-import {DOMPurifyConfig} from "../../api/dompurify.js";
+import {DOMPurifyConfig} from "../../config/dompurify.js";
 import {getAuthorName} from "../../api/userdata";
 import {Route} from "../../api/route";
 import {UserPermissions} from "../../api/permissions";
@@ -52,6 +52,10 @@ Template.registerHelper('isInBonus', function () {
 
 Template.registerHelper('isInBonusAndNotOwner', function () {
 	return Bonus.isInBonus(Router.current().params._id) && (!UserPermissions.isOwner(Cardsets.findOne({_id: Router.current().params._id}).owner) && !UserPermissions.isAdmin());
+});
+
+Template.registerHelper('gotFeatureSupport', function (feature) {
+	return NavigatorCheck.gotFeatureSupport(feature);
 });
 
 Template.registerHelper('extendContext', function (key, value) {

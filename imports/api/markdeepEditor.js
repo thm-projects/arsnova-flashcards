@@ -1,11 +1,10 @@
 import {Session} from "meteor/session";
 import {CardVisuals} from "./cardVisuals";
-
-let mobilePreviewPortraitAsDefault = true;
+import * as config from "../config/markdeepEditor.js";
 
 export let MarkdeepEditor = class MarkdeepEditor {
 	static help () {
-		window.open("https://casual-effects.com/markdeep/features.md.html#basicformatting", "_blank");
+		window.open(config.markdeepHelpLink, "_blank");
 	}
 
 	static center () {
@@ -67,6 +66,6 @@ export let MarkdeepEditor = class MarkdeepEditor {
 	}
 
 	static getDefaultMobilePreviewOrientation () {
-		return mobilePreviewPortraitAsDefault;
+		return config.mobilePreviewPortraitAsDefault;
 	}
 };

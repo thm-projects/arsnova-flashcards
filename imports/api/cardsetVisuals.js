@@ -1,6 +1,8 @@
+import {NavigatorCheck} from "./navigatorCheck";
+
 export let CardsetVisuals = class CardsetVisuals {
 	static resizeCardsetInfo () {
-		if ($(window).width() < 768) {
+		if (NavigatorCheck.isSmartphone()) {
 			$('.markdeepCardsetContent').css('max-height', 350);
 		} else {
 			$('.markdeepCardsetContent').css('max-height', 'unset');

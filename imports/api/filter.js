@@ -4,10 +4,9 @@ import {Session} from "meteor/session";
 import {Route} from "./route";
 import {WordcloudCanvas} from "./wordcloudCanvas";
 import {Leitner, Wozniak} from "./learned";
+import * as config from "../config/filter.js";
 
-let itemStartingValue = 5;
-let itemIncrementValue = 20;
-Session.setDefault('maxItemsCounter', itemStartingValue);
+Session.setDefault('maxItemsCounter', config.itemStartingValue);
 Session.setDefault('poolFilter', undefined);
 Session.setDefault('myCardsetFilter', undefined);
 Session.setDefault('courseIterationFilter', undefined);
@@ -275,14 +274,14 @@ export let Filter = class Filter {
 	}
 
 	static resetMaxItemCounter () {
-		Session.set('maxItemsCounter', itemStartingValue);
+		Session.set('maxItemsCounter', config.itemStartingValue);
 	}
 
 	static incrementMaxItemCounter () {
 		let newCounter = Session.get('maxItemsCounter');
-		newCounter += itemIncrementValue;
-		if ((Session.get('totalResults') - newCounter) <= (itemIncrementValue / 2)) {
-			newCounter += itemIncrementValue;
+		newCounter += config.itemIncrementValue;
+		if ((Session.get('totalResults') - newCounter) <= (config.itemIncrementValue / 2)) {
+			newCounter += config.itemIncrementValue;
 		}
 		Session.set('maxItemsCounter', newCounter);
 	}
