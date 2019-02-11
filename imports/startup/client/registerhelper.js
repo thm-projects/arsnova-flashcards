@@ -7,7 +7,7 @@ import {Session} from "meteor/session";
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import {CardType} from "../../api/cardTypes";
 import DOMPurify from 'dompurify';
-import {DOMPurifyConfig} from "../../api/dompurify.js";
+import {DOMPurifyConfig} from "../../config/dompurify.js";
 import {getAuthorName} from "../../api/userdata";
 import {Route} from "../../api/route";
 import {UserPermissions} from "../../api/permissions";

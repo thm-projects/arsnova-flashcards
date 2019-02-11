@@ -1,23 +1,7 @@
 import {Session} from "meteor/session";
 import {Cardsets} from "./cardsets";
 import {PomodoroTimer} from "./pomodoroTimer";
-
-let minWorkloadCap = 1;
-let defaultMaxWorkload = 30;
-
-let minDaysBeforeReset = 3;
-let maxDaysBeforeReset = 31;
-let defaultDaysBeforeReset = 7;
-let defaultMinBonusPoints = 1;
-let defaultMaxBonusPoints = 10;
-
-let dateFormat = "YYYY-MM-DD";
-let defaultRegistrationPeriod = [31, 'days'];
-let defaultDateRegistrationPeriod = moment().add(defaultRegistrationPeriod[0], defaultRegistrationPeriod[1]).format(dateFormat);
-let defaultIntervals = [1, 3, 7, 28, 84];
-let defaultDateStart = moment().format(dateFormat);
-let defaultEndPeriod = [3, 'months'];
-let defaultDateEnd = moment().add(defaultEndPeriod[0], defaultEndPeriod[1]).format(dateFormat);
+import * as config from "../config/bonusForm.js";
 
 export let BonusForm = class BonusForm {
 	static cleanModal () {
@@ -26,19 +10,19 @@ export let BonusForm = class BonusForm {
 		let dateBonusEnd = $('#bonusFormModal #dateBonusEnd');
 		let dateRegistrationPeriodExpires = $('#bonusFormModal #dateRegistrationPeriod');
 		if (Session.get('isNewBonus')) {
-			start = defaultDateStart;
-			dateBonusStart.attr("min", defaultDateStart);
-			nextDay = moment().add(1, 'day').format(dateFormat);
-			end = defaultDateEnd;
-			registrationPeriod = defaultDateRegistrationPeriod;
+			start = config.defaultDateStart;
+			dateBonusStart.attr("min", config.defaultDateStart);
+			nextDay = moment().add(1, 'day').format(config.dateFormat);
+			end = config.defaultDateEnd;
+			registrationPeriod = config.defaultDateRegistrationPeriod;
 			maxWorkload = null;
 			daysBeforeReset = null;
-			intervals = defaultIntervals;
+			intervals = config.defaultIntervals;
 		} else {
-			start = moment(Session.get('activeCardset').learningStart).format(dateFormat);
-			nextDay = moment(Session.get('activeCardset').learningStart).add(1, 'day').format(dateFormat);
-			end = moment(Session.get('activeCardset').learningEnd).format(dateFormat);
-			registrationPeriod = moment(Session.get('activeCardset').registrationPeriod).format(dateFormat);
+			start = moment(Session.get('activeCardset').learningStart).format(config.dateFormat);
+			nextDay = moment(Session.get('activeCardset').learningStart).add(1, 'day').format(config.dateFormat);
+			end = moment(Session.get('activeCardset').learningEnd).format(config.dateFormat);
+			registrationPeriod = moment(Session.get('activeCardset').registrationPeriod).format(config.dateFormat);
 			maxWorkload = Session.get('activeCardset').maxCards;
 			daysBeforeReset = Session.get('activeCardset').daysBeforeReset;
 			intervals = Session.get('activeCardset').learningInterval;
@@ -64,21 +48,21 @@ export let BonusForm = class BonusForm {
 		let dateBonusStart = $('#bonusFormModal #dateBonusStart');
 		let dateBonusEnd = $('#bonusFormModal #dateBonusEnd');
 		let dateRegistrationPeriodExpires = $('#bonusFormModal #dateRegistrationPeriod');
-		dateRegistrationPeriodExpires.attr("min", moment(dateBonusStart.val()).add(1, 'day').format(dateFormat));
+		dateRegistrationPeriodExpires.attr("min", moment(dateBonusStart.val()).add(1, 'day').format(config.dateFormat));
 		dateRegistrationPeriodExpires.attr("max", dateBonusEnd.val());
 		if (this.getDateStart().getTime() >= this.getRegistrationPeriod().getTime()) {
-			dateRegistrationPeriodExpires.val(moment(dateBonusStart.val()).add(1, 'day').format(dateFormat));
+			dateRegistrationPeriodExpires.val(moment(dateBonusStart.val()).add(1, 'day').format(config.dateFormat));
 		}
 		if (this.getDateEnd().getTime() < this.getRegistrationPeriod().getTime()) {
-			dateRegistrationPeriodExpires.val(moment(dateBonusEnd.val()).format(dateFormat));
+			dateRegistrationPeriodExpires.val(moment(dateBonusEnd.val()).format(config.dateFormat));
 		}
 	}
 
 	static adjustDaysBeforeReset () {
-		if (parseInt($('#bonusFormModal #daysBeforeReset').val()) <= (minDaysBeforeReset - 1)) {
-			$('#bonusFormModal #daysBeforeReset').val(minDaysBeforeReset);
-		} else if (parseInt($('#bonusFormModal #daysBeforeReset').val()) > maxDaysBeforeReset) {
-			$('#bonusFormModal #daysBeforeReset').val(maxDaysBeforeReset);
+		if (parseInt($('#bonusFormModal #daysBeforeReset').val()) <= (config.minDaysBeforeReset - 1)) {
+			$('#bonusFormModal #daysBeforeReset').val(config.minDaysBeforeReset);
+		} else if (parseInt($('#bonusFormModal #daysBeforeReset').val()) > config.maxDaysBeforeReset) {
+			$('#bonusFormModal #daysBeforeReset').val(config.maxDaysBeforeReset);
 		}
 	}
 
@@ -94,16 +78,16 @@ export let BonusForm = class BonusForm {
 	}
 
 	static adjustMaxBonusPoints () {
-		if (parseInt($('#bonusFormModal #maxBonusPoints').val()) <= (defaultMinBonusPoints - 1)) {
-			$('#bonusFormModal #maxBonusPoints').val(defaultMinBonusPoints);
-		} else if (parseInt($('#bonusFormModal #maxBonusPoints').val()) > defaultMaxBonusPoints) {
-			$('#bonusFormModal #maxBonusPoints').val(defaultMaxBonusPoints);
+		if (parseInt($('#bonusFormModal #maxBonusPoints').val()) <= (config.defaultMinBonusPoints - 1)) {
+			$('#bonusFormModal #maxBonusPoints').val(config.defaultMinBonusPoints);
+		} else if (parseInt($('#bonusFormModal #maxBonusPoints').val()) > config.defaultMaxBonusPoints) {
+			$('#bonusFormModal #maxBonusPoints').val(config.defaultMaxBonusPoints);
 		}
 	}
 
 	static adjustMaxWorkload () {
-		if (parseInt($('#bonusFormModal #maxWorkload').val()) <= (minWorkloadCap - 1)) {
-			$('#bonusFormModal #maxWorkload').val(minWorkloadCap);
+		if (parseInt($('#bonusFormModal #maxWorkload').val()) <= (config.minWorkloadCap - 1)) {
+			$('#bonusFormModal #maxWorkload').val(config.minWorkloadCap);
 		} else if (parseInt($('#bonusFormModal #maxWorkload').val()) > Session.get('activeCardset').quantity) {
 			$('#bonusFormModal #maxWorkload').val(Session.get('activeCardset').quantity);
 		}
@@ -112,7 +96,7 @@ export let BonusForm = class BonusForm {
 	static getMaxWorkload () {
 		let maxWorkload = Number($('#bonusFormModal #maxWorkload').val());
 		if (!maxWorkload) {
-			maxWorkload = Number(defaultMaxWorkload);
+			maxWorkload = Number(config.defaultMaxWorkload);
 		}
 		return maxWorkload;
 	}
@@ -120,7 +104,7 @@ export let BonusForm = class BonusForm {
 	static getDaysBeforeReset () {
 		let daysBeforeReset = Number($('#bonusFormModal #daysBeforeReset').val());
 		if (!daysBeforeReset) {
-			daysBeforeReset = Number(defaultDaysBeforeReset);
+			daysBeforeReset = Number(config.defaultDaysBeforeReset);
 		}
 		return daysBeforeReset;
 	}
@@ -128,7 +112,7 @@ export let BonusForm = class BonusForm {
 	static getDateStart () {
 		let dateStart = new Date($('#bonusFormModal #dateBonusStart').val());
 		if (!dateStart) {
-			dateStart = defaultDateStart;
+			dateStart = config.defaultDateStart;
 		}
 		return dateStart;
 	}
@@ -136,7 +120,7 @@ export let BonusForm = class BonusForm {
 	static getDateEnd () {
 		let dateEnd = new Date($('#bonusFormModal #dateBonusEnd').val());
 		if (!dateEnd) {
-			dateEnd = defaultDateEnd;
+			dateEnd = config.defaultDateEnd;
 		}
 		return dateEnd;
 	}
@@ -151,7 +135,7 @@ export let BonusForm = class BonusForm {
 		}
 		for (let i = 0; i < 5; ++i) {
 			if (!intervals[i]) {
-				intervals[i] = Number(defaultIntervals[i]);
+				intervals[i] = Number(config.defaultIntervals[i]);
 			}
 		}
 		return intervals;
@@ -160,14 +144,14 @@ export let BonusForm = class BonusForm {
 	static getRegistrationPeriod () {
 		let registrationPeriod = new Date($('#bonusFormModal #dateRegistrationPeriod').val());
 		if (!registrationPeriod) {
-			registrationPeriod = defaultDateRegistrationPeriod;
+			registrationPeriod = config.defaultDateRegistrationPeriod;
 		}
 		return registrationPeriod;
 	}
 	static getMaxBonusPoints () {
 		let maxBonusPoints = Number($('#bonusFormModal #maxBonusPoints').val());
 		if (!maxBonusPoints) {
-			maxBonusPoints = Number(defaultMaxWorkload);
+			maxBonusPoints = Number(config.defaultMaxWorkload);
 		}
 		return maxBonusPoints;
 	}
@@ -199,11 +183,11 @@ export let BonusForm = class BonusForm {
 	}
 
 	static getDefaultMaxBonusPoints () {
-		return defaultMaxBonusPoints;
+		return config.defaultMaxBonusPoints;
 	}
 
 	static getDefaultMinBonusPoints () {
-		return defaultMinBonusPoints;
+		return config.defaultMinBonusPoints;
 	}
 
 	static getCurrentMaxBonusPoints (cardset) {

@@ -4,80 +4,7 @@ import {Cardsets} from "./cardsets.js";
 import {Route} from "./route.js";
 import swal from "sweetalert2";
 import {WordcloudCanvas} from "./wordcloudCanvas";
-let defaultSettings = {
-	goal: 2,
-	work: {
-		length: 25,
-		max: 45,
-		min: 15,
-		step: 5
-	},
-	break: {
-		length: 5,
-		max: 15,
-		min: 5,
-		step: 5
-	},
-	longBreak: {
-		goal: 4,
-		length: 30
-	},
-	sounds: {
-		bell: true,
-		success: true,
-		failure: true
-	}
-};
-
-let defaultPresentationSettings = {
-	goal: 2,
-	work: {
-		length: 40,
-		max: 45,
-		min: 15,
-		step: 5
-	},
-	break: {
-		length: 5,
-		max: 15,
-		min: 5,
-		step: 5
-	},
-	longBreak: {
-		goal: 4,
-		length: 5
-	},
-	sounds: {
-		bell: true,
-		success: false,
-		failure: false
-	}
-};
-
-let defaultDemoSettings = {
-	goal: 1,
-	work: {
-		length: 20,
-		max: 45,
-		min: 10,
-		step: 5
-	},
-	break: {
-		length: 5,
-		max: 15,
-		min: 5,
-		step: 5
-	},
-	longBreak: {
-		goal: 4,
-		length: 10
-	},
-	sounds: {
-		bell: true,
-		success: true,
-		failure: true
-	}
-};
+import * as config from "../config/pomodoroTimer.js";
 
 Session.set('pomodoroBreakActive', false);
 /*This is a ton of script, mostly popups, so strap in for a wild ride!*/
@@ -119,10 +46,6 @@ Session.setDefault('presentationPomodoroActive', false);
 let isBellSoundEnabled;
 let isSuccessSoundEnabled;
 let isFailSoundEnabled;
-
-let bellSound = new Audio('/audio/Schulgong.mp3');
-let failSound = new Audio('/audio/fail.mp3');
-let successSound = new Audio('/audio/success.mp3');
 
 let pomodoroInterval;
 
@@ -243,7 +166,7 @@ export let PomodoroTimer = class PomodoroTimer {
 
 			/*the bell to signify the end of a period*/
 			if (isBellSoundEnabled) {
-				bellSound.play();
+				config.bellSound.play();
 			}
 
 			/*a work period just ended, so increase the total pomodoros done by one.*/
@@ -309,7 +232,7 @@ export let PomodoroTimer = class PomodoroTimer {
 			breakRunning = false;
 			Session.set('pomodoroBreakActive', breakRunning);
 			if (isBellSoundEnabled) {
-				bellSound.play();
+				config.bellSound.play();
 			}
 
 			$(".progressArc").attr("d", this.describeArc(0, 0, 0, 0, 0));
@@ -317,22 +240,22 @@ export let PomodoroTimer = class PomodoroTimer {
 
 			/*in the pomodoro productivity set up, every 4 pomodoros you get a 15 minute break. I decided to make it proportional to the user chosen break length. If you just did 3 pomodoros, your next break will be longer, and if you have just completed your 4th break, this sets the break length back to 5mins*/
 			if (Route.isDemo()) {
-				if ((totalPoms + 1) % defaultDemoSettings.longBreak.goal === 0) {
-					breakLength = defaultDemoSettings.longBreak.length;
-				} else if (totalPoms % defaultDemoSettings.longBreak.goal === 0) {
-					breakLength = defaultDemoSettings.break.length;
+				if ((totalPoms + 1) % config.defaultDemoSettings.longBreak.goal === 0) {
+					breakLength = config.defaultDemoSettings.longBreak.length;
+				} else if (totalPoms % config.defaultDemoSettings.longBreak.goal === 0) {
+					breakLength = config.defaultDemoSettings.break.length;
 				}
 			} else if (Route.isPresentation()) {
-				if ((totalPoms + 1) % defaultPresentationSettings.longBreak.goal === 0) {
-					breakLength = defaultPresentationSettings.longBreak.length;
-				} else if (totalPoms % defaultPresentationSettings.longBreak.goal === 0) {
-					breakLength = defaultPresentationSettings.break.length;
+				if ((totalPoms + 1) % config.defaultPresentationSettings.longBreak.goal === 0) {
+					breakLength = config.defaultPresentationSettings.longBreak.length;
+				} else if (totalPoms % config.defaultPresentationSettings.longBreak.goal === 0) {
+					breakLength = config.defaultPresentationSettings.break.length;
 				}
 			} else {
-				if ((totalPoms + 1) % defaultSettings.longBreak.goal === 0) {
-					breakLength = defaultSettings.longBreak.length;
-				} else if (totalPoms % defaultSettings.longBreak.goal === 0) {
-					breakLength = defaultSettings.break.length;
+				if ((totalPoms + 1) % config.defaultSettings.longBreak.goal === 0) {
+					breakLength = config.defaultSettings.longBreak.length;
+				} else if (totalPoms % config.defaultSettings.longBreak.goal === 0) {
+					breakLength = config.defaultSettings.break.length;
 				}
 			}
 			if (Route.isPresentation() || Route.isDemo()) {
@@ -466,7 +389,7 @@ export let PomodoroTimer = class PomodoroTimer {
 					if (!result.value) {
 						if (!Route.isPresentation() && !Route.isDemo()) {
 							if (isFailSoundEnabled) {
-								failSound.play();
+								config.failSound.play();
 							}
 
 							if (Bonus.isInBonus(Router.current().params._id)) {
@@ -546,7 +469,7 @@ export let PomodoroTimer = class PomodoroTimer {
 						this.setPresentationPomodoro(true);
 						if (!Route.isPresentation() && !Route.isDemo()) {
 							if (isSuccessSoundEnabled) {
-								successSound.play();
+								config.successSound.play();
 							}
 							if (Bonus.isInBonus(Router.current().params._id)) {
 								dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.end.confirm.title');
@@ -711,33 +634,33 @@ export let PomodoroTimer = class PomodoroTimer {
 		this.updatePomNumSlider();
 		let workSlider = $('#workSlider');
 		if (Route.isDemo()) {
-			workSlider.attr('max', defaultDemoSettings.work.max);
-			workSlider.attr('min', defaultDemoSettings.work.min);
-			workSlider.attr('step', defaultDemoSettings.work.step);
+			workSlider.attr('max', config.defaultDemoSettings.work.max);
+			workSlider.attr('min', config.defaultDemoSettings.work.min);
+			workSlider.attr('step', config.defaultDemoSettings.work.step);
 		} else if (Route.isPresentation()) {
-			workSlider.attr('max', defaultPresentationSettings.work.max);
-			workSlider.attr('min', defaultPresentationSettings.work.min);
-			workSlider.attr('step', defaultPresentationSettings.work.step);
+			workSlider.attr('max', config.defaultPresentationSettings.work.max);
+			workSlider.attr('min', config.defaultPresentationSettings.work.min);
+			workSlider.attr('step', config.defaultPresentationSettings.work.step);
 		} else {
-			workSlider.attr('max', defaultSettings.work.max);
-			workSlider.attr('min', defaultSettings.work.min);
-			workSlider.attr('step', defaultSettings.work.step);
+			workSlider.attr('max', config.defaultSettings.work.max);
+			workSlider.attr('min', config.defaultSettings.work.min);
+			workSlider.attr('step', config.defaultSettings.work.step);
 		}
 		$('#workSlider').val(pomLength);
 		this.updateWorkSlider();
 		let breakSlider = $('#breakSlider');
 		if (Route.isDemo()) {
-			breakSlider.attr('max', defaultDemoSettings.break.max);
-			breakSlider.attr('min', defaultDemoSettings.break.min);
-			breakSlider.attr('step', defaultDemoSettings.break.step);
+			breakSlider.attr('max', config.defaultDemoSettings.break.max);
+			breakSlider.attr('min', config.defaultDemoSettings.break.min);
+			breakSlider.attr('step', config.defaultDemoSettings.break.step);
 		} else if (Route.isPresentation()) {
-			breakSlider.attr('max', defaultPresentationSettings.break.max);
-			breakSlider.attr('min', defaultPresentationSettings.break.min);
-			breakSlider.attr('step', defaultPresentationSettings.break.step);
+			breakSlider.attr('max', config.defaultPresentationSettings.break.max);
+			breakSlider.attr('min', config.defaultPresentationSettings.break.min);
+			breakSlider.attr('step', config.defaultPresentationSettings.break.step);
 		} else {
-			breakSlider.attr('max', defaultSettings.break.max);
-			breakSlider.attr('min', defaultSettings.break.min);
-			breakSlider.attr('step', defaultSettings.break.step);
+			breakSlider.attr('max', config.defaultSettings.break.max);
+			breakSlider.attr('min', config.defaultSettings.break.min);
+			breakSlider.attr('step', config.defaultSettings.break.step);
 		}
 		breakSlider.val(breakLength);
 		this.updateBreakSlider();
@@ -765,35 +688,35 @@ export let PomodoroTimer = class PomodoroTimer {
 				isSuccessSoundEnabled = cardset.pomodoroTimer.soundConfig[1];
 				isFailSoundEnabled = cardset.pomodoroTimer.soundConfig[2];
 			} else {
-				goalPoms = defaultSettings.goal;
-				pomLength = defaultSettings.work.length;
-				breakLength = defaultSettings.break.length;
-				isBellSoundEnabled = defaultSettings.sounds.bell;
-				isSuccessSoundEnabled = defaultSettings.sounds.success;
-				isFailSoundEnabled = defaultSettings.sounds.failure;
+				goalPoms = config.defaultSettings.goal;
+				pomLength = config.defaultSettings.work.length;
+				breakLength = config.defaultSettings.break.length;
+				isBellSoundEnabled = config.defaultSettings.sounds.bell;
+				isSuccessSoundEnabled = config.defaultSettings.sounds.success;
+				isFailSoundEnabled = config.defaultSettings.sounds.failure;
 			}
 		} else {
 			if (Route.isDemo()) {
-				goalPoms = defaultDemoSettings.goal;
-				pomLength = defaultDemoSettings.work.length;
-				breakLength = defaultDemoSettings.break.length;
-				isBellSoundEnabled = defaultDemoSettings.sounds.bell;
-				isSuccessSoundEnabled = defaultDemoSettings.sounds.success;
-				isFailSoundEnabled = defaultDemoSettings.sounds.failure;
+				goalPoms = config.defaultDemoSettings.goal;
+				pomLength = config.defaultDemoSettings.work.length;
+				breakLength = config.defaultDemoSettings.break.length;
+				isBellSoundEnabled = config.defaultDemoSettings.sounds.bell;
+				isSuccessSoundEnabled = config.defaultDemoSettings.sounds.success;
+				isFailSoundEnabled = config.defaultDemoSettings.sounds.failure;
 			} else if (Route.isPresentation()) {
-				goalPoms = defaultPresentationSettings.goal;
-				pomLength = defaultPresentationSettings.work.length;
-				breakLength = defaultPresentationSettings.break.length;
-				isBellSoundEnabled = defaultPresentationSettings.sounds.bell;
-				isSuccessSoundEnabled = defaultPresentationSettings.sounds.success;
-				isFailSoundEnabled = defaultPresentationSettings.sounds.failure;
+				goalPoms = config.defaultPresentationSettings.goal;
+				pomLength = config.defaultPresentationSettings.work.length;
+				breakLength = config.defaultPresentationSettings.break.length;
+				isBellSoundEnabled = config.defaultPresentationSettings.sounds.bell;
+				isSuccessSoundEnabled = config.defaultPresentationSettings.sounds.success;
+				isFailSoundEnabled = config.defaultPresentationSettings.sounds.failure;
 			} else {
-				goalPoms = defaultSettings.goal;
-				pomLength = defaultSettings.work.length;
-				breakLength = defaultSettings.break.length;
-				isBellSoundEnabled = defaultSettings.sounds.bell;
-				isSuccessSoundEnabled = defaultSettings.sounds.success;
-				isFailSoundEnabled = defaultSettings.sounds.failure;
+				goalPoms = config.defaultSettings.goal;
+				pomLength = config.defaultSettings.work.length;
+				breakLength = config.defaultSettings.break.length;
+				isBellSoundEnabled = config.defaultSettings.sounds.bell;
+				isSuccessSoundEnabled = config.defaultSettings.sounds.success;
+				isFailSoundEnabled = config.defaultSettings.sounds.failure;
 			}
 		}
 	}

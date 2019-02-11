@@ -5,21 +5,10 @@ import {Leitner} from "./learned";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Route} from "./route";
+import * as config from "../config/leitnerProgressChart.js";
 
 let chart;
-let borderWidth = 1;
 let difficultyGotCards;
-
-let chartColors = {
-	difficulty0: 'rgba(238, 173, 14, 1)',
-	difficulty0Background: 'rgba(238, 173, 14, 0.2)',
-	difficulty1: 'rgba(92, 184, 92, 1)',
-	difficulty1Background: 'rgba(92, 184, 92, 0.2)',
-	difficulty2: 'rgba(91, 192, 222, 1)',
-	difficulty2Background: 'rgba(91, 192, 222, 0.2)',
-	difficulty3: 'rgba(217, 83, 79, 1)',
-	difficulty3Background: 'rgba(217, 83, 79, 0.2)'
-};
 
 export let LeitnerProgress = class LeitnerProgress {
 	static drawGraph () {
@@ -73,9 +62,9 @@ export let LeitnerProgress = class LeitnerProgress {
 		let cardDifficultyCount = this.getCardCount(0, filterCardset);
 		if (difficultyGotCards) {
 			graphData.push({
-				backgroundColor: chartColors.difficulty0Background,
-				borderColor: chartColors.difficulty0,
-				borderWidth: borderWidth,
+				backgroundColor: config.chartColors.difficulty0Background,
+				borderColor: config.chartColors.difficulty0,
+				borderWidth: config.borderWidth,
 				data: cardDifficultyCount,
 				label: TAPi18n.__('difficulty0')
 			});
@@ -84,9 +73,9 @@ export let LeitnerProgress = class LeitnerProgress {
 		cardDifficultyCount = this.getCardCount(1, filterCardset);
 		if (difficultyGotCards) {
 			graphData.push({
-				backgroundColor: chartColors.difficulty1Background,
-				borderColor: chartColors.difficulty1,
-				borderWidth: borderWidth,
+				backgroundColor: config.chartColors.difficulty1Background,
+				borderColor: config.chartColors.difficulty1,
+				borderWidth: config.borderWidth,
 				data: cardDifficultyCount,
 				label: TAPi18n.__('difficulty1')
 			});
@@ -95,9 +84,9 @@ export let LeitnerProgress = class LeitnerProgress {
 		cardDifficultyCount = this.getCardCount(2, filterCardset);
 		if (difficultyGotCards) {
 			graphData.push({
-				backgroundColor: chartColors.difficulty2Background,
-				borderColor: chartColors.difficulty2,
-				borderWidth: borderWidth,
+				backgroundColor: config.chartColors.difficulty2Background,
+				borderColor: config.chartColors.difficulty2,
+				borderWidth: config.borderWidth,
 				data: cardDifficultyCount,
 				label: TAPi18n.__('difficulty2')
 			});
@@ -106,9 +95,9 @@ export let LeitnerProgress = class LeitnerProgress {
 		cardDifficultyCount = this.getCardCount(3, filterCardset);
 		if (difficultyGotCards) {
 			graphData.push({
-				backgroundColor: chartColors.difficulty3Background,
-				borderColor: chartColors.difficulty3,
-				borderWidth: borderWidth,
+				backgroundColor: config.chartColors.difficulty3Background,
+				borderColor: config.chartColors.difficulty3,
+				borderWidth: config.borderWidth,
 				data: cardDifficultyCount,
 				label: TAPi18n.__('difficulty3')
 			});

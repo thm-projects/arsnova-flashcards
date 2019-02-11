@@ -5,14 +5,9 @@ import * as screenfull from 'screenfull';
 import {NavigatorCheck} from "./navigatorCheck";
 import {Cardsets} from "./cardsets";
 import {MarkdeepEditor} from "./markdeepEditor";
+import * as config from "../config/cardVisuals.js";
 
 let editorFullScreenActive = false;
-let defaultFontSize = 16;
-let defaultFontSizeMobile = 12;
-let defaultTextZoomValue = 100;
-let iFrameWidthRatio = 16;
-let iFrameHeightRatio = 9;
-let iFrameMaxHeight = 0.8;
 
 export let CardVisuals = class CardVisuals {
 
@@ -143,9 +138,9 @@ export let CardVisuals = class CardVisuals {
 	static setMaxIframeHeight () {
 		let flashcardBody = $('.cardContent');
 		if (flashcardBody.length) {
-			let aspectRatioHeight = (flashcardBody.width() / iFrameWidthRatio) * iFrameHeightRatio;
+			let aspectRatioHeight = (flashcardBody.width() / config.iFrameWidthRatio) * config.iFrameHeightRatio;
 			if (flashcardBody.height() < aspectRatioHeight) {
-				let newIframeWidth = ((aspectRatioHeight * iFrameMaxHeight) / iFrameHeightRatio) * iFrameWidthRatio;
+				let newIframeWidth = ((aspectRatioHeight * config.iFrameMaxHeight) / config.iFrameHeightRatio) * config.iFrameWidthRatio;
 				$('.cardContent .responsive-iframe-container').css('width', newIframeWidth);
 			} else {
 				$('.cardContent .responsive-iframe-container').css('width', 'unset');
@@ -360,22 +355,22 @@ export let CardVisuals = class CardVisuals {
 	static setTextZoom () {
 		let fontSize;
 		if (NavigatorCheck.isSmartphone() || (Route.isEditMode() && MarkdeepEditor.getMobilePreview())) {
-			fontSize = defaultFontSizeMobile;
+			fontSize = config.defaultFontSizeMobile;
 		} else {
-			fontSize = defaultFontSize;
+			fontSize = config.defaultFontSize;
 		}
 		let newFontSize = Math.round((fontSize * Session.get('currentZoomValue')) / 100);
 		$('.cardContent').css("font-size", newFontSize + "px");
 	}
 
 	static resetCurrentTextZoomValue () {
-		Session.set('currentZoomValue', defaultTextZoomValue);
-		$('.zoomSlider').slider("value", defaultTextZoomValue);
+		Session.set('currentZoomValue', config.defaultTextZoomValue);
+		$('.zoomSlider').slider("value", config.defaultTextZoomValue);
 		CardVisuals.setTextZoom();
 	}
 
 	static getDefaultTextZoomValue () {
-		return defaultTextZoomValue;
+		return config.defaultTextZoomValue;
 	}
 
 	static zoomCardText () {

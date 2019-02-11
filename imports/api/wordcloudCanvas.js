@@ -8,6 +8,7 @@ import {Meteor} from "meteor/meteor";
 import {PomodoroTimer} from "./pomodoroTimer";
 import {FilterNavigation} from "./filterNavigation";
 import {NavigatorCheck} from "./navigatorCheck";
+import * as config from "../config/wordcloud.js";
 
 let clearCanvas;
 let drawOutOfBound;
@@ -18,32 +19,30 @@ let fontFamily;
 let color;
 let backgroundColor;
 let wait;
-let wordcloudPomodoroSize = 0.6;
-let defaultToFilterWordcloudThreshold = 100;
 
 export let WordcloudCanvas = class WordcloudCanvas {
 
 	static setConfig () {
 		if (Meteor.userId()) {
-			clearCanvas = true;
-			drawOutOfBound = false;
-			gridSize = 24;
-			weightFactor = 24;
-			rotateRatio = 0;
-			fontFamily = 'Roboto Condensed, Arial Narrow, sans-serif';
-			color = "random-light";
-			backgroundColor = 'rgba(255,255,255, 0)';
-			wait = 50;
+			clearCanvas = config.wordcloudDefault.clearCanvas;
+			drawOutOfBound = config.wordcloudDefault.drawOutOfBound;
+			gridSize = config.wordcloudDefault.gridSize;
+			weightFactor = config.wordcloudDefault.weightFactor;
+			rotateRatio = config.wordcloudDefault.rotateRatio;
+			fontFamily = config.wordcloudDefault.fontFamily;
+			color = config.wordcloudDefault.color;
+			backgroundColor = config.wordcloudDefault.backgroundColor;
+			wait = config.wordcloudDefault.color;
 		} else {
-			clearCanvas = true;
-			drawOutOfBound = false;
-			gridSize = 24;
-			weightFactor = 24;
-			rotateRatio = 0;
-			fontFamily = 'Roboto Condensed, Arial Narrow, sans-serif';
-			color = "random-light";
-			backgroundColor = 'rgba(255,255,255, 0)';
-			wait = 400;
+			clearCanvas = config.wordcloudLandingPage.clearCanvas;
+			drawOutOfBound = config.wordcloudLandingPage.drawOutOfBound;
+			gridSize = config.wordcloudLandingPage.gridSize;
+			weightFactor = config.wordcloudLandingPage.weightFactor;
+			rotateRatio = config.wordcloudLandingPage.rotateRatio;
+			fontFamily = config.wordcloudLandingPage.fontFamily;
+			color = config.wordcloudLandingPage.color;
+			backgroundColor = config.wordcloudLandingPage.backgroundColor;
+			wait = config.wordcloudLandingPage.color;
 		}
 	}
 
@@ -139,8 +138,8 @@ export let WordcloudCanvas = class WordcloudCanvas {
 				document.getElementById('wordcloud-canvas').height = newHeight;
 				$('.pomodoroClock').css('height', 'unset');
 			} else {
-				$('#pomodoroTimerWordcloudContainer .pomodoroClock').css('margin-top', newHeight * ((1 - wordcloudPomodoroSize) / 2));
-				$('#pomodoroTimerWordcloudContainer .pomodoroClock').css('height', newHeight * wordcloudPomodoroSize);
+				$('#pomodoroTimerWordcloudContainer .pomodoroClock').css('margin-top', newHeight * ((1 - config.wordcloudPomodoroSize) / 2));
+				$('#pomodoroTimerWordcloudContainer .pomodoroClock').css('height', newHeight * config.wordcloudPomodoroSize);
 				this.disableWordcloud();
 			}
 		}
@@ -225,7 +224,7 @@ export let WordcloudCanvas = class WordcloudCanvas {
 	static setDefaultView () {
 		if (NavigatorCheck.isSmartphone()) {
 			this.disableWordcloud();
-		} else if (Cardsets.find(Filter.getFilterQuery()).count() >= defaultToFilterWordcloudThreshold || Session.get('filterDisplayWordcloud')) {
+		} else if (Cardsets.find(Filter.getFilterQuery()).count() >= config.defaultToFilterWordcloudThreshold || Session.get('filterDisplayWordcloud')) {
 			this.enableWordcloud();
 		} else {
 			this.disableWordcloud();

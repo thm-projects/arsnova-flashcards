@@ -1,17 +1,9 @@
-let minimumTabletWidth = 768;
-let minimumTabletHeight = 1024;
-
-// Enabled features for IOS devices
-//0: Minute jump clock
-//1: WordCloud - Landing Page
-//2: WordCloud - Filter
-
-let enabledIOSFeatures = [2];
+import * as config from "../config/navigator.js";
 
 export let NavigatorCheck = class CardVisuals {
 
 	static isSmartphone () {
-		return (window.screen.width < minimumTabletWidth && window.screen.height < minimumTabletHeight);
+		return (window.screen.width < config.minimumTabletWidth && window.screen.height < config.minimumTabletHeight);
 	}
 
 	static isIOS () {
@@ -32,7 +24,7 @@ export let NavigatorCheck = class CardVisuals {
 
 	static gotFeatureSupport (feature) {
 		if (this.isIOS()) {
-			return enabledIOSFeatures.includes(feature);
+			return config.enabledIOSFeatures.includes(feature);
 		} else {
 			return true;
 		}
