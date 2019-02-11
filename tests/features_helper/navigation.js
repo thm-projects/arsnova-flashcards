@@ -91,10 +91,6 @@ module.exports = {
 		browser.waitForVisible('.backToCardset', global.threshold);
 		if (click) {
 			browser.click('.backToCardset');
-			browser.waitForVisible('.swal2-cancel', global.threshold);
-			browser.click('.swal2-cancel');
-			browser.waitForVisible('.swal2-confirm', global.threshold);
-			browser.click('.swal2-confirm');
 		}
 	},
 	back: function (click = true) {
