@@ -228,3 +228,24 @@
     display: none !important;
   }
 }
+
+/* iPhone X Portrait and Landscape */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  #welcome {
+    .show-more {
+      display: none !important;
+    }
+  }
+  #slogan {
+      display: none !important;
+  }
+  #welcome-login {
+    padding-bottom: 5px !important;
+    .serverInventory {
+      display: none !important;
+    }
+  }
+  .toggle-wordcloud {
+    display: none !important;
+  }
+}
