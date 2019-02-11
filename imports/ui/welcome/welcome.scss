@@ -208,7 +208,7 @@
   }
 }
 
-@media (max-width: 823px) and (max-height: 414px) and (orientation: landscape) {
+@media (min-width: 320px) and (max-width: 480px) {
   #welcome {
     .show-more {
       display: none !important;
