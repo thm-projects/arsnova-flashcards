@@ -1,5 +1,5 @@
 <template name="cardHeaderItemClock">
-    {{#unless isIOSOrSafari}}
+    {{#if gotFeatureSupport 0}}
         <svg class="clock cardHeaderItem" xmlns="http://www.w3.org/2000/svg" width="600" height="600"
              viewBox="0 0 600 600">
             <g class="face">
@@ -23,5 +23,5 @@
                 <circle class="mid-circle" cx="300" cy="300" r="20.0"/>
             </g>
         </svg>
-    {{/unless}}
+    {{/if}}
 </template>

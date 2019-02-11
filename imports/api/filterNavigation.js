@@ -1,101 +1,74 @@
 import {Route} from "./route.js";
 import {Session} from "meteor/session";
 import {Filter} from "./filter";
-
-//0: Themen-Pool / Pool
-//1: Kartei anlegen / My Cardsets
-//2: Repetitorien / Repetitorium
-//3: Lernpensum / Learning
-//4: Alle Karteien / All Cardsets
-//5: Kartei mischen / Shuffle
-let filtersWithResetButton = [0, 1, 2, 3, 4, 5];
-let filtersWithDisplayModeButton = [0, 2, 4];
-let filtersWithSortButton = [0, 1, 2, 3, 4, 5];
-let filtersWithDefaultSortName = [0, 2, 3, 5];
-let filtersWithDefaultSortDateUpdated = [4];
-let filtersWithDefaultSortDateCreated = [1];
-let filtersWithAuthor = [0, 2, 3, 4, 5];
-let filtersWithCardType = [0, 1, 3, 4, 5];
-let filtersWithDifficulty = [0, 1, 3, 4, 5];
-let filtersWithTargetAudience = [];
-let filtersWithSemester = [];
-let filtersWithCollege = [];
-let filtersWithCourse = [];
-let filtersWithModule = [];
-let filtersWithBonus = [0, 2, 3, 4, 5];
-let filtersWithWordcloud = [0, 1, 2, 4, 5];
-let filtersWithKind = [0, 1, 2, 3, 4, 5];
-let filtersWithPersonalKind = [1, 2, 3, 4, 5];
-let filtersWithFreeKind = [0, 1, 2, 3, 4, 5];
-let filtersWithEduKind = [0, 1, 2, 3, 4, 5];
-let filtersWithProKind = [0, 1, 2, 3, 4, 5];
+import * as config from "../config/filter.js";
 
 export let FilterNavigation = class FilterNavigation {
 	static gotAuthorFilter (filterType) {
-		return filtersWithAuthor.includes(filterType);
+		return config.filtersWithAuthor.includes(filterType);
 	}
 
 	static gotCardTypeFilter (filterType) {
-		return filtersWithCardType.includes(filterType);
+		return config.filtersWithCardType.includes(filterType);
 	}
 
 	static gotTargetAudienceFilter (filterType) {
-		return filtersWithTargetAudience.includes(filterType);
+		return config.filtersWithTargetAudience.includes(filterType);
 	}
 
 	static gotSemesterFilter (filterType) {
-		return filtersWithSemester.includes(filterType);
+		return config.filtersWithSemester.includes(filterType);
 	}
 
 	static gotCollegeFilter (filterType) {
-		return filtersWithCollege.includes(filterType);
+		return config.filtersWithCollege.includes(filterType);
 	}
 
 	static gotCourseFilter (filterType) {
-		return filtersWithCourse.includes(filterType);
+		return config.filtersWithCourse.includes(filterType);
 	}
 
 	static gotModuleFilter (filterType) {
-		return filtersWithModule.includes(filterType);
+		return config.filtersWithModule.includes(filterType);
 	}
 
 	static gotDifficultyFilter (filterType) {
-		return filtersWithDifficulty.includes(filterType);
+		return config.filtersWithDifficulty.includes(filterType);
 	}
 
 	static gotBonusFilter (filterType) {
-		return filtersWithBonus.includes(filterType);
+		return config.filtersWithBonus.includes(filterType);
 	}
 
 	static gotWordCloudFilter (filterType) {
-		return filtersWithWordcloud.includes(filterType);
+		return config.filtersWithWordcloud.includes(filterType);
 	}
 
 	static gotKindFilter (filterType) {
-		return filtersWithKind.includes(filterType);
+		return config.filtersWithKind.includes(filterType);
 	}
 
 	static gotPersonalKindFilter (filterType) {
-		return filtersWithPersonalKind.includes(filterType);
+		return config.filtersWithPersonalKind.includes(filterType);
 	}
 
 	static gotFreeKindFilter (filterType) {
-		return filtersWithFreeKind.includes(filterType);
+		return config.filtersWithFreeKind.includes(filterType);
 	}
 
 	static gotEduKindFilter (filterType) {
-		return filtersWithEduKind.includes(filterType);
+		return config.filtersWithEduKind.includes(filterType);
 	}
 
 	static gotProKindFilter (filterType) {
-		return filtersWithProKind.includes(filterType);
+		return config.filtersWithProKind.includes(filterType);
 	}
 
 	static gotSortButton (filterType) {
 		if (this.isDisplayWordcloudActive(filterType)) {
 			return false;
 		} else {
-			return filtersWithSortButton.includes(filterType);
+			return config.filtersWithSortButton.includes(filterType);
 		}
 	}
 
@@ -104,23 +77,23 @@ export let FilterNavigation = class FilterNavigation {
 	}
 
 	static gotDefaultSortName (filterType) {
-		return filtersWithDefaultSortName.includes(filterType);
+		return config.filtersWithDefaultSortName.includes(filterType);
 	}
 
 	static gotDefaultSortDateUpdated (filterType) {
-		return filtersWithDefaultSortDateUpdated.includes(filterType);
+		return config.filtersWithDefaultSortDateUpdated.includes(filterType);
 	}
 
 	static gotDefaultSortDateCreated (filterType) {
-		return filtersWithDefaultSortDateCreated.includes(filterType);
+		return config.filtersWithDefaultSortDateCreated.includes(filterType);
 	}
 
 	static gotResetButton (filterType) {
-		return filtersWithResetButton.includes(filterType);
+		return config.filtersWithResetButton.includes(filterType);
 	}
 
 	static gotDisplayModeButton (filterType) {
-		return filtersWithDisplayModeButton.includes(filterType);
+		return config.filtersWithDisplayModeButton.includes(filterType);
 	}
 
 	static getRouteId () {

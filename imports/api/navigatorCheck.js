@@ -1,10 +1,9 @@
-let minimumTabletWidth = 768;
-let minimumTabletHeight = 1024;
+import * as config from "../config/navigator.js";
 
 export let NavigatorCheck = class CardVisuals {
 
 	static isSmartphone () {
-		return (window.screen.width < minimumTabletWidth && window.screen.height < minimumTabletHeight);
+		return (window.screen.width < config.minimumTabletWidth && window.screen.height < config.minimumTabletHeight);
 	}
 
 	static isIOS () {
@@ -21,5 +20,13 @@ export let NavigatorCheck = class CardVisuals {
 
 	static isLandscape () {
 		return window.innerWidth > window.innerHeight;
+	}
+
+	static gotFeatureSupport (feature) {
+		if (this.isIOS()) {
+			return config.enabledIOSFeatures.includes(feature);
+		} else {
+			return true;
+		}
 	}
 };

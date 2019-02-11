@@ -1,44 +1,11 @@
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import DOMPurify from 'dompurify';
-import {DOMPurifyConfig} from "./dompurify";
+import {DOMPurifyConfig} from "../config/dompurify.js";
 import "/client/thirdParty/markdeep.min.js";
+import * as config from "../config/markdeep.js";
 
-let customMathJaxDefinitions = [
-	"{\\n}{\\hat{n}}",
-	"{\\thetai}{\\theta_\\mathrm{i}}",
-	"{\\thetao}{\\theta_\\mathrm{o}}",
-	"{\\d}[1]{\\mathrm{d}#1}",
-	"{\\w}{\\hat{\\omega}}",
-	"{\\wi}{\\w_\\mathrm{i}}",
-	"{\\wo}{\\w_\\mathrm{o}}",
-	"{\\wh}{\\w_\\mathrm{h}}",
-	"{\\Li}{L_\\mathrm{i}}",
-	"{\\Lo}{L_\\mathrm{o}}",
-	"{\\Le}{L_\\mathrm{e}}",
-	"{\\Lr}{L_\\mathrm{r}}",
-	"{\\Lt}{L_\\mathrm{t}}",
-	"{\\O}{\\mathrm{O}}",
-	"{\\degrees}{{^{\\large\\circ}}}",
-	"{\\T}{\\mathsf{T}}",
-	"{\\mathset}[1]{\\mathbb{#1}}",
-	"{\\Real}{\\mathset{R}}",
-	"{\\Integer}{\\mathset{Z}}",
-	"{\\Boolean}{\\mathset{B}}",
-	"{\\Complex}{\\mathset{C}}",
-	"{\\un}[1]{\\,\\mathrm{#1}}"
-];
-
-MeteorMathJax.sourceUrl = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_SVG';
-
-MeteorMathJax.defaultConfig = {
-	TeX: {equationNumbers: {autoNumber: "AMS"}},
-	menuSettings: {
-		zoom: "Hover",
-		zscale: "250%",
-		locale: "de"
-	},
-	messageStyle: "none"
-};
+MeteorMathJax.sourceUrl = config.MathJaxSourceUrl;
+MeteorMathJax.defaultConfig = config.defaultMathJaxConfig;
 
 export let MarkdeepContent = class MarkdeepContent {
 	/** Wraps image files inside a lightbox-img class
@@ -81,7 +48,7 @@ export let MarkdeepContent = class MarkdeepContent {
 	static addCustomMathJax () {
 		let mathJaxJoinString = '\\newcommand';
 		let mathJaxCostumCommands = '<span style="display:none">$$';
-		mathJaxCostumCommands += (mathJaxJoinString + customMathJaxDefinitions.join(mathJaxJoinString));
+		mathJaxCostumCommands += (mathJaxJoinString + config.customMathJaxDefinitions.join(mathJaxJoinString));
 		return (mathJaxCostumCommands + '$$\n</span>\n');
 	}
 

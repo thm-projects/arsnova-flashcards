@@ -1,12 +1,14 @@
 <template name="filterItemDisplayModeButton">
-    <li class="dropdown hidden-xs">
-        <a id="displayModeBtn"
-                role="button">
-            {{#if isWordcloudActive}}
-                {{_ "filter-pool.displayMode.list"}}
+    {{#if gotFeatureSupport 2}}
+        <li class="dropdown hidden-xs">
+            <a id="displayModeBtn"
+               role="button">
+                {{#if isWordcloudActive}}
+                    {{_ "filter-pool.displayMode.list"}}
                 {{else}}
-                {{_ "filter-pool.displayMode.wordcloud"}}
-            {{/if}}
-        </a>
-    </li>
+                    {{_ "filter-pool.displayMode.wordcloud"}}
+                {{/if}}
+            </a>
+        </li>
+    {{/if}}
 </template>

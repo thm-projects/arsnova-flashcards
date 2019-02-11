@@ -1,420 +1,26 @@
 import {Session} from "meteor/session";
 import {Cardsets} from "./cardsets.js";
-
-//0: Lernkartei / flash card index
-//1: Vokabelkartei / vocabulary
-//2: Mitschrift / notes
-//3: Glossar / glossary
-//4: Zitatensammlung / citations
-//5: Prüfung / exam
-//6: Anweisungssatz / command set
-//7: Abstract
-//8: Notizen / notes
-//9: To-dos / to-dos
-//10: Fotokartei / photo library
-//11: Quiz
-//12: Entwurfsmuster / design patterns
-//13: Formelsammlung / collection of formulas
-//14: Vortrag / talk
-//15: Aufgabensammlung / task collection
-//16: Zielerreichung / goal achievement
-//17: Inverses Fragen / inverse questioning
-let cardTypesWithDictionary = [1];
-let cardTypesWithDifficultyLevel = [0, 1, 2, 3, 5, 6, 11, 12, 13, 15, 17];
-let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12, 13, 15, 16, 17];
-let cardTypesWithLearningGoal = [0, 5, 12];
-let cardTypesWithLearningUnit = [];
-let cardTypesWithNotesForDifficultyLevel = [2];
-let cardTypesWithCardsetTitleNavigation = [14];
-let cardTypesWithSwapAnswerQuestionButton = [1, 17];
-let cardTypesWithDefaultMobilePreview = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-let cardTypesWithMarkdeepHelp = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
-let cardTypesOrder = [
-	{cardType: 2},
-	{cardType: 0},
-	{cardType: 15},
-	{cardType: 3},
-	{cardType: 6},
-	{cardType: 13},
-	{cardType: 12},
-	{cardType: 17},
-	{cardType: 16},
-	{cardType: 11},
-	{cardType: 5},
-	{cardType: 1},
-	{cardType: 10},
-	{cardType: 7},
-	{cardType: 4},
-	{cardType: 8},
-	{cardType: 9},
-	{cardType: 14}
-	];
-
-//0: left
-//1: center
-//2: right
-//3: justify
-let defaultTextAlign = 0;
-let defaultCentered = true;
-let swapAnserQuestionCardTypeResult = [];
-
-let cardTypeCubeSides = [
-	//0: Lernkartei / Flashcard
-	[
-		{
-			"contentId": 1,
-			"side": "front",
-			"defaultStyle": "default",
-			"gotLearningGoalPlaceholder": true
-		},
-		{
-			"contentId": 4,
-			"side": "right",
-			"defaultStyle": "default",
-			"isAnswer": true
-		},
-		{
-			"contentId": 2,
-			"side": "back",
-			"defaultStyle": "default",
-			"isAnswer": true,
-			"isAnswerFocus": true
-		},
-		{
-			"contentId": 3,
-			"side": "left",
-			"defaultStyle": "default",
-			"isAnswer": true
-		}
-
-	],
-	//1: Vokabelkartei / Vocabulary
-	[
-		{
-			"contentId": 1,
-			"side": "front",
-			"defaultStyle": "default",
-			"defaultTextAlign": "center"
-		},
-		{
-			"contentId": 2,
-			"side": "back",
-			"defaultStyle": "default",
-			"defaultTextAlign": "center",
-			"isAnswer": true,
-			"isAnswerFocus": true
-		}
-	],
-	//2: Mitschrift / Notes
-	[
-		{
-			"contentId": 1,
-			"side": "front",
-			"defaultStyle": "default"
-		},
-		{
-			"contentId": 2,
-			"side": "back",
-			"defaultStyle": "default"
-		},
-		{
-			"contentId": 3,
-			"side": "left",
-			"defaultStyle": "default"
-		}
-	],
-	//3: Glossar / Glossary
-	[
-		{
-			"contentId": 1,
-			"side": "front",
-			"defaultStyle": "default",
-			"defaultTextAlign": "center"
-		},
-		{
-			"contentId": 2,
-			"side": "back",
-			"defaultStyle": "default",
-			"defaultTextAlign": "center",
-			"isAnswer": true,
-			"isAnswerFocus": true
-		},
-		{
-			"contentId": 3,
-			"side": "left",
-			"defaultStyle": "default",
-			"isAnswer": true
-		}
-	],
-	//4: Zitatensammlung / Citation
-	[
-		{
-			"contentId": 1,
-			"side": "front",
-			"defaultStyle": "default"
-		},
-		{
-			"contentId": 2,
-			"side": "back",
-			"defaultStyle": "default",
-			"isAnswer": true,
-			"isAnswerFocus": true
-		},
-		{
-			"contentId": 3,
-			"side": "left",
-			"defaultStyle": "default",
-			"isAnswer": true
-		}
-	],
-	//5: Prüfung / Exam
-	[
-		{
-			"contentId": 1,
-			"side": "front",
-			"defaultStyle": "default",
-			"gotLearningGoalPlaceholder": true
-		},
-		{
-			"contentId": 2,
-			"side": "back",
-			"defaultStyle": "default",
-			"isAnswer": true,
-			"isAnswerFocus": true
-		},
-		{
-			"contentId": 3,
-			"side": "left",
-			"defaultStyle": "default",
-			"isAnswer": true
-		}
-	],
-	//6: Anweisungssatz / Command set
-	[
-		{
-			"contentId": 2,
-			"side": "front",
-			"defaultStyle": "default"
-		},
-		{
-			"contentId": 1,
-			"side": "back",
-			"defaultStyle": "default",
-			"defaultTextAlign": "center",
-			"isAnswer": true,
-			"isAnswerFocus": true
-		},
-		{
-			"contentId": 3,
-			"side": "left",
-			"defaultStyle": "default",
-			"isAnswer": true
-		}
-	],
-	//7: Abstract
-	[
-		{
-			"contentId": 1,
-			"side": "front",
-			"defaultStyle": "default"
-		},
-		{
-			"contentId": 2,
-			"side": "back",
-			"defaultStyle": "default"
-		},
-		{
-			"contentId": 3,
-			"side": "left",
-			"defaultStyle": "default"
-		}
-	],
-	//8: Notizen / Notes
-	[
-		{
-			"contentId": 1,
-			"side": "front",
-			"defaultStyle": "post-it"
-		}
-	],
-	//9: To-dos / To-do
-	[
-		{
-			"contentId": 1,
-			"side": "front",
-			"defaultStyle": "default"
-		}
-	],
-	//10: Fotokartei / Photo library
-	[
-		{
-			"contentId": 1,
-			"side": "front",
-			"defaultStyle": "white"
-		},
-		{
-			"contentId": 2,
-			"side": "back",
-			"defaultStyle": "white"
-		}
-	],
-	//11: Quiz
-	[
-		{
-			"contentId": 1,
-			"side": "front",
-			"defaultStyle": "default"
-		},
-		{
-			"contentId": 2,
-			"side": "back",
-			"defaultStyle": "default",
-			"isAnswer": true,
-			"isAnswerFocus": true
-		}
-	],
-	//12: Entwurfsmuster / Design pattern
-	[
-		{
-			"contentId": 1,
-			"side": "front",
-			"defaultStyle": "default"
-		},
-		{
-			"contentId": 3,
-			"side": "right",
-			"defaultStyle": "default"
-		},
-		{
-			"contentId": 4,
-			"side": "back",
-			"defaultStyle": "default"
-		},
-		{
-			"contentId": 2,
-			"side": "left",
-			"defaultStyle": "default",
-			"isAnswer": true,
-			"isAnswerFocus": true
-		},
-		{
-			"contentId": 5,
-			"side": "top",
-			"defaultStyle": "default",
-			"isAnswer": true
-		},
-		{
-			"contentId": 6,
-			"side": "bottom",
-			"defaultStyle": "default",
-			"isAnswer": true
-		}
-	],
-	//13: Formelsammlung / Formulary
-	[
-		{
-			"contentId": 1,
-			"side": "front",
-			"defaultStyle": "default",
-			"gotLearningGoalPlaceholder": true
-		},
-		{
-			"contentId": 2,
-			"side": "back",
-			"defaultStyle": "default",
-			"isAnswer": true
-		},
-		{
-			"contentId": 3,
-			"side": "left",
-			"defaultStyle": "default",
-			"isAnswer": true,
-			"isAnswerFocus": true
-		},
-		{
-			"contentId": 4,
-			"side": "right",
-			"defaultStyle": "default",
-			"isAnswer": true
-		}
-
-	],
-	//14: Vortrag
-	[
-		{
-			"contentId": 1,
-			"side": "front",
-			"defaultStyle": "white"
-		}
-
-	],
-	//15: Aufgabensammlung
-	[
-		{
-			"contentId": 1,
-			"side": "front",
-			"defaultStyle": "default",
-			"gotLearningGoalPlaceholder": true
-		},
-		{
-			"contentId": 2,
-			"side": "back",
-			"defaultStyle": "default",
-			"isAnswer": true,
-			"isAnswerFocus": true
-		}
-	],
-	//16: Zielerreichung
-	[
-		{
-			"contentId": 1,
-			"side": "front",
-			"defaultStyle": "default"
-		},
-		{
-			"contentId": 2,
-			"side": "back",
-			"defaultStyle": "default",
-			"isAnswer": true,
-			"isAnswerFocus": true
-		}
-	],
-	//17: Inverses Fragen
-	[
-		{
-			"contentId": 1,
-			"side": "front",
-			"defaultStyle": "default"
-		},
-		{
-			"contentId": 2,
-			"side": "back",
-			"defaultStyle": "default",
-			"isAnswer": true,
-			"isAnswerFocus": true
-		}
-	]
-];
+import * as config from "../config/cardTypes.js";
 
 export let CardType = class CardType {
 	static getCardTypesOrder () {
-		return cardTypesOrder;
+		return config.cardTypesOrder;
 	}
 
 	static getCardTypeCubeSides (cardType) {
-		return cardTypeCubeSides[cardType];
+		return config.cardTypeCubeSides[cardType];
 	}
 
 	static getCardTypesWithLearningModes () {
-		return cardTypesWithLearningModes;
+		return config.cardTypesWithLearningModes;
 	}
 
 	static getCardTypesWithDifficultyLevel () {
-		return cardTypesWithDifficultyLevel;
+		return config.cardTypesWithDifficultyLevel;
 	}
 
 	static isCardTypesWithSwapAnswerQuestionButton (cardType) {
-		return cardTypesWithSwapAnswerQuestionButton.includes(cardType);
+		return config.cardTypesWithSwapAnswerQuestionButton.includes(cardType);
 	}
 
 	/**
@@ -481,44 +87,44 @@ export let CardType = class CardType {
 	}
 
 	static gotLearningUnit (cardType) {
-		return cardTypesWithLearningUnit.includes(cardType);
+		return config.cardTypesWithLearningUnit.includes(cardType);
 	}
 
 	static gotLearningGoal (cardType) {
-		return cardTypesWithLearningGoal.includes(cardType);
+		return config.cardTypesWithLearningGoal.includes(cardType);
 	}
 
 	static gotCardsetTitleNavigation (cardType) {
-		return cardTypesWithCardsetTitleNavigation.includes(cardType);
+		return config.cardTypesWithCardsetTitleNavigation.includes(cardType);
 	}
 
 	static gotDefaultMobilePreview (cardType) {
-		return cardTypesWithDefaultMobilePreview.includes(cardType);
+		return config.cardTypesWithDefaultMobilePreview.includes(cardType);
 	}
 
 	static gotMarkdeepHelp (cardType) {
-		return cardTypesWithMarkdeepHelp.includes(cardType);
+		return config.cardTypesWithMarkdeepHelp.includes(cardType);
 	}
 
 	static gotCardTypesWithSwapAnswerQuestionButton (cardset_id) {
 		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {shuffled: 1, cardGroups: 1, cardType: 1}});
 		if (cardset !== undefined) {
-			swapAnserQuestionCardTypeResult = [];
+			config.swapAnserQuestionCardTypeResult = [];
 			let foundCardset = false;
 			if (cardset.shuffled) {
 				for (let i = 0, cardGroupsLength = cardset.cardGroups.length; i < cardGroupsLength; i++) {
 					let cardType = Cardsets.findOne({_id: cardset.cardGroups[i]}).cardType;
-					if (cardTypesWithSwapAnswerQuestionButton.includes(cardType)) {
-						if (!swapAnserQuestionCardTypeResult.includes(cardType)) {
-							swapAnserQuestionCardTypeResult.push(cardType);
+					if (config.cardTypesWithSwapAnswerQuestionButton.includes(cardType)) {
+						if (!config.swapAnserQuestionCardTypeResult.includes(cardType)) {
+							config.swapAnserQuestionCardTypeResult.push(cardType);
 						}
 						foundCardset = true;
 					}
 				}
 			} else {
-				foundCardset = cardTypesWithSwapAnswerQuestionButton.includes(cardset.cardType);
+				foundCardset = config.cardTypesWithSwapAnswerQuestionButton.includes(cardset.cardType);
 				if (foundCardset) {
-					swapAnserQuestionCardTypeResult.push(cardset.cardType);
+					config.swapAnserQuestionCardTypeResult.push(cardset.cardType);
 				}
 			}
 			return foundCardset;
@@ -533,15 +139,15 @@ export let CardType = class CardType {
 	static getCardTypesWithSwapAnswerQuestionTooltip (sortMode = 0) {
 		let array = [];
 		if (sortMode === 0) {
-			for (let i = 0, cardTypeLength = swapAnserQuestionCardTypeResult.length; i < cardTypeLength; i++) {
-				array.push(TAPi18n.__('card.cardType' + swapAnserQuestionCardTypeResult[i] + '.name'));
+			for (let i = 0, cardTypeLength = config.swapAnserQuestionCardTypeResult.length; i < cardTypeLength; i++) {
+				array.push(TAPi18n.__('card.cardType' + config.swapAnserQuestionCardTypeResult[i] + '.name'));
 			}
 			array.sort();
 		} else {
-			for (let i = 0, cardTypesOrderLength = cardTypesOrder.length; i < cardTypesOrderLength; i++) {
-				for (let k = 0, cardTypeLength = swapAnserQuestionCardTypeResult.length; k < cardTypeLength; k++) {
-					if (cardTypesOrder[i].cardType === swapAnserQuestionCardTypeResult[k]) {
-						array.push(TAPi18n.__('card.cardType' + swapAnserQuestionCardTypeResult[k] + '.name'));
+			for (let i = 0, cardTypesOrderLength = config.cardTypesOrder.length; i < cardTypesOrderLength; i++) {
+				for (let k = 0, cardTypeLength = config.swapAnserQuestionCardTypeResult.length; k < cardTypeLength; k++) {
+					if (config.cardTypesOrder[i].cardType === config.swapAnserQuestionCardTypeResult[k]) {
+						array.push(TAPi18n.__('card.cardType' + config.swapAnserQuestionCardTypeResult[k] + '.name'));
 					}
 				}
 			}
@@ -550,24 +156,24 @@ export let CardType = class CardType {
 	}
 
 	static gotLearningModes (cardType) {
-		return cardTypesWithLearningModes.includes(cardType);
+		return config.cardTypesWithLearningModes.includes(cardType);
 	}
 
 	static gotDifficultyLevel (cardType) {
-		return cardTypesWithDifficultyLevel.includes(cardType);
+		return config.cardTypesWithDifficultyLevel.includes(cardType);
 	}
 
 	static gotNotesForDifficultyLevel (cardType) {
-		return cardTypesWithNotesForDifficultyLevel.includes(cardType);
+		return config.cardTypesWithNotesForDifficultyLevel.includes(cardType);
 	}
 
 	static gotDictionary (cardType) {
-		return cardTypesWithDictionary.includes(cardType);
+		return config.cardTypesWithDictionary.includes(cardType);
 	}
 
 	static setDefaultCenteredText (cardType, returnValue = undefined) {
-		let centerTextElement = Array(6).fill(defaultCentered);
-		let textAlignType = Array(6).fill(defaultTextAlign);
+		let centerTextElement = Array(6).fill(config.defaultCentered);
+		let textAlignType = Array(6).fill(config.defaultTextAlign);
 		let cubeSides = this.getCardTypeCubeSides(cardType);
 		for (let i = 0, centerTextElementLength = centerTextElement.length; i < centerTextElementLength; i++) {
 			for (let l = 0, cubeSidesLength = cubeSides.length; l < cubeSidesLength; l++) {
@@ -590,7 +196,7 @@ export let CardType = class CardType {
 								textAlignType[i] = 3;
 								break;
 							case "default":
-								textAlignType[i] = defaultTextAlign;
+								textAlignType[i] = config.defaultTextAlign;
 								break;
 						}
 					}

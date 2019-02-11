@@ -7,7 +7,7 @@ import {Cardsets} from "../../../api/cardsets.js";
 import "./index.html";
 import "./user.js";
 import DOMPurify from 'dompurify';
-import {DOMPurifyConfig} from "../../../api/dompurify.js";
+import {DOMPurifyConfig} from "../../../config/dompurify.js";
 
 Meteor.subscribe('allUsers');
 
