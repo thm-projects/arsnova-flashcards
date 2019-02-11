@@ -870,10 +870,10 @@
       "undefinedAuthor": "Bitte füll dein Profil aus!",
       "workload": {
         "bonus": {
-          "count": "Engeschrieben in Bonus"
+          "count": "Eingeschrieben in Bonus"
         },
         "normal": {
-          "count": "Engeschrieben"
+          "count": "Eingeschrieben"
         }
       }
     },
