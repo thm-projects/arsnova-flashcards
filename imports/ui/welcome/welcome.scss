@@ -51,8 +51,8 @@
 #welcome-login {
   position: absolute;
   bottom: 0;
-  padding-top: $padding_top_login !important;
-  padding-bottom: $size_footer_height !important;
+  padding-top: $padding_top_login;
+  padding-bottom: $size_navbar_height * 1.75;
   text-align: center;
 
   .login-container {
@@ -168,24 +168,6 @@
   text-shadow: 5px 5px 20px rgba(0, 0, 0, 0.7);
 }
 
-.serverInventory {
-  display: inline-block;
-  text-align: center;
-  margin-top: $margin_top_inventory !important;
-  padding: $padding_vertical_inventory $padding_horizontal_inventory !important;
-  font-size: $font_size_inventory !important;
-  font-weight: $font_weight_inventory !important;
-}
-
-@media (min-width: 768px) {
-  #serverInventoryContainer .serverInventory:first-child {
-    padding: $padding_vertical_inventory ($padding_horizontal_inventory /2) $padding_vertical_inventory $padding_horizontal_inventory !important;
-  }
-  #serverInventoryContainer .serverInventory:last-child {
-    padding: $padding_vertical_inventory $padding_horizontal_inventory $padding_vertical_inventory ($padding_horizontal_inventory /2) !important;
-  }
-}
-
 .welcome-title-no-padding {
   padding-bottom: 0 !important;
 }
@@ -219,7 +201,7 @@
       display: none !important;
   }
   #welcome-login {
-    padding-bottom: 5px !important;
+    padding-bottom: $size_navbar_height * 0.5;
     .serverInventory {
       display: none !important;
     }

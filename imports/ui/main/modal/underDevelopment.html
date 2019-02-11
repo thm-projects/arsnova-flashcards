@@ -1,0 +1,27 @@
+<template name="mainModalUnderDevelopment">
+    <div class="modal fade" id="underDevelopmentModal" role="dialog">
+        <div class="modal-dialog" aria-labelledby="showUnderDevelopmentTitle">
+            <div class="modal-content underDevelopmentContent">
+                <div class="modal-header">
+                    <span class="modal-icon-white">
+                        <i class="fa fa-heart"></i>
+                    </span>
+                    {{> mainModalItemCloseIcon}}
+                    <h4 id="underDevelopmentTitle" class="modal-title">{{_ "underDevelopment.title"}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                {{_ "underDevelopment.text"}}
+                                <br>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

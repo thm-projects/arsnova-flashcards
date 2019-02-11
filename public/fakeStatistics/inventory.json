@@ -1,7 +1,30 @@
 {
-  "cardsets": 724,
+  "cardsets": {
+    "total": 724,
+    "private": 50,
+    "free": 100,
+    "edu": 50,
+    "pro": 10
+  },
+  "repetitorium":  {
+    "total": 50,
+    "private": 10,
+    "free": 20,
+    "edu": 10,
+    "pro": 2
+  },
+  "wordcloud":  {
+    "total": 20,
+    "private": 1,
+    "free": 2,
+    "edu": 10,
+    "pro": 7
+  },
   "cards": 13467,
-  "users": 932,
-  "online": 23
+  "user": {
+    "total": 50,
+    "pro": 4,
+    "online": 23
+  }
 }
 

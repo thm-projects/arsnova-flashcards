@@ -1,0 +1,8 @@
+<template name="mainNavigationTopItemPool">
+    <li id="navbar-pool"
+        class="{{#if isActivePath regex='^\\/pool'}}active{{/if}}">
+        <a href="{{pathFor route='pool'}}" id="pool">
+            {{{getCardsetIcons false}}}{{_ "navbar-collapse.pool"}}
+        </a>
+    </li>
+</template>

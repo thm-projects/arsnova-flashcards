@@ -4,11 +4,11 @@ import "./zoomText.html";
 
 /*
  * ############################################################################
- * zoomTextOverlay
+ * mainOverlayZoomText
  * ############################################################################
  */
 
-Template.zoomTextOverlay.helpers({
+Template.mainOverlayZoomText.helpers({
 	getPercentage: function () {
 		return Session.get('currentZoomValue') + " %";
 	},
@@ -17,7 +17,7 @@ Template.zoomTextOverlay.helpers({
 	}
 });
 
-Template.zoomTextOverlay.events({
+Template.mainOverlayZoomText.events({
 	"click .resetTextZoom": function () {
 		CardVisuals.resetCurrentTextZoomValue();
 	}

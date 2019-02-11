@@ -1,0 +1,8 @@
+<template name="mainNavigationTopItemConnectionStatus">
+    <li class="{{getVisibility}}">
+        <a class="connectionStatus {{#if isModalOpen}}active{{/if}} flex-content" href="#" data-toggle="modal"
+           data-target="#connectionStatusModal" aria-label="{{_ "footer.connection"}}">
+            <span class="glyphicon glyphicon-transfer {{getSignal}}"></span>
+        </a>
+    </li>
+</template>

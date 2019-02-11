@@ -1,0 +1,34 @@
+<template name="impressumModalStatisticsItemCardsets">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr class="active">
+                <th scope="col" class="col-xs-9">{{_ "serverStatistics.modal.table.header.cardsets"}}</th>
+                <th scope="col" class="col-xs-3">{{_ "serverStatistics.modal.table.header.counter"}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{_ "serverStatistics.modal.cardsets.total"}}</td>
+                <td>{{getServerInventory "cardsets"}}</td>
+            </tr>
+            <tr>
+                <td>{{{_ "serverStatistics.modal.cardsets.private" label=(getKind "personal")}}}</td>
+                <td>{{getServerInventory "cardsetsPrivate"}}</td>
+            </tr>
+            <tr>
+                <td>{{{_ "serverStatistics.modal.cardsets.free" label=(getKind "free")}}}</td>
+                <td>{{getServerInventory "cardsetsFree"}}</td>
+            </tr>
+            <tr>
+                <td>{{{_ "serverStatistics.modal.cardsets.edu" label=(getKind "edu")}}}</td>
+                <td>{{getServerInventory "cardsetsEdu"}}</td>
+            </tr>
+            {{#if isProLoginActive}}
+                <tr>
+                    <td>{{{_ "serverStatistics.modal.cardsets.pro" label=(getKind "pro")}}}</td>
+                    <td>{{getServerInventory "cardsetsPro"}}</td>
+                </tr>
+            {{/if}}
+        </tbody>
+    </table>
+</template>

@@ -76,6 +76,7 @@ $themes: (
     $input_textarea_background_inactive: map-get($map, "input_textarea_background_inactive");
     $input_textarea_text_active: map-get($map, "input_textarea_text_active");
     $input_textarea_text_inactive: map-get($map, "input_textarea_text_inactive");
+    $button_navbar_collapse_text: map-get($map, "button_navbar_collapse_text");
     //login
     $login_facebook_background: map-get($map, "login_facebook_background");
     $login_facebook_background_hover: map-get($map, "login_facebook_background_hover");
@@ -188,6 +189,8 @@ $themes: (
     //welcome page colors
     $welcome_page_login_label: map-get($map, "welcome_page_login_label");
     $welcome_page_login_label_shadow: map-get($map, "welcome_page_login_label_shadow");
+    $footer_mobile_icon: map-get($map, "footer_mobile_icon");
+    $footer_mobile_active_route_text: map-get($map, "footer_mobile_active_route_text");
     $footer_background: map-get($map, "footer_background");
     $footer_info_navigation_text: map-get($map, "footer_info_navigation_text");
     $footer_info_navigation_text_hover: map-get($map, "footer_info_navigation_text_hover");
@@ -204,6 +207,7 @@ $themes: (
     $footer_globe_dropdown_background_hover: map-get($map, "footer_globe_dropdown_background_hover");
     $placeholder: map-get($map, "placeholder");
     $inventory_background: map-get($map, "inventory_background");
+    $inventory_border: map-get($map, "inventory_border");
     $inventory_text: map-get($map, "inventory_text");
     //info page colors
     $info_navigation_text: map-get($map, "info_navigation_text");
@@ -659,17 +663,17 @@ $themes: (
       }
     }
 
-    #contact-nav a {
+    #contact-nav-collapse, #contact-nav-collapse a {
       color: $info_navigation_text !important;
       background-color: $info_navigation_background !important;
     }
 
-    #contact-nav a:hover, #contact-nav a:focus {
+    #contact-nav-collapse a:hover, #contact-nav-collapse a:focus {
       color: $info_navigation_text_hover !important;
       background-color: $info_navigation_background_hover !important;
     }
 
-    #contact-nav .active a {
+    #contact-nav-collapse .active a {
       color: $info_navigation_text_active !important;
       background-color: $info_navigation_background_active !important;
     }
@@ -754,7 +758,7 @@ $themes: (
         border-bottom-color: $item_separator_border_bottom !important;
       }
 
-      .footer {
+      #footer {
         .icon-container {
           border-right-color: $footer_info_navigation_border !important;
         }
@@ -959,8 +963,9 @@ $themes: (
       }
     }
 
-    .serverInventory {
+    .serverInventory .flex-content {
       background-color: $inventory_background !important;
+      border-color: $inventory_border !important;
       color: $inventory_text !important;
     }
 
@@ -1023,21 +1028,30 @@ $themes: (
       border-bottom-color: $hint_header_border_alternative !important;
     }
 
-    .footer {
+    .footer.icon-container a {
+      color: $footer_mobile_icon !important;
+    }
+
+    #footer, #contact-nav {
       background-color: $footer_background !important;
+      .navbar-header-route {
+        color: $footer_mobile_active_route_text !important;
+      }
+    }
+    #footer {
       .container {
         background-color: $footer_background !important;
       }
-      .footer-info-navigation a {
+      a {
         color: $footer_info_navigation_text;
         background-color: $footer_info_navigation_background !important;
         border-right-color: $footer_info_navigation_border !important;
       }
-      .footer-info-navigation a:hover, .footer-info-navigation a:focus {
+      a:hover, a:focus {
         color: $footer_info_navigation_text_hover !important;
         background-color: $footer_info_navigation_background_hover !important;
       }
-      .footer-info-navigation:first-child a {
+      a:first-child {
         border-left-color: $footer_info_navigation_border !important;
       }
       .icon-container a {
@@ -1499,6 +1513,12 @@ $themes: (
 
     .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
       background-color: transparent !important;
+    }
+
+    .navbar-toggle {
+      i {
+        background-color: $button_navbar_collapse_text !important;
+      }
     }
 
     .info {
@@ -2724,7 +2744,6 @@ $themes: (
     .no-results, .no-results-filtered {
       background-color: $no_results_background !important;
       color: $no_results_text !important;
-      border-radius: 15px;
     }
 
     //card list
@@ -2916,7 +2935,6 @@ $themes: (
     .swal2-popup {
       background-color: $sweet_alert_2_modal_background !important;
       color: $sweet_alert_2_text !important;
-      border-radius: 30px !important;
       h2 {
         color: $sweet_alert_2_title !important;
       }

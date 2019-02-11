@@ -18,6 +18,7 @@ import {MarkdeepContent} from "../../api/markdeep";
 import {NavigatorCheck} from "../../api/navigatorCheck";
 import {isNewCardset} from "../../ui/forms/cardsetForm";
 import {ServerStyle} from "../../api/styles.js";
+import {ServerInventoryTools} from "../../api/serverInventoryTools.js";
 
 Meteor.subscribe("collegesCourses");
 
@@ -29,6 +30,10 @@ Template.registerHelper('isRepetitorium', function () {
 			return Session.get('activeCardset').shuffled;
 		}
 	}
+});
+
+Template.registerHelper('isFirstTimeVisitNavigation', function () {
+	return (Route.isFirstTimeVisit() && (Route.isHome() || Route.isDemo() || Route.isMakingOf()));
 });
 
 Template.registerHelper('isSelectingCardsetToLearn', function () {
@@ -56,12 +61,24 @@ Template.registerHelper('isInBonus', function () {
 	return Bonus.isInBonus(Router.current().params._id, Meteor.userId());
 });
 
+Template.registerHelper('isImpressum', function () {
+	return Route.isImpressum();
+});
+
 Template.registerHelper('isInBonusAndNotOwner', function () {
 	return Bonus.isInBonus(Router.current().params._id) && (!UserPermissions.isOwner(Cardsets.findOne({_id: Router.current().params._id}).owner) && !UserPermissions.isAdmin());
 });
 
 Template.registerHelper('gotFeatureSupport', function (feature) {
 	return NavigatorCheck.gotFeatureSupport(feature);
+});
+
+Template.registerHelper('getNavigationName', function (name = undefined) {
+	if (name === undefined) {
+		return Route.getNavigationName(Router.current().route.getName());
+	} else {
+		return Route.getNavigationName(name);
+	}
 });
 
 Template.registerHelper('extendContext', function (key, value) {
@@ -193,6 +210,10 @@ Template.registerHelper("getCardsetIcons", function (isShuffled) {
 	} else {
 		return "<i class='fa fa-archive'></i>&nbsp;";
 	}
+});
+
+Template.registerHelper("getServerInventory", function (type) {
+	return ServerInventoryTools.getServerInventory(type);
 });
 
 Template.registerHelper("getKind", function (kind, displayType = 0) {

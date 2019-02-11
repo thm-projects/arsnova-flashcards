@@ -1,0 +1,27 @@
+$font_size_impressum_statistics_table_header: 16px;
+$font_size_impressum_statistics_table_header_mobile: 12px;
+$font_size_impressum_statistics_table_content: 12px;
+$font_size_impressum_statistics_table_content_header: 12px;
+
+#impressumStatisticsModal {
+  th {
+    @media(min-width: 768px) {
+      font-size: $font_size_impressum_statistics_table_header !important;
+    }
+
+    @media(max-width: 767px) {
+      font-size: $font_size_impressum_statistics_table_header_mobile !important;
+    }
+
+  }
+
+  td, .label {
+    @media(min-width: 768px) {
+      font-size: $font_size_impressum_statistics_table_content !important;
+    }
+
+    @media(max-width: 767px) {
+      font-size: $font_size_impressum_statistics_table_content_header !important;
+    }
+  }
+}
