@@ -739,14 +739,9 @@ export let PomodoroTimer = class PomodoroTimer {
 
 	static showPomodoroFullsize () {
 		if ($(document).has('#pomodoroTimerNormalContainer').length) {
-			$('.pomodoroTimer').detach().appendTo('#pomodoroTimerOverlay');
+			$('.pomodoroTimer').detach().appendTo('#pomodoroTimerOverlay .svg-container');
 			isClockInBigmode = true;
 			$('#pomodoroTimerOverlay').css('display', 'block');
-			if ($(window).height() > $(window).width()) {
-				$('#pomodoroTimerOverlay .pomodoroClock').css('height', $(window).width());
-			} else {
-				$('#pomodoroTimerOverlay .pomodoroClock').css('height', $(window).height());
-			}
 		}
 	}
 

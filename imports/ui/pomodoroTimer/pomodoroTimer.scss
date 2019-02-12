@@ -132,11 +132,16 @@
   z-index: 1000;
   display: none;
   overflow: hidden;
-  .pomodoroTimer {
-    margin: auto;
+  .svg-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
   }
-  .pomodoroClock {
-    margin-top: 0 !important;
+  .pomodoroTimer, .pomodoroClock {
+    margin: 0 auto !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
   }
 }
 
