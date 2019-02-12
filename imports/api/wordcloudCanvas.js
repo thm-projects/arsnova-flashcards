@@ -10,39 +10,15 @@ import {FilterNavigation} from "./filterNavigation";
 import {NavigatorCheck} from "./navigatorCheck";
 import * as config from "../config/wordcloud.js";
 
-let clearCanvas;
-let drawOutOfBound;
-let gridSize;
-let weightFactor;
-let rotateRatio;
-let fontFamily;
-let color;
-let backgroundColor;
-let wait;
+let canvasSettings;
 
 export let WordcloudCanvas = class WordcloudCanvas {
 
 	static setConfig () {
 		if (Meteor.userId()) {
-			clearCanvas = config.wordcloudDefault.clearCanvas;
-			drawOutOfBound = config.wordcloudDefault.drawOutOfBound;
-			gridSize = config.wordcloudDefault.gridSize;
-			weightFactor = config.wordcloudDefault.weightFactor;
-			rotateRatio = config.wordcloudDefault.rotateRatio;
-			fontFamily = config.wordcloudDefault.fontFamily;
-			color = config.wordcloudDefault.color;
-			backgroundColor = config.wordcloudDefault.backgroundColor;
-			wait = config.wordcloudDefault.color;
+			canvasSettings = config.wordcloudDefault;
 		} else {
-			clearCanvas = config.wordcloudLandingPage.clearCanvas;
-			drawOutOfBound = config.wordcloudLandingPage.drawOutOfBound;
-			gridSize = config.wordcloudLandingPage.gridSize;
-			weightFactor = config.wordcloudLandingPage.weightFactor;
-			rotateRatio = config.wordcloudLandingPage.rotateRatio;
-			fontFamily = config.wordcloudLandingPage.fontFamily;
-			color = config.wordcloudLandingPage.color;
-			backgroundColor = config.wordcloudLandingPage.backgroundColor;
-			wait = config.wordcloudLandingPage.color;
+			canvasSettings = config.wordcloudLandingPage;
 		}
 	}
 
@@ -52,65 +28,30 @@ export let WordcloudCanvas = class WordcloudCanvas {
 			if (!NavigatorCheck.isSmartphone() && Meteor.userId()) {
 				PomodoroTimer.setCloudShown(true);
 				this.setConfig();
-				let wordcloundContent = this.getContent();
 				this.setWordcloudTheme();
-				WordCloud(document.getElementById('wordcloud-canvas'),
-					{
-						clearCanvas: clearCanvas,
-						drawOutOfBound: drawOutOfBound,
-						list: wordcloundContent,
-						gridSize: gridSize,
-						weightFactor: weightFactor,
-						rotateRatio: rotateRatio,
-						fontFamily: fontFamily,
-						color: color,
-						hover: WordcloudCanvas.wordcloudHover,
-						click: WordcloudCanvas.wordcloudClick,
-						backgroundColor: backgroundColor,
-						wait: wait
-					});
+				canvasSettings.list = this.getContent();
+				canvasSettings.hover = WordcloudCanvas.wordcloudHover;
+				canvasSettings.click = WordcloudCanvas.wordcloudClick;
+				WordCloud(document.getElementById('wordcloud-canvas'), canvasSettings);
 			} else if (!NavigatorCheck.isSmartphone() && !Session.get('isLandingPagePomodoroActive')) {
 				PomodoroTimer.setCloudShown(true);
 				this.setConfig();
-				let wordcloundContent = this.getContent();
+				canvasSettings.list = this.getContent();
 				if (Meteor.settings.public.welcome.fakeStatistics) {
 					this.setWordcloudTheme();
-					WordCloud(document.getElementById('wordcloud-canvas'),
-						{
-							clearCanvas: clearCanvas,
-							drawOutOfBound: drawOutOfBound,
-							list: wordcloundContent,
-							gridSize: gridSize,
-							weightFactor: weightFactor,
-							rotateRatio: rotateRatio,
-							fontFamily: fontFamily,
-							color: function (word) {
-								for (let i = 0; i < wordcloundContent.length; i++) {
-									if (word === wordcloundContent[i][0]) {
-										return wordcloundContent[i][3];
-									}
-								}
-							},
-							backgroundColor: backgroundColor,
-							wait: wait
-						});
+					canvasSettings.color = function (word) {
+						for (let i = 0; i < canvasSettings.list.length; i++) {
+							if (word === canvasSettings.list[i][0]) {
+								return canvasSettings.list[i][3];
+							}
+						}
+					};
+					WordCloud(document.getElementById('wordcloud-canvas'), canvasSettings);
 				} else {
 					this.setWordcloudTheme();
-					WordCloud(document.getElementById('wordcloud-canvas'),
-						{
-							clearCanvas: clearCanvas,
-							drawOutOfBound: drawOutOfBound,
-							list: wordcloundContent,
-							gridSize: gridSize,
-							weightFactor: weightFactor,
-							rotateRatio: rotateRatio,
-							fontFamily: fontFamily,
-							color: color,
-							hover: WordcloudCanvas.wordcloudHover,
-							click: WordcloudCanvas.wordcloudClick,
-							backgroundColor: backgroundColor,
-							wait: wait
-						});
+					canvasSettings.hover = WordcloudCanvas.wordcloudHover;
+					canvasSettings.click = WordcloudCanvas.wordcloudClick;
+					WordCloud(document.getElementById('wordcloud-canvas'), canvasSettings);
 				}
 			} else {
 				PomodoroTimer.setCloudShown(false);
