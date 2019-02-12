@@ -43,6 +43,10 @@
     //background (Deactivate the image with "none" if you want to use the background-color)
           "background_default" : $default_background,
           "background_default_image" : "none",
+          "background_default_frontend" : $default_background,
+          "background_default_frontend_image" : "none",
+          "background_default_backend" : $default_background,
+          "background_default_backend_image" : "none",
           "background_demo": $default_background,
           "background_demo_image": "none",
           "background_editor": $default_background,

@@ -12,6 +12,10 @@ $themes: (
     //background
     $background_default: map-get($map, "background_default");
     $background_default_image: map-get($map, "background_default_image");
+    $background_default_frontend: map-get($map, "background_default_frontend");
+    $background_default_frontend_image: map-get($map, "background_default_frontend_image");
+    $background_default_backend: map-get($map, "background_default_backend");
+    $background_default_backend_image: map-get($map, "background_default_backend_image");
     $background_demo: map-get($map, "background_demo");
     $background_demo_image: map-get($map, "background_demo_image");
     $background_editor: map-get($map, "background_editor");
@@ -552,6 +556,16 @@ $themes: (
     body.default {
       background-color: $background_default !important;
       background-image: $background_default_image !important;
+    }
+
+    body.default-frontend {
+      background-color: $background_default_frontend !important;
+      background-image: $background_default_frontend_image !important;
+    }
+
+    body.default-backend {
+      background-color: $background_default_backend !important;
+      background-image: $background_default_backend_image !important;
     }
 
     body.presentation {
