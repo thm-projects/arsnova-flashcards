@@ -2882,6 +2882,13 @@ $themes: (
         background-color: $sweet_alert_2_modal_overlay !important;
     }
 
+    .swal2-content, .swal2-footer {
+      color: $primary_text !important;
+      a {
+        color: $hyperlink !important;
+      }
+    }
+
     .swal2-confirm {
       background-color: $sweet_alert_2_button_confirm_background !important;
       color: $sweet_alert_2_button_confirm_text !important;

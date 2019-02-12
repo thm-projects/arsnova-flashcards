@@ -2,18 +2,11 @@ import {Meteor} from "meteor/meteor";
 import swal from "sweetalert2";
 import * as screenfull from 'screenfull';
 import {CardVisuals} from "./cardVisuals";
+import * as config from "../config/sweetAlert.js";
 
 export let SweetAlertMessages = class SweetAlertMessages {
 	static completeProfile () {
-		swal({
-			title: TAPi18n.__('sweetAlert.completeProfile.title'),
-			html: TAPi18n.__('sweetAlert.completeProfile.text'),
-			type: "warning",
-			showCancelButton: true,
-			confirmButtonText: TAPi18n.__('sweetAlert.completeProfile.button.confirm'),
-			cancelButtonText: TAPi18n.__('sweetAlert.completeProfile.button.cancel'),
-			allowOutsideClick: false
-		}).then((result) => {
+		swal(config.completeProfile).then((result) => {
 			if (result.value) {
 				Router.go('profileSettings', {
 					_id: Meteor.userId()
@@ -23,15 +16,7 @@ export let SweetAlertMessages = class SweetAlertMessages {
 	}
 
 	static continuePresentation () {
-		swal({
-			title: TAPi18n.__('sweetAlert.presentation.continue.title'),
-			html: TAPi18n.__('sweetAlert.presentation.continue.text'),
-			type: "warning",
-			showCancelButton: true,
-			confirmButtonText: TAPi18n.__('sweetAlert.presentation.continue.button.confirm'),
-			cancelButtonText: TAPi18n.__('sweetAlert.presentation.continue.button.cancel'),
-			allowOutsideClick: false
-		}).then((result) => {
+		swal(config.continuePresentation).then((result) => {
 			if (result.value) {
 				screenfull.request();
 			} else {
@@ -44,15 +29,7 @@ export let SweetAlertMessages = class SweetAlertMessages {
 	}
 
 	static activateFullscreen () {
-		swal({
-			title: TAPi18n.__('sweetAlert.fullscreen.title'),
-			html: TAPi18n.__('sweetAlert.fullscreen.text'),
-			type: "warning",
-			showCancelButton: true,
-			confirmButtonText: TAPi18n.__('sweetAlert.fullscreen.button.confirm'),
-			cancelButtonText: TAPi18n.__('sweetAlert.fullscreen.button.cancel'),
-			allowOutsideClick: false
-		}).then((result) => {
+		swal(config.activateFullscreen).then((result) => {
 			if (result.value) {
 				CardVisuals.toggleFullscreen();
 			} else {
@@ -65,15 +42,7 @@ export let SweetAlertMessages = class SweetAlertMessages {
 	}
 
 	static exitPresentation () {
-		swal({
-			title: TAPi18n.__('sweetAlert.presentation.end.title'),
-			html: TAPi18n.__('sweetAlert.presentation.end.text'),
-			type: "warning",
-			showCancelButton: true,
-			confirmButtonText: TAPi18n.__('sweetAlert.presentation.end.button.confirm'),
-			cancelButtonText: TAPi18n.__('sweetAlert.presentation.end.button.cancel'),
-			allowOutsideClick: false
-		}).then((result) => {
+		swal(config.exitPresentation).then((result) => {
 			if (result.value) {
 				screenfull.exit();
 				Router.go('cardsetdetailsid', {
