@@ -1022,6 +1022,21 @@ var goToCreated = function () {
 	}
 };
 
+var setBackground = function () {
+	let body = $('body');
+	body.removeAttr('class');
+	if (Route.isPresentation()) {
+		body.addClass('presentation');
+	} else if (Route.isBox() || Route.isMemo()) {
+		body.addClass('learning-mode');
+	} else {
+		body.addClass('default');
+	}
+	this.next();
+};
+
+Router.onBeforeAction(setBackground);
+
 Router.onBeforeAction(isSignedIn, {
 	except: linksWithNoLoginRequirement
 });

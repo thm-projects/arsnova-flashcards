@@ -39,9 +39,16 @@
   $input_textarea_text_active: black;
   $input_textarea_text_inactive: black;
   $item_icon_hover: midnightblue;
+  $default_background: rgb(153, 153, 153);
+  $default_background_image: url('/img/background/zettelkasten_wikipedia_background.jpg');
   @return (
-    //background
-          "background_image" : url('/img/background/zettelkasten_wikipedia_background.jpg'),
+    //background (Deactivate the image with "none" if you want to use the background-color)
+          "background_default" : $default_background,
+          "background_default_image" : $default_background_image,
+          "background_presentation": $default_background,
+          "background_presentation_image": "none",
+          "background_learning_mode": $default_background,
+          "background_learning_mode_image": "none",
     //global colors
           "thm_dark_blue":$thm_dark_blue,
           "thm_blue":$thm_blue,

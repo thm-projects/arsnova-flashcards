@@ -10,7 +10,12 @@ $themes: (
 @each $theme, $map in $themes {
   .#{$theme} {
     //background
-    $background_image: map-get($map, "background_image");
+    $background_default: map-get($map, "background_default");
+    $background_default_image: map-get($map, "background_default_image");
+    $background_presentation: map-get($map, "background_presentation");
+    $background_presentation_image: map-get($map, "background_presentation_image");
+    $background_learning_mode: map-get($map, "background_learning_mode");
+    $background_learning_mode_image: map-get($map, "background_learning_mode_image");
     //global colors
     $thm_dark_blue: map-get($map, "thm_dark_blue");
     $thm_blue: map-get($map, "thm_blue");
@@ -540,7 +545,20 @@ $themes: (
     $landing_page_wordcloud_button_opacity_hover: map-get($map, "landing_page_wordcloud_button_opacity_hover");
     $landing_page_label: map-get($map, "landing_page_label");
 
-    background-image: $background_image !important;
+    body.default {
+      background-color: $background_default !important;
+      background-image: $background_default_image !important;
+    }
+
+    body.presentation {
+      background-color: $background_presentation !important;
+      background-image: $background_presentation_image !important;
+    }
+
+    body.learning-mode {
+      background-color: $background_learning_mode !important;
+      background-image: $background_learning_mode_image !important;
+    }
 
     button:hover, button:focus, .btn:hover, .btn:focus {
       background-color: $button_background_hover !important;
