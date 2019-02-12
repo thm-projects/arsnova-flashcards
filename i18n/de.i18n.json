@@ -366,7 +366,7 @@
     "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen der Kartei geht hierbei verloren!",
     "confirm": "Starten",
     "cancel": "Abbrechen",
-    "notification": "Erinnerungsdienst",
+    "notification": "Erinnerungsdienst (Ohne Bonus)",
     "mailNotificationCheckbox": "E-Mail",
     "webNotificationCheckbox": "Push-Nachricht",
     "notificationError": "Es muss mindestens eine Benachrichtigungsart ausgewählt werden!",

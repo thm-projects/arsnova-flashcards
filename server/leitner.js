@@ -56,7 +56,7 @@ function mailsEnabled() {
 }
 
 function prepareMail(cardset, user, isReset = false, isNewcomer = false) {
-	if (user.mailNotification && mailsEnabled() && !isNewcomer && Roles.userIsInRole(user._id, ['admin', 'editor', 'university', 'lecturer', 'pro']) && !Roles.userIsInRole(user._id, ['blocked', 'firstLogin'])) {
+	if ((Bonus.isInBonus(cardset._id, user._id) || user.mailNotification) && mailsEnabled() && !isNewcomer && Roles.userIsInRole(user._id, ['admin', 'editor', 'university', 'lecturer', 'pro']) && !Roles.userIsInRole(user._id, ['blocked', 'firstLogin'])) {
 		try {
 			let mail = new MailNotifier();
 			if (isReset) {
@@ -77,7 +77,7 @@ function prepareMail(cardset, user, isReset = false, isNewcomer = false) {
 }
 
 function prepareWebpush(cardset, user, isNewcomer = false) {
-	if (user.webNotification && !isNewcomer) {
+	if ((Bonus.isInBonus(cardset._id, user._id) || user.webNotification) && !isNewcomer) {
 		try {
 			let web = new WebNotifier();
 			if (Meteor.settings.debugServer) {
