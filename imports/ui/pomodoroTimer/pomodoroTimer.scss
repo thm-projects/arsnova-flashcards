@@ -137,11 +137,25 @@
     align-items: center;
     height: 100%;
   }
+  .pomodoroTimer {
+    height: 100% !important;
+    width: 100% !important;
+  }
+
   .pomodoroTimer, .pomodoroClock {
     margin: 0 auto !important;
     display: block !important;
-    width: 100% !important;
-    height: 100% !important;
+  }
+  @media (orientation:portrait) {
+    .pomodoroClock {
+      height: 100% !important;
+      width: 100% !important;
+    }
+  }
+  @media (orientation:landscape) {
+    .pomodoroClock {
+      height: 100% !important;
+    }
   }
 }
 
