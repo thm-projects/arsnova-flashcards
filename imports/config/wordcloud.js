@@ -10,7 +10,7 @@ let wordcloudLandingPage = {
 	"fontFamily": "Roboto Condensed, Arial Narrow, sans-serif",
 	"color": "random-light",
 	"backgroundColor": "rgba(255,255,255, 0)",
-	"wait": 400
+	"wait": 100
 };
 
 let wordcloudDefault = {
@@ -22,7 +22,7 @@ let wordcloudDefault = {
 	"fontFamily": "Roboto Condensed, Arial Narrow, sans-serif",
 	"color": "random-light",
 	"backgroundColor": "rgba(255,255,255, 0)",
-	"wait": 400
+	"wait": 100
 };
 
 module.exports = {
