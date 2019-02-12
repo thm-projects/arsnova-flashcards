@@ -112,7 +112,11 @@ if (Meteor.isServer) {
 					var nextDate = new Date();
 
 					if (isWrong) {
-						selectedBox = 1;
+						if (currentLearned.box > 1) {
+							selectedBox = currentLearned.box - 1;
+						} else {
+							selectedBox = 1;
+						}
 					}
 
 					nextDate = new Date(nextDate.getTime() + cardset.learningInterval[selectedBox - 1] * 86400000);

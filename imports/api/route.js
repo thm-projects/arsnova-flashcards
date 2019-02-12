@@ -37,6 +37,10 @@ export let Route = class Route {
 		return Router.current().route.getName() === "making" || Router.current().route.getName() === "makinglist";
 	}
 
+	static isBackend () {
+		return Router.current().route.getName().substring(0, 5) === "admin";
+	}
+
 	/**
 	 * Function checks if route is a presentation view
 	 * @return {Boolean} Return true, when route is a presentation view.

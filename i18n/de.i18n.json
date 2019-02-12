@@ -366,7 +366,7 @@
     "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen der Kartei geht hierbei verloren!",
     "confirm": "Starten",
     "cancel": "Abbrechen",
-    "notification": "Erinnerungsdienst",
+    "notification": "Erinnerungsdienst (Ohne Bonus)",
     "mailNotificationCheckbox": "E-Mail",
     "webNotificationCheckbox": "Push-Nachricht",
     "notificationError": "Es muss mindestens eine Benachrichtigungsart ausgewählt werden!",
@@ -1908,6 +1908,7 @@
     "completeProfile": {
       "title": "Profil",
       "text": "Gib deinen Vor- und Nachnamen und deine E-Mail-Adresse an. <br>Versuche es dann noch einmal. <br><br>Die Angaben werden für den Erinnerungsdienst von \uD83C\uDF45cards benötigt, siehe unter »Hilfe« → »FAQ 3«.",
+      "footer": "<a href='/help' target='_blank'>Die Hilfe aufrufen.</a>",
       "button": {
         "confirm": "Zum Profil",
         "cancel": "Abbrechen"
@@ -1917,6 +1918,7 @@
       "end": {
         "title": "Präsentation beenden?",
         "text": "",
+        "footer": "<a href='/help' target='_blank'>Die Hilfe aufrufen.</a>",
         "button": {
           "cancel": "Nein, es geht weiter.",
           "confirm": "Ja, beenden."
@@ -1925,6 +1927,7 @@
       "continue": {
         "title": "Zurück zur Präsentation?",
         "text": "",
+        "footer": "<a href='/help' target='_blank'>Die Hilfe aufrufen.</a>",
         "button": {
           "cancel": "Nein, Präsentation beenden!",
           "confirm": "Ja, Präsentation fortsetzen!"
@@ -1934,6 +1937,7 @@
     "fullscreen": {
       "title": "Vollbildmodus ist ausgeschaltet.",
       "text": "Diese Seite erfordert Vollansicht.",
+      "footer": "<a href='/help' target='_blank'>Die Hilfe aufrufen.</a>",
       "button": {
         "cancel": "Zurück",
         "confirm": "Vollbildmodus aktivieren"

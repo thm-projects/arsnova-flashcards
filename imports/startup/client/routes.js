@@ -1033,6 +1033,12 @@ var setBackground = function () {
 		body.addClass('editor');
 	} else if (Route.isDemo() | Route.isMakingOf()) {
 		body.addClass('demo');
+	} else if (Meteor.user()) {
+		if (Route.isBackend()) {
+			body.addClass('default-backend');
+		} else {
+			body.addClass('default-frontend');
+		}
 	} else {
 		body.addClass('default');
 	}

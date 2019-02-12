@@ -10,7 +10,7 @@
             <div class="panel-body">
                 <div>{{_ "billing.plan.desc"}}</div>
                 <br>
-                <div class="{{#if isLegacyLoginActive}}col-md-12{{else}}col-md-6{{/if}}">
+                <div class="{{#if isProLoginActive}}col-md-6{{else}}col-md-12{{/if}}">
                     <div class="panel price {{#if isInRole 'standard'}}panel-success{{else}}panel-default{{/if}}">
                         <div class="panel-heading  text-center standard-membership">
                             <h3>{{_ 'access-level.edu.short'}}</h3>
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                {{#unless isLegacyLoginActive}}
+                {{#if isProLoginActive}}
                     <div class="col-md-6">
                         <div class="panel price {{#if isInRole 'pro'}}panel-success{{else}}panel-default{{/if}}">
                             <div class="panel-heading  text-center pro-membership">
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                     </div>
-                {{/unless}}
+                {{/if}}
             </div>
         </div>
         <div class="panel panel-default">
