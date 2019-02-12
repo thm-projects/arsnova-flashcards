@@ -12,6 +12,10 @@ $themes: (
     //background
     $background_default: map-get($map, "background_default");
     $background_default_image: map-get($map, "background_default_image");
+    $background_demo: map-get($map, "background_demo");
+    $background_demo_image: map-get($map, "background_demo_image");
+    $background_editor: map-get($map, "background_editor");
+    $background_editor_image: map-get($map, "background_editor_image");
     $background_presentation: map-get($map, "background_presentation");
     $background_presentation_image: map-get($map, "background_presentation_image");
     $background_learning_mode: map-get($map, "background_learning_mode");
@@ -558,6 +562,16 @@ $themes: (
     body.learning-mode {
       background-color: $background_learning_mode !important;
       background-image: $background_learning_mode_image !important;
+    }
+
+    body.demo {
+      background-color: $background_demo !important;
+      background-image: $background_demo_image !important;
+    }
+
+    body.editor {
+      background-color: $background_editor !important;
+      background-image: $background_editor_image !important;
     }
 
     button:hover, button:focus, .btn:hover, .btn:focus {

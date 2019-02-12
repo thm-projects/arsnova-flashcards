@@ -1029,6 +1029,10 @@ var setBackground = function () {
 		body.addClass('presentation');
 	} else if (Route.isBox() || Route.isMemo()) {
 		body.addClass('learning-mode');
+	} else if (Route.isEditMode()) {
+		body.addClass('editor');
+	} else if (Route.isDemo() | Route.isMakingOf()) {
+		body.addClass('demo');
 	} else {
 		body.addClass('default');
 	}
