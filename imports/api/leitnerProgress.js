@@ -6,6 +6,7 @@ import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Route} from "./route";
 import * as config from "../config/leitnerProgressChart.js";
+import {NavigatorCheck} from "./navigatorCheck";
 
 let chart;
 let difficultyGotCards;
@@ -126,7 +127,7 @@ export let LeitnerProgress = class LeitnerProgress {
 		}
 		let firstBoxDescription = TAPi18n.__('leitnerProgress.boxNotLearned', {}, Session.get('activeLanguage'));
 		let box1Label = [], box2Label = [], box3Label = [], box4Label = [], box5Label = [], box6Label;
-		if ($(window).width() >= 768) {
+		if (!NavigatorCheck.isSmartphone()) {
 			if ($(window).width() < 993) {
 				firstBoxDescription = TAPi18n.__('leitnerProgress.boxNotLearnedShort', {}, Session.get('activeLanguage'));
 			}
