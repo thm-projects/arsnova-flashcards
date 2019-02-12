@@ -64,7 +64,7 @@ export let CardVisuals = class CardVisuals {
 				let flashcardHeaderHeight = 0;
 				let flashcardBodyHeight = 0;
 				Session.set('windowWidth', $(window).width());
-				if (Session.get('windowWidth') < 768 || Session.get('mobilePreview') || Session.get('fullscreen')) {
+				if (NavigatorCheck.isSmartphone() || Session.get('mobilePreview') || Session.get('fullscreen')) {
 					if (Session.get('mobilePreview')) {
 						if ($(window).width() >= 1200) {
 							newFlashcardSize = $(window).height() - (flashcard.offset().top  + $('#editorButtonGroup').innerHeight());
@@ -72,7 +72,7 @@ export let CardVisuals = class CardVisuals {
 					} else {
 						newFlashcardSize = $(window).height() - (flashcard.offset().top + 10);
 					}
-					if (Session.get('windowWidth') >= 768 && !Session.get('mobilePreview')) {
+					if (!NavigatorCheck.isSmartphone() && !Session.get('mobilePreview')) {
 						flashcardHeaderHeight = 100;
 					} else {
 						flashcardHeaderHeight = 60;
