@@ -279,8 +279,8 @@ Template.registerHelper("learningActiveAndEditor", function () {
 	}
 });
 
-Template.registerHelper("isLegacyLoginActive", function () {
-	return Meteor.settings.public.login.legacyMode.enabled;
+Template.registerHelper("isProLoginActive", function () {
+	return (Meteor.settings.public.login.legacyMode.enabled || Meteor.settings.public.login.pro);
 });
 
 Template.registerHelper("isEditor", function () {

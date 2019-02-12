@@ -53,15 +53,19 @@
                                             class="{{#if isActivePath regex='^\\/repetitorium'}}active{{/if}}"
                                             data-toggle="collapse" data-target="#thm-top-navigation">
                                             <a href="{{pathFor route='repetitorium'}}" id="repetitorium">
-                                                <span class="visible-xs">{{{getCardsetIcons true}}}{{_ "navbar-collapse.course"}}</span>
-                                                <span class="hidden-xs">{{{getCardsetIcons false}}}<i class="fa fa-ellipsis-h"></i>&nbsp;{{_ "navbar-collapse.course"}}</span>
+                                                <span class="visible-xs">{{{getCardsetIcons true}}}{{_
+                                                        "navbar-collapse.course"}}</span>
+                                                <span class="hidden-xs">{{{getCardsetIcons false}}}<i
+                                                        class="fa fa-ellipsis-h"></i>&nbsp;{{_
+                                                        "navbar-collapse.course"}}</span>
                                             </a>
                                         </li>
                                         <li id="navbar-learn-decks"
                                             class="{{#if isActiveRoute regex='home|learn'}}active{{/if}}"
                                             data-toggle="collapse" data-target="#thm-top-navigation">
                                             <a href="{{pathFor route='learn'}}" id="learnsets">
-                                                <i class="fa fa-graduation-cap"></i>&nbsp;{{_ "navbar-collapse.learndecks"}}
+                                                <i class="fa fa-graduation-cap"></i>&nbsp;{{_
+                                                    "navbar-collapse.learndecks"}}
                                             </a>
                                         </li>
                                         {{#unless isSmartPhoneAndOwnsNoCards}}
@@ -80,7 +84,8 @@
                                     <ul class="nav navbar-nav">
                                         <li id="navbar-help"
                                             class="{{#if isActiveRoute regex='help'}}active{{/if}}">
-                                            <a href="/help" id="helpBtn"><i class="fa fa-medkit"></i><span class="hidden-sm">&nbsp;{{_ "contact.help"}}</span></a>
+                                            <a href="/help" id="helpBtn"><i class="fa fa-medkit"></i><span
+                                                    class="hidden-sm">&nbsp;{{_ "contact.help"}}</span></a>
                                         </li>
                                     </ul>
                                     <ul class="nav navbar-nav navbar-right">
@@ -108,8 +113,11 @@
                                             <a href="#" id="dropdownMenuLink" class="dropdown-toggle"
                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <span class="hidden-sm">
-                                                        <span class="visible-xs"><i class="fa fa-user"></i>&nbsp;{{getUsername}}&nbsp;<span class="caret"></span></span>
-                                                        <span class="hidden-xs">{{getUsername}}&nbsp;<span class="caret"></span></span>
+                                                        <span class="visible-xs"><i
+                                                                class="fa fa-user"></i>&nbsp;{{getUsername}}&nbsp;<span
+                                                                class="caret"></span></span>
+                                                        <span class="hidden-xs">{{getUsername}}&nbsp;<span
+                                                                class="caret"></span></span>
                                                     </span>
                                                 <span class="visible-sm">
                                                         {{_ "navbar-collapse.myprofile"}} <span class="caret"></span>
@@ -133,24 +141,27 @@
                                                                                _id=currentUser._id}}">{{_
                                                                 "profile.activity"}}</a></td>
                                                     </tr>
-                                                    {{#if isInRole 'admin, editor'}}
-                                                        <tr class="{{#if isActiveRoute
-                                                                         'profileMembership'}}active{{/if}}">
-                                                            <td><a class="dropdown-item"
-                                                                   href="/profile/{{currentUser._id}}/membership"><i
-                                                                    class="fa fa-users"></i></a></td>
-                                                            <td><a class="dropdown-item"
-                                                                   href="/profile/{{currentUser._id}}/membership">{{_
-                                                                    "profile.membership"}}</a></td>
-                                                        </tr>
-                                                        <tr class="{{#if isActiveRoute 'profileBilling'}}active{{/if}}">
-                                                            <td><a class="dropdown-item"
-                                                                   href="/profile/{{currentUser._id}}/billing"><i
-                                                                    class="fa fa-credit-card"></i></a></td>
-                                                            <td><a class="dropdown-item"
-                                                                   href="/profile/{{currentUser._id}}/billing">{{_
-                                                                    "profile.billing"}}</a></td>
-                                                        </tr>
+                                                    {{#if isProLoginActive}}
+                                                        {{#if isInRole 'admin, editor'}}
+                                                            <tr class="{{#if isActiveRoute
+                                                                             'profileMembership'}}active{{/if}}">
+                                                                <td><a class="dropdown-item"
+                                                                       href="/profile/{{currentUser._id}}/membership"><i
+                                                                        class="fa fa-users"></i></a></td>
+                                                                <td><a class="dropdown-item"
+                                                                       href="/profile/{{currentUser._id}}/membership">{{_
+                                                                        "profile.membership"}}</a></td>
+                                                            </tr>
+                                                            <tr class="{{#if isActiveRoute
+                                                                             'profileBilling'}}active{{/if}}">
+                                                                <td><a class="dropdown-item"
+                                                                       href="/profile/{{currentUser._id}}/billing"><i
+                                                                        class="fa fa-credit-card"></i></a></td>
+                                                                <td><a class="dropdown-item"
+                                                                       href="/profile/{{currentUser._id}}/billing">{{_
+                                                                        "profile.billing"}}</a></td>
+                                                            </tr>
+                                                        {{/if}}
                                                     {{/if}}
                                                     <tr class="{{#if isActiveRoute
                                                                      'profileSettings'}}active{{/if}}">

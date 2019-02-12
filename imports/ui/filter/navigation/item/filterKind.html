@@ -24,7 +24,7 @@
                     <span class="flex-content" data-kind="{{getEduKindTag}}">{{_ 'access-level.edu.short'}}</span>
                 </label>
             {{/if}}
-            {{#unless isLegacyLoginActive}}
+            {{#if isProLoginActive}}
                 {{#if gotProKind}}
                     <label class="btn btn-danger btn-sm {{#if
                             isProKindActive}}kindButtonActive active{{else}}kindButtonInactive{{/if}}"
@@ -32,7 +32,7 @@
                         <span class="flex-content" data-kind="{{getProKindTag}}">{{_ 'access-level.pro.short'}}</span>
                     </label>
                 {{/if}}
-            {{/unless}}
+            {{/if}}
         </div>
     </ul>
 </template>
