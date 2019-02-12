@@ -39,18 +39,20 @@
   $input_textarea_text_active: black;
   $input_textarea_text_inactive: black;
   $item_icon_hover: midnightblue;
-  $default_background: rgb(153, 153, 153);
-  $default_background_image: url('/img/background/zettelkasten_wikipedia_background.jpg');
+  $default_background: gray;
+  $default_background_image: url('/img/background/Karten_geordnet_2.jpg');
+  $frontend_image: url('/img/background/Buchladen.jpg');
+
   @return (
     //background (Deactivate the image with "none" if you want to use the background-color)
           "background_default" : $default_background,
           "background_default_image" : $default_background_image,
           "background_default_frontend" : $default_background,
-          "background_default_frontend_image" : $default_background_image,
+          "background_default_frontend_image" : $frontend_image,
           "background_default_backend" : $default_background,
-          "background_default_backend_image" : $default_background_image,
+          "background_default_backend_image" : "none",
           "background_demo": $default_background,
-          "background_demo_image": $default_background_image,
+          "background_demo_image": "none",
           "background_editor": $default_background,
           "background_editor_image": "none",
           "background_presentation": $default_background,
@@ -510,13 +512,13 @@
           "presentation_clock_minute_arm": $thm_gray,
           "presentation_clock_second_arm": $thm_red,
     //pomodoro colors
-          "pomodoro_timer_fullscreen_background": #4A5C66,
+          "pomodoro_timer_fullscreen_background": transparent,
           "pomodoro_timer_hand_circle": $thm_orange,
           "pomodoro_timer_hand_circle_hover": white,
           "pomodoro_timer_hand_hour": white,
-          "pomodoro_timer_hand_hour_hover": $thm_orange,
+          "pomodoro_timer_hand_hour_hover": midnightblue,
           "pomodoro_timer_hand_min": white,
-          "pomodoro_timer_hand_min_hover": $thm_orange,
+          "pomodoro_timer_hand_min_hover": midnightblue,
           "pomodoro_timer_arc": $thm_orange,
           "pomodoro_timer_arc_hover": $thm_orange,
           "pomodoro_timer_arc_progress": $thm_red,
@@ -579,7 +581,7 @@
           //landing page
           "landing_page_wordcloud_button": $thm_green,
           "landing_page_wordcloud_button_opacity": 1.0,
-          "landing_page_wordcloud_button_hover": $thm_red,
+          "landing_page_wordcloud_button_hover": midnightblue,
           "landing_page_wordcloud_button_opacity_hover": 1,
           "landing_page_label": white
   );
