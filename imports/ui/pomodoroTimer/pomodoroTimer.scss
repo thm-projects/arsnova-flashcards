@@ -128,15 +128,33 @@
   width: 100%;
   height: 100%;
   text-align: center;
-  background-color: #4A5C66 !important;
   z-index: 1000;
   display: none;
   overflow: hidden;
-  .pomodoroTimer {
-    margin: auto;
+  .svg-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
   }
-  .pomodoroClock {
-    margin-top: 0 !important;
+  .pomodoroTimer {
+    height: 100% !important;
+    width: 100% !important;
+  }
+
+  .pomodoroTimer, .pomodoroClock {
+    margin: 0 auto !important;
+    display: block !important;
+  }
+  @media (orientation:portrait) {
+    .pomodoroClock {
+      height: 100% !important;
+      width: 100% !important;
+    }
+  }
+  @media (orientation:landscape) {
+    .pomodoroClock {
+      height: 100% !important;
+    }
   }
 }
 
