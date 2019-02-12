@@ -479,12 +479,19 @@ $themes: (
     $presentation_clock_minute_arm: map-get($map, "presentation_clock_minute_arm");
     $presentation_clock_second_arm: map-get($map, "presentation_clock_second_arm");
     //pomodoro colors
+    $pomodoro_timer_fullscreen_background: map-get($map, "pomodoro_timer_fullscreen_background");
     $pomodoro_timer_hand_circle: map-get($map, "pomodoro_timer_hand_circle");
+    $pomodoro_timer_hand_circle_hover: map-get($map, "pomodoro_timer_hand_circle_hover");
     $pomodoro_timer_hand_hour: map-get($map, "pomodoro_timer_hand_hour");
+    $pomodoro_timer_hand_hour_hover: map-get($map, "pomodoro_timer_hand_hour_hover");
     $pomodoro_timer_hand_min: map-get($map, "pomodoro_timer_hand_min");
+    $pomodoro_timer_hand_min_hover: map-get($map, "pomodoro_timer_hand_min_hover");
     $pomodoro_timer_arc: map-get($map, "pomodoro_timer_arc");
+    $pomodoro_timer_arc_hover: map-get($map, "pomodoro_timer_arc_hover");
     $pomodoro_timer_arc_progress: map-get($map, "pomodoro_timer_arc_progress");
+    $pomodoro_timer_arc_progress_hover: map-get($map, "pomodoro_timer_arc_progress_hover");
     $pomodoro_timer_arc_break: map-get($map, "pomodoro_timer_arc_break");
+    $pomodoro_timer_arc_break_hover: map-get($map, "pomodoro_timer_arc_break_hover");
     $pomodoro_timer_text: map-get($map, "pomodoro_timer_text");
     $pomodoro_timer_text_highlight: map-get($map, "pomodoro_timer_text_highlight");
     //sweet alert 2 colors
@@ -2845,7 +2852,37 @@ $themes: (
     }
 
     //pomodoro
-    .pomodoroTimer {
+    #pomodoroTimerOverlay {
+      background-color: $pomodoro_timer_fullscreen_background !important;
+    }
+
+    .pomodoroClock:hover {
+      .pomodoroHour {
+        fill: $pomodoro_timer_hand_hour_hover !important;
+      }
+
+      .pomodoroMin {
+        fill: $pomodoro_timer_hand_min_hover !important;
+      }
+
+      .handCircle {
+        fill: $pomodoro_timer_hand_circle_hover !important;
+      }
+
+      .pomArc {
+        stroke: $pomodoro_timer_arc_hover !important;
+      }
+
+      .breakArc {
+        stroke: $pomodoro_timer_arc_break_hover !important;
+      }
+
+      .progressArc {
+        stroke: $pomodoro_timer_arc_progress_hover !important;
+      }
+    }
+
+    .pomodoroClock {
       a:visited {
         color: $hyperlink !important;
       }
