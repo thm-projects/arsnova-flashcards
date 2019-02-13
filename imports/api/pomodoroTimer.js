@@ -754,7 +754,6 @@ export let PomodoroTimer = class PomodoroTimer {
 			$('#pomodoroTimerOverlay').css('display', 'none');
 			$('#pomodoroTimerNormalContainer').css('display', 'block');
 			$('#pomodoroTimerOverlay .pomodoroClock').css('height', 'unset');
-			WordcloudCanvas.draw();
 			this.pomoPosition();
 		}
 	}

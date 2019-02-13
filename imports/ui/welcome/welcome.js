@@ -13,6 +13,7 @@ import {PomodoroTimer} from "../../api/pomodoroTimer";
 import {CardVisuals} from "../../api/cardVisuals";
 import {NavigatorCheck} from "../../api/navigatorCheck";
 import {AdminSettings} from "../../api/adminSettings";
+import {WordcloudCanvas} from "../../api/wordcloudCanvas";
 
 Meteor.subscribe("pomodoroLandingPage");
 Meteor.subscribe("userData");
@@ -222,6 +223,7 @@ Template.welcomeWordcloudButton.events({
 	'click .toggle-wordcloud': function () {
 		Session.set('isLandingPagePomodoroActive', !Session.get('isLandingPagePomodoroActive'));
 		PomodoroTimer.showPomodoroNormal();
+		WordcloudCanvas.draw();
 	}
 });
 
