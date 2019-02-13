@@ -3,7 +3,6 @@ import {Bonus} from "./bonus.js";
 import {Cardsets} from "./cardsets.js";
 import {Route} from "./route.js";
 import swal from "sweetalert2";
-import {WordcloudCanvas} from "./wordcloudCanvas";
 import * as config from "../config/pomodoroTimer.js";
 import * as screenfull from "screenfull";
 
@@ -743,6 +742,7 @@ export let PomodoroTimer = class PomodoroTimer {
 			$('.pomodoroTimer').detach().appendTo('#pomodoroTimerOverlay .svg-container');
 			isClockInBigmode = true;
 			$('#pomodoroTimerOverlay').css('display', 'block');
+			$('#pomodoroTimerNormalContainer').css('display', 'none');
 		}
 	}
 
@@ -751,8 +751,8 @@ export let PomodoroTimer = class PomodoroTimer {
 			isClockInBigmode = false;
 			screenfull.exit();
 			$('#pomodoroTimerOverlay').css('display', 'none');
+			$('#pomodoroTimerNormalContainer').css('display', 'block');
 			$('#pomodoroTimerOverlay .pomodoroClock').css('height', 'unset');
-			WordcloudCanvas.draw();
 			this.pomoPosition();
 		}
 	}
