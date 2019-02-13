@@ -575,7 +575,7 @@
       "delete": "Konto löschen",
       "deleteText": "Falls du sicher bist, dass du 🍅__lastAppTitle__ nicht weiter verwenden möchtest, kannst du hier dein Konto löschen.",
       "appearance": "Einstellungen",
-      "theme": "Hintergrundbild",
+      "theme": "Design",
       "language": "Sprache"
     }
   },
@@ -726,9 +726,9 @@
   },
   "demo": {
     "help": {
-      "title": "",
+      "title": "Willkommen auf \uD83C\uDF45cards!",
       "button": {
-        "confirm": "Okay, ich schaue mir die Demo an!"
+        "confirm": "Ja, ich schau mir die Demo an…"
       }
     }
   },

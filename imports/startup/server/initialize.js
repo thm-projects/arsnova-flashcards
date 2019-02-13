@@ -13,10 +13,10 @@ import {Paid} from "../../api/paid";
 var initColorThemes = function () {
 	return [{
 		"_id": "default",
-		"name": " Kai Schreiber [CC BY-SA 2.0] "
+		"name": "mit Hintergrundbildern"
 	}, {
 		"_id": "contrast",
-		"name": " ohne und mit mehr Kontrast "
+		"name": "ohne und mit mehr Kontrast"
 	}];
 };
 
