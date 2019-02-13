@@ -222,8 +222,8 @@ Template.welcome.onRendered(function () {
 Template.welcomeWordcloudButton.events({
 	'click .toggle-wordcloud': function () {
 		Session.set('isLandingPagePomodoroActive', !Session.get('isLandingPagePomodoroActive'));
-		PomodoroTimer.showPomodoroNormal();
 		WordcloudCanvas.draw();
+		PomodoroTimer.showPomodoroNormal();
 	}
 });
 
