@@ -478,8 +478,10 @@ $themes: (
     $presentation_clock_hour_arm: map-get($map, "presentation_clock_hour_arm");
     $presentation_clock_minute_arm: map-get($map, "presentation_clock_minute_arm");
     $presentation_clock_second_arm: map-get($map, "presentation_clock_second_arm");
+    //modal colors
+    $modal_overlay: map-get($map, "modal_overlay");
     //pomodoro colors
-    $pomodoro_timer_fullscreen_background: map-get($map, "pomodoro_timer_fullscreen_background");
+    $pomodoro_timer_fullscreen_overlay: map-get($map, "pomodoro_timer_fullscreen_overlay");
     $pomodoro_timer_hand_circle: map-get($map, "pomodoro_timer_hand_circle");
     $pomodoro_timer_hand_circle_hover: map-get($map, "pomodoro_timer_hand_circle_hover");
     $pomodoro_timer_hand_hour: map-get($map, "pomodoro_timer_hand_hour");
@@ -2851,9 +2853,14 @@ $themes: (
       }
     }
 
+    //modal
+    .modal.fade.in {
+      background-color: $modal_overlay !important;
+    }
+
     //pomodoro
     #pomodoroTimerOverlay {
-      background-color: $pomodoro_timer_fullscreen_background !important;
+      background-color: $pomodoro_timer_fullscreen_overlay !important;
     }
 
     .pomodoroClock:hover {

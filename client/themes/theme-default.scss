@@ -512,8 +512,10 @@
           "presentation_clock_hour_arm": $thm_gray,
           "presentation_clock_minute_arm": $thm_gray,
           "presentation_clock_second_arm": $thm_red,
+    //modal colors
+          "modal_overlay": transparent,
     //pomodoro colors
-          "pomodoro_timer_fullscreen_background": transparent,
+          "pomodoro_timer_fullscreen_overlay": transparent,
           "pomodoro_timer_hand_circle": $thm_orange,
           "pomodoro_timer_hand_circle_hover": white,
           "pomodoro_timer_hand_hour": white,
