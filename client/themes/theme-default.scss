@@ -43,6 +43,7 @@
   $default_background_image: url('/img/background/Karten_geordnet_2.jpg');
   $frontend_image: url('/img/background/Buchladen.jpg');
   $backend_image: url('/img/background/zettelkasten_wikipedia_background.jpg');
+  $demo_image: url('/img/background/Piccadilly_Book_Stall.jpg');
 
   @return (
     //background (Deactivate the image with "none" if you want to use the background-color)
@@ -53,7 +54,7 @@
           "background_default_backend" : $default_background,
           "background_default_backend_image" : $backend_image,
           "background_demo": $default_background,
-          "background_demo_image": "none",
+          "background_demo_image": $demo_image,
           "background_editor": $default_background,
           "background_editor_image": "none",
           "background_presentation": $default_background,
