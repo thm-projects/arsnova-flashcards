@@ -3058,6 +3058,7 @@ $themes: (
     #memoRate0 {
       background-color: $wozniak_rating_0_background !important;
       color: $wozniak_rating_0_text !important;
+      text-shadow: none !important;
     }
     #memoRate0:hover {
       background-color: $wozniak_rating_0_background_hover !important;
