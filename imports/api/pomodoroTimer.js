@@ -5,6 +5,7 @@ import {Route} from "./route.js";
 import swal from "sweetalert2";
 import {WordcloudCanvas} from "./wordcloudCanvas";
 import * as config from "../config/pomodoroTimer.js";
+import * as screenfull from "screenfull";
 
 Session.set('pomodoroBreakActive', false);
 /*This is a ton of script, mostly popups, so strap in for a wild ride!*/
@@ -748,6 +749,7 @@ export let PomodoroTimer = class PomodoroTimer {
 	static showPomodoroNormal () {
 		if ($(document).has('#pomodoroTimerNormalContainer').length) {
 			isClockInBigmode = false;
+			screenfull.exit();
 			$('#pomodoroTimerOverlay').css('display', 'none');
 			$('#pomodoroTimerOverlay .pomodoroClock').css('height', 'unset');
 			WordcloudCanvas.draw();
