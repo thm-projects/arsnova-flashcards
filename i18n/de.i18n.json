@@ -1879,7 +1879,7 @@
     "rate": "Bewerte deine Antwort",
     "answer": {
       "0": "Keine Ahnung",
-      "0Mobile": "👎",
+      "0Mobile": "",
       "1": "Falsch",
       "1Mobile": "",
       "2": "Falsch, aber…",
@@ -1889,7 +1889,7 @@
       "4": "Richtig",
       "4Mobile": "",
       "5": "Perfekt",
-      "5Mobile": "👍"
+      "5Mobile": ""
     },
     "endscreen": {
       "text": "Lernpensum abgeschlossen"
