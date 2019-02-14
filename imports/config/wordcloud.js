@@ -8,8 +8,8 @@ let wordcloudLandingPage = {
 	"weightFactor": 24,
 	"rotateRatio": 0,
 	"fontFamily": "Roboto Condensed, Arial Narrow, sans-serif",
-	"color": "random-light",
-	"backgroundColor": "rgba(255,255,255, 0)",
+	"color": "random-dark",
+	"backgroundColor": "rgba(255, 255, 255, 1.0)",
 	"wait": 100
 };
 
@@ -20,8 +20,8 @@ let wordcloudDefault = {
 	"weightFactor": 24,
 	"rotateRatio": 0,
 	"fontFamily": "Roboto Condensed, Arial Narrow, sans-serif",
-	"color": "random-light",
-	"backgroundColor": "rgba(255,255,255, 0)",
+	"color": "random-dark",
+	"backgroundColor": "rgba(255,255,255, 1.0)",
 	"wait": 100
 };
 
