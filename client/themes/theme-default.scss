@@ -42,7 +42,6 @@
   $default_background: lightslategray;
   $default_background_image: url('/img/background/Piccadilly_Book_Stall.jpg');
   $frontend_image: url('/img/background/Buchladen.jpg');
-  $backend_image: url('/img/background/zettelkasten_wikipedia_background.jpg');
   $demo_image: url('/img/background/Piccadilly_Book_Stall.jpg');
 
   @return (
@@ -52,7 +51,7 @@
           "background_default_frontend" : $default_background,
           "background_default_frontend_image" : $frontend_image,
           "background_default_backend" : $default_background,
-          "background_default_backend_image" : $backend_image,
+          "background_default_backend_image" : "none",
           "background_demo": $default_background,
           "background_demo_image": $demo_image,
           "background_editor": $default_background,
