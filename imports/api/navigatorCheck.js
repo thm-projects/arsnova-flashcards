@@ -7,7 +7,11 @@ export let NavigatorCheck = class CardVisuals {
 	}
 
 	static isIOS () {
-		return ['iPad', 'iPhone', 'iPod'].indexOf(navigator.platform) >= 0;
+		return config.iOSPlatforms.indexOf(navigator.platform) >= 0;
+	}
+
+	static isMacOS () {
+		return config.macOSPlatforms.indexOf(navigator.platform) >= 0;
 	}
 
 	static isSafari () {
@@ -22,9 +26,15 @@ export let NavigatorCheck = class CardVisuals {
 		return window.innerWidth > window.innerHeight;
 	}
 
+	static isMacOSSafari () {
+		return this.isMacOS() && this.isSafari();
+	}
+
 	static gotFeatureSupport (feature) {
 		if (this.isIOS()) {
 			return config.enabledIOSFeatures.includes(feature);
+		} else if (this.isMacOSSafari()) {
+			return config.enabledMacOSSafariFeatures.includes(feature);
 		} else {
 			return true;
 		}
