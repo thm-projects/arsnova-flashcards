@@ -1,15 +1,20 @@
 let minimumTabletWidth = 768;
 let minimumTabletHeight = 1024;
+let iOSPlatforms = ['iPhone', 'iPad', 'iPod'];
+let macOSPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'];
 
-// Enabled features for IOS devices
+//  Feature List
 //0: Minute jump clock
 //1: WordCloud - Landing Page
 //2: WordCloud - Filter
-
-let enabledIOSFeatures = [2];
+let enabledIOSFeatures = [];
+let enabledMacOSSafariFeatures = [];
 
 module.exports = {
 	minimumTabletWidth,
 	minimumTabletHeight,
-	enabledIOSFeatures
+	iOSPlatforms: iOSPlatforms,
+	macOSPlatforms: macOSPlatforms,
+	enabledIOSFeatures,
+	enabledMacOSSafariFeatures
 };
