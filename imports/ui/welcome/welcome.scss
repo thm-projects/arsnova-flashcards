@@ -9,12 +9,12 @@
     h2 {
       margin: 0;
       padding: 0;
-      @media (max-width: 667px) {
-        font-size: 12px;
+      @media (max-width: 767px) {
+        font-size: 20px;
         font-weight: bold;
       }
-      @media (min-width: 668px) {
-        font-size: 32px;
+      @media (min-width: 768px) {
+        font-size: 40px;
         font-weight: bold;
       }
     }
@@ -163,7 +163,7 @@
 }
 
 .logo-header-chars {
-  font-size: 8vw;
+  font-size: 10vw;
   font-weight: bold;
   text-shadow: 5px 5px 20px rgba(0, 0, 0, 0.7);
 }
