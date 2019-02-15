@@ -28,7 +28,7 @@ let debug = {
 			"twitter": true,
 			"google": true
 		},
-		"cas": true,
+		"cas": false,
 		"guest": true,
 		"pro": true
 	},
@@ -51,7 +51,7 @@ let informatik = {
 			"google": true
 		},
 		"cas": true,
-		"guest": true,
+		"guest": false,
 		"pro": false
 	},
 	"welcome": {
@@ -94,8 +94,8 @@ let review = {
 			"twitter": true,
 			"google": true
 		},
-		"cas": false,
-		"guest": false,
+		"cas": true,
+		"guest": true,
 		"pro": false
 	},
 	"welcome": {
@@ -117,7 +117,7 @@ let staging = {
 			"google": true
 		},
 		"cas": true,
-		"guest": true,
+		"guest": false,
 		"pro": true
 	},
 	"welcome": {
