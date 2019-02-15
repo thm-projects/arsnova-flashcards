@@ -1,6 +1,7 @@
 {
   "public": {
     "rooturl": "http://localhost:<branch-port>",
+    "dynamicSettings": "review",
     "cas": {
       "loginUrl": "https://cas.thm.de/cas/login",
       "serviceParam": "service",
@@ -27,11 +28,6 @@
       "default": "THM"
     },
     "welcome": {
-      "title": {
-        "first": "review",
-        "last": "cards",
-        "slogan": "ORGANIZE. LEARN. MEMORIZE."
-      },
       "fakeStatistics": false
     },
     "env": "Sandbox",
