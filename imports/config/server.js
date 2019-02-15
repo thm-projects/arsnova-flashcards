@@ -1,7 +1,7 @@
 let defaultSettings = {
 	"welcome": {
 		"title": {
-			"first": "default",
+			"first": "informatik",
 			"last": "cards",
 			"slogan": "ORGANIZE. LEARN. MEMORIZE."
 		}
@@ -36,7 +36,7 @@ let linux = {
 		"title": {
 			"first": "Linux",
 			"last": "cards",
-			"slogan": "Effiziente Vorbereitung auf die LPIC-Prüfungen"
+			"slogan": "Lernen für die LPIC-Prüfungen"
 		}
 	},
 	"backgrounds": "linux"
