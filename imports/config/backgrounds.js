@@ -5,9 +5,9 @@
 
 // Setting "default"
 let defaultBackgrounds = {
-	"landing-page": "/img/background/Piccadilly_Book_Stall.jpg",
+	"landing-page": "/img/background/Informatik.jpg",
 	"internal": "/img/background/Buchladen.jpg",
-	"demo": "/img/background/Piccadilly_Book_Stall.jpg",
+	"demo": "/img/background/Informatik.jpg",
 	"presentation": "none",
 	"learning": "none",
 	"backend": "none",

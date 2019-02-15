@@ -16,7 +16,7 @@
         "google": true
       },
       "cas": true,
-      "guest": true,
+      "guest": false,
       "pro": false,
       "backdoor": false
     },
