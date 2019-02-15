@@ -281,7 +281,7 @@ Template.registerHelper("learningActiveAndEditor", function () {
 });
 
 Template.registerHelper("isProLoginActive", function () {
-	return (Meteor.settings.public.login.legacyMode.enabled || Meteor.settings.public.login.pro);
+	return (ServerStyle.isLoginEnabled("legacy") || ServerStyle.isLoginEnabled("pro"));
 });
 
 Template.registerHelper("isEditor", function () {

@@ -1,3 +1,5 @@
+import {ServerStyle} from "../../api/styles";
+
 ServiceConfiguration.configurations.remove({
 	service: 'facebook'
 });
@@ -31,7 +33,7 @@ ServiceConfiguration.configurations.insert({
 
 Meteor.users.after.insert(function (userId, doc) {
 	// Setup roles for backdoor login, required for acceptance tests
-	if (Meteor.settings.public.login.backdoor) {
+	if (ServerStyle.isLoginEnabled("backdoor")) {
 		let backdoorRoles = ['firstLogin'];
 		let username = "";
 		let firstName = "";
