@@ -1,4 +1,15 @@
 let defaultSettings = {
+	"login": {
+		"legacyMode": {
+			"enabled": false,
+			"facebook": true,
+			"twitter": true,
+			"google": true
+		},
+		"cas": true,
+		"guest": false,
+		"pro": false
+	},
 	"welcome": {
 		"title": {
 			"first": "informatik",
@@ -10,6 +21,17 @@ let defaultSettings = {
 };
 
 let debug = {
+	"login": {
+		"legacyMode": {
+			"enabled": false,
+			"facebook": true,
+			"twitter": true,
+			"google": true
+		},
+		"cas": true,
+		"guest": true,
+		"pro": true
+	},
 	"welcome": {
 		"title": {
 			"first": "debug",
@@ -21,6 +43,17 @@ let debug = {
 };
 
 let informatik = {
+	"login": {
+		"legacyMode": {
+			"enabled": false,
+			"facebook": true,
+			"twitter": true,
+			"google": true
+		},
+		"cas": true,
+		"guest": true,
+		"pro": false
+	},
 	"welcome": {
 		"title": {
 			"first": "informatik",
@@ -32,6 +65,17 @@ let informatik = {
 };
 
 let linux = {
+	"login": {
+		"legacyMode": {
+			"enabled": false,
+			"facebook": true,
+			"twitter": true,
+			"google": true
+		},
+		"cas": true,
+		"guest": true,
+		"pro": false
+	},
 	"welcome": {
 		"title": {
 			"first": "Linux",
@@ -43,6 +87,17 @@ let linux = {
 };
 
 let review = {
+	"login": {
+		"legacyMode": {
+			"enabled": false,
+			"facebook": true,
+			"twitter": true,
+			"google": true
+		},
+		"cas": false,
+		"guest": false,
+		"pro": false
+	},
 	"welcome": {
 		"title": {
 			"first": "review",
@@ -54,6 +109,17 @@ let review = {
 };
 
 let staging = {
+	"login": {
+		"legacyMode": {
+			"enabled": false,
+			"facebook": true,
+			"twitter": true,
+			"google": true
+		},
+		"cas": true,
+		"guest": true,
+		"pro": true
+	},
 	"welcome": {
 		"title": {
 			"first": "staging",

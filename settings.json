@@ -2,23 +2,12 @@
   "public": {
     "rooturl": "http://localhost:3000",
     "dynamicSettings": "default",
+    "backdoorEnabled": false,
     "cas": {
       "loginUrl": "https://cas.thm.de/cas/login",
       "serviceParam": "service",
       "popupWidth": 810,
       "popupHeight": 610
-    },
-    "login": {
-      "legacyMode": {
-        "enabled": false,
-        "facebook": true,
-        "twitter": true,
-        "google": true
-      },
-      "cas": true,
-      "guest": false,
-      "pro": false,
-      "backdoor": false
     },
     "leitner": {
       "dayIntervalHour": 1
