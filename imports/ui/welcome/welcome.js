@@ -89,7 +89,7 @@ Template.welcome.events({
 
 	// Backdoor for login in acceptance tests
 	'click #BackdoorLogin': function () {
-		if (Meteor.settings.public.backdoorEnabled) {
+		if (ServerStyle.isLoginEnabled("backdoor")) {
 			Meteor.insecureUserLogin($("#TestingBackdoorUsername").val(), function (err, result) {
 				if (result) {
 					setActiveLanguage();
