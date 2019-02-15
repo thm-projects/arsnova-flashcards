@@ -9,6 +9,7 @@ import {MarkdeepEditor} from "../../api/markdeepEditor";
 import {WebPushNotifications} from "../../api/webPushSubscriptions";
 import {UserPermissions} from "../../api/permissions";
 import {MainNavigation} from "../../api/mainNavigation";
+import {ServerStyle} from "../../api/styles.js";
 
 let loadingScreenTemplate = 'loadingScreen';
 
@@ -965,10 +966,10 @@ export function firstLoginBertAlert() {
 				Bert.defaults.hideDelay = 97200;
 				Bert.alert({
 					title: TAPi18n.__('bertAlert.firstLogin.title', {
-						firstAppTitle: Meteor.settings.public.welcome.title.first,
-						lastAppTitle: Meteor.settings.public.welcome.title.last
+						firstAppTitle: ServerStyle.getFirstAppTitle(),
+						lastAppTitle: ServerStyle.getLastAppTitle()
 					}),
-					message: TAPi18n.__('bertAlert.firstLogin.message', {lastAppTitle: Meteor.settings.public.welcome.title.last}),
+					message: TAPi18n.__('bertAlert.firstLogin.message', {lastAppTitle: ServerStyle.getLastAppTitle()}),
 					type: 'info',
 					style: 'growl-top-left',
 					icon: 'fa-remove'
@@ -1025,22 +1026,30 @@ var goToCreated = function () {
 var setBackground = function () {
 	let body = $('body');
 	body.removeAttr('class');
+	body.removeAttr('style');
 	if (Route.isPresentation()) {
 		body.addClass('presentation');
+		body.css('background-image', ServerStyle.getBackground("presentation"));
 	} else if (Route.isBox() || Route.isMemo()) {
-		body.addClass('learning-mode');
+		body.addClass('learning');
+		body.css('background-image', ServerStyle.getBackground("learning"));
 	} else if (Route.isEditMode()) {
 		body.addClass('editor');
+		body.css('background-image', ServerStyle.getBackground("editor"));
 	} else if (Route.isDemo() | Route.isMakingOf()) {
 		body.addClass('demo');
+		body.css('background-image', ServerStyle.getBackground("demo"));
 	} else if (Meteor.user()) {
 		if (Route.isBackend()) {
-			body.addClass('default-backend');
+			body.addClass('backend');
+			body.css('background-image', ServerStyle.getBackground("backend"));
 		} else {
-			body.addClass('default-frontend');
+			body.addClass('internal');
+			body.css('background-image', ServerStyle.getBackground("internal"));
 		}
 	} else {
-		body.addClass('default');
+		body.addClass('landing-page');
+		body.css('background-image', ServerStyle.getBackground("landing-page"));
 	}
 	this.next();
 };

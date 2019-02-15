@@ -34,6 +34,7 @@ import "./item/search.js";
 import "./modal/item/closeIcon.js";
 import "./main.html";
 import {NavigatorCheck} from "../../api/navigatorCheck";
+import {ServerStyle} from "../../api/styles.js";
 
 Meteor.subscribe("Users");
 Meteor.subscribe("notifications");
@@ -202,7 +203,7 @@ Template.main.helpers({
 
 Template.main.onCreated(function () {
 	MarkdeepContent.initializeStylesheet();
-	document.title = Meteor.settings.public.welcome.title.first + "." + Meteor.settings.public.welcome.title.last;
+	document.title = ServerStyle.getFirstAppTitle() + "." + ServerStyle.getLastAppTitle();
 });
 
 Template.main.onRendered(function () {

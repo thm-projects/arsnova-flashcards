@@ -1,11 +1,11 @@
 // STARTUP IMPORTS
 
-import {Meteor} from "meteor/meteor";
 import "../imports/startup/client/i18n.js";
 import "../imports/startup/client/registerhelper.js";
 import "../imports/startup/client/registerServiceWorker";
 import "../imports/startup/client/routes.js";
 import "../imports/ui/main/main.js";
+import {ServerStyle} from "../imports/api/styles.js";
 
 window.addEventListener("load", function () {
 	window.cookieconsent.initialise({
@@ -23,7 +23,7 @@ window.addEventListener("load", function () {
 		"position": "bottom-right",
 
 		"content": {
-			"message": Meteor.settings.public.welcome.title.first + "." + Meteor.settings.public.welcome.title.last + " verwendet Cookies. Wenn du auf dieser Seite bleibst, stimmst du der Cookie-Nutzung zu.",
+			"message": ServerStyle.getFirstAppTitle() + "." + ServerStyle.getLastAppTitle() + " verwendet Cookies. Wenn du auf dieser Seite bleibst, stimmst du der Cookie-Nutzung zu.",
 			"dismiss": "Ich stimme zu",
 			"link": "→ Datenschutz",
 			"href": "/datenschutz"

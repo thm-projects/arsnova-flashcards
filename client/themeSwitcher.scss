@@ -10,20 +10,13 @@ $themes: (
 @each $theme, $map in $themes {
   .#{$theme} {
     //background
-    $background_default: map-get($map, "background_default");
-    $background_default_image: map-get($map, "background_default_image");
-    $background_default_frontend: map-get($map, "background_default_frontend");
-    $background_default_frontend_image: map-get($map, "background_default_frontend_image");
-    $background_default_backend: map-get($map, "background_default_backend");
-    $background_default_backend_image: map-get($map, "background_default_backend_image");
+    $background_landing_page: map-get($map, "background_landing_page");
+    $background_internal: map-get($map, "background_internal");
     $background_demo: map-get($map, "background_demo");
-    $background_demo_image: map-get($map, "background_demo_image");
-    $background_editor: map-get($map, "background_editor");
-    $background_editor_image: map-get($map, "background_editor_image");
     $background_presentation: map-get($map, "background_presentation");
-    $background_presentation_image: map-get($map, "background_presentation_image");
-    $background_learning_mode: map-get($map, "background_learning_mode");
-    $background_learning_mode_image: map-get($map, "background_learning_mode_image");
+    $background_learning: map-get($map, "background_learning");
+    $background_backend: map-get($map, "background_backend");
+    $background_editor: map-get($map, "background_editor");
     //global colors
     $thm_dark_blue: map-get($map, "thm_dark_blue");
     $thm_blue: map-get($map, "thm_blue");
@@ -562,39 +555,32 @@ $themes: (
     $landing_page_wordcloud_button_opacity_hover: map-get($map, "landing_page_wordcloud_button_opacity_hover");
     $landing_page_label: map-get($map, "landing_page_label");
 
-    body.default {
-      background-color: $background_default !important;
-      background-image: $background_default_image !important;
+    body.landing-page {
+      background-color: $background_landing_page !important;
     }
 
-    body.default-frontend {
-      background-color: $background_default_frontend !important;
-      background-image: $background_default_frontend_image !important;
-    }
-
-    body.default-backend {
-      background-color: $background_default_backend !important;
-      background-image: $background_default_backend_image !important;
-    }
-
-    body.presentation {
-      background-color: $background_presentation !important;
-      background-image: $background_presentation_image !important;
-    }
-
-    body.learning-mode {
-      background-color: $background_learning_mode !important;
-      background-image: $background_learning_mode_image !important;
+    body.internal {
+      background-color: $background_internal !important;
     }
 
     body.demo {
       background-color: $background_demo !important;
-      background-image: $background_demo_image !important;
+    }
+
+    body.presentation {
+      background-color: $background_presentation !important;
+    }
+
+    body.learning {
+      background-color: $background_learning !important;
+    }
+
+    body.backend {
+      background-color: $background_backend !important;
     }
 
     body.editor {
       background-color: $background_editor !important;
-      background-image: $background_editor_image !important;
     }
 
     button:hover, button:focus, .btn:hover, .btn:focus {

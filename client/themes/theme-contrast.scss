@@ -38,23 +38,15 @@
   $input_textarea_text_inactive: $primary_text;
   $item_icon_hover: $thm_orange;
   $default_background: rgb(153, 153, 153);
-  $default_background_image: url('');
   @return (
     //background (Deactivate the image with "none" if you want to use the background-color)
-          "background_default" : $default_background,
-          "background_default_image" : "none",
-          "background_default_frontend" : $default_background,
-          "background_default_frontend_image" : "none",
-          "background_default_backend" : $default_background,
-          "background_default_backend_image" : "none",
+          "background_landing_page" : $default_background,
+          "background_internal" : $default_background,
           "background_demo": $default_background,
-          "background_demo_image": "none",
-          "background_editor": $default_background,
-          "background_editor_image": "none",
           "background_presentation": $default_background,
-          "background_presentation_image": "none",
-          "background_learning_mode": $default_background,
-          "background_learning_mode_image": "none",
+          "background_learning": $default_background,
+          "background_backend" : $default_background,
+          "background_editor": $default_background,
     //global colors
           "thm_dark_blue":$thm_dark_blue,
           "thm_blue":$thm_blue,

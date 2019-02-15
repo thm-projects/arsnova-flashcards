@@ -17,6 +17,7 @@ import {BonusForm} from "../../api/bonusForm";
 import {MarkdeepContent} from "../../api/markdeep";
 import {NavigatorCheck} from "../../api/navigatorCheck";
 import {isNewCardset} from "../../ui/forms/cardsetForm";
+import {ServerStyle} from "../../api/styles.js";
 
 Meteor.subscribe("collegesCourses");
 
@@ -35,15 +36,15 @@ Template.registerHelper('isSelectingCardsetToLearn', function () {
 });
 
 Template.registerHelper('getFirstAppTitle', function () {
-	return Meteor.settings.public.welcome.title.first;
+	return ServerStyle.getFirstAppTitle();
 });
 
 Template.registerHelper('getLastAppTitle', function () {
-	return Meteor.settings.public.welcome.title.last;
+	return ServerStyle.getLastAppTitle();
 });
 
 Template.registerHelper('getAppSlogan', function () {
-	return Meteor.settings.public.welcome.title.slogan;
+	return ServerStyle.getAppSlogan();
 });
 
 Template.registerHelper('isInBonus', function () {
