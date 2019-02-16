@@ -54,7 +54,7 @@ export let MarkdeepEditor = class MarkdeepEditor {
 	}
 
 	static changeBackgroundStyle () {
-		if (Session.get('backgroundStyle') === 1) {
+		if (Session.get('backgroundStyle') == 1) {
 			Session.set('backgroundStyle', 0);
 		} else {
 			Session.set('backgroundStyle', 1);
