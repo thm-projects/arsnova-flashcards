@@ -6,7 +6,7 @@
 // Setting "default"
 let defaultBackgrounds = {
 	"landing-page": "/img/background/Mac-Tastatur.jpg",
-	"internal": "/img/background/Buchladen.jpg",
+	"internal": "none",
 	"demo": "/img/background/Mac-Tastatur.jpg",
 	"presentation": "none",
 	"learning": "none",
@@ -17,7 +17,7 @@ let defaultBackgrounds = {
 // Setting "linux"
 let linuxBackgrounds = {
 	"landing-page": "/img/background/Mac-Tastatur.jpg",
-	"internal": "/img/background/Buchladen.jpg",
+	"internal": "none",
 	"demo": "/img/background/Mac-Tastatur.jpg",
 	"presentation": "none",
 	"learning": "none",
