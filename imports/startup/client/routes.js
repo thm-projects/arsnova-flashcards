@@ -989,7 +989,6 @@ var goToCreated = function () {
 		if (!Roles.userIsInRole(Meteor.userId(), ['firstLogin', 'blocked']) && MainNavigation.getLoginTarget() !== undefined && MainNavigation.getLoginTarget() !== false) {
 			Router.go(MainNavigation.getLoginTarget());
 			MainNavigation.setLoginTarget(false);
-
 		} else {
 			Meteor.subscribe("userLeitner", {
 				onReady: function () {
