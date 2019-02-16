@@ -251,13 +251,13 @@ Router.route('/create', {
 		Session.set('helpFilter', "create");
 		switch (Cardsets.find({owner: Meteor.userId()}).count()) {
 			case 0:
-				Session.set('activeRouteTitle',  TAPi18n.__('navbar-collapse.noCarddecks', {}, Session.get('activeLanguage')));
+				Session.set('activeRouteTitle', TAPi18n.__('navbar-collapse.noCarddecks', {}, Session.get('activeLanguage')));
 				break;
 			case 1:
-				Session.set('activeRouteTitle',  TAPi18n.__('navbar-collapse.oneCarddeck', {}, Session.get('activeLanguage')));
+				Session.set('activeRouteTitle', TAPi18n.__('navbar-collapse.oneCarddeck', {}, Session.get('activeLanguage')));
 				break;
 			default:
-				Session.set('activeRouteTitle',  TAPi18n.__('navbar-collapse.carddecks', {}, Session.get('activeLanguage')));
+				Session.set('activeRouteTitle', TAPi18n.__('navbar-collapse.carddecks', {}, Session.get('activeLanguage')));
 		}
 		Filter.resetMaxItemCounter();
 	},
@@ -989,34 +989,31 @@ var goToCreated = function () {
 		if (!Roles.userIsInRole(Meteor.userId(), ['firstLogin', 'blocked']) && MainNavigation.getLoginTarget() !== undefined && MainNavigation.getLoginTarget() !== false) {
 			Router.go(MainNavigation.getLoginTarget());
 			MainNavigation.setLoginTarget(false);
+
 		} else {
-			if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
-				Router.go('alldecks');
-			} else {
-				Meteor.subscribe("userLeitner", {
-					onReady: function () {
-						Meteor.subscribe("userWozniak", {
-							onReady: function () {
-								let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-								actualDate.setHours(0, 0, 0, 0);
-								let count = Leitner.find({
-									user_id: Meteor.userId(),
-									active: true
-								}).count() + Wozniak.find({
-									user_id: Meteor.userId(), nextDate: {
-										$lte: actualDate
-									}
-								}).count();
-								if (count) {
-									Router.go('learn');
-								} else {
-									Router.go('pool');
+			Meteor.subscribe("userLeitner", {
+				onReady: function () {
+					Meteor.subscribe("userWozniak", {
+						onReady: function () {
+							let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+							actualDate.setHours(0, 0, 0, 0);
+							let count = Leitner.find({
+								user_id: Meteor.userId(),
+								active: true
+							}).count() + Wozniak.find({
+								user_id: Meteor.userId(), nextDate: {
+									$lte: actualDate
 								}
+							}).count();
+							if (count) {
+								Router.go('learn');
+							} else {
+								Router.go('pool');
 							}
-						});
-					}
-				});
-			}
+						}
+					});
+				}
+			});
 		}
 	} else {
 		this.next();
