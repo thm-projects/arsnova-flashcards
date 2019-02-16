@@ -256,7 +256,7 @@
 <template name="connectionStatus">
     <a class="connectionStatus {{#if isModalOpen}}active{{/if}}" href="#" data-toggle="modal"
        data-target="#connectionStatusModal" aria-label="{{_ "footer.connection"}}">
-        <span class="glyphicon glyphicon-signal {{getSignal}}"></span>
+        <span class="glyphicon glyphicon-transfer {{getSignal}}"></span>
     </a>
 </template>
 
@@ -266,7 +266,7 @@
             <div class="modal-content hintContent">
                 <div class="modal-header">
                     <span class="modal-icon">
-                        <i class="glyphicon glyphicon-signal"></i>
+                        <i class="glyphicon glyphicon-transfer"></i>
                  </span>
                     {{> mainModalItemCloseIcon}}
                     <h4 id="connectionStatusTitle" class="modal-title">{{_ "connection.title"

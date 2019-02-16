@@ -110,7 +110,7 @@ Template.admin_users.helpers({
 					cellClass: 'edit',
 					sortable: false,
 					fn: function (value) {
-						return new Spacebars.SafeString("<a id='linkToAdminUser' class='editUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.edituser') + "' data-userid='" + value + "'><span class='flex-content'><i class='glyphicon glyphicon-pencil'></i></span></a>");
+						return new Spacebars.SafeString("<a id='linkToAdminUser' class='editUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.edituser') + "' data-userid='" + value + "'><span class='flex-content'><i class='glyphicon glyphicon-edit'></i></span></a>");
 					}
 				},
 				{
