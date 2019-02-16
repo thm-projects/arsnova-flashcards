@@ -39,7 +39,7 @@
   $input_textarea_text_active: black;
   $input_textarea_text_inactive: black;
   $item_icon_hover: midnightblue;
-  $default_background: lightslategray;
+  $default_background: black;
 
   @return (
     //background (Deactivate the image with "none" if you want to use the background-color)
@@ -47,7 +47,7 @@
           "background_internal" : $default_background,
           "background_demo": $default_background,
           "background_presentation": $default_background,
-          "background_learning": steelblue,
+          "background_learning": $default_background,
           "background_backend" : $default_background,
           "background_editor": $default_background,
     //global colors

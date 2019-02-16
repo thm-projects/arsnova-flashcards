@@ -6,6 +6,10 @@
   text-align: center;
 }
 
+#wordcloud-canvas {
+  border-radius: 50px;
+}
+
 #welcome-container #wordcloud-container {
   display: none;
   @media (min-width: 768px) {
