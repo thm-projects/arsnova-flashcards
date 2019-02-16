@@ -2726,6 +2726,7 @@ $themes: (
     .no-results, .no-results-filtered {
       background-color: $no_results_background !important;
       color: $no_results_text !important;
+      border-radius: 15px;
     }
 
     //card list
@@ -2917,6 +2918,7 @@ $themes: (
     .swal2-popup {
       background-color: $sweet_alert_2_modal_background !important;
       color: $sweet_alert_2_text !important;
+      border-radius: 30px !important;
       h2 {
         color: $sweet_alert_2_title !important;
       }
