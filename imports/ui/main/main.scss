@@ -11,7 +11,7 @@
 }
 
 .bert-alert.info {
-  background:midnightblue !important;
+  background: midnightblue !important;
   color: #FFF !important;
 }
 
@@ -341,9 +341,11 @@ body {
     }
   }
 }
+
 @media(min-width: 768px) and (max-width: 900px) {
   .thm-header {
     padding: 0;
+
     .container-fluid {
       padding-left: 10px;
       padding-right: 10px;
@@ -787,6 +789,7 @@ th {
   a {
     text-decoration: none !important;
   }
+
   a:hover {
     text-decoration: underline !important;
   }
@@ -917,7 +920,7 @@ th {
   padding-bottom: 0;
   z-index: 1000;
   margin: 0 !important;
-  background-color: hsla(100,100%,100%,0.8) !important;
+  background-color: hsla(100, 100%, 100%, 0.8) !important;
 }
 
 #searchResults a {
@@ -1093,4 +1096,9 @@ th {
 
 #searchResults .search-result-item:not(:last-child) {
   margin-bottom: $margin_bottom_search_result_item !important;
+}
+
+.cc-theme-edgeless.cc-window {
+  border-radius: 30px;
+  margin: 0px 20px 50px 20px;
 }
