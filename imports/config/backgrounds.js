@@ -16,9 +16,9 @@ let defaultBackgrounds = {
 
 // Setting "linux"
 let linuxBackgrounds = {
-	"landing-page": "/img/background/Mac-Tastatur.jpg",
+	"landing-page": "/img/background/Linux-Regal.jpg",
 	"internal": "none",
-	"demo": "/img/background/Mac-Tastatur.jpg",
+	"demo": "/img/background/Linux-Regal.jpg",
 	"presentation": "none",
 	"learning": "none",
 	"backend": "none",
