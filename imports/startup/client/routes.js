@@ -963,7 +963,7 @@ export function firstLoginBertAlert() {
 		onReady: function () {
 			let firstTimeLogin = 'displayedFirstLoginBertAlert';
 			if (localStorage.getItem(firstTimeLogin) === "true") {
-				Bert.defaults.hideDelay = 97200;
+				Bert.defaults.hideDelay = 10000;
 				Bert.alert({
 					title: TAPi18n.__('bertAlert.firstLogin.title', {
 						firstAppTitle: ServerStyle.getFirstAppTitle(),
@@ -974,7 +974,7 @@ export function firstLoginBertAlert() {
 					style: 'growl-top-left',
 					icon: 'fa-remove'
 				});
-				Bert.defaults.hideDelay = 7;
+				Bert.defaults.hideDelay = 10000;
 				localStorage.setItem(firstTimeLogin, "false");
 			}
 		}
