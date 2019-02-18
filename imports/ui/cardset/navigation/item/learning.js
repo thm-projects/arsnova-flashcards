@@ -38,7 +38,7 @@ Template.cardsetNavigationLearning.onCreated(function () {
 
 Template.cardsetNavigationLearning.onRendered(function () {
 	setTimeout(function () {
-		Bert.defaults.hideDelay = 97200;
+		Bert.defaults.hideDelay = 10000;
 		let bertType = "success";
 		if (Session.get('activeCardset').learningEnd.getTime() > new Date().getTime()) {
 			let text = "";
@@ -94,6 +94,6 @@ Template.cardsetNavigationLearning.onRendered(function () {
 		} else {
 			BertAlertVisuals.displayBertAlert(TAPi18n.__('bonus.message.bonusEnded'), bertType, 'growl-top-left');
 		}
-		Bert.defaults.hideDelay = 7;
+		Bert.defaults.hideDelay = 10000;
 	}, 2000);
 });
