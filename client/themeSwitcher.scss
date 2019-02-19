@@ -1,10 +1,8 @@
 @import "themes/theme-default";
-@import "themes/theme-contrast";
 @import "../imports/ui/main/main.scss";
 
 $themes: (
-        theme-default: map-merge(changing-colors-definitions(), theme-default()),
-        theme-contrast: map-merge(changing-colors-definitions(), theme-contrast())
+        theme-default: map-merge(changing-colors-definitions(), theme-default())
 );
 
 @each $theme, $map in $themes {
