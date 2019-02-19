@@ -1,5 +1,4 @@
 import {Cardsets} from "../../api/cardsets.js";
-import {Leitner, Wozniak} from "../../api/learned";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {CardVisuals} from "../../api/cardVisuals.js";
@@ -10,6 +9,7 @@ import {WebPushNotifications} from "../../api/webPushSubscriptions";
 import {UserPermissions} from "../../api/permissions";
 import {MainNavigation} from "../../api/mainNavigation";
 import {ServerStyle} from "../../api/styles.js";
+import {LoginTasks} from "../../api/login";
 
 let loadingScreenTemplate = 'loadingScreen';
 
@@ -990,29 +990,7 @@ var goToCreated = function () {
 			Router.go(MainNavigation.getLoginTarget());
 			MainNavigation.setLoginTarget(false);
 		} else {
-			Meteor.subscribe("userLeitner", {
-				onReady: function () {
-					Meteor.subscribe("userWozniak", {
-						onReady: function () {
-							let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-							actualDate.setHours(0, 0, 0, 0);
-							let count = Leitner.find({
-								user_id: Meteor.userId(),
-								active: true
-							}).count() + Wozniak.find({
-								user_id: Meteor.userId(), nextDate: {
-									$lte: actualDate
-								}
-							}).count();
-							if (count) {
-								Router.go('learn');
-							} else {
-								Router.go('pool');
-							}
-						}
-					});
-				}
-			});
+			LoginTasks.setLoginRedirect();
 		}
 	} else {
 		this.next();
