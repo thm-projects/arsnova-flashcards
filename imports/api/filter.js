@@ -338,4 +338,15 @@ export let Filter = class Filter {
 	static resetInfiniteBar () {
 		this.resetMaxItemCounter();
 	}
+
+	static resetFilters () {
+		Session.set('maxItemsCounter', config.itemStartingValue);
+		Session.set('poolFilter', undefined);
+		Session.set('myCardsetFilter', undefined);
+		Session.set('courseIterationFilter', undefined);
+		Session.set('repetitoriumFilter', undefined);
+		Session.set('workloadFilter', undefined);
+		Session.set('allCardsetsFilter', undefined);
+		Session.set('shuffleFilter', undefined);
+	}
 };

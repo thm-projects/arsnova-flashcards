@@ -92,7 +92,7 @@ function setTheme() {
 		}
 	}
 	if (Session.get('theme')) {
-		themeClass += Session.get("theme");
+		themeClass += "default";
 	}
 	let html = $('html');
 	html.attr('id', themeId);

@@ -47,6 +47,11 @@ Template.registerHelper('getAppSlogan', function () {
 	return ServerStyle.getAppSlogan();
 });
 
+
+Template.registerHelper('getAboutButton', function (isMobile = false) {
+	return ServerStyle.getAboutButton(isMobile);
+});
+
 Template.registerHelper('isInBonus', function () {
 	return Bonus.isInBonus(Router.current().params._id, Meteor.userId());
 });
