@@ -18,6 +18,14 @@ export let ServerStyle = class ServerStyle {
 		return this.getConfig().welcome.title.slogan;
 	}
 
+	static getAboutButton (isMobile = false) {
+		if (isMobile) {
+			return this.getConfig().welcome.button.about.mobile;
+		} else {
+			return this.getConfig().welcome.button.about.default;
+		}
+	}
+
 	static getConfig () {
 		switch (Meteor.settings.public.dynamicSettings) {
 			case "debug":

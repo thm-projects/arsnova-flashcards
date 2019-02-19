@@ -15,6 +15,12 @@ let defaultSettings = {
 			"first": "informatik",
 			"last": "cards",
 			"slogan": "ORGANIZE. LEARN. MEMORIZE."
+		},
+		"button": {
+			"about":  {
+				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo-Tour …",
+				"mobile": "Erfahre mehr über 🍅cards…"
+			}
 		}
 	},
 	"backgrounds": "default"
@@ -37,6 +43,12 @@ let debug = {
 			"first": "debug",
 			"last": "cards",
 			"slogan": "ORGANIZE. LEARN. MEMORIZE."
+		},
+		"button": {
+			"about":  {
+				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo-Tour …",
+				"mobile": "Erfahre mehr über 🍅cards…"
+			}
 		}
 	},
 	"backgrounds": "default"
@@ -59,6 +71,12 @@ let informatik = {
 			"first": "informatik",
 			"last": "cards",
 			"slogan": "ORGANIZE. LEARN. MEMORIZE."
+		},
+		"button": {
+			"about":  {
+				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo-Tour …",
+				"mobile": "Erfahre mehr über 🍅cards…"
+			}
 		}
 	},
 	"backgrounds": "default"
@@ -81,6 +99,12 @@ let linux = {
 			"first": "Linux",
 			"last": "cards",
 			"slogan": "Lernen für die LPIC-Prüfungen"
+		},
+		"button": {
+			"about":  {
+				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo-Tour …",
+				"mobile": "Erfahre mehr über 🍅cards…"
+			}
 		}
 	},
 	"backgrounds": "linux"
@@ -103,6 +127,12 @@ let review = {
 			"first": "review",
 			"last": "cards",
 			"slogan": "ORGANIZE. LEARN. MEMORIZE."
+		},
+		"button": {
+			"about":  {
+				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo-Tour …",
+				"mobile": "Erfahre mehr über 🍅cards…"
+			}
 		}
 	},
 	"backgrounds": "default"
@@ -125,6 +155,12 @@ let staging = {
 			"first": "staging",
 			"last": "cards",
 			"slogan": "ORGANIZE. LEARN. MEMORIZE."
+		},
+		"button": {
+			"about":  {
+				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo-Tour …",
+				"mobile": "Erfahre mehr über 🍅cards…"
+			}
 		}
 	},
 	"backgrounds": "default"
