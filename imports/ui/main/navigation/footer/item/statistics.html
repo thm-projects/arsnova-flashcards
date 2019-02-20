@@ -1,17 +1,15 @@
-<template name="impressumNavigationItemStatistics">
+<template name="mainNavigationFooterItemStatistics">
     <li class="{{#if serverStatisticsModalActive}}active{{/if}} hidden-xs">
         <a id="serverStatistics" class="showStatistics">
-            <div class="footerNavigationContent">
-                {{{getNavigationName "statistics"}}}
-            </div>
+            {{{getNavigationName "statistics"}}}
         </a>
     </li>
 </template>
 
-<template name="impressumNavigationItemStatisticsMobile">
+<template name="mainNavigationFooterItemStatisticsMobile">
     <li class="{{#if serverStatisticsModalActive}}active{{/if}} toggleServerStatistics showStatistics">
-        <div class="flex-content">
+        <a class="showStatistics">
             {{{getNavigationName "statisticsMobile"}}}
-        </div>
+        </a>
     </li>
 </template>

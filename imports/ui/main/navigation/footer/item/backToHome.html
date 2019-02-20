@@ -1,0 +1,9 @@
+<template name="mainNavigationFooterItemBackToHome">
+    {{#unless currentUser}}
+        <li class="inactive">
+            <a id="backToStartButton" href="#">
+                {{{getNavigationName "backToHome"}}}
+            </a>
+        </li>
+    {{/unless}}
+</template>

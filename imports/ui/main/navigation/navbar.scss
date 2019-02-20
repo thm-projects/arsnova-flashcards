@@ -1,0 +1,190 @@
+$navbar_all_decks_border_width: 3px;
+
+.navbar-cards-footer-about-icon {
+  position: absolute;
+  bottom: 25px;
+  left: 15px;
+  font-size: 32px;
+}
+
+.navbar-cards {
+  .hidden-on-iPad {
+    @media (min-width: 768px) and (max-width: 1199px) {
+      display: none !important;
+    }
+  }
+  a, a:hover {
+    cursor: pointer !important;
+    text-decoration: none !important;
+  }
+
+  height: $size_navbar_height !important;
+  min-height: $size_navbar_height !important;
+  margin: 0 auto !important;
+  z-index: 100 !important;
+
+  li, .navbar-header-item {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 !important;
+    height: $size_navbar_height !important;
+    a {
+      display: flex !important;
+      align-items: center !important;
+      padding: 0 7px !important;
+      height: $size_navbar_height !important;
+    }
+  }
+
+  .navbar-header-item {
+    padding: 0 15px !important;
+  }
+
+  .searchDropdown {
+    position: relative;
+    @media (max-width: 320px) {
+      display: none !important;
+    }
+
+    @media (min-width: 1200px) {
+      width: 120px;
+    }
+    @media (max-width: 1199px) {
+      width: 100px;
+    }
+    .input-search {
+      height: round($size_navbar_height * 0.85) !important;
+      padding-left: 0 !important;
+      margin-right: 20px !important;
+    }
+    .clearSearch {
+      position: absolute;
+      float: right;
+      bottom:  round($size_navbar_height * 0.15 + 5px) !important;
+      right : 0;
+      font-size: 18px;
+    }
+  }
+  @media (max-width: 767px) {
+    .hidden-xs {
+      display: none !important;
+    }
+  }
+
+  #navbar-profile {
+    #profile-drop {
+      position: relative !important;
+      float: left !important;
+      overflow: hidden !important;
+      text-align: left !important;
+      min-width: auto !important;
+      padding: 0 !important;
+      @media(min-width: 768px) {
+        position: absolute !important;
+      }
+
+      tr {
+        td:first-child {
+          a {
+            padding-left: 15px !important;
+          }
+        }
+      }
+
+      a {
+        text-decoration: none !important;
+        display: flex !important;
+        align-items: center !important;
+        height: $size_navbar_height !important;
+        width: 100% !important;
+        white-space: nowrap !important;
+      }
+    }
+  }
+
+  @media (min-width: 768px){
+    #navbar-all-decks {
+      border-left: $navbar_all_decks_border_width solid;
+    }
+
+    #navbar-cards-footer-collapse {
+      .navbar-nav {
+        width: 100% !important;
+        a {
+          justify-content: center !important;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+
+  .navbar-cards .navbar-header  {
+    .navbar-header-item {
+      height: $size_navbar_height !important;
+      padding: 0 5px !important;
+      a {
+        padding: 0 !important;
+      }
+    }
+    .navbar-header-item:first-child {
+      padding-left: 15px !important;
+    }
+    .navbar-header-item:nth-child(2) {
+      padding-right: 15px !important;
+    }
+    .navbar-toggle {
+      margin-right: 0 !important;
+    }
+
+    .navbar-header-item .showStatistics {
+      padding-left: 3px !important;
+    }
+  }
+
+  #navbar-cards-top-collapse, #navbar-cards-footer-collapse {
+    margin: 0 -15px !important;
+    padding: 0 !important;
+    li:not(.hidden-xs){
+      position: relative !important;
+      display: block !important;
+      float: left !important;
+      width: 100% !important;
+      height: round($size_navbar_height * 1.5) !important;
+    }
+    a {
+      height: round($size_navbar_height * 1.5) !important;
+      padding: 0 15px !important;
+      width: 100% !important;
+    }
+    ul {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    #navbar-profile {
+      position: relative !important;
+      height: unset !important;
+      min-height: round($size_navbar_height * 1.5) !important;
+      #dropdownMenuLink {
+        position: relative !important;
+        float: left !important;
+        height: round($size_navbar_height * 1.5) !important;
+      }
+      #profile-drop {
+        tr {
+          td, td a {
+            height: round($size_navbar_height * 1.5) !important;
+          }
+          td:first-child {
+            padding-left: 30px !important;
+          }
+          td:last-child {
+            width: 100% !important;
+          }
+        }
+      }
+    }
+  }
+}

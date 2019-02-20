@@ -151,6 +151,10 @@ Template.main.onRendered(function () {
 		Session.set("searchValue", undefined);
 		Session.set('searchCategoriesResult', []);
 	});
+	$("#main").click(function () {
+		MainNavigation.closeCollapse();
+	});
+	MainNavigation.initializeNavigation();
 });
 
 Meteor.startup(function () {

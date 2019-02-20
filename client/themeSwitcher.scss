@@ -189,35 +189,25 @@ $themes: (
     //welcome page colors
     $welcome_page_login_label: map-get($map, "welcome_page_login_label");
     $welcome_page_login_label_shadow: map-get($map, "welcome_page_login_label_shadow");
-    $footer_mobile_icon: map-get($map, "footer_mobile_icon");
-    $footer_mobile_active_route_text: map-get($map, "footer_mobile_active_route_text");
-    $footer_background: map-get($map, "footer_background");
-    $footer_info_navigation_text: map-get($map, "footer_info_navigation_text");
-    $footer_info_navigation_text_hover: map-get($map, "footer_info_navigation_text_hover");
-    $footer_info_navigation_text_active: map-get($map, "footer_info_navigation_text_active");
-    $footer_info_navigation_background: map-get($map, "footer_info_navigation_background");
-    $footer_info_navigation_background_hover: map-get($map, "footer_info_navigation_background_hover");
-    $footer_info_navigation_background_active: map-get($map, "footer_info_navigation_background_active");
-    $footer_info_navigation_border: map-get($map, "footer_info_navigation_border");
-    $footer_icon: map-get($map, "footer_icon");
-    $footer_icon_hover: map-get($map, "footer_icon_hover");
-    $footer_globe_dropdown_text: map-get($map, "footer_globe_dropdown_text");
-    $footer_globe_dropdown_background: map-get($map, "footer_globe_dropdown_background");
-    $footer_globe_dropdown_text_hover: map-get($map, "footer_globe_dropdown_text_hover");
-    $footer_globe_dropdown_background_hover: map-get($map, "footer_globe_dropdown_background_hover");
     $placeholder: map-get($map, "placeholder");
-    $inventory_background: map-get($map, "inventory_background");
-    $inventory_border: map-get($map, "inventory_border");
-    $inventory_text: map-get($map, "inventory_text");
-    //info page colors
-    $info_navigation_text: map-get($map, "info_navigation_text");
-    $info_navigation_text_active: map-get($map, "info_navigation_text_active");
-    $info_navigation_text_hover: map-get($map, "info_navigation_text_hover");
-    $info_navigation_background: map-get($map, "info_navigation_background");
-    $info_navigation_background_active: map-get($map, "info_navigation_background_active");
-    $info_navigation_background_hover: map-get($map, "info_navigation_background_hover");
-    $home_button_icon: map-get($map, "home_button_icon");
-    $home_button_icon_hover: map-get($map, "home_button_icon_hover");
+    //server statistics colors
+    $server_statistics_table_header_background: map-get($map, "server_statistics_table_header_background");
+    $server_statistics_table_header_text: map-get($map, "server_statistics_table_header_text");
+    $server_statistics_table_header_counter: map-get($map, "server_statistics_table_header_counter");
+    $server_statistics_table_row_background: map-get($map, "server_statistics_table_row_background");
+    $server_statistics_table_row_text: map-get($map, "server_statistics_table_row_text");
+    $server_statistics_table_row_counter: map-get($map, "server_statistics_table_row_counter");
+    //footer colors
+    $footer_welcome_page_info_icon_text: map-get($map, "footer_welcome_page_info_icon_text");
+    $footer_welcome_page_info_icon_text_hover: map-get($map, "footer_welcome_page_info_icon_text_hover");
+    $footer_navigation_text: map-get($map, "footer_navigation_text");
+    $footer_navigation_text_active: map-get($map, "footer_navigation_text_active");
+    $footer_navigation_text_hover: map-get($map, "footer_navigation_text_hover");
+    $footer_navigation_background: map-get($map, "footer_navigation_background");
+    $footer_navigation_background_active: map-get($map, "footer_navigation_background_active");
+    $footer_navigation_background_hover: map-get($map, "footer_navigation_background_hover");
+    $footer_home_button_icon: map-get($map, "footer_home_button_icon");
+    $footer_home_button_icon_hover: map-get($map, "footer_home_button_icon_hover");
     $info_content_header_text: map-get($map, "info_content_header_text");
     $info_content_header_background: map-get($map, "info_content_header_background");
     $info_content_body_text: map-get($map, "info_content_body_text");
@@ -652,6 +642,9 @@ $themes: (
       background-color: $search_divide !important;
     }
 
+    .navbar-header-button a {
+      color: $navbar_text !important;
+    }
     .navbar.navbar-default {
       background-color: $navbar_background !important;
       .navbar-text {
@@ -663,37 +656,37 @@ $themes: (
       }
     }
 
-    #contact-nav-collapse, #contact-nav-collapse a {
-      color: $info_navigation_text !important;
-      background-color: $info_navigation_background !important;
-    }
+    #navbar-cards-footer, #navbar-cards-footer-collapse {
+      color: $footer_navigation_text !important;
+      background-color: $footer_navigation_background !important;
+      a {
+        color: $footer_navigation_text !important;
+        background-color: $footer_navigation_background !important;
+      }
+      a:hover, a:focus {
+        color: $footer_navigation_text_hover !important;
+        background-color: $footer_navigation_background_hover !important;
+      }
+      .active a {
+        color: $footer_navigation_text_active !important;
+        background-color: $footer_navigation_background_active !important;
+      }
+      .fa-home {
+        color: $footer_home_button_icon !important;
+      }
 
-    #contact-nav-collapse a:hover, #contact-nav-collapse a:focus {
-      color: $info_navigation_text_hover !important;
-      background-color: $info_navigation_background_hover !important;
-    }
-
-    #contact-nav-collapse .active a {
-      color: $info_navigation_text_active !important;
-      background-color: $info_navigation_background_active !important;
-    }
-
-    #contact-nav-footer a {
-      color: $footer_info_navigation_text !important;
-      background-color: $footer_info_navigation_background !important;
-    }
-
-    #contact-nav-footer a:hover, #contact-nav-footer a:focus {
-      color: $footer_info_navigation_text_hover !important;
-      background-color: $footer_info_navigation_background_hover !important;
-      i {
-        color: $footer_info_navigation_text_hover !important;
+      #backToStartButton:hover, .fa-home:hover, #backToStartButton:focus, .fa-home:focus {
+        color: $footer_home_button_icon_hover !important;
       }
     }
 
-    #contact-nav-footer .active a {
-      color: $footer_info_navigation_text_active !important;
-      background-color: $footer_info_navigation_background_active !important;
+    .navbar-cards-footer-about-icon {
+      a {
+        color:$footer_welcome_page_info_icon_text !important;
+      }
+      a:hover {
+        color: $footer_welcome_page_info_icon_text_hover !important;
+      }
     }
 
     @media(max-width: 767px) {
@@ -756,12 +749,6 @@ $themes: (
 
       .licenseInfo, .licenseInfoCreate {
         border-bottom-color: $item_separator_border_bottom !important;
-      }
-
-      #footer {
-        .icon-container {
-          border-right-color: $footer_info_navigation_border !important;
-        }
       }
     }
 
@@ -963,12 +950,6 @@ $themes: (
       }
     }
 
-    .serverInventory .flex-content {
-      background-color: $inventory_background !important;
-      border-color: $inventory_border !important;
-      color: $inventory_text !important;
-    }
-
     .panel-heading.info-tab {
       color: $info_content_header_text !important;
       background-color: $info_content_header_background !important;
@@ -1026,62 +1007,6 @@ $themes: (
 
     .hintContentAlternative .modal-header {
       border-bottom-color: $hint_header_border_alternative !important;
-    }
-
-    .footer.icon-container a {
-      color: $footer_mobile_icon !important;
-    }
-
-    #footer, #contact-nav {
-      background-color: $footer_background !important;
-      .navbar-header-route {
-        color: $footer_mobile_active_route_text !important;
-      }
-    }
-    #footer {
-      .container {
-        background-color: $footer_background !important;
-      }
-      a {
-        color: $footer_info_navigation_text;
-        background-color: $footer_info_navigation_background !important;
-        border-right-color: $footer_info_navigation_border !important;
-      }
-      a:hover, a:focus {
-        color: $footer_info_navigation_text_hover !important;
-        background-color: $footer_info_navigation_background_hover !important;
-      }
-      a:first-child {
-        border-left-color: $footer_info_navigation_border !important;
-      }
-      .icon-container a {
-        color: $footer_info_navigation_text !important;
-        background-color: $footer_info_navigation_background !important;
-      }
-      .icon-container:hover, .icon-container-info:hover, .icon-container:focus, .icon-container-info:focus {
-        color: $footer_info_navigation_text_hover !important;
-        background-color: $footer_info_navigation_background_hover !important;
-      }
-      .icon-container-info {
-        border-left-color: $footer_info_navigation_border !important;
-        border-right-color: $footer_info_navigation_border !important;
-      }
-      .icon-container .lang {
-        color: $footer_globe_dropdown_text !important;
-        background-color: $footer_globe_dropdown_background !important;
-      }
-      .icon-container .lang:hover, .icon-container .lang:focus {
-        color: $footer_globe_dropdown_text_hover !important;
-        background-color: $footer_globe_dropdown_background_hover !important;
-      }
-    }
-
-    .fa-home {
-      color: $home_button_icon !important;
-    }
-
-    #backToStartButton:hover, .fa-home:hover, #backToStartButton:focus, .fa-home:focus {
-      color: $home_button_icon_hover !important;
     }
 
     #searchResults a {
@@ -2812,17 +2737,31 @@ $themes: (
       @media(max-width: 767px) {
         opacity: 1 !important;
       }
+      tr, tr {
+        background-color: $navbar_profile_dropdown_background !important;
+        a {
+          color: $navbar_profile_dropdown_text !important;
+        }
+
+      }
       tr:hover, tr:focus {
         background-color: $navbar_profile_dropdown_background_hover !important;
-        color: $navbar_profile_dropdown_text_hover !important;
+        a {
+          color: $navbar_profile_dropdown_text_hover !important;
+        }
+
       }
       .active {
         background-color: $navbar_profile_dropdown_background_active !important;
-        color: $navbar_profile_dropdown_text_active !important;
+        a {
+          color: $navbar_profile_dropdown_text_active !important;
+        }
       }
       .logout-dropdown:hover, .logout-dropdown:focus {
         background-color: $navbar_logout_background_hover !important;
-        color: $navbar_logout_text_hover !important;
+        a {
+          color: $navbar_logout_text_hover !important;
+        }
       }
     }
 
@@ -3126,6 +3065,35 @@ $themes: (
 
     .toggle-wordcloud label, #pomodoroTimerNormalContainer label {
       color: $landing_page_label !important;
+    }
+
+    //server statistics colors
+    #impressumStatisticsModal {
+      tr {
+        th {
+          background-color: $server_statistics_table_header_background !important;
+        }
+
+        td {
+          background-color: $server_statistics_table_row_background !important;
+        }
+
+        th:first-child {
+          color: $server_statistics_table_header_text !important;
+        }
+
+        td:first-child {
+          color: $server_statistics_table_row_text !important;
+        }
+
+        th:last-child {
+          color: $server_statistics_table_header_counter !important;
+        }
+
+        td:last-child {
+          color: $server_statistics_table_row_counter !important;
+        }
+      }
     }
   }
 }

@@ -8,7 +8,7 @@
         <div class="dashboard-box col-lg-3 col-xs-6">
             <div class="small-box">
                 <div class="inner">
-                    <h3>{{totalCardsets}}</h3>
+                    <h3>{{getServerInventory "cardsets"}}</h3>
                     <p>{{_ "admin.cardsets"}}</p>
                 </div>
             </div>
@@ -17,7 +17,7 @@
         <div class="dashboard-box col-lg-3 col-xs-6">
             <div class="small-box">
                 <div class="inner">
-                    <h3>{{totalReps}}</h3>
+                    <h3>{{getServerInventory "repetitorium"}}</h3>
                     <p>{{_ "navbar-collapse.course"}}</p>
                 </div>
             </div>
@@ -26,7 +26,7 @@
         <div class="dashboard-box col-lg-3 col-xs-6">
             <div class="small-box">
                 <div class="inner">
-                    <h3>{{totalCards}}</h3>
+                    <h3>{{getServerInventory "cards"}}</h3>
                     <p>{{_ "admin.cards"}}</p>
                 </div>
             </div>
@@ -36,8 +36,8 @@
             <div class="small-box">
                 <div class="inner">
                     <h3>
-                        {{totalUser}}
-                        <span>{{getOnlineStatusTotal}} Online</span>
+                        {{getServerInventory "user"}}
+                        <span>{{getServerInventory "userOnline"}} Online</span>
                     </h3>
                     <p>{{_ "admin.users"}}</p>
                 </div>

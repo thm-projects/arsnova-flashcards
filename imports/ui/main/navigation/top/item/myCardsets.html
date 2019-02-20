@@ -5,7 +5,7 @@
                 class="{{#if isActiveRoute
                              regex='home|create'}}active{{/if}}">
                 <a href="{{pathFor route='create'}}" id="cardsets">
-                    {{{getCardsetIcons false}}}{{getMyCardsetName}}
+                    {{{getNavigationName "myCardsets"}}}
                 </a>
             </li>
         {{/if}}

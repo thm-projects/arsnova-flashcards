@@ -1,13 +1,13 @@
-import {Route} from "../../../../api/route";
+import {Route} from "../../../../../api/route";
 import "./backToHome.html";
 
 /*
  * ############################################################################
- * impressumNavigationItemBackToHome
+ * mainNavigationFooterItemBackToHome
  * ############################################################################
  */
 
-Template.impressumNavigationItemBackToHome.events({
+Template.mainNavigationFooterItemBackToHome.events({
 	'click #backToStartButton': function (event) {
 		event.preventDefault();
 		Route.setFirstTimeVisit();

@@ -155,3 +155,9 @@ label.checkbox-inline {
 .notifications-form-group {
   margin: 0 !important;
 }
+
+@media (max-width: 769px) {
+  #profileCancel, #profileSave, #profileDelete {
+    width: 100%;
+  }
+}

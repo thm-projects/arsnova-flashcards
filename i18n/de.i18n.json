@@ -268,7 +268,8 @@
     "pool": "Karteien",
     "course": "Repetitorien",
     "myprofile": "Konto",
-    "billing": "Abrechnung (Testbetrieb)",
+    "billing": "Abrechnung",
+    "membership": "Mitgliedschaft",
     "search": "Suchen…",
     "frontend": "Frontend",
     "backend": "Backend",
@@ -323,7 +324,7 @@
             "repetitorium": "Repetitorien",
             "wordcloud": {
               "default": "Von der \uD83C\uDF45cards-Redaktion empfohlen",
-              "mobile": "IVon der \uD83C\uDF45cards-Redaktion empfohlen"
+              "mobile": "Von der \uD83C\uDF45cards-Redaktion empfohlen"
             },
             "counter": "",
             "user": "Accounts",

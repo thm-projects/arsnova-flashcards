@@ -24,4 +24,10 @@ $font_size_impressum_statistics_table_content_header: 12px;
       font-size: $font_size_impressum_statistics_table_content_header !important;
     }
   }
+
+  tr {
+    th:last-child, td:last-child {
+      text-align: right;
+    }
+  }
 }

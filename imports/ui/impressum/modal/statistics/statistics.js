@@ -9,7 +9,6 @@ import {Session} from "meteor/session";
 
 Meteor.subscribe("serverInventory");
 
-
 Template.impressumModalStatistics.onRendered(function () {
 	$('#impressumStatisticsModal').on('hidden.bs.modal', function () {
 		Session.set('serverStatisticsModalActive', false);

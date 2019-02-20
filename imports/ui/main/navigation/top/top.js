@@ -22,33 +22,33 @@ Template.mainNavigationTop.events({
 		MainNavigation.setLoginTarget(false);
 		Meteor.logout();
 	},
-	'click .toggleImpressumNavigation': function (event) {
+	'click .toggleFooterNavigation': function (event) {
 		event.preventDefault();
-		let thmNavCollapse = $('#thm-top-navigation');
-		let contactNavCollapse = $('#contact-nav-collapse');
-		if (thmNavCollapse.hasClass('in')) {
-			thmNavCollapse.collapse('hide');
-			thmNavCollapse.one('hidden.bs.collapse', function () {
-				contactNavCollapse.collapse('show');
+		let navbarTopCollapse = $('#navbar-cards-top-collapse');
+		let navbarFooterCollapse = $('#navbar-cards-footer-collapse');
+		if (navbarTopCollapse.hasClass('in')) {
+			navbarTopCollapse.collapse('hide');
+			navbarTopCollapse.one('hidden.bs.collapse', function () {
+				navbarFooterCollapse.collapse('show');
 			});
 		} else {
-			contactNavCollapse.collapse('toggle');
+			navbarFooterCollapse.collapse('toggle');
 		}
 	},
-	'click .toggle-thm-collapse': function (event) {
+	'click .toggle-navbar-collapse': function (event) {
 		event.preventDefault();
-		let thmNavCollapse = $('#thm-top-navigation');
-		let contactNavCollapse = $('#contact-nav-collapse');
-		if (contactNavCollapse.hasClass('in')) {
-			contactNavCollapse.collapse('hide');
-			contactNavCollapse.one('hidden.bs.collapse', function () {
-				thmNavCollapse.collapse('show');
+		let navbarTopCollapse = $('#navbar-cards-top-collapse');
+		let navbarFooterCollapse = $('#navbar-cards-footer-collapse');
+		if (navbarFooterCollapse.hasClass('in')) {
+			navbarFooterCollapse.collapse('hide');
+			navbarFooterCollapse.one('hidden.bs.collapse', function () {
+				navbarTopCollapse.collapse('show');
 			});
 		} else {
-			thmNavCollapse.collapse('toggle');
+			navbarTopCollapse.collapse('toggle');
 		}
 	},
-	'click #thm-top-navigation a:not(#dropdownMenuLink)': function () {
-		$('#thm-top-navigation').collapse('hide');
+	'click #navbar-cards-top-collapse a:not(#dropdownMenuLink)': function () {
+		$('#navbar-cards-top-collapse').collapse('hide');
 	}
 });

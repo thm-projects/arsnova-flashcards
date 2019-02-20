@@ -1,4 +1,4 @@
-let impressumNavigation = {
+let footerNavigation = {
 	agb: "<i class='fa fa-legal'></i>&nbsp;",
 	backToHome: "<i class='fa fa-home'></i>&nbsp;",
 	datenschutz: "<i class='fa fa-lock'></i>&nbsp;",
@@ -15,17 +15,20 @@ let landingPageNavigation = {
 };
 
 //Only used for the active route display on mobile. Will be carried over to desktop after the main template got refactored.
-let mainNavigation = {
+let topNavigation = {
 	alldecks: "<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;",
 	repetitorium: "<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;",
-	learn: "<i class='fa fa-graduation-cap'></i>&nbsp;",
+	workload: "<i class='fa fa-graduation-cap'></i>&nbsp;",
+	myCardsets: "<i class='fa fa-archive'></i>&nbsp;",
 	pool: "<i class='fa fa-archive'></i>&nbsp;",
+	profile: "<i class='fa fa-user'></i>&nbsp;",
 	profileOverview: "<i class='fa fa-trophy'></i>&nbsp;",
 	profileBilling: "<i class='fa credit-card'></i>&nbsp;",
 	profileMembership: "<i class='fa fa-users'></i>&nbsp;",
 	profileNotifications: "<i class='fa fa-bell'></i>&nbsp;",
 	profileSettings: "<i class='fa fa-user'></i>&nbsp;",
-	profileRequests: "<i class='fa fa-check'></i>&nbsp;"
+	profileRequests: "<i class='fa fa-check'></i>&nbsp;",
+	backend: "<i class='fa fa-server'></i>&nbsp;"
 };
 
 //Only used for the active route display on mobile. Will be carried over to desktop after the main template got refactored.
@@ -37,8 +40,8 @@ let miscNavigation = {
 };
 
 module.exports = {
-	impressumNavigation,
-	mainNavigation,
+	footerNavigation: footerNavigation,
+	topNavigation: topNavigation,
 	miscNavigation,
 	landingPageNavigation
 };

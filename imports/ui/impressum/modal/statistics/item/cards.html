@@ -2,15 +2,11 @@
     <table class="table">
         <thead class="thead-dark">
             <tr class="active">
-                <th scope="col" class="col-xs-9">{{_ "serverStatistics.modal.table.header.cards"}}</th>
-                <th scope="col" class="col-xs-3">{{_ "serverStatistics.modal.table.header.counter"}}</th>
+                <th scope="col" class="col-xs-9 col-sm10">{{_ "serverStatistics.modal.table.header.cards"}}</th>
+                <th scope="col" class="col-xs-3 col-sm-2">{{getServerInventory "cards"}}</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>{{_ "serverStatistics.modal.cards"}}</td>
-                <td>{{getServerInventory "cards"}}</td>
-            </tr>
         </tbody>
     </table>
 </template>

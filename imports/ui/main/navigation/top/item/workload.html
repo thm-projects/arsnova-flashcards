@@ -2,8 +2,7 @@
     <li id="navbar-learn-decks"
         class="{{#if isActiveRoute regex='home|learn'}}active{{/if}}">
         <a href="{{pathFor route='learn'}}" id="learnsets">
-            <i class="fa fa-graduation-cap"></i>&nbsp;{{_
-                "navbar-collapse.learndecks"}}
+            {{{getNavigationName "workload"}}}
         </a>
     </li>
 </template>
