@@ -1,5 +1,6 @@
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
+import {MainNavigation} from "../../../../../api/mainNavigation.js";
 import "./statistics.html";
 
 /*
@@ -17,6 +18,7 @@ Template.mainNavigationFooterItemStatistics.helpers({
 Template.mainNavigationFooterItemStatistics.events({
 	"click .showStatistics": function () {
 		$('#impressumStatisticsModal').modal('show');
+		MainNavigation.closeCollapse();
 	}
 });
 
@@ -35,5 +37,6 @@ Template.mainNavigationFooterItemStatisticsMobile.helpers({
 Template.mainNavigationFooterItemStatisticsMobile.events({
 	"click .showStatistics": function () {
 		$('#impressumStatisticsModal').modal('show');
+		MainNavigation.closeCollapse();
 	}
 });

@@ -1,6 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Search} from "../../../../../api/search.js";
+import {MainNavigation} from "../../../../../api/mainNavigation.js";
 import "./search.html";
 
 /*
@@ -27,6 +28,7 @@ Template.mainNavigationTopItemSearch.events({
 	},
 	'click .input-search': function () {
 		Search.adjustSearchResultWindowSize();
+		MainNavigation.closeCollapse();
 	}
 });
 
