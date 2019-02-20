@@ -89,7 +89,7 @@ export let MainNavigation = class MainNavigation {
 	}
 
 	static repositionCollapseElements () {
-		if ($(window).width() < 768) {
+		if (window.innerWidth < 768) {
 			$(footerNavigationID).addClass('navbar-fixed-top');
 			$(footerNavigationID).removeClass('navbar-fixed-bottom');
 			this.resizeFooterElements(true);
