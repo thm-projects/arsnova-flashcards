@@ -285,12 +285,12 @@
     "impressum": "Impressum",
     "datenschutz": "Datenschutz",
     "agb": "AGB",
-    "statistics": "Statistiken"
+    "statistics": "Inventar"
   },
   "serverStatistics": {
     "modal": {
-        "description": "Intro:",
-        "cards": "Karten",
+        "description": "Diese \uD83C\uDF45cards-Installation weist den folgenden Inhalt auf:",
+        "cards": "Gesamt",
         "cardsets": {
           "total": "Gesamt:",
           "private": "__label__",
@@ -320,13 +320,13 @@
         "table": {
           "header": {
             "cardsets": "Karteien",
-            "repetitorium": "Repetitorium",
+            "repetitorium": "Repetitorien",
             "wordcloud": {
-              "default": "Von der Redaktion in die Themen-Wolke aufgenommen",
-              "mobile": "In die Themen-Wolke aufgenommen"
+              "default": "Von der \uD83C\uDF45cards-Redaktion empfohlen",
+              "mobile": "IVon der \uD83C\uDF45cards-Redaktion empfohlen"
             },
-            "counter": "Anzahl",
-            "user": "Benutzer",
+            "counter": "",
+            "user": "User",
             "cards": "Karten"
           }
         }
