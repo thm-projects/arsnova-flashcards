@@ -1,39 +1,42 @@
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
+import {MainNavigation} from "../../../../../api/mainNavigation.js";
 import "./statistics.html";
 
 /*
  * ############################################################################
- * impressumNavigationItemStatistics
+ * mainNavigationFooterItemStatistics
  * ############################################################################
  */
 
-Template.impressumNavigationItemStatistics.helpers({
+Template.mainNavigationFooterItemStatistics.helpers({
 	serverStatisticsModalActive: function () {
 		return Session.get('serverStatisticsModalActive');
 	}
 });
 
-Template.impressumNavigationItemStatistics.events({
+Template.mainNavigationFooterItemStatistics.events({
 	"click .showStatistics": function () {
 		$('#impressumStatisticsModal').modal('show');
+		MainNavigation.closeCollapse();
 	}
 });
 
 /*
  * ############################################################################
- * impressumNavigationItemStatisticsMobile
+ * mainNavigationFooterItemStatisticsMobile
  * ############################################################################
  */
 
-Template.impressumNavigationItemStatisticsMobile.helpers({
+Template.mainNavigationFooterItemStatisticsMobile.helpers({
 	serverStatisticsModalActive: function () {
 		return Session.get('serverStatisticsModalActive');
 	}
 });
 
-Template.impressumNavigationItemStatisticsMobile.events({
+Template.mainNavigationFooterItemStatisticsMobile.events({
 	"click .showStatistics": function () {
 		$('#impressumStatisticsModal').modal('show');
+		MainNavigation.closeCollapse();
 	}
 });

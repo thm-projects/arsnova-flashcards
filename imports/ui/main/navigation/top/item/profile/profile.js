@@ -16,11 +16,6 @@ import "./profile.html";
 */
 
 Template.mainNavigationTopItemProfile.helpers({
-	getUsername: function () {
-		if (Meteor.user()) {
-			return Meteor.user().profile.name;
-		}
-	},
 	isActiveProfile: function () {
 		if (ActiveRoute.name(/^profile/)) {
 			return Router.current().params._id === Meteor.userId();

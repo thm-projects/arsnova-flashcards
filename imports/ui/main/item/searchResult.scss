@@ -1,0 +1,52 @@
+#searchResults {
+  position: absolute;
+  float: left;
+  @media(max-width: 767px) {
+    left: 0 !important;
+    width: 100% !important;
+    top: $size_navbar_height !important;
+  }
+  @media(min-width: 768px) {
+    width: 600px;
+  }
+  @media(min-width: 1200px) {
+    width: 800px;
+  }
+  padding-top: 0;
+  padding-bottom: 0;
+  z-index: 1000;
+  margin: 0 !important;
+  background-color: hsla(100, 100%, 100%, 0.8) !important;
+}
+
+#searchResults a {
+  border-bottom: solid $size_search_results_separator !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#searchResults a:last-child {
+  border-bottom: 0 !important;
+}
+
+.search-subject {
+  font-size: $font-size_search_results_subject !important;
+  font-weight: $font-weight_search_results_subject;
+  padding: $padding_search_items !important;
+  margin: 0;
+  line-height: normal !important;
+}
+
+.search-content {
+  font-size: $font-size_search_results_content !important;
+  font-weight: $font-weight_search_results_content !important;
+  padding: $padding_search_items !important;
+  margin: 0;
+}
+
+.search-author {
+  font-size: $font-size_search_results_author !important;
+  font-weight: $font-weight_search_results_author !important;
+  padding: $padding_search_items !important;
+  margin: 0;
+}

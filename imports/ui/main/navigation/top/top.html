@@ -3,34 +3,41 @@
         {{#if currentUser}}
             {{#unless isInRole 'firstLogin'}}
                 {{#unless isInRole 'blocked'}}
-                    <nav class="navbar navbar-default navbar-fixed-top">
-                        <div class="container thm-header">
+                    <nav id="navbar-cards-top" class="navbar navbar-default navbar-fixed-top navbar-cards">
+                        <div class="container">
                             <div class="visible-xs navbar-header">
-                                <div class="flex-content pull-left">
+                                <div class="navbar-header-item pull-left">
                                     {{{getNavigationName}}}
                                 </div>
-                                <div class="flex-content pull-right">
-                                    <ul class="list-inline">
-                                        {{> mainNavigationTopItemSearch visibility=0}}
-                                        {{> mainNavigationTopItemConnectionStatus visibility=0}}
-                                        {{#if isImpressum}}
-                                            <li class="toggleImpressumNavigation needsclick">
-                                                <div class="flex-content">
-                                                    {{{getNavigationName "toggleImpressum"}}}
-                                                </div>
-                                            </li>
-                                        {{/if}}
-                                    </ul>
+                                <div class="navbar-header-item pull-right">
                                     <button type="button"
-                                            class="navbar-toggle pull-right toggle-thm-collapse needsclick">
-                                        <span class="icon-bar toggle-thm-collapse needsclick"></span>
-                                        <span class="icon-bar toggle-thm-collapse needsclick"></span>
-                                        <span class="icon-bar toggle-thm-collapse needsclick"></span>
+                                            class="navbar-toggle toggle-navbar-collapse needsclick">
+                                        <span class="icon-bar toggle-navbar-collapse needsclick"></span>
+                                        <span class="icon-bar toggle-navbar-collapse needsclick"></span>
+                                        <span class="icon-bar toggle-navbar-collapse needsclick"></span>
                                     </button>
                                 </div>
+                                {{#if isImpressum}}
+                                    <div class="navbar-header-item navbar-header-button toggleFooterNavigation needsclick pull-right">
+                                        <a href="">
+                                            {{{getNavigationName "toggleImpressum"}}}
+                                        </a>
+                                    </div>
+                                    <div class="navbar-header-item navbar-header-button pull-right">
+                                        {{> mainNavigationFooterItemStatisticsMobile}}
+                                    </div>
+                                {{/if}}
+                                <div class="navbar-header-item pull-right">
+                                    {{> mainNavigationTopItemConnectionStatus visibility=0}}
+                                </div>
+                                {{#unless isImpressum}}
+                                    <div class="navbar-header-item pull-right">
+                                        {{> mainNavigationTopItemSearch visibility=0}}
+                                    </div>
+                                {{/unless}}
                             </div>
                             <div class="visible-xs">
-                                {{> impressumNavigationDropdownContent}}
+                                {{> mainNavigationFooterDropdownContent}}
                             </div>
                             {{> mainNavigationTopDropdownContent}}
                         </div>
@@ -42,8 +49,8 @@
 </template>
 
 <template name="mainNavigationTopDropdownContent">
-    <div class="collapse navbar-collapse" id="thm-top-navigation">
-        <ul id="navbar" class="nav navbar-nav navbar-left">
+    <div class="collapse navbar-collapse" id="navbar-cards-top-collapse">
+        <ul class="nav navbar-nav navbar-left">
             {{> mainNavigationTopItemSearch visibility=1}}
             {{> mainNavigationTopItemPool}}
             {{> mainNavigationTopItemRepetitorium}}

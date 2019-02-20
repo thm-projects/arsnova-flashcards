@@ -1,7 +1,6 @@
 <template name="mainItemSearchResult">
     <div id="searchResults" style="{{#if
-            searchCategories}}display: unset !important;{{else}}display: none !important;{{/if}}"
-         data-toggle="collapse" data-target="#thm-top-navigation">
+            searchCategories}}display: unset !important;{{else}}display: none !important;{{/if}}">
         {{#each searchCategories}}
             <a href="/cardset/{{_id}}" class="list-group-item clearfix search-result-item">
                 <h4 class="list-group-item-heading search-subject search-subject-{{kind}}">{{{getCardsetIcons this.shuffled}}}{{name}}</h4>

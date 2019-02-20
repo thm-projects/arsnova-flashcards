@@ -5,7 +5,6 @@
     {{/if}}
     <div class="{{#if isFirstTimeVisit}}container{{/if}}">
         <div id="contact" class="col-md-8 col-md-offset-2">
-            {{> impressumNavigation}}
             {{#if isActiveRoute 'about'}}
                 {{> about}}
             {{/if}}
@@ -33,6 +32,7 @@
 
 
 <template name="demo">
+    {{> impressumModalStatistics}}
     {{> pomodoroTimerModal}}
     {{> demoModal}}
     {{#unless fullscreenActive}}
@@ -41,12 +41,7 @@
         {{/if}}
     {{/unless}}
     <div class="{{#if isFirstTimeVisit}}container{{/if}}">
-        <div id="contact" class="col-xs-12 {{#unless fullscreenActive}}col-md-8 col-md-offset-2{{else}}fullscreen{{/unless}}">
-            {{#unless fullscreenActive}}
-                {{#unless isFirstTimeVisit}}
-                    {{> impressumNavigation}}
-                {{/unless}}
-            {{/unless}}
+        <div id="contact" class="col-xs-12 {{#unless fullscreenActive}}col-md-8 col-md-offset-2 {{#if isFirstTimeVisit}}welcome-demo{{/if}}{{else}}fullscreen{{/unless}}">
             {{> presentationView}}
         </div>
     </div>

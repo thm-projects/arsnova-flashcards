@@ -10,18 +10,19 @@ export let Search = class Search {
 			if (destination.length && target.length) {
 				let offsetTop = (destination.offset().top + destination.height());
 				let leftOffset;
-				if (NavigatorCheck.isSmartphone()) {
-					leftOffset = 0;
-					target.css('width', $(window).width());
-				} else {
+				if (!NavigatorCheck.isSmartphone()) {
 					if (NavigatorCheck.isIOS()) {
 						target.css('width', $(window).width() - (2 * destination.offset().left));
 					}
 					leftOffset = destination.offset().left;
+					target.css('max-height', ($(window).height() - offsetTop));
+					target.css('left', leftOffset);
+					target.css('top', offsetTop);
+				} else {
+					target.removeAttr('style');
+					target.css('max-height', ($(window).height() - $('#navbar-cards-top').height()));
+					target.scrollTop(0);
 				}
-				target.css('max-height', ($(window).height() - offsetTop));
-				target.css('left', leftOffset);
-				target.css('top', offsetTop);
 			}
 		}
 	}

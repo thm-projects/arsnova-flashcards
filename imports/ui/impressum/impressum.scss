@@ -36,3 +36,10 @@ h1, h2, h3 {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
+.welcome-demo {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  .demo-padding .cardNavigation {
+    margin-top: 0 !important;
+  }
+}

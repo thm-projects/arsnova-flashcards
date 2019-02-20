@@ -5,6 +5,7 @@ import * as icons from "../config/icons.js";
 import * as conf from "../config/routes.js";
 import {Cardsets} from "./cardsets";
 import {ServerStyle} from "./styles";
+import {UserPermissions} from "./permissions";
 
 export let Route = class Route {
 	/**
@@ -145,53 +146,64 @@ export let Route = class Route {
 			case "about":
 				return TAPi18n.__('contact.about', {lastAppTitle: ServerStyle.getLastAppTitle()});
 			case "agb":
-				return icons.impressumNavigation.agb + TAPi18n.__('contact.agb');
+				return icons.footerNavigation.agb + TAPi18n.__('contact.agb');
 			case "backToHome":
-				return icons.impressumNavigation.backToHome + TAPi18n.__('contact.home');
+				return icons.footerNavigation.backToHome + TAPi18n.__('contact.home');
 			case "datenschutz":
-				return icons.impressumNavigation.datenschutz + TAPi18n.__('contact.datenschutz');
+				return icons.footerNavigation.datenschutz + TAPi18n.__('contact.datenschutz');
 			case "demo":
 			case "demolist":
-				return icons.impressumNavigation.demo + TAPi18n.__('contact.demo');
+				return icons.footerNavigation.demo + TAPi18n.__('contact.demo');
 			case "faq":
-				return icons.impressumNavigation.faq + TAPi18n.__('contact.faq');
+				return icons.footerNavigation.faq + TAPi18n.__('contact.faq');
 			case "help":
-				return icons.impressumNavigation.help + TAPi18n.__('contact.help');
+				return icons.footerNavigation.help + TAPi18n.__('contact.help');
 			case "impressum":
-				return icons.impressumNavigation.impressum + TAPi18n.__('contact.impressum');
+				return icons.footerNavigation.impressum + TAPi18n.__('contact.impressum');
 			case "learning":
-				return icons.impressumNavigation.learning  + TAPi18n.__('contact.learning');
-			case "create":
-				switch (Cardsets.find({owner: Meteor.userId()}).count()) {
+				return icons.footerNavigation.learning  + TAPi18n.__('contact.learning');
+			case "myCardsets":
+				switch (Meteor.user().count.cardsets) {
 					case 0:
-						return TAPi18n.__('navbar-collapse.noCarddecks');
+						return icons.topNavigation.myCardsets + TAPi18n.__('navbar-collapse.noCarddecks');
 					case 1:
-						return TAPi18n.__('navbar-collapse.oneCarddeck');
+						return icons.topNavigation.myCardsets + TAPi18n.__('navbar-collapse.oneCarddeck');
 					default:
-						return TAPi18n.__('navbar-collapse.carddecks');
+						return icons.topNavigation.myCardsets + TAPi18n.__('navbar-collapse.carddecks');
 				}
 				break;
 			case "alldecks":
-				return icons.mainNavigation.alldecks + TAPi18n.__('navbar-collapse.alldecks');
+				return icons.topNavigation.alldecks + "<span class='hidden-on-iPad'>" + TAPi18n.__('navbar-collapse.alldecks') + "</span>";
 			case "repetitorium":
-				return icons.mainNavigation.repetitorium + TAPi18n.__('navbar-collapse.course');
-			case "learn":
-				return icons.mainNavigation.learn + TAPi18n.__('navbar-collapse.learndecks');
+				return icons.topNavigation.repetitorium + TAPi18n.__('navbar-collapse.course');
+			case "workload":
+				return icons.topNavigation.workload + TAPi18n.__('navbar-collapse.learndecks');
 			case "pool":
 			case "home":
-				return icons.mainNavigation.pool + TAPi18n.__('navbar-collapse.pool');
+				return icons.topNavigation.pool + TAPi18n.__('navbar-collapse.pool');
+			case "backend":
+				return icons.topNavigation.backend + "<span class='hidden-on-iPad'>" + TAPi18n.__('navbar-collapse.backend') + "</span>";
+			case "profile":
+				return icons.topNavigation.profile + Meteor.user().profile.name + "<span class='caret'></span>";
+			case "profileIPad":
+				if (UserPermissions.isAdmin()) {
+					return icons.topNavigation.profile + "<span class='caret'></span>";
+				} else {
+					return icons.topNavigation.profile + TAPi18n.__('navbar-collapse.myprofile') + "<span class='caret'></span>";
+				}
+				break;
 			case "profileOverview":
-				return icons.mainNavigation.profileOverview + TAPi18n.__('profile.activity');
+				return icons.topNavigation.profileOverview + TAPi18n.__('profile.activity');
 			case "profileBilling":
-				return icons.mainNavigation.profileBilling + TAPi18n.__('profile.billing');
+				return icons.topNavigation.profileBilling + TAPi18n.__('navbar-collapse.billing');
 			case "profileMembership":
-				return icons.mainNavigation.profileMembership + TAPi18n.__('profile.membership');
+				return icons.topNavigation.profileMembership + TAPi18n.__('navbar-collapse.membership');
 			case "profileNotifications":
-				return icons.mainNavigation.profileNotifications + TAPi18n.__('profile.notifications');
+				return icons.topNavigation.profileNotifications + TAPi18n.__('profile.notifications');
 			case "profileSettings":
-				return icons.mainNavigation.profileSettings + TAPi18n.__('profile.settings.name');
+				return icons.topNavigation.profileSettings + TAPi18n.__('profile.settings.name');
 			case "profileRequests":
-				return icons.mainNavigation.profileRequests + TAPi18n.__('profile.requests');
+				return icons.topNavigation.profileRequests + TAPi18n.__('profile.requests');
 			case "cardsetdetailsid":
 			case "cardsetcard":
 			case "cardsetlistid":
@@ -208,9 +220,9 @@ export let Route = class Route {
 			case "mobileInfo":
 				return icons.landingPageNavigation.mobileInfo;
 			case "statistics":
-				return icons.impressumNavigation.statistics + TAPi18n.__('contact.statistics');
+				return icons.footerNavigation.statistics + TAPi18n.__('contact.statistics');
 			case "statisticsMobile":
-				return icons.impressumNavigation.statistics;
+				return icons.footerNavigation.statistics;
 		}
 	}
 };

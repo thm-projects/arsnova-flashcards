@@ -1,10 +1,8 @@
-<template name="impressumNavigationItemHelp">
+<template name="mainNavigationFooterItemHelp">
     {{#if currentUser}}
         <li class="{{#if isActiveRoute 'help'}}active{{/if}}">
             <a id="help" href="{{pathFor route='help'}}">
-                <div class="footerNavigationContent">
-                    {{{getNavigationName "help"}}}
-                </div>
+                {{{getNavigationName "help"}}}
             </a>
         </li>
     {{/if}}

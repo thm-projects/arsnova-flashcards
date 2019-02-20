@@ -7,6 +7,10 @@ let firstTimeLeitner = 'isFirstTimeLeitner';
 let firstTimeWozniak = 'isFirstTimeWozniak';
 let firstTimeDemo = 'isFirstTimeDemo';
 let loginTarget;
+let topNavigationID = "#navbar-cards-top";
+let footerNavigationID = "#navbar-cards-footer";
+let topNavigationCollapseID = "#navbar-cards-top-collapse";
+let footerNavigationCollapseID = "#navbar-cards-footer-collapse";
 
 export let MainNavigation = class MainNavigation {
 
@@ -65,5 +69,43 @@ export let MainNavigation = class MainNavigation {
 				}
 			}
 		}
+	}
+
+	static resizeFooterElements (isMobile = false) {
+		if (isMobile) {
+			$("#navbar-cards-footer #navbar-cards-footer-collapse li:visible").removeAttr("style");
+			$("#navbar-cards-footer #navbar-cards-footer-collapse a:visible").removeAttr("style");
+		} else {
+			let counter = $("#navbar-cards-footer #navbar-cards-footer-collapse ul > li:visible").length;
+			let navbarWidth = $("#navbar-cards-footer #navbar-cards-footer-collapse .navbar-nav").width();
+			$("#navbar-cards-footer #navbar-cards-footer-collapse li:visible").css('width', Math.floor(navbarWidth / counter));
+			$("#navbar-cards-footer #navbar-cards-footer-collapse a:visible").css('width', Math.floor(navbarWidth / counter));
+		}
+	}
+
+	static closeCollapse () {
+		$(topNavigationCollapseID).collapse('hide');
+		$(footerNavigationCollapseID).collapse('hide');
+	}
+
+	static repositionCollapseElements () {
+		if ($(window).width() < 768) {
+			$(footerNavigationID).addClass('navbar-fixed-top');
+			$(footerNavigationID).removeClass('navbar-fixed-bottom');
+			this.resizeFooterElements(true);
+		} else {
+			$(footerNavigationID).addClass('navbar-fixed-bottom');
+			$(footerNavigationID).removeClass('navbar-fixed-top');
+			this.resizeFooterElements(false);
+		}
+		$(topNavigationCollapseID).css('max-height',$(window).height() - $(topNavigationID).height());
+		$(footerNavigationCollapseID).css('max-height',$(window).height() - $(topNavigationID).height());
+	}
+
+	static initializeNavigation () {
+		this.repositionCollapseElements();
+		$(window).resize(function () {
+			MainNavigation.repositionCollapseElements();
+		});
 	}
 };

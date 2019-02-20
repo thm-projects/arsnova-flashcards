@@ -2,11 +2,7 @@
     <li id="navbar-repetitorium"
         class="{{#if isActivePath regex='^\\/repetitorium'}}active{{/if}}">
         <a href="{{pathFor route='repetitorium'}}" id="repetitorium">
-                                                <span class="visible-xs">{{{getCardsetIcons true}}}{{_
-                                                        "navbar-collapse.course"}}</span>
-            <span class="hidden-xs">{{{getCardsetIcons false}}}<i
-                    class="fa fa-ellipsis-h"></i>&nbsp;{{_
-                    "navbar-collapse.course"}}</span>
+            {{{getNavigationName "repetitorium"}}}
         </a>
     </li>
 </template>
