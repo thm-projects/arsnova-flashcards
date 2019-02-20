@@ -1,7 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {NavigatorCheck} from "./navigatorCheck";
 
-export let CardVisuals = class CardVisuals {
+export let Search = class Search {
 
 	static adjustSearchResultWindowSize () {
 		if (Meteor.userId()) {

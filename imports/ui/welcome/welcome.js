@@ -5,12 +5,9 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Route} from "../../api/route.js";
 import {getUserLanguage} from "../../startup/client/i18n";
-import {ReactiveVar} from 'meteor/reactive-var';
 import "./welcome.html";
 import ResizeSensor from "../../../client/thirdParty/resizeSensor/ResizeSensor";
-import * as fakeInventory from '../../../public/fakeStatistics/inventory.json';
 import {PomodoroTimer} from "../../api/pomodoroTimer";
-import {CardVisuals} from "../../api/cardVisuals";
 import {NavigatorCheck} from "../../api/navigatorCheck";
 import {AdminSettings} from "../../api/adminSettings";
 import {WordcloudCanvas} from "../../api/wordcloudCanvas";
@@ -18,22 +15,11 @@ import {ServerStyle} from "../../api/styles.js";
 
 Meteor.subscribe("pomodoroLandingPage");
 Meteor.subscribe("userData");
-Meteor.subscribe("serverInventory");
 
 function setActiveLanguage() {
 	let language = getUserLanguage();
 	TAPi18n.setLanguage(language);
 	Session.set('activeLanguage', language);
-}
-
-function splitLargeNumbers(number) {
-	let separator;
-	if (Session.get('activeLanguage') === "de") {
-		separator = ".";
-	} else {
-		separator = ",";
-	}
-	return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator);
 }
 
 function getLoginClass() {
@@ -167,25 +153,6 @@ Template.welcome.helpers({
 		}
 		loginButtons += "</div>";
 		return loginButtons;
-	},
-	getServerInventory: function () {
-		let cardsetCount, cardCount, userCount, onlineCount;
-		if (Meteor.settings.public.welcome.fakeStatistics) {
-			let inventory = new ReactiveVar(fakeInventory);
-			cardsetCount = inventory.curValue.cardsets;
-			cardCount = inventory.curValue.cards;
-			userCount = inventory.curValue.users;
-			onlineCount = inventory.curValue.online;
-		} else {
-			cardsetCount = Counts.get('cardsetsCounter') + Counts.get('repetitoriumCounter');
-			cardCount = Counts.get('cardsCounter');
-			userCount = Counts.get('usersCounter');
-			onlineCount = Counts.get('usersOnlineCounter');
-		}
-		return '</br><span class="serverInventory">' + TAPi18n.__("inventory.cardsets") + "&nbsp;" + splitLargeNumbers(cardsetCount) + "&nbsp;&nbsp;" +
-			TAPi18n.__("inventory.cards") + "&nbsp;" + splitLargeNumbers(cardCount) + "&nbsp;&nbsp;" +
-			TAPi18n.__("inventory.users") + "&nbsp;" + splitLargeNumbers(userCount) + "&nbsp;&nbsp;" +
-			TAPi18n.__("inventory.usersOnline") + "&nbsp;" + splitLargeNumbers(onlineCount) + '</span></br></br>';
 	}
 });
 
@@ -225,23 +192,5 @@ Template.welcomeWordcloudButton.events({
 		Session.set('isLandingPagePomodoroActive', !Session.get('isLandingPagePomodoroActive'));
 		WordcloudCanvas.draw();
 		PomodoroTimer.showPomodoroNormal();
-	}
-});
-
-/*
- * ############################################################################
- * welcomeTitle
- * ############################################################################
- */
-Template.welcomeTitle.helpers({
-	isFirstTimeVisit: function () {
-		return Route.isFirstTimeVisit();
-	}
-});
-
-Template.welcomeTitle.events({
-	'click #showDemo': function () {
-		CardVisuals.toggleFullscreen();
-		Session.set('demoFullscreen', true);
 	}
 });

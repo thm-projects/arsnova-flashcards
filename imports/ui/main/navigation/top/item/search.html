@@ -1,0 +1,19 @@
+<template name="mainNavigationTopItemSearch">
+    <li class="searchDropdown {{getVisibility}}">
+        <div class="input-append" role="search">
+            <div class="searchItem flex-content">
+                <input class="form-control typeahead input-search"
+                       name="search"
+                       type="text"
+                       autocomplete="off" spellcheck="off" data-source="search"
+                       data-template="search"
+                       placeholder="{{_ "navbar-collapse.search"}}">
+            </div>
+            {{#if searchActive}}
+                <div class="searchItem clearSearch flex-content">
+                    <i class="glyphicon glyphicon-remove-circle pull-left"></i>
+                </div>
+            {{/if}}
+        </div>
+    </li>
+</template>

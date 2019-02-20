@@ -1,0 +1,34 @@
+<template name="mainModalConnectionStatus">
+    <div class="modal fade" id="connectionStatusModal" role="dialog">
+        <div class="modal-dialog" aria-labelledby="showHintTitle">
+            <div class="modal-content hintContent">
+                <div class="modal-header">
+                    <span class="modal-icon">
+                        <i class="glyphicon glyphicon-transfer"></i>
+                 </span>
+                    {{> mainModalItemCloseIcon}}
+                    <h4 id="connectionStatusTitle" class="modal-title">{{_ "connection.title"
+                                                                           lastAppTitle=(getLastAppTitle)}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            {{_ "connection.webSocket"}}:
+                                            {{#if isConnected}} {{_ "connection.connected"}} {{else}} {{_
+                                                    "connection.disconnected"}} {{/if}}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

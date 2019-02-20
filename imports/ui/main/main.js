@@ -3,12 +3,12 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Notifications} from "../../api/notifications.js";
 import {Route} from "../../api/route";
 import {CardVisuals} from "../../api/cardVisuals";
 import {MarkdeepContent} from "../../api/markdeep";
 import {CardNavigation} from "../../api/cardNavigation";
 import {MainNavigation} from "../../api/mainNavigation";
+import {ServerStyle} from "../../api/styles.js";
 import "../welcome/welcome.js";
 import "../wordcloud/wordcloud.js";
 import "../impressum/impressum.js";
@@ -30,11 +30,13 @@ import "./overlays/zoomText.js";
 import "../card/sidebar/sidebar.js";
 import "../loadingScreen/loadingScreen.js";
 import "../card/editor/editor.js";
-import "./item/search.js";
+import "./item/searchResult.js";
 import "./modal/item/closeIcon.js";
+import "./navigation/navigation.js";
 import "./main.html";
-import {NavigatorCheck} from "../../api/navigatorCheck";
-import {ServerStyle} from "../../api/styles.js";
+import "./modal/arsnovaClick.js";
+import "./modal/connectionStatus.js";
+import "./modal/underDevelopment.js";
 
 Meteor.subscribe("Users");
 Meteor.subscribe("notifications");
@@ -42,7 +44,6 @@ Meteor.subscribe("adminSettings");
 Meteor.subscribe("serverStatistics");
 
 Session.setDefault("theme", "default");
-Session.setDefault('activeRouteTitle', '');
 Session.setDefault("fullscreen", false);
 Session.setDefault("previousRouteName", undefined);
 Session.setDefault("connectionStatus", 2);
@@ -112,28 +113,6 @@ $(document).on('click', '.navbar-collapse.in', function (e) {
 });
 
 Template.main.events({
-	'click .logout': function (event) {
-		event.preventDefault();
-		Session.set('helpFilter', undefined);
-		MainNavigation.setLoginTarget(false);
-		Meteor.logout();
-	},
-	'click #searchResults': function () {
-		$('.searchDropdown').removeClass("open");
-		$('.input-search').val('');
-	},
-	'click .notificationsBtn': function () {
-		var notifications = Notifications.find({read: false, target_type: 'user', target: Meteor.userId()});
-		notifications.forEach(function (notification) {
-			Meteor.call("setNotificationAsRead", notification._id);
-		});
-	},
-	'click .lang': function (event) {
-		event.preventDefault();
-		let language = $(event.target).data('lang');
-		TAPi18n.setLanguage(language);
-		Session.set('activeLanguage', language);
-	},
 	"click": function (evt) {
 		if (!$(evt.target).is('.zoomText')) {
 			CardVisuals.toggleZoomContainer(true);
@@ -147,47 +126,9 @@ Template.main.helpers({
 			Session.set('selectingCardsetToLearn', false);
 		}
 	},
-	getYear: function () {
-		return moment(new Date()).format("YYYY");
-	},
 	getUsername: function () {
 		if (Meteor.user()) {
 			return Meteor.user().profile.name;
-		}
-	},
-	isActiveProfile: function () {
-		if (ActiveRoute.name(/^profile/)) {
-			return Router.current().params._id === Meteor.userId();
-		}
-		return false;
-	},
-	countNotifications: function () {
-		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
-			return Notifications.find({}).count();
-		} else {
-			return Notifications.find({read: false, target_type: 'user', target: Meteor.userId()}).count();
-		}
-	},
-	getLink: function () {
-		return "/cardset/" + this.link_id;
-	},
-	isSmartPhoneAndOwnsNoCards: function () {
-		if (NavigatorCheck.isSmartphone()) {
-			if (Meteor.user() && Meteor.user().count !== undefined) {
-				return Meteor.user().count.cardsets === 0;
-			}
-		}
-	},
-	getMyCardsetName: function () {
-		if (Meteor.user() && Meteor.user().count !== undefined) {
-			switch (Meteor.user().count.cardsets) {
-				case 0:
-					return TAPi18n.__('navbar-collapse.noCarddecks');
-				case 1:
-					return TAPi18n.__('navbar-collapse.oneCarddeck');
-				default:
-					return TAPi18n.__('navbar-collapse.carddecks');
-			}
 		}
 	},
 	isFirstTimeVisit: function () {
@@ -195,9 +136,6 @@ Template.main.helpers({
 	},
 	isNotFirstDemoVisit: function () {
 		return (!Route.isFirstTimeVisit() && Route.isDemo());
-	},
-	getMobileNavbarTitle: function () {
-		return Session.get('activeRouteTitle');
 	}
 });
 
@@ -215,22 +153,6 @@ Template.main.onRendered(function () {
 	});
 });
 
-Template.footer.helpers({
-	getLanguages: function () {
-		const obj = TAPi18n.getLanguages();
-		const languages = [];
-		for (const key in obj) {
-			if (key) {
-				languages.push({code: key, label: obj[key]});
-			}
-		}
-		return languages;
-	},
-	displayFooterNavigation: function () {
-		return (Route.isHome() || (Route.isFirstTimeVisit() && Route.isDemo() || Route.isMakingOf()));
-	}
-});
-
 Meteor.startup(function () {
 	CardNavigation.fullscreenExitEvents();
 	$(document).on('keydown', function (event) {
@@ -243,18 +165,3 @@ Meteor.startup(function () {
 	});
 });
 
-Template.connectionStatus.helpers({
-	isModalOpen: function () {
-		return Session.get('isConnectionModalOpen');
-	}
-});
-
-
-Template.connectionStatusModal.onRendered(function () {
-	$('#connectionStatusModal').on('hidden.bs.modal', function () {
-		Session.set('isConnectionModalOpen', false);
-	});
-	$('#connectionStatusModal').on('shown.bs.modal', function () {
-		Session.set('isConnectionModalOpen', true);
-	});
-});

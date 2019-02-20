@@ -284,7 +284,53 @@
     "faq": "FAQ",
     "impressum": "Impressum",
     "datenschutz": "Datenschutz",
-    "agb": "AGB"
+    "agb": "AGB",
+    "statistics": "Statistiken"
+  },
+  "serverStatistics": {
+    "modal": {
+        "description": "Intro:",
+        "cards": "Karten",
+        "cardsets": {
+          "total": "Gesamt:",
+          "private": "__label__",
+          "free": "__label__",
+          "edu": "__label__",
+          "pro": "__label__"
+        },
+        "repetitorium":  {
+          "total": "Gesamt",
+          "private": "__label__",
+          "free": "__label__",
+          "edu": "__label__",
+          "pro": "__label__"
+        },
+        "wordcloud":  {
+          "total": "Gesamt:",
+          "private": "__label__",
+          "free": "__label__",
+          "edu": "__label__",
+          "pro": "__label__"
+        },
+        "user": {
+          "total": "Gesamt",
+          "pro": "__label__",
+          "online": "Online"
+        },
+        "table": {
+          "header": {
+            "cardsets": "Karteien",
+            "repetitorium": "Repetitorium",
+            "wordcloud": {
+              "default": "Von der Redaktion in die Themen-Wolke aufgenommen",
+              "mobile": "In die Themen-Wolke aufgenommen"
+            },
+            "counter": "Anzahl",
+            "user": "Benutzer",
+            "cards": "Karten"
+          }
+        }
+    }
   },
   "help": {
     "resetFilter": "Hilfe vollständig anzeigen…"

@@ -1,24 +1,26 @@
 <template name="firstLoginContent">
-    {{> agb}}
-    {{> datenschutz}}
-    <div id="first_login" class="panel panel-default">
-        <div class="panel-body" id="first_login_content">
-            <div class="form-group">
-                <div class="checkbox">
-                    <label style="color:red" id="select_checkbox">
-                        <input type="checkbox" value="" id="acceptFirstLoginCheckbox">
-                        <span class="checkbox-material">
+    <div class="col-xs-12">
+        {{> agb}}
+        {{> datenschutz}}
+        <div id="first_login" class="panel panel-default">
+            <div class="panel-body" id="first_login_content">
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label style="color:red" id="select_checkbox">
+                            <input type="checkbox" value="" id="acceptFirstLoginCheckbox">
+                            <span class="checkbox-material">
                     <span class="check"></span>
                   </span>
-                        {{_ "first-login.text"}}
-                    </label>
+                            {{_ "first-login.text"}}
+                        </label>
+                    </div>
                 </div>
+                <br/>
+                <button id="cancelFirstLogin" type="button" class="btn btn-raised btn-warning">{{_
+                        "access-denied.button"}}</button>
+                <button id="acceptFirstLogin" type="button" class="btn btn-raised btn-success pull-right" disabled>{{_
+                        "first-login.button"}}</button>
             </div>
-            <br/>
-            <button id="cancelFirstLogin" type="button" class="btn btn-raised btn-warning">{{_ "access-denied.button"}}</button>
-            <button id="acceptFirstLogin" type="button" class="btn btn-raised btn-success pull-right" disabled>{{_
-                    "first-login.button"}}</button>
         </div>
     </div>
-    {{> footer}}
 </template>

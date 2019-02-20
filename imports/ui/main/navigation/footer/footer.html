@@ -1,0 +1,15 @@
+<template name="mainNavigationFooter">
+    {{#unless fullscreenActive}}
+        {{#unless currentUser}}
+            {{#unless isNotFirstDemoVisit}}
+                {{#if isFirstTimeVisitNavigation}}
+                    {{> impressumNavigation}}
+                {{else}}
+                    {{#if displayFooterNavigation}}
+                        {{> mainNavigationFooterItemInfo}}
+                    {{/if}}
+                {{/if}}
+            {{/unless}}
+        {{/unless}}
+    {{/unless}}
+</template>

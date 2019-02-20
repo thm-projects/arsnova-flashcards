@@ -1,16 +1,15 @@
-import {Template} from "meteor/templating";
-import {Session} from "meteor/session";
 import {Meteor} from "meteor/meteor";
-import {CardVisuals as Search} from "../../../api/search";
+import {Session} from "meteor/session";
+import {Search} from "../../../../../api/search.js";
 import "./search.html";
 
 /*
 * ############################################################################
-* mainNavigationItemSearch
+* mainNavigationTopItemSearch
 * ############################################################################
 */
 
-Template.mainNavigationItemSearch.events({
+Template.mainNavigationTopItemSearch.events({
 	'keyup .input-search': function (event) {
 		event.preventDefault();
 		Session.set("searchValue", $(event.currentTarget).val());
@@ -31,28 +30,23 @@ Template.mainNavigationItemSearch.events({
 	}
 });
 
-Template.mainNavigationItemSearch.helpers({
+Template.mainNavigationTopItemSearch.helpers({
 	searchActive: function () {
 		return Session.get("searchValue") !== "" && Session.get("searchValue") !== undefined;
+	},
+	getVisibility: function () {
+		if (this.visibility === 0) {
+			return "visible-xs";
+		} else {
+			return "hidden-xs";
+		}
 	}
 });
 
-Template.mainNavigationItemSearch.onRendered(function () {
+Template.mainNavigationTopItemSearch.onRendered(function () {
 	Session.set("searchValue", undefined);
 	Search.adjustSearchResultWindowSize();
 	$(window).resize(function () {
 		Search.adjustSearchResultWindowSize();
 	});
-});
-
-/*
-* ############################################################################
-* mainNavigationItemSearchResult
-* ############################################################################
-*/
-
-Template.mainNavigationItemSearchResult.helpers({
-	searchCategories: function () {
-		return Session.get('searchCategoriesResult');
-	}
 });

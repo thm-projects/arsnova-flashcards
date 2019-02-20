@@ -1,48 +1,14 @@
 #contact {
+  margin-top: $size_navbar_height;
+  margin-bottom: $size_navbar_height * 1.75;
   @media(max-width: 767px) {
-    margin-bottom: 70px;
+    margin-top: $size_navbar_height * 1.5;
+    margin-bottom: 10px;
   }
 }
 
-@media(min-width: 768px) {
-  #contact-nav {
-    position: sticky;
-    position: -webkit-sticky;
-    z-index: 1000;
-  }
-
-  #contact-nav {
-    top: 0;
-  }
-
-  #theme-wrapper #contact-nav {
-    top: 40px;
-  }
-}
-
-@media(max-width: 767px) {
-  .modal-footer button {
-    margin: 10px 0 !important;
-    width: 100% !important;
-  }
-
-  #contact-nav a {
-    text-align: left;
-    padding: 10px;
-  }
-}
-
-#contact-nav a {
-  border-radius: 0;
-  margin-bottom: 0;
-  outline: none;
-  padding: 10px 0;
-  @media(max-width: 767px) {
-    padding: 10px 15px;
-  }
-  .fa-home {
-    font-size: 15px;
-  }
+#contact.fullscreen {
+  margin: 0 !important;
 }
 
 #contact-nav {

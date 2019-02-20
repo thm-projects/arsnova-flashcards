@@ -1,8 +1,10 @@
 //------------------------ IMPORTS
 import {Template} from "meteor/templating";
+import {Route} from "../../api/route.js";
 import "./impressum.html";
 import "../card/modal/demo.js";
-import {Route} from "../../api/route.js";
+import "./modal/statistics/statistics.js";
+import "./navigation/navigation.js";
 
 /*
  * ############################################################################
@@ -25,29 +27,6 @@ Template.contact.events({
 
 Template.contact.onCreated(function () {
 	this.subscribe("cardsets");
-});
-
-/*
- * ############################################################################
- * contactNavigation
- * ############################################################################
- */
-
-Template.contactNavigation.helpers({
-	displayAsFooter: function () {
-		return (Route.isHome() || (Route.isFirstTimeVisit() && Route.isDemo()) || Route.isMakingOf());
-	}
-});
-
-Template.contactNavigation.events({
-	'click a': function () {
-		window.scrollTo(0, 0);
-	},
-	'click #backToStartButton': function (event) {
-		event.preventDefault();
-		Route.setFirstTimeVisit();
-		Router.go('home');
-	}
 });
 
 /*
