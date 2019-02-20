@@ -9,7 +9,6 @@ export let ServerInventoryTools = class ServerInventoryTools {
 		switch (type) {
 			case "cards":
 				if (Meteor.settings.public.welcome.fakeStatistics) {
-					console.log(this.splitLargeNumbers(inventory.curValue.cards));
 					return this.splitLargeNumbers(inventory.curValue.cards);
 				} else {
 					return this.splitLargeNumbers(Counts.get('cardsCounter'));
