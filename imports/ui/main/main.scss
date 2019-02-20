@@ -52,7 +52,7 @@ $font_weight_login_label: bold;
 $padding_top_login: 10px;
 $login_button_size: 60px;
 $wordcloud_toggle_button_icon_size: 120px;
-$wordcloud_toggle_button_bottom_margin: 45px;
+$wordcloud_toggle_button_bottom_margin: -10px;
 $small_pomodoro_timer_bottom_margin: 70px;
 $font_size_wordcloud_and_pomodoro_label: 16px;
 
@@ -835,4 +835,12 @@ th {
 .cc-theme-edgeless.cc-window {
   border-radius: 30px;
   margin: 0 20px 50px 20px;
+}
+
+.glyphicon-info-sign:before {
+  font-size: 50px;
+}
+
+.glyphicon-info-sign:hover {
+  color: midnightblue;
 }
