@@ -7,7 +7,7 @@ let impressumNavigation = {
 	help: "<i class='fa fa-medkit'></i>&nbsp;",
 	impressum: "<i class='fa fa-legal'></i>&nbsp;",
 	learning: "<i class='fa fa-graduation-cap'></i>&nbsp;",
-	statistics: "<i class='fa fa-server'></i>&nbsp;"
+	statistics: "<i class='fa fa-folder-open'></i>&nbsp;"
 };
 
 let landingPageNavigation = {
