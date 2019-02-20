@@ -315,7 +315,7 @@
         "user": {
           "total": "Gesamt",
           "pro": "__label__",
-          "online": "Online"
+          "online": "Users online"
         },
         "table": {
           "header": {
@@ -326,7 +326,7 @@
               "mobile": "IVon der \uD83C\uDF45cards-Redaktion empfohlen"
             },
             "counter": "",
-            "user": "User",
+            "user": "Accounts",
             "cards": "Karten"
           }
         }
