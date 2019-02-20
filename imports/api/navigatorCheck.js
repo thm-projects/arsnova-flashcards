@@ -31,8 +31,16 @@ export let NavigatorCheck = class CardVisuals {
 	}
 
 	static gotFeatureSupport (feature) {
-		if (this.isIOS()) {
-			return config.enabledIOSFeatures.includes(feature);
+		if (this.isSmartphone()) {
+			if (config.enabledSmartphoneFeatures.includes(feature)) {
+				if (this.isIOS()) {
+					return config.enabledIOSFeatures.includes(feature);
+				} else {
+					return true;
+				}
+			} else {
+				return false;
+			}
 		} else if (this.isMacOSSafari()) {
 			return config.enabledMacOSSafariFeatures.includes(feature);
 		} else {

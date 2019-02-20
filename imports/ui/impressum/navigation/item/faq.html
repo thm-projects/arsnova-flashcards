@@ -1,0 +1,11 @@
+<template name="impressumNavigationItemFAQ">
+    {{#if currentUser}}
+        <li class="{{#if isActiveRoute 'faq'}}active{{/if}}">
+            <a id="faq" href="{{pathFor route='faq'}}">
+                <div class="footerNavigationContent">
+                    {{{getNavigationName "faq"}}}
+                </div>
+            </a>
+        </li>
+    {{/if}}
+</template>

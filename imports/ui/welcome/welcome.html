@@ -8,15 +8,14 @@
         <span class="login-container">
             {{{getLoginButtons}}}
         </span>
-        {{{getServerInventory}}}
     </div>
-
     <div id="pomodoroTimerNormalContainer" title="{{_ "landingPage.buttons.tooltip.pomodoro"}}">
         {{> pomodoroTimer}}
         <label>{{_ "landingPage.buttons.pomodoro"}}</label>
     </div>
     {{> welcomeWordcloudButton}}
 </template>
+
 
 <template name="welcomeWordcloudButton">
     {{#if gotFeatureSupport 1}}

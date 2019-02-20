@@ -40,24 +40,27 @@ $size_modal_icon: 36px;
 $margin_bottom_search_result_item: 30px;
 
 //navbar
+$size_navbar_height: 35px;
 $size_navbar_alldecks_border: 3px;
 $font_size_filter_navbar_mobile: 12px;
+$padding_bottom_search_input: 4px;
+$clear_search_button_width: 22px;
 
 //welcome page
-$size_footer_height: 40px;
 $font_size_login_label: 16px;
 $font_weight_login_label: bold;
-$font_size_inventory: 14px;
-$font_weight_inventory: normal;
-$padding_horizontal_inventory: 15px;
-$padding_vertical_inventory: 5px;
-$margin_top_inventory: 10px;
 $padding_top_login: 10px;
 $login_button_size: 60px;
 $wordcloud_toggle_button_icon_size: 120px;
 $wordcloud_toggle_button_bottom_margin: 45px;
 $small_pomodoro_timer_bottom_margin: 70px;
 $font_size_wordcloud_and_pomodoro_label: 16px;
+
+//welcome page inventory
+$font_size_inventory: 14px;
+$font_weight_inventory: normal;
+$border_width_inventory: 0;
+$border_style_inventory: solid;
 
 //info page
 $font_size_info_h1: 20px;
@@ -244,11 +247,18 @@ body {
   }
 }
 
+.demo-padding {
+  @media(max-width: 767px) {
+    padding-left: $sidebar_width / 2 !important;
+    padding-right: $sidebar_width / 2 !important;
+  }
+}
+
 .btn {
   text-transform: unset !important;
 }
 
-.btn-success, .btn-danger, .btn-warning, .btn-info, .label-bonus, .learnBtn, .bonusBtn, .presentationBtn, .label-private, .label-edu, .label-free, .label-pro, #filter-nav-wrapper .navbar-text, #filter-nav-wrapper .dropdown-toggle, .panel-heading.info-tab, #collapseLearningPhaseInfoButton, .deleteAllCardsBtn, .newCardBtn, .markdeep-help, .markdeep-translate.pressed, .pomodoroTimer h2, #searchResults h4 {
+.btn-success, .btn-danger, .btn-warning, .btn-info, .label-bonus, .learnBtn, .bonusBtn, .presentationBtn, .label-private, .label-edu, .label-free, .label-pro, #filter-nav-wrapper .navbar-text, #filter-nav-wrapper .dropdown-toggle, .panel-heading.info-tab, #collapseLearningPhaseInfoButton, .deleteAllCardsBtn, .newCardBtn, .markdeep-help, .markdeep-translate.pressed, .pomodoroTimer h2, #searchResults h4, .footer.icon-container .glyphicon {
   text-shadow: $default_text_shadow;
 }
 
@@ -273,108 +283,6 @@ body {
 
 .search-author {
   margin-top: 15px;
-}
-
-.input-search {
-  width: 105px !important;
-  line-height: 30pt !important;
-  padding-right: 15px !important;
-}
-
-.navbar-default {
-  .navbar-brand {
-    padding: 10px 19px;
-
-    > img {
-      height: 22px;
-      margin-top: 5px;
-    }
-  }
-
-  .navbar-nav {
-    .notifications {
-      min-width: 420px;
-
-      .notification-footer,
-      .notification-heading {
-        padding: 2px 10px;
-        color: black;
-
-        .menu-title {
-          font-size: 1.5rem;
-          display: inline-block;
-        }
-      }
-
-      .divider {
-        margin: 5px 0;
-      }
-
-      .notifications-wrapper {
-        overflow: auto;
-        max-height: 250px;
-
-        .notification-item {
-          padding: 10px;
-          margin: 5px;
-          border-radius: 4px;
-
-          .item-title {
-            font-size: 1.3rem;
-          }
-        }
-      }
-
-      a.content {
-        text-decoration: none;
-      }
-    }
-
-    .glyphicon {
-      margin-right: 5px;
-    }
-  }
-
-  @media(min-width: 768px) {
-    #navbar-all-decks {
-      border-left: $size_navbar_alldecks_border solid !important;
-    }
-  }
-}
-
-@media(min-width: 768px) and (max-width: 900px) {
-  .thm-header {
-    padding: 0;
-
-    .container-fluid {
-      padding-left: 10px;
-      padding-right: 10px;
-    }
-  }
-}
-
-@media(min-width: 768px) {
-  .thm-header {
-    .navbar-collapse, .navbar-collapse.collapse {
-      overflow: visible;
-    }
-
-    .navbar-toggle {
-      display: none;
-    }
-  }
-  .panel-body button {
-    margin: 10px 0 !important;
-    width: auto;
-  }
-}
-
-@media(max-width: 991px) {
-  .navbar-default {
-    .navbar-brand {
-      padding: 10px 5px;
-    }
-  }
 }
 
 #theme-wrapper #main {
@@ -467,8 +375,8 @@ button {
 }
 
 .panelAvailability {
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 #pool_license img {
@@ -520,13 +428,6 @@ button {
   padding-right: 0;
 }
 
-
-.searchDropdown {
-  margin-top: 5px !important;
-  margin-bottom: 0 !important;
-  width: 140px !important;
-}
-
 @media (max-width: 767px) {
   .panel {
     margin-top: 3px;
@@ -543,8 +444,8 @@ button {
   }
 
   .info_license_mobile {
-    margin-left: 0px;
-    margin-right: 0px;
+    margin-left: 0;
+    margin-right: 0;
     padding-top: 10px;
     padding-bottom: 10px;
   }
@@ -559,21 +460,6 @@ button {
     width: 280px;
     font-size: 11px;
   }
-
-  .searchDropdown {
-    margin-top: 8px !important;
-    width: 130px !important;
-    padding: 0;
-    border: none;
-    box-shadow: none;
-  }
-  .input-search {
-    margin: 0;
-    border: none;
-  }
-  .clearSearch {
-    right: 20px !important;
-  }
 }
 
 @media (min-width: 768px) {
@@ -583,12 +469,6 @@ button {
 
   .licenseInfo, .licenseInfoCreate {
     border-bottom: solid 1px !important;
-  }
-
-  .footer {
-    .icon-container {
-      border-right: solid 1px;
-    }
   }
 }
 
@@ -642,45 +522,6 @@ button {
   margin: 0 !important;
   padding: 0 !important;
   margin-right: 5px !important;
-}
-
-#main-nav {
-  background: unset !important;
-}
-
-.navbar-fixed-top {
-  min-height: 36px !important;
-}
-
-#thm-top-navigation a {
-  padding: 8px 7px !important;
-}
-
-.dropup {
-  margin-bottom: 0;
-}
-
-.dropdown, .dropup, .navbar-nav > li {
-  .dropdown-menu {
-    max-height: 800px;
-    margin-left: 7px;
-    @media(max-height: 768px) {
-      max-height: 575px;
-    }
-    @media(max-width: 767px) {
-      max-height: 225px;
-    }
-    overflow-y: scroll;
-  }
-
-  button {
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-
-  a {
-    white-space: nowrap;
-  }
 }
 
 #searchResults {
@@ -836,74 +677,6 @@ th {
   }
 }
 
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: $size_footer_height !important;
-
-  .container {
-    height: 40px;
-    margin-bottom: 0;
-    text-align: center;
-  }
-
-  #info {
-    height: 40px;
-  }
-
-  .footer-icon {
-    font-size: 30px;
-    padding: -15px 0 0 0;
-    margin: 0;
-    text-align: center;
-  }
-
-  li {
-    height: 40px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  li ul li {
-    height: 60px;
-  }
-
-  a {
-    text-decoration: none;
-    outline: none;
-  }
-
-  .dropdown-menu {
-    margin: 0;
-    padding: 0;
-    min-width: 120px;
-  }
-
-  .footer-info-navigation a {
-    border-right: 1px solid;
-  }
-
-  .footer-info-navigation:first-child a {
-    border-left: 1px solid;
-  }
-
-  .icon-container-info {
-    border-left: 1px solid;
-    border-right: 1px solid;
-  }
-
-  .lang {
-    padding: 25px 15px;
-  }
-
-  .lang:hover {
-    padding: 25px 15px;
-  }
-}
-
 #searchResults {
   position: absolute;
   float: left;
@@ -955,10 +728,6 @@ th {
   margin: 0;
 }
 
-.navbar-fixed-top .navbar-text {
-  margin-top: 14px !important;
-  margin-bottom: 0;
-}
 
 .btn-toolbar .btn-group {
   margin-right: 5px;
@@ -988,24 +757,6 @@ th {
   }
 }
 
-.clearSearch {
-  position: absolute;
-  float: right;
-  right: 5px;
-  width: 22px;
-  font-size: 22px;
-  cursor: pointer;
-  z-index: 1000 !important;
-}
-
-.searchItem {
-  padding: 0 !important;
-}
-
-.thm-header .navbar-toggle {
-  margin-right: 0;
-}
-
 ::placeholder {
   padding-top: 5% !important;
   padding-left: 5pt !important;
@@ -1014,32 +765,7 @@ th {
   font-style: normal;
 }
 
-#profile-drop {
-  overflow: hidden;
-  text-align: left;
-  min-width: auto;
-  @media(min-width: 768px) {
-    position: absolute;
-  }
-  padding-top: 0;
-  padding-bottom: 0;
 
-  a {
-    text-decoration: none;
-    display: block;
-    height: 100%;
-    width: 100%;
-  }
-
-  td {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  td .fa, .glyphicon {
-    margin-left: 5px;
-  }
-}
 
 #arsnovaAppModal, #arsnovaClickModal {
   iframe {
@@ -1081,6 +807,14 @@ th {
   border-radius: 30px !important;
 }
 
+.no-results, .no-results-filtered {
+  border-radius: 15px;
+}
+
+.swal2-popup {
+  border-radius: 30px !important;
+}
+
 .mobile-websocket-container {
   margin-right: 15px;
 }
@@ -1100,5 +834,5 @@ th {
 
 .cc-theme-edgeless.cc-window {
   border-radius: 30px;
-  margin: 0px 20px 50px 20px;
+  margin: 0 20px 50px 20px;
 }

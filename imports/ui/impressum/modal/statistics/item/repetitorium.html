@@ -1,0 +1,34 @@
+<template name="impressumModalStatisticsItemRepetitorium">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr class="active">
+                <th scope="col" class="col-xs-9">{{_ "serverStatistics.modal.table.header.repetitorium"}}</th>
+                <th scope="col" class="col-xs-3">{{_ "serverStatistics.modal.table.header.counter"}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{_ "serverStatistics.modal.repetitorium.total"}}</td>
+                <td>{{getServerInventory "repetitorium"}}</td>
+            </tr>
+            <tr>
+                <td>{{{_ "serverStatistics.modal.repetitorium.private" label=(getKind "personal")}}}</td>
+                <td>{{getServerInventory "repetitoriumPrivate"}}</td>
+            </tr>
+            <tr>
+                <td>{{{_ "serverStatistics.modal.repetitorium.free" label=(getKind "free")}}}</td>
+                <td>{{getServerInventory "repetitoriumFree"}}</td>
+            </tr>
+            <tr>
+                <td>{{{_ "serverStatistics.modal.repetitorium.edu" label=(getKind "edu")}}}</td>
+                <td>{{getServerInventory "repetitoriumEdu"}}</td>
+            </tr>
+            {{#if isProLoginActive}}
+                <tr>
+                    <td>{{{_ "serverStatistics.modal.repetitorium.pro" label=(getKind "pro")}}}</td>
+                    <td>{{getServerInventory "repetitoriumPro"}}</td>
+                </tr>
+            {{/if}}
+        </tbody>
+    </table>
+</template>

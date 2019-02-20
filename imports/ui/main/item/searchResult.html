@@ -1,22 +1,4 @@
-<template name="mainNavigationItemSearch">
-    <span class="navbar-form navbar-left input-append btn-group searchDropdown" role="search">
-        <div class="searchItem col-xs-9">
-            <input class="form-control typeahead input-search"
-                   name="search"
-                   type="text"
-                   autocomplete="off" spellcheck="off" data-source="search"
-                   data-template="search"
-                   placeholder="{{_ "navbar-collapse.search"}}">
-        </div>
-        {{#if searchActive}}
-            <div class="searchItem clearSearch col-xs-3">
-                <i class="glyphicon glyphicon-remove-circle pull-left"></i>
-            </div>
-        {{/if}}
-    </span>
-</template>
-
-<template name="mainNavigationItemSearchResult">
+<template name="mainItemSearchResult">
     <div id="searchResults" style="{{#if
             searchCategories}}display: unset !important;{{else}}display: none !important;{{/if}}"
          data-toggle="collapse" data-target="#thm-top-navigation">

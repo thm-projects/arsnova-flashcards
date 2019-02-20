@@ -1,0 +1,9 @@
+<template name="mainNavigationTopItemBackend">
+    {{#if isInRole 'admin, editor'}}
+        <li id="navbar-adminpanel" class="hidden-xs">
+            <a href="{{pathFor route='admin_dashboard'}}" id="adminpanel">
+                {{_ "navbar-collapse.backend"}}
+            </a>
+        </li>
+    {{/if}}
+</template>

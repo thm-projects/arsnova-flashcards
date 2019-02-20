@@ -111,6 +111,7 @@
           "input_textarea_background_inactive": $input_textarea_background_inactive,
           "input_textarea_text_active": $input_textarea_text_active,
           "input_textarea_text_inactive": $input_textarea_text_inactive,
+          "button_navbar_collapse_text": white,
     //login
           "login_facebook_background": $primary,
           "login_facebook_background_hover": $button_background_hover,
@@ -223,7 +224,9 @@
     //welcome page colors
           "welcome_page_login_label": white,
           "welcome_page_login_label_shadow": $thm_gray,
-          "footer_background": transparent,
+          "footer_mobile_icon": white,
+          "footer_mobile_active_route_text": white,
+          "footer_background": $thm_gray,
           "footer_info_navigation_text": white,
           "footer_info_navigation_text_hover": $button_text_hover,
           "footer_info_navigation_text_active": white,
@@ -239,9 +242,10 @@
           "footer_globe_dropdown_background_hover": $button_background_hover,
           "placeholder": $thm_orange,
           "inventory_background": $thm_gray,
+          "inventory_border": $thm_gray,
           "inventory_text": white,
     //info page colors
-          "info_navigation_text": $thm_green,
+          "info_navigation_text": white,
           "info_navigation_text_active": $thm_gray,
           "info_navigation_text_hover": $button_text_hover,
           "info_navigation_background": transparent,

@@ -7,8 +7,10 @@ let macOSPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'];
 //0: Minute jump clock
 //1: WordCloud - Landing Page
 //2: WordCloud - Filter
-let enabledIOSFeatures = [];
-let enabledMacOSSafariFeatures = [];
+//3: Demo
+let enabledSmartphoneFeatures = [0, 1, 2, 3];
+let enabledIOSFeatures = [3];
+let enabledMacOSSafariFeatures = [3];
 
 module.exports = {
 	minimumTabletWidth,
@@ -16,5 +18,6 @@ module.exports = {
 	iOSPlatforms: iOSPlatforms,
 	macOSPlatforms: macOSPlatforms,
 	enabledIOSFeatures,
-	enabledMacOSSafariFeatures
+	enabledMacOSSafariFeatures,
+	enabledSmartphoneFeatures
 };

@@ -1,0 +1,40 @@
+<template name="impressumNavigation">
+        <div id="contact-nav" class="navbar-fixed-bottom {{#if currentUser}}hidden-xs{{/if}}">
+            <div class="container">
+                <div class="visible-xs navbar-header">
+                    <div class="flex-content navbar-header-route pull-left">
+                        {{{getNavigationName}}}
+                    </div>
+                    <div class="flex-content pull-right">
+                        <ul class="list-inline">
+                            {{> impressumNavigationItemStatisticsMobile}}
+                        </ul>
+                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                data-target="#contact-nav-collapse">
+                            <i class="icon-bar"></i>
+                            <i class="icon-bar"></i>
+                            <i class="icon-bar"></i>
+                        </button>
+                    </div>
+                </div>
+                {{> impressumNavigationDropdownContent}}
+            </div>
+        </div>
+</template>
+
+<template name="impressumNavigationDropdownContent">
+    <div class="collapse navbar-collapse" id="contact-nav-collapse">
+        <ul class="nav nav-justified">
+            {{> impressumNavigationItemBackToHome}}
+            {{> impressumNavigationItemDemo}}
+            {{> impressumNavigationItemAbout}}
+            {{> impressumNavigationItemLearning}}
+            {{> impressumNavigationItemFAQ}}
+            {{> impressumNavigationItemHelp}}
+            {{> impressumNavigationItemImpressum}}
+            {{> impressumNavigationItemAGB}}
+            {{> impressumNavigationItemDatenschutz}}
+            {{> impressumNavigationItemStatistics}}
+        </ul>
+    </div>
+</template>
