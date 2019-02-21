@@ -11,4 +11,10 @@
   .label, .badge {
     font-size: $font_size_cardset_badges !important;
   }
+
+  #setCardsetFilter {
+    white-space: nowrap!important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
 }

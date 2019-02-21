@@ -126,14 +126,22 @@ Template.graphCardsetFilter.helpers({
 				return false;
 			}
 		}
+	},
+	getCardsetCount: function () {
+		return this.cardGroups.length;
 	}
 });
 Template.graphCardsetFilter.events({
 	'click .cardset': function (evt) {
 		let cardset_id = $(evt.currentTarget).attr("data-id");
+		let count = $(evt.currentTarget).attr("data-count");
 		let cardset_name = $(evt.currentTarget).attr("data-name");
-		$('#setCardsetFiter').html(cardset_name);
-		$('#setCardsetFiter').val(cardset_id);
+		if (cardset_id === "-1") {
+			$('#setCardsetFilter').html(TAPi18n.__('leitnerProgress.indexDefault', {cardsetCount: cardset_name, cardCount: count}, Session.get('activeLanguage')));
+		} else {
+			$('#setCardsetFilter').html(TAPi18n.__('leitnerProgress.index', {cardset: cardset_name, cardCount: count}, Session.get('activeLanguage')));
+		}
+		$('#setCardsetFilter').val(cardset_id);
 		LeitnerProgress.updateGraph(cardset_id);
 	}
 });
