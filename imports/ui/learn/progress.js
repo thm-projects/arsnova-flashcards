@@ -7,7 +7,6 @@ import {getAuthorName} from "../../api/userdata";
 import ResizeSensor from "../../../client/thirdParty/resizeSensor/ResizeSensor";
 import {LeitnerProgress} from "../../api/leitnerProgress";
 import {Cardsets} from "../../api/cardsets";
-import {CardType} from "../../api/cardTypes";
 import {Route} from "../../api/route";
 
 /*
@@ -50,6 +49,9 @@ Template.graph.helpers({
 		} else {
 			return TAPi18n.__('bonus.progress.maxWorkload.plural', {amount: maxWorkload}, Session.get('activeLanguage'));
 		}
+	},
+	getCardsetCardCount: function (countLeitnerCards = false) {
+		return LeitnerProgress.getCardsetCardCount(countLeitnerCards);
 	}
 });
 
@@ -94,28 +96,8 @@ Template.progress.events({
  */
 
 Template.graphCardsetFilter.helpers({
-	getCardsets: function (countLeitnerCards = false) {
-		let cardsetList = [];
-		let cardsetLeitnerCount = 0;
-		let cardGroups = Cardsets.findOne({_id: Router.current().params._id}).cardGroups;
-		let cardsets = Cardsets.find({_id: {$in: cardGroups}}, {
-			fields: {_id: 1, name: 1, cardType: 1, difficulty: 1, quantity: 1},
-			sort: {name: 1}
-		}).fetch();
-		for (let i = 0; i < cardsets.length; i++) {
-			if (CardType.gotLearningModes(cardsets[i].cardType)) {
-				if (countLeitnerCards) {
-					cardsetLeitnerCount += cardsets[i].quantity;
-				} else {
-					cardsetList.push(cardsets[i]);
-				}
-			}
-		}
-		if (countLeitnerCards) {
-			return cardsetLeitnerCount;
-		} else {
-			return cardsetList;
-		}
+	getCardsetCardCount: function (countLeitnerCards = false) {
+		return LeitnerProgress.getCardsetCardCount(countLeitnerCards);
 	},
 	isShuffledCardset: function () {
 		if (Route.isLeitnerProgress()) {
