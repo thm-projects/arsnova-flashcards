@@ -274,4 +274,12 @@ export let LeitnerProgress = class LeitnerProgress {
 			return cardset.quantity;
 		}
 	}
+
+	static getTotalLeitnerCardCount () {
+		return Leitner.find().count();
+	}
+
+	static getTotalLeitnerCardCountUser () {
+		return Leitner.find({user_id: Meteor.userId()}).count();
+	}
 };

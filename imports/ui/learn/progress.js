@@ -52,6 +52,12 @@ Template.graph.helpers({
 	},
 	getCardsetCardCount: function (countLeitnerCards = false) {
 		return LeitnerProgress.getCardsetCardCount(countLeitnerCards);
+	},
+	getTotalLeitnerCardCount: function () {
+		return LeitnerProgress.getTotalLeitnerCardCount();
+	},
+	getTotalLeitnerCardCountUser: function () {
+		return LeitnerProgress.getTotalLeitnerCardCountUser();
 	}
 });
 

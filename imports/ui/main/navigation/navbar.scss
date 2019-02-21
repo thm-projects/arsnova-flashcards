@@ -1,5 +1,26 @@
 $navbar_all_decks_border_width: 3px;
 
+//Hotfix for outdated backend navigation
+#backendNavigation, #backendNavigation #thm-top-navigation {
+  height: $size_navbar_height !important;
+  min-height: $size_navbar_height !important;
+  max-height: $size_navbar_height !important;
+  margin-bottom: 0 !important;
+
+  li{
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 !important;
+    height: $size_navbar_height !important;
+    a {
+      display: flex !important;
+      align-items: center !important;
+      padding: 0 7px !important;
+      height: $size_navbar_height !important;
+    }
+  }
+}
+
 .navbar-cards-footer-about-icon {
   position: absolute;
   bottom: 25px;
