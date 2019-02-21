@@ -1423,8 +1423,9 @@
     "boxInterval": "nach __days__ Tagen",
     "boxNotLearned": "[neu oder vergessen]",
     "boxNotLearnedShort": "[neu | vergessen]",
-    "index": "",
-    "indexDefault": "Alle Karteien",
+    "index": "__cardset__ mit __cardCount__ Karten",
+    "indexDefault": "Alle __cardsetCount__ Karteien mit __cardCount__ Karten gesamt",
+    "cardCount": "Gesamtzahl: __cardCount__ Karten",
     "percentage": "Prozent",
     "notification": {
       "mail": "E-Mail",
