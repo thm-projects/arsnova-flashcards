@@ -16,8 +16,8 @@ let wordcloudLandingPage = {
 let wordcloudDefault = {
 	"clearCanvas": true,
 	"drawOutOfBound": false,
-	"gridSize": 24,
-	"weightFactor": 24,
+	"gridSize": 1,
+	"weightFactor": 15,
 	"rotateRatio": 0,
 	"fontFamily": "Roboto Condensed, Arial Narrow, sans-serif",
 	"color": "random-dark",
