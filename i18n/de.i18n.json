@@ -290,7 +290,7 @@
   },
   "serverStatistics": {
     "modal": {
-        "description": "Diese \uD83C\uDF45cards-Installation weist den folgenden Inhalt auf:",
+        "description": "Inhalt dieser \uD83C\uDF45cards-Plattform:",
         "cards": "Gesamt",
         "cardsets": {
           "total": "Gesamt:",
@@ -446,7 +446,7 @@
     "title": "Aktuell werden folgende Karteien angeboten:",
     "everyone": "Alle",
     "everything": "Alle",
-    "reset": "Filtern",
+    "reset": "",
     "rating": "Bewertung",
     "ratingFilter": "> 1 Stern",
     "ratingFilterPlural": "> __rating__ Sterne",
@@ -487,8 +487,8 @@
     "noCourse": "ohne Studiengang",
     "noModuleLong": "ohne Modul",
     "noModuleShort": "ohne",
-    "filter-info-small": "Karteien sortieren und filtern",
-    "filter-info-extra-small": "Sortieren und filtern"
+    "filter-info-small": "Karteien sortieren & filtern",
+    "filter-info-extra-small": "Sortieren & filtern"
   },
   "set-list-empty": {
     "emptytextlist": "Du hast noch keine Kartei erstellt. Informiere dich unter »Hilfe«, was du mit einer eigenen Kartei tun kannst.",
