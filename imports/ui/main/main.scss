@@ -795,3 +795,26 @@ th {
 .glyphicon-info-sign:hover {
   color: midnightblue;
 }
+
+div {
+  -webkit-hyphens: auto !important;
+  -ms-hyphens: auto !important;
+  hyphens: auto !important;
+}
+
+ul, ol  {
+  padding-left: 15px;
+}
+
+li  {
+  padding-left: 0px;
+  padding-bottom: 5px;
+}
+
+p  {
+  padding: 5px 0px;
+}
+
+blockquote {
+  border-left: 5px solid #24a751;
+}
