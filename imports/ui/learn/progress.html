@@ -12,7 +12,7 @@
 
 <template name="graph">
     <h4 class="col-xs-12">{{getChartTitle}}</h4>
-    {{#unless isActiveRoute regex="profileOverview"}}
+    {{#unless isActiveRoute regex="admin_learningStatistics|profileOverview"}}
     <div class="row">
         {{> graphCardsetFilter}}
     </div>
@@ -20,8 +20,13 @@
         <div class="col-xs-12 ">{{{getMaxWorkload}}}<span class="hidden-xs">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{_ "leitnerProgress.cardCount" cardCount=(getCardsetCardCount true)}}</span></div>
         <div class="col-xs-12 visible-xs">{{_ "leitnerProgress.cardCount" cardCount=(getCardsetCardCount true)}}</div>
     </div>
-
     {{/unless}}
+    {{#if isActiveRoute "profileOverview"}}
+        <div class="col-xs-12">{{_ "leitnerProgress.cardCount" cardCount=getTotalLeitnerCardCountUser}}</div>
+    {{/if}}
+    {{#if isActiveRoute "admin_learningStatistics"}}
+        <div class="col-xs-12">{{_ "leitnerProgress.cardCount" cardCount=getTotalLeitnerCardCount}}</div>
+    {{/if}}
     <canvas id="boxChart" data-box1="{{countBox 1}}"
             data-box2="{{countBox 2}}" data-box3="{{countBox 3}}" data-box4="{{countBox 4}}"
             data-box5="{{countBox 5}}" data-box6="{{countBox 6}}"></canvas>
