@@ -190,4 +190,15 @@
     color: limegreen !important;
   }
 
+  .bib {
+    padding-left: 63px !important;
+    text-indent: -63px !important;
+  }
+
+  div {
+    -webkit-hyphens: auto !important;
+    -ms-hyphens: auto !important;
+    hyphens: auto !important;
+  }
+
 }
