@@ -152,7 +152,7 @@ export let WordcloudCanvas = class WordcloudCanvas {
 			if (name.length > 30) {
 				name = name.substring(0, 30) + "…";
 			}
-			let quantitiy = cloud.quantity / biggestCardsetSize * 5;
+			let quantitiy = cloud.quantity / biggestCardsetSize * 4;
 			quantitiy = (quantitiy > minimumSize ? quantitiy : minimumSize);
 			list.push([name, Number(quantitiy), cloud._id, cloud.color]);
 		});
