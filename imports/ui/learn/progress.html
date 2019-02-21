@@ -17,8 +17,8 @@
         {{> graphCardsetFilter}}
     </div>
     <div class="row">
-        <div class="col-xs-12 ">{{{getMaxWorkload}}}<span class="hidden-xs">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{_ "leitnerProgress.cardCount" cardCount=this.quantity}}</span></div>
-        <div class="col-xs-12 visible-xs">{{_ "leitnerProgress.cardCount" cardCount=this.quantity}}</div>
+        <div class="col-xs-12 ">{{{getMaxWorkload}}}<span class="hidden-xs">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{_ "leitnerProgress.cardCount" cardCount=(getCardsetCardCount true)}}</span></div>
+        <div class="col-xs-12 visible-xs">{{_ "leitnerProgress.cardCount" cardCount=(getCardsetCardCount true)}}</div>
     </div>
 
     {{/unless}}
@@ -36,7 +36,7 @@
                             class="btn btn-raised btn-default setCardsetFilterDropdown longButton"
                             data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false"
-                            value="-1">{{_ "leitnerProgress.indexDefault" cardsetCount=getCardsetCount cardCount=this.quantity}}
+                            value="-1">{{_ "leitnerProgress.indexDefault" cardsetCount=getCardsetCount cardCount=(getCardsetCardCount true)}}
                     </button>
                     <button type="button"
                             class="btn btn-raised dropdown-toggle setCardsetFilterDropdown setCardTypeDropdownCaret"
@@ -46,19 +46,19 @@
                             <span class="sr-only"></span></span>
                     </button>
                     <ul class="dropdown-menu btn-raised longButton">
-                        <li class="cardset" value="-1" data-id="-1" data-count="{{this.quantity}}" data-name="{{getCardsetCount}}">
+                        <li class="cardset" value="-1" data-id="-1" data-count="{{getCardsetCardCount true}}" data-name="{{getCardsetCount}}">
                             <a href="#">
                                 <div id="activeCardset">
-                                    {{_ "leitnerProgress.indexDefault" cardsetCount=getCardsetCount cardCount=this.quantity}}
+                                    {{_ "leitnerProgress.indexDefault" cardsetCount=getCardsetCount cardCount=(getCardsetCardCount true)}}
                                 </div>
                                 <div class="col-xs-12 cardset-details">
                                         <span class="badge" title="{{_ "cardset.info.quantity"}}">
-                                            {{getCardsets true}}
+                                            {{getCardsetCardCount true}}
                                         </span>
                                 </div>
                             </a>
                         </li>
-                        {{#each getCardsets}}
+                        {{#each (getCardsetCardCount false)}}
                             <li class="cardset" value="{{this._id}}" data-id="{{this._id}}" data-count="{{this.quantity}}" data-name="{{this.name}}">
                                 <a href="#">
                                     {{this.name}}
