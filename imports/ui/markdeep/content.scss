@@ -149,21 +149,21 @@
   }
 
   h1, .nonumberh1 {
-    margin-top: 45px !important;
+    margin-top: 0px !important;
     margin-bottom: -10px !important;
     font-size: 125% !important;
     border-bottom: none !important;
   }
 
   h2, .nonumberh2 {
-    margin-top: 40px !important;
+    margin-top: 0px !important;
     margin-bottom: -10px !important;
     font-size: 112% !important;
     border-bottom: none !important;
   }
 
   h3, h4, h5, h6, .nonumberh3, .nonumberh4, .nonumberh5, .nonumberh6 {
-    margin-top: 35px !important;
+    margin-top: 0px !important;
     margin-bottom: -10px !important;
     font-size: 100% !important;
     font-weight: bold !important;
@@ -199,6 +199,10 @@
     -webkit-hyphens: auto !important;
     -ms-hyphens: auto !important;
     hyphens: auto !important;
+  }
+
+  p {
+    padding: 0px 0px;
   }
 
 }
