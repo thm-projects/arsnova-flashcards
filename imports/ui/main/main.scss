@@ -593,7 +593,7 @@ th {
 }
 
 .thm-numbering li:before {
-  margin-left: -2em;
+  margin-left: 0em;
   margin-right: 0.5em;
   content: counter(item);
   border-radius: 100%;
