@@ -33,8 +33,8 @@
   },
   "landingPage": {
     "login": {
-      "cas": "Log dich ein mit deinem Uni-Account",
-      "guest": "Ich will mich nur mal umschauen",
+      "cas": "Login mit THM-Account",
+      "guest": "Ich schau mich nur mal um",
       "pro": "Premium-Login",
       "backdoor": "Backdoor-Login",
       "tooltip": {
