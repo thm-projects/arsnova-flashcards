@@ -7,7 +7,7 @@ let defaultSettings = {
 			"google": true
 		},
 		"cas": true,
-		"guest": false,
+		"guest": true,
 		"pro": false
 	},
 	"welcome": {
@@ -18,7 +18,7 @@ let defaultSettings = {
 		},
 		"button": {
 			"about":  {
-				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo-Tour …",
+				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
 				"mobile": "Erfahre mehr über 🍅cards…"
 			}
 		}
@@ -46,7 +46,7 @@ let debug = {
 		},
 		"button": {
 			"about":  {
-				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo-Tour …",
+				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
 				"mobile": "Erfahre mehr über 🍅cards…"
 			}
 		}
@@ -63,7 +63,7 @@ let informatik = {
 			"google": true
 		},
 		"cas": true,
-		"guest": false,
+		"guest": true,
 		"pro": false
 	},
 	"welcome": {
@@ -74,7 +74,7 @@ let informatik = {
 		},
 		"button": {
 			"about":  {
-				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo-Tour …",
+				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
 				"mobile": "Erfahre mehr über 🍅cards…"
 			}
 		}
@@ -102,7 +102,7 @@ let linux = {
 		},
 		"button": {
 			"about":  {
-				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo-Tour …",
+				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
 				"mobile": "Erfahre mehr über 🍅cards…"
 			}
 		}
@@ -130,7 +130,7 @@ let review = {
 		},
 		"button": {
 			"about":  {
-				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo-Tour …",
+				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
 				"mobile": "Erfahre mehr über 🍅cards…"
 			}
 		}
@@ -147,8 +147,8 @@ let staging = {
 			"google": true
 		},
 		"cas": true,
-		"guest": false,
-		"pro": true
+		"guest": true,
+		"pro": false
 	},
 	"welcome": {
 		"title": {
@@ -158,7 +158,7 @@ let staging = {
 		},
 		"button": {
 			"about":  {
-				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo-Tour …",
+				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
 				"mobile": "Erfahre mehr über 🍅cards…"
 			}
 		}
