@@ -6,7 +6,7 @@ import * as config from "../config/sweetAlert.js";
 
 export let SweetAlertMessages = class SweetAlertMessages {
 	static completeProfile () {
-		swal(config.completeProfile()).then((result) => {
+		swal.fire(config.completeProfile()).then((result) => {
 			if (result.value) {
 				Router.go('profileSettings', {
 					_id: Meteor.userId()
@@ -16,7 +16,7 @@ export let SweetAlertMessages = class SweetAlertMessages {
 	}
 
 	static continuePresentation () {
-		swal(config.continuePresentation()).then((result) => {
+		swal.fire(config.continuePresentation()).then((result) => {
 			if (result.value) {
 				screenfull.request();
 			} else {
@@ -29,7 +29,7 @@ export let SweetAlertMessages = class SweetAlertMessages {
 	}
 
 	static activateFullscreen () {
-		swal(config.activateFullscreen()).then((result) => {
+		swal.fire(config.activateFullscreen()).then((result) => {
 			if (result.value) {
 				CardVisuals.toggleFullscreen();
 			} else {
@@ -42,7 +42,7 @@ export let SweetAlertMessages = class SweetAlertMessages {
 	}
 
 	static exitPresentation () {
-		swal(config.exitPresentation()).then((result) => {
+		swal.fire(config.exitPresentation()).then((result) => {
 			if (result.value) {
 				screenfull.exit();
 				Router.go('cardsetdetailsid', {
