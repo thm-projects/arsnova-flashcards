@@ -4,6 +4,7 @@ import {MainNavigation} from "../../../api/mainNavigation";
 import {CardVisuals} from "../../../api/cardVisuals";
 import {Route} from "../../../api/route";
 import {PomodoroTimer} from "../../../api/pomodoroTimer";
+import * as conf from "../../../config/welcome.js";
 
 /*
  * ############################################################################
@@ -12,7 +13,7 @@ import {PomodoroTimer} from "../../../api/pomodoroTimer";
  */
 
 Template.demoModal.onRendered(function () {
-	if (localStorage.getItem(MainNavigation.getFirstTimeDemoString()) !== "true") {
+	if (localStorage.getItem(MainNavigation.getFirstTimeDemoString()) !== "true" && conf.enableFirstTimeVisitModal) {
 		$('#demoModal').modal('show');
 	}
 });
