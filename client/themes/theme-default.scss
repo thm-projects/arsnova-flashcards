@@ -534,11 +534,6 @@
           "sweet_alert_2_icon_info_text": $thm_dark_blue,
           "sweet_alert_2_icon_question_border": $thm_gray,
           "sweet_alert_2_icon_question_text": $thm_gray,
-    //wordcloud tooltip
-          "wordcloud_tooltip_text": $white,
-          "wordcloud_tooltip_backgroud": $thm_gray,
-          "wordcloud_tooltip_border": $white,
-          "wordcloud_tooltip_divider": $white,
     //loading screen
           "loading_screen_icon": midnightblue,
     //wozniak rating buttons
@@ -571,6 +566,11 @@
           "landing_page_wordcloud_button_opacity": 1.0,
           "landing_page_wordcloud_button_hover": midnightblue,
           "landing_page_wordcloud_button_opacity_hover": 1,
-          "landing_page_label": white
+          "landing_page_label": white,
+          //wordcloud
+          "wordcloud_background": "unset",
+          "wordcloud_border": "unset",
+          "wordcloud_hover_box_background": $button_background_hover,
+          "wordcloud_hover_box_border": $button_background_hover
   );
 }

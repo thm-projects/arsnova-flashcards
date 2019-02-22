@@ -48,3 +48,9 @@ Template.wordcloudModal.events({
 		$('.modal-backdrop').css('display', 'none');
 	}
 });
+
+Template.wordcloudModal.onRendered(function () {
+	$('#wordcloudModal').on('hidden.bs.modal', function () {
+		$('#wordcloud-hover-box').css('display', 'none');
+	});
+});

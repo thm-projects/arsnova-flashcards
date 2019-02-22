@@ -68,6 +68,10 @@ export let WordcloudCanvas = class WordcloudCanvas {
 			document.getElementById('wordcloud-canvas').width = ($('#wordcloud-container').width());
 			let filterNavigation = $('#filter-nav-wrapper');
 			document.getElementById('wordcloud-canvas').height = ($(window).height() - (filterNavigation.offset().top + filterNavigation.height()) - 30);
+			let canvas = $('#wordcloud-canvas');
+			let canvas_background = $('#wordcloud-canvas-background');
+			canvas_background.height(canvas.height());
+			canvas_background.width(canvas.width());
 		} else {
 			let newWidth = $('#wordcloud-container').width();
 			if (newWidth > 1024) {
@@ -78,6 +82,11 @@ export let WordcloudCanvas = class WordcloudCanvas {
 			if (!NavigatorCheck.isSmartphone() && !Session.get('isLandingPagePomodoroActive')) {
 				document.getElementById('wordcloud-canvas').height = newHeight;
 				$('.pomodoroClock').css('height', 'unset');
+				let canvas = $('#wordcloud-canvas');
+				let canvas_background = $('#wordcloud-canvas-background');
+				canvas_background.css('left', canvas.offset().left);
+				canvas_background.height(canvas.height());
+				canvas_background.width(canvas.width());
 			} else {
 				$('#pomodoroTimerWordcloudContainer .pomodoroClock').css('margin-top', newHeight * ((1 - config.wordcloudPomodoroSize) / 2));
 				$('#pomodoroTimerWordcloudContainer .pomodoroClock').css('height', newHeight * config.wordcloudPomodoroSize);
@@ -94,9 +103,21 @@ export let WordcloudCanvas = class WordcloudCanvas {
 	static wordcloudHover (item, dimension) {
 		if (dimension !== undefined) {
 			$('#wordcloud-canvas').css('cursor', 'pointer');
+			$('#wordcloud-hover-box').css('display', 'block');
+			let canvas = $('#wordcloud-canvas');
+			let leftOffset = canvas.offset().left;
+			if (Meteor.user()) {
+				leftOffset = parseInt($('#wordcloud-container').css('padding-left'));
+			}
+			$('#wordcloud-hover-box').css({
+				left: leftOffset + dimension.x + 'px',
+				top: dimension.y + 'px',
+				width: dimension.w + 'px',
+				height: dimension.h + 'px'
+			});
 		} else {
 			$('#wordcloud-canvas').css('cursor', 'unset');
-			$('.wordcloud-tooltip').css('display', 'none');
+			$('#wordcloud-hover-box').css('display', 'none');
 		}
 	}
 

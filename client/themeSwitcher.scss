@@ -508,11 +508,6 @@ $themes: (
     $sweet_alert_2_icon_info_text: map-get($map, "sweet_alert_2_icon_info_text");
     $sweet_alert_2_icon_question_border: map-get($map, "sweet_alert_2_icon_question_border");
     $sweet_alert_2_icon_question_text: map-get($map, "sweet_alert_2_icon_question_text");
-    //wordcloud tooltip
-    $wordcloud_tooltip_text: map-get($map, "wordcloud_tooltip_text");
-    $wordcloud_tooltip_backgroud: map-get($map, "wordcloud_tooltip_backgroud");
-    $wordcloud_tooltip_border: map-get($map, "wordcloud_tooltip_border");
-    $wordcloud_tooltip_divider: map-get($map, "wordcloud_tooltip_divider");
     //loading screen
     $loading_screen_icon: map-get($map, "loading_screen_icon");
     //wozniak rating buttons
@@ -546,6 +541,11 @@ $themes: (
     $landing_page_wordcloud_button_hover: map-get($map, "landing_page_wordcloud_button_hover");
     $landing_page_wordcloud_button_opacity_hover: map-get($map, "landing_page_wordcloud_button_opacity_hover");
     $landing_page_label: map-get($map, "landing_page_label");
+    //wordcloud
+    $wordcloud_background: map-get($map, "wordcloud_background");
+    $wordcloud_border: map-get($map, "wordcloud_border");
+    $wordcloud_hover_box_background: map-get($map, "wordcloud_hover_box_background");
+    $wordcloud_hover_box_border: map-get($map, "wordcloud_hover_box_border");
 
     body.landing-page {
       background-color: $background_landing_page !important;
@@ -2934,16 +2934,6 @@ $themes: (
       color: $sweet_alert_2_icon_question_text !important;
     }
 
-    //wordcloud tooltip
-    .wordcloud-tooltip {
-      color: $wordcloud_tooltip_text !important;
-      background-color: $wordcloud_tooltip_backgroud !important;
-      border-color: $wordcloud_tooltip_border !important;
-      hr {
-        color: $wordcloud_tooltip_divider !important;
-      }
-    }
-
     .showArsnovaApp.pressed {
       background-color: #80BA24 !important;
     }
@@ -3094,6 +3084,17 @@ $themes: (
           color: $server_statistics_table_row_counter !important;
         }
       }
+    }
+    //wordcloud
+    #wordcloud-canvas-background {
+      background-color: $wordcloud_background;
+      border-color: $wordcloud_border;
+    }
+
+    #wordcloud-hover-box {
+      background-color: $wordcloud_hover_box_background;
+      border-color: $wordcloud_hover_box_border;
+
     }
   }
 }
