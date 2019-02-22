@@ -5,6 +5,7 @@ import {PomodoroTimer} from "../../../../api/pomodoroTimer";
 import {Route} from "../../../../api/route";
 import {Template} from "meteor/templating";
 import {Dictionary} from "../../../../api/dictionary";
+import {FirstTimeVisit} from "../../../../api/firstTimeVisit";
 
 /*
  * ############################################################################
@@ -30,8 +31,11 @@ Template.cardSidebarItemToggleFullscreen.events({
 		}
 		if (Route.isDemo() && CardVisuals.isFullscreen()) {
 			PomodoroTimer.start();
-		} else if (PomodoroTimer.isPomodoroRunning()) {
-			PomodoroTimer.clickClock();
+		} else {
+			if (Route.isFirstTimeVisit() && FirstTimeVisit.redirectToHomeAfterFullscreenExit()) {
+				Route.setFirstTimeVisit();
+				Router.go('home');
+			}
 		}
 	}
 });
