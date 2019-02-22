@@ -1,3 +1,5 @@
+$wordcloud_border_radius: 50px;
+
 #wordcloudTitle {
   padding: 0;
 }
@@ -6,13 +8,32 @@
   text-align: center;
 }
 
-#wordcloud-canvas {
-  border-radius: 50px;
-}
-
 #welcome-container #wordcloud-container {
   display: none;
   @media (min-width: 768px) {
     display: block;
   }
+}
+
+#wordcloud-canvas-background {
+  position: absolute;
+  display: block;
+  top: 0;
+  z-index: -2;
+  border-radius: $wordcloud_border_radius;
+}
+
+#wordcloud-hover-box {
+  position: absolute;
+  display: none;
+  border: 2px solid;
+  border-radius: $wordcloud_border_radius;
+  top: 0;
+  z-index: -1;
+
+}
+
+#wordcloud-canvas {
+  border-radius: $wordcloud_border_radius;
+  z-index: 0;
 }
