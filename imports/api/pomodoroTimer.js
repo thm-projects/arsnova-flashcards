@@ -205,7 +205,7 @@ export let PomodoroTimer = class PomodoroTimer {
 					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.break.start.button.confirm');
 				}
 			}
-			swal({
+			swal.fire({
 				title: dialogue.title,
 				html: dialogue.html,
 				type: "success",
@@ -279,7 +279,7 @@ export let PomodoroTimer = class PomodoroTimer {
 					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.break.end.button.confirm');
 				}
 			}
-			swal({
+			swal.fire({
 				title: dialogue.title,
 				html: dialogue.html,
 				confirmButtonText: dialogue.confirm,
@@ -371,7 +371,7 @@ export let PomodoroTimer = class PomodoroTimer {
 					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.quit.button.confirm');
 					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.user.quit.button.cancel');
 				}
-				swal({
+				swal.fire({
 					title: dialogue.title,
 					type: "warning",
 					html: dialogue.html,
@@ -407,7 +407,7 @@ export let PomodoroTimer = class PomodoroTimer {
 								});
 								dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.quit.confirm.button.confirm');
 							}
-							swal({
+							swal.fire({
 								title: dialogue.title,
 								html: dialogue.html,
 								type: "error",
@@ -455,7 +455,7 @@ export let PomodoroTimer = class PomodoroTimer {
 					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.user.end.button.cancel');
 					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.end.button.confirm');
 				}
-				swal({
+				swal.fire({
 					title: dialogue.title,
 					type: "warning",
 					html: dialogue.html,
@@ -488,7 +488,7 @@ export let PomodoroTimer = class PomodoroTimer {
 								});
 								dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.end.confirm.button.confirm');
 							}
-							swal({
+							swal.fire({
 								title: dialogue.title,
 								html: dialogue.html,
 								type: "success",
