@@ -570,7 +570,7 @@
           //wordcloud
           "wordcloud_background": "unset",
           "wordcloud_border": "unset",
-          "wordcloud_hover_box_background": $button_background_hover,
-          "wordcloud_hover_box_border": $button_background_hover
+          "wordcloud_hover_box_background":transparent,
+          "wordcloud_hover_box_border": white
   );
 }
