@@ -16,7 +16,7 @@ let landingPageNavigation = {
 
 //Only used for the active route display on mobile. Will be carried over to desktop after the main template got refactored.
 let topNavigation = {
-	alldecks: "<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;",
+	alldecks: "<i class='fa fa-archive'></i>&nbsp;<span class='hidden-sm'><i class='fa fa-ellipsis-h'></i>&nbsp;</span>",
 	repetitorium: "<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;",
 	workload: "<i class='fa fa-graduation-cap'></i>&nbsp;",
 	myCardsets: "<i class='fa fa-archive'></i>&nbsp;",
