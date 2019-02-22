@@ -73,8 +73,14 @@
     }
   }
 
-  blockquote.fancyquote::before, blockquote .fancyquote::after {
+  blockquote.fancyquote::before {
     font-size: 200% !important;
+    content: "❞" !important;
+  }
+
+  blockquote .fancyquote::after {
+    font-size: 200% !important;
+    content: "❝" !important;
   }
 
   blockquote.fancyquote .author {
