@@ -1584,6 +1584,9 @@ $themes: (
     .input-search::placeholder {
       color: $navbar_search_placeholder !important;
     }
+    .input-search:hover {
+      background-color: midnightblue !important;
+    }
 
     .input-search:focus {
       background-image: linear-gradient($input_textarea_border_active, $input_textarea_border_active), linear-gradient($input_textarea_border_inactive, $input_textarea_border_inactive) !important;
