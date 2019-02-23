@@ -1,8 +1,8 @@
 [{
-  "name": "A: Quiz zum Kennenlernen von »cards«",
+  "name": "A: Quiz zum Kennenlernen",
   "description": "Die Quizfragen sind Teil der Demo-Kartei auf der 🍅cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2019-02-23T13:13:09.925Z",
+  "dateUpdated": "2019-02-23T15:19:00.419Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": true,
@@ -71,9 +71,9 @@
     1
   ],
   "learningGoalLevel": 0,
-  "backgroundStyle": 1,
+  "backgroundStyle": 0,
   "date": "2018-06-08T13:54:04.447Z",
-  "dateUpdated": "2019-02-23T11:56:09.512Z",
+  "dateUpdated": "2019-02-23T15:18:32.194Z",
   "learningIndex": "0",
   "learningUnit": "0",
   "originalAuthorName": {
@@ -83,7 +83,7 @@
   }
 }, {
   "subject": "2. Pomodoro",
-  "front": "![![](https://arsnova-uploads.mni.thm.de/It-un_pomodoro%20.mp3)](https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Emojione_1F345.svg/500px-Emojione_1F345.svg.png width=150)\n\n(#) Was ist die <q>Pomodoro-Technik</q>?\n\n<br />\n<br />\n\n\nBildquelle: [Emoji One](https://de.wikipedia.org/wiki/Datei:Emojione_1F345.svg)",
+  "front": "![](https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Emojione_1F345.svg/500px-Emojione_1F345.svg.png width=150)\n\n(#) Was ist die <q>Pomodoro-Technik</q>?\n\n<br />\n<br />\n<br />\n<br />\n\n\nBildquelle: [Emoji One](https://de.wikipedia.org/wiki/Datei:Emojione_1F345.svg)",
   "back": "Francesco Cirillo entwickelte die populäre [Pomodoro-Technik&trade;](https://de.wikipedia.org/wiki/Pomodoro-Technik). Der Name rührt daher, dass Cirillo für seine Zeitmanagement-Technik eine Eieruhr zu Hilfe nahm und diese die Form einer Tomate hatte. Wir haben die Pomodoro-Technik&trade; in eine stylische Analoguhr eingebaut:\n\n![](https://arsnova-uploads.mni.thm.de/Pomodoro-Uhr.png width=60%)\n\nDu kannst unsere Pomodoro-Uhr auf der Startseite von 🍅cards zum Lernen nutzen. Eine Pomodoro-Lernzeit beträgt 25 Minuten, sie wird dir mit dem orangefarbenen Kreisbogen angezeigt. Der schmale rote Kreisbogen steht für die verstrichene Lernzeit. Die von der Pomodoro-Technik vorgesehenen Pausen erkennst du am blauen Kreisbogen. Und jetzt kommt der Clou:\n\n!!!\n   Wir haben die Pomodoro-Uhr in die Karten integriert: Während einer Pause wird dir keine weitere Karte zum Lernen angezeigt. Wir verhindern so, dass du dich überforderst, zum Beispiel beim **Bulimielernen** in der Woche vor einer Klausur, und du dir durch ununterbrochenes Kartenlernen (die Wissenschaft nennt es **massiertes** Lernen) gesundheitlich schadest und dein Lernen immer ineffektiver wird.\n\n!!! NOTE\n   Wenn du mit 🍅cards eine **Beamer-Präsentation** hältst -- anstelle von PowerPoint oder Keynote --, kannst du beim Vortragen stets die Pomodoro-Uhr in der Karten-Projektion sehen. Du behältst die Vortragsdauer stets im Blick und dein Publikum sieht und hört, wann die Pause kommt.",
   "centerTextElement": [
     true,
@@ -102,9 +102,9 @@
     1
   ],
   "learningGoalLevel": 0,
-  "backgroundStyle": 1,
+  "backgroundStyle": 0,
   "date": "2018-09-22T15:21:18.473Z",
-  "dateUpdated": "2019-02-23T10:32:38.571Z",
+  "dateUpdated": "2019-02-23T15:18:51.747Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -113,9 +113,9 @@
   },
   "learningUnit": "0"
 }, {
-  "subject": "3. Zette ・ Kartons ・ Regale",
+  "subject": "3. Zettel ・ Kartons ・ Regale",
   "front": "(#) Was bleibt?\n\n![](/img/background/zettelkasten_wikipedia_original.jpg width=500px)\n",
-  "back": "![Zettelkästen](/img/background/zettelkasten_wikipedia_original.jpg width=\"120 pt\") \nEin Studierzimmer [^Foto-Quelle] kann eine kreative persönliche Lernumgebung sein. Das auf tausenden Zetteln in dutzenden Kartons gesammelte Wissen ist zumindest der Bewohnerin des abgebildeten Zimmers zugänglich (ein Klick auf das Foto zeigt die Schuhgröße 4½ auf den Kartons). Warum also nicht mit Zetteln in Schuhkartons studieren? Den digitalen Karten fehlt doch die Haptik des Papiers und die Gesamtschau  -- im Regal und auf dem Boden. \n\nStimmt. Dafür haben digitale Karten aber auch **unbestreitbare Vorteile** -- gemäß dem Slogan unserer Plattform:\n\n+ **`Organize`**: Das Wissen aus deinem Studium kannst du jederzeit und überall mit wenigen Klicks wiederfinden, auch noch viele Jahre nach deinem Studium, wenn du aus deiner Studierbude längst ausgezogen bist, womöglich dein Zettelarchiv bis auf das IKEA-Regal entsorgt hast. Eines Tages -- im Job, in einer Teambesprechung -- brauchst du sicherlich das Wissen aus deinem Studium wieder.\n\n+ **`Learn`**: Die Karten sind multimedial: Du kannst Bilder, Podcasts und Videos einfügen. Du studierst ein MINT-Fach? Schreib mit $\\TeX$ die kompliziertesten mathematischen Formeln und mit Syntax-Highlighting beliebigen Programmcode schnell und sauber auf eine Karte. Du darfst kostenlos die [Open Source Software](https://github.com/thm-projects/arsnova-flashcards) 🍅cards als persönliche Lernumgebung auf deinem Laptop installieren. So kannst du deine Karten auch ohne Internet überall lernen.\n\n+ **`Memorize`**: Die Karten deines Lernpensums werden dir zum dauerhaften Memorieren an [kognitionswissenschaftlich berechneten Tagen](https://en.wikipedia.org/wiki/Spaced_repetition) wieder vorgelegt. Push-Nachrichten auf dein Handy oder E-Mails erinnern dich ans Lernen. Damit du fokussiert lernen kannst, ohne dich zu überfordern, haben wir die [Pomodoro-Technik](/learning#Pomodoro) -- ein populäres Zeitmanagement-Tool --- auf jeder Karte im Lernmodus integriert.\n\n+ **`Present`**: Wenn du 🍅cards für einen Beamer-Vortrag verwendest, behältst du die verbleibende Vortragszeit und die Pause stets im Blick. Auch wird es dir nie passieren, dass du deine Präsentation im Edit-Modus von PowerPoint oder Keynote hältst, denn Karten kannst du nur in der Vollbildansicht präsentieren. Und als **Highlight** rufe in deiner Präsentation unser [gamifiziertes](https://de.wikipedia.org/wiki/Gamification) **Audience-Response-System** [arsnova.click](https://arsnova.click) auf, um ein anonymes Live-Feedback einzuholen. Wenn du gerade deinen Laptop benutzt, klick mal auf den unteren linken Rand-Button! \n\n![Live-Feedback mit ARSnova.click, siehe [Projektblog](https://arsnova.thm.de/blog/)](https://arsnova.thm.de/blog/wp-content/uploads/2015/05/Bildschirmfoto-2017-02-11-um-16.33.52.png width=400)\n\n<br />\n<br />\n\n[^Foto-Quelle]: Foto zum Wikipedia-Begriff [<q>Zettelkasten</q>](https://de.wikipedia.org/wiki/Zettelkasten), Kai Schreiber, CC BY-SA 2.0",
+  "back": "![Zettelkästen](/img/background/zettelkasten_wikipedia_original.jpg width=\"100 pt\") \nEin Studierzimmer [^Foto-Quelle] kann eine kreative persönliche Lernumgebung sein. Das auf tausenden Zetteln in dutzenden Kartons gesammelte Wissen ist zumindest der Bewohnerin des abgebildeten Zimmers zugänglich (ein Klick auf das Foto zeigt die Schuhgröße 4½ auf den Kartons). Warum also nicht mit Zetteln in Schuhkartons studieren? Den digitalen Karten fehlt doch die Haptik des Papiers und die Gesamtschau  -- im Regal und auf dem Boden. \n\nStimmt. Dafür haben digitale Karten aber auch **unbestreitbare Vorteile** -- gemäß dem Slogan unserer Plattform:\n\n+ **`Organize`**: Das Wissen aus deinem Studium kannst du jederzeit und überall mit wenigen Klicks wiederfinden, auch noch viele Jahre nach deinem Studium, wenn du aus deiner Studierbude längst ausgezogen bist, womöglich dein Zettelarchiv bis auf das IKEA-Regal entsorgt hast. Eines Tages -- im Job, in einer Teambesprechung -- brauchst du sicherlich das Wissen aus deinem Studium wieder.\n\n+ **`Learn`**: Die Karten sind multimedial: Du kannst Bilder, Podcasts und Videos einfügen. Du studierst ein MINT-Fach? Schreib mit $\\TeX$ die kompliziertesten mathematischen Formeln und mit Syntax-Highlighting beliebigen Programmcode schnell und sauber auf eine Karte. Du darfst kostenlos die [Open Source Software](https://github.com/thm-projects/arsnova-flashcards) 🍅cards als persönliche Lernumgebung auf deinem Laptop installieren. So kannst du deine Karten auch ohne Internet überall lernen.\n\n+ **`Memorize`**: Die Karten deines Lernpensums werden dir zum dauerhaften Memorieren an [kognitionswissenschaftlich berechneten Tagen](https://en.wikipedia.org/wiki/Spaced_repetition) wieder vorgelegt. Push-Nachrichten auf dein Handy oder E-Mails erinnern dich ans Lernen. Damit du fokussiert lernen kannst, ohne dich zu überfordern, haben wir die [Pomodoro-Technik](/learning#Pomodoro) -- ein populäres Zeitmanagement-Tool --- auf jeder Karte im Lernmodus integriert.\n\n+ **`Present`**: Wenn du 🍅cards für einen Beamer-Vortrag verwendest, behältst du die verbleibende Vortragszeit und die Pause stets im Blick. Auch wird es dir nie passieren, dass du deine Präsentation im Edit-Modus von PowerPoint oder Keynote hältst, denn Karten kannst du nur in der Vollbildansicht präsentieren. Und als **Highlight** rufe in deiner Präsentation unser [gamifiziertes](https://de.wikipedia.org/wiki/Gamification) **Audience-Response-System** [arsnova.click](https://arsnova.click) auf, um ein anonymes Live-Feedback einzuholen. Wenn du gerade deinen Laptop benutzt, klick mal auf den unteren linken Rand-Button! \n\n![Live-Feedback mit ARSnova.click, siehe [Projektblog](https://arsnova.thm.de/blog/)](https://arsnova.thm.de/blog/wp-content/uploads/2015/05/Bildschirmfoto-2017-02-11-um-16.33.52.png width=400)\n\n<br />\n<br />\n\n[^Foto-Quelle]: Foto zum Wikipedia-Begriff [<q>Zettelkasten</q>](https://de.wikipedia.org/wiki/Zettelkasten), Kai Schreiber, CC BY-SA 2.0",
   "centerTextElement": [
     true,
     false,
@@ -133,7 +133,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-06-10T05:23:42.665Z",
-  "dateUpdated": "2019-02-23T12:48:15.260Z",
+  "dateUpdated": "2019-02-23T15:19:00.407Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -162,7 +162,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-06-08T14:56:06.624Z",
-  "dateUpdated": "2019-02-23T13:13:06.835Z",
+  "dateUpdated": "2019-02-23T14:53:14.939Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -173,7 +173,7 @@
 }, {
   "subject": "5. Digitale Regale: Repetitorien",
   "front": "![ ](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Repetitorium.png)\n\n\n(#) Was wird auf 🍅cards unter einem <q>Repetitorium</q> verstanden?",
-  "back": "> \"**Repetitorium** (von lateinisch *repetere:* „wiederholen“) bedeutet die \n> Wiederholung von Wissen und Kenntnissen, meist um eine Prüfung zu bestehen.\"\n>  -- [Wikipedia](https://de.wikipedia.org/wiki/Repetitorium)\n\n!!! NOTE Repetitorium vs. Kartei\n   Ein Repetitorium (kurz Rep) auf 🍅cards fasst **mehrere** Karteien (= Themen) zusammen. Um im Bild zu bleiben: In deinem IKEA-Regal wären das alle Schuhkartons, die inhaltlich zu einem bestimmten Modul deines Studiums gehören (Mitschriften, Lernkarteien, Glossare, Exzerpte etc.) und deshalb nebeneinander stehen. Im Lernmodus werden die Karten aller Karteien, die zum Rep gehören, gemäß dem Wiederholungs-Algorithmus zum Lernen vorgelegt. Dein Dozent oder deine Dozentin kann dir -- wie bei einzelnen Karteien -- Bonuspunkte für das regelmäßige Lernen eines Repetitoriums geben.\n\n!!! TIP\n   Du kannst deine eigenen Repetitorien mit ein paar Klicks schnell zusammenstellen. Es bedarf hierzu keiner Lehrperson! Repetitorien ermöglichen dir eine **einfache und übersichtliche Organisation deiner Karteien** für die Vorbereitung auf Modulprüfungen.\n\n\n\n \n",
+  "back": "> \"**Repetitorium** (von lateinisch *repetere:* „wiederholen“) bedeutet die \n> Wiederholung von Wissen und Kenntnissen, meist um eine Prüfung zu bestehen.\"\n>  -- [Wikipedia](https://de.wikipedia.org/wiki/Repetitorium)\n\n!!! NOTE Repetitorium vs. Kartei\n   Ein Repetitorium (kurz Rep) auf 🍅cards fasst **mehrere** Karteien (= Themenboxen) zusammen. Um im Bild zu bleiben: In deinem IKEA-Regal wären das alle Schuhkartons, die inhaltlich zu einem bestimmten Modul deines Studiums gehören (Mitschriften, Lernkarteien, Glossare, Exzerpte etc.) und deshalb nebeneinander stehen. Im Lernmodus werden die Karten aller Karteien, die zum Rep gehören, gemäß dem Wiederholungs-Algorithmus zum Lernen vorgelegt. Dein Dozent oder deine Dozentin kann dir -- wie bei einzelnen Karteien -- Bonuspunkte für das regelmäßige Lernen eines Repetitoriums geben.\n\n!!! TIP\n   Du kannst deine eigenen Repetitorien mit ein paar Klicks schnell zusammenstellen. Es bedarf hierzu keiner Lehrperson! Repetitorien ermöglichen dir eine **einfache und übersichtliche Organisation deiner Karteien** für die Vorbereitung auf Modulprüfungen.\n\n\n\n \n",
   "centerTextElement": [
     true,
     true,
@@ -191,7 +191,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-06-09T17:45:11.922Z",
-  "dateUpdated": "2019-02-23T13:13:09.915Z",
+  "dateUpdated": "2019-02-23T14:54:16.239Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -201,8 +201,8 @@
   "learningUnit": "0"
 }, {
   "subject": "6. Digitale Zettel: Karten",
-  "front": "![](https://casual-effects.com/image/project/icon-markdeep.png width=\"130 pt\")\n\n(#) Wie lässt sich eine Karte mit $\\TeX$-Formeln, Bildern, Podcasts oder Videos anreichern?",
-  "back": "Kurze Antwort: mit **Markdeep**.\n\n---\n\nKarteien und Karten kannst du auf  **🍅cards** vielfältig gestalten -- fast wie in Microsoft Word™ oder in Pages™ von Apple. Diese Karte zeigt dir beispielhaft einige Formatierungen mit [Markdeep](http://casual-effects.com/markdeep/), der vereinfachten [Auszeichnungssprache](https://de.wikipedia.org/wiki/Auszeichnungssprache) im **🍅cards**-Editor. Du kannst deinen Text mit etwas Magie (ein paar Tastaturzeichen genügen wie <code>* _ # [ ]  > | ~ $ ˋ</code>) sehr einfach formatieren -- **ohne Maus**. \n\nWas alles mit Markdeep möglich ist,  zeigt die  [Demo-Seite](http://casual-effects.com/markdeep/features.md.html). So geht zum Beispiel auch $\\TeX$, inline: $\\sigma = \\sqrt{ \\frac{1}{N} \\sum_{i=1}^N (x_i -\\mu)^2}$ (Standardabweichung) oder abgesetzt die Maxwell-Faraday-Gleichung:\n\n$$\\oint_{\\partial \\Sigma} \\mathbf{E} \\cdot \\mathrm{d}\\boldsymbol{\\ell}  = - \\frac{d}{dt} \\iint_{\\Sigma} \\mathbf{B} \\cdot \\mathrm{d}\\mathbf{S}$$\n\nDie Anzeige einer $\\TeX$-Formel erfolgt mit [MathJax](https://www.mathjax.org/).\nMathJax fügt ein Kontextmenü hinzu. Um es anzuzeigen, klicke mit der rechten Maustaste oder halte beim Klicken die <kbd>Strg</kbd>-Taste gedrückt. Probiere es gleich einmal mit der Formel oben aus!\n\n!!! NOTE\n   Eine sorgfältige Gestaltung deiner Karten mit Text, Bildern, Podcasts oder Erklärvideos motiviert und fördert zugleich dein Lernen. Nutze also die Formatierungsoptionen für die Beschriftung deiner Karteien ( -> Etikett am Karton) und für die anschauliche Gestaltung der Lerninhalte deiner Karten. \n\nUnd jetzt kommt der [Entwickler von Markdeep](https://csci.williams.edu/people/faculty/morgan-mcguire/) zu Wort:\n\n> \"Markdeep\n> is a technology for writing plain text documents\n> that will look good in any web browser, whether \n> local or remote. It supports diagrams, calendars, equations, and\n> other  features as extensions of Markdown syntax.\"\n>        -- Morgan McGuire\n\nVideos auf YouTube und Vimeo lassen sich sehr einfach mit einem Einzeiler in die Seite einbinden:\n\n![Figure [Markdown]: Erklärvideo über Markdown, auf dem Markdeep aufbaut](https://youtu.be/hpAJMSS8pvs)\n\nBilder können abgesetzt, rechtsbündig zum Absatz und skaliert eingebunden werden:\n\n![Figure [examplePicture]:  Klick auf das Bild, um es in Vollansicht zu sehen!](https://pbs.twimg.com/media/CXzB2rZWsAERiV8.png  width=\"400 pt\")\n\nWie im Bild zu sehen, zeigt dir die Vorschau des Editors -- **synchron** zu deiner Eingabe --, wie deine Textformatierung aussehen wird. \n\nUnd natürlich lassen sich auch **Podcasts** einbinden und im Browser abspielen. Die Syntax ist für alle Medien gleich: \n\n`![Beschriftung](Adresse im Web)`. \n\nFür einen Podcast also:\n\n````\n![The Personal Best CBC Podcast](https://podcast-a.akamaihd.net/mp3/podcasts/personalbest-GRHHTnR3-20180415.mp3)\n````\n\nDer browsereigene Audio-Player wird aufgerufen:\n\n![The Personal Best CBC Podcast](https://podcast-a.akamaihd.net/mp3/podcasts/personalbest-GRHHTnR3-20180415.mp3)\n\n!!! TIP\n   Unter <q>Repetitorien</q> auf 🍅cards steht dir die Kartei <q>Markdeep-Kompendium</q> als Hilfe zur Verfügung.\n\n!!! ERROR Warum bietet ihr Markdown / Markdeep für die Textformatierung an und nicht einen [WYSIWYG](https://de.wikipedia.org/wiki/WYSIWYG)-Editor?\n    Siehe Antwort zur 5. [FAQ](/faq).",
+  "front": "![](https://casual-effects.com/image/project/icon-markdeep.png width=\"130 pt\")\n\n(#) Wie kannst du eine Karte mit $\\TeX$-Formeln, Bildern, Podcasts oder Videos anreichern?",
+  "back": "Kurze Antwort: mit **Markdeep**.\n\n---\n\nKarteien und Karten kannst du auf  **🍅cards** vielfältig gestalten -- fast wie in Microsoft Word™ oder in Pages™ von Apple. Diese Karte zeigt dir beispielhaft einige Formatierungen mit [Markdeep](http://casual-effects.com/markdeep/), der vereinfachten [Auszeichnungssprache](https://de.wikipedia.org/wiki/Auszeichnungssprache) im **🍅cards**-Editor. Du kannst deinen Text mit etwas Magie (ein paar Tastaturzeichen genügen wie <code>* _ # [ ]  > | ~ $ ˋ</code>) sehr einfach formatieren -- **ohne Maus**. \n\nWas alles mit Markdeep möglich ist,  zeigt die  [Demo-Seite](http://casual-effects.com/markdeep/features.md.html). So geht zum Beispiel auch $\\TeX$, inline: $\\sigma = \\sqrt{ \\frac{1}{N} \\sum_{i=1}^N (x_i -\\mu)^2}$ (Standardabweichung) oder abgesetzt die Maxwell-Faraday-Gleichung:\n\n$$\\oint_{\\partial \\Sigma} \\mathbf{E} \\cdot \\mathrm{d}\\boldsymbol{\\ell}  = - \\frac{d}{dt} \\iint_{\\Sigma} \\mathbf{B} \\cdot \\mathrm{d}\\mathbf{S}$$\n\nDie Anzeige einer $\\TeX$-Formel erfolgt mit [MathJax](https://www.mathjax.org/).\nMathJax fügt ein Kontextmenü hinzu. Um es anzuzeigen, klicke mit der rechten Maustaste oder halte beim Klicken die <kbd>Strg</kbd>-Taste gedrückt. Probiere es gleich einmal mit der Formel oben aus!\n\n!!! NOTE\n   Eine sorgfältige Gestaltung deiner Karten mit Text, Bildern, Podcasts oder Erklärvideos motiviert und fördert zugleich dein Lernen. Nutze also die Formatierungsoptionen für die Beschriftung deiner Karteien ( -> Etikett am Karton) und für die anschauliche Gestaltung der Lerninhalte deiner Karten. \n\nUnd jetzt kommt der [Entwickler von Markdeep](https://csci.williams.edu/people/faculty/morgan-mcguire/) zu Wort:\n\n> \"Markdeep\n> is a technology for writing plain text documents\n> that will look good in any web browser, whether \n> local or remote. It supports diagrams, calendars, equations, and\n> other  features as extensions of Markdown syntax.\"\n>        -- Morgan McGuire\n\nVideos auf YouTube und Vimeo lassen sich sehr einfach mit einem Einzeiler in die Seite einbinden:\n\n![Figure [Markdown]: Erklärvideo über Markdown, auf dem Markdeep aufbaut](https://youtu.be/hpAJMSS8pvs)\n\nBilder können abgesetzt, rechtsbündig zum Absatz und skaliert eingebunden werden:\n\n![Figure [examplePicture]: Markdeep-Editor vs. Webseite](https://pbs.twimg.com/media/CXzB2rZWsAERiV8.png  width=\"400 pt\")\n\nWie im Bild zu sehen, zeigt dir die Vorschau des Editors -- **synchron** zu deiner Eingabe --, wie deine Textformatierung aussehen wird. \n\nUnd natürlich lassen sich auch **Podcasts** einbinden und im Browser abspielen. Die Syntax ist für alle Medien gleich: \n\n`![Beschriftung](Adresse im Web)`. \n\nFür einen Podcast also:\n\n````\n![The Personal Best CBC Podcast](https://podcast-a.akamaihd.net/mp3/podcasts/personalbest-GRHHTnR3-20180415.mp3)\n````\n\nDer browsereigene Audio-Player wird aufgerufen:\n\n![The Personal Best CBC Podcast](https://podcast-a.akamaihd.net/mp3/podcasts/personalbest-GRHHTnR3-20180415.mp3)\n\n!!! TIP\n   Unter <q>Repetitorien</q> auf 🍅cards steht dir die Kartei <q>Markdeep-Kompendium</q> als Hilfe zur Verfügung.\n\n!!! ERROR Warum bietet ihr Markdown / Markdeep für die Textformatierung an und nicht einen [WYSIWYG](https://de.wikipedia.org/wiki/WYSIWYG)-Editor?\n    Siehe Antwort zur 5. [FAQ](/faq).",
   "centerTextElement": [
     true,
     false,
@@ -218,9 +218,9 @@
     1
   ],
   "learningGoalLevel": 0,
-  "backgroundStyle": 1,
+  "backgroundStyle": 0,
   "date": "2018-06-08T14:56:06.624Z",
-  "dateUpdated": "2019-02-23T12:47:45.965Z",
+  "dateUpdated": "2019-02-23T15:00:00.396Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -230,7 +230,7 @@
   "learningUnit": "0"
 }, {
   "subject": "7. Vokabelkarten erstellen",
-  "front": "(#) Wenn es um Vokabeln geht, was macht 🍅cards anders als Vokabeltrainer-Apps wie [phase 6](https://www.phase-6.de/) oder [Langenscheidt](https://www.langenscheidt.com/)?",
+  "front": "![Wie du mit 🍅cards Vokabelkarten erstellst](https://youtu.be/uSRarW9fpFc)\n(#) Wenn es um Vokabeln geht, was macht 🍅cards anders als Vokabeltrainer-Apps wie [phase 6](https://www.phase-6.de/) oder [Langenscheidt](https://www.langenscheidt.com/)?",
   "centerTextElement": [
     true,
     true,
@@ -252,8 +252,8 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-02-23T11:52:06.807Z",
-  "back": "\n🍅cards bietet dir den optimalen Workflow zum Erstellen und Lernen von Vokabeln: Neben dem Wörterbuch [Beolingus](https://dict.tu-chemnitz.de/) (wird beim Lernen einzelner Wörter angeboten) haben wir auch den Übersetzungsdienst [DeepL](https://www.deepl.com/translator) integriert: Gib einen Text in der Sprache A ein und drücke die <kbd>Tab</kbd>-Taste. Die Übersetzung in die Sprache B wird dir in DeepL in Echtzeit angezeigt. Die Rückübersetzung A <-- B zur Kontrolle der Qualität der Übersetzung ist wieder per <kbd>Tab</kbd> möglich. Das Video zeigt wie:\n\n![Wie du mit 🍅cards effizient Vokabelkarten erstellst](https://youtu.be/uSRarW9fpFc)\n\n",
+  "dateUpdated": "2019-02-23T15:00:28.241Z",
+  "back": "\n🍅cards bietet dir den optimalen Workflow zum Erstellen und Lernen von Vokabeln: Neben dem Wörterbuch [Beolingus](https://dict.tu-chemnitz.de/) (wird beim Lernen einzelner Wörter angeboten) haben wir auch den Übersetzungsdienst [DeepL](https://www.deepl.com/translator) integriert: Gib einen Text in der Sprache A ein und drücke die <kbd>Tab</kbd>-Taste. Die Übersetzung in die Sprache B wird dir in DeepL in Echtzeit angezeigt. Die Rückübersetzung A <-- B zur Kontrolle der Qualität der Übersetzung ist wieder per <kbd>Tab</kbd> möglich. Das Video auf der Vorderseite zeigt wie.\n",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -261,8 +261,8 @@
   }
 }, {
   "subject": "8. Mobile Learning",
-  "front": "![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/480px-HTML5_logo_and_wordmark.svg.png width=100)\n\n(#) 🍅cards ist eine <q>responsive</q> WebApp. \n\n<br>\n\n(#) Was heißt das?",
-  "back": "🍅cards ist eine [responsive](https://de.wikipedia.org/wiki/Responsive_Webdesign) **WebApp**, eine [HTML5-App](https://de.wikipedia.org/wiki/HTML5), das heißt, sie läuft in jedem modernen Browser -- auf deinem Smartphone, Tablet oder Desktop. \nEine Implementierung als native Android- oder iPhone-App ist wenig sinnvoll, da die Nutzung auf die Betriebssysteme Android oder iOS beschränkt und der Aufwand für die jeweilige Entwicklung und Wartung viel zu hoch wären.\n\n![Die Themen-Wolke und die Demo-Kartei werden aus Platzgründen nur auf großen Displays angezeigt.](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Resizer.png)\n\n🍅cards ist eine [Progressive Web App (PWA)](https://de.wikipedia.org/wiki/Progressive_Web_App), das heißt, sie fühlt sich an wie eine native App aus dem Store: Du kannst sie aus dem Browser heraus dem **Homescreen** deines Smartphones hinzufügen (<q>Add-to-Homescreen</q>) und von dort wie eine installierte App aufrufen. Sie startet so schnell wie eine native App und zeigt sich **ohne Browser-Rahmen**.\nUnd wenn du die Benachrichtigungsfunktion (<q>Push Notifications</q>) für 🍅cards zulässt, wirst du zuverlässig auf deinem Smartphone ans Lernen erinnert.\n\nEs gibt nur eine Einschränkung für die mobile Nutzung: Auf kleinen Displays ist die Erstellung von Karteien und Karten ergonomisch nicht sinnvoll, deswegen bieten wir sie auch gar nicht erst an. Auf deinem Smartphone stehen dir ausschließlich die Seiten <q>Themen</q>, <q>Repetitorien</q> und <q>Lernpensum</q> zur Verfügung. Das reicht auch vollkommen für das Unterwegs-Lernen in der Bahn, im Bus oder sonst wo -- neudeutsch: **Mobile Learning**.",
+  "front": "![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/480px-HTML5_logo_and_wordmark.svg.png width=100)\n\n(#) 🍅cards ist <q>responsive</q>. \n\n(#) Was heißt das?",
+  "back": "🍅cards ist eine [responsive](https://de.wikipedia.org/wiki/Responsive_Webdesign) **WebApp**, eine [HTML5-App](https://de.wikipedia.org/wiki/HTML5), das heißt, sie läuft in jedem modernen Browser -- auf deinem Smartphone, Tablet oder Laptop. \nEine Implementierung als native Android- oder iPhone-App ist wenig sinnvoll, da die Nutzung auf die Betriebssysteme Android oder iOS beschränkt und der Aufwand für die jeweilige Entwicklung und Wartung viel zu hoch wären.\n\n![Die Themen-Wolke und die Demo-Kartei werden aus Platzgründen nur auf großen Displays angezeigt.](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Resizer.png)\n\n🍅cards ist eine [Progressive Web App (PWA)](https://de.wikipedia.org/wiki/Progressive_Web_App), das heißt, sie fühlt sich an wie eine native App aus dem Store: Du kannst sie aus dem Browser heraus dem **Homescreen** deines Smartphones hinzufügen (<q>Add-to-Homescreen</q>) und von dort wie eine installierte App aufrufen. Sie startet so schnell wie eine native App und zeigt sich **ohne Browser-Rahmen**.\nUnd wenn du die Benach&shy;richtigungsfunktion (<q>Push Notifications</q>) für 🍅cards zulässt, wirst du zuverlässig auf deinem Smartphone ans Lernen erinnert.\n\nEs gibt nur eine Einschränkung für die mobile Nutzung: Auf kleinen Displays ist die Erstellung von Karteien und Karten ergonomisch nicht sinnvoll, deswegen bieten wir sie auch gar nicht erst an. Auf deinem Smartphone stehen dir ausschließlich die Seiten <q>Karteien</q>, <q>Re&shy;pe&shy;ti&shy;to&shy;rien</q>, <q>Lernpensum</q> und <q>Meine Karteien</q> zur Verfügung. Das reicht auch vollkommen für das Unterwegs-Lernen in der Bahn, im Bus oder sonst wo -- neudeutsch: **Mobile Learning**.",
   "centerTextElement": [
     true,
     false,
@@ -282,7 +282,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-08-11T12:00:07.793Z",
-  "dateUpdated": "2019-02-23T11:54:33.047Z",
+  "dateUpdated": "2019-02-23T15:06:15.602Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -292,8 +292,8 @@
   "learningUnit": "0"
 }, {
   "subject": "9. Softwarekosten",
-  "front": "(#) Was kostet 🍅cards?",
-  "back": "**Nichts.**\n\n![Lizenz von 🍅cards](https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/GPLv3_Logo.svg/800px-GPLv3_Logo.svg.png width=200) 🍅cards ist eine freie Open-Source-Software unter der [GNU General Public License](https://de.wikipedia.org/wiki/GNU_General_Public_License).\n\nDu kannst 🍅cards auf deinem Laptop installieren und ohne Internet betreiben. Derzeit brauchst du für die Installation noch [gute Linux-Kenntnisse](https://git.thm.de/arsnova/cards/blob/staging/README.md). Demnächst kann das aber auch ein Laie mit wenigen Mausklicks.\n\nWenn du an der THM lehrst und für deine Studierenden eine eigene Installation im Web gerne hättest, weil du vorhast, viele Karten zu vielen unterschiedlichen Themen zu schreiben, installieren wir 🍅cards für dich auf einem THM-Server. Schreib uns einfach eine Mail, siehe [Impressum](https://thm.cards/impressum).\n\n!!! TIP\n   In diesem Sinne betreiben wir selbst eine zweite Instanz von 🍅cards: [Linux.cards](https://linux.cards). Diese Lernkartei-Plattform bereitet auf die [LPI-Zertifizierungsprüfungen](https://www.lpice.eu/de/unsere-zertifizierungen/) vor.",
+  "front": "![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/GPLv3_Logo.svg/800px-GPLv3_Logo.svg.png width=200)\n(#) Was kostet 🍅cards?",
+  "back": "**Nichts.**\n\n \n🍅cards ist eine freie Open-Source-Software unter der [GNU General Public License](https://de.wikipedia.org/wiki/GNU_General_Public_License).\n\nDu kannst 🍅cards auf deinem Laptop installieren und ohne Internet betreiben. Derzeit brauchst du für die Installation noch [gute Linux-Kenntnisse](https://git.thm.de/arsnova/cards/blob/staging/README.md). Demnächst kann das aber auch ein Laie mit wenigen Mausklicks.\n\nWenn du an der THM lehrst und für deine Studierenden eine eigene Installation im Web gerne hättest, weil du vorhast, viele Karten zu vielen unterschiedlichen Themen zu schreiben, installieren wir 🍅cards für dich auf einem THM-Server. Schreib uns einfach eine Mail, siehe [Impressum](https://thm.cards/impressum).\n\n!!! TIP\n   In diesem Sinne betreiben wir eine zweite Instanz von 🍅cards: [Linux.cards](https://linux.cards). Diese Lernkartei-Plattform bereitet auf die [LPI-Zertifizierungsprüfungen](https://www.lpice.eu/de/unsere-zertifizierungen/) vor.",
   "centerTextElement": [
     true,
     true,
@@ -315,7 +315,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-02-23T11:55:03.166Z",
+  "dateUpdated": "2019-02-23T15:07:13.162Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",

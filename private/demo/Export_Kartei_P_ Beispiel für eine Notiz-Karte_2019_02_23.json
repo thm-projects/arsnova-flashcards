@@ -2,7 +2,7 @@
   "name": "P: Beispiel für eine Notiz-Karte",
   "description": "Diese Notiz dient als Abschlusskarte in der Demo-Kartei.",
   "date": "2018-07-05T04:33:28.173Z",
-  "dateUpdated": "2018-12-09T08:41:38.703Z",
+  "dateUpdated": "2019-02-23T15:49:04.009Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -48,7 +48,7 @@
   "rating": 0
 }, {
   "subject": "Letzte Karte",
-  "front": " \n\n!!! Note Los geht's!\n   Falls du in der Vollansicht bist, drück die Escape-Taste <kbd>esc</kbd> oder klick auf den Button am rechten Rand. Gehe dann auf **<q>Startseite</q>**. <br><br>Log dich mit deinem **THM-Konto** ein und erstelle eigene Karteien für dein Studium. Lerne die Karten **regelmäßig**, so dass du das Wissen aus dem Studium sehr, sehr lange behältst. Schau dir dazu die Infos und Videos auf den Seiten [Lernen](https://informatik.cards/learning) und [FAQ](https://staging.arsnova.cards/faq) an!\n\n!!! Tip\n   Folge dem Slogan von .cards: **Organize. Learn. Memorize. Present.**",
+  "front": " \n\n!!! Note Los geht's!\n   Falls du in der Vollansicht bist, drück die Escape-Taste <kbd>esc</kbd> oder klick auf den Button am rechten Rand. <br><br>Log dich mit deinem **THM-Account** ein und erstelle eigene Karteien für dein Studium. Lerne die Karten **regelmäßig**, so dass du das Wissen aus dem Studium sehr, sehr lange behältst. Schau dir dazu die Infos und Videos auf den Seiten [Lernen](https://informatik.cards/learning) und [FAQ](https://staging.arsnova.cards/faq) an!\n",
   "centerTextElement": [
     true,
     false,
@@ -62,7 +62,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2018-12-09T08:41:38.680Z",
+  "dateUpdated": "2019-02-23T15:49:03.996Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
