@@ -23,9 +23,12 @@ window.addEventListener("load", function () {
 		"position": "bottom-right",
 
 		"content": {
-			"message": ServerStyle.getFirstAppTitle() + "." + ServerStyle.getLastAppTitle() + " verwendet Cookies. Wenn du auf dieser Seite bleibst, stimmst du der Cookie-Nutzung zu.",
-			"dismiss": "Ich stimme zu",
-			"link": "→ Datenschutz",
+			"message": "Erspare uns bitte lange Erklärungen, warum »" +
+				ServerStyle.getFirstAppTitle() + "🍅" + ServerStyle.getLastAppTitle() +
+				"« Cookies verwendet. Unter anderem würde dieser Hinweis bei jedem Besuch erscheinen." +
+				" Alle rechtlichen Hinweise findest du unter",
+			"dismiss": "Ist klar, ich akzeptiere das.",
+			"link": "Datenschutz.",
 			"href": "/datenschutz"
 		}
 	});
