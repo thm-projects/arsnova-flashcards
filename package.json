@@ -13,7 +13,7 @@
     "jscs": "^3.0.7",
     "meteor-node-stubs": "^0.4.1",
     "react": "^15.0.2",
-    "screenfull": "^4.0.1",
+    "screenfull": "^4.0.0",
     "sweetalert2": "^8.2.3",
     "web-push": "^3.3.3",
     "wordcloud": "^1.1.0"
