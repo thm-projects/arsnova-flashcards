@@ -35,11 +35,11 @@
     "login": {
       "cas": "Login mit THM-Account",
       "guest": "Ich schau mich nur mal um",
-      "pro": "Premium-Login",
-      "backdoor": "Backdoor-Login",
+      "pro": "Login mit Premium-Account",
+      "backdoor": "Login nach Rollenauswahl",
       "tooltip": {
         "cas": "Du wirst zum CAS-Server der THM weitergeleitet...",
-        "guest": "Als Gast kannst du »freie« Kartensätze anschauen.",
+        "guest": "Als Gast kannst du dir »freie« Kartensätze anschauen.",
         "pro": "Wenn du keinen Uni-Account hast, kannst du dich hier für ein Abo registrieren.",
         "backdoor": "Backdoor-Login"
       }
@@ -270,7 +270,7 @@
     "myprofile": "Konto",
     "billing": "Abrechnung",
     "membership": "Mitgliedschaft",
-    "search": "Suchen…",
+    "search": "Suche…",
     "frontend": "Frontend",
     "backend": "Backend",
     "none": "Ohne",
