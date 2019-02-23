@@ -1090,6 +1090,11 @@ $themes: (
       color: $cardset_footer_navigation_presentation_text_hover !important;
     }
 
+    .glyphicon-fullscreen {
+      background-color: $cardset_footer_navigation_presentation_background;
+      color: $cardset_footer_navigation_presentation_text;
+    }
+
     .panel-footer {
       background-color: $cardset_footer_navigation_background !important;
       border-color: $cardset_footer_navigation_background !important;
