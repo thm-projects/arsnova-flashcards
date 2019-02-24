@@ -270,14 +270,14 @@
     "myprofile": "Konto",
     "billing": "Abrechnung",
     "membership": "Mitgliedschaft",
-    "search": "Suche…",
+    "search": "🔎",
     "frontend": "Frontend",
     "backend": "Backend",
     "none": "Ohne",
     "info-extra-small": "Hauptmenü ➔"
   },
   "contact": {
-    "about": "🍅cards",
+    "about": "Über 🍅cards",
     "demo": "Demo",
     "home": "Login",
     "learning": "Lernen",
