@@ -23,7 +23,7 @@ let topNavigation = {
 	pool: "<i class='fa fa-archive'></i>&nbsp;",
 	profile: "<i class='fa fa-user'></i>&nbsp;",
 	profileOverview: "<i class='fa fa-trophy'></i>&nbsp;",
-	profileBilling: "<i class='fa credit-card'></i>&nbsp;",
+	profileBilling: "<i class='fa fa-credit-card'></i>&nbsp;",
 	profileMembership: "<i class='fa fa-users'></i>&nbsp;",
 	profileNotifications: "<i class='fa fa-bell'></i>&nbsp;",
 	profileSettings: "<i class='fa fa-user'></i>&nbsp;",
@@ -33,7 +33,7 @@ let topNavigation = {
 
 //Only used for the active route display on mobile. Will be carried over to desktop after the main template got refactored.
 let miscNavigation = {
-	cardset: "<i class='fa fa-fa-archive'></i>&nbsp;",
+	cardset: "<i class='fa fa-archive'></i>&nbsp;",
 	repetitorium: "<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;",
 	progress: "<i class='glyphicon glyphicon-stats'></i>&nbsp;",
 	toggleImpressum: "<i class='fa fa-medkit'></i>&nbsp;"

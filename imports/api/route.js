@@ -160,8 +160,11 @@ export let Route = class Route {
 				return icons.footerNavigation.help + TAPi18n.__('contact.help');
 			case "impressum":
 				return icons.footerNavigation.impressum + TAPi18n.__('contact.impressum');
+			case "learn":
+				return icons.topNavigation.workload  + TAPi18n.__('navbar-collapse.learndecks');
 			case "learning":
 				return icons.footerNavigation.learning  + TAPi18n.__('contact.learning');
+			case "create":
 			case "myCardsets":
 				switch (Meteor.user().count.cardsets) {
 					case 0:
