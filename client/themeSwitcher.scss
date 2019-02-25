@@ -146,10 +146,13 @@ $themes: (
     $navbar_pool_text: map-get($map, "navbar_pool_text");
     $navbar_pool_text_hover: map-get($map, "navbar_pool_text_hover");
     $navbar_pool_text_active: map-get($map, "navbar_pool_text_active");
-    $navbar_search_background: map-get($map, "navbar_search_background");
-    $navbar_search_text: map-get($map, "navbar_search_text");
     $navbar_search_placeholder: map-get($map, "navbar_search_placeholder");
-    $navbar_search_icon: map-get($map, "navbar_search_icon");
+    $navbar_search_button_background: map-get($map, "navbar_search_button_background");
+    $navbar_search_button_icon: map-get($map, "navbar_search_button_icon");
+    $navbar_search_button_background_hover: map-get($map, "navbar_search_button_background_hover");
+    $navbar_search_button_icon_hover: map-get($map, "navbar_search_button_icon_hover");
+    $navbar_search_clear_icon: map-get($map, "navbar_search_clear_icon");
+    $navbar_search_clear_icon_mobile: map-get($map, "navbar_search_clear_icon_mobile");
     $navbar_help_background: map-get($map, "navbar_help_background");
     $navbar_help_background_hover: map-get($map, "navbar_help_background_hover");
     $navbar_help_background_active: map-get($map, "navbar_help_background_active");
@@ -1582,13 +1585,18 @@ $themes: (
       color: $navbar_learn_text_active !important;
     }
 
-    .input-search {
-      background-color: $navbar_search_background !important;
-      color: $navbar_search_text !important;
+    #toggle-search-dropdown {
+      background-color: $navbar_search_button_background !important;
+      color: $navbar_search_button_icon !important;
     }
+
+    #toggle-search-dropdown:hover {
+      background-color: $navbar_search_button_background_hover !important;
+      color: $navbar_search_button_icon_hover !important;
+    }
+
     .input-search::placeholder {
       color: $navbar_search_placeholder !important;
-      font-size: 16px !important;
     }
     .input-search:hover {
       background-color: midnightblue !important;
@@ -1599,8 +1607,13 @@ $themes: (
       background-image: linear-gradient($input_textarea_border_active, $input_textarea_border_active), linear-gradient($input_textarea_border_inactive, $input_textarea_border_inactive) !important;
     }
 
-    .clearSearch {
-      color: $navbar_search_icon !important;
+    .clearSearch i {
+      @media (min-width: 768px) {
+        color: $navbar_search_clear_icon !important;
+      }
+      @media (max-width: 767px) {
+        color: $navbar_search_clear_icon_mobile !important;
+      }
     }
 
     #navbar-all-decks {

@@ -6,11 +6,11 @@ import "./search.html";
 
 /*
 * ############################################################################
-* mainNavigationTopItemSearch
+* mainNavigationTopItemSearchInput
 * ############################################################################
 */
 
-Template.mainNavigationTopItemSearch.events({
+Template.mainNavigationTopItemSearchInput.events({
 	'keyup .input-search': function (event) {
 		event.preventDefault();
 		Session.set("searchValue", $(event.currentTarget).val());
@@ -29,26 +29,49 @@ Template.mainNavigationTopItemSearch.events({
 	'click .input-search': function () {
 		Search.adjustSearchResultWindowSize();
 		MainNavigation.closeCollapse();
+	},
+	'click .clearSearch i': function () {
+		MainNavigation.clearSearch();
+		$('.input-search:visible').focus();
 	}
 });
 
-Template.mainNavigationTopItemSearch.helpers({
+Template.mainNavigationTopItemSearchInput.helpers({
 	searchActive: function () {
 		return Session.get("searchValue") !== "" && Session.get("searchValue") !== undefined;
 	},
-	getVisibility: function () {
-		if (this.visibility === 0) {
-			return "visible-xs";
+	getPlaceholder: function () {
+		if (this.longPlaceholder) {
+			return TAPi18n.__('navbar-collapse.search');
 		} else {
-			return "hidden-xs";
+			return TAPi18n.__('navbar-collapse.searchMobile');
 		}
 	}
 });
 
-Template.mainNavigationTopItemSearch.onRendered(function () {
+Template.mainNavigationTopItemSearchInput.onRendered(function () {
 	Session.set("searchValue", undefined);
 	Search.adjustSearchResultWindowSize();
 	$(window).resize(function () {
 		Search.adjustSearchResultWindowSize();
 	});
+});
+
+
+/*
+* ############################################################################
+* mainNavigationTopItemSearchDropdown
+* ############################################################################
+*/
+
+Template.mainNavigationTopItemSearchDropdown.events({
+	'click #toggle-search-dropdown': function () {
+		if ($('#navbar-cards-search-dropdown').hasClass('active')) {
+			MainNavigation.clearSearch();
+			$('#navbar-cards-search-dropdown').removeClass('active');
+		} else {
+			$('#navbar-cards-search-dropdown').addClass('active');
+			$('.input-search:visible').focus();
+		}
+	}
 });

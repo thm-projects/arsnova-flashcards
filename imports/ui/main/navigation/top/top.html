@@ -32,7 +32,7 @@
                                 </div>
                                 {{#unless isImpressum}}
                                     <div class="navbar-header-item pull-right">
-                                        {{> mainNavigationTopItemSearch visibility=0}}
+                                        {{> mainNavigationTopItemSearchInput longPlaceholder=false}}
                                     </div>
                                 {{/unless}}
                             </div>
@@ -51,7 +51,7 @@
 <template name="mainNavigationTopDropdownContent">
     <div class="collapse navbar-collapse" id="navbar-cards-top-collapse">
         <ul class="nav navbar-nav navbar-left">
-            {{> mainNavigationTopItemSearch visibility=1}}
+            {{> mainNavigationTopItemSearch}}
             {{> mainNavigationTopItemPool}}
             {{> mainNavigationTopItemRepetitorium}}
             {{> mainNavigationTopItemWorkload}}

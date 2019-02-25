@@ -49,6 +49,6 @@ Template.mainNavigationTop.events({
 		}
 	},
 	'click #navbar-cards-top-collapse a:not(#dropdownMenuLink)': function () {
-		$('#navbar-cards-top-collapse').collapse('hide');
+		MainNavigation.closeCollapse();
 	}
 });

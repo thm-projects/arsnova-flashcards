@@ -146,10 +146,11 @@ Template.main.onCreated(function () {
 
 Template.main.onRendered(function () {
 	Meteor.call("initUser");
-	$("html, body").click(function () {
-		$('.input-search').val('');
-		Session.set("searchValue", undefined);
-		Session.set('searchCategoriesResult', []);
+	$("html, body").click(function (event) {
+		if (!$(event.target).is('.cards-search-element')) {
+			MainNavigation.clearSearch();
+			$('#navbar-cards-search-dropdown').removeClass('active');
+		}
 	});
 	$("#main").click(function () {
 		MainNavigation.closeCollapse();
