@@ -2,7 +2,7 @@
   "name": "A: Quiz zum Kennenlernen",
   "description": "Die Quizfragen sind Teil der Demo-Kartei auf der 🍅cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2019-02-24T06:44:24.264Z",
+  "dateUpdated": "2019-02-24T18:55:29.672Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": true,
@@ -24,8 +24,8 @@
   "maxCards": 40,
   "daysBeforeReset": 7,
   "learningStart": "2018-06-08T13:51:09.335Z",
-  "learningEnd": "2038-01-19T10:01:27.840Z",
-  "registrationPeriod": "2038-01-19T10:01:27.840Z",
+  "learningEnd": "2038-01-19T18:00:18.561Z",
+  "registrationPeriod": "2038-01-19T18:00:18.561Z",
   "learningInterval": [
     1,
     3,
@@ -202,7 +202,7 @@
 }, {
   "subject": "6. Digitale Zettel: Karten",
   "front": "![](https://casual-effects.com/image/project/icon-markdeep.png width=\"130 pt\")\n\n(#) Wie kannst du eine Karte mit $\\TeX$-Formeln, Bildern, Podcasts oder Videos anreichern?",
-  "back": "Kurze Antwort: mit **Markdeep**.\n\n---\n\nKarteien und Karten kannst du auf  **🍅cards** vielfältig gestalten -- fast wie in Microsoft Word™ oder in Pages™ von Apple. Diese Karte zeigt dir beispielhaft einige Formatierungen mit [Markdeep](http://casual-effects.com/markdeep/), der vereinfachten [Auszeichnungssprache](https://de.wikipedia.org/wiki/Auszeichnungssprache) im **🍅cards**-Editor. Du kannst deinen Text mit etwas Magie (ein paar Tastaturzeichen genügen wie <code>* _ # [ ]  > | ~ $ ˋ</code>) sehr einfach formatieren -- **ohne Maus**. \n\nWas alles mit Markdeep möglich ist,  zeigt die  [Demo-Seite](http://casual-effects.com/markdeep/features.md.html). So geht zum Beispiel auch $\\TeX$, inline: $\\sigma = \\sqrt{ \\frac{1}{N} \\sum_{i=1}^N (x_i -\\mu)^2}$ (Standardabweichung) oder abgesetzt die Maxwell-Faraday-Gleichung:\n\n$$\\oint_{\\partial \\Sigma} \\mathbf{E} \\cdot \\mathrm{d}\\boldsymbol{\\ell}  = - \\frac{d}{dt} \\iint_{\\Sigma} \\mathbf{B} \\cdot \\mathrm{d}\\mathbf{S}$$\n\nDie Anzeige einer $\\TeX$-Formel erfolgt mit [MathJax](https://www.mathjax.org/).\nMathJax fügt ein Kontextmenü hinzu. Um es anzuzeigen, klicke mit der rechten Maustaste oder halte beim Klicken die <kbd>Strg</kbd>-Taste gedrückt. Probiere es gleich einmal mit der Formel oben aus!\n\n!!! NOTE\n   Eine sorgfältige Gestaltung deiner Karten mit Text, Bildern, Podcasts oder Erklärvideos motiviert und fördert zugleich dein Lernen. Nutze also die Formatierungsoptionen für die Beschriftung deiner Karteien ( -> Etikett am Karton) und für die anschauliche Gestaltung der Lerninhalte deiner Karten. \n\nUnd jetzt kommt der [Entwickler von Markdeep](https://csci.williams.edu/people/faculty/morgan-mcguire/) zu Wort:\n\n> \"Markdeep\n> is a technology for writing plain text documents\n> that will look good in any web browser, whether \n> local or remote. It supports diagrams, calendars, equations, and\n> other  features as extensions of Markdown syntax.\"\n>        -- Morgan McGuire\n\nVideos auf YouTube und Vimeo lassen sich sehr einfach mit einem Einzeiler in die Seite einbinden:\n\n![Figure [Markdown]: Erklärvideo über Markdown, auf dem Markdeep aufbaut](https://youtu.be/hpAJMSS8pvs)\n\nBilder können abgesetzt, rechtsbündig zum Absatz und skaliert eingebunden werden:\n\n![Figure [examplePicture]: Markdeep-Editor vs. Webseite](https://pbs.twimg.com/media/CXzB2rZWsAERiV8.png  width=\"400 pt\")\n\nWie im Bild zu sehen, zeigt dir die Vorschau des Editors -- **synchron** zu deiner Eingabe --, wie deine Textformatierung aussehen wird. \n\nUnd natürlich lassen sich auch **Podcasts** einbinden und im Browser abspielen. Die Syntax ist für alle Medien gleich: \n\n`![Beschriftung](Webadresse)`. \n\nFür einen Podcast also:\n\n````\n![The Personal Best CBC Podcast](https://podcast-a.akamaihd.net/mp3/podcasts/personalbest-GRHHTnR3-20180415.mp3)\n````\n\nDer browsereigene Audio-Player wird aufgerufen:\n\n![The Personal Best CBC Podcast](https://podcast-a.akamaihd.net/mp3/podcasts/personalbest-GRHHTnR3-20180415.mp3)\n\n!!! TIP\n   Unter <q>Repetitorien</q> auf 🍅cards steht dir die Kartei <q>Markdeep-Kompendium</q> als Hilfe zur Verfügung.\n\n!!! ERROR Warum bietet ihr Markdown / Markdeep für die Textformatierung an und nicht einen [WYSIWYG](https://de.wikipedia.org/wiki/WYSIWYG)-Editor?\n    Siehe Antwort zur 5. [FAQ](/faq).",
+  "back": "Kurze Antwort: mit **Markdeep**.\n\n---\n\nKarteien und Karten kannst du auf  **🍅cards** vielfältig gestalten -- fast wie in Microsoft Word™ oder in Pages™ von Apple. Diese Karte zeigt dir beispielhaft einige Formatierungen mit [Markdeep](http://casual-effects.com/markdeep/), der vereinfachten [Auszeichnungssprache](https://de.wikipedia.org/wiki/Auszeichnungssprache) im **🍅cards**-Editor. Du kannst deinen Text mit etwas Magie (ein paar Tastaturzeichen genügen wie <code>* _ # [ ]  > | ~ $ ˋ</code>) sehr einfach formatieren -- **ohne Maus**. \n\nWas alles mit Markdeep möglich ist,  zeigt die  [Demo-Seite](http://casual-effects.com/markdeep/features.md.html). So geht zum Beispiel auch $\\TeX$, inline: $\\sigma = \\sqrt{ \\frac{1}{N} \\sum_{i=1}^N (x_i -\\mu)^2}$ (Standardabweichung) oder abgesetzt die Maxwell-Faraday-Gleichung:\n\n$$\\oint_{\\partial \\Sigma} \\mathbf{E} \\cdot \\mathrm{d}\\boldsymbol{\\ell}  = - \\frac{d}{dt} \\iint_{\\Sigma} \\mathbf{B} \\cdot \\mathrm{d}\\mathbf{S}$$\n\nDie $\\TeX$-Formel wird mit [MathJax](https://www.mathjax.org/) gerendert.\nMathJax fügt ein Kontextmenü hinzu. Um es anzuzeigen, klicke mit der rechten Maustaste oder halte beim Klicken die <kbd>Strg</kbd>-Taste gedrückt. Probiere es gleich einmal mit der Formel oben aus!\n\n!!! NOTE\n   Eine sorgfältige Gestaltung deiner Karten mit Text, Bildern, Podcasts oder Erklärvideos motiviert und fördert zugleich dein Lernen. Nutze also die Formatierungsoptionen für die Beschriftung deiner Karteien ( -> Etikett am Karton) und für die anschauliche Gestaltung der Lerninhalte deiner Karten. \n\nUnd jetzt kommt der [Entwickler von Markdeep](https://csci.williams.edu/people/faculty/morgan-mcguire/) zu Wort:\n\n> \"Markdeep\n> is a technology for writing plain text documents\n> that will look good in any web browser, whether \n> local or remote. It supports diagrams, calendars, equations, and\n> other  features as extensions of Markdown syntax.\"\n>        -- Morgan McGuire\n\nVideos auf YouTube und Vimeo lassen sich sehr einfach mit einem Einzeiler in die Seite einbinden:\n\n![Figure [Markdown]: Erklärvideo über Markdown, auf dem Markdeep aufbaut](https://youtu.be/hpAJMSS8pvs)\n\nBilder können abgesetzt, rechtsbündig zum Absatz und skaliert eingebunden werden:\n\n![Figure [examplePicture]: Markdeep-Editor vs. Webseite](https://pbs.twimg.com/media/CXzB2rZWsAERiV8.png  width=\"400 pt\")\n\nWie im Bild zu sehen, zeigt dir die Vorschau des Editors -- **synchron** zu deiner Eingabe --, wie deine Textformatierung aussehen wird. \n\nUnd natürlich lassen sich auch **Podcasts** einbinden und im Browser abspielen. Die Syntax ist für alle Medien gleich: \n\n`![Beschriftung](Webadresse)`. \n\nFür einen Podcast also:\n\n````\n![The Personal Best CBC Podcast](https://podcast-a.akamaihd.net/mp3/podcasts/personalbest-GRHHTnR3-20180415.mp3)\n````\n\nDer browsereigene Audio-Player wird aufgerufen:\n\n![The Personal Best CBC Podcast](https://podcast-a.akamaihd.net/mp3/podcasts/personalbest-GRHHTnR3-20180415.mp3)\n\n!!! TIP\n   Unter <q>Repetitorien</q> auf 🍅cards steht dir die Kartei <q>Markdeep-Kompendium</q> als Hilfe zur Verfügung.\n\n!!! ERROR Warum bietet ihr Markdown / Markdeep für die Textformatierung an und nicht einen [WYSIWYG](https://de.wikipedia.org/wiki/WYSIWYG)-Editor?\n    Siehe Antwort zur 5. [FAQ](/faq).",
   "centerTextElement": [
     true,
     false,
@@ -220,7 +220,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 0,
   "date": "2018-06-08T14:56:06.624Z",
-  "dateUpdated": "2019-02-24T06:44:24.252Z",
+  "dateUpdated": "2019-02-24T18:39:08.219Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -293,7 +293,7 @@
 }, {
   "subject": "9. Softwarekosten",
   "front": "![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/GPLv3_Logo.svg/800px-GPLv3_Logo.svg.png width=200)\n(#) Was kostet 🍅cards?",
-  "back": "**Nichts.**\n\n \n🍅cards ist eine freie Open-Source-Software unter der [GNU General Public License](https://de.wikipedia.org/wiki/GNU_General_Public_License).\n\nDu kannst 🍅cards auf deinem Laptop installieren und ohne Internet betreiben. Derzeit brauchst du für die Installation noch [gute Linux-Kenntnisse](https://git.thm.de/arsnova/cards/blob/staging/README.md). Demnächst kann das aber auch ein Laie mit wenigen Mausklicks.\n\nWenn du an der THM lehrst und für deine Studierenden eine eigene Installation im Web gerne hättest, weil du vorhast, viele Karten zu vielen unterschiedlichen Themen zu schreiben, installieren wir 🍅cards für dich auf einem THM-Server. Schreib uns einfach eine Mail, siehe [Impressum](https://thm.cards/impressum).\n\n!!! TIP\n   In diesem Sinne betreiben wir eine zweite Instanz von 🍅cards: [Linux.cards](https://linux.cards). Diese Lernkartei-Plattform bereitet auf die [LPI-Zertifizierungsprüfungen](https://www.lpice.eu/de/unsere-zertifizierungen/) vor.",
+  "back": "**Nichts.**\nWert ist sie aber deutlich mehr: [OpenHub](https://www.openhub.net/p/arsnova-cards) schätzt den Entwicklungsaufwand auf acht Personenjahre, rund **420.000 $**.\n\n🍅cards ist eine freie Open-Source-Software unter der [GNU General Public License](https://de.wikipedia.org/wiki/GNU_General_Public_License).\nDu darfst 🍅cards auf deinem Laptop installieren. Derzeit brauchst du für die Installation noch [gute Linux-Kenntnisse](https://git.thm.de/arsnova/cards/blob/staging/README.md). Demnächst kann das aber auch ein Laie mit wenigen Mausklicks.\n\nWenn du an der THM lehrst und für deine Studierenden eine eigene Installation im Web gerne hättest, weil du vorhast, viele Kartensätze zu deinem Fach zu schreiben, installieren wir dir 🍅cards auf einem THM-Server. Schreib uns einfach eine [Mail](https://thm.cards/impressum).\n\n!!! TIP\n   In diesem Sinne betreiben wir eine zweite Instanz von 🍅cards: [Linux.cards](https://linux.cards). Diese Lernkartei-Plattform bereitet intensiv auf die [LPI-Zertifizierungsprüfungen](https://www.lpice.eu/de/unsere-zertifizierungen/) vor.",
   "centerTextElement": [
     true,
     true,
@@ -315,7 +315,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-02-23T15:07:13.162Z",
+  "dateUpdated": "2019-02-24T18:55:29.658Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
