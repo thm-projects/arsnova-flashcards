@@ -83,6 +83,11 @@ export let MainNavigation = class MainNavigation {
 		}
 	}
 
+	static clearSearch () {
+		$('.input-search').val('');
+		Session.set("searchValue", undefined);
+		Session.set('searchCategoriesResult', []);
+	}
 	static closeCollapse () {
 		$(topNavigationCollapseID).collapse('hide');
 		$(footerNavigationCollapseID).collapse('hide');

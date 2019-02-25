@@ -1,0 +1,103 @@
+
+.navbar-cards {
+  .search {
+    position: relative;
+    @media (max-width: 320px) {
+      display: none !important;
+    }
+
+    .input-search {
+      height: round($size_navbar_height * 0.85) !important;
+      padding-left: 10px !important;
+      margin-right: 20px !important;
+      border-radius: 15px;
+    }
+    .input-search::placeholder {
+      font-size: 16px !important;
+    }
+
+    .clearSearch {
+      position: absolute;
+      float: right;
+      bottom:  round($size_navbar_height * 0.15 + 5px) !important;
+      right : 10px;
+      font-size: 16px;
+      i {
+        cursor: pointer;
+        font-size: 135% !important;
+        color: orange !important;
+          left: 5px !important;
+      }
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .container {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  }
+
+  //Dropdown menu for iPad to Desktop
+  @media (min-width: 768px) {
+    #toggle-search-dropdown  {
+      padding-left: 7px !important;
+      padding-right: 7px !important;
+      margin-left: 5px !important;
+      margin-right: 5px !important;
+      font-size: 135% !important;
+    }
+    #navbar-cards-search-dropdown.active {
+      display: block !important;
+    }
+    #navbar-cards-search-dropdown {
+      padding: 0 !important;
+      margin: 0 !important;
+      height: $size_navbar_height !important;
+      min-height: $size_navbar_height !important;
+      ul {
+        height: $size_navbar_height !important;
+        min-height: $size_navbar_height !important;
+      }
+      .input-append, .input-search {
+        height: $size_navbar_height !important;
+        border-radius: 0 !important;
+      }
+      .search {
+        width: $width_input_search_desktop + 30 !important;
+        .form-group {
+          width: $width_input_search_desktop !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          height: $size_navbar_height !important;
+          min-height: $size_navbar_height !important;
+          input {
+            padding-left: 5px !important;
+            padding-right: 5px !important;
+          }
+        }
+        .clearSearch {
+          display: flex !important;
+          align-items: center !important;
+          padding: 0 !important;
+          top: 0 !important;
+          right: 0 !important;
+          height: $size_navbar_height !important;
+          width: 30px !important;
+        }
+      }
+    }
+  }
+  @media (max-width: 767px) {
+    .search {
+      width: 120px;
+      .form-group {
+        margin-top: 7px !important;
+      }
+      input {
+        padding-right: 30px !important;
+      }
+    }
+  }
+}
+
