@@ -1,19 +1,38 @@
 <template name="mainNavigationTopItemSearch">
-    <li class="searchDropdown {{getVisibility}}">
-        <div class="input-append" role="search">
-            <div class="searchItem">
-                <input class="form-control typeahead input-search"
-                       name="search"
-                       type="text"
-                       autocomplete="off" spellcheck="off" data-source="search"
-                       data-template="search"
-                       placeholder="{{_ "navbar-collapse.search"}}">
-            </div>
+    <li class="hidden-xs">
+        {{> mainNavigationTopItemSearchDropdown}}
+    </li>
+</template>
+
+<template name="mainNavigationTopItemSearchInput">
+    <div class="search input-append cards-search-element" role="search">
+        <div class="form-group cards-search-element">
+            <input class="form-control typeahead input-search cards-search-element"
+                   name="search"
+                   type="text"
+                   autocomplete="off" spellcheck="off" data-source="search"
+                   data-template="search"
+                   placeholder="{{getPlaceholder}}">
+        </div>
+        <div class="clearSearch cards-search-element">
             {{#if searchActive}}
-                <div class="searchItem clearSearch">
-                    <i class="glyphicon glyphicon-remove-circle pull-left"></i>
-                </div>
+                <i class="glyphicon glyphicon-remove-circle pull-left cards-search-element"></i>
             {{/if}}
         </div>
-    </li>
+    </div>
+</template>
+
+<template name="mainNavigationTopItemSearchDropdown">
+    <div class="search-dropdown-container cards-search-element">
+        <button id="toggle-search-dropdown" type="button" class="btn cards-search-element">
+            <i class="fa fa-search cards-search-element"></i>
+        </button>
+        <div id="navbar-cards-search-dropdown" class="dropdown-menu cards-search-element" role="menu" aria-labelledby="toggle-search-dropdown">
+            <ul class="nav navbar-nav navbar-left navbar navbar-default cards-search-element">
+                <li>
+                    {{> mainNavigationTopItemSearchInput longPlaceholder=true}}
+                </li>
+            </ul>
+        </div>
+    </div>
 </template>

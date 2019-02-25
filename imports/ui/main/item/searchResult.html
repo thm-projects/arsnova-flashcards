@@ -1,5 +1,5 @@
 <template name="mainItemSearchResult">
-    <div id="searchResults" style="{{#if
+    <div id="searchResults" class="cards-search-element" style="{{#if
             searchCategories}}display: unset !important;{{else}}display: none !important;{{/if}}">
         {{#each searchCategories}}
             <a href="/cardset/{{_id}}" class="list-group-item clearfix search-result-item">

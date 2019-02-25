@@ -1,6 +1,7 @@
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./searchResult.html";
+import {MainNavigation} from "../../../api/mainNavigation";
 
 /*
 * ############################################################################
@@ -15,8 +16,7 @@ Template.mainItemSearchResult.helpers({
 });
 
 Template.mainItemSearchResult.events({
-	'click #searchResults': function () {
-		$('.searchDropdown').removeClass("open");
-		$('.input-search').val('');
+	'click #searchResults a': function () {
+		MainNavigation.clearSearch();
 	}
 });
