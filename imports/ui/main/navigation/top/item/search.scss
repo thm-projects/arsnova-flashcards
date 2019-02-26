@@ -61,7 +61,7 @@ $searchbar_desktop_height: $size_navbar_height - 6px;
       }
       .input-append, .input-search {
         height: $searchbar_desktop_height !important;
-        border-radius: 0 !important;
+        border-radius: 30px !important;
       }
       .search {
         width: $width_input_search_desktop + 30 !important;
@@ -77,6 +77,7 @@ $searchbar_desktop_height: $size_navbar_height - 6px;
           }
         }
         .clearSearch {
+          border-radius: 30px !important;
           display: flex !important;
           align-items: center !important;
           padding: 0 !important;
