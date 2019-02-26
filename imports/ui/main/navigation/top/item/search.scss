@@ -1,4 +1,4 @@
-
+$searchbar_desktop_height: $size_navbar_height - 6px;
 .navbar-cards {
   .search {
     position: relative;
@@ -53,14 +53,14 @@
     #navbar-cards-search-dropdown {
       padding: 0 !important;
       margin: 0 !important;
-      height: $size_navbar_height !important;
-      min-height: $size_navbar_height !important;
-      ul {
-        height: $size_navbar_height !important;
-        min-height: $size_navbar_height !important;
+      height: $searchbar_desktop_height !important;
+      min-height: $searchbar_desktop_height !important;
+      ul, li {
+        height: $searchbar_desktop_height !important;
+        min-height: $searchbar_desktop_height !important;
       }
       .input-append, .input-search {
-        height: $size_navbar_height !important;
+        height: $searchbar_desktop_height !important;
         border-radius: 0 !important;
       }
       .search {
@@ -69,8 +69,8 @@
           width: $width_input_search_desktop !important;
           padding: 0 !important;
           margin: 0 !important;
-          height: $size_navbar_height !important;
-          min-height: $size_navbar_height !important;
+          height: $searchbar_desktop_height !important;
+          min-height: $searchbar_desktop_height !important;
           input {
             padding-left: 5px !important;
             padding-right: 5px !important;
@@ -82,7 +82,7 @@
           padding: 0 !important;
           top: 0 !important;
           right: 0 !important;
-          height: $size_navbar_height !important;
+          height: $searchbar_desktop_height !important;
           width: 30px !important;
         }
       }
