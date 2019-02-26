@@ -15,6 +15,22 @@ export let CardVisuals = class CardVisuals {
 		return editorFullScreenActive;
 	}
 
+	static isFixedSidebar () {
+		let mode = 0;
+		if (Route.isPresentation()) {
+			mode = 1;
+		} else if (Route.isDemo() || Route.isMakingOf()) {
+			mode = 2;
+		} else if (Route.isEditMode()) {
+			mode = 3;
+		} else if (Route.isBox()) {
+			mode = 4;
+		} else if (Route.isMemo()) {
+			mode = 5;
+		}
+		return config.fixedSidebarPosition.includes(mode);
+	}
+
 	static isFullscreen () {
 		return Session.get('fullscreen');
 	}

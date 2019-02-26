@@ -1,9 +1,9 @@
 //------------------------ IMPORTS
 
 import {Template} from "meteor/templating";
-import {Session} from "meteor/session";
 import {Route} from "../../../api/route";
 import {CardNavigation} from "../../../api/cardNavigation";
+import {CardVisuals} from "../../../api/cardVisuals";
 import "./sidebar.html";
 import "./item/arsnovaClick.js";
 import "./item/arsnovaApp.js";
@@ -21,6 +21,7 @@ import "./item/pomodoroButton.js";
 import "./item/help.js";
 import "./item/swapQuestionAnswer.js";
 import "./item/presentation.js";
+
 
 
 /*
@@ -52,7 +53,7 @@ Template.flashcardSidebar.helpers({
 		return Route.isMemo();
 	},
 	isFixedSidebar: function () {
-		return Session.get('fullscreen') && !Route.isCardset();
+		return CardVisuals.isFixedSidebar();
 	}
 });
 
