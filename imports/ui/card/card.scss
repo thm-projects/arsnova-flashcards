@@ -246,7 +246,7 @@ img.cardside {
   box-sizing: border-box;
   width: 100%;
   vertical-align: bottom;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: auto;
   p:nth-child(n+3) {
     margin: 0;

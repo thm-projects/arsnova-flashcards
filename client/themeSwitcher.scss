@@ -1607,6 +1607,19 @@ $themes: (
       background-image: linear-gradient($input_textarea_border_active, $input_textarea_border_active), linear-gradient($input_textarea_border_inactive, $input_textarea_border_inactive) !important;
     }
 
+    #navbar-cards-search-dropdown {
+      background-color: transparent !important;
+      ul, li {
+        background-color: transparent !important;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .clearSearch {
+        background-color: $navbar_background !important;
+      }
+    }
+
     .clearSearch i {
       @media (min-width: 768px) {
         color: $navbar_search_clear_icon !important;

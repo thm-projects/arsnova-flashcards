@@ -963,7 +963,7 @@ var goToCreated = function () {
 		if (!Roles.userIsInRole(Meteor.userId(), ['firstLogin', 'blocked'])) {
 			firstLoginBertAlert();
 		}
-		if (!Roles.userIsInRole(Meteor.userId(), ['firstLogin', 'blocked']) && MainNavigation.getLoginTarget() !== undefined && MainNavigation.getLoginTarget() !== false) {
+		if (!Roles.userIsInRole(Meteor.userId(), ['firstLogin', 'blocked']) && MainNavigation.getLoginTarget() !== undefined && MainNavigation.getLoginTarget() !== false && MainNavigation.getLoginTarget() !== "/") {
 			Router.go(MainNavigation.getLoginTarget());
 			MainNavigation.setLoginTarget(false);
 		} else {

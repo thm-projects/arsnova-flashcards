@@ -5,8 +5,8 @@
 </template>
 
 <template name="mainNavigationTopItemSearchInput">
-    <div class="search input-append cards-search-element" role="search">
-        <div class="form-group cards-search-element">
+    <div class="search input-append" role="search">
+        <div class="form-group">
             <input class="form-control typeahead input-search cards-search-element"
                    name="search"
                    type="text"
@@ -14,11 +14,11 @@
                    data-template="search"
                    placeholder="{{getPlaceholder}}">
         </div>
-        <div class="clearSearch cards-search-element">
-            {{#if searchActive}}
-                <i class="glyphicon glyphicon-remove-circle pull-left cards-search-element"></i>
-            {{/if}}
-        </div>
+        {{#if searchActive}}
+            <div class="clearSearch cards-search-element">
+                    <i class="glyphicon glyphicon-remove-circle pull-left cards-search-element"></i>
+            </div>
+        {{/if}}
     </div>
 </template>
 
@@ -27,8 +27,8 @@
         <button id="toggle-search-dropdown" type="button" class="btn cards-search-element">
             <i class="fa fa-search cards-search-element"></i>
         </button>
-        <div id="navbar-cards-search-dropdown" class="dropdown-menu cards-search-element" role="menu" aria-labelledby="toggle-search-dropdown">
-            <ul class="nav navbar-nav navbar-left navbar navbar-default cards-search-element">
+        <div id="navbar-cards-search-dropdown" class="dropdown-menu" role="menu" aria-labelledby="toggle-search-dropdown">
+            <ul class="nav navbar-nav navbar-left navbar">
                 <li>
                     {{> mainNavigationTopItemSearchInput longPlaceholder=true}}
                 </li>

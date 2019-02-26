@@ -26,7 +26,7 @@
   border-top: 2px solid;
   border-bottom: 2px solid;
   i, span, img, button {
-    width: 100%;
+    width: 100% !important;
     text-align: center;
     margin-top: $sidebar_button_margin !important;
     @media(max-width: 1439px) and (pointer: coarse) {
@@ -45,8 +45,15 @@
   }
 
   .card-button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     border-radius: 5px !important;
-    height: 25px !important;
+    height: $sidebar_button_height !important;
+    @media(max-width: 1439px) and (pointer: coarse) {
+      height: $sidebar_button_height_mobile !important;
+    }
+    font-size: ($sidebar_button_height * 0.6) !important;
     @media(max-width: 767px) {
       transform: scaleY(-1);
     }
@@ -61,8 +68,9 @@
   }
 
   .projectorIconButton {
-    margin-left: -1px !important;
-    margin-top: -5px !important;
+    margin: auto !important;
+    height: auto !important;
+    max-width: 85% !important;
   }
 }
 
