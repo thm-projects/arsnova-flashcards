@@ -1,23 +1,23 @@
 //bert alert (Doesn't work in theme-switcher)
 
 .bert-alert.warning {
-  background: #F5AA01 !important;
-  color: #FFF !important;
+  background: yellow !important;
+  color: black !important;
 }
 
 .bert-alert.success {
-  background: #80BA24 !important;
-  color: #FFF !important;
+  background: green !important;
+  color: white !important;
 }
 
 .bert-alert.info {
   background: midnightblue !important;
-  color: #FFF !important;
+  color: white !important;
 }
 
 .bert-alert.danger {
-  background: #9C132D !important;
-  color: #FFF !important;
+  background: red !important;
+  color: white !important;
 }
 
 //global
@@ -31,8 +31,8 @@ sans-serif,
 'Apple Color Emoji',
 'Segoe UI Emoji',
 'Segoe UI Symbol';
-$default_text_shadow: 1px 1px 1px #4A5C66;
-$default_box_shadow: 0 40px 100px rgba(0, 0, 0, 0.30);
+$default_text_shadow: none !important;
+$default_box_shadow: none !important;
 $size_modal_icon: 36px;
 
 

@@ -2,7 +2,7 @@
   "name": "A: Quiz zum Kennenlernen",
   "description": "Die Quizfragen sind Teil der Demo-Kartei auf der 🍅cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2019-02-24T18:55:29.672Z",
+  "dateUpdated": "2019-02-26T14:33:48.256Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": true,
@@ -24,8 +24,8 @@
   "maxCards": 40,
   "daysBeforeReset": 7,
   "learningStart": "2018-06-08T13:51:09.335Z",
-  "learningEnd": "2038-01-19T18:00:18.561Z",
-  "registrationPeriod": "2038-01-19T18:00:18.561Z",
+  "learningEnd": "2038-01-19T09:33:18.947Z",
+  "registrationPeriod": "2038-01-19T09:33:18.947Z",
   "learningInterval": [
     1,
     3,
@@ -48,13 +48,13 @@
       "count": 0
     },
     "normal": {
-      "count": 6
+      "count": 7
     }
   },
   "rating": 0
 }, {
   "subject": "1. Die App für dein Studium",
-  "front": "![](/img/Bildlogo.png width=50%)\n(#) Was unterscheidet 🍅cards von einer Lernkartei-App?\n",
+  "front": "![](/img/Bildlogo.png width=40%)\n(#) Was unterscheidet 🍅cards von einer Lernkartei-App?\n",
   "back": "Im Gegensatz zu Lernkartei-Apps wie [Quizlet](https://quizlet.com/), [SuperMemo](https://www.supermemo.com/), [Brainyoo](https://www.brainyoo.de/), [Mnemosyne](https://mnemosyne-proj.org/) oder [Anki](https://apps.ankiweb.net/) lernst du auf der 🍅cards-Plattform mit Kartenformaten, die auf den **Wissenserwerb in einem Hochschulstudium** zugeschnitten sind: Mitschrift, Lerneinheit, Formelsammlung, Glossar, Prüfung und viele mehr. In dieser Demo werden dir alle Kartenformate mit realen Inhalten aus Bachelor- und Masterkursen gezeigt.\n\nEine herkömmliche Lernkartei-App benutzt du nur sporadisch, die Plattform 🍅cards dagegen ist deine **vorlesungsbegleitende persönliche Lernumgebung**, ein virtueller Ort, an dem du deine Lernzeit mit kognitiven Tätigkeiten -- Mitschreiben, Nachbearbeiten, Lernkarten erstellen, Lernfragen wiederholt beantworten -- intensiv verbringst. \n\nEs gibt auf 🍅cards eine Option, die es der Dozentin oder dem Dozenten ermöglicht, dein Lernen mit **Bonuspunkten** zu honorieren. Wir haben 🍅cards mit dem Ziel entwickelt, der **Aufschieberitis** und dem **Bulimielernen** im Studium entgegen zu wirken. Deshalb haben wir [Spaced-Learning](https://www.webcampus.de/blog/123/spaced-learning-mit-intelligenter-lerntechnik-besser-erinnern) und die [Pomodoro-Technik&trade;](https://de.wikipedia.org/wiki/Pomodoro-Technik) in 🍅cards integriert, auf den nächsten Karten mehr darüber.\n\n![ ](https://arsnova-uploads.mni.thm.de/logos/Stifterverband.png width=130)![ ](https://arsnova-uploads.mni.thm.de/logos/DATEV-Stiftung.png width=130) 🍅cards ist das zentrale Tool in einem Langzeit-Lehrprojekt. Der Stifterverband für die Deutsche Wissenschaft und die DATEV-Stiftung Zukunft haben unser Vorhaben »Digital gegen das Bulimie-Lernen: Quizzen im Hörsaal und zu Hause, Podcasts für unterwegs« mit einem [Senior-Fellowship](https://www.stifterverband.org/lehrfellowships) prämiert. Diese Förderung erlaubt uns, 🍅cards in den nächsten drei Semestern inhaltlich und technisch voranzutreiben, siehe unseren [Projektantrag](https://www.stifterverband.org/lehrfellowships/2018/quibeldey-cirkel) oder höre unseren [Podcast](https://panopto.thm.de/Panopto/Pages/Viewer.aspx?id=db71da47-2c08-4da2-9aa7-a9930130dc59). \n\n![Vollbildmodus des Screencasts auf [Youtube](https://www.youtube.com/watch?v=3mug7okfBO8)](https://www.youtube.com/watch?v=3mug7okfBO8)\n\n**Veröffentlichungen zum 🍅cards-Projekt:**\n\n\n[#HFD18]: Quibeldey-Cirkel, K. (2018).\n<q>Digital gegen das Bulimie-Lernen: Quizzen im Hörsaal und zu Hause, Podcasts für unterwegs</q>.\nIn: Hochschulforum Digitalisierung (Hrsg.): [HFD Winter School E-Book. Hochschullehre im digitalen Zeitalter gestalten.](https://hochschulforumdigitalisierung.de/sites/default/files/dateien/HFD_Winter_School_E-Book_Version_2.pdf) Arbeitspapier Nr. 31. Version 2. Berlin: Hochschulforum Digitalisierung. (S. 91-98).</br></br>\n\n[#SITE18]: Quibeldey-Cirkel, K., Heiny, J. & Thelen, C. (2018).\n<q>Against Academic Procrastination: Pedagogical Apps to Implement Distributed Learning in Course Design</q>.\nIn E. Langran & J. Borup (Eds.), Proceedings of Society for Information Technology & Teacher Education International Conference (pp. 1617-1622).\nWashington, D.C., United States: Association for the Advancement of Computing in Education (AACE). http://www.learntechlib.org/p/182756/",
   "centerTextElement": [
     true,
@@ -73,7 +73,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 0,
   "date": "2018-06-08T13:54:04.447Z",
-  "dateUpdated": "2019-02-24T06:16:30.296Z",
+  "dateUpdated": "2019-02-26T14:32:16.053Z",
   "learningIndex": "0",
   "learningUnit": "0",
   "originalAuthorName": {
@@ -83,7 +83,7 @@
   }
 }, {
   "subject": "2. Pomodoro",
-  "front": "![](https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Emojione_1F345.svg/500px-Emojione_1F345.svg.png width=150)\n\n(#) Was ist die <q>Pomodoro-Technik</q>?\n\n<br />\n<br />\n<br />\n<br />\n\n\nBildquelle: [Emoji One](https://de.wikipedia.org/wiki/Datei:Emojione_1F345.svg)",
+  "front": "![](https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Emojione_1F345.svg/500px-Emojione_1F345.svg.png width=150)\n\n(#) Was ist die <q>Pomodoro-Technik</q>?\n\n<br />\n<br />\n\nBildquelle: [Emoji One](https://de.wikipedia.org/wiki/Datei:Emojione_1F345.svg)",
   "back": "Francesco Cirillo entwickelte die populäre [Pomodoro-Technik&trade;](https://de.wikipedia.org/wiki/Pomodoro-Technik). Der Name rührt daher, dass Cirillo für seine Zeitmanagement-Technik eine Eieruhr zu Hilfe nahm und diese die Form einer Tomate hatte. Wir haben die Pomodoro-Technik&trade; in eine stylische Analoguhr eingebaut:\n\n![](https://arsnova-uploads.mni.thm.de/Pomodoro-Uhr.png width=60%)\n\nDu kannst unsere Pomodoro-Uhr auf der Startseite von 🍅cards zum Lernen nutzen. Eine Pomodoro-Lernzeit beträgt 25 Minuten, sie wird dir mit dem orangefarbenen Kreisbogen angezeigt. Der schmale rote Kreisbogen steht für die verstrichene Lernzeit. Die von der Pomodoro-Technik vorgesehenen Pausen erkennst du am blauen Kreisbogen. Und jetzt kommt der Clou:\n\n!!!\n   Wir haben die Pomodoro-Uhr in die Karten integriert: Während einer Pause wird dir keine weitere Karte zum Lernen angezeigt. Wir verhindern so, dass du dich überforderst, zum Beispiel beim **Bulimielernen** in der Woche vor einer Klausur, und du dir durch ununterbrochenes Kartenlernen (die Wissenschaft nennt es **massiertes** Lernen) gesundheitlich schadest und dein Lernen immer ineffektiver wird.\n\n!!! NOTE\n   Wenn du mit 🍅cards eine **Beamer-Präsentation** hältst -- anstelle von PowerPoint oder Keynote --, kannst du beim Vortragen stets die Pomodoro-Uhr in der Karten-Projektion sehen. Du behältst die Vortragsdauer stets im Blick und dein Publikum sieht und hört, wann die Pause kommt.",
   "centerTextElement": [
     true,
@@ -104,7 +104,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 0,
   "date": "2018-09-22T15:21:18.473Z",
-  "dateUpdated": "2019-02-23T15:18:51.747Z",
+  "dateUpdated": "2019-02-26T14:32:46.954Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -114,7 +114,7 @@
   "learningUnit": "0"
 }, {
   "subject": "3. Zettel ・ Kartons ・ Regale",
-  "front": "(#) Was bleibt?\n\n![](/img/background/zettelkasten_wikipedia_original.jpg width=500px)\n",
+  "front": "(#) Was bleibt?\n\n![](/img/background/zettelkasten_wikipedia_original.jpg width=400px)\n",
   "back": "![Zettelkästen](/img/background/zettelkasten_wikipedia_original.jpg width=\"100 pt\") \nEin Studierzimmer [^Foto-Quelle] kann eine kreative persönliche Lernumgebung sein. Das auf tausenden Zetteln in dutzenden Kartons gesammelte Wissen ist zumindest der Bewohnerin des abgebildeten Zimmers zugänglich (ein Klick auf das Foto zeigt die Schuhgröße 4½ auf den Kartons). Warum also nicht mit Zetteln in Schuhkartons studieren? Den digitalen Karten fehlt doch die Haptik des Papiers und die Gesamtschau  -- im Regal und auf dem Boden. \n\nStimmt. Dafür haben digitale Karten aber auch **unbestreitbare Vorteile** -- gemäß dem Slogan unserer Plattform:\n\n+ **`Organize`**: Das Wissen aus deinem Studium kannst du jederzeit und überall mit wenigen Klicks wiederfinden, auch noch viele Jahre nach deinem Studium, wenn du aus deiner Studierbude längst ausgezogen bist, womöglich dein Zettelarchiv bis auf das IKEA-Regal entsorgt hast. Eines Tages -- im Job, in einer Teambesprechung -- brauchst du sicherlich das Wissen aus deinem Studium wieder.\n\n+ **`Learn`**: Die Karten sind multimedial: Du kannst Bilder, Podcasts und Videos einfügen. Du studierst ein MINT-Fach? Schreib mit $\\TeX$ die kompliziertesten mathematischen Formeln und mit Syntax-Highlighting beliebigen Programmcode schnell und sauber auf eine Karte. Du darfst kostenlos die [Open Source Software](https://github.com/thm-projects/arsnova-flashcards) 🍅cards als persönliche Lernumgebung auf deinem Laptop installieren. So kannst du deine Karten auch ohne Internet überall lernen.\n\n+ **`Memorize`**: Die Karten deines Lernpensums werden dir zum dauerhaften Memorieren an [kognitionswissenschaftlich berechneten Tagen](https://en.wikipedia.org/wiki/Spaced_repetition) wieder vorgelegt. Push-Nachrichten auf dein Handy oder E-Mails erinnern dich ans Lernen. Damit du fokussiert lernen kannst, ohne dich zu überfordern, haben wir die [Pomodoro-Technik](/learning#Pomodoro) -- ein populäres Zeitmanagement-Tool --- auf jeder Karte im Lernmodus integriert.\n\n+ **`Present`**: Wenn du 🍅cards für einen Beamer-Vortrag verwendest, behältst du die verbleibende Vortragszeit und die Pause stets im Blick. Auch wird es dir nie passieren, dass du deine Präsentation im Edit-Modus von PowerPoint oder Keynote hältst, denn Karten kannst du nur in der Vollbildansicht präsentieren. Und als **Highlight** rufe in deiner Präsentation unser [gamifiziertes](https://de.wikipedia.org/wiki/Gamification) **Audience-Response-System** [arsnova.click](https://arsnova.click) auf, um ein anonymes Live-Feedback einzuholen. Wenn du gerade deinen Laptop benutzt, klick mal auf den unteren linken Rand-Button! \n\n![Live-Feedback mit ARSnova.click, siehe [Projektblog](https://arsnova.thm.de/blog/)](https://arsnova.thm.de/blog/wp-content/uploads/2015/05/Bildschirmfoto-2017-02-11-um-16.33.52.png width=400)\n\n<br />\n<br />\n\n[^Foto-Quelle]: Foto zum Wikipedia-Begriff [<q>Zettelkasten</q>](https://de.wikipedia.org/wiki/Zettelkasten), Kai Schreiber, CC BY-SA 2.0",
   "centerTextElement": [
     true,
@@ -133,7 +133,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-06-10T05:23:42.665Z",
-  "dateUpdated": "2019-02-23T15:19:00.407Z",
+  "dateUpdated": "2019-02-26T14:33:09.294Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -162,7 +162,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-06-08T14:56:06.624Z",
-  "dateUpdated": "2019-02-24T06:37:29.719Z",
+  "dateUpdated": "2019-02-26T14:33:13.119Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -191,7 +191,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-06-09T17:45:11.922Z",
-  "dateUpdated": "2019-02-23T14:54:16.239Z",
+  "dateUpdated": "2019-02-26T14:33:14.470Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -201,7 +201,7 @@
   "learningUnit": "0"
 }, {
   "subject": "6. Digitale Zettel: Karten",
-  "front": "![](https://casual-effects.com/image/project/icon-markdeep.png width=\"130 pt\")\n\n(#) Wie kannst du eine Karte mit $\\TeX$-Formeln, Bildern, Podcasts oder Videos anreichern?",
+  "front": "![](https://casual-effects.com/image/project/icon-markdeep.png width=\"120 pt\")\n\n(#) Wie kannst du eine Karte mit $\\TeX$-Formeln, Bildern, Podcasts oder Videos anreichern?",
   "back": "Kurze Antwort: mit **Markdeep**.\n\n---\n\nKarteien und Karten kannst du auf  **🍅cards** vielfältig gestalten -- fast wie in Microsoft Word™ oder in Pages™ von Apple. Diese Karte zeigt dir beispielhaft einige Formatierungen mit [Markdeep](http://casual-effects.com/markdeep/), der vereinfachten [Auszeichnungssprache](https://de.wikipedia.org/wiki/Auszeichnungssprache) im **🍅cards**-Editor. Du kannst deinen Text mit etwas Magie (ein paar Tastaturzeichen genügen wie <code>* _ # [ ]  > | ~ $ ˋ</code>) sehr einfach formatieren -- **ohne Maus**. \n\nWas alles mit Markdeep möglich ist,  zeigt die  [Demo-Seite](http://casual-effects.com/markdeep/features.md.html). So geht zum Beispiel auch $\\TeX$, inline: $\\sigma = \\sqrt{ \\frac{1}{N} \\sum_{i=1}^N (x_i -\\mu)^2}$ (Standardabweichung) oder abgesetzt die Maxwell-Faraday-Gleichung:\n\n$$\\oint_{\\partial \\Sigma} \\mathbf{E} \\cdot \\mathrm{d}\\boldsymbol{\\ell}  = - \\frac{d}{dt} \\iint_{\\Sigma} \\mathbf{B} \\cdot \\mathrm{d}\\mathbf{S}$$\n\nDie $\\TeX$-Formel wird mit [MathJax](https://www.mathjax.org/) gerendert.\nMathJax fügt ein Kontextmenü hinzu. Um es anzuzeigen, klicke mit der rechten Maustaste oder halte beim Klicken die <kbd>Strg</kbd>-Taste gedrückt. Probiere es gleich einmal mit der Formel oben aus!\n\n!!! NOTE\n   Eine sorgfältige Gestaltung deiner Karten mit Text, Bildern, Podcasts oder Erklärvideos motiviert und fördert zugleich dein Lernen. Nutze also die Formatierungsoptionen für die Beschriftung deiner Karteien ( -> Etikett am Karton) und für die anschauliche Gestaltung der Lerninhalte deiner Karten. \n\nUnd jetzt kommt der [Entwickler von Markdeep](https://csci.williams.edu/people/faculty/morgan-mcguire/) zu Wort:\n\n> \"Markdeep\n> is a technology for writing plain text documents\n> that will look good in any web browser, whether \n> local or remote. It supports diagrams, calendars, equations, and\n> other  features as extensions of Markdown syntax.\"\n>        -- Morgan McGuire\n\nVideos auf YouTube und Vimeo lassen sich sehr einfach mit einem Einzeiler in die Seite einbinden:\n\n![Figure [Markdown]: Erklärvideo über Markdown, auf dem Markdeep aufbaut](https://youtu.be/hpAJMSS8pvs)\n\nBilder können abgesetzt, rechtsbündig zum Absatz und skaliert eingebunden werden:\n\n![Figure [examplePicture]: Markdeep-Editor vs. Webseite](https://pbs.twimg.com/media/CXzB2rZWsAERiV8.png  width=\"400 pt\")\n\nWie im Bild zu sehen, zeigt dir die Vorschau des Editors -- **synchron** zu deiner Eingabe --, wie deine Textformatierung aussehen wird. \n\nUnd natürlich lassen sich auch **Podcasts** einbinden und im Browser abspielen. Die Syntax ist für alle Medien gleich: \n\n`![Beschriftung](Webadresse)`. \n\nFür einen Podcast also:\n\n````\n![The Personal Best CBC Podcast](https://podcast-a.akamaihd.net/mp3/podcasts/personalbest-GRHHTnR3-20180415.mp3)\n````\n\nDer browsereigene Audio-Player wird aufgerufen:\n\n![The Personal Best CBC Podcast](https://podcast-a.akamaihd.net/mp3/podcasts/personalbest-GRHHTnR3-20180415.mp3)\n\n!!! TIP\n   Unter <q>Repetitorien</q> auf 🍅cards steht dir die Kartei <q>Markdeep-Kompendium</q> als Hilfe zur Verfügung.\n\n!!! ERROR Warum bietet ihr Markdown / Markdeep für die Textformatierung an und nicht einen [WYSIWYG](https://de.wikipedia.org/wiki/WYSIWYG)-Editor?\n    Siehe Antwort zur 5. [FAQ](/faq).",
   "centerTextElement": [
     true,
@@ -220,7 +220,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 0,
   "date": "2018-06-08T14:56:06.624Z",
-  "dateUpdated": "2019-02-24T18:39:08.219Z",
+  "dateUpdated": "2019-02-26T14:33:28.601Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -252,7 +252,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-02-23T15:00:28.241Z",
+  "dateUpdated": "2019-02-26T14:33:31.558Z",
   "back": "\n🍅cards bietet dir den optimalen Workflow zum Erstellen und Lernen von Vokabeln: Neben dem Wörterbuch [Beolingus](https://dict.tu-chemnitz.de/) (wird beim Lernen einzelner Wörter angeboten) haben wir auch den Übersetzungsdienst [DeepL](https://www.deepl.com/translator) integriert: Gib einen Text in der Sprache A ein und drücke die <kbd>Tab</kbd>-Taste. Die Übersetzung in die Sprache B wird dir in DeepL in Echtzeit angezeigt. Die Rückübersetzung A <-- B zur Kontrolle der Qualität der Übersetzung ist wieder per <kbd>Tab</kbd> möglich. Das Video auf der Vorderseite zeigt wie.\n",
   "originalAuthorName": {
     "title": "Dr.",
@@ -282,7 +282,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-08-11T12:00:07.793Z",
-  "dateUpdated": "2019-02-23T15:06:15.602Z",
+  "dateUpdated": "2019-02-26T14:33:43.546Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -315,7 +315,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-02-24T18:55:29.658Z",
+  "dateUpdated": "2019-02-26T14:33:48.241Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
