@@ -267,7 +267,7 @@ Template.registerHelper("canCopyCard", function (cardset_id) {
 });
 
 Template.registerHelper("isCardsetOwner", function (cardset_id) {
-	if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
+	if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']) || (Route.isDemo() || Route.isMakingOf())) {
 		return true;
 	}
 	let cardset = Cardsets.findOne({"_id": cardset_id});

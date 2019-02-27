@@ -160,7 +160,7 @@
           },
           "confirm": {
             "title": "Großartig!",
-            "text": "Insgesamt <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>. <br>Das sind <span class=\"pomodoroHighlight\"> __pomodoroTotal__ Minuten</span> Lernzeit. <br><br>Du bist klasse! Komm bald zurück!",
+            "text": "Insgesamt <span class=\"pomodoroHighlight\"> __pomodoroTotal__ __pomodoro__</span>. <br>Das sind <span class=\"pomodoroHighlight\"> __pomodoroTime__ Minuten</span> Lernzeit. <br><br>Du bist klasse! Komm bald zurück!",
             "button": {
               "confirm": "Danke!"
             }
@@ -208,7 +208,7 @@
           },
           "confirm": {
             "title": "Großartig!",
-            "text": "Insgesamt <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>. <br>Das sind <span class=\"pomodoroHighlight\"> __pomodoroTotal__ Minuten</span> Lernzeit. <br><br>Du bist klasse! Komm bald zurück!",
+            "text": "Insgesamt <span class=\"pomodoroHighlight\"> __pomodoroTotal__ __pomodoro__</span>. <br>Das sind <span class=\"pomodoroHighlight\"> __pomodoroTime__ Minuten</span> Lernzeit. <br><br>Du bist klasse! Komm bald zurück!",
             "button": {
               "confirm": "Danke!"
             }
