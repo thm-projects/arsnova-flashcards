@@ -169,9 +169,9 @@
         "break": {
           "start": {
             "title": "Gut gelernt!",
-            "text": "Du hast <span class=\"pomodoroHighlight\"> __pomodoroTotal__ __pomodoro__</span> Lernzeit geschafft. <br><br>Bist du bereit für erholsame <span class=\"pomodoroHighlight\"> __pomodoroBreak__ Minuten</span> Pause? Du kannst tun, wonach auch immer dir der Sinn steht.",
+            "text": "Du hast <span class=\"pomodoroHighlight\"> __pomodoroTotal__ __pomodoro__</span> Lernzeit geschafft. <br><br>Bist du bereit für erholsame <span class=\"pomodoroHighlight\"> __pomodoroBreak__ Minuten</span>? Du kannst tun, wonach auch immer dir der Sinn steht.",
             "button": {
-              "confirm": "Ja, ich will in die Pause!"
+              "confirm": "Ja, ich will jetzt in die Pause!"
             }
           },
           "end": {
