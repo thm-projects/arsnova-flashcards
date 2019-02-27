@@ -42,7 +42,7 @@ $navbar_all_decks_border_width: 3px;
   height: $size_navbar_height !important;
   min-height: $size_navbar_height !important;
   margin: 0 auto !important;
-  z-index: 100 !important;
+  z-index: 2000 !important;
 
   li, .navbar-header-item {
     display: flex !important;
