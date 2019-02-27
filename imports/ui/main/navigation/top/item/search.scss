@@ -20,8 +20,8 @@ $searchbar_desktop_height: $size_navbar_height - 6px;
       position: absolute;
       float: right;
       bottom:  round($size_navbar_height * 0.15 + 5px) !important;
-      right : 10px;
-      font-size: 16px;
+      right : 8px;
+      font-size: 14px;
       i {
         cursor: pointer;
         font-size: 135% !important;
@@ -91,7 +91,7 @@ $searchbar_desktop_height: $size_navbar_height - 6px;
   }
   @media (max-width: 767px) {
     .search {
-      width: 100px;
+      width: 110px;
       .form-group {
         margin-top: 5px !important;
       }
