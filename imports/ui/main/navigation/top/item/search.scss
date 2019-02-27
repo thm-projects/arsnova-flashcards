@@ -7,13 +7,13 @@ $searchbar_desktop_height: $size_navbar_height - 6px;
     }
 
     .input-search {
-      height: round($size_navbar_height * 0.85) !important;
+      height: round($size_navbar_height * 0.7) !important;
       padding-left: 10px !important;
       margin-right: 20px !important;
       border-radius: 15px;
     }
     .input-search::placeholder {
-      font-size: 16px !important;
+      font-size: 14px !important;
     }
 
     .clearSearch {
@@ -91,9 +91,9 @@ $searchbar_desktop_height: $size_navbar_height - 6px;
   }
   @media (max-width: 767px) {
     .search {
-      width: 120px;
+      width: 100px;
       .form-group {
-        margin-top: 7px !important;
+        margin-top: 5px !important;
       }
       input {
         padding-right: 30px !important;
