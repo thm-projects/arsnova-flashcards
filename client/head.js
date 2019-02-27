@@ -26,9 +26,9 @@ window.addEventListener("load", function () {
 			"message": "Wir ersparen dir lange Erklärungen, warum »" +
 				ServerStyle.getFirstAppTitle() + "🍅" + ServerStyle.getLastAppTitle() +
 				"« Cookies verwendet. Unter anderem würde dieser Hinweis bei jedem Besuch erscheinen." +
-				" Alle rechtlichen Hinweise findest du unter",
+				" Alle rechtlichen Hinweise findest du in der",
 			"dismiss": "Ist klar, ich akzeptiere das.",
-			"link": "Datenschutz.",
+			"link": "Datenschutzerklärung.",
 			"href": "/datenschutz"
 		}
 	});
