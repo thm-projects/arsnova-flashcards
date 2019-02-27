@@ -466,7 +466,6 @@ export let PomodoroTimer = class PomodoroTimer {
 				}).then((result) => {
 					/*you succeeded so you get the success sound and a success message. good for you! */
 					if (result.value) {
-						this.setPresentationPomodoro(true);
 						if (!Route.isPresentation() && !Route.isDemo()) {
 							if (isSuccessSoundEnabled) {
 								config.successSound.play();
@@ -475,16 +474,16 @@ export let PomodoroTimer = class PomodoroTimer {
 								dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.end.confirm.title');
 								dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.end.confirm.text', {
 									pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
-									pomodoroGoal: goalPoms,
-									pomodoroTotal: pomLength * totalPoms
+									pomodoroTotal: totalPoms,
+									pomodoroTime: pomLength * totalPoms
 								});
 								dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.end.confirm.button.confirm');
 							} else {
 								dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.end.confirm.title');
 								dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.end.confirm.text', {
 									pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
-									pomodoroGoal: goalPoms,
-									pomodoroTotal: pomLength * totalPoms
+									pomodoroTotal: totalPoms,
+									pomodoroTime: pomLength * totalPoms
 								});
 								dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.end.confirm.button.confirm');
 							}
@@ -506,6 +505,7 @@ export let PomodoroTimer = class PomodoroTimer {
 								}
 							});
 						}
+						this.setPresentationPomodoro(true);
 					}
 				});
 			}
