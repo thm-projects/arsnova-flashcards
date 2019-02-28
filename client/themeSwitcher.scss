@@ -435,12 +435,11 @@ $themes: (
     //notification colors
     $notification_text_smartphones: map-get($map, "notification_text_smartphones");
     //search colors
+    $search_results_background: map-get($map, "search_results_background");
     $search_results_subject_background: map-get($map, "search_results_subject_background");
     $search_results_subject_text: map-get($map, "search_results_subject_text");
-    $search_results_content_background: map-get($map, "search_results_content_background");
-    $search_results_content_text: map-get($map, "search_results_content_text");
-    $search_results_author_background: map-get($map, "search_results_author_background");
-    $search_results_author_text: map-get($map, "search_results_author_text");
+    $search_results_info_background: map-get($map, "search_results_info_background");
+    $search_results_info_text: map-get($map, "search_results_info_text");
     $search_results_separator: map-get($map, "search_results_separator");
     $search_divide: map-get($map, "search_divide");
     //form group colors
@@ -1021,6 +1020,10 @@ $themes: (
       border-bottom-color: $search_results_separator !important;
     }
 
+    .search-result-item {
+      background-color: $search_results_background !important;
+    }
+
     .search-subject-personal {
       background-color: $private_background !important;
       color: $private_text !important;
@@ -1041,14 +1044,9 @@ $themes: (
       color: $free_text !important;
     }
 
-    .search-content {
-      background-color: $search_results_content_background !important;
-      color: $search_results_content_text !important;
-    }
-
-    .search-author {
-      background-color: $search_results_author_background !important;
-      color: $search_results_author_text !important;
+    .search-result-info {
+      background-color: $search_results_info_background !important;
+      color: $search_results_info_text !important;
     }
 
     .cc-link {

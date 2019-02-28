@@ -297,7 +297,11 @@ Meteor.methods({
 						owner: 1,
 						description: 1,
 						kind: 1,
-						shuffled: 1
+						shuffled: 1,
+						quantity: 1,
+						cardType: 1,
+						difficulty: 1,
+						learningActive: 1
 					}
 				}).fetch();
 			}
