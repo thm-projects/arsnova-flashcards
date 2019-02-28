@@ -9,4 +9,7 @@ export let FirstTimeVisit = class FirstTimeVisit {
 	static redirectToHomeAfterFullscreenExit () {
 		return conf.redirectToHomeAfterExit;
 	}
+	static isFirstTimePresentationModalEnabled () {
+		return conf.enableFirstTimePresentationModal;
+	}
 };
