@@ -15,12 +15,5 @@ Template.cardsetInfoBoxItemActiveLearners.helpers({
 		} else {
 			return 0;
 		}
-	},
-	getActiveBonusLearnerCount: function (cardset) {
-		if (cardset.workload !== undefined && cardset.workload.bonus !== undefined) {
-			return cardset.workload.bonus.count;
-		} else {
-			return 0;
-		}
 	}
 });

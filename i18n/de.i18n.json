@@ -916,10 +916,10 @@
       "undefinedAuthor": "Bitte füll dein Profil aus!",
       "workload": {
         "bonus": {
-          "count": "Eingeschrieben in Bonus"
+          "count": "Eingeschrieben"
         },
         "normal": {
-          "count": "Eingeschrieben"
+          "count": "Gelernt von"
         }
       }
     },
