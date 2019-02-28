@@ -44,9 +44,7 @@
   margin: 0;
 }
 
-.search-author {
-  font-size: $font-size_search_results_author !important;
-  font-weight: $font-weight_search_results_author !important;
+.search-result-info {
   padding: $padding_search_items !important;
-  margin: 0;
+  margin: 0 !important;
 }
