@@ -408,10 +408,10 @@
     "text2": "Wenn du dein Konto immer noch löschen willst, klicke auf die Schaltfläche »Konto löschen«. Du wirst automatisch aus 🍅__lastAppTitle__ abgemeldet."
   },
   "confirmLearn-form": {
-    "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen Nutzer/innen der Kartei geht hierbei verloren!",
+    "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen User der Kartei geht hierbei verloren!",
     "confirm": "Starten",
     "cancel": "Abbrechen",
-    "notification": "Erinnerungsdienst (Ohne Bonus)",
+    "notification": "Erinnerungsdienst (ohne Bonus)",
     "mailNotificationCheckbox": "E-Mail",
     "webNotificationCheckbox": "Push-Nachricht",
     "notificationError": "Es muss mindestens eine Benachrichtigungsart ausgewählt werden!",
@@ -824,7 +824,7 @@
     },
     "form-join": {
       "title": "Bonus-Lernphase beitreten",
-      "message": "Willst du der aktiven Bonus-Lernphase beitreten? Beim Beitritt wird dein derzeitiger Leitner und Wozniak Lernstand zurückgesetzt.",
+      "message": "Willst du der Bonus-Lernphase beitreten? Beim Beitritt werden deine Lernstände nach Leitner oder Wozniak zurückgesetzt.",
       "button": {
         "confirm": "Beitreten",
         "cancel": "Abbrechen"
@@ -832,7 +832,7 @@
     },
     "form-leave": {
       "title": "Bonus-Lernphase verlassen",
-      "message": "Beim Verlassen einer aktiven Bonusphase wird dein derzeitiger Lernfortschritt gelöscht. Der Dozent kann dadurch diesen nicht mehr für die Bonusvergabe verwenden.",
+      "message": "Beim Verlassen der Bonusphase wird dein derzeitiger Lernfortschritt gelöscht. Die Lehrperson kann dir dann keine Bonuspunkte mehr anrechnen.",
       "button": {
         "confirm": "Verlassen",
         "cancel": "Abbrechen"
@@ -868,11 +868,11 @@
         "placeholder": "in Tagen bis alle Karten wieder in Box 1"
       },
       "startDate": {
-        "label": "Beginn der Bonus-Lernphase",
+        "label": "Beginn der Bonusphase",
         "placeholder": "Heute"
       },
       "endDate": {
-        "label": "Ende der Bonus-Lernphase",
+        "label": "Ende der Bonusphase",
         "placeholder": "In 3 Monaten"
       },
       "registrationPeriod": {
@@ -883,7 +883,7 @@
         "label": "Wiederholungs-Intervalle in Tagen"
       },
       "button": {
-        "start": "Bonus-Lernphase aktivieren",
+        "start": "Bonusphase aktivieren",
         "cancel": "Abbrechen",
         "update": "Aktualisieren",
         "reset": "Zurücksetzen"
@@ -916,10 +916,10 @@
       "undefinedAuthor": "Bitte füll dein Profil aus!",
       "workload": {
         "bonus": {
-          "count": "Eingeschrieben in Bonus"
+          "count": "Eingeschrieben"
         },
         "normal": {
-          "count": "Eingeschrieben"
+          "count": "Gelernt von"
         }
       }
     },
@@ -1438,20 +1438,20 @@
     "manage": "Verwalten",
     "modal": {
       "removeUser": {
-        "title": "Benutzer aus der Bonusphase entfernen?",
+        "title": "User aus der Bonusphase entfernen?",
         "text": "Willst du diesen Datensatz aus der Bonusphase entfernen?",
         "button": {
-          "confirm": "Benutzer aus der Bonusphase entfernen",
+          "confirm": "User aus der Bonusphase entfernen",
           "cancel": "Abbrechen"
         }
       }
     },
     "tooltip": {
-      "removeUser": "Benutzer aus der Bonusphase entfernen",
+      "removeUser": "User aus der Bonusphase entfernen",
       "graph": "Statistik anzeigen"
     },
     "bertAlert": {
-      "userRemoved": "Benutzer wurde aus der Bonusphase entfernt"
+      "userRemoved": "User wurde aus der Bonusphase entfernt"
     }
   },
   "cardCounter": {
@@ -1897,7 +1897,7 @@
       "message": "Hier kannst du Karten zu einem bestimmten Thema lernen. </br> </br> Klick auf den Pfeil ganz rechts von einem Thema, um die Beschreibung der Kartei zu sehen. Mit einem Klick auf das Thema gelangst du zu den Karten. </br> </br>"
     },
     "publishBonus": {
-      "message": "Um die Bonus-Lernphase zu starten, müssen mindestens __cardcount__ erstellt und die Kartei als »Frei«, »__edu__« oder »Pro« veröffentlicht worden sein."
+      "message": "Um die Bonusphase zu starten, müssen mindestens __cardcount__ erstellt und die Kartei als »Frei«, »__edu__« oder »Pro« veröffentlicht worden sein."
     }
   },
   "backdoor": {

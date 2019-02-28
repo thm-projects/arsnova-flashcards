@@ -1001,7 +1001,12 @@ $themes: (
     }
 
     .modal-content .close {
-      color: $thm_orange;
+      color: $thm_orange !important;
+    }
+
+    .modal-content .close:hover {
+      color: white !important;
+      background-color: $button_background_hover !important;
     }
 
     .hintContent .modal-header, .wordCloudDescription {

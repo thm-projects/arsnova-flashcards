@@ -214,7 +214,7 @@ export let LeitnerProgress = class LeitnerProgress {
 			}).fetch(), function (cardsets) {
 				return cardsets.cardset_id;
 			});
-
+			console.log(cardsets.length);
 			for (let i = 0; i < cardsets.length; i++) {
 				cardset = Cardsets.findOne({_id: cardsets[i].cardset_id}, {fields: {_id: 1, shuffled: 1, cardGroups: 1}});
 				if (cardset !== undefined) {
