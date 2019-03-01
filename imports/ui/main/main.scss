@@ -775,6 +775,10 @@ th {
   margin-right: 15px;
 }
 
+.modal {
+  z-index: 3000 !important;
+}
+
 .modal-icon, .modal-icon-white {
   font-size: $size_modal_icon;
   height: $size_modal_icon;
