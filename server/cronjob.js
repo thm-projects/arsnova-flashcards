@@ -10,7 +10,7 @@ export class CronScheduler {
 		SyncedCron.add({
 			name: "leitnerCron",
 			schedule: function (parser) {
-				return parser.recur().on(Meteor.settings.public.leitner.dayIntervalHour).hour();
+				return parser.recur().on(Meteor.settings.public.dailyCronjob.executeAtHour).hour();
 				//Use this line on a local server to trigger the cronjob every 30 seconds
 				//return parser.text('every 30 seconds');
 			},

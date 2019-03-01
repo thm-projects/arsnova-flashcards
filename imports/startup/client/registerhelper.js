@@ -139,10 +139,10 @@ Template.registerHelper("getNextCardTime", function () {
 	} else {
 		nextDate = moment(nextCardDate).locale("de");
 	}
-	if (nextDate.get('hour') >= Meteor.settings.public.leitner.dayIntervalHour) {
+	if (nextDate.get('hour') >= Meteor.settings.public.leitner.dailyCronjob.executeAtHour) {
 		nextDate.add(1, 'day');
 	}
-	nextDate.hour(Meteor.settings.public.leitner.dayIntervalHour);
+	nextDate.hour(Meteor.settings.public.leitner.dailyCronjob.executeAtHour);
 	nextDate.minute(0);
 	return TAPi18n.__('noCardsToLearn') + nextDate.format("D. MMMM") + TAPi18n.__('at') + nextDate.format("HH:mm") + TAPi18n.__('released');
 });
