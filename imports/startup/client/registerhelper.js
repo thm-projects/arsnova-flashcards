@@ -216,6 +216,10 @@ Template.registerHelper("getServerInventory", function (type) {
 	return ServerInventoryTools.getServerInventory(type);
 });
 
+Template.registerHelper("isSidebarHidden", function () {
+	return Session.get('hideSidebar');
+});
+
 Template.registerHelper("getKind", function (kind, displayType = 0) {
 	if (displayType === 0) {
 		switch (DOMPurify.sanitize(kind, DOMPurifyConfig)) {

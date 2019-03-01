@@ -249,6 +249,11 @@ body {
   }
 }
 
+.presentation-container-no-sidebar {
+  padding-left: $sidebar_width / 3 !important;
+  padding-right: $sidebar_width / 3 !important;
+}
+
 .demo-padding {
   @media(max-width: 767px) {
     padding-left: $sidebar_width / 2 !important;

@@ -266,6 +266,16 @@ $themes: (
     $card_sidebar_delete_button_text: map-get($map, "card_sidebar_delete_button_text");
     $card_sidebar_delete_button_background_hover: map-get($map, "card_sidebar_delete_button_background_hover");
     $card_sidebar_delete_button_text_hover: map-get($map, "card_sidebar_delete_button_text_hover");
+    $card_sidebar_toggle_button_background: map-get($map, "card_sidebar_toggle_button_background");
+    $card_sidebar_toggle_button_text: map-get($map, "card_sidebar_toggle_button_text");
+    $card_sidebar_toggle_button_opacity: map-get($map, "card_sidebar_toggle_button_opacity");
+    $card_sidebar_toggle_button_background_hover: map-get($map, "card_sidebar_toggle_button_background_hover");
+    $card_sidebar_toggle_button_text_hover: map-get($map, "card_sidebar_toggle_button_text_hover");
+    $card_sidebar_toggle_button_background_active: map-get($map, "card_sidebar_toggle_button_background_active");
+    $card_sidebar_toggle_button_text_active: map-get($map, "card_sidebar_toggle_button_text_active");
+    $card_sidebar_toggle_button_opacity_active: map-get($map, "card_sidebar_toggle_button_opacity_active");
+    $card_sidebar_toggle_button_background_active_hover: map-get($map, "card_sidebar_toggle_button_background_active_hover");
+    $card_sidebar_toggle_button_text_active_hover: map-get($map, "card_sidebar_toggle_button_text_active_hover");
     //cardset colors
     $cardset_markdeep_background: map-get($map, "cardset_markdeep_background");
     $cardset_markdeep_header_border: map-get($map, "cardset_markdeep_header_border");
@@ -2810,7 +2820,7 @@ $themes: (
     }
 
     //card sidebar
-    #flashcardSidebarLeft, #flashcardSidebarRight {
+    #flashcardSidebarLeft, #flashcardSidebarRight, #flashcardSidebarBottomLeft {
       border-color: $card_sidebar_border !important;
       background-color: $card_sidebar_background !important;
 
@@ -2832,6 +2842,30 @@ $themes: (
       .deleteCard:hover {
         background-color: $card_sidebar_delete_button_background_hover !important;
         color: $card_sidebar_delete_button_text_hover !important;
+      }
+
+      .toggleSidebar {
+        background-color: $card_sidebar_toggle_button_background !important;
+        color: $card_sidebar_toggle_button_text !important;
+        opacity: $card_sidebar_toggle_button_opacity !important;
+      }
+
+      .toggleSidebar:hover {
+        background-color: $card_sidebar_toggle_button_background_hover !important;
+        color: $card_sidebar_toggle_button_text_hover !important;
+        opacity: 1 !important;
+      }
+
+      .toggleSidebar.active {
+        background-color: $card_sidebar_toggle_button_background_active !important;
+        color: $card_sidebar_toggle_button_text_active !important;
+        opacity: $card_sidebar_toggle_button_opacity_active !important;
+      }
+
+      .toggleSidebar.active:hover {
+        background-color: $card_sidebar_toggle_button_background_active_hover !important;
+        color: $card_sidebar_toggle_button_text_active_hover !important;
+        opacity: 1 !important;
       }
     }
 

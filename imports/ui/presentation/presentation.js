@@ -37,6 +37,7 @@ Template.presentationView.onRendered(function () {
 
 Template.presentationView.onDestroyed(function () {
 	Session.set('contrastMode', false);
+	Session.set('hideSidebar', false);
 });
 
 Template.presentationView.events({
