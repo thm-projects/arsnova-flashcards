@@ -9,8 +9,8 @@
       "popupWidth": 810,
       "popupHeight": 610
     },
-    "leitner": {
-      "dayIntervalHour": 8
+    "dailyCronjob": {
+      "executeAtHour": 8
     },
     "university": {
       "singleUniversity": false,
