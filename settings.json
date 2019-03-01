@@ -10,7 +10,7 @@
       "popupHeight": 610
     },
     "leitner": {
-      "dayIntervalHour": 1
+      "dayIntervalHour": 8
     },
     "university": {
       "singleUniversity": true,
