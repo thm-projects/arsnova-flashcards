@@ -10,6 +10,7 @@ import {PomodoroTimer} from "../../api/pomodoroTimer";
 import {Route} from "../../api/route";
 import {MainNavigation} from "../../api/mainNavigation";
 import {NavigatorCheck} from "../../api/navigatorCheck";
+import {FirstTimeVisit} from "../../api/firstTimeVisit";
 
 
 Session.set('animationPlaying', false);
@@ -29,7 +30,7 @@ Template.presentationView.onCreated(function () {
 
 Template.presentationView.onRendered(function () {
 	CardNavigation.toggleVisibility(true);
-	if (localStorage.getItem(MainNavigation.getFirstTimePresentationString()) !== "true" && Route.isPresentation() && !NavigatorCheck.isSmartphone()) {
+	if (localStorage.getItem(MainNavigation.getFirstTimePresentationString()) !== "true" && Route.isPresentation() && !NavigatorCheck.isSmartphone() && FirstTimeVisit.isFirstTimePresentationModalEnabled()) {
 		$('#helpModal').modal('show');
 	}
 });
