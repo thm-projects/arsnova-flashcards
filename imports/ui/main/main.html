@@ -10,7 +10,7 @@
     {{> helpModal}}
     {{> mainItemSearchResult}}
     {{> mainNavigationTop}}
-    <div id="main" class="{{#if isActiveRoute 'presentation'}}presentation-container{{else}}{{#if isActiveRoute
+    <div id="main" class="{{#if isActiveRoute 'presentation'}}{{#if isSidebarHidden}}presentation-container-no-sidebar{{else}}presentation-container{{/if}}{{else}}{{#if isActiveRoute
                                                                                                   regex='home'}}{{else}}{{#if
             isActiveRoute
             regex='newCard|editCard|cardsetstats'}}{{#if

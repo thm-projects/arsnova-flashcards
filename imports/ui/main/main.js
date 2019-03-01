@@ -52,6 +52,7 @@ Session.setDefault('helpFilter', undefined);
 Session.setDefault('currentZoomValue', CardVisuals.getDefaultTextZoomValue());
 Session.setDefault('demoFullscreen', false);
 Session.setDefault('isConnectionModalOpen', false);
+Session.setDefault('hideSidebar', false);
 
 function connectionStatus() {
 	let stat;

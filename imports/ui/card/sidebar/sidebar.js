@@ -12,6 +12,7 @@ import "./item/backToCardset.js";
 import "./item/dictionary.js";
 import ".//item/endPresentation.js";
 import "./item/toggleFullscreen.js";
+import "./item/hideSidebar.js";
 import "./item/zoomText.js";
 import "./item/leftRightNavigation.js";
 import "./item/copy.js";

@@ -436,8 +436,10 @@ export let CardVisuals = class CardVisuals {
 		}
 		let leftSidebar = $('#flashcardSidebarLeft');
 		let rightSidebar = $('#flashcardSidebarRight');
+		let bottomLeftSidebar = $('#flashcardSidebarBottomLeft');
 		let leftSidebarElementCount = $('#flashcardSidebarLeft .card-button').length;
 		let rightSidebarElementCount = $('#flashcardSidebarRight .card-button').length;
+		let bottomLeftSidebarCount = $('#flashcardSidebarBottomLeft .card-button').length;
 		if (leftSidebarElementCount === 0) {
 			leftSidebar.css('display', 'none');
 		} else {
@@ -447,6 +449,9 @@ export let CardVisuals = class CardVisuals {
 			rightSidebar.css('display', 'none');
 		} else {
 			rightSidebar.css('display', 'block');
+		}
+		if (bottomLeftSidebarCount === 0) {
+			bottomLeftSidebar.css('display', 'none');
 		}
 		if (Route.isEditMode() && MarkdeepEditor.getMobilePreview()) {
 			cardHeight += $('.mobilePreviewContent .cardToolbar').height() - 15;
@@ -462,6 +467,7 @@ export let CardVisuals = class CardVisuals {
 		} else {
 			leftSidebar.css('margin-top', (cardHeight) + 'px');
 			rightSidebar.css('margin-top', (cardHeight) + 'px');
+			bottomLeftSidebar.css('margin-top', (cardHeight + $('.cardContent').height()  - 12) + 'px');
 		}
 	}
 };

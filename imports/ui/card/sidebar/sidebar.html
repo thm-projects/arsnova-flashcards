@@ -1,50 +1,61 @@
 <template name="flashcardSidebar">
-    <div id="flashcardSidebarLeft" class="{{#if isFixedSidebar}}fixed{{/if}} {{#if isLeitnerWozniakRoute}}workload{{/if}}">
-        {{#if isCardset}}
-            {{> flashcardSidebarDefaultLeft}}
-        {{/if}}
-        {{#if isPresentation}}
-            {{> flashcardSidebarPresentationLeft}}
-        {{/if}}
-        {{#if isMakingOf}}
-            {{> flashcardSidebarDemoLeft}}
-        {{/if}}
-        {{#if isDemo}}
-            {{> flashcardSidebarDemoLeft}}
-        {{/if}}
-        {{#if isEditMode}}
-            {{> flashcardSidebarEditorLeft}}
-        {{/if}}
-        {{#if isBox}}
-            {{> flashcardSidebarLeitnerLeft}}
-        {{/if}}
-        {{#if isMemo}}
-            {{> flashcardSidebarWozniakLeft}}
-        {{/if}}
-    </div>
-    <div id="flashcardSidebarRight" class="{{#if isFixedSidebar}}fixed{{/if}} {{#if isLeitnerWozniakRoute}}workload{{/if}}">
-        {{#if isCardset}}
-            {{> flashcardSidebarDefaultRight}}
-        {{/if}}
-        {{#if isPresentation}}
-            {{> flashcardSidebarPresentationRight}}
-        {{/if}}
-        {{#if isMakingOf}}
-            {{> flashcardSidebarDemoRight}}
-        {{/if}}
-        {{#if isDemo}}
-            {{> flashcardSidebarDemoRight}}
-        {{/if}}
-        {{#if isEditMode}}
-            {{> flashcardSidebarEditorRight}}
-        {{/if}}
-        {{#if isBox}}
-            {{> flashcardSidebarLeitnerRight}}
-        {{/if}}
-        {{#if isMemo}}
-            {{> flashcardSidebarWozniakRight}}
-        {{/if}}
-    </div>
+    {{#unless isSidebarHidden}}
+        <div id="flashcardSidebarLeft" class="{{#if isFixedSidebar}}fixed{{/if}} {{#if isLeitnerWozniakRoute}}workload{{/if}}">
+            {{#if isCardset}}
+                {{> flashcardSidebarDefaultLeft}}
+            {{/if}}
+            {{#if isPresentation}}
+                {{> flashcardSidebarPresentationLeft}}
+            {{/if}}
+            {{#if isMakingOf}}
+                {{> flashcardSidebarDemoLeft}}
+            {{/if}}
+            {{#if isDemo}}
+                {{> flashcardSidebarDemoLeft}}
+            {{/if}}
+            {{#if isEditMode}}
+                {{> flashcardSidebarEditorLeft}}
+            {{/if}}
+            {{#if isBox}}
+                {{> flashcardSidebarLeitnerLeft}}
+            {{/if}}
+            {{#if isMemo}}
+                {{> flashcardSidebarWozniakLeft}}
+            {{/if}}
+        </div>
+    {{/unless}}
+
+    {{#if isPresentation}}
+        <div id="flashcardSidebarBottomLeft" class="hidden-xs {{#if isFixedSidebar}}fixed{{/if}}">
+            {{> cardSidebarItemHideSidebar}}
+        </div>
+    {{/if}}
+
+    {{#unless isSidebarHidden}}
+        <div id="flashcardSidebarRight" class="{{#if isFixedSidebar}}fixed{{/if}} {{#if isLeitnerWozniakRoute}}workload{{/if}}">
+            {{#if isCardset}}
+                {{> flashcardSidebarDefaultRight}}
+            {{/if}}
+            {{#if isPresentation}}
+                {{> flashcardSidebarPresentationRight}}
+            {{/if}}
+            {{#if isMakingOf}}
+                {{> flashcardSidebarDemoRight}}
+            {{/if}}
+            {{#if isDemo}}
+                {{> flashcardSidebarDemoRight}}
+            {{/if}}
+            {{#if isEditMode}}
+                {{> flashcardSidebarEditorRight}}
+            {{/if}}
+            {{#if isBox}}
+                {{> flashcardSidebarLeitnerRight}}
+            {{/if}}
+            {{#if isMemo}}
+                {{> flashcardSidebarWozniakRight}}
+            {{/if}}
+        </div>
+    {{/unless}}
 </template>
 
 <template name="flashcardSidebarDictionary">

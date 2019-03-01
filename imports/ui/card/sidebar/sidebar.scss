@@ -1,4 +1,4 @@
-#flashcardSidebarLeft, #flashcardSidebarRight {
+#flashcardSidebarLeft, #flashcardSidebarRight, #flashcardSidebarBottomLeft {
   position: absolute;
   float: left;
   z-index: 1001;
@@ -86,11 +86,11 @@
   }
 }
 
-#flashcardSidebarLeft.fixed, #flashcardSidebarRight.fixed {
+#flashcardSidebarLeft.fixed, #flashcardSidebarRight.fixed, #flashcardSidebarBottomLeft.fixed {
   position: fixed;
 }
 
-#flashcardSidebarLeft > .card-button:first-child, #flashcardSidebarRight > .card-button:first-child {
+#flashcardSidebarLeft > .card-button:first-child, #flashcardSidebarRight > .card-button:first-child, #flashcardSidebarBottomLeft > .card-button:first-child {
   margin-top: 0;
 }
 
@@ -99,10 +99,19 @@
   width: 35px;
 }
 
-#flashcardSidebarLeft {
+#flashcardSidebarLeft, #flashcardSidebarBottomLeft {
   border-right: 2px solid;
   left: 0;
   border-radius: 0 10px 10px 0;
+}
+
+#flashcardSidebarBottomLeft {
+  @media(pointer: fine) {
+   display: block;
+  }
+  @media(pointer: coarse) {
+    display: none;
+  }
 }
 
 #flashcardSidebarRight {
