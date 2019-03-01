@@ -5,6 +5,7 @@ import {Route} from "../../../api/route";
 import {CardNavigation} from "../../../api/cardNavigation";
 import {CardVisuals} from "../../../api/cardVisuals";
 import "./sidebar.html";
+import "./item/aspectRatio.js";
 import "./item/arsnovaClick.js";
 import "./item/arsnovaApp.js";
 import "./item/cardList.js";

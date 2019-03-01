@@ -434,6 +434,28 @@ export let CardVisuals = class CardVisuals {
 		}
 	}
 
+	static toggleAspectRatioContainer (forceOff = false) {
+		let aspectRatioContainer = $('.aspectRatioContainer');
+		if (aspectRatioContainer.length) {
+			if (aspectRatioContainer.css('display') === 'none' && forceOff === false) {
+				aspectRatioContainer.css('display', 'block');
+				Session.set('aspectRatioContainerVisible', true);
+			} else {
+				aspectRatioContainer.css('display', 'none');
+				Session.set('aspectRatioContainerVisible', false);
+			}
+			let aspectRatioButton = $('.aspect-ratio-button');
+			if (aspectRatioButton.length) {
+				let topPosition = aspectRatioButton.offset().top;
+				let rightPosition = $('#flashcardSidebarRight').width();
+				aspectRatioContainer.css({
+					'top': topPosition + "px",
+					'right': rightPosition + "px"
+				});
+			}
+		}
+	}
+
 	static setSidebarPosition () {
 		let cardHeight = $('.cardHeader').height();
 		if (NavigatorCheck.isSmartphone() || (Route.isEditMode() && MarkdeepEditor.getMobilePreview())) {

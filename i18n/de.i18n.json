@@ -786,6 +786,12 @@
       "back": "Zurück zur Präsentation",
       "backDemo": "Zurück zur Demo-Kartei"
     },
+    "aspectRatio": {
+      "169": "16:9",
+      "43": "4:3",
+      "stretched": "Gesamter Bildschirm",
+      "card": "Lernkarte"
+    },
     "help": {
       "title": "Rand-Buttons",
       "button": {

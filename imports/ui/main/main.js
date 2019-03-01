@@ -26,6 +26,7 @@ import "../accessDenied/accessDenied.js";
 import "../firstLogin/firstLogin.js";
 import "../pomodoroTimer/pomodoroTimer.js";
 import "../../api/cardIndex.js";
+import "./overlays/aspectRatio.js";
 import "./overlays/zoomText.js";
 import "../card/sidebar/sidebar.js";
 import "../loadingScreen/loadingScreen.js";
@@ -53,6 +54,8 @@ Session.setDefault('currentZoomValue', CardVisuals.getDefaultTextZoomValue());
 Session.setDefault('demoFullscreen', false);
 Session.setDefault('isConnectionModalOpen', false);
 Session.setDefault('hideSidebar', false);
+Session.setDefault('aspectRatioContainerVisible', false);
+Session.setDefault('aspectRatioMode', 0);
 
 function connectionStatus() {
 	let stat;
@@ -117,6 +120,9 @@ Template.main.events({
 	"click": function (evt) {
 		if (!$(evt.target).is('.zoomText')) {
 			CardVisuals.toggleZoomContainer(true);
+		}
+		if (!$(evt.target).is('.aspect-ratio-button')) {
+			CardVisuals.toggleAspectRatioContainer(true);
 		}
 	}
 });
