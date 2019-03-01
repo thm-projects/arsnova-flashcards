@@ -86,7 +86,7 @@ Template.pomodoroTimerModal.events({
 		PomodoroTimer.start();
 	},
 	'click .closePomodoro': function () {
-		if (Route.requiresUserInputForFullscreen) {
+		if (Route.requiresUserInputForFullscreen && !Route.isHome()) {
 			CardVisuals.toggleFullscreen();
 		}
 		PomodoroTimer.setPresentationPomodoro(true);
