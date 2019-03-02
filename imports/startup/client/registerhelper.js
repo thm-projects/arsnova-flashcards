@@ -188,7 +188,7 @@ Template.registerHelper("getCardTypeLabel", function (cardType) {
 
 Template.registerHelper("getDifficultyLabel", function (cardType, difficulty) {
 	if (!CardType.gotDifficultyLevel(cardType)) {
-		difficulty = 0;
+		return;
 	}
 	return '<span class="label label-difficulty' + difficulty + '" data-id="difficulty" title="' + TAPi18n.__('difficulty' + difficulty) + '">' + TAPi18n.__('difficulty' + difficulty) + '</span>';
 });
