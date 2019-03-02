@@ -109,14 +109,14 @@ export let CardType = class CardType {
 	static gotCardTypesWithSwapAnswerQuestionButton (cardset_id) {
 		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {shuffled: 1, cardGroups: 1, cardType: 1}});
 		if (cardset !== undefined) {
-			config.swapAnserQuestionCardTypeResult = [];
+			let swapAnserQuestionCardTypeResult = [];
 			let foundCardset = false;
 			if (cardset.shuffled) {
 				for (let i = 0, cardGroupsLength = cardset.cardGroups.length; i < cardGroupsLength; i++) {
 					let cardType = Cardsets.findOne({_id: cardset.cardGroups[i]}).cardType;
 					if (config.cardTypesWithSwapAnswerQuestionButton.includes(cardType)) {
-						if (!config.swapAnserQuestionCardTypeResult.includes(cardType)) {
-							config.swapAnserQuestionCardTypeResult.push(cardType);
+						if (!swapAnserQuestionCardTypeResult.includes(cardType)) {
+							swapAnserQuestionCardTypeResult.push(cardType);
 						}
 						foundCardset = true;
 					}
@@ -124,7 +124,7 @@ export let CardType = class CardType {
 			} else {
 				foundCardset = config.cardTypesWithSwapAnswerQuestionButton.includes(cardset.cardType);
 				if (foundCardset) {
-					config.swapAnserQuestionCardTypeResult.push(cardset.cardType);
+					swapAnserQuestionCardTypeResult.push(cardset.cardType);
 				}
 			}
 			return foundCardset;
