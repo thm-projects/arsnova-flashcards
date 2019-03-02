@@ -1325,8 +1325,8 @@
       "showHelp": "Hilfe",
       "arsnovaApp": "Befrage dein Publikum mit dem Audience-Response-System ARSnova auf arsnova.thm.de",
       "arsnovaClick": "Befrage dein Publikum mit arsnova.click, der spielbasierten Variante von ARSnova",
-      "hideSidebar": "Verberge die Navigation",
-      "showSidebar": "Zeige die Navigation",
+      "hideSidebar": "Verberge die Rand-Buttons",
+      "showSidebar": "Zeige die Rand-Buttons",
       "swapQuestionAnswer": {
         "normal": "Zeige die Rückseite zuerst",
         "shuffled": "Zeige zuerst die Rückseite für die Karteitypen: __cardTypes__",
