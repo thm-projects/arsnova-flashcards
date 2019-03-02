@@ -253,7 +253,7 @@ export let LeitnerProgress = class LeitnerProgress {
 			let cardsetList = [];
 			let cardsetLeitnerCount = 0;
 			let cardsets = Cardsets.find({_id: {$in: cardset.cardGroups}}, {
-				fields: {_id: 1, name: 1, cardType: 1, difficulty: 1, quantity: 1},
+				fields: {_id: 1, name: 1, cardType: 1, difficulty: 1, quantity: 1, kind: 1},
 				sort: {name: 1}
 			}).fetch();
 			for (let i = 0; i < cardsets.length; i++) {

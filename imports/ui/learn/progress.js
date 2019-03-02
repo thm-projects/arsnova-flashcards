@@ -7,6 +7,7 @@ import {getAuthorName} from "../../api/userdata";
 import ResizeSensor from "../../../client/thirdParty/resizeSensor/ResizeSensor";
 import {LeitnerProgress} from "../../api/leitnerProgress";
 import {Cardsets} from "../../api/cardsets";
+import {CardType} from "../../api/cardTypes";
 import {Route} from "../../api/route";
 
 /*
@@ -58,6 +59,16 @@ Template.graph.helpers({
 	},
 	getTotalLeitnerCardCountUser: function () {
 		return LeitnerProgress.getTotalLeitnerCardCountUser();
+	},
+	isShuffledCardset: function () {
+		if (Route.isLeitnerProgress()) {
+			let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {shuffled: 1}});
+			if (cardset !== undefined) {
+				return cardset.shuffled;
+			} else {
+				return false;
+			}
+		}
 	}
 });
 
@@ -105,6 +116,10 @@ Template.graphCardsetFilter.helpers({
 	getCardsetCardCount: function (countLeitnerCards = false) {
 		return LeitnerProgress.getCardsetCardCount(countLeitnerCards);
 	},
+	shuffledData: function () {
+		this.useLeitnerCount = true;
+		return this;
+	},
 	isShuffledCardset: function () {
 		if (Route.isLeitnerProgress()) {
 			let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {shuffled: 1}});
@@ -116,7 +131,14 @@ Template.graphCardsetFilter.helpers({
 		}
 	},
 	getCardsetCount: function () {
-		return this.cardGroups.length;
+		let count = 0;
+		for (let i = 0; i < this.cardGroups.length; i++) {
+			let cardset = Cardsets.findOne({_id: this.cardGroups[i]}, {fields: {_id: 1, cardType: 1}});
+			if (CardType.gotLearningModes(cardset.cardType)) {
+				count++;
+			}
+		}
+		return count;
 	}
 });
 Template.graphCardsetFilter.events({

@@ -1,0 +1,12 @@
+<template name="cardsetLabels">
+  <span class="badge" title="{{_ "cardset.info.quantity"}}">
+      {{getCardsetCardCount}}
+  </span>
+    {{{getKind this.kind 0}}}
+    {{{getShuffleLabel this.shuffled}}}
+    {{{getBonusLabel this.learningActive}}}
+    {{#unless this.shuffled}}
+        {{{getCardTypeLabel this.cardType}}}
+        {{{getDifficultyLabel this.cardType this.difficulty}}}
+    {{/unless}}
+</template>
