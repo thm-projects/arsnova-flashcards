@@ -10,7 +10,7 @@ let macOSPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'];
 //3: Demo
 let enabledSmartphoneFeatures = [0, 1, 2, 3];
 let enabledIOSFeatures = [2, 3];
-let enabledMacOSSafariFeatures = [3];
+let enabledMacOSSafariFeatures = [2, 3];
 
 module.exports = {
 	minimumTabletWidth,
