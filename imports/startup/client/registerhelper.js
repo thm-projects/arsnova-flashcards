@@ -19,6 +19,7 @@ import {NavigatorCheck} from "../../api/navigatorCheck";
 import {isNewCardset} from "../../ui/forms/cardsetForm";
 import {ServerStyle} from "../../api/styles.js";
 import {ServerInventoryTools} from "../../api/serverInventoryTools.js";
+import {CardVisuals} from "../../api/cardVisuals";
 
 Meteor.subscribe("collegesCourses");
 
@@ -196,6 +197,10 @@ Template.registerHelper("getShuffleLabel", function (shuffled = false) {
 	if (shuffled) {
 		return '<span class="label label-shuffled" data-id="shuffled" title="' + TAPi18n.__('cardset.shuffled.long') + '">' + TAPi18n.__('cardset.shuffled.short') + '</span>';
 	}
+});
+
+Template.registerHelper("isCardsetAndFixedSidebar", function () {
+	return Route.isCardset() && CardVisuals.isFixedSidebar();
 });
 
 Template.registerHelper("getBonusLabel", function (shuffled = false) {

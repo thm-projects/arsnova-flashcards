@@ -492,6 +492,13 @@ th .field-tip {
    }
 }
 
+.markdeepCardsetTitle {
+  padding: 5pt 0 5pt 25pt !important;
+  @media(max-width: 767px) {
+    padding: 5pt !important;
+  }
+}
+
 .markdeepCardsetContent {
   @media(max-width: 767px) {
     overflow-y: scroll;

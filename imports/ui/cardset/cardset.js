@@ -17,6 +17,7 @@ import "./index/editors/editors.js";
 import "./info/info.js";
 import "./preview.js";
 import "./index/bonus/bonus.js";
+import "./labels/labels.js";
 import "./cardset.html";
 
 Meteor.subscribe("notifications");

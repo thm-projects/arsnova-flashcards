@@ -10,7 +10,9 @@
             <div id="cardCarousel" class="carousel slide" data-keyboard="false" data-interval="false">
                 <div class="carousel-inner">
                     {{#unless isMobilePreviewActive}}
-                        {{> flashcardSidebar}}
+                        {{#unless isCardsetAndFixedSidebar}}
+                            {{> flashcardSidebar}}
+                        {{/unless}}
                     {{/unless}}
                     {{#each getCards}}
                         <div class="item {{#if isActiveCard true}}active{{/if}}" data-id="{{_id}}">
