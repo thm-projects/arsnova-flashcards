@@ -2,7 +2,7 @@
   "name": "A: Quiz zum Kennenlernen",
   "description": "Die Quizfragen sind Teil der Demo-Kartei auf der 🍅cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2019-03-03T07:44:15.331Z",
+  "dateUpdated": "2019-03-03T11:13:25.599Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": true,
@@ -24,8 +24,8 @@
   "maxCards": 40,
   "daysBeforeReset": 7,
   "learningStart": "2018-06-08T13:51:09.335Z",
-  "learningEnd": "2038-01-19T15:54:48.536Z",
-  "registrationPeriod": "2038-01-19T15:54:48.536Z",
+  "learningEnd": "2038-01-19T08:38:01.814Z",
+  "registrationPeriod": "2038-01-19T08:38:01.814Z",
   "learningInterval": [
     1,
     3,
@@ -54,8 +54,8 @@
   "rating": 0
 }, {
   "subject": "01. Die App für dein Studium",
-  "front": "![](/img/Bildlogo.png width=40%)\n(##) Was unterscheidet 🍅cards von einer Lernkartei-App?\n",
-  "back": "Im Gegensatz zu Lernkartei-Apps wie [Quizlet](https://quizlet.com/), [SuperMemo](https://www.supermemo.com/), [Brainyoo](https://www.brainyoo.de/), [Mnemosyne](https://mnemosyne-proj.org/) oder [Anki](https://apps.ankiweb.net/) lernst du auf der 🍅cards-Plattform mit Kartenformaten, die auf den **Wissenserwerb in einem Hochschulstudium** zugeschnitten sind: Mitschrift, Lerneinheit, Formelsammlung, Glossar, Prüfung und viele mehr. In dieser Demo werden dir alle Kartenformate mit realen Inhalten aus Bachelor- und Masterkursen gezeigt.\n\nEine herkömmliche Lernkartei-App benutzt du nur sporadisch, die Plattform 🍅cards dagegen ist deine **vorlesungsbegleitende persönliche Lernumgebung**, ein virtueller Ort, an dem du deine Lernzeit mit kognitiven Tätigkeiten -- Mitschreiben, Nachbearbeiten, Lernkarten erstellen, Lernfragen wiederholt beantworten -- intensiv verbringst. \n\nEs gibt auf 🍅cards eine Option, die es der Dozentin oder dem Dozenten ermöglicht, dein Lernen mit **Bonuspunkten** zu honorieren. Wir haben 🍅cards mit dem Ziel entwickelt, der **Aufschieberitis** und dem **Bulimielernen** im Studium entgegen zu wirken. Deshalb haben wir [Spaced-Learning](https://www.webcampus.de/blog/123/spaced-learning-mit-intelligenter-lerntechnik-besser-erinnern) und die [Pomodoro-Technik&trade;](https://de.wikipedia.org/wiki/Pomodoro-Technik) in 🍅cards integriert, auf den nächsten Karten mehr darüber.\n\n![ ](https://arsnova-uploads.mni.thm.de/logos/Stifterverband.png width=130)![ ](https://arsnova-uploads.mni.thm.de/logos/DATEV-Stiftung.png width=130) 🍅cards ist das zentrale Tool in einem Langzeit-Lehrprojekt. Der Stifterverband für die Deutsche Wissenschaft und die DATEV-Stiftung Zukunft haben unser Vorhaben »Digital gegen das Bulimie-Lernen: Quizzen im Hörsaal und zu Hause, Podcasts für unterwegs« mit einem [Senior-Fellowship](https://www.stifterverband.org/lehrfellowships) prämiert. Diese Förderung erlaubt uns, 🍅cards in den nächsten drei Semestern inhaltlich und technisch voranzutreiben, siehe unseren [Projektantrag](https://www.stifterverband.org/lehrfellowships/2018/quibeldey-cirkel) oder höre unseren [Podcast](https://panopto.thm.de/Panopto/Pages/Viewer.aspx?id=db71da47-2c08-4da2-9aa7-a9930130dc59). \n\n![Vollbildmodus des Screencasts auf [Youtube](https://www.youtube.com/watch?v=3mug7okfBO8)](https://www.youtube.com/watch?v=3mug7okfBO8)\n\n**Veröffentlichungen zum 🍅cards-Projekt:**\n\n\n[#HFD18]: Quibeldey-Cirkel, K. (2018).\n<q>Digital gegen das Bulimie-Lernen: Quizzen im Hörsaal und zu Hause, Podcasts für unterwegs</q>.\nIn: Hochschulforum Digitalisierung (Hrsg.): [HFD Winter School E-Book. Hochschullehre im digitalen Zeitalter gestalten.](https://hochschulforumdigitalisierung.de/sites/default/files/dateien/HFD_Winter_School_E-Book_Version_2.pdf) Arbeitspapier Nr. 31. Version 2. Berlin: Hochschulforum Digitalisierung. (S. 91-98).</br></br>\n\n[#SITE18]: Quibeldey-Cirkel, K., Heiny, J. & Thelen, C. (2018).\n<q>Against Academic Procrastination: Pedagogical Apps to Implement Distributed Learning in Course Design</q>.\nIn E. Langran & J. Borup (Eds.), Proceedings of Society for Information Technology & Teacher Education International Conference (pp. 1617-1622).\nWashington, D.C., United States: Association for the Advancement of Computing in Education (AACE). http://www.learntechlib.org/p/182756/",
+  "front": "![](/img/Bildlogo.png width=50%)\n(##) Was unterscheidet 🍅cards von einer Lernkartei-App?\n",
+  "back": "Im Gegensatz zu Lernkartei-Apps wie [Quizlet](https://quizlet.com/), [SuperMemo](https://www.supermemo.com/), [Brainyoo](https://www.brainyoo.de/), [Mnemosyne](https://mnemosyne-proj.org/) oder [Anki](https://apps.ankiweb.net/) lernst du auf der 🍅cards-Plattform mit Kartenformaten, die auf den **Wissenserwerb in einem Hochschulstudium** zugeschnitten sind: Mitschrift, Lerneinheit, Formelsammlung, Glossar, Prüfung und viele mehr. In dieser Demo werden dir alle Kartenformate mit realen Inhalten aus Bachelor- und Masterkursen gezeigt.\n\nEine herkömmliche Lernkartei-App benutzt du nur sporadisch, die Plattform 🍅cards dagegen ist deine **vorlesungsbegleitende persönliche Lernumgebung**, ein virtueller Ort, an dem du deine Lernzeit mit kognitiven Tätigkeiten -- Mitschreiben, Nachbearbeiten, Lernkarten erstellen, Lernfragen wiederholt beantworten -- intensiv verbringst. \n\nEs gibt auf 🍅cards eine Option, die es der Dozentin oder dem Dozenten ermöglicht, dein Lernen mit **Bonuspunkten** zu honorieren. Wir haben 🍅cards mit dem Ziel entwickelt, der **Aufschieberitis** und dem **Bulimielernen** im Studium entgegen zu wirken. Deshalb haben wir [Spaced-Learning](https://www.webcampus.de/blog/123/spaced-learning-mit-intelligenter-lerntechnik-besser-erinnern) und die [Pomodoro-Technik&trade;](https://de.wikipedia.org/wiki/Pomodoro-Technik) in 🍅cards integriert, auf den nächsten Karten mehr darüber.\n\n![ ](https://arsnova-uploads.mni.thm.de/logos/Stifterverband.png width=130)![ ](https://arsnova-uploads.mni.thm.de/logos/DATEV-Stiftung.png width=130) 🍅cards ist das zentrale Tool in einem Langzeit-Lehrprojekt. Der Stifterverband für die Deutsche Wissenschaft und die DATEV-Stiftung Zukunft haben unser Vorhaben »Digital gegen das Bulimie-Lernen: Quizzen im Hörsaal und zu Hause, Podcasts für unterwegs« mit einem [Senior-Fellowship](https://www.stifterverband.org/lehrfellowships) prämiert. Diese Förderung erlaubt uns, 🍅cards in den nächsten drei Semestern inhaltlich und technisch voranzutreiben, siehe unseren [Projektantrag](https://www.stifterverband.org/lehrfellowships/2018/quibeldey-cirkel) oder höre unseren [Podcast](https://panopto.thm.de/Panopto/Pages/Viewer.aspx?id=db71da47-2c08-4da2-9aa7-a9930130dc59). \n\n![](https://www.youtube.com/watch?v=3mug7okfBO8)\n\n**Veröffentlichungen zum 🍅cards-Projekt:**\n\n\n[#HFD18]: Quibeldey-Cirkel, K. (2018).\n<q>Digital gegen das Bulimie-Lernen: Quizzen im Hörsaal und zu Hause, Podcasts für unterwegs</q>.\nIn: Hochschulforum Digitalisierung (Hrsg.): [HFD Winter School E-Book. Hochschullehre im digitalen Zeitalter gestalten.](https://hochschulforumdigitalisierung.de/sites/default/files/dateien/HFD_Winter_School_E-Book_Version_2.pdf) Arbeitspapier Nr. 31. Version 2. Berlin: Hochschulforum Digitalisierung. (S. 91-98).</br></br>\n\n[#SITE18]: Quibeldey-Cirkel, K., Heiny, J. & Thelen, C. (2018).\n<q>Against Academic Procrastination: Pedagogical Apps to Implement Distributed Learning in Course Design</q>.\nIn E. Langran & J. Borup (Eds.), Proceedings of Society for Information Technology & Teacher Education International Conference (pp. 1617-1622).\nWashington, D.C., United States: Association for the Advancement of Computing in Education (AACE). http://www.learntechlib.org/p/182756/",
   "centerTextElement": [
     true,
     false,
@@ -73,7 +73,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 0,
   "date": "2018-06-08T13:54:04.447Z",
-  "dateUpdated": "2019-03-03T06:22:48.196Z",
+  "dateUpdated": "2019-03-03T09:51:32.475Z",
   "learningIndex": "0",
   "learningUnit": "0",
   "originalAuthorName": {
@@ -102,9 +102,9 @@
     1
   ],
   "learningGoalLevel": 0,
-  "backgroundStyle": 0,
+  "backgroundStyle": 1,
   "date": "2018-09-22T15:21:18.473Z",
-  "dateUpdated": "2019-03-03T06:23:12.413Z",
+  "dateUpdated": "2019-03-03T09:52:06.640Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -133,7 +133,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-06-10T05:23:42.665Z",
-  "dateUpdated": "2019-03-03T06:23:46.802Z",
+  "dateUpdated": "2019-03-03T09:52:40.423Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -162,7 +162,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-06-08T14:56:06.624Z",
-  "dateUpdated": "2019-03-03T06:24:07.960Z",
+  "dateUpdated": "2019-03-03T09:52:55.432Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -191,7 +191,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-06-09T17:45:11.922Z",
-  "dateUpdated": "2019-03-03T06:53:01.402Z",
+  "dateUpdated": "2019-03-03T09:53:20.582Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -218,9 +218,9 @@
     1
   ],
   "learningGoalLevel": 0,
-  "backgroundStyle": 0,
+  "backgroundStyle": 1,
   "date": "2018-06-08T14:56:06.624Z",
-  "dateUpdated": "2019-03-03T06:32:17.637Z",
+  "dateUpdated": "2019-03-03T09:53:50.816Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -252,8 +252,8 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-03-03T06:32:39.615Z",
-  "back": "\n🍅cards bietet dir den optimalen Workflow zum Erstellen und Lernen von Vokabeln: Neben dem Wörterbuch [Beolingus](https://dict.tu-chemnitz.de/) (wird beim Lernen einzelner Wörter angeboten) haben wir auch den Übersetzungsdienst [DeepL](https://www.deepl.com/translator) integriert: Gib einen Text in der Sprache A ein und drücke die <kbd>Tab</kbd>-Taste. Die Übersetzung in die Sprache B wird dir in DeepL in Echtzeit angezeigt. Die Rückübersetzung A <-- B zur Kontrolle der Qualität der Übersetzung ist wieder per <kbd>Tab</kbd> möglich. Das Video auf der Vorderseite zeigt wie.\n",
+  "dateUpdated": "2019-03-03T09:55:34.454Z",
+  "back": "\n🍅cards bietet dir den optimalen Workflow zum Erstellen und Lernen von Vokabelkarten: Neben dem Wörterbuch [Beolingus](https://dict.tu-chemnitz.de/) (wird beim Lernen einzelner Wörter angeboten) haben wir auch den Übersetzungsdienst [DeepL](https://www.deepl.com/translator) integriert: Gib einen Text in der Sprache A ein und drücke die <kbd>Tab</kbd>-Taste. Die Übersetzung in die Sprache B wird dir in DeepL in Echtzeit angezeigt. Die Rückübersetzung A <-- B zur Kontrolle der Qualität der Übersetzung ist wieder per <kbd>Tab</kbd> möglich. Das Video auf der Vorderseite zeigt wie.\n",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -262,7 +262,7 @@
 }, {
   "subject": "08.Technik",
   "front": "![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/480px-HTML5_logo_and_wordmark.svg.png width=100px)\n\n(##) 🍅cards ist eine <q>responsive</q> HTML5-App. \n\n(##) Was heißt das?",
-  "back": "🍅cards ist eine [responsive](https://de.wikipedia.org/wiki/Responsive_Webdesign) [HTML5-App](https://de.wikipedia.org/wiki/HTML5), das heißt, sie wird nicht installiert, läuft in jedem modernen Browser -- auf deinem Smartphone, Tablet oder Laptop -- und passt sich der Bildschirmgröße des Endgeräts optisch und funktional an. \nEine Implementierung als Android- oder iOS-App ist wirtschaftlich nicht sinnvoll, da die zweispurige Entwicklung und Wartung viel zu aufwändig wäre. Updates gelangen auch nur mit Verzögerung in die App Stores, während eine WebApp in wenigen Minuten aktualisiert werden kann.\n\n![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Resizer.png)\n\n",
+  "back": "🍅cards ist eine [responsive](https://de.wikipedia.org/wiki/Responsive_Webdesign) [HTML5-App](https://de.wikipedia.org/wiki/HTML5), das heißt, sie wird nicht installiert, läuft in jedem modernen Browser -- auf deinem Smartphone, Tablet oder Laptop -- und passt sich der Bildschirmgröße des Endgeräts optisch und funktional an. \nEine Implementierung als Android- oder iOS-App ist wirtschaftlich nicht sinnvoll, da die zweispurige Wartung viel zu aufwändig wäre. Die Updates einer nativen App gelangen nur mit Verzögerung in die App Stores, während eine WebApp in wenigen Minuten auf dem Webserver aktualisiert werden kann. Im 🍅cards-Projekt setzen wir hierfür [Continuous Deployment Pipelines](https://git.thm.de/arsnova/cards/pipelines) ein. Dein Browser erfährt vom Server, wenn es ein Update gibt (<q>hot code push</q>), und lädt dieses automatisch.\n\n![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Resizer.png)\n\n",
   "centerTextElement": [
     true,
     true,
@@ -282,7 +282,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-08-11T12:00:07.793Z",
-  "dateUpdated": "2019-03-03T06:38:25.260Z",
+  "dateUpdated": "2019-03-03T10:29:28.721Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -292,7 +292,7 @@
   "learningUnit": "0"
 }, {
   "subject": "09. Technik",
-  "back": "🍅cards ist eine [Progressive Web App (PWA)](https://de.wikipedia.org/wiki/Progressive_Web_App), heißt, sie fühlt sich an wie eine native App aus dem Store: Du kannst sie aus dem Browser heraus dem **Homescreen** deines Smartphones hinzufügen (<q>Add-to-Homescreen</q>) und von dort wie eine installierte App aufrufen. Sie startet so schnell wie eine native App und zeigt sich **ohne Browser-Rahmen**.\nUnd wenn du die Benach&shy;richtigungsfunktion (<q>Push Notifications</q>) für 🍅&nbsp;cards zulässt, wirst du zuverlässig auf deinem Smartphone ans Lernen erinnert.\n\nEs gibt nur eine Einschränkung für die mobile Nutzung: Auf kleinen Displays ist die Erstellung von Karteien und Karten ergonomisch nicht sinnvoll, deswegen bieten wir sie auch gar nicht erst an. Auf deinem Smartphone stehen dir ausschließlich die Seiten <q>Karteien</q>, <q>Re&shy;pe&shy;ti&shy;to&shy;rien</q>, <q>Lernpensum</q> und <q>Meine Karteien</q> zur Verfügung. Das reicht auch vollkommen für das Unterwegs-Lernen in der Bahn, im Bus oder sonst wo -- neudeutsch: **Mobile Learning**.",
+  "back": "🍅cards ist eine [Progressive Web App (PWA)](https://de.wikipedia.org/wiki/Progressive_Web_App), heißt, sie fühlt sich an wie eine native App aus dem Store: Du kannst sie aus dem Browser heraus dem **Homescreen** deines Smartphones hinzufügen (<q>Add-to-Homescreen</q>) und von dort wie eine installierte App aufrufen. Sie startet so schnell wie eine native App und zeigt sich **ohne Browser-Rahmen**.\nUnd wenn du die Benach&shy;richtigungsfunktion (<q>Push Notifications</q>) für 🍅&nbsp;cards zulässt, wirst du zuverlässig um 8.00 Uhr auf deinem Smartphone ans Lernen erinnert.\n\nEs gibt nur eine Einschränkung für die mobile Nutzung: Auf kleinen Displays ist die Erstellung von Karteien und Karten ergonomisch nicht sinnvoll, deswegen bieten wir sie auch gar nicht erst an. Auf deinem Smartphone stehen dir ausschließlich die Seiten <q>Karteien</q>, <q>Re&shy;pe&shy;ti&shy;to&shy;rien</q>, <q>Lernpensum</q> und <q>Meine Karteien</q> zur Verfügung. Das reicht auch vollkommen für das Unterwegs-Lernen in der Bahn, im Bus oder sonst wo -- neudeutsch: **Mobile Learning**.",
   "centerTextElement": [
     true,
     true,
@@ -314,7 +314,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-03-03T06:40:59.330Z",
+  "dateUpdated": "2019-03-03T10:34:45.476Z",
   "front": "![](https://developers.google.com/web/tools/workbox/images/pwa.svg width=100px)\n\n(##) 🍅cards ist eine <q>Progressive Web App</q>. \n\n(##) Was heißt das jetzt?",
   "originalAuthorName": {
     "title": "Dr.",
@@ -323,8 +323,8 @@
   }
 }, {
   "subject": "10. Technik",
-  "front": "\n![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Leitner-Karte.png width=200px)\n\n(##) 🍅cards ist eine <q>Mobile-first</q>-App. \n\n(##) Und was heißt das nun wieder?",
-  "back": "\n![ ](https://arsnova-uploads.mni.thm.de/Demo-Kartei/iPhone%20X%20Startseite.png width=200px) \n\n🍅cards wurde für das Unterwegs-Lernen entworfen: Die App wird zum Lernen überwiegend auf dem Smartphone genutzt. Das setzt hohe Anforderungen an die <q>Usability</q> und <q>User Ex&shy;pe&shy;ri&shy;ence</q> des Designs, zum Beispiel:\n\n* Ein-Daumen-Bedienung beim Kartenlernen \n* Akku-schonendes dunkles Design",
+  "front": "\n![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Leitner-Karte.png width=180px)\n\n(##) 🍅cards ist eine <q>Mobile-first</q>-App. \n\n(##) Und was heißt das nun wieder?",
+  "back": "\n![ ](https://arsnova-uploads.mni.thm.de/Demo-Kartei/iPhone%20X%20Startseite.png width=100px) \n🍅cards wurde für das Unterwegs-Lernen entworfen: Die App wird zum Lernen überwiegend auf dem Smartphone genutzt. Das setzt hohe Anforderungen an die <q>Usability</q> und <q>User Ex&shy;pe&shy;ri&shy;ence</q> des Designs, zum Beispiel:\n\n* Optimiertes Design für die Portrait-Ansicht auf dem Smartphone\n* Ein-Daumen-Bedienung im Ansichts- und Lernmodus \n* Vollbildansicht der Karten auch im Smartphone-Browser\n* Akku-schonendes dunkles Design\n* Smartphone-Vorschau beim Editieren einer Karte ",
   "centerTextElement": [
     true,
     true,
@@ -346,7 +346,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-03-03T06:43:46.585Z",
+  "dateUpdated": "2019-03-03T11:03:19.545Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -354,8 +354,8 @@
   }
 }, {
   "subject": "11. Technik",
-  "front": "![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Beamer.png width=200)\n\n(##) 🍅cards ist beamer-tauglich. \n\n(##) Heißt das, ich kann damit auch Vorträge halten?",
-  "back": "**Absolut.**\n\nWir nutzen die <q>Fullscreen</q>-Ansicht deines Browsers, um die Karten ablenkungsfrei präsentieren zu können. Schau dir die Hinweise zu den Rand-Buttons an. Du findest sie hinter dem Fragezeichen rechts außen.\n\nBeim Vortragen muss du keineswegs mit der Maus arbeiten: Mit der <kbd>Leertaste</kbd> navigierst du bequem zur nächsten Kartenseite und danach zur nächsten Karte.\n\nMit unserer an Hochschulen weitverbreiteten Quiz-App [ARSnova](https://arsnova.eu/blog) kannst du auf jeder Karte dein Publikum befragen, ohne dabei 🍅cards zu verlassen. Der Projektleiter setzt ARSnova und 🍅cards in seinen Vorlesungen ein. Auch Studierende nutzen beide Apps für ihre Präsentationen im Hauptseminar.",
+  "front": "![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Beamer.png width=200)\n\n(##) 🍅cards ist optimiert für den Beamer. \n\n(##) Heißt das, ich kann damit auch Vorträge halten?",
+  "back": "**Absolut.**\n\nWir nutzen die <q>Fullscreen</q>-Ansicht deines Browsers, um Karten ablenkungsfrei anzuzeigen. Schau dir die Hinweise zu den Rand-Buttons an. Du findest sie hinter dem Fragezeichen rechts außen.\n\nBeim Vortragen muss du keineswegs mit der Maus arbeiten: Mit der <kbd>Leertaste</kbd> navigierst du bequem zur nächsten Kartenseite und danach zur nächsten Karte.\n\nMit unserer an Hochschulen weitverbreiteten Quiz-App [ARSnova](https://arsnova.eu/blog) kannst du auf jeder Karte dein Publikum befragen, ohne dabei 🍅cards zu verlassen. Der Projektleiter setzt ARSnova und 🍅cards in seinen Vorlesungen ein. Auch Studierende nutzen beide Apps für ihre Präsentationen im Hauptseminar und Bachelor-Kolloquium.",
   "centerTextElement": [
     true,
     true,
@@ -377,7 +377,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-03-03T07:44:15.318Z",
+  "dateUpdated": "2019-03-03T11:10:57.641Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -386,7 +386,7 @@
 }, {
   "subject": "12. Softwarekosten",
   "front": "![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/GPLv3_Logo.svg/800px-GPLv3_Logo.svg.png width=150px)\n\n(##) Was kostet 🍅cards?",
-  "back": "**Nichts.**\nWert ist sie aber deutlich mehr: [OpenHub](https://www.openhub.net/p/arsnova-cards) schätzt den Entwicklungsaufwand auf acht Personenjahre, rund **420.000 $**.\n\n🍅cards ist eine freie Open-Source-Software unter der [GNU General Public License](https://de.wikipedia.org/wiki/GNU_General_Public_License).\nDu darfst 🍅cards auf deinem Laptop installieren -- ohne zu fragen und kostenlos. Derzeit brauchst du für die Installation noch [gute Linux-Kenntnisse](https://git.thm.de/arsnova/cards/blob/staging/README.md). Demnächst kann das aber auch ein Laie mit wenigen Mausklicks. JavaScript/CSS-Versierte dürfen den Code nach Belieben ändern und weiter verteilen.\n\nWenn du an der THM lehrst und für deine Studierenden eine eigene Installation im Web gerne hättest, weil du vorhast, viele Kartensätze zu deinem Fach zu schreiben, installieren wir dir 🍅cards auf einem THM-Server. Schreib uns einfach eine [Mail](https://thm.cards/impressum).\n\n!!! TIP\n   In diesem Sinne betreiben wir eine zweite Instanz von 🍅cards: [Linux.cards](https://linux.cards). Diese Lernkartei-Plattform bereitet intensiv auf die [LPI-Zertifizierungsprüfungen](https://www.lpice.eu/de/unsere-zertifizierungen/) vor.",
+  "back": "**Nichts.**\nWert ist sie aber deutlich mehr: [OpenHub](https://www.openhub.net/p/arsnova-cards) schätzt den Entwicklungsaufwand auf acht Personenjahre, rund **420.000 $**.\n\n🍅cards ist eine freie Open-Source-Software unter der [GNU General Public License](https://de.wikipedia.org/wiki/GNU_General_Public_License).\nDu darfst 🍅cards auf deinem Laptop installieren -- ohne zu fragen und natürlich kostenlos. Derzeit brauchst du für die Installation noch [gute Linux-Kenntnisse](https://git.thm.de/arsnova/cards/blob/staging/README.md). Demnächst kann das aber auch ein Laie mit wenigen Mausklicks. JavaScript/CSS-Versierte dürfen den Code nach Belieben ändern und weiter verteilen.\n\nWenn du an der THM lehrst und für deine Studierenden eine eigene Installation im Web gerne hättest, weil du vorhast, viele Kartensätze zu deinem Fach zu schreiben, installieren wir dir 🍅cards auf einem THM-Server. Schreib uns einfach eine [Mail](https://thm.cards/impressum).\n\n!!! TIP\n   In diesem Sinne betreiben wir eine zweite Instanz von 🍅cards: [Linux.cards](https://linux.cards). Diese Lernkartei-Plattform bereitet intensiv auf die [LPI-Zertifizierungsprüfungen](https://www.lpice.eu/de/unsere-zertifizierungen/) vor.",
   "centerTextElement": [
     true,
     true,
@@ -408,7 +408,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-03-03T07:33:21.875Z",
+  "dateUpdated": "2019-03-03T11:13:25.587Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
