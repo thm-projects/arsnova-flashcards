@@ -37,9 +37,6 @@
         {{#if isActiveRoute regex='cardsetdetailsid|cardsetcard'}}
             {{#if isCardsetOwner this._id}}
                 {{#if this.quantity}}
-                    {{#if isCardsetAndFixedSidebar}}
-                        {{> flashcardSidebar}}
-                    {{/if}}
                     <div class="hidden-xs col-xs-12">
                         {{> cardNavigation}}
                     </div>

@@ -466,7 +466,7 @@ export let CardVisuals = class CardVisuals {
 			leftSidebar.removeClass('flashcardSidebarPreviewLeft');
 			rightSidebar.removeClass('flashcardSidebarPreviewRight');
 		}
-		if ((NavigatorCheck.isSmartphone() || $(window).width() < 900) || (Route.isEditMode() && MarkdeepEditor.getMobilePreview())) {
+		if ((NavigatorCheck.isSmartphone()) || (Route.isEditMode() && MarkdeepEditor.getMobilePreview())) {
 			leftSidebar.css('margin-top', (cardHeight - (leftSidebar.height() + parseInt(leftSidebar.css('margin-bottom')))) + 'px');
 			rightSidebar.css('margin-top', (cardHeight - (rightSidebar.height() + parseInt(rightSidebar.css('margin-bottom')))) + 'px');
 		} else {
