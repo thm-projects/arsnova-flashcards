@@ -1,9 +1,23 @@
 import {Template} from "meteor/templating";
-import {Route} from "../../../api/route";
 import {Session} from "meteor/session";
-import * as config from "../../../config/cardVisuals.js";
 import {Icons} from "../../../api/icons";
+import {CardVisuals} from "../../../api/cardVisuals.js";
+import {AspectRatio} from "../../../api/aspectRatio.js";
 import "./aspectRatio.html";
+
+
+/*
+ * ############################################################################
+ * mainOverlayAspectRatio
+ * ############################################################################
+ */
+
+Template.mainOverlayAspectRatio.events({
+	"click .aspect-ratio-dropdown-button": function (evt) {
+		Session.set('aspectRatioMode', $(evt.currentTarget).attr("data-id"));
+		CardVisuals.resizeFlashcard();
+	}
+});
 
 /*
  * ############################################################################
@@ -14,12 +28,12 @@ import "./aspectRatio.html";
 
 Template.mainOverlayAspectRatioContent.helpers({
 	aspectRatios: function () {
-		return config.aspectRatios;
+		return AspectRatio.getAspectRatios();
 	},
 	getItem: function () {
 		let aspectRatio;
 		switch (this) {
-			case "stretched":
+			case "fill":
 			case "din":
 				aspectRatio = this;
 				break;
@@ -27,33 +41,6 @@ Template.mainOverlayAspectRatioContent.helpers({
 				aspectRatio = this.replace(":", "");
 
 		}
-		return "<li class='aspect-ratio-dropdown-button aspect-ratio-" + aspectRatio + "'>" + Icons.aspectRatio(aspectRatio) +  TAPi18n.__('presentation.aspectRatio.' + aspectRatio) + "</li>";
-	}
-});
-
-Template.mainOverlayAspectRatioContent.events({
-	"click .aspect-ratio-169": function () {
-		Session.set('aspectRatioMode', 0);
-		if (Route.isCardset()) {
-			Router.go('presentation', {_id: this._id});
-		}
-	},
-	"click .aspect-ratio-43": function () {
-		Session.set('aspectRatioMode', 1);
-		if (Route.isCardset()) {
-			Router.go('presentation', {_id: this._id});
-		}
-	},
-	"click .aspect-ratio-stretched": function () {
-		Session.set('aspectRatioMode', 2);
-		if (Route.isCardset()) {
-			Router.go('presentation', {_id: this._id});
-		}
-	},
-	"click .aspect-ratio-din": function () {
-		Session.set('aspectRatioMode', 3);
-		if (Route.isCardset()) {
-			Router.go('presentation', {_id: this._id});
-		}
+		return "<li class='aspect-ratio-dropdown-button aspect-ratio' data-id='" + this + "'>" + Icons.aspectRatio(aspectRatio) +  TAPi18n.__('presentation.aspectRatio.' + aspectRatio) + "</li>";
 	}
 });

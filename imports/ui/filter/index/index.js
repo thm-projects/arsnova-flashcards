@@ -153,6 +153,7 @@ Template.filterIndexRepetitorium.onDestroyed(function () {
 
 Template.filterIndexWorkload.onCreated(function () {
 	Filter.updateWorkloadFilter();
+	Session.set('hideSidebar', false);
 });
 
 Template.filterIndexWorkload.helpers({

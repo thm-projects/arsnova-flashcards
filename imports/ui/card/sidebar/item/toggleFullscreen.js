@@ -6,6 +6,7 @@ import {Route} from "../../../../api/route";
 import {Template} from "meteor/templating";
 import {Dictionary} from "../../../../api/dictionary";
 import {FirstTimeVisit} from "../../../../api/firstTimeVisit";
+import {AspectRatio} from "../../../../api/aspectRatio";
 
 /*
  * ############################################################################
@@ -22,6 +23,9 @@ Template.cardSidebarItemToggleFullscreen.onRendered(function () {
 
 Template.cardSidebarItemToggleFullscreen.events({
 	"click .toggleFullscreen": function () {
+		if (Route.isDemo()) {
+			Session.set('aspectRatioMode', AspectRatio.getDefault());
+		}
 		if (Session.get("workloadFullscreenMode")) {
 			Session.set("workloadFullscreenMode", false);
 		}

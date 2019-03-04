@@ -9,6 +9,7 @@ import {MarkdeepContent} from "../../api/markdeep";
 import {CardNavigation} from "../../api/cardNavigation";
 import {MainNavigation} from "../../api/mainNavigation";
 import {ServerStyle} from "../../api/styles.js";
+import {AspectRatio} from "../../api/aspectRatio.js";
 import "../welcome/welcome.js";
 import "../wordcloud/wordcloud.js";
 import "../impressum/impressum.js";
@@ -143,6 +144,27 @@ Template.main.helpers({
 	},
 	isNotFirstDemoVisit: function () {
 		return (!Route.isFirstTimeVisit() && Route.isDemo());
+	},
+	getMainContainer: function () {
+		if (AspectRatio.isEnabled()) {
+			if (Session.get('hideSidebar')) {
+				return "presentation-container-no-sidebar";
+			} else {
+				return "presentation-container";
+			}
+		} else if (Route.isHome() && !Meteor.user()) {
+			return "";
+		} else if (Route.isEditCard() || Route.isLeitnerProgress()) {
+			if (Route.isEditCard() && !CardVisuals.isFullscreen()) {
+				return "container-fluid-editor";
+			} else {
+				return "container-fluid";
+			}
+		} else if (Route.isFirstTimeVisit()) {
+			return "";
+		} else {
+			return "container";
+		}
 	}
 });
 

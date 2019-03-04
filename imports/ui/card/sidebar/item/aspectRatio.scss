@@ -4,7 +4,7 @@
   padding: 10px;
   width: 250px;
   border-radius: 10px;
-  z-index: 9000 !important;
+  z-index: 10000 !important;
   text-align: left;
   ul {
     list-style: none;
@@ -20,4 +20,8 @@
       border-bottom-width: 0;
     }
   }
+}
+
+.dropdown-menu.aspect-ratio-menu {
+  z-index: 10000 !important;
 }

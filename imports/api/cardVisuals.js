@@ -5,6 +5,7 @@ import * as screenfull from 'screenfull';
 import {NavigatorCheck} from "./navigatorCheck";
 import {Cardsets} from "./cardsets";
 import {MarkdeepEditor} from "./markdeepEditor";
+import {AspectRatio} from "./aspectRatio.js";
 import * as config from "../config/cardVisuals.js";
 
 let editorFullScreenActive = false;
@@ -54,94 +55,166 @@ export let CardVisuals = class CardVisuals {
 		}
 	}
 
-	/**
-	 * Adjust the width of the fixed answer options to fit the screen
-	 */
-	static resizeAnswers () {
-		$("#answerOptions").width($("#backButton").width() + 16);
+	static resizeFlaschardCustom (aspectRatio) {
+		let flashcard = $('.flashcard');
+		let flashcardHeader = $('.cardHeader');
+		let flashcardBody = $('.cardContent');
+		//The number at the end is for the bottom margin of the card
+		let offsetBottom = 25;
+		let footerNavigation = $('#navbar-cards-footer');
+		if (footerNavigation.length) {
+			offsetBottom += footerNavigation.outerHeight() + 10;
+		}
+		let availableHeight = $(window).height() - flashcard.offset().top - offsetBottom;
+		let availableWidth = $('#cardCarousel').width();
+		let newHeight = availableHeight;
+		let newWidth = availableWidth;
+		if (aspectRatio !== "fill") {
+			let ratio = aspectRatio.split(":");
+			if (aspectRatio === "din") {
+				ratio = "148:105".split(":");
+			} else {
+				ratio = aspectRatio.split(":");
+			}
+			newHeight = (newWidth / parseInt(ratio[0])) * (parseInt(ratio[1]));
+			if (newHeight >= availableHeight) {
+				newHeight = availableHeight;
+				newWidth = (newHeight / parseInt(ratio[1])) * (parseInt(ratio[0]));
+			}
+		}
+		let flashcardHeaderHeight = 70;
+		flashcard.css('width', newWidth);
+		flashcard.css('height', newHeight);
+		let leftOffset = (availableWidth - newWidth) / 2;
+		if (aspectRatio !== "fill") {
+			flashcard.css('margin-left', leftOffset);
+		}
+
+		flashcardHeader.css('height', flashcardHeaderHeight);
+		flashcardBody.css('height', newHeight - flashcardHeaderHeight);
+		if (AspectRatio.scaleCardNavigationWidth()) {
+			let cardNavigation = $('.cardNavigation');
+			let answerOptions = $('#answerOptions');
+			cardNavigation.css('width', newWidth);
+			cardNavigation.css('margin-left', leftOffset);
+			if (answerOptions.length) {
+				answerOptions.css('width', newWidth);
+				answerOptions.css('margin-left', leftOffset);
+			}
+		}
+		$('.aspect-ratio-dropdown-button').removeClass('active');
+		$('.aspect-ratio-dropdown-button[data-id="' + aspectRatio + '"]').addClass('active');
 	}
 
-	/**
-	 * Resizes flashcards to din a6 format
-	 */
-	static resizeFlashcard () {
+	static resizeFlaschardLegacy () {
 		let contentEditor = $('#contentEditor');
 		let newFlashcardSize;
-		if (editorFullScreenActive) {
-			newFlashcardSize = ($(window).height() * 0.78);
-			$('#contentEditor').css('height', newFlashcardSize);
-		} else {
-			let flashcard = $('.flashcard');
-			let flashcardHeader = $('.cardHeader');
-			let flashcardBody = $('.cardContent');
-			if (flashcard.length && flashcardHeader.length && flashcardBody.length) {
-				let flashcardLecture = $('.cardContentCollapsed');
-				let flashcardControls = $('.carousel-control');
-				let flashcardHeaderHeight = 0;
-				let flashcardBodyHeight = 0;
-				Session.set('windowWidth', $(window).width());
-				if (NavigatorCheck.isSmartphone() || Session.get('mobilePreview') || Session.get('fullscreen')) {
-					if (Session.get('mobilePreview')) {
-						if ($(window).width() >= 1200) {
-							newFlashcardSize = $(window).height() - (flashcard.offset().top  + $('#editorButtonGroup').innerHeight());
-						}
-					} else {
-						newFlashcardSize = $(window).height() - (flashcard.offset().top + 10);
-					}
-					if (!NavigatorCheck.isSmartphone() && !Session.get('mobilePreview')) {
-						flashcardHeaderHeight = 100;
-					} else {
-						flashcardHeaderHeight = 60;
-					}
-					newFlashcardSize -= $('.cardNavigationContainer:visible').outerHeight();
-					flashcardBodyHeight = newFlashcardSize - flashcardHeaderHeight;
-					flashcard.css('height', newFlashcardSize);
-					flashcardHeader.css('height', flashcardHeaderHeight);
-					flashcardBody.css('height', flashcardBodyHeight);
-					flashcardLecture.css('height', flashcardBodyHeight);
-					flashcardControls.css('margin-top', flashcardHeaderHeight);
-					flashcardControls.css('height', flashcardBodyHeight);
-					contentEditor.css('height', flashcardBodyHeight);
-				} else {
-					newFlashcardSize = flashcard.width() / Math.sqrt(2);
-					flashcard.css('height', newFlashcardSize);
-					if (flashcard.width() > 900) {
-						flashcardHeaderHeight = 0.12;
-						flashcardBodyHeight = 0.88;
-						flashcardHeader.css('height', newFlashcardSize * flashcardHeaderHeight);
-						flashcardBody.css('height', newFlashcardSize * flashcardBodyHeight);
-						flashcardLecture.css('height', newFlashcardSize * flashcardBodyHeight);
-						flashcardControls.css('margin-top', newFlashcardSize * flashcardHeaderHeight);
-						flashcardControls.css('height', newFlashcardSize * flashcardBodyHeight);
-					} else {
-						flashcardHeaderHeight = 0.16;
-						flashcardBodyHeight = 0.84;
-						flashcardHeader.css('height', newFlashcardSize * flashcardHeaderHeight);
-						flashcardBody.css('height', newFlashcardSize * flashcardBodyHeight);
-						flashcardLecture.css('height', newFlashcardSize * flashcardBodyHeight);
-						flashcardControls.css('margin-top', newFlashcardSize * flashcardHeaderHeight);
-						flashcardControls.css('height', newFlashcardSize * flashcardBodyHeight);
-					}
+		let flashcard = $('.flashcard');
+		let flashcardHeader = $('.cardHeader');
+		let flashcardBody = $('.cardContent');
+		let flashcardLecture = $('.cardContentCollapsed');
+		let flashcardControls = $('.carousel-control');
+		let flashcardHeaderHeight = 0;
+		let flashcardBodyHeight = 0;
+		Session.set('windowWidth', $(window).width());
+		if (NavigatorCheck.isSmartphone() || Session.get('mobilePreview') || Session.get('fullscreen')) {
+			if (Session.get('mobilePreview')) {
+				if ($(window).width() >= 1200) {
+					newFlashcardSize = $(window).height() - (flashcard.offset().top  + $('#editorButtonGroup').innerHeight());
 				}
-				if (Session.get('mobilePreview')) {
-					newFlashcardSize -= 48;
-					if (!Session.get('fullscreen') && $(window).width() > 1200 && Session.get('mobilePreviewRotated')) {
-						flashcard.css('height', newFlashcardSize);
-						flashcardBody.css('height', newFlashcardSize - flashcardHeaderHeight);
-						newFlashcardSize += $('.mobilePreviewContent .cardNavigation').height() + 32;
-						$('.mobilePreviewContent').css('height', newFlashcardSize);
-						$('.mobilePreviewFrame').css('height', newFlashcardSize + (parseInt($('.mobilePreviewFrame').css('border-top-width'), 10) * 2));
-						newFlashcardSize -= 25;
-					} else {
-						newFlashcardSize += 5;
-						$('.mobilePreviewContent').removeAttr('style');
-						$('.mobilePreviewFrame').removeAttr('style');
-						flashcard.removeAttr('style');
-						flashcardBody.removeAttr('style');
+			} else {
+				newFlashcardSize = $(window).height() - (flashcard.offset().top + 10);
+			}
+			if (!NavigatorCheck.isSmartphone() && !Session.get('mobilePreview')) {
+				flashcardHeaderHeight = 100;
+			} else {
+				flashcardHeaderHeight = 60;
+			}
+			newFlashcardSize -= $('.cardNavigationContainer:visible').outerHeight();
+			flashcardBodyHeight = newFlashcardSize - flashcardHeaderHeight;
+			flashcard.css('height', newFlashcardSize);
+			flashcardHeader.css('height', flashcardHeaderHeight);
+			flashcardBody.css('height', flashcardBodyHeight);
+			flashcardLecture.css('height', flashcardBodyHeight);
+			flashcardControls.css('margin-top', flashcardHeaderHeight);
+			flashcardControls.css('height', flashcardBodyHeight);
+			contentEditor.css('height', flashcardBodyHeight);
+		} else {
+			newFlashcardSize = flashcard.width() / Math.sqrt(2);
+			flashcard.css('height', newFlashcardSize);
+			if (flashcard.width() > 900) {
+				flashcardHeaderHeight = 0.12;
+				flashcardBodyHeight = 0.88;
+				flashcardHeader.css('height', newFlashcardSize * flashcardHeaderHeight);
+				flashcardBody.css('height', newFlashcardSize * flashcardBodyHeight);
+				flashcardLecture.css('height', newFlashcardSize * flashcardBodyHeight);
+				flashcardControls.css('margin-top', newFlashcardSize * flashcardHeaderHeight);
+				flashcardControls.css('height', newFlashcardSize * flashcardBodyHeight);
+			} else {
+				flashcardHeaderHeight = 0.16;
+				flashcardBodyHeight = 0.84;
+				flashcardHeader.css('height', newFlashcardSize * flashcardHeaderHeight);
+				flashcardBody.css('height', newFlashcardSize * flashcardBodyHeight);
+				flashcardLecture.css('height', newFlashcardSize * flashcardBodyHeight);
+				flashcardControls.css('margin-top', newFlashcardSize * flashcardHeaderHeight);
+				flashcardControls.css('height', newFlashcardSize * flashcardBodyHeight);
+			}
+		}
+		if (Session.get('mobilePreview')) {
+			newFlashcardSize -= 48;
+			if (!Session.get('fullscreen') && $(window).width() > 1200 && Session.get('mobilePreviewRotated')) {
+				flashcard.css('height', newFlashcardSize);
+				flashcardBody.css('height', newFlashcardSize - flashcardHeaderHeight);
+				newFlashcardSize += $('.mobilePreviewContent .cardNavigation').height() + 32;
+				$('.mobilePreviewContent').css('height', newFlashcardSize);
+				$('.mobilePreviewFrame').css('height', newFlashcardSize + (parseInt($('.mobilePreviewFrame').css('border-top-width'), 10) * 2));
+				newFlashcardSize -= 25;
+			} else {
+				newFlashcardSize += 5;
+				$('.mobilePreviewContent').removeAttr('style');
+				$('.mobilePreviewFrame').removeAttr('style');
+				flashcard.removeAttr('style');
+				flashcardBody.removeAttr('style');
+			}
+			contentEditor.css('height', newFlashcardSize);
+		} else {
+			contentEditor.css('height', newFlashcardSize - $('#markdeepNavigation').height());
+		}
+	}
+
+	static resizeFlashcard () {
+		let flashcard = $('.flashcard');
+		let flashcardHeader = $('.cardHeader');
+		let flashcardBody = $('.cardContent');
+		let contentEditor = $('#contentEditor');
+		if (editorFullScreenActive) {
+			contentEditor.css('height', $(window).height() - contentEditor.offset().top - 25);
+		} else {
+			let aspectRatioEnabled = false;
+			if (flashcard.length && flashcardHeader.length && flashcardBody.length) {
+				flashcard.removeAttr('style');
+				flashcardHeader.removeAttr('style');
+				flashcardBody.removeAttr('style');
+				contentEditor.removeAttr('style');
+				$('.cardNavigation').removeAttr('style');
+				$('#answerOptions').removeAttr('style');
+				if (AspectRatio.isEnabled()) {
+					aspectRatioEnabled = true;
+				}
+				if (aspectRatioEnabled &&  !NavigatorCheck.isSmartphone()) {
+					switch (Session.get('aspectRatioMode')) {
+						case "din":
+							this.resizeFlaschardCustom("din");
+							break;
+						case "fill":
+							this.resizeFlaschardCustom("fill");
+							break;
+						default:
+							this.resizeFlaschardCustom(Session.get('aspectRatioMode'));
+							break;
 					}
-					contentEditor.css('height', newFlashcardSize);
 				} else {
-					contentEditor.css('height', newFlashcardSize - $('#markdeepNavigation').height());
+					this.resizeFlaschardLegacy();
 				}
 				this.setPomodoroTimerSize();
 				this.setSidebarPosition();

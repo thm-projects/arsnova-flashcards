@@ -15,10 +15,6 @@ let iFrameMaxHeight = 0.8;
 //5: Wozniak
 let fixedSidebarPosition = [1, 2, 3, 4, 5];
 
-//Order and types for the aspect ratio dropdown list
-//Add entries to /main/overlay/aspectRatio.js events and the i18n file if you want to add new types
-let aspectRatios = ['din', 'stretched', '16:9', '4:3'];
-
 module.exports = {
 	defaultFontSize,
 	defaultFontSizeMobile,
@@ -26,6 +22,5 @@ module.exports = {
 	iFrameWidthRatio,
 	iFrameHeightRatio,
 	iFrameMaxHeight,
-	fixedSidebarPosition,
-	aspectRatios
+	fixedSidebarPosition
 };

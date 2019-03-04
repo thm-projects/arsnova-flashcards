@@ -20,6 +20,7 @@ import {isNewCardset} from "../../ui/forms/cardsetForm";
 import {ServerStyle} from "../../api/styles.js";
 import {ServerInventoryTools} from "../../api/serverInventoryTools.js";
 import {CardVisuals} from "../../api/cardVisuals";
+import {AspectRatio} from "../../api/aspectRatio";
 
 Meteor.subscribe("collegesCourses");
 
@@ -64,6 +65,10 @@ Template.registerHelper('isInBonus', function () {
 
 Template.registerHelper('isImpressum', function () {
 	return Route.isImpressum();
+});
+
+Template.registerHelper('gotAspectRatio', function () {
+	return AspectRatio.isEnabled() && CardVisuals.isFullscreen();
 });
 
 Template.registerHelper('isInBonusAndNotOwner', function () {

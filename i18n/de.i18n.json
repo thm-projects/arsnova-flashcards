@@ -788,9 +788,10 @@
     },
     "aspectRatio": {
       "169": "16:9",
+      "1610": "16:10",
       "43": "4:3",
-      "stretched": "Gesamter Bildschirm",
-      "din": "Lernkarte"
+      "fill": "Gesamter Bildschirm",
+      "din": "Karteikarte"
     },
     "help": {
       "title": "Rand-Buttons",

@@ -10,6 +10,7 @@ import {UserPermissions} from "../../api/permissions";
 import {MainNavigation} from "../../api/mainNavigation";
 import {ServerStyle} from "../../api/styles.js";
 import {LoginTasks} from "../../api/login";
+import {AspectRatio} from "../../api/aspectRatio.js";
 
 let loadingScreenTemplate = 'loadingScreen';
 
@@ -506,6 +507,7 @@ Router.route('/box/:_id', {
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', undefined);
+		Session.set('aspectRatioMode', AspectRatio.getDefault());
 		return Cardsets.findOne({_id: this.params._id});
 	},
 	action: function () {
@@ -526,6 +528,7 @@ Router.route('/memo/:_id', {
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', undefined);
+		Session.set('aspectRatioMode', AspectRatio.getDefault());
 		return Cardsets.findOne({_id: this.params._id});
 	},
 	action: function () {

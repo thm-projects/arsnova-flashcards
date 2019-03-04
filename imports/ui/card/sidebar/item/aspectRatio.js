@@ -1,4 +1,4 @@
-import {CardVisuals} from "../../../../api/cardVisuals";
+import {CardVisuals} from "../../../../api/cardVisuals.js";
 import "./aspectRatio.html";
 
 /*
@@ -6,7 +6,6 @@ import "./aspectRatio.html";
  * cardSidebarItemAspectRatio
  * ############################################################################
  */
-
 
 Template.cardSidebarItemAspectRatio.events({
 	"click .aspect-ratio-button": function () {

@@ -39,6 +39,7 @@ Template.cardset.onCreated(function () {
 	Session.set('shuffled', Cardsets.findOne(Router.current().params._id).shuffled);
 	Session.set('cameFromEditMode', false);
 	CardNavigation.toggleVisibility(true);
+	Session.set('hideSidebar', false);
 });
 
 Template.cardset.rendered = function () {

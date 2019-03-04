@@ -276,14 +276,19 @@ $themes: (
     $card_sidebar_toggle_button_opacity_active: map-get($map, "card_sidebar_toggle_button_opacity_active");
     $card_sidebar_toggle_button_background_active_hover: map-get($map, "card_sidebar_toggle_button_background_active_hover");
     $card_sidebar_toggle_button_text_active_hover: map-get($map, "card_sidebar_toggle_button_text_active_hover");
-    $card_sidebar_aspect_ratio_backgroud: map-get($map, "card_sidebar_aspect_ratio_backgroud");
+    $card_sidebar_aspect_ratio_background: map-get($map, "card_sidebar_aspect_ratio_background");
     $card_sidebar_aspect_ratio_text: map-get($map, "card_sidebar_aspect_ratio_text");
-    $card_sidebar_aspect_ratio_backgroud_hover: map-get($map, "card_sidebar_aspect_ratio_background_hover");
+    $card_sidebar_aspect_ratio_background_hover: map-get($map, "card_sidebar_aspect_ratio_background_hover");
     $card_sidebar_aspect_ratio_text_hover: map-get($map, "card_sidebar_aspect_ratio_text_hover");
-    $card_sidebar_aspect_ratio_dropdown_backgroud: map-get($map, "card_sidebar_aspect_ratio_dropdown_backgroud");
+    $card_sidebar_aspect_ratio_dropdown_background: map-get($map, "card_sidebar_aspect_ratio_dropdown_background");
     $card_sidebar_aspect_ratio_dropdown_text: map-get($map, "card_sidebar_aspect_ratio_dropdown_text");
-    $card_sidebar_aspect_ratio_dropdown_backgroud_hover: map-get($map, "card_sidebar_aspect_ratio_dropdown_background_hover");
+    $card_sidebar_aspect_ratio_dropdown_border: map-get($map, "card_sidebar_aspect_ratio_dropdown_border");
+    $card_sidebar_aspect_ratio_dropdown_background_hover: map-get($map, "card_sidebar_aspect_ratio_dropdown_background_hover");
     $card_sidebar_aspect_ratio_dropdown_text_hover: map-get($map, "card_sidebar_aspect_ratio_dropdown_text_hover");
+    $card_sidebar_aspect_ratio_dropdown_background_active: map-get($map, "card_sidebar_aspect_ratio_dropdown_background_active");
+    $card_sidebar_aspect_ratio_dropdown_text_active: map-get($map, "card_sidebar_aspect_ratio_dropdown_text_active");
+    $card_sidebar_aspect_ratio_dropdown_background_active_hover: map-get($map, "card_sidebar_aspect_ratio_dropdown_background_active_hover");
+    $card_sidebar_aspect_ratio_dropdown_text_active_hover: map-get($map, "card_sidebar_aspect_ratio_dropdown_text_active_hover");
     $card_sidebar_aspect_ratio_menu_background: map-get($map, "card_sidebar_aspect_ratio_menu_background");
     $card_sidebar_aspect_ratio_menu_separator: map-get($map, "card_sidebar_aspect_ratio_menu_separator");
 
@@ -2836,12 +2841,12 @@ $themes: (
       background-color: $card_sidebar_background !important;
 
       .aspect-ratio-button {
-        background-color: $card_sidebar_aspect_ratio_backgroud !important;
+        background-color: $card_sidebar_aspect_ratio_background !important;
         color:$card_sidebar_aspect_ratio_text !important;
       }
 
       .aspect-ratio-button:hover {
-        background-color:$card_sidebar_aspect_ratio_backgroud_hover !important;
+        background-color:$card_sidebar_aspect_ratio_background_hover !important;
         color: $card_sidebar_aspect_ratio_text_hover !important;
       }
 
@@ -3195,13 +3200,23 @@ $themes: (
       border-color: $card_sidebar_aspect_ratio_menu_separator !important;
     }
     .aspect-ratio-dropdown-button {
-      background-color: $card_sidebar_aspect_ratio_dropdown_backgroud !important;
+      background-color: $card_sidebar_aspect_ratio_dropdown_background !important;
       color:$card_sidebar_aspect_ratio_dropdown_text !important;
+      border-color: $card_sidebar_aspect_ratio_dropdown_border !important;
     }
 
     .aspect-ratio-dropdown-button:hover {
-      background-color:$card_sidebar_aspect_ratio_dropdown_backgroud_hover !important;
+      background-color:$card_sidebar_aspect_ratio_dropdown_background_hover !important;
       color: $card_sidebar_aspect_ratio_dropdown_text_hover !important;
+    }
+    .aspect-ratio-dropdown-button.active {
+      background-color: $card_sidebar_aspect_ratio_dropdown_background_active !important;
+      color:$card_sidebar_aspect_ratio_dropdown_text_active !important;
+    }
+
+    .aspect-ratio-dropdown-button.active:hover {
+      background-color:$card_sidebar_aspect_ratio_dropdown_background_active_hover !important;
+      color: $card_sidebar_aspect_ratio_dropdown_text_active_hover !important;
     }
   }
 }

@@ -7,9 +7,7 @@
             {{> welcomeTitle}}
         {{/if}}
     {{/unless}}
-    <div class="{{#if isFirstTimeVisit}}container{{/if}}">
-        <div id="contact" class="col-xs-12 {{#unless fullscreenActive}}col-md-8 col-md-offset-2 {{#if isFirstTimeVisit}}welcome-demo{{/if}}{{else}}fullscreen{{/unless}}">
-            {{> presentationView}}
-        </div>
+    <div id="contact" class="col-xs-12 {{#unless fullscreenActive}}col-md-8 col-md-offset-2 {{#if isFirstTimeVisit}}welcome-demo{{/if}}{{else}}fullscreen{{/unless}}">
+        {{> presentationView}}
     </div>
 </template>
