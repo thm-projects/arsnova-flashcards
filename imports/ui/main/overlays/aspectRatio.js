@@ -1,7 +1,9 @@
 import {Template} from "meteor/templating";
 import {Route} from "../../../api/route";
-import "./aspectRatio.html";
 import {Session} from "meteor/session";
+import * as config from "../../../config/cardVisuals.js";
+import {Icons} from "../../../api/icons";
+import "./aspectRatio.html";
 
 /*
  * ############################################################################
@@ -9,14 +11,34 @@ import {Session} from "meteor/session";
  * ############################################################################
  */
 
+
+Template.mainOverlayAspectRatioContent.helpers({
+	aspectRatios: function () {
+		return config.aspectRatios;
+	},
+	getItem: function () {
+		let aspectRatio;
+		switch (this) {
+			case "stretched":
+			case "din":
+				aspectRatio = this;
+				break;
+			default:
+				aspectRatio = this.replace(":", "");
+
+		}
+		return "<li class='aspect-ratio-dropdown-button aspect-ratio-" + aspectRatio + "'>" + Icons.aspectRatio(aspectRatio) +  TAPi18n.__('presentation.aspectRatio.' + aspectRatio) + "</li>";
+	}
+});
+
 Template.mainOverlayAspectRatioContent.events({
-	"click .aspect-ratio-16-9": function () {
+	"click .aspect-ratio-169": function () {
 		Session.set('aspectRatioMode', 0);
 		if (Route.isCardset()) {
 			Router.go('presentation', {_id: this._id});
 		}
 	},
-	"click .aspect-ratio-4-3": function () {
+	"click .aspect-ratio-43": function () {
 		Session.set('aspectRatioMode', 1);
 		if (Route.isCardset()) {
 			Router.go('presentation', {_id: this._id});
@@ -28,7 +50,7 @@ Template.mainOverlayAspectRatioContent.events({
 			Router.go('presentation', {_id: this._id});
 		}
 	},
-	"click .aspect-ratio-card": function () {
+	"click .aspect-ratio-din": function () {
 		Session.set('aspectRatioMode', 3);
 		if (Route.isCardset()) {
 			Router.go('presentation', {_id: this._id});

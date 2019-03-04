@@ -7,8 +7,7 @@
 </template>
 
 <template name="mainOverlayAspectRatioContent">
-    <li class="aspect-ratio-dropdown-button aspect-ratio-16-9"><i class="fa fa-desktop"></i> {{_ "presentation.aspectRatio.169"}}</li>
-    <li class="aspect-ratio-dropdown-button aspect-ratio-4-3"><i class="fa fa-desktop"></i> {{_ "presentation.aspectRatio.43"}}</li>
-    <li class="aspect-ratio-dropdown-button aspect-ratio-stretched"><i class="fa fa-arrows-alt"></i> {{_ "presentation.aspectRatio.stretched"}}</li>
-    <li class="aspect-ratio-dropdown-button aspect-ratio-card"><i class="fa fa-id-card"></i> {{_ "presentation.aspectRatio.card"}}</li>
+    {{#each aspectRatios}}
+        {{{getItem}}}
+    {{/each}}
 </template>
