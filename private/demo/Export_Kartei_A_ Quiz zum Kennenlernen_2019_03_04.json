@@ -2,7 +2,7 @@
   "name": "A: Quiz zum Kennenlernen",
   "description": "Die Quizfragen sind Teil der Demo-Kartei auf der 🍅cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2019-03-04T07:40:24.387Z",
+  "dateUpdated": "2019-03-05T10:18:19.166Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": true,
@@ -292,7 +292,7 @@
   "learningUnit": "0"
 }, {
   "subject": "09. Technik: optimiert für jeden Browser",
-  "back": "🍅cards ist eine [Progressive Web App (PWA)](https://de.wikipedia.org/wiki/Progressive_Web_App), heißt, sie fühlt sich an wie eine native App aus dem Store: Du kannst sie aus dem Browser heraus dem **Homescreen** deines Smartphones hinzufügen (<q>Add-to-Homescreen</q>) und von dort wie eine installierte App aufrufen. Sie startet so schnell wie eine native App und zeigt sich **ohne Browser-Rahmen**.\nUnd wenn du die Benach&shy;richtigungsfunktion (<q>Push Notifications</q>) für 🍅&nbsp;cards zulässt, wirst du zuverlässig um 8.00 Uhr auf deinem Smartphone ans Lernen erinnert.\n\nEs gibt nur eine Einschränkung für die mobile Nutzung: Auf kleinen Displays ist die Erstellung von Karteien und Karten ergonomisch nicht sinnvoll, deswegen bieten wir sie auch gar nicht erst an. Auf deinem Smartphone stehen dir ausschließlich die Seiten <q>Karteien</q>, <q>Re&shy;pe&shy;ti&shy;to&shy;rien</q>, <q>Lernpensum</q> und <q>Meine Karteien</q> zur Verfügung. Das reicht auch vollkommen für das Unterwegs-Lernen in der Bahn, im Bus oder sonst wo -- neudeutsch: **Mobile Learning**.",
+  "back": "![Ohne Rahmen](https://arsnova-uploads.mni.thm.de/Demo-Kartei/PWA-cards.jpg width=110px)![PWA 🍅cards](https://arsnova-uploads.mni.thm.de/Demo-Kartei/PWA-Startbildschirm.jpg width=110px)🍅cards ist eine [Progressive Web App (PWA)](https://de.wikipedia.org/wiki/Progressive_Web_App), heißt, sie fühlt sich an wie eine native App aus dem Store: Du kannst sie aus dem Browser heraus dem **Homescreen** deines Smartphones hinzufügen (<q>Add-to-Homescreen</q>) und von dort wie eine installierte App aufrufen. Sie startet so schnell wie eine native App und zeigt sich **ohne Browser-Rahmen**.\nUnd wenn du die **Benach&shy;rich&shy;tigungs&shy;funk&shy;tion** für 🍅&nbsp;cards zulässt (<q>Push Notifications</q>, siehe Badge am App-Icon), wirst du zuverlässig um 8.00 Uhr auf deinem Smartphone ans Lernen erinnert.\n\nEs gibt nur eine Einschränkung für die mobile Nutzung: Auf kleinen Displays ist die Erstellung von Karteien und Karten ergonomisch nicht sinnvoll, deswegen bieten wir sie auch gar nicht erst an. Auf deinem Smartphone stehen dir ausschließlich die Seiten <q>Karteien</q>, <q>Re&shy;pe&shy;ti&shy;to&shy;rien</q>, <q>Lernpensum</q> und <q>Meine Karteien</q> zur Verfügung. Das reicht auch vollkommen für das Unterwegs-Lernen in der Bahn, im Bus oder sonst wo -- neudeutsch: **Mobile Learning**.",
   "centerTextElement": [
     true,
     true,
@@ -314,7 +314,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-03-04T07:19:14.187Z",
+  "dateUpdated": "2019-03-05T10:06:57.441Z",
   "front": "![](https://developers.google.com/web/tools/workbox/images/pwa.svg width=100px)\n\n(##) 🍅cards ist eine <q>Progressive Web App</q>. \n\n(##) Was heißt das jetzt?",
   "originalAuthorName": {
     "title": "Dr.",
@@ -323,7 +323,7 @@
   }
 }, {
   "subject": "10. Technik: optimiert für unterwegs",
-  "front": "\n![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Leitner-Karte.png width=180px)\n\n(##) 🍅cards ist eine <q>Mobile-first</q>-App. \n\n(##) Und was heißt das nun wieder?",
+  "front": "\n![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Leitner-Karte.png width=150px)\n\n(##) 🍅cards ist eine <q>Mobile-first</q>-App. \n\n(##) Und was heißt das nun wieder?",
   "back": "\n![ ](https://arsnova-uploads.mni.thm.de/Demo-Kartei/iPhone%20X%20Startseite.png width=100px) \n🍅cards wurde für das Unterwegs-Lernen entworfen: Die App wird zum Lernen überwiegend auf dem Smartphone genutzt. Das setzt hohe Anforderungen an die <q>Usability</q> und <q>User Ex&shy;pe&shy;ri&shy;ence</q> des Designs, zum Beispiel:\n\n* Optimiertes Design für die Portrait-Ansicht auf dem Smartphone\n* Ein-Daumen-Bedienung im Ansichts- und Lernmodus \n* Vollbildansicht der Karten auch im Smartphone-Browser\n* Akku-schonendes dunkles Design\n* Smartphone-Vorschau beim Editieren einer Karte ",
   "centerTextElement": [
     true,
@@ -346,7 +346,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-03-04T07:19:20.183Z",
+  "dateUpdated": "2019-03-05T10:18:00.265Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -354,7 +354,7 @@
   }
 }, {
   "subject": "11. Technik: optimiert für den Beamer",
-  "front": "![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Beamer.png width=200)\n\n(##) 🍅cards ist optimiert für den Beamer. \n\n(##) Heißt das, ich kann damit auch Vorträge halten?",
+  "front": "![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Beamer.png width=200)\n\n(##) Heißt das, ich kann damit auch Vorträge halten?",
   "back": "**Absolut.**\n\nWir nutzen die <q>Fullscreen</q>-Ansicht deines Browsers, um Karten ablenkungsfrei anzuzeigen. Schau dir die Hinweise zu den Rand-Buttons an. Du findest sie hinter dem Fragezeichen rechts außen.\n\nBeim Vortragen muss du keineswegs mit der Maus arbeiten: Mit der <kbd>Leertaste</kbd> navigierst du bequem zur nächsten Kartenseite und danach zur nächsten Karte.\n\nMit unserer an Hochschulen weitverbreiteten Quiz-App [ARSnova](https://arsnova.eu/blog) kannst du auf jeder Karte dein Publikum befragen, ohne dabei 🍅cards zu verlassen. Der Projektleiter setzt ARSnova und 🍅cards in seinen Vorlesungen ein. Auch Studierende nutzen beide Apps für ihre Präsentationen im Hauptseminar und Bachelor-Kolloquium.",
   "centerTextElement": [
     true,
@@ -377,7 +377,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-03-04T07:18:00.148Z",
+  "dateUpdated": "2019-03-05T10:18:19.157Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
