@@ -1,0 +1,19 @@
+<template name="impressumSupport">
+    <div class="panel panel-default">
+        <div class="panel-heading info-tab">
+            {{#if isActiveLanguage 'de'}}
+                {{> impressumSupportHeadingDE}}
+            {{else}}
+                {{> impressumSupportHeadingEN}}
+            {{/if}}
+        </div>
+
+        <div class="panel-body info-tab">
+            {{#if isActiveLanguage 'de'}}
+                {{> impressumSupportContentDE}}
+            {{else}}
+                {{> impressumSupportContentEN}}
+            {{/if}}
+        </div>
+    </div>
+</template>
