@@ -82,7 +82,7 @@ export let CardVisuals = class CardVisuals {
 				newWidth = (newHeight / parseInt(ratio[1])) * (parseInt(ratio[0]));
 			}
 		}
-		let flashcardHeaderHeight = 70;
+		let flashcardHeaderHeight = 90;
 		flashcard.css('width', newWidth);
 		flashcard.css('height', newHeight);
 		let leftOffset = (availableWidth - newWidth) / 2;
