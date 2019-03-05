@@ -2,7 +2,7 @@
   "name": "A: Quiz zum Kennenlernen",
   "description": "Die Quizfragen sind Teil der Demo-Kartei auf der 🍅cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2019-03-05T11:00:25.820Z",
+  "dateUpdated": "2019-03-05T11:58:04.581Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": true,
@@ -291,8 +291,8 @@
   },
   "learningUnit": "0"
 }, {
-  "subject": "09. Technik: optimiert für jeden Browser",
-  "back": "![Push-Nachricht](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Push-Nachricht.jpg width=110px)![🍅cards](https://arsnova-uploads.mni.thm.de/Demo-Kartei/PWA-Startbildschirm.jpg width=110px)![Ohne Rahmen](https://arsnova-uploads.mni.thm.de/Demo-Kartei/PWA-cards.jpg width=110px)🍅cards ist eine [Progressive Web App (PWA)](https://de.wikipedia.org/wiki/Progressive_Web_App), heißt, sie fühlt sich an wie eine native App aus dem Store: Du kannst sie aus dem Browser heraus dem **Homescreen** deines Smartphones hinzufügen (<q>Add-to-Homescreen</q>) und von dort wie eine installierte App aufrufen. Sie startet so schnell wie eine native App und zeigt sich **ohne Browser-Rahmen**.\nUnd wenn du die **Benach&shy;rich&shy;tigungs&shy;funk&shy;tion** für 🍅&nbsp;cards zulässt (<q>Push Notifications</q>, siehe Badge am App-Icon), wirst du zuverlässig um 8.00 Uhr auf deinem Smartphone ans Lernen erinnert.\n\nEs gibt nur eine Einschränkung für die mobile Nutzung: Auf kleinen Displays ist die Erstellung von Karteien und Karten ergonomisch nicht sinnvoll, deswegen bieten wir sie auch gar nicht erst an. Auf deinem Smartphone stehen dir ausschließlich die Seiten <q>Karteien</q>, <q>Re&shy;pe&shy;ti&shy;to&shy;rien</q>, <q>Lernpensum</q> und <q>Meine Karteien</q> zur Verfügung. Das reicht auch vollkommen für das Unterwegs-Lernen in der Bahn, im Bus oder sonst wo -- neudeutsch: **Mobile Learning**.",
+  "subject": "09. Technik: wie eine App",
+  "back": "![Push-Nachricht](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Push-Nachricht.jpg width=105px)![🍅cards](https://arsnova-uploads.mni.thm.de/Demo-Kartei/PWA-Startbildschirm.jpg width=105px)![App-Start](https://arsnova-uploads.mni.thm.de/Demo-Kartei/PWA-Splash-Screen.jpg width=105px)![ohne Rahmen](https://arsnova-uploads.mni.thm.de/Demo-Kartei/PWA-cards.jpg width=105px)\n\n🍅cards ist eine [Progressive Web App (PWA)](https://de.wikipedia.org/wiki/Progressive_Web_App), heißt, sie fühlt sich an wie eine native App aus dem Store: Du kannst sie aus dem Browser heraus dem **Homescreen** deines Smartphones hinzufügen (<q>Add-to-Homescreen</q>) und von dort wie eine installierte App aufrufen. Sie startet so schnell wie eine native App und zeigt sich **ohne Browser-Rahmen**.\nUnd wenn du die **Benach&shy;rich&shy;tigungs&shy;funk&shy;tion** für 🍅&nbsp;cards zulässt (<q>Push Notifications</q>, siehe Badge am App-Icon), wirst du zuverlässig um 8.00 Uhr auf deinem Smartphone ans Lernen erinnert.\n\nEs gibt nur eine Einschränkung für die mobile Nutzung: Auf kleinen Displays ist die Erstellung von Karteien und Karten ergonomisch nicht sinnvoll, deswegen bieten wir sie auch gar nicht erst an. Auf deinem Smartphone stehen dir ausschließlich die Seiten <q>Karteien</q>, <q>Re&shy;pe&shy;ti&shy;to&shy;rien</q>, <q>Lernpensum</q> und <q>Meine Karteien</q> zur Verfügung. Das reicht auch vollkommen für das Unterwegs-Lernen in der Bahn, im Bus oder sonst wo -- neudeutsch: **Mobile Learning**.",
   "centerTextElement": [
     true,
     true,
@@ -314,7 +314,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-03-05T11:00:25.807Z",
+  "dateUpdated": "2019-03-05T11:58:04.567Z",
   "front": "![](https://developers.google.com/web/tools/workbox/images/pwa.svg width=100px)\n\n(##) 🍅cards ist eine <q>Progressive Web App</q>. \n\n(##) Was heißt das jetzt?",
   "originalAuthorName": {
     "title": "Dr.",
