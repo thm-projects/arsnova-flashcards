@@ -13,12 +13,18 @@
 <template name="learnAlgorithms">
     {{> pomodoroTimerModal}}
     {{#if noCards}}
-        <div class="col-xs-12">
+        <div class="hidden-xs hidden-sm container">
+            {{> flashcardsEmpty}}
+        </div>
+        <div class="visible-xs visible-sm">
             {{> flashcardsEmpty}}
         </div>
     {{else}}
         {{#if isFinished}}
-            <div class="col-xs-12">
+            <div class="hidden-xs hidden-sm container">
+                {{> flashcardsEnd}}
+            </div>
+            <div class="visible-xs visible-sm">
                 {{> flashcardsEnd}}
             </div>
         {{else}}

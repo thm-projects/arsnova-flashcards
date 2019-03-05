@@ -82,10 +82,10 @@ Template.cardsetNavigationLearning.onRendered(function () {
 					} else {
 						nextDate = moment(nextCardDate).locale("de");
 					}
-					if (nextDate.get('hour') >= Meteor.settings.public.leitner.dailyCronjob.executeAtHour) {
+					if (nextDate.get('hour') >= Meteor.settings.public.dailyCronjob.executeAtHour) {
 						nextDate.add(1, 'day');
 					}
-					nextDate.hour(Meteor.settings.public.leitner.dailyCronjob.executeAtHour);
+					nextDate.hour(Meteor.settings.public.dailyCronjob.executeAtHour);
 					nextDate.minute(0);
 					text += TAPi18n.__('noCardsToLearn') + nextDate.format("D. MMMM") + TAPi18n.__('at') + nextDate.format("HH:mm") + TAPi18n.__('released');
 				}
