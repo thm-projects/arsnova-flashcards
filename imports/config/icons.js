@@ -39,9 +39,18 @@ let miscNavigation = {
 	toggleImpressum: "<i class='fa fa-medkit'></i>&nbsp;"
 };
 
+let aspectRatio = {
+	169: "<i class='fa fa-desktop'></i>&nbsp;",
+	1610: "<i class='fa fa-desktop'></i>&nbsp;",
+	43: "<i class='fa fa-desktop'></i>&nbsp;",
+	fill: "<i class='fa fa-arrows-alt'></i>&nbsp;",
+	din: "<i class='fa fa-id-card'></i>&nbsp;"
+};
+
 module.exports = {
 	footerNavigation: footerNavigation,
 	topNavigation: topNavigation,
 	miscNavigation,
-	landingPageNavigation
+	landingPageNavigation,
+	aspectRatio
 };

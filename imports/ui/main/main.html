@@ -7,23 +7,12 @@
     {{> mainModalUnderDevelopment}}
     {{> mainModalArsnovaClick}}
     {{> mainOverlayZoomText}}
+    {{> mainOverlayAspectRatio}}
     {{> helpModal}}
     {{> mainItemSearchResult}}
     {{> mainNavigationTop}}
-    <div id="main" class="{{#if isActiveRoute 'presentation'}}{{#if isSidebarHidden}}presentation-container-no-sidebar{{else}}presentation-container{{/if}}{{else}}{{#if isActiveRoute
-                                                                                                  regex='home'}}{{else}}{{#if
-            isActiveRoute
-            regex='newCard|editCard|cardsetstats'}}{{#if
-            fullscreenActive}}container{{else}}{{#if isActiveRoute
-                                                     regex='newCard|editCard'}}container-fluid-editor{{/if}} container-fluid{{/if}}{{else}}{{#unless
-            isFirstTimeVisit}}container{{/unless}}{{/if}}{{/if}}{{/if}}">
-        <!-- AREA BETWEEN NAVIGATION AND FOOTER -->
-        <div class="{{#if isActiveRoute regex='home'}}{{else}}{{#unless isFirstTimeVisit}}row{{/unless}}{{#if
-                isActiveRoute
-                regex='newCard|editCard'}}{{#unless
-                fullscreenActive}}col-lg-11{{/unless}}{{/if}}{{/if}}">
-            {{> yield}}
-        </div>
+    <div id="main" class="{{getMainContainer}}">
+        {{> yield}}
     </div>
     {{> mainNavigationFooter}}
 </template>

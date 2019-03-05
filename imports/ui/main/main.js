@@ -9,6 +9,7 @@ import {MarkdeepContent} from "../../api/markdeep";
 import {CardNavigation} from "../../api/cardNavigation";
 import {MainNavigation} from "../../api/mainNavigation";
 import {ServerStyle} from "../../api/styles.js";
+import {AspectRatio} from "../../api/aspectRatio.js";
 import "../welcome/welcome.js";
 import "../wordcloud/wordcloud.js";
 import "../impressum/impressum.js";
@@ -26,6 +27,7 @@ import "../accessDenied/accessDenied.js";
 import "../firstLogin/firstLogin.js";
 import "../pomodoroTimer/pomodoroTimer.js";
 import "../../api/cardIndex.js";
+import "./overlays/aspectRatio.js";
 import "./overlays/zoomText.js";
 import "../card/sidebar/sidebar.js";
 import "../loadingScreen/loadingScreen.js";
@@ -53,6 +55,8 @@ Session.setDefault('currentZoomValue', CardVisuals.getDefaultTextZoomValue());
 Session.setDefault('demoFullscreen', false);
 Session.setDefault('isConnectionModalOpen', false);
 Session.setDefault('hideSidebar', false);
+Session.setDefault('aspectRatioContainerVisible', false);
+Session.setDefault('aspectRatioMode', 0);
 
 function connectionStatus() {
 	let stat;
@@ -118,6 +122,9 @@ Template.main.events({
 		if (!$(evt.target).is('.zoomText')) {
 			CardVisuals.toggleZoomContainer(true);
 		}
+		if (!$(evt.target).is('.aspect-ratio-button')) {
+			CardVisuals.toggleAspectRatioContainer(true);
+		}
 	}
 });
 
@@ -137,6 +144,27 @@ Template.main.helpers({
 	},
 	isNotFirstDemoVisit: function () {
 		return (!Route.isFirstTimeVisit() && Route.isDemo());
+	},
+	getMainContainer: function () {
+		if (AspectRatio.isEnabled()) {
+			if (Session.get('hideSidebar')) {
+				return "presentation-container-no-sidebar";
+			} else {
+				return "presentation-container";
+			}
+		} else if (Route.isHome() && !Meteor.user()) {
+			return "";
+		} else if (Route.isEditCard() || Route.isLeitnerProgress()) {
+			if (Route.isEditCard() && !CardVisuals.isFullscreen()) {
+				return "container-fluid-editor";
+			} else {
+				return "container-fluid";
+			}
+		} else if (Route.isFirstTimeVisit()) {
+			return "";
+		} else {
+			return "container";
+		}
 	}
 });
 

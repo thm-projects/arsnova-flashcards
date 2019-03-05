@@ -276,6 +276,9 @@ img.cardside {
 
 .emptyCard {
   padding: 50px;
+  @media(max-width: 767px) {
+    padding: 15px;
+  }
 }
 
 .actionButtons .btn:not(:first-of-type) {

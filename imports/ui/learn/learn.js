@@ -13,6 +13,7 @@ import {Route} from "../../api/route";
 import {MainNavigation} from "../../api/mainNavigation";
 import {CardsetNavigation} from "../../api/cardsetNavigation";
 import {NavigatorCheck} from "../../api/navigatorCheck";
+import {CardVisuals} from "../../api/cardVisuals";
 Session.set('animationPlaying', false);
 
 /*
@@ -103,13 +104,10 @@ Template.learnAlgorithms.events({
  */
 
 Template.learnAnswerOptions.onRendered(function () {
-	$('#answerOptions').css('width', $('#cardCarousel').width());
-	$(window).resize(function () {
-		$('#answerOptions').css('width', $('#cardCarousel').width());
-	});
 	$('#cardCarousel').on('slide.bs.carousel', function () {
 		Session.set('animationPlaying', true);
 	});
+	CardVisuals.resizeFlashcard();
 });
 
 Template.learnAnswerOptions.helpers({

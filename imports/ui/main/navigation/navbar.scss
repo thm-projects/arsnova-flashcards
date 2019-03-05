@@ -116,6 +116,15 @@ $navbar_all_decks_border_width: 3px;
       }
     }
   }
+  @media (min-width: 768px) and (max-width: 899px) {
+    #navbar-cards-footer-collapse {
+      .navbar-nav {
+        a {
+          font-size: 12px !important;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 767px) {

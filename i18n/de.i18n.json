@@ -786,6 +786,13 @@
       "back": "Zurück zur Präsentation",
       "backDemo": "Zurück zur Demo-Kartei"
     },
+    "aspectRatio": {
+      "169": "16:9",
+      "1610": "16:10",
+      "43": "4:3",
+      "fill": "Gesamter Bildschirm",
+      "din": "Karteikarte"
+    },
     "help": {
       "title": "Rand-Buttons",
       "button": {

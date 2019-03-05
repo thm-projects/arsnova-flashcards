@@ -1,7 +1,12 @@
 <template name="contact">
     {{> impressumModalStatistics}}
     {{#if isFirstTimeVisit}}
-        {{> welcomeTitle}}
+        <div class="hidden-xs hidden-sm">
+            {{> welcomeTitle}}
+        </div>
+        <div class="visible-xs visible-sm container">
+            {{> welcomeTitle}}
+        </div>
     {{/if}}
     <div class="{{#if isFirstTimeVisit}}container{{/if}}">
         <div id="contact" class="col-md-8 col-md-offset-2">

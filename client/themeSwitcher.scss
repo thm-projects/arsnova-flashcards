@@ -276,6 +276,22 @@ $themes: (
     $card_sidebar_toggle_button_opacity_active: map-get($map, "card_sidebar_toggle_button_opacity_active");
     $card_sidebar_toggle_button_background_active_hover: map-get($map, "card_sidebar_toggle_button_background_active_hover");
     $card_sidebar_toggle_button_text_active_hover: map-get($map, "card_sidebar_toggle_button_text_active_hover");
+    $card_sidebar_aspect_ratio_background: map-get($map, "card_sidebar_aspect_ratio_background");
+    $card_sidebar_aspect_ratio_text: map-get($map, "card_sidebar_aspect_ratio_text");
+    $card_sidebar_aspect_ratio_background_hover: map-get($map, "card_sidebar_aspect_ratio_background_hover");
+    $card_sidebar_aspect_ratio_text_hover: map-get($map, "card_sidebar_aspect_ratio_text_hover");
+    $card_sidebar_aspect_ratio_dropdown_background: map-get($map, "card_sidebar_aspect_ratio_dropdown_background");
+    $card_sidebar_aspect_ratio_dropdown_text: map-get($map, "card_sidebar_aspect_ratio_dropdown_text");
+    $card_sidebar_aspect_ratio_dropdown_border: map-get($map, "card_sidebar_aspect_ratio_dropdown_border");
+    $card_sidebar_aspect_ratio_dropdown_background_hover: map-get($map, "card_sidebar_aspect_ratio_dropdown_background_hover");
+    $card_sidebar_aspect_ratio_dropdown_text_hover: map-get($map, "card_sidebar_aspect_ratio_dropdown_text_hover");
+    $card_sidebar_aspect_ratio_dropdown_background_active: map-get($map, "card_sidebar_aspect_ratio_dropdown_background_active");
+    $card_sidebar_aspect_ratio_dropdown_text_active: map-get($map, "card_sidebar_aspect_ratio_dropdown_text_active");
+    $card_sidebar_aspect_ratio_dropdown_background_active_hover: map-get($map, "card_sidebar_aspect_ratio_dropdown_background_active_hover");
+    $card_sidebar_aspect_ratio_dropdown_text_active_hover: map-get($map, "card_sidebar_aspect_ratio_dropdown_text_active_hover");
+    $card_sidebar_aspect_ratio_menu_background: map-get($map, "card_sidebar_aspect_ratio_menu_background");
+    $card_sidebar_aspect_ratio_menu_separator: map-get($map, "card_sidebar_aspect_ratio_menu_separator");
+
     //cardset colors
     $cardset_markdeep_background: map-get($map, "cardset_markdeep_background");
     $cardset_markdeep_header_border: map-get($map, "cardset_markdeep_header_border");
@@ -1096,12 +1112,12 @@ $themes: (
       }
     }
 
-    .presentationBtn {
+    .presentationBtn, .setCardAspectRatio {
       background-color: $cardset_footer_navigation_presentation_background !important;
       color: $cardset_footer_navigation_presentation_text !important;
     }
 
-    .presentationBtn:hover, .presentationBtn:focus {
+    .presentationBtn:hover, .presentationBtn:focus, .setCardAspectRatio:hover, .setCardAspectRatio:focus {
       background-color: $cardset_footer_navigation_presentation_background_hover !important;
       color: $cardset_footer_navigation_presentation_text_hover !important;
     }
@@ -2824,6 +2840,16 @@ $themes: (
       border-color: $card_sidebar_border !important;
       background-color: $card_sidebar_background !important;
 
+      .aspect-ratio-button {
+        background-color: $card_sidebar_aspect_ratio_background !important;
+        color:$card_sidebar_aspect_ratio_text !important;
+      }
+
+      .aspect-ratio-button:hover {
+        background-color:$card_sidebar_aspect_ratio_background_hover !important;
+        color: $card_sidebar_aspect_ratio_text_hover !important;
+      }
+
       .editCard {
         background-color: $card_sidebar_edit_button_background !important;
         color: $card_sidebar_edit_button_text !important;
@@ -3167,7 +3193,30 @@ $themes: (
     #wordcloud-hover-box {
       background-color: $wordcloud_hover_box_background;
       border-color: $wordcloud_hover_box_border;
+    }
 
+    .aspect-ratio-menu {
+      background-color: $card_sidebar_aspect_ratio_menu_background !important;
+      border-color: $card_sidebar_aspect_ratio_menu_separator !important;
+    }
+    .aspect-ratio-dropdown-button {
+      background-color: $card_sidebar_aspect_ratio_dropdown_background !important;
+      color:$card_sidebar_aspect_ratio_dropdown_text !important;
+      border-color: $card_sidebar_aspect_ratio_dropdown_border !important;
+    }
+
+    .aspect-ratio-dropdown-button:hover {
+      background-color:$card_sidebar_aspect_ratio_dropdown_background_hover !important;
+      color: $card_sidebar_aspect_ratio_dropdown_text_hover !important;
+    }
+    .aspect-ratio-dropdown-button.active {
+      background-color: $card_sidebar_aspect_ratio_dropdown_background_active !important;
+      color:$card_sidebar_aspect_ratio_dropdown_text_active !important;
+    }
+
+    .aspect-ratio-dropdown-button.active:hover {
+      background-color:$card_sidebar_aspect_ratio_dropdown_background_active_hover !important;
+      color: $card_sidebar_aspect_ratio_dropdown_text_active_hover !important;
     }
   }
 }

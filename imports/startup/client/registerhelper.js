@@ -20,6 +20,7 @@ import {isNewCardset} from "../../ui/forms/cardsetForm";
 import {ServerStyle} from "../../api/styles.js";
 import {ServerInventoryTools} from "../../api/serverInventoryTools.js";
 import {CardVisuals} from "../../api/cardVisuals";
+import {AspectRatio} from "../../api/aspectRatio";
 
 Meteor.subscribe("collegesCourses");
 
@@ -64,6 +65,10 @@ Template.registerHelper('isInBonus', function () {
 
 Template.registerHelper('isImpressum', function () {
 	return Route.isImpressum();
+});
+
+Template.registerHelper('gotAspectRatio', function () {
+	return AspectRatio.isEnabled() && CardVisuals.isFullscreen();
 });
 
 Template.registerHelper('isInBonusAndNotOwner', function () {
@@ -140,10 +145,10 @@ Template.registerHelper("getNextCardTime", function () {
 	} else {
 		nextDate = moment(nextCardDate).locale("de");
 	}
-	if (nextDate.get('hour') >= Meteor.settings.public.leitner.dailyCronjob.executeAtHour) {
+	if (nextDate.get('hour') >= Meteor.settings.public.dailyCronjob.executeAtHour) {
 		nextDate.add(1, 'day');
 	}
-	nextDate.hour(Meteor.settings.public.leitner.dailyCronjob.executeAtHour);
+	nextDate.hour(Meteor.settings.public.dailyCronjob.executeAtHour);
 	nextDate.minute(0);
 	return TAPi18n.__('noCardsToLearn') + nextDate.format("D. MMMM") + TAPi18n.__('at') + nextDate.format("HH:mm") + TAPi18n.__('released');
 });

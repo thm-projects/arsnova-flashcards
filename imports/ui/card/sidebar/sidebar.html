@@ -25,7 +25,7 @@
         </div>
     {{/unless}}
 
-    {{#if isPresentation}}
+    {{#if gotAspectRatio}}
         <div id="flashcardSidebarBottomLeft" class="hidden-xs {{#if isFixedSidebar}}fixed{{/if}}">
             {{> cardSidebarItemHideSidebar}}
         </div>
@@ -107,6 +107,7 @@
     </span>
     {{> cardSidebarItemEndPresentation}}
     {{> cardSidebarItemZoomText}}
+    {{> cardSidebarItemAspectRatio}}
     {{> cardSidebarItemHelp}}
 </template>
 
@@ -133,6 +134,7 @@
     {{/if}}
     {{> cardSidebarItemToggleFullscreen}}
     {{> cardSidebarItemZoomText}}
+    {{> cardSidebarItemAspectRatio}}
     {{> cardSidebarItemHelp}}
 </template>
 
@@ -142,6 +144,7 @@
 <template name="flashcardSidebarEditorRight">
     {{> cardSidebarItemToggleFullscreen}}
     {{> cardSidebarItemZoomText}}
+    {{> cardSidebarItemAspectRatio}}
 </template>
 
 <template name="flashcardSidebarLeitnerLeft">
@@ -153,6 +156,7 @@
 <template name="flashcardSidebarLeitnerRight">
     {{> cardSidebarItemBackToCardset}}
     {{> cardSidebarItemZoomText}}
+    {{> cardSidebarItemAspectRatio}}
     {{> cardSidebarItemHelp}}
 </template>
 
@@ -165,5 +169,6 @@
 <template name="flashcardSidebarWozniakRight">
     {{> cardSidebarItemBackToCardset}}
     {{> cardSidebarItemZoomText}}
+    {{> cardSidebarItemAspectRatio}}
     {{> cardSidebarItemHelp}}
 </template>

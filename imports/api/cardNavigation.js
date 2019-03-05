@@ -22,6 +22,7 @@ export let CardNavigation = class CardNavigation {
 
 	static switchCardSide (contentId, navigationId, cardStyle) {
 		CardVisuals.toggleZoomContainer(true);
+		CardVisuals.toggleAspectRatioContainer(true);
 		CardVisuals.isTextCentered();
 		Session.set('dictionaryBeolingus', 0);
 		Session.set('dictionaryLinguee', 0);
@@ -310,6 +311,7 @@ export let CardNavigation = class CardNavigation {
 		let keyCodes = [];
 
 		CardVisuals.toggleZoomContainer(true);
+		CardVisuals.toggleAspectRatioContainer(true);
 		if (!$('.input-search').is(":focus") && !$('#lightbox').is(":visible") && !$('#cardSettingsModal').is(":visible") && keyEventsUnlocked) {
 			keyEventsUnlocked = false;
 			if (Route.isCardset() || Route.isBox() || Route.isMemo()) {
