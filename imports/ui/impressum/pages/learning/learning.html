@@ -1,0 +1,19 @@
+<template name="impressumLearning">
+    <div class="panel panel-default">
+        <div class="panel-heading info-tab">
+            {{#if isActiveLanguage 'de'}}
+                {{> impressumLearningHeadingDE}}
+            {{else}}
+                {{> impressumLearningHeadingEN}}
+            {{/if}}
+        </div>
+
+        <div class="panel-body info-tab">
+            {{#if isActiveLanguage 'de'}}
+                {{> impressumLearningContentDE}}
+            {{else}}
+                {{> impressumLearningContentEN}}
+            {{/if}}
+        </div>
+    </div>
+</template>
