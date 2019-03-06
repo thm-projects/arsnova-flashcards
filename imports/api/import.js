@@ -3,6 +3,7 @@ import {Cardsets} from "./cardsets.js";
 import {Cards} from "./cards.js";
 import {check} from "meteor/check";
 import {CardType} from "./cardTypes";
+import {ServerStyle} from "./styles";
 
 function importCards(data, cardset, importType) {
 	if (Meteor.isServer) {
@@ -242,16 +243,16 @@ Meteor.methods({
 				let cardGroups = [];
 				let totalQuantity = 0;
 				if (type === 'demo') {
-					demoPath = process.env.PWD + '/private/demo/';
+					demoPath = process.env.PWD + '/private/demo/' + ServerStyle.getClientLanguage() + "/";
 				} else {
-					demoPath = process.env.PWD + '/private/makingOf/';
+					demoPath = process.env.PWD + '/private/makingOf/' + ServerStyle.getClientLanguage() + "/";
 				}
 				let doesPathExist = fs.existsSync(demoPath);
 				if (!doesPathExist) {
 					if (type === 'demo') {
-						demoPath = process.env.PWD + '/programs/server/assets/app/demo/';
+						demoPath = process.env.PWD + '/programs/server/assets/app/demo/' + ServerStyle.getClientLanguage() + "/";
 					} else {
-						demoPath = process.env.PWD + '/programs/server/assets/app/makingOf/';
+						demoPath = process.env.PWD + '/programs/server/assets/app/makingOf/' + ServerStyle.getClientLanguage() + "/";
 					}
 					doesPathExist = fs.existsSync(demoPath);
 				}
