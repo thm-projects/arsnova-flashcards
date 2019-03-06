@@ -147,10 +147,14 @@ Template.main.helpers({
 	},
 	getMainContainer: function () {
 		if (AspectRatio.isEnabled()) {
-			if (Session.get('hideSidebar')) {
-				return "presentation-container-no-sidebar";
+			if (Route.isTableOfContent()) {
+				return "container";
 			} else {
-				return "presentation-container";
+				if (Session.get('hideSidebar')) {
+					return "presentation-container-no-sidebar";
+				} else {
+					return "presentation-container";
+				}
 			}
 		} else if (Route.isHome() && !Meteor.user()) {
 			return "";

@@ -60,7 +60,7 @@ export let CardVisuals = class CardVisuals {
 		let flashcardHeader = $('.cardHeader');
 		let flashcardBody = $('.cardContent');
 		//The number at the end is for the bottom margin of the card
-		let offsetBottom = 25;
+		let offsetBottom = 15;
 		let footerNavigation = $('#navbar-cards-footer');
 		if (footerNavigation.length) {
 			offsetBottom += footerNavigation.outerHeight() + 10;
