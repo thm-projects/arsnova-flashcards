@@ -1,5 +1,6 @@
 import {Session} from "meteor/session";
-import "./content/helpContent.js";
+import "./content/de/helpContent.js";
+import "./content/en/helpContent.js";
 import "./modal/helpModal.js";
 import "./help.html";
 
