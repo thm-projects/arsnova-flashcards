@@ -21,6 +21,7 @@ import {ServerStyle} from "../../api/styles.js";
 import {ServerInventoryTools} from "../../api/serverInventoryTools.js";
 import {CardVisuals} from "../../api/cardVisuals";
 import {AspectRatio} from "../../api/aspectRatio";
+import {CardNavigation} from "../../api/cardNavigation";
 
 Meteor.subscribe("collegesCourses");
 
@@ -32,6 +33,42 @@ Template.registerHelper('isRepetitorium', function () {
 			return Session.get('activeCardset').shuffled;
 		}
 	}
+});
+
+Template.registerHelper('isCardset', function () {
+	return Route.isCardset();
+});
+
+Template.registerHelper('isPresentation', function () {
+	return Route.isPresentation();
+});
+
+Template.registerHelper('isMakingOf', function () {
+	return Route.isMakingOf();
+});
+
+Template.registerHelper('isDemo', function () {
+	return Route.isDemo();
+});
+
+Template.registerHelper('isEditMode', function () {
+	return Route.isEditMode();
+});
+
+Template.registerHelper('isBox', function () {
+	return Route.isBox();
+});
+
+Template.registerHelper('isMemo', function () {
+	return Route.isMemo();
+});
+
+Template.registerHelper('isFixedSidebar', function () {
+	return CardVisuals.isFixedSidebar();
+});
+
+Template.registerHelper('isMobileView', function () {
+	return CardNavigation.isMobileView();
 });
 
 Template.registerHelper('isFirstTimeVisitNavigation', function () {

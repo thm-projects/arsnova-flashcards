@@ -84,8 +84,8 @@ $line_height_markdeep: 170%;
 $margin_bottom_card_navigation: 15px;
 $margin_top_card_navigation: 45px;
 $font_size_navigation_arrows: 15pt;
-$padding_card_content_horizontal: 50pt;
-$padding_card_content_vertical: 13pt;
+$padding_card_content_horizontal: 60px;
+$padding_card_content_vertical: 13px;
 $padding_card_conntent_horizontal_fullscreen_desktop: 100px;
 $font_size_card_header_small_text: 12px;
 $font_size_card_header_smaller_text: 10px;
@@ -108,7 +108,7 @@ $margin_top_card_navigation_mobile: 10px;
 $font_size_card_navigation_mobile: 12px;
 $padding_vertical_card_navigation_mobile: 5px;
 $padding_horizontal_card_navigation_mobile: 3px;
-$padding_card_content_horizontal_mobile: 45px;
+$padding_card_content_horizontal_mobile: 50px;
 $padding_card_content_vertical_mobile: 0px;
 $font_size_card_header_small_text_mobile: 9px;
 $font_size_card_header_smaller_text_mobile: 8px;
@@ -182,6 +182,7 @@ $sidebar_button_height_mobile: 30px;
 $sidebar_button_margin_mobile: 16px;
 $sidebar_yOffset_portrait_mobile: 60px;
 $sidebar_yOffset_landscape_mobile: 40px;
+$sidebar_subtracted_width_for_not_fixed_version: 5px;
 //For pages with an answer button row
 $sidebar_yOffset_workload_portrait_mobile: 40px;
 $sidebar_yOffset_workload_landscape_mobile: 20px;
@@ -241,23 +242,15 @@ body {
 }
 
 .presentation-container {
-  padding-left: $sidebar_width !important;
-  padding-right: $sidebar_width !important;
   @media(max-width: 767px) {
-    padding-left: $sidebar_width / 2 !important;
-    padding-right: $sidebar_width / 2 !important;
   }
 }
 
 .presentation-container-no-sidebar {
-  padding-left: $sidebar_width / 3 !important;
-  padding-right: $sidebar_width / 3 !important;
 }
 
 .demo-padding {
   @media(max-width: 767px) {
-    padding-left: $sidebar_width / 2 !important;
-    padding-right: $sidebar_width / 2 !important;
   }
 }
 

@@ -3,10 +3,10 @@
   float: left;
   z-index: 1001;
   padding: 5px;
-  width: $sidebar_width !important;
+  width: $sidebar_width - $sidebar_subtracted_width_for_not_fixed_version !important;
   @media(max-width: 1439px) and (pointer: coarse) {
     padding: 3px;
-    width: $sidebar_width_mobile !important;
+    width: $sidebar_width_mobile - $sidebar_subtracted_width_for_not_fixed_version !important;
     .showArsnovaClick, .showArsnovaApp, .showDeepLTranslation, .showBeolingusTranslation {
       padding-left: ($sidebar_width_mobile * 0.25) !important;
       padding-right: ($sidebar_width_mobile * 0.25) !important;
@@ -88,6 +88,10 @@
 
 #flashcardSidebarLeft.fixed, #flashcardSidebarRight.fixed, #flashcardSidebarBottomLeft.fixed {
   position: fixed;
+  width: $sidebar_width !important;
+  @media(max-width: 1439px) and (pointer: coarse) {
+    width: $sidebar_width_mobile !important;
+  }
 }
 
 #flashcardSidebarLeft > .card-button:first-child, #flashcardSidebarRight > .card-button:first-child, #flashcardSidebarBottomLeft > .card-button:first-child {
