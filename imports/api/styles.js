@@ -15,14 +15,31 @@ export let ServerStyle = class ServerStyle {
 	}
 
 	static getAppSlogan () {
-		return this.getConfig().welcome.title.slogan;
+		let config  = this.getConfig();
+		switch (config.language.client) {
+			case "de":
+				return this.getConfig().welcome.title.slogan_de;
+			case "en":
+				return this.getConfig().welcome.title.slogan_en;
+		}
 	}
 
 	static getAboutButton (isMobile = false) {
+		let config  = this.getConfig();
 		if (isMobile) {
-			return this.getConfig().welcome.button.about.mobile;
+			switch (config.language.client) {
+				case "de":
+					return this.getConfig().welcome.button.about.mobile_de;
+				case "en":
+					return this.getConfig().welcome.button.about.mobile_en;
+			}
 		} else {
-			return this.getConfig().welcome.button.about.default;
+			switch (config.language.client) {
+				case "de":
+					return this.getConfig().welcome.button.about.default_de;
+				case "en":
+					return this.getConfig().welcome.button.about.default_en;
+			}
 		}
 	}
 

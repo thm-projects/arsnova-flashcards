@@ -14,12 +14,15 @@ let defaultSettings = {
 		"title": {
 			"first": "informatik",
 			"last": "cards",
-			"slogan": "ORGANIZE. LEARN. MEMORIZE."
+			"slogan_de": "ORGANIZE. LEARN. MEMORIZE.",
+			"slogan_en": "ORGANIZE. LEARN. MEMORIZE."
 		},
 		"button": {
 			"about":  {
-				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
-				"mobile": "Erfahre mehr über 🍅cards…"
+				"default_de": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
+				"default_en": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
+				"mobile_de": "Erfahre mehr über 🍅cards…",
+				"mobile_en": "Erfahre mehr über 🍅cards…"
 			}
 		}
 	},
@@ -46,12 +49,15 @@ let debug = {
 		"title": {
 			"first": "debug",
 			"last": "cards",
-			"slogan": "ORGANIZE. LEARN. MEMORIZE."
+			"slogan_de": "ORGANIZE. LEARN. MEMORIZE.",
+			"slogan_en": "ORGANIZE. LEARN. MEMORIZE."
 		},
 		"button": {
 			"about":  {
-				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
-				"mobile": "Erfahre mehr über 🍅cards…"
+				"default_de": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
+				"default_en": "Learn more about 🍅cards in our interactive demo …",
+				"mobile_de": "Erfahre mehr über 🍅cards…",
+				"mobile_en": "Learn more about 🍅cards…"
 			}
 		}
 	},
@@ -78,12 +84,15 @@ let informatik = {
 		"title": {
 			"first": "informatik",
 			"last": "cards",
-			"slogan": "ORGANIZE. LEARN. MEMORIZE."
+			"slogan_de": "ORGANIZE. LEARN. MEMORIZE.",
+			"slogan_en": "ORGANIZE. LEARN. MEMORIZE."
 		},
 		"button": {
 			"about":  {
-				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
-				"mobile": "Erfahre mehr über 🍅cards…"
+				"default_de": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
+				"default_en": "Learn more about 🍅cards in our interactive demo …",
+				"mobile_de": "Erfahre mehr über 🍅cards…",
+				"mobile_en": "Learn more about 🍅cards…"
 			}
 		}
 	},
@@ -110,12 +119,15 @@ let linux = {
 		"title": {
 			"first": "Linux",
 			"last": "cards",
-			"slogan": "Lernen für die LPIC-Prüfungen"
+			"slogan_de": "Lernen für die LPIC-Prüfungen",
+			"slogan_en": "Learning for the LPIC exams"
 		},
 		"button": {
 			"about":  {
-				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
-				"mobile": "Erfahre mehr über 🍅cards…"
+				"default_de": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
+				"default_en": "Learn more about 🍅cards in our interactive demo …",
+				"mobile_de": "Erfahre mehr über 🍅cards…",
+				"mobile_en": "Learn more about 🍅cards…"
 			}
 		}
 	},
@@ -142,12 +154,15 @@ let review = {
 		"title": {
 			"first": "review",
 			"last": "cards",
-			"slogan": "ORGANIZE. LEARN. MEMORIZE."
+			"slogan_de": "ORGANIZE. LEARN. MEMORIZE.",
+			"slogan_en": "ORGANIZE. LEARN. MEMORIZE."
 		},
 		"button": {
 			"about":  {
-				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
-				"mobile": "Erfahre mehr über 🍅cards…"
+				"default_de": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
+				"default_en": "Learn more about 🍅cards in our interactive demo …",
+				"mobile_de": "Erfahre mehr über 🍅cards…",
+				"mobile_en": "Learn more about 🍅cards…"
 			}
 		}
 	},
@@ -174,12 +189,15 @@ let staging = {
 		"title": {
 			"first": "staging",
 			"last": "cards",
-			"slogan": "ORGANIZE. LEARN. MEMORIZE."
+			"slogan_de": "ORGANIZE. LEARN. MEMORIZE.",
+			"slogan_en": "ORGANIZE. LEARN. MEMORIZE."
 		},
 		"button": {
 			"about":  {
-				"default": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
-				"mobile": "Erfahre mehr über 🍅cards…"
+				"default_de": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
+				"default_en": "Learn more about 🍅cards in our interactive demo …",
+				"mobile_de": "Erfahre mehr über 🍅cards…",
+				"mobile_en": "Learn more about 🍅cards…"
 			}
 		}
 	},
