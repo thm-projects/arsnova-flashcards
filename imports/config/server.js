@@ -23,6 +23,10 @@ let defaultSettings = {
 			}
 		}
 	},
+	"language": {
+		"server": "de",
+		"client": "de"
+	},
 	"backgrounds": "default"
 };
 
@@ -50,6 +54,10 @@ let debug = {
 				"mobile": "Erfahre mehr über 🍅cards…"
 			}
 		}
+	},
+	"language": {
+		"server": "de",
+		"client": "de"
 	},
 	"backgrounds": "default"
 };
@@ -79,6 +87,10 @@ let informatik = {
 			}
 		}
 	},
+	"language": {
+		"server": "de",
+		"client": "de"
+	},
 	"backgrounds": "default"
 };
 
@@ -106,6 +118,10 @@ let linux = {
 				"mobile": "Erfahre mehr über 🍅cards…"
 			}
 		}
+	},
+	"language": {
+		"server": "de",
+		"client": "de"
 	},
 	"backgrounds": "linux"
 };
@@ -135,6 +151,10 @@ let review = {
 			}
 		}
 	},
+	"language": {
+		"server": "de",
+		"client": "de"
+	},
 	"backgrounds": "default"
 };
 
@@ -162,6 +182,10 @@ let staging = {
 				"mobile": "Erfahre mehr über 🍅cards…"
 			}
 		}
+	},
+	"language": {
+		"server": "de",
+		"client": "de"
 	},
 	"backgrounds": "default"
 };

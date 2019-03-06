@@ -78,9 +78,9 @@ Template.cardsetNavigationLearning.onRendered(function () {
 					}
 					let nextDate;
 					if (nextCardDate.getTime() < new Date().getTime()) {
-						nextDate = moment(new Date()).locale("de");
+						nextDate = moment(new Date()).locale(Session.get('activeLanguage'));
 					} else {
-						nextDate = moment(nextCardDate).locale("de");
+						nextDate = moment(nextCardDate).locale(Session.get('activeLanguage'));
 					}
 					if (nextDate.get('hour') >= Meteor.settings.public.dailyCronjob.executeAtHour) {
 						nextDate.add(1, 'day');

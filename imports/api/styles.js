@@ -84,6 +84,7 @@ export let ServerStyle = class ServerStyle {
 			return "url('" + backgroundSring + "')";
 		}
 	}
+
 	static isLoginEnabled (loginType) {
 		let settings = this.getConfig();
 		switch (loginType) {
@@ -104,5 +105,13 @@ export let ServerStyle = class ServerStyle {
 			case "backdoor":
 				return Meteor.settings.public.backdoorEnabled;
 		}
+	}
+
+	static getClientLanguage () {
+		return this.getConfig().language.client;
+	}
+
+	static getServerLanguage () {
+		return this.getConfig().language.server;
 	}
 };

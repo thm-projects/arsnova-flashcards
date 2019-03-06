@@ -3,10 +3,11 @@ import {Notifications} from "./notifications.js";
 import {Leitner} from "../imports/api/learned.js";
 import {AdminSettings} from "../imports/api/adminSettings.js";
 import {Cardsets} from "../imports/api/cardsets.js";
+import {ServerStyle} from "../imports/api/styles";
 
 function getDateString(date) {
 	let dateFormat = "dddd";
-	return moment(date).locale(Meteor.settings.mail.language).format(dateFormat);
+	return moment(date).locale(ServerStyle.getServerLanguage()).format(dateFormat);
 }
 
 /**
@@ -50,7 +51,7 @@ export class WebNotifier {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			let notifier = new Notifications();
-			let message = TAPi18n.__('webPushNotifications.content', {cardsetName: cardset.name, cardCount: notifier.getActiveCardsCount(cardset._id, user_id, testUser), deadline: this.getDeadline(cardset, user_id, testUser)}, Meteor.settings.mail.language);
+			let message = TAPi18n.__('webPushNotifications.content', {cardsetName: cardset.name, cardCount: notifier.getActiveCardsCount(cardset._id, user_id, testUser), deadline: this.getDeadline(cardset, user_id, testUser)}, ServerStyle.getServerLanguage());
 			Meteor.call("sendPushNotificationsToUser", user_id, message);
 		}
 	}
