@@ -12,12 +12,20 @@
                 <div class="modal-body">
                     {{#if isActiveRoute regex='presentation|demo|making'}}
                         {{#if isActiveRoute regex='presentationlist|demolist|makinglist'}}
-                            {{> helpContent}}
+                            {{#if isActiveLanguage 'de'}}
+                                {{> helpContentDE}}
+                            {{else}}
+                                {{> helpContentEN}}
+                            {{/if}}
                         {{else}}
                             <h4 id="presentationHelp" class="modal-title">{{_ "presentation.help.title"}}
                             </h4>
                             {{#markdeep}}
-                                {{> helpContentCategoryPresentation}}
+                                {{#if isActiveLanguage 'de'}}
+                                        {{> helpContentDECategoryPresentation}}
+                                {{else}}
+                                        {{> helpContentENCategoryPresentation}}
+                                {{/if}}
                             {{/markdeep}}
                             <button class="btn btn-raised btn-success btn-block"
                                     id="presentationHelpConfirm">{{_ "presentation.help.button.confirm"}}</button>
@@ -27,7 +35,11 @@
                             <h4 id="leitnerHelp" class="modal-title">{{_ "leitner.help.title"}}
                             </h4>
                             {{#markdeep}}
-                                {{> helpContentCategoryLeitner}}
+                                {{#if isActiveLanguage 'de'}}
+                                    {{> helpContentDECategoryLeitner}}
+                                {{else}}
+                                    {{> helpContentENCategoryLeitner}}
+                                {{/if}}
                             {{/markdeep}}
                             <button class="btn btn-raised btn-success btn-block"
                                     id="leitnerHelpConfirm">{{_ "leitner.help.button.confirm"}}</button>
@@ -36,13 +48,21 @@
                                 <h4 id="wozniakHelp" class="modal-title">{{_ "wozniak.help.title"}}
                                 </h4>
                                 {{#markdeep}}
-                                    {{> helpContentCategoryWozniak}}
+                                    {{#if isActiveLanguage 'de'}}
+                                        {{> helpContentDECategoryWozniak}}
+                                    {{else}}
+                                        {{> helpContentENCategoryWozniak}}
+                                    {{/if}}
                                 {{/markdeep}}
                                 <button class="btn btn-raised btn-success btn-block"
                                         id="wozniakHelpConfirm">{{_ "wozniak.help.button.confirm"}}</button>
                             {{else}}
                                 {{#markdeep}}
-                                    {{> helpContent}}
+                                    {{#if isActiveLanguage 'de'}}
+                                        {{> helpContentDE}}
+                                    {{else}}
+                                        {{> helpContentEN}}
+                                    {{/if}}
                                 {{/markdeep}}
                             {{/if}}
                         {{/if}}

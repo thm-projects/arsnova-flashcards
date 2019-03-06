@@ -10,7 +10,11 @@
                 </button>
             {{/if}}
             {{#markdeep}}
-                {{> helpContent}}
+                {{#if isActiveLanguage 'de'}}
+                    {{> helpContentDE}}
+                {{else}}
+                    {{> helpContentEN}}
+                {{/if}}
             {{/markdeep}}
         </div>
     </div>

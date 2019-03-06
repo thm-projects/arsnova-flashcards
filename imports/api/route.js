@@ -13,8 +13,13 @@ export let Route = class Route {
 	 * @return {Boolean} Return true, when route is a Cardset.
 	 */
 	static isCardset () {
-		return Router.current().route.getName() === 'cardsetlistid' || Router.current().route.getName() === 'cardsetdetailsid' || Router.current().route.getName() === "cardsetcard" || Router.current().route.getName() === 'admin_cardset';
+		return (this.isCardsetList() || Router.current().route.getName() === 'cardsetdetailsid' || Router.current().route.getName() === "cardsetcard" || Router.current().route.getName() === 'admin_cardset');
 	}
+
+	static isCardsetList () {
+		return Router.current().route.getName() === 'cardsetlistid';
+	}
+
 	/**
 	 * Function checks if route is a card edit Mode
 	 * @return {Boolean} Return true, when route is new Card or edit Card.
@@ -36,15 +41,27 @@ export let Route = class Route {
 	}
 
 	static isDemo () {
-		return Router.current().route.getName() === "demo" || Router.current().route.getName() === "demolist";
+		return Router.current().route.getName() === "demo" || this.isDemoList();
+	}
+
+	static isDemoList () {
+		return Router.current().route.getName() === "demolist";
 	}
 
 	static isMakingOf () {
-		return Router.current().route.getName() === "making" || Router.current().route.getName() === "makinglist";
+		return Router.current().route.getName() === "making" || this.isMakingOfList();
+	}
+
+	static isMakingOfList () {
+		return Router.current().route.getName() === "makinglist";
 	}
 
 	static isBackend () {
 		return Router.current().route.getName().substring(0, 5) === "admin";
+	}
+
+	static isTableOfContent () {
+		return (this.isPresentationList() || this.isCardsetList() || this.isDemoList() | this.isMakingOfList()) ;
 	}
 
 	/**
@@ -52,7 +69,11 @@ export let Route = class Route {
 	 * @return {Boolean} Return true, when route is a presentation view.
 	 */
 	static isPresentation () {
-		return (Router.current().route.getName() === "presentation" || Router.current().route.getName() === "presentationlist");
+		return (Router.current().route.getName() === "presentation" || this.isPresentationList());
+	}
+
+	static isPresentationList () {
+		return Router.current().route.getName() === "presentationlist";
 	}
 
 	static isPresentationOrDemo () {

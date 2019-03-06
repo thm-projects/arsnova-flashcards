@@ -901,43 +901,6 @@ Router.route('/admin/settings', {
 	}
 });
 
-var isSignedIn = function () {
-	CardVisuals.checkFullscreen();
-	if (!(Meteor.user() || Meteor.loggingIn())) {
-		if (Session.get('activeLanguage') === undefined) {
-			let language = "de";
-			Session.set('activeLanguage', language);
-			TAPi18n.setLanguage(language);
-		}
-		Session.set('theme', "default");
-		if (MainNavigation.getLoginTarget() === undefined) {
-			if (linksWithNoLoginRequirement.includes(Router.current().route.getName())) {
-				MainNavigation.setLoginTarget(false);
-			} else {
-				MainNavigation.setLoginTarget(Router.current().url);
-			}
-		}
-		Router.go('home');
-	} else {
-		Route.setFirstTimeVisit();
-		let language;
-		if (Meteor.user() !== undefined) {
-			language = Meteor.user().profile.locale;
-		} else {
-			language = "de";
-		}
-		TAPi18n.setLanguage(language);
-		Session.set('activeLanguage', language);
-		if (Roles.userIsInRole(Meteor.userId(), ['firstLogin'])) {
-			Router.go('firstLogin');
-		}
-		if (Roles.userIsInRole(Meteor.userId(), ['blocked'])) {
-			Router.go('accessDenied');
-		}
-		this.next();
-	}
-};
-
 export function firstLoginBertAlert() {
 	Meteor.subscribe("userData", {
 		onReady: function () {
@@ -961,20 +924,15 @@ export function firstLoginBertAlert() {
 	});
 }
 
-var goToCreated = function () {
-	if (Meteor.user()) {
-		if (!Roles.userIsInRole(Meteor.userId(), ['firstLogin', 'blocked'])) {
-			firstLoginBertAlert();
-		}
-		if (!Roles.userIsInRole(Meteor.userId(), ['firstLogin', 'blocked']) && MainNavigation.getLoginTarget() !== undefined && MainNavigation.getLoginTarget() !== false && MainNavigation.getLoginTarget() !== "/") {
-			Router.go(MainNavigation.getLoginTarget());
-			MainNavigation.setLoginTarget(false);
-		} else {
-			LoginTasks.setLoginRedirect();
-		}
-	} else {
-		this.next();
-	}
+/**
+ * onBeforeAction
+ */
+
+var setLanguage = function () {
+	let language = ServerStyle.getClientLanguage();
+	Session.set('activeLanguage', language);
+	TAPi18n.setLanguage(language);
+	this.next();
 };
 
 var setBackground = function () {
@@ -1007,6 +965,48 @@ var setBackground = function () {
 	}
 	this.next();
 };
+
+var isSignedIn = function () {
+	CardVisuals.checkFullscreen();
+	if (!(Meteor.user() || Meteor.loggingIn())) {
+		Session.set('theme', "default");
+		if (MainNavigation.getLoginTarget() === undefined) {
+			if (linksWithNoLoginRequirement.includes(Router.current().route.getName())) {
+				MainNavigation.setLoginTarget(false);
+			} else {
+				MainNavigation.setLoginTarget(Router.current().url);
+			}
+		}
+		Router.go('home');
+	} else {
+		Route.setFirstTimeVisit();
+		if (Roles.userIsInRole(Meteor.userId(), ['firstLogin'])) {
+			Router.go('firstLogin');
+		}
+		if (Roles.userIsInRole(Meteor.userId(), ['blocked'])) {
+			Router.go('accessDenied');
+		}
+		this.next();
+	}
+};
+
+var goToCreated = function () {
+	if (Meteor.user()) {
+		if (!Roles.userIsInRole(Meteor.userId(), ['firstLogin', 'blocked'])) {
+			firstLoginBertAlert();
+		}
+		if (!Roles.userIsInRole(Meteor.userId(), ['firstLogin', 'blocked']) && MainNavigation.getLoginTarget() !== undefined && MainNavigation.getLoginTarget() !== false && MainNavigation.getLoginTarget() !== "/") {
+			Router.go(MainNavigation.getLoginTarget());
+			MainNavigation.setLoginTarget(false);
+		} else {
+			LoginTasks.setLoginRedirect();
+		}
+	} else {
+		this.next();
+	}
+};
+
+Router.onBeforeAction(setLanguage);
 
 Router.onBeforeAction(setBackground);
 
