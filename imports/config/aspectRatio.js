@@ -25,7 +25,7 @@ let defaultAspectRatioTablet = ['fill', 'fill', 'fill', 'fill', 'fill'];
 //2: Leitner
 //3: Wozniak
 //4: Editor-Fullscreen
-let scaleCardNavigationWidth = [1, 2, 3, 4];
+let scaleCardNavigationWidth = [0, 1, 2, 3, 4];
 
 module.exports = {
 	aspectRatioEnabled,
