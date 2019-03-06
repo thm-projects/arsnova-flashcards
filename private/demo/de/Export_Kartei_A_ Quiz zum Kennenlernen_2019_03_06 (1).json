@@ -2,7 +2,7 @@
   "name": "A: Quiz zum Kennenlernen",
   "description": "Die Quizfragen sind Teil der Demo-Kartei auf der 🍅cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2019-03-06T07:08:26.330Z",
+  "dateUpdated": "2019-03-06T13:18:56.743Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": true,
@@ -324,7 +324,7 @@
 }, {
   "subject": "10. Technik: optimiert für unterwegs",
   "front": "\n![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Leitner-Karte.png width=130px)\n\n(##) 🍅cards ist eine <q>Mobile-first</q>-App. \n\n(##) Und was heißt das nun wieder?",
-  "back": "\n![ ](https://arsnova-uploads.mni.thm.de/Demo-Kartei/iPhone%20X%20Startseite.png width=100px) \n🍅cards wurde für das Unterwegs-Lernen entworfen: Die App wird zum Lernen überwiegend auf dem Smartphone genutzt. Das setzt hohe Anforderungen an die <q>Usability</q> und <q>User Ex&shy;pe&shy;ri&shy;ence</q> des Designs, zum Beispiel:\n\n* Funktional entschlacktes Design mit wenigen Entscheidungen pro Ansicht\n* Ein-Daumen-Bedienung im Lernmodus \n* Vollbildansicht im Smartphone-Browser\n* Akku-schonendes dunkles Design\n* Smartphone-Vorschau beim Editieren einer Karte ",
+  "back": "\n![ ](https://arsnova-uploads.mni.thm.de/Demo-Kartei/iPhone%20X%20Startseite.png width=100px) \n🍅cards wurde für das Unterwegs-Lernen entworfen: Die App wird zum Lernen überwiegend auf dem Smartphone genutzt. Das setzt hohe Anforderungen an die <q>Usability</q> und <q>User Ex&shy;pe&shy;ri&shy;ence</q> des Designs, zum Beispiel:\n\n* Ein-Daumen-Bedienung \n* Funktional entschlacktes Design\n+ Wenige Interaktionen des Users pro Ansicht\n* Vollbild im Smartphone-Browser\n* Textskalierung\n* Akku-schonender dunkler Hintergrund\n* Smartphone-Vorschau beim Erstellen der Karten ",
   "centerTextElement": [
     true,
     true,
@@ -346,7 +346,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-03-06T06:59:34.378Z",
+  "dateUpdated": "2019-03-06T08:48:09.488Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -355,7 +355,7 @@
 }, {
   "subject": "11. Technik: optimiert für den Beamer",
   "front": "![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Beamer.png width=200)\n\n(##) Heißt das, ich kann damit auch Vorträge halten?",
-  "back": "**Absolut.**\n\nWir nutzen die <q>Fullscreen</q>-Ansicht deines Browsers, um Karten ablenkungsfrei anzuzeigen. Schau dir die Hinweise zu den Rand-Buttons an. Du findest sie hinter dem Fragezeichen rechts außen.\n\nBeim Vortragen muss du keineswegs mit der Maus arbeiten: Mit der <kbd>Leertaste</kbd> navigierst du bequem zur nächsten Kartenseite und danach zur nächsten Karte.\n\nMit unserer an Hochschulen weitverbreiteten Quiz-App [ARSnova](https://arsnova.eu/blog) kannst du auf jeder Karte dein Publikum befragen, ohne dabei 🍅cards zu verlassen. Der Projektleiter setzt ARSnova und 🍅cards in seinen Vorlesungen ein. Auch Studierende nutzen beide Apps für ihre Präsentationen im Hauptseminar und Bachelor-Kolloquium.",
+  "back": "**Absolut.**\n\nWir nutzen die <q>Fullscreen</q>-Ansicht deines Browsers, um Karten ablenkungsfrei anzuzeigen. Schau dir die Hinweise zu den Rand-Buttons an. Du findest sie hinter dem Fragezeichen rechts außen.\nBeim Vortragen muss du keineswegs mit der Maus arbeiten: Mit der <kbd>Leertaste</kbd> navigierst du bequem zur nächsten Kartenseite und danach zur nächsten Karte.\n\n![Rand-Buttons und arsnova.click](https://arsnova-uploads.mni.thm.de/Demo-Kartei/ARSnova.png width=60%)\n\nMit unserer an deutschen und österreichischen Hochschulen weitverbreiteten Quiz-App [ARSnova](https://arsnova.eu/blog) kannst du auf jeder Karte dein Publikum befragen, ohne dabei 🍅cards zu verlassen. Der Projektleiter setzt [arsnova.click](https://arsnova.click) und 🍅cards in seinen Vorlesungen ein. Auch Studierende nutzen beide Apps für ihre Präsentationen im Hauptseminar und Bachelor-Kolloquium.",
   "centerTextElement": [
     true,
     true,
@@ -377,7 +377,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-03-05T10:18:19.157Z",
+  "dateUpdated": "2019-03-06T13:18:56.729Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
