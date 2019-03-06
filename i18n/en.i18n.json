@@ -26,6 +26,11 @@
       "waitingForResponse": "Warte auf Server-Rückmeldung"
     }
   },
+  "cookieconsent": {
+    "message": "We will save you long explanations why  »__firstAppTitle__🍅__lastAppTitle__« uses cookies. Among other things, this notice would appear every time you visit. All legal notices can be found on the",
+    "dismiss": "Of course, I accept that.",
+    "link": "Privacy page."
+  },
   "intro": {
     "about": "Was ist 🍅__lastAppTitle__?",
     "impressum": "Impressum",

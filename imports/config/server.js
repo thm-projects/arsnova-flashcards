@@ -62,8 +62,8 @@ let debug = {
 		}
 	},
 	"language": {
-		"server": "de",
-		"client": "de"
+		"server": "en",
+		"client": "en"
 	},
 	"backgrounds": "default"
 };
@@ -202,8 +202,8 @@ let staging = {
 		}
 	},
 	"language": {
-		"server": "de",
-		"client": "de"
+		"server": "en",
+		"client": "en"
 	},
 	"backgrounds": "default"
 };
