@@ -5,6 +5,7 @@ import "../imports/startup/client/registerhelper.js";
 import "../imports/startup/client/registerServiceWorker";
 import "../imports/startup/client/routes.js";
 import "../imports/ui/main/main.js";
+import {Session} from "meteor/session";
 import {ServerStyle} from "../imports/api/styles.js";
 
 window.addEventListener("load", function () {
@@ -23,12 +24,9 @@ window.addEventListener("load", function () {
 		"position": "bottom-right",
 
 		"content": {
-			"message": "Wir ersparen dir lange Erklärungen, warum »" +
-				ServerStyle.getFirstAppTitle() + "🍅" + ServerStyle.getLastAppTitle() +
-				"« Cookies verwendet. Unter anderem würde dieser Hinweis bei jedem Besuch erscheinen." +
-				" Alle rechtlichen Hinweise findest du auf der",
-			"dismiss": "Ist klar, ich akzeptiere das.",
-			"link": "Datenschutz-Seite.",
+			"message": TAPi18n.__('cookieconsent.message', {firstAppTitle: ServerStyle.getFirstAppTitle(), lastAppTitle: ServerStyle.getLastAppTitle()}, (Session.get('activeLanguage'))),
+			"dismiss": TAPi18n.__('cookieconsent.dismiss', {}, (Session.get('activeLanguage'))),
+			"link": TAPi18n.__('cookieconsent.link', {}, (Session.get('activeLanguage'))),
 			"href": "/datenschutz"
 		}
 	});
