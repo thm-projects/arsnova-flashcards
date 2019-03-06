@@ -11,10 +11,22 @@ import {Route} from "../../api/route";
 import {MainNavigation} from "../../api/mainNavigation";
 import {NavigatorCheck} from "../../api/navigatorCheck";
 import {FirstTimeVisit} from "../../api/firstTimeVisit";
+import {AspectRatio} from "../../api/aspectRatio";
 
 
 Session.set('animationPlaying', false);
 
+/*
+ * ############################################################################
+ * presentation
+ * ############################################################################
+ */
+
+Template.presentation.onCreated(function () {
+	if (Session.get('aspectRatioMode') === 0) {
+		Session.set('aspectRatioMode', AspectRatio.getDefault());
+	}
+});
 
 /*
  * ############################################################################
