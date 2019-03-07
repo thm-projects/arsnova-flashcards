@@ -58,6 +58,12 @@
       }
     }
   },
+  "wordcloud": {
+    "modal": {
+      "title": "Best in \uD83C\uDF45cards",
+      "button": "Schließen"
+    }
+  },
   "pomodoro": {
     "tooltip": "Pomodoro-Timer für dein Zeitmanagement – »Pomodoro« ist italienisch für \uD83C\uDF45",
     "name": "Pomodoro",

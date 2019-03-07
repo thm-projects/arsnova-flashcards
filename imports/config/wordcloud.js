@@ -1,6 +1,23 @@
 let wordcloudPomodoroSize = 0.6;
 let defaultToFilterWordcloudThreshold = 100;
 
+
+//type
+//0: Show once (local storage)
+//1: Show once per session
+//2: Show each time on wordcloud construction
+
+let displayHelpModalSettings = {
+	"landingPage": {
+		"active": true,
+		"type": 2
+	},
+	"filter": {
+		"active": true,
+		"type": 1
+	}
+};
+
 let wordcloudLandingPage = {
 	"clearCanvas": true,
 	"drawOutOfBound": false,
@@ -29,5 +46,6 @@ module.exports = {
 	wordcloudPomodoroSize,
 	defaultToFilterWordcloudThreshold,
 	wordcloudLandingPage,
-	wordcloudDefault
+	wordcloudDefault,
+	displayHelpModalSettings
 };

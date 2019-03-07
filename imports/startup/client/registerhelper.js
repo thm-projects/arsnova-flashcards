@@ -395,6 +395,10 @@ Template.registerHelper("isLecturerOrPro", function () {
 	}
 });
 
+Template.registerHelper("getNavigationIcon", function (type) {
+	return Icons.getNavigationIcon(type);
+});
+
 Template.registerHelper("canCreateContent", function () {
 	return UserPermissions.canCreateContent();
 });

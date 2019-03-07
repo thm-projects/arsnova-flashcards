@@ -25,4 +25,11 @@ export let Icons = class Icons {
 				return config.useCasesIcons.myCardsets;
 		}
 	}
+
+	static getNavigationIcon (type) {
+		switch (type) {
+			case "wordcloud":
+				return config.landingPageNavigation.wordcloud;
+		}
+	}
 };

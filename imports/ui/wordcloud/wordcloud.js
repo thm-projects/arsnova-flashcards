@@ -1,15 +1,27 @@
 import {WordcloudCanvas} from "../../api/wordcloudCanvas";
-import "./wordcloud.html";
 import ResizeSensor from "../../../client/thirdParty/resizeSensor/ResizeSensor";
 import {Cardsets} from "../../api/cardsets.js";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
+import "./help/help.js";
+import "./wordcloud.html";
+import {NavigatorCheck} from "../../api/navigatorCheck";
+import {Route} from "../../api/route";
 
 /*
  * ############################################################################
  * wordcloud
  * ############################################################################
  */
+
+Template.wordcloud.helpers({
+	displayHelpModal: function () {
+		if (!NavigatorCheck.isSmartphone()) {
+			return !(Route.isHome() && Session.get('isLandingPagePomodoroActive'));
+		}
+		return false;
+	}
+});
 
 Template.wordcloud.onRendered(function () {
 	WordcloudCanvas.draw();
@@ -20,6 +32,8 @@ Template.wordcloud.onRendered(function () {
 		WordcloudCanvas.draw();
 	});
 });
+
+
 
 /*
  * ############################################################################
