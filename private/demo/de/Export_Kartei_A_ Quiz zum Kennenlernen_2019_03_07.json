@@ -2,7 +2,7 @@
   "name": "A: Quiz zum Kennenlernen",
   "description": "Die Quizfragen sind Teil der Demo-Kartei auf der 🍅cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2019-03-06T13:18:56.743Z",
+  "dateUpdated": "2019-03-07T05:57:31.051Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": true,
@@ -262,7 +262,7 @@
 }, {
   "subject": "08.Technik: optimiert für jedes Display",
   "front": "![](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/480px-HTML5_logo_and_wordmark.svg.png width=100px)\n\n(##) 🍅cards ist eine <q>responsive</q> HTML5-App. \n\n(##) Was heißt das?",
-  "back": "![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Resizer.png)\n\n🍅cards ist eine [responsive](https://de.wikipedia.org/wiki/Responsive_Webdesign) [HTML5-App](https://de.wikipedia.org/wiki/HTML5), das heißt, sie wird nicht installiert, läuft in jedem modernen Browser -- auf deinem Smartphone, Tablet oder Laptop -- und passt sich der Bildschirmgröße des Endgeräts optisch und funktional an. \nEine Implementierung als Android- oder iOS-App ist wirtschaftlich nicht sinnvoll, da die zweispurige Wartung viel zu aufwändig wäre. Die Updates einer nativen App gelangen nur mit Verzögerung in die App Stores, während eine WebApp in wenigen Minuten auf dem Webserver aktualisiert werden kann. Im 🍅cards-Projekt setzen wir hierfür [Continuous Deployment Pipelines](https://git.thm.de/arsnova/cards/pipelines) ein. Dein Browser erfährt vom Server, wenn es ein Update gibt (<q>hot code push</q>), und lädt dieses automatisch.\n",
+  "back": "![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Resizer.png)\n\n🍅cards ist eine [responsive](https://de.wikipedia.org/wiki/Responsive_Webdesign) [HTML5-App](https://de.wikipedia.org/wiki/HTML5), das heißt, sie wird nicht installiert, läuft in jedem modernen Browser -- auf deinem Smartphone, Tablet oder Laptop -- und passt sich der Bildschirmgröße des Endgeräts optisch und funktional an. \n\nEine Implementierung als Android- und iOS-App ist wirtschaftlich nicht sinnvoll, da die zweispurige Wartung viel zu aufwändig wäre. Die Updates einer nativen App gelangen wegen des Abnahmeprozesses durch Apple und Google nur mit Verzögerung in die App Stores, während eine WebApp unbeschränkt und in wenigen Minuten auf dem Webserver aktualisiert werden kann. Im 🍅cards-Projekt setzen wir hierfür [Continuous Deployment Pipelines](https://git.thm.de/arsnova/cards/pipelines) ein. Dein Browser erfährt vom Server, wenn es ein Update gibt (<q>hot code push</q>), und lädt dieses automatisch.\n",
   "centerTextElement": [
     true,
     true,
@@ -282,7 +282,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-08-11T12:00:07.793Z",
-  "dateUpdated": "2019-03-05T17:01:00.466Z",
+  "dateUpdated": "2019-03-06T16:40:46.064Z",
   "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
@@ -292,7 +292,7 @@
   "learningUnit": "0"
 }, {
   "subject": "09. Technik: wie eine App",
-  "back": "Push-Nach&shy;richt | 🍅cards | App-Start | ohne Rahmen | App-Settings\n:-------------:|:-------:|:----------:|:----------:|:--------:\n![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Push-Nachricht.jpg width=105px) | ![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/PWA-Startbildschirm.jpg width=105px) | ![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/PWA-Splash-Screen.jpg width=105px) | ![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/PWA-cards.jpg width=105px) | ![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Settings.jpg width=105px)\n[Die PWA zeigt sich wie eine Android-App und wird wie eine solche verwaltet]\n\n🍅cards ist eine [Progressive Web App (PWA)](https://de.wikipedia.org/wiki/Progressive_Web_App), heißt, sie fühlt sich an wie eine native App aus dem Store: Du kannst sie aus dem Browser heraus dem **Homescreen** deines Smartphones hinzufügen (<q>Add-to-Homescreen</q>) und von dort wie eine installierte App aufrufen. Sie startet mit einem Ladebildschirm so schnell wie eine native App und zeigt sich ohne Browser-Rahmen.\n\nWenn du die Benach&shy;rich&shy;tigungs&shy;funk&shy;tion für 🍅&nbsp;cards zulässt, wirst du zuverlässig um 8.00 Uhr auf deinem Smartphone ans Lernen erinnert. Die Anzahl der Benachrichtigungen lässt sich am App-Icon anzeigen wie bei neuen Mails.\n\nEs gibt nur eine Einschränkung für die mobile Nutzung: Auf kleinen Displays ist die Erstellung von Karteien und Karten ergonomisch nicht sinnvoll, deswegen bieten wir sie auch gar nicht erst an. Auf deinem Smartphone stehen dir ausschließlich die Seiten <q>Karteien</q>, <q>Re&shy;pe&shy;ti&shy;to&shy;rien</q>, <q>Lernpensum</q> und <q>Meine Karteien</q> zur Verfügung. Das reicht auch vollkommen für das Unterwegs-Lernen in der Bahn, im Bus oder sonst wo -- neudeutsch: **Mobile Learning**.",
+  "back": "Push-Nach&shy;richt | 🍅cards | App-Start | ohne Rahmen | App-Settings\n:-------------:|:-------:|:----------:|:----------:|:--------:\n![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Push-Nachricht.jpg width=105px) | ![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/PWA-Startbildschirm.jpg width=105px) | ![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/PWA-Splash-Screen.jpg width=105px) | ![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/PWA-cards.jpg width=105px) | ![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Settings.jpg width=105px)\n[Die PWA zeigt sich wie eine Android-App und wird wie eine solche verwaltet]\n\n🍅cards ist eine [Progressive Web App (PWA)](https://de.wikipedia.org/wiki/Progressive_Web_App), heißt, sie fühlt sich an wie eine native App aus dem Store: Du kannst sie aus dem Browser heraus dem **Homescreen** deines Smartphones hinzufügen (<q>Add-to-Homescreen</q>) und von dort wie eine installierte App aufrufen. Sie startet mit einem Ladebildschirm so schnell wie eine native App und zeigt sich ohne Browser-Rahmen.\nWenn du die Benach&shy;rich&shy;tigungs&shy;funk&shy;tion für 🍅&nbsp;cards zulässt, wirst du zuverlässig um 8.00 Uhr auf deinem Smartphone ans Lernen erinnert. Die Anzahl der Benachrichtigungen lässt sich am App-Icon anzeigen wie bei neuen Mails.\n\nEs gibt nur eine Einschränkung für die mobile Nutzung: Auf kleinen Displays ist die Erstellung von Karteien und Karten ergonomisch nicht sinnvoll, deswegen bieten wir sie auch gar nicht erst an. Auf deinem Smartphone stehen dir ausschließlich die Seiten <q>Karteien</q>, <q>Re&shy;pe&shy;ti&shy;to&shy;rien</q>, <q>Lernpensum</q> und <q>Meine Karteien</q> zur Verfügung. Das reicht auch vollkommen für das Unterwegs-Lernen in der Bahn, im Bus oder sonst wo -- neudeutsch: **Mobile Learning**.",
   "centerTextElement": [
     true,
     true,
@@ -314,7 +314,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-03-06T06:48:46.369Z",
+  "dateUpdated": "2019-03-06T16:42:47.261Z",
   "front": "![](https://developers.google.com/web/tools/workbox/images/pwa.svg width=100px)\n\n(##) 🍅cards ist eine <q>Progressive Web App</q>. \n\n(##) Was heißt das jetzt?",
   "originalAuthorName": {
     "title": "Dr.",
@@ -324,7 +324,7 @@
 }, {
   "subject": "10. Technik: optimiert für unterwegs",
   "front": "\n![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Leitner-Karte.png width=130px)\n\n(##) 🍅cards ist eine <q>Mobile-first</q>-App. \n\n(##) Und was heißt das nun wieder?",
-  "back": "\n![ ](https://arsnova-uploads.mni.thm.de/Demo-Kartei/iPhone%20X%20Startseite.png width=100px) \n🍅cards wurde für das Unterwegs-Lernen entworfen: Die App wird zum Lernen überwiegend auf dem Smartphone genutzt. Das setzt hohe Anforderungen an die <q>Usability</q> und <q>User Ex&shy;pe&shy;ri&shy;ence</q> des Designs, zum Beispiel:\n\n* Ein-Daumen-Bedienung \n* Funktional entschlacktes Design\n+ Wenige Interaktionen des Users pro Ansicht\n* Vollbild im Smartphone-Browser\n* Textskalierung\n* Akku-schonender dunkler Hintergrund\n* Smartphone-Vorschau beim Erstellen der Karten ",
+  "back": "\n![Textskalierung](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Textskalierung.jpg width=130px) \n🍅cards wurde für das Unterwegs-Lernen entworfen: Die App wird zum Lernen überwiegend auf dem Smartphone genutzt. Das setzt besondere Anforderungen an die mobile <q>Usability</q> und <q>User Ex&shy;pe&shy;ri&shy;ence</q> des Designs, zum Beispiel:\n\n* Ein-Daumen-Bedienung \n* Funktional entschlacktes Design\n+ Wenige Interaktionen des Users\n* Vollbild im Smartphone-Browser\n* Textskalierung (siehe Screenshot)\n* Akku-schonender dunkler Hintergrund\n* Smartphone-Vorschau beim Erstellen der Karten ",
   "centerTextElement": [
     true,
     true,
@@ -346,7 +346,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-03-06T08:48:09.488Z",
+  "dateUpdated": "2019-03-07T05:43:23.975Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -355,7 +355,7 @@
 }, {
   "subject": "11. Technik: optimiert für den Beamer",
   "front": "![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Beamer.png width=200)\n\n(##) Heißt das, ich kann damit auch Vorträge halten?",
-  "back": "**Absolut.**\n\nWir nutzen die <q>Fullscreen</q>-Ansicht deines Browsers, um Karten ablenkungsfrei anzuzeigen. Schau dir die Hinweise zu den Rand-Buttons an. Du findest sie hinter dem Fragezeichen rechts außen.\nBeim Vortragen muss du keineswegs mit der Maus arbeiten: Mit der <kbd>Leertaste</kbd> navigierst du bequem zur nächsten Kartenseite und danach zur nächsten Karte.\n\n![Rand-Buttons und arsnova.click](https://arsnova-uploads.mni.thm.de/Demo-Kartei/ARSnova.png width=60%)\n\nMit unserer an deutschen und österreichischen Hochschulen weitverbreiteten Quiz-App [ARSnova](https://arsnova.eu/blog) kannst du auf jeder Karte dein Publikum befragen, ohne dabei 🍅cards zu verlassen. Der Projektleiter setzt [arsnova.click](https://arsnova.click) und 🍅cards in seinen Vorlesungen ein. Auch Studierende nutzen beide Apps für ihre Präsentationen im Hauptseminar und Bachelor-Kolloquium.",
+  "back": "**Absolut.**\n\nWir nutzen die <q>Fullscreen</q>-Ansicht deines Browsers, um Karten **ablenkungsfrei** anzuzeigen. Schau dir die Hinweise zu den Rand-Buttons an. Du findest sie hinter dem Fragezeichen rechts außen. Alle Rand-Buttons lassen sich mit dem blauen Button unten links ein- und ausklappen.\nIn deinem Beamer-Vortrag muss du keineswegs mit den Rand-Buttons arbeiten: Mit der <kbd>Leertaste</kbd> navigierst du bequem zur nächsten Kartenseite und danach zur nächsten Karte.\n\n![Rand-Buttons und arsnova.click](https://arsnova-uploads.mni.thm.de/Demo-Kartei/ARSnova.png width=70%)\n\nMit unserer an deutschen und österreichischen Hochschulen weitverbreiteten **Quiz-App** [ARSnova](https://arsnova.eu/blog) kannst du auf jeder Karte dein Publikum befragen, ohne dabei 🍅cards zu verlassen. Der Projektleiter setzt [arsnova.click](https://arsnova.click) und 🍅cards in seinen Vorlesungen ein. Auch Studierende nutzen beide Apps für ihre Präsentationen im Hauptseminar und Bachelor-Kolloquium.",
   "centerTextElement": [
     true,
     true,
@@ -377,7 +377,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-03-06T13:18:56.729Z",
+  "dateUpdated": "2019-03-07T05:57:31.037Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -408,7 +408,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-03-03T11:13:25.587Z",
+  "dateUpdated": "2019-03-07T05:52:27.458Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
