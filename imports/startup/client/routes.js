@@ -901,29 +901,6 @@ Router.route('/admin/settings', {
 	}
 });
 
-export function firstLoginBertAlert() {
-	Meteor.subscribe("userData", {
-		onReady: function () {
-			let firstTimeLogin = 'displayedFirstLoginBertAlert';
-			if (localStorage.getItem(firstTimeLogin) === "true") {
-				Bert.defaults.hideDelay = 10000;
-				Bert.alert({
-					title: TAPi18n.__('bertAlert.firstLogin.title', {
-						firstAppTitle: ServerStyle.getFirstAppTitle(),
-						lastAppTitle: ServerStyle.getLastAppTitle()
-					}),
-					message: TAPi18n.__('bertAlert.firstLogin.message', {lastAppTitle: ServerStyle.getLastAppTitle()}),
-					type: 'info',
-					style: 'growl-top-left',
-					icon: 'fa-remove'
-				});
-				Bert.defaults.hideDelay = 10000;
-				localStorage.setItem(firstTimeLogin, "false");
-			}
-		}
-	});
-}
-
 /**
  * onBeforeAction
  */
@@ -992,9 +969,6 @@ var isSignedIn = function () {
 
 var goToCreated = function () {
 	if (Meteor.user()) {
-		if (!Roles.userIsInRole(Meteor.userId(), ['firstLogin', 'blocked'])) {
-			firstLoginBertAlert();
-		}
 		if (!Roles.userIsInRole(Meteor.userId(), ['firstLogin', 'blocked']) && MainNavigation.getLoginTarget() !== undefined && MainNavigation.getLoginTarget() !== false && MainNavigation.getLoginTarget() !== "/") {
 			Router.go(MainNavigation.getLoginTarget());
 			MainNavigation.setLoginTarget(false);

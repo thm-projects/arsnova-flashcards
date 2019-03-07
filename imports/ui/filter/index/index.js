@@ -6,7 +6,6 @@ import {Cardsets} from "../../../api/cardsets.js";
 import {Filter} from "../../../api/filter";
 import {Route} from "../../../api/route";
 import {FilterNavigation} from "../../../api/filterNavigation";
-import {firstLoginBertAlert} from "../../../startup/client/routes";
 import {CardType} from "../../../api/cardTypes";
 import {Leitner, Wozniak} from "../../../api/learned";
 import {MainNavigation} from "../../../api/mainNavigation";
@@ -66,7 +65,6 @@ Template.filterIndexPool.events({
 });
 
 Template.filterIndexPool.onRendered(function () {
-	firstLoginBertAlert();
 	if (Session.get('useCaseType') === 3) {
 		MainNavigation.focusSearchBar();
 		Session.set('useCaseType', 0);
