@@ -12,6 +12,7 @@ import "./item/pool.js";
 import "./item/profile/profile.js";
 import "./item/repetitorium.js";
 import "./item/search.js";
+import "./item/useCases.js";
 import "./item/workload.js";
 import "./top.html";
 
@@ -20,6 +21,7 @@ Template.mainNavigationTop.events({
 		event.preventDefault();
 		Session.set('helpFilter', undefined);
 		MainNavigation.setLoginTarget(false);
+		Session.set('firedUseCaseModal', false);
 		Meteor.logout();
 	},
 	'click .toggleFooterNavigation': function (event) {

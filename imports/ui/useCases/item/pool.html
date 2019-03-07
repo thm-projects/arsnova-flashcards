@@ -1,0 +1,20 @@
+<template name="useCasesItemPool">
+    {{#if gotPool}}
+        <tr>
+            <td>
+                {{_ "useCases.modal.description.pool"}}
+                <div class="visible-xs">
+                    {{> useCasesItemPoolButton}}
+                </div>
+            </td>
+            <td class="hidden-xs">
+                {{> useCasesItemPoolButton}}
+            </td>
+        </tr>
+    {{/if}}
+</template>
+
+<template name="useCasesItemPoolButton">
+    <button class="btn btn-raised btn-success useCaseGoToPool" type="button" data-dismiss="modal"
+            aria-hidden="true">{{{getUseCasesIcon "search"}}}{{_ "useCases.modal.button.pool"}}</button>
+</template>

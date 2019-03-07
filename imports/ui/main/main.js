@@ -35,6 +35,7 @@ import "../card/editor/editor.js";
 import "./item/searchResult.js";
 import "./modal/item/closeIcon.js";
 import "./navigation/navigation.js";
+import "../useCases/useCases.js";
 import "./main.html";
 import "./modal/arsnovaClick.js";
 import "./modal/connectionStatus.js";

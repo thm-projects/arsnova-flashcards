@@ -1,5 +1,6 @@
 import {Session} from "meteor/session";
 import {Route} from "./route";
+import {NavigatorCheck} from "./navigatorCheck";
 
 let keyEventsUnlocked = true;
 let firstTimePresentation = 'isFirstTimePresentation';
@@ -16,6 +17,14 @@ export let MainNavigation = class MainNavigation {
 
 	static showHelp () {
 		$('#helpModal').modal('show');
+	}
+
+	static focusSearchBar () {
+		if (NavigatorCheck.isSmartphone()) {
+			$('.input-search').focus();
+		} else {
+			$('#toggle-search-dropdown').click();
+		}
 	}
 
 	static getFirstTimePresentationString () {

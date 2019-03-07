@@ -140,6 +140,10 @@ export let Route = class Route {
 		return Router.current().route.getName() === "pool";
 	}
 
+	static isFilterIndex () {
+		return (this.isHome() || this.isPool() || this.isMyCardsets() || this.isRepetitorium() || this.isAllCardsets() || this.isWorkload());
+	}
+
 	static isFirstTimeVisit () {
 		if (Route.isMakingOf()) {
 			return false;
@@ -247,6 +251,9 @@ export let Route = class Route {
 				return icons.footerNavigation.statistics + TAPi18n.__('contact.statistics');
 			case "statisticsMobile":
 				return icons.footerNavigation.statistics;
+			case "useCasesIcon":
+			case "useCases":
+				return icons.topNavigation.useCases;
 		}
 	}
 };

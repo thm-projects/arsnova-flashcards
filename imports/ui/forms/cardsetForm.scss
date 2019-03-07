@@ -19,7 +19,7 @@
   }
 }
 
-#setCardsetFormModal, #showSelectLearningUnitModal, #setLeitnerProgressCardsetFilter {
+#setCardsetFormModal, #showSelectLearningUnitModal, #setLeitnerProgressCardsetFilter, #useCasesModal .dropdown {
   ul > li {
     padding-top: $size_cardset_form_list_padding !important;
     padding-bottom: $size_cardset_form_list_padding !important;

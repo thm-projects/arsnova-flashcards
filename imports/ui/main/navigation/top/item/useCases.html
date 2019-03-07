@@ -1,0 +1,17 @@
+<template name="mainNavigationTopItemUseCasesDesktop">
+    <li class="hidden-xs">
+        {{> mainNavigationTopItemUseCases}}
+    </li>
+</template>
+
+<template name="mainNavigationTopItemUseCasesMobile">
+    <li>
+        {{> mainNavigationTopItemUseCases}}
+    </li>
+</template>
+
+<template name="mainNavigationTopItemUseCases">
+    <button type="button" class="btn useCase-Navigation-Button {{#if isUseCasesModalOpen}}active{{/if}}">
+        {{{getNavigationName "useCases"}}}
+    </button>
+</template>

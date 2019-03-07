@@ -2,6 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Leitner, Wozniak} from "./learned.js";
 import {Filter} from "./filter.js";
 import * as config from "../config/login.js";
+import {UserPermissions} from "./permissions";
 
 export let LoginTasks = class LoginTasks {
 
@@ -21,6 +22,14 @@ export let LoginTasks = class LoginTasks {
 	static gotOwnCardsets () {
 		if (Meteor.user().count !== undefined) {
 			return Meteor.user().count.cardsets;
+		}
+	}
+
+	static autoShowUseCasesForUser () {
+		if (UserPermissions.isAdmin()) {
+			return config.showUseCasesOnLoginForAdmin;
+		} else {
+			return true;
 		}
 	}
 
