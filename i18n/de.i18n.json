@@ -528,6 +528,28 @@
       }
     }
   },
+  "useCases": {
+    "modal": {
+      "title": "Use Cases",
+      "text": "Hallo __firstName__, was möchtest du tun?",
+      "noName": "Benutzer",
+      "description": {
+        "create": "Ich möchte eine Kartei mit Karten von einem bestimmten Typ anlegen:",
+        "myCardIndex": "Ich möchte alle meine Karteien sehen.",
+        "pool": "Ich möchte eine Kartei zu einem bestimmten Thema finden.",
+        "repetitorium": "Ich möchte ein Repetitorium (= Sammlung von Karteien) zu einem bestimmten Thema finden.",
+        "workload": "Ich möchte mein Lernpensum sehen."
+      },
+      "button": {
+        "cancel": "Danke, ich kenne mich aus",
+        "create": "Los!",
+        "myCardIndex": "Los!",
+        "pool": "Los!",
+        "repetitorium": "Los!",
+        "workload": "Los!"
+      }
+    }
+  },
   "modal-dialog": {
     "missingFields": "Bitte fülle die folgenden Felder aus",
     "newcarddeck": "Kartei erstellen (Box für Lernkarten)",
@@ -1906,10 +1928,6 @@
     }
   },
   "bertAlert": {
-    "firstLogin": {
-      "title": "Willkommen auf __firstAppTitle__🍅__lastAppTitle__ !",
-      "message": "Hier kannst du Karten zu einem bestimmten Thema lernen. </br> </br> Klick auf den Pfeil ganz rechts von einem Thema, um die Beschreibung der Kartei zu sehen. Mit einem Klick auf das Thema gelangst du zu den Karten. </br> </br>"
-    },
     "publishBonus": {
       "message": "Um die Bonusphase zu starten, müssen mindestens __cardcount__ erstellt und die Kartei als »Frei«, »__edu__« oder »Pro« veröffentlicht worden sein."
     }

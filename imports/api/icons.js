@@ -12,4 +12,17 @@ export let Icons = class Icons {
 				return config.aspectRatio[type];
 		}
 	}
+
+	static useCases (type) {
+		switch (type) {
+			case "search":
+				return config.useCasesIcons.search;
+			case "workload":
+				return config.useCasesIcons.workload;
+			case "create":
+				return config.useCasesIcons.create;
+			case "myCardsets":
+				return config.useCasesIcons.myCardsets;
+		}
+	}
 };

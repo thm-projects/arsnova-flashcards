@@ -92,6 +92,8 @@ if (Meteor.isServer) {
 						'profile.title': 1,
 						'profile.locale': 1,
 						'count.cardsets': 1,
+						'count.shuffle': 1,
+						'count.workload': 1,
 						'email': 1,
 						'services': 1,
 						'lvl': 1,
@@ -124,6 +126,8 @@ if (Meteor.isServer) {
 						'profile.title': 1,
 						'profile.locale': 1,
 						'count.cardsets': 1,
+						'count.shuffle': 1,
+						'count.workload': 1,
 						'email': 1,
 						'services': 1,
 						'lvl': 1,
@@ -479,6 +483,20 @@ Meteor.methods({
 					$set: {
 						"count.cardsets": Cardsets.find({owner: user_id, shuffled: false}).count(),
 						"count.shuffled": Cardsets.find({owner: user_id, shuffled: true}).count()
+					}
+				}
+			);
+		}
+	},
+	updateWorkloadCount: function (user_id) {
+		check(user_id, String);
+		if (Meteor.isServer) {
+			Meteor.users.update({
+					_id: user_id
+				},
+				{
+					$set: {
+						"count.workload": Leitner.find({user_id: user_id}).count() + Wozniak.find({user_id: user_id}).count()
 					}
 				}
 			);

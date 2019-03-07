@@ -28,7 +28,8 @@ let topNavigation = {
 	profileNotifications: "<i class='fa fa-bell'></i>&nbsp;",
 	profileSettings: "<i class='fa fa-user'></i>&nbsp;",
 	profileRequests: "<i class='fa fa-check'></i>&nbsp;",
-	backend: "<i class='fa fa-server'></i>&nbsp;"
+	backend: "<i class='fa fa-server'></i>&nbsp;",
+	useCases: "<i class='fa fa-map-signs'></i>"
 };
 
 //Only used for the active route display on mobile. Will be carried over to desktop after the main template got refactored.
@@ -47,10 +48,18 @@ let aspectRatio = {
 	din: "<i class='fa fa-id-card'></i>&nbsp;"
 };
 
+let useCasesIcons = {
+	workload: "<i class='fa fa-graduation-cap'></i>&nbsp;",
+	myCardsets: "<i class='fa fa-archive'></i>&nbsp;",
+	create: "<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-plus'></i>&nbsp;",
+	search: "<i class='fa fa fa-search'></i>&nbsp;"
+};
+
 module.exports = {
 	footerNavigation: footerNavigation,
 	topNavigation: topNavigation,
 	miscNavigation,
 	landingPageNavigation,
-	aspectRatio
+	aspectRatio,
+	useCasesIcons
 };

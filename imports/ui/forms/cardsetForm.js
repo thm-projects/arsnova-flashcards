@@ -35,11 +35,16 @@ export function cleanModal() {
 	$('#helpSetName').html('');
 
 	if (isNewCardset()) {
-		$('#setCardType').html(CardType.getCardTypeLongName(-1));
-		$('#setCardType').val(-1);
+		let _id = -1;
+		if (Session.get('useCaseType') === 1) {
+			_id = Session.get('useCaseSelectedCardType');
+			Session.set('useCaseType', 0);
+		}
+		$('.setCardType').html(CardType.getCardTypeLongName(_id));
+		$('.setCardType').val(_id);
 	} else {
-		$('#setCardType').html(CardType.getCardTypeLongName(Session.get('previousCardsetData').cardType));
-		$('#setCardType').val(Session.get('previousCardsetData').cardType);
+		$('.setCardType').html(CardType.getCardTypeLongName(Session.get('previousCardsetData').cardType));
+		$('.setCardType').val(Session.get('previousCardsetData').cardType);
 		if (Session.get('previousCardsetData').cardType !== -1) {
 			Session.set('cardType', Session.get('previousCardsetData').cardType);
 		}
@@ -82,7 +87,7 @@ export function saveCardset() {
 		$('#setNameLabel').addClass('text-warning');
 		$('#helpSetName').html(TAPi18n.__('modal-dialog.name_required'));
 	}
-	if ($('#setCardType').val() < 0) {
+	if ($('#setCardsetFormModal .setCardType').val() < 0) {
 		error = true;
 		errorMessage += "<li>" + TAPi18n.__('modal-dialog.cardType') + "</li>";
 		bertDelayMultiplier++;
@@ -105,7 +110,7 @@ export function saveCardset() {
 		if (Route.isShuffle() || Route.isRepetitorium()) {
 			cardType = -1;
 		} else {
-			cardType = $('#setCardType').val();
+			cardType = $('#setCardsetFormModal .setCardType').val();
 		}
 		description = $('#contentEditor').val();
 		if (isNewCardset()) {
@@ -285,11 +290,11 @@ Template.cardsetFormContent.events({
 	},
 	'click .cardType': function (evt) {
 		let cardType = $(evt.currentTarget).attr("data");
-		$('#setCardType').html($(evt.currentTarget).text());
-		$('#setCardType').val(cardType);
+		$('.setCardType').html($(evt.currentTarget).text());
+		$('.setCardType').val(cardType);
 		Session.set('cardType', Number(cardType));
 		Session.set('difficultyColor', Session.get('previousCardsetData').difficulty);
-		$('#setCardTypeLabel').removeClass('text-warning');
+		$('.setCardTypeLabel').removeClass('text-warning');
 		$('#helpSetCardType').html('');
 	},
 	'keyup #setName': function () {
