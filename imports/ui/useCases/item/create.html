@@ -40,10 +40,8 @@
 <template name="useCasesItemCreateButton">
     {{#if selectedCardType}}
         <button class="btn btn-raised btn-success useCaseCreateIndex" type="button" data-dismiss="modal"
-                aria-hidden="true">{{_
-                "useCases.modal.button.create"}}</button>
+                aria-hidden="true">{{{getUseCasesIcon "create"}}} {{_ "useCases.modal.button.create"}}</button>
     {{else}}
-        <button class="btn btn-raised btn-success" type="button" disabled>{{_
-                "useCases.modal.button.create"}}</button>
+        <button class="btn btn-raised btn-success" type="button" disabled>{{{getUseCasesIcon "create"}}}{{_ "useCases.modal.button.create"}}</button>
     {{/if}}
 </template>

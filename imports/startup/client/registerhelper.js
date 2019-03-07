@@ -22,6 +22,7 @@ import {ServerInventoryTools} from "../../api/serverInventoryTools.js";
 import {CardVisuals} from "../../api/cardVisuals";
 import {AspectRatio} from "../../api/aspectRatio";
 import {CardNavigation} from "../../api/cardNavigation";
+import {Icons} from "../../api/icons";
 
 Meteor.subscribe("collegesCourses");
 
@@ -269,6 +270,10 @@ Template.registerHelper("getServerInventory", function (type) {
 
 Template.registerHelper("isSidebarHidden", function () {
 	return Session.get('hideSidebar');
+});
+
+Template.registerHelper("getUseCasesIcon", function (type) {
+	return Icons.useCases(type);
 });
 
 Template.registerHelper("getKind", function (kind, displayType = 0) {
