@@ -493,6 +493,8 @@ $themes: (
     $presentation_clock_second_arm: map-get($map, "presentation_clock_second_arm");
     //modal colors
     $modal_overlay: map-get($map, "modal_overlay");
+    $modal_background: map-get($map, "modal_background");
+    $modal_text: map-get($map, "modal_text");
     //pomodoro colors
     $pomodoro_timer_fullscreen_overlay: map-get($map, "pomodoro_timer_fullscreen_overlay");
     $pomodoro_timer_hand_circle: map-get($map, "pomodoro_timer_hand_circle");
@@ -1083,14 +1085,6 @@ $themes: (
 
     .cc-link {
       color: $cookie_consent_link !important;
-    }
-
-    .underDevelopmentContent {
-      .modal-header {
-        border-bottom-color: $under_development_modal_text !important;
-      }
-      color: $under_development_modal_text !important;
-      background-color: $under_development_modal_background !important;
     }
 
     ::placeholder {
@@ -2905,6 +2899,19 @@ $themes: (
     .modal-open  {
       .modal.fade.in {
         background-color: $modal_overlay !important;
+      }
+      .modal-content {
+        background-color: $modal_background !important;
+        color: $modal_text !important;
+      }
+
+      //under development modal
+      .underDevelopmentContent {
+        .modal-header {
+          border-bottom-color: $under_development_modal_text !important;
+        }
+        color: $under_development_modal_text !important;
+        background-color: $under_development_modal_background !important;
       }
     }
 
