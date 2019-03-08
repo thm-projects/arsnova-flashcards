@@ -13,6 +13,7 @@
 </template>
 
 <template name="presentationView">
+    {{> pomodoroTimerModal}}
     {{#if isActiveRoute regex='demolist|presentationlist|makinglist'}}
         <button class="btn btn-raised btn-danger"
                 id="{{#if fullscreenActive}}backToPresentationFullscreen{{else}}backToPresentation{{/if}}">
