@@ -266,7 +266,7 @@ const CardsetsSchema = new SimpleSchema({
 Cardsets.attachSchema(CardsetsSchema);
 
 Meteor.methods({
-	getSearchCategoriesResult: function (searchValue) {
+	getSearchCategoriesResult: function (searchValue, filterType) {
 		if (!Meteor.userId() || !UserPermissions.isNotBlockedOrFirstLogin()) {
 			throw new Meteor.Error("not-authorized");
 		} else if (searchValue !== undefined && searchValue !== null && searchValue.length > 2) {
@@ -283,6 +283,13 @@ Meteor.methods({
 						{kind: {$nin: ['demo', 'server', 'personal']}}
 					]
 				};
+			}
+			if (filterType > 0) {
+				if (filterType === 1) {
+					query.shuffled = false;
+				} else {
+					query.shuffled = true;
+				}
 			}
 			let results = Cardsets.find(query, {fields: {_id: 1}}).fetch();
 			let filter = [];

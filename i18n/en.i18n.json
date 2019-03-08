@@ -276,8 +276,12 @@
     "myprofile": "Konto",
     "billing": "Abrechnung",
     "membership": "Mitgliedschaft",
-    "searchMobile": "Suche…",
-    "search": "Suche nach Karteien oder Repetitorien…",
+    "search": {
+      "all": "Suche nach Karteien oder Repetitorien…",
+      "cardset": "Suche nach Karteien…",
+      "repetitorium": "Suche nach Repetitorien…",
+      "mobile": "Suche…"
+    },
     "frontend": "Frontend",
     "backend": "Backend",
     "none": "Ohne",

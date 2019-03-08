@@ -2,6 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Search} from "../../../../../api/search.js";
 import {MainNavigation} from "../../../../../api/mainNavigation.js";
+import {Route} from "../../../../../api/route";
 import "./search.html";
 
 /*
@@ -14,7 +15,13 @@ Template.mainNavigationTopItemSearchInput.events({
 	'keyup .input-search': function (event) {
 		event.preventDefault();
 		Session.set("searchValue", $(event.currentTarget).val());
-		Meteor.call('getSearchCategoriesResult', Session.get("searchValue"), function (error, result) {
+		let filterType = 0;
+		if (Route.isPool())  {
+			filterType = 1;
+		} else if (Route.isRepetitorium()) {
+			filterType = 2;
+		}
+		Meteor.call('getSearchCategoriesResult', Session.get("searchValue"), filterType, function (error, result) {
 			if (result) {
 				Session.set('searchCategoriesResult', result);
 			}
@@ -42,9 +49,15 @@ Template.mainNavigationTopItemSearchInput.helpers({
 	},
 	getPlaceholder: function () {
 		if (this.longPlaceholder) {
-			return TAPi18n.__('navbar-collapse.search');
+			if (Route.isPool()) {
+				return TAPi18n.__('navbar-collapse.search.cardset');
+			} else if (Route.isRepetitorium()) {
+				return TAPi18n.__('navbar-collapse.search.repetitorium');
+			} else {
+				return TAPi18n.__('navbar-collapse.search.all');
+			}
 		} else {
-			return TAPi18n.__('navbar-collapse.searchMobile');
+			return TAPi18n.__('navbar-collapse.search.mobile');
 		}
 	}
 });
