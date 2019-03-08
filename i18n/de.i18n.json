@@ -531,7 +531,12 @@
   "useCases": {
     "modal": {
       "title": "Wegweiser",
-      "text": "Hallo __firstName__, willkommen auf 🍅cards! \n\n Was möchtest du tun?",
+      "text": "__greeting__, __firstName__, willkommen auf 🍅cards! \n\n Was möchtest du tun?",
+      "greeting": {
+        "morning": "Guten Morgen",
+        "afternoon": "Guten Tag",
+        "evening": "Guten Abend"
+      },
       "noName": "User",
       "description": {
         "create": "Ich möchte eine Kartei mit Karten von einem bestimmten Typ anlegen:",

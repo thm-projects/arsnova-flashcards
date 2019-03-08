@@ -532,7 +532,12 @@
   "useCases": {
     "modal": {
       "title": "Use Cases",
-      "text": "Hello __firstName__, what would you like to do?",
+      "text": "__greeting__, __firstName__, what would you like to do?",
+      "greeting": {
+        "morning": "Good morning",
+        "afternoon": "Good afternoon",
+        "evening": "Good evening"
+      },
       "noName": "User",
       "description": {
         "create": "I want to create a card index with cards of the type:",
