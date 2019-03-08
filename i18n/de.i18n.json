@@ -531,7 +531,7 @@
   "useCases": {
     "modal": {
       "title": "Wegweiser",
-      "text": "Hallo __firstName__, was möchtest du auf 🍅cards tun?",
+      "text": "Hallo __firstName__, willkommen auf 🍅cards! \n\n Was möchtest du tun?",
       "noName": "User",
       "description": {
         "create": "Ich möchte eine Kartei mit Karten von einem bestimmten Typ anlegen:",
@@ -542,11 +542,11 @@
       },
       "button": {
         "cancel": "Danke, ich kenne mich aus.",
-        "create": "Zeig mir den Weg.",
-        "myCardIndex": "Zeig mir den Weg.",
-        "pool": "Zeig mir den Weg.",
-        "repetitorium": "Zeig mir den Weg.",
-        "workload": "Zeig mir den Weg."
+        "create": "Zeig mir den Weg zum Kartei-Formular",
+        "myCardIndex": "Zeig mir den Weg zu meinen Karteien",
+        "pool": "Zeig mir den Weg zum Themen-Pool",
+        "repetitorium": "Zeig mir den Weg zu den Repetitorien",
+        "workload": "Zeig mir den Weg zu meinem Lernpensum"
       }
     }
   },
