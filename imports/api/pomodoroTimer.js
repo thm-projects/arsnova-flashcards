@@ -680,7 +680,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		breakRunning = defaultBreakRunning;
 		if (((Route.isBox() || Route.isMemo()) && Bonus.isInBonus(Router.current().params._id)) || Route.isCardset()) {
 			let cardset = Cardsets.findOne({_id: Router.current().params._id});
-			if (cardset.pomodoroTimer !== undefined) {
+			if (cardset !== undefined && cardset.pomodoroTimer !== undefined) {
 				goalPoms = cardset.pomodoroTimer.quantity;
 				pomLength = cardset.pomodoroTimer.workLength;
 				breakLength = cardset.pomodoroTimer.breakLength;

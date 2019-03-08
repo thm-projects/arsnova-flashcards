@@ -11,6 +11,7 @@
 </template>
 
 <template name="learnAlgorithms">
+    {{> pomodoroTimerModal}}
     {{#if noCards}}
         <div class="hidden-xs hidden-sm container">
             {{> flashcardsEmpty}}

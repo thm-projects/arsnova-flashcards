@@ -53,6 +53,7 @@ Template.pomodoroTimerModal.onCreated(function () {
 
 Template.pomodoroTimerModal.onRendered(function () {
 	$('#pomodoroTimerModal').on('show.bs.modal', function () {
+		PomodoroTimer.initializeVariables();
 		PomodoroTimer.initializeModalContent();
 		if (Route.requiresUserInputForFullscreen() && !CardVisuals.isFullscreen()) {
 			CardVisuals.toggleFullscreen();

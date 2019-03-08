@@ -57,7 +57,11 @@ export let Route = class Route {
 	}
 
 	static isBackend () {
-		return Router.current().route.getName().substring(0, 5) === "admin";
+		if (Router.current().route.getName() !== undefined) {
+			return Router.current().route.getName().substring(0, 5) === "admin";
+		} else {
+			return false;
+		}
 	}
 
 	static isTableOfContent () {
@@ -191,13 +195,15 @@ export let Route = class Route {
 				return icons.footerNavigation.learning  + TAPi18n.__('contact.learning');
 			case "create":
 			case "myCardsets":
-				switch (Meteor.user().count.cardsets) {
-					case 0:
-						return icons.topNavigation.myCardsets + TAPi18n.__('navbar-collapse.noCarddecks');
-					case 1:
-						return icons.topNavigation.myCardsets + TAPi18n.__('navbar-collapse.oneCarddeck');
-					default:
-						return icons.topNavigation.myCardsets + TAPi18n.__('navbar-collapse.carddecks');
+				if (Meteor.user() && Meteor.user().count !== undefined) {
+					switch (Meteor.user().count.cardsets) {
+						case 0:
+							return icons.topNavigation.myCardsets + TAPi18n.__('navbar-collapse.noCarddecks');
+						case 1:
+							return icons.topNavigation.myCardsets + TAPi18n.__('navbar-collapse.oneCarddeck');
+						default:
+							return icons.topNavigation.myCardsets + TAPi18n.__('navbar-collapse.carddecks');
+					}
 				}
 				break;
 			case "alldecks":
@@ -235,7 +241,8 @@ export let Route = class Route {
 			case "cardsetdetailsid":
 			case "cardsetcard":
 			case "cardsetlistid":
-				if (Cardsets.findOne({_id: Router.current().params._id}).shuffled) {
+				let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {shuffled: 1}});
+				if (cardset !== undefined && cardset.shuffled) {
 					return icons.miscNavigation.repetitorium + TAPi18n.__('courseIteration.name');
 				} else {
 					return icons.miscNavigation.cardset + TAPi18n.__('modal-dialog.cardsetname');

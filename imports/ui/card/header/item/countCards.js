@@ -15,24 +15,38 @@ Template.cardContentItemCountCards.helpers({
 		return CardIndex.getActiveCardIndex(card_id);
 	},
 	getCardsetCount: function (isPreview) {
+		let count = 0;
+		let cardset;
 		if (Route.isDemo()) {
-			return Cardsets.findOne({kind: 'demo', name: 'DemoCardset', shuffled: true}).quantity;
+			cardset = Cardsets.findOne({kind: 'demo', name: 'DemoCardset', shuffled: true}, {fields: {quantity: 1}});
+			if (cardset !== undefined) {
+				count = cardset.quantity;
+			}
+			return count;
 		} else if (Route.isMakingOf()) {
-			return Cardsets.findOne({kind: 'demo', name: 'MakingOfCardset', shuffled: true}).quantity;
+			cardset = Cardsets.findOne({kind: 'demo', name: 'MakingOfCardset', shuffled: true}, {fields: {quantity: 1}});
+			if (cardset !== undefined) {
+				count = cardset.quantity;
+			}
+			return count;
 		}
 		if (isPreview) {
-			let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {_id: 1, cardGroups: 1}});
-			if (cardset !== undefined) {
+			let cardsetPreview = Cardsets.findOne({_id: Router.current().params._id}, {fields: {_id: 1, cardGroups: 1}});
+			if (cardsetPreview !== undefined) {
 				let filterQuery = {
 					$or: [
-						{cardset_id: cardset._id},
-						{cardset_id: {$in: cardset.cardGroups}}
+						{cardset_id: cardsetPreview._id},
+						{cardset_id: {$in: cardsetPreview.cardGroups}}
 					]
 				};
 				return Cards.find(filterQuery).count();
 			}
 		} else {
-			return Cardsets.findOne({_id: Router.current().params._id}).quantity;
+			cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {quantity: 1}});
+			if (cardset !== undefined) {
+				count = cardset.quantity;
+			}
+			return count;
 		}
 	}
 });
