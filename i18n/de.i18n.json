@@ -530,23 +530,23 @@
   },
   "useCases": {
     "modal": {
-      "title": "Use Cases",
-      "text": "Hallo __firstName__, was möchtest du tun?",
-      "noName": "Benutzer",
+      "title": "Wegweiser",
+      "text": "Hallo __firstName__, was möchtest du auf 🍅cards tun?",
+      "noName": "User",
       "description": {
         "create": "Ich möchte eine Kartei mit Karten von einem bestimmten Typ anlegen:",
-        "myCardIndex": "Ich möchte alle meine Karteien sehen.",
+        "myCardIndex": "Ich möchte meine Karteien sehen.",
         "pool": "Ich möchte eine Kartei zu einem bestimmten Thema finden.",
-        "repetitorium": "Ich möchte ein Repetitorium (= Sammlung von Karteien) zu einem bestimmten Thema finden.",
+        "repetitorium": "Ich möchte ein Repetitorium zu einem bestimmten Thema finden.",
         "workload": "Ich möchte mein Lernpensum sehen."
       },
       "button": {
-        "cancel": "Danke, ich kenne mich aus",
-        "create": "Los!",
-        "myCardIndex": "Los!",
-        "pool": "Los!",
-        "repetitorium": "Los!",
-        "workload": "Los!"
+        "cancel": "Danke, ich kenne mich aus.",
+        "create": "Zeig mir den Weg.",
+        "myCardIndex": "Zeig mir den Weg.",
+        "pool": "Zeig mir den Weg.",
+        "repetitorium": "Zeig mir den Weg.",
+        "workload": "Zeig mir den Weg."
       }
     }
   },
