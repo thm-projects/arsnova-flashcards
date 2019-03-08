@@ -60,6 +60,18 @@ Template.useCasesModal.onRendered(function () {
 });
 
 Template.useCasesModal.helpers({
+	getWelcomeMessage: function (firstName) {
+		let time = moment().format('H');
+		let greeting = "";
+		if (time >= 0 && time < 12) {
+			greeting = TAPi18n.__('useCases.modal.greeting.morning');
+		} else if (time >= 12 && time < 18) {
+			greeting = TAPi18n.__('useCases.modal.greeting.afternoon');
+		} else {
+			greeting = TAPi18n.__('useCases.modal.greeting.evening');
+		}
+		return TAPi18n.__('useCases.modal.text', {greeting: greeting, firstName: firstName});
+	},
 	getFirstName: function () {
 		if (Meteor.user() && Meteor.user().profile.givenname !== undefined && Meteor.user().profile.givenname !== "") {
 			return Meteor.user().profile.givenname;
