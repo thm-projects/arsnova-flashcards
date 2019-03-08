@@ -67,7 +67,11 @@ export let WordcloudCanvas = class WordcloudCanvas {
 		if (Meteor.userId()) {
 			document.getElementById('wordcloud-canvas').width = ($('#wordcloud-container').width());
 			let filterNavigation = $('#filter-nav-wrapper');
-			document.getElementById('wordcloud-canvas').height = ($(window).height() - (filterNavigation.offset().top + filterNavigation.height()) - 30);
+			let offset = 0;
+			if (filterNavigation.length) {
+				offset = (filterNavigation.offset().top + filterNavigation.height());
+			}
+			document.getElementById('wordcloud-canvas').height = ($(window).height() - offset - 30);
 			let canvas = $('#wordcloud-canvas');
 			let canvas_background = $('#wordcloud-canvas-background');
 			canvas_background.height(canvas.height());
