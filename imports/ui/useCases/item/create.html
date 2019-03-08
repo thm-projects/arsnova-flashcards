@@ -1,20 +1,18 @@
 <template name="useCasesItemCreate">
     {{#if canCreateContent}}
         <tr class="hidden-xs">
-            <td>
+            <td colspan="2">
                 {{_ "useCases.modal.description.create"}}<br>
                 <div class="dropdown">
                     {{> useCasesItemCreateDropdown}}
                 </div>
-            </td>
-            <td>
             </td>
         </tr>
     {{/if}}
 </template>
 
 <template name="useCasesItemCreateDropdown">
-    <div class="btn-group col-xs-12 col-md-9">
+    <div class="btn-group col-xs-12 col-md-8">
         <button type="button"
                 class="btn btn-raised btn-default setCardTypeUseCase setCardTypeUseCaseDropdown longButton"
                 data-toggle="dropdown" aria-haspopup="true"

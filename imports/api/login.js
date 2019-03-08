@@ -3,6 +3,7 @@ import {Leitner, Wozniak} from "./learned.js";
 import {Filter} from "./filter.js";
 import * as config from "../config/login.js";
 import {UserPermissions} from "./permissions";
+import {Session} from "meteor/session";
 
 export let LoginTasks = class LoginTasks {
 
@@ -33,6 +34,15 @@ export let LoginTasks = class LoginTasks {
 		}
 	}
 
+	static showUseCasesModal () {
+		if (Session.get('firedUseCaseModal') === 1) {
+			Session.set('firedUseCaseModal', 2);
+			if (LoginTasks.autoShowUseCasesForUser()) {
+				$('#useCasesModal').modal('show');
+			}
+		}
+	}
+
 	static setLoginRedirect () {
 		Filter.resetFilters();
 		Meteor.subscribe("userLeitner", {
@@ -40,6 +50,7 @@ export let LoginTasks = class LoginTasks {
 				Meteor.subscribe("userWozniak", {
 					onReady: function () {
 						let redirected = false;
+						Session.set('firedUseCaseModal', 1);
 						for (let i = 0; i < config.loginRedirectPriority.length; i++) {
 							switch (config.loginRedirectPriority[i]) {
 								case 0:

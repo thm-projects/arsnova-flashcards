@@ -797,7 +797,7 @@ th {
   margin-bottom: $margin_bottom_search_result_item !important;
 }
 
-.modal {
+.modal, .swal2-container {
   z-index: 10000 !important;
 }
 
@@ -845,5 +845,3 @@ blockquote {
   background-color: #2ac55f !important;
   border-radius: 10px !important;
 }
-
-
