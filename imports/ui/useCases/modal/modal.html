@@ -13,11 +13,14 @@
                 <div class="modal-body">
                     <table class="table table-striped">
                         <thead>
-                            <tr>
-                                <th>
+                            <tr class="hidden-xs">
+                                <th colspan="2">
                                     {{_ "useCases.modal.text" firstName = getFirstName}}
                                 </th>
-                                <th class="hidden-xs">
+                            </tr>
+                            <tr class="visible-xs">
+                                <th>
+                                    {{_ "useCases.modal.text" firstName = getFirstName}}
                                 </th>
                             </tr>
                         </thead>
