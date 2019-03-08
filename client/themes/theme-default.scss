@@ -525,9 +525,9 @@
           "presentation_clock_minute_arm": $thm_gray,
           "presentation_clock_second_arm": red,
     //modal colors
-          "modal_overlay": transparent,
+          "modal_overlay": rgba(0,0,0, 1),
     //pomodoro colors
-          "pomodoro_timer_fullscreen_overlay": transparent,
+          "pomodoro_timer_fullscreen_overlay": rgba(0,0,0, 1),
           "pomodoro_timer_hand_circle": $thm_orange,
           "pomodoro_timer_hand_circle_hover": white,
           "pomodoro_timer_hand_hour": white,
@@ -546,7 +546,6 @@
           "sweet_alert_2_title": black,
           "sweet_alert_2_text": black,
           "sweet_alert_2_modal_background": white,
-          "sweet_alert_2_modal_overlay": rgba(0, 0, 0, 0.4),
           "sweet_alert_2_button_confirm_background": $thm_green,
           "sweet_alert_2_button_confirm_text": $white,
           "sweet_alert_2_button_cancel_background": $thm_orange,

@@ -513,7 +513,6 @@ $themes: (
     $sweet_alert_2_title: map-get($map, "sweet_alert_2_title");
     $sweet_alert_2_text: map-get($map, "sweet_alert_2_text");
     $sweet_alert_2_modal_background: map-get($map, "sweet_alert_2_modal_background");
-    $sweet_alert_2_modal_overlay: map-get($map, "sweet_alert_2_modal_overlay");
     $sweet_alert_2_button_confirm_background: map-get($map, "sweet_alert_2_button_confirm_background");
     $sweet_alert_2_button_confirm_background_hover: map-get($map, "sweet_alert_2_button_confirm_background_hover");
     $sweet_alert_2_button_confirm_text: map-get($map, "sweet_alert_2_button_confirm_text");
@@ -2903,8 +2902,10 @@ $themes: (
     }
 
     //modal
-    .modal.fade.in {
-      background-color: $modal_overlay !important;
+    .modal-open  {
+      .modal.fade.in {
+        background-color: $modal_overlay !important;
+      }
     }
 
     //pomodoro
@@ -2986,7 +2987,7 @@ $themes: (
     }
 
     .swal2-container.swal2-shown {
-        background-color: $sweet_alert_2_modal_overlay !important;
+      background-color: $modal_overlay !important;
     }
 
     .swal2-content, .swal2-footer {

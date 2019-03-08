@@ -58,6 +58,7 @@ Session.setDefault('isConnectionModalOpen', false);
 Session.setDefault('hideSidebar', false);
 Session.setDefault('aspectRatioContainerVisible', false);
 Session.setDefault('aspectRatioMode', 0);
+Session.setDefault('firedUseCaseModal', 0);
 
 function connectionStatus() {
 	let stat;

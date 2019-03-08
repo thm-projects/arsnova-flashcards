@@ -9,6 +9,7 @@ import {FilterNavigation} from "../../../api/filterNavigation";
 import {CardType} from "../../../api/cardTypes";
 import {Leitner, Wozniak} from "../../../api/learned";
 import {MainNavigation} from "../../../api/mainNavigation";
+import {LoginTasks} from "../../../api/login";
 import "./item/cardset.js";
 import "./item/createCardsetButton.js";
 import "./item/createRepetitoriumButton.js";
@@ -69,6 +70,7 @@ Template.filterIndexPool.onRendered(function () {
 		MainNavigation.focusSearchBar();
 		Session.set('useCaseType', 0);
 	}
+	LoginTasks.showUseCasesModal();
 });
 
 /*
@@ -112,6 +114,7 @@ Template.filterIndexCreate.onRendered(function () {
 	if (Route.isMyCardsets() && Session.get('useCaseType') === 1) {
 		$('#setCardsetFormModal').modal('show');
 	}
+	LoginTasks.showUseCasesModal();
 });
 
 Template.filterIndexCreate.onDestroyed(function () {
@@ -155,6 +158,7 @@ Template.filterIndexRepetitorium.onRendered(function () {
 		MainNavigation.focusSearchBar();
 		Session.set('useCaseType', 0);
 	}
+	LoginTasks.showUseCasesModal();
 });
 
 Template.filterIndexRepetitorium.onDestroyed(function () {
@@ -170,6 +174,10 @@ Template.filterIndexRepetitorium.onDestroyed(function () {
 Template.filterIndexWorkload.onCreated(function () {
 	Filter.updateWorkloadFilter();
 	Session.set('hideSidebar', false);
+});
+
+Template.filterIndexWorkload.onRendered(function () {
+	LoginTasks.showUseCasesModal();
 });
 
 Template.filterIndexWorkload.helpers({

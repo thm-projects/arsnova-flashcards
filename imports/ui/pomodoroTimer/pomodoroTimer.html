@@ -46,47 +46,49 @@
 </template>
 
 <template name="pomodoroTimerModal">
-    <!--this is the modal, hidden by default, that pops up when the user clicks the clock. Not too complicated.-->
-    <div id="pomodoroTimerModal" class="modal fade" data-backdrop="{{#if requiresUserInputForFullscreen}}static{{/if}}" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <img class="modal-icon" src="/img/pomodoro/pomodoro.svg"/>
-                    <span class="closePomodoro">
-                        {{> mainModalItemCloseIcon}}
-                    </span>
-                    <h4 class="modal-title" id="modalTitle">{{_ "pomodoro.form.user.title"}}</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="input" autocomplete="off">
-                        <div class="form-group">
-                            {{> pomodoroTimerModalContent}}
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    {{#if isActiveRoute regex='demo|presentation'}}
-                        <button type="button" id="cancelPomodoroBtn" class="btn btn-danger btn-raised">
-                            {{_ "pomodoro.form.presentation.button.cancel"}}
-                        </button>
-                    {{else}}
-                        <button type="button" id="settingsBtn" class="btn btn-default btn-raised fa fa-gear"
-                                style="float:left;">
-                            {{_ "pomodoro.form.user.button.settings"}}
-                        </button>
-                    {{/if}}
-                    <button type="button" id="startPom" class="btn btn-success btn-raised fa fa-rocket" data-dismiss="modal">
-                        {{#if isActiveRoute regex='presentation|demo'}}
-                            {{_ "pomodoro.form.presentation.button.start"}}
+    {{#if isActiveRoute regex='home|demo|presentation|memo|box'}}
+        <!--this is the modal, hidden by default, that pops up when the user clicks the clock. Not too complicated.-->
+        <div id="pomodoroTimerModal" class="modal fade" data-backdrop="{{#if requiresUserInputForFullscreen}}static{{/if}}" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <img class="modal-icon" src="/img/pomodoro/pomodoro.svg"/>
+                        <span class="closePomodoro">
+                            {{> mainModalItemCloseIcon}}
+                        </span>
+                        <h4 class="modal-title" id="modalTitle">{{_ "pomodoro.form.user.title"}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="input" autocomplete="off">
+                            <div class="form-group">
+                                {{> pomodoroTimerModalContent}}
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        {{#if isActiveRoute regex='demo|presentation'}}
+                            <button type="button" id="cancelPomodoroBtn" class="btn btn-danger btn-raised">
+                                {{_ "pomodoro.form.presentation.button.cancel"}}
+                            </button>
                         {{else}}
-                            {{_ "pomodoro.form.user.button.start"}}
+                            <button type="button" id="settingsBtn" class="btn btn-default btn-raised fa fa-gear"
+                                    style="float:left;">
+                                {{_ "pomodoro.form.user.button.settings"}}
+                            </button>
                         {{/if}}
-                    </button>
+                        <button type="button" id="startPom" class="btn btn-success btn-raised fa fa-rocket" data-dismiss="modal">
+                            {{#if isActiveRoute regex='presentation|demo'}}
+                                {{_ "pomodoro.form.presentation.button.start"}}
+                            {{else}}
+                                {{_ "pomodoro.form.user.button.start"}}
+                            {{/if}}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    {{/if}}
 </template>
 
 <template name="pomodoroTimerModalContent">
