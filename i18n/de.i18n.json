@@ -534,28 +534,28 @@
   },
   "useCases": {
     "modal": {
-      "title": "Wegweiser",
-      "text": "__greeting__, __firstName__, willkommen auf 🍅cards! \n\n Was möchtest du tun?",
+      "title": "Kurze Wege",
+      "text": "__greeting__, __firstName__, wohin willst du?",
       "greeting": {
-        "morning": "Guten Morgen",
-        "afternoon": "Guten Tag",
-        "evening": "Guten Abend"
+        "morning": "Moin",
+        "afternoon": "Gude",
+        "evening": "’n Abend"
       },
       "noName": "User",
       "description": {
-        "create": "Ich möchte eine Kartei mit Karten von einem bestimmten Typ anlegen:",
-        "myCardIndex": "Ich möchte meine Karteien sehen.",
-        "pool": "Ich möchte eine Kartei zu einem bestimmten Thema finden.",
-        "repetitorium": "Ich möchte ein Repetitorium zu einem bestimmten Thema finden.",
-        "workload": "Ich möchte mein Lernpensum sehen."
+        "create": "Ich will eine Kartei anlegen – eine Kartenbox.",
+        "myCardIndex": "Ich will Karten schreiben.",
+        "pool": "Ich suche Karteien zu einem Thema.",
+        "repetitorium": "Ich suche ein Rep zur Klausurvorbereitung.",
+        "workload": "Ich will Karten lernen."
       },
       "button": {
         "cancel": "Danke, ich kenne mich aus.",
-        "create": "Zeig mir den Weg zum Kartei-Formular",
-        "myCardIndex": "Zeig mir den Weg zu meinen Karteien",
-        "pool": "Zeig mir den Weg zum Themen-Pool",
-        "repetitorium": "Zeig mir den Weg zu den Repetitorien",
-        "workload": "Zeig mir den Weg zu meinem Lernpensum"
+        "create": "Ruf das Kartei-Formular auf!",
+        "myCardIndex": "Bring mich zu meinen Karteien!",
+        "pool": "Bring mich zur Karteien-Suche!",
+        "repetitorium": "Bring mich zur Repetitorien-Suche!",
+        "workload": "Zeig mir mein Lernpensum!"
       }
     }
   },
