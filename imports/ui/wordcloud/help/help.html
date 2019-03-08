@@ -1,0 +1,28 @@
+<template name="wordcloudHelpModal">
+    <div class="modal fade" id="wordcloudHelpModal" tabindex="-1" role="dialog"
+         aria-labelledby="wordcloudHelpModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons">
+                <div class="modal-header">
+                    <span class="modal-icon">
+                        {{{getNavigationIcon "wordcloud"}}}
+                    </span>
+                    {{> mainModalItemCloseIcon}}
+                </div>
+                <div class="modal-body">
+                    <h4 id="wordcloudHelp" class="modal-title">{{_ "wordcloud.modal.title"}}
+                    </h4>
+                    {{#markdeep}}
+                        {{#if isActiveLanguage 'de'}}
+                            {{> wordcloudHelpContentDE}}
+                        {{else}}
+                            {{> wordcloudHelpContentEN}}
+                        {{/if}}
+                    {{/markdeep}}
+                    <button class="btn btn-raised btn-default btn-block"
+                            id="wordcloudHelpConfirm">{{_ "wordcloud.modal.button"}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
