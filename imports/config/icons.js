@@ -11,7 +11,8 @@ let footerNavigation = {
 };
 
 let landingPageNavigation = {
-	mobileInfo: "<i class='glyphicon glyphicon-info-sign'></i>"
+	mobileInfo: "<i class='glyphicon glyphicon-info-sign'></i>",
+	wordcloud: "<i class='fa fa-archive'></i>"
 };
 
 //Only used for the active route display on mobile. Will be carried over to desktop after the main template got refactored.

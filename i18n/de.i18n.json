@@ -58,6 +58,12 @@
       }
     }
   },
+  "wordcloud": {
+    "modal": {
+      "title": "Klick auf einen Karteinamen, um Details zu sehen.",
+      "button": "Schließen"
+    }
+  },
   "pomodoro": {
     "tooltip": "Pomodoro-Timer für dein Zeitmanagement – »Pomodoro« ist italienisch für \uD83C\uDF45",
     "name": "Pomodoro",
@@ -535,7 +541,7 @@
   "useCases": {
     "modal": {
       "title": "Kurze Wege",
-      "text": "__greeting__, __firstName__, wohin willst du?",
+      "text": "»__greeting__, __firstName__, wohin willst du?«",
       "greeting": {
         "morning": "Moin",
         "afternoon": "Gude",
@@ -555,7 +561,7 @@
         "myCardIndex": "Bring mich zu meinen Karteien!",
         "pool": "Bring mich zur Karteien-Suche!",
         "repetitorium": "Bring mich zur Repetitorien-Suche!",
-        "workload": "Zeig mir mein Lernpensum!"
+        "workload": "Zeig mir, was heute zu lernen ist!"
       }
     }
   },
@@ -568,7 +574,7 @@
     "editreferences": "Repetitorium zusammenstellen",
     "name": "Etikett",
     "nameplaceholder": "Beschriftung der Box in wenigen Worten",
-    "descriptionplaceholder": "Worum geht es in dieser Kartei? \n\nDas Etikett des Karteikastens und due Beschreibung des Inhalts werden dir überall auf 🍅__lastAppTitle__ angezeigt.  Die Kartei bleibt privat, das heißt, sie ist für andere nicht sichtbar, solange du sie nicht veröffentlichst.",
+    "descriptionplaceholder": "Worum geht es in dieser Kartei? \n\nDas Etikett des Karteikastens und die Beschreibung des Inhalts werden dir überall auf 🍅__lastAppTitle__ angezeigt.  Die Kartei bleibt privat, das heißt, sie ist für andere nicht sichtbar, solange du sie nicht veröffentlichst.",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung des Inhalts",
     "optional": "(Optional)",

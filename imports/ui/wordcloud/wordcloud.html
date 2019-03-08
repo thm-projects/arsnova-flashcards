@@ -1,4 +1,7 @@
 <template name="wordcloud">
+    {{#if displayHelpModal}}
+        {{> wordcloudHelpModal}}
+    {{/if}}
     {{> wordcloudModal}}
     <div id="wordcloud-container" class="col-xs-12">
         <canvas id="wordcloud-canvas" class="needsclick"></canvas>

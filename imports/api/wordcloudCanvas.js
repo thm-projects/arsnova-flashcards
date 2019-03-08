@@ -9,8 +9,12 @@ import {PomodoroTimer} from "./pomodoroTimer";
 import {FilterNavigation} from "./filterNavigation";
 import {NavigatorCheck} from "./navigatorCheck";
 import * as config from "../config/wordcloud.js";
-
+import {Route} from "./route";
+Session.setDefault('firstTimeWordcloudModalLandingPage', true);
+Session.setDefault('firstTimeWordcloudModalFilter', true);
 let canvasSettings;
+let firstTimeWordcloudModalLandingPage = 'isFirstTimeWordcloudModalLandingPage';
+let firstTimeWordcloudModalFilter = 'isFirstTimeWordcloudModalFilter';
 
 export let WordcloudCanvas = class WordcloudCanvas {
 
@@ -19,6 +23,44 @@ export let WordcloudCanvas = class WordcloudCanvas {
 			canvasSettings = config.wordcloudDefault;
 		} else {
 			canvasSettings = config.wordcloudLandingPage;
+		}
+	}
+
+	static displayHelpModal () {
+		if (Route.isHome() && config.displayHelpModalSettings.landingPage.active) {
+			switch (config.displayHelpModalSettings.landingPage.type) {
+				case 0:
+					if (localStorage.getItem(firstTimeWordcloudModalLandingPage) === undefined || localStorage.getItem(firstTimeWordcloudModalLandingPage) === null) {
+						localStorage.setItem(firstTimeWordcloudModalLandingPage, "true");
+						return true;
+					}
+					break;
+				case 1:
+					if (Session.get('firstTimeWordcloudModalLandingPage')) {
+						Session.set('firstTimeWordcloudModalLandingPage');
+						return true;
+					}
+					break;
+				case 2:
+					return true;
+			}
+		} else if (Route.isFilterIndex() && config.displayHelpModalSettings.filter.active) {
+			switch (config.displayHelpModalSettings.filter.type) {
+				case 0:
+					if (localStorage.getItem(firstTimeWordcloudModalFilter) === undefined || localStorage.getItem(firstTimeWordcloudModalFilter) === null) {
+						localStorage.setItem(firstTimeWordcloudModalFilter, "true");
+						return true;
+					}
+					break;
+				case 1:
+					if (Session.get('firstTimeWordcloudModalFilter')) {
+						Session.set('firstTimeWordcloudModalFilter');
+						return true;
+					}
+					break;
+				case 2:
+					return true;
+			}
 		}
 	}
 
