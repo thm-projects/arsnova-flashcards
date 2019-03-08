@@ -10,11 +10,11 @@ let defaultToFilterWordcloudThreshold = 100;
 let displayHelpModalSettings = {
 	"landingPage": {
 		"active": true,
-		"type": 2
+		"type": 0
 	},
 	"filter": {
 		"active": true,
-		"type": 1
+		"type": 0
 	}
 };
 
