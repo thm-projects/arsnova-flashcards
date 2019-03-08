@@ -72,7 +72,9 @@ Template.pomodoroTimerModal.onRendered(function () {
 
 Template.pomodoroTimerModal.helpers({
 	requiresUserInputForFullscreen: function () {
-		return Route.requiresUserInputForFullscreen();
+		if (!Route.isPresentation()) {
+			return Route.requiresUserInputForFullscreen();
+		}
 	}
 });
 

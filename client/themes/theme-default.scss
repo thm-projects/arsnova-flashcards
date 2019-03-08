@@ -525,7 +525,7 @@
           "presentation_clock_minute_arm": $thm_gray,
           "presentation_clock_second_arm": red,
     //modal colors
-          "modal_overlay": rgba(0,0,0, 1),
+          "modal_overlay": rgba(0,0,0, 0.6),
     //pomodoro colors
           "pomodoro_timer_fullscreen_overlay": rgba(0,0,0, 1),
           "pomodoro_timer_hand_circle": $thm_orange,
@@ -603,7 +603,7 @@
           "use_cases_button_icon": white,
           "use_cases_button_background_hover": $button_background_hover,
           "use_cases_button_icon_hover": white,
-          "use_cases_table_header_background": $thm_green,
+          "use_cases_table_header_background": $thm_gray,
           "use_cases_table_header_text": white
 
   );

@@ -2,7 +2,7 @@
   "name": "B: Beispiele für  Karteitypen",
   "description": "Ziel ist ein Beispiel für alle 18 Karteitypen.",
   "date": "2019-03-06T18:49:04.765Z",
-  "dateUpdated": "2019-03-07T06:15:42.288Z",
+  "dateUpdated": "2019-03-07T09:48:30.902Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -33,10 +33,18 @@
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
     "givenname": "Klaus"
+  },
+  "workload": {
+    "bonus": {
+      "count": 0
+    },
+    "normal": {
+      "count": 0
+    }
   }
 }, {
   "subject": "Karteitypen am Beispiel",
-  "front": "Karteityp | Titel der Beispielkarte\n----------|----------\nNotiz | Lern- und Präsentationsmodus\nLerneinheit | Test-Pyramide\nGlossar | Induktionsbeweis\nQuiz | Die Millionenfrage\nFotosammlung | Exkursion zur CloudNativeCon '18\nFormelsammlung | Quotientenregel\nVokabelkartei | Navigiere mit der Tab-Taste zu »DeepL«\nPrüfung |  Vererbung\nZitatensammlung |  Über das Coden & Testen\nTo-Dos |  Markdeep-Test\nMitschrift |  SWT-Mitschrift vom 08.05.2018\nAnweisungssatz |  Keine Angst vor der Shell\nVortrag |  The Making of 🍅cards\n[Beispielkarten der Demo]\n\n",
+  "front": "Karteityp | Titel der Beispielkarte\n----------|----------\nNotizen | <q>Lern- und Präsentationsmodus</q>\nLerneinheit | <q>Test-Pyramide</q>\nGlossar | <q>Induktionsbeweis</q>\nQuiz | <q>Die Millionenfrage</q>\nFotokartei | <q>Exkursion zur CloudNativeCon '18</q>\nFormelsammlung | <q>Quotientenregel</q>\nVokabelkartei | <q>Navigiere mit der Tab-Taste zu DeepL</q>\nPrüfung |  <q>Vererbung</q>\nZitatensammlung |  <q>Über das Coden & Testen</q>\nTo-dos |  <q>Markdeep-Test</q>\nMitschrift |  <q>SWT-Mitschrift vom 08.05.2018</q>\nAnweisungssatz |  <q>Keine Angst vor der Shell</q>\nVortrag |  <q>The Making of 🍅cards</q>\n[Beispiele, die im Folgenden gezeigt werden]\n\n",
   "centerTextElement": [
     true,
     true,
@@ -58,7 +66,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-03-07T06:08:28.324Z",
+  "dateUpdated": "2019-03-07T09:48:30.891Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",

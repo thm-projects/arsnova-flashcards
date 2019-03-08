@@ -62,8 +62,8 @@ let debug = {
 		}
 	},
 	"language": {
-		"server": "en",
-		"client": "en"
+		"server": "de",
+		"client": "de"
 	},
 	"backgrounds": "default"
 };
