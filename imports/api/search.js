@@ -21,6 +21,7 @@ export let Search = class Search {
 				} else {
 					target.removeAttr('style');
 					target.css('max-height', ($(window).height() - $('#navbar-cards-top').height()));
+					target.css('top', offsetTop);
 					target.scrollTop(0);
 				}
 			}

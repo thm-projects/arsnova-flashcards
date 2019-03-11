@@ -2,9 +2,6 @@ $searchbar_desktop_height: $size_navbar_height - 6px;
 .navbar-cards {
   .search {
     position: relative;
-    @media (max-width: 320px) {
-      display: none !important;
-    }
 
     .input-search {
       height: round($size_navbar_height * 0.7) !important;
@@ -15,20 +12,6 @@ $searchbar_desktop_height: $size_navbar_height - 6px;
     .input-search::placeholder {
       font-size: 14px !important;
     }
-
-    .clearSearch {
-      position: absolute;
-      float: right;
-      bottom:  round($size_navbar_height * 0.15 + 5px) !important;
-      right : 8px;
-      font-size: 14px;
-      i {
-        cursor: pointer;
-        font-size: 135% !important;
-        color: orange !important;
-          left: 5px !important;
-      }
-    }
   }
 
   @media (min-width: 768px) and (max-width: 1199px) {
@@ -38,65 +21,69 @@ $searchbar_desktop_height: $size_navbar_height - 6px;
     }
   }
 
-  //Dropdown menu for iPad to Desktop
-  @media (min-width: 768px) {
-    #toggle-search-dropdown  {
-      padding-left: 7px !important;
-      padding-right: 7px !important;
-      margin-left: 5px !important;
-      margin-right: 5px !important;
-      font-size: 135% !important;
-    }
-    #navbar-cards-search-dropdown.active {
-      display: block !important;
-    }
-    #navbar-cards-search-dropdown {
-      padding: 0 !important;
-      margin: 0 !important;
-      height: $searchbar_desktop_height !important;
-      min-height: $searchbar_desktop_height !important;
-      ul, li {
-        height: $searchbar_desktop_height !important;
-        min-height: $searchbar_desktop_height !important;
-      }
-      .input-append, .input-search {
-        height: $searchbar_desktop_height !important;
-        border-radius: 30px !important;
-      }
-      .search {
-        width: $width_input_search_desktop + 30 !important;
-        .form-group {
-          width: $width_input_search_desktop !important;
-          padding: 0 !important;
-          margin: 0 !important;
-          height: $searchbar_desktop_height !important;
-          min-height: $searchbar_desktop_height !important;
-          input {
-            padding-left: 5px !important;
-            padding-right: 5px !important;
-          }
-        }
-        .clearSearch {
-          border-radius: 30px !important;
-          display: flex !important;
-          align-items: center !important;
-          padding: 0 !important;
-          top: 0 !important;
-          right: 0 !important;
-          height: $searchbar_desktop_height !important;
-          width: 30px !important;
-        }
-      }
+  .toggle-search-dropdown  {
+    padding-left: 7px !important;
+    padding-right: 7px !important;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+    font-size: 135% !important;
+    @media(max-width: 767px) {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
     }
   }
-  @media (max-width: 767px) {
+  .navbar-cards-search-dropdown.active {
+    display: block !important;
+  }
+  .navbar-cards-search-dropdown {
+    box-shadow: none !important;
+    .navbar-nav {
+      margin: 0 !important;
+    }
+    padding: 0 !important;
+    margin: 0 !important;
+    height: $searchbar_desktop_height !important;
+    min-height: $searchbar_desktop_height !important;
+    ul, li {
+      height: $searchbar_desktop_height !important;
+      min-height: $searchbar_desktop_height !important;
+    }
+    .input-append, .input-search {
+      height: $searchbar_desktop_height !important;
+      border-radius: 30px !important;
+    }
     .search {
-      width: 100px;
+      width: $width_input_search_desktop + 30 !important;
       .form-group {
-        margin-top: 5px !important;
+        width: $width_input_search_desktop !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        height: $searchbar_desktop_height !important;
+        min-height: $searchbar_desktop_height !important;
+        input {
+          padding-left: 5px !important;
+          padding-right: 5px !important;
+        }
       }
-      input {
-        padding-right: 30px !important;
+      .clearSearch {
+        position: absolute;
+        float: right;
+        bottom:  round($size_navbar_height * 0.15 + 5px) !important;
+        font-size: 14px;
+        border-radius: 30px !important;
+        display: flex !important;
+        align-items: center !important;
+        padding: 0 !important;
+        top: 0 !important;
+        right: 0 !important;
+        height: $searchbar_desktop_height !important;
+        width: 30px !important;
+        i {
+          cursor: pointer;
+          font-size: 135% !important;
+          color: orange !important;
+          left: 5px !important;
+        }
       }
     }
   }

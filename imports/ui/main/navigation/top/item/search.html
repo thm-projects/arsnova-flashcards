@@ -4,6 +4,12 @@
     </li>
 </template>
 
+<template name="mainNavigationTopItemSearchMobile">
+    <li class="visible-xs">
+        {{> mainNavigationTopItemSearchDropdown}}
+    </li>
+</template>
+
 <template name="mainNavigationTopItemSearchInput">
     <div class="search input-append" role="search">
         <div class="form-group">
@@ -24,13 +30,13 @@
 
 <template name="mainNavigationTopItemSearchDropdown">
     <div class="search-dropdown-container cards-search-element">
-        <button id="toggle-search-dropdown" type="button" class="btn cards-search-element">
+        <button type="button" class="btn cards-search-element toggle-search-dropdown">
             <i class="fa fa-search cards-search-element"></i>
         </button>
-        <div id="navbar-cards-search-dropdown" class="dropdown-menu" role="menu" aria-labelledby="toggle-search-dropdown">
+        <div class="dropdown-menu navbar-cards-search-dropdown" role="menu" aria-labelledby="toggle-search-dropdown">
             <ul class="nav navbar-nav navbar-left navbar">
                 <li>
-                    {{> mainNavigationTopItemSearchInput longPlaceholder=true}}
+                    {{> mainNavigationTopItemSearchInput}}
                 </li>
             </ul>
         </div>

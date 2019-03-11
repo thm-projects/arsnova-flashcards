@@ -160,7 +160,7 @@ Template.main.helpers({
 			}
 		} else if (Route.isHome() && !Meteor.user()) {
 			return "";
-		} else if (Route.isEditCard() || Route.isLeitnerProgress()) {
+		} else if (Route.isEditCard() || Route.isCardsetLeitnerStats()) {
 			if (Route.isEditCard() && !CardVisuals.isFullscreen()) {
 				return "container-fluid-editor";
 			} else {
@@ -184,7 +184,7 @@ Template.main.onRendered(function () {
 	$("html, body").click(function (event) {
 		if (!$(event.target).is('.cards-search-element')) {
 			MainNavigation.clearSearch();
-			$('#navbar-cards-search-dropdown').removeClass('active');
+			$('.navbar-cards-search-dropdown').removeClass('active');
 		}
 	});
 	$("#main").click(function () {

@@ -23,7 +23,7 @@ export let MainNavigation = class MainNavigation {
 		if (NavigatorCheck.isSmartphone()) {
 			$('.input-search').focus();
 		} else {
-			$('#toggle-search-dropdown').click();
+			$('.toggle-search-dropdown').click();
 		}
 	}
 
