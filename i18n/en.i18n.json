@@ -286,7 +286,7 @@
       "all": "Suche nach Karteien oder Repetitorien…",
       "cardset": "Suche nach Karteien…",
       "repetitorium": "Suche nach Repetitorien…",
-      "mobile": "Suche…"
+      "myCardsets": "Suche nach eigenen Karteien…"
     },
     "frontend": "Frontend",
     "backend": "Backend",

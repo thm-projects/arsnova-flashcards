@@ -111,8 +111,12 @@ Template.filterIndexCreate.helpers({
 
 
 Template.filterIndexCreate.onRendered(function () {
-	if (Route.isMyCardsets() && Session.get('useCaseType') === 1) {
-		$('#setCardsetFormModal').modal('show');
+	if (Route.isMyCardsets()) {
+		if (Session.get('useCaseType') === 1) {
+			$('#setCardsetFormModal').modal('show');
+		} else if (Session.get('useCaseType') === 5) {
+			MainNavigation.focusSearchBar();
+		}
 	}
 	LoginTasks.showUseCasesModal();
 });

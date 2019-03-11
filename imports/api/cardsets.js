@@ -287,8 +287,14 @@ Meteor.methods({
 			if (filterType > 0) {
 				if (filterType === 1) {
 					query.shuffled = false;
-				} else {
+					query.$or = undefined;
+					query.kind = {$nin: ['demo', 'server', 'personal']};
+				} else if (filterType === 2) {
 					query.shuffled = true;
+				} else {
+					query.$or = undefined;
+					query.owner = Meteor.userId();
+					query.kind = {$nin: ['demo', 'server']};
 				}
 			}
 			let results = Cardsets.find(query, {fields: {_id: 1}}).fetch();
