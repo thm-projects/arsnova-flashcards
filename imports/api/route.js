@@ -100,6 +100,10 @@ export let Route = class Route {
 		return Router.current().route.getName() === "progress";
 	}
 
+	static isCardsetLeitnerStats () {
+		return Router.current().route.getName() === "cardsetstats";
+	}
+
 	static isLeitnerProgressProfileOverview () {
 		return Router.current().route.getName() === "profileOverview";
 	}

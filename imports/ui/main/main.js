@@ -160,7 +160,7 @@ Template.main.helpers({
 			}
 		} else if (Route.isHome() && !Meteor.user()) {
 			return "";
-		} else if (Route.isEditCard() || Route.isLeitnerProgress()) {
+		} else if (Route.isEditCard() || Route.isCardsetLeitnerStats()) {
 			if (Route.isEditCard() && !CardVisuals.isFullscreen()) {
 				return "container-fluid-editor";
 			} else {
