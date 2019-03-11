@@ -43,6 +43,8 @@ Template.bonusForm.events({
 	},
 	"click #resetBonus": function () {
 		BonusForm.cleanModal();
+		PomodoroTimer.initializeVariables();
+		PomodoroTimer.initializeModalContent();
 	}
 });
 
