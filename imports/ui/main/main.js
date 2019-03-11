@@ -184,7 +184,7 @@ Template.main.onRendered(function () {
 	$("html, body").click(function (event) {
 		if (!$(event.target).is('.cards-search-element')) {
 			MainNavigation.clearSearch();
-			$('#navbar-cards-search-dropdown').removeClass('active');
+			$('.navbar-cards-search-dropdown').removeClass('active');
 		}
 	});
 	$("#main").click(function () {

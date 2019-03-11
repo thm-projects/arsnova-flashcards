@@ -135,23 +135,23 @@ $navbar_all_decks_border_width: 3px;
     }
     .navbar-header-item {
       height: $size_navbar_height !important;
-      padding: 0 5px !important;
+      padding: 0 4px !important;
       a {
         padding: 0 !important;
       }
     }
     .navbar-header-item:first-child {
-      padding-left: 15px !important;
+      padding-left: 4px !important;
     }
     .navbar-header-item:nth-child(2) {
-      padding-right: 15px !important;
+      padding-right: 4px !important;
     }
     .navbar-toggle {
       margin-right: 0 !important;
     }
 
     .navbar-header-item .showStatistics {
-      padding-left: 3px !important;
+      padding-left: 4px !important;
     }
   }
 

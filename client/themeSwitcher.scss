@@ -152,7 +152,6 @@ $themes: (
     $navbar_search_button_background_hover: map-get($map, "navbar_search_button_background_hover");
     $navbar_search_button_icon_hover: map-get($map, "navbar_search_button_icon_hover");
     $navbar_search_clear_icon: map-get($map, "navbar_search_clear_icon");
-    $navbar_search_clear_icon_mobile: map-get($map, "navbar_search_clear_icon_mobile");
     $navbar_help_background: map-get($map, "navbar_help_background");
     $navbar_help_background_hover: map-get($map, "navbar_help_background_hover");
     $navbar_help_background_active: map-get($map, "navbar_help_background_active");
@@ -1614,12 +1613,12 @@ $themes: (
       color: $navbar_learn_text_active !important;
     }
 
-    #toggle-search-dropdown {
+    .toggle-search-dropdown {
       background-color: $navbar_search_button_background !important;
       color: $navbar_search_button_icon !important;
     }
 
-    #toggle-search-dropdown:hover {
+    .toggle-search-dropdown:hover {
       background-color: $navbar_search_button_background_hover !important;
       color: $navbar_search_button_icon_hover !important;
     }
@@ -1636,26 +1635,19 @@ $themes: (
       background-image: linear-gradient($input_textarea_border_active, $input_textarea_border_active), linear-gradient($input_textarea_border_inactive, $input_textarea_border_inactive) !important;
     }
 
-    #navbar-cards-search-dropdown {
+    .navbar-cards-search-dropdown {
       background-color: transparent !important;
       ul, li {
         background-color: transparent !important;
       }
     }
 
-    @media (min-width: 768px) {
-      .clearSearch {
-        background-color: $navbar_background !important;
-      }
+    .clearSearch {
+      background-color: $navbar_background !important;
     }
 
     .clearSearch i {
-      @media (min-width: 768px) {
-        color: $navbar_search_clear_icon !important;
-      }
-      @media (max-width: 767px) {
-        color: $navbar_search_clear_icon_mobile !important;
-      }
+      color: $navbar_search_clear_icon !important;
     }
 
     #navbar-all-decks {
