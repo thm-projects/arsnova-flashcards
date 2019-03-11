@@ -1,6 +1,5 @@
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Route} from "../../../api/route";
 import "./create.html";
 
 Template.useCasesItemCreateDropdown.events({
@@ -13,11 +12,6 @@ Template.useCasesItemCreateDropdown.events({
 		if (Number(cardType) > -1) {
 			Session.set('useCaseType', 1);
 			Session.set('isNewCardset', true);
-			if (Route.isMyCardsets()) {
-				$('#setCardsetFormModal').modal('show');
-			} else {
-				Router.go('create');
-			}
 			$('#useCasesModal').modal('hide');
 		}
 	}

@@ -26,6 +26,13 @@ Template.useCasesModal.onRendered(function () {
 		$('.setCardTypeUseCase').html(TAPi18n.__('card.chooseCardType'));
 		$('.setCardTypeUseCase').val(-1);
 		switch (Session.get('useCaseType')) {
+			case 1:
+				if (Route.isMyCardsets()) {
+					$('#setCardsetFormModal').modal('show');
+				} else {
+					Router.go('create');
+				}
+				break;
 			case 2:
 				if (Route.isRepetitorium()) {
 					setTimeout(function () {
@@ -46,6 +53,15 @@ Template.useCasesModal.onRendered(function () {
 				break;
 			case 4:
 				Router.go('learn');
+				break;
+			case 5:
+				if (Route.isMyCardsets()) {
+					setTimeout(function () {
+						MainNavigation.focusSearchBar();
+					}, 500);
+				} else {
+					Router.go('create');
+				}
 				break;
 		}
 	});

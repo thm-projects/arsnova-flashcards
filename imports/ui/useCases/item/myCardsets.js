@@ -1,6 +1,7 @@
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
 import "./myCardsets.html";
+import {Session} from "meteor/session";
 
 Template.useCasesItemMyCardsets.helpers({
 	gotCardIndex: function () {
@@ -12,7 +13,7 @@ Template.useCasesItemMyCardsets.helpers({
 
 Template.useCasesItemMyCardsetsButton.events({
 	'click .useCaseGoToCardIndex': function () {
-		Router.go('create');
+		Session.set('useCaseType', 5);
 		$('#useCasesModal').modal('hide');
 	}
 });
