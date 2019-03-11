@@ -55,10 +55,10 @@
     "client": true,
     "module": true,
     "expect": true,
+    "Hammer": true,
     "Counts": true,
     "sweetAlert": true,
     "swal": true,
-    "Tracker": true,
-    "ZingTouch": true
+    "Tracker": true
   }
 }

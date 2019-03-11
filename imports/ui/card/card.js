@@ -14,7 +14,7 @@ import {CardNavigation} from "../../api/cardNavigation";
 import {Leitner, Wozniak} from "../../api/learned.js";
 import {BertAlertVisuals} from "../../api/bertAlertVisuals";
 import {CardEditor} from "../../api/cardEditor";
-import {TouchNavigation} from "../../api/touchNavigation";
+import '/client/thirdParty/hammer.js';
 import './header/header.js';
 import './content/content.js';
 import './navigation/navigation.js';
@@ -50,7 +50,19 @@ Template.flashcards.onCreated(function () {
 let resizeInterval;
 let windowResizeSensor;
 Template.flashcards.onRendered(function () {
-	TouchNavigation.cards();
+	if (window.innerWidth <= 1400) {
+		if (Router.current().route.getName() === "cardsetdetailsid") {
+			let mc = new Hammer.Manager(document.getElementById('set-details-region'));
+			mc.add(new Hammer.Swipe({direction: Hammer.DIRECTION_HORIZONTAL, threshold: 50}));
+			mc.on("swipe", function (ev) {
+				if (ev.deltaX < 0) {
+					document.getElementById('rightCarouselControl').click();
+				} else {
+					document.getElementById('leftCarouselControl').click();
+				}
+			});
+		}
+	}
 	$(".box").on('transitionend webkitTransitionEnd oTransitionEnd', function () {
 		$(".box").removeClass("disableCardTransition");
 	});
