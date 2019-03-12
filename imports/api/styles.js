@@ -111,14 +111,12 @@ export let ServerStyle = class ServerStyle {
 				return settings.login.guest;
 			case "pro":
 				return settings.login.pro;
-			case "legacy":
-				return settings.login.legacyMode.enabled;
 			case "google":
-				return settings.login.legacyMode.google;
+				return settings.login.google;
 			case "twitter":
-				return settings.login.legacyMode.twitter;
+				return settings.login.twitter;
 			case "facebook":
-				return settings.login.legacyMode.facebook;
+				return settings.login.facebook;
 			case "backdoor":
 				return Meteor.settings.public.backdoorEnabled;
 		}

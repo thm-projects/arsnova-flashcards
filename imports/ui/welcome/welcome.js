@@ -22,55 +22,55 @@ function setActiveLanguage() {
 	Session.set('activeLanguage', language);
 }
 
-function getLoginClass() {
-	if (NavigatorCheck.isEdge()) {
-		return "login-button-legacy-icon";
-	} else {
-		return "login-button-icon";
-	}
-}
-
 //------------------------ LOGIN EVENT
 
 Template.welcome.events({
 	'click #facebook': function () {
-		Meteor.loginWithFacebook({}, function (err) {
-			if (err) {
-				throw new Meteor.Error("Facebook login failed");
-			} else {
-				setActiveLanguage();
-			}
-		});
+		if (ServerStyle.isLoginEnabled("facebook")) {
+			Meteor.loginWithFacebook({}, function (err) {
+				if (err) {
+					throw new Meteor.Error("Facebook login failed");
+				} else {
+					setActiveLanguage();
+				}
+			});
+		}
 	},
 
 	'click #twitter': function () {
-		Meteor.loginWithTwitter({}, function (err) {
-			if (err) {
-				throw new Meteor.Error("Twitter login failed");
-			} else {
-				setActiveLanguage();
-			}
-		});
+		if (ServerStyle.isLoginEnabled("twitter")) {
+			Meteor.loginWithTwitter({}, function (err) {
+				if (err) {
+					throw new Meteor.Error("Twitter login failed");
+				} else {
+					setActiveLanguage();
+				}
+			});
+		}
 	},
 
 	'click #google': function () {
-		Meteor.loginWithGoogle({}, function (err) {
-			if (err) {
-				throw new Meteor.Error("Google login failed");
-			} else {
-				setActiveLanguage();
-			}
-		});
+		if (ServerStyle.isLoginEnabled("google")) {
+			Meteor.loginWithGoogle({}, function (err) {
+				if (err) {
+					throw new Meteor.Error("Google login failed");
+				} else {
+					setActiveLanguage();
+				}
+			});
+		}
 	},
 
 	'click #cas': function () {
-		Meteor.loginWithCas(function (err) {
-			if (err) {
-				throw new Meteor.Error("CAS login failed");
-			} else {
-				setActiveLanguage();
-			}
-		});
+		if (ServerStyle.isLoginEnabled("cas")) {
+			Meteor.loginWithCas(function (err) {
+				if (err) {
+					throw new Meteor.Error("CAS login failed");
+				} else {
+					setActiveLanguage();
+				}
+			});
+		}
 	},
 
 	// Backdoor for login in acceptance tests
@@ -96,33 +96,26 @@ Template.welcome.events({
 Template.welcome.helpers({
 	getLoginButtons: function () {
 		let loginButtons = "<div id='loginButtonRow'>";
-		if (ServerStyle.isLoginEnabled("legacy")) {
-			if (ServerStyle.isLoginEnabled("cas")) {
-				loginButtons += '<a id="cas" href=""><div class="' + getLoginClass() + '"></div></a>';
-			}
-			if (ServerStyle.isLoginEnabled("facebook")) {
-				loginButtons += '<a id="facebook" href=""><div class="' + getLoginClass() + '"></div></a>';
-			}
-			if (ServerStyle.isLoginEnabled("twitter")) {
-				loginButtons += '<a id="twitter" href=""><div class="' + getLoginClass() + '"></div></a>';
-			}
-			if (ServerStyle.isLoginEnabled("google")) {
-				loginButtons += '<a id="google" href=""><div class="' + getLoginClass() + '"></div></a>';
-			}
-		} else {
-			if (ServerStyle.isLoginEnabled("cas")) {
-				loginButtons += '<button id="cas" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.cas") + '"><span class="flex-content"><i class="fa fa-university" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.cas") + '</span></button>';
-			}
-			if (ServerStyle.isLoginEnabled("guest")) {
-				loginButtons += '<button id="guest" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal" title="' + TAPi18n.__("landingPage.login.tooltip.guest") + '"><span class="flex-content"><i class="fa fa-smile-o" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.guest") + '</span></button>';
-			}
-			if (ServerStyle.isLoginEnabled("pro")) {
-				loginButtons += '<button id="pro" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal" title="' + TAPi18n.__("landingPage.login.tooltip.pro") + '"><span class="flex-content"><i class="fa fa-paypal" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.pro") + '</span></button>';
-			}
+		if (ServerStyle.isLoginEnabled("cas")) {
+			loginButtons += '<button id="cas" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.cas") + '"><span class="flex-content"><i class="fa fa-university" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.cas") + '</span></button>';
+		}
+		if (ServerStyle.isLoginEnabled("guest")) {
+			loginButtons += '<button id="guest" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal" title="' + TAPi18n.__("landingPage.login.tooltip.guest") + '"><span class="flex-content"><i class="fa fa-smile-o" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.guest") + '</span></button>';
+		}
+		if (ServerStyle.isLoginEnabled("pro")) {
+			loginButtons += '<button id="pro" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal" title="' + TAPi18n.__("landingPage.login.tooltip.pro") + '"><span class="flex-content"><i class="fa fa-paypal" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.pro") + '</span></button>';
+		}
+		if (ServerStyle.isLoginEnabled("facebook")) {
+			loginButtons += '<button id="facebook" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.facebook") + '"><span class="flex-content"><i class="fa fa-facebook" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.facebook") + '</span></button>';
+		}
+		if (ServerStyle.isLoginEnabled("twitter")) {
+			loginButtons += '<button id="twitter" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.twitter") + '"><span class="flex-content"><i class="fa fa-twitter" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.twitter") + '</span></button>';
+		}
+		if (ServerStyle.isLoginEnabled("google")) {
+			loginButtons += '<button id="google" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.google") + '"><span class="flex-content"><i class="fa fa-google" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.google") + '</span></button>';
 		}
 		// Backdoor for login in acceptance tests
 		if (ServerStyle.isLoginEnabled("backdoor")) {
-			let title = TAPi18n.__("backdoor.title");
 			let superAdmin = TAPi18n.__("backdoor.superAdmin");
 			let admin = TAPi18n.__("backdoor.admin");
 			let pro = TAPi18n.__("backdoor.pro");
@@ -131,15 +124,8 @@ Template.welcome.helpers({
 			let standard = TAPi18n.__("backdoor.standard");
 			let blocked = TAPi18n.__("backdoor.blocked");
 			let firstLogin = TAPi18n.__("backdoor.firstLogin");
-			if (ServerStyle.isLoginEnabled("legacy")) {
-				loginButtons += '<a id="BackdoorLogin" href=""><div class="' + getLoginClass() + '"></div></a>';
-			} else {
-				loginButtons += '<button id="BackdoorLogin" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.backdoor") + '"><span class="flex-content"><i class="fa fa-key" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.backdoor") + '</span></button>';
-			}
+			loginButtons += '<button id="BackdoorLogin" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.backdoor") + '"><span class="flex-content"><i class="fa fa-key" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.backdoor") + '</span></button>';
 			loginButtons += '<div class="btn-group backdoorLogin">';
-			if (ServerStyle.isLoginEnabled("legacy")) {
-				loginButtons += '<label id="backdoor-label">' + title + '</label><br>';
-			}
 			loginButtons += '<select class="btn btn-secondary btn-raised" id="TestingBackdoorUsername" aria-labelledby="backdoor-label">' +
 				'<option id="superAdminLogin" value="admin">' + superAdmin + '</option>' +
 				'<option id="adminLogin" value="editor">' + admin + '</option>' +
