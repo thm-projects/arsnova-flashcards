@@ -547,13 +547,13 @@
   "useCases": {
     "modal": {
       "title": "Kurze Wege",
-      "text": "»__greeting__, __firstName__, wohin willst du?«",
+      "text": "»__greeting__ __firstName__, wohin willst du?«",
       "greeting": {
         "morning": "Moin",
         "afternoon": "Gude",
         "evening": "’n Abend"
       },
-      "noName": "User",
+      "noName": "",
       "description": {
         "create": "Ich will eine Kartei anlegen – eine Kartenbox.",
         "myCardIndex": "Ich will Karten schreiben.",
