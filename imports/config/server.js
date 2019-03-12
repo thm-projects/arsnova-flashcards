@@ -101,7 +101,7 @@ let linux = {
 		"pro": false,
 		"facebook": true,
 		"twitter": true,
-		"google": false
+		"google": true
 	},
 	"welcome": {
 		"title": {
