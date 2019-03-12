@@ -1,14 +1,11 @@
 let defaultSettings = {
 	"login": {
-		"legacyMode": {
-			"enabled": false,
-			"facebook": true,
-			"twitter": true,
-			"google": true
-		},
 		"cas": true,
 		"guest": true,
-		"pro": false
+		"pro": false,
+		"facebook": false,
+		"twitter": false,
+		"google": false
 	},
 	"welcome": {
 		"title": {
@@ -35,15 +32,12 @@ let defaultSettings = {
 
 let debug = {
 	"login": {
-		"legacyMode": {
-			"enabled": false,
-			"facebook": true,
-			"twitter": true,
-			"google": true
-		},
 		"cas": false,
 		"guest": true,
-		"pro": true
+		"pro": true,
+		"facebook": false,
+		"twitter": false,
+		"google": false
 	},
 	"welcome": {
 		"title": {
@@ -70,15 +64,12 @@ let debug = {
 
 let informatik = {
 	"login": {
-		"legacyMode": {
-			"enabled": false,
-			"facebook": true,
-			"twitter": true,
-			"google": true
-		},
 		"cas": true,
 		"guest": true,
-		"pro": false
+		"pro": false,
+		"facebook": false,
+		"twitter": false,
+		"google": false
 	},
 	"welcome": {
 		"title": {
@@ -105,15 +96,12 @@ let informatik = {
 
 let linux = {
 	"login": {
-		"legacyMode": {
-			"enabled": false,
-			"facebook": true,
-			"twitter": true,
-			"google": true
-		},
 		"cas": true,
-		"guest": true,
-		"pro": false
+		"guest": false,
+		"pro": false,
+		"facebook": true,
+		"twitter": true,
+		"google": false
 	},
 	"welcome": {
 		"title": {
@@ -140,15 +128,12 @@ let linux = {
 
 let review = {
 	"login": {
-		"legacyMode": {
-			"enabled": false,
-			"facebook": true,
-			"twitter": true,
-			"google": true
-		},
 		"cas": true,
 		"guest": true,
-		"pro": false
+		"pro": false,
+		"facebook": false,
+		"twitter": false,
+		"google": false
 	},
 	"welcome": {
 		"title": {
@@ -175,15 +160,12 @@ let review = {
 
 let staging = {
 	"login": {
-		"legacyMode": {
-			"enabled": false,
-			"facebook": true,
-			"twitter": true,
-			"google": true
-		},
 		"cas": true,
 		"guest": true,
-		"pro": false
+		"pro": false,
+		"facebook": false,
+		"twitter": false,
+		"google": false
 	},
 	"welcome": {
 		"title": {

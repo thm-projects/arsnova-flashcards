@@ -242,37 +242,6 @@ if (Meteor.isServer) {
 				});
 			}
 		},
-		/** Updates the pomodoro settings for a cardsets bonus mode
-		 *  @param {string} cardset_id - The cardset id of the cardset that is getting updated
-		 *  @param {Number} pomodoroTimerQuantity - The amount of pomodoro runs for bonus users
-		 *  @param {Number} pomodoroTimerWorkLength - How many minutes are bonus users supposed to work
-		 *  @param {Number} pomodoroTimerBreakLength - How long is the break
-		 *  @param {boolean} pomodoroTimerSoundConfig - Which sounds are enabled
-		 * */
-		updateBonusPomodoroTimer: function (cardset_id, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig) {
-			check(cardset_id, String);
-			check(pomodoroTimerQuantity, Number);
-			check(pomodoroTimerWorkLength, Number);
-			check(pomodoroTimerBreakLength, Number);
-			check(pomodoroTimerSoundConfig, [Boolean]);
-			if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-				throw new Meteor.Error("not-authorized");
-			}
-			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1}});
-			if (cardset.owner === Meteor.userId() || Roles.userIsInRole(this.userId, ["admin", "editor"])) {
-				Cardsets.update({_id: cardset._id}, {
-					$set: {
-						'pomodoroTimer.quantity': pomodoroTimerQuantity,
-						'pomodoroTimer.workLength': pomodoroTimerWorkLength,
-						'pomodoroTimer.breakLength': pomodoroTimerBreakLength,
-						'pomodoroTimer.soundConfig': pomodoroTimerSoundConfig
-					}
-				});
-				return cardset._id;
-			} else {
-				throw new Meteor.Error("not-authorized");
-			}
-		},
 		/** Removes an user from an active bonus
 		 *  @param {string} cardset_id - The cardset id of the cardset that is getting updated
 		 *  @param {string} user_id - The _id of the user who should be removed

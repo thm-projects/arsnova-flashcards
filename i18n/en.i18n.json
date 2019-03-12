@@ -43,11 +43,17 @@
       "guest": "Ich schau mich nur mal um",
       "pro": "Login mit Premium-Account",
       "backdoor": "Login nach Rollenauswahl",
+      "facebook": "Login mit Facebook-Account",
+      "twitter": "Login mit Twitter-Account",
+      "google": "Login mit Google-Account",
       "tooltip": {
         "cas": "Du wirst zum CAS-Server der THM weitergeleitet...",
         "guest": "Als Gast kannst du dir »freie« Kartensätze anschauen.",
         "pro": "Wenn du keinen Uni-Account hast, kannst du dich hier für ein Abo registrieren.",
-        "backdoor": "Backdoor-Login"
+        "backdoor": "Backdoor-Login",
+        "facebook": "Login mit Facebook-Account",
+        "twitter": "Login mit Twitter-Account",
+        "google": "Login mit Google-Account"
       }
     },
     "buttons": {

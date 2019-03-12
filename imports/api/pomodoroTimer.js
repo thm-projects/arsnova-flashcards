@@ -521,20 +521,20 @@ export let PomodoroTimer = class PomodoroTimer {
 	static updatePomNumSlider () {
 		if (Route.isCardset()) {
 			$('#pomNumLabel').html(TAPi18n.__('pomodoro.form.bonus.count', {
-				count: $('#pomNumSlider').val(),
+				count: this.getGoalPoms(),
 				link: TAPi18n.__('pomodoro.form.link'),
 				tooltip: TAPi18n.__('pomodoro.form.tooltip.link', {pomodoro: TAPi18n.__('pomodoro.name')}),
-				pomodoro: TAPi18n.__('pomodoro.name', {count: parseInt($('#pomNumSlider').val())})
+				pomodoro: TAPi18n.__('pomodoro.name', {count: this.getGoalPoms()})
 			}));
 		} else {
 			$('#pomNumLabel').html(TAPi18n.__('pomodoro.form.user.count', {
-				count: $('#pomNumSlider').val(),
+				count: this.getGoalPoms(),
 				link: TAPi18n.__('pomodoro.form.link'),
 				tooltip: TAPi18n.__('pomodoro.form.tooltip.link', {pomodoro: TAPi18n.__('pomodoro.name')}),
-				pomodoro: TAPi18n.__('pomodoro.name', {count: parseInt($('#pomNumSlider').val())})
+				pomodoro: TAPi18n.__('pomodoro.name', {count: this.getGoalPoms()})
 			}));
 		}
-		goalPoms = $('#pomNumSlider').val();
+		goalPoms = this.getGoalPoms();
 		this.updateTimeParagraph();
 	}
 
@@ -570,7 +570,7 @@ export let PomodoroTimer = class PomodoroTimer {
 
 	/*when you update the work slider or input box or the break ones, it updates the total time and makes sure you didn't go over 60 minutes total work and break time per cycle. I could probably refactor all the following code. Someday!*/
 	static updateWorkSlider () {
-		pomLength = parseInt($('#workSlider').val(), 10);
+		pomLength = this.getPomLength();
 		let minuteString = TAPi18n.__('pomodoro.form.time.minute', {count: pomLength});
 		if (Route.isPresentation() || Route.isDemo()) {
 			$('#workSliderLabel').html(TAPi18n.__('pomodoro.form.presentation.work', {
@@ -598,7 +598,7 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	static updateBreakSlider () {
-		breakLength = parseInt($('#breakSlider').val(), 10);
+		breakLength = this.getBreakLength();
 		let minuteString = TAPi18n.__('pomodoro.form.time.minute', {count: breakLength});
 		if (Route.isPresentation() || Route.isDemo()) {
 			$('#breakSliderLabel').html(TAPi18n.__('pomodoro.form.presentation.break', {
@@ -669,6 +669,9 @@ export let PomodoroTimer = class PomodoroTimer {
 			$("#settings").css('display', 'none');
 			$("#goalDiv").css('display', 'block');
 		}
+		$('#sound1').prop('checked', isBellSoundEnabled);
+		$('#sound2').prop('checked', isSuccessSoundEnabled);
+		$('#sound3').prop('checked', isFailSoundEnabled);
 	}
 
 	static initializeVariables () {
@@ -680,7 +683,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		breakRunning = defaultBreakRunning;
 		if (((Route.isBox() || Route.isMemo()) && Bonus.isInBonus(Router.current().params._id)) || Route.isCardset()) {
 			let cardset = Cardsets.findOne({_id: Router.current().params._id});
-			if (cardset !== undefined && cardset.pomodoroTimer !== undefined) {
+			if (cardset !== undefined && cardset.learningActive) {
 				goalPoms = cardset.pomodoroTimer.quantity;
 				pomLength = cardset.pomodoroTimer.workLength;
 				breakLength = cardset.pomodoroTimer.breakLength;

@@ -106,7 +106,7 @@ Template.registerHelper('isImpressum', function () {
 });
 
 Template.registerHelper('gotAspectRatio', function () {
-	return AspectRatio.isEnabled() && CardVisuals.isFullscreen();
+	return AspectRatio.isEnabled();
 });
 
 Template.registerHelper('isInBonusAndNotOwner', function () {

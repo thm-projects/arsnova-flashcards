@@ -517,8 +517,12 @@ Meteor.methods({
 	 * @param {Number} intervals - Learning interval in days
 	 * @param {Date} registrationPeriod - Period in which new users can join the bonus phase
 	 * @param {Number} maxBonusPoints - The maximum achieveable bonus points
+	 * @param {Number} pomodoroTimerQuantity - The amount of pomodoro runs for bonus users
+	 * @param {Number} pomodoroTimerWorkLength - How many minutes are bonus users supposed to work
+	 * @param {Number} pomodoroTimerBreakLength - How long is the break
+	 * @param {boolean} pomodoroTimerSoundConfig - Which sounds are enabled
 	 */
-	activateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints) {
+	activateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig) {
 		check(id, String);
 		check(maxWorkload, Number);
 		check(daysBeforeReset, Number);
@@ -527,6 +531,10 @@ Meteor.methods({
 		check(intervals, [Number]);
 		check(registrationPeriod, Date);
 		check(maxBonusPoints, Number);
+		check(pomodoroTimerQuantity, Number);
+		check(pomodoroTimerWorkLength, Number);
+		check(pomodoroTimerBreakLength, Number);
+		check(pomodoroTimerSoundConfig, [Boolean]);
 
 		let cardset = Cardsets.findOne(id);
 		if (cardset !== undefined && !cardset.learningActive && (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner))) {
@@ -544,7 +552,11 @@ Meteor.methods({
 					learningEnd: dateEnd,
 					learningInterval: intervals,
 					registrationPeriod: registrationPeriod,
-					"workload.bonus.maxPoints": Math.floor(maxBonusPoints)
+					"workload.bonus.maxPoints": Math.floor(maxBonusPoints),
+					'pomodoroTimer.quantity': pomodoroTimerQuantity,
+					'pomodoroTimer.workLength': pomodoroTimerWorkLength,
+					'pomodoroTimer.breakLength': pomodoroTimerBreakLength,
+					'pomodoroTimer.soundConfig': pomodoroTimerSoundConfig
 				}
 			});
 			return cardset._id;
