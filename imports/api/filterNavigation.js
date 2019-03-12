@@ -2,6 +2,7 @@ import {Route} from "./route.js";
 import {Session} from "meteor/session";
 import {Filter} from "./filter";
 import * as config from "../config/filter.js";
+import {NavigatorCheck} from "./navigatorCheck";
 
 export let FilterNavigation = class FilterNavigation {
 	static gotAuthorFilter (filterType) {
@@ -127,13 +128,29 @@ export let FilterNavigation = class FilterNavigation {
 		let activeFilter = Filter.getActiveFilter();
 		let defaultFilter = Filter.getDefaultFilter();
 		if (JSON.stringify(activeFilter) === JSON.stringify(defaultFilter)) {
-			$('#resetBtn').removeClass('btn-warning').addClass('btn-default');
-			$('#resetBtnMobile').removeClass('btn-warning').addClass('btn-default');
+			$('.resetBtn').removeClass('btn-warning').addClass('btn-default');
+			$('.toggle-filter-dropdown').removeClass('active');
 			return {disabled: 'disabled'};
 		} else {
-			$('#resetBtn').removeClass('btn-default').addClass('btn-warning');
-			$('#resetBtnMobile').removeClass('btn-default').addClass('btn-warning');
+			$('.resetBtn').removeClass('btn-default').addClass('btn-warning');
+			$('.toggle-filter-dropdown').addClass('active');
 			return {};
+		}
+	}
+
+	static setMaxDropdownHeight () {
+		if (NavigatorCheck.isSmartphone()) {
+			let filterNavigationCollapse = $('.navbar-cards-filter-collapse');
+			let navigationHeader = $('.navbar-header:visible');
+			if (filterNavigationCollapse.length && navigationHeader.length) {
+				filterNavigationCollapse.css('max-height', $(window).height() - navigationHeader.height());
+			}
+		} else {
+			let navigationHeader = $('.navbar-fixed-top.navbar-cards:visible');
+			let filterDropdown = $('.navbar-cards-filter-dropdown:visible');
+			if (filterDropdown.length && navigationHeader.length) {
+				$('.navbar-cards-filter-dropdown .filter-bottom-row > li > ul').css('max-height', $(window).height() - navigationHeader.height() - filterDropdown.height());
+			}
 		}
 	}
 };

@@ -1,132 +1,15 @@
-@media (min-width: 900px) {
-  .pool-filter-margin {
-    margin-top: 56px;
-  }
-  .navbar-right {
-    margin-right: -20px;
-  }
-}
-
-.buttonHeader .navbar {
-  min-height: 10px !important;
-}
-
-#filter-nav-wrapper, #filter-nav {
+.navbar-cards-filter-dropdown {
   padding: 0;
-  text-align: left;
+  margin: 0;
+}
 
-  .navbar-text {
-    margin-top: 10px !important;
-    margin-bottom: 10px !important;
-    height: $btn-height !important;
-  }
+.navbar-cards-filter-dropdown * {
+  padding: 0;
+  margin: 0;
+}
 
-  #resetBtn, #displayModeBtn {
-    margin-left: 10px;
-  }
-
-  a {
-    font-size: 14px;
-  }
-
-  .btn {
-    font-weight: bold;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12) !important;
-  }
-
-  .navbar-nav > li > a {
-    padding: ($btn-height / 2) 10px;
-  }
-
-  @media (max-width: 900px) {
-    .navbar-header {
-      float: none;
-    }
-    .navbar-left, .navbar-right {
-      float: none !important;
-    }
-    .navbar-toggle {
-      display: block;
-      height: $btn-height !important;
-      margin-top: 10px !important;
-      margin-bottom: 10px !important;
-    }
-    .navbar-collapse {
-      border-top: 1px solid transparent;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    }
-    .navbar-fixed-top {
-      top: 0;
-      border-width: 0 0 1px;
-    }
-    .navbar-collapse.collapse {
-      display: none !important;
-    }
-    .navbar-nav {
-      float: none !important;
-      margin-top: 7.5px;
-    }
-    .navbar-nav > li {
-      float: none;
-    }
-    .navbar-nav > li > a {
-      margin-left: 0 !important;
-    }
-    .collapse.in {
-      display: block !important;
-    }
-
-    #filterCheckbox {
-      margin-left: 10px;
-    }
-  }
-
-  @media (max-width: 767px) {
-    margin: 0 !important;
-    .resetFilters {
-      margin-left: 20px;
-    }
-    .navbar-collapse {
-      margin-left: 20px;
-      margin-right: 20px;
-    }
-
-    .btn-group {
-      margin-left: 30px;
-    }
-
-    #resetBtnMobile {
-      right: 40px !important;
-    }
-
-    .filter-text-xs {
-      font-size: $font_size_filter_navbar_mobile !important;
-    }
-  }
-
-  @media (max-width: 900px) {
-    .navbar-nav.col-lg-12 {
-      margin-left: 0 !important;
-    }
-    #resetBtnMobile {
-      position: absolute;
-      float: right;
-      right: 60px;
-    }
-    .visible-xs-inline-block {
-      padding-left: 10px;
-    }
-  }
-
-  @media (max-width: 767px) {
-    .navbar-nav {
-      padding-left: 15px !important;
-    }
-  }
-
-  .dropdown-menu {
-    min-width: 250px;
-  }
+.navbar-cards-filter-dropdown.active {
+  display: block !important;
 }
 
 .scrollArrow {
@@ -164,4 +47,88 @@
 
 .filter-text-xs {
   margin-left: 20px;
+}
+
+@media (min-width: 768px) {
+  .navbar-cards-filter-dropdown {
+    border-left-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+  }
+
+  .filter-top-row {
+    width: 580px;
+    padding: 10px;
+    li {
+      margin-top: 10px;
+    }
+  }
+
+   .filter-bottom-row {
+     width: 100%;
+     border-top: 1px solid;
+     li:first-child {
+       a {
+         padding-left: 10px !important;
+       }
+     }
+     li:last-child {
+       a {
+         padding-right: 10px !important;
+       }
+     }
+     .dropdown.open {
+       overflow: visible !important;
+       ul {
+         overflow-y: auto !important;
+         li {
+           height: 50px !important;
+         }
+         a {
+           height: 50px !important;
+           width: 100% !important;
+         }
+       }
+     }
+   }
+}
+
+@media (max-width: 767px) {
+  .navbar-cards-filter-collapse {
+    overflow-y: auto !important;
+    .dropdown.open {
+      height: unset !important;
+    }
+    li button {
+      margin-top: 5px !important;
+      margin-left: 15px !important;
+    }
+    .resetFilters {
+      margin-top: 15px !important;
+    }
+    li > a {
+      height: 53px !important;
+      padding-left: 15px !important;
+      padding-right: 15px !important;
+    }
+    li ul li > a {
+      height: 53px !important;
+      padding-left: 30px !important;
+      padding-right: 15px !important;
+      white-space: unset !important;
+    }
+    #filterCheckbox {
+      margin-left: 15px !important;
+    }
+  }
+}
+@media (max-width: 359px) {
+  .navbar-cards-filter-collapse {
+    #filterCheckbox label:nth-child(4) {
+      margin-top: 15px !important;
+    }
+  }
 }

@@ -1,55 +1,55 @@
 <template name="filterItemFilterDifficulty">
-    <li class="dropdown">
-        <a href="#" id="difficultyFilter" class="dropdown-toggle moduleBtn"
+    <li class="dropdown cards-filter-element">
+        <a href="#" class="dropdown-toggle moduleBtn difficultyFilter cards-filter-element"
            data-toggle="dropdown"
            role="button"
            aria-haspopup="true" aria-expanded="false">
             {{_ "difficulty"}}
             {{#if hasDifficultyFilter}}
-                <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+                <i class="fa fa-filter navigationFilterIcon cards-filter-element"></i>
             {{/if}}
         </a>
-        <ul class="dropdown-menu">
-            <li>
-                <a href="#" class="noFilterDifficulty active">{{_
+        <ul class="dropdown-menu cards-filter-element">
+            <li class="cards-filter-element">
+                <a href="#" class="noFilterDifficulty active cards-filter-element">{{_
                         "set-list.everything"}}</a>
             </li>
             {{#if displayNoDifficultyFilter}}
-                <li>
-                    <a href="#" class="filterNoDifficulty active">{{_
+                <li class="cards-filter-element">
+                    <a href="#" class="filterNoDifficulty active cards-filter-element">{{_
                             "difficulty0"}}
                         {{#if hasNoDifficultyFilter}}
-                            <span class="glyphicon glyphicon-filter"></span>
+                            <i class="fa fa-filter navigationFilterIcon cards-filter-element"></i>
                         {{/if}}
                     </a>
                 </li>
             {{/if}}
             {{#if displayDifficultyFilterNumber 1}}
-                <li>
-                    <a href="#" class="filterDifficulty active" data-id="1">{{_
+                <li class="cards-filter-element">
+                    <a href="#" class="filterDifficulty active cards-filter-element" data-id="1">{{_
                             "difficulty1"}}
                         {{#if hasDifficultyFilterNumber 1}}
-                            <span class="glyphicon glyphicon-filter"></span>
+                            <i class="fa fa-filter navigationFilterIcon cards-filter-element"></i>
                         {{/if}}
                     </a>
                 </li>
             {{/if}}
             {{#if displayDifficultyFilterNumber 2}}
-                <li>
-                    <a href="#" class="filterDifficulty active" data-id="2">{{_
+                <li class="cards-filter-element">
+                    <a href="#" class="filterDifficulty active cards-filter-element" data-id="2">{{_
                             "difficulty2"}}
                         {{#if hasDifficultyFilterNumber 2}}
-                            <span class="glyphicon glyphicon-filter"></span>
+                            <i class="fa fa-filter navigationFilterIcon cards-filter-element"></i>
                         {{/if}}
                     </a>
                 </li>
             {{/if}}
             {{#if displayDifficultyFilterNumber 3}}
-                <li>
-                    <a href="#" class="filterDifficulty active" data-id="3">{{_
+                <li class="cards-filter-element">
+                    <a href="#" class="filterDifficulty active cards-filter-element" data-id="3">{{_
                             "difficulty3"}}
                         {{#if hasDifficultyFilterNumber 3}}
-                            <span class="glyphicon glyphicon-filter"></span>
+                            <i class="fa fa-filter navigationFilterIcon cards-filter-element"></i>
                         {{/if}}
                     </a>
                 </li>

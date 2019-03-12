@@ -1,6 +1,6 @@
 <template name="filterItemFilterAuthors">
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle authorBtn" data-toggle="dropdown" role="button"
+    <li class="dropdown cards-filter-element">
+        <a href="#" class="dropdown-toggle authorBtn cards-filter-element" data-toggle="dropdown" role="button"
            aria-haspopup="true" aria-expanded="false">
             {{#if isActiveRoute regex="learn"}}
                 {{_ "set-list.authorPublisher"}}
@@ -12,20 +12,20 @@
                 {{/if}}
             {{/if}}
             {{#if hasAuthorFilter}}
-                <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+                <i class="fa fa-filter navigationFilterIcon cards-filter-element"></i>
             {{/if}}
         </a>
-        <ul class="dropdown-menu">
-            <li>
-                <a href="#" class="noFilterAuthor active" data-id="">{{_ "set-list.everyone"}}</a>
+        <ul class="dropdown-menu cards-filter-element">
+            <li class="cards-filter-element">
+                <a href="#" class="noFilterAuthor active cards-filter-element" data-id="">{{_ "set-list.everyone"}}</a>
             </li>
             {{#each getAuthors}}
                 {{#if filterAuthors this._id}}
-                    <li>
-                        <a href="#" class="filterAuthor"
+                    <li class="cards-filter-element">
+                        <a href="#" class="filterAuthor cards-filter-element"
                            data-id="{{this._id}}">{{getAuthorName}}
                             {{#if resultsFilterAuthor this._id}}
-                                <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+                                <i class="fa fa-filter navigationFilterIcon cards-filter-element"></i>
                             {{/if}}
                         </a>
                     </li>

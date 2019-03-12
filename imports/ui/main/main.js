@@ -186,6 +186,10 @@ Template.main.onRendered(function () {
 			MainNavigation.clearSearch();
 			$('.navbar-cards-search-dropdown').removeClass('active');
 		}
+		if (!$(event.target).is('.cards-filter-element')) {
+			MainNavigation.clearSearch();
+			$('.navbar-cards-filter-dropdown').removeClass('active');
+		}
 	});
 	$("#main").click(function () {
 		MainNavigation.closeCollapse();

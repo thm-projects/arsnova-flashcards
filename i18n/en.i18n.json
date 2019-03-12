@@ -279,7 +279,7 @@
   },
   "navbar-collapse": {
     "all": {
-      "all": "Alle…",
+      "all": "Alle",
       "cardsets": "Alle Karteien",
       "repetitorien": "Alle Repetitorien"
     },
@@ -291,8 +291,8 @@
     "personal": {
       "personal": {
         "zero": "Anlegen",
-        "one": "Mein…",
-        "multiple": "Meine…"
+        "one": "Meine Karten",
+        "multiple": "Meine Karten"
       },
       "cardsets": {
         "zero": "Kartei anlegen",
@@ -323,6 +323,13 @@
         "cardsets": "Suche nach eigenen Karteien…",
         "repetitorien": "Suche nach egeinen Repetitorien…"
       }
+    },
+    "tooltip": {
+      "search": "Öffne die Suche",
+      "useCases": "Zeige die Use Cases",
+      "displayWordcloud": "Zeige die Einträge in einer Wortwolke",
+      "displayList": "Zeige die Einträge als Liste",
+      "filter": "Filter die Einträge"
     },
     "frontend": "Frontend",
     "backend": "Backend",
@@ -1110,10 +1117,7 @@
     "from": "Ab",
     "noResults": "Keine Kartei oder Repetitorium ausgewählt oder Filtern liefert kein Ergebnis.",
     "sort": "Sortieren ",
-    "displayMode": {
-      "wordcloud": "Wolke",
-      "list": "Liste"
-    }
+    "reset": "Filter zurücksetzen"
   },
   "infinite-scroll": {
     "remainingCardsets": "__current__ von __total__ Karteien",

@@ -1,18 +1,18 @@
 import "./displayModeButton.html";
 import {Session} from "meteor/session";
-import {Filter} from "../../../../api/filter";
-import {Route} from "../../../../api/route";
-import {WordcloudCanvas} from "../../../../api/wordcloudCanvas";
-import ResizeSensor from "../../../../../client/thirdParty/resizeSensor/ResizeSensor";
+import {Filter} from "../../../../../api/filter";
+import {Route} from "../../../../../api/route";
+import {WordcloudCanvas} from "../../../../../api/wordcloudCanvas";
+import ResizeSensor from "../../../../../../client/thirdParty/resizeSensor/ResizeSensor";
 Session.setDefault('filterDisplayWordcloud', false);
 
 /*
  * ############################################################################
- * filterItemDisplayModeButton
+ * mainNavigationTopItemDisplayModeButton
  * ############################################################################
  */
 
-Template.filterItemDisplayModeButton.onRendered(function () {
+Template.mainNavigationTopItemDisplayModeButton.onRendered(function () {
 	if (Route.isAllCardsets()) {
 		WordcloudCanvas.disableWordcloud();
 	} else {
@@ -25,14 +25,14 @@ Template.filterItemDisplayModeButton.onRendered(function () {
 	});
 });
 
-Template.filterItemDisplayModeButton.helpers({
+Template.mainNavigationTopItemDisplayModeButton.helpers({
 	isWordcloudActive: function () {
 		return Session.get('filterDisplayWordcloud');
 	}
 });
 
-Template.filterItemDisplayModeButton.events({
-	'click #displayModeBtn': function () {
+Template.mainNavigationTopItemDisplayModeButton.events({
+	'click .displayModeBtn': function () {
 		if (Session.get('filterDisplayWordcloud')) {
 			Filter.resetInfiniteBar();
 			WordcloudCanvas.disableWordcloud();
@@ -42,6 +42,6 @@ Template.filterItemDisplayModeButton.events({
 	}
 });
 
-Template.filterItemDisplayModeButton.onDestroyed(function () {
+Template.mainNavigationTopItemDisplayModeButton.onDestroyed(function () {
 	WordcloudCanvas.disableWordcloud();
 });

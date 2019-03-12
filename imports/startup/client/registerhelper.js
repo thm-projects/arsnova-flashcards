@@ -23,6 +23,7 @@ import {CardVisuals} from "../../api/cardVisuals";
 import {AspectRatio} from "../../api/aspectRatio";
 import {CardNavigation} from "../../api/cardNavigation";
 import {Icons} from "../../api/icons";
+import {FilterNavigation} from "../../api/filterNavigation";
 
 Meteor.subscribe("collegesCourses");
 
@@ -62,6 +63,47 @@ Template.registerHelper('isBox', function () {
 
 Template.registerHelper('isMemo', function () {
 	return Route.isMemo();
+});
+
+
+Template.registerHelper('gotResetButton', function () {
+	return FilterNavigation.gotResetButton(FilterNavigation.getRouteId());
+});
+
+Template.registerHelper('gotDisplayModeButton', function () {
+	return FilterNavigation.gotDisplayModeButton(FilterNavigation.getRouteId());
+});
+
+Template.registerHelper('gotSortButton', function () {
+	return FilterNavigation.gotSortButton(FilterNavigation.getRouteId());
+});
+
+Template.registerHelper('gotAuthorFilter', function () {
+	return FilterNavigation.gotAuthorFilter(FilterNavigation.getRouteId());
+});
+
+Template.registerHelper('gotCardTypeFilter', function () {
+	return FilterNavigation.gotCardTypeFilter(FilterNavigation.getRouteId());
+});
+
+Template.registerHelper('gotDifficultyFilter', function () {
+	return FilterNavigation.gotDifficultyFilter(FilterNavigation.getRouteId());
+});
+
+Template.registerHelper('gotBonusFilter', function () {
+	return FilterNavigation.gotBonusFilter(FilterNavigation.getRouteId());
+});
+
+Template.registerHelper('gotWordcloudFilter', function () {
+	return FilterNavigation.gotWordCloudFilter(FilterNavigation.getRouteId());
+});
+
+Template.registerHelper('gotKindFilter', function () {
+	return FilterNavigation.gotKindFilter(FilterNavigation.getRouteId());
+});
+
+Template.registerHelper('isFilterIndex', function () {
+	return Route.isFilterIndex();
 });
 
 Template.registerHelper('isFixedSidebar', function () {
@@ -323,6 +365,11 @@ Template.registerHelper("isSidebarHidden", function () {
 
 Template.registerHelper("getUseCasesIcon", function (type) {
 	return Icons.useCases(type);
+});
+
+
+Template.registerHelper("getDisplayModeIcons", function (type) {
+	return Icons.displayMode(type);
 });
 
 Template.registerHelper("getKind", function (kind, displayType = 0) {
