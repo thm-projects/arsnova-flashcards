@@ -214,7 +214,7 @@ Router.route('datenschutz', {
 	}
 });
 
-Router.route('/alldecks', {
+Router.route('/all/cardsets', {
 	name: 'alldecks',
 	template: 'filterIndex',
 	subscriptions: function () {
@@ -238,7 +238,31 @@ Router.route('/alldecks', {
 	}
 });
 
-Router.route('/create', {
+Router.route('/all/repetitorien', {
+	name: 'allRepetitorien',
+	template: 'filterIndex',
+	subscriptions: function () {
+		return [Meteor.subscribe('allRepetitorien'), Meteor.subscribe('paidCardsets'), Meteor.subscribe('userData')];
+	},
+	data: function () {
+		Session.set('helpFilter', "pool");
+		Filter.resetMaxItemCounter();
+	},
+	action: function () {
+		if (this.ready()) {
+			if (UserPermissions.isAdmin()) {
+				this.render();
+			} else {
+				MainNavigation.setLoginTarget(false);
+				this.redirect('home');
+			}
+		} else {
+			this.render(loadingScreenTemplate);
+		}
+	}
+});
+
+Router.route('/personal/cardsets', {
 	name: 'create',
 	template: 'filterIndex',
 	subscriptions: function () {
@@ -257,7 +281,27 @@ Router.route('/create', {
 	}
 });
 
-Router.route('/repetitorium', {
+
+Router.route('/personal/repetitorien', {
+	name: 'personalRepetitorien',
+	template: 'filterIndex',
+	subscriptions: function () {
+		return [Meteor.subscribe('personalRepetitorien')];
+	},
+	data: function () {
+		Session.set('helpFilter', "create");
+		Filter.resetMaxItemCounter();
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
+	}
+});
+
+Router.route('/public/repetitorien', {
 	name: 'repetitorium',
 	template: 'filterIndex',
 	subscriptions: function () {
@@ -461,7 +505,7 @@ Router.route('/cardset/:_id/editcard/:card_id', {
 	}
 });
 
-Router.route('/pool', {
+Router.route('/public/cardsets', {
 	name: 'pool',
 	template: 'filterIndex',
 	subscriptions: function () {

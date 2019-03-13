@@ -23,6 +23,8 @@ export let Icons = class Icons {
 				return config.useCasesIcons.create;
 			case "myCardsets":
 				return config.useCasesIcons.myCardsets;
+			case "myRepositories":
+				return config.useCasesIcons.myRepositories;
 		}
 	}
 

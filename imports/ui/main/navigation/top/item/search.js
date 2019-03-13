@@ -22,6 +22,10 @@ Template.mainNavigationTopItemSearchInput.events({
 			filterType = 2;
 		} else if (Route.isMyCardsets()) {
 			filterType = 3;
+		} else if (Route.isAllRepetitorien()) {
+			filterType = 4;
+		} else if (Route.isPersonalRepetitorien()) {
+			filterType = 5;
 		}
 		Meteor.call('getSearchCategoriesResult', Session.get("searchValue"), filterType, function (error, result) {
 			if (result) {
@@ -50,13 +54,19 @@ Template.mainNavigationTopItemSearchInput.helpers({
 	},
 	getPlaceholder: function () {
 		if (Route.isPool()) {
-			return TAPi18n.__('navbar-collapse.search.cardset');
+			return TAPi18n.__('navbar-collapse.search.public.cardsets');
 		} else if (Route.isRepetitorium()) {
-			return TAPi18n.__('navbar-collapse.search.repetitorium');
+			return TAPi18n.__('navbar-collapse.search.public.repetitorien');
 		} else if (Route.isMyCardsets()) {
-			return TAPi18n.__('navbar-collapse.search.myCardsets');
+			return TAPi18n.__('navbar-collapse.search.personal.cardsets');
+		} else if (Route.isPersonalRepetitorien()) {
+			return TAPi18n.__('navbar-collapse.search.personal.repetitorien');
+		} else if (Route.isAllRepetitorien()) {
+			return TAPi18n.__('navbar-collapse.search.all.repetitorien');
+		} else if (Route.isAllCardsets()) {
+			return TAPi18n.__('navbar-collapse.search.all.cardsets');
 		} else {
-			return TAPi18n.__('navbar-collapse.search.all');
+			return TAPi18n.__('navbar-collapse.search.workload');
 		}
 	}
 });

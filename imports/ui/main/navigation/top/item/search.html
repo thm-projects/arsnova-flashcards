@@ -1,13 +1,17 @@
 <template name="mainNavigationTopItemSearch">
-    <li class="hidden-xs">
-        {{> mainNavigationTopItemSearchDropdown}}
-    </li>
+    {{#if isFilterIndexRoute}}
+        <li class="hidden-xs">
+            {{> mainNavigationTopItemSearchDropdown}}
+        </li>
+    {{/if}}
 </template>
 
 <template name="mainNavigationTopItemSearchMobile">
-    <li class="visible-xs">
-        {{> mainNavigationTopItemSearchDropdown}}
-    </li>
+    {{#if isFilterIndexRoute}}
+        <li class="visible-xs">
+            {{> mainNavigationTopItemSearchDropdown}}
+        </li>
+    {{/if}}
 </template>
 
 <template name="mainNavigationTopItemSearchInput">

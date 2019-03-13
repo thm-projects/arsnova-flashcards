@@ -28,7 +28,7 @@ Meteor.subscribe("collegesCourses");
 
 Template.registerHelper('isRepetitorium', function () {
 	if (isNewCardset()) {
-		return Route.isRepetitorium();
+		return Route.isRepetitorienFilterIndex();
 	} else {
 		if (Session.get('activeCardset') !== undefined) {
 			return Session.get('activeCardset').shuffled;
@@ -123,6 +123,55 @@ Template.registerHelper('getNavigationName', function (name = undefined) {
 	} else {
 		return Route.getNavigationName(name);
 	}
+});
+
+Template.registerHelper('isPublicRoute', function () {
+	return Route.isPublic();
+});
+
+Template.registerHelper('isPersonalRoute', function () {
+	return Route.isPersonal();
+});
+
+Template.registerHelper('isAllRoute', function () {
+	return Route.isAll();
+});
+
+
+Template.registerHelper('isFilterIndexRoute', function () {
+	return Route.isFilterIndex();
+});
+
+Template.registerHelper('isAllRepetitorienRoute', function () {
+	return Route.isAllRepetitorien();
+});
+
+Template.registerHelper('isMyCardsetsRoute', function () {
+	return Route.isMyCardsets();
+});
+
+Template.registerHelper('isPersonalRepetitorienRoute', function () {
+	return Route.isPersonalRepetitorien();
+});
+
+Template.registerHelper('isRepetitorienFilterIndex', function () {
+	return Route.isRepetitorienFilterIndex();
+});
+
+Template.registerHelper('isRepetitorienFilterIndexOrShuffle', function () {
+	return Route.isRepetitorienFilterIndex() || Route.isShuffle() || Route.isEditShuffle();
+});
+
+Template.registerHelper('isNotPublicItemView', function () {
+	return Route.isAllCardsets() || Route.isAllRepetitorien() || Route.isPersonalRepetitorien() || Route.isMyCardsets();
+});
+
+Template.registerHelper('isPoolRoute', function () {
+	return Route.isPool();
+});
+
+Template.registerHelper('isRepetitoriumRoute', function () {
+	return Route.isRepetitorium();
 });
 
 Template.registerHelper('extendContext', function (key, value) {

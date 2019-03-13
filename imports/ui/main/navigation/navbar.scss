@@ -1,4 +1,4 @@
-$navbar_all_decks_border_width: 3px;
+$navbar_all_border_width: 3px;
 
 //Hotfix for outdated backend navigation
 #backendNavigation, #backendNavigation #thm-top-navigation {
@@ -103,8 +103,8 @@ $navbar_all_decks_border_width: 3px;
   }
 
   @media (min-width: 768px){
-    #navbar-all-decks {
-      border-left: $navbar_all_decks_border_width solid;
+    #navbar-all > a {
+      border-left: $navbar_all_border_width solid;
     }
 
     #navbar-cards-footer-collapse {
@@ -175,7 +175,7 @@ $navbar_all_decks_border_width: 3px;
       padding: 0 !important;
     }
 
-    #navbar-profile {
+    #navbar-profile, #navbar-all, #navbar-public, #navbar-personal {
       position: relative !important;
       height: unset !important;
       min-height: round($size_navbar_height * 1.5) !important;
@@ -197,6 +197,31 @@ $navbar_all_decks_border_width: 3px;
           }
         }
       }
+      #public-drop, #all-drop, #personal-drop  {
+          a {
+            padding-left: 30px !important;
+          }
+      }
     }
+  }
+}
+
+#personal-drop, #all-drop, #public-drop {
+  margin: 0;
+  padding: 0;
+  min-width: max-content;
+  ul {
+    padding: 0;
+  }
+  a {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 359px) {
+  .top-navigation-name {
+    display: none;
   }
 }

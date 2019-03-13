@@ -15,7 +15,7 @@ export let BertAlertVisuals = class BertAlertVisuals {
 	}
 
 	static setBertAlertMargin () {
-		let mainContent = $('.row');
+		let mainContent = $('#main');
 		let bertAlert = $('.bert-alert');
 		let offsetTop = mainContent.offset().top + 10;
 		let offsetLeft = 0;

@@ -115,6 +115,12 @@ export let FilterNavigation = class FilterNavigation {
 		if (Route.isShuffle() || Route.isEditShuffle()) {
 			return 5;
 		}
+		if (Route.isAllRepetitorien()) {
+			return 6;
+		}
+		if (Route.isPersonalRepetitorien()) {
+			return 7;
+		}
 	}
 
 	static getFilterButton () {
