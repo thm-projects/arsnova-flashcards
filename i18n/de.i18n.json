@@ -38,10 +38,10 @@
   },
   "landingPage": {
     "login": {
-      "cas": "Login mit THM-Account",
+      "cas": "Login mit Uni-Account",
       "guest": "Ich schau mich nur mal um",
       "pro": "Login mit Premium-Account",
-      "backdoor": "Login nach Rollenauswahl",
+      "backdoor": "Login mit Rollenauswahl",
       "facebook": "Login mit Facebook-Account",
       "twitter": "Login mit Twitter-Account",
       "google": "Login mit Google-Account",
