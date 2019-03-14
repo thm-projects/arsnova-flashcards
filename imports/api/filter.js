@@ -13,6 +13,8 @@ Session.setDefault('courseIterationFilter', undefined);
 Session.setDefault('repetitoriumFilter', undefined);
 Session.setDefault('workloadFilter', undefined);
 Session.setDefault('allCardsetsFilter', undefined);
+Session.setDefault('allRepetitorienFilter', undefined);
+Session.setDefault('personalRepetitorienFilter', undefined);
 Session.setDefault('shuffleFilter', undefined);
 let personalKindTag = "personal";
 let eduKindTag = "edu";
@@ -58,6 +60,16 @@ export let Filter = class Filter {
 					this.setDefaultFilter(FilterNavigation.getRouteId());
 				}
 				return Session.get('shuffleFilter');
+			case 6:
+				if (Session.get('allRepetitorienFilter') === undefined) {
+					this.setDefaultFilter(FilterNavigation.getRouteId());
+				}
+				return Session.get('allRepetitorienFilter');
+			case 7:
+				if (Session.get('personalRepetitorienFilter') === undefined) {
+					this.setDefaultFilter(FilterNavigation.getRouteId());
+				}
+				return Session.get('personalRepetitorienFilter');
 		}
 	}
 
@@ -122,6 +134,12 @@ export let Filter = class Filter {
 				break;
 			case 5:
 				Session.set('shuffleFilter', filter);
+				break;
+			case 6:
+				Session.set('allRepetitorienFilter', filter);
+				break;
+			case 7:
+				Session.set('personalRepetitorienFilter', filter);
 				break;
 		}
 		this.resetInfiniteBar();
@@ -197,7 +215,7 @@ export let Filter = class Filter {
 			filter.date = -1;
 		}
 		if (!Route.isWorkload()) {
-			filter.shuffled = Route.isRepetitorium();
+			filter.shuffled = Route.isRepetitorienFilterIndex();
 		}
 		if (returnDefault) {
 			return filter;
@@ -348,5 +366,7 @@ export let Filter = class Filter {
 		Session.set('workloadFilter', undefined);
 		Session.set('allCardsetsFilter', undefined);
 		Session.set('shuffleFilter', undefined);
+		Session.set('allRepetitorienFilter', undefined);
+		Session.set('personalRepetitorienFilter', undefined);
 	}
 };

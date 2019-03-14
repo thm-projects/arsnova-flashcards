@@ -159,6 +159,11 @@ Template.filterIndexItemCardset.events({
 				saveAs(exportData, TAPi18n.__('export.filename.export') + "_" + TAPi18n.__('export.filename.cardset') + "_" + name + moment().format('_YYYY_MM_DD') + ".json");
 			}
 		});
+	},
+	'click .bonusLeitnerProgress': function (event) {
+		Router.go('cardsetstats', {
+			_id: $(event.target).data('id')
+		});
 	}
 });
 

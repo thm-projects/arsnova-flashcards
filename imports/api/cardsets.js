@@ -42,6 +42,11 @@ if (Meteor.isServer) {
 			return Cardsets.find({shuffled: false});
 		}
 	});
+	Meteor.publish("allRepetitorien", function () {
+		if (this.userId && UserPermissions.isAdmin()) {
+			return Cardsets.find({shuffled: true});
+		}
+	});
 	Meteor.publish("workloadCardsets", function () {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
 			let workload = Workload.find({user_id: this.userId}, {fields: {cardset_id: 1}}).fetch();
@@ -76,6 +81,11 @@ if (Meteor.isServer) {
 	Meteor.publish("myCardsets", function () {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
 			return Cardsets.find({owner: this.userId, shuffled: false});
+		}
+	});
+	Meteor.publish("personalRepetitorien", function () {
+		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
+			return Cardsets.find({owner: this.userId, shuffled: true});
 		}
 	});
 	Meteor.publish("poolCardsets", function () {
@@ -271,31 +281,40 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		} else if (searchValue !== undefined && searchValue !== null && searchValue.length > 2) {
 			let query = {};
-
-			if (UserPermissions.isAdmin()) {
-				query.name = {$regex: searchValue, $options: "i"};
-				query.kind = {$nin: ['demo', 'server']};
-			} else {
-				query = {
-					name: {$regex: searchValue, $options: "i"},
-					$or: [
-						{owner: Meteor.userId()},
-						{kind: {$nin: ['demo', 'server', 'personal']}}
-					]
-				};
-			}
-			if (filterType > 0) {
-				if (filterType === 1) {
+			query.name = {$regex: searchValue, $options: "i"};
+			switch (filterType) {
+				case 0:
+					if (UserPermissions.isAdmin()) {
+						query.kind = {$nin: ['demo', 'server']};
+					} else {
+						query.kind = {$nin: ['demo', 'server', 'personal']};
+					}
 					query.shuffled = false;
-					query.$or = undefined;
+					break;
+				case 1:
 					query.kind = {$nin: ['demo', 'server', 'personal']};
-				} else if (filterType === 2) {
+					query.shuffled = false;
+					break;
+				case 2:
+					query.kind = {$nin: ['demo', 'server', 'personal']};
 					query.shuffled = true;
-				} else {
-					query.$or = undefined;
+					break;
+				case 3:
 					query.owner = Meteor.userId();
-					query.kind = {$nin: ['demo', 'server']};
-				}
+					query.shuffled = false;
+					break;
+				case 4:
+					if (UserPermissions.isAdmin()) {
+						query.kind = {$nin: ['demo', 'server']};
+					} else {
+						query.kind = {$nin: ['demo', 'server', 'personal']};
+					}
+					query.shuffled = true;
+					break;
+				case 5:
+					query.owner = Meteor.userId();
+					query.shuffled = true;
+					break;
 			}
 			let results = Cardsets.find(query, {fields: {_id: 1}}).fetch();
 			let filter = [];

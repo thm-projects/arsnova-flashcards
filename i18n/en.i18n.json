@@ -278,21 +278,51 @@
     }
   },
   "navbar-collapse": {
-    "noCarddecks": "Kartei anlegen",
-    "oneCarddeck": "Meine Kartei",
-    "carddecks": "Meine Karteien",
+    "all": {
+      "all": "Alle…",
+      "cardsets": "Alle Karteien",
+      "repetitorien": "Alle Repetitorien"
+    },
+    "public": {
+      "public": "Öffentlich",
+      "cardsets": "Öffentliche Karteien",
+      "repetitorien": "Öffentliche Repetitorien"
+    },
+    "personal": {
+      "personal": {
+        "zero": "Anlegen",
+        "one": "Mein…",
+        "multiple": "Meine…"
+      },
+      "cardsets": {
+        "zero": "Kartei anlegen",
+        "one": "Meine Kartei",
+        "multiple": "Meine Karteien"
+      },
+      "repetitorien": {
+        "zero": "Repetitorium anlegen",
+        "one": "Mein Repetitorium",
+        "multiple": "Meine Repetitorien"
+      }
+    },
     "learndecks": "Lernpensum",
-    "alldecks": "Alle Karteien",
-    "pool": "Karteien",
-    "course": "Repetitorien",
     "myprofile": "Konto",
     "billing": "Abrechnung",
     "membership": "Mitgliedschaft",
     "search": {
-      "all": "Suche nach Karteien oder Repetitorien…",
-      "cardset": "Suche nach Karteien…",
-      "repetitorium": "Suche nach Repetitorien…",
-      "myCardsets": "Suche nach eigenen Karteien…"
+      "workload": "Suche nach Karteien oder Repetitorien…",
+      "all": {
+        "cardsets": "Suche nach allen Karteien…",
+        "repetitorien": "Suche nach allen Repetitorien…"
+      },
+      "public": {
+        "cardsets": "Suche nach öffentlichen Karteien…",
+        "repetitorien": "Suche nach öffentlichen Repetitorien…"
+      },
+      "personal": {
+        "cardsets": "Suche nach eigenen Karteien…",
+        "repetitorien": "Suche nach egeinen Repetitorien…"
+      }
     },
     "frontend": "Frontend",
     "backend": "Backend",
@@ -556,16 +586,22 @@
       },
       "noName": "User",
       "description": {
-        "create": "I want to create a card index with cards of the type:",
-        "myCardIndex": "I want to see all my card indexes.",
+        "personal": {
+          "create": "I want to create a card index with cards of the type:",
+          "cardsets": "I want to see all my card indexes.",
+          "repetitorien": "Ich will Reps verwalten."
+        },
         "pool": "I want to find a card index on a specific topic.",
         "repetitorium": "I want to find a Repetitorium (= collection of card indexes) on a specific topic.",
         "workload": "I want to see my learning workload."
       },
       "button": {
         "cancel": "Thanks, I know my way around",
-        "create": "Go",
-        "myCardIndex": "Go",
+        "personal": {
+          "create": "Go",
+          "cardsets": "Go",
+          "repetitorien": "Go"
+        },
         "pool": "Go",
         "repetitorium": "Go",
         "workload": "Go"

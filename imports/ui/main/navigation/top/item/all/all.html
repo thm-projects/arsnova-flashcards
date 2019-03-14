@@ -1,0 +1,17 @@
+<template name="mainNavigationTopItemAll">
+    {{#if isInRole 'admin, editor'}}
+        <li id="navbar-all"
+            class="dropdown {{#if isAllRoute}}active{{/if}}">
+            <a href="#" class="dropdown-toggle dropdownMenuContainer"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{{getNavigationName "all"}}}
+            </a>
+            <div id="all-drop" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <ul>
+                    {{> mainNavigationTopItemAllItemCardsets}}
+                    {{> mainNavigationTopItemAllItemRepetitorien}}
+                </ul>
+            </div>
+        </li>
+    {{/if}}
+</template>

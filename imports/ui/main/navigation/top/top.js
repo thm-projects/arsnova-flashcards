@@ -2,15 +2,14 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Meteor} from "meteor/meteor";
 import {MainNavigation} from "../../../../api/mainNavigation";
-import "./item/allCardsets.js";
+import "./item/all/all.js";
 import "./item/backend.js";
 import "./item/connectionStatus.js";
 import "./item/help.js";
 import "./item/logout.js";
-import "./item/myCardsets.js";
-import "./item/pool.js";
+import "./item/personal/personal.js";
+import "./item/public/public.js";
 import "./item/profile/profile.js";
-import "./item/repetitorium.js";
 import "./item/search.js";
 import "./item/useCases.js";
 import "./item/workload.js";
@@ -50,7 +49,7 @@ Template.mainNavigationTop.events({
 			navbarTopCollapse.collapse('toggle');
 		}
 	},
-	'click #navbar-cards-top-collapse a:not(#dropdownMenuLink)': function () {
+	'click #navbar-cards-top-collapse a:not(.dropdownMenuContainer)': function () {
 		MainNavigation.closeCollapse();
 	}
 });

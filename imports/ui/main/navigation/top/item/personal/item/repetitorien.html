@@ -1,0 +1,12 @@
+<template name="mainNavigationTopItemPersonalItemRepetitorien">
+    {{#unless isSmartPhoneAndOwnsNoCards}}
+        {{#if canCreateContent}}
+            <li id="navbar-personal-repetitorien"
+                class="{{#if isPersonalRepetitorienRoute}}active{{/if}}">
+                <a href="{{pathFor route='personalRepetitorien'}}">
+                    {{{getNavigationName "personalRepetitorien"}}}
+                </a>
+            </li>
+        {{/if}}
+    {{/unless}}
+</template>
