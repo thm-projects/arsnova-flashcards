@@ -24,7 +24,7 @@ let topNavigation = {
 		"repetitorien": "<span class='hidden-xs'><i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;</span><span class='visible-xs'><i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;</span>"
 	},
 	"public": {
-		"public": "<i class='fa fa-archive'></i>&nbsp;",
+		"public": "<i class='fa fa-book'></i>&nbsp;",
 		"cardsets": "<i class='fa fa-archive'></i>&nbsp;",
 		"repetitorien": "<span class='hidden-xs'><i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;</span><span class='visible-xs'><i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;</span>"
 	},
