@@ -289,7 +289,7 @@
     },
     "personal": {
       "personal": {
-        "zero": "Anlegen",
+        "zero": "Anlegen…",
         "one": "Mein Kartensatz",
         "multiple": "Meine Kartensätze"
       },
@@ -516,7 +516,7 @@
     "cardsetInfo": "Über diese __type__ Kartei",
     "cardsetInfoRepetitorium": "Über dieses Repetitorium",
     "cardsetInfoStatic": "Über diese Kartei",
-    "shuffleCardsets": "Repetitorium anlegen (Auswahl an Karteien)",
+    "shuffleCardsets": "Repetitorium anlegen",
     "shuffle": "Auswahl speichern",
     "shuffleInfoTextNew": "Erstell dir ein Repetitorium durch Hinzufügen von Karteien mit dem Plus-Button.",
     "shuffleInfoTextEdit": "Inhalt des Repetitoriums erweitern oder einschränken",
@@ -543,13 +543,13 @@
     "filter-info-extra-small": "Sortieren & filtern"
   },
   "set-list-empty": {
-    "emptytextlist": "Du hast noch keine Kartei erstellt. Informiere dich unter »Hilfe«, was du mit einer eigenen Kartei tun kannst.",
+    "emptytextlist": "Eine Kartei besteht aus Karten desselben Typs.",
     "emptypooltextlist": "Keine Kartei vorhanden",
-    "newset": "Kartei erstellen (Box für Lernkarten)"
+    "newset": "Kartei anlegen (Kartenbox)"
   },
   "set-list-learn-empty": {
-    "emptytextlist": "Zum Lernen wähle ein Thema aus dem Themen-Pool oder die Karteien eines Repetitoriums.",
-    "emptytextlistNoShuffle": "Wähle eine einzelne Kartei aus dem Themen-Pool aus oder die Karteien eines Repetitoriums.",
+    "emptytextlist": "Zum Lernen wähle ein Thema aus dem Themenpool oder die Karteien eines Repetitoriums.",
+    "emptytextlistNoShuffle": "Wähle eine einzelne Kartei aus dem Themenpool aus oder die Karteien eines Repetitoriums.",
     "browseCardset": "Kartei auswählen",
     "browseCourse": "Repetitorium auswählen"
   },
@@ -609,7 +609,7 @@
   },
   "modal-dialog": {
     "missingFields": "Bitte fülle die folgenden Felder aus",
-    "newcarddeck": "Kartei erstellen (Box für Lernkarten)",
+    "newcarddeck": "Kartei anlegen (Kartenbox)",
     "editcard": "Karte editieren",
     "editcardset": "Kartei editieren",
     "adminEditCardset": "Admin-Einstellungen",
@@ -905,7 +905,7 @@
     "activeLearners": "Eingeschrieben",
     "dateUpdated": "Aktualisiert",
     "selectCardToLearn": "Mit einem Klick auf das Thema einer Kartei nimmst du sie in dein Lernpensum auf.",
-    "selectShuffledCardsetToLearn": "Mit einem Klick auf das Thema eines Repetitoriums nimmst du es in dein Lernpensum auf."
+    "selectShuffledCardsetToLearn": "Mit einem Klick auf ein Thema  nimmst du es in dein Lernpensum auf."
   },
   "bonus": {
     "info": {
@@ -1460,7 +1460,7 @@
     "list": {
       "selectCourse": "Repetitorium auswählen",
       "createCourse": "Repetitorium anlegen",
-      "empty": "Ein Repetitorium fasst mehrere Themen (= Karteien) zusammen. Jeder kann Repetitorien zur Vorbereitung auf eine Modulprüfung auf 🍅cards anlegen.",
+      "empty": "Ein Repetitorium fasst Karteien thematisch zusammen und dient der Vorbereitung auf eine Prüfung.",
       "courseIteration": "Thema des Repetitoriums",
       "module": "Modul",
       "course": "Studiengang",
@@ -1470,7 +1470,7 @@
       "semesterList": "__count__. Semester"
     },
     "modal": {
-      "new": "Repetitorium anlegen (Auswahl an Karteien)",
+      "new": "Repetitorium anlegen",
       "saveNew": "Repetitorium anlegen",
       "placeholder": {
         "name": "Thema des Repetitoriums in wenigen Worten",
