@@ -6,7 +6,7 @@
                     <nav id="navbar-cards-top" class="navbar navbar-default navbar-fixed-top navbar-cards">
                         <div class="container">
                             <div class="visible-xs navbar-header">
-                                <div class="navbar-header-item pull-left">
+                                <div class="navbar-header-item pull-left top-navigation-name">
                                     {{{getNavigationName}}}
                                 </div>
                                 <div class="navbar-header-item pull-right">
@@ -56,14 +56,13 @@
         <ul class="nav navbar-nav navbar-left">
             {{> mainNavigationTopItemUseCasesDesktop}}
             {{> mainNavigationTopItemSearch}}
-            {{> mainNavigationTopItemPool}}
-            {{> mainNavigationTopItemRepetitorium}}
+            {{> mainNavigationTopItemPublic}}
             {{> mainNavigationTopItemWorkload}}
-            {{> mainNavigationTopItemMyCardsets}}
+            {{> mainNavigationTopItemPersonal}}
             {{> mainNavigationTopItemHelp}}
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            {{> mainNavigationTopItemAllCardsets}}
+            {{> mainNavigationTopItemAll}}
             {{> mainNavigationTopItemBackend}}
             {{> mainNavigationTopItemConnectionStatus visibility=1}}
             {{> mainNavigationTopItemProfile}}

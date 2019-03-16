@@ -158,7 +158,7 @@ Template.filterIndexRepetitorium.helpers({
 });
 
 Template.filterIndexRepetitorium.onRendered(function () {
-	if (Session.get('useCaseType') === 2) {
+	if (Session.get('useCaseType') === 2 || Session.get('useCaseType') === 6) {
 		MainNavigation.focusSearchBar();
 		Session.set('useCaseType', 0);
 	}

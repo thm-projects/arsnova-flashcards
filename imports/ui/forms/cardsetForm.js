@@ -107,16 +107,16 @@ export function saveCardset() {
 	if (!error) {
 		let name, cardType, description, shuffled, cardGroups;
 		name = $('#setName').val();
-		if (Route.isShuffle() || Route.isRepetitorium()) {
+		if (Route.isShuffle() || Route.isRepetitorienFilterIndex()) {
 			cardType = -1;
 		} else {
 			cardType = $('#setCardsetFormModal .setCardType').val();
 		}
 		description = $('#contentEditor').val();
 		if (isNewCardset()) {
-			if (Route.isShuffle() || Route.isRepetitorium()) {
+			if (Route.isShuffle() || Route.isRepetitorienFilterIndex()) {
 				shuffled = true;
-				if (Route.isRepetitorium()) {
+				if (Route.isRepetitorienFilterIndex()) {
 					cardGroups = [];
 				} else {
 					cardGroups = Session.get("ShuffledCardsets");
@@ -163,9 +163,6 @@ export function saveCardset() {
  */
 
 Template.cardsetForm.helpers({
-	isShuffleRoute: function () {
-		return Route.isShuffle() || Route.isRepetitorium();
-	},
 	isNew: function () {
 		return isNewCardset();
 	}

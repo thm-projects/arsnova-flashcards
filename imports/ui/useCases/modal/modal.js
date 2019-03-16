@@ -63,6 +63,15 @@ Template.useCasesModal.onRendered(function () {
 					Router.go('create');
 				}
 				break;
+			case 6:
+				if (Route.isPersonalRepetitorien()) {
+					setTimeout(function () {
+						MainNavigation.focusSearchBar();
+					}, 500);
+				} else {
+					Router.go('personalRepetitorien');
+				}
+				break;
 		}
 	});
 	$('#useCasesModal').on('show.bs.modal', function () {

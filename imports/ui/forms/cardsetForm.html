@@ -17,7 +17,7 @@
                         {{> mainModalItemCloseIcon}}
                         <h4 id="setCardsetFormModalTitle" class="modal-title">
                             {{#if isNew}}
-                                {{#if isShuffleRoute}}
+                                {{#if isRepetitorienFilterIndexOrShuffle}}
                                     {{_ "courseIteration.modal.new"}}
                                 {{else}}
                                     {{_ "modal-dialog.newcarddeck"}}
@@ -41,7 +41,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <span class="modal-icon">
-                        {{#if isActiveRoute regex='repetitorium'}}
+                        {{#if isRepetitorienFilterIndex}}
                             {{{getCardsetIcons true}}}
                         {{else}}
                             {{{getCardsetIcons false}}}
@@ -114,7 +114,7 @@
                     <span id="helpSetName" class="text-warning"></span>
                 </div>
                 <br>
-                {{#unless isActiveRoute regex='shuffle|repetitorium'}}
+                {{#unless isRepetitorienFilterIndexOrShuffle}}
                     {{#unless isShuffledCardset this._id}}
                         {{#unless learningActive}}
                             <label id="setCardTypeLabel" class="col-xs-12 control-label" for="setCardType">{{_

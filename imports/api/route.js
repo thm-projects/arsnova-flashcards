@@ -148,8 +148,32 @@ export let Route = class Route {
 		return Router.current().route.getName() === "pool";
 	}
 
+	static isPublic () {
+		return this.isRepetitorium() || this.isPool();
+	}
+
+	static isPersonal () {
+		return this.isMyCardsets() || this.isPersonalRepetitorien();
+	}
+
+	static isPersonalRepetitorien () {
+		return Router.current().route.getName() === "personalRepetitorien";
+	}
+
+	static isAll () {
+		return this.isAllCardsets() || this.isAllRepetitorien();
+	}
+
+	static isAllRepetitorien () {
+		return Router.current().route.getName() === "allRepetitorien";
+	}
+
+	static isRepetitorienFilterIndex () {
+		return (this.isAllRepetitorien() || this.isPersonalRepetitorien() || this.isRepetitorium());
+	}
+
 	static isFilterIndex () {
-		return (this.isHome() || this.isPool() || this.isMyCardsets() || this.isRepetitorium() || this.isAllCardsets() || this.isWorkload());
+		return (this.isHome() || this.isPool() || this.isMyCardsets() || this.isRepetitorium() || this.isAllCardsets() || this.isWorkload() || this.isAllRepetitorien() || this.isPersonalRepetitorien());
 	}
 
 	static isFirstTimeVisit () {
@@ -172,6 +196,42 @@ export let Route = class Route {
 
 	static isImpressum () {
 		return conf.impressumRoutes.includes(Router.current().route.getName());
+	}
+
+	//0 Personal
+	//1 cardsets
+	//2 repetitorien
+	static getPersonalRouteName (type = 0) {
+		if (Meteor.user() && Meteor.user().count !== undefined) {
+			if (type === 0) {
+				switch (Meteor.user().count.cardsets + Meteor.user().count.shuffled) {
+					case 0:
+						return TAPi18n.__('navbar-collapse.personal.personal.zero');
+					case 1:
+						return TAPi18n.__('navbar-collapse.personal.personal.one');
+					default:
+						return TAPi18n.__('navbar-collapse.personal.personal.multiple');
+				}
+			} else if (type === 1) {
+				switch (Meteor.user().count.cardsets) {
+					case 0:
+						return TAPi18n.__('navbar-collapse.personal.cardsets.zero');
+					case 1:
+						return TAPi18n.__('navbar-collapse.personal.cardsets.one');
+					default:
+						return TAPi18n.__('navbar-collapse.personal.cardsets.multiple');
+				}
+			} else {
+				switch (Meteor.user().count.shuffled) {
+					case 0:
+						return TAPi18n.__('navbar-collapse.personal.repetitorien.zero');
+					case 1:
+						return TAPi18n.__('navbar-collapse.personal.repetitorien.one');
+					default:
+						return TAPi18n.__('navbar-collapse.personal.repetitorien.multiple');
+				}
+			}
+		}
 	}
 
 	static getNavigationName (name) {
@@ -197,28 +257,32 @@ export let Route = class Route {
 				return icons.topNavigation.workload  + TAPi18n.__('navbar-collapse.learndecks');
 			case "learning":
 				return icons.footerNavigation.learning  + TAPi18n.__('contact.learning');
-			case "create":
-			case "myCardsets":
-				if (Meteor.user() && Meteor.user().count !== undefined) {
-					switch (Meteor.user().count.cardsets) {
-						case 0:
-							return icons.topNavigation.myCardsets + TAPi18n.__('navbar-collapse.noCarddecks');
-						case 1:
-							return icons.topNavigation.myCardsets + TAPi18n.__('navbar-collapse.oneCarddeck');
-						default:
-							return icons.topNavigation.myCardsets + TAPi18n.__('navbar-collapse.carddecks');
-					}
-				}
-				break;
+			case "all":
+				return icons.topNavigation.all.all + TAPi18n.__('navbar-collapse.all.all') + "<span class='caret'></span>";
+			case "allCardsets":
 			case "alldecks":
-				return icons.topNavigation.alldecks + "<span class='hidden-on-iPad'>" + TAPi18n.__('navbar-collapse.alldecks') + "</span>";
+				return icons.topNavigation.all.cardsets + TAPi18n.__('navbar-collapse.all.cardsets');
+			case "allRepetitorien":
+				return icons.topNavigation.all.repetitorien +  TAPi18n.__('navbar-collapse.all.repetitorien');
+			case "public":
+				return icons.topNavigation.public.public + TAPi18n.__('navbar-collapse.public.public') + "<span class='caret'></span>";
+			case "publicCardsets":
+			case "home":
+			case "pool":
+				return icons.topNavigation.public.cardsets + TAPi18n.__('navbar-collapse.public.cardsets');
+			case "publicRepetitorien":
 			case "repetitorium":
-				return icons.topNavigation.repetitorium + TAPi18n.__('navbar-collapse.course');
+				return icons.topNavigation.public.repetitorien +  TAPi18n.__('navbar-collapse.public.repetitorien');
+			case "personal":
+				return icons.topNavigation.personal.personal + this.getPersonalRouteName(0) + "<span class='caret'></span>";
+			case "personalCardsets":
+			case "myCardsets":
+			case "create":
+				return icons.topNavigation.personal.cardsets + this.getPersonalRouteName(1);
+			case "personalRepetitorien":
+				return icons.topNavigation.personal.repetitorien +  this.getPersonalRouteName(2);
 			case "workload":
 				return icons.topNavigation.workload + TAPi18n.__('navbar-collapse.learndecks');
-			case "pool":
-			case "home":
-				return icons.topNavigation.pool + TAPi18n.__('navbar-collapse.pool');
 			case "backend":
 				return icons.topNavigation.backend + "<span class='hidden-on-iPad'>" + TAPi18n.__('navbar-collapse.backend') + "</span>";
 			case "profile":

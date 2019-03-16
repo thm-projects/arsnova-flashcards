@@ -2,7 +2,7 @@
     {{> showLicense}}
     {{> filterItemSelectCardsetToLearnCallout}}
     <div id="set-list-region">
-        {{#if isActiveRoute regex='alldecks|repetitorium'}}
+        {{#if isActiveRoute regex='alldecks|create|allRepetitorien|personalRepetitorien'}}
             {{> cardsetFormAdmin}}
         {{/if}}
         {{#if isActiveRoute regex='alldecks|create'}}
@@ -11,7 +11,7 @@
             {{> filterIndexCreate}}
         {{/if}}
 
-        {{#if isActiveRoute regex='repetitorium'}}
+        {{#if isActiveRoute regex='repetitorium|allRepetitorien|personalRepetitorien'}}
             {{> cardsetDeleteForm}}
             {{> cardsetForm}}
             {{> filterIndexRepetitorium}}
@@ -36,13 +36,9 @@
 </template>
 
 <template name="filterIndexPool">
-    {{#if canCreateContent}}
-        <span class="filter-index-buttons">
-            {{> filterItemCreateCardsetButton}}
-        </span>
-    {{else}}
+    {{#unless isSelectingCardsetToLearn}}
         <div class="empty-button-placeholder"></div>
-    {{/if}}
+    {{/unless}}
     {{#if getDecks 0}}
         {{> filterNavigation}}
         {{#if displayWordcloud}}
@@ -108,9 +104,15 @@
 </template>
 
 <template name="filterIndexRepetitorium">
-        <span class="filter-index-buttons">
-            {{> filterItemCreateRepetitoriumButton}}
-        </span>
+    {{#unless isSelectingCardsetToLearn}}
+        {{#if isPersonalRepetitorienRoute}}
+            <span class="filter-index-buttons">
+                {{> filterItemCreateRepetitoriumButton}}
+            </span>
+        {{else}}
+            <div class="empty-button-placeholder"></div>
+        {{/if}}
+    {{/unless}}
     {{#if cardsetList 0}}
         {{> filterNavigation}}
         {{#if displayWordcloud}}

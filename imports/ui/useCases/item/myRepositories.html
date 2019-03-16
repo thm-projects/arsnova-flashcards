@@ -1,0 +1,20 @@
+<template name="useCasesItemMyRepositories">
+    {{#if gotCardIndex}}
+        <tr>
+            <td>
+                {{_ "useCases.modal.description.personal.repetitorien"}}
+                <div class="visible-xs">
+                    {{> useCasesItemMyRepositoriesButton}}
+                </div>
+            </td>
+            <td class="hidden-xs">
+                {{> useCasesItemMyRepositoriesButton}}
+            </td>
+        </tr>
+    {{/if}}
+</template>
+
+<template name="useCasesItemMyRepositoriesButton">
+    <button class="btn btn-raised btn-success useCaseGoToMyRepositories" type="button" data-dismiss="modal"
+            aria-hidden="true">{{{getUseCasesIcon "myRepositories"}}}{{_ "useCases.modal.button.personal.repetitorien"}}</button>
+</template>

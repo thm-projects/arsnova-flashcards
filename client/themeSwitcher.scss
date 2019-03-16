@@ -113,39 +113,73 @@ $themes: (
     $navbar_background: map-get($map, "navbar_background");
     $navbar_text: map-get($map, "navbar_text");
     $navbar_text_hover: map-get($map, "navbar_text_hover");
-    $navbar_alldecks_background: map-get($map, "navbar_alldecks_background");
-    $navbar_alldecks_background_hover: map-get($map, "navbar_alldecks_background_hover");
-    $navbar_alldecks_background_active: map-get($map, "navbar_alldecks_background_active");
-    $navbar_alldecks_text: map-get($map, "navbar_alldecks_text");
-    $navbar_alldecks_text_hover: map-get($map, "navbar_alldecks_text_hover");
-    $navbar_alldecks_text_active: map-get($map, "navbar_alldecks_text_active");
-    $navbar_alldecks_border: map-get($map, "navbar_alldecks_border");
-    $navbar_alldecks_border_hover: map-get($map, "navbar_alldecks_border_hover");
-    $navbar_alldecks_border_active: map-get($map, "navbar_alldecks_border_active");
-    $navbar_create_background: map-get($map, "navbar_create_background");
-    $navbar_create_background_hover: map-get($map, "navbar_create_background_hover");
-    $navbar_create_background_active: map-get($map, "navbar_create_background_active");
-    $navbar_create_text: map-get($map, "navbar_create_text");
-    $navbar_create_text_hover: map-get($map, "navbar_create_text_hover");
-    $navbar_create_text_active: map-get($map, "navbar_create_text_active");
-    $navbar_repetitorium_background: map-get($map, "navbar_repetitorium_background");
-    $navbar_repetitorium_background_hover: map-get($map, "navbar_repetitorium_background_hover");
-    $navbar_repetitorium_background_active: map-get($map, "navbar_repetitorium_background_active");
-    $navbar_repetitorium_text: map-get($map, "navbar_repetitorium_text");
-    $navbar_repetitorium_text_hover: map-get($map, "navbar_repetitorium_text_hover");
-    $navbar_repetitorium_text_active: map-get($map, "navbar_repetitorium_text_active");
+    //navbar all
+    $navbar_all_background: map-get($map, "navbar_all_background");
+    $navbar_all_background_hover: map-get($map, "navbar_all_background_hover");
+    $navbar_all_background_active: map-get($map, "navbar_all_background_active");
+    $navbar_all_text: map-get($map, "navbar_all_text");
+    $navbar_all_text_hover: map-get($map, "navbar_all_text_hover");
+    $navbar_all_text_active: map-get($map, "navbar_all_text_active");
+    $navbar_all_border: map-get($map, "navbar_all_border");
+    $navbar_all_border_hover: map-get($map, "navbar_all_border_hover");
+    $navbar_all_border_active: map-get($map, "navbar_all_border_active");
+    $navbar_all_cardsets_background: map-get($map, "navbar_all_cardsets_background");
+    $navbar_all_cardsets_background_hover: map-get($map, "navbar_all_cardsets_background_hover");
+    $navbar_all_cardsets_background_active: map-get($map, "navbar_all_cardsets_background_active");
+    $navbar_all_cardsets_text: map-get($map, "navbar_all_cardsets_text");
+    $navbar_all_cardsets_text_hover: map-get($map, "navbar_all_cardsets_text_hover");
+    $navbar_all_cardsets_text_active: map-get($map, "navbar_all_cardsets_text_active");
+    $navbar_all_repetitorien_background: map-get($map, "navbar_all_repetitorien_background");
+    $navbar_all_repetitorien_background_hover: map-get($map, "navbar_all_repetitorien_background_hover");
+    $navbar_all_repetitorien_background_active: map-get($map, "navbar_all_repetitorien_background_active");
+    $navbar_all_repetitorien_text: map-get($map, "navbar_all_repetitorien_text");
+    $navbar_all_repetitorien_text_hover: map-get($map, "navbar_all_repetitorien_text_hover");
+    $navbar_all_repetitorien_text_active: map-get($map, "navbar_all_repetitorien_text_active");
+    //navbar personal
+    $navbar_personal_background: map-get($map, "navbar_personal_background");
+    $navbar_personal_background_hover: map-get($map, "navbar_personal_background_hover");
+    $navbar_personal_background_active: map-get($map, "navbar_personal_background_active");
+    $navbar_personal_text: map-get($map, "navbar_personal_text");
+    $navbar_personal_text_hover: map-get($map, "navbar_personal_text_hover");
+    $navbar_personal_text_active: map-get($map, "navbar_personal_text_active");
+    $navbar_personal_cardsets_background: map-get($map, "navbar_personal_cardsets_background");
+    $navbar_personal_cardsets_background_hover: map-get($map, "navbar_personal_cardsets_background_hover");
+    $navbar_personal_cardsets_background_active: map-get($map, "navbar_personal_cardsets_background_active");
+    $navbar_personal_cardsets_text: map-get($map, "navbar_personal_cardsets_text");
+    $navbar_personal_cardsets_text_hover: map-get($map, "navbar_personal_cardsets_text_hover");
+    $navbar_personal_cardsets_text_active: map-get($map, "navbar_personal_cardsets_text_active");
+    $navbar_personal_repetitorien_background: map-get($map, "navbar_personal_repetitorien_background");
+    $navbar_personal_repetitorien_background_hover: map-get($map, "navbar_personal_repetitorien_background_hover");
+    $navbar_personal_repetitorien_background_active: map-get($map, "navbar_personal_repetitorien_background_active");
+    $navbar_personal_repetitorien_text: map-get($map, "navbar_personal_repetitorien_text");
+    $navbar_personal_repetitorien_text_hover: map-get($map, "navbar_personal_repetitorien_text_hover");
+    $navbar_personal_repetitorien_text_active: map-get($map, "navbar_personal_repetitorien_text_active");
+    //navbar public
+    $navbar_public_background: map-get($map, "navbar_public_background");
+    $navbar_public_background_hover: map-get($map, "navbar_public_background_hover");
+    $navbar_public_background_active: map-get($map, "navbar_public_background_active");
+    $navbar_public_text: map-get($map, "navbar_public_text");
+    $navbar_public_text_hover: map-get($map, "navbar_public_text_hover");
+    $navbar_public_text_active: map-get($map, "navbar_public_text_active");
+    $navbar_public_cardsets_background: map-get($map, "navbar_public_cardsets_background");
+    $navbar_public_cardsets_background_hover: map-get($map, "navbar_public_cardsets_background_hover");
+    $navbar_public_cardsets_background_active: map-get($map, "navbar_public_cardsets_background_active");
+    $navbar_public_cardsets_text: map-get($map, "navbar_public_cardsets_text");
+    $navbar_public_cardsets_text_hover: map-get($map, "navbar_public_cardsets_text_hover");
+    $navbar_public_cardsets_text_active: map-get($map, "navbar_public_cardsets_text_active");
+    $navbar_public_repetitorien_background: map-get($map, "navbar_public_repetitorien_background");
+    $navbar_public_repetitorien_background_hover: map-get($map, "navbar_public_repetitorien_background_hover");
+    $navbar_public_repetitorien_background_active: map-get($map, "navbar_public_repetitorien_background_active");
+    $navbar_public_repetitorien_text: map-get($map, "navbar_public_repetitorien_text");
+    $navbar_public_repetitorien_text_hover: map-get($map, "navbar_public_repetitorien_text_hover");
+    $navbar_public_repetitorien_text_active: map-get($map, "navbar_public_repetitorien_text_active");
+    //navbar learn
     $navbar_learn_background: map-get($map, "navbar_learn_background");
     $navbar_learn_background_hover: map-get($map, "navbar_learn_background_hover");
     $navbar_learn_background_active: map-get($map, "navbar_learn_background_active");
     $navbar_learn_text: map-get($map, "navbar_learn_text");
     $navbar_learn_text_hover: map-get($map, "navbar_learn_text_hover");
     $navbar_learn_text_active: map-get($map, "navbar_learn_text_active");
-    $navbar_pool_background: map-get($map, "navbar_pool_background");
-    $navbar_pool_background_hover: map-get($map, "navbar_pool_background_hover");
-    $navbar_pool_background_active: map-get($map, "navbar_pool_background_active");
-    $navbar_pool_text: map-get($map, "navbar_pool_text");
-    $navbar_pool_text_hover: map-get($map, "navbar_pool_text_hover");
-    $navbar_pool_text_active: map-get($map, "navbar_pool_text_active");
     $navbar_search_placeholder: map-get($map, "navbar_search_placeholder");
     $navbar_search_button_background: map-get($map, "navbar_search_button_background");
     $navbar_search_button_icon: map-get($map, "navbar_search_button_icon");
@@ -1561,45 +1595,131 @@ $themes: (
     }
 
     //navbar
-    #navbar-pool a {
-      background-color: $navbar_pool_background !important;
-      color: $navbar_pool_text !important;
+    //navbar all
+
+    #navbar-all > a {
+      background-color: $navbar_all_background !important;
+      color: $navbar_all_text !important;
+      border-color: $navbar_all_border !important;
     }
-    #navbar-pool a:hover, #navbar-pool a:focus {
-      background-color: $navbar_pool_background_hover !important;
-      color: $navbar_pool_text_hover !important;
+    #navbar-all > a:hover, #navbar-all > a:focus {
+      background-color: $navbar_all_background_hover !important;
+      color: $navbar_all_text_hover !important;
+      border-color: $navbar_all_border_hover !important;
     }
-    #navbar-pool.active a, #navbar-pool.active a:hover, #navbar-pool.active a:focus {
-      background-color: $navbar_pool_background_active !important;
-      color: $navbar_pool_text_active !important;
+    #navbar-all.active > a, #navbar-all.active > a:hover, #navbar-all.active > a:focus {
+      background-color: $navbar_all_background_active !important;
+      color: $navbar_all_text_active !important;
+      border-color: $navbar_all_border_active !important;
     }
 
-    #navbar-repetitorium a {
-      background-color: $navbar_repetitorium_background !important;
-      color: $navbar_repetitorium_text !important;
+    #navbar-all-cardsets a {
+      background-color: $navbar_all_cardsets_background !important;
+      color: $navbar_all_cardsets_text !important;
     }
-    #navbar-repetitorium a:hover, #navbar-repetitorium a:focus {
-      background-color: $navbar_repetitorium_background_hover !important;
-      color: $navbar_repetitorium_text_hover !important;
+    #navbar-all-cardsets a:hover, #navbar-all-cardsets a:focus {
+      background-color: $navbar_all_cardsets_background_hover !important;
+      color: $navbar_all_cardsets_text_hover !important;
     }
-    #navbar-repetitorium.active a, #navbar-repetitorium.active a:hover, #navbar-repetitorium.active a:focus {
-      background-color: $navbar_repetitorium_background_active !important;
-      color: $navbar_repetitorium_text_active !important;
-    }
-
-    #navbar-own-decks a {
-      background-color: $navbar_create_background !important;
-      color: $navbar_create_text !important;
-    }
-    #navbar-own-decks a:hover, #navbar-own-decks a:focus {
-      background-color: $navbar_create_background_hover !important;
-      color: $navbar_create_text_hover !important;
-    }
-    #navbar-own-decks.active a, #navbar-own-decks.active a:hover, #navbar-own-decks.active a:focus {
-      background-color: $navbar_create_background_active !important;
-      color: $navbar_create_text_active !important;
+    #navbar-all-cardsets.active a, #navbar-all-cardsets.active a:hover, #navbar-all-cardsets.active a:focus {
+      background-color: $navbar_all_cardsets_background_active !important;
+      color: $navbar_all_cardsets_text_active !important;
     }
 
+    #navbar-all-repetitorien a {
+      background-color: $navbar_all_repetitorien_background !important;
+      color: $navbar_all_repetitorien_text !important;
+    }
+    #navbar-all-repetitorien a:hover, #navbar-all-repetitorien a:focus {
+      background-color: $navbar_all_repetitorien_background_hover !important;
+      color: $navbar_all_repetitorien_text_hover !important;
+    }
+    #navbar-all-repetitorien.active a, #navbar-all-repetitorien.active a:hover, #navbar-all-repetitorien.active a:focus {
+      background-color: $navbar_all_repetitorien_background_active !important;
+      color: $navbar_all_repetitorien_text_active !important;
+    }
+
+    //navbar public
+    #navbar-public > a {
+      background-color: $navbar_public_background !important;
+      color: $navbar_public_text !important;
+    }
+    #navbar-public > a:hover, #navbar-public > a:focus {
+      background-color: $navbar_public_background_hover !important;
+      color: $navbar_public_text_hover !important;
+    }
+    #navbar-public.active > a, #navbar-public.active > a:hover, #navbar-public.active > a:focus {
+      background-color: $navbar_public_background_active !important;
+      color: $navbar_public_text_active !important;
+    }
+
+    #navbar-public-cardsets a {
+      background-color: $navbar_public_cardsets_background !important;
+      color: $navbar_public_cardsets_text !important;
+    }
+    #navbar-public-cardsets a:hover, #navbar-public-cardsets a:focus {
+      background-color: $navbar_public_cardsets_background_hover !important;
+      color: $navbar_public_cardsets_text_hover !important;
+    }
+    #navbar-public-cardsets.active a, #navbar-public-cardsets.active a:hover, #navbar-public-cardsets.active a:focus {
+      background-color: $navbar_public_cardsets_background_active !important;
+      color: $navbar_public_cardsets_text_active !important;
+    }
+
+    #navbar-public-repetitorien a {
+      background-color: $navbar_public_background !important;
+      color: $navbar_public_text !important;
+    }
+    #navbar-public-repetitorien a:hover, #navbar-public-repetitorien a:focus {
+      background-color: $navbar_public_repetitorien_background_hover !important;
+      color: $navbar_public_repetitorien_text_hover !important;
+    }
+    #navbar-public-repetitorien.active a, #navbar-public-repetitorien.active a:hover, #navbar-public-repetitorien.active a:focus {
+      background-color: $navbar_public_repetitorien_background_active !important;
+      color: $navbar_public_repetitorien_text_active !important;
+    }
+
+    //navbar personal
+    #navbar-personal > a {
+      background-color: $navbar_personal_background !important;
+      color: $navbar_personal_text !important;
+    }
+    #navbar-personal > a:hover, #navbar-personal > a:focus {
+      background-color: $navbar_personal_background_hover !important;
+      color: $navbar_personal_text_hover !important;
+    }
+    #navbar-personal.active > a, #navbar-personal.active > a:hover, #navbar-personal.active > a:focus {
+      background-color: $navbar_personal_background_active !important;
+      color: $navbar_personal_text_active !important;
+    }
+
+    #navbar-personal-cardsets a {
+      background-color: $navbar_personal_cardsets_background !important;
+      color: $navbar_personal_cardsets_text !important;
+    }
+    #navbar-personal-cardsets a:hover, #navbar-personal-cardsets a:focus {
+      background-color: $navbar_personal_cardsets_background_hover !important;
+      color: $navbar_personal_cardsets_text_hover !important;
+    }
+    #navbar-personal-cardsets.active a, #navbar-personal-cardsets.active a:hover, #navbar-personal-cardsets.active a:focus {
+      background-color: $navbar_personal_cardsets_background_active !important;
+      color: $navbar_personal_cardsets_text_active !important;
+    }
+
+    #navbar-personal-repetitorien a {
+      background-color: $navbar_personal_repetitorien_background !important;
+      color: $navbar_personal_repetitorien_text !important;
+    }
+    #navbar-personal-repetitorien a:hover, #navbar-personal-repetitorien a:focus {
+      background-color: $navbar_personal_repetitorien_background_hover !important;
+      color: $navbar_personal_repetitorien_text_hover !important;
+    }
+    #navbar-personal-repetitorien.active a, #navbar-personal-repetitorien.active a:hover, #navbar-personal-repetitorien.active a:focus {
+      background-color: $navbar_personal_repetitorien_background_active !important;
+      color: $navbar_personal_repetitorien_text_active !important;
+    }
+
+  //navbar learn
     #navbar-learn-decks a {
       background-color: $navbar_learn_background !important;
       color: $navbar_learn_text !important;
@@ -1648,22 +1768,6 @@ $themes: (
 
     .clearSearch i {
       color: $navbar_search_clear_icon !important;
-    }
-
-    #navbar-all-decks {
-      background-color: $navbar_alldecks_background !important;
-      color: $navbar_alldecks_text !important;
-      border-color: $navbar_alldecks_border !important;
-    }
-    #navbar-all-decks:hover, #navbar-all-decks:focus {
-      background-color: $navbar_alldecks_background_hover !important;
-      color: $navbar_alldecks_text_hover !important;
-      border-color: $navbar_alldecks_border_hover !important;
-    }
-    #navbar-all-decks.active, #navbar-all-decks.active a:hover, #navbar-all-decks.active a:focus {
-      background-color: $navbar_alldecks_background_active !important;
-      color: $navbar_alldecks_text_active !important;
-      border-color: $navbar_alldecks_border_active !important;
     }
 
     #navbar-help a {

@@ -8,7 +8,7 @@ let aspectRatioEnabled = [0, 1, 2, 3, 4];
 
 //Order and types for the aspect ratio dropdown list
 //Add entries to /config/icons.js and the i18n file if you want to add new types
-let aspectRatios = ['fill', 'din', '16:9', '16:10', '4:3'];
+let aspectRatios = ['fill', 'din', '5:3', '16:9', '16:10', '4:3'];
 
 //Array index, only applied if the aspectRatio is enabled
 //0: Presentation
