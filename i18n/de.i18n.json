@@ -279,29 +279,29 @@
   "navbar-collapse": {
     "all": {
       "all": "Alle…",
-      "cardsets": "Alle Karteien",
-      "repetitorien": "Alle Repetitorien"
+      "cardsets": "Karteien",
+      "repetitorien": "Repetitorien"
     },
     "public": {
-      "public": "Öffentlich",
-      "cardsets": "Öffentliche Karteien",
-      "repetitorien": "Öffentliche Repetitorien"
+      "public": "Themenpool",
+      "cardsets": "Karteien",
+      "repetitorien": "Repetitorien"
     },
     "personal": {
       "personal": {
         "zero": "Anlegen",
-        "one": "Mein…",
-        "multiple": "Meine…"
+        "one": "Mein Kartensatz",
+        "multiple": "Meine Kartensätze"
       },
       "cardsets": {
         "zero": "Kartei anlegen",
-        "one": "Meine Kartei",
-        "multiple": "Meine Karteien"
+        "one": "Kartei",
+        "multiple": "Karteien"
       },
       "repetitorien": {
         "zero": "Repetitorium anlegen",
-        "one": "Mein Repetitorium",
-        "multiple": "Meine Repetitorien"
+        "one": "Repetitorium",
+        "multiple": "Repetitorien"
       }
     },
     "learndecks": "Lernpensum",
@@ -315,8 +315,8 @@
         "repetitorien": "Suche nach allen Repetitorien…"
       },
       "public": {
-        "cardsets": "Suche nach öffentlichen Karteien…",
-        "repetitorien": "Suche nach öffentlichen Repetitorien…"
+        "cardsets": "Suche nach Karteien…",
+        "repetitorien": "Suche nach Repetitorien…"
       },
       "personal": {
         "cardsets": "Suche nach eigenen Karteien…",
