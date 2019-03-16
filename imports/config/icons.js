@@ -53,6 +53,7 @@ let miscNavigation = {
 };
 
 let aspectRatio = {
+	"53": "<i class='fa fa-id-card'></i>&nbsp;",
 	"169": "<i class='fa fa-desktop'></i>&nbsp;",
 	"1610": "<i class='fa fa-desktop'></i>&nbsp;",
 	"43": "<i class='fa fa-desktop'></i>&nbsp;",

@@ -871,11 +871,12 @@
       "backDemo": "Zurück zur Demo-Kartei"
     },
     "aspectRatio": {
+      "53": "5:3-Kartenformat",
       "169": "16:9 für moderne HD-Beamer",
       "1610": "16:10 für Laptops & Monitore",
       "43": "4:3 für ältere VGA-Beamer",
       "fill": "Gesamter Bildschirm",
-      "din": "DIN-Format einer Karteikarte"
+      "din": "DIN-Kartenformat"
     },
     "help": {
       "title": "Rand-Buttons",
