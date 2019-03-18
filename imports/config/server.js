@@ -1,18 +1,18 @@
 let defaultSettings = {
 	"login": {
 		"cas": true,
-		"guest": true,
+		"guest": false,
 		"pro": false,
-		"facebook": false,
-		"twitter": false,
-		"google": false
+		"facebook": true,
+		"twitter": true,
+		"google": true
 	},
 	"welcome": {
 		"title": {
-			"first": "informatik",
+			"first": "ARSnova",
 			"last": "cards",
-			"slogan_de": "ORGANIZE. LEARN. MEMORIZE.",
-			"slogan_en": "ORGANIZE. LEARN. MEMORIZE."
+			"slogan_de": "ORGANIZE. LEARN. MEMORIZE. PRESENT.",
+			"slogan_en": "ORGANIZE. LEARN. MEMORIZE. PRESENT."
 		},
 		"button": {
 			"about":  {
