@@ -62,38 +62,6 @@ let debug = {
 	"backgrounds": "default"
 };
 
-let informatik = {
-	"login": {
-		"cas": true,
-		"guest": true,
-		"pro": false,
-		"facebook": false,
-		"twitter": false,
-		"google": false
-	},
-	"welcome": {
-		"title": {
-			"first": "informatik",
-			"last": "cards",
-			"slogan_de": "ORGANIZE. LEARN. MEMORIZE.",
-			"slogan_en": "ORGANIZE. LEARN. MEMORIZE."
-		},
-		"button": {
-			"about":  {
-				"default_de": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
-				"default_en": "Learn more about 🍅cards in our interactive demo …",
-				"mobile_de": "Erfahre mehr über 🍅cards…",
-				"mobile_en": "Learn more about 🍅cards…"
-			}
-		}
-	},
-	"language": {
-		"server": "de",
-		"client": "de"
-	},
-	"backgrounds": "default"
-};
-
 let linux = {
 	"login": {
 		"cas": true,
@@ -192,7 +160,6 @@ let staging = {
 
 module.exports = {
 	defaultSettings,
-	informatik,
 	linux,
 	debug,
 	review,

@@ -47,8 +47,6 @@ export let ServerStyle = class ServerStyle {
 		switch (Meteor.settings.public.dynamicSettings) {
 			case "debug":
 				return serverConf.debug;
-			case "informatik":
-				return serverConf.informatik;
 			case "linux":
 				return serverConf.linux;
 			case "review":
