@@ -434,6 +434,10 @@ Template.registerHelper("isCardsetOwner", function (cardset_id) {
 	}
 });
 
+Template.registerHelper("gotCardsetsForFilter", function () {
+	return Session.get('cardsetIndexResults') > 0;
+});
+
 Template.registerHelper("isShuffleRoute", function () {
 	return (Router.current().route.getName() === "shuffle" || Router.current().route.getName() === "editshuffle");
 });

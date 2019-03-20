@@ -17,6 +17,13 @@ import "./item/workload.js";
 import "./item/filter.js";
 import "./top.html";
 
+
+/*
+ * ############################################################################
+ * mainNavigationTop
+ * ############################################################################
+ */
+
 Template.mainNavigationTop.events({
 	'click .logout': function (event) {
 		event.preventDefault();
