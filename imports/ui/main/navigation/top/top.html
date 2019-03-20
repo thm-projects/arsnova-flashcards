@@ -32,16 +32,20 @@
                                 </div>
                                 {{#unless isImpressum}}
                                     {{#if gotCardsetsForFilter}}
+                                        {{#unless gotAllUnfilteredCardsetsVisible}}
                                         <div class="navbar-header-item pull-right">
                                             {{> mainNavigationTopItemSearchMobile}}
                                         </div>
+                                        {{/unless}}
                                     {{/if}}
                                 {{/unless}}
                                 {{#if isFilterIndex}}
                                     {{#if gotCardsetsForFilter}}
-                                    <div class="navbar-header-item pull-right">
-                                        {{> mainNavigationTopItemFilterMobile}}
-                                    </div>
+                                        {{#unless gotAllUnfilteredCardsetsVisible}}
+                                            <div class="navbar-header-item pull-right">
+                                                {{> mainNavigationTopItemFilterMobile}}
+                                            </div>
+                                        {{/unless}}
                                     {{/if}}
                                 {{/if}}
                                 <div class="navbar-header-item pull-right">
@@ -65,7 +69,9 @@
         <ul class="nav navbar-nav navbar-left">
             {{> mainNavigationTopItemUseCasesDesktop}}
             {{#if gotCardsetsForFilter}}
-                {{> mainNavigationTopItemSearch}}
+                {{#unless gotAllUnfilteredCardsetsVisible}}
+                    {{> mainNavigationTopItemSearch}}
+                {{/unless}}
             {{/if}}
             {{#if gotDisplayModeButton}}
                 {{#if gotCardsetsForFilter}}
@@ -74,7 +80,9 @@
             {{/if}}
             {{#if isFilterIndex}}
                 {{#if gotCardsetsForFilter}}
-                    {{> mainNavigationTopItemFilter}}
+                    {{#unless gotAllUnfilteredCardsetsVisible}}
+                        {{> mainNavigationTopItemFilter}}
+                    {{/unless}}
                 {{/if}}
             {{/if}}
             {{> mainNavigationTopItemPublic}}
