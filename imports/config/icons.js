@@ -41,7 +41,11 @@ let topNavigation = {
 	"profileSettings": "<i class='fa fa-user'></i>&nbsp;",
 	"profileRequests": "<i class='fa fa-check'></i>&nbsp;",
 	"backend": "<i class='fa fa-server'></i>&nbsp;",
-	"useCases": "<i class='fa fa-map-signs'></i>"
+	"useCases": "<i class='fa fa-map-signs'></i>",
+	"displayMode": {
+		"wordcloud": "<i class='fa fa-cloud'></i>",
+		"list": "<i class='fa fa-list'></i>"
+	}
 };
 
 //Only used for the active route display on mobile. Will be carried over to desktop after the main template got refactored.

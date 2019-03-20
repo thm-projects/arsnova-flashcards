@@ -10,13 +10,13 @@ $navbar_all_border_width: 3px;
   li{
     display: flex !important;
     align-items: center !important;
-    padding: 0 !important;
-    height: $size_navbar_height !important;
+    padding: 0;
+    height: $size_navbar_height;
     a {
       display: flex !important;
       align-items: center !important;
-      padding: 0 7px !important;
-      height: $size_navbar_height !important;
+      padding: 0 7px;
+      height: $size_navbar_height;
     }
   }
 }
@@ -53,7 +53,7 @@ $navbar_all_border_width: 3px;
     align-items: center !important;
     padding: 0 !important;
     height: $size_navbar_height !important;
-    a {
+    > a {
       display: flex !important;
       align-items: center !important;
       padding: 0 7px !important;
@@ -62,7 +62,7 @@ $navbar_all_border_width: 3px;
   }
 
   .navbar-header-item {
-    padding: 0 15px !important;
+    padding: 0 15px;
   }
 
   @media (max-width: 767px) {
@@ -128,34 +128,23 @@ $navbar_all_border_width: 3px;
 }
 
 @media (max-width: 767px) {
-
   .navbar-cards .navbar-header  {
     li.hidden-xs {
       display: none !important;
     }
     .navbar-header-item {
       height: $size_navbar_height !important;
-      padding: 0 4px !important;
-      a {
+      padding: 0 !important;
+      > a {
         padding: 0 !important;
       }
-    }
-    .navbar-header-item:first-child {
-      padding-left: 4px !important;
-    }
-    .navbar-header-item:nth-child(2) {
-      padding-right: 4px !important;
     }
     .navbar-toggle {
       margin-right: 0 !important;
     }
-
-    .navbar-header-item .showStatistics {
-      padding-left: 4px !important;
-    }
   }
 
-  #navbar-cards-top-collapse, #navbar-cards-footer-collapse {
+  #navbar-cards-top-collapse, #navbar-cards-footer-collapse, .navbar-cards-filter-dropdown {
     margin: 0 -15px !important;
     padding: 0 !important;
     li:not(.hidden-xs){
@@ -204,6 +193,14 @@ $navbar_all_border_width: 3px;
       }
     }
   }
+  .navbar-cards-filter-dropdown {
+    width: 100%;
+    margin-left: 0 !important;
+    a {
+      padding-left: 15px !important;
+      padding-right: 15px !important;
+    }
+  }
 }
 
 #personal-drop, #all-drop, #public-drop {
@@ -220,8 +217,16 @@ $navbar_all_border_width: 3px;
   }
 }
 
-@media (max-width: 359px) {
-  .top-navigation-name {
-    display: none;
+.top-navigation-name {
+  margin-left: 5px;
+}
+
+.navbar-cards {
+  .top-navigation-call-to-action-button {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+  }
+  .navbar-header-collapse-item {
+    margin-right: 5px;
   }
 }

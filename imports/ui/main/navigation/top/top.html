@@ -9,7 +9,7 @@
                                 <div class="navbar-header-item pull-left top-navigation-name">
                                     {{{getNavigationName}}}
                                 </div>
-                                <div class="navbar-header-item pull-right">
+                                <div class="navbar-header-item pull-right navbar-header-collapse-item">
                                     <button type="button"
                                             class="navbar-toggle toggle-navbar-collapse needsclick">
                                         <span class="icon-bar toggle-navbar-collapse needsclick"></span>
@@ -35,6 +35,11 @@
                                         {{> mainNavigationTopItemSearchMobile}}
                                     </div>
                                 {{/unless}}
+                                {{#if isFilterIndex}}
+                                    <div class="navbar-header-item pull-right">
+                                        {{> mainNavigationTopItemFilterMobile}}
+                                    </div>
+                                {{/if}}
                                 <div class="navbar-header-item pull-right">
                                     {{> mainNavigationTopItemUseCasesMobile}}
                                 </div>
@@ -56,6 +61,12 @@
         <ul class="nav navbar-nav navbar-left">
             {{> mainNavigationTopItemUseCasesDesktop}}
             {{> mainNavigationTopItemSearch}}
+            {{#if gotDisplayModeButton}}
+                {{> mainNavigationTopItemDisplayMode}}
+            {{/if}}
+            {{#if isFilterIndex}}
+                {{> mainNavigationTopItemFilter}}
+            {{/if}}
             {{> mainNavigationTopItemPublic}}
             {{> mainNavigationTopItemWorkload}}
             {{> mainNavigationTopItemPersonal}}

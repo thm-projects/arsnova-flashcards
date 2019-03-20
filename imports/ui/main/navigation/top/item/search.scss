@@ -27,10 +27,6 @@ $searchbar_desktop_height: $size_navbar_height - 6px;
     margin-left: 5px !important;
     margin-right: 5px !important;
     font-size: 135% !important;
-    @media(max-width: 767px) {
-      margin-left: 0 !important;
-      margin-right: 0 !important;
-    }
   }
   .navbar-cards-search-dropdown.active {
     display: block !important;

@@ -191,8 +191,8 @@ module.exports = {
 	},
 	resetPool: function () {
 		this.selectPool();
-		browser.waitForVisible('#resetBtn', global.threshold);
-		browser.click('#resetBtn');
+		browser.waitForVisible('.resetBtn', global.threshold);
+		browser.click('.resetBtn');
 	},
 	waitForModalBackdrop: function () {
 		browser.waitUntil(function () {

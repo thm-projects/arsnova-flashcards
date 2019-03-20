@@ -1,15 +1,15 @@
 <template name="cardTypesList">
     {{#if this.filter}}
         <li>
-            <a href="#" class="noFilterCardType active" data-id="">{{_ "set-list.everyone"}}</a>
+            <a href="#" class="noFilterCardType active cards-filter-element" data-id="">{{_ "set-list.everyone"}}</a>
         </li>
         {{#each getCardTypes}}
             {{#if filterCardTypes this.cardType}}
                 <li>
-                    <a href="#" class="filterCardType"
+                    <a href="#" class="filterCardType cards-filter-element"
                        data-id="{{this.cardType}}">{{getCardTypeLongName}}
                         {{#if resultsFilterCardType this.cardType}}
-                            <span class="glyphicon glyphicon-filter"></span>
+                            <span class="glyphicon glyphicon-filter cards-filter-element"></span>
                         {{/if}}
                     </a>
                 </li>

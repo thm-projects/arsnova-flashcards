@@ -250,8 +250,25 @@ $themes: (
     $info_content_body_background: map-get($map, "info_content_body_background");
     //editor navigation colors
     $item_selection_border: map-get($map, "item_selection_border");
+    //filter colors
+    $filter_navigation_background: map-get($map, "filter_navigation_background");
+    $filter_navigation_text: map-get($map, "filter_navigation_text");
+    $filter_navigation_background_hover: map-get($map, "filter_navigation_background_hover");
+    $filter_navigation_icon_active: map-get($map, "filter_navigation_icon_active");
+    $filter_navigation_text_hover: map-get($map, "filter_navigation_text_hover");
+    $filter_button_background: map-get($map, "filter_button_background");
+    $filter_button_icon: map-get($map, "filter_button_icon");
+    $filter_button_background_active: map-get($map, "filter_button_background_active");
+    $filter_button_icon_active: map-get($map, "filter_button_icon_active");
+    $filter_button_background_hover: map-get($map, "filter_button_background_hover");
+    $filter_button_icon_hover: map-get($map, "filter_button_icon_hover");
+    $filter_border: map-get($map, "filter_border");
+    //display mode
+    $display_mode_background: map-get($map, "display_mode_background");
+    $display_mode_text: map-get($map, "display_mode_text");
+    $display_mode_background_hover: map-get($map, "display_mode_background_hover");
+    $display_mode_text_hover: map-get($map, "display_mode_text_hover");
     //item lists colors
-    $filter_navigation_icon: map-get($map, "filter_navigation_icon");
     $item_separator_border_bottom: map-get($map, "item_separator_border_bottom");
     $infinite_scroll_background: map-get($map, "infinite_scroll_background");
     $infinite_scroll_icon: map-get($map, "infinite_scroll_icon");
@@ -2580,26 +2597,9 @@ $themes: (
     }
 
     //filter
-    #filter-nav-wrapper, #filter-nav {
+    .navbar-cards-filter-dropdown {
       background-color: $thm_gray !important;
-
-      .dropdown-toggle, .navbar-text {
-        color: $white !important;
-      }
-
-      .dropdown-toggle:hover, a:hover, .dropdown-toggle:focus, a:focus {
-        background-color: $button_background_hover !important;
-        color: $button_text_hover !important;
-      }
-
-      #displayModeBtn {
-        color: $white !important;
-      }
-
-      #displayModeBtn:hover, #displayModeBtn:focus {
-        background-color: $button_background_hover !important;
-        color: $button_text_hover !important;
-      }
+      border-color: $filter_border !important;
 
       .btn-demo, .btn-warning, .btn-info, .btn-success, .btn-danger {
         background-color: $disabled_background !important;
@@ -2619,16 +2619,16 @@ $themes: (
         border-color: $success_background !important;
       }
 
-      .btn-danger.active, #resetBtn, #resetBtnMobile {
+      .btn-danger.active, .resetBtn {
         color: $danger_text !important;
         background-color: $danger_background !important;
         border-color: $danger_background !important;
       }
 
-      #resetBtn.btn-default, #resetBtnMobile.btn-default {
-        color: white !important;
-        background-color: $primary !important;
-        border-color: $primary !important;
+      .resetBtn.btn-default {
+        color: $filter_button_icon !important;
+        background-color: $filter_button_background !important;
+        border-color: $filter_button_background !important;
       }
 
       .btn-demo.active {
@@ -2643,8 +2643,8 @@ $themes: (
         border-color: $warning_background !important;
       }
 
-      .btn-demo:hover, .btn-warning:hover, .btn-info:hover, .btn-success:hover, .btn-danger:hover, #resetBtn:hover, #resetBtnMobile:hover,
-      .btn-demo:focus, .btn-warning:focus, .btn-info:focus, .btn-success:focus, .btn-danger:focus, #resetBtn:focus, #resetBtnMobile:focus {
+      .btn-demo:hover, .btn-warning:hover, .btn-info:hover, .btn-success:hover, .btn-danger:hover, .resetBtn:hover,
+      .btn-demo:focus, .btn-warning:focus, .btn-info:focus, .btn-success:focus, .btn-danger:focus, .resetBtn:focus {
         color: $button_text_hover !important;
         background-color: $button_background_hover !important;
         border-color: $button_background_hover !important;
@@ -2663,8 +2663,13 @@ $themes: (
       color: $infinite_scroll_text !important;
     }
 
-    .navigationFilterIcon {
-      color: $filter_navigation_icon !important;
+    //filter navigation
+    .navigationFilterIcon{
+      color: $filter_navigation_icon_active !important;
+    }
+    .navbar-cards-filter-dropdown ul {
+      background-color: $filter_navigation_background !important;
+      color: $filter_navigation_text !important;
     }
     //forms - cardsetForm
     #setDifficulty .btn, #cardType .btn {
@@ -2728,6 +2733,30 @@ $themes: (
         }
       }
     }
+    @media (min-width: 768px) {
+      .filter-bottom-row {
+        ul > li {
+          background-color: $cardset_form_list_background !important;
+          border-bottom-color: $cardset_form_border !important;
+          a {
+            color: $cardset_form_list_text !important;
+          }
+        }
+        ul > li:hover, ul > li:focus {
+          background-color: $cardset_form_list_background_hover !important;
+          a {
+            color: $cardset_form_list_text_hover !important;
+          }
+        }
+        ul > li.active {
+          background-color: $cardset_form_list_background_active !important;
+          a {
+            color: $cardset_form_list_text_active !important;
+          }
+        }
+      }
+    }
+
     //learn
     .learn-cardHelptext {
       color: $storm_dust_approx !important;
@@ -3344,6 +3373,44 @@ $themes: (
     #useCasesModal th {
       background-color: $use_cases_table_header_background !important;
       color: $use_cases_table_header_text !important;
+    }
+
+    //filter
+    .toggle-filter-dropdown {
+      background-color: $filter_button_background !important;
+      color: $filter_button_icon !important;
+    }
+
+    .toggle-filter-dropdown:hover {
+      background-color: $filter_button_background_hover !important;
+      color: $filter_button_icon_hover !important;
+    }
+
+    .toggle-filter-dropdown.active {
+      background-color: $filter_button_background_active !important;
+      color: $filter_button_icon_active !important;
+    }
+
+    .displayModeBtn {
+      background-color: $display_mode_background !important;
+      color:  $display_mode_text !important;
+    }
+
+    .displayModeBtn:hover {
+      background-color: $display_mode_background_hover !important;
+      color:  $display_mode_text_hover !important;
+    }
+
+    .filter-bottom-row  {
+      border-color: $filter_border !important;
+    }
+    .filter-bottom-row > a {
+      background-color: $filter_navigation_background !important;
+      color: $filter_navigation_text !important;
+    }
+    .filter-bottom-row > a:hover {
+      background-color: $filter_navigation_background_hover !important;
+      color: $filter_navigation_text_hover !important;
     }
   }
 }
