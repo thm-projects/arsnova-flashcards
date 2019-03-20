@@ -5,7 +5,7 @@
 //4: Zitatensammlung
 //5: Prüfung
 //6: Anweisungssatz
-//7: Bibliografie
+//7: Literatur
 //8: Notizen
 //9: To-dos
 //10: Fotokartei
@@ -17,7 +17,7 @@
 //16: Zielerreichung
 //17: Inverses Fragen
 let cardTypesWithDictionary = [1];
-let cardTypesWithDifficultyLevel = [0, 1, 2, 3, 5, 6, 11, 12, 13, 15, 17];
+let cardTypesWithDifficultyLevel = [0, 1, 2, 3, 5, 6, 7, 11, 12, 13, 15, 17];
 let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12, 13, 15, 16, 17];
 let cardTypesWithLearningGoal = [0, 5, 12];
 let cardTypesWithLearningUnit = [];
@@ -208,7 +208,7 @@ let cardTypeCubeSides = [
 			"isAnswer": true
 		}
 	],
-	//7: Bibliografie
+	//7: Literatur
 	[
 		{
 			"contentId": 1,
@@ -218,7 +218,8 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 2,
 			"side": "back",
-			"defaultStyle": "default"
+			"defaultStyle": "default",
+			"defaultTextAlign": "center"
 		},
 		{
 			"contentId": 3,
