@@ -160,8 +160,8 @@ Template.main.helpers({
 			}
 		} else if (Route.isHome() && !Meteor.user()) {
 			return "";
-		} else if (Route.isEditCard() || Route.isCardsetLeitnerStats()) {
-			if (Route.isEditCard() && !CardVisuals.isFullscreen()) {
+		} else if (Route.isEditMode() || Route.isCardsetLeitnerStats()) {
+			if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
 				return "container-fluid-editor";
 			} else {
 				return "container-fluid";
@@ -185,6 +185,10 @@ Template.main.onRendered(function () {
 		if (!$(event.target).is('.cards-search-element')) {
 			MainNavigation.clearSearch();
 			$('.navbar-cards-search-dropdown').removeClass('active');
+		}
+		if (!$(event.target).is('.cards-filter-element')) {
+			MainNavigation.clearSearch();
+			$('.navbar-cards-filter-dropdown').removeClass('active');
 		}
 	});
 	$("#main").click(function () {

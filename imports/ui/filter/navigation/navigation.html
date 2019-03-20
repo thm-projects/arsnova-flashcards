@@ -1,73 +1,70 @@
 <template name="filterNavigation">
-    <div class="buttonHeader">
-        <nav class="navbar navbar-default {{#if isActiveRoute regex='alldecks'}}{{#unless
-                isSelectingCardsetToLearn}}no-navigation{{/unless}}{{/if}}">
-            <div class="container-fluid" id="filter-nav-wrapper">
-                <div class="navbar-header visible-xs visible-sm">
-                    <div class="navbar-text visible-sm-inline-block"><span class="flex-content">{{_
-                            "set-list.filter-info-small"}}</span></div>
-                    <div class="navbar-text visible-xs-inline-block filter-text-xs"><span class="flex-content">{{_
-                            "set-list.filter-info-extra-small"}}</span></div>
-                    {{#if gotResetButton}}
-                        <button class="resetFilters btn btn-raised btn-sm btn-danger hidden-md hidden-lg float-left"
-                                id="resetBtnMobile"
-                                role="button"><i class="glyphicon glyphicon-filter"></i> {{_
-                                "set-list.reset"}} </button>
-                    {{/if}}
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                            data-target="#filter-nav"
-                            aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse" id="filter-nav">
-                    <ul class="nav navbar-nav col-md-12">
-                        {{#if gotResetButton}}
-                            {{> filterItemResetButton}}
-                        {{/if}}
-                        {{#if gotDisplayModeButton}}
-                            {{> filterItemDisplayModeButton}}
-                        {{/if}}
-                        {{#if gotSortButton}}
-                            {{> filterItemSortResults}}
-                        {{/if}}
-                        {{#if gotCardTypeFilter}}
-                            {{> filterItemFilterCardType}}
-                        {{/if}}
-                        {{#if gotDifficultyFilter}}
-                            {{> filterItemFilterDifficulty}}
-                        {{/if}}
-                        {{#if gotAuthorFilter}}
-                            {{> filterItemFilterAuthors}}
-                        {{/if}}
-                        {{#if gotBonusFilter}}
-                            {{> filterItemFilterBonus}}
-                        {{/if}}
-                        {{#if gotWordcloudFilter}}
-                            {{> filterItemFilterWordcloud}}
-                        {{/if}}
-                        {{#if gotKindFilter}}
-                            {{> filterItemFilterKind}}
-                        {{/if}}
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
+    <ul class="nav navbar-nav filter-top-row cards-filter-element">
+        {{#if gotResetButton}}
+            {{> filterItemResetButton}}
+        {{/if}}
+        {{#if gotKindFilter}}
+            {{> filterItemFilterKind}}
+        {{/if}}
+    </ul>
+    <ul class="nav navbar-nav filter-bottom-row cards-filter-element">
+        {{#if gotSortButton}}
+            {{> filterItemSortResults}}
+        {{/if}}
+        {{#if gotCardTypeFilter}}
+            {{> filterItemFilterCardType}}
+        {{/if}}
+        {{#if gotDifficultyFilter}}
+            {{> filterItemFilterDifficulty}}
+        {{/if}}
+        {{#if gotAuthorFilter}}
+            {{> filterItemFilterAuthors}}
+        {{/if}}
+        {{#if gotWordcloudFilter}}
+            {{> filterItemFilterWordcloud}}
+        {{/if}}
+        {{#if gotBonusFilter}}
+            {{> filterItemFilterBonus}}
+        {{/if}}
+    </ul>
+</template>
+
+<template name="filterNavigationMobile">
+    {{#if gotResetButton}}
+        {{> filterItemResetButton}}
+    {{/if}}
+    {{#if gotSortButton}}
+        {{> filterItemSortResults}}
+    {{/if}}
+    {{#if gotCardTypeFilter}}
+        {{> filterItemFilterCardType}}
+    {{/if}}
+    {{#if gotDifficultyFilter}}
+        {{> filterItemFilterDifficulty}}
+    {{/if}}
+    {{#if gotAuthorFilter}}
+        {{> filterItemFilterAuthors}}
+    {{/if}}
+    {{#if gotWordcloudFilter}}
+        {{> filterItemFilterWordcloud}}
+    {{/if}}
+    {{#if gotBonusFilter}}
+        {{> filterItemFilterBonus}}
+    {{/if}}
+    {{#if gotKindFilter}}
+        {{> filterItemFilterKind}}
+    {{/if}}
 </template>
 
 <template name="infiniteScroll">
     {{#if moreResults}}
         <a href="#" class="showMoreResultsContainer" title="{{_ "set-list.moreResults"}}">
             <div id="showMoreResults" class="showMoreResults col-xs-12 panel panel-default">
-                            <span class="flex-content">
-                <span class="scrollArrow col-xs-12 infinite-scroll-icon glyphicon glyphicon-chevron-down">
-                    <span class="resultCounter">{{getCurrentResults}}</span>
-                </span>
-                            </span>
+                <div class="flex-content">
+                    <div class="scrollArrow col-xs-12 infinite-scroll-icon glyphicon glyphicon-chevron-down">
+                        <span class="resultCounter">{{getCurrentResults}}</span>
+                    </div>
+                </div>
             </div>
         </a>
     {{/if}}

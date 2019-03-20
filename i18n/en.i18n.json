@@ -279,7 +279,7 @@
   },
   "navbar-collapse": {
     "all": {
-      "all": "Alle…",
+      "all": "Alle",
       "cardsets": "Alle Karteien",
       "repetitorien": "Alle Repetitorien"
     },
@@ -291,8 +291,8 @@
     "personal": {
       "personal": {
         "zero": "Anlegen",
-        "one": "Mein…",
-        "multiple": "Meine…"
+        "one": "Meine Karten",
+        "multiple": "Meine Karten"
       },
       "cardsets": {
         "zero": "Kartei anlegen",
@@ -323,6 +323,13 @@
         "cardsets": "Suche nach eigenen Karteien…",
         "repetitorien": "Suche nach egeinen Repetitorien…"
       }
+    },
+    "tooltip": {
+      "search": "Öffne die Suche",
+      "useCases": "Zeige die Use Cases",
+      "displayWordcloud": "Zeige die Einträge in einer Wortwolke",
+      "displayList": "Zeige die Einträge als Liste",
+      "filter": "Filter die Einträge"
     },
     "frontend": "Frontend",
     "backend": "Backend",
@@ -1110,10 +1117,7 @@
     "from": "Ab",
     "noResults": "Keine Kartei oder Repetitorium ausgewählt oder Filtern liefert kein Ergebnis.",
     "sort": "Sortieren ",
-    "displayMode": {
-      "wordcloud": "Wolke",
-      "list": "Liste"
-    }
+    "reset": "Filter zurücksetzen"
   },
   "infinite-scroll": {
     "remainingCardsets": "__current__ von __total__ Karteien",
@@ -1235,16 +1239,22 @@
       }
     },
     "cardType7": {
-      "name": "Exzerpte",
-      "longName": "Exzerpte: Exzerpt | Anmerkungen | Bibliografie",
+      "name": "Bibliografie",
+      "longName": "Bibliografie: Werk | Schlagwörter | Rezension | Export | Exzerpt | Anmerkung",
       "content1": "Exzerpt",
       "content2": "Anmerkungen",
-      "content3": "Bibliografie",
+      "content3": "Werk",
+      "content4": "Schlagwörter",
+      "content5": "Rezension",
+      "content6": "Export",
       "placeholders": {
         "subject": "Gib den Titel des Volltextes an !",
         "content1": "Zum Erstellen von Exzerpten, siehe zum Beispiel: \n\nhttp://www.uni-bielefeld.de/ew/scs/pdf/leitfaeden/studierende/exzerpt.pdf",
         "content2": "Notiere die Relevanz des exzerpierten Textes für deine eigene Arbeit.",
-        "content3": "Halte hier die bibliografischen Daten des Textes fest. Dazu gehören nicht nur die Autorin oder der Autor, der Titel, die Auflage, das Erscheinungsjahr und der Erscheinungsort, sondern auch das exzerpierte Kapitel, der jeweilige Absatz und die Seite."
+        "content3": "Halte hier die bibliografischen Daten des Textes fest. Dazu gehören nicht nur die Autorin oder der Autor, der Titel, die Auflage, das Erscheinungsjahr und der Erscheinungsort, sondern auch das exzerpierte Kapitel, der jeweilige Absatz und die Seite.",
+        "content4": "",
+        "content5": "",
+        "content6": ""
       },
       "editorLabels": {
         "subject": "Titel des Volltextes"

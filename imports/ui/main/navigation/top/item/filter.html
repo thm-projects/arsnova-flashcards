@@ -1,0 +1,28 @@
+<template name="mainNavigationTopItemFilter">
+    <li class="hidden-xs">
+        {{> mainNavigationTopItemFilterDropdown}}
+    </li>
+</template>
+
+
+<template name="mainNavigationTopItemFilterMobile">
+    <li class="visible-xs">
+        {{> mainNavigationTopItemFilterDropdown}}
+    </li>
+</template>
+
+<template name="mainNavigationTopItemFilterDropdown">
+    <div class="search-dropdown-container cards-filter-element">
+        <button title="{{_ "navbar-collapse.tooltip.filter"}}" type="button" class="btn cards-filter-element toggle-filter-dropdown top-navigation-call-to-action-button">
+            <i class="fa fa-filter cards-filter-element"></i>
+        </button>
+        <div class="dropdown-menu navbar-cards-filter-dropdown cards-filter-element" role="menu" aria-labelledby="toggle-filter-dropdown">
+            <ul class="nav navbar-nav nav-tabs-justified hidden-xs cards-filter-element">
+                {{> filterNavigation}}
+            </ul>
+            <ul class="nav navbar-nav nav-tabs-justified visible-xs cards-filter-elemen navbar-cards-filter-collapse">
+                {{> filterNavigationMobile}}
+            </ul>
+        </div>
+    </div>
+</template>

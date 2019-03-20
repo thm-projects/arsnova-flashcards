@@ -1,13 +1,13 @@
 <template name="filterItemFilterCardType">
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle cardTypeBtn" data-toggle="dropdown" role="button"
+    <li class="dropdown cards-filter-element">
+        <a href="#" class="dropdown-toggle cardTypeBtn cards-filter-element" data-toggle="dropdown" role="button"
            aria-haspopup="true" aria-expanded="false">
             {{_ "cardType"}}
             {{#if hasCardTypeFilter}}
-                <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+                <i class="fa fa-filter navigationFilterIcon cards-filter-element"></i>
             {{/if}}
         </a>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu cards-filter-element">
             {{> cardTypesList filter=true}}
         </ul>
     </li>

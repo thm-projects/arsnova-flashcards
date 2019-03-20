@@ -176,7 +176,9 @@ input, textarea {
 }
 
 .empty-button-placeholder {
-  height: 56px;
+  display: block !important;
+  min-height: 50px !important;
+  width: 100% !important;
 }
 
 #newCardSet, #newRepetitorium {

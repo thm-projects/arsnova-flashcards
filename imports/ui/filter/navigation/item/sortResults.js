@@ -12,34 +12,34 @@ Template.filterItemSortResults.helpers({
 	getSortTopicIcon: function () {
 		switch (Filter.getActiveFilter().name) {
 			case 1:
-				return '<i class="fa fa-sort-alpha-asc"></i>';
+				return '<i class="fa fa-sort-alpha-asc cards-filter-element"></i>';
 			case-1:
-				return '<i class="fa fa-sort-alpha-desc"></i>';
+				return '<i class="fa fa-sort-alpha-desc cards-filter-element"></i>';
 
 		}
 	},
 	getSortCreatedDateIcon: function () {
 		switch (Filter.getActiveFilter().date) {
 			case 1:
-				return '<i class="fa fa-sort-numeric-asc"></i>';
+				return '<i class="fa fa-sort-numeric-asc cards-filter-element"></i>';
 			case-1:
-				return '<i class="fa fa-sort-numeric-desc"></i>';
+				return '<i class="fa fa-sort-numeric-desc cards-filter-element"></i>';
 
 		}
 	},
 	getSortUpdatedDateIcon: function () {
 		switch (Filter.getActiveFilter().dateUpdated) {
 			case 1:
-				return '<i class="fa fa-sort-numeric-asc"></i>';
+				return '<i class="fa fa-sort-numeric-asc cards-filter-element"></i>';
 			case-1:
-				return '<i class="fa fa-sort-numeric-desc"></i>';
+				return '<i class="fa fa-sort-numeric-desc cards-filter-element"></i>';
 
 		}
 	}
 });
 
 Template.filterItemSortResults.events({
-	'click #topicBtn': function () {
+	'click .topicBtn': function () {
 		Filter.setSortFilter(0);
 	},
 	'click .createdDateBtn': function () {

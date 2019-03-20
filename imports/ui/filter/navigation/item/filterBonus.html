@@ -1,31 +1,31 @@
 <template name="filterItemFilterBonus">
-    <li class="dropdown">
-        <a href="#" id="bonusFilter" class="dropdown-toggle" data-toggle="dropdown"
+    <li class="dropdown cards-filter-element">
+        <a href="#" class="dropdown-toggle bonusFilter cards-filter-element" data-toggle="dropdown"
            role="button"
            aria-haspopup="true" aria-expanded="false">
             {{_ "set-list.learnphase"}}
             {{#if hasBonusFilter}}
-                <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+                <i class="fa fa-filter navigationFilterIcon cards-filter-element"></i>
             {{/if}}
         </a>
-        <ul class="dropdown-menu">
-            <li>
-                <a href="#" class="noFilterBonus active" data-id="reset">{{_
+        <ul class="dropdown-menu cards-filter-element">
+            <li class="cards-filter-element">
+                <a href="#" class="noFilterBonus active cards-filter-element" data-id="reset">{{_
                         "set-list.everything"}}</a>
             </li>
             {{#if gotBonusCardsets}}
-                <li><a href="#" class="filterActiveBonus">
+                <li class="cards-filter-element"><a href="#" class="filterActiveBonus cards-filter-element">
                     {{_ "set-list.activeLearnphase"}}
                     {{#if resultsFilterBonus 0}}
-                        <span class="glyphicon glyphicon-filter"></span>
+                        <i class="fa fa-filter navigationFilterIcon cards-filter-element"></i>
                     {{/if}}
                 </a></li>
             {{/if}}
             {{#if gotFinishedBonusCardsets}}
-                <li><a href="#" class="filterFinishedBonus">
+                <li class="cards-filter-element"><a href="#" class="filterFinishedBonus cards-filter-element">
                     {{_ "set-list.inactiveLearnphase"}}
                     {{#if resultsFilterBonus 1}}
-                        <span class="glyphicon glyphicon-filter"></span>
+                        <i class="fa fa-filter navigationFilterIcon cards-filter-element"></i>
                     {{/if}}
                 </a></li>
             {{/if}}

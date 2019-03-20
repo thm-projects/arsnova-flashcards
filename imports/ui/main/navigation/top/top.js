@@ -5,6 +5,7 @@ import {MainNavigation} from "../../../../api/mainNavigation";
 import "./item/all/all.js";
 import "./item/backend.js";
 import "./item/connectionStatus.js";
+import "./item/displayModeButton.js";
 import "./item/help.js";
 import "./item/logout.js";
 import "./item/personal/personal.js";
@@ -13,6 +14,7 @@ import "./item/profile/profile.js";
 import "./item/search.js";
 import "./item/useCases.js";
 import "./item/workload.js";
+import "./item/filter.js";
 import "./top.html";
 
 Template.mainNavigationTop.events({

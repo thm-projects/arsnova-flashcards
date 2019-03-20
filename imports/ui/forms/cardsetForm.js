@@ -40,10 +40,10 @@ export function cleanModal() {
 			_id = Session.get('useCaseSelectedCardType');
 			Session.set('useCaseType', 0);
 		}
-		$('.setCardType').html(CardType.getCardTypeLongName(_id));
+		$('.setCardTypeDropdownText').html(CardType.getCardTypeLongName(_id));
 		$('.setCardType').val(_id);
 	} else {
-		$('.setCardType').html(CardType.getCardTypeLongName(Session.get('previousCardsetData').cardType));
+		$('.setCardTypeDropdownText').html(CardType.getCardTypeLongName(Session.get('previousCardsetData').cardType));
 		$('.setCardType').val(Session.get('previousCardsetData').cardType);
 		if (Session.get('previousCardsetData').cardType !== -1) {
 			Session.set('cardType', Session.get('previousCardsetData').cardType);
@@ -287,7 +287,7 @@ Template.cardsetFormContent.events({
 	},
 	'click .cardType': function (evt) {
 		let cardType = $(evt.currentTarget).attr("data");
-		$('.setCardType').html($(evt.currentTarget).text());
+		$('.setCardTypeDropdownText').html($(evt.currentTarget).text());
 		$('.setCardType').val(cardType);
 		Session.set('cardType', Number(cardType));
 		Session.set('difficultyColor', Session.get('previousCardsetData').difficulty);

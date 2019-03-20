@@ -46,3 +46,40 @@
     margin-top: 0;
   }
 }
+
+.setCardTypeDropdownText {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 768px) {
+  .filter-bottom-row {
+    ul > li {
+      padding-top: $size_cardset_form_list_padding !important;
+      padding-bottom: $size_cardset_form_list_padding !important;
+      border-bottom: solid $size_cardset_form_list_border !important;
+      cursor: pointer;
+      a {
+        font-size: $font_size_cardset_form_list !important;
+        font-weight: $font_weight_cardset_form_list !important;
+      }
+    }
+    ul > li:last-child {
+      border-bottom: 0 !important;
+    }
+    ul > li.active {
+      cursor: unset;
+    }
+
+    label {
+      text-align: left;
+    }
+
+    #setNameLabel {
+      padding-top: 0;
+      margin-top: 0;
+    }
+  }
+}

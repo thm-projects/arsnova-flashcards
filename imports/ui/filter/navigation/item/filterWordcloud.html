@@ -1,36 +1,36 @@
 <template name="filterItemFilterWordcloud">
-    <li class="dropdown">
-        <a href="#" id="wordcloudFilter" class="dropdown-toggle wordcloudBtn"
+    <li class="dropdown cards-filter-element">
+        <a href="#" class="dropdown-toggle wordcloudBtn wordcloudFilter cards-filter-element"
            data-toggle="dropdown"
            role="button"
            aria-haspopup="true" aria-expanded="false">
             {{_ "filter-pool.wordcloud"}}
             {{#if hasWordcloudFilter}}
-                <span class="glyphicon glyphicon-filter navigationFilterIcon"></span>
+                <i class="fa fa-filter navigationFilterIcon cards-filter-element"></i>
             {{/if}}
         </a>
-        <ul class="dropdown-menu">
-            <li>
-                <a href="#" class="noFilterWordcloud">{{_
+        <ul class="dropdown-menu cards-filter-element">
+            <li class="cards-filter-element">
+                <a href="#" class="noFilterWordcloud cards-filter-element">{{_
                         "filter-pool.wordcloudEveryting"}}</a>
             </li>
             {{#if gotRecommendedCardsets}}
-                <li>
-                    <a href="#" class="filterWordcloud"
+                <li class="cards-filter-element">
+                    <a href="#" class="filterWordcloud cards-filter-element"
                        data-id="true">{{_ "filter-pool.wordcloudTrue"
                                           lastAppTitle=(getLastAppTitle)}}
                         {{#if resultsFilterWordcloud true}}
-                            <span class="glyphicon glyphicon-filter"></span>
+                            <i class="fa fa-filter navigationFilterIcon cards-filter-element"></i>
                         {{/if}}
                     </a>
                 </li>
             {{/if}}
             {{#if gotNotRecommendedCardsets}}
-                <li>
-                    <a href="#" class="filterWordcloud"
+                <li class="cards-filter-element">
+                    <a href="#" class="filterWordcloud cards-filter-element"
                        data-id="false">{{_ "filter-pool.wordcloudFalse"}}
                         {{#if resultsFilterWordcloud false}}
-                            <span class="glyphicon glyphicon-filter"></span>
+                            <i class="fa fa-filter navigationFilterIcon cards-filter-element"></i>
                         {{/if}}
                     </a>
                 </li>

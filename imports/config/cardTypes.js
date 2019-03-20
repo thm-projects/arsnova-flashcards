@@ -1,21 +1,21 @@
-//0: Lernkartei / flash card index
-//1: Vokabelkartei / vocabulary
-//2: Mitschrift / notes
-//3: Glossar / glossary
-//4: Zitatensammlung / citations
-//5: Prüfung / exam
-//6: Anweisungssatz / command set
-//7: Abstract
-//8: Notizen / notes
-//9: To-dos / to-dos
-//10: Fotokartei / photo library
+//0: Lerneinheit
+//1: Vokabelkartei
+//2: Mitschrift
+//3: Glossar
+//4: Zitatensammlung
+//5: Prüfung
+//6: Anweisungssatz
+//7: Exzerpte
+//8: Notizen
+//9: To-dos
+//10: Fotokartei
 //11: Quiz
-//12: Entwurfsmuster / design patterns
-//13: Formelsammlung / collection of formulas
-//14: Vortrag / talk
-//15: Aufgabensammlung / task collection
-//16: Zielerreichung / goal achievement
-//17: Inverses Fragen / inverse questioning
+//12: Entwurfsmuster
+//13: Formelsammlung
+//14: Vortrag
+//15: Aufgabensammlung
+//16: Zielerreichung
+//17: Inverses Fragen
 let cardTypesWithDictionary = [1];
 let cardTypesWithDifficultyLevel = [0, 1, 2, 3, 5, 6, 11, 12, 13, 15, 17];
 let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12, 13, 15, 16, 17];
@@ -56,7 +56,7 @@ let defaultCentered = true;
 let swapAnserQuestionCardTypeResult = [];
 
 let cardTypeCubeSides = [
-	//0: Lernkartei / Flashcard
+	//0: Lerneinheit
 	[
 		{
 			"contentId": 1,
@@ -85,7 +85,7 @@ let cardTypeCubeSides = [
 		}
 
 	],
-	//1: Vokabelkartei / Vocabulary
+	//1: Vokabelkartei
 	[
 		{
 			"contentId": 1,
@@ -102,7 +102,7 @@ let cardTypeCubeSides = [
 			"isAnswerFocus": true
 		}
 	],
-	//2: Mitschrift / Notes
+	//2: Mitschrift
 	[
 		{
 			"contentId": 1,
@@ -120,7 +120,7 @@ let cardTypeCubeSides = [
 			"defaultStyle": "default"
 		}
 	],
-	//3: Glossar / Glossary
+	//3: Glossar
 	[
 		{
 			"contentId": 1,
@@ -143,7 +143,7 @@ let cardTypeCubeSides = [
 			"isAnswer": true
 		}
 	],
-	//4: Zitatensammlung / Citation
+	//4: Zitatensammlung
 	[
 		{
 			"contentId": 1,
@@ -164,7 +164,7 @@ let cardTypeCubeSides = [
 			"isAnswer": true
 		}
 	],
-	//5: Prüfung / Exam
+	//5: Prüfung
 	[
 		{
 			"contentId": 1,
@@ -186,7 +186,7 @@ let cardTypeCubeSides = [
 			"isAnswer": true
 		}
 	],
-	//6: Anweisungssatz / Command set
+	//6: Anweisungssatz
 	[
 		{
 			"contentId": 2,
@@ -208,25 +208,40 @@ let cardTypeCubeSides = [
 			"isAnswer": true
 		}
 	],
-	//7: Abstract
+	//7: Bibliografie
 	[
 		{
-			"contentId": 1,
+			"contentId": 3,
 			"side": "front",
 			"defaultStyle": "default"
 		},
 		{
-			"contentId": 2,
+			"contentId": 4,
 			"side": "back",
 			"defaultStyle": "default"
 		},
 		{
-			"contentId": 3,
+			"contentId": 5,
 			"side": "left",
+			"defaultStyle": "default"
+		},
+		{
+			"contentId": 6,
+			"side": "right",
+			"defaultStyle": "default"
+		},
+		{
+			"contentId": 1,
+			"side": "top",
+			"defaultStyle": "default"
+		},
+		{
+			"contentId": 2,
+			"side": "bottom",
 			"defaultStyle": "default"
 		}
 	],
-	//8: Notizen / Notes
+	//8: Notizen
 	[
 		{
 			"contentId": 1,
@@ -234,7 +249,7 @@ let cardTypeCubeSides = [
 			"defaultStyle": "post-it"
 		}
 	],
-	//9: To-dos / To-do
+	//9: To-dos
 	[
 		{
 			"contentId": 1,
@@ -242,7 +257,7 @@ let cardTypeCubeSides = [
 			"defaultStyle": "default"
 		}
 	],
-	//10: Fotokartei / Photo library
+	//10: Fotokartei
 	[
 		{
 			"contentId": 1,
@@ -270,7 +285,7 @@ let cardTypeCubeSides = [
 			"isAnswerFocus": true
 		}
 	],
-	//12: Entwurfsmuster / Design pattern
+	//12: Entwurfsmuster
 	[
 		{
 			"contentId": 1,
@@ -307,7 +322,7 @@ let cardTypeCubeSides = [
 			"isAnswer": true
 		}
 	],
-	//13: Formelsammlung / Formulary
+	//13: Formelsammlung
 	[
 		{
 			"contentId": 1,

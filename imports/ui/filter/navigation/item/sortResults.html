@@ -1,12 +1,12 @@
 <template name="filterItemSortResults">
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-           aria-haspopup="true" aria-expanded="false" id="t" value="down">
+    <li class="dropdown cards-filter-element">
+        <a href="#" class="dropdown-toggle cards-filter-element" data-toggle="dropdown" role="button"
+           aria-haspopup="true" aria-expanded="false" value="down">
             {{_ "filter-pool.sort"}}{{{getSortTopicIcon}}}{{{getSortCreatedDateIcon}}}{{{getSortUpdatedDateIcon}}}
         </a>
-        <ul class="dropdown-menu">
-            <li>
-                <a href="#" id="topicBtn">
+        <ul class="dropdown-menu cards-filter-element">
+            <li class="cards-filter-element">
+                <a href="#" class="topicBtn cards-filter-element">
                     {{#if isActiveRoute 'repetitorium'}}
                         {{_ "courseIteration.list.courseIteration"}}
                     {{else}}
@@ -14,11 +14,15 @@
                     {{/if}}
                     {{{getSortTopicIcon}}}
                 </a>
-                <a href="#" class="createdDateBtn">
+            </li>
+            <li class="cards-filter-element">
+                <a href="#" class="createdDateBtn cards-filter-element">
                     {{_ "pool.release"}}
                     {{{getSortCreatedDateIcon}}}
                 </a>
-                <a href="#" class="updatedDateBtn">
+            </li>
+            <li class="cards-filter-element">
+                <a href="#" class="updatedDateBtn cards-filter-element">
                     {{_ "pool.dateUpdated"}}
                     {{{getSortUpdatedDateIcon}}}
                 </a>

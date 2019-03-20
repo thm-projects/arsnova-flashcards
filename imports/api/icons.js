@@ -34,4 +34,12 @@ export let Icons = class Icons {
 				return config.landingPageNavigation.wordcloud;
 		}
 	}
+	static displayMode (type) {
+		switch (type) {
+			case "wordcloud":
+				return config.topNavigation.displayMode.wordcloud;
+			case "list":
+				return config.topNavigation.displayMode.list;
+		}
+	}
 };

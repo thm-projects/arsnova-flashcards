@@ -40,7 +40,6 @@
         <div class="empty-button-placeholder"></div>
     {{/unless}}
     {{#if getDecks 0}}
-        {{> filterNavigation}}
         {{#if displayWordcloud}}
             {{> wordcloud}}
         {{else}}
@@ -62,7 +61,6 @@
     {{#if canShuffle}}
         <div class="container" id="set-list-region">
             {{> filterItemShuffleRepetitoriumCallout}}
-            {{> filterNavigation}}
             {{#if shuffleList 1}}
                 {{#each shuffleList 2}}
                     {{#unless isActiveCardset}}
@@ -78,14 +76,13 @@
 </template>
 
 <template name="filterIndexCreate">
-    {{#if isActiveRoute 'create'}}
-        <span class="filter-index-buttons">
+    <span class="filter-index-buttons empty-button-placeholder">
+        {{#if isActiveRoute 'create'}}
         {{> filterItemCreateCardsetButton}}
-            {{> filterItemImportCardsetButton}}
+        {{> filterItemImportCardsetButton}}
+        {{/if}}
     </span>
-    {{/if}}
     {{#if cardsetList 0}}
-        {{> filterNavigation}}
         {{#if displayWordcloud}}
             {{> wordcloud}}
         {{else}}
@@ -106,7 +103,7 @@
 <template name="filterIndexRepetitorium">
     {{#unless isSelectingCardsetToLearn}}
         {{#if isPersonalRepetitorienRoute}}
-            <span class="filter-index-buttons">
+            <span class="filter-index-buttons empty-button-placeholder">
                 {{> filterItemCreateRepetitoriumButton}}
             </span>
         {{else}}
@@ -114,7 +111,6 @@
         {{/if}}
     {{/unless}}
     {{#if cardsetList 0}}
-        {{> filterNavigation}}
         {{#if displayWordcloud}}
             {{> wordcloud}}
         {{else}}
@@ -133,12 +129,11 @@
 </template>
 
 <template name="filterIndexWorkload">
-            <span class="filter-index-buttons">
-    {{> filterItemSelectCardsetButton}}
-                {{> filterItemSelectRepetitoriumButton}}
-            </span>
+    <span class="filter-index-buttons empty-button-placeholder">
+        {{> filterItemSelectCardsetButton}}
+        {{> filterItemSelectRepetitoriumButton}}
+    </span>
     {{#if learnList 0}}
-        {{> filterNavigation}}
         {{#if learnList 1}}
             {{#each learnList 2}}
                 {{> filterIndexItemCardset extendContext 'index' @index}}
