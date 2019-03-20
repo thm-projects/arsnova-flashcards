@@ -1235,16 +1235,22 @@
       }
     },
     "cardType7": {
-      "name": "Exzerpte",
-      "longName": "Exzerpte: Exzerpt | Anmerkungen | Bibliografie",
+      "name": "Bibliografie",
+      "longName": "Bibliografie: Werk | Schlagwörter | Rezension | Export | Exzerpt | Anmerkung",
       "content1": "Exzerpt",
       "content2": "Anmerkungen",
-      "content3": "Bibliografie",
+      "content3": "Werk",
+      "content4": "Schlagwörter",
+      "content5": "Rezension",
+      "content6": "Export",
       "placeholders": {
         "subject": "Gib den Titel des Volltextes an !",
         "content1": "Zum Erstellen von Exzerpten, siehe zum Beispiel: \n\nhttp://www.uni-bielefeld.de/ew/scs/pdf/leitfaeden/studierende/exzerpt.pdf",
         "content2": "Notiere die Relevanz des exzerpierten Textes für deine eigene Arbeit.",
-        "content3": "Halte hier die bibliografischen Daten des Textes fest. Dazu gehören nicht nur die Autorin oder der Autor, der Titel, die Auflage, das Erscheinungsjahr und der Erscheinungsort, sondern auch das exzerpierte Kapitel, der jeweilige Absatz und die Seite."
+        "content3": "Halte hier die bibliografischen Daten des Textes fest. Dazu gehören nicht nur die Autorin oder der Autor, der Titel, die Auflage, das Erscheinungsjahr und der Erscheinungsort, sondern auch das exzerpierte Kapitel, der jeweilige Absatz und die Seite.",
+        "content4": "",
+        "content5": "",
+        "content6": ""
       },
       "editorLabels": {
         "subject": "Titel des Volltextes"
