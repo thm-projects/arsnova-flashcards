@@ -294,13 +294,9 @@ body {
 
 #theme-wrapper #main.container-fluid-editor {
   padding: 90px 60px 30px 60px;
-  @media (min-width: 768px) and (max-width: 1199px) {
+  @media (min-width: 768px) and (max-width: 1440px) {
     padding-left: 45px;
     padding-right: 45px;
-  }
-  @media (min-width: 1200px) and (max-width: 1440px) {
-    padding-left: 0;
-    padding-right: 0;
   }
 }
 
