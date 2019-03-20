@@ -11,6 +11,7 @@ import {MainNavigation} from "../../api/mainNavigation";
 import {ServerStyle} from "../../api/styles.js";
 import {LoginTasks} from "../../api/login";
 import {AspectRatio} from "../../api/aspectRatio.js";
+import {Leitner, Wozniak} from "../../api/learned.js";
 
 let loadingScreenTemplate = 'loadingScreen';
 
@@ -222,6 +223,7 @@ Router.route('/all/cardsets', {
 	},
 	data: function () {
 		Session.set('helpFilter', "pool");
+		Session.set('cardsetIndexResults', Cardsets.find().count());
 		Filter.resetMaxItemCounter();
 	},
 	action: function () {
@@ -246,6 +248,7 @@ Router.route('/all/repetitorien', {
 	},
 	data: function () {
 		Session.set('helpFilter', "pool");
+		Session.set('cardsetIndexResults', Cardsets.find().count());
 		Filter.resetMaxItemCounter();
 	},
 	action: function () {
@@ -270,6 +273,7 @@ Router.route('/personal/cardsets', {
 	},
 	data: function () {
 		Session.set('helpFilter', "create");
+		Session.set('cardsetIndexResults', Cardsets.find().count());
 		Filter.resetMaxItemCounter();
 	},
 	action: function () {
@@ -290,6 +294,7 @@ Router.route('/personal/repetitorien', {
 	},
 	data: function () {
 		Session.set('helpFilter', "create");
+		Session.set('cardsetIndexResults', Cardsets.find().count());
 		Filter.resetMaxItemCounter();
 	},
 	action: function () {
@@ -309,6 +314,7 @@ Router.route('/public/repetitorien', {
 	},
 	data: function () {
 		Session.set('helpFilter', "repetitorium");
+		Session.set('cardsetIndexResults', Cardsets.find().count());
 		Filter.resetMaxItemCounter();
 	},
 	action: function () {
@@ -328,6 +334,7 @@ Router.route('/learn', {
 	},
 	data: function () {
 		Session.set('helpFilter', "workload");
+		Session.set('cardsetIndexResults', Leitner.find().count() + Wozniak.find().count());
 		Filter.resetMaxItemCounter();
 	},
 	action: function () {
@@ -513,6 +520,7 @@ Router.route('/public/cardsets', {
 	},
 	data: function () {
 		Session.set('helpFilter', "pool");
+		Session.set('cardsetIndexResults', Cardsets.find().count());
 	},
 	action: function () {
 		if (this.ready()) {
