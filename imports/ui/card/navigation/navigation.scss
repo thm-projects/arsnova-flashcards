@@ -13,6 +13,7 @@
 
 .cardNavigation > li {
   flex: auto;
+  width: 1%;
   @media(max-width: 767px) {
     a {
       font-size: $font_size_card_navigation_mobile !important;
