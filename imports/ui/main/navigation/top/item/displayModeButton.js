@@ -37,6 +37,7 @@ Template.mainNavigationTopItemDisplayModeButton.events({
 			Filter.resetInfiniteBar();
 			WordcloudCanvas.disableWordcloud();
 		} else {
+			Filter.resetInfiniteBar();
 			WordcloudCanvas.enableWordcloud();
 		}
 	}
