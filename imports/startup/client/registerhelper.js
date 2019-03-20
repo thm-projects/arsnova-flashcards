@@ -24,6 +24,7 @@ import {AspectRatio} from "../../api/aspectRatio";
 import {CardNavigation} from "../../api/cardNavigation";
 import {Icons} from "../../api/icons";
 import {FilterNavigation} from "../../api/filterNavigation";
+import  * as FilterConfig from "../../config/filter.js";
 
 Meteor.subscribe("collegesCourses");
 
@@ -436,6 +437,10 @@ Template.registerHelper("isCardsetOwner", function (cardset_id) {
 
 Template.registerHelper("gotCardsetsForFilter", function () {
 	return Session.get('cardsetIndexResults') > 0;
+});
+
+Template.registerHelper("gotAllUnfilteredCardsetsVisible", function () {
+	return Session.get('cardsetIndexResults') <= Session.get('maxItemsCounter') || Session.get('cardsetIndexResults') <= FilterConfig.itemStartingValue;
 });
 
 Template.registerHelper("isShuffleRoute", function () {
