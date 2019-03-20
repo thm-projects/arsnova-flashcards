@@ -1239,24 +1239,24 @@
     },
     "cardType7": {
       "name": "Bibliografie",
-      "longName": "Bibliografie: Werk | Schlagwörter | Rezension | Export | Exzerpt | Anmerkung",
-      "content1": "Exzerpt",
-      "content2": "Anmerkungen",
-      "content3": "Werk",
-      "content4": "Schlagwörter",
-      "content5": "Rezension",
+      "longName": "Bibliografie: Werk | Schlagwörter | Rezension | Exzerpt | Anmerkung | Export",
+      "content1": "Werk",
+      "content2": "Schlagwörter",
+      "content3": "Rezension",
+      "content4": "Exzerpt",
+      "content5": "Anmerkung",
       "content6": "Export",
       "placeholders": {
-        "subject": "Gib den Titel des Volltextes an !",
-        "content1": "Zum Erstellen von Exzerpten, siehe zum Beispiel: \n\nhttp://www.uni-bielefeld.de/ew/scs/pdf/leitfaeden/studierende/exzerpt.pdf",
-        "content2": "Notiere die Relevanz des exzerpierten Textes für deine eigene Arbeit.",
-        "content3": "Halte hier die bibliografischen Daten des Textes fest. Dazu gehören nicht nur die Autorin oder der Autor, der Titel, die Auflage, das Erscheinungsjahr und der Erscheinungsort, sondern auch das exzerpierte Kapitel, der jeweilige Absatz und die Seite.",
-        "content4": "",
-        "content5": "",
-        "content6": ""
+        "subject": "Werkstitel",
+        "content1": "Notiere alle bibliografische Angaben: vollständiger Titel, Autor/in, Erscheinungsjahr, Verlag oder Webadresse, Art der Publikation etc.\n\nBinde ein Cover-Bild des Werkes ein. Hol es dir zum Beispiel von Amazon.",
+        "content2": "Nenne die wichtgisten Schlagwörter, mit denen das Werk gefunden werden soll.",
+        "content3": "Gib die Webadresse an, wo eine Rezension des Werkes zu finden ist.",
+        "content4": "Zum Erstellen eines Exzerpts siehe: http://www.uni-bielefeld.de/ew/scs/pdf/leitfaeden/studierende/exzerpt.pdf",
+        "content5": "Was immer auch wichtig ist für deine Abschlussarbeiten oder Veröffentlichungen, notiere es hier.",
+        "content6": "Gib an, wie das Werk zitiert werden kann, zum Beispiel im APA-Stil (https://www.mentorium.de/zitieren-apa-stil-zitierweise-anleitung-beispiele/) oder als als BibTeX-Datei (https://de.wikipedia.org/wiki/BibTeX)."
       },
       "editorLabels": {
-        "subject": "Titel des Volltextes"
+        "subject": "Gib den Titel des Werkes an!"
       }
     },
     "cardType8": {

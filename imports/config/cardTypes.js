@@ -5,7 +5,7 @@
 //4: Zitatensammlung
 //5: Prüfung
 //6: Anweisungssatz
-//7: Exzerpte
+//7: Bibliografie
 //8: Notizen
 //9: To-dos
 //10: Fotokartei
@@ -211,32 +211,32 @@ let cardTypeCubeSides = [
 	//7: Bibliografie
 	[
 		{
-			"contentId": 3,
+			"contentId": 1,
 			"side": "front",
 			"defaultStyle": "default"
 		},
 		{
-			"contentId": 4,
+			"contentId": 2,
 			"side": "back",
 			"defaultStyle": "default"
 		},
 		{
-			"contentId": 5,
+			"contentId": 3,
 			"side": "left",
 			"defaultStyle": "default"
 		},
 		{
-			"contentId": 6,
+			"contentId": 4,
 			"side": "right",
 			"defaultStyle": "default"
 		},
 		{
-			"contentId": 1,
+			"contentId": 5,
 			"side": "top",
 			"defaultStyle": "default"
 		},
 		{
-			"contentId": 2,
+			"contentId": 6,
 			"side": "bottom",
 			"defaultStyle": "default"
 		}
