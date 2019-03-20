@@ -435,7 +435,9 @@ Template.registerHelper("isCardsetOwner", function (cardset_id) {
 });
 
 Template.registerHelper("gotCardsetsForFilter", function () {
-	return Session.get('cardsetIndexResults') > 0;
+	if (Session.get('cardsetIndexResults') > 0) {
+		return Session.get('cardsetIndexResults') > Session.get('maxItemsCounter');
+	}
 });
 
 Template.registerHelper("isShuffleRoute", function () {
