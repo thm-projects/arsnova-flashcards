@@ -3,7 +3,6 @@ import {Session} from "meteor/session";
 import {CardVisuals} from "../../../api/cardVisuals.js";
 import {CardType} from "../../../api/cardTypes";
 import {Route} from "../../../api/route.js";
-import '/client/thirdParty/hammer.js';
 import "./content.html";
 import {MarkdeepContent} from "../../../api/markdeep";
 import {Dictionary} from "../../../api/dictionary";
