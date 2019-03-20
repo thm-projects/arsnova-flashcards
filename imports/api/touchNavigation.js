@@ -12,18 +12,22 @@ export let TouchNavigation = class TouchNavigation {
 			if (!$('.input-search').is(":focus") && !$('#lightbox').is(":visible") && !$('.modal').is(":visible")) {
 				if (event.detail.data[0].currentDirection >= 90 && event.detail.data[0].currentDirection <= 270) {
 					if (CardNavigation.isVisible()) {
-						if ((Route.isBox() || Route.isMemo()) && Session.get('isQuestionSide')) {
+						if ((Route.isBox() || Route.isMemo())) {
+							if (Session.get('isQuestionSide')) {
+								CardNavigation.skipAnswer();
+							}
+						} else if (!Route.isEditMode()) {
 							CardNavigation.skipAnswer();
-						} else {
-							$('.scrollRight').click();
 						}
 					}
 				} else {
 					if (CardNavigation.isVisible()) {
-						if ((Route.isBox() || Route.isMemo()) && Session.get('isQuestionSide')) {
+						if ((Route.isBox() || Route.isMemo())) {
+							if (Session.get('isQuestionSide')) {
+								CardNavigation.skipAnswer(false);
+							}
+						} else if (!Route.isEditMode()) {
 							CardNavigation.skipAnswer(false);
-						} else {
-							$('.scrollLeft').click();
 						}
 					}
 				}
