@@ -841,3 +841,11 @@ blockquote {
 .bert-alert {
   z-index: 10001 !important;
 }
+
+.lightboxOverlay {
+  z-index: 20000;
+}
+
+.lightbox {
+  z-index: 20010;
+}
