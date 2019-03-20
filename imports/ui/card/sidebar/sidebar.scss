@@ -88,6 +88,8 @@
 
 #flashcardSidebarLeft.fixed, #flashcardSidebarRight.fixed, #flashcardSidebarBottomLeft.fixed {
   position: fixed;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
   width: $sidebar_width !important;
   @media(max-width: 1439px) and (pointer: coarse) {
     width: $sidebar_width_mobile !important;
@@ -104,6 +106,7 @@
 }
 
 #flashcardSidebarLeft, #flashcardSidebarBottomLeft {
+  margin-left: 15px;
   border-right: 2px solid;
   left: 0;
   border-radius: 0 10px 10px 0;
@@ -119,6 +122,7 @@
 }
 
 #flashcardSidebarRight {
+  margin-right: 15px;
   border-left: 2px solid;
   right: 3px;
   @media(max-width: 1439px) {

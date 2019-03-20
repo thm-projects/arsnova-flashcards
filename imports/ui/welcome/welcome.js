@@ -12,6 +12,7 @@ import {NavigatorCheck} from "../../api/navigatorCheck";
 import {AdminSettings} from "../../api/adminSettings";
 import {WordcloudCanvas} from "../../api/wordcloudCanvas";
 import {ServerStyle} from "../../api/styles.js";
+import {FirstTimeVisit} from "../../api/firstTimeVisit";
 
 Meteor.subscribe("pomodoroLandingPage");
 Meteor.subscribe("userData");
@@ -144,7 +145,11 @@ Template.welcome.helpers({
 
 Template.welcome.onCreated(function () {
 	if (Route.isFirstTimeVisit()) {
-		Router.go('demo');
+		if (FirstTimeVisit.isFirstTimeVisitDemoEnabled()) {
+			Router.go('demo');
+		} else {
+			Route.setFirstTimeVisit();
+		}
 	}
 	if (NavigatorCheck.gotFeatureSupport(1)) {
 		Session.set('isLandingPagePomodoroActive', AdminSettings.findOne({name: "wordcloudPomodoroSettings"}).enabled);

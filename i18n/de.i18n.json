@@ -1238,11 +1238,11 @@
       }
     },
     "cardType7": {
-      "name": "Bibliografie",
-      "longName": "Bibliografie: Werk | Schlagwörter | Rezension | Exzerpt | Anmerkung | Export",
-      "content1": "Werk",
+      "name": "Fachliteratur",
+      "longName": "Literatur: Werk | Schlagwörter | Rezensionen | Exzerpt | Anmerkung | Export",
+      "content1": "Bibliografische Angaben",
       "content2": "Schlagwörter",
-      "content3": "Rezension",
+      "content3": "Rezensionen",
       "content4": "Exzerpt",
       "content5": "Anmerkung",
       "content6": "Export",
@@ -1253,7 +1253,7 @@
         "content3": "Gib die Webadresse an, wo eine Rezension des Werkes zu finden ist.",
         "content4": "Zum Erstellen eines Exzerpts siehe: http://www.uni-bielefeld.de/ew/scs/pdf/leitfaeden/studierende/exzerpt.pdf",
         "content5": "Was immer auch wichtig ist für deine Abschlussarbeiten oder Veröffentlichungen, notiere es hier.",
-        "content6": "Gib an, wie das Werk zitiert werden kann, zum Beispiel im APA-Stil (https://www.mentorium.de/zitieren-apa-stil-zitierweise-anleitung-beispiele/) oder als als BibTeX-Datei (https://de.wikipedia.org/wiki/BibTeX)."
+        "content6": "Gib an, wie das Werk zitiert werden kann, zum Beispiel im APA-Stil (https://www.mentorium.de/zitieren-apa-stil-zitierweise-anleitung-beispiele/) oder als BibTeX-Datei (https://de.wikipedia.org/wiki/BibTeX)."
       },
       "editorLabels": {
         "subject": "Gib den Titel des Werkes an!"
