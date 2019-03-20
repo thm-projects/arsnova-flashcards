@@ -160,8 +160,8 @@ Template.main.helpers({
 			}
 		} else if (Route.isHome() && !Meteor.user()) {
 			return "";
-		} else if (Route.isEditCard() || Route.isCardsetLeitnerStats()) {
-			if (Route.isEditCard() && !CardVisuals.isFullscreen()) {
+		} else if (Route.isEditMode() || Route.isCardsetLeitnerStats()) {
+			if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
 				return "container-fluid-editor";
 			} else {
 				return "container-fluid";
