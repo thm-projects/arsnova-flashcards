@@ -11,27 +11,25 @@
 </template>
 
 <template name="cardset">
-    {{#unless fullscreenActive}}
-        {{> cardsetInfo}}
-        {{> showLicense}}
-        {{> cardsetForm}}
-        {{> cardsetImportForm}}
-        {{> cardsetPublishForm}}
-        {{> bonusForm}}
-        {{> cardsetEndLearnForm}}
-        {{> selectLicenseForm}}
-        {{> reportCardsetForm}}
-        {{> deleteCardsForm}}
-        {{> resetLeitnerForm}}
-        {{> resetMemoForm}}
-        {{> leaveLearnPhaseForm}}
-        {{> leaveCardsetForm}}
-        {{> leaveEditorsForm}}
-        {{> chooseFlashcards}}
-        {{> joinBonusForm}}
-        {{> leaveBonusForm}}
-        {{> profileIncompleteModal}}
-    {{/unless}}
+    {{> cardsetInfo}}
+    {{> showLicense}}
+    {{> cardsetForm}}
+    {{> cardsetImportForm}}
+    {{> cardsetPublishForm}}
+    {{> bonusForm}}
+    {{> cardsetEndLearnForm}}
+    {{> selectLicenseForm}}
+    {{> reportCardsetForm}}
+    {{> deleteCardsForm}}
+    {{> resetLeitnerForm}}
+    {{> resetMemoForm}}
+    {{> leaveLearnPhaseForm}}
+    {{> leaveCardsetForm}}
+    {{> leaveEditorsForm}}
+    {{> chooseFlashcards}}
+    {{> joinBonusForm}}
+    {{> leaveBonusForm}}
+    {{> profileIncompleteModal}}
     {{#if hasCardsetPermission}}
         {{selectedForLearning}}
         {{#if isActiveRoute regex='cardsetdetailsid|cardsetcard'}}

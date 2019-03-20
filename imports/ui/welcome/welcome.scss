@@ -60,6 +60,9 @@
   }
   #loginButtonRow {
     display: inline-block;
+    .flex-content {
+      justify-content: left !important;
+    }
   }
 }
 

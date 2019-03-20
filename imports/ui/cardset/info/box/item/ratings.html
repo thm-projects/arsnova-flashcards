@@ -1,32 +1,30 @@
 <template name="cardsetInfoBoxItemRatings">
-    {{#unless isActiveRoute regex="home|course"}}
-        {{#if ratingEnabled}}
-            <tr>
-                <td>{{_ "cardset.info.rating"}}:</td>
-                <td>
-                    {{#if isActiveRoute regex="cardsetdetailsid|cardsetlistid"}}
-                        {{#if canRateCardset}}
-                            {{> starsRating id="rating" class='star-ratings' rating=this.rating mutable=true}}
-                        {{else}}
-                            <span class="disabled-stars">
-                                {{> starsRating class='star-ratings' rating=this.rating mutable=false}}
-                            </span>
-                        {{/if}}
+    {{#if ratingEnabled}}
+        <tr>
+            <td>{{_ "cardset.info.rating"}}:</td>
+            <td>
+                {{#if isActiveRoute regex="cardsetdetailsid|cardsetlistid"}}
+                    {{#if canRateCardset}}
+                        {{> starsRating id="rating" class='star-ratings' rating=this.rating mutable=true}}
                     {{else}}
-                    <span class="disabled-stars">
-                        {{> starsRating class='star-ratings' rating=this.rating mutable=false}}
-                    </span>
-                    {{/if}} ({{this.raterCount}})
-                </td>
-            </tr>
-            {{#if isActiveRoute regex="cardsetdetailsid|cardsetlistid"}}
-                {{#if canRateCardset}}
-                    <tr>
-                        <td>{{_ "cardset.info.userRating"}}:</td>
-                        <td><span id="userRating">{{getUserRating}}</span></td>
-                    </tr>
-                {{/if}}
+                        <span class="disabled-stars">
+                            {{> starsRating class='star-ratings' rating=this.rating mutable=false}}
+                        </span>
+                    {{/if}}
+                {{else}}
+                <span class="disabled-stars">
+                    {{> starsRating class='star-ratings' rating=this.rating mutable=false}}
+                </span>
+                {{/if}} ({{this.raterCount}})
+            </td>
+        </tr>
+        {{#if isActiveRoute regex="cardsetdetailsid|cardsetlistid"}}
+            {{#if canRateCardset}}
+                <tr>
+                    <td>{{_ "cardset.info.userRating"}}:</td>
+                    <td><span id="userRating">{{getUserRating}}</span></td>
+                </tr>
             {{/if}}
         {{/if}}
-    {{/unless}}
+    {{/if}}
 </template>

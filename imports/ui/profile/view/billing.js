@@ -97,12 +97,10 @@ Template.profileBilling.helpers({
 		return (cardset_id !== undefined) ? Cardsets.findOne(cardset_id).name : undefined;
 	},
 	getBalance: function () {
-		Meteor.subscribe("privateUserData");
 		var balance = Meteor.users.findOne(Meteor.userId).balance;
 		return (balance !== undefined) ? parseFloat(balance).toFixed(2) : 0;
 	},
 	hasBalance: function () {
-		Meteor.subscribe("privateUserData");
 		var balance = Meteor.users.findOne(Meteor.userId).balance;
 		return balance > 0;
 	},

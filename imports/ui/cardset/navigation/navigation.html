@@ -7,7 +7,9 @@
             {{#if isInBonus}}
                 {{> cardsetNavigationLearning}}
             {{else}}
-                {{> cardsetNavigationWorkload}}
+                {{#if currentUser}}
+                    {{> cardsetNavigationWorkload}}
+                {{/if}}
             {{/if}}
             {{> cardsetNavigationNewCard}}
             {{> cardsetNavigationEditRepetitorium}}

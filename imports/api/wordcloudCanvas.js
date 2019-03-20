@@ -10,6 +10,7 @@ import {FilterNavigation} from "./filterNavigation";
 import {NavigatorCheck} from "./navigatorCheck";
 import * as config from "../config/wordcloud.js";
 import {Route} from "./route";
+import {MainNavigation} from "./mainNavigation";
 Session.setDefault('firstTimeWordcloudModalLandingPage', true);
 Session.setDefault('firstTimeWordcloudModalFilter', true);
 let canvasSettings;
@@ -19,7 +20,7 @@ let firstTimeWordcloudModalFilter = 'isFirstTimeWordcloudModalFilter';
 export let WordcloudCanvas = class WordcloudCanvas {
 
 	static setConfig () {
-		if (Meteor.userId()) {
+		if (Meteor.userId() || MainNavigation.isGuestLoginActive()) {
 			canvasSettings = config.wordcloudDefault;
 		} else {
 			canvasSettings = config.wordcloudLandingPage;
@@ -67,7 +68,7 @@ export let WordcloudCanvas = class WordcloudCanvas {
 	static draw () {
 		if (document.getElementById('wordcloud-canvas') !== null) {
 			this.setCanvasSize();
-			if (!NavigatorCheck.isSmartphone() && Meteor.userId()) {
+			if (!NavigatorCheck.isSmartphone() && (Meteor.userId() || MainNavigation.isGuestLoginActive())) {
 				PomodoroTimer.setCloudShown(true);
 				this.setConfig();
 				this.setWordcloudTheme();
@@ -106,14 +107,9 @@ export let WordcloudCanvas = class WordcloudCanvas {
 	}
 
 	static setCanvasSize () {
-		if (Meteor.userId()) {
+		if (Meteor.userId() || MainNavigation.isGuestLoginActive()) {
 			document.getElementById('wordcloud-canvas').width = ($('#wordcloud-container').width());
-			let filterNavigation = $('#filter-nav-wrapper');
-			let offset = 0;
-			if (filterNavigation.length) {
-				offset = (filterNavigation.offset().top + filterNavigation.height());
-			}
-			document.getElementById('wordcloud-canvas').height = ($(window).height() - offset - 30);
+			document.getElementById('wordcloud-canvas').height = ($(window).height() - $('#wordcloud-container').offset().top - 30);
 			let canvas = $('#wordcloud-canvas');
 			let canvas_background = $('#wordcloud-canvas-background');
 			canvas_background.height(canvas.height());
@@ -152,7 +148,7 @@ export let WordcloudCanvas = class WordcloudCanvas {
 			$('#wordcloud-hover-box').css('display', 'block');
 			let canvas = $('#wordcloud-canvas');
 			let leftOffset = canvas.offset().left;
-			if (Meteor.user()) {
+			if (Meteor.user() || MainNavigation.isGuestLoginActive()) {
 				leftOffset = parseInt($('#wordcloud-container').css('padding-left'));
 			}
 			$('#wordcloud-hover-box').css({
@@ -182,7 +178,7 @@ export let WordcloudCanvas = class WordcloudCanvas {
 	}
 
 	static setWordcloudTheme () {
-		if (Meteor.userId()) {
+		if (Meteor.userId() || MainNavigation.isGuestLoginActive()) {
 			if (FilterNavigation.isDisplayWordcloudActive(FilterNavigation.getRouteId())) {
 				$('html').attr('id', 'theme-wrapper-wordcloud');
 			} else {
@@ -198,7 +194,7 @@ export let WordcloudCanvas = class WordcloudCanvas {
 		let minimumSize = 1;
 		let biggestCardsetSize = 1;
 		let list = [];
-		if (Meteor.userId()) {
+		if (Meteor.userId() || MainNavigation.isGuestLoginActive()) {
 			cloud = Cardsets.find(Filter.getFilterQuery()).fetch();
 		} else {
 			if (Meteor.settings.public.welcome.fakeStatistics) {

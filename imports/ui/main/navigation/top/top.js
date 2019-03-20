@@ -1,6 +1,7 @@
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Meteor} from "meteor/meteor";
+import {Filter} from "../../../../api/filter";
 import {MainNavigation} from "../../../../api/mainNavigation";
 import "./item/all/all.js";
 import "./item/backend.js";
@@ -17,7 +18,6 @@ import "./item/workload.js";
 import "./item/filter.js";
 import "./top.html";
 
-
 /*
  * ############################################################################
  * mainNavigationTop
@@ -30,7 +30,15 @@ Template.mainNavigationTop.events({
 		Session.set('helpFilter', undefined);
 		MainNavigation.setLoginTarget(false);
 		Session.set('firedUseCaseModal', false);
-		Meteor.logout();
+		MainNavigation.setGuestLogin("false");
+		Filter.resetFilters();
+		if (Meteor.user()) {
+			Meteor.logout(function () {
+				Router.go('home');
+			});
+		} else {
+			Router.go('home');
+		}
 	},
 	'click .toggleFooterNavigation': function (event) {
 		event.preventDefault();

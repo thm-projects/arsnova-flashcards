@@ -25,6 +25,7 @@ import {CardNavigation} from "../../api/cardNavigation";
 import {Icons} from "../../api/icons";
 import {FilterNavigation} from "../../api/filterNavigation";
 import  * as FilterConfig from "../../config/filter.js";
+import {MainNavigation} from "../../api/mainNavigation";
 
 Meteor.subscribe("collegesCourses");
 
@@ -246,9 +247,7 @@ Template.registerHelper("isLecturer", function () {
 });
 
 Template.registerHelper("isAdmin", function () {
-	if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
-		return true;
-	}
+	return UserPermissions.isAdmin();
 });
 
 Template.registerHelper("isActiveLanguage", function (language) {
@@ -437,6 +436,14 @@ Template.registerHelper("isCardsetOwner", function (cardset_id) {
 
 Template.registerHelper("gotCardsetsForFilter", function () {
 	return Session.get('cardsetIndexResults') > 0;
+});
+
+Template.registerHelper("canAccessFrontend", function () {
+	return Meteor.user() || MainNavigation.isGuestLoginActive();
+});
+
+Template.registerHelper("isGuestLogin", function () {
+	return MainNavigation.isGuestLoginActive();
 });
 
 Template.registerHelper("gotAllUnfilteredCardsetsVisible", function () {

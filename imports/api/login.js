@@ -21,7 +21,7 @@ export let LoginTasks = class LoginTasks {
 	}
 
 	static gotOwnCardsets () {
-		if (Meteor.user().count !== undefined) {
+		if (Meteor.user() && Meteor.user().count !== undefined) {
 			return Meteor.user().count.cardsets;
 		}
 	}

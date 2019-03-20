@@ -59,11 +59,14 @@ Template.pomodoroTimerModal.onRendered(function () {
 			CardVisuals.toggleFullscreen();
 		}
 	});
+	$('#pomodoroTimerModal').on('shown.bs.modal', function () {
+		CardVisuals.setSidebarPosition();
+	});
 	if (Route.requiresUserInputForFullscreen()) {
 		if (Bonus.isInBonus(Router.current().params._id)) {
 			PomodoroTimer.start();
 		} else {
-			if (!PomodoroTimer.isPomodoroRunning()) {
+			if (!PomodoroTimer.isPomodoroRunning() && !Route.isPresentationViewList()) {
 				$('#pomodoroTimerModal').modal('show');
 			}
 		}

@@ -1,5 +1,5 @@
 <template name="mainNavigationFooterItemHelp">
-    {{#if currentUser}}
+    {{#if canAccessFrontend}}
         <li class="{{#if isActiveRoute 'help'}}active{{/if}}">
             <a id="help" href="{{pathFor route='help'}}">
                 {{{getNavigationName "help"}}}
