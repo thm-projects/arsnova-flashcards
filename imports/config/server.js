@@ -9,10 +9,10 @@ let defaultSettings = {
 	},
 	"welcome": {
 		"title": {
-			"first": "ARSnova",
+			"first": "",
 			"last": "cards",
-			"slogan_de": "ORGANIZE. LEARN. MEMORIZE. PRESENT.",
-			"slogan_en": "ORGANIZE. LEARN. MEMORIZE. PRESENT."
+			"slogan_de": "ORGANIZE. LEARN. MEMORIZE.",
+			"slogan_en": "ORGANIZE. LEARN. MEMORIZE."
 		},
 		"button": {
 			"about":  {
