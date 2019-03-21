@@ -1,11 +1,11 @@
 let defaultSettings = {
 	"login": {
 		"cas": true,
-		"guest": false,
+		"guest": true,
 		"pro": false,
-		"facebook": true,
-		"twitter": true,
-		"google": true
+		"facebook": false,
+		"twitter": false,
+		"google": false
 	},
 	"welcome": {
 		"title": {
@@ -16,8 +16,8 @@ let defaultSettings = {
 		},
 		"button": {
 			"about":  {
-				"default_de": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
-				"default_en": "Erfahre mehr über 🍅cards in unserer interaktiven Demo …",
+				"default_de": "Erfahre alles über 🍅cards …",
+				"default_en": "Erfahre alles über 🍅cards …",
 				"mobile_de": "Erfahre mehr über 🍅cards…",
 				"mobile_en": "Erfahre mehr über 🍅cards…"
 			}
