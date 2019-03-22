@@ -31,16 +31,22 @@ if (Meteor.isServer) {
 					user_id: this.userId
 				});
 			}
+		} else {
+			this.ready();
 		}
 	});
 	Meteor.publish("userWorkload", function () {
 		if (this.userId) {
 			return Workload.find({user_id: this.userId});
+		} else {
+			this.ready();
 		}
 	});
 	Meteor.publish("cardsetLeitner", function (cardset_id) {
 		if (this.userId) {
 			return Leitner.find({cardset_id: cardset_id, user_id: this.userId});
+		} else {
+			this.ready();
 		}
 	});
 	Meteor.publish("userCardsetLeitner", function (cardset_id, user_id) {
@@ -51,12 +57,18 @@ if (Meteor.isServer) {
 				'lecturer'
 			])) {
 				return Leitner.find({cardset_id: cardset_id, user_id: user_id});
+			} else {
+				this.ready();
 			}
+		} else {
+			this.ready();
 		}
 	});
 	Meteor.publish("userLeitner", function () {
 		if (this.userId) {
 			return Leitner.find({user_id: this.userId});
+		} else {
+			this.ready();
 		}
 	});
 	Meteor.publish("allLeitner", function () {
@@ -65,18 +77,24 @@ if (Meteor.isServer) {
 				'admin',
 				'editor'
 			])) {
-				return Leitner.find({});
+				return Leitner.find();
 			}
+		} else {
+			this.ready();
 		}
 	});
 	Meteor.publish("cardsetWozniak", function (cardset_id) {
 		if (this.userId) {
 			return Wozniak.find({cardset_id: cardset_id, user_id: this.userId});
+		} else {
+			this.ready();
 		}
 	});
 	Meteor.publish("userWozniak", function () {
 		if (this.userId) {
 			return Wozniak.find({user_id: this.userId});
+		} else {
+			this.ready();
 		}
 	});
 

@@ -1,6 +1,7 @@
 #contact {
   margin-top: $size_navbar_height;
   margin-bottom: $size_navbar_height * 1.75;
+  padding: 0;
   @media(max-width: 767px) {
     margin-top: $size_navbar_height * 1.5;
     margin-bottom: 10px;
@@ -37,6 +38,8 @@
 .demo-padding {
   padding-left: 15px;
   padding-right: 15px;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 h1, h2, h3 {

@@ -41,7 +41,6 @@ import "./modal/arsnovaClick.js";
 import "./modal/connectionStatus.js";
 import "./modal/underDevelopment.js";
 
-Meteor.subscribe("Users");
 Meteor.subscribe("notifications");
 Meteor.subscribe("adminSettings");
 Meteor.subscribe("serverStatistics");
@@ -72,45 +71,11 @@ function connectionStatus() {
 	Session.set('connectionStatus', stat);
 }
 
-function setTheme() {
-	if (Meteor.userId()) {
-		// If there is no selectedColorTheme the Session var "theme" will stay NULL.
-		if (Meteor.users.findOne(Meteor.userId())) {
-			if (Meteor.users.findOne(Meteor.userId()).selectedColorTheme) {
-				Session.set("theme", Meteor.users.findOne(Meteor.userId()).selectedColorTheme);
-			}
-		}
-	} else {
-		// When user logged out, go back to default Theme
-		Session.set('theme', "default");
-	}
-	let themeId = "";
-	let themeClass = "theme-";
-	if (Meteor.userId()) {
-		if (Session.get('fullscreen')) {
-			themeId = 'theme-wrapper-no-nav';
-		} else {
-			themeId = 'theme-wrapper';
-		}
-	} else {
-		if (!Session.get('fullscreen')) {
-			themeId = 'theme-wrapper-no-nav-welcome';
-		} else {
-			themeId = 'theme-wrapper-no-nav';
-		}
-	}
-	if (Session.get('theme')) {
-		themeClass += "default";
-	}
-	let html = $('html');
-	html.attr('id', themeId);
-	html.attr('class', themeClass);
-}
 
 /** Function provides an reactive callback when a user loggs in and out */
 Tracker.autorun(function () {
+	Meteor.subscribe('personalUserData');
 	connectionStatus();
-	setTheme();
 });
 
 $(document).on('click', '.navbar-collapse.in', function (e) {
@@ -158,7 +123,7 @@ Template.main.helpers({
 					return "presentation-container";
 				}
 			}
-		} else if (Route.isHome() && !Meteor.user()) {
+		} else if (Route.isHome() && !Meteor.user() && !MainNavigation.isGuestLoginActive()) {
 			return "";
 		} else if (Route.isEditMode() || Route.isCardsetLeitnerStats()) {
 			if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
@@ -166,7 +131,7 @@ Template.main.helpers({
 			} else {
 				return "container-fluid";
 			}
-		} else if (Route.isFirstTimeVisit()) {
+		} else if (Route.isFirstTimeVisit() && !MainNavigation.isGuestLoginActive()) {
 			return "";
 		} else {
 			return "container";

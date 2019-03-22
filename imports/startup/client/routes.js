@@ -15,21 +15,6 @@ import {Leitner, Wozniak} from "../../api/learned.js";
 
 let loadingScreenTemplate = 'loadingScreen';
 
-let linksWithNoLoginRequirement = [
-	'home',
-	'about',
-	'learning',
-	'faq',
-	'help',
-	'impressum',
-	'demo',
-	'demolist',
-	'agb',
-	'datenschutz',
-	'making',
-	'makinglist'
-];
-
 Router.route('/', function () {
 	this.redirect('home');
 });
@@ -290,7 +275,7 @@ Router.route('/personal/repetitorien', {
 	name: 'personalRepetitorien',
 	template: 'filterIndex',
 	subscriptions: function () {
-		return [Meteor.subscribe('personalRepetitorien')];
+		return [Meteor.subscribe('personalRepetitorien'), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		Session.set('helpFilter', "create");
@@ -310,7 +295,7 @@ Router.route('/public/repetitorien', {
 	name: 'repetitorium',
 	template: 'filterIndex',
 	subscriptions: function () {
-		return [Meteor.subscribe('repetitoriumCardsets'), Meteor.subscribe('paidCardsets')];
+		return [Meteor.subscribe('repetitoriumCardsets'), Meteor.subscribe('paidCardsets'), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		Session.set('helpFilter', "repetitorium");
@@ -330,7 +315,7 @@ Router.route('/learn', {
 	name: 'learn',
 	template: 'filterIndex',
 	subscriptions: function () {
-		return [Meteor.subscribe('workloadCardsets'), Meteor.subscribe('paidCardsets'), Meteor.subscribe('userWorkload'), Meteor.subscribe('userLeitner'), Meteor.subscribe('userWozniak')];
+		return [Meteor.subscribe('workloadCardsets'), Meteor.subscribe('paidCardsets'), Meteor.subscribe('userWorkload'), Meteor.subscribe('userLeitner'), Meteor.subscribe('userWozniak'), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		Session.set('helpFilter', "workload");
@@ -354,7 +339,7 @@ Router.route('/cardset/:_id', {
 	name: 'cardsetdetailsid',
 	template: 'cardsetAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetUserRating', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
+		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetUserRating', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
@@ -375,7 +360,7 @@ Router.route('/cardset/:_id/card/:card_id', {
 	name: 'cardsetcard',
 	template: 'cardsetAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetUserRating', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
+		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetUserRating', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
@@ -397,7 +382,7 @@ Router.route('/cardset/:_id/editshuffle', {
 	name: 'editshuffle',
 	template: 'filterIndexShuffle',
 	subscriptions: function () {
-		return [Meteor.subscribe('editShuffleCardsets', this.params._id)];
+		return [Meteor.subscribe('editShuffleCardsets', this.params._id), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		Session.set('helpFilter', "shuffle");
@@ -417,7 +402,7 @@ Router.route('/cardset/:_id/editors', {
 	name: 'cardseteditors',
 	template: 'cardsetManageEditors',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardset', this.params._id)];
+		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		Session.set('helpFilter', "cardset");
@@ -459,7 +444,7 @@ Router.route('/cardsetlist/:_id', {
 	name: 'cardsetlistid',
 	template: 'cardsetAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetUserRating', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
+		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetUserRating', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		Session.set('helpFilter', "cardsetIndex");
@@ -516,7 +501,7 @@ Router.route('/public/cardsets', {
 	name: 'pool',
 	template: 'filterIndex',
 	subscriptions: function () {
-		return [Meteor.subscribe('poolCardsets'), Meteor.subscribe('paidCardsets')];
+		return [Meteor.subscribe('poolCardsets'), Meteor.subscribe('paidCardsets'), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		Session.set('helpFilter', "pool");
@@ -535,7 +520,7 @@ Router.route('/progress/:_id/:user_id', {
 	name: 'progress',
 	template: 'progress',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('userCardsetLeitner', this.params._id, this.params.user_id)];
+		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('userCardsetLeitner', this.params._id, this.params.user_id), Meteor.subscribe('userDataBonus', this.params._id, this.params.user_id)];
 	},
 	data: function () {
 		Session.set('helpFilter', "workloadProgress");
@@ -596,7 +581,7 @@ Router.route('/presentationlist/:_id', {
 	name: 'presentationlist',
 	template: 'presentation',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
+		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		Session.set('helpFilter', "cardsetIndex");
@@ -957,6 +942,40 @@ Router.route('/admin/settings', {
  * onBeforeAction
  */
 
+
+var linksWithNoLoginRequirement = function () {
+	let links = [
+		'home',
+		'about',
+		'learning',
+		'faq',
+		'help',
+		'impressum',
+		'demo',
+		'demolist',
+		'agb',
+		'datenschutz',
+		'making',
+		'makinglist'
+	];
+	if (ServerStyle.isLoginEnabled("guest") && MainNavigation.isGuestLoginActive()) {
+		let linksGuest = [
+			'pool',
+			'repetitorium',
+			'cardsetdetailsid',
+			'cardsetlist',
+			'cardsetcard',
+			'cardsetlistid',
+			'presentation',
+			'presentationlist'
+		];
+		return links.concat(linksGuest);
+	} else {
+		MainNavigation.setGuestLogin("false");
+		return links;
+	}
+};
+
 var setLanguage = function () {
 	let language = ServerStyle.getClientLanguage();
 	Session.set('activeLanguage', language);
@@ -964,11 +983,48 @@ var setLanguage = function () {
 	this.next();
 };
 
-var setBackground = function () {
+var setTheme = function () {
+	if (Meteor.user()) {
+		// If there is no selectedColorTheme the Session var "theme" will stay NULL.
+		if (Meteor.users.findOne(Meteor.userId())) {
+			if (Meteor.users.findOne(Meteor.userId()).selectedColorTheme) {
+				Session.set("theme", Meteor.users.findOne(Meteor.userId()).selectedColorTheme);
+			}
+		}
+	} else {
+		// When user logged out, go back to default Theme
+		Session.set('theme', "default");
+	}
+	let themeId = "";
+	let themeClass = "theme-";
+	if (Meteor.user() || MainNavigation.isGuestLoginActive()) {
+		if (Session.get('fullscreen')) {
+			themeId = 'theme-wrapper-no-nav';
+		} else {
+			themeId = 'theme-wrapper';
+		}
+	} else {
+		if (!Session.get('fullscreen')) {
+			themeId = 'theme-wrapper-no-nav-welcome';
+		} else {
+			themeId = 'theme-wrapper-no-nav';
+		}
+	}
+	if (Session.get('theme')) {
+		themeClass += "default";
+	}
+	let html = $('html');
+	html.attr('id', themeId);
+	html.attr('class', themeClass);
+
+	//Background
 	let body = $('body');
 	body.removeAttr('class');
 	body.removeAttr('style');
-	if (Route.isPresentation()) {
+	if (Route.isPresentationViewList()) {
+		body.addClass('presentation-list');
+		body.css('background-image', ServerStyle.getBackground("presentation"));
+	} else if (Route.isPresentation()) {
 		body.addClass('presentation');
 		body.css('background-image', ServerStyle.getBackground("presentation"));
 	} else if (Route.isBox() || Route.isMemo()) {
@@ -980,7 +1036,7 @@ var setBackground = function () {
 	} else if (Route.isDemo() | Route.isMakingOf()) {
 		body.addClass('demo');
 		body.css('background-image', ServerStyle.getBackground("demo"));
-	} else if (Meteor.user()) {
+	} else if (Meteor.user() || MainNavigation.isGuestLoginActive()) {
 		if (Route.isBackend()) {
 			body.addClass('backend');
 			body.css('background-image', ServerStyle.getBackground("backend"));
@@ -997,10 +1053,10 @@ var setBackground = function () {
 
 var isSignedIn = function () {
 	CardVisuals.checkFullscreen();
-	if (!(Meteor.user() || Meteor.loggingIn())) {
+	if (!(Meteor.user() || Meteor.loggingIn()) && !MainNavigation.isGuestLoginActive()) {
 		Session.set('theme', "default");
 		if (MainNavigation.getLoginTarget() === undefined) {
-			if (linksWithNoLoginRequirement.includes(Router.current().route.getName())) {
+			if (linksWithNoLoginRequirement().includes(Router.current().route.getName())) {
 				MainNavigation.setLoginTarget(false);
 			} else {
 				MainNavigation.setLoginTarget(Router.current().url);
@@ -1020,7 +1076,7 @@ var isSignedIn = function () {
 };
 
 var goToCreated = function () {
-	if (Meteor.user()) {
+	if (Meteor.user() || MainNavigation.isGuestLoginActive()) {
 		if (!Roles.userIsInRole(Meteor.userId(), ['firstLogin', 'blocked']) && MainNavigation.getLoginTarget() !== undefined && MainNavigation.getLoginTarget() !== false && MainNavigation.getLoginTarget() !== "/") {
 			Router.go(MainNavigation.getLoginTarget());
 			MainNavigation.setLoginTarget(false);
@@ -1034,10 +1090,10 @@ var goToCreated = function () {
 
 Router.onBeforeAction(setLanguage);
 
-Router.onBeforeAction(setBackground);
+Router.onBeforeAction(setTheme);
 
 Router.onBeforeAction(isSignedIn, {
-	except: linksWithNoLoginRequirement
+	except: linksWithNoLoginRequirement()
 });
 
 Router.onBeforeAction(goToCreated, {

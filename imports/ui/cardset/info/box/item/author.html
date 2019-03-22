@@ -7,8 +7,12 @@
                 {{_ "cardset.info.author"}}
             {{/if}}:
         </td>
-        <td>
-            {{getAuthorName this.owner false}}
-        </td>
+        {{#if isAdmin}}
+            <td>
+                <a href="{{pathFor 'admin_user' _id=this.owner}}" target="_blank">{{getAuthorName this.owner false}}</a>
+            </td>
+        {{else}}
+            <td>{{getAuthorName this.owner false}}</td>
+        {{/if}}
     </tr>
 </template>

@@ -1,10 +1,8 @@
 <template name="cardsetInfoBoxItemKind">
-    {{#if isActiveRoute regex="home"}}
-        <tr>
-            <td>{{_ "set-list.category"}}:</td>
-            <td>
-                {{{getKindText this.kind 1}}}
-            </td>
-        </tr>
-    {{/if}}
+    <tr>
+        <td>{{_ "set-list.category"}}:</td>
+        <td>
+            {{{getKindText this.kind 1}}}
+        </td>
+    </tr>
 </template>

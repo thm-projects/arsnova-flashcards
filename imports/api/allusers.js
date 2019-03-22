@@ -1,19 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {check} from "meteor/check";
 
-if (Meteor.isServer) {
-	Meteor.publish("allUsers", function () {
-		if (Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor'
-			])) {
-			return Meteor.users.find({});
-		} else {
-			return [];
-		}
-	});
-}
-
 Meteor.methods({
 	updateUser: function (user_id, visible, email, blockedtext) {
 		check(user_id, String);

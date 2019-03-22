@@ -80,6 +80,10 @@ export let Route = class Route {
 		return Router.current().route.getName() === "presentationlist";
 	}
 
+	static isPresentationViewList () {
+		return this.isPresentationList() || this.isMakingOfList() || this.isDemoList();
+	}
+
 	static isPresentationOrDemo () {
 		return this.isPresentation() || this.isDemo() || this.isMakingOf();
 	}

@@ -15,6 +15,6 @@ Meteor.subscribe("notifications");
 Template.accessDenied.events({
 	'click #logout_access_denied_blocked': function (event) {
 		event.preventDefault();
-		Meteor.logout();
+		Router.go('home');
 	}
 });

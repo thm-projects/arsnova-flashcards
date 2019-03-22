@@ -13,6 +13,7 @@ import {AdminSettings} from "../../api/adminSettings";
 import {WordcloudCanvas} from "../../api/wordcloudCanvas";
 import {ServerStyle} from "../../api/styles.js";
 import {FirstTimeVisit} from "../../api/firstTimeVisit";
+import {MainNavigation} from "../../api/mainNavigation";
 
 Meteor.subscribe("pomodoroLandingPage");
 Meteor.subscribe("userData");
@@ -91,6 +92,12 @@ Template.welcome.events({
 				throw new Meteor.Error("Logout failed");
 			}
 		});
+	},
+
+	'click #guest': function () {
+		MainNavigation.setGuestLogin("true");
+		Session.set('firedUseCaseModal', 1);
+		Router.go('pool');
 	}
 });
 
@@ -101,7 +108,7 @@ Template.welcome.helpers({
 			loginButtons += '<button id="cas" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.cas") + '"><span class="flex-content"><i class="fa fa-university" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.cas") + '</span></button>';
 		}
 		if (ServerStyle.isLoginEnabled("guest")) {
-			loginButtons += '<button id="guest" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal" title="' + TAPi18n.__("landingPage.login.tooltip.guest") + '"><span class="flex-content"><i class="fa fa-smile-o" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.guest") + '</span></button>';
+			loginButtons += '<button id="guest" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.guest") + '"><span class="flex-content"><i class="fa fa-smile-o" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.guest") + '</span></button>';
 		}
 		if (ServerStyle.isLoginEnabled("pro")) {
 			loginButtons += '<button id="pro" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal" title="' + TAPi18n.__("landingPage.login.tooltip.pro") + '"><span class="flex-content"><i class="fa fa-paypal" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.pro") + '</span></button>';

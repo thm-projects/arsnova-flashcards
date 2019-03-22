@@ -1,13 +1,13 @@
 <template name="mainNavigationFooter">
     {{#unless fullscreenActive}}
-        {{#unless currentUser}}
+        {{#unless canAccessFrontend}}
                 {{#if displayWelcomeNavigation}}
                     {{> mainNavigationFooterItemInfo}}
                 {{/if}}
         {{/unless}}
         {{#if isImpressum}}
-            <nav id="navbar-cards-footer" class="navbar navbar-default navbar-fixed-bottom navbar-cards {{#if currentUser}}hidden-xs{{/if}}">
-                <div class="container">
+            <nav id="navbar-cards-footer" class="navbar navbar-default navbar-fixed-bottom navbar-cards {{#if canAccessFrontend}}hidden-xs{{/if}}">
+                <div class="container footer-container">
                     <div class="visible-xs navbar-header">
                         <div class="navbar-header-item pull-left">
                             {{{getNavigationName}}}
@@ -39,6 +39,7 @@
             {{> mainNavigationFooterItemAbout}}
             {{> mainNavigationFooterItemLearning}}
             {{> mainNavigationFooterItemFAQ}}
+            {{> mainNavigationFooterItemHelp}}
             {{> mainNavigationFooterItemImpressum}}
             {{> mainNavigationFooterItemAGB}}
             {{> mainNavigationFooterItemDatenschutz}}

@@ -1,5 +1,7 @@
 import {Session} from "meteor/session";
 import {Route} from "./route";
+import {ServerStyle} from "./styles";
+
 
 let keyEventsUnlocked = true;
 let firstTimePresentation = 'isFirstTimePresentation';
@@ -11,6 +13,7 @@ let topNavigationID = "#navbar-cards-top";
 let footerNavigationID = "#navbar-cards-footer";
 let topNavigationCollapseID = "#navbar-cards-top-collapse";
 let footerNavigationCollapseID = "#navbar-cards-footer-collapse";
+let guestLogin = "guestLoginActive";
 
 export let MainNavigation = class MainNavigation {
 
@@ -116,5 +119,21 @@ export let MainNavigation = class MainNavigation {
 		$(window).resize(function () {
 			MainNavigation.repositionCollapseElements();
 		});
+	}
+
+	static setGuestLogin (type) {
+		if (ServerStyle.isLoginEnabled("guest")) {
+			localStorage.setItem(guestLogin, type);
+			Session.set(guestLogin, localStorage.getItem(guestLogin));
+		}
+	}
+
+	static isGuestLoginActive () {
+		if (localStorage.getItem(guestLogin) !== undefined && localStorage.getItem(guestLogin) !== null && ServerStyle.isLoginEnabled("guest")) {
+			Session.set(guestLogin, localStorage.getItem(guestLogin));
+			return Session.get(guestLogin) === "true";
+		} else {
+			return false;
+		}
 	}
 };

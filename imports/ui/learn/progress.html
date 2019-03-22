@@ -1,13 +1,17 @@
 <template name="progress">
-    <div class="container">
-        <div class="well">
-            {{> graph}}
+    {{#if gotProgressAccess}}
+        <div class="container">
+            <div class="well">
+                {{> graph}}
+            </div>
+            <button class="btn btn-block btn-raised btn-danger" id="backButton"><span class="flex-content">
+                <i class="fa fa-arrow-left"></i> {{#if isStatsOwner}}{{_ "backbutton"}}{{else}}{{_
+                                    "backbuttonStatistics"}}{{/if}}</span>
+            </button>
         </div>
-        <button class="btn btn-block btn-raised btn-danger" id="backButton"><span class="flex-content">
-            <i class="fa fa-arrow-left"></i> {{#if isStatsOwner}}{{_ "backbutton"}}{{else}}{{_
-                                "backbuttonStatistics"}}{{/if}}</span>
-        </button>
-    </div>
+    {{else}}
+        {{> accessDenied}}
+    {{/if}}
 </template>
 
 <template name="graph">

@@ -3,13 +3,22 @@ import {Mongo} from "meteor/mongo";
 import {Cardsets} from "./cardsets.js";
 import {check} from "meteor/check";
 import {UserPermissions} from "./permissions";
+import {ServerStyle} from "./styles";
 
 export const Ratings = new Mongo.Collection("ratings");
 
 if (Meteor.isServer) {
 	Meteor.publish("cardsetUserRating", function (cardset_id) {
-		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
-			return Ratings.find({cardset_id: cardset_id, user_id: this.userId});
+		if ((this.userId || ServerStyle.isLoginEnabled("guest"))  && UserPermissions.isNotBlockedOrFirstLogin()) {
+			let user_id;
+			if (this.userId) {
+				user_id = this.userId;
+			} else {
+				user_id = "guest";
+			}
+			return Ratings.find({cardset_id: cardset_id, user_id: user_id});
+		} else {
+			this.ready();
 		}
 	});
 }
