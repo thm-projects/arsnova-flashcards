@@ -1,25 +1,27 @@
 <template name="mainNavigationTopItemProfile">
-    <li id="navbar-profile"
-        class="dropdown {{#if isActiveProfile}}active{{/if}}">
-        <a href="#" class="dropdown-toggle dropdownMenuContainer"
-           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div class="hidden-sm">
-                    {{{getNavigationName "profile"}}}
+    {{#if currentUser}}
+        <li id="navbar-profile"
+            class="dropdown {{#if isActiveProfile}}active{{/if}}">
+            <a href="#" class="dropdown-toggle dropdownMenuContainer"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="hidden-sm">
+                        {{{getNavigationName "profile"}}}
+                </div>
+                <div class="visible-sm">
+                    {{{getNavigationName "profileIPad"}}}
+                </div>
+                {{#if countNotifications}}<span class="badge">{{countNotifications}}</span>{{/if}}
+            </a>
+            <div id="profile-drop" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <table>
+                    {{> mainNavigationTopItemProfileItemOverview}}
+                    {{> mainNavigationTopItemProfileItemMembership}}
+                    {{> mainNavigationTopItemProfileItemBilling}}
+                    {{> mainNavigationTopItemProfileItemSettings}}
+                    {{> mainNavigationTopItemProfileItemRequests}}
+                    {{> mainNavigationTopItemProfileItemLogout}}
+                </table>
             </div>
-            <div class="visible-sm">
-                {{{getNavigationName "profileIPad"}}}
-            </div>
-            {{#if countNotifications}}<span class="badge">{{countNotifications}}</span>{{/if}}
-        </a>
-        <div id="profile-drop" class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <table>
-                {{> mainNavigationTopItemProfileItemOverview}}
-                {{> mainNavigationTopItemProfileItemMembership}}
-                {{> mainNavigationTopItemProfileItemBilling}}
-                {{> mainNavigationTopItemProfileItemSettings}}
-                {{> mainNavigationTopItemProfileItemRequests}}
-                {{> mainNavigationTopItemProfileItemLogout}}
-            </table>
-        </div>
-    </li>
+        </li>
+    {{/if}}
 </template>

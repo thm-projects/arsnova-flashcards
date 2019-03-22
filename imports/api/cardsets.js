@@ -8,6 +8,7 @@ import {Ratings} from "./ratings.js";
 import {check} from "meteor/check";
 import {CardType} from "./cardTypes";
 import {UserPermissions} from "./permissions";
+import {ServerStyle} from "./styles";
 
 export const Cardsets = new Mongo.Collection("cardsets");
 
@@ -22,12 +23,17 @@ if (Meteor.isServer) {
 		return Cardsets.find({wordcloud: true});
 	});
 	Meteor.publish("cardset", function (cardset_id) {
-		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
+		if ((this.userId || ServerStyle.isLoginEnabled("guest")) && UserPermissions.isNotBlockedOrFirstLogin()) {
 			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, kind: 1, owner: 1, cardGroups: 1}});
-			if (cardset.kind === 'personal') {
+			if (cardset.kind === "personal") {
 				if (!UserPermissions.isOwner(cardset.owner) && !UserPermissions.isAdmin()) {
-					return 0;
+					this.ready();
+					return;
 				}
+			}
+			if (!this.userId && cardset.kind === "edu") {
+				this.ready();
+				return;
 			}
 			return Cardsets.find({
 				$or: [
@@ -35,16 +41,22 @@ if (Meteor.isServer) {
 					{_id: {$in: cardset.cardGroups}}
 				]
 			});
+		} else {
+			this.ready();
 		}
 	});
 	Meteor.publish("allCardsets", function () {
 		if (this.userId && UserPermissions.isAdmin()) {
 			return Cardsets.find({shuffled: false});
+		} else {
+			this.ready();
 		}
 	});
 	Meteor.publish("allRepetitorien", function () {
 		if (this.userId && UserPermissions.isAdmin()) {
 			return Cardsets.find({shuffled: true});
+		} else {
+			this.ready();
 		}
 	});
 	Meteor.publish("workloadCardsets", function () {
@@ -76,21 +88,31 @@ if (Meteor.isServer) {
 				}
 			}
 			return Cardsets.find({_id: {$in: cardsets}});
+		} else {
+			this.ready();
 		}
 	});
 	Meteor.publish("myCardsets", function () {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
 			return Cardsets.find({owner: this.userId, shuffled: false});
+		} else {
+			this.ready();
 		}
 	});
 	Meteor.publish("personalRepetitorien", function () {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
 			return Cardsets.find({owner: this.userId, shuffled: true});
+		} else {
+			this.ready();
 		}
 	});
 	Meteor.publish("poolCardsets", function () {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
 			return Cardsets.find({kind: {$in: ['free', 'edu', 'pro']}, shuffled: false});
+		} else if (UserPermissions.isNotBlockedOrFirstLogin() && ServerStyle.isLoginEnabled("guest")) {
+			return Cardsets.find({kind: {$in: ['free', 'pro']}, shuffled: false});
+		} else {
+			this.ready();
 		}
 	});
 	Meteor.publish("repetitoriumCardsets", function () {
@@ -105,6 +127,10 @@ if (Meteor.isServer) {
 					]
 				});
 			}
+		} else if (UserPermissions.isNotBlockedOrFirstLogin() && ServerStyle.isLoginEnabled("guest")) {
+			return Cardsets.find({kind: {$in: ['free', 'pro']}, shuffled: true});
+		} else {
+			this.ready();
 		}
 	});
 	Meteor.publish("editShuffleCardsets", function (cardset_id) {
@@ -126,6 +152,8 @@ if (Meteor.isServer) {
 						]
 					});
 			}
+		} else {
+			this.ready();
 		}
 	});
 	Meteor.publish("tags", function () {
@@ -277,9 +305,7 @@ Cardsets.attachSchema(CardsetsSchema);
 
 Meteor.methods({
 	getSearchCategoriesResult: function (searchValue, filterType) {
-		if (!Meteor.userId() || !UserPermissions.isNotBlockedOrFirstLogin()) {
-			throw new Meteor.Error("not-authorized");
-		} else if (searchValue !== undefined && searchValue !== null && searchValue.length > 2) {
+		if ((this.userId || ServerStyle.isLoginEnabled("guest")) && UserPermissions.isNotBlockedOrFirstLogin() && searchValue !== undefined && searchValue !== null && searchValue.length > 2) {
 			let query = {};
 			query.name = {$regex: searchValue, $options: "i"};
 			switch (filterType) {
@@ -287,16 +313,28 @@ Meteor.methods({
 					if (UserPermissions.isAdmin()) {
 						query.kind = {$nin: ['demo', 'server']};
 					} else {
-						query.kind = {$nin: ['demo', 'server', 'personal']};
+						if (this.userId) {
+							query.kind = {$nin: ['demo', 'server', 'personal']};
+						} else {
+							query.kind = {$nin: ['demo', 'edu', 'server', 'personal']};
+						}
 					}
 					query.shuffled = false;
 					break;
 				case 1:
-					query.kind = {$nin: ['demo', 'server', 'personal']};
+					if (this.userId) {
+						query.kind = {$nin: ['demo', 'server', 'personal']};
+					} else {
+						query.kind = {$nin: ['demo', 'edu', 'server', 'personal']};
+					}
 					query.shuffled = false;
 					break;
 				case 2:
-					query.kind = {$nin: ['demo', 'server', 'personal']};
+					if (this.userId) {
+						query.kind = {$nin: ['demo', 'server', 'personal']};
+					} else {
+						query.kind = {$nin: ['demo', 'edu', 'server', 'personal']};
+					}
 					query.shuffled = true;
 					break;
 				case 3:
@@ -307,7 +345,11 @@ Meteor.methods({
 					if (UserPermissions.isAdmin()) {
 						query.kind = {$nin: ['demo', 'server']};
 					} else {
-						query.kind = {$nin: ['demo', 'server', 'personal']};
+						if (this.userId) {
+							query.kind = {$nin: ['demo', 'server', 'personal']};
+						} else {
+							query.kind = {$nin: ['demo', 'edu', 'server', 'personal']};
+						}
 					}
 					query.shuffled = true;
 					break;

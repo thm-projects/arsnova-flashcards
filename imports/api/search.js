@@ -1,10 +1,11 @@
 import {Meteor} from "meteor/meteor";
 import {NavigatorCheck} from "./navigatorCheck";
+import {MainNavigation} from "./mainNavigation";
 
 export let Search = class Search {
 
 	static adjustSearchResultWindowSize () {
-		if (Meteor.userId()) {
+		if (Meteor.user() || MainNavigation.isGuestLoginActive()) {
 			let destination = $('.input-search:visible');
 			let target = $('#searchResults');
 			if (destination.length && target.length) {

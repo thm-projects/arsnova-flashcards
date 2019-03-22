@@ -9,8 +9,6 @@ import "./user.js";
 import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../../../config/dompurify.js";
 
-Meteor.subscribe('allUsers');
-
 /*
  * ############################################################################
  * admin_users

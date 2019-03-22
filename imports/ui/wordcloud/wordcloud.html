@@ -31,7 +31,7 @@
                             {{> cardsetLabels}}
                             <br>
                             <br>
-                            {{#if currentUser}}
+                            {{#if canAccessFrontend}}
                                 <a href="/cardset/{{this._id}}" id="cardsetLink">{{this.name}}</a>
                             {{else}}
                                 {{this.name}}

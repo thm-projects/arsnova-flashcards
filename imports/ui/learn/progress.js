@@ -9,6 +9,7 @@ import {LeitnerProgress} from "../../api/leitnerProgress";
 import {Cardsets} from "../../api/cardsets";
 import {CardType} from "../../api/cardTypes";
 import {Route} from "../../api/route";
+import {UserPermissions} from "../../api/permissions";
 
 /*
  * ############################################################################
@@ -89,6 +90,9 @@ Template.graph.onRendered(function () {
 Template.progress.helpers({
 	isStatsOwner: function () {
 		return Meteor.userId() === Router.current().params.user_id;
+	},
+	gotProgressAccess: function () {
+		return Meteor.userId() === Router.current().params.user_id || UserPermissions.isOwner(Cardsets.findOne({_id: Router.current().params._id}).owner) || UserPermissions.isAdmin();
 	}
 });
 

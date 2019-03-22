@@ -18,11 +18,13 @@
                 </label>
             {{/if}}
             {{#if gotEduKind}}
-                <label class="btn btn-success btn-sm {{#if
-                        isEduKindActive}}kindButtonActive active{{else}}kindButtonInactive{{/if}} cards-filter-element"
-                       data-kind="{{getEduKindTag}}">
-                    <span class="flex-content cards-filter-element" data-kind="{{getEduKindTag}}">{{_ 'access-level.edu.short'}}</span>
-                </label>
+                {{#if currentUser}}
+                    <label class="btn btn-success btn-sm {{#if
+                            isEduKindActive}}kindButtonActive active{{else}}kindButtonInactive{{/if}} cards-filter-element"
+                           data-kind="{{getEduKindTag}}">
+                        <span class="flex-content cards-filter-element" data-kind="{{getEduKindTag}}">{{_ 'access-level.edu.short'}}</span>
+                    </label>
+                {{/if}}
             {{/if}}
             {{#if isProLoginActive}}
                 {{#if gotProKind}}

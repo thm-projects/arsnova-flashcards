@@ -1,6 +1,6 @@
 <template name="mainNavigationTop">
     {{#unless fullscreenActive}}
-        {{#if currentUser}}
+        {{#if canAccessFrontend}}
             {{#unless isInRole 'firstLogin'}}
                 {{#unless isInRole 'blocked'}}
                     <nav id="navbar-cards-top" class="navbar navbar-default navbar-fixed-top navbar-cards">
@@ -86,15 +86,21 @@
                 {{/if}}
             {{/if}}
             {{> mainNavigationTopItemPublic}}
-            {{> mainNavigationTopItemWorkload}}
-            {{> mainNavigationTopItemPersonal}}
+            {{#unless isGuestLogin}}
+                {{> mainNavigationTopItemWorkload}}
+                {{> mainNavigationTopItemPersonal}}
+            {{/unless}}
             {{> mainNavigationTopItemHelp}}
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            {{> mainNavigationTopItemAll}}
-            {{> mainNavigationTopItemBackend}}
+            {{#unless isGuestLogin}}
+                {{> mainNavigationTopItemAll}}
+                {{> mainNavigationTopItemBackend}}
+            {{/unless}}
             {{> mainNavigationTopItemConnectionStatus visibility=1}}
-            {{> mainNavigationTopItemProfile}}
+            {{#unless isGuestLogin}}
+                {{> mainNavigationTopItemProfile}}
+            {{/unless}}
             {{> mainNavigationTopItemLogout}}
         </ul>
     </div>

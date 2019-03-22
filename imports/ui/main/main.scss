@@ -251,11 +251,6 @@ body {
 .presentation-container-no-sidebar {
 }
 
-.demo-padding {
-  @media(max-width: 767px) {
-  }
-}
-
 .btn {
   text-transform: unset !important;
 }
@@ -758,8 +753,8 @@ th {
   background-position: center bottom, center calc(100%);
 }
 
-.presentation-list-margin {
-  margin-bottom: 45px;
+.presentation-list {
+  margin-bottom: 60px;
 }
 
 .modal-content .modal-footer button.pull-left {

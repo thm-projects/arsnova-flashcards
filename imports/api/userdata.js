@@ -4,10 +4,10 @@ import {Cards} from "./cards.js";
 import {Leitner, Workload, Wozniak} from "./learned.js";
 import {Ratings} from "./ratings.js";
 import {check} from "meteor/check";
-import {Session} from "meteor/session";
 import {UserPermissions} from "./permissions";
 import {WebPushSubscriptions} from "./webPushSubscriptions";
 import {Paid} from "./paid";
+import {ServerStyle} from "./styles";
 
 /**
  * Returns the degree, the givenname and the birthname from the author of a cardset
@@ -18,20 +18,7 @@ import {Paid} from "./paid";
  */
 export function getAuthorName(owner, lastNameFirst = true, onlyFirstName = false) {
 	let author;
-	if (Meteor.isServer) {
-		author = Meteor.users.findOne({"_id": owner});
-	} else {
-		if (Router.current().route.getName() === "home") {
-			Meteor.call('getWordcloudUserName', owner, function (error, result) {
-				if (result) {
-					Session.set('wordcloudAuthor', result);
-				}
-			});
-			author = Session.get('wordcloudAuthor');
-		} else {
-			author = Meteor.users.findOne({"_id": owner});
-		}
-	}
+	author = Meteor.users.findOne({"_id": owner});
 	if (author) {
 		let name = "";
 		if (onlyFirstName) {
@@ -80,67 +67,51 @@ export function exportAuthorName(owner) {
 }
 
 if (Meteor.isServer) {
-	Meteor.publish("userData", function () {
-		if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
-			return Meteor.users.find(
-				{$or: [{visible: true}, {_id: this.userId}]},
-				{
-					fields: {
-						'profile.name': 1,
-						'profile.birthname': 1,
-						'profile.givenname': 1,
-						'profile.title': 1,
-						'profile.locale': 1,
-						'count.cardsets': 1,
-						'count.shuffled': 1,
-						'count.workload': 1,
-						'email': 1,
-						'services': 1,
-						'lvl': 1,
-						'visible': 1,
-						'lastOnAt': 1,
-						'daysInRow': 1,
-						'customerId': 1,
-						'blockedtext': 1,
-						"selectedColorTheme": 1,
-						"selectedLanguage": 1,
-						"mailNotification": 1,
-						"webNotification": 1
-					}
-				});
-		} else if (Roles.userIsInRole(this.userId, 'blocked')) {
-			return Meteor.users.find({_id: this.userId}, {fields: {'blockedtext': 1}});
+	Meteor.publish("userDataBonus", function (cardset_id, user_id) {
+		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
+			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1}});
+			let workload = Workload.findOne({cardset_id: cardset_id, user_id: user_id}, {fields: {_id: 1, leitner: 1}});
+			if (UserPermissions.isAdmin()) {
+				return Meteor.users.find({_id: user_id});
+			} else if (cardset.owner === this.userId && workload.leitner.bonus) {
+				return Meteor.users.find({_id: user_id, visible: true},
+					{
+						fields: {
+							'profile.name': 1,
+							'profile.birthname': 1,
+							'profile.givenname': 1,
+							'profile.title': 1
+						}
+					});
+			} else {
+				this.ready();
+			}
 		} else {
 			this.ready();
 		}
 	});
-	Meteor.publish("privateUserData", function () {
-		if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
-			return Meteor.users.find(
-				{_id: this.userId},
-				{
-					fields: {
-						'profile.name': 1,
-						'profile.birthname': 1,
-						'profile.givenname': 1,
-						'profile.title': 1,
-						'profile.locale': 1,
-						'count.cardsets': 1,
-						'count.shuffled': 1,
-						'count.workload': 1,
-						'email': 1,
-						'services': 1,
-						'lvl': 1,
-						'visible': 1,
-						'lastOnAt': 1,
-						'daysInRow': 1,
-						'balance': 1,
-						"mailNotification": 1,
-						"webNotification": 1,
-						"selectedLanguage": 1,
-						"selectedColorTheme": 1
-					}
-				});
+	Meteor.publish("userData", function () {
+		if ((this.userId || ServerStyle.isLoginEnabled("guest")) && UserPermissions.isNotBlockedOrFirstLogin()) {
+			if (UserPermissions.isAdmin()) {
+				return Meteor.users.find({_id: {$ne: this.userId}});
+			} else {
+				return Meteor.users.find({_id: {$ne: this.userId}, visible: true},
+					{
+						fields: {
+							'profile.name': 1,
+							'profile.birthname': 1,
+							'profile.givenname': 1,
+							'profile.title': 1
+						}
+					});
+			}
+		} else {
+			this.ready();
+		}
+	});
+	Meteor.publish("personalUserData", function () {
+		if (this.userId) {
+			return Meteor.users.find({_id: this.userId});
 		} else {
 			this.ready();
 		}

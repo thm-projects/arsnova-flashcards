@@ -6,6 +6,7 @@ import {Cardsets} from "../../api/cardsets.js";
 import {CardNavigation} from "../../api/cardNavigation";
 import {BertAlertVisuals} from "../../api/bertAlertVisuals";
 import {CardsetNavigation} from "../../api/cardsetNavigation";
+import {CardVisuals} from "../../api/cardVisuals";
 import {Bonus} from "../../api/bonus";
 import "../card/card.js";
 import "../learn/learn.js";
@@ -29,6 +30,7 @@ Meteor.subscribe("notifications");
  */
 
 Template.cardset.onCreated(function () {
+	CardVisuals.toggleFullscreen(true);
 	if (Session.get('activeCardset') === undefined || Session.get('activeCardset')._id !== Router.current().params._id) {
 		Session.set('activeCardset', Cardsets.findOne(Router.current().params._id));
 		Session.set('activeCard', undefined);
@@ -43,30 +45,32 @@ Template.cardset.onCreated(function () {
 });
 
 Template.cardset.rendered = function () {
-	var customerId = Meteor.user().customerId;
-	if ($('#payment-form').length) {
-		Meteor.call('getClientToken', customerId, function (error, clientToken) {
-			if (error) {
-				throw new Meteor.Error(error.statusCode, 'Error getting client token from braintree');
-			} else {
-				braintree.setup(clientToken, "dropin", {
-					container: "payment-form",
-					onPaymentMethodReceived: function (response) {
-						$('#buyCardsetBtn').prop("disabled", true);
+	if (Meteor.user()) {
+		var customerId = Meteor.user().customerId;
+		if ($('#payment-form').length) {
+			Meteor.call('getClientToken', customerId, function (error, clientToken) {
+				if (error) {
+					throw new Meteor.Error(error.statusCode, 'Error getting client token from braintree');
+				} else {
+					braintree.setup(clientToken, "dropin", {
+						container: "payment-form",
+						onPaymentMethodReceived: function (response) {
+							$('#buyCardsetBtn').prop("disabled", true);
 
-						var nonce = response.nonce;
+							var nonce = response.nonce;
 
-						Meteor.call('btCreateTransaction', nonce, Router.current().params._id, function (error) {
-							if (error) {
-								throw new Meteor.Error('transaction-creation-failed');
-							} else {
-								BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.money.bought'), 'success', 'growl-top-left');
-							}
-						});
-					}
-				});
-			}
-		});
+							Meteor.call('btCreateTransaction', nonce, Router.current().params._id, function (error) {
+								if (error) {
+									throw new Meteor.Error('transaction-creation-failed');
+								} else {
+									BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.money.bought'), 'success', 'growl-top-left');
+								}
+							});
+						}
+					});
+				}
+			});
+		}
 	}
 	$('html, body').animate({scrollTop: '0px'}, 0);
 };

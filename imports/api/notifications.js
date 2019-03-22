@@ -2,13 +2,16 @@ import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {check} from "meteor/check";
+import {UserPermissions} from "./permissions";
 
 export const Notifications = new Mongo.Collection("notifications");
 
 if (Meteor.isServer) {
 	Meteor.publish("notifications", function () {
-		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
 			return Notifications.find({target: this.userId});
+		} else {
+			this.ready();
 		}
 	});
 
