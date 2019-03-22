@@ -1,7 +1,9 @@
-import "./filterKind.html";
 import {Template} from "meteor/templating";
 import {FilterNavigation} from "../../../../api/filterNavigation";
 import {Filter} from "../../../../api/filter";
+import {MainNavigation} from "../../../../api/mainNavigation";
+import {ServerStyle} from "../../../../api/styles";
+import "./filterKind.html";
 
 /*
  * ############################################################################
@@ -10,6 +12,13 @@ import {Filter} from "../../../../api/filter";
  */
 
 Template.filterItemFilterKind.helpers({
+	displayKindFilters: function () {
+		if (MainNavigation.isGuestLoginActive() && !ServerStyle.isLoginEnabled("pro")) {
+			return false;
+		} else {
+			return true;
+		}
+	},
 	getPersonalKindTag: function () {
 		return Filter.getPersonalKindTag();
 	},

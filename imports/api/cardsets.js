@@ -110,7 +110,11 @@ if (Meteor.isServer) {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
 			return Cardsets.find({kind: {$in: ['free', 'edu', 'pro']}, shuffled: false});
 		} else if (UserPermissions.isNotBlockedOrFirstLogin() && ServerStyle.isLoginEnabled("guest")) {
-			return Cardsets.find({kind: {$in: ['free', 'pro']}, shuffled: false});
+			if (ServerStyle.isLoginEnabled("pro")) {
+				return Cardsets.find({kind: {$in: ['free', 'pro']}, shuffled: false});
+			} else {
+				return Cardsets.find({kind: {$in: ['free']}, shuffled: false});
+			}
 		} else {
 			this.ready();
 		}
@@ -128,7 +132,11 @@ if (Meteor.isServer) {
 				});
 			}
 		} else if (UserPermissions.isNotBlockedOrFirstLogin() && ServerStyle.isLoginEnabled("guest")) {
-			return Cardsets.find({kind: {$in: ['free', 'pro']}, shuffled: true});
+			if (ServerStyle.isLoginEnabled("pro")) {
+				return Cardsets.find({kind: {$in: ['free', 'pro']}, shuffled: true});
+			} else {
+				return Cardsets.find({kind: {$in: ['free']}, shuffled: true});
+			}
 		} else {
 			this.ready();
 		}
@@ -314,26 +322,50 @@ Meteor.methods({
 						query.kind = {$nin: ['demo', 'server']};
 					} else {
 						if (this.userId) {
-							query.kind = {$nin: ['demo', 'server', 'personal']};
+							if (ServerStyle.isLoginEnabled("pro")) {
+								query.kind = {$nin: ['demo', 'server', 'personal']};
+							} else {
+								query.kind = {$nin: ['demo', 'pro', 'server', 'personal']};
+							}
 						} else {
-							query.kind = {$nin: ['demo', 'edu', 'server', 'personal']};
+							if (ServerStyle.isLoginEnabled("pro")) {
+								query.kind = {$nin: ['demo', 'edu', 'server', 'personal']};
+							} else {
+								query.kind = {$nin: ['demo', 'pro', 'edu', 'server', 'personal']};
+							}
 						}
 					}
 					query.shuffled = false;
 					break;
 				case 1:
 					if (this.userId) {
-						query.kind = {$nin: ['demo', 'server', 'personal']};
+						if (ServerStyle.isLoginEnabled("pro")) {
+							query.kind = {$nin: ['demo', 'server', 'personal']};
+						} else {
+							query.kind = {$nin: ['demo', 'pro', 'server', 'personal']};
+						}
 					} else {
-						query.kind = {$nin: ['demo', 'edu', 'server', 'personal']};
+						if (ServerStyle.isLoginEnabled("pro")) {
+							query.kind = {$nin: ['demo', 'edu', 'server', 'personal']};
+						} else {
+							query.kind = {$nin: ['demo', 'pro', 'edu', 'server', 'personal']};
+						}
 					}
 					query.shuffled = false;
 					break;
 				case 2:
 					if (this.userId) {
-						query.kind = {$nin: ['demo', 'server', 'personal']};
+						if (ServerStyle.isLoginEnabled("pro")) {
+							query.kind = {$nin: ['demo', 'server', 'personal']};
+						} else {
+							query.kind = {$nin: ['demo', 'pro', 'server', 'personal']};
+						}
 					} else {
-						query.kind = {$nin: ['demo', 'edu', 'server', 'personal']};
+						if (ServerStyle.isLoginEnabled("pro")) {
+							query.kind = {$nin: ['demo', 'edu', 'server', 'personal']};
+						} else {
+							query.kind = {$nin: ['demo', 'pro', 'edu', 'server', 'personal']};
+						}
 					}
 					query.shuffled = true;
 					break;
@@ -346,9 +378,17 @@ Meteor.methods({
 						query.kind = {$nin: ['demo', 'server']};
 					} else {
 						if (this.userId) {
-							query.kind = {$nin: ['demo', 'server', 'personal']};
+							if (ServerStyle.isLoginEnabled("pro")) {
+								query.kind = {$nin: ['demo', 'server', 'personal']};
+							} else {
+								query.kind = {$nin: ['demo', 'pro', 'server', 'personal']};
+							}
 						} else {
-							query.kind = {$nin: ['demo', 'edu', 'server', 'personal']};
+							if (ServerStyle.isLoginEnabled("pro")) {
+								query.kind = {$nin: ['demo', 'edu', 'server', 'personal']};
+							} else {
+								query.kind = {$nin: ['demo', 'pro', 'edu', 'server', 'personal']};
+							}
 						}
 					}
 					query.shuffled = true;

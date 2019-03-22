@@ -1,40 +1,42 @@
 <template name="filterItemFilterKind">
-    <ul class="nav navbar-nav navbar-right cards-filter-element">
-        <div id="filterCheckbox" class="btn-group cards-filter-element" role="group" data-toggle="buttons"
-             aria-label="License group" style="padding-top: 20px;">
-            {{#if gotPersonalKind}}
-                <label class="btn btn-warning btn-sm {{#if
-                        isPersonalKindActive}}kindButtonActive active{{else}}kindButtonInactive{{/if}} cards-filter-element"
-                       data-kind="{{getPersonalKindTag}}">
-                    <span class="flex-content cards-filter-element" data-kind="{{getPersonalKindTag}}">{{_
-                            'access-level.private.short'}}</span>
-                </label>
-            {{/if}}
-            {{#if gotFreeKind}}
-                <label class="btn btn-info btn-sm {{#if
-                        isFreeKindActive}}kindButtonActive active{{else}}kindButtonInactive{{/if}} cards-filter-element"
-                       data-kind="{{getFreeKindTag}}">
-                    <span class="flex-content cards-filter-element" data-kind="{{getFreeKindTag}}">{{_ 'access-level.free.short'}}</span>
-                </label>
-            {{/if}}
-            {{#if gotEduKind}}
-                {{#if currentUser}}
-                    <label class="btn btn-success btn-sm {{#if
-                            isEduKindActive}}kindButtonActive active{{else}}kindButtonInactive{{/if}} cards-filter-element"
-                           data-kind="{{getEduKindTag}}">
-                        <span class="flex-content cards-filter-element" data-kind="{{getEduKindTag}}">{{_ 'access-level.edu.short'}}</span>
+    {{#if displayKindFilters}}
+        <ul class="nav navbar-nav navbar-right cards-filter-element">
+            <div id="filterCheckbox" class="btn-group cards-filter-element" role="group" data-toggle="buttons"
+                 aria-label="License group" style="padding-top: 20px;">
+                {{#if gotPersonalKind}}
+                    <label class="btn btn-warning btn-sm {{#if
+                            isPersonalKindActive}}kindButtonActive active{{else}}kindButtonInactive{{/if}} cards-filter-element"
+                           data-kind="{{getPersonalKindTag}}">
+                        <span class="flex-content cards-filter-element" data-kind="{{getPersonalKindTag}}">{{_
+                                'access-level.private.short'}}</span>
                     </label>
                 {{/if}}
-            {{/if}}
-            {{#if isProLoginActive}}
-                {{#if gotProKind}}
-                    <label class="btn btn-danger btn-sm {{#if
-                            isProKindActive}}kindButtonActive active{{else}}kindButtonInactive{{/if}} cards-filter-element"
-                           data-kind="{{getProKindTag}}">
-                        <span class="flex-content cards-filter-element" data-kind="{{getProKindTag}}">{{_ 'access-level.pro.short'}}</span>
+                {{#if gotFreeKind}}
+                    <label class="btn btn-info btn-sm {{#if
+                            isFreeKindActive}}kindButtonActive active{{else}}kindButtonInactive{{/if}} cards-filter-element"
+                           data-kind="{{getFreeKindTag}}">
+                        <span class="flex-content cards-filter-element" data-kind="{{getFreeKindTag}}">{{_ 'access-level.free.short'}}</span>
                     </label>
                 {{/if}}
-            {{/if}}
-        </div>
-    </ul>
+                {{#if gotEduKind}}
+                    {{#if currentUser}}
+                        <label class="btn btn-success btn-sm {{#if
+                                isEduKindActive}}kindButtonActive active{{else}}kindButtonInactive{{/if}} cards-filter-element"
+                               data-kind="{{getEduKindTag}}">
+                            <span class="flex-content cards-filter-element" data-kind="{{getEduKindTag}}">{{_ 'access-level.edu.short'}}</span>
+                        </label>
+                    {{/if}}
+                {{/if}}
+                {{#if isProLoginActive}}
+                    {{#if gotProKind}}
+                        <label class="btn btn-danger btn-sm {{#if
+                                isProKindActive}}kindButtonActive active{{else}}kindButtonInactive{{/if}} cards-filter-element"
+                               data-kind="{{getProKindTag}}">
+                            <span class="flex-content cards-filter-element" data-kind="{{getProKindTag}}">{{_ 'access-level.pro.short'}}</span>
+                        </label>
+                    {{/if}}
+                {{/if}}
+            </div>
+        </ul>
+    {{/if}}
 </template>
