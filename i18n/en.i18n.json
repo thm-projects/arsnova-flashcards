@@ -1471,7 +1471,7 @@
     "list": {
       "selectCourse": "Repetitorium auswählen",
       "createCourse": "Repetitorium anlegen",
-      "empty": "Ein Repetitorium fasst mehrere Themen (= Karteien) zusammen. Jeder kann Repetitorien zur Vorbereitung auf eine Modulprüfung auf 🍅cards anlegen.",
+      "empty": "Ein Repetitorium fasst mehrere Themen (= Karteien) zusammen.",
       "courseIteration": "Thema des Repetitoriums",
       "module": "Modul",
       "course": "Studiengang",
