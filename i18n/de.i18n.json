@@ -531,7 +531,7 @@
     "shuffleUpdateSuccess": "Auswahl aktualisiert",
     "shuffleUpdateFailure": "Fehler beim Aktualisieren der Auswahl",
     "shuffleRemove": "Auswahl entfernen",
-    "workload": "Heute zu lernen",
+    "workload": "Heute",
     "learningMode": "Lernmodus",
     "cardsToLearn": "1 Karte",
     "cardsToLearnPlural": " Karten",
@@ -909,7 +909,7 @@
     "deleted": "Gelöscht",
     "license": "CC-Lizenz",
     "activeLearners": "Eingeschrieben",
-    "dateUpdated": "Aktualisiert",
+    "dateUpdated": "Editiert",
     "selectCardToLearn": "Mit einem Klick auf das Thema einer Kartei nimmst du sie in dein Lernpensum auf.",
     "selectShuffledCardsetToLearn": "Mit einem Klick auf ein Thema  nimmst du es in dein Lernpensum auf."
   },

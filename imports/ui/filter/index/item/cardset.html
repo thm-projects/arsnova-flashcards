@@ -2,60 +2,54 @@
     {{#if firstItem this.index}}
         {{#if isActiveRoute regex="learn"}}
             <div class="hidden-xs col-sm-2 resultsHeader">
-                <strong>{{_ "set-list.workload"}}</strong>
+                {{_ "set-list.workload"}}
             </div>
         {{/if}}
         <div class="hidden-xs {{#if isActiveRoute regex="alldecks"}}col-sm-4 col-md-2{{else}}{{#if isActiveRoute
                                                                                                    regex="pool|learn"}}col-sm-4{{else}}{{#if
                 isActiveRoute
                 regex="create"}}col-xs-7 col-sm-6 col-md-7{{else}}col-xs-7 col-sm-6{{/if}}{{/if}}{{/if}} resultsHeader">
-            <strong>
-                {{#if isActiveRoute regex="learn"}}
-                    {{_ "set-list.topicWorkload"}}
+            {{#if isActiveRoute regex="learn"}}
+                {{_ "set-list.topicWorkload"}}
+            {{else}}
+                {{#if isRepetitorienFilterIndex}}
+                    {{{getCardsetIcons this.shuffled}}}{{_ "courseIteration.list.courseIteration"}}
                 {{else}}
-                    {{#if isRepetitorienFilterIndex}}
-                        {{{getCardsetIcons this.shuffled}}}{{_ "courseIteration.list.courseIteration"}}
-                    {{else}}
-                        {{{getCardsetIcons this.shuffled}}}{{_ "set-list.topic"}}
-                    {{/if}}
+                    {{{getCardsetIcons this.shuffled}}}{{_ "set-list.topic"}}
                 {{/if}}
-            </strong>
+            {{/if}}
         </div>
         {{#unless isActiveRoute regex="create"}}
             <div class="hidden-xs {{#if isActiveRoute
                                         regex="pool|alldecks"}}col-sm-2{{else}}col-sm-3{{/if}} {{#if
                     isActiveRoute
                     regex="pool"}}col-lg-3{{/if}} resultsHeader">
-                <strong>
-                    {{#if isActiveRoute regex="learn"}}
-                        {{_ "set-list.authorPublisher"}}
+                {{#if isActiveRoute regex="learn"}}
+                    {{_ "set-list.authorPublisher"}}
+                {{else}}
+                    {{#if isRepetitorienFilterIndex}}
+                        {{_ "cardset.info.publisher"}}
                     {{else}}
-                        {{#if isRepetitorienFilterIndex}}
-                            {{_ "cardset.info.publisher"}}
-                        {{else}}
-                            {{_ "set-list.author"}}
-                        {{/if}}
+                        {{_ "set-list.author"}}
                     {{/if}}
-                </strong>
+                {{/if}}
             </div>
         {{/unless}}
         {{#if isActiveRoute regex="create|pool|alldecks"}}
             <div class="hidden-xs {{#if isActiveRoute
                                         regex="alldecks"}}hidden-sm col-md-2{{else}}{{#if isActiveRoute
                                                                                           regex="create"}}col-sm-3 col-md-2{{else}}col-sm-3{{/if}}{{/if}} col-lg-2 resultsHeader">
-                <strong>
-                    {{_ "cardType"}}
-                </strong>
+                {{_ "cardType"}}
             </div>
         {{/if}}
         {{#if isActiveRoute regex="alldecks"}}
             <div class="hidden-xs col-sm-3 resultsHeader">
-                <strong>{{_ "pool.release"}} <span class="resultDateRight">{{_ "pool.dateUpdated"}}</span></strong>
+                {{_ "pool.release"}} <span class="resultDateRight">{{_ "pool.dateUpdated"}}</span>
             </div>
         {{/if}}
         <div class="hidden-xs col-sm-3 resultsHeader resultHeaderCategory">
-            <strong>{{#if isActiveRoute regex="pool"}}{{_ "set-list.category"}}{{else}}{{_
-                    "set-list.categoryOptions"}}{{/if}}</strong>
+            {{#if isActiveRoute regex="pool"}}{{_ "set-list.category"}}{{else}}{{_
+                    "set-list.categoryOptions"}}{{/if}}
         </div>
     {{/if}}
     <div class="resultItem col-xs-12">
@@ -135,9 +129,10 @@
                     {{#unless isSelectingCardsetToLearn}}
                         {{#if gotBonus this.learningActive}}
                             {{#if isCardsetOwner this._id}}
-                                <a class="resultNavigationElement bonusLeitnerProgress" data-id="{{this._id}}" title="{{_
-                                        "admin.myProgress"}}">
-                                    <i class="glyphicon glyphicon glyphicon-stats" data-id="{{this._id}}" ></i>
+                                <a class="resultNavigationElement bonusLeitnerProgress" data-id="{{this._id}}"
+                                   title="{{_
+                                           "admin.myProgress"}}">
+                                    <i class="glyphicon glyphicon glyphicon-stats" data-id="{{this._id}}"></i>
                                 </a>
                             {{/if}}
                         {{/if}}
