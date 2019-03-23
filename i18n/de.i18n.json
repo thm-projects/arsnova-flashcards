@@ -583,21 +583,20 @@
   },
   "useCases": {
     "modal": {
-      "title": "Kurze Wege",
-      "text": "»__greeting__ __firstName__, wohin willst du?«",
+      "text": "__greeting__ __firstName__, wohin geht's?",
       "greeting": {
         "morning": "Moin",
         "afternoon": "Gude",
         "evening": "’n Abend"
       },
-      "noName": "",
+      "noName": "Digger",
       "description": {
         "personal": {
           "create": "Ich will eine Kartei anlegen – eine Kartenbox.",
           "cardsets": "Ich will Karten schreiben.",
           "repetitorien": "Ich will meine Repetitorien verwalten."
         },
-        "pool": "Ich suche Karteien zu einem Thema.",
+        "pool": "Ich suche Karteien zu einem bestimmten Thema.",
         "repetitorium": "Ich suche ein Repetitorium.",
         "workload": "Ich will Karten lernen."
       },
