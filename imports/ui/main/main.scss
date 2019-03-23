@@ -70,9 +70,9 @@ $font_size_info_h2: 18px;
 $font_size_info_h3: 16px;
 
 //item lists
-$margin-top_infinite_scroll_text: 5px;
-$font_size_infinite_scroll_text: 12px;
-$font_weight_infinite_scroll_text: bold;
+$margin-top_infinite_scroll_text: 3px;
+$font_size_infinite_scroll_text: 16px;
+$font_weight_infinite_scroll_text: normal;
 $margin_bottom_item: 10px;
 
 //markdeep
@@ -466,8 +466,9 @@ button {
 }
 
 .badge {
-  padding: 3px 5px;
-  font-size: 14px;
+  padding: 5x 5px 5px 4px;
+  font-size: 16px;
+  font-weight: normal !important;
 }
 
 .cardContent .lightbox-img a {
