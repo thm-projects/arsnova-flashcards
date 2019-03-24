@@ -66,7 +66,7 @@
   },
   "wordcloud": {
     "modal": {
-      "title": "Die \uD83C\uDF45cards-Redaktion hat die qualitativ besten Kartensätze als Wortwolke zusammengestellt: je größer die Schrift, desto mehr Karten sind in der Kartei. Klick auf ein Thema in der Wortwolke, um die Details der Kartei zu sehen. Wenn du dich eingeloggt hast, dient dir die Themenwolke als Navigation zur Kartei.",
+      "title": "Themenwolke",
       "button": "Schließen"
     }
   },
