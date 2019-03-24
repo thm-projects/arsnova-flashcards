@@ -10,14 +10,14 @@ let itemIncrementValue = 20;
 //3: Lernpensum / Learning
 //4: Alle Karteien / All Cardsets
 //5: Kartei mischen / Shuffle
-//6: Alle repetitorien / All repetitorien
-//7: Meine repetitorien / Personal repetitorien
+//6: Alle Repetitorien / All repetitorien
+//7: Meine Repetitorien / Personal repetitorien
 let filtersWithResetButton = [0, 1, 2, 3, 4, 5, 6, 7];
 let filtersWithDisplayModeButton = [0, 2];
 let filtersWithSortButton = [0, 1, 2, 3, 4, 5, 6, 7];
 let filtersWithDefaultSortName = [0, 2, 3, 5, 6, 7];
-let filtersWithDefaultSortDateUpdated = [4];
-let filtersWithDefaultSortDateCreated = [1];
+let filtersWithDefaultSortDateUpdated = [1, 4];
+let filtersWithDefaultSortDateCreated = [];
 let filtersWithAuthor = [0, 2, 3, 4, 5];
 let filtersWithCardType = [0, 1, 3, 4, 5];
 let filtersWithDifficulty = [0, 1, 3, 4, 5];
