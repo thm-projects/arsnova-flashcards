@@ -10,19 +10,19 @@ let defaultToFilterWordcloudThreshold = 100;
 let displayHelpModalSettings = {
 	"landingPage": {
 		"active": true,
-		"type": 0
+		"type": 1
 	},
 	"filter": {
 		"active": true,
-		"type": 0
+		"type": 1
 	}
 };
 
 let wordcloudLandingPage = {
 	"clearCanvas": true,
 	"drawOutOfBound": false,
-	"gridSize": 15,
-	"weightFactor": 15,
+	"gridSize": 10,
+	"weightFactor": 18,
 	"rotateRatio": 0,
 	"fontFamily": "Roboto, Arial, sans-serif",
 	"color": "random-light",
@@ -33,8 +33,8 @@ let wordcloudLandingPage = {
 let wordcloudDefault = {
 	"clearCanvas": true,
 	"drawOutOfBound": false,
-	"gridSize": 15,
-	"weightFactor": 15,
+	"gridSize": 10,
+	"weightFactor": 18,
 	"rotateRatio": 0,
 	"fontFamily": "Roboto , Arial, sans-serif",
 	"color": "random-light",

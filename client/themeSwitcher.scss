@@ -1466,8 +1466,8 @@ $themes: (
       color: $hyperlink !important;
     }
 
-    #cardsetLink::before {
-      content: "➔ " !important;
+    #cardsetLink::after {
+      content: " (Kartei-Link)";
     }
 
     .btn.btn-raised.btn-primary {
