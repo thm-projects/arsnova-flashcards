@@ -141,7 +141,7 @@ Template.main.helpers({
 
 Template.main.onCreated(function () {
 	MarkdeepContent.initializeStylesheet();
-	document.title = ServerStyle.getFirstAppTitle() + "." + ServerStyle.getLastAppTitle();
+	document.title = ServerStyle.getLastAppTitle();
 });
 
 Template.main.onRendered(function () {
