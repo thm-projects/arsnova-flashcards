@@ -349,7 +349,6 @@
   },
   "serverStatistics": {
     "modal": {
-        "description": "Inhalt dieser \uD83C\uDF45cards-Plattform:",
         "cards": "Gesamt",
         "cardsets": {
           "total": "Gesamt:",
@@ -596,7 +595,7 @@
           "cardsets": "Ich will Karten schreiben.",
           "repetitorien": "Ich will meine Repetitorien verwalten."
         },
-        "pool": "Ich suche Karteien zu einem bestimmten Thema.",
+        "pool": "Ich suche Karteien zu einem Thema.",
         "repetitorium": "Ich suche ein Repetitorium.",
         "workload": "Ich will Karten lernen."
       },
