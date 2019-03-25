@@ -3424,22 +3424,24 @@ $themes: (
     }
 
     //barfy stars
-    .BSParticle {
-      &::after {
-        background: $barfy_stars_particles_1 !important;
+    .BSParticles-Default {
+      .BSParticle {
+        &::after {
+          background: $barfy_stars_particles_1;
+        }
       }
-    }
-    .BSParticle--2::after {
-      background: $barfy_stars_particles_2 !important;
-    }
-    .BSParticle--3::after {
-      background: $barfy_stars_particles_3 !important;
-    }
-    .BSParticle--4::after {
-      background: $barfy_stars_particles_4 !important;
-    }
-    .BSParticle--5::after {
-      background: $barfy_stars_particles_5 !important;
+      .BSParticle--2::after {
+        background: $barfy_stars_particles_2;
+      }
+      .BSParticle--3::after {
+        background: $barfy_stars_particles_3;
+      }
+      .BSParticle--4::after {
+        background: $barfy_stars_particles_4;
+      }
+      .BSParticle--5::after {
+        background: $barfy_stars_particles_5;
+      }
     }
   }
 }

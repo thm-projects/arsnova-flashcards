@@ -12,13 +12,46 @@
     background-size: 100% 100%;
     content: '';
     display: block;
-    height: 100px;
     position: absolute;
-    transform: translate(-51px, -51px);
-    width: 160px;
   }
 }
 
 body.landing-page {
   overflow: hidden;
 }
+
+//Use the theme switcher to adjust the color
+.BSParticles-Default {
+  .BSParticle {
+    &::after {
+      width: 100px;
+      height: 100px;
+      transform: translate(-50px, -50px);
+    }
+  }
+}
+
+.BSParticles-Images {
+  .BSParticle {
+    &::after {
+      width: 200px;
+      height: 141px;
+      transform: translate(-100px, -70px);
+      background: url('/img/particles/blue.jpg') no-repeat center center;
+      background-size: contain;
+    }
+  }
+  .BSParticle--2::after {
+    background-image: url('/img/particles/green.jpg');
+  }
+  .BSParticle--3::after {
+    background-image: url('/img/particles/red.jpg');
+  }
+  .BSParticle--4::after {
+    background-image: url('/img/particles/white.jpg');
+  }
+  .BSParticle--5::after {
+    background-image: url('/img/particles/yellow.jpg');
+  }
+}
+
