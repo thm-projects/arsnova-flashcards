@@ -6,10 +6,9 @@
   pointer-events: none;
   top: 50%;
   width: 1px;
-  z-index: 3;
+  z-index: 10000;
 
   &::after {
-    background: #178FFF;
     background-size: 100% 100%;
     content: '';
     display: block;
@@ -18,18 +17,6 @@
     transform: translate(-51px, -51px);
     width: 102px;
   }
-}
-.BSParticle--2::after {
-  background: #FF9F30;
-}
-.BSParticle--3::after {
-  background: #ef4d3c;
-}
-.BSParticle--4::after {
-  background: #4A5C66;
-}
-.BSParticle--5::after {
-  background: #2ac55f;
 }
 
 body.landing-page {
