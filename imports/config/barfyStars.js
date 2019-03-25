@@ -1,9 +1,9 @@
 let defaultSettings = {
-	"scaleInitial": 1,
-	"momentum": 10,
-	"gravity": 0.7,
-	"friction": 0.9999999,
-	"numParticles": 100
+	"scaleInitial": 2.5,
+	"momentum": 6.0,
+	"gravity": 0,
+	"friction": 0.9999,
+	"numParticles": 120
 };
 
 module.exports = {
