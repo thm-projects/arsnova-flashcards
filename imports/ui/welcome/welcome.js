@@ -5,7 +5,6 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Route} from "../../api/route.js";
 import {getUserLanguage} from "../../startup/client/i18n";
-import "./welcome.html";
 import ResizeSensor from "../../../client/thirdParty/resizeSensor/ResizeSensor";
 import {PomodoroTimer} from "../../api/pomodoroTimer";
 import {NavigatorCheck} from "../../api/navigatorCheck";
@@ -14,6 +13,9 @@ import {WordcloudCanvas} from "../../api/wordcloudCanvas";
 import {ServerStyle} from "../../api/styles.js";
 import {FirstTimeVisit} from "../../api/firstTimeVisit";
 import {MainNavigation} from "../../api/mainNavigation";
+import {ExecuteControllers} from 'wtc-controller-element';
+import 'wtc-barfystars';
+import "./welcome.html";
 
 Meteor.subscribe("pomodoroLandingPage");
 Meteor.subscribe("userData");
@@ -177,6 +179,17 @@ Template.welcome.onRendered(function () {
 	new ResizeSensor($('#welcome-login'), function () {
 		PomodoroTimer.pomoPosition();
 	});
+});
+
+
+/*
+ * ############################################################################
+ * welcomeTitle
+ * ############################################################################
+ */
+
+Template.welcomeTitle.onRendered(function () {
+	ExecuteControllers.instanciateAll();
 });
 
 /*

@@ -26,6 +26,7 @@ import {Icons} from "../../api/icons";
 import {FilterNavigation} from "../../api/filterNavigation";
 import  * as FilterConfig from "../../config/filter.js";
 import {MainNavigation} from "../../api/mainNavigation";
+import {BarfyStarsConfig} from "../../api/barfyStars.js";
 
 Meteor.subscribe("collegesCourses");
 
@@ -134,6 +135,10 @@ Template.registerHelper('getLastAppTitle', function () {
 
 Template.registerHelper('getAppSlogan', function () {
 	return ServerStyle.getAppSlogan();
+});
+
+Template.registerHelper('getBarfyStarsConfig', function (type = "default") {
+	return JSON.stringify(BarfyStarsConfig.getConfig(type));
 });
 
 
