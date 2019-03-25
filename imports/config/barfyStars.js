@@ -6,6 +6,13 @@ let defaultSettings = {
 	"numParticles": 120
 };
 
+let images = {
+	"scaleInitial": 1,
+	"momentum": 7,
+	"numParticles": 100
+};
+
 module.exports = {
-	defaultSettings
+	defaultSettings,
+	images
 };

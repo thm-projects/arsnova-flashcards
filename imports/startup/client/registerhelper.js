@@ -141,6 +141,9 @@ Template.registerHelper('getBarfyStarsConfig', function (type = "default") {
 	return JSON.stringify(BarfyStarsConfig.getConfig(type));
 });
 
+Template.registerHelper('getBarfyStarsStyle', function (type = "default") {
+	return BarfyStarsConfig.getStyle(type);
+});
 
 Template.registerHelper('getAboutButton', function (isMobile = false) {
 	return ServerStyle.getAboutButton(isMobile);
