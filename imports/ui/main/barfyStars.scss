@@ -34,9 +34,9 @@ body.landing-page {
 .BSParticles-Images {
   .BSParticle {
     &::after {
-      width: 160px;
-      height: 100px;
-      transform: translate(-80px, -50px);
+      width: 200px;
+      height: 141px;
+      transform: translate(-100px, -70px);
       background: url('/img/particles/blue.jpg') no-repeat center center;
       background-size: contain;
     }
