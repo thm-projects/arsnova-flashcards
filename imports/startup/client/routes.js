@@ -1045,6 +1045,9 @@ var setTheme = function () {
 			body.css('background-image', ServerStyle.getBackground("internal"));
 		}
 	} else {
+		if (!Route.isImpressum()) {
+			body.addClass('landing-page');
+		}
 		body.addClass('landing-page');
 		body.css('background-image', ServerStyle.getBackground("landing-page"));
 	}
