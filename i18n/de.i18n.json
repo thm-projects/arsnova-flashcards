@@ -591,20 +591,19 @@
       "noName": "Digger",
       "description": {
         "personal": {
-          "create": "Ich will eine Kartei anlegen – eine Kartenbox.",
-          "cardsets": "Ich will Karten schreiben.",
-          "repetitorien": "Ich will meine Repetitorien verwalten."
+          "create": "Ich will eine Kartei anlegen – 'ne Kartenbox.",
+          "cardsets": "Ich will zu meinen Karteien.",
+          "repetitorien": "Ich will zu meinen Repetitorien."
         },
         "pool": "Ich suche Karteien zu einem Thema.",
         "repetitorium": "Ich suche ein Repetitorium.",
-        "workload": "Ich will Karten lernen."
+        "workload": "Ich will mein Lernpensum erfüllen."
       },
       "button": {
         "cancel": "Danke, ich kenne mich aus.",
         "personal": {
-          "create": "Ruf das Kartei-Formular auf!",
           "cardsets": "Bring mich zu meinen Karteien!",
-          "repetitorien": "Bring mich zu meinen Repetitorien!"
+          "repetitorien": "Bring mich zu meinen Reps!"
         },
         "pool": "Bring mich zur Karteien-Suche!",
         "repetitorium": "Bring mich zur Repetitorien-Suche!",
