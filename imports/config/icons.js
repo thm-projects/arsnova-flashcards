@@ -68,7 +68,7 @@ let aspectRatio = {
 let useCasesIcons = {
 	"workload": "<i class='fa fa-graduation-cap'></i>&nbsp;",
 	"myCardsets": "<i class='fa fa-archive'></i>&nbsp;",
-	"myRepositories": "<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;",
+	"myRepositories": "<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;",
 	"create": "<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-plus'></i>&nbsp;",
 	"search": "<i class='fa fa fa-search'></i>&nbsp;"
 };
