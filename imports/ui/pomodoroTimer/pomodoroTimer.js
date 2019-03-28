@@ -26,6 +26,8 @@ Template.pomodoroTimer.onRendered(function () {
 	$('.pomodoroTimer').unbind().on('click', function () {
 		PomodoroTimer.clickClock();
 	});
+	CardVisuals.setPomodoroTimerSize();
+	PomodoroTimer.updateArcs();
 });
 
 Template.pomodoroTimer.onDestroyed(function () {

@@ -1,6 +1,6 @@
 import {Session} from "meteor/session";
 import "./countCardsLeitner.html";
-import {Leitner} from "../../../../api/learned";
+import {Leitner} from "../../../../../api/learned";
 
 
 /*

@@ -927,6 +927,14 @@ Template.registerHelper("isSmartphone", function () {
 	return NavigatorCheck.isSmartphone();
 });
 
+Template.registerHelper("is3DActive", function () {
+	return Session.get('is3DActive');
+});
+
+Template.registerHelper("got3DMode", function () {
+	return CardVisuals.got3DMode();
+});
+
 const markdeepHelper = new MeteorMathJax.Helper({
 	useCache: false,
 	transform: function (content) {

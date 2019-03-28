@@ -13,7 +13,6 @@ import {NavigatorCheck} from "../../api/navigatorCheck";
 import {FirstTimeVisit} from "../../api/firstTimeVisit";
 import {AspectRatio} from "../../api/aspectRatio";
 
-
 Session.set('animationPlaying', false);
 
 /*

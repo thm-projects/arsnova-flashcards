@@ -54,10 +54,7 @@ Template.editor.events({
 	}
 });
 
-Template.editor.onRendered(function () {
-	new ResizeSensor($('#preview'), function () {
-		CardVisuals.resizeFlashcard();
-	});
+Template.editor.onCreated(function () {
 	CardEditor.initializeEditorButtons();
 	if (CardType.gotDefaultMobilePreview(Session.get('cardType'))) {
 		Session.set('mobilePreview', 1);
@@ -65,6 +62,12 @@ Template.editor.onRendered(function () {
 		Session.set('mobilePreview', 0);
 	}
 	Session.set('mobilePreviewRotated', MarkdeepEditor.getDefaultMobilePreviewOrientation());
+});
+
+Template.editor.onRendered(function () {
+	new ResizeSensor($('#preview'), function () {
+		CardVisuals.resizeFlashcard();
+	});
 });
 
 /*

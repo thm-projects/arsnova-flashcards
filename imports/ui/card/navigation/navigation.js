@@ -40,7 +40,7 @@ Template.cardNavigation.onCreated(function () {
 
 Template.cardNavigationEnabled.events({
 	'click .switchCardSide': function (event) {
-		CardNavigation.switchCardSide($(event.target).data('content-id'), ($(event.target).data('navigation-id') + 1), $(event.target).data('style'));
+		CardNavigation.switchCardSide($(event.target).data('content-id'), ($(event.target).data('navigation-id') + 1), $(event.target).data('style'), $(event.target).data('side'));
 	}
 });
 
@@ -63,7 +63,7 @@ Template.cardNavigationEnabled.onRendered(function () {
 
 Template.cardNavigationEnabledAnswer.events({
 	'click .switchCardSide': function (event) {
-		CardNavigation.switchCardSide($(event.target).data('content-id'), ($(event.target).data('navigation-id') + 1), $(event.target).data('style'));
+		CardNavigation.switchCardSide($(event.target).data('content-id'), ($(event.target).data('navigation-id') + 1), $(event.target).data('style'), $(event.target).data('side'));
 	}
 });
 
@@ -89,7 +89,7 @@ Template.cardNavigationEnabledAnswer.onRendered(function () {
 
 Template.cardNavigationEnabledQuestion.events({
 	'click .switchCardSide': function (event) {
-		CardNavigation.switchCardSide($(event.target).data('content-id'), ($(event.target).data('navigation-id') + 1), $(event.target).data('style'));
+		CardNavigation.switchCardSide($(event.target).data('content-id'), ($(event.target).data('navigation-id') + 1), $(event.target).data('style'), $(event.target).data('side'));
 	}
 });
 

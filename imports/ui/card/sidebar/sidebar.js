@@ -21,6 +21,7 @@ import "./item/pomodoroButton.js";
 import "./item/help.js";
 import "./item/swapQuestionAnswer.js";
 import "./item/presentation.js";
+import "./item/toggle3D.js";
 
 /*
  * ############################################################################

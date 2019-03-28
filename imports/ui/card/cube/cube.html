@@ -1,0 +1,24 @@
+<template name="cardCube">
+    <div class="scene item active" data-id="{{_id}}">
+        <div id="cube">
+            <div class="cube-face cube-face-front">
+                {{> cardSide (forceSide "front")}}
+            </div>
+            <div class="cube-face cube-face-back">
+                {{> cardSide (forceSide "back")}}
+            </div>
+            <div class="cube-face cube-face-right">
+                {{> cardSide (forceSide "right")}}
+            </div>
+            <div class="cube-face cube-face-left">
+                {{> cardSide (forceSide "left")}}
+            </div>
+            <div class="cube-face cube-face-top">
+                {{> cardSide (forceSide "top")}}
+            </div>
+            <div class="cube-face cube-face-bottom">
+                {{> cardSide (forceSide "bottom")}}
+            </div>
+        </div>
+    </div>
+</template>
