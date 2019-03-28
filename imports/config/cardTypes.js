@@ -60,26 +60,22 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"side": "front",
 			"defaultStyle": "default",
 			"gotLearningGoalPlaceholder": true
 		},
 		{
 			"contentId": 4,
-			"side": "right",
 			"defaultStyle": "default",
 			"isAnswer": true
 		},
 		{
 			"contentId": 2,
-			"side": "back",
 			"defaultStyle": "default",
 			"isAnswer": true,
 			"isAnswerFocus": true
 		},
 		{
 			"contentId": 3,
-			"side": "left",
 			"defaultStyle": "default",
 			"isAnswer": true
 		}
@@ -89,13 +85,11 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"side": "front",
 			"defaultStyle": "default",
 			"defaultTextAlign": "center"
 		},
 		{
 			"contentId": 2,
-			"side": "back",
 			"defaultStyle": "default",
 			"defaultTextAlign": "center",
 			"isAnswer": true,
@@ -106,17 +100,14 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"side": "front",
 			"defaultStyle": "default"
 		},
 		{
 			"contentId": 2,
-			"side": "back",
 			"defaultStyle": "default"
 		},
 		{
 			"contentId": 3,
-			"side": "left",
 			"defaultStyle": "default"
 		}
 	],
@@ -124,13 +115,11 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"side": "front",
 			"defaultStyle": "default",
 			"defaultTextAlign": "center"
 		},
 		{
 			"contentId": 2,
-			"side": "back",
 			"defaultStyle": "default",
 			"defaultTextAlign": "center",
 			"isAnswer": true,
@@ -138,7 +127,6 @@ let cardTypeCubeSides = [
 		},
 		{
 			"contentId": 3,
-			"side": "left",
 			"defaultStyle": "default",
 			"isAnswer": true
 		}
@@ -147,19 +135,16 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"side": "front",
 			"defaultStyle": "default"
 		},
 		{
 			"contentId": 2,
-			"side": "back",
 			"defaultStyle": "default",
 			"isAnswer": true,
 			"isAnswerFocus": true
 		},
 		{
 			"contentId": 3,
-			"side": "left",
 			"defaultStyle": "default",
 			"isAnswer": true
 		}
@@ -168,20 +153,17 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"side": "front",
 			"defaultStyle": "default",
 			"gotLearningGoalPlaceholder": true
 		},
 		{
 			"contentId": 2,
-			"side": "back",
 			"defaultStyle": "default",
 			"isAnswer": true,
 			"isAnswerFocus": true
 		},
 		{
 			"contentId": 3,
-			"side": "left",
 			"defaultStyle": "default",
 			"isAnswer": true
 		}
@@ -190,12 +172,10 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 2,
-			"side": "front",
 			"defaultStyle": "default"
 		},
 		{
 			"contentId": 1,
-			"side": "back",
 			"defaultStyle": "default",
 			"defaultTextAlign": "center",
 			"isAnswer": true,
@@ -203,7 +183,6 @@ let cardTypeCubeSides = [
 		},
 		{
 			"contentId": 3,
-			"side": "left",
 			"defaultStyle": "default",
 			"isAnswer": true
 		}
@@ -212,33 +191,27 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"side": "front",
 			"defaultStyle": "default"
 		},
 		{
 			"contentId": 2,
-			"side": "back",
 			"defaultStyle": "default",
 			"defaultTextAlign": "center"
 		},
 		{
 			"contentId": 3,
-			"side": "left",
 			"defaultStyle": "default"
 		},
 		{
 			"contentId": 4,
-			"side": "right",
 			"defaultStyle": "default"
 		},
 		{
 			"contentId": 5,
-			"side": "top",
 			"defaultStyle": "default"
 		},
 		{
 			"contentId": 6,
-			"side": "bottom",
 			"defaultStyle": "default"
 		}
 	],
@@ -246,7 +219,6 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"side": "front",
 			"defaultStyle": "post-it"
 		}
 	],
@@ -254,7 +226,6 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"side": "front",
 			"defaultStyle": "default"
 		}
 	],
@@ -262,12 +233,10 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"side": "front",
 			"defaultStyle": "white"
 		},
 		{
 			"contentId": 2,
-			"side": "back",
 			"defaultStyle": "white"
 		}
 	],
@@ -275,12 +244,10 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"side": "front",
 			"defaultStyle": "default"
 		},
 		{
 			"contentId": 2,
-			"side": "back",
 			"defaultStyle": "default",
 			"isAnswer": true,
 			"isAnswerFocus": true
@@ -290,35 +257,29 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"side": "front",
 			"defaultStyle": "default"
 		},
 		{
 			"contentId": 3,
-			"side": "right",
 			"defaultStyle": "default"
 		},
 		{
 			"contentId": 4,
-			"side": "back",
 			"defaultStyle": "default"
 		},
 		{
 			"contentId": 2,
-			"side": "left",
 			"defaultStyle": "default",
 			"isAnswer": true,
 			"isAnswerFocus": true
 		},
 		{
 			"contentId": 5,
-			"side": "top",
 			"defaultStyle": "default",
 			"isAnswer": true
 		},
 		{
 			"contentId": 6,
-			"side": "bottom",
 			"defaultStyle": "default",
 			"isAnswer": true
 		}
@@ -327,26 +288,22 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"side": "front",
 			"defaultStyle": "default",
 			"gotLearningGoalPlaceholder": true
 		},
 		{
 			"contentId": 2,
-			"side": "back",
 			"defaultStyle": "default",
 			"isAnswer": true
 		},
 		{
 			"contentId": 3,
-			"side": "left",
 			"defaultStyle": "default",
 			"isAnswer": true,
 			"isAnswerFocus": true
 		},
 		{
 			"contentId": 4,
-			"side": "right",
 			"defaultStyle": "default",
 			"isAnswer": true
 		}
@@ -356,7 +313,6 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"side": "front",
 			"defaultStyle": "white"
 		}
 
@@ -365,13 +321,11 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"side": "front",
 			"defaultStyle": "default",
 			"gotLearningGoalPlaceholder": true
 		},
 		{
 			"contentId": 2,
-			"side": "back",
 			"defaultStyle": "default",
 			"isAnswer": true,
 			"isAnswerFocus": true
@@ -381,12 +335,10 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"side": "front",
 			"defaultStyle": "default"
 		},
 		{
 			"contentId": 2,
-			"side": "back",
 			"defaultStyle": "default",
 			"isAnswer": true,
 			"isAnswerFocus": true
@@ -396,12 +348,10 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"side": "front",
 			"defaultStyle": "default"
 		},
 		{
 			"contentId": 2,
-			"side": "back",
 			"defaultStyle": "default",
 			"isAnswer": true,
 			"isAnswerFocus": true

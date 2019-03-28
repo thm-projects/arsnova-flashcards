@@ -8,9 +8,11 @@ let macOSPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'];
 //1: WordCloud - Landing Page
 //2: WordCloud - Filter
 //3: Demo
+//4: 3D-Cube
+//5: 3D-Cube: cancel active transitions
 let enabledSmartphoneFeatures = [0, 1, 2, 3];
-let enabledIOSFeatures = [2, 3];
-let enabledMacOSSafariFeatures = [2, 3];
+let enabledIOSFeatures = [2, 3, 4];
+let enabledMacOSSafariFeatures = [2, 3, 4, 5];
 
 module.exports = {
 	minimumTabletWidth,

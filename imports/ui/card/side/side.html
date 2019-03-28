@@ -1,0 +1,13 @@
+<template name="cardSide">
+    <div class="item {{#if isActive}}active{{/if}}" data-id="{{_id}}">
+        <div class="box flashcard {{#if is3DActive}}flashcard-3d{{/if}} {{#if isHiddenQuestion}}flashcard-blur{{/if}}">
+            <div class="cardHeader {{getCardSideColor}}-header"
+                 data-cardtype="{{cardType}}">
+                {{> flashcardHeader this}}
+            </div>
+            <div class="cardContent detail{{cardsIndex _id}} {{getCardSideColor}}">
+                    {{> cardContent this}}
+            </div>
+        </div>
+    </div>
+</template>

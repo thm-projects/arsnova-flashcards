@@ -1,6 +1,7 @@
 import {Session} from "meteor/session";
 import {Cardsets} from "./cardsets.js";
 import * as config from "../config/cardTypes.js";
+import {CardNavigation} from "./cardNavigation";
 
 export let CardType = class CardType {
 	static getCardTypesOrder () {
@@ -42,10 +43,14 @@ export let CardType = class CardType {
 				}
 			}
 		} else {
+			let index = CardNavigation.getCardSideNavigationIndex() - 1;
+			if (index === undefined || index < 0 || index > cubeSides.length) {
+				index = 0;
+			}
 			if (type) {
-				return cubeSides[0].defaultStyle;
+				return cubeSides[index].defaultStyle;
 			} else {
-				return cubeSides[0].contentId;
+				return cubeSides[index].contentId;
 			}
 		}
 	}
@@ -83,6 +88,50 @@ export let CardType = class CardType {
 			if (cubeSides[i].contentId === contentId) {
 				return cubeSides[i].gotLearningGoalPlaceholder;
 			}
+		}
+	}
+
+	static getCubeSideID (side) {
+		switch (side) {
+			case "front":
+				return 0;
+			case "right":
+				return 1;
+			case "back":
+				return 2;
+			case "left":
+				return 3;
+			case "top":
+				return 4;
+			case "bottom":
+				return 5;
+		}
+	}
+	static getSideData (cardType, forceSide) {
+		let sides = this.getCardTypeCubeSides(cardType);
+		let id = this.getCubeSideID(forceSide);
+		return sides[id];
+	}
+
+	static getContentID (card) {
+		if (card.forceSide) {
+			let sideData = this.getSideData(card.cardType, card.forceSide);
+			if (sideData !== undefined) {
+				return sideData.contentId;
+			}
+		} else {
+			if (card.isActive) {
+				return Session.get('activeCardContentId');
+			} else {
+				return this.getCardTypeCubeSides(card.cardType)[0].contentId;
+			}
+		}
+	}
+
+	static getContentStyle (cardType, forceSide) {
+		let sideData = this.getSideData(cardType, forceSide);
+		if (sideData !== undefined) {
+			return sideData.defaultStyle;
 		}
 	}
 

@@ -18,6 +18,7 @@ Template.markdeepNavigation.events({
 	},
 	'click .markdeep-mobile-preview': function () {
 		MarkdeepEditor.changeMobilePreview();
+		CardVisuals.setDefaultViewingMode(3);
 	},
 	'click .markdeep-rotate-mobile-preview': function () {
 		MarkdeepEditor.changeMobilePreviewRotation();

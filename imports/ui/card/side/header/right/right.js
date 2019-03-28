@@ -1,5 +1,5 @@
 import "./right.html";
-import {MarkdeepEditor} from "../../../../api/markdeepEditor";
+import {MarkdeepEditor} from "../../../../../api/markdeepEditor";
 
 /*
  * ############################################################################

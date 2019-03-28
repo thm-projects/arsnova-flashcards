@@ -9,6 +9,7 @@ import {AspectRatio} from "./aspectRatio.js";
 import * as config from "../config/cardVisuals.js";
 
 let editorFullScreenActive = false;
+let lastActiveRotation;
 
 export let CardVisuals = class CardVisuals {
 
@@ -30,6 +31,38 @@ export let CardVisuals = class CardVisuals {
 			mode = 5;
 		}
 		return config.fixedSidebarPosition.includes(mode);
+	}
+
+	static routeGot3DModeSupport () {
+		let mode = 0;
+		if (Route.isPresentation()) {
+			mode = 1;
+		} else if (Route.isDemo() || Route.isMakingOf()) {
+			mode = 2;
+		} else if (Route.isEditMode()) {
+			mode = 3;
+		} else if (Route.isBox()) {
+			mode = 4;
+		} else if (Route.isMemo()) {
+			mode = 5;
+		}
+		return mode;
+	}
+
+	static got3DMode () {
+		if (Route.isEditMode() && Session.get('mobilePreview'))  {
+			return false;
+		}
+		return config.got3DMode.includes(this.routeGot3DModeSupport());
+	}
+
+
+	static setDefaultViewingMode () {
+		if (config.enabled3DModeByDefault.includes(this.routeGot3DModeSupport()) && this.got3DMode() && NavigatorCheck.gotFeatureSupport(4)) {
+			Session.set('is3DActive', 1);
+		} else {
+			Session.set('is3DActive', 0);
+		}
 	}
 
 	static isFullscreen () {
@@ -88,6 +121,9 @@ export let CardVisuals = class CardVisuals {
 		let leftOffset = (availableWidth - newWidth) / 2;
 		if (aspectRatio !== "fill") {
 			flashcard.css('margin-left', leftOffset);
+			if (Session.get('is3DActive')) {
+				flashcard.css('margin-right', leftOffset);
+			}
 		}
 
 		flashcardHeader.css('height', flashcardHeaderHeight);
@@ -104,6 +140,82 @@ export let CardVisuals = class CardVisuals {
 		}
 		$('.aspect-ratio-dropdown-button').removeClass('active');
 		$('.aspect-ratio-dropdown-button[data-id="' + aspectRatio + '"]').addClass('active');
+	}
+
+	static rotateCube (cardSide = "front", disableTransition = false) {
+		let height = $('.flashcard').outerHeight();
+		let cube = $('.scene.active #cube');
+		let transition = "";
+		if (disableTransition) {
+			transition =  " transition: transform 0s !important; ";
+		} else {
+			transition =  " transition: transform " + config.cubeTransitionTime + "s !important; ";
+		}
+		if (!NavigatorCheck.gotFeatureSupport(5)) {
+			if (lastActiveRotation === cardSide || disableTransition) {
+				Session.set('is3DTransitionActive', 0);
+			}
+		}
+		lastActiveRotation = cardSide;
+		switch (cardSide) {
+			case "front":
+				cube.attr('style', 'transform: translateZ(' + (-height / 2) + 'px) rotateY(   0deg); ' + transition + 'height: ' + height + 'px !important; width: ' + height + 'px !important;');
+				break;
+			case "back":
+				cube.attr('style', 'transform: translateZ(' + (-height / 2) + 'px) rotateY(   -180deg);  ' + transition + 'height: ' + height + 'px !important; width: ' + height + 'px !important;');
+				break;
+			case "left":
+				cube.attr('style', 'transform: translateZ(' + (-height / 2) + 'px) rotateY(   90deg);  ' + transition + 'height: ' + height + 'px !important; width: ' + height + 'px !important;');
+				break;
+			case "right":
+				cube.attr('style', 'transform: translateZ(' + (-height / 2) + 'px) rotateY(   -90deg);  ' + transition + 'height: ' + height + 'px !important; width: ' + height + 'px !important;');
+				break;
+			case "top":
+				cube.attr('style', 'transform: translateZ(' + (-height / 2) + 'px) rotateX(   -90deg);  ' + transition + 'height: ' + height + 'px !important; width: ' + height + 'px !important;');
+				break;
+			case "bottom":
+				cube.attr('style', 'transform: translateZ(' + (-height / 2) + 'px) rotateX(   90deg);  ' + transition + 'height: ' + height + 'px !important; width: ' + height + 'px !important;');
+				break;
+		}
+	}
+
+	static resizeFlashcard3D () {
+		let offsetBottom = 45;
+		let cardNavigation = $('.cardNavigation');
+		let availableHeight = $(window).height() - (cardNavigation.outerHeight() + cardNavigation.offset().top)  - offsetBottom;
+		let flashcard = $('.flashcard');
+		let flashcardHeader = $('.cardHeader');
+		let flashcardBody = $('.cardContent');
+		flashcard.css('width', availableHeight * 0.9);
+		flashcard.css('height', availableHeight  * 0.9);
+		let carousel = $('.carousel-inner');
+		let offset = (carousel.width() - flashcard.outerHeight()) / 2;
+		let flashcardHeaderHeight = 90;
+		flashcardBody.css('height', flashcard.innerHeight() - flashcardHeaderHeight);
+		flashcardHeader.css('height', flashcardHeaderHeight);
+		$('.carousel-inner > .item').attr('style', 'padding-left: ' + offset + 'px !important; padding-right: ' + offset + 'px !important; height: ' + flashcard.outerHeight() + 'px !important; width: ' + carousel.width()   +  'px !important; margin-top: ' + availableHeight * 0.05 + 'px !important;');
+		$('.scene.active').attr('style', 'perspective: ' + flashcard.outerHeight() * 2 + 'px; height: ' + flashcard.outerHeight() + 'px !important; width: ' + carousel.width()  + 'px !important; margin-top: ' + availableHeight * 0.05 + 'px !important; margin-bottom: ' + availableHeight * 0.05 + 'px !important; padding-left: ' + offset + 'px !important; padding-right: ' + offset + 'px !important;');
+		$('.cube-face-front').attr('style', 'transform: rotateY(  0deg) translateZ(' + (flashcard.outerHeight() / 2) + 'px); height: ' + flashcard.outerHeight() + 'px !important; width: ' + flashcard.outerHeight() + 'px !important;');
+		$('.cube-face-right').attr('style', 'transform: rotateY( 90deg) translateZ(' + (flashcard.outerHeight() / 2) + 'px); height: ' + flashcard.outerHeight() + 'px !important; width: ' + flashcard.outerHeight() + 'px !important;');
+		$('.cube-face-back').attr('style', 'transform: rotateY(180deg) translateZ(' + (flashcard.outerHeight() / 2) + 'px); height: ' + flashcard.outerHeight() + 'px !important; width: ' + flashcard.outerHeight() + 'px !important;');
+		$('.cube-face-left').attr('style', 'transform: rotateY(-90deg) translateZ(' + (flashcard.outerHeight() / 2) + 'px); height: ' + flashcard.outerHeight() + 'px !important; width: ' + flashcard.outerHeight() + 'px !important;');
+		$('.cube-face-top').attr('style', 'transform: rotateX( 90deg) translateZ(' + (flashcard.outerHeight() / 2) + 'px); height: ' + flashcard.outerHeight() + 'px !important; width: ' + flashcard.outerHeight() + 'px !important;');
+		$('.cube-face-bottom').attr('style', 'transform: rotateX(-90deg) translateZ(' + (flashcard.outerHeight() / 2) + 'px); height: ' + flashcard.outerHeight() + 'px !important; width: ' + flashcard.outerHeight() + 'px !important;');
+		this.rotateCube(lastActiveRotation, true);
+		let adjustNavigation = true;
+		if (Route.isEditMode() && !this.isFullscreen()) {
+			$('#contentEditor').css('height', $('.scene').height() - $('#editorButtonGroup').height());
+			adjustNavigation = false;
+		}
+		if (adjustNavigation) {
+			let leftMargin = ($(window).width() - config.cubeMaxNavigationWidth) / 2;
+			if (leftMargin < 0) {
+				leftMargin = 0;
+			} else {
+				leftMargin -= parseInt($('.cardNavigation').parent().css('padding-left'));
+			}
+			$('.cardNavigation').attr('style', 'max-width: ' + config.cubeMaxNavigationWidth + 'px !important; margin-left: ' +  leftMargin + 'px !important;');
+		}
 	}
 
 	static resizeFlaschardLegacy () {
@@ -201,7 +313,7 @@ export let CardVisuals = class CardVisuals {
 				if (AspectRatio.isEnabled()) {
 					aspectRatioEnabled = true;
 				}
-				if (aspectRatioEnabled &&  !NavigatorCheck.isSmartphone()) {
+				if (!Session.get('is3DActive') && aspectRatioEnabled &&  !NavigatorCheck.isSmartphone()) {
 					switch (Session.get('aspectRatioMode')) {
 						case "din":
 							this.resizeFlaschardCustom("din");
@@ -214,12 +326,16 @@ export let CardVisuals = class CardVisuals {
 							break;
 					}
 				} else {
-					this.resizeFlaschardLegacy();
+					if (Session.get('is3DActive')) {
+						this.resizeFlashcard3D();
+					} else {
+						this.resizeFlaschardLegacy();
+					}
 				}
-				this.setPomodoroTimerSize();
 				this.setSidebarPosition();
 				this.setMaxIframeHeight();
 				this.setTextZoom();
+				this.setPomodoroTimerSize();
 			}
 		}
 	}
@@ -239,9 +355,10 @@ export let CardVisuals = class CardVisuals {
 
 	static setPomodoroTimerSize () {
 		let pomodoroTimer = $('.pomodoroClock');
-		let flashcardHeader = $('.cardHeaderLeft');
-		if (pomodoroTimer.length && flashcardHeader.length) {
-			let newTimerSize = parseInt(flashcardHeader.innerHeight()) - (parseInt(flashcardHeader.css('padding-top')));
+		let flashcardHeader = $('.cardHeader');
+		let flashcardHeaderLeft = $('.cardHeaderLeft');
+		if (pomodoroTimer.length && flashcardHeader.length && flashcardHeaderLeft.length) {
+			let newTimerSize = parseInt(flashcardHeader.height()) - ((parseInt(flashcardHeaderLeft.css('padding-top'))) * 2);
 			pomodoroTimer.css('height', newTimerSize + "px");
 			pomodoroTimer.css('width', newTimerSize + "px");
 			pomodoroTimer.css('margin-top', -parseInt(flashcardHeader.css('padding-top')) + "px");
@@ -322,14 +439,18 @@ export let CardVisuals = class CardVisuals {
 		}
 	}
 
-	static getCardSideColor (difficulty, cardType, backgroundStyle, activeCard) {
+	static getCardSideColor (difficulty, cardType, backgroundStyle, activeCard, forceSide) {
 		let box = "box-";
 		let style;
 		if (Session.get('theme') === "contrast") {
 			return box + 'white';
 		}
 		if (activeCard) {
-			style = Session.get('activeCardStyle');
+			if (forceSide) {
+				style = CardType.getContentStyle(cardType, forceSide);
+			} else {
+				style = Session.get('activeCardStyle');
+			}
 		} else {
 			let cubeSides = CardType.getCardTypeCubeSides(cardType);
 			style = CardType.getActiveSideData(cubeSides, cardType, 1);
@@ -565,8 +686,14 @@ export let CardVisuals = class CardVisuals {
 			leftSidebar.css('margin-top', (cardHeight - (leftSidebar.height() + parseInt(leftSidebar.css('margin-bottom')))) + 'px');
 			rightSidebar.css('margin-top', (cardHeight - (rightSidebar.height() + parseInt(rightSidebar.css('margin-bottom')))) + 'px');
 		} else {
-			leftSidebar.css('margin-top', (cardHeight) + 'px');
-			rightSidebar.css('margin-top', (cardHeight) + 'px');
+			if (Session.get('is3DActive')) {
+				let sceneMargin = $('.scene.active').css('margin-top');
+				leftSidebar.css('margin-top', (cardHeight  + parseInt(sceneMargin)) + 'px');
+				rightSidebar.css('margin-top', (cardHeight + parseInt(sceneMargin)) + 'px');
+			} else {
+				leftSidebar.css('margin-top', (cardHeight) + 'px');
+				rightSidebar.css('margin-top', (cardHeight) + 'px');
+			}
 			bottomLeftSidebar.css('margin-top', (cardHeight + $('.cardContent').height()  - 12) + 'px');
 		}
 	}
