@@ -592,10 +592,10 @@
       "description": {
         "personal": {
           "create": "Ich will eine Kartei anlegen – 'ne Kartenbox.",
-          "cardsets": "Ich will zu meinen Karteien.",
+          "cardsets": "Ich will zu meinen Kartensätzen.",
           "repetitorien": "Ich will zu meinen Repetitorien."
         },
-        "pool": "Ich suche Karteien zu einem Thema.",
+        "pool": "Ich suche Kartensätze zu einem Thema.",
         "repetitorium": "Ich suche ein Repetitorium.",
         "workload": "Ich will mein Lernpensum erfüllen."
       },
