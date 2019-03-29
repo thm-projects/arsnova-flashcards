@@ -1247,7 +1247,7 @@
         "subject": "Werkstitel",
         "content1": "Notiere alle bibliografischen Angaben: vollständiger Titel, Autor/in, Erscheinungsjahr, Verlag oder Webadresse, Art der Publikation etc. Notiere die Angaben in APA-Zizierweise, sodass du sie per Copy-and-Paste in deine Thesis übernehmen kannst. \n\nZur APA-Zitierweise siehe https://www.mentorium.de/zitieren-apa-stil-zitierweise-anleitung-beispiele/. \n\nBinde ein Cover-Bild des Werkes ein. Hol es dir zum Beispiel von Amazon.",
         "content2": "Nenne die wichtgisten Schlagwörter, mit denen das Werk gefunden werden soll.",
-        "content3": "Gib die Webadresse an, wo Rezensionen des Werkes zu finden ist.",
+        "content3": "Gib die Webadressen an, wo Rezensionen des Werkes zu finden sind. \n\nGib mindestens eine repräsentative Rezension als vollständiges Zitat hier wieder.",
         "content4": "Die Verlage stellen dir das Inhaltsverzeichnis eines Werkes und seinen Klappentext in der Regel online zur Verfügung. Verweise darauf oder übertrage sie hierher.",
         "content5": "Was immer auch wichtig ist für deine Abschlussarbeiten oder Veröffentlichungen, notiere es hier.",
         "content6": "Gib die BibTeX-Datei an (https://de.wikipedia.org/wiki/BibTeX). Generiere sie mit Literaturverwaltungsprogrammen wie Citavi oder Zotero."
