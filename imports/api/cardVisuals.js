@@ -165,7 +165,7 @@ export let CardVisuals = class CardVisuals {
 				cube.attr('style', 'transform: translateZ(' + (-height / 2) + 'px) rotateY(   -180deg);  ' + transition + 'height: ' + height + 'px !important; width: ' + height + 'px !important;');
 				break;
 			case "left":
-				cube.attr('style', 'transform: translateZ(' + (-height / 2) + 'px) rotateY(   90deg);  ' + transition + 'height: ' + height + 'px !important; width: ' + height + 'px !important;');
+				cube.attr('style', 'transform: translateZ(' + (-height / 2) + 'px) rotateY(   -270deg);  ' + transition + 'height: ' + height + 'px !important; width: ' + height + 'px !important;');
 				break;
 			case "right":
 				cube.attr('style', 'transform: translateZ(' + (-height / 2) + 'px) rotateY(   -90deg);  ' + transition + 'height: ' + height + 'px !important; width: ' + height + 'px !important;');
