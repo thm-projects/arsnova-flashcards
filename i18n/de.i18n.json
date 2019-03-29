@@ -1236,21 +1236,21 @@
     },
     "cardType7": {
       "name": "Fachliteratur",
-      "longName": "Literatur: Werk | Schlagwörter | Rezensionen | Exzerpt | Anmerkung | Export",
+      "longName": "Literatur: Werk | Schlagwörter | Rezensionen | Inhalt | Anmerkung | BibTeX",
       "content1": "Bibliografische Angaben",
       "content2": "Schlagwörter",
       "content3": "Rezensionen",
-      "content4": "Exzerpt",
+      "content4": "Inhaltsverzeichnis",
       "content5": "Anmerkung",
-      "content6": "Export",
+      "content6": "BibTeX",
       "placeholders": {
         "subject": "Werkstitel",
-        "content1": "Notiere alle bibliografische Angaben: vollständiger Titel, Autor/in, Erscheinungsjahr, Verlag oder Webadresse, Art der Publikation etc.\n\nBinde ein Cover-Bild des Werkes ein. Hol es dir zum Beispiel von Amazon.",
+        "content1": "Notiere alle bibliografischen Angaben: vollständiger Titel, Autor/in, Erscheinungsjahr, Verlag oder Webadresse, Art der Publikation etc. Notiere die Angaben in APA-Zizierweise, sodass du sie per Copy-and-Paste in deine Thesis übernehmen kannst. \n\nZur APA-Zitierweise siehe https://www.mentorium.de/zitieren-apa-stil-zitierweise-anleitung-beispiele/. \n\nBinde ein Cover-Bild des Werkes ein. Hol es dir zum Beispiel von Amazon.",
         "content2": "Nenne die wichtgisten Schlagwörter, mit denen das Werk gefunden werden soll.",
-        "content3": "Gib die Webadresse an, wo eine Rezension des Werkes zu finden ist.",
-        "content4": "Zum Erstellen eines Exzerpts siehe: http://www.uni-bielefeld.de/ew/scs/pdf/leitfaeden/studierende/exzerpt.pdf",
+        "content3": "Gib die Webadresse an, wo Rezensionen des Werkes zu finden ist.",
+        "content4": "Die Verlage stellen dir das Inhaltsverzeichnis eines Werkes und seinen Klappentext in der Regel online zur Verfügung. Verweise darauf oder übertrage sie hierher.",
         "content5": "Was immer auch wichtig ist für deine Abschlussarbeiten oder Veröffentlichungen, notiere es hier.",
-        "content6": "Gib an, wie das Werk zitiert werden kann, zum Beispiel im APA-Stil (https://www.mentorium.de/zitieren-apa-stil-zitierweise-anleitung-beispiele/) oder als BibTeX-Datei (https://de.wikipedia.org/wiki/BibTeX)."
+        "content6": "Gib die BibTeX-Datei an (https://de.wikipedia.org/wiki/BibTeX). Generiere sie mit Literaturverwaltungsprogrammen wie Citavi oder Zotero."
       },
       "editorLabels": {
         "subject": "Gib den Titel des Werkes an!"
