@@ -359,7 +359,7 @@ let cardTypeCubeSides = [
 			"isAnswerFocus": true
 		}
 	],
-	//18: Cube
+	//18: Kubus
 	[
 		{
 			"contentId": 1,
