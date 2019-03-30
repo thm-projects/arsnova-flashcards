@@ -16,6 +16,7 @@
 //15: Aufgabensammlung
 //16: Zielerreichung
 //17: Inverses Fragen
+//18: Cube
 let cardTypesWithDictionary = [1];
 let cardTypesWithDifficultyLevel = [0, 1, 2, 3, 5, 6, 7, 11, 12, 13, 15, 17];
 let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12, 13, 15, 16, 17];
@@ -25,7 +26,7 @@ let cardTypesWithNotesForDifficultyLevel = [2];
 let cardTypesWithCardsetTitleNavigation = [14];
 let cardTypesWithSwapAnswerQuestionButton = [1, 17];
 let cardTypesWithDefaultMobilePreview = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-let cardTypesWithMarkdeepHelp = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+let cardTypesWithMarkdeepHelp = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 let cardTypesOrder = [
 	{cardType: 2},
 	{cardType: 0},
@@ -44,7 +45,8 @@ let cardTypesOrder = [
 	{cardType: 4},
 	{cardType: 8},
 	{cardType: 9},
-	{cardType: 14}
+	{cardType: 14},
+	{cardType: 18}
 ];
 
 //0: left
@@ -355,6 +357,33 @@ let cardTypeCubeSides = [
 			"defaultStyle": "default",
 			"isAnswer": true,
 			"isAnswerFocus": true
+		}
+	],
+	//18: Cube
+	[
+		{
+			"contentId": 1,
+			"defaultStyle": "white"
+		},
+		{
+			"contentId": 2,
+			"defaultStyle": "white"
+		},
+		{
+			"contentId": 3,
+			"defaultStyle": "white"
+		},
+		{
+			"contentId": 4,
+			"defaultStyle": "white"
+		},
+		{
+			"contentId": 5,
+			"defaultStyle": "white"
+		},
+		{
+			"contentId": 6,
+			"defaultStyle": "white"
 		}
 	]
 ];

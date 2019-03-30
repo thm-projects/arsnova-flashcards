@@ -1402,6 +1402,28 @@
           "subject": "Thema"
         }
     },
+    "cardType18": {
+      "name": "Cube",
+      "longName": "Cube: Vorne | Rechts | Hinten | Links | Oben | Unten",
+      "content1": "Vorne",
+      "content2": "Rechts",
+      "content3": "Hinten",
+      "content4": "Links",
+      "content5": "Oben",
+      "content6": "Unten",
+      "placeholders": {
+        "subject": "Gib das Thema der Seite an!",
+        "content1": "Vorne",
+        "content2": "Rechts",
+        "content3": "Hinten",
+        "content4": "Links",
+        "content5": "Oben",
+        "content6": "Unten"
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
+    },
     "tooltip": {
       "toggle3D": "3D-Ansicht aktivieren / deaktivieren",
       "contrast": "Setze die Präsentation in den Kontrastmodus",
