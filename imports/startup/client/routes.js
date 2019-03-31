@@ -45,7 +45,7 @@ Router.route('/home', {
 	name: 'home',
 	template: 'welcome',
 	subscriptions: function () {
-		return [Meteor.subscribe('wordcloudCardsets')];
+		return [Meteor.subscribe('wordcloudCardsets'), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		Session.set('helpFilter', "start");
