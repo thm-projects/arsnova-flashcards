@@ -2,12 +2,12 @@
   "name": "A: Quiz zum Kennenlernen",
   "description": "Die Quizfragen sind Teil der Demo-Kartei auf der 🍅cards-Startseite.",
   "date": "2018-06-08T13:51:09.335Z",
-  "dateUpdated": "2019-03-20T12:33:44.707Z",
+  "dateUpdated": "2019-03-31T06:12:10.919Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
-  "visible": false,
+  "visible": true,
   "ratings": true,
-  "kind": "personal",
+  "kind": "free",
   "price": 0,
   "reviewed": false,
   "reviewer": "undefined",
@@ -15,24 +15,42 @@
   "rating": 0,
   "raterCount": 0,
   "quantity": 13,
-  "license": [],
+  "license": [
+    "by",
+    "nc",
+    "sa"
+  ],
   "userDeleted": false,
   "learningActive": false,
-  "maxCards": 0,
-  "daysBeforeReset": 0,
-  "learningStart": "1970-01-01T00:00:00.000Z",
-  "learningEnd": "1970-01-01T00:00:00.000Z",
-  "registrationPeriod": "1970-01-01T00:00:00.000Z",
-  "learningInterval": [],
-  "wordcloud": false,
+  "maxCards": 40,
+  "daysBeforeReset": 7,
+  "learningStart": "2018-06-08T13:51:09.335Z",
+  "learningEnd": "2038-01-19T20:11:46.538Z",
+  "registrationPeriod": "2038-01-19T20:11:46.538Z",
+  "learningInterval": [
+    1,
+    3,
+    7,
+    28,
+    84
+  ],
+  "wordcloud": true,
   "shuffled": false,
   "cardType": 11,
   "difficulty": 1,
-  "noDifficulty": true,
+  "noDifficulty": false,
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
     "givenname": "Klaus"
+  },
+  "workload": {
+    "bonus": {
+      "count": 0
+    },
+    "normal": {
+      "count": 2
+    }
   }
 }, {
   "subject": "01. Die App für dein Studium",
@@ -56,6 +74,7 @@
   "backgroundStyle": 0,
   "date": "2018-06-08T13:54:04.447Z",
   "dateUpdated": "2019-03-03T09:51:32.475Z",
+  "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -85,6 +104,7 @@
   "backgroundStyle": 1,
   "date": "2018-09-22T15:21:18.473Z",
   "dateUpdated": "2019-03-04T07:27:00.570Z",
+  "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -112,6 +132,7 @@
   "backgroundStyle": 1,
   "date": "2018-06-10T05:23:42.665Z",
   "dateUpdated": "2019-03-03T09:52:40.423Z",
+  "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -120,7 +141,7 @@
 }, {
   "subject": "04. Digitale Kartons: Karteien",
   "front": "![ ](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Box.png width=80px)\n\n(##) Welche Karteien gibt es auf 🍅cards?",
-  "back": "Es gibt **18 Karteitypen**, die beim Anlegen einer Kartei zur Auswahl stehen. \nJede Kartei beinhaltet ausschließlich Karten desselben Typs, es sei denn sie wurde aus mehreren Karteien unterschiedlichen Typs gemischt wie diese Demo-Kartei. Einige Karteitypen haben eine **Schwierigkeitsstufe (Level)**, die an der Kartenfarbe erkennbar ist: Grün für Basics, Blau für Fortgeschritten und Rot für Expert*in. \n\nKarteitypen unterscheiden sich in der Anzahl der Kartenseiten: nicht nur Vorder- und Rückseiten sind möglich, sondern auch weitere virtuelle Seiten zur Vertiefung des Lerninhalts oder zur Angabe von Web-Ressourcen und Literatur. Lern-, Entwurfsmuster- und Prüfungskarten haben zusätzlich eine **Lernzielstufe** in Anlehnung an die [Taxonomie von Anderson & Krathwohl](https://thesecondprinciple.com/teaching-essentials/beyond-bloom-cognitive-taxonomy-revised/):  Verstehen, Anwenden, Analysieren, Synthetisieren, Bewerten, Innovieren. Für die Formulierung des Lernziels auf der gewählten Lernzielstufe werden passende Verben im Editor vorgeschlagen.\n\n<div style=\"columns:2;-webkit-columns:2;-moz-columns:2;column-gap:2em;-webkit-column-gap:2em;-moz-column-gap:2em\">\n**Karteitypen und die Seitentitel  ihrer Karten:**\n\n1. **Mitschrift**: Foto der Mitschrift | Nachbearbeitung | To-dos\n+ **Lerneinheit**: Lernziel | Vertiefung | Zusammenfassung | Literatur\n+ **Aufgabensammlung**: Aufgabe | Lösung\n+ **Glossar**: Fachbegriff | Beschreibung | Literatur\n+ **Anweisungssatz**: Semantik | Syntax | Online-API\n+ **Formelsammlung**: Aufgabe | Formel | Lösung | Links\n+ **Entwurfsmuster**: Problem | Kontext | Kräfte | Lösung | Verwendung | Verweise\n+ **Zielerreichung**: Strategie |Taktiken\n+ **Inverses Fragen**: Frage A = Antwort B | Frage B = Antwort A\n+ **Quiz**: Frage | Antwort\n+ **Prüfung**: Prüfungsfrage | Erwartete Antwort | Begründung\n+ **Vokabelkartei**: Sprache A | Sprache B\n+ **Fotokartei**: Foto | Lizenz\n+ **Zitatensammlung**: Zitat | Zitierte Person | Bibliografische Angaben\n+ **Literatur**: Bibliografische Angaben | Schlagwörter | Rezensionen | Exzerpt | Anmerkung | Export\n+ **Notizen**: 1 Seite\n+ **To-dos**: 1 Seite\n+ **Vortrag**: 1 Seite\n</div>\n\n\n|Karteityp | Seiten | Schwie&shy;rig&shy;keits-Stufen |[Lernziel-Taxonomie](https://dbs-lin.ruhr-uni-bochum.de/lehreladen/planung-durchfuehrung-kompetenzorientierter-lehre/lehr-und-lernziele/typen-und-stufen/) | [Spaced Learning](https://www.webcampus.de/blog/123/spaced-learning-mit-intelligenter-lerntechnik-besser-erinnern) | Rückwärts-Lernen[^R-Lernen] | Hinweis / Beispiel|\n|-|:-:|:-:|:-:|:-:|:-:|:-|\n|Mitschrift|3|X |||||\n|Lerneinheit| 4|X |X |X|||\n|Aufgabensammlung| 2| X||X|||\n|Glossar| 3|X ||X|||\n|Anweisungssatz| 3|X ||X|||\n|Formelsammlung| 4|X | |X||$\\TeX$-Formelsatz mit [MathJax](https://mathjax.org) in SVG-Qualität|\n|Entwurfsmuster| 6|X |X |X|||\n|Zielerreichung| 2|X ||X|||\n|Inverses Fragen| 2| X| |X|X|Frage A: <q>Wie sieht das UML-Klassendiagramm des Entwurfsmusters Observer aus?</q><br>Frage B: <q>Welches Entwurfsmuster beschreibt dieses UML-Klassendiagramm?</q>|\n|Quiz| 2| X| |X|||\n|Prüfung| 3|X | X|X|||\n|Vokabelkartei| 2|X||X|X|Integration des Wörterbuchs [Beolingus](https://dict.tu-chemnitz.de/) und des Übersetzungsdienstes [DeepL](https://www.deepl.com/translator)|\n|Fotokartei| 2||||[|Lightbox](https://de.wikipedia.org/wiki/Lightbox)|\n|Zitatensammlung| 3|||X|||\n|Literatur| 6|X|||||\n|Notizen|1||||||\n|To-dos| 1||||[|Task-Liste à la GitHub](https://casual-effects.com/markdeep/features.md.html#toc1.3)|\n|Vortrag| 1|||||für die Beamer-Präsentation optimiert: Vollbild, Textskalierung, Tastensteuerung; direkter Aufruf der Audience-Response-Apps [ARSnova](https://arsnova.eu/blog) und [arsnova.click](https://arsnova.click)|\n[Ausstattungsmerkmale der Karteitypen]\n\n[^R-Lernen]: Beim Rückwärts-Lernen wird die Rückseite der Karte zuerst angezeigt. ",
+  "back": "Es gibt **19 Karteitypen**, die beim Anlegen einer Kartei zur Auswahl stehen. \nJede Kartei beinhaltet ausschließlich Karten desselben Typs, es sei denn sie wurde aus mehreren Karteien unterschiedlichen Typs gemischt wie diese Demo-Kartei. Einige Karteitypen haben eine **Schwierigkeitsstufe (Level)**, die an der Kartenfarbe erkennbar ist: Grün für Basics, Blau für Fortgeschritten und Rot für Expert*in. \n\nKarteitypen unterscheiden sich in der Anzahl der Kartenseiten: nicht nur Vorder- und Rückseiten sind möglich, sondern auch weitere virtuelle Seiten zur Vertiefung des Lerninhalts oder zur Angabe von Web-Ressourcen und Literatur. Lern-, Entwurfsmuster- und Prüfungskarten haben zusätzlich eine **Lernzielstufe** in Anlehnung an die [Taxonomie von Anderson & Krathwohl](https://thesecondprinciple.com/teaching-essentials/beyond-bloom-cognitive-taxonomy-revised/):  Verstehen, Anwenden, Analysieren, Synthetisieren, Bewerten, Innovieren. Für die Formulierung des Lernziels auf der gewählten Lernzielstufe werden passende Verben im Editor vorgeschlagen.\n\n<div style=\"columns:2;-webkit-columns:2;-moz-columns:2;column-gap:2em;-webkit-column-gap:2em;-moz-column-gap:2em\">\n**Karteitypen und die Seitentitel  ihrer Karten:**\n\n1. **Mitschrift**: Foto der Mitschrift | Nachbearbeitung | To-dos\n+ **Lerneinheit**: Lernziel | Vertiefung | Zusammenfassung | Literatur\n+ **Literatur**: Werk | Schlagwörter | Rezensionen | Inhalt | Anmerkungen | BibTeX\n+ **Aufgabensammlung**: Aufgabe | Lösung\n+ **Glossar**: Fachbegriff | Beschreibung | Literatur\n+ **Anweisungssatz**: Semantik | Syntax | Online-API\n+ **Formelsammlung**: Aufgabe | Formel | Lösung | Links\n+ **Entwurfsmuster**: Problem | Kontext | Kräfte | Lösung | Verwendung | Verweise\n+ **Zielerreichung**: Strategie |Taktiken\n+ **Inverses Fragen**: Frage A = Antwort B | Frage B = Antwort A\n+ **Quiz**: Frage | Antwort\n+ **Prüfung**: Prüfungsfrage | Erwartete Antwort | Begründung\n+ **Vokabelkartei**: Sprache A | Sprache B\n+ **Fotokartei**: Foto | Lizenz\n+ **Zitatensammlung**: Zitat | Zitierte Person | Bibliografische Angaben\n+ **Literatur**: Bibliografische Angaben | Schlagwörter | Rezensionen | Inhaltsverzeichnis | Anmerkungen | BibTeX\n+ **Notizen**: 1 Seite\n+ **To-dos**: 1 Seite\n+ **Vortrag**: 1 Seite\n</div>\n\n\n|Karteityp | Seiten | Schwie&shy;rig&shy;keits-Stufen |[Lernziel-Taxonomie](https://dbs-lin.ruhr-uni-bochum.de/lehreladen/planung-durchfuehrung-kompetenzorientierter-lehre/lehr-und-lernziele/typen-und-stufen/) | [Spaced Learning](https://www.webcampus.de/blog/123/spaced-learning-mit-intelligenter-lerntechnik-besser-erinnern) | Rückwärts-Lernen[^R-Lernen] | Hinweis / Beispiel|\n|-|:-:|:-:|:-:|:-:|:-:|:-|\n|Mitschrift|3|X |||||\n|Lerneinheit| 4|X |X |X|||\n|Literatur| 6|X | ||||\n|Aufgabensammlung| 2| X||X|||\n|Glossar| 3|X ||X|||\n|Anweisungssatz| 3|X ||X|||\n|Formelsammlung| 4|X | |X||$\\TeX$-Formelsatz mit [MathJax](https://mathjax.org) in SVG-Qualität|\n|Entwurfsmuster| 6|X |X |X|||\n|Zielerreichung| 2|X ||X|||\n|Inverses Fragen| 2| X| |X|X|Frage A: <q>Wie sieht das UML-Klassendiagramm des Entwurfsmusters Observer aus?</q><br>Frage B: <q>Welches Entwurfsmuster beschreibt dieses UML-Klassendiagramm?</q>|\n|Quiz| 2| X| |X|||\n|Prüfung| 3|X | X|X|||\n|Vokabelkartei| 2|X||X|X|Integration des Wörterbuchs [Beolingus](https://dict.tu-chemnitz.de/) und des Übersetzungsdienstes [DeepL](https://www.deepl.com/translator)|\n|Fotokartei| 2||||[|Lightbox](https://de.wikipedia.org/wiki/Lightbox)|\n|Zitatensammlung| 3|||X|||\n|Literatur| 6|X|||||\n|Notizen|1||||||\n|To-dos| 1||||[|Task-Liste à la GitHub](https://casual-effects.com/markdeep/features.md.html#toc1.3)|\n|Vortrag| 1|||||für die Beamer-Präsentation optimiert: Vollbild, Textskalierung, Tastensteuerung; direkter Aufruf der Audience-Response-Apps [ARSnova](https://arsnova.eu/blog) und [arsnova.click](https://arsnova.click)|\n[Ausstattungsmerkmale der Karteitypen]\n\n[^R-Lernen]: Beim Rückwärts-Lernen wird die Rückseite der Karte zuerst angezeigt. ",
   "centerTextElement": [
     true,
     false,
@@ -138,7 +159,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "date": "2018-06-08T14:56:06.624Z",
-  "dateUpdated": "2019-03-20T12:33:44.696Z",
+  "dateUpdated": "2019-03-31T06:12:10.905Z",
   "learningIndex": "0",
   "learningUnit": "0",
   "originalAuthorName": {
@@ -168,6 +189,7 @@
   "backgroundStyle": 1,
   "date": "2018-06-09T17:45:11.922Z",
   "dateUpdated": "2019-03-06T06:46:46.988Z",
+  "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -195,6 +217,7 @@
   "backgroundStyle": 1,
   "date": "2018-06-08T14:56:06.624Z",
   "dateUpdated": "2019-03-05T17:00:06.554Z",
+  "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -224,6 +247,7 @@
   "backgroundStyle": 1,
   "date": "2018-12-02T11:29:54.385Z",
   "dateUpdated": "2019-03-05T17:00:10.119Z",
+  "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -253,6 +277,7 @@
   "backgroundStyle": 1,
   "date": "2018-08-11T12:00:07.793Z",
   "dateUpdated": "2019-03-06T16:40:46.064Z",
+  "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -282,6 +307,7 @@
   "backgroundStyle": 1,
   "date": "2019-03-02T16:46:17.177Z",
   "dateUpdated": "2019-03-06T16:42:47.261Z",
+  "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -311,6 +337,7 @@
   "backgroundStyle": 1,
   "date": "2019-03-02T16:46:17.177Z",
   "dateUpdated": "2019-03-07T05:43:23.975Z",
+  "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -340,6 +367,7 @@
   "backgroundStyle": 1,
   "date": "2019-03-03T07:32:30.364Z",
   "dateUpdated": "2019-03-07T05:57:31.037Z",
+  "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -369,6 +397,7 @@
   "backgroundStyle": 1,
   "date": "2018-11-12T10:05:45.855Z",
   "dateUpdated": "2019-03-07T05:52:27.458Z",
+  "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -398,6 +427,7 @@
   "backgroundStyle": 1,
   "date": "2019-02-27T12:24:16.268Z",
   "dateUpdated": "2019-03-06T07:08:26.319Z",
+  "learningIndex": "0",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",

@@ -1236,12 +1236,12 @@
     },
     "cardType7": {
       "name": "Fachliteratur",
-      "longName": "Literatur: Werk | Schlagwörter | Rezensionen | Inhalt | Anmerkung | BibTeX",
-      "content1": "Bibliografische Angaben",
+      "longName": "Literatur: Werk | Schlagwörter | Rezensionen | Inhalt | Anmerkungen | BibTeX",
+      "content1": "Werk",
       "content2": "Schlagwörter",
       "content3": "Rezensionen",
-      "content4": "Inhaltsverzeichnis",
-      "content5": "Anmerkung",
+      "content4": "Inhalt",
+      "content5": "Anmerkungen",
       "content6": "BibTeX",
       "placeholders": {
         "subject": "Werkstitel",
