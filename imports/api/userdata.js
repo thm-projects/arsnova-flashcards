@@ -67,6 +67,22 @@ export function exportAuthorName(owner) {
 }
 
 if (Meteor.isServer) {
+	Meteor.publish("userDataLandingPage", function () {
+		let cardsets = Cardsets.find({wordcloud: true}, {fields: {owner: 1}}).fetch();
+		let owners = [];
+		for (let i = 0; i < cardsets.length; i++) {
+			owners.push(cardsets[i].owner);
+		}
+		return Meteor.users.find({_id: {$in: owners}},
+			{
+				fields: {
+					'profile.name': 1,
+					'profile.birthname': 1,
+					'profile.givenname': 1,
+					'profile.title': 1
+				}
+			});
+	});
 	Meteor.publish("userDataBonus", function (cardset_id, user_id) {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
 			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1}});
