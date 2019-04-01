@@ -6,6 +6,10 @@ export let NavigatorCheck = class CardVisuals {
 		return (window.screen.width < config.minimumTabletWidth && window.screen.height < config.minimumTabletHeight);
 	}
 
+	static isTablet () {
+		return (window.screen.width >= config.minimumTabletWidth && window.screen.height >= config.minimumTabletHeight && window.screen.width < config.maximumTabletWidth && window.screen.height < config.maximumTabletHeight);
+	}
+
 	static isIOS () {
 		return config.iOSPlatforms.indexOf(navigator.platform) >= 0;
 	}
