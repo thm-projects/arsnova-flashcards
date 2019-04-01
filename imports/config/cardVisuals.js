@@ -19,7 +19,7 @@ let defaultFontSize = {
 		},
 		"desktop": {
 			"normal": 16,
-			"cube": 11
+			"cube": 14
 		}
 	}
 };
