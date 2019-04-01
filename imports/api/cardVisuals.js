@@ -565,9 +565,41 @@ export let CardVisuals = class CardVisuals {
 	static setTextZoom () {
 		let fontSize;
 		if (NavigatorCheck.isSmartphone() || (Route.isEditMode() && MarkdeepEditor.getMobilePreview())) {
-			fontSize = config.defaultFontSizeMobile;
+			if ((NavigatorCheck.isLandscape() && NavigatorCheck.isSmartphone()) || (Route.isEditMode() && Session.get('mobilePreviewRotated') === 0)) {
+				fontSize = config.defaultFontSize.landscape.mobile;
+			} else {
+				fontSize = config.defaultFontSize.portrait.mobile;
+			}
 		} else {
-			fontSize = config.defaultFontSize;
+			if (NavigatorCheck.isTablet()) {
+				if (NavigatorCheck.isLandscape()) {
+					if (Session.get('is3DActive')) {
+						fontSize = config.defaultFontSize.landscape.tablet.cube;
+					} else {
+						fontSize = config.defaultFontSize.landscape.tablet.normal;
+					}
+				} else {
+					if (Session.get('is3DActive')) {
+						fontSize = config.defaultFontSize.portrait.tablet.cube;
+					} else {
+						fontSize = config.defaultFontSize.portrait.tablet.normal;
+					}
+				}
+			} else {
+				if (NavigatorCheck.isLandscape()) {
+					if (Session.get('is3DActive')) {
+						fontSize = config.defaultFontSize.landscape.desktop.cube;
+					} else {
+						fontSize = config.defaultFontSize.landscape.desktop.normal;
+					}
+				} else {
+					if (Session.get('is3DActive')) {
+						fontSize = config.defaultFontSize.portrait.desktop.cube;
+					} else {
+						fontSize = config.defaultFontSize.portrait.desktop.normal;
+					}
+				}
+			}
 		}
 		let newFontSize = Math.round((fontSize * Session.get('currentZoomValue')) / 100);
 		$('.cardContent').css("font-size", newFontSize + "px");

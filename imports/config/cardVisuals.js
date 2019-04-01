@@ -1,5 +1,29 @@
-let defaultFontSize = 16;
-let defaultFontSizeMobile = 12;
+//All values are set in pixel. Tablet size limit has to be defined in NavigatorCheck.
+let defaultFontSize = {
+	"portrait": {
+		"mobile": 12,
+		"tablet": {
+			"normal": 16,
+			"cube": 16
+		},
+		"desktop": {
+			"normal": 16,
+			"cube": 16
+		}
+	},
+	"landscape": {
+		"mobile": 12,
+		"tablet": {
+			"normal": 14,
+			"cube": 10
+		},
+		"desktop": {
+			"normal": 16,
+			"cube": 14
+		}
+	}
+};
+
 let defaultTextZoomValue = 100;
 let iFrameWidthRatio = 16;
 let iFrameHeightRatio = 9;
@@ -30,7 +54,6 @@ let cubeMaxNavigationWidth = 1200;
 
 module.exports = {
 	defaultFontSize,
-	defaultFontSizeMobile,
 	defaultTextZoomValue,
 	iFrameWidthRatio,
 	iFrameHeightRatio,
