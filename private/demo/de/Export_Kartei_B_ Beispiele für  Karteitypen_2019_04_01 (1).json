@@ -2,7 +2,7 @@
   "name": "B: Beispiele für  Karteitypen",
   "description": "Ziel ist ein Beispiel für alle 18 Karteitypen.",
   "date": "2019-03-06T18:49:04.765Z",
-  "dateUpdated": "2019-03-31T17:59:38.392Z",
+  "dateUpdated": "2019-04-01T09:09:50.633Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -44,7 +44,7 @@
   }
 }, {
   "subject": "Karteitypen am Beispiel",
-  "front": "Karteityp | Titel der Beispielkarte\n----------|----------\nLerneinheit | <q>Test-Pyramide</q>\nGlossar | <q>Induktionsbeweis</q>\nQuiz | <q>Die Millionenfrage</q>\nFotokartei | <q>Exkursion zur CloudNativeCon '18</q>\nFormelsammlung | <q>Quotientenregel</q>\nLiteratur | <q>Linux-Standardwerk</q>\nVokabelkartei | <q>Navigiere mit der Tab-Taste zu DeepL</q>\nPrüfung |  <q>Vererbung</q>\nZitatensammlung |  <q>Über das Coden & Testen</q>\nTo-dos |  <q>Markdeep-Test</q>\nMitschrift |  <q>SWT-Mitschrift vom 08.05.2018</q>\nAnweisungssatz |  <q>Keine Angst vor der Shell</q>\nVortrag |  <q>The Making of 🍅cards</q>\n[Beispiele, die im Folgenden gezeigt werden]\n\n",
+  "front": "Karteityp | Titel der Beispielkarte\n----------|----------\nLerneinheit | <q>Test-Pyramide</q>\nGlossar | <q>Induktionsbeweis</q>\nQuiz | <q>Die Millionenfrage</q>\nLiteratur | <q>Linux-Standardwerk</q>\nVokabelkartei | <q>Navigiere mit der Tab-Taste zu DeepL</q>\nPrüfung |  <q>Vererbung</q>\nZitatensammlung |  <q>Über das Coden & Testen</q>\nMitschrift |  <q>SWT-Mitschrift vom 08.05.2018</q>\nAnweisungssatz |  <q>Keine Angst vor der Shell</q>\nVortrag |  <q>The Making of 🍅cards</q>\n[Beispiele, die im Folgenden gezeigt werden]\n\n",
   "centerTextElement": [
     true,
     true,
@@ -66,7 +66,7 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-03-31T17:59:38.374Z",
+  "dateUpdated": "2019-04-01T09:09:50.622Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
