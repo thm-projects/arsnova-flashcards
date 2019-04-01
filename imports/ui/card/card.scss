@@ -255,11 +255,11 @@ img.cardside {
   p:nth-child(n+3) {
     margin: 0;
     @media(min-width: 768px) {
-      margin-top: $font_size_markdeep * 1.5;
+      margin-top: $paragraph_margin_top;
     }
 
     @media(max-width: 767px) {
-      margin-top: $font_size_markdeep_mobile * 1.5;
+      margin-top: $paragraph_margin_top_mobile;
     }
   }
 
