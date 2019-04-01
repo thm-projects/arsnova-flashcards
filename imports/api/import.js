@@ -161,6 +161,9 @@ Meteor.methods({
 				} else {
 					originalAuthorName = data[0].originalAuthorName;
 				}
+				if (data[0].sortType !== undefined) {
+					data[0].sortType = 0;
+				}
 				let cardset_id = Cardsets.insert({
 					name: data[0].name,
 					description: data[0].description,
@@ -195,7 +198,8 @@ Meteor.methods({
 					cardType: data[0].cardType,
 					difficulty: data[0].difficulty,
 					noDifficulty: CardType.gotDifficultyLevel(data[0].cardType),
-					originalAuthorName: originalAuthorName
+					originalAuthorName: originalAuthorName,
+					sortType: data[0].sortType
 				}, {trimStrings: false});
 				if (cardset_id) {
 					data.shift();
@@ -310,7 +314,8 @@ Meteor.methods({
 								cardType: cardset[0].cardType,
 								difficulty: cardset[0].difficulty,
 								noDifficulty: CardType.gotDifficultyLevel(cardset[0].cardType),
-								originalAuthorName: originalAuthorName
+								originalAuthorName: originalAuthorName,
+								sortType: 0
 							}, {trimStrings: false});
 							cardGroups.push(cardset_id);
 							cardset.shift();
@@ -353,7 +358,8 @@ Meteor.methods({
 					cardType: 0,
 					difficulty: 0,
 					noDifficulty: CardType.gotDifficultyLevel(0),
-					originalAuthorName: ""
+					originalAuthorName: "",
+					sortType: 0
 				}, {trimStrings: false});
 			} catch (error) {
 				throw new Meteor.Error(error);

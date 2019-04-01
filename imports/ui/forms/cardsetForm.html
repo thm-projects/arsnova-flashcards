@@ -151,6 +151,13 @@
                                 {{> difficultyEditor}}
                             </div>
                         {{/if}}
+                        <br>
+                        <label id="setSortTypeyLabel" class="col-xs-12 control-label" for="setSortType">{{_
+                                "cardsetForm.sortType.label"}}</label>
+                        <div id="setSortType" class="col-xs-12 cardtext editorElement">
+                            <label class="radio-inline"><input type="radio" id="sortDate" name="sortType" value="1">{{_ "cardsetForm.sortType.sortDate"}}</label>
+                            <label class="radio-inline"><input type="radio" id="sortContent" name="sortType" value="0">{{_ "cardsetForm.sortType.sortContent"}}</label>
+                        </div>
                     {{/unless}}
                 {{/unless}}
             </div>
