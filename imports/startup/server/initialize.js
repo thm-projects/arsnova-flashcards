@@ -790,6 +790,19 @@ Meteor.startup(function () {
 		Meteor.call('updateCardsetRating', cardsets[i]._id);
 	}
 
+	cardsets = Cardsets.find({sortType: {$exists: false}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					sortType: 0
+				}
+			}
+		);
+	}
+
 	let wozniak;
 	wozniak = Wozniak.find({skipped: {$exists: true}}).fetch();
 	for (let i = 0; i < wozniak.length; i++) {

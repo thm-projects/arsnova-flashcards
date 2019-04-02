@@ -55,29 +55,33 @@ export let CardType = class CardType {
 		}
 	}
 
-	static getSortQuery (cardType) {
+	static getSortQuery (cardType, sortType) {
 		let sortQuery = {};
 		sortQuery.subject = 1;
-		let cubeSides = this.getCardTypeCubeSides(cardType);
-		switch (cubeSides[0].contentId) {
-			case 1:
-				sortQuery.front = 1;
-				break;
-			case 2:
-				sortQuery.back = 1;
-				break;
-			case 3:
-				sortQuery.hint = 1;
-				break;
-			case 4:
-				sortQuery.lecture = 1;
-				break;
-			case 5:
-				sortQuery.top = 1;
-				break;
-			case 6:
-				sortQuery.bottom = 1;
-				break;
+		if (sortType === 0) {
+			let cubeSides = this.getCardTypeCubeSides(cardType);
+			switch (cubeSides[0].contentId) {
+				case 1:
+					sortQuery.front = 1;
+					break;
+				case 2:
+					sortQuery.back = 1;
+					break;
+				case 3:
+					sortQuery.hint = 1;
+					break;
+				case 4:
+					sortQuery.lecture = 1;
+					break;
+				case 5:
+					sortQuery.top = 1;
+					break;
+				case 6:
+					sortQuery.bottom = 1;
+					break;
+			}
+		} else {
+			sortQuery.date = 1;
 		}
 		return sortQuery;
 	}

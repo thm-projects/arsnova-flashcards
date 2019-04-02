@@ -96,7 +96,8 @@ Template.cardsetList.helpers({
 	},
 	cardList: function (countCards) {
 		let sortQuery;
-		sortQuery = CardType.getSortQuery(Cardsets.findOne({_id: this.cardset_id}).cardType);
+		let cardset = Cardsets.findOne({_id: this.cardset_id}, {fields: {cardType: 1, sortType: 1}});
+		sortQuery = CardType.getSortQuery(cardset.cardType, cardset.sortType);
 		if (countCards) {
 			return Cards.find({
 				cardset_id: this.cardset_id,

@@ -6,6 +6,7 @@ import {CardType} from '../../api/cardTypes.js';
 import {Route} from '../../api/route.js';
 import {BertAlertVisuals} from "../../api/bertAlertVisuals";
 import {Cardsets} from "../../api/cardsets";
+import * as config from "../../config/cardset";
 
 export function isNewCardset() {
 	return Session.get('isNewCardset');
@@ -73,6 +74,23 @@ export function cleanModal() {
 		Session.set('difficultyColor', 1);
 	}
 	$('#contentEditor').css('height', 'unset');
+	if (isNewCardset()) {
+		if (config.defaultSortTopicContentByDateCreate) {
+			$('#sortDate').prop('checked', true);
+			$('#sortContent').prop('checked', false);
+		} else {
+			$('#sortDate').prop('checked', false);
+			$('#sortContent').prop('checked', true);
+		}
+	} else {
+		if (Session.get('previousCardsetData').sortType === 0) {
+			$('#sortDate').prop('checked', false);
+			$('#sortContent').prop('checked', true);
+		} else {
+			$('#sortDate').prop('checked', true);
+			$('#sortContent').prop('checked', false);
+		}
+	}
 }
 
 export function saveCardset() {
@@ -80,6 +98,7 @@ export function saveCardset() {
 	let bertDelayMultiplier = 0;
 	let error = false;
 	let errorMessage = "<ul>";
+	let sortType = $("input[name='sortType']:checked").val();
 	if ($('#setName').val() === "") {
 		error = true;
 		errorMessage += "<li>" + TAPi18n.__('modal-dialog.name') + "</li>";
@@ -125,7 +144,7 @@ export function saveCardset() {
 				shuffled = false;
 				cardGroups = [];
 			}
-			Meteor.call("addCardset", name, description, false, true, 'personal', shuffled, cardGroups, Number(cardType), Session.get('difficultyColor'), function (error, result) {
+			Meteor.call("addCardset", name, description, false, true, 'personal', shuffled, cardGroups, Number(cardType), Session.get('difficultyColor'), Number(sortType), function (error, result) {
 				$('#setCardsetFormModal').modal('hide');
 				if (result) {
 					if (Session.get('importCards') !== undefined) {
@@ -144,7 +163,7 @@ export function saveCardset() {
 			if (Session.get('previousCardsetData').shuffled) {
 				cardType = -1;
 			}
-			Meteor.call("updateCardset", Session.get('previousCardsetData')._id, name, description, Number(cardType), Session.get('difficultyColor'));
+			Meteor.call("updateCardset", Session.get('previousCardsetData')._id, name, description, Number(cardType), Session.get('difficultyColor'), Number(sortType));
 			if (Number(cardType) !== -1) {
 				Session.set('cardType', Number(cardType));
 			}
