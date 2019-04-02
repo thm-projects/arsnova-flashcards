@@ -72,7 +72,7 @@ export let CardIndex = class CardIndex {
 				fields: {_id: 1, cardType: 1}
 			});
 			cardGroups.forEach(function (cardGroup) {
-				sortQuery = CardType.getSortQuery(cardGroup.cardType);
+				sortQuery = CardType.getSortQuery(cardGroup.cardType, cardGroup.sortType);
 				indexCards = Cards.find({cardset_id: cardGroup._id}, {
 					sort: sortQuery, fields: {_id: 1}
 				});
@@ -81,7 +81,7 @@ export let CardIndex = class CardIndex {
 				});
 			});
 		} else {
-			sortQuery = CardType.getSortQuery(cardset.cardType);
+			sortQuery = CardType.getSortQuery(cardset.cardType, cardset.sortType);
 			indexCards = Cards.find({cardset_id: cardset._id}, {sort: sortQuery, fields: {_id: 1}});
 			indexCards.forEach(function (indexCard) {
 				cardIndex.push(indexCard._id);}

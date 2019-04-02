@@ -611,6 +611,13 @@
       }
     }
   },
+  "cardsetForm": {
+    "sortType": {
+      "label": "Sortieroption für den Inhalt der Themen:",
+      "sortDate": "Nach Erstelldatum sortieren",
+      "sortContent": "Nach Inhalt sortieren"
+    }
+  },
   "modal-dialog": {
     "missingFields": "Bitte fülle die folgenden Felder aus",
     "newcarddeck": "Kartei anlegen (Kartenbox)",

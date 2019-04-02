@@ -306,6 +306,10 @@ const CardsetsSchema = new SimpleSchema({
 	learners: {
 		type: Number,
 		optional: true
+	},
+	sortType: {
+		type: Number,
+		optional: true
 	}
 });
 
@@ -434,8 +438,9 @@ Meteor.methods({
 	 * @param {String} cardGroups - The group names of the shuffled cards
 	 * @param {Number} cardType - The type that this cardset allows
 	 * @param {Number} difficulty - The difficulty level of the cardset
+	 * @param {Number} sortType - Sort the topic content by card content or date created, 0 = content, 1 = date created
 	 */
-	addCardset: function (name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty) {
+	addCardset: function (name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType) {
 		check(name, String);
 		check(description, String);
 		check(visible, Boolean);
@@ -444,6 +449,7 @@ Meteor.methods({
 		check(shuffled, Boolean);
 		check(cardType, Number);
 		check(difficulty, Number);
+		check(sortType, Number);
 		let quantity;
 		if (shuffled) {
 			if (!Roles.userIsInRole(Meteor.userId(), ['admin', 'editor', 'lecturer', 'university', 'pro'])) {
@@ -495,7 +501,8 @@ Meteor.methods({
 			cardGroups: cardGroups,
 			cardType: cardType,
 			difficulty: difficulty,
-			noDifficulty: !CardType.gotDifficultyLevel(cardType)
+			noDifficulty: !CardType.gotDifficultyLevel(cardType),
+			sortType: sortType
 		}, {trimStrings: false});
 		Meteor.call('updateCardsetCount', Meteor.userId());
 		return cardset;
@@ -716,14 +723,15 @@ Meteor.methods({
 	 * @param {String} description - Description for the content of the cardset
 	 * @param {Number} cardType - The type that this cardset allows
 	 * @param {Number} difficulty - The difficulty level of the cardset
+	 * @param {Number} sortType - Sort the topic content by card content or date created, 0 = content, 1 = date created
 	 */
-	updateCardset: function (id, name, description, cardType, difficulty) {
+	updateCardset: function (id, name, description, cardType, difficulty, sortType) {
 		check(id, String);
 		check(name, String);
 		check(description, String);
 		check(cardType, Number);
 		check(difficulty, Number);
-
+		check(sortType, Number);
 		// Make sure only the task owner can make a task private
 		let cardset = Cardsets.findOne(id);
 		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
@@ -738,7 +746,8 @@ Meteor.methods({
 					dateUpdated: new Date(),
 					cardType: cardType,
 					difficulty: difficulty,
-					noDifficulty: !CardType.gotDifficultyLevel(cardType)
+					noDifficulty: !CardType.gotDifficultyLevel(cardType),
+					sortType: sortType
 				}
 			}, {trimStrings: false});
 		} else {
