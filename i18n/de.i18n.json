@@ -613,7 +613,7 @@
   },
   "cardsetForm": {
     "sortType": {
-      "label": "Sortieroption für den Inhalt der Themen:",
+      "label": "Sortieroption für Karten desselben Themas",
       "sortDate": "Nach Erstelldatum sortieren",
       "sortContent": "Nach Inhalt sortieren"
     }
