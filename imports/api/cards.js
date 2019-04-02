@@ -8,6 +8,7 @@ import {check} from "meteor/check";
 import {CardEditor} from "./cardEditor";
 import {UserPermissions} from "./permissions";
 import {ServerStyle} from "./styles";
+import {TranscriptBonus, TranscriptBonusList} from "./transcriptBonus";
 
 export const Cards = new Mongo.Collection("cards");
 
@@ -68,7 +69,41 @@ if (Meteor.isServer) {
 	});
 	Meteor.publish("myTranscriptCards", function () {
 		if (this.userId) {
-			return Cards.find({owner: this.userId, cardType: 2, cardset_id: "-1"});
+			let bonusTranscripts = TranscriptBonus.find({owner: this.user_id}).fetch();
+			let cardFilter = [];
+			for (let i = 0; i < bonusTranscripts.length; i++) {
+				cardFilter.push(bonusTranscripts[i].card_id);
+			}
+			return Cards.find({_id: {$nin: cardFilter}, owner: this.userId, cardType: 2, cardset_id: "-1"});
+		} else {
+			this.ready();
+		}
+	});
+	Meteor.publish("myBonusTranscriptCards", function () {
+		if (this.userId) {
+			let bonusTranscripts = TranscriptBonus.find({owner: this.user_id}).fetch();
+			let cardFilter = [];
+			for (let i = 0; i < bonusTranscripts.length; i++) {
+				cardFilter.push(bonusTranscripts[i].card_id);
+			}
+			return Cards.find({_id: {$in: cardFilter}, owner: this.userId, cardType: 2, cardset_id: "-1"});
+		} else {
+			this.ready();
+		}
+	});
+	Meteor.publish("cardsetTranscriptBonusCards", function (cardset_id) {
+		if (this.userId) {
+			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1}});
+			if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+				let bonusTranscripts = TranscriptBonus.find({cardset_id: cardset._id}).fetch();
+				let cardFilter = [];
+				for (let i = 0; i < bonusTranscripts.length; i++) {
+					cardFilter.push(bonusTranscripts[i].card_id);
+				}
+				return Cards.find({_id: {$in: cardFilter}, cardType: 2, cardset_id: "-1"});
+			} else {
+				this.ready();
+			}
 		} else {
 			this.ready();
 		}
@@ -193,14 +228,6 @@ var CardsSchema = new SimpleSchema({
 	backgroundStyle: {
 		type: Number
 	},
-	learningIndex: {
-		type: String,
-		optional: true
-	},
-	learningUnit: {
-		type: String,
-		optional: true
-	},
 	originalAuthor: {
 		type: String,
 		optional: true
@@ -223,7 +250,7 @@ var CardsSchema = new SimpleSchema({
 Cards.attachSchema(CardsSchema);
 
 Meteor.methods({
-	addCard: function (cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {
+	addCard: function (cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, transcriptBonusUser) {
 		check(cardset_id, String);
 		check(subject, String);
 		check(content1, String);
@@ -237,8 +264,6 @@ Meteor.methods({
 		check(date, Date);
 		check(learningGoalLevel, Number);
 		check(backgroundStyle, Number);
-		check(learningIndex, String);
-		check(learningUnit, String);
 		// Make sure the user is logged in and is authorized
 		let cardset = Cardsets.findOne(cardset_id);
 		let isOwner = false;
@@ -252,8 +277,13 @@ Meteor.methods({
 		}
 
 		if (UserPermissions.isAdmin() || isOwner) {
-			if (subject === "") {
-				throw new Meteor.Error("Missing subject");
+			if (subject === "" && transcriptBonusUser === undefined) {
+				throw new Meteor.Error(TAPi18n.__('cardsubject_required', {}, Meteor.user().profile.locale));
+			}
+			if (transcriptBonusUser) {
+				if (!TranscriptBonusList.canBeSubmittedToLecture(transcriptBonusUser, Number(transcriptBonusUser.date_id))) {
+					throw new Meteor.Error(TAPi18n.__('transcriptForm.server.notFound', {}, Meteor.user().profile.locale));
+				}
 			}
 			let card_id = Cards.insert({
 				subject: subject.trim(),
@@ -269,12 +299,13 @@ Meteor.methods({
 				date: date,
 				learningGoalLevel: learningGoalLevel,
 				backgroundStyle: backgroundStyle,
-				learningIndex: learningIndex,
-				learningUnit: learningUnit,
 				owner: Meteor.userId(),
 				cardType: cardType,
 				dateUpdated: new Date()
 			}, {trimStrings: false});
+			if (transcriptBonusUser) {
+				Meteor.call("addTranscriptBonus", card_id, transcriptBonusUser.cardset_id, Meteor.userId(), Number(transcriptBonusUser.date_id));
+			}
 			if (cardset_id !== "-1") {
 				Cardsets.update(cardset_id, {
 					$set: {
@@ -320,8 +351,6 @@ Meteor.methods({
 				let content4 = "";
 				let content5 = "";
 				let content6 = "";
-				let learningUnit = "";
-				let learningIndex = -1;
 				if (card.front !== undefined) {
 					content1 = card.front;
 				}
@@ -340,20 +369,18 @@ Meteor.methods({
 				if (card.bottom !== undefined) {
 					content6 = card.bottom;
 				}
-				if (card.learningUnit !== undefined) {
-					learningUnit = card.learningUnit;
-				}
-				Meteor.call("addCard", targetCardset_id, card.subject, content1, content2, content3, content4, content5, content6, "0", card.centerTextElement, card.alignType, card.date, card.learningGoalLevel, card.backgroundStyle, learningIndex, learningUnit);
+				Meteor.call("addCard", targetCardset_id, card.subject, content1, content2, content3, content4, content5, content6, "0", card.centerTextElement, card.alignType, card.date, card.learningGoalLevel, card.backgroundStyle);
 				return true;
 			}
 		} else {
-			throw new Meteor.Error("not-authorized");
+			throw new Meteor.Error("not-authorizedmyBonusTranscriptCards");
 		}
 	},
 	deleteTranscript: function (card_id) {
 		let card = Cards.findOne(card_id);
 		if (card.owner === Meteor.userId() || UserPermissions.isAdmin()) {
 			let result = Cards.remove(card_id);
+			TranscriptBonus.remove({card_id: card_id});
 			Meteor.call('updateTranscriptCount', Meteor.userId());
 			return result;
 		}
@@ -401,7 +428,7 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 	},
-	updateCard: function (card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement,alignType, learningGoalLevel, backgroundStyle, learningIndex, learningUnit) {
+	updateCard: function (card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement,alignType, learningGoalLevel, backgroundStyle, transcriptBonusUser) {
 		check(card_id, String);
 		check(subject, String);
 		check(content1, String);
@@ -414,19 +441,38 @@ Meteor.methods({
 		check(alignType, [Number]);
 		check(learningGoalLevel, Number);
 		check(backgroundStyle, Number);
-		check(learningIndex, String);
-		check(learningUnit, String);
 		let card = Cards.findOne(card_id);
 		let cardset = Cardsets.findOne(card.cardset_id);
 		let isOwner = false;
-		if (card.cardset_id === "-1") {
+		if (transcriptBonusUser === null) {
+			transcriptBonusUser = undefined;
+		}
+		let transcriptBonusDatabase = TranscriptBonus.findOne({card_id: card_id});
+		if (transcriptBonusDatabase !== undefined) {
+			if (TranscriptBonusList.isDeadlineExpired(transcriptBonusDatabase)) {
+				throw new Meteor.Error(TAPi18n.__('transcriptForm.server.deadlineExpired', {}, Meteor.user().profile.locale));
+			}
+		}
+		if (card.cardset_id === "-1" && card.owner === Meteor.userId()) {
 			isOwner = true;
 		} else {
 			isOwner = UserPermissions.isOwner(cardset.owner);
 		}
 		if (UserPermissions.isAdmin() || isOwner) {
-			if (subject === "") {
-				throw new Meteor.Error("Missing subject");
+			if (subject === "" && transcriptBonusUser === undefined) {
+				throw new Meteor.Error(TAPi18n.__('cardsubject_required', {}, Meteor.user().profile.locale));
+			}
+			if (transcriptBonusUser === undefined) {
+				TranscriptBonus.remove({card_id: card_id});
+			} else {
+				if (transcriptBonusDatabase === undefined) {
+					if (!TranscriptBonusList.canBeSubmittedToLecture(transcriptBonusUser, Number(transcriptBonusUser.date_id))) {
+						throw new Meteor.Error(TAPi18n.__('transcriptForm.server.notFound', {}, Meteor.user().profile.locale));
+					}
+					Meteor.call("addTranscriptBonus", card_id, transcriptBonusUser.cardset_id, Meteor.userId(), Number(transcriptBonusUser.date_id));
+				} else {
+					TranscriptBonusList.checkForUpdate(card_id, Meteor.userId(), transcriptBonusUser, transcriptBonusDatabase, transcriptBonusUser.date_id);
+				}
 			}
 			Cards.update(card_id, {
 				$set: {
@@ -441,8 +487,6 @@ Meteor.methods({
 					alignType: alignType,
 					learningGoalLevel: learningGoalLevel,
 					backgroundStyle: backgroundStyle,
-					learningIndex: learningIndex,
-					learningUnit: learningUnit,
 					dateUpdated: new Date()
 				}
 			}, {trimStrings: false});
@@ -451,6 +495,7 @@ Meteor.methods({
 					dateUpdated: new Date()
 				}
 			});
+			return true;
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}

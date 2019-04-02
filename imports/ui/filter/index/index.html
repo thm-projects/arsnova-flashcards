@@ -33,8 +33,7 @@
             {{> filterIndexPool}}
         {{/if}}
 
-        {{#if isActiveRoute 'transcripts'}}
-            {{> cardsetForm}}
+        {{#if isActiveRoute regex='transcriptsPersonal|transcriptsBonus'}}
             {{> filterIndexTranscripts}}
         {{/if}}
     </div>
@@ -65,7 +64,7 @@
 <template name="filterIndexTranscripts">
     {{> deleteTranscriptForm}}
     <span class="filter-index-buttons empty-button-placeholder">
-        {{#if isMyTranscriptsRoute}}
+        {{#if isTranscriptRoute}}
             {{> filterItemCreateTranscriptButton}}
         {{/if}}
     </span>

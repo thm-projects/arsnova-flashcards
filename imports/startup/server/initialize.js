@@ -502,19 +502,6 @@ Meteor.startup(function () {
 		);
 	}
 
-	cards = Cards.find({learningIndex: {$exists: false}}).fetch();
-	for (let i = 0; i < cards.length; i++) {
-		Cards.update({
-				_id: cards[i]._id
-			},
-			{
-				$set: {
-					learningIndex: 0
-				}
-			}
-		);
-	}
-
 	cards = Cards.find({originalAuthorName: {$exists: false}}).fetch();
 	for (let i = 0; i < cards.length; i++) {
 		Cards.update({

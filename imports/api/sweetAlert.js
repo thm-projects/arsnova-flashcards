@@ -22,8 +22,8 @@ export let SweetAlertMessages = class SweetAlertMessages {
 				screenfull.request();
 			} else {
 				screenfull.exit();
-				if (Route.isPresentationTranscript()) {
-					Router.go('transcripts');
+				if (Route.isPresentationTranscriptPersonal()) {
+					Router.go('transcriptsPersonal');
 				} else {
 					Router.go('cardsetdetailsid', {
 						_id: Router.current().params._id
@@ -39,8 +39,8 @@ export let SweetAlertMessages = class SweetAlertMessages {
 				CardVisuals.toggleFullscreen();
 			} else {
 				screenfull.exit();
-				if (Route.isPresentationTranscript()) {
-					Router.go('transcripts');
+				if (Route.isPresentationTranscriptPersonal()) {
+					Router.go('transcriptsPersonal');
 				} else {
 					Router.go('cardsetdetailsid', {
 						_id: Router.current().params._id
@@ -54,8 +54,8 @@ export let SweetAlertMessages = class SweetAlertMessages {
 		swal.fire(config.exitPresentation()).then((result) => {
 			if (result.value) {
 				screenfull.exit();
-				if (Route.isPresentationTranscript()) {
-					Router.go('transcripts');
+				if (Route.isPresentationTranscriptPersonal()) {
+					Router.go('transcriptsPersonal');
 				} else {
 					Router.go('cardsetdetailsid', {
 						_id: Router.current().params._id

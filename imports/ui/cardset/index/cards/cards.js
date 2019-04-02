@@ -50,8 +50,6 @@ Template.cardsetList.helpers({
 			} else {
 				return Cardsets.find({_id: this._id}).fetch();
 			}
-		} else {
-			return Cardsets.find({_id: Session.get('tempLearningIndex')}).fetch();
 		}
 	},
 	getPriority: function (index) {
@@ -67,8 +65,6 @@ Template.cardsetList.helpers({
 			} else {
 				return Cards.find({cardset_id: this._id}).count();
 			}
-		} else {
-			return Cards.find({cardset_id: Session.get('tempLearningIndex'), cardType: 0}).count();
 		}
 	},
 	cardSubject: function () {
@@ -192,10 +188,6 @@ Template.cardsetList.events({
 				});
 			}
 		} else {
-			let learningUnit = $(evt.target).data('id');
-			Session.set('learningIndex', Session.get('tempLearningIndex'));
-			Session.set('learningUnit', learningUnit);
-			Session.set('subject', Cards.findOne({_id: learningUnit}).subject);
 			$('#showSelectLearningUnitModal').modal('hide');
 		}
 	}

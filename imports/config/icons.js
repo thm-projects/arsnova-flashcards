@@ -31,8 +31,13 @@ let topNavigation = {
 	"personal": {
 		"personal": "<i class='fa fa-archive'></i>&nbsp;",
 		"cardsets": "<i class='fa fa-archive'></i>&nbsp;",
-		"repetitorien": "<span class='hidden-xs'><i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;</span><span class='visible-xs'><i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;</span>",
-		"transcripts": "<i class='fa fa-clipboard'></i>&nbsp;"
+		"repetitorien": "<span class='hidden-xs'><i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;</span><span class='visible-xs'><i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;</span>"
+
+	},
+	"transcripts": {
+		"transcripts": "<i class='fa fa-clipboard'></i>&nbsp;",
+		"personal": "<i class='fa fa-clipboard'></i>&nbsp;",
+		"bonus": "<i class='fa fa-clipboard'></i>&nbsp;"
 	},
 	"profile": "<i class='fa fa-user'></i>&nbsp;",
 	"profileOverview": "<i class='fa fa-trophy'></i>&nbsp;",

@@ -4,6 +4,8 @@ import {Meteor} from "meteor/meteor";
 import {Filter} from "../../../../api/filter";
 import {Cardsets} from "../../../../api/cardsets";
 import {getAuthorName} from "../../../../api/userdata";
+import {Route} from "../../../../api/route";
+import {TranscriptBonus} from "../../../../api/transcriptBonus";
 
 /*
  * ############################################################################
@@ -16,12 +18,30 @@ Template.filterItemFilterAuthors.helpers({
 		return Filter.getFilterQuery().owner !== undefined;
 	},
 	getAuthors: function () {
-		return Meteor.users.find({}, {fields: {_id: 1, profile: 1}, sort: {"profile.birthname": 1}}).fetch();
+		if (Route.isTranscriptBonus()) {
+			let bonusTranscripts = TranscriptBonus.find({cardset_id: Router.current().params._id}).fetch();
+			let userFilter = [];
+			for (let i = 0; i < bonusTranscripts.length; i++) {
+				userFilter.push(bonusTranscripts[i].user_id);
+			}
+			return Meteor.users.find({_id: {$in: userFilter}},
+				{
+					fields: {
+						'profile.birthname': 1
+					}
+				});
+		} else {
+			return Meteor.users.find({}, {fields: {_id: 1, profile: 1}, sort: {"profile.birthname": 1}}).fetch();
+		}
 	},
 	filterAuthors: function (id) {
-		let query = Filter.getFilterQuery();
-		query.owner = id;
-		return Cardsets.findOne(query);
+		if (Route.isTranscriptBonus()) {
+			return true;
+		} else {
+			let query = Filter.getFilterQuery();
+			query.owner = id;
+			return Cardsets.findOne(query);
+		}
 	},
 	getAuthorName: function () {
 		return getAuthorName(this._id);

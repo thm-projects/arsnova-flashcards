@@ -12,14 +12,16 @@ let itemIncrementValue = 20;
 //5: Kartei mischen / Shuffle
 //6: Alle Repetitorien / All repetitorien
 //7: Meine Repetitorien / Personal repetitorien
-//8: Meine Mitschriften / My Transcripts
-let filtersWithResetButton = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+//8: Meine losen Mitschriften / My Transcripts
+//9: Meine gekoppelten Mitschriften / My Bonus Transcripts
+//10: Gekoppelte Mitschriften (Kartei)
+let filtersWithResetButton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 let filtersWithDisplayModeButton = [0, 2, 4, 7];
-let filtersWithSortButton = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+let filtersWithSortButton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 let filtersWithDefaultSortName = [0, 2, 3, 5];
-let filtersWithDefaultSortDateUpdated = [1, 4, 6, 7, 8];
+let filtersWithDefaultSortDateUpdated = [1, 4, 6, 7, 8, 9, 10];
 let filtersWithDefaultSortDateCreated = [];
-let filtersWithAuthor = [0, 2, 3, 4, 5];
+let filtersWithAuthor = [0, 2, 3, 4, 5, 10];
 let filtersWithCardType = [0, 1, 3, 4, 5];
 let filtersWithDifficulty = [0, 1, 3, 4, 5];
 let filtersWithTargetAudience = [];

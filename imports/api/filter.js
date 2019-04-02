@@ -15,7 +15,9 @@ Session.setDefault('workloadFilter', undefined);
 Session.setDefault('allCardsetsFilter', undefined);
 Session.setDefault('allRepetitorienFilter', undefined);
 Session.setDefault('personalRepetitorienFilter', undefined);
-Session.setDefault('personalTranscriptsFilter', undefined);
+Session.setDefault('transcriptsPersonalFilter', undefined);
+Session.setDefault('transcriptsBonusFilter', undefined);
+Session.setDefault('transcriptsBonusCardsetFilter', undefined);
 Session.setDefault('shuffleFilter', undefined);
 let personalKindTag = "personal";
 let eduKindTag = "edu";
@@ -76,6 +78,17 @@ export let Filter = class Filter {
 					this.setDefaultFilter(FilterNavigation.getRouteId());
 				}
 				return Session.get('personalTranscriptsFilter');
+			case 9:
+				if (Session.get('transcriptsBonusFilter') === undefined) {
+					this.setDefaultFilter(FilterNavigation.getRouteId());
+				}
+				return Session.get('transcriptsBonusFilter');
+			case 10:
+				if (Session.get('transcriptsBonusCardsetFilter') === undefined) {
+					this.setDefaultFilter(FilterNavigation.getRouteId());
+				}
+				return Session.get('transcriptsBonusCardsetFilter');
+
 		}
 	}
 
@@ -148,7 +161,13 @@ export let Filter = class Filter {
 				Session.set('personalRepetitorienFilter', filter);
 				break;
 			case 8:
-				Session.set('personalTranscriptsFilter', filter);
+				Session.set('transcriptsPersonalFilter', filter);
+				break;
+			case 9:
+				Session.set('transcriptsBonusFilter', filter);
+				break;
+			case 10:
+				Session.set('transcriptsBonusCardsetFilter', filter);
 				break;
 		}
 		this.resetInfiniteBar();
@@ -270,7 +289,7 @@ export let Filter = class Filter {
 		if (FilterNavigation.gotKindFilter(FilterNavigation.getRouteId()) && activeFilter.kind !== undefined) {
 			query.kind = {$in: activeFilter.kind};
 		}
-		if (!Route.isWorkload() && activeFilter !== undefined && !Route.isTranscript()) {
+		if (!Route.isWorkload() && activeFilter !== undefined && !Route.isTranscript() && !Route.isTranscriptBonus()) {
 			query.shuffled = activeFilter.shuffled;
 		}
 		return query;
@@ -377,6 +396,8 @@ export let Filter = class Filter {
 		Session.set('shuffleFilter', undefined);
 		Session.set('allRepetitorienFilter', undefined);
 		Session.set('personalRepetitorienFilter', undefined);
-		Session.set('personalTranscriptsFilter', undefined);
+		Session.set('transcriptsPersonalFilter', undefined);
+		Session.set('transcriptsBonusFilter', undefined);
+		Session.set('transcriptsBonusCardsetFilter', undefined);
 	}
 };

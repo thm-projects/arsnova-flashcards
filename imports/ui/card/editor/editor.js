@@ -84,7 +84,6 @@ Template.newCard.onCreated(function () {
 		Session.set('cardType', 2);
 		Session.set('difficultyColor', 0);
 	}
-
 	CardEditor.resetSessionData(true);
 });
 
