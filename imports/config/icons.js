@@ -51,7 +51,7 @@ let topNavigation = {
 //Only used for the active route display on mobile. Will be carried over to desktop after the main template got refactored.
 let miscNavigation = {
 	"cardset": "<i class='fa fa-archive'></i>&nbsp;",
-	"repetitorium": "<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;",
+	"repetitorium": "<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;",
 	"progress": "<i class='glyphicon glyphicon-stats'></i>&nbsp;",
 	"toggleImpressum": "<i class='fa fa-medkit'></i>&nbsp;"
 };
