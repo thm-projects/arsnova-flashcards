@@ -41,5 +41,8 @@ Template.cardSidebarItemToggleFullscreen.events({
 				Router.go('home');
 			}
 		}
+		setTimeout(function () {
+			CardVisuals.resizeFlashcard();
+		}, 250);
 	}
 });

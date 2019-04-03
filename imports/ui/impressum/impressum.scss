@@ -17,6 +17,13 @@
   margin-bottom: 0 !important;
 }
 
+.contact-demo-guest {
+  @media(min-width: 768px) {
+    margin-top: 0 !important;
+  }
+  margin-bottom: 0 !important;
+}
+
 #contact.fullscreen {
   margin: 0 !important;
 }
