@@ -1,0 +1,85 @@
+[{
+  "name": "A2: Die Technik",
+  "description": "Kubus-Präsentation zur Technik von 🍅cards\n",
+  "date": "2019-03-31T14:45:58.647Z",
+  "dateUpdated": "2019-04-04T04:48:30.366Z",
+  "editors": [],
+  "owner": "jCZ6oHcbZhJaKKodN",
+  "visible": true,
+  "ratings": true,
+  "kind": "free",
+  "price": 0,
+  "reviewed": false,
+  "reviewer": "undefined",
+  "request": false,
+  "rating": 0,
+  "raterCount": 0,
+  "quantity": 1,
+  "license": [
+    "by",
+    "nc",
+    "sa"
+  ],
+  "userDeleted": false,
+  "learningActive": false,
+  "maxCards": 0,
+  "daysBeforeReset": 0,
+  "learningStart": "1970-01-01T00:00:00.000Z",
+  "learningEnd": "1970-01-01T00:00:00.000Z",
+  "registrationPeriod": "1970-01-01T00:00:00.000Z",
+  "learningInterval": [],
+  "wordcloud": false,
+  "shuffled": false,
+  "cardType": 18,
+  "difficulty": 1,
+  "noDifficulty": true,
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  },
+  "workload": {
+    "bonus": {
+      "count": 0
+    },
+    "normal": {
+      "count": 0
+    }
+  },
+  "sortType": 0
+}, {
+  "subject": "🍅cards",
+  "front": "(##) Optimiert für unterwegs\n\n\n![Textskalierung](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Textskalierung.jpg width=200px) \n🍅cards wurde für das **Mobile Learning** entworfen: Die App wird zum Lernen überwiegend auf dem Smartphone genutzt. Das setzt besondere designtechnische Anforderungen an die mobile <q>Usability: Ease of Use</q> und <q>User Ex&shy;pe&shy;ri&shy;ence: Joy of Use</q>:\n\n* Ein-Daumen-Bedienung \n* Funktional entschlacktes Design\n* Use Cases für die Ein-Klick-Navigation\n* Vollbild im Smartphone-Browser\n* Textskalierung (siehe Screenshot)\n* Akku-schonender dunkler Hintergrund\n* Smartphone-Vorschau beim Erstellen der Karten ",
+  "back": "(##) Optimiert für jedes Display\n\n![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Resizer.png)\n\n🍅cards ist eine [responsive](https://de.wikipedia.org/wiki/Responsive_Webdesign) [HTML5-App](https://de.wikipedia.org/wiki/HTML5), das heißt, sie wird nicht installiert, läuft in jedem modernen Browser -- auf deinem Smartphone, Tablet oder Laptop -- und passt sich der Bildschirmgröße des Endgeräts optisch und funktional an. ",
+  "hint": "(##) Optimiert für Vollansicht und Beamer\n\n![ ](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Beamer.png width=150)\nWir nutzen die <q>Fullscreen</q>-Ansicht deines Browsers, um Karten **ablenkungsfrei** anzuzeigen. Schau dir die Hinweise zu den Rand-Buttons an. Du findest sie hinter dem Fragezeichen rechts außen. Alle Buttons lassen sich mit dem blauen Button unten links ein- und ausklappen.\n\n![ ](https://linux.cards/img/help/de/presentation_key.png)\n\nIn deinem Beamer-Vortrag bist du nicht auf die Maus zum Navigieren angewiesen: Mit der <kbd>Leertaste</kbd> kommst du bequem zur nächsten Kartenseite und danach zur nächsten Karte.",
+  "lecture": "(##) Integriert ein Audience-Response-System \n\n![arsnova.click](https://arsnova-uploads.mni.thm.de/Demo-Kartei/ARSnova.png width=70%)\n\nMit unserer an deutschen Hochschulen weitverbreiteten [gamifizierten Quiz-App](https://arsnova.eu/blog) (wird auf der nächsten Kubus-Karte vorgestellt) kannst du an jeder Stelle dein Publikum befragen, ohne dabei 🍅cards zu verlassen. Der Projektleiter setzt [arsnova.click](https://arsnova.click) und 🍅cards in seinen Vorlesungen ein. Auch Studierende nutzen beide Apps für ihre Präsentationen im Hauptseminar und Bachelor-Kolloquium.",
+  "top": "(##) Verhält sich wie eine native App\n\nPush-Nach&shy;richt | 🍅cards | App-Start | ohne Rahmen | App-Settings\n:-------------:|:-------:|:----------:|:----------:|:--------:\n![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Push-Nachricht.jpg width=100) | ![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/PWA-Startbildschirm.jpg width=100) | ![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/PWA-Splash-Screen.jpg width=100) | ![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/PWA-cards.jpg width=100) | ![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Settings.jpg width=100)\n[Zeigt sich wie eine Android-App und wird wie eine solche verwaltet]\n\n🍅cards ist eine [Progressive Web App (PWA)](https://de.wikipedia.org/wiki/Progressive_Web_App), heißt, sie fühlt sich an wie eine native App aus dem Store: Du kannst sie aus dem Browser heraus dem **Homescreen** deines Smartphones hinzufügen (<q>Add-to-Homescreen</q>) und von dort wie eine installierte App aufrufen. Sie startet mit einem Ladebildschirm so schnell wie eine native App und zeigt sich ohne Browser-Rahmen.\nWenn du die Benach&shy;rich&shy;tigungs&shy;funk&shy;tion für 🍅&nbsp;cards zulässt, wirst du zuverlässig um 8.00 Uhr auf deinem Smartphone ans Lernen erinnert. Die Anzahl der Benachrichtigungen lässt sich am App-Icon anzeigen wie bei einer Mail-App.",
+  "bottom": "(##) Open Source und personalisierbar\n\n![ ](https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/GPLv3_Logo.svg/800px-GPLv3_Logo.svg.png width=100px)🍅cards ist eine freie Open-Source-Software unter der [GNU General Public License](https://de.wikipedia.org/wiki/GNU_General_Public_License).\nDu darfst sie auf deinem Laptop installieren oder auf einem Server betreiben -- ohne zu fragen und natürlich kostenlos. Derzeit brauchst du für die Installation noch [gute Linux-Kenntnisse](https://git.thm.de/arsnova/cards/blob/staging/README.md). Demnächst kann das aber auch ein Laie mit wenigen Mausklicks. JavaScript/CSS-Versierte dürfen den Code nach Belieben ändern und weiter verteilen, sollten aber ihre Änderungen der Entwickler-Community auf [GitHub](https://github.com/thm-projects/arsnova-flashcards/pulls) wieder zur Verfügung stellen.\n\n![ ](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Linux_cards.jpg width=300px) Wir betreiben eine zweite Instanz von 🍅cards: [Linux.cards](https://linux.cards). Ihre Karteien bereiten intensiv auf die [LPI-Zertifizierungsprüfungen](https://www.lpice.eu/de/unsere-zertifizierungen/) vor. Auf Lern-, Glossar-, Anweisungs- und Prüfungskarten wird der gesamte Inhalt der Schulungsunterlagen von [tuxcademy](https://www.tuxcademy.org) vermittelt. Zielgruppe sind sowohl Linux-Einsteiger als auch Fortgeschrittene.\n",
+  "centerTextElement": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "alignType": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "date": "2019-03-31T13:00:51.841Z",
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "dateUpdated": "2019-04-04T04:48:30.342Z",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  }
+}]
