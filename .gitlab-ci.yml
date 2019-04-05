@@ -81,7 +81,7 @@ chimp:
   stage: chimptest
   only:
     - /^v[0-9]+/
-    - /^[[:digit:]]+?/
+    - /^[[:digit:]]+?-/
   tags:
     - nodejs
   allow_failure: true
@@ -130,7 +130,7 @@ review:
     url: http://$CI_PIPELINE_ID.review.arsnova.cards/
     on_stop: stop_review
   only:
-    - /^[[:digit:]]+?/
+    - /^[[:digit:]]+?-/
   except:
     - staging
     - master
@@ -156,7 +156,7 @@ stop_review:
     name: review/$CI_BUILD_REF_NAME
     action: stop
   only:
-    - /^[[:digit:]]+?/
+    - /^[[:digit:]]+?-/
   except:
     - staging
     - master
