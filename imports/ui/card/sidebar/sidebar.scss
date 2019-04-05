@@ -112,15 +112,6 @@
   border-radius: 0 10px 10px 0;
 }
 
-#flashcardSidebarBottomLeft {
-  @media(pointer: fine) {
-   display: block;
-  }
-  @media(pointer: coarse) {
-    display: none;
-  }
-}
-
 #flashcardSidebarRight {
   margin-right: 15px;
   border-left: 2px solid;

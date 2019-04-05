@@ -726,7 +726,7 @@ export let CardVisuals = class CardVisuals {
 				leftSidebar.css('margin-top', (cardHeight) + 'px');
 				rightSidebar.css('margin-top', (cardHeight) + 'px');
 			}
-			bottomLeftSidebar.css('margin-top', (cardHeight + $('.cardContent').height()  - 12) + 'px');
+			bottomLeftSidebar.css('margin-top', (cardHeight + $('.cardContent').height()  - bottomLeftSidebar.height() / 2) + 'px');
 		}
 	}
 };
