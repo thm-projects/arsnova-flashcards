@@ -79,9 +79,7 @@ build:
 
 chimp:
   stage: chimptest
-  only:
-    - /^v[0-9]+/
-    - /^[[:digit:]]+?(?=-)/
+  only: ['/^v[0-9]+/', '/^[[:digit:]]+?(?=-)/']
   tags:
     - nodejs
   allow_failure: true
