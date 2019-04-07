@@ -2081,7 +2081,7 @@
   "sweetAlert": {
     "completeProfile": {
       "title": "Profil",
-      "text": "Gib deinen Vor- und Nachnamen und deine E-Mail-Adresse an. <br>Versuche es dann noch einmal. <br><br>Die Angaben werden für den Erinnerungsdienst von \uD83C\uDF45cards benötigt, siehe unter »Hilfe« → »FAQ 3«.",
+      "text": "Gib deinen Vor- und Nachnamen und deine E-Mail-Adresse an. Versuche es dann noch einmal. Die Angaben werden für den Erinnerungsdienst von \uD83C\uDF45cards benötigt, siehe unter »Hilfe« → »FAQ 3«.",
       "footer": "<a href='/datenschutz' target='_blank'>Datenschutzerklärung</a>",
       "button": {
         "confirm": "Zum Profil",
