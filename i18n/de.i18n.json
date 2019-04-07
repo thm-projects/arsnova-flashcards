@@ -468,7 +468,7 @@
     "text": "Willst du die Lernphase mit Bonusvergabe wirklich starten? Die Lernstatistik aller bisherigen User der Kartei geht hierbei verloren!",
     "confirm": "Starten",
     "cancel": "Abbrechen",
-    "notification": "Erinnerungsdienst (ohne Bonus)",
+    "notification": "Erinnerungsdienst",
     "mailNotificationCheckbox": "E-Mail",
     "webNotificationCheckbox": "Push-Nachricht",
     "notificationError": "Es muss mindestens eine Benachrichtigungsart ausgewählt werden!",
@@ -927,7 +927,7 @@
     },
     "form-join": {
       "title": "Bonus-Lernphase beitreten",
-      "message": "Willst du der Bonus-Lernphase beitreten? Beim Beitritt werden deine Lernstände nach Leitner oder Wozniak zurückgesetzt.",
+      "message": "Willst du der Bonus-Lernphase beitreten? Mit dem Beitritt werden deine bisherigen Lernstände nach Leitner oder Wozniak zurückgesetzt.",
       "button": {
         "confirm": "Beitreten",
         "cancel": "Abbrechen"
