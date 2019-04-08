@@ -205,11 +205,13 @@ export let CardNavigation = class CardNavigation {
 			localStorage.setItem(lastActiveCardString, JSON.stringify(lastActiveCard));
 		}
 		let cardset_id;
-		if (Session.get('activeCard') === -1 || Session.get('activeCard') === undefined) {
+		if (Session.get('activeCard') === -1 || Session.get('activeCard') === undefined || Route.isTranscript()) {
 			if (Route.isDemo()) {
 				Session.set('activeCardsetName', Cardsets.findOne({name: "DemoCardset", shuffled: true}).name);
 			} else if (Route.isMakingOf()) {
 				Session.set('activeCardsetName', Cardsets.findOne({name: "MakingOfCardset", shuffled: true}).name);
+			} else if (Route.isTranscript()) {
+				Session.set('activeCardsetName', "");
 			} else {
 				Session.set('activeCardsetName', Cardsets.findOne({_id: Router.current().params._id}).name);
 			}

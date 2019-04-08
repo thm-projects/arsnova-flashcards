@@ -1,23 +1,26 @@
 <template name="selectLearningUnit">
     <div class="modal fade" id="showSelectLearningUnitModal" role="dialog">
-        <div class="modal-dialog" aria-labelledby="showSelectLearningUnitTitle">
+        <div class="modal-dialog modal-lg" aria-labelledby="showSelectLearningUnitTitle">
             <div class="modal-content">
                 <div class="modal-header">
+                    <span class="modal-icon">
+                    </span>
                     {{> mainModalItemCloseIcon}}
-                    <h4 id="showSelectLearningUnitTitle" class="modal-title">{{_ "learningUnit.chooseIndex"}}</h4>
-                    <div class="modal-body">
-                        <button id="learningUnitCancel"
-                                class="btn btn-danger btn-raised" {{disableIfOffline}}>
-                            {{_ "learningUnit.cancel"}}
-                        </button>
-                        <div class="form-horizontal">
-                            <div class="form-group">
-                                <div class="form-group setdetails name">
-                                    <label id="setLearningIndexLabel" class="col-md-3 control-label"
-                                           for="setLearningIndex">{{_
-                                            "card.cardType0.name"}}</label>
+                    <h4 id="showSelectLearningUnitTitle" class="modal-title">{{_ "transcriptForm.title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="form-group setdetails name">
+                                <div class="col-xs-12 cardtext editorElement">
+                                    <label class="radio-inline"><input type="radio" id="privateTranscript" name="belongsToUnit" value="0" checked>{{_ "transcriptForm.referencesLecture.false"}}</label>
+                                    <label class="radio-inline"><input type="radio" id="referencesLecture" name="belongsToUnit" value="1">{{_ "transcriptForm.referencesLecture.true"}}</label>
+                                </div>
+                                {{#unless isPrivateTranscript}}
+                                    <br>
+                                    <br>
                                     <div class="dropdown">
-                                        <div class="btn-group col-xs-12 col-sm-12 col-md-9">
+                                        <div class="btn-group col-xs-8">
                                             <button id="setLearningIndex" type="button"
                                                     class="btn btn-raised btn-default setLearningIndexDropdown longButton"
                                                     data-toggle="dropdown" aria-haspopup="true"
@@ -31,28 +34,26 @@
                                                 <span class="caret"></span>
                                                 <span class="sr-only"></span>
                                             </button>
-                                            <ul class="dropdown-menu btn-raised longButton">
-                                                <li class="learningIndex" value="0" data="0">
-                                                    <a
-                                                            href="#">{{_ "learningUnit.none"}}</a></li>
-                                                {{#each learningIndex}}
+                                            <ul class="dropdown-menu btn-raised longButton" value="{{_ "transcriptForm.selectLecture"}}" data="-1">
+                                                {{#each getBonusLectures}}
                                                     <li class="learningIndex" value="{{this._id}}" data="{{this._id}}">
-                                                        <a
-                                                                href="#">{{this.name}}</a></li>
+                                                        <a href="#">{{this.name}}</a>
+                                                    </li>
                                                 {{/each}}
                                             </ul>
                                             <span id="helpSetLearningIndex" class="help-block learningIndex"></span>
                                         </div>
                                     </div>
-                                </div>
-                                {{#if gotLearningIndex}}
-                                    <hr>
-                                    <h4>{{_ "learningUnit.chooseUnit"}}</h4>
-                                    {{> cardsetList}}
-                                {{/if}}
+                                {{/unless}}
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="modal-footer">
+                    {{#if gotValidSelection}}
+                        <button id="saveBonusLecture"
+                                class="btn btn-raised btn-success pull-left">{{_ "transcriptForm.button.save"}}</button>
+                    {{/if}}
                 </div>
             </div>
         </div>

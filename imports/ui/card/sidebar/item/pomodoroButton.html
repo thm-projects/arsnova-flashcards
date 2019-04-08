@@ -1,7 +1,9 @@
 <template name="cardSidebarItemPomodoroButton">
-    {{#unless isInBonus}}
-        <img class="card-button cardHeaderItem btn showPomodoroButton {{#if pomodoroActive}}pressed{{/if}}"
-             data-type="cardNavigation"
-             title="{{_ "card.tooltip.pomodoro"}}" src="/img/pomodoro/pomodoro.svg"/>
+    {{#unless isTranscriptRoute}}
+        {{#unless isInBonus}}
+            <img class="card-button cardHeaderItem btn showPomodoroButton {{#if pomodoroActive}}pressed{{/if}}"
+                 data-type="cardNavigation"
+                 title="{{_ "card.tooltip.pomodoro"}}" src="/img/pomodoro/pomodoro.svg"/>
+        {{/unless}}
     {{/unless}}
 </template>

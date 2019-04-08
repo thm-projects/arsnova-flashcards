@@ -72,6 +72,9 @@ Template.useCasesModal.onRendered(function () {
 					Router.go('personalRepetitorien');
 				}
 				break;
+			case 7:
+				Router.go('transcript');
+				break;
 		}
 	});
 	$('#useCasesModal').on('show.bs.modal', function () {

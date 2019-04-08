@@ -45,15 +45,15 @@
 </template>
 
 <template name="newCard">
-    {{#if isCardsetOwner this._id}}
+    {{#if canAccessEditor}}
         {{> editor}}
     {{else}}
-        <h4>{{_ "permission"}}</h4>
+        {{> accessDenied}}
     {{/if}}
 </template>
 
 <template name="editCard">
-    {{#if isEditor}}
+    {{#if canAccessEditor}}
         {{> editor}}
     {{else}}
         {{> accessDenied}}

@@ -527,20 +527,27 @@ export let CardVisuals = class CardVisuals {
 		let cardset_id = "";
 		let cardsetData;
 		if (cards !== undefined) {
-			for (let i = 0; i < cards.length; i++) {
-				if (cardset_id !== cards[i].cardset_id) {
-					cardset_id = cards[i].cardset_id;
-					cardsetData = Cardsets.findOne({_id: cardset_id}, {
-						fields: {
-							cardType: 1,
-							difficulty: 1
-						}
-					});
+			if (Route.isTranscript()) {
+				cards[0].cardType = 2;
+				cards[0].difficulty = 0;
+				cards[0].cardset_id = -1;
+				return cards;
+			} else {
+				for (let i = 0; i < cards.length; i++) {
+					if (cardset_id !== cards[i].cardset_id) {
+						cardset_id = cards[i].cardset_id;
+						cardsetData = Cardsets.findOne({_id: cardset_id}, {
+							fields: {
+								cardType: 1,
+								difficulty: 1
+							}
+						});
+					}
+					cards[i].cardType = cardsetData.cardType;
+					cards[i].difficulty = cardsetData.difficulty;
 				}
-				cards[i].cardType = cardsetData.cardType;
-				cards[i].difficulty = cardsetData.difficulty;
+				return cards;
 			}
-			return cards;
 		} else {
 			return [];
 		}

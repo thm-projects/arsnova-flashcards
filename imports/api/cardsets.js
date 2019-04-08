@@ -45,6 +45,23 @@ if (Meteor.isServer) {
 			this.ready();
 		}
 	});
+	Meteor.publish("cardsetsEditMode", function (cardset_id) {
+		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
+			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1}});
+			if (cardset.owner === Meteor.userId() || UserPermissions.isAdmin()) {
+				return Cardsets.find({
+					$or: [
+						{_id: cardset_id},
+						{"transcript.bonus": true}
+					]
+				});
+			} else {
+				this.ready();
+			}
+		} else {
+			this.ready();
+		}
+	});
 	Meteor.publish("allCardsets", function () {
 		if (this.userId && UserPermissions.isAdmin()) {
 			return Cardsets.find({shuffled: false});
@@ -750,6 +767,11 @@ Meteor.methods({
 					sortType: sortType
 				}
 			}, {trimStrings: false});
+			Cards.update({cardset_id: id}, {
+				$set: {
+					cardType: cardType
+				}
+			}, {trimStrings: false});
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -946,6 +968,11 @@ Meteor.methods({
 						});
 				}
 				Cardsets.update(id, {
+					$set: {
+						owner: owner
+					}
+				});
+				Cards.update({cardset_id: id}, {
 					$set: {
 						owner: owner
 					}

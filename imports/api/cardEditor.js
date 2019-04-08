@@ -145,7 +145,16 @@ export let CardEditor = class CardEditor {
 	}
 
 	static loadEditModeContent (card) {
-		let cardset = Cardsets.findOne({_id: Router.current().params._id});
+		let difficulty;
+		let cardType;
+		if (Route.isTranscript()) {
+			difficulty = card.difficulty;
+			cardType = card.cardType;
+		} else {
+			let cardset = Cardsets.findOne({_id: Router.current().params._id});
+			difficulty = cardset.difficulty;
+			cardType = cardset.cardType;
+		}
 		Session.set('subject', card.subject);
 		Session.set('content1', card.front);
 		Session.set('content2', card.back);
@@ -153,10 +162,10 @@ export let CardEditor = class CardEditor {
 		Session.set('content4', card.lecture);
 		Session.set('content5', card.top);
 		Session.set('content6', card.bottom);
-		Session.set('cardType', cardset.cardType);
+		Session.set('cardType', cardType);
 		Session.set('centerTextElement', card.centerTextElement);
 		Session.set('alignType', card.alignType);
-		Session.set('difficultyColor', cardset.difficulty);
+		Session.set('difficultyColor', difficulty);
 		Session.set('learningGoalLevel', card.learningGoalLevel);
 		Session.set('backgroundStyle', card.backgroundStyle);
 		Session.set('learningUnit', card.learningUnit);
@@ -292,8 +301,12 @@ export let CardEditor = class CardEditor {
 		}
 		let editorsValidLength = (content1.length <= contentMaxLength && content2.length <= contentMaxLength && content3.length <= contentMaxLength && $('#subjectEditor').val().length <= subjectMaxLength && content4.length <= contentMaxLength && content5.length <= contentMaxLength && content6.length <= contentMaxLength);
 		if (gotSubject && editorsValidLength) {
-			if (ActiveRoute.name('newCard')) {
-				Meteor.call("addCard", Router.current().params._id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit, function (error, result) {
+			if (Route.isNewCard()) {
+				let cardset_id = "-1";
+				if (!Route.isTranscript()) {
+					cardset_id = Router.current().params._id;
+				}
+				Meteor.call("addCard", cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit, function (error, result) {
 					if (result) {
 						BertAlertVisuals.displayBertAlert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 						if (navigationTarget === 0) {
@@ -304,10 +317,14 @@ export let CardEditor = class CardEditor {
 							CardEditor.setEditorButtonIndex(CardEditor.getCardNavigationNameIndex(), false);
 							CardNavigation.selectButton();
 						} else {
-							Session.set('activeCard', result);
-							Router.go('cardsetdetailsid', {
-								_id: Router.current().params._id
-							});
+							if (Route.isTranscript()) {
+								Router.go('transcripts');
+							} else {
+								Session.set('activeCard', result);
+								Router.go('cardsetdetailsid', {
+									_id: Router.current().params._id
+								});
+							}
 						}
 					}
 				});
@@ -316,9 +333,13 @@ export let CardEditor = class CardEditor {
 				BertAlertVisuals.displayBertAlert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 				Session.set('activeCard', Router.current().params.card_id);
 				if (navigationTarget === 1) {
-					Router.go('cardsetdetailsid', {
-						_id: Router.current().params._id
-					});
+					if (Route.isTranscript()) {
+						Router.go('transcripts');
+					} else {
+						Router.go('cardsetdetailsid', {
+							_id: Router.current().params._id
+						});
+					}
 				} else {
 					CardEditor.setEditorButtonIndex(CardEditor.getCardNavigationNameIndex(), false);
 					CardNavigation.selectButton();

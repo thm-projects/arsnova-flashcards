@@ -2,6 +2,7 @@
 
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
+import {Cards} from "../../../api/cards.js";
 import {Cardsets} from "../../../api/cardsets.js";
 import {Filter} from "../../../api/filter";
 import {Route} from "../../../api/route";
@@ -10,8 +11,10 @@ import {CardType} from "../../../api/cardTypes";
 import {Leitner, Wozniak} from "../../../api/learned";
 import {MainNavigation} from "../../../api/mainNavigation";
 import {LoginTasks} from "../../../api/login";
+import "./item/card.js";
 import "./item/cardset.js";
 import "./item/createCardsetButton.js";
+import "./item/createTranscriptButton.js";
 import "./item/createRepetitoriumButton.js";
 import "./item/importCardsetButton.js";
 import "./item/selectCardsetButton.js";
@@ -20,6 +23,7 @@ import "./item/shuffleRepetitoriumCallout.js";
 import "./item/selectCardsetToLearnCallout.js";
 import "../modal/deleteWorkload.js";
 import "../modal/deleteCardset.js";
+import "../modal/deleteTranscript.js";
 import "../modal/selectWorkload.js";
 import "./index.html";
 
@@ -71,6 +75,33 @@ Template.filterIndexPool.onRendered(function () {
 		Session.set('useCaseType', 0);
 	}
 	LoginTasks.showUseCasesModal();
+});
+
+
+/*
+ * ############################################################################
+ * filterIndexTranscripts
+ * ############################################################################
+ */
+
+Template.filterIndexTranscripts.helpers({
+	getCards: function (resultType) {
+		let query = {};
+		if (resultType !== 0) {
+			query = Filter.getFilterQuery();
+		}
+		query.cardType = 2;
+		switch (resultType) {
+			case 0:
+			case 1:
+				return Cards.find(query, {
+					sort: Filter.getSortFilter(),
+					limit: Filter.getMaxItemCounter()
+				}).count();
+			case 2:
+				return Cards.find(query, {sort: Filter.getSortFilter(), limit: Filter.getMaxItemCounter()});
+		}
+	}
 });
 
 /*

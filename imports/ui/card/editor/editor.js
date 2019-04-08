@@ -17,6 +17,7 @@ import "./item/buttonSaveReturn.js";
 import "./item/learningGoalLevel.js";
 import "./item/subject.js";
 import "./editor.html";
+import {Route} from "../../../api/route";
 
 /*
  * ############################################################################
@@ -76,8 +77,14 @@ Template.editor.onRendered(function () {
  * ############################################################################
  */
 Template.newCard.onCreated(function () {
-	Session.set('cardType', Cardsets.findOne({_id: Router.current().params._id}).cardType);
-	Session.set('difficultyColor', Cardsets.findOne({_id: Router.current().params._id}).difficulty);
+	if (!Route.isTranscript()) {
+		Session.set('cardType', Cardsets.findOne({_id: Router.current().params._id}).cardType);
+		Session.set('difficultyColor', Cardsets.findOne({_id: Router.current().params._id}).difficulty);
+	} else {
+		Session.set('cardType', 2);
+		Session.set('difficultyColor', 0);
+	}
+
 	CardEditor.resetSessionData(true);
 });
 
@@ -87,7 +94,13 @@ Template.newCard.onCreated(function () {
  * ############################################################################
  */
 Template.editCard.onCreated(function () {
-	CardEditor.loadEditModeContent(Cards.findOne({_id: Router.current().params.card_id, cardset_id: Router.current().params._id}));
-	Session.set('cardType', Cardsets.findOne({_id: Router.current().params._id}).cardType);
-	Session.set('difficultyColor', Cardsets.findOne({_id: Router.current().params._id}).difficulty);
+	if (!Route.isTranscript()) {
+		CardEditor.loadEditModeContent(Cards.findOne({_id: Router.current().params.card_id, cardset_id: Router.current().params._id}));
+		Session.set('cardType', Cardsets.findOne({_id: Router.current().params._id}).cardType);
+		Session.set('difficultyColor', Cardsets.findOne({_id: Router.current().params._id}).difficulty);
+	} else {
+		CardEditor.loadEditModeContent(Cards.findOne({_id: Router.current().params.card_id, cardset_id: "-1"}));
+		Session.set('cardType', Cards.findOne({_id: Router.current().params.card_id}).cardType);
+		Session.set('difficultyColor', Cards.findOne({_id: Router.current().params.card_id}).difficulty);
+	}
 });

@@ -1,3 +1,4 @@
+import {Cards} from "../../api/cards.js";
 import {Cardsets} from "../../api/cardsets.js";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
@@ -270,6 +271,29 @@ Router.route('/personal/cardsets', {
 	}
 });
 
+Router.route('/personal/transcripts', {
+	name: 'transcripts',
+	template: 'filterIndex',
+	subscriptions: function () {
+		return [Meteor.subscribe('myTranscriptCards')];
+	},
+	data: function () {
+		if (ServerStyle.gotTranscriptsEnabled()) {
+			Session.set('helpFilter', "transcripts");
+			Session.set('cardsetIndexResults', Cards.find().count());
+			Filter.resetMaxItemCounter();
+		} else {
+			Router.go('home');
+		}
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
+	}
+});
 
 Router.route('/personal/repetitorien', {
 	name: 'personalRepetitorien',
@@ -398,6 +422,27 @@ Router.route('/cardset/:_id/editshuffle', {
 	}
 });
 
+Router.route('/cardset/:_id/transcript', {
+	name: 'transcriptBonus',
+	template: 'cardsetTranscript',
+	subscriptions: function () {
+		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('userData')];
+	},
+	data: function () {
+		MarkdeepEditor.changeMobilePreview(true);
+		Session.set('helpFilter', "cardset");
+		Session.set('isNewCardset', false);
+		return Cardsets.findOne({_id: this.params._id});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
+	}
+});
+
 Router.route('/cardset/:_id/editors', {
 	name: 'cardseteditors',
 	template: 'cardsetManageEditors',
@@ -464,7 +509,7 @@ Router.route('/cardset/:_id/newcard', {
 	name: 'newCard',
 	template: 'newCard',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
+		return [Meteor.subscribe('cardsetsEditMode', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
 	},
 	data: function () {
 		Session.set('helpFilter', "cardEditor");
@@ -479,14 +524,60 @@ Router.route('/cardset/:_id/newcard', {
 	}
 });
 
+
+Router.route('/personal/transcripts/new', {
+	name: 'newTranscript',
+	template: 'newCard',
+	subscriptions: function () {
+		return [Meteor.subscribe('userDataLecturers')];
+	},
+	data: function () {
+		if (ServerStyle.gotTranscriptsEnabled()) {
+			Session.set('helpFilter', "cardEditor");
+		} else {
+			Router.go('home');
+		}
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
+	}
+});
+
 Router.route('/cardset/:_id/editcard/:card_id', {
 	name: 'editCard',
 	template: 'editCard',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
+		return [Meteor.subscribe('cardsetsEditMode', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
 	},
 	data: function () {
 		Session.set('helpFilter', "cardEditor");
+		return Cardsets.findOne({_id: this.params._id});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
+	}
+});
+
+Router.route('/personal/transcripts/edit/:card_id', {
+	name: 'editTranscript',
+	template: 'editCard',
+	subscriptions: function () {
+		return [Meteor.subscribe('transcriptCard', this.params.card_id)];
+	},
+	data: function () {
+		if (ServerStyle.gotTranscriptsEnabled()) {
+			Session.set('helpFilter', "cardEditor");
+		} else {
+			Router.go('home');
+		}
 	},
 	action: function () {
 		if (this.ready()) {
@@ -586,6 +677,29 @@ Router.route('/presentationlist/:_id', {
 	data: function () {
 		Session.set('helpFilter', "cardsetIndex");
 		return Cardsets.findOne({_id: this.params._id});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
+	}
+});
+
+Router.route('/presentation/transcripts/:card_id', {
+	name: 'presentationTranscript',
+	template: 'presentation',
+	subscriptions: function () {
+		return [Meteor.subscribe('transcriptCard', this.params.card_id)];
+	},
+	data: function () {
+		if (ServerStyle.gotTranscriptsEnabled()) {
+			Session.set('helpFilter',undefined);
+			return Cards.findOne(this.params.card_id);
+		} else {
+			Router.go('home');
+		}
 	},
 	action: function () {
 		if (this.ready()) {
@@ -1033,6 +1147,9 @@ var setTheme = function () {
 	} else if (Route.isEditMode()) {
 		body.addClass('editor');
 		body.css('background-image', ServerStyle.getBackground("editor"));
+	} else if (Route.isTranscriptBonus()) {
+		body.addClass('transcriptBonus');
+		body.css('background-image', ServerStyle.getBackground("transcriptBonus"));
 	} else if (Route.isDemo() | Route.isMakingOf()) {
 		body.addClass('demo');
 		body.css('background-image', ServerStyle.getBackground("demo"));

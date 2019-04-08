@@ -31,7 +31,8 @@ let topNavigation = {
 	"personal": {
 		"personal": "<i class='fa fa-archive'></i>&nbsp;",
 		"cardsets": "<i class='fa fa-archive'></i>&nbsp;",
-		"repetitorien": "<span class='hidden-xs'><i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;</span><span class='visible-xs'><i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;</span>"
+		"repetitorien": "<span class='hidden-xs'><i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;</span><span class='visible-xs'><i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;</span>",
+		"transcripts": "<i class='fa fa-clipboard'></i>&nbsp;"
 	},
 	"profile": "<i class='fa fa-user'></i>&nbsp;",
 	"profileOverview": "<i class='fa fa-trophy'></i>&nbsp;",
@@ -69,6 +70,7 @@ let useCasesIcons = {
 	"workload": "<i class='fa fa-graduation-cap'></i>&nbsp;",
 	"myCardsets": "<i class='fa fa-archive'></i>&nbsp;",
 	"myRepositories": "<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;",
+	"myTranscripts": "<i class='fa fa-clipboard'></i>&nbsp;",
 	"create": "<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-plus'></i>&nbsp;",
 	"search": "<i class='fa fa fa-search'></i>&nbsp;"
 };

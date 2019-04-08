@@ -103,7 +103,9 @@ function importCards(data, cardset, importType) {
 					learningUnit: item.learningUnit,
 					date: item.date,
 					dateUpdated: item.dateUpdated,
-					originalAuthorName: originalAuthorName
+					originalAuthorName: originalAuthorName,
+					owner: cardset.owner,
+					cardType: cardset.cardType
 				}, {trimStrings: false});
 			} else {
 				Cards.insert({
@@ -122,7 +124,9 @@ function importCards(data, cardset, importType) {
 					backgroundStyle: item.backgroundStyle,
 					originalAuthor: item.originalAuthor,
 					date: item.date,
-					dateUpdated: item.dateUpdated
+					dateUpdated: item.dateUpdated,
+					owner: cardset.owner,
+					cardType: cardset.cardType
 				}, {trimStrings: false});
 			}
 		}

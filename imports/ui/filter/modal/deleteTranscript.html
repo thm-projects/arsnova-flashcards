@@ -1,0 +1,28 @@
+<template name="deleteTranscriptForm">
+    <div class="modal fade" id="deleteTranscriptModal" tabindex="-1" role="dialog"
+         aria-labelledby="deleteTranscriptTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons">
+                <div class="modal-header">
+                    <span class="modal-icon">
+                        <i class="fa fa-trash"></i>
+                    </span>
+                    {{> mainModalItemCloseIcon}}
+                    <h4 id="deleteCardTitle" class="modal-title">{{_ "transcriptForm.index.modal.title"}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    {{_ "transcriptForm.index.modal.description"}}
+                </div>
+                <div class="modal-footer">
+                    <button id="deleteTranscriptConfirm" class="btn btn-raised btn-warning pull-right">{{_ "transcriptForm.index.modal.button.delete"}}</button>
+                    <button id="deleteTranscriptDismiss" class="btn btn-raised btn-default pull-left"
+                            data-dismiss="modal">{{_ "transcriptForm.index.modal.button.cancel"}}</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>
