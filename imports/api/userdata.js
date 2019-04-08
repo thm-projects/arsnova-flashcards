@@ -162,7 +162,7 @@ Meteor.methods({
 	updateUsersVisibility: function (visible) {
 		check(visible, Boolean);
 
-		Meteor.users.update(Meteor.user()._id, {
+		Meteor.users.update(Meteor.userId(), {
 			$set: {
 				visible: visible
 			}
@@ -171,7 +171,8 @@ Meteor.methods({
 	updateUsersEmail: function (email) {
 		check(email, String);
 
-		Meteor.users.update(Meteor.user()._id, {
+
+		Meteor.users.update(Meteor.userId(), {
 			$set: {
 				email: email
 			}
@@ -181,16 +182,21 @@ Meteor.methods({
 		check(name, String);
 		check(id, String);
 
-		Meteor.users.update(id, {
-			$set: {
-				"profile.name": name
-			}
-		});
+		if (UserPermissions.isAdmin()) {
+			Meteor.users.update(id, {
+				$set: {
+					"profile.name": name
+				}
+			});
+		}
 	},
 	updateUsersTitle: function (title, id) {
 		check(title, String);
 		check(id, String);
 
+		if (!UserPermissions.isAdmin()) {
+			id = Meteor.userId();
+		}
 		Meteor.users.update(id, {
 			$set: {
 				"profile.title": title
@@ -201,6 +207,9 @@ Meteor.methods({
 		check(birthname, String);
 		check(id, String);
 
+		if (!UserPermissions.isAdmin()) {
+			id = Meteor.userId();
+		}
 		Meteor.users.update(id, {
 			$set: {
 				"profile.birthname": birthname
@@ -211,6 +220,9 @@ Meteor.methods({
 		check(givenname, String);
 		check(id, String);
 
+		if (!UserPermissions.isAdmin()) {
+			id = Meteor.userId();
+		}
 		Meteor.users.update(id, {
 			$set: {
 				"profile.givenname": givenname
@@ -222,6 +234,9 @@ Meteor.methods({
 		check(web, Boolean);
 		check(id, String);
 
+		if (!UserPermissions.isAdmin()) {
+			id = Meteor.userId();
+		}
 		Meteor.users.update(id, {
 			$set: {
 				mailNotification: mail,
@@ -233,6 +248,9 @@ Meteor.methods({
 		check(completed, Boolean);
 		check(id, String);
 
+		if (!UserPermissions.isAdmin()) {
+			id = Meteor.userId();
+		}
 		Meteor.users.update(id, {
 			$set: {
 				"profile.completed": completed

@@ -711,6 +711,7 @@
     "saved": "Deine Änderungen wurden gespeichert!",
     "canceled": "Deine Änderungen wurden verworfen!",
     "error": "Deine Angaben sind noch unvollständig!",
+    "finishProfile": "Bitte Profil vervollständigen",
     "settings": {
       "name": "Profil & Konto ",
       "delete": "Konto löschen",

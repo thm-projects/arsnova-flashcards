@@ -4,7 +4,7 @@
             <div class="panel-body">
                 <div class="row markdeepCardset">
                     <div class="col-xs-12 {{#if
-                            learningActive}}col-md-4{{else}}col-sm-6 col-md-8{{/if}} markdeepCardsetTitle">
+                            canSeeBonusDropdown}}col-md-4{{else}}col-sm-6 col-md-8{{/if}} markdeepCardsetTitle">
                         <div class="cardsetTitleContainer">
                             <div class="cardsetLabels">
                                 {{> cardsetLabels}}
@@ -17,7 +17,7 @@
                         {{> cardsetInfoBox}}
                     </span>
                     </div>
-                    {{#if learningActive}}
+                    {{#if canSeeBonusDropdown}}
                         <div class="col-xs-12 col-sm-6 col-md-4 infoBox">
                             {{> bonusInfoBox}}
                         </div>

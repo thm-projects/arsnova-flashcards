@@ -117,18 +117,6 @@ Template.profileSettings.events({
 			$('#errorEmailValidation').html(TAPi18n.__('panel-body.emailValidationError'));
 		}
 	},
-	"keyup #inputName": function () {
-		Session.set("profileSettingsCancel", false);
-		//E-Mail wasn't changed
-		if ($('#inputEmailValidation').val() === '' && $('#inputEmail').val() === Meteor.users.findOne(Meteor.userId()).email) {
-			$('#inputEmailValidationForm').addClass("hidden");
-			Session.set("profileSettingsSave", false);
-		} else if ($('#inputEmail').val() === $('#inputEmailValidation').val()) {//E-Mail was changed and is right
-			Session.set("profileSettingsSave", false);
-		} else {//E-Mail was changed and is wrong
-			Session.set("profileSettingsSave", true);
-		}
-	},
 	"keyup #inputBirthName": function () {
 		Session.set("profileSettingsCancel", false);
 		//E-Mail wasn't changed
@@ -239,47 +227,23 @@ Template.profileSettings.events({
 		}
 
 		// Name validation
-		var name = $('#inputName').val();
-		var user_id = Meteor.userId();
-
-		Meteor.call("checkUsersName", name, user_id, function (error, result) {
-			if (error) {
-				$('#inputName').parent().parent().addClass('has-error');
-				$('#errorName').html(TAPi18n.__('panel-body.nameAlreadyExists'));
-			} else {
-				var validName = false;
-				if (result.length < 5) {
-					$('#inputName').parent().parent().addClass('has-error');
-					$('#errorName').html(TAPi18n.__('panel-body.nameToShort'));
-				} else if (result.length > 25) {
-					$('#inputName').parent().parent().addClass('has-error');
-					$('#errorName').html(TAPi18n.__('panel-body.nameToLong'));
-				} else {
-					$('#inputName').parent().parent().removeClass('has-error');
-					$('#inputName').parent().parent().addClass('has-success');
-					$('#errorName').html('');
-					name = result;
-					validName = true;
-				}
-				if (validEmail && validName && validBirthName && validGivenName) {
-					let mailNotification = document.getElementById('mailNotificationCheckbox').checked;
-					let webNotification = document.getElementById('webNotificationCheckbox').checked;
-					$('#inputEmailValidation').val('');
-					$('#inputEmailValidationForm').addClass("hidden");
-					Session.set("profileSettingsSave", true);
-					Session.set("profileSettingsCancel", true);
-					Meteor.call("updateUsersEmail", email);
-					Meteor.call("updateUsersBirthName", birthname, user_id);
-					Meteor.call("updateUsersGivenName", givenname, user_id);
-					Meteor.call("updateUsersProfileState", true, user_id);
-					Meteor.call("updateUsersName", result, user_id);
-					Meteor.call("updateUsersNotification", mailNotification, webNotification, user_id);
-					BertAlertVisuals.displayBertAlert(TAPi18n.__('profile.saved'), 'success', 'growl-top-left');
-				} else {
-					BertAlertVisuals.displayBertAlert(TAPi18n.__('profile.error'), 'warning', 'growl-top-left');
-				}
-			}
-		});
+		let user_id = Meteor.userId();
+		if (validEmail && validBirthName && validGivenName) {
+			let mailNotification = document.getElementById('mailNotificationCheckbox').checked;
+			let webNotification = document.getElementById('webNotificationCheckbox').checked;
+			$('#inputEmailValidation').val('');
+			$('#inputEmailValidationForm').addClass("hidden");
+			Session.set("profileSettingsSave", true);
+			Session.set("profileSettingsCancel", true);
+			Meteor.call("updateUsersEmail", email);
+			Meteor.call("updateUsersBirthName", birthname, user_id);
+			Meteor.call("updateUsersGivenName", givenname, user_id);
+			Meteor.call("updateUsersProfileState", true, user_id);
+			Meteor.call("updateUsersNotification", mailNotification, webNotification, user_id);
+			BertAlertVisuals.displayBertAlert(TAPi18n.__('profile.saved'), 'success', 'growl-top-left');
+		} else {
+			BertAlertVisuals.displayBertAlert(TAPi18n.__('profile.error'), 'warning', 'growl-top-left');
+		}
 	},
 	"change #mailNotificationCheckbox, change #webNotificationCheckbox": function () {
 		Session.set("profileSettingsSave", false);
