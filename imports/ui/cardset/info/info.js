@@ -11,6 +11,7 @@ import "../navigation/navigation.js";
 import "./box/cardset.js";
 import "./box/bonus.js";
 import "./info.html";
+import {UserPermissions} from "../../../api/permissions";
 
 /*
  * ############################################################################
@@ -50,6 +51,9 @@ Template.cardsetInfo.helpers({
 	},
 	isInBonus: function () {
 		return Bonus.isInBonus(Session.get('activeCardset')._id, Meteor.userId());
+	},
+	canSeeBonusDropdown: function () {
+		return this.learningActive && UserPermissions.canCreateContent();
 	}
 });
 
