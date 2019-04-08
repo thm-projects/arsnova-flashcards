@@ -6,6 +6,7 @@ import * as conf from "../config/routes.js";
 import {Cardsets} from "./cardsets";
 import {ServerStyle} from "./styles";
 import {UserPermissions} from "./permissions";
+import {getAuthorName} from "./userdata";
 
 export let Route = class Route {
 	/**
@@ -290,7 +291,13 @@ export let Route = class Route {
 			case "backend":
 				return icons.topNavigation.backend + "<span class='hidden-on-iPad'>" + TAPi18n.__('navbar-collapse.backend') + "</span>";
 			case "profile":
-				return icons.topNavigation.profile + Meteor.user().profile.name + "<span class='caret'></span>";
+				let name = icons.topNavigation.profile;
+				if (Meteor.user().profile.birthname === undefined || Meteor.user().profile.birthname === "") {
+					name += TAPi18n.__('profile.finishProfile');
+				} else {
+					name += getAuthorName(Meteor.userId(), true, true);
+				}
+				return name + "<span class='caret'></span>";
 			case "profileIPad":
 				if (UserPermissions.isAdmin()) {
 					return icons.topNavigation.profile + "<span class='caret'></span>";
