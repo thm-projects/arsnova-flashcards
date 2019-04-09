@@ -92,6 +92,9 @@ export let ServerStyle = class ServerStyle {
 				break;
 			case "editor":
 				backgroundSring = backgrounds.editor;
+				break;
+			case "transcriptBonus":
+				backgroundSring = backgrounds.transcriptBonus;
 		}
 		if (backgroundSring === "none") {
 			return backgroundSring;
@@ -126,5 +129,9 @@ export let ServerStyle = class ServerStyle {
 
 	static getServerLanguage () {
 		return this.getConfig().language.server;
+	}
+
+	static gotTranscriptsEnabled () {
+		return this.getConfig().transcripts.enabled;
 	}
 };

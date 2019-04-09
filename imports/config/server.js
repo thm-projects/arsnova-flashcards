@@ -27,7 +27,10 @@ let defaultSettings = {
 		"server": "de",
 		"client": "de"
 	},
-	"backgrounds": "default"
+	"backgrounds": "default",
+	"transcripts": {
+		"enabled": true
+	}
 };
 
 let debug = {
@@ -59,7 +62,10 @@ let debug = {
 		"server": "de",
 		"client": "de"
 	},
-	"backgrounds": "default"
+	"backgrounds": "default",
+	"transcripts": {
+		"enabled": true
+	}
 };
 
 let linux = {
@@ -91,7 +97,10 @@ let linux = {
 		"server": "de",
 		"client": "de"
 	},
-	"backgrounds": "linux"
+	"backgrounds": "linux",
+	"transcripts": {
+		"enabled": true
+	}
 };
 
 let review = {
@@ -123,7 +132,10 @@ let review = {
 		"server": "de",
 		"client": "de"
 	},
-	"backgrounds": "default"
+	"backgrounds": "default",
+	"transcripts": {
+		"enabled": true
+	}
 };
 
 let staging = {
@@ -155,7 +167,10 @@ let staging = {
 		"server": "en",
 		"client": "en"
 	},
-	"backgrounds": "default"
+	"backgrounds": "default",
+	"transcripts": {
+		"enabled": true
+	}
 };
 
 module.exports = {

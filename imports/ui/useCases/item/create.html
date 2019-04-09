@@ -29,6 +29,9 @@
                            </span>
         </button>
         <ul class="dropdown-menu btn-raised longButton">
+            {{#if gotTranscriptsEnabled}}
+                <li class="cardType" value="2" data="2"><a href="#">{{getTranscriptLongName}}</a></li>
+            {{/if}}
             {{> cardTypesList filter=false}}
         </ul>
     </div>

@@ -290,8 +290,8 @@
     "personal": {
       "personal": {
         "zero": "Anlegen",
-        "one": "Meine Karten",
-        "multiple": "Meine Karten"
+        "one": "Meine Inhalte",
+        "multiple": "Meine Inhalte"
       },
       "cardsets": {
         "zero": "Kartei anlegen",
@@ -302,6 +302,11 @@
         "zero": "Repetitorium anlegen",
         "one": "Repetitorium",
         "multiple": "Repetitorien"
+      },
+      "transcripts": {
+        "zero": "Mitschrift Anlegen",
+        "one": "Meine Mitschrift",
+        "multiple": "Meine Mitschriften"
       }
     },
     "learndecks": "Lernpensum",
@@ -551,7 +556,8 @@
   "set-list-empty": {
     "emptytextlist": "Eine Kartei besteht aus Karten desselben Typs.",
     "emptypooltextlist": "Keine Kartei vorhanden",
-    "newset": "Kartei anlegen (Kartenbox)"
+    "newset": "Kartei anlegen (Kartenbox)",
+    "emptytexttranscripts": "Du hast noch keine Mitschrift erstellt. Informiere dich unter »Hilfe«, was du mit einer eigenen Mitschrift tun kannst."
   },
   "set-list-learn-empty": {
     "emptytextlist": "Zum Lernen wähle ein Thema aus dem Themenpool oder die Karteien eines Repetitoriums.",
@@ -593,6 +599,7 @@
         "personal": {
           "create": "Ich will eine Kartei anlegen – 'ne Kartenbox.",
           "cardsets": "Ich will zu meinen Kartensätzen.",
+          "transcripts": "Ich will zu meinen Mitschriften",
           "repetitorien": "Ich will zu meinen Repetitorien."
         },
         "pool": "Ich suche Kartensätze zu einem Thema.",
@@ -603,6 +610,7 @@
         "cancel": "Danke, ich kenne mich aus.",
         "personal": {
           "cardsets": "Bring mich zu meinen Karteien!",
+          "transcripts": "Bring mich zu meinen Mitschriften!",
           "repetitorien": "Bring mich zu meinen Reps!"
         },
         "pool": "Bring mich zur Karteien-Suche!",
@@ -616,6 +624,51 @@
       "label": "Sortieroption für Karten desselben Themas",
       "sortDate": "Nach Erstelldatum sortieren",
       "sortContent": "Nach Inhalt sortieren"
+    }
+  },
+  "transcriptForm": {
+    "index": {
+      "create": "Mitschrift erstellen",
+      "topic": "Thema der Mitschrift",
+      "tooltip": {
+        "edit": "Mitschrift bearbeiten",
+        "delete": "Mitschrift löschen"
+      },
+      "modal": {
+        "title": "Mitschrift löschen",
+        "description": "Möchtest du wirklich diese Mitschrift löschen?",
+        "button": {
+          "delete": "Löschen",
+          "cancel": "Abbrechen"
+        }
+      }
+    },
+    "button": {
+      "modal": "Zugehörigkeit festlegen",
+      "save": "Speichern"
+    },
+    "title": "Zugehörigkeit der Mitschrift verwalten",
+    "referencesLecture": {
+      "true": "Mit Vorlesung verknüpfen",
+      "false": "Private Mitschrift"
+    },
+    "selectLecture": "Vorlesung auswählen",
+    "bonus": {
+      "button": "Mitschriften",
+      "form": {
+        "title": "Bonusvergabe für Mitschriften verwalten",
+        "lectureTimeEnd": "Vorlesungsende",
+        "deadline": "Bearbeitungszeit",
+        "lectureDates": "Termine der Veranstaltungen",
+        "clock": "Uhr",
+        "hours": "Stunden",
+        "button": {
+          "save": "Speichern",
+          "cancel": "Abbrechen",
+          "settings": "Einstellungen",
+          "list": "Abgaben"
+        }
+      }
     }
   },
   "modal-dialog": {

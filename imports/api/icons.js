@@ -1,4 +1,5 @@
 import * as config from "../config/icons.js";
+import * as icons from "../config/icons";
 
 export let Icons = class Icons {
 
@@ -23,6 +24,8 @@ export let Icons = class Icons {
 				return config.useCasesIcons.create;
 			case "myCardsets":
 				return config.useCasesIcons.myCardsets;
+			case "myTranscripts":
+				return config.useCasesIcons.myTranscripts;
 			case "myRepositories":
 				return config.useCasesIcons.myRepositories;
 		}
@@ -32,8 +35,11 @@ export let Icons = class Icons {
 		switch (type) {
 			case "wordcloud":
 				return config.landingPageNavigation.wordcloud;
+			case "transcript":
+				return icons.topNavigation.personal.transcripts;
 		}
 	}
+
 	static displayMode (type) {
 		switch (type) {
 			case "wordcloud":

@@ -15,6 +15,7 @@ Session.setDefault('workloadFilter', undefined);
 Session.setDefault('allCardsetsFilter', undefined);
 Session.setDefault('allRepetitorienFilter', undefined);
 Session.setDefault('personalRepetitorienFilter', undefined);
+Session.setDefault('personalTranscriptsFilter', undefined);
 Session.setDefault('shuffleFilter', undefined);
 let personalKindTag = "personal";
 let eduKindTag = "edu";
@@ -70,6 +71,11 @@ export let Filter = class Filter {
 					this.setDefaultFilter(FilterNavigation.getRouteId());
 				}
 				return Session.get('personalRepetitorienFilter');
+			case 8:
+				if (Session.get('personalTranscriptsFilter') === undefined) {
+					this.setDefaultFilter(FilterNavigation.getRouteId());
+				}
+				return Session.get('personalTranscriptsFilter');
 		}
 	}
 
@@ -140,6 +146,9 @@ export let Filter = class Filter {
 				break;
 			case 7:
 				Session.set('personalRepetitorienFilter', filter);
+				break;
+			case 8:
+				Session.set('personalTranscriptsFilter', filter);
 				break;
 		}
 		this.resetInfiniteBar();
@@ -261,7 +270,7 @@ export let Filter = class Filter {
 		if (FilterNavigation.gotKindFilter(FilterNavigation.getRouteId()) && activeFilter.kind !== undefined) {
 			query.kind = {$in: activeFilter.kind};
 		}
-		if (!Route.isWorkload() && activeFilter !== undefined) {
+		if (!Route.isWorkload() && activeFilter !== undefined && !Route.isTranscript()) {
 			query.shuffled = activeFilter.shuffled;
 		}
 		return query;
@@ -368,5 +377,6 @@ export let Filter = class Filter {
 		Session.set('shuffleFilter', undefined);
 		Session.set('allRepetitorienFilter', undefined);
 		Session.set('personalRepetitorienFilter', undefined);
+		Session.set('personalTranscriptsFilter', undefined);
 	}
 };

@@ -26,11 +26,11 @@ export let Route = class Route {
 	 * @return {Boolean} Return true, when route is new Card or edit Card.
 	 */
 	static isEditMode () {
-		return this.isNewCard() || this.isEditCard();
+		return this.isNewCard() || this.isEditCard() | this.isNewTranscript() | this.isEditTranscript();
 	}
 
 	static isNewCard () {
-		return Router.current().route.getName() === "newCard";
+		return Router.current().route.getName() === "newCard" || this.isNewTranscript();
 	}
 
 	static requiresUserInputForFullscreen () {
@@ -38,7 +38,7 @@ export let Route = class Route {
 	}
 
 	static isEditCard () {
-		return Router.current().route.getName() === "editCard";
+		return Router.current().route.getName() === "editCard" || this.isEditTranscript();
 	}
 
 	static isDemo () {
@@ -51,6 +51,22 @@ export let Route = class Route {
 
 	static isMakingOf () {
 		return Router.current().route.getName() === "making" || this.isMakingOfList();
+	}
+
+	static isTranscript () {
+		return this.isMyTranscripts() || this.isNewTranscript() || this.isEditTranscript() || this.isPresentationTranscript();
+	}
+
+	static isPresentationTranscript () {
+		return Router.current().route.getName() === "presentationTranscript";
+	}
+
+	static isNewTranscript () {
+		return Router.current().route.getName() === "newTranscript";
+	}
+
+	static isEditTranscript () {
+		return Router.current().route.getName() === "editTranscript";
 	}
 
 	static isMakingOfList () {
@@ -74,7 +90,7 @@ export let Route = class Route {
 	 * @return {Boolean} Return true, when route is a presentation view.
 	 */
 	static isPresentation () {
-		return (Router.current().route.getName() === "presentation" || this.isPresentationList());
+		return (Router.current().route.getName() === "presentation" || this.isPresentationList() || this.isPresentationTranscript());
 	}
 
 	static isPresentationList () {
@@ -86,7 +102,7 @@ export let Route = class Route {
 	}
 
 	static isPresentationOrDemo () {
-		return this.isPresentation() || this.isDemo() || this.isMakingOf();
+		return this.isPresentation() || this.isDemo() || this.isMakingOf() || this.isPresentationTranscript();
 	}
 
 	static isEditModeOrPresentation () {
@@ -129,6 +145,10 @@ export let Route = class Route {
 		return Router.current().route.getName() === "create";
 	}
 
+	static isMyTranscripts () {
+		return Router.current().route.getName() === "transcripts";
+	}
+
 	static isAllCardsets () {
 		return Router.current().route.getName() === "alldecks";
 	}
@@ -149,6 +169,10 @@ export let Route = class Route {
 		return Router.current().route.getName() === "repetitorium";
 	}
 
+	static isTranscriptBonus () {
+		return Router.current().route.getName() === "transcriptBonus";
+	}
+
 	static isPool () {
 		return Router.current().route.getName() === "pool";
 	}
@@ -158,7 +182,7 @@ export let Route = class Route {
 	}
 
 	static isPersonal () {
-		return this.isMyCardsets() || this.isPersonalRepetitorien();
+		return this.isMyCardsets() || this.isPersonalRepetitorien() || this.isMyTranscripts();
 	}
 
 	static isPersonalRepetitorien () {
@@ -178,7 +202,7 @@ export let Route = class Route {
 	}
 
 	static isFilterIndex () {
-		return (this.isHome() || this.isPool() || this.isMyCardsets() || this.isRepetitorium() || this.isAllCardsets() || this.isWorkload() || this.isAllRepetitorien() || this.isPersonalRepetitorien());
+		return (this.isHome() || this.isPool() || this.isMyCardsets() || this.isRepetitorium() || this.isAllCardsets() || this.isWorkload() || this.isAllRepetitorien() || this.isPersonalRepetitorien() || this.isMyTranscripts());
 	}
 
 	static isFirstTimeVisit () {
@@ -209,7 +233,7 @@ export let Route = class Route {
 	static getPersonalRouteName (type = 0) {
 		if (Meteor.user() && Meteor.user().count !== undefined) {
 			if (type === 0) {
-				switch (Meteor.user().count.cardsets + Meteor.user().count.shuffled) {
+				switch (Meteor.user().count.cardsets + Meteor.user().count.shuffled + Meteor.user().count.transcripts) {
 					case 0:
 						return TAPi18n.__('navbar-collapse.personal.personal.zero');
 					case 1:
@@ -225,6 +249,15 @@ export let Route = class Route {
 						return TAPi18n.__('navbar-collapse.personal.cardsets.one');
 					default:
 						return TAPi18n.__('navbar-collapse.personal.cardsets.multiple');
+				}
+			} else if (type === 2) {
+				switch (Meteor.user().count.transcripts) {
+					case 0:
+						return TAPi18n.__('navbar-collapse.personal.transcripts.zero');
+					case 1:
+						return TAPi18n.__('navbar-collapse.personal.transcripts.one');
+					default:
+						return TAPi18n.__('navbar-collapse.personal.transcripts.multiple');
 				}
 			} else {
 				switch (Meteor.user().count.shuffled) {
@@ -280,12 +313,15 @@ export let Route = class Route {
 				return icons.topNavigation.public.repetitorien +  TAPi18n.__('navbar-collapse.public.repetitorien');
 			case "personal":
 				return icons.topNavigation.personal.personal + this.getPersonalRouteName(0) + "<span class='caret'></span>";
+			case "personalTranscripts":
+			case "transcripts":
+				return icons.topNavigation.personal.transcripts + this.getPersonalRouteName(2);
 			case "personalCardsets":
 			case "myCardsets":
 			case "create":
 				return icons.topNavigation.personal.cardsets + this.getPersonalRouteName(1);
 			case "personalRepetitorien":
-				return icons.topNavigation.personal.repetitorien +  this.getPersonalRouteName(2);
+				return icons.topNavigation.personal.repetitorien +  this.getPersonalRouteName(3);
 			case "workload":
 				return icons.topNavigation.workload + TAPi18n.__('navbar-collapse.learndecks');
 			case "backend":

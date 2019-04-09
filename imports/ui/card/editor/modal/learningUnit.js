@@ -2,6 +2,7 @@ import {Cardsets} from "../../../../api/cardsets";
 import {Session} from "meteor/session";
 import "./learningUnit.html";
 
+Session.setDefault('isPrivateTranscript', true);
 /*
  * ############################################################################
  * selectLearningUnit
@@ -9,41 +10,38 @@ import "./learningUnit.html";
  */
 
 Template.selectLearningUnit.helpers({
-	getCardsetId: function () {
-		return Session.get('tempLearningIndex');
-	},
-	getCardsetName: function () {
-		if (Session.get('tempLearningIndex') === "0") {
-			return TAPi18n.__('learningUnit.none');
-		} else if (Session.get('tempLearningIndex') !== undefined) {
-			return Cardsets.findOne({_id: Session.get('tempLearningIndex')}).name;
-		}
-	},
-	gotLearningIndex: function () {
-		return Session.get('tempLearningIndex') !== "0";
-	},
-	learningIndex: function () {
-		return Cardsets.find({cardType: 0, visible: true, kind: {$in: ['free', 'edu']}}, {
+	getBonusLectures: function () {
+		return Cardsets.find({'transcript.bonus': true}, {
 			sort: {name: 1},
 			fields: {name: 1}
 		});
+	},
+	isPrivateTranscript: function () {
+		return Session.get('isPrivateTranscript');
+	},
+	gotValidSelection: function () {
+		if (Session.get('isPrivateTranscript')) {
+			return true;
+		} else {
+			return Session.get('activeBonusLecture') !== undefined;
+		}
 	}
 });
 
 Template.selectLearningUnit.events({
-	'click .learningIndex': function (evt) {
-		let learningIndex = $(evt.currentTarget).attr("data");
-		Session.set('tempLearningIndex', learningIndex);
+	'click .bonusLecture': function (evt) {
+		Session.set('activeBonusLecture', Cardsets.findOne({_id: $(evt.currentTarget).attr("data")}));
 		$('#setLearningIndexLabel').css('color', '');
 		$('.setLearningIndexDropdown').css('border-color', '');
 		$('#helpLearningIndexType').html('');
-		if (learningIndex === "0") {
-			$('#showSelectLearningUnitModal').modal('hide');
-			Session.set('learningIndex', "0");
-			Session.set('learningUnit', "0");
-		}
 	},
 	'click #learningUnitCancel': function () {
 		$('#showSelectLearningUnitModal').modal('hide');
+	},
+	'click #privateTranscript': function () {
+		Session.set('isPrivateTranscript', true);
+	},
+	'click #referencesLecture': function () {
+		Session.set('isPrivateTranscript', false);
 	}
 });

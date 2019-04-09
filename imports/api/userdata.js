@@ -67,6 +67,21 @@ export function exportAuthorName(owner) {
 }
 
 if (Meteor.isServer) {
+	Meteor.publish("userDataLecturers", function () {
+		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
+			return Meteor.users.find({roles: {$in: ["lecturer"]}},
+				{
+					fields: {
+						'profile.name': 1,
+						'profile.birthname': 1,
+						'profile.givenname': 1,
+						'profile.title': 1
+					}
+				});
+		} else {
+			this.ready();
+		}
+	});
 	Meteor.publish("userDataLandingPage", function () {
 		let cardsets = Cardsets.find({wordcloud: true}, {fields: {owner: 1}}).fetch();
 		let owners = [];
@@ -488,6 +503,20 @@ Meteor.methods({
 					$set: {
 						"count.cardsets": Cardsets.find({owner: user_id, shuffled: false}).count(),
 						"count.shuffled": Cardsets.find({owner: user_id, shuffled: true}).count()
+					}
+				}
+			);
+		}
+	},
+	updateTranscriptCount: function (user_id) {
+		check(user_id, String);
+		if (Meteor.isServer) {
+			Meteor.users.update({
+					_id: user_id
+				},
+				{
+					$set: {
+						"count.transcripts": Cards.find({owner: user_id, cardType: 2}).count()
 					}
 				}
 			);

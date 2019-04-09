@@ -44,6 +44,14 @@ Template.registerHelper('isCardset', function () {
 	return Route.isCardset();
 });
 
+Template.registerHelper('gotTranscriptsEnabled', function () {
+	return ServerStyle.gotTranscriptsEnabled();
+});
+
+Template.registerHelper('isTranscriptRoute', function () {
+	return Route.isTranscript();
+});
+
 Template.registerHelper('isPresentation', function () {
 	return Route.isPresentation();
 });
@@ -202,6 +210,11 @@ Template.registerHelper('isMyCardsetsRoute', function () {
 	return Route.isMyCardsets();
 });
 
+Template.registerHelper('isMyTranscriptsRoute', function () {
+	return Route.isMyTranscripts();
+});
+
+
 Template.registerHelper('isPersonalRepetitorienRoute', function () {
 	return Route.isPersonalRepetitorien();
 });
@@ -238,9 +251,9 @@ Template.registerHelper('isInBonusAndProfileIncomplete', function () {
 
 // Check if user has permission to look at a cardset
 Template.registerHelper("hasPermission", function () {
-	if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
+	if (UserPermissions.isAdmin()) {
 		return true;
-	} else if (Roles.userIsInRole(Meteor.userId(), 'lecturer')) {
+	} else if (UserPermissions.isLecturer()) {
 		return this.owner === Meteor.userId() || this.visible === true || this.request === true;
 	} else {
 		return this.owner === Meteor.userId() || this.visible === true;
@@ -497,6 +510,21 @@ Template.registerHelper("isEditor", function () {
 	if (Router.current().params._id) {
 		let cardset = Cardsets.findOne({"_id": Router.current().params._id});
 		return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId()));
+	}
+});
+
+Template.registerHelper("canAccessEditor", function () {
+	if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']) || Route.isNewTranscript()) {
+		return true;
+	}
+	if (Route.isTranscript()) {
+		let card = Cards.findOne(Router.current().params.card_id);
+		return card.owner === Meteor.userId();
+	} else {
+		if (Router.current().params._id) {
+			let cardset = Cardsets.findOne(Router.current().params._id);
+			return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId()));
+		}
 	}
 });
 

@@ -33,8 +33,17 @@ Template.flashcardHeaderCenter.helpers({
 		return CardType.gotLearningGoal(this.cardType);
 	},
 	getCardsetName: function () {
-		if (!CardType.gotCardsetTitleNavigation(this.cardType)) {
-			return Cardsets.findOne({_id: this.cardset_id}).name;
+		if (Route.isTranscript()) {
+			if (this.transcript !== undefined && this.transcript.cardset_id !== undefined) {
+				let cardset = Cardsets.findOne({_id: this.transcript.cardset_id}, {fields: {name: 1}});
+				if (cardset !== undefined) {
+					return cardset.name;
+				}
+			}
+		} else {
+			if (!CardType.gotCardsetTitleNavigation(this.cardType)) {
+				return Cardsets.findOne({_id: this.cardset_id}).name;
+			}
 		}
 	},
 	getLearningGoalName: function () {

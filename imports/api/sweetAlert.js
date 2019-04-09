@@ -3,6 +3,7 @@ import swal from "sweetalert2";
 import * as screenfull from 'screenfull';
 import {CardVisuals} from "./cardVisuals";
 import * as config from "../config/sweetAlert.js";
+import {Route} from "./route.js";
 
 export let SweetAlertMessages = class SweetAlertMessages {
 	static completeProfile () {
@@ -21,9 +22,13 @@ export let SweetAlertMessages = class SweetAlertMessages {
 				screenfull.request();
 			} else {
 				screenfull.exit();
-				Router.go('cardsetdetailsid', {
-					_id: Router.current().params._id
-				});
+				if (Route.isPresentationTranscript()) {
+					Router.go('transcripts');
+				} else {
+					Router.go('cardsetdetailsid', {
+						_id: Router.current().params._id
+					});
+				}
 			}
 		});
 	}
@@ -34,9 +39,13 @@ export let SweetAlertMessages = class SweetAlertMessages {
 				CardVisuals.toggleFullscreen();
 			} else {
 				screenfull.exit();
-				Router.go('cardsetdetailsid', {
-					_id: Router.current().params._id
-				});
+				if (Route.isPresentationTranscript()) {
+					Router.go('transcripts');
+				} else {
+					Router.go('cardsetdetailsid', {
+						_id: Router.current().params._id
+					});
+				}
 			}
 		});
 	}
@@ -45,9 +54,13 @@ export let SweetAlertMessages = class SweetAlertMessages {
 		swal.fire(config.exitPresentation()).then((result) => {
 			if (result.value) {
 				screenfull.exit();
-				Router.go('cardsetdetailsid', {
-					_id: Router.current().params._id
-				});
+				if (Route.isPresentationTranscript()) {
+					Router.go('transcripts');
+				} else {
+					Router.go('cardsetdetailsid', {
+						_id: Router.current().params._id
+					});
+				}
 			} else {
 				screenfull.request();
 			}

@@ -1,11 +1,11 @@
 <template name="subjectEditor">
-    {{#if gotLearningUnit}}
-        <button class="btn btn-raised btn-success col-xs-4 col-sm-3 subjectEditorButton" data-toggle="modal"
-                data-target="#showSelectLearningUnitModal">{{_ "learningUnit.choose"}}</button>
-    {{/if}}
     <form class="form-group subjectEditor {{#if gotLearningUnit}}col-xs-8 col-sm-9{{/if}}">
         <input class="form-control" id="subjectEditor" name="content"
                placeholder="{{getSubjectPlaceholder}}" value="{{getSubject}}"
                tabindex="1" autofocus>
     </form>
+    {{#if gotLearningUnit}}
+        <button class="btn btn-raised btn-success col-xs-4 col-sm-3 btn subjectEditorButton float-right" data-toggle="modal"
+                data-target="#showSelectLearningUnitModal">{{_ "transcriptForm.button.modal"}}</button>
+    {{/if}}
 </template>
