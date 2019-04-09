@@ -8,7 +8,7 @@ export let AspectRatio = class AspectRatio {
 
 	static isEnabled () {
 		if ((CardVisuals.isFullscreen() && !MarkdeepEditor.getMobilePreview()) || (Route.isDemo() || Route.isMakingOf())) {
-			if (Route.isPresentation() && config.aspectRatioEnabled.includes(0)) {
+			if ((Route.isPresentation() || Route.isPresentationTranscript()) && config.aspectRatioEnabled.includes(0)) {
 				return true;
 			}
 			if ((Route.isDemo() || Route.isMakingOf()) && config.aspectRatioEnabled.includes(1)) {
@@ -27,7 +27,7 @@ export let AspectRatio = class AspectRatio {
 	}
 
 	static scaleCardNavigationWidth () {
-		if (Route.isPresentation() && config.scaleCardNavigationWidth.includes(0)) {
+		if ((Route.isPresentation() || Route.isPresentationTranscript()) && config.scaleCardNavigationWidth.includes(0)) {
 			return true;
 		}
 		if ((Route.isDemo() || Route.isMakingOf()) && config.scaleCardNavigationWidth.includes(1)) {
@@ -45,7 +45,7 @@ export let AspectRatio = class AspectRatio {
 	}
 
 	static getDefault () {
-		if (Route.isPresentation() || Route.isCardset()) {
+		if (Route.isPresentation() || Route.isPresentationTranscript() || Route.isCardset()) {
 			if (NavigatorCheck.isIOS()) {
 				return config.defaultAspectRatioTablet[0];
 			} else {

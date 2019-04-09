@@ -1,6 +1,6 @@
 <template name="markdeepContent">
     <div id="markdeepEditorContent">
-        {{#if isActiveRoute regex="editCard|newCard"}}
+        {{#if isEditMode}}
             <form>
         <textarea id="contentEditor" class="card" name="content" placeholder="{{getPlaceholder}}"
                   data-provide="markdown" rows="10"

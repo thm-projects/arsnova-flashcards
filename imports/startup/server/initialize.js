@@ -76,7 +76,9 @@ var initTestNotificationsCards = function () {
 			"centerTextElement": [false, false, false, false, false, false],
 			"alignType": [1, 1, 1, 1, 1, 1],
 			"learningGoalLevel": 0,
-			"backgroundStyle": 0
+			"backgroundStyle": 0,
+			"owner": "NotificationsTestUser",
+			"cardType": 0
 		},
 		{
 			"_id": "NotificationsTestCard2",
@@ -89,7 +91,9 @@ var initTestNotificationsCards = function () {
 			"centerTextElement": [false, false, false, false, false, false],
 			"alignType": [1, 1, 1, 1, 1, 1],
 			"learningGoalLevel": 1,
-			"backgroundStyle": 0
+			"backgroundStyle": 0,
+			"owner": "NotificationsTestUser",
+			"cardType": 0
 		},
 		{
 			"_id": "NotificationsTestCard3",
@@ -102,7 +106,9 @@ var initTestNotificationsCards = function () {
 			"centerTextElement": [false, false, false, false, false, false],
 			"alignType": [1, 1, 1, 1, 1, 1],
 			"learningGoalLevel": 2,
-			"backgroundStyle": 0
+			"backgroundStyle": 0,
+			"owner": "NotificationsTestUser",
+			"cardType": 0
 		},
 		{
 			"_id": "NotificationsTestCard4",
@@ -115,7 +121,9 @@ var initTestNotificationsCards = function () {
 			"centerTextElement": [false, false, false, false, false, false],
 			"alignType": [1, 1, 1, 1, 1, 1],
 			"learningGoalLevel": 3,
-			"backgroundStyle": 0
+			"backgroundStyle": 0,
+			"owner": "NotificationsTestUser",
+			"cardType": 0
 		},
 		{
 			"_id": "NotificationsTestCard5",
@@ -128,7 +136,9 @@ var initTestNotificationsCards = function () {
 			"centerTextElement": [false, false, false, false, false, false],
 			"alignType": [1, 1, 1, 1, 1, 1],
 			"learningGoalLevel": 4,
-			"backgroundStyle": 0
+			"backgroundStyle": 0,
+			"owner": "NotificationsTestUser",
+			"cardType": 0
 		}
 	];
 };
@@ -803,6 +813,21 @@ Meteor.startup(function () {
 		);
 	}
 
+	cardsets = Cardsets.find().fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Cards.update({
+				cardset_id: cardsets[i]._id,
+				owner: {$exists: false}
+			},
+			{
+				$set: {
+					owner: cardsets[i].owner,
+					cardType: cardsets[i].cardType
+				}
+			}
+		);
+	}
+
 	let wozniak;
 	wozniak = Wozniak.find({skipped: {$exists: true}}).fetch();
 	for (let i = 0; i < wozniak.length; i++) {
@@ -836,9 +861,7 @@ Meteor.startup(function () {
 	users = Meteor.users.find({}, {fields: {_id: 1}}).fetch();
 	for (let i = 0; i < users.length; i++) {
 		Meteor.call('updateCardsetCount', users[i]._id);
-	}
-
-	for (let i = 0; i < users.length; i++) {
+		Meteor.call('updateTranscriptCount', users[i]._id);
 		Meteor.call('updateWorkloadCount', users[i]._id);
 	}
 
@@ -917,6 +940,20 @@ Meteor.startup(function () {
 	for (let learned = 0; learned < testNotificationsLearned.length; learned++) {
 		Leitner.insert(testNotificationsLearned[learned]);
 	}
+
+	cards = Cards.find({cardType: 2}).fetch();
+	for (let i = 0; i < cards.length; i++) {
+		Cards.update({
+				_id: cards[i]._id
+			},
+			{
+				$set: {
+					cardset_id: "-1"
+				}
+			}
+		);
+	}
+	Cardsets.remove({cardType: 2});
 
 	Meteor.users.remove(demoCardsetUser[0]._id);
 	Meteor.users.insert(demoCardsetUser[0]);

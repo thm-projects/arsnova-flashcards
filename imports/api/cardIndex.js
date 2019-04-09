@@ -59,35 +59,39 @@ export let CardIndex = class CardIndex {
 		let sortQuery;
 		let indexCards = [];
 		let cardset;
-		if (Route.isDemo()) {
-			cardset = Cardsets.findOne({kind: 'demo', name: 'DemoCardset', shuffled: true});
-		} else if (Route.isMakingOf()) {
-			cardset = Cardsets.findOne({kind: 'demo', name: 'MakingOfCardset', shuffled: true});
+		if (Route.isTranscript()) {
+			return 0;
 		} else {
-			cardset = Cardsets.findOne(Router.current().params._id);
-		}
-		if (cardset.shuffled) {
-			let cardGroups = Cardsets.find({_id: {$in: cardset.cardGroups}}, {
-				sort: {name: 1},
-				fields: {_id: 1, cardType: 1}
-			});
-			cardGroups.forEach(function (cardGroup) {
-				sortQuery = CardType.getSortQuery(cardGroup.cardType, cardGroup.sortType);
-				indexCards = Cards.find({cardset_id: cardGroup._id}, {
-					sort: sortQuery, fields: {_id: 1}
+			if (Route.isDemo()) {
+				cardset = Cardsets.findOne({kind: 'demo', name: 'DemoCardset', shuffled: true});
+			} else if (Route.isMakingOf()) {
+				cardset = Cardsets.findOne({kind: 'demo', name: 'MakingOfCardset', shuffled: true});
+			} else {
+				cardset = Cardsets.findOne(Router.current().params._id);
+			}
+			if (cardset.shuffled) {
+				let cardGroups = Cardsets.find({_id: {$in: cardset.cardGroups}}, {
+					sort: {name: 1},
+					fields: {_id: 1, cardType: 1}
 				});
+				cardGroups.forEach(function (cardGroup) {
+					sortQuery = CardType.getSortQuery(cardGroup.cardType, cardGroup.sortType);
+					indexCards = Cards.find({cardset_id: cardGroup._id}, {
+						sort: sortQuery, fields: {_id: 1}
+					});
+					indexCards.forEach(function (indexCard) {
+						cardIndex.push(indexCard._id);
+					});
+				});
+			} else {
+				sortQuery = CardType.getSortQuery(cardset.cardType, cardset.sortType);
+				indexCards = Cards.find({cardset_id: cardset._id}, {sort: sortQuery, fields: {_id: 1}});
 				indexCards.forEach(function (indexCard) {
-					cardIndex.push(indexCard._id);
-				});
-			});
-		} else {
-			sortQuery = CardType.getSortQuery(cardset.cardType, cardset.sortType);
-			indexCards = Cards.find({cardset_id: cardset._id}, {sort: sortQuery, fields: {_id: 1}});
-			indexCards.forEach(function (indexCard) {
-				cardIndex.push(indexCard._id);}
+					cardIndex.push(indexCard._id);}
 				);
+			}
+			return cardIndex;
 		}
-		return cardIndex;
 	}
 
 	static leitnerIndex () {
@@ -193,19 +197,23 @@ export let CardIndex = class CardIndex {
 	 */
 	static getCardsetCards () {
 		let query = "";
-		let cardIndexFilter = this.getCardIndexFilter();
-		if (Session.get('activeCardset').shuffled) {
-			query = Cards.find({
-				_id: {$in: cardIndexFilter},
-				cardset_id: {$in: Session.get('activeCardset').cardGroups}
-			}).fetch();
+		if (Route.isPresentationTranscript()) {
+			return Cards.find(Router.current().params.card_id).fetch();
 		} else {
-			query = Cards.find({
-				_id: {$in: cardIndexFilter},
-				cardset_id: Router.current().params._id
-			}).fetch();
+			let cardIndexFilter = this.getCardIndexFilter();
+			if (Session.get('activeCardset').shuffled) {
+				query = Cards.find({
+					_id: {$in: cardIndexFilter},
+					cardset_id: {$in: Session.get('activeCardset').cardGroups}
+				}).fetch();
+			} else {
+				query = Cards.find({
+					_id: {$in: cardIndexFilter},
+					cardset_id: Router.current().params._id
+				}).fetch();
+			}
+			return this.sortQueryResult(cardIndexFilter, query);
 		}
-		return this.sortQueryResult(cardIndexFilter, query);
 	}
 
 	/**
@@ -246,6 +254,10 @@ export let CardIndex = class CardIndex {
 		} else {
 			Session.set('activeCard', undefined);
 		}
+		let cardset_id = -1;
+		if (!Route.isTranscript()) {
+			cardset_id = Router.current().params._id;
+		}
 		return [{
 			"_id": id,
 			"subject": Session.get('subject'),
@@ -258,7 +270,7 @@ export let CardIndex = class CardIndex {
 			"lecture": Session.get('content4'),
 			"top": Session.get('content5'),
 			"bottom": Session.get('content6'),
-			"cardset_id": Router.current().params._id,
+			"cardset_id": cardset_id,
 			"cardGroup": 0,
 			"cardType": Session.get('cardType'),
 			"centerTextElement": Session.get('centerTextElement'),
@@ -307,7 +319,11 @@ export let CardIndex = class CardIndex {
 	}
 
 	static getActiveCardIndex (card_id) {
-		let cardIndex = this.getCardIndex();
-		return cardIndex.findIndex(item => item === card_id) + 1;
+		if (Route.isTranscript()) {
+			return 0;
+		} else {
+			let cardIndex = this.getCardIndex();
+			return cardIndex.findIndex(item => item === card_id) + 1;
+		}
 	}
 };

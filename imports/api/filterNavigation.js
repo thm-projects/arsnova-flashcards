@@ -122,6 +122,9 @@ export let FilterNavigation = class FilterNavigation {
 		if (Route.isPersonalRepetitorien()) {
 			return 7;
 		}
+		if (Route.isMyTranscripts()) {
+			return 8;
+		}
 	}
 
 	static getFilterButton () {

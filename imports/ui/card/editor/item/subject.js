@@ -25,7 +25,7 @@ Template.subjectEditor.helpers({
 		return CardType.getSubjectPlaceholderText(Session.get('cardType'));
 	},
 	gotLearningUnit: function () {
-		return CardType.gotLearningUnit(this.cardType);
+		return CardType.gotLearningUnit(Session.get('cardType'));
 	}
 });
 

@@ -3,8 +3,10 @@
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Filter} from "../../../api/filter";
+import {Cards} from "../../../api/cards";
 import {Cardsets} from "../../../api/cardsets";
 import {CardType} from "../../../api/cardTypes";
+import {Route} from "../../../api/route";
 import "./navigation.html";
 import './item/resetButton.js';
 import './item/sortResults.js';
@@ -21,10 +23,6 @@ import './item/filterKind.js';
  * ############################################################################
  */
 
-Template.filterNavigation.helpers({
-
-});
-
 Template.filterNavigation.greeting = function () {
 	return Session.get('authors');
 };
@@ -32,21 +30,35 @@ Template.filterNavigation.greeting = function () {
 Template.infiniteScroll.helpers({
 	moreResults: function () {
 		let query = Filter.getFilterQuery();
-		if (Session.get("selectingCardsetToLearn") && query.cardType === undefined) {
-			query.cardType = {$in: CardType.getCardTypesWithLearningModes()};
+		if (Route.isTranscript()) {
+			query.cardType = 2;
+			return Filter.getMaxItemCounter() < Cards.find(query).count();
+		} else {
+			if (Session.get("selectingCardsetToLearn") && query.cardType === undefined) {
+				query.cardType = {$in: CardType.getCardTypesWithLearningModes()};
+			}
+			return Filter.getMaxItemCounter() < Cardsets.find(query).count();
 		}
-		return Filter.getMaxItemCounter() < Cardsets.find(query).count();
 	},
 	getCurrentResults: function () {
 		let query = Filter.getFilterQuery();
-		if (Session.get("selectingCardsetToLearn") && query.cardType === undefined) {
-			query.cardType = {$in: CardType.getCardTypesWithLearningModes()};
+		if (Route.isTranscript()) {
+			query.cardType = 2;
+			Session.set('totalResults', Cards.find(query).count());
+			return TAPi18n.__('infinite-scroll.remainingCardsets', {
+				current: Filter.getMaxItemCounter(),
+				total: Session.get('totalResults')
+			});
+		} else {
+			if (Session.get("selectingCardsetToLearn") && query.cardType === undefined) {
+				query.cardType = {$in: CardType.getCardTypesWithLearningModes()};
+			}
+			Session.set('totalResults', Cardsets.find(query).count());
+			return TAPi18n.__('infinite-scroll.remainingCardsets', {
+				current: Filter.getMaxItemCounter(),
+				total: Session.get('totalResults')
+			});
 		}
-		Session.set('totalResults', Cardsets.find(query).count());
-		return TAPi18n.__('infinite-scroll.remainingCardsets', {
-			current: Filter.getMaxItemCounter(),
-			total: Session.get('totalResults')
-		});
 	}
 });
 

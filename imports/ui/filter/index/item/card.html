@@ -1,0 +1,44 @@
+<template name="filterIndexItemCard">
+    {{#if firstItem this.index}}
+        <div class="hidden-xs col-sm-6 resultsHeader">
+            {{_ "transcriptForm.index.topic"}}
+        </div>
+        <div class="hidden-xs col-sm-3 resultsHeader resultHeaderCategory">
+            {{_ "pool.release"}} <span class="resultDateRight">{{_ "pool.dateUpdated"}}</span>
+        </div>
+        <div class="hidden-xs col-sm-3 resultsHeader resultHeaderCategory">
+           {{_ "set-list.categoryOptions"}}
+        </div>
+    {{/if}}
+    <div class="resultItem col-xs-12">
+        <div class="resultItemHeaderWrapper">
+            <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName col-xs-6 col-sm-6 {{getCardsetBackground
+                    this.difficulty this.cardType}}"
+                 data-type="{{this.subject}}">
+                <a href="/presentation/transcripts/{{this._id}}">
+                    {{this.subject}}
+                </a>
+            </div>
+            <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName col-xs-6 col-sm-3 {{getCardsetBackground
+                    this.difficulty this.cardType}}">
+                {{getMomentsDateShort  this.date}}<span class="resultDateRight">{{getMomentsDateShort
+                    this.dateUpdated}}</span>
+            </div>
+            <div class="resultItemHeader resultItemHeaderRightArea collapseButton col-xs-12 col-sm-3">
+                <div class="resultItemHeaderRightAreaTop col-xs-6 col-sm-12">
+                    {{{getCardTypeLabel this.cardType}}}
+                </div>
+                <div class="resultItemHeaderRightAreaBottom col-xs-6 col-sm-12">
+                    <a class="resultNavigationElement editCard hidden-xs" {{disableIfOffline}}
+                       title='{{_ "transcriptForm.index.tooltip.edit"}}' data-id="{{this._id}}">
+                        <i class="glyphicon glyphicon-edit" data-id="{{this._id}}"></i>
+                    </a>
+                    <a class="resultNavigationElement deleteCard" {{disableIfOffline}}
+                       title='{{_ "transcriptForm.index.tooltip.delete"}}'  data-toggle="modal" data-target="#deleteTranscriptModal" data-id="{{this._id}}">
+                        <i class="result fa fa-trash" data-id="{{this._id}}"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

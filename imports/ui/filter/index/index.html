@@ -32,6 +32,11 @@
             {{> cardsetForm}}
             {{> filterIndexPool}}
         {{/if}}
+
+        {{#if isActiveRoute 'transcripts'}}
+            {{> cardsetForm}}
+            {{> filterIndexTranscripts}}
+        {{/if}}
     </div>
 </template>
 
@@ -51,6 +56,27 @@
             {{else}}
                 {{> noFilterResults}}
             {{/if}}
+        {{/if}}
+    {{else}}
+        {{> noResults}}
+    {{/if}}
+</template>
+
+<template name="filterIndexTranscripts">
+    {{> deleteTranscriptForm}}
+    <span class="filter-index-buttons empty-button-placeholder">
+        {{#if isMyTranscriptsRoute}}
+            {{> filterItemCreateTranscriptButton}}
+        {{/if}}
+    </span>
+    {{#if getCards 0}}
+        {{#if getCards 1}}
+            {{#each getCards 2}}
+                {{> filterIndexItemCard extendContext 'index' @index}}
+            {{/each}}
+            {{> infiniteScroll}}
+        {{else}}
+            {{> noFilterResults}}
         {{/if}}
     {{else}}
         {{> noResults}}

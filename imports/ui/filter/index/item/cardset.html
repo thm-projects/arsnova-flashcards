@@ -269,7 +269,7 @@
 </template>
 
 <template name="noResults">
-    <div class="col-xs-12 no-results {{#if isActiveRoute regex='pool'}}no-navigation{{/if}}">
+    <div class="col-xs-12 no-results">
         <div class="no-result-text">
             {{#if isActiveRoute 'create'}}
                 {{_ "set-list-empty.emptytextlist"}}
@@ -282,6 +282,9 @@
             {{/if}}
             {{#if isActiveRoute regex='repetitorium|personalRepetitorien|allRepetitorien'}}
                 {{_ "courseIteration.list.empty"}}
+            {{/if}}
+            {{#if isActiveRoute 'transcripts'}}
+                {{_ "set-list-empty.emptytexttranscripts"}}
             {{/if}}
         </div>
     </div>
