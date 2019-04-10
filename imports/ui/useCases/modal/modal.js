@@ -73,7 +73,7 @@ Template.useCasesModal.onRendered(function () {
 				}
 				break;
 			case 7:
-				Router.go('transcript');
+				Router.go('transcripts');
 				break;
 		}
 	});
