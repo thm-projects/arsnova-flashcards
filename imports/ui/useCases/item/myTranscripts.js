@@ -12,7 +12,7 @@ Template.useCasesItemMyTranscripts.helpers({
 });
 
 Template.useCasesItemMyTranscripts.events({
-	'click .useCasesItemMyTranscriptsButton': function () {
+	'click .useCasesGoToMyTranscripts': function () {
 		Session.set('useCaseType', 7);
 		$('#useCasesModal').modal('hide');
 	}
