@@ -197,7 +197,6 @@
 
 <template name="difficultyEditor">
     <div id="difficultyGroup" class="form-group btn-group" role="group" data-toggle="buttons">
-        {{#if gotNotesForDifficultyLevel}}
             <span class="col-xs-6 col-sm-3 btn-bootstrap-container">
             <label id="difficulty0"
                    class="btn btn-block btn-default btn-raised {{#if
@@ -217,9 +216,8 @@
                 {{/unless}}
                 </span>
             </label>
-                        </span>
-        {{/if}}
-        <span class="col-xs-6 {{#if gotNotesForDifficultyLevel}}col-sm-3{{else}}col-sm-4{{/if}} btn-bootstrap-container">
+            </span>
+        <span class="col-xs-6 col-sm-3 btn-bootstrap-container">
         <label id="difficulty1"
                class="btn btn-default btn-block btn-info btn-raised {{#if
                        isDifficultyChecked 1}}active{{/if}}"
@@ -238,7 +236,7 @@
             </span>
         </label>
         </span>
-        <span class="col-xs-6 {{#if gotNotesForDifficultyLevel}}col-sm-3{{else}}col-sm-4{{/if}} btn-bootstrap-container">
+        <span class="col-xs-6 col-sm-3 btn-bootstrap-container">
         <label id="difficulty2"
                class="btn btn-default btn-block btn-success btn-raised {{#if
                        isDifficultyChecked 2}}active{{/if}}"
@@ -257,7 +255,7 @@
             </span>
         </label>
         </span>
-        <span class="col-xs-6 {{#if gotNotesForDifficultyLevel}}col-sm-3{{else}}col-sm-4{{/if}} btn-bootstrap-container">
+        <span class="col-xs-6 col-sm-3 btn-bootstrap-container">
         <label id="difficulty3"
                class="btn btn-default btn-block btn-danger btn-raised {{#if
                        isDifficultyChecked 3}}active{{/if}}"

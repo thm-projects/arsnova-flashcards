@@ -18,7 +18,7 @@
 //17: Inverses Fragen
 //18: Cube
 let cardTypesWithDictionary = [1];
-let cardTypesWithDifficultyLevel = [0, 1, 3, 5, 6, 7, 11, 12, 13, 15, 17];
+let cardTypesWithDifficultyLevel = [0, 1, 3, 5, 6, 7, 11, 12, 13, 15, 17, 18];
 let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12, 13, 15, 16, 17];
 let cardTypesWithLearningGoal = [0, 5, 12];
 let cardTypesWithLearningUnit = [];
@@ -362,27 +362,27 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"defaultStyle": "white"
+			"defaultStyle": "default"
 		},
 		{
 			"contentId": 2,
-			"defaultStyle": "white"
+			"defaultStyle": "default"
 		},
 		{
 			"contentId": 3,
-			"defaultStyle": "white"
+			"defaultStyle": "default"
 		},
 		{
 			"contentId": 4,
-			"defaultStyle": "white"
+			"defaultStyle": "default"
 		},
 		{
 			"contentId": 5,
-			"defaultStyle": "white"
+			"defaultStyle": "default"
 		},
 		{
 			"contentId": 6,
-			"defaultStyle": "white"
+			"defaultStyle": "default"
 		}
 	]
 ];

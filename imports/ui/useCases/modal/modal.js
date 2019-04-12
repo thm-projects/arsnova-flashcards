@@ -55,22 +55,10 @@ Template.useCasesModal.onRendered(function () {
 				Router.go('learn');
 				break;
 			case 5:
-				if (Route.isMyCardsets()) {
-					setTimeout(function () {
-						MainNavigation.focusSearchBar();
-					}, 500);
-				} else {
-					Router.go('create');
-				}
+				Router.go('create');
 				break;
 			case 6:
-				if (Route.isPersonalRepetitorien()) {
-					setTimeout(function () {
-						MainNavigation.focusSearchBar();
-					}, 500);
-				} else {
-					Router.go('personalRepetitorien');
-				}
+				Router.go('personalRepetitorien');
 				break;
 			case 7:
 				Router.go('transcripts');

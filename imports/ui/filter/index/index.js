@@ -145,8 +145,6 @@ Template.filterIndexCreate.onRendered(function () {
 	if (Route.isMyCardsets()) {
 		if (Session.get('useCaseType') === 1) {
 			$('#setCardsetFormModal').modal('show');
-		} else if (Session.get('useCaseType') === 5) {
-			MainNavigation.focusSearchBar();
 		}
 	}
 	LoginTasks.showUseCasesModal();
@@ -189,7 +187,7 @@ Template.filterIndexRepetitorium.helpers({
 });
 
 Template.filterIndexRepetitorium.onRendered(function () {
-	if (Session.get('useCaseType') === 2 || Session.get('useCaseType') === 6) {
+	if (Session.get('useCaseType') === 2) {
 		MainNavigation.focusSearchBar();
 		Session.set('useCaseType', 0);
 	}

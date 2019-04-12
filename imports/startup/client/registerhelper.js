@@ -891,13 +891,12 @@ Template.registerHelper("getCardsetBackground", function (difficulty, cardType) 
 	if (!CardType.gotDifficultyLevel(cardType)) {
 		return 'box-difficultyBlank0';
 	}
-	if (difficulty === 0 && !CardType.gotNotesForDifficultyLevel(cardType)) {
-		difficulty = 1;
-	}
 	switch (difficulty) {
 		case 0:
 			if (CardType.gotNotesForDifficultyLevel(cardType)) {
 				return 'box-difficultyBlankNote0';
+			} else {
+				return 'box-difficultyBlank0';
 			}
 			break;
 		case 1:
