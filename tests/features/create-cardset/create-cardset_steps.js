@@ -27,8 +27,8 @@ module.exports = function () {
 	});
 
 	this.Then(/^he should be able to edit the card type$/, function () {
-		navigation.clickElement('#setCardType');
-		navigation.clickElement('.cardType');
+		navigation.clickElement('#setCardsetFormModal .setCardTypeDropdown');
+		navigation.clickElement('#setCardsetFormModal .cardType');
 	});
 
 	this.Then(/^he should be able to edit the cardset description$/, function () {
