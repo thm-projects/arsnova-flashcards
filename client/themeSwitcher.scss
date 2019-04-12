@@ -291,6 +291,7 @@ $themes: (
     $no_results_text: map-get($map, "no_results_text");
     //difficulty colors
     $button_difficulty0_note: map-get($map, "button_difficulty0_note");
+    $button_difficulty0: map-get($map, "button_difficulty0");
     $button_difficulty1: map-get($map, "button_difficulty1");
     $button_difficulty2: map-get($map, "button_difficulty2");
     $button_difficulty3: map-get($map, "button_difficulty3");
@@ -2695,6 +2696,15 @@ $themes: (
     #setDifficulty .btn-orange.active, .label-difficulty0 {
       color: $white !important;
       background-color: $button_difficulty0_note !important;
+    }
+
+    #setDifficulty .btn-white {
+      color: $button_difficulty0 !important;
+    }
+
+    #setDifficulty .btn-white.active, .label-difficulty0 {
+      color: $white !important;
+      background-color: $button_difficulty0 !important;
     }
 
     #setDifficulty .btn-info {

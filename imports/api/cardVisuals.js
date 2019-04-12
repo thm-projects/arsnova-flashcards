@@ -463,14 +463,13 @@ export let CardVisuals = class CardVisuals {
 					return box + 'difficultyBlank0';
 				}
 			}
-			if (difficulty === 0 && !CardType.gotNotesForDifficultyLevel(cardType)) {
-				difficulty = 1;
-			}
 			if (backgroundStyle === 0) {
 				switch (difficulty) {
 					case 0:
 						if (CardType.gotNotesForDifficultyLevel(cardType)) {
 							return box + 'difficultyLinedNote0';
+						} else {
+							return box + 'difficultyLined0';
 						}
 						break;
 					case 1:
@@ -487,6 +486,8 @@ export let CardVisuals = class CardVisuals {
 					case 0:
 						if (CardType.gotNotesForDifficultyLevel(cardType)) {
 							return box + 'difficultyBlankNote0';
+						} else {
+							return box + 'difficultyBlank0';
 						}
 						break;
 					case 1:
