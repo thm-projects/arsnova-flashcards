@@ -304,7 +304,7 @@
         "multiple": "Repetitorien"
       },
       "transcripts": {
-        "zero": "Mitschrift Anlegen",
+        "zero": "Mitschrift anlegen",
         "one": "Meine Mitschrift",
         "multiple": "Meine Mitschriften"
       }
@@ -557,7 +557,7 @@
     "emptytextlist": "Eine Kartei besteht aus Karten desselben Typs.",
     "emptypooltextlist": "Keine Kartei vorhanden",
     "newset": "Kartei anlegen (Kartenbox)",
-    "emptytexttranscripts": "Du hast noch keine Mitschrift erstellt. Informiere dich unter »Hilfe«, was du mit einer eigenen Mitschrift tun kannst."
+    "emptytexttranscripts": "Du hast noch keine Mitschrift erstellt. Informiere dich unter »Hilfe«, was du mit einer Mitschrift auf \uD83C\uDF45cards tun kannst."
   },
   "set-list-learn-empty": {
     "emptytextlist": "Zum Lernen wähle ein Thema aus dem Themenpool oder die Karteien eines Repetitoriums.",
@@ -650,7 +650,7 @@
     "title": "Zugehörigkeit der Mitschrift verwalten",
     "referencesLecture": {
       "true": "Mit Vorlesung verknüpfen",
-      "false": "Private Mitschrift"
+      "false": "Lose Mitschrift"
     },
     "selectLecture": "Vorlesung auswählen",
     "bonus": {
@@ -1673,8 +1673,8 @@
   "report": "Kartei melden",
   "difficulty": "Level",
   "noDifficulty": "Ohne Level",
-  "difficulty0": "Allgemein",
-  "difficulty1": "Basics",
+  "difficulty0": "Info",
+  "difficulty1": "Grundlagen",
   "difficulty2": "Fortgeschritten",
   "difficulty3": "Experte/Expertin",
   "difficultyNotes": "Veranstaltung",
