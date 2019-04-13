@@ -15,14 +15,6 @@ module.exports = {
 		browser.url(global.baseURL);
 		setResolution();
 		agreeCookies();
-		browser.waitForVisible('#demoConfirm', global.threshold);
-		browser.click("#demoConfirm");
-		browser.waitForVisible('.toggleFullscreen', global.threshold);
-		browser.click(".toggleFullscreen");
-		browser.waitForVisible('.swal2-confirm', global.threshold);
-		browser.click(".swal2-confirm");
-		browser.waitForVisible('#backToStartButton', global.threshold);
-		browser.click("#backToStartButton");
 		userLogin += "Login";
 		browser.waitForVisible('#TestingBackdoorUsername', global.threshold);
 		this.clickElement('#TestingBackdoorUsername', global.threshold);
@@ -30,6 +22,8 @@ module.exports = {
 		this.clickElement('#' + userLogin);
 		browser.waitForVisible('#BackdoorLogin', global.threshold);
 		this.clickElement('#BackdoorLogin');
+		browser.waitForVisible('.useCasesCancel', global.threshold);
+		this.clickElement('.useCasesCancel', global.threshold);
 		if (browser.isVisible(".bert-alert")) {
 			this.clickElement(".bert-alert");
 		}
@@ -39,14 +33,18 @@ module.exports = {
 		browser.click('.logout-main');
 	},
 	selectMyCardset: function () {
-		browser.waitForVisible('#cardsets', global.threshold);
-		browser.click('#cardsets');
+		browser.waitForVisible('#navbar-personal', global.threshold);
+		browser.click('#navbar-personal');
+		browser.waitForVisible('#navbar-personal-cardsets', global.threshold);
+		browser.click('#navbar-personal-cardsets');
 		this.checkUrl(global.createRoute);
 	},
 	selectLearnset: function () {
-		browser.waitForVisible('#learnsets', global.threshold);
-		browser.click('#learnsets');
+		browser.waitForVisible('#navbar-learn-decks', global.threshold);
+		browser.click('#navbar-learn-decks');
 		this.checkUrl(global.learnRoute);
+		browser.waitForVisible('#browseCardset', global.threshold);
+		browser.click('#browseCardset');
 	},
 	selectPool: function () {
 		browser.waitForVisible('#pool', global.threshold);

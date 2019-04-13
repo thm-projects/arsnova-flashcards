@@ -148,6 +148,12 @@ $themes: (
     $navbar_personal_text: map-get($map, "navbar_personal_text");
     $navbar_personal_text_hover: map-get($map, "navbar_personal_text_hover");
     $navbar_personal_text_active: map-get($map, "navbar_personal_text_active");
+    $navbar_personal_transcripts_background: map-get($map, "navbar_personal_transcripts_background");
+    $navbar_personal_transcripts_background_hover: map-get($map, "navbar_personal_transcripts_background_hover");
+    $navbar_personal_transcripts_background_active: map-get($map, "navbar_personal_transcripts_background_active");
+    $navbar_personal_transcripts_text: map-get($map, "navbar_personal_transcripts_text");
+    $navbar_personal_transcripts_text_hover: map-get($map, "navbar_personal_transcripts_text_hover");
+    $navbar_personal_transcripts_text_active: map-get($map, "navbar_personal_transcripts_text_active");
     $navbar_personal_cardsets_background: map-get($map, "navbar_personal_cardsets_background");
     $navbar_personal_cardsets_background_hover: map-get($map, "navbar_personal_cardsets_background_hover");
     $navbar_personal_cardsets_background_active: map-get($map, "navbar_personal_cardsets_background_active");
@@ -1721,6 +1727,19 @@ $themes: (
     #navbar-personal.active > a, #navbar-personal.active > a:hover, #navbar-personal.active > a:focus {
       background-color: $navbar_personal_background_active !important;
       color: $navbar_personal_text_active !important;
+    }
+
+    #navbar-personal-transcripts a {
+      background-color: $navbar_personal_transcripts_background !important;
+      color: $navbar_personal_transcripts_text !important;
+    }
+    #navbar-personal-transcripts a:hover, #navbar-personal-transcripts a:focus {
+      background-color: $navbar_personal_transcripts_background_hover !important;
+      color: $navbar_personal_transcripts_text_hover !important;
+    }
+    #navbar-personal-transcripts.active a, #navbar-personal-transcripts.active a:hover, #navbar-personal-transcripts.active a:focus {
+      background-color: $navbar_personal_transcripts_background_active !important;
+      color: $navbar_personal_transcripts_text_active !important;
     }
 
     #navbar-personal-cardsets a {
