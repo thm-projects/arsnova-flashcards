@@ -2,7 +2,7 @@
   "name": "A3: Die integrierte App zum Quizzen",
   "description": "Dieser Kubus beschreibt die Eigenschaften und Funktionen der gamifizierten Quiz-App [arsnova.click](https://arsnova.click).",
   "date": "2019-04-01T12:27:16.693Z",
-  "dateUpdated": "2019-04-04T07:27:43.796Z",
+  "dateUpdated": "2019-04-14T07:31:11.202Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": true,
@@ -31,8 +31,8 @@
   "wordcloud": false,
   "shuffled": false,
   "cardType": 18,
-  "difficulty": 1,
-  "noDifficulty": true,
+  "difficulty": 0,
+  "noDifficulty": false,
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -81,5 +81,6 @@
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
     "givenname": "Klaus"
-  }
+  },
+  "owner": "jCZ6oHcbZhJaKKodN"
 }]
