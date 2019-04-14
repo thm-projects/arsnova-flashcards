@@ -305,8 +305,8 @@
       },
       "transcripts": {
         "zero": "Mitschrift anlegen",
-        "one": "Meine Mitschrift",
-        "multiple": "Meine Mitschriften"
+        "one": "Mitschriften",
+        "multiple": "Mitschriften"
       }
     },
     "learndecks": "Lernpensum",
@@ -329,11 +329,11 @@
       }
     },
     "tooltip": {
-      "search": "Öffne die Suche",
-      "useCases": "Zeige die Use Cases",
-      "displayWordcloud": "Zeige die Einträge in einer Wortwolke",
-      "displayList": "Zeige die Einträge als Liste",
-      "filter": "Filter die Einträge"
+      "search": "Öffne die Sucheingabe",
+      "useCases": "Zeige mir Abkürzungen zu den Hauptzielen auf \uD83C\uDF45cards",
+      "displayWordcloud": "Zeige die Tabelle als Themenwolke",
+      "displayList": "Zeige die Themenwolke als Tabelle",
+      "filter": "Sortiere oder filter die Themen"
     },
     "frontend": "Frontend",
     "backend": "Backend",
