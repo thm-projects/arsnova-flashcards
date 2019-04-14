@@ -45,7 +45,7 @@ let topNavigation = {
 	"useCases": "<i class='fa fa-map-signs'></i>",
 	"displayMode": {
 		"wordcloud": "<i class='fa fa-cloud'></i>",
-		"list": "<i class='fa fa-list'></i>"
+		"list": "<i class='fa fa-table'></i>"
 	}
 };
 
