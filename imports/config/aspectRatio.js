@@ -16,7 +16,7 @@ let aspectRatios = ['fill', 'din', '5:3', '16:9', '16:10', '4:3'];
 //2: Leitner
 //3: Wozniak
 //4: Editor-Fullscreen
-let defaultAspectRatio = ['fill', '4:3', 'din', 'din', 'din'];
+let defaultAspectRatio = ['fill', '16:10', 'din', 'din', 'din'];
 let defaultAspectRatioTablet = ['fill', '4:3', 'fill', 'fill', 'fill'];
 
 //Scale the width of the top card navigation to match the card width
@@ -25,7 +25,7 @@ let defaultAspectRatioTablet = ['fill', '4:3', 'fill', 'fill', 'fill'];
 //2: Leitner
 //3: Wozniak
 //4: Editor-Fullscreen
-let scaleCardNavigationWidth = [0, 1, 2, 3, 4];
+let scaleCardNavigationWidth = [];
 
 module.exports = {
 	aspectRatioEnabled,

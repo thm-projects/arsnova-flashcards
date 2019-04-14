@@ -7,8 +7,8 @@ let defaultFontSize = {
 			"cube": 16
 		},
 		"desktop": {
-			"normal": 16,
-			"cube": 16
+			"normal": 24,
+			"cube": 18
 		}
 	},
 	"landscape": {
@@ -18,8 +18,8 @@ let defaultFontSize = {
 			"cube": 10
 		},
 		"desktop": {
-			"normal": 16,
-			"cube": 14
+			"normal": 24,
+			"cube": 18
 		}
 	}
 };
