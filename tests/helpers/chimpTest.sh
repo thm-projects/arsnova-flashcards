@@ -18,7 +18,7 @@ fi
 if [ -n "$DISPLAY" ] ; then
      ./node_modules/.bin/chimpy .config/chimp.js --ddp=http://localhost:$PORT --path=$testDir $1 --browser=chrome
 else
-     xvfb-run --server-args="-ac -screen 0 1920x1080x24" chimp .config/chimp.js --ddp=http://localhost:3000 --path=$testDir $1 --browser=firefox
+     xvfb-run --server-args="-ac -screen 0 1920x1080x24" chimp .config/chimp.js --ddp=http://localhost:3000 --path=$testDir $1 --browser=chrome
 fi
 if [ $? -ne 0 ]; then
     failedTests=$((failedTests+1))
