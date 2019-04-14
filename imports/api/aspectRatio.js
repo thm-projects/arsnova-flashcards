@@ -44,6 +44,24 @@ export let AspectRatio = class AspectRatio {
 		}
 	}
 
+	static scale3DCardNavigationWidth () {
+		if ((Route.isPresentation() || Route.isPresentationTranscript()) && config.scale3DCardNavigationWidth.includes(0)) {
+			return true;
+		}
+		if ((Route.isDemo() || Route.isMakingOf()) && config.scale3DCardNavigationWidth.includes(1)) {
+			return true;
+		}
+		if (Route.isBox() && config.scale3DCardNavigationWidth.includes(2)) {
+			return true;
+		}
+		if (Route.isMemo() && config.scale3DCardNavigationWidth.includes(3)) {
+			return true;
+		}
+		if (Route.isEditCard() && config.scale3DCardNavigationWidth.includes(4)) {
+			return true;
+		}
+	}
+
 	static getDefault () {
 		if (Route.isPresentation() || Route.isPresentationTranscript() || Route.isCardset()) {
 			if (NavigatorCheck.isIOS()) {

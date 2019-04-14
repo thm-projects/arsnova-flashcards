@@ -207,14 +207,16 @@ export let CardVisuals = class CardVisuals {
 			$('#contentEditor').css('height', $('.scene').height() - $('#editorButtonGroup').height());
 			adjustNavigation = false;
 		}
-		if (adjustNavigation) {
-			let leftMargin = ($(window).width() - config.cubeMaxNavigationWidth) / 2;
-			if (leftMargin < 0) {
-				leftMargin = 0;
-			} else {
-				leftMargin -= parseInt($('.cardNavigation').parent().css('padding-left'));
+		if (AspectRatio.scale3DCardNavigationWidth()) {
+			if (adjustNavigation) {
+				let leftMargin = ($(window).width() - flashcard.width()) / 2;
+				if (leftMargin < 0) {
+					leftMargin = 0;
+				} else {
+					leftMargin -= parseInt($('.cardNavigation').parent().css('padding-left'));
+				}
+				$('.cardNavigation').attr('style', 'max-width: ' + flashcard.width() + 'px !important; margin-left: ' +  leftMargin + 'px !important;');
 			}
-			$('.cardNavigation').attr('style', 'max-width: ' + config.cubeMaxNavigationWidth + 'px !important; margin-left: ' +  leftMargin + 'px !important;');
 		}
 	}
 
