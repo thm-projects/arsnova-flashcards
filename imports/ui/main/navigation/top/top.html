@@ -31,13 +31,15 @@
                                     {{> mainNavigationTopItemConnectionStatus visibility=0}}
                                 </div>
                                 {{#unless isImpressum}}
-                                    {{#if gotCardsetsForFilter}}
-                                        {{#unless gotAllUnfilteredCardsetsVisible}}
-                                        <div class="navbar-header-item pull-right">
-                                            {{> mainNavigationTopItemSearchMobile}}
-                                        </div>
-                                        {{/unless}}
-                                    {{/if}}
+                                    {{#unless isShuffleRoute}}
+                                        {{#if gotCardsetsForFilter}}
+                                            {{#unless gotAllUnfilteredCardsetsVisible}}
+                                            <div class="navbar-header-item pull-right">
+                                                {{> mainNavigationTopItemSearchMobile}}
+                                            </div>
+                                            {{/unless}}
+                                        {{/if}}
+                                    {{/unless}}
                                 {{/unless}}
                                 {{#if isFilterIndex}}
                                     {{#if gotCardsetsForFilter}}
@@ -68,11 +70,13 @@
     <div class="collapse navbar-collapse" id="navbar-cards-top-collapse">
         <ul class="nav navbar-nav navbar-left">
             {{> mainNavigationTopItemUseCasesDesktop}}
-            {{#if gotCardsetsForFilter}}
-                {{#unless gotAllUnfilteredCardsetsVisible}}
-                    {{> mainNavigationTopItemSearch}}
-                {{/unless}}
-            {{/if}}
+            {{#unless isShuffleRoute}}
+                {{#if gotCardsetsForFilter}}
+                    {{#unless gotAllUnfilteredCardsetsVisible}}
+                        {{> mainNavigationTopItemSearch}}
+                    {{/unless}}
+                {{/if}}
+            {{/unless}}
             {{#if gotDisplayModeButton}}
                 {{#if gotCardsetsForFilter}}
                     {{> mainNavigationTopItemDisplayMode}}

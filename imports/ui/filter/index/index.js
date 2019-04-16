@@ -291,6 +291,7 @@ Template.filterIndexShuffle.helpers({
 });
 
 Template.filterIndexShuffle.onCreated(function () {
+	Session.set('shuffleFilter', undefined);
 	if (Route.isEditShuffle()) {
 		Session.set("ShuffledCardsets", Cardsets.findOne({_id: Router.current().params._id}).cardGroups);
 	} else {
