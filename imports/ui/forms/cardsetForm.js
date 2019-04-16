@@ -99,6 +99,9 @@ export function saveCardset() {
 	let error = false;
 	let errorMessage = "<ul>";
 	let sortType = $("input[name='sortType']:checked").val();
+	if (sortType === undefined) {
+		sortType = 0;
+	}
 	if ($('#setName').val() === "") {
 		error = true;
 		errorMessage += "<li>" + TAPi18n.__('modal-dialog.name') + "</li>";
