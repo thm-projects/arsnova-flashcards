@@ -676,6 +676,7 @@
     "newcarddeck": "Kartei anlegen (Kartenbox)",
     "editcard": "Karte editieren",
     "editcardset": "Kartei editieren",
+    "editRepetitorium": "Repetitorium bearbeiten",
     "adminEditCardset": "Admin-Einstellungen",
     "editreferences": "Repetitorium zusammenstellen",
     "name": "Etikett",
@@ -696,8 +697,9 @@
     "cancel": "Abbrechen",
     "cardType": "Karteityp",
     "cardType_required": "Wähle einen Karteityp!",
-    "createcarddeck": "Speichern",
+    "createcarddeck": "Kartei anlegen",
     "delete": "Kartei löschen",
+    "deleteRepetitorum": "Repetitorium löschen",
     "confirm": "Sicher?",
     "save": "Kartei speichern",
     "name_required": "Gib das Thema ein!",
@@ -1103,9 +1105,15 @@
     },
     "confirm-form-delete": {
       "title": "Kartei löschen",
-      "text": "Willst du diese Kartei wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für diesen Kartei und die dazugehörigen Karten gelöscht.",
+      "text": "Willst du diese Kartei wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für diese Kartei und die dazugehörigen Karten gelöscht.",
       "success": "Die Kartei wurde gelöscht",
-      "failure": "Die Kartei konnte nicht gelöscht werden"
+      "failure": "Die Kartei konnte nicht gelöscht werden",
+      "repetitorium": {
+        "title": "Repetitorium löschen",
+        "text": "Willst du dieses Repetitorium wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für dieses Repetitorium gelöscht. Die zugewiesenen Karteien und Karten werden nicht entfernen",
+        "success": "Das Repetitorium wurde gelöscht",
+        "failure": "Das Repetitorium konnte nicht gelöscht werden"
+      }
     },
     "shuffled": {
       "long": "Gemischter Kartensatz",
@@ -1562,7 +1570,10 @@
     },
     "modal": {
       "new": "Repetitorium anlegen",
+      "edit": "Repetitorium bearbeiten",
       "saveNew": "Repetitorium anlegen",
+      "save": "Repetitorium speichern",
+      "delete": "Repetitorium löschen",
       "placeholder": {
         "name": "Thema des Repetitoriums in wenigen Worten",
         "description": "Nenne die Kompetenzziele des Repetitoriums. \n\nWas willst du nach dem Lernen aller Karteien, die zum Repetitorium gehören, langfristig wissen und können?"

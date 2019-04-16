@@ -48,7 +48,7 @@ Template.markdeepContent.helpers({
 	},
 	isRepetitorium: function () {
 		if (isNewCardset()) {
-			return Route.isRepetitorium();
+			return Route.isRepetitorienFilterIndex();
 		} else {
 			if (Session.get('activeCardset') !== undefined) {
 				return Session.get('activeCardset').shuffled;

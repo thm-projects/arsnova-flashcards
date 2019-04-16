@@ -224,6 +224,9 @@ Template.registerHelper('isRepetitorienFilterIndex', function () {
 });
 
 Template.registerHelper('isRepetitorienFilterIndexOrShuffle', function () {
+	if (Route.isCardset()) {
+		return this.shuffled;
+	}
 	return Route.isRepetitorienFilterIndex() || Route.isShuffle() || Route.isEditShuffle();
 });
 
