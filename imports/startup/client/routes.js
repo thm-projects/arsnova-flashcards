@@ -411,6 +411,7 @@ Router.route('/cardset/:_id/editshuffle', {
 	data: function () {
 		Session.set('helpFilter', "shuffle");
 		Filter.resetMaxItemCounter();
+		Session.set('cardsetIndexResults', Cardsets.find().count());
 		return Cardsets.findOne({_id: this.params._id});
 	},
 	action: function () {
