@@ -1110,7 +1110,7 @@
       "failure": "Die Kartei konnte nicht gelöscht werden",
       "repetitorium": {
         "title": "Repetitorium löschen",
-        "text": "Willst du dieses Repetitorium wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für dieses Repetitorium gelöscht. Die zugewiesenen Karteien und Karten werden nicht entfernen",
+        "text": "Willst du dieses Repetitorium wirklich löschen? Wenn du den Vorgang bestätigst, wird die Lernstatistik für dieses Repetitorium gelöscht. Die zugewiesenen Karteien und Karten werden nicht entfernt.",
         "success": "Das Repetitorium wurde gelöscht",
         "failure": "Das Repetitorium konnte nicht gelöscht werden"
       }
