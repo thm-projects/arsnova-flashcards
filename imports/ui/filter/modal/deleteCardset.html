@@ -8,21 +8,34 @@
                         <i class="fa fa-trash"></i>
                     </span>
                     {{> mainModalItemCloseIcon}}
-                    <h4 id="confirmDeleteCardsetModalTitle" class="modal-title">{{_
-                            "cardset.confirm-form-delete.title"}}
+                    <h4 id="confirmDeleteCardsetModalTitle" class="modal-title">
+                        {{#if isRepetitorienFilterIndex}}
+                            {{_ "cardset.confirm-form-delete.repetitorium.title"}}
+                        {{else}}
+                            {{_ "cardset.confirm-form-delete.title"}}
+                        {{/if}}
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <p>{{_ "cardset.confirm-form-delete.text"}}</p>
+                    <p>
+                        {{#if isRepetitorienFilterIndex}}
+                            {{_ "cardset.confirm-form-delete.repetitorium.text"}}
+                        {{else}}
+                            {{_ "cardset.confirm-form-delete.text"}}
+                        {{/if}}
+                    </p>
                     <hr/>
 
                 </div>
                 <div class="modal-footer">
-                    <button id="deleteCardset"
-                            class="btn btn-danger btn-raised btn-setDelete pull-right" {{disableIfOffline}}>{{_
-                            "cardset.confirm-form-delete.title"}}</button>
-                    <button id="cancelDelete" class="btn btn-raised pull-left" data-dismiss="modal">{{_
-                            "modal-dialog.cancel"}}</button>
+                    <button id="deleteCardset" class="btn btn-danger btn-raised btn-setDelete pull-right" {{disableIfOffline}}>
+                        {{#if isRepetitorienFilterIndex}}
+                            {{_ "cardset.confirm-form-delete.repetitorium.title"}}
+                        {{else}}
+                            {{_ "cardset.confirm-form-delete.title"}}
+                        {{/if}}
+                    </button>
+                    <button id="cancelDelete" class="btn btn-raised pull-left" data-dismiss="modal">{{ _ "modal-dialog.cancel"}}</button>
                 </div>
             </div>
             <!-- /.modal-content -->
