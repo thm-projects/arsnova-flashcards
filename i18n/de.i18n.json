@@ -289,7 +289,7 @@
     },
     "personal": {
       "personal": {
-        "zero": "Anlegen",
+        "zero": "anlegen",
         "one": "Meine Inhalte",
         "multiple": "Meine Inhalte"
       },
@@ -557,7 +557,7 @@
     "emptytextlist": "Eine Kartei besteht aus Karten desselben Typs.",
     "emptypooltextlist": "Keine Kartei vorhanden",
     "newset": "Kartei anlegen (Kartenbox)",
-    "emptytexttranscripts": "Du hast noch keine Mitschrift erstellt. Informiere dich unter »Hilfe«, was du mit einer Mitschrift auf \uD83C\uDF45cards tun kannst."
+    "emptytexttranscripts": "Du hast noch keine Mitschrift erstellt. Informiere dich unter »Hilfe«, wie du für das Mitschreiben auf \uD83C\uDF45cards Bonuspunkte erhalten kannst."
   },
   "set-list-learn-empty": {
     "emptytextlist": "Zum Lernen wähle ein Thema aus dem Themenpool oder die Karteien eines Repetitoriums.",
