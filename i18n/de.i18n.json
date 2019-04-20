@@ -1199,7 +1199,7 @@
       "content3": "Literatur ",
       "content4": "Vertiefung",
       "placeholders": {
-        "subject": "Gib das kurzgefasste Lernziel an !",
+        "subject": "Gib das kurzgefasste Lernziel an!",
         "content1": "",
         "content2": "Gib eine Zusammenfassung des Lernziels! \n\nWenn das Lernziel in einer Prüfung abgefragt wird, sollte hier die erwartete Antwort auf die Prüfungsfrage stehen.",
         "content3": "Liste hier Links und Literatur zur weiteren Vertiefung des Lerninhalts auf! \n\nRecherchiere auch in deiner Uni-Bibliothek! Ein Großteil der Bücher ist online verfügbar.",
@@ -1215,7 +1215,7 @@
       "content1": "Sprache A",
       "content2": "Sprache B",
       "placeholders": {
-        "subject": "Gib das Thema oder die Sprachsituation an !",
+        "subject": "Gib das Thema oder die Sprachsituation an!",
         "content1": "Gib den zu übersetzenden Text ein. Mit der Tab-Taste oder dem Button oben rufst du die Übersetzung von »DeepL« auf. Kopiere die Übersetzung und füge sie auf der Rückseite der Karte ein.",
         "content2": "Du kannst Vokabelkarten in beide Richtungen lernen: Sprache A ⇔ Sprache B. Zur Kontrolle schau dir die Rückübersetzung von »DeepL« an (Tab-Taste drücken)."
       },
@@ -1225,15 +1225,15 @@
     },
     "cardType2": {
       "name": "Mitschrift",
-      "longName": "Mitschrift: Foto der Mitschrift | Nachbearbeitung | To-dos",
-      "content1": "Foto der Mitschrift",
-      "content2": "Nachbearbeitung",
-      "content3": "To-dos",
+      "longName": "Mitschrift: Fotografierte Mitschrift | Offene Fragen | Nachbearbeitung",
+      "content1": "Fotografierte Mitschrift",
+      "content2": "Offene Fragen",
+      "content3": "Nachbearbeitung",
       "placeholders": {
-        "subject": "Gib das Thema der Unterrichtsstunde an !",
-        "content1": "Mach ein Foto von deiner Mitschrift und lade es hoch in deine Cloud. Füge es dann hier per direkten Link ein. Überprüfe, ob das Foto in der Kartenvorschau angezeigt wird, eventuell muss du es in deiner Cloud noch freigeben. \n\nÜberarbeite zu Hause deine Mitschrift in diesem Editor auf dem Tab »Nachbearbeitung«. Erstelle dann für jedes Teilthema der mitgeschriebenen Vorlesung eine Lernkarte in der Lernkartei zur Veranstaltung.",
-        "content2": "Überarbeite deine Mitschrift innerhalb von 36 Stunden. Nutze hierfür die Strukturierungs- und Formatierungsoptionen von »Markdeep«! \n\nKläre die offenen Fragen, die du dir während der Veranstaltung notiert hast, und arbeite die To-do-Liste ab!",
-        "content3": "Notiere hier, was du in der Veranstaltung nicht verstanden hast, und kläre die offenen Fragen in der Nachbereitungsphase. \n\nSchreibe die offenen Fragen und Hausaufgaben als »Task-Liste« auf! \n\n[] To-do 1 \n  [] To-do 2 \n  [] To-do … \n\nSetze ein »x« in die eckigen Klammern, wenn du die Aufgabe erledigt hast."
+        "subject": "Gib das Thema der heutigen Vorlesung an!",
+        "content1": "Mach jeweils ein Foto pro Seite deiner Mitschrift und lade die Fotos hoch in deine Cloud. Füge sie dann hier per Link ein. Überprüfe, ob sie in der Kartenvorschau angezeigt werden, eventuell muss du sie in deiner Cloud noch freigeben. Die URL eines Fotos muss auf \".png\" oder \".jpg\" enden. \n\nÜberarbeite zu Hause deine Mitschrift in diesem Editor auf dem Tab »Nachbearbeitung«.",
+        "content2": "Notiere hier, was du während der Vorlesung nicht verstanden hast, und kläre deine Fragen in der Nachbereitungsphase. \n\nSchreibe die offenen Fragen und Hausaufgaben als »Task-Liste« auf! \n\n[] To-do 1 \n  [] To-do 2 \n  [] To-do … \n\nSetze ein »x« in die eckigen Klammern, wenn du die Aufgabe erledigt hast.",
+        "content3": "Überarbeite deine Mitschrift innerhalb von 36 Stunden. Nutze hierfür die Strukturierungs- und Formatierungsoptionen, siehe den Button »Textformatierung«! \n\nKläre die Fragen, die du dir während der Vorlesung notiert hast, und arbeite deine To-do-Liste ab!"
       },
       "editorLabels": {
         "subject": "Thema"
@@ -1246,7 +1246,7 @@
       "content2": "Beschreibung",
       "content3": "Literatur",
       "placeholders": {
-        "subject": "Gib das Fachgebiet an !",
+        "subject": "Gib das Fachgebiet an!",
         "content1": "Fachbegriff",
         "content2": "Definition oder Beschreibung des Fachbegriffs",
         "content3": "Literatur zur Vertiefung"
@@ -1262,7 +1262,7 @@
       "content2": "Zitierte Person",
       "content3": "Quellenangabe",
       "placeholders": {
-        "subject": "Gib das Thema des Zitats an !",
+        "subject": "Gib das Thema des Zitats an!",
         "content1": "Setze ein wörtliches Zitat in Anführungszeichen, siehe »Textformatierung«.",
         "content2": "Zitierte Person",
         "content3": "Quellenangabe"
@@ -1278,7 +1278,7 @@
       "content2": "Antwort",
       "content3": "Begründung",
       "placeholders": {
-        "subject": "Gib das zu prüfende Kompetenzziel an !",
+        "subject": "Gib das zu prüfende Kompetenzziel an!",
         "content1": "Prüfungsfrage zum Kompetenzziel",
         "content2": "Antwort auf die Prüfungsfrage",
         "content3": "Begründung oder Erläuterung der Antwort"
@@ -1294,7 +1294,7 @@
       "content2": "Semantik",
       "content3": "Online-API",
       "placeholders": {
-        "subject": "Gib den Anwendungskontext der Anweisung an !",
+        "subject": "Gib den Anwendungskontext der Anweisung an!",
         "content1": "Wie lautet die Anweisung? \n\nVerwende die Code-Formatierung von »Markdeep«!",
         "content2": "Was soll die Anweisung bewirken?",
         "content3": "Gib die Quelle an oder verlinke auf die Online-API der Anweisung!"
@@ -1330,7 +1330,7 @@
       "longName": "Notizen: 1 Seite",
       "content1": "Notiz",
       "placeholders": {
-        "subject": "Gib das Thema deiner Notiz an !",
+        "subject": "Gib das Thema deiner Notiz an!",
         "content1": "Diese Karte ist einseitig für Notizen konzipiert. Es gibt keine Rückseite."
       },
       "editorLabels": {
@@ -1342,7 +1342,7 @@
       "longName": "To-dos: 1 Seite",
       "content1": "To-dos",
       "placeholders": {
-        "subject": "Gib das Thema oder das Datum der To-dos an !",
+        "subject": "Gib das Thema oder das Datum der To-dos an!",
         "content1": "Diese Karte ist einseitig für eine Aufgabenliste konzipiert.Es gibt keine Rückseite."
       },
       "editorLabels": {
@@ -1355,7 +1355,7 @@
       "content1": "Foto",
       "content2": "Lizenz",
       "placeholders": {
-        "subject": "Gib das Thema des Fotos an !",
+        "subject": "Gib das Thema des Fotos an!",
         "content1": "Diese Karte ist für Fotos aus deiner Cloud konzipiert. \n\nSo verlinkst du die Bilddatei: ![Bilduntertitel](Bildadresse)",
         "content2": "Wer hat die Rechte am Foto? \n\nUnter welcher Lizenz darf das Foto weitergegeben werden?"
       },
@@ -1369,7 +1369,7 @@
       "content1": "Frage",
       "content2": "Antwort",
       "placeholders": {
-        "subject": "Gib das Thema deines Quiz an !",
+        "subject": "Gib das Thema deines Quiz an!",
         "content1": "Gib hier die Quizfrage ein!",
         "content2": "Gib hier die richtige Antwort ein!"
       },
