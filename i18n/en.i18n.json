@@ -22,7 +22,6 @@
       "sendWeb": "Push-Benachrichtigung",
       "sendWebError": "Push-Benachrichtigung fehlgeschlagen",
       "sendWebSuccess": "Push-Benachrichtigung erfolgreich",
-
       "waitingForResponse": "Warte auf Server-Rückmeldung"
     }
   },
@@ -50,7 +49,7 @@
         "cas": "Du wirst zum CAS-Server der THM weitergeleitet...",
         "guest": "Als Gast kannst du dir »freie« Kartensätze anschauen.",
         "pro": "Wenn du keinen Uni-Account hast, kannst du dich hier für ein Abo registrieren.",
-        "backdoor": "Backdoor-Login",
+        "backdoor": "Hintertürchen",
         "facebook": "Login mit Facebook-Account",
         "twitter": "Login mit Twitter-Account",
         "google": "Login mit Google-Account"
