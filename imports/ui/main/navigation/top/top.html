@@ -32,13 +32,15 @@
                                 </div>
                                 {{#unless isImpressum}}
                                     {{#unless isShuffleRoute}}
-                                        {{#if gotCardsetsForFilter}}
-                                            {{#unless gotAllUnfilteredCardsetsVisible}}
-                                            <div class="navbar-header-item pull-right">
-                                                {{> mainNavigationTopItemSearchMobile}}
-                                            </div>
-                                            {{/unless}}
-                                        {{/if}}
+                                        {{#unless isCardsetTranscriptBonusRoute}}
+                                            {{#if gotCardsetsForFilter}}
+                                                {{#unless gotAllUnfilteredCardsetsVisible}}
+                                                <div class="navbar-header-item pull-right">
+                                                    {{> mainNavigationTopItemSearchMobile}}
+                                                </div>
+                                                {{/unless}}
+                                            {{/if}}
+                                        {{/unless}}
                                     {{/unless}}
                                 {{/unless}}
                                 {{#if isFilterIndex}}
@@ -71,11 +73,13 @@
         <ul class="nav navbar-nav navbar-left">
             {{> mainNavigationTopItemUseCasesDesktop}}
             {{#unless isShuffleRoute}}
-                {{#if gotCardsetsForFilter}}
-                    {{#unless gotAllUnfilteredCardsetsVisible}}
-                        {{> mainNavigationTopItemSearch}}
-                    {{/unless}}
-                {{/if}}
+                {{#unless isCardsetTranscriptBonusRoute}}
+                    {{#if gotCardsetsForFilter}}
+                        {{#unless gotAllUnfilteredCardsetsVisible}}
+                            {{> mainNavigationTopItemSearch}}
+                        {{/unless}}
+                    {{/if}}
+                {{/unless}}
             {{/unless}}
             {{#if gotDisplayModeButton}}
                 {{#if gotCardsetsForFilter}}
@@ -93,6 +97,9 @@
             {{#unless isGuestLogin}}
                 {{> mainNavigationTopItemWorkload}}
                 {{> mainNavigationTopItemPersonal}}
+                {{#if gotTranscriptsEnabled}}
+                    {{> mainNavigationTopItemTranscripts}}
+                {{/if}}
             {{/unless}}
             {{> mainNavigationTopItemHelp}}
         </ul>

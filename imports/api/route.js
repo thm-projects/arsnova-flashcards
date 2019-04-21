@@ -54,11 +54,23 @@ export let Route = class Route {
 	}
 
 	static isTranscript () {
-		return this.isMyTranscripts() || this.isNewTranscript() || this.isEditTranscript() || this.isPresentationTranscript();
+		return this.isMyTranscripts() || this.isMyBonusTranscripts() || this.isNewTranscript() || this.isEditTranscript() || this.isPresentationTranscript() || this.isPresentationTranscriptBonus() || this.isPresentationTranscriptBonusCardset();
 	}
 
 	static isPresentationTranscript () {
-		return Router.current().route.getName() === "presentationTranscript";
+		return this.isPresentationTranscriptPersonal() || this.isPresentationTranscriptBonus() || this.isPresentationTranscriptBonusCardset();
+	}
+
+	static isPresentationTranscriptPersonal () {
+		return Router.current().route.getName() === "presentationTranscriptPersonal";
+	}
+
+	static isPresentationTranscriptBonus () {
+		return Router.current().route.getName() === "presentationTranscriptBonus";
+	}
+
+	static isPresentationTranscriptBonusCardset () {
+		return Router.current().route.getName() === "presentationTranscriptBonusCardset";
 	}
 
 	static isNewTranscript () {
@@ -146,7 +158,11 @@ export let Route = class Route {
 	}
 
 	static isMyTranscripts () {
-		return Router.current().route.getName() === "transcripts";
+		return Router.current().route.getName() === "transcriptsPersonal";
+	}
+
+	static isMyBonusTranscripts () {
+		return Router.current().route.getName() === "transcriptsBonus";
 	}
 
 	static isAllCardsets () {
@@ -182,7 +198,7 @@ export let Route = class Route {
 	}
 
 	static isPersonal () {
-		return this.isMyCardsets() || this.isPersonalRepetitorien() || this.isMyTranscripts();
+		return this.isMyCardsets() || this.isPersonalRepetitorien();
 	}
 
 	static isPersonalRepetitorien () {
@@ -202,7 +218,7 @@ export let Route = class Route {
 	}
 
 	static isFilterIndex () {
-		return (this.isHome() || this.isPool() || this.isMyCardsets() || this.isRepetitorium() || this.isAllCardsets() || this.isWorkload() || this.isAllRepetitorien() || this.isPersonalRepetitorien() || this.isMyTranscripts() || this.isShuffle() || this.isEditShuffle());
+		return (this.isHome() || this.isPool() || this.isMyCardsets() || this.isRepetitorium() || this.isAllCardsets() || this.isWorkload() || this.isAllRepetitorien() || this.isPersonalRepetitorien() || this.isMyTranscripts() || this.isShuffle() || this.isEditShuffle() || this.isTranscriptBonus());
 	}
 
 	static isFirstTimeVisit () {
@@ -233,7 +249,7 @@ export let Route = class Route {
 	static getPersonalRouteName (type = 0) {
 		if (Meteor.user() && Meteor.user().count !== undefined) {
 			if (type === 0) {
-				switch (Meteor.user().count.cardsets + Meteor.user().count.shuffled + Meteor.user().count.transcripts) {
+				switch (Meteor.user().count.cardsets + Meteor.user().count.shuffled + Meteor.user().count.transcripts + Meteor.user().count.transcriptsBonus) {
 					case 0:
 						return TAPi18n.__('navbar-collapse.personal.personal.zero');
 					case 1:
@@ -251,13 +267,40 @@ export let Route = class Route {
 						return TAPi18n.__('navbar-collapse.personal.cardsets.multiple');
 				}
 			} else if (type === 2) {
+				switch (Meteor.user().count.transcripts + Meteor.user().count.transcriptsBonus) {
+					case 0:
+						return TAPi18n.__('navbar-collapse.transcripts.zero');
+					case 1:
+						return TAPi18n.__('navbar-collapse.transcripts.one');
+					default:
+						return TAPi18n.__('navbar-collapse.transcripts.multiple');
+				}
+			} else if (type === 3) {
 				switch (Meteor.user().count.transcripts) {
 					case 0:
-						return TAPi18n.__('navbar-collapse.personal.transcripts.zero');
+						return TAPi18n.__('navbar-collapse.transcripts.personal.zero');
 					case 1:
-						return TAPi18n.__('navbar-collapse.personal.transcripts.one');
+						return TAPi18n.__('navbar-collapse.transcripts.personal.one');
 					default:
-						return TAPi18n.__('navbar-collapse.personal.transcripts.multiple');
+						return TAPi18n.__('navbar-collapse.transcripts.personal.multiple');
+				}
+			} else if (type === 4) {
+				switch (Meteor.user().count.transcriptsBonus) {
+					case 0:
+						return TAPi18n.__('navbar-collapse.transcripts.bonus.zero');
+					case 1:
+						return TAPi18n.__('navbar-collapse.transcripts.bonus.one');
+					default:
+						return TAPi18n.__('navbar-collapse.transcripts.bonus.multiple');
+				}
+			} else if (type === 5) {
+				switch (Meteor.user().count.transcripts + Meteor.user().count.transcriptsBonus) {
+					case 0:
+						return TAPi18n.__('navbar-collapse.transcripts.short.zero');
+					case 1:
+						return TAPi18n.__('navbar-collapse.transcripts.short.one');
+					default:
+						return TAPi18n.__('navbar-collapse.transcripts.short.multiple');
 				}
 			} else {
 				switch (Meteor.user().count.shuffled) {
@@ -313,15 +356,20 @@ export let Route = class Route {
 				return icons.topNavigation.public.repetitorien +  TAPi18n.__('navbar-collapse.public.repetitorien');
 			case "personal":
 				return icons.topNavigation.personal.personal + this.getPersonalRouteName(0) + "<span class='caret'></span>";
-			case "personalTranscripts":
 			case "transcripts":
-				return icons.topNavigation.personal.transcripts + this.getPersonalRouteName(2);
+				return icons.topNavigation.transcripts.transcripts + this.getPersonalRouteName(2) + "<span class='caret'></span>";
+			case "transcriptsShort":
+				return icons.topNavigation.transcripts.transcripts + this.getPersonalRouteName(5) + "<span class='caret'></span>";
+			case "transcriptsPersonal":
+				return icons.topNavigation.transcripts.personal + this.getPersonalRouteName(3);
+			case "transcriptsBonus":
+				return icons.topNavigation.transcripts.bonus + this.getPersonalRouteName(4);
 			case "personalCardsets":
 			case "myCardsets":
 			case "create":
 				return icons.topNavigation.personal.cardsets + this.getPersonalRouteName(1);
 			case "personalRepetitorien":
-				return icons.topNavigation.personal.repetitorien +  this.getPersonalRouteName(3);
+				return icons.topNavigation.personal.repetitorien +  this.getPersonalRouteName();
 			case "workload":
 				return icons.topNavigation.workload + TAPi18n.__('navbar-collapse.learndecks');
 			case "backend":

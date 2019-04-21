@@ -8,6 +8,7 @@ import {UserPermissions} from "./permissions";
 import {WebPushSubscriptions} from "./webPushSubscriptions";
 import {Paid} from "./paid";
 import {ServerStyle} from "./styles";
+import {TranscriptBonus} from "./transcriptBonus";
 
 /**
  * Returns the degree, the givenname and the birthname from the author of a cardset
@@ -97,6 +98,31 @@ if (Meteor.isServer) {
 					'profile.title': 1
 				}
 			});
+	});
+	Meteor.publish("userDataTranscriptBonus", function (cardset_id) {
+		if (this.userId) {
+			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1}});
+			if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+				let bonusTranscripts = TranscriptBonus.find({cardset_id: cardset._id}).fetch();
+				let userFilter = [];
+				for (let i = 0; i < bonusTranscripts.length; i++) {
+					userFilter.push(bonusTranscripts[i].user_id);
+				}
+				return Meteor.users.find({_id: {$in: userFilter}},
+					{
+						fields: {
+							'profile.name': 1,
+							'profile.birthname': 1,
+							'profile.givenname': 1,
+							'profile.title': 1
+						}
+					});
+			} else {
+				this.ready();
+			}
+		} else {
+			this.ready();
+		}
 	});
 	Meteor.publish("userDataBonus", function (cardset_id, user_id) {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {

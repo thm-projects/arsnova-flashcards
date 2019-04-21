@@ -30,7 +30,7 @@ Template.filterNavigation.greeting = function () {
 Template.infiniteScroll.helpers({
 	moreResults: function () {
 		let query = Filter.getFilterQuery();
-		if (Route.isTranscript()) {
+		if (Route.isTranscript() || Route.isTranscriptBonus()) {
 			query.cardType = 2;
 			return Filter.getMaxItemCounter() < Cards.find(query).count();
 		} else {
@@ -42,7 +42,7 @@ Template.infiniteScroll.helpers({
 	},
 	getCurrentResults: function () {
 		let query = Filter.getFilterQuery();
-		if (Route.isTranscript()) {
+		if (Route.isTranscript() || Route.isTranscriptBonus()) {
 			query.cardType = 2;
 			Session.set('totalResults', Cards.find(query).count());
 			return TAPi18n.__('infinite-scroll.remainingCardsets', {

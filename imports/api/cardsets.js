@@ -2,6 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Cards} from "./cards.js";
+import {TranscriptBonus} from "./transcriptBonus.js";
 import {Leitner, Workload, Wozniak} from "./learned.js";
 import {Notifications} from "./notifications.js";
 import {Ratings} from "./ratings.js";
@@ -58,6 +59,13 @@ if (Meteor.isServer) {
 			} else {
 				this.ready();
 			}
+		} else {
+			this.ready();
+		}
+	});
+	Meteor.publish("cardsetsTranscripts", function () {
+		if (UserPermissions.canCreateContent()) {
+			return Cardsets.find({'transcriptBonus.enabled': true});
 		} else {
 			this.ready();
 		}
@@ -327,6 +335,11 @@ const CardsetsSchema = new SimpleSchema({
 	sortType: {
 		type: Number,
 		optional: true
+	},
+	transcriptBonus: {
+		type: Object,
+		optional: true,
+		blackbox: true
 	}
 });
 
@@ -553,6 +566,9 @@ Meteor.methods({
 			Workload.remove({
 				cardset_id: id
 			});
+			TranscriptBonus.remove({
+				cardset_id: id
+			});
 			Meteor.call('updateCardsetCount', Meteor.userId());
 		} else {
 			throw new Meteor.Error("not-authorized");
@@ -726,6 +742,38 @@ Meteor.methods({
 					learningInterval: intervals,
 					registrationPeriod: registrationPeriod,
 					"workload.bonus.maxPoints": Math.floor(maxBonusPoints)
+				}
+			});
+			return cardset._id;
+		} else {
+			throw new Meteor.Error("not-authorized");
+		}
+	},
+	/**
+	 * Updates the settings of a transcript bonus for the selected cardset.
+	 * @param {String} id - ID of the cardset for which the transcript bonus is to be activated.
+	 * @param {Number} isEnabled - Is the transcript bonus enabled?
+	 * @param {Number} percentage - Percentage for maximum achievable bonus points
+	 * @param {String} lectureEnd - Time at which the lectures end
+	 * @param {Number} deadline - Amount of hours that the student got time to submit their transcript
+	 * @param {Date} newDates - Dates at which the individual lectures take place
+	 */
+	updateCardsetTranscriptBonus: function (id, isEnabled, percentage, lectureEnd, deadline, newDates) {
+		check(id, String);
+		check(isEnabled, Boolean);
+		check(percentage, Number);
+		check(lectureEnd, String);
+		check(deadline, Number);
+		check(newDates, [Date]);
+		let cardset = Cardsets.findOne(id);
+		if (cardset !== undefined && (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner))) {
+			Cardsets.update(id, {
+				$set: {
+					'transcriptBonus.enabled': isEnabled,
+					'transcriptBonus.percentage': percentage,
+					'transcriptBonus.lectureEnd': lectureEnd,
+					'transcriptBonus.dates': newDates,
+					'transcriptBonus.deadline': deadline
 				}
 			});
 			return cardset._id;

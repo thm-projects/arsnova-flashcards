@@ -1,0 +1,14 @@
+<template name="mainNavigationTopItemTranscriptsItemBonus">
+    {{#if gotTranscriptsEnabled}}
+        {{#unless isSmartPhoneAndOwnsNoCards}}
+            {{#if canCreateContent}}
+                <li id="navbar-transcripts-bonus"
+                    class="{{#if isMyBonusTranscriptsRoute}}active{{/if}}">
+                    <a href="{{pathFor route='transcriptsBonus'}}">
+                        {{{getNavigationName "transcriptsBonus"}}}
+                    </a>
+                </li>
+            {{/if}}
+        {{/unless}}
+    {{/if}}
+</template>

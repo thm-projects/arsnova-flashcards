@@ -1,8 +1,17 @@
 <template name="filterIndexItemCard">
     {{#if firstItem this.index}}
-        <div class="hidden-xs col-sm-6 resultsHeader">
-            {{_ "transcriptForm.index.topic"}}
+        <div class="hidden-xs {{#if isCardsetTranscriptBonusRoute}}col-sm-4{{else}}col-sm-6{{/if}} resultsHeader">
+            {{#if isBonusTranscriptsRoute}}
+                {{_ "transcriptForm.index.topicBonus"}}
+            {{else}}
+                {{_ "transcriptForm.index.topic"}}
+            {{/if}}
         </div>
+        {{#if isCardsetTranscriptBonusRoute}}
+            <div class="hidden-xs col-sm-2 resultsHeader resultHeaderCategory">
+                {{_ "set-list.authorPublisher"}}
+            </div>
+        {{/if}}
         <div class="hidden-xs col-sm-3 resultsHeader resultHeaderCategory">
             {{_ "pool.release"}} <span class="resultDateRight">{{_ "pool.dateUpdated"}}</span>
         </div>
@@ -12,13 +21,23 @@
     {{/if}}
     <div class="resultItem col-xs-12">
         <div class="resultItemHeaderWrapper">
-            <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName col-xs-6 col-sm-6 {{getCardsetBackground
+            <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName {{#if isCardsetTranscriptBonusRoute}}col-xs-4 col-sm-4{{else}}col-xs-6 col-sm-6{{/if}} {{getCardsetBackground
                     this.difficulty this.cardType}}"
                  data-type="{{this.subject}}">
-                <a href="/presentation/transcripts/{{this._id}}">
-                    {{this.subject}}
+                <a href="/presentation/transcripts/{{#if isBonusTranscriptsRoute}}bonus/{{/if}}{{#if isCardsetTranscriptBonusRoute}}{{getCardsetID}}/{{/if}}{{this._id}}">
+                    {{#if isBonusTranscriptsRoute}}
+                        {{getBonusLectureName}}
+                    {{else}}
+                        {{this.subject}}
+                    {{/if}}
                 </a>
             </div>
+            {{#if isCardsetTranscriptBonusRoute}}
+                <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName col-xs-2 col-sm-2 {{getCardsetBackground
+                        this.difficulty this.cardType}}" data-id="{{this.owner}}">
+                    {{getAuthorName this.owner}}
+                </div>
+            {{/if}}
             <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName col-xs-6 col-sm-3 {{getCardsetBackground
                     this.difficulty this.cardType}}">
                 {{getMomentsDateShort  this.date}}<span class="resultDateRight">{{getMomentsDateShort
@@ -29,14 +48,18 @@
                     {{{getCardTypeLabel this.cardType}}}
                 </div>
                 <div class="resultItemHeaderRightAreaBottom col-xs-6 col-sm-12">
-                    <a class="resultNavigationElement editCard hidden-xs" {{disableIfOffline}}
-                       title='{{_ "transcriptForm.index.tooltip.edit"}}' data-id="{{this._id}}">
-                        <i class="glyphicon glyphicon-edit" data-id="{{this._id}}"></i>
-                    </a>
-                    <a class="resultNavigationElement deleteCard" {{disableIfOffline}}
-                       title='{{_ "transcriptForm.index.tooltip.delete"}}'  data-toggle="modal" data-target="#deleteTranscriptModal" data-id="{{this._id}}">
-                        <i class="result fa fa-trash" data-id="{{this._id}}"></i>
-                    </a>
+                    {{#unless isCardsetTranscriptBonusRoute}}
+                        {{#unless isMyBonusTranscriptsRouteAndDeadlineExpired}}
+                            <a class="resultNavigationElement editCard hidden-xs" {{disableIfOffline}}
+                               title='{{_ "transcriptForm.index.tooltip.edit"}}' data-id="{{this._id}}">
+                                <i class="glyphicon glyphicon-edit" data-id="{{this._id}}"></i>
+                            </a>
+                        {{/unless}}
+                        <a class="resultNavigationElement deleteCard" {{disableIfOffline}}
+                           title='{{_ "transcriptForm.index.tooltip.delete"}}'  data-toggle="modal" data-target="#deleteTranscriptModal" data-id="{{this._id}}">
+                            <i class="result fa fa-trash" data-id="{{this._id}}"></i>
+                        </a>
+                    {{/unless}}
                 </div>
             </div>
         </div>

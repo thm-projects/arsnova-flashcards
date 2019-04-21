@@ -1,11 +1,11 @@
-<template name="mainNavigationTopItemPersonalItemTranscripts">
+<template name="mainNavigationTopItemTranscriptsItemPersonal">
     {{#if gotTranscriptsEnabled}}
         {{#unless isSmartPhoneAndOwnsNoCards}}
             {{#if canCreateContent}}
-                <li id="navbar-personal-transcripts"
+                <li id="navbar-transcripts-personal"
                     class="{{#if isMyTranscriptsRoute}}active{{/if}}">
-                    <a href="{{pathFor route='transcripts'}}">
-                        {{{getNavigationName "personalTranscripts"}}}
+                    <a href="{{pathFor route='transcriptsPersonal'}}">
+                        {{{getNavigationName "transcriptsPersonal"}}}
                     </a>
                 </li>
             {{/if}}

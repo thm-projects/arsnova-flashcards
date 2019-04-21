@@ -1,8 +1,8 @@
 <template name="subjectEditor">
     <form class="form-group subjectEditor {{#if gotLearningUnit}}col-xs-8 col-sm-9{{/if}}">
         <input class="form-control" id="subjectEditor" name="content"
-               placeholder="{{getSubjectPlaceholder}}" value="{{getSubject}}"
-               tabindex="1" autofocus>
+                   placeholder="{{getSubjectPlaceholder}}" value="{{getSubject}}"
+                   tabindex="1"  {{gotBonusSelected}}>
     </form>
     {{#if gotLearningUnit}}
         <button class="btn btn-raised btn-success col-xs-4 col-sm-3 btn subjectEditorButton float-right" data-toggle="modal"

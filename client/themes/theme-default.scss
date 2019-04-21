@@ -50,6 +50,7 @@
           "background_learning": $default_background,
           "background_backend" : $default_background,
           "background_editor": $default_background,
+          "background_transcript_bonus": $default_background,
     //global colors
           "thm_dark_blue":$thm_dark_blue,
           "thm_blue":$thm_blue,
@@ -176,6 +177,25 @@
           "navbar_all_repetitorien_text": white,
           "navbar_all_repetitorien_text_hover": $button_text_hover,
           "navbar_all_repetitorien_text_active": white,
+    //navbar transcripts
+          "navbar_transcripts_background": black,
+          "navbar_transcripts_background_hover": $button_background_hover,
+          "navbar_transcripts_background_active": black,
+          "navbar_transcripts_text": white,
+          "navbar_transcripts_text_hover": $button_text_hover,
+          "navbar_transcripts_text_active": $thm_green,
+          "navbar_transcripts_personal_background": $thm_gray,
+          "navbar_transcripts_personal_background_hover": $button_background_hover,
+          "navbar_transcripts_personal_background_active": $thm_green,
+          "navbar_transcripts_personal_text": white,
+          "navbar_transcripts_personal_text_hover": $button_text_hover,
+          "navbar_transcripts_personal_text_active": white,
+          "navbar_transcripts_bonus_background": $thm_gray,
+          "navbar_transcripts_bonus_background_hover": $button_background_hover,
+          "navbar_transcripts_bonus_background_active": $thm_green,
+          "navbar_transcripts_bonus_text": white,
+          "navbar_transcripts_bonus_text_hover": $button_text_hover,
+          "navbar_transcripts_bonus_text_active": white,
     //navbar personal
           "navbar_personal_background": black,
           "navbar_personal_background_hover": $button_background_hover,
@@ -554,6 +574,10 @@
           "cardset_footer_navigation_delete_all_cards_text": white,
           "cardset_footer_navigation_delete_all_cards_background_hover": $button_background_hover,
           "cardset_footer_navigation_delete_all_cards_text_hover": $button_text_hover,
+          "cardset_footer_navigation_transcripts_background": $thm_green,
+          "cardset_footer_navigation_transcripts_text": white,
+          "cardset_footer_navigation_transcripts_background_hover": $button_background_hover,
+          "cardset_footer_navigation_transcripts_text_hover": $button_text_hover,
     //markdeep colors
           "markdeep_inline_code_background": yellow,
           "markdeep_inline_code_text": black,
@@ -561,6 +585,8 @@
           "markdeep_blockquote_text": $thm_gray,
           "markdeep_blockquote_author": $thm_gray,
           "markdeep_blockquote_quotes": $thm_orange,
+    //transcript bonus colors
+          "transcript_bonus_info_text": $thm_orange,
     //markdeep editor colors
           "markdeep_help_text": $white,
           "markdeep_help_background": $thm_orange,

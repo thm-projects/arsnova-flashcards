@@ -27,6 +27,7 @@ import {FilterNavigation} from "../../api/filterNavigation";
 import  * as FilterConfig from "../../config/filter.js";
 import {MainNavigation} from "../../api/mainNavigation";
 import {BarfyStarsConfig} from "../../api/barfyStars.js";
+import {Utilities} from "../../api/utilities";
 
 Meteor.subscribe("collegesCourses");
 
@@ -214,6 +215,18 @@ Template.registerHelper('isMyTranscriptsRoute', function () {
 	return Route.isMyTranscripts();
 });
 
+Template.registerHelper('isMyBonusTranscriptsRoute', function () {
+	return Route.isMyBonusTranscripts();
+});
+
+
+Template.registerHelper('isBonusTranscriptsRoute', function () {
+	return Route.isMyBonusTranscripts() || Route.isTranscriptBonus();
+});
+
+Template.registerHelper('isPersonalTranscriptsRoute', function () {
+	return Route.isMyTranscripts() || Route.isMyBonusTranscripts();
+});
 
 Template.registerHelper('isPersonalRepetitorienRoute', function () {
 	return Route.isPersonalRepetitorien();
@@ -268,6 +281,10 @@ Template.registerHelper("isLecturer", function () {
 	if (Roles.userIsInRole(Meteor.userId(), 'lecturer')) {
 		return true;
 	}
+});
+
+Template.registerHelper("isPublished", function (kind) {
+	return kind !== 'personal';
 });
 
 Template.registerHelper("isAdmin", function () {
@@ -447,12 +464,24 @@ Template.registerHelper("canCopyCard", function (cardset_id) {
 });
 
 Template.registerHelper("isCardsetOwner", function (cardset_id) {
-	if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']) || (Route.isDemo() || Route.isMakingOf())) {
+	if (UserPermissions.isAdmin() || (Route.isDemo() || Route.isMakingOf())) {
 		return true;
 	}
 	let cardset = Cardsets.findOne({"_id": cardset_id});
 	if (cardset !== undefined) {
 		return cardset.owner === Meteor.userId();
+	} else {
+		return false;
+	}
+});
+
+Template.registerHelper("isCardsetOwnerAndLecturer", function (cardset_id) {
+	if (UserPermissions.isAdmin() || (Route.isDemo() || Route.isMakingOf())) {
+		return true;
+	}
+	let cardset = Cardsets.findOne({"_id": cardset_id});
+	if (cardset !== undefined) {
+		return cardset.owner === Meteor.userId() && UserPermissions.isLecturer();
 	} else {
 		return false;
 	}
@@ -468,6 +497,10 @@ Template.registerHelper("canAccessFrontend", function () {
 
 Template.registerHelper("isGuestLogin", function () {
 	return MainNavigation.isGuestLoginActive();
+});
+
+Template.registerHelper("isCardsetTranscriptBonusRoute", function () {
+	return Route.isTranscriptBonus();
 });
 
 Template.registerHelper("gotAllUnfilteredCardsetsVisible", function () {
@@ -619,52 +652,12 @@ Template.registerHelper("getDate", function () {
 	return moment(date).locale(Session.get('activeLanguage')).format('LL');
 });
 
-
-function getCalendarString(type = '', minutes = '') {
-	let today = '[Today]';
-	let yesterday = '[Yesterday]';
-	if (Session.get('activeLanguage') === 'de') {
-		if (minutes !== '') {
-			minutes = '[ ]' + minutes;
-		}
-		today = '[Heute]';
-		yesterday = '[Gestern]';
-	} else {
-		if (minutes !== '') {
-			minutes = '[ at ]' + minutes;
-		}
-	}
-	switch (type) {
-		case "today":
-			return today + minutes;
-		case "yesterday":
-			return yesterday + minutes;
-	}
-}
-
 Template.registerHelper("getMomentsDate", function (date, displayMinutes = false) {
-	let minutes = "H:mm";
-	let dateFormat = "D. MMMM YYYY";
-	if (displayMinutes === true) {
-		dateFormat = "D. MMM YY " + minutes;
-	}
-	return moment(date).locale(Session.get('activeLanguage')).calendar(null, {
-		sameDay: getCalendarString("today", minutes),
-		lastDay: getCalendarString("yesterday", minutes),
-		nextWeek: dateFormat,
-		lastWeek: dateFormat,
-		sameElse: dateFormat
-	});
+	return Utilities.getMomentsDate(date, displayMinutes);
 });
 
 Template.registerHelper("getMomentsDateShort", function (date) {
-	return moment(date).locale(Session.get('activeLanguage')).calendar(null, {
-		sameDay: getCalendarString("today"),
-		lastDay: getCalendarString("yesterday"),
-		nextWeek: 'D.MMM YY',
-		lastWeek: 'D.MMM YY',
-		sameElse: 'D.MMM YY'
-	});
+	return Utilities.getMomentsDateShort(date);
 });
 
 

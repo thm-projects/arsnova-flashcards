@@ -275,8 +275,7 @@ export let CardIndex = class CardIndex {
 			"cardType": Session.get('cardType'),
 			"centerTextElement": Session.get('centerTextElement'),
 			"alignType": Session.get('alignType'),
-			"date": Session.get('cardDate'),
-			"learningUnit": Session.get('learningUnit')
+			"date": Session.get('cardDate')
 		}];
 	}
 

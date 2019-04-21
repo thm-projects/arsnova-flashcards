@@ -136,6 +136,15 @@
                                 </a>
                             {{/if}}
                         {{/if}}
+                        {{#if gotBonus this.transcriptBonus.enabled}}
+                            {{#if isCardsetOwner this._id}}
+                                <a class="resultNavigationElement bonusTranscriptProgress" data-id="{{this._id}}"
+                                   title="{{_
+                                           "transcriptForm.bonus.form.button.list"}}">
+                                    <i class="fa fa-clipboard" data-id="{{this._id}}"></i>
+                                </a>
+                            {{/if}}
+                        {{/if}}
                         {{#if isActiveRoute regex="shuffle"}}
                             {{#if inShuffleSelection this._id}}
                                 <a class="btn btn-xs btn-raised btn-danger shuffleButton removeShuffleCardset"
@@ -283,8 +292,11 @@
             {{#if isActiveRoute regex='repetitorium|personalRepetitorien|allRepetitorien'}}
                 {{_ "courseIteration.list.empty"}}
             {{/if}}
-            {{#if isActiveRoute 'transcripts'}}
+            {{#if isActiveRoute regex='transcriptsPersonal|transcriptsBonus'}}
                 {{_ "set-list-empty.emptytexttranscripts"}}
+            {{/if}}
+            {{#if isActiveRoute regex='transcriptBonus'}}
+                {{_ "set-list-empty.emptytexttranscriptBonus"}}
             {{/if}}
         </div>
     </div>

@@ -129,8 +129,6 @@ export let CardEditor = class CardEditor {
 	static resetSessionData (resetSubject = false) {
 		if (resetSubject && Session.get('cameFromEditMode') === false) {
 			Session.set('subject', '');
-			Session.set('learningUnit', "0");
-			Session.set('learningIndex', "0");
 		}
 		Session.set('content1', '');
 		Session.set('content2', '');
@@ -168,8 +166,6 @@ export let CardEditor = class CardEditor {
 		Session.set('difficultyColor', difficulty);
 		Session.set('learningGoalLevel', card.learningGoalLevel);
 		Session.set('backgroundStyle', card.backgroundStyle);
-		Session.set('learningUnit', card.learningUnit);
-		Session.set('learningIndex', card.learningIndex);
 	}
 
 	static setEditorContent (index) {
@@ -224,14 +220,6 @@ export let CardEditor = class CardEditor {
 			Session.set('bottomText', '');
 		}
 
-		if (Session.get('learningIndex') === undefined) {
-			Session.set('learningIndex', '0');
-		}
-
-		if (Session.get('learningUnit') === undefined) {
-			Session.set('learningUnit', '0');
-		}
-
 		if (Session.get('cardDate') === undefined) {
 			Session.set('cardDate', new Date());
 		}
@@ -252,8 +240,6 @@ export let CardEditor = class CardEditor {
 		let date = Session.get('cardDate');
 		let learningGoalLevel = Session.get('learningGoalLevel');
 		let backgroundStyle = Session.get('backgroundStyle');
-		let learningIndex = Session.get('learningIndex');
-		let learningUnit = Session.get('learningUnit');
 		let subject = Session.get('subject');
 		let gotSubject = true;
 		if (!CardType.gotLearningUnit(cardType)) {
@@ -264,7 +250,7 @@ export let CardEditor = class CardEditor {
 				gotSubject = false;
 			}
 		} else {
-			if (subject === "" && learningUnit === "0") {
+			if (subject === "" && Session.get('transcriptBonus') === undefined) {
 				$('#subjectEditor').css('border', '1px solid');
 				$('#subjectEditor').css('border-color', '#b94a48');
 				BertAlertVisuals.displayBertAlert(TAPi18n.__('cardsubject_required'), "danger", 'growl-top-left');
@@ -306,7 +292,7 @@ export let CardEditor = class CardEditor {
 				if (!Route.isTranscript()) {
 					cardset_id = Router.current().params._id;
 				}
-				Meteor.call("addCard", cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit, function (error, result) {
+				Meteor.call("addCard", cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, Number(learningGoalLevel), Number(backgroundStyle), Session.get('transcriptBonus'), function (error, result) {
 					if (result) {
 						BertAlertVisuals.displayBertAlert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 						if (navigationTarget === 0) {
@@ -318,7 +304,11 @@ export let CardEditor = class CardEditor {
 							CardNavigation.selectButton();
 						} else {
 							if (Route.isTranscript()) {
-								Router.go('transcripts');
+								if (Session.get('transcriptBonus') !== undefined) {
+									Router.go('transcriptsBonus');
+								} else {
+									Router.go('transcriptsPersonal');
+								}
 							} else {
 								Session.set('activeCard', result);
 								Router.go('cardsetdetailsid', {
@@ -327,31 +317,44 @@ export let CardEditor = class CardEditor {
 							}
 						}
 					}
+					if (error) {
+						BertAlertVisuals.displayBertAlert(error.error, "danger", 'growl-top-left');
+					}
 				});
 			} else {
-				Meteor.call("updateCard", card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, Number(learningGoalLevel), Number(backgroundStyle), learningIndex, learningUnit);
-				BertAlertVisuals.displayBertAlert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
-				Session.set('activeCard', Router.current().params.card_id);
-				if (navigationTarget === 1) {
-					if (Route.isTranscript()) {
-						Router.go('transcripts');
-					} else {
-						Router.go('cardsetdetailsid', {
-							_id: Router.current().params._id
-						});
+				Meteor.call("updateCard", card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, Number(learningGoalLevel), Number(backgroundStyle), Session.get('transcriptBonus'), function (error, result) {
+					if (result) {
+						BertAlertVisuals.displayBertAlert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
+						Session.set('activeCard', Router.current().params.card_id);
+						if (navigationTarget === 1) {
+							if (Route.isTranscript()) {
+								if (Session.get('transcriptBonus') !== undefined) {
+									Router.go('transcriptsBonus');
+								} else {
+									Router.go('transcriptsPersonal');
+								}
+							} else {
+								Router.go('cardsetdetailsid', {
+									_id: Router.current().params._id
+								});
+							}
+						} else {
+							CardEditor.setEditorButtonIndex(CardEditor.getCardNavigationNameIndex(), false);
+							CardNavigation.selectButton();
+							window.scrollTo(0, 0);
+							let nextId = CardIndex.getNextCardID(card_id);
+							Router.go('editCard', {
+								_id: Router.current().params._id,
+								card_id: nextId
+							});
+							Session.set('activeCard', nextId);
+							CardEditor.loadEditModeContent(Cards.findOne({_id: nextId, cardset_id: Router.current().params._id}));
+						}
 					}
-				} else {
-					CardEditor.setEditorButtonIndex(CardEditor.getCardNavigationNameIndex(), false);
-					CardNavigation.selectButton();
-					window.scrollTo(0, 0);
-					let nextId = CardIndex.getNextCardID(card_id);
-					Router.go('editCard', {
-						_id: Router.current().params._id,
-						card_id: nextId
-					});
-					Session.set('activeCard', nextId);
-					CardEditor.loadEditModeContent(Cards.findOne({_id: nextId, cardset_id: Router.current().params._id}));
-				}
+					if (error) {
+						BertAlertVisuals.displayBertAlert(error.error, "danger", 'growl-top-left');
+					}
+				});
 			}
 		}
 	}

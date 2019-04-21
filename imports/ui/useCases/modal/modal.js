@@ -61,7 +61,7 @@ Template.useCasesModal.onRendered(function () {
 				Router.go('personalRepetitorien');
 				break;
 			case 7:
-				Router.go('transcripts');
+				Router.go('transcriptsPersonal');
 				break;
 		}
 	});

@@ -100,7 +100,6 @@ function importCards(data, cardset, importType) {
 					alignType: item.alignType,
 					learningGoalLevel: item.learningGoalLevel,
 					backgroundStyle: item.backgroundStyle,
-					learningUnit: item.learningUnit,
 					date: item.date,
 					dateUpdated: item.dateUpdated,
 					originalAuthorName: originalAuthorName,
