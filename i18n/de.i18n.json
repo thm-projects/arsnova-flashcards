@@ -49,7 +49,7 @@
         "cas": "Du wirst zum CAS-Server der THM weitergeleitet...",
         "guest": "Als Gast kannst du dir »freie« Kartensätze anschauen.",
         "pro": "Wenn du keinen Uni-Account hast, kannst du dich hier für ein Abo registrieren.",
-        "backdoor": "Backdoor-Login",
+        "backdoor": "Hintertürchen",
         "facebook": "Login mit Facebook-Account",
         "twitter": "Login mit Twitter-Account",
         "google": "Login mit Google-Account"
@@ -302,11 +302,26 @@
         "zero": "Repetitorium anlegen",
         "one": "Repetitorium",
         "multiple": "Repetitorien"
-      },
-      "transcripts": {
-        "zero": "Mitschrift anlegen",
-        "one": "Mitschriften",
+      }
+    },
+    "transcripts": {
+      "zero": "Mitschrift anlegen",
+      "one": "Mitschriften",
+      "multiple": "Mitschriften",
+      "short": {
+        "zero": "Anlegen",
+        "one": "Mitschrift",
         "multiple": "Mitschriften"
+      },
+      "personal": {
+        "zero": "Lose Mitschrift Anlegen",
+        "one": "Meine lose Mitschrift",
+        "multiple": "Meine losen Mitschriften"
+      },
+      "bonus": {
+        "zero": "Verknüpfte Mitschrift Anlegen",
+        "one": "Meine verknüpfte Mitschrift",
+        "multiple": "Meine verknüpften Mitschriften"
       }
     },
     "learndecks": "Lernpensum",
@@ -557,7 +572,8 @@
     "emptytextlist": "Eine Kartei besteht aus Karten desselben Typs.",
     "emptypooltextlist": "Keine Kartei vorhanden",
     "newset": "Kartei anlegen (Kartenbox)",
-    "emptytexttranscripts": "Du hast noch keine Mitschrift erstellt. Informiere dich unter »Hilfe«, wie du für das Mitschreiben auf \uD83C\uDF45cards Bonuspunkte erhalten kannst."
+    "emptytexttranscripts": "Du hast noch keine Mitschrift erstellt. Informiere dich unter »Hilfe«, wie du für das Mitschreiben auf \uD83C\uDF45cards Bonuspunkte erhalten kannst.",
+    "emptytexttranscriptBonus": "Keine Abgaben vorhanden."
   },
   "set-list-learn-empty": {
     "emptytextlist": "Zum Lernen wähle ein Thema aus dem Themenpool oder die Karteien eines Repetitoriums.",
@@ -629,7 +645,8 @@
   "transcriptForm": {
     "index": {
       "create": "Mitschrift erstellen",
-      "topic": "Thema der Mitschrift",
+      "topic": "Thema der losen Mitschrift",
+      "topicBonus": "Thema der verknüpften Mitschrift",
       "tooltip": {
         "edit": "Mitschrift bearbeiten",
         "delete": "Mitschrift löschen"
@@ -644,19 +661,28 @@
       }
     },
     "button": {
-      "modal": "Zugehörigkeit festlegen",
+      "modal": "Mitschrift verknüpfen",
       "save": "Speichern"
     },
-    "title": "Zugehörigkeit der Mitschrift verwalten",
+    "server": {
+      "deadlineExpired": "Die Karte kann nicht mehr bearbeitet werden. Die Bearbeitungszeit ist abgelaufen.",
+      "notFound": "Es wurde keine Vorlesung mit Bonusvergabe gefunden."
+    },
+    "title": "Mitschrift mit einer Vorlesung verknüpfen",
+    "description": "Verknüpfte Mitschriften können nach Ablauf der Abgabe nicht mehr bearbeitet werden",
+    "placeholder": "Wähle eine Vorlesung mit Bonusvergabe aus…",
+    "lecture": "Vorlesung",
     "referencesLecture": {
       "true": "Mit Vorlesung verknüpfen",
       "false": "Lose Mitschrift"
     },
     "selectLecture": "Vorlesung auswählen",
     "bonus": {
-      "button": "Mitschriften",
+      "button": "Bonus-Mitschriften",
       "form": {
         "title": "Bonusvergabe für Mitschriften verwalten",
+        "percentage": "Maximale Bonuspunkte",
+        "enable": "Bonus aktivieren",
         "lectureTimeEnd": "Vorlesungsende",
         "deadline": "Bearbeitungszeit",
         "lectureDates": "Termine der Veranstaltungen",
@@ -664,9 +690,13 @@
         "hours": "Stunden",
         "button": {
           "save": "Speichern",
-          "cancel": "Abbrechen",
-          "settings": "Einstellungen",
-          "list": "Abgaben"
+          "cancel": "Zurück zur Kartei",
+          "cancelRepetitorium": "Zrück zum Repetitorium",
+          "settings": "Einstellungen für die Bonusvergabe",
+          "list": "Verknüpfte Abgaben für die Bonusvergabe"
+        },
+        "alert": {
+          "save": "Änderungen wurden erfolgreich gespeichert"
         }
       }
     }

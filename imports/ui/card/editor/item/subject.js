@@ -1,8 +1,8 @@
 import {CardType} from "../../../../api/cardTypes";
 import {CardEditor} from "../../../../api/cardEditor.js";
-import {Cards} from "../../../../api/cards.js";
 import {Session} from "meteor/session";
 import "./subject.html";
+import {TranscriptBonusList} from "../../../../api/transcriptBonus";
 
 /*
  * ############################################################################
@@ -11,21 +11,24 @@ import "./subject.html";
  */
 Template.subjectEditor.helpers({
 	getSubject: function () {
-		if (CardType.gotLearningUnit(Session.get('cardType')) && Session.get('learningUnit') !== "0") {
-			let card = Cards.findOne({_id: Session.get('learningUnit')});
-			if (card !== undefined && card.subject !== undefined) {
-				return card.subject;
-			} else {
-				return "";
-			}
+		if (CardType.gotLearningUnit(Session.get('cardType')) && Session.get('transcriptBonus') !== undefined  && !Session.get('isPrivateTranscript')) {
+			return TranscriptBonusList.getLectureName(Session.get('transcriptBonus'), false);
+		} else {
+			return Session.get('subject');
 		}
-		return Session.get('subject');
 	},
 	getSubjectPlaceholder: function () {
 		return CardType.getSubjectPlaceholderText(Session.get('cardType'));
 	},
 	gotLearningUnit: function () {
 		return CardType.gotLearningUnit(Session.get('cardType'));
+	},
+	gotBonusSelected: function () {
+		if (CardType.gotLearningUnit(Session.get('cardType')) && !Session.get('isPrivateTranscript')) {
+			return "disabled";
+		} else {
+			return "";
+		}
 	}
 });
 
@@ -36,14 +39,16 @@ Template.subjectEditor.events({
 	'input #subjectEditor': function () {
 		$('#subjectEditor').css('border', 0);
 		CardEditor.setEditorButtonIndex(0);
-		Session.set('subject', $('#subjectEditor').val());
-	},
-	'click .subjectEditorButton': function () {
-		Session.set('tempLearningIndex', Session.get('learningIndex'));
-		Session.set('tempLearningUnit', Session.get('learningUnit'));
+		if (CardType.gotLearningUnit(Session.get('cardType')) && Session.get('transcriptBonus') !== undefined  && !Session.get('isPrivateTranscript')) {
+		} else {
+			Session.set('subject', $('#subjectEditor').val());
+		}
 	}
 });
 
 Template.subjectEditor.rendered = function () {
-	Session.set('subject', $('#subjectEditor').val());
+	if (CardType.gotLearningUnit(Session.get('cardType')) && Session.get('transcriptBonus') !== undefined  && !Session.get('isPrivateTranscript')) {
+	} else {
+		Session.set('subject', $('#subjectEditor').val());
+	}
 };

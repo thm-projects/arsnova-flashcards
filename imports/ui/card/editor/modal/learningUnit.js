@@ -1,8 +1,10 @@
 import {Cardsets} from "../../../../api/cardsets";
 import {Session} from "meteor/session";
+import {TranscriptBonus, TranscriptBonusList} from "../../../../api/transcriptBonus";
+import {Route} from "../../../../api/route";
 import "./learningUnit.html";
+import {Template} from "meteor/templating";
 
-Session.setDefault('isPrivateTranscript', true);
 /*
  * ############################################################################
  * selectLearningUnit
@@ -11,29 +13,66 @@ Session.setDefault('isPrivateTranscript', true);
 
 Template.selectLearningUnit.helpers({
 	getBonusLectures: function () {
-		return Cardsets.find({'transcript.bonus': true}, {
+		let cardsets = Cardsets.find({},{
 			sort: {name: 1},
-			fields: {name: 1}
-		});
+			fields: {name: 1, transcriptBonus: 1, _id: 1, cardType: 1, quantity: 1, shuffled: 1, difficulty: 1, kind: 1}
+		}).fetch();
+		let lectures = [];
+		for (let c = 0; c < cardsets.length; c++) {
+			for (let d = 0; d < cardsets[c].transcriptBonus.dates.length; d++) {
+				let transcriptBonus = cardsets[c].transcriptBonus;
+				transcriptBonus.cardset_id = cardsets[c]._id;
+				if (TranscriptBonusList.canBeSubmittedToLecture(transcriptBonus, d)) {
+					let lecture = {};
+					lecture.name = cardsets[c].name;
+					lecture.info = TranscriptBonusList.getLectureInfo(cardsets[c].transcriptBonus, d);
+					lecture.cardset_id = cardsets[c]._id;
+					lecture.date_id = d;
+					lecture.shuffled = cardsets[c].shuffled;
+					lecture.quantity = cardsets[c].quantity;
+					lecture.cardType = cardsets[c].cardType;
+					lecture.difficulty = cardsets[c].difficulty;
+					lecture.kind = cardsets[c].kind;
+					lectures.push(lecture);
+				}
+			}
+		}
+		return lectures;
 	},
 	isPrivateTranscript: function () {
 		return Session.get('isPrivateTranscript');
 	},
-	gotValidSelection: function () {
-		if (Session.get('isPrivateTranscript')) {
-			return true;
+	getRadioButtonStatus: function (id) {
+		if (id === 0 && Session.get('isPrivateTranscript')) {
+			return "checked";
+		} else if (id === 1 && !Session.get('isPrivateTranscript')) {
+			return "checked";
 		} else {
-			return Session.get('activeBonusLecture') !== undefined;
+			return "";
+		}
+	},
+	getBonusLectureName: function () {
+		if (Session.get('transcriptBonus') !== undefined) {
+			let cardset = Cardsets.findOne({_id: Session.get('transcriptBonus').cardset_id}, {fields: {_id: 1, name: 1}});
+			let transcriptBonus = Session.get('transcriptBonus');
+			transcriptBonus.name = cardset.name;
+			return TranscriptBonusList.getLectureName(transcriptBonus, false, false);
+		} else {
+			return TAPi18n.__('transcriptForm.placeholder');
 		}
 	}
 });
 
 Template.selectLearningUnit.events({
-	'click .bonusLecture': function (evt) {
-		Session.set('activeBonusLecture', Cardsets.findOne({_id: $(evt.currentTarget).attr("data")}));
-		$('#setLearningIndexLabel').css('color', '');
-		$('.setLearningIndexDropdown').css('border-color', '');
-		$('#helpLearningIndexType').html('');
+	'click .transcriptBonusLecture': function (evt) {
+		let cardset = Cardsets.findOne({_id: $(evt.currentTarget).attr("data-cardset_id")});
+		let transcriptBonus = cardset.transcriptBonus;
+		transcriptBonus.name = cardset.name;
+		transcriptBonus.date = cardset.transcriptBonus.dates[$(evt.currentTarget).attr("data-date_id")];
+		transcriptBonus.cardset_id = cardset._id;
+		transcriptBonus.date_id = $(evt.currentTarget).attr("data-date_id");
+		Session.set('transcriptBonus', transcriptBonus);
+		$('#showSelectLearningUnitModal').modal('hide');
 	},
 	'click #learningUnitCancel': function () {
 		$('#showSelectLearningUnitModal').modal('hide');
@@ -43,5 +82,50 @@ Template.selectLearningUnit.events({
 	},
 	'click #referencesLecture': function () {
 		Session.set('isPrivateTranscript', false);
+	},
+	'click #saveBonusLecture': function () {
+		Session.set('transcriptBonus', undefined);
+		$('#showSelectLearningUnitModal').modal('hide');
 	}
+});
+
+Template.selectLearningUnit.onCreated(function () {
+	if (Route.isNewTranscript()) {
+		Session.set('isPrivateTranscript', true);
+		Session.set('transcriptBonus', undefined);
+	} else {
+		let bonus = TranscriptBonus.findOne({card_id: Router.current().params.card_id});
+		if (bonus !== undefined) {
+			let cardset = Cardsets.findOne({_id: bonus.cardset_id});
+			bonus.name = cardset.name;
+			Session.set('isPrivateTranscript', false);
+			Session.set('transcriptBonus', bonus);
+		} else {
+			Session.set('isPrivateTranscript', true);
+			Session.set('transcriptBonus', undefined);
+		}
+	}
+});
+
+Template.selectLearningUnit.onRendered(function () {
+	if (Session.get('transcriptBonus') !== undefined) {
+		$('#setTranscriptBonusLecture').html(TranscriptBonusList.getLectureName(Session.get('transcriptBonus').name, Session.get('transcriptBonus'), Session.get('transcriptBonus').date, false));
+	}
+	if (Route.isNewTranscript()) {
+		$('#showSelectLearningUnitModal').modal('show');
+	}
+	$('#showSelectLearningUnitModal').on('show.bs.modal', function () {
+		if (Session.get('transcriptBonus') !== undefined) {
+			let cardset = Cardsets.findOne({_id: Session.get('transcriptBonus').cardset_id}, {fields: {_id: 1, name: 1}});
+			let transcriptBonus = Session.get('transcriptBonus');
+			transcriptBonus.name = cardset.name;
+			$('#setTranscriptBonusLecture').html(TranscriptBonusList.getLectureName(transcriptBonus, false, false));
+		} else {
+			$('#setTranscriptBonusLecture').html(TAPi18n.__('transcriptForm.placeholder'));
+		}
+	});
+});
+
+Template.selectLearningUnit.onDestroyed(function () {
+	Session.set('transcriptBonus', undefined);
 });

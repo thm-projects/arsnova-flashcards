@@ -225,6 +225,11 @@ Template.copyCard.events({
  */
 Template.cardSubject.helpers({
 	getSubject: function () {
+		if (CardType.gotLearningUnit(this.cardType)) {
+			if (Session.get('transcriptBonus') !== undefined) {
+				return Cardsets.findOne({_id: Session.get('transcriptBonus').cardset_id}).name;
+			}
+		}
 		if (Session.get('selectedHint')) {
 			return Cards.findOne({_id: Session.get('selectedHint')}).subject;
 		} else {
@@ -235,30 +240,10 @@ Template.cardSubject.helpers({
 			}
 		}
 	},
-	gotLearningUnit: function () {
-		if (Session.get('selectedHint')) {
-			let card = Cards.findOne({_id: Session.get('selectedHint')});
-			return (CardType.gotLearningUnit(card.cardType) && card.learningUnit !== "0");
-		} else {
-			return (CardType.gotLearningUnit(this.cardType) && this.learningUnit !== "0");
-		}
+	gotBonusTranscript: function () {
+		return Session.get('transcriptBonus');
 	},
-	getLearningIndex: function () {
-		if (Route.isEditMode()) {
-			return Session.get('learningIndex');
-		} else if (Session.get('selectedHint')) {
-			return Cards.findOne({_id: Session.get('selectedHint')}).learningIndex;
-		} else {
-			return this.learningIndex;
-		}
-	},
-	getLearningUnit: function () {
-		if (Route.isEditMode()) {
-			return Session.get('learningUnit');
-		} else if (Session.get('selectedHint')) {
-			return Cards.findOne({_id: Session.get('selectedHint')}).learningUnit;
-		} else {
-			return this.learningUnit;
-		}
+	getBonusLecture: function () {
+		return Session.get('transcriptBonus').cardset_id;
 	}
 });

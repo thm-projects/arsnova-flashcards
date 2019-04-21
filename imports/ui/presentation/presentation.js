@@ -12,6 +12,7 @@ import {MainNavigation} from "../../api/mainNavigation";
 import {NavigatorCheck} from "../../api/navigatorCheck";
 import {FirstTimeVisit} from "../../api/firstTimeVisit";
 import {AspectRatio} from "../../api/aspectRatio";
+import {TranscriptBonus} from "../../api/transcriptBonus";
 
 Session.set('animationPlaying', false);
 
@@ -26,6 +27,13 @@ Template.presentation.onCreated(function () {
 	if (Session.get('aspectRatioMode') === 0) {
 		Session.set('aspectRatioMode', AspectRatio.getDefault());
 	}
+	if (Route.isPresentationTranscriptBonus() || Route.isPresentationTranscriptBonusCardset()) {
+		Session.set('transcriptBonus', TranscriptBonus.findOne({card_id: Router.current().params.card_id}));
+	}
+});
+
+Template.presentation.onDestroyed(function () {
+	Session.set('transcriptBonus', undefined);
 });
 
 /*

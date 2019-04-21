@@ -271,11 +271,35 @@ Router.route('/personal/cardsets', {
 	}
 });
 
-Router.route('/personal/transcripts', {
-	name: 'transcripts',
+Router.route('/transcripts/personal', {
+	name: 'transcriptsPersonal',
 	template: 'filterIndex',
 	subscriptions: function () {
 		return [Meteor.subscribe('myTranscriptCards')];
+	},
+	data: function () {
+		if (ServerStyle.gotTranscriptsEnabled()) {
+			Session.set('helpFilter', "transcripts");
+			Session.set('cardsetIndexResults', Cards.find().count());
+			Filter.resetMaxItemCounter();
+		} else {
+			Router.go('home');
+		}
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
+	}
+});
+
+Router.route('/transcripts/bonus', {
+	name: 'transcriptsBonus',
+	template: 'filterIndex',
+	subscriptions: function () {
+		return [Meteor.subscribe('myBonusTranscriptCards'), Meteor.subscribe('myTranscriptBonus'), Meteor.subscribe('cardsetsTranscripts')];
 	},
 	data: function () {
 		if (ServerStyle.gotTranscriptsEnabled()) {
@@ -423,16 +447,17 @@ Router.route('/cardset/:_id/editshuffle', {
 	}
 });
 
-Router.route('/cardset/:_id/transcript', {
+Router.route('/cardset/:_id/transcripts', {
 	name: 'transcriptBonus',
 	template: 'cardsetTranscript',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('userData')];
+		return [Meteor.subscribe('cardsetTranscriptBonus', this.params._id), Meteor.subscribe('cardsetTranscriptBonusCards', this.params._id), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('userDataTranscriptBonus', this.params._id)];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', "cardset");
 		Session.set('isNewCardset', false);
+		Session.set('cardsetIndexResults', Cards.find().count());
 		return Cardsets.findOne({_id: this.params._id});
 	},
 	action: function () {
@@ -530,7 +555,7 @@ Router.route('/personal/transcripts/new', {
 	name: 'newTranscript',
 	template: 'newCard',
 	subscriptions: function () {
-		return [Meteor.subscribe('userDataLecturers')];
+		return [Meteor.subscribe('cardsetsTranscripts'), Meteor.subscribe('userDataLecturers')];
 	},
 	data: function () {
 		if (ServerStyle.gotTranscriptsEnabled()) {
@@ -571,7 +596,7 @@ Router.route('/personal/transcripts/edit/:card_id', {
 	name: 'editTranscript',
 	template: 'editCard',
 	subscriptions: function () {
-		return [Meteor.subscribe('transcriptCard', this.params.card_id)];
+		return [Meteor.subscribe('cardsetsTranscripts'), Meteor.subscribe('transcriptCard', this.params.card_id), Meteor.subscribe('myTranscriptBonus')];
 	},
 	data: function () {
 		if (ServerStyle.gotTranscriptsEnabled()) {
@@ -689,10 +714,57 @@ Router.route('/presentationlist/:_id', {
 });
 
 Router.route('/presentation/transcripts/:card_id', {
-	name: 'presentationTranscript',
+	name: 'presentationTranscriptPersonal',
 	template: 'presentation',
 	subscriptions: function () {
 		return [Meteor.subscribe('transcriptCard', this.params.card_id)];
+	},
+	data: function () {
+		if (ServerStyle.gotTranscriptsEnabled()) {
+			Session.set('helpFilter',undefined);
+			return Cards.findOne(this.params.card_id);
+		} else {
+			Router.go('home');
+		}
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
+	}
+});
+
+Router.route('/presentation/transcripts/bonus/:card_id', {
+	name: 'presentationTranscriptBonus',
+	template: 'presentation',
+	subscriptions: function () {
+		return [Meteor.subscribe('transcriptCard', this.params.card_id), Meteor.subscribe('myTranscriptBonus'), Meteor.subscribe('cardsetsTranscripts')];
+	},
+	data: function () {
+		if (ServerStyle.gotTranscriptsEnabled()) {
+			Session.set('helpFilter',undefined);
+			return Cards.findOne(this.params.card_id);
+		} else {
+			Router.go('home');
+		}
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
+	}
+});
+
+
+Router.route('/presentation/transcripts/bonus/:_id/:card_id', {
+	name: 'presentationTranscriptBonusCardset',
+	template: 'presentation',
+	subscriptions: function () {
+		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('transcriptCard', this.params.card_id)];
 	},
 	data: function () {
 		if (ServerStyle.gotTranscriptsEnabled()) {

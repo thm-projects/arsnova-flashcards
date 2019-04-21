@@ -13,7 +13,11 @@ Template.cancelEditForm.events({
 	'click #cancelEditConfirm': function () {
 		$('#cancelEditModal').on('hidden.bs.modal', function () {
 			if (Route.isTranscript()) {
-				Router.go('transcripts');
+				if (Session.get('transcriptBonus') !== undefined) {
+					Router.go('transcriptsBonus');
+				} else {
+					Router.go('transcriptsPersonal');
+				}
 			} else {
 				Session.set('activeCard', Router.current().params.card_id);
 				Router.go('cardsetdetailsid', {

@@ -15,6 +15,7 @@ $themes: (
     $background_learning: map-get($map, "background_learning");
     $background_backend: map-get($map, "background_backend");
     $background_editor: map-get($map, "background_editor");
+    $background_transcript_bonus: map-get($map, "background_transcript_bonus");
     //global colors
     $thm_dark_blue: map-get($map, "thm_dark_blue");
     $thm_blue: map-get($map, "thm_blue");
@@ -141,6 +142,25 @@ $themes: (
     $navbar_all_repetitorien_text: map-get($map, "navbar_all_repetitorien_text");
     $navbar_all_repetitorien_text_hover: map-get($map, "navbar_all_repetitorien_text_hover");
     $navbar_all_repetitorien_text_active: map-get($map, "navbar_all_repetitorien_text_active");
+    //navbar transcripts
+    $navbar_transcripts_background: map-get($map, "navbar_transcripts_background");
+    $navbar_transcripts_background_hover: map-get($map, "navbar_transcripts_background_hover");
+    $navbar_transcripts_background_active: map-get($map, "navbar_transcripts_background_active");
+    $navbar_transcripts_text: map-get($map, "navbar_transcripts_text");
+    $navbar_transcripts_text_hover: map-get($map, "navbar_transcripts_text_hover");
+    $navbar_transcripts_text_active: map-get($map, "navbar_transcripts_text_active");
+    $navbar_transcripts_personal_background: map-get($map, "navbar_transcripts_personal_background");
+    $navbar_transcripts_personal_background_hover: map-get($map, "navbar_transcripts_personal_background_hover");
+    $navbar_transcripts_personal_background_active: map-get($map, "navbar_transcripts_personal_background_active");
+    $navbar_transcripts_personal_text: map-get($map, "navbar_transcripts_personal_text");
+    $navbar_transcripts_personal_text_hover: map-get($map, "navbar_transcripts_personal_text_hover");
+    $navbar_transcripts_personal_text_active: map-get($map, "navbar_transcripts_personal_text_active");
+    $navbar_transcripts_bonus_background: map-get($map, "navbar_transcripts_bonus_background");
+    $navbar_transcripts_bonus_background_hover: map-get($map, "navbar_transcripts_bonus_background_hover");
+    $navbar_transcripts_bonus_background_active: map-get($map, "navbar_transcripts_bonus_background_active");
+    $navbar_transcripts_bonus_text: map-get($map, "navbar_transcripts_bonus_text");
+    $navbar_transcripts_bonus_text_hover: map-get($map, "navbar_transcripts_bonus_text_hover");
+    $navbar_transcripts_bonus_text_active: map-get($map, "navbar_transcripts_bonus_text_active");
     //navbar personal
     $navbar_personal_background: map-get($map, "navbar_personal_background");
     $navbar_personal_background_hover: map-get($map, "navbar_personal_background_hover");
@@ -470,6 +490,10 @@ $themes: (
     $cardset_footer_navigation_delete_all_cards_text: map-get($map, "cardset_footer_navigation_delete_all_cards_text");
     $cardset_footer_navigation_delete_all_cards_background_hover: map-get($map, "cardset_footer_navigation_delete_all_cards_background_hover");
     $cardset_footer_navigation_delete_all_cards_text_hover: map-get($map, "cardset_footer_navigation_delete_all_cards_text_hover");
+    $cardset_footer_navigation_transcripts_background: map-get($map, "cardset_footer_navigation_transcripts_background");
+    $cardset_footer_navigation_transcripts_text: map-get($map, "cardset_footer_navigation_transcripts_text");
+    $cardset_footer_navigation_transcripts_background_hover: map-get($map, "cardset_footer_navigation_transcripts_background_hover");
+    $cardset_footer_navigation_transcripts_text_hover: map-get($map, "cardset_footer_navigation_transcripts_text_hover");
     //card list
     $card_list_number_background: map-get($map, "card_list_number_background");
     $card_list_number_text: map-get($map, "card_list_number_text");
@@ -519,6 +543,8 @@ $themes: (
     $markdeep_blockquote_text: map-get($map, "markdeep_blockquote_text");
     $markdeep_blockquote_author: map-get($map, "markdeep_blockquote_author");
     $markdeep_blockquote_quotes: map-get($map, "markdeep_blockquote_quotes");
+    //transcript bonus colors
+    $transcript_bonus_info_text: map-get($map, "transcript_bonus_info_text");
     //markdeep editor colors
     $markdeep_help_text: map-get($map, "markdeep_help_text");
     $markdeep_help_background: map-get($map, "markdeep_help_background");
@@ -678,6 +704,10 @@ $themes: (
 
     body.editor {
       background-color: $background_editor !important;
+    }
+
+    body.transcriptBonus {
+      background-color: $background_transcript_bonus !important;
     }
 
     button:hover, button:focus, .btn:hover, .btn:focus {
@@ -1463,6 +1493,16 @@ $themes: (
         background-color: $cardset_footer_navigation_delete_all_cards_background_hover !important;
         color: $cardset_footer_navigation_delete_all_cards_text_hover !important;
       }
+
+      .transcriptsBtn {
+        background-color: $cardset_footer_navigation_transcripts_background !important;
+        color: $cardset_footer_navigation_transcripts_text !important;
+      }
+
+      .transcriptsBtn:hover, .transcriptsBtn:focus {
+        background-color: $cardset_footer_navigation_transcripts_background_hover !important;
+        color: $cardset_footer_navigation_transcripts_text_hover !important;
+      }
     }
 
     .panel-body, .cardContent, #showHintModal {
@@ -1713,6 +1753,46 @@ $themes: (
     #navbar-public-repetitorien.active a, #navbar-public-repetitorien.active a:hover, #navbar-public-repetitorien.active a:focus {
       background-color: $navbar_public_repetitorien_background_active !important;
       color: $navbar_public_repetitorien_text_active !important;
+    }
+
+    //navbar transcripts
+    #navbar-transcripts > a {
+      background-color: $navbar_transcripts_background !important;
+      color: $navbar_transcripts_text !important;
+    }
+    #navbar-transcripts > a:hover, #navbar-transcripts > a:focus {
+      background-color: $navbar_transcripts_background_hover !important;
+      color: $navbar_transcripts_text_hover !important;
+    }
+    #navbar-transcripts.active > a, #navbar-transcripts.active > a:hover, #navbar-transcripts.active > a:focus {
+      background-color: $navbar_transcripts_background_active !important;
+      color: $navbar_transcripts_text_active !important;
+    }
+
+    #navbar-transcripts-personal a {
+      background-color: $navbar_transcripts_personal_background !important;
+      color: $navbar_transcripts_personal_text !important;
+    }
+    #navbar-transcripts-personal a:hover, #navbar-transcripts-personal a:focus {
+      background-color: $navbar_transcripts_personal_background_hover !important;
+      color: $navbar_transcripts_personal_text_hover !important;
+    }
+    #navbar-transcripts-personal.active a, #navbar-transcripts-personal.active a:hover, #navbar-transcripts-personal.active a:focus {
+      background-color: $navbar_transcripts_personal_background_active !important;
+      color: $navbar_transcripts_personal_text_active !important;
+    }
+
+    #navbar-transcripts-bonus a {
+      background-color: $navbar_transcripts_bonus_background !important;
+      color: $navbar_transcripts_bonus_text !important;
+    }
+    #navbar-transcripts-bonus a:hover, #navbar-transcripts-bonus a:focus {
+      background-color: $navbar_transcripts_bonus_background_hover !important;
+      color: $navbar_transcripts_bonus_text_hover !important;
+    }
+    #navbar-transcripts-bonus.active a, #navbar-transcripts-bonus.active a:hover, #navbar-transcripts-bonus.active a:focus {
+      background-color: $navbar_transcripts_bonus_background_active !important;
+      color: $navbar_transcripts_bonus_text_active !important;
     }
 
     //navbar personal
@@ -2933,6 +3013,10 @@ $themes: (
         }
       }
 
+    }
+    //transcript bonus colors
+    .transcript-info-text {
+      color: $transcript_bonus_info_text !important;
     }
     //presentation colors
     .clock {

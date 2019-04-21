@@ -125,6 +125,12 @@ export let FilterNavigation = class FilterNavigation {
 		if (Route.isMyTranscripts()) {
 			return 8;
 		}
+		if (Route.isMyBonusTranscripts()) {
+			return 9;
+		}
+		if (Route.isTranscriptBonus()) {
+			return 10;
+		}
 	}
 
 	static getFilterButton () {

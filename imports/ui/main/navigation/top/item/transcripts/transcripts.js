@@ -1,19 +1,21 @@
 import {Template} from "meteor/templating";
+import {NavigatorCheck} from "../../../../../../api/navigatorCheck";
 import {Meteor} from "meteor/meteor";
-import {NavigatorCheck} from "../../../../../../../api/navigatorCheck";
+import "./item/personal.js";
+import "./item/bonus.js";
 import "./transcripts.html";
 
 /*
 * ############################################################################
-* mainNavigationTopItemPersonalItemTranscripts
+* mainNavigationTopItemTranscripts
 * ############################################################################
 */
 
-Template.mainNavigationTopItemPersonalItemTranscripts.helpers({
+Template.mainNavigationTopItemTranscripts.helpers({
 	isSmartPhoneAndOwnsNoCards: function () {
 		if (NavigatorCheck.isSmartphone()) {
 			if (Meteor.user() && Meteor.user().count !== undefined) {
-				return Meteor.user().count.transcripts === 0;
+				return Meteor.user().count.cardsets === 0 && Meteor.user().count.shuffled === 0 && Meteor.user().count.transcripts === 0;
 			}
 		}
 	}

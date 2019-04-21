@@ -2,6 +2,9 @@
 
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
+import {Cardsets} from "../../../../api/cardsets";
+import {Route} from "../../../../api/route";
+import {TranscriptBonus, TranscriptBonusList} from "../../../../api/transcriptBonus";
 import "../../../cardset/cardset.js";
 import "./card.html";
 
@@ -30,5 +33,23 @@ Template.filterIndexItemCard.helpers({
 	},
 	firstItem: function (index) {
 		return index === 0;
+	},
+	getBonusLectureName: function () {
+		let bonusTranscript = TranscriptBonus.findOne({card_id: this._id});
+		if (bonusTranscript !== undefined) {
+			bonusTranscript.name = Cardsets.findOne({_id: bonusTranscript.cardset_id}).name;
+			return TranscriptBonusList.getLectureName(bonusTranscript, false, false);
+		}
+	},
+	isMyBonusTranscriptsRouteAndDeadlineExpired: function () {
+		if (Route.isMyBonusTranscripts()) {
+			let bonusTranscript = TranscriptBonus.findOne({card_id: this._id});
+			if (bonusTranscript !== undefined) {
+				return TranscriptBonusList.isDeadlineExpired(bonusTranscript);
+			}
+		}
+	},
+	getCardsetID: function () {
+		return Router.current().params._id;
 	}
 });

@@ -7,7 +7,7 @@ import {Bonus} from "../../../../api/bonus";
 import {Cardsets} from "../../../../api/cardsets";
 import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
 import "../modal/leaveBonus.js";
-import "../modal/endBonus";
+import "../modal/endBonus.js";
 import "./bonus.html";
 
 /*
@@ -63,5 +63,8 @@ Template.cardsetNavigationBonus.events({
 	},
 	"click #showStats": function () {
 		Router.go('cardsetstats', {_id: Router.current().params._id});
+	},
+	"click #transcriptBonus": function () {
+		Router.go('transcriptBonus', {_id: Router.current().params._id});
 	}
 });

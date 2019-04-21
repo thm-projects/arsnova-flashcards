@@ -20,6 +20,7 @@ import "../imports/api/ratings.js";
 import "../imports/api/export.js";
 import "../imports/api/import.js";
 import "../imports/api/userdata.js";
+import "../imports/api/transcriptBonus.js";
 import "../imports/api/webPushSubscriptions.js";
 import "./leitner.js";
 

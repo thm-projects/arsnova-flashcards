@@ -12,6 +12,7 @@ import "./item/logout.js";
 import "./item/personal/personal.js";
 import "./item/public/public.js";
 import "./item/profile/profile.js";
+import "./item/transcripts/transcripts.js";
 import "./item/search.js";
 import "./item/useCases.js";
 import "./item/workload.js";

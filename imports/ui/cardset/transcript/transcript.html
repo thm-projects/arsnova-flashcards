@@ -1,0 +1,79 @@
+<template name="cardsetTranscript">
+    <div class="transcriptBonus">
+        <div class="col-xs-6">
+            <div id="showTranscriptSettings" class="btn btn-raised btn-block btn-primary">
+                <span class="flex-content">
+                    {{_ "transcriptForm.bonus.form.button.settings"}}
+                </span>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div id="showTranscriptList" class="btn btn-raised btn-block btn-primary btn-primary">
+                <span class="flex-content">
+                    {{_ "transcriptForm.bonus.form.button.list"}}
+                </span>
+            </div>
+        </div>
+        <br>
+        {{#if isEditViewActive}}
+            {{> cardsetTranscriptEditor}}
+        {{else}}
+            {{> filterIndexTranscripts}}
+            <div class="col-xs-12">
+                <br>
+                <br>
+                {{> cardsetTranscriptEditorCancel}}
+            </div>
+        {{/if}}
+    </div>
+</template>
+
+<template name="cardsetTranscriptEditor">
+    <div class="col-xs-12">
+        <h2 id="transcriptBonusTitle" class="modal-title">{{_ "transcriptForm.bonus.form.title"}}</h2>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <label>{{_ "transcriptForm.bonus.form.enable"}}:</label>
+        <input type="checkbox" id="enableBonus">
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <label>{{_ "transcriptForm.bonus.form.percentage"}}:</label>
+        <input type="number" id="bonusPercentage" min="1" max="10" step="1" value="10" required>
+        <span class="unit">%</span>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <label>{{_ "transcriptForm.bonus.form.lectureTimeEnd"}}:</label>
+        <input type="time" id="lectureTimeEnd" min="00:00" max="24:00" step="900" value="08:00" required>
+        <span class="unit">{{_ "transcriptForm.bonus.form.clock"}}</span>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <label>{{_ "transcriptForm.bonus.form.deadline"}}:</label>
+        <input type="number" id="deadlineHours" min="24" max="168" step="12" value="36" required>
+        <span class="unit">{{_ "transcriptForm.bonus.form.hours"}}</span>
+    </div>
+    <div class="col-xs-12">
+        <br>
+        <label>{{_ "transcriptForm.bonus.form.lectureDates"}}:</label>
+        <div id="transcript-calendar"></div>
+    </div>
+    <div class="col-xs-12">
+        {{> cardsetTranscriptEditorCancel}}
+        <div id="transcript-bonus-save" class="btn btn-raised btn-success pull-right">
+                <span class="flex-content">
+                    {{_ "transcriptForm.bonus.form.button.save"}}
+                </span>
+        </div>
+    </div>
+</template>
+
+<template name="cardsetTranscriptEditorCancel">
+    <div id="transcript-bonus-cancel" class="btn btn-raised btn-danger pull-left">
+        <span class="flex-content">
+            {{#if isShuffledCardset this._id}}
+                {{_ "transcriptForm.bonus.form.button.cancelRepetitorium"}}
+            {{else}}
+                {{_ "transcriptForm.bonus.form.button.cancel"}}
+            {{/if}}
+        </span>
+    </div>
+</template>

@@ -1,0 +1,40 @@
+.transcriptBonus {
+  h2, label, .unit {
+    color: white;
+  }
+  #transcript-calendar {
+    .ui-datepicker-inline {
+      background: transparent !important;
+      border: 0 !important;
+      margin: auto !important;
+    }
+
+    .ui-datepicker-group {
+      background: white;
+      margin-left: 15px;
+      margin-bottom: 30px;
+      font-size: 12px;
+      width: 225px;
+      height: 260px;
+    }
+    td {
+      border: 0 !important;
+      a{
+        text-align: center;
+      }
+    }
+    .ui-state-default {
+      border: 1px solid black !important;
+      background: white !important;
+      color: black !important;
+    }
+    .ui-state-highlight {
+      border: 1px solid white !important;
+      a {
+        background: black !important;
+        color: white !important;
+      }
+    }
+  }
+}
+

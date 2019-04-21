@@ -125,7 +125,7 @@ Template.main.helpers({
 			}
 		} else if (Route.isHome() && !Meteor.user() && !MainNavigation.isGuestLoginActive()) {
 			return "";
-		} else if (Route.isEditMode() || Route.isCardsetLeitnerStats()) {
+		} else if (Route.isEditMode() || Route.isCardsetLeitnerStats() || Route.isTranscriptBonus()) {
 			if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
 				return "container-fluid-editor";
 			} else {
