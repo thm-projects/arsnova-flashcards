@@ -369,7 +369,7 @@ export let Route = class Route {
 			case "create":
 				return icons.topNavigation.personal.cardsets + this.getPersonalRouteName(1);
 			case "personalRepetitorien":
-				return icons.topNavigation.personal.repetitorien +  this.getPersonalRouteName();
+				return icons.topNavigation.personal.repetitorien +  this.getPersonalRouteName(6);
 			case "workload":
 				return icons.topNavigation.workload + TAPi18n.__('navbar-collapse.learndecks');
 			case "backend":
