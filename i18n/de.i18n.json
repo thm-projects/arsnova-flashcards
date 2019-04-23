@@ -314,12 +314,12 @@
         "multiple": "Mitschriften"
       },
       "personal": {
-        "zero": "Lose Mitschrift Anlegen",
+        "zero": "Lose Mitschrift anlegen",
         "one": "Meine lose Mitschrift",
         "multiple": "Meine losen Mitschriften"
       },
       "bonus": {
-        "zero": "Verknüpfte Mitschrift Anlegen",
+        "zero": "Verknüpfte Mitschrift anlegen",
         "one": "Meine verknüpfte Mitschrift",
         "multiple": "Meine verknüpften Mitschriften"
       }
@@ -683,9 +683,9 @@
         "title": "Bonusvergabe für Mitschriften verwalten",
         "percentage": "Maximale Bonuspunkte",
         "enable": "Bonus aktivieren",
-        "lectureTimeEnd": "Vorlesungsende",
+        "lectureTimeEnd": "Deadline für fotografierte Mitschrift",
         "deadline": "Bearbeitungszeit",
-        "lectureDates": "Termine der Veranstaltungen",
+        "lectureDates": "Termine für das Bonus-Mitschreiben",
         "clock": "Uhr",
         "hours": "Stunden",
         "button": {
