@@ -102,7 +102,11 @@ export let Route = class Route {
 	 * @return {Boolean} Return true, when route is a presentation view.
 	 */
 	static isPresentation () {
-		return (Router.current().route.getName() === "presentation" || this.isPresentationList() || this.isPresentationTranscript());
+		return (this.isDefaultPresentation() || this.isPresentationList() || this.isPresentationTranscript());
+	}
+
+	static isDefaultPresentation () {
+		return Router.current().route.getName() === "presentation";
 	}
 
 	static isPresentationList () {
