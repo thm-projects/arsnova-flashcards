@@ -80,14 +80,21 @@ Meteor.methods({
 });
 
 export let TranscriptBonusList = class TranscriptBonusList {
+	static addLectureEndTime (transcriptBonus, date) {
+		let hours = Number(transcriptBonus.lectureEnd.substring(0, 2));
+		let minutes = Number(transcriptBonus.lectureEnd.substring(3, 5));
+		return moment(date).add(hours, 'hours').add(minutes, 'minutes');
+	}
+
 	static isDeadlineExpired (transcriptBonus) {
-		return moment(transcriptBonus.date).add(transcriptBonus.deadline, 'hours') < new Date();
+		return this.addLectureEndTime(transcriptBonus, transcriptBonus.date).add(transcriptBonus.deadline, 'hours') < new Date();
 	}
 
 	static canBeSubmittedToLecture (transcriptBonus, date_id) {
 		if (transcriptBonus !== undefined && date_id !== undefined) {
 			let cardset = Cardsets.findOne(transcriptBonus.cardset_id, {fields: {transcriptBonus: 1}});
-			return cardset.transcriptBonus.enabled && moment(cardset.transcriptBonus.dates[date_id]).add(cardset.transcriptBonus.deadline, 'hours') > new Date() && cardset.transcriptBonus.dates[date_id] < new Date();
+			let startDate = this.addLectureEndTime(cardset.transcriptBonus, cardset.transcriptBonus.dates[date_id]);
+			return cardset.transcriptBonus.enabled && startDate < new Date() && startDate.add(cardset.transcriptBonus.deadline, 'hours') > new Date();
 		}
 	}
 
@@ -122,18 +129,15 @@ export let TranscriptBonusList = class TranscriptBonusList {
 
 	static getLectureInfo (transcriptBonus, date_id, isList = true, displayDeadline = true) {
 		if (transcriptBonus.lectureEnd !== undefined) {
-			let hours = Number(transcriptBonus.lectureEnd.substring(0, 2));
-			let minutes = Number(transcriptBonus.lectureEnd.substring(4, 6));
 			let lectureEnd;
 			if (isList) {
-				lectureEnd = moment(transcriptBonus.dates[date_id]).add(hours, 'hours').add(minutes, 'minutes');
+				lectureEnd = this.addLectureEndTime(transcriptBonus, transcriptBonus.dates[date_id]);
 			} else {
-				lectureEnd = moment(date_id).add(hours, 'hours').add(minutes, 'minutes');
+				lectureEnd = this.addLectureEndTime(transcriptBonus, date_id);
 			}
-			let lectureStart = moment(lectureEnd).subtract(90, 'minutes');
-			let info = TAPi18n.__('transcriptForm.lecture') + ": " + Utilities.getMomentsDate(lectureStart, true) + " - " +  Utilities.getMomentsTime(lectureEnd);
+			let info = TAPi18n.__('transcriptForm.lecture') + ": " + Utilities.getMomentsDate(lectureEnd, false);
 			if (displayDeadline) {
-				info +=  ", " + TAPi18n.__('transcriptForm.bonus.form.deadline') + ": " + transcriptBonus.deadline + " " + TAPi18n.__('transcriptForm.bonus.form.hours');
+				info +=  ", " + TAPi18n.__('transcriptForm.deadline') + ": " + Utilities.getMomentsTime(lectureEnd) +  " " + TAPi18n.__('transcriptForm.until') + " " + Utilities.getMomentsDate(lectureEnd.add(transcriptBonus.deadline, 'hours'), true);
 			}
 			return info;
 		}

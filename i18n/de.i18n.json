@@ -672,6 +672,9 @@
     "description": "Verknüpfte Mitschriften können nach Ablauf der Abgabe nicht mehr bearbeitet werden",
     "placeholder": "Wähle eine Vorlesung mit Bonusvergabe aus…",
     "lecture": "Vorlesung",
+    "deadline": "Abgabefrist",
+    "clock": "Uhr",
+    "until": "bis",
     "referencesLecture": {
       "true": "Mit Vorlesung verknüpfen",
       "false": "Lose Mitschrift"
@@ -683,7 +686,7 @@
         "title": "Bonusvergabe für Mitschriften verwalten",
         "percentage": "Maximale Bonuspunkte",
         "enable": "Bonus aktivieren",
-        "lectureTimeEnd": "Deadline für fotografierte Mitschrift",
+        "lectureTimeEnd": "Freischaltung für Abgabe",
         "deadline": "Bearbeitungszeit",
         "lectureDates": "Termine für das Bonus-Mitschreiben",
         "clock": "Uhr",
