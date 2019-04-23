@@ -24,10 +24,11 @@ export let Utilities = class Utilities {
 	}
 
 	static getMomentsDate (date, displayMinutes = false) {
-		let minutes = "H:mm";
+		let minutes = "";
 		let dateFormat = "D. MMMM YYYY";
 		if (displayMinutes === true) {
 			dateFormat = "D. MMM YY " + minutes;
+			minutes = "H:mm";
 		}
 		return moment(date).locale(Session.get('activeLanguage')).calendar(null, {
 			sameDay: this.getCalendarString("today", minutes),
