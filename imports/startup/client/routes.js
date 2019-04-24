@@ -455,6 +455,7 @@ Router.route('/cardset/:_id/transcripts', {
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
+		Filter.resetMaxItemCounter();
 		Session.set('helpFilter', "cardset");
 		Session.set('isNewCardset', false);
 		Session.set('cardsetIndexResults', Cards.find().count());
