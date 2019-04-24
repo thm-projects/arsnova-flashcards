@@ -68,8 +68,14 @@ Template.pomodoroTimerModal.onRendered(function () {
 		if (Bonus.isInBonus(Router.current().params._id)) {
 			PomodoroTimer.start();
 		} else {
-			if (!PomodoroTimer.isPomodoroRunning() && !Route.isPresentationViewList()) {
-				$('#pomodoroTimerModal').modal('show');
+			if (!PomodoroTimer.isPomodoroRunning()) {
+				if (Route.isDefaultPresentation() || Route.isPresentationList()) {
+					PomodoroTimer.initializeVariables();
+					PomodoroTimer.initializeModalContent();
+					PomodoroTimer.start();
+				} else {
+					$('#pomodoroTimerModal').modal('show');
+				}
 			}
 		}
 	}
