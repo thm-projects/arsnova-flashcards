@@ -668,7 +668,7 @@
       "deadlineExpired": "Die Karte kann nicht mehr bearbeitet werden. Die Bearbeitungszeit ist abgelaufen.",
       "notFound": "Es wurde keine Vorlesung mit Bonusvergabe gefunden."
     },
-    "title": "Mitschrift mit einer Vorlesung koppeln",
+    "title": "Mitschrift mit einer Vorlesung koppeln?",
     "description": "Bonus-Mitschriften können nach Ablauf der Abgabe nicht mehr bearbeitet werden.",
     "placeholder": "Wähle eine Vorlesung mit Bonusvergabe aus…",
     "lecture": "Vorlesung",
@@ -676,8 +676,8 @@
     "clock": "Uhr",
     "until": "bis",
     "referencesLecture": {
-      "true": "Mit Vorlesung koppeln",
-      "false": "Lose Mitschrift"
+      "true": "Ja, mit Vorlesung koppeln",
+      "false": "Nein, lose Mitschrift"
     },
     "selectLecture": "Vorlesung auswählen",
     "bonus": {
