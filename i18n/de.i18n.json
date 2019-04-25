@@ -290,8 +290,8 @@
     "personal": {
       "personal": {
         "zero": "anlegen",
-        "one": "Meine Inhalte",
-        "multiple": "Meine Inhalte"
+        "one": "Meine Karten",
+        "multiple": "Meine Karten"
       },
       "cardsets": {
         "zero": "Kartei anlegen",
@@ -314,9 +314,9 @@
         "multiple": "Mitschriften"
       },
       "personal": {
-        "zero": "Lose Mitschrift anlegen",
-        "one": "Meine lose Mitschrift",
-        "multiple": "Meine losen Mitschriften"
+        "zero": "Mitschrift anlegen",
+        "one": "Meine Mitschrift",
+        "multiple": "Meine Mitschriften"
       },
       "bonus": {
         "zero": "Verknüpfte Mitschrift anlegen",
@@ -646,7 +646,7 @@
     "index": {
       "create": "Mitschrift erstellen",
       "topic": "Thema der losen Mitschrift",
-      "topicBonus": "Thema der verknüpften Mitschrift",
+      "topicBonus": "Verknüpfte Mitschrift",
       "tooltip": {
         "edit": "Mitschrift bearbeiten",
         "delete": "Mitschrift löschen"
@@ -669,7 +669,7 @@
       "notFound": "Es wurde keine Vorlesung mit Bonusvergabe gefunden."
     },
     "title": "Mitschrift mit einer Vorlesung verknüpfen",
-    "description": "Verknüpfte Mitschriften können nach Ablauf der Abgabe nicht mehr bearbeitet werden",
+    "description": "Verknüpfte Mitschriften können nach Ablauf der Abgabe nicht mehr bearbeitet werden.",
     "placeholder": "Wähle eine Vorlesung mit Bonusvergabe aus…",
     "lecture": "Vorlesung",
     "deadline": "Abgabefrist",
@@ -696,7 +696,7 @@
           "cancel": "Zurück zur Kartei",
           "cancelRepetitorium": "Zrück zum Repetitorium",
           "settings": "Einstellungen für die Bonusvergabe",
-          "list": "Verknüpfte Abgaben für die Bonusvergabe"
+          "list": "Abgaben"
         },
         "alert": {
           "save": "Änderungen wurden erfolgreich gespeichert"
