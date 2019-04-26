@@ -38,7 +38,11 @@ Template.filterIndexItemCard.helpers({
 		let bonusTranscript = TranscriptBonus.findOne({card_id: this._id});
 		if (bonusTranscript !== undefined) {
 			bonusTranscript.name = Cardsets.findOne({_id: bonusTranscript.cardset_id}).name;
-			return TranscriptBonusList.getLectureName(bonusTranscript, false, false);
+			if (Route.isTranscriptBonus()) {
+				return TranscriptBonusList.getLectureInfo(bonusTranscript, bonusTranscript.date, false, false);
+			} else {
+				return TranscriptBonusList.getLectureName(bonusTranscript, false, false);
+			}
 		}
 	},
 	isMyBonusTranscriptsRouteAndDeadlineExpired: function () {
