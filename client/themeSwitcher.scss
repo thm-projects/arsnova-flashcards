@@ -543,6 +543,7 @@ $themes: (
     $markdeep_blockquote_text: map-get($map, "markdeep_blockquote_text");
     $markdeep_blockquote_author: map-get($map, "markdeep_blockquote_author");
     $markdeep_blockquote_quotes: map-get($map, "markdeep_blockquote_quotes");
+    $markdeep_image_border: map-get($map, "markdeep_image_border");
     //transcript bonus colors
     $transcript_bonus_info_text: map-get($map, "transcript_bonus_info_text");
     //markdeep editor colors
@@ -3013,6 +3014,9 @@ $themes: (
         }
       }
 
+      img {
+        border-color: $markdeep_image_border !important;
+      }
     }
     //transcript bonus colors
     .transcript-info-text {

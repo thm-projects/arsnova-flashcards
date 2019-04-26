@@ -124,6 +124,13 @@ img.cardside {
   }
 }
 
+.flashcard-3d {
+  .cardHeader {
+    h2 {
+      font-size: $font_size_card_header_subject_3d !important;
+    }
+  }
+}
 .cardHeaderLeft {
   padding: $card_header_padding 0 0 $card_header_padding;
   @media(max-width: 767px) {
