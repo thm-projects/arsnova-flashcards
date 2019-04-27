@@ -44,9 +44,9 @@ A simple update to the latest Meteor version is not always possible. Please do n
 1. Restore your backup `mongorestore --drop -h "localhost" --port "3001" -d "meteor" ~/cardsBackup/meteor`
 
 ## Starting the app
-Use one of the following commands inside the repository (cards folder), to start arsnova🍅cards:
+Use one of the following commands inside the repository (cards folder), to start your 🍅cards installation:
 
-- For development (Use this if you run a local installation):
+- For development (Use this if you're going to run 🍅cards on your local device):
   - `meteor --settings settings_debug.json`
   - Access the app from your host machine by visiting http://localhost:3000
   - Use the Backdoor Login "Erstanmeldung / First Login" from the drop-down list if you're going to export and submit cards to moodle
