@@ -16,9 +16,9 @@ let defaultSettings = {
 		},
 		"button": {
 			"about":  {
-				"default_de": "Erfahre mehr in unserer interaktiven Demo …",
-				"default_en": "Erfahre alles über 🍅cards …",
-				"mobile_de": "Erfahre mehr in unserer interaktiven Demo ……",
+				"default_de": "Erfahre mehr in unserer interaktiven Einführung …",
+				"default_en": "Erfahre mehr über 🍅cards …",
+				"mobile_de": "Erfahre mehr in unserer interaktiven Einführung ……",
 				"mobile_en": "Erfahre mehr über 🍅cards…"
 			}
 		}
@@ -51,9 +51,9 @@ let debug = {
 		},
 		"button": {
 			"about":  {
-				"default_de": "Erfahre mehr in unserer interaktiven Demo …",
+				"default_de": "Erfahre mehr in unserer interaktiven Einführung …",
 				"default_en": "Learn more about 🍅cards in our interactive demo …",
-				"mobile_de": "Erfahre mehr in unserer interaktiven Demo …",
+				"mobile_de": "Erfahre mehr in unserer interaktiven Einführung …",
 				"mobile_en": "Learn more about 🍅cards…"
 			}
 		}
@@ -86,9 +86,9 @@ let linux = {
 		},
 		"button": {
 			"about":  {
-				"default_de": "Erfahre mehr in unserer interaktiven Demo …",
+				"default_de": "Erfahre mehr in unserer interaktiven Einführung …",
 				"default_en": "Learn more about 🍅cards in our interactive demo …",
-				"mobile_de": "Erfahre mehr in unserer interaktiven Demo …",
+				"mobile_de": "Erfahre mehr in unserer interaktiven Einführung …",
 				"mobile_en": "Learn more about 🍅cards…"
 			}
 		}
@@ -99,7 +99,7 @@ let linux = {
 	},
 	"backgrounds": "linux",
 	"transcripts": {
-		"enabled": true
+		"enabled": false
 	}
 };
 
