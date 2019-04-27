@@ -58,7 +58,10 @@ Use one of the following commands inside the repository (cards folder), to start
 ## Loading the Test Database
 1. Make sure that you've installed the [MongoDB Community Tools](https://docs.mongodb.com/manual/administration/install-community/)
 2. Start the server with the development settings
-2. Open a new terminal in the cards folder and load the Test Database with: `./tests/loadTestDatabase.sh`
+
+> Warning: The following step will delete all of your 🍅cards content
+
+3. Open a new terminal in the cards folder and load the Test Database with: `./tests/loadTestDatabase.sh`
 
 ## Optional features
 
