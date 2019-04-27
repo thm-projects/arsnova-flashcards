@@ -44,7 +44,7 @@ A simple update to the latest Meteor version is not always possible. Please do n
 1. Restore your backup `mongorestore --drop -h "localhost" --port "3001" -d "meteor" ~/cardsBackup/meteor`
 
 ## Starting the app
-Use one of the following commands inside the repository (cards folder), to start arsnova🍅cards on localhost:
+Use one of the following commands inside the repository (cards folder), to start arsnova🍅cards:
 
 - For development (Use this if you run a local installation):
   - `meteor --settings settings_debug.json`
