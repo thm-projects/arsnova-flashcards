@@ -49,7 +49,7 @@ Use one of the following commands inside the repository (cards folder), to start
 - For development (Use this if you run a local installation):
   - `meteor --settings settings_debug.json`
   - Access the app from your host machine by visiting http://localhost:3000
-  - Use the Backdoor Login "Erstanmeldung / First Login" if you're going to export and submit cards to moodle
+  - Use the Backdoor Login "Erstanmeldung / First Login" from the drop-down list if you're going to export and submit cards to moodle
 
 - For production:
   - `meteor --settings settings.json`
