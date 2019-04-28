@@ -15,10 +15,10 @@ arsnova🍅cards uses Meteor as application framework. Download and install [Met
 2. Make sure that you've added a [SSH key](https://git.thm.de/profile/keys)
 3. Clone the remote repository `git clone git@git.thm.de:arsnova/cards.git`
 4. Install the npm package dependencies inside the local repository **"cards folder"** `meteor npm install`
-5. Set your initial admin user in `settings.json` or `settings_debug.json` (cas account)
 
-### Settings
-Change `settings.json` or `settings_debug.json` according to your needs
+### Settings (These steps are only required if you want to deploy 🍅cards on a server)
+1. Set your initial admin user in `settings.json` (cas account)
+2. Change `settings.json` according to your needs
 
 > Warning: Never publish your settings file!
 
@@ -44,20 +44,24 @@ A simple update to the latest Meteor version is not always possible. Please do n
 1. Restore your backup `mongorestore --drop -h "localhost" --port "3001" -d "meteor" ~/cardsBackup/meteor`
 
 ## Starting the app
-Use one of the following commands inside the repository (cards folder), to start arsnova🍅cards on localhost:
+Use one of the following commands inside the repository (cards folder), to start your 🍅cards installation:
 
-- For development:
+- For development (Use this if you're going to run 🍅cards on your local device):
   - `meteor --settings settings_debug.json`
+  - Access the app from your host machine by visiting http://localhost:3000
+  - Use the Backdoor Login "Erstanmeldung / First Login" from the drop-down list if you're going to export and submit cards to moodle
 
 - For production:
   - `meteor --settings settings.json`
 
-You can then access the app from your host machine by visiting http://localhost:3000.
 
 ## Loading the Test Database
 1. Make sure that you've installed the [MongoDB Community Tools](https://docs.mongodb.com/manual/administration/install-community/)
 2. Start the server with the development settings
-2. Open a new terminal in the cards folder and load the Test Database with: `./tests/loadTestDatabase.sh`
+
+> Warning: The following step will delete all of your 🍅cards content
+
+3. Open a new terminal in the cards folder and load the Test Database with: `./tests/loadTestDatabase.sh`
 
 ## Optional features
 

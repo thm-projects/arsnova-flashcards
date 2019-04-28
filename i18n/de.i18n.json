@@ -357,7 +357,7 @@
   },
   "contact": {
     "about": "Über 🍅cards",
-    "demo": "Demo",
+    "demo": "Einführung",
     "home": "Login",
     "learning": "Lernen",
     "help": "Hilfe",
@@ -968,7 +968,7 @@
     "start": "Starten",
     "list": {
       "back": "Zurück zur Präsentation",
-      "backDemo": "Zurück zur Demo-Kartei"
+      "backDemo": "Zurück zur Einführung"
     },
     "aspectRatio": {
       "53": "5:3-Kartenformat",
@@ -1184,19 +1184,19 @@
     "description": "Beschreibung"
   },
   "learning-goal": {
-    "name": "Auf welcher Kompetenzstufe soll geprüft werden?",
+    "name": "Auf welcher Kompetenzstufe ❶ bis ❻ soll geprüft werden?",
     "cardName": "Kompetenzstufe",
-    "level1": "Verstehen",
+    "level1": "❶ »Verstehen«",
     "level1Placeholder": "Du hast die Kompetenzstufe »Verstehen« gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\nabgrenzen, anordnen, beschreiben, bestimmen, charakterisieren, einordnen, erkennen, erklären, gegenüberstellen.",
-    "level2": "Anwenden",
+    "level2": "❷ »Anwenden«",
     "level2Placeholder": "Du hast die Kompetenzstufe »Anwenden« gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\nanwenden, anfertigen, ausführen, abbilden, berechnen, deuten, durchführen, erstellen.",
-    "level3": "Analysieren",
+    "level3": "❸ »Analysieren«",
     "level3Placeholder": "Du hast die Kompetenzstufe »Analysieren« gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\nableiten, analysieren, auswählen, auswerten, Aussagen auf Richtigkeit überprüfen, Bedeutung ermitteln, beweisen, Beziehungen klarlegen, gliedern.",
-    "level4": "Synthetisieren",
+    "level4": "❹ »Synthetisieren«",
     "level4Placeholder": "Du hast die Kompetenzstufe »Synthetisieren« gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\narrangieren, einordnen, ergänzen, integrieren, planen, Thesen bilden, zusammenfügen, zusammensetzen.",
-    "level5": "Bewerten",
+    "level5": "❺ »Bewerten«",
     "level5Placeholder": "Du hast die Kompetenzstufe »Bewerten« gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\nabwägen, begründen, beurteilen, beweisen, diskutieren, einschätzen, entscheiden, evaluieren, gewichten.",
-    "level6": "Innovieren",
+    "level6": "❻ »Innovieren«",
     "level6Placeholder": "Du hast die Kompetenzstufe »Innovieren« gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\nerfinden, entdecken, entwerfen, entwickeln, erzeugen, konstruieren, konzipieren, kreieren."
   },
   "filter-cards": {
@@ -1720,7 +1720,7 @@
   "difficulty0": "Info",
   "difficulty1": "Grundlagen",
   "difficulty2": "Fortgeschritten",
-  "difficulty3": "Experte/Expertin",
+  "difficulty3": "Expertin/Experte",
   "difficultyNotes": "Veranstaltung",
   "difficultyNotes0": "Vorlesung",
   "difficultyNotes1": "Übung",
