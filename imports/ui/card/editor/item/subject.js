@@ -1,8 +1,8 @@
 import {CardType} from "../../../../api/cardTypes";
 import {CardEditor} from "../../../../api/cardEditor.js";
 import {Session} from "meteor/session";
-import "./subject.html";
 import {TranscriptBonusList} from "../../../../api/transcriptBonus";
+import "./subject.html";
 
 /*
  * ############################################################################
@@ -25,6 +25,13 @@ Template.subjectEditor.helpers({
 	},
 	gotBonusSelected: function () {
 		if (CardType.gotLearningUnit(Session.get('cardType')) && !Session.get('isPrivateTranscript')) {
+			return "disabled";
+		} else {
+			return "";
+		}
+	},
+	gotTranscriptBonusThatExpired: function () {
+		if (Session.get('transcriptBonus') !== undefined && TranscriptBonusList.isDeadlineExpired(Session.get('transcriptBonus'))) {
 			return "disabled";
 		} else {
 			return "";

@@ -100,10 +100,10 @@ export let TranscriptBonusList = class TranscriptBonusList {
 
 	static checkForUpdate (card_id, user_id, transcriptBonusUser, transcriptBonusDatabase = undefined, date_id = undefined) {
 		if (Meteor.isServer) {
-			if (this.canBeSubmittedToLecture(transcriptBonusUser, date_id)) {
-				let transcriptBonusCardset = Cardsets.findOne(transcriptBonusUser.cardset_id);
-				if (transcriptBonusDatabase !== undefined) {
-					if (transcriptBonusUser.cardset_id !== transcriptBonusDatabase.cardset_id || transcriptBonusUser.date.getTime() !== transcriptBonusDatabase.date.getTime()) {
+			let transcriptBonusCardset = Cardsets.findOne(transcriptBonusUser.cardset_id);
+			if (transcriptBonusDatabase !== undefined) {
+				if (transcriptBonusUser.cardset_id !== transcriptBonusDatabase.cardset_id || transcriptBonusUser.date.getTime() !== transcriptBonusDatabase.date.getTime()) {
+					if (this.canBeSubmittedToLecture(transcriptBonusUser, date_id)) {
 						for (let i = 0; i < transcriptBonusCardset.transcriptBonus.dates.length; i++) {
 							if (transcriptBonusCardset.transcriptBonus.dates[i].getTime() === transcriptBonusUser.date.getTime()) {
 								date_id = i;
@@ -115,10 +115,12 @@ export let TranscriptBonusList = class TranscriptBonusList {
 						} else {
 							Meteor.call("addTranscriptBonus", card_id, transcriptBonusCardset._id, Meteor.userId(), date_id);
 						}
+					} else {
+						throw new Meteor.Error(TAPi18n.__('transcriptForm.server.notFound', {}, Meteor.user().profile.locale));
 					}
-				} else {
-					Meteor.call("addTranscriptBonus", card_id, transcriptBonusUser.cardset_id, Meteor.userId(), date_id);
 				}
+			} else {
+				Meteor.call("addTranscriptBonus", card_id, transcriptBonusUser.cardset_id, Meteor.userId(), date_id);
 			}
 		}
 	}

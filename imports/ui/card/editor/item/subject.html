@@ -6,6 +6,6 @@
     </form>
     {{#if gotLearningUnit}}
         <button class="btn btn-raised btn-success col-xs-4 col-sm-3 btn subjectEditorButton float-right" data-toggle="modal"
-                data-target="#showSelectLearningUnitModal">{{_ "transcriptForm.button.modal"}}</button>
+                data-target="#showSelectLearningUnitModal" {{gotTranscriptBonusThatExpired}}>{{_ "transcriptForm.button.modal"}}</button>
     {{/if}}
 </template>
