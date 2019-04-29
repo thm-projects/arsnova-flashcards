@@ -49,12 +49,10 @@
                 </div>
                 <div class="resultItemHeaderRightAreaBottom col-xs-6 col-sm-12">
                     {{#unless isCardsetTranscriptBonusRoute}}
-                        {{#unless isMyBonusTranscriptsRouteAndDeadlineExpired}}
-                            <a class="resultNavigationElement editCard hidden-xs" {{disableIfOffline}}
-                               title='{{_ "transcriptForm.index.tooltip.edit"}}' data-id="{{this._id}}">
-                                <i class="glyphicon glyphicon-edit" data-id="{{this._id}}"></i>
-                            </a>
-                        {{/unless}}
+                        <a class="resultNavigationElement editCard hidden-xs" {{disableIfOffline}}
+                           title='{{_ "transcriptForm.index.tooltip.edit"}}' data-id="{{this._id}}">
+                            <i class="glyphicon glyphicon-edit" data-id="{{this._id}}"></i>
+                        </a>
                         <a class="resultNavigationElement deleteCard" {{disableIfOffline}}
                            title='{{_ "transcriptForm.index.tooltip.delete"}}'  data-toggle="modal" data-target="#deleteTranscriptModal" data-id="{{this._id}}">
                             <i class="result fa fa-trash" data-id="{{this._id}}"></i>

@@ -448,11 +448,6 @@ Meteor.methods({
 			transcriptBonusUser = undefined;
 		}
 		let transcriptBonusDatabase = TranscriptBonus.findOne({card_id: card_id});
-		if (transcriptBonusDatabase !== undefined) {
-			if (TranscriptBonusList.isDeadlineExpired(transcriptBonusDatabase)) {
-				throw new Meteor.Error(TAPi18n.__('transcriptForm.server.deadlineExpired', {}, Meteor.user().profile.locale));
-			}
-		}
 		if (card.cardset_id === "-1" && card.owner === Meteor.userId()) {
 			isOwner = true;
 		} else {
