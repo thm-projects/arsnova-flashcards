@@ -319,9 +319,9 @@
         "multiple": "Meine Mitschriften"
       },
       "bonus": {
-        "zero": "Mitschrift anlegen",
-        "one": "Meine Mitschrift",
-        "multiple": "Meine Mitschriften"
+        "zero": "Bonus-Mitschrift anlegen",
+        "one": "Meine Bonus-Mitschrift",
+        "multiple": "Meine Bonus-Mitschriften"
       }
     },
     "learndecks": "Lernpensum",
@@ -644,7 +644,7 @@
   },
   "transcriptForm": {
     "index": {
-      "create": "Mitschrift erstellen",
+      "create": "Mitschrift anlegen",
       "topic": "Thema der Mitschrift",
       "topicBonus": "Gekoppelte Mitschrift",
       "tooltip": {
@@ -683,11 +683,11 @@
     "bonus": {
       "button": "Bonus-Mitschriften",
       "form": {
-        "title": "Bonusvergabe für Mitschriften verwalten",
+        "title": "Bonusvergabe konfigurieren",
         "percentage": "Maximale Bonuspunkte",
         "enable": "Bonus aktivieren",
-        "lectureTimeEnd": "Freischaltung für Abgabe",
-        "deadline": "Abgabezeit",
+        "lectureTimeEnd": "Freischaltung der Mitschriftenkopplung",
+        "deadline": "Zeit für die Nachbearbeitung",
         "lectureDates": "Termine für das Bonus-Mitschreiben",
         "clock": "Uhr",
         "hours": "Stunden",
