@@ -1526,6 +1526,10 @@
         "subject": "Thema"
       }
     },
+    "cardType19": {
+      "name": "Vorlesung",
+      "longName": "Vorlesung mit Bonus-Mitschriften"
+    },
     "tooltip": {
       "toggle3D": "3D-Ansicht aktivieren / deaktivieren",
       "contrast": "Setze die Präsentation in den Kontrastmodus",

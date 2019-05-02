@@ -35,12 +35,14 @@
         {{#if isActiveRoute regex='cardsetdetailsid|cardsetcard'}}
             {{#if isCardsetOwner this._id}}
                 {{#if this.quantity}}
-                    <div class="hidden-xs col-xs-12">
-                        {{> cardNavigation}}
-                    </div>
-                    <div class="hidden-xs col-xs-12">
-                        {{> flashcards cardset=this}}
-                    </div>
+                    {{#unless gotTranscriptBonusAndIsNotShuffled this._id}}
+                        <div class="hidden-xs col-xs-12">
+                            {{> cardNavigation}}
+                        </div>
+                        <div class="hidden-xs col-xs-12">
+                            {{> flashcards cardset=this}}
+                        </div>
+                    {{/unless}}
                 {{/if}}
             {{/if}}
         {{/if}}

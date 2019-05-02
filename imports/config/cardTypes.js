@@ -17,6 +17,7 @@
 //16: Zielerreichung
 //17: Inverses Fragen
 //18: Cube
+//19: Vorlesung mit Bonus-Mitschrift
 let cardTypesWithDictionary = [1];
 let cardTypesWithDifficultyLevel = [0, 1, 3, 5, 6, 7, 11, 12, 13, 15, 17, 18];
 let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12, 13, 15, 16, 17];
@@ -27,6 +28,8 @@ let cardTypesWithCardsetTitleNavigation = [14];
 let cardTypesWithSwapAnswerQuestionButton = [1, 17];
 let cardTypesWithDefaultMobilePreview = [0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 let cardTypesWithMarkdeepHelp = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+let cardTypesWithTranscriptBonus = [19];
+let lecturerExclusiveCardTypes = [19];
 let cardTypesOrder = [
 	{cardType: 0},
 	{cardType: 15},
@@ -45,7 +48,8 @@ let cardTypesOrder = [
 	{cardType: 8},
 	{cardType: 9},
 	{cardType: 14},
-	{cardType: 18}
+	{cardType: 18},
+	{cardType: 19}
 ];
 
 //0: left
@@ -384,6 +388,33 @@ let cardTypeCubeSides = [
 			"contentId": 6,
 			"defaultStyle": "default"
 		}
+	],
+	//19: Vorlesung mit Bonus-Mitschrift
+	[
+		{
+			"contentId": 1,
+			"defaultStyle": "default"
+		},
+		{
+			"contentId": 2,
+			"defaultStyle": "default"
+		},
+		{
+			"contentId": 3,
+			"defaultStyle": "default"
+		},
+		{
+			"contentId": 4,
+			"defaultStyle": "default"
+		},
+		{
+			"contentId": 5,
+			"defaultStyle": "default"
+		},
+		{
+			"contentId": 6,
+			"defaultStyle": "default"
+		}
 	]
 ];
 
@@ -402,5 +433,7 @@ module.exports = {
 	defaultTextAlign,
 	defaultCentered,
 	swapAnserQuestionCardTypeResult,
-	cardTypeCubeSides
+	cardTypeCubeSides,
+	cardTypesWithTranscriptBonus,
+	lecturerExclusiveCardTypes
 };

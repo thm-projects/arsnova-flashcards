@@ -16,8 +16,16 @@ export let CardType = class CardType {
 		return config.cardTypesWithLearningModes;
 	}
 
+	static isLecturerExclusive () {
+		return config.lecturerExclusiveCardTypes;
+	}
+
 	static getCardTypesWithDifficultyLevel () {
 		return config.cardTypesWithDifficultyLevel;
+	}
+
+	static getCardTypesWithTranscriptBonus () {
+		return config.cardTypesWithTranscriptBonus;
 	}
 
 	static isCardTypesWithSwapAnswerQuestionButton (cardType) {
@@ -141,6 +149,10 @@ export let CardType = class CardType {
 
 	static gotLearningUnit (cardType) {
 		return config.cardTypesWithLearningUnit.includes(cardType);
+	}
+
+	static gotTranscriptBonus (cardType) {
+		return config.cardTypesWithTranscriptBonus.includes(cardType);
 	}
 
 	static gotLearningGoal (cardType) {

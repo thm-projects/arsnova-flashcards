@@ -1,5 +1,6 @@
 //------------------------ IMPORTS
 import {Template} from "meteor/templating";
+import {CardType} from "../../../../api/cardTypes";
 import "../modal/publish.js";
 import "./publishCardset.html";
 
@@ -11,13 +12,15 @@ import "./publishCardset.html";
 
 Template.cardsetNavigationPublishCardset.helpers({
 	canPublish: function () {
-		let cardCount;
-		if (this.shuffled) {
-			cardCount = 2;
-		} else {
-			cardCount = 1;
+		if (!CardType.gotTranscriptBonus(this.cardType)) {
+			let cardCount;
+			if (this.shuffled) {
+				cardCount = 2;
+			} else {
+				cardCount = 1;
+			}
+			return (this.quantity >= cardCount || this.reviewed || this.request);
 		}
-		return (this.quantity >= cardCount || this.reviewed || this.request);
 	},
 	getStatus: function () {
 		if (this.visible) {

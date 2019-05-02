@@ -1,56 +1,43 @@
 <template name="cardsetNavigationBonus">
-    {{#if isCardsetOwner _id}}
-        {{#if isInRole 'admin, editor, lecturer'}}
-            <div class="hidden-xs btn-group">
-                <button class="btn btn-sm btn-raised bonusBtn" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"><span class="flex-content">
-                                        <i class="fa fa-graduation-cap"></i>&nbsp;{{_ "sidebar-nav.bonus"}} <span
-                        class="caret"></span>
-                </span>
-
-                </button>
-                <ul class="dropdown-menu">
-                    {{#if enableIfPublished}}
-                        {{#if gotLearningModes}}
-                            {{#if isCardsetOwner _id}}
-                                {{#if isInRole 'admin, editor, lecturer'}}
-                                    {{#unless learningActive}}
-                                        <li id="startBonus"
-                                            class="startLearn startLearningList"
-                                            data-toggle="modal"
-                                            data-target="#bonusFormModal">
-                                            {{_ "bonus.form.new.title"}}
-                                        </li>
-                                    {{/unless}}
-                                {{/if}}
-                            {{/if}}
-                            {{#if learningActiveAndEditor}}
-                                <li id="showStats" class="showStatsList">
-                                    <i class="glyphicon glyphicon-stats"></i> {{_ "box_stats"}}
-                                </li>
-                            {{/if}}
+    {{#if enableIfPublished}}
+        {{#if gotLearningModes}}
+            {{#if isCardsetOwnerAndLecturer _id}}
+                <div class="hidden-xs btn-group">
+                    <button class="btn btn-sm btn-raised bonusBtn" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                        <div class="flex-content">
+                            <i class="fa fa-graduation-cap"></i>&nbsp;{{_ "sidebar-nav.bonus"}} <span
+                                class="caret"></span>
+                        </div>
+                    </button>
+                    <ul class="dropdown-menu">
+                        {{#if learningActive}}
+                            <li id="showStats" class="showStatsList">
+                                <i class="glyphicon glyphicon-stats"></i> {{_ "box_stats"}}
+                            </li>
+                            <li id="manageBonus"
+                                class="manageLearn manageLearningList learnBoxActive"
+                                data-toggle="modal"
+                                data-target="#bonusFormModal">
+                                <i class="fa fa-cog fa-spin"></i> {{_ "bonus.form.edit.title"}}
+                            </li>
+                            <li id="stopBonus"
+                                class="stopLearn stopLearningList learnBoxActive"
+                                data-toggle="modal"
+                                data-target="#confirmEndLearnModal">
+                                <i class="fa fa-exclamation-triangle"></i> {{_ "sidebar-nav.stopLearning"}}
+                            </li>
+                        {{else}}
+                            <li id="startBonus"
+                                class="startLearn startLearningList"
+                                data-toggle="modal"
+                                data-target="#bonusFormModal">
+                                {{_ "bonus.form.new.title"}}
+                            </li>
                         {{/if}}
-                        {{#if isCardsetOwner _id}}
-                            {{#if isInRole 'admin, editor, lecturer'}}
-                                {{#if learningActive}}
-                                    <li id="manageBonus"
-                                        class="manageLearn manageLearningList learnBoxActive"
-                                        data-toggle="modal"
-                                        data-target="#bonusFormModal">
-                                        <i class="fa fa-cog fa-spin"></i> {{_ "bonus.form.edit.title"}}
-                                    </li>
-                                    <li id="stopBonus"
-                                        class="stopLearn stopLearningList learnBoxActive"
-                                        data-toggle="modal"
-                                        data-target="#confirmEndLearnModal">
-                                        <i class="fa fa-exclamation-triangle"></i> {{_ "sidebar-nav.stopLearning"}}
-                                    </li>
-                                {{/if}}
-                            {{/if}}
-                        {{/if}}
-                    {{/if}}
-                </ul>
-            </div>
+                    </ul>
+                </div>
+            {{/if}}
         {{/if}}
     {{/if}}
 </template>

@@ -1528,6 +1528,10 @@
         "subject": "Thema"
       }
     },
+    "cardType19": {
+      "name": "Vorlesung",
+      "longName": "Vorlesung mit Bonus-Mitschriften"
+    },
     "tooltip": {
       "contrast": "Setze die Präsentation in den Kontrastmodus",
       "backToCardset": "Zurück zur Karteiansicht",
