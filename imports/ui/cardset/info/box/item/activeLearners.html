@@ -1,6 +1,8 @@
 <template name="cardsetInfoBoxItemActiveLearners">
-    <tr>
-        <td>{{_ "cardset.info.workload.normal.count"}}:</td>
-        <td>{{getActiveLearnerCount this}}</td>
-    </tr>
+    {{#unless gotTranscriptBonusAndIsNotShuffled this._id}}
+        <tr>
+            <td>{{_ "cardset.info.workload.normal.count"}}:</td>
+            <td>{{getActiveLearnerCount this}}</td>
+        </tr>
+    {{/unless}}
 </template>

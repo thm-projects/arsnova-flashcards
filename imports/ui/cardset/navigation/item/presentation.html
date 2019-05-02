@@ -1,20 +1,22 @@
 <template name="cardsetNavigationPresentation">
     {{#if this.quantity}}
-        <div class="btn-group">
-            <button class="btn btn-sm btn-raised presentationBtn startPresentation" {{disableIfOffline}}><span class="flex-content"><img
-                    src="/img/projector_white.png" class="projectorIconButton"
-                    title="{{_ "presentation.create"}}">&nbsp;{{_ "presentation.create"}}</span>
-            </button>
-            <button type="button"
-                    class="hidden-xs btn btn-raised dropdown-toggle setCardAspectRatio"
-                    data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                        <span class="flex-content"><span class="caret"></span>
-                            <span class="sr-only"></span></span>
-            </button>
-            <ul class="dropdown-menu aspect-ratio-menu">
-                {{> mainOverlayAspectRatioContent}}
-            </ul>
-        </div>
+        {{#unless gotTranscriptBonusAndIsNotShuffled _id}}
+            <div class="btn-group">
+                <button class="btn btn-sm btn-raised presentationBtn startPresentation" {{disableIfOffline}}><span class="flex-content"><img
+                        src="/img/projector_white.png" class="projectorIconButton"
+                        title="{{_ "presentation.create"}}">&nbsp;{{_ "presentation.create"}}</span>
+                </button>
+                <button type="button"
+                        class="hidden-xs btn btn-raised dropdown-toggle setCardAspectRatio"
+                        data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                            <span class="flex-content"><span class="caret"></span>
+                                <span class="sr-only"></span></span>
+                </button>
+                <ul class="dropdown-menu aspect-ratio-menu">
+                    {{> mainOverlayAspectRatioContent}}
+                </ul>
+            </div>
+        {{/unless}}
     {{/if}}
 </template>

@@ -1,7 +1,11 @@
 <template name="cardsetLabels">
-  <span class="badge" title="{{_ "cardset.info.quantity"}}">
-      {{getCardsetCardCount}}
-  </span>
+    {{#unless gotTranscriptBonusAndIsNotShuffled this._id}}
+        {{#unless gotTranscriptBonusAndIsNotShuffled this.cardset_id}}
+              <span class="badge" title="{{_ "cardset.info.quantity"}}">
+                  {{getCardsetCardCount}}
+              </span>
+        {{/unless}}
+    {{/unless}}
     {{{getKind this.kind 0}}}
     {{{getShuffleLabel this.shuffled}}}
     {{{getBonusLabel this.learningActive}}}

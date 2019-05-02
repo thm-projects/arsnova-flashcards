@@ -965,4 +965,28 @@ const markdeepHelper = new MeteorMathJax.Helper({
 	}
 });
 
+Template.registerHelper("gotTranscriptBonus", function (cardset_id) {
+	let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, cardGroups: 1, shuffled: 1, cardType: 1}});
+	if (cardset !== undefined) {
+		if (cardset.shuffled) {
+			let cardsetGroup;
+			for (let i = 0; i < cardset.cardGroups.length; i++) {
+				cardsetGroup = Cardsets.findOne({_id: cardset.cardGroups[i]}, {fields: {_id: 1, cardType: 1}});
+				if (cardsetGroup !== undefined && CardType.gotTranscriptBonus(cardsetGroup.cardType)) {
+					return true;
+				}
+			}
+		} else if (CardType.gotTranscriptBonus(cardset.cardType)) {
+			return true;
+		}
+	}
+});
+
+Template.registerHelper("gotTranscriptBonusAndIsNotShuffled", function (cardset_id) {
+	let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, cardGroups: 1, shuffled: 1, cardType: 1}});
+	if (cardset !== undefined && !cardset.shuffled) {
+		return CardType.gotTranscriptBonus(cardset.cardType);
+	}
+});
+
 Template.registerHelper('markdeep', markdeepHelper.getTemplate());

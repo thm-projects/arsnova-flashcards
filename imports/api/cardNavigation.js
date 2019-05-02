@@ -216,8 +216,14 @@ export let CardNavigation = class CardNavigation {
 				Session.set('activeCardsetName', Cardsets.findOne({_id: Router.current().params._id}).name);
 			}
 		} else {
-			cardset_id = Cards.findOne({_id: Session.get('activeCard')}).cardset_id;
-			Session.set('activeCardsetName', Cardsets.findOne({_id: cardset_id}).name);
+			let _id;
+			cardset_id = Cards.findOne({_id: Session.get('activeCard')}, {fields: {cardset_id: 1}});
+			if (cardset_id === undefined && Router.current().params._id !== undefined) {
+				_id = Router.current().params._id;
+			} else {
+				_id = cardset_id.cardset_id;
+			}
+			Session.set('activeCardsetName', Cardsets.findOne({_id: _id}).name);
 		}
 	}
 

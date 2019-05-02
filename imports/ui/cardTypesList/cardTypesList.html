@@ -17,7 +17,9 @@
         {{/each}}
     {{else}}
         {{#each getCardTypes}}
-            <li class="cardType" value="{{this.cardType}}" data="{{this.cardType}}"><a href="#">{{getCardTypeLongName}}</a></li>
+            {{#if canCreateCardType this.cardType}}
+                <li class="cardType" value="{{this.cardType}}" data="{{this.cardType}}"><a href="#">{{getCardTypeLongName}}</a></li>
+            {{/if}}
         {{/each}}
     {{/if}}
 </template>

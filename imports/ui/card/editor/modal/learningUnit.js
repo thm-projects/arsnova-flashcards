@@ -2,8 +2,9 @@ import {Cardsets} from "../../../../api/cardsets";
 import {Session} from "meteor/session";
 import {TranscriptBonus, TranscriptBonusList} from "../../../../api/transcriptBonus";
 import {Route} from "../../../../api/route";
-import "./learningUnit.html";
 import {Template} from "meteor/templating";
+import {CardType} from "../../../../api/cardTypes";
+import "./learningUnit.html";
 
 /*
  * ############################################################################
@@ -19,21 +20,23 @@ Template.selectLearningUnit.helpers({
 		}).fetch();
 		let lectures = [];
 		for (let c = 0; c < cardsets.length; c++) {
-			for (let d = 0; d < cardsets[c].transcriptBonus.dates.length; d++) {
-				let transcriptBonus = cardsets[c].transcriptBonus;
-				transcriptBonus.cardset_id = cardsets[c]._id;
-				if (TranscriptBonusList.canBeSubmittedToLecture(transcriptBonus, d)) {
-					let lecture = {};
-					lecture.name = cardsets[c].name;
-					lecture.info = TranscriptBonusList.getLectureInfo(cardsets[c].transcriptBonus, d);
-					lecture.cardset_id = cardsets[c]._id;
-					lecture.date_id = d;
-					lecture.shuffled = cardsets[c].shuffled;
-					lecture.quantity = cardsets[c].quantity;
-					lecture.cardType = cardsets[c].cardType;
-					lecture.difficulty = cardsets[c].difficulty;
-					lecture.kind = cardsets[c].kind;
-					lectures.push(lecture);
+			if (CardType.gotTranscriptBonus(cardsets[c].cardType)) {
+				for (let d = 0; d < cardsets[c].transcriptBonus.dates.length; d++) {
+					let transcriptBonus = cardsets[c].transcriptBonus;
+					transcriptBonus.cardset_id = cardsets[c]._id;
+					if (TranscriptBonusList.canBeSubmittedToLecture(transcriptBonus, d)) {
+						let lecture = {};
+						lecture.name = cardsets[c].name;
+						lecture.info = TranscriptBonusList.getLectureInfo(cardsets[c].transcriptBonus, d);
+						lecture.cardset_id = cardsets[c]._id;
+						lecture.date_id = d;
+						lecture.shuffled = cardsets[c].shuffled;
+						lecture.quantity = cardsets[c].quantity;
+						lecture.cardType = cardsets[c].cardType;
+						lecture.difficulty = cardsets[c].difficulty;
+						lecture.kind = cardsets[c].kind;
+						lectures.push(lecture);
+					}
 				}
 			}
 		}

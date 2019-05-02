@@ -2,12 +2,14 @@
     {{#unless isIOS}}
         {{#if isCardsetOwner _id}}
             {{#unless isShuffledCardset _id}}
-                <div class="hidden-xs btn-group">
-                    <a href="#" id="importCardsBtn" class="btn btn-sm btn-raised importCardBtn"
-                       data-toggle="modal"
-                       data-target="#importModal"><span class="flex-content">{{{getCardsetIcons false}}}<i
-                            class="fa fa-cloud-upload"></i>&nbsp;{{_ "sidebar-nav.importcard"}}</span></a>
-                </div>
+                {{#unless gotTranscriptBonus _id}}
+                    <div class="hidden-xs btn-group">
+                        <a href="#" id="importCardsBtn" class="btn btn-sm btn-raised importCardBtn"
+                           data-toggle="modal"
+                           data-target="#importModal"><span class="flex-content">{{{getCardsetIcons false}}}<i
+                                class="fa fa-cloud-upload"></i>&nbsp;{{_ "sidebar-nav.importcard"}}</span></a>
+                    </div>
+                {{/unless}}
             {{/unless}}
         {{/if}}
     {{/unless}}

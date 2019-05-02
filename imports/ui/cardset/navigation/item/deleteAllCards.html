@@ -2,13 +2,15 @@
     {{#unless isShuffledCardset this._id}}
         {{#if this.quantity}}
             {{#if isCardsetOwner _id}}
-                <div class="hidden-xs btn-group">
-                    <button id="delete_cards" class="btn btn-sm btn-raised deleteAllCardsBtn"
-                            data-toggle="modal"
-                            data-target="#deleteCardsModal" {{disableIfOffline}}>
-                        <span class="flex-content"><i class="fa fa-trash"></i>&nbsp;{{_ "deleteCards"}}</span>
-                    </button>
-                </div>
+                {{#unless gotTranscriptBonus _id}}
+                    <div class="hidden-xs btn-group">
+                        <button id="delete_cards" class="btn btn-sm btn-raised deleteAllCardsBtn"
+                                data-toggle="modal"
+                                data-target="#deleteCardsModal" {{disableIfOffline}}>
+                            <span class="flex-content"><i class="fa fa-trash"></i>&nbsp;{{_ "deleteCards"}}</span>
+                        </button>
+                    </div>
+                {{/unless}}
             {{/if}}
         {{/if}}
     {{/unless}}
