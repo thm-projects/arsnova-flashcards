@@ -4,7 +4,7 @@ The [Progressive Web App](https://en.wikipedia.org/wiki/Progressive_web_app) ars
 
 arsnova🍅cards uses Meteor as application framework. Download and install [Meteor](https://www.meteor.com/) to get the app running in your local development environment.
 
-## System requirements
+## Hardware requirements
 - 4 GB RAM
 
 ## Initial setup
