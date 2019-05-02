@@ -498,6 +498,14 @@ Meteor.methods({
 		if (cardType < 0) {
 			cardType = 0;
 		}
+		if (CardType.gotTranscriptBonus(cardType)) {
+			if (UserPermissions.isLecturer() || UserPermissions.isAdmin()) {
+				kind = "edu";
+				visible = true;
+			} else {
+				throw new Meteor.Error("not-authorized");
+			}
+		}
 		let cardset = Cardsets.insert({
 			name: name.trim(),
 			description: description,
@@ -582,19 +590,32 @@ Meteor.methods({
 			Cards.remove({
 				cardset_id: id
 			});
-			Cardsets.update({
-					_id: id
-				},
-				{
-					$set: {
-						quantity: 0,
-						kind: 'personal',
-						reviewed: false,
-						request: false,
-						visible: false
+			if (CardType.gotTranscriptBonus(cardset.cardType)) {
+				Cardsets.update({
+						_id: id
+					},
+					{
+						$set: {
+							quantity: 0
+						}
 					}
-				}
-			);
+				);
+			} else {
+				Cardsets.update({
+						_id: id
+					},
+					{
+						$set: {
+							quantity: 0,
+							kind: 'personal',
+							reviewed: false,
+							request: false,
+							visible: false
+						}
+					}
+				);
+			}
+
 			Meteor.call('updateShuffledCardsetQuantity', cardset._id);
 			Leitner.remove({
 				cardset_id: id
@@ -803,6 +824,16 @@ Meteor.methods({
 			if (cardset.learningActive) {
 				cardType = cardset.cardType;
 			}
+			let kind = cardset.kind;
+			let visible = cardset.visible;
+			if (CardType.gotTranscriptBonus(cardType)) {
+				if (UserPermissions.isLecturer() || UserPermissions.isAdmin()) {
+					kind = "edu";
+					visible = true;
+				} else {
+					throw new Meteor.Error("not-authorized");
+				}
+			}
 
 			Cardsets.update(id, {
 				$set: {
@@ -811,6 +842,8 @@ Meteor.methods({
 					dateUpdated: new Date(),
 					cardType: cardType,
 					difficulty: difficulty,
+					kind: kind,
+					visible: visible,
 					noDifficulty: !CardType.gotDifficultyLevel(cardType),
 					sortType: sortType
 				}

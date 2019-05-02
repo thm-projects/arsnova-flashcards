@@ -16,6 +16,10 @@ export let CardType = class CardType {
 		return config.cardTypesWithLearningModes;
 	}
 
+	static isLecturerExclusive () {
+		return config.lecturerExclusiveCardTypes;
+	}
+
 	static getCardTypesWithDifficultyLevel () {
 		return config.cardTypesWithDifficultyLevel;
 	}

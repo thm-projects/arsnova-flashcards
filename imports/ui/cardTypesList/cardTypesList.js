@@ -4,6 +4,7 @@ import {CardType} from "../../api/cardTypes";
 import {Cardsets} from "../../api/cardsets";
 import {Filter} from "../../api/filter";
 import {Session} from "meteor/session";
+import {UserPermissions} from "../../api/permissions";
 
 /*
  * ############################################################################
@@ -28,5 +29,12 @@ Template.cardTypesList.helpers({
 	},
 	resultsFilterCardType: function (cardType) {
 		return Filter.getFilterQuery().cardType === cardType;
+	},
+	canCreateCardType: function (cardType) {
+		if (CardType.gotTranscriptBonus(cardType)) {
+			return (UserPermissions.isLecturer() || UserPermissions.isAdmin());
+		} else {
+			return true;
+		}
 	}
 });

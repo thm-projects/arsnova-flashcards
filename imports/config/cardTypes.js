@@ -29,6 +29,7 @@ let cardTypesWithSwapAnswerQuestionButton = [1, 17];
 let cardTypesWithDefaultMobilePreview = [0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 let cardTypesWithMarkdeepHelp = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 let cardTypesWithTranscriptBonus = [19];
+let lecturerExclusiveCardTypes = [19];
 let cardTypesOrder = [
 	{cardType: 0},
 	{cardType: 15},
@@ -433,5 +434,6 @@ module.exports = {
 	defaultCentered,
 	swapAnserQuestionCardTypeResult,
 	cardTypeCubeSides,
-	cardTypesWithTranscriptBonus
+	cardTypesWithTranscriptBonus,
+	lecturerExclusiveCardTypes
 };

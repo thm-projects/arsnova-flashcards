@@ -9,6 +9,7 @@ import {CardEditor} from "./cardEditor";
 import {UserPermissions} from "./permissions";
 import {ServerStyle} from "./styles";
 import {TranscriptBonus, TranscriptBonusList} from "./transcriptBonus";
+import {CardType} from "./cardTypes";
 
 export const Cards = new Mongo.Collection("cards");
 
@@ -392,7 +393,7 @@ Meteor.methods({
 		let cardset = Cardsets.findOne(card.cardset_id);
 		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
 			var countCards = Cards.find({cardset_id: cardset._id}).count();
-			if (countCards <= 5) {
+			if (countCards < 1 && !CardType.gotTranscriptBonus(cardset.cardType)) {
 				Cardsets.update(cardset._id, {
 					$set: {
 						kind: 'personal',
