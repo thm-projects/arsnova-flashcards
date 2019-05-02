@@ -1,10 +1,12 @@
 <template name="cardsetInfoBoxItemPrice">
     {{#if hasAmount}}
         {{#unless canViewForFree}}
-            <tr>
-                <td>{{_ "cardset.info.amount"}}:</td>
-                <td>{{getPrice this.price}}</td>
-            </tr>
+            {{#unless gotTranscriptBonusAndIsNotShuffled this._id}}
+                <tr>
+                    <td>{{_ "cardset.info.amount"}}:</td>
+                    <td>{{getPrice this.price}}</td>
+                </tr>
+            {{/unless}}
         {{/unless}}
     {{/if}}
 </template>

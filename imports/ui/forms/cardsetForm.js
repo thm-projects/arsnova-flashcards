@@ -300,6 +300,9 @@ Template.cardsetFormContent.helpers({
 	},
 	gotNotesForDifficultyLevel: function () {
 		return CardType.gotNotesForDifficultyLevel(Session.get('cardType'));
+	},
+	gotTranscriptBonus: function () {
+		return CardType.gotTranscriptBonus(Session.get('cardType'));
 	}
 });
 

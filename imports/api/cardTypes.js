@@ -24,6 +24,10 @@ export let CardType = class CardType {
 		return config.cardTypesWithDifficultyLevel;
 	}
 
+	static getCardTypesWithTranscriptBonus () {
+		return config.cardTypesWithTranscriptBonus;
+	}
+
 	static isCardTypesWithSwapAnswerQuestionButton (cardType) {
 		return config.cardTypesWithSwapAnswerQuestionButton.includes(cardType);
 	}

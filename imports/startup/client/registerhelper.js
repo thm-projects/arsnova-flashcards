@@ -982,4 +982,11 @@ Template.registerHelper("gotTranscriptBonus", function (cardset_id) {
 	}
 });
 
+Template.registerHelper("gotTranscriptBonusAndIsNotShuffled", function (cardset_id) {
+	let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, cardGroups: 1, shuffled: 1, cardType: 1}});
+	if (cardset !== undefined && !cardset.shuffled) {
+		return CardType.gotTranscriptBonus(cardset.cardType);
+	}
+});
+
 Template.registerHelper('markdeep', markdeepHelper.getTemplate());

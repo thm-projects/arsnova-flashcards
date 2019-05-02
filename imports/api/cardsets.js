@@ -853,6 +853,7 @@ Meteor.methods({
 					cardType: cardType
 				}
 			}, {trimStrings: false});
+			Meteor.call('updateShuffledCardsetQuantity', cardset._id);
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -921,7 +922,9 @@ Meteor.methods({
 				for (let k = 0; k < cardsets[i].cardGroups.length; k++) {
 					cardGroupsCardset = Cardsets.find(cardsets[i].cardGroups[k]).fetch();
 					if (cardGroupsCardset.length > 0) {
-						totalQuantity += cardGroupsCardset[0].quantity;
+						if (!CardType.gotTranscriptBonus(cardGroupsCardset[0].cardType)) {
+							totalQuantity += cardGroupsCardset[0].quantity;
+						}
 					}
 				}
 				Cardsets.update(cardsets[i]._id, {

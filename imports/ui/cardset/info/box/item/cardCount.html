@@ -1,6 +1,8 @@
 <template name="cardsetInfoBoxItemCardCount">
-    <tr>
-        <td>{{_ "cardset.info.quantity"}}:</td>
-        <td class="cardsetCardCount" data-count="{{this.quantity}}">{{this.quantity}}</td>
-    </tr>
+    {{#unless gotTranscriptBonusAndIsNotShuffled this._id}}
+        <tr>
+            <td>{{_ "cardset.info.quantity"}}:</td>
+            <td class="cardsetCardCount" data-count="{{this.quantity}}">{{this.quantity}}</td>
+        </tr>
+    {{/unless}}
 </template>
