@@ -136,13 +136,15 @@
                                 </a>
                             {{/if}}
                         {{/if}}
-                        {{#if gotBonus this.transcriptBonus.enabled}}
-                            {{#if isCardsetOwner this._id}}
-                                <a class="resultNavigationElement bonusTranscriptProgress" data-id="{{this._id}}"
-                                   title="{{_
-                                           "transcriptForm.bonus.form.button.list"}}">
-                                    <i class="fa fa-clipboard" data-id="{{this._id}}"></i>
-                                </a>
+                        {{#if gotTranscriptBonus this._id}}
+                            {{#if gotBonus this.transcriptBonus.enabled}}
+                                {{#if isCardsetOwner this._id}}
+                                    <a class="resultNavigationElement bonusTranscriptProgress" data-id="{{this._id}}"
+                                       title="{{_
+                                               "transcriptForm.bonus.form.button.list"}}">
+                                        <i class="fa fa-clipboard" data-id="{{this._id}}"></i>
+                                    </a>
+                                {{/if}}
                             {{/if}}
                         {{/if}}
                         {{#if isActiveRoute regex="shuffle"}}

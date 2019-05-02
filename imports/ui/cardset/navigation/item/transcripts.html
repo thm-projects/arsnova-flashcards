@@ -2,11 +2,13 @@
     {{#if this.quantity}}
         {{#if isPublished this.kind}}
             {{#if isCardsetOwnerAndLecturer _id}}
+                {{#if gotTranscriptBonus _id}}
                     <div class="hidden-xs btn-group">
                         <a type="button" id="transcriptBonus" class="btn btn-sm btn-raised transcriptsBtn"
                             {{disableIfOffline}}><span class="flex-content">{{{getNavigationIcon "transcript"}}}{{_ "transcriptForm.bonus.button"}}</span>
                         </a>
                     </div>
+                {{/if}}
             {{/if}}
         {{/if}}
     {{/if}}

@@ -1526,6 +1526,28 @@
         "subject": "Thema"
       }
     },
+    "cardType19": {
+      "name": "Vorlesung mit Bonus-Mitschriften",
+      "longName": "Vorlesung mit Bonus-Mitschriften: A | B | C | D | E | F",
+      "content1": "A",
+      "content2": "B",
+      "content3": "C",
+      "content4": "D",
+      "content5": "E",
+      "content6": "F",
+      "placeholders": {
+        "subject": "Gib das Thema des Würfels an!",
+        "content1": "Vorne",
+        "content2": "Rechts",
+        "content3": "Hinten",
+        "content4": "Links",
+        "content5": "Oben",
+        "content6": "Unten"
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
+    },
     "tooltip": {
       "toggle3D": "3D-Ansicht aktivieren / deaktivieren",
       "contrast": "Setze die Präsentation in den Kontrastmodus",

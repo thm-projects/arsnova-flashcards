@@ -143,6 +143,10 @@ export let CardType = class CardType {
 		return config.cardTypesWithLearningUnit.includes(cardType);
 	}
 
+	static gotTranscriptBonus (cardType) {
+		return config.cardTypesWithTranscriptBonus.includes(cardType);
+	}
+
 	static gotLearningGoal (cardType) {
 		return config.cardTypesWithLearningGoal.includes(cardType);
 	}
