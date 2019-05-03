@@ -1,0 +1,86 @@
+[{
+  "name": "I: Beispiel für eine Vokabelkarte",
+  "description": "Die Vokabelkarte ist Teil der Demo-Kartei.",
+  "date": "2018-04-24T11:05:15.991Z",
+  "dateUpdated": "2019-01-27T14:40:52.778Z",
+  "editors": [],
+  "owner": "jCZ6oHcbZhJaKKodN",
+  "visible": false,
+  "ratings": true,
+  "kind": "personal",
+  "price": 0,
+  "reviewed": false,
+  "reviewer": "undefined",
+  "request": false,
+  "raterCount": 0,
+  "quantity": 1,
+  "license": [
+    "by",
+    "nc",
+    "sa"
+  ],
+  "userDeleted": false,
+  "moduleActive": false,
+  "college": "THM",
+  "learningActive": false,
+  "maxCards": 1,
+  "daysBeforeReset": 7,
+  "learningStart": "2018-04-24T11:05:15.991Z",
+  "learningEnd": "2038-01-19T14:39:17.610Z",
+  "learningInterval": [
+    1,
+    3,
+    7,
+    28,
+    84
+  ],
+  "wordcloud": false,
+  "shuffled": false,
+  "cardType": 1,
+  "difficulty": 1,
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  },
+  "noDifficulty": false,
+  "registrationPeriod": "2038-01-19T14:39:17.610Z",
+  "workload": {
+    "bonus": {
+      "count": 0
+    },
+    "normal": {
+      "count": 0
+    }
+  },
+  "rating": 0
+}, {
+  "subject": "Navigiere mit der Tab-Taste zu  »DeepL«",
+  "back": "kürz und bündig",
+  "centerTextElement": [
+    true,
+    true,
+    false,
+    false
+  ],
+  "date": "2018-06-10T16:58:28.909Z",
+  "learningGoalLevel": 0,
+  "backgroundStyle": 0,
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "front": "short and sweet",
+  "dateUpdated": "2019-01-27T14:40:52.666Z",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  },
+  "alignType": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ]
+}]
