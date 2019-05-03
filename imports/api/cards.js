@@ -123,7 +123,7 @@ if (Meteor.isServer) {
 		if ((this.userId || ServerStyle.isLoginEnabled("guest")) && UserPermissions.isNotBlockedOrFirstLogin() && cardset !== undefined) {
 			let paidCardsets = Paid.findOne({user_id: this.userId, cardset_id: cardset._id});
 			let filteredCardGroups = [];
-			for (let i = 0; i < cardset.cardGroups; i++) {
+			for (let i = 0; i < cardset.cardGroups.length; i++) {
 				let tempCardset = Cardsets.findOne({_id: cardset.cardGroups[i]}, {fields: {cardType: 1}});
 				if (!CardType.gotTranscriptBonus(tempCardset.cardType)) {
 					filteredCardGroups.push(cardset.cardGroups[i]);
