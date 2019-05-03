@@ -125,8 +125,10 @@ if (Meteor.isServer) {
 			let filteredCardGroups = [];
 			for (let i = 0; i < cardset.cardGroups.length; i++) {
 				let tempCardset = Cardsets.findOne({_id: cardset.cardGroups[i]}, {fields: {cardType: 1}});
-				if (!CardType.gotTranscriptBonus(tempCardset.cardType)) {
-					filteredCardGroups.push(cardset.cardGroups[i]);
+				if (tempCardset !== undefined) {
+					if (!CardType.gotTranscriptBonus(tempCardset.cardType)) {
+						filteredCardGroups.push(cardset.cardGroups[i]);
+					}
 				}
 			}
 			let filterQuery = {
