@@ -334,7 +334,7 @@ export let CardEditor = class CardEditor {
 									Router.go('transcriptsPersonal');
 								}
 							} else {
-								Router.go('cardsetdetailsid', {
+								Router.go('presentation', {
 									_id: Router.current().params._id
 								});
 							}
