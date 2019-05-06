@@ -108,7 +108,7 @@ let linux = {
 		"enabled": false
 	},
 	"demo": {
-		"folder": "linux"
+		"folder": "Informatik"
 	}
 };
 
