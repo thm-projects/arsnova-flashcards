@@ -127,6 +127,10 @@ export let ServerStyle = class ServerStyle {
 		return this.getConfig().language.client;
 	}
 
+	static getDemoFolder () {
+		return this.getConfig().demo.folder;
+	}
+
 	static getServerLanguage () {
 		return this.getConfig().language.server;
 	}

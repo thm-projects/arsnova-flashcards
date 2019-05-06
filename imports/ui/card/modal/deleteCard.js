@@ -13,13 +13,18 @@ import "./deleteCard.html";
 Template.deleteCardForm.events({
 	'click #deleteCardConfirm': function () {
 		Meteor.call("deleteCard", Session.get('activeCard'), function (error, result) {
-			if (result) {
+			if (result !== undefined) {
 				BertAlertVisuals.displayBertAlert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
 				$('#deleteCardModal').modal('hide');
 				$('.modal-backdrop').css('display', 'none');
 				$('#deleteCardModal').on('hidden.bs.modal', function () {
 					$('.deleteCard').removeClass("pressed");
 					Session.set('activeCard', undefined);
+					if (result === 0) {
+						Router.go('cardsetdetailsid', {
+							_id: Router.current().params._id
+						});
+					}
 				});
 			}
 		});

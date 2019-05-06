@@ -2,10 +2,10 @@
     {{#unless isShuffledCardset}}
         {{#if isCardEditor getCardsetId}}
             {{#if isCardNavigationVisible}}
-                <button class="editCard glyphicon glyphicon-edit card-button cardHeaderItem"
+                <button class="hidden-xs editCard glyphicon glyphicon-edit card-button cardHeaderItem"
                       data-type="cardNavigation" title="{{_ "card.tooltip.edit"}}"></button>
                 {{else}}
-                <button class="editCard glyphicon glyphicon-edit card-button cardHeaderItem"
+                <button class="hidden-xs editCard glyphicon glyphicon-edit card-button cardHeaderItem"
                       data-type="cardNavigation" title="{{_ "card.tooltip.edit"}}" disabled></button>
                 {{/if}}
         {{/if}}

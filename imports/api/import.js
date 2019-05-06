@@ -250,14 +250,14 @@ Meteor.methods({
 				let cardGroups = [];
 				let totalQuantity = 0;
 				if (type === 'demo') {
-					demoPath = process.env.PWD + '/private/demo/' + ServerStyle.getClientLanguage() + "/";
+					demoPath = process.env.PWD + '/private/demo/' + ServerStyle.getDemoFolder() + '/' + ServerStyle.getClientLanguage() + "/";
 				} else {
 					demoPath = process.env.PWD + '/private/makingOf/' + ServerStyle.getClientLanguage() + "/";
 				}
 				let doesPathExist = fs.existsSync(demoPath);
 				if (!doesPathExist) {
 					if (type === 'demo') {
-						demoPath = process.env.PWD + '/programs/server/assets/app/demo/' + ServerStyle.getClientLanguage() + "/";
+						demoPath = process.env.PWD + '/programs/server/assets/app/demo/' + ServerStyle.getDemoFolder() + '/' + ServerStyle.getClientLanguage() + "/";
 					} else {
 						demoPath = process.env.PWD + '/programs/server/assets/app/makingOf/' + ServerStyle.getClientLanguage() + "/";
 					}

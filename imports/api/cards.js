@@ -413,7 +413,7 @@ Meteor.methods({
 				});
 			}
 
-			let result = Cards.remove(card_id);
+			Cards.remove(card_id);
 			if (card.cardset_id !== "-1") {
 				Cardsets.update(card.cardset_id, {
 					$set: {
@@ -433,7 +433,7 @@ Meteor.methods({
 			Wozniak.remove({
 				card_id: card_id
 			});
-			return result;
+			return Cards.find({cardset_id: card.cardset_id}).count();
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}

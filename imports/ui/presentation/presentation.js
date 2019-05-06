@@ -43,7 +43,9 @@ Template.presentation.onDestroyed(function () {
  */
 
 Template.presentationView.onCreated(function () {
-	Session.set('activeCard', undefined);
+	if (!Route.isPresentation()) {
+		Session.set('activeCard', undefined);
+	}
 	CardNavigation.toggleVisibility(true);
 	PomodoroTimer.setPresentationPomodoro(true);
 });

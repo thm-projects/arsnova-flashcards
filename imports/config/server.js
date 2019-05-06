@@ -30,6 +30,9 @@ let defaultSettings = {
 	"backgrounds": "default",
 	"transcripts": {
 		"enabled": true
+	},
+	"demo": {
+		"folder": "informatik"
 	}
 };
 
@@ -65,6 +68,9 @@ let debug = {
 	"backgrounds": "default",
 	"transcripts": {
 		"enabled": true
+	},
+	"demo": {
+		"folder": "informatik"
 	}
 };
 
@@ -100,6 +106,9 @@ let linux = {
 	"backgrounds": "linux",
 	"transcripts": {
 		"enabled": false
+	},
+	"demo": {
+		"folder": "linux"
 	}
 };
 
@@ -135,6 +144,9 @@ let review = {
 	"backgrounds": "default",
 	"transcripts": {
 		"enabled": true
+	},
+	"demo": {
+		"folder": "informatik"
 	}
 };
 
@@ -170,6 +182,9 @@ let staging = {
 	"backgrounds": "default",
 	"transcripts": {
 		"enabled": true
+	},
+	"demo": {
+		"folder": "informatik"
 	}
 };
 
