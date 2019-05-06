@@ -20,9 +20,15 @@ Template.cancelEditForm.events({
 				}
 			} else {
 				Session.set('activeCard', Router.current().params.card_id);
-				Router.go('cardsetdetailsid', {
-					_id: Router.current().params._id
-				});
+				if (Route.isNewCard()) {
+					Router.go('cardsetdetailsid', {
+						_id: Router.current().params._id
+					});
+				} else {
+					Router.go('presentation', {
+						_id: Router.current().params._id
+					});
+				}
 			}
 		}).modal('hide');
 	}
