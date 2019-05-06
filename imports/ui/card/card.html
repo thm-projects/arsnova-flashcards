@@ -88,7 +88,6 @@
 
 <template name="cardSubject">
     {{#if gotBonusTranscript}}<a class="cardHeaderLink"
-                              href="/cardset/{{getBonusLecture}}"
-                              target="_blank">{{getSubject}}</a>{{else}}{{#unless this.subject}}
+                              href="{{#unless isEditMode}}/cardset/{{getBonusLecture}}{{/unless}}">{{getSubject}}</a>{{else}}{{#unless this.subject}}
         <span class="subjectPlaceholder">{{getSubject}}</span>{{else}}{{getSubject}}{{/unless}}{{/if}}
 </template>
