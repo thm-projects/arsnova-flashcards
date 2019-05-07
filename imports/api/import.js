@@ -249,17 +249,17 @@ Meteor.methods({
 				let fs = Npm.require("fs");
 				let cardGroups = [];
 				let totalQuantity = 0;
-				if (Meteor.isProduction) {
-					if (type === 'demo') {
-						demoPath = process.env.PWD + '/programs/web.browser/app/demo/' + ServerStyle.getDemoFolder() + '/' + ServerStyle.getClientLanguage() + "/";
-					} else {
-						demoPath = process.env.PWD + '/programs/web.browser/app/demo/makingOf/' + ServerStyle.getClientLanguage() + "/";
-					}
-				} else {
+				if (fs.existsSync(process.env.PWD + '/private/')) {
 					if (type === 'demo') {
 						demoPath = process.env.PWD + '/public/demo/' + ServerStyle.getDemoFolder() + '/' + ServerStyle.getClientLanguage() + "/";
 					} else {
 						demoPath = process.env.PWD + '/public/demo/makingOf/' + ServerStyle.getClientLanguage() + "/";
+					}
+				} else {
+					if (type === 'demo') {
+						demoPath = process.env.PWD + '/programs/web.browser/app/demo/' + ServerStyle.getDemoFolder() + '/' + ServerStyle.getClientLanguage() + "/";
+					} else {
+						demoPath = process.env.PWD + '/programs/web.browser/app/demo/makingOf/' + ServerStyle.getClientLanguage() + "/";
 					}
 				}
 				if (fs.existsSync(demoPath)) {
