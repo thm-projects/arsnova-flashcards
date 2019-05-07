@@ -250,20 +250,11 @@ Meteor.methods({
 				let cardGroups = [];
 				let totalQuantity = 0;
 				if (type === 'demo') {
-					demoPath = process.env.PWD + '/private/demo/' + ServerStyle.getDemoFolder() + '/' + ServerStyle.getClientLanguage() + "/";
+					demoPath = process.env.PWD + '/public/demo/' + ServerStyle.getDemoFolder() + '/' + ServerStyle.getClientLanguage() + "/";
 				} else {
-					demoPath = process.env.PWD + '/private/makingOf/' + ServerStyle.getClientLanguage() + "/";
+					demoPath = process.env.PWD + '/public/makingOf/' + ServerStyle.getClientLanguage() + "/";
 				}
-				let doesPathExist = fs.existsSync(demoPath);
-				if (!doesPathExist) {
-					if (type === 'demo') {
-						demoPath = process.env.PWD + '/programs/server/assets/app/demo/' + ServerStyle.getDemoFolder() + '/' + ServerStyle.getClientLanguage() + "/";
-					} else {
-						demoPath = process.env.PWD + '/programs/server/assets/app/makingOf/' + ServerStyle.getClientLanguage() + "/";
-					}
-					doesPathExist = fs.existsSync(demoPath);
-				}
-				if (doesPathExist) {
+				if (fs.existsSync(demoPath)) {
 					let cardsetFiles = fs.readdirSync(demoPath);
 					let originalAuthorName;
 					for (let i = 0; i < cardsetFiles.length; i++) {

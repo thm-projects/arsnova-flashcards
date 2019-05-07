@@ -108,7 +108,7 @@ let linux = {
 		"enabled": false
 	},
 	"demo": {
-		"folder": "Informatik"
+		"folder": "linux"
 	}
 };
 
@@ -184,7 +184,7 @@ let staging = {
 		"enabled": true
 	},
 	"demo": {
-		"folder": "informatik"
+		"folder": "linux"
 	}
 };
 
