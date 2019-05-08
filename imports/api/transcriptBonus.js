@@ -48,6 +48,9 @@ const TranscriptBonusSchema = new SimpleSchema({
 	},
 	deadline: {
 		type: Number
+	},
+	deadlineEditing: {
+		type: Number
 	}
 });
 
@@ -71,6 +74,7 @@ Meteor.methods({
 						date: cardset.transcriptBonus.dates[date_id],
 						lectureEnd: cardset.transcriptBonus.lectureEnd,
 						deadline: cardset.transcriptBonus.deadline,
+						deadlineEditing: cardset.transcriptBonus.deadlineEditing,
 						dateCreated: new Date()
 					}
 				});
@@ -86,8 +90,14 @@ export let TranscriptBonusList = class TranscriptBonusList {
 		return moment(date).add(hours, 'hours').add(minutes, 'minutes');
 	}
 
-	static isDeadlineExpired (transcriptBonus) {
-		return this.addLectureEndTime(transcriptBonus, transcriptBonus.date).add(transcriptBonus.deadline, 'hours') < new Date();
+	static isDeadlineExpired (transcriptBonus, isEditingDeadline = false) {
+		let deadline;
+		if (isEditingDeadline) {
+			deadline = transcriptBonus.deadlineEditing
+		} else {
+			deadline = transcriptBonus.deadline;
+		}
+		return this.addLectureEndTime(transcriptBonus, transcriptBonus.date).add(deadline, 'hours') < new Date();
 	}
 
 	static canBeSubmittedToLecture (transcriptBonus, date_id) {

@@ -476,6 +476,9 @@ Meteor.methods({
 					}
 					Meteor.call("addTranscriptBonus", card_id, transcriptBonusUser.cardset_id, Meteor.userId(), Number(transcriptBonusUser.date_id));
 				} else {
+					if (TranscriptBonusList.isDeadlineExpired(transcriptBonusDatabase, true)) {
+						throw new Meteor.Error(TAPi18n.__('transcriptForm.server.deadlineExpired', {}, Meteor.user().profile.locale));
+					}
 					TranscriptBonusList.checkForUpdate(card_id, Meteor.userId(), transcriptBonusUser, transcriptBonusDatabase, transcriptBonusUser.date_id);
 				}
 			}

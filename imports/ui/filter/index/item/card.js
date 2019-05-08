@@ -49,7 +49,7 @@ Template.filterIndexItemCard.helpers({
 		if (Route.isMyBonusTranscripts()) {
 			let bonusTranscript = TranscriptBonus.findOne({card_id: this._id});
 			if (bonusTranscript !== undefined) {
-				return TranscriptBonusList.isDeadlineExpired(bonusTranscript);
+				return TranscriptBonusList.isDeadlineExpired(bonusTranscript, true);
 			}
 		}
 	},

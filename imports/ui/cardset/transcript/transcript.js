@@ -38,13 +38,14 @@ Template.cardsetTranscript.events({
 		let isEnabled = $('#enableBonus:checked').is(":checked");
 		let percentage = $('#bonusPercentage').val();
 		let lectureEnd = $('#lectureTimeEnd').val();
-		let deadline = $('#deadlineHours').val();
+		let deadlineEditing = $('#deadlineHoursEditing').val();
+		let deadlineSubmission = $('#deadlineHoursSubmission').val();
 		let dates = $('#transcript-calendar').multiDatesPicker('getDates');
 		let newDates = [];
 		for (let d = 0; d < dates.length; d++) {
 			newDates.push(moment(dates[d], "MM/DD/YYYY").toDate());
 		}
-		Meteor.call('updateCardsetTranscriptBonus', Router.current().params._id, Boolean(isEnabled), Number(percentage), lectureEnd, Number(deadline), newDates, function (error, result) {
+		Meteor.call('updateCardsetTranscriptBonus', Router.current().params._id, Boolean(isEnabled), Number(percentage), lectureEnd, Number(deadlineSubmission), Number(deadlineEditing), newDates, function (error, result) {
 			if (result) {
 				BertAlertVisuals.displayBertAlert(TAPi18n.__('transcriptForm.bonus.form.alert.save'), "success", 'growl-top-left');
 			}
@@ -64,7 +65,8 @@ Template.cardsetTranscriptEditor.onRendered(function () {
 		$('#enableBonus').prop('checked', this.data.transcriptBonus.enabled);
 		$('#bonusPercentage').val(this.data.transcriptBonus.percentage);
 		$('#lectureTimeEnd').val(this.data.transcriptBonus.lectureEnd);
-		$('#deadlineHours').val(this.data.transcriptBonus.deadline);
+		$('#deadlineHoursSubmission').val(this.data.transcriptBonus.deadline);
+		$('#deadlineHoursEditing').val(this.data.transcriptBonus.deadlineEditing);
 		for (let d = 0; d < this.data.transcriptBonus.dates.length; d++) {
 			dates.push(moment(this.data.transcriptBonus.dates[d]).format("MM/DD/YYYY"));
 		}

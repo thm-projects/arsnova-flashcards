@@ -687,7 +687,10 @@
         "percentage": "Maximale Bonuspunkte",
         "enable": "Bonus aktivieren",
         "lectureTimeEnd": "Freischaltung der Mitschriftenkopplung",
-        "deadline": "Zeit für die Nachbearbeitung",
+        "deadline": {
+          "submission": "Zeit für die Abgabe",
+          "editing": "Zeit für die Nachbearbeitung"
+        },
         "lectureDates": "Termine für das Bonus-Mitschreiben",
         "clock": "Uhr",
         "hours": "Stunden",

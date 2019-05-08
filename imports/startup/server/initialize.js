@@ -9,6 +9,7 @@ import {Ratings} from "../../api/ratings";
 import {CardType} from "../../api/cardTypes";
 import {WebPushSubscriptions} from "../../api/webPushSubscriptions";
 import {Paid} from "../../api/paid";
+import {TranscriptBonus} from "../../api/transcriptBonus";
 
 var initColorThemes = function () {
 	return [{
@@ -795,6 +796,34 @@ Meteor.startup(function () {
 			{
 				$set: {
 					sortType: 0
+				}
+			}
+		);
+	}
+
+	cardsets = Cardsets.find({transcriptBonus: {$exists: true}}, {fields: {_id: 1, transcriptBonus: 1}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		if (cardsets[i].transcriptBonus.deadlineEditing === undefined) {
+			Cardsets.update({
+					_id: cardsets[i]._id
+				},
+				{
+					$set: {
+						"transcriptBonus.deadlineEditing": cardsets[i].transcriptBonus.deadline
+					}
+				}
+			);
+		}
+	}
+
+	let transcriptBonus = TranscriptBonus.find({deadlineEditing: {$exists: false}}, {fields: {_id: 1, deadline: 1}}).fetch();
+	for (let i = 0; i < transcriptBonus.length; i++) {
+		TranscriptBonus.update({
+				_id: transcriptBonus[i]._id
+			},
+			{
+				$set: {
+					deadlineEditing: transcriptBonus[i].deadline
 				}
 			}
 		);

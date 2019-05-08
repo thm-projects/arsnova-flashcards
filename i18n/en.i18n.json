@@ -674,7 +674,10 @@
     "title": "Mitschrift mit einer Vorlesung koppeln",
     "description": "Gekoppelte Mitschriften können nach Ablauf der Abgabe nicht mehr bearbeitet werden",
     "lecture": "Vorlesung",
-    "deadline": "Abgabefrist",
+    "deadline": {
+      "submission": "Zeit für die Abgabe",
+      "editing": "Zeit für die Nachbearbeitung"
+    },
     "clock": "Uhr",
     "until": "bis",
     "referencesLecture": {
