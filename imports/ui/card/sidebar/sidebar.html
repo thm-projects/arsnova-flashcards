@@ -112,8 +112,10 @@
     {{> cardSidebarItemPomodoroButton}}
     {{> flashcardSidebarDictionary}}
     {{> cardSidebarItemArsnovaClick}}
-    {{> cardSidebarItemEdit}}
-    {{> cardSidebarItemDelete}}
+    {{#unless isTranscriptRoute}}
+        {{> cardSidebarItemEdit}}
+        {{> cardSidebarItemDelete}}
+    {{/unless}}
 </template>
 
 <template name="flashcardSidebarPresentationRight">
