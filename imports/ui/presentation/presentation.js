@@ -43,7 +43,7 @@ Template.presentation.onDestroyed(function () {
  */
 
 Template.presentationView.onCreated(function () {
-	if (!Route.isPresentation()) {
+	if (!Route.isDefaultPresentation()) {
 		Session.set('activeCard', undefined);
 	}
 	CardNavigation.toggleVisibility(true);
