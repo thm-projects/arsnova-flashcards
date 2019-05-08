@@ -21,7 +21,7 @@
     {{/if}}
     <div class="resultItem col-xs-12">
         <div class="resultItemHeaderWrapper">
-            <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName {{#if isCardsetTranscriptBonusRoute}}col-xs-4 col-sm-4{{else}}col-xs-6 col-sm-6{{/if}} {{getCardsetBackground
+            <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName {{#if isBonusTranscriptsRoute}}resultNameBonusTranscript{{/if}} {{#if isCardsetTranscriptBonusRoute}}col-xs-10 col-sm-4{{else}}col-xs-12 col-sm-6{{/if}} {{getCardsetBackground
                     this.difficulty this.cardType}}"
                  data-type="{{this.subject}}">
                 <a href="/presentation/transcripts/{{#if isBonusTranscriptsRoute}}bonus/{{/if}}{{#if isCardsetTranscriptBonusRoute}}{{getCardsetID}}/{{/if}}{{this._id}}">
@@ -31,6 +31,11 @@
                         {{this.subject}}
                     {{/if}}
                 </a>
+                <span class="hidden-xs">
+                    {{#if isBonusTranscriptsRoute}}
+                        <br>{{getBonusLectureDeadline}}
+                    {{/if}}
+                </span>
             </div>
             {{#if isCardsetTranscriptBonusRoute}}
                 <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName col-xs-2 col-sm-2 {{getCardsetBackground
@@ -38,7 +43,7 @@
                     {{getAuthorName this.owner}}
                 </div>
             {{/if}}
-            <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName col-xs-6 col-sm-3 {{getCardsetBackground
+            <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName hidden-xs col-sm-3 {{getCardsetBackground
                     this.difficulty this.cardType}}">
                 {{getMomentsDateShort  this.date}}<span class="resultDateRight">{{getMomentsDateShort
                     this.dateUpdated}}</span>

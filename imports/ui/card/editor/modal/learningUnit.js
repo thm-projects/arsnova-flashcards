@@ -27,7 +27,9 @@ Template.selectLearningUnit.helpers({
 					if (TranscriptBonusList.canBeSubmittedToLecture(transcriptBonus, d)) {
 						let lecture = {};
 						lecture.name = cardsets[c].name;
-						lecture.info = TranscriptBonusList.getLectureInfo(cardsets[c].transcriptBonus, d);
+						lecture.info = TranscriptBonusList.getLectureEnd(transcriptBonus, cardsets[c].transcriptBonus.dates[d]);
+						lecture.deadline = TranscriptBonusList.getDeadline(transcriptBonus, cardsets[c].transcriptBonus.dates[d]);
+						lecture.deadlineEditing = TranscriptBonusList.getDeadlineEditing(transcriptBonus, cardsets[c].transcriptBonus.dates[d]);
 						lecture.cardset_id = cardsets[c]._id;
 						lecture.date_id = d;
 						lecture.shuffled = cardsets[c].shuffled;
@@ -59,7 +61,7 @@ Template.selectLearningUnit.helpers({
 			let cardset = Cardsets.findOne({_id: Session.get('transcriptBonus').cardset_id}, {fields: {_id: 1, name: 1}});
 			let transcriptBonus = Session.get('transcriptBonus');
 			transcriptBonus.name = cardset.name;
-			return TranscriptBonusList.getLectureName(transcriptBonus, false, false);
+			return TranscriptBonusList.getLectureName(transcriptBonus, true);
 		} else {
 			return TAPi18n.__('transcriptForm.placeholder');
 		}
@@ -112,7 +114,7 @@ Template.selectLearningUnit.onCreated(function () {
 
 Template.selectLearningUnit.onRendered(function () {
 	if (Session.get('transcriptBonus') !== undefined) {
-		$('#setTranscriptBonusLecture').html(TranscriptBonusList.getLectureName(Session.get('transcriptBonus').name, Session.get('transcriptBonus'), Session.get('transcriptBonus').date, false));
+		$('#setTranscriptBonusLecture').html(TranscriptBonusList.getLectureName(Session.get('transcriptBonus'), true));
 	}
 	if (Route.isNewTranscript()) {
 		$('#showSelectLearningUnitModal').modal('show');
@@ -122,7 +124,7 @@ Template.selectLearningUnit.onRendered(function () {
 			let cardset = Cardsets.findOne({_id: Session.get('transcriptBonus').cardset_id}, {fields: {_id: 1, name: 1}});
 			let transcriptBonus = Session.get('transcriptBonus');
 			transcriptBonus.name = cardset.name;
-			$('#setTranscriptBonusLecture').html(TranscriptBonusList.getLectureName(transcriptBonus, false, false));
+			$('#setTranscriptBonusLecture').html(TranscriptBonusList.getLectureName(transcriptBonus, true));
 		} else {
 			$('#setTranscriptBonusLecture').html(TAPi18n.__('transcriptForm.placeholder'));
 		}

@@ -672,7 +672,10 @@
     "description": "Bonus-Mitschriften können nach Ablauf der Abgabe nicht mehr bearbeitet werden.",
     "placeholder": "Wähle eine Vorlesung mit Bonusvergabe aus…",
     "lecture": "Vorlesung",
-    "deadline": "Abgabefrist",
+    "deadline": {
+      "submission": "Foto-Abgabefrist",
+      "editing": "Digitale Nachbearbeitungsfrist"
+    },
     "clock": "Uhr",
     "until": "bis",
     "referencesLecture": {
@@ -688,8 +691,8 @@
         "enable": "Bonus aktivieren",
         "lectureTimeEnd": "Freischaltung der Mitschriftenkopplung",
         "deadline": {
-          "submission": "Zeit für die Abgabe",
-          "editing": "Zeit für die Nachbearbeitung"
+          "submission": "Zeit für die Foto-Abgabe",
+          "editing": "Zeit für die digitale Nachbearbeitung"
         },
         "lectureDates": "Termine für das Bonus-Mitschreiben",
         "clock": "Uhr",
