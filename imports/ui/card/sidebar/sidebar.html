@@ -13,35 +13,39 @@
 </template>
 
 <template name="flashcardSidebarBottomLeft">
-    <div id="flashcardSidebarBottomLeft" class="hidden-xs {{#if isFixedSidebar}}fixed{{/if}}">
-        {{> cardSidebarItemHideSidebar}}
-    </div>
+    {{#unless isTranscriptRoute}}
+        <div id="flashcardSidebarBottomLeft" class="hidden-xs {{#if isFixedSidebar}}fixed{{/if}}">
+            {{> cardSidebarItemHideSidebar}}
+        </div>
+    {{/unless}}
 </template>
 
 <template name="flashcardSidebarLeft">
-    <div id="flashcardSidebarLeft" class="{{#if isFixedSidebar}}fixed{{/if}} {{#if isLeitnerWozniakRoute}}workload{{/if}}">
-        {{#if isCardset}}
-            {{> flashcardSidebarDefaultLeft}}
-        {{/if}}
-        {{#if isPresentation}}
-            {{> flashcardSidebarPresentationLeft}}
-        {{/if}}
-        {{#if isMakingOf}}
-            {{> flashcardSidebarDemoLeft}}
-        {{/if}}
-        {{#if isDemo}}
-            {{> flashcardSidebarDemoLeft}}
-        {{/if}}
-        {{#if isEditMode}}
-            {{> flashcardSidebarEditorLeft}}
-        {{/if}}
-        {{#if isBox}}
-            {{> flashcardSidebarLeitnerLeft}}
-        {{/if}}
-        {{#if isMemo}}
-            {{> flashcardSidebarWozniakLeft}}
-        {{/if}}
-    </div>
+    {{#unless isTranscriptRoute}}
+        <div id="flashcardSidebarLeft" class="{{#if isFixedSidebar}}fixed{{/if}} {{#if isLeitnerWozniakRoute}}workload{{/if}}">
+            {{#if isCardset}}
+                {{> flashcardSidebarDefaultLeft}}
+            {{/if}}
+            {{#if isPresentation}}
+                {{> flashcardSidebarPresentationLeft}}
+            {{/if}}
+            {{#if isMakingOf}}
+                {{> flashcardSidebarDemoLeft}}
+            {{/if}}
+            {{#if isDemo}}
+                {{> flashcardSidebarDemoLeft}}
+            {{/if}}
+            {{#if isEditMode}}
+                {{> flashcardSidebarEditorLeft}}
+            {{/if}}
+            {{#if isBox}}
+                {{> flashcardSidebarLeitnerLeft}}
+            {{/if}}
+            {{#if isMemo}}
+                {{> flashcardSidebarWozniakLeft}}
+            {{/if}}
+        </div>
+    {{/unless}}
 </template>
 
 <template name="flashcardSidebarRight">
@@ -112,10 +116,8 @@
     {{> cardSidebarItemPomodoroButton}}
     {{> flashcardSidebarDictionary}}
     {{> cardSidebarItemArsnovaClick}}
-    {{#unless isTranscriptRoute}}
-        {{> cardSidebarItemEdit}}
-        {{> cardSidebarItemDelete}}
-    {{/unless}}
+    {{> cardSidebarItemEdit}}
+    {{> cardSidebarItemDelete}}
 </template>
 
 <template name="flashcardSidebarPresentationRight">
@@ -126,7 +128,9 @@
     {{> cardSidebarItemZoomText}}
     {{> cardSidebarItemAspectRatio}}
     {{> cardSidebarToggle3D}}
-    {{> cardSidebarItemHelp}}
+    {{#unless isTranscriptRoute}}
+        {{> cardSidebarItemHelp}}
+    {{/unless}}
 </template>
 
 <template name="flashcardSidebarDemoLeft">
