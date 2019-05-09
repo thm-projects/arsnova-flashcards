@@ -67,6 +67,8 @@ $themes: (
     $shuffled_text: map-get($map, "shuffled_text");
     $bonus_background: map-get($map, "bonus_background");
     $bonus_text: map-get($map, "bonus_text");
+    $bonus_transcript_background: map-get($map, "bonus_transcript_background");
+    $bonus_transcript_text: map-get($map, "bonus_transcript_text");
     $card_type_background: map-get($map, "card_type_background");
     $card_type_text: map-get($map, "card_type_text");
     $button_background_hover: map-get($map, "button_background_hover");
@@ -2693,6 +2695,11 @@ $themes: (
     .label-bonus {
       background-color: $bonus_background !important;
       color: $bonus_text !important;
+    }
+
+    .label-transcript-bonus {
+      background-color: $bonus_transcript_background !important;
+      color: $bonus_transcript_text !important;
     }
 
     .label-card-type {

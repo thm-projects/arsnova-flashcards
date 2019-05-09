@@ -384,6 +384,12 @@ Template.registerHelper("getBonusLabel", function (shuffled = false) {
 	}
 });
 
+Template.registerHelper("getTranscriptBonusLabel", function (cardset) {
+	if (cardset.transcriptBonus !== undefined && cardset.transcriptBonus.enabled) {
+		return '<span class="label label-transcript-bonus" data-id="bonus-transcript" title="' + TAPi18n.__('cardset.transcriptBonus.long') + '">' + TAPi18n.__('cardset.transcriptBonus.short') + '</span>';
+	}
+});
+
 Template.registerHelper("getCardsetIcons", function (isShuffled) {
 	if (isShuffled) {
 		return "<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;";
