@@ -1,22 +1,28 @@
 <template name="impressumModalStatisticsItemUser">
-    <table class="table">
-        <thead class="thead-dark">
+    {{#if gotInventoryData (getServerInventory "user")}}
+        <table class="table">
+            <thead class="thead-dark">
             <tr class="active">
                 <th scope="col" class="col-xs-9 col-sm10">{{_ "serverStatistics.modal.table.header.user"}}</th>
                 <th scope="col" class="col-xs-3 col-sm-2">{{getServerInventory "user"}}</th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             {{#if isProLoginActive}}
+                {{#if gotInventoryData (getServerInventory "userPro")}}
+                    <tr>
+                        <td>{{{_ "serverStatistics.modal.user.pro" label=(getKind "pro" 0)}}}</td>
+                        <td>{{getServerInventory "userPro"}}</td>
+                    </tr>
+                {{/if}}
+            {{/if}}
+            {{#if gotInventoryData (getServerInventory "userOnline")}}
                 <tr>
-                    <td>{{{_ "serverStatistics.modal.user.pro" label=(getKind "pro" 0)}}}</td>
-                    <td>{{getServerInventory "userPro"}}</td>
+                    <td>{{_ "serverStatistics.modal.user.online"}}</td>
+                    <td>{{getServerInventory "userOnline"}}</td>
                 </tr>
             {{/if}}
-            <tr>
-                <td>{{_ "serverStatistics.modal.user.online"}}</td>
-                <td>{{getServerInventory "userOnline"}}</td>
-            </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    {{/if}}
 </template>

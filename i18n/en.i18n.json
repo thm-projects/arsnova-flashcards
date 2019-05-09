@@ -1804,9 +1804,9 @@
   "connection": {
     "title": "Um 🍅__lastAppTitle__ online nutzen zu können, ist eine WebSocket-Verbindung zum Server erforderlich.",
     "webSocket": "WebSocket-Check",
-    "connected": "Gute Serveranbindung",
-    "connecting": "Kritische Serververbindung",
-    "disconnected": "Keine Serververbindung"
+    "connected": "Good server connection",
+    "connecting": "Critical server connection",
+    "disconnected": "No server connection"
   },
   "admin": {
     "allLearnedCardsets": "Nach dem Leitner-Plan gelernte Karten über alle Karteien",

@@ -1,38 +1,40 @@
 <template name="impressumModalStatisticsItemRepetitorium">
-    <table class="table">
-        <thead class="thead-dark">
-        <tr class="active">
-            <th scope="col" class="col-xs-9 col-sm10">{{_ "serverStatistics.modal.table.header.repetitorium"}}</th>
-            <th scope="col" class="col-xs-3 col-sm-2">{{getServerInventory "repetitorium"}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        {{#if gotInventoryData (getServerInventory "repetitoriumPrivate")}}
-            <tr>
-                <td>{{{_ "serverStatistics.modal.repetitorium.private" label=(getKind "personal")}}}</td>
-                <td>{{getServerInventory "repetitoriumPrivate"}}</td>
+    {{#if gotInventoryData (getServerInventory "repetitorium")}}
+        <table class="table">
+            <thead class="thead-dark">
+            <tr class="active">
+                <th scope="col" class="col-xs-9 col-sm10">{{_ "serverStatistics.modal.table.header.repetitorium"}}</th>
+                <th scope="col" class="col-xs-3 col-sm-2">{{getServerInventory "repetitorium"}}</th>
             </tr>
-        {{/if}}
-        {{#if gotInventoryData (getServerInventory "repetitoriumFree")}}
-            <tr>
-                <td>{{{_ "serverStatistics.modal.repetitorium.free" label=(getKind "free")}}}</td>
-                <td>{{getServerInventory "repetitoriumFree"}}</td>
-            </tr>
-        {{/if}}
-        {{#if gotInventoryData (getServerInventory "repetitoriumEdu")}}
-            <tr>
-                <td>{{{_ "serverStatistics.modal.repetitorium.edu" label=(getKind "edu")}}}</td>
-                <td>{{getServerInventory "repetitoriumEdu"}}</td>
-            </tr>
-        {{/if}}
-        {{#if isProLoginActive}}
-            {{#if gotInventoryData (getServerInventory "repetitoriumPro")}}
+            </thead>
+            <tbody>
+            {{#if gotInventoryData (getServerInventory "repetitoriumPrivate")}}
                 <tr>
-                    <td>{{{_ "serverStatistics.modal.repetitorium.pro" label=(getKind "pro")}}}</td>
-                    <td>{{getServerInventory "repetitoriumPro"}}</td>
+                    <td>{{{_ "serverStatistics.modal.repetitorium.private" label=(getKind "personal")}}}</td>
+                    <td>{{getServerInventory "repetitoriumPrivate"}}</td>
                 </tr>
             {{/if}}
-        {{/if}}
-        </tbody>
-    </table>
+            {{#if gotInventoryData (getServerInventory "repetitoriumFree")}}
+                <tr>
+                    <td>{{{_ "serverStatistics.modal.repetitorium.free" label=(getKind "free")}}}</td>
+                    <td>{{getServerInventory "repetitoriumFree"}}</td>
+                </tr>
+            {{/if}}
+            {{#if gotInventoryData (getServerInventory "repetitoriumEdu")}}
+                <tr>
+                    <td>{{{_ "serverStatistics.modal.repetitorium.edu" label=(getKind "edu")}}}</td>
+                    <td>{{getServerInventory "repetitoriumEdu"}}</td>
+                </tr>
+            {{/if}}
+            {{#if isProLoginActive}}
+                {{#if gotInventoryData (getServerInventory "repetitoriumPro")}}
+                    <tr>
+                        <td>{{{_ "serverStatistics.modal.repetitorium.pro" label=(getKind "pro")}}}</td>
+                        <td>{{getServerInventory "repetitoriumPro"}}</td>
+                    </tr>
+                {{/if}}
+            {{/if}}
+            </tbody>
+        </table>
+    {{/if}}
 </template>
