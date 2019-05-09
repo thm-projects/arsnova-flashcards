@@ -121,10 +121,21 @@
             {{/if}}
             <div class="resultItemHeader resultItemHeaderRightArea collapseButton col-xs-12 col-sm-3">
                 <div class="resultItemHeaderRightAreaTop col-xs-9 col-sm-12">
-                    {{{getKind this.kind 0}}}
-                    {{{getShuffleLabel this.shuffled}}}
-                    {{{getBonusLabel this.learningActive}}}
-                    {{{getTranscriptBonusLabel this}}}
+                    <div class="hidden-xs">
+                        {{{getKind this.kind 0}}}
+                        {{{getShuffleLabel this.shuffled}}}
+                        {{{getBonusLabel this.learningActive}}}
+                        {{{getTranscriptBonusLabel this}}}
+                    </div>
+                    <div class="visible-xs">
+                        {{{getKind this.kind 0}}}
+                        {{{getShuffleLabel this.shuffled}}}
+                        {{{getBonusLabel this.learningActive}}}
+                        {{{getTranscriptBonusLabel this}}}
+                        {{#unless this.shuffled}}
+                            {{{getCardTypeLabel this.cardType}}}
+                        {{/unless}}
+                    </div>
                 </div>
                 <div class="resultItemHeaderRightAreaBottom col-xs-3 col-sm-12">
                     {{#unless isSelectingCardsetToLearn}}
