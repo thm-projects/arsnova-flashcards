@@ -674,7 +674,10 @@
     "title": "Mitschrift mit einer Vorlesung koppeln",
     "description": "Gekoppelte Mitschriften können nach Ablauf der Abgabe nicht mehr bearbeitet werden",
     "lecture": "Vorlesung",
-    "deadline": "Abgabefrist",
+    "deadline": {
+      "submission": "Foto-Abgabefrist",
+      "editing": "Digitale Nachbearbeitungsfrist"
+    },
     "clock": "Uhr",
     "until": "bis",
     "referencesLecture": {
@@ -689,7 +692,10 @@
         "percentage": "Maximale Bonuspunkte",
         "enable": "Bonus aktivieren",
         "lectureTimeEnd": "Vorlesungsende",
-        "deadline": "Abgabezeit",
+        "deadline": {
+          "submission": "Zeit für die Foto-Abgabe",
+          "editing": "Zeit für die digitale Nachbearbeitung"
+        },
         "lectureDates": "Termine der Veranstaltungen",
         "clock": "Uhr",
         "hours": "Stunden",

@@ -48,6 +48,9 @@ const TranscriptBonusSchema = new SimpleSchema({
 	},
 	deadline: {
 		type: Number
+	},
+	deadlineEditing: {
+		type: Number
 	}
 });
 
@@ -71,6 +74,7 @@ Meteor.methods({
 						date: cardset.transcriptBonus.dates[date_id],
 						lectureEnd: cardset.transcriptBonus.lectureEnd,
 						deadline: cardset.transcriptBonus.deadline,
+						deadlineEditing: cardset.transcriptBonus.deadlineEditing,
 						dateCreated: new Date()
 					}
 				});
@@ -86,8 +90,14 @@ export let TranscriptBonusList = class TranscriptBonusList {
 		return moment(date).add(hours, 'hours').add(minutes, 'minutes');
 	}
 
-	static isDeadlineExpired (transcriptBonus) {
-		return this.addLectureEndTime(transcriptBonus, transcriptBonus.date).add(transcriptBonus.deadline, 'hours') < new Date();
+	static isDeadlineExpired (transcriptBonus, isEditingDeadline = false) {
+		let deadline;
+		if (isEditingDeadline) {
+			deadline = transcriptBonus.deadlineEditing;
+		} else {
+			deadline = transcriptBonus.deadline;
+		}
+		return this.addLectureEndTime(transcriptBonus, transcriptBonus.date).add(deadline, 'hours') < new Date();
 	}
 
 	static canBeSubmittedToLecture (transcriptBonus, date_id) {
@@ -125,23 +135,30 @@ export let TranscriptBonusList = class TranscriptBonusList {
 		}
 	}
 
-	static getLectureName (transcriptBonus, isList = true, displayDeadline = true) {
-		return transcriptBonus.name + ": " + this.getLectureInfo(transcriptBonus, transcriptBonus.date, isList, displayDeadline);
+	static getLectureName (transcriptBonus) {
+		return transcriptBonus.name + ": " + this.getLectureEnd(transcriptBonus, transcriptBonus.date, false);
 	}
 
-	static getLectureInfo (transcriptBonus, date_id, isList = true, displayDeadline = true) {
+	static getLectureEnd (transcriptBonus, date_id) {
 		if (transcriptBonus.lectureEnd !== undefined) {
-			let lectureEnd;
-			if (isList) {
-				lectureEnd = this.addLectureEndTime(transcriptBonus, transcriptBonus.dates[date_id]);
-			} else {
-				lectureEnd = this.addLectureEndTime(transcriptBonus, date_id);
-			}
-			let info = TAPi18n.__('transcriptForm.lecture') + ": " + Utilities.getMomentsDate(lectureEnd, false);
-			if (displayDeadline) {
-				info +=  ", " + TAPi18n.__('transcriptForm.deadline') + ": " + Utilities.getMomentsTime(lectureEnd) +  " " + TAPi18n.__('transcriptForm.until') + " " + Utilities.getMomentsDate(lectureEnd.add(transcriptBonus.deadline, 'hours'), true);
-			}
-			return info;
+			let lectureEnd = this.addLectureEndTime(transcriptBonus, date_id);
+			return TAPi18n.__('transcriptForm.lecture') + ": " + Utilities.getMomentsDate(lectureEnd, false);
+		}
+	}
+
+	static getDeadline (transcriptBonus, date_id) {
+		if (transcriptBonus.lectureEnd !== undefined) {
+			let deadline = this.addLectureEndTime(transcriptBonus, date_id);
+			deadline.add(transcriptBonus.deadline, 'hours');
+			return TAPi18n.__('transcriptForm.deadline.submission') + ": " + Utilities.getMomentsDate(deadline, true, true);
+		}
+	}
+
+	static getDeadlineEditing (transcriptBonus, date_id) {
+		if (transcriptBonus.lectureEnd !== undefined) {
+			let deadlineEditing = this.addLectureEndTime(transcriptBonus, date_id);
+			deadlineEditing.add(transcriptBonus.deadlineEditing, 'hours');
+			return TAPi18n.__('transcriptForm.deadline.editing') + ": " + Utilities.getMomentsDate(deadlineEditing, true, true);
 		}
 	}
 };

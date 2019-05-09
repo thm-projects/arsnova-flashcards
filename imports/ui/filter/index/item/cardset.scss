@@ -80,6 +80,13 @@
   padding-right: 30px !important;
 }
 
+.resultNameBonusTranscript {
+  @media(min-width: 768px) {
+    padding-top: 4px !important;
+    padding-bottom: 3px !important;
+  }
+}
+
 .authorProfile {
   padding-right: 0;
 }

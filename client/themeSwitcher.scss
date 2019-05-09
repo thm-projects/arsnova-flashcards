@@ -548,6 +548,7 @@ $themes: (
     $markdeep_image_border: map-get($map, "markdeep_image_border");
     //transcript bonus colors
     $transcript_bonus_info_text: map-get($map, "transcript_bonus_info_text");
+    $transcript_bonus_info_background: map-get($map, "transcript_bonus_info_background");
     //markdeep editor colors
     $markdeep_help_text: map-get($map, "markdeep_help_text");
     $markdeep_help_background: map-get($map, "markdeep_help_background");
@@ -3028,6 +3029,7 @@ $themes: (
     //transcript bonus colors
     .transcript-info-text {
       color: $transcript_bonus_info_text !important;
+      background-color: $transcript_bonus_info_background !important;
     }
     //presentation colors
     .clock {

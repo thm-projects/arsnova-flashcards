@@ -13,8 +13,14 @@
                         <div class="form-group">
                             <div class="form-group setdetails name">
                                 <div class="col-xs-12 cardtext editorElement">
-                                    <label class="radio-inline"><input type="radio" id="privateTranscript" name="belongsToUnit" value="0" {{getRadioButtonStatus 0}}>{{_ "transcriptForm.referencesLecture.false"}}</label>
-                                    <label class="radio-inline"><input type="radio" id="referencesLecture" name="belongsToUnit" value="1" {{getRadioButtonStatus 1}}>{{_ "transcriptForm.referencesLecture.true"}}</label>
+                                    <label class="radio-inline"><input type="radio" id="privateTranscript"
+                                                                       name="belongsToUnit"
+                                                                       value="0" {{getRadioButtonStatus 0}}>{{_
+                                            "transcriptForm.referencesLecture.false"}}</label>
+                                    <label class="radio-inline"><input type="radio" id="referencesLecture"
+                                                                       name="belongsToUnit"
+                                                                       value="1" {{getRadioButtonStatus 1}}>{{_
+                                            "transcriptForm.referencesLecture.true"}}</label>
                                 </div>
                                 {{#unless isPrivateTranscript}}
                                     <br>
@@ -29,23 +35,28 @@
                                                     data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="false"
                                                     value="-1">
-                                                    {{{getBonusLectureName}}}
+                                                {{{getBonusLectureName}}}
                                             </button>
                                             <button type="button"
                                                     class="btn btn-raised dropdown-toggle setTranscriptBonusLectureDropdown setTranscriptBonusLectureDropdownCaret"
                                                     data-toggle="dropdown"
                                                     aria-haspopup="true" aria-expanded="false">
-                                                   <div class="flex-content">
-                                                       <span class="caret"></span>
-                                                       <span class="sr-only"></span>
-                                                   </div>
+                                                <div class="flex-content">
+                                                    <span class="caret"></span>
+                                                    <span class="sr-only"></span>
+                                                </div>
                                             </button>
-                                            <ul class="dropdown-menu btn-raised longButton" value="{{_ "transcriptForm.selectLecture"}}" data="-1">
+                                            <ul class="dropdown-menu btn-raised longButton"
+                                                value="{{_ "transcriptForm.selectLecture"}}" data="-1">
                                                 {{#each getBonusLectures}}
-                                                    <li class="transcriptBonusLecture" value="{{this.cardset_id}}" data-cardset_id="{{this.cardset_id}}" data-date_id="{{this.date_id}}" data-name="{{this.name}}">
+                                                    <li class="transcriptBonusLecture" value="{{this.cardset_id}}"
+                                                        data-cardset_id="{{this.cardset_id}}"
+                                                        data-date_id="{{this.date_id}}" data-name="{{this.name}}">
                                                         <a href="#">
-                                                            {{this.name}}<br>
-                                                            <span class="transcript-info-text">{{this.info}}</span>
+                                                            {{this.name}}
+                                                            <div class="transcript-info-text">
+                                                                {{this.deadline}}<br>{{this.deadlineEditing}}
+                                                            </div>
                                                             <div class="cardset-details">
                                                                 {{> cardsetLabels}}
                                                             </div>
@@ -53,7 +64,8 @@
                                                     </li>
                                                 {{/each}}
                                             </ul>
-                                            <span id="helpSetTranscriptBonusLecture" class="help-block transcriptBonusLecture"></span>
+                                            <span id="helpSetTranscriptBonusLecture"
+                                                  class="help-block transcriptBonusLecture"></span>
                                         </div>
                                     </div>
                                 {{/unless}}

@@ -22,8 +22,8 @@ module.exports = {
 		this.clickElement('#' + userLogin);
 		browser.waitForVisible('#BackdoorLogin', global.threshold);
 		this.clickElement('#BackdoorLogin');
-		browser.waitForVisible('.useCasesCancel', global.threshold);
-		this.clickElement('.useCasesCancel', global.threshold);
+		browser.waitForVisible('#useCasesModal .close', global.threshold);
+		this.clickElement('#useCasesModal .close', global.threshold);
 		if (browser.isVisible(".bert-alert")) {
 			this.clickElement(".bert-alert");
 		}

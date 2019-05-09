@@ -47,8 +47,13 @@
         <span class="unit">{{_ "transcriptForm.bonus.form.clock"}}</span>
     </div>
     <div class="col-sm-6 col-md-3">
-        <label>{{_ "transcriptForm.bonus.form.deadline"}}:</label>
-        <input type="number" id="deadlineHours" min="24" max="168" step="12" value="36" required>
+        <label>{{_ "transcriptForm.bonus.form.deadline.submission"}}:</label>
+        <input type="number" id="deadlineHoursSubmission" min="1" max="24" step="1" value="2" required>
+        <span class="unit">{{_ "transcriptForm.bonus.form.hours"}}</span>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <label>{{_ "transcriptForm.bonus.form.deadline.editing"}}:</label>
+        <input type="number" id="deadlineHoursEditing" min="24" max="168" step="12" value="36" required>
         <span class="unit">{{_ "transcriptForm.bonus.form.hours"}}</span>
     </div>
     <div class="col-xs-12">
