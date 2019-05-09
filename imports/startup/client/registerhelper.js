@@ -385,7 +385,7 @@ Template.registerHelper("getBonusLabel", function (shuffled = false) {
 });
 
 Template.registerHelper("getTranscriptBonusLabel", function (cardset) {
-	if (cardset.transcriptBonus !== undefined && cardset.transcriptBonus.enabled) {
+	if ((cardset.transcriptBonus !== undefined && cardset.transcriptBonus.enabled) || Route.isMyBonusTranscripts() || Route.isTranscriptBonus()) {
 		return '<span class="label label-transcript-bonus" data-id="bonus-transcript" title="' + TAPi18n.__('cardset.transcriptBonus.long') + '">' + TAPi18n.__('cardset.transcriptBonus.short') + '</span>';
 	}
 });

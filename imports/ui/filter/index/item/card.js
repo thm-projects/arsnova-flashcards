@@ -47,8 +47,8 @@ Template.filterIndexItemCard.helpers({
 			return TranscriptBonusList.getDeadlineEditing(bonusTranscript, bonusTranscript.date);
 		}
 	},
-	isMyBonusTranscriptsRouteAndDeadlineExpired: function () {
-		if (Route.isMyBonusTranscripts()) {
+	isBonusTranscriptsRouteAndDeadlineExpired: function () {
+		if (Route.isMyBonusTranscripts() || Route.isTranscriptBonus()) {
 			let bonusTranscript = TranscriptBonus.findOne({card_id: this._id});
 			if (bonusTranscript !== undefined) {
 				return TranscriptBonusList.isDeadlineExpired(bonusTranscript, true);

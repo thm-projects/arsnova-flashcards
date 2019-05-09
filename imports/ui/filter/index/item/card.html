@@ -21,7 +21,7 @@
     {{/if}}
     <div class="resultItem col-xs-12">
         <div class="resultItemHeaderWrapper">
-            <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName {{#if isBonusTranscriptsRoute}}{{#unless isMyBonusTranscriptsRouteAndDeadlineExpired}}resultNameBonusTranscript{{/unless}}{{/if}} {{#if isCardsetTranscriptBonusRoute}}col-xs-10 col-sm-4{{else}}col-xs-12 col-sm-6{{/if}} {{getCardsetBackground
+            <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName {{#if isBonusTranscriptsRoute}}{{#unless isBonusTranscriptsRouteAndDeadlineExpired}}resultNameBonusTranscript{{/unless}}{{/if}} {{#if isCardsetTranscriptBonusRoute}}col-xs-10 col-sm-4{{else}}col-xs-12 col-sm-6{{/if}} {{getCardsetBackground
                     this.difficulty this.cardType}}"
                  data-type="{{this.subject}}">
                 <a href="/presentation/transcripts/{{#if isBonusTranscriptsRoute}}bonus/{{/if}}{{#if isCardsetTranscriptBonusRoute}}{{getCardsetID}}/{{/if}}{{this._id}}">
@@ -32,7 +32,7 @@
                     {{/if}}
                 </a>
                 {{#if isBonusTranscriptsRoute}}
-                    {{#unless isMyBonusTranscriptsRouteAndDeadlineExpired}}
+                    {{#unless isBonusTranscriptsRouteAndDeadlineExpired}}
                     <span class="hidden-xs transcript-info-text">
                         <br>{{getBonusLectureDeadline}}
                     </span>
@@ -52,6 +52,7 @@
             </div>
             <div class="resultItemHeader resultItemHeaderRightArea collapseButton col-xs-12 col-sm-3">
                 <div class="resultItemHeaderRightAreaTop col-xs-9 col-sm-12">
+                    {{{getTranscriptBonusLabel this}}}
                     {{{getCardTypeLabel this.cardType}}}
                 </div>
                 <div class="resultItemHeaderRightAreaBottom col-xs-3 col-sm-12">
