@@ -1,30 +1,38 @@
 <template name="impressumModalStatisticsItemCardsets">
     <table class="table">
         <thead class="thead-dark">
-            <tr class="active">
-                <th scope="col" class="col-xs-9 col-sm10">{{_ "serverStatistics.modal.table.header.cardsets"}}</th>
-                <th scope="col" class="col-xs-3 col-sm-2">{{getServerInventory "cardsets"}}</th>
-            </tr>
+        <tr class="active">
+            <th scope="col" class="col-xs-9 col-sm10">{{_ "serverStatistics.modal.table.header.cardsets"}}</th>
+            <th scope="col" class="col-xs-3 col-sm-2">{{getServerInventory "cardsets"}}</th>
+        </tr>
         </thead>
         <tbody>
+        {{#if gotInventoryData (getServerInventory "cardsetsPrivate")}}
             <tr>
                 <td>{{{_ "serverStatistics.modal.cardsets.private" label=(getKind "personal")}}}</td>
                 <td>{{getServerInventory "cardsetsPrivate"}}</td>
             </tr>
+        {{/if}}
+        {{#if gotInventoryData (getServerInventory "cardsetsFree")}}
             <tr>
                 <td>{{{_ "serverStatistics.modal.cardsets.free" label=(getKind "free")}}}</td>
                 <td>{{getServerInventory "cardsetsFree"}}</td>
             </tr>
+        {{/if}}
+        {{#if gotInventoryData (getServerInventory "cardsetsEdu")}}
             <tr>
                 <td>{{{_ "serverStatistics.modal.cardsets.edu" label=(getKind "edu")}}}</td>
                 <td>{{getServerInventory "cardsetsEdu"}}</td>
             </tr>
-            {{#if isProLoginActive}}
+        {{/if}}
+        {{#if isProLoginActive}}
+            {{#if gotInventoryData (getServerInventory "cardsetsPro")}}
                 <tr>
                     <td>{{{_ "serverStatistics.modal.cardsets.pro" label=(getKind "pro")}}}</td>
                     <td>{{getServerInventory "cardsetsPro"}}</td>
                 </tr>
             {{/if}}
+        {{/if}}
         </tbody>
     </table>
 </template>

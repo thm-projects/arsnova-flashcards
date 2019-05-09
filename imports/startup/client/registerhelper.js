@@ -636,6 +636,10 @@ Template.registerHelper("getSignal", function () {
 	}
 });
 
+Template.registerHelper("gotInventoryData", function (dataCount) {
+	return dataCount > 0;
+});
+
 Template.registerHelper("getSignalTooltip", function () {
 	switch (Session.get('connectionStatus')) {
 		case (0):
