@@ -529,7 +529,7 @@
     "ratingFilter": "> 1 Stern",
     "ratingFilterPlural": "> __rating__ Sterne",
     "moreResults": "Zeige weitere Einträge",
-    "learnphase": "Bonusphase",
+    "learnphase": "Lern-Bonus",
     "bonusPointsFAQ": "FAQ zu Bonuspunkten",
     "bonusPointsPercentageFAQ": "Prüfungsamt THM",
     "bonusMaxPoints": {
@@ -947,7 +947,7 @@
     "review": "In Überprüfung",
     "private": "Privat",
     "license": " Lizenz",
-    "bonus": "Bonusphase",
+    "bonus": "Lern-Bonus",
     "startLearning": "Bonus-Lernphase aktivieren",
     "stopLearning": "Bonus-Lernphase beenden",
     "poolLicense": "CC-Lizenz für",
@@ -1154,7 +1154,7 @@
     },
     "bonus": {
       "long": "Bonus-Lernphase",
-      "short": "Bonus"
+      "short": "Lern-Bonus"
     },
     "list": {
       "back": " Zurück zur Karte"
