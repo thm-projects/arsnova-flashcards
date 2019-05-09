@@ -24,10 +24,10 @@ Template.selectLearningUnit.helpers({
 				for (let d = 0; d < cardsets[c].transcriptBonus.dates.length; d++) {
 					let transcriptBonus = cardsets[c].transcriptBonus;
 					transcriptBonus.cardset_id = cardsets[c]._id;
+					transcriptBonus.name = cardsets[c].name;
 					if (TranscriptBonusList.canBeSubmittedToLecture(transcriptBonus, d)) {
 						let lecture = {};
-						lecture.name = cardsets[c].name;
-						lecture.info = TranscriptBonusList.getLectureEnd(transcriptBonus, cardsets[c].transcriptBonus.dates[d]);
+						lecture.name = TranscriptBonusList.getLectureName(transcriptBonus);
 						lecture.deadline = TranscriptBonusList.getDeadline(transcriptBonus, cardsets[c].transcriptBonus.dates[d]);
 						lecture.deadlineEditing = TranscriptBonusList.getDeadlineEditing(transcriptBonus, cardsets[c].transcriptBonus.dates[d]);
 						lecture.cardset_id = cardsets[c]._id;
@@ -37,6 +37,7 @@ Template.selectLearningUnit.helpers({
 						lecture.cardType = cardsets[c].cardType;
 						lecture.difficulty = cardsets[c].difficulty;
 						lecture.kind = cardsets[c].kind;
+						lecture.transcriptBonus = cardsets[c].transcriptBonus;
 						lectures.push(lecture);
 					}
 				}

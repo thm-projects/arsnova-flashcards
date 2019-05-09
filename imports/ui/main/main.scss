@@ -74,6 +74,7 @@ $margin-top_infinite_scroll_text: 3px;
 $font_size_infinite_scroll_text: 16px;
 $font_weight_infinite_scroll_text: normal;
 $margin_bottom_item: 10px;
+$transcript_info_padding: 3px;
 
 //markdeep
 $padding_inline_code: 5px;
@@ -844,4 +845,10 @@ blockquote {
 
 .lightbox {
   z-index: 20010;
+}
+
+.transcript-info-text {
+  padding: $transcript_info_padding !important;
+  margin-left: -$transcript_info_padding !important;
+  font-weight: bold;
 }

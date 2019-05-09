@@ -21,7 +21,7 @@
     {{/if}}
     <div class="resultItem col-xs-12">
         <div class="resultItemHeaderWrapper">
-            <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName {{#if isBonusTranscriptsRoute}}resultNameBonusTranscript{{/if}} {{#if isCardsetTranscriptBonusRoute}}col-xs-10 col-sm-4{{else}}col-xs-12 col-sm-6{{/if}} {{getCardsetBackground
+            <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName {{#if isBonusTranscriptsRoute}}{{#unless isMyBonusTranscriptsRouteAndDeadlineExpired}}resultNameBonusTranscript{{/unless}}{{/if}} {{#if isCardsetTranscriptBonusRoute}}col-xs-10 col-sm-4{{else}}col-xs-12 col-sm-6{{/if}} {{getCardsetBackground
                     this.difficulty this.cardType}}"
                  data-type="{{this.subject}}">
                 <a href="/presentation/transcripts/{{#if isBonusTranscriptsRoute}}bonus/{{/if}}{{#if isCardsetTranscriptBonusRoute}}{{getCardsetID}}/{{/if}}{{this._id}}">
@@ -31,11 +31,13 @@
                         {{this.subject}}
                     {{/if}}
                 </a>
-                <span class="hidden-xs">
-                    {{#if isBonusTranscriptsRoute}}
+                {{#if isBonusTranscriptsRoute}}
+                    {{#unless isMyBonusTranscriptsRouteAndDeadlineExpired}}
+                    <span class="hidden-xs transcript-info-text">
                         <br>{{getBonusLectureDeadline}}
-                    {{/if}}
-                </span>
+                    </span>
+                    {{/unless}}
+                {{/if}}
             </div>
             {{#if isCardsetTranscriptBonusRoute}}
                 <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName col-xs-2 col-sm-2 {{getCardsetBackground
