@@ -58,10 +58,11 @@ export let CardVisuals = class CardVisuals {
 
 
 	static setDefaultViewingMode () {
-		if (config.enabled3DModeByDefault.includes(this.routeGot3DModeSupport()) && this.got3DMode() && NavigatorCheck.gotFeatureSupport(4)) {
+		if (config.enabled3DModeByDefault.includes(this.routeGot3DModeSupport()) && this.got3DMode() && NavigatorCheck.gotFeatureSupport(4) && !Session.get('forcedAspectRatio')) {
 			Session.set('is3DActive', 1);
 		} else {
 			Session.set('is3DActive', 0);
+			Session.set('forcedAspectRatio', 0);
 		}
 	}
 

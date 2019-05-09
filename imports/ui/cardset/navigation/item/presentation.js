@@ -16,6 +16,7 @@ Template.cardsetNavigationPresentation.events({
 		Router.go('presentation', {_id: this._id});
 	},
 	"click .aspect-ratio-dropdown-button": function (evt) {
+		Session.set('forcedAspectRatio', 1);
 		Session.set('aspectRatioMode', $(evt.currentTarget).attr("data-id"));
 		Router.go('presentation', {_id: Router.current().params._id});
 	}

@@ -24,10 +24,12 @@ Template.selectLearningUnit.helpers({
 				for (let d = 0; d < cardsets[c].transcriptBonus.dates.length; d++) {
 					let transcriptBonus = cardsets[c].transcriptBonus;
 					transcriptBonus.cardset_id = cardsets[c]._id;
+					transcriptBonus.name = cardsets[c].name;
 					if (TranscriptBonusList.canBeSubmittedToLecture(transcriptBonus, d)) {
 						let lecture = {};
-						lecture.name = cardsets[c].name;
-						lecture.info = TranscriptBonusList.getLectureInfo(cardsets[c].transcriptBonus, d);
+						lecture.name = TranscriptBonusList.getLectureName(transcriptBonus);
+						lecture.deadline = TranscriptBonusList.getDeadline(transcriptBonus, cardsets[c].transcriptBonus.dates[d]);
+						lecture.deadlineEditing = TranscriptBonusList.getDeadlineEditing(transcriptBonus, cardsets[c].transcriptBonus.dates[d]);
 						lecture.cardset_id = cardsets[c]._id;
 						lecture.date_id = d;
 						lecture.shuffled = cardsets[c].shuffled;
@@ -35,6 +37,7 @@ Template.selectLearningUnit.helpers({
 						lecture.cardType = cardsets[c].cardType;
 						lecture.difficulty = cardsets[c].difficulty;
 						lecture.kind = cardsets[c].kind;
+						lecture.transcriptBonus = cardsets[c].transcriptBonus;
 						lectures.push(lecture);
 					}
 				}
@@ -59,7 +62,7 @@ Template.selectLearningUnit.helpers({
 			let cardset = Cardsets.findOne({_id: Session.get('transcriptBonus').cardset_id}, {fields: {_id: 1, name: 1}});
 			let transcriptBonus = Session.get('transcriptBonus');
 			transcriptBonus.name = cardset.name;
-			return TranscriptBonusList.getLectureName(transcriptBonus, false, false);
+			return TranscriptBonusList.getLectureName(transcriptBonus, true);
 		} else {
 			return TAPi18n.__('transcriptForm.placeholder');
 		}
@@ -112,7 +115,7 @@ Template.selectLearningUnit.onCreated(function () {
 
 Template.selectLearningUnit.onRendered(function () {
 	if (Session.get('transcriptBonus') !== undefined) {
-		$('#setTranscriptBonusLecture').html(TranscriptBonusList.getLectureName(Session.get('transcriptBonus').name, Session.get('transcriptBonus'), Session.get('transcriptBonus').date, false));
+		$('#setTranscriptBonusLecture').html(TranscriptBonusList.getLectureName(Session.get('transcriptBonus'), true));
 	}
 	if (Route.isNewTranscript()) {
 		$('#showSelectLearningUnitModal').modal('show');
@@ -122,7 +125,7 @@ Template.selectLearningUnit.onRendered(function () {
 			let cardset = Cardsets.findOne({_id: Session.get('transcriptBonus').cardset_id}, {fields: {_id: 1, name: 1}});
 			let transcriptBonus = Session.get('transcriptBonus');
 			transcriptBonus.name = cardset.name;
-			$('#setTranscriptBonusLecture').html(TranscriptBonusList.getLectureName(transcriptBonus, false, false));
+			$('#setTranscriptBonusLecture').html(TranscriptBonusList.getLectureName(transcriptBonus, true));
 		} else {
 			$('#setTranscriptBonusLecture').html(TAPi18n.__('transcriptForm.placeholder'));
 		}

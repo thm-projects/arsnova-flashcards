@@ -21,7 +21,7 @@
     {{/if}}
     <div class="resultItem col-xs-12">
         <div class="resultItemHeaderWrapper">
-            <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName {{#if isCardsetTranscriptBonusRoute}}col-xs-4 col-sm-4{{else}}col-xs-6 col-sm-6{{/if}} {{getCardsetBackground
+            <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName {{#if isBonusTranscriptsRoute}}{{#unless isMyBonusTranscriptsRouteAndDeadlineExpired}}resultNameBonusTranscript{{/unless}}{{/if}} {{#if isCardsetTranscriptBonusRoute}}col-xs-10 col-sm-4{{else}}col-xs-12 col-sm-6{{/if}} {{getCardsetBackground
                     this.difficulty this.cardType}}"
                  data-type="{{this.subject}}">
                 <a href="/presentation/transcripts/{{#if isBonusTranscriptsRoute}}bonus/{{/if}}{{#if isCardsetTranscriptBonusRoute}}{{getCardsetID}}/{{/if}}{{this._id}}">
@@ -31,6 +31,13 @@
                         {{this.subject}}
                     {{/if}}
                 </a>
+                {{#if isBonusTranscriptsRoute}}
+                    {{#unless isMyBonusTranscriptsRouteAndDeadlineExpired}}
+                    <span class="hidden-xs transcript-info-text">
+                        <br>{{getBonusLectureDeadline}}
+                    </span>
+                    {{/unless}}
+                {{/if}}
             </div>
             {{#if isCardsetTranscriptBonusRoute}}
                 <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName col-xs-2 col-sm-2 {{getCardsetBackground
@@ -38,7 +45,7 @@
                     {{getAuthorName this.owner}}
                 </div>
             {{/if}}
-            <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName col-xs-6 col-sm-3 {{getCardsetBackground
+            <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName hidden-xs col-sm-3 {{getCardsetBackground
                     this.difficulty this.cardType}}">
                 {{getMomentsDateShort  this.date}}<span class="resultDateRight">{{getMomentsDateShort
                     this.dateUpdated}}</span>
@@ -49,11 +56,13 @@
                 </div>
                 <div class="resultItemHeaderRightAreaBottom col-xs-3 col-sm-12">
                     {{#unless isCardsetTranscriptBonusRoute}}
-                        <a class="resultNavigationElement editCard hidden-xs" {{disableIfOffline}}
-                           title='{{_ "transcriptForm.index.tooltip.edit"}}' data-id="{{this._id}}">
-                            <i class="glyphicon glyphicon-edit" data-id="{{this._id}}"></i>
-                        </a>
-                        <a class="resultNavigationElement deleteCard hidden-xs" {{disableIfOffline}}
+                        {{#unless isMyBonusTranscriptsRouteAndDeadlineExpired}}
+                            <a class="resultNavigationElement editCard hidden-xs" {{disableIfOffline}}
+                               title='{{_ "transcriptForm.index.tooltip.edit"}}' data-id="{{this._id}}">
+                                <i class="glyphicon glyphicon-edit" data-id="{{this._id}}"></i>
+                            </a>
+                        {{/unless}}
+                        <a class="resultNavigationElement deleteCard" {{disableIfOffline}}
                            title='{{_ "transcriptForm.index.tooltip.delete"}}'  data-toggle="modal" data-target="#deleteTranscriptModal" data-id="{{this._id}}">
                             <i class="result fa fa-trash" data-id="{{this._id}}"></i>
                         </a>

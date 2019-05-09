@@ -12,7 +12,7 @@ import "./subject.html";
 Template.subjectEditor.helpers({
 	getSubject: function () {
 		if (CardType.gotLearningUnit(Session.get('cardType')) && Session.get('transcriptBonus') !== undefined  && !Session.get('isPrivateTranscript')) {
-			return TranscriptBonusList.getLectureName(Session.get('transcriptBonus'), false);
+			return TranscriptBonusList.getLectureName(Session.get('transcriptBonus'));
 		} else {
 			return Session.get('subject');
 		}
