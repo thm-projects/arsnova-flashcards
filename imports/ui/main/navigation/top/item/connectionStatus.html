@@ -1,8 +1,5 @@
 <template name="mainNavigationTopItemConnectionStatus">
-    <li class="{{getVisibility}}">
-        <a class="connectionStatus {{#if isModalOpen}}active{{/if}}" href="#" data-toggle="modal"
-           data-target="#connectionStatusModal" aria-label="{{_ "footer.connection"}}">
-            <i class="glyphicon glyphicon-transfer {{getSignal}}"></i>
-        </a>
+    <li class="{{getVisibility}} connection-status">
+        <i class="fa fa-circle {{getSignal}}"></i>
     </li>
 </template>
