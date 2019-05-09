@@ -62,7 +62,7 @@ export let CardVisuals = class CardVisuals {
 			Session.set('is3DActive', 1);
 		} else {
 			Session.set('is3DActive', 0);
-			Session.set('forcedAspectRatio', 0)
+			Session.set('forcedAspectRatio', 0);
 		}
 	}
 
