@@ -1,29 +1,41 @@
 <template name="impressumModalStatisticsItemWordcloud">
     <table class="table">
         <thead>
-            <tr class="active">
-                <th scope="col" class="col-xs-9 col-sm11">
-                    <span class="hidden-xs">{{_ "serverStatistics.modal.table.header.wordcloud.default"}}</span>
-                    <span class="visible-xs">{{_ "serverStatistics.modal.table.header.wordcloud.mobile"}}</span>
-                </th>
-                <th scope="col" class="col-xs-3 col-sm-1">{{getServerInventory "wordcloud"}}</th>
-            </tr>
+        <tr class="active">
+            <th scope="col" class="col-xs-9 col-sm11">
+                <span class="hidden-xs">{{_ "serverStatistics.modal.table.header.wordcloud.default"}}</span>
+                <span class="visible-xs">{{_ "serverStatistics.modal.table.header.wordcloud.mobile"}}</span>
+            </th>
+            <th scope="col" class="col-xs-3 col-sm-1">{{getServerInventory "wordcloud"}}</th>
+        </tr>
         </thead>
         <tbody>
+        {{#if gotInventoryData (getServerInventory "wordcloudPrivate")}}
+            <tr>
+                <td>{{{_ "serverStatistics.modal.wordcloud.private" label=(getKind "personal")}}}</td>
+                <td>{{getServerInventory "wordcloudPrivate"}}</td>
+            </tr>
+        {{/if}}
+        {{#if gotInventoryData (getServerInventory "wordcloudFree")}}
             <tr>
                 <td>{{{_ "serverStatistics.modal.wordcloud.free" label=(getKind "free")}}}</td>
                 <td>{{getServerInventory "wordcloudFree"}}</td>
             </tr>
+        {{/if}}
+        {{#if gotInventoryData (getServerInventory "wordcloudEdu")}}
             <tr>
                 <td>{{{_ "serverStatistics.modal.wordcloud.edu" label=(getKind "edu")}}}</td>
                 <td>{{getServerInventory "wordcloudEdu"}}</td>
             </tr>
-            {{#if isProLoginActive}}
+        {{/if}}
+        {{#if isProLoginActive}}
+            {{#if gotInventoryData (getServerInventory "wordcloudPro")}}
                 <tr>
                     <td>{{{_ "serverStatistics.modal.wordcloud.pro" label=(getKind "pro")}}}</td>
                     <td>{{getServerInventory "wordcloudPro"}}</td>
                 </tr>
             {{/if}}
+        {{/if}}
         </tbody>
     </table>
 </template>
