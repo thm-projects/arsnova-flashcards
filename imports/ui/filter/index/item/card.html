@@ -44,16 +44,16 @@
                     this.dateUpdated}}</span>
             </div>
             <div class="resultItemHeader resultItemHeaderRightArea collapseButton col-xs-12 col-sm-3">
-                <div class="resultItemHeaderRightAreaTop col-xs-6 col-sm-12">
+                <div class="resultItemHeaderRightAreaTop col-xs-9 col-sm-12">
                     {{{getCardTypeLabel this.cardType}}}
                 </div>
-                <div class="resultItemHeaderRightAreaBottom col-xs-6 col-sm-12">
+                <div class="resultItemHeaderRightAreaBottom col-xs-3 col-sm-12">
                     {{#unless isCardsetTranscriptBonusRoute}}
                         <a class="resultNavigationElement editCard hidden-xs" {{disableIfOffline}}
                            title='{{_ "transcriptForm.index.tooltip.edit"}}' data-id="{{this._id}}">
                             <i class="glyphicon glyphicon-edit" data-id="{{this._id}}"></i>
                         </a>
-                        <a class="resultNavigationElement deleteCard" {{disableIfOffline}}
+                        <a class="resultNavigationElement deleteCard hidden-xs" {{disableIfOffline}}
                            title='{{_ "transcriptForm.index.tooltip.delete"}}'  data-toggle="modal" data-target="#deleteTranscriptModal" data-id="{{this._id}}">
                             <i class="result fa fa-trash" data-id="{{this._id}}"></i>
                         </a>

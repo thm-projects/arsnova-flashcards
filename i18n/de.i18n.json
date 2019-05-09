@@ -1156,6 +1156,10 @@
       "long": "Bonus-Lernphase",
       "short": "Lern-Bonus"
     },
+    "transcriptBonus": {
+      "long": "Mitschreib-Bonus",
+      "short": "Mitschreib-Bonus"
+    },
     "list": {
       "back": " Zurück zur Karte"
     }

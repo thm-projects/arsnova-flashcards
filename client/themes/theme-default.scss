@@ -102,6 +102,8 @@
           "shuffled_text": white,
           "bonus_background": $thm_red,
           "bonus_text": $white,
+          "bonus_transcript_background": $thm_orange,
+          "bonus_transcript_text": $white,
           "card_type_background": darkviolet,
           "card_type_text": white,
           "button_background_hover": $button_background_hover,
@@ -291,9 +293,9 @@
           "navbar_logout_text": white !important,
           "navbar_logout_text_hover": white,
 
-          "navbar_websocket_connected": white,
-          "navbar_websocket_connecting": $thm_orange,
-          "navbar_websocket_disconnected": $thm_red,
+          "navbar_websocket_connected": green,
+          "navbar_websocket_connecting": yellow,
+          "navbar_websocket_disconnected": red,
           "navbar_websocket_background_active": black,
           "navbar_websocket_background_hover": $button_background_hover,
     //welcome page colors
