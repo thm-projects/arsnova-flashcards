@@ -120,12 +120,13 @@
                 </div>
             {{/if}}
             <div class="resultItemHeader resultItemHeaderRightArea collapseButton col-xs-12 col-sm-3">
-                <div class="resultItemHeaderRightAreaTop col-xs-6 col-sm-12">
+                <div class="resultItemHeaderRightAreaTop col-xs-9 col-sm-12">
                     {{{getKind this.kind 0}}}
                     {{{getShuffleLabel this.shuffled}}}
                     {{{getBonusLabel this.learningActive}}}
+                    {{{getTranscriptBonusLabel this}}}
                 </div>
-                <div class="resultItemHeaderRightAreaBottom col-xs-6 col-sm-12">
+                <div class="resultItemHeaderRightAreaBottom col-xs-3 col-sm-12">
                     {{#unless isSelectingCardsetToLearn}}
                         {{#if gotBonus this.learningActive}}
                             {{#if isCardsetOwner this._id}}
@@ -172,7 +173,7 @@
                                 </a>
                                 {{#if isNotPublicItemView}}
                                     {{#if isAdmin}}
-                                        <a class="resultNavigationElement editAdminCardset"
+                                        <a class="resultNavigationElement editAdminCardset hidden-xs"
                                            title='{{_ "cardset.tooltip.editAdminSettings"}}' data-id="{{this._id}}"
                                            data-toggle="modal"
                                            data-target="#setCardsetFormAdminModal">
@@ -186,7 +187,7 @@
                                         <i class="glyphicon glyphicon-plus editShuffle" data-id="{{this._id}}"></i>
                                     </a>
                                 {{/if}}
-                                <a class="resultNavigationElement deleteCardset" {{disableIfOffline}}
+                                <a class="resultNavigationElement deleteCardset hidden-xs" {{disableIfOffline}}
                                    title='{{_ "courseIteration.confirm-form-delete.title"}}' data-toggle="modal"
                                    data-target="#confirmDeleteCardsetModal"
                                    data-id="{{this._id}}">
