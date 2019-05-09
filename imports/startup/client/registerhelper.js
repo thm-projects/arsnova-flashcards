@@ -636,6 +636,17 @@ Template.registerHelper("getSignal", function () {
 	}
 });
 
+Template.registerHelper("getSignalTooltip", function () {
+	switch (Session.get('connectionStatus')) {
+		case (0):
+			return TAPi18n.__('connection.disconnected');
+		case (1):
+			return TAPi18n.__('connection.connected');
+		case (2):
+			return TAPi18n.__('connection.connecting');
+	}
+});
+
 Template.registerHelper("isShuffledCardset", function (cardset_id) {
 	if (cardset_id !== undefined) {
 		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {shuffled: 1}});
