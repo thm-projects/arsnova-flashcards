@@ -126,7 +126,7 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 2,
 			"defaultStyle": "default",
-			"defaultTextAlign": "center",
+			"defaultTextAlign": "left",
 			"isAnswer": true,
 			"isAnswerFocus": true
 		},
