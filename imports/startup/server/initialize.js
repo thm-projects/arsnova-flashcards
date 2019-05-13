@@ -814,6 +814,9 @@ Meteor.startup(function () {
 				}
 			);
 		}
+		if (cardsets[i].transcriptBonus.stats === undefined) {
+			Meteor.call('updateTranscriptBonusStats', cardsets[i]._id);
+		}
 	}
 
 	let transcriptBonus = TranscriptBonus.find({deadlineEditing: {$exists: false}}, {fields: {_id: 1, deadline: 1}}).fetch();

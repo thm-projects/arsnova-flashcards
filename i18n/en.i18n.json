@@ -648,6 +648,9 @@
   "transcriptForm": {
     "info": {
       "title":  "About the Bonus Writing Phase",
+      "participants": "Number of participants in the bonus procedure",
+      "submissions": "Number of all submitted transcripts",
+      "median": "Average number of transcripts per participant",
       "tooltip": {
         "lecture": {
           "past": "Der Termin für die Abgabe ist bereits abgelaufen.",

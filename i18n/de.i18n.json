@@ -645,6 +645,9 @@
   "transcriptForm": {
     "info": {
       "title":  "Über die Bonusschreibphase",
+      "participants": "Anzahl der Teilnehmer am Bonusverfahren",
+      "submissions": "Anzahl aller eingereichten Mitschriften",
+      "median": "Durchschnittliche Anzahl der Mitschriften pro Teilnehmer",
       "tooltip": {
         "lecture": {
           "past": "Der Termin für die Abgabe ist bereits abgelaufen.",
