@@ -1620,11 +1620,16 @@ $themes: (
     }
 
     #collapseLearningPhaseInfoButton, #collapseManageButton {
-      background-color: $bonus_background ;
+      background-color: $bonus_background;
       color: $bonus_text;
     }
 
-    #collapseLearningPhaseInfoButton:hover i, #collapseLearningPhaseInfoButton:focus i, #collapseManageButton:hover i, #collapseManageButton:focus i, #collapseCardsetInfoButton:hover i, #collapseCardsetInfoButton:focus i  {
+    #collapseBonusTranscriptInfoButton {
+      background-color: $transcript_bonus_info_background;
+      color: $transcript_bonus_info_text;
+    }
+
+    #collapseLearningPhaseInfoButton:hover i, #collapseLearningPhaseInfoButton:focus i, #collapseManageButton:hover i, #collapseManageButton:focus i, #collapseCardsetInfoButton:hover i, #collapseCardsetInfoButton:focus i, #collapseBonusTranscriptInfoButton:hover i, #collapseBonusTranscriptInfoButton:focus i  {
       color: $item_icon_hover !important;
     }
 

@@ -310,13 +310,7 @@ $padding-card-list-row: 8px;
   font-size: 18px;
 }
 
-#collapseCardsetInfoButton {
-  float: none;
-  z-index: 50;
-  cursor: pointer;
-}
-
-#collapseLearningPhaseInfoButton {
+#collapseCardsetInfoButton, #collapseLearningPhaseInfoButton, #collapseBonusTranscriptInfoButton {
   float: none;
   z-index: 50;
   cursor: pointer;

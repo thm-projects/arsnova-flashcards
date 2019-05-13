@@ -1090,6 +1090,9 @@
   },
   "cardset": {
     "info": {
+      "title": {
+        "transcriptBonus": "Über die Bonusschreibphase"
+      },
       "author": "Autor/in",
       "multipleAuthors": "Mehrere",
       "publisher": "Editor/in",

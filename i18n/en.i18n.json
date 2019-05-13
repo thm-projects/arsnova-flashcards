@@ -1092,6 +1092,9 @@
   },
   "cardset": {
     "info": {
+      "title": {
+        "transcriptBonus": "About the Bonus Writing Phase"
+      },
       "author": "Autor/in",
       "multipleAuthors": "Mehrere",
       "publisher": "Editor/in",
