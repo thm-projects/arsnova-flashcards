@@ -37,12 +37,22 @@ export let Utilities = class Utilities {
 		}
 	}
 
-	static getMomentsDate (date, displayMinutes = false, displayAsDeadline = false) {
+	static getMomentsDate (date, displayMinutes = false, displayAsDeadline = false, transformToSpeech = true) {
 		let minutes = "";
 		let dateFormat = "D. MMMM YYYY";
 		if (displayMinutes === true) {
 			dateFormat = "D. MMM YY " + minutes;
 			minutes = "H:mm";
+		}
+		if (!transformToSpeech) {
+			return moment(date).locale(Session.get('activeLanguage')).calendar(null, {
+				sameDay: dateFormat,
+				lastDay: dateFormat,
+				nextDay: dateFormat,
+				nextWeek: dateFormat,
+				lastWeek: dateFormat,
+				sameElse: dateFormat
+			});
 		}
 		if (displayAsDeadline) {
 			return moment(date).locale(Session.get('activeLanguage')).calendar(null, {

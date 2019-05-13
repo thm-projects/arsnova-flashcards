@@ -591,6 +591,11 @@
     //transcript bonus colors
           "transcript_bonus_info_text": white,
           "transcript_bonus_info_background": $thm_red,
+          "transcript_bonus_info_lecture_date_past": $thm_red,
+          "transcript_bonus_info_lecture_date_active": $thm_green,
+          "transcript_bonus_info_lecture_date_future": $thm_gray,
+          "transcript_bonus_info_lecture_date_hover_text": black,
+          "transcript_bonus_info_lecture_date_hover_background": LightGoldenRodYellow,
     //markdeep editor colors
           "markdeep_help_text": $white,
           "markdeep_help_background": $thm_orange,

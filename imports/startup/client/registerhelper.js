@@ -673,8 +673,8 @@ Template.registerHelper("getDate", function () {
 	return moment(date).locale(Session.get('activeLanguage')).format('LL');
 });
 
-Template.registerHelper("getMomentsDate", function (date, displayMinutes = false) {
-	return Utilities.getMomentsDate(date, displayMinutes);
+Template.registerHelper("getMomentsDate", function (date, displayMinutes = false, displayAsDeadline = false, transformToSpeech = true) {
+	return Utilities.getMomentsDate(date, displayMinutes, displayAsDeadline, transformToSpeech);
 });
 
 Template.registerHelper("getMomentsDateShort", function (date) {

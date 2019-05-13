@@ -578,3 +578,16 @@ th .field-tip {
 #exportCSV .glyphicon {
   margin-top: -6px !important;
 }
+
+.bonusTranscriptInfoLectureDates {
+  text-align: right;
+  .active, .past, .future {
+    display: block;
+    width: 100%;
+    padding-top: 3px;
+    padding-bottom: 3px;
+  }
+  .active:hover, .past:hover, .future:hover {
+    cursor: help;
+  }
+}

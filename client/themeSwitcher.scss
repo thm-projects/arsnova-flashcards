@@ -549,6 +549,11 @@ $themes: (
     //transcript bonus colors
     $transcript_bonus_info_text: map-get($map, "transcript_bonus_info_text");
     $transcript_bonus_info_background: map-get($map, "transcript_bonus_info_background");
+    $transcript_bonus_info_lecture_date_past: map-get($map, "transcript_bonus_info_lecture_date_past");
+    $transcript_bonus_info_lecture_date_active: map-get($map, "transcript_bonus_info_lecture_date_active");
+    $transcript_bonus_info_lecture_date_future: map-get($map, "transcript_bonus_info_lecture_date_future");
+    $transcript_bonus_info_lecture_date_hover_text: map-get($map, "transcript_bonus_info_lecture_date_hover_text");
+    $transcript_bonus_info_lecture_date_hover_background: map-get($map, "transcript_bonus_info_lecture_date_hover_background");
     //markdeep editor colors
     $markdeep_help_text: map-get($map, "markdeep_help_text");
     $markdeep_help_background: map-get($map, "markdeep_help_background");
@@ -3035,6 +3040,22 @@ $themes: (
     .transcript-info-text {
       color: $transcript_bonus_info_text !important;
       background-color: $transcript_bonus_info_background !important;
+    }
+
+    .bonusTranscriptInfoLectureDates {
+      .past {
+        color: $transcript_bonus_info_lecture_date_past !important;
+      }
+      .active {
+        color: $transcript_bonus_info_lecture_date_active !important;
+      }
+      .future {
+        color: $transcript_bonus_info_lecture_date_future !important;
+      }
+      .past:hover, .active:hover, .future:hover {
+        color: $transcript_bonus_info_lecture_date_hover_text !important;
+        background-color: $transcript_bonus_info_lecture_date_hover_background !important;
+      }
     }
     //presentation colors
     .clock {

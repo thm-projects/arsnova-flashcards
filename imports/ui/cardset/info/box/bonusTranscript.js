@@ -3,6 +3,7 @@ import {Template} from "meteor/templating";
 import {CardsetVisuals} from "../../../../api/cardsetVisuals";
 import "./item/bonusPointsFAQ.js";
 import "./item/transcript/editDeadline.js";
+import "./item/transcript/lectureDates.js";
 import "./item/transcript/submissionDeadline.js";
 import "./bonusTranscript.html";
 

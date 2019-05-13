@@ -643,6 +643,16 @@
     }
   },
   "transcriptForm": {
+    "info": {
+      "title":  "Über die Bonusschreibphase",
+      "tooltip": {
+        "lecture": {
+          "past": "Der Termin für die Abgabe ist bereits abgelaufen.",
+          "active": "Der Termin für die Foto-Abgabefrist ist momentan aktiv.",
+          "future": "Der Termin für die Foto-Abgabefrist wurde noch nicht freigeschaltet."
+        }
+      }
+    },
     "index": {
       "create": "Mitschrift anlegen",
       "topic": "Thema der Mitschrift",
@@ -1090,9 +1100,6 @@
   },
   "cardset": {
     "info": {
-      "title": {
-        "transcriptBonus": "Über die Bonusschreibphase"
-      },
       "author": "Autor/in",
       "multipleAuthors": "Mehrere",
       "publisher": "Editor/in",

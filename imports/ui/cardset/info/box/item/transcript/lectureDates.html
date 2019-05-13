@@ -1,0 +1,10 @@
+<template name="cardsetInfoBoxItemTranscriptLectureDates">
+    <tr>
+        <td>{{_ "transcriptForm.bonus.form.lectureDates"}}:</td>
+        <td class="bonusTranscriptInfoLectureDates">
+            {{#each getLectureDates this}}
+                <div class="{{getStatus this 0}}" title="{{getStatus this 1}}">{{getMomentsDate this.date false false false}}</div>
+            {{/each}}
+        </td>
+    </tr>
+</template>
