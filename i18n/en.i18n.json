@@ -704,6 +704,7 @@
         "title": "Bonusvergabe für Mitschriften verwalten",
         "percentage": "Maximale Bonuspunkte",
         "enable": "Bonus aktivieren",
+        "minimum": "Number of transcripts for maximum number of bonus points",
         "lectureTimeEnd": "Vorlesungsende",
         "deadline": {
           "submission": "Zeit für die Foto-Abgabe",

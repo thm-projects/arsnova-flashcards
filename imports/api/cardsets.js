@@ -780,8 +780,9 @@ Meteor.methods({
 	 * @param {Number} deadlineSubmission - Amount of hours that the student got time to submit their transcript
 	 * @param {Number} deadlineEditing - Amount of hours that the student got time to edit their transcript
 	 * @param {Date} newDates - Dates at which the individual lectures take place
+	 * @param {Number} minimumSubmissions - The minimum amount of submissions that are required to reach max points
 	 */
-	updateCardsetTranscriptBonus: function (id, isEnabled, percentage, lectureEnd, deadlineSubmission, deadlineEditing, newDates) {
+	updateCardsetTranscriptBonus: function (id, isEnabled, percentage, lectureEnd, deadlineSubmission, deadlineEditing, newDates, minimumSubmissions) {
 		check(id, String);
 		check(isEnabled, Boolean);
 		check(percentage, Number);
@@ -789,6 +790,7 @@ Meteor.methods({
 		check(deadlineSubmission, Number);
 		check(deadlineEditing, Number);
 		check(newDates, [Date]);
+		check(minimumSubmissions, Number);
 		let cardset = Cardsets.findOne(id);
 		if (cardset !== undefined && (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner))) {
 			Cardsets.update(id, {
@@ -798,7 +800,8 @@ Meteor.methods({
 					'transcriptBonus.lectureEnd': lectureEnd,
 					'transcriptBonus.dates': newDates,
 					'transcriptBonus.deadline': deadlineSubmission,
-					'transcriptBonus.deadlineEditing': deadlineEditing
+					'transcriptBonus.deadlineEditing': deadlineEditing,
+					'transcriptBonus.minimumSubmissions': minimumSubmissions
 				}
 			});
 			return cardset._id;

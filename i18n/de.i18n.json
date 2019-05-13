@@ -702,6 +702,7 @@
         "title": "Bonusvergabe konfigurieren",
         "percentage": "Maximale Bonuspunkte",
         "enable": "Bonus aktivieren",
+        "minimum": "Anzahl der Mitschriften für die maximale Anzahl von Bonuspunkten",
         "lectureTimeEnd": "Freischaltung der Mitschriftenkopplung",
         "deadline": {
           "submission": "Zeit für die Foto-Abgabe",

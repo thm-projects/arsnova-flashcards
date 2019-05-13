@@ -10,6 +10,7 @@ import "./item/transcript/lectureEnd.js";
 import "./item/transcript/participants.js";
 import "./item/transcript/submissions.js";
 import "./item/transcript/median.js";
+import "./item/transcript/minimumSubmissions.js";
 import "./bonusTranscript.html";
 
 /*
