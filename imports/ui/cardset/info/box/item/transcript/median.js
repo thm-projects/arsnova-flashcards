@@ -13,6 +13,8 @@ Template.cardsetInfoBoxItemTranscriptMedian.helpers({
 	getMedian: function (cardset) {
 		if (cardset.transcriptBonus !== undefined && cardset.transcriptBonus.stats !== undefined) {
 			return TranscriptBonusList.transformMedian(cardset.transcriptBonus.stats.submissions / cardset.transcriptBonus.stats.participants);
+		} else {
+			return 0;
 		}
 	}
 });

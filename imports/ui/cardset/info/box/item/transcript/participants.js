@@ -12,6 +12,8 @@ Template.cardsetInfoBoxItemTranscriptParticipants.helpers({
 	getParticipants: function (cardset) {
 		if (cardset.transcriptBonus !== undefined && cardset.transcriptBonus.stats !== undefined) {
 			return cardset.transcriptBonus.stats.participants;
+		} else {
+			return 0;
 		}
 	}
 });

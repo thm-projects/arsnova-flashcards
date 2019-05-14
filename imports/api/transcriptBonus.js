@@ -186,6 +186,9 @@ export let TranscriptBonusList = class TranscriptBonusList {
 	}
 
 	static transformMedian (median) {
+		if (isNaN(median)) {
+			return 0;
+		}
 		if (config.roundTheMedian) {
 			return Math.round(median);
 		} else {
