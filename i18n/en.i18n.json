@@ -712,7 +712,8 @@
         },
         "lectureDates": "Termine der Veranstaltungen",
         "clock": "Uhr",
-        "hours": "Stunden",
+        "hours": "Stunde",
+        "hours_plural": "Stunden",
         "button": {
           "save": "Speichern",
           "cancel": "Zurück zur Kartei",
