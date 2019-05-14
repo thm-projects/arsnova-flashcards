@@ -106,10 +106,10 @@
                 <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs hidden-sm hidden-md col-sm-3 collapseButton {{getCardsetBackground
                         this.difficulty this.cardType}}"
                      data-date="{{this.date}}" data-dateUpdated="{{this.dateUpdated}}">
-                    {{#if isActiveRoute regex="alldecks"}}{{getMomentsDate  this.date true}}{{else}}{{getMomentsDate
+                    {{#if isActiveRoute regex="alldecks"}}{{getMomentsDate  this.date true false true}}{{else}}{{getMomentsDate
                             this.date}}{{/if}}<span
                         class="resultDateRight">{{#if isActiveRoute regex="alldecks"}}{{getMomentsDate  this.dateUpdated
-                                                                                                        true}}{{else}}{{getMomentsDate
+                                                                                                        true false true}}{{else}}{{getMomentsDate
                         this.dateUpdated}}{{/if}}</span>
                 </div>
                 <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs hidden-lg col-sm-3 collapseButton {{getCardsetBackground
