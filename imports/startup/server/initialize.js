@@ -984,7 +984,6 @@ Meteor.startup(function () {
 		);
 	}
 	Cardsets.remove({cardType: 2});
-
 	Meteor.users.remove(demoCardsetUser[0]._id);
 	Meteor.users.insert(demoCardsetUser[0]);
 	Meteor.call('deleteDemoCardsets');

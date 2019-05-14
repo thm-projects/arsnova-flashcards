@@ -9,6 +9,8 @@ import {WebPushSubscriptions} from "./webPushSubscriptions";
 import {Paid} from "./paid";
 import {ServerStyle} from "./styles";
 import {TranscriptBonus} from "./transcriptBonus";
+import {Utilities} from "./utilities";
+import {CardType} from "./cardTypes";
 
 /**
  * Returns the degree, the givenname and the birthname from the author of a cardset
@@ -495,7 +497,22 @@ Meteor.methods({
 		Paid.remove({
 			user_id: user_id
 		});
-
+		Cards.remove({
+			user_id: user_id,
+			cardType: {$in: CardType.getCardTypesWithTranscriptBonus()}
+		});
+		let transcriptBonus = TranscriptBonus.find({user_id: user_id}, {fields: {cardset_id: 1}}).fetch();
+		if (transcriptBonus !== undefined) {
+			TranscriptBonus.remove({
+				user_id: user_id
+			});
+			let cardsetsValues = Utilities.getUniqData(transcriptBonus, 'cardset_id');
+			for (let i = 0; cardsetsValues.length; i++) {
+				if (cardsetsValues[i] !== undefined) {
+					Meteor.call('updateTranscriptBonusStats', cardsetsValues[i]);
+				}
+			}
+		}
 		Meteor.users.remove(user_id);
 	},
 	removeFirstLogin: function () {

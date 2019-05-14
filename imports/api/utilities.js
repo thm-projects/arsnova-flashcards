@@ -89,4 +89,11 @@ export let Utilities = class Utilities {
 			sameElse: 'D.MMM YY'
 		});
 	}
+
+	static getUniqData (data, key) {
+		let distinctArray = _.uniq(data, false, function (item) {
+			return item[key];
+		});
+		return _.pluck(distinctArray, key);
+	}
 };
