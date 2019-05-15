@@ -41,11 +41,12 @@ Template.cardsetTranscript.events({
 		let deadlineEditing = $('#deadlineHoursEditing').val();
 		let deadlineSubmission = $('#deadlineHoursSubmission').val();
 		let dates = $('#transcript-calendar').multiDatesPicker('getDates');
+		let minimumSubmissions = $('#bonusMinimumSubmissions').val();
 		let newDates = [];
 		for (let d = 0; d < dates.length; d++) {
 			newDates.push(moment(dates[d], "MM/DD/YYYY").toDate());
 		}
-		Meteor.call('updateCardsetTranscriptBonus', Router.current().params._id, Boolean(isEnabled), Number(percentage), lectureEnd, Number(deadlineSubmission), Number(deadlineEditing), newDates, function (error, result) {
+		Meteor.call('updateCardsetTranscriptBonus', Router.current().params._id, Boolean(isEnabled), Number(percentage), lectureEnd, Number(deadlineSubmission), Number(deadlineEditing), newDates, Number(minimumSubmissions), function (error, result) {
 			if (result) {
 				BertAlertVisuals.displayBertAlert(TAPi18n.__('transcriptForm.bonus.form.alert.save'), "success", 'growl-top-left');
 			}
@@ -67,6 +68,7 @@ Template.cardsetTranscriptEditor.onRendered(function () {
 		$('#lectureTimeEnd').val(this.data.transcriptBonus.lectureEnd);
 		$('#deadlineHoursSubmission').val(this.data.transcriptBonus.deadline);
 		$('#deadlineHoursEditing').val(this.data.transcriptBonus.deadlineEditing);
+		$('#bonusMinimumSubmissions').val(this.data.transcriptBonus.minimumSubmissions);
 		for (let d = 0; d < this.data.transcriptBonus.dates.length; d++) {
 			dates.push(moment(this.data.transcriptBonus.dates[d]).format("MM/DD/YYYY"));
 		}
@@ -85,6 +87,21 @@ Template.cardsetTranscriptEditor.onRendered(function () {
 			firstDay: 1
 		});
 	}
+	let minimumSubmissions = $('#bonusMinimumSubmissions').val();
+	$('#bonusMinimumSubmissions').attr("max", dates.length);
+	if (minimumSubmissions > dates.length) {
+		$('#bonusMinimumSubmissions').val(dates.length);
+	}
+	$('#transcript-calendar').multiDatesPicker({
+		onSelect: function () {
+			let dates = $('#transcript-calendar').multiDatesPicker('getDates');
+			let minimumSubmissions = $('#bonusMinimumSubmissions').val();
+			$('#bonusMinimumSubmissions').attr("max", dates.length);
+			if (minimumSubmissions > dates.length) {
+				$('#bonusMinimumSubmissions').val(dates.length);
+			}
+		}
+	});
 });
 
 /*

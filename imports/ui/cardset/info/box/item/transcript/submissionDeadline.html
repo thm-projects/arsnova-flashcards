@@ -1,0 +1,6 @@
+<template name="cardsetInfoBoxItemTranscriptSubmissionDeadline">
+    <tr>
+        <td>{{_ "transcriptForm.bonus.form.deadline.submission"}}:</td>
+        <td>{{getSubmissionDeadline this}} {{_ "transcriptForm.bonus.form.hours" count=(getSubmissionDeadline this)}}</td>
+    </tr>
+</template>

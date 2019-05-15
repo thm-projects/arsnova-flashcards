@@ -5,6 +5,7 @@ import {UserPermissions} from "./permissions";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {check} from "meteor/check";
 import {Utilities} from "./utilities";
+import * as config from "../config/transcriptBonus.js";
 
 export const TranscriptBonus = new Mongo.Collection("transcriptBonus");
 
@@ -76,6 +77,28 @@ Meteor.methods({
 						deadline: cardset.transcriptBonus.deadline,
 						deadlineEditing: cardset.transcriptBonus.deadlineEditing,
 						dateCreated: new Date()
+					}
+				});
+			}
+			Meteor.call('updateTranscriptBonusStats', cardset._id);
+		}
+	},
+	updateTranscriptBonusStats: function (cardset_id) {
+		if (Meteor.isServer) {
+			check(cardset_id, String);
+			let cardset = Cardsets.findOne({_id: cardset_id});
+			if (cardset !== undefined && cardset.transcriptBonus !== undefined) {
+				let bonusTranscripts = TranscriptBonus.find({cardset_id: cardset._id}).fetch();
+				let submissions = TranscriptBonus.find({cardset_id: cardset._id}).count();
+				let userFilter = [];
+				for (let i = 0; i < bonusTranscripts.length; i++) {
+					userFilter.push(bonusTranscripts[i].user_id);
+				}
+				let participants = Meteor.users.find({_id: {$in: userFilter}}).count();
+				Cardsets.update({_id: cardset._id}, {
+					$set: {
+						'transcriptBonus.stats.submissions': submissions,
+						'transcriptBonus.stats.participants': participants
 					}
 				});
 			}
@@ -159,6 +182,17 @@ export let TranscriptBonusList = class TranscriptBonusList {
 			let deadlineEditing = this.addLectureEndTime(transcriptBonus, date_id);
 			deadlineEditing.add(transcriptBonus.deadlineEditing, 'hours');
 			return TAPi18n.__('transcriptForm.deadline.editing') + ": " + Utilities.getMomentsDate(deadlineEditing, true, true);
+		}
+	}
+
+	static transformMedian (median) {
+		if (isNaN(median)) {
+			return 0;
+		}
+		if (config.roundTheMedian) {
+			return Math.round(median);
+		} else {
+			return median.toFixed(2);
 		}
 	}
 };

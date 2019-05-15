@@ -37,12 +37,23 @@ export let Utilities = class Utilities {
 		}
 	}
 
-	static getMomentsDate (date, displayMinutes = false, displayAsDeadline = false) {
+	static getMomentsDate (date, displayMinutes = false, displayAsDeadline = false, transformToSpeech = true) {
 		let minutes = "";
 		let dateFormat = "D. MMMM YYYY";
 		if (displayMinutes === true) {
 			dateFormat = "D. MMM YY " + minutes;
 			minutes = "H:mm";
+		}
+		if (!transformToSpeech) {
+			dateFormat = "DD";
+			return moment(date).locale(Session.get('activeLanguage')).calendar(null, {
+				sameDay: dateFormat,
+				lastDay: dateFormat,
+				nextDay: dateFormat,
+				nextWeek: dateFormat,
+				lastWeek: dateFormat,
+				sameElse: dateFormat
+			});
 		}
 		if (displayAsDeadline) {
 			return moment(date).locale(Session.get('activeLanguage')).calendar(null, {
@@ -77,5 +88,12 @@ export let Utilities = class Utilities {
 			lastWeek: 'D.MMM YY',
 			sameElse: 'D.MMM YY'
 		});
+	}
+
+	static getUniqData (data, key) {
+		let distinctArray = _.uniq(data, false, function (item) {
+			return item[key];
+		});
+		return _.pluck(distinctArray, key);
 	}
 };

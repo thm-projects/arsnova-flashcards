@@ -390,7 +390,9 @@ Meteor.methods({
 		let card = Cards.findOne(card_id);
 		if (card.owner === Meteor.userId() || UserPermissions.isAdmin()) {
 			let result = Cards.remove(card_id);
+			let transcriptBonus = TranscriptBonus.findOne({card_id: card_id});
 			TranscriptBonus.remove({card_id: card_id});
+			Meteor.call('updateTranscriptBonusStats', transcriptBonus.cardset_id);
 			Meteor.call('updateTranscriptCount', Meteor.userId());
 			return result;
 		}

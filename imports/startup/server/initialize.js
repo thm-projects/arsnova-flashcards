@@ -366,6 +366,7 @@ function setupDatabaseIndex() {
 	WebPushSubscriptions._ensureIndex({user_id: 1});
 	Ratings._ensureIndex({cardset_id: 1, user_id: 1});
 	Cardsets._ensureIndex({name: 1, owner: 1, kind: 1, shuffled: 1, cardType: 1, difficulty: 1, wordcloud: 1, learningActive: 1});
+	TranscriptBonus._ensureIndex({cardset_id: 1, user_id: 1});
 }
 
 Meteor.startup(function () {
@@ -814,6 +815,20 @@ Meteor.startup(function () {
 				}
 			);
 		}
+		if (cardsets[i].transcriptBonus.minimumSubmissions === undefined) {
+			Cardsets.update({
+					_id: cardsets[i]._id
+				},
+				{
+					$set: {
+						"transcriptBonus.minimumSubmissions": cardsets[i].transcriptBonus.dates.length
+					}
+				}
+			);
+		}
+		if (cardsets[i].transcriptBonus.stats === undefined) {
+			Meteor.call('updateTranscriptBonusStats', cardsets[i]._id);
+		}
 	}
 
 	let transcriptBonus = TranscriptBonus.find({deadlineEditing: {$exists: false}}, {fields: {_id: 1, deadline: 1}}).fetch();
@@ -970,7 +985,6 @@ Meteor.startup(function () {
 		);
 	}
 	Cardsets.remove({cardType: 2});
-
 	Meteor.users.remove(demoCardsetUser[0]._id);
 	Meteor.users.insert(demoCardsetUser[0]);
 	Meteor.call('deleteDemoCardsets');

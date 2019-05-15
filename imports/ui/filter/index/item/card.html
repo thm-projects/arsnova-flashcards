@@ -37,6 +37,9 @@
                         <br>{{getBonusLectureDeadline}}
                     </span>
                     {{/unless}}
+                    <span class="hidden-sm">
+                        {{> transcriptFormSubmissionBadge}}
+                    </span>
                 {{/if}}
             </div>
             {{#if isCardsetTranscriptBonusRoute}}
