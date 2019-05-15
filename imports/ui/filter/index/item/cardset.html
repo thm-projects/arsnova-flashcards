@@ -281,6 +281,15 @@
             {{this.quantity}}
         </span>
     {{/unless}}
+    {{#if gotTranscriptBonus this._id}}
+        {{> transcriptFormSubmissionBadge}}
+    {{/if}}
+</template>
+
+<template name="transcriptFormSubmissionBadge">
+    <span class="badge resultBadge cardsetBadge cardset-list-badge-transcript" data-id="{{this._id}}" title="{{_ "transcriptForm.info.submissions"}}">
+        {{getTranscriptSubmissions this}}
+    </span>
 </template>
 
 <template name="noFilterResults">

@@ -28,6 +28,7 @@ import  * as FilterConfig from "../../config/filter.js";
 import {MainNavigation} from "../../api/mainNavigation";
 import {BarfyStarsConfig} from "../../api/barfyStars.js";
 import {Utilities} from "../../api/utilities";
+import {TranscriptBonus} from "../../api/transcriptBonus";
 
 Meteor.subscribe("collegesCourses");
 
@@ -681,6 +682,17 @@ Template.registerHelper("getMomentsDateShort", function (date) {
 	return Utilities.getMomentsDateShort(date);
 });
 
+Template.registerHelper("getTranscriptSubmissions", function (cardset) {
+	if (Route.isMyBonusTranscripts() || Route.isTranscriptBonus()) {
+		let transcriptBonus = TranscriptBonus.findOne({card_id: cardset._id}, {fields: {cardset_id: 1}});
+		cardset = Cardsets.findOne({_id: transcriptBonus.cardset_id});
+	}
+	if (cardset.transcriptBonus !== undefined && cardset.transcriptBonus.stats !== undefined) {
+		return cardset.transcriptBonus.stats.submissions;
+	} else {
+		return 0;
+	}
+});
 
 // Returns the locale date
 Template.registerHelper("getDateUpdated", function () {

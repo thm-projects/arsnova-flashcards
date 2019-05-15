@@ -6,6 +6,11 @@
               </span>
         {{/unless}}
     {{/unless}}
+    {{#if gotTranscriptBonus this._id}}
+        <span class="badge cardset-list-badge-transcript" title="{{_ "transcriptForm.info.submissions"}}">
+            {{getTranscriptSubmissions this}}
+        </span>
+    {{/if}}
     {{{getKind this.kind 0}}}
     {{{getShuffleLabel this.shuffled}}}
     {{{getBonusLabel this.learningActive}}}

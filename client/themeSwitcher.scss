@@ -562,6 +562,8 @@ $themes: (
     $transcript_bonus_info_lecture_date_day_future_background: map-get($map, "transcript_bonus_info_lecture_date_day_future_background");
     $transcript_bonus_info_lecture_date_day_hover_text: map-get($map, "transcript_bonus_info_lecture_date_day_hover_text");
     $transcript_bonus_info_lecture_date_day_hover_background: map-get($map, "transcript_bonus_info_lecture_date_day_hover_background");
+    $transcript_bonus_submission_count_badge_text: map-get($map, "transcript_bonus_submission_count_badge_text");
+    $transcript_bonus_submission_count_badge_background: map-get($map, "transcript_bonus_submission_count_badge_background");
     //markdeep editor colors
     $markdeep_help_text: map-get($map, "markdeep_help_text");
     $markdeep_help_background: map-get($map, "markdeep_help_background");
@@ -1690,6 +1692,11 @@ $themes: (
 
     .cardset-list-badge {
       color: $primary !important;
+    }
+
+    .cardset-list-badge-transcript {
+      color: $transcript_bonus_submission_count_badge_text !important;
+      background-color: $transcript_bonus_submission_count_badge_background !important;
     }
 
     //navbar
