@@ -310,13 +310,7 @@ $padding-card-list-row: 8px;
   font-size: 18px;
 }
 
-#collapseCardsetInfoButton {
-  float: none;
-  z-index: 50;
-  cursor: pointer;
-}
-
-#collapseLearningPhaseInfoButton {
+#collapseCardsetInfoButton, #collapseLearningPhaseInfoButton, #collapseBonusTranscriptInfoButton {
   float: none;
   z-index: 50;
   cursor: pointer;
@@ -583,4 +577,24 @@ th .field-tip {
 
 #exportCSV .glyphicon {
   margin-top: -6px !important;
+}
+
+.bonusTranscriptInfoLectureDates {
+  .day, .month, .year {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .day {
+    border: 3px solid;
+    text-align: center;
+  }
+  .day:hover {
+    cursor: help;
+  }
+  .month {
+    margin-top: 15px;
+  }
+  .year + .month {
+    margin-top: 5px;
+  }
 }

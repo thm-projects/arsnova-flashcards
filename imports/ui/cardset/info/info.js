@@ -10,6 +10,7 @@ import {MarkdeepContent} from "../../../api/markdeep";
 import "../navigation/navigation.js";
 import "./box/cardset.js";
 import "./box/bonus.js";
+import "./box/bonusTranscript.js";
 import "./info.html";
 import {UserPermissions} from "../../../api/permissions";
 
@@ -54,6 +55,9 @@ Template.cardsetInfo.helpers({
 	},
 	canSeeBonusDropdown: function () {
 		return this.learningActive && UserPermissions.canCreateContent();
+	},
+	canSeeBonusTranscriptDropdown: function () {
+		return this.transcriptBonus !== undefined && this.transcriptBonus.enabled && UserPermissions.canCreateContent();
 	}
 });
 

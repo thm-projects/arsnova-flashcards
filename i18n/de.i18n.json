@@ -643,6 +643,19 @@
     }
   },
   "transcriptForm": {
+    "info": {
+      "title":  "Über die Bonusschreibphase",
+      "participants": "Anzahl der Teilnehmer am Bonusverfahren",
+      "submissions": "Anzahl aller eingereichten Mitschriften",
+      "median": "Durchschnittliche Anzahl der Mitschriften pro Teilnehmer",
+      "tooltip": {
+        "lecture": {
+          "past": "Der Termin für die Foto-Abgabefrist ist bereits abgelaufen.",
+          "active": "Der Termin für die Foto-Abgabefrist ist momentan aktiv.",
+          "future": "Der Termin für die Foto-Abgabefrist wurde noch nicht freigeschaltet."
+        }
+      }
+    },
     "index": {
       "create": "Mitschrift anlegen",
       "topic": "Thema der Mitschrift",
@@ -689,6 +702,7 @@
         "title": "Bonusvergabe konfigurieren",
         "percentage": "Maximale Bonuspunkte",
         "enable": "Bonus aktivieren",
+        "minimum": "Anzahl der Mitschriften für die maximale Anzahl von Bonuspunkten",
         "lectureTimeEnd": "Freischaltung der Mitschriftenkopplung",
         "deadline": {
           "submission": "Zeit für die Foto-Abgabe",
@@ -696,7 +710,8 @@
         },
         "lectureDates": "Termine für das Bonus-Mitschreiben",
         "clock": "Uhr",
-        "hours": "Stunden",
+        "hours": "Stunde",
+        "hours_plural": "Stunden",
         "button": {
           "save": "Speichern",
           "cancel": "Zurück zur Kartei",

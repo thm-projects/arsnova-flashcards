@@ -646,6 +646,19 @@
     }
   },
   "transcriptForm": {
+    "info": {
+      "title":  "About the Bonus Writing Phase",
+      "participants": "Number of participants in the bonus procedure",
+      "submissions": "Number of all submitted transcripts",
+      "median": "Average number of transcripts per participant",
+      "tooltip": {
+        "lecture": {
+          "past": "Der Termin für die Foto-Abgabefrist ist bereits abgelaufen.",
+          "active": "Der Termin für die Foto-Abgabefrist ist momentan aktiv.",
+          "future": "Der Termin für die Foto-Abgabefrist wurde noch nicht freigeschaltet."
+        }
+      }
+    },
     "index": {
       "create": "Mitschrift erstellen",
       "topic": "Thema der Mitschrift",
@@ -691,6 +704,7 @@
         "title": "Bonusvergabe für Mitschriften verwalten",
         "percentage": "Maximale Bonuspunkte",
         "enable": "Bonus aktivieren",
+        "minimum": "Number of transcripts for maximum number of bonus points",
         "lectureTimeEnd": "Vorlesungsende",
         "deadline": {
           "submission": "Zeit für die Foto-Abgabe",
@@ -698,7 +712,8 @@
         },
         "lectureDates": "Termine der Veranstaltungen",
         "clock": "Uhr",
-        "hours": "Stunden",
+        "hours": "Stunde",
+        "hours_plural": "Stunden",
         "button": {
           "save": "Speichern",
           "cancel": "Zurück zur Kartei",
