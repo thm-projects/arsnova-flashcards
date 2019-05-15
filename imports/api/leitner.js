@@ -150,17 +150,17 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		if (!Meteor.isServer && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			if (Meteor.settings.debugServer) {
+			if (Meteor.settings.debugServer && Meteor.isServer) {
 				console.log("===> Set new active cards for " + user._id);
 			}
-			let algorithm = [0.5, 0.2, 0.15, 0.1, 0.05];
+			let algorithm = this.getBoxAlgorithm();
 			let cardCount = [];
-			// i-loop: Get all cards that the user can learn right now
+			//Get all cards that the user can learn right now
 			for (let i = 0; i < algorithm.length; i++) {
 				cardCount[i] = this.getCardCount(cardset._id, user._id, i + 1);
 			}
 
-			if (Meteor.settings.debugServer) {
+			if (Meteor.settings.debugServer && Meteor.isServer) {
 				console.log("===> Box Card Count: [" + cardCount + "]");
 				console.log("===> Maximum active cards: " + cardset.maxCards);
 			}
@@ -169,107 +169,11 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				return;
 			}
 
-			// k-loop: Check the card counter of each Box in reverse and if empty, summate its percentage to the next box with cards
-			for (let k = algorithm.length; k > 0; k--) {
-				if (cardCount[k] === 0 && k - 1 >= 0) {
-					algorithm[k - 1] += algorithm[k];
-					algorithm[k] = 0;
-				}
-			}
+			algorithm = this.adjustBoxAlgorithm(cardCount, algorithm);
 
-			// j-loop: Scale all percentage values of boxes with cards to fill 100%
-			if (cardCount[0] === 0) {
-				for (let j = 0; j < algorithm.length; j++) {
-					if (cardCount[j] !== 0) {
-						algorithm[j] = algorithm[j] * (1 / (1 - algorithm[0]));
-					}
-				}
-				algorithm[0] = 0;
-			}
-			let randomSelectedCards = [];
-			let boxActiveCardCap = [];
-			for (let l = 0; l < algorithm.length; l++) {
-				boxActiveCardCap.push(Math.round(cardset.maxCards * algorithm[l]));
-			}
-			//Make sure that the rounded values don't go over the cap
-			let sum = 0;
-			for (let i = 0; i < boxActiveCardCap.length; i++) {
-				sum += boxActiveCardCap[i];
-			}
-			if (sum > cardset.maxCards) {
-				let removeCardCount = sum - cardset.maxCards;
-				for (let i = 0; i < removeCardCount; i++) {
-					for (let k = boxActiveCardCap.length; k > 0; k--) {
-						if (removeCardCount > 0 && boxActiveCardCap[k] > 0) {
-							if (boxActiveCardCap[k] >= removeCardCount) {
-								boxActiveCardCap[k] -= removeCardCount;
-							} else {
-								removeCardCount -= boxActiveCardCap[k];
-								boxActiveCardCap[k] = 0;
-							}
-						}
-					}
-				}
-			}
-			// Adjust the algorithm values to fill as many slots as possible
-			if (Meteor.settings.debugServer) {
-				console.log("===> Active Card cap for each box before adjustments: [" + boxActiveCardCap + "]");
-			}
-			let missingCardCount = [];
-			for (let i = 0; i < boxActiveCardCap.length; i++) {
-				if (boxActiveCardCap[i] !== 0 && cardCount[i] !== 0) {
-					missingCardCount.push(-(cardCount[i] - boxActiveCardCap[i]));
-				} else {
-					missingCardCount.push(0);
-				}
-			}
-			if (Meteor.settings.debugServer) {
-				console.log("===> Missing Cards: [" + missingCardCount + "]");
-			}
-			let missingCardsSum = 0;
-			for (let i = 0; i < missingCardCount.length; i++) {
-				if (missingCardCount[i] > 0) {
-					boxActiveCardCap[i] -= (missingCardCount[i]);
-					missingCardsSum += missingCardCount[i];
-				}
-			}
-			if (Meteor.settings.debugServer) {
-				console.log("===> Sum of missing cards: " + missingCardsSum);
-			}
-			let fillUpCount = 0;
-			for (let i = 0; i < missingCardCount.length; i++) {
-				if (missingCardsSum > 0 && missingCardCount[i] < 0) {
-					if (missingCardsSum > (-missingCardCount[i])) {
-						fillUpCount = (-missingCardCount[i]);
-					} else {
-						fillUpCount = missingCardsSum;
-					}
-					boxActiveCardCap[i] += fillUpCount;
-					missingCardsSum -= fillUpCount;
-				}
-			}
-			// l-loop: Get all cards from a box that match the leitner criteria
-			for (let l = 0; l < algorithm.length; l++) {
-				let cards = Leitner.find({
-					cardset_id: cardset._id,
-					user_id: user._id,
-					box: (l + 1),
-					active: false,
-					nextDate: {$lte: new Date()}
-				}, {fields: {card_id: 1}}).fetch();
-				// c-loop: update one random card out of the l loop
-				for (let c = 0; c < boxActiveCardCap[l]; c++) {
-					if (cards.length !== 0) {
-						let nextCardIndex = Math.floor(Math.random() * (cards.length));
-						randomSelectedCards.push(cards[nextCardIndex].card_id);
-						cards.splice(nextCardIndex, 1);
-					}
-				}
-			}
-			if (Meteor.settings.debugServer) {
-				console.log("===> Active Card cap for each box after adjustments: [" + boxActiveCardCap + "]");
-				console.log("===> " + randomSelectedCards.length + " new active Cards: [" + randomSelectedCards + "]");
-			}
+			let boxActiveCardCap = this.setActiveCardCap(cardset, algorithm);
+			boxActiveCardCap = this.fillUpMissingCards(boxActiveCardCap, cardCount);
+			let randomSelectedCards = this.selectNextRandomCards(cardset, boxActiveCardCap, algorithm, user);
 			Leitner.update({
 				cardset_id: cardset._id,
 				user_id: user._id,
@@ -283,6 +187,126 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			Meteor.call('prepareMail', cardset, user, isReset, isNewcomer);
 			Meteor.call('prepareWebpush', cardset, user, isNewcomer);
 		}
+	}
+
+	static getBoxAlgorithm () {
+		return [0.5, 0.2, 0.15, 0.1, 0.05];
+	}
+
+	static adjustBoxAlgorithm (cardCount, algorithm) {
+		//Check the card counter of each Box in reverse and if empty, summate its percentage to the next box with cards
+		for (let i = algorithm.length; i > 0; i--) {
+			if (cardCount[i] === 0 && i - 1 >= 0) {
+				algorithm[i - 1] += algorithm[i];
+				algorithm[i] = 0;
+			}
+		}
+		//Scale all percentage values of boxes with cards to fill 100%
+		if (cardCount[0] === 0) {
+			for (let i = 0; i < algorithm.length; i++) {
+				if (cardCount[i] !== 0) {
+					algorithm[i] = algorithm[i] * (1 / (1 - algorithm[0]));
+				}
+			}
+			algorithm[0] = 0;
+		}
+		return algorithm;
+	}
+
+	static setActiveCardCap (cardset, algorithm) {
+		let boxActiveCardCap = [];
+		for (let i = 0; i < algorithm.length; i++) {
+			boxActiveCardCap.push(Math.round(cardset.maxCards * algorithm[i]));
+		}
+		//Make sure that the rounded values don't go over the cap
+		let sum = 0;
+		for (let i = 0; i < boxActiveCardCap.length; i++) {
+			sum += boxActiveCardCap[i];
+		}
+		if (sum > cardset.maxCards) {
+			let removeCardCount = sum - cardset.maxCards;
+			for (let i = 0; i < removeCardCount; i++) {
+				for (let k = boxActiveCardCap.length; k > 0; k--) {
+					if (removeCardCount > 0 && boxActiveCardCap[k] > 0) {
+						if (boxActiveCardCap[k] >= removeCardCount) {
+							boxActiveCardCap[k] -= removeCardCount;
+						} else {
+							removeCardCount -= boxActiveCardCap[k];
+							boxActiveCardCap[k] = 0;
+						}
+					}
+				}
+			}
+		}
+		// Adjust the algorithm values to fill as many slots as possible
+		if (Meteor.settings.debugServer && Meteor.isServer) {
+			console.log("===> Active Card cap for each box before adjustments: [" + boxActiveCardCap + "]");
+		}
+		return boxActiveCardCap;
+	}
+
+	static fillUpMissingCards (boxActiveCardCap, cardCount) {
+		let missingCardCount = [];
+		for (let i = 0; i < boxActiveCardCap.length; i++) {
+			if (boxActiveCardCap[i] !== 0 && cardCount[i] !== 0) {
+				missingCardCount.push(-(cardCount[i] - boxActiveCardCap[i]));
+			} else {
+				missingCardCount.push(0);
+			}
+		}
+		if (Meteor.settings.debugServer && Meteor.isServer) {
+			console.log("===> Missing Cards: [" + missingCardCount + "]");
+		}
+		let missingCardsSum = 0;
+		for (let i = 0; i < missingCardCount.length; i++) {
+			if (missingCardCount[i] > 0) {
+				boxActiveCardCap[i] -= (missingCardCount[i]);
+				missingCardsSum += missingCardCount[i];
+			}
+		}
+		if (Meteor.settings.debugServer && Meteor.isServer) {
+			console.log("===> Sum of missing cards: " + missingCardsSum);
+		}
+		let fillUpCount = 0;
+		for (let i = 0; i < missingCardCount.length; i++) {
+			if (missingCardsSum > 0 && missingCardCount[i] < 0) {
+				if (missingCardsSum > (-missingCardCount[i])) {
+					fillUpCount = (-missingCardCount[i]);
+				} else {
+					fillUpCount = missingCardsSum;
+				}
+				boxActiveCardCap[i] += fillUpCount;
+				missingCardsSum -= fillUpCount;
+			}
+		}
+		return boxActiveCardCap;
+	}
+
+	static selectNextRandomCards (cardset, boxActiveCardCap, algorithm, user) {
+		let randomSelectedCards = [];
+		//Get all cards from a box that match the leitner criteria
+		for (let l = 0; l < algorithm.length; l++) {
+			let cards = Leitner.find({
+				cardset_id: cardset._id,
+				user_id: user._id,
+				box: (l + 1),
+				active: false,
+				nextDate: {$lte: new Date()}
+			}, {fields: {card_id: 1}}).fetch();
+			//update one random card out of the l loop
+			for (let c = 0; c < boxActiveCardCap[l]; c++) {
+				if (cards.length !== 0) {
+					let nextCardIndex = Math.floor(Math.random() * (cards.length));
+					randomSelectedCards.push(cards[nextCardIndex].card_id);
+					cards.splice(nextCardIndex, 1);
+				}
+			}
+		}
+		if (Meteor.settings.debugServer && Meteor.isServer) {
+			console.log("===> Active Card cap for each box after adjustments: [" + boxActiveCardCap + "]");
+			console.log("===> " + randomSelectedCards.length + " new active Cards: [" + randomSelectedCards + "]");
+		}
+		return randomSelectedCards;
 	}
 
 	/** Function resets all active cards to their previous box
