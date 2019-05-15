@@ -48,14 +48,14 @@ Template.cardsetInfoBoxItemTranscriptLectureDates.helpers({
 	//returnMode 1 = Return tooltip
 	getStatus: function (transcriptBonus, returnMode = 0) {
 		let current = moment();
-		let lectureDate = moment(transcriptBonus.date);
-		if (current > lectureDate && !TranscriptBonusList.isDeadlineExpired(transcriptBonus)) {
+		let lectureEndDate = TranscriptBonusList.addLectureEndTime(transcriptBonus, transcriptBonus.date);
+		if (current > lectureEndDate && !TranscriptBonusList.isDeadlineExpired(transcriptBonus)) {
 			if (returnMode) {
 				return TAPi18n.__('transcriptForm.info.tooltip.lecture.active');
 			} else {
 				return "active";
 			}
-		} else if (current > lectureDate) {
+		} else if (current > lectureEndDate) {
 			if (returnMode) {
 				return TAPi18n.__('transcriptForm.info.tooltip.lecture.past');
 			} else {
