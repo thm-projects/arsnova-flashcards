@@ -1,6 +1,7 @@
 //------------------------ IMPORTS
 import {Template} from "meteor/templating";
 import {TranscriptBonusList} from "../../../../../../api/transcriptBonus";
+import {Session} from "meteor/session";
 import "./lectureDates.html";
 
 /*
@@ -9,6 +10,8 @@ import "./lectureDates.html";
 * ############################################################################
 */
 
+let lastMonth;
+let lastYear;
 Template.cardsetInfoBoxItemTranscriptLectureDates.helpers({
 	getLectureDates: function (cardset) {
 		if (cardset.transcriptBonus !== undefined) {
@@ -20,6 +23,26 @@ Template.cardsetInfoBoxItemTranscriptLectureDates.helpers({
 			}
 			return results;
 		}
+	},
+	isNewMonth: function (transcriptBonus) {
+		let currentMonth = moment(transcriptBonus.date).month();
+		if (currentMonth !== lastMonth) {
+			lastMonth = currentMonth;
+			return true;
+		}
+	},
+	isNewYear: function (transcriptBonus) {
+		let currentYear = moment(transcriptBonus.date).year();
+		if (currentYear !== lastYear) {
+			lastYear = currentYear;
+			return true;
+		}
+	},
+	getMonth: function () {
+		return moment().month(lastMonth).locale(Session.get('activeLanguage')).format('MMMM');
+	},
+	getYear: function () {
+		return lastYear;
 	},
 	//returnMode 0 = Return class
 	//returnMode 1 = Return tooltip
@@ -46,4 +69,9 @@ Template.cardsetInfoBoxItemTranscriptLectureDates.helpers({
 			}
 		}
 	}
+});
+
+Template.cardsetInfoBoxItemTranscriptLectureDates.onCreated(function () {
+	lastMonth = undefined;
+	lastYear = undefined;
 });

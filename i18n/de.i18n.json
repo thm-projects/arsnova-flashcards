@@ -650,7 +650,7 @@
       "median": "Durchschnittliche Anzahl der Mitschriften pro Teilnehmer",
       "tooltip": {
         "lecture": {
-          "past": "Der Termin für die Abgabe ist bereits abgelaufen.",
+          "past": "Der Termin für die Foto-Abgabefrist ist bereits abgelaufen.",
           "active": "Der Termin für die Foto-Abgabefrist ist momentan aktiv.",
           "future": "Der Termin für die Foto-Abgabefrist wurde noch nicht freigeschaltet."
         }

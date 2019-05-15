@@ -45,7 +45,7 @@ export let Utilities = class Utilities {
 			minutes = "H:mm";
 		}
 		if (!transformToSpeech) {
-			dateFormat = "D. MMMM";
+			dateFormat = "DD";
 			return moment(date).locale(Session.get('activeLanguage')).calendar(null, {
 				sameDay: dateFormat,
 				lastDay: dateFormat,

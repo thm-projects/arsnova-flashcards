@@ -580,13 +580,21 @@ th .field-tip {
 }
 
 .bonusTranscriptInfoLectureDates {
-  .active, .past, .future {
-    display: block;
-    width: 100%;
-    padding-top: 3px;
-    padding-bottom: 3px;
+  .day, .month, .year {
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
-  .active:hover, .past:hover, .future:hover {
+  .day {
+    border: 3px solid;
+    text-align: center;
+  }
+  .day:hover {
     cursor: help;
+  }
+  .month {
+    margin-top: 15px;
+  }
+  .year + .month {
+    margin-top: 5px;
   }
 }
