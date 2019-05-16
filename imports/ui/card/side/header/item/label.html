@@ -1,0 +1,21 @@
+<template name="cardContentItemLabel">
+    <span class="card-header-label hidden-xs">
+        {{{getCardTypeLabel this.cardType}}}<br>
+        {{#if gotDifficulty this.cardType}}
+            {{{getDifficultyLabel this.cardType this.difficulty}}}<br>
+        {{/if}}
+        {{#if isInBonus}}
+            {{{getBonusLabel true}}}<br>
+        {{/if}}
+        {{{getTranscriptBonusLabel this}}}
+    </span>
+    <span class="card-header-label visible-xs">
+        {{#if gotDifficulty this.cardType}}
+            {{{getDifficultyLabel this.cardType this.difficulty}}}<br>
+        {{/if}}
+        {{#if isInBonus}}
+            {{{getBonusLabel true}}}<br>
+        {{/if}}
+        {{{getTranscriptBonusLabel this}}}
+    </span>
+</template>

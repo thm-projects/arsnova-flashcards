@@ -1,10 +1,11 @@
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "./cardsets";
 import {Paid} from "./paid";
+import {ServerStyle} from "./styles.js";
 
 export let UserPermissions = class UserPermissions {
 	static canCreateContent () {
-		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor', 'university', 'lecturer', 'pro']) && this.isNotBlockedOrFirstLogin()) {
+		if (this.isAdmin() || Roles.userIsInRole(Meteor.userId(), ServerStyle.getUserRolesWithCreatePermission()) && this.isNotBlockedOrFirstLogin()) {
 			return true;
 		}
 	}

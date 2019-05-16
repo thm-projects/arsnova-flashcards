@@ -33,6 +33,14 @@ let defaultSettings = {
 	},
 	"demo": {
 		"folder": "informatik"
+	},
+	"roles": {
+		"create": {
+			"standard": false,
+			"edu": true,
+			"pro": true,
+			"lecturer": true
+		}
 	}
 };
 
@@ -71,6 +79,14 @@ let debug = {
 	},
 	"demo": {
 		"folder": "informatik"
+	},
+	"roles": {
+		"create": {
+			"standard": false,
+			"edu": true,
+			"pro": true,
+			"lecturer": true
+		}
 	}
 };
 
@@ -109,6 +125,14 @@ let linux = {
 	},
 	"demo": {
 		"folder": "linux"
+	},
+	"roles": {
+		"create": {
+			"standard": false,
+			"edu": false,
+			"pro": true,
+			"lecturer": true
+		}
 	}
 };
 
@@ -147,6 +171,14 @@ let review = {
 	},
 	"demo": {
 		"folder": "informatik"
+	},
+	"roles": {
+		"create": {
+			"standard": false,
+			"edu": true,
+			"pro": true,
+			"lecturer": true
+		}
 	}
 };
 
@@ -185,6 +217,14 @@ let staging = {
 	},
 	"demo": {
 		"folder": "informatik"
+	},
+	"roles": {
+		"create": {
+			"standard": false,
+			"edu": true,
+			"pro": true,
+			"lecturer": true
+		}
 	}
 };
 
