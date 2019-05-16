@@ -152,7 +152,8 @@ if (Meteor.isServer) {
 	Meteor.publish("userData", function () {
 		if ((this.userId || ServerStyle.isLoginEnabled("guest")) && UserPermissions.isNotBlockedOrFirstLogin()) {
 			if (UserPermissions.isAdmin()) {
-				return Meteor.users.find({_id: {$ne: this.userId}});
+				let hiddenUsers = [this.userId, "NotificationsTestCardset", ".cards"];
+				return Meteor.users.find({_id: {$nin: hiddenUsers}});
 			} else {
 				return Meteor.users.find({_id: {$ne: this.userId}, visible: true},
 					{
