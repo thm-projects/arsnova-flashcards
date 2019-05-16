@@ -138,4 +138,22 @@ export let ServerStyle = class ServerStyle {
 	static gotTranscriptsEnabled () {
 		return this.getConfig().transcripts.enabled;
 	}
+
+	static getUserRolesWithCreatePermission () {
+		let usersWithPermission = this.getConfig().roles.create;
+		let list = ['admin', 'editor'];
+		if (usersWithPermission.standard === true) {
+			list.push('standard');
+		}
+		if (usersWithPermission.edu === true) {
+			list.push('university');
+		}
+		if (usersWithPermission.lecturer === true) {
+			list.push('lecturer');
+		}
+		if (usersWithPermission.pro === true) {
+			list.push('pro');
+		}
+		return list;
+	}
 };
