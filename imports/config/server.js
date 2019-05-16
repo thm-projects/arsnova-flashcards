@@ -77,11 +77,11 @@ let debug = {
 let linux = {
 	"login": {
 		"cas": true,
-		"guest": false,
+		"guest": true,
 		"pro": false,
-		"facebook": true,
-		"twitter": true,
-		"google": true
+		"facebook": false,
+		"twitter": false,
+		"google": false
 	},
 	"welcome": {
 		"title": {
