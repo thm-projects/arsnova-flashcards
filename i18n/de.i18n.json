@@ -394,7 +394,7 @@
         "user": {
           "total": "Gesamt",
           "pro": "__label__",
-          "online": "Users online"
+          "online": "User online"
         },
         "table": {
           "header": {
