@@ -32,9 +32,9 @@ if (Meteor.isServer) {
 			Counts.publish(this, 'cardsetsProCounter', Cardsets.find({kind: "pro", shuffled: false}), {fastCount: true});
 			Counts.publish(this, 'repetitoriumProCounter', Cardsets.find({kind: "pro", shuffled: true}), {fastCount: true});
 			Counts.publish(this, 'wordcloudProCounter', Cardsets.find({kind: "pro", wordcloud: true}), {fastCount: true});
-			Counts.publish(this, 'userProCounter', Meteor.users.find({_id: {$nin: ['NotificationsTestUser']}, roles: {$in: ["pro"]}}), {fastCount: true});
+			Counts.publish(this, 'userProCounter', Meteor.users.find({_id: {$nin: ['NotificationsTestUser', '.cards']}, roles: {$in: ["pro"]}}), {fastCount: true});
 		}
-		Counts.publish(this, 'userCounter', Meteor.users.find({_id: {$nin: ['NotificationsTestUser']}}), {fastCount: true});
+		Counts.publish(this, 'userCounter', Meteor.users.find({_id: {$nin: ['NotificationsTestUser', '.cards']}}), {fastCount: true});
 		Counts.publish(this, 'userOnlineCounter', Meteor.users.find({'status.online': true}), {fastCount: true});
 	});
 }
