@@ -124,17 +124,21 @@
                     <div class="hidden-xs">
                         {{{getKind this.kind 0}}}
                         {{{getShuffleLabel this.shuffled}}}
-                        {{{getBonusLabel this.learningActive}}}
                         {{{getTranscriptBonusLabel this}}}
+                        <span class ="hidden-sm">
+                            {{{getDifficultyLabel this.cardType this.difficulty}}}
+                        </span>
+                        {{{getBonusLabel this.learningActive}}}
                     </div>
                     <div class="visible-xs">
                         {{{getKind this.kind 0}}}
                         {{{getShuffleLabel this.shuffled}}}
-                        {{{getBonusLabel this.learningActive}}}
                         {{{getTranscriptBonusLabel this}}}
                         {{#unless this.shuffled}}
                             {{{getCardTypeLabel this.cardType}}}
+                            {{{getDifficultyLabel this.cardType this.difficulty}}}
                         {{/unless}}
+                        {{{getBonusLabel this.learningActive}}}
                     </div>
                 </div>
                 <div class="resultItemHeaderRightAreaBottom col-xs-3 col-sm-12">

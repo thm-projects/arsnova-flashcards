@@ -13,10 +13,10 @@
     {{/if}}
     {{{getKind this.kind 0}}}
     {{{getShuffleLabel this.shuffled}}}
-    {{{getBonusLabel this.learningActive}}}
-    {{{getTranscriptBonusLabel this}}}
     {{#unless this.shuffled}}
         {{{getCardTypeLabel this.cardType}}}
         {{{getDifficultyLabel this.cardType this.difficulty}}}
     {{/unless}}
+    {{{getBonusLabel this.learningActive}}}
+    {{{getTranscriptBonusLabel this}}}
 </template>
