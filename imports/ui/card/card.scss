@@ -509,6 +509,7 @@ img.cardside {
   }
 }
 .cardCounter {
+  display: inline-block;
   position: relative;
   width: 100%;
   text-align: right;
@@ -525,5 +526,14 @@ img.cardside {
   }
   .modal-body {
     height: 87%;
+  }
+}
+
+.card-header-label .label {
+  display: inline-block;
+  margin-bottom: 1px;
+  @media (max-width: 767px) {
+    font-size: 8px;
+    padding: 2px;
   }
 }
