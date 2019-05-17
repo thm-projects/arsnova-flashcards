@@ -38,7 +38,7 @@
   },
   "landingPage": {
     "login": {
-      "cas": "Login mit Uni-Account",
+      "cas": "Login mit THM-Account",
       "guest": "Ich schau mich nur mal um",
       "pro": "Login mit Premium-Account",
       "backdoor": "Login mit Rollenauswahl",
@@ -48,7 +48,7 @@
       "tooltip": {
         "cas": "Du wirst zum CAS-Server der THM weitergeleitet...",
         "guest": "Als Gast kannst du dir »freie« Kartensätze anschauen.",
-        "pro": "Wenn du keinen Uni-Account hast, kannst du dich hier für ein Abo registrieren.",
+        "pro": "Wenn du keinen THM-Account hast, kannst du dich hier für ein Abo registrieren.",
         "backdoor": "Hintertürchen",
         "facebook": "Login mit Facebook-Account",
         "twitter": "Login mit Twitter-Account",
@@ -531,7 +531,7 @@
     "moreResults": "Zeige weitere Einträge",
     "learnphase": "Lern-Bonus",
     "bonusPointsFAQ": "FAQ zu Bonuspunkten",
-    "bonusPointsPercentageFAQ": "Prüfungsamt THM",
+    "bonusPointsPercentageFAQ": "Prüfungsamt",
     "bonusMaxPoints": {
       "label": "Maximale Bonuspunkte",
       "content": "__count__ %"
@@ -645,9 +645,9 @@
   "transcriptForm": {
     "info": {
       "title":  "Über die Bonusschreibphase",
-      "participants": "Anzahl der Teilnehmer am Bonusverfahren",
-      "submissions": "Anzahl aller eingereichten Mitschriften",
-      "median": "Durchschnittliche Anzahl der Mitschriften pro Teilnehmer",
+      "participants": "Teilnehmer/innen",
+      "submissions": "Eingereichte Mitschriften",
+      "median": "Durchschnittliche Anzahl Mitschriften",
       "tooltip": {
         "lecture": {
           "past": "Der Termin für die Foto-Abgabefrist ist bereits abgelaufen.",
@@ -702,7 +702,7 @@
         "title": "Bonusvergabe konfigurieren",
         "percentage": "Maximale Bonuspunkte",
         "enable": "Bonus aktivieren",
-        "minimum": "Anzahl der Mitschriften für die maximale Anzahl von Bonuspunkten",
+        "minimum": "Mitschriften für max. Bonus",
         "lectureTimeEnd": "Freischaltung der Mitschriftenkopplung",
         "deadline": {
           "submission": "Zeit für die Foto-Abgabe",
@@ -853,14 +853,14 @@
       "desc": "Wähle deine Mitgliedsart:",
       "actual": "Derzeit ausgewählt",
       "free": "Organize | Learn | Memorize",
-      "edu": "Uni-Karteien frei erhältlich",
+      "edu": "THM-Karteien frei erhältlich",
       "back": "Kostenfreie Mitgliedschaft",
       "pro": "Erstelle und erhalte Pro-Karteien",
       "month": "Monat (Testbetrieb)",
       "subscribe": "Pro-Abonnement bestellen (Testbetrieb)",
-      "lecturer": "Dozentenstatus anfragen für das Anlegen von Uni-Karteien und das Prüfen (mit Umsatzbeteiligung) von Pro-Karteien",
+      "lecturer": "Dozentenstatus anfragen für das Anlegen von THM-Karteien und das Prüfen (mit Umsatzbeteiligung) von Pro-Karteien",
       "send": "Anfrage abschicken",
-      "lecturerActivatet": "Du bist als Uni-Dozent/in und Prüfer/in für Pro-Karteien freigeschaltet.",
+      "lecturerActivatet": "Du bist als THM-Dozent/in und Prüfer/in für Pro-Karteien freigeschaltet.",
       "name": "Name",
       "prename": "Vorname"
     },
@@ -923,7 +923,7 @@
     "roles": "Berechtigungen"
   },
   "panel-heading-experience": {
-    "experience": "Belohnungspunkte: 10 Punkte für das vollständige Lernen einer Uni-Kartei nach Leitner",
+    "experience": "Belohnungspunkte: 10 Punkte für das vollständige Lernen einer THM-Kartei nach Leitner",
     "interval": "Einstellungen der Intervalle für den Lernzeitraum (XP)",
     "preview": "Vorschau"
   },
@@ -1260,7 +1260,7 @@
         "subject": "Gib das kurzgefasste Lernziel an!",
         "content1": "",
         "content2": "Gib eine Zusammenfassung des Lernziels! \n\nWenn das Lernziel in einer Prüfung abgefragt wird, sollte hier die erwartete Antwort auf die Prüfungsfrage stehen.",
-        "content3": "Liste hier Links und Literatur zur weiteren Vertiefung des Lerninhalts auf! \n\nRecherchiere auch in deiner Uni-Bibliothek! Ein Großteil der Bücher ist online verfügbar.",
+        "content3": "Liste hier Links und Literatur zur weiteren Vertiefung des Lerninhalts auf! \n\nRecherchiere auch in der THM-Bibliothek! Ein Großteil der Bücher ist online verfügbar.",
         "content4": "Erläutere hier den Lerngegenstand! \n\nStelle den Lerngegenstand strukturiert und anschaulich dar. Deine Darstellung sollte wie eine gut gemachte Vorlesungsfolie aussehen."
       },
       "editorLabels": {
@@ -1553,7 +1553,7 @@
     },
     "cardType19": {
       "name": "Vorlesung",
-      "longName": "Vorlesung mit Bonus-Mitschriften"
+      "longName": "Vorlesung mit Bonus fürs Mitschreiben"
     },
     "tooltip": {
       "toggle3D": "3D-Ansicht aktivieren / deaktivieren",
@@ -1747,9 +1747,9 @@
   "difficulty": "Level",
   "noDifficulty": "Ohne Level",
   "difficulty0": "Info",
-  "difficulty1": "Grundlagen",
-  "difficulty2": "Fortgeschritten",
-  "difficulty3": "Expertin/Experte",
+  "difficulty1": "Basics",
+  "difficulty2": "Advanced",
+  "difficulty3": "Expert",
   "difficultyNotes": "Veranstaltung",
   "difficultyNotes0": "Vorlesung",
   "difficultyNotes1": "Übung",
@@ -1845,7 +1845,7 @@
     "admin": "Admin",
     "superAdmin": "Hauptverwalter",
     "pro": "Pro",
-    "university": "Uni",
+    "university": "THM",
     "free": "Frei",
     "private": "Privat",
     "shuffled": "gemischte",
@@ -2115,8 +2115,8 @@
       "long": "Frei für alle"
     },
     "edu": {
-      "short": "Uni",
-      "long": "Uni-Mitglieder"
+      "short": "THM",
+      "long": "THM-Mitglieder"
     },
     "pro": {
       "short": "Pro",
