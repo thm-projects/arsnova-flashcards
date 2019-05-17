@@ -78,7 +78,7 @@ let debug = {
 		"enabled": true
 	},
 	"demo": {
-		"folder": "informatik"
+		"folder": "linux"
 	},
 	"roles": {
 		"create": {
