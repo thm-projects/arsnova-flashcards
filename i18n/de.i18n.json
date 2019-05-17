@@ -1715,8 +1715,8 @@
   "cardCounter": {
     "default": "__current__ / __total__",
     "preview": "Vorschau: __current__ / __total__",
-    "leitner": "Noch eine Karte zu lernen",
-    "leitner_plural": "Noch __count__ Karten zu lernen",
+    "leitner": "Noch eine Karte",
+    "leitner_plural": "Noch __count__ Karten",
     "leitnerShort": "Noch eine Karte",
     "leitnerShort_plural": "Noch __count__ Karten"
   },
