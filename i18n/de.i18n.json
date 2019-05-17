@@ -647,7 +647,7 @@
       "title":  "Über die Bonusschreibphase",
       "participants": "Teilnehmer/innen",
       "submissions": "Eingereichte Mitschriften",
-      "median": "Durchschnittliche Anzahl Mitschriften",
+      "median": "Ø Mitschriften pro Teilnehmer/in",
       "tooltip": {
         "lecture": {
           "past": "Der Termin für die Foto-Abgabefrist ist bereits abgelaufen.",
@@ -703,7 +703,7 @@
         "percentage": "Maximale Bonuspunkte",
         "enable": "Bonus aktivieren",
         "minimum": "Mitschriften für max. Bonus",
-        "lectureTimeEnd": "Freischaltung der Mitschriftenkopplung",
+        "lectureTimeEnd": "Freischaltung",
         "deadline": {
           "submission": "Zeit für die Foto-Abgabe",
           "editing": "Zeit für die digitale Nachbearbeitung"
