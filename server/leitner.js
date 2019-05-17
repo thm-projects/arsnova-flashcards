@@ -73,11 +73,11 @@ function getActiveCard(cardset_id, user) {
 	if (!Meteor.isServer) {
 		throw new Meteor.Error("not-authorized");
 	} else {
-		return Leitner.findOne({
+		return Leitner.find({
 			cardset_id: cardset_id,
 			user_id: user,
 			active: true
-		});
+		}, {sort: {currentDate: 1}}, {limit: 1}).fetch();
 	}
 }
 
@@ -112,7 +112,7 @@ Meteor.methods({
 						let user = Meteor.users.findOne(learners[k].user_id);
 						if (!activeCard) {
 							LeitnerUtilities.setCards(cardsets[i], user, false);
-						} else if ((activeCard.currentDate.getTime() + (cardsets[i].daysBeforeReset + 1) * 86400000) < new Date().getTime()) {
+						} else if ((activeCard[0].currentDate.getTime() + (cardsets[i].daysBeforeReset + 1) * 86400000) < new Date().getTime()) {
 							LeitnerUtilities.resetCards(cardsets[i], user);
 						} else {
 							Meteor.call('prepareMail', cardsets[i], user);

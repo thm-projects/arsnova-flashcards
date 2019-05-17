@@ -7,6 +7,8 @@ import {Profile} from "./profile";
 import {UserPermissions} from "./permissions";
 import {CardType} from "./cardTypes";
 import {Cards} from "./cards";
+import * as config from "../config/leitner.js";
+import * as bonusFormConfig from "../config/bonusForm.js";
 
 export let LeitnerUtilities = class LeitnerUtilities {
 	/** Function returns the amount of cards inside a box that are valid to learn
@@ -54,11 +56,11 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				let endDate = (new Date().setFullYear(2038, 0, 19));
 				Cardsets.update(cardset._id, {
 					$set: {
-						maxCards: 40,
-						daysBeforeReset: 7,
+						maxCards: bonusFormConfig.defaultMaxWorkload,
+						daysBeforeReset: bonusFormConfig.defaultDaysBeforeReset,
 						learningStart: cardset.date,
 						learningEnd: endDate,
-						learningInterval: [1, 3, 7, 28, 84],
+						learningInterval: bonusFormConfig.defaultIntervals,
 						registrationPeriod: endDate
 					}
 				});
@@ -172,7 +174,9 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			algorithm = this.adjustBoxAlgorithm(cardCount, algorithm);
 
 			let boxActiveCardCap = this.setActiveCardCap(cardset, algorithm);
-			boxActiveCardCap = this.fillUpMissingCards(boxActiveCardCap, cardCount);
+			if (config.fillUpMissingCards) {
+				boxActiveCardCap = this.fillUpMissingCards(boxActiveCardCap, cardCount);
+			}
 			let randomSelectedCards = this.selectNextRandomCards(cardset, boxActiveCardCap, algorithm, user);
 			Leitner.update({
 				cardset_id: cardset._id,
@@ -190,7 +194,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 	}
 
 	static getBoxAlgorithm () {
-		return [0.5, 0.2, 0.15, 0.1, 0.05];
+		return config.boxAlgorithm;
 	}
 
 	static adjustBoxAlgorithm (cardCount, algorithm) {
@@ -320,22 +324,46 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			if (Meteor.settings.debugServer) {
 				console.log("===> Reset cards");
 			}
-			let cards = Leitner.find({cardset_id: cardset._id, user_id: user._id, active: true}, {
-				fields: {
-					card_id: 1,
-					box: 1
+			let query = {cardset_id: cardset._id, user_id: user._id, box: {$ne: 6}};
+			if (config.resetDeadlineMode === 0 || config.resetDeadlineMode === 1) {
+				query.active = true;
+			}
+			let idArray;
+			if (config.resetDeadlineMode === 0 || config.resetDeadlineMode === 2) {
+				let box;
+				for (let i = 1; i < 6; i++) {
+					if (i > 1) {
+						box = i - 1;
+					} else {
+						box = 1;
+					}
+					query.box = i;
+					let cards = Leitner.find(query, {
+						fields: {
+							card_id: 1
+						}
+					}).fetch();
+					idArray = _.pluck(cards, "card_id");
+					Leitner.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id}, {
+						$set: {
+							box: box,
+							active: false,
+							nextDate: new Date(),
+							currentDate: new Date(),
+							skipped: 0
+						}
+					}, {multi: true});
 				}
-			}).fetch();
-			let box;
-			for (let i = 0; i < cards.length; i++) {
-				if (cards[i].box > 1) {
-					box = cards[i].box - 1;
-				} else {
-					box = 1;
-				}
-				Leitner.update({card_id: cards[i].card_id, cardset_id: cardset._id, user_id: user._id}, {
+			} else {
+				let cards = Leitner.find(query, {
+					fields: {
+						card_id: 1
+					}
+				}).fetch();
+				idArray = _.pluck(cards, "card_id");
+				Leitner.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id}, {
 					$set: {
-						box: box,
+						box: 1,
 						active: false,
 						nextDate: new Date(),
 						currentDate: new Date(),
