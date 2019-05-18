@@ -2,7 +2,7 @@
   "name": "A2: 🍅cards – ein Lehr- und Lernprojekt der THM",
   "description": "Hinweis auf das 🍅cards-Projekts der THM",
   "date": "2019-05-17T18:15:23.574Z",
-  "dateUpdated": "2019-05-18T06:27:15.734Z",
+  "dateUpdated": "2019-05-18T09:01:51.225Z",
   "editors": [],
   "owner": "fGBjd8xcxAgkPYM4B",
   "visible": true,
@@ -49,7 +49,7 @@
   }
 }, {
   "subject": "Die App fürs Studium",
-  "front": "![](/img/Bildlogo.png width=40%)\n\n!!!WARNING Bevor Sie beginnen...\n   Auf [thm.cards](https://thm.cards) beschreiben wir die lernpsychologischen Erkenntnisse, die uns bei der Entwicklung von 🍅cards geleitet haben. Bevor Sie mit dem Lernen auf Linux.cards beginnen, sollten Sie sich die [Einführung](https://thm.cards/demo) auf [thm.cards](https://thm.cards) anschauen.<br><br>\n\n!!!TIP Die App fürs Studium und danach\n   Als THM-Student/in steht Ihnen auf [thm.cards](https://thm.cards) die vollständige Funktionalität der Lernkartei-App zur freien Verfügung.<br><br>\n",
+  "front": "![](/img/Bildlogo.png width=30%)\n\n!!!WARNING Bevor Sie beginnen...\n   Auf [thm.cards](https://thm.cards) beschreiben wir die lernpsychologischen Erkenntnisse, die uns bei der Entwicklung von 🍅cards geleitet haben. Bevor Sie mit dem Lernen auf Linux.cards beginnen, sollten Sie sich die [Einführung](https://thm.cards/demo) auf [thm.cards](https://thm.cards) anschauen.<br><br>\n\n!!!TIP Die App fürs Studium und danach\n   Als Student/in der THM steht Ihnen auf [thm.cards](https://thm.cards) die vollständige Funktionalität der Lernkartei-App zur freien Verfügung. Sie können dort Karteien, Repetitorien und Mitschriften erstellen, beliebig viele Karten schreiben und diese effizient und nachhaltig mit dem Leitner-Plan lernen. Nachrichten aufs Handy oder Mails in Ihrem THM-Postfach erinnern Sie, welche Karten Sie heute lernen sollten.<br><br>\n",
   "centerTextElement": [
     true,
     true,
@@ -70,7 +70,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "owner": "fGBjd8xcxAgkPYM4B",
-  "dateUpdated": "2019-05-18T06:24:18.088Z",
+  "dateUpdated": "2019-05-18T09:01:51.214Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
