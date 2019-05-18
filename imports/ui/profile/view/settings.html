@@ -79,7 +79,7 @@
                             <form>
                                 <fieldset>
                                     <div class="col-md-9 form-group notifications-form-group">
-                                        <div class="col-sm-6" style="{{#unless isSocialLogin}}display: none;{{/unless}}">
+                                        <div class="col-sm-6" style="{{#if isSocialLogin}}display: none;{{/if}}">
                                             <label class="checkbox-inline" for="mailNotificationCheckbox">
                                                 <input type="checkbox" name="notification"
                                                        id="mailNotificationCheckbox"
