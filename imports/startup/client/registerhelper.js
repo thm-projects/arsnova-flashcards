@@ -403,6 +403,10 @@ Template.registerHelper("isUseCasesModalOpen", function () {
 	return Session.get('useCasesModalOpen');
 });
 
+Template.registerHelper("isSocialLogin", function () {
+	return UserPermissions.isSocialLogin();
+});
+
 Template.registerHelper("getServerInventory", function (type) {
 	return ServerInventoryTools.getServerInventory(type);
 });

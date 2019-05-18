@@ -10,6 +10,12 @@ export let UserPermissions = class UserPermissions {
 		}
 	}
 
+	static isSocialLogin () {
+		if (!Roles.userIsInRole(Meteor.userId(), ['admin', 'editor', 'university', 'lecturer', 'pro']) && this.isNotBlockedOrFirstLogin()) {
+			return true;
+		}
+	}
+
 	static isAdmin () {
 		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']) && this.isNotBlockedOrFirstLogin()) {
 			return true;
