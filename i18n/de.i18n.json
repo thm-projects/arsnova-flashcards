@@ -1384,8 +1384,8 @@
       }
     },
     "cardType8": {
-      "name": "Notizen",
-      "longName": "Notizen: 1 Seite",
+      "name": "Notiz",
+      "longName": "Notiz: 1 Seite",
       "content1": "Notiz",
       "placeholders": {
         "subject": "Gib das Thema deiner Notiz an!",

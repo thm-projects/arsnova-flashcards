@@ -1,8 +1,8 @@
 [{
-  "name": "A1: Hinweis auf die Lernkartei-Plattform 🍅cards",
-  "description": "Hinweis auf die Einführung des 🍅cards-Projekts",
+  "name": "A2: 🍅cards – ein Lehr- und Lernprojekt der THM",
+  "description": "Hinweis auf das 🍅cards-Projekts der THM",
   "date": "2019-05-17T18:15:23.574Z",
-  "dateUpdated": "2019-05-17T18:22:22.160Z",
+  "dateUpdated": "2019-05-18T06:27:15.734Z",
   "editors": [],
   "owner": "fGBjd8xcxAgkPYM4B",
   "visible": true,
@@ -38,10 +38,18 @@
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
     "givenname": "Klaus"
+  },
+  "workload": {
+    "bonus": {
+      "count": 0
+    },
+    "normal": {
+      "count": 0
+    }
   }
 }, {
-  "subject": "Die App für dein Studium",
-  "front": "![https://arsnova.cards](/img/Bildlogo.png width=60%)\n\n![ ](https://arsnova-uploads.mni.thm.de/logos/Stifterverband.png width=140)![ ](https://arsnova-uploads.mni.thm.de/logos/DATEV-Stiftung.png width=140) Diese innovative Lern&shy;kar&shy;tei-App ist das zentrale Open-Source-Tool in einem Langzeit-Projekt der Technischen Hochschule Mittelhessen, THM. Der Stifterverband für die Deutsche Wissenschaft und die DATEV-Stiftung Zukunft fördern unser Vorhaben \n»Digital gegen das Bulimie-Lernen: Quizzen im Hörsaal und zu Hause, Podcasts für unterwegs« mit einem [Senior-Fellowship](https://www.stifterverband.org/lehrfellowships). \n\nDie Förderung ermöglicht uns, 🍅cards inhaltlich und technisch weiter zu entwickeln, siehe unseren [Projektantrag](https://www.stifterverband.org/lehrfellowships/2018/quibeldey-cirkel).",
+  "subject": "Die App fürs Studium",
+  "front": "![](/img/Bildlogo.png width=40%)\n\n!!!WARNING Bevor Sie beginnen...\n   Auf [thm.cards](https://thm.cards) beschreiben wir die lernpsychologischen Erkenntnisse, die uns bei der Entwicklung von 🍅cards geleitet haben. Bevor Sie mit dem Lernen auf Linux.cards beginnen, sollten Sie sich die [Einführung](https://thm.cards/demo) auf [thm.cards](https://thm.cards) anschauen.<br><br>\n\n!!!TIP Die App fürs Studium und danach\n   Als THM-Student/in steht Ihnen auf [thm.cards](https://thm.cards) die vollständige Funktionalität der Lernkartei-App zur freien Verfügung.<br><br>\n",
   "centerTextElement": [
     true,
     true,
@@ -62,7 +70,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "owner": "fGBjd8xcxAgkPYM4B",
-  "dateUpdated": "2019-05-17T18:20:25.147Z",
+  "dateUpdated": "2019-05-18T06:24:18.088Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
