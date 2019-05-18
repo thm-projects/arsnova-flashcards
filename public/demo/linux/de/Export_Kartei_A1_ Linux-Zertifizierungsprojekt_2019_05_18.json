@@ -1,8 +1,8 @@
 [{
-  "name": "A0: Linux-Zertifizierungsprojekt",
+  "name": "A1: Linux-Zertifizierungsprojekt",
   "description": "Vorstellung des Linux-Zertifizierungsprojekts auf der Lernkartei-Plattform Linux.cards",
   "date": "2019-05-06T04:52:10.648Z",
-  "dateUpdated": "2019-05-17T18:06:44.636Z",
+  "dateUpdated": "2019-05-18T07:05:18.202Z",
   "editors": [],
   "owner": "hpcDWDYve2XK82TdE",
   "visible": true,
@@ -69,15 +69,15 @@
     0
   ],
   "learningGoalLevel": 0,
-  "backgroundStyle": 1,
+  "backgroundStyle": 0,
   "date": "2019-05-06T06:01:04.587Z",
-  "dateUpdated": "2019-05-17T18:06:44.624Z",
+  "dateUpdated": "2019-05-18T07:05:18.187Z",
   "owner": "hpcDWDYve2XK82TdE",
   "originalAuthorName": {
     "title": "",
     "birthname": "Hanke",
     "givenname": "André"
   },
-  "top": "(##) Kriterien für die Übernahme der Zertifizierungskosten\n\nEs werden im SoSe 2019 zehn Studierende der THM gefördert. Die Kriterien folgen den Vorgaben für die **Bonusvergabe für das wiederholte Lernen nach dem Leitner-Plan** in den Modulen des Fachbereichs MNI.\n\n![ ](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Leitner_system.svg/800px-Leitner_system.svg.png width=80%)\n\nSie müssen sich in eine der Bonus-Lernphasen folgender Repetitorien einschreiben:\n\n- [Linux Essentials](https://linux.cards/cardset/qDTp6YT7DWnK2XhFX)\n- [Linux-Administration I](https://linux.cards/cardset/hH3guc3QZyKHBRqPR)\n\nDie Bonus-Lernphase dauert bis zum 30. September 2019. Der Projektleiter -- Prof. Dr. Klaus Quibeldey-Cirkel -- wird zum Ende der Lernphase Ihren **Lernprozess** (nicht das Lernergebnis) gemäß den Kriterien des Leitner-Wiederholungsplans beurteilen. Genügt Ihr Lernprozess den Kriterien, müssen Sie sich noch einem abschließenden **Online-Assessment**, bestehend aus 50 MC-Fragen aus dem jeweiligen Repetitorium, unterziehen. Die zehn besten Personen können sich im Oktober 2019 auf Kosten des Fachbereichs MNI zu einer offiziellen Zertifizierungsprüfung anmelden.",
-  "bottom": "(##) Visualisierung des Leitner-Lernprozesses \n\n![](https://arsnova.cards/img/help/de/Lernstand.jpg)\n\nEntscheidend für die **Zulassung zum finalen Online-Assessment** sind folgende Kriterien an Ihren Lernprozess:\n\n1. Haben Sie im Sinne des Leitner-Plans verteilt und wiederholt gelernt?\n- Haben Sie alle Karten aus Box 1 und Box 2 gelernt, das heißt, sind die ersten beiden Boxen am Ende der Bonus-Lernphase leer?"
+  "top": "(##) Kriterien für die Übernahme der Zertifizierungskosten\n\nEs werden im SoSe 2019 zehn Studierende der THM gefördert. Die Kriterien folgen den Vorgaben für die **Bonusvergabe für das wiederholte Lernen nach Leitner** in den Modulen des Fachbereichs MNI.\n\n![ ](https://upload.wikimedia.org/wikipedia/commons/c/c4/Leitner_system.svg width=300)Sie müssen sich in eine der Bonus-Lernphasen folgender Repetitorien einschreiben:\n\n- [Linux Essentials](https://linux.cards/cardset/qDTp6YT7DWnK2XhFX)\n- [Linux-Administration I](https://linux.cards/cardset/hH3guc3QZyKHBRqPR)\n\nDie Bonus-Lernphase dauert bis zum 30. September 2019. Der Projektleiter -- Prof. Dr. Klaus Quibeldey-Cirkel -- wird zum Ende der Lernphase Ihren **Lernprozess** (nicht das Lernergebnis) gemäß den Kriterien des Leitner-Wiederholungsplans beurteilen. Genügt Ihr Lernprozess den Kriterien, müssen Sie sich noch einem abschließenden **Online-Assessment**, bestehend aus 50 MC-Fragen aus dem jeweiligen Repetitorium, unterziehen. Die zehn besten Personen können sich im Oktober 2019 auf Kosten des Fachbereichs MNI zu einer offiziellen Zertifizierungsprüfung anmelden.",
+  "bottom": "![Visualisierung des Lernprozesses](https://arsnova.cards/img/help/de/Lernstand.jpg width=70%)\n\n!!!ERROR Kriterien für die Zulassung zum finalen Assessment\n   - Haben Sie im Sinne des Leitner-Plans verteilt und wiederholt gelernt? \n   - Haben Sie alle Karten mindestens zweimal gelernt, das heißt, sind die ersten beiden Boxen am Ende der Bonus-Lernphase leer?"
 }]
