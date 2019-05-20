@@ -1717,8 +1717,8 @@
     "preview": "Vorschau: __current__ / __total__",
     "leitner": "Noch eine Karte",
     "leitner_plural": "Noch __count__ Karten",
-    "leitnerShort": "Noch eine Karte",
-    "leitnerShort_plural": "Noch __count__ Karten"
+    "leitnerShort": "1 Karte",
+    "leitnerShort_plural": "__count__ Karten"
   },
   "permission": "Kein Zugang",
   "nocards": "Keine Karten vorhanden",
