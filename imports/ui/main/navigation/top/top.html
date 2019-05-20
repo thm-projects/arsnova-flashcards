@@ -81,16 +81,16 @@
                     {{/if}}
                 {{/unless}}
             {{/unless}}
-            {{#if gotDisplayModeButton}}
-                {{#if gotCardsetsForFilter}}
-                    {{> mainNavigationTopItemDisplayMode}}
-                {{/if}}
-            {{/if}}
             {{#if isFilterIndex}}
                 {{#if gotCardsetsForFilter}}
                     {{#unless gotAllUnfilteredCardsetsVisible}}
                         {{> mainNavigationTopItemFilter}}
                     {{/unless}}
+                {{/if}}
+            {{/if}}
+            {{#if gotDisplayModeButton}}
+                {{#if gotCardsetsForFilter}}
+                    {{> mainNavigationTopItemDisplayMode}}
                 {{/if}}
             {{/if}}
             {{> mainNavigationTopItemPublic}}
