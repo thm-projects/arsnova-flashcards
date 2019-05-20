@@ -54,7 +54,7 @@ Template.cardsetInfo.helpers({
 		return Bonus.isInBonus(Session.get('activeCardset')._id, Meteor.userId());
 	},
 	canSeeBonusDropdown: function () {
-		return this.learningActive && UserPermissions.canCreateContent();
+		return this.learningActive && !UserPermissions.isSocialLogin();
 	},
 	canSeeBonusTranscriptDropdown: function () {
 		return this.transcriptBonus !== undefined && this.transcriptBonus.enabled && UserPermissions.canCreateContent();
