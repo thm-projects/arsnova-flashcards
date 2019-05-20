@@ -34,22 +34,18 @@
                                     {{#unless isShuffleRoute}}
                                         {{#unless isCardsetTranscriptBonusRoute}}
                                             {{#if gotCardsetsForFilter}}
-                                                {{#unless gotAllUnfilteredCardsetsVisible}}
                                                 <div class="navbar-header-item pull-right">
                                                     {{> mainNavigationTopItemSearchMobile}}
                                                 </div>
-                                                {{/unless}}
                                             {{/if}}
                                         {{/unless}}
                                     {{/unless}}
                                 {{/unless}}
                                 {{#if isFilterIndex}}
                                     {{#if gotCardsetsForFilter}}
-                                        {{#unless gotAllUnfilteredCardsetsVisible}}
-                                            <div class="navbar-header-item pull-right">
-                                                {{> mainNavigationTopItemFilterMobile}}
-                                            </div>
-                                        {{/unless}}
+                                        <div class="navbar-header-item pull-right">
+                                            {{> mainNavigationTopItemFilterMobile}}
+                                        </div>
                                     {{/if}}
                                 {{/if}}
                                 <div class="navbar-header-item pull-right">
@@ -75,22 +71,18 @@
             {{#unless isShuffleRoute}}
                 {{#unless isCardsetTranscriptBonusRoute}}
                     {{#if gotCardsetsForFilter}}
-                        {{#unless gotAllUnfilteredCardsetsVisible}}
-                            {{> mainNavigationTopItemSearch}}
-                        {{/unless}}
+                        {{> mainNavigationTopItemSearch}}
                     {{/if}}
                 {{/unless}}
             {{/unless}}
+            {{#if isFilterIndex}}
+                {{#if gotCardsetsForFilter}}
+                    {{> mainNavigationTopItemFilter}}
+                {{/if}}
+            {{/if}}
             {{#if gotDisplayModeButton}}
                 {{#if gotCardsetsForFilter}}
                     {{> mainNavigationTopItemDisplayMode}}
-                {{/if}}
-            {{/if}}
-            {{#if isFilterIndex}}
-                {{#if gotCardsetsForFilter}}
-                    {{#unless gotAllUnfilteredCardsetsVisible}}
-                        {{> mainNavigationTopItemFilter}}
-                    {{/unless}}
                 {{/if}}
             {{/if}}
             {{> mainNavigationTopItemPublic}}

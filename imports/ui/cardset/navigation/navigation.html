@@ -4,6 +4,7 @@
             {{#unless isInBonusAndNotOwner}}
                 {{> cardsetNavigationPresentation}}
             {{/unless}}
+            {{> cardsetNavigationNewCard}}
             {{#if isInBonus}}
                 {{> cardsetNavigationLearning}}
             {{else}}
@@ -11,7 +12,6 @@
                     {{> cardsetNavigationWorkload}}
                 {{/if}}
             {{/if}}
-            {{> cardsetNavigationNewCard}}
             {{> cardsetNavigationEditRepetitorium}}
             {{> cardsetNavigationBonus}}
             {{> cardsetNavigationTranscripts}}
