@@ -17,7 +17,7 @@ export class MailNotifier {
 	 * @param {string} user_id - id of user
 	 * @return  mail address of user
 	 */
-	getMail (user_id) {
+	static getMail (user_id) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
@@ -32,7 +32,7 @@ export class MailNotifier {
 	 * @param {string} user_id - id of user
 	 * @returns {string} deadline text
 	 */
-	getDeadline (cardset, user_id) {
+	static getDeadline (cardset, user_id) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
@@ -51,7 +51,7 @@ export class MailNotifier {
 	 * @param {cardset} cardset - The cardset
 	 * @param {string} user_id - id of user
 	 */
-	prepareMail (cardset, user_id) {
+	static prepareMail (cardset, user_id) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
@@ -81,7 +81,7 @@ export class MailNotifier {
 	 * @param {Cardset} cardset - The cardset
 	 * @param {string} user_id - id of user
 	 */
-	prepareMailReset (cardset, user_id) {
+	static prepareMailReset (cardset, user_id) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
@@ -103,7 +103,7 @@ export class MailNotifier {
 	 * @param {string} titleColor - The rgb color of the title background
 	 * @param {string} buttonColor - The rgb color of the button background
 	 */
-	sendMail (name, mail, subject, text, bold, textEnd, cardsetId, titleColor, buttonColor) {
+	static sendMail (name, mail, subject, text, bold, textEnd, cardsetId, titleColor, buttonColor) {
 		var faq = TAPi18n.__('contact.faq', null, ServerStyle.getServerLanguage());
 		var datenschutz = TAPi18n.__('contact.datenschutz', null, ServerStyle.getServerLanguage());
 		var agb = TAPi18n.__('contact.agb', null, ServerStyle.getServerLanguage());
@@ -168,8 +168,7 @@ Meteor.methods({
 				}
 			}
 		);
-		let mail = new MailNotifier();
 		let cardset = Cardsets.findOne({_id: settings.testCardsetID});
-		mail.prepareMail(cardset, settings.testUserID);
+		MailNotifier.prepareMail(cardset, settings.testUserID);
 	}
 });
