@@ -9,6 +9,8 @@ import {CardType} from "./cardTypes";
 import {Cards} from "./cards";
 import * as config from "../config/leitner.js";
 import * as bonusFormConfig from "../config/bonusForm.js";
+import {Utilities} from "./utilities";
+import {CardIndex} from "./cardIndex";
 
 export let LeitnerUtilities = class LeitnerUtilities {
 	/** Function returns the amount of cards inside a box that are valid to learn
@@ -177,11 +179,18 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			if (config.fillUpMissingCards) {
 				boxActiveCardCap = this.fillUpMissingCards(boxActiveCardCap, cardCount);
 			}
-			let randomSelectedCards = this.selectNextRandomCards(cardset, boxActiveCardCap, algorithm, user);
+
+			let cardSelection;
+			if (config.randomCardsSelection) {
+				cardSelection = this.selectNextRandomCards(cardset, boxActiveCardCap, algorithm, user);
+			} else {
+				cardSelection = this.selectCardsByOrder(cardset, boxActiveCardCap, algorithm, user);
+			}
+
 			Leitner.update({
 				cardset_id: cardset._id,
 				user_id: user._id,
-				card_id: {$in: randomSelectedCards}
+				card_id: {$in: cardSelection}
 			}, {
 				$set: {
 					active: true,
@@ -311,6 +320,37 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			console.log("===> " + randomSelectedCards.length + " new active Cards: [" + randomSelectedCards + "]");
 		}
 		return randomSelectedCards;
+	}
+
+	static selectCardsByOrder (cardset, boxActiveCardCap, algorithm, user) {
+		let nextCards = [];
+		CardIndex.initializeIndex(cardset);
+		let index = CardIndex.getCardIndex();
+		//Get all cards from a box that match the leitner criteria
+		for (let l = 0; l < algorithm.length; l++) {
+			let leitnerCards = Leitner.find({
+				cardset_id: cardset._id,
+				user_id: user._id,
+				box: (l + 1),
+				active: false,
+				nextDate: {$lte: new Date()}
+			}, {fields: {card_id: 1}}).fetch();
+			let filter = Utilities.getUniqData(leitnerCards, 'card_id');
+			let sortedCards = [];
+			for (let i = 0; i < index.length; i++) {
+				if (filter.indexOf(index[i]) > -1) {
+					sortedCards.push(index[i]);
+				}
+			}
+			for (let c = 0; c < boxActiveCardCap[l]; c++) {
+				nextCards.push(sortedCards[c]);
+			}
+		}
+		if (Meteor.settings.debugServer && Meteor.isServer) {
+			console.log("===> Active Card cap for each box after adjustments: [" + boxActiveCardCap + "]");
+			console.log("===> " + nextCards.length + " new active Cards: [" + nextCards + "]");
+		}
+		return nextCards;
 	}
 
 	/** Function resets all active cards to their previous box

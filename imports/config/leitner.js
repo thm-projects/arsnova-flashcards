@@ -1,6 +1,7 @@
 //For Leitner Modal related settings, see bonusForm.js
 
 let fillUpMissingCards = true;
+let randomCardsSelection = false;
 
 // What should happen to a persons workload if the deadline got passed (Excludes cards in box 6 = learned)?
 // 0 = Reset all active cards to the previous box
@@ -19,6 +20,7 @@ let boxAlgorithm = [0.5, 0.2, 0.15, 0.1, 0.05];
 
 module.exports = {
 	fillUpMissingCards,
+	randomCardsSelection,
 	boxAlgorithm,
 	resetDeadlineMode,
 	wrongAnswerMode

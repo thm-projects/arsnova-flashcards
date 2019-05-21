@@ -7,6 +7,8 @@ import {Route} from "./route";
 import {CardType} from "./cardTypes";
 import {CardNavigation} from "./cardNavigation";
 import {CardVisuals} from "./cardVisuals";
+import * as config from "../config/leitner";
+import {Utilities} from "./utilities";
 
 let cardIndex = [];
 
@@ -40,39 +42,45 @@ export let CardIndex = class CardIndex {
 		return cardIndex;
 	}
 
-	static initializeIndex () {
-		switch (Router.current().route.getName()) {
-			case "box":
-				cardIndex = this.leitnerIndex();
-				break;
-			case "memo":
-				cardIndex = this.wozniakIndex();
-				break;
-			default :
-				cardIndex = this.defaultIndex();
-				break;
+	static initializeIndex (forcedCardset = undefined) {
+		if (Meteor.isServer) {
+			cardIndex = this.defaultIndex(forcedCardset);
+		} else {
+			switch (Router.current().route.getName()) {
+				case "box":
+					cardIndex = this.leitnerIndex();
+					break;
+				case "memo":
+					cardIndex = this.wozniakIndex();
+					break;
+				default :
+					cardIndex = this.defaultIndex();
+					break;
+			}
 		}
 	}
 
-	static defaultIndex () {
+	static defaultIndex (forcedCardset = undefined) {
 		let cardIndex = [];
 		let sortQuery;
 		let indexCards = [];
 		let cardset;
-		if (Route.isTranscript()) {
+		if (!Meteor.isServer && Route.isTranscript()) {
 			return 0;
 		} else {
-			if (Route.isDemo()) {
+			if (!Meteor.isServer && Route.isDemo()) {
 				cardset = Cardsets.findOne({kind: 'demo', name: 'DemoCardset', shuffled: true});
-			} else if (Route.isMakingOf()) {
+			} else if (!Meteor.isServer && Route.isMakingOf()) {
 				cardset = Cardsets.findOne({kind: 'demo', name: 'MakingOfCardset', shuffled: true});
-			} else {
+			} else if (!forcedCardset) {
 				cardset = Cardsets.findOne(Router.current().params._id);
+			} else {
+				cardset = forcedCardset;
 			}
 			if (cardset.shuffled) {
 				let cardGroups = Cardsets.find({_id: {$in: cardset.cardGroups}}, {
 					sort: {name: 1},
-					fields: {_id: 1, cardType: 1}
+					fields: {_id: 1, cardType: 1, sortType: 1}
 				});
 				cardGroups.forEach(function (cardGroup) {
 					sortQuery = CardType.getSortQuery(cardGroup.cardType, cardGroup.sortType);
@@ -104,10 +112,17 @@ export let CardIndex = class CardIndex {
 			fields: {
 				card_id: 1
 			}
-		});
-		indexCards.forEach(function (indexCard) {
-			cardIndex.push(indexCard.card_id);
-		});
+		}).fetch();
+		let filter = Utilities.getUniqData(indexCards, 'card_id');
+		if (indexCards.length) {
+			if (config.randomCardsSelection) {
+				cardIndex = filter;
+			} else {
+				cardIndex = this.defaultIndex(Cardsets.findOne({_id: Router.current().params._id})).filter(function (id) {
+					return filter.indexOf(id) > -1;
+				});
+			}
+		}
 		return cardIndex;
 	}
 
