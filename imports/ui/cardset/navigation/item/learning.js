@@ -2,7 +2,7 @@
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
-import {Leitner} from "../../../../api/learned";
+import {Workload} from "../../../../api/learned";
 import {Cardsets} from "../../../../api/cardsets";
 import {CardsetNavigation} from "../../../../api/cardsetNavigation";
 import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
@@ -16,11 +16,8 @@ import "./learning.html";
 
 Template.cardsetNavigationLearning.helpers({
 	notEmpty: function () {
-		return Leitner.find({
-			cardset_id: Router.current().params._id,
-			user_id: Meteor.userId(),
-			active: true
-		}).count();
+		let workload = Workload.findOne({cardset_id: Session.get('activeCardset')._id, user_id: Meteor.userId()});
+		return workload.leitner.activeCount;
 	}
 });
 
@@ -41,18 +38,10 @@ Template.cardsetNavigationLearning.onRendered(function () {
 		Bert.defaults.hideDelay = 10000;
 		let bertType = "success";
 		if (Session.get('activeCardset').learningEnd.getTime() > new Date().getTime()) {
+			let workload = Workload.findOne({cardset_id: Session.get('activeCardset')._id, user_id: Meteor.userId()});
 			let text = "";
-			if (Leitner.find({
-				cardset_id: Session.get('activeCardset')._id,
-				user_id: Meteor.userId(),
-				active: true
-			}).count()) {
-				var active = Leitner.findOne({
-					cardset_id: Session.get('activeCardset')._id,
-					user_id: Meteor.userId(),
-					active: true
-				});
-				var deadline = new Date(active.currentDate.getTime() + Session.get('activeCardset').daysBeforeReset * 86400000);
+			if (workload.leitner.activeCount) {
+				var deadline = new Date(workload.leitner.activeDate.getTime() + Session.get('activeCardset').daysBeforeReset * 86400000);
 				if (deadline.getTime() > Session.get('activeCardset').learningEnd.getTime()) {
 					text += (TAPi18n.__('deadlinePrologue') + moment(Session.get('activeCardset').learningEnd).format("DD.MM.YYYY") + TAPi18n.__('deadlineEpilogue1'));
 				} else {
@@ -60,27 +49,18 @@ Template.cardsetNavigationLearning.onRendered(function () {
 				}
 				bertType = "warning";
 			} else {
-				if (Leitner.find({
-					cardset_id: Session.get('activeCardset')._id,
-					user_id: Meteor.userId(),
-					box: {$ne: 6}
-				}).count() === 0) {
+				if (workload.leitner.finished) {
 					text += TAPi18n.__('bonus.message.learnedEverything');
 				} else {
-					let nextCardDate = Leitner.findOne({
-						cardset_id: Router.current().params._id,
-						user_id: Meteor.userId(),
-						box: {$ne: 6}
-					}, {sort: {nextDate: 1}}).nextDate;
 					let learningEnd = Cardsets.findOne({_id: Router.current().params._id}).learningEnd;
-					if (nextCardDate.getTime() > learningEnd.getTime()) {
+					if (workload.leitner.nextDate.getTime() > learningEnd.getTime()) {
 						text += TAPi18n.__('noMoreCardsBeforeEnd');
 					}
 					let nextDate;
-					if (nextCardDate.getTime() < new Date().getTime()) {
+					if (workload.leitner.nextDate.getTime() < new Date().getTime()) {
 						nextDate = moment(new Date()).locale(Session.get('activeLanguage'));
 					} else {
-						nextDate = moment(nextCardDate).locale(Session.get('activeLanguage'));
+						nextDate = moment(workload.leitner.nextDate).locale(Session.get('activeLanguage'));
 					}
 					if (nextDate.get('hour') >= Meteor.settings.public.dailyCronjob.executeAtHour) {
 						nextDate.add(1, 'day');
