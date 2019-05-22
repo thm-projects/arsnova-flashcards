@@ -25,6 +25,7 @@ Template.selectLearningUnit.helpers({
 					let transcriptBonus = cardsets[c].transcriptBonus;
 					transcriptBonus.cardset_id = cardsets[c]._id;
 					transcriptBonus.name = cardsets[c].name;
+					transcriptBonus.date = cardsets[c].transcriptBonus.dates[d];
 					if (TranscriptBonusList.canBeSubmittedToLecture(transcriptBonus, d)) {
 						let lecture = {};
 						lecture.name = TranscriptBonusList.getLectureName(transcriptBonus);
