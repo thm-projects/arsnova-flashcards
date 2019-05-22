@@ -10,6 +10,7 @@ import {CardType} from "../../api/cardTypes";
 import {WebPushSubscriptions} from "../../api/webPushSubscriptions";
 import {Paid} from "../../api/paid";
 import {TranscriptBonus} from "../../api/transcriptBonus";
+import {LeitnerUtilities} from "../../api/leitner";
 
 var initColorThemes = function () {
 	return [{
@@ -984,6 +985,12 @@ Meteor.startup(function () {
 			}
 		);
 	}
+
+	let workload = Workload.find({"leitner.active": {$exists: false}}).fetch();
+	for (let i = 0; i < workload.length; i++) {
+		LeitnerUtilities.updateLeitnerWorkload(workload[i].cardset_id, workload[i].user_id);
+	}
+
 	Cardsets.remove({cardType: 2});
 	Meteor.users.remove(demoCardsetUser[0]._id);
 	Meteor.users.insert(demoCardsetUser[0]);

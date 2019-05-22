@@ -2,7 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../api/cardsets.js";
 import {Cards} from "../../api/cards.js";
 import {CollegesCourses} from "../../api/colleges_courses.js";
-import {Leitner} from "../../api/learned.js";
+import {Workload} from "../../api/learned.js";
 import {Session} from "meteor/session";
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import {CardType} from "../../api/cardTypes";
@@ -301,20 +301,16 @@ Template.registerHelper("isActiveLanguage", function (language) {
 
 
 Template.registerHelper("getNextCardTime", function () {
-	let nextCardDate = Leitner.findOne({
-		cardset_id: Router.current().params._id,
-		user_id: Meteor.userId(),
-		box: {$ne: 6}
-	}, {sort: {nextDate: 1}}).nextDate;
+	let workload = Workload.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId()});
 	let learningEnd = Cardsets.findOne({_id: Router.current().params._id}).learningEnd;
-	if (nextCardDate.getTime() > learningEnd.getTime()) {
+	if (workload.leitner.nextDate.getTime() > learningEnd.getTime()) {
 		return TAPi18n.__('noMoreCardsBeforeEnd');
 	}
 	let nextDate;
-	if (nextCardDate.getTime() < new Date().getTime()) {
+	if (workload.leitner.nextDate.getTime() < new Date().getTime()) {
 		nextDate = moment(new Date()).locale(Session.get('activeLanguage'));
 	} else {
-		nextDate = moment(nextCardDate).locale(Session.get('activeLanguage'));
+		nextDate = moment(workload.leitner.nextDate).locale(Session.get('activeLanguage'));
 	}
 	if (nextDate.get('hour') >= Meteor.settings.public.dailyCronjob.executeAtHour) {
 		nextDate.add(1, 'day');

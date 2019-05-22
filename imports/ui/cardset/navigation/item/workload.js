@@ -2,7 +2,7 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {CardType} from "../../../../api/cardTypes";
-import {Leitner, Wozniak} from "../../../../api/learned";
+import {Workload, Wozniak} from "../../../../api/learned";
 import {Cardsets} from "../../../../api/cardsets";
 import "../modal/chooseFlashcards.js";
 import "../modal/leitner.js";
@@ -28,7 +28,10 @@ Template.cardsetNavigationWorkload.helpers({
 		}
 	},
 	learningLeitner: function () {
-		return Leitner.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId()});
+		let workload = Workload.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId()});
+		if (workload !== undefined && workload.leitner !== undefined && workload.leitner.active !== undefined) {
+			return workload.leitner.active;
+		}
 	},
 	learningMemo: function () {
 		return Wozniak.findOne({

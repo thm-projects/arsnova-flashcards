@@ -197,6 +197,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					currentDate: new Date()
 				}
 			}, {multi: true});
+			this.updateLeitnerWorkload(cardset._id, user._id);
 			Meteor.call('prepareMail', cardset, user, isReset, isNewcomer);
 			Meteor.call('prepareWebpush', cardset, user, isNewcomer);
 		}
@@ -412,6 +413,44 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				}, {multi: true});
 			}
 			this.setCards(cardset, user, true);
+		}
+	}
+
+	static updateLeitnerWorkload (cardset_id, user_id) {
+		if (!Meteor.isServer) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			let activeLeitnerCards = 0;
+			let nextLeitnerCardDate = new Date();
+			let activeLeitnerCardDate = new Date();
+			let learnedAllLeitnerCards = false;
+			let isLearningLeitner = Leitner.findOne({cardset_id: cardset_id, user_id: user_id});
+			if (isLearningLeitner) {
+				activeLeitnerCards = Leitner.find({cardset_id: cardset_id, user_id: user_id, active: true}).count();
+				let nextLeitnerObject = Leitner.findOne({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}, active: false}, {sort: {nextDate: 1}});
+				if (nextLeitnerObject) {
+					nextLeitnerCardDate = nextLeitnerObject.nextDate;
+				}
+				let activeLeitnerObject = Leitner.findOne({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}, active: true}, {sort: {currentDate: 1}});
+				if (activeLeitnerObject) {
+					activeLeitnerCardDate = activeLeitnerObject.currentDate;
+				}
+				if (!Leitner.find({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}}).count()) {
+					learnedAllLeitnerCards = true;
+				}
+			}
+			Workload.update({
+				cardset_id: cardset_id,
+				user_id: user_id
+			}, {
+				$set: {
+					"leitner.activeCount": activeLeitnerCards,
+					"leitner.active": isLearningLeitner !== undefined,
+					"leitner.finished": learnedAllLeitnerCards,
+					"leitner.nextDate": nextLeitnerCardDate,
+					"leitner.activeDate": activeLeitnerCardDate
+				}
+			});
 		}
 	}
 };
