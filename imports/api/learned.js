@@ -5,6 +5,7 @@ import {check} from "meteor/check";
 import {UserPermissions} from "./permissions";
 import {getLearners} from "./cardsetUserlist";
 import * as config from "../config/leitner";
+import {LeitnerUtilities} from "./leitner";
 
 export const Learned = new Mongo.Collection("learned");
 export const Leitner = new Mongo.Collection("leitner");
@@ -153,6 +154,7 @@ if (Meteor.isServer) {
 						}
 					});
 				}
+				LeitnerUtilities.updateLeitnerWorkload(cardset_id, Meteor.userId());
 			}
 		},
 		deleteLeitner: function (cardset_id) {
@@ -167,6 +169,7 @@ if (Meteor.isServer) {
 			});
 			Meteor.call("updateLearnerCount", cardset_id);
 			Meteor.call('updateWorkloadCount', Meteor.userId());
+			LeitnerUtilities.updateLeitnerWorkload(cardset_id, Meteor.userId());
 			return true;
 		},
 		deleteWozniak: function (cardset_id) {

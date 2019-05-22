@@ -9,6 +9,9 @@ import {CardType} from "./cardTypes";
 import {Cards} from "./cards";
 import * as config from "../config/leitner.js";
 import * as bonusFormConfig from "../config/bonusForm.js";
+import {Utilities} from "./utilities";
+import {CardIndex} from "./cardIndex";
+import {ServerStyle} from "./styles";
 
 export let LeitnerUtilities = class LeitnerUtilities {
 	/** Function returns the amount of cards inside a box that are valid to learn
@@ -177,17 +180,25 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			if (config.fillUpMissingCards) {
 				boxActiveCardCap = this.fillUpMissingCards(boxActiveCardCap, cardCount);
 			}
-			let randomSelectedCards = this.selectNextRandomCards(cardset, boxActiveCardCap, algorithm, user);
+
+			let cardSelection;
+			if (ServerStyle.gotLeitnerRandomCardsSelection()) {
+				cardSelection = this.selectNextRandomCards(cardset, boxActiveCardCap, algorithm, user);
+			} else {
+				cardSelection = this.selectCardsByOrder(cardset, boxActiveCardCap, algorithm, user);
+			}
+
 			Leitner.update({
 				cardset_id: cardset._id,
 				user_id: user._id,
-				card_id: {$in: randomSelectedCards}
+				card_id: {$in: cardSelection}
 			}, {
 				$set: {
 					active: true,
 					currentDate: new Date()
 				}
 			}, {multi: true});
+			this.updateLeitnerWorkload(cardset._id, user._id);
 			Meteor.call('prepareMail', cardset, user, isReset, isNewcomer);
 			Meteor.call('prepareWebpush', cardset, user, isNewcomer);
 		}
@@ -313,6 +324,37 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		return randomSelectedCards;
 	}
 
+	static selectCardsByOrder (cardset, boxActiveCardCap, algorithm, user) {
+		let nextCards = [];
+		CardIndex.initializeIndex(cardset);
+		let index = CardIndex.getCardIndex();
+		//Get all cards from a box that match the leitner criteria
+		for (let l = 0; l < algorithm.length; l++) {
+			let leitnerCards = Leitner.find({
+				cardset_id: cardset._id,
+				user_id: user._id,
+				box: (l + 1),
+				active: false,
+				nextDate: {$lte: new Date()}
+			}, {fields: {card_id: 1}}).fetch();
+			let filter = Utilities.getUniqData(leitnerCards, 'card_id');
+			let sortedCards = [];
+			for (let i = 0; i < index.length; i++) {
+				if (filter.indexOf(index[i]) > -1) {
+					sortedCards.push(index[i]);
+				}
+			}
+			for (let c = 0; c < boxActiveCardCap[l]; c++) {
+				nextCards.push(sortedCards[c]);
+			}
+		}
+		if (Meteor.settings.debugServer && Meteor.isServer) {
+			console.log("===> Active Card cap for each box after adjustments: [" + boxActiveCardCap + "]");
+			console.log("===> " + nextCards.length + " new active Cards: [" + nextCards + "]");
+		}
+		return nextCards;
+	}
+
 	/** Function resets all active cards to their previous box
 	 *  @param {Object} cardset - The cardset with learners
 	 *  @param {Object} user - The user from the cardset who is currently learning
@@ -372,6 +414,44 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				}, {multi: true});
 			}
 			this.setCards(cardset, user, true);
+		}
+	}
+
+	static updateLeitnerWorkload (cardset_id, user_id) {
+		if (!Meteor.isServer) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			let activeLeitnerCards = 0;
+			let nextLeitnerCardDate = new Date();
+			let activeLeitnerCardDate = new Date();
+			let learnedAllLeitnerCards = false;
+			let isLearningLeitner = Leitner.findOne({cardset_id: cardset_id, user_id: user_id});
+			if (isLearningLeitner) {
+				activeLeitnerCards = Leitner.find({cardset_id: cardset_id, user_id: user_id, active: true}).count();
+				let nextLeitnerObject = Leitner.findOne({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}, active: false}, {sort: {nextDate: 1}});
+				if (nextLeitnerObject) {
+					nextLeitnerCardDate = nextLeitnerObject.nextDate;
+				}
+				let activeLeitnerObject = Leitner.findOne({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}, active: true}, {sort: {currentDate: 1}});
+				if (activeLeitnerObject) {
+					activeLeitnerCardDate = activeLeitnerObject.currentDate;
+				}
+				if (!Leitner.find({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}}).count()) {
+					learnedAllLeitnerCards = true;
+				}
+			}
+			Workload.update({
+				cardset_id: cardset_id,
+				user_id: user_id
+			}, {
+				$set: {
+					"leitner.activeCount": activeLeitnerCards,
+					"leitner.active": isLearningLeitner !== undefined,
+					"leitner.finished": learnedAllLeitnerCards,
+					"leitner.nextDate": nextLeitnerCardDate,
+					"leitner.activeDate": activeLeitnerCardDate
+				}
+			});
 		}
 	}
 };
@@ -442,30 +522,32 @@ Meteor.methods({
 	 * */
 	addToLeitner: function (cardset_id) {
 		check(cardset_id, String);
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked') || !UserPermissions.hasCardsetPermission(cardset_id)) {
-			throw new Meteor.Error("not-authorized");
-		} else {
-			let cardset = Cardsets.findOne({_id: cardset_id});
-			if (cardset !== undefined) {
-				if (cardset.shuffled) {
-					let counter = 0;
-					for (let i = 0; i < cardset.cardGroups.length; i++) {
-						if (CardType.gotLearningModes(Cardsets.findOne(cardset.cardGroups[i]).cardType)) {
-							counter++;
+		if (Meteor.isServer) {
+			if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked') || !UserPermissions.hasCardsetPermission(cardset_id)) {
+				throw new Meteor.Error("not-authorized");
+			} else {
+				let cardset = Cardsets.findOne({_id: cardset_id});
+				if (cardset !== undefined) {
+					if (cardset.shuffled) {
+						let counter = 0;
+						for (let i = 0; i < cardset.cardGroups.length; i++) {
+							if (CardType.gotLearningModes(Cardsets.findOne(cardset.cardGroups[i]).cardType)) {
+								counter++;
+							}
+						}
+						if (counter === 0) {
+							throw new Meteor.Error("not-authorized");
+						}
+					} else {
+						if (!CardType.gotLearningModes(cardset.cardType)) {
+							throw new Meteor.Error("not-authorized");
 						}
 					}
-					if (counter === 0) {
-						throw new Meteor.Error("not-authorized");
+					let isNewcomer = LeitnerUtilities.addLeitnerCards(cardset, Meteor.userId());
+					cardset = LeitnerUtilities.defaultCardsetLeitnerData(cardset);
+					if (isNewcomer && (!Bonus.isInBonus(cardset._id, Meteor.userId()) || cardset.learningEnd.getTime() > new Date().getTime())) {
+						LeitnerUtilities.setCards(cardset, Meteor.user(), false, isNewcomer);
 					}
-				} else {
-					if (!CardType.gotLearningModes(cardset.cardType)) {
-						throw new Meteor.Error("not-authorized");
-					}
-				}
-				let isNewcomer = LeitnerUtilities.addLeitnerCards(cardset, Meteor.userId());
-				cardset = LeitnerUtilities.defaultCardsetLeitnerData(cardset);
-				if (isNewcomer && (!Bonus.isInBonus(cardset._id, Meteor.userId()) || cardset.learningEnd.getTime() > new Date().getTime())) {
-					LeitnerUtilities.setCards(cardset, Meteor.user(), false, isNewcomer);
 				}
 			}
 		}

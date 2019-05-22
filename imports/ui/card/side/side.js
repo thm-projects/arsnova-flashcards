@@ -33,13 +33,16 @@ Template.cardSide.helpers({
 				side = this.forceSide;
 				isCube = true;
 			}
-			if (Session.get('swapAnswerQuestion')) {
-				if (!CardType.getSideData(this.cardType, side).isAnswer && (Session.get('isQuestionSide') || !isCube)) {
-					return true;
-				}
-			} else {
-				if (CardType.getSideData(this.cardType, side).isAnswer && (Session.get('isQuestionSide') || !isCube)) {
-					return true;
+			let sideData = CardType.getSideData(this.cardType, side);
+			if (sideData !== undefined) {
+				if (Session.get('swapAnswerQuestion')) {
+					if (!sideData.isAnswer && (Session.get('isQuestionSide') || !isCube)) {
+						return true;
+					}
+				} else {
+					if (sideData.isAnswer && (Session.get('isQuestionSide') || !isCube)) {
+						return true;
+					}
 				}
 			}
 		}

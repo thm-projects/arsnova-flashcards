@@ -110,7 +110,6 @@ Meteor.methods({
 						}
 						let activeCard = getActiveCard(cardsets[i]._id, learners[k].user_id);
 						let user = Meteor.users.findOne(learners[k].user_id);
-						console.log(activeCard);
 						if (!activeCard) {
 							LeitnerUtilities.setCards(cardsets[i], user, false);
 						} else if ((activeCard.currentDate.getTime() + (cardsets[i].daysBeforeReset + 1) * 86400000) < new Date().getTime()) {
