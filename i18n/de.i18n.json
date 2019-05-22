@@ -648,6 +648,7 @@
       "participants": "Teilnehmer/innen",
       "submissions": "Eingereichte Mitschriften",
       "median": "Ø Mitschriften pro Teilnehmer/in",
+      "medianPerDate": "Ø Mitschriften pro Termin",
       "tooltip": {
         "lecture": {
           "past": "Der Termin für die Foto-Abgabefrist ist bereits abgelaufen.",
