@@ -521,30 +521,32 @@ Meteor.methods({
 	 * */
 	addToLeitner: function (cardset_id) {
 		check(cardset_id, String);
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked') || !UserPermissions.hasCardsetPermission(cardset_id)) {
-			throw new Meteor.Error("not-authorized");
-		} else {
-			let cardset = Cardsets.findOne({_id: cardset_id});
-			if (cardset !== undefined) {
-				if (cardset.shuffled) {
-					let counter = 0;
-					for (let i = 0; i < cardset.cardGroups.length; i++) {
-						if (CardType.gotLearningModes(Cardsets.findOne(cardset.cardGroups[i]).cardType)) {
-							counter++;
+		if (Meteor.isServer) {
+			if (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked') || !UserPermissions.hasCardsetPermission(cardset_id)) {
+				throw new Meteor.Error("not-authorized");
+			} else {
+				let cardset = Cardsets.findOne({_id: cardset_id});
+				if (cardset !== undefined) {
+					if (cardset.shuffled) {
+						let counter = 0;
+						for (let i = 0; i < cardset.cardGroups.length; i++) {
+							if (CardType.gotLearningModes(Cardsets.findOne(cardset.cardGroups[i]).cardType)) {
+								counter++;
+							}
+						}
+						if (counter === 0) {
+							throw new Meteor.Error("not-authorized");
+						}
+					} else {
+						if (!CardType.gotLearningModes(cardset.cardType)) {
+							throw new Meteor.Error("not-authorized");
 						}
 					}
-					if (counter === 0) {
-						throw new Meteor.Error("not-authorized");
+					let isNewcomer = LeitnerUtilities.addLeitnerCards(cardset, Meteor.userId());
+					cardset = LeitnerUtilities.defaultCardsetLeitnerData(cardset);
+					if (isNewcomer && (!Bonus.isInBonus(cardset._id, Meteor.userId()) || cardset.learningEnd.getTime() > new Date().getTime())) {
+						LeitnerUtilities.setCards(cardset, Meteor.user(), false, isNewcomer);
 					}
-				} else {
-					if (!CardType.gotLearningModes(cardset.cardType)) {
-						throw new Meteor.Error("not-authorized");
-					}
-				}
-				let isNewcomer = LeitnerUtilities.addLeitnerCards(cardset, Meteor.userId());
-				cardset = LeitnerUtilities.defaultCardsetLeitnerData(cardset);
-				if (isNewcomer && (!Bonus.isInBonus(cardset._id, Meteor.userId()) || cardset.learningEnd.getTime() > new Date().getTime())) {
-					LeitnerUtilities.setCards(cardset, Meteor.user(), false, isNewcomer);
 				}
 			}
 		}
