@@ -11,6 +11,7 @@ import * as config from "../config/leitner.js";
 import * as bonusFormConfig from "../config/bonusForm.js";
 import {Utilities} from "./utilities";
 import {CardIndex} from "./cardIndex";
+import {ServerStyle} from "./styles";
 
 export let LeitnerUtilities = class LeitnerUtilities {
 	/** Function returns the amount of cards inside a box that are valid to learn
@@ -181,7 +182,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			}
 
 			let cardSelection;
-			if (config.randomCardsSelection) {
+			if (ServerStyle.gotLeitnerRandomCardsSelection()) {
 				cardSelection = this.selectNextRandomCards(cardset, boxActiveCardCap, algorithm, user);
 			} else {
 				cardSelection = this.selectCardsByOrder(cardset, boxActiveCardCap, algorithm, user);
