@@ -192,7 +192,7 @@ export let TranscriptBonusList = class TranscriptBonusList {
 		if (config.roundTheMedian) {
 			return Math.round(median);
 		} else {
-			return median.toFixed(2);
+			return median.toFixed(1);
 		}
 	}
 };
