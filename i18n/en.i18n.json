@@ -651,6 +651,7 @@
       "participants": "Number of participants in the bonus procedure",
       "submissions": "Number of all submitted transcripts",
       "median": "Average number of transcripts per participant",
+      "medianPerDate": "Ø number of transcripts per date",
       "tooltip": {
         "lecture": {
           "past": "Der Termin für die Foto-Abgabefrist ist bereits abgelaufen.",
