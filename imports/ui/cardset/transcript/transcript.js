@@ -76,15 +76,11 @@ Template.cardsetTranscriptEditor.onRendered(function () {
 	if (dates.length) {
 		$('#transcript-calendar').multiDatesPicker({
 			addDates: dates,
-			numberOfMonths: [2, 6],
-			defaultDate: '1/1/' + new Date().getFullYear(),
-			firstDay: 1
+			numberOfMonths: [1, 6]
 		});
 	} else {
 		$('#transcript-calendar').multiDatesPicker({
-			numberOfMonths: [2, 6],
-			defaultDate: '1/1/' + new Date().getFullYear(),
-			firstDay: 1
+			numberOfMonths: [1, 6]
 		});
 	}
 	let minimumSubmissions = $('#bonusMinimumSubmissions').val();
