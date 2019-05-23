@@ -205,7 +205,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 	}
 
 	static getBoxAlgorithm () {
-		return config.boxAlgorithm;
+		return Array.from(config.boxAlgorithm);
 	}
 
 	static adjustBoxAlgorithm (cardCount, algorithm) {

@@ -415,7 +415,7 @@ export let CardNavigation = class CardNavigation {
 						if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
 							CardEditor.setLearningGoalLevelIndex(false);
 						} else {
-							if (CardNavigation.isVisible()) {
+							if (CardNavigation.isVisible() && !Route.isBox() && !Route.isMemo()) {
 								if ($('#leftCarouselControl').click()) {
 									$('#showHintModal').modal('hide');
 									$('body').removeClass('modal-open');
@@ -434,7 +434,7 @@ export let CardNavigation = class CardNavigation {
 						if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
 							CardEditor.setLearningGoalLevelIndex();
 						} else {
-							if (CardNavigation.isVisible()) {
+							if (CardNavigation.isVisible() && !Route.isBox() && !Route.isMemo()) {
 								if ($('#rightCarouselControl').click()) {
 									$('#showHintModal').modal('hide');
 									$('body').removeClass('modal-open');
