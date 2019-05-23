@@ -118,18 +118,17 @@ if (Meteor.isServer) {
 			var cardset = Cardsets.findOne({_id: cardset_id});
 
 			if (cardset !== undefined) {
-				var query = {};
+				let query = {};
 
 				query.card_id = card_id;
 				query.cardset_id = cardset_id;
 				query.user_id = Meteor.userId();
 				query.active = true;
 
-				var currentLearned = Leitner.findOne(query);
-
+				let currentLearned = Leitner.findOne(query);
 				if (currentLearned !== undefined) {
-					var selectedBox = currentLearned.box + 1;
-					var nextDate = new Date();
+					let selectedBox = currentLearned.box + 1;
+					let nextDate = new Date();
 
 					if (isWrong) {
 						if (config.wrongAnswerMode === 1) {
@@ -142,7 +141,9 @@ if (Meteor.isServer) {
 							selectedBox = 1;
 						}
 					}
-
+					let workload = Workload.findOne({cardset_id: currentLearned.cardset_id, user_id: currentLearned.user_id});
+					let lowestPriority = workload.leitner.nextLowestPriority;
+					let newPriority = lowestPriority[selectedBox - 1];
 					nextDate = new Date(nextDate.getTime() + cardset.learningInterval[selectedBox - 1] * 86400000);
 
 					Leitner.update(currentLearned._id, {
@@ -150,7 +151,14 @@ if (Meteor.isServer) {
 							box: selectedBox,
 							active: false,
 							nextDate: nextDate,
-							currentDate: new Date()
+							currentDate: new Date(),
+							priority: newPriority
+						}
+					});
+					lowestPriority[selectedBox - 1] = newPriority - 1;
+					Workload.update({cardset_id: currentLearned.cardset_id, user_id: currentLearned.user_id}, {
+						$set: {
+							"leitner.nextLowestPriority": lowestPriority
 						}
 					});
 				}

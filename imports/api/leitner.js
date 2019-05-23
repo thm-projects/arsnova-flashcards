@@ -13,6 +13,16 @@ import {Utilities} from "./utilities";
 import {CardIndex} from "./cardIndex";
 import {ServerStyle} from "./styles";
 
+function gotPriority(array, card_id, priority) {
+	for (let i = 0; i < array.length; i++) {
+		if (array[i].card_id === card_id) {
+			if (array[i].priority === priority) {
+				return true;
+			}
+		}
+	}
+}
+
 export let LeitnerUtilities = class LeitnerUtilities {
 	/** Function returns the amount of cards inside a box that are valid to learn
 	 *  @param {string} cardset_id - The id of the cardset with active learners
@@ -129,7 +139,8 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					active: false,
 					nextDate: nextDate,
 					currentDate: nextDate,
-					skipped: 0
+					skipped: 0,
+					priority: 0
 				};
 				if (cardset.shuffled) {
 					newItemObject.original_cardset_id = card.cardset_id;
@@ -336,16 +347,38 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				box: (l + 1),
 				active: false,
 				nextDate: {$lte: new Date()}
-			}, {fields: {card_id: 1}}).fetch();
+			}, {fields: {card_id: 1, priority: 1}}).fetch();
 			let filter = Utilities.getUniqData(leitnerCards, 'card_id');
+			let priorities = Utilities.getUniqData(leitnerCards, 'priority');
+			priorities = priorities.sort(function (a,b) {
+				return a - b;
+			});
+			priorities.reverse();
 			let sortedCards = [];
-			for (let i = 0; i < index.length; i++) {
-				if (filter.indexOf(index[i]) > -1) {
-					sortedCards.push(index[i]);
+			let activeCardCap = boxActiveCardCap[l];
+			let foundCardCount = 0;
+			for (let p = 0; p < priorities.length; p++) {
+				if (foundCardCount === activeCardCap) {
+					break;
+				}
+				for (let i = 0; i < index.length; i++) {
+					if (foundCardCount === activeCardCap) {
+						break;
+					}
+					if (filter.indexOf(index[i]) > -1) {
+						if (gotPriority(leitnerCards, index[i], priorities[p])) {
+							sortedCards.push(index[i]);
+							foundCardCount++;
+						}
+					}
 				}
 			}
-			for (let c = 0; c < boxActiveCardCap[l]; c++) {
-				nextCards.push(sortedCards[c]);
+			if (sortedCards.length) {
+				for (let c = 0; c < activeCardCap; c++) {
+					if (sortedCards[c] !== "" && sortedCards[c] !== undefined) {
+						nextCards.push(sortedCards[c]);
+					}
+				}
 			}
 		}
 		if (Meteor.settings.debugServer && Meteor.isServer) {
@@ -425,6 +458,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			let nextLeitnerCardDate = new Date();
 			let activeLeitnerCardDate = new Date();
 			let learnedAllLeitnerCards = false;
+			let nextLowestPriority = [-1, -1, -1, -1, -1];
 			let isLearningLeitner = Leitner.findOne({cardset_id: cardset_id, user_id: user_id});
 			if (isLearningLeitner) {
 				activeLeitnerCards = Leitner.find({cardset_id: cardset_id, user_id: user_id, active: true}).count();
@@ -439,6 +473,10 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				if (!Leitner.find({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}}).count()) {
 					learnedAllLeitnerCards = true;
 				}
+				let workload = Workload.findOne({cardset_id: cardset_id, user_id: user_id});
+				if (workload !== undefined) {
+					nextLowestPriority = workload.leitner.nextLowestPriority;
+				}
 			}
 			Workload.update({
 				cardset_id: cardset_id,
@@ -449,7 +487,8 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					"leitner.active": isLearningLeitner !== undefined,
 					"leitner.finished": learnedAllLeitnerCards,
 					"leitner.nextDate": nextLeitnerCardDate,
-					"leitner.activeDate": activeLeitnerCardDate
+					"leitner.activeDate": activeLeitnerCardDate,
+					"leitner.nextLowestPriority": nextLowestPriority
 				}
 			});
 		}
@@ -466,7 +505,8 @@ Meteor.methods({
 				cardset_id: cardset_id,
 				user_id: user_id,
 				leitner: {
-					bonus: false
+					bonus: false,
+					nextLowestPriority: [-1, -1, -1, -1, -1]
 				}
 			});
 		}
