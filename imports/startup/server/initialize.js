@@ -991,6 +991,29 @@ Meteor.startup(function () {
 		LeitnerUtilities.updateLeitnerWorkload(workload[i].cardset_id, workload[i].user_id);
 	}
 
+	workload = Workload.find({"leitner.nextLowestPriority": {$exists: false}}).fetch();
+	for (let i = 0; i < workload.length; i++) {
+		Workload.update({
+				user_id: workload[i].user_id,
+				cardset_id: workload[i].cardset_id
+			},
+			{
+				$set: {
+					"leitner.nextLowestPriority": [-1, -1, -1, -1, -1]
+				}
+			}
+		);
+		Leitner.update({
+				user_id: workload[i].user_id,
+				cardset_id: workload[i].cardset_id
+			},
+			{
+				$set: {
+					"priority": 0
+				}
+			}, {multi: true});
+	}
+
 	Cardsets.remove({cardType: 2});
 	Meteor.users.remove(demoCardsetUser[0]._id);
 	Meteor.users.insert(demoCardsetUser[0]);
