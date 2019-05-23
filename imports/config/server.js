@@ -92,7 +92,7 @@ let debug = {
 		}
 	},
 	"leitner": {
-		"randomCardsSelection": true
+		"randomCardsSelection": false
 	}
 };
 
