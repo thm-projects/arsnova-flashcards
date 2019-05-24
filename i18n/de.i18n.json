@@ -1729,7 +1729,7 @@
   "noMoreCardsBeforeEnd": "Es gibt keine Karten mehr, die vor dem Ende der Lernphase gelernt werden können.",
   "deadlinePrologue": "Du hast noch bis <strong>",
   "deadlineEpilogue1": "</strong> Zeit, um die derzeit freigegebenen Karten zu lernen.",
-  "deadlineEpilogue2": "</strong> Zeit, um die derzeit freigegebenen Karten zu lernen, sonst wird deine Lernstatistik für diese Kartei zurückgesetzt.",
+  "deadlineEpilogue2": "</strong> Zeit, um die derzeit freigegebenen Karten zu lernen, sonst wird deine Lernstatistik zurückgesetzt, das heißt, alle freigegebenen Karten werden in die Leitner-Box 1 zurückgelegt.",
   "cardsToLearn": "Meine zu lernenden Karten",
   "noCardsToLearn": "Die nächsten Karten werden am ",
   "at": " um ",
