@@ -7,7 +7,7 @@ let fillUpMissingCards = true;
 // 1 = Reset all active cards to the first box
 // 2 = Reset all cards to the previous box
 // 3 = Reset all cards to the first box
-let resetDeadlineMode = 0;
+let resetDeadlineMode = 1;
 
 // What should happen if the user answers a card with "Not Known"
 // 0 = Move the card back to the first box
