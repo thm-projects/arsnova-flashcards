@@ -52,7 +52,7 @@
   }
 
   code > .output {
-    font-weight: bold;
+    font-weight: normal;
     background: #FF7;
     margin-left: -20px;
     padding-left: 20px;
@@ -69,7 +69,7 @@
     font-family: cursive;
     font-weight: normal;
     @media(max-width: 767px) {
-      font-weight: bold;
+      font-weight: normal;
     }
   }
 
