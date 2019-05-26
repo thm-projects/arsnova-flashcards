@@ -2,12 +2,12 @@
 
 @function theme-default() {
   //global sass colors
-  $thm_dark_blue: #178FFF;
-  $thm_blue: #178FFF;
-  $thm_orange: #FF9F30;
-  $thm_red: #ef4d3c;
+  $thm_dark_blue: darkblue;
+  $thm_blue: blue;
+  $thm_orange: darkorange;
+  $thm_red: red;
   $thm_gray: #4A5C66;
-  $thm_green: #2ac55f;
+  $thm_green: green;
   $athens_gray_approx: rgb(236, 240, 241);
   $white: white;
   $bilbao_approx: rgb(50, 129, 20);
@@ -229,7 +229,7 @@
           "navbar_public_background_active": black,
           "navbar_public_text": white,
           "navbar_public_text_hover": $button_text_hover,
-          "navbar_public_text_active": $thm_green,
+          "navbar_public_text_active": #2ac55f !important,
           "navbar_public_cardsets_background": $thm_gray,
           "navbar_public_cardsets_background_hover": $button_background_hover,
           "navbar_public_cardsets_background_active": $thm_green,
@@ -313,7 +313,7 @@
           "footer_welcome_page_info_icon_text" : white,
           "footer_welcome_page_info_icon_text_hover": $button_background_hover,
           "footer_navigation_text": white,
-          "footer_navigation_text_active": $thm_green,
+          "footer_navigation_text_active": #2ac55f,
           "footer_navigation_text_hover": $button_text_hover,
           "footer_navigation_background": black,
           "footer_navigation_background_active": black,
