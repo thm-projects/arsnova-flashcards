@@ -40,7 +40,7 @@ $padding-card-list-row: 8px;
   padding-left: 0;
   margin-bottom: 3px;
   font-size: 11px;
-  font-weight: bold;
+  font-weight: normal;
   line-height: 20px;
   //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
   text-shadow: 0 1px 0 gray;

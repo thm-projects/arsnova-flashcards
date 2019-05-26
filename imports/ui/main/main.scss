@@ -3,7 +3,7 @@ $background: rgb(153, 153, 153);
 //bert alert (Doesn't work in theme-switcher)
 
 .bert-alert.warning {
-  background: orangered !important;
+  background: darkorange !important;
   color: white !important;
 }
 
@@ -101,7 +101,7 @@ $line_height_card_header_mobile: 100%;
 $font_weight_card_header_number: normal;
 $font_weight_card_header_first_row: normal;
 $font_weight_card_header_second_row: normal;
-$font_weight_card_header_subject: bold;
+$font_weight_card_header_subject: normal;
 $hint_link_decoration: underline;
 $hint_link_alternative_decoration: underline;
 $text_transform_card_header_subject: none;
@@ -381,12 +381,12 @@ button {
 
 #poolCaption {
   padding-left: 8px;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .filterCardsHeader {
   padding: 5px;
-  font-weight: bold;
+  font-weight: normal;
   font-size: 12px;
   text-transform: uppercase;
 }
@@ -404,7 +404,7 @@ button {
 }
 
 .poolLabel {
-  font-weight: bold;
+  font-weight: normal;
   text-decoration: none;
   color: black;
 }
@@ -850,5 +850,9 @@ blockquote {
 .transcript-info-text {
   padding: $transcript_info_padding !important;
   margin-left: -$transcript_info_padding !important;
-  font-weight: bold;
+  font-weight: normal;
+}
+
+.label {
+  font-weight: normal;
 }

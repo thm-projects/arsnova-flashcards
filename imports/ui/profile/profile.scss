@@ -65,14 +65,14 @@
 }
 
 .span6 {
-  font-weight: bold;
+  font-weight: normal;
   font-size: 13px;
   padding-top: 5px;
   display: inline-block;
 }
 
 .span7 {
-  font-weight: bold;
+  font-weight: normal;
   font-size: 13px;
   padding-top: 5px;
   display: inline-block;
@@ -135,7 +135,7 @@
 }
 
 .form-group .checkbox label, .form-group .radio label, .form-group label {
-  font-weight: bold !important;
+  font-weight: normal !important;
 }
 
 label.col-md-4.control-label {
