@@ -26,8 +26,8 @@
     }
   },
   "cookieconsent": {
-    "message": "Wir ersparen dir lange Erklärungen, warum __firstAppTitle__🍅__lastAppTitle__ Cookies verwendet. Unter anderem würde dieser Hinweis bei jedem Besuch erscheinen. Alle rechtlichen Hinweise findest du auf der",
-    "dismiss": "Ist klar, ich akzeptiere das.",
+    "message": "Wir ersparen dir lange Erklärungen, warum __firstAppTitle__🍅__lastAppTitle__ Cookies verwendet. Unter anderem würde dieser Hinweis bei jedem Besuch erscheinen. Soviel sei hier gesagt: Wir tracken dich nicht. Wir geben keine Daten zu Werbezwecken heraus. Du kannst dein Konto jederzeit selbst löschen, ohne zu fragen. Alle weiteren rechtlichen Hinweise findest du auf der",
+    "dismiss": "Danke, ich bin einverstanden.",
     "link": "Datenschutz-Seite."
   },
   "intro": {
@@ -431,7 +431,7 @@
     "reporteduseradmin": "Adminbenachrichtigung (Gemeldete/r Benutzer/in)",
     "reportedcardsetadmin": "Adminbenachrichtigung (Gemeldete Kartei)",
     "lecturer": "Dozenten-Anfrage",
-    "admin": "Du bist angemeldet als Admin!"
+    "admin": "Du bist angemeldet als Korrektor/in!"
   },
   "input-group": {
     "newcarddeck": "Neue Kartei"
@@ -1079,7 +1079,7 @@
       },
       "daysBeforeReset": {
         "label": "Überschreitungsfrist",
-        "placeholder": "in Tagen bis alle Karten wieder in Box 1"
+        "placeholder": "in Tagen, danach fallen alle aktiven Karten in Box 1"
       },
       "startDate": {
         "label": "Beginn der Bonusphase",
@@ -1843,8 +1843,8 @@
     "kind": "Kategorie",
     "front": "Vorderseite",
     "back": "Rückseite",
-    "admin": "Admin",
-    "superAdmin": "Hauptverwalter",
+    "admin": "Korrektor/in",
+    "superAdmin": "Administrator/in",
     "pro": "Pro",
     "university": "THM",
     "free": "Frei",
@@ -2026,7 +2026,7 @@
       "roles": "Benutzerrollen",
       "blocked": "Benutzer/in blockieren",
       "blockedtext": "Willst du dem User den Zugang zu 🍅__lastAppTitle__ verweigern?",
-      "editortext": "Willst du dem User Admin-Rechte geben? Als Admin User bekommt der User Zugang zum Administrationsbereich und es ist ihm oder ihr erlaubt, alle Inhalte von 🍅__lastAppTitle__ zu bearbeiten.",
+      "editortext": "Willst du dem User Korrektor-Rechte geben? Als Korrektor/in bekommt der User Zugang zum Administrationsbereich und es ist ihm oder ihr erlaubt, alle Inhalte von 🍅__lastAppTitle__ zu bearbeiten.",
       "blocked_text": "Grund der Sperrung",
       "blockedtext_invalid": "Gib einen Grund für die Sperrung ein!",
       "cancel": "Abbrechen",
@@ -2158,8 +2158,8 @@
   },
   "backdoor": {
     "title": "Rollentest",
-    "superAdmin": "SuperAdmin",
-    "admin": "Admin",
+    "superAdmin": "Administrator/in",
+    "admin": "Korrektor/in",
     "pro": "Pro-User",
     "lecturer": "Dozent/in (CAS)",
     "edu": "Student/in (CAS)",
