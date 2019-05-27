@@ -36,21 +36,25 @@ Template.admin_users.helpers({
 			rowsPerPage: 20,
 			fields: [
 				{
-					key: '_id', label: TAPi18n.__('admin.admin'), cellClass: 'admin',
+					key: 'profilename', label: TAPi18n.__('admin.users'),
+					fn: function (value) {
+						return value;
+					}
+				},
+				{
+					key: '_id', label: TAPi18n.__('admin.superAdmin'), cellClass: 'admin',
 					fn: function (value, object) {
 						if (Roles.userIsInRole(value, 'admin')) {
-							return new Spacebars.SafeString("<span name='Admin" + object.profilename + "'><i class='fa fa-check'></i> (Super Admin)</span>");
-						} else if (Roles.userIsInRole(value, 'editor')) {
 							return new Spacebars.SafeString("<span name='admin" + object.profilename + "'><i class='fa fa-check'></i></span>");
-						} else {
-							return new Spacebars.SafeString("<span name='normal" + object.profilename + "'></span>");
 						}
 					}
 				},
 				{
-					key: 'profilename', label: TAPi18n.__('admin.users'),
+					key: '_id', label: TAPi18n.__('admin.admin'), cellClass: 'editor',
 					fn: function (value) {
-						return value;
+						if (Roles.userIsInRole(value, 'editor')) {
+							return new Spacebars.SafeString("<i class='fa fa-check'></i>");
+						}
 					}
 				},
 				{

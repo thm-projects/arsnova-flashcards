@@ -292,6 +292,10 @@ Template.registerHelper("isAdmin", function () {
 	return UserPermissions.isAdmin();
 });
 
+Template.registerHelper("gotBackendAccess", function () {
+	return UserPermissions.gotBackendAccess();
+});
+
 Template.registerHelper("isActiveLanguage", function (language) {
 	if (Session.get('activeLanguage') === undefined) {
 		Session.set('activeLanguage', 'de');

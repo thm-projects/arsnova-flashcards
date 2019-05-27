@@ -1,5 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {check} from "meteor/check";
+import {UserPermissions} from "./permissions";
 
 Meteor.methods({
 	updateUser: function (user_id, visible, email, blockedtext) {
@@ -14,10 +15,7 @@ Meteor.methods({
 			check(blockedtext, String);
 		}
 
-		if (!Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor'
-			])) {
+		if (!!UserPermissions.gotBackendAccess()) {
 			throw new Meteor.Error("not-authorized");
 		}
 
@@ -33,10 +31,7 @@ Meteor.methods({
 		check(user_id, String);
 		check(newRole, String);
 
-		if (!Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor'
-			])) {
+		if (!!UserPermissions.gotBackendAccess()) {
 			throw new Meteor.Error("not-authorized");
 		}
 
@@ -66,10 +61,7 @@ Meteor.methods({
 		check(user_id, String);
 		check(removeRole, String);
 
-		if (!Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor'
-			])) {
+		if (!UserPermissions.gotBackendAccess()) {
 			throw new Meteor.Error("not-authorized");
 		}
 
