@@ -538,7 +538,7 @@
     },
     "activeLearnphase": "aktiv",
     "inactiveLearnphase": "beendet",
-    "learnphaseInfo": "Über die Bonus-Lernphase",
+    "learnphaseInfo": "Bonus-Lernphase",
     "cardsetInfo": "Über diese __type__ Kartei",
     "cardsetInfoRepetitorium": "Über dieses Repetitorium",
     "cardsetInfoStatic": "Über diese Kartei",
@@ -644,7 +644,7 @@
   },
   "transcriptForm": {
     "info": {
-      "title":  "Über die Bonusschreibphase",
+      "title":  "Bonus-Schreibphase",
       "participants": "Teilnehmer/innen",
       "submissions": "Eingereichte Mitschriften",
       "median": "Ø Mitschriften pro Teilnehmer/in",
