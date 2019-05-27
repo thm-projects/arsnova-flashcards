@@ -1269,7 +1269,7 @@
       }
     },
     "cardType1": {
-      "name": "Vokabelkartei",
+      "name": "Vokabel",
       "longName": "Vokabelkartei: Sprache A | Sprache B",
       "content1": "Sprache A",
       "content2": "Sprache B",
@@ -1315,7 +1315,7 @@
       }
     },
     "cardType4": {
-      "name": "Zitatensammlung",
+      "name": "Zitat",
       "longName": "Zitatensammlung: Zitat | Zitierte Person | Quelle",
       "content1": "Zitat",
       "content2": "Zitierte Person",
@@ -1347,7 +1347,7 @@
       }
     },
     "cardType6": {
-      "name": "Anweisungssatz",
+      "name": "Anweisung",
       "longName": "Anweisungssatz: Semantik | Syntax | Online-API",
       "content1": "Syntax",
       "content2": "Semantik",
@@ -1437,7 +1437,7 @@
       }
     },
     "cardType12": {
-      "name": "Entwurfsmuster",
+      "name": "Pattern",
       "longName": "Entwurfsmuster: Problem | Kontext | Kräfte | Lösung | Beispiel | Literatur",
       "content1": "Problem",
       "content2": "Lösung",
@@ -1459,7 +1459,7 @@
       }
     },
     "cardType13": {
-      "name": "Formelsammlung",
+      "name": "Formel",
       "longName": "Formelsammlung: Aufgabe | Formel | Lösung | Literatur",
       "content1": "Aufgabe",
       "content2": "Formel",
@@ -1489,7 +1489,7 @@
       }
     },
     "cardType15": {
-      "name": "Aufgabensammlung",
+      "name": "Aufgabe",
       "longName": "Aufgabensammlung: Aufgabe | Lösung",
       "content1": "Aufgabe",
       "content2": "Lösung",
