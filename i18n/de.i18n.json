@@ -2113,11 +2113,11 @@
     },
     "free": {
       "short": "Frei",
-      "long": "Frei für alle"
+      "long": "Von Studierenden für alle freigegeben"
     },
     "edu": {
       "short": "THM",
-      "long": "THM-Mitglieder"
+      "long": "Von Lehrenden für alle THM-Mitglieder freigegeben"
     },
     "pro": {
       "short": "Pro",
