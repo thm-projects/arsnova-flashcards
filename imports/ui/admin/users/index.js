@@ -36,7 +36,7 @@ Template.admin_users.helpers({
 			rowsPerPage: 20,
 			fields: [
 				{
-					key: 'profilename', label: TAPi18n.__('admin.users'),
+					key: 'profilename', label: TAPi18n.__('admin.user.username'),
 					fn: function (value) {
 						return value;
 					}
@@ -58,6 +58,14 @@ Template.admin_users.helpers({
 					}
 				},
 				{
+					key: '_id', label: TAPi18n.__('admin.lecturer'), cellClass: 'lecturer',
+					fn: function (value) {
+						if (Roles.userIsInRole(value, 'lecturer')) {
+							return new Spacebars.SafeString("<i class='fa fa-check'></i>");
+						}
+					}
+				},
+				{
 					key: '_id', label: TAPi18n.__('admin.pro'), cellClass: 'pro',
 					fn: function (value) {
 						if (Roles.userIsInRole(value, 'pro')) {
@@ -69,14 +77,6 @@ Template.admin_users.helpers({
 					key: '_id', label: TAPi18n.__('admin.university'), cellClass: 'university',
 					fn: function (value) {
 						if (Roles.userIsInRole(value, 'university')) {
-							return new Spacebars.SafeString("<i class='fa fa-check'></i>");
-						}
-					}
-				},
-				{
-					key: '_id', label: TAPi18n.__('admin.lecturer'), cellClass: 'lecturer',
-					fn: function (value) {
-						if (Roles.userIsInRole(value, 'lecturer')) {
 							return new Spacebars.SafeString("<i class='fa fa-check'></i>");
 						}
 					}

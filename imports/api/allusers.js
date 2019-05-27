@@ -31,7 +31,7 @@ Meteor.methods({
 		check(user_id, String);
 		check(newRole, String);
 
-		if (!!UserPermissions.gotBackendAccess()) {
+		if (!UserPermissions.gotBackendAccess()) {
 			throw new Meteor.Error("not-authorized");
 		}
 

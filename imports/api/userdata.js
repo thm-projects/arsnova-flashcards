@@ -301,17 +301,6 @@ Meteor.methods({
 			}
 		});
 	},
-	checkUsersName: function (name, id) {
-		check(name, String);
-		check(id, String);
-
-		name = name.trim();
-		var userExists = Meteor.users.findOne({"profile.name": name});
-		if (userExists && userExists._id !== id) {
-			throw new Meteor.Error("username already exists");
-		}
-		return name;
-	},
 	initUser: function () {
 		if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
 			var user = Meteor.users.findOne({

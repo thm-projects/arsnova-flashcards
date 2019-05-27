@@ -693,6 +693,22 @@ $themes: (
     $use_cases_table_header_background: map-get($map, "use_cases_table_header_background");
     $use_cases_table_header_text: map-get($map, "use_cases_table_header_text");
 
+
+    #admin_user_update {
+      .btn.active {
+        background-color: $thm_green !important;
+        color: white !important;
+      }
+      .btn.active2 {
+        background-color: $thm_red !important;
+        color: white !important;
+      }
+      .btn.active:hover, .btn.active:focus, .btn.active2:hover, .btn.active2:focus {
+        background-color: $button_background_hover !important;
+        color: $button_text_hover !important;
+      }
+    }
+
     body.landing-page {
       background-color: $background_landing_page !important;
     }
