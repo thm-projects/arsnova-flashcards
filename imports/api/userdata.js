@@ -17,12 +17,16 @@ import {CardType} from "./cardTypes";
  * @param owner - The database ID of the author
  * @param lastNameFirst - Display the last name first
  * @param onlyFirstName - Return only the first name, used for E-Mail Notifications
+ * @param backendList - Returns a special string if true
  * @returns {*} - Degree + givenname + birthname
  */
-export function getAuthorName(owner, lastNameFirst = true, onlyFirstName = false) {
+export function getAuthorName(owner, lastNameFirst = true, onlyFirstName = false, backendList = false) {
 	let author;
 	author = Meteor.users.findOne({"_id": owner});
 	if (author) {
+		if (backendList && (author.profile.birthname === "" || author.profile.birthname === undefined || author.profile.givenname === "" || author.profile.givenname === undefined)) {
+			return TAPi18n.__('admin.profileIncompleteBackendList');
+		}
 		let name = "";
 		if (onlyFirstName) {
 			if (author.profile.givenname) {
@@ -226,7 +230,7 @@ Meteor.methods({
 		check(name, String);
 		check(id, String);
 
-		if (UserPermissions.isAdmin()) {
+		if (UserPermissions.gotBackendAccess()) {
 			Meteor.users.update(id, {
 				$set: {
 					"profile.name": name
@@ -238,7 +242,7 @@ Meteor.methods({
 		check(title, String);
 		check(id, String);
 
-		if (!UserPermissions.isAdmin()) {
+		if (!UserPermissions.gotBackendAccess()) {
 			id = Meteor.userId();
 		}
 		Meteor.users.update(id, {
@@ -251,7 +255,7 @@ Meteor.methods({
 		check(birthname, String);
 		check(id, String);
 
-		if (!UserPermissions.isAdmin()) {
+		if (!UserPermissions.gotBackendAccess()) {
 			id = Meteor.userId();
 		}
 		Meteor.users.update(id, {
@@ -264,7 +268,7 @@ Meteor.methods({
 		check(givenname, String);
 		check(id, String);
 
-		if (!UserPermissions.isAdmin()) {
+		if (!UserPermissions.gotBackendAccess()) {
 			id = Meteor.userId();
 		}
 		Meteor.users.update(id, {
@@ -278,7 +282,7 @@ Meteor.methods({
 		check(web, Boolean);
 		check(id, String);
 
-		if (!UserPermissions.isAdmin()) {
+		if (!UserPermissions.gotBackendAccess()) {
 			id = Meteor.userId();
 		}
 		Meteor.users.update(id, {
@@ -292,7 +296,7 @@ Meteor.methods({
 		check(completed, Boolean);
 		check(id, String);
 
-		if (!UserPermissions.isAdmin()) {
+		if (!UserPermissions.gotBackendAccess()) {
 			id = Meteor.userId();
 		}
 		Meteor.users.update(id, {
@@ -300,17 +304,6 @@ Meteor.methods({
 				"profile.completed": completed
 			}
 		});
-	},
-	checkUsersName: function (name, id) {
-		check(name, String);
-		check(id, String);
-
-		name = name.trim();
-		var userExists = Meteor.users.findOne({"profile.name": name});
-		if (userExists && userExists._id !== id) {
-			throw new Meteor.Error("username already exists");
-		}
-		return name;
 	},
 	initUser: function () {
 		if (this.userId && !Roles.userIsInRole(this.userId, 'blocked')) {
@@ -343,7 +336,7 @@ Meteor.methods({
 	setUserAsLecturer: function (id) {
 		check(id, String);
 
-		if (!Roles.userIsInRole(this.userId, ['admin', 'editor'])) {
+		if (!UserPermissions.gotBackendAccess()) {
 			throw new Meteor.Error("not-authorized");
 		}
 		Meteor.users.update(id, {
@@ -422,7 +415,7 @@ Meteor.methods({
 		}
 
 		let user_id;
-		if (UserPermissions.isAdmin() && targetUser !== undefined) {
+		if (UserPermissions.gotBackendAccess() && targetUser !== undefined) {
 			user_id = targetUser;
 		} else {
 			user_id = Meteor.userId();

@@ -111,12 +111,8 @@ Template.admin_user.helpers({
 			]
 		};
 	},
-	'isVisible': function (id) {
-		if (Meteor.users.findOne(id)) {
-			return Meteor.users.findOne(id).visible;
-		} else {
-			return null;
-		}
+	'isVisible': function () {
+		return this.visible;
 	},
 	proUser: function (value) {
 		return Roles.userIsInRole(this._id, 'pro') === value;
@@ -165,110 +161,86 @@ Template.admin_user.helpers({
 
 Template.admin_user.events({
 	'click #userSaveAdmin': function (event, tmpl) {
-		var name = $('#editUserNameAdmin').val();
-		var user_id = this._id;
+		let user_id = this._id;
+		let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		let email = $('#editUserEmailAdmin').val();
+		let blockedtext = $('#editUserBlockedtextAdmin').val();
+		let title = $('#editUserTitleAdmin').val();
+		let birthname = $('#editUserBirthNameAdmin').val();
+		let givenname = $('#editUserGivenNameAdmin').val();
+		let check = re.test(email);
+		let visible = null;
+		let pro = ('true' === tmpl.find('#editUserProAdmin > .active > input').value);
+		let lecturer = ('true' === tmpl.find('#editUserLecturerAdmin > .active > input').value);
 
-		Meteor.call("checkUsersName", name, user_id, function (error, result) {
-			if (error) {
-				$('#editUserNameLabelAdmin').css('color', '#b94a48');
-				$('#editUserNameAdmin').css('border-color', '#b94a48');
-				$('#helpEditUserNameAdmin').html(TAPi18n.__('admin.user.name_exists'));
-				$('#helpEditUserNameAdmin').css('color', '#b94a48');
+		if ($('#profilepublicoption1Admin').hasClass('active')) {
+			visible = true;
+		} else if ($('#profilepublicoption2Admin').hasClass('active2')) {
+			visible = false;
+		}
+
+		if (check === false && email !== "") {
+			$('#editUserEmailLabelAdmin').css('color', '#b94a48');
+			$('#editUserEmailAdmin').css('border-color', '#b94a48');
+			$('#helpEditUserEmailAdmin').html(TAPi18n.__('admin.user.email_invalid'));
+			$('#helpEditUserEmailAdmin').css('color', '#b94a48');
+		}
+		if (pro && !visible || lecturer && !visible) {
+			$('#editUserVisibleLabelAdmin').css('color', '#b94a48');
+			$('#helpEditUserVisibleAdmin').html(TAPi18n.__('admin.user.visible_invalid'));
+			$('#helpEditUserVisibleAdmin').css('color', '#b94a48');
+		}
+		if (Session.get('userBlocked')) {
+			if (blockedtext === "" && 'true' === tmpl.find('#editUserBlockedAdmin > .active > input').value) {
+				$('#editUserBlockedtextLabelAdmin').css('color', '#b94a48');
+				$('#editUserBlockedtextAdmin').css('border-color', '#b94a48');
+				$('#helpEditUserBlockedtextAdmin').html(TAPi18n.__('admin.user.blockedtext_invalid'));
+				$('#helpEditUserBlockedtextAdmin').css('color', '#b94a48');
 			}
-			if (result) {
-				var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-				var email = $('#editUserEmailAdmin').val();
-				var blockedtext = $('#editUserBlockedtextAdmin').val();
-				var title = $('#editUserTitleAdmin').val();
-				var birthname = $('#editUserBirthNameAdmin').val();
-				var givenname = $('#editUserGivenNameAdmin').val();
-				var check = re.test(email);
-				var visible = null;
-				var pro = ('true' === tmpl.find('#editUserProAdmin > .active > input').value);
-				var lecturer = ('true' === tmpl.find('#editUserLecturerAdmin > .active > input').value);
+		}
+		if ((Session.get('userBlocked') && $('#editUserBlockedtextAdmin').val() !== "" || !Session.get('userBlocked')) &&
+			(check === true || email === "") && (pro && visible || !pro) &&
+			(lecturer && visible || !lecturer)) {
+			if ('true' === tmpl.find('#editUserProAdmin > .active > input').value) {
+				Meteor.call('updateRoles', user_id, 'pro');
+			} else {
+				Meteor.call('updateRoles', user_id, 'standard');
+			}
+			if ('true' === tmpl.find('#editUserEduAdmin > .active > input').value) {
+				Meteor.call('updateRoles', user_id, 'university');
+			} else {
+				Meteor.call('removeRoles', user_id, 'university');
+			}
+			if ('true' === tmpl.find('#editUserLecturerAdmin > .active > input').value) {
+				Meteor.call('updateRoles', user_id, 'lecturer');
+			} else {
+				Meteor.call('removeRoles', user_id, 'lecturer');
+			}
 
-				if ($('#profilepublicoption1Admin').hasClass('active')) {
-					visible = true;
-				} else if ($('#profilepublicoption2Admin').hasClass('active')) {
-					visible = false;
-				}
-
-				if (check === false && email !== "") {
-					$('#editUserEmailLabelAdmin').css('color', '#b94a48');
-					$('#editUserEmailAdmin').css('border-color', '#b94a48');
-					$('#helpEditUserEmailAdmin').html(TAPi18n.__('admin.user.email_invalid'));
-					$('#helpEditUserEmailAdmin').css('color', '#b94a48');
-				}
-				if (result.length < 5 || result.length > 25) {
-					if (result.length < 5) {
-						$('#helpEditUserNameAdmin').html(TAPi18n.__('admin.user.name_toShort'));
-					} else if (result.length > 25) {
-						$('#helpEditUserNameAdmin').html(TAPi18n.__('admin.user.name_toLong'));
-					}
-					$('#editUserNameLabelAdmin').css('color', '#b94a48');
-					$('#editUserNameAdmin').css('border-color', '#b94a48');
-					$('#helpEditUserNameAdmin').css('color', '#b94a48');
-				}
-				if (pro && !visible || lecturer && !visible) {
-					$('#editUserVisibleLabelAdmin').css('color', '#b94a48');
-					$('#helpEditUserVisibleAdmin').html(TAPi18n.__('admin.user.visible_invalid'));
-					$('#helpEditUserVisibleAdmin').css('color', '#b94a48');
-				}
-				if (Session.get('userBlocked')) {
-					if (blockedtext === "" && 'true' === tmpl.find('#editUserBlockedAdmin > .active > input').value) {
-						$('#editUserBlockedtextLabelAdmin').css('color', '#b94a48');
-						$('#editUserBlockedtextAdmin').css('border-color', '#b94a48');
-						$('#helpEditUserBlockedtextAdmin').html(TAPi18n.__('admin.user.blockedtext_invalid'));
-						$('#helpEditUserBlockedtextAdmin').css('color', '#b94a48');
-					}
-				}
-				if ((Session.get('userBlocked') && $('#editUserBlockedtextAdmin').val() !== "" || !Session.get('userBlocked')) &&
-					(check === true || email === "") &&
-					(result.length >= 5) && (result.length <= 25) && !error && (pro && visible || !pro) &&
-					(lecturer && visible || !lecturer)) {
-					if ('true' === tmpl.find('#editUserProAdmin > .active > input').value) {
-						Meteor.call('updateRoles', user_id, 'pro');
-					} else {
-						Meteor.call('updateRoles', user_id, 'standard');
-					}
-					if ('true' === tmpl.find('#editUserEduAdmin > .active > input').value) {
-						Meteor.call('updateRoles', user_id, 'university');
-					} else {
-						Meteor.call('removeRoles', user_id, 'university');
-					}
-					if ('true' === tmpl.find('#editUserLecturerAdmin > .active > input').value) {
-						Meteor.call('updateRoles', user_id, 'lecturer');
-					} else {
-						Meteor.call('removeRoles', user_id, 'lecturer');
-					}
-
-					if ($('#editUserBlockedAdmin').length) {
-						if ('true' === tmpl.find('#editUserBlockedAdmin > .active > input').value) {
-							Meteor.call('updateRoles', user_id, 'blocked');
-						} else {
-							Meteor.call('removeRoles', user_id, 'blocked');
-						}
-					}
-					if ($('#editUserEditorAdmin').length) {
-						if ('true' === tmpl.find('#editUserEditorAdmin > .active > input').value) {
-							Meteor.call('updateRoles', user_id, 'editor');
-						} else {
-							Meteor.call('removeRoles', user_id, 'editor');
-						}
-					}
-
-					Meteor.call('updateUser', user_id, visible, email, blockedtext);
-					Meteor.call('updateUsersName', result, user_id);
-					Meteor.call('updateUsersTitle', title, user_id);
-					Meteor.call('updateUsersBirthName', birthname, user_id);
-					Meteor.call('updateUsersGivenName', givenname, user_id);
-					Meteor.call('updateUsersProfileState',
-						(email !== "" && result !== "" && birthname !== "" && givenname !== "") ? true : false,
-						user_id);
-					window.history.go(-1);
+			if ($('#editUserBlockedAdmin').length) {
+				if ('true' === tmpl.find('#editUserBlockedAdmin > .active > input').value) {
+					Meteor.call('updateRoles', user_id, 'blocked');
+				} else {
+					Meteor.call('removeRoles', user_id, 'blocked');
 				}
 			}
-		});
+			if ($('#editUserEditorAdmin').length) {
+				if ('true' === tmpl.find('#editUserEditorAdmin > .active > input').value) {
+					Meteor.call('updateRoles', user_id, 'editor');
+				} else {
+					Meteor.call('removeRoles', user_id, 'editor');
+				}
+			}
+
+			Meteor.call('updateUser', user_id, visible, email, blockedtext);
+			Meteor.call('updateUsersTitle', title, user_id);
+			Meteor.call('updateUsersBirthName', birthname, user_id);
+			Meteor.call('updateUsersGivenName', givenname, user_id);
+			Meteor.call('updateUsersProfileState',
+				(email !== "" && birthname !== "" && givenname !== "") ? true : false,
+				user_id);
+			window.history.go(-1);
+		}
 	},
 	'click #userCancelAdmin': function () {
 		window.history.go(-1);
@@ -310,5 +282,53 @@ Template.admin_user.events({
 	},
 	'change #editUserBlockedAdmin': function () {
 		Session.set('userBlocked', $('#editUserBlockedAdmin input[name=blockedUser]:checked').val() === 'true');
+	},
+	'click #profilepublicoption1Admin': function () {
+		$('#profilepublicoption1Admin').addClass('active');
+		$('#profilepublicoption2Admin').removeClass('active2');
+	},
+	'click #profilepublicoption2Admin': function () {
+		$('#profilepublicoption2Admin').addClass('active2');
+		$('#profilepublicoption1Admin').removeClass('active');
+	},
+	'click #blockedOption1Admin': function () {
+		$('#blockedOption1Admin').addClass('active2');
+		$('#blockedOption2Admin').removeClass('active');
+	},
+	'click #blockedOption2Admin': function () {
+		$('#blockedOption1Admin').removeClass('active2');
+		$('#blockedOption2Admin').addClass('active');
+	},
+	'click #editorOption1Admin': function () {
+		$('#editorOption1Admin').addClass('active');
+		$('#editorOption2Admin').removeClass('active2');
+	},
+	'click #editorOption2Admin': function () {
+		$('#editorOption1Admin').removeClass('active');
+		$('#editorOption2Admin').addClass('active2');
+	},
+	'click #lecturerOption1Admin': function () {
+		$('#lecturerOption1Admin').addClass('active');
+		$('#lecturerOption2Admin').removeClass('active2');
+	},
+	'click #lecturerOption2Admin': function () {
+		$('#lecturerOption1Admin').removeClass('active');
+		$('#lecturerOption2Admin').addClass('active2');
+	},
+	'click #proOption1Admin': function () {
+		$('#proOption1Admin').addClass('active');
+		$('#proOption2Admin').removeClass('active2');
+	},
+	'click #proOption2Admin': function () {
+		$('#proOption1Admin').removeClass('active');
+		$('#proOption2Admin').addClass('active2');
+	},
+	'click #eduOption1Admin': function () {
+		$('#eduOption1Admin').addClass('active');
+		$('#eduOption2Admin').removeClass('active2');
+	},
+	'click #eduOption2Admin': function () {
+		$('#eduOption1Admin').removeClass('active');
+		$('#eduOption2Admin').addClass('active2');
 	}
 });

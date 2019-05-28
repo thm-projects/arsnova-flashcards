@@ -1,6 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 import {check} from "meteor/check";
+import {UserPermissions} from "./permissions";
 
 export const CollegesCourses = new Mongo.Collection("collegesCourses");
 
@@ -24,7 +25,7 @@ Meteor.methods({
 		check(college, String);
 		check(course, String);
 
-		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
+		if (!UserPermissions.gotBackendAccess()) {
 			throw new Meteor.Error("not-authorized");
 		}
 		CollegesCourses.insert({
@@ -40,7 +41,7 @@ Meteor.methods({
 		check(college, String);
 		check(course, String);
 
-		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
+		if (!UserPermissions.gotBackendAccess()) {
 			throw new Meteor.Error("not-authorized");
 		}
 		CollegesCourses.remove({
@@ -58,7 +59,7 @@ Meteor.methods({
 		check(newCollege, String);
 		check(newCourse, String);
 
-		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
+		if (!UserPermissions.gotBackendAccess()) {
 			throw new Meteor.Error("not-authorized");
 		}
 		CollegesCourses.update({

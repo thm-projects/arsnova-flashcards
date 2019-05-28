@@ -6,6 +6,7 @@ import {JsonRoutes} from "meteor/simple:json-routes";
 import {Cards} from "./cards.js";
 import {Cardsets} from "./cardsets.js";
 import {check} from "meteor/check";
+import {UserPermissions} from "./permissions";
 
 export const APIAccess = new Mongo.Collection("apiAccess");
 
@@ -103,7 +104,7 @@ Meteor.methods({
 	newAPIAccess: function (cardsetId) {
 		check(cardsetId, String);
 
-		if (!Roles.userIsInRole(this.userId, ['admin'])) {
+		if (!UserPermissions.gotBackendAccess()) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			let cardset = Cardsets.findOne({_id: cardsetId});
@@ -126,7 +127,7 @@ Meteor.methods({
 	deleteAPIAccess: function (apiAccessId) {
 		check(apiAccessId, String);
 
-		if (!Roles.userIsInRole(this.userId, ['admin'])) {
+		if (!UserPermissions.gotBackendAccess()) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			APIAccess.remove(apiAccessId);

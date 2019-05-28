@@ -1,5 +1,5 @@
 <template name="mainNavigationTopItemBackend">
-    {{#if isInRole 'admin, editor'}}
+    {{#if gotBackendAccess}}
         <li id="navbar-adminpanel" class="hidden-xs">
             <a href="{{pathFor route='admin_dashboard'}}" id="adminpanel">
                 {{{getNavigationName "backend"}}}
