@@ -1,4 +1,6 @@
 import {Session} from "meteor/session";
+import {Cardsets} from "./cardsets";
+import {CardType} from "./cardTypes";
 
 export let Utilities = class Utilities {
 	static getCalendarString (type = '', minutes = '', displayAsDeadline = false) {
@@ -95,5 +97,16 @@ export let Utilities = class Utilities {
 			return item[key];
 		});
 		return _.pluck(distinctArray, key);
+	}
+
+	static checkIfRepGotWorkloadCardset (rep) {
+		for (let c = 0; c < rep.cardGroups.length; c++) {
+			let cardset = Cardsets.findOne({_id: rep.cardGroups[c]}, {fields: {cardType: 1}});
+			if (cardset !== undefined) {
+				if (CardType.getCardTypesWithLearningModes().includes(cardset.cardType)) {
+					return true;
+				}
+			}
+		}
 	}
 };
