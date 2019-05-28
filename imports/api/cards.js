@@ -397,9 +397,9 @@ Meteor.methods({
 			return result;
 		}
 	},
-	deleteCard: function (card_id) {
+	deleteCard: function (card_id, cardset_route_id) {
 		check(card_id, String);
-
+		check(cardset_route_id, String);
 		let card = Cards.findOne(card_id);
 		let cardset = Cardsets.findOne(card.cardset_id);
 		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
@@ -435,7 +435,7 @@ Meteor.methods({
 			Wozniak.remove({
 				card_id: card_id
 			});
-			return Cards.find({cardset_id: card.cardset_id}).count();
+			return Cardsets.findOne({_id: cardset_route_id}).quantity;
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
