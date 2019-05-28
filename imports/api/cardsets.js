@@ -10,6 +10,7 @@ import {check} from "meteor/check";
 import {CardType} from "./cardTypes";
 import {UserPermissions} from "./permissions";
 import {ServerStyle} from "./styles";
+import {Utilities} from "./utilities";
 
 export const Cardsets = new Mongo.Collection("cardsets");
 
@@ -340,6 +341,10 @@ const CardsetsSchema = new SimpleSchema({
 		type: Object,
 		optional: true,
 		blackbox: true
+	},
+	gotWorkload: {
+		type: Boolean,
+		optional: true
 	}
 });
 
@@ -482,15 +487,18 @@ Meteor.methods({
 		check(difficulty, Number);
 		check(sortType, Number);
 		let quantity;
+		let gotWorkload;
 		if (shuffled) {
 			if (!Roles.userIsInRole(Meteor.userId(), ['admin', 'editor', 'lecturer', 'university', 'pro'])) {
 				throw new Meteor.Error("not-authorized");
 			}
 			check(cardGroups, [String]);
 			quantity = Cards.find({cardset_id: {$in: cardGroups}}).count();
+			gotWorkload = false;
 		} else {
 			quantity = 0;
 			cardGroups = [];
+			gotWorkload = CardType.getCardTypesWithLearningModes().includes(cardType);
 		}
 		// Make sure the user is logged in before inserting a cardset
 		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
@@ -541,7 +549,8 @@ Meteor.methods({
 			cardType: cardType,
 			difficulty: difficulty,
 			noDifficulty: !CardType.gotDifficultyLevel(cardType),
-			sortType: sortType
+			sortType: sortType,
+			gotWorkload: gotWorkload
 		}, {trimStrings: false});
 		Meteor.call('updateCardsetCount', Meteor.userId());
 		return cardset;
@@ -841,7 +850,12 @@ Meteor.methods({
 					throw new Meteor.Error("not-authorized");
 				}
 			}
-
+			let gotWorkload;
+			if (cardset.shuffled) {
+				gotWorkload = cardset.gotWorkload;
+			} else {
+				gotWorkload = CardType.getCardTypesWithLearningModes().includes(cardType);
+			}
 			Cardsets.update(id, {
 				$set: {
 					name: name.trim(),
@@ -852,7 +866,8 @@ Meteor.methods({
 					kind: kind,
 					visible: visible,
 					noDifficulty: !CardType.gotDifficultyLevel(cardType),
-					sortType: sortType
+					sortType: sortType,
+					gotWorkload: gotWorkload
 				}
 			}, {trimStrings: false});
 			Cards.update({cardset_id: id}, {
@@ -934,10 +949,15 @@ Meteor.methods({
 						}
 					}
 				}
+				let gotWorkload = false;
+				if (Utilities.checkIfRepGotWorkloadCardset(cardsets[i])) {
+					gotWorkload = true;
+				}
 				Cardsets.update(cardsets[i]._id, {
 					$set: {
 						quantity: totalQuantity,
-						dateUpdated: new Date()
+						dateUpdated: new Date(),
+						gotWorkload: gotWorkload
 					}
 				});
 			}

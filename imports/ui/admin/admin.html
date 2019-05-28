@@ -1,5 +1,5 @@
 <template name="admin_main">
-    {{#if isInRole 'admin, editor'}}
+    {{#if gotBackendAccess}}
         <nav id="backendNavigation" class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="container-fluid">

@@ -11,6 +11,7 @@ import {WebPushSubscriptions} from "../../api/webPushSubscriptions";
 import {Paid} from "../../api/paid";
 import {TranscriptBonus} from "../../api/transcriptBonus";
 import {LeitnerUtilities} from "../../api/leitner";
+import {Utilities} from "../../api/utilities";
 
 var initColorThemes = function () {
 	return [{
@@ -855,6 +856,28 @@ Meteor.startup(function () {
 				$set: {
 					owner: cardsets[i].owner,
 					cardType: cardsets[i].cardType
+				}
+			}
+		);
+	}
+
+	cardsets = Cardsets.find({}, {fields: {_id: 1, cardGroups: 1, shuffled: 1, cardType: 1}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		let gotWorkload = false;
+		if (cardsets[i].shuffled) {
+			if (Utilities.checkIfRepGotWorkloadCardset(cardsets[i])) {
+				gotWorkload = true;
+			}
+		} else {
+			gotWorkload = CardType.getCardTypesWithLearningModes().includes(cardsets[i].cardType);
+		}
+
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					"gotWorkload": gotWorkload
 				}
 			}
 		);

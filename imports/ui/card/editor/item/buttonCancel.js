@@ -2,6 +2,7 @@ import "./buttonCancel.html";
 import {Template} from "meteor/templating";
 import {Route} from "../../../../api/route";
 import {Session} from "meteor/session";
+import {CardEditor} from "../../../../api/cardEditor";
 
 /*
  * ############################################################################
@@ -24,9 +25,13 @@ Template.cardEditorItemButtonCancel.events({
 					_id: Router.current().params._id
 				});
 			} else {
-				Router.go('presentation', {
-					_id: Router.current().params._id
-				});
+				if (Session.get('cardEditMode') !== undefined) {
+					CardEditor.goBackToPreviousRoute();
+				} else {
+					Router.go('presentation', {
+						_id: Router.current().params._id
+					});
+				}
 			}
 		}
 	}

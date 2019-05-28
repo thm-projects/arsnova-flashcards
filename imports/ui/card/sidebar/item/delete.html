@@ -1,13 +1,11 @@
 <template name="cardSidebarItemDelete">
-    {{#unless isShuffledCardset}}
-        {{#if isCardEditor getCardsetId}}
-            {{#if isCardNavigationVisible}}
-                <button class="hidden-xs deleteCard fa fa-trash card-button cardHeaderItem"
-                        data-type="cardNavigation" title="{{_ "card.tooltip.delete"}}"></button>
-            {{else}}
-                <button class="hidden-xs deleteCard fa fa-trash card-button cardHeaderItem"
-                        data-type="cardNavigation" title="{{_ "card.tooltip.delete"}}" disabled></button>
-            {{/if}}
+    {{#if canEditCard}}
+        {{#if isCardNavigationVisible}}
+            <button class="hidden-xs deleteCard fa fa-trash card-button cardHeaderItem"
+                    data-type="cardNavigation" title="{{_ "card.tooltip.delete"}}"></button>
+        {{else}}
+            <button class="hidden-xs deleteCard fa fa-trash card-button cardHeaderItem"
+                    data-type="cardNavigation" title="{{_ "card.tooltip.delete"}}" disabled></button>
         {{/if}}
-    {{/unless}}
+    {{/if}}
 </template>

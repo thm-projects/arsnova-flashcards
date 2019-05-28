@@ -16,6 +16,12 @@ export let UserPermissions = class UserPermissions {
 		}
 	}
 
+	static gotBackendAccess () {
+		if (Roles.userIsInRole(Meteor.userId(), ['admin']) && this.isNotBlockedOrFirstLogin()) {
+			return true;
+		}
+	}
+
 	static isAdmin () {
 		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']) && this.isNotBlockedOrFirstLogin()) {
 			return true;

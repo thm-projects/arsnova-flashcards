@@ -167,6 +167,9 @@ Meteor.methods({
 				if (data[0].sortType !== undefined) {
 					data[0].sortType = 0;
 				}
+				if (data[0].gotWorkload === undefined) {
+					data[0].gotWorkload = CardType.getCardTypesWithLearningModes().includes(data[0].cardType);
+				}
 				let cardset_id = Cardsets.insert({
 					name: data[0].name,
 					description: data[0].description,
@@ -202,7 +205,8 @@ Meteor.methods({
 					difficulty: data[0].difficulty,
 					noDifficulty: CardType.gotDifficultyLevel(data[0].cardType),
 					originalAuthorName: originalAuthorName,
-					sortType: data[0].sortType
+					sortType: data[0].sortType,
+					gotWorkload: data[0].gotWorkload
 				}, {trimStrings: false});
 				if (cardset_id) {
 					data.shift();

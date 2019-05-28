@@ -35,7 +35,11 @@ Template.infiniteScroll.helpers({
 			return Filter.getMaxItemCounter() < Cards.find(query).count();
 		} else {
 			if (Session.get("selectingCardsetToLearn") && query.cardType === undefined) {
-				query.cardType = {$in: CardType.getCardTypesWithLearningModes()};
+				if (Route.isRepetitorienFilterIndex()) {
+					query.gotWorkload = true;
+				} else {
+					query.cardType = {$in: CardType.getCardTypesWithLearningModes()};
+				}
 			}
 			return Filter.getMaxItemCounter() < Cardsets.find(query).count();
 		}
@@ -51,7 +55,11 @@ Template.infiniteScroll.helpers({
 			});
 		} else {
 			if (Session.get("selectingCardsetToLearn") && query.cardType === undefined) {
-				query.cardType = {$in: CardType.getCardTypesWithLearningModes()};
+				if (Route.isRepetitorienFilterIndex()) {
+					query.gotWorkload = true;
+				} else {
+					query.cardType = {$in: CardType.getCardTypesWithLearningModes()};
+				}
 			}
 			Session.set('totalResults', Cardsets.find(query).count());
 			return TAPi18n.__('infinite-scroll.remainingCardsets', {
