@@ -17,12 +17,16 @@ import {CardType} from "./cardTypes";
  * @param owner - The database ID of the author
  * @param lastNameFirst - Display the last name first
  * @param onlyFirstName - Return only the first name, used for E-Mail Notifications
+ * @param backendList - Returns a special string if true
  * @returns {*} - Degree + givenname + birthname
  */
-export function getAuthorName(owner, lastNameFirst = true, onlyFirstName = false) {
+export function getAuthorName(owner, lastNameFirst = true, onlyFirstName = false, backendList = false) {
 	let author;
 	author = Meteor.users.findOne({"_id": owner});
 	if (author) {
+		if (backendList && (author.profile.birthname === "" || author.profile.birthname === undefined || author.profile.givenname === "" || author.profile.givenname === undefined)) {
+			return TAPi18n.__('admin.profileIncompleteBackendList');
+		}
 		let name = "";
 		if (onlyFirstName) {
 			if (author.profile.givenname) {

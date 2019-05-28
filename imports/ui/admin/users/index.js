@@ -4,10 +4,12 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/cardsets.js";
-import "./index.html";
-import "./user.js";
 import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../../../config/dompurify.js";
+import {getAuthorName} from "../../../api/userdata";
+import {Bonus} from "../../../api/bonus";
+import "./index.html";
+import "./user.js";
 
 /*
  * ############################################################################
@@ -25,7 +27,9 @@ Template.admin_users.helpers({
 		users.forEach(function (user) {
 			dateString = moment(user.createdAt).locale(Session.get('activeLanguage')).format('LL');
 			date = moment(user.createdAt).format("YYYY-MM-DD");
-			fields.push({"_id": user._id, "profilename": DOMPurify.sanitize(user.profile.name, DOMPurifyConfig), "dateString": dateString, "date": date});
+			let notificationSystems = Bonus.getNotificationStatus(user);
+			let gotMail = (user.email !== "" && user.email !== undefined && user._id !== Meteor.userId());
+			fields.push({"_id": user._id, username: DOMPurify.sanitize(getAuthorName(user._id, true, false, true),DOMPurifyConfig), "loginid": DOMPurify.sanitize(user.profile.name, DOMPurifyConfig), "dateString": dateString, "date": date, "notificationSystems": notificationSystems, "gotMail": gotMail});
 		});
 
 		return fields;
@@ -36,7 +40,13 @@ Template.admin_users.helpers({
 			rowsPerPage: 20,
 			fields: [
 				{
-					key: 'profilename', label: TAPi18n.__('admin.user.username'),
+					key: 'username', label: TAPi18n.__('admin.user.header'),
+					fn: function (value) {
+						return value;
+					}
+				},
+				{
+					key: 'loginid', label: TAPi18n.__('admin.user.username'),
 					fn: function (value) {
 						return value;
 					}
@@ -82,12 +92,18 @@ Template.admin_users.helpers({
 					}
 				},
 				{
-					key: '_id',
+					key: 'notificationSystems', label: TAPi18n.__('confirmLearn-form.notification'),
+					fn: function (value) {
+						return new Spacebars.SafeString(value);
+					}
+				},
+				{
+					key: 'gotMail',
 					label: TAPi18n.__('admin.mail'),
 					cellClass: 'mailto',
 					sortable: false,
 					fn: function (value) {
-						if (Meteor.user()._id !== value) {
+						if (value) {
 							return new Spacebars.SafeString("<a class='mailtoUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#messageModalAdmin'><span class='flex-content'><i class='fa fa-envelope'></i></span></a>");
 						}
 					}
