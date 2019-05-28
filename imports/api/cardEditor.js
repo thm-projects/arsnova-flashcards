@@ -225,6 +225,32 @@ export let CardEditor = class CardEditor {
 		}
 	}
 
+	static goBackToPreviousRoute () {
+		let cardset = Session.get('cardEditMode').cardset;
+		let previousRoute = Session.get('cardEditMode').route;
+		switch (previousRoute) {
+			case "leitner":
+				Router.go('box', {
+					_id: cardset
+				});
+				break;
+			case "wozniak":
+				Router.go('memo', {
+					_id: cardset
+				});
+				break;
+			case "presentation":
+				Router.go('presentation', {
+					_id: cardset
+				});
+				break;
+			default:
+				Router.go('cardsetdetailsid', {
+					_id: cardset
+				});
+				break;
+		}
+	}
 
 	static saveCard (card_id, navigationTarget) {
 		this.initializeContent();
@@ -334,9 +360,13 @@ export let CardEditor = class CardEditor {
 									Router.go('transcriptsPersonal');
 								}
 							} else {
-								Router.go('presentation', {
-									_id: Router.current().params._id
-								});
+								if (Session.get('cardEditMode') !== undefined) {
+									CardEditor.goBackToPreviousRoute();
+								} else {
+									Router.go('presentation', {
+										_id: Router.current().params._id
+									});
+								}
 							}
 						} else {
 							CardEditor.setEditorButtonIndex(CardEditor.getCardNavigationNameIndex(), false);

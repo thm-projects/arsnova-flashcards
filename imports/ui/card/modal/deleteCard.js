@@ -12,7 +12,7 @@ import "./deleteCard.html";
 
 Template.deleteCardForm.events({
 	'click #deleteCardConfirm': function () {
-		Meteor.call("deleteCard", Session.get('activeCard'), function (error, result) {
+		Meteor.call("deleteCard", Session.get('activeCard'), Router.current().params._id, function (error, result) {
 			if (result !== undefined) {
 				BertAlertVisuals.displayBertAlert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
 				$('#deleteCardModal').modal('hide');
