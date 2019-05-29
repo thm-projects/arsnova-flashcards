@@ -90,7 +90,7 @@ Meteor.methods({
 			let cardsets = getCardsets();
 			let cardsetCount = 0;
 			let currentCardsetWithLearners = 1;
-			if (Meteor.settings.debugServer) {
+			if (Meteor.settings.debug.leitner) {
 				for (let i = 0; i < cardsets.length; i++) {
 					if (Leitner.findOne({cardset_id: cardsets[i]._id})) {
 						cardsetCount++;
@@ -100,12 +100,12 @@ Meteor.methods({
 			for (let i = 0; i < cardsets.length; i++) {
 				let learners = getLearners(cardsets[i]._id);
 				let learnerCount = learners.length;
-				if (Meteor.settings.debugServer && learnerCount > 0) {
+				if (Meteor.settings.debug.leitner && learnerCount > 0) {
 					console.log("\nCardset " + currentCardsetWithLearners++ + " of " + cardsetCount + ": [" + cardsets[i].name + ", " + cardsets[i]._id + "]");
 				}
 				for (let k = 0; k < learners.length; k++) {
 					if (!Bonus.isInBonus(cardsets[i]._id, learners[k].user_id) || cardsets[i].learningEnd.getTime() > new Date().getTime()) {
-						if (Meteor.settings.debugServer) {
+						if (Meteor.settings.debug.leitner) {
 							console.log("=>User " + (k + 1) + " of " + learnerCount + ": " + learners[k].user_id);
 						}
 						let activeCard = getActiveCard(cardsets[i]._id, learners[k].user_id);
@@ -117,7 +117,7 @@ Meteor.methods({
 						} else {
 							Meteor.call('prepareMail', cardsets[i], user);
 							Meteor.call('prepareWebpush', cardsets[i], user);
-							if (Meteor.settings.debugServer) {
+							if (Meteor.settings.debug.leitner) {
 								console.log("===> Nothing to do");
 							}
 						}
@@ -134,12 +134,12 @@ Meteor.methods({
 			if (user.mailNotification && mailsEnabled() && !isNewcomer && Roles.userIsInRole(user._id, ['admin', 'editor', 'university', 'lecturer', 'pro']) && !Roles.userIsInRole(user._id, ['blocked', 'firstLogin'])) {
 				try {
 					if (isReset) {
-						if (Meteor.settings.debugServer) {
+						if (Meteor.settings.debug.leitner) {
 							console.log("===> Sending E-Mail reset Message");
 						}
 						MailNotifier.prepareMailReset(cardset, user._id);
 					} else {
-						if (Meteor.settings.debugServer) {
+						if (Meteor.settings.debug.leitner) {
 							console.log("===> Sending E-Mail reminder Message");
 						}
 						MailNotifier.prepareMail(cardset, user._id);
@@ -155,7 +155,7 @@ Meteor.methods({
 			if ((Bonus.isInBonus(cardset._id, user._id) || user.webNotification) && !isNewcomer) {
 				try {
 					let web = new WebNotifier();
-					if (Meteor.settings.debugServer) {
+					if (Meteor.settings.debug.leitner) {
 						console.log("===> Sending Webpush reminder Message");
 					}
 					web.prepareWeb(cardset, user._id);

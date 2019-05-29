@@ -1,4 +1,6 @@
+import {Accounts} from 'meteor/accounts-base';
 import {ServerStyle} from "../../api/styles";
+import {Meteor} from "meteor/meteor";
 
 ServiceConfiguration.configurations.remove({
 	service: 'facebook'
@@ -30,6 +32,13 @@ ServiceConfiguration.configurations.insert({
 	secret: Meteor.settings.google.secret
 });
 
+Accounts.validateNewUser((user) => {
+	if (Meteor.settings.debug.login) {
+		console.log("----------New User----------");
+		console.log(user);
+		console.log("----------New User----------");
+	}
+});
 
 Meteor.users.after.insert(function (userId, doc) {
 	// Setup roles for backdoor login, required for acceptance tests

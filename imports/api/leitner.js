@@ -166,7 +166,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		if (!Meteor.isServer && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			if (Meteor.settings.debugServer && Meteor.isServer) {
+			if (Meteor.settings.debug.leitner && Meteor.isServer) {
 				console.log("===> Set new active cards for " + user._id);
 			}
 			let algorithm = this.getBoxAlgorithm();
@@ -176,7 +176,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				cardCount[i] = this.getCardCount(cardset._id, user._id, i + 1);
 			}
 
-			if (Meteor.settings.debugServer && Meteor.isServer) {
+			if (Meteor.settings.debug.leitner && Meteor.isServer) {
 				console.log("===> Box Card Count: [" + cardCount + "]");
 				console.log("===> Maximum active cards: " + cardset.maxCards);
 			}
@@ -265,7 +265,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			}
 		}
 		// Adjust the algorithm values to fill as many slots as possible
-		if (Meteor.settings.debugServer && Meteor.isServer) {
+		if (Meteor.settings.debug.leitner && Meteor.isServer) {
 			console.log("===> Active Card cap for each box before adjustments: [" + boxActiveCardCap + "]");
 		}
 		return boxActiveCardCap;
@@ -280,7 +280,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				missingCardCount.push(0);
 			}
 		}
-		if (Meteor.settings.debugServer && Meteor.isServer) {
+		if (Meteor.settings.debug.leitner && Meteor.isServer) {
 			console.log("===> Missing Cards: [" + missingCardCount + "]");
 		}
 		let missingCardsSum = 0;
@@ -290,7 +290,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				missingCardsSum += missingCardCount[i];
 			}
 		}
-		if (Meteor.settings.debugServer && Meteor.isServer) {
+		if (Meteor.settings.debug.leitner && Meteor.isServer) {
 			console.log("===> Sum of missing cards: " + missingCardsSum);
 		}
 		let fillUpCount = 0;
@@ -328,7 +328,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				}
 			}
 		}
-		if (Meteor.settings.debugServer && Meteor.isServer) {
+		if (Meteor.settings.debug.leitner && Meteor.isServer) {
 			console.log("===> Active Card cap for each box after adjustments: [" + boxActiveCardCap + "]");
 			console.log("===> " + randomSelectedCards.length + " new active Cards: [" + randomSelectedCards + "]");
 		}
@@ -381,7 +381,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				}
 			}
 		}
-		if (Meteor.settings.debugServer && Meteor.isServer) {
+		if (Meteor.settings.debug.leitner && Meteor.isServer) {
 			console.log("===> Active Card cap for each box after adjustments: [" + boxActiveCardCap + "]");
 			console.log("===> " + nextCards.length + " new active Cards: [" + nextCards + "]");
 		}
@@ -396,7 +396,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			if (Meteor.settings.debugServer) {
+			if (Meteor.settings.debug.leitner) {
 				console.log("===> Reset cards");
 			}
 			let query = {cardset_id: cardset._id, user_id: user._id, box: {$ne: 6}};
