@@ -38,6 +38,7 @@ Accounts.validateNewUser((user) => {
 		console.log(user);
 		console.log("----------New User----------");
 	}
+	return true;
 });
 
 Meteor.users.after.insert(function (userId, doc) {
