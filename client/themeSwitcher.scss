@@ -3334,7 +3334,8 @@ $themes: (
     .swal2-content, .swal2-footer {
       color: $primary_text !important;
       a {
-        color: $hyperlink !important;
+        color: white !important;
+        text-decoration: underline !important;
       }
     }
 
