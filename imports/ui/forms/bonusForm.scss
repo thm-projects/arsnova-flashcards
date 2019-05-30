@@ -3,3 +3,10 @@
     margin-left: 15px;
   }
 }
+
+
+@media (min-width: 900px) {
+  #cardsetLeitnerSimulatorModal .modal-content {
+    width: 900px !important;
+  }
+}

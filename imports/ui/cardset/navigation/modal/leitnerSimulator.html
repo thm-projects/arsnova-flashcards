@@ -1,0 +1,29 @@
+<template name="cardsetLeitnerSimulatorForm">
+    <div class="modal fade" id="cardsetLeitnerSimulatorModal" tabindex="-1" role="dialog"
+         aria-labelledby="cardsetLeitnerSimulatorTitle">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content modal-content-for-buttons">
+                <div class="modal-header">
+                    <span class="modal-icon">
+                        <i class="glyphicon glyphicon-stats"></i>
+                    </span>
+                    {{> mainModalItemCloseIcon}}
+                    <h4 id="resetLeitnerTitle" class="modal-title">{{_ "bonus.form.simulator.title"}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    {{> bonusFormMaxWorkload}}
+                    {{> bonusFormSimulatorCalculate}}
+                    <div class="hidden-xs hidden-sm">
+                        {{> graph}}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>

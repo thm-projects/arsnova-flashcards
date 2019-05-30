@@ -28,7 +28,7 @@ export let BonusForm = class BonusForm {
 			intervals = Session.get('activeCardset').learningInterval;
 			dateBonusStart.attr("min", start);
 		}
-		$('#bonusFormModal #maxWorkload').val(maxWorkload);
+		$('#maxWorkload').val(maxWorkload);
 		$('#bonusFormModal #daysBeforeReset').val(daysBeforeReset);
 		$('#bonusFormModal #interval1').val(intervals[0]);
 		$('#bonusFormModal #interval2').val(intervals[1]);
@@ -86,15 +86,15 @@ export let BonusForm = class BonusForm {
 	}
 
 	static adjustMaxWorkload () {
-		if (parseInt($('#bonusFormModal #maxWorkload').val()) <= (config.minWorkloadCap - 1)) {
-			$('#bonusFormModal #maxWorkload').val(config.minWorkloadCap);
-		} else if (parseInt($('#bonusFormModal #maxWorkload').val()) > Session.get('activeCardset').quantity) {
-			$('#bonusFormModal #maxWorkload').val(Session.get('activeCardset').quantity);
+		if (parseInt($('#maxWorkload').val()) <= (config.minWorkloadCap - 1)) {
+			$('#maxWorkload').val(config.minWorkloadCap);
+		} else if (parseInt($('#maxWorkload').val()) > Session.get('activeCardset').quantity) {
+			$('#maxWorkload').val(Session.get('activeCardset').quantity);
 		}
 	}
 
 	static getMaxWorkload () {
-		let maxWorkload = Number($('#bonusFormModal #maxWorkload').val());
+		let maxWorkload = Number($('#maxWorkload').val());
 		if (!maxWorkload) {
 			maxWorkload = Number(config.defaultMaxWorkload);
 		}

@@ -182,7 +182,9 @@ export let LeitnerProgress = class LeitnerProgress {
 		let cardsetsIds = [];
 		let difficultyFilterResult;
 		difficultyGotCards = false;
-
+		if (Route.isCardset()) {
+			return 0;
+		}
 		if (Route.isLeitnerProgress() || filterCardset !== undefined) {
 			let cardset_id;
 			if (filterCardset !== undefined) {

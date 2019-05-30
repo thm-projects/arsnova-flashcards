@@ -1103,6 +1103,11 @@
         "label": "Tagespensum",
         "placeholder": "maximal täglich zu lernende Karten"
       },
+      "simulator": {
+        "buttonModal":  "Tagespensum festlegen",
+        "buttonSimulate": "Optimales Tagespensum berechnen",
+        "title": "Leitner Simulator"
+      },
       "maxPoints": {
         "label": "Maximal erreichbare Bonuspunkte in Prozent"
       },
