@@ -1,0 +1,105 @@
+@startuml
+skinparam class {
+	BackgroundColor lightyellow
+	BorderColor black
+	ArrowColor midnightblue
+}
+
+skinparam linetype ortho
+skinparam shadowing true
+skinparam minClassWidth 130
+
+package arsnova.cards <<Frame>>{
+
+
+class CardSet {
+	title
+	description
+	type
+	level
+	access
+	license
+}
+package CardSetType <<Frame>>{
+class Glossary
+note left: example of \nCardSetType
+class Transcript
+class TranscriptCoupledWithLecture
+}
+class Card {
+	title
+	content
+	learningObjective
+}
+
+
+
+class TopicPool
+class Account
+class Repetitorium
+
+class LearningLoad {
+	daolyAmountOfCards
+}
+class LearnStrategy
+class Wozniak
+class Leitner
+class PomodoroTimer
+
+class LearningStatus {
+	statistics
+}
+
+class Bonus {
+	isActive
+}
+class LearnBonus
+class TranscriptBonus {
+	amount
+}
+
+Account "*" -right- "1" TopicPool: uses >
+TopicPool "1" -up- "*" Repetitorium
+Repetitorium "*" -right- "1" LearningLoad
+
+Repetitorium "1" -left- "*" CardSet
+Card "*" -left-* "1" CardSet
+CardSet "*" -down- "1" TopicPool
+Glossary -down-|> CardSet
+/'Glossary -[hidden]> Transcript'/
+
+Transcript -down-|> CardSet
+TranscriptCoupledWithLecture -down-|> Transcript
+LearningStatus "1" -up- "1" LearningLoad: visualizes >
+LearningLoad "1" -up- "1" LearnStrategy
+LearnStrategy "1" -up- "1" PomodoroTimer
+Leitner -right-|> LearnStrategy
+Wozniak -left-|> LearnStrategy
+
+LearningLoad "1" -up- "1" LearnBonus
+LearnBonus -up-|> Bonus
+TranscriptBonus -right-|> Bonus
+TranscriptCoupledWithLecture "1..*" -left- "1" TranscriptBonus
+}
+
+legend right
+  |= Item |= Description |
+  | Projekt | »arsnova.cards« domain diagram |
+  | PRojektort und -zeitraum | THM, FB, MNI, SoSe 2019 |
+  | Projekt-Repository | https://git.thm.de/cards |
+  | Release | v. 3.6 |
+  | Staging Server | https://staging.arsnova.cards |
+  | Produktionsserver| https://arsnova.cards|
+  | UML-Diagrammart| Domänendiagramm|
+  | UML-Tool| PlantUML v. 1.2019.6|
+  | Modellversion| v.1.0|
+  | Erstelldatum| 29.05.2019|
+  | Ersteller| Sergej Lopatin|
+  | Letzte Änderung| 30.05.2019|
+  | Letzter Bearbeiter| Klaus Quibeldey-Cirkel|
+  | E-Mail| Sergej.Lopatin@mni.thm.de|
+  | E-Mail| klaus.quibeldey-cirkeln@mni.thm.de|
+end legend
+hide methods
+hide circle
+@enduml
