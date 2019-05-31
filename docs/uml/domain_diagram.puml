@@ -1,18 +1,28 @@
 @startuml
+
 skinparam class {
-	BackgroundColor lightyellow
-	BorderColor black
-	ArrowColor midnightblue
+	BackgroundColor palegreen
+	BorderColor darkgray
+	ArrowColor black
+	FontSize 12
+	BackgroundColor<<USP>> Wheat
+    BorderColor<<USP>> Tomato
 }
 
 skinparam linetype ortho
 skinparam shadowing true
-skinparam minClassWidth 130
+skinparam minClassWidth 150
+skinparam LegendBackgroundColor LightCyan
+skinparam LegendBorderThickness 0
+skinparam LegendFontName Helvetica
+skinparam LegendFontSize 12
 
-package arsnova.cards <<Frame>>{
+hide methods
+hide circle
 
+package "arsnova.cards | domain diagram" <<Frame>>{
 
-class CardSet {
+class CardIndex <<USP>> {
 	title
 	description
 	type
@@ -20,86 +30,94 @@ class CardSet {
 	access
 	license
 }
-package CardSetType <<Frame>>{
-class Glossary
-note left: example of \nCardSetType
-class Transcript
-class TranscriptCoupledWithLecture
+
+together {
+    class Transcript
+    class TranscriptCoupledWithLecture  <<USP>> {
+        lectureDates
+    }
 }
+
 class Card {
 	title
+	sides
 	content
 	learningObjective
 }
-
-
-
 class TopicPool
-class Account
-class Repetitorium
+class Repetitorium {
+    title
+    description
+    access
+    }
 
-class LearningLoad {
-	daolyAmountOfCards
+together {
+    class LearningLoad {
+        dailyNumberOfCards
+    }
+    class LearningStrategy {
+        start
+        end
+    }
+    class WozniakAlgorithm
+    class LeitnerAlgorithm
+    class PomodoroTimer <<USP>> {
+        number of Pomodori
+    }
+    class LearningStatus {
+        statistics
+    }
+    class Bonus <<USP>> {
+        bonusPoints
+        bonusRegister
+    }
+    class LearningBonus  <<USP>>
+    class Transcript  <<USP>> {
+        access
+    }
+    class TranscriptBonus  <<USP>> {
+        minimumNumberOfTranscripts
+    }
 }
-class LearnStrategy
-class Wozniak
-class Leitner
-class PomodoroTimer
 
-class LearningStatus {
-	statistics
+together {
+    TopicPool o---right- Repetitorium
 }
 
-class Bonus {
-	isActive
-}
-class LearnBonus
-class TranscriptBonus {
-	amount
-}
+TopicCloud -down- TopicPool: : visualizes >
+Repetitorium  o---left- "*" CardIndex
+Card "*" -left-* "1" CardIndex
+note bottom: There will be about 20 study-specific \ncard-index types, e. g.:\n\n - learning unit\n - commands set \n - formula collection\n - design patterns\n - exam questions\n - quotations\n - subject bibliography\n - vocabulary\n
+CardIndex -down--o TopicPool
 
-Account "*" -right- "1" TopicPool: uses >
-TopicPool "1" -up- "*" Repetitorium
-Repetitorium "*" -right- "1" LearningLoad
-
-Repetitorium "1" -left- "*" CardSet
-Card "*" -left-* "1" CardSet
-CardSet "*" -down- "1" TopicPool
-Glossary -down-|> CardSet
-/'Glossary -[hidden]> Transcript'/
-
-Transcript -down-|> CardSet
+Transcript -right-|> Card
 TranscriptCoupledWithLecture -down-|> Transcript
-LearningStatus "1" -up- "1" LearningLoad: visualizes >
-LearningLoad "1" -up- "1" LearnStrategy
-LearnStrategy "1" -up- "1" PomodoroTimer
-Leitner -right-|> LearnStrategy
-Wozniak -left-|> LearnStrategy
+LearningStatus -right- LearningLoad: visualizes >
+LearningLoad -up- LearningStrategy
+LearningStrategy -up- PomodoroTimer
+WozniakAlgorithm -up-|> LearningStrategy
+LeitnerAlgorithm -up-|> LearningStrategy
+LearningLoad -up- LearningBonus
+LearningBonus -left-|> Bonus
+TranscriptBonus -down-|> Bonus
+TranscriptCoupledWithLecture -left- TranscriptBonus
 
-LearningLoad "1" -up- "1" LearnBonus
-LearnBonus -up-|> Bonus
-TranscriptBonus -right-|> Bonus
-TranscriptCoupledWithLecture "1..*" -left- "1" TranscriptBonus
 }
 
 legend right
-  |= Item |= Description |
-  | Projekt | »arsnova.cards« domain diagram |
-  | PRojektort und -zeitraum | THM, FB, MNI, SoSe 2019 |
-  | Projekt-Repository | https://git.thm.de/cards |
-  | Release | v. 3.6 |
-  | Staging Server | https://staging.arsnova.cards |
-  | Produktionsserver| https://arsnova.cards|
-  | UML-Diagrammart| Domänendiagramm|
+  |= <img:https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/whatsapp/186/tomato_1f345.png> |= \n [[https://arsnova.cards arsnova.cards]] \n\n Technische Hochschule Mittelhessen – THM \n University of Applied Sciences |
+  | Projekt-Website | [[https://arsnova.thm.de]] |
+  | Repository | [[https://git.thm.de/cards]] |
+  | Staging Server | [[https://staging.arsnova.cards]] |
+  | RUP-Phase| Inception|
   | UML-Tool| PlantUML v. 1.2019.6|
-  | Modellversion| v.1.0|
-  | Erstelldatum| 29.05.2019|
+  | Modellversion| v.1.1 |
+  | Erstelldatum| 29.05.2019 |
   | Ersteller| Sergej Lopatin|
-  | Letzte Änderung| 30.05.2019|
-  | Letzter Bearbeiter| Klaus Quibeldey-Cirkel|
-  | E-Mail| Sergej.Lopatin@mni.thm.de|
-  | E-Mail| klaus.quibeldey-cirkeln@mni.thm.de|
+  | E-Mail| sergej.lopatin@mni.thm.de |
+  | Letzte Änderung| 31.05.2019 |
+  | Letzter Bearbeiter| Dr. Klaus Quibeldey-Cirkel |
+  | E-Mail| klaus.quibeldey-cirkeln@mni.thm.de |
 end legend
-hide methods
-hide circle
+
 @enduml
