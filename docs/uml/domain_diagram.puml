@@ -4,20 +4,23 @@ skinparam class {
 	BackgroundColor palegreen
 	BorderColor darkgray
 	ArrowColor black
-	FontSize 12
+	FontSize 28
 	BackgroundColor<<USP>> Wheat
     BorderColor<<USP>> Tomato
 }
 
+skinparam backgroundColor Linen
 skinparam linetype ortho
 skinparam shadowing true
 skinparam minClassWidth 150
-skinparam LegendBackgroundColor LightCyan
+skinparam LegendBackgroundColor Strategy
 skinparam LegendBorderThickness 0
-skinparam LegendFontName Helvetica
-skinparam LegendFontSize 12
+skinparam LegendFontSize 24
+skinparam defaultFontSize 20
+
 
 hide methods
+hide empty members
 hide circle
 
 package "arsnova.cards | domain diagram" <<Frame>>{
@@ -62,7 +65,7 @@ together {
     class WozniakAlgorithm
     class LeitnerAlgorithm
     class PomodoroTimer <<USP>> {
-        number of Pomodori
+        numberOfPomodori
     }
     class LearningStatus {
         statistics
@@ -80,19 +83,16 @@ together {
     }
 }
 
-together {
-    TopicPool o---right- Repetitorium
-}
-
-TopicCloud -down- TopicPool: : visualizes >
-Repetitorium  o---left- "*" CardIndex
-Card "*" -left-* "1" CardIndex
-note bottom: There will be about 20 study-specific \ncard-index types, e. g.:\n\n - learning unit\n - commands set \n - formula collection\n - design patterns\n - exam questions\n - quotations\n - subject bibliography\n - vocabulary\n
-CardIndex -down--o TopicPool
+TopicPool o-right- Repetitorium
+TopicCloud -down- TopicPool :visualizes >
+Repetitorium o-left- CardIndex
+Card  -left-* CardIndex
+note bottom: \nThere will be about 20 study-specific \ncard-index types, e. g.:\n\n - learning unit\n - command set \n - formula collection\n - design patterns\n - exam questions\n - quotations\n - subject bibliography\n - vocabulary\n
+CardIndex -down-o TopicPool
 
 Transcript -right-|> Card
 TranscriptCoupledWithLecture -down-|> Transcript
-LearningStatus -right- LearningLoad: visualizes >
+LearningStatus -right- LearningLoad
 LearningLoad -up- LearningStrategy
 LearningStrategy -up- PomodoroTimer
 WozniakAlgorithm -up-|> LearningStrategy
@@ -105,7 +105,7 @@ TranscriptCoupledWithLecture -left- TranscriptBonus
 }
 
 legend right
-  |= <img:https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/whatsapp/186/tomato_1f345.png> |= \n [[https://arsnova.cards arsnova.cards]] \n\n Technische Hochschule Mittelhessen – THM \n University of Applied Sciences |
+  |= \n          <img:https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/whatsapp/186/tomato_1f345.png> |= \n [[https://arsnova.cards arsnova.cards]] \n\n Technische Hochschule Mittelhessen – THM \n University of Applied Sciences |
   | Projekt-Website | [[https://arsnova.thm.de]] |
   | Repository | [[https://git.thm.de/cards]] |
   | Staging Server | [[https://staging.arsnova.cards]] |
@@ -114,10 +114,10 @@ legend right
   | Modellversion| v.1.1 |
   | Erstelldatum| 29.05.2019 |
   | Ersteller| Sergej Lopatin|
-  | E-Mail| sergej.lopatin@mni.thm.de |
+  | Mail| sergej.lopatin@mni.thm.de |
   | Letzte Änderung| 31.05.2019 |
   | Letzter Bearbeiter| Dr. Klaus Quibeldey-Cirkel |
-  | E-Mail| klaus.quibeldey-cirkeln@mni.thm.de |
+  | Mail| klaus.quibeldey-cirkel@mni.thm.de |
 end legend
 
 @enduml
