@@ -1,7 +1,7 @@
 @startuml
 
 skinparam class {
-	BackgroundColor palegreen
+	BackgroundColor PaleGreen
 	BorderColor Green
 	ArrowColor black
 	FontSize 28
@@ -21,7 +21,6 @@ skinparam Padding 5
 skinparam Nodesep 100
 skinparam ArrowThickness 2
 skinparam ArrowColor DarkSlateGray
-
 
 hide methods
 hide empty members
@@ -78,9 +77,7 @@ together {
         breakDuration
         numberOfPomodori
     }
-    class LearningCurve {
-        statistics
-    }
+    class LearningStatusDisplay
     class Bonus <<USP>> {
         bonusPoints
         bonusRegister
@@ -104,10 +101,10 @@ CardIndex -down-o TopicPool
 
 Transcript -right-|> Card
 Transcript -up- "0..1"Lecture :coupled with >
-LearningCurve -left- LearningLoad :visualizes >
+LearningStatusDisplay -left- LearningLoad
 LearningLoad -up- LeitnerPlan
 LeitnerPlan -up- PomodoroTimer
-Simulator -up- LeitnerPlan :determines \n planning \n data >
+Simulator -up- LeitnerPlan :determines \nplanning \ndata >
 LearningLoad -up- LearningBonus
 LearningBonus -right-|> Bonus
 TranscriptBonus -down-|> Bonus
@@ -125,7 +122,7 @@ legend right
   | Repository | [[https://git.thm.de/cards]] |
   | Staging Server | [[https://staging.arsnova.cards]] |
   | RUP-Phase| Inception|
-  | UML-Tool| PlantUML v. 1.2019.6|
+  | UML-Tool| PlantUML v1.2019.5|
   | Modellversion| 1.1 |
   | Erstelldatum| 29.05.2019 |
   | Ersteller| Sergej Lopatin|
