@@ -6,7 +6,7 @@ skinparam class {
 	ArrowColor black
 	FontSize 28
 	BackgroundColor<<USP>> Pink
-    BorderColor<<USP>> HotPink
+	BorderColor<<USP>> HotPink
 }
 
 skinparam backgroundColor Linen
@@ -26,7 +26,7 @@ hide methods
 hide empty members
 hide circle
 
-package "arsnova.cards | domain diagram" <<Frame>>{
+package "arsnova.cards | domain diagram" <<Frame>> {
 
 class CardIndex <<USP>> {
 	title
