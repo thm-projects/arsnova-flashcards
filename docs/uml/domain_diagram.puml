@@ -71,7 +71,7 @@ together {
         resetModeForUnKnownCards
         reminderService
     }
-    class Simulator <<USP>>
+    class LeitnerSimulator <<USP>>
     class PomodoroTimer <<USP>> {
         learningDuration
         breakDuration
@@ -104,7 +104,7 @@ Transcript -up- "0..1"Lecture :coupled with >
 LearningStatusDisplay -left- LearningLoad
 LearningLoad -up- LeitnerPlan
 LeitnerPlan -up- PomodoroTimer
-Simulator -up- LeitnerPlan :determines \nplanning \ndata >
+LeitnerSimulator -up- LeitnerPlan :determines \nplanning \ndata >
 LearningLoad -up- LearningBonus
 LearningBonus -right-|> Bonus
 TranscriptBonus -down-|> Bonus

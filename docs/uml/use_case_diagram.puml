@@ -31,7 +31,7 @@ actor Lecturer
 actor "Proof Reader" as ProofReader
 actor Admin
 
-rectangle "arsnova.cards | business use-case diagram \n" {
+rectangle "arsnova.cards | use-case diagram \n" << Business >> {
 
     usecase Search as "View cards \n of published card indexes \n or collections of card indexes"
     usecase Learn as "Learn card index \n or collection of card indexes \n according to Leitner Plan"
