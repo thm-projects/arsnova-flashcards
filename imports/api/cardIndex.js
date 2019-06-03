@@ -8,7 +8,6 @@ import {CardType} from "./cardTypes";
 import {CardNavigation} from "./cardNavigation";
 import {CardVisuals} from "./cardVisuals";
 import {Utilities} from "./utilities";
-import {ServerStyle} from "./styles";
 
 let cardIndex = [];
 
@@ -115,13 +114,9 @@ export let CardIndex = class CardIndex {
 		}).fetch();
 		let filter = Utilities.getUniqData(indexCards, 'card_id');
 		if (indexCards.length) {
-			if (ServerStyle.gotLeitnerRandomCardsSelection()) {
-				cardIndex = filter;
-			} else {
-				cardIndex = this.defaultIndex(Cardsets.findOne({_id: Router.current().params._id})).filter(function (id) {
-					return filter.indexOf(id) > -1;
-				});
-			}
+			cardIndex = this.defaultIndex(Cardsets.findOne({_id: Router.current().params._id})).filter(function (id) {
+				return filter.indexOf(id) > -1;
+			});
 		}
 		return cardIndex;
 	}

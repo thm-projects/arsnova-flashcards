@@ -11,7 +11,6 @@ import * as config from "../config/leitner.js";
 import * as bonusFormConfig from "../config/bonusForm.js";
 import {Utilities} from "./utilities";
 import {CardIndex} from "./cardIndex";
-import {ServerStyle} from "./styles";
 
 function gotPriority(array, card_id, priority) {
 	for (let i = 0; i < array.length; i++) {
@@ -192,12 +191,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				boxActiveCardCap = this.fillUpMissingCards(boxActiveCardCap, cardCount);
 			}
 
-			let cardSelection;
-			if (ServerStyle.gotLeitnerRandomCardsSelection()) {
-				cardSelection = this.selectNextRandomCards(cardset, boxActiveCardCap, algorithm, user);
-			} else {
-				cardSelection = this.selectCardsByOrder(cardset, boxActiveCardCap, algorithm, user);
-			}
+			let cardSelection = this.selectCardsByOrder(cardset, boxActiveCardCap, algorithm, user);
 
 			Leitner.update({
 				cardset_id: cardset._id,
@@ -306,33 +300,6 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			}
 		}
 		return boxActiveCardCap;
-	}
-
-	static selectNextRandomCards (cardset, boxActiveCardCap, algorithm, user) {
-		let randomSelectedCards = [];
-		//Get all cards from a box that match the leitner criteria
-		for (let l = 0; l < algorithm.length; l++) {
-			let cards = Leitner.find({
-				cardset_id: cardset._id,
-				user_id: user._id,
-				box: (l + 1),
-				active: false,
-				nextDate: {$lte: new Date()}
-			}, {fields: {card_id: 1}}).fetch();
-			//update one random card out of the l loop
-			for (let c = 0; c < boxActiveCardCap[l]; c++) {
-				if (cards.length !== 0) {
-					let nextCardIndex = Math.floor(Math.random() * (cards.length));
-					randomSelectedCards.push(cards[nextCardIndex].card_id);
-					cards.splice(nextCardIndex, 1);
-				}
-			}
-		}
-		if (Meteor.settings.debug.leitner && Meteor.isServer) {
-			console.log("===> Active Card cap for each box after adjustments: [" + boxActiveCardCap + "]");
-			console.log("===> " + randomSelectedCards.length + " new active Cards: [" + randomSelectedCards + "]");
-		}
-		return randomSelectedCards;
 	}
 
 	static selectCardsByOrder (cardset, boxActiveCardCap, algorithm, user) {
