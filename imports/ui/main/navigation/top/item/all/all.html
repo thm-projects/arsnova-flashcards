@@ -1,5 +1,5 @@
 <template name="mainNavigationTopItemAll">
-    {{#if isInRole 'admin, editor'}}
+    {{#if gotBackendAccess}}
         <li id="navbar-all"
             class="dropdown {{#if isAllRoute}}active{{/if}}">
             <a href="#" class="dropdown-toggle dropdownMenuContainer"

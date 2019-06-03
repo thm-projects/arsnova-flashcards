@@ -286,7 +286,7 @@ Meteor.methods({
 			cardType = cardset.cardType;
 		}
 
-		if (UserPermissions.isAdmin() || isOwner) {
+		if (UserPermissions.gotBackendAccess() || isOwner) {
 			if (subject === "" && transcriptBonusUser === undefined) {
 				throw new Meteor.Error(TAPi18n.__('cardsubject_required', {}, Meteor.user().profile.locale));
 			}
@@ -388,7 +388,7 @@ Meteor.methods({
 	},
 	deleteTranscript: function (card_id) {
 		let card = Cards.findOne(card_id);
-		if (card.owner === Meteor.userId() || UserPermissions.isAdmin()) {
+		if (card.owner === Meteor.userId() || UserPermissions.gotBackendAccess()) {
 			let result = Cards.remove(card_id);
 			let transcriptBonus = TranscriptBonus.findOne({card_id: card_id});
 			TranscriptBonus.remove({card_id: card_id});
@@ -402,7 +402,7 @@ Meteor.methods({
 		check(cardset_route_id, String);
 		let card = Cards.findOne(card_id);
 		let cardset = Cardsets.findOne(card.cardset_id);
-		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+		if (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner)) {
 			var countCards = Cards.find({cardset_id: cardset._id}).count();
 			if (countCards < 1 && !CardType.gotTranscriptBonus(cardset.cardType)) {
 				Cardsets.update(cardset._id, {
