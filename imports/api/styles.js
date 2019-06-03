@@ -139,10 +139,6 @@ export let ServerStyle = class ServerStyle {
 		return this.getConfig().transcripts.enabled;
 	}
 
-	static gotLeitnerRandomCardsSelection () {
-		return this.getConfig().leitner.randomCardsSelection;
-	}
-
 	static getUserRolesWithCreatePermission () {
 		let usersWithPermission = this.getConfig().roles.create;
 		let list = ['admin', 'editor'];

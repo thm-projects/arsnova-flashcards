@@ -1804,6 +1804,7 @@
   "subjectInfo_plural": "Karten in der Box __box__ werden nach __count__ Tagen wieder vorgelegt.",
   "leitnerCard": "Karte für derzeitige Lernphase",
   "backbutton": " Zur Kartei",
+  "backbuttonWorkload": "Zum Lernpensum",
   "backbuttonStatistics": " Zurück zur Lernstatistik",
   "know": "Gewusst",
   "notknow": "Nicht gewusst",

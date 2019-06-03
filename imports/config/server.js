@@ -41,9 +41,6 @@ let defaultSettings = {
 			"pro": true,
 			"lecturer": true
 		}
-	},
-	"leitner": {
-		"randomCardsSelection": true
 	}
 };
 
@@ -139,9 +136,6 @@ let linux = {
 			"pro": true,
 			"lecturer": true
 		}
-	},
-	"leitner": {
-		"randomCardsSelection": false
 	}
 };
 
@@ -190,7 +184,7 @@ let review = {
 		}
 	},
 	"leitner": {
-		"randomCardsSelection": true
+		"randomCardsSelection": false
 	}
 };
 
@@ -237,9 +231,6 @@ let staging = {
 			"pro": true,
 			"lecturer": true
 		}
-	},
-	"leitner": {
-		"randomCardsSelection": true
 	}
 };
 
