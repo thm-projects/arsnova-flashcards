@@ -252,7 +252,8 @@ export let Route = class Route {
 	//2 repetitorien
 	static getPersonalRouteName (type = 0) {
 		if (Meteor.user() && Meteor.user().count !== undefined) {
-			if (type === 0) {
+			let routeType = type; // Fix for browsers such as Vivaldi
+			if (routeType === 0) {
 				switch (Meteor.user().count.cardsets + Meteor.user().count.shuffled + Meteor.user().count.transcripts + Meteor.user().count.transcriptsBonus) {
 					case 0:
 						return TAPi18n.__('navbar-collapse.personal.personal.zero');
@@ -261,7 +262,7 @@ export let Route = class Route {
 					default:
 						return TAPi18n.__('navbar-collapse.personal.personal.multiple');
 				}
-			} else if (type === 1) {
+			} else if (routeType === 1) {
 				switch (Meteor.user().count.cardsets) {
 					case 0:
 						return TAPi18n.__('navbar-collapse.personal.cardsets.zero');
@@ -270,7 +271,7 @@ export let Route = class Route {
 					default:
 						return TAPi18n.__('navbar-collapse.personal.cardsets.multiple');
 				}
-			} else if (type === 2) {
+			} else if (routeType === 2) {
 				switch (Meteor.user().count.transcripts + Meteor.user().count.transcriptsBonus) {
 					case 0:
 						return TAPi18n.__('navbar-collapse.transcripts.zero');
@@ -279,7 +280,7 @@ export let Route = class Route {
 					default:
 						return TAPi18n.__('navbar-collapse.transcripts.multiple');
 				}
-			} else if (type === 3) {
+			} else if (routeType === 3) {
 				switch (Meteor.user().count.transcripts) {
 					case 0:
 						return TAPi18n.__('navbar-collapse.transcripts.personal.zero');
@@ -288,7 +289,7 @@ export let Route = class Route {
 					default:
 						return TAPi18n.__('navbar-collapse.transcripts.personal.multiple');
 				}
-			} else if (type === 4) {
+			} else if (routeType === 4) {
 				switch (Meteor.user().count.transcriptsBonus) {
 					case 0:
 						return TAPi18n.__('navbar-collapse.transcripts.bonus.zero');
@@ -297,7 +298,7 @@ export let Route = class Route {
 					default:
 						return TAPi18n.__('navbar-collapse.transcripts.bonus.multiple');
 				}
-			} else if (type === 5) {
+			} else if (routeType === 5) {
 				switch (Meteor.user().count.transcripts + Meteor.user().count.transcriptsBonus) {
 					case 0:
 						return TAPi18n.__('navbar-collapse.transcripts.short.zero');
@@ -320,7 +321,8 @@ export let Route = class Route {
 	}
 
 	static getNavigationName (name) {
-		switch (name) {
+		let iconName = name; // Fix for browsers such as Vivaldi
+		switch (iconName) {
 			case "about":
 				return TAPi18n.__('contact.about', {lastAppTitle: ServerStyle.getLastAppTitle()});
 			case "agb":
