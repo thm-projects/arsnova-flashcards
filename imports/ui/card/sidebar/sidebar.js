@@ -22,6 +22,9 @@ import "./item/help.js";
 import "./item/swapQuestionAnswer.js";
 import "./item/presentation.js";
 import "./item/toggle3D.js";
+import {Route} from "../../../api/route";
+import {Bonus} from "../../../api/bonus";
+import {NavigatorCheck} from "../../../api/navigatorCheck";
 
 /*
  * ############################################################################
@@ -31,6 +34,16 @@ import "./item/toggle3D.js";
 
 Template.flashcardSidebarLeft.onRendered(function () {
 	CardVisuals.setSidebarPosition();
+});
+
+Template.flashcardSidebarLeft.helpers({
+	gotElements: function () {
+		if (Route.isBox() && NavigatorCheck.isSmartphone()) {
+			return !Bonus.isInBonus(Router.current().params._id);
+		} else {
+			return !Route.isTranscript();
+		}
+	}
 });
 
 /*

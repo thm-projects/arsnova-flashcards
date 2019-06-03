@@ -1,0 +1,84 @@
+@startuml
+
+scale 1.0
+
+left to right direction
+
+skinparam backgroundColor Linen
+skinparam LegendBackgroundColor Strategy
+skinparam LegendBorderThickness 0
+skinparam LegendFontSize 20
+skinparam Padding 5
+skinparam defaultFontSize 24
+skinparam Nodesep 100
+skinparam ArrowThickness 2
+skinparam shadowing true
+
+skinparam usecase {
+    BackgroundColor PaleGreen
+    BorderColor Green
+    BackgroundColor<<USP>> Pink
+    BorderColor<<USP>> HotPink
+    BorderThickness 2
+    ArrowThickness 2
+    ArrowColor Green
+    ActorBorderColor Green
+}
+
+actor Guest
+actor Student
+actor Lecturer
+actor "Proof Reader" as ProofReader
+actor Admin
+
+rectangle "arsnova.cards | business use-case diagram \n" {
+
+    usecase Search as "View cards \n of published card indexes \n or collections of card indexes"
+    usecase Learn as "Learn card index \n or collection of card indexes \n according to Leitner Plan"
+    usecase CreateCardIndex as "Create study-specific card index" << USP >>
+    usecase CreateCollection as "Create collection of card indexes"
+    usecase CreateCard as "Create card"
+    usecase Transcript as "Create transcript" << USP >>
+    usecase Edit as "Fill card sides \n according to card type" << USP >>
+    usecase Bonus as "Activate bonus option \n for a card index, \n a collection of card indexes \nor transcripts" << USP >>
+    usecase Correction as "Correct content and formatting \n while reading cards" << USP >>
+    usecase Backend as "Administer users and inventory"
+
+    note " \nA transcript can be linked to a lecture card \nif the lecturer has activated the transcript bonus option.\n" as TranscriptBonus
+    note " \nMore than a dozen study-specific \ncard-index types are planned, \namong others:\n\n - learning unit\n - command set \n - formula collection\n - design patterns\n - exam questions\n - quotations\n - subject bibliography\n - vocabulary\n" as CardTypes
+    note " \nAdmin can add card indexes \nand collections of card indexes \nto the topic cloud.\n" as TopicCloud
+
+    Guest <|- Student
+    Student <|- ProofReader
+    ProofReader <|- Lecturer
+    Guest - (Search)
+    Student - (Transcript)
+    (Transcript) - TranscriptBonus
+    Student - (CreateCardIndex)
+    Student - (CreateCollection)
+    (CreateCardIndex) ..> (CreateCard) : << include >>
+    (CreateCardIndex) .. CardTypes
+    (Edit) <. (CreateCard) : << include >>
+    Student - (Learn)
+    ProofReader - Correction
+    Lecturer -- (Bonus)
+    TopicCloud -- Backend
+    (Backend) --- Admin
+}
+
+legend right
+  |= \n          <img:https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/whatsapp/186/tomato_1f345.png> |= \n [[https://arsnova.cards arsnova.cards]] \n\n Technische Hochschule Mittelhessen – THM \n University of Applied Sciences |
+  | Projekt-Website | [[https://arsnova.thm.de]] |
+  | «USP» | Alleinstellungsmerkmale von arsnova.cards |
+  | Repository | [[https://git.thm.de/cards]] |
+  | Staging Server | [[https://staging.arsnova.cards]] |
+  | RUP-Phase| Inception|
+  | UML-Tool| PlantUML v1.2019.5|
+  | Modellversion| 1.1 |
+  | Erstelldatum| 31.05.2019 |
+  | Ersteller| Dr. Klaus Quibeldey-Cirkel |
+  | Mail| klaus.quibeldey-cirkel@mni.thm.de |
+  | Letzte Änderung| 02.06.2019 |
+end legend
+
+@enduml

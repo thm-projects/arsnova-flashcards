@@ -54,7 +54,7 @@ export let LoginTasks = class LoginTasks {
 						for (let i = 0; i < config.loginRedirectPriority.length; i++) {
 							switch (config.loginRedirectPriority[i]) {
 								case 0:
-									if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']) && !redirected) {
+									if (UserPermissions.gotBackendAccess() && !redirected) {
 										redirected = true;
 										Router.go('alldecks');
 									}

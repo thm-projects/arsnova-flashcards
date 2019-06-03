@@ -72,14 +72,14 @@ if (Meteor.isServer) {
 		}
 	});
 	Meteor.publish("allCardsets", function () {
-		if (this.userId && UserPermissions.isAdmin()) {
+		if (this.userId && UserPermissions.gotBackendAccess()) {
 			return Cardsets.find({shuffled: false});
 		} else {
 			this.ready();
 		}
 	});
 	Meteor.publish("allRepetitorien", function () {
-		if (this.userId && UserPermissions.isAdmin()) {
+		if (this.userId && UserPermissions.gotBackendAccess()) {
 			return Cardsets.find({shuffled: true});
 		} else {
 			this.ready();
@@ -147,7 +147,7 @@ if (Meteor.isServer) {
 	});
 	Meteor.publish("repetitoriumCardsets", function () {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
-			if (UserPermissions.isAdmin()) {
+			if (UserPermissions.gotBackendAccess()) {
 				return Cardsets.find({shuffled: true});
 			} else {
 				return Cardsets.find({
@@ -169,7 +169,7 @@ if (Meteor.isServer) {
 	});
 	Meteor.publish("editShuffleCardsets", function (cardset_id) {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
-			if (UserPermissions.isAdmin()) {
+			if (UserPermissions.gotBackendAccess()) {
 				return Cardsets.find({
 					$or: [
 						{_id: cardset_id},
@@ -563,7 +563,7 @@ Meteor.methods({
 		check(id, String);
 		// Make sure only the task owner can make a task private
 		let cardset = Cardsets.findOne(id);
-		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+		if (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner)) {
 			Cardsets.remove(id);
 			Cards.remove({
 				cardset_id: id
@@ -596,7 +596,7 @@ Meteor.methods({
 		check(id, String);
 		// Make sure only the task owner can make a task private
 		let cardset = Cardsets.findOne(id);
-		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+		if (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner)) {
 			Cards.remove({
 				cardset_id: id
 			});
@@ -645,7 +645,7 @@ Meteor.methods({
 		check(id, String);
 
 		let cardset = Cardsets.findOne(id);
-		if (cardset !== undefined && cardset.learningActive && (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner))) {
+		if (cardset !== undefined && cardset.learningActive && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
 			Cardsets.update(id, {
 				$set: {
 					learningActive: false
@@ -709,7 +709,7 @@ Meteor.methods({
 		check(pomodoroTimerSoundConfig, [Boolean]);
 
 		let cardset = Cardsets.findOne(id);
-		if (cardset !== undefined && !cardset.learningActive && (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner))) {
+		if (cardset !== undefined && !cardset.learningActive && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
 			intervals = intervals.sort(
 				function (a, b) {
 					return a - b;
@@ -758,7 +758,7 @@ Meteor.methods({
 		check(maxBonusPoints, Number);
 
 		let cardset = Cardsets.findOne(id);
-		if (cardset !== undefined && cardset.learningActive && (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner))) {
+		if (cardset !== undefined && cardset.learningActive && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
 			intervals = intervals.sort(
 				function (a, b) {
 					return a - b;
@@ -801,7 +801,7 @@ Meteor.methods({
 		check(newDates, [Date]);
 		check(minimumSubmissions, Number);
 		let cardset = Cardsets.findOne(id);
-		if (cardset !== undefined && (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner))) {
+		if (cardset !== undefined && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
 			Cardsets.update(id, {
 				$set: {
 					'transcriptBonus.enabled': isEnabled,
@@ -836,7 +836,7 @@ Meteor.methods({
 		check(sortType, Number);
 		// Make sure only the task owner can make a task private
 		let cardset = Cardsets.findOne(id);
-		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+		if (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner)) {
 			if (cardset.learningActive) {
 				cardType = cardset.cardType;
 			}
@@ -891,7 +891,7 @@ Meteor.methods({
 		check(cardGroups, [String]);
 		check(removedCardsets, [String]);
 		let cardset = Cardsets.findOne(id);
-		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+		if (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner)) {
 			let quantity = Cards.find({cardset_id: {$in: cardGroups}}).count();
 			let kind = cardset.kind;
 			let visible = cardset.visible;
@@ -970,7 +970,7 @@ Meteor.methods({
 
 		// Make sure only the task owner can make a task private
 		let cardset = Cardsets.findOne(id);
-		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+		if (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner)) {
 			Cardsets.update(id, {
 				$set: {
 					kind: kind,
@@ -1044,7 +1044,7 @@ Meteor.methods({
 		check(license, [String]);
 
 		let cardset = Cardsets.findOne(id);
-		if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+		if (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner)) {
 			Cardsets.update(cardset._id, {
 				$set: {
 					license: license,
@@ -1063,7 +1063,7 @@ Meteor.methods({
 	changeOwner: function (id, owner) {
 		check(id, String);
 		check(owner, String);
-		if (UserPermissions.isAdmin()) {
+		if (UserPermissions.gotBackendAccess()) {
 			if (Cardsets.findOne(id) && Meteor.users.findOne(owner)) {
 				let cardset = Cardsets.findOne({_id: id});
 				if (cardset.editors.includes(owner)) {
@@ -1104,7 +1104,7 @@ Meteor.methods({
 	updateWordcloudStatus: function (id, status) {
 		check(id, String);
 		check(status, Boolean);
-		if (UserPermissions.isAdmin()) {
+		if (UserPermissions.gotBackendAccess()) {
 			Cardsets.update(id, {
 				$set: {
 					wordcloud: status

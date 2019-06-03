@@ -1,0 +1,135 @@
+@startuml
+
+skinparam class {
+	BackgroundColor PaleGreen
+	BorderColor Green
+	ArrowColor black
+	FontSize 28
+	BackgroundColor<<USP>> Pink
+	BorderColor<<USP>> HotPink
+}
+
+skinparam backgroundColor Linen
+skinparam linetype ortho
+skinparam shadowing true
+skinparam minClassWidth 150
+skinparam LegendBackgroundColor Strategy
+skinparam LegendBorderThickness 0
+skinparam LegendFontSize 24
+skinparam defaultFontSize 20
+skinparam Padding 5
+skinparam Nodesep 100
+skinparam ArrowThickness 2
+skinparam ArrowColor DarkSlateGray
+
+hide methods
+hide empty members
+hide circle
+
+package "arsnova.cards | domain diagram" <<Frame>> {
+
+class CardIndex <<USP>> {
+	title
+	description
+	type
+	difficultyLevel
+	accessType
+	usageLicense
+	rating
+}
+
+together {
+    class Transcript
+    class Lecture <<USP>>
+}
+
+class Card {
+	title
+	numberOfSides
+	content
+	learningObjective
+	comments
+}
+class TopicPool {
+    searchResult
+    filterCriteria
+}
+class Repetitorium <<USP>> {
+    title
+    description
+    accessType
+    rating
+ }
+
+together {
+    class LearningLoad
+    class LeitnerPlan {
+        totalNumberOfCardsToBeLearned
+        dailyNumberOfCardsToBeLearned
+        startTime
+        endTime
+        resetModeForUnKnownCards
+        reminderService
+    }
+    class Simulator <<USP>>
+    class PomodoroTimer <<USP>> {
+        learningDuration
+        breakDuration
+        numberOfPomodori
+    }
+    class LearningStatusDisplay
+    class Bonus <<USP>> {
+        bonusPoints
+        bonusRegister
+    }
+    class LearningBonus  <<USP>>
+    class Transcript  <<USP>>
+    class TranscriptBonus  <<USP>> {
+        lectureDates
+        minimumNumberOfTranscripts
+        deadlineForPostprocessing
+    }
+}
+
+UseCase -left- TopicPool :defines shortcut to >
+TopicCloud -right- TopicPool :visualizes >
+TopicPool o-right- Repetitorium
+Repetitorium o-left- CardIndex
+Card  -left-* CardIndex
+note bottom: \nMore than a dozen study-specific \ncard-index types are planned, among others:\n\n - learning unit\n - command set \n - formula collection\n - design patterns\n - exam questions\n - quotations\n - subject bibliography\n - vocabulary\n
+CardIndex -down-o TopicPool
+
+Transcript -right-|> Card
+Transcript -up- "0..1"Lecture :coupled with >
+LearningStatusDisplay -left- LearningLoad
+LearningLoad -up- LeitnerPlan
+LeitnerPlan -up- PomodoroTimer
+Simulator -up- LeitnerPlan :determines \nplanning \ndata >
+LearningLoad -up- LearningBonus
+LearningBonus -right-|> Bonus
+TranscriptBonus -down-|> Bonus
+CardIndex "1"-right- "1" Bonus
+Repetitorium "1" -right- "1" Bonus
+Lecture -left- TranscriptBonus
+Lecture -left-|> CardIndex
+
+}
+
+legend right
+  |= \n          <img:https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/whatsapp/186/tomato_1f345.png> |= \n [[https://arsnova.cards arsnova.cards]] \n\n Technische Hochschule Mittelhessen – THM \n University of Applied Sciences |
+  | Projekt-Website | [[https://arsnova.thm.de]] |
+  | «USP» | Alleinstellungsmerkmale von arsnova.cards |
+  | Repository | [[https://git.thm.de/cards]] |
+  | Staging Server | [[https://staging.arsnova.cards]] |
+  | RUP-Phase| Inception|
+  | UML-Tool| PlantUML v1.2019.5|
+  | Modellversion| 1.1 |
+  | Erstelldatum| 29.05.2019 |
+  | Ersteller| Sergej Lopatin|
+  | Mail| sergej.lopatin@mni.thm.de |
+  | Letzte Änderung| 31.05.2019 |
+  | Letzter Bearbeiter| Dr. Klaus Quibeldey-Cirkel |
+  | Mail| klaus.quibeldey-cirkel@mni.thm.de |
+end legend
+
+@enduml

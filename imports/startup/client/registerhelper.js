@@ -475,7 +475,7 @@ Template.registerHelper("canCopyCard", function (cardset_id) {
 });
 
 Template.registerHelper("isCardsetOwner", function (cardset_id) {
-	if (UserPermissions.isAdmin() || (Route.isDemo() || Route.isMakingOf())) {
+	if (UserPermissions.gotBackendAccess() || (Route.isDemo() || Route.isMakingOf())) {
 		return true;
 	}
 	let cardset = Cardsets.findOne({"_id": cardset_id});
@@ -487,7 +487,7 @@ Template.registerHelper("isCardsetOwner", function (cardset_id) {
 });
 
 Template.registerHelper("isCardsetOwnerAndLecturer", function (cardset_id) {
-	if (UserPermissions.isAdmin() || (Route.isDemo() || Route.isMakingOf())) {
+	if (UserPermissions.gotBackendAccess() || (Route.isDemo() || Route.isMakingOf())) {
 		return true;
 	}
 	let cardset = Cardsets.findOne({"_id": cardset_id});
@@ -583,8 +583,24 @@ Template.registerHelper("isCardEditor", function (cardset_id) {
 	return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId()));
 });
 
+
+Template.registerHelper("canDeleteCard", function () {
+	if (UserPermissions.gotBackendAccess()) {
+		return true;
+	}
+	if (Session.get('activeCard') !== undefined) {
+		let card = Cards.findOne({_id: Session.get('activeCard')}, {fields: {_id: 1, cardset_id: 1}});
+		if (card !== undefined) {
+			let cardset = Cardsets.findOne({_id: card.cardset_id});
+			if (cardset !== undefined) {
+				return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId()));
+			}
+		}
+	}
+});
+
 Template.registerHelper("canEditCard", function () {
-	if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
+	if (UserPermissions.isAdmin()) {
 		return true;
 	}
 	if (Session.get('activeCard') !== undefined) {
