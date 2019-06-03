@@ -110,7 +110,7 @@ Template.filterIndexItemCardset.events({
 	"click .learnWozniak": function (event) {
 		event.preventDefault();
 		Session.set("workloadFullscreenMode", true);
-		Router.go('box', {
+		Router.go('memo', {
 			_id: $(event.target).data('id')
 		});
 	},
