@@ -157,8 +157,7 @@ Template.learnAnswerOptions.events({
 
 Template.learnBackButton.events({
 	"click #backButton": function () {
-		Router.go('cardsetdetailsid', {
-			_id: Router.current().params._id
+		Router.go('learn', {
 		});
 	}
 });
