@@ -166,8 +166,7 @@ stop_review:
 
 deploy_staging:
   stage: deploy
-  only:
-    - staging
+  when: manual
   tags:
     - rsync
   dependencies:
