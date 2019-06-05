@@ -1,0 +1,12 @@
+<template name="filterIndexItemBottomExport">
+    {{#unless isIOS}}
+        {{#unless this.shuffled}}
+            {{#if isCardsetOwner this._id}}
+                <a class="resultNavigationElement exportCardset" data-id="{{this._id}}"
+                   data-name="{{this.name}}" title='{{_ "admin.cardset.export"}}'><i
+                        class="result fa fa-cloud-download hidden-xs" data-id="{{this._id}}"
+                        data-name="{{this.name}}"></i></a>
+            {{/if}}
+        {{/unless}}
+    {{/unless}}
+</template>

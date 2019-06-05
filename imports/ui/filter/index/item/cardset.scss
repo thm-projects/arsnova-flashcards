@@ -11,44 +11,22 @@
   font-size: 14px;
   padding-top: 5px;
   padding-bottom: 5px;
-  @media(min-width: 768px) {
-    padding-top: 15px;
-    padding-bottom: 15px;
+}
+
+.resultItemHeaderBottomArea {
+  padding: 0 15px;
+  .resultItemHeaderBottomAreaButtons, .resultItemHeaderBottomAreaLabels {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    @media(max-width: 767px) {
+      padding-top: 2px;
+      padding-bottom: 2px;
+    }
   }
-}
-
-.resultItemHeaderRightArea {
-  font-size: 16px;
-  padding: 0;
-  height: 53px;
-  @media(max-width: 767px) {
-    height: 35px;
-    font-size: 15px;
-  }
-}
-
-.resultItemHeaderRightAreaTop {
-  line-height: 16px;
-  padding-right: 0;
-}
-
-.resultItemHeaderRightAreaBottom {
-  padding-top: 8px;
-  padding-right: 10px;
-}
-
-.resultItemHeaderRightAreaTop, .resultItemHeaderRightAreaBottom  {
-  padding-left: 0;
 }
 
 .resultDateRight {
-  width: 50%;
-  float: right;
-  text-align: left;
-}
-
-.resultItemHeaderLeftArea a {
-  padding: 0;
+ padding-left: 25px;
 }
 
 .resultTableContent {
@@ -74,10 +52,6 @@
   white-space: nowrap;
   overflow: hidden !important;
   text-overflow: ellipsis;
-}
-
-.resultName {
-  padding-right: 30px !important;
 }
 
 .resultNameBonusTranscript {
@@ -125,10 +99,6 @@
 
 .resultHeaderCategory {
   padding-left: 0;
-}
-
-.resultItemHeaderCardType {
-  padding-right: 0 !important;
 }
 
 .collapseCardsetInfoIcon {

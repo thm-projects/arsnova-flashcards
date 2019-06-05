@@ -2615,20 +2615,18 @@ $themes: (
       color: $item_author_text !important;
     }
 
-    .resultItemHeaderRightArea {
+    .resultItemHeaderBottomArea {
       background-color: $item_background !important;
+      i {
+        color: $item_icon;
+      }
+      i:hover, .resultItemHeaderRightArea i:focus {
+        color: $item_icon_hover !important;
+      }
     }
 
-    .resultItemHeaderLeftArea a {
+    .resultItemHeaderTopArea a {
       color: $hyperlink !important;
-    }
-
-    .resultItemHeaderRightArea i {
-      color: $item_icon;
-    }
-
-    .resultItemHeaderRightArea i:hover, .resultItemHeaderRightArea i:focus {
-      color: $item_icon_hover !important;
     }
 
     .resultTableContent a {

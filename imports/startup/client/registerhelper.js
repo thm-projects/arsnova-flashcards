@@ -46,6 +46,11 @@ Template.registerHelper('isCardset', function () {
 	return Route.isCardset();
 });
 
+Template.registerHelper('isWorkloadRoute', function () {
+	return Route.isWorkload();
+});
+
+
 Template.registerHelper('gotTranscriptsEnabled', function () {
 	return ServerStyle.gotTranscriptsEnabled();
 });
@@ -704,7 +709,7 @@ Template.registerHelper("getDate", function () {
 	if (Router.current().route.getName() === "welcome") {
 		date = Session.get('wordcloudItem')[10];
 	} else {
-		date = this.date;
+		date = this.dateCreated;
 	}
 	return moment(date).locale(Session.get('activeLanguage')).format('LL');
 });
@@ -742,7 +747,7 @@ Template.registerHelper("getDateUpdated", function () {
 
 // Returns the locale date with time
 Template.registerHelper("getTimestamp", function () {
-	return moment(this.date).locale(Session.get('activeLanguage')).format('LLLL');
+	return moment(this.dateCreated).locale(Session.get('activeLanguage')).format('LLLL');
 });
 
 // Returns all courses
@@ -1034,6 +1039,9 @@ const markdeepHelper = new MeteorMathJax.Helper({
 });
 
 Template.registerHelper("gotTranscriptBonus", function (cardset_id) {
+	if (Route.isTranscriptBonus() || Route.isMyBonusTranscripts() || Route.isTranscriptBonus()) {
+		return true;
+	}
 	let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, cardGroups: 1, shuffled: 1, cardType: 1}});
 	if (cardset !== undefined) {
 		if (cardset.shuffled) {
@@ -1051,6 +1059,9 @@ Template.registerHelper("gotTranscriptBonus", function (cardset_id) {
 });
 
 Template.registerHelper("gotTranscriptBonusAndIsNotShuffled", function (cardset_id) {
+	if (Route.isTranscript() || Route.isTranscriptBonus()) {
+		return true;
+	}
 	let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, cardGroups: 1, shuffled: 1, cardType: 1}});
 	if (cardset !== undefined && !cardset.shuffled) {
 		return CardType.gotTranscriptBonus(cardset.cardType);

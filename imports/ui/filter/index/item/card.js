@@ -2,7 +2,6 @@
 
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Cardsets} from "../../../../api/cardsets";
 import {Route} from "../../../../api/route";
 import {TranscriptBonus, TranscriptBonusList} from "../../../../api/transcriptBonus";
 import "../../../cardset/cardset.js";
@@ -31,22 +30,6 @@ Template.filterIndexItemCard.helpers({
 		}
 		return shuffled;
 	},
-	firstItem: function (index) {
-		return index === 0;
-	},
-	getBonusLectureName: function () {
-		let bonusTranscript = TranscriptBonus.findOne({card_id: this._id});
-		if (bonusTranscript !== undefined) {
-			bonusTranscript.name = Cardsets.findOne({_id: bonusTranscript.cardset_id}).name;
-			return TranscriptBonusList.getLectureName(bonusTranscript);
-		}
-	},
-	getBonusLectureDeadline: function () {
-		let bonusTranscript = TranscriptBonus.findOne({card_id: this._id});
-		if (bonusTranscript !== undefined) {
-			return TranscriptBonusList.getDeadlineEditing(bonusTranscript, bonusTranscript.date);
-		}
-	},
 	isBonusTranscriptsRouteAndDeadlineExpired: function () {
 		if (Route.isMyBonusTranscripts() || Route.isTranscriptBonus()) {
 			let bonusTranscript = TranscriptBonus.findOne({card_id: this._id});
@@ -57,5 +40,10 @@ Template.filterIndexItemCard.helpers({
 	},
 	getCardsetID: function () {
 		return Router.current().params._id;
+	},
+	setGridSize: function (gridSize) {
+		let item = JSON.parse(JSON.stringify(this));
+		item.gridSize = gridSize;
+		return item;
 	}
 });

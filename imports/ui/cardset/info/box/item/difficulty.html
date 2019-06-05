@@ -1,14 +1,16 @@
 <template name="cardsetInfoBoxItemDifficulty">
-    {{#unless isShuffledCardset this._id}}
-        {{#unless gotTranscriptBonusAndIsNotShuffled this._id}}
-            <tr>
-                <td>{{#if gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
-                        "difficulty"}}{{/if}}:
-                </td>
-                <td>
-                    {{getDifficultyName}}
-                </td>
-            </tr>
+    {{#unless isTranscriptRoute}}
+        {{#unless isShuffledCardset this._id}}
+            {{#unless gotTranscriptBonusAndIsNotShuffled this._id}}
+                <tr>
+                    <td>{{#if gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
+                            "difficulty"}}{{/if}}:
+                    </td>
+                    <td>
+                        {{getDifficultyName}}
+                    </td>
+                </tr>
+            {{/unless}}
         {{/unless}}
     {{/unless}}
 </template>

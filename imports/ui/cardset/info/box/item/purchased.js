@@ -15,6 +15,6 @@ Template.cardsetInfoBoxItemPurchased.helpers({
 		return Paid.findOne({cardset_id: this._id}) !== undefined;
 	},
 	getDateOfPurchase: function () {
-		return moment(Paid.findOne({cardset_id: this._id}).date).locale(Session.get('activeLanguage')).format('LL');
+		return moment(Paid.findOne({cardset_id: this._id}).dateCreated).locale(Session.get('activeLanguage')).format('LL');
 	}
 });

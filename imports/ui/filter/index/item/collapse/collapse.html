@@ -1,0 +1,35 @@
+<template name="filterIndexItemCollapse">
+    <div class="collapse" id="collapseCardsetInfo{{this.index}}">
+        <div class="card card-block">
+            <div class="col-xs-12">
+                {{#if this.description}}
+                    <div class="resultDescription">
+                        {{#markdeep}}{{this.description}}{{/markdeep}}
+                    </div>
+                {{/if}}
+            </div>
+            <div class="hidden-xs resultTableContent col-sm-6">
+                <table class="table table-sm infoBoxTable">
+                    <tbody>
+                    {{> cardsetInfoBoxContentOne}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="hidden-xs resultTableContent col-sm-6">
+                <table class="table table-sm infoBoxTable">
+                    <tbody>
+                    {{> cardsetInfoBoxContentTwo}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="visible-xs col-xs-12 resultTableContent">
+                <table class="table table-sm infoBoxTable">
+                    <tbody>
+                    {{> cardsetInfoBoxContentOne}}
+                    {{> cardsetInfoBoxContentTwo}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</template>

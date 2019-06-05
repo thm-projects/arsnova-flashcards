@@ -1,293 +1,77 @@
 <template name="filterIndexItemCardset">
-    {{#if firstItem this.index}}
-        {{#if isActiveRoute regex="learn"}}
-            <div class="hidden-xs col-sm-2 resultsHeader">
-                {{_ "set-list.workload"}}
-            </div>
-        {{/if}}
-        <div class="hidden-xs {{#if isActiveRoute regex="alldecks"}}col-sm-4 col-md-2{{else}}{{#if isActiveRoute
-                                                                                                   regex="pool|learn"}}col-sm-4{{else}}{{#if
-                isActiveRoute
-                regex="create"}}col-xs-7 col-sm-6 col-md-7{{else}}col-xs-7 col-sm-6{{/if}}{{/if}}{{/if}} resultsHeader">
-            {{#if isActiveRoute regex="learn"}}
-                {{_ "set-list.topicWorkload"}}
-            {{else}}
-                {{#if isRepetitorienFilterIndex}}
-                    {{{getCardsetIcons this.shuffled}}}{{_ "courseIteration.list.courseIteration"}}
-                {{else}}
-                    {{{getCardsetIcons this.shuffled}}}{{_ "set-list.topic"}}
-                {{/if}}
-            {{/if}}
-        </div>
-        {{#unless isActiveRoute regex="create"}}
-            <div class="hidden-xs {{#if isActiveRoute
-                                        regex="pool|alldecks"}}col-sm-2{{else}}col-sm-3{{/if}} {{#if
-                    isActiveRoute
-                    regex="pool"}}col-lg-3{{/if}} resultsHeader">
-                {{#if isActiveRoute regex="learn"}}
-                    {{_ "set-list.authorPublisher"}}
-                {{else}}
-                    {{#if isRepetitorienFilterIndex}}
-                        {{_ "cardset.info.publisher"}}
-                    {{else}}
-                        {{_ "set-list.author"}}
-                    {{/if}}
-                {{/if}}
-            </div>
-        {{/unless}}
-        {{#if isActiveRoute regex="create|pool|alldecks"}}
-            <div class="hidden-xs {{#if isActiveRoute
-                                        regex="alldecks"}}hidden-sm col-md-2{{else}}{{#if isActiveRoute
-                                                                                          regex="create"}}col-sm-3 col-md-2{{else}}col-sm-3{{/if}}{{/if}} col-lg-2 resultsHeader">
-                {{_ "cardType"}}
-            </div>
-        {{/if}}
-        {{#if isActiveRoute regex="alldecks"}}
-            <div class="hidden-xs col-sm-3 resultsHeader">
-                {{_ "pool.release"}} <span class="resultDateRight">{{_ "pool.dateUpdated"}}</span>
-            </div>
-        {{/if}}
-        <div class="hidden-xs col-sm-3 resultsHeader resultHeaderCategory">
-            {{#if isActiveRoute regex="pool"}}{{_ "set-list.category"}}{{else}}{{_
-                    "set-list.categoryOptions"}}{{/if}}
-        </div>
-    {{/if}}
     <div class="resultItem col-xs-12">
+        {{#unless this.index}}
+            {{#if isWorkloadRoute}}
+                {{> filterIndexItemTitleRowWorkload (setGridSize "col-sm-3")}}
+                {{> filterIndexItemTitleRowTopic (setGridSize "col-sm-5")}}
+                {{> filterIndexItemTitleRowAuthor (setGridSize "col-sm-4")}}
+            {{else}}
+                {{#if isPersonalRoute}}
+                    {{> filterIndexItemTitleRowTopic (setGridSize "col-sm-8")}}
+                    {{> filterIndexItemTitleRowDateCreated (setGridSize "col-sm-2")}}
+                    {{> filterIndexItemTitleRowDateModified (setGridSize "col-sm-2")}}
+                {{else}}
+                    {{> filterIndexItemTitleRowTopic (setGridSize "col-sm-4")}}
+                    {{> filterIndexItemTitleRowAuthor (setGridSize "col-sm-4")}}
+                    {{> filterIndexItemTitleRowDateCreated (setGridSize "col-sm-2")}}
+                    {{> filterIndexItemTitleRowDateModified (setGridSize "col-sm-2")}}
+                {{/if}}
+            {{/if}}
+        {{/unless}}
         <div class="resultItemHeaderWrapper">
-            {{#if isActiveRoute regex="learn"}}
-                <div class="resultItemHeader resultItemHeaderLeftArea col-xs-4 col-sm-2 collapseButton {{getCardsetBackground
-                        this.difficulty this.cardType}}">
-                    {{#if gotWorkload}}
-                        <a class="{{getWorkloadType}}" data-toggle="{{#if gotWorkloadForBothTypes}}modal{{/if}}"
-                           data-target="{{#if gotWorkloadForBothTypes}}#selectModeToLearnModal{{/if}}"
-                           data-id="{{this._id}}">
-                            {{getWorkload}}
-                        </a>
+            <div class="resultItemHeaderTopArea row">
+                {{#if isWorkloadRoute}}
+                    {{> filterIndexItemTopWorkload (setGridSize "col-xs-3 col-sm-3")}}
+                    {{> filterIndexItemTopTopic (setGridSize "col-xs-9 col-sm-5")}}
+                    {{> filterIndexItemTopAuthor (setGridSize "hidden-xs col-sm-4")}}
+                {{else}}
+                    {{#if isPersonalRoute}}
+                        {{> filterIndexItemTopTopic (setGridSize "col-xs-8 col-sm-8")}}
+                        {{> filterIndexItemTopDateCreated (setGridSize "hidden-xs col-sm-2")}}
+                        {{> filterIndexItemTopDateModified (setGridSize "hidden-xs col-sm-2")}}
                     {{else}}
-                        <span class="resultItemHeaderAuthor">
-                            {{_ "set-list.noCardsToLearn"}}
-                        </span>
+                        {{> filterIndexItemTopTopic (setGridSize "col-xs-8 col-sm-4")}}
+                        {{> filterIndexItemTopAuthor (setGridSize "col-xs-4 col-sm-4")}}
+                        {{> filterIndexItemTopDateCreated (setGridSize "hidden-xs col-sm-2")}}
+                        {{> filterIndexItemTopDateModified (setGridSize "hidden-xs col-sm-2")}}
                     {{/if}}
-                </div>
-            {{/if}}
-            <div class="resultItemHeader resultItemHeaderLeftArea col-xs-12 {{#if isActiveRoute
-                                                                                  regex="alldecks"}}col-sm-4 col-md-2{{else}}{{#if
-                    isActiveRoute
-                    regex="pool"}}col-sm-4{{else}}{{#if
-                    isActiveRoute
-                    regex="learn"}}col-xs-8 col-sm-4{{/if}} {{#if isActiveRoute
-                                                                  regex="create"}}col-sm-6 col-md-7{{else}}col-sm-6{{/if}}{{/if}}{{/if}} collapseButton {{getCardsetBackground
-                    this.difficulty this.cardType}}">
-                {{> poolTitleContent}}
+                {{/if}}
             </div>
-            {{#unless isActiveRoute
-                      regex="create"}}
-                <div class="resultItemHeader authorProfile resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs {{#if
-                        isActiveRoute
-                        regex="pool|alldecks"}}col-sm-2{{else}}col-sm-3{{/if}} {{#if isActiveRoute
-                                                                                     regex="pool"}}col-lg-3{{/if}} collapseButton {{getCardsetBackground
-                        this.difficulty this.cardType}}"
-                     data-id="{{this.owner}}">
-                    {{getAuthorName this.owner}}
+            <div class="resultItemHeaderBottomArea row">
+                <div class="col-xs-12 col-sm-8 collapseButton resultItemHeaderBottomAreaLabels">
+                    {{> cardsetLabels}}
                 </div>
-            {{/unless}}
-            {{#if isActiveRoute regex="create|pool|alldecks"}}
-                <div class="resultItemHeader resultItemHeaderLeftArea resultItemHeaderAuthor resultItemHeaderCardType resultName hidden-xs {{#if
-                        isActiveRoute
-                        regex="alldecks"}}hidden-sm col-md-2{{else}}{{#if isActiveRoute
-                                                                          regex="create"}}col-sm-3 col-md-2{{else}}col-sm-3{{/if}}{{/if}} col-lg-2 {{getCardsetBackground
-                        this.difficulty this.cardType}}"
-                     data-type="{{this.cardType}}">
-                    {{getCardTypeName}}
-                </div>
-            {{/if}}
-            {{#if isActiveRoute
-                  regex="alldecks"}}
-                <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs hidden-sm hidden-md col-sm-3 collapseButton {{getCardsetBackground
-                        this.difficulty this.cardType}}"
-                     data-date="{{this.date}}" data-dateUpdated="{{this.dateUpdated}}">
-                    {{#if isActiveRoute regex="alldecks"}}{{getMomentsDate  this.date true false true}}{{else}}{{getMomentsDate
-                            this.date}}{{/if}}<span
-                        class="resultDateRight">{{#if isActiveRoute regex="alldecks"}}{{getMomentsDate  this.dateUpdated
-                                                                                                        true false true}}{{else}}{{getMomentsDate
-                        this.dateUpdated}}{{/if}}</span>
-                </div>
-                <div class="resultItemHeader resultItemHeaderAuthor resultItemHeaderLeftArea hidden-xs hidden-lg col-sm-3 collapseButton {{getCardsetBackground
-                        this.difficulty this.cardType}}"
-                     data-date="{{this.date}}" data-dateUpdated="{{this.dateUpdated}}">
-                    {{getMomentsDateShort  this.date}}<span class="resultDateRight">{{getMomentsDateShort
-                        this.dateUpdated}}</span>
-                </div>
-            {{/if}}
-            <div class="resultItemHeader resultItemHeaderRightArea collapseButton col-xs-12 col-sm-3">
-                <div class="resultItemHeaderRightAreaTop col-xs-9 col-sm-12">
-                    <div class="hidden-xs">
-                        {{{getKind this.kind 0}}}
-                        {{{getShuffleLabel this.shuffled}}}
-                        {{{getTranscriptBonusLabel this}}}
-                        <span class ="hidden-sm">
-                            {{{getDifficultyLabel this.cardType this.difficulty}}}
-                        </span>
-                        {{{getBonusLabel this.learningActive}}}
-                    </div>
-                    <div class="visible-xs">
-                        {{{getKind this.kind 0}}}
-                        {{{getShuffleLabel this.shuffled}}}
-                        {{{getTranscriptBonusLabel this}}}
-                        {{#unless this.shuffled}}
-                            {{{getCardTypeLabel this.cardType}}}
-                            {{{getDifficultyLabel this.cardType this.difficulty}}}
-                        {{/unless}}
-                        {{{getBonusLabel this.learningActive}}}
-                    </div>
-                </div>
-                <div class="resultItemHeaderRightAreaBottom col-xs-3 col-sm-12">
+                <div class="col-xs-12 col-sm-4 collapseButton resultItemHeaderBottomAreaButtons">
                     {{#unless isSelectingCardsetToLearn}}
-                        {{#if gotBonus this.learningActive}}
-                            {{#if isCardsetOwner this._id}}
-                                <a class="resultNavigationElement bonusLeitnerProgress" data-id="{{this._id}}"
-                                   title="{{_
-                                           "admin.myProgress"}}">
-                                    <i class="glyphicon glyphicon glyphicon-stats" data-id="{{this._id}}"></i>
-                                </a>
-                            {{/if}}
+                        {{#if isShuffleRoute}}
+                            {{> filterIndexItemBottomShuffle}}
                         {{/if}}
-                        {{#if gotTranscriptBonus this._id}}
-                            {{#if isCardsetOwner this._id}}
-                                <a class="resultNavigationElement bonusTranscriptProgress" data-id="{{this._id}}"
-                                   title="{{_
-                                           "transcriptForm.bonus.form.button.list"}}">
-                                    <i class="fa fa-clipboard" data-id="{{this._id}}"></i>
-                                </a>
-                            {{/if}}
+                        {{#if isWorkloadRoute}}
+                            {{> filterIndexItemBottomWorkloadProgress}}
+                            {{> filterIndexItemBottomLeaveWorkload}}
                         {{/if}}
-                        {{#if isActiveRoute regex="shuffle"}}
-                            {{#if inShuffleSelection this._id}}
-                                <a class="btn btn-xs btn-raised btn-danger shuffleButton removeShuffleCardset"
-                                   data-id="{{this._id}}">
-                                    <span class="flex-content" data-id="{{this._id}}"><i class="fa fa-minus"
-                                                                                         data-id="{{this._id}}"></i></span>
-                                </a>
-                            {{else}}
-                                <a class="btn btn-xs btn-raised btn-success shuffleButton addShuffleCardset"
-                                   data-id="{{this._id}}">
-                                    <span class="flex-content" data-id="{{this._id}}"><i class="fa fa-plus"
-                                                                                         data-id="{{this._id}}"></i></span>
-                                </a>
-                            {{/if}}
+                        {{#if isPublicRoute}}
+                            {{> filterIndexItemBottomBonusStats}}
                         {{/if}}
-                        {{#if isNotPublicItemView}}
-                            {{#if canSeeNavigationItems}}
-                                <a class="resultNavigationElement editCardset hidden-xs" {{disableIfOffline}}
-                                   title='{{#if isRepetitorienFilterIndex}}{{_
-                                           "cardset.tooltip.editRepetitorium"}}{{else}}{{_
-                                           "cardset.tooltip.editCardset"}}{{/if}}' data-id="{{this._id}}"
-                                   data-toggle="modal"
-                                   data-target="#setCardsetFormModal">
-                                    <i class="glyphicon glyphicon-edit" data-id="{{this._id}}"></i>
-                                </a>
-                                {{#if isNotPublicItemView}}
-                                    {{#if isAdmin}}
-                                        <a class="resultNavigationElement editAdminCardset hidden-xs"
-                                           title='{{_ "cardset.tooltip.editAdminSettings"}}' data-id="{{this._id}}"
-                                           data-toggle="modal"
-                                           data-target="#setCardsetFormAdminModal">
-                                            <i class="fa fa-cog fa-spin editAdminCardset" data-id="{{this._id}}"></i>
-                                        </a>
-                                    {{/if}}
-                                {{/if}}
-                                {{#if isRepetitorienFilterIndex}}
-                                    <a class="resultNavigationElement editShuffle"
-                                       title='{{_ "set-list.shuffleCardsets"}}' data-id="{{this._id}}">
-                                        <i class="glyphicon glyphicon-plus editShuffle" data-id="{{this._id}}"></i>
-                                    </a>
-                                {{/if}}
-                                <a class="resultNavigationElement deleteCardset hidden-xs" {{disableIfOffline}}
-                                   title='{{_ "courseIteration.confirm-form-delete.title"}}' data-toggle="modal"
-                                   data-target="#confirmDeleteCardsetModal"
-                                   data-id="{{this._id}}">
-                                    <i class="result fa fa-trash" data-id="{{this._id}}"></i>
-                                </a>
-                            {{/if}}
+                        {{#if isPersonalRoute}}
+                            {{> filterIndexItemBottomBonusStats}}
+                            {{> filterIndexItemBottomEdit}}
+                            {{> filterIndexItemBottomDelete}}
+                            {{> filterIndexItemBottomExport}}
+                        {{/if}}
+                        {{#if isAllRoute}}
+                            {{> filterIndexItemBottomBonusStats}}
+                            {{> filterIndexItemBottomEdit}}
+                            {{> filterIndexItemBottomDelete}}
+                            {{> filterIndexItemBottomExport}}
                         {{/if}}
                     {{/unless}}
-                    {{#if isNotPublicItemView}}
-                        {{#unless isIOS}}
-                            {{#unless this.shuffled}}
-                                <a class="resultNavigationElement exportCardset" data-id="{{this._id}}"
-                                   data-name="{{this.name}}" title='{{_ "admin.cardset.export"}}'><i
-                                        class="result fa fa-cloud-download hidden-xs" data-id="{{this._id}}"
-                                        data-name="{{this.name}}"></i></a>
-                            {{/unless}}
-                        {{/unless}}
-                    {{/if}}
-                    {{#if isActiveRoute regex="learn"}}
-                        <a class="resultNavigationElement" href="progress/{{this._id}}/{{currentUser._id}}" title="{{_
-                                "admin.myProgress"}}">
-                            <i class="glyphicon glyphicon glyphicon-stats"></i>
-                        </a>
-                        <a class="resultNavigationElement deleteLearned" {{disableIfOffline}}
-                           title='{{_ "confirm-form-learn.title"}}' data-toggle="modal" data-target="#bonusFormModal"
-                           data-id="{{this._id}}">
-                            <i class="glyphicon glyphicon-log-out" data-id="{{this._id}}"></i>
-                        </a>
-                    {{/if}}
-                    <a class="collapseCardsetInfoButton pull-right" data-id="#collapseCardsetInfo{{this.index}}">
-                        <i class="glyphicon glyphicon-collapse-down pull-right collapseCardsetInfoIcon"
-                           data-id="#collapseCardsetInfo{{this.index}}"></i>
-                    </a>
+                    {{> filterIndexItemBottomCollapse}}
                 </div>
             </div>
         </div>
-        <div class="collapse" id="collapseCardsetInfo{{this.index}}">
-            <div class="card card-block">
-                <div class="col-xs-12">
-                    {{#if this.description}}
-                        <div class="resultDescription">
-                            {{#markdeep}}{{this.description}}{{/markdeep}}
-                        </div>
-                    {{/if}}
-                </div>
-                <div class="hidden-xs resultTableContent col-sm-6">
-                    <table class="table table-sm infoBoxTable">
-                        <tbody>
-                        {{> cardsetInfoBoxContentOne}}
-                        </tbody>
-                    </table>
-                </div>
-                <div class="hidden-xs resultTableContent col-sm-6">
-                    <table class="table table-sm infoBoxTable">
-                        <tbody>
-                        {{> cardsetInfoBoxContentTwo}}
-                        </tbody>
-                    </table>
-                </div>
-                <div class="visible-xs col-xs-12 resultTableContent">
-                    <table class="table table-sm infoBoxTable">
-                        <tbody>
-                        {{> cardsetInfoBoxContentOne}}
-                        {{> cardsetInfoBoxContentTwo}}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+        {{> filterIndexItemCollapse}}
     </div>
-</template>
-
-<template name="poolTitleContent">
-    <a href="#" id="cardsetLink{{this.index}}"
-       class="col-xs-12 resultName" data-id="{{this._id}}">
-        {{this.name}}
-    </a>
-    {{#unless gotTranscriptBonusAndIsNotShuffled this._id}}
-        <span class="badge resultBadge cardsetBadge" data-id="{{this._id}}" title="{{_ "cardset.info.quantity"}}">
-            {{this.quantity}}
-        </span>
-    {{/unless}}
-    {{#if gotTranscriptBonus this._id}}
-        {{> transcriptFormSubmissionBadge}}
-    {{/if}}
 </template>
 
 <template name="transcriptFormSubmissionBadge">
