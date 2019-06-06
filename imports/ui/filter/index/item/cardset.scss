@@ -7,6 +7,12 @@
   }
 }
 
+.resultsHeader {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 .resultItemHeader {
   font-size: 14px;
   padding-top: 5px;
