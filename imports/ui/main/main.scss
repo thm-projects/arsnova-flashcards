@@ -867,3 +867,17 @@ kbd {
   border-radius: 3px;
 }
 
+.label-group {
+  .label {
+    margin-right: 2px;
+  }
+  .label:last-child {
+    margin-right: 0;
+  }
+}
+
+.label-count-cards, .label-count-transcripts {
+  display: inline-block;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}

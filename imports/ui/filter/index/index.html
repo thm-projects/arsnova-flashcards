@@ -1,19 +1,17 @@
 <template name="filterIndex">
     {{> showLicense}}
     {{> filterItemSelectCardsetToLearnCallout}}
+    {{#if gotBackendAccess}}
+        {{> cardsetFormAdmin}}
+    {{/if}}
+    {{> cardsetDeleteForm}}
+    {{> cardsetForm}}
     <div id="set-list-region">
-        {{#if isActiveRoute regex='alldecks|create|allRepetitorien|personalRepetitorien'}}
-            {{> cardsetFormAdmin}}
-        {{/if}}
         {{#if isActiveRoute regex='alldecks|create'}}
-            {{> cardsetDeleteForm}}
-            {{> cardsetForm}}
             {{> filterIndexCreate}}
         {{/if}}
 
         {{#if isActiveRoute regex='repetitorium|allRepetitorien|personalRepetitorien'}}
-            {{> cardsetDeleteForm}}
-            {{> cardsetForm}}
             {{> filterIndexRepetitorium}}
         {{/if}}
 
@@ -24,12 +22,10 @@
         {{/if}}
 
         {{#if isActiveRoute 'shuffle'}}
-            {{> cardsetForm}}
             {{> filterIndexShuffle}}
         {{/if}}
 
         {{#if isActiveRoute 'pool'}}
-            {{> cardsetForm}}
             {{> filterIndexPool}}
         {{/if}}
 

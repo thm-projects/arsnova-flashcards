@@ -209,6 +209,11 @@ Template.cardsetFormAdmin.helpers({
 			return Session.get('activeCardset').wordcloud;
 		}
 	},
+	isLecturerAuthorized: function () {
+		if (Session.get('activeCardset') !== undefined) {
+			return Session.get('activeCardset').lecturerAuthorized;
+		}
+	},
 	getOwnerId: function () {
 		if (Session.get('activeCardset') !== undefined) {
 			return Session.get('activeCardset').owner;
@@ -252,6 +257,24 @@ Template.cardsetFormAdmin.events({
 	'click #cardsetRemoveFromWordcloude': function () {
 		if (Session.get('activeCardset') !== undefined) {
 			Meteor.call('updateWordcloudStatus', Session.get('activeCardset')._id, false, function (error, result) {
+				if (result) {
+					Session.set('activeCardset', Cardsets.findOne(result));
+				}
+			});
+		}
+	},
+	'click #cardsetAddLecturerAuthorized': function () {
+		if (Session.get('activeCardset') !== undefined) {
+			Meteor.call('updateLecturerAuthorizedStatus', Session.get('activeCardset')._id, true, function (error, result) {
+				if (result) {
+					Session.set('activeCardset', Cardsets.findOne(result));
+				}
+			});
+		}
+	},
+	'click #cardsetRemoveLecturerAuthorized': function () {
+		if (Session.get('activeCardset') !== undefined) {
+			Meteor.call('updateLecturerAuthorizedStatus', Session.get('activeCardset')._id, false, function (error, result) {
 				if (result) {
 					Session.set('activeCardset', Cardsets.findOne(result));
 				}

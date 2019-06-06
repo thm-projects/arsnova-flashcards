@@ -601,6 +601,13 @@
         "add": "Hinzufügen",
         "remove": "Entfernen"
       }
+    },
+    "lecturerAuthorized": {
+      "title": "Zur Prüfungsvorbereitung geeignet-Einstellungen",
+      "button": {
+        "add": "Hinzufügen",
+        "remove": "Entfernen"
+      }
     }
   },
   "useCases": {
@@ -1240,6 +1247,9 @@
     "wordcloudTrue": "von der Redaktion in die Themen-Wolke aufgenommen",
     "wordcloudFalse": "von Studierenden für die Community freigegeben",
     "wordcloudEveryting": "Alle",
+    "lecturerAuthorized": "Prüfung",
+    "lecturerAuthorizedTrue": "Zur Prüfungsvorbereitung geeignet",
+    "lecturerAuthorizedEveryting": "Alle",
     "from": "Ab",
     "noResults": "Keine Kartei oder Repetitorium ausgewählt oder Filtern liefert kein Ergebnis.",
     "sort": "Sortieren ",
@@ -2152,6 +2162,11 @@
       "export": "Export",
       "cardset": "Kartei",
       "cards": "Karten"
+    }
+  },
+  "label": {
+    "lecturerAuthorized": {
+      "long": "Besonders geeignet für die Prüfungsvorbereitung"
     }
   },
   "bertAlert": {

@@ -1,0 +1,29 @@
+<template name="filterItemFilterLecturerAuthorized">
+    <li class="dropdown cards-filter-element">
+        <a href="#" class="dropdown-toggle lecturerAuthorizedBtn lecturerAuthorizedFilter cards-filter-element"
+           data-toggle="dropdown"
+           role="button"
+           aria-haspopup="true" aria-expanded="false">
+            {{_ "filter-pool.lecturerAuthorized"}}
+            {{#if hasLecturerAuthorizedFilter}}
+                <i class="fa fa-filter navigationFilterIcon cards-filter-element"></i>
+            {{/if}}
+        </a>
+        <ul class="dropdown-menu cards-filter-element">
+            <li class="cards-filter-element">
+                <a href="#" class="noFilterLecturerAuthorized cards-filter-element">{{_
+                        "filter-pool.lecturerAuthorizedEveryting"}}</a>
+            </li>
+            {{#if gotLecturerAuthorizedCardsets}}
+                <li class="cards-filter-element">
+                    <a href="#" class="filterLecturerAuthorized cards-filter-element"
+                       data-id="true">{{_ "filter-pool.lecturerAuthorizedTrue"}}
+                        {{#if resultsFilterLecturerAuthorized true}}
+                            <i class="fa fa-filter navigationFilterIcon cards-filter-element"></i>
+                        {{/if}}
+                    </a>
+                </li>
+            {{/if}}
+        </ul>
+    </li>
+</template>

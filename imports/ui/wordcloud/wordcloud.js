@@ -52,6 +52,20 @@ Template.wordcloudModal.helpers({
 	},
 	isRepetitorium: function () {
 		return Cardsets.findOne({_id: Session.get('wordcloudItem')}).shuffled;
+	},
+	getColors: function () {
+		switch (this.kind) {
+			case "personal":
+				return "btn-warning";
+			case "free":
+				return "btn-info";
+			case "edu":
+				return "btn-success";
+			case "pro":
+				return "btn-danger";
+			case "demo":
+				return "btn-demo";
+		}
 	}
 });
 

@@ -115,6 +115,9 @@ export let Filter = class Filter {
 				case "wordcloud":
 					filter.wordcloud = content;
 					break;
+				case "lecturerAuthorized":
+					filter.lecturerAuthorized = content;
+					break;
 				case "noBonus":
 					filter.learningActive = undefined;
 					filter.learningEnd = undefined;
@@ -285,6 +288,9 @@ export let Filter = class Filter {
 		}
 		if (FilterNavigation.gotWordCloudFilter(FilterNavigation.getRouteId()) && activeFilter.wordcloud !== undefined) {
 			query.wordcloud = activeFilter.wordcloud;
+		}
+		if (FilterNavigation.gotLecturerAuthorizedFilter(FilterNavigation.getRouteId()) && activeFilter.lecturerAuthorized !== undefined) {
+			query.lecturerAuthorized = activeFilter.lecturerAuthorized;
 		}
 		if (FilterNavigation.gotKindFilter(FilterNavigation.getRouteId()) && activeFilter.kind !== undefined) {
 			query.kind = {$in: activeFilter.kind};

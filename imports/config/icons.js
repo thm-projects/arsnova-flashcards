@@ -54,6 +54,10 @@ let topNavigation = {
 	}
 };
 
+let labels = {
+	"lecturerAuthorized": "<i class='fa fa-graduation-cap'></i>"
+};
+
 //Only used for the active route display on mobile. Will be carried over to desktop after the main template got refactored.
 let miscNavigation = {
 	"cardset": "<i class='fa fa-archive'></i>&nbsp;",
@@ -86,5 +90,6 @@ module.exports = {
 	miscNavigation,
 	landingPageNavigation,
 	aspectRatio,
-	useCasesIcons
+	useCasesIcons,
+	labels
 };

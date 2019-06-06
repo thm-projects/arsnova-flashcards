@@ -171,6 +171,7 @@ if (Meteor.isServer) {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
 			if (UserPermissions.gotBackendAccess()) {
 				return Cardsets.find({
+					cardType: {$nin: CardType.getCardTypesWithTranscriptBonus()},
 					$or: [
 						{_id: cardset_id},
 						{shuffled: false}
@@ -179,6 +180,7 @@ if (Meteor.isServer) {
 			} else {
 				return Cardsets.find(
 					{
+						cardType: {$nin: CardType.getCardTypesWithTranscriptBonus()},
 						$or: [
 							{_id: cardset_id},
 							{owner: this.userId, shuffled: false},
@@ -343,6 +345,10 @@ const CardsetsSchema = new SimpleSchema({
 		blackbox: true
 	},
 	gotWorkload: {
+		type: Boolean,
+		optional: true
+	},
+	lecturerAuthorized: {
 		type: Boolean,
 		optional: true
 	}
@@ -1098,7 +1104,7 @@ Meteor.methods({
 	},
 	/**
 	 * Whitelist the cardset for the wordcloud
-	 *     * @param {String} id - ID of the cardset to be updated
+	 * @param {String} id - ID of the cardset to be updated
 	 * @param {Boolean} status - Wordcloud status for the cardset: true = Add to wordcloud, false = remove from Wordcloud
 	 */
 	updateWordcloudStatus: function (id, status) {
@@ -1108,6 +1114,25 @@ Meteor.methods({
 			Cardsets.update(id, {
 				$set: {
 					wordcloud: status
+				}
+			});
+			return id;
+		} else {
+			throw new Meteor.Error("not-authorized");
+		}
+	},
+	/**
+	 * Whitelist the cardset for the wordcloud
+	 * @param {String} id - ID of the cardset to be updated
+	 * @param {Boolean} status - Lecturer authorized status for the cardset: true = authorized, false = not authorized
+	 */
+	updateLecturerAuthorizedStatus: function (id, status) {
+		check(id, String);
+		check(status, Boolean);
+		if (UserPermissions.gotBackendAccess()) {
+			Cardsets.update(id, {
+				$set: {
+					lecturerAuthorized: status
 				}
 			});
 			return id;

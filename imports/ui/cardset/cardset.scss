@@ -316,6 +316,13 @@ $padding-card-list-row: 8px;
   cursor: pointer;
 }
 
+#wordcloudModal {
+  #collapseCardsetInfoButton, #collapseLearningPhaseInfoButton, #collapseBonusTranscriptInfoButton {
+    cursor: default;
+  }
+}
+
+
 #collapseLearningPhaseInfo {
   a {
     display: inline;

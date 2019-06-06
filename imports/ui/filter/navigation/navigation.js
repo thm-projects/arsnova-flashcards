@@ -14,6 +14,7 @@ import './item/filterAuthor.js';
 import './item/filterCardType.js';
 import './item/filterDifficulty.js';
 import './item/filterBonus.js';
+import './item/filterLecturerAuthorized.js';
 import './item/filterWordcloud.js';
 import './item/filterKind.js';
 

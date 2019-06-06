@@ -25,14 +25,14 @@ Template.cardsetInfoBoxItemTranscriptLectureDates.helpers({
 		}
 	},
 	isNewMonth: function (transcriptBonus) {
-		let currentMonth = moment(transcriptBonus.date).month();
+		let currentMonth = moment(transcriptBonus.dateCreated).month();
 		if (currentMonth !== lastMonth) {
 			lastMonth = currentMonth;
 			return true;
 		}
 	},
 	isNewYear: function (transcriptBonus) {
-		let currentYear = moment(transcriptBonus.date).year();
+		let currentYear = moment(transcriptBonus.dateCreated).year();
 		if (currentYear !== lastYear) {
 			lastYear = currentYear;
 			return true;
@@ -48,7 +48,7 @@ Template.cardsetInfoBoxItemTranscriptLectureDates.helpers({
 	//returnMode 1 = Return tooltip
 	getStatus: function (transcriptBonus, returnMode = 0) {
 		let current = moment();
-		let lectureEndDate = TranscriptBonusList.addLectureEndTime(transcriptBonus, transcriptBonus.date);
+		let lectureEndDate = TranscriptBonusList.addLectureEndTime(transcriptBonus, transcriptBonus.dateCreated);
 		if (current > lectureEndDate && !TranscriptBonusList.isDeadlineExpired(transcriptBonus)) {
 			if (returnMode) {
 				return TAPi18n.__('transcriptForm.info.tooltip.lecture.active');
