@@ -171,6 +171,7 @@ if (Meteor.isServer) {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
 			if (UserPermissions.gotBackendAccess()) {
 				return Cardsets.find({
+					cardType: {$nin: CardType.getCardTypesWithTranscriptBonus()},
 					$or: [
 						{_id: cardset_id},
 						{shuffled: false}
@@ -179,6 +180,7 @@ if (Meteor.isServer) {
 			} else {
 				return Cardsets.find(
 					{
+						cardType: {$nin: CardType.getCardTypesWithTranscriptBonus()},
 						$or: [
 							{_id: cardset_id},
 							{owner: this.userId, shuffled: false},
