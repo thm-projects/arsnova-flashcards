@@ -13,8 +13,11 @@
   padding-bottom: 5px;
 }
 
+.resultItemHeaderTopArea a {
+  padding: 0;
+}
+
 .resultItemHeaderBottomArea {
-  padding: 0 15px;
   .resultItemHeaderBottomAreaButtons, .resultItemHeaderBottomAreaLabels {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -43,9 +46,14 @@
   padding: 15px;
 }
 
-.resultNavigationElement {
-  margin-left: 10px;
-  cursor: pointer;
+.resultItemHeaderBottomAreaButtons {
+  .resultNavigationElement {
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  .resultNavigationElement:first-child {
+    margin-left: 0;
+  }
 }
 
 .resultName, .authorProfile {
@@ -59,10 +67,6 @@
     padding-top: 4px !important;
     padding-bottom: 3px !important;
   }
-}
-
-.authorProfile {
-  padding-right: 0;
 }
 
 .resultBadge {
@@ -103,7 +107,9 @@
 
 .collapseCardsetInfoIcon {
   cursor: pointer;
-
+  @media(max-width: 767px) {
+    padding-bottom: 3px;
+  }
 }
 
 .resultItemHeaderWrapper {

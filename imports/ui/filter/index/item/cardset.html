@@ -18,7 +18,7 @@
                 {{/if}}
             {{/if}}
         {{/unless}}
-        <div class="resultItemHeaderWrapper">
+        <div class="resultItemHeaderWrapper col-xs-12">
             <div class="resultItemHeaderTopArea row">
                 {{#if isWorkloadRoute}}
                     {{> filterIndexItemTopWorkload (setGridSize "col-xs-3 col-sm-3")}}
@@ -26,12 +26,12 @@
                     {{> filterIndexItemTopAuthor (setGridSize "hidden-xs col-sm-4")}}
                 {{else}}
                     {{#if isPersonalRoute}}
-                        {{> filterIndexItemTopTopic (setGridSize "col-xs-8 col-sm-8")}}
+                        {{> filterIndexItemTopTopic (setGridSize "col-xs-12 col-sm-8")}}
                         {{> filterIndexItemTopDateCreated (setGridSize "hidden-xs col-sm-2")}}
                         {{> filterIndexItemTopDateModified (setGridSize "hidden-xs col-sm-2")}}
                     {{else}}
-                        {{> filterIndexItemTopTopic (setGridSize "col-xs-8 col-sm-4")}}
-                        {{> filterIndexItemTopAuthor (setGridSize "col-xs-4 col-sm-4")}}
+                        {{> filterIndexItemTopTopic (setGridSize "col-xs-6 col-sm-4")}}
+                        {{> filterIndexItemTopAuthor (setGridSize "col-xs-6 col-sm-4")}}
                         {{> filterIndexItemTopDateCreated (setGridSize "hidden-xs col-sm-2")}}
                         {{> filterIndexItemTopDateModified (setGridSize "hidden-xs col-sm-2")}}
                     {{/if}}
