@@ -1,26 +1,29 @@
 <template name="cardsetLabels">
-    {{#unless gotTranscriptBonusAndIsNotShuffled this._id}}
-        {{#unless gotTranscriptBonusAndIsNotShuffled this.cardset_id}}
-              <span class="label label-count" title="{{_ "cardset.info.quantity"}}">
-                  {{getCardsetCardCount}}
-              </span>
+    <span class="label-group">
+         {{#unless gotTranscriptBonusAndIsNotShuffled this._id}}
+             {{#unless gotTranscriptBonusAndIsNotShuffled this.cardset_id}}
+                 <span class="label label-count" title="{{_ "cardset.info.quantity"}}">
+                     {{getCardsetCardCount}}
+                 </span>
+             {{/unless}}
+         {{/unless}}
+        {{#if gotTranscriptBonus this._id}}
+            <span class="label label-count cardset-list-badge-transcript" title="{{_ "transcriptForm.info.submissions"}}">
+                {{getTranscriptSubmissions this}}
+            </span>
+        {{/if}}
+        {{#unless isTranscriptRoute}}
+            {{#unless isBonusTranscriptsRoute}}
+                {{{getKind this.kind 0}}}
+                {{{getShuffleLabel this.shuffled}}}
+            {{/unless}}
         {{/unless}}
-    {{/unless}}
-    {{#if gotTranscriptBonus this._id}}
-        <span class="label label-count cardset-list-badge-transcript" title="{{_ "transcriptForm.info.submissions"}}">
-            {{getTranscriptSubmissions this}}
-        </span>
-    {{/if}}
-    {{#unless isTranscriptRoute}}
-        {{#unless isBonusTranscriptsRoute}}
-            {{{getKind this.kind 0}}}
-            {{{getShuffleLabel this.shuffled}}}
+        {{#unless this.shuffled}}
+            {{{getCardTypeLabel this.cardType}}}
+            {{{getDifficultyLabel this.cardType this.difficulty}}}
         {{/unless}}
-    {{/unless}}
-    {{#unless this.shuffled}}
-        {{{getCardTypeLabel this.cardType}}}
-        {{{getDifficultyLabel this.cardType this.difficulty}}}
-    {{/unless}}
-    {{{getBonusLabel this.learningActive}}}
-    {{{getTranscriptBonusLabel this}}}
+        {{{getBonusLabel this.learningActive}}}
+        {{{getTranscriptBonusLabel this}}}
+        {{> filterIndexItemBottomDeadline}}
+    </span>
 </template>

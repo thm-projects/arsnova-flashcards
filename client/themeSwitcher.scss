@@ -3066,7 +3066,7 @@ $themes: (
       }
     }
     //transcript bonus colors
-    .transcript-info-text {
+    .transcript-info-text, .label-transcript-info {
       color: $transcript_bonus_info_text !important;
       background-color: $transcript_bonus_info_background !important;
     }
