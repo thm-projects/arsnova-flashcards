@@ -80,6 +80,12 @@ $themes: (
     $input_textarea_text_active: map-get($map, "input_textarea_text_active");
     $input_textarea_text_inactive: map-get($map, "input_textarea_text_inactive");
     $button_navbar_collapse_text: map-get($map, "button_navbar_collapse_text");
+    $lecturer_authorized_background:  map-get($map, "lecturer_authorized_background");
+    $lecturer_authorized_text:  map-get($map, "lecturer_authorized_text");
+    $card_counter_background:  map-get($map, "card_counter_background");
+    $card_counter_text:  map-get($map, "card_counter_text");
+    $transcript_counter_background:  map-get($map, "transcript_counter_background");
+    $transcript_counter_text:  map-get($map, "transcript_counter_text");
     //barfy stars
     $barfy_stars_particles_1: map-get($map, "barfy_stars_particles_1");
     $barfy_stars_particles_2: map-get($map, "barfy_stars_particles_2");
@@ -2615,20 +2621,18 @@ $themes: (
       color: $item_author_text !important;
     }
 
-    .resultItemHeaderRightArea {
+    .resultItemHeaderBottomArea {
       background-color: $item_background !important;
+      i {
+        color: $item_icon;
+      }
+      i:hover, .resultItemHeaderRightArea i:focus {
+        color: $item_icon_hover !important;
+      }
     }
 
-    .resultItemHeaderLeftArea a {
+    .resultItemHeaderTopArea a {
       color: $hyperlink !important;
-    }
-
-    .resultItemHeaderRightArea i {
-      color: $item_icon;
-    }
-
-    .resultItemHeaderRightArea i:hover, .resultItemHeaderRightArea i:focus {
-      color: $item_icon_hover !important;
     }
 
     .resultTableContent a {
@@ -2747,6 +2751,24 @@ $themes: (
     .label-card-type {
       background-color: $card_type_background !important;
       color: $card_type_text !important;
+    }
+
+    .label-lecturer-authorized {
+      background-color: $lecturer_authorized_background !important;
+      color: $lecturer_authorized_text !important;
+      i:hover {
+        color: $lecturer_authorized_text !important;
+      }
+    }
+
+    .label-count-cards {
+      background-color: $card_counter_background !important;
+      color: $card_counter_text!important;
+    }
+
+    .label-count-transcripts {
+      background-color: $transcript_counter_background !important;
+      color: $transcript_counter_text!important;
     }
 
     .moduleRadioButtonLabel {
@@ -3068,7 +3090,7 @@ $themes: (
       }
     }
     //transcript bonus colors
-    .transcript-info-text {
+    .transcript-info-text, .label-transcript-info {
       color: $transcript_bonus_info_text !important;
       background-color: $transcript_bonus_info_background !important;
     }

@@ -23,6 +23,9 @@
         {{#if gotWordcloudFilter}}
             {{> filterItemFilterWordcloud}}
         {{/if}}
+        {{#if gotLecturerAuthorizedFilter}}
+            {{> filterItemFilterLecturerAuthorized}}
+        {{/if}}
         {{#if gotBonusFilter}}
             {{> filterItemFilterBonus}}
         {{/if}}
@@ -47,6 +50,9 @@
     {{/if}}
     {{#if gotWordcloudFilter}}
         {{> filterItemFilterWordcloud}}
+    {{/if}}
+    {{#if gotLecturerAuthorizedFilter}}
+        {{> filterItemFilterLecturerAuthorized}}
     {{/if}}
     {{#if gotBonusFilter}}
         {{> filterItemFilterBonus}}

@@ -1,0 +1,15 @@
+<template name="filterIndexItemBottomShuffle">
+    {{#if inShuffleSelection this._id}}
+        <a class="btn btn-xs btn-raised btn-danger shuffleButton removeShuffleCardset"
+           data-id="{{this._id}}">
+                                    <span class="flex-content" data-id="{{this._id}}"><i class="fa fa-minus"
+                                                                                         data-id="{{this._id}}"></i></span>
+        </a>
+    {{else}}
+        <a class="btn btn-xs btn-raised btn-success shuffleButton addShuffleCardset"
+           data-id="{{this._id}}">
+                                    <span class="flex-content" data-id="{{this._id}}"><i class="fa fa-plus"
+                                                                                         data-id="{{this._id}}"></i></span>
+        </a>
+    {{/if}}
+</template>

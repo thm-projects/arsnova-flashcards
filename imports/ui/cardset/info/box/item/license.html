@@ -1,19 +1,21 @@
 <template name="cardsetInfoBoxItemLicense">
-    {{#unless gotTranscriptBonusAndIsNotShuffled this._id}}
-        <tr>
-            <td>{{_ "cardset.info.license"}}:</td>
-            <td>
-                {{#unless isShuffledCardset _id}}
-                    {{#if isActiveRoute "home"}}
-                        <span class="info_license showLicense">{{getLicense this._id this.license}}</span>
+    {{#unless isTranscriptRoute}}
+        {{#unless gotTranscriptBonusAndIsNotShuffled this._id}}
+            <tr>
+                <td>{{_ "cardset.info.license"}}:</td>
+                <td>
+                    {{#unless isShuffledCardset _id}}
+                        {{#if isActiveRoute "home"}}
+                            <span class="info_license showLicense">{{getLicense this._id this.license}}</span>
+                        {{else}}
+                            <a class="info_license showLicense" href="#" data-id="{{this._id}}" data-toggle="modal"
+                               data-target="#showLicenseModal">{{getLicense this._id this.license}}</a>
+                        {{/if}}
                     {{else}}
-                        <a class="info_license showLicense" href="#" data-id="{{this._id}}" data-toggle="modal"
-                           data-target="#showLicenseModal">{{getLicense this._id this.license}}</a>
-                    {{/if}}
-                {{else}}
-                    {{_ "cardset.info.shuffleLicense"}}
-                {{/unless}}
-            </td>
-        </tr>
+                        {{_ "cardset.info.shuffleLicense"}}
+                    {{/unless}}
+                </td>
+            </tr>
+        {{/unless}}
     {{/unless}}
 </template>

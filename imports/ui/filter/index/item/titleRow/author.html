@@ -1,0 +1,13 @@
+<template name="filterIndexItemTitleRowAuthor">
+    <div class="hidden-xs {{this.gridSize}} resultsHeader">
+        {{#if isRepetitorienFilterIndex}}
+            {{_ "set-list.authorPublisher"}}
+        {{else}}
+            {{#if isRepetitorienFilterIndex}}
+                {{_ "cardset.info.publisher"}}
+            {{else}}
+                {{_ "set-list.author"}}
+            {{/if}}
+        {{/if}}
+    </div>
+</template>

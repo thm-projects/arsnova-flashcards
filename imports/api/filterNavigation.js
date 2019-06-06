@@ -45,6 +45,10 @@ export let FilterNavigation = class FilterNavigation {
 		return config.filtersWithWordcloud.includes(filterType);
 	}
 
+	static gotLecturerAuthorizedFilter (filterType) {
+		return config.filtersWithLecturerAuthorized.includes(filterType);
+	}
+
 	static gotKindFilter (filterType) {
 		return config.filtersWithKind.includes(filterType);
 	}

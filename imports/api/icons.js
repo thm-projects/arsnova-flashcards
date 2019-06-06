@@ -48,4 +48,13 @@ export let Icons = class Icons {
 				return config.topNavigation.displayMode.list;
 		}
 	}
+
+	static labels (type) {
+		switch (type) {
+			case "lecturerAuthorized":
+				return config.labels.lecturerAuthorized;
+			default:
+				return "";
+		}
+	}
 };

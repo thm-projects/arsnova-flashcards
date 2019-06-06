@@ -11,44 +11,25 @@
   font-size: 14px;
   padding-top: 5px;
   padding-bottom: 5px;
-  @media(min-width: 768px) {
-    padding-top: 15px;
-    padding-bottom: 15px;
-  }
 }
 
-.resultItemHeaderRightArea {
-  font-size: 16px;
+.resultItemHeaderTopArea a {
   padding: 0;
-  height: 53px;
-  @media(max-width: 767px) {
-    height: 35px;
-    font-size: 15px;
+}
+
+.resultItemHeaderBottomArea {
+  .resultItemHeaderBottomAreaButtons, .resultItemHeaderBottomAreaLabels {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    @media(max-width: 767px) {
+      padding-top: 2px;
+      padding-bottom: 2px;
+    }
   }
-}
-
-.resultItemHeaderRightAreaTop {
-  line-height: 16px;
-  padding-right: 0;
-}
-
-.resultItemHeaderRightAreaBottom {
-  padding-top: 8px;
-  padding-right: 10px;
-}
-
-.resultItemHeaderRightAreaTop, .resultItemHeaderRightAreaBottom  {
-  padding-left: 0;
 }
 
 .resultDateRight {
-  width: 50%;
-  float: right;
-  text-align: left;
-}
-
-.resultItemHeaderLeftArea a {
-  padding: 0;
+ padding-left: 25px;
 }
 
 .resultTableContent {
@@ -65,9 +46,14 @@
   padding: 15px;
 }
 
-.resultNavigationElement {
-  margin-left: 10px;
-  cursor: pointer;
+.resultItemHeaderBottomAreaButtons {
+  .resultNavigationElement {
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  .resultNavigationElement:first-child {
+    margin-left: 0;
+  }
 }
 
 .resultName, .authorProfile {
@@ -76,19 +62,11 @@
   text-overflow: ellipsis;
 }
 
-.resultName {
-  padding-right: 30px !important;
-}
-
 .resultNameBonusTranscript {
   @media(min-width: 768px) {
     padding-top: 4px !important;
     padding-bottom: 3px !important;
   }
-}
-
-.authorProfile {
-  padding-right: 0;
 }
 
 .resultBadge {
@@ -127,13 +105,11 @@
   padding-left: 0;
 }
 
-.resultItemHeaderCardType {
-  padding-right: 0 !important;
-}
-
 .collapseCardsetInfoIcon {
   cursor: pointer;
-
+  @media(max-width: 767px) {
+    padding-bottom: 3px;
+  }
 }
 
 .resultItemHeaderWrapper {

@@ -1,0 +1,20 @@
+<template name="filterIndexItemBottomBonusStats">
+    {{#if this.learningActive}}
+        {{#if isCardsetOwner this._id}}
+            <a class="resultNavigationElement bonusLeitnerProgress" data-id="{{this._id}}"
+               title="{{_
+                       "admin.myProgress"}}">
+                <i class="glyphicon glyphicon glyphicon-stats" data-id="{{this._id}}"></i>
+            </a>
+        {{/if}}
+    {{/if}}
+    {{#if gotTranscriptBonus this._id}}
+        {{#if isCardsetOwner this._id}}
+            <a class="resultNavigationElement bonusTranscriptProgress" data-id="{{this._id}}"
+               title="{{_
+                       "transcriptForm.bonus.form.button.list"}}">
+                <i class="fa fa-clipboard" data-id="{{this._id}}"></i>
+            </a>
+        {{/if}}
+    {{/if}}
+</template>
