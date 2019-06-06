@@ -2115,15 +2115,15 @@
     },
     "free": {
       "short": "Frei",
-      "long": "Von Studierenden für alle freigegeben"
+      "long": "Frei für alle"
     },
     "edu": {
       "short": "THM",
-      "long": "Von Lehrenden für alle THM-Mitglieder freigegeben"
+      "long": "Frei für THM-Mitglieder"
     },
     "pro": {
       "short": "Pro",
-      "long": "Kostenpflichtig (Testbetrieb)"
+      "long": "Frei im Abonnement"
     },
     "private": {
       "short": "Privat",
