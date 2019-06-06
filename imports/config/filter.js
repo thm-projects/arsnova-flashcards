@@ -31,6 +31,7 @@ let filtersWithCourse = [];
 let filtersWithModule = [];
 let filtersWithBonus = [0, 2, 3, 4, 5, 6, 7];
 let filtersWithWordcloud = [0, 1, 2, 4, 5, 6, 7];
+let filtersWithLecturerAuthorized = [0, 1, 2, 4, 5, 6, 7];
 let filtersWithKind = [0, 1, 2, 3, 4, 5, 6, 7];
 let filtersWithPersonalKind = [1, 3, 4, 5, 6, 7];
 let filtersWithFreeKind = [0, 1, 2, 3, 4, 5, 6, 7];
@@ -56,6 +57,7 @@ module.exports = {
 	filtersWithModule,
 	filtersWithBonus,
 	filtersWithWordcloud,
+	filtersWithLecturerAuthorized,
 	filtersWithKind,
 	filtersWithPersonalKind,
 	filtersWithFreeKind,

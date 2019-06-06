@@ -116,6 +116,10 @@ Template.registerHelper('gotWordcloudFilter', function () {
 	return FilterNavigation.gotWordCloudFilter(FilterNavigation.getRouteId());
 });
 
+Template.registerHelper('gotLecturerAuthorizedFilter', function () {
+	return FilterNavigation.gotLecturerAuthorizedFilter(FilterNavigation.getRouteId());
+});
+
 Template.registerHelper('gotKindFilter', function () {
 	return FilterNavigation.gotKindFilter(FilterNavigation.getRouteId());
 });
