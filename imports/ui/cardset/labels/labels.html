@@ -8,9 +8,11 @@
              {{/unless}}
          {{/unless}}
         {{#if gotTranscriptBonus this._id}}
-            <span class="label label-count-transcripts" title="{{_ "transcriptForm.info.submissions"}}">
-                {{getTranscriptSubmissions this}}
-            </span>
+            {{#unless this.shuffled}}
+                <span class="label label-count-transcripts" title="{{_ "transcriptForm.info.submissions"}}">
+                    {{getTranscriptSubmissions this}}
+                </span>
+            {{/unless}}
         {{/if}}
         {{{getLecturerAuthorizedLabel this}}}
         {{#unless isTranscriptRoute}}
