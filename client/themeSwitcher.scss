@@ -82,6 +82,10 @@ $themes: (
     $button_navbar_collapse_text: map-get($map, "button_navbar_collapse_text");
     $lecturer_authorized_background:  map-get($map, "lecturer_authorized_background");
     $lecturer_authorized_text:  map-get($map, "lecturer_authorized_text");
+    $card_counter_background:  map-get($map, "card_counter_background");
+    $card_counter_text:  map-get($map, "card_counter_text");
+    $transcript_counter_background:  map-get($map, "transcript_counter_background");
+    $transcript_counter_text:  map-get($map, "transcript_counter_text");
     //barfy stars
     $barfy_stars_particles_1: map-get($map, "barfy_stars_particles_1");
     $barfy_stars_particles_2: map-get($map, "barfy_stars_particles_2");
@@ -2755,6 +2759,16 @@ $themes: (
       i:hover {
         color: $lecturer_authorized_text !important;
       }
+    }
+
+    .label-count-cards {
+      background-color: $card_counter_background !important;
+      color: $card_counter_text!important;
+    }
+
+    .label-count-transcripts {
+      background-color: $transcript_counter_background !important;
+      color: $transcript_counter_text!important;
     }
 
     .moduleRadioButtonLabel {

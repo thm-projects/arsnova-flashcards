@@ -2,13 +2,13 @@
     <span class="label-group">
          {{#unless gotTranscriptBonusAndIsNotShuffled this._id}}
              {{#unless gotTranscriptBonusAndIsNotShuffled this.cardset_id}}
-                 <span class="label label-count" title="{{_ "cardset.info.quantity"}}">
+                 <span class="label label-count-cards" title="{{_ "cardset.info.quantity"}}">
                      {{getCardsetCardCount}}
                  </span>
              {{/unless}}
          {{/unless}}
         {{#if gotTranscriptBonus this._id}}
-            <span class="label label-count cardset-list-badge-transcript" title="{{_ "transcriptForm.info.submissions"}}">
+            <span class="label label-count-transcripts" title="{{_ "transcriptForm.info.submissions"}}">
                 {{getTranscriptSubmissions this}}
             </span>
         {{/if}}
