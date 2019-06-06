@@ -7,21 +7,25 @@
         <div class="card card-block">
             <table class="table table-condensed table-striped table-hover infoBoxTable">
                 <tbody>
-                {{> cardsetInfoBoxItemBonusStatus}}
-                {{> cardsetInfoBoxItemBonusMaxPoints}}
-                {{> cardsetInfoBoxItemBonusPointsFAQ}}
-                {{> cardsetInfoBoxItemBonusWorkload}}
-                {{> cardsetInfoBoxItemPomodoroCount}}
-                {{> cardsetInfoBoxItemPomodoroWorkTime}}
-                {{> cardsetInfoBoxItemPomodoroBreakTime}}
-                {{> cardsetInfoBoxItemBonusDeadline}}
-                {{> cardsetInfoBoxItemBonusStart}}
-                {{> cardsetInfoBoxItemBonusEnd}}
-                {{> cardsetInfoBoxItemBonusActiveLearners}}
-                {{> cardsetInfoBoxItemBonusRegistrationPeriod}}
-                {{> cardsetInfoBoxItemBonusButton}}
+                    {{> bonusInfoBoxContent}}
                 </tbody>
             </table>
         </div>
     </div>
+</template>
+
+<template name="bonusInfoBoxContent">
+    {{> cardsetInfoBoxItemBonusStatus}}
+    {{> cardsetInfoBoxItemBonusMaxPoints}}
+    {{> cardsetInfoBoxItemBonusPointsFAQ}}
+    {{> cardsetInfoBoxItemBonusWorkload}}
+    {{> cardsetInfoBoxItemPomodoroCount}}
+    {{> cardsetInfoBoxItemPomodoroWorkTime}}
+    {{> cardsetInfoBoxItemPomodoroBreakTime}}
+    {{> cardsetInfoBoxItemBonusDeadline}}
+    {{> cardsetInfoBoxItemBonusStart}}
+    {{> cardsetInfoBoxItemBonusEnd}}
+    {{> cardsetInfoBoxItemBonusActiveLearners}}
+    {{> cardsetInfoBoxItemBonusRegistrationPeriod}}
+    {{> cardsetInfoBoxItemBonusButton}}
 </template>

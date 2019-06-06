@@ -41,23 +41,56 @@
                     <div class="modal-body">
                         <div class="form-horizontal">
                             <div class="form-group">
-                                <div class="col-md-12 wordCloudDescription">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            {{#markdeep}}
+                                                {{this.description}}
+                                            {{/markdeep}}
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="table-responsive">
                                     <table class="table">
+                                        <thead>
                                         <tr>
-                                            <td>
-                                                {{#markdeep}}
-                                                    {{this.description}}
-                                                {{/markdeep}}
-                                            </td>
+                                            <th colspan="2" id="collapseCardsetInfoButton" class="btn-raised {{getColors}}">{{#if this.shuffled}}{{_
+                                                    "set-list.cardsetInfoRepetitorium"}}{{else}}{{_
+                                                    "set-list.cardsetInfoStatic"}}{{/if}}</th>
                                         </tr>
-                                    </table>
-                                </div>
-                                <div class="col-md-12">
-                                    <br>
-                                    <table class="table">
+                                        </thead>
+                                        <tbody>
                                         {{> cardsetInfoBoxContentOne}}
                                         {{> cardsetInfoBoxContentTwo}}
+                                        </tbody>
                                     </table>
+                                    {{#if this.learningActive}}
+                                        <br>
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="2" id="collapseLearningPhaseInfoButton">{{_ "set-list.learnphaseInfo"}}</th>
+                                            </tr>
+                                            </thead>
+
+                                            <tbody>
+                                            {{> bonusInfoBoxContent}}
+                                            </tbody>
+                                        </table>
+                                    {{/if}}
+                                    {{#if this.transcriptBonus}}
+                                        <br>
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="2" id="collapseBonusTranscriptInfoButton">{{_ "transcriptForm.info.title"}}</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {{> bonusTranscriptInfoBoxContent}}
+                                            </tbody>
+                                        </table>
+                                    {{/if}}
                                 </div>
                             </div>
                         </div>
