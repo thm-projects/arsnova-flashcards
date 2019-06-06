@@ -12,6 +12,7 @@
                 {{getTranscriptSubmissions this}}
             </span>
         {{/if}}
+        {{{getLecturerAuthorizedLabel this}}}
         {{#unless isTranscriptRoute}}
             {{#unless isBonusTranscriptsRoute}}
                 {{{getKind this.kind 0}}}

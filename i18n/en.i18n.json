@@ -601,6 +601,13 @@
         "add": "Hinzufügen",
         "remove": "Entfernen"
       }
+    },
+    "lecturerAuthorized": {
+      "title": "Zur Prüfungsvorbereitung geeignet-Einstellungen",
+      "button": {
+        "add": "Hinzufügen",
+        "remove": "Entfernen"
+      }
     }
   },
   "useCases": {
@@ -2152,6 +2159,11 @@
       "export": "Export",
       "cardset": "Kartei",
       "cards": "Karten"
+    }
+  },
+  "label": {
+    "lecturerAuthorized": {
+      "long": "Besonders geeignet für die Prüfungsvorbereitung"
     }
   },
   "bertAlert": {

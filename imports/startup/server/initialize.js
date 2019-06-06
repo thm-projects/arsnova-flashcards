@@ -804,6 +804,19 @@ Meteor.startup(function () {
 		);
 	}
 
+	cardsets = Cardsets.find({lecturerAuthorized: {$exists: false}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					lecturerAuthorized: false
+				}
+			}
+		);
+	}
+
 	cardsets = Cardsets.find({transcriptBonus: {$exists: true}}, {fields: {_id: 1, transcriptBonus: 1}}).fetch();
 	for (let i = 0; i < cardsets.length; i++) {
 		if (cardsets[i].transcriptBonus.deadlineEditing === undefined) {

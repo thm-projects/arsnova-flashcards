@@ -390,6 +390,12 @@ Template.registerHelper("getBonusLabel", function (shuffled = false) {
 	}
 });
 
+Template.registerHelper("getLecturerAuthorizedLabel", function (cardset) {
+	if (cardset.lecturerAuthorized !== undefined) {
+		return '<span class="label label-lecturer-authorized" data-id="lecturer-authorized" title="' + TAPi18n.__('label.lecturerAuthorized.long') + '"><i class="fa fa-graduation-cap"></i></span>';
+	}
+});
+
 Template.registerHelper("getTranscriptBonusLabel", function (cardset) {
 	if ((cardset.transcriptBonus !== undefined && cardset.transcriptBonus.enabled) || Route.isMyBonusTranscripts() || Route.isTranscriptBonus() || Route.isPresentationTranscriptBonus() || Route.isPresentationTranscriptBonusCardset()) {
 		return '<span class="label label-transcript-bonus" data-id="bonus-transcript" title="' + TAPi18n.__('cardset.transcriptBonus.long') + '">' + TAPi18n.__('cardset.transcriptBonus.short') + '</span>';

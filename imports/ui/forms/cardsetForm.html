@@ -96,7 +96,19 @@
                                     {{_ "modal-admin-dialog.wordcloud.button.add"}}</button>
                             {{/if}}
                         </div>
+                        <div class="panel-heading" id="cardsetLecturerAuthorized">{{_
+                                "modal-admin-dialog.lecturerAuthorized.title"}}</div>
+                        <div class="panel-body">
+                            {{#if isLecturerAuthorized}}
+                                <button id="cardsetRemoveLecturerAuthorized" class="btn btn-raised btn-danger">
+                                    {{_ "modal-admin-dialog.lecturerAuthorized.button.remove"}}</button>
+                            {{else}}
+                                <button id="cardsetAddLecturerAuthorized" class="btn btn-raised btn-success">
+                                    {{_ "modal-admin-dialog.lecturerAuthorized.button.add"}}</button>
+                            {{/if}}
+                        </div>
                     </div>
+                    <br>
                 </div>
             </div>
         </div>
