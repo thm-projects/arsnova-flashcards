@@ -395,8 +395,8 @@ Template.registerHelper("getBonusLabel", function (shuffled = false) {
 });
 
 Template.registerHelper("getLecturerAuthorizedLabel", function (cardset) {
-	if (cardset.lecturerAuthorized !== undefined) {
-		return '<span class="label label-lecturer-authorized" data-id="lecturer-authorized" title="' + TAPi18n.__('label.lecturerAuthorized.long') + '"><i class="fa fa-graduation-cap"></i></span>';
+	if (cardset.lecturerAuthorized !== undefined && cardset.lecturerAuthorized === true) {
+		return '<span class="label label-lecturer-authorized" data-id="lecturer-authorized" title="' + TAPi18n.__('label.lecturerAuthorized.long') + '">' + Icons.labels("lecturerAuthorized") + '</span>';
 	}
 });
 
