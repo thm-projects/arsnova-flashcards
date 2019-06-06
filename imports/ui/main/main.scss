@@ -871,10 +871,13 @@ kbd {
   .label {
     margin-right: 2px;
   }
-  .label:first-child {
-    margin-right: 4px;
-  }
   .label:last-child {
     margin-right: 0;
   }
+}
+
+.label-count {
+  display: inline-block;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
