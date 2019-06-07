@@ -30,7 +30,8 @@
                     <button id="resetBonus" class="btn btn-danger btn-raised pull-left">{{_
                             "bonus.form.button.reset"}}</button>
                     <button id="startBonus"
-                            class="btn btn-success btn-raised pull-right">{{#if isNewBonus}}{{_ "bonus.form.button.start"}}{{else}}{{_
+                            class="btn btn-success btn-raised pull-right">{{#if isNewBonus}}{{_
+                            "bonus.form.button.start"}}{{else}}{{_
                             "bonus.form.button.update"}}{{/if}}</button>
                 </div>
             </div>
@@ -44,6 +45,24 @@
             <div class="btn btn-success btn-raised">
                 <span class="flex-content">{{_ "bonus.form.simulator.buttonSimulate"}}</span>
             </div>
+        </div>
+    </div>
+</template>
+
+<template name="bonusFormSimulatorErrorRate">
+    <div class="form-group row">
+        <label class="col-md-3 control-label">{{_ "bonus.form.simulator.errorRate"}}</label>
+        <div class="col-md-9 form-inline">
+            <input type="number" step="0.1" min="0" max="0.7" class="form-control errorRate" id="errorRate1"
+                   placeholder="0" value="0">
+            <input type="number" step="0.1" min="0" max="0.7" class="form-control errorRate" id="errorRate2"
+                   placeholder="0" value="0">
+            <input type="number" step="0.1" min="0" max="0.7" class="form-control errorRate" id="errorRate3"
+                   placeholder="0" value="0">
+            <input type="number" step="0.1" min="0" max="0.7" class="form-control errorRate" id="errorRate4"
+                   placeholder="0" value="0">
+            <input type="number" step="0.1" min="0" max="0.7" class="form-control errorRate" id="errorRate5"
+                   placeholder="0" value="0">
         </div>
     </div>
 </template>
@@ -147,7 +166,8 @@
     <div class="form-group row">
         <label class="col-md-3 control-label">{{_ "bonus.form.maxPoints.label"}}</label>
         <div class="col-md-9 form-inline">
-            <input type="number" min="{{getDefaultMinBonusPoints}}" max="{{getDefaultMaxBonusPoints}}" data-bind="value:replyNumber"
+            <input type="number" min="{{getDefaultMinBonusPoints}}" max="{{getDefaultMaxBonusPoints}}"
+                   data-bind="value:replyNumber"
                    onkeypress="return  (event.charCode === 8 || event.charCode === 0) ? null : event.charCode >= 48 && event.charCode <= 57"
                    class="form-control interval" id="maxBonusPoints"
                    placeholder="{{getDefaultMaxBonusPoints}}" value="{{getCurrentMaxBonusPoints this}}">
@@ -222,7 +242,8 @@
                     <p>{{_ "sweetAlert.completeProfile.text"}}</p>
                     <br>
                     <hr>
-                    <button id="completeProfileGoToProfile" class="btn btn-block btn-raised btn-default btn-success">{{_ "sweetAlert.completeProfile.button.confirm"}}</button>
+                    <button id="completeProfileGoToProfile" class="btn btn-block btn-raised btn-default btn-success">{{_
+                            "sweetAlert.completeProfile.button.confirm"}}</button>
                     <button id="completeProfileCancel" class="btn btn-default btn-block btn-raised"
                             data-dismiss="modal">{{_ "sweetAlert.completeProfile.button.cancel"}}</button>
                 </div>

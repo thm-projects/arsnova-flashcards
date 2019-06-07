@@ -1104,7 +1104,8 @@
       "simulator": {
         "buttonModal":  "Tagespensum festlegen",
         "buttonSimulate": "Optimales Tagespensum berechnen",
-        "title": "Leitner Simulator"
+        "title": "Leitner Simulator",
+        "errorRate": "Fehlerquote pro Box"
       },
       "maxPoints": {
         "label": "Maximal erreichbare Bonuspunkte in Prozent"
