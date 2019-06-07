@@ -1256,8 +1256,11 @@
     "reset": "Filter zurücksetzen"
   },
   "infinite-scroll": {
+    "remainingShort": "__current__ von __total__",
+    "remainingTranscripts": "__current__ von __total__ Mitschriften",
+    "remainingTranscriptsBonus": "__current__ von __total__ Bonus-Mitschriften",
     "remainingCardsets": "__current__ von __total__ Karteien",
-    "remainingCourses": "__current__ von __total__ Kursen"
+    "remainingReps": "__current__ von __total__ Repetitorien"
   },
   "card": {
     "navigationDisabled": "Karte wird gewechselt…",

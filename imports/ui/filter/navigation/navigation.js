@@ -45,15 +45,29 @@ Template.infiniteScroll.helpers({
 			return Filter.getMaxItemCounter() < Cardsets.find(query).count();
 		}
 	},
-	getCurrentResults: function () {
+	getCurrentResults: function (shortVersion = false) {
 		let query = Filter.getFilterQuery();
 		if (Route.isTranscript() || Route.isTranscriptBonus()) {
 			query.cardType = 2;
 			Session.set('totalResults', Cards.find(query).count());
-			return TAPi18n.__('infinite-scroll.remainingCardsets', {
-				current: Filter.getMaxItemCounter(),
-				total: Session.get('totalResults')
-			});
+			if (shortVersion) {
+				return TAPi18n.__('infinite-scroll.remainingShort', {
+					current: Filter.getMaxItemCounter(),
+					total: Session.get('totalResults')
+				});
+			} else {
+				if (Route.isMyBonusTranscripts() || Route.isTranscriptBonus()) {
+					return TAPi18n.__('infinite-scroll.remainingTranscriptsBonus', {
+						current: Filter.getMaxItemCounter(),
+						total: Session.get('totalResults')
+					});
+				} else {
+					return TAPi18n.__('infinite-scroll.remainingTranscripts', {
+						current: Filter.getMaxItemCounter(),
+						total: Session.get('totalResults')
+					});
+				}
+			}
 		} else {
 			if (Session.get("selectingCardsetToLearn") && query.cardType === undefined) {
 				if (Route.isRepetitorienFilterIndex()) {
@@ -63,10 +77,24 @@ Template.infiniteScroll.helpers({
 				}
 			}
 			Session.set('totalResults', Cardsets.find(query).count());
-			return TAPi18n.__('infinite-scroll.remainingCardsets', {
-				current: Filter.getMaxItemCounter(),
-				total: Session.get('totalResults')
-			});
+			if (shortVersion) {
+				return TAPi18n.__('infinite-scroll.remainingShort', {
+					current: Filter.getMaxItemCounter(),
+					total: Session.get('totalResults')
+				});
+			} else {
+				if (Route.isRepetitorienFilterIndex()) {
+					return TAPi18n.__('infinite-scroll.remainingReps', {
+						current: Filter.getMaxItemCounter(),
+						total: Session.get('totalResults')
+					});
+				} else {
+					return TAPi18n.__('infinite-scroll.remainingCardsets', {
+						current: Filter.getMaxItemCounter(),
+						total: Session.get('totalResults')
+					});
+				}
+			}
 		}
 	}
 });
