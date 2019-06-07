@@ -546,7 +546,7 @@
     "shuffle": "Auswahl speichern",
     "shuffleInfoTextNew": "Erstell dir ein Repetitorium durch Hinzufügen von Karteien mit dem Plus-Button.",
     "shuffleInfoTextEdit": "Inhalt des Repetitoriums erweitern oder einschränken",
-    "shuffleCardsetReferences": "Gemischte Karteien bearbeiten",
+    "shuffleCardsetReferences": "Karteien-Sammlung bearbeiten",
     "shuffleUpdateSuccess": "Auswahl aktualisiert",
     "shuffleUpdateFailure": "Fehler beim Aktualisieren der Auswahl",
     "shuffleRemove": "Auswahl entfernen",
@@ -1178,7 +1178,7 @@
       }
     },
     "shuffled": {
-      "long": "Gemischter Kartensatz",
+      "long": "Karteien-Sammlung",
       "short": "Rep"
     },
     "bonus": {
