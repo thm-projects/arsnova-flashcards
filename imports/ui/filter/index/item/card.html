@@ -2,8 +2,8 @@
     <div class="resultItem col-xs-12">
         {{#unless this.index}}
             {{#if isBonusTranscriptsRoute}}
-                {{> filterIndexItemTitleRowTopic (setGridSize "col-sm-4")}}
-                {{> filterIndexItemTitleRowAuthor (setGridSize "col-sm-4")}}
+                {{> filterIndexItemTitleRowTopic (setGridSize "col-sm-4 col-md-5")}}
+                {{> filterIndexItemTitleRowAuthor (setGridSize "col-sm-4 col-md-3")}}
                 {{> filterIndexItemTitleRowDateCreated (setGridSize "col-sm-2")}}
                 {{> filterIndexItemTitleRowDateModified (setGridSize "col-sm-2")}}
             {{else}}
@@ -15,8 +15,8 @@
         <div class="resultItemHeaderWrapper col-xs-12">
             <div class="resultItemHeaderTopArea row">
                 {{#if isBonusTranscriptsRoute}}
-                    {{> filterIndexItemTopTopic (setGridSize "col-xs-6 col-sm-4")}}
-                    {{> filterIndexItemTopAuthor (setGridSize "col-xs-6 col-sm-4")}}
+                    {{> filterIndexItemTopTopic (setGridSize "col-xs-6 col-sm-4 col-md-5")}}
+                    {{> filterIndexItemTopAuthor (setGridSize "col-xs-6 col-sm-4 col-md-3")}}
                     {{> filterIndexItemTopDateCreated (setGridSize "hidden-xs col-sm-2")}}
                     {{> filterIndexItemTopDateModified (setGridSize "hidden-xs col-sm-2")}}
                 {{else}}
