@@ -1245,8 +1245,8 @@
     "wordcloudTrue": "von der Redaktion in die Themen-Wolke aufgenommen",
     "wordcloudFalse": "von Studierenden für die Community freigegeben",
     "wordcloudEveryting": "Alle",
-    "lecturerAuthorized": "Prüfung",
-    "lecturerAuthorizedTrue": "Zur Prüfungsvorbereitung geeignet",
+    "lecturerAuthorized": "Autorisierte Kurs-Kartei",
+    "lecturerAuthorizedTrue": "Von der Lehrperson autorisierte Kurs-Kartei",
     "lecturerAuthorizedEveryting": "Alle",
     "from": "Ab",
     "noResults": "Keine Kartei oder Repetitorium ausgewählt oder Filtern liefert kein Ergebnis.",
@@ -2165,7 +2165,7 @@
   },
   "label": {
     "lecturerAuthorized": {
-      "long": "Besonders geeignet für die Prüfungsvorbereitung"
+      "long": "Von der Lehrperson autorisierte Kurs-Kartei"
     }
   },
   "bertAlert": {
