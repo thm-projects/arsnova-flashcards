@@ -67,6 +67,19 @@
     </div>
 </template>
 
+<template name="bonusFormSimulatorSnapshots">
+    <div class="form-group row">
+        {{_ "bonus.form.simulator.snapshots"}}<br>
+        {{#each getSnapshots}}
+            <div class="btn {{#if isActive @index}}btn-primary{{else}}btn-default{{/if}} btn-raised col-xs-2 snapshot-date" data-id="{{@index}}">
+                <span class="flex-content" data-id="{{@index}}">
+                    {{this}}
+                </span>
+            </div>
+        {{/each}}
+    </div>
+</template>
+
 <template name="bonusFormOpenSimulator">
     <div class="form-group row">
         <div class="col-md-12">

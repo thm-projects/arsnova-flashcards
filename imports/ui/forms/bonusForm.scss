@@ -8,5 +8,10 @@
 @media (min-width: 900px) {
   #cardsetLeitnerSimulatorModal .modal-content {
     width: 900px !important;
+
+    .snapshot-date {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
   }
 }

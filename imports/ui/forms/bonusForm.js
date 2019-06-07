@@ -171,3 +171,38 @@ Template.profileIncompleteModal.events({
 		$('.modal-backdrop').remove();
 	}
 });
+
+
+/*
+ * ############################################################################
+ * bonusFormSimulatorSnapshots
+ * ############################################################################
+ */
+
+Session.setDefault('activeSimulatorSnapshotDate', 0);
+
+Template.bonusFormSimulatorSnapshots.onRendered(function () {
+	BonusForm.cleanModal();
+	$('#cardsetLeitnerSimulatorModal').on('show.bs.modal', function () {
+		Session.set('activeSimulatorSnapshotDate', 0);
+		BonusForm.createSnapshotDates();
+	});
+});
+
+Template.bonusFormSimulatorSnapshots.helpers({
+	getSnapshots: function () {
+		return BonusForm.getSnapshotDates();
+	},
+	isActive: function (index) {
+		if (Session.get('activeSimulatorSnapshotDate') === index) {
+			return true;
+		}
+	}
+});
+
+
+Template.bonusFormSimulatorSnapshots.events({
+	'click .snapshot-date': function (event) {
+		Session.set('activeSimulatorSnapshotDate', $(event.target).data('id'));
+	}
+});

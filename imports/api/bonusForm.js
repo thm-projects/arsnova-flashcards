@@ -2,6 +2,7 @@ import {Session} from "meteor/session";
 import {Cardsets} from "./cardsets";
 import {PomodoroTimer} from "./pomodoroTimer";
 import * as config from "../config/bonusForm.js";
+import {Utilities} from "./utilities";
 
 export let BonusForm = class BonusForm {
 	static cleanModal () {
@@ -115,6 +116,25 @@ export let BonusForm = class BonusForm {
 			dateStart = config.defaultDateStart;
 		}
 		return dateStart;
+	}
+
+
+	static createSnapshotDates () {
+		let bonusStart = moment(this.getDateStart());
+		let bonusEnd = moment(this.getDateEnd());
+		let numberOfDays = bonusEnd.diff(bonusStart, 'days');
+		let steps = Math.round(numberOfDays / 6);
+		let snapshotDates = [];
+		for (let i = 1; i < 6; i++) {
+			let newDate = moment(bonusStart).add(steps * i,'days');
+			snapshotDates.push(Utilities.getMomentsDateShort(newDate));
+		}
+		snapshotDates.push(Utilities.getMomentsDateShort(bonusEnd));
+		Session.set('simulatorSnapshotDates', snapshotDates);
+	}
+
+	static getSnapshotDates () {
+		return Session.get('simulatorSnapshotDates');
 	}
 
 	static getDateEnd () {
