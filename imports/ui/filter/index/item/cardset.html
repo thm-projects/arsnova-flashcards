@@ -3,8 +3,8 @@
         {{#unless this.index}}
             {{#if isWorkloadRoute}}
                 {{> filterIndexItemTitleRowWorkload (setGridSize "col-sm-3")}}
-                {{> filterIndexItemTitleRowTopic (setGridSize "col-sm-5 col-md-6")}}
-                {{> filterIndexItemTitleRowAuthor (setGridSize "col-sm-4 col-md-3")}}
+                {{> filterIndexItemTitleRowTopic (setGridSize "col-sm-5")}}
+                {{> filterIndexItemTitleRowAuthor (setGridSize "col-sm-4")}}
             {{else}}
                 {{#if isPersonalRoute}}
                     {{> filterIndexItemTitleRowTopic (setGridSize "col-sm-8")}}
@@ -22,8 +22,8 @@
             <div class="resultItemHeaderTopArea row">
                 {{#if isWorkloadRoute}}
                     {{> filterIndexItemTopWorkload (setGridSize "col-xs-3 col-sm-3")}}
-                    {{> filterIndexItemTopTopic (setGridSize "col-xs-9 col-sm-5 col-md-6")}}
-                    {{> filterIndexItemTopAuthor (setGridSize "hidden-xs col-sm-4 col-md-3")}}
+                    {{> filterIndexItemTopTopic (setGridSize "col-xs-9 col-sm-5")}}
+                    {{> filterIndexItemTopAuthor (setGridSize "hidden-xs col-sm-4")}}
                 {{else}}
                     {{#if isPersonalRoute}}
                         {{> filterIndexItemTopTopic (setGridSize "col-xs-12 col-sm-8")}}
