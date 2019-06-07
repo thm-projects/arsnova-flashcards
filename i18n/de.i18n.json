@@ -716,7 +716,7 @@
           "submission": "Zeit für die Foto-Abgabe",
           "editing": "Zeit für die digitale Nachbearbeitung"
         },
-        "lectureDates": "Termine für das Bonus-Mitschreiben",
+        "lectureDates": "Vorlesungstermine",
         "clock": "Uhr",
         "hours": "Stunde",
         "hours_plural": "Stunden",
@@ -1245,7 +1245,7 @@
     "wordcloudTrue": "von der Redaktion in die Themen-Wolke aufgenommen",
     "wordcloudFalse": "von Studierenden für die Community freigegeben",
     "wordcloudEveryting": "Alle",
-    "lecturerAuthorized": "Autorisierte Kurs-Kartei",
+    "lecturerAuthorized": "Kurs-Kartei",
     "lecturerAuthorizedTrue": "Von der Lehrperson autorisierte Kurs-Kartei",
     "lecturerAuthorizedEveryting": "Alle",
     "from": "Ab",
