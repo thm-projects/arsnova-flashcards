@@ -19,7 +19,7 @@ Template.filterItemSortResults.helpers({
 		}
 	},
 	getSortCreatedDateIcon: function () {
-		switch (Filter.getActiveFilter().dateCreated) {
+		switch (Filter.getActiveFilter().date) {
 			case 1:
 				return '<i class="fa fa-sort-numeric-asc cards-filter-element"></i>';
 			case-1:

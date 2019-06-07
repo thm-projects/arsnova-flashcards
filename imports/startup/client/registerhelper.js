@@ -719,7 +719,7 @@ Template.registerHelper("getDate", function () {
 	if (Router.current().route.getName() === "welcome") {
 		date = Session.get('wordcloudItem')[10];
 	} else {
-		date = this.dateCreated;
+		date = this.date;
 	}
 	return moment(date).locale(Session.get('activeLanguage')).format('LL');
 });
@@ -757,7 +757,7 @@ Template.registerHelper("getDateUpdated", function () {
 
 // Returns the locale date with time
 Template.registerHelper("getTimestamp", function () {
-	return moment(this.dateCreated).locale(Session.get('activeLanguage')).format('LLLL');
+	return moment(this.date).locale(Session.get('activeLanguage')).format('LLLL');
 });
 
 // Returns all courses
