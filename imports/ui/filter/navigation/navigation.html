@@ -68,7 +68,7 @@
             <div id="showMoreResults" class="showMoreResults col-xs-12 panel panel-default">
                 <div class="flex-content">
                     <div class="scrollArrow col-xs-12 infinite-scroll-icon glyphicon glyphicon-chevron-down">
-                        <span class="resultCounter">{{getCurrentResults}}</span>
+                        <span class="resultCounter"><span class="visible-xs">{{getCurrentResults true}}</span><span class="hidden-xs">{{getCurrentResults false}}</span></span>
                     </div>
                 </div>
             </div>
