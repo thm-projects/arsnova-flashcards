@@ -1106,7 +1106,8 @@
         "buttonSimulate": "Optimales Tagespensum berechnen",
         "title": "Leitner Simulator",
         "errorRate": "Fehlerquote pro Box",
-        "snapshots": "Simulierte Bonus-Lernphase mit ausgewähltem Tagespensum"
+        "snapshots": "Simulierte Bonus-Lernphase mit ausgewähltem Tagespensum",
+        "graphLabel": "Simulierte Karten"
       },
       "maxPoints": {
         "label": "Maximal erreichbare Bonuspunkte in Prozent"

@@ -3,6 +3,14 @@ import {Cardsets} from "./cardsets";
 import {PomodoroTimer} from "./pomodoroTimer";
 import * as config from "../config/bonusForm.js";
 import {Utilities} from "./utilities";
+import {CardType} from "./cardTypes";
+
+let leitnerSimulator = new Uint16Array(6);
+let leitnerSimulatorBox1;
+let leitnerSimulatorBox2;
+let leitnerSimulatorBox3;
+let leitnerSimulatorBox4;
+let leitnerSimulatorBox5;
 
 export let BonusForm = class BonusForm {
 	static cleanModal () {
@@ -118,7 +126,6 @@ export let BonusForm = class BonusForm {
 		return dateStart;
 	}
 
-
 	static createSnapshotDates () {
 		let bonusStart = moment(this.getDateStart());
 		let bonusEnd = moment(this.getDateEnd());
@@ -131,10 +138,40 @@ export let BonusForm = class BonusForm {
 		}
 		snapshotDates.push(Utilities.getMomentsDateShort(bonusEnd));
 		Session.set('simulatorSnapshotDates', snapshotDates);
+		this.initializeSimulatorData();
+	}
+
+	static initializeSimulatorData () {
+		let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {cardGroups: 1, shuffled: 1, quantity: 1}});
+		if (cardset !== undefined) {
+			let cardCount = 0;
+			if (cardset.shuffled) {
+				for (let i = 0; i < cardset.cardGroups.length; i++) {
+					let cardGroup = Cardsets.findOne({_id: cardset.cardGroups[i]}, {fields: {cardType: 1, quantity: 1}});
+					if (CardType.gotLearningModes(cardGroup.cardType)) {
+						cardCount += cardGroup.quantity;
+					}
+				}
+			} else {
+				cardCount = cardset.quantity;
+			}
+			leitnerSimulator = new Uint16Array(6);
+			leitnerSimulator[0] = cardCount;
+		}
+		let intervals = this.getIntervals();
+		leitnerSimulatorBox1 = new Uint16Array(intervals[0]);
+		leitnerSimulatorBox2 = new Uint16Array(intervals[1]);
+		leitnerSimulatorBox3 = new Uint16Array(intervals[2]);
+		leitnerSimulatorBox4 = new Uint16Array(intervals[3]);
+		leitnerSimulatorBox5 = new Uint16Array(intervals[4]);
 	}
 
 	static getSnapshotDates () {
 		return Session.get('simulatorSnapshotDates');
+	}
+
+	static getActiveSnapshot () {
+		return Array.from(leitnerSimulator);
 	}
 
 	static getDateEnd () {

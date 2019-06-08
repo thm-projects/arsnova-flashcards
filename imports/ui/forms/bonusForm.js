@@ -3,6 +3,7 @@ import {BonusForm} from "../../api/bonusForm";
 import "./bonusForm.html";
 import {Meteor} from "meteor/meteor";
 import {PomodoroTimer} from "../../api/pomodoroTimer";
+import {LeitnerProgress} from "../../api/leitnerProgress";
 
 /*
 * ############################################################################
@@ -186,6 +187,8 @@ Template.bonusFormSimulatorSnapshots.onRendered(function () {
 	$('#cardsetLeitnerSimulatorModal').on('show.bs.modal', function () {
 		Session.set('activeSimulatorSnapshotDate', 0);
 		BonusForm.createSnapshotDates();
+		BonusForm.initializeSimulatorData();
+		LeitnerProgress.updateGraph();
 	});
 });
 
@@ -204,5 +207,7 @@ Template.bonusFormSimulatorSnapshots.helpers({
 Template.bonusFormSimulatorSnapshots.events({
 	'click .snapshot-date': function (event) {
 		Session.set('activeSimulatorSnapshotDate', $(event.target).data('id'));
+		BonusForm.initializeSimulatorData();
+		LeitnerProgress.updateGraph();
 	}
 });
