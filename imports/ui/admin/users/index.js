@@ -38,6 +38,7 @@ Template.admin_users.helpers({
 		return {
 			showNavigationRowsPerPage: false,
 			rowsPerPage: 20,
+			useFontAwesome: false,
 			fields: [
 				{
 					key: 'username', label: TAPi18n.__('admin.user.header'),
