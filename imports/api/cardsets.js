@@ -819,6 +819,12 @@ Meteor.methods({
 					'transcriptBonus.minimumSubmissions': minimumSubmissions
 				}
 			});
+			TranscriptBonus.update({"cardset_id": id}, {
+				$set: {
+					"deadline": deadlineSubmission,
+					"deadlineEditing": deadlineEditing
+				}
+			}, {multi: true});
 			return cardset._id;
 		} else {
 			throw new Meteor.Error("not-authorized");
