@@ -732,13 +732,13 @@ Template.registerHelper("getMomentsDateShort", function (date) {
 	return Utilities.getMomentsDateShort(date);
 });
 
-Template.registerHelper("getTranscriptSubmissions", function (cardset) {
+Template.registerHelper("getTranscriptSubmissions", function (data) {
 	if (Route.isMyBonusTranscripts() || Route.isTranscriptBonus()) {
-		let transcriptBonus = TranscriptBonus.findOne({card_id: cardset._id}, {fields: {cardset_id: 1}});
-		cardset = Cardsets.findOne({_id: transcriptBonus.cardset_id});
+		let transcriptBonus = TranscriptBonus.findOne({card_id: data._id, user_id: data.owner}, {fields: {user_id: 1, cardset_id: 1}});
+		return TranscriptBonus.find({cardset_id: transcriptBonus.cardset_id, user_id: transcriptBonus.user_id}).count();
 	}
-	if (cardset.transcriptBonus !== undefined && cardset.transcriptBonus.stats !== undefined) {
-		return cardset.transcriptBonus.stats.submissions;
+	if (data.transcriptBonus !== undefined && data.transcriptBonus.stats !== undefined) {
+		return data.transcriptBonus.stats.submissions;
 	} else {
 		return 0;
 	}
