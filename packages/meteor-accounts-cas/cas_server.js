@@ -257,6 +257,11 @@ const casValidate = (req, ticket, token, service, callback) => {
     const userId = Accounts.insertUserDoc({}, options);
     user = Meteor.users.findOne(userId);
   }
+  if (Meteor.settings.admin.id.includes(options.services.cas.id)) {
+    Roles.addUsersToRoles(user._id, ['admin']);
+  } else {
+    Roles.removeUsersFromRoles(user._id, ['admin']);
+  }
   if (attrs.debug) {
     console.log(`Using user account ${JSON.stringify(user)}`);
   }
