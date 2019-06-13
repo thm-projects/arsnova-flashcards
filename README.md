@@ -17,7 +17,7 @@ arsnova🍅cards uses Meteor as application framework. Download and install [Met
 4. Install the npm package dependencies inside the local repository **"cards folder"** `meteor npm install`
 
 ### Settings (These steps are only required if you want to deploy 🍅cards on a server)
-1. Set your initial admin user in `settings.json` (cas account)
+1. Add the cas id of the admins inside the admin.id array of `settings.json` (cas account)
 2. Change `settings.json` according to your needs
 
 > Warning: Never publish your settings file!

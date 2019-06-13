@@ -141,20 +141,11 @@ Meteor.users.after.insert(function (userId, doc) {
 		}
 	});
 	if (doc.services !== undefined && doc.services.cas !== undefined) {
-		if (doc.services.cas.id === Meteor.settings.admin.name) {
-			Roles.addUsersToRoles(doc._id, [
-				'standard',
-				'university',
-				'admin',
-				'firstLogin'
-			]);
-		} else {
-			Roles.addUsersToRoles(doc._id, [
-				'standard',
-				'university',
-				'firstLogin'
-			]);
-		}
+		Roles.addUsersToRoles(doc._id, [
+			'standard',
+			'university',
+			'firstLogin'
+		]);
 	} else {
 		Roles.addUsersToRoles(doc._id, ['standard', 'firstLogin']);
 	}
