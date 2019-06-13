@@ -6,6 +6,7 @@ import {WebNotifier} from "./sendwebpush.js";
 import {Bonus} from "../imports/api/bonus";
 import {AdminSettings} from "../imports/api/adminSettings.js";
 import {LeitnerUtilities} from "../imports/api/leitner";
+import {WebPushSubscriptions} from "../imports/api/webPushSubscriptions";
 
 /** Function checks if mail notifications are globally disabled by the admin
  *  @returns {boolean} - Mail notifications are globally enabled / disabled
@@ -152,7 +153,7 @@ Meteor.methods({
 	},
 	prepareWebpush: function (cardset, user, isNewcomer = false) {
 		if (Meteor.isServer) {
-			if ((Bonus.isInBonus(cardset._id, user._id) || user.webNotification) && !isNewcomer) {
+			if (WebPushSubscriptions.isPushEnabled() && (Bonus.isInBonus(cardset._id, user._id) || user.webNotification) && !isNewcomer) {
 				try {
 					let web = new WebNotifier();
 					if (Meteor.settings.debug.leitner) {

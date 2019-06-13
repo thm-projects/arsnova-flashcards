@@ -15,6 +15,12 @@ Template.admin_settings.events({
 	'click #disableMail': function () {
 		Meteor.call("updateMailSettings", false);
 	},
+	'click #enablePush': function () {
+		Meteor.call("updatePushSettings", true);
+	},
+	'click #disablePush': function () {
+		Meteor.call("updatePushSettings", false);
+	},
 	'click #setNotificationTarget': function (evt, tmpl) {
 		Meteor.call('changeNotificationTarget', tmpl.find('#notificationTarget').value, function (error, result) {
 			if (error || result === false) {
@@ -68,6 +74,9 @@ Template.admin_settings.helpers({
 	},
 	isMailEnabled: function () {
 		return AdminSettings.findOne({name: "mailSettings"}).enabled;
+	},
+	isPushEnabled: function () {
+		return AdminSettings.findOne({name: "pushSettings"}).enabled;
 	},
 	getNotificationTargetText: function () {
 		let user = Meteor.users.findOne({_id: AdminSettings.findOne({name: "testNotifications"}).target});
