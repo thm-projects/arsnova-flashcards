@@ -20,7 +20,9 @@
                                 <th>{{_ "panel-body.birthname"}}</th>
                                 <th>{{_ "panel-body.givenname"}}</th>
                                 <th>{{_ "panel-body.email"}}</th>
-                                <th>{{_ "confirmLearn-form.notification"}}</th>
+                                {{#if isNotificationEnabled}}
+                                    <th>{{_ "confirmLearn-form.notification"}}</th>
+                                {{/if}}
                                 <th>{{_ "leitnerProgress.box" number=1}}</th>
                                 <th>{{_ "leitnerProgress.box" number=2}}</th>
                                 <th>{{_ "leitnerProgress.box" number=3}}</th>
@@ -38,9 +40,11 @@
                                 <td>
                                     {{this.email}}
                                 </td>
-                                <td>
-                                    {{{getNotificationStatus this}}}
-                                </td>
+                                {{#if isNotificationEnabled}}
+                                    <td>
+                                        {{{getNotificationStatus this}}}
+                                    </td>
+                                {{/if}}
                                 <td>
                                     {{this.box1}}
                                 </td>

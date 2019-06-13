@@ -74,30 +74,40 @@
                                 <span id="errorGivenName" class="help-block name"></span>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">{{_ "confirmLearn-form.notification"}}</label>
-                            <form>
-                                <fieldset>
-                                    <div class="col-md-9 form-group notifications-form-group">
-                                        <div class="col-sm-6" style="{{#if isSocialLogin}}display: none;{{/if}}">
-                                            <label class="checkbox-inline" for="mailNotificationCheckbox">
-                                                <input type="checkbox" name="notification"
-                                                       id="mailNotificationCheckbox"
-                                                    {{getMailNotifications}}>
-                                                {{_ "confirmLearn-form.mailNotificationCheckbox"}}
-                                            </label>
+                        {{#if isNotificationEnabled}}
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">{{_ "confirmLearn-form.notification"}}</label>
+                                <form>
+                                    <fieldset>
+                                        <div class="col-md-9 form-group notifications-form-group">
+                                            {{#if isMailEnabled}}
+                                                <div class="col-sm-6"
+                                                     style="{{#if isSocialLogin}}display: none;{{/if}}">
+                                                    <label class="checkbox-inline" for="mailNotificationCheckbox">
+                                                        <input type="checkbox" name="notification"
+                                                               id="mailNotificationCheckbox"
+                                                            {{getMailNotifications}}>
+                                                        {{_ "confirmLearn-form.mailNotificationCheckbox"}}
+                                                    </label>
+                                                </div>
+                                            {{/if}}
+                                            {{#if isPushEnabled}}
+                                                <div class="col-sm-6">
+                                                    <label class="checkbox-inline" for="webNotificationCheckbox">
+                                                        <input type="checkbox" name="notification"
+                                                               id="webNotificationCheckbox"
+                                                            {{getWebNotifications}}>
+                                                        {{_ "confirmLearn-form.webNotificationCheckbox"}}
+                                                    </label>
+                                                </div>
+                                            {{/if}}
                                         </div>
-                                        <div class="col-sm-6">
-                                            <label class="checkbox-inline" for="webNotificationCheckbox">
-                                                <input type="checkbox" name="notification" id="webNotificationCheckbox"
-                                                    {{getWebNotifications}}>
-                                                {{_ "confirmLearn-form.webNotificationCheckbox"}}
-                                            </label>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        {{else}}
+                            <br>
+                        {{/if}}
                         <button id="profileCancel" type="button"
                                 class="btn btn-default btn-raised  profileSave"
                                 data-id="disabled">{{_

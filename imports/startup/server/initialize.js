@@ -405,6 +405,13 @@ Meteor.startup(function () {
 		});
 	}
 
+	if (!AdminSettings.findOne({name: "pushSettings"})) {
+		AdminSettings.insert({
+			name: "pushSettings",
+			enabled: true
+		});
+	}
+
 	if (!AdminSettings.findOne({name: "wordcloudPomodoroSettings"})) {
 		AdminSettings.insert({
 			name: "wordcloudPomodoroSettings",

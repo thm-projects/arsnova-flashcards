@@ -2055,7 +2055,12 @@
       "visible_invalid": "Das Profil muss bei der Wahl der Rollen öffentlich sein!"
     },
     "mail-settings": {
-      "mail-settings": "Versenden von E-Mail-Benachrichtigungen",
+      "title": "Versenden von E-Mail-Benachrichtigungen",
+      "enabled": "Aktiviert",
+      "disabled": "Deaktiviert"
+    },
+    "push-settings": {
+      "title": "Versenden von Push-Benachrichtigungen",
       "enabled": "Aktiviert",
       "disabled": "Deaktiviert"
     }
