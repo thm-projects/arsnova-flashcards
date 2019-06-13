@@ -4,20 +4,8 @@ import {Cardsets} from "../imports/api/cardsets";
 import {MailNotifier} from "./sendmail.js";
 import {WebNotifier} from "./sendwebpush.js";
 import {Bonus} from "../imports/api/bonus";
-import {AdminSettings} from "../imports/api/adminSettings.js";
 import {LeitnerUtilities} from "../imports/api/leitner";
-import {WebPushSubscriptions} from "../imports/api/webPushSubscriptions";
-
-/** Function checks if mail notifications are globally disabled by the admin
- *  @returns {boolean} - Mail notifications are globally enabled / disabled
- * */
-function mailsEnabled() {
-	if (!Meteor.isServer) {
-		throw new Meteor.Error("not-authorized");
-	} else {
-		return AdminSettings.findOne({name: "mailSettings"}).enabled;
-	}
-}
+import {ServerSettings} from "../imports/api/settings";
 
 /** Function gets called when the learning-phase ended and excludes the cardset from the leitner algorithm
  *  @param {Object} cardset - The cardset from the active learning-phase
@@ -132,7 +120,7 @@ Meteor.methods({
 	},
 	prepareMail: function (cardset, user, isReset = false, isNewcomer = false) {
 		if (Meteor.isServer) {
-			if (user.mailNotification && mailsEnabled() && !isNewcomer && Roles.userIsInRole(user._id, ['admin', 'editor', 'university', 'lecturer', 'pro']) && !Roles.userIsInRole(user._id, ['blocked', 'firstLogin'])) {
+			if (user.mailNotification && ServerSettings.isMailEnabled() && !isNewcomer && Roles.userIsInRole(user._id, ['admin', 'editor', 'university', 'lecturer', 'pro']) && !Roles.userIsInRole(user._id, ['blocked', 'firstLogin'])) {
 				try {
 					if (isReset) {
 						if (Meteor.settings.debug.leitner) {
@@ -153,7 +141,7 @@ Meteor.methods({
 	},
 	prepareWebpush: function (cardset, user, isNewcomer = false) {
 		if (Meteor.isServer) {
-			if (WebPushSubscriptions.isPushEnabled() && (Bonus.isInBonus(cardset._id, user._id) || user.webNotification) && !isNewcomer) {
+			if (ServerSettings.isPushEnabled() && (Bonus.isInBonus(cardset._id, user._id) || user.webNotification) && !isNewcomer) {
 				try {
 					let web = new WebNotifier();
 					if (Meteor.settings.debug.leitner) {

@@ -33,8 +33,10 @@
                         <th>{{_ "panel-body.givenname"}}</th>
                         <th>{{_ "panel-body.email"}}
                         </th>
-                        <th>{{_ "confirmLearn-form.notification"}}
-                        </th>
+                        {{#if isNotificationEnabled}}
+                            <th>{{_ "confirmLearn-form.notification"}}
+                            </th>
+                        {{/if}}
                         <th>{{_ "leitnerProgress.box" number=1}} [{{this.learningInterval.[0]}}]
                         </th>
                         <th>{{_ "leitnerProgress.box" number=2}} [{{this.learningInterval.[1]}}]
@@ -54,7 +56,9 @@
                             <td>{{this.birthname}}</td>
                             <td>{{this.givenname}}</td>
                             <td><a href="mailto:{{this.email}}">{{this.email}}</a></td>
-                            <td>{{{getNotificationStatus this}}}</td>
+                            {{#if isNotificationEnabled}}
+                                <td>{{{getNotificationStatus this}}}</td>
+                            {{/if}}
                             <td>{{this.box1}}</td>
                             <td>{{this.box2}}</td>
                             <td>{{this.box3}}</td>

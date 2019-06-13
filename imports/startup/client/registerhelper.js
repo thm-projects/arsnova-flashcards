@@ -29,6 +29,7 @@ import {MainNavigation} from "../../api/mainNavigation";
 import {BarfyStarsConfig} from "../../api/barfyStars.js";
 import {Utilities} from "../../api/utilities";
 import {TranscriptBonus} from "../../api/transcriptBonus";
+import {ServerSettings} from "../../api/settings";
 
 Meteor.subscribe("collegesCourses");
 
@@ -194,6 +195,22 @@ Template.registerHelper('getNavigationName', function (name = undefined) {
 	} else {
 		return Route.getNavigationName(name);
 	}
+});
+
+Template.registerHelper('isNotificationEnabled', function () {
+	return ServerSettings.isPushEnabled() || ServerSettings.isMailEnabled();
+});
+
+Template.registerHelper('isNotificationEnabled', function () {
+	return ServerSettings.isPushEnabled() || ServerSettings.isMailEnabled();
+});
+
+Template.registerHelper('isMailEnabled', function () {
+	return ServerSettings.isMailEnabled();
+});
+
+Template.registerHelper('isPushEnabled', function () {
+	return ServerSettings.isPushEnabled();
 });
 
 Template.registerHelper('isPublicRoute', function () {

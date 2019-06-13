@@ -1,6 +1,7 @@
 import {Cardsets} from "./cardsets";
 import {Meteor} from "meteor/meteor";
 import {Workload} from "./learned";
+import {ServerSettings} from "./settings";
 
 export let Bonus = class Bonus {
 	static isInBonus (cardset_id, user_id = undefined) {
@@ -33,14 +34,14 @@ export let Bonus = class Bonus {
 
 	static getNotificationStatus (user, isCSVExport = false) {
 		let notifications = "";
-		if (user.mailNotification) {
+		if (ServerSettings.isMailEnabled() && user.mailNotification) {
 			if (isCSVExport) {
 				notifications += TAPi18n.__('leitnerProgress.notification.mail', {}, "de");
 			} else {
 				notifications += "<i class='fa fa-envelope'> " + TAPi18n.__('leitnerProgress.notification.mail') + "</i>";
 			}
 		}
-		if (user.webNotification) {
+		if (ServerSettings.isPushEnabled() && user.webNotification) {
 			if (notifications !== "") {
 				notifications += " & ";
 			}

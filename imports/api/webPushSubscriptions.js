@@ -1,7 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 import webPush from 'web-push';
-import {AdminSettings} from "./adminSettings";
+import {ServerSettings} from "./settings";
 
 export const WebPushSubscriptions = new Mongo.Collection("webPushSubscriptions");
 
@@ -13,7 +13,7 @@ export let WebPushNotifications = class WebPushNotifications {
 	 * Meteor-method addWebPushSubscription.
 	 */
 	static subscribeForPushNotification () {
-		if (this.isPushEnabled()) {
+		if (ServerSettings.isPushEnabled()) {
 			try {
 				if (navigator.serviceWorker !== undefined) {
 					navigator.serviceWorker.getRegistration()
@@ -47,10 +47,6 @@ export let WebPushNotifications = class WebPushNotifications {
 				console.log(error);
 			}
 		}
-	}
-
-	static isPushEnabled () {
-		return AdminSettings.findOne({name: "pushSettings"}).enabled;
 	}
 };
 

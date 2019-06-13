@@ -6,6 +6,7 @@ import {Session} from "meteor/session";
 import {ColorThemes} from "../../../api/theme";
 import {BertAlertVisuals} from "../../../api/bertAlertVisuals";
 import "./settings.html";
+import {ServerSettings} from "../../../api/settings";
 
 /*
  * ############################################################################
@@ -229,8 +230,14 @@ Template.profileSettings.events({
 		// Name validation
 		let user_id = Meteor.userId();
 		if (validEmail && validBirthName && validGivenName) {
-			let mailNotification = document.getElementById('mailNotificationCheckbox').checked;
-			let webNotification = document.getElementById('webNotificationCheckbox').checked;
+			let mailNotification = Meteor.user().mailNotification;
+			if (ServerSettings.isMailEnabled()) {
+				mailNotification = document.getElementById('mailNotificationCheckbox').checked;
+			}
+			let webNotification = Meteor.user().webNotification;
+			if (ServerSettings.isPushEnabled()) {
+				webNotification = document.getElementById('webNotificationCheckbox').checked;
+			}
 			$('#inputEmailValidation').val('');
 			$('#inputEmailValidationForm').addClass("hidden");
 			Session.set("profileSettingsSave", true);

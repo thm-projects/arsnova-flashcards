@@ -1,6 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {AdminSettings} from "../../../api/adminSettings.js";
 import "./settings.html";
+import {ServerSettings} from "../../../api/settings";
 
 Template.admin_settings.events({
 	'click #enableWordcloudPomodoro': function () {
@@ -73,10 +74,10 @@ Template.admin_settings.helpers({
 		return AdminSettings.findOne({name: "wordcloudPomodoroSettings"}).enabled;
 	},
 	isMailEnabled: function () {
-		return AdminSettings.findOne({name: "mailSettings"}).enabled;
+		return ServerSettings.isMailEnabled();
 	},
 	isPushEnabled: function () {
-		return AdminSettings.findOne({name: "pushSettings"}).enabled;
+		return ServerSettings.isPushEnabled();
 	},
 	getNotificationTargetText: function () {
 		let user = Meteor.users.findOne({_id: AdminSettings.findOne({name: "testNotifications"}).target});
