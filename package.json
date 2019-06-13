@@ -15,7 +15,7 @@
     "react": "^15.0.2",
     "screenfull": "^4.0.0",
     "sweetalert2": "^8.2.3",
-    "web-push": "^3.3.3",
+    "web-push": "^3.3.5",
     "wordcloud": "^1.1.0",
     "wtc-barfystars": "^0.2.2",
     "wtc-controller-element": "^1.1.1",
