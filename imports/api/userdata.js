@@ -207,36 +207,30 @@ Meteor.users.deny({
 });
 
 Meteor.methods({
-	updateUsersVisibility: function (visible) {
+	updateUsersVisibility: function (visible, id) {
 		check(visible, Boolean);
+		check(id, String);
 
-		Meteor.users.update(Meteor.userId(), {
+		if (!UserPermissions.gotBackendAccess()) {
+			id = Meteor.userId();
+		}
+		Meteor.users.update(id, {
 			$set: {
 				visible: visible
 			}
 		});
 	},
-	updateUsersEmail: function (email) {
+	updateUsersEmail: function (email, id) {
 		check(email, String);
-
-
-		Meteor.users.update(Meteor.userId(), {
+		check(id, String);
+		if (!UserPermissions.gotBackendAccess()) {
+			id = Meteor.userId();
+		}
+		Meteor.users.update(id, {
 			$set: {
 				email: email
 			}
 		});
-	},
-	updateUsersName: function (name, id) {
-		check(name, String);
-		check(id, String);
-
-		if (UserPermissions.gotBackendAccess()) {
-			Meteor.users.update(id, {
-				$set: {
-					"profile.name": name
-				}
-			});
-		}
 	},
 	updateUsersTitle: function (title, id) {
 		check(title, String);

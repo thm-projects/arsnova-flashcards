@@ -198,9 +198,7 @@ Template.admin_user.events({
 				$('#helpEditUserBlockedtextAdmin').css('color', '#b94a48');
 			}
 		}
-		if ((Session.get('userBlocked') && $('#editUserBlockedtextAdmin').val() !== "" || !Session.get('userBlocked')) &&
-			(check === true || email === "") && (pro && visible || !pro) &&
-			(lecturer && visible || !lecturer)) {
+		if ((Session.get('userBlocked') && $('#editUserBlockedtextAdmin').val() !== "" || !Session.get('userBlocked'))) {
 			if ('true' === tmpl.find('#editUserProAdmin > .active > input').value) {
 				Meteor.call('updateRoles', user_id, 'pro');
 			} else {
@@ -235,10 +233,12 @@ Template.admin_user.events({
 			Meteor.call('updateUser', user_id, visible, email, blockedtext);
 			Meteor.call('updateUsersTitle', title, user_id);
 			Meteor.call('updateUsersBirthName', birthname, user_id);
+			Meteor.call('updateUsersEmail', email, user_id);
 			Meteor.call('updateUsersGivenName', givenname, user_id);
 			Meteor.call('updateUsersProfileState',
 				(email !== "" && birthname !== "" && givenname !== "") ? true : false,
 				user_id);
+			Meteor.call('updateUsersVisibility', visible, user_id);
 			window.history.go(-1);
 		}
 	},
