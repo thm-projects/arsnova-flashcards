@@ -73,10 +73,10 @@ Template.profileSettings.onCreated(function () {
 
 Template.profileSettings.events({
 	"click #profilepublicoption1": function () {
-		Meteor.call("updateUsersVisibility", true);
+		Meteor.call("updateUsersVisibility", true, Meteor.userId());
 	},
 	"click #profilepublicoption2": function () {
-		Meteor.call("updateUsersVisibility", false);
+		Meteor.call("updateUsersVisibility", false, Meteor.userId());
 	},
 	"keyup #inputEmail": function () {
 		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
@@ -242,7 +242,7 @@ Template.profileSettings.events({
 			$('#inputEmailValidationForm').addClass("hidden");
 			Session.set("profileSettingsSave", true);
 			Session.set("profileSettingsCancel", true);
-			Meteor.call("updateUsersEmail", email);
+			Meteor.call("updateUsersEmail", email, user_id);
 			Meteor.call("updateUsersBirthName", birthname, user_id);
 			Meteor.call("updateUsersGivenName", givenname, user_id);
 			Meteor.call("updateUsersProfileState", true, user_id);
