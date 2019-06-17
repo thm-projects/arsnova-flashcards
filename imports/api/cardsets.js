@@ -461,7 +461,9 @@ Meteor.methods({
 						cardType: 1,
 						difficulty: 1,
 						learningActive: 1,
-						transcriptBonus: 1
+						transcriptBonus: 1,
+						wordcloud: 1,
+						lecturerAuthorized: 1
 					}
 				}).fetch();
 			}

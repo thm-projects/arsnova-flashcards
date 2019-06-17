@@ -417,6 +417,12 @@ Template.registerHelper("getLecturerAuthorizedLabel", function (cardset) {
 	}
 });
 
+Template.registerHelper("getWordcloudLabel", function (cardset) {
+	if (cardset.wordcloud !== undefined && cardset.wordcloud === true) {
+		return '<span class="label label-wordcloud" data-id="wordcloud" title="' + TAPi18n.__('serverStatistics.modal.table.header.wordcloud.default') + '">' + Icons.labels("wordcloud") + '</span>';
+	}
+});
+
 Template.registerHelper("getTranscriptBonusLabel", function (cardset) {
 	if ((cardset.transcriptBonus !== undefined && cardset.transcriptBonus.enabled) || Route.isMyBonusTranscripts() || Route.isTranscriptBonus() || Route.isPresentationTranscriptBonus() || Route.isPresentationTranscriptBonusCardset()) {
 		return '<span class="label label-transcript-bonus" data-id="bonus-transcript" title="' + TAPi18n.__('cardset.transcriptBonus.long') + '">' + TAPi18n.__('cardset.transcriptBonus.short') + '</span>';

@@ -55,7 +55,8 @@ let topNavigation = {
 };
 
 let labels = {
-	"lecturerAuthorized": "<i class='fa fa-graduation-cap'></i>"
+	"lecturerAuthorized": "<i class='fa fa-graduation-cap'></i>",
+	"wordcloud": "<i class='fa fa-cloud'></i>"
 };
 
 //Only used for the active route display on mobile. Will be carried over to desktop after the main template got refactored.
