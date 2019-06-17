@@ -250,6 +250,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					if (removeCardCount > 0 && boxActiveCardCap[k] > 0) {
 						if (boxActiveCardCap[k] >= removeCardCount) {
 							boxActiveCardCap[k] -= removeCardCount;
+							removeCardCount = 0;
 						} else {
 							removeCardCount -= boxActiveCardCap[k];
 							boxActiveCardCap[k] = 0;
