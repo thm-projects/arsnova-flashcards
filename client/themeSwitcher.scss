@@ -82,6 +82,8 @@ $themes: (
     $button_navbar_collapse_text: map-get($map, "button_navbar_collapse_text");
     $lecturer_authorized_background:  map-get($map, "lecturer_authorized_background");
     $lecturer_authorized_text:  map-get($map, "lecturer_authorized_text");
+    $wordcloud_label_background:  map-get($map, "wordcloud_label_background");
+    $wordcloud_label_text:  map-get($map, "wordcloud_label_text");
     $card_counter_background:  map-get($map, "card_counter_background");
     $card_counter_text:  map-get($map, "card_counter_text");
     $transcript_counter_background:  map-get($map, "transcript_counter_background");
@@ -2758,6 +2760,14 @@ $themes: (
       color: $lecturer_authorized_text !important;
       i:hover {
         color: $lecturer_authorized_text !important;
+      }
+    }
+
+    .label-wordcloud {
+      background-color: $wordcloud_label_background !important;
+      color: $wordcloud_label_text !important;
+      i:hover {
+        color: $wordcloud_label_text !important;
       }
     }
 

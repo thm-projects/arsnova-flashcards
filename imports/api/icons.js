@@ -53,6 +53,8 @@ export let Icons = class Icons {
 		switch (type) {
 			case "lecturerAuthorized":
 				return config.labels.lecturerAuthorized;
+			case "wordcloud":
+				return config.labels.wordcloud;
 			default:
 				return "";
 		}
