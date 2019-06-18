@@ -53,18 +53,10 @@
                         {{#if isPublicRoute}}
                             {{> filterIndexItemBottomBonusStats}}
                         {{/if}}
-                        {{#if isPersonalRoute}}
-                            {{> filterIndexItemBottomBonusStats}}
-                            {{> filterIndexItemBottomEdit}}
-                            {{> filterIndexItemBottomDelete}}
-                            {{> filterIndexItemBottomExport}}
-                        {{/if}}
-                        {{#if isAllRoute}}
-                            {{> filterIndexItemBottomBonusStats}}
-                            {{> filterIndexItemBottomEdit}}
-                            {{> filterIndexItemBottomDelete}}
-                            {{> filterIndexItemBottomExport}}
-                        {{/if}}
+                        {{> filterIndexItemBottomBonusStats}}
+                        {{> filterIndexItemBottomEdit}}
+                        {{> filterIndexItemBottomDelete}}
+                        {{> filterIndexItemBottomExport}}
                     {{/unless}}
                     {{> filterIndexItemBottomCollapse}}
                 </div>
