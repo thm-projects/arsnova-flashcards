@@ -51,7 +51,8 @@ let topNavigation = {
 	"displayMode": {
 		"wordcloud": "<i class='fas fa-cloud'></i>",
 		"list": "<i class='fas fa-table'></i>"
-	}
+	},
+	"collapse": "<i class='fas fa-hamburger'></i>"
 };
 
 let labels = {

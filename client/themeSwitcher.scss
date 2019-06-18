@@ -130,6 +130,10 @@ $themes: (
     $navbar_background: map-get($map, "navbar_background");
     $navbar_text: map-get($map, "navbar_text");
     $navbar_text_hover: map-get($map, "navbar_text_hover");
+    $navbar_collapse_background: map-get($map, "navbar_collapse_background");
+    $navbar_collapse_text: map-get($map, "navbar_collapse_text");
+    $navbar_collapse_background_hover: map-get($map, "navbar_collapse_background_hover");
+    $navbar_collapse_text_hover: map-get($map, "navbar_collapse_text_hover");
     //navbar all
     $navbar_all_background: map-get($map, "navbar_all_background");
     $navbar_all_background_hover: map-get($map, "navbar_all_background_hover");
@@ -701,6 +705,16 @@ $themes: (
     $use_cases_table_header_background: map-get($map, "use_cases_table_header_background");
     $use_cases_table_header_text: map-get($map, "use_cases_table_header_text");
 
+
+    .navbar-toggle {
+      background-color: $navbar_collapse_background !important;
+      color: $navbar_collapse_text !important;
+    }
+
+    .navbar-toggle:hover, .navbar-toggle:focus {
+      background-color: $navbar_collapse_background_hover !important;
+      color: $navbar_collapse_text_hover !important;
+    }
 
     #admin_user_update {
       .btn.active {
@@ -1623,16 +1637,6 @@ $themes: (
 
     .nav-tabs {
       background-color: $primary !important;
-    }
-
-    .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-      background-color: transparent !important;
-    }
-
-    .navbar-toggle {
-      i {
-        background-color: midnightblue !important;
-      }
     }
 
     .info {
