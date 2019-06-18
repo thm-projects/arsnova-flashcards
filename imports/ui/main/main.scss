@@ -258,7 +258,7 @@ body {
   text-transform: unset !important;
 }
 
-.btn-success, .btn-danger, .btn-warning, .btn-info, .label-bonus, .learnBtn, .bonusBtn, .presentationBtn, .label-private, .label-edu, .label-free, .label-pro, #filter-nav-wrapper .navbar-text, #filter-nav-wrapper .dropdown-toggle, .panel-heading.info-tab, #collapseLearningPhaseInfoButton, #collapseBonusTranscriptInfoButton, .deleteAllCardsBtn, .newCardBtn, .markdeep-help, .markdeep-translate.pressed, .pomodoroTimer h2, #searchResults h4, .footer.icon-container .glyphicon {
+.btn-success, .btn-danger, .btn-warning, .btn-info, .label-bonus, .learnBtn, .bonusBtn, .presentationBtn, .label-private, .label-edu, .label-free, .label-pro, #filter-nav-wrapper .navbar-text, #filter-nav-wrapper .dropdown-toggle, .panel-heading.info-tab, #collapseLearningPhaseInfoButton, #collapseBonusTranscriptInfoButton, .deleteAllCardsBtn, .newCardBtn, .markdeep-help, .markdeep-translate.pressed, .pomodoroTimer h2, #searchResults h4 {
   text-shadow: $default_text_shadow;
 }
 
@@ -728,7 +728,7 @@ th {
     padding-right: 0;
   }
 
-  td .fa, .glyphicon {
+  td .fa {
     margin-left: 5px;
   }
 }

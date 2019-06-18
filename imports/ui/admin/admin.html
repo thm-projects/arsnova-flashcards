@@ -57,7 +57,7 @@
                                            class="btn btn-info"
                                            data-toggle="collapse" data-target="#thm-top-navigation">
                                             {{_ "notifications.viewAll"}} <i
-                                                class="glyphicon glyphicon-circle-arrow-right"></i>
+                                                class="fas fa-arrow-alt-circle-right"></i>
                                         </a>
                                     </div>
                                 </ul>
@@ -69,7 +69,7 @@
                                     {{getUsername}}</a></li>
                             {{/if}}
                             <li><a href="#" id="logout_admin"><i
-                                    class="glyphicon glyphicon-log-out" style="font-size:150%; color:orange"></i></a>
+                                    class="fas fa-sign-out-alt" style="font-size:150%; color:orange"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -99,7 +99,7 @@
                     <li>
                         <a class="{{#if isActiveRoute regex='admin_learningStatistics'}}active{{/if}}"
                            href="{{pathFor route='admin_learningStatistics'}}">
-                            <i class="glyphicon glyphicon-stats"></i>
+                            <i class="far fa-chart-bar"></i>
                             <span>{{_ "admin.learningStatistics"}}</span>
                         </a>
                     </li>

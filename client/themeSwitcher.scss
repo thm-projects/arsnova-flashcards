@@ -953,28 +953,28 @@ $themes: (
       border-color: $button_background_hover !important;
     }
 
-    .material-icons.pressed, .fa.pressed, .glyphicon.pressed, .card-button.pressed, .material-icons.pressed:hover, .glyphicon.pressed:hover, .card-button.pressed:hover,
-    .material-icons.pressed:focus, .glyphicon.pressed:focus, .card-button.pressed:focus {
+    .material-icons.pressed, .fa.pressed, .card-button.pressed, .material-icons.pressed:hover, .card-button.pressed:hover,
+    .material-icons.pressed:focus, .card-button.pressed:focus {
       background-color: lighten($thm_gray, 10%);
       color: $white;
     }
 
-    .glyphicon-log-out.pressed, .glyphicon-fullscreen.pressed {
+    .fa-sign-out-alt.pressed, .toggleFullscreen.pressed {
       background-color: $thm_orange;
       border-color: $thm_orange;
       color: $white;
     }
 
-    .glyphicon-log-out.pressed:hover, .glyphicon-fullscreen.pressed:hover,
-    .glyphicon-log-out.pressed:focus, .glyphicon-fullscreen.pressed:focus {
+    .fa-sign-out-alt.pressed:hover, .toggleFullscreen.pressed:hover,
+    .fa-sign-out-alt.pressed:focus, .toggleFullscreen.pressed:focus {
       background-color: $button_background_hover;
       border-color: $button_background_hover;
       color: $button_text_hover;
     }
 
     #markdeepNavigation {
-      .material-icons.pressed, .fa.pressed, .glyphicon.pressed, .card-button.pressed, .material-icons.pressed:hover, .glyphicon.pressed:hover, .card-button.pressed:hover,
-      .material-icons.pressed:focus, .glyphicon.pressed:focus, .card-button.pressed:focus {
+      .material-icons.pressed, .fa.pressed, .card-button.pressed, .material-icons.pressed:hover,
+      .material-icons.pressed:focus, .card-button.pressed:focus {
         background-color: $thm_orange;
         border-color: $thm_orange;
         color: $white;
@@ -1264,7 +1264,7 @@ $themes: (
       color: $cardset_footer_navigation_presentation_text_hover !important;
     }
 
-    .glyphicon-fullscreen {
+    .toggleFullscreen {
       background-color: $cardset_footer_navigation_presentation_background;
       color: $cardset_footer_navigation_presentation_text;
     }
@@ -2701,7 +2701,7 @@ $themes: (
       color: $storm_dust_approx !important;
     }
 
-    .glyphicon-plus {
+    .fa-plus {
       color: $white !important;
     }
 
@@ -3464,7 +3464,7 @@ $themes: (
       background-color: $card_navigation_active_background_hover !important
     }
 
-    .modal-icon, .modal-icon .fa, .modal-icon .glyphicon {
+    .modal-icon, .modal-icon .fa, .modal-icon {
       color: $modal_icon !important;
     }
 

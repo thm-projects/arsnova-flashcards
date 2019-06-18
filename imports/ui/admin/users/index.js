@@ -129,7 +129,7 @@ Template.admin_users.helpers({
 					cellClass: 'edit',
 					sortable: false,
 					fn: function (value) {
-						return new Spacebars.SafeString("<a id='linkToAdminUser' class='editUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.edituser') + "' data-userid='" + value + "'><span class='flex-content'><i class='glyphicon glyphicon-edit'></i></span></a>");
+						return new Spacebars.SafeString("<a id='linkToAdminUser' class='editUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.edituser') + "' data-userid='" + value + "'><span class='flex-content'><i class='fas fa-edit'></i></span></a>");
 					}
 				},
 				{
@@ -141,7 +141,7 @@ Template.admin_users.helpers({
 							if ((Meteor.user()._id !== value) &&
 								(!Roles.userIsInRole(value, 'admin')))
 							{
-								return new Spacebars.SafeString("<a class='deleteUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deleteuser') + "' data-toggle='modal' data-target='#userConfirmModalAdmin'><span class='flex-content'><i class='glyphicon glyphicon-ban-circle'></i></span></a>");
+								return new Spacebars.SafeString("<a class='deleteUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deleteuser') + "' data-toggle='modal' data-target='#userConfirmModalAdmin'><span class='flex-content'><i class='fas fa-ban'></i></span></a>");
 							}
 						}
 
@@ -156,7 +156,7 @@ Template.admin_users.events({
 		event.preventDefault();
 		var user = this;
 
-		if (event.target.className === "deleteUserAdmin btn btn-xs btn-default" || event.target.className === "glyphicon glyphicon-ban-circle") {
+		if (event.target.className === "deleteUserAdmin btn btn-xs btn-default" || event.target.className === "fas fa-ban") {
 			Session.set('userId', user._id);
 		}
 		if (event.target.className === "mailtoUserAdmin btn btn-xs btn-default" || event.target.className === "fa fa-envelope") {

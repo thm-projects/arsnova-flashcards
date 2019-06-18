@@ -12,13 +12,13 @@ export let CardsetVisuals = class CardsetVisuals {
 
 	static changeCollapseElement (elementId) {
 		let iconId = elementId + "Icon";
-		if ($(iconId).hasClass("glyphicon-collapse-down")) {
-			$(iconId).removeClass("glyphicon-collapse-down");
-			$(iconId).addClass("glyphicon-collapse-up");
+		if ($(iconId).hasClass("fa-caret-square-down")) {
+			$(iconId).removeClass("fa-caret-square-down");
+			$(iconId).addClass("fa-caret-square-up");
 			$(elementId).slideDown();
 		} else {
-			$(iconId).removeClass("glyphicon-collapse-up");
-			$(iconId).addClass("glyphicon-collapse-down");
+			$(iconId).removeClass("fa-caret-square-up");
+			$(iconId).addClass("fa-caret-square-down");
 			$(elementId).slideUp();
 		}
 	}

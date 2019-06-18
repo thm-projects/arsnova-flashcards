@@ -167,7 +167,7 @@ Template.admin_notifications.helpers({
 					cellClass: 'delete',
 					sortable: false,
 					fn: function () {
-						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
+						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='fas fa-ban'></i></a>");
 					}
 				}
 			]
@@ -254,7 +254,7 @@ Template.admin_notifications.helpers({
 					cellClass: 'delete',
 					sortable: false,
 					fn: function () {
-						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
+						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='fas fa-ban'></i></a>");
 					}
 				}
 			]
@@ -373,7 +373,7 @@ Template.admin_notifications.helpers({
 					cellClass: 'delete',
 					sortable: false,
 					fn: function () {
-						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
+						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='fas fa-ban'></i></a>");
 					}
 				}
 			]
@@ -391,7 +391,7 @@ Template.admin_notifications.events({
 		var cardset = Cardsets.findOne({_id: id});
 		var user = Meteor.users.findOne({_id: id});
 
-		if (event.target.className === "deleteCardsetAdmin btn btn-xs btn-default" || event.target.className === "glyphicon glyphicon-ban-circle") {
+		if (event.target.className === "deleteCardsetAdmin btn btn-xs btn-default" || event.target.className === "fas fa-ban") {
 			Session.set('notificationId', notification._id);
 		}
 		if (event.target.className == "mailToReceiverAdmin btn btn-xs btn-default" ||

@@ -11,7 +11,7 @@ let footerNavigation = {
 };
 
 let landingPageNavigation = {
-	"mobileInfo": "<i class='glyphicon glyphicon-info-sign'></i>",
+	"mobileInfo": "<i class='fas fa-info-circle'></i>",
 	"wordcloud": "<i class='fa fa-cloud'></i>"
 };
 
@@ -63,7 +63,7 @@ let labels = {
 let miscNavigation = {
 	"cardset": "<i class='fa fa-archive'></i>&nbsp;",
 	"repetitorium": "<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;",
-	"progress": "<i class='glyphicon glyphicon-stats'></i>&nbsp;",
+	"progress": "<i class='far fa-chart-bar'></i>&nbsp;",
 	"toggleImpressum": "<i class='fa fa-medkit'></i>&nbsp;"
 };
 

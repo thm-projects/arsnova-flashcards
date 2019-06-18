@@ -6,7 +6,7 @@
                    "cardset.tooltip.editCardset"}}{{/if}}' data-id="{{this._id}}"
            data-toggle="modal"
            data-target="#setCardsetFormModal">
-            <i class="glyphicon glyphicon-edit" data-id="{{this._id}}"></i>
+            <i class="fas fa-edit" data-id="{{this._id}}"></i>
         </a>
         {{#unless isTranscriptRoute}}
             {{#if gotBackendAccess}}
@@ -20,7 +20,7 @@
             {{#if isRepetitorienFilterIndex}}
                 <a class="resultNavigationElement editShuffle"
                    title='{{_ "set-list.shuffleCardsets"}}' data-id="{{this._id}}">
-                    <i class="glyphicon glyphicon-plus editShuffle" data-id="{{this._id}}"></i>
+                    <i class="fas fa-plus editShuffle" data-id="{{this._id}}"></i>
                 </a>
             {{/if}}
         {{/unless}}
