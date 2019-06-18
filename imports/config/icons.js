@@ -1,11 +1,11 @@
 let footerNavigation = {
-	"agb": "<i class='fa fa-legal'></i>&nbsp;",
+	"agb": "<i class='fa fa-gavel'></i>&nbsp;",
 	"backToHome": "<i class='fa fa-home'></i>&nbsp;",
 	"datenschutz": "<i class='fa fa-lock'></i>&nbsp;",
 	"demo": "<i class='fa fa-tv'></i>&nbsp;",
 	"faq": "<i class='fa fa-question-circle'></i>&nbsp;",
 	"help": "<i class='fa fa-medkit'></i>&nbsp;",
-	"impressum": "<i class='fa fa-legal'></i>&nbsp;",
+	"impressum": "<i class='fa fa-gavel'></i>&nbsp;",
 	"learning": "<i class='fa fa-graduation-cap'></i>&nbsp;",
 	"statistics": "<i class='fa fa-folder-open'></i>&nbsp;"
 };

@@ -44,7 +44,7 @@ Template.admin_apiAccess.helpers({
 					sortable: false,
 					cellClass: 'edit',
 					fn: function (value) {
-						return new Spacebars.SafeString("<button id='" + value + "' class='exportAPICardset btn btn-xs btn-raised'><i class=\"fa fa-archive\"></i> <i class='fa fa-cloud-download'></i> " + TAPi18n.__('export.filename.export') + "</button>");
+						return new Spacebars.SafeString("<button id='" + value + "' class='exportAPICardset btn btn-xs btn-raised'><i class=\"fa fa-archive\"></i> <i class='fa fa-cloud-download-alt'></i> " + TAPi18n.__('export.filename.export') + "</button>");
 					}
 				},
 				{

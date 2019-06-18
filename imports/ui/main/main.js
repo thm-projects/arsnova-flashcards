@@ -10,6 +10,7 @@ import {CardNavigation} from "../../api/cardNavigation";
 import {MainNavigation} from "../../api/mainNavigation";
 import {ServerStyle} from "../../api/styles.js";
 import {AspectRatio} from "../../api/aspectRatio.js";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../welcome/welcome.js";
 import "../wordcloud/wordcloud.js";
 import "../impressum/impressum.js";

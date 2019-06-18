@@ -2,18 +2,18 @@
     <div id="markdeepNavigation">
         {{#if gotMarkdeepHelp}}
             <div class="btn-group">
-            <span class="btn fa fa-lightbulb-o card-button markdeep-help"
+            <span class="btn far fa-lightbulb card-button markdeep-help"
                   title="{{_ "card.tooltip.markdeepEditor.help"}}">&nbsp;{{_
                     "markdeep.editor.help"}}</span>
             </div>
         {{/if}}
         <div class="btn-group">
             {{#if isEditMode}}
-                <i class="markdeep-mobile-preview fa fa-mobile card-button {{#if
+                <i class="markdeep-mobile-preview fa fa-mobile-alt card-button {{#if
                         isMobilePreviewActive}}pressed{{/if}}"
                    title="{{_ "card.tooltip.markdeepEditor.mobilePreview"}}"></i>
                 {{#if isMobilePreviewActive}}
-                    <i class="markdeep-rotate-mobile-preview fa fa-refresh card-button {{#if
+                    <i class="markdeep-rotate-mobile-preview fa fa-sync card-button {{#if
                             isMobilePreviewRotated}}pressed{{/if}}"
                        title="{{_ "card.tooltip.markdeepEditor.rotateMobilePreview"}}"></i>
                 {{/if}}

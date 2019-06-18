@@ -110,19 +110,19 @@ Template.welcome.helpers({
 			loginButtons += '<button id="cas" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.cas") + '"><span class="flex-content"><i class="fa fa-university" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.cas") + '</span></button>';
 		}
 		if (ServerStyle.isLoginEnabled("guest")) {
-			loginButtons += '<button id="guest" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.guest") + '"><span class="flex-content"><i class="fa fa-smile-o" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.guest") + '</span></button>';
+			loginButtons += '<button id="guest" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.guest") + '"><span class="flex-content"><i class="far fa-smile" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.guest") + '</span></button>';
 		}
 		if (ServerStyle.isLoginEnabled("pro")) {
-			loginButtons += '<button id="pro" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal" title="' + TAPi18n.__("landingPage.login.tooltip.pro") + '"><span class="flex-content"><i class="fa fa-paypal" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.pro") + '</span></button>';
+			loginButtons += '<button id="pro" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#underDevelopmentModal" title="' + TAPi18n.__("landingPage.login.tooltip.pro") + '"><span class="flex-content"><i class="fab fa-paypal" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.pro") + '</span></button>';
 		}
 		if (ServerStyle.isLoginEnabled("facebook")) {
-			loginButtons += '<button id="facebook" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.facebook") + '"><span class="flex-content"><i class="fa fa-facebook" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.facebook") + '</span></button>';
+			loginButtons += '<button id="facebook" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.facebook") + '"><span class="flex-content"><i class="fab fa-facebook" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.facebook") + '</span></button>';
 		}
 		if (ServerStyle.isLoginEnabled("twitter")) {
-			loginButtons += '<button id="twitter" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.twitter") + '"><span class="flex-content"><i class="fa fa-twitter" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.twitter") + '</span></button>';
+			loginButtons += '<button id="twitter" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.twitter") + '"><span class="flex-content"><i class="fab fa-twitter" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.twitter") + '</span></button>';
 		}
 		if (ServerStyle.isLoginEnabled("google")) {
-			loginButtons += '<button id="google" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.google") + '"><span class="flex-content"><i class="fa fa-google" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.google") + '</span></button>';
+			loginButtons += '<button id="google" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.google") + '"><span class="flex-content"><i class="fab fa-google" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.google") + '</span></button>';
 		}
 		// Backdoor for login in acceptance tests
 		if (ServerStyle.isLoginEnabled("backdoor")) {
