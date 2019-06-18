@@ -50,15 +50,12 @@
                             {{> filterIndexItemBottomWorkloadProgress}}
                             {{> filterIndexItemBottomLeaveWorkload}}
                         {{/if}}
-                        {{#if isPublicRoute}}
+                        {{#unless isShuffleRoute}}
                             {{> filterIndexItemBottomBonusStats}}
-                        {{/if}}
-                    {{#unless isShuffleRoute}}
-                        {{> filterIndexItemBottomBonusStats}}
-                        {{> filterIndexItemBottomEdit}}
-                        {{> filterIndexItemBottomDelete}}
-                        {{> filterIndexItemBottomExport}}
-                    {{/unless}}
+                            {{> filterIndexItemBottomEdit}}
+                            {{> filterIndexItemBottomDelete}}
+                            {{> filterIndexItemBottomExport}}
+                        {{/unless}}
                     {{/unless}}
                     {{> filterIndexItemBottomCollapse}}
                 </div>
