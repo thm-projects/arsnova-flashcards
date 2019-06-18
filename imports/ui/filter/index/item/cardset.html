@@ -53,10 +53,12 @@
                         {{#if isPublicRoute}}
                             {{> filterIndexItemBottomBonusStats}}
                         {{/if}}
+                    {{#unless isShuffleRoute}}
                         {{> filterIndexItemBottomBonusStats}}
                         {{> filterIndexItemBottomEdit}}
                         {{> filterIndexItemBottomDelete}}
                         {{> filterIndexItemBottomExport}}
+                    {{/unless}}
                     {{/unless}}
                     {{> filterIndexItemBottomCollapse}}
                 </div>
