@@ -934,7 +934,7 @@ $themes: (
       color: $thm_gray !important;
     }
 
-    #markdeepNavigation .fa, #markdeepNavigation .markdeep-center, #markdeepNavigation .markdeep-fullscreen, .card-button {
+    #markdeepNavigation .fas, #markdeepNavigation .fab, #markdeepNavigation .far, #markdeepNavigation .markdeep-center, #markdeepNavigation .markdeep-fullscreen, .card-button {
       color: $thm_gray ;
       border-color: $thm_gray;
       background-color: $white;
@@ -946,14 +946,14 @@ $themes: (
       border-color: $markdeep_help_border !important;
     }
 
-    #markdeepNavigation .fa:hover, #markdeepNavigation .markdeep-center:hover, #markdeepNavigation .markdeep-help:hover,  #markdeepNavigation .markdeep-fullscreen:hover, .card-button:hover,
-    #markdeepNavigation .fa:focus, #markdeepNavigation .markdeep-center:focus, #markdeepNavigation .markdeep-help:focus,  #markdeepNavigation .markdeep-fullscreen:focus, .card-button:focus {
+    #markdeepNavigation .fas:hover,#markdeepNavigation .fab:hover,#markdeepNavigation .far:hover, #markdeepNavigation .markdeep-center:hover, #markdeepNavigation .markdeep-help:hover,  #markdeepNavigation .markdeep-fullscreen:hover, .card-button:hover,
+    #markdeepNavigation .fas:focus,#markdeepNavigation .fab:focus,#markdeepNavigation .far:focus, #markdeepNavigation .markdeep-center:focus, #markdeepNavigation .markdeep-help:focus,  #markdeepNavigation .markdeep-fullscreen:focus, .card-button:focus {
       background-color: $button_background_hover !important;
       color: $button_text_hover !important;
       border-color: $button_background_hover !important;
     }
 
-    .material-icons.pressed, .fa.pressed, .card-button.pressed, .material-icons.pressed:hover, .card-button.pressed:hover,
+    .material-icons.pressed, .fas.pressed, .fab.pressed, .far.pressed, .card-button.pressed, .material-icons.pressed:hover, .card-button.pressed:hover,
     .material-icons.pressed:focus, .card-button.pressed:focus {
       background-color: lighten($thm_gray, 10%);
       color: $white;
@@ -973,7 +973,7 @@ $themes: (
     }
 
     #markdeepNavigation {
-      .material-icons.pressed, .fa.pressed, .card-button.pressed, .material-icons.pressed:hover,
+      .material-icons.pressed, .fas.pressed, .fab.pressed, .far.pressed, .card-button.pressed, .material-icons.pressed:hover,
       .material-icons.pressed:focus, .card-button.pressed:focus {
         background-color: $thm_orange;
         border-color: $thm_orange;
@@ -3432,7 +3432,7 @@ $themes: (
     }
 
     //loading screen
-    .loadingScreenContainer .fa {
+    .loadingScreenContainer .fas,.loadingScreenContainer .fab, .loadingScreenContainer .far {
       color: $loading_screen_icon !important;
     }
 
@@ -3464,7 +3464,7 @@ $themes: (
       background-color: $card_navigation_active_background_hover !important
     }
 
-    .modal-icon, .modal-icon .fa, .modal-icon {
+    .modal-icon, .modal-icon .fas, .modal-icon .fab, .modal-icon .far, .modal-icon {
       color: $modal_icon !important;
     }
 

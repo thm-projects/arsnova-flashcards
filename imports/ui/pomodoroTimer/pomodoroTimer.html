@@ -71,12 +71,12 @@
                             {{_ "pomodoro.form.presentation.button.cancel"}}
                         </button>
                     {{else}}
-                        <button type="button" id="settingsBtn" class="btn btn-default btn-raised fa fa-gear"
+                        <button type="button" id="settingsBtn" class="btn btn-default btn-raised fas fa-gear"
                                 style="float:left;">
                             {{_ "pomodoro.form.user.button.settings"}}
                         </button>
                     {{/if}}
-                    <button type="button" id="startPom" class="btn btn-success btn-raised fa fa-rocket" data-dismiss="modal">
+                    <button type="button" id="startPom" class="btn btn-success btn-raised fas fa-rocket" data-dismiss="modal">
                         {{#if isActiveRoute regex='presentation|demo'}}
                             {{_ "pomodoro.form.presentation.button.start"}}
                         {{else}}
@@ -100,20 +100,20 @@
     <div id="settings" class="pomodoroBackground"
          style="{{#if isHiddenByDefault}}display: none;{{/if}}">
         <div class="form-group row">
-            <label for="workSlider" class="col-xs-12 control-label" style="float:left;"><i class="fa fa-desktop"></i>
+            <label for="workSlider" class="col-xs-12 control-label" style="float:left;"><i class="fas fa-desktop"></i>
                 <span id="workSliderLabel"></span>
             </label>
             <input class="numSlider col-xs-12" type="range" id="workSlider">
         </div>
         <div class="form-group row">
-            <label for="breakSlider" class="col-xs-12 control-label" style="float:left;"><i class="fa fa-coffee"></i>
+            <label for="breakSlider" class="col-xs-12 control-label" style="float:left;"><i class="fas fa-coffee"></i>
                 <span id="breakSliderLabel"></span>
             </label>
             <input class="numSlider col-xs-12" type="range" id="breakSlider">
         </div>
         {{#unless isiOS}}
             <div class="form-group row">
-                <label for="" class="control-label"><i class="fa fa-music"></i>
+                <label for="" class="control-label"><i class="fas fa-music"></i>
                     {{_ "pomodoro.form.sounds.title"}}</label>
             </div>
             <div class="form-group row">

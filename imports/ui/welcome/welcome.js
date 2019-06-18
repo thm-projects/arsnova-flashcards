@@ -107,7 +107,7 @@ Template.welcome.helpers({
 	getLoginButtons: function () {
 		let loginButtons = "<div id='loginButtonRow'>";
 		if (ServerStyle.isLoginEnabled("cas")) {
-			loginButtons += '<button id="cas" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.cas") + '"><span class="flex-content"><i class="fa fa-university" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.cas") + '</span></button>';
+			loginButtons += '<button id="cas" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.cas") + '"><span class="flex-content"><i class="fas fa-university" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.cas") + '</span></button>';
 		}
 		if (ServerStyle.isLoginEnabled("guest")) {
 			loginButtons += '<button id="guest" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.guest") + '"><span class="flex-content"><i class="far fa-smile" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.guest") + '</span></button>';
@@ -134,7 +134,7 @@ Template.welcome.helpers({
 			let standard = TAPi18n.__("backdoor.standard");
 			let blocked = TAPi18n.__("backdoor.blocked");
 			let firstLogin = TAPi18n.__("backdoor.firstLogin");
-			loginButtons += '<button id="BackdoorLogin" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.backdoor") + '"><span class="flex-content"><i class="fa fa-key" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.backdoor") + '</span></button>';
+			loginButtons += '<button id="BackdoorLogin" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.backdoor") + '"><span class="flex-content"><i class="fas fa-key" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.backdoor") + '</span></button>';
 			loginButtons += '<div class="btn-group backdoorLogin">';
 			loginButtons += '<select class="btn btn-secondary btn-raised" id="TestingBackdoorUsername" aria-labelledby="backdoor-label">' +
 				'<option id="superAdminLogin" value="admin">' + superAdmin + '</option>' +

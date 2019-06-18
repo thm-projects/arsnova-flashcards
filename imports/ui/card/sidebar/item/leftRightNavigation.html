@@ -2,13 +2,13 @@
     {{#if gotMultipleCards}}
         {{#unless isFirstCardActive}}
             {{#if isCardNavigationVisible}}
-                <button class="fa fa-arrow-left card-button cardHeaderItem scrollLeft"
+                <button class="fas fa-arrow-left card-button cardHeaderItem scrollLeft"
                         data-type="cardNavigation"
                         title="{{#unless isCardset}}{{_ "card.tooltip.previousCard"
                                                         hotkey=getPreviousCardHotkey}}{{else}}{{_
                                 "card.tooltip.previousCard" hotkey=""}}{{/unless}}"></button>
             {{else}}
-                <button class="fa fa-arrow-left card-button cardHeaderItem scrollLeft"
+                <button class="fas fa-arrow-left card-button cardHeaderItem scrollLeft"
                         data-type="cardNavigation"
                         title="{{#unless isCardset}}{{_ "card.tooltip.previousCard"
                                                         hotkey=getPreviousCardHotkey}}{{else}}{{_
@@ -22,12 +22,12 @@
     {{#if gotMultipleCards}}
         {{#unless isLastCardActive}}
             {{#if isCardNavigationVisible}}
-                <button class="fa fa-arrow-right card-button cardHeaderItem scrollRight"
+                <button class="fas fa-arrow-right card-button cardHeaderItem scrollRight"
                         data-type="cardNavigation"
                         title="{{#unless isCardset}}{{_ "card.tooltip.nextCard" hotkey=getNextCardHotkey}}{{else}}{{_
                                 "card.tooltip.nextCard" hotkey=""}}{{/unless}}"></button>
             {{else}}
-                <button class="fa fa-arrow-right card-button cardHeaderItem scrollRight"
+                <button class="fas fa-arrow-right card-button cardHeaderItem scrollRight"
                         data-type="cardNavigation"
                         title="{{#unless isCardset}}{{_ "card.tooltip.nextCard" hotkey=getNextCardHotkey}}{{else}}{{_
                                 "card.tooltip.nextCard" hotkey=""}}{{/unless}}" disabled></button>

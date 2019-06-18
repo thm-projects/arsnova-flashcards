@@ -1,7 +1,7 @@
 .loadingScreenContainer {
   margin-top: 25%;
   text-align: center;
-  .fa {
+  .fas, .fab, .far {
     font-size: $loading_screen_size !important;
   }
 }

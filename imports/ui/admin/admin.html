@@ -20,7 +20,7 @@
                             <li><a href="{{pathFor route='home'}}">{{_ "navbar-collapse.frontend"}}</a></li>
                             <li id="notificationsBtn_admin" class="dropdown">
                                 <a role="button" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-bell"></i> {{#if countNotifications}}
+                                    <i class="fas fa-bell"></i> {{#if countNotifications}}
                                     <span class="badge">{{countNotifications}}</span>{{/if}}
                                 </a>
 
@@ -85,14 +85,14 @@
                     <li>
                         <a class="{{#if isActiveRoute regex='admin_dashboard'}}active{{/if}}"
                            href="{{pathFor route='admin_dashboard'}}">
-                            <i class="fa fa-tachometer-alt"></i>
+                            <i class="fas fa-tachometer-alt"></i>
                             <span>{{_ "admin.dashboard"}}</span>
                         </a>
                     </li>
                     <li>
                         <a class="{{#if isActiveRoute regex='admin_users|admin_user'}}active{{/if}}"
                            href="{{pathFor route='admin_users'}}">
-                            <i class="fa fa-users"></i>
+                            <i class="fas fa-users"></i>
                             <span>{{_ "admin.users"}}</span>
                         </a>
                     </li>
@@ -106,21 +106,21 @@
                     <li>
                         <a class="{{#if isActiveRoute regex='admin_apiAccess'}}active{{/if}}"
                            href="{{pathFor route='admin_apiAccess'}}">
-                            <i class="fa fa-key"></i>
+                            <i class="fas fa-key"></i>
                             <span>{{_ "admin.api.access"}}</span>
                         </a>
                     </li>
                     <li>
                         <a class="{{#if isActiveRoute regex='admin_notifications'}}active{{/if}}"
                            href="{{pathFor route='admin_notifications'}}">
-                            <i class="fa fa-bell"></i>
+                            <i class="fas fa-bell"></i>
                             <span>{{_ "admin.notifications"}}</span>
                         </a>
                     </li>
                     <li>
                         <a class="{{#if isActiveRoute regex='admin_settings'}}active{{/if}}"
                            href="{{pathFor route='admin_settings'}}">
-                            <i class="fa fa-cog fa-spin"></i>
+                            <i class="fas fa-cog fa-spin"></i>
                             <span>{{_ "admin.settings"}}</span>
                         </a>
                     </li>

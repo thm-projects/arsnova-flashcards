@@ -12,27 +12,27 @@ Template.filterItemSortResults.helpers({
 	getSortTopicIcon: function () {
 		switch (Filter.getActiveFilter().name) {
 			case 1:
-				return '<i class="fa fa-sort-alpha-down cards-filter-element"></i>';
+				return '<i class="fas fa-sort-alpha-down cards-filter-element"></i>';
 			case-1:
-				return '<i class="fa fa-sort-alpha-up-alt cards-filter-element"></i>';
+				return '<i class="fas fa-sort-alpha-up-alt cards-filter-element"></i>';
 
 		}
 	},
 	getSortCreatedDateIcon: function () {
 		switch (Filter.getActiveFilter().date) {
 			case 1:
-				return '<i class="fa fa-sort-numeric-down cards-filter-element"></i>';
+				return '<i class="fas fa-sort-numeric-down cards-filter-element"></i>';
 			case-1:
-				return '<i class="fa fa-sort-numeric-up-alt cards-filter-element"></i>';
+				return '<i class="fas fa-sort-numeric-up-alt cards-filter-element"></i>';
 
 		}
 	},
 	getSortUpdatedDateIcon: function () {
 		switch (Filter.getActiveFilter().dateUpdated) {
 			case 1:
-				return '<i class="fa fa-sort-numeric-down cards-filter-element"></i>';
+				return '<i class="fas fa-sort-numeric-down cards-filter-element"></i>';
 			case-1:
-				return '<i class="fa fa-sort-numeric-up-alt cards-filter-element"></i>';
+				return '<i class="fas fa-sort-numeric-up-alt cards-filter-element"></i>';
 
 		}
 	}

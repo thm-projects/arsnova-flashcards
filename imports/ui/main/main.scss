@@ -495,11 +495,11 @@ button {
   padding: 0;
 }
 
-.md-header .fa, .md-header .center-button, .md-header .fullscreen-button, .card-button {
+.md-header .fas,.md-header .fab,.md-header .far, .md-header .center-button, .md-header .fullscreen-button, .card-button {
   border: 1px solid;
 }
 
-.md-header .fa, .md-header .center-button, .md-header .fullscreen-button, .card-button {
+.md-header .fas,.md-header .fab,.md-header .far, .md-header .center-button, .md-header .fullscreen-button, .card-button {
   margin: 0 auto;
   font-size: 22px;
   padding: 3px 6px !important;
@@ -728,7 +728,7 @@ th {
     padding-right: 0;
   }
 
-  td .fa {
+  td .fas,td .fab,td .far {
     margin-left: 5px;
   }
 }
@@ -778,7 +778,7 @@ th {
   height: $size_modal_icon;
 }
 
-.modal-icon-white, .modal-icon-white .fa {
+.modal-icon-white, .modal-icon-white .fas, .modal-icon-white .fab, .modal-icon-white .far {
   color: #ffffff !important;
 }
 
