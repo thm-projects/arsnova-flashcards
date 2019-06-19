@@ -1,5 +1,5 @@
 // STARTUP IMPORTS
-
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../imports/startup/client/i18n.js";
 import "../imports/startup/client/registerhelper.js";
 import "../imports/startup/client/registerServiceWorker";
