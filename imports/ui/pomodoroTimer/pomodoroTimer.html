@@ -71,12 +71,14 @@
                             {{_ "pomodoro.form.presentation.button.cancel"}}
                         </button>
                     {{else}}
-                        <button type="button" id="settingsBtn" class="btn btn-default btn-raised fas fa-gear"
+                        <button type="button" id="settingsBtn" class="btn btn-default btn-raised"
                                 style="float:left;">
+                            <i class="fas fa-cog fa-spin"></i>
                             {{_ "pomodoro.form.user.button.settings"}}
                         </button>
                     {{/if}}
-                    <button type="button" id="startPom" class="btn btn-success btn-raised fas fa-rocket" data-dismiss="modal">
+                    <button type="button" id="startPom" class="btn btn-success btn-raised" data-dismiss="modal">
+                        <i class="fas fa-rocket"></i>
                         {{#if isActiveRoute regex='presentation|demo'}}
                             {{_ "pomodoro.form.presentation.button.start"}}
                         {{else}}
