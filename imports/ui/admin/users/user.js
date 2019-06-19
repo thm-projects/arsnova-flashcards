@@ -100,12 +100,12 @@ Template.admin_user.helpers({
 					sortable: false,
 					cellClass: 'edit',
 					fn: function (value) {
-						return new Spacebars.SafeString("<a id='linkToAdminUserCardset' class='editCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.editcardset') + "' data-cardsetid='" + value + "'><i class='glyphicon glyphicon-edit'></i></a>");
+						return new Spacebars.SafeString("<a id='linkToAdminUserCardset' class='editCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.editcardset') + "' data-cardsetid='" + value + "'><i class='fas fa-edit'></i></a>");
 					}
 				},
 				{
 					key: 'delete', label: TAPi18n.__('admin.delete'), sortable: false, fn: function () {
-						return new Spacebars.SafeString("<a class='deleteCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecardset') + "' data-toggle='modal' data-target='#cardsetConfirmModalUserAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
+						return new Spacebars.SafeString("<a class='deleteCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecardset') + "' data-toggle='modal' data-target='#cardsetConfirmModalUserAdmin'><i class='fas fa-ban'></i></a>");
 					}
 				}
 			]
@@ -258,7 +258,7 @@ Template.admin_user.events({
 		event.preventDefault();
 		var cardset = this;
 
-		if (event.target.className === "deleteCardsetAdmin btn btn-xs btn-default" || event.target.className === "glyphicon glyphicon-ban-circle") {
+		if (event.target.className === "deleteCardsetAdmin btn btn-xs btn-default" || event.target.className === "fas fa-ban") {
 			Session.set('cardsetId', cardset._id);
 		}
 	},

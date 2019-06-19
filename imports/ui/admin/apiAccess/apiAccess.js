@@ -44,7 +44,7 @@ Template.admin_apiAccess.helpers({
 					sortable: false,
 					cellClass: 'edit',
 					fn: function (value) {
-						return new Spacebars.SafeString("<button id='" + value + "' class='exportAPICardset btn btn-xs btn-raised'><i class=\"fa fa-archive\"></i> <i class='fa fa-cloud-download'></i> " + TAPi18n.__('export.filename.export') + "</button>");
+						return new Spacebars.SafeString("<button id='" + value + "' class='exportAPICardset btn btn-xs btn-raised'><i class=\"fas fa-archive\"></i> <i class='fas fa-cloud-download-alt'></i> " + TAPi18n.__('export.filename.export') + "</button>");
 					}
 				},
 				{
@@ -52,7 +52,7 @@ Template.admin_apiAccess.helpers({
 					label: TAPi18n.__('admin.delete'),
 					sortable: false,
 					fn: function (value) {
-						return new Spacebars.SafeString("<a id='" + value + "' class='deleteApiAccessAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.api.delete') + "' data-toggle='modal' data-target='#admin_deleteApiAccessForm'><i class='glyphicon glyphicon-ban-circle'></i></a>");
+						return new Spacebars.SafeString("<a id='" + value + "' class='deleteApiAccessAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.api.delete') + "' data-toggle='modal' data-target='#admin_deleteApiAccessForm'><i class='fas fa-ban'></i></a>");
 					}
 				}
 			]

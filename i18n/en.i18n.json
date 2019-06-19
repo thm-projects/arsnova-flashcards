@@ -1149,7 +1149,8 @@
     "tooltip": {
       "editCardset": "Metadaten der Kartei editieren",
       "editRepetitorium": "Thema oder Beschreibung des Repetitoriums editieren",
-      "editAdminSettings": "Admin-Einstellungen"
+      "editAdminSettings": "Admin-Einstellungen",
+      "displayBonusStats": "Lernstatistik aller Teilnehmer"
     },
     "request": {
       "alert": "Kartei zur Überprüfung freigegeben",

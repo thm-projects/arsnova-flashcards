@@ -431,9 +431,9 @@ Template.registerHelper("getTranscriptBonusLabel", function (cardset) {
 
 Template.registerHelper("getCardsetIcons", function (isShuffled) {
 	if (isShuffled) {
-		return "<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-archive'></i>&nbsp;<i class='fa fa-ellipsis-h'></i>&nbsp;";
+		return "<i class='fas fa-archive'></i>&nbsp;<i class='fas fa-archive'></i>&nbsp;<i class='fas fa-archive'></i>&nbsp;<i class='fas fa-ellipsis-h'></i>&nbsp;";
 	} else {
-		return "<i class='fa fa-archive'></i>&nbsp;";
+		return "<i class='fas fa-archive'></i>&nbsp;";
 	}
 });
 

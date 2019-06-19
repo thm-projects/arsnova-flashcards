@@ -38,7 +38,7 @@ export let Bonus = class Bonus {
 			if (isCSVExport) {
 				notifications += TAPi18n.__('leitnerProgress.notification.mail', {}, "de");
 			} else {
-				notifications += "<i class='fa fa-envelope'> " + TAPi18n.__('leitnerProgress.notification.mail') + "</i>";
+				notifications += "<i class='fas fa-envelope'> " + TAPi18n.__('leitnerProgress.notification.mail') + "</i>";
 			}
 		}
 		if (ServerSettings.isPushEnabled() && user.webNotification) {
@@ -48,7 +48,7 @@ export let Bonus = class Bonus {
 			if (isCSVExport) {
 				notifications += TAPi18n.__('leitnerProgress.notification.push', {}, "de");
 			} else {
-				notifications += "<i class='fa fa-bell'> " + TAPi18n.__('leitnerProgress.notification.push') + "</i>";
+				notifications += "<i class='fas fa-bell'> " + TAPi18n.__('leitnerProgress.notification.push') + "</i>";
 			}
 		}
 		return notifications;
