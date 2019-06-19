@@ -9,13 +9,13 @@ import {Template} from "meteor/templating";
 
 Template.filterIndexItemBottomCollapse.events({
 	'click .collapseCardsetInfoButton': function (event) {
-		if ($(event.target).hasClass('glyphicon-collapse-up')) {
-			$(event.target).addClass('glyphicon-collapse-down').removeClass('glyphicon-collapse-up');
+		if ($(event.target).hasClass('fa-caret-square-up')) {
+			$(event.target).addClass('fa-caret-square-down').removeClass('fa-caret-square-up');
 			$($(event.target).data('id')).hide('slide', {direction: "up"}, 'slow');
 		} else {
 			$("[id^=collapseCardsetInfo]").hide('slide', {direction: "up"}, 'fast');
-			$(".collapseCardsetInfoIcon").addClass('glyphicon-collapse-down').removeClass('glyphicon-collapse-up');
-			$(event.target).addClass('glyphicon-collapse-up').removeClass('glyphicon-collapse-down');
+			$(".collapseCardsetInfoIcon").addClass('fa-caret-square-down').removeClass('fa-caret-square-up');
+			$(event.target).addClass('fa-caret-square-up').removeClass('fa-caret-square-down');
 			$($(event.target).data('id')).show('slide', {direction: "up"}, 'slow', function () {
 				$('body, html').animate({scrollTop: ($(event.target).offset().top - ($('.resultItemHeaderWrapper').height() + $('.thm-header').height() - 25))}, 'slow');
 			});

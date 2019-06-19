@@ -19,8 +19,8 @@
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <button id="exportCSV" class="btn btn-success btn-raised"><span class="flex-content"><i class="glyphicon glyphicon-stats"></i>&nbsp;<i
-                                class="fa fa-cloud-download"></i>&nbsp;{{_
+                        <button id="exportCSV" class="btn btn-success btn-raised"><span class="flex-content"><i class="fas fa-clipboard-list"></i>&nbsp;<i
+                                class="fas fa-cloud-download-alt"></i>&nbsp;{{_
                                 "box_export"}}</span></button>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                                                 {{this.box6}}{{{getPercentage this.box6}}}
                                             </span>
 
-                                    <i class="fa fa-trophy pull-right"></i>
+                                    <i class="fas fa-trophy pull-right"></i>
                                 {{else}}
                                     <span class="red-learning-text">
                                                 {{this.box6}}{{{getPercentage this.box6}}}
@@ -79,7 +79,7 @@
                             </td>
                             <td>
                                 <a data-id="{{this.user_id}}" class="detailed-stats"><i
-                                        class="glyphicon glyphicon glyphicon-stats"
+                                        class="far fa-chart-bar"
                                         data-id="{{this.user_id}}"
                                         title="{{_ "leitnerProgress.tooltip.graph"}}"></i></a>
                             </td>
@@ -94,7 +94,7 @@
                                         data-box5="{{this.box5}}" data-box6="{{this.box6}}"
                                    data-mailnotification="{{this.mailNotification}}" data-webnotification="{{this.webNotification}}"
                                         title="{{_ "leitnerProgress.tooltip.removeUser"}}">
-                                    <i class="fa fa-trash" data-user_id="{{this.user_id}}"
+                                    <i class="fas fa-trash" data-user_id="{{this.user_id}}"
                                        data-firstname="{{this.birthname}}"
                                        data-lastname="{{this.givenname}}"
                                        data-email="{{this.email}}" data-box1="{{this.box1}}"
@@ -111,7 +111,7 @@
                 </table>
             </div>
             <button class="btn btn-block btn-raised btn-danger" id="backButton">
-                <span class="flex-content"><i class="fa fa-arrow-left"></i> {{_ "backbutton"}}</span>
+                <span class="flex-content"><i class="fas fa-arrow-left"></i> {{_ "backbutton"}}</span>
             </button>
         </div>
     {{/unless}}

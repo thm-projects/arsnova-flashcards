@@ -5,27 +5,27 @@
                 <button type="button" class="btn btn-sm btn-raised learnBtn"
                         data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                    <span class="flex-content"><i class="fa fa-graduation-cap"></i>&nbsp;{{_ "learn"}}&nbsp;<span class="caret"></span></span>
+                    <span class="flex-content"><i class="fas fa-graduation-cap"></i>&nbsp;{{_ "learn"}}&nbsp;<span class="caret"></span></span>
                 </button>
                 <ul class="dropdown-menu workload">
-                    <li id="learnBox" class="leitnerList" {{disableIfOffline}}><i class="fa fa-graduation-cap"></i> {{_
+                    <li id="learnBox" class="leitnerList" {{disableIfOffline}}><i class="fas fa-graduation-cap"></i> {{_
                             "learnfile"}}</li>
-                    <li id="learnMemo" class="wozniakList" {{disableIfOffline}}><i class="fa fa-graduation-cap"></i> {{_
+                    <li id="learnMemo" class="wozniakList" {{disableIfOffline}}><i class="fas fa-graduation-cap"></i> {{_
                             "memo"}}</li>
                     {{#if learningLeitner}}
-                        <li id="leitnerProgress" class="progressList" {{disableIfOffline}}><i class="glyphicon glyphicon-stats"></i> {{_
+                        <li id="leitnerProgress" class="progressList" {{disableIfOffline}}><i class="far fa-chart-bar"></i> {{_
                                 "admin.myProgress"}}</li>
                     {{/if}}
                     {{#if learningLeitner}}
                         <li id="resetLeitner" class="resetLeitnerList"
                             data-toggle="modal"
-                            data-target="#resetLeitnerModal" {{disableIfOffline}}><i class="fa fa-trash"></i> {{_
+                            data-target="#resetLeitnerModal" {{disableIfOffline}}><i class="fas fa-trash"></i> {{_
                                 "resetLearnfile"}}</li>
                     {{/if}}
                     {{#if learningMemo}}
                         <li id="resetMemo" class="resetWozniakList"
                             data-toggle="modal"
-                            data-target="#resetMemoModal" {{disableIfOffline}}><i class="fa fa-trash"></i> {{_
+                            data-target="#resetMemoModal" {{disableIfOffline}}><i class="fas fa-trash"></i> {{_
                                 "resetWozniak"}}</li>
                     {{/if}}
                 </ul>

@@ -19,7 +19,7 @@
     {{#if isActiveRoute regex='demolist|presentationlist|makinglist'}}
         <button class="btn btn-raised btn-danger"
                 id="{{#if fullscreenActive}}backToPresentationFullscreen{{else}}backToPresentation{{/if}}">
-        <span class="pull-left"><i class="fa fa-arrow-left"></i> {{#if isActiveRoute regex='demolist'}}{{_
+        <span class="pull-left"><i class="fas fa-arrow-left"></i> {{#if isActiveRoute regex='demolist'}}{{_
                 "presentation.list.backDemo"}}{{else}}{{_ "presentation.list.back"}}{{/if}}</span>
         </button>
         {{> cardsetList}}

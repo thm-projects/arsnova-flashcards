@@ -133,13 +133,13 @@
     {{#if inFlashcardFilterSelection category item}}
         <a class="btn btn-block btn-raised btn-danger btn-sm shuffleButton removeCardFilter"
            data-category="{{category}}" data-item="{{item}}">
-            <i class="fa fa-minus" data-category="{{category}}" data-item="{{item}}"></i> {{_
+            <i class="fas fa-minus" data-category="{{category}}" data-item="{{item}}"></i> {{_
                 "admin.cardset.removeFromWordcloud"}}
         </a>
     {{else}}
         <a class="btn btn-block btn-raised btn-success btn-sm shuffleButton addCardFilter"
            data-category="{{category}}" data-item="{{item}}">
-            <i class="fa fa-plus" data-category="{{category}}" data-item="{{item}}"></i> {{_
+            <i class="fas fa-plus" data-category="{{category}}" data-item="{{item}}"></i> {{_
                 "admin.cardset.addToWordcloud"}}
         </a>
     {{/if}}

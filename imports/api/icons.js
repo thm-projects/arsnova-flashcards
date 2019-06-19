@@ -37,6 +37,8 @@ export let Icons = class Icons {
 				return config.landingPageNavigation.wordcloud;
 			case "transcript":
 				return icons.topNavigation.transcripts.transcripts;
+			case "collapse":
+				return icons.topNavigation.collapse;
 		}
 	}
 

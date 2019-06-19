@@ -258,7 +258,7 @@ body {
   text-transform: unset !important;
 }
 
-.btn-success, .btn-danger, .btn-warning, .btn-info, .label-bonus, .learnBtn, .bonusBtn, .presentationBtn, .label-private, .label-edu, .label-free, .label-pro, #filter-nav-wrapper .navbar-text, #filter-nav-wrapper .dropdown-toggle, .panel-heading.info-tab, #collapseLearningPhaseInfoButton, #collapseBonusTranscriptInfoButton, .deleteAllCardsBtn, .newCardBtn, .markdeep-help, .markdeep-translate.pressed, .pomodoroTimer h2, #searchResults h4, .footer.icon-container .glyphicon {
+.btn-success, .btn-danger, .btn-warning, .btn-info, .label-bonus, .learnBtn, .bonusBtn, .presentationBtn, .label-private, .label-edu, .label-free, .label-pro, #filter-nav-wrapper .navbar-text, #filter-nav-wrapper .dropdown-toggle, .panel-heading.info-tab, #collapseLearningPhaseInfoButton, #collapseBonusTranscriptInfoButton, .deleteAllCardsBtn, .newCardBtn, .markdeep-help, .markdeep-translate.pressed, .pomodoroTimer h2, #searchResults h4 {
   text-shadow: $default_text_shadow;
 }
 
@@ -495,11 +495,11 @@ button {
   padding: 0;
 }
 
-.md-header .fa, .md-header .center-button, .md-header .fullscreen-button, .card-button {
+.md-header .fas,.md-header .fab,.md-header .far, .md-header .center-button, .md-header .fullscreen-button, .card-button {
   border: 1px solid;
 }
 
-.md-header .fa, .md-header .center-button, .md-header .fullscreen-button, .card-button {
+.md-header .fas,.md-header .fab,.md-header .far, .md-header .center-button, .md-header .fullscreen-button, .card-button {
   margin: 0 auto;
   font-size: 22px;
   padding: 3px 6px !important;
@@ -728,7 +728,7 @@ th {
     padding-right: 0;
   }
 
-  td .fa, .glyphicon {
+  td .fas,td .fab,td .far {
     margin-left: 5px;
   }
 }
@@ -778,7 +778,7 @@ th {
   height: $size_modal_icon;
 }
 
-.modal-icon-white, .modal-icon-white .fa {
+.modal-icon-white, .modal-icon-white .fas, .modal-icon-white .fab, .modal-icon-white .far {
   color: #ffffff !important;
 }
 
@@ -830,9 +830,9 @@ blockquote {
   border-left: 5px solid #24a751;
 }
 
-.navbar-toggle  {
-  background-color: #2ac55f !important;
+.navbar-toggle {
   border-radius: 10px !important;
+  font-size: 150%;
 }
 
 .bert-alert {

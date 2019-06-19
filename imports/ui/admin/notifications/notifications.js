@@ -144,7 +144,7 @@ Template.admin_notifications.helpers({
 						if (user === undefined) {
 							return TAPi18n.__('admin.optionNotPossible');
 						} else if (Meteor.user()._id !== value) {
-							return new Spacebars.SafeString("<a class='mailToReceiverAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#messageModalNotificationAdmin'><i class='receiver-fa fa fa-envelope'></i></a>");
+							return new Spacebars.SafeString("<a class='mailToReceiverAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#messageModalNotificationAdmin'><i class='receiver-fa fas fa-envelope'></i></a>");
 						}
 					}
 				},
@@ -157,7 +157,7 @@ Template.admin_notifications.helpers({
 						if (object.sender === undefined) {
 							return TAPi18n.__('admin.optionNotPossible');
 						} else if (Meteor.user()._id !== value) {
-							return new Spacebars.SafeString("<a class='mailToSenderAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#messageModalNotificationAdmin'><i class='sender-fa fa fa-envelope'></i></a>");
+							return new Spacebars.SafeString("<a class='mailToSenderAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#messageModalNotificationAdmin'><i class='sender-fa fas fa-envelope'></i></a>");
 						}
 					}
 				},
@@ -167,7 +167,7 @@ Template.admin_notifications.helpers({
 					cellClass: 'delete',
 					sortable: false,
 					fn: function () {
-						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
+						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='fas fa-ban'></i></a>");
 					}
 				}
 			]
@@ -239,7 +239,7 @@ Template.admin_notifications.helpers({
 						if (object.sender === undefined) {
 							return TAPi18n.__('admin.optionNotPossible');
 						} else if (Meteor.user()._id !== value) {
-							return new Spacebars.SafeString("<a class='mailToLecturerAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#notificationLecturerModalAdmin'><i class='fa fa-university'></i></a>");
+							return new Spacebars.SafeString("<a class='mailToLecturerAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#notificationLecturerModalAdmin'><i class='fas fa-university'></i></a>");
 						}
 					}
 				},
@@ -254,7 +254,7 @@ Template.admin_notifications.helpers({
 					cellClass: 'delete',
 					sortable: false,
 					fn: function () {
-						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
+						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='fas fa-ban'></i></a>");
 					}
 				}
 			]
@@ -373,7 +373,7 @@ Template.admin_notifications.helpers({
 					cellClass: 'delete',
 					sortable: false,
 					fn: function () {
-						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='glyphicon glyphicon-ban-circle'></i></a>");
+						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='fas fa-ban'></i></a>");
 					}
 				}
 			]
@@ -391,13 +391,13 @@ Template.admin_notifications.events({
 		var cardset = Cardsets.findOne({_id: id});
 		var user = Meteor.users.findOne({_id: id});
 
-		if (event.target.className === "deleteCardsetAdmin btn btn-xs btn-default" || event.target.className === "glyphicon glyphicon-ban-circle") {
+		if (event.target.className === "deleteCardsetAdmin btn btn-xs btn-default" || event.target.className === "fas fa-ban") {
 			Session.set('notificationId', notification._id);
 		}
 		if (event.target.className == "mailToReceiverAdmin btn btn-xs btn-default" ||
-			event.target.className == "receiver-fa fa fa-envelope" ||
+			event.target.className == "receiver-fa fas fa-envelope" ||
 			event.target.className == "mailToSenderAdmin btn btn-xs btn-default" ||
-			event.target.className == "sender-fa fa fa-envelope") {
+			event.target.className == "sender-fa fas fa-envelope") {
 			if (cardset !== undefined) {
 				Session.set('isCardset', true);
 				Session.set('getCardset', cardset);
@@ -406,7 +406,7 @@ Template.admin_notifications.events({
 			}
 
 			if (event.target.className == "mailToReceiverAdmin btn btn-xs btn-default" ||
-				event.target.className == "receiver-fa fa fa-envelope") {
+				event.target.className == "receiver-fa fas fa-envelope") {
 				Session.set('getUsername', receiver);
 				Session.set('targetId', notification.receiver_id);
 				Session.set('isReceiver', true);
@@ -417,7 +417,7 @@ Template.admin_notifications.events({
 				Session.set('isReceiver', false);
 			}
 		}
-		if (event.target.className === 'mailToLecturerAdmin btn btn-xs btn-default' || event.target.className === "fa fa-university") {
+		if (event.target.className === 'mailToLecturerAdmin btn btn-xs btn-default' || event.target.className === "fas fa-university") {
 			Session.set('lecturerrequest', notification.request);
 			Session.set('request_id', notification.sender_id);
 			Session.set('requesttext', notification.text);
