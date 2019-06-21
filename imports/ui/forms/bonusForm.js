@@ -187,7 +187,6 @@ Template.bonusFormSimulatorSnapshots.onRendered(function () {
 	$('#cardsetLeitnerSimulatorModal').on('show.bs.modal', function () {
 		Session.set('activeSimulatorSnapshotDate', 0);
 		BonusForm.createSnapshotDates();
-		BonusForm.initializeSimulatorData();
 		LeitnerProgress.updateGraph();
 	});
 });

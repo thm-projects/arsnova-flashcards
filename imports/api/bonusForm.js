@@ -2,15 +2,13 @@ import {Session} from "meteor/session";
 import {Cardsets} from "./cardsets";
 import {PomodoroTimer} from "./pomodoroTimer";
 import * as config from "../config/bonusForm.js";
+import * as leitnerConfig from "../config/leitner.js";
 import {Utilities} from "./utilities";
 import {CardType} from "./cardTypes";
+import {LeitnerUtilities} from "./leitner";
 
-let leitnerSimulator = new Uint16Array(6);
-let leitnerSimulatorBox1;
-let leitnerSimulatorBox2;
-let leitnerSimulatorBox3;
-let leitnerSimulatorBox4;
-let leitnerSimulatorBox5;
+let leitnerSimulator = Array.from(Array(6).fill(0));
+let leitnerSimulatorDays = 0;
 
 export let BonusForm = class BonusForm {
 	static cleanModal () {
@@ -129,8 +127,8 @@ export let BonusForm = class BonusForm {
 	static createSnapshotDates () {
 		let bonusStart = moment(this.getDateStart());
 		let bonusEnd = moment(this.getDateEnd());
-		let numberOfDays = bonusEnd.diff(bonusStart, 'days');
-		let steps = Math.round(numberOfDays / 6);
+		leitnerSimulatorDays = bonusEnd.diff(bonusStart, 'days');
+		let steps = Math.round(leitnerSimulatorDays / 6);
 		let snapshotDates = [];
 		for (let i = 1; i < 6; i++) {
 			let newDate = moment(bonusStart).add(steps * i,'days');
@@ -155,15 +153,58 @@ export let BonusForm = class BonusForm {
 			} else {
 				cardCount = cardset.quantity;
 			}
-			leitnerSimulator = new Uint16Array(6);
+			leitnerSimulator = new Array(6).fill(0);
 			leitnerSimulator[0] = cardCount;
 		}
+		this.runSimulation();
+	}
+
+	static runSimulation () {
 		let intervals = this.getIntervals();
-		leitnerSimulatorBox1 = new Uint16Array(intervals[0]);
-		leitnerSimulatorBox2 = new Uint16Array(intervals[1]);
-		leitnerSimulatorBox3 = new Uint16Array(intervals[2]);
-		leitnerSimulatorBox4 = new Uint16Array(intervals[3]);
-		leitnerSimulatorBox5 = new Uint16Array(intervals[4]);
+		let simulatorTimeout  = [];
+		for (let i = 0; i < intervals.length; i++) {
+			let leitnerSimulatorBox = Array.from(Array(intervals[i]).fill(0));
+			simulatorTimeout.push(leitnerSimulatorBox);
+		}
+		let simulatedCardset = {
+			maxCards: this.getMaxWorkload()
+		};
+		for (let d = 0; d < leitnerSimulatorDays; d++) {
+			for (let i = 0; i < simulatorTimeout.length; i++) {
+				let tempCards = simulatorTimeout[i].shift();
+				if (tempCards) {
+					leitnerSimulator[i] += tempCards;
+					if (i === 0) {
+						simulatorTimeout[0].push(0);
+					}
+				}
+			}
+			let algorithm = LeitnerUtilities.getBoxAlgorithm();
+			let activeBoxes = leitnerSimulator.slice(0, 5);
+			let adjustedAlgorithm = LeitnerUtilities.adjustBoxAlgorithm(activeBoxes, algorithm);
+			let boxActiveCardCap = LeitnerUtilities.setActiveCardCap(simulatedCardset, adjustedAlgorithm);
+			if (leitnerConfig.fillUpMissingCards) {
+				boxActiveCardCap = LeitnerUtilities.fillUpMissingCards(boxActiveCardCap, activeBoxes);
+			}
+			for (let i = 0; i < boxActiveCardCap.length; i++) {
+				let tempCards;
+				if (leitnerSimulator[i] < boxActiveCardCap[i]) {
+					tempCards = leitnerSimulator[i];
+					leitnerSimulator[i] = 0;
+				} else {
+					tempCards = boxActiveCardCap[i];
+					leitnerSimulator[i] -= boxActiveCardCap[i];
+				}
+				if (i === (boxActiveCardCap.length - 1)) {
+					leitnerSimulator[leitnerSimulator.length - 1] += tempCards;
+				} else {
+					simulatorTimeout[i + 1].push(tempCards);
+				}
+			}
+		}
+		for (let i = 0; i < simulatorTimeout.length; i++) {
+			leitnerSimulator[i] += simulatorTimeout[i].reduce((a, b) => a + b, 0);
+		}
 	}
 
 	static getSnapshotDates () {
