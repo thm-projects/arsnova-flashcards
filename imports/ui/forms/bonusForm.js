@@ -173,6 +173,18 @@ Template.profileIncompleteModal.events({
 	}
 });
 
+/*
+ * ############################################################################
+ * bonusFormSimulatorCalculate
+ * ############################################################################
+ */
+
+Template.bonusFormSimulatorCalculate.events({
+	'click .calculateWorkload': function () {
+		BonusForm.calculateWorkload(BonusForm.getMaxWorkload());
+		LeitnerProgress.updateGraph();
+	}
+});
 
 /*
  * ############################################################################

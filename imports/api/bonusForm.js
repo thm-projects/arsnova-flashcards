@@ -9,6 +9,7 @@ import {LeitnerUtilities} from "./leitner";
 
 let leitnerSimulator = Array.from(Array(6).fill(0));
 let leitnerSimulatorDays = 0;
+let leitnerCardCount = 0;
 
 export let BonusForm = class BonusForm {
 	static cleanModal () {
@@ -108,6 +109,10 @@ export let BonusForm = class BonusForm {
 		return maxWorkload;
 	}
 
+	static setMaxWorkload (maxWorkload) {
+		$('#maxWorkload').val(Number(maxWorkload));
+	}
+
 	static getDaysBeforeReset () {
 		let daysBeforeReset = Number($('#bonusFormModal #daysBeforeReset').val());
 		if (!daysBeforeReset) {
@@ -142,24 +147,24 @@ export let BonusForm = class BonusForm {
 	static initializeSimulatorData () {
 		let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {cardGroups: 1, shuffled: 1, quantity: 1}});
 		if (cardset !== undefined) {
-			let cardCount = 0;
 			if (cardset.shuffled) {
+				leitnerCardCount = 0;
 				for (let i = 0; i < cardset.cardGroups.length; i++) {
 					let cardGroup = Cardsets.findOne({_id: cardset.cardGroups[i]}, {fields: {cardType: 1, quantity: 1}});
 					if (CardType.gotLearningModes(cardGroup.cardType)) {
-						cardCount += cardGroup.quantity;
+						leitnerCardCount += cardGroup.quantity;
 					}
 				}
 			} else {
-				cardCount = cardset.quantity;
+				leitnerCardCount = cardset.quantity;
 			}
-			leitnerSimulator = new Array(6).fill(0);
-			leitnerSimulator[0] = cardCount;
 		}
-		this.runSimulation();
+		this.runSimulation(this.getMaxWorkload());
 	}
 
-	static runSimulation () {
+	static runSimulation (maxCards) {
+		leitnerSimulator = new Array(6).fill(0);
+		leitnerSimulator[0] = leitnerCardCount;
 		let intervals = this.getIntervals();
 		let simulatorTimeout  = [];
 		for (let i = 0; i < intervals.length; i++) {
@@ -167,7 +172,7 @@ export let BonusForm = class BonusForm {
 			simulatorTimeout.push(leitnerSimulatorBox);
 		}
 		let simulatedCardset = {
-			maxCards: this.getMaxWorkload()
+			maxCards: maxCards
 		};
 		for (let d = 0; d < leitnerSimulatorDays; d++) {
 			for (let i = 0; i < simulatorTimeout.length; i++) {
@@ -204,6 +209,43 @@ export let BonusForm = class BonusForm {
 		}
 		for (let i = 0; i < simulatorTimeout.length; i++) {
 			leitnerSimulator[i] += simulatorTimeout[i].reduce((a, b) => a + b, 0);
+		}
+		return leitnerSimulator[leitnerSimulator.length - 1];
+	}
+
+	static calculateWorkload (maxWorkload, interval = 0, isReverse = false, finetuning = false) {
+		let result = this.runSimulation(maxWorkload);
+		if (interval === 0 && result === leitnerCardCount) {
+			isReverse = true;
+		}
+		let steps = 5;
+		if (isReverse) {
+			if (result !== leitnerCardCount) {
+				for (let fineTuneSteps = 1; fineTuneSteps < steps + 1; fineTuneSteps++) {
+					result = this.runSimulation(maxWorkload + fineTuneSteps);
+					if (result === leitnerCardCount) {
+						this.setMaxWorkload(maxWorkload + fineTuneSteps);
+						this.runSimulation(maxWorkload + fineTuneSteps);
+						break;
+					}
+				}
+			} else {
+				this.calculateWorkload(maxWorkload - steps, interval + 1, isReverse, finetuning);
+			}
+		} else {
+			if (result !== leitnerCardCount) {
+				this.calculateWorkload(maxWorkload + steps, interval + 1, isReverse, finetuning);
+			} else {
+				for (let fineTuneSteps = 1; fineTuneSteps < steps + 1; fineTuneSteps++) {
+					result = this.runSimulation(maxWorkload - fineTuneSteps);
+					if (result !== leitnerCardCount) {
+						fineTuneSteps--;
+						this.setMaxWorkload(maxWorkload - fineTuneSteps);
+						this.runSimulation(maxWorkload - fineTuneSteps);
+						break;
+					}
+				}
+			}
 		}
 	}
 
