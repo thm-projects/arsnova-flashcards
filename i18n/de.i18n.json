@@ -1107,7 +1107,10 @@
         "title": "Leitner Simulator",
         "errorRate": "Fehlerquote pro Box",
         "snapshots": "Simulierte Bonus-Lernphase mit ausgewähltem Tagespensum",
-        "graphLabel": "Simulierte Karten"
+        "graphLabel": "Simulierte Karten",
+        "notification": {
+          "adjustmentsNeeded": "Es können nicht alle Karten mit den derzeitigen Wiederholungs-Intervallen in das letzte Fach gelegt werden"
+        }
       },
       "maxPoints": {
         "label": "Maximal erreichbare Bonuspunkte in Prozent"

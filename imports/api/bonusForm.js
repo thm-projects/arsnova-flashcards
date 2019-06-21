@@ -6,10 +6,13 @@ import * as leitnerConfig from "../config/leitner.js";
 import {Utilities} from "./utilities";
 import {CardType} from "./cardTypes";
 import {LeitnerUtilities} from "./leitner";
+import {BertAlertVisuals} from "./bertAlertVisuals";
 
 let leitnerSimulator = Array.from(Array(6).fill(0));
 let leitnerSimulatorDays = 0;
 let leitnerCardCount = 0;
+let snapshots = [];
+let snapshotDays = [];
 
 export let BonusForm = class BonusForm {
 	static cleanModal () {
@@ -137,6 +140,7 @@ export let BonusForm = class BonusForm {
 		let snapshotDates = [];
 		for (let i = 1; i < 6; i++) {
 			let newDate = moment(bonusStart).add(steps * i,'days');
+			snapshotDays.push(steps * i);
 			snapshotDates.push(Utilities.getMomentsDateShort(newDate));
 		}
 		snapshotDates.push(Utilities.getMomentsDateShort(bonusEnd));
@@ -166,6 +170,7 @@ export let BonusForm = class BonusForm {
 		leitnerSimulator = new Array(6).fill(0);
 		leitnerSimulator[0] = leitnerCardCount;
 		let intervals = this.getIntervals();
+		snapshots = [];
 		let simulatorTimeout  = [];
 		for (let i = 0; i < intervals.length; i++) {
 			let leitnerSimulatorBox = Array.from(Array(intervals[i]).fill(0));
@@ -206,14 +211,28 @@ export let BonusForm = class BonusForm {
 					simulatorTimeout[i + 1].push(tempCards);
 				}
 			}
+			if (snapshotDays.includes(d)) {
+				let simulatorTimeoutCopy = simulatorTimeout.slice();
+				let leitnerSimulatorCopy = leitnerSimulator.slice();
+				for (let i = 0; i < simulatorTimeoutCopy.length; i++) {
+					leitnerSimulatorCopy[i] += simulatorTimeoutCopy[i].reduce((a, b) => a + b, 0);
+				}
+				snapshots.push(leitnerSimulatorCopy);
+			}
 		}
 		for (let i = 0; i < simulatorTimeout.length; i++) {
 			leitnerSimulator[i] += simulatorTimeout[i].reduce((a, b) => a + b, 0);
 		}
+		snapshots.push(leitnerSimulator);
 		return leitnerSimulator[leitnerSimulator.length - 1];
 	}
 
 	static calculateWorkload (maxWorkload, interval = 0, isReverse = false, finetuning = false) {
+		if (maxWorkload > 100) {
+			this.setMaxWorkload(100);
+			BertAlertVisuals.displayBertAlert(TAPi18n.__('bonus.form.simulator.notification.adjustmentsNeeded'), "danger", 'growl-top-left');
+			return;
+		}
 		let result = this.runSimulation(maxWorkload);
 		if (interval === 0 && result === leitnerCardCount) {
 			isReverse = true;
@@ -254,7 +273,7 @@ export let BonusForm = class BonusForm {
 	}
 
 	static getActiveSnapshot () {
-		return Array.from(leitnerSimulator);
+		return snapshots[Session.get('activeSimulatorSnapshotDate')];
 	}
 
 	static getDateEnd () {
