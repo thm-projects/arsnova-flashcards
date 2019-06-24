@@ -38,6 +38,7 @@ import "./navigation/navigation.js";
 import "../useCases/useCases.js";
 import "./main.html";
 import "./modal/arsnovaClick.js";
+import "./modal/arsnovaLite.js";
 import "./modal/connectionStatus.js";
 import "./modal/underDevelopment.js";
 
