@@ -6,7 +6,6 @@ import "./sidebar.html";
 import "./item/aspectRatio.js";
 import "./item/arsnovaClick.js";
 import "./item/arsnovaLite.js";
-import "./item/arsnovaApp.js";
 import "./item/cardList.js";
 import "./item/backToCardset.js";
 import "./item/dictionary.js";
