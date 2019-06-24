@@ -388,7 +388,12 @@ $themes: (
     $card_sidebar_aspect_ratio_dropdown_text_active_hover: map-get($map, "card_sidebar_aspect_ratio_dropdown_text_active_hover");
     $card_sidebar_aspect_ratio_menu_background: map-get($map, "card_sidebar_aspect_ratio_menu_background");
     $card_sidebar_aspect_ratio_menu_separator: map-get($map, "card_sidebar_aspect_ratio_menu_separator");
-
+    $card_sidebar_arsnova_lite_background: map-get($map, "card_sidebar_arsnova_lite_background");
+    $card_sidebar_arsnova_lite_text: map-get($map, "card_sidebar_arsnova_lite_text");
+    $card_sidebar_arsnova_lite_background_hover: map-get($map, "card_sidebar_arsnova_lite_background_hover");
+    $card_sidebar_arsnova_lite_text_hover: map-get($map, "card_sidebar_arsnova_lite_text_hover");
+    $card_sidebar_arsnova_lite_background_active: map-get($map, "card_sidebar_arsnova_lite_background_active");
+    $card_sidebar_arsnova_lite_text_active: map-get($map, "card_sidebar_arsnova_lite_text_active");
     //cardset colors
     $cardset_markdeep_background: map-get($map, "cardset_markdeep_background");
     $cardset_markdeep_header_border: map-get($map, "cardset_markdeep_header_border");
@@ -3218,6 +3223,22 @@ $themes: (
       .aspect-ratio-button:hover {
         background-color:$card_sidebar_aspect_ratio_background_hover !important;
         color: $card_sidebar_aspect_ratio_text_hover !important;
+      }
+
+
+      .showArsnovaLite {
+        background-color: $card_sidebar_arsnova_lite_background !important;
+        color:$card_sidebar_arsnova_lite_text !important;
+      }
+
+      .showArsnovaLite.pressed {
+        background-color: $card_sidebar_arsnova_lite_background_active !important;
+        color:$card_sidebar_arsnova_lite_text_active !important;
+      }
+
+      .showArsnovaLite:hover {
+        background-color:$card_sidebar_arsnova_lite_background_hover !important;
+        color: $card_sidebar_arsnova_lite_text_hover !important;
       }
 
       .editCard {
