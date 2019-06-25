@@ -52,6 +52,35 @@ import "./index.html";
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
 
+/*
+ * ############################################################################
+ * filterIndex
+ * ############################################################################
+ */
+
+Template.filterIndex.events({
+	'click .label-wordcloud': function () {
+		Filter.setActiveFilter(true, "wordcloud");
+	},
+	'click .label-lecturer-authorized': function () {
+		Filter.setActiveFilter(true, "lecturerAuthorized");
+	},
+	'click .label-kind': function (event) {
+		Filter.setActiveFilter([$(event.target).data('id')], "kind");
+	},
+	'click .label-card-type': function (event) {
+		Filter.setActiveFilter(Number($(event.target).data('id')), "cardType");
+	},
+	'click .label-difficulty': function (event) {
+		Filter.setActiveFilter(Number($(event.target).data('id')), "difficulty");
+	},
+	'click .label-bonus': function () {
+		Filter.setActiveFilter(true, "bonusActive");
+	},
+	'click .label-transcript-bonus': function () {
+		Filter.setActiveFilter(true, "transcriptBonus");
+	}
+});
 
 /*
  * ############################################################################

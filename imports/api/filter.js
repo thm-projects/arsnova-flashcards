@@ -136,6 +136,14 @@ export let Filter = class Filter {
 				case "_id":
 					filter._id = content;
 					break;
+				case "transcriptBonus":
+					let transcriptBonus = {
+						transcriptBonus: {
+							enabled: true
+						}
+					};
+					Object.assign(filter, transcriptBonus);
+					break;
 			}
 		}
 		switch (FilterNavigation.getRouteId()) {
@@ -285,6 +293,9 @@ export let Filter = class Filter {
 			} else {
 				query.learningEnd = {$gt: new Date()};
 			}
+		}
+		if (FilterNavigation.gotBonusFilter(FilterNavigation.getRouteId()) && activeFilter.transcriptBonus !== undefined && activeFilter.transcriptBonus.enabled !== undefined) {
+			query['transcriptBonus.enabled'] = activeFilter.transcriptBonus.enabled;
 		}
 		if (FilterNavigation.gotWordCloudFilter(FilterNavigation.getRouteId()) && activeFilter.wordcloud !== undefined) {
 			query.wordcloud = activeFilter.wordcloud;
