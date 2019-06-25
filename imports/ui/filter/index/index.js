@@ -61,24 +61,31 @@ Session.set('moduleActive', true);
 Template.filterIndex.events({
 	'click .label-wordcloud': function () {
 		Filter.setActiveFilter(true, "wordcloud");
+		FilterNavigation.showDropdown();
 	},
 	'click .label-lecturer-authorized': function () {
 		Filter.setActiveFilter(true, "lecturerAuthorized");
+		FilterNavigation.showDropdown();
 	},
 	'click .label-kind': function (event) {
 		Filter.setActiveFilter([$(event.target).data('id')], "kind");
+		FilterNavigation.showDropdown();
 	},
 	'click .label-card-type': function (event) {
 		Filter.setActiveFilter(Number($(event.target).data('id')), "cardType");
+		FilterNavigation.showDropdown();
 	},
 	'click .label-difficulty': function (event) {
 		Filter.setActiveFilter(Number($(event.target).data('id')), "difficulty");
+		FilterNavigation.showDropdown();
 	},
 	'click .label-bonus': function () {
 		Filter.setActiveFilter(true, "bonusActive");
+		FilterNavigation.showDropdown();
 	},
 	'click .label-transcript-bonus': function () {
 		Filter.setActiveFilter(true, "transcriptBonus");
+		FilterNavigation.showDropdown();
 	}
 });
 
