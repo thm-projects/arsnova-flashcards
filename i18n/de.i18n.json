@@ -1252,7 +1252,13 @@
     "from": "Ab",
     "noResults": "Keine Kartei oder Repetitorium ausgewählt oder Filtern liefert kein Ergebnis.",
     "sort": "Sortieren ",
-    "reset": "Filter zurücksetzen"
+    "reset": "Filter zurücksetzen",
+    "bonus": {
+      "title": "Bonus",
+      "all": "Alle",
+      "bonus": "Mit Lern-Bonus",
+      "transcriptBonus": "Mit Mitschreib-Bonus"
+    }
   },
   "infinite-scroll": {
     "remainingShort": "__current__ von __total__",

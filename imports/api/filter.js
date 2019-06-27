@@ -119,22 +119,22 @@ export let Filter = class Filter {
 					filter.lecturerAuthorized = content;
 					break;
 				case "noBonus":
-					filter.learningActive = undefined;
-					filter.learningEnd = undefined;
+					delete filter.learningActive;
+					delete filter['transcriptBonus.enabled'];
 					break;
 				case "bonusActive":
 					filter.learningActive = true;
-					filter.learningEnd = {$gt: true};
-					break;
-				case "bonusFinished":
-					filter.learningActive = true;
-					filter.learningEnd = {$lte: true};
+					delete filter['transcriptBonus.enabled'];
 					break;
 				case "kind":
 					filter.kind = content;
 					break;
 				case "_id":
 					filter._id = content;
+					break;
+				case "transcriptBonus":
+					delete filter.learningActive;
+					filter['transcriptBonus.enabled'] = true;
 					break;
 			}
 		}
@@ -280,11 +280,9 @@ export let Filter = class Filter {
 		}
 		if (FilterNavigation.gotBonusFilter(FilterNavigation.getRouteId()) && activeFilter.learningActive !== undefined) {
 			query.learningActive = activeFilter.learningActive;
-			if (activeFilter.learningEnd.$lte !== undefined) {
-				query.learningEnd = {$lte: new Date()};
-			} else {
-				query.learningEnd = {$gt: new Date()};
-			}
+		}
+		if (FilterNavigation.gotBonusFilter(FilterNavigation.getRouteId()) && activeFilter['transcriptBonus.enabled'] !== undefined) {
+			query['transcriptBonus.enabled'] = activeFilter['transcriptBonus.enabled'];
 		}
 		if (FilterNavigation.gotWordCloudFilter(FilterNavigation.getRouteId()) && activeFilter.wordcloud !== undefined) {
 			query.wordcloud = activeFilter.wordcloud;

@@ -152,7 +152,7 @@ Template.main.onRendered(function () {
 			MainNavigation.clearSearch();
 			$('.navbar-cards-search-dropdown').removeClass('active');
 		}
-		if (!$(event.target).is('.cards-filter-element')) {
+		if (!$(event.target).is('.cards-filter-element') && !$(event.target).parents('.resultItemHeaderBottomAreaLabels').length) {
 			MainNavigation.clearSearch();
 			$('.navbar-cards-filter-dropdown').removeClass('active');
 		}

@@ -7,6 +7,10 @@ hr {
   overflow: auto;
 }
 
+.resultItemHeaderBottomAreaLabels .label-group > .label:not(:first-child) {
+  cursor: pointer;
+}
+
 .cardsetHeaderTop {
   padding-top: 10px;
   padding-bottom: 10px;
