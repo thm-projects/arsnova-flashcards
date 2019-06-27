@@ -385,14 +385,14 @@ Template.registerHelper("getKindText", function (kind, displayType = 0) {
 });
 
 Template.registerHelper("getCardTypeLabel", function (cardType) {
-	return '<span class="label label-card-type" data-id="difficulty" title="' + TAPi18n.__('card.cardType' + cardType + '.longName') + '">' + TAPi18n.__('card.cardType' + cardType + '.name') + '</span>';
+	return '<span class="label label-card-type" data-id="' + cardType + '" title="' + TAPi18n.__('card.cardType' + cardType + '.longName') + '">' + TAPi18n.__('card.cardType' + cardType + '.name') + '</span>';
 });
 
 Template.registerHelper("getDifficultyLabel", function (cardType, difficulty) {
 	if (!CardType.gotDifficultyLevel(cardType)) {
 		return;
 	}
-	return '<span class="label label-difficulty' + difficulty + '" data-id="difficulty" title="' + TAPi18n.__('difficulty' + difficulty) + '">' + TAPi18n.__('difficulty' + difficulty) + '</span>';
+	return '<span class="label label-difficulty label-difficulty' + difficulty + '" data-id="' + difficulty + '" title="' + TAPi18n.__('difficulty' + difficulty) + '">' + TAPi18n.__('difficulty' + difficulty) + '</span>';
 });
 
 Template.registerHelper("getShuffleLabel", function (shuffled = false) {
@@ -407,25 +407,25 @@ Template.registerHelper("isCardsetAndFixedSidebar", function () {
 
 Template.registerHelper("getBonusLabel", function (shuffled = false) {
 	if (shuffled) {
-		return '<span class="label label-bonus" data-id="bonus" title="' + TAPi18n.__('cardset.bonus.long') + '">' + TAPi18n.__('cardset.bonus.short') + '</span>';
+		return '<span class="label label-bonus" title="' + TAPi18n.__('cardset.bonus.long') + '">' + TAPi18n.__('cardset.bonus.short') + '</span>';
 	}
 });
 
 Template.registerHelper("getLecturerAuthorizedLabel", function (cardset) {
 	if (cardset.lecturerAuthorized !== undefined && cardset.lecturerAuthorized === true) {
-		return '<span class="label label-lecturer-authorized" data-id="lecturer-authorized" title="' + TAPi18n.__('label.lecturerAuthorized.long') + '">' + Icons.labels("lecturerAuthorized") + '</span>';
+		return '<span class="label label-lecturer-authorized" title="' + TAPi18n.__('label.lecturerAuthorized.long') + '">' + Icons.labels("lecturerAuthorized") + '</span>';
 	}
 });
 
 Template.registerHelper("getWordcloudLabel", function (cardset) {
 	if (cardset.wordcloud !== undefined && cardset.wordcloud === true) {
-		return '<span class="label label-wordcloud" data-id="wordcloud" title="' + TAPi18n.__('serverStatistics.modal.table.header.wordcloud.default') + '">' + Icons.labels("wordcloud") + '</span>';
+		return '<span class="label label-wordcloud" title="' + TAPi18n.__('serverStatistics.modal.table.header.wordcloud.default') + '">' + Icons.labels("wordcloud") + '</span>';
 	}
 });
 
 Template.registerHelper("getTranscriptBonusLabel", function (cardset) {
 	if ((cardset.transcriptBonus !== undefined && cardset.transcriptBonus.enabled) || Route.isMyBonusTranscripts() || Route.isTranscriptBonus() || Route.isPresentationTranscriptBonus() || Route.isPresentationTranscriptBonusCardset()) {
-		return '<span class="label label-transcript-bonus" data-id="bonus-transcript" title="' + TAPi18n.__('cardset.transcriptBonus.long') + '">' + TAPi18n.__('cardset.transcriptBonus.short') + '</span>';
+		return '<span class="label label-transcript-bonus" title="' + TAPi18n.__('cardset.transcriptBonus.long') + '">' + TAPi18n.__('cardset.transcriptBonus.short') + '</span>';
 	}
 });
 
@@ -466,30 +466,30 @@ Template.registerHelper("getKind", function (kind, displayType = 0) {
 	if (displayType === 0) {
 		switch (DOMPurify.sanitize(kind, DOMPurifyConfig)) {
 			case "free":
-				return '<span class="label label-free" data-id="free"title="' + TAPi18n.__('access-level.free.long') + '">' + TAPi18n.__('access-level.free.short') + '</span>';
+				return '<span class="label label-kind label-free" data-id="free" title="' + TAPi18n.__('access-level.free.long') + '">' + TAPi18n.__('access-level.free.short') + '</span>';
 			case "edu":
-				return '<span class="label label-edu" data-id="edu"title="' + TAPi18n.__('access-level.edu.long') + '">' + TAPi18n.__('access-level.edu.short') + '</span>';
+				return '<span class="label label-kind label-edu" data-id="edu" title="' + TAPi18n.__('access-level.edu.long') + '">' + TAPi18n.__('access-level.edu.short') + '</span>';
 			case "pro":
-				return '<span class="label label-pro" data-id="pro"title="' + TAPi18n.__('access-level.pro.long') + '">' + TAPi18n.__('access-level.pro.short') + '</span>';
+				return '<span class="label label-kind label-pro" data-id="pro" title="' + TAPi18n.__('access-level.pro.long') + '">' + TAPi18n.__('access-level.pro.short') + '</span>';
 			case "personal":
-				return '<span class="label label-private" data-id="personal"title="' + TAPi18n.__('access-level.private.long') + '">' + TAPi18n.__('access-level.private.short') + '</span>';
+				return '<span class="label label-kind label-private" data-id="personal" title="' + TAPi18n.__('access-level.private.long') + '">' + TAPi18n.__('access-level.private.short') + '</span>';
 			case "demo":
-				return '<span class="label label-demo" data-id="demo"title="' + TAPi18n.__('access-level.demo.long') + '">' + TAPi18n.__('access-level.demo.short') + '</span>';
+				return '<span class="label label-kind label-demo" data-id="demo" title="' + TAPi18n.__('access-level.demo.long') + '">' + TAPi18n.__('access-level.demo.short') + '</span>';
 			default:
 				return '<span class="label label-default">Undefined!</span>';
 		}
 	} else {
 		switch (DOMPurify.sanitize(kind, DOMPurifyConfig)) {
 			case "free":
-				return '<span class="label label-free" data-id="free">' + TAPi18n.__('access-level.free.long') + '</span>';
+				return '<span class="label label-kind label-free" data-id="free">' + TAPi18n.__('access-level.free.long') + '</span>';
 			case "edu":
-				return '<span class="label label-edu" data-id="edu">' + TAPi18n.__('access-level.edu.long') + '</span>';
+				return '<span class="label label-kind label-edu" data-id="edu">' + TAPi18n.__('access-level.edu.long') + '</span>';
 			case "pro":
-				return '<span class="label label-pro" data-id="pro">' + TAPi18n.__('access-level.pro.long') + '</span>';
+				return '<span class="label label-kind label-pro" data-id="pro">' + TAPi18n.__('access-level.pro.long') + '</span>';
 			case "personal":
-				return '<span class="label label-private" data-id="personal">' + TAPi18n.__('access-level.private.long') + '</span>';
+				return '<span class="label label-kind label-private" data-id="personal">' + TAPi18n.__('access-level.private.long') + '</span>';
 			case "demo":
-				return '<span class="label label-demo" data-id="demo">' + TAPi18n.__('access-level.demo.long') + '</span>';
+				return '<span class="label label-kind label-demo" data-id="demo">' + TAPi18n.__('access-level.demo.long') + '</span>';
 			default:
 				return '<span class="label label-default">Undefined!</span>';
 		}

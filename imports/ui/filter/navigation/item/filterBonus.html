@@ -3,7 +3,7 @@
         <a href="#" class="dropdown-toggle bonusFilter cards-filter-element" data-toggle="dropdown"
            role="button"
            aria-haspopup="true" aria-expanded="false">
-            {{_ "set-list.learnphase"}}
+            {{_ "filter-pool.bonus.title"}}
             {{#if hasBonusFilter}}
                 <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
             {{/if}}
@@ -11,19 +11,19 @@
         <ul class="dropdown-menu cards-filter-element">
             <li class="cards-filter-element">
                 <a href="#" class="noFilterBonus active cards-filter-element" data-id="reset">{{_
-                        "set-list.everything"}}</a>
+                        "filter-pool.bonus.all"}}</a>
             </li>
             {{#if gotBonusCardsets}}
                 <li class="cards-filter-element"><a href="#" class="filterActiveBonus cards-filter-element">
-                    {{_ "set-list.activeLearnphase"}}
+                    {{_ "filter-pool.bonus.bonus"}}
                     {{#if resultsFilterBonus 0}}
                         <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
                     {{/if}}
                 </a></li>
             {{/if}}
-            {{#if gotFinishedBonusCardsets}}
-                <li class="cards-filter-element"><a href="#" class="filterFinishedBonus cards-filter-element">
-                    {{_ "set-list.inactiveLearnphase"}}
+            {{#if gotTranscriptBonusCardsets}}
+                <li class="cards-filter-element"><a href="#" class="filterTranscriptBonus cards-filter-element">
+                    {{_ "filter-pool.bonus.transcriptBonus"}}
                     {{#if resultsFilterBonus 1}}
                         <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
                     {{/if}}

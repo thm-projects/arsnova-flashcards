@@ -1,4 +1,3 @@
-import {MainNavigation} from "../../../../../api/mainNavigation";
 import {FilterNavigation} from "../../../../../api/filterNavigation";
 import {Template} from "meteor/templating";
 import "./filter.html";
@@ -12,13 +11,7 @@ import "./filter.html";
 let filterResizeSensor;
 Template.mainNavigationTopItemFilterDropdown.events({
 	'click .toggle-filter-dropdown': function () {
-		if ($('.navbar-cards-filter-dropdown').hasClass('active')) {
-			$('.navbar-cards-filter-dropdown').removeClass('active');
-		} else {
-			$('.navbar-cards-filter-dropdown').addClass('active');
-			FilterNavigation.setMaxDropdownHeight();
-			MainNavigation.closeCollapse();
-		}
+		FilterNavigation.showDropdown(false);
 	}
 });
 

@@ -3,8 +3,19 @@ import {Session} from "meteor/session";
 import {Filter} from "./filter";
 import * as config from "../config/filter.js";
 import {NavigatorCheck} from "./navigatorCheck";
+import {MainNavigation} from "./mainNavigation";
 
 export let FilterNavigation = class FilterNavigation {
+	static showDropdown (forceOn = true) {
+		if ($('.navbar-cards-filter-dropdown').hasClass('active') && !forceOn) {
+			$('.navbar-cards-filter-dropdown').removeClass('active');
+		} else {
+			$('.navbar-cards-filter-dropdown').addClass('active');
+			FilterNavigation.setMaxDropdownHeight();
+			MainNavigation.closeCollapse();
+		}
+	}
+
 	static gotAuthorFilter (filterType) {
 		return config.filtersWithAuthor.includes(filterType);
 	}

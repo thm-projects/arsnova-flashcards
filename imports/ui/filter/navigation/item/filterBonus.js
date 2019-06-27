@@ -11,27 +11,28 @@ import {Cardsets} from "../../../../api/cardsets";
 
 Template.filterItemFilterBonus.helpers({
 	hasBonusFilter: function () {
-		return Filter.getFilterQuery().learningActive !== undefined;
+		let query = Filter.getFilterQuery();
+		return (query.learningActive !== undefined) || (query['transcriptBonus.enabled'] === true);
 	},
 	resultsFilterBonus: function (bonusType) {
 		let query = Filter.getFilterQuery();
 		switch (bonusType) {
 			case 0:
-				return (query.learningActive !== undefined && query.learningEnd.$gt !== undefined);
+				return (query.learningActive !== undefined);
 			case 1:
-				return (query.learningActive !== undefined && query.learningEnd.$lte !== undefined);
+				return (query['transcriptBonus.enabled'] === true);
 		}
 	},
 	gotBonusCardsets: function () {
 		let query = Filter.getFilterQuery();
 		query.learningActive = true;
-		query.learningEnd = {$gt: new Date()};
+		delete query['transcriptBonus.enabled'];
 		return Cardsets.findOne(query);
 	},
-	gotFinishedBonusCardsets: function () {
+	gotTranscriptBonusCardsets: function () {
 		let query = Filter.getFilterQuery();
-		query.learningActive = true;
-		query.learningEnd = {$lte: new Date()};
+		delete query.learningActive;
+		query['transcriptBonus.enabled'] = true;
 		return Cardsets.findOne(query);
 	}
 });
@@ -43,7 +44,7 @@ Template.filterItemFilterBonus.events({
 	'click .filterActiveBonus': function () {
 		Filter.setActiveFilter(undefined, "bonusActive");
 	},
-	'click .filterFinishedBonus': function () {
-		Filter.setActiveFilter(undefined, "bonusFinished");
+	'click .filterTranscriptBonus': function () {
+		Filter.setActiveFilter(true, "transcriptBonus");
 	}
 });
