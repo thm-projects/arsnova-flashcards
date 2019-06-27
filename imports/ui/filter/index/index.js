@@ -86,6 +86,10 @@ Template.filterIndex.events({
 	'click .resultItemHeaderBottomAreaLabels .label-transcript-bonus': function () {
 		Filter.setActiveFilter(true, "transcriptBonus");
 		FilterNavigation.showDropdown();
+	},
+	'click .resultItemHeaderAuthor a': function (event) {
+		Filter.setActiveFilter($(event.target).data('id'), "author");
+		FilterNavigation.showDropdown();
 	}
 });
 
