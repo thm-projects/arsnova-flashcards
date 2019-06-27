@@ -108,6 +108,11 @@ export let Filter = class Filter {
 					break;
 				case "author":
 					filter.owner = content;
+					if (content !== undefined) {
+						filter.name = undefined;
+						filter.date = undefined;
+						filter.dateUpdated = -1;
+					}
 					break;
 				case "noDifficulty":
 					filter.noDifficulty = content;
