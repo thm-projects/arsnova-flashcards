@@ -1260,6 +1260,12 @@
       "all": "Alle",
       "bonus": "Mit Lern-Bonus",
       "transcriptBonus": "Mit Mitschreib-Bonus"
+    },
+    "author": {
+      "tooltip": {
+        "cardset": "Nach Autor/in \"__name__\" filtern",
+        "rep": "Nach Editor/in \"__name__\" filtern"
+      }
     }
   },
   "infinite-scroll": {
