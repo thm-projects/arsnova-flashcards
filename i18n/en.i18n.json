@@ -727,11 +727,16 @@
           "cancel": "Zurück zur Kartei",
           "cancelRepetitorium": "Zrück zum Repetitorium",
           "settings": "Einstellungen für die Bonusvergabe",
-          "list": "Gekoppelte Abgaben für die Bonusvergabe"
+          "list": "Gekoppelte Abgaben für die Bonusvergabe",
+          "statistics": "Übersicht"
         },
         "alert": {
           "save": "Änderungen wurden erfolgreich gespeichert"
         }
+      },
+      "statistics": {
+        "count": "Eingereichte Mitschriften",
+        "lastSubmission": "Letzte Abgabe"
       }
     }
   },

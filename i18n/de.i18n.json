@@ -725,11 +725,16 @@
           "cancel": "Zurück zur Kartei",
           "cancelRepetitorium": "Zrück zum Repetitorium",
           "settings": "Einstellungen",
-          "list": "Abgaben"
+          "list": "Abgaben",
+          "statistics": "Übersicht"
         },
         "alert": {
           "save": "Änderungen wurden erfolgreich gespeichert"
         }
+      },
+      "statistics": {
+        "count": "Eingereichte Mitschriften",
+        "lastSubmission": "Letzte Abgabe"
       }
     }
   },

@@ -158,8 +158,13 @@ export let TranscriptBonusList = class TranscriptBonusList {
 		}
 	}
 
-	static getLectureName (transcriptBonus) {
-		return transcriptBonus.name + ": " + this.getLectureEnd(transcriptBonus, transcriptBonus.date, false);
+	static getLectureName (transcriptBonus, addLectureName = true) {
+		let name = "";
+		if (addLectureName) {
+			name += transcriptBonus.name + ": ";
+		}
+		name += this.getLectureEnd(transcriptBonus, transcriptBonus.date, false);
+		return name;
 	}
 
 	static getLectureEnd (transcriptBonus, date_id) {
