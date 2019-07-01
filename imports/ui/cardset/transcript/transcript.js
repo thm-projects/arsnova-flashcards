@@ -8,7 +8,7 @@ import {Bonus} from "../../../api/bonus";
 import {Filter} from "../../../api/filter";
 import {BertAlertVisuals} from "../../../api/bertAlertVisuals";
 
-Session.setDefault('transcriptViewingMode', 0);
+Session.setDefault('transcriptViewingMode', 1);
 
 /*
  * ############################################################################

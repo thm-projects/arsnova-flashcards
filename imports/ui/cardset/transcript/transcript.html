@@ -1,9 +1,9 @@
 <template name="cardsetTranscript">
     <div class="transcriptBonus">
         <div class="col-xs-12 col-sm-4">
-            <div id="showTranscriptSettings" class="btn btn-raised btn-block {{#if isViewActive 0}}btn-primary{{else}}btn-default{{/if}}">
+            <div id="showTranscriptStatistics" class="btn btn-raised btn-block {{#if isViewActive 1}}btn-primary{{else}}btn-default{{/if}}">
                 <span class="flex-content">
-                    {{_ "transcriptForm.bonus.form.button.settings"}}
+                    {{_ "transcriptForm.bonus.form.button.statistics"}}
                 </span>
             </div>
         </div>
@@ -15,9 +15,9 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-4">
-            <div id="showTranscriptStatistics" class="btn btn-raised btn-block {{#if isViewActive 1}}btn-primary{{else}}btn-default{{/if}}">
+            <div id="showTranscriptSettings" class="btn btn-raised btn-block {{#if isViewActive 0}}btn-primary{{else}}btn-default{{/if}}">
                 <span class="flex-content">
-                    {{_ "transcriptForm.bonus.form.button.statistics"}}
+                    {{_ "transcriptForm.bonus.form.button.settings"}}
                 </span>
             </div>
         </div>
