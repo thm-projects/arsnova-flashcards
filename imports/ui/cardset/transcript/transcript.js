@@ -5,6 +5,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Meteor} from "meteor/meteor";
 import {Bonus} from "../../../api/bonus";
+import {Filter} from "../../../api/filter";
 import {BertAlertVisuals} from "../../../api/bertAlertVisuals";
 
 Session.setDefault('transcriptViewingMode', 0);
@@ -14,6 +15,10 @@ Session.setDefault('transcriptViewingMode', 0);
  * cardsetTranscript
  * ############################################################################
  */
+
+Template.cardsetTranscript.onCreated(function () {
+	Filter.resetActiveFilter();
+});
 
 Template.cardsetTranscript.helpers({
 	isViewActive: function (id) {

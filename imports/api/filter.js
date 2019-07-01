@@ -92,7 +92,7 @@ export let Filter = class Filter {
 		}
 	}
 
-	static setActiveFilter (content, contentType = undefined) {
+	static setActiveFilter (content, contentType = undefined, maxItemCounter = config.itemStartingValue) {
 		let filter = content;
 		if (contentType !== undefined) {
 			filter = this.getActiveFilter();
@@ -178,7 +178,7 @@ export let Filter = class Filter {
 				Session.set('transcriptsBonusCardsetFilter', filter);
 				break;
 		}
-		this.resetInfiniteBar();
+		this.setMaxItemCounter(maxItemCounter);
 		if (FilterNavigation.isDisplayWordcloudActive(FilterNavigation.getRouteId())) {
 			WordcloudCanvas.draw();
 		}
@@ -332,6 +332,10 @@ export let Filter = class Filter {
 		Session.set('maxItemsCounter', config.itemStartingValue);
 	}
 
+	static setMaxItemCounter (size) {
+		Session.set('maxItemsCounter', size);
+	}
+
 	static incrementMaxItemCounter () {
 		let newCounter = Session.get('maxItemsCounter');
 		newCounter += config.itemIncrementValue;
@@ -388,10 +392,6 @@ export let Filter = class Filter {
 				break;
 		}
 		this.setActiveFilter(filter);
-	}
-
-	static resetInfiniteBar () {
-		this.resetMaxItemCounter();
 	}
 
 	static resetFilters () {

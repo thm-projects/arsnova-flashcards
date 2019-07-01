@@ -34,10 +34,10 @@ Template.mainNavigationTopItemDisplayModeButton.helpers({
 Template.mainNavigationTopItemDisplayModeButton.events({
 	'click .displayModeBtn': function () {
 		if (Session.get('filterDisplayWordcloud')) {
-			Filter.resetInfiniteBar();
+			Filter.resetMaxItemCounter();
 			WordcloudCanvas.disableWordcloud();
 		} else {
-			Filter.resetInfiniteBar();
+			Filter.resetMaxItemCounter();
 			WordcloudCanvas.enableWordcloud();
 		}
 	}

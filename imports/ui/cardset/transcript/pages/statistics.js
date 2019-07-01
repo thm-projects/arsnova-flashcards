@@ -1,12 +1,24 @@
 import "./statistics.html";
 import {TranscriptBonus, TranscriptBonusList} from "../../../../api/transcriptBonus";
 import {Template} from "meteor/templating";
+import {Filter} from "../../../../api/filter";
+import {FilterNavigation} from "../../../../api/filterNavigation";
+import {Session} from "meteor/session";
 
 /*
  * ############################################################################
  * cardsetTranscriptStatistics
  * ############################################################################
  */
+
+
+Template.cardsetTranscriptStatistics.events({
+	'click .filterAuthorTranscripts': function (event) {
+		Session.set('transcriptViewingMode', 2);
+		Filter.setActiveFilter($(event.target).data('id'), "author", 30);
+		FilterNavigation.showDropdown();
+	}
+});
 
 Template.cardsetTranscriptStatistics.helpers({
 	transcriptBonusUser: function () {
