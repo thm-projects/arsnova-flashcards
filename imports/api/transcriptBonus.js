@@ -6,6 +6,7 @@ import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {check} from "meteor/check";
 import {Utilities} from "./utilities";
 import * as config from "../config/transcriptBonus.js";
+import * as icons from "../config/icons.js";
 
 export const TranscriptBonus = new Mongo.Collection("transcriptBonus");
 
@@ -52,6 +53,10 @@ const TranscriptBonusSchema = new SimpleSchema({
 	},
 	deadlineEditing: {
 		type: Number
+	},
+	rating: {
+		type: Number,
+		optional: true
 	}
 });
 
@@ -76,7 +81,8 @@ Meteor.methods({
 						lectureEnd: cardset.transcriptBonus.lectureEnd,
 						deadline: cardset.transcriptBonus.deadline,
 						deadlineEditing: cardset.transcriptBonus.deadlineEditing,
-						dateCreated: new Date()
+						dateCreated: new Date(),
+						rating: 0
 					}
 				});
 			}
@@ -198,6 +204,28 @@ export let TranscriptBonusList = class TranscriptBonusList {
 			return Math.round(median);
 		} else {
 			return median.toFixed(1);
+		}
+	}
+
+	static getBonusTranscriptRating (type = 0) {
+		switch (type) {
+			case 1:
+				return icons.transcriptIcons.ratingAccepted;
+			case 2:
+				return icons.transcriptIcons.ratingDenied;
+			default:
+				return icons.transcriptIcons.ratingPending;
+		}
+	}
+
+	static getBonusTranscriptTooltip (type = 0) {
+		switch (type) {
+			case 1:
+				return TAPi18n.__('cardset.transcriptBonusRating.tooltip.accepted');
+			case 2:
+				return TAPi18n.__('cardset.transcriptBonusRating.tooltip.denied');
+			default:
+				return TAPi18n.__('cardset.transcriptBonusRating.tooltip.pending');
 		}
 	}
 };

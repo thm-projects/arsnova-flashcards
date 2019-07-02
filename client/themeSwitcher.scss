@@ -88,6 +88,11 @@ $themes: (
     $card_counter_text:  map-get($map, "card_counter_text");
     $transcript_counter_background:  map-get($map, "transcript_counter_background");
     $transcript_counter_text:  map-get($map, "transcript_counter_text");
+    $transcript_rating_label_background:  map-get($map, "transcript_rating_label_background");
+    $transcript_rating_label_text:  map-get($map, "transcript_rating_label_text");
+    $transcript_rating_pending_icon:  map-get($map, "transcript_rating_pending_icon");
+    $transcript_rating_accepted_icon:  map-get($map, "transcript_rating_accepted_icon");
+    $transcript_rating_denied_icon:  map-get($map, "transcript_rating_denied_icon");
     //barfy stars
     $barfy_stars_particles_1: map-get($map, "barfy_stars_particles_1");
     $barfy_stars_particles_2: map-get($map, "barfy_stars_particles_2");
@@ -2782,6 +2787,23 @@ $themes: (
       i:hover {
         color: $wordcloud_label_text !important;
       }
+    }
+
+    .label-transcript-rating {
+      background-color: $transcript_rating_label_background !important;
+      color: $transcript_rating_label_text !important;
+    }
+
+    .transcript-rating-pending::before {
+      color: $transcript_rating_pending_icon !important;
+    }
+
+    .transcript-rating-accepted::before {
+      color: $transcript_rating_accepted_icon !important;
+    }
+
+    .transcript-rating-denied::before {
+      color: $transcript_rating_denied_icon !important;
     }
 
     .label-count-cards {

@@ -32,6 +32,7 @@ import "./item/bottom/export.js";
 import "./item/bottom/leaveWorkload.js";
 import "./item/bottom/shuffle.js";
 import "./item/bottom/workloadProgress.js";
+import "./item/bottom/transcriptRating.js";
 import "./item/collapse/collapse.js";
 import "./item/titleRow/author.js";
 import "./item/titleRow/dateCreated.js";

@@ -733,7 +733,10 @@
         }
       },
       "statistics": {
-        "lastSubmission": "Letzte Abgabe"
+        "lastSubmission": "Letzte Abgabe",
+        "pending": "Noch nicht bewertet",
+        "accepted": "Akzeptiert",
+        "denied": "Abgelehnt"
       }
     }
   },
@@ -1196,6 +1199,15 @@
     },
     "list": {
       "back": " Zurück zur Karte"
+    },
+    "transcriptBonusRating": {
+      "long": "Bewertung",
+      "short": "Bewertung",
+      "tooltip": {
+        "pending": "Die Mitschrift wurde noch nicht bewertet",
+        "accepted": "Die Mitschrift wurde akzeptiert",
+        "denied": "Die Mitschrift wurde abgelehnt"
+      }
     }
   },
   "rating-field": {
