@@ -5,6 +5,7 @@ import {Route} from "./route";
 import {WordcloudCanvas} from "./wordcloudCanvas";
 import {Leitner, Wozniak} from "./learned";
 import * as config from "../config/filter.js";
+import {TranscriptBonus} from "./transcriptBonus";
 
 Session.setDefault('maxItemsCounter', config.itemStartingValue);
 Session.setDefault('poolFilter', undefined);
@@ -88,7 +89,6 @@ export let Filter = class Filter {
 					this.setDefaultFilter(FilterNavigation.getRouteId());
 				}
 				return Session.get('transcriptsBonusCardsetFilter');
-
 		}
 	}
 
@@ -140,6 +140,13 @@ export let Filter = class Filter {
 				case "transcriptBonus":
 					delete filter.learningActive;
 					filter['transcriptBonus.enabled'] = true;
+					break;
+				case "rating":
+					if (content === undefined) {
+						delete filter.rating;
+					} else {
+						filter.rating = Number(content);
+					}
 					break;
 			}
 		}
@@ -300,6 +307,20 @@ export let Filter = class Filter {
 		}
 		if (!Route.isWorkload() && activeFilter !== undefined && !Route.isTranscript() && !Route.isTranscriptBonus()) {
 			query.shuffled = activeFilter.shuffled;
+		}
+		if (FilterNavigation.gotRatingFilter(FilterNavigation.getRouteId()) && activeFilter.rating !== undefined) {
+			let ratingQuery = {rating: activeFilter.rating};
+			if (Route.isMyBonusTranscripts()) {
+				ratingQuery.user_id = Meteor.userId();
+			} else {
+				ratingQuery.cardset_id = Router.current().params._id;
+			}
+			let cardsWithRating = _.uniq(TranscriptBonus.find(ratingQuery, {
+				fields: {card_id: 1}
+			}).fetch().map(function (x) {
+				return x.card_id;
+			}), true);
+			query._id = {$in: cardsWithRating};
 		}
 		return query;
 	}

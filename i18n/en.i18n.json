@@ -1282,6 +1282,13 @@
         "cardset": "Nach Autor/in \"__name__\" filtern",
         "rep": "Nach Editor/in \"__name__\" filtern"
       }
+    },
+    "rating": {
+      "title": "Bewertung",
+      "all": "Alle",
+      "notRated": "Nicht bewertet",
+      "accepted": "Akzeptiert",
+      "denied": "Abgelehnt"
     }
   },
   "infinite-scroll": {

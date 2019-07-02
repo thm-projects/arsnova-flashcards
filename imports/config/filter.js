@@ -24,6 +24,7 @@ let filtersWithDefaultSortDateCreated = [];
 let filtersWithAuthor = [0, 2, 3, 4, 5, 10];
 let filtersWithCardType = [0, 1, 3, 4, 5];
 let filtersWithDifficulty = [0, 1, 3, 4, 5];
+let filtersWithRating = [9, 10];
 let filtersWithTargetAudience = [];
 let filtersWithSemester = [];
 let filtersWithCollege = [];
@@ -62,5 +63,6 @@ module.exports = {
 	filtersWithPersonalKind,
 	filtersWithFreeKind,
 	filtersWithEduKind,
-	filtersWithProKind
+	filtersWithProKind,
+	filtersWithRating
 };

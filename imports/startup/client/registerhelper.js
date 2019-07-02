@@ -125,6 +125,11 @@ Template.registerHelper('gotKindFilter', function () {
 	return FilterNavigation.gotKindFilter(FilterNavigation.getRouteId());
 });
 
+
+Template.registerHelper('gotRatingFilter', function () {
+	return FilterNavigation.gotRatingFilter(FilterNavigation.getRouteId());
+});
+
 Template.registerHelper('isFilterIndex', function () {
 	return Route.isFilterIndex();
 });

@@ -87,9 +87,9 @@ let useCasesIcons = {
 };
 
 let transcriptIcons = {
-	"ratingPending": '<i class="transcript-rating-pending fas fa-hourglass"></i>',
-	"ratingAccepted": '<i class="transcript-rating-accepted fas fa-check-circle"></i>',
-	"ratingDenied": '<i class="transcript-rating-denied fas fa-times-circle"></i>'
+	"ratingPending": '<i class="transcript-rating-pending fas fa-hourglass" data-rating="0"></i>',
+	"ratingAccepted": '<i class="transcript-rating-accepted fas fa-check-circle" data-rating="1"></i>',
+	"ratingDenied": '<i class="transcript-rating-denied fas fa-times-circle" data-rating="2"></i>'
 };
 
 module.exports = {

@@ -91,6 +91,10 @@ Template.filterIndex.events({
 	'click .resultItemHeaderAuthor a': function (event) {
 		Filter.setActiveFilter($(event.target).data('id'), "author");
 		FilterNavigation.showDropdown();
+	},
+	'click .resultItemHeaderBottomAreaLabels .label-transcript-rating': function (event) {
+		Filter.setActiveFilter($(event.target).data('rating'), "rating");
+		FilterNavigation.showDropdown();
 	}
 });
 

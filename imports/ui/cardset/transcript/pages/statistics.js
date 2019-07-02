@@ -13,9 +13,15 @@ import {Session} from "meteor/session";
 
 
 Template.cardsetTranscriptStatistics.events({
-	'click .filterAuthorTranscripts': function (event) {
+	'click .filterTranscriptSubmissions': function (event) {
 		Session.set('transcriptViewingMode', 2);
 		Filter.setActiveFilter($(event.target).data('id'), "author", 30);
+		FilterNavigation.showDropdown();
+	},
+	'click .filterSubmissionsRating': function (event) {
+		Session.set('transcriptViewingMode', 2);
+		Filter.setActiveFilter($(event.target).data('id'), "author", 30);
+		Filter.setActiveFilter($(event.target).data('rating'), "rating", 30);
 		FilterNavigation.showDropdown();
 	}
 });

@@ -1,11 +1,13 @@
 <template name="filterIndex">
     {{> showLicense}}
-    {{> filterItemSelectCardsetToLearnCallout}}
-    {{#if gotBackendAccess}}
-        {{> cardsetFormAdmin}}
-    {{/if}}
-    {{> cardsetDeleteForm}}
-    {{> cardsetForm}}
+    {{#unless isCardsetTranscriptBonusRoute}}
+        {{> filterItemSelectCardsetToLearnCallout}}
+        {{#if gotBackendAccess}}
+            {{> cardsetFormAdmin}}
+        {{/if}}
+        {{> cardsetDeleteForm}}
+        {{> cardsetForm}}
+    {{/unless}}
     <div id="set-list-region">
         {{#if isActiveRoute regex='alldecks|create'}}
             {{> filterIndexCreate}}
@@ -30,6 +32,9 @@
         {{/if}}
 
         {{#if isActiveRoute regex='transcriptsPersonal|transcriptsBonus'}}
+            {{> filterIndexTranscripts}}
+        {{/if}}
+        {{#if isCardsetTranscriptBonusRoute}}
             {{> filterIndexTranscripts}}
         {{/if}}
     </div>
