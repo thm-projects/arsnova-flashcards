@@ -2,7 +2,7 @@
     <tr>
         <td>
             {{{getBonusTranscriptRating 1}}}
-            {{#if (getSubmissions this._id 1)}}
+            {{#if (getSubmissions this.cardset_id this.user_id 1)}}
                 <a href=""
                    class="filterSubmissionsRating cards-filter-element"
                    data-id="{{this._id}}" data-rating="1">{{_
@@ -12,7 +12,7 @@
             {{/if}}
         </td>
         <td>
-            {{getSubmissions this._id 1}}
+            {{getSubmissions this.cardset_id this.user_id 1}}
         </td>
     </tr>
 </template>

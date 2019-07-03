@@ -1,8 +1,8 @@
 <template name="cardsetIndexTranscriptStatisticsItemUserPending">
     <tr>
         <td>
-            {{{getBonusTranscriptRating 0}}}&nbsp;
-            {{#if (getSubmissions this._id 0)}}
+            {{{getBonusTranscriptRating 0}}}
+            {{#if (getSubmissions this.cardset_id this.user_id 0)}}
                 <a href="" class="filterSubmissionsRating cards-filter-element" data-id="{{this._id}}"
                    data-rating="0">{{_ "transcriptForm.bonus.statistics.pending"}}:</a>
             {{else}}
@@ -10,7 +10,7 @@
             {{/if}}
         </td>
         <td>
-            {{getSubmissions this._id 0}}
+            {{getSubmissions this.cardset_id this.user_id 0}}
         </td>
     </tr>
 </template>

@@ -35,7 +35,12 @@ Template.cardsetIndexTranscriptStatistics.helpers({
 		}).fetch().map(function (x) {
 			return x.user_id;
 		}), true);
-		return Meteor.users.find({_id: {$in: transcriptBonusUsers}}, {sort: {"profile.birthname": 1}, fields: {_id: 1}}).fetch();
+		let users = Meteor.users.find({_id: {$in: transcriptBonusUsers}}, {sort: {"profile.birthname": 1}, fields: {_id: 1}}).fetch();
+		let list = [];
+		for (let i = 0; i < users.length; i++) {
+			list.push({user_id: users[i]._id, cardset_id: Router.current().params._id});
+		}
+		return list;
 	},
 	getSubmissions: function (id, rating = undefined) {
 		let query = {cardset_id: Router.current().params._id, user_id: id};

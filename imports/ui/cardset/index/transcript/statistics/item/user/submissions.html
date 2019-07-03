@@ -2,7 +2,7 @@
     <tr>
         <td>
             <i class="fas fa-clipboard"></i>&nbsp;
-            {{#if (getSubmissions this._id undefined)}}
+            {{#if (getSubmissions this.cardset_id this.user_id undefined)}}
                 <a href="" class="filterTranscriptSubmissions cards-filter-element"
                    data-id="{{this._id}}">{{_ "transcriptForm.info.submissions"}}:</a>
             {{else}}
@@ -10,7 +10,7 @@
             {{/if}}
         </td>
         <td>
-            {{getSubmissions this._id undefined}}
+            {{getSubmissions this.cardset_id this.user_id undefined}}
         </td>
     </tr>
 </template>

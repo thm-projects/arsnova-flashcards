@@ -8,7 +8,7 @@ import {TranscriptBonusList} from "../../../../../../../api/transcriptBonus";
  */
 
 Template.cardsetIndexTranscriptStatisticsItemUserBonus.helpers({
-	getAchievedBonus: function (user_id) {
-		return TranscriptBonusList.getAchievedBonus(user_id);
+	getAchievedBonus: function (cardset_id, user_id) {
+		return TranscriptBonusList.getAchievedBonus(cardset_id, user_id);
 	}
 });

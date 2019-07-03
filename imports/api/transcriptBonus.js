@@ -3,7 +3,6 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "./cardsets";
 import {UserPermissions} from "./permissions";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
-import {Route} from "./route.js";
 import {check} from "meteor/check";
 import {Utilities} from "./utilities";
 import * as config from "../config/transcriptBonus.js";
@@ -208,13 +207,10 @@ export let TranscriptBonusList = class TranscriptBonusList {
 		}
 	}
 
-	static getAchievedBonus (user_id) {
-		let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {transcriptBonus: 1}});
+	static getAchievedBonus (cardset_id, user_id) {
+		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {transcriptBonus: 1}});
 		if (cardset !== undefined) {
-			let query = {user_id: user_id, rating: 1};
-			if (Route.isTranscriptBonus()) {
-				query.cardset_id = Router.current().params._id;
-			}
+			let query = {cardset_id: cardset_id, user_id: user_id, rating: 1};
 			let acceptedTranscripts = TranscriptBonus.find(query).count();
 			if (acceptedTranscripts === 0 || cardset.transcriptBonus.minimumSubmissions === 0) {
 				return 0;
@@ -235,11 +231,8 @@ export let TranscriptBonusList = class TranscriptBonusList {
 		}
 	}
 
-	static getSubmissions (user_id, rating) {
-		let query = {user_id: user_id};
-		if (Route.isTranscriptBonus()) {
-			query.cardset_id = Router.current().params._id;
-		}
+	static getSubmissions (cardset_id, user_id, rating) {
+		let query = {cardset_id: cardset_id, user_id: user_id};
 		if (rating !== undefined) {
 			query.rating = rating;
 		}

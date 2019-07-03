@@ -8,8 +8,8 @@ import {TranscriptBonus, TranscriptBonusList} from "../../../../../../../api/tra
  */
 
 Template.cardsetIndexTranscriptStatisticsItemUserLastSubmission.helpers({
-	lastSubmission: function (id) {
-		let bonusTranscript = TranscriptBonus.findOne({user_id: id}, {sort: {date: -1}});
+	lastSubmission: function (cardset_id, user_id) {
+		let bonusTranscript = TranscriptBonus.findOne({cardset_id: cardset_id, user_id: user_id}, {sort: {date: -1}});
 		if (bonusTranscript !== undefined) {
 			return TranscriptBonusList.getLectureName(bonusTranscript, false);
 		}

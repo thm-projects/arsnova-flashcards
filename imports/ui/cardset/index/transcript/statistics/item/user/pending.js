@@ -11,7 +11,7 @@ Template.cardsetIndexTranscriptStatisticsItemUserPending.helpers({
 	getBonusTranscriptRating: function (type) {
 		return TranscriptBonusList.getBonusTranscriptRating(type);
 	},
-	getSubmissions: function (user_id, type) {
-		return TranscriptBonusList.getSubmissions(user_id, type);
+	getSubmissions: function (cardset_id, user_id, type) {
+		return TranscriptBonusList.getSubmissions(cardset_id, user_id, type);
 	}
 });
