@@ -449,7 +449,7 @@ Router.route('/cardset/:_id/editshuffle', {
 
 Router.route('/cardset/:_id/transcripts', {
 	name: 'transcriptBonus',
-	template: 'cardsetTranscript',
+	template: 'cardsetIndexTranscript',
 	subscriptions: function () {
 		return [Meteor.subscribe('cardsetTranscriptBonus', this.params._id), Meteor.subscribe('cardsetTranscriptBonusCards', this.params._id), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('userDataTranscriptBonus', this.params._id)];
 	},

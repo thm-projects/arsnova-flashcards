@@ -1,0 +1,1 @@
+import "./submissions.html";

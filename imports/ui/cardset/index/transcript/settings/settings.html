@@ -1,4 +1,4 @@
-<template name="cardsetTranscriptSettings">
+<template name="cardsetIndexTranscriptSettings">
     <div class="col-xs-12">
         <h2 id="transcriptBonusTitle" class="modal-title">{{_ "transcriptForm.bonus.form.title"}}</h2>
     </div>
@@ -30,17 +30,5 @@
         <br>
         <label>{{_ "transcriptForm.bonus.form.lectureDates"}}:</label>
         <div id="transcript-calendar"></div>
-    </div>
-</template>
-
-<template name="cardsetTranscriptSettingsCancel">
-    <div id="transcript-bonus-cancel" class="btn btn-raised btn-danger pull-left">
-        <span class="flex-content">
-            {{#if isShuffledCardset this._id}}
-                {{_ "transcriptForm.bonus.form.button.cancelRepetitorium"}}
-            {{else}}
-                {{_ "transcriptForm.bonus.form.button.cancel"}}
-            {{/if}}
-        </span>
     </div>
 </template>

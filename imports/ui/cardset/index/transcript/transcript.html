@@ -1,43 +1,18 @@
-<template name="cardsetTranscript">
+<template name="cardsetIndexTranscript">
     <div class="transcriptBonus">
-        <div class="col-xs-12 col-sm-4">
-            <div id="showTranscriptStatistics" class="btn btn-raised btn-block {{#if isViewActive 1}}btn-primary{{else}}btn-default{{/if}}">
-                <span class="flex-content">
-                    {{_ "transcriptForm.bonus.form.button.statistics"}}
-                </span>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-4">
-            <div id="showTranscriptList" class="btn btn-raised btn-block {{#if isViewActive 2}}btn-primary{{else}}btn-default{{/if}}">
-                <span class="flex-content">
-                    {{_ "transcriptForm.bonus.form.button.list"}}
-                </span>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-4">
-            <div id="showTranscriptSettings" class="btn btn-raised btn-block {{#if isViewActive 0}}btn-primary{{else}}btn-default{{/if}}">
-                <span class="flex-content">
-                    {{_ "transcriptForm.bonus.form.button.settings"}}
-                </span>
-            </div>
-        </div>
-        <br>
+        {{> cardsetIndexTranscriptNavigation}}
         {{#if isViewActive 0}}
-            {{> cardsetTranscriptSettings}}
+            {{> cardsetIndexTranscriptSettings}}
         {{else if isViewActive 1}}
-            {{> cardsetTranscriptStatistics}}
+            {{> cardsetIndexTranscriptStatistics}}
         {{else}}
-            {{> filterIndex}}
+            {{> cardsetIndexTranscriptSubmissions}}
         {{/if}}
         <div class="col-xs-12">
             <br>
-            {{> cardsetTranscriptSettingsCancel}}
+            {{> cardsetIndexTranscriptItemCancel}}
             {{#if isViewActive 0}}
-                <div id="transcript-bonus-save" class="btn btn-raised btn-success pull-right">
-                <span class="flex-content">
-                    {{_ "transcriptForm.bonus.form.button.save"}}
-                </span>
-                </div>
+                {{> cardsetIndexTranscriptItemSave}}
             {{/if}}
         </div>
     </div>

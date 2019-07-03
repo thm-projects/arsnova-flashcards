@@ -1,4 +1,6 @@
 import "./statistics.html";
+import "./item/cardset.js";
+import "./item/user.js";
 import {TranscriptBonus, TranscriptBonusList} from "../../../../../api/transcriptBonus";
 import {Template} from "meteor/templating";
 import {Filter} from "../../../../../api/filter";
@@ -12,7 +14,7 @@ import {Session} from "meteor/session";
  */
 
 
-Template.cardsetTranscriptStatistics.events({
+Template.cardsetIndexTranscriptStatistics.events({
 	'click .filterTranscriptSubmissions': function (event) {
 		Session.set('transcriptViewingMode', 2);
 		Filter.setActiveFilter($(event.target).data('id'), "author", 30);
@@ -26,7 +28,7 @@ Template.cardsetTranscriptStatistics.events({
 	}
 });
 
-Template.cardsetTranscriptStatistics.helpers({
+Template.cardsetIndexTranscriptStatistics.helpers({
 	transcriptBonusUser: function () {
 		let transcriptBonusUsers = _.uniq(TranscriptBonus.find({cardset_id: Router.current().params._id}, {
 			fields: {user_id: 1}

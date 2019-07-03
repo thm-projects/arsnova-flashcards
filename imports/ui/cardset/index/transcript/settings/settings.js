@@ -3,11 +3,11 @@ import {Template} from "meteor/templating";
 
 /*
  * ############################################################################
- * cardsetTranscriptSettings
+ * cardsetIndexTranscriptSettings
  * ############################################################################
  */
 
-Template.cardsetTranscriptSettings.onRendered(function () {
+Template.cardsetIndexTranscriptSettings.onRendered(function () {
 	let dates = [];
 	if (this.data.transcriptBonus !== undefined) {
 		$('#enableBonus').prop('checked', this.data.transcriptBonus.enabled);

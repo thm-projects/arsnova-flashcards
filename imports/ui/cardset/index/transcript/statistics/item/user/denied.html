@@ -1,0 +1,17 @@
+<template name="cardsetIndexTranscriptStatisticsItemUserDenied">
+    <tr>
+        <td>
+            {{{getBonusTranscriptRating 2}}}&nbsp;
+            {{#if (getSubmissions this._id 1)}}
+                <a href="" class="filterSubmissionsRating cards-filter-element" data-id="{{this._id}}"
+                   data-rating="2">{{_
+                        "transcriptForm.bonus.statistics.denied"}}:</a>
+            {{else}}
+                {{_ "transcriptForm.bonus.statistics.denied"}}:
+            {{/if}}
+        </td>
+        <td>
+            {{getSubmissions this._id 2}}
+        </td>
+    </tr>
+</template>

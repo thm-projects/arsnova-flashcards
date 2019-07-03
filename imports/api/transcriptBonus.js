@@ -3,6 +3,7 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "./cardsets";
 import {UserPermissions} from "./permissions";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
+import {Route} from "./route.js";
 import {check} from "meteor/check";
 import {Utilities} from "./utilities";
 import * as config from "../config/transcriptBonus.js";
@@ -216,6 +217,17 @@ export let TranscriptBonusList = class TranscriptBonusList {
 			default:
 				return icons.transcriptIcons.ratingPending;
 		}
+	}
+
+	static getSubmissions (user_id, rating) {
+		let query = {user_id: user_id};
+		if (Route.isTranscriptBonus()) {
+			query.cardset_id = Router.current().params._id;
+		}
+		if (rating !== undefined) {
+			query.rating = rating;
+		}
+		return TranscriptBonus.find(query).count();
 	}
 
 	static getBonusTranscriptTooltip (type = 0) {
