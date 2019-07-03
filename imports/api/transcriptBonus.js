@@ -208,6 +208,22 @@ export let TranscriptBonusList = class TranscriptBonusList {
 		}
 	}
 
+	static getAchievedBonus (user_id) {
+		let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {transcriptBonus: 1}});
+		if (cardset !== undefined) {
+			let query = {user_id: user_id, rating: 1};
+			if (Route.isTranscriptBonus()) {
+				query.cardset_id = Router.current().params._id;
+			}
+			let acceptedTranscripts = TranscriptBonus.find(query).count();
+			if (acceptedTranscripts === 0 || cardset.transcriptBonus.minimumSubmissions === 0) {
+				return 0;
+			} else {
+				return Math.trunc((acceptedTranscripts / cardset.transcriptBonus.minimumSubmissions) * cardset.transcriptBonus.percentage);
+			}
+		}
+	}
+
 	static getBonusTranscriptRating (type = 0) {
 		switch (type) {
 			case 1:

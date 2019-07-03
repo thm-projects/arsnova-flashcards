@@ -738,7 +738,8 @@
         "lastSubmission": "Letzte Abgabe",
         "pending": "Noch nicht bewertet",
         "accepted": "Akzeptiert",
-        "denied": "Abgelehnt"
+        "denied": "Abgelehnt",
+        "bonus": "Erhaltene Bonuspunkte"
       }
     }
   },

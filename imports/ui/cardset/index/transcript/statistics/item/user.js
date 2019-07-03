@@ -1,6 +1,7 @@
 import "./user.html";
 import "./user/accepted.js";
 import "./user/author.js";
+import "./user/bonus.js";
 import "./user/denied.js";
 import "./user/lastSubmission.js";
 import "./user/pending.js";

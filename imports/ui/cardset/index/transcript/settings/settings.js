@@ -23,11 +23,11 @@ Template.cardsetIndexTranscriptSettings.onRendered(function () {
 	if (dates.length) {
 		$('#transcript-calendar').multiDatesPicker({
 			addDates: dates,
-			numberOfMonths: [1, 6]
+			numberOfMonths: [1, 3]
 		});
 	} else {
 		$('#transcript-calendar').multiDatesPicker({
-			numberOfMonths: [1, 6]
+			numberOfMonths: [1, 3]
 		});
 	}
 	let minimumSubmissions = $('#bonusMinimumSubmissions').val();

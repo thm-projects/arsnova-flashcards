@@ -93,6 +93,7 @@ $themes: (
     $transcript_rating_pending_icon:  map-get($map, "transcript_rating_pending_icon");
     $transcript_rating_accepted_icon:  map-get($map, "transcript_rating_accepted_icon");
     $transcript_rating_denied_icon:  map-get($map, "transcript_rating_denied_icon");
+    $transcript_achieved_bonus:  map-get($map, "transcript_achieved_bonus");
     //barfy stars
     $barfy_stars_particles_1: map-get($map, "barfy_stars_particles_1");
     $barfy_stars_particles_2: map-get($map, "barfy_stars_particles_2");
@@ -2804,6 +2805,10 @@ $themes: (
 
     .transcript-rating-denied::before {
       color: $transcript_rating_denied_icon !important;
+    }
+
+    .transcript-achieved-bonus::before {
+      color: $transcript_achieved_bonus !important;
     }
 
     .label-count-cards {
