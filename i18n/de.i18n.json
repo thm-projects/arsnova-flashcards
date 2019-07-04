@@ -737,7 +737,9 @@
         "pending": "Noch nicht bewertet",
         "accepted": "Akzeptiert",
         "denied": "Abgelehnt",
-        "bonus": "Erhaltene Bonuspunkte"
+        "bonus": "Erhaltene Bonuspunkte",
+        "export": "Statistik exportieren",
+        "exportName": "Mitschriften_Statistik"
       }
     }
   },

@@ -6,13 +6,18 @@
                 <h4>{{this.name}}</h4>
                 <hr>
                 <div class="row">
-                                    <span class="col-sm-6 collapseCardsetInfoContainer">
-                                        {{> cardsetInfoBox}}
-                                    </span>
+                    <span class="col-sm-6 collapseCardsetInfoContainer">
+                        {{> cardsetInfoBox}}
+                    </span>
                     <span class="col-sm-6 collapseCardsetInfoContainer">
                         {{> bonusTranscriptInfoBox}}
                     </span>
                 </div>
+            </div>
+            <div class="panel-footer">
+                <button id="exportCSV" class="btn btn-success btn-raised"><span class="flex-content"><i class="fas fa-clipboard-list"></i>&nbsp;<i
+                        class="fas fa-cloud-download-alt"></i>&nbsp;{{_
+                        "transcriptForm.bonus.statistics.export"}}</span></button>
             </div>
         </div>
     </div>
