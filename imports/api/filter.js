@@ -137,6 +137,12 @@ export let Filter = class Filter {
 				case "_id":
 					filter._id = content;
 					break;
+				case "cardset_id":
+					filter.cardset_id = content;
+					break;
+				case "user_id":
+					filter.user_id = content;
+					break;
 				case "transcriptBonus":
 					delete filter.learningActive;
 					filter['transcriptBonus.enabled'] = true;
@@ -308,12 +314,16 @@ export let Filter = class Filter {
 		if (!Route.isWorkload() && activeFilter !== undefined && !Route.isTranscript() && !Route.isTranscriptBonus()) {
 			query.shuffled = activeFilter.shuffled;
 		}
-		if (FilterNavigation.gotRatingFilter(FilterNavigation.getRouteId()) && activeFilter.rating !== undefined) {
-			let ratingQuery = {rating: activeFilter.rating};
-			if (Route.isMyBonusTranscripts()) {
-				ratingQuery.user_id = Meteor.userId();
-			} else {
-				ratingQuery.cardset_id = Router.current().params._id;
+		if (FilterNavigation.gotRatingFilter(FilterNavigation.getRouteId())) {
+			let ratingQuery = {};
+			if (activeFilter.rating !== undefined) {
+				ratingQuery.rating = activeFilter.rating;
+			}
+			if (activeFilter.user_id !== undefined) {
+				ratingQuery.user_id = activeFilter.user_id;
+			}
+			if (activeFilter.cardset_id !== undefined) {
+				ratingQuery.cardset_id = activeFilter.cardset_id;
 			}
 			let cardsWithRating = _.uniq(TranscriptBonus.find(ratingQuery, {
 				fields: {card_id: 1}

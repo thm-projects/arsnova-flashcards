@@ -32,7 +32,18 @@
         {{/if}}
 
         {{#if isActiveRoute regex='transcriptsPersonal|transcriptsBonus'}}
-            {{> filterIndexTranscripts}}
+            {{#if isActiveRoute regex='transcriptsBonus'}}
+                {{> cardsetIndexTranscriptNavigation}}
+                {{#if isViewActive 1}}
+                    <br>
+                    <br>
+                    {{> cardsetIndexTranscriptStatistics}}
+                {{else}}
+                    {{> filterIndexTranscripts}}
+                {{/if}}
+            {{else}}
+                {{> filterIndexTranscripts}}
+            {{/if}}
         {{/if}}
         {{#if isCardsetTranscriptBonusRoute}}
             {{> filterIndexTranscripts}}
@@ -104,8 +115,8 @@
 <template name="filterIndexCreate">
     <span class="filter-index-buttons empty-button-placeholder">
         {{#if isActiveRoute 'create'}}
-        {{> filterItemCreateCardsetButton}}
-        {{> filterItemImportCardsetButton}}
+            {{> filterItemCreateCardsetButton}}
+            {{> filterItemImportCardsetButton}}
         {{/if}}
     </span>
     {{#if cardsetList 0}}

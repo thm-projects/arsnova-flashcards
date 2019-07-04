@@ -587,10 +587,10 @@ $themes: (
     $transcript_bonus_info_lecture_date_day_hover_background: map-get($map, "transcript_bonus_info_lecture_date_day_hover_background");
     $transcript_bonus_submission_count_badge_text: map-get($map, "transcript_bonus_submission_count_badge_text");
     $transcript_bonus_submission_count_badge_background: map-get($map, "transcript_bonus_submission_count_badge_background");
-    //transcript bonus user statistics colors
-    $transcript_bonus_user_statistics_name_background: map-get($map, "transcript_bonus_user_statistics_name_background");
-    $transcript_bonus_user_statistics_details_background: map-get($map, "transcript_bonus_user_statistics_details_background");
-    $transcript_bonus_user_statistics_details_text: map-get($map, "transcript_bonus_user_statistics_details_text");
+    //transcript bonus statistics info colors
+    $transcript_bonus_statistics_info_name_background: map-get($map, "transcript_bonus_statistics_info_name_background");
+    $transcript_bonus_statistics_info_details_background: map-get($map, "transcript_bonus_statistics_info_details_background");
+    $transcript_bonus_statistics_info_details_text: map-get($map, "transcript_bonus_statistics_info_details_text");
     //markdeep editor colors
     $markdeep_help_text: map-get($map, "markdeep_help_text");
     $markdeep_help_background: map-get($map, "markdeep_help_background");
@@ -3736,13 +3736,13 @@ $themes: (
       border-color: $cube_border;
     }
     //transcript bonus user statistics colors
-    .transcript-bonus-user-statistics {
+    .transcript-bonus-statistics-info {
       th {
-        background-color: $transcript_bonus_user_statistics_name_background !important;
+        background-color: $transcript_bonus_statistics_info_name_background !important;
       }
       td {
-        background-color: $transcript_bonus_user_statistics_details_background !important;
-        color: $transcript_bonus_user_statistics_details_text !important;
+        background-color: $transcript_bonus_statistics_info_details_background !important;
+        color: $transcript_bonus_statistics_info_details_text !important;
       }
     }
   }

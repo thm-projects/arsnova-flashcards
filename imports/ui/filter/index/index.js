@@ -49,9 +49,11 @@ import "../modal/deleteCardset.js";
 import "../modal/deleteTranscript.js";
 import "../modal/selectWorkload.js";
 import "./index.html";
+import {Meteor} from "meteor/meteor";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
+Session.setDefault('transcriptViewingMode', 2);
 
 /*
  * ############################################################################
@@ -96,6 +98,16 @@ Template.filterIndex.events({
 		Filter.setActiveFilter($(event.target).data('rating'), "rating");
 		FilterNavigation.showDropdown();
 	}
+});
+
+Template.filterIndex.helpers({
+	isViewActive: function (id) {
+		return Session.get('transcriptViewingMode') === id;
+	}
+});
+
+Template.filterIndex.onCreated(function () {
+	Session.set('transcriptViewingMode', 2);
 });
 
 /*

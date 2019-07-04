@@ -3,11 +3,11 @@ import {TranscriptBonusList} from "../../../../../../../api/transcriptBonus";
 
 /*
  * ############################################################################
- * cardsetIndexTranscriptStatisticsItemUserDenied
+ * cardsetIndexTranscriptStatisticsItemBoxDenied
  * ############################################################################
  */
 
-Template.cardsetIndexTranscriptStatisticsItemUserDenied.helpers({
+Template.cardsetIndexTranscriptStatisticsItemBoxDenied.helpers({
 	getBonusTranscriptRating: function (type) {
 		return TranscriptBonusList.getBonusTranscriptRating(type);
 	},

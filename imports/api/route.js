@@ -222,7 +222,7 @@ export let Route = class Route {
 	}
 
 	static isFilterIndex () {
-		return (this.isHome() || this.isPool() || this.isMyCardsets() || this.isRepetitorium() || this.isAllCardsets() || this.isWorkload() || this.isAllRepetitorien() || this.isPersonalRepetitorien() || this.isMyTranscripts() || this.isShuffle() || this.isEditShuffle() || this.isTranscriptBonus());
+		return (this.isHome() || this.isPool() || this.isMyCardsets() || this.isRepetitorium() || this.isAllCardsets() || this.isWorkload() || this.isAllRepetitorien() || this.isPersonalRepetitorien() || this.isMyTranscripts() || this.isMyBonusTranscripts() || this.isShuffle() || this.isEditShuffle() || this.isTranscriptBonus());
 	}
 
 	static isFirstTimeVisit () {

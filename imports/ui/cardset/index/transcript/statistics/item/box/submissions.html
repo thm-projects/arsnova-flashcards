@@ -1,10 +1,10 @@
-<template name="cardsetIndexTranscriptStatisticsItemUserSubmissions">
+<template name="cardsetIndexTranscriptStatisticsItemBoxSubmissions">
     <tr>
         <td>
-            <i class="fas fa-clipboard"></i>&nbsp;
+            <i class="fas fa-clipboard"></i>
             {{#if (getSubmissions this.cardset_id this.user_id undefined)}}
                 <a href="" class="filterTranscriptSubmissions cards-filter-element"
-                   data-id="{{this._id}}">{{_ "transcriptForm.info.submissions"}}:</a>
+                   data-user="{{this.user_id}}" data-cardset="{{this.cardset_id}}">{{_ "transcriptForm.info.submissions"}}:</a>
             {{else}}
                 {{_ "transcriptForm.info.submissions"}}:
             {{/if}}

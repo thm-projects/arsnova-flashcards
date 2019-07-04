@@ -1,7 +1,7 @@
 <template name="filterIndexItemCard">
     <div class="resultItem col-xs-12">
         {{#unless this.index}}
-            {{#if isBonusTranscriptsRoute}}
+            {{#if isCardsetTranscriptBonusRoute}}
                 {{> filterIndexItemTitleRowTopic (setGridSize "col-sm-4 col-md-5")}}
                 {{> filterIndexItemTitleRowAuthor (setGridSize "col-sm-4 col-md-3")}}
                 {{> filterIndexItemTitleRowDateCreated (setGridSize "col-sm-2")}}
@@ -14,7 +14,7 @@
         {{/unless}}
         <div class="resultItemHeaderWrapper col-xs-12">
             <div class="resultItemHeaderTopArea row">
-                {{#if isBonusTranscriptsRoute}}
+                {{#if isCardsetTranscriptBonusRoute}}
                     {{> filterIndexItemTopTopic (setGridSize "col-xs-6 col-sm-4 col-md-5")}}
                     {{> filterIndexItemTopAuthor (setGridSize "col-xs-6 col-sm-4 col-md-3")}}
                     {{> filterIndexItemTopDateCreated (setGridSize "hidden-xs col-sm-2")}}

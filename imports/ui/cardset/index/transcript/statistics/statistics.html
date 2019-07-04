@@ -1,6 +1,8 @@
 <template name="cardsetIndexTranscriptStatistics">
-    {{> cardsetIndexTranscriptStatisticsItemCardset}}
-    {{#each transcriptBonusUser}}
-        {{> cardsetIndexTranscriptStatisticsItemUser}}
+    {{#if isCardsetTranscriptBonusRoute}}
+        {{> cardsetIndexTranscriptStatisticsItemCardset}}
+    {{/if}}
+    {{#each transcriptBonus}}
+        {{> cardsetIndexTranscriptStatisticsItemInfo}}
     {{/each}}
 </template>

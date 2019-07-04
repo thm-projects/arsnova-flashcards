@@ -3,11 +3,11 @@ import {TranscriptBonus, TranscriptBonusList} from "../../../../../../../api/tra
 
 /*
  * ############################################################################
- * cardsetIndexTranscriptStatisticsItemUserLastSubmission
+ * cardsetIndexTranscriptStatisticsItemBoxLastSubmission
  * ############################################################################
  */
 
-Template.cardsetIndexTranscriptStatisticsItemUserLastSubmission.helpers({
+Template.cardsetIndexTranscriptStatisticsItemBoxLastSubmission.helpers({
 	lastSubmission: function (cardset_id, user_id) {
 		let bonusTranscript = TranscriptBonus.findOne({cardset_id: cardset_id, user_id: user_id}, {sort: {date: -1}});
 		if (bonusTranscript !== undefined) {

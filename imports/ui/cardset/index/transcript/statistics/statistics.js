@@ -1,11 +1,13 @@
 import "./statistics.html";
 import "./item/cardset.js";
-import "./item/user.js";
-import {TranscriptBonus, TranscriptBonusList} from "../../../../../api/transcriptBonus";
+import "./item/info.js";
+import {TranscriptBonus} from "../../../../../api/transcriptBonus";
 import {Template} from "meteor/templating";
 import {Filter} from "../../../../../api/filter";
 import {FilterNavigation} from "../../../../../api/filterNavigation";
+import {Cardsets} from "../../../../../api/cardsets";
 import {Session} from "meteor/session";
+import {Route} from "../../../../../api/route";
 
 /*
  * ############################################################################
@@ -29,33 +31,31 @@ Template.cardsetIndexTranscriptStatistics.events({
 });
 
 Template.cardsetIndexTranscriptStatistics.helpers({
-	transcriptBonusUser: function () {
-		let transcriptBonusUsers = _.uniq(TranscriptBonus.find({cardset_id: Router.current().params._id}, {
-			fields: {user_id: 1}
-		}).fetch().map(function (x) {
-			return x.user_id;
-		}), true);
-		let users = Meteor.users.find({_id: {$in: transcriptBonusUsers}}, {sort: {"profile.birthname": 1}, fields: {_id: 1}}).fetch();
-		let list = [];
-		for (let i = 0; i < users.length; i++) {
-			list.push({user_id: users[i]._id, cardset_id: Router.current().params._id});
+	transcriptBonus: function () {
+		if (Route.isTranscriptBonus()) {
+			let transcriptBonusUsers = _.uniq(TranscriptBonus.find({cardset_id: Router.current().params._id}, {
+				fields: {user_id: 1}
+			}).fetch().map(function (x) {
+				return x.user_id;
+			}), true);
+			let users = Meteor.users.find({_id: {$in: transcriptBonusUsers}}, {sort: {"profile.birthname": 1}, fields: {_id: 1}}).fetch();
+			let list = [];
+			for (let i = 0; i < users.length; i++) {
+				list.push({user_id: users[i]._id, cardset_id: Router.current().params._id});
+			}
+			return list;
+		} else {
+			let transcriptBonusCardsets = _.uniq(TranscriptBonus.find({user_id: Meteor.userId()}, {
+				fields: {cardset_id: 1}
+			}).fetch().map(function (x) {
+				return x.cardset_id;
+			}), true);
+			let cardsets = Cardsets.find({_id: {$in: transcriptBonusCardsets}}, {sort: {"name": 1}, fields: {_id: 1}}).fetch();
+			let list = [];
+			for (let i = 0; i < cardsets.length; i++) {
+				list.push({user_id: Meteor.userId(), cardset_id: cardsets[i]._id});
+			}
+			return list;
 		}
-		return list;
-	},
-	getSubmissions: function (id, rating = undefined) {
-		let query = {cardset_id: Router.current().params._id, user_id: id};
-		if (rating !== undefined) {
-			query.rating = rating;
-		}
-		return TranscriptBonus.find(query).count();
-	},
-	lastSubmission: function (id) {
-		let bonusTranscript = TranscriptBonus.findOne({user_id: id}, {sort: {date: -1}});
-		if (bonusTranscript !== undefined) {
-			return TranscriptBonusList.getLectureName(bonusTranscript, false);
-		}
-	},
-	getBonusTranscriptRating: function (type) {
-		return TranscriptBonusList.getBonusTranscriptRating(type);
 	}
 });

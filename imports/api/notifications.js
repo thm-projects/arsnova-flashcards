@@ -66,7 +66,7 @@ Meteor.methods({
 		if (target === 'lecturer') {
 			var lecturers = Roles.getUsersInRole('lecturer');
 			lecturers.forEach(function (lecturer) {
-				Meteor.call("createNotification", lecturer._id, type, text, link_id, 'user', receiver);
+				Meteor.call("createNotification", lecturer._id, type, text, link_id, 'stats.js', receiver);
 			});
 		} else if (target === 'admin') {
 			var admins = Roles.getUsersInRole([
@@ -77,7 +77,7 @@ Meteor.methods({
 				Meteor.call("createNotification", admin._id, type, text, link_id, 'admin', receiver);
 			});
 		} else {
-			Meteor.call("createNotification", target, type, text, link_id, 'user', receiver);
+			Meteor.call("createNotification", target, type, text, link_id, 'stats.js', receiver);
 		}
 	},
 
