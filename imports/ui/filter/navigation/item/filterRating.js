@@ -1,5 +1,4 @@
 import "./filterRating.html";
-import {FilterNavigation} from "../../../../api/filterNavigation";
 import {Filter} from "../../../../api/filter";
 import {TranscriptBonus} from "../../../../api/transcriptBonus";
 
@@ -11,20 +10,22 @@ import {TranscriptBonus} from "../../../../api/transcriptBonus";
 
 Template.filterItemFilterRating.helpers({
 	hasRatingFilter: function () {
-		return Filter.getActiveFilter(FilterNavigation.getRouteId()).rating !== undefined;
+		return Filter.getActiveFilter().rating !== undefined;
 	},
 	gotRating: function (rating) {
-		let query = Filter.getFilterQuery(FilterNavigation.getRouteId());
-		delete query._id;
+		let activeFilter = Filter.getActiveFilter();
+		let query = {};
 		query.rating = rating;
-		if (query.owner !== undefined) {
-			query.user_id = query.owner;
-			delete query.owner;
+		if (activeFilter.user_id !== undefined) {
+			query.user_id = activeFilter.user_id;
+		}
+		if (activeFilter.transcriptDate !== undefined) {
+			query.date = new Date(activeFilter.transcriptDate);
 		}
 		return TranscriptBonus.findOne(query);
 	},
 	resultsFilterRating: function (rating) {
-		let activeFilter = Filter.getActiveFilter(FilterNavigation.getRouteId());
+		let activeFilter = Filter.getActiveFilter();
 		if (activeFilter.rating !== undefined) {
 			return rating === activeFilter.rating;
 		}

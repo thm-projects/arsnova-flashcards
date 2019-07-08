@@ -147,6 +147,9 @@ export let Filter = class Filter {
 					delete filter.learningActive;
 					filter['transcriptBonus.enabled'] = true;
 					break;
+				case "transcriptLecture":
+					filter.transcriptDate = content;
+					break;
 				case "rating":
 					if (content === undefined) {
 						delete filter.rating;
@@ -314,7 +317,7 @@ export let Filter = class Filter {
 		if (!Route.isWorkload() && activeFilter !== undefined && !Route.isTranscript() && !Route.isTranscriptBonus()) {
 			query.shuffled = activeFilter.shuffled;
 		}
-		if (FilterNavigation.gotRatingFilter(FilterNavigation.getRouteId())) {
+		if (FilterNavigation.gotRatingFilter(FilterNavigation.getRouteId()) || FilterNavigation.gotTranscriptLectureFilter(FilterNavigation.getRouteId())) {
 			let ratingQuery = {};
 			if (activeFilter.rating !== undefined) {
 				ratingQuery.rating = activeFilter.rating;
@@ -325,12 +328,17 @@ export let Filter = class Filter {
 			if (activeFilter.cardset_id !== undefined) {
 				ratingQuery.cardset_id = activeFilter.cardset_id;
 			}
+			if (activeFilter.transcriptDate !== undefined) {
+				ratingQuery.date = new Date(activeFilter.transcriptDate);
+			}
 			let cardsWithRating = _.uniq(TranscriptBonus.find(ratingQuery, {
 				fields: {card_id: 1}
 			}).fetch().map(function (x) {
 				return x.card_id;
 			}), true);
-			query._id = {$in: cardsWithRating};
+			if (cardsWithRating.length) {
+				query._id = {$in: cardsWithRating};
+			}
 		}
 		return query;
 	}

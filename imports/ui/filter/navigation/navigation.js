@@ -18,6 +18,7 @@ import './item/filterLecturerAuthorized.js';
 import './item/filterRating.js';
 import './item/filterWordcloud.js';
 import './item/filterKind.js';
+import './item/filterTranscriptLecture.js';
 
 /*
  * ############################################################################

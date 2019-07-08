@@ -91,11 +91,20 @@ Template.filterIndex.events({
 		FilterNavigation.showDropdown();
 	},
 	'click .resultItemHeaderAuthor a': function (event) {
-		Filter.setActiveFilter($(event.target).data('id'), "author");
+		if (Route.isTranscript() || Route.isTranscriptBonus()) {
+			Filter.setActiveFilter($(event.target).data('id'), "user_id");
+		} else {
+			Filter.setActiveFilter($(event.target).data('id'), "author");
+		}
 		FilterNavigation.showDropdown();
 	},
 	'click .resultItemHeaderBottomAreaLabels .label-transcript-rating': function (event) {
 		Filter.setActiveFilter($(event.target).data('rating'), "rating");
+		FilterNavigation.showDropdown();
+	},
+	'click .resultItemHeaderBottomAreaLabels .label-transcript-info': function (event) {
+		Filter.setActiveFilter($(event.target).data('id'), "transcriptLecture");
+		Filter.setActiveFilter($(event.target).data('cardset'), "cardset_id");
 		FilterNavigation.showDropdown();
 	}
 });

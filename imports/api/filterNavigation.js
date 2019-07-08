@@ -48,6 +48,10 @@ export let FilterNavigation = class FilterNavigation {
 		return config.filtersWithDifficulty.includes(filterType);
 	}
 
+	static gotTranscriptLectureFilter (filterType) {
+		return config.filtersWithTranscriptLecture.includes(filterType);
+	}
+
 	static gotRatingFilter (filterType) {
 		return config.filtersWithRating.includes(filterType);
 	}

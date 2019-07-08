@@ -1,0 +1,26 @@
+<template name="filterItemFilterTranscriptLecture">
+    <li class="dropdown cards-filter-element">
+        <a href="#" class="dropdown-toggle transcriptLectureBtn cards-filter-element" data-toggle="dropdown" role="button"
+           aria-haspopup="true" aria-expanded="false">
+            {{_ "filter-pool.transcriptLecture.title"}}
+            {{#if hasTranscriptLectureFilter}}
+                <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+            {{/if}}
+        </a>
+        <ul class="dropdown-menu cards-filter-element">
+            <li class="cards-filter-element">
+                <a href="#" class="noFilterTranscriptLecture active cards-filter-element" data-id="">{{_ "filter-pool.transcriptLecture.all"}}</a>
+            </li>
+            {{#each getTranscriptLectures}}
+                    <li class="cards-filter-element">
+                        <a href="#" class="filterTranscriptLecture cards-filter-element"
+                           data-id="{{this}}"> {{getLectureName this}}
+                            {{#if resultsFilterTranscriptLecture this}}
+                                <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                            {{/if}}
+                        </a>
+                    </li>
+            {{/each}}
+        </ul>
+    </li>
+</template>
