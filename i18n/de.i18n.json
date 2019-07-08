@@ -740,6 +740,16 @@
         "bonus": "Erhaltene Bonuspunkte",
         "export": "Statistik exportieren",
         "exportName": "Mitschriften_Statistik"
+      },
+      "submissions": {
+        "button": {
+          "review": "Mitschriften bewerten"
+        },
+        "info": {
+          "nothing": "Es gibt derzeit keine unbewerteten Mitschriften.",
+          "found": "Es gibt __count__ Mitschriften mit abgelaufener digitaler Nachbearbeitungsfrist, die eine Bewertung benötigen.",
+          "next": "Die nächsten Mitschriften können am __date__ bewertet werden."
+        }
       }
     }
   },
@@ -1210,6 +1220,22 @@
         "pending": "Die Mitschrift wurde noch nicht bewertet",
         "accepted": "Die Mitschrift wurde akzeptiert",
         "denied": "Die Mitschrift wurde abgelehnt"
+      },
+      "navigation": {
+        "rate": "Mitschrift bewerten",
+        "skip": "Überspringen",
+        "accept": "Akzeptieren",
+        "deny": "Ablehnen"
+      },
+      "notification": {
+        "accept": "Die Mitschrift wurde akzeptiert",
+        "deny": "Die Mitschrift wurde abgelehnt"
+      },
+      "finished": {
+        "text": "Alle Mitschriften wurden bewertet",
+        "button": {
+          "back": "Zurück zur Übersicht"
+        }
       }
     }
   },
@@ -1775,7 +1801,11 @@
     "leitner": "Noch eine Karte",
     "leitner_plural": "Noch __count__ Karten",
     "leitnerShort": "1 Karte",
-    "leitnerShort_plural": "__count__ Karten"
+    "leitnerShort_plural": "__count__ Karten",
+    "review": "Noch eine Mitschrift",
+    "review_plural": "Noch __count__ Mitschriften",
+    "reviewShort": "1 Mitschrift",
+    "reviewShort_plural": "__count__ Mitschriften"
   },
   "permission": "Kein Zugang",
   "nocards": "Keine Karten vorhanden",

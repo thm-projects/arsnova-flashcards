@@ -1,5 +1,6 @@
 import "./bonusStats.html";
 import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
 
 
 /*
@@ -15,6 +16,7 @@ Template.filterIndexItemBottomBonusStats.events({
 		});
 	},
 	'click .bonusTranscriptProgress': function (event) {
+		Session.set('transcriptViewingMode', 1);
 		Router.go('transcriptBonus', {
 			_id: $(event.target).data('id')
 		});

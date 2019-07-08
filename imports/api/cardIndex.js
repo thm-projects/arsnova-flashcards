@@ -8,6 +8,7 @@ import {CardType} from "./cardTypes";
 import {CardNavigation} from "./cardNavigation";
 import {CardVisuals} from "./cardVisuals";
 import {Utilities} from "./utilities";
+import {TranscriptBonus} from "./transcriptBonus";
 
 let cardIndex = [];
 
@@ -65,7 +66,15 @@ export let CardIndex = class CardIndex {
 		let indexCards = [];
 		let cardset;
 		if (!Meteor.isServer && Route.isTranscript()) {
-			return 0;
+			if (Route.isPresentationTranscriptReview()) {
+				let indexCards = TranscriptBonus.find({cardset_id: Router.current().params._id, rating: 0},{sort: {date: 1, user_id: 1}, fields: {card_id: 1}}).fetch();
+				indexCards.forEach(function (indexCard) {
+					cardIndex.push(indexCard.card_id);
+				});
+				return cardIndex;
+			} else {
+				return 0;
+			}
 		} else {
 			if (!Meteor.isServer && Route.isDemo()) {
 				cardset = Cardsets.findOne({kind: 'demo', name: 'DemoCardset', shuffled: true});
@@ -209,6 +218,13 @@ export let CardIndex = class CardIndex {
 		let query = "";
 		if (Route.isPresentationTranscript()) {
 			return Cards.find(Router.current().params.card_id).fetch();
+		} else if (Route.isPresentationTranscriptReview()) {
+			let cardIndexFilter = this.getCardIndexFilter();
+			query = Cards.find({
+				_id: {$in: cardIndexFilter},
+				cardset_id: "-1"
+			}).fetch();
+			return this.sortQueryResult(cardIndexFilter, query);
 		} else {
 			let cardIndexFilter = this.getCardIndexFilter();
 			if (Session.get('activeCardset').shuffled) {
@@ -328,7 +344,7 @@ export let CardIndex = class CardIndex {
 	}
 
 	static getActiveCardIndex (card_id) {
-		if (Route.isTranscript()) {
+		if (Route.isTranscript() && !Route.isPresentationTranscriptReview()) {
 			return 0;
 		} else {
 			let cardIndex = this.getCardIndex();

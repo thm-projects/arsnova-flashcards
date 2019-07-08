@@ -447,6 +447,29 @@ Router.route('/cardset/:_id/editshuffle', {
 	}
 });
 
+Router.route('/cardset/:_id/transcripts/review', {
+	name: 'presentationTranscriptReview',
+	template: 'presentation',
+	subscriptions: function () {
+		return [Meteor.subscribe('cardsetTranscriptBonusReview', this.params._id), Meteor.subscribe('cardsetTranscriptBonusCardsReview', this.params._id, Filter.getActiveFilter(10)), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('userDataTranscriptBonus', this.params._id)];
+	},
+	data: function () {
+		MarkdeepEditor.changeMobilePreview(true);
+		Filter.resetMaxItemCounter();
+		Session.set('helpFilter', "cardset");
+		Session.set('isNewCardset', false);
+		Session.set('cardsetIndexResults', Cards.find().count());
+		return Cardsets.findOne({_id: this.params._id});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
+	}
+});
+
 Router.route('/cardset/:_id/transcripts', {
 	name: 'transcriptBonus',
 	template: 'cardsetIndexTranscript',

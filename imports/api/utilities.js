@@ -84,9 +84,9 @@ export let Utilities = class Utilities {
 				sameDay: this.getCalendarString("today", minutes),
 				lastDay: this.getCalendarString("yesterday", minutes),
 				nextDay: this.getCalendarString("nextDay", minutes),
-				nextWeek: dateFormat,
-				lastWeek: dateFormat,
-				sameElse: dateFormat
+				nextWeek: this.getCalendarString(dateFormat, minutes),
+				lastWeek: this.getCalendarString(dateFormat, minutes),
+				sameElse: this.getCalendarString(dateFormat, minutes)
 			});
 		}
 	}

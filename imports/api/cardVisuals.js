@@ -131,7 +131,7 @@ export let CardVisuals = class CardVisuals {
 		flashcardBody.css('height', newHeight - flashcardHeaderHeight);
 		if (AspectRatio.scaleCardNavigationWidth()) {
 			let cardNavigation = $('.cardNavigation');
-			let answerOptions = $('#answerOptions');
+			let answerOptions = $('.answerOptions');
 			cardNavigation.css('width', newWidth);
 			cardNavigation.css('margin-left', leftOffset);
 			if (answerOptions.length) {
@@ -183,6 +183,7 @@ export let CardVisuals = class CardVisuals {
 	static resizeFlashcard3D () {
 		let offsetBottom = 45;
 		let cardNavigation = $('.cardNavigation');
+		let answerOptions = $('.answerOptions');
 		let availableHeight = $(window).height() - (cardNavigation.outerHeight() + cardNavigation.offset().top)  - offsetBottom;
 		let flashcard = $('.flashcard');
 		let flashcardHeader = $('.cardHeader');
@@ -217,6 +218,9 @@ export let CardVisuals = class CardVisuals {
 					leftMargin -= parseInt($('.cardNavigation').parent().css('padding-left'));
 				}
 				$('.cardNavigation').attr('style', 'max-width: ' + flashcard.width() + 'px !important; margin-left: ' +  leftMargin + 'px !important;');
+				if (answerOptions.length) {
+					answerOptions.attr('style', 'max-width: ' + flashcard.width() + 'px !important; margin-left: ' +  leftMargin + 'px !important;');
+				}
 			}
 		}
 	}
@@ -312,7 +316,7 @@ export let CardVisuals = class CardVisuals {
 				flashcardBody.removeAttr('style');
 				contentEditor.removeAttr('style');
 				$('.cardNavigation').removeAttr('style');
-				$('#answerOptions').removeAttr('style');
+				$('.answerOptions').removeAttr('style');
 				if (AspectRatio.isEnabled()) {
 					aspectRatioEnabled = true;
 				}

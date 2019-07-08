@@ -1712,10 +1712,6 @@ $themes: (
       border: 1px solid $primary !important;
     }
 
-    .bs-callout-info {
-      border-left-color: $primary !important;
-    }
-
     .learnLeitner, .learnWozniak, .learnSelect {
       cursor: pointer;
       color: $primary !important;
@@ -2556,6 +2552,7 @@ $themes: (
 
     .bs-callout-info {
       background-color: $white !important;
+      border-left-color: $thm_orange !important;
     }
 
     #publishKind, #publishKindAdmin {

@@ -1,6 +1,10 @@
 <template name="flashcardHeaderPresentationRight">
     <div class="col-xs-2 cardHeaderRight" data-cardtype="{{cardType}}">
-        {{> cardContentItemCountCards this}}
+        {{#if isPresentationTranscriptReviewRoute}}
+            {{> cardContentItemCountCardsReview this}}
+        {{else}}
+            {{> cardContentItemCountCards this}}
+        {{/if}}
         {{> cardContentItemLabel this}}
     </div>
 </template>

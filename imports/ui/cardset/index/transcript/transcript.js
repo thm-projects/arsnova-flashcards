@@ -20,8 +20,9 @@ Session.setDefault('transcriptViewingMode', 1);
  */
 
 Template.cardsetIndexTranscript.onCreated(function () {
-	Filter.resetActiveFilter();
-	Session.set('transcriptViewingMode', 1);
+	if (Session.get('transcriptViewingMode') === 1) {
+		Filter.resetActiveFilter();
+	}
 });
 
 Template.cardsetIndexTranscript.helpers({

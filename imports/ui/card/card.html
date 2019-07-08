@@ -86,6 +86,26 @@
     </div>
 </template>
 
+<template name="flashcardsReviewEnd">
+    <div class="card-container">
+        <div>
+            <div id="cardCarousel" class="carousel slide" data-interval="false">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div class="box flashcard emptyCard">
+                            <h4>{{_ "cardset.transcriptBonusRating.finished.text"}}</h4>
+                            <br>
+                            <button class="btn btn-block btn-raised btn-danger" id="backToSubmissions">
+                                <span class="pull-left"><i class="fas fa-arrow-left"></i>&nbsp;{{_ "cardset.transcriptBonusRating.finished.button.back"}}</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
 <template name="cardSubject">
     {{#if gotBonusTranscript}}<a class="cardHeaderLink"
                               href="{{#unless isEditMode}}/cardset/{{getBonusLecture}}{{/unless}}">{{getSubject}}</a>{{else}}{{#unless this.subject}}
