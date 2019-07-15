@@ -20,22 +20,8 @@ Template.cardsetIndexTranscriptSettings.onRendered(function () {
 			dates.push(moment(this.data.transcriptBonus.dates[d]).format("MM/DD/YYYY"));
 		}
 	}
-	if (dates.length) {
-		$('#transcript-calendar').multiDatesPicker({
-			addDates: dates,
-			numberOfMonths: [1, 3]
-		});
-	} else {
-		$('#transcript-calendar').multiDatesPicker({
-			numberOfMonths: [1, 3]
-		});
-	}
-	let minimumSubmissions = $('#bonusMinimumSubmissions').val();
-	$('#bonusMinimumSubmissions').attr("max", dates.length);
-	if (minimumSubmissions > dates.length) {
-		$('#bonusMinimumSubmissions').val(dates.length);
-	}
-	$('#transcript-calendar').multiDatesPicker({
+	let settings = {
+		numberOfMonths: [1,3],
 		onSelect: function () {
 			let dates = $('#transcript-calendar').multiDatesPicker('getDates');
 			let minimumSubmissions = $('#bonusMinimumSubmissions').val();
@@ -43,6 +29,14 @@ Template.cardsetIndexTranscriptSettings.onRendered(function () {
 			if (minimumSubmissions > dates.length) {
 				$('#bonusMinimumSubmissions').val(dates.length);
 			}
-		}
-	});
+		}};
+	if (dates.length) {
+		settings.addDates = dates;
+	}
+	let minimumSubmissions = $('#bonusMinimumSubmissions').val();
+	$('#bonusMinimumSubmissions').attr("max", dates.length);
+	if (minimumSubmissions > dates.length) {
+		$('#bonusMinimumSubmissions').val(dates.length);
+	}
+	$('#transcript-calendar').multiDatesPicker(settings);
 });
