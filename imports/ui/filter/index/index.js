@@ -115,9 +115,6 @@ Template.filterIndex.helpers({
 	}
 });
 
-Template.filterIndex.onCreated(function () {
-	Session.set('transcriptViewingMode', 2);
-});
 
 /*
  * ############################################################################

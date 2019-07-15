@@ -764,7 +764,7 @@ Router.route('/presentation/transcripts/bonus/:card_id', {
 	name: 'presentationTranscriptBonus',
 	template: 'presentation',
 	subscriptions: function () {
-		return [Meteor.subscribe('transcriptCard', this.params.card_id), Meteor.subscribe('myTranscriptBonus'), Meteor.subscribe('cardsetTranscriptBonus', this.params._id)];
+		return [Meteor.subscribe('transcriptCard', this.params.card_id), Meteor.subscribe('myTranscriptBonus'), Meteor.subscribe('cardsetTranscriptMyBonus', this.params.card_id)];
 	},
 	data: function () {
 		if (ServerStyle.gotTranscriptsEnabled()) {

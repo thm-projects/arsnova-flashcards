@@ -256,7 +256,7 @@ Template.registerHelper('isMyBonusTranscriptsRoute', function () {
 
 
 Template.registerHelper('isBonusTranscriptsRoute', function () {
-	return Route.isMyBonusTranscripts() || Route.isTranscriptBonus() || Route.isPresentationTranscriptBonusCardset() || Route.isPresentationTranscriptReview();
+	return Route.isMyBonusTranscripts() || Route.isTranscriptBonus() || Route.isPresentationTranscriptBonusCardset() || Route.isPresentationTranscriptBonus() || Route.isPresentationTranscriptReview();
 });
 
 Template.registerHelper('isPersonalTranscriptsRoute', function () {

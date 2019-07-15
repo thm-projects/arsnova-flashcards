@@ -178,6 +178,18 @@ if (Meteor.isServer) {
 			this.ready();
 		}
 	});
+	Meteor.publish("cardsetTranscriptMyBonus", function (card_id) {
+		if (this.userId) {
+			let card = TranscriptBonus.findOne({card_id: card_id}, {fields: {cardset_id: 1, _id: 1, owner: 1}});
+			if (UserPermissions.isAdmin() || UserPermissions.isOwner(card.owner)) {
+				return Cardsets.find({_id: card.cardset_id});
+			} else {
+				this.ready();
+			}
+		} else {
+			this.ready();
+		}
+	});
 	Meteor.publish("cardsetTranscriptBonusReview", function (cardset_id) {
 		if (this.userId) {
 			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1}});
