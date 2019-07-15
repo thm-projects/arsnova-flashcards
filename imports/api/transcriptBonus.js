@@ -94,7 +94,7 @@ export let TranscriptBonusList = class TranscriptBonusList {
 		if (transcriptBonus.lectureEnd !== undefined) {
 			let deadline = this.addLectureEndTime(transcriptBonus, date_id);
 			deadline.add(transcriptBonus.deadline, 'hours');
-			return TAPi18n.__('transcriptForm.deadline.submission') + ": " + Utilities.getMomentsDate(deadline, true, true);
+			return TAPi18n.__('transcriptForm.deadline.submission') + ": " + Utilities.getMomentsDate(deadline, true, 1);
 		}
 	}
 
@@ -103,9 +103,9 @@ export let TranscriptBonusList = class TranscriptBonusList {
 			let deadlineEditing = this.addLectureEndTime(transcriptBonus, date_id);
 			deadlineEditing.add(transcriptBonus.deadlineEditing, 'hours');
 			if (reviewMode) {
-				return Utilities.getMomentsDate(deadlineEditing, true, false);
+				return Utilities.getMomentsDate(deadlineEditing, true, 2, false);
 			} else {
-				return TAPi18n.__('transcriptForm.deadline.editing') + ": " + Utilities.getMomentsDate(deadlineEditing, true, true);
+				return TAPi18n.__('transcriptForm.deadline.editing') + ": " + Utilities.getMomentsDate(deadlineEditing, true, 1);
 			}
 		}
 	}

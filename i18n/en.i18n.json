@@ -1227,7 +1227,8 @@
         "rate": "Mitschrift bewerten",
         "skip": "Überspringen",
         "accept": "Akzeptieren",
-        "deny": "Ablehnen"
+        "deny": "Ablehnen",
+        "notUnlocked": "Die digitale Bearbeitungsfrist ist noch nicht abgelaufen"
       },
       "notification": {
         "accept": "Die Mitschrift wurde akzeptiert",

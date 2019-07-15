@@ -4,6 +4,8 @@ import {Session} from "meteor/session";
 import {CardVisuals} from "../../../../api/cardVisuals";
 import {CardNavigation} from "../../../../api/cardNavigation";
 import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
+import {TranscriptBonus, TranscriptBonusList} from "../../../../api/transcriptBonus";
+import {Route} from "../../../../api/route";
 
 /*
  * ############################################################################
@@ -30,6 +32,14 @@ Template.cardNavigationItemReview.helpers({
 	isPomodoroBreakActive: function () {
 		if (Session.get('pomodoroBreakActive') === true) {
 			return "disabled";
+		}
+	},
+	canRateTranscript: function () {
+		if (Route.isPresentationTranscriptReview()) {
+			return true;
+		} else {
+			let transcriptBonus = TranscriptBonus.findOne({card_id: Router.current().params.card_id});
+			return TranscriptBonusList.isDeadlineExpired(transcriptBonus, true);
 		}
 	}
 });
