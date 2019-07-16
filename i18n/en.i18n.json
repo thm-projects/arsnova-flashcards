@@ -1107,7 +1107,10 @@
         "buttonModal":  "Tagespensum festlegen",
         "buttonSimulate": "Optimales Tagespensum berechnen",
         "title": "Leitner Simulator",
-        "errorRate": "Fehlerquote pro Box",
+        "errorRate": {
+          "description": "Maximale Anzahl nicht gewusster Karten von __count__",
+          "label": "Anzahl pro Box in %"
+        },
         "snapshots": "Simulierte Bonus-Lernphase mit ausgewähltem Tagespensum",
         "graphLabel": "Simulierte Karten",
         "notification": {

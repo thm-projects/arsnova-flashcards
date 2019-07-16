@@ -56,8 +56,10 @@ Template.bonusForm.events({
 */
 
 Template.bonusFormMaxWorkload.events({
-	"input #maxWorkload": function () {
+	"change input": function () {
 		BonusForm.adjustMaxWorkload();
+		BonusForm.initializeSimulatorData();
+		LeitnerProgress.updateGraph();
 	}
 });
 
@@ -118,6 +120,10 @@ Template.bonusFormMaxPoints.events({
 Template.bonusFormIntervals.events({
 	"input #bonusFormInterval1, input #bonusFormInterval2, input #bonusFormInterval3, input #bonusFormInterval4, input #bonusFormInterval5": function () {
 		BonusForm.adjustInterval();
+	},
+	"change input": function () {
+		BonusForm.initializeSimulatorData();
+		LeitnerProgress.updateGraph();
 	}
 });
 
@@ -181,7 +187,30 @@ Template.profileIncompleteModal.events({
 
 Template.bonusFormSimulatorCalculate.events({
 	'click .calculateWorkload': function () {
+		BonusForm.adjustErrorCount();
 		BonusForm.calculateWorkload(BonusForm.getMaxWorkload());
+		LeitnerProgress.updateGraph();
+	}
+});
+
+
+/*
+ * ############################################################################
+ * bonusFormSimulatorErrorRate
+ * ############################################################################
+ */
+
+
+Template.bonusFormSimulatorErrorRate.helpers({
+	getCardCount: function () {
+		return BonusForm.getCardCount();
+	}
+});
+
+Template.bonusFormSimulatorErrorRate.events({
+	'change input': function () {
+		BonusForm.adjustErrorCount();
+		BonusForm.initializeSimulatorData();
 		LeitnerProgress.updateGraph();
 	}
 });
@@ -194,15 +223,6 @@ Template.bonusFormSimulatorCalculate.events({
 
 Session.setDefault('activeSimulatorSnapshotDate', 0);
 
-Template.bonusFormSimulatorSnapshots.onRendered(function () {
-	BonusForm.cleanModal();
-	$('#cardsetLeitnerSimulatorModal').on('show.bs.modal', function () {
-		Session.set('activeSimulatorSnapshotDate', 0);
-		BonusForm.createSnapshotDates();
-		LeitnerProgress.updateGraph();
-	});
-});
-
 Template.bonusFormSimulatorSnapshots.helpers({
 	getSnapshots: function () {
 		return BonusForm.getSnapshotDates();
@@ -213,7 +233,6 @@ Template.bonusFormSimulatorSnapshots.helpers({
 		}
 	}
 });
-
 
 Template.bonusFormSimulatorSnapshots.events({
 	'click .snapshot-date': function (event) {

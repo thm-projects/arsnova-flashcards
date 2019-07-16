@@ -14,6 +14,8 @@ let defaultIntervals = [1, 3, 7, 28, 84];
 let defaultDateStart = moment().format(dateFormat);
 let defaultEndPeriod = [3, 'months'];
 let defaultDateEnd = moment().add(defaultEndPeriod[0], defaultEndPeriod[1]).format(dateFormat);
+// Default error count in percent for the simulator
+let defaultErrorCount = [100, 30, 25, 20, 10];
 
 module.exports = {
 	minWorkloadCap,
@@ -29,5 +31,6 @@ module.exports = {
 	defaultIntervals,
 	defaultDateStart,
 	defaultEndPeriod,
-	defaultDateEnd
+	defaultDateEnd,
+	defaultErrorCount
 };

@@ -8,15 +8,16 @@ import {CardType} from "./cardTypes";
 import {LeitnerUtilities} from "./leitner";
 import {BertAlertVisuals} from "./bertAlertVisuals";
 
-let leitnerSimulator = Array.from(Array(6).fill(0));
-let leitnerSimulatorDays = 0;
-let leitnerCardCount = 0;
-let snapshots = [];
-let snapshotDays = [];
+let leitnerSimulator;
+let leitnerSimulatorDays;
+let leitnerCardCount;
+let snapshots;
+let snapshotDays;
+let leitnerErrorCount;
 
 export let BonusForm = class BonusForm {
 	static cleanModal () {
-		let start, nextDay, end, intervals, maxWorkload, daysBeforeReset, registrationPeriod;
+		let start, nextDay, end, intervals, maxWorkload, daysBeforeReset, registrationPeriod, errorCount;
 		let dateBonusStart = $('#bonusFormModal #dateBonusStart');
 		let dateBonusEnd = $('#bonusFormModal #dateBonusEnd');
 		let dateRegistrationPeriodExpires = $('#bonusFormModal #dateRegistrationPeriod');
@@ -29,6 +30,7 @@ export let BonusForm = class BonusForm {
 			maxWorkload = null;
 			daysBeforeReset = null;
 			intervals = config.defaultIntervals;
+			errorCount = config.defaultErrorCount;
 		} else {
 			start = moment(Session.get('activeCardset').learningStart).format(config.dateFormat);
 			nextDay = moment(Session.get('activeCardset').learningStart).add(1, 'day').format(config.dateFormat);
@@ -38,14 +40,16 @@ export let BonusForm = class BonusForm {
 			daysBeforeReset = Session.get('activeCardset').daysBeforeReset;
 			intervals = Session.get('activeCardset').learningInterval;
 			dateBonusStart.attr("min", start);
+			errorCount = config.defaultErrorCount;
 		}
 		$('#maxWorkload').val(maxWorkload);
 		$('#bonusFormModal #daysBeforeReset').val(daysBeforeReset);
-		$('#bonusFormInterval1').val(intervals[0]);
-		$('#bonusFormInterval2').val(intervals[1]);
-		$('#bonusFormInterval3').val(intervals[2]);
-		$('#bonusFormInterval4').val(intervals[3]);
-		$('#bonusFormInterval5').val(intervals[4]);
+		for (let i = 0; i < 5; i++) {
+			$('#bonusFormInterval' + (i + 1)).val(intervals[i]);
+			let errorRate = $('#errorRate' + (i + 1));
+			errorRate.val(errorCount[i]);
+			errorRate.attr("placeholder", errorCount[i]);
+		}
 		dateBonusStart.attr("min", start);
 		dateBonusStart.val(start);
 		dateBonusEnd.attr("min", nextDay);
@@ -77,6 +81,10 @@ export let BonusForm = class BonusForm {
 		}
 	}
 
+	static getCardCount () {
+		return leitnerCardCount;
+	}
+
 	static adjustInterval () {
 		let interval, nextInterval;
 		for (let i = 1; i < 5; ++i) {
@@ -85,6 +93,17 @@ export let BonusForm = class BonusForm {
 			if (parseInt(interval.val()) >= parseInt(nextInterval.val())) {
 				nextInterval.val(parseInt(interval.val()) + 1);
 			}
+		}
+	}
+
+	static getErrorCount () {
+		return leitnerErrorCount;
+	}
+
+	static adjustErrorCount () {
+		for (let i = 0; i < 5; i++) {
+			let percentage = Number($('#errorRate' + (i + 1)).val());
+			leitnerErrorCount[i] = Math.round((this.getCardCount() / 100) * percentage);
 		}
 	}
 
@@ -132,7 +151,18 @@ export let BonusForm = class BonusForm {
 		return dateStart;
 	}
 
+	static resetSimulatorData () {
+		leitnerSimulator = Array.from(Array(6).fill(0));
+		leitnerSimulatorDays = 0;
+		leitnerCardCount = 0;
+		leitnerErrorCount = Array.from(Array(5).fill(0));
+		this.adjustErrorCount();
+		snapshots = [];
+		snapshotDays = [];
+	}
+
 	static createSnapshotDates () {
+		this.resetSimulatorData();
 		let bonusStart = moment(this.getDateStart());
 		let bonusEnd = moment(this.getDateEnd());
 		leitnerSimulatorDays = bonusEnd.diff(bonusStart, 'days');
@@ -170,6 +200,7 @@ export let BonusForm = class BonusForm {
 		leitnerSimulator = new Array(6).fill(0);
 		leitnerSimulator[0] = leitnerCardCount;
 		let intervals = this.getIntervals();
+		let errorCount = this.getErrorCount().slice();
 		snapshots = [];
 		let simulatorTimeout  = [];
 		for (let i = 0; i < intervals.length; i++) {
@@ -208,7 +239,25 @@ export let BonusForm = class BonusForm {
 				if (i === (boxActiveCardCap.length - 1)) {
 					leitnerSimulator[leitnerSimulator.length - 1] += tempCards;
 				} else {
-					simulatorTimeout[i + 1].push(tempCards);
+					if (errorCount[i] > 0) {
+						let resetTempCards;
+						if (errorCount[i] < tempCards) {
+							resetTempCards = errorCount[i];
+							tempCards -= errorCount[i];
+							errorCount[i] = 0;
+							simulatorTimeout[i + 1].push(tempCards);
+						} else {
+							resetTempCards = tempCards;
+							errorCount[i] -= tempCards;
+						}
+						if (i > 0) {
+							simulatorTimeout[i - 1].push(resetTempCards);
+						} else {
+							simulatorTimeout[0].push(resetTempCards);
+						}
+					} else {
+						simulatorTimeout[i + 1].push(tempCards);
+					}
 				}
 			}
 			if (snapshotDays.includes(d)) {
