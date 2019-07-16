@@ -6,111 +6,27 @@ import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {check} from "meteor/check";
 import {Utilities} from "./utilities";
 import * as config from "../config/transcriptBonus.js";
+import * as icons from "../config/icons.js";
 
 export const TranscriptBonus = new Mongo.Collection("transcriptBonus");
-
-if (Meteor.isServer) {
-	Meteor.publish("cardsetTranscriptBonus", function (cardset_id) {
-		if (this.userId) {
-			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1}});
-			if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
-				return TranscriptBonus.find({cardset_id: cardset._id});
-			} else {
-				this.ready();
-			}
-		} else {
-			this.ready();
-		}
-	});
-	Meteor.publish("myTranscriptBonus", function () {
-		if (this.userId) {
-			return TranscriptBonus.find({user_id: this.userId});
-		} else {
-			this.ready();
-		}
-	});
-}
-
-const TranscriptBonusSchema = new SimpleSchema({
-	cardset_id: {
-		type: String
-	},
-	card_id: {
-		type: String
-	},
-	user_id: {
-		type: String
-	},
-	date: {
-		type: Date
-	},
-	lectureEnd: {
-		type: String
-	},
-	deadline: {
-		type: Number
-	},
-	deadlineEditing: {
-		type: Number
-	}
-});
-
-TranscriptBonus.attachSchema(TranscriptBonusSchema);
-
-Meteor.methods({
-	addTranscriptBonus: function (card_id, cardset_id, user_id, date_id) {
-		if (Meteor.isServer) {
-			check(card_id, String);
-			check(user_id, String);
-			check(cardset_id, String);
-			check(date_id, Number);
-			let cardset = Cardsets.findOne({_id: cardset_id});
-
-			if (cardset !== undefined) {
-				TranscriptBonus.upsert({card_id: card_id}, {
-					$set: {
-						cardset_id: cardset._id,
-						card_id: card_id,
-						user_id: user_id,
-						date: cardset.transcriptBonus.dates[date_id],
-						lectureEnd: cardset.transcriptBonus.lectureEnd,
-						deadline: cardset.transcriptBonus.deadline,
-						deadlineEditing: cardset.transcriptBonus.deadlineEditing,
-						dateCreated: new Date()
-					}
-				});
-			}
-			Meteor.call('updateTranscriptBonusStats', cardset._id);
-		}
-	},
-	updateTranscriptBonusStats: function (cardset_id) {
-		if (Meteor.isServer) {
-			check(cardset_id, String);
-			let cardset = Cardsets.findOne({_id: cardset_id});
-			if (cardset !== undefined && cardset.transcriptBonus !== undefined) {
-				let bonusTranscripts = TranscriptBonus.find({cardset_id: cardset._id}).fetch();
-				let submissions = TranscriptBonus.find({cardset_id: cardset._id}).count();
-				let userFilter = [];
-				for (let i = 0; i < bonusTranscripts.length; i++) {
-					userFilter.push(bonusTranscripts[i].user_id);
-				}
-				let participants = Meteor.users.find({_id: {$in: userFilter}}).count();
-				Cardsets.update({_id: cardset._id}, {
-					$set: {
-						'transcriptBonus.stats.submissions': submissions,
-						'transcriptBonus.stats.participants': participants
-					}
-				});
-			}
-		}
-	}
-});
 
 export let TranscriptBonusList = class TranscriptBonusList {
 	static addLectureEndTime (transcriptBonus, date) {
 		let hours = Number(transcriptBonus.lectureEnd.substring(0, 2));
 		let minutes = Number(transcriptBonus.lectureEnd.substring(3, 5));
 		return moment(date).add(hours, 'hours').add(minutes, 'minutes');
+	}
+
+	static getLatestExpiredDeadline (cardset_id) {
+		let query = {cardset_id: cardset_id, rating: 0};
+		let lastSubmission = TranscriptBonus.findOne(query, {sort: {date: -1}});
+		if (lastSubmission !== undefined) {
+			let hours = Number(lastSubmission.lectureEnd.substring(0, 2));
+			let minutes = Number(lastSubmission.lectureEnd.substring(3, 5));
+			return moment().add(hours, 'hours').add(minutes, 'minutes').subtract(lastSubmission.deadlineEditing, 'hours').toDate();
+		} else {
+			return undefined;
+		}
 	}
 
 	static isDeadlineExpired (transcriptBonus, isEditingDeadline = false) {
@@ -158,8 +74,13 @@ export let TranscriptBonusList = class TranscriptBonusList {
 		}
 	}
 
-	static getLectureName (transcriptBonus) {
-		return transcriptBonus.name + ": " + this.getLectureEnd(transcriptBonus, transcriptBonus.date, false);
+	static getLectureName (transcriptBonus, addLectureName = true) {
+		let name = "";
+		if (addLectureName) {
+			name += transcriptBonus.name + ": ";
+		}
+		name += this.getLectureEnd(transcriptBonus, transcriptBonus.date, false);
+		return name;
 	}
 
 	static getLectureEnd (transcriptBonus, date_id) {
@@ -173,15 +94,19 @@ export let TranscriptBonusList = class TranscriptBonusList {
 		if (transcriptBonus.lectureEnd !== undefined) {
 			let deadline = this.addLectureEndTime(transcriptBonus, date_id);
 			deadline.add(transcriptBonus.deadline, 'hours');
-			return TAPi18n.__('transcriptForm.deadline.submission') + ": " + Utilities.getMomentsDate(deadline, true, true);
+			return TAPi18n.__('transcriptForm.deadline.submission') + ": " + Utilities.getMomentsDate(deadline, true, 1);
 		}
 	}
 
-	static getDeadlineEditing (transcriptBonus, date_id) {
+	static getDeadlineEditing (transcriptBonus, date_id, reviewMode = false) {
 		if (transcriptBonus.lectureEnd !== undefined) {
 			let deadlineEditing = this.addLectureEndTime(transcriptBonus, date_id);
 			deadlineEditing.add(transcriptBonus.deadlineEditing, 'hours');
-			return TAPi18n.__('transcriptForm.deadline.editing') + ": " + Utilities.getMomentsDate(deadlineEditing, true, true);
+			if (reviewMode) {
+				return Utilities.getMomentsDate(deadlineEditing, true, 2, false);
+			} else {
+				return TAPi18n.__('transcriptForm.deadline.editing') + ": " + Utilities.getMomentsDate(deadlineEditing, true, 1);
+			}
 		}
 	}
 
@@ -195,4 +120,228 @@ export let TranscriptBonusList = class TranscriptBonusList {
 			return median.toFixed(1);
 		}
 	}
+
+	static getAchievedBonus (cardset_id, user_id) {
+		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {transcriptBonus: 1}});
+		if (cardset !== undefined) {
+			let query = {cardset_id: cardset_id, user_id: user_id, rating: 1};
+			let acceptedTranscripts = TranscriptBonus.find(query).count();
+			if (acceptedTranscripts === 0 || cardset.transcriptBonus.minimumSubmissions === 0) {
+				return 0;
+			} else {
+				return Math.trunc((acceptedTranscripts / cardset.transcriptBonus.minimumSubmissions) * cardset.transcriptBonus.percentage);
+			}
+		}
+	}
+
+	static getBonusTranscriptRating (type = 0) {
+		switch (type) {
+			case 1:
+				return icons.transcriptIcons.ratingAccepted;
+			case 2:
+				return icons.transcriptIcons.ratingDenied;
+			default:
+				return icons.transcriptIcons.ratingPending;
+		}
+	}
+
+	static getSubmissions (cardset_id, user_id, rating) {
+		let query = {cardset_id: cardset_id, user_id: user_id};
+		if (rating !== undefined) {
+			query.rating = rating;
+		}
+		return TranscriptBonus.find(query).count();
+	}
+
+	static getBonusTranscriptTooltip (type = 0) {
+		switch (type) {
+			case 1:
+				return TAPi18n.__('cardset.transcriptBonusRating.tooltip.accepted');
+			case 2:
+				return TAPi18n.__('cardset.transcriptBonusRating.tooltip.denied');
+			default:
+				return TAPi18n.__('cardset.transcriptBonusRating.tooltip.pending');
+		}
+	}
 };
+
+if (Meteor.isServer) {
+	Meteor.publish("cardsetTranscriptBonus", function (cardset_id) {
+		if (this.userId) {
+			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1}});
+			if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+				return TranscriptBonus.find({cardset_id: cardset._id});
+			} else {
+				this.ready();
+			}
+		} else {
+			this.ready();
+		}
+	});
+	Meteor.publish("cardsetTranscriptMyBonus", function (card_id) {
+		if (this.userId) {
+			let card = TranscriptBonus.findOne({card_id: card_id}, {fields: {cardset_id: 1, _id: 1, owner: 1}});
+			if (UserPermissions.isAdmin() || UserPermissions.isOwner(card.owner)) {
+				return Cardsets.find({_id: card.cardset_id});
+			} else {
+				this.ready();
+			}
+		} else {
+			this.ready();
+		}
+	});
+	Meteor.publish("cardsetTranscriptBonusReview", function (cardset_id) {
+		if (this.userId) {
+			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1}});
+			if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+				let latestExpiredDeadline = TranscriptBonusList.getLatestExpiredDeadline(cardset._id);
+				return TranscriptBonus.find({cardset_id: cardset._id, date: {$lt: latestExpiredDeadline}, rating: 0});
+			} else {
+				this.ready();
+			}
+		} else {
+			this.ready();
+		}
+	});
+	Meteor.publish("myTranscriptBonus", function () {
+		if (this.userId) {
+			return TranscriptBonus.find({user_id: this.userId});
+		} else {
+			this.ready();
+		}
+	});
+}
+
+const TranscriptBonusSchema = new SimpleSchema({
+	cardset_id: {
+		type: String
+	},
+	card_id: {
+		type: String
+	},
+	user_id: {
+		type: String
+	},
+	date: {
+		type: Date
+	},
+	lectureEnd: {
+		type: String
+	},
+	deadline: {
+		type: Number
+	},
+	deadlineEditing: {
+		type: Number
+	},
+	rating: {
+		type: Number,
+		optional: true
+	}
+});
+
+TranscriptBonus.attachSchema(TranscriptBonusSchema);
+
+
+Meteor.methods({
+	addTranscriptBonus: function (card_id, cardset_id, user_id, date_id) {
+		if (Meteor.isServer) {
+			check(card_id, String);
+			check(user_id, String);
+			check(cardset_id, String);
+			check(date_id, Number);
+			let cardset = Cardsets.findOne({_id: cardset_id});
+
+			if (cardset !== undefined) {
+				TranscriptBonus.upsert({card_id: card_id}, {
+					$set: {
+						cardset_id: cardset._id,
+						card_id: card_id,
+						user_id: user_id,
+						date: cardset.transcriptBonus.dates[date_id],
+						lectureEnd: cardset.transcriptBonus.lectureEnd,
+						deadline: cardset.transcriptBonus.deadline,
+						deadlineEditing: cardset.transcriptBonus.deadlineEditing,
+						dateCreated: new Date(),
+						rating: 0
+					}
+				});
+			}
+			Meteor.call('updateTranscriptBonusStats', cardset._id);
+		}
+	},
+	updateTranscriptBonusStats: function (cardset_id) {
+		if (Meteor.isServer) {
+			check(cardset_id, String);
+			let cardset = Cardsets.findOne({_id: cardset_id});
+			if (cardset !== undefined && cardset.transcriptBonus !== undefined) {
+				let bonusTranscripts = TranscriptBonus.find({cardset_id: cardset._id}).fetch();
+				let submissions = TranscriptBonus.find({cardset_id: cardset._id}).count();
+				let userFilter = [];
+				for (let i = 0; i < bonusTranscripts.length; i++) {
+					userFilter.push(bonusTranscripts[i].user_id);
+				}
+				let participants = Meteor.users.find({_id: {$in: userFilter}}).count();
+				Cardsets.update({_id: cardset._id}, {
+					$set: {
+						'transcriptBonus.stats.submissions': submissions,
+						'transcriptBonus.stats.participants': participants
+					}
+				});
+			}
+		}
+	},
+	getTranscriptCSVExport: function (cardset_id, header) {
+		check(cardset_id, String);
+		check(header, [String]);
+
+		let cardset = Cardsets.findOne({_id: cardset_id});
+		if (UserPermissions.gotBackendAccess() || (UserPermissions.isOwner(cardset.owner) || cardset.editors.includes(Meteor.userId()))) {
+			let content;
+			let colSep = ";"; // Separates columns
+			let newLine = "\r\n"; //Adds a new line
+			content = "";
+			for (let i = 0; i < header.length; i++) {
+				content += header[i] + colSep;
+			}
+			content += newLine;
+			let transcriptUsers = _.uniq(TranscriptBonus.find({cardset_id: cardset_id}, {
+				fields: {user_id: 1}
+			}).fetch().map(function (x) {
+				return x.user_id;
+			}), true);
+			let users = Meteor.users.find({_id: {$in: transcriptUsers}}, {
+				sort: {'profile.birthname': 1, 'profile.givenname': 1}, fields: {_id: 1, email: 1, profile: 1}
+			}).fetch();
+			for (let i = 0; i < users.length; i++) {
+				content += users[i].profile.birthname + colSep;
+				content += users[i].profile.givenname + colSep;
+				content += users[i].email + colSep;
+				content += TranscriptBonusList.getSubmissions(cardset_id, users[i]._id, undefined) + colSep;
+				content += TranscriptBonusList.getSubmissions(cardset_id, users[i]._id, 0) + colSep;
+				content += TranscriptBonusList.getSubmissions(cardset_id, users[i]._id, 1) + colSep;
+				content += TranscriptBonusList.getSubmissions(cardset_id, users[i]._id, 2) + colSep;
+				content += TranscriptBonusList.getAchievedBonus(cardset_id, users[i]._id) + " %" + colSep;
+				content += newLine;
+			}
+			return content;
+		}
+	},
+	rateTranscript: function (cardset_id, card_id, answer) {
+		check(cardset_id, String);
+		check(card_id, String);
+		check(answer, Boolean);
+		let cardset = Cardsets.findOne({_id: cardset_id});
+		if (UserPermissions.gotBackendAccess() || (UserPermissions.isOwner(cardset.owner) || cardset.editors.includes(Meteor.userId()))) {
+			let rating = 1;
+			if (answer === false) {
+				rating = 2;
+			}
+			TranscriptBonus.update({cardset_id: cardset_id, card_id: card_id}, {
+				$set: {
+					rating: rating
+				}
+			});
+		}
+	}
+});

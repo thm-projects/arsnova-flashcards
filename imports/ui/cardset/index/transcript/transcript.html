@@ -1,0 +1,19 @@
+<template name="cardsetIndexTranscript">
+    <div class="transcriptBonus container">
+        {{> cardsetIndexTranscriptNavigation}}
+        {{#if isViewActive 0}}
+            {{> cardsetIndexTranscriptSettings}}
+        {{else if isViewActive 1}}
+            {{> cardsetIndexTranscriptStatistics}}
+        {{else}}
+            {{> cardsetIndexTranscriptSubmissions}}
+        {{/if}}
+        <div class="col-xs-12">
+            <br>
+            {{> cardsetIndexTranscriptItemCancel}}
+            {{#if isViewActive 0}}
+                {{> cardsetIndexTranscriptItemSave}}
+            {{/if}}
+        </div>
+    </div>
+</template>

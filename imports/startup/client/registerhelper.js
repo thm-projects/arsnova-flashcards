@@ -125,6 +125,14 @@ Template.registerHelper('gotKindFilter', function () {
 	return FilterNavigation.gotKindFilter(FilterNavigation.getRouteId());
 });
 
+Template.registerHelper('gotTranscriptLectureFilter', function () {
+	return FilterNavigation.gotTranscriptLectureFilter(FilterNavigation.getRouteId());
+});
+
+Template.registerHelper('gotRatingFilter', function () {
+	return FilterNavigation.gotRatingFilter(FilterNavigation.getRouteId());
+});
+
 Template.registerHelper('isFilterIndex', function () {
 	return Route.isFilterIndex();
 });
@@ -248,7 +256,7 @@ Template.registerHelper('isMyBonusTranscriptsRoute', function () {
 
 
 Template.registerHelper('isBonusTranscriptsRoute', function () {
-	return Route.isMyBonusTranscripts() || Route.isTranscriptBonus();
+	return Route.isMyBonusTranscripts() || Route.isTranscriptBonus() || Route.isPresentationTranscriptBonusCardset() || Route.isPresentationTranscriptBonus() || Route.isPresentationTranscriptReview();
 });
 
 Template.registerHelper('isPersonalTranscriptsRoute', function () {
@@ -424,7 +432,7 @@ Template.registerHelper("getWordcloudLabel", function (cardset) {
 });
 
 Template.registerHelper("getTranscriptBonusLabel", function (cardset) {
-	if ((cardset.transcriptBonus !== undefined && cardset.transcriptBonus.enabled) || Route.isMyBonusTranscripts() || Route.isTranscriptBonus() || Route.isPresentationTranscriptBonus() || Route.isPresentationTranscriptBonusCardset()) {
+	if ((cardset.transcriptBonus !== undefined && cardset.transcriptBonus.enabled) || Route.isMyBonusTranscripts() || Route.isTranscriptBonus() || Route.isPresentationTranscriptBonus() || Route.isPresentationTranscriptBonusCardset() || Route.isPresentationTranscriptReview()) {
 		return '<span class="label label-transcript-bonus" title="' + TAPi18n.__('cardset.transcriptBonus.long') + '">' + TAPi18n.__('cardset.transcriptBonus.short') + '</span>';
 	}
 });
@@ -550,6 +558,14 @@ Template.registerHelper("isGuestLogin", function () {
 
 Template.registerHelper("isCardsetTranscriptBonusRoute", function () {
 	return Route.isTranscriptBonus();
+});
+
+Template.registerHelper("isPresentationTranscriptCardsetRoute", function () {
+	return Route.isPresentationTranscriptReview() || Route.isPresentationTranscriptBonusCardset();
+});
+
+Template.registerHelper("isPresentationTranscriptReviewRoute", function () {
+	return Route.isPresentationTranscriptReview();
 });
 
 Template.registerHelper("gotAllUnfilteredCardsetsVisible", function () {
@@ -747,8 +763,8 @@ Template.registerHelper("getDate", function () {
 	return moment(date).locale(Session.get('activeLanguage')).format('LL');
 });
 
-Template.registerHelper("getMomentsDate", function (date, displayMinutes = false, displayAsDeadline = false, transformToSpeech = true) {
-	return Utilities.getMomentsDate(date, displayMinutes, displayAsDeadline, transformToSpeech);
+Template.registerHelper("getMomentsDate", function (date, displayMinutes = false, displayMode = 0, transformToSpeech = true) {
+	return Utilities.getMomentsDate(date, displayMinutes, displayMode, transformToSpeech);
 });
 
 Template.registerHelper("getMomentsDateShort", function (date) {

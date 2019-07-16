@@ -1,0 +1,53 @@
+<template name="cardNavigationItemReview">
+    <div class="col-xs-12">
+        <div class="answerOptions">
+            {{#if canRateTranscript}}
+                {{#if isQuestionSide}}
+                    <div id="answerButtons" class="btn-group btn-group-justified">
+                        <div class="btn-group btn-bootstrap-container" role="group">
+                            <button id="rateTranscript" class="btn btn-success btn-block btn-raised answer show-answer"
+                                    title="{{_ "cardset.transcriptBonusRating.navigation.rate"}}">{{_
+                                    "cardset.transcriptBonusRating.navigation.rate"}} {{#if
+                                    fullscreenActive}}
+                                <span class="hidden-xs">( {{_ "key" key='y'}} )</span>{{/if}}</button>
+                        </div>
+                        {{#if isPresentationTranscriptReviewRoute}}
+                            {{#unless gotOneCardLeft}}
+                                <div class="btn-group btn-bootstrap-container" role="group">
+                                    <button href="#" id="skipTranscript"
+                                            class="btn btn-danger btn-block btn-raised answer show-answer"
+                                            title="{{_
+                                                    "cardset.transcriptBonusRating.navigation.skip"}}" {{isPomodoroBreakActive}}>{{_
+                                            "cardset.transcriptBonusRating.navigation.skip"}} {{#if
+                                            fullscreenActive}}
+                                        <span class="hidden-xs">( {{_ "arrowKeys"}} )</span>{{/if}}</button>
+                                </div>
+                            {{/unless}}
+                        {{/if}}
+                    </div>
+                {{else}}
+                    <div id="rate-navigation" class="btn-group btn-group-justified">
+                        <div class="btn-group btn-bootstrap-container" role="group">
+                            <button class="btn btn-raised btn-warning answer card-fail" id="denyTranscript"
+                                    title="{{_
+                                            "cardset.transcriptBonusRating.navigation.deny"}}" {{isPomodoroBreakActive}}>{{_
+                                    "cardset.transcriptBonusRating.navigation.deny"}} {{#if fullscreenActive}}
+                                <span class="hidden-xs">( {{_ "key" key='n'}} )</span>{{/if}}</button>
+                        </div>
+                        <div class="btn-group btn-bootstrap-container" role="group">
+                            <button class="btn btn-raised btn-success answer card-success" id="acceptTranscript"
+                                    title="{{_
+                                            "cardset.transcriptBonusRating.navigation.accept"}}" {{isPomodoroBreakActive}}>{{_
+                                    "cardset.transcriptBonusRating.navigation.accept"}} {{#if fullscreenActive}}
+                                <span class="hidden-xs">( {{_ "key" key='y'}} )</span>{{/if}}</button>
+                        </div>
+                    </div>
+                {{/if}}
+            {{else}}
+                <button class="btn btn-warning btn-block btn-raised"
+                        title="{{_ "cardset.transcriptBonusRating.navigation.notUnlocked"}}" disabled>{{_
+                        "cardset.transcriptBonusRating.navigation.notUnlocked"}} </button>
+            {{/if}}
+        </div>
+    </div>
+</template>

@@ -1,4 +1,4 @@
-let roundTheMedian = false;
+let roundTheMedian = true;
 
 module.exports = {
 	roundTheMedian

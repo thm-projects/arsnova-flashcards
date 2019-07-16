@@ -22,7 +22,7 @@ Meteor.subscribe('default_db_data', function () {
 
 Template.registerHelper("getUser", function () {
 	var user = Meteor.users.findOne(Router.current().params._id);
-	Session.set("user", user);
+	Session.set("stats.js", user);
 	return user;
 });
 Template.registerHelper("isUser", function () {

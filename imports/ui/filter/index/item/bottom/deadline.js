@@ -14,5 +14,17 @@ Template.filterIndexItemBottomDeadline.helpers({
 		if (bonusTranscript !== undefined) {
 			return TranscriptBonusList.getDeadlineEditing(bonusTranscript, bonusTranscript.date);
 		}
+	},
+	getLectureDate: function () {
+		let bonusTranscript = TranscriptBonus.findOne({card_id: this._id});
+		if (bonusTranscript !== undefined) {
+			return bonusTranscript.date.getTime();
+		}
+	},
+	getCardset: function () {
+		let bonusTranscript = TranscriptBonus.findOne({card_id: this._id});
+		if (bonusTranscript !== undefined) {
+			return bonusTranscript.cardset_id;
+		}
 	}
 });

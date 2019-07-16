@@ -15,7 +15,7 @@ Template.cardSidebarItemEndPresentation.events({
 			Router.go('transcriptsPersonal');
 		} else if (Route.isPresentationTranscriptBonus()) {
 			Router.go('transcriptsBonus');
-		} else if (Route.isPresentationTranscriptBonusCardset()) {
+		} else if (Route.isPresentationTranscriptBonusCardset() || Route.isPresentationTranscriptReview()) {
 			Router.go('transcriptBonus', {
 				_id: Router.current().params._id
 			});

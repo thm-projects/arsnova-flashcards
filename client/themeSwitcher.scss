@@ -88,6 +88,12 @@ $themes: (
     $card_counter_text:  map-get($map, "card_counter_text");
     $transcript_counter_background:  map-get($map, "transcript_counter_background");
     $transcript_counter_text:  map-get($map, "transcript_counter_text");
+    $transcript_rating_label_background:  map-get($map, "transcript_rating_label_background");
+    $transcript_rating_label_text:  map-get($map, "transcript_rating_label_text");
+    $transcript_rating_pending_icon:  map-get($map, "transcript_rating_pending_icon");
+    $transcript_rating_accepted_icon:  map-get($map, "transcript_rating_accepted_icon");
+    $transcript_rating_denied_icon:  map-get($map, "transcript_rating_denied_icon");
+    $transcript_achieved_bonus:  map-get($map, "transcript_achieved_bonus");
     //barfy stars
     $barfy_stars_particles_1: map-get($map, "barfy_stars_particles_1");
     $barfy_stars_particles_2: map-get($map, "barfy_stars_particles_2");
@@ -581,6 +587,10 @@ $themes: (
     $transcript_bonus_info_lecture_date_day_hover_background: map-get($map, "transcript_bonus_info_lecture_date_day_hover_background");
     $transcript_bonus_submission_count_badge_text: map-get($map, "transcript_bonus_submission_count_badge_text");
     $transcript_bonus_submission_count_badge_background: map-get($map, "transcript_bonus_submission_count_badge_background");
+    //transcript bonus statistics info colors
+    $transcript_bonus_statistics_info_name_background: map-get($map, "transcript_bonus_statistics_info_name_background");
+    $transcript_bonus_statistics_info_details_background: map-get($map, "transcript_bonus_statistics_info_details_background");
+    $transcript_bonus_statistics_info_details_text: map-get($map, "transcript_bonus_statistics_info_details_text");
     //markdeep editor colors
     $markdeep_help_text: map-get($map, "markdeep_help_text");
     $markdeep_help_background: map-get($map, "markdeep_help_background");
@@ -1702,10 +1712,6 @@ $themes: (
       border: 1px solid $primary !important;
     }
 
-    .bs-callout-info {
-      border-left-color: $primary !important;
-    }
-
     .learnLeitner, .learnWozniak, .learnSelect {
       cursor: pointer;
       color: $primary !important;
@@ -2546,6 +2552,7 @@ $themes: (
 
     .bs-callout-info {
       background-color: $white !important;
+      border-left-color: $thm_orange !important;
     }
 
     #publishKind, #publishKindAdmin {
@@ -2778,6 +2785,27 @@ $themes: (
       i:hover {
         color: $wordcloud_label_text !important;
       }
+    }
+
+    .label-transcript-rating {
+      background-color: $transcript_rating_label_background !important;
+      color: $transcript_rating_label_text !important;
+    }
+
+    .transcript-rating-pending::before {
+      color: $transcript_rating_pending_icon !important;
+    }
+
+    .transcript-rating-accepted::before {
+      color: $transcript_rating_accepted_icon !important;
+    }
+
+    .transcript-rating-denied::before {
+      color: $transcript_rating_denied_icon !important;
+    }
+
+    .transcript-achieved-bonus::before {
+      color: $transcript_achieved_bonus !important;
     }
 
     .label-count-cards {
@@ -3703,6 +3731,16 @@ $themes: (
     //cube colors
     .flashcard-3d {
       border-color: $cube_border;
+    }
+    //transcript bonus user statistics colors
+    .transcript-bonus-statistics-info {
+      th {
+        background-color: $transcript_bonus_statistics_info_name_background !important;
+      }
+      td {
+        background-color: $transcript_bonus_statistics_info_details_background !important;
+        color: $transcript_bonus_statistics_info_details_text !important;
+      }
     }
   }
 }

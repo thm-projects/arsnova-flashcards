@@ -86,6 +86,12 @@ let useCasesIcons = {
 	"search": "<i class='fa fas fa-search'></i>&nbsp;"
 };
 
+let transcriptIcons = {
+	"ratingPending": '<i class="transcript-rating-pending fas fa-hourglass" data-rating="0"></i>',
+	"ratingAccepted": '<i class="transcript-rating-accepted fas fa-check-circle" data-rating="1"></i>',
+	"ratingDenied": '<i class="transcript-rating-denied fas fa-times-circle" data-rating="2"></i>'
+};
+
 module.exports = {
 	footerNavigation: footerNavigation,
 	topNavigation: topNavigation,
@@ -93,5 +99,6 @@ module.exports = {
 	landingPageNavigation,
 	aspectRatio,
 	useCasesIcons,
-	labels
+	labels,
+	transcriptIcons
 };

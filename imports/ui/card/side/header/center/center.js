@@ -6,6 +6,7 @@ import {Cardsets} from "../../../../../api/cardsets";
 import {CardType} from "../../../../../api/cardTypes";
 import "./center.html";
 import {MarkdeepEditor} from "../../../../../api/markdeepEditor";
+import {TranscriptBonus, TranscriptBonusList} from "../../../../../api/transcriptBonus";
 
 /*
  * ############################################################################
@@ -14,6 +15,12 @@ import {MarkdeepEditor} from "../../../../../api/markdeepEditor";
  */
 
 Template.flashcardHeaderCenter.helpers({
+	getLectureDate: function (card_id) {
+		let bonusTranscript = TranscriptBonus.findOne({card_id: card_id});
+		if (bonusTranscript !== undefined) {
+			return TranscriptBonusList.getLectureName(bonusTranscript, false);
+		}
+	},
 	isCardset: function () {
 		return Route.isCardset();
 	},
@@ -57,5 +64,8 @@ Template.flashcardHeaderCenter.helpers({
 	},
 	gotCardsetTitleNavigation: function () {
 		return CardType.gotCardsetTitleNavigation(this.cardType);
+	},
+	displayTranscriptOwner: function () {
+		return Route.isPresentationTranscriptBonusCardset() || Route.isPresentationTranscriptReview();
 	}
 });

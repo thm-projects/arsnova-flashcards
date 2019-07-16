@@ -119,7 +119,7 @@ export let ServerInventoryTools = class ServerInventoryTools {
 					return this.splitLargeNumbers(Counts.get('wordcloudProCounter'));
 				}
 				break;
-			case "user":
+			case "stats.js":
 				if (Meteor.settings.public.welcome.fakeStatistics) {
 					return this.splitLargeNumbers(inventory.curValue.user.total);
 				} else {

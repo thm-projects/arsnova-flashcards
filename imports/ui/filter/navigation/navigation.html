@@ -29,6 +29,12 @@
         {{#if gotBonusFilter}}
             {{> filterItemFilterBonus}}
         {{/if}}
+        {{#if gotTranscriptLectureFilter}}
+            {{> filterItemFilterTranscriptLecture}}
+        {{/if}}
+        {{#if gotRatingFilter}}
+            {{> filterItemFilterRating}}
+        {{/if}}
     </ul>
 </template>
 
@@ -59,6 +65,9 @@
     {{/if}}
     {{#if gotKindFilter}}
         {{> filterItemFilterKind}}
+    {{/if}}
+    {{#if gotRatingFilter}}
+        {{> filterItemFilterRating}}
     {{/if}}
 </template>
 

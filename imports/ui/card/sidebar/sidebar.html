@@ -122,9 +122,11 @@
 </template>
 
 <template name="flashcardSidebarPresentationRight">
-    <span class="sidebarNavigationButton">
-        {{> cardSidebarRightNavigation}}
-    </span>
+    {{#unless isPresentationTranscriptReviewRoute}}
+        <span class="sidebarNavigationButton">
+            {{> cardSidebarRightNavigation}}
+        </span>
+    {{/unless}}
     {{> cardSidebarItemEndPresentation}}
     {{> cardSidebarItemZoomText}}
     {{> cardSidebarItemAspectRatio}}

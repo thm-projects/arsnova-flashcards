@@ -5,6 +5,7 @@ import {Route} from "./route";
 import {WordcloudCanvas} from "./wordcloudCanvas";
 import {Leitner, Wozniak} from "./learned";
 import * as config from "../config/filter.js";
+import {TranscriptBonus} from "./transcriptBonus";
 
 Session.setDefault('maxItemsCounter', config.itemStartingValue);
 Session.setDefault('poolFilter', undefined);
@@ -88,11 +89,10 @@ export let Filter = class Filter {
 					this.setDefaultFilter(FilterNavigation.getRouteId());
 				}
 				return Session.get('transcriptsBonusCardsetFilter');
-
 		}
 	}
 
-	static setActiveFilter (content, contentType = undefined) {
+	static setActiveFilter (content, contentType = undefined, maxItemCounter = config.itemStartingValue) {
 		let filter = content;
 		if (contentType !== undefined) {
 			filter = this.getActiveFilter();
@@ -137,9 +137,25 @@ export let Filter = class Filter {
 				case "_id":
 					filter._id = content;
 					break;
+				case "cardset_id":
+					filter.cardset_id = content;
+					break;
+				case "user_id":
+					filter.user_id = content;
+					break;
 				case "transcriptBonus":
 					delete filter.learningActive;
 					filter['transcriptBonus.enabled'] = true;
+					break;
+				case "transcriptLecture":
+					filter.transcriptDate = content;
+					break;
+				case "rating":
+					if (content === undefined) {
+						delete filter.rating;
+					} else {
+						filter.rating = Number(content);
+					}
 					break;
 			}
 		}
@@ -178,7 +194,7 @@ export let Filter = class Filter {
 				Session.set('transcriptsBonusCardsetFilter', filter);
 				break;
 		}
-		this.resetInfiniteBar();
+		this.setMaxItemCounter(maxItemCounter);
 		if (FilterNavigation.isDisplayWordcloudActive(FilterNavigation.getRouteId())) {
 			WordcloudCanvas.draw();
 		}
@@ -301,6 +317,29 @@ export let Filter = class Filter {
 		if (!Route.isWorkload() && activeFilter !== undefined && !Route.isTranscript() && !Route.isTranscriptBonus()) {
 			query.shuffled = activeFilter.shuffled;
 		}
+		if (FilterNavigation.gotRatingFilter(FilterNavigation.getRouteId()) || FilterNavigation.gotTranscriptLectureFilter(FilterNavigation.getRouteId())) {
+			let ratingQuery = {};
+			if (activeFilter.rating !== undefined) {
+				ratingQuery.rating = activeFilter.rating;
+			}
+			if (activeFilter.user_id !== undefined) {
+				ratingQuery.user_id = activeFilter.user_id;
+			}
+			if (activeFilter.cardset_id !== undefined) {
+				ratingQuery.cardset_id = activeFilter.cardset_id;
+			}
+			if (activeFilter.transcriptDate !== undefined) {
+				ratingQuery.date = new Date(activeFilter.transcriptDate);
+			}
+			let cardsWithRating = _.uniq(TranscriptBonus.find(ratingQuery, {
+				fields: {card_id: 1}
+			}).fetch().map(function (x) {
+				return x.card_id;
+			}), true);
+			if (cardsWithRating.length) {
+				query._id = {$in: cardsWithRating};
+			}
+		}
 		return query;
 	}
 
@@ -330,6 +369,10 @@ export let Filter = class Filter {
 
 	static resetMaxItemCounter () {
 		Session.set('maxItemsCounter', config.itemStartingValue);
+	}
+
+	static setMaxItemCounter (size) {
+		Session.set('maxItemsCounter', size);
 	}
 
 	static incrementMaxItemCounter () {
@@ -388,10 +431,6 @@ export let Filter = class Filter {
 				break;
 		}
 		this.setActiveFilter(filter);
-	}
-
-	static resetInfiniteBar () {
-		this.resetMaxItemCounter();
 	}
 
 	static resetFilters () {

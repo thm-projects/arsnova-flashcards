@@ -2,18 +2,31 @@
     <div class="col-xs-8 cardHeaderCenter" data-cardtype="{{cardType}}">
         {{#if gotCardsetTitleNavigation}}
             <span class="center-align">
-                            {{#unless isMobilePreview}}
-                                {{#if gotLearningGoal}}
-                                    <span class="hidden-xs cardHeaderSmallerText" data-cardtype="{{cardType}}">
+                {{#if displayTranscriptOwner}}
+                    <span class="center-align">
+                        <strong class="cardHeaderSmallText">{{getAuthorName this.owner}}</strong><br>
+                        <strong class="cardHeaderSmallText">{{getLectureDate this._id}}</strong>
+                    </span>
+                {{else}}
+                    {{#unless isMobilePreview}}
+                        {{#if gotLearningGoal}}
+                            <span class="hidden-xs cardHeaderSmallerText" data-cardtype="{{cardType}}">
                     {{_ "learning-goal.cardName"}}: {{getLearningGoalName}}</span>
-                                {{/if}}
-                            {{/unless}}
+                        {{/if}}
+                    {{/unless}}
+                {{/if}}
                 <h2 data-cardtype="{{cardType}}">
                     {{> cardSubject this}}
                 </h2>
             </span>
         {{else}}
             <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
+            {{#if displayTranscriptOwner}}
+                    <span class="center-align">
+                        <strong class="cardHeaderSmallText">{{getAuthorName this.owner}}</strong><br>
+                        <strong class="cardHeaderSmallText">{{getLectureDate this._id}}</strong>
+                    </span>
+            {{else}}
                 <strong class="cardHeaderSmallText" data-cardtype="{{cardType}}">{{getCardsetName}}</strong><br>
                 {{#unless isMobilePreview}}
                     {{#if gotLearningGoal}}
@@ -21,6 +34,7 @@
                     {{_ "learning-goal.cardName"}}: {{getLearningGoalName}}</span>
                     {{/if}}
                 {{/unless}}
+            {{/if}}
             </div>
             <h2 data-cardtype="{{cardType}}">
                 {{> cardSubject this}}

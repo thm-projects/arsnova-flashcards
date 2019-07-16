@@ -26,7 +26,7 @@ Template.mainNavigationTopItemProfile.helpers({
 		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
 			return Notifications.find({}).count();
 		} else {
-			return Notifications.find({read: false, target_type: 'user', target: Meteor.userId()}).count();
+			return Notifications.find({read: false, target_type: 'stats.js', target: Meteor.userId()}).count();
 		}
 	}
 });

@@ -44,7 +44,7 @@
 </template>
 
 <template name="learnAnswerOptions">
-    <div id="answerOptions">
+    <div class="col-xs-12 answerOptions">
         {{#unless isNavigationVisible}}
             {{#if isQuestionSide}}
                 <div id="answerButtons" class="btn-group btn-group-justified">
@@ -58,7 +58,8 @@
                         <div class="btn-group btn-bootstrap-container" role="group">
                             <button href="#" id="skipAnswer"
                                     class="btn btn-danger btn-block btn-raised answer show-answer"
-                                    title="{{_ "wozniak.skip"}}" {{isPomodoroBreakActive}}>{{_ "wozniak.skip"}} {{#if
+                                    title="{{_ "wozniak.skip"}}" {{isPomodoroBreakActive}}>{{_
+                                    "wozniak.skip"}} {{#if
                                     fullscreenActive}}
                                 <span class="hidden-xs">( {{_ "arrowKeys"}} )</span>{{/if}}</button>
                         </div>
@@ -84,7 +85,8 @@
                         <div class="btn-group btn-bootstrap-container">
                             <button id="memoRate0" class="btn btn-warning btn-raised btn-warning rate-answer wrong"
                                     data-id="0"
-                                    data-toggle="tooltip" title="{{_ "wozniak.answer.0"}}"><span class="hidden-xs">{{_
+                                    data-toggle="tooltip" title="{{_ "wozniak.answer.0"}}"><span
+                                    class="hidden-xs">{{_
                                     "wozniak.answer.0"}}</span>
                                 <span class="visible-xs">{{_ "wozniak.answer.0Mobile"}}</span>
                             </button>

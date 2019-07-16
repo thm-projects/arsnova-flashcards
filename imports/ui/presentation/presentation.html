@@ -1,6 +1,16 @@
 <template name="presentation">
     {{#if hasPermission}}
-        {{> presentationView}}
+        {{#if isPresentationTranscriptReviewRoute}}
+            {{#if gotTranscriptsLeftToReview}}
+                {{> presentationView}}
+            {{else}}
+                <div class="container">
+                    {{> flashcardsReviewEnd}}
+                </div>
+            {{/if}}
+        {{else}}
+            {{> presentationView}}
+        {{/if}}
     {{else}}
         {{> accessDenied}}
     {{/if}}
@@ -24,6 +34,9 @@
         </button>
         {{> cardsetList}}
     {{else}}
+        {{#if isPresentationTranscriptCardsetRoute}}
+             {{> cardNavigationItemReview}}
+        {{/if}}
         {{#unless isMobilePreview}}
             <div class="hidden-xs {{#if isActiveRoute regex='demo'}}row demo-padding{{else}}col-xs-12{{/if}}">
                 {{> cardNavigation}}

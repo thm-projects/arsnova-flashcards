@@ -54,7 +54,7 @@ export let Route = class Route {
 	}
 
 	static isTranscript () {
-		return this.isMyTranscripts() || this.isMyBonusTranscripts() || this.isNewTranscript() || this.isEditTranscript() || this.isPresentationTranscript() || this.isPresentationTranscriptBonus() || this.isPresentationTranscriptBonusCardset();
+		return this.isMyTranscripts() || this.isMyBonusTranscripts() || this.isNewTranscript() || this.isEditTranscript() || this.isPresentationTranscript() || this.isPresentationTranscriptBonus() || this.isPresentationTranscriptBonusCardset() || this.isPresentationTranscriptReview();
 	}
 
 	static isPresentationTranscript () {
@@ -63,6 +63,10 @@ export let Route = class Route {
 
 	static isPresentationTranscriptPersonal () {
 		return Router.current().route.getName() === "presentationTranscriptPersonal";
+	}
+
+	static isPresentationTranscriptReview () {
+		return Router.current().route.getName() === "presentationTranscriptReview";
 	}
 
 	static isPresentationTranscriptBonus () {
@@ -102,7 +106,7 @@ export let Route = class Route {
 	 * @return {Boolean} Return true, when route is a presentation view.
 	 */
 	static isPresentation () {
-		return (this.isDefaultPresentation() || this.isPresentationList() || this.isPresentationTranscript());
+		return (this.isDefaultPresentation() || this.isPresentationList() || this.isPresentationTranscript() || this.isPresentationTranscriptReview());
 	}
 
 	static isDefaultPresentation () {
@@ -222,7 +226,7 @@ export let Route = class Route {
 	}
 
 	static isFilterIndex () {
-		return (this.isHome() || this.isPool() || this.isMyCardsets() || this.isRepetitorium() || this.isAllCardsets() || this.isWorkload() || this.isAllRepetitorien() || this.isPersonalRepetitorien() || this.isMyTranscripts() || this.isShuffle() || this.isEditShuffle() || this.isTranscriptBonus());
+		return (this.isHome() || this.isPool() || this.isMyCardsets() || this.isRepetitorium() || this.isAllCardsets() || this.isWorkload() || this.isAllRepetitorien() || this.isPersonalRepetitorien() || this.isMyTranscripts() || this.isMyBonusTranscripts() || this.isShuffle() || this.isEditShuffle() || this.isTranscriptBonus());
 	}
 
 	static isFirstTimeVisit () {

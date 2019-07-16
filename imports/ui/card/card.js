@@ -42,6 +42,7 @@ function isActiveCard(card, resetData) {
 		}
 	}
 }
+
 /*
  * ############################################################################
  * flashcards
@@ -128,7 +129,7 @@ Template.flashcardsCarouselContent.helpers({
 		return CardIndex.getCards();
 	},
 	setCardStatus: function () {
-		this.isActive = isActiveCard(this,true);
+		this.isActive = isActiveCard(this, true);
 		return this;
 	}
 });
@@ -149,11 +150,11 @@ Template.flashcardsCarouselContent3D.helpers({
 		return CardIndex.getCards();
 	},
 	setCardStatus: function () {
-		this.isActive = isActiveCard(this,true);
+		this.isActive = isActiveCard(this, true);
 		return this;
 	},
 	isActiveCard: function () {
-		return isActiveCard(this,false);
+		return isActiveCard(this, false);
 	}
 });
 
@@ -245,5 +246,17 @@ Template.cardSubject.helpers({
 	},
 	getBonusLecture: function () {
 		return Session.get('transcriptBonus').cardset_id;
+	}
+});
+
+/*
+ * ############################################################################
+ * flashcardsReviewEnd
+ * ############################################################################
+ */
+
+Template.flashcardsReviewEnd.events({
+	"click #backToSubmissions": function () {
+		Router.go('transcriptBonus', {_id: Router.current().params._id});
 	}
 });
