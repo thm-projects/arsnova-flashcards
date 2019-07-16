@@ -41,11 +41,11 @@ export let BonusForm = class BonusForm {
 		}
 		$('#maxWorkload').val(maxWorkload);
 		$('#bonusFormModal #daysBeforeReset').val(daysBeforeReset);
-		$('#bonusFormModal #interval1').val(intervals[0]);
-		$('#bonusFormModal #interval2').val(intervals[1]);
-		$('#bonusFormModal #interval3').val(intervals[2]);
-		$('#bonusFormModal #interval4').val(intervals[3]);
-		$('#bonusFormModal #interval5').val(intervals[4]);
+		$('#bonusFormInterval1').val(intervals[0]);
+		$('#bonusFormInterval2').val(intervals[1]);
+		$('#bonusFormInterval3').val(intervals[2]);
+		$('#bonusFormInterval4').val(intervals[3]);
+		$('#bonusFormInterval5').val(intervals[4]);
 		dateBonusStart.attr("min", start);
 		dateBonusStart.val(start);
 		dateBonusEnd.attr("min", nextDay);
@@ -80,8 +80,8 @@ export let BonusForm = class BonusForm {
 	static adjustInterval () {
 		let interval, nextInterval;
 		for (let i = 1; i < 5; ++i) {
-			interval = $('#bonusFormModal #interval' + i);
-			nextInterval = $('#bonusFormModal #interval' + (i + 1));
+			interval = $('#bonusFormInterval' + i);
+			nextInterval = $('#bonusFormInterval' + (i + 1));
 			if (parseInt(interval.val()) >= parseInt(nextInterval.val())) {
 				nextInterval.val(parseInt(interval.val()) + 1);
 			}
@@ -287,7 +287,7 @@ export let BonusForm = class BonusForm {
 	static getIntervals () {
 		let intervals = [];
 		for (let i = 0; i < 5; ++i) {
-			intervals[i] = Number($('#bonusFormModal #interval' + (i + 1)).val());
+			intervals[i] = Number($('#bonusFormInterval' + (i + 1)).val());
 		}
 		if (!intervals[0]) {
 			intervals[0] = 1;

@@ -116,7 +116,7 @@ Template.bonusFormMaxPoints.events({
 */
 
 Template.bonusFormIntervals.events({
-	"input #interval1, input #interval2, input #interval3, input #interval4, input #interval5": function () {
+	"input #bonusFormInterval1, input #bonusFormInterval2, input #bonusFormInterval3, input #bonusFormInterval4, input #bonusFormInterval5": function () {
 		BonusForm.adjustInterval();
 	}
 });
