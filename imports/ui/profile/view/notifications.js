@@ -14,7 +14,7 @@ import "./notifications.html";
 
 Template.profileNotifications.events({
 	"click #clearBtn": function () {
-		var notifications = Notifications.find({target_type: 'user', target: Meteor.userId()});
+		var notifications = Notifications.find({target_type: 'stats.js', target: Meteor.userId()});
 		notifications.forEach(function (notification) {
 			Meteor.call("deleteNotification", notification);
 		});
@@ -29,7 +29,7 @@ Template.profileNotifications.helpers({
 		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
 			return Notifications.find({}, {sort: {date: -1}});
 		} else {
-			return Notifications.find({target_type: 'user', target: Meteor.userId()}, {sort: {date: -1}});
+			return Notifications.find({target_type: 'stats.js', target: Meteor.userId()}, {sort: {date: -1}});
 		}
 	},
 	getLink: function () {

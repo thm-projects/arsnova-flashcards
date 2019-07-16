@@ -3,6 +3,7 @@ import {CardVisuals} from "../../../api/cardVisuals";
 import {Route} from "../../../api/route";
 import {CardType} from "../../../api/cardTypes";
 import {CardNavigation} from "../../../api/cardNavigation";
+import "./item/review.js";
 import "./navigation.html";
 import {Cards} from "../../../api/cards";
 

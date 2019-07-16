@@ -8,6 +8,7 @@ import "./center/center.js";
 import "./item/clock.js";
 import "./item/countCards.js";
 import "./item/countCardsLeitner.js";
+import "./item/countCardsReview.js";
 import "./item/label.js";
 
 /*

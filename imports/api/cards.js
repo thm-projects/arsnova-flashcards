@@ -109,6 +109,38 @@ if (Meteor.isServer) {
 			this.ready();
 		}
 	});
+	Meteor.publish("cardsetTranscriptBonusCardsReview", function (cardset_id, activeFilter) {
+		if (this.userId) {
+			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1}});
+			if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+				let latestExpiredDeadline = TranscriptBonusList.getLatestExpiredDeadline(cardset._id);
+				if (latestExpiredDeadline !== undefined) {
+					let bonusTranscripts = TranscriptBonus.find({cardset_id: cardset._id, date: {$lt: latestExpiredDeadline}, rating: 0}, {fields: {card_id: 1}}).fetch();
+					let cardFilter = [];
+					for (let i = 0; i < bonusTranscripts.length; i++) {
+						cardFilter.push(bonusTranscripts[i].card_id);
+					}
+					let query = {};
+					if (activeFilter !== undefined && activeFilter !== null) {
+						if (activeFilter.transcriptDate !== undefined) {
+							query.date = new Date(activeFilter.transcriptDate);
+						}
+						if (activeFilter.owner !== undefined) {
+							query.owner = activeFilter.owner;
+						}
+					}
+					query._id = {$in: cardFilter};
+					return Cards.find({_id: {$in: cardFilter}, cardType: 2, cardset_id: "-1"});
+				} else {
+					this.ready();
+				}
+			} else {
+				this.ready();
+			}
+		} else {
+			this.ready();
+		}
+	});
 	Meteor.publish("transcriptCard", function (card_id) {
 		if (UserPermissions.isAdmin()) {
 			return Cards.find({_id: card_id, cardType: 2, cardset_id: "-1"});

@@ -1057,6 +1057,19 @@ Meteor.startup(function () {
 			}, {multi: true});
 	}
 
+	transcriptBonus = TranscriptBonus.find({"rating": {$exists: false}}).fetch();
+	for (let i = 0; i < transcriptBonus.length; i++) {
+		TranscriptBonus.update({
+				_id: transcriptBonus[i]._id
+			},
+			{
+				$set: {
+					rating: 0
+				}
+			}
+		);
+	}
+
 	Cardsets.remove({cardType: 2});
 	Meteor.users.remove(demoCardsetUser[0]._id);
 	Meteor.users.insert(demoCardsetUser[0]);

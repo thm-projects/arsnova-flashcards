@@ -447,9 +447,32 @@ Router.route('/cardset/:_id/editshuffle', {
 	}
 });
 
+Router.route('/cardset/:_id/transcripts/review', {
+	name: 'presentationTranscriptReview',
+	template: 'presentation',
+	subscriptions: function () {
+		return [Meteor.subscribe('cardsetTranscriptBonusReview', this.params._id), Meteor.subscribe('cardsetTranscriptBonusCardsReview', this.params._id, Filter.getActiveFilter(10)), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('userDataTranscriptBonus', this.params._id)];
+	},
+	data: function () {
+		MarkdeepEditor.changeMobilePreview(true);
+		Filter.resetMaxItemCounter();
+		Session.set('helpFilter', "cardset");
+		Session.set('isNewCardset', false);
+		Session.set('cardsetIndexResults', Cards.find().count());
+		return Cardsets.findOne({_id: this.params._id});
+	},
+	action: function () {
+		if (this.ready()) {
+			this.render();
+		} else {
+			this.render(loadingScreenTemplate);
+		}
+	}
+});
+
 Router.route('/cardset/:_id/transcripts', {
 	name: 'transcriptBonus',
-	template: 'cardsetTranscript',
+	template: 'cardsetIndexTranscript',
 	subscriptions: function () {
 		return [Meteor.subscribe('cardsetTranscriptBonus', this.params._id), Meteor.subscribe('cardsetTranscriptBonusCards', this.params._id), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('userDataTranscriptBonus', this.params._id)];
 	},
@@ -741,7 +764,7 @@ Router.route('/presentation/transcripts/bonus/:card_id', {
 	name: 'presentationTranscriptBonus',
 	template: 'presentation',
 	subscriptions: function () {
-		return [Meteor.subscribe('transcriptCard', this.params.card_id), Meteor.subscribe('myTranscriptBonus'), Meteor.subscribe('cardsetsTranscripts')];
+		return [Meteor.subscribe('transcriptCard', this.params.card_id), Meteor.subscribe('myTranscriptBonus'), Meteor.subscribe('cardsetTranscriptMyBonus', this.params.card_id)];
 	},
 	data: function () {
 		if (ServerStyle.gotTranscriptsEnabled()) {
@@ -765,7 +788,7 @@ Router.route('/presentation/transcripts/bonus/:_id/:card_id', {
 	name: 'presentationTranscriptBonusCardset',
 	template: 'presentation',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('transcriptCard', this.params.card_id)];
+		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('transcriptCard', this.params.card_id), Meteor.subscribe('cardsetTranscriptBonus', this.params._id)];
 	},
 	data: function () {
 		if (ServerStyle.gotTranscriptsEnabled()) {

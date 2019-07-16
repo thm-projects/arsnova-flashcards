@@ -32,6 +32,7 @@ import "./item/bottom/export.js";
 import "./item/bottom/leaveWorkload.js";
 import "./item/bottom/shuffle.js";
 import "./item/bottom/workloadProgress.js";
+import "./item/bottom/transcriptRating.js";
 import "./item/collapse/collapse.js";
 import "./item/titleRow/author.js";
 import "./item/titleRow/dateCreated.js";
@@ -48,9 +49,11 @@ import "../modal/deleteCardset.js";
 import "../modal/deleteTranscript.js";
 import "../modal/selectWorkload.js";
 import "./index.html";
+import {Meteor} from "meteor/meteor";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
+Session.setDefault('transcriptViewingMode', 2);
 
 /*
  * ############################################################################
@@ -88,10 +91,30 @@ Template.filterIndex.events({
 		FilterNavigation.showDropdown();
 	},
 	'click .resultItemHeaderAuthor a': function (event) {
-		Filter.setActiveFilter($(event.target).data('id'), "author");
+		if (Route.isTranscript() || Route.isTranscriptBonus()) {
+			Filter.setActiveFilter($(event.target).data('id'), "user_id");
+		} else {
+			Filter.setActiveFilter($(event.target).data('id'), "author");
+		}
+		FilterNavigation.showDropdown();
+	},
+	'click .resultItemHeaderBottomAreaLabels .label-transcript-rating': function (event) {
+		Filter.setActiveFilter($(event.target).data('rating'), "rating");
+		FilterNavigation.showDropdown();
+	},
+	'click .resultItemHeaderBottomAreaLabels .label-transcript-info': function (event) {
+		Filter.setActiveFilter($(event.target).data('id'), "transcriptLecture");
+		Filter.setActiveFilter($(event.target).data('cardset'), "cardset_id");
 		FilterNavigation.showDropdown();
 	}
 });
+
+Template.filterIndex.helpers({
+	isViewActive: function (id) {
+		return Session.get('transcriptViewingMode') === id;
+	}
+});
+
 
 /*
  * ############################################################################

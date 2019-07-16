@@ -1,18 +1,31 @@
 import {Session} from "meteor/session";
 import {Cardsets} from "./cardsets";
 import {CardType} from "./cardTypes";
+import {ServerStyle} from "./styles";
 
 export let Utilities = class Utilities {
-	static getCalendarString (type = '', minutes = '', displayAsDeadline = false) {
+	static getCalendarString (type = '', minutes = '', displayMode = 0) {
 		let today = '[Today]';
 		let yesterday = '[Yesterday]';
 		let tomorrow = '[Tomorrow]';
-		if (Session.get('activeLanguage') === 'de') {
+		let language;
+		if (Meteor.isServer) {
+			language = ServerStyle.getServerLanguage();
+		} else {
+			language = Session.get('activeLanguage');
+		}
+		if (language === 'de') {
 			if (minutes !== '') {
-				if (displayAsDeadline) {
-					minutes = '[ bis ]' + minutes + '[ Uhr ]';
-				} else {
-					minutes = '[ ]' + minutes;
+				switch (displayMode) {
+					case 1:
+						minutes = '[ bis ]' + minutes + '[ Uhr ]';
+						break;
+					case 2:
+						minutes = '[ ab ]' + minutes + '[ Uhr ]';
+						break;
+					default:
+						minutes = '[ ]' + minutes;
+						break;
 				}
 			}
 			today = '[Heute]';
@@ -20,10 +33,16 @@ export let Utilities = class Utilities {
 			tomorrow = '[Morgen]';
 		} else {
 			if (minutes !== '') {
-				if (displayAsDeadline) {
-					minutes = '[ until ]' + minutes;
-				} else {
-					minutes = '[ ]' + minutes;
+				switch (displayMode) {
+					case 1:
+						minutes = '[ until ]' + minutes;
+						break;
+					case 2:
+						minutes = '[ at ]' + minutes;
+						break;
+					default:
+						minutes = '[ ]' + minutes;
+						break;
 				}
 			}
 		}
@@ -39,42 +58,49 @@ export let Utilities = class Utilities {
 		}
 	}
 
-	static getMomentsDate (date, displayMinutes = false, displayAsDeadline = false, transformToSpeech = true) {
+	static getMomentsDate (date, displayMinutes = false, displayMode = 0, transformToSpeech = true) {
 		let minutes = "";
 		let dateFormat = "D. MMMM YYYY";
 		if (displayMinutes === true) {
 			dateFormat = "D. MMM YY " + minutes;
 			minutes = "H:mm";
 		}
+		let language;
+		if (Meteor.isServer) {
+			language = ServerStyle.getServerLanguage();
+		} else {
+			language = Session.get('activeLanguage');
+		}
 		if (!transformToSpeech) {
 			dateFormat = "DD";
-			return moment(date).locale(Session.get('activeLanguage')).calendar(null, {
-				sameDay: dateFormat,
-				lastDay: dateFormat,
-				nextDay: dateFormat,
-				nextWeek: dateFormat,
-				lastWeek: dateFormat,
-				sameElse: dateFormat
-			});
-		}
-		if (displayAsDeadline) {
-			return moment(date).locale(Session.get('activeLanguage')).calendar(null, {
-				sameDay: this.getCalendarString("today", minutes, displayAsDeadline),
-				lastDay: this.getCalendarString("yesterday", minutes, displayAsDeadline),
-				nextDay: this.getCalendarString("nextDay", minutes, displayAsDeadline),
-				nextWeek: this.getCalendarString(dateFormat, minutes, displayAsDeadline),
-				lastWeek: this.getCalendarString(dateFormat, minutes, displayAsDeadline),
-				sameElse: this.getCalendarString(dateFormat, minutes, displayAsDeadline)
+			return moment(date).locale(language).calendar(null, {
+				sameDay: this.getCalendarString(dateFormat, minutes, displayMode),
+				lastDay: this.getCalendarString(dateFormat, minutes, displayMode),
+				nextDay: this.getCalendarString(dateFormat, minutes, displayMode),
+				nextWeek: this.getCalendarString(dateFormat, minutes, displayMode),
+				lastWeek: this.getCalendarString(dateFormat, minutes, displayMode),
+				sameElse: this.getCalendarString(dateFormat, minutes, displayMode)
 			});
 		} else {
-			return moment(date).locale(Session.get('activeLanguage')).calendar(null, {
-				sameDay: this.getCalendarString("today", minutes),
-				lastDay: this.getCalendarString("yesterday", minutes),
-				nextDay: this.getCalendarString("nextDay", minutes),
-				nextWeek: dateFormat,
-				lastWeek: dateFormat,
-				sameElse: dateFormat
-			});
+			if (displayMode === 0) {
+				return moment(date).locale(language).calendar(null, {
+					sameDay: this.getCalendarString("today", minutes, displayMode),
+					lastDay: this.getCalendarString("yesterday", minutes, displayMode),
+					nextDay: this.getCalendarString("nextDay", minutes, displayMode),
+					nextWeek: this.getCalendarString(dateFormat, "", displayMode),
+					lastWeek: this.getCalendarString(dateFormat, "", displayMode),
+					sameElse: this.getCalendarString(dateFormat, "", displayMode)
+				});
+			} else {
+				return moment(date).locale(language).calendar(null, {
+					sameDay: this.getCalendarString("today", minutes, displayMode),
+					lastDay: this.getCalendarString("yesterday", minutes, displayMode),
+					nextDay: this.getCalendarString("nextDay", minutes, displayMode),
+					nextWeek: this.getCalendarString(dateFormat, minutes, displayMode),
+					lastWeek: this.getCalendarString(dateFormat, minutes, displayMode),
+					sameElse: this.getCalendarString(dateFormat, minutes, displayMode)
+				});
+			}
 		}
 	}
 
@@ -83,7 +109,13 @@ export let Utilities = class Utilities {
 	}
 
 	static getMomentsDateShort (date) {
-		return moment(date).locale(Session.get('activeLanguage')).calendar(null, {
+		let language;
+		if (Meteor.isServer) {
+			language = ServerStyle.getServerLanguage();
+		} else {
+			language = Session.get('activeLanguage');
+		}
+		return moment(date).locale(language).calendar(null, {
 			sameDay: this.getCalendarString("today"),
 			lastDay: this.getCalendarString("yesterday"),
 			nextWeek: 'D.MMM YY',

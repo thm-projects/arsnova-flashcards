@@ -1,0 +1,21 @@
+<template name="cardsetIndexTranscriptStatisticsItemInfo">
+    <div class="col-xs-12 col-sm-6 transcript-bonus-statistics-info">
+        <table class="table">
+            <thead>
+                {{#if isCardsetTranscriptBonusRoute}}
+                    {{> cardsetIndexTranscriptStatisticsItemBoxAuthor}}
+                {{else}}
+                    {{> cardsetIndexTranscriptStatisticsItemBoxCardset}}
+                {{/if}}
+            </thead>
+            <tbody>
+                {{> cardsetIndexTranscriptStatisticsItemBoxSubmissions}}
+                {{> cardsetIndexTranscriptStatisticsItemBoxPending}}
+                {{> cardsetIndexTranscriptStatisticsItemBoxAccepted}}
+                {{> cardsetIndexTranscriptStatisticsItemBoxDenied}}
+                {{> cardsetIndexTranscriptStatisticsItemBoxBonus}}
+                {{> cardsetIndexTranscriptStatisticsItemBoxLastSubmission}}
+            </tbody>
+        </table>
+    </div>
+</template>

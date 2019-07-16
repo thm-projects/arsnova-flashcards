@@ -183,6 +183,8 @@ export let CardNavigation = class CardNavigation {
 				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, answer);
 			} else if (updateLearningMode === 2) {
 				Meteor.call("updateWozniak", Router.current().params._id, answeredCard, answer);
+			} else if (updateLearningMode === 3) {
+				Meteor.call("rateTranscript", Router.current().params._id, answeredCard, answer);
 			}
 			setTimeout(function () {
 				CardNavigation.toggleVisibility(true);
@@ -289,6 +291,8 @@ export let CardNavigation = class CardNavigation {
 				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, answer);
 			} else if (updateLearningMode === 2) {
 				Meteor.call("updateWozniak", Router.current().params._id, answeredCard, answer);
+			} else if (updateLearningMode === 3) {
+				Meteor.call("rateTranscript", Router.current().params._id, answeredCard, answer);
 			}
 		} else {
 			this.toggleVisibility(false);
@@ -298,6 +302,10 @@ export let CardNavigation = class CardNavigation {
 
 	static rateLeitner (answer) {
 		this.answerCard(1, answer);
+	}
+
+	static rateTranscript (answer) {
+		this.answerCard(3, answer);
 	}
 
 	static fullscreenExitEvents () {
@@ -402,8 +410,11 @@ export let CardNavigation = class CardNavigation {
 						if (CardNavigation.isVisible()) {
 							if (Route.isCardset() || Route.isPresentationOrDemo()) {
 								if (CardNavigation.getCardSideNavigationIndex() < CardNavigation.getCardSideNavigationLength()) {
+									if (Route.isPresentationTranscriptReview() && CardNavigation.getCardSideNavigationIndex() === CardNavigation.getCardSideNavigationLength() - 1) {
+										Session.set('isQuestionSide', false);
+									}
 									CardNavigation.cardSideNavigation();
-								} else if (!CardNavigation.isLastCard()) {
+								} else if (!CardNavigation.isLastCard() && !Route.isPresentationTranscriptReview()) {
 									CardNavigation.skipAnswer();
 								}
 							} else if ((Route.isBox() || Route.isMemo()) && Session.get('isQuestionSide')) {
@@ -481,14 +492,26 @@ export let CardNavigation = class CardNavigation {
 						break;
 					case 78:
 						if (!Session.get('isQuestionSide')) {
-							$('#notknown').click();
+							if (Route.isTranscript()) {
+								$('#denyTranscript').click();
+							} else {
+								$('#notknown').click();
+							}
 						}
 						break;
 					case 89:
 						if (!Session.get('isQuestionSide')) {
-							$('#known').click();
+							if (Route.isTranscript()) {
+								$('#acceptTranscript').click();
+							} else {
+								$('#known').click();
+							}
 						} else {
-							$('#learnShowAnswer').click();
+							if (Route.isTranscript()) {
+								$('#rateTranscript').click();
+							} else {
+								$('#learnShowAnswer').click();
+							}
 						}
 						break;
 					case 90:

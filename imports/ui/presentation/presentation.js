@@ -30,6 +30,15 @@ Template.presentation.onCreated(function () {
 	if (Route.isPresentationTranscriptBonus() || Route.isPresentationTranscriptBonusCardset()) {
 		Session.set('transcriptBonus', TranscriptBonus.findOne({card_id: Router.current().params.card_id}));
 	}
+	if (Route.isPresentationTranscriptReview()) {
+		Session.set('transcriptBonus', TranscriptBonus.findOne({cardset_id: Router.current().params._id}));
+	}
+});
+
+Template.presentation.helpers({
+	gotTranscriptsLeftToReview: function () {
+		return TranscriptBonus.find({cardset_id: Router.current().params._id}).count();
+	}
 });
 
 Template.presentation.onDestroyed(function () {

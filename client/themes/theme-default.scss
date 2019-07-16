@@ -123,6 +123,12 @@
           "card_counter_text": white,
           "transcript_counter_background": $thm_orange,
           "transcript_counter_text": white,
+          "transcript_rating_label_background": white,
+          "transcript_rating_label_text": black,
+          "transcript_rating_pending_icon": $thm_orange,
+          "transcript_rating_accepted_icon": $thm_green,
+          "transcript_rating_denied_icon": $thm_red,
+          "transcript_achieved_bonus": $thm_orange,
     //barfy stars
           "barfy_stars_particles_1": $thm_blue,
           "barfy_stars_particles_2": $thm_orange,
@@ -624,6 +630,10 @@
           "transcript_bonus_info_lecture_date_day_hover_background": LightGoldenRodYellow,
           "transcript_bonus_submission_count_badge_text": white,
           "transcript_bonus_submission_count_badge_background": $thm_orange,
+    //transcript bonus statistics info colors
+          "transcript_bonus_statistics_info_name_background": LightGoldenRodYellow,
+          "transcript_bonus_statistics_info_details_background": white,
+          "transcript_bonus_statistics_info_details_text": black,
     //markdeep editor colors
           "markdeep_help_text": $white,
           "markdeep_help_background": $thm_orange,
