@@ -15,7 +15,11 @@ import {TranscriptBonus} from "../../../../api/transcriptBonus";
 
 Template.filterItemFilterAuthors.helpers({
 	hasAuthorFilter: function () {
-		return Filter.getFilterQuery().owner !== undefined;
+		if (Route.isTranscriptBonus()) {
+			return Filter.getActiveFilter().user_id !== undefined;
+		} else {
+			return Filter.getFilterQuery().owner !== undefined;
+		}
 	},
 	getAuthors: function () {
 		let query = {};
@@ -42,15 +46,27 @@ Template.filterItemFilterAuthors.helpers({
 		return getAuthorName(this._id);
 	},
 	resultsFilterAuthor: function (id) {
-		return Filter.getFilterQuery().owner === id;
+		if (Route.isTranscriptBonus()) {
+			return Filter.getActiveFilter().user_id === id;
+		} else {
+			return Filter.getFilterQuery().owner === id;
+		}
 	}
 });
 
 Template.filterItemFilterAuthors.events({
 	'click .noFilterAuthor': function () {
-		Filter.setActiveFilter(undefined, "author");
+		if (Route.isTranscriptBonus()) {
+			Filter.setActiveFilter(undefined, "user_id");
+		} else {
+			Filter.setActiveFilter(undefined, "author");
+		}
 	},
 	'click .filterAuthor': function (event) {
-		Filter.setActiveFilter($(event.target).data('id'), "author");
+		if (Route.isTranscriptBonus()) {
+			Filter.setActiveFilter($(event.target).data('id'), "user_id");
+		} else {
+			Filter.setActiveFilter($(event.target).data('id'), "author");
+		}
 	}
 });
