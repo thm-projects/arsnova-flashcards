@@ -1214,8 +1214,7 @@
       "back": " Zurück zur Karte"
     },
     "transcriptBonusRating": {
-      "long": "Bewertung",
-      "short": "Bewertung",
+      "label": "Bewertung",
       "tooltip": {
         "pending": "Die Mitschrift wurde noch nicht bewertet",
         "accepted": "Die Mitschrift wurde akzeptiert",
