@@ -701,8 +701,9 @@ Meteor.methods({
 	 * @param {Number} pomodoroTimerWorkLength - How many minutes are bonus users supposed to work
 	 * @param {Number} pomodoroTimerBreakLength - How long is the break
 	 * @param {boolean} pomodoroTimerSoundConfig - Which sounds are enabled
+	 * @param {Number} errorCount - Number in percent for not known cards of a simulation
 	 */
-	activateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig) {
+	activateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig, errorCount) {
 		check(id, String);
 		check(maxWorkload, Number);
 		check(daysBeforeReset, Number);
@@ -715,6 +716,7 @@ Meteor.methods({
 		check(pomodoroTimerWorkLength, Number);
 		check(pomodoroTimerBreakLength, Number);
 		check(pomodoroTimerSoundConfig, [Boolean]);
+		check(errorCount, [[Number]]);
 
 		let cardset = Cardsets.findOne(id);
 		if (cardset !== undefined && !cardset.learningActive && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
@@ -736,7 +738,8 @@ Meteor.methods({
 					'pomodoroTimer.quantity': pomodoroTimerQuantity,
 					'pomodoroTimer.workLength': pomodoroTimerWorkLength,
 					'pomodoroTimer.breakLength': pomodoroTimerBreakLength,
-					'pomodoroTimer.soundConfig': pomodoroTimerSoundConfig
+					'pomodoroTimer.soundConfig': pomodoroTimerSoundConfig,
+					'workload.simulator.errorCount': errorCount
 				}
 			});
 			return cardset._id;
@@ -754,8 +757,13 @@ Meteor.methods({
 	 * @param {Number} intervals - Learning interval in days
 	 * @param {Date} registrationPeriod - Period in which new users can join the bonus phase
 	 * @param {Number} maxBonusPoints - The maximum achieveable bonus points
+	 * @param {Number} pomodoroTimerQuantity - The amount of pomodoro runs for bonus users
+	 * @param {Number} pomodoroTimerWorkLength - How many minutes are bonus users supposed to work
+	 * @param {Number} pomodoroTimerBreakLength - How long is the break
+	 * @param {boolean} pomodoroTimerSoundConfig - Which sounds are enabled
+	 * @param {Number} errorCount - Number in percent for not known cards of a simulation
 	 */
-	updateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints) {
+	updateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig, errorCount) {
 		check(id, String);
 		check(maxWorkload, Number);
 		check(daysBeforeReset, Number);
@@ -764,6 +772,11 @@ Meteor.methods({
 		check(intervals, [Number]);
 		check(registrationPeriod, Date);
 		check(maxBonusPoints, Number);
+		check(pomodoroTimerQuantity, Number);
+		check(pomodoroTimerWorkLength, Number);
+		check(pomodoroTimerBreakLength, Number);
+		check(pomodoroTimerSoundConfig, [Boolean]);
+		check(errorCount, [[Number]]);
 
 		let cardset = Cardsets.findOne(id);
 		if (cardset !== undefined && cardset.learningActive && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
@@ -780,7 +793,12 @@ Meteor.methods({
 					learningEnd: dateEnd,
 					learningInterval: intervals,
 					registrationPeriod: registrationPeriod,
-					"workload.bonus.maxPoints": Math.floor(maxBonusPoints)
+					"workload.bonus.maxPoints": Math.floor(maxBonusPoints),
+					'pomodoroTimer.quantity': pomodoroTimerQuantity,
+					'pomodoroTimer.workLength': pomodoroTimerWorkLength,
+					'pomodoroTimer.breakLength': pomodoroTimerBreakLength,
+					'pomodoroTimer.soundConfig': pomodoroTimerSoundConfig,
+					'workload.simulator.errorCount': errorCount
 				}
 			});
 			return cardset._id;

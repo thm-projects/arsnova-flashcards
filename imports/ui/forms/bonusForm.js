@@ -212,6 +212,9 @@ Template.bonusFormSimulatorErrorRate.events({
 		BonusForm.adjustErrorCount();
 		BonusForm.initializeSimulatorData();
 		LeitnerProgress.updateGraph();
+	},
+	'click #resetErrorRate': function () {
+		BonusForm.resetErrorCount();
 	}
 });
 

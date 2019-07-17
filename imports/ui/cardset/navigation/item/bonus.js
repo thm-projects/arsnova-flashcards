@@ -58,9 +58,11 @@ Template.cardsetNavigationBonus.events({
 	},
 	"click #startBonus": function () {
 		Session.set('isNewBonus', true);
+		$('#bonusFormModal').modal('show');
 	},
 	"click #manageBonus": function () {
 		Session.set('isNewBonus', false);
+		$('#bonusFormModal').modal('show');
 	},
 	"click #showStats": function () {
 		Router.go('cardsetstats', {_id: Router.current().params._id});
