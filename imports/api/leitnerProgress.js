@@ -7,6 +7,7 @@ import {Session} from "meteor/session";
 import {Route} from "./route";
 import * as config from "../config/leitnerProgressChart.js";
 import {NavigatorCheck} from "./navigatorCheck";
+import {BonusForm} from "./bonusForm";
 
 let chart;
 let difficultyGotCards;
@@ -58,52 +59,62 @@ export let LeitnerProgress = class LeitnerProgress {
 	}
 
 	static getGraphData (filterCardset = undefined) {
-		let graphData = [];
-
-		let cardDifficultyCount = this.getCardCount(0, filterCardset);
-		if (difficultyGotCards) {
-			graphData.push({
-				backgroundColor: config.chartColors.difficulty0Background,
-				borderColor: config.chartColors.difficulty0,
+		if (Route.isCardset()) {
+			return [{
+				backgroundColor: config.chartColors.simulatorBackground,
+				borderColor: config.chartColors.simulator,
 				borderWidth: config.borderWidth,
-				data: cardDifficultyCount,
-				label: TAPi18n.__('difficulty0')
-			});
-		}
+				data: BonusForm.getActiveSnapshot(),
+				label: TAPi18n.__('bonus.form.simulator.graphLabel')
+			}];
+		} else {
+			let graphData = [];
 
-		cardDifficultyCount = this.getCardCount(1, filterCardset);
-		if (difficultyGotCards) {
-			graphData.push({
-				backgroundColor: config.chartColors.difficulty1Background,
-				borderColor: config.chartColors.difficulty1,
-				borderWidth: config.borderWidth,
-				data: cardDifficultyCount,
-				label: TAPi18n.__('difficulty1')
-			});
-		}
+			let cardDifficultyCount = this.getCardCount(0, filterCardset);
+			if (difficultyGotCards) {
+				graphData.push({
+					backgroundColor: config.chartColors.difficulty0Background,
+					borderColor: config.chartColors.difficulty0,
+					borderWidth: config.borderWidth,
+					data: cardDifficultyCount,
+					label: TAPi18n.__('difficulty0')
+				});
+			}
 
-		cardDifficultyCount = this.getCardCount(2, filterCardset);
-		if (difficultyGotCards) {
-			graphData.push({
-				backgroundColor: config.chartColors.difficulty2Background,
-				borderColor: config.chartColors.difficulty2,
-				borderWidth: config.borderWidth,
-				data: cardDifficultyCount,
-				label: TAPi18n.__('difficulty2')
-			});
-		}
+			cardDifficultyCount = this.getCardCount(1, filterCardset);
+			if (difficultyGotCards) {
+				graphData.push({
+					backgroundColor: config.chartColors.difficulty1Background,
+					borderColor: config.chartColors.difficulty1,
+					borderWidth: config.borderWidth,
+					data: cardDifficultyCount,
+					label: TAPi18n.__('difficulty1')
+				});
+			}
 
-		cardDifficultyCount = this.getCardCount(3, filterCardset);
-		if (difficultyGotCards) {
-			graphData.push({
-				backgroundColor: config.chartColors.difficulty3Background,
-				borderColor: config.chartColors.difficulty3,
-				borderWidth: config.borderWidth,
-				data: cardDifficultyCount,
-				label: TAPi18n.__('difficulty3')
-			});
+			cardDifficultyCount = this.getCardCount(2, filterCardset);
+			if (difficultyGotCards) {
+				graphData.push({
+					backgroundColor: config.chartColors.difficulty2Background,
+					borderColor: config.chartColors.difficulty2,
+					borderWidth: config.borderWidth,
+					data: cardDifficultyCount,
+					label: TAPi18n.__('difficulty2')
+				});
+			}
+
+			cardDifficultyCount = this.getCardCount(3, filterCardset);
+			if (difficultyGotCards) {
+				graphData.push({
+					backgroundColor: config.chartColors.difficulty3Background,
+					borderColor: config.chartColors.difficulty3,
+					borderWidth: config.borderWidth,
+					data: cardDifficultyCount,
+					label: TAPi18n.__('difficulty3')
+				});
+			}
+			return graphData;
 		}
-		return graphData;
 	}
 
 	static updateGraphLabels (returnData = false) {
@@ -182,7 +193,9 @@ export let LeitnerProgress = class LeitnerProgress {
 		let cardsetsIds = [];
 		let difficultyFilterResult;
 		difficultyGotCards = false;
-
+		if (Route.isCardset()) {
+			return 0;
+		}
 		if (Route.isLeitnerProgress() || filterCardset !== undefined) {
 			let cardset_id;
 			if (filterCardset !== undefined) {

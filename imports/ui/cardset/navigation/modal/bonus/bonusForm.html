@@ -1,0 +1,39 @@
+<template name="bonusForm">
+    <div class="modal fade" id="bonusFormModal" tabindex="-1" role="dialog"
+         aria-labelledby="bonusFormModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </span>
+                    {{> mainModalItemCloseIcon}}
+                    <h4 id="bonusFormModalTitle" class="modal-title">{{#if isNewBonus}}{{_
+                            "bonus.form.new.title"}}{{else}}{{_ "bonus.form.edit.title"}}{{/if}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form">
+                        {{> bonusFormDaysBeforeReset}}
+                        {{> bonusFormStartDate}}
+                        {{> bonusFormEndDate}}
+                        {{> bonusFormRegistrationPeriod}}
+                        {{> bonusFormMaxPoints}}
+                        {{> bonusFormOpenSimulator}}
+                        {{> pomodoroTimerModalContent}}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="cancelBonus" class="btn btn-default btn-raised pull-left"
+                            data-dismiss="modal">{{_ "bonus.form.button.cancel"}}</button>
+                    <button id="resetBonus" class="btn btn-danger btn-raised pull-left">{{_
+                            "bonus.form.button.reset"}}</button>
+                    <button id="startBonus"
+                            class="btn btn-success btn-raised pull-right">{{#if isNewBonus}}{{_
+                            "bonus.form.button.start"}}{{else}}{{_
+                            "bonus.form.button.update"}}{{/if}}</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- /form group -->
+</template>

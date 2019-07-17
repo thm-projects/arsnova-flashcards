@@ -1103,6 +1103,23 @@
         "label": "Tagespensum",
         "placeholder": "maximal täglich zu lernende Karten"
       },
+      "simulator": {
+        "buttonModal":  "Tagespensum festlegen",
+        "buttonSimulate": "Optimales Tagespensum berechnen",
+        "title": "Leitner Simulator",
+        "errorRate": {
+          "description": "Maximale Anzahl nicht gewusster Karten von __count__",
+          "label": "Anzahl pro Box in %",
+          "button": {
+            "reset": "Fehlerquote zurücksetzen"
+          }
+        },
+        "snapshots": "Simulierte Bonus-Lernphase mit ausgewähltem Tagespensum",
+        "graphLabel": "Simulierte Karten",
+        "notification": {
+          "adjustmentsNeeded": "Es können nicht alle Karten mit den derzeitigen Wiederholungs-Intervallen in das letzte Fach gelegt werden"
+        }
+      },
       "maxPoints": {
         "label": "Maximal erreichbare Bonuspunkte in Prozent"
       },
