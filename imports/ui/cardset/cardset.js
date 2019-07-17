@@ -11,7 +11,7 @@ import {Bonus} from "../../api/bonus";
 import "../card/card.js";
 import "../learn/learn.js";
 import "../presentation/presentation.js";
-import "../forms/bonusForm.js";
+import "./navigation/modal/bonus/bonusForm.js";
 import "../forms/cardsetForm.js";
 import "./index/cards/cards.js";
 import "./index/editors/editors.js";

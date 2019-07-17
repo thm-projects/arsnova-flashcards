@@ -8,7 +8,7 @@ import {Cardsets} from "../../../../api/cardsets";
 import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
 import "../modal/leaveBonus.js";
 import "../modal/endBonus.js";
-import "../modal/leitnerSimulator.js";
+import "../modal/bonus/simulator/leitnerSimulator.js";
 import "./bonus.html";
 
 /*

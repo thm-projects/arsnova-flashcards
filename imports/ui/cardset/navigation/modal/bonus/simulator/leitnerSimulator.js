@@ -1,9 +1,14 @@
 //------------------------ IMPORTS
+import "./item/calculate.js";
+import "./item/errorRate.js";
+import "./item/maxWorkload.js";
+import "./item/snapshots.js";
+import "./item/intervals.js";
 import {Template} from "meteor/templating";
 import "./leitnerSimulator.html";
-import {BonusForm} from "../../../../api/bonusForm";
+import {BonusForm} from "../../../../../../api/bonusForm";
 import {Session} from "meteor/session";
-import {LeitnerProgress} from "../../../../api/leitnerProgress";
+import {LeitnerProgress} from "../../../../../../api/leitnerProgress";
 
 /*
  * ############################################################################

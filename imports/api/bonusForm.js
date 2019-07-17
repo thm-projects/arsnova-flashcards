@@ -40,7 +40,11 @@ export let BonusForm = class BonusForm {
 			daysBeforeReset = Session.get('activeCardset').daysBeforeReset;
 			intervals = Session.get('activeCardset').learningInterval;
 			dateBonusStart.attr("min", start);
-			errorCount = Session.get('activeCardset').workload.simulator.errorCount[0];
+			if (Session.get('activeCardset').workload !== undefined && Session.get('activeCardset').workload.simulator !== undefined) {
+				errorCount = Session.get('activeCardset').workload.simulator.errorCount[0];
+			} else {
+				errorCount = config.defaultErrorCount;
+			}
 		}
 		$('#maxWorkload').val(maxWorkload);
 		$('#bonusFormModal #daysBeforeReset').val(daysBeforeReset);
@@ -293,7 +297,9 @@ export let BonusForm = class BonusForm {
 	static calculateWorkload (maxWorkload, interval = 0, isReverse = false, finetuning = false) {
 		if (maxWorkload > 100) {
 			this.setMaxWorkload(100);
+			Bert.defaults.hideDelay = 7000;
 			BertAlertVisuals.displayBertAlert(TAPi18n.__('bonus.form.simulator.notification.adjustmentsNeeded'), "danger", 'growl-top-left');
+			Bert.defaults.hideDelay = 3500;
 			return;
 		}
 		let result = this.runSimulation(maxWorkload);
