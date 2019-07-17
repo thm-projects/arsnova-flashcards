@@ -151,6 +151,8 @@ export let BonusForm = class BonusForm {
 
 	static setMaxWorkload (maxWorkload) {
 		$('#maxWorkload').val(Number(maxWorkload));
+		$('#pomNumSlider').val(Math.ceil(Number(maxWorkload) / 10));
+		PomodoroTimer.updatePomNumSlider();
 	}
 
 	static getDaysBeforeReset () {
