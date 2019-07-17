@@ -7,7 +7,9 @@ let chartColors = {
 	difficulty2: 'rgba(91, 192, 222, 1)',
 	difficulty2Background: 'rgba(91, 192, 222, 0.2)',
 	difficulty3: 'rgba(217, 83, 79, 1)',
-	difficulty3Background: 'rgba(217, 83, 79, 0.2)'
+	difficulty3Background: 'rgba(217, 83, 79, 0.2)',
+	simulator: 'rgba(140, 20, 252, 1)',
+	simulatorBackground: 'rgba(140, 20, 252, 0.2)'
 };
 
 module.exports = {

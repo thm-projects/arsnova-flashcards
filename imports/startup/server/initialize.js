@@ -12,6 +12,7 @@ import {Paid} from "../../api/paid";
 import {TranscriptBonus} from "../../api/transcriptBonus";
 import {LeitnerUtilities} from "../../api/leitner";
 import {Utilities} from "../../api/utilities";
+import * as bonusFormConfig from "../../config/bonusForm.js";
 
 var initColorThemes = function () {
 	return [{
@@ -898,6 +899,19 @@ Meteor.startup(function () {
 			{
 				$set: {
 					"gotWorkload": gotWorkload
+				}
+			}
+		);
+	}
+
+	cardsets = Cardsets.find({'workload.simulator.errorCount': {$exists: false}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					'workload.simulator.errorCount': [bonusFormConfig.defaultErrorCount]
 				}
 			}
 		);

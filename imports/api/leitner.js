@@ -165,7 +165,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		if (!Meteor.isServer && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			if (Meteor.settings.debug.leitner && Meteor.isServer) {
+			if (Meteor.isServer && Meteor.settings.debug.leitner) {
 				console.log("===> Set new active cards for " + user._id);
 			}
 			let algorithm = this.getBoxAlgorithm();
@@ -175,7 +175,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				cardCount[i] = this.getCardCount(cardset._id, user._id, i + 1);
 			}
 
-			if (Meteor.settings.debug.leitner && Meteor.isServer) {
+			if (Meteor.isServer && Meteor.settings.debug.leitner) {
 				console.log("===> Box Card Count: [" + cardCount + "]");
 				console.log("===> Maximum active cards: " + cardset.maxCards);
 			}
@@ -260,7 +260,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			}
 		}
 		// Adjust the algorithm values to fill as many slots as possible
-		if (Meteor.settings.debug.leitner && Meteor.isServer) {
+		if (Meteor.isServer && Meteor.settings.debug.leitner) {
 			console.log("===> Active Card cap for each box before adjustments: [" + boxActiveCardCap + "]");
 		}
 		return boxActiveCardCap;
@@ -275,7 +275,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				missingCardCount.push(0);
 			}
 		}
-		if (Meteor.settings.debug.leitner && Meteor.isServer) {
+		if (Meteor.isServer && Meteor.settings.debug.leitner) {
 			console.log("===> Missing Cards: [" + missingCardCount + "]");
 		}
 		let missingCardsSum = 0;
@@ -285,7 +285,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				missingCardsSum += missingCardCount[i];
 			}
 		}
-		if (Meteor.settings.debug.leitner && Meteor.isServer) {
+		if (Meteor.isServer && Meteor.settings.debug.leitner) {
 			console.log("===> Sum of missing cards: " + missingCardsSum);
 		}
 		let fillUpCount = 0;

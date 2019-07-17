@@ -60,6 +60,7 @@
 
 #boxChart {
   height: 500px !important;
+
   @media(max-width: 767px) {
     height: 180px !important;
   }

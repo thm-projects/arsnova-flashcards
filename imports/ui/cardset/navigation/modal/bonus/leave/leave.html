@@ -1,0 +1,26 @@
+<template name="leaveBonusForm">
+    <div class="modal fade" id="leaveBonusModal" tabindex="-1" role="dialog" aria-labelledby="leaveBonusTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons xs-12">
+                <div class="modal-header">
+                    <span class="modal-icon">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </span>
+                    {{> mainModalItemCloseIcon}}
+                    <h4 id="leaveBonusTitle" class="modal-title">{{_ "bonus.form-leave.title"}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{_ "bonus.form-leave.message"}}</p>
+                    <hr>
+                </div>
+                <div class="modal-footer">
+                    <button id="leaveBonusConfirm" class="btn btn-raised btn-danger pull-right">{{_
+                            "bonus.form-leave.button.confirm"}}</button>
+                    <button id="leaveBonusCancel" class="btn btn-default btn-raised pull-left"
+                            data-dismiss="modal">{{_ "bonus.form-leave.button.cancel"}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
