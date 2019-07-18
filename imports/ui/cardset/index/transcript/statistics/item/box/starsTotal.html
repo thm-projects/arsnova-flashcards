@@ -1,0 +1,11 @@
+<template name="cardsetIndexTranscriptStatisticsItemBoxStarsTotal">
+    <tr>
+        <td>
+            <i class="fas fa-star"></i>
+                {{_ "transcriptForm.bonus.statistics.starsTotal"}}:
+        </td>
+        <td>
+            {{getStarsTotal this.cardset_id this.user_id 1}}
+        </td>
+    </tr>
+</template>

@@ -739,7 +739,8 @@
         "denied": "Abgelehnt",
         "bonus": "Erhaltene Bonuspunkte",
         "export": "Statistik exportieren",
-        "exportName": "Mitschriften_Statistik"
+        "exportName": "Mitschriften_Statistik",
+        "starsTotal": "Gesammelte Sterne"
       },
       "submissions": {
         "button": {
@@ -1232,6 +1233,13 @@
     },
     "transcriptBonusRating": {
       "label": "Status",
+      "starsLabel": {
+        "stars1": "Diese Mitschrift wurde mit einem Stern bewertet",
+        "stars2": "Diese Mitschrift wurde mit zwei Sternen bewertet",
+        "stars3": "Diese Mitschrift wurde mit drei Sternen bewertet",
+        "stars4": "Diese Mitschrift wurde mit vier Sternen bewertet",
+        "stars5": "Diese Mitschrift wurde mit fünf Sternen bewertet"
+      },
       "tooltip": {
         "pending": "Die Mitschrift wurde noch nicht bewertet",
         "accepted": "Die Mitschrift wurde akzeptiert",
@@ -1366,6 +1374,15 @@
       "notRated": "Nicht bewertet",
       "accepted": "Akzeptiert",
       "denied": "Abgelehnt"
+    },
+    "stars": {
+      "title": "Sterne",
+      "all": "Alle",
+      "1": ">= 1",
+      "2": ">= 2",
+      "3": ">= 3",
+      "4": ">= 4",
+      "5": "5"
     },
     "transcriptLecture": {
       "title": "Vorlesungen",

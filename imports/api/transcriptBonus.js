@@ -98,14 +98,17 @@ export let TranscriptBonusList = class TranscriptBonusList {
 		}
 	}
 
-	static getDeadlineEditing (transcriptBonus, date_id, reviewMode = false) {
+	static getDeadlineEditing (transcriptBonus, date_id, displayMode = 0) {
 		if (transcriptBonus.lectureEnd !== undefined) {
 			let deadlineEditing = this.addLectureEndTime(transcriptBonus, date_id);
 			deadlineEditing.add(transcriptBonus.deadlineEditing, 'hours');
-			if (reviewMode) {
-				return Utilities.getMomentsDate(deadlineEditing, true, 2, false);
-			} else {
-				return TAPi18n.__('transcriptForm.deadline.editing') + ": " + Utilities.getMomentsDate(deadlineEditing, true, 1);
+			switch (displayMode) {
+				case 0:
+					return TAPi18n.__('transcriptForm.deadline.editing') + ": " + Utilities.getMomentsDate(deadlineEditing, true, 1);
+				case 1:
+					return Utilities.getMomentsDate(deadlineEditing, true, 2, false);
+				case 2:
+					return Utilities.getMomentsDate(deadlineEditing, true, 1);
 			}
 		}
 	}
@@ -151,6 +154,20 @@ export let TranscriptBonusList = class TranscriptBonusList {
 			query.rating = rating;
 		}
 		return TranscriptBonus.find(query).count();
+	}
+
+	static getStarsTotal (cardset_id, user_id, rating) {
+		let query = {cardset_id: cardset_id, user_id: user_id};
+		query.rating = rating;
+		if (query.stars !== undefined) {
+			delete query.stars;
+		}
+		let transcripts = TranscriptBonus.find(query, {fields: {stars: 1}}).fetch();
+		let stars = 0;
+		for (let i = 0; i < transcripts.length; i++) {
+			stars += transcripts[i].stars;
+		}
+		return stars;
 	}
 
 	static getBonusTranscriptTooltip (type = 0) {

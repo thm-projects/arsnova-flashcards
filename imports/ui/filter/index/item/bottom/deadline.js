@@ -9,10 +9,10 @@ import {TranscriptBonus, TranscriptBonusList} from "../../../../../api/transcrip
  */
 
 Template.filterIndexItemBottomDeadline.helpers({
-	getBonusLectureDeadline: function () {
+	getBonusLectureDeadline: function (displayMode = 0) {
 		let bonusTranscript = TranscriptBonus.findOne({card_id: this._id});
 		if (bonusTranscript !== undefined) {
-			return TranscriptBonusList.getDeadlineEditing(bonusTranscript, bonusTranscript.date);
+			return TranscriptBonusList.getDeadlineEditing(bonusTranscript, bonusTranscript.date, displayMode);
 		}
 	},
 	getLectureDate: function () {

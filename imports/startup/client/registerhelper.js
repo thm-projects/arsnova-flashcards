@@ -133,6 +133,10 @@ Template.registerHelper('gotRatingFilter', function () {
 	return FilterNavigation.gotRatingFilter(FilterNavigation.getRouteId());
 });
 
+Template.registerHelper('gotStarsFilter', function () {
+	return FilterNavigation.gotStarsFilter(FilterNavigation.getRouteId());
+});
+
 Template.registerHelper('isFilterIndex', function () {
 	return Route.isFilterIndex();
 });

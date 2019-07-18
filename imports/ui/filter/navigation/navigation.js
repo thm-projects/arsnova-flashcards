@@ -16,6 +16,7 @@ import './item/filterDifficulty.js';
 import './item/filterBonus.js';
 import './item/filterLecturerAuthorized.js';
 import './item/filterRating.js';
+import "./item/filterStars.js";
 import './item/filterWordcloud.js';
 import './item/filterKind.js';
 import './item/filterTranscriptLecture.js';

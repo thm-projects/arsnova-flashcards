@@ -32,6 +32,7 @@ import "./item/bottom/editTranscript.js";
 import "./item/bottom/export.js";
 import "./item/bottom/leaveWorkload.js";
 import "./item/bottom/shuffle.js";
+import "./item/bottom/starsRating.js";
 import "./item/bottom/workloadProgress.js";
 import "./item/bottom/transcriptRating.js";
 import "./item/collapse/collapse.js";
@@ -107,6 +108,10 @@ Template.filterIndex.events({
 	'click .resultItemHeaderBottomAreaLabels .label-transcript-info': function (event) {
 		Filter.setActiveFilter($(event.target).data('id'), "transcriptLecture");
 		Filter.setActiveFilter($(event.target).data('cardset'), "cardset_id");
+		FilterNavigation.showDropdown();
+	},
+	'click .resultItemHeaderBottomAreaLabels .label-transcript-rating-stars': function (evt) {
+		Filter.setActiveFilter($(evt.currentTarget).data("stars"), "stars");
 		FilterNavigation.showDropdown();
 	}
 });
