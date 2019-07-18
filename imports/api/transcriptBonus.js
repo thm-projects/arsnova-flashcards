@@ -237,6 +237,14 @@ const TranscriptBonusSchema = new SimpleSchema({
 	rating: {
 		type: Number,
 		optional: true
+	},
+	reasons: {
+		type: [Number],
+		optional: true
+	},
+	stars: {
+		type: Number,
+		optional: true
 	}
 });
 
@@ -263,7 +271,9 @@ Meteor.methods({
 						deadline: cardset.transcriptBonus.deadline,
 						deadlineEditing: cardset.transcriptBonus.deadlineEditing,
 						dateCreated: new Date(),
-						rating: 0
+						rating: 0,
+						stars: 0,
+						reasons: []
 					}
 				});
 			}
@@ -327,19 +337,33 @@ Meteor.methods({
 			return content;
 		}
 	},
-	rateTranscript: function (cardset_id, card_id, answer) {
+	rateTranscript: function (cardset_id, card_id, answer, ratingData) {
 		check(cardset_id, String);
 		check(card_id, String);
 		check(answer, Boolean);
+		check(ratingData, [Number]);
 		let cardset = Cardsets.findOne({_id: cardset_id});
 		if (UserPermissions.gotBackendAccess() || (UserPermissions.isOwner(cardset.owner) || cardset.editors.includes(Meteor.userId()))) {
-			let rating = 1;
-			if (answer === false) {
-				rating = 2;
+			let rating;
+			let stars;
+			let reasons;
+			switch (answer) {
+				case true:
+					rating = 1;
+					stars = ratingData[0];
+					reasons = [];
+					break;
+				case false:
+					rating = 2;
+					stars = 0;
+					reasons = ratingData;
+					break;
 			}
 			TranscriptBonus.update({cardset_id: cardset_id, card_id: card_id}, {
 				$set: {
-					rating: rating
+					rating: rating,
+					reasons: reasons,
+					stars: stars
 				}
 			});
 		}

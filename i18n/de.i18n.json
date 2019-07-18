@@ -525,7 +525,7 @@
     "everyone": "Alle",
     "everything": "Alle",
     "reset": "",
-    "rating": "Bewertung",
+    "rating": "Status",
     "ratingFilter": "> 1 Stern",
     "ratingFilterPlural": "> __rating__ Sterne",
     "moreResults": "Zeige weitere Einträge",
@@ -1231,7 +1231,7 @@
       "back": " Zurück zur Karte"
     },
     "transcriptBonusRating": {
-      "label": "Bewertung",
+      "label": "Status",
       "tooltip": {
         "pending": "Die Mitschrift wurde noch nicht bewertet",
         "accepted": "Die Mitschrift wurde akzeptiert",
@@ -1252,6 +1252,39 @@
         "text": "Alle Mitschriften wurden bewertet",
         "button": {
           "back": "Zurück zur Übersicht"
+        }
+      },
+      "modal": {
+        "about": {
+          "icon": "Informationen zu dieser Bewertung anzeigen",
+          "title": "Über diese Bewertung",
+          "deny": {
+            "text": "Diese Mitschrift wurde aus folgendem Grund abgelehnt",
+            "text_plural": "Diese Mitschrift wurde aus folgenden Gründen abgelehnt"
+          }
+        },
+        "accept": {
+          "title": "Mitschrift akzeptieren",
+          "rating": "Bewertung für diese Mitschrift",
+          "stars1": "Kriterium für einen Stern",
+          "stars2": "Kriterium für zwei Sterne",
+          "stars3": "Kriterium für drei Sterne",
+          "stars4": "Kriterium für vier Sterne",
+          "stars5": "Kriterium für fünf Sterne",
+          "button": "Mitschrift akzeptieren"
+        },
+        "deny": {
+          "title": "Mitschrift ablehnen",
+          "reason": {
+            "title": "Die Mitschrift erfüllt nicht folgende Bedingungen",
+            "content1": "Kein Foto der Mitschrift oder Foto wird nicht angezeigt",
+            "content2": "Foto mit zu niedriger Auflösung - Mitschrift nicht lesbar",
+            "content3": "Keine ausreichende oder aussagekräftige Mitschrift",
+            "content4": "Keine digitale Nachbearbeitung",
+            "content5": "Keine ausreichende digitale Nachbearbeitung",
+            "content6": "Keine ausreichende Formatierung der digitalen Nachbearbeitung"
+          },
+          "button": "Mitschrift ablehnen"
         }
       }
     }
@@ -1328,7 +1361,7 @@
       }
     },
     "rating": {
-      "title": "Bewertung",
+      "title": "Status",
       "all": "Alle",
       "notRated": "Nicht bewertet",
       "accepted": "Akzeptiert",

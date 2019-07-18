@@ -36,8 +36,12 @@
                             {{> filterIndexItemBottomDeleteTranscript}}
                         {{/if}}
                         {{#if isMyBonusTranscriptsRoute}}
+                            {{> filterIndexItemBottomAboutThisRating}}
                             {{> filterIndexItemBottomEditTranscript}}
                             {{> filterIndexItemBottomDeleteTranscript}}
+                        {{/if}}
+                        {{#if isCardsetTranscriptBonusRoute}}
+                            {{> filterIndexItemBottomAboutThisRating}}
                         {{/if}}
                     {{/unless}}
                 </div>

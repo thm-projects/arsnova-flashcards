@@ -18,6 +18,8 @@ import {TouchNavigation} from "../../api/touchNavigation";
 import './side/header/header.js';
 import './side/content/content.js';
 import './navigation/navigation.js';
+import "./modal/transcriptRating/accept.js";
+import "./modal/transcriptRating/deny.js";
 import './modal/settings.js';
 import "./modal/beolingusTranslation.js";
 import "./modal/deeplTranslation.js";
