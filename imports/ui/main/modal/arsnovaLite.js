@@ -15,7 +15,7 @@ Template.mainModalArsnovaLite.onRendered(function () {
 		$('.showArsnovaLite').addClass('pressed');
 		if (!Session.get('arsnovaLiteModalActive')) {
 			Session.set('arsnovaLiteModalActive', true);
-			$('#arsnovaLiteModal .modal-dialog').html('<iframe id="arsnovaLite" width="600px" height="900px" frameborder="0" src="https://arsnova.io"></iframe>');
+			$('#arsnovaLiteModal .modal-dialog').html('<iframe id="arsnovaLite" width="600px" height="900px" frameborder="0" src="https://frag.jetzt"></iframe>');
 		}
 	});
 });
