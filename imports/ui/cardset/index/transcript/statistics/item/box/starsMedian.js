@@ -1,14 +1,14 @@
-import "./starsTotal.html";
+import "./starsMedian.html";
 import {TranscriptBonusList} from "../../../../../../../api/transcriptBonus";
 
 /*
  * ############################################################################
- * cardsetIndexTranscriptStatisticsItemBoxStarsTotal
+ * cardsetIndexTranscriptStatisticsItemBoxStarsMedian
  * ############################################################################
  */
 
-Template.cardsetIndexTranscriptStatisticsItemBoxStarsTotal.helpers({
-	getStarsTotal: function (cardset_id, user_id, type) {
+Template.cardsetIndexTranscriptStatisticsItemBoxStarsMedian.helpers({
+	getStarsMedian: function (cardset_id, user_id, type) {
 		return TranscriptBonusList.getStarsData(cardset_id, user_id, type);
 	}
 });

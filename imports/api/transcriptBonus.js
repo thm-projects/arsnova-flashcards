@@ -156,9 +156,9 @@ export let TranscriptBonusList = class TranscriptBonusList {
 		return TranscriptBonus.find(query).count();
 	}
 
-	static getStarsTotal (cardset_id, user_id, rating) {
+	static getStarsData (cardset_id, user_id, type) {
 		let query = {cardset_id: cardset_id, user_id: user_id};
-		query.rating = rating;
+		query.rating = 1;
 		if (query.stars !== undefined) {
 			delete query.stars;
 		}
@@ -167,7 +167,19 @@ export let TranscriptBonusList = class TranscriptBonusList {
 		for (let i = 0; i < transcripts.length; i++) {
 			stars += transcripts[i].stars;
 		}
-		return stars;
+		if (type === 1) {
+			return stars;
+		} else {
+			if (stars === 0) {
+				return 0;
+			}
+			let median = stars / transcripts.length;
+			if (config.roundTheStarsMedian) {
+				return Math.round(median);
+			} else {
+				return median;
+			}
+		}
 	}
 
 	static getBonusTranscriptTooltip (type = 0) {
@@ -348,6 +360,8 @@ Meteor.methods({
 				content += TranscriptBonusList.getSubmissions(cardset_id, users[i]._id, 0) + colSep;
 				content += TranscriptBonusList.getSubmissions(cardset_id, users[i]._id, 1) + colSep;
 				content += TranscriptBonusList.getSubmissions(cardset_id, users[i]._id, 2) + colSep;
+				content += TranscriptBonusList.getStarsData(cardset_id, users[i]._id, 1) + colSep;
+				content += TranscriptBonusList.getStarsData(cardset_id, users[i]._id, 0) + colSep;
 				content += TranscriptBonusList.getAchievedBonus(cardset_id, users[i]._id) + " %" + colSep;
 				content += newLine;
 			}

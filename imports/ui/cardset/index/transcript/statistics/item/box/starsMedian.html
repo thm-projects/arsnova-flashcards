@@ -1,0 +1,11 @@
+<template name="cardsetIndexTranscriptStatisticsItemBoxStarsMedian">
+    <tr>
+        <td>
+            <i class="fas fa-star"></i>
+            {{_ "transcriptForm.bonus.statistics.starsMedian"}}:
+        </td>
+        <td>
+            {{getStarsMedian this.cardset_id this.user_id 0}}
+        </td>
+    </tr>
+</template>

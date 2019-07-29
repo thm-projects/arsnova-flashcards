@@ -740,7 +740,8 @@
         "bonus": "Erhaltene Bonuspunkte",
         "export": "Statistik exportieren",
         "exportName": "Mitschriften_Statistik",
-        "starsTotal": "Gesammelte Sterne"
+        "starsTotal": "Gesammelte Sterne",
+        "starsMedian": "Ø Sterne"
       },
       "submissions": {
         "button": {
