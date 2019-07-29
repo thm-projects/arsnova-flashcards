@@ -867,6 +867,20 @@ Meteor.startup(function () {
 		);
 	}
 
+	transcriptBonus = TranscriptBonus.find({stars: {$exists: false}}, {fields: {_id: 1}}).fetch();
+	for (let i = 0; i < transcriptBonus.length; i++) {
+		TranscriptBonus.update({
+				_id: transcriptBonus[i]._id
+			},
+			{
+				$set: {
+					stars: 1,
+					reasons: []
+				}
+			}
+		);
+	}
+
 	cardsets = Cardsets.find().fetch();
 	for (let i = 0; i < cardsets.length; i++) {
 		Cards.update({

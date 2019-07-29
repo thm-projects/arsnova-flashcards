@@ -3,7 +3,6 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {CardVisuals} from "../../../../api/cardVisuals";
 import {CardNavigation} from "../../../../api/cardNavigation";
-import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
 import {TranscriptBonus, TranscriptBonusList} from "../../../../api/transcriptBonus";
 import {Route} from "../../../../api/route";
 
@@ -53,13 +52,9 @@ Template.cardNavigationItemReview.events({
 		Session.set('isQuestionSide', true);
 	},
 	"click #acceptTranscript": function () {
-		CardNavigation.rateTranscript(true);
-		Session.set('isQuestionSide', true);
-		BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.transcriptBonusRating.notification.accept'), 'success', 'growl-top-left');
+		$('#cardModalTranscriptRatingAccept').modal('show');
 	},
 	"click #denyTranscript": function () {
-		CardNavigation.rateTranscript(false);
-		Session.set('isQuestionSide', true);
-		BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.transcriptBonusRating.notification.deny'), 'danger', 'growl-top-left');
+		$('#cardModalTranscriptRatingDeny').modal('show');
 	}
 });

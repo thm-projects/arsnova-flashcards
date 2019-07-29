@@ -56,6 +56,10 @@ export let FilterNavigation = class FilterNavigation {
 		return config.filtersWithRating.includes(filterType);
 	}
 
+	static gotStarsFilter (filterType) {
+		return config.filtersWithStars.includes(filterType);
+	}
+
 	static gotBonusFilter (filterType) {
 		return config.filtersWithBonus.includes(filterType);
 	}

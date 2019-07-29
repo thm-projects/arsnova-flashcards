@@ -1,0 +1,36 @@
+<template name="aboutThisRatingModal">
+    <div class="modal fade" id="aboutThisRatingModal" tabindex="-1" role="dialog"
+         aria-labelledby="aboutThisRatingTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons">
+                <div class="modal-header">
+                    <span class="modal-icon">
+                        <i class="fas fa-question"></i>
+                    </span>
+                    {{> mainModalItemCloseIcon}}
+                    <h4 id="aboutThisRatingTitle" class="modal-title">{{_ "cardset.transcriptBonusRating.modal.about.title"}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    {{#if gotAccepted}}
+                        {{_ "cardset.transcriptBonusRating.modal.accept.rating"}}:&nbsp;{{> starsRating class='star-ratings' rating=getStarsRating mutable=false}}
+                        <br><br>
+                        {{getStarsRatingDescription}}
+                    {{else}}
+                        {{_ "cardset.transcriptBonusRating.modal.about.deny.text" count=getReasonsCount}}:<br><br>
+                        {{#each getReasons}}
+                            <ul>
+                                <li>{{this.text}}</li>
+                            </ul>
+                        {{/each}}
+                    {{/if}}
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>

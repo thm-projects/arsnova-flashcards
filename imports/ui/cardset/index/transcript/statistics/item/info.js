@@ -7,6 +7,8 @@ import "./box/denied.js";
 import "./box/lastSubmission.js";
 import "./box/pending.js";
 import "./box/submissions.js";
+import "./box/starsMedian.js";
+import "./box/starsTotal.js";
 import {FilterNavigation} from "../../../../../../api/filterNavigation";
 import {Filter} from "../../../../../../api/filter";
 import {Route} from "../../../../../../api/route";

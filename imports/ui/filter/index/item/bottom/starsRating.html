@@ -1,0 +1,12 @@
+<template name="filterIndexItemBottomStarsRating">
+    {{#if isBonusTranscriptsRoute}}
+        {{#if gotAccepted this._id}}
+            <span class="label label-transcript-rating-stars" title="{{getBonusTranscriptStarsTooltip this._id}}"
+                  data-stars="{{getBonusTranscriptStarsNumber this._id}}">
+                {{#each getBonusTranscriptStars this._id}}
+                    <i class="fas fa-star {{this.status}}"></i>
+                {{/each}}
+            </span>
+        {{/if}}
+    {{/if}}
+</template>

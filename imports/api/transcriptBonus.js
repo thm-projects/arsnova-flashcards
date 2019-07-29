@@ -98,14 +98,17 @@ export let TranscriptBonusList = class TranscriptBonusList {
 		}
 	}
 
-	static getDeadlineEditing (transcriptBonus, date_id, reviewMode = false) {
+	static getDeadlineEditing (transcriptBonus, date_id, displayMode = 0) {
 		if (transcriptBonus.lectureEnd !== undefined) {
 			let deadlineEditing = this.addLectureEndTime(transcriptBonus, date_id);
 			deadlineEditing.add(transcriptBonus.deadlineEditing, 'hours');
-			if (reviewMode) {
-				return Utilities.getMomentsDate(deadlineEditing, true, 2, false);
-			} else {
-				return TAPi18n.__('transcriptForm.deadline.editing') + ": " + Utilities.getMomentsDate(deadlineEditing, true, 1);
+			switch (displayMode) {
+				case 0:
+					return TAPi18n.__('transcriptForm.deadline.editing') + ": " + Utilities.getMomentsDate(deadlineEditing, true, 1);
+				case 1:
+					return Utilities.getMomentsDate(deadlineEditing, true, 2, false);
+				case 2:
+					return Utilities.getMomentsDate(deadlineEditing, true, 1);
 			}
 		}
 	}
@@ -151,6 +154,32 @@ export let TranscriptBonusList = class TranscriptBonusList {
 			query.rating = rating;
 		}
 		return TranscriptBonus.find(query).count();
+	}
+
+	static getStarsData (cardset_id, user_id, type) {
+		let query = {cardset_id: cardset_id, user_id: user_id};
+		query.rating = 1;
+		if (query.stars !== undefined) {
+			delete query.stars;
+		}
+		let transcripts = TranscriptBonus.find(query, {fields: {stars: 1}}).fetch();
+		let stars = 0;
+		for (let i = 0; i < transcripts.length; i++) {
+			stars += transcripts[i].stars;
+		}
+		if (type === 1) {
+			return stars;
+		} else {
+			if (stars === 0) {
+				return 0;
+			}
+			let median = stars / transcripts.length;
+			if (config.roundTheStarsMedian) {
+				return Math.round(median);
+			} else {
+				return +(median).toFixed(2);
+			}
+		}
 	}
 
 	static getBonusTranscriptTooltip (type = 0) {
@@ -237,6 +266,14 @@ const TranscriptBonusSchema = new SimpleSchema({
 	rating: {
 		type: Number,
 		optional: true
+	},
+	reasons: {
+		type: [Number],
+		optional: true
+	},
+	stars: {
+		type: Number,
+		optional: true
 	}
 });
 
@@ -263,7 +300,9 @@ Meteor.methods({
 						deadline: cardset.transcriptBonus.deadline,
 						deadlineEditing: cardset.transcriptBonus.deadlineEditing,
 						dateCreated: new Date(),
-						rating: 0
+						rating: 0,
+						stars: 0,
+						reasons: []
 					}
 				});
 			}
@@ -321,25 +360,41 @@ Meteor.methods({
 				content += TranscriptBonusList.getSubmissions(cardset_id, users[i]._id, 0) + colSep;
 				content += TranscriptBonusList.getSubmissions(cardset_id, users[i]._id, 1) + colSep;
 				content += TranscriptBonusList.getSubmissions(cardset_id, users[i]._id, 2) + colSep;
+				content += TranscriptBonusList.getStarsData(cardset_id, users[i]._id, 1) + colSep;
+				content += TranscriptBonusList.getStarsData(cardset_id, users[i]._id, 0) + colSep;
 				content += TranscriptBonusList.getAchievedBonus(cardset_id, users[i]._id) + " %" + colSep;
 				content += newLine;
 			}
 			return content;
 		}
 	},
-	rateTranscript: function (cardset_id, card_id, answer) {
+	rateTranscript: function (cardset_id, card_id, answer, ratingData) {
 		check(cardset_id, String);
 		check(card_id, String);
 		check(answer, Boolean);
+		check(ratingData, [Number]);
 		let cardset = Cardsets.findOne({_id: cardset_id});
 		if (UserPermissions.gotBackendAccess() || (UserPermissions.isOwner(cardset.owner) || cardset.editors.includes(Meteor.userId()))) {
-			let rating = 1;
-			if (answer === false) {
-				rating = 2;
+			let rating;
+			let stars;
+			let reasons;
+			switch (answer) {
+				case true:
+					rating = 1;
+					stars = ratingData[0];
+					reasons = [];
+					break;
+				case false:
+					rating = 2;
+					stars = 0;
+					reasons = ratingData;
+					break;
 			}
 			TranscriptBonus.update({cardset_id: cardset_id, card_id: card_id}, {
 				$set: {
-					rating: rating
+					rating: rating,
+					reasons: reasons,
+					stars: stars
 				}
 			});
 		}

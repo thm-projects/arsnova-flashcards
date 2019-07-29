@@ -21,7 +21,9 @@ Template.cardsetIndexTranscriptStatisticsItemCardset.events({
 		header[4] = TAPi18n.__('transcriptForm.bonus.statistics.pending');
 		header[5] = TAPi18n.__('transcriptForm.bonus.statistics.accepted');
 		header[6] = TAPi18n.__('transcriptForm.bonus.statistics.denied');
-		header[7] = TAPi18n.__('transcriptForm.bonus.statistics.bonus');
+		header[7] = TAPi18n.__('transcriptForm.bonus.statistics.starsTotal');
+		header[8] = TAPi18n.__('transcriptForm.bonus.statistics.starsMedian');
+		header[9] = TAPi18n.__('transcriptForm.bonus.statistics.bonus');
 		Meteor.call("getTranscriptCSVExport", cardset._id, header, function (error, result) {
 			if (error) {
 				throw new Meteor.Error(error.statusCode, 'Error could not receive content for .csv');
