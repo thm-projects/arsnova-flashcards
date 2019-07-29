@@ -21,6 +21,7 @@ import "./item/selectCardsetButton.js";
 import "./item/selectRepetitoriumButton.js";
 import "./item/shuffleRepetitoriumCallout.js";
 import "./item/selectCardsetToLearnCallout.js";
+import "./item/bottom/aboutThisRating.js";
 import "./item/bottom/bonusStats.js";
 import "./item/bottom/collapse.js";
 import "./item/bottom/deadline.js";
@@ -31,6 +32,7 @@ import "./item/bottom/editTranscript.js";
 import "./item/bottom/export.js";
 import "./item/bottom/leaveWorkload.js";
 import "./item/bottom/shuffle.js";
+import "./item/bottom/starsRating.js";
 import "./item/bottom/workloadProgress.js";
 import "./item/bottom/transcriptRating.js";
 import "./item/collapse/collapse.js";
@@ -44,6 +46,7 @@ import "./item/top/dateCreated.js";
 import "./item/top/dateModified.js";
 import "./item/top/topic.js";
 import "./item/top/workload.js";
+import "../modal/aboutThisRating.js";
 import "../modal/deleteWorkload.js";
 import "../modal/deleteCardset.js";
 import "../modal/deleteTranscript.js";
@@ -105,6 +108,10 @@ Template.filterIndex.events({
 	'click .resultItemHeaderBottomAreaLabels .label-transcript-info': function (event) {
 		Filter.setActiveFilter($(event.target).data('id'), "transcriptLecture");
 		Filter.setActiveFilter($(event.target).data('cardset'), "cardset_id");
+		FilterNavigation.showDropdown();
+	},
+	'click .resultItemHeaderBottomAreaLabels .label-transcript-rating-stars': function (evt) {
+		Filter.setActiveFilter($(evt.currentTarget).data("stars"), "stars");
 		FilterNavigation.showDropdown();
 	}
 });

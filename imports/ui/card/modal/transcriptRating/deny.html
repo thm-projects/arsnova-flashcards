@@ -1,0 +1,33 @@
+<template name="cardModalTranscriptRatingDeny">
+    <div class="modal fade" id="cardModalTranscriptRatingDeny" role="dialog">
+        <div class="modal-dialog" aria-labelledby="cardModalTranscriptRatingDenyTitle">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-icon">
+                        <i class="fas fa-times-circle"></i>
+                    </span>
+                    {{> mainModalItemCloseIcon}}
+                    <h4 class="modal-title">{{_ "cardset.transcriptBonusRating.modal.deny.title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    {{_ "cardset.transcriptBonusRating.modal.deny.reason.title"}}:<br><br>
+                    <div class="form-group">
+                        {{#each getReasons}}
+                            <div class="form-check form-check-deny-reason">
+                                <input class="deny-reason-input form-check-input" type="checkbox" id="deny-reason-input-{{this.id}}">
+                                <label class="form-check-label" for="deny-reason-input-{{this.id}}">
+                                    {{this.text}}
+                                </label>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    {{#if gotReasonSelected}}
+                        <button id="denyTranscript" class="btn btn-raised btn-warning">{{_ "cardset.transcriptBonusRating.modal.deny.button"}}</button>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

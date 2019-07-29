@@ -741,7 +741,9 @@
         "denied": "Abgelehnt",
         "bonus": "Erhaltene Bonuspunkte",
         "export": "Statistik exportieren",
-        "exportName": "Mitschriften_Statistik"
+        "exportName": "Mitschriften_Statistik",
+        "starsTotal": "Collected Stars",
+        "starsMedian": "Ø Stars"
       },
       "submissions": {
         "button": {
@@ -1233,7 +1235,14 @@
       "back": " Zurück zur Karte"
     },
     "transcriptBonusRating": {
-      "label": "Bewertung",
+      "label": "Status",
+      "starsLabel": {
+        "stars1": "This transcript has been rated one star",
+        "stars2": "This transcript has been rated two stars",
+        "stars3": "This transcript has been rated three stars",
+        "stars4": "This transcript has been rated four stars",
+        "stars5": "This transcript has been rated five stars"
+      },
       "tooltip": {
         "pending": "Die Mitschrift wurde noch nicht bewertet",
         "accepted": "Die Mitschrift wurde akzeptiert",
@@ -1254,6 +1263,39 @@
         "text": "Alle Mitschriften wurden bewertet",
         "button": {
           "back": "Zurück zur Übersicht"
+        }
+      },
+      "modal": {
+        "about": {
+          "icon": "Display information on this rating",
+          "title": "About this rating",
+          "deny": {
+            "text": "This transcript was rejected for the following reason",
+            "text_plural": "This transcript was rejected for the following reasons"
+          }
+        },
+        "accept": {
+          "title": "Accept transcript",
+          "rating": "Rating for this transcript",
+          "stars1": "Criterion for one star",
+          "stars2": "Criterion for two stars",
+          "stars3": "Criterion for three stars",
+          "stars4": "Criterion for four stars",
+          "stars5": "Criterion for five stars",
+          "button": "Accept transcript"
+        },
+        "deny": {
+          "title": "Deny transcript",
+          "reason": {
+            "title": "The transcript does not meet the following conditions",
+            "content1": "No photo of the transcript or photo is not displayed",
+            "content2": "Photo of too low resolution - Transcript not readable",
+            "content3": "No sufficient or meaningful transcript",
+            "content4": "No digital post-processing",
+            "content5": "No sufficient digital post-processing",
+            "content6": "No sufficient formatting of the digital post-processing"
+          },
+          "deny": "Deny transcript"
         }
       }
     }
@@ -1330,11 +1372,20 @@
       }
     },
     "rating": {
-      "title": "Bewertung",
+      "title": "Status",
       "all": "Alle",
       "notRated": "Nicht bewertet",
       "accepted": "Akzeptiert",
       "denied": "Abgelehnt"
+    },
+    "stars": {
+      "title": "Stars",
+      "all": "All",
+      "1": ">= 1",
+      "2": ">= 2",
+      "3": ">= 3",
+      "4": ">= 4",
+      "5": "5"
     },
     "transcriptLecture": {
       "title": "Vorlesungen",

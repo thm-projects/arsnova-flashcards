@@ -33,6 +33,7 @@
 
         {{#if isActiveRoute regex='transcriptsPersonal|transcriptsBonus'}}
             {{#if isActiveRoute regex='transcriptsBonus'}}
+                {{> aboutThisRatingModal}}
                 {{> cardsetIndexTranscriptNavigation}}
                 {{#if isViewActive 1}}
                     <div class="col-xs-12">
@@ -47,6 +48,7 @@
             {{/if}}
         {{/if}}
         {{#if isCardsetTranscriptBonusRoute}}
+            {{> aboutThisRatingModal}}
             {{> filterIndexTranscripts}}
         {{/if}}
     </div>

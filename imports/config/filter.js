@@ -26,6 +26,7 @@ let filtersWithCardType = [0, 1, 3, 4, 5];
 let filtersWithDifficulty = [0, 1, 3, 4, 5];
 let filtersWithTranscriptLecture = [9, 10];
 let filtersWithRating = [9, 10];
+let filtersWithStars = [9, 10];
 let filtersWithTargetAudience = [];
 let filtersWithSemester = [];
 let filtersWithCollege = [];
@@ -66,5 +67,6 @@ module.exports = {
 	filtersWithEduKind,
 	filtersWithProKind,
 	filtersWithRating,
-	filtersWithTranscriptLecture
+	filtersWithTranscriptLecture,
+	filtersWithStars
 };

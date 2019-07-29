@@ -1,0 +1,23 @@
+<template name="cardModalTranscriptRatingAccept">
+    <div class="modal fade" id="cardModalTranscriptRatingAccept" role="dialog">
+        <div class="modal-dialog" aria-labelledby="cardModalTranscriptRatingAcceptTitle">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </span>
+                    {{> mainModalItemCloseIcon}}
+                    <h4 class="modal-title">{{_ "cardset.transcriptBonusRating.modal.accept.title"}}</h4>
+                </div>
+                <div class="modal-body">
+                    {{_ "cardset.transcriptBonusRating.modal.accept.rating"}}:&nbsp;{{> starsRating id="rating" class='star-ratings' rating=getDefaultRating mutable=true}}
+                    <br><br>
+                    {{getStarsRatingDescription}}
+                </div>
+                <div class="modal-footer">
+                    <button id="acceptTranscript" class="btn btn-raised btn-success">{{_ "cardset.transcriptBonusRating.modal.accept.button"}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

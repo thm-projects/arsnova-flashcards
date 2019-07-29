@@ -24,7 +24,7 @@ Template.cardsetIndexTranscriptSubmissionsItemReviewButton.helpers({
 		if (count === 0) {
 			if (TranscriptBonus.find({cardset_id: Router.current().params._id, rating: 0}).count()) {
 				let bonusTranscript = TranscriptBonus.findOne({cardset_id: Router.current().params._id, rating: 0});
-				let nextDate = TranscriptBonusList.getDeadlineEditing(bonusTranscript, bonusTranscript.date, true);
+				let nextDate = TranscriptBonusList.getDeadlineEditing(bonusTranscript, bonusTranscript.date, 1);
 				return TAPi18n.__('transcriptForm.bonus.submissions.info.next', {date: nextDate}, Session.get('activeLanguage'));
 			}
 		}

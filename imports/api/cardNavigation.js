@@ -165,7 +165,7 @@ export let CardNavigation = class CardNavigation {
 		}
 	}
 
-	static switchCard (updateLearningMode = 0, answeredCard = 0, answer = 0) {
+	static switchCard (updateLearningMode = 0, answeredCard = 0, answer = 0, ratingData = [0]) {
 		let flashcardCarousel = $('#cardCarousel');
 
 		flashcardCarousel.on('slide.bs.carousel', function () {
@@ -184,7 +184,7 @@ export let CardNavigation = class CardNavigation {
 			} else if (updateLearningMode === 2) {
 				Meteor.call("updateWozniak", Router.current().params._id, answeredCard, answer);
 			} else if (updateLearningMode === 3) {
-				Meteor.call("rateTranscript", Router.current().params._id, answeredCard, answer);
+				Meteor.call("rateTranscript", Router.current().params._id, answeredCard, answer, ratingData);
 			}
 			setTimeout(function () {
 				CardNavigation.toggleVisibility(true);
@@ -278,7 +278,7 @@ export let CardNavigation = class CardNavigation {
 		this.switchCard();
 	}
 
-	static answerCard (updateLearningMode, answer) {
+	static answerCard (updateLearningMode, answer, ratingData = [0]) {
 		let answeredCard = $('.carousel-inner > .active').attr('data-id');
 		Session.set('isQuestionSide', false);
 		$('.carousel').carousel('next');
@@ -292,11 +292,11 @@ export let CardNavigation = class CardNavigation {
 			} else if (updateLearningMode === 2) {
 				Meteor.call("updateWozniak", Router.current().params._id, answeredCard, answer);
 			} else if (updateLearningMode === 3) {
-				Meteor.call("rateTranscript", Router.current().params._id, answeredCard, answer);
+				Meteor.call("rateTranscript", Router.current().params._id, answeredCard, answer, ratingData);
 			}
 		} else {
 			this.toggleVisibility(false);
-			this.switchCard(updateLearningMode, answeredCard, answer);
+			this.switchCard(updateLearningMode, answeredCard, answer, ratingData);
 		}
 	}
 
@@ -304,8 +304,8 @@ export let CardNavigation = class CardNavigation {
 		this.answerCard(1, answer);
 	}
 
-	static rateTranscript (answer) {
-		this.answerCard(3, answer);
+	static rateTranscript (answer, ratingData = [0]) {
+		this.answerCard(3, answer, ratingData);
 	}
 
 	static fullscreenExitEvents () {

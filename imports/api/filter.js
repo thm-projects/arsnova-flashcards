@@ -157,6 +157,13 @@ export let Filter = class Filter {
 						filter.rating = Number(content);
 					}
 					break;
+				case "stars":
+					if (content === undefined) {
+						delete filter.stars;
+					} else {
+						filter.stars = Number(content);
+					}
+					break;
 			}
 		}
 		switch (FilterNavigation.getRouteId()) {
@@ -317,13 +324,16 @@ export let Filter = class Filter {
 		if (!Route.isWorkload() && activeFilter !== undefined && !Route.isTranscript() && !Route.isTranscriptBonus()) {
 			query.shuffled = activeFilter.shuffled;
 		}
-		if (FilterNavigation.gotRatingFilter(FilterNavigation.getRouteId()) || FilterNavigation.gotTranscriptLectureFilter(FilterNavigation.getRouteId())) {
+		if (FilterNavigation.gotRatingFilter(FilterNavigation.getRouteId()) || FilterNavigation.gotTranscriptLectureFilter(FilterNavigation.getRouteId()) || FilterNavigation.gotStarsFilter(FilterNavigation.getRouteId())) {
 			let ratingQuery = {};
 			if (activeFilter.rating !== undefined) {
 				ratingQuery.rating = activeFilter.rating;
 			}
 			if (activeFilter.user_id !== undefined) {
 				ratingQuery.user_id = activeFilter.user_id;
+			}
+			if (activeFilter.stars !== undefined) {
+				ratingQuery.stars = {$gte: activeFilter.stars};
 			}
 			if (activeFilter.cardset_id !== undefined) {
 				ratingQuery.cardset_id = activeFilter.cardset_id;

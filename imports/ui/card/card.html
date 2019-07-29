@@ -4,6 +4,10 @@
     {{> cardSettingsModal}}
     {{> cardModalBeolingusTranslation}}
     {{> cardModalDeepLTranslation}}
+    {{#if isTranscriptRoute}}
+        {{> cardModalTranscriptRatingAccept}}
+        {{> cardModalTranscriptRatingDeny}}
+    {{/if}}
     <div class="card-container">
         {{#unless isMobilePreviewActive}}
             {{#unless isCardsetAndFixedSidebar}}

@@ -13,6 +13,7 @@ import {NavigatorCheck} from "../../api/navigatorCheck";
 import {FirstTimeVisit} from "../../api/firstTimeVisit";
 import {AspectRatio} from "../../api/aspectRatio";
 import {TranscriptBonus} from "../../api/transcriptBonus";
+import {CardVisuals} from "../../api/cardVisuals";
 
 Session.set('animationPlaying', false);
 
@@ -32,6 +33,12 @@ Template.presentation.onCreated(function () {
 	}
 	if (Route.isPresentationTranscriptReview()) {
 		Session.set('transcriptBonus', TranscriptBonus.findOne({cardset_id: Router.current().params._id}));
+	}
+});
+
+Template.presentation.onRendered(function () {
+	if (!CardVisuals.isFullscreen() && !Route.isDemo() && !Route.isMakingOf()) {
+		CardVisuals.toggleFullscreen();
 	}
 });
 
