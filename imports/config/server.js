@@ -192,10 +192,10 @@ let staging = {
 	"login": {
 		"cas": true,
 		"guest": true,
-		"pro": false,
-		"facebook": false,
-		"twitter": false,
-		"google": false
+		"pro": true,
+		"facebook": true,
+		"twitter": true,
+		"google": true
 	},
 	"welcome": {
 		"title": {
