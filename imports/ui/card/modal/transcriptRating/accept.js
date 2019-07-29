@@ -17,7 +17,7 @@ Template.cardModalTranscriptRatingAccept.helpers({
 		return TAPi18n.__('cardset.transcriptBonusRating.modal.accept.stars' + Session.get('activeTranscriptStarsRating'));
 	},
 	getDefaultRating: function () {
-		return Session.get('activeTranscriptStarsRating');
+		return config.defaultStarsRating;
 	}
 });
 
@@ -35,8 +35,11 @@ Template.cardModalTranscriptRatingAccept.events({
 });
 
 Template.cardModalTranscriptRatingAccept.onRendered(function () {
+	$('#cardModalTranscriptRatingAccept').on('show.bs.modal', function () {
+		Session.set('activeTranscriptStarsRating', config.defaultStarsRating);
+		$('#rating .star-' + config.defaultStarsRating).click();
+	});
 	$('#cardModalTranscriptRatingAccept').on('hidden.bs.modal', function () {
 		Session.set('activeTranscriptStarsRating', config.defaultStarsRating);
-		$('#rating').trigger('reset');
 	}).modal('hide');
 });
