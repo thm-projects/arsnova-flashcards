@@ -1835,6 +1835,7 @@
   },
   "leitnerProgress": {
     "box": "Box __number__",
+    "bonus": "Bonuspunkte",
     "learned": "gelernt",
     "boxIntervalDaily": "täglich",
     "boxInterval": "nach __days__ Tagen",

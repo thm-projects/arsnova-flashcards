@@ -6,6 +6,7 @@ import {getAuthorName} from "./userdata";
 import {Profile} from "./profile";
 import {Bonus} from "./bonus";
 import {ServerStyle} from "./styles";
+import * as config from "../config/bonusForm.js";
 
 function getLearningStatus(learningEnd) {
 	if (learningEnd.getTime() > new Date().getTime()) {
@@ -30,9 +31,17 @@ function getCardsetInfo(cardset) {
 
 function getCurrentMaxBonusPoints(cardset) {
 	if (cardset.workload.bonus.maxPoints === undefined) {
-		return 10;
+		return config.defaultMaxBonusPoints;
 	} else {
 		return cardset.workload.bonus.maxPoints;
+	}
+}
+
+function getCurrentMinLearned(cardset) {
+	if (cardset.workload.bonus.minLearned === undefined) {
+		return config.defaultMinLearned;
+	} else {
+		return cardset.workload.bonus.minLearned;
 	}
 }
 
@@ -43,6 +52,7 @@ function getLearningPhaseInfo(cardset) {
 		[TAPi18n.__('set-list.learnphase', {}, ServerStyle.getClientLanguage()), getLearningStatus(cardset.learningEnd)],
 		[TAPi18n.__('cardset.info.workload.bonus.count', {}, ServerStyle.getClientLanguage()), cardset.workload.bonus.count],
 		[TAPi18n.__('set-list.bonusMaxPoints.label', {}, ServerStyle.getClientLanguage()), TAPi18n.__('set-list.bonusMaxPoints.content', {count: getCurrentMaxBonusPoints(cardset)}, ServerStyle.getClientLanguage())],
+		[TAPi18n.__('set-list.bonusMin.label', {}, ServerStyle.getClientLanguage()), TAPi18n.__('set-list.bonusMin.content', {count: getCurrentMinLearned(cardset)}, ServerStyle.getClientLanguage())],
 		[TAPi18n.__('bonus.form.maxWorkload.label', {}, ServerStyle.getClientLanguage()), cardset.maxCards],
 		[TAPi18n.__('bonus.form.daysBeforeReset.label', {}, ServerStyle.getClientLanguage()), cardset.daysBeforeReset],
 		[TAPi18n.__('bonus.form.startDate.label', {}, ServerStyle.getClientLanguage()), moment(cardset.learningStart).locale(ServerStyle.getClientLanguage()).format('LL')],
@@ -131,14 +141,20 @@ Meteor.methods({
 			content += header[5] + colSep + header[9] + colSep + colSep + cardsetInfo[infoCardsetCounter++][0] + newLine;
 			let learners = getLearners(Workload.find({cardset_id: cardset_id, 'leitner.bonus': true}).fetch(), cardset_id);
 			for (let k = 0; k < learners.length; k++) {
-				let percentage = Math.round(learners[k].box6 / cardset.quantity * 100);
-				if (percentage > 0) {
-					percentage += " %";
+				let totalCards = learners[k].box1 + learners[k].box2 + learners[k].box3 + learners[k].box4 + learners[k].box5 + learners[k].box6;
+				let achievedBonus = Bonus.getAchievedBonus(learners[k].box6, cardset.workload, totalCards);
+				if (achievedBonus > 0) {
+					achievedBonus += " %";
 				} else {
-					percentage = "";
+					achievedBonus = "0 %";
+				}
+				let box6 = learners[k].box6;
+				let percentage = Math.round(box6 / totalCards * 100);
+				if (percentage > 0) {
+					box6 += " [" + percentage + " %]";
 				}
 				content += learners[k].birthname + colSep + learners[k].givenname + colSep + learners[k].email + colSep + Bonus.getNotificationStatus(learners[k], true) + colSep;
-				content += learners[k].box1 + colSep + learners[k].box2 + colSep + learners[k].box3 + colSep + learners[k].box4 + colSep + learners[k].box5 + colSep + learners[k].box6 +  colSep + percentage +  colSep;
+				content += learners[k].box1 + colSep + learners[k].box2 + colSep + learners[k].box3 + colSep + learners[k].box4 + colSep + learners[k].box5 + colSep + box6 +  colSep + achievedBonus +  colSep;
 				if (infoCardsetCounter <= infoCardsetLength) {
 					content += colSep + cardsetInfo[infoCardsetCounter][0] + colSep + cardsetInfo[infoCardsetCounter++][1];
 				} else if (infoLearningPhaseCounter <= infoLearningPhaseLength) {

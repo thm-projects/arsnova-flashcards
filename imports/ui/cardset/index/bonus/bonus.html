@@ -48,6 +48,7 @@
                         <th>{{_ "leitnerProgress.box" number=5}} [{{this.learningInterval.[4]}}]
                         </th>
                         <th>{{_ "leitnerProgress.learned"}}</th>
+                        <th>{{_ "leitnerProgress.bonus"}}</th>
                         <th>{{_ "details"}}</th>
                         <th>{{_ "leitnerProgress.manage"}}</th>
                     </tr>
@@ -76,6 +77,9 @@
                                                 {{this.box6}}{{{getPercentage this.box6}}}
                                             </span>
                                 {{/if}}
+                            </td>
+                            <td>
+                                {{getAchievedBonus}}&nbsp;%
                             </td>
                             <td>
                                 <a data-id="{{this.user_id}}" class="detailed-stats"><i

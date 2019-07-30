@@ -5,6 +5,7 @@ import {Template} from "meteor/templating";
 import {Cardsets} from "../../../../api/cardsets";
 import "./modal/removeUser.js";
 import "./bonus.html";
+import {Bonus} from "../../../../api/bonus";
 
 /*
 * ############################################################################
@@ -21,7 +22,8 @@ Template.cardsetLearnActivityStatistic.helpers({
 		return Session.get("learnerStats");
 	},
 	getPercentage: function (count) {
-		let percentage = Math.round(count / Session.get('activeCardset').quantity * 100);
+		let totalCards = this.box1 + this.box2 + this.box3 + this.box4 + this.box5 + this.box6;
+		let percentage = Math.round(count / totalCards * 100);
 		if (percentage > 0) {
 			return '<span class="cardPercentage">[' + percentage + ' %]</span>';
 		}
@@ -30,6 +32,9 @@ Template.cardsetLearnActivityStatistic.helpers({
 		let totalCards = this.box1 + this.box2 + this.box3 + this.box4 + this.box5 + this.box6;
 		let box6Percentage = (this.box6 / totalCards) * 100;
 		return box6Percentage >= 95;
+	},
+	getAchievedBonus: function () {
+		return Bonus.getAchievedBonus(this.box6, Session.get('activeCardset').workload, (this.box1 + this.box2 + this.box3 + this.box4 + this.box5 + this.box6));
 	}
 });
 
@@ -47,7 +52,7 @@ Template.cardsetLearnActivityStatistic.events({
 		header[6] = TAPi18n.__('box_export_birth_name');
 		header[7] = TAPi18n.__('box_export_given_name');
 		header[8] = TAPi18n.__('box_export_mail');
-		header[9] = TAPi18n.__('leitnerProgress.percentage');
+		header[9] = TAPi18n.__('leitnerProgress.bonus');
 		header[10] = TAPi18n.__('confirmLearn-form.notification');
 		Meteor.call("getCSVExport", cardset._id, header, function (error, result) {
 			if (error) {
