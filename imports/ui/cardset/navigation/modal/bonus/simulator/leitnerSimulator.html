@@ -12,16 +12,19 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    {{> bonusFormMaxWorkload}}
-                    {{> bonusFormIntervals}}
-                    {{> bonusFormSimulatorErrorRate}}
+                    {{> bonusFormSimulatorMaxWorkload}}
+                    {{> bonusFormSimulatorIntervals}}
                     {{> bonusFormSimulatorCalculate}}
+                    {{> bonusFormSimulatorErrorRate}}
                     <div class="hidden-xs hidden-sm">
-                        {{> bonusFormSimulatorSnapshots}}
                         {{> graph}}
+                        {{> bonusFormSimulatorSnapshots}}
                     </div>
                 </div>
                 <div class="modal-footer">
+                    {{> bonusFormSimulatorCancel}}
+                    {{> bonusFormSimulatorResetErrorRate}}
+                    {{> bonusFormSimulatorAddChanges}}
                 </div>
             </div>
             <!-- /.modal-content -->

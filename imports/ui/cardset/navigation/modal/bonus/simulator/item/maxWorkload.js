@@ -4,11 +4,11 @@ import {LeitnerProgress} from "../../../../../../../api/leitnerProgress";
 
 /*
 * ############################################################################
-* bonusFormMaxWorkload
+* bonusFormSimulatorMaxWorkload
 * ############################################################################
 */
 
-Template.bonusFormMaxWorkload.events({
+Template.bonusFormSimulatorMaxWorkload.events({
 	"change input": function () {
 		BonusForm.adjustMaxWorkload();
 		BonusForm.initializeSimulatorData();

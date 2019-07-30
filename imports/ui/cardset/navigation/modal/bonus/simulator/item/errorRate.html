@@ -1,24 +1,20 @@
 <template name="bonusFormSimulatorErrorRate">
     <div class="form-group row">
-        <br>
         <hr>
+        <br>
         <div class="col-xs-12">{{_ "bonus.form.simulator.errorRate.description" count=getCardCount}}</div>
-        <label class="col-md-3 control-label">{{_ "bonus.form.simulator.errorRate.label"}}</label>
-        <div class="col-md-9 form-inline">
-            <input type="number" step="5" min="0" max="100" class="form-control errorRate" id="errorRate1"
+        <div class="col-xs-12 form-inline errorRateContainer">
+            <input type="number" step="1" min="0" max="100" class="form-control errorRate" id="errorRate1"
                    placeholder="0">
-            <input type="number" step="5" min="0" max="100" class="form-control errorRate" id="errorRate2"
+            <input type="number" step="1" min="0" max="100" class="form-control errorRate" id="errorRate2"
                    placeholder="0">
-            <input type="number" step="5" min="0" max="100" class="form-control errorRate" id="errorRate3"
+            <input type="number" step="1" min="0" max="100" class="form-control errorRate" id="errorRate3"
                    placeholder="0">
-            <input type="number" step="5" min="0" max="100" class="form-control errorRate" id="errorRate4"
+            <input type="number" step="1" min="0" max="100" class="form-control errorRate" id="errorRate4"
                    placeholder="0">
-            <input type="number" step="5" min="0" max="100" class="form-control errorRate" id="errorRate5"
+            <input type="number" step="1" min="0" max="100" class="form-control errorRate" id="errorRate5"
                    placeholder="0">
-        </div>
-        <div class="col-xs-12">
-            <button id="resetErrorRate" class="btn btn-raised btn-danger">{{_ "bonus.form.simulator.errorRate.button.reset"}}</button>
-            <hr>
+            {{_ "bonus.form.simulator.errorRate.label"}}
         </div>
     </div>
 </template>

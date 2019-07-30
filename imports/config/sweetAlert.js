@@ -51,9 +51,22 @@ function exitPresentation() {
 	};
 }
 
+function leitnerSimulatorError() {
+	return {
+		title: TAPi18n.__('sweetAlert.leitnerSimulatorError.title'),
+		html: TAPi18n.__('sweetAlert.leitnerSimulatorError.text'),
+		type: "warning",
+		showCancelButton: false,
+		confirmButtonText: TAPi18n.__('sweetAlert.leitnerSimulatorError.button.confirm'),
+		allowOutsideClick: false,
+		footer: TAPi18n.__('sweetAlert.leitnerSimulatorError.footer')
+	};
+}
+
 module.exports = {
 	continuePresentation,
 	completeProfile,
 	activateFullscreen,
-	exitPresentation
+	exitPresentation,
+	leitnerSimulatorError
 };

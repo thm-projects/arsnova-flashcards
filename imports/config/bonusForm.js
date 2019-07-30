@@ -7,6 +7,9 @@ let defaultDaysBeforeReset = 7;
 let defaultMinBonusPoints = 1;
 let defaultMaxBonusPoints = 10;
 
+//Minimum cards learned in % for max Bonus points
+let defaultMinLearned = 75;
+
 let dateFormat = "YYYY-MM-DD";
 let defaultRegistrationPeriod = [31, 'days'];
 let defaultDateRegistrationPeriod = moment().add(defaultRegistrationPeriod[0], defaultRegistrationPeriod[1]).format(dateFormat);
@@ -32,5 +35,6 @@ module.exports = {
 	defaultDateStart,
 	defaultEndPeriod,
 	defaultDateEnd,
-	defaultErrorCount
+	defaultErrorCount,
+	defaultMinLearned
 };

@@ -32,6 +32,20 @@ export let Bonus = class Bonus {
 		}
 	}
 
+	static getAchievedBonus (box6, workload, total) {
+		let box6Goal = (total / 100) * workload.bonus.minLearned;
+		let bonusPointSteps = box6 / 10;
+		if (workload.bonus.maxPoints !== 0) {
+			bonusPointSteps = box6Goal / workload.bonus.maxPoints;
+		}
+		let achievedBonus = Math.floor(box6 / bonusPointSteps) ;
+		if (achievedBonus > workload.bonus.maxPoints) {
+			return workload.bonus.maxPoints;
+		} else {
+			return achievedBonus;
+		}
+	}
+
 	static getNotificationStatus (user, isCSVExport = false) {
 		let notifications = "";
 		if (ServerSettings.isMailEnabled() && user.mailNotification) {

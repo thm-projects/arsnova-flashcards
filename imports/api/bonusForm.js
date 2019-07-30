@@ -6,7 +6,7 @@ import * as leitnerConfig from "../config/leitner.js";
 import {Utilities} from "./utilities";
 import {CardType} from "./cardTypes";
 import {LeitnerUtilities} from "./leitner";
-import {BertAlertVisuals} from "./bertAlertVisuals";
+import {SweetAlertMessages} from "./sweetAlert";
 
 let leitnerSimulator;
 let leitnerSimulatorDays;
@@ -89,11 +89,16 @@ export let BonusForm = class BonusForm {
 		return leitnerCardCount;
 	}
 
-	static adjustInterval () {
+	static adjustInterval (isSimulator = false) {
 		let interval, nextInterval;
 		for (let i = 1; i < 5; ++i) {
-			interval = $('#bonusFormInterval' + i);
-			nextInterval = $('#bonusFormInterval' + (i + 1));
+			if (isSimulator) {
+				interval = $('#bonusFormSimulatorInterval' + i);
+				nextInterval = $('#bonusFormSimulatorInterval' + (i + 1));
+			} else {
+				interval = $('#bonusFormInterval' + i);
+				nextInterval = $('#bonusFormInterval' + (i + 1));
+			}
 			if (parseInt(interval.val()) >= parseInt(nextInterval.val())) {
 				nextInterval.val(parseInt(interval.val()) + 1);
 			}
@@ -108,6 +113,15 @@ export let BonusForm = class BonusForm {
 		for (let i = 0; i < 5; i++) {
 			Number($('#errorRate' + (i + 1)).val(config.defaultErrorCount[i]));
 		}
+	}
+
+	static addSimulatorChanges () {
+		for (let i = 1; i <= 5; i++) {
+			$('#bonusFormInterval' + i).val(parseInt($('#bonusFormSimulatorInterval' + i).val()));
+		}
+		let maxWorkload =  parseInt($('#maxWorkloadSimulator').val());
+		$('#maxWorkload').val(maxWorkload);
+		$('#pomNumSlider').val(Math.ceil(Number(maxWorkload) / 10));
 	}
 
 	static adjustErrorCount () {
@@ -149,9 +163,12 @@ export let BonusForm = class BonusForm {
 		return maxWorkload;
 	}
 
-	static setMaxWorkload (maxWorkload) {
-		$('#maxWorkload').val(Number(maxWorkload));
-		$('#pomNumSlider').val(Math.ceil(Number(maxWorkload) / 10));
+	static setMaxWorkload (maxWorkload, isSimulator = false) {
+		if (isSimulator) {
+			$('#maxWorkloadSimulator').val(Number(maxWorkload));
+		} else {
+			$('#maxWorkload').val(Number(maxWorkload));
+		}
 		PomodoroTimer.updatePomNumSlider();
 	}
 
@@ -198,6 +215,13 @@ export let BonusForm = class BonusForm {
 		this.initializeSimulatorData();
 	}
 
+	static initializeSimulatorWorkload () {
+		for (let i = 1; i <= 5; i++) {
+			$('#bonusFormSimulatorInterval' + i).val(parseInt($('#bonusFormInterval' + i).val()));
+		}
+		$('#maxWorkloadSimulator').val(parseInt($('#maxWorkload').val()));
+	}
+
 	static initializeSimulatorData () {
 		let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {cardGroups: 1, shuffled: 1, quantity: 1}});
 		if (cardset !== undefined) {
@@ -219,7 +243,7 @@ export let BonusForm = class BonusForm {
 	static runSimulation (maxCards) {
 		leitnerSimulator = new Array(6).fill(0);
 		leitnerSimulator[0] = leitnerCardCount;
-		let intervals = this.getIntervals();
+		let intervals = this.getIntervals(true);
 		let errorCount = this.getErrorCount().slice();
 		snapshots = [];
 		let simulatorTimeout  = [];
@@ -298,10 +322,7 @@ export let BonusForm = class BonusForm {
 
 	static calculateWorkload (maxWorkload, interval = 0, isReverse = false, finetuning = false) {
 		if (maxWorkload > 100) {
-			this.setMaxWorkload(100);
-			Bert.defaults.hideDelay = 7000;
-			BertAlertVisuals.displayBertAlert(TAPi18n.__('bonus.form.simulator.notification.adjustmentsNeeded'), "danger", 'growl-top-left');
-			Bert.defaults.hideDelay = 3500;
+			SweetAlertMessages.leitnerSimulatorError();
 			return;
 		}
 		let result = this.runSimulation(maxWorkload);
@@ -314,7 +335,7 @@ export let BonusForm = class BonusForm {
 				for (let fineTuneSteps = 1; fineTuneSteps < steps + 1; fineTuneSteps++) {
 					result = this.runSimulation(maxWorkload + fineTuneSteps);
 					if (result === leitnerCardCount) {
-						this.setMaxWorkload(maxWorkload + fineTuneSteps);
+						this.setMaxWorkload(maxWorkload + fineTuneSteps, true);
 						this.runSimulation(maxWorkload + fineTuneSteps);
 						break;
 					}
@@ -330,7 +351,7 @@ export let BonusForm = class BonusForm {
 					result = this.runSimulation(maxWorkload - fineTuneSteps);
 					if (result !== leitnerCardCount) {
 						fineTuneSteps--;
-						this.setMaxWorkload(maxWorkload - fineTuneSteps);
+						this.setMaxWorkload(maxWorkload - fineTuneSteps, true);
 						this.runSimulation(maxWorkload - fineTuneSteps);
 						break;
 					}
@@ -355,10 +376,14 @@ export let BonusForm = class BonusForm {
 		return dateEnd;
 	}
 
-	static getIntervals () {
+	static getIntervals (isSimulator = false) {
 		let intervals = [];
 		for (let i = 0; i < 5; ++i) {
-			intervals[i] = Number($('#bonusFormInterval' + (i + 1)).val());
+			if (isSimulator) {
+				intervals[i] = Number($('#bonusFormSimulatorInterval' + (i + 1)).val());
+			} else {
+				intervals[i] = Number($('#bonusFormInterval' + (i + 1)).val());
+			}
 		}
 		if (!intervals[0]) {
 			intervals[0] = 1;
@@ -378,6 +403,7 @@ export let BonusForm = class BonusForm {
 		}
 		return registrationPeriod;
 	}
+
 	static getMaxBonusPoints () {
 		let maxBonusPoints = Number($('#bonusFormModal #maxBonusPoints').val());
 		if (!maxBonusPoints) {
@@ -386,8 +412,15 @@ export let BonusForm = class BonusForm {
 		return maxBonusPoints;
 	}
 
+	static getMinLearned () {
+		let maxBonusPoints = Number($('#bonusFormModal #minLearned').val());
+		if (!maxBonusPoints) {
+			maxBonusPoints = Number(config.defaultMinLearned);
+		}
+		return maxBonusPoints;
+	}
 	static startBonus () {
-		Meteor.call("activateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), [this.getErrorCountPercentage()], function (error, result) {
+		Meteor.call("activateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), [this.getErrorCountPercentage()], this.getMinLearned(), function (error, result) {
 			if (result) {
 				Session.set('activeCardset', Cardsets.findOne(result));
 			}
@@ -395,11 +428,23 @@ export let BonusForm = class BonusForm {
 	}
 
 	static updateBonus () {
-		Meteor.call("updateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), [this.getErrorCountPercentage()], function (error, result) {
+		Meteor.call("updateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), [this.getErrorCountPercentage()], this.getMinLearned(), function (error, result) {
 			if (result) {
 				Session.set('activeCardset', Cardsets.findOne(result));
 			}
 		});
+	}
+
+	static getDefaultMinLearned () {
+		return config.defaultMinLearned;
+	}
+
+	static getCurrentMinLearned (cardset) {
+		if (cardset.workload === undefined) {
+			return config.defaultMinLearned;
+		} else {
+			return cardset.workload.bonus.minLearned;
+		}
 	}
 
 	static getDefaultMaxBonusPoints () {

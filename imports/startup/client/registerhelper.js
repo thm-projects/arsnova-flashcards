@@ -990,6 +990,14 @@ Template.registerHelper("getLearnphase", function (state) {
 	}
 });
 
+Template.registerHelper("getDefaultMinLearned", function () {
+	return BonusForm.getDefaultMinLearned();
+});
+
+Template.registerHelper("getCurrentMinLearned", function (cardset) {
+	return BonusForm.getCurrentMinLearned(cardset);
+});
+
 Template.registerHelper("getDefaultMaxBonusPoints", function () {
 	return BonusForm.getDefaultMaxBonusPoints();
 });

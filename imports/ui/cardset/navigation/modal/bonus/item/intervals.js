@@ -1,16 +1,16 @@
 import "./intervals.html";
-import {BonusForm} from "../../../../../../../api/bonusForm";
-import {LeitnerProgress} from "../../../../../../../api/leitnerProgress";
+import {BonusForm} from "../../../../../../api/bonusForm";
+import {LeitnerProgress} from "../../../../../../api/leitnerProgress";
 
 /*
 * ############################################################################
-* bonusFormSimulatorIntervals
+* bonusFormIntervals
 * ############################################################################
 */
 
-Template.bonusFormSimulatorIntervals.events({
+Template.bonusFormIntervals.events({
 	"change input": function () {
-		BonusForm.adjustInterval(true);
+		BonusForm.adjustInterval();
 		BonusForm.initializeSimulatorData();
 		LeitnerProgress.updateGraph();
 	}

@@ -702,8 +702,9 @@ Meteor.methods({
 	 * @param {Number} pomodoroTimerBreakLength - How long is the break
 	 * @param {boolean} pomodoroTimerSoundConfig - Which sounds are enabled
 	 * @param {Number} errorCount - Number in percent for not known cards of a simulation
+	 * @param {Number} minLearned - The minimum amount of cards that the user has to learn (box 6) to receive the max bonus in %
 	 */
-	activateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig, errorCount) {
+	activateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig, errorCount, minLearned) {
 		check(id, String);
 		check(maxWorkload, Number);
 		check(daysBeforeReset, Number);
@@ -717,6 +718,7 @@ Meteor.methods({
 		check(pomodoroTimerBreakLength, Number);
 		check(pomodoroTimerSoundConfig, [Boolean]);
 		check(errorCount, [[Number]]);
+		check(minLearned, Number);
 
 		let cardset = Cardsets.findOne(id);
 		if (cardset !== undefined && !cardset.learningActive && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
@@ -739,7 +741,8 @@ Meteor.methods({
 					'pomodoroTimer.workLength': pomodoroTimerWorkLength,
 					'pomodoroTimer.breakLength': pomodoroTimerBreakLength,
 					'pomodoroTimer.soundConfig': pomodoroTimerSoundConfig,
-					'workload.simulator.errorCount': errorCount
+					'workload.simulator.errorCount': errorCount,
+					'workload.bonus.minLearned': minLearned
 				}
 			});
 			return cardset._id;
@@ -762,8 +765,9 @@ Meteor.methods({
 	 * @param {Number} pomodoroTimerBreakLength - How long is the break
 	 * @param {boolean} pomodoroTimerSoundConfig - Which sounds are enabled
 	 * @param {Number} errorCount - Number in percent for not known cards of a simulation
+	 * @param {Number} minLearned - The minimum amount of cards that the user has to learn (box 6) to receive the max bonus in %
 	 */
-	updateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig, errorCount) {
+	updateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig, errorCount, minLearned) {
 		check(id, String);
 		check(maxWorkload, Number);
 		check(daysBeforeReset, Number);
@@ -777,6 +781,7 @@ Meteor.methods({
 		check(pomodoroTimerBreakLength, Number);
 		check(pomodoroTimerSoundConfig, [Boolean]);
 		check(errorCount, [[Number]]);
+		check(minLearned, Number);
 
 		let cardset = Cardsets.findOne(id);
 		if (cardset !== undefined && cardset.learningActive && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
@@ -798,7 +803,8 @@ Meteor.methods({
 					'pomodoroTimer.workLength': pomodoroTimerWorkLength,
 					'pomodoroTimer.breakLength': pomodoroTimerBreakLength,
 					'pomodoroTimer.soundConfig': pomodoroTimerSoundConfig,
-					'workload.simulator.errorCount': errorCount
+					'workload.simulator.errorCount': errorCount,
+					'workload.bonus.minLearned': minLearned
 				}
 			});
 			return cardset._id;

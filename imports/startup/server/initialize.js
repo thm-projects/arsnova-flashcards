@@ -768,6 +768,19 @@ Meteor.startup(function () {
 		Meteor.call('updateLearnerCount', cardsets[i]._id);
 	}
 
+	cardsets = Cardsets.find({'workload.bonus.minLearned': {$exists: false}}, {fields: {_id: 1}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					"workload.bonus.minLearned": bonusFormConfig.defaultMinLearned
+				}
+			}
+		);
+	}
+
 	cardsets = Cardsets.find({learners: {$exists: true}}, {fields: {_id: 1}}).fetch();
 	for (let i = 0; i < cardsets.length; i++) {
 		Cardsets.update({

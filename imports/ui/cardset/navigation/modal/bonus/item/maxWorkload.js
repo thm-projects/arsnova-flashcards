@@ -1,16 +1,16 @@
-import "./intervals.html";
-import {BonusForm} from "../../../../../../../api/bonusForm";
-import {LeitnerProgress} from "../../../../../../../api/leitnerProgress";
+import "./maxWorkload.html";
+import {BonusForm} from "../../../../../../api/bonusForm";
+import {LeitnerProgress} from "../../../../../../api/leitnerProgress";
 
 /*
 * ############################################################################
-* bonusFormSimulatorIntervals
+* bonusFormMaxWorkload
 * ############################################################################
 */
 
-Template.bonusFormSimulatorIntervals.events({
+Template.bonusFormMaxWorkload.events({
 	"change input": function () {
-		BonusForm.adjustInterval(true);
+		BonusForm.adjustMaxWorkload();
 		BonusForm.initializeSimulatorData();
 		LeitnerProgress.updateGraph();
 	}
