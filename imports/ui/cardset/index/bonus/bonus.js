@@ -25,7 +25,7 @@ Template.cardsetLearnActivityStatistic.helpers({
 		let totalCards = this.box1 + this.box2 + this.box3 + this.box4 + this.box5 + this.box6;
 		let percentage = Math.round(count / totalCards * 100);
 		if (percentage > 0) {
-			return '<span class="cardPercentage">[' + percentage + ' %]</span>';
+			return '<span class="cardPercentage"><i class="fas fa-trophy"></i>&nbsp;[' + percentage + ' %]</span>';
 		}
 	},
 	earnedTrophy: function () {

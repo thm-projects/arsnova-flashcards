@@ -42,6 +42,7 @@ $themes: (
     $background: map-get($map, "background");
     $hyperlink: map-get($map, "hyperlink");
     $modal_icon: map-get($map, "modal_icon");
+    $trophy: map_get($map, "trophy");
     //global button and label colors
     $demo_background: map-get($map, "demo_background");
     $demo_text: map-get($map, "demo_text");
@@ -3763,6 +3764,10 @@ $themes: (
         background-color: $transcript_bonus_statistics_info_details_background !important;
         color: $transcript_bonus_statistics_info_details_text !important;
       }
+    }
+
+    .cardPercentage i {
+      color: $trophy;
     }
   }
 }
