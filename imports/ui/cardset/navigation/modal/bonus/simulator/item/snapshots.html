@@ -1,6 +1,7 @@
 <template name="bonusFormSimulatorSnapshots">
     <div class="form-group row">
-        {{_ "bonus.form.simulator.snapshots"}}<br>
+        <br>
+        {{_ "bonus.form.simulator.snapshots"}}
         {{#each getSnapshots}}
             <div class="btn {{#if isActive @index}}btn-primary{{else}}btn-default{{/if}} btn-raised col-xs-2 snapshot-date" data-id="{{@index}}">
                 <span class="flex-content" data-id="{{@index}}">

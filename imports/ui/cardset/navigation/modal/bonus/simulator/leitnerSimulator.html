@@ -14,14 +14,15 @@
                 <div class="modal-body">
                     {{> bonusFormMaxWorkload}}
                     {{> bonusFormIntervals}}
-                    {{> bonusFormSimulatorErrorRate}}
                     {{> bonusFormSimulatorCalculate}}
+                    {{> bonusFormSimulatorErrorRate}}
                     <div class="hidden-xs hidden-sm">
-                        {{> bonusFormSimulatorSnapshots}}
                         {{> graph}}
+                        {{> bonusFormSimulatorSnapshots}}
                     </div>
                 </div>
                 <div class="modal-footer">
+                    {{> bonusFormSimulatorResetErrorRate}}
                 </div>
             </div>
             <!-- /.modal-content -->

@@ -1,6 +1,7 @@
 //------------------------ IMPORTS
 import "./item/calculate.js";
 import "./item/errorRate.js";
+import "./item/resetErrorRate.js";
 import "./item/maxWorkload.js";
 import "./item/snapshots.js";
 import "./item/intervals.js";
