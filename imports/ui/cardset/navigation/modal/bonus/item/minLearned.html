@@ -1,0 +1,12 @@
+<template name="bonusFormMinLearned">
+    <div class="form-group row">
+        <label class="col-md-3 control-label">{{_ "bonus.form.minLearned.label"}}</label>
+        <div class="col-md-9 form-inline">
+            <input type="number" min="0" max="100"
+                   data-bind="value:replyNumber"
+                   onkeypress="return  (event.charCode === 8 || event.charCode === 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                   class="form-control interval" id="minLearned"
+                   placeholder="{{getDefaultMinLearned}}" value="{{getCurrentMinLearned this}}">&nbsp;%
+        </div>
+    </div>
+</template>

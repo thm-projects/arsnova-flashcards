@@ -537,6 +537,10 @@
       "label": "Maximale Bonuspunkte",
       "content": "__count__ %"
     },
+    "bonusMin": {
+      "label": "Minimum cards learned for max. Points",
+      "content": "__count__ %"
+    },
     "activeLearnphase": "aktiv",
     "inactiveLearnphase": "beendet",
     "learnphaseInfo": "Über die Bonus-Lernphase",
@@ -1123,6 +1127,9 @@
       },
       "maxPoints": {
         "label": "Maximal erreichbare Bonuspunkte in Prozent"
+      },
+      "minLearned": {
+        "label": "Gelernte Karten für max. Bonus"
       },
       "daysBeforeReset": {
         "label": "Überschreitungsfrist",

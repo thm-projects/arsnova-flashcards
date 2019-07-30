@@ -403,6 +403,7 @@ export let BonusForm = class BonusForm {
 		}
 		return registrationPeriod;
 	}
+
 	static getMaxBonusPoints () {
 		let maxBonusPoints = Number($('#bonusFormModal #maxBonusPoints').val());
 		if (!maxBonusPoints) {
@@ -411,8 +412,15 @@ export let BonusForm = class BonusForm {
 		return maxBonusPoints;
 	}
 
+	static getMinLearned () {
+		let maxBonusPoints = Number($('#bonusFormModal #minLearned').val());
+		if (!maxBonusPoints) {
+			maxBonusPoints = Number(config.defaultMinLearned);
+		}
+		return maxBonusPoints;
+	}
 	static startBonus () {
-		Meteor.call("activateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), [this.getErrorCountPercentage()], function (error, result) {
+		Meteor.call("activateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), [this.getErrorCountPercentage()], this.getMinLearned(), function (error, result) {
 			if (result) {
 				Session.set('activeCardset', Cardsets.findOne(result));
 			}
@@ -420,11 +428,23 @@ export let BonusForm = class BonusForm {
 	}
 
 	static updateBonus () {
-		Meteor.call("updateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), [this.getErrorCountPercentage()], function (error, result) {
+		Meteor.call("updateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), [this.getErrorCountPercentage()], this.getMinLearned(), function (error, result) {
 			if (result) {
 				Session.set('activeCardset', Cardsets.findOne(result));
 			}
 		});
+	}
+
+	static getDefaultMinLearned () {
+		return config.defaultMinLearned;
+	}
+
+	static getCurrentMinLearned (cardset) {
+		if (cardset.workload === undefined) {
+			return config.defaultMinLearned;
+		} else {
+			return cardset.workload.bonus.minLearned;
+		}
 	}
 
 	static getDefaultMaxBonusPoints () {

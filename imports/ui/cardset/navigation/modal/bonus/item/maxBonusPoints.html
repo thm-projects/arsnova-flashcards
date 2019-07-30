@@ -6,7 +6,7 @@
                    data-bind="value:replyNumber"
                    onkeypress="return  (event.charCode === 8 || event.charCode === 0) ? null : event.charCode >= 48 && event.charCode <= 57"
                    class="form-control interval" id="maxBonusPoints"
-                   placeholder="{{getDefaultMaxBonusPoints}}" value="{{getCurrentMaxBonusPoints this}}">
+                   placeholder="{{getDefaultMaxBonusPoints}}" value="{{getCurrentMaxBonusPoints this}}">&nbsp;%
         </div>
     </div>
 </template>

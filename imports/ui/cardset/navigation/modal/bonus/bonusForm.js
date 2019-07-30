@@ -6,6 +6,7 @@ import "./item/endDate.js";
 import "./item/intervals.js";
 import "./item/maxWorkload.js";
 import "./item/maxBonusPoints.js";
+import "./item/minLearned.js";
 import "./item/openSimulator.js";
 import "./item/registrationPeriod.js";
 import "./item/startDate.js";

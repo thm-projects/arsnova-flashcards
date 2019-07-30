@@ -6,6 +6,7 @@ import "./item/bonusButton.js";
 import "./item/bonusDeadline.js";
 import "./item/bonusEnd.js";
 import "./item/bonusMaxPoints.js";
+import "./item/BonusMinLearned.js";
 import "./item/bonusPointsFAQ.js";
 import "./item/bonusRegistrationPeriod.js";
 import "./item/bonusStart.js";
