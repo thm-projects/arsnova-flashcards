@@ -1118,7 +1118,8 @@
         "graphLabel": "Simulierte Karten",
         "notification": {
           "adjustmentsNeeded": "Es können nicht alle Karten mit den derzeitigen Wiederholungs-Intervallen in das letzte Fach gelegt werden"
-        }
+        },
+        "addChanges": "Änderungen übernehmen"
       },
       "maxPoints": {
         "label": "Maximal erreichbare Bonuspunkte in Prozent"

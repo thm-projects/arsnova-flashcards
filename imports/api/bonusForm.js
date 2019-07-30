@@ -89,11 +89,16 @@ export let BonusForm = class BonusForm {
 		return leitnerCardCount;
 	}
 
-	static adjustInterval () {
+	static adjustInterval (isSimulator = false) {
 		let interval, nextInterval;
 		for (let i = 1; i < 5; ++i) {
-			interval = $('#bonusFormInterval' + i);
-			nextInterval = $('#bonusFormInterval' + (i + 1));
+			if (isSimulator) {
+				interval = $('#bonusFormSimulatorInterval' + i);
+				nextInterval = $('#bonusFormSimulatorInterval' + (i + 1));
+			} else {
+				interval = $('#bonusFormInterval' + i);
+				nextInterval = $('#bonusFormInterval' + (i + 1));
+			}
 			if (parseInt(interval.val()) >= parseInt(nextInterval.val())) {
 				nextInterval.val(parseInt(interval.val()) + 1);
 			}
@@ -108,6 +113,15 @@ export let BonusForm = class BonusForm {
 		for (let i = 0; i < 5; i++) {
 			Number($('#errorRate' + (i + 1)).val(config.defaultErrorCount[i]));
 		}
+	}
+
+	static addSimulatorChanges () {
+		for (let i = 1; i <= 5; i++) {
+			$('#bonusFormInterval' + i).val(parseInt($('#bonusFormSimulatorInterval' + i).val()));
+		}
+		let maxWorkload =  parseInt($('#maxWorkloadSimulator').val());
+		$('#maxWorkload').val(maxWorkload);
+		$('#pomNumSlider').val(Math.ceil(Number(maxWorkload) / 10));
 	}
 
 	static adjustErrorCount () {
@@ -149,9 +163,12 @@ export let BonusForm = class BonusForm {
 		return maxWorkload;
 	}
 
-	static setMaxWorkload (maxWorkload) {
-		$('#maxWorkload').val(Number(maxWorkload));
-		$('#pomNumSlider').val(Math.ceil(Number(maxWorkload) / 10));
+	static setMaxWorkload (maxWorkload, isSimulator = false) {
+		if (isSimulator) {
+			$('#maxWorkloadSimulator').val(Number(maxWorkload));
+		} else {
+			$('#maxWorkload').val(Number(maxWorkload));
+		}
 		PomodoroTimer.updatePomNumSlider();
 	}
 
@@ -198,6 +215,13 @@ export let BonusForm = class BonusForm {
 		this.initializeSimulatorData();
 	}
 
+	static initializeSimulatorWorkload () {
+		for (let i = 1; i <= 5; i++) {
+			$('#bonusFormSimulatorInterval' + i).val(parseInt($('#bonusFormInterval' + i).val()));
+		}
+		$('#maxWorkloadSimulator').val(parseInt($('#maxWorkload').val()));
+	}
+
 	static initializeSimulatorData () {
 		let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {cardGroups: 1, shuffled: 1, quantity: 1}});
 		if (cardset !== undefined) {
@@ -219,7 +243,7 @@ export let BonusForm = class BonusForm {
 	static runSimulation (maxCards) {
 		leitnerSimulator = new Array(6).fill(0);
 		leitnerSimulator[0] = leitnerCardCount;
-		let intervals = this.getIntervals();
+		let intervals = this.getIntervals(true);
 		let errorCount = this.getErrorCount().slice();
 		snapshots = [];
 		let simulatorTimeout  = [];
@@ -298,7 +322,6 @@ export let BonusForm = class BonusForm {
 
 	static calculateWorkload (maxWorkload, interval = 0, isReverse = false, finetuning = false) {
 		if (maxWorkload > 100) {
-			this.setMaxWorkload(100);
 			Bert.defaults.hideDelay = 7000;
 			BertAlertVisuals.displayBertAlert(TAPi18n.__('bonus.form.simulator.notification.adjustmentsNeeded'), "danger", 'growl-top-left');
 			Bert.defaults.hideDelay = 3500;
@@ -314,7 +337,7 @@ export let BonusForm = class BonusForm {
 				for (let fineTuneSteps = 1; fineTuneSteps < steps + 1; fineTuneSteps++) {
 					result = this.runSimulation(maxWorkload + fineTuneSteps);
 					if (result === leitnerCardCount) {
-						this.setMaxWorkload(maxWorkload + fineTuneSteps);
+						this.setMaxWorkload(maxWorkload + fineTuneSteps, true);
 						this.runSimulation(maxWorkload + fineTuneSteps);
 						break;
 					}
@@ -330,7 +353,7 @@ export let BonusForm = class BonusForm {
 					result = this.runSimulation(maxWorkload - fineTuneSteps);
 					if (result !== leitnerCardCount) {
 						fineTuneSteps--;
-						this.setMaxWorkload(maxWorkload - fineTuneSteps);
+						this.setMaxWorkload(maxWorkload - fineTuneSteps, true);
 						this.runSimulation(maxWorkload - fineTuneSteps);
 						break;
 					}
@@ -355,10 +378,14 @@ export let BonusForm = class BonusForm {
 		return dateEnd;
 	}
 
-	static getIntervals () {
+	static getIntervals (isSimulator = false) {
 		let intervals = [];
 		for (let i = 0; i < 5; ++i) {
-			intervals[i] = Number($('#bonusFormInterval' + (i + 1)).val());
+			if (isSimulator) {
+				intervals[i] = Number($('#bonusFormSimulatorInterval' + (i + 1)).val());
+			} else {
+				intervals[i] = Number($('#bonusFormInterval' + (i + 1)).val());
+			}
 		}
 		if (!intervals[0]) {
 			intervals[0] = 1;

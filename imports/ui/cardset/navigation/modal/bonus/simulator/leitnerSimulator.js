@@ -1,4 +1,5 @@
 //------------------------ IMPORTS
+import "./item/addChanges.js";
 import "./item/calculate.js";
 import "./item/errorRate.js";
 import "./item/resetErrorRate.js";
@@ -23,6 +24,7 @@ Template.cardsetLeitnerSimulatorForm.onCreated(function () {
 
 Template.cardsetLeitnerSimulatorForm.onRendered(function () {
 	$('#cardsetLeitnerSimulatorModal').on('show.bs.modal', function () {
+		BonusForm.initializeSimulatorWorkload();
 		Session.set('activeSimulatorSnapshotDate', 0);
 		BonusForm.createSnapshotDates();
 		LeitnerProgress.updateGraph();

@@ -3,6 +3,8 @@ import {BonusForm} from "../../../../../api/bonusForm";
 import "./bonusForm.html";
 import "./item/daysBeforeReset.js";
 import "./item/endDate.js";
+import "./item/intervals.js";
+import "./item/maxWorkload.js";
 import "./item/maxBonusPoints.js";
 import "./item/openSimulator.js";
 import "./item/registrationPeriod.js";
