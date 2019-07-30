@@ -6,7 +6,7 @@ import * as leitnerConfig from "../config/leitner.js";
 import {Utilities} from "./utilities";
 import {CardType} from "./cardTypes";
 import {LeitnerUtilities} from "./leitner";
-import {BertAlertVisuals} from "./bertAlertVisuals";
+import {SweetAlertMessages} from "./sweetAlert";
 
 let leitnerSimulator;
 let leitnerSimulatorDays;
@@ -322,9 +322,7 @@ export let BonusForm = class BonusForm {
 
 	static calculateWorkload (maxWorkload, interval = 0, isReverse = false, finetuning = false) {
 		if (maxWorkload > 100) {
-			Bert.defaults.hideDelay = 7000;
-			BertAlertVisuals.displayBertAlert(TAPi18n.__('bonus.form.simulator.notification.adjustmentsNeeded'), "danger", 'growl-top-left');
-			Bert.defaults.hideDelay = 3500;
+			SweetAlertMessages.leitnerSimulatorError();
 			return;
 		}
 		let result = this.runSimulation(maxWorkload);

@@ -1116,9 +1116,6 @@
         },
         "snapshots": "Snapshots des simulierten Bonus-Lernverlaufs. Der letzte Snapshot zeigt den Lernstand am Ende der Bonus-Lernphase.",
         "graphLabel": "Simulierte Karten",
-        "notification": {
-          "adjustmentsNeeded": "Es können nicht alle Karten mit den derzeitigen Wiederholungs-Intervallen in das letzte Fach gelegt werden"
-        },
         "addChanges": "Änderungen übernehmen"
       },
       "maxPoints": {
@@ -2382,6 +2379,14 @@
       "button": {
         "confirm": "Zum Profil",
         "cancel": "Abbrechen"
+      }
+    },
+    "leitnerSimulatorError": {
+      "title": "Das Optimale Tagespensum konnte nicht berechnet werden",
+      "text": "Es ist nicht möglich, alle Karten am Ende der Bonus-Lernphase in das letzte Fach (gelernt) zu legen. Bitte verringere die Wiederholungs-Intervalle und versuche es nochmal.",
+      "footer": "<a href='/help' target='_blank'>Hilfe</a>",
+      "button": {
+        "confirm": "Schließen"
       }
     },
     "presentation": {

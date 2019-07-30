@@ -66,4 +66,8 @@ export let SweetAlertMessages = class SweetAlertMessages {
 			}
 		});
 	}
+
+	static leitnerSimulatorError () {
+		swal.fire(config.leitnerSimulatorError());
+	}
 };
