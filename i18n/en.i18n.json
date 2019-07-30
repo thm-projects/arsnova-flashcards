@@ -1118,7 +1118,8 @@
         },
         "snapshots": "Snapshots des simulierten Bonus-Lernverlaufs. Der letzte Snapshot zeigt den Lernstand am Ende der Bonus-Lernphase.",
         "graphLabel": "Simulierte Karten",
-        "addWorkload": "Apply changes"
+        "addWorkload": "Apply changes",
+        "cancel": "Cancel"
       },
       "maxPoints": {
         "label": "Maximal erreichbare Bonuspunkte in Prozent"
