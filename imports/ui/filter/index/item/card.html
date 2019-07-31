@@ -2,27 +2,23 @@
     <div class="resultItem col-xs-12">
         {{#unless this.index}}
             {{#if isCardsetTranscriptBonusRoute}}
-                {{> filterIndexItemTitleRowTopic (setGridSize "col-sm-4 col-md-3")}}
+                {{> filterIndexItemTitleRowTopic (setGridSize "col-sm-4 col-md-6")}}
                 {{> filterIndexItemTitleRowAuthor (setGridSize "col-sm-4 col-md-3")}}
                 {{> filterIndexItemTitleRowDate (setGridSize "col-sm-4 col-md-3")}}
-                {{> filterIndexItemTitleRowLastEditor (setGridSize "hidden-sm col-md-3")}}
             {{else}}
-                {{> filterIndexItemTitleRowTopic (setGridSize "col-sm-8 col-md-6")}}
+                {{> filterIndexItemTitleRowTopic (setGridSize "col-sm-8 col-md-9")}}
                 {{> filterIndexItemTitleRowDate (setGridSize "col-sm-4 col-md-3")}}
-                {{> filterIndexItemTitleRowLastEditor (setGridSize "hidden-sm col-md-3")}}
             {{/if}}
         {{/unless}}
         <div class="resultItemHeaderWrapper col-xs-12">
             <div class="resultItemHeaderTopArea row">
                 {{#if isCardsetTranscriptBonusRoute}}
-                    {{> filterIndexItemTopTopic (setGridSize "col-xs-6 col-sm-4 col-md-3")}}
+                    {{> filterIndexItemTopTopic (setGridSize "col-xs-6 col-sm-4 col-md-6")}}
                     {{> filterIndexItemTopAuthor (setGridSize "col-xs-6 col-sm-4 col-md-3")}}
                     {{> filterIndexItemTopDate (setGridSize "hidden-xs col-sm-4 col-md-3")}}
-                    {{> filterIndexItemTopLastEditor (setGridSize "hidden-xs hidden-sm col-md-3")}}
                 {{else}}
-                    {{> filterIndexItemTopTopic (setGridSize "col-xs-12 col-sm-8 col-md-6")}}
+                    {{> filterIndexItemTopTopic (setGridSize "col-xs-12 col-sm-8 col-md-9")}}
                     {{> filterIndexItemTopDate (setGridSize "hidden-xs col-sm-4 col-md-3")}}
-                    {{> filterIndexItemTopLastEditor (setGridSize "hidden-xs hidden-sm col-md-3")}}
                 {{/if}}
             </div>
             <div class="resultItemHeaderBottomArea row">
