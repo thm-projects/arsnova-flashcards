@@ -1242,11 +1242,11 @@
     "transcriptBonusRating": {
       "label": "Status",
       "starsLabel": {
-        "stars1": "Diese Mitschrift wurde mit einem Stern bewertet",
-        "stars2": "Diese Mitschrift wurde mit zwei Sternen bewertet",
-        "stars3": "Diese Mitschrift wurde mit drei Sternen bewertet",
-        "stars4": "Diese Mitschrift wurde mit vier Sternen bewertet",
-        "stars5": "Diese Mitschrift wurde mit fünf Sternen bewertet"
+        "stars1": "mäßige Mitschrift",
+        "stars2": "recht gute Mitschrift",
+        "stars3": "gute Mitschrift",
+        "stars4": "sehr gute Mitschrift",
+        "stars5": "hervorragende Mitschrift"
       },
       "tooltip": {
         "pending": "Die Mitschrift wurde noch nicht bewertet",
@@ -1275,30 +1275,30 @@
           "icon": "Informationen zu dieser Bewertung anzeigen",
           "title": "Über diese Bewertung",
           "deny": {
-            "text": "Diese Mitschrift wurde aus folgendem Grund abgelehnt",
-            "text_plural": "Diese Mitschrift wurde aus folgenden Gründen abgelehnt"
+            "text": "Deine Mitschrift wurde aus folgendem Grund abgelehnt",
+            "text_plural": "Deine Mitschrift wurde aus folgenden Gründen abgelehnt"
           }
         },
         "accept": {
           "title": "Mitschrift akzeptieren",
-          "rating": "Bewertung für diese Mitschrift",
-          "stars1": "Kriterium für einen Stern",
-          "stars2": "Kriterium für zwei Sterne",
-          "stars3": "Kriterium für drei Sterne",
-          "stars4": "Kriterium für vier Sterne",
-          "stars5": "Kriterium für fünf Sterne",
+          "rating": "Bewertung der Mitschrift:",
+          "stars1": "Kaum geeignet zur Vorbereitung auf die Klausur.",
+          "stars2": "Recht gut geeignet zur Vorbereitung auf die Klausur.",
+          "stars3": "Gut geeignet zur Vorbereitung auf die Klausur.",
+          "stars4": "Sehr gut geeignet zur Vorbereitung auf die Klausur.",
+          "stars5": "Eignet sich sehr gut zur Klausurvorbereitung und als Nachschlagewerk.",
           "button": "Mitschrift akzeptieren"
         },
         "deny": {
           "title": "Mitschrift ablehnen",
           "reason": {
-            "title": "Die Mitschrift erfüllt nicht folgende Bedingungen",
-            "content1": "Kein Foto der Mitschrift oder Foto wird nicht angezeigt",
-            "content2": "Foto mit zu niedriger Auflösung - Mitschrift nicht lesbar",
-            "content3": "Keine ausreichende oder aussagekräftige Mitschrift",
-            "content4": "Keine digitale Nachbearbeitung",
-            "content5": "Keine ausreichende digitale Nachbearbeitung",
-            "content6": "Keine ausreichende Formatierung der digitalen Nachbearbeitung"
+            "title": "Die Mitschrift weist folgende Mängel auf:",
+            "content1": "Foto der Mitschrift fehlt oder Foto wird nicht angezeigt.",
+            "content2": "Foto hat zu geringe Auflösung. Mitschrift ist nicht lesbar.",
+            "content3": "Mitschrift ist nicht geeignet zur Klausurvorbereitung.",
+            "content4": "Digitale Nachbearbeitung fehlt.",
+            "content5": "Digitale Nachbearbeitung ist nicht geeignet zur Klausurvorbereitung.",
+            "content6": "Formatierung der digitalen Nachbearbeitung ist nicht lernförderlich."
           },
           "button": "Mitschrift ablehnen"
         }
