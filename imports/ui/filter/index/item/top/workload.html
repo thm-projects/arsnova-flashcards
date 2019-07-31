@@ -1,16 +1,14 @@
 <template name="filterIndexItemTopWorkload">
-    <div class="resultItemHeader {{this.gridSize}} collapseButton {{getCardsetBackground
+    <div class="resultItemHeader resultItemHeaderWorkload {{this.gridSize}} collapseButton {{getCardsetBackground
             this.difficulty this.cardType}}">
         {{#if gotWorkload}}
-            <a class="{{getWorkloadType}} col-xs-12" data-toggle="{{#if gotWorkloadForBothTypes}}modal{{/if}}"
+            <a class="{{getWorkloadType}}" data-toggle="{{#if gotWorkloadForBothTypes}}modal{{/if}}"
                data-target="{{#if gotWorkloadForBothTypes}}#selectModeToLearnModal{{/if}}"
                data-id="{{this._id}}">
-                {{getWorkload}}
+                {{{getWorkload}}}
             </a>
         {{else}}
-            <span class="resultItemHeaderAuthor col-xs-12">
-                {{_ "set-list.noCardsToLearn"}}
-            </span>
+            {{_ "set-list.noCardsToLearn"}}
         {{/if}}
     </div>
 </template>

@@ -1,0 +1,11 @@
+<template name="filterIndexItemTopDate">
+    <div class="resultItemHeader resultItemHeaderAuthor {{this.gridSize}} collapseButton {{getCardsetBackground
+            this.difficulty this.cardType}}">
+        <div class="col-xs-6 itemDateRow">
+            {{getMomentsDate this.date true 0 true}}
+        </div>
+        <div class="col-xs-6 itemDateRow">
+            {{getMomentsDate this.dateUpdated true 0 true}}
+        </div>
+    </div>
+</template>

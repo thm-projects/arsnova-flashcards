@@ -333,6 +333,8 @@ $themes: (
     $item_icon: map-get($map, "item_icon");
     $item_icon_hover: map-get($map, "item_icon_hover");
     $item_author_text: map-get($map, "item_author_text");
+    $item_workload_text: map-get($map, "item_workload_text");
+    $item_last_editor_text: map-get($map, "item_last_editor_text");
     $item_description_background: map-get($map, "item_description_background");
     $item_description_text: map-get($map, "item_description_text");
     $item_text: map-get($map, "item_text");
@@ -2641,6 +2643,14 @@ $themes: (
 
     .resultItemHeaderAuthor {
       color: $item_author_text !important;
+    }
+
+    .resultItemHeaderWorkload {
+      color: $item_workload_text !important;
+    }
+
+    .resultItemHeaderLastEditor {
+      color: $item_last_editor_text !important;
     }
 
     .resultItemHeaderBottomArea {

@@ -351,6 +351,10 @@ const CardsetsSchema = new SimpleSchema({
 	lecturerAuthorized: {
 		type: Boolean,
 		optional: true
+	},
+	lastEditor: {
+		type: String,
+		optional: true
 	}
 });
 
@@ -558,7 +562,8 @@ Meteor.methods({
 			difficulty: difficulty,
 			noDifficulty: !CardType.gotDifficultyLevel(cardType),
 			sortType: sortType,
-			gotWorkload: gotWorkload
+			gotWorkload: gotWorkload,
+			lastEditor: Meteor.userId()
 		}, {trimStrings: false});
 		Meteor.call('updateCardsetCount', Meteor.userId());
 		return cardset;
@@ -842,7 +847,8 @@ Meteor.methods({
 					'transcriptBonus.dates': newDates,
 					'transcriptBonus.deadline': deadlineSubmission,
 					'transcriptBonus.deadlineEditing': deadlineEditing,
-					'transcriptBonus.minimumSubmissions': minimumSubmissions
+					'transcriptBonus.minimumSubmissions': minimumSubmissions,
+					lastEditor: Meteor.userId()
 				}
 			});
 			TranscriptBonus.update({"cardset_id": id}, {
@@ -905,7 +911,8 @@ Meteor.methods({
 					visible: visible,
 					noDifficulty: !CardType.gotDifficultyLevel(cardType),
 					sortType: sortType,
-					gotWorkload: gotWorkload
+					gotWorkload: gotWorkload,
+					lastEditor: Meteor.userId()
 				}
 			}, {trimStrings: false});
 			Cards.update({cardset_id: id}, {
@@ -944,7 +951,9 @@ Meteor.methods({
 					visible: visible,
 					kind: kind,
 					quantity: quantity,
-					cardGroups: cardGroups
+					cardGroups: cardGroups,
+					dateUpdated: new Date(),
+					lastEditor: Meteor.userId()
 				}
 			});
 			let removedCards = Cards.find({cardset_id: {$in: removedCardsets}}).fetch();
@@ -1013,7 +1022,9 @@ Meteor.methods({
 				$set: {
 					kind: kind,
 					price: price.toString().replace(",", "."),
-					visible: visible
+					visible: visible,
+					dateUpdated: new Date(),
+					lastEditor: Meteor.userId()
 				}
 			});
 			if (kind !== "personal") {
@@ -1036,7 +1047,9 @@ Meteor.methods({
 				$set: {
 					reviewed: false,
 					request: true,
-					visible: false
+					visible: false,
+					dateUpdated: new Date(),
+					lastEditor: Meteor.userId()
 				}
 			});
 		} else {
@@ -1053,7 +1066,8 @@ Meteor.methods({
 					reviewed: true,
 					reviewer: this.userId,
 					request: false,
-					visible: true
+					visible: true,
+					dateUpdated: new Date()
 				}
 			});
 		} else {
@@ -1086,7 +1100,8 @@ Meteor.methods({
 			Cardsets.update(cardset._id, {
 				$set: {
 					license: license,
-					dateUpdated: new Date()
+					dateUpdated: new Date(),
+					lastEditor: Meteor.userId()
 				}
 			});
 		} else {
@@ -1118,12 +1133,16 @@ Meteor.methods({
 				}
 				Cardsets.update(id, {
 					$set: {
-						owner: owner
+						owner: owner,
+						dateUpdated: new Date(),
+						lastEditor: Meteor.userId()
 					}
 				});
 				Cards.update({cardset_id: id}, {
 					$set: {
-						owner: owner
+						owner: owner,
+						dateUpdated: new Date(),
+						lastEditor: Meteor.userId()
 					}
 				});
 				return true;
@@ -1145,7 +1164,9 @@ Meteor.methods({
 		if (UserPermissions.gotBackendAccess()) {
 			Cardsets.update(id, {
 				$set: {
-					wordcloud: status
+					wordcloud: status,
+					dateUpdated: new Date(),
+					lastEditor: Meteor.userId()
 				}
 			});
 			return id;
@@ -1164,7 +1185,9 @@ Meteor.methods({
 		if (UserPermissions.gotBackendAccess()) {
 			Cardsets.update(id, {
 				$set: {
-					lecturerAuthorized: status
+					lecturerAuthorized: status,
+					dateUpdated: new Date(),
+					lastEditor: Meteor.userId()
 				}
 			});
 			return id;

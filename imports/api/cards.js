@@ -286,6 +286,10 @@ var CardsSchema = new SimpleSchema({
 	cardType: {
 		type: Number,
 		optional: true
+	},
+	lastEditor: {
+		type: String,
+		optional: true
 	}
 });
 
@@ -343,7 +347,8 @@ Meteor.methods({
 				backgroundStyle: backgroundStyle,
 				owner: Meteor.userId(),
 				cardType: cardType,
-				dateUpdated: new Date()
+				dateUpdated: new Date(),
+				lastEditor: Meteor.userId()
 			}, {trimStrings: false});
 			if (transcriptBonusUser) {
 				Meteor.call("addTranscriptBonus", card_id, transcriptBonusUser.cardset_id, Meteor.userId(), Number(transcriptBonusUser.date_id));
@@ -352,7 +357,8 @@ Meteor.methods({
 				Cardsets.update(cardset_id, {
 					$set: {
 						quantity: Cards.find({cardset_id: cardset_id}).count(),
-						dateUpdated: new Date()
+						dateUpdated: new Date(),
+						lastEditor: Meteor.userId()
 					}
 				});
 				Meteor.call('updateShuffledCardsetQuantity', cardset_id);
@@ -529,12 +535,14 @@ Meteor.methods({
 					alignType: alignType,
 					learningGoalLevel: learningGoalLevel,
 					backgroundStyle: backgroundStyle,
-					dateUpdated: new Date()
+					dateUpdated: new Date(),
+					lastEditor: Meteor.userId()
 				}
 			}, {trimStrings: false});
 			Cardsets.update(card.cardset_id, {
 				$set: {
-					dateUpdated: new Date()
+					dateUpdated: new Date(),
+					lastEditor: Meteor.userId()
 				}
 			});
 			return true;
