@@ -50,10 +50,13 @@ function importCards(data, cardset, importType) {
 			if (item.date === undefined) {
 				item.date = new Date();
 			}
+			if (item.lastEditor === undefined) {
+				item.lastEditor = "";
+			}
 
 			if (importType === 1) {
 				let item = data[i];
-				let subject, front, back, hint, lecture, top, bottom;
+				let subject, front, back, hint, lecture, top, bottom, lastEditor;
 				try {
 					// If the string is UTF-8, this will work and not throw an error.
 					subject = decodeURIComponent(encodeURIComponent(item.subject));
@@ -63,6 +66,7 @@ function importCards(data, cardset, importType) {
 					lecture = decodeURIComponent(encodeURIComponent(item.lecture));
 					top = decodeURIComponent(encodeURIComponent(item.top));
 					bottom = decodeURIComponent(encodeURIComponent(item.bottom));
+					lastEditor = decodeURIComponent(encodeURIComponent(item.lastEditor));
 				} catch (e) {
 					// If it isn't, an error will be thrown, and we can assume that we have an ISO string.
 					subject = item.subject;
@@ -72,6 +76,7 @@ function importCards(data, cardset, importType) {
 					lecture = item.lecture;
 					top = item.top;
 					bottom = item.bottom;
+					lastEditor = item.lastEditor;
 				}
 
 				let hlcodeReplacement = "\n```\n";
@@ -104,7 +109,8 @@ function importCards(data, cardset, importType) {
 					dateUpdated: item.dateUpdated,
 					originalAuthorName: originalAuthorName,
 					owner: cardset.owner,
-					cardType: cardset.cardType
+					cardType: cardset.cardType,
+					lastEditor: lastEditor
 				}, {trimStrings: false});
 			} else {
 				Cards.insert({
@@ -125,7 +131,8 @@ function importCards(data, cardset, importType) {
 					date: item.date,
 					dateUpdated: item.dateUpdated,
 					owner: cardset.owner,
-					cardType: cardset.cardType
+					cardType: cardset.cardType,
+					lastEditor: item.lastEditor
 				}, {trimStrings: false});
 			}
 		}
@@ -170,6 +177,9 @@ Meteor.methods({
 				if (data[0].gotWorkload === undefined) {
 					data[0].gotWorkload = CardType.getCardTypesWithLearningModes().includes(data[0].cardType);
 				}
+				if (data[0].lastEditor === undefined) {
+					data[0].lastEditor = "";
+				}
 				let cardset_id = Cardsets.insert({
 					name: data[0].name,
 					description: data[0].description,
@@ -206,7 +216,8 @@ Meteor.methods({
 					noDifficulty: CardType.gotDifficultyLevel(data[0].cardType),
 					originalAuthorName: originalAuthorName,
 					sortType: data[0].sortType,
-					gotWorkload: data[0].gotWorkload
+					gotWorkload: data[0].gotWorkload,
+					lastEditor: data[0].lastEditor
 				}, {trimStrings: false});
 				if (cardset_id) {
 					data.shift();
@@ -284,6 +295,9 @@ Meteor.methods({
 						} else {
 							originalAuthorName = cardset[0].originalAuthorName;
 						}
+						if (cardset[0].lastEditor === undefined) {
+							cardset[0].lastEditor = "";
+						}
 						if (cardset[0].name !== undefined) {
 							totalQuantity += cardset[0].quantity;
 							let cardset_id = Cardsets.insert({
@@ -321,7 +335,8 @@ Meteor.methods({
 								difficulty: cardset[0].difficulty,
 								noDifficulty: CardType.gotDifficultyLevel(cardset[0].cardType),
 								originalAuthorName: originalAuthorName,
-								sortType: 0
+								sortType: 0,
+								lastEditor: cardset[0].lastEditor
 							}, {trimStrings: false});
 							cardGroups.push(cardset_id);
 							cardset.shift();
@@ -365,7 +380,8 @@ Meteor.methods({
 					difficulty: 0,
 					noDifficulty: CardType.gotDifficultyLevel(0),
 					originalAuthorName: "",
-					sortType: 0
+					sortType: 0,
+					lastEditor: ""
 				}, {trimStrings: false});
 			} catch (error) {
 				throw new Meteor.Error(error);
