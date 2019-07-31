@@ -76,7 +76,7 @@ Template.filterIndexItemTopWorkload.helpers({
 		let count = getLeitnerCount(this) + getWozniakCount(this);
 		switch (count) {
 			case 1:
-				return TAPi18n.__('set-list.cardsToLearn');
+				return count + TAPi18n.__('set-list.cardsToLearn');
 			default:
 				return count + TAPi18n.__('set-list.cardsToLearnPlural');
 		}

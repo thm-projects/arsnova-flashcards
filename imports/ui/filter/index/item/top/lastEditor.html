@@ -1,0 +1,15 @@
+<template name="filterIndexItemTopLastEditor">
+    <div class="resultItemHeader resultName lastEditorProfile resultItemHeaderLastEditor {{this.gridSize}} collapseButton {{getCardsetBackground
+            this.difficulty this.cardType}}"
+         data-id="{{this.lastEditor}}">
+        {{#if isNotOwner}}
+            {{#if gotBackendAccess}}
+                <a href="/admin/user/{{this.lastEditor}}">{{getAuthorName this.lastEditor}}</a>
+            {{else}}
+                {{getAuthorName this.lastEditor}}
+            {{/if}}
+        {{else}}
+            &nbsp;
+        {{/if}}
+    </div>
+</template>
