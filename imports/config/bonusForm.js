@@ -8,7 +8,7 @@ let defaultMinBonusPoints = 1;
 let defaultMaxBonusPoints = 10;
 
 //Minimum cards learned in % for max Bonus points
-let defaultMinLearned = 75;
+let defaultMinLearned = 20;
 
 let dateFormat = "YYYY-MM-DD";
 let defaultRegistrationPeriod = [31, 'days'];
