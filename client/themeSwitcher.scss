@@ -94,10 +94,17 @@ $themes: (
     $transcript_rating_pending_icon:  map-get($map, "transcript_rating_pending_icon");
     $transcript_rating_accepted_icon:  map-get($map, "transcript_rating_accepted_icon");
     $transcript_rating_denied_icon:  map-get($map, "transcript_rating_denied_icon");
+    $transcript_rating_about_background:  map-get($map, "transcript_rating_about_background");
+    $transcript_rating_about_icon:  map-get($map, "transcript_rating_about_icon");
+    $transcript_rating_about_card_background:  map-get($map, "transcript_rating_about_card_background");
+    $transcript_rating_about_card_icon:  map-get($map, "transcript_rating_about_card_icon");
     $transcript_achieved_bonus:  map-get($map, "transcript_achieved_bonus");
     $transcript_rating_stars_label_background:  map-get($map, "transcript_rating_stars_label_background");
     $transcript_rating_stars_icon:  map-get($map, "transcript_rating_stars_icon");
     $transcript_rating_stars_icon_rated:  map-get($map, "transcript_rating_stars_icon_rated");
+    $transcript_rating_stars_card_label_background:  map-get($map, "transcript_rating_stars_card_label_background");
+    $transcript_rating_stars_card_icon:  map-get($map, "transcript_rating_stars_card_icon");
+    $transcript_rating_stars_card_icon_rated:  map-get($map, "transcript_rating_stars_card_icon_rated");
     //barfy stars
     $barfy_stars_particles_1: map-get($map, "barfy_stars_particles_1");
     $barfy_stars_particles_2: map-get($map, "barfy_stars_particles_2");
@@ -2807,7 +2814,17 @@ $themes: (
     }
 
     .aboutThisRating {
-      color: $transcript_rating_label_background !important;
+      background-color: $transcript_rating_about_background !important;
+      color: $transcript_rating_about_icon !important;
+    }
+
+    .aboutThisRatingLabel {
+      background-color: transparent !important;
+    }
+
+    .card-header-label .aboutThisRating {
+      background-color: $transcript_rating_about_card_background !important;
+      color: $transcript_rating_about_card_icon !important;
     }
 
     .label-transcript-rating-stars {
@@ -2817,6 +2834,12 @@ $themes: (
       }
     }
 
+    .card-header-label .label-transcript-rating-stars {
+      background-color: $transcript_rating_stars_card_label_background !important;
+      i, i:hover {
+        color: $transcript_rating_stars_card_icon !important;
+      }
+    }
     .transcript-bonus-statistics-info {
       .fa-star, fa-star:hover {
         color: $transcript_rating_stars_icon_rated !important;

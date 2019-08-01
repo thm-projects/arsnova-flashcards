@@ -247,7 +247,7 @@ export let CardVisuals = class CardVisuals {
 			if (!NavigatorCheck.isSmartphone() && !Session.get('mobilePreview')) {
 				flashcardHeaderHeight = 100;
 			} else {
-				flashcardHeaderHeight = 60;
+				flashcardHeaderHeight = 70;
 			}
 			newFlashcardSize -= $('.cardNavigationContainer:visible').outerHeight();
 			flashcardBodyHeight = newFlashcardSize - flashcardHeaderHeight;

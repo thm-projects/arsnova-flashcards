@@ -542,6 +542,9 @@ img.cardside {
     display: inline-block;
     @media (max-width: 767px) {
       font-size: 8px;
+      .fa-star {
+        font-size: 7px;
+      }
       white-space: normal;
       padding: 1px;
     }
