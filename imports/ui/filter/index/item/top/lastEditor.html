@@ -4,7 +4,7 @@
          data-id="{{this.lastEditor}}">
         {{#if isNotOwner}}
             {{#if gotBackendAccess}}
-                <a href="/admin/user/{{this.lastEditor}}">{{getAuthorName this.lastEditor}}</a>
+                <a class="lastEditorLink" href="">{{getAuthorName this.lastEditor}}</a>
             {{else}}
                 {{getAuthorName this.lastEditor}}
             {{/if}}
