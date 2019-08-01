@@ -862,6 +862,17 @@ Meteor.startup(function () {
 				}
 			);
 		}
+		if (cardsets[i].transcriptBonus.minimumStars === undefined) {
+			Cardsets.update({
+					_id: cardsets[i]._id
+				},
+				{
+					$set: {
+						"transcriptBonus.minimumStars": cardsets[i].transcriptBonus.dates.length * 5
+					}
+				}
+			);
+		}
 		if (cardsets[i].transcriptBonus.stats === undefined) {
 			Meteor.call('updateTranscriptBonusStats', cardsets[i]._id);
 		}

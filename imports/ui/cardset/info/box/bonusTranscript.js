@@ -12,6 +12,7 @@ import "./item/transcript/submissions.js";
 import "./item/transcript/median.js";
 import "./item/transcript/medianPerDate.js";
 import "./item/transcript/minimumSubmissions.js";
+import "./item/transcript/minimumStars.js";
 import "./bonusTranscript.html";
 
 /*

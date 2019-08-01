@@ -129,10 +129,19 @@ export let TranscriptBonusList = class TranscriptBonusList {
 		if (cardset !== undefined) {
 			let query = {cardset_id: cardset_id, user_id: user_id, rating: 1};
 			let acceptedTranscripts = TranscriptBonus.find(query).count();
-			if (acceptedTranscripts === 0 || cardset.transcriptBonus.minimumSubmissions === 0) {
+			let starsTotal = this.getStarsData(cardset_id, user_id, 1);
+			if (acceptedTranscripts === 0 || cardset.transcriptBonus.minimumSubmissions === 0 || cardset.transcriptBonus.minimumStars === 0) {
 				return 0;
 			} else {
-				return Math.trunc((acceptedTranscripts / cardset.transcriptBonus.minimumSubmissions) * cardset.transcriptBonus.percentage);
+				let submissionsScore = acceptedTranscripts / cardset.transcriptBonus.minimumSubmissions / 2;
+				if (submissionsScore > 0.5) {
+					submissionsScore = 0.5;
+				}
+				let starsScore =  starsTotal / cardset.transcriptBonus.minimumStars / 2;
+				if (starsScore > 0.5) {
+					starsScore = 0.5;
+				}
+				return Math.trunc((submissionsScore + starsScore) * cardset.transcriptBonus.percentage);
 			}
 		}
 	}

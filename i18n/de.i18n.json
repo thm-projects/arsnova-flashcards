@@ -715,7 +715,10 @@
         "title": "Bonusvergabe konfigurieren",
         "percentage": "Maximale Bonuspunkte",
         "enable": "Bonus aktivieren",
-        "minimum": "Mitschriften für max. Bonus",
+        "minimum": {
+          "submissions": "Mitschriften für max. Bonus",
+          "stars": "Sterne für max. Bonus"
+        },
         "lectureTimeEnd": "Freischaltung",
         "deadline": {
           "submission": "Zeit für die Foto-Abgabe",
