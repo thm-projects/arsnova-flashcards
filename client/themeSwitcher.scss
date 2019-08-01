@@ -2806,6 +2806,10 @@ $themes: (
       color: $transcript_rating_label_text !important;
     }
 
+    .aboutThisRating {
+      color: $transcript_rating_label_background !important;
+    }
+
     .label-transcript-rating-stars {
       background-color: $transcript_rating_stars_label_background !important;
       i, i:hover {
