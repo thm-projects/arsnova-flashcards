@@ -223,6 +223,7 @@ export let BonusForm = class BonusForm {
 	}
 
 	static initializeSimulatorData () {
+		this.adjustErrorCount();
 		let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {cardGroups: 1, shuffled: 1, quantity: 1}});
 		if (cardset !== undefined) {
 			if (cardset.shuffled) {

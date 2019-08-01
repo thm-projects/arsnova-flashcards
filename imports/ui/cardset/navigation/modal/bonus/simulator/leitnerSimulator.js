@@ -25,9 +25,9 @@ Template.cardsetLeitnerSimulatorForm.onCreated(function () {
 
 Template.cardsetLeitnerSimulatorForm.onRendered(function () {
 	$('#cardsetLeitnerSimulatorModal').on('show.bs.modal', function () {
-		BonusForm.initializeSimulatorWorkload();
-		Session.set('activeSimulatorSnapshotDate', 0);
 		BonusForm.createSnapshotDates();
+		Session.set('activeSimulatorSnapshotDate', 0);
+		BonusForm.initializeSimulatorWorkload();
 		LeitnerProgress.updateGraph();
 	});
 	$('#cardsetLeitnerSimulatorModal').on('hidden.bs.modal', function () {
