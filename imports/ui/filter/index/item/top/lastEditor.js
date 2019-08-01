@@ -1,6 +1,5 @@
 import "./lastEditor.html";
 import {Template} from "meteor/templating";
-import {Route} from "../../../../../api/route";
 
 /*
  * ############################################################################
