@@ -1115,7 +1115,7 @@
         "buttonSimulate": "Optimales Tagespensum berechnen",
         "title": "Leitner Simulator",
         "errorRate": {
-          "description": "Maximale Anzahl einmalig nicht gewusster Fragen von __count__ Karten in %.",
+          "description": "Maximale Anzahl nicht gewusster Karten von __count__ in %.",
           "label": "% Fehlerquote",
           "button": {
             "reset": "Fehlerquote zurücksetzen"
