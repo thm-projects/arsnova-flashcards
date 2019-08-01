@@ -133,16 +133,12 @@ export let TranscriptBonusList = class TranscriptBonusList {
 			if (acceptedTranscripts === 0 || cardset.transcriptBonus.minimumSubmissions === 0 || cardset.transcriptBonus.minimumStars === 0) {
 				return 0;
 			} else {
-				let submissionsScore = acceptedTranscripts / cardset.transcriptBonus.minimumSubmissions;
-				if (submissionsScore > 1) {
-					submissionsScore = 1;
+				let sum = (acceptedTranscripts * starsTotal) / (cardset.transcriptBonus.minimumSubmissions * cardset.transcriptBonus.minimumStars) * cardset.transcriptBonus.percentage;
+				if (sum > cardset.transcriptBonus.percentage) {
+					return cardset.transcriptBonus.percentage;
+				} else {
+					return Math.trunc(sum);
 				}
-				let starsScore =  starsTotal / cardset.transcriptBonus.minimumStars;
-				if (starsScore > 1) {
-					starsScore = 1;
-				}
-				let sum  = ((submissionsScore / 100) * config.minSubmissionsWeighting) + ((starsScore / 100) * config.minStarsWeighting);
-				return Math.trunc(sum * cardset.transcriptBonus.percentage);
 			}
 		}
 	}
