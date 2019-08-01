@@ -63,6 +63,9 @@ Template.useCasesModal.onRendered(function () {
 			case 7:
 				Router.go('transcriptsPersonal');
 				break;
+			case 8:
+				Router.go('transcriptsBonus');
+				break;
 		}
 	});
 	$('#useCasesModal').on('show.bs.modal', function () {
