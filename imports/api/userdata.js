@@ -547,7 +547,8 @@ Meteor.methods({
 				},
 				{
 					$set: {
-						"count.transcripts": Cards.find({owner: user_id, cardType: 2}).count()
+						"count.transcripts": Cards.find({owner: user_id, cardType: 2}).count(),
+						"count.bonusTranscripts": TranscriptBonus.find({user_id: user_id}).count()
 					}
 				}
 			);

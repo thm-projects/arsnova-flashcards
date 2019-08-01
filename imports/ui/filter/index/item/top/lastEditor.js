@@ -14,3 +14,11 @@ Template.filterIndexItemTopLastEditor.helpers({
 		}
 	}
 });
+
+Template.filterIndexItemTopLastEditor.events({
+	'click .lastEditorLink': function () {
+		Router.go('admin_user', {
+			_id: this.lastEditor
+		});
+	}
+});

@@ -717,7 +717,10 @@
         "title": "Bonusvergabe für Mitschriften verwalten",
         "percentage": "Maximale Bonuspunkte",
         "enable": "Bonus aktivieren",
-        "minimum": "Number of transcripts for maximum number of bonus points",
+        "minimum": {
+          "submissions": "Number of transcripts for maximum number of bonus points",
+          "stars": "Number of stars for maximum number of bonus points"
+        },
         "lectureTimeEnd": "Vorlesungsende",
         "deadline": {
           "submission": "Zeit für die Foto-Abgabe",
@@ -1115,7 +1118,7 @@
         "buttonSimulate": "Optimales Tagespensum berechnen",
         "title": "Leitner Simulator",
         "errorRate": {
-          "description": "Maximale Anzahl einmalig nicht gewusster Fragen von __count__ Karten in %.",
+          "description": "Maximale Anzahl nicht gewusster Karten von __count__ über den gesamten Lernverlauf.",
           "label": "% Fehlerquote",
           "button": {
             "reset": "Fehlerquote zurücksetzen"

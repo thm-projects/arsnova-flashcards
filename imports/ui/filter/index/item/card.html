@@ -24,6 +24,12 @@
             <div class="resultItemHeaderBottomArea row">
                 <div class="col-xs-12 col-sm-8 col-md-9 collapseButton resultItemHeaderBottomAreaLabels">
                     {{> cardsetLabels}}
+                    {{#if isCardsetTranscriptBonusRoute}}
+                        {{> filterIndexItemBottomAboutThisRating}}
+                    {{/if}}
+                    {{#if isMyBonusTranscriptsRoute}}
+                        {{> filterIndexItemBottomAboutThisRating}}
+                    {{/if}}
                 </div>
                 <div class="col-xs-12 col-sm-4 col-md-3 collapseButton resultItemHeaderBottomAreaButtons">
                     {{#unless isSelectingCardsetToLearn}}
@@ -32,12 +38,8 @@
                             {{> filterIndexItemBottomDeleteTranscript}}
                         {{/if}}
                         {{#if isMyBonusTranscriptsRoute}}
-                            {{> filterIndexItemBottomAboutThisRating}}
                             {{> filterIndexItemBottomEditTranscript}}
                             {{> filterIndexItemBottomDeleteTranscript}}
-                        {{/if}}
-                        {{#if isCardsetTranscriptBonusRoute}}
-                            {{> filterIndexItemBottomAboutThisRating}}
                         {{/if}}
                     {{/unless}}
                 </div>

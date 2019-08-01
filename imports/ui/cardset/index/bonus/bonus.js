@@ -25,13 +25,13 @@ Template.cardsetLearnActivityStatistic.helpers({
 		let totalCards = this.box1 + this.box2 + this.box3 + this.box4 + this.box5 + this.box6;
 		let percentage = Math.round(count / totalCards * 100);
 		if (percentage > 0) {
-			return '<span class="cardPercentage"><i class="fas fa-trophy"></i>&nbsp;[' + percentage + ' %]</span>';
+			return '<span class="cardPercentage">[' + percentage + ' %]</span>';
 		}
 	},
 	earnedTrophy: function () {
 		let totalCards = this.box1 + this.box2 + this.box3 + this.box4 + this.box5 + this.box6;
 		let box6Percentage = (this.box6 / totalCards) * 100;
-		return box6Percentage >= 95;
+		return box6Percentage >= Session.get('activeCardset').workload.bonus.minLearned;
 	},
 	getAchievedBonus: function () {
 		return Bonus.getAchievedBonus(this.box6, Session.get('activeCardset').workload, (this.box1 + this.box2 + this.box3 + this.box4 + this.box5 + this.box6));

@@ -197,3 +197,17 @@ input, textarea {
 .resultItemHeaderWorkload {
   padding-right: 0;
 }
+
+.resultItemHeaderBottomAreaLabels .aboutThisRating {
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.card-header-label .aboutThisRating {
+  cursor: pointer;
+}
+
+.aboutThisRatingLabel {
+  padding-left: 0;
+  padding-right: 0;
+}

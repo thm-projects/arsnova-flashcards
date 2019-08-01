@@ -715,7 +715,10 @@
         "title": "Bonusvergabe konfigurieren",
         "percentage": "Maximale Bonuspunkte",
         "enable": "Bonus aktivieren",
-        "minimum": "Mitschriften für max. Bonus",
+        "minimum": {
+          "submissions": "Mitschriften für max. Bonus",
+          "stars": "Sterne für max. Bonus"
+        },
         "lectureTimeEnd": "Freischaltung",
         "deadline": {
           "submission": "Zeit für die Foto-Abgabe",
@@ -1113,7 +1116,7 @@
         "buttonSimulate": "Optimales Tagespensum berechnen",
         "title": "Leitner Simulator",
         "errorRate": {
-          "description": "Maximale Anzahl einmalig nicht gewusster Fragen von __count__ Karten in %.",
+          "description": "Maximale Anzahl nicht gewusster Karten von __count__ über den gesamten Lernverlauf.",
           "label": "% Fehlerquote",
           "button": {
             "reset": "Fehlerquote zurücksetzen"

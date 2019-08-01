@@ -13,7 +13,11 @@ Template.useCasesItemMyTranscripts.helpers({
 
 Template.useCasesItemMyTranscripts.events({
 	'click .useCasesGoToMyTranscripts': function () {
-		Session.set('useCaseType', 7);
+		if (Meteor.user() && Meteor.user().count !== undefined && Meteor.user().count.bonusTranscripts > 0) {
+			Session.set('useCaseType', 8);
+		} else {
+			Session.set('useCaseType', 7);
+		}
 		$('#useCasesModal').modal('hide');
 	}
 });

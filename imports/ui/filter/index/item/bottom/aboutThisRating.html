@@ -1,12 +1,14 @@
 <template name="filterIndexItemBottomAboutThisRating">
     {{#if isCardsetOwner this._id}}
         {{#if gotRated this._id}}
-            <a class="resultNavigationElement aboutThisRating hidden-xs"
-               title='{{_ "cardset.transcriptBonusRating.modal.about.icon"}}' data-toggle="modal"
-               data-target="#aboutThisRatingModal"
-               data-id="{{this._id}}">
-                <i class="result fas fa-question-circle" data-id="{{this._id}}"></i>
-            </a>
+            <span class="label aboutThisRatingLabel">
+                <a class="resultNavigationElement aboutThisRating"
+                               title='{{_ "cardset.transcriptBonusRating.modal.about.icon"}}' data-toggle="modal"
+                               data-target="#aboutThisRatingModal"
+                               data-id="{{this._id}}">
+                    <i class="result fas fa-question-circle" data-id="{{this._id}}"></i>
+                </a>
+            </span>
         {{/if}}
     {{/if}}
 </template>
