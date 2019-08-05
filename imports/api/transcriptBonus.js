@@ -225,12 +225,16 @@ if (Meteor.isServer) {
 			this.ready();
 		}
 	});
-	Meteor.publish("cardsetTranscriptBonusReview", function (cardset_id) {
+	Meteor.publish("cardsetTranscriptBonusReview", function (cardset_id, filterID = undefined) {
 		if (this.userId) {
 			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1}});
 			if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
 				let latestExpiredDeadline = TranscriptBonusList.getLatestExpiredDeadline(cardset._id);
-				return TranscriptBonus.find({cardset_id: cardset._id, date: {$lt: latestExpiredDeadline}, rating: 0});
+				let query = {cardset_id: cardset._id, date: {$lt: latestExpiredDeadline}, rating: 0};
+				if (filterID !== undefined && filterID !== null) {
+					query.card_id = filterID;
+				}
+				return TranscriptBonus.find(query);
 			} else {
 				this.ready();
 			}

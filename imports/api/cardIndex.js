@@ -67,7 +67,11 @@ export let CardIndex = class CardIndex {
 		let cardset;
 		if (!Meteor.isServer && Route.isTranscript()) {
 			if (Route.isPresentationTranscriptReview()) {
-				let indexCards = TranscriptBonus.find({cardset_id: Router.current().params._id, rating: 0},{sort: {date: 1, user_id: 1}, fields: {card_id: 1}}).fetch();
+				let query = {cardset_id: Router.current().params._id, rating: 0};
+				if (Session.get('transcriptBonusReviewFilter') !== undefined && Session.get('transcriptBonusReviewFilter') !== null) {
+					query.card_id = Session.get('transcriptBonusReviewFilter');
+				}
+				let indexCards = TranscriptBonus.find(query,{sort: {date: 1, user_id: 1}, fields: {card_id: 1}}).fetch();
 				indexCards.forEach(function (indexCard) {
 					cardIndex.push(indexCard.card_id);
 				});

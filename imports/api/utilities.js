@@ -62,7 +62,7 @@ export let Utilities = class Utilities {
 		let minutes = "";
 		let dateFormat = "D. MMMM YYYY";
 		if (displayMinutes === true) {
-			dateFormat = "D. MMM YY " + minutes;
+			dateFormat = "D. MMM YY ";
 			minutes = "H:mm";
 		}
 		let language;
@@ -72,7 +72,6 @@ export let Utilities = class Utilities {
 			language = Session.get('activeLanguage');
 		}
 		if (!transformToSpeech) {
-			dateFormat = "DD";
 			return moment(date).locale(language).calendar(null, {
 				sameDay: this.getCalendarString(dateFormat, minutes, displayMode),
 				lastDay: this.getCalendarString(dateFormat, minutes, displayMode),

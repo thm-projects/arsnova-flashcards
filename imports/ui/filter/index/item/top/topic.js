@@ -3,6 +3,7 @@ import {Route} from "../../../../../api/route";
 import {TranscriptBonus, TranscriptBonusList} from "../../../../../api/transcriptBonus";
 import {Cardsets} from "../../../../../api/cardsets";
 import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
 
 
 
@@ -25,6 +26,7 @@ Template.filterIndexItemTopTopic.events({
 					card_id: $(event.target).data('id')
 				});
 			} else {
+				Session.set('transcriptBonusReviewCount', $(event.target).data('id'));
 				Router.go('presentationTranscriptBonusCardset', {
 					_id: Router.current().params._id,
 					card_id: $(event.target).data('id')

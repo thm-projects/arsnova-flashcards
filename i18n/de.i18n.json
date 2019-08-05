@@ -753,11 +753,13 @@
       },
       "submissions": {
         "button": {
-          "review": "Mitschriften bewerten"
+          "review": "Mitschriften bewerten",
+          "reviewFilter": "Gefilterte Mitschriften bewerten"
         },
         "info": {
           "nothing": "Es gibt derzeit keine unbewerteten Mitschriften.",
-          "found": "Es gibt __count__ Mitschriften mit abgelaufener digitaler Nachbearbeitungsfrist, die eine Bewertung benötigen.",
+          "found": "Es gibt eine nicht bewertete Mitschrift, mit abgelaufener digitaler Nachbearbeitungsfrist.",
+          "found_plural": "Es gibt __count__ nicht bewertete Mitschriften, mit abgelaufener digitaler Nachbearbeitungsfrist.",
           "next": "Die nächsten Mitschriften können am __date__ bewertet werden."
         }
       }

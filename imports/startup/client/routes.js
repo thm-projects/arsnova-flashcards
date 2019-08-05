@@ -451,7 +451,7 @@ Router.route('/cardset/:_id/transcripts/review', {
 	name: 'presentationTranscriptReview',
 	template: 'presentation',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardsetTranscriptBonusReview', this.params._id), Meteor.subscribe('cardsetTranscriptBonusCardsReview', this.params._id, Filter.getActiveFilter(10)), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('userDataTranscriptBonus', this.params._id)];
+		return [Meteor.subscribe('cardsetTranscriptBonusReview', this.params._id, Session.get('transcriptBonusReviewFilter')), Meteor.subscribe('cardsetTranscriptBonusCardsReview', this.params._id, Session.get('transcriptBonusReviewFilter')), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('userDataTranscriptBonus', this.params._id)];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
