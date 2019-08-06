@@ -341,6 +341,12 @@
       "personal": {
         "cardsets": "Suche nach eigenen Karteien…",
         "repetitorien": "Suche nach egeinen Repetitorien…"
+      },
+      "item": {
+        "open": {
+          "cardset": "Kartei öffnen",
+          "repetitorium": "Repetitorium öffnen"
+        }
       }
     },
     "tooltip": {
