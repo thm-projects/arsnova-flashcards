@@ -35,6 +35,7 @@ export let CardIndex = class CardIndex {
 			CardNavigation.setActiveCardData(result[0]._id);
 		}
 		Session.set('activeIndexCards', CardVisuals.setTypeAndDifficulty(result));
+		Session.set('activeIndexLength', Session.get('activeIndexCards').length);
 		return Session.get('activeIndexCards');
 	}
 
