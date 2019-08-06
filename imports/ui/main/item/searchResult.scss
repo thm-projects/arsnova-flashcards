@@ -16,15 +16,20 @@
   z-index: 1000;
   margin: 0 !important;
   background-color: hsla(100, 100%, 100%, 0.8) !important;
+
+  .open-search-result {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 }
 
-#searchResults a {
+#searchResults .search-result-item {
   border-bottom: solid $size_search_results_separator !important;
   padding: 0 !important;
   margin: 0 !important;
 }
 
-#searchResults a:last-child {
+#searchResults .search-result-item:last-child {
   border-bottom: 0 !important;
 }
 

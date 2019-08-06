@@ -446,6 +446,26 @@ Meteor.methods({
 					query.owner = Meteor.userId();
 					query.shuffled = true;
 					break;
+				case 6:
+					if (UserPermissions.isAdmin()) {
+						query.kind = {$nin: ['demo', 'server']};
+					} else {
+						if (this.userId) {
+							if (ServerStyle.isLoginEnabled("pro")) {
+								query.$or = [{kind: {$nin: ['demo', 'server', 'personal']}}, {owner: Meteor.userId()}];
+							} else {
+								query.$or = [{kind: {$nin: ['demo', 'pro', 'server', 'personal']}}, {owner: Meteor.userId()}];
+							}
+						} else {
+							if (ServerStyle.isLoginEnabled("pro")) {
+								query.$or = [{kind: {$nin: ['demo', 'edu', 'server', 'personal']}}, {owner: Meteor.userId()}];
+							} else {
+								query.$or = [{kind: {$nin: ['demo', 'pro', 'edu', 'server', 'personal']}}, {owner: Meteor.userId()}];
+							}
+						}
+					}
+					query.shuffled = false;
+					break;
 			}
 			let results = Cardsets.find(query, {fields: {_id: 1}}).fetch();
 			let filter = [];

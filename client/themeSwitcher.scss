@@ -249,6 +249,10 @@ $themes: (
     $navbar_search_button_background_hover: map-get($map, "navbar_search_button_background_hover");
     $navbar_search_button_icon_hover: map-get($map, "navbar_search_button_icon_hover");
     $navbar_search_clear_icon: map-get($map, "navbar_search_clear_icon");
+    $navbar_search_result_open_icon: map-get($map, "navbar_search_result_open_icon");
+    $navbar_search_result_open_icon_hover: map-get($map, "navbar_search_result_open_icon_hover");
+    $navbar_search_result_open_background: map-get($map, "navbar_search_result_open_background");
+    $navbar_search_result_open_background_hover: map-get($map, "navbar_search_result_open_background_hover");
     $navbar_help_background: map-get($map, "navbar_help_background");
     $navbar_help_background_hover: map-get($map, "navbar_help_background_hover");
     $navbar_help_background_active: map-get($map, "navbar_help_background_active");
@@ -1956,6 +1960,17 @@ $themes: (
     .input-search::placeholder {
       color: $navbar_search_placeholder !important;
     }
+
+    .open-search-result {
+      background-color: $navbar_search_result_open_background !important;
+      color: $navbar_search_result_open_icon !important;
+    }
+
+    .open-search-result:hover {
+      background-color: $navbar_search_result_open_background_hover !important;
+      color: $navbar_search_result_open_icon_hover !important;
+    }
+
     .input-search:hover {
       background-color: midnightblue !important;
     }

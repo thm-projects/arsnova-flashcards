@@ -25,12 +25,7 @@ Template.cardNavigationItemReview.helpers({
 	},
 	gotOneCardLeft: function () {
 		if (Session.get('isQuestionSide')) {
-			return $('.carousel-inner > .item').length === 1;
-		}
-	},
-	isPomodoroBreakActive: function () {
-		if (Session.get('pomodoroBreakActive') === true) {
-			return "disabled";
+			return Session.get('activeIndexLength') === 1;
 		}
 	},
 	canRateTranscript: function () {

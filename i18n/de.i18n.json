@@ -341,6 +341,12 @@
       "personal": {
         "cardsets": "Suche nach eigenen Karteien…",
         "repetitorien": "Suche nach egeinen Repetitorien…"
+      },
+      "item": {
+        "open": {
+          "cardset": "Kartei öffnen",
+          "repetitorium": "Repetitorium öffnen"
+        }
       }
     },
     "tooltip": {
@@ -541,6 +547,13 @@
       "label": "Gelernte Karten für max. Bonus",
       "content": "__count__ %"
     },
+    "shuffle": {
+      "buttons": {
+        "save": "Auswahl speichern",
+        "add": "Hinzufügen",
+        "remove": "Entfernen"
+      }
+    },
     "activeLearnphase": "aktiv",
     "inactiveLearnphase": "beendet",
     "learnphaseInfo": "Bonus-Lernphase",
@@ -548,7 +561,6 @@
     "cardsetInfoRepetitorium": "Über dieses Repetitorium",
     "cardsetInfoStatic": "Über diese Kartei",
     "shuffleCardsets": "Repetitorium anlegen",
-    "shuffle": "Auswahl speichern",
     "shuffleInfoTextNew": "Erstell dir ein Repetitorium durch Hinzufügen von Karteien mit dem Plus-Button.",
     "shuffleInfoTextEdit": "Inhalt des Repetitoriums erweitern oder einschränken",
     "shuffleCardsetReferences": "Karteien-Sammlung bearbeiten",
@@ -753,11 +765,13 @@
       },
       "submissions": {
         "button": {
-          "review": "Mitschriften bewerten"
+          "review": "Mitschriften bewerten",
+          "reviewFilter": "Gefilterte Mitschriften bewerten"
         },
         "info": {
           "nothing": "Es gibt derzeit keine unbewerteten Mitschriften.",
-          "found": "Es gibt __count__ Mitschriften mit abgelaufener digitaler Nachbearbeitungsfrist, die eine Bewertung benötigen.",
+          "found": "Es gibt eine nicht bewertete Mitschrift, mit abgelaufener digitaler Nachbearbeitungsfrist.",
+          "found_plural": "Es gibt __count__ nicht bewertete Mitschriften, mit abgelaufener digitaler Nachbearbeitungsfrist.",
           "next": "Die nächsten Mitschriften können am __date__ bewertet werden."
         }
       }

@@ -160,6 +160,10 @@ export let FilterNavigation = class FilterNavigation {
 		}
 	}
 
+	static isFilterActive () {
+		return JSON.stringify(Filter.getActiveFilter()) !== JSON.stringify(Filter.getDefaultFilter());
+	}
+
 	static getFilterButton () {
 		let activeFilter = Filter.getActiveFilter();
 		let defaultFilter = Filter.getDefaultFilter();

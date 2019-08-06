@@ -22,6 +22,9 @@ Template.filterItemFilterStars.helpers({
 		if (activeFilter.transcriptDate !== undefined) {
 			query.date = new Date(activeFilter.transcriptDate);
 		}
+		if (activeFilter.rating !== undefined) {
+			query.rating = activeFilter.rating;
+		}
 		return TranscriptBonus.findOne(query);
 	},
 	resultsFilterStars: function (rating) {

@@ -155,6 +155,9 @@ export let Filter = class Filter {
 						delete filter.rating;
 					} else {
 						filter.rating = Number(content);
+						if (filter.rating !== 1) {
+							delete filter.stars;
+						}
 					}
 					break;
 				case "stars":
@@ -162,6 +165,7 @@ export let Filter = class Filter {
 						delete filter.stars;
 					} else {
 						filter.stars = Number(content);
+						filter.rating = Number(1);
 					}
 					break;
 			}

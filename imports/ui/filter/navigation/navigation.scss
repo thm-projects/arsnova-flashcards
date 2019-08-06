@@ -61,10 +61,11 @@
 
   .filter-top-row {
     width: 650px;
-    padding: 10px;
-    li {
-      margin-top: 10px;
-    }
+    padding: 5px;
+  }
+
+  #filterCheckbox {
+    margin: 0;
   }
 
    .filter-bottom-row {

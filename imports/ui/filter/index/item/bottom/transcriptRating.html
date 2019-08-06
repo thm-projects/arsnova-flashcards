@@ -1,6 +1,6 @@
 <template name="filterIndexItemBottomTranscriptRating">
     {{#if isBonusTranscriptsRoute}}
-        <span class="label label-transcript-rating" title="{{getBonusTranscriptTooltip this._id}}" data-rating="{{getBonusTranscriptRatingNumber this._id}}">
+        <span class="label label-transcript-rating label-transcript-rating-denied" title="{{getBonusTranscriptTooltip this._id}}" data-rating="{{getBonusTranscriptRatingNumber this._id}}">
                 {{_ "cardset.transcriptBonusRating.label"}}:&nbsp;{{{getBonusTranscriptRating this._id}}}
         </span>
     {{/if}}
