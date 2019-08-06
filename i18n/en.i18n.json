@@ -548,6 +548,13 @@
       "label": "Minimum cards learned for max. Points",
       "content": "__count__ %"
     },
+    "shuffle": {
+      "buttons": {
+        "save": "Auswahl speichern",
+        "add": "Hinzufügen",
+        "remove": "Entfernen"
+      }
+    },
     "activeLearnphase": "aktiv",
     "inactiveLearnphase": "beendet",
     "learnphaseInfo": "Über die Bonus-Lernphase",

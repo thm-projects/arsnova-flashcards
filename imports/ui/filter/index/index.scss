@@ -127,12 +127,6 @@ input, textarea {
   }
 }
 
-.shuffleButton {
-  width: 45px !important;
-  height: 20px !important;
-  margin: -5px 0 0 0 !important;
-}
-
 .licenseInfoCreate {
   padding-left: 0;
   padding-right: 0;
@@ -214,4 +208,8 @@ input, textarea {
 .aboutThisRatingLabel {
   padding-left: 0;
   padding-right: 0;
+}
+
+.shuffleButton {
+  margin: 0;
 }

@@ -2,6 +2,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./searchResult.html";
 import {MainNavigation} from "../../../api/mainNavigation";
+import {Route} from "../../../api/route.js";
 
 /*
 * ############################################################################
@@ -16,7 +17,9 @@ Template.mainItemSearchResult.helpers({
 });
 
 Template.mainItemSearchResult.events({
-	'click #searchResults a': function () {
-		MainNavigation.clearSearch();
+	'click .open-search-result': function () {
+		if (!Route.isShuffle() && !Route.isEditShuffle()) {
+			MainNavigation.clearSearch();
+		}
 	}
 });

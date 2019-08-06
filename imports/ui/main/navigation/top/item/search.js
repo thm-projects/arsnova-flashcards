@@ -26,6 +26,8 @@ Template.mainNavigationTopItemSearchInput.events({
 			filterType = 4;
 		} else if (Route.isPersonalRepetitorien()) {
 			filterType = 5;
+		} else if (Route.isShuffle() || Route.isEditShuffle()) {
+			filterType = 6;
 		}
 		Meteor.call('getSearchCategoriesResult', Session.get("searchValue"), filterType, function (error, result) {
 			if (result) {
@@ -65,6 +67,8 @@ Template.mainNavigationTopItemSearchInput.helpers({
 			return TAPi18n.__('navbar-collapse.search.all.repetitorien');
 		} else if (Route.isAllCardsets()) {
 			return TAPi18n.__('navbar-collapse.search.all.cardsets');
+		} else if (Route.isEditShuffle() || Route.isShuffle()) {
+			return TAPi18n.__('navbar-collapse.search.public.cardsets');
 		} else {
 			return TAPi18n.__('navbar-collapse.search.workload');
 		}

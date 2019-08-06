@@ -29,15 +29,13 @@
                                     {{> mainNavigationTopItemConnectionStatus visibility=0}}
                                 </div>
                                 {{#unless isImpressum}}
-                                    {{#unless isShuffleRoute}}
-                                        {{#unless isPersonalTranscriptsRoute}}
-                                            {{#unless isCardsetTranscriptBonusRoute}}
-                                                {{#if gotCardsetsForFilter}}
-                                                    <div class="navbar-header-item pull-right">
-                                                        {{> mainNavigationTopItemSearchMobile}}
-                                                    </div>
-                                                {{/if}}
-                                            {{/unless}}
+                                    {{#unless isPersonalTranscriptsRoute}}
+                                        {{#unless isCardsetTranscriptBonusRoute}}
+                                            {{#if gotCardsetsForFilter}}
+                                                <div class="navbar-header-item pull-right">
+                                                    {{> mainNavigationTopItemSearchMobile}}
+                                                </div>
+                                            {{/if}}
                                         {{/unless}}
                                     {{/unless}}
                                 {{/unless}}
@@ -70,12 +68,10 @@
     <div class="collapse navbar-collapse" id="navbar-cards-top-collapse">
         <ul class="nav navbar-nav navbar-left">
             {{> mainNavigationTopItemUseCasesDesktop}}
-            {{#unless isShuffleRoute}}
-                {{#unless isPersonalTranscriptsRoute}}
-                    {{#if gotCardsetsForFilter}}
-                        {{> mainNavigationTopItemSearch}}
-                    {{/if}}
-                {{/unless}}
+            {{#unless isPersonalTranscriptsRoute}}
+                {{#if gotCardsetsForFilter}}
+                    {{> mainNavigationTopItemSearch}}
+                {{/if}}
             {{/unless}}
             {{#if isFilterIndex}}
                 {{#unless isMyTranscriptsRoute}}

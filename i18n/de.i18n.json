@@ -547,6 +547,13 @@
       "label": "Gelernte Karten für max. Bonus",
       "content": "__count__ %"
     },
+    "shuffle": {
+      "buttons": {
+        "save": "Auswahl speichern",
+        "add": "Hinzufügen",
+        "remove": "Entfernen"
+      }
+    },
     "activeLearnphase": "aktiv",
     "inactiveLearnphase": "beendet",
     "learnphaseInfo": "Bonus-Lernphase",
@@ -554,7 +561,6 @@
     "cardsetInfoRepetitorium": "Über dieses Repetitorium",
     "cardsetInfoStatic": "Über diese Kartei",
     "shuffleCardsets": "Repetitorium anlegen",
-    "shuffle": "Auswahl speichern",
     "shuffleInfoTextNew": "Erstell dir ein Repetitorium durch Hinzufügen von Karteien mit dem Plus-Button.",
     "shuffleInfoTextEdit": "Inhalt des Repetitoriums erweitern oder einschränken",
     "shuffleCardsetReferences": "Karteien-Sammlung bearbeiten",
