@@ -52,3 +52,10 @@
   padding: $padding_search_items !important;
   margin: 0 !important;
 }
+
+
+#searchResults .search-result-divider:not(:last-child) {
+  display: block;
+  width: 100%;
+  height: $height_search_result_divider !important;
+}

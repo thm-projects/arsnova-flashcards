@@ -148,7 +148,7 @@ Template.main.onCreated(function () {
 Template.main.onRendered(function () {
 	Meteor.call("initUser");
 	$("html, body").click(function (event) {
-		if (!$(event.target).is('.search-dropdown-container .cards-search-element') && !$(event.target).is('#searchResults .cards-search-element')) {
+		if (!$(event.target).is('.search-dropdown-container *') && !$(event.target).is('#searchResults *')) {
 			MainNavigation.clearSearch();
 			$('.navbar-cards-search-dropdown').removeClass('active');
 		}
