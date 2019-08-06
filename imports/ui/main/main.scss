@@ -39,7 +39,7 @@ $size_modal_icon: 44px;
 
 
 //search
-$margin_bottom_search_result_item: 30px;
+$height_search_result_divider: 30px;
 $width_input_search_desktop: 270px;
 //navbar
 $size_navbar_height: 35px;
@@ -780,10 +780,6 @@ th {
 
 .modal-icon-white, .modal-icon-white .fas, .modal-icon-white .fab, .modal-icon-white .far {
   color: #ffffff !important;
-}
-
-#searchResults .search-result-item:not(:last-child) {
-  margin-bottom: $margin_bottom_search_result_item !important;
 }
 
 .modal, .swal2-container {

@@ -653,7 +653,9 @@ Meteor.methods({
 							kind: 'personal',
 							reviewed: false,
 							request: false,
-							visible: false
+							visible: false,
+							dateUpdated: new Date(),
+							lastEditor: Meteor.userId()
 						}
 					}
 				);
@@ -681,7 +683,9 @@ Meteor.methods({
 		if (cardset !== undefined && cardset.learningActive && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
 			Cardsets.update(id, {
 				$set: {
-					learningActive: false
+					learningActive: false,
+					dateUpdated: new Date(),
+					lastEditor: Meteor.userId()
 				}
 			});
 			let users = Workload.find({
@@ -767,7 +771,9 @@ Meteor.methods({
 					'pomodoroTimer.breakLength': pomodoroTimerBreakLength,
 					'pomodoroTimer.soundConfig': pomodoroTimerSoundConfig,
 					'workload.simulator.errorCount': errorCount,
-					'workload.bonus.minLearned': minLearned
+					'workload.bonus.minLearned': minLearned,
+					dateUpdated: new Date(),
+					lastEditor: Meteor.userId()
 				}
 			});
 			return cardset._id;
@@ -829,7 +835,9 @@ Meteor.methods({
 					'pomodoroTimer.breakLength': pomodoroTimerBreakLength,
 					'pomodoroTimer.soundConfig': pomodoroTimerSoundConfig,
 					'workload.simulator.errorCount': errorCount,
-					'workload.bonus.minLearned': minLearned
+					'workload.bonus.minLearned': minLearned,
+					dateUpdated: new Date(),
+					lastEditor: Meteor.userId()
 				}
 			});
 			return cardset._id;
@@ -871,6 +879,7 @@ Meteor.methods({
 					'transcriptBonus.deadlineEditing': deadlineEditing,
 					'transcriptBonus.minimumSubmissions': minimumSubmissions,
 					'transcriptBonus.minimumStars': minimumStars,
+					dateUpdated: new Date(),
 					lastEditor: Meteor.userId()
 				}
 			});
