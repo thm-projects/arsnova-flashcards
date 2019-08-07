@@ -22,28 +22,22 @@ Template.filterItemFilterAuthors.helpers({
 		}
 	},
 	getAuthors: function () {
-		let query = {};
+		let userFilter = [];
 		if (Route.isTranscriptBonus()) {
-			let bonusTranscripts = TranscriptBonus.find({cardset_id: Router.current().params._id}).fetch();
-			let userFilter = [];
-			for (let i = 0; i < bonusTranscripts.length; i++) {
-				userFilter.push(bonusTranscripts[i].user_id);
-			}
-			query._id = {$in: userFilter};
-		}
-		return Meteor.users.find(query, {fields: {_id: 1, profile: 1}, sort: {"profile.birthname": 1}}).fetch();
-	},
-	filterAuthors: function (id) {
-		if (Route.isTranscriptBonus()) {
-			return true;
+			userFilter = _.uniq(TranscriptBonus.find({cardset_id: Router.current().params._id}, {fields: {user_id: 1}}).fetch().map(function (x) {
+				return x.user_id;
+			}), true);
 		} else {
 			let query = Filter.getFilterQuery();
-			query.owner = id;
-			return Cardsets.findOne(query);
+			delete query.owner;
+			userFilter = _.uniq(Cardsets.find(query, {fields: {owner: 1}}).fetch().map(function (x) {
+				return x.owner;
+			}), true);
 		}
+		return Meteor.users.find({_id: {$in: userFilter}}, {fields: {_id: 1, profile: 1}, sort: {"profile.birthname": 1, "profile.name": 1}}).fetch();
 	},
-	getAuthorName: function () {
-		return getAuthorName(this._id);
+	getAuthorName: function (profile) {
+		return getAuthorName(profile._id, true, false,false, profile);
 	},
 	resultsFilterAuthor: function (id) {
 		if (Route.isTranscriptBonus()) {
