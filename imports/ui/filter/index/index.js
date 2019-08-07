@@ -350,31 +350,9 @@ Template.filterIndexShuffle.helpers({
 		switch (resultType) {
 			case 0:
 			case 1:
-				return Cardsets.find(query, {
-					fields: {
-						name: 1,
-						description: 1,
-						quantity: 1,
-						cardType: 1,
-						difficulty: 1,
-						kind: 1,
-						owner: 1
-					},
-					limit: Filter.getMaxItemCounter()
-				}).count();
+				return Cardsets.find(query, {limit: Filter.getMaxItemCounter()}).count();
 			case 2:
-				return Cardsets.find(query, {
-					fields: {
-						name: 1,
-						description: 1,
-						quantity: 1,
-						cardType: 1,
-						difficulty: 1,
-						kind: 1,
-						owner: 1
-					},
-					sort: Filter.getSortFilter(), limit: Filter.getMaxItemCounter()
-				});
+				return Cardsets.find(query, {sort: Filter.getSortFilter(), limit: Filter.getMaxItemCounter()});
 		}
 	},
 	isActiveCardset: function () {
