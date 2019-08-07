@@ -40,6 +40,9 @@ Template.cardsetInfoBoxItemTranscriptLectureDates.helpers({
 			return true;
 		}
 	},
+	getDay: function (date) {
+		return moment(date).date();
+	},
 	getMonth: function () {
 		return moment().month(lastMonth).locale(Session.get('activeLanguage')).format('MMMM');
 	},
