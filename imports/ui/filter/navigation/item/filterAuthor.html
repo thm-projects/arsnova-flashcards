@@ -2,10 +2,10 @@
     <li class="dropdown cards-filter-element">
         <a href="#" class="dropdown-toggle authorBtn cards-filter-element" data-toggle="dropdown" role="button"
            aria-haspopup="true" aria-expanded="false">
-            {{#if isActiveRoute regex="learn"}}
+            {{#if isWorkloadRoute}}
                 {{_ "set-list.authorPublisher"}}
             {{else}}
-                {{#if isActiveRoute regex='repetitorium'}}
+                {{#if isRepetitorienFilterIndex}}
                     {{_ "cardset.info.publisher"}}
                 {{else}}
                     {{_ "set-list.author"}}
@@ -20,16 +20,14 @@
                 <a href="#" class="noFilterAuthor active cards-filter-element" data-id="">{{_ "set-list.everyone"}}</a>
             </li>
             {{#each getAuthors}}
-                {{#if filterAuthors this._id}}
-                    <li class="cards-filter-element">
-                        <a href="#" class="filterAuthor cards-filter-element"
-                           data-id="{{this._id}}">{{getAuthorName}}
-                            {{#if resultsFilterAuthor this._id}}
-                                <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
-                            {{/if}}
-                        </a>
-                    </li>
-                {{/if}}
+                <li class="cards-filter-element">
+                    <a href="#" class="filterAuthor cards-filter-element"
+                       data-id="{{this._id}}">{{getAuthorName this}}
+                        {{#if resultsFilterAuthor this._id}}
+                            <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                        {{/if}}
+                    </a>
+                </li>
             {{/each}}
         </ul>
     </li>
