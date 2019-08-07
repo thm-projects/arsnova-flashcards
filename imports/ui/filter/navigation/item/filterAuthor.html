@@ -2,10 +2,10 @@
     <li class="dropdown cards-filter-element">
         <a href="#" class="dropdown-toggle authorBtn cards-filter-element" data-toggle="dropdown" role="button"
            aria-haspopup="true" aria-expanded="false">
-            {{#if isActiveRoute regex="learn"}}
+            {{#if isWorkloadRoute}}
                 {{_ "set-list.authorPublisher"}}
             {{else}}
-                {{#if isActiveRoute regex='repetitorium'}}
+                {{#if isRepetitorienFilterIndex}}
                     {{_ "cardset.info.publisher"}}
                 {{else}}
                     {{_ "set-list.author"}}
