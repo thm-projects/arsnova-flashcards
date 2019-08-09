@@ -544,7 +544,7 @@
       "content": "__count__ %"
     },
     "bonusMin": {
-      "label": "Gelernte Karten für max. Bonus",
+      "label": "Gemäß Leitner-Plan »gelernte Karten« für max. Bonus",
       "content": "__count__ %"
     },
     "shuffle": {
@@ -1443,7 +1443,7 @@
       }
     },
     "cardType1": {
-      "name": "Vokabel",
+      "name": "Vokabeln",
       "longName": "Vokabelkartei: Sprache A | Sprache B",
       "content1": "Sprache A",
       "content2": "Sprache B",
