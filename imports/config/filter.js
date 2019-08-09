@@ -6,12 +6,12 @@ let itemIncrementValue = 20;
 
 //0: Themen-Pool / Pool
 //1: Kartei anlegen / My Cardsets
-//2: Repetitorien / Repetitorium
+//2: Repetitorien / Repetitories
 //3: Lernpensum / Learning
 //4: Alle Karteien / All Cardsets
 //5: Kartei mischen / Shuffle
-//6: Alle Repetitorien / All repetitorien
-//7: Meine Repetitorien / Personal repetitorien
+//6: Alle Repetitorien / All Repetitories
+//7: Meine Repetitorien / My Repetitories
 //8: Meine losen Mitschriften / My Transcripts
 //9: Meine gekoppelten Mitschriften / My Bonus Transcripts
 //10: Gekoppelte Mitschriften (Kartei)
@@ -32,7 +32,7 @@ let filtersWithSemester = [];
 let filtersWithCollege = [];
 let filtersWithCourse = [];
 let filtersWithModule = [];
-let filtersWithBonus = [0, 2, 3, 4, 5, 6, 7];
+let filtersWithBonus = [0, 1, 2, 3, 4, 5, 6, 7];
 let filtersWithWordcloud = [0, 1, 2, 4, 5, 6, 7];
 let filtersWithLecturerAuthorized = [0, 1, 2, 4, 5, 6, 7];
 let filtersWithKind = [0, 1, 2, 3, 4, 5, 6, 7];
