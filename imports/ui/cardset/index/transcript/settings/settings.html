@@ -10,14 +10,21 @@
         <input type="number" id="bonusPercentage" min="1" max="10" step="1" value="10" required>
         <span class="unit">%</span>
         <br>
-        <label>{{_ "transcriptForm.bonus.form.minimum.submissions"}}:&nbsp;<span id="minSubmissionsValue"></span></label>
+        <label>{{_ "transcriptForm.bonus.form.minimum.submissions"}}:&nbsp;<span
+                id="minSubmissionsValue"></span></label>
         <form class="range-field">
-            <input id="bonusMinimumSubmissions" type="range" min="1" step="1" max="10" />
+            <input id="bonusMinimumSubmissions" type="range" min="1" step="1" max="10"/>
         </form>
-        <label>{{_ "transcriptForm.bonus.form.minimum.stars"}}:&nbsp;<span id="minStarsValue"></span></label>
-        <form class="range-field">
-            <input id="bonusMinimumStars" type="range" min="1" step="1" max="7" />
-        </form>
+        <label>{{_ "transcriptForm.bonus.form.minimum.stars"}}:&nbsp;
+            <span class="transcript-bonus-settings">
+                {{#each getBonusTranscriptStars}}
+                    <a href="" class="stars-setting" title="{{getBonusTranscriptStarsTooltip @index}}"
+                       data-id="{{@index}}"><i
+                            class="fas fa-star {{this.status}}"></i></a>
+                {{/each}}
+            </span>
+        </label>
+
     </div>
     <div class="col-xs12 col-sm-6">
         <label>{{_ "transcriptForm.bonus.form.deadline.submission"}}:&nbsp;</label>

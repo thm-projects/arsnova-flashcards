@@ -7,6 +7,8 @@ import {Template} from "meteor/templating";
  * ############################################################################
  */
 
+Session.setDefault('minimumBonusStars', 1);
+
 function adjustStarsSlider(value) {
 	let bonusMinimumStars = $('#bonusMinimumStars');
 	bonusMinimumStars.attr("min", value);
@@ -25,8 +27,7 @@ Template.cardsetIndexTranscriptSettings.onRendered(function () {
 		$('#bonusMinimumSubmissions').val(this.data.transcriptBonus.minimumSubmissions);
 		$('#minSubmissionsValue').html(this.data.transcriptBonus.minimumSubmissions);
 		adjustStarsSlider(this.data.transcriptBonus.minimumSubmissions);
-		$('#bonusMinimumStars').val(this.data.transcriptBonus.minimumStars);
-		$('#minStarsValue').html(this.data.transcriptBonus.minimumStars);
+		Session.set('minimumBonusStars', this.data.transcriptBonus.minimumStars);
 		for (let d = 0; d < this.data.transcriptBonus.dates.length; d++) {
 			dates.push(moment(this.data.transcriptBonus.dates[d]).format("MM/DD/YYYY"));
 		}
@@ -56,12 +57,36 @@ Template.cardsetIndexTranscriptSettings.onRendered(function () {
 	$('#transcript-calendar').multiDatesPicker(settings);
 });
 
+Template.cardsetIndexTranscriptSettings.onDestroyed(function () {
+	Session.set('minimumBonusStars', this.data.transcriptBonus.minimumStars);
+});
+
+Template.cardsetIndexTranscriptSettings.helpers({
+	getBonusTranscriptStars: function () {
+		let stars = Session.get('minimumBonusStars');
+		let starData = [];
+		console.log("trigger");
+		for (let i = 0; i < 5; i++) {
+			let star = {};
+			if (i < stars) {
+				star.status = "rated";
+			} else {
+				star.status = "";
+			}
+			starData.push(star);
+		}
+		return starData;
+	},
+	getBonusTranscriptStarsTooltip: function (stars) {
+		return TAPi18n.__('cardset.transcriptBonusRating.starsLabel.stars' + (stars + 1));
+	},
+});
+
 Template.cardsetIndexTranscriptSettings.events({
 	'input #bonusMinimumSubmissions': function (event) {
 		$('#minSubmissionsValue').html(event.currentTarget.value);
-		adjustStarsSlider(event.currentTarget.value);
 	},
-	'input #bonusMinimumStars': function (event) {
-		$('#minStarsValue').html(event.currentTarget.value);
+	'click .stars-setting': function (event) {
+		Session.set('minimumBonusStars', $(event.currentTarget).data('id') + 1);
 	}
 });
