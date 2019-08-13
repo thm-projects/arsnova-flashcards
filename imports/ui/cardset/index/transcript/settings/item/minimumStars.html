@@ -1,0 +1,11 @@
+<template name="cardsetIndexTranscriptSettingsItemMinimumStars">
+    <label>{{_ "transcriptForm.bonus.form.minimum.stars"}}:&nbsp;
+        <span class="transcript-bonus-settings">
+            {{#each getBonusTranscriptStars}}
+                <a href="" class="stars-setting" title="{{getBonusTranscriptStarsTooltip @index}}"
+                   data-id="{{@index}}"><i
+                        class="fas fa-star {{this.status}}"></i></a>
+            {{/each}}
+        </span>
+    </label>
+</template>
