@@ -2842,7 +2842,7 @@ $themes: (
       color: $transcript_rating_about_card_icon !important;
     }
 
-    .label-transcript-rating-stars {
+    .label-transcript-rating-stars, .transcript-bonus-settings {
       background-color: $transcript_rating_stars_label_background !important;
       i, i:hover {
         color: $transcript_rating_stars_icon !important;
@@ -2855,14 +2855,20 @@ $themes: (
         color: $transcript_rating_stars_card_icon !important;
       }
     }
+    .transcript-bonus-settings {
+      .fa-star, .fa-star:hover {
+        color: $transcript_rating_stars_icon !important;
+      }
+    }
+
     .transcript-bonus-statistics-info {
-      .fa-star, fa-star:hover {
+      .fa-star, .fa-star:hover {
         color: $transcript_rating_stars_icon_rated !important;
       }
     }
 
-    .label-transcript-rating-stars {
-      i.rated, i.rated:hover {
+    .label-transcript-rating-stars, .transcript-bonus-settings  {
+      .fa-star.rated, .fa-star.rated:hover {
         color: $transcript_rating_stars_icon_rated !important;
       }
     }

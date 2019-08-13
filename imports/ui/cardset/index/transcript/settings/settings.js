@@ -1,11 +1,22 @@
 import "./settings.html";
+import "./item/deadlineEditing.js";
+import "./item/deadlineSubmissions.js";
+import "./item/enable.js";
+import "./item/lectureDates.js";
+import "./item/lectureTimeEnd.js";
+import "./item/maxPercentage.js";
+import "./item/minimumStars.js";
+import "./item/minimumTranscripts.js";
 import {Template} from "meteor/templating";
+import {Session} from "meteor/session";
 
 /*
  * ############################################################################
  * cardsetIndexTranscriptSettings
  * ############################################################################
  */
+
+Session.setDefault('minimumBonusStars', 1);
 
 function adjustStarsSlider(value) {
 	let bonusMinimumStars = $('#bonusMinimumStars');
@@ -25,8 +36,7 @@ Template.cardsetIndexTranscriptSettings.onRendered(function () {
 		$('#bonusMinimumSubmissions').val(this.data.transcriptBonus.minimumSubmissions);
 		$('#minSubmissionsValue').html(this.data.transcriptBonus.minimumSubmissions);
 		adjustStarsSlider(this.data.transcriptBonus.minimumSubmissions);
-		$('#bonusMinimumStars').val(this.data.transcriptBonus.minimumStars);
-		$('#minStarsValue').html(this.data.transcriptBonus.minimumStars);
+		Session.set('minimumBonusStars', this.data.transcriptBonus.minimumStars);
 		for (let d = 0; d < this.data.transcriptBonus.dates.length; d++) {
 			dates.push(moment(this.data.transcriptBonus.dates[d]).format("MM/DD/YYYY"));
 		}
@@ -56,12 +66,17 @@ Template.cardsetIndexTranscriptSettings.onRendered(function () {
 	$('#transcript-calendar').multiDatesPicker(settings);
 });
 
+Template.cardsetIndexTranscriptSettings.onDestroyed(function () {
+	Session.set('minimumBonusStars', this.data.transcriptBonus.minimumStars);
+});
+
+
+
 Template.cardsetIndexTranscriptSettings.events({
 	'input #bonusMinimumSubmissions': function (event) {
 		$('#minSubmissionsValue').html(event.currentTarget.value);
-		adjustStarsSlider(event.currentTarget.value);
 	},
-	'input #bonusMinimumStars': function (event) {
-		$('#minStarsValue').html(event.currentTarget.value);
+	'click .stars-setting': function (event) {
+		Session.set('minimumBonusStars', $(event.currentTarget).data('id') + 1);
 	}
 });
