@@ -191,7 +191,11 @@ export let TranscriptBonusList = class TranscriptBonusList {
 			if (config.roundTheStarsMedian) {
 				return Math.round(median);
 			} else {
-				return (median).toFixed(2).toString().replace('.', ',');
+				median = (median).toString().replace('.', ',');
+				if (median.length > 4) {
+					return median.substr(0, 4);
+				}
+				return median;
 			}
 		}
 	}
