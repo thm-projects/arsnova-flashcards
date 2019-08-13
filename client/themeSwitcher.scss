@@ -2855,9 +2855,15 @@ $themes: (
         color: $transcript_rating_stars_card_icon !important;
       }
     }
-    .transcript-bonus-statistics-info, .transcript-bonus-settings {
+    .transcript-bonus-settings {
       .fa-star, .fa-star:hover {
         color: $transcript_rating_stars_icon !important;
+      }
+    }
+
+    .transcript-bonus-statistics-info {
+      .fa-star, .fa-star:hover {
+        color: $transcript_rating_stars_icon_rated !important;
       }
     }
 
