@@ -1,0 +1,1 @@
+import "./maxPercentage.html";

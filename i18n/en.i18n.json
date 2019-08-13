@@ -732,7 +732,7 @@
         "enable": "Bonus aktivieren",
         "minimum": {
           "submissions": "Number of transcripts for maximum number of bonus points",
-          "stars": "Number of stars for maximum number of bonus points"
+          "stars": "Stars for max. bonus per transcript"
         },
         "lectureTimeEnd": "Vorlesungsende",
         "deadline": {

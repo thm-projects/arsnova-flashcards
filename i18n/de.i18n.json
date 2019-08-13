@@ -729,7 +729,7 @@
         "enable": "Bonus aktivieren",
         "minimum": {
           "submissions": "Mitschriften für max. Bonus",
-          "stars": "Sterne für max. Bonus"
+          "stars": "Sterne für max. Bonus pro Mitschrift"
         },
         "lectureTimeEnd": "Freischaltung",
         "deadline": {

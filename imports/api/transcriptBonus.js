@@ -128,17 +128,25 @@ export let TranscriptBonusList = class TranscriptBonusList {
 		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {transcriptBonus: 1}});
 		if (cardset !== undefined) {
 			let query = {cardset_id: cardset_id, user_id: user_id, rating: 1};
-			let acceptedTranscripts = TranscriptBonus.find(query).count();
-			let starsTotal = this.getStarsData(cardset_id, user_id, 1);
-			if (acceptedTranscripts === 0 || cardset.transcriptBonus.minimumSubmissions === 0 || cardset.transcriptBonus.minimumStars === 0) {
+			let acceptedTranscriptsTotal = TranscriptBonus.find(query).count();
+			if (acceptedTranscriptsTotal === 0 || cardset.transcriptBonus.minimumSubmissions === 0) {
 				return 0;
 			} else {
-				let sum = (acceptedTranscripts * starsTotal) / (cardset.transcriptBonus.minimumSubmissions * cardset.transcriptBonus.minimumStars) * cardset.transcriptBonus.percentage;
-				if (sum > cardset.transcriptBonus.percentage) {
-					return cardset.transcriptBonus.percentage;
-				} else {
-					return Math.trunc(sum);
+				let acceptedTranscripts = TranscriptBonus.find(query).fetch();
+				let finalScore = 0;
+				let maxScorePerTranscript = cardset.transcriptBonus.percentage / cardset.transcriptBonus.minimumSubmissions;
+				for (let i = 0; i < acceptedTranscripts.length; i++) {
+					if (acceptedTranscripts[i].stars >= cardset.transcriptBonus.minimumStars) {
+						finalScore += maxScorePerTranscript;
+					} else {
+						finalScore += (acceptedTranscripts[i].stars / cardset.transcriptBonus.minimumStars) * maxScorePerTranscript;
+					}
 				}
+				finalScore = Math.round(finalScore);
+				if (finalScore >= cardset.transcriptBonus.percentage) {
+					return cardset.transcriptBonus.percentage;
+				}
+				return finalScore;
 			}
 		}
 	}
@@ -183,7 +191,7 @@ export let TranscriptBonusList = class TranscriptBonusList {
 			if (config.roundTheStarsMedian) {
 				return Math.round(median);
 			} else {
-				return +(median).toFixed(2);
+				return (median).toFixed(2).toString().replace('.', ',');
 			}
 		}
 	}

@@ -3,38 +3,17 @@
         <h2 id="transcriptBonusTitle" class="modal-title">{{_ "transcriptForm.bonus.form.title"}}</h2>
     </div>
     <div class="col-xs12 col-sm-6">
-        <label>{{_ "transcriptForm.bonus.form.enable"}}:&nbsp;</label>
-        <input type="checkbox" id="enableBonus">
-        <br>
-        <label>{{_ "transcriptForm.bonus.form.percentage"}}:&nbsp;</label>
-        <input type="number" id="bonusPercentage" min="1" max="10" step="1" value="10" required>
-        <span class="unit">%</span>
-        <br>
-        <label>{{_ "transcriptForm.bonus.form.minimum.submissions"}}:&nbsp;<span id="minSubmissionsValue"></span></label>
-        <form class="range-field">
-            <input id="bonusMinimumSubmissions" type="range" min="1" step="1" max="10" />
-        </form>
-        <label>{{_ "transcriptForm.bonus.form.minimum.stars"}}:&nbsp;<span id="minStarsValue"></span></label>
-        <form class="range-field">
-            <input id="bonusMinimumStars" type="range" min="1" step="1" max="7" />
-        </form>
+        {{> cardsetIndexTranscriptSettingsItemEnable}}
+        {{> cardsetIndexTranscriptSettingsItemMaxPercentage}}
+        {{> cardsetIndexTranscriptSettingsItemMinimumTranscripts}}
+        {{> cardsetIndexTranscriptSettingsItemMinimumStars}}
     </div>
     <div class="col-xs12 col-sm-6">
-        <label>{{_ "transcriptForm.bonus.form.deadline.submission"}}:&nbsp;</label>
-        <input type="number" id="deadlineHoursSubmission" min="1" max="48" step="1" value="2" required>
-        <span class="unit">{{_ "transcriptForm.bonus.form.hours_plural"}}</span>
-        <br>
-        <label>{{_ "transcriptForm.bonus.form.deadline.editing"}}:&nbsp;</label>
-        <input type="number" id="deadlineHoursEditing" min="48" max="168" step="12" value="36" required>
-        <span class="unit">{{_ "transcriptForm.bonus.form.hours_plural"}}</span>
-        <br>
-        <label>{{_ "transcriptForm.bonus.form.lectureTimeEnd"}}:&nbsp;</label>
-        <input type="time" id="lectureTimeEnd" min="00:00" max="24:00" step="300" value="08:00" required>
-        <span class="unit">{{_ "transcriptForm.bonus.form.clock"}}</span>
+        {{> cardsetIndexTranscriptSettingsItemDeadlineSubmissions}}
+        {{> cardsetIndexTranscriptSettingsItemDeadlineEditing}}
+        {{> cardsetIndexTranscriptSettingsItemLectureTimeEnd}}
     </div>
     <div class="col-xs-12">
-        <br>
-        <label>{{_ "transcriptForm.bonus.form.lectureDates"}}:</label>
-        <div id="transcript-calendar"></div>
+        {{> cardsetIndexTranscriptSettingsItemLectureDates}}
     </div>
 </template>
