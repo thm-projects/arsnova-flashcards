@@ -38,7 +38,7 @@ export let Bonus = class Bonus {
 		if (workload.bonus.maxPoints !== 0) {
 			bonusPointSteps = box6Goal / workload.bonus.maxPoints;
 		}
-		let achievedBonus = Math.round(box6 / bonusPointSteps) ;
+		let achievedBonus = Math.floor(box6 / bonusPointSteps) ;
 		if (achievedBonus > workload.bonus.maxPoints) {
 			return workload.bonus.maxPoints;
 		} else {
