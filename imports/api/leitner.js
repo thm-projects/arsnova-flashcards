@@ -289,6 +289,10 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			console.log("===> Sum of missing cards: " + missingCardsSum);
 		}
 		let fillUpCount = 0;
+		if (!config.fillUpFromLeftToRight) {
+			boxActiveCardCap.reverse();
+			missingCardCount.reverse();
+		}
 		for (let i = 0; i < missingCardCount.length; i++) {
 			if (missingCardsSum > 0 && missingCardCount[i] < 0) {
 				if (missingCardsSum > (-missingCardCount[i])) {
@@ -299,6 +303,9 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				boxActiveCardCap[i] += fillUpCount;
 				missingCardsSum -= fillUpCount;
 			}
+		}
+		if (!config.fillUpFromLeftToRight) {
+			boxActiveCardCap.reverse();
 		}
 		return boxActiveCardCap;
 	}
