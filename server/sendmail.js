@@ -72,7 +72,7 @@ export class MailNotifier {
 			}
 			subject += TAPi18n.__('mailNotification.subjectCardset', null, ServerStyle.getServerLanguage()) + '»' + cardset.name + '«' + TAPi18n.__('mailNotification.subjectEnd', null, ServerStyle.getServerLanguage());
 			textEnd = TAPi18n.__('mailNotification.textEnd', null, ServerStyle.getServerLanguage()) + this.getDeadline(cardset, user_id);
-			this.sendMail(name, this.getMail(user_id), subject, text, bold, textEnd, cardset._id, "#33D275", "#FE5E3E");
+			this.sendMail(name, this.getMail(user_id), subject, text, bold, textEnd, cardset._id, "#37AE5F", "#FF0000");
 		}
 	}
 
@@ -90,7 +90,7 @@ export class MailNotifier {
 			var text = TAPi18n.__('mailNotification.mailCard', null, ServerStyle.getServerLanguage()) + cardset.name + TAPi18n.__('mailNotification.mailCard1', null, ServerStyle.getServerLanguage()) + "\n\n";
 			var name = TAPi18n.__('mailNotification.textIntro', {firstName: firstName[0]}, ServerStyle.getServerLanguage());
 			text += this.getDeadline(cardset, user_id);
-			this.sendMail(name, this.getMail(user_id), subject, text, "", "", cardset._id, "#FE5E3E", "#33D275");
+			this.sendMail(name, this.getMail(user_id), subject, text, "", "", cardset._id, "#FF0000", "#37AE5F");
 		}
 	}
 
