@@ -2254,8 +2254,8 @@
     "subjectCardset": "aus ",
     "subjectEnd": " zu lernen.",
     "textEnd": " zu lernen sind. ",
-    "newCards2Singular": " Karte aus der Kartei ",
-    "newCards2Plural": " Karten aus der Kartei ",
+    "newCards2Singular": " Karte  ",
+    "newCards2Plural": " Karten ",
     "textIntro": "Hallo __firstName__,",
     "textIntro1": "es ist an der Zeit, einen Blick auf deine Lernkarten zu werfen! ",
     "textDate1": "Du hast noch bis <strong>",
@@ -2268,9 +2268,9 @@
     "textReset": "wegen Inaktivität wurde deine Lernstatistik zurückgesetzt. ",
     "newCards1": "Der Wiederholungs-Algorithmus hat berechnet, dass ",
     "service": "Antworte nicht auf diese Mail, sie wurde automatisch erstellt. Du erhältst den Newsletter, weil du dich eingeschrieben hast auf ",
-    "unsubscribe": "Nicht mehr interessiert? Entferne die Kartei aus deinem Lernpensum: Gehe auf die Seite »Lernpensum« und klicke auf das entsprechende Icon unter »Optionen«. Wenn die Bonus-Option aktiviert wurde, findest du den Button zum Abmelden im Drop-down-Menü »Bonus-Lernphase«. Willst du alle Newsletter abbestellen? Deaktiviere den Erinnerungsdienst in deinem Konto. Willst du deine Mitgliedschaft beenden? Lösche dein Konto unter »Profil & Konto«.",
+    "unsubscribe": "Nicht mehr interessiert? Entferne die Kartei oder das Repetitorium aus deinem Lernpensum: Gehe auf die Seite »Lernpensum« und klicke auf das entsprechende Icon. Willst du alle Newsletter abbestellen? Deaktiviere den Erinnerungsdienst unter »Profil & Konto«. Willst du deine Mitgliedschaft beenden? Lösche dein Konto.",
     "copyright": "Dein 🍅__lastAppTitle__-Tutor",
-    "my-cardset": "Zur Kartei…",
+    "my-cardset": "Zu den Karten…",
     "auto-generated": "Antworte nicht auf diese Mail, sie wurde automatisch erstellt."
   },
   "footer": {
