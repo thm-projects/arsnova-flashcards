@@ -2260,7 +2260,7 @@
     "textIntro1": "es ist an der Zeit, einen Blick auf deine Lernkarten zu werfen! ",
     "textDate1": "Du hast noch bis <strong>",
     "textDate2": "</strong> Zeit, um die Karten zu lernen.",
-    "mailCard": "die Kartei <strong>&raquo;",
+    "mailCard": "<strong>&raquo;",
     "mailCard1": "&laquo;</strong> benötigt deine Aufmerksamkeit: In Kürze setzt der Leitner-Algorithmus deine Lernstatistik zurück, wenn du dein Lernpensum nicht erfüllst. ",
     "subjectEnding": "endet die Lernphase der Kartei ",
     "textEnding": "heute endet die Lernphase der Kartei ",
