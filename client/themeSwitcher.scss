@@ -608,6 +608,8 @@ $themes: (
     $transcript_bonus_statistics_info_name_background: map-get($map, "transcript_bonus_statistics_info_name_background");
     $transcript_bonus_statistics_info_details_background: map-get($map, "transcript_bonus_statistics_info_details_background");
     $transcript_bonus_statistics_info_details_text: map-get($map, "transcript_bonus_statistics_info_details_text");
+    $transcript_bonus_statistics_info_details_achieved_background: map-get($map, "transcript_bonus_statistics_info_details_achieved_background");
+    $transcript_bonus_statistics_info_details_achieved_text: map-get($map, "transcript_bonus_statistics_info_details_achieved_text");
     //markdeep editor colors
     $markdeep_help_text: map-get($map, "markdeep_help_text");
     $markdeep_help_background: map-get($map, "markdeep_help_background");
@@ -3821,6 +3823,10 @@ $themes: (
       td {
         background-color: $transcript_bonus_statistics_info_details_background !important;
         color: $transcript_bonus_statistics_info_details_text !important;
+      }
+      td.achieved {
+        background-color: $transcript_bonus_statistics_info_details_achieved_background !important;
+        color: $transcript_bonus_statistics_info_details_achieved_text !important;
       }
     }
 
