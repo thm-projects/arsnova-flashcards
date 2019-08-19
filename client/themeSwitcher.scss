@@ -3398,6 +3398,9 @@ $themes: (
     }
 
     //modal
+    #searchResultsContainer {
+      background-color: $modal_overlay !important;
+    }
     .modal-open  {
       .modal.fade.in {
         background-color: $modal_overlay !important;

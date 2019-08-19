@@ -20,6 +20,7 @@ Template.mainItemSearchResult.events({
 	'click .open-search-result': function () {
 		if (!Route.isShuffle() && !Route.isEditShuffle()) {
 			MainNavigation.clearSearch();
+			$(document.body).addClass('modal-backdrop');
 		}
 	}
 });
