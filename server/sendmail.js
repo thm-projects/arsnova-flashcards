@@ -58,7 +58,8 @@ export class MailNotifier {
 			var notifier = new Notifications();
 			var firstName = getAuthorName(user_id, false, true);
 			var cards = notifier.getActiveCardsCount(cardset._id, user_id);
-			var subject = TAPi18n.__('mailNotification.subjectTitle', {lastAppTitle: ServerStyle.getLastAppTitle()}, ServerStyle.getServerLanguage());
+			var subject = '»' + cardset.name + '« ';
+			subject += TAPi18n.__('mailNotification.subjectTitle', {lastAppTitle: ServerStyle.getLastAppTitle()}, ServerStyle.getServerLanguage());
 			var name = TAPi18n.__('mailNotification.textIntro', {firstName: firstName[0]}, ServerStyle.getServerLanguage());
 			var text = TAPi18n.__('mailNotification.textIntro1', null, ServerStyle.getServerLanguage()) + TAPi18n.__('mailNotification.newCards1', null, ServerStyle.getServerLanguage());
 			var bold;
@@ -70,7 +71,7 @@ export class MailNotifier {
 				subject += TAPi18n.__('mailNotification.subjectPlural1', null, ServerStyle.getServerLanguage()) + cards + TAPi18n.__('mailNotification.subjectPlural2', null, ServerStyle.getServerLanguage());
 				bold = cards + TAPi18n.__('mailNotification.newCards2Plural', null, ServerStyle.getServerLanguage()) + '»' + cardset.name + '«';
 			}
-			subject += TAPi18n.__('mailNotification.subjectCardset', null, ServerStyle.getServerLanguage()) + '»' + cardset.name + '«' + TAPi18n.__('mailNotification.subjectEnd', null, ServerStyle.getServerLanguage());
+			subject += TAPi18n.__('mailNotification.subjectEnd', null, ServerStyle.getServerLanguage());
 			textEnd = TAPi18n.__('mailNotification.textEnd', null, ServerStyle.getServerLanguage()) + this.getDeadline(cardset, user_id);
 			this.sendMail(name, this.getMail(user_id), subject, text, bold, textEnd, cardset._id, "#37AE5F", "#FF0000");
 		}
@@ -86,7 +87,7 @@ export class MailNotifier {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			var firstName = getAuthorName(user_id, false, true);
-			var subject = TAPi18n.__('mailNotification.subjectReset', null, ServerStyle.getServerLanguage()) + '»' + cardset.name + '«';
+			var subject = '»' + cardset.name + '« ' + TAPi18n.__('mailNotification.subjectReset', null, ServerStyle.getServerLanguage());
 			var text = TAPi18n.__('mailNotification.mailCard', null, ServerStyle.getServerLanguage()) + cardset.name + TAPi18n.__('mailNotification.mailCard1', null, ServerStyle.getServerLanguage()) + "\n\n";
 			var name = TAPi18n.__('mailNotification.textIntro', {firstName: firstName[0]}, ServerStyle.getServerLanguage());
 			text += this.getDeadline(cardset, user_id);
