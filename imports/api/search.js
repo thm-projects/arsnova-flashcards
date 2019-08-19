@@ -17,7 +17,8 @@ export let Search = class Search {
 					}
 					leftOffset = destination.offset().left;
 					target.css('max-height', ($(window).height() - offsetTop));
-					target.css('left', leftOffset);
+					target.css('max-width', ($(window).width()));
+					target.css('margin-left', leftOffset);
 					target.css('top', offsetTop);
 				} else {
 					target.removeAttr('style');

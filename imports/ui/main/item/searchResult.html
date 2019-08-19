@@ -1,39 +1,40 @@
 <template name="mainItemSearchResult">
-    <div id="searchResults" class="cards-search-element" style="{{#if
-            searchCategories}}display: unset !important;{{else}}display: none !important;{{/if}}">
-        {{#each searchCategories}}
-            <div class="list-group-item clearfix search-result-item cards-search-element">
-                <h4 class="list-group-item-heading search-subject search-subject-{{kind}} cards-search-element">{{{getCardsetIcons
-                        this.shuffled}}}{{name}}</h4>
-                <p class="list-group-item-text search-result-info cards-search-element">
-                    {{> cardsetLabels}}
+    <div id="searchResultsContainer" class="modal" style="{{#if searchCategories}}display: block !important;{{else}}display: none !important;{{/if}}">
+        <div id="searchResults" class="cards-search-element">
+            {{#each searchCategories}}
+                <div class="list-group-item clearfix search-result-item cards-search-element">
+                    <h4 class="list-group-item-heading search-subject search-subject-{{kind}} cards-search-element">{{{getCardsetIcons
+                            this.shuffled}}}{{name}}</h4>
+                    <p class="list-group-item-text search-result-info cards-search-element">
+                        {{> cardsetLabels}}
+                        {{#with getAuthor this.owner}}
+                            <span class="hidden-xs pull-right cards-search-element">
+                            {{givenname}}
+                                {{birthname}}
+                        </span>
+                        {{/with}}
+                    </p>
                     {{#with getAuthor this.owner}}
-                        <span class="hidden-xs pull-right cards-search-element">
+                        <p class="list-group-item-text search-result-info visible-xs cards-search-element">
                             {{givenname}}
                             {{birthname}}
-                        </span>
+                        </p>
                     {{/with}}
-                </p>
-                {{#with getAuthor this.owner}}
-                    <p class="list-group-item-text search-result-info visible-xs cards-search-element">
-                        {{givenname}}
-                        {{birthname}}
+                    <p class="list-group-item-text search-result-info cards-search-element">
+                        <a href="/cardset/{{_id}}" target="{{#if isShuffleRoute}}_blank{{/if}}"
+                           class="btn btn-sm btn-raised open-search-result cards-search-element"><span class="flex-content cards-search-element"><i
+                                class="fas fa-sign-in-alt cards-search-element"></i>&nbsp;{{#if this.shuffled}}{{_
+                                "navbar-collapse.search.item.open.repetitorium"}}{{else}}{{_
+                                "navbar-collapse.search.item.open.cardset"}}{{/if}}</span></a>
+                        &nbsp;
+                        {{#if isShuffleRoute}}
+                            {{> filterIndexItemBottomShuffle}}
+                        {{/if}}
                     </p>
-                {{/with}}
-                <p class="list-group-item-text search-result-info cards-search-element">
-                    <a href="/cardset/{{_id}}" target="{{#if isShuffleRoute}}_blank{{/if}}"
-                       class="btn btn-sm btn-raised open-search-result cards-search-element"><span class="flex-content cards-search-element"><i
-                            class="fas fa-sign-in-alt cards-search-element"></i>&nbsp;{{#if this.shuffled}}{{_
-                            "navbar-collapse.search.item.open.repetitorium"}}{{else}}{{_
-                            "navbar-collapse.search.item.open.cardset"}}{{/if}}</span></a>
-                    &nbsp;
-                    {{#if isShuffleRoute}}
-                        {{> filterIndexItemBottomShuffle}}
-                    {{/if}}
-                </p>
-                <p class="list-group-item-text search-content markdeepCardset markdeepCardsetContent cards-search-element">{{#markdeep}}{{description}}{{/markdeep}}</p>
-            </div>
-            <div class="search-result-divider"></div>
-        {{/each}}
+                    <p class="list-group-item-text search-content markdeepCardset markdeepCardsetContent cards-search-element">{{#markdeep}}{{description}}{{/markdeep}}</p>
+                </div>
+                <div class="search-result-divider"></div>
+            {{/each}}
+        </div>
     </div>
 </template>

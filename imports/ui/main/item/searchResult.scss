@@ -1,4 +1,5 @@
 #searchResults {
+  display: block;
   position: absolute;
   float: left;
   @media(max-width: 767px) {
@@ -13,8 +14,6 @@
   }
   padding-top: 0;
   padding-bottom: 0;
-  z-index: 1000;
-  margin: 0 !important;
   background-color: hsla(100, 100%, 100%, 0.8) !important;
 
   .open-search-result {
@@ -22,6 +21,11 @@
     margin-bottom: 0;
   }
 }
+
+#searchResultsContainer {
+  z-index: 1500 !important;
+}
+
 
 #searchResults .search-result-item {
   border-bottom: solid $size_search_results_separator !important;
