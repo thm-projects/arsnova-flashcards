@@ -46,9 +46,6 @@ sonar:
 
 jsdoc:
   stage: build
-  only:
-    - staging
-    - /^[[:digit:]]+?-/
   tags:
     - nodejs
   dependencies: []
