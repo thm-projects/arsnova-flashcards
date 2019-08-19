@@ -2244,7 +2244,7 @@
     "button": "Akzeptieren"
   },
   "mailNotification": {
-    "subjectTitle": "Heute ",
+    "subjectTitle": "– Heute ",
     "subjectSingular1": "ist ",
     "subjectPlural1": "sind ",
     "subjectSingular2": " Karte ",
@@ -2284,7 +2284,7 @@
   },
   "underDevelopment": {
     "title": "We're sorry.",
-    "text": "Dieses Feature wird erst zum Sommersemester 2019 freigeschaltet."
+    "text": "Dieses Feature wird erst zum Sommersemester 2020 freigeschaltet."
   },
   "markdeep": {
     "editor": {
