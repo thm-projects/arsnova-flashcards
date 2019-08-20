@@ -127,6 +127,63 @@ Template.cardNavigationItem.helpers({
 	},
 	isFirstButton: function (index) {
 		return index === 0;
+	},
+	isDisabled: function (contentId, dataType) {
+		let card = Cards.findOne({_id: Session.get('activeCard')}, {
+			fields: {
+				front: 1,
+				back: 1,
+				hint: 1,
+				lecture: 1,
+				bottom: 1,
+				top: 1
+			}
+		});
+		if (card !== undefined) {
+			let string = "";
+			switch (contentId) {
+				case 1:
+					if (card.front !== undefined) {
+						string = card.front.trim();
+					}
+					break;
+				case 2:
+					if (card.back !== undefined) {
+						string = card.back.trim();
+					}
+					break;
+				case 3:
+					if (card.hint !== undefined) {
+						string = card.hint.trim();
+					}
+					break;
+				case 4:
+					if (card.lecture !== undefined) {
+						string = card.lecture.trim();
+					}
+					break;
+				case 5:
+					if (card.top !== undefined) {
+						string = card.top.trim();
+					}
+					break;
+				case 6:
+					if (card.bottom !== undefined) {
+						string = card.bottom.trim();
+					}
+					break;
+			}
+			if (string.length === 0) {
+				if (dataType) {
+					return 1;
+				} else {
+					return {disabled: 'disabled'};
+				}
+			}
+			if (dataType) {
+				return 0;
+			}
+		}
 	}
 });
 
