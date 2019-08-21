@@ -21,6 +21,15 @@ export let CardNavigation = class CardNavigation {
 		$(".cardNavigation > li:nth-child(" + index + ") a").click();
 	}
 
+	static isButtonDisabled (index = 1) {
+		if (Route.isEditMode()) {
+			return false;
+		} else {
+			console.log($(".cardNavigation > li:nth-child(" + index + ") a").data('disabled'));
+			return $(".cardNavigation > li:nth-child(" + index + ") a").data('disabled') === 1;
+		}
+	}
+
 	static switchCardSide (contentId, navigationId, cardStyle, cardSide) {
 		let allowTrigger = true;
 		if (!NavigatorCheck.gotFeatureSupport(5) && Session.get('is3DTransitionActive') && Session.get('is3DActive')) {
@@ -135,27 +144,40 @@ export let CardNavigation = class CardNavigation {
 		return ($(".card-navigation-active").index(".cardNavigation:first a")) + 1;
 	}
 
-	static cardSideNavigation (forward = true) {
+	static cardSideNavigation (isSpacebarEvent = false) {
 		let navigationLength = this.getCardSideNavigationLength();
 		let index = this.getCardSideNavigationIndex();
 		let editorButtonIndex = CardEditor.getEditorButtons().indexOf(CardEditor.getCardNavigationName());
-		if (forward) {
-			if (index >= navigationLength) {
+		let attempts = 0;
+		if (index >= navigationLength) {
+			if (isSpacebarEvent) {
+				CardNavigation.skipAnswer();
+				return;
+			} else {
 				index = 1;
+				while (this.isButtonDisabled(index) && attempts <= navigationLength) {
+					++index;
+					++attempts;
+				}
 				if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
 					++editorButtonIndex;
 				}
-			} else {
-				++index;
 			}
 		} else {
-			if (index <= 1) {
-				index = navigationLength;
-				if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
-					--editorButtonIndex;
+			++index;
+			while (this.isButtonDisabled(index) && attempts <= navigationLength) {
+				if (index >= navigationLength) {
+					if (isSpacebarEvent) {
+						CardNavigation.skipAnswer();
+						return;
+					} else {
+						index = 1;
+						++attempts;
+					}
+				} else {
+					++index;
+					++attempts;
 				}
-			} else {
-				--index;
 			}
 		}
 		if (CardEditor.getEditorButtons()[editorButtonIndex] !== CardEditor.getCardNavigationName() && Route.isEditMode() && !CardVisuals.isFullscreen()) {
@@ -413,7 +435,7 @@ export let CardNavigation = class CardNavigation {
 									if (Route.isPresentationTranscriptReview() && CardNavigation.getCardSideNavigationIndex() === CardNavigation.getCardSideNavigationLength() - 1) {
 										Session.set('isQuestionSide', false);
 									}
-									CardNavigation.cardSideNavigation();
+									CardNavigation.cardSideNavigation(true);
 								} else if (!CardNavigation.isLastCard() && !Route.isPresentationTranscriptReview()) {
 									CardNavigation.skipAnswer();
 								}

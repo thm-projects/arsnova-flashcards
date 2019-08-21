@@ -6,6 +6,7 @@ import {CardNavigation} from "../../../api/cardNavigation";
 import "./item/review.js";
 import "./navigation.html";
 import {Cards} from "../../../api/cards";
+import {CardIndex} from "../../../api/cardIndex";
 
 /*
  * ############################################################################
@@ -129,16 +130,21 @@ Template.cardNavigationItem.helpers({
 		return index === 0;
 	},
 	isDisabled: function (contentId, dataType) {
-		let card = Cards.findOne({_id: Session.get('activeCard')}, {
-			fields: {
-				front: 1,
-				back: 1,
-				hint: 1,
-				lecture: 1,
-				bottom: 1,
-				top: 1
-			}
-		});
+		let card;
+		if (Route.isEditMode()) {
+			card = CardIndex.getEditModeCard()[0];
+		} else {
+			card = Cards.findOne({_id: Session.get('activeCard')}, {
+				fields: {
+					front: 1,
+					back: 1,
+					hint: 1,
+					lecture: 1,
+					bottom: 1,
+					top: 1
+				}
+			});
+		}
 		if (card !== undefined) {
 			let string = "";
 			switch (contentId) {
