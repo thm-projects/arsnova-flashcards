@@ -422,7 +422,7 @@
     "resetFilter": "Hilfe vollständig anzeigen…"
   },
   "webPushNotifications": {
-    "content": "»__cardsetName__«: __cardCount__ Karten bis __deadline__"
+    "content": "»__cardsetName__« __cardCount__ Karten bis __deadline__"
   },
   "notifications": {
     "title": "Nachrichten",
