@@ -548,6 +548,12 @@ $themes: (
     $card_navigation_text: map-get($map, "card_navigation_text");
     $card_navigation_background_hover: map-get($map, "card_navigation_background_hover");
     $card_navigation_text_hover: map-get($map, "card_navigation_text_hover");
+    $card_navigation_empty_content_opacity: map-get($map, "card_navigation_empty_content_opacity");
+    $card_navigation_empty_content_background: map-get($map, "card_navigation_empty_content_background");
+    $card_navigation_empty_content_text: map-get($map, "card_navigation_empty_content_text");
+    $card_navigation_empty_content_opacity_hover: map-get($map, "card_navigation_empty_content_opacity_hover");
+    $card_navigation_empty_content_background_hover: map-get($map, "card_navigation_empty_content_background_hover");
+    $card_navigation_empty_content_text_hover: map-get($map, "card_navigation_empty_content_text_hover");
     //cube colors
     $cube_border: map-get($map, "cube_border");
     //card colors
@@ -3593,6 +3599,17 @@ $themes: (
       background-color: $card_navigation_background_hover !important;
     }
 
+    .switchCardSideEmptyContent {
+      opacity: $card_navigation_empty_content_opacity !important;
+      color: $card_navigation_empty_content_text !important;
+      background-color: $card_navigation_empty_content_background !important;
+    }
+
+    .switchCardSideEmptyContent:hover, .switchCardSideEmptyContent:focus {
+      opacity: $card_navigation_empty_content_opacity_hover !important;
+      color: $card_navigation_empty_content_text_hover !important;
+      background-color: $card_navigation_empty_content_background_hover !important;
+    }
     .card-navigation-active {
       color: $card_navigation_active_text !important;
       background-color: $card_navigation_active_background !important;

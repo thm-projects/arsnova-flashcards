@@ -183,7 +183,7 @@ Template.cardNavigationItem.helpers({
 				if (dataType) {
 					return 1;
 				} else {
-					return {disabled: 'disabled'};
+					return "switchCardSideEmptyContent";
 				}
 			}
 			if (dataType) {
