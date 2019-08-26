@@ -936,7 +936,7 @@ $themes: (
       label {
         color: $form_group_label;
       }
-      .import-type.active {
+      .import-type.active, .export-type.active {
         color: white !important;
         background-color: $primary !important;
       }

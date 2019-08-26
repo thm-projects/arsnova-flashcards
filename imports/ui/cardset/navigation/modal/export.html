@@ -1,0 +1,71 @@
+<template name="cardsetExportForm">
+    <div class="modal fade" id="exportModal" tabindex="-1" role="dialog" aria-labelledby="exportModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                     <span class="modal-icon">
+                        <i class="fas fa-archive"></i> <i class="fas fa-cloud-download-alt"></i>
+                    </span>
+                    {{> mainModalItemCloseIcon}}
+                    <h4 id="exportModalTitle" class="modal-title">{{_ "download-form.download-title"}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div id="exportTypeGroup" class="col-xs-12 form-group btn-group" role="group" data-toggle="buttons">
+                        <div class="col-xs-6 btn-bootstrap-container">
+                            <label id="exportType1"
+                                   class="btn btn-block btn-default btn-raised export-type {{#if exportType
+                                                                                                 1}}active{{/if}}"
+                                   data-type="1">
+                                {{#if exportType 1}}
+                                    <input type="radio" id="tabFocus" name="cardType" value="1" checked
+                                           data-type="1">
+                                {{else}}
+                                    <input type="radio" name="cardType" value="1" data-type="1">
+                                {{/if}}
+                                <span class="flex-content" data-type="1">{{_ "download-form.download-type1"
+                                                                             lastAppTitle=(getLastAppTitle)}}</span>
+                            </label>
+                        </div>
+                        <div class="col-xs-6 btn-bootstrap-container">
+                            <label id="exportType2"
+                                   class="btn btn-block btn-default btn-raised export-type {{#if exportType
+                                                                                                 2}}active{{/if}}"
+                                   data-type="2">
+                                {{#if exportType 2}}
+                                    <input type="radio" id="tabFocus" name="cardType" value="2" checked
+                                           data-type="2">
+                                {{else}}
+                                    <input type="radio" name="cardType" value="2" data-type="2">
+                                {{/if}}
+                                <span class="flex-content" data-type="2">{{_ "download-form.download-type2"}}</span>
+                            </label>
+                        </div>
+                    </div>
+
+                        <hr/>
+                        <h4>{{_ "download-form.download-type"}}</h4>
+                    {{#if exportType 1}}
+                        <p>{{_ "download-form.popover-content"}}</p>
+                    {{else}}
+                        <p>{{_ "download-form.popover-content2"}}</p>
+                    {{/if}}
+                    <br>
+                    <br>
+                </div>
+                <div class="modal-footer">
+                    <button id="exportCards" class="btn btn-success btn-raised">
+                        <span class="flex-content"><i class="fas fa-archive"></i>&nbsp;<i
+                                class="fas fa-cloud-download-alt"></i>&nbsp;{{_ "download-form.download"}}</span>
+                    </button>
+                    <button id="exportCancel" class="btn btn-default btn-raised pull-left" data-dismiss="modal">
+                        <span class="flex-content">{{_ "modal-dialog.cancel"}}</span>
+                    </button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>
