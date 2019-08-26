@@ -31,6 +31,7 @@ export let CardNavigation = class CardNavigation {
 
 	static selectButton (index = 1) {
 		$(".cardNavigation > li:nth-child(" + index + ") a").click();
+		Session.set('activeCardSide', index);
 	}
 
 	static isButtonDisabled (index = 1) {
@@ -200,7 +201,6 @@ export let CardNavigation = class CardNavigation {
 
 	static switchCard (updateLearningMode = 0, answeredCard = 0, answer = 0, ratingData = [0]) {
 		let flashcardCarousel = $('#cardCarousel');
-
 		flashcardCarousel.on('slide.bs.carousel', function () {
 			CardVisuals.resizeFlashcard();
 			CardNavigation.toggleVisibility(false);
@@ -220,6 +220,7 @@ export let CardNavigation = class CardNavigation {
 				Meteor.call("rateTranscript", Router.current().params._id, answeredCard, answer, ratingData);
 			}
 			setTimeout(function () {
+				Session.set('activeCardSide', undefined);
 				CardNavigation.toggleVisibility(true);
 				flashcardCarousel.off('slid.bs.carousel');
 			}, 300);

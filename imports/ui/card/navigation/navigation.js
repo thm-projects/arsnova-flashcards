@@ -7,6 +7,7 @@ import "./item/review.js";
 import "./navigation.html";
 import {Cards} from "../../../api/cards";
 import {CardIndex} from "../../../api/cardIndex";
+Session.setDefault('activeCardSide', undefined);
 
 /*
  * ############################################################################
@@ -42,6 +43,7 @@ Template.cardNavigation.onCreated(function () {
 
 Template.cardNavigationEnabled.events({
 	'click .switchCardSide': function (event) {
+		Session.set('activeCardSide', $(event.target).data('navigation-id') + 1);
 		CardNavigation.switchCardSide($(event.target).data('content-id'), ($(event.target).data('navigation-id') + 1), $(event.target).data('style'), $(event.target).data('side'));
 	}
 });
@@ -53,7 +55,11 @@ Template.cardNavigationEnabled.helpers({
 });
 
 Template.cardNavigationEnabled.onRendered(function () {
-	CardNavigation.selectActiveButton();
+	if ((Route.isEditMode() || Route.isPresentation()) && Session.get('activeCardSide') !== undefined) {
+		CardNavigation.selectButton(Session.get('activeCardSide'));
+	} else {
+		CardNavigation.selectActiveButton();
+	}
 	CardVisuals.setSidebarPosition();
 });
 
