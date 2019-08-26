@@ -17,11 +17,32 @@ let isReset = false;
 
 export let CardNavigation = class CardNavigation {
 
-	static selectButton (index = 1) {
-		$(".cardNavigation > li:nth-child(" + index + ") a").click();
+	static selectActiveButton () {
+		for (let i = 1; i <= this.getCardSideNavigationLength(); i++) {
+			if (!this.isButtonDisabled(i)) {
+				let button = $(".cardNavigation > li:nth-child(" + i + ") a");
+				CardNavigation.switchCardSide(button.data('content-id'), (button.data('navigation-id') + 1), button.data('style'), button.data('side'), false);
+				this.selectButton(i, true);
+				return;
+			}
+		}
+		this.selectButton();
 	}
 
-	static switchCardSide (contentId, navigationId, cardStyle, cardSide) {
+	static selectButton (index = 1) {
+		$(".cardNavigation > li:nth-child(" + index + ") a").click();
+		Session.set('activeCardSide', index);
+	}
+
+	static isButtonDisabled (index = 1) {
+		if (Route.isEditMode()) {
+			return false;
+		} else {
+			return $(".cardNavigation > li:nth-child(" + index + ") a").data('disabled') === 1;
+		}
+	}
+
+	static switchCardSide (contentId, navigationId, cardStyle, cardSide, disableTransition = false) {
 		let allowTrigger = true;
 		if (!NavigatorCheck.gotFeatureSupport(5) && Session.get('is3DTransitionActive') && Session.get('is3DActive')) {
 			allowTrigger = false;
@@ -41,7 +62,7 @@ export let CardNavigation = class CardNavigation {
 				if (!NavigatorCheck.gotFeatureSupport(5)) {
 					Session.set('is3DTransitionActive', 1);
 				}
-				CardVisuals.rotateCube(cardSide);
+				CardVisuals.rotateCube(cardSide, disableTransition);
 			}
 		}
 	}
@@ -135,27 +156,40 @@ export let CardNavigation = class CardNavigation {
 		return ($(".card-navigation-active").index(".cardNavigation:first a")) + 1;
 	}
 
-	static cardSideNavigation (forward = true) {
+	static cardSideNavigation (isSpacebarEvent = false) {
 		let navigationLength = this.getCardSideNavigationLength();
 		let index = this.getCardSideNavigationIndex();
 		let editorButtonIndex = CardEditor.getEditorButtons().indexOf(CardEditor.getCardNavigationName());
-		if (forward) {
-			if (index >= navigationLength) {
+		let attempts = 0;
+		if (index >= navigationLength) {
+			if (isSpacebarEvent) {
+				CardNavigation.skipAnswer();
+				return;
+			} else {
 				index = 1;
+				while (this.isButtonDisabled(index) && attempts <= navigationLength) {
+					++index;
+					++attempts;
+				}
 				if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
 					++editorButtonIndex;
 				}
-			} else {
-				++index;
 			}
 		} else {
-			if (index <= 1) {
-				index = navigationLength;
-				if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
-					--editorButtonIndex;
+			++index;
+			while (this.isButtonDisabled(index) && attempts <= navigationLength) {
+				if (index >= navigationLength) {
+					if (isSpacebarEvent) {
+						CardNavigation.skipAnswer();
+						return;
+					} else {
+						index = 1;
+						++attempts;
+					}
+				} else {
+					++index;
+					++attempts;
 				}
-			} else {
-				--index;
 			}
 		}
 		if (CardEditor.getEditorButtons()[editorButtonIndex] !== CardEditor.getCardNavigationName() && Route.isEditMode() && !CardVisuals.isFullscreen()) {
@@ -167,7 +201,6 @@ export let CardNavigation = class CardNavigation {
 
 	static switchCard (updateLearningMode = 0, answeredCard = 0, answer = 0, ratingData = [0]) {
 		let flashcardCarousel = $('#cardCarousel');
-
 		flashcardCarousel.on('slide.bs.carousel', function () {
 			CardVisuals.resizeFlashcard();
 			CardNavigation.toggleVisibility(false);
@@ -187,6 +220,7 @@ export let CardNavigation = class CardNavigation {
 				Meteor.call("rateTranscript", Router.current().params._id, answeredCard, answer, ratingData);
 			}
 			setTimeout(function () {
+				Session.set('activeCardSide', undefined);
 				CardNavigation.toggleVisibility(true);
 				flashcardCarousel.off('slid.bs.carousel');
 			}, 300);
@@ -413,7 +447,7 @@ export let CardNavigation = class CardNavigation {
 									if (Route.isPresentationTranscriptReview() && CardNavigation.getCardSideNavigationIndex() === CardNavigation.getCardSideNavigationLength() - 1) {
 										Session.set('isQuestionSide', false);
 									}
-									CardNavigation.cardSideNavigation();
+									CardNavigation.cardSideNavigation(true);
 								} else if (!CardNavigation.isLastCard() && !Route.isPresentationTranscriptReview()) {
 									CardNavigation.skipAnswer();
 								}
@@ -425,7 +459,7 @@ export let CardNavigation = class CardNavigation {
 					case 37:
 						if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
 							CardEditor.setLearningGoalLevelIndex(false);
-						} else {
+						} else if (!Route.isEditMode()) {
 							if (CardNavigation.isVisible() && !Route.isBox() && !Route.isMemo()) {
 								if ($('#leftCarouselControl').click()) {
 									$('#showHintModal').modal('hide');
@@ -444,7 +478,7 @@ export let CardNavigation = class CardNavigation {
 					case 39:
 						if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
 							CardEditor.setLearningGoalLevelIndex();
-						} else {
+						} else if (!Route.isEditMode()) {
 							if (CardNavigation.isVisible() && !Route.isBox() && !Route.isMemo()) {
 								if ($('#rightCarouselControl').click()) {
 									$('#showHintModal').modal('hide');
