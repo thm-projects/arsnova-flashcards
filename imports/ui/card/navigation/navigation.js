@@ -6,6 +6,8 @@ import {CardNavigation} from "../../../api/cardNavigation";
 import "./item/review.js";
 import "./navigation.html";
 import {Cards} from "../../../api/cards";
+import {CardIndex} from "../../../api/cardIndex";
+Session.setDefault('activeCardSide', undefined);
 
 /*
  * ############################################################################
@@ -41,6 +43,7 @@ Template.cardNavigation.onCreated(function () {
 
 Template.cardNavigationEnabled.events({
 	'click .switchCardSide': function (event) {
+		Session.set('activeCardSide', $(event.target).data('navigation-id') + 1);
 		CardNavigation.switchCardSide($(event.target).data('content-id'), ($(event.target).data('navigation-id') + 1), $(event.target).data('style'), $(event.target).data('side'));
 	}
 });
@@ -52,7 +55,11 @@ Template.cardNavigationEnabled.helpers({
 });
 
 Template.cardNavigationEnabled.onRendered(function () {
-	CardNavigation.selectButton();
+	if ((Route.isEditMode() || Route.isPresentation()) && Session.get('activeCardSide') !== undefined) {
+		CardNavigation.selectButton(Session.get('activeCardSide'));
+	} else {
+		CardNavigation.selectActiveButton();
+	}
 	CardVisuals.setSidebarPosition();
 });
 
@@ -127,6 +134,68 @@ Template.cardNavigationItem.helpers({
 	},
 	isFirstButton: function (index) {
 		return index === 0;
+	},
+	isDisabled: function (contentId, dataType) {
+		let card;
+		if (Route.isEditMode()) {
+			card = CardIndex.getEditModeCard()[0];
+		} else {
+			card = Cards.findOne({_id: Session.get('activeCard')}, {
+				fields: {
+					front: 1,
+					back: 1,
+					hint: 1,
+					lecture: 1,
+					bottom: 1,
+					top: 1
+				}
+			});
+		}
+		if (card !== undefined) {
+			let string = "";
+			switch (contentId) {
+				case 1:
+					if (card.front !== undefined) {
+						string = card.front.trim();
+					}
+					break;
+				case 2:
+					if (card.back !== undefined) {
+						string = card.back.trim();
+					}
+					break;
+				case 3:
+					if (card.hint !== undefined) {
+						string = card.hint.trim();
+					}
+					break;
+				case 4:
+					if (card.lecture !== undefined) {
+						string = card.lecture.trim();
+					}
+					break;
+				case 5:
+					if (card.top !== undefined) {
+						string = card.top.trim();
+					}
+					break;
+				case 6:
+					if (card.bottom !== undefined) {
+						string = card.bottom.trim();
+					}
+					break;
+			}
+			if (string.length === 0) {
+				if (dataType) {
+					return 1;
+				} else {
+					return "switchCardSideEmptyContent";
+				}
+			}
+			if (dataType) {
+				return 0;
+			}
+		}
 	}
 });
 

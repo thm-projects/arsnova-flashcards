@@ -446,7 +446,7 @@ export let CardVisuals = class CardVisuals {
 		}
 	}
 
-	static getCardSideColor (difficulty, cardType, backgroundStyle, activeCard, forceSide) {
+	static getCardSideColor (difficulty, cardType, backgroundStyle, activeCard, forceSide, card) {
 		let box = "box-";
 		let style;
 		if (Session.get('theme') === "contrast") {
@@ -460,7 +460,7 @@ export let CardVisuals = class CardVisuals {
 			}
 		} else {
 			let cubeSides = CardType.getCardTypeCubeSides(cardType);
-			style = CardType.getActiveSideData(cubeSides, cardType, 1);
+			style = CardType.getActiveSideData(cubeSides, cardType, 1, card);
 		}
 		if (style === "default") {
 			if (!CardType.gotDifficultyLevel(cardType)) {
