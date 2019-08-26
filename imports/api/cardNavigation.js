@@ -17,6 +17,18 @@ let isReset = false;
 
 export let CardNavigation = class CardNavigation {
 
+	static selectActiveButton () {
+		for (let i = 1; i <= this.getCardSideNavigationLength(); i++) {
+			if (!this.isButtonDisabled(i)) {
+				let button = $(".cardNavigation > li:nth-child(" + i + ") a");
+				CardNavigation.switchCardSide(button.data('content-id'), (button.data('navigation-id') + 1), button.data('style'), button.data('side'), false);
+				this.selectButton(i, true);
+				return;
+			}
+		}
+		this.selectButton();
+	}
+
 	static selectButton (index = 1) {
 		$(".cardNavigation > li:nth-child(" + index + ") a").click();
 	}
@@ -25,12 +37,11 @@ export let CardNavigation = class CardNavigation {
 		if (Route.isEditMode()) {
 			return false;
 		} else {
-			console.log($(".cardNavigation > li:nth-child(" + index + ") a").data('disabled'));
 			return $(".cardNavigation > li:nth-child(" + index + ") a").data('disabled') === 1;
 		}
 	}
 
-	static switchCardSide (contentId, navigationId, cardStyle, cardSide) {
+	static switchCardSide (contentId, navigationId, cardStyle, cardSide, disableTransition = false) {
 		let allowTrigger = true;
 		if (!NavigatorCheck.gotFeatureSupport(5) && Session.get('is3DTransitionActive') && Session.get('is3DActive')) {
 			allowTrigger = false;
@@ -50,7 +61,7 @@ export let CardNavigation = class CardNavigation {
 				if (!NavigatorCheck.gotFeatureSupport(5)) {
 					Session.set('is3DTransitionActive', 1);
 				}
-				CardVisuals.rotateCube(cardSide);
+				CardVisuals.rotateCube(cardSide, disableTransition);
 			}
 		}
 	}
