@@ -77,9 +77,9 @@ build:
 
 chimp:
   stage: chimptest
-  only:
-    - /^v[0-9]+/
-    - /^[[:digit:]]+?-/
+  except:
+    - staging
+    - master
   tags:
     - nodejs
   allow_failure: true
