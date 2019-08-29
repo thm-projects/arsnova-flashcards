@@ -16,7 +16,7 @@ if [ -z "$CALLED_FROM_SCRIPT" ] ; then
 fi
 
 if [ -n "$DISPLAY" ] ; then
-     ./node_modules/.bin/chimpy .config/chimp.js --ddp=http://localhost:$PORT --path=$testDir $1 --browser=chrome
+     ./node_modules/.bin/chimpy .config/chimp.js --ddp=http://localhost:$PORT --path=$testDir $1 --browser=firefox
 else
      xvfb-run --server-args="-ac -screen 0 1920x1080x24" chimp .config/chimp.js --ddp=http://localhost:3000 --path=$testDir $1 --browser=firefox
 fi
