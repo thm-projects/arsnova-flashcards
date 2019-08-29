@@ -3,6 +3,7 @@ import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../config/dompurify.js";
 import "/client/thirdParty/markdeep.min.js";
 import * as config from "../config/markdeep.js";
+import {CardType} from "./cardTypes";
 
 MeteorMathJax.sourceUrl = config.MathJaxSourceUrl;
 MeteorMathJax.defaultConfig = config.defaultMathJaxConfig;
@@ -108,5 +109,25 @@ export let MarkdeepContent = class MarkdeepContent {
 		} else {
 			return false;
 		}
+	}
+
+	static exportContent (cards, cardset) {
+		let newline = " \n\n ";
+		let pagebreak = newline + "\\pagebreak" + newline;
+		let content = '<meta charset=\"utf-8\" emacsmode=\"-*- markdown -*-\">\n\n';
+		content += "(#) " + cardset.name + newline;
+		content += pagebreak;
+		let sideOrder = CardType.getCardTypeCubeSides(cardset.cardType);
+		for (let i = 0; i < cards.length; i++) {
+			for (let s = 0; s < sideOrder.length; s++) {
+				let sideContent = cards[i][CardType.getContentIDTranslation(sideOrder[s].contentId)];
+				if (sideContent !== undefined && sideContent.trim().length > 0) {
+					content += "(##) " + cards[i].subject + " (" + TAPi18n.__('card.cardType' + cardset.cardType + '.content' + sideOrder[s].contentId) + ")" + newline;
+					content += sideContent;
+					content += pagebreak;
+				}
+			}
+		}
+		return content + '<!-- Markdeep: --><style class=\"fallback\">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src=\"markdeep.min.js\" charset=\"utf-8\"></script><script src=\"https://casual-effects.com/markdeep/latest/markdeep.min.js?\" charset=\"utf-8\"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility=\"visible\")</script>';
 	}
 };

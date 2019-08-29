@@ -4,6 +4,7 @@ import {Template} from "meteor/templating";
 import "./export.html";
 import {Meteor} from "meteor/meteor";
 import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
+import {MarkdeepContent} from "../../../../api/markdeep";
 
 Session.setDefault('exportType', 1);
 /*
@@ -40,10 +41,17 @@ Template.cardsetExportForm.events({
 			if (error) {
 				BertAlertVisuals.displayBertAlert(TAPi18n.__('export.cards.failure'), 'danger', 'growl-top-left');
 			} else {
-				let exportData = new Blob([result], {
-					type: "application/json"
-				});
-				saveAs(exportData, TAPi18n.__('export.filename.export') + "_" + TAPi18n.__('export.filename.cards') + "_" + name + moment().format('_YYYY_MM_DD') + ".json");
+				if (Session.get('exportType') === 1) {
+					let exportData = new Blob([result], {
+						type: "application/json"
+					});
+					saveAs(exportData, TAPi18n.__('export.filename.export') + "_" + TAPi18n.__('export.filename.cards') + "_" + name + moment().format('_YYYY_MM_DD') + ".json");
+				} else {
+					let exportData = new Blob([MarkdeepContent.exportContent(JSON.parse(result), Session.get('activeCardset'))], {
+						type: "text/html"
+					});
+					saveAs(exportData, TAPi18n.__('export.filename.export') + "_" + TAPi18n.__('export.filename.cards') + "_" + name + moment().format('_YYYY_MM_DD') + ".md.html");
+				}
 			}
 		});
 	}
