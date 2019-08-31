@@ -54,3 +54,33 @@ Set Selenium Settings
 
 Close Test Browser
     Close Browser
+
+
+Location Should Be
+    [Arguments]    ${url}
+    Wait Until Keyword Succeeds    ${ENV_BROWSER_TIMEOUT} sec
+    ...                            1 sec
+    ...                            SeleniumLibrary.Location Should Be
+    ...                            ${url}
+
+
+Element Should Be Visible
+    [Arguments]    ${locator}
+    Wait Until Keyword Succeeds    ${ENV_BROWSER_TIMEOUT} sec
+    ...                            1 sec
+    ...                            SeleniumLibrary.Element Should Be Visible
+    ...                            ${locator}
+
+
+Go To
+    [Arguments]    ${url}
+    SeleniumLibrary.Go To    ${url}
+
+
+Click Element
+    [Arguments]    ${locator}
+
+    Wait Until Keyword Succeeds    ${ENV_BROWSER_TIMEOUT} sec
+    ...                            1 sec
+    ...                            SeleniumLibrary.Click Element
+    ...                            ${locator}
