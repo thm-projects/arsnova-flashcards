@@ -1,1 +1,0 @@
-{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"meteor.wozniak"},{"v":2,"key":{"user_id":1,"cardset_id":1},"name":"user_id_1_cardset_id_1","ns":"meteor.wozniak"}],"uuid":"31f2fdaaf50a431ea4d037010286abd2"}

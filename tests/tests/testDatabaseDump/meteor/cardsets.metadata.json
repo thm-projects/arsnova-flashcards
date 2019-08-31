@@ -1,1 +1,0 @@
-{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"meteor.cardsets"},{"v":2,"key":{"name":1,"owner":1,"kind":1,"shuffled":1,"cardType":1,"difficulty":1,"wordcloud":1,"learningActive":1},"name":"name_1_owner_1_kind_1_shuffled_1_cardType_1_difficulty_1_wordcloud_1_learningActive_1","ns":"meteor.cardsets"}],"uuid":"4053189f4d8c4dfebf93b1b657231973"}
