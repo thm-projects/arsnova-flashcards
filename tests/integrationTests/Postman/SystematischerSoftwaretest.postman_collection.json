@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "03b04bbd-1e17-4dd3-8fb7-ea53f7d9d490",
+		"name": "Systematischer Softwaretest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Fetch_Scripts",
+			"item": [
+				{
+					"name": "Get Meteor JS Script",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f685ca75-8921-482c-b953-7f2ec4f3d19a",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host_url}}/packages/meteor.js",
+							"host": [
+								"{{host_url}}"
+							],
+							"path": [
+								"packages",
+								"meteor.js"
+							]
+						},
+						"description": "Fetches the meteor script from the static content of the server."
+					},
+					"response": []
+				},
+				{
+					"name": "Get meteor base script",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "610a120e-640e-4067-9d34-3f3896d6ff8e",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host_url}}/packages/meteor-base.js",
+							"host": [
+								"{{host_url}}"
+							],
+							"path": [
+								"packages",
+								"meteor-base.js"
+							]
+						},
+						"description": "Fetches the meteor base script from the static content of the backend"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
