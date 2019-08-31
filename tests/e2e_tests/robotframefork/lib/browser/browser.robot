@@ -93,3 +93,13 @@ Location Should Contain
     ...                            1 sec
     ...                            SeleniumLibrary.Location Should Contain
     ...                            ${expected}
+
+
+Input Text
+    [Arguments]    ${locator}    ${text}
+
+    Wait Until Keyword Succeeds    ${ENV_BROWSER_TIMEOUT} sec
+    ...                            1 sec
+    ...                            SeleniumLibrary.Input Text
+    ...                            ${locator}
+    ...                            ${text}
