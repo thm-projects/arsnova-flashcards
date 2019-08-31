@@ -158,19 +158,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host_url}}/packages/modules.js?hash=bf878762a1eba4159c029529367e434f2d45075e",
+							"raw": "{{host_url}}/packages/modules.js",
 							"host": [
 								"{{host_url}}"
 							],
 							"path": [
 								"packages",
 								"modules.js"
-							],
-							"query": [
-								{
-									"key": "hash",
-									"value": "bf878762a1eba4159c029529367e434f2d45075e"
-								}
 							]
 						}
 					},
@@ -196,19 +190,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host_url}}/packages/modern-browsers.js?hash=54726531b4795563b9a80c7b5a0cd309bbcf0864",
+							"raw": "{{host_url}}/packages/modern-browsers.js",
 							"host": [
 								"{{host_url}}"
 							],
 							"path": [
 								"packages",
 								"modern-browsers.js"
-							],
-							"query": [
-								{
-									"key": "hash",
-									"value": "54726531b4795563b9a80c7b5a0cd309bbcf0864"
-								}
 							]
 						}
 					},
