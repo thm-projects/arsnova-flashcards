@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "03b04bbd-1e17-4dd3-8fb7-ea53f7d9d490",
+		"_postman_id": "e112e873-9226-4ed0-b8a0-c4edff42875d",
 		"name": "Systematischer Softwaretest",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,7 +9,7 @@
 			"name": "Fetch_Scripts",
 			"item": [
 				{
-					"name": "Get Meteor JS Script",
+					"name": "Get meteor.js",
 					"event": [
 						{
 							"listen": "test",
@@ -27,10 +27,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{host_url}}/packages/meteor.js",
 							"host": [
@@ -46,7 +42,7 @@
 					"response": []
 				},
 				{
-					"name": "Get meteor base script",
+					"name": "Get meteor-base.js",
 					"event": [
 						{
 							"listen": "test",
@@ -64,10 +60,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{host_url}}/packages/meteor-base.js",
 							"host": [
@@ -79,6 +71,498 @@
 							]
 						},
 						"description": "Fetches the meteor base script from the static content of the backend"
+					},
+					"response": []
+				},
+				{
+					"name": "Get mobile-experience.js",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6a64f762-1749-40d7-8b64-99b042d6ce59",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}/packages/mobile-experience.js",
+							"host": [
+								"{{host_url}}"
+							],
+							"path": [
+								"packages",
+								"mobile-experience.js"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get modules-runtime.js",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5a83377c-ba46-4801-b8d5-aebd782e0952",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}/packages/mobile-experience.js",
+							"host": [
+								"{{host_url}}"
+							],
+							"path": [
+								"packages",
+								"mobile-experience.js"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get modules.js",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4d329a81-130e-43bd-b4ea-9e78864bb6b6",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}/packages/modules.js?hash=bf878762a1eba4159c029529367e434f2d45075e",
+							"host": [
+								"{{host_url}}"
+							],
+							"path": [
+								"packages",
+								"modules.js"
+							],
+							"query": [
+								{
+									"key": "hash",
+									"value": "bf878762a1eba4159c029529367e434f2d45075e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get modern-browsers.js",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4658dbd0-f534-4a90-87ad-96fbb77530ae",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}/packages/modern-browsers.js?hash=54726531b4795563b9a80c7b5a0cd309bbcf0864",
+							"host": [
+								"{{host_url}}"
+							],
+							"path": [
+								"packages",
+								"modern-browsers.js"
+							],
+							"query": [
+								{
+									"key": "hash",
+									"value": "54726531b4795563b9a80c7b5a0cd309bbcf0864"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get babel-compiler.js",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4658dbd0-f534-4a90-87ad-96fbb77530ae",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}/packages/babel-compiler.js",
+							"host": [
+								"{{host_url}}"
+							],
+							"path": [
+								"packages",
+								"babel-compiler.js"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ecmascript.js",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4658dbd0-f534-4a90-87ad-96fbb77530ae",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}/packages/ecmascript.js",
+							"host": [
+								"{{host_url}}"
+							],
+							"path": [
+								"packages",
+								"ecmascript.js"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ecmascript-runtime.js",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4658dbd0-f534-4a90-87ad-96fbb77530ae",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}/packages/ecmascript-runtime.js",
+							"host": [
+								"{{host_url}}"
+							],
+							"path": [
+								"packages",
+								"ecmascript-runtime.js"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get babel-runtime.js",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4658dbd0-f534-4a90-87ad-96fbb77530ae",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}/packages/babel-runtime.js",
+							"host": [
+								"{{host_url}}"
+							],
+							"path": [
+								"packages",
+								"babel-runtime.js"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get promise.js",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4658dbd0-f534-4a90-87ad-96fbb77530ae",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}/packages/promise.js",
+							"host": [
+								"{{host_url}}"
+							],
+							"path": [
+								"packages",
+								"promise.js"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get fetch.js",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4658dbd0-f534-4a90-87ad-96fbb77530ae",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}/packages/fetch.js",
+							"host": [
+								"{{host_url}}"
+							],
+							"path": [
+								"packages",
+								"fetch.js"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get dynamic-import.js",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4658dbd0-f534-4a90-87ad-96fbb77530ae",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}/packages/dynamic-import.js",
+							"host": [
+								"{{host_url}}"
+							],
+							"path": [
+								"packages",
+								"dynamic-import.js"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get es5-shim.js",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4658dbd0-f534-4a90-87ad-96fbb77530ae",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}/packages/dynamic-import.js",
+							"host": [
+								"{{host_url}}"
+							],
+							"path": [
+								"packages",
+								"dynamic-import.js"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ecmascript-runtime-client.js",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4658dbd0-f534-4a90-87ad-96fbb77530ae",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}/packages/ecmascript-runtime-client.js",
+							"host": [
+								"{{host_url}}"
+							],
+							"path": [
+								"packages",
+								"ecmascript-runtime-client.js"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get base64.js",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4658dbd0-f534-4a90-87ad-96fbb77530ae",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}/packages/base64.js",
+							"host": [
+								"{{host_url}}"
+							],
+							"path": [
+								"packages",
+								"base64.js"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ejson.js",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4658dbd0-f534-4a90-87ad-96fbb77530ae",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host_url}}/packages/ejson.js",
+							"host": [
+								"{{host_url}}"
+							],
+							"path": [
+								"packages",
+								"ejson.js"
+							]
+						}
 					},
 					"response": []
 				}
