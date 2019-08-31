@@ -50,4 +50,3 @@ if [ -z "$MONGO_HOST" ]; then
 elif [ -z "$MONGO_PORT" ]; then
 	MONGO_PORT=27017
 fi
-
