@@ -84,3 +84,12 @@ Click Element
     ...                            1 sec
     ...                            SeleniumLibrary.Click Element
     ...                            ${locator}
+
+
+Location Should Contain
+    [Arguments]    ${expected}
+
+    Wait Until Keyword Succeeds    ${ENV_BROWSER_TIMEOUT} sec
+    ...                            1 sec
+    ...                            SeleniumLibrary.Location Should Contain
+    ...                            ${expected}
