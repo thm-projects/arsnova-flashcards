@@ -4,7 +4,7 @@ Suite Setup    Custom Suite Setup
 
 *** Keywords ***
 Custom Suite Setup
-
+    Check Environment Variables
 
 
 Check Environment Variables

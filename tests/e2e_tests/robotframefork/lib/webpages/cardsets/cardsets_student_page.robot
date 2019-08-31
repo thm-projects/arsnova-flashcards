@@ -12,3 +12,8 @@ Cardsets Page Of Student Is Shown
 
     Location Should Contain    /cardsets
     Element Should Be Visible    //*[@id="useCasesModal"]/div/div/div[2]/table/tbody/tr[1]/td/div/div/button[1]
+
+
+Close Cardset Page Overlay
+    [Documentation]    Closes the overlay mostly shown after login on the cardsets page
+    Click Element    //*[@id="useCasesModal"]/div/div/div[1]/a
