@@ -1,0 +1,7 @@
+reports/
+doc/
+
+!doc/.gitkeep
+!reports/.gitkeep
+*.pyc
+*.png
