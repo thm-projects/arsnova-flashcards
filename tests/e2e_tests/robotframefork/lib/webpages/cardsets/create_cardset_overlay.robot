@@ -6,7 +6,7 @@ Resource    browser/browser.robot
 
 
 *** Keywords ***
-Cardsets Page Is Shown
+Create Cardset Overlay Page Is Shown
     [Documentation]    Validates that the Create Card Set Overlay is shown in the browser.
     ...                Will throw an error otherwise.
 
@@ -33,7 +33,7 @@ Open Card Set Type Dropdown On Create Card Set Overlay
     Click Element    ${dropdown_locator}
 
 
-Select Card Set Type Course Unit On Create Card Set Overlay
+Select Card Set Type Learning Unit On Create Card Set Overlay
     ${selector}=    Set Variable    //*[@id="setCardsetFormModal"]/div/div/div[2]/div/div[1]/div[2]/div/ul/li[1]
     Click Element    ${selector}
 

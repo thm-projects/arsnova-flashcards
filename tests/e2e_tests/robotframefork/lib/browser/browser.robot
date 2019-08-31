@@ -103,3 +103,12 @@ Input Text
     ...                            SeleniumLibrary.Input Text
     ...                            ${locator}
     ...                            ${text}
+
+
+Get Text
+    [Arguments]    ${locator}
+
+    Wait Until Keyword Succeeds    ${ENV_BROWSER_TIMEOUT} sec
+    ...                            1 sec
+    ...                            SeleniumLibrary.Get Text
+    ...                            ${locator}
