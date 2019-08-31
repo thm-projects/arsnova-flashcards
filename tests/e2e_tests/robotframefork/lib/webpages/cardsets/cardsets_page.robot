@@ -6,7 +6,7 @@ Resource    browser/browser.robot
 
 
 *** Keywords ***
-Cardsets Page Of Student Is Shown
+Cardsets Page Is Shown
     [Documentation]    Validates that the Homepage is shown in the browser.
     ...                Will throw an error otherwise.
 

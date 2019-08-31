@@ -4,7 +4,8 @@ Documentation    Authentication E2E-Tests for ARSNova Cards. Includes Login- and
 
 Resource    browser/browser.robot
 Resource    webpages/homepage/homepage.robot
-Resource    webpages/cardsets/cardsets_student_page.robot
+Resource    webpages/cardsets/cardsets_page.robot
+Resource    webpages/navpar/navbar.robot
 
 Test Setup       Custom Test Setup
 Test Teardown    Close Test Browser
@@ -17,7 +18,60 @@ Login As THM CAS Student Test
     Open Role Selection On Home Page
     Select THM Student CAS Role On Home Page
     Click Login With Role Selection Button On Home Page
-    Cardsets Page Of Student Is Shown
+    Cardsets Page Is Shown
+
+
+Logout As THM CAS Student Test
+    Open Role Selection On Home Page
+    Select THM Student CAS Role On Home Page
+    Click Login With Role Selection Button On Home Page
+
+    Cardsets Page Is Shown
+
+    Close Cardset Page Overlay
+    Click Logout Button On Navbar
+
+    Home Page Is Shown
+
+
+Login As THM Teacher Test
+    Open Role Selection On Home Page
+    Select THM Teacher Option Role On Home Page
+    Click Login With Role Selection Button On Home Page
+    Cardsets Page Is Shown
+
+
+Logout As THM Teacher Test
+    Open Role Selection On Home Page
+    Select THM Teacher Option Role On Home Page
+    Click Login With Role Selection Button On Home Page
+
+    Cardsets Page Is Shown
+
+    Close Cardset Page Overlay
+    Click Logout Button On Navbar
+
+    Home Page Is Shown
+
+
+Login As Administrator Test
+    Open Role Selection On Home Page
+    Select Admin Role On Home Page
+    Click Login With Role Selection Button On Home Page
+    Cardsets Page Is Shown
+
+
+Logout As Administrator Test
+    Open Role Selection On Home Page
+    Select Admin Role On Home Page
+    Click Login With Role Selection Button On Home Page
+
+    Cardsets Page Is Shown
+
+    Close Cardset Page Overlay
+    Click Logout Button On Navbar
+
+    Home Page Is Shown
 
 
 *** Keywords ***
