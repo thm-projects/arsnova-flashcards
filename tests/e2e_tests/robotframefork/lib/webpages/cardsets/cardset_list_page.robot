@@ -27,6 +27,12 @@ Click Create New Card Set On Cardset List Page
     Click Element    ${button_locator}
 
 
+Get First Card Set Label In Cardset List On Card Set List Page
+    ${first_locator}=    Set Variable    cardsetLink0
+    ${text}=             Get Text    ${first_locator}
+    [Return]    ${text}
+
+
 Click First Card Set On Card Set List Page
     ${first_locator}=    Set Variable    cardsetLink0
     Click Element    ${first_locator}

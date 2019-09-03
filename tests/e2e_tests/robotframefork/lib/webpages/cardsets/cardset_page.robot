@@ -13,3 +13,13 @@ Cardset Page Of Cardset With Label "${label}" Is Shown
     Wait Until Element Contains     ${card_set_label_locator}    ${label}
     ${actual_label}=    Get Text    ${card_set_label_locator}
     Should Be Equal As Strings      ${label}    ${actual_label}
+
+
+Click Create New Card On Cardset Page
+    ${create_new_card_locator}=    Set Variable    newCardBtn
+    Click Element    ${create_new_card_locator}
+
+
+Click Cards Preview Button On Cardset Page
+    ${prev_button_locator}=    Set Variable    //*[@id="cardsetInfoDetail"]/div/div[2]/div[1]/button[1]
+    Click Element    ${prev_button_locator}
