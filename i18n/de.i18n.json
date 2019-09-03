@@ -463,6 +463,22 @@
     "download-type": "Dateiformat",
     "download-type1": "🍅__lastAppTitle__",
     "download-type2": "Markdeep",
+    "card-sides-table": {
+      "head": {
+        "side": "Seite",
+        "count": "Anzahl",
+        "type": "Typ"
+      },
+      "body": {
+        "count": "__count__",
+        "type": {
+          "question": "Frage",
+          "answer": "Antwort",
+          "main-answer": "Hauptantwort",
+          "misc": ""
+        }
+      }
+    },
     "download": "Exportieren"
   },
   "confirm-form": {

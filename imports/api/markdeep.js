@@ -111,18 +111,24 @@ export let MarkdeepContent = class MarkdeepContent {
 		}
 	}
 
-	static exportContent (cards, cardset) {
+	static exportContent (cards, cardset, whitelist) {
 		let newline = " \n\n ";
 		let pagebreak = newline + "\\pagebreak" + newline;
 		let content = '<meta charset=\"utf-8\" emacsmode=\"-*- markdown -*-\">\n\n';
 		content += "(#) " + cardset.name + newline;
 		content += pagebreak;
 		let sideOrder = CardType.getCardTypeCubeSides(cardset.cardType);
+		let filteredSides = [];
+		for (let i = 0; i < sideOrder.length; i++) {
+			if (whitelist.includes(sideOrder[i].contentId)) {
+				filteredSides.push(sideOrder[i]);
+			}
+		}
 		for (let i = 0; i < cards.length; i++) {
-			for (let s = 0; s < sideOrder.length; s++) {
-				let sideContent = cards[i][CardType.getContentIDTranslation(sideOrder[s].contentId)];
+			for (let s = 0; s < filteredSides.length; s++) {
+				let sideContent = cards[i][CardType.getContentIDTranslation(filteredSides[s].contentId)];
 				if (sideContent !== undefined && sideContent.trim().length > 0) {
-					content += "(##) " + cards[i].subject + " (" + TAPi18n.__('card.cardType' + cardset.cardType + '.content' + sideOrder[s].contentId) + ")" + newline;
+					content += "(##) " + cards[i].subject + " (" + TAPi18n.__('card.cardType' + cardset.cardType + '.content' + filteredSides[s].contentId) + ")" + newline;
 					content += sideContent;
 					content += pagebreak;
 				}
