@@ -36,6 +36,9 @@ if [ "$?" != "0" ]; then
     exit $?
 fi
 
+echo "Checking server availability"
+docker exec -t "${DOCKER_CONTAINER_NAME}" "/bin/bash" "./check_server_availability.sh" "http://localhost:3000" "60" "1"
+
 echo "Running E2E-Tests inside docker image"
 docker exec -t "${DOCKER_CONTAINER_NAME}" \
     robot -d "tests/e2e_tests/robotframefork/reports/e2e_tests" \
@@ -61,6 +64,6 @@ echo "You can view the testresults in: '${TEST_REPORTS_DIR}'"
 echo "Cleaning up docker space"
 docker rmi -f ${DOCKER_IMAGE_NAME} > /dev/null 2>&1
 docker rm -f ${DOCKER_CONTAINER_NAME} > /dev/null 2>&1
-docker image prune
+docker image prune -f
 
 exit "${TEST_STATUS}"
