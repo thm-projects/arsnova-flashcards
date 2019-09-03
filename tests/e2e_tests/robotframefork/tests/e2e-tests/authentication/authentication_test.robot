@@ -4,7 +4,7 @@ Documentation    Authentication E2E-Tests for ARSNova Cards. Includes Login- and
 
 Resource    browser/browser.robot
 Resource    webpages/homepage/homepage.robot
-Resource    webpages/cardsets/cardsets_page.robot
+Resource    webpages/cardsets/cardset_list_page.robot
 Resource    webpages/navpar/navbar.robot
 Resource    utility/testdata.robot
 
@@ -19,7 +19,7 @@ Login As THM CAS Student Test
     Open Role Selection On Home Page
     Select THM Student CAS Role On Home Page
     Click Login With Role Selection Button On Home Page
-    Cardsets Page Is Shown
+    Cardset List Page Is Shown
 
 
 Logout As THM CAS Student Test
@@ -27,9 +27,9 @@ Logout As THM CAS Student Test
     Select THM Student CAS Role On Home Page
     Click Login With Role Selection Button On Home Page
 
-    Cardsets Page Is Shown
+    Cardset List Page Is Shown
 
-    Close Cardset Page Overlay
+    Close Cardset List Page Overlay
     Click Logout Button On Navbar
 
     Home Page Is Shown
@@ -39,7 +39,7 @@ Login As THM Teacher Test
     Open Role Selection On Home Page
     Select THM Teacher Option Role On Home Page
     Click Login With Role Selection Button On Home Page
-    Cardsets Page Is Shown
+    Card Set List Page Is Shown
 
 
 Logout As THM Teacher Test
@@ -47,9 +47,9 @@ Logout As THM Teacher Test
     Select THM Teacher Option Role On Home Page
     Click Login With Role Selection Button On Home Page
 
-    Cardsets Page Is Shown
+    Cardset List Page Is Shown
 
-    Close Cardset Page Overlay
+    Close Cardset List Page Overlay
     Click Logout Button On Navbar
 
     Home Page Is Shown
@@ -59,7 +59,7 @@ Login As Administrator Test
     Open Role Selection On Home Page
     Select Admin Role On Home Page
     Click Login With Role Selection Button On Home Page
-    Cardsets Page Is Shown
+    Cardset List Page Is Shown
 
 
 Logout As Administrator Test
@@ -67,9 +67,9 @@ Logout As Administrator Test
     Select Admin Role On Home Page
     Click Login With Role Selection Button On Home Page
 
-    Cardsets Page Is Shown
+    Cardset List Page Is Shown
 
-    Close Cardset Page Overlay
+    Close Cardset List Page Overlay
     Click Logout Button On Navbar
 
     Home Page Is Shown

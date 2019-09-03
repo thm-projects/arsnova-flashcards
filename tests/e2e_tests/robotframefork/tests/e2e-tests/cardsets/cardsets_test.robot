@@ -7,7 +7,7 @@ Resource    browser/browser.robot
 Resource    webpages/homepage/homepage.robot
 Resource    webpages/cardsets/cardset_page.robot
 Resource    webpages/cardsets/create_cardset_overlay.robot
-Resource    webpages/cardsets/cardsets_page.robot
+Resource    webpages/cardsets/cardset_list_page.robot
 Resource    webpages/navpar/navbar.robot
 
 Test Setup       Custom Test Setup
@@ -27,9 +27,9 @@ Create Learning Unit Cardset Test
     Select THM Student CAS Role On Home Page
     Click Login With Role Selection Button On Home Page
 
-    Cardsets Page Is Shown
-    Close Cardset Page Overlay
-    Click Create New Card Index On Personal Cardsets Page
+    Card Set List Page Is Shown
+    Close Cardset List Page Overlay
+    Click Create New Card Set On Cardset List Page
 
     Create Cardset Overlay Page Is Shown
     Enter Card Set Label "${learning_unit_cardset_label}" On Create Card Set Overlay
@@ -46,9 +46,9 @@ Create Task Cardset Test
     Select THM Student CAS Role On Home Page
     Click Login With Role Selection Button On Home Page
 
-    Cardsets Page Is Shown
-    Close Cardset Page Overlay
-    Click Create New Card Index On Personal Cardsets Page
+    Card Set List Page Is Shown
+    Close Cardset List Page Overlay
+    Click Create New Card Set On Cardset List Page
 
     Create Cardset Overlay Page Is Shown
     Enter Card Set Label "${task_cardset_label}" On Create Card Set Overlay

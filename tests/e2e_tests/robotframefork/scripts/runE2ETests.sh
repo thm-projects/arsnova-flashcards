@@ -14,5 +14,5 @@ robot -d tests/e2e_tests/robotframefork/reports/arsNovaCards/ \
   -v ENV_DEBUG_MODE:"True" \
   -v ENV_CARDS_URL:"http://localhost:3000" \
   -P tests/e2e_tests/robotframefork/lib \
-  -i authentication \
+  -i cardsets \
   tests/e2e_tests/robotframefork/tests
