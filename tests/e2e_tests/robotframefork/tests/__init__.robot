@@ -15,5 +15,4 @@ Check Environment Variables
     Variable Should Exist    ${ENV_BROWSER_TIMEOUT}    ERROR: You forgot to specify ENV_BROWSER_TIMEOUT in the environment variables, Please pass using -v var:value in the command line
     Variable Should Exist    ${ENV_CARDS_URL}    ERROR: You forgot to specify ENV_CARDS_URL in the environment variables, Please pass using -v var:value in the command line
 
-    Variable Should Exist    ${ENV_DUMP_TESTDB_PATH}    ERROR: You forgot to specify ENV_DUMP_TESTDB_PATH in the environment variables, Please pass using -v var:value in the command line
     Variable Should Exist    ${ENV_LOAD_TESTDB_PATH}    ERROR: You forgot to specify ENV_LOAD_TESTDB_PATH in the environment variables, Please pass using -v var:value in the command line
