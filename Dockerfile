@@ -1,13 +1,12 @@
 FROM ubuntu:18.04
 
+ENV METEOR_ALLOW_SUPERUSER=1
+
 # Copy test files
-COPY . /robotframework
+COPY . /cards
 
 # Make the reports folder available vor mounting
 VOLUME /robotframework/reports
-
-# Set the work dir
-WORKDIR /robotframework
 
 # Install packages
 RUN apt-get update \
@@ -15,7 +14,9 @@ RUN apt-get update \
       python-pip \
       unzip \
       wget \
-      curl
+      curl \
+      git \
+      mongo-tools
 
 # Upgrade pip
 RUN pip install --upgrade pip
@@ -32,6 +33,7 @@ RUN wget --no-verbose https://dl.google.com/linux/direct/google-chrome-stable_cu
 RUN dpkg --install google-chrome-stable_current_amd64.deb; apt-get --fix-broken --assume-yes install
 RUN apt-get install -f
 
+# Install google chrome and google chrome driver
 RUN wget --no-verbose --output-document \
       /tmp/chromedriver_linux64.zip \
       http://chromedriver.storage.googleapis.com/2.44/chromedriver_linux64.zip && \
@@ -39,4 +41,14 @@ RUN wget --no-verbose --output-document \
     chmod +x /opt/chromedriver/chromedriver && \
     ln -fs /opt/chromedriver/chromedriver /usr/local/bin/chromedriver
 
-ENTRYPOINT ["echo", "Robotframework Dockercontainer up and running!"]
+# install meteor
+RUN curl https://install.meteor.com/ | sh
+
+# Set the work dir
+WORKDIR /cards
+
+# Install cards project
+RUN meteor npm install
+
+# Start the server
+ENTRYPOINT ["meteor", "--settings", "settings_debug.json"]

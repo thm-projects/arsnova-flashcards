@@ -1,0 +1,5 @@
+tests/e2e_tests/robotframefork/doc
+tests/e2e_tests/robotframefork/reports/*
+tests/e2e_tests/robotframefork/.gitignore
+tests/e2e_tests/robotframefork/scripts
+node_modules

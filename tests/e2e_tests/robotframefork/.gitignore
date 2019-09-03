@@ -2,6 +2,6 @@ reports/
 doc/
 
 !doc/.gitkeep
-!reports/.gitkeep
+!reports/e2e_tests/.gitkeep
 *.pyc
 *.png
