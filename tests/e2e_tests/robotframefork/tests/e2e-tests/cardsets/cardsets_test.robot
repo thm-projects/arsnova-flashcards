@@ -11,7 +11,7 @@ Resource    webpages/cardsets/cardsets_page.robot
 Resource    webpages/navpar/navbar.robot
 
 Test Setup       Custom Test Setup
-Test Teardown    Close Test Browser
+Test Teardown    Custom Test Teardown
 Force Tags       e2e    cardsets    browser
 
 
@@ -68,4 +68,4 @@ Custom Test Setup
 
 Custom Test Teardown
     Close Test Browser
-    Restore TestDB
+    Load TestDB

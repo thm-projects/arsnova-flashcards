@@ -6,6 +6,7 @@ Suite Setup    Custom Suite Setup
 
 *** Keywords ***
 Custom Suite Setup
+    Load TestDB
     Check Environment Variables
 
 

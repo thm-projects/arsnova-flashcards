@@ -7,12 +7,12 @@ if [ "$CALLER_WORKDIR" != "$EXPECTED_CALLER_WORKDIR" ]; then
     exit -2
 fi
 
-robot -d reports/arsNovaCards/ \
+robot -d tests/e2e_tests/robotframefork/reports/arsNovaCards/ \
   -v ENV_USE_GUI_BROWSER:"True" \
   -v ENV_BROWSER_TIMEOUT:"30" \
   -v ENV_LOAD_TESTDB_PATH:"./tests/loadTestDatabase.sh" \
   -v ENV_DEBUG_MODE:"True" \
   -v ENV_CARDS_URL:"http://localhost:3000" \
-  -P lib/ \
-  -i cardsets \
+  -P tests/e2e_tests/robotframefork/lib \
+  -i authentication \
   tests/e2e_tests/robotframefork/tests

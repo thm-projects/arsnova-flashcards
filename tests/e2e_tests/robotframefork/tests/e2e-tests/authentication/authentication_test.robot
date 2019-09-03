@@ -6,9 +6,10 @@ Resource    browser/browser.robot
 Resource    webpages/homepage/homepage.robot
 Resource    webpages/cardsets/cardsets_page.robot
 Resource    webpages/navpar/navbar.robot
+Resource    utility/testdata.robot
 
 Test Setup       Custom Test Setup
-Test Teardown    Close Test Browser
+Test Teardown    Custom Test Teardown
 
 Force Tags    e2e    authentication    browser
 
@@ -78,3 +79,8 @@ Logout As Administrator Test
 Custom Test Setup
     Open Test Browser
     Go To Home Page
+
+
+Custom Test Teardown
+    Close Test Browser
+    Load TestDB
