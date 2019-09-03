@@ -7,6 +7,9 @@ Resource    browser/browser.robot
 
 *** Keywords ***
 Cardset Page Of Cardset With Label "${label}" Is Shown
-    ${card_set_label_locator}=    Set Variable    cardsetTitle
+    ${card_set_label_locator}=      Set Variable    cardsetTitle
+    Element Should Be Visible       ${card_set_label_locator}
+
+    Wait Until Element Contains     ${card_set_label_locator}    ${label}
     ${actual_label}=    Get Text    ${card_set_label_locator}
-    Should Be Equal As Strings    ${label}    ${actual_label}
+    Should Be Equal As Strings      ${label}    ${actual_label}

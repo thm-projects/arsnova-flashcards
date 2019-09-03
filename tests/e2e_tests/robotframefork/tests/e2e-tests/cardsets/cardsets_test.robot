@@ -10,11 +10,9 @@ Resource    webpages/cardsets/create_cardset_overlay.robot
 Resource    webpages/cardsets/cardsets_page.robot
 Resource    webpages/navpar/navbar.robot
 
-Suite Setup      Load TestDB
 Test Setup       Custom Test Setup
-Test Teardown    Custom Test Teardown
-
-Force Tags    e2e    cardsets    browser
+Test Teardown    Close Test Browser
+Force Tags       e2e    cardsets    browser
 
 
 *** Variables ***

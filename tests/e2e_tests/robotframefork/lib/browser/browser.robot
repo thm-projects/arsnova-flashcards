@@ -53,7 +53,12 @@ Set Selenium Settings
 
 
 Close Test Browser
+    Run Keyword If Test Failed    Check For Debug Mode And Exit If True
     Close Browser
+
+
+Check For Debug Mode And Exit If True
+    Run Keyword If    '${ENV_DEBUG_MODE}'=='True'    Fatal Error    Test execution stopped due to debug mode set!
 
 
 Location Should Be
@@ -108,7 +113,18 @@ Input Text
 Get Text
     [Arguments]    ${locator}
 
+    ${text}=       Wait Until Keyword Succeeds    ${ENV_BROWSER_TIMEOUT} sec
+    ...            1 sec
+    ...            SeleniumLibrary.Get Text
+    ...            ${locator}
+
+    [Return]    ${text}
+
+Wait Until Element Contains
+    [Arguments]    ${locator}    ${text}
+
     Wait Until Keyword Succeeds    ${ENV_BROWSER_TIMEOUT} sec
     ...                            1 sec
-    ...                            SeleniumLibrary.Get Text
+    ...                            SeleniumLibrary.Wait Until Element Contains
     ...                            ${locator}
+    ...                            ${text}
