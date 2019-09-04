@@ -1,0 +1,4 @@
+<testsuite name="Mocha Tests" tests="2" failures="0" errors="0" skipped="0" timestamp="Wed, 04 Sep 2019 13:05:14 GMT" time="0.477">
+<testcase classname="addCard" name="can create a new card" time="0.191"/>
+<testcase classname="addCard" name="should fail without subject" time="0.215"/>
+</testsuite>

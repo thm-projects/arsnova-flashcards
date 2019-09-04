@@ -1,0 +1,824 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for api/cardsetUserlist.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/prettify.css" />
+    <link rel="stylesheet" href="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/index.html">All files</a> api/cardsetUserlist.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0.92% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>1/109</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/50</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/15</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0.96% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>1/104</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {Meteor} from "meteor/meteor";
+import {Leitner, Workload} from "./learned.js";
+import {Cardsets} from "./cardsets.js";
+import {check} from "meteor/check";
+import {getAuthorName} from "./userdata";
+import {Profile} from "./profile";
+import {Bonus} from "./bonus";
+import {ServerStyle} from "./styles";
+import * as config from "../config/bonusForm.js";
+&nbsp;
+function <span class="fstat-no" title="function not covered" >getLearningStatus(</span>learningEnd) {
+<span class="cstat-no" title="statement not covered" >	if (learningEnd.getTime() &gt; new Date().getTime()) {</span>
+<span class="cstat-no" title="statement not covered" >		return TAPi18n.__('set-list.activeLearnphase', {}, ServerStyle.getClientLanguage());</span>
+	} else {
+<span class="cstat-no" title="statement not covered" >		return TAPi18n.__('set-list.inactiveLearnphase', {}, ServerStyle.getClientLanguage());</span>
+	}
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >getCardsetInfo(</span>cardset) {
+<span class="cstat-no" title="statement not covered" >	return [</span>
+		[TAPi18n.__('set-list.cardsetInfoStatic', {}, ServerStyle.getClientLanguage()), ""],
+		[TAPi18n.__('set-list.name', {}, ServerStyle.getClientLanguage()), cardset.name],
+		[TAPi18n.__('modal-dialog.kind', {}, ServerStyle.getClientLanguage()), cardset.kind],
+		[TAPi18n.__('cardset.info.rating', {}, ServerStyle.getClientLanguage()), cardset.rating],
+		[TAPi18n.__('cardset.info.quantity', {}, ServerStyle.getClientLanguage()), cardset.quantity],
+		[TAPi18n.__('cardset.info.author', {}, ServerStyle.getClientLanguage()), getAuthorName(cardset.owner)],
+		[TAPi18n.__('cardset.info.release', {}, ServerStyle.getClientLanguage()), moment(cardset.date).locale(ServerStyle.getClientLanguage()).format('LL')],
+		[TAPi18n.__('cardset.info.dateUpdated', {}, ServerStyle.getClientLanguage()), moment(cardset.dateUpdated).locale(ServerStyle.getClientLanguage()).format('LL')]
+	];
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >getCurrentMaxBonusPoints(</span>cardset) {
+<span class="cstat-no" title="statement not covered" >	if (cardset.workload.bonus.maxPoints === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >		return config.defaultMaxBonusPoints;</span>
+	} else {
+<span class="cstat-no" title="statement not covered" >		return cardset.workload.bonus.maxPoints;</span>
+	}
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >getCurrentMinLearned(</span>cardset) {
+<span class="cstat-no" title="statement not covered" >	if (cardset.workload.bonus.minLearned === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >		return config.defaultMinLearned;</span>
+	} else {
+<span class="cstat-no" title="statement not covered" >		return cardset.workload.bonus.minLearned;</span>
+	}
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >getLearningPhaseInfo(</span>cardset) {
+<span class="cstat-no" title="statement not covered" >	return [</span>
+		["", ""],
+		[TAPi18n.__('set-list.learnphaseInfo', {}, ServerStyle.getClientLanguage()), ""],
+		[TAPi18n.__('set-list.learnphase', {}, ServerStyle.getClientLanguage()), getLearningStatus(cardset.learningEnd)],
+		[TAPi18n.__('cardset.info.workload.bonus.count', {}, ServerStyle.getClientLanguage()), cardset.workload.bonus.count],
+		[TAPi18n.__('set-list.bonusMaxPoints.label', {}, ServerStyle.getClientLanguage()), TAPi18n.__('set-list.bonusMaxPoints.content', {count: getCurrentMaxBonusPoints(cardset)}, ServerStyle.getClientLanguage())],
+		[TAPi18n.__('set-list.bonusMin.label', {}, ServerStyle.getClientLanguage()), TAPi18n.__('set-list.bonusMin.content', {count: getCurrentMinLearned(cardset)}, ServerStyle.getClientLanguage())],
+		[TAPi18n.__('bonus.form.maxWorkload.label', {}, ServerStyle.getClientLanguage()), cardset.maxCards],
+		[TAPi18n.__('bonus.form.daysBeforeReset.label', {}, ServerStyle.getClientLanguage()), cardset.daysBeforeReset],
+		[TAPi18n.__('bonus.form.startDate.label', {}, ServerStyle.getClientLanguage()), moment(cardset.learningStart).locale(ServerStyle.getClientLanguage()).format('LL')],
+		[TAPi18n.__('bonus.form.endDate.label', {}, ServerStyle.getClientLanguage()), moment(cardset.learningEnd).locale(ServerStyle.getClientLanguage()).format('LL')],
+		[TAPi18n.__('bonus.form.registrationPeriod.label', {}, ServerStyle.getClientLanguage()), moment(cardset.registrationPeriod).locale(ServerStyle.getClientLanguage()).format('LL')]
+	];
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >sortByBirthname(</span>data) {
+<span class="cstat-no" title="statement not covered" >	data.sort(<span class="fstat-no" title="function not covered" >fu</span>nction (a, b) {</span>
+		let nameA = <span class="cstat-no" title="statement not covered" >a.birthname.toUpperCase();</span> // ignore upper and lowercase
+		let nameB = <span class="cstat-no" title="statement not covered" >b.birthname.toUpperCase();</span> // ignore upper and lowercase
+<span class="cstat-no" title="statement not covered" >		if (nameA &lt; nameB) {</span>
+<span class="cstat-no" title="statement not covered" >			return -1;</span>
+		}
+<span class="cstat-no" title="statement not covered" >		if (nameA &gt; nameB) {</span>
+<span class="cstat-no" title="statement not covered" >			return 1;</span>
+		}
+&nbsp;
+		// names must be equal
+<span class="cstat-no" title="statement not covered" >		return 0;</span>
+	});
+<span class="cstat-no" title="statement not covered" >	return data;</span>
+}
+&nbsp;
+export function <span class="fstat-no" title="function not covered" >getLearners(</span>data, cardset_id) {
+	let learningDataArray = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >	for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; data.length; i++) {</span>
+		let user = <span class="cstat-no" title="statement not covered" >Meteor.users.find({_id: data[i].user_id}).fetch();</span>
+&nbsp;
+		let filter = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >		for (let l = <span class="cstat-no" title="statement not covered" >1;</span> l &lt;= 6; l++) {</span>
+<span class="cstat-no" title="statement not covered" >			filter.push({</span>
+				cardset_id: cardset_id,
+				user_id: data[i].user_id,
+				box: l
+			});
+		}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		if (user[0].profile.name !== undefined &amp;&amp; !Profile.isCompleted(user[0])) {</span>
+<span class="cstat-no" title="statement not covered" >			user[0].profile.birthname = user[0].profile.name;</span>
+<span class="cstat-no" title="statement not covered" >			user[0].profile.givenname = TAPi18n.__('leitnerProgress.user.missingName', {}, ServerStyle.getClientLanguage());</span>
+<span class="cstat-no" title="statement not covered" >			user[0].email = "";</span>
+		}
+<span class="cstat-no" title="statement not covered" >		if (user[0].profile.name !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >			learningDataArray.push({</span>
+				user_id: user[0]._id,
+				birthname: user[0].profile.birthname,
+				givenname: user[0].profile.givenname,
+				email: user[0].email,
+				box1: Leitner.find(filter[0]).count(),
+				box2: Leitner.find(filter[1]).count(),
+				box3: Leitner.find(filter[2]).count(),
+				box4: Leitner.find(filter[3]).count(),
+				box5: Leitner.find(filter[4]).count(),
+				box6: Leitner.find(filter[5]).count(),
+				mailNotification: user[0].mailNotification,
+				webNotification: user[0].webNotification
+			});
+		}
+	}
+<span class="cstat-no" title="statement not covered" >	return sortByBirthname(learningDataArray);</span>
+}
+&nbsp;
+Meteor.methods({
+	getCSVExport: <span class="fstat-no" title="function not covered" >fu</span>nction (cardset_id, header) {
+<span class="cstat-no" title="statement not covered" >		check(cardset_id, String);</span>
+<span class="cstat-no" title="statement not covered" >		check(header, [String]);</span>
+&nbsp;
+		let cardset = <span class="cstat-no" title="statement not covered" >Cardsets.findOne({_id: cardset_id});</span>
+		let cardsetInfo = <span class="cstat-no" title="statement not covered" >getCardsetInfo(cardset);</span>
+		let learningPhaseInfo = <span class="cstat-no" title="statement not covered" >getLearningPhaseInfo(cardset);</span>
+<span class="cstat-no" title="statement not covered" >		if (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {</span>
+			let content;
+			let colSep = <span class="cstat-no" title="statement not covered" >";";</span> // Separates columns
+			let infoCol = <span class="cstat-no" title="statement not covered" >";;;;;;;;;;;;";</span> // Separates columns
+			let newLine = <span class="cstat-no" title="statement not covered" >"\r\n";</span> //Adds a new line
+			let infoCardsetCounter = <span class="cstat-no" title="statement not covered" >0;</span>
+			let infoCardsetLength = <span class="cstat-no" title="statement not covered" >6;</span>
+			let infoLearningPhaseCounter = <span class="cstat-no" title="statement not covered" >0;</span>
+			let infoLearningPhaseLength = <span class="cstat-no" title="statement not covered" >9;</span>
+<span class="cstat-no" title="statement not covered" >			content = header[6] + colSep + header[7] + colSep + header[8] + colSep + header[10] + colSep;</span>
+<span class="cstat-no" title="statement not covered" >			for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt;= 4; i++) {</span>
+<span class="cstat-no" title="statement not covered" >				content += header[i] + " [" + cardset.learningInterval[i] + "]" + colSep;</span>
+			}
+<span class="cstat-no" title="statement not covered" >			content += header[5] + colSep + header[9] + colSep + colSep + cardsetInfo[infoCardsetCounter++][0] + newLine;</span>
+			let learners = <span class="cstat-no" title="statement not covered" >getLearners(Workload.find({cardset_id: cardset_id, 'leitner.bonus': true}).fetch(), cardset_id);</span>
+<span class="cstat-no" title="statement not covered" >			for (let k = <span class="cstat-no" title="statement not covered" >0;</span> k &lt; learners.length; k++) {</span>
+				let totalCards = <span class="cstat-no" title="statement not covered" >learners[k].box1 + learners[k].box2 + learners[k].box3 + learners[k].box4 + learners[k].box5 + learners[k].box6;</span>
+				let achievedBonus = <span class="cstat-no" title="statement not covered" >Bonus.getAchievedBonus(learners[k].box6, cardset.workload, totalCards);</span>
+<span class="cstat-no" title="statement not covered" >				if (achievedBonus &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >					achievedBonus += " %";</span>
+				} else {
+<span class="cstat-no" title="statement not covered" >					achievedBonus = "0 %";</span>
+				}
+				let box6 = <span class="cstat-no" title="statement not covered" >learners[k].box6;</span>
+				let percentage = <span class="cstat-no" title="statement not covered" >Math.round(box6 / totalCards * 100);</span>
+<span class="cstat-no" title="statement not covered" >				if (percentage &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >					box6 += " [" + percentage + " %]";</span>
+				}
+<span class="cstat-no" title="statement not covered" >				content += learners[k].birthname + colSep + learners[k].givenname + colSep + learners[k].email + colSep + Bonus.getNotificationStatus(learners[k], true) + colSep;</span>
+<span class="cstat-no" title="statement not covered" >				content += learners[k].box1 + colSep + learners[k].box2 + colSep + learners[k].box3 + colSep + learners[k].box4 + colSep + learners[k].box5 + colSep + box6 +  colSep + achievedBonus +  colSep;</span>
+<span class="cstat-no" title="statement not covered" >				if (infoCardsetCounter &lt;= infoCardsetLength) {</span>
+<span class="cstat-no" title="statement not covered" >					content += colSep + cardsetInfo[infoCardsetCounter][0] + colSep + cardsetInfo[infoCardsetCounter++][1];</span>
+				} else <span class="cstat-no" title="statement not covered" >if (infoLearningPhaseCounter &lt;= infoLearningPhaseLength) {</span>
+<span class="cstat-no" title="statement not covered" >					content += colSep + learningPhaseInfo[infoLearningPhaseCounter][0] + colSep + learningPhaseInfo[infoLearningPhaseCounter++][1];</span>
+				}
+<span class="cstat-no" title="statement not covered" >				content += newLine;</span>
+			}
+<span class="cstat-no" title="statement not covered" >			while (infoCardsetCounter &lt;= infoCardsetLength) {</span>
+<span class="cstat-no" title="statement not covered" >				content += infoCol + cardsetInfo[infoCardsetCounter][0] + colSep + cardsetInfo[infoCardsetCounter++][1] + newLine;</span>
+			}
+<span class="cstat-no" title="statement not covered" >			while (infoLearningPhaseCounter &lt;= infoLearningPhaseLength) {</span>
+<span class="cstat-no" title="statement not covered" >				content += infoCol + learningPhaseInfo[infoLearningPhaseCounter][0] + colSep + learningPhaseInfo[infoLearningPhaseCounter++][1] + newLine;</span>
+			}
+<span class="cstat-no" title="statement not covered" >			return content;</span>
+		}
+	},
+	getLearningData: <span class="fstat-no" title="function not covered" >fu</span>nction (cardset_id) {
+<span class="cstat-no" title="statement not covered" >		check(cardset_id, String);</span>
+		let cardset = <span class="cstat-no" title="statement not covered" >Cardsets.findOne({_id: cardset_id});</span>
+<span class="cstat-no" title="statement not covered" >		if (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {</span>
+<span class="cstat-no" title="statement not covered" >			return getLearners(Workload.find({cardset_id: cardset_id, 'leitner.bonus': true}).fetch(), cardset_id);</span>
+		}
+	},
+	getEditors: <span class="fstat-no" title="function not covered" >fu</span>nction (cardset_id) {
+<span class="cstat-no" title="statement not covered" >		check(cardset_id, String);</span>
+&nbsp;
+		let cardset = <span class="cstat-no" title="statement not covered" >Cardsets.findOne({_id: cardset_id});</span>
+		let editorsDataArray = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >		if (Meteor.userId() === cardset.owner || Roles.userIsInRole(Meteor.userId(), ["admin", "editor"])) {</span>
+			let editors = <span class="cstat-no" title="statement not covered" >Meteor.users.find({</span>
+				_id: {$ne: cardset.owner},
+				roles: {$nin: ['admin', 'editor'],$in: ['lecturer']}
+			}).fetch();
+<span class="cstat-no" title="statement not covered" >			for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; editors.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >				editorsDataArray.push({</span>
+					givenname: editors[i].profile.givenname,
+					birthname: editors[i].profile.birthname,
+					roles: editors[i].roles,
+					id: editors[i]._id
+				});
+			}
+		}
+<span class="cstat-no" title="statement not covered" >		return editorsDataArray;</span>
+	},
+	addEditor: <span class="fstat-no" title="function not covered" >fu</span>nction (cardset_id, user_id) {
+<span class="cstat-no" title="statement not covered" >		check(cardset_id, String);</span>
+<span class="cstat-no" title="statement not covered" >		check(user_id, String);</span>
+		let cardset = <span class="cstat-no" title="statement not covered" >Cardsets.findOne({_id: cardset_id});</span>
+<span class="cstat-no" title="statement not covered" >		if (Meteor.userId() === cardset.owner &amp;&amp; user_id !== cardset.owner) {</span>
+<span class="cstat-no" title="statement not covered" >			Cardsets.update(</span>
+				{_id: cardset._id},
+				{
+					$push: {editors: user_id}
+				});
+		}
+<span class="cstat-no" title="statement not covered" >		Leitner.remove({</span>
+			cardset_id: cardset._id,
+			user_id: user_id
+		});
+<span class="cstat-no" title="statement not covered" >		Meteor.call("updateLearnerCount", cardset._id);</span>
+	},
+	removeEditor: <span class="fstat-no" title="function not covered" >fu</span>nction (cardset_id, user_id) {
+<span class="cstat-no" title="statement not covered" >		check(cardset_id, String);</span>
+<span class="cstat-no" title="statement not covered" >		check(user_id, String);</span>
+		let cardset = <span class="cstat-no" title="statement not covered" >Cardsets.findOne({_id: cardset_id});</span>
+<span class="cstat-no" title="statement not covered" >		if (Meteor.userId() === cardset.owner &amp;&amp; user_id !== cardset.owner) {</span>
+<span class="cstat-no" title="statement not covered" >			Cardsets.update(</span>
+				{_id: cardset._id},
+				{
+					$pull: {editors: user_id}
+				});
+		}
+	},
+	leaveEditors: <span class="fstat-no" title="function not covered" >fu</span>nction (cardset_id) {
+<span class="cstat-no" title="statement not covered" >		check(cardset_id, String);</span>
+		let cardset = <span class="cstat-no" title="statement not covered" >Cardsets.findOne({_id: cardset_id});</span>
+<span class="cstat-no" title="statement not covered" >		if (cardset.editors.includes(Meteor.userId())) {</span>
+<span class="cstat-no" title="statement not covered" >			Cardsets.update(</span>
+				{_id: cardset._id},
+				{
+					$pull: {editors: Meteor.userId()}
+				});
+		}
+	},
+	getWordcloudUserName: <span class="fstat-no" title="function not covered" >fu</span>nction (owner_id) {
+<span class="cstat-no" title="statement not covered" >		if (Cardsets.findOne({owner: owner_id, wordcloud: true, visible: true})) {</span>
+<span class="cstat-no" title="statement not covered" >			return Meteor.users.findOne({_id: owner_id}, {</span>
+				fields: {
+					"profile.title": 1,
+					"profile.givenname": 1,
+					"profile.birthname": 1
+				}
+			});
+		}
+	}
+});
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 04 2019 15:34:53 GMT+0200 (CEST)
+</div>
+</div>
+<script src="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/sorter.js"></script>
+</body>
+</html>

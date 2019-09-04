@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for config/icons.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/prettify.css" />
+    <link rel="stylesheet" href="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/index.html">All files</a> config/icons.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>9/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>9/9</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">let footerNavigation = {
+	"agb": "&lt;i class='fas fa-gavel'&gt;&lt;/i&gt;&amp;nbsp;",
+	"backToHome": "&lt;i class='fas fa-home'&gt;&lt;/i&gt;&amp;nbsp;",
+	"datenschutz": "&lt;i class='fas fa-lock'&gt;&lt;/i&gt;&amp;nbsp;",
+	"demo": "&lt;i class='fas fa-tv'&gt;&lt;/i&gt;&amp;nbsp;",
+	"faq": "&lt;i class='fas fa-question-circle'&gt;&lt;/i&gt;&amp;nbsp;",
+	"help": "&lt;i class='fas fa-medkit'&gt;&lt;/i&gt;&amp;nbsp;",
+	"impressum": "&lt;i class='fas fa-gavel'&gt;&lt;/i&gt;&amp;nbsp;",
+	"learning": "&lt;i class='fas fa-graduation-cap'&gt;&lt;/i&gt;&amp;nbsp;",
+	"statistics": "&lt;i class='fas fa-folder-open'&gt;&lt;/i&gt;&amp;nbsp;"
+};
+&nbsp;
+let landingPageNavigation = {
+	"mobileInfo": "&lt;i class='fas fa-info-circle'&gt;&lt;/i&gt;",
+	"wordcloud": "&lt;i class='fas fa-cloud'&gt;&lt;/i&gt;"
+};
+&nbsp;
+//Only used for the active route display on mobile. Will be carried over to desktop after the main template got refactored.
+let topNavigation = {
+	"workload": "&lt;i class='fas fa-graduation-cap'&gt;&lt;/i&gt;&amp;nbsp;",
+	"all": {
+		"all": "&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;",
+		"cardsets": "&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;",
+		"repetitorien": "&lt;span class='hidden-xs'&gt;&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;&lt;i class='fas fa-ellipsis-h'&gt;&lt;/i&gt;&amp;nbsp;&lt;/span&gt;&lt;span class='visible-xs'&gt;&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;&lt;i class='fas fa-ellipsis-h'&gt;&lt;/i&gt;&amp;nbsp;&lt;/span&gt;"
+	},
+	"public": {
+		"public": "&lt;i class='fas fa-folder-open'&gt;&lt;/i&gt;&amp;nbsp;",
+		"cardsets": "&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;",
+		"repetitorien": "&lt;span class='hidden-xs'&gt;&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;&lt;i class='fas fa-ellipsis-h'&gt;&lt;/i&gt;&amp;nbsp;&lt;/span&gt;&lt;span class='visible-xs'&gt;&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;&lt;i class='fas fa-ellipsis-h'&gt;&lt;/i&gt;&amp;nbsp;&lt;/span&gt;"
+	},
+	"personal": {
+		"personal": "&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;",
+		"cardsets": "&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;",
+		"repetitorien": "&lt;span class='hidden-xs'&gt;&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;&lt;i class='fas fa-ellipsis-h'&gt;&lt;/i&gt;&amp;nbsp;&lt;/span&gt;&lt;span class='visible-xs'&gt;&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;&lt;i class='fas fa-ellipsis-h'&gt;&lt;/i&gt;&amp;nbsp;&lt;/span&gt;"
+&nbsp;
+	},
+	"transcripts": {
+		"transcripts": "&lt;i class='fas fa-clipboard'&gt;&lt;/i&gt;&amp;nbsp;",
+		"personal": "&lt;i class='fas fa-clipboard'&gt;&lt;/i&gt;&amp;nbsp;",
+		"bonus": "&lt;i class='fas fa-clipboard'&gt;&lt;/i&gt;&amp;nbsp;"
+	},
+	"profile": "&lt;i class='fas fa-user'&gt;&lt;/i&gt;&amp;nbsp;",
+	"profileOverview": "&lt;i class='fas fa-trophy'&gt;&lt;/i&gt;&amp;nbsp;",
+	"profileBilling": "&lt;i class='fas fa-credit-card'&gt;&lt;/i&gt;&amp;nbsp;",
+	"profileMembership": "&lt;i class='fas fa-users'&gt;&lt;/i&gt;&amp;nbsp;",
+	"profileNotifications": "&lt;i class='fas fa-bell'&gt;&lt;/i&gt;&amp;nbsp;",
+	"profileSettings": "&lt;i class='fas fa-user'&gt;&lt;/i&gt;&amp;nbsp;",
+	"profileRequests": "&lt;i class='fas fa-check'&gt;&lt;/i&gt;&amp;nbsp;",
+	"backend": "&lt;i class='fas fa-server'&gt;&lt;/i&gt;&amp;nbsp;",
+	"useCases": "&lt;i class='fas fa-map-signs'&gt;&lt;/i&gt;",
+	"displayMode": {
+		"wordcloud": "&lt;i class='fas fa-cloud'&gt;&lt;/i&gt;",
+		"list": "&lt;i class='fas fa-table'&gt;&lt;/i&gt;"
+	},
+	"collapse": "&lt;i class='fas fa-hamburger'&gt;&lt;/i&gt;"
+};
+&nbsp;
+let labels = {
+	"lecturerAuthorized": "&lt;i class='fas fa-graduation-cap'&gt;&lt;/i&gt;",
+	"wordcloud": "&lt;i class='fas fa-cloud'&gt;&lt;/i&gt;"
+};
+&nbsp;
+//Only used for the active route display on mobile. Will be carried over to desktop after the main template got refactored.
+let miscNavigation = {
+	"cardset": "&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;",
+	"repetitorium": "&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;&lt;i class='fas fa-ellipsis-h'&gt;&lt;/i&gt;&amp;nbsp;",
+	"progress": "&lt;i class='far fa-chart-bar'&gt;&lt;/i&gt;&amp;nbsp;",
+	"toggleImpressum": "&lt;i class='fas fa-medkit'&gt;&lt;/i&gt;&amp;nbsp;"
+};
+&nbsp;
+let aspectRatio = {
+	"53": "&lt;i class='fas fa-id-card'&gt;&lt;/i&gt;&amp;nbsp;",
+	"169": "&lt;i class='fas fa-desktop'&gt;&lt;/i&gt;&amp;nbsp;",
+	"1610": "&lt;i class='fas fa-desktop'&gt;&lt;/i&gt;&amp;nbsp;",
+	"43": "&lt;i class='fas fa-desktop'&gt;&lt;/i&gt;&amp;nbsp;",
+	"fill": "&lt;i class='fas fa-arrows-alt'&gt;&lt;/i&gt;&amp;nbsp;",
+	"din": "&lt;i class='fas fa-id-card'&gt;&lt;/i&gt;&amp;nbsp;"
+};
+&nbsp;
+let useCasesIcons = {
+	"workload": "&lt;i class='fas fa-graduation-cap'&gt;&lt;/i&gt;&amp;nbsp;",
+	"myCardsets": "&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;",
+	"myRepositories": "&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;&lt;i class='fas fa-ellipsis-h'&gt;&lt;/i&gt;&amp;nbsp;",
+	"myTranscripts": "&lt;i class='fas fa-clipboard'&gt;&lt;/i&gt;&amp;nbsp;",
+	"create": "&lt;i class='fas fa-archive'&gt;&lt;/i&gt;&amp;nbsp;&lt;i class='fas fa-plus'&gt;&lt;/i&gt;&amp;nbsp;",
+	"search": "&lt;i class='fa fas fa-search'&gt;&lt;/i&gt;&amp;nbsp;"
+};
+&nbsp;
+let transcriptIcons = {
+	"ratingPending": '&lt;i class="transcript-rating-pending fas fa-hourglass" data-rating="0"&gt;&lt;/i&gt;',
+	"ratingAccepted": '&lt;i class="transcript-rating-accepted fas fa-check-circle" data-rating="1"&gt;&lt;/i&gt;',
+	"ratingDenied": '&lt;i class="transcript-rating-denied fas fa-times-circle" data-rating="2"&gt;&lt;/i&gt;'
+};
+&nbsp;
+module.exports = {
+	footerNavigation: footerNavigation,
+	topNavigation: topNavigation,
+	miscNavigation,
+	landingPageNavigation,
+	aspectRatio,
+	useCasesIcons,
+	labels,
+	transcriptIcons
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 04 2019 15:34:53 GMT+0200 (CEST)
+</div>
+</div>
+<script src="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/sorter.js"></script>
+</body>
+</html>

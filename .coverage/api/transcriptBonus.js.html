@@ -1,0 +1,1337 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for api/transcriptBonus.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/prettify.css" />
+    <link rel="stylesheet" href="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/index.html">All files</a> api/transcriptBonus.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.83% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>10/207</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0.81% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>1/124</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/24</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">4.98% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>10/201</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {Mongo} from "meteor/mongo";
+import {Meteor} from "meteor/meteor";
+import {Cardsets} from "./cardsets";
+import {UserPermissions} from "./permissions";
+import {SimpleSchema} from "meteor/aldeed:simple-schema";
+import {check} from "meteor/check";
+import {Utilities} from "./utilities";
+import * as config from "../config/transcriptBonus.js";
+import * as icons from "../config/icons.js";
+&nbsp;
+export const TranscriptBonus = new Mongo.Collection("transcriptBonus");
+&nbsp;
+export let TranscriptBonusList = class TranscriptBonusList {
+<span class="fstat-no" title="function not covered" >	st</span>atic addLectureEndTime (transcriptBonus, date) {
+		let hours = <span class="cstat-no" title="statement not covered" >Number(transcriptBonus.lectureEnd.substring(0, 2));</span>
+		let minutes = <span class="cstat-no" title="statement not covered" >Number(transcriptBonus.lectureEnd.substring(3, 5));</span>
+<span class="cstat-no" title="statement not covered" >		return moment(date).add(hours, 'hours').add(minutes, 'minutes');</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic getLatestExpiredDeadline (cardset_id) {
+		let query = <span class="cstat-no" title="statement not covered" >{cardset_id: cardset_id, rating: 0};</span>
+		let lastSubmission = <span class="cstat-no" title="statement not covered" >TranscriptBonus.findOne(query, {sort: {date: -1}});</span>
+<span class="cstat-no" title="statement not covered" >		if (lastSubmission !== undefined) {</span>
+			let hours = <span class="cstat-no" title="statement not covered" >Number(lastSubmission.lectureEnd.substring(0, 2));</span>
+			let minutes = <span class="cstat-no" title="statement not covered" >Number(lastSubmission.lectureEnd.substring(3, 5));</span>
+<span class="cstat-no" title="statement not covered" >			return moment().add(hours, 'hours').add(minutes, 'minutes').subtract(lastSubmission.deadlineEditing, 'hours').toDate();</span>
+		} else {
+<span class="cstat-no" title="statement not covered" >			return undefined;</span>
+		}
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isDeadlineExpired (transcriptBonus, isEditingDeadline = <span class="branch-0 cbranch-no" title="branch not covered" >false)</span> {
+		let deadline;
+<span class="cstat-no" title="statement not covered" >		if (isEditingDeadline) {</span>
+<span class="cstat-no" title="statement not covered" >			deadline = transcriptBonus.deadlineEditing;</span>
+		} else {
+<span class="cstat-no" title="statement not covered" >			deadline = transcriptBonus.deadline;</span>
+		}
+<span class="cstat-no" title="statement not covered" >		return this.addLectureEndTime(transcriptBonus, transcriptBonus.date).add(deadline, 'hours') &lt; new Date();</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic canBeSubmittedToLecture (transcriptBonus, date_id) {
+<span class="cstat-no" title="statement not covered" >		if (transcriptBonus !== undefined &amp;&amp; date_id !== undefined) {</span>
+			let cardset = <span class="cstat-no" title="statement not covered" >Cardsets.findOne(transcriptBonus.cardset_id, {fields: {transcriptBonus: 1}});</span>
+			let startDate = <span class="cstat-no" title="statement not covered" >this.addLectureEndTime(cardset.transcriptBonus, cardset.transcriptBonus.dates[date_id]);</span>
+<span class="cstat-no" title="statement not covered" >			return cardset.transcriptBonus.enabled &amp;&amp; startDate &lt; new Date() &amp;&amp; startDate.add(cardset.transcriptBonus.deadline, 'hours') &gt; new Date();</span>
+		}
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic checkForUpdate (card_id, user_id, transcriptBonusUser, transcriptBonusDatabase = <span class="branch-0 cbranch-no" title="branch not covered" >undefined,</span> date_id = <span class="branch-0 cbranch-no" title="branch not covered" >undefined)</span> {
+<span class="cstat-no" title="statement not covered" >		if (Meteor.isServer) {</span>
+			let transcriptBonusCardset = <span class="cstat-no" title="statement not covered" >Cardsets.findOne(transcriptBonusUser.cardset_id);</span>
+<span class="cstat-no" title="statement not covered" >			if (transcriptBonusDatabase !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >				if (transcriptBonusUser.cardset_id !== transcriptBonusDatabase.cardset_id || transcriptBonusUser.date.getTime() !== transcriptBonusDatabase.date.getTime()) {</span>
+<span class="cstat-no" title="statement not covered" >					if (this.canBeSubmittedToLecture(transcriptBonusUser, date_id)) {</span>
+<span class="cstat-no" title="statement not covered" >						for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; transcriptBonusCardset.transcriptBonus.dates.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >							if (transcriptBonusCardset.transcriptBonus.dates[i].getTime() === transcriptBonusUser.date.getTime()) {</span>
+<span class="cstat-no" title="statement not covered" >								date_id = i;</span>
+<span class="cstat-no" title="statement not covered" >								break;</span>
+							}
+						}
+<span class="cstat-no" title="statement not covered" >						if (date_id === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >							throw new Meteor.Error(TAPi18n.__('transcriptForm.server.notFound', {}, Meteor.user().profile.locale));</span>
+						} else {
+<span class="cstat-no" title="statement not covered" >							Meteor.call("addTranscriptBonus", card_id, transcriptBonusCardset._id, Meteor.userId(), date_id);</span>
+						}
+					} else {
+<span class="cstat-no" title="statement not covered" >						throw new Meteor.Error(TAPi18n.__('transcriptForm.server.notFound', {}, Meteor.user().profile.locale));</span>
+					}
+				}
+			} else {
+<span class="cstat-no" title="statement not covered" >				Meteor.call("addTranscriptBonus", card_id, transcriptBonusUser.cardset_id, Meteor.userId(), date_id);</span>
+			}
+		}
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic getLectureName (transcriptBonus, addLectureName = <span class="branch-0 cbranch-no" title="branch not covered" >true)</span> {
+		let name = <span class="cstat-no" title="statement not covered" >"";</span>
+<span class="cstat-no" title="statement not covered" >		if (addLectureName) {</span>
+<span class="cstat-no" title="statement not covered" >			name += transcriptBonus.name + ": ";</span>
+		}
+<span class="cstat-no" title="statement not covered" >		name += this.getLectureEnd(transcriptBonus, transcriptBonus.date, false);</span>
+<span class="cstat-no" title="statement not covered" >		return name;</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic getLectureEnd (transcriptBonus, date_id) {
+<span class="cstat-no" title="statement not covered" >		if (transcriptBonus.lectureEnd !== undefined) {</span>
+			let lectureEnd = <span class="cstat-no" title="statement not covered" >this.addLectureEndTime(transcriptBonus, date_id);</span>
+<span class="cstat-no" title="statement not covered" >			return TAPi18n.__('transcriptForm.lecture') + ": " + Utilities.getMomentsDate(lectureEnd, false);</span>
+		}
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic getDeadline (transcriptBonus, date_id) {
+<span class="cstat-no" title="statement not covered" >		if (transcriptBonus.lectureEnd !== undefined) {</span>
+			let deadline = <span class="cstat-no" title="statement not covered" >this.addLectureEndTime(transcriptBonus, date_id);</span>
+<span class="cstat-no" title="statement not covered" >			deadline.add(transcriptBonus.deadline, 'hours');</span>
+<span class="cstat-no" title="statement not covered" >			return TAPi18n.__('transcriptForm.deadline.submission') + ": " + Utilities.getMomentsDate(deadline, true, 1);</span>
+		}
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic getDeadlineEditing (transcriptBonus, date_id, displayMode = <span class="branch-0 cbranch-no" title="branch not covered" >0)</span> {
+<span class="cstat-no" title="statement not covered" >		if (transcriptBonus.lectureEnd !== undefined) {</span>
+			let deadlineEditing = <span class="cstat-no" title="statement not covered" >this.addLectureEndTime(transcriptBonus, date_id);</span>
+<span class="cstat-no" title="statement not covered" >			deadlineEditing.add(transcriptBonus.deadlineEditing, 'hours');</span>
+<span class="cstat-no" title="statement not covered" >			switch (displayMode) {</span>
+				case 0:
+<span class="cstat-no" title="statement not covered" >					return TAPi18n.__('transcriptForm.deadline.editing') + ": " + Utilities.getMomentsDate(deadlineEditing, true, 1);</span>
+				case 1:
+<span class="cstat-no" title="statement not covered" >					return Utilities.getMomentsDate(deadlineEditing, true, 2, false);</span>
+				case 2:
+<span class="cstat-no" title="statement not covered" >					return Utilities.getMomentsDate(deadlineEditing, true, 1);</span>
+			}
+		}
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic transformMedian (median) {
+<span class="cstat-no" title="statement not covered" >		if (isNaN(median)) {</span>
+<span class="cstat-no" title="statement not covered" >			return 0;</span>
+		}
+<span class="cstat-no" title="statement not covered" >		if (config.roundTheMedian) {</span>
+<span class="cstat-no" title="statement not covered" >			return Math.round(median);</span>
+		} else {
+<span class="cstat-no" title="statement not covered" >			return median.toFixed(1);</span>
+		}
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic getAchievedBonus (cardset_id, user_id) {
+		let cardset = <span class="cstat-no" title="statement not covered" >Cardsets.findOne({_id: cardset_id}, {fields: {transcriptBonus: 1}});</span>
+<span class="cstat-no" title="statement not covered" >		if (cardset !== undefined) {</span>
+			let query = <span class="cstat-no" title="statement not covered" >{cardset_id: cardset_id, user_id: user_id, rating: 1};</span>
+			let acceptedTranscriptsTotal = <span class="cstat-no" title="statement not covered" >TranscriptBonus.find(query).count();</span>
+<span class="cstat-no" title="statement not covered" >			if (acceptedTranscriptsTotal === 0 || cardset.transcriptBonus.minimumSubmissions === 0) {</span>
+<span class="cstat-no" title="statement not covered" >				return 0;</span>
+			} else {
+				let acceptedTranscripts = <span class="cstat-no" title="statement not covered" >TranscriptBonus.find(query).fetch();</span>
+				let finalScore = <span class="cstat-no" title="statement not covered" >0;</span>
+				let maxScorePerTranscript = <span class="cstat-no" title="statement not covered" >cardset.transcriptBonus.percentage / cardset.transcriptBonus.minimumSubmissions;</span>
+<span class="cstat-no" title="statement not covered" >				for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; acceptedTranscripts.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >					if (acceptedTranscripts[i].stars &gt;= cardset.transcriptBonus.minimumStars) {</span>
+<span class="cstat-no" title="statement not covered" >						finalScore += maxScorePerTranscript;</span>
+					} else {
+<span class="cstat-no" title="statement not covered" >						finalScore += (acceptedTranscripts[i].stars / cardset.transcriptBonus.minimumStars) * maxScorePerTranscript;</span>
+					}
+				}
+<span class="cstat-no" title="statement not covered" >				finalScore = Math.round(finalScore);</span>
+<span class="cstat-no" title="statement not covered" >				if (finalScore &gt;= cardset.transcriptBonus.percentage) {</span>
+<span class="cstat-no" title="statement not covered" >					return cardset.transcriptBonus.percentage;</span>
+				}
+<span class="cstat-no" title="statement not covered" >				return finalScore;</span>
+			}
+		}
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic getBonusTranscriptRating (type = <span class="branch-0 cbranch-no" title="branch not covered" >0)</span> {
+<span class="cstat-no" title="statement not covered" >		switch (type) {</span>
+			case 1:
+<span class="cstat-no" title="statement not covered" >				return icons.transcriptIcons.ratingAccepted;</span>
+			case 2:
+<span class="cstat-no" title="statement not covered" >				return icons.transcriptIcons.ratingDenied;</span>
+			default:
+<span class="cstat-no" title="statement not covered" >				return icons.transcriptIcons.ratingPending;</span>
+		}
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic getSubmissions (cardset_id, user_id, rating) {
+		let query = <span class="cstat-no" title="statement not covered" >{cardset_id: cardset_id, user_id: user_id};</span>
+<span class="cstat-no" title="statement not covered" >		if (rating !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >			query.rating = rating;</span>
+		}
+<span class="cstat-no" title="statement not covered" >		return TranscriptBonus.find(query).count();</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic getStarsData (cardset_id, user_id, type) {
+		let query = <span class="cstat-no" title="statement not covered" >{cardset_id: cardset_id, user_id: user_id};</span>
+<span class="cstat-no" title="statement not covered" >		query.rating = 1;</span>
+<span class="cstat-no" title="statement not covered" >		if (query.stars !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >			delete query.stars;</span>
+		}
+		let transcripts = <span class="cstat-no" title="statement not covered" >TranscriptBonus.find(query, {fields: {stars: 1}}).fetch();</span>
+		let stars = <span class="cstat-no" title="statement not covered" >0;</span>
+<span class="cstat-no" title="statement not covered" >		for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; transcripts.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >			stars += transcripts[i].stars;</span>
+		}
+<span class="cstat-no" title="statement not covered" >		if (type === 1) {</span>
+<span class="cstat-no" title="statement not covered" >			return stars;</span>
+		} else {
+<span class="cstat-no" title="statement not covered" >			if (stars === 0) {</span>
+<span class="cstat-no" title="statement not covered" >				return 0;</span>
+			}
+			let median = <span class="cstat-no" title="statement not covered" >stars / transcripts.length;</span>
+<span class="cstat-no" title="statement not covered" >			if (config.roundTheStarsMedian) {</span>
+<span class="cstat-no" title="statement not covered" >				return Math.round(median);</span>
+			} else {
+<span class="cstat-no" title="statement not covered" >				median = (median).toString().replace('.', ',');</span>
+<span class="cstat-no" title="statement not covered" >				if (median.length &gt; 4) {</span>
+<span class="cstat-no" title="statement not covered" >					return median.substr(0, 4);</span>
+				}
+<span class="cstat-no" title="statement not covered" >				return median;</span>
+			}
+		}
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic getBonusTranscriptTooltip (type = <span class="branch-0 cbranch-no" title="branch not covered" >0)</span> {
+<span class="cstat-no" title="statement not covered" >		switch (type) {</span>
+			case 1:
+<span class="cstat-no" title="statement not covered" >				return TAPi18n.__('cardset.transcriptBonusRating.tooltip.accepted');</span>
+			case 2:
+<span class="cstat-no" title="statement not covered" >				return TAPi18n.__('cardset.transcriptBonusRating.tooltip.denied');</span>
+			default:
+<span class="cstat-no" title="statement not covered" >				return TAPi18n.__('cardset.transcriptBonusRating.tooltip.pending');</span>
+		}
+	}
+};
+&nbsp;
+<span class="missing-if-branch" title="else path not taken" >E</span>if (Meteor.isServer) {
+	Meteor.publish("cardsetTranscriptBonus", <span class="fstat-no" title="function not covered" >fu</span>nction (cardset_id) {
+<span class="cstat-no" title="statement not covered" >		if (this.userId) {</span>
+			let cardset = <span class="cstat-no" title="statement not covered" >Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1}});</span>
+<span class="cstat-no" title="statement not covered" >			if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {</span>
+<span class="cstat-no" title="statement not covered" >				return TranscriptBonus.find({cardset_id: cardset._id});</span>
+			} else {
+<span class="cstat-no" title="statement not covered" >				this.ready();</span>
+			}
+		} else {
+<span class="cstat-no" title="statement not covered" >			this.ready();</span>
+		}
+	});
+	Meteor.publish("cardsetTranscriptMyBonus", <span class="fstat-no" title="function not covered" >fu</span>nction (card_id) {
+<span class="cstat-no" title="statement not covered" >		if (this.userId) {</span>
+			let card = <span class="cstat-no" title="statement not covered" >TranscriptBonus.findOne({card_id: card_id}, {fields: {cardset_id: 1, _id: 1, owner: 1}});</span>
+<span class="cstat-no" title="statement not covered" >			if (UserPermissions.isAdmin() || UserPermissions.isOwner(card.owner)) {</span>
+<span class="cstat-no" title="statement not covered" >				return Cardsets.find({_id: card.cardset_id});</span>
+			} else {
+<span class="cstat-no" title="statement not covered" >				this.ready();</span>
+			}
+		} else {
+<span class="cstat-no" title="statement not covered" >			this.ready();</span>
+		}
+	});
+	Meteor.publish("cardsetTranscriptBonusReview", <span class="fstat-no" title="function not covered" >fu</span>nction (cardset_id, filterID = <span class="branch-0 cbranch-no" title="branch not covered" >undefined)</span> {
+<span class="cstat-no" title="statement not covered" >		if (this.userId) {</span>
+			let cardset = <span class="cstat-no" title="statement not covered" >Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1}});</span>
+<span class="cstat-no" title="statement not covered" >			if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {</span>
+				let latestExpiredDeadline = <span class="cstat-no" title="statement not covered" >TranscriptBonusList.getLatestExpiredDeadline(cardset._id);</span>
+				let query = <span class="cstat-no" title="statement not covered" >{cardset_id: cardset._id, date: {$lt: latestExpiredDeadline}, rating: 0};</span>
+<span class="cstat-no" title="statement not covered" >				if (filterID !== undefined &amp;&amp; filterID !== null) {</span>
+<span class="cstat-no" title="statement not covered" >					query.card_id = filterID;</span>
+				}
+<span class="cstat-no" title="statement not covered" >				return TranscriptBonus.find(query);</span>
+			} else {
+<span class="cstat-no" title="statement not covered" >				this.ready();</span>
+			}
+		} else {
+<span class="cstat-no" title="statement not covered" >			this.ready();</span>
+		}
+	});
+	Meteor.publish("myTranscriptBonus", <span class="fstat-no" title="function not covered" >fu</span>nction () {
+<span class="cstat-no" title="statement not covered" >		if (this.userId) {</span>
+<span class="cstat-no" title="statement not covered" >			return TranscriptBonus.find({user_id: this.userId});</span>
+		} else {
+<span class="cstat-no" title="statement not covered" >			this.ready();</span>
+		}
+	});
+}
+&nbsp;
+const TranscriptBonusSchema = new SimpleSchema({
+	cardset_id: {
+		type: String
+	},
+	card_id: {
+		type: String
+	},
+	user_id: {
+		type: String
+	},
+	date: {
+		type: Date
+	},
+	lectureEnd: {
+		type: String
+	},
+	deadline: {
+		type: Number
+	},
+	deadlineEditing: {
+		type: Number
+	},
+	rating: {
+		type: Number,
+		optional: true
+	},
+	reasons: {
+		type: [Number],
+		optional: true
+	},
+	stars: {
+		type: Number,
+		optional: true
+	}
+});
+&nbsp;
+TranscriptBonus.attachSchema(TranscriptBonusSchema);
+&nbsp;
+&nbsp;
+Meteor.methods({
+	addTranscriptBonus: <span class="fstat-no" title="function not covered" >fu</span>nction (card_id, cardset_id, user_id, date_id) {
+<span class="cstat-no" title="statement not covered" >		if (Meteor.isServer) {</span>
+<span class="cstat-no" title="statement not covered" >			check(card_id, String);</span>
+<span class="cstat-no" title="statement not covered" >			check(user_id, String);</span>
+<span class="cstat-no" title="statement not covered" >			check(cardset_id, String);</span>
+<span class="cstat-no" title="statement not covered" >			check(date_id, Number);</span>
+			let cardset = <span class="cstat-no" title="statement not covered" >Cardsets.findOne({_id: cardset_id});</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			if (cardset !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >				TranscriptBonus.upsert({card_id: card_id}, {</span>
+					$set: {
+						cardset_id: cardset._id,
+						card_id: card_id,
+						user_id: user_id,
+						date: cardset.transcriptBonus.dates[date_id],
+						lectureEnd: cardset.transcriptBonus.lectureEnd,
+						deadline: cardset.transcriptBonus.deadline,
+						deadlineEditing: cardset.transcriptBonus.deadlineEditing,
+						dateCreated: new Date(),
+						rating: 0,
+						stars: 0,
+						reasons: []
+					}
+				});
+			}
+<span class="cstat-no" title="statement not covered" >			Meteor.call('updateTranscriptBonusStats', cardset._id);</span>
+		}
+	},
+	updateTranscriptBonusStats: <span class="fstat-no" title="function not covered" >fu</span>nction (cardset_id) {
+<span class="cstat-no" title="statement not covered" >		if (Meteor.isServer) {</span>
+<span class="cstat-no" title="statement not covered" >			check(cardset_id, String);</span>
+			let cardset = <span class="cstat-no" title="statement not covered" >Cardsets.findOne({_id: cardset_id});</span>
+<span class="cstat-no" title="statement not covered" >			if (cardset !== undefined &amp;&amp; cardset.transcriptBonus !== undefined) {</span>
+				let bonusTranscripts = <span class="cstat-no" title="statement not covered" >TranscriptBonus.find({cardset_id: cardset._id}).fetch();</span>
+				let submissions = <span class="cstat-no" title="statement not covered" >TranscriptBonus.find({cardset_id: cardset._id}).count();</span>
+				let userFilter = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >				for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; bonusTranscripts.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >					userFilter.push(bonusTranscripts[i].user_id);</span>
+				}
+				let participants = <span class="cstat-no" title="statement not covered" >Meteor.users.find({_id: {$in: userFilter}}).count();</span>
+<span class="cstat-no" title="statement not covered" >				Cardsets.update({_id: cardset._id}, {</span>
+					$set: {
+						'transcriptBonus.stats.submissions': submissions,
+						'transcriptBonus.stats.participants': participants
+					}
+				});
+			}
+		}
+	},
+	getTranscriptCSVExport: <span class="fstat-no" title="function not covered" >fu</span>nction (cardset_id, header) {
+<span class="cstat-no" title="statement not covered" >		check(cardset_id, String);</span>
+<span class="cstat-no" title="statement not covered" >		check(header, [String]);</span>
+&nbsp;
+		let cardset = <span class="cstat-no" title="statement not covered" >Cardsets.findOne({_id: cardset_id});</span>
+<span class="cstat-no" title="statement not covered" >		if (UserPermissions.gotBackendAccess() || (UserPermissions.isOwner(cardset.owner) || cardset.editors.includes(Meteor.userId()))) {</span>
+			let content;
+			let colSep = <span class="cstat-no" title="statement not covered" >";";</span> // Separates columns
+			let newLine = <span class="cstat-no" title="statement not covered" >"\r\n";</span> //Adds a new line
+<span class="cstat-no" title="statement not covered" >			content = "";</span>
+<span class="cstat-no" title="statement not covered" >			for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; header.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >				content += header[i] + colSep;</span>
+			}
+<span class="cstat-no" title="statement not covered" >			content += newLine;</span>
+			let transcriptUsers = <span class="cstat-no" title="statement not covered" >_.uniq(TranscriptBonus.find({cardset_id: cardset_id}, {</span>
+				fields: {user_id: 1}
+			}).fetch().map(<span class="fstat-no" title="function not covered" >fu</span>nction (x) {
+<span class="cstat-no" title="statement not covered" >				return x.user_id;</span>
+			}), true);
+			let users = <span class="cstat-no" title="statement not covered" >Meteor.users.find({_id: {$in: transcriptUsers}}, {</span>
+				sort: {'profile.birthname': 1, 'profile.givenname': 1}, fields: {_id: 1, email: 1, profile: 1}
+			}).fetch();
+<span class="cstat-no" title="statement not covered" >			for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; users.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >				content += users[i].profile.birthname + colSep;</span>
+<span class="cstat-no" title="statement not covered" >				content += users[i].profile.givenname + colSep;</span>
+<span class="cstat-no" title="statement not covered" >				content += users[i].email + colSep;</span>
+<span class="cstat-no" title="statement not covered" >				content += TranscriptBonusList.getSubmissions(cardset_id, users[i]._id, undefined) + colSep;</span>
+<span class="cstat-no" title="statement not covered" >				content += TranscriptBonusList.getSubmissions(cardset_id, users[i]._id, 0) + colSep;</span>
+<span class="cstat-no" title="statement not covered" >				content += TranscriptBonusList.getSubmissions(cardset_id, users[i]._id, 1) + colSep;</span>
+<span class="cstat-no" title="statement not covered" >				content += TranscriptBonusList.getSubmissions(cardset_id, users[i]._id, 2) + colSep;</span>
+<span class="cstat-no" title="statement not covered" >				content += TranscriptBonusList.getStarsData(cardset_id, users[i]._id, 1) + colSep;</span>
+<span class="cstat-no" title="statement not covered" >				content += TranscriptBonusList.getStarsData(cardset_id, users[i]._id, 0) + colSep;</span>
+<span class="cstat-no" title="statement not covered" >				content += TranscriptBonusList.getAchievedBonus(cardset_id, users[i]._id) + " %" + colSep;</span>
+<span class="cstat-no" title="statement not covered" >				content += newLine;</span>
+			}
+<span class="cstat-no" title="statement not covered" >			return content;</span>
+		}
+	},
+	rateTranscript: <span class="fstat-no" title="function not covered" >fu</span>nction (cardset_id, card_id, answer, ratingData) {
+<span class="cstat-no" title="statement not covered" >		check(cardset_id, String);</span>
+<span class="cstat-no" title="statement not covered" >		check(card_id, String);</span>
+<span class="cstat-no" title="statement not covered" >		check(answer, Boolean);</span>
+<span class="cstat-no" title="statement not covered" >		check(ratingData, [Number]);</span>
+		let cardset = <span class="cstat-no" title="statement not covered" >Cardsets.findOne({_id: cardset_id});</span>
+<span class="cstat-no" title="statement not covered" >		if (UserPermissions.gotBackendAccess() || (UserPermissions.isOwner(cardset.owner) || cardset.editors.includes(Meteor.userId()))) {</span>
+			let rating;
+			let stars;
+			let reasons;
+<span class="cstat-no" title="statement not covered" >			switch (answer) {</span>
+				case true:
+<span class="cstat-no" title="statement not covered" >					rating = 1;</span>
+<span class="cstat-no" title="statement not covered" >					stars = ratingData[0];</span>
+<span class="cstat-no" title="statement not covered" >					reasons = [];</span>
+<span class="cstat-no" title="statement not covered" >					break;</span>
+				case false:
+<span class="cstat-no" title="statement not covered" >					rating = 2;</span>
+<span class="cstat-no" title="statement not covered" >					stars = 0;</span>
+<span class="cstat-no" title="statement not covered" >					reasons = ratingData;</span>
+<span class="cstat-no" title="statement not covered" >					break;</span>
+			}
+<span class="cstat-no" title="statement not covered" >			TranscriptBonus.update({cardset_id: cardset_id, card_id: card_id}, {</span>
+				$set: {
+					rating: rating,
+					reasons: reasons,
+					stars: stars
+				}
+			});
+		}
+	}
+});
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 04 2019 15:34:53 GMT+0200 (CEST)
+</div>
+</div>
+<script src="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/sorter.js"></script>
+</body>
+</html>

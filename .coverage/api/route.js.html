@@ -1,0 +1,1382 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for api/route.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/prettify.css" />
+    <link rel="stylesheet" href="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/index.html">All files</a> api/route.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.32% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>2/152</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/174</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/54</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.32% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>2/152</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {Session} from "meteor/session";
+import {Meteor} from "meteor/meteor";
+let firstTimeVisit = 'isFirstTimeVisit';
+import * as icons from "../config/icons.js";
+import * as conf from "../config/routes.js";
+import {Cardsets} from "./cardsets";
+import {ServerStyle} from "./styles";
+import {UserPermissions} from "./permissions";
+import {getAuthorName} from "./userdata";
+&nbsp;
+export let Route = class Route {
+	/**
+	 * Function checks if route is a Cardset
+	 * @return {Boolean} Return true, when route is a Cardset.
+	 */
+<span class="fstat-no" title="function not covered" >	st</span>atic isCardset () {
+<span class="cstat-no" title="statement not covered" >		return (this.isCardsetList() || Router.current().route.getName() === 'cardsetdetailsid' || Router.current().route.getName() === "cardsetcard" || Router.current().route.getName() === 'admin_cardset');</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isCardsetList () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === 'cardsetlistid';</span>
+	}
+&nbsp;
+	/**
+	 * Function checks if route is a card edit Mode
+	 * @return {Boolean} Return true, when route is new Card or edit Card.
+	 */
+<span class="fstat-no" title="function not covered" >	st</span>atic isEditMode () {
+<span class="cstat-no" title="statement not covered" >		return this.isNewCard() || this.isEditCard() | this.isNewTranscript() | this.isEditTranscript();</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isNewCard () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "newCard" || this.isNewTranscript();</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic requiresUserInputForFullscreen () {
+<span class="cstat-no" title="statement not covered" >		return (this.isPresentation() || this.isBox() || this.isMemo());</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isEditCard () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "editCard" || this.isEditTranscript();</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isDemo () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "demo" || this.isDemoList();</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isDemoList () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "demolist";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isMakingOf () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "making" || this.isMakingOfList();</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isTranscript () {
+<span class="cstat-no" title="statement not covered" >		return this.isMyTranscripts() || this.isMyBonusTranscripts() || this.isNewTranscript() || this.isEditTranscript() || this.isPresentationTranscript() || this.isPresentationTranscriptBonus() || this.isPresentationTranscriptBonusCardset() || this.isPresentationTranscriptReview();</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isPresentationTranscript () {
+<span class="cstat-no" title="statement not covered" >		return this.isPresentationTranscriptPersonal() || this.isPresentationTranscriptBonus() || this.isPresentationTranscriptBonusCardset();</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isPresentationTranscriptPersonal () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "presentationTranscriptPersonal";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isPresentationTranscriptReview () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "presentationTranscriptReview";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isPresentationTranscriptBonus () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "presentationTranscriptBonus";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isPresentationTranscriptBonusCardset () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "presentationTranscriptBonusCardset";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isNewTranscript () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "newTranscript";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isEditTranscript () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "editTranscript";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isMakingOfList () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "makinglist";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isBackend () {
+<span class="cstat-no" title="statement not covered" >		if (Router.current().route.getName() !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >			return Router.current().route.getName().substring(0, 5) === "admin";</span>
+		} else {
+<span class="cstat-no" title="statement not covered" >			return false;</span>
+		}
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isTableOfContent () {
+<span class="cstat-no" title="statement not covered" >		return (this.isPresentationList() || this.isCardsetList() || this.isDemoList() | this.isMakingOfList()) ;</span>
+	}
+&nbsp;
+	/**
+	 * Function checks if route is a presentation view
+	 * @return {Boolean} Return true, when route is a presentation view.
+	 */
+<span class="fstat-no" title="function not covered" >	st</span>atic isPresentation () {
+<span class="cstat-no" title="statement not covered" >		return (this.isDefaultPresentation() || this.isPresentationList() || this.isPresentationTranscript() || this.isPresentationTranscriptReview());</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isDefaultPresentation () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "presentation";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isPresentationList () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "presentationlist";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isPresentationViewList () {
+<span class="cstat-no" title="statement not covered" >		return this.isPresentationList() || this.isMakingOfList() || this.isDemoList();</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isPresentationOrDemo () {
+<span class="cstat-no" title="statement not covered" >		return this.isPresentation() || this.isDemo() || this.isMakingOf() || this.isPresentationTranscript();</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isEditModeOrPresentation () {
+<span class="cstat-no" title="statement not covered" >		return this.isEditMode() || this.isPresentationOrDemo();</span>
+	}
+&nbsp;
+	/**
+	 * Function checks if route is a Box
+	 * @return {Boolean} Return true, when the current route is a Box.
+	 */
+<span class="fstat-no" title="function not covered" >	st</span>atic isBox () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "box";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isLeitnerProgress () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "progress";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isCardsetLeitnerStats () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "cardsetstats";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isLeitnerProgressProfileOverview () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "profileOverview";</span>
+	}
+&nbsp;
+	/**
+	 * Function checks if route is a Cardset
+	 * @return {Boolean} Return true, when route is a Memo.
+	 */
+<span class="fstat-no" title="function not covered" >	st</span>atic isMemo () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "memo";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isHome () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "home";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isMyCardsets () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "create";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isMyTranscripts () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "transcriptsPersonal";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isMyBonusTranscripts () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "transcriptsBonus";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isAllCardsets () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "alldecks";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isWorkload () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "learn";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isShuffle () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "shuffle";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isEditShuffle () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "editshuffle";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isRepetitorium () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "repetitorium";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isTranscriptBonus () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "transcriptBonus";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isPool () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "pool";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isPublic () {
+<span class="cstat-no" title="statement not covered" >		return this.isRepetitorium() || this.isPool();</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isPersonal () {
+<span class="cstat-no" title="statement not covered" >		return this.isMyCardsets() || this.isPersonalRepetitorien();</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isPersonalRepetitorien () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "personalRepetitorien";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isAll () {
+<span class="cstat-no" title="statement not covered" >		return this.isAllCardsets() || this.isAllRepetitorien();</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isAllRepetitorien () {
+<span class="cstat-no" title="statement not covered" >		return Router.current().route.getName() === "allRepetitorien";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isRepetitorienFilterIndex () {
+<span class="cstat-no" title="statement not covered" >		return (this.isAllRepetitorien() || this.isPersonalRepetitorien() || this.isRepetitorium());</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isFilterIndex () {
+<span class="cstat-no" title="statement not covered" >		return (this.isHome() || this.isPool() || this.isMyCardsets() || this.isRepetitorium() || this.isAllCardsets() || this.isWorkload() || this.isAllRepetitorien() || this.isPersonalRepetitorien() || this.isMyTranscripts() || this.isMyBonusTranscripts() || this.isShuffle() || this.isEditShuffle() || this.isTranscriptBonus());</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isFirstTimeVisit () {
+<span class="cstat-no" title="statement not covered" >		if (Route.isMakingOf()) {</span>
+<span class="cstat-no" title="statement not covered" >			return false;</span>
+		}
+<span class="cstat-no" title="statement not covered" >		if (localStorage.getItem(firstTimeVisit) === undefined || localStorage.getItem(firstTimeVisit) === null) {</span>
+<span class="cstat-no" title="statement not covered" >			localStorage.setItem(firstTimeVisit, "true");</span>
+		}
+<span class="cstat-no" title="statement not covered" >		if ($(window).width() &lt; 768) {</span>
+<span class="cstat-no" title="statement not covered" >			this.setFirstTimeVisit();</span>
+		}
+<span class="cstat-no" title="statement not covered" >		Session.set('isFirstTimeVisit', localStorage.getItem(firstTimeVisit));</span>
+<span class="cstat-no" title="statement not covered" >		return Session.get('isFirstTimeVisit') === "true";</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic setFirstTimeVisit () {
+<span class="cstat-no" title="statement not covered" >		localStorage.setItem(firstTimeVisit, "false");</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic isImpressum () {
+<span class="cstat-no" title="statement not covered" >		return conf.impressumRoutes.includes(Router.current().route.getName());</span>
+	}
+&nbsp;
+	//0 Personal
+	//1 cardsets
+	//2 repetitorien
+<span class="fstat-no" title="function not covered" >	st</span>atic getPersonalRouteName (type = <span class="branch-0 cbranch-no" title="branch not covered" >0)</span> {
+<span class="cstat-no" title="statement not covered" >		if (Meteor.user() &amp;&amp; Meteor.user().count !== undefined) {</span>
+			let routeType = <span class="cstat-no" title="statement not covered" >type;</span> // Fix for browsers such as Vivaldi
+<span class="cstat-no" title="statement not covered" >			if (routeType === 0) {</span>
+<span class="cstat-no" title="statement not covered" >				switch (Meteor.user().count.cardsets + Meteor.user().count.shuffled + Meteor.user().count.transcripts + Meteor.user().count.transcriptsBonus) {</span>
+					case 0:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.personal.personal.zero');</span>
+					case 1:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.personal.personal.one');</span>
+					default:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.personal.personal.multiple');</span>
+				}
+			} else <span class="cstat-no" title="statement not covered" >if (routeType === 1) {</span>
+<span class="cstat-no" title="statement not covered" >				switch (Meteor.user().count.cardsets) {</span>
+					case 0:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.personal.cardsets.zero');</span>
+					case 1:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.personal.cardsets.one');</span>
+					default:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.personal.cardsets.multiple');</span>
+				}
+			} else <span class="cstat-no" title="statement not covered" >if (routeType === 2) {</span>
+<span class="cstat-no" title="statement not covered" >				switch (Meteor.user().count.transcripts + Meteor.user().count.transcriptsBonus) {</span>
+					case 0:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.transcripts.zero');</span>
+					case 1:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.transcripts.one');</span>
+					default:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.transcripts.multiple');</span>
+				}
+			} else <span class="cstat-no" title="statement not covered" >if (routeType === 3) {</span>
+<span class="cstat-no" title="statement not covered" >				switch (Meteor.user().count.transcripts) {</span>
+					case 0:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.transcripts.personal.zero');</span>
+					case 1:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.transcripts.personal.one');</span>
+					default:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.transcripts.personal.multiple');</span>
+				}
+			} else <span class="cstat-no" title="statement not covered" >if (routeType === 4) {</span>
+<span class="cstat-no" title="statement not covered" >				switch (Meteor.user().count.transcriptsBonus) {</span>
+					case 0:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.transcripts.bonus.zero');</span>
+					case 1:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.transcripts.bonus.one');</span>
+					default:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.transcripts.bonus.multiple');</span>
+				}
+			} else <span class="cstat-no" title="statement not covered" >if (routeType === 5) {</span>
+<span class="cstat-no" title="statement not covered" >				switch (Meteor.user().count.transcripts + Meteor.user().count.transcriptsBonus) {</span>
+					case 0:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.transcripts.short.zero');</span>
+					case 1:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.transcripts.short.one');</span>
+					default:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.transcripts.short.multiple');</span>
+				}
+			} else {
+<span class="cstat-no" title="statement not covered" >				switch (Meteor.user().count.shuffled) {</span>
+					case 0:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.personal.repetitorien.zero');</span>
+					case 1:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.personal.repetitorien.one');</span>
+					default:
+<span class="cstat-no" title="statement not covered" >						return TAPi18n.__('navbar-collapse.personal.repetitorien.multiple');</span>
+				}
+			}
+		}
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	st</span>atic getNavigationName (name) {
+		let iconName = <span class="cstat-no" title="statement not covered" >name;</span> // Fix for browsers such as Vivaldi
+<span class="cstat-no" title="statement not covered" >		switch (iconName) {</span>
+			case "about":
+<span class="cstat-no" title="statement not covered" >				return TAPi18n.__('contact.about', {lastAppTitle: ServerStyle.getLastAppTitle()});</span>
+			case "agb":
+<span class="cstat-no" title="statement not covered" >				return icons.footerNavigation.agb + TAPi18n.__('contact.agb');</span>
+			case "backToHome":
+<span class="cstat-no" title="statement not covered" >				return icons.footerNavigation.backToHome + TAPi18n.__('contact.home');</span>
+			case "datenschutz":
+<span class="cstat-no" title="statement not covered" >				return icons.footerNavigation.datenschutz + TAPi18n.__('contact.datenschutz');</span>
+			case "demo":
+			case "demolist":
+<span class="cstat-no" title="statement not covered" >				return icons.footerNavigation.demo + TAPi18n.__('contact.demo');</span>
+			case "faq":
+<span class="cstat-no" title="statement not covered" >				return icons.footerNavigation.faq + TAPi18n.__('contact.faq');</span>
+			case "help":
+<span class="cstat-no" title="statement not covered" >				return icons.footerNavigation.help + TAPi18n.__('contact.help');</span>
+			case "impressum":
+<span class="cstat-no" title="statement not covered" >				return icons.footerNavigation.impressum + TAPi18n.__('contact.impressum');</span>
+			case "learn":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.workload  + TAPi18n.__('navbar-collapse.learndecks');</span>
+			case "learning":
+<span class="cstat-no" title="statement not covered" >				return icons.footerNavigation.learning  + TAPi18n.__('contact.learning');</span>
+			case "all":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.all.all + TAPi18n.__('navbar-collapse.all.all') + "&lt;span class='caret'&gt;&lt;/span&gt;";</span>
+			case "allCardsets":
+			case "alldecks":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.all.cardsets + TAPi18n.__('navbar-collapse.all.cardsets');</span>
+			case "allRepetitorien":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.all.repetitorien +  TAPi18n.__('navbar-collapse.all.repetitorien');</span>
+			case "public":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.public.public + TAPi18n.__('navbar-collapse.public.public') + "&lt;span class='caret'&gt;&lt;/span&gt;";</span>
+			case "publicCardsets":
+			case "home":
+			case "pool":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.public.cardsets + TAPi18n.__('navbar-collapse.public.cardsets');</span>
+			case "publicRepetitorien":
+			case "repetitorium":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.public.repetitorien +  TAPi18n.__('navbar-collapse.public.repetitorien');</span>
+			case "personal":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.personal.personal + this.getPersonalRouteName(0) + "&lt;span class='caret'&gt;&lt;/span&gt;";</span>
+			case "transcripts":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.transcripts.transcripts + this.getPersonalRouteName(2) + "&lt;span class='caret'&gt;&lt;/span&gt;";</span>
+			case "transcriptsShort":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.transcripts.transcripts + this.getPersonalRouteName(5) + "&lt;span class='caret'&gt;&lt;/span&gt;";</span>
+			case "transcriptsPersonal":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.transcripts.personal + this.getPersonalRouteName(3);</span>
+			case "transcriptsBonus":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.transcripts.bonus + this.getPersonalRouteName(4);</span>
+			case "personalCardsets":
+			case "myCardsets":
+			case "create":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.personal.cardsets + this.getPersonalRouteName(1);</span>
+			case "personalRepetitorien":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.personal.repetitorien +  this.getPersonalRouteName(6);</span>
+			case "workload":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.workload + TAPi18n.__('navbar-collapse.learndecks');</span>
+			case "backend":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.backend + "&lt;span class='hidden-on-iPad'&gt;" + TAPi18n.__('navbar-collapse.backend') + "&lt;/span&gt;";</span>
+			case "profile":
+				let name = <span class="cstat-no" title="statement not covered" >icons.topNavigation.profile;</span>
+<span class="cstat-no" title="statement not covered" >				if (Meteor.user().profile.birthname === undefined || Meteor.user().profile.birthname === "") {</span>
+<span class="cstat-no" title="statement not covered" >					name += TAPi18n.__('profile.finishProfile');</span>
+				} else {
+<span class="cstat-no" title="statement not covered" >					name += getAuthorName(Meteor.userId(), true, true);</span>
+				}
+<span class="cstat-no" title="statement not covered" >				return name + "&lt;span class='caret'&gt;&lt;/span&gt;";</span>
+			case "profileIPad":
+<span class="cstat-no" title="statement not covered" >				if (UserPermissions.isAdmin()) {</span>
+<span class="cstat-no" title="statement not covered" >					return icons.topNavigation.profile + "&lt;span class='caret'&gt;&lt;/span&gt;";</span>
+				} else {
+<span class="cstat-no" title="statement not covered" >					return icons.topNavigation.profile + TAPi18n.__('navbar-collapse.myprofile') + "&lt;span class='caret'&gt;&lt;/span&gt;";</span>
+				}
+<span class="cstat-no" title="statement not covered" >				break;</span>
+			case "profileOverview":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.profileOverview + TAPi18n.__('profile.activity');</span>
+			case "profileBilling":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.profileBilling + TAPi18n.__('navbar-collapse.billing');</span>
+			case "profileMembership":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.profileMembership + TAPi18n.__('navbar-collapse.membership');</span>
+			case "profileNotifications":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.profileNotifications + TAPi18n.__('profile.notifications');</span>
+			case "profileSettings":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.profileSettings + TAPi18n.__('profile.settings.name');</span>
+			case "profileRequests":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.profileRequests + TAPi18n.__('profile.requests');</span>
+			case "cardsetdetailsid":
+			case "cardsetcard":
+			case "cardsetlistid":
+				let cardset = <span class="cstat-no" title="statement not covered" >Cardsets.findOne({_id: Router.current().params._id}, {fields: {shuffled: 1}});</span>
+<span class="cstat-no" title="statement not covered" >				if (cardset !== undefined &amp;&amp; cardset.shuffled) {</span>
+<span class="cstat-no" title="statement not covered" >					return icons.miscNavigation.repetitorium + TAPi18n.__('courseIteration.name');</span>
+				} else {
+<span class="cstat-no" title="statement not covered" >					return icons.miscNavigation.cardset + TAPi18n.__('modal-dialog.cardsetname');</span>
+				}
+<span class="cstat-no" title="statement not covered" >				break;</span>
+			case "progress":
+<span class="cstat-no" title="statement not covered" >				return icons.miscNavigation.progress + TAPi18n.__('admin.myProgress');</span>
+			case "toggleImpressum":
+<span class="cstat-no" title="statement not covered" >				return icons.miscNavigation.toggleImpressum;</span>
+			case "mobileInfo":
+<span class="cstat-no" title="statement not covered" >				return icons.landingPageNavigation.mobileInfo;</span>
+			case "statistics":
+<span class="cstat-no" title="statement not covered" >				return icons.footerNavigation.statistics + TAPi18n.__('contact.statistics');</span>
+			case "statisticsMobile":
+<span class="cstat-no" title="statement not covered" >				return icons.footerNavigation.statistics;</span>
+			case "useCasesIcon":
+			case "useCases":
+<span class="cstat-no" title="statement not covered" >				return icons.topNavigation.useCases;</span>
+		}
+	}
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 04 2019 15:34:53 GMT+0200 (CEST)
+</div>
+</div>
+<script src="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/sorter.js"></script>
+</body>
+</html>

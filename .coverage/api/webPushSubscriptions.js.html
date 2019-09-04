@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for api/webPushSubscriptions.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/prettify.css" />
+    <link rel="stylesheet" href="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/index.html">All files</a> api/webPushSubscriptions.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10.71% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>3/28</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/21</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/9</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">10.71% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>3/28</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {Meteor} from "meteor/meteor";
+import {Mongo} from "meteor/mongo";
+import webPush from 'web-push';
+import {ServerSettings} from "./settings";
+&nbsp;
+export const WebPushSubscriptions = new Mongo.Collection("webPushSubscriptions");
+&nbsp;
+export let WebPushNotifications = class WebPushNotifications {
+	/**
+	 * Creates a web push subscription for the current device.
+	 * The Browser ask the user for permissions and creates the subscription.
+	 * Afterwards the subscription will be saved for the current user via the
+	 * Meteor-method addWebPushSubscription.
+	 */
+<span class="fstat-no" title="function not covered" >	st</span>atic subscribeForPushNotification () {
+<span class="cstat-no" title="statement not covered" >		if (ServerSettings.isPushEnabled()) {</span>
+<span class="cstat-no" title="statement not covered" >			try {</span>
+<span class="cstat-no" title="statement not covered" >				if (navigator.serviceWorker !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >					navigator.serviceWorker.getRegistration()</span>
+						.then(<span class="fstat-no" title="function not covered" >fu</span>nction (registration) {
+<span class="cstat-no" title="statement not covered" >							return registration.pushManager.getSubscription()</span>
+								.then(<span class="fstat-no" title="function not covered" >fu</span>nction () {
+<span class="cstat-no" title="statement not covered" >									return registration.pushManager.subscribe({userVisibleOnly: true});</span>
+								});
+						})
+						.then(<span class="fstat-no" title="function not covered" >fu</span>nction (subscription) {
+<span class="cstat-no" title="statement not covered" >							if (subscription) {</span>
+								let rawKey = <span class="cstat-no" title="statement not covered" >subscription.getKey ? subscription.getKey('p256dh') : '';</span>
+								const key = <span class="cstat-no" title="statement not covered" >rawKey ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) : '';</span>
+								let rawAuthSecret = <span class="cstat-no" title="statement not covered" >subscription.getKey ? subscription.getKey('auth') : '';</span>
+								const authSecret = <span class="cstat-no" title="statement not covered" >rawAuthSecret ? btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) : '';</span>
+								const endpoint = <span class="cstat-no" title="statement not covered" >subscription.endpoint;</span>
+								const sub = <span class="cstat-no" title="statement not covered" >{</span>
+									endpoint: endpoint,
+									key: key,
+									authSecret: authSecret
+								};
+<span class="cstat-no" title="statement not covered" >								Meteor.call("addWebPushSubscription", sub, <span class="fstat-no" title="function not covered" >fu</span>nction (error) {</span>
+<span class="cstat-no" title="statement not covered" >									if (error) {</span>
+<span class="cstat-no" title="statement not covered" >										throw new Meteor.Error(error.statusCode, 'Error subscription failed');</span>
+									}
+								});
+							}
+						});
+				}
+			} catch (error) {
+<span class="cstat-no" title="statement not covered" >				console.log(error);</span>
+			}
+		}
+	}
+};
+&nbsp;
+Meteor.methods({
+	/**
+	 * Stores a web push subscription for the current user in the "webPushSubscriptions" collection.
+	 * Each user has a list of subscriptions, one per device.
+	 * @param {Object} subscription The subscription of the service workers pushManager
+	 * @param {string} subscription.endpoint endpoint of the subscription
+	 * @param {string} subscription.key key of the subscription
+	 * @param {string} subscription.authSecret auth secret of the subscription
+	 */
+	addWebPushSubscription: <span class="fstat-no" title="function not covered" >fu</span>nction (subscription) {
+<span class="cstat-no" title="statement not covered" >		WebPushSubscriptions.upsert({user_id: Meteor.userId()}, {</span>
+			$addToSet: {subscriptions: subscription}
+		});
+	},
+&nbsp;
+	/**
+	 * Sends a push notification to each subscribed device of a particular user.
+	 * @param userId the ID of the user
+	 * @param message the message displayed in the push notification
+	 */
+	sendPushNotificationsToUser: <span class="fstat-no" title="function not covered" >fu</span>nction (userId, message) {
+<span class="cstat-no" title="statement not covered" >		webPush.setGCMAPIKey(Meteor.settings.private.FCM_API_KEY);</span>
+		let data = <span class="cstat-no" title="statement not covered" >WebPushSubscriptions.findOne({user_id: userId});</span>
+<span class="cstat-no" title="statement not covered" >		data.subscriptions.forEach(<span class="fstat-no" title="function not covered" >fu</span>nction (sub) {</span>
+			let subscription = <span class="cstat-no" title="statement not covered" >{</span>
+				endpoint: sub.endpoint,
+				keys: {
+					p256dh: sub.key,
+					auth: sub.authSecret
+				}
+			};
+<span class="cstat-no" title="statement not covered" >			webPush.sendNotification(subscription, message).catch(<span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >				if (err.statusCode !== 201 &amp;&amp; err.statusCode !== 401 &amp;&amp; err.statusCode !== 410) {</span>
+<span class="cstat-no" title="statement not covered" >					throw err;</span>
+				}
+			});
+		});
+	}
+});
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 04 2019 15:34:53 GMT+0200 (CEST)
+</div>
+</div>
+<script src="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="/home/yannik/Dokumente/Uni/Semester_2/cards/.coverage/sorter.js"></script>
+</body>
+</html>

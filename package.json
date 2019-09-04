@@ -24,7 +24,17 @@
   },
   "version": "1.0.0",
   "main": "index.js",
+  "babel": {
+    "env": {
+      "COVERAGE": {
+        "plugins": [
+          "istanbul"
+        ]
+      }
+    }
+  },
   "devDependencies": {
+    "babel-plugin-istanbul": "^5.2.0",
     "chai": "^4.2.0",
     "chimpy": "^1.2.0",
     "gulp-jscs": "^3.0.2",
