@@ -4,6 +4,8 @@ import {DOMPurifyConfig} from "../config/dompurify.js";
 import "/client/thirdParty/markdeep.min.js";
 import * as config from "../config/markdeep.js";
 import {CardType} from "./cardTypes";
+import {getAuthorName} from "./userdata";
+import {Utilities} from "./utilities";
 
 MeteorMathJax.sourceUrl = config.MathJaxSourceUrl;
 MeteorMathJax.defaultConfig = config.defaultMathJaxConfig;
@@ -112,10 +114,23 @@ export let MarkdeepContent = class MarkdeepContent {
 	}
 
 	static exportContent (cards, cardset, whitelist) {
+		let linebreak = "\n";
 		let newline = " \n\n ";
+		let tableColumn = "|";
 		let pagebreak = newline + "\\pagebreak" + newline;
 		let content = '<meta charset=\"utf-8\" emacsmode=\"-*- markdown -*-\">\n\n';
+		let difficulty = "difficulty";
+		if (CardType.gotNotesForDifficultyLevel(cardset.cardType)) {
+			difficulty = "difficultyNotes";
+		}
 		content += "(#) " + cardset.name + newline;
+		content += " | " + linebreak;
+		content += "---|---" + linebreak;
+		content += TAPi18n.__('cardset.info.author') + tableColumn + getAuthorName(cardset.owner, false) + linebreak;
+		content += TAPi18n.__('cardType') + tableColumn + CardType.getCardTypeName(cardset.cardType) + linebreak;
+		content += TAPi18n.__(difficulty) + tableColumn + (difficulty + cardset.difficulty) + linebreak;
+		content += TAPi18n.__('cardset.info.release') + tableColumn + Utilities.getMomentsDate(cardset.date, false, 0, false) + linebreak;
+		content += TAPi18n.__('cardset.info.dateUpdated') + tableColumn + Utilities.getMomentsDate(cardset.dateUpdated, false, 0, false) + linebreak;
 		content += pagebreak;
 		let sideOrder = CardType.getCardTypeCubeSides(cardset.cardType);
 		let filteredSides = [];
