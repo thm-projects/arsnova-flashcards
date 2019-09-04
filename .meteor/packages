@@ -77,3 +77,4 @@ dburles:factory
 practicalmeteor:sinon
 xolvio:cleaner
 lmieulet:meteor-coverage
+csauer:accounts-phony

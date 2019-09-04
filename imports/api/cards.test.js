@@ -1,16 +1,37 @@
 import './cards.js';
 import { Meteor } from "meteor/meteor";
 import { assert, expect } from "chai";
-import {Mongo} from "meteor/mongo";
 import { Cards } from './cards.js';
+import {resetDatabase} from "meteor/xolvio:cleaner";
+import {Factory} from "meteor/dburles:factory";
+import sinon from 'sinon';
+
+Factory.define('user', Meteor.users, {
+	'name': 'Josephine',
+	'roles': ['admin']
+});
 
 describe('addCard', function () {
 	beforeEach(() => {
+		resetDatabase();
+		const currentUser = Factory.create('user');
+		sinon.stub(Meteor, 'user');
+		Meteor.user.returns(currentUser); // now Meteor.user() will return the user we just created
+
+		sinon.stub(Meteor, 'userId');
+		Meteor.userId.returns(currentUser._id); // needed in methods
+		/*
 		DDP._CurrentInvocation.get = function () {
 			return {
-				userId: 'admin'
+				userId: 'admin',
 			};
-		};
+		};*/
+	});
+
+	afterEach(() => {
+		Meteor.user.restore();
+		Meteor.userId.restore();
+		resetDatabase();
 	});
 
 

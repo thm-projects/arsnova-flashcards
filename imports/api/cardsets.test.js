@@ -1,15 +1,37 @@
 import './cardsets.js';
 import { Meteor } from "meteor/meteor";
 import { assert, expect } from "chai";
-import { Cards } from './cardsets.js';
+import { Cardsets } from './cardsets.js';
+import { Factory } from 'meteor/dburles:factory';
+import { resetDatabase } from 'meteor/xolvio:cleaner';
+import sinon from 'sinon';
+
+Factory.define('user', Meteor.users, {
+	'name': 'Josephine',
+	'roles': ['admin']
+});
 
 describe('addCardset', function () {
 	beforeEach(() => {
+		resetDatabase();
+		const currentUser = Factory.create('user');
+		sinon.stub(Meteor, 'user');
+		Meteor.user.returns(currentUser); // now Meteor.user() will return the user we just created
+
+		sinon.stub(Meteor, 'userId');
+		Meteor.userId.returns(currentUser._id); // needed in methods
+		/*
 		DDP._CurrentInvocation.get = function () {
 			return {
-				userId: 'admin'
+				userId: 'admin',
 			};
-		};
+		};*/
+	});
+
+	afterEach(() => {
+		Meteor.user.restore();
+		Meteor.userId.restore();
+		resetDatabase();
 	});
 
 
@@ -20,7 +42,7 @@ describe('addCardset', function () {
 		let ratings = true;
 		let kind = 'test 3';
 		let shuffled = true;
-		let cardGroups = "groupname"
+		let cardGroups = ["groupname"];
 		let cardType = 1;
 		let difficulty = 1;
 		let sortType = 1;
