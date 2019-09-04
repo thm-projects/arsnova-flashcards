@@ -78,12 +78,7 @@ You can run the E2E-Tests either on your local machine or using [docker](https:/
     $ meteor npm install
 ```
 
-6. Install the npm dependencies
-```bash
-    $ meteor npm install
-```
-
-7. Run the server
+6. Run the server
 ```bash
     $ meteor --settings settings_debug.json
 ```
