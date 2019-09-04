@@ -1,10 +1,10 @@
 import './cards.js';
 import { Meteor } from "meteor/meteor";
 import { assert, expect } from "chai";
-
+import {Mongo} from "meteor/mongo";
+import { Cards } from './cards.js';
 
 describe('addCard', function () {
-
 	beforeEach(() => {
 		DDP._CurrentInvocation.get = function () {
 			return {
@@ -32,6 +32,21 @@ describe('addCard', function () {
 
 		let cardId = Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, bonusUser);
 		assert.isAbove(cardId.length, 0);
+
+		let card = Cards.findOne(cardId);
+		assert.equal(cardset_id, card.cardset_id);
+		assert.equal(subject, card.subject);
+		assert.equal(content1, card.front);
+		assert.equal(content2, card.back);
+		assert.equal(content3, card.hint);
+		assert.equal(content4, card.lecture);
+		assert.equal(content5, card.top);
+		assert.equal(content6, card.bottom);
+		expect(centerTextElement).to.eql(card.centerTextElement);
+		expect(alignType).to.eql(card.alignType);
+		expect(date).to.eql(card.date);
+		assert.equal(learningGoalLevel, card.learningGoalLevel);
+		assert.equal(backgroundStyle, card.backgroundStyle);
 	});
 
 	it('should fail without subject', function () {
