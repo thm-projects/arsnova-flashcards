@@ -73,3 +73,6 @@ underscore@1.0.10
 yasseraudio:multidatepicker
 wekan:accounts-cas
 meteortesting:mocha
+dburles:factory
+practicalmeteor:sinon
+xolvio:cleaner
