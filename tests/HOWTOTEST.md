@@ -86,7 +86,7 @@ You can run the E2E-Tests either on your local machine or using [docker](https:/
 
 #### Running the E2E Tests
 
-Given you have the meteor server running, you can run the E2E-Tests with the following commands.
+Given you have the meteor server running, you can run the E2E-Tests with the following commands **from the projects root directory (/cards)**.
 
 *Note*: you can automate an GUI Browser for demonstration purposes by changing ```-v ENV_USE_GUI_BROWSER:"False"``` to ```-v ENV_USE_GUI_BROWSER:"True"```
 in all of the commands.
