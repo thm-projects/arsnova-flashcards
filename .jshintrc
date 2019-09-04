@@ -59,6 +59,14 @@
     "sweetAlert": true,
     "swal": true,
     "Tracker": true,
-    "ZingTouch": true
+    "ZingTouch": true,
+    /* MOCHA */
+    "describe"   : false,
+    "it"         : false,
+    "before"     : false,
+    "beforeEach" : false,
+    "after"      : false,
+    "afterEach"  : false,
+    "assert"     : false
   }
 }
