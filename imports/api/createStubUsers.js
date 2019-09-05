@@ -1,17 +1,28 @@
 import {Factory} from "meteor/dburles:factory";
 import {Meteor} from "meteor/meteor";
+import sinon from 'sinon';
 
 // FOR TESTING ONLY
 
-Factory.define('user', Meteor.users, {
-	'name': 'Kevin',
-	'roles': ['admin'],
-	'profile': {
-		'birthname': '.cards',
-		'givenname': '',
-		'completed': true,
-		'name': '.cards',
-		'title': '',
-		'locale': 'de'
-	}
-});
+
+export function CreateStubUser(roles) {
+	Factory.define('user', Meteor.users, {
+		'name': 'TestUser',
+		'roles': roles,
+		'profile': {
+			'birthname': 'User',
+			'givenname': 'Test',
+			'completed': true,
+			'name': 'TestUser',
+			'title': '',
+			'locale': 'de'
+		}
+	});
+
+	const currentUser = Factory.create('user');
+	sinon.stub(Meteor, 'user');
+	Meteor.user.returns(currentUser); // now Meteor.user() will return the user we just created
+
+	sinon.stub(Meteor, 'userId');
+	Meteor.userId.returns(currentUser._id); // needed in methods
+}

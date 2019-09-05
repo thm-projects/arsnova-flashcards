@@ -1,32 +1,80 @@
 import './cards.js';
-import { Meteor } from "meteor/meteor";
-import { assert, expect } from "chai";
+import { Meteor } from 'meteor/meteor';
+import { assert, expect } from 'chai';
 import { Cards } from './cards.js';
-import { resetDatabase } from "meteor/xolvio:cleaner";
-import { Factory } from "meteor/dburles:factory";
-import sinon from 'sinon';
-import './createStubUsers';
+import { resetDatabase } from 'meteor/xolvio:cleaner';
+import { Factory } from 'meteor/dburles:factory';
+import { CreateStubUser } from "./createStubUsers";
+import StubCollections from 'meteor/hwillson:stub-collections';
+import { Cardsets } from './cardsets';
 
 
 describe('addCard', function () {
 	beforeEach(() => {
 		resetDatabase();
-		const currentUser = Factory.create('user');
-		sinon.stub(Meteor, 'user');
-		Meteor.user.returns(currentUser); // now Meteor.user() will return the user we just created
 
-		sinon.stub(Meteor, 'userId');
-		Meteor.userId.returns(currentUser._id); // needed in methods
+		StubCollections.stub(Cardsets);
+		Cardsets.insert(
+			{
+				'_id': '123456789',
+				'name': 'TestCardSet',
+				'description': 'Cardset for tests',
+				'date': 1537650325474,
+				'dateUpdated': 1539500144049,
+				'editors': [],
+				'owner': 'no-owner',
+				'visible': true,
+				'ratings': false,
+				'kind': 'test',
+				'price': 0,
+				'reviewed': false,
+				'reviewer': 'undefined',
+				'request': false,
+				'rating': 0,
+				'raterCount': 0,
+				'quantity': 1,
+				'license': [],
+				'userDeleted': false,
+				'learningActive': false,
+				'maxCards': 5,
+				'daysBeforeReset': 0,
+				'learningStart': 0,
+				'learningEnd': 0,
+				'registrationPeriod': 0,
+				'learningInterval': [],
+				'wordcloud': false,
+				'shuffled': false,
+				'cardGroups': [null],
+				'cardType': 13,
+				'difficulty': 2,
+				'noDifficulty': true,
+				'originalAuthorName': {
+					'title': '',
+					'birthname': 'Test',
+					'givenname': 'Author'
+				},
+				'workload': {
+					'bonus': {
+						'count': 0
+					},
+					'normal': {
+						'count': 0
+					}
+				}
+			}
+		);
 	});
 
 	afterEach(() => {
 		Meteor.user.restore();
 		Meteor.userId.restore();
+		StubCollections.restore();
 		resetDatabase();
 	});
 
 
 	it('can create a new card', function () {
+		CreateStubUser(['admin']);
 		let cardset_id = '-1';
 		let subject = 'Aktivitätsdiagramm';
 		let content1 = 'Test content 1';
@@ -63,6 +111,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail without subject', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let cardset_id = '-1';
 			let subject = '';
@@ -79,13 +128,14 @@ describe('addCard', function () {
 			let backgroundStyle = 0;
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
-		}).to.throw(new Meteor.Error(TAPi18n.__('cardsubject_required', {}, Meteor.user().profile.locale)));
+		}).to.throw(TAPi18n.__('cardsubject_required', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail without user permissions', function () {
+		CreateStubUser(['editor']);
 		expect(function () {
-			let cardset_id = '1';
-			let subject = '';
+			let cardset_id = '123456789';
+			let subject = 'TestSubject';
 			let content1 = 'Test content 1';
 			let content2 = 'Test content 2';
 			let content3 = 'Test content 3';
@@ -99,7 +149,7 @@ describe('addCard', function () {
 			let backgroundStyle = 0;
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
-		}).to.throw();
+		}).to.throw('not-authorized');
 	});
 });
 

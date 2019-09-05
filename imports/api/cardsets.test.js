@@ -5,7 +5,7 @@ import { Cardsets } from './cardsets.js';
 import { Factory } from 'meteor/dburles:factory';
 import { resetDatabase } from 'meteor/xolvio:cleaner';
 import sinon from 'sinon';
-import './createStubUsers';
+import { CreateStubUser } from "./createStubUsers";
 
 describe('addCardset', function () {
 	beforeEach(() => {
