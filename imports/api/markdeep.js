@@ -119,7 +119,7 @@ export let MarkdeepContent = class MarkdeepContent {
 		let newline = " \n\n ";
 		let tableColumn = "|";
 		let pagebreak = newline + "\\pagebreak" + newline;
-		let content = '<meta charset=\"utf-8\" emacsmode=\"-*- markdown -*-\">\n\n';
+		let content = '<meta charset=\"utf-8\" lang="de" emacsmode=\"-*- markdown -*-\">\n\n';
 		let difficulty = "difficulty";
 		if (CardType.gotNotesForDifficultyLevel(cardset.cardType)) {
 			difficulty = "difficultyNotes";
