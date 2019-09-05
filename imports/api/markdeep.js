@@ -120,7 +120,6 @@ export let MarkdeepContent = class MarkdeepContent {
 		let tableColumn = "|";
 		let content = '<meta charset=\"utf-8\" lang="de" emacsmode=\"-*- markdown -*-\">' + newline;
 		let difficulty = "difficulty";
-		let pagebreak = "\\pagebreak" + newline;
 		if (CardType.gotNotesForDifficultyLevel(cardset.cardType)) {
 			difficulty = "difficultyNotes";
 		}
@@ -158,6 +157,6 @@ export let MarkdeepContent = class MarkdeepContent {
 				}
 			}
 		}
-		return content + '<!-- Markdeep: --><style class=\"fallback\">body{visibility:hidden;white-space:pre;font-family:monospace}</style><style>.md h1, .md .nonumberh1 {page-break-before:always}</style><script src=\"markdeep.min.js\" charset=\"utf-8\"></script><script src=\"https://casual-effects.com/markdeep/latest/markdeep.min.js?\" charset=\"utf-8\"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility=\"visible\")</script>';
+		return content + '<!-- Markdeep: --><style class=\"fallback\">body{visibility:hidden;white-space:pre;font-family:monospace}</style><style>.md h1, .md .nonumberh1 {page-break-before:always} .md .mediumTOC{float: none; page-break-after: always}</style><script src=\"markdeep.min.js\" charset=\"utf-8\"></script><script src=\"https://casual-effects.com/markdeep/latest/markdeep.min.js?\" charset=\"utf-8\"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility=\"visible\")</script>';
 	}
 };
