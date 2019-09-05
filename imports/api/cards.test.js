@@ -8,7 +8,7 @@ import StubCollections from 'meteor/hwillson:stub-collections';
 import { Cardsets } from './cardsets';
 
 
-describe('addCard', function () {
+describe('create cards successfully', function () {
 	beforeEach(() => {
 		resetDatabase();
 
@@ -72,7 +72,7 @@ describe('addCard', function () {
 	});
 
 
-	it('can create a new card', function () {
+	it('create a new card', function () {
 		CreateStubUser('id', ['admin']);
 		let cardset_id = '-1';
 		let subject = 'TestSubject';
@@ -109,7 +109,7 @@ describe('addCard', function () {
 		assert.equal(Meteor.userId(), card.owner);
 	});
 
-	it('can create a new card in a cardset', function () {
+	it('create a new card in a cardset', function () {
 		CreateStubUser('id', ['admin']);
 		let cardset_id = '123456789';
 		let subject = 'TestSubject';
@@ -145,6 +145,71 @@ describe('addCard', function () {
 		assert.equal(backgroundStyle, card.backgroundStyle);
 		assert.equal(Meteor.userId(), card.owner);
 	});
+});
+
+
+describe('create cards with wrong parameter values', function () {
+	beforeEach(() => {
+		resetDatabase();
+
+		StubCollections.stub(Cardsets);
+		Cardsets.insert(
+			{
+				'_id': '123456789',
+				'name': 'TestCardSet',
+				'description': 'Cardset for tests',
+				'date': 1537650325474,
+				'dateUpdated': 1539500144049,
+				'editors': [],
+				'owner': 'no-owner',
+				'visible': true,
+				'ratings': false,
+				'kind': 'test',
+				'price': 0,
+				'reviewed': false,
+				'reviewer': 'undefined',
+				'request': false,
+				'rating': 0,
+				'raterCount': 0,
+				'quantity': 0,
+				'license': [],
+				'userDeleted': false,
+				'learningActive': false,
+				'maxCards': 5,
+				'daysBeforeReset': 0,
+				'learningStart': 0,
+				'learningEnd': 0,
+				'registrationPeriod': 0,
+				'learningInterval': [],
+				'wordcloud': false,
+				'shuffled': false,
+				'cardGroups': [null],
+				'cardType': 13,
+				'difficulty': 2,
+				'noDifficulty': true,
+				'originalAuthorName': {
+					'title': '',
+					'birthname': 'Test',
+					'givenname': 'Author'
+				},
+				'workload': {
+					'bonus': {
+						'count': 0
+					},
+					'normal': {
+						'count': 0
+					}
+				}
+			}
+		);
+	});
+
+	afterEach(() => {
+		Meteor.user.restore();
+		Meteor.userId.restore();
+		StubCollections.restore();
+		resetDatabase();
+	});
 
 	it('should fail without subject', function () {
 		CreateStubUser('id', ['admin']);
@@ -166,8 +231,72 @@ describe('addCard', function () {
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
 		}).to.throw(TAPi18n.__('cardsubject_required', {}, Meteor.user().profile.locale));
 	});
+});
 
-	it('should fail without user permissions', function () {
+describe('create cards with wrong permissions', function () {
+	beforeEach(() => {
+		resetDatabase();
+
+		StubCollections.stub(Cardsets);
+		Cardsets.insert(
+			{
+				'_id': '123456789',
+				'name': 'TestCardSet',
+				'description': 'Cardset for tests',
+				'date': 1537650325474,
+				'dateUpdated': 1539500144049,
+				'editors': [],
+				'owner': 'no-owner',
+				'visible': true,
+				'ratings': false,
+				'kind': 'test',
+				'price': 0,
+				'reviewed': false,
+				'reviewer': 'undefined',
+				'request': false,
+				'rating': 0,
+				'raterCount': 0,
+				'quantity': 0,
+				'license': [],
+				'userDeleted': false,
+				'learningActive': false,
+				'maxCards': 5,
+				'daysBeforeReset': 0,
+				'learningStart': 0,
+				'learningEnd': 0,
+				'registrationPeriod': 0,
+				'learningInterval': [],
+				'wordcloud': false,
+				'shuffled': false,
+				'cardGroups': [null],
+				'cardType': 13,
+				'difficulty': 2,
+				'noDifficulty': true,
+				'originalAuthorName': {
+					'title': '',
+					'birthname': 'Test',
+					'givenname': 'Author'
+				},
+				'workload': {
+					'bonus': {
+						'count': 0
+					},
+					'normal': {
+						'count': 0
+					}
+				}
+			}
+		);
+	});
+
+	afterEach(() => {
+		Meteor.user.restore();
+		Meteor.userId.restore();
+		StubCollections.restore();
+		resetDatabase();
+	});
+
+	it('should fail when editor and not owner', function () {
 		CreateStubUser('id', ['editor']);
 		expect(function () {
 			let cardset_id = '123456789';
@@ -186,6 +315,70 @@ describe('addCard', function () {
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
 		}).to.throw('not-authorized');
+	});
+});
+
+describe('create cards with wrong data types', function () {
+	beforeEach(() => {
+		resetDatabase();
+
+		StubCollections.stub(Cardsets);
+		Cardsets.insert(
+			{
+				'_id': '123456789',
+				'name': 'TestCardSet',
+				'description': 'Cardset for tests',
+				'date': 1537650325474,
+				'dateUpdated': 1539500144049,
+				'editors': [],
+				'owner': 'no-owner',
+				'visible': true,
+				'ratings': false,
+				'kind': 'test',
+				'price': 0,
+				'reviewed': false,
+				'reviewer': 'undefined',
+				'request': false,
+				'rating': 0,
+				'raterCount': 0,
+				'quantity': 0,
+				'license': [],
+				'userDeleted': false,
+				'learningActive': false,
+				'maxCards': 5,
+				'daysBeforeReset': 0,
+				'learningStart': 0,
+				'learningEnd': 0,
+				'registrationPeriod': 0,
+				'learningInterval': [],
+				'wordcloud': false,
+				'shuffled': false,
+				'cardGroups': [null],
+				'cardType': 13,
+				'difficulty': 2,
+				'noDifficulty': true,
+				'originalAuthorName': {
+					'title': '',
+					'birthname': 'Test',
+					'givenname': 'Author'
+				},
+				'workload': {
+					'bonus': {
+						'count': 0
+					},
+					'normal': {
+						'count': 0
+					}
+				}
+			}
+		);
+	});
+
+	afterEach(() => {
+		Meteor.user.restore();
+		Meteor.userId.restore();
+		StubCollections.restore();
+		resetDatabase();
 	});
 
 	it('should fail with wrong data type for cardset_id', function () {
@@ -462,6 +655,38 @@ describe('addCard', function () {
 	});
 });
 
+describe('addCard when not logged in', function () {
+	beforeEach(() => {
+		resetDatabase();
+	});
+
+	afterEach(() => {
+		resetDatabase();
+	});
+
+	it('should fail when not logged in', function () {
+		expect(function () {
+			let cardset_id = '-1';
+			let subject = 'TestSubject';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = 0;
+			let bonusUser = false;
+
+			let cardId = Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, bonusUser);
+
+		}).to.throw();
+	});
+});
+
 describe('deleteCard', function () {
 	beforeEach(() => {
 		resetDatabase();
@@ -684,34 +909,3 @@ describe('deleteCard', function () {
 	});
 });
 
-describe('addCard when not logged in', function () {
-	beforeEach(() => {
-		resetDatabase();
-	});
-
-	afterEach(() => {
-		resetDatabase();
-	});
-
-	it('should fail when not logged in', function () {
-		expect(function () {
-			let cardset_id = '-1';
-			let subject = 'TestSubject';
-			let content1 = 'Test content 1';
-			let content2 = 'Test content 2';
-			let content3 = 'Test content 3';
-			let content4 = 'Test content 4';
-			let content5 = 'Test content 5';
-			let content6 = 'Test content 6';
-			let centerTextElement = [false, false, false, false];
-			let alignType = [0, 0, 0, 0, 0, 0];
-			let date = new Date();
-			let learningGoalLevel = 0;
-			let backgroundStyle = 0;
-			let bonusUser = false;
-
-			let cardId = Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, bonusUser);
-
-		}).to.throw();
-	});
-});
