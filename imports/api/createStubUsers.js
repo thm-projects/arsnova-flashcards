@@ -7,6 +7,7 @@ import sinon from 'sinon';
 
 export function CreateStubUser(roles) {
 	Factory.define('user', Meteor.users, {
+		'_id': 'TestUserId',
 		'name': 'TestUser',
 		'roles': roles,
 		'profile': {
