@@ -116,11 +116,11 @@ export let MarkdeepContent = class MarkdeepContent {
 
 	static exportContent (cards, cardset, whitelist) {
 		let linebreak = "\n";
-		let newline = " \n\n ";
+		let newline = " \n\n";
 		let tableColumn = "|";
-		let pagebreak = newline + "\\pagebreak" + newline;
-		let content = '<meta charset=\"utf-8\" lang="de" emacsmode=\"-*- markdown -*-\">\n\n';
+		let content = '<meta charset=\"utf-8\" lang="de" emacsmode=\"-*- markdown -*-\">' + newline;
 		let difficulty = "difficulty";
+		let pagebreak = "\\pagebreak" + newline;
 		if (CardType.gotNotesForDifficultyLevel(cardset.cardType)) {
 			difficulty = "difficultyNotes";
 		}
@@ -150,12 +150,11 @@ export let MarkdeepContent = class MarkdeepContent {
 			for (let s = 0; s < filteredSides.length; s++) {
 				let sideContent = cards[i][CardType.getContentIDTranslation(filteredSides[s].contentId)];
 				if (sideContent !== undefined && sideContent.trim().length > 0) {
-					content += "(##) " + cards[i].subject + " (" + TAPi18n.__('card.cardType' + cardset.cardType + '.content' + filteredSides[s].contentId) + ")" + newline;
-					content += sideContent;
-					content += pagebreak;
+					content += "# " + cards[i].subject + " (" + TAPi18n.__('card.cardType' + cardset.cardType + '.content' + filteredSides[s].contentId) + ")" + newline;
+					content += sideContent + newline;
 				}
 			}
 		}
-		return content + '<!-- Markdeep: --><style class=\"fallback\">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src=\"markdeep.min.js\" charset=\"utf-8\"></script><script src=\"https://casual-effects.com/markdeep/latest/markdeep.min.js?\" charset=\"utf-8\"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility=\"visible\")</script>';
+		return content + '<!-- Markdeep: --><style class=\"fallback\">body{visibility:hidden;white-space:pre;font-family:monospace}</style><style>.md h1, .md {page-break-before:always}</style><script src=\"markdeep.min.js\" charset=\"utf-8\"></script><script src=\"https://casual-effects.com/markdeep/latest/markdeep.min.js?\" charset=\"utf-8\"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility=\"visible\")</script>';
 	}
 };
