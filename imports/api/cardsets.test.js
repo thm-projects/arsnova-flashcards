@@ -97,36 +97,34 @@ describe('create cardsets with wrong parameter values', function () {
 		resetDatabase();
 	});
 
-	it('should not fail with negative cardtype', function () {
+	it('should not fail with negative cardType', function () {
 		CreateStubUser('id', ['admin']);
-		expect(function () {
-			let name = "testcardset";
-			let description = 'description';
-			let visible = true;
-			let ratings = true;
-			let kind = 'test 3';
-			let shuffled = true;
-			let cardGroups = ["groupname"];
-			let cardType = -5;
-			let difficulty = 1;
-			let sortType = 1;
+		let name = "testcardset";
+		let description = 'description';
+		let visible = true;
+		let ratings = true;
+		let kind = 'test 3';
+		let shuffled = true;
+		let cardGroups = ["groupname"];
+		let cardType = -1;
+		let difficulty = 1;
+		let sortType = 1;
 
-			let cardsetId = Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
-			assert.isAbove(cardsetId.length, 0);
+		let cardsetId = Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
+		assert.isAbove(cardsetId.length, 0);
 
-			let cardset = Cardsets.findOne(cardsetId);
+		let cardset = Cardsets.findOne(cardsetId);
 
-			assert.equal(name, cardset.name);
-			assert.equal(description, cardset.description);
-			assert.equal(visible, cardset.visible);
-			assert.equal(ratings, cardset.ratings);
-			assert.equal(kind, cardset.kind);
-			assert.equal(shuffled, cardset.shuffled);
-			expect(cardGroups).to.eql(cardset.cardGroups);
-			assert.equal(0, cardset.cardType);
-			assert.equal(difficulty, cardset.difficulty);
-			assert.equal(sortType, cardset.sortType);
-		});
+		assert.equal(name, cardset.name);
+		assert.equal(description, cardset.description);
+		assert.equal(visible, cardset.visible);
+		assert.equal(ratings, cardset.ratings);
+		assert.equal(kind, cardset.kind);
+		assert.equal(shuffled, cardset.shuffled);
+		expect(cardGroups).to.eql(cardset.cardGroups);
+		assert.equal(0, cardset.cardType);
+		assert.equal(difficulty, cardset.difficulty);
+		assert.equal(sortType, cardset.sortType);
 	});
 });
 
