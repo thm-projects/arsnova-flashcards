@@ -2,30 +2,26 @@ import './cardsets.js';
 import { Meteor } from "meteor/meteor";
 import { assert, expect } from "chai";
 import { Cardsets } from './cardsets.js';
-import { Factory } from 'meteor/dburles:factory';
 import { resetDatabase } from 'meteor/xolvio:cleaner';
-import sinon from 'sinon';
 import { CreateStubUser } from "./createStubUsers";
+import StubCollections from 'meteor/hwillson:stub-collections';
+
 
 describe('addCardset', function () {
 	beforeEach(() => {
 		resetDatabase();
-		const currentUser = Factory.create('user');
-		sinon.stub(Meteor, 'user');
-		Meteor.user.returns(currentUser); // now Meteor.user() will return the user we just created
-
-		sinon.stub(Meteor, 'userId');
-		Meteor.userId.returns(currentUser._id); // needed in methods
 	});
 
 	afterEach(() => {
 		Meteor.user.restore();
 		Meteor.userId.restore();
+		StubCollections.restore();
 		resetDatabase();
 	});
 
 
 	it('can create a new cardset', function () {
+		CreateStubUser(['admin']);
 		let name = "testcardset";
 		let description = 'description';
 		let visible = true;
@@ -58,6 +54,7 @@ describe('addCardset', function () {
 	});
 
 	it('should fail with wrong data type for name', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let name = 1;
 			let description = 'description';
@@ -75,6 +72,7 @@ describe('addCardset', function () {
 	});
 
 	it('should fail with wrong data type for description', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let name = "testcardset";
 			let description = 1;
@@ -92,6 +90,7 @@ describe('addCardset', function () {
 	});
 
 	it('should fail with wrong data type for visible', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let name = "testcardset";
 			let description = 'description';
@@ -109,6 +108,7 @@ describe('addCardset', function () {
 	});
 
 	it('should fail with wrong data type for ratings', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let name = "testcardset";
 			let description = 'description';
@@ -126,6 +126,7 @@ describe('addCardset', function () {
 	});
 
 	it('should fail with wrong data type for kind', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let name = "testcardset";
 			let description = 'description';
@@ -143,6 +144,7 @@ describe('addCardset', function () {
 	});
 
 	it('should fail with wrong data type for shuffled', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let name = "testcardset";
 			let description = 'description';
@@ -160,6 +162,7 @@ describe('addCardset', function () {
 	});
 
 	it('should fail with wrong data type for cardGroups', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let name = "testcardset";
 			let description = 'description';
@@ -177,6 +180,7 @@ describe('addCardset', function () {
 	});
 
 	it('should fail with wrong data type for cardType', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let name = "testcardset";
 			let description = 'description';
@@ -194,6 +198,7 @@ describe('addCardset', function () {
 	});
 
 	it('should fail with wrong data type for difficulty', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let name = "testcardset";
 			let description = 'description';
@@ -211,6 +216,7 @@ describe('addCardset', function () {
 	});
 
 	it('should fail with wrong data type for sortType', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let name = "testcardset";
 			let description = 'description';
