@@ -151,5 +151,265 @@ describe('addCard', function () {
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
 		}).to.throw('not-authorized');
 	});
+
+	it('should fail with wrong data type for cardset_id', function () {
+		expect(function () {
+			let cardset_id = 1;
+			let subject = 'Aktivitätsdiagramm';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = 0;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw('Match error: Expected string, got number');
+	});
+
+	it('should fail with wrong data type for subject', function () {
+		expect(function () {
+			let cardset_id = '1';
+			let subject = 1;
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = 0;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw('Match error: Expected string, got number');
+	});
+
+	it('should fail with wrong data type for content1', function () {
+		expect(function () {
+			let cardset_id = '1';
+			let subject = 'Aktivitätsdiagramm';
+			let content1 = 1;
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = 0;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw('Match error: Expected string, got number');
+	});
+
+	it('should fail with wrong data type for content2', function () {
+		expect(function () {
+			let cardset_id = '1';
+			let subject = 'Aktivitätsdiagramm';
+			let content1 = 'Test content 1';
+			let content2 = 1;
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = 0;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw('Match error: Expected string, got number');
+	});
+
+	it('should fail with wrong data type for content3', function () {
+		expect(function () {
+			let cardset_id = '1';
+			let subject = 'Aktivitätsdiagramm';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 1;
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = 0;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw('Match error: Expected string, got number');
+	});
+
+	it('should fail with wrong data type for content4', function () {
+		expect(function () {
+			let cardset_id = '1';
+			let subject = 'Aktivitätsdiagramm';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 1;
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = 0;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw('Match error: Expected string, got number');
+	});
+
+	it('should fail with wrong data type for content5', function () {
+		expect(function () {
+			let cardset_id = '1';
+			let subject = 'Aktivitätsdiagramm';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 1;
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = 0;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw('Match error: Expected string, got number');
+	});
+
+	it('should fail with wrong data type for content6', function () {
+		expect(function () {
+			let cardset_id = '1';
+			let subject = 'Aktivitätsdiagramm';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 1;
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = 0;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw('Match error: Expected string, got number');
+	});
+
+	it('should fail with wrong data type for centerTextElement', function () {
+		expect(function () {
+			let cardset_id = '1';
+			let subject = 'Aktivitätsdiagramm';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = 1;
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = 0;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw('Match error: Expected array, got 1');
+	});
+
+	it('should fail with wrong data type for alignType', function () {
+		expect(function () {
+			let cardset_id = '1';
+			let subject = 'Aktivitätsdiagramm';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = '1';
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = 0;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw('Match error: Expected array, got "1"');
+	});
+
+	it('should fail with wrong data type for date', function () {
+		expect(function () {
+			let cardset_id = '1';
+			let subject = 'Aktivitätsdiagramm';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = 1;
+			let learningGoalLevel = 0;
+			let backgroundStyle = 0;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw('Match error: Expected Date');
+	});
+
+	it('should fail with wrong data type for learningGoalLevel', function () {
+		expect(function () {
+			let cardset_id = '1';
+			let subject = 'Aktivitätsdiagramm';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = '0';
+			let backgroundStyle = 0;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw('Match error: Expected number, got string');
+	});
+
+	it('should fail with wrong data type for backgroundStyle', function () {
+		expect(function () {
+			let cardset_id = '1';
+			let subject = 'Aktivitätsdiagramm';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = '0';
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw('Match error: Expected number, got string');
+	});
 });
 
