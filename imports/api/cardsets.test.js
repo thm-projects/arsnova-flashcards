@@ -56,5 +56,175 @@ describe('addCardset', function () {
 		assert.equal(learningGoalLevel, card.learningGoalLevel);
 		assert.equal(backgroundStyle, card.backgroundStyle);*/
 	});
+
+	it('should fail with wrong data type for name', function () {
+		expect(function () {
+			let name = 1;
+			let description = 'description';
+			let visible = true;
+			let ratings = true;
+			let kind = 'test 3';
+			let shuffled = true;
+			let cardGroups = ["groupname"];
+			let cardType = 1;
+			let difficulty = 1;
+			let sortType = 1;
+
+			Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
+		}).to.throw('Match error: Expected string, got number');
+	});
+
+	it('should fail with wrong data type for description', function () {
+		expect(function () {
+			let name = "testcardset";
+			let description = 1;
+			let visible = true;
+			let ratings = true;
+			let kind = 'test 3';
+			let shuffled = true;
+			let cardGroups = ["groupname"];
+			let cardType = 1;
+			let difficulty = 1;
+			let sortType = 1;
+
+			Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
+		}).to.throw('Match error: Expected string, got number');
+	});
+
+	it('should fail with wrong data type for visible', function () {
+		expect(function () {
+			let name = "testcardset";
+			let description = 'description';
+			let visible = 'test';
+			let ratings = true;
+			let kind = 'test 3';
+			let shuffled = true;
+			let cardGroups = ["groupname"];
+			let cardType = 1;
+			let difficulty = 1;
+			let sortType = 1;
+
+			Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
+		}).to.throw('Match error: Expected boolean, got string');
+	});
+
+	it('should fail with wrong data type for ratings', function () {
+		expect(function () {
+			let name = "testcardset";
+			let description = 'description';
+			let visible = true;
+			let ratings = 'test';
+			let kind = 'test 3';
+			let shuffled = true;
+			let cardGroups = ["groupname"];
+			let cardType = 1;
+			let difficulty = 1;
+			let sortType = 1;
+
+			Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
+		}).to.throw('Match error: Expected boolean, got string');
+	});
+
+	it('should fail with wrong data type for kind', function () {
+		expect(function () {
+			let name = "testcardset";
+			let description = 'description';
+			let visible = true;
+			let ratings = true;
+			let kind = 1;
+			let shuffled = true;
+			let cardGroups = ["groupname"];
+			let cardType = 1;
+			let difficulty = 1;
+			let sortType = 1;
+
+			Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
+		}).to.throw('Match error: Expected string, got number');
+	});
+
+	it('should fail with wrong data type for shuffled', function () {
+		expect(function () {
+			let name = "testcardset";
+			let description = 'description';
+			let visible = true;
+			let ratings = true;
+			let kind = 'test 3';
+			let shuffled = 'test';
+			let cardGroups = ["groupname"];
+			let cardType = 1;
+			let difficulty = 1;
+			let sortType = 1;
+
+			Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
+		}).to.throw('Match error: Expected boolean, got string');
+	});
+
+	it('should fail with wrong data type for cardGroups', function () {
+		expect(function () {
+			let name = "testcardset";
+			let description = 'description';
+			let visible = true;
+			let ratings = true;
+			let kind = 'test 3';
+			let shuffled = true;
+			let cardGroups = 1;
+			let cardType = 1;
+			let difficulty = 1;
+			let sortType = 1;
+
+			Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
+		}).to.throw('Match error: Expected array, got 1');
+	});
+
+	it('should fail with wrong data type for cardType', function () {
+		expect(function () {
+			let name = "testcardset";
+			let description = 'description';
+			let visible = true;
+			let ratings = true;
+			let kind = 'test 3';
+			let shuffled = true;
+			let cardGroups = ["groupname"];
+			let cardType = '1';
+			let difficulty = 1;
+			let sortType = 1;
+
+			Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
+		}).to.throw('Match error: Expected number, got string');
+	});
+
+	it('should fail with wrong data type for difficulty', function () {
+		expect(function () {
+			let name = "testcardset";
+			let description = 'description';
+			let visible = true;
+			let ratings = true;
+			let kind = 'test 3';
+			let shuffled = true;
+			let cardGroups = ["groupname"];
+			let cardType = 1;
+			let difficulty = '1';
+			let sortType = 1;
+
+			Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
+		}).to.throw('Match error: Expected number, got string');
+	});
+
+	it('should fail with wrong data type for sortType', function () {
+		expect(function () {
+			let name = "testcardset";
+			let description = 'description';
+			let visible = true;
+			let ratings = true;
+			let kind = 'test 3';
+			let shuffled = true;
+			let cardGroups = ["groupname"];
+			let cardType = 1;
+			let difficulty = 1;
+			let sortType = '1';
+
+			Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
+		}).to.throw('Match error: Expected number, got string');
+	});
 });
 
