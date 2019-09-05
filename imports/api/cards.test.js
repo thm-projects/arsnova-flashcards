@@ -589,3 +589,35 @@ describe('deleteCard', function () {
 		}).to.throw('not-authorized');
 	});
 });
+
+describe('addCard when not logged in', function () {
+	beforeEach(() => {
+		resetDatabase();
+	});
+
+	afterEach(() => {
+		resetDatabase();
+	});
+
+	it('should fail when not logged in', function () {
+		expect(function () {
+			let cardset_id = '-1';
+			let subject = 'TestSubject';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = 0;
+			let bonusUser = false;
+
+			let cardId = Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, bonusUser);
+
+		}).to.throw();
+	});
+});

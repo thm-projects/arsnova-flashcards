@@ -232,5 +232,51 @@ describe('addCardset', function () {
 			Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
 		}).to.throw('Match error: Expected number, got string');
 	});
+
+	it('should fail when not having permissions', function () {
+		CreateStubUser(['firstLogin']);
+		expect(function () {
+			let name = "testcardset";
+			let description = 'description';
+			let visible = true;
+			let ratings = true;
+			let kind = 'test 3';
+			let shuffled = true;
+			let cardGroups = ["groupname"];
+			let cardType = 1;
+			let difficulty = 1;
+			let sortType = 1;
+
+			Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
+		}).to.throw('not-authorized');
+	});
+
+});
+
+describe('addCardset when not logged in', function () {
+	beforeEach(() => {
+		resetDatabase();
+	});
+
+	afterEach(() => {
+		resetDatabase();
+	});
+
+	it('should fail when not logged in', function () {
+		expect(function () {
+			let name = "testcardset";
+			let description = 'description';
+			let visible = true;
+			let ratings = true;
+			let kind = 'test 3';
+			let shuffled = true;
+			let cardGroups = ["groupname"];
+			let cardType = 1;
+			let difficulty = 1;
+			let sortType = 1;
+
+			Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
+		}).to.throw('not-authorized');
+	});
 });
 
