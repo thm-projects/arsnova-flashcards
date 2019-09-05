@@ -73,7 +73,7 @@ describe('addCard', function () {
 
 
 	it('can create a new card', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		let cardset_id = '-1';
 		let subject = 'TestSubject';
 		let content1 = 'Test content 1';
@@ -110,7 +110,7 @@ describe('addCard', function () {
 	});
 
 	it('can create a new card in a cardset', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		let cardset_id = '123456789';
 		let subject = 'TestSubject';
 		let content1 = 'Test content 1';
@@ -147,7 +147,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail without subject', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let cardset_id = '-1';
 			let subject = '';
@@ -168,7 +168,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail without user permissions', function () {
-		CreateStubUser(['editor']);
+		CreateStubUser('id', ['editor']);
 		expect(function () {
 			let cardset_id = '123456789';
 			let subject = 'TestSubject';
@@ -189,7 +189,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for cardset_id', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let cardset_id = 1;
 			let subject = 'Aktivitätsdiagramm';
@@ -210,7 +210,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for subject', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 1;
@@ -231,7 +231,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for content1', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -252,7 +252,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for content2', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -273,7 +273,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for content3', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -294,7 +294,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for content4', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -315,7 +315,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for content5', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -336,7 +336,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for content6', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -357,7 +357,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for centerTextElement', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -378,7 +378,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for alignType', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -399,7 +399,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for date', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -420,7 +420,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for learningGoalLevel', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -441,7 +441,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for backgroundStyle', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -562,7 +562,7 @@ describe('deleteCard', function () {
 	});
 
 	it('should delete a card as admin', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		let card_id = 'testCard';
 		let cardset_route_id = '123456789';
 		assert.exists(Cards.findOne(card_id));
@@ -571,11 +571,21 @@ describe('deleteCard', function () {
 	});
 
 	it('should delete a card as owner', function () {
-		CreateStubUser(['editor']);
+		CreateStubUser('TestUserId', ['editor']);
 		let card_id = 'testCard';
 		let cardset_route_id = '123456789';
 		assert.exists(Cards.findOne(card_id));
 		Meteor.call('deleteCard', card_id, cardset_route_id);
 		assert.notExists(Cards.findOne(card_id));
+	});
+
+	it('should not delete a card without permission', function () {
+		CreateStubUser('not-owner', ['editor']);
+		expect(function () {
+			let card_id = 'testCard';
+			let cardset_route_id = '123456789';
+			assert.exists(Cards.findOne(card_id));
+			Meteor.call('deleteCard', card_id, cardset_route_id);
+		}).to.throw('not-authorized');
 	});
 });

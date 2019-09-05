@@ -5,9 +5,9 @@ import sinon from 'sinon';
 // FOR TESTING ONLY
 
 
-export function CreateStubUser(roles) {
+export function CreateStubUser(id, roles) {
 	Factory.define('user', Meteor.users, {
-		'_id': 'TestUserId',
+		'_id': id,
 		'name': 'TestUser',
 		'roles': roles,
 		'profile': {
