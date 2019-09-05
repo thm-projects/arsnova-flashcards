@@ -601,3 +601,18 @@ th .field-tip {
     margin-top: 5px;
   }
 }
+
+#exportModal {
+  tr {
+    input:not([disabled]) + label {
+      cursor: pointer;
+    }
+    input[disabled] + label {
+      cursor: not-allowed;
+    }
+
+    th:last-child, td:last-child {
+      text-align: right;
+    }
+  }
+}

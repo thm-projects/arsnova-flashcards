@@ -80,6 +80,34 @@ export function getAuthorName(owner, lastNameFirst = true, onlyFirstName = false
 	}
 }
 
+export function getOriginalAuthorName(originalAuthorName, lastNameFirst) {
+	if (originalAuthorName.birthname === undefined) {
+		return originalAuthorName.legacyName;
+	}
+	let name = "";
+	if (lastNameFirst) {
+		if (originalAuthorName.birthname) {
+			name += originalAuthorName.birthname;
+		}
+		if (originalAuthorName.givenname) {
+			name += (", " + originalAuthorName.givenname);
+		}
+		if (originalAuthorName.title) {
+			name += (", " + originalAuthorName.title);
+		}
+	} else {
+		if (originalAuthorName.title) {
+			name += originalAuthorName.title + " ";
+		}
+		if (originalAuthorName.givenname) {
+			name += originalAuthorName.givenname + " ";
+		}
+		if (originalAuthorName.birthname) {
+			name += originalAuthorName.birthname;
+		}
+	}
+	return name;
+}
 export function exportAuthorName(owner) {
 	let author = Meteor.users.findOne({"_id": owner});
 	return {

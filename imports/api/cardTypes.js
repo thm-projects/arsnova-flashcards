@@ -103,6 +103,23 @@ export let CardType = class CardType {
 		}
 	}
 
+	static getContentIDTranslation (id) {
+		switch (id) {
+			case 1:
+				return "front";
+			case 2:
+				return "back";
+			case 3:
+				return "hint";
+			case 4:
+				return "lecture";
+			case 5:
+				return "top";
+			case 6:
+				return "bottom";
+		}
+	}
+
 	static getCubeSideID (side) {
 		switch (side) {
 			case "front":
@@ -119,6 +136,7 @@ export let CardType = class CardType {
 				return 5;
 		}
 	}
+
 	static getSideData (cardType, forceSide) {
 		let sides = this.getCardTypeCubeSides(cardType);
 		let id = this.getCubeSideID(forceSide);

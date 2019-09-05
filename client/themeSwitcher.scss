@@ -293,6 +293,12 @@ $themes: (
     $welcome_page_login_label: map-get($map, "welcome_page_login_label");
     $welcome_page_login_label_shadow: map-get($map, "welcome_page_login_label_shadow");
     $placeholder: map-get($map, "placeholder");
+    ////export to markdeep colors
+    $export_to_markdeep_table_header_background: map-get($map, "export_to_markdeep_table_header_background");
+    $export_to_markdeep_table_header_text: map-get($map, "export_to_markdeep_table_header_text");
+    $export_to_markdeep_table_row_background: map-get($map, "export_to_markdeep_table_row_background");
+    $export_to_markdeep_table_row_text: map-get($map, "export_to_markdeep_table_row_text");
+    $export_to_markdeep_table_row_counter: map-get($map, "export_to_markdeep_table_row_counter");
     //server statistics colors
     $server_statistics_table_header_background: map-get($map, "server_statistics_table_header_background");
     $server_statistics_table_header_text: map-get($map, "server_statistics_table_header_text");
@@ -936,7 +942,7 @@ $themes: (
       label {
         color: $form_group_label;
       }
-      .import-type.active {
+      .import-type.active, .export-type.active {
         color: white !important;
         background-color: $primary !important;
       }
@@ -3692,6 +3698,25 @@ $themes: (
 
     .toggle-wordcloud label, #pomodoroTimerNormalContainer label {
       color: $landing_page_label !important;
+    }
+
+    //export to markdeep colors
+    #exportModal {
+      tr {
+        th {
+          background-color: $export_to_markdeep_table_header_background !important;
+          color: $export_to_markdeep_table_header_text !important;
+        }
+
+        td {
+          background-color: $export_to_markdeep_table_row_background !important;
+          color: $export_to_markdeep_table_row_text !important;
+        }
+
+        td:last-child {
+          color: $export_to_markdeep_table_row_counter !important;
+        }
+      }
     }
 
     //server statistics colors
