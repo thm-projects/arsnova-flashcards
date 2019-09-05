@@ -124,6 +124,10 @@ export let MarkdeepContent = class MarkdeepContent {
 		if (CardType.gotNotesForDifficultyLevel(cardset.cardType)) {
 			difficulty = "difficultyNotes";
 		}
+		if (cardset.description.trim().length > 0) {
+			content += "(#) " + cardset.name + newline;
+			content += cardset.description ;
+		}
 		content += "(#) " + cardset.name + newline;
 		content += " | " + linebreak;
 		content += "---|---" + linebreak;
@@ -138,7 +142,6 @@ export let MarkdeepContent = class MarkdeepContent {
 		content += TAPi18n.__('cardset.info.license.title') + tableColumn + CardsetVisuals.getLicense(cardset._id, cardset.license, true) + linebreak;
 		content += TAPi18n.__('cardset.info.release') + tableColumn + Utilities.getMomentsDate(cardset.date, false, 0, false) + linebreak;
 		content += TAPi18n.__('cardset.info.dateUpdated') + tableColumn + Utilities.getMomentsDate(cardset.dateUpdated, false, 0, false) + linebreak;
-		content += pagebreak;
 		let sideOrder = CardType.getCardTypeCubeSides(cardset.cardType);
 		let filteredSides = [];
 		for (let i = 0; i < sideOrder.length; i++) {
@@ -155,6 +158,6 @@ export let MarkdeepContent = class MarkdeepContent {
 				}
 			}
 		}
-		return content + '<!-- Markdeep: --><style class=\"fallback\">body{visibility:hidden;white-space:pre;font-family:monospace}</style><style>.md h1, .md {page-break-before:always}</style><script src=\"markdeep.min.js\" charset=\"utf-8\"></script><script src=\"https://casual-effects.com/markdeep/latest/markdeep.min.js?\" charset=\"utf-8\"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility=\"visible\")</script>';
+		return content + '<!-- Markdeep: --><style class=\"fallback\">body{visibility:hidden;white-space:pre;font-family:monospace}</style><style>.md h1, .md .nonumberh1 {page-break-before:always}</style><script src=\"markdeep.min.js\" charset=\"utf-8\"></script><script src=\"https://casual-effects.com/markdeep/latest/markdeep.min.js?\" charset=\"utf-8\"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility=\"visible\")</script>';
 	}
 };
