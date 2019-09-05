@@ -189,6 +189,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for cardset_id', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let cardset_id = 1;
 			let subject = 'Aktivitätsdiagramm';
@@ -209,6 +210,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for subject', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 1;
@@ -229,6 +231,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for content1', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -249,6 +252,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for content2', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -269,6 +273,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for content3', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -289,6 +294,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for content4', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -309,6 +315,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for content5', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -329,6 +336,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for content6', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -349,6 +357,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for centerTextElement', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -369,6 +378,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for alignType', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -389,6 +399,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for date', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -409,6 +420,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for learningGoalLevel', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
@@ -429,6 +441,7 @@ describe('addCard', function () {
 	});
 
 	it('should fail with wrong data type for backgroundStyle', function () {
+		CreateStubUser(['admin']);
 		expect(function () {
 			let cardset_id = '1';
 			let subject = 'Aktivitätsdiagramm';
