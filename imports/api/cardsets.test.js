@@ -21,7 +21,7 @@ describe('create cardsets successfully', function () {
 		resetDatabase();
 	});
 
-	it('create a new cardset', function () {
+	it('create a new cardset shuffled', function () {
 		CreateStubUser('id', ['admin']);
 		let name = "testcardset";
 		let description = 'description';
@@ -50,6 +50,83 @@ describe('create cardsets successfully', function () {
 		assert.equal(cardType, cardset.cardType);
 		assert.equal(difficulty, cardset.difficulty);
 		assert.equal(sortType, cardset.sortType);
+	});
+
+	it('create a new cardset not shuffled', function () {
+		CreateStubUser('id', ['admin']);
+		let name = "testcardset";
+		let description = 'description';
+		let visible = true;
+		let ratings = true;
+		let kind = 'test 3';
+		let shuffled = false;
+		let cardGroups = ["groupname"];
+		let cardType = 1;
+		let difficulty = 1;
+		let sortType = 1;
+
+
+		let cardsetId = Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
+		assert.isAbove(cardsetId.length, 0);
+
+		let cardset = Cardsets.findOne(cardsetId);
+
+		assert.equal(name, cardset.name);
+		assert.equal(description, cardset.description);
+		assert.equal(visible, cardset.visible);
+		assert.equal(ratings, cardset.ratings);
+		assert.equal(kind, cardset.kind);
+		assert.equal(shuffled, cardset.shuffled);
+		expect([]).to.eql(cardset.cardGroups);
+		assert.equal(cardType, cardset.cardType);
+		assert.equal(difficulty, cardset.difficulty);
+		assert.equal(sortType, cardset.sortType);
+		assert.equal(0, cardset.quantity);
+	});
+});
+
+describe('create cardsets with wrong parameter values', function () {
+	beforeEach(() => {
+		resetDatabase();
+	});
+
+	afterEach(() => {
+		Meteor.user.restore();
+		Meteor.userId.restore();
+		StubCollections.restore();
+		resetDatabase();
+	});
+
+	it('should not fail with negative cardtype', function () {
+		CreateStubUser('id', ['admin']);
+		expect(function () {
+			let name = "testcardset";
+			let description = 'description';
+			let visible = true;
+			let ratings = true;
+			let kind = 'test 3';
+			let shuffled = true;
+			let cardGroups = ["groupname"];
+			let cardType = -5;
+			let difficulty = 1;
+			let sortType = 1;
+
+			let cardsetId = Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
+			assert.isAbove(cardsetId.length, 0);
+
+			let cardset = Cardsets.findOne(cardsetId);
+
+			assert.equal(name, cardset.name);
+			assert.equal(description, cardset.description);
+			assert.equal(visible, cardset.visible);
+			assert.equal(ratings, cardset.ratings);
+			assert.equal(kind, cardset.kind);
+			assert.equal(shuffled, cardset.shuffled);
+			expect(cardGroups).to.eql(cardset.cardGroups);
+			assert.equal(0, cardset.cardType);
+			assert.equal(difficulty, cardset.difficulty);
+			assert.equal(sortType, cardset.sortType);
+		});
 	});
 });
 
@@ -260,6 +337,24 @@ describe('create cardsets with wrong permissions', function () {
 
 	it('should fail when only having role "firstLogin"', function () {
 		CreateStubUser('id', ['firstLogin']);
+		expect(function () {
+			let name = "testcardset";
+			let description = 'description';
+			let visible = true;
+			let ratings = true;
+			let kind = 'test 3';
+			let shuffled = true;
+			let cardGroups = ["groupname"];
+			let cardType = 1;
+			let difficulty = 1;
+			let sortType = 1;
+
+			Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
+		}).to.throw('not-authorized');
+	});
+
+	it('should fail when being blocked"', function () {
+		CreateStubUser('id', ['editor', 'blocked']);
 		expect(function () {
 			let name = "testcardset";
 			let description = 'description';
