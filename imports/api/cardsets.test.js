@@ -5,6 +5,7 @@ import { Cardsets } from './cardsets.js';
 import { resetDatabase } from 'meteor/xolvio:cleaner';
 import { CreateStubUser } from "./createStubUsers";
 import StubCollections from 'meteor/hwillson:stub-collections';
+import {Cards} from "./cards";
 
 
 describe('addCardset', function () {
@@ -37,20 +38,19 @@ describe('addCardset', function () {
 		let cardsetId = Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
 		assert.isAbove(cardsetId.length, 0);
 
-		/*let card = Cards.findOne(cardId);
-		assert.equal(cardset_id, card.cardset_id);
-		assert.equal(subject, card.subject);
-		assert.equal(content1, card.front);
-		assert.equal(content2, card.back);
-		assert.equal(content3, card.hint);
-		assert.equal(content4, card.lecture);
-		assert.equal(content5, card.top);
-		assert.equal(content6, card.bottom);
-		expect(centerTextElement).to.eql(card.centerTextElement);
-		expect(alignType).to.eql(card.alignType);
-		expect(date).to.eql(card.date);
-		assert.equal(learningGoalLevel, card.learningGoalLevel);
-		assert.equal(backgroundStyle, card.backgroundStyle);*/
+		let cardset = Cardsets.findOne(cardsetId);
+
+		assert.equal(name, cardset.name);
+		assert.equal(description, cardset.description);
+		assert.equal(visible, cardset.visible);
+		assert.equal(ratings, cardset.ratings);
+		assert.equal(kind, cardset.kind);
+		assert.equal(shuffled, cardset.shuffled);
+		expect(cardGroups).to.eql(cardset.cardGroups);
+		assert.equal(cardType, cardset.cardType);
+		assert.equal(difficulty, cardset.difficulty);
+		assert.equal(sortType, cardset.sortType);
+
 	});
 
 	it('should fail with wrong data type for name', function () {
