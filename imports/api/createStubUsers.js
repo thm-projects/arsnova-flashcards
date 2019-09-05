@@ -17,6 +17,10 @@ export function CreateStubUser(id, roles) {
 			'name': 'TestUser',
 			'title': '',
 			'locale': 'de'
+		},
+		'count': {
+			'transcripts': 5,
+			'bonusTranscripts': 5
 		}
 	});
 

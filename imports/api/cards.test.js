@@ -485,7 +485,7 @@ describe('deleteCard', function () {
 				'request': false,
 				'rating': 0,
 				'raterCount': 0,
-				'quantity': 0,
+				'quantity': 1,
 				'license': [],
 				'userDeleted': false,
 				'learningActive': false,
@@ -517,6 +517,56 @@ describe('deleteCard', function () {
 			}
 		);
 
+		Cardsets.insert(
+			{
+				'_id': '-1',
+				'name': 'TestCardSet2',
+				'description': 'Cardset for tests',
+				'date': 1537650325474,
+				'dateUpdated': 1539500144049,
+				'editors': [],
+				'owner': 'TestUserId',
+				'visible': true,
+				'ratings': false,
+				'kind': 'test',
+				'price': 0,
+				'reviewed': false,
+				'reviewer': 'undefined',
+				'request': false,
+				'rating': 0,
+				'raterCount': 0,
+				'quantity': 1,
+				'license': [],
+				'userDeleted': false,
+				'learningActive': false,
+				'maxCards': 5,
+				'daysBeforeReset': 0,
+				'learningStart': 0,
+				'learningEnd': 0,
+				'registrationPeriod': 0,
+				'learningInterval': [],
+				'wordcloud': false,
+				'shuffled': false,
+				'cardGroups': [null],
+				'cardType': 1,
+				'difficulty': 2,
+				'noDifficulty': true,
+				'originalAuthorName': {
+					'title': '',
+					'birthname': 'Test',
+					'givenname': 'Author'
+				},
+				'workload': {
+					'bonus': {
+						'count': 0
+					},
+					'normal': {
+						'count': 0
+					}
+				}
+			}
+		);
+
 		StubCollections.stub(Cards);
 		Cards.insert(
 			{
@@ -527,6 +577,41 @@ describe('deleteCard', function () {
 				'back': 'Test text back',
 				'hint': 'Test hint',
 				'cardset_id': '123456789',
+				'cardType': 5,
+				'owner': 'TestUserId',
+				'centerTextElement': [
+					false,
+					false,
+					false,
+					false
+				],
+				'learningGoalLevel': 0,
+				'backgroundStyle': 0,
+				'date': 1513612598530,
+				'learningIndex': '0',
+				'originalAuthorName': {
+					'legacyName': 'Test, Author'
+				},
+				'alignType': [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			}
+		);
+
+		Cards.insert(
+			{
+				'_id': 'testCard2',
+				'subject': 'TestSubject',
+				'difficulty': 2,
+				'front': 'Test text front',
+				'back': 'Test text back',
+				'hint': 'Test hint',
+				'cardset_id': '-1',
 				'cardType': 5,
 				'owner': 'TestUserId',
 				'centerTextElement': [
@@ -587,6 +672,15 @@ describe('deleteCard', function () {
 			assert.exists(Cards.findOne(card_id));
 			Meteor.call('deleteCard', card_id, cardset_route_id);
 		}).to.throw('not-authorized');
+	});
+
+	it('should delete a card in private cardset', function () {
+		CreateStubUser('not-owner', ['admin']);
+		let card_id = 'testCard2';
+		let cardset_route_id = '-1';
+		assert.exists(Cards.findOne(card_id));
+		Meteor.call('deleteCard', card_id, cardset_route_id);
+		assert.notExists(Cards.findOne(card_id));
 	});
 });
 
