@@ -5,11 +5,7 @@ import { Cardsets } from './cardsets.js';
 import { Factory } from 'meteor/dburles:factory';
 import { resetDatabase } from 'meteor/xolvio:cleaner';
 import sinon from 'sinon';
-
-Factory.define('user', Meteor.users, {
-	'name': 'Josephine',
-	'roles': ['admin']
-});
+import './createStubUsers';
 
 describe('addCardset', function () {
 	beforeEach(() => {
@@ -20,12 +16,6 @@ describe('addCardset', function () {
 
 		sinon.stub(Meteor, 'userId');
 		Meteor.userId.returns(currentUser._id); // needed in methods
-		/*
-		DDP._CurrentInvocation.get = function () {
-			return {
-				userId: 'admin',
-			};
-		};*/
 	});
 
 	afterEach(() => {
