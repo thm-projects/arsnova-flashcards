@@ -8,7 +8,8 @@ import StubCollections from 'meteor/hwillson:stub-collections';
 import {Cards} from "./cards";
 
 
-describe('addCardset', function () {
+describe('create cardsets successfully', function () {
+
 	beforeEach(() => {
 		resetDatabase();
 	});
@@ -20,9 +21,8 @@ describe('addCardset', function () {
 		resetDatabase();
 	});
 
-
-	it('can create a new cardset', function () {
-		CreateStubUser(['admin']);
+	it('create a new cardset', function () {
+		CreateStubUser('id', ['admin']);
 		let name = "testcardset";
 		let description = 'description';
 		let visible = true;
@@ -50,11 +50,23 @@ describe('addCardset', function () {
 		assert.equal(cardType, cardset.cardType);
 		assert.equal(difficulty, cardset.difficulty);
 		assert.equal(sortType, cardset.sortType);
+	});
+});
 
+describe('create cardsets with wrong data types', function () {
+	beforeEach(() => {
+		resetDatabase();
+	});
+
+	afterEach(() => {
+		Meteor.user.restore();
+		Meteor.userId.restore();
+		StubCollections.restore();
+		resetDatabase();
 	});
 
 	it('should fail with wrong data type for name', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let name = 1;
 			let description = 'description';
@@ -72,7 +84,7 @@ describe('addCardset', function () {
 	});
 
 	it('should fail with wrong data type for description', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let name = "testcardset";
 			let description = 1;
@@ -90,7 +102,7 @@ describe('addCardset', function () {
 	});
 
 	it('should fail with wrong data type for visible', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let name = "testcardset";
 			let description = 'description';
@@ -108,7 +120,7 @@ describe('addCardset', function () {
 	});
 
 	it('should fail with wrong data type for ratings', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let name = "testcardset";
 			let description = 'description';
@@ -126,7 +138,7 @@ describe('addCardset', function () {
 	});
 
 	it('should fail with wrong data type for kind', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let name = "testcardset";
 			let description = 'description';
@@ -144,7 +156,7 @@ describe('addCardset', function () {
 	});
 
 	it('should fail with wrong data type for shuffled', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let name = "testcardset";
 			let description = 'description';
@@ -162,7 +174,7 @@ describe('addCardset', function () {
 	});
 
 	it('should fail with wrong data type for cardGroups', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let name = "testcardset";
 			let description = 'description';
@@ -180,7 +192,7 @@ describe('addCardset', function () {
 	});
 
 	it('should fail with wrong data type for cardType', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let name = "testcardset";
 			let description = 'description';
@@ -198,7 +210,7 @@ describe('addCardset', function () {
 	});
 
 	it('should fail with wrong data type for difficulty', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let name = "testcardset";
 			let description = 'description';
@@ -216,7 +228,7 @@ describe('addCardset', function () {
 	});
 
 	it('should fail with wrong data type for sortType', function () {
-		CreateStubUser(['admin']);
+		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let name = "testcardset";
 			let description = 'description';
@@ -232,9 +244,22 @@ describe('addCardset', function () {
 			Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
 		}).to.throw('Match error: Expected number, got string');
 	});
+});
 
-	it('should fail when not having permissions', function () {
-		CreateStubUser(['firstLogin']);
+describe('create cardsets with wrong permissions', function () {
+	beforeEach(() => {
+		resetDatabase();
+	});
+
+	afterEach(() => {
+		Meteor.user.restore();
+		Meteor.userId.restore();
+		StubCollections.restore();
+		resetDatabase();
+	});
+
+	it('should fail when only having role "firstLogin"', function () {
+		CreateStubUser('id', ['firstLogin']);
 		expect(function () {
 			let name = "testcardset";
 			let description = 'description';
