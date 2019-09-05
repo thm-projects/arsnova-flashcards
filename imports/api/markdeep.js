@@ -4,8 +4,9 @@ import {DOMPurifyConfig} from "../config/dompurify.js";
 import "/client/thirdParty/markdeep.min.js";
 import * as config from "../config/markdeep.js";
 import {CardType} from "./cardTypes";
-import {getAuthorName} from "./userdata";
+import {getAuthorName, getOriginalAuthorName} from "./userdata";
 import {Utilities} from "./utilities";
+import {CardsetVisuals} from "./cardsetVisuals";
 
 MeteorMathJax.sourceUrl = config.MathJaxSourceUrl;
 MeteorMathJax.defaultConfig = config.defaultMathJaxConfig;
@@ -127,8 +128,14 @@ export let MarkdeepContent = class MarkdeepContent {
 		content += " | " + linebreak;
 		content += "---|---" + linebreak;
 		content += TAPi18n.__('cardset.info.author') + tableColumn + getAuthorName(cardset.owner, false) + linebreak;
+		if (cardset.originalAuthorName !== undefined &&  (cardset.originalAuthorName.birthname !== undefined || cardset.originalAuthorName.legacyName !== undefined)) {
+			content += TAPi18n.__('cardset.info.originalAuthor') + tableColumn + getOriginalAuthorName(cardset.originalAuthorName, false) + linebreak;
+		}
+		content += TAPi18n.__('set-list.category') + tableColumn + CardsetVisuals.getKindText(cardset.kind, 1) + linebreak;
 		content += TAPi18n.__('cardType') + tableColumn + CardType.getCardTypeName(cardset.cardType) + linebreak;
-		content += TAPi18n.__(difficulty) + tableColumn + (difficulty + cardset.difficulty) + linebreak;
+		content += TAPi18n.__('difficulty') + tableColumn + TAPi18n.__(difficulty + cardset.difficulty) + linebreak;
+		content += TAPi18n.__('cardset.info.quantity') + tableColumn + cardset.quantity + linebreak;
+		content += TAPi18n.__('cardset.info.license.title') + tableColumn + CardsetVisuals.getLicense(cardset._id, cardset.license, true) + linebreak;
 		content += TAPi18n.__('cardset.info.release') + tableColumn + Utilities.getMomentsDate(cardset.date, false, 0, false) + linebreak;
 		content += TAPi18n.__('cardset.info.dateUpdated') + tableColumn + Utilities.getMomentsDate(cardset.dateUpdated, false, 0, false) + linebreak;
 		content += pagebreak;

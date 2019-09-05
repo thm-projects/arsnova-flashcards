@@ -1218,7 +1218,14 @@
       "amount": "Preis",
       "bought": "Gekauft",
       "deleted": "Gelöscht",
-      "license": "CC-Lizenz",
+      "license": {
+        "title": "CC-Lizenz",
+        "by": "Namensnennung",
+        "nc": "Nicht kommerziell",
+        "nd": "Keine Bearbeitung",
+        "sa": "Weitergabe unter gleichen Bedingungen",
+        "noCopyright": "Kein Copyright"
+      },
       "shuffleLicense": "Siehe jeweilige Kartei",
       "dateUpdated": "Aktualisiert",
       "module": "Modulname",
