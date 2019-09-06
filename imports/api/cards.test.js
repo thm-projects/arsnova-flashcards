@@ -72,7 +72,7 @@ describe('create cards successfully', function () {
 	});
 
 
-	it('create a new card', function () {
+	it('create a new card with lower boundary values for alignType, learningGoalLevel and backgroundStyle', function () {
 		CreateStubUser('id', ['admin']);
 		let cardset_id = '-1';
 		let subject = 'TestSubject';
@@ -83,10 +83,47 @@ describe('create cards successfully', function () {
 		let content5 = 'Test content 5';
 		let content6 = 'Test content 6';
 		let centerTextElement = [false, false, false, false];
-		let alignType = [0, 0, 0, 0, 0, 0];
+		let alignType = [0, 0, 0, 0, 0, 0]; // values from 0 - 3 allowed
 		let date = new Date();
-		let learningGoalLevel = 0;
-		let backgroundStyle = 0;
+		let learningGoalLevel = 0; // values from 0 - 5 allowed
+		let backgroundStyle = 0; // values from 0 - 1 allowed
+		let bonusUser = false;
+
+		let cardId = Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, bonusUser);
+		assert.isAbove(cardId.length, 0);
+
+		let card = Cards.findOne(cardId);
+		assert.equal(cardset_id, card.cardset_id);
+		assert.equal(subject, card.subject);
+		assert.equal(content1, card.front);
+		assert.equal(content2, card.back);
+		assert.equal(content3, card.hint);
+		assert.equal(content4, card.lecture);
+		assert.equal(content5, card.top);
+		assert.equal(content6, card.bottom);
+		expect(centerTextElement).to.eql(card.centerTextElement);
+		expect(alignType).to.eql(card.alignType);
+		expect(date).to.eql(card.date);
+		assert.equal(learningGoalLevel, card.learningGoalLevel);
+		assert.equal(backgroundStyle, card.backgroundStyle);
+		assert.equal(Meteor.userId(), card.owner);
+	});
+
+	it('create a new card with upper boundary values for alignType, learningGoalLevel and backgroundStyle', function () {
+		CreateStubUser('id', ['admin']);
+		let cardset_id = '-1';
+		let subject = 'TestSubject';
+		let content1 = 'Test content 1';
+		let content2 = 'Test content 2';
+		let content3 = 'Test content 3';
+		let content4 = 'Test content 4';
+		let content5 = 'Test content 5';
+		let content6 = 'Test content 6';
+		let centerTextElement = [false, false, false, false];
+		let alignType = [0, 0, 3, 0, 0, 0]; // values from 0 - 3 allowed
+		let date = new Date();
+		let learningGoalLevel = 5; // values from 0 - 5 allowed
+		let backgroundStyle = 1; // values from 0 - 1 allowed
 		let bonusUser = false;
 
 		let cardId = Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, bonusUser);
@@ -211,7 +248,7 @@ describe('create cards with wrong parameter values', function () {
 		resetDatabase();
 	});
 
-	it('should fail without subject', function () {
+	it('should fail with empty subject', function () {
 		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let cardset_id = '-1';
@@ -230,6 +267,132 @@ describe('create cards with wrong parameter values', function () {
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
 		}).to.throw(TAPi18n.__('cardsubject_required', {}, Meteor.user().profile.locale));
+	});
+
+	it('should fail with alignType values including -1 (allowed 0 - 3)', function () {
+		CreateStubUser('id', ['admin']);
+		expect(function () {
+			let cardset_id = '-1';
+			let subject = 'TestSubject';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, -1, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = 0;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw();
+	});
+
+	it('should fail with alignType values including 4 (allowed 0 - 3)', function () {
+		CreateStubUser('id', ['admin']);
+		expect(function () {
+			let cardset_id = '-1';
+			let subject = 'TestSubject';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 4, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = 0;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw();
+	});
+
+	it('should fail with learningGoalLevel -1 (allowed 0 - 5)', function () {
+		CreateStubUser('id', ['admin']);
+		expect(function () {
+			let cardset_id = '-1';
+			let subject = 'TestSubject';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = -1;
+			let backgroundStyle = 0;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw();
+	});
+
+	it('should fail with learningGoalLevel 6 (allowed 0 - 5)', function () {
+		CreateStubUser('id', ['admin']);
+		expect(function () {
+			let cardset_id = '-1';
+			let subject = 'TestSubject';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 6;
+			let backgroundStyle = 0;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw();
+	});
+
+	it('should fail with backgroundStyle -1 (allowed 0 - 1)', function () {
+		CreateStubUser('id', ['admin']);
+		expect(function () {
+			let cardset_id = '-1';
+			let subject = 'TestSubject';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = -1;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw();
+	});
+
+	it('should fail with backgroundStyle 2 (allowed 0 - 1)', function () {
+		CreateStubUser('id', ['admin']);
+		expect(function () {
+			let cardset_id = '-1';
+			let subject = 'TestSubject';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = 2;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw();
 	});
 });
 
