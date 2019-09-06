@@ -3,6 +3,10 @@ import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../config/dompurify.js";
 import "/client/thirdParty/markdeep.min.js";
 import * as config from "../config/markdeep.js";
+import {CardType} from "./cardTypes";
+import {getAuthorName, getOriginalAuthorName} from "./userdata";
+import {Utilities} from "./utilities";
+import {CardsetVisuals} from "./cardsetVisuals";
 
 MeteorMathJax.sourceUrl = config.MathJaxSourceUrl;
 MeteorMathJax.defaultConfig = config.defaultMathJaxConfig;
@@ -108,5 +112,51 @@ export let MarkdeepContent = class MarkdeepContent {
 		} else {
 			return false;
 		}
+	}
+
+	static exportContent (cards, cardset, whitelist) {
+		let linebreak = "\n";
+		let newline = " \n\n";
+		let tableColumn = "|";
+		let content = '<meta charset=\"utf-8\" lang="de" emacsmode=\"-*- markdown -*-\">' + newline;
+		let difficulty = "difficulty";
+		if (CardType.gotNotesForDifficultyLevel(cardset.cardType)) {
+			difficulty = "difficultyNotes";
+		}
+		if (cardset.description.trim().length > 0) {
+			content += "(#) " + cardset.name + newline;
+			content += cardset.description ;
+		}
+		content += "(#) " + cardset.name + newline;
+		content += " | " + linebreak;
+		content += "---|---" + linebreak;
+		content += TAPi18n.__('cardset.info.author') + tableColumn + getAuthorName(cardset.owner, false) + linebreak;
+		if (cardset.originalAuthorName !== undefined &&  (cardset.originalAuthorName.birthname !== undefined || cardset.originalAuthorName.legacyName !== undefined)) {
+			content += TAPi18n.__('cardset.info.originalAuthor') + tableColumn + getOriginalAuthorName(cardset.originalAuthorName, false) + linebreak;
+		}
+		content += TAPi18n.__('set-list.category') + tableColumn + CardsetVisuals.getKindText(cardset.kind, 1) + linebreak;
+		content += TAPi18n.__('cardType') + tableColumn + CardType.getCardTypeName(cardset.cardType) + linebreak;
+		content += TAPi18n.__('difficulty') + tableColumn + TAPi18n.__(difficulty + cardset.difficulty) + linebreak;
+		content += TAPi18n.__('cardset.info.quantity') + tableColumn + cardset.quantity + linebreak;
+		content += TAPi18n.__('cardset.info.license.title') + tableColumn + CardsetVisuals.getLicense(cardset._id, cardset.license, true) + linebreak;
+		content += TAPi18n.__('cardset.info.release') + tableColumn + Utilities.getMomentsDate(cardset.date, false, 0, false) + linebreak;
+		content += TAPi18n.__('cardset.info.dateUpdated') + tableColumn + Utilities.getMomentsDate(cardset.dateUpdated, false, 0, false) + linebreak;
+		let sideOrder = CardType.getCardTypeCubeSides(cardset.cardType);
+		let filteredSides = [];
+		for (let i = 0; i < sideOrder.length; i++) {
+			if (whitelist.includes(sideOrder[i].contentId)) {
+				filteredSides.push(sideOrder[i]);
+			}
+		}
+		for (let i = 0; i < cards.length; i++) {
+			for (let s = 0; s < filteredSides.length; s++) {
+				let sideContent = cards[i][CardType.getContentIDTranslation(filteredSides[s].contentId)];
+				if (sideContent !== undefined && sideContent.trim().length > 0) {
+					content += "# " + cards[i].subject + " (" + TAPi18n.__('card.cardType' + cardset.cardType + '.content' + filteredSides[s].contentId) + ")" + newline;
+					content += sideContent + newline;
+				}
+			}
+		}
+		return content + '<!-- Markdeep: --><style class=\"fallback\">body{visibility:hidden;white-space:pre;font-family:monospace}</style><style>.md h1, .md .nonumberh1 {page-break-before:always} .md .mediumTOC{float: none; page-break-after: always}</style><script src=\"markdeep.min.js\" charset=\"utf-8\"></script><script src=\"https://casual-effects.com/markdeep/latest/markdeep.min.js?\" charset=\"utf-8\"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility=\"visible\")</script>';
 	}
 };

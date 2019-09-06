@@ -456,6 +456,32 @@
     "wrong-template": "Fehlerhafte Dateistruktur",
     "wrong-file": "Falsches Dateiformat"
   },
+  "download-form": {
+    "popover-content": "Exportiert die Karten als JSON Dateiformat.",
+    "popover-content2": "Exportiert die Karten als Markdeep Dateiformat.",
+    "download-title": "Karten exportieren",
+    "download-card-title-placeholder": "Markdeep export",
+    "download-type": "Dateiformat",
+    "download-type1": "🍅__lastAppTitle__",
+    "download-type2": "Markdeep",
+    "card-sides-table": {
+      "head": {
+        "side": "Seite",
+        "count": "Anzahl",
+        "type": "Typ"
+      },
+      "body": {
+        "count": "__count__",
+        "type": {
+          "question": "Frage",
+          "answer": "Antwort",
+          "main-answer": "Hauptantwort",
+          "misc": ""
+        }
+      }
+    },
+    "download": "Exportieren"
+  },
   "confirm-form": {
     "title": "Karte löschen",
     "text": "Willst du diese Karte wirklich löschen?"
@@ -1192,7 +1218,14 @@
       "amount": "Preis",
       "bought": "Gekauft",
       "deleted": "Gelöscht",
-      "license": "CC-Lizenz",
+      "license": {
+        "title": "CC-Lizenz",
+        "by": "Namensnennung",
+        "nc": "Nicht kommerziell",
+        "nd": "Keine Bearbeitung",
+        "sa": "Weitergabe unter gleichen Bedingungen",
+        "noCopyright": "Kein Copyright"
+      },
       "shuffleLicense": "Siehe jeweilige Kartei",
       "dateUpdated": "Aktualisiert",
       "module": "Modulname",

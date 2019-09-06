@@ -8,7 +8,7 @@ import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import {CardType} from "../../api/cardTypes";
 import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../../config/dompurify.js";
-import {getAuthorName} from "../../api/userdata";
+import {getAuthorName, getOriginalAuthorName} from "../../api/userdata";
 import {Route} from "../../api/route";
 import {UserPermissions} from "../../api/permissions";
 import {Bonus} from "../../api/bonus";
@@ -30,6 +30,7 @@ import {BarfyStarsConfig} from "../../api/barfyStars.js";
 import {Utilities} from "../../api/utilities";
 import {TranscriptBonus} from "../../api/transcriptBonus";
 import {ServerSettings} from "../../api/settings";
+import {CardsetVisuals} from "../../api/cardsetVisuals";
 
 Meteor.subscribe("collegesCourses");
 
@@ -363,37 +364,7 @@ Template.registerHelper("getNextCardTime", function () {
 });
 
 Template.registerHelper("getKindText", function (kind, displayType = 0) {
-	if (displayType === 0) {
-		switch (DOMPurify.sanitize(kind, DOMPurifyConfig)) {
-			case "free":
-				return TAPi18n.__('access-level.free.short');
-			case "edu":
-				return TAPi18n.__('access-level.edu.short');
-			case "pro":
-				return TAPi18n.__('access-level.pro.short');
-			case "personal":
-				return TAPi18n.__('access-level.private.short');
-			case "demo":
-				return TAPi18n.__('access-level.demo.short');
-			default:
-				return 'Undefined!';
-		}
-	} else {
-		switch (DOMPurify.sanitize(kind, DOMPurifyConfig)) {
-			case "free":
-				return TAPi18n.__('access-level.free.long');
-			case "edu":
-				return TAPi18n.__('access-level.edu.long');
-			case "pro":
-				return TAPi18n.__('access-level.pro.long');
-			case "personal":
-				return TAPi18n.__('access-level.private.long');
-			case "demo":
-				return TAPi18n.__('access-level.demo.long');
-			default:
-				return 'Undefined!';
-		}
-	}
+	return CardsetVisuals.getKindText(kind, displayType);
 });
 
 Template.registerHelper("getCardTypeLabel", function (cardType) {
@@ -866,32 +837,7 @@ Template.registerHelper("getAuthorName", function (owner, lastNameFirst = true) 
 });
 
 Template.registerHelper("getOriginalAuthorName", function (originalAuthorName, lastNameFirst = true) {
-	if (originalAuthorName.birthname === undefined) {
-		return originalAuthorName.legacyName;
-	}
-	let name = "";
-	if (lastNameFirst) {
-		if (originalAuthorName.birthname) {
-			name += originalAuthorName.birthname;
-		}
-		if (originalAuthorName.givenname) {
-			name += (", " + originalAuthorName.givenname);
-		}
-		if (originalAuthorName.title) {
-			name += (", " + originalAuthorName.title);
-		}
-	} else {
-		if (originalAuthorName.title) {
-			name += originalAuthorName.title + " ";
-		}
-		if (originalAuthorName.givenname) {
-			name += originalAuthorName.givenname + " ";
-		}
-		if (originalAuthorName.birthname) {
-			name += originalAuthorName.birthname;
-		}
-	}
-	return name;
+	return getOriginalAuthorName(originalAuthorName, lastNameFirst);
 });
 
 Template.registerHelper("getAuthor", function (owner) {
@@ -916,27 +862,8 @@ Template.registerHelper("getAuthor", function (owner) {
 });
 
 // Return the cardset license
-Template.registerHelper("getLicense", function (_id, license) {
-	var licenseString = "";
-
-	if (license !== undefined && license !== null && license.length > 0) {
-		if (license.includes('by')) {
-			licenseString = licenseString.concat('<img src="/img/by.large.png" alt="Namensnennung" data-id="' + _id + '" />');
-		}
-		if (license.includes('nc')) {
-			licenseString = licenseString.concat('<img src="/img/nc-eu.large.png" alt="Nicht kommerziell" data-id="' + _id + '" />');
-		}
-		if (license.includes('nd')) {
-			licenseString = licenseString.concat('<img src="/img/nd.large.png" alt="Keine Bearbeitung" data-id="' + _id + '" />');
-		}
-		if (license.includes('sa')) {
-			licenseString = licenseString.concat('<img src="/img/sa.large.png" alt="Weitergabe unter gleichen Bedingungen" data-id="' + _id + '" />');
-		}
-
-		return new Spacebars.SafeString(licenseString);
-	} else {
-		return new Spacebars.SafeString('<img src="/img/zero.large.png" alt="Kein Copyright" data-id="' + _id + '" />');
-	}
+Template.registerHelper("getLicense", function (_id, license, isTextOnly) {
+	return CardsetVisuals.getLicense(_id, license, isTextOnly);
 });
 
 // Returns if user is deleted or not
