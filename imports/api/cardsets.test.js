@@ -58,7 +58,7 @@ describe('create cardsets successfully', function () {
 		let description = 'description';
 		let visible = true;
 		let ratings = true;
-		let kind = 'personal';
+		let kind = 'edu';
 		let shuffled = true;
 		let cardGroups = []; // can be empty
 		let cardType = 19; // allowed 0 - 19
@@ -584,7 +584,45 @@ describe('create cardsets with wrong permissions', function () {
 		}).to.throw('not-authorized');
 	});
 
-	it('should fail when being blocked"', function () {
+	it('should fail when having role "firstLogin" as "admin"', function () {
+		CreateStubUser('id', ['firstLogin', 'admin']);
+		expect(function () {
+			let name = "testcardset";
+			let description = 'description';
+			let visible = true;
+			let ratings = true;
+			let kind = 'personal';
+			let shuffled = true;
+			let cardGroups = [];
+			let cardType = 1;
+			let difficulty = 1;
+			let sortType = 1;
+
+			Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
+		}).to.throw('not-authorized');
+	});
+
+	it('should fail when not logged in', function () {
+		expect(function () {
+			let name = "testcardset";
+			let description = 'description';
+			let visible = true;
+			let ratings = true;
+			let kind = 'personal';
+			let shuffled = false;
+			let cardGroups = [];
+			let cardType = 1;
+			let difficulty = 1;
+			let sortType = 1;
+
+			Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
+		}).to.throw('not-authorized');
+		// *************************************************
+		// Just used to clean up the user after every test
+		CreateStubUser('id', ['firstLogin', 'admin']);
+	});
+
+	it('should fail when being "blocked"', function () {
 		CreateStubUser('id', ['editor', 'blocked']);
 		expect(function () {
 			let name = "testcardset";
@@ -602,6 +640,24 @@ describe('create cardsets with wrong permissions', function () {
 		}).to.throw('not-authorized');
 	});
 
+	it('should fail to create a bonus transcript cardset without being lecturer or admin', function () {
+		CreateStubUser('id', ['pro']);
+		expect(function () {
+			let name = "testcardset";
+			let description = 'description';
+			let visible = true;
+			let ratings = true;
+			let kind = 'personal';
+			let shuffled = true;
+			let cardGroups = []; // can be empty
+			let cardType = 19; // allowed 0 - 19
+			let difficulty = 3; // allowed 0 - 3
+			let sortType = 1; // allowed 0 - 1
+
+
+			Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
+		}).to.throw('not-authorized');
+	});
 });
 
 describe('addCardset when not logged in', function () {
