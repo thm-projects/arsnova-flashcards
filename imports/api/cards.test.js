@@ -6,6 +6,7 @@ import { resetDatabase } from 'meteor/xolvio:cleaner';
 import { CreateStubUser } from './createStubUsers';
 import StubCollections from 'meteor/hwillson:stub-collections';
 import { Cardsets } from './cardsets';
+import {TranscriptBonus} from "./transcriptBonus";
 
 
 describe('create cards successfully', function () {
@@ -479,6 +480,71 @@ describe('create cards with wrong permissions', function () {
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
 		}).to.throw('not-authorized');
 	});
+
+	it('should fail when blocked', function () {
+		CreateStubUser('id', ['admin', 'blocked']);
+		expect(function () {
+			let cardset_id = '123456789';
+			let subject = 'TestSubject';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = 0;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw('not-authorized');
+	});
+
+	it('should fail when first login', function () {
+		CreateStubUser('id', ['admin', 'blocked']);
+		expect(function () {
+			let cardset_id = '123456789';
+			let subject = 'TestSubject';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = 0;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw('not-authorized');
+	});
+
+	it('should fail when not logged in', function () {
+		expect(function () {
+			let cardset_id = '123456789';
+			let subject = 'TestSubject';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = 0;
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
+		}).to.throw('not-authorized');
+		// ****************************************************************
+		// Only used for cleanup
+		CreateStubUser('id', ['admin', 'blocked']);
+	});
 });
 
 describe('create cards with wrong data types', function () {
@@ -844,9 +910,185 @@ describe('addCard when not logged in', function () {
 			let backgroundStyle = 0;
 			let bonusUser = false;
 
-			let cardId = Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, bonusUser);
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, bonusUser);
 
 		}).to.throw();
+	});
+});
+
+describe('add card with bonus transcript', function () {
+	beforeEach(() => {
+		resetDatabase();
+
+		StubCollections.stub(TranscriptBonus);
+		TranscriptBonus.insert(
+			{
+				'cardset_id': 'bonusCardset',
+				'card_id': 'bonusCard',
+				'user_id': 'bonusUser',
+				'date': 1537650325474,
+				'dates': [1537650325474, 9999999999900],
+				'lectureEnd': '1537650325475',
+				'deadline': 17520,
+				'deadlineEditing': 1539500144030,
+				rating: 5,
+				stars: 5,
+				reasons: []
+			}
+		);
+
+		StubCollections.stub(Cardsets);
+		Cardsets.insert(
+			{
+				'_id': 'bonusCardset',
+				'name': 'BonusCardSet',
+				'description': 'Cardset for tests',
+				'date': 1537650325474,
+				'dateUpdated': 1539500144049,
+				'editors': [],
+				'owner': 'TestUserId',
+				'visible': true,
+				'ratings': false,
+				'kind': 'test',
+				'price': 0,
+				'reviewed': false,
+				'reviewer': 'undefined',
+				'request': false,
+				'rating': 0,
+				'raterCount': 0,
+				'quantity': 1,
+				'license': [],
+				'userDeleted': false,
+				'learningActive': false,
+				'maxCards': 5,
+				'daysBeforeReset': 0,
+				'learningStart': 0,
+				'learningEnd': 0,
+				'registrationPeriod': 0,
+				'learningInterval': [],
+				'wordcloud': false,
+				'shuffled': false,
+				'cardGroups': [null],
+				'cardType': 13,
+				'difficulty': 2,
+				'noDifficulty': true,
+				'originalAuthorName': {
+					'title': '',
+					'birthname': 'Test',
+					'givenname': 'Author'
+				},
+				'workload': {
+					'bonus': {
+						'count': 0
+					},
+					'normal': {
+						'count': 0
+					}
+				},
+				'transcriptBonus': {
+					'cardset_id': 'bonusCardset',
+					'card_id': 'bonusCard',
+					'user_id': 'bonusUser',
+					'date': 1537650325474,
+					'dates': [1537650325474],
+					'lectureEnd': '9999999900000',
+					'deadline': 17520,
+					'deadlineEditing': 999,
+					'enabled': true
+				}
+			}
+		);
+
+		StubCollections.stub(Cards);
+		Cards.insert(
+			{
+				'_id': 'bonusCard',
+				'subject': 'TestSubject',
+				'difficulty': 2,
+				'front': 'Test text front',
+				'back': 'Test text back',
+				'hint': 'Test hint',
+				'cardset_id': 'bonusCardset',
+				'cardType': 19,
+				'owner': 'bonusUser',
+				'centerTextElement': [
+					false,
+					false,
+					false,
+					false
+				],
+				'learningGoalLevel': 0,
+				'backgroundStyle': 0,
+				'date': 1513612598530,
+				'learningIndex': '0',
+				'originalAuthorName': {
+					'legacyName': 'Test, Author'
+				},
+				'alignType': [
+					0,
+					0,
+					0,
+					0,
+					0,
+					0
+				]
+			}
+		);
+	});
+
+	afterEach(() => {
+		Meteor.user.restore();
+		Meteor.userId.restore();
+		StubCollections.restore();
+		resetDatabase();
+	});
+
+	it('should create a card with bonus', function () {
+		CreateStubUser('bonusUser', ['admin']);
+		let cardset_id = 'bonusCardset';
+		let subject = 'TestSubject';
+		let content1 = 'Test content 1';
+		let content2 = 'Test content 2';
+		let content3 = 'Test content 3';
+		let content4 = 'Test content 4';
+		let content5 = 'Test content 5';
+		let content6 = 'Test content 6';
+		let centerTextElement = [false, false, false, false];
+		let alignType = [0, 0, 0, 0, 0, 0];
+		let date = new Date();
+		let learningGoalLevel = 0;
+		let backgroundStyle = 0;
+		let bonusUser = {
+			'date_id': 0,
+			'cardset_id': 'bonusCardset'
+		};
+
+		Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, bonusUser);
+	});
+
+	it('should fail to create a card with bonus after deadline ended', function () {
+		CreateStubUser('bonusUser', ['admin']);
+		expect(function () {
+			let cardset_id = 'bonusCardset';
+			let subject = 'TestSubject';
+			let content1 = 'Test content 1';
+			let content2 = 'Test content 2';
+			let content3 = 'Test content 3';
+			let content4 = 'Test content 4';
+			let content5 = 'Test content 5';
+			let content6 = 'Test content 6';
+			let centerTextElement = [false, false, false, false];
+			let alignType = [0, 0, 0, 0, 0, 0];
+			let date = new Date();
+			let learningGoalLevel = 0;
+			let backgroundStyle = 0;
+			let bonusUser = {
+				'date_id': 1,
+				'cardset_id': 'bonusCardset'
+			};
+
+			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, bonusUser);
+		}).to.throw(TAPi18n.__('transcriptForm.server.notFound', {}, Meteor.user().profile.locale));
 	});
 });
 
