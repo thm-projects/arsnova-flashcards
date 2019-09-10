@@ -1,0 +1,9 @@
+<template name="cardsetSidebar">
+    {{#if gotBackendAccess}}
+        {{#if this.quantity}}
+            <div id="flashcardSidebarLeft" class="hidden-xs fixed">
+                {{> cardsetSidebarItemPreview}}
+            </div>
+        {{/if}}
+    {{/if}}
+</template>

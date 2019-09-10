@@ -20,6 +20,7 @@ import "./preview.js";
 import "./index/bonus/bonus.js";
 import "./labels/labels.js";
 import "./index/transcript/transcript.js";
+import "./sidebar/sidebar.js";
 import "./cardset.html";
 
 Meteor.subscribe("notifications");
