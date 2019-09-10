@@ -2,7 +2,9 @@
     <div class="cardsetInfoFooter panel-footer">
         {{#if hasCardsetPermission}}
             {{> cardsetNavigationPresentation}}
-            {{> cardsetNavigationNewCard}}
+            {{#unless isCardsetStudentPreviewActive}}
+                {{> cardsetNavigationNewCard}}
+            {{/unless}}
             {{#if isInBonus}}
                 {{> cardsetNavigationLearning}}
             {{else}}
@@ -10,16 +12,17 @@
                     {{> cardsetNavigationWorkload}}
                 {{/if}}
             {{/if}}
-            {{> cardsetNavigationEditRepetitorium}}
-            {{> cardsetNavigationBonus}}
-            {{> cardsetNavigationTranscripts}}
-            {{> cardsetNavigationEditCardset}}
-            {{> cardsetNavigationEditLicense}}
-            {{> cardsetNavigationPublishCardset}}
-
-            {{> cardsetNavigationImport}}
-            {{> cardsetNavigationExport}}
-            {{> cardsetNavigationDeleteAllCards}}
+            {{#unless isCardsetStudentPreviewActive}}
+                {{> cardsetNavigationEditRepetitorium}}
+                {{> cardsetNavigationBonus}}
+                {{> cardsetNavigationTranscripts}}
+                {{> cardsetNavigationEditCardset}}
+                {{> cardsetNavigationEditLicense}}
+                {{> cardsetNavigationPublishCardset}}
+                {{> cardsetNavigationImport}}
+                {{> cardsetNavigationExport}}
+                {{> cardsetNavigationDeleteAllCards}}
+            {{/unless}}
         {{else}}
             {{> cardsetNavigationPresentation}}
         {{/if}}

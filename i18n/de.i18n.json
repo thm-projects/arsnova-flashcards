@@ -1201,6 +1201,12 @@
     }
   },
   "cardset": {
+    "sidebar": {
+      "preview": {
+        "cardset": "Zeige die Student/in Ansicht für diese Kartei",
+        "repetitorium": "Zeige die Student/in Ansicht für dieses Repetitorium"
+      }
+    },
     "info": {
       "author": "Autor/in",
       "multipleAuthors": "Mehrere",

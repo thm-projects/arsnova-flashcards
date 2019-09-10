@@ -423,6 +423,13 @@ $themes: (
     $card_sidebar_arsnova_lite_text_hover: map-get($map, "card_sidebar_arsnova_lite_text_hover");
     $card_sidebar_arsnova_lite_background_active: map-get($map, "card_sidebar_arsnova_lite_background_active");
     $card_sidebar_arsnova_lite_text_active: map-get($map, "card_sidebar_arsnova_lite_text_active");
+    //cardset sidebar colors
+    $cardset_sidebar_preview_background: map-get($map, "cardset_sidebar_preview_background");
+    $cardset_sidebar_preview_text: map-get($map, "cardset_sidebar_preview_text");
+    $cardset_sidebar_preview_background_hover: map-get($map, "cardset_sidebar_preview_background_hover");
+    $cardset_sidebar_preview_text_hover: map-get($map, "cardset_sidebar_preview_text_hover");
+    $cardset_sidebar_preview_background_active: map-get($map, "cardset_sidebar_preview_background_active");
+    $cardset_sidebar_preview_text_active: map-get($map, "cardset_sidebar_preview_text_active");
     //cardset colors
     $cardset_markdeep_background: map-get($map, "cardset_markdeep_background");
     $cardset_markdeep_header_border: map-get($map, "cardset_markdeep_header_border");
@@ -3348,7 +3355,6 @@ $themes: (
         color: $card_sidebar_aspect_ratio_text_hover !important;
       }
 
-
       .showArsnovaLite {
         background-color: $card_sidebar_arsnova_lite_background !important;
         color:$card_sidebar_arsnova_lite_text !important;
@@ -3406,6 +3412,22 @@ $themes: (
         background-color: $card_sidebar_toggle_button_background_active_hover !important;
         color: $card_sidebar_toggle_button_text_active_hover !important;
         opacity: 1 !important;
+      }
+
+      //cardset
+      .preview {
+        background-color: $cardset_sidebar_preview_background !important;
+        color:$cardset_sidebar_preview_text !important;
+      }
+
+      .preview.pressed {
+        background-color: $cardset_sidebar_preview_background_active !important;
+        color:$cardset_sidebar_preview_text_active !important;
+      }
+
+      .preview:hover {
+        background-color: $cardset_sidebar_preview_background_hover !important;
+        color:$cardset_sidebar_preview_text_hover !important;
       }
     }
 
