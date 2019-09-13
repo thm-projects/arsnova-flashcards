@@ -234,3 +234,9 @@ body {
     margin-right: 4px;
   }
 }
+
+.mailtoUserAdmin {
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
