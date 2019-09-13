@@ -28,8 +28,11 @@ Template.admin_users.helpers({
 			dateString = moment(user.createdAt).locale(Session.get('activeLanguage')).format('LL');
 			date = moment(user.createdAt).format("YYYY-MM-DD");
 			let notificationSystems = Bonus.getNotificationStatus(user);
-			let gotMail = (user.email !== "" && user.email !== undefined && user._id !== Meteor.userId());
-			fields.push({"_id": user._id, username: DOMPurify.sanitize(getAuthorName(user._id, true, false, true),DOMPurifyConfig), "loginid": DOMPurify.sanitize(user.profile.name, DOMPurifyConfig), "dateString": dateString, "date": date, "notificationSystems": notificationSystems, "gotMail": gotMail});
+			let mail;
+			if (user.email !== "" && user.email !== undefined && user._id !== Meteor.userId()) {
+				mail = user.email;
+			}
+			fields.push({"_id": user._id, username: DOMPurify.sanitize(getAuthorName(user._id, true, false, true),DOMPurifyConfig), "loginid": DOMPurify.sanitize(user.profile.name, DOMPurifyConfig), "dateString": dateString, "date": date, "notificationSystems": notificationSystems, "mail": mail});
 		});
 
 		return fields;
@@ -99,13 +102,13 @@ Template.admin_users.helpers({
 					}
 				},
 				{
-					key: 'gotMail',
+					key: 'mail',
 					label: TAPi18n.__('admin.mail'),
 					cellClass: 'mailto',
 					sortable: false,
 					fn: function (value) {
 						if (value) {
-							return new Spacebars.SafeString("<a class='mailtoUserAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#messageModalAdmin'><span class='flex-content'><i class='fas fa-envelope'></i></span></a>");
+							return new Spacebars.SafeString("<a class='mailtoUserAdmin' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#messageModalAdmin'>" + value + "</a>");
 						}
 					}
 				},
