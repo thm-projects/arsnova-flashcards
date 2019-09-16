@@ -55,7 +55,7 @@ Template.cardNavigationEnabled.helpers({
 });
 
 Template.cardNavigationEnabled.onRendered(function () {
-	if ((Route.isEditMode() || Route.isPresentation()) && Session.get('activeCardSide') !== undefined) {
+	if ((Route.isEditMode() || Route.isDefaultPresentation())  && Session.get('activeCardSide') !== undefined) {
 		CardNavigation.selectButton(Session.get('activeCardSide'));
 	} else {
 		CardNavigation.selectActiveButton();
