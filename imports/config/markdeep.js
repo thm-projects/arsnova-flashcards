@@ -23,7 +23,7 @@ let customMathJaxDefinitions = [
 	"{\\un}[1]{\\,\\mathrm{#1}}"
 ];
 
-let MathJaxSourceUrl = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_SVG';
+let MathJaxSourceUrl = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/latest.js?config=TeX-AMS_SVG';
 
 let defaultMathJaxConfig = {
 	TeX: {equationNumbers: {autoNumber: "AMS"}},
