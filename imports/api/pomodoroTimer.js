@@ -4,7 +4,6 @@ import {Cardsets} from "./cardsets.js";
 import {Route} from "./route.js";
 import swal from "sweetalert2";
 import * as config from "../config/pomodoroTimer.js";
-import * as screenfull from "screenfull";
 
 Session.set('pomodoroBreakActive', false);
 /*This is a ton of script, mostly popups, so strap in for a wild ride!*/
@@ -759,7 +758,10 @@ export let PomodoroTimer = class PomodoroTimer {
 	static showPomodoroNormal () {
 		if ($(document).has('#pomodoroTimerNormalContainer').length) {
 			isClockInBigmode = false;
-			screenfull.exit();
+			if (document.fullscreenElement) {
+				document.exitFullscreen();
+			}
+			$('.modal-backdrop').css('display', 'none');
 			$('#pomodoroTimerOverlay').css('display', 'none');
 			$('#pomodoroTimerNormalContainer').css('display', 'block');
 			$('#pomodoroTimerOverlay .pomodoroClock').css('height', 'unset');
