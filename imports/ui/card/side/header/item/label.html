@@ -5,7 +5,7 @@
             {{{getDifficultyLabel this.cardType this.difficulty}}}<br>
         {{/if}}
         {{#if isInBonus}}
-            {{{getBonusLabel true}}}<br>
+            {{{getBonusLabel true this.learningEnd}}}<br>
         {{/if}}
         {{{getTranscriptBonusLabel this}}}<br>
         {{> filterIndexItemBottomTranscriptRating}}<br>

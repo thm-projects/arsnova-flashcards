@@ -388,9 +388,20 @@ Template.registerHelper("isCardsetAndFixedSidebar", function () {
 	return Route.isCardset() && CardVisuals.isFixedSidebar();
 });
 
-Template.registerHelper("getBonusLabel", function (shuffled = false) {
-	if (shuffled) {
-		return '<span class="label label-bonus" title="' + TAPi18n.__('cardset.bonus.long') + '">' + TAPi18n.__('cardset.bonus.short') + '</span>';
+Template.registerHelper("getBonusLabel", function (learningActive = false, learningEnd = new Date()) {
+	if (learningActive) {
+		if (learningEnd < new Date()) {
+			return '<span class="label label-bonus-finished" title="' + TAPi18n.__('cardset.bonus.long') + '">' + TAPi18n.__('cardset.bonus.short') + '</span>';
+		} else {
+			return '<span class="label label-bonus" title="' + TAPi18n.__('cardset.bonus.long') + '">' + TAPi18n.__('cardset.bonus.short') + '</span>';
+		}
+	}
+});
+
+
+Template.registerHelper("isBonusFinished", function (learningActive = false, learningEnd = new Date()) {
+	if (this.learningActive && this.learningEnd < new Date()) {
+		return true;
 	}
 });
 
