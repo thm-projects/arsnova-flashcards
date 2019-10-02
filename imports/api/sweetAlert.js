@@ -1,6 +1,5 @@
 import {Meteor} from "meteor/meteor";
 import swal from "sweetalert2";
-import * as screenfull from 'screenfull';
 import {CardVisuals} from "./cardVisuals";
 import * as config from "../config/sweetAlert.js";
 import {Route} from "./route.js";
@@ -19,9 +18,14 @@ export let SweetAlertMessages = class SweetAlertMessages {
 	static continuePresentation () {
 		swal.fire(config.continuePresentation()).then((result) => {
 			if (result.value) {
-				screenfull.request();
+				if (document.fullscreenElement === null) {
+					document.body.requestFullscreen();
+				}
 			} else {
-				screenfull.exit();
+				if (document.fullscreenElement) {
+					document.exitFullscreen();
+				}
+				$('.modal-backdrop').css('display', 'none');
 				if (Route.isPresentationTranscriptPersonal()) {
 					Router.go('transcriptsPersonal');
 				} else {
@@ -38,7 +42,10 @@ export let SweetAlertMessages = class SweetAlertMessages {
 			if (result.value) {
 				CardVisuals.toggleFullscreen();
 			} else {
-				screenfull.exit();
+				if (document.fullscreenElement) {
+					document.exitFullscreen();
+				}
+				$('.modal-backdrop').css('display', 'none');
 				if (Route.isPresentationTranscriptPersonal()) {
 					Router.go('transcriptsPersonal');
 				} else {
@@ -53,7 +60,10 @@ export let SweetAlertMessages = class SweetAlertMessages {
 	static exitPresentation () {
 		swal.fire(config.exitPresentation()).then((result) => {
 			if (result.value) {
-				screenfull.exit();
+				if (document.fullscreenElement) {
+					document.exitFullscreen();
+				}
+				$('.modal-backdrop').css('display', 'none');
 				if (Route.isPresentationTranscriptPersonal()) {
 					Router.go('transcriptsPersonal');
 				} else {
@@ -62,7 +72,9 @@ export let SweetAlertMessages = class SweetAlertMessages {
 					});
 				}
 			} else {
-				screenfull.request();
+				if (document.fullscreenElement === null) {
+					document.body.requestFullscreen();
+				}
 			}
 		});
 	}

@@ -1,5 +1,5 @@
 <template name="bonusInfoBox">
-    <div id="collapseLearningPhaseInfoButton" class="col-xs-12 card card-block collapseButton">
+    <div id="collapseLearningPhaseInfoButton" class="col-xs-12 card card-block collapseButton {{#if isBonusFinished this.learningActive this.learningEnd}}finished{{/if}}">
         <strong>{{_ "set-list.learnphaseInfo"}}</strong>
         <i id="collapseLearningPhaseInfoIcon" class="far fa-caret-square-down pull-right"></i>
     </div>

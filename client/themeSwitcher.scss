@@ -68,6 +68,8 @@ $themes: (
     $shuffled_text: map-get($map, "shuffled_text");
     $bonus_background: map-get($map, "bonus_background");
     $bonus_text: map-get($map, "bonus_text");
+    $bonus_finished_background: map-get($map, "bonus_finished_background");
+    $bonus_finished_text: map-get($map, "bonus_finished_text");
     $bonus_transcript_background: map-get($map, "bonus_transcript_background");
     $bonus_transcript_text: map-get($map, "bonus_transcript_text");
     $card_type_background: map-get($map, "card_type_background");
@@ -1720,6 +1722,11 @@ $themes: (
       color: $bonus_text;
     }
 
+    #collapseLearningPhaseInfoButton.finished, #collapseManageButton.finished {
+      background-color: $bonus_finished_background;
+      color: $bonus_finished_text;
+    }
+
     #collapseBonusTranscriptInfoButton {
       background-color: $transcript_bonus_info_background;
       color: $transcript_bonus_info_text;
@@ -2816,6 +2823,11 @@ $themes: (
     .label-bonus {
       background-color: $bonus_background !important;
       color: $bonus_text !important;
+    }
+
+    .label-bonus-finished {
+      background-color: $bonus_finished_background !important;
+      color: $bonus_finished_text !important;
     }
 
     .label-transcript-bonus {

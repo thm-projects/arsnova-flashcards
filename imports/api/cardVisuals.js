@@ -1,7 +1,6 @@
 import {Session} from "meteor/session";
 import {Route} from "./route";
 import {CardType} from "./cardTypes";
-import * as screenfull from 'screenfull';
 import {NavigatorCheck} from "./navigatorCheck";
 import {Cardsets} from "./cardsets";
 import {MarkdeepEditor} from "./markdeepEditor";
@@ -68,14 +67,6 @@ export let CardVisuals = class CardVisuals {
 
 	static isFullscreen () {
 		return Session.get('fullscreen');
-	}
-
-	static isScreenfullActive () {
-		if (NavigatorCheck.isIOS()) {
-			return true;
-		} else {
-			return screenfull.isFullscreen;
-		}
 	}
 
 	static checkFullscreen () {
@@ -383,8 +374,8 @@ export let CardVisuals = class CardVisuals {
 		Session.set('dictionaryLinguee', 0);
 		Session.set('dictionaryGoogle', 0);
 		if ((Session.get('fullscreen') || forceOff) && (!Route.isPresentation() && !Route.isBox() && !Route.isMemo()) && !Session.get('workloadFullscreenMode')) {
-			if (!NavigatorCheck.isIOS()) {
-				screenfull.exit();
+			if (document.fullscreenElement) {
+				document.exitFullscreen();
 			}
 			$("#theme-wrapper").removeClass('theme-wrapper-fullscreen');
 			$(".editorElement").css("display", '');
@@ -403,8 +394,8 @@ export let CardVisuals = class CardVisuals {
 			Session.set('fullscreen', false);
 			this.resizeFlashcard();
 		} else {
-			if (!NavigatorCheck.isIOS()) {
-				screenfull.request();
+			if (document.fullscreenElement === null) {
+				document.body.requestFullscreen();
 			}
 			$(".box").removeClass("disableCardTransition");
 			$("#theme-wrapper").addClass('theme-wrapper-fullscreen');

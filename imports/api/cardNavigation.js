@@ -3,7 +3,6 @@ import {Session} from "meteor/session";
 import {Route} from "./route";
 import {CardVisuals} from "./cardVisuals";
 import {CardEditor} from "./cardEditor";
-import * as screenfull from "screenfull";
 import {CardIndex} from "./cardIndex";
 import {Cards} from "./cards";
 import {Cardsets} from "./cardsets";
@@ -343,19 +342,17 @@ export let CardNavigation = class CardNavigation {
 	}
 
 	static fullscreenExitEvents () {
-		if (screenfull.enabled) {
-			screenfull.on('change', () => {
-				if (screenfull.element === null && Session.get('fullscreen')) {
-					if (Route.isPresentation()) {
-						SweetAlertMessages.continuePresentation();
-					} else if (Route.isBox() || Route.isMemo()) {
-						SweetAlertMessages.activateFullscreen();
-					} else {
-						$(".toggleFullscreen").click();
-					}
+		document.onfullscreenchange = function () {
+			if (document.fullscreenElement === null && Session.get('fullscreen')) {
+				if (Route.isPresentation()) {
+					SweetAlertMessages.continuePresentation();
+				} else if (Route.isBox() || Route.isMemo()) {
+					SweetAlertMessages.activateFullscreen();
+				} else {
+					$(".toggleFullscreen").click();
 				}
-			});
-		}
+			}
+		};
 	}
 
 	static rateWozniak (answer) {
