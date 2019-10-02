@@ -400,7 +400,7 @@ Template.registerHelper("getBonusLabel", function (learningActive = false, learn
 
 
 Template.registerHelper("isBonusFinished", function (learningActive = false, learningEnd = new Date()) {
-	if (this.learningActive && this.learningEnd < new Date()) {
+	if (learningActive && learningEnd < new Date()) {
 		return true;
 	}
 });
