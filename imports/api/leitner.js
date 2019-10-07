@@ -375,17 +375,21 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				console.log("===> Reset cards");
 			}
 			let query = {cardset_id: cardset._id, user_id: user._id, box: {$ne: 6}};
-			if (config.resetDeadlineMode === 0 || config.resetDeadlineMode === 1) {
+			if (config.resetDeadlineMode === 0 || config.resetDeadlineMode === 1 || config.resetDeadlineMode === 4) {
 				query.active = true;
 			}
 			let idArray;
-			if (config.resetDeadlineMode === 0 || config.resetDeadlineMode === 2) {
+			if (config.resetDeadlineMode === 0 || config.resetDeadlineMode === 2 || config.resetDeadlineMode === 4) {
 				let box;
 				for (let i = 1; i < 6; i++) {
-					if (i > 1) {
-						box = i - 1;
+					if (config.resetDeadlineMode === 4) {
+						box = i;
 					} else {
-						box = 1;
+						if (i > 1) {
+							box = i - 1;
+						} else {
+							box = 1;
+						}
 					}
 					query.box = i;
 					let cards = Leitner.find(query, {
