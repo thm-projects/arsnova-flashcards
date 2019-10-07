@@ -2,11 +2,13 @@ import "./settings.html";
 import "./item/deadlineEditing.js";
 import "./item/deadlineSubmissions.js";
 import "./item/enable.js";
+import "./item/editTitle.js";
 import "./item/lectureDates.js";
 import "./item/lectureTimeEnd.js";
 import "./item/maxPercentage.js";
 import "./item/minimumStars.js";
 import "./item/minimumTranscripts.js";
+import "./modal/setTitle.js";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 
@@ -17,6 +19,8 @@ import {Session} from "meteor/session";
  */
 
 Session.setDefault('minimumBonusStars', 1);
+Session.setDefault('transcriptBonusLectures', []);
+Session.setDefault('transcriptBonusTempLectures', []);
 
 function adjustStarsSlider(value) {
 	let bonusMinimumStars = $('#bonusMinimumStars');
@@ -44,7 +48,7 @@ Template.cardsetIndexTranscriptSettings.onRendered(function () {
 	let settings = {
 		numberOfMonths: [1,3],
 		onSelect: function () {
-			let dates = $('#transcript-calendar').multiDatesPicker('getDates');
+			let dates = $('#transcript-calendar').multiDatesPicker('getDates', 'object');
 			let minimumSubmissions = $('#bonusMinimumSubmissions');
 			if (minimumSubmissions.val() > dates.length) {
 				minimumSubmissions.val(dates.length);
@@ -52,6 +56,22 @@ Template.cardsetIndexTranscriptSettings.onRendered(function () {
 				adjustStarsSlider(dates.length);
 			}
 			minimumSubmissions.attr("max", dates.length);
+			let lectures = [];
+			let oldLectures = Session.get('transcriptBonusLectures');
+			for (let i = 0; i < dates.length; i++) {
+				let lecture = {
+					date: dates[i]
+				};
+				for (let k = 0; k < oldLectures.length; k++) {
+					if (lecture.date.getTime() === oldLectures[k].date.getTime()) {
+						lecture.title = oldLectures[k].title;
+						oldLectures = oldLectures.splice(k, 1);
+						break;
+					}
+				}
+				lectures.push(lecture);
+			}
+			return Session.set('transcriptBonusLectures', lectures);
 		}};
 	if (dates.length) {
 		settings.addDates = dates;
@@ -64,13 +84,20 @@ Template.cardsetIndexTranscriptSettings.onRendered(function () {
 	}
 	minimumSubmissions.attr("max", dates.length);
 	$('#transcript-calendar').multiDatesPicker(settings);
+	if (this.data.transcriptBonus.lectures !== undefined) {
+		Session.set('transcriptBonusLectures', this.data.transcriptBonus.lectures);
+	}
 });
 
 Template.cardsetIndexTranscriptSettings.onDestroyed(function () {
 	Session.set('minimumBonusStars', this.data.transcriptBonus.minimumStars);
 });
 
-
+Template.cardsetIndexTranscriptSettings.helpers({
+	gotTranscriptBonusLectures: function () {
+		return Session.get('transcriptBonusLectures').length;
+	}
+});
 
 Template.cardsetIndexTranscriptSettings.events({
 	'input #bonusMinimumSubmissions': function (event) {
