@@ -42,7 +42,7 @@ export let TranscriptBonusList = class TranscriptBonusList {
 	static canBeSubmittedToLecture (transcriptBonus, date_id) {
 		if (transcriptBonus !== undefined && date_id !== undefined) {
 			let cardset = Cardsets.findOne(transcriptBonus.cardset_id, {fields: {transcriptBonus: 1}});
-			let startDate = this.addLectureEndTime(cardset.transcriptBonus, cardset.transcriptBonus.dates[date_id]);
+			let startDate = this.addLectureEndTime(cardset.transcriptBonus, cardset.transcriptBonus.lectures[date_id].date);
 			return cardset.transcriptBonus.enabled && startDate < new Date() && startDate.add(cardset.transcriptBonus.deadline, 'hours') > new Date();
 		}
 	}
@@ -53,8 +53,8 @@ export let TranscriptBonusList = class TranscriptBonusList {
 			if (transcriptBonusDatabase !== undefined) {
 				if (transcriptBonusUser.cardset_id !== transcriptBonusDatabase.cardset_id || transcriptBonusUser.date.getTime() !== transcriptBonusDatabase.date.getTime()) {
 					if (this.canBeSubmittedToLecture(transcriptBonusUser, date_id)) {
-						for (let i = 0; i < transcriptBonusCardset.transcriptBonus.dates.length; i++) {
-							if (transcriptBonusCardset.transcriptBonus.dates[i].getTime() === transcriptBonusUser.date.getTime()) {
+						for (let i = 0; i < transcriptBonusCardset.transcriptBonus.lectures.length; i++) {
+							if (transcriptBonusCardset.transcriptBonus.lectures[i].date.getTime() === transcriptBonusUser.date.getTime()) {
 								date_id = i;
 								break;
 							}
@@ -317,7 +317,7 @@ Meteor.methods({
 						cardset_id: cardset._id,
 						card_id: card_id,
 						user_id: user_id,
-						date: cardset.transcriptBonus.dates[date_id],
+						date: cardset.transcriptBonus.lectures[date_id].date,
 						lectureEnd: cardset.transcriptBonus.lectureEnd,
 						deadline: cardset.transcriptBonus.deadline,
 						deadlineEditing: cardset.transcriptBonus.deadlineEditing,

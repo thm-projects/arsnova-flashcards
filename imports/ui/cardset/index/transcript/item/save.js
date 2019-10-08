@@ -20,11 +20,14 @@ Template.cardsetIndexTranscriptItemSave.events({
 		let dates = $('#transcript-calendar').multiDatesPicker('getDates');
 		let minimumSubmissions = $('#bonusMinimumSubmissions').val();
 		let minimumStars = Session.get('minimumBonusStars');
-		let newDates = [];
+		let newLectures = [];
 		for (let d = 0; d < dates.length; d++) {
-			newDates.push(moment(dates[d], "MM/DD/YYYY").toDate());
+			let lecture = {
+				date: moment(dates[d], "MM/DD/YYYY").toDate()
+			};
+			newLectures.push(lecture);
 		}
-		Meteor.call('updateCardsetTranscriptBonus', Router.current().params._id, Boolean(isEnabled), Number(percentage), lectureEnd, Number(deadlineSubmission), Number(deadlineEditing), newDates, Number(minimumSubmissions), Number(minimumStars), function (error, result) {
+		Meteor.call('updateCardsetTranscriptBonus', Router.current().params._id, Boolean(isEnabled), Number(percentage), lectureEnd, Number(deadlineSubmission), Number(deadlineEditing), newLectures, Number(minimumSubmissions), Number(minimumStars), function (error, result) {
 			if (result) {
 				BertAlertVisuals.displayBertAlert(TAPi18n.__('transcriptForm.bonus.form.alert.save'), "success", 'growl-top-left');
 			}

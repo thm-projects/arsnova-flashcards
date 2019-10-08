@@ -37,8 +37,8 @@ Template.cardsetIndexTranscriptSettings.onRendered(function () {
 		$('#minSubmissionsValue').html(this.data.transcriptBonus.minimumSubmissions);
 		adjustStarsSlider(this.data.transcriptBonus.minimumSubmissions);
 		Session.set('minimumBonusStars', this.data.transcriptBonus.minimumStars);
-		for (let d = 0; d < this.data.transcriptBonus.dates.length; d++) {
-			dates.push(moment(this.data.transcriptBonus.dates[d]).format("MM/DD/YYYY"));
+		for (let d = 0; d < this.data.transcriptBonus.lectures.length; d++) {
+			dates.push(moment(this.data.transcriptBonus.lectures[d].date).format("MM/DD/YYYY"));
 		}
 	}
 	let settings = {

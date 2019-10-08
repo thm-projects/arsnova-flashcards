@@ -21,16 +21,16 @@ Template.selectLearningUnit.helpers({
 		let lectures = [];
 		for (let c = 0; c < cardsets.length; c++) {
 			if (CardType.gotTranscriptBonus(cardsets[c].cardType)) {
-				for (let d = 0; d < cardsets[c].transcriptBonus.dates.length; d++) {
+				for (let d = 0; d < cardsets[c].transcriptBonus.lectures.length; d++) {
 					let transcriptBonus = cardsets[c].transcriptBonus;
 					transcriptBonus.cardset_id = cardsets[c]._id;
 					transcriptBonus.name = cardsets[c].name;
-					transcriptBonus.date = cardsets[c].transcriptBonus.dates[d];
+					transcriptBonus.date = cardsets[c].transcriptBonus.lectures[d].date;
 					if (TranscriptBonusList.canBeSubmittedToLecture(transcriptBonus, d)) {
 						let lecture = {};
 						lecture.name = TranscriptBonusList.getLectureName(transcriptBonus);
-						lecture.deadline = TranscriptBonusList.getDeadline(transcriptBonus, cardsets[c].transcriptBonus.dates[d]);
-						lecture.deadlineEditing = TranscriptBonusList.getDeadlineEditing(transcriptBonus, cardsets[c].transcriptBonus.dates[d]);
+						lecture.deadline = TranscriptBonusList.getDeadline(transcriptBonus, cardsets[c].transcriptBonus.lectures[d].date);
+						lecture.deadlineEditing = TranscriptBonusList.getDeadlineEditing(transcriptBonus, cardsets[c].transcriptBonus.lectures[d].date);
 						lecture.cardset_id = cardsets[c]._id;
 						lecture.date_id = d;
 						lecture.shuffled = cardsets[c].shuffled;
@@ -75,7 +75,7 @@ Template.selectLearningUnit.events({
 		let cardset = Cardsets.findOne({_id: $(evt.currentTarget).attr("data-cardset_id")});
 		let transcriptBonus = cardset.transcriptBonus;
 		transcriptBonus.name = cardset.name;
-		transcriptBonus.date = cardset.transcriptBonus.dates[$(evt.currentTarget).attr("data-date_id")];
+		transcriptBonus.date = cardset.transcriptBonus.lectures[$(evt.currentTarget).attr("data-date_id")].date;
 		transcriptBonus.cardset_id = cardset._id;
 		transcriptBonus.date_id = $(evt.currentTarget).attr("data-date_id");
 		Session.set('transcriptBonus', transcriptBonus);
