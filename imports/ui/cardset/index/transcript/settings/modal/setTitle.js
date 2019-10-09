@@ -1,6 +1,8 @@
 import "./setTitle.html";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
+import {Meteor} from "meteor/meteor";
+import {BertAlertVisuals} from "../../../../../../api/bertAlertVisuals";
 
 /*
  * ############################################################################
@@ -25,6 +27,11 @@ Template.cardsetIndexTranscriptSettingsModalSetTitle.events({
 	},
 	'click #save': function () {
 		Session.set('transcriptBonusLectures', Session.get('transcriptBonusTempLectures').map(a => Object.assign({}, a)));
-		$('#cardsetIndexTranscriptSettingsModalSetTitle').modal('hide');
+		Meteor.call('updateCardsetTranscriptBonusLectures', Router.current().params._id, Session.get('transcriptBonusLectures'), function (error, result) {
+			if (result) {
+				BertAlertVisuals.displayBertAlert(TAPi18n.__('transcriptForm.bonus.form.alert.save'), "success", 'growl-top-left');
+				$('#cardsetIndexTranscriptSettingsModalSetTitle').modal('hide');
+			}
+		});
 	}
 });

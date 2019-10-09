@@ -895,6 +895,28 @@ Meteor.methods({
 		}
 	},
 	/**
+	 * Updates the settings of a transcript bonus for the selected cardset.
+	 * @param {String} id - ID of the cardset for which the transcript bonus is to be activated.
+	 * @param {Object} newLectures - Dates at which the individual lectures take place
+	 */
+	updateCardsetTranscriptBonusLectures: function (id, newLectures) {
+		check(id, String);
+		check(newLectures, [Object]);
+		let cardset = Cardsets.findOne(id);
+		if (cardset !== undefined && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
+			Cardsets.update(id, {
+				$set: {
+					'transcriptBonus.lectures': newLectures,
+					dateUpdated: new Date(),
+					lastEditor: Meteor.userId()
+				}
+			});
+			return cardset._id;
+		} else {
+			throw new Meteor.Error("not-authorized");
+		}
+	},
+	/**
 	 * Updates the selected cardset if user is authorized.
 	 * @param {String} id - ID of the cardset to be updated
 	 * @param {String} name - Title of the cardset

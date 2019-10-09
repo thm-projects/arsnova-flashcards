@@ -66,6 +66,6 @@ Template.flashcardHeaderCenter.helpers({
 		return CardType.gotCardsetTitleNavigation(this.cardType);
 	},
 	displayTranscriptOwner: function () {
-		return Route.isPresentationTranscriptBonusCardset() || Route.isPresentationTranscriptReview();
+		return Route.isPresentationTranscriptBonusCardset() || Route.isPresentationTranscriptReview() || Route.isPresentationTranscriptBonus();
 	}
 });

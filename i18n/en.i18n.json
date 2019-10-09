@@ -763,7 +763,7 @@
               }
             },
             "button": {
-              "confirm": "Übernehmen",
+              "confirm": "Speichern",
               "reset": "Zurücksetzen"
             }
           }
