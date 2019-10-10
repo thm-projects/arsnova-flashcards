@@ -11,6 +11,10 @@ import * as icons from "../config/icons.js";
 export const TranscriptBonus = new Mongo.Collection("transcriptBonus");
 
 export let TranscriptBonusList = class TranscriptBonusList {
+	static getTranscriptLectureNameMaxLength () {
+		return config.lectureNameMaxLength;
+	}
+
 	static addLectureEndTime (transcriptBonus, date) {
 		let hours = Number(transcriptBonus.lectureEnd.substring(0, 2));
 		let minutes = Number(transcriptBonus.lectureEnd.substring(3, 5));

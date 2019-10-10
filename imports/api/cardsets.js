@@ -2,7 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Cards} from "./cards.js";
-import {TranscriptBonus} from "./transcriptBonus.js";
+import {TranscriptBonus, TranscriptBonusList} from "./transcriptBonus.js";
 import {Leitner, Workload, Wozniak} from "./learned.js";
 import {Notifications} from "./notifications.js";
 import {Ratings} from "./ratings.js";
@@ -904,6 +904,11 @@ Meteor.methods({
 		check(newLectures, [Object]);
 		let cardset = Cardsets.findOne(id);
 		if (cardset !== undefined && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
+			for (let i = 0; i < newLectures.length; i++) {
+				if (newLectures.title !== undefined && newLectures[i].title.length > TranscriptBonusList.getTranscriptLectureNameMaxLength) {
+					throw new Meteor.Error("not-authorized");
+				}
+			}
 			Cardsets.update(id, {
 				$set: {
 					'transcriptBonus.lectures': newLectures,
