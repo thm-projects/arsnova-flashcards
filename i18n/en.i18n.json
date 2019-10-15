@@ -753,6 +753,22 @@
     "bonus": {
       "button": "Bonus-Mitschriften",
       "form": {
+        "modal": {
+          "setTitle": {
+            "title": "Titel für Vorlesungen bearbeiten",
+            "table": {
+              "header": {
+                "date": "Datum",
+                "title": "Titel"
+              }
+            },
+            "button": {
+              "confirm": "Speichern",
+              "reset": "Zurücksetzen"
+            }
+          }
+        },
+        "setTitle": "Titel für Vorlesungen bearbeiten",
         "title": "Bonusvergabe für Mitschriften verwalten",
         "percentage": "Maximale Bonuspunkte",
         "enable": "Bonus aktivieren",

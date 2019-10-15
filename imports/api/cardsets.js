@@ -2,7 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Cards} from "./cards.js";
-import {TranscriptBonus} from "./transcriptBonus.js";
+import {TranscriptBonus, TranscriptBonusList} from "./transcriptBonus.js";
 import {Leitner, Workload, Wozniak} from "./learned.js";
 import {Notifications} from "./notifications.js";
 import {Ratings} from "./ratings.js";
@@ -853,18 +853,18 @@ Meteor.methods({
 	 * @param {String} lectureEnd - Time at which the lectures end
 	 * @param {Number} deadlineSubmission - Amount of hours that the student got time to submit their transcript
 	 * @param {Number} deadlineEditing - Amount of hours that the student got time to edit their transcript
-	 * @param {Date} newDates - Dates at which the individual lectures take place
+	 * @param {Object} newLectures - Dates at which the individual lectures take place
 	 * @param {Number} minimumSubmissions - The minimum amount of submissions that are required to reach max points
 	 * @param {Number} minimumStars - The minimum amount of stars that are required to reach max points
 	 */
-	updateCardsetTranscriptBonus: function (id, isEnabled, percentage, lectureEnd, deadlineSubmission, deadlineEditing, newDates, minimumSubmissions, minimumStars) {
+	updateCardsetTranscriptBonus: function (id, isEnabled, percentage, lectureEnd, deadlineSubmission, deadlineEditing, newLectures, minimumSubmissions, minimumStars) {
 		check(id, String);
 		check(isEnabled, Boolean);
 		check(percentage, Number);
 		check(lectureEnd, String);
 		check(deadlineSubmission, Number);
 		check(deadlineEditing, Number);
-		check(newDates, [Date]);
+		check(newLectures, [Object]);
 		check(minimumSubmissions, Number);
 		check(minimumStars, Number);
 		let cardset = Cardsets.findOne(id);
@@ -874,7 +874,7 @@ Meteor.methods({
 					'transcriptBonus.enabled': isEnabled,
 					'transcriptBonus.percentage': percentage,
 					'transcriptBonus.lectureEnd': lectureEnd,
-					'transcriptBonus.dates': newDates,
+					'transcriptBonus.lectures': newLectures,
 					'transcriptBonus.deadline': deadlineSubmission,
 					'transcriptBonus.deadlineEditing': deadlineEditing,
 					'transcriptBonus.minimumSubmissions': minimumSubmissions,
@@ -889,6 +889,33 @@ Meteor.methods({
 					"deadlineEditing": deadlineEditing
 				}
 			}, {multi: true});
+			return cardset._id;
+		} else {
+			throw new Meteor.Error("not-authorized");
+		}
+	},
+	/**
+	 * Updates the settings of a transcript bonus for the selected cardset.
+	 * @param {String} id - ID of the cardset for which the transcript bonus is to be activated.
+	 * @param {Object} newLectures - Dates at which the individual lectures take place
+	 */
+	updateCardsetTranscriptBonusLectures: function (id, newLectures) {
+		check(id, String);
+		check(newLectures, [Object]);
+		let cardset = Cardsets.findOne(id);
+		if (cardset !== undefined && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
+			for (let i = 0; i < newLectures.length; i++) {
+				if (newLectures.title !== undefined && newLectures[i].title.length > TranscriptBonusList.getTranscriptLectureNameMaxLength) {
+					throw new Meteor.Error("not-authorized");
+				}
+			}
+			Cardsets.update(id, {
+				$set: {
+					'transcriptBonus.lectures': newLectures,
+					dateUpdated: new Date(),
+					lastEditor: Meteor.userId()
+				}
+			});
 			return cardset._id;
 		} else {
 			throw new Meteor.Error("not-authorized");

@@ -16,7 +16,12 @@ import {TranscriptBonus, TranscriptBonusList} from "../../../../../api/transcrip
 
 Template.flashcardHeaderCenter.helpers({
 	getLectureDate: function (card_id) {
-		let bonusTranscript = TranscriptBonus.findOne({card_id: card_id});
+		let bonusTranscript;
+		if ((Route.isEditTranscript() || Route.isNewTranscript()) && !Session.get('isPrivateTranscript')) {
+			bonusTranscript = Session.get('transcriptBonus');
+		} else {
+			bonusTranscript = TranscriptBonus.findOne({card_id: card_id});
+		}
 		if (bonusTranscript !== undefined) {
 			return TranscriptBonusList.getLectureName(bonusTranscript, false);
 		}
@@ -66,6 +71,13 @@ Template.flashcardHeaderCenter.helpers({
 		return CardType.gotCardsetTitleNavigation(this.cardType);
 	},
 	displayTranscriptOwner: function () {
-		return Route.isPresentationTranscriptBonusCardset() || Route.isPresentationTranscriptReview();
+		return Route.isPresentationTranscriptBonusCardset() || Route.isPresentationTranscriptReview() || Route.isPresentationTranscriptBonus() || ((Route.isEditTranscript() || Route.isNewTranscript()) && !Session.get('isPrivateTranscript'));
+	},
+	getOwner: function (owner) {
+		if (Route.isNewTranscript() || Route.isEditTranscript()) {
+			return Meteor.userId;
+		} else {
+			return owner;
+		}
 	}
 });

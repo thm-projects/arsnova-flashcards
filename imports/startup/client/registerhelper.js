@@ -28,7 +28,7 @@ import  * as FilterConfig from "../../config/filter.js";
 import {MainNavigation} from "../../api/mainNavigation";
 import {BarfyStarsConfig} from "../../api/barfyStars.js";
 import {Utilities} from "../../api/utilities";
-import {TranscriptBonus} from "../../api/transcriptBonus";
+import {TranscriptBonus, TranscriptBonusList} from "../../api/transcriptBonus";
 import {ServerSettings} from "../../api/settings";
 import {CardsetVisuals} from "../../api/cardsetVisuals";
 
@@ -755,6 +755,10 @@ Template.registerHelper("getMomentsDate", function (date, displayMinutes = false
 
 Template.registerHelper("getMomentsDateShort", function (date) {
 	return Utilities.getMomentsDateShort(date);
+});
+
+Template.registerHelper("getTranscriptLectureNameMaxLength", function () {
+	return TranscriptBonusList.getTranscriptLectureNameMaxLength();
 });
 
 Template.registerHelper("getTranscriptSubmissions", function (data) {

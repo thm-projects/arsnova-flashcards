@@ -41,8 +41,18 @@
 .transcript-bonus-statistics-info {
   padding: 10px 15px;
   table {
+    table-layout: fixed;
     th {
       font-size: 16px;
     }
+    td {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
   }
+}
+
+#cardsetIndexTranscriptSettingsModalSetTitle .table > tbody > tr > td {
+  vertical-align: middle !important;
 }

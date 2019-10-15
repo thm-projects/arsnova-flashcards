@@ -1,0 +1,50 @@
+<template name="cardsetIndexTranscriptSettingsModalSetTitle">
+    <div class="modal fade" id="cardsetIndexTranscriptSettingsModalSetTitle" tabindex="-1" role="dialog"
+         aria-labelledby="cardsetIndexTranscriptSettingsModalSetTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-icon">
+                        <i class="far fa-calendar"></i>
+                 </span>
+                    {{> mainModalItemCloseIcon}}
+                    <h4 id="confirmEndLearnModalTitle" class="modal-title">{{_ "transcriptForm.bonus.form.modal.setTitle.title"}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                        <table class="table table-responsive">
+                            <thead>
+                            <tr>
+                                <td>
+                                    {{_ "transcriptForm.bonus.form.modal.setTitle.table.header.date"}}
+                                </td>
+                                <td>
+                                    {{_ "transcriptForm.bonus.form.modal.setTitle.table.header.title"}}
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{#each getTranscriptLectures}}
+                                <tr>
+                                    <td>
+                                        {{getMomentsDate this.date false 0 false}}
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <input class="form-control transcript-lecture-title" data-id="{{@index}}" maxlength="{{getTranscriptLectureNameMaxLength}}" value="{{this.title}}">
+                                        </div>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                </div>
+                <div class="modal-footer">
+                    <button id="reset" class="btn btn-danger btn-raised btn-block col-xs-12 col-sm-3">{{_ "transcriptForm.bonus.form.modal.setTitle.button.reset"}}</button>
+                    <button id="save"
+                            class="btn btn-success btn-raised btn-block col-xs-12 col-sm-3 pull-right">{{_ "transcriptForm.bonus.form.modal.setTitle.button.confirm"}}</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- /form group -->
+</template>

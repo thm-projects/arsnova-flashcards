@@ -23,17 +23,20 @@ Template.filterItemFilterTranscriptLecture.helpers({
 			query.rating = activeFilter.rating;
 		}
 		return _.uniq(TranscriptBonus.find(query, {
-			fields: {date: 1}, sort: {date: -1}
-		}).fetch().map(function (x) {
-			return x.date.getTime();
-		}), true);
+			fields: {date: 1, cardset_id: 1}, sort: {date: -1}
+		}).fetch(), function (transcriptBonus) {
+			return transcriptBonus.date.getTime();
+		});
 	},
-	getLectureName: function (date) {
-		let transcriptBonus = {date: new Date(date), lectureEnd: "00:00"};
-		return TranscriptBonusList.getLectureName(transcriptBonus, false);
+	getLectureName: function (transcriptBonus) {
+		let item = {date: new Date(transcriptBonus.date), lectureEnd: "00:00", cardset_id: transcriptBonus.cardset_id};
+		return TranscriptBonusList.getLectureName(item, false);
 	},
-	resultsFilterTranscriptLecture: function (date) {
-		return Filter.getActiveFilter().transcriptDate === date;
+	resultsFilterTranscriptLecture: function (transcriptBonus) {
+		return Filter.getActiveFilter().transcriptDate === transcriptBonus.date.getTime();
+	},
+	getLectureTime: function (date) {
+		return date.getTime();
 	}
 });
 

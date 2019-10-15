@@ -11,6 +11,10 @@ import * as icons from "../config/icons.js";
 export const TranscriptBonus = new Mongo.Collection("transcriptBonus");
 
 export let TranscriptBonusList = class TranscriptBonusList {
+	static getTranscriptLectureNameMaxLength () {
+		return config.lectureNameMaxLength;
+	}
+
 	static addLectureEndTime (transcriptBonus, date) {
 		let hours = Number(transcriptBonus.lectureEnd.substring(0, 2));
 		let minutes = Number(transcriptBonus.lectureEnd.substring(3, 5));
@@ -42,7 +46,7 @@ export let TranscriptBonusList = class TranscriptBonusList {
 	static canBeSubmittedToLecture (transcriptBonus, date_id) {
 		if (transcriptBonus !== undefined && date_id !== undefined) {
 			let cardset = Cardsets.findOne(transcriptBonus.cardset_id, {fields: {transcriptBonus: 1}});
-			let startDate = this.addLectureEndTime(cardset.transcriptBonus, cardset.transcriptBonus.dates[date_id]);
+			let startDate = this.addLectureEndTime(cardset.transcriptBonus, cardset.transcriptBonus.lectures[date_id].date);
 			return cardset.transcriptBonus.enabled && startDate < new Date() && startDate.add(cardset.transcriptBonus.deadline, 'hours') > new Date();
 		}
 	}
@@ -53,8 +57,8 @@ export let TranscriptBonusList = class TranscriptBonusList {
 			if (transcriptBonusDatabase !== undefined) {
 				if (transcriptBonusUser.cardset_id !== transcriptBonusDatabase.cardset_id || transcriptBonusUser.date.getTime() !== transcriptBonusDatabase.date.getTime()) {
 					if (this.canBeSubmittedToLecture(transcriptBonusUser, date_id)) {
-						for (let i = 0; i < transcriptBonusCardset.transcriptBonus.dates.length; i++) {
-							if (transcriptBonusCardset.transcriptBonus.dates[i].getTime() === transcriptBonusUser.date.getTime()) {
+						for (let i = 0; i < transcriptBonusCardset.transcriptBonus.lectures.length; i++) {
+							if (transcriptBonusCardset.transcriptBonus.lectures[i].date.getTime() === transcriptBonusUser.date.getTime()) {
 								date_id = i;
 								break;
 							}
@@ -83,10 +87,21 @@ export let TranscriptBonusList = class TranscriptBonusList {
 		return name;
 	}
 
-	static getLectureEnd (transcriptBonus, date_id) {
+	static getLectureEnd (transcriptBonus, date) {
 		if (transcriptBonus.lectureEnd !== undefined) {
-			let lectureEnd = this.addLectureEndTime(transcriptBonus, date_id);
-			return TAPi18n.__('transcriptForm.lecture') + ": " + Utilities.getMomentsDate(lectureEnd, false);
+			let lectureEnd = this.addLectureEndTime(transcriptBonus, date);
+			let cardset = Cardsets.findOne({_id: transcriptBonus.cardset_id}, {fields: {transcriptBonus: 1}});
+			let result = "";
+			if (cardset !== undefined && cardset.transcriptBonus !== undefined) {
+				for (let i = 0; i < cardset.transcriptBonus.lectures.length; i++) {
+					if (cardset.transcriptBonus.lectures[i].date.getTime() === date.getTime()) {
+						if (cardset.transcriptBonus.lectures[i].title !== undefined && cardset.transcriptBonus.lectures[i].title !== "") {
+							result += cardset.transcriptBonus.lectures[i].title + " | ";
+						}
+					}
+				}
+			}
+			return result += Utilities.getMomentsDate(lectureEnd, false);
 		}
 	}
 
@@ -317,7 +332,7 @@ Meteor.methods({
 						cardset_id: cardset._id,
 						card_id: card_id,
 						user_id: user_id,
-						date: cardset.transcriptBonus.dates[date_id],
+						date: cardset.transcriptBonus.lectures[date_id].date,
 						lectureEnd: cardset.transcriptBonus.lectureEnd,
 						deadline: cardset.transcriptBonus.deadline,
 						deadlineEditing: cardset.transcriptBonus.deadlineEditing,
