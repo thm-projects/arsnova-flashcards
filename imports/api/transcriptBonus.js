@@ -91,17 +91,17 @@ export let TranscriptBonusList = class TranscriptBonusList {
 		if (transcriptBonus.lectureEnd !== undefined) {
 			let lectureEnd = this.addLectureEndTime(transcriptBonus, date);
 			let cardset = Cardsets.findOne({_id: transcriptBonus.cardset_id}, {fields: {transcriptBonus: 1}});
-			let result = Utilities.getMomentsDate(lectureEnd, false);
+			let result = "";
 			if (cardset !== undefined && cardset.transcriptBonus !== undefined) {
 				for (let i = 0; i < cardset.transcriptBonus.lectures.length; i++) {
 					if (cardset.transcriptBonus.lectures[i].date.getTime() === date.getTime()) {
 						if (cardset.transcriptBonus.lectures[i].title !== undefined && cardset.transcriptBonus.lectures[i].title !== "") {
-							result += ", " + cardset.transcriptBonus.lectures[i].title;
+							result += cardset.transcriptBonus.lectures[i].title + " | ";
 						}
 					}
 				}
 			}
-			return result;
+			return result += Utilities.getMomentsDate(lectureEnd, false);
 		}
 	}
 
