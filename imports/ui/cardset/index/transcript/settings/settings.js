@@ -84,13 +84,15 @@ Template.cardsetIndexTranscriptSettings.onRendered(function () {
 	}
 	minimumSubmissions.attr("max", dates.length);
 	$('#transcript-calendar').multiDatesPicker(settings);
-	if (this.data.transcriptBonus.lectures !== undefined) {
+	if (this.data.transcriptBonus !== undefined && this.data.transcriptBonus.lectures !== undefined) {
 		Session.set('transcriptBonusLectures', this.data.transcriptBonus.lectures);
 	}
 });
 
 Template.cardsetIndexTranscriptSettings.onDestroyed(function () {
-	Session.set('minimumBonusStars', this.data.transcriptBonus.minimumStars);
+	if (this.data.transcriptBonus !== undefined) {
+		Session.set('minimumBonusStars', this.data.transcriptBonus.minimumStars);
+	}
 });
 
 Template.cardsetIndexTranscriptSettings.helpers({
