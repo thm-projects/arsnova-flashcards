@@ -4,7 +4,7 @@
             <span class="center-align">
                 {{#if displayTranscriptOwner}}
                     <span class="center-align">
-                        <strong class="cardHeaderSmallText">{{getAuthorName this.owner}}</strong><br>
+                        <strong class="cardHeaderSmallText">{{getAuthorName (getOwner this.owner)}}</strong><br>
                         <strong class="cardHeaderSmallText">{{> cardSubject this}}</strong>
                     </span>
                 {{else}}
@@ -28,7 +28,7 @@
             <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
                 {{#if displayTranscriptOwner}}
                     <span class="center-align">
-                        <strong class="cardHeaderSmallText">{{getAuthorName this.owner}}</strong><br>
+                        <strong class="cardHeaderSmallText">{{getAuthorName (getOwner this.owner)}}</strong><br>
                         <strong class="cardHeaderSmallText">{{> cardSubject this}}</strong>
                     </span>
                 {{else}}
