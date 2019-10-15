@@ -12,7 +12,7 @@ import "./medianPerDate.html";
 Template.cardsetInfoBoxItemTranscriptMedianPerDate.helpers({
 	getMedian: function (cardset) {
 		if (cardset.transcriptBonus !== undefined && cardset.transcriptBonus.stats !== undefined) {
-			return TranscriptBonusList.transformMedian(cardset.transcriptBonus.stats.submissions / cardset.transcriptBonus.dates.length);
+			return TranscriptBonusList.transformMedian(cardset.transcriptBonus.stats.submissions / cardset.transcriptBonus.lectures.length);
 		} else {
 			return 0;
 		}

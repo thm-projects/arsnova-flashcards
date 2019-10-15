@@ -6,7 +6,6 @@ Template.cardsetIndexTranscriptSettingsItemMinimumStars.helpers({
 	getBonusTranscriptStars: function () {
 		let stars = Session.get('minimumBonusStars');
 		let starData = [];
-		console.log("trigger");
 		for (let i = 0; i < 5; i++) {
 			let star = {};
 			if (i < stars) {

@@ -18,9 +18,9 @@ Template.cardsetInfoBoxItemTranscriptLectureDates.helpers({
 			lastMonth = undefined;
 			lastYear = undefined;
 			let results = [];
-			for (let i = 0; i < cardset.transcriptBonus.dates.length; i++) {
+			for (let i = 0; i < cardset.transcriptBonus.lectures.length; i++) {
 				let item = JSON.parse(JSON.stringify(cardset.transcriptBonus));
-				item.date = new Date(cardset.transcriptBonus.dates[i]);
+				item.date = new Date(cardset.transcriptBonus.lectures[i].date);
 				results.push(item);
 			}
 			return results;

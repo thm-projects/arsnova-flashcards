@@ -4,8 +4,8 @@
             <span class="center-align">
                 {{#if displayTranscriptOwner}}
                     <span class="center-align">
-                        <strong class="cardHeaderSmallText">{{getAuthorName this.owner}}</strong><br>
-                        <strong class="cardHeaderSmallText">{{getLectureDate this._id}}</strong>
+                        <strong class="cardHeaderSmallText">{{getAuthorName (getOwner this.owner)}}</strong><br>
+                        <strong class="cardHeaderSmallText">{{> cardSubject this}}</strong>
                     </span>
                 {{else}}
                     {{#unless isMobilePreview}}
@@ -15,29 +15,38 @@
                         {{/if}}
                     {{/unless}}
                 {{/if}}
+
                 <h2 data-cardtype="{{cardType}}">
-                    {{> cardSubject this}}
+                    {{#if displayTranscriptOwner}}
+                        {{getLectureDate this._id}}
+                    {{else}}
+                        {{> cardSubject this}}
+                    {{/if}}
                 </h2>
             </span>
         {{else}}
             <div class="cardHeaderRowHalf" data-cardtype="{{cardType}}">
-            {{#if displayTranscriptOwner}}
+                {{#if displayTranscriptOwner}}
                     <span class="center-align">
-                        <strong class="cardHeaderSmallText">{{getAuthorName this.owner}}</strong><br>
-                        <strong class="cardHeaderSmallText">{{getLectureDate this._id}}</strong>
+                        <strong class="cardHeaderSmallText">{{getAuthorName (getOwner this.owner)}}</strong><br>
+                        <strong class="cardHeaderSmallText">{{> cardSubject this}}</strong>
                     </span>
-            {{else}}
-                <strong class="cardHeaderSmallText" data-cardtype="{{cardType}}">{{getCardsetName}}</strong><br>
-                {{#unless isMobilePreview}}
-                    {{#if gotLearningGoal}}
-                        <span class="hidden-xs cardHeaderSmallerText" data-cardtype="{{cardType}}">
+                {{else}}
+                    <strong class="cardHeaderSmallText" data-cardtype="{{cardType}}">{{getCardsetName}}</strong><br>
+                    {{#unless isMobilePreview}}
+                        {{#if gotLearningGoal}}
+                            <span class="hidden-xs cardHeaderSmallerText" data-cardtype="{{cardType}}">
                     {{_ "learning-goal.cardName"}}: {{getLearningGoalName}}</span>
-                    {{/if}}
-                {{/unless}}
-            {{/if}}
+                        {{/if}}
+                    {{/unless}}
+                {{/if}}
             </div>
             <h2 data-cardtype="{{cardType}}">
-                {{> cardSubject this}}
+                {{#if displayTranscriptOwner}}
+                    {{getLectureDate this._id}}
+                {{else}}
+                    {{> cardSubject this}}
+                {{/if}}
             </h2>
         {{/if}}
     </div>

@@ -956,6 +956,29 @@ Meteor.startup(function () {
 		);
 	}
 
+	cardsets = Cardsets.find({'transcriptBonus.dates': {$exists: true}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		let lectures = [];
+		for (let d = 0; d < cardsets[i].transcriptBonus.dates.length; d++) {
+			let lecture = {
+				date: cardsets[i].transcriptBonus.dates[d]
+			};
+			lectures.push(lecture);
+		}
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					'transcriptBonus.lectures': lectures
+				},
+				$unset: {
+					'transcriptBonus.dates': ""
+				}
+			}
+		);
+	}
+
 	let wozniak;
 	wozniak = Wozniak.find({skipped: {$exists: true}}).fetch();
 	for (let i = 0; i < wozniak.length; i++) {

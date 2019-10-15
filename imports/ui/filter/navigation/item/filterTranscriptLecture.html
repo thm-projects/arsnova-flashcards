@@ -14,7 +14,7 @@
             {{#each getTranscriptLectures}}
                     <li class="cards-filter-element">
                         <a href="#" class="filterTranscriptLecture cards-filter-element"
-                           data-id="{{this}}"> {{getLectureName this}}
+                           data-id="{{this.date}}"> {{getLectureName this}}
                             {{#if resultsFilterTranscriptLecture this}}
                                 <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
                             {{/if}}
