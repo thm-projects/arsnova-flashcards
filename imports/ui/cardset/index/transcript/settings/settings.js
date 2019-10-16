@@ -9,6 +9,7 @@ import "./item/maxPercentage.js";
 import "./item/minimumStars.js";
 import "./item/minimumTranscripts.js";
 import "./modal/setTitle.js";
+import * as config from "../../../../../config/transcriptBonus.js";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 
@@ -46,7 +47,7 @@ Template.cardsetIndexTranscriptSettings.onRendered(function () {
 		}
 	}
 	let settings = {
-		numberOfMonths: [1,3],
+		numberOfMonths: [1,config.numberOfDisplayedMonths],
 		onSelect: function () {
 			let dates = $('#transcript-calendar').multiDatesPicker('getDates', 'object');
 			let minimumSubmissions = $('#bonusMinimumSubmissions');
