@@ -752,11 +752,11 @@
       "form": {
         "modal": {
           "setTitle": {
-            "title": "Titel für Vorlesungen bearbeiten",
+            "title": "Termine & Themen der Vorlesungen",
             "table": {
               "header": {
                 "date": "Datum",
-                "title": "Titel"
+                "title": "Thema"
               }
             },
             "button": {
@@ -765,7 +765,7 @@
             }
           }
         },
-        "setTitle": "Titel für Vorlesungen bearbeiten",
+        "setTitle": "Themen der Vorlesungen bearbeiten",
         "title": "Bonusvergabe konfigurieren",
         "percentage": "Maximale Bonuspunkte",
         "enable": "Bonus aktivieren",

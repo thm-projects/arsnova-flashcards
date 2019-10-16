@@ -24,7 +24,7 @@ Template.subjectEditor.helpers({
 		return CardType.gotLearningUnit(Session.get('cardType'));
 	},
 	gotBonusSelected: function () {
-		if (CardType.gotLearningUnit(Session.get('cardType')) && !Session.get('isPrivateTranscript')) {
+		if (CardType.gotLearningUnit(Session.get('cardType')) && !Session.get('isPrivateTranscript') && Session.get('transcriptBonus') !== undefined) {
 			return "disabled";
 		} else {
 			return "";

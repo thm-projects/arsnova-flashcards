@@ -755,11 +755,11 @@
       "form": {
         "modal": {
           "setTitle": {
-            "title": "Titel für Vorlesungen bearbeiten",
+            "title": "Themen der Vorlesungen",
             "table": {
               "header": {
                 "date": "Datum",
-                "title": "Titel"
+                "title": "Thema"
               }
             },
             "button": {
@@ -768,7 +768,7 @@
             }
           }
         },
-        "setTitle": "Titel für Vorlesungen bearbeiten",
+        "setTitle": "Themen der Vorlesungen bearbeiten",
         "title": "Bonusvergabe für Mitschriften verwalten",
         "percentage": "Maximale Bonuspunkte",
         "enable": "Bonus aktivieren",
@@ -781,7 +781,7 @@
           "submission": "Zeit für die Foto-Abgabe",
           "editing": "Zeit für die digitale Nachbearbeitung"
         },
-        "lectureDates": "Termine der Veranstaltungen",
+        "lectureDates": "Termine der Vorlesungen",
         "clock": "Uhr",
         "hours": "Stunde",
         "hours_plural": "Stunden",
