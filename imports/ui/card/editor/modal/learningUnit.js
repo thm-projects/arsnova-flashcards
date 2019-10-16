@@ -131,6 +131,11 @@ Template.selectLearningUnit.onRendered(function () {
 			$('#setTranscriptBonusLecture').html(TAPi18n.__('transcriptForm.placeholder'));
 		}
 	});
+	$('#showSelectLearningUnitModal').on('hidden.bs.modal', function () {
+		if (Session.get('transcriptBonus') === undefined) {
+			Session.set('isPrivateTranscript', true);
+		}
+	});
 });
 
 Template.selectLearningUnit.onDestroyed(function () {
