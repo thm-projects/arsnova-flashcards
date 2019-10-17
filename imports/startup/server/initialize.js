@@ -2,7 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Cards} from "../../api/cards.js";
 import {Cardsets} from "../../api/cardsets.js";
 import {ColorThemes} from "../../api/theme.js";
-import {Learned, Leitner, Wozniak, Workload} from "../../api/learned.js";
+import {Learned, Leitner, LeitnerHistory, Wozniak, Workload} from "../../api/learned.js";
 import {AdminSettings} from "../../api/adminSettings";
 import {CronScheduler} from "../../../server/cronjob.js";
 import {Ratings} from "../../api/ratings";
@@ -363,6 +363,7 @@ function cleanWorkload() {
 
 function setupDatabaseIndex() {
 	Leitner._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, active: 1});
+	LeitnerHistory._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, task_id: 1});
 	Wozniak._ensureIndex({user_id: 1, cardset_id: 1});
 	Workload._ensureIndex({cardset_id: 1, user_id: 1});
 	Cards._ensureIndex({cardset_id: 1, subject: 1});

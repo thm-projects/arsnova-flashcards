@@ -9,6 +9,7 @@ import {LeitnerUtilities} from "./leitner";
 
 export const Learned = new Mongo.Collection("learned");
 export const Leitner = new Mongo.Collection("leitner");
+export const LeitnerHistory = new Mongo.Collection("leitnerHistory");
 export const Wozniak = new Mongo.Collection("wozniak");
 export const Workload = new Mongo.Collection("workload");
 
@@ -175,9 +176,21 @@ if (Meteor.isServer) {
 				cardset_id: cardset_id,
 				user_id: Meteor.userId()
 			});
+			LeitnerHistory.remove({
+				cardset_id: cardset_id,
+				user_id: Meteor.userId()
+			});
 			Meteor.call("updateLearnerCount", cardset_id);
 			Meteor.call('updateWorkloadCount', Meteor.userId());
 			LeitnerUtilities.updateLeitnerWorkload(cardset_id, Meteor.userId());
+			Workload.update({
+				cardset_id: cardset_id,
+				user_id: Meteor.userId()
+			}, {
+				$unset: {
+					"leitner.tasks": 1
+				}
+			});
 			return true;
 		},
 		deleteWozniak: function (cardset_id) {

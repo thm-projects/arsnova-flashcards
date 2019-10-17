@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {check} from "meteor/check";
-import {Leitner, Workload} from "./learned";
+import {Leitner, LeitnerHistory, Workload} from "./learned";
 import {Cardsets} from "./cardsets";
 import {Bonus} from "./bonus";
 import {Profile} from "./profile";
@@ -204,8 +204,66 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				}
 			}, {multi: true});
 			this.updateLeitnerWorkload(cardset._id, user._id);
+			let task_id = this.updateLeitnerWorkloadTasks(cardset._id, user._id);
+			this.setLeitnerHistory(cardset, user._id, task_id, cardSelection);
 			Meteor.call('prepareMail', cardset, user, isReset, isNewcomer);
 			Meteor.call('prepareWebpush', cardset, user, isNewcomer);
+		}
+	}
+
+	static setLeitnerHistory (cardset, user_id, task_id, cardSelection) {
+		if (!Meteor.isServer) {
+			user_id = Meteor.userId();
+		}
+		let leitner = Leitner.find({cardset_id: cardset._id, user_id: user_id, card_id: {$in: cardSelection}}).fetch();
+		let newItems = [];
+		let newItemObject;
+		leitner.forEach(function (leitner) {
+			newItemObject = {
+				card_id: leitner.card_id,
+				cardset_id: cardset._id,
+				user_id: user_id,
+				task_id: task_id,
+				box: leitner.box
+			};
+			if (cardset.shuffled) {
+				newItemObject.original_cardset_id = leitner.original_cardset_id;
+			}
+			newItems.push(newItemObject);
+		});
+		if (newItems.length > 0) {
+			LeitnerHistory.batchInsert(newItems);
+		}
+	}
+
+	static updateLeitnerWorkloadTasks (cardset_id, user_id) {
+		if (!Meteor.isServer) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			let workload = Workload.findOne({cardset_id: cardset_id, user_id: user_id}, {fields: {leitner: 1}});
+			if (workload.leitner.tasks === undefined) {
+				let tasks = [];
+				tasks.push(new Date());
+				Workload.update({
+					cardset_id: cardset_id,
+					user_id: user_id
+				}, {
+					$set: {
+						"leitner.tasks": tasks
+					}
+				});
+			} else {
+				Workload.update({
+					cardset_id: cardset_id,
+					user_id: user_id
+				}, {
+					$push: {
+						"leitner.tasks": new Date()
+					}
+				});
+			}
+			workload = Workload.findOne({cardset_id: cardset_id, user_id: user_id}, {fields: {leitner: 1}});
+			return workload.leitner.tasks.length - 1;
 		}
 	}
 
