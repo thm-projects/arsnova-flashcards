@@ -8,6 +8,7 @@ import "./navigation.html";
 import {Cards} from "../../../api/cards";
 import {CardIndex} from "../../../api/cardIndex";
 Session.setDefault('activeCardSide', undefined);
+Session.setDefault('leitnerHistoryTimestamps', {question: new Date(), answer: new Date()});
 
 /*
  * ############################################################################
@@ -82,6 +83,9 @@ Template.cardNavigationEnabledAnswer.helpers({
 });
 
 Template.cardNavigationEnabledAnswer.onRendered(function () {
+	let timestamps = Session.get('leitnerHistoryTimestamps');
+	timestamps.answer = new Date();
+	Session.set('leitnerHistoryTimestamps', timestamps);
 	if (Session.get('swapAnswerQuestion') && CardType.isCardTypesWithSwapAnswerQuestionButton(Session.get('cardType'))) {
 		CardNavigation.selectButton();
 	} else {
@@ -112,6 +116,9 @@ Template.cardNavigationEnabledQuestion.helpers({
 });
 
 Template.cardNavigationEnabledQuestion.onRendered(function () {
+	let timestamps = Session.get('leitnerHistoryTimestamps');
+	timestamps.question = new Date();
+	Session.set('leitnerHistoryTimestamps', timestamps);
 	CardNavigation.selectButton();
 });
 

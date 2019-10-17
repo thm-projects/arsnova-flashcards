@@ -212,7 +212,7 @@ export let CardNavigation = class CardNavigation {
 			CardNavigation.setActiveCardData();
 			Session.set('isQuestionSide', true);
 			if (updateLearningMode === 1) {
-				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, answer);
+				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, answer, Session.get('leitnerHistoryTimestamps'));
 			} else if (updateLearningMode === 2) {
 				Meteor.call("updateWozniak", Router.current().params._id, answeredCard, answer);
 			} else if (updateLearningMode === 3) {
@@ -321,7 +321,7 @@ export let CardNavigation = class CardNavigation {
 		}
 		if ($('.carousel-inner > .item').length === 1) {
 			if (updateLearningMode === 1) {
-				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, answer);
+				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, answer, Session.get('leitnerHistoryTimestamps'));
 			} else if (updateLearningMode === 2) {
 				Meteor.call("updateWozniak", Router.current().params._id, answeredCard, answer);
 			} else if (updateLearningMode === 3) {

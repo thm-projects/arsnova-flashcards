@@ -105,16 +105,17 @@ if (Meteor.isServer) {
 		/** Function marks an active leitner card as learned
 		 *  @param {string} cardset_id - The cardset id from the card
 		 *  @param {string} card_id - The id from the card
-		 *  @param {boolean} isWrong - Did the user know the answer?
+		 *  @param {boolean} answer - 0 = known, 1 = not known
+		 *  @param {Object} timestamps - Timestamps for viewing the question and viewing the answer
 		 * */
-		updateLeitner: function (cardset_id, card_id, isWrong) {
+		updateLeitner: function (cardset_id, card_id, answer, timestamps) {
 			// Make sure the user is logged in
 			if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				throw new Meteor.Error("not-authorized");
 			}
 			check(cardset_id, String);
 			check(card_id, String);
-			check(isWrong, Boolean);
+			check(answer, Boolean);
 
 			var cardset = Cardsets.findOne({_id: cardset_id});
 
@@ -131,7 +132,7 @@ if (Meteor.isServer) {
 					let selectedBox = currentLearned.box + 1;
 					let nextDate = new Date();
 
-					if (isWrong) {
+					if (answer) {
 						if (config.wrongAnswerMode === 1) {
 							if (currentLearned.box > 1) {
 								selectedBox = currentLearned.box - 1;
@@ -156,6 +157,20 @@ if (Meteor.isServer) {
 							priority: newPriority
 						}
 					});
+
+					if (workload.leitner.tasks !== undefined) {
+						delete query.active;
+						query.task_id = workload.leitner.tasks.length - 1;
+						timestamps.submission = new Date();
+						LeitnerHistory.update(query, {
+							$set: {
+								box: selectedBox,
+								answer: answer ? 1 : 0,
+								timestamps: timestamps
+							}
+						});
+					}
+
 					lowestPriority[selectedBox - 1] = newPriority - 1;
 					Workload.update({cardset_id: currentLearned.cardset_id, user_id: currentLearned.user_id}, {
 						$set: {
