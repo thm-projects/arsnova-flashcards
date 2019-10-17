@@ -161,7 +161,6 @@ if (Meteor.isServer) {
 					if (workload.leitner.tasks !== undefined) {
 						delete query.active;
 						query.task_id = workload.leitner.tasks.length - 1;
-						timestamps.submission = new Date();
 						LeitnerHistory.update(query, {
 							$set: {
 								box: selectedBox,

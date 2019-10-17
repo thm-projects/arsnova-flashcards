@@ -465,6 +465,15 @@ export let LeitnerUtilities = class LeitnerUtilities {
 							skipped: 0
 						}
 					}, {multi: true});
+					let workload = Workload.findOne({cardset_id: cardset._id, user_id: user._id});
+					if (workload.leitner.tasks !== undefined) {
+						LeitnerHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: workload.leitner.tasks.length - 1}, {
+							$set: {
+								box: box,
+								answer: 2
+							}
+						}, {multi: true});
+					}
 				}
 			} else {
 				let cards = Leitner.find(query, {
@@ -482,6 +491,15 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						skipped: 0
 					}
 				}, {multi: true});
+				let workload = Workload.findOne({cardset_id: cardset._id, user_id: user._id});
+				if (workload.leitner.tasks !== undefined) {
+					LeitnerHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: workload.leitner.tasks.length - 1}, {
+						$set: {
+							box: 1,
+							answer: 2
+						}
+					}, {multi: true});
+				}
 			}
 			this.setCards(cardset, user, true);
 		}
