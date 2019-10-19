@@ -73,11 +73,6 @@ The contribution guide can be found [here](https://git.thm.de/arsnova/cards/blob
 ## Documentation
 The documentation can be found [here](https://staging.arsnova.cards/jsdoc/).
 
-### UML Diagrams
-- [Activity](https://git.thm.de/arsnova/cards/wikis/uml---activity-diagram)
-- [Domain model](https://git.thm.de/arsnova/cards/wikis/uml---domain-model-diagram)
-- [Use case](https://git.thm.de/arsnova/cards/wikis/uml---use-case-diagram)
-
 ## CI Pipeline
 | Server | Status|
 |--------|----------------|
