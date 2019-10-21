@@ -5,11 +5,8 @@ import { Cardsets } from './cardsets.js';
 import { resetDatabase } from 'meteor/xolvio:cleaner';
 import { CreateStubUser } from "./createStubUsers";
 import StubCollections from 'meteor/hwillson:stub-collections';
-import {Cards} from "./cards";
-
 
 describe('create cardsets successfully', function () {
-
 	beforeEach(() => {
 		resetDatabase();
 	});

@@ -911,7 +911,6 @@ describe('addCard when not logged in', function () {
 			let bonusUser = false;
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, bonusUser);
-
 		}).to.throw();
 	});
 });
