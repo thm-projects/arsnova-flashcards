@@ -25,31 +25,13 @@ arsnova🍅cards uses Meteor as application framework. Download and install [Met
 ## Meteor updates
 A simple update to the latest Meteor version is not always possible. Please do not update Meteor to the latest version and leave this to the owners of the repository.
 
-## Migrate a local Meteor 1.6 🍅cards database to Meteor 1.8
-1. Make sure that you meet following requirements:
-   - You've selected the staging branch `git checkout staging`
-   - Your staging branch is up to date `git pull`
-   - Meteor is running
-   - Your terminal is inside the repository **cards folder**
-1. Move to your staging branch `git checkout staging`
-1. Install the mongodb-tools: `sudo apt-get install mongo-tools`
-1. Set your repository to the latest Meteor 1.6 version `git checkout 29db2ca369d25fa2f9dab2d964a3f131eeba1aa4`
-1. Dump your current Meteor 1.6 database `mongodump -h "localhost" --port "3001" -d "meteor" -o ~/cardsBackup/`
-   - Make sure that mongodump created the folder and files
-1. Stop meteor
-1. Reset the meteor configuration `meteor reset`
-1. Move back to the latest staging branch version `git checkout staging`
-1. Update your node packages `meteor npm install`
-1. Start meteor
-1. Restore your backup `mongorestore --drop -h "localhost" --port "3001" -d "meteor" ~/cardsBackup/meteor`
 
 ## Starting the app
 Use one of the following commands inside the repository (cards folder), to start your 🍅cards installation:
 
-- For development (Use this if you're going to run 🍅cards on your local device):
+- For development (use this if you're going to run 🍅cards on your local device):
   - `meteor --settings settings_debug.json`
   - Access the app from your host machine by visiting http://localhost:3000
-  - Use the Backdoor Login "Erstanmeldung / First Login" from the drop-down list if you're going to export and submit cards to moodle
 
 - For production:
   - `meteor --settings settings.json`
@@ -90,11 +72,6 @@ The contribution guide can be found [here](https://git.thm.de/arsnova/cards/blob
 
 ## Documentation
 The documentation can be found [here](https://staging.arsnova.cards/jsdoc/).
-
-### UML Diagrams
-- [Activity](https://git.thm.de/arsnova/cards/wikis/uml---activity-diagram)
-- [Domain model](https://git.thm.de/arsnova/cards/wikis/uml---domain-model-diagram)
-- [Use case](https://git.thm.de/arsnova/cards/wikis/uml---use-case-diagram)
 
 ## CI Pipeline
 | Server | Status|

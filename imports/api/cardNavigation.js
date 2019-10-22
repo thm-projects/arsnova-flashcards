@@ -206,13 +206,17 @@ export let CardNavigation = class CardNavigation {
 			flashcardCarousel.off('slide.bs.carousel');
 		});
 
+		let timestamps = Session.get('leitnerHistoryTimestamps');
+		timestamps.submission = new Date();
+		Session.set('leitnerHistoryTimestamps', timestamps);
+
 		flashcardCarousel.on('slid.bs.carousel', function () {
 			$('.scrollLeft').removeClass('pressed');
 			$('.scrollRight').removeClass('pressed');
 			CardNavigation.setActiveCardData();
 			Session.set('isQuestionSide', true);
 			if (updateLearningMode === 1) {
-				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, answer);
+				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, answer, Session.get('leitnerHistoryTimestamps'));
 			} else if (updateLearningMode === 2) {
 				Meteor.call("updateWozniak", Router.current().params._id, answeredCard, answer);
 			} else if (updateLearningMode === 3) {
@@ -300,6 +304,10 @@ export let CardNavigation = class CardNavigation {
 	}
 
 	static skipAnswer (scrollRight = true) {
+		if (Route.isBox()) {
+			let skippedCard = $('.carousel-inner > .active').attr('data-id');
+			Meteor.call('skipLeitnerCard', skippedCard, Router.current().params._id);
+		}
 		if (scrollRight) {
 			$('.scrollRight').addClass('pressed');
 			$('.carousel').carousel('next');
@@ -321,7 +329,9 @@ export let CardNavigation = class CardNavigation {
 		}
 		if ($('.carousel-inner > .item').length === 1) {
 			if (updateLearningMode === 1) {
-				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, answer);
+				let timestamps = Session.get('leitnerHistoryTimestamps');
+				timestamps.submission = new Date();
+				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, answer, timestamps);
 			} else if (updateLearningMode === 2) {
 				Meteor.call("updateWozniak", Router.current().params._id, answeredCard, answer);
 			} else if (updateLearningMode === 3) {
