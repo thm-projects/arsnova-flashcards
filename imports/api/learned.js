@@ -9,6 +9,7 @@ import {LeitnerUtilities} from "./leitner";
 
 export const Learned = new Mongo.Collection("learned");
 export const Leitner = new Mongo.Collection("leitner");
+export const LeitnerHistory = new Mongo.Collection("leitnerHistory");
 export const Wozniak = new Mongo.Collection("wozniak");
 export const Workload = new Mongo.Collection("workload");
 
@@ -104,16 +105,17 @@ if (Meteor.isServer) {
 		/** Function marks an active leitner card as learned
 		 *  @param {string} cardset_id - The cardset id from the card
 		 *  @param {string} card_id - The id from the card
-		 *  @param {boolean} isWrong - Did the user know the answer?
+		 *  @param {boolean} answer - 0 = known, 1 = not known
+		 *  @param {Object} timestamps - Timestamps for viewing the question and viewing the answer
 		 * */
-		updateLeitner: function (cardset_id, card_id, isWrong) {
+		updateLeitner: function (cardset_id, card_id, answer, timestamps) {
 			// Make sure the user is logged in
 			if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				throw new Meteor.Error("not-authorized");
 			}
 			check(cardset_id, String);
 			check(card_id, String);
-			check(isWrong, Boolean);
+			check(answer, Boolean);
 
 			var cardset = Cardsets.findOne({_id: cardset_id});
 
@@ -130,7 +132,7 @@ if (Meteor.isServer) {
 					let selectedBox = currentLearned.box + 1;
 					let nextDate = new Date();
 
-					if (isWrong) {
+					if (answer) {
 						if (config.wrongAnswerMode === 1) {
 							if (currentLearned.box > 1) {
 								selectedBox = currentLearned.box - 1;
@@ -155,6 +157,19 @@ if (Meteor.isServer) {
 							priority: newPriority
 						}
 					});
+
+					if (workload.leitner.tasks !== undefined) {
+						delete query.active;
+						query.task_id = workload.leitner.tasks.length - 1;
+						LeitnerHistory.update(query, {
+							$set: {
+								box: selectedBox,
+								answer: answer ? 1 : 0,
+								timestamps: timestamps
+							}
+						});
+					}
+
 					lowestPriority[selectedBox - 1] = newPriority - 1;
 					Workload.update({cardset_id: currentLearned.cardset_id, user_id: currentLearned.user_id}, {
 						$set: {
@@ -175,9 +190,21 @@ if (Meteor.isServer) {
 				cardset_id: cardset_id,
 				user_id: Meteor.userId()
 			});
+			LeitnerHistory.remove({
+				cardset_id: cardset_id,
+				user_id: Meteor.userId()
+			});
 			Meteor.call("updateLearnerCount", cardset_id);
 			Meteor.call('updateWorkloadCount', Meteor.userId());
 			LeitnerUtilities.updateLeitnerWorkload(cardset_id, Meteor.userId());
+			Workload.update({
+				cardset_id: cardset_id,
+				user_id: Meteor.userId()
+			}, {
+				$unset: {
+					"leitner.tasks": 1
+				}
+			});
 			return true;
 		},
 		deleteWozniak: function (cardset_id) {
@@ -295,6 +322,23 @@ if (Meteor.isServer) {
 				});
 				Meteor.call("updateLearnerCount", cardset._id);
 				return getLearners(Workload.find({cardset_id: cardset._id, 'leitner.bonus': true}).fetch(), cardset._id);
+			} else {
+				throw new Meteor.Error("not-authorized");
+			}
+		},
+		skipLeitnerCard: function (card_id, cardset_id) {
+			check(card_id, String);
+			check(cardset_id, String);
+			if (Meteor.user()) {
+				LeitnerHistory.update({
+					user_id: Meteor.userId(),
+					cardset_id: cardset_id,
+					card_id: card_id
+				}, {
+					$inc: {
+						skipped: 1
+					}
+				});
 			} else {
 				throw new Meteor.Error("not-authorized");
 			}

@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {check} from "meteor/check";
-import {Leitner, Workload} from "./learned";
+import {Leitner, LeitnerHistory, Workload} from "./learned";
 import {Cardsets} from "./cardsets";
 import {Bonus} from "./bonus";
 import {Profile} from "./profile";
@@ -204,8 +204,67 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				}
 			}, {multi: true});
 			this.updateLeitnerWorkload(cardset._id, user._id);
+			let task_id = this.updateLeitnerWorkloadTasks(cardset._id, user._id);
+			this.setLeitnerHistory(cardset, user._id, task_id, cardSelection);
 			Meteor.call('prepareMail', cardset, user, isReset, isNewcomer);
 			Meteor.call('prepareWebpush', cardset, user, isNewcomer);
+		}
+	}
+
+	static setLeitnerHistory (cardset, user_id, task_id, cardSelection) {
+		if (!Meteor.isServer) {
+			user_id = Meteor.userId();
+		}
+		let leitner = Leitner.find({cardset_id: cardset._id, user_id: user_id, card_id: {$in: cardSelection}}).fetch();
+		let newItems = [];
+		let newItemObject;
+		leitner.forEach(function (leitner) {
+			newItemObject = {
+				card_id: leitner.card_id,
+				cardset_id: cardset._id,
+				user_id: user_id,
+				task_id: task_id,
+				box: leitner.box,
+				skipped: 0
+			};
+			if (cardset.shuffled) {
+				newItemObject.original_cardset_id = leitner.original_cardset_id;
+			}
+			newItems.push(newItemObject);
+		});
+		if (newItems.length > 0) {
+			LeitnerHistory.batchInsert(newItems);
+		}
+	}
+
+	static updateLeitnerWorkloadTasks (cardset_id, user_id) {
+		if (!Meteor.isServer) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			let workload = Workload.findOne({cardset_id: cardset_id, user_id: user_id}, {fields: {leitner: 1}});
+			if (workload.leitner.tasks === undefined) {
+				let tasks = [];
+				tasks.push(new Date());
+				Workload.update({
+					cardset_id: cardset_id,
+					user_id: user_id
+				}, {
+					$set: {
+						"leitner.tasks": tasks
+					}
+				});
+			} else {
+				Workload.update({
+					cardset_id: cardset_id,
+					user_id: user_id
+				}, {
+					$push: {
+						"leitner.tasks": new Date()
+					}
+				});
+			}
+			workload = Workload.findOne({cardset_id: cardset_id, user_id: user_id}, {fields: {leitner: 1}});
+			return workload.leitner.tasks.length - 1;
 		}
 	}
 
@@ -375,17 +434,21 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				console.log("===> Reset cards");
 			}
 			let query = {cardset_id: cardset._id, user_id: user._id, box: {$ne: 6}};
-			if (config.resetDeadlineMode === 0 || config.resetDeadlineMode === 1) {
+			if (config.resetDeadlineMode === 0 || config.resetDeadlineMode === 1 || config.resetDeadlineMode === 4) {
 				query.active = true;
 			}
 			let idArray;
-			if (config.resetDeadlineMode === 0 || config.resetDeadlineMode === 2) {
+			if (config.resetDeadlineMode === 0 || config.resetDeadlineMode === 2 || config.resetDeadlineMode === 4) {
 				let box;
 				for (let i = 1; i < 6; i++) {
-					if (i > 1) {
-						box = i - 1;
+					if (config.resetDeadlineMode === 4) {
+						box = i;
 					} else {
-						box = 1;
+						if (i > 1) {
+							box = i - 1;
+						} else {
+							box = 1;
+						}
 					}
 					query.box = i;
 					let cards = Leitner.find(query, {
@@ -403,6 +466,15 @@ export let LeitnerUtilities = class LeitnerUtilities {
 							skipped: 0
 						}
 					}, {multi: true});
+					let workload = Workload.findOne({cardset_id: cardset._id, user_id: user._id});
+					if (workload.leitner.tasks !== undefined) {
+						LeitnerHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: workload.leitner.tasks.length - 1}, {
+							$set: {
+								box: box,
+								answer: 2
+							}
+						}, {multi: true});
+					}
 				}
 			} else {
 				let cards = Leitner.find(query, {
@@ -420,6 +492,15 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						skipped: 0
 					}
 				}, {multi: true});
+				let workload = Workload.findOne({cardset_id: cardset._id, user_id: user._id});
+				if (workload.leitner.tasks !== undefined) {
+					LeitnerHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: workload.leitner.tasks.length - 1}, {
+						$set: {
+							box: 1,
+							answer: 2
+						}
+					}, {multi: true});
+				}
 			}
 			this.setCards(cardset, user, true);
 		}
