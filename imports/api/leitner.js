@@ -224,7 +224,8 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				cardset_id: cardset._id,
 				user_id: user_id,
 				task_id: task_id,
-				box: leitner.box
+				box: leitner.box,
+				skipped: 0
 			};
 			if (cardset.shuffled) {
 				newItemObject.original_cardset_id = leitner.original_cardset_id;

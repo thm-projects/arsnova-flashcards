@@ -304,6 +304,10 @@ export let CardNavigation = class CardNavigation {
 	}
 
 	static skipAnswer (scrollRight = true) {
+		if (Route.isBox()) {
+			let skippedCard = $('.carousel-inner > .active').attr('data-id');
+			Meteor.call('skipLeitnerCard', skippedCard, Router.current().params._id);
+		}
 		if (scrollRight) {
 			$('.scrollRight').addClass('pressed');
 			$('.carousel').carousel('next');

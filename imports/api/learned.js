@@ -325,6 +325,23 @@ if (Meteor.isServer) {
 			} else {
 				throw new Meteor.Error("not-authorized");
 			}
+		},
+		skipLeitnerCard: function (card_id, cardset_id) {
+			check(card_id, String);
+			check(cardset_id, String);
+			if (Meteor.user()) {
+				LeitnerHistory.update({
+					user_id: Meteor.userId(),
+					cardset_id: cardset_id,
+					card_id: card_id
+				}, {
+					$inc: {
+						skipped: 1
+					}
+				});
+			} else {
+				throw new Meteor.Error("not-authorized");
+			}
 		}
 	});
 }
