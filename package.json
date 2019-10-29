@@ -2,7 +2,8 @@
   "name": "thmcards",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "start": "meteor run",
+    "test": "meteor test --driver-package meteortesting:mocha --port 3050 remove iron:router"
   },
   "dependencies": {
     "@babel/runtime": "^7.7.2",
@@ -20,8 +21,7 @@
     "wtc-barfystars": "^0.2.2",
     "wtc-controller-element": "^1.1.1",
     "xregexp": "^4.2.4",
-    "zingtouch": "^1.0.6",
-    "sinon": "latest"
+    "zingtouch": "^1.0.6"
   },
   "version": "1.0.0",
   "main": "index.js",
@@ -43,7 +43,8 @@
     "gulp-watch": "^5.0.1",
     "gulp4": "^4.0.3",
     "jshint": "^2.10.1",
-    "jshint-stylish": "^2.2.1"
+    "jshint-stylish": "^2.2.1",
+    "sinon": "^7.5.0"
   },
   "author": "",
   "license": "ISC",

@@ -321,7 +321,7 @@ describe('create cardsets with wrong parameter values', function () {
 		}).to.throw();
 	});
 
-	it('should fail with sortType 2 (allowed 0 - 2)', function () {
+	it('should fail with sortType 2 (allowed 0 - 1)', function () {
 		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let name = "testcardset";
@@ -493,7 +493,7 @@ describe('create cardsets with wrong data types', function () {
 			let sortType = 1;
 
 			Meteor.call('addCardset', name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType);
-		}).to.throw('Match error: Expected array, got 1');
+		}).to.throw();
 	});
 
 	it('should fail with wrong data type for cardType', function () {

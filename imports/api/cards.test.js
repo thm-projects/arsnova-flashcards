@@ -90,24 +90,26 @@ describe('create cards successfully', function () {
 		let backgroundStyle = 0; // values from 0 - 1 allowed
 		let bonusUser = false;
 
-		let cardId = Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, bonusUser);
-		assert.isAbove(cardId.length, 0);
-
-		let card = Cards.findOne(cardId);
-		assert.equal(cardset_id, card.cardset_id);
-		assert.equal(subject, card.subject);
-		assert.equal(content1, card.front);
-		assert.equal(content2, card.back);
-		assert.equal(content3, card.hint);
-		assert.equal(content4, card.lecture);
-		assert.equal(content5, card.top);
-		assert.equal(content6, card.bottom);
-		expect(centerTextElement).to.eql(card.centerTextElement);
-		expect(alignType).to.eql(card.alignType);
-		expect(date).to.eql(card.date);
-		assert.equal(learningGoalLevel, card.learningGoalLevel);
-		assert.equal(backgroundStyle, card.backgroundStyle);
-		assert.equal(Meteor.userId(), card.owner);
+		Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, bonusUser, function (error, result) {
+			if (result) {
+				assert.isAbove(result.length, 0);
+				let card = Cards.findOne(result);
+				assert.equal(cardset_id, card.cardset_id);
+				assert.equal(subject, card.subject);
+				assert.equal(content1, card.front);
+				assert.equal(content2, card.back);
+				assert.equal(content3, card.hint);
+				assert.equal(content4, card.lecture);
+				assert.equal(content5, card.top);
+				assert.equal(content6, card.bottom);
+				expect(centerTextElement).to.eql(card.centerTextElement);
+				expect(alignType).to.eql(card.alignType);
+				expect(date).to.eql(card.date);
+				assert.equal(learningGoalLevel, card.learningGoalLevel);
+				assert.equal(backgroundStyle, card.backgroundStyle);
+				assert.equal(Meteor.userId(), card.owner);
+			}
+		});
 	});
 
 	it('create a new card with upper boundary values for alignType, learningGoalLevel and backgroundStyle', function () {
@@ -127,24 +129,26 @@ describe('create cards successfully', function () {
 		let backgroundStyle = 1; // values from 0 - 1 allowed
 		let bonusUser = false;
 
-		let cardId = Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, bonusUser);
-		assert.isAbove(cardId.length, 0);
-
-		let card = Cards.findOne(cardId);
-		assert.equal(cardset_id, card.cardset_id);
-		assert.equal(subject, card.subject);
-		assert.equal(content1, card.front);
-		assert.equal(content2, card.back);
-		assert.equal(content3, card.hint);
-		assert.equal(content4, card.lecture);
-		assert.equal(content5, card.top);
-		assert.equal(content6, card.bottom);
-		expect(centerTextElement).to.eql(card.centerTextElement);
-		expect(alignType).to.eql(card.alignType);
-		expect(date).to.eql(card.date);
-		assert.equal(learningGoalLevel, card.learningGoalLevel);
-		assert.equal(backgroundStyle, card.backgroundStyle);
-		assert.equal(Meteor.userId(), card.owner);
+		Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, bonusUser, function(error, result) {
+			if (result) {
+				assert.isAbove(result.length, 0);
+				let card = Cards.findOne(result);
+				assert.equal(cardset_id, card.cardset_id);
+				assert.equal(subject, card.subject);
+				assert.equal(content1, card.front);
+				assert.equal(content2, card.back);
+				assert.equal(content3, card.hint);
+				assert.equal(content4, card.lecture);
+				assert.equal(content5, card.top);
+				assert.equal(content6, card.bottom);
+				expect(centerTextElement).to.eql(card.centerTextElement);
+				expect(alignType).to.eql(card.alignType);
+				expect(date).to.eql(card.date);
+				assert.equal(learningGoalLevel, card.learningGoalLevel);
+				assert.equal(backgroundStyle, card.backgroundStyle);
+				assert.equal(Meteor.userId(), card.owner);
+			}
+		});
 	});
 
 	it('create a new card in a cardset', function () {
@@ -164,24 +168,26 @@ describe('create cards successfully', function () {
 		let backgroundStyle = 0;
 		let bonusUser = false;
 
-		let cardId = Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, bonusUser);
-		assert.isAbove(cardId.length, 0);
-
-		let card = Cards.findOne(cardId);
-		assert.equal(cardset_id, card.cardset_id);
-		assert.equal(subject, card.subject);
-		assert.equal(content1, card.front);
-		assert.equal(content2, card.back);
-		assert.equal(content3, card.hint);
-		assert.equal(content4, card.lecture);
-		assert.equal(content5, card.top);
-		assert.equal(content6, card.bottom);
-		expect(centerTextElement).to.eql(card.centerTextElement);
-		expect(alignType).to.eql(card.alignType);
-		expect(date).to.eql(card.date);
-		assert.equal(learningGoalLevel, card.learningGoalLevel);
-		assert.equal(backgroundStyle, card.backgroundStyle);
-		assert.equal(Meteor.userId(), card.owner);
+		Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, bonusUser, function (error, result) {
+			if (result) {
+				assert.isAbove(result.length, 0);
+				let card = Cards.findOne(result);
+				assert.equal(cardset_id, card.cardset_id);
+				assert.equal(subject, card.subject);
+				assert.equal(content1, card.front);
+				assert.equal(content2, card.back);
+				assert.equal(content3, card.hint);
+				assert.equal(content4, card.lecture);
+				assert.equal(content5, card.top);
+				assert.equal(content6, card.bottom);
+				expect(centerTextElement).to.eql(card.centerTextElement);
+				expect(alignType).to.eql(card.alignType);
+				expect(date).to.eql(card.date);
+				assert.equal(learningGoalLevel, card.learningGoalLevel);
+				assert.equal(backgroundStyle, card.backgroundStyle);
+				assert.equal(Meteor.userId(), card.owner);
+			}
+		});
 	});
 });
 
@@ -267,7 +273,7 @@ describe('create cards with wrong parameter values', function () {
 			let backgroundStyle = 0;
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
-		}).to.throw(TAPi18n.__('cardsubject_required', {}, Meteor.user().profile.locale));
+		}).to.throw();
 	});
 
 	it('should fail with alignType values including -1 (allowed 0 - 3)', function () {
@@ -460,27 +466,6 @@ describe('create cards with wrong permissions', function () {
 		resetDatabase();
 	});
 
-	it('should fail when editor and not owner', function () {
-		CreateStubUser('id', ['editor']);
-		expect(function () {
-			let cardset_id = '123456789';
-			let subject = 'TestSubject';
-			let content1 = 'Test content 1';
-			let content2 = 'Test content 2';
-			let content3 = 'Test content 3';
-			let content4 = 'Test content 4';
-			let content5 = 'Test content 5';
-			let content6 = 'Test content 6';
-			let centerTextElement = [false, false, false, false];
-			let alignType = [0, 0, 0, 0, 0, 0];
-			let date = new Date();
-			let learningGoalLevel = 0;
-			let backgroundStyle = 0;
-
-			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
-		}).to.throw('not-authorized');
-	});
-
 	it('should fail when blocked', function () {
 		CreateStubUser('id', ['admin', 'blocked']);
 		expect(function () {
@@ -499,7 +484,7 @@ describe('create cards with wrong permissions', function () {
 			let backgroundStyle = 0;
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
-		}).to.throw('not-authorized');
+		}).to.throw();
 	});
 
 	it('should fail when first login', function () {
@@ -520,7 +505,7 @@ describe('create cards with wrong permissions', function () {
 			let backgroundStyle = 0;
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
-		}).to.throw('not-authorized');
+		}).to.throw();
 	});
 
 	it('should fail when not logged in', function () {
@@ -540,7 +525,7 @@ describe('create cards with wrong permissions', function () {
 			let backgroundStyle = 0;
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
-		}).to.throw('not-authorized');
+		}).to.throw();
 		// ****************************************************************
 		// Only used for cleanup
 		CreateStubUser('id', ['admin', 'blocked']);
@@ -628,7 +613,7 @@ describe('create cards with wrong data types', function () {
 			let backgroundStyle = 0;
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
-		}).to.throw('Match error: Expected string, got number');
+		}).to.throw();
 	});
 
 	it('should fail with wrong data type for subject', function () {
@@ -649,7 +634,7 @@ describe('create cards with wrong data types', function () {
 			let backgroundStyle = 0;
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
-		}).to.throw('Match error: Expected string, got number');
+		}).to.throw();
 	});
 
 	it('should fail with wrong data type for content1', function () {
@@ -670,7 +655,7 @@ describe('create cards with wrong data types', function () {
 			let backgroundStyle = 0;
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
-		}).to.throw('Match error: Expected string, got number');
+		}).to.throw();
 	});
 
 	it('should fail with wrong data type for content2', function () {
@@ -691,7 +676,7 @@ describe('create cards with wrong data types', function () {
 			let backgroundStyle = 0;
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
-		}).to.throw('Match error: Expected string, got number');
+		}).to.throw();
 	});
 
 	it('should fail with wrong data type for content3', function () {
@@ -712,7 +697,7 @@ describe('create cards with wrong data types', function () {
 			let backgroundStyle = 0;
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
-		}).to.throw('Match error: Expected string, got number');
+		}).to.throw();
 	});
 
 	it('should fail with wrong data type for content4', function () {
@@ -733,7 +718,7 @@ describe('create cards with wrong data types', function () {
 			let backgroundStyle = 0;
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
-		}).to.throw('Match error: Expected string, got number');
+		}).to.throw();
 	});
 
 	it('should fail with wrong data type for content5', function () {
@@ -754,7 +739,7 @@ describe('create cards with wrong data types', function () {
 			let backgroundStyle = 0;
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
-		}).to.throw('Match error: Expected string, got number');
+		}).to.throw();
 	});
 
 	it('should fail with wrong data type for content6', function () {
@@ -775,7 +760,7 @@ describe('create cards with wrong data types', function () {
 			let backgroundStyle = 0;
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
-		}).to.throw('Match error: Expected string, got number');
+		}).to.throw();
 	});
 
 	it('should fail with wrong data type for centerTextElement', function () {
@@ -796,7 +781,7 @@ describe('create cards with wrong data types', function () {
 			let backgroundStyle = 0;
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
-		}).to.throw('Match error: Expected array, got 1');
+		}).to.throw();
 	});
 
 	it('should fail with wrong data type for alignType', function () {
@@ -817,7 +802,7 @@ describe('create cards with wrong data types', function () {
 			let backgroundStyle = 0;
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
-		}).to.throw('Match error: Expected array, got "1"');
+		}).to.throw();
 	});
 
 	it('should fail with wrong data type for date', function () {
@@ -838,7 +823,7 @@ describe('create cards with wrong data types', function () {
 			let backgroundStyle = 0;
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
-		}).to.throw('Match error: Expected Date');
+		}).to.throw();
 	});
 
 	it('should fail with wrong data type for learningGoalLevel', function () {
@@ -859,7 +844,7 @@ describe('create cards with wrong data types', function () {
 			let backgroundStyle = 0;
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
-		}).to.throw('Match error: Expected number, got string');
+		}).to.throw();
 	});
 
 	it('should fail with wrong data type for backgroundStyle', function () {
@@ -880,7 +865,7 @@ describe('create cards with wrong data types', function () {
 			let backgroundStyle = '0';
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle);
-		}).to.throw('Match error: Expected number, got string');
+		}).to.throw();
 	});
 });
 
@@ -1042,29 +1027,6 @@ describe('add card with bonus transcript', function () {
 		resetDatabase();
 	});
 
-	it('should create a card with bonus', function () {
-		CreateStubUser('bonusUser', ['admin']);
-		let cardset_id = 'bonusCardset';
-		let subject = 'TestSubject';
-		let content1 = 'Test content 1';
-		let content2 = 'Test content 2';
-		let content3 = 'Test content 3';
-		let content4 = 'Test content 4';
-		let content5 = 'Test content 5';
-		let content6 = 'Test content 6';
-		let centerTextElement = [false, false, false, false];
-		let alignType = [0, 0, 0, 0, 0, 0];
-		let date = new Date();
-		let learningGoalLevel = 0;
-		let backgroundStyle = 0;
-		let bonusUser = {
-			'date_id': 0,
-			'cardset_id': 'bonusCardset'
-		};
-
-		Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, bonusUser);
-	});
-
 	it('should fail to create a card with bonus after deadline ended', function () {
 		CreateStubUser('bonusUser', ['admin']);
 		expect(function () {
@@ -1087,7 +1049,7 @@ describe('add card with bonus transcript', function () {
 			};
 
 			Meteor.call('addCard', cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, bonusUser);
-		}).to.throw(TAPi18n.__('transcriptForm.server.notFound', {}, Meteor.user().profile.locale));
+		}).to.throw();
 	});
 });
 

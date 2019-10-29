@@ -19,7 +19,6 @@ ecmascript@0.13.0              # Enable ECMAScript2015+ syntax in app code
 
 fourseven:scss@4.12.0
 tap:i18n
-iron:router@=1.0.13
 twbs:bootstrap
 accounts-twitter@1.4.2
 accounts-ui@1.3.1
@@ -79,3 +78,4 @@ xolvio:cleaner
 lmieulet:meteor-coverage
 csauer:accounts-phony
 hwillson:stub-collections
+iron:router

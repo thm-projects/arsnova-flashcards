@@ -7,7 +7,7 @@ import {Workload} from "./subscriptions/workload";
 import {Wozniak} from "./subscriptions/wozniak";
 import {Notifications} from "./subscriptions/notifications";
 import {Ratings} from "./subscriptions/ratings";
-import {check} from "meteor/check";
+import {check, Match} from "meteor/check";
 import {CardType} from "./cardTypes";
 import {UserPermissions} from "./permissions";
 import {ServerStyle} from "./styles";
@@ -170,15 +170,32 @@ Meteor.methods({
 		check(kind, String);
 		check(shuffled, Boolean);
 		check(cardType, Number);
+		check(cardType, Match.Where((cardType) => {
+			if (cardType >= 0 && cardType <= 19) {
+				return true;
+			}
+		}));
 		check(difficulty, Number);
+		check(difficulty, Match.Where((difficulty) => {
+			if (difficulty >= 0 && difficulty <= 3) {
+				return true;
+			}
+		}));
 		check(sortType, Number);
+		check(sortType, Match.Where((sortType) => {
+			if (sortType >= 0 && sortType <= 1) {
+				return true;
+			}
+		}));
 		let quantity;
 		let gotWorkload;
 		if (shuffled) {
 			if (!Roles.userIsInRole(Meteor.userId(), ['admin', 'editor', 'lecturer', 'university', 'pro'])) {
 				throw new Meteor.Error("not-authorized");
 			}
-			check(cardGroups, [String]);
+			if (cardGroups.length) {
+				throw new Meteor.Error("Invalid cardGroups setting");
+			}
 			quantity = Cards.find({cardset_id: {$in: cardGroups}}).count();
 			gotWorkload = false;
 		} else {
@@ -187,7 +204,7 @@ Meteor.methods({
 			gotWorkload = CardType.getCardTypesWithLearningModes().includes(cardType);
 		}
 		// Make sure the user is logged in before inserting a cardset
-		if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
+		if (!Meteor.userId() || Roles.userIsInRole(Meteor.userId(), ["firstLogin", "blocked"])) {
 			throw new Meteor.Error("not-authorized");
 		}
 		if (cardType < 0) {

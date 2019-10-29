@@ -2,7 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "./subscriptions/cardsets.js";
 import {Leitner} from "./subscriptions/leitner";
 import {Wozniak} from "./subscriptions/wozniak";
-import {check} from "meteor/check";
+import {check, Match} from "meteor/check";
 import {UserPermissions} from "./permissions";
 import {TranscriptBonus} from "./subscriptions/transcriptBonus";
 import {TranscriptBonusList} from "./transcriptBonus";
@@ -13,6 +13,9 @@ Meteor.methods({
 	addCard: function (cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, transcriptBonusUser) {
 		check(cardset_id, String);
 		check(subject, String);
+		Match.Where((subject) => {
+			return subject.trim().length;
+		});
 		check(content1, String);
 		check(content2, String);
 		check(content3, String);
@@ -21,9 +24,26 @@ Meteor.methods({
 		check(content6, String);
 		check(centerTextElement, [Boolean]);
 		check(alignType, [Number]);
+		check(alignType, Match.Where((alignType) => {
+			_.each(alignType, function (type) {
+				if (type >= 0 && type <= 3) {
+					return true;
+				}
+			});
+		}));
 		check(date, Date);
 		check(learningGoalLevel, Number);
+		check(learningGoalLevel, Match.Where((learningGoalLevel) => {
+			if (learningGoalLevel >= 0 && learningGoalLevel <= 5) {
+				return true;
+			}
+		}));
 		check(backgroundStyle, Number);
+		check(backgroundStyle, Match.Where((backgroundStyle) => {
+			if (backgroundStyle >= 0 && backgroundStyle <= 1) {
+				return true;
+			}
+		}));
 		// Make sure the user is logged in and is authorized
 		let cardset = Cardsets.findOne(cardset_id);
 		let isOwner = false;
@@ -36,7 +56,7 @@ Meteor.methods({
 			cardType = cardset.cardType;
 		}
 
-		if (UserPermissions.gotBackendAccess() || isOwner) {
+		if ((UserPermissions.gotBackendAccess() || isOwner) && UserPermissions.isNotBlockedOrFirstLogin()) {
 			if (subject === "" && transcriptBonusUser === undefined) {
 				throw new Meteor.Error(TAPi18n.__('cardsubject_required', {}, Meteor.user().profile.locale));
 			}
