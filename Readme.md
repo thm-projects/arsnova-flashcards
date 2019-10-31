@@ -8,13 +8,17 @@ arsnova🍅cards uses Meteor as application framework. Download and install [Met
 - 4 GB RAM
 
 ## Initial setup
-1. Install [Meteor](https://www.meteor.com/)
-2. Install git `sudo apt install git`
-3. Install python 2 `sudo apt install python`, Ubuntu only ships with python 3
-4. install the g++ build-essential `sudo apt install g++ build-essential`
-2. Make sure that you've added a [SSH key](https://git.thm.de/profile/keys)
-3. Clone the remote repository `git clone git@git.thm.de:arsnova/cards.git`
-4. Install the npm package dependencies inside the local repository **"cards folder"** `meteor npm install`
+|Step | Linux Terminal Command  |
+|---|---|
+|1. Install [Meteor](https://www.meteor.com/)   | Refer to the link in the step column |
+|2. Install git    | `sudo apt install git`  |
+|3. Install python 2. Ubuntu only ships with python 3.  |`sudo apt install python`  |
+|4. Install the g++ build-essential | `sudo apt install g++ build-essential` |
+|5. Make sure that you've added a [SSH key](https://git.thm.de/profile/keys) | Refer to the link in the step column |
+|6. Clone the remote repository  | `git clone git@git.thm.de:arsnova/cards.git` |
+|7. Move inside the local repository **"cards folder"**  | `cd cards` |
+|8. Install the npm package dependencies | `meteor npm install` | 
+
 
 ### Settings (These steps are only required if you want to deploy 🍅cards on a server)
 1. Add the cas id of the admins inside the admin.id array of `settings.json` (cas account)
