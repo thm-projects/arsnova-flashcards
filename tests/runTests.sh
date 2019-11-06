@@ -14,7 +14,7 @@ successfulTests=0
 failedTests=0
 failedTestsArray=()
 
-# step through any subdirectory of tests/features and
+# step through any subdirectory of errors/features and
 # - restore meteor database
 # - run chimp
 # - drop meteor database
@@ -23,12 +23,12 @@ for testDir in $searchDir; do
 		echo -e $BLUE"\nEntering directory $testDir" $NC
 
         # Drop and Restore the Test-Database
-		source tests/loadTestDatabase.sh
+		source errors/loadTestDatabase.sh
 
         # Run chimp
         getTestName
         echo -e $GREEN"\nRunning chimp-test: $NC$CHIMPTESTNAME..."
-        source tests/helpers/chimpTest.sh
+        source errors/helpers/chimpTest.sh
 	fi
 done
 

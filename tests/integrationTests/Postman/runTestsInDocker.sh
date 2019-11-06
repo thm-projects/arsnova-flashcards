@@ -1,6 +1,6 @@
 #!/bin/bash
 # first pulls the needed docker image
-# then run the integration tests in the docker container
+# then run the integration errors in the docker container
 
 if [ "$1" = "" ]
 then

@@ -19,12 +19,16 @@ let transcriptBonusCard = {
 	'_id': 'bonusCard',
 	'subject': 'TestSubject',
 	'difficulty': 2,
-	'front': 'Test text front',
-	'back': 'Test text back',
-	'hint': 'Test hint',
+	'content1': 'Test content 1',
+	'content2': 'Test content 2',
+	'content3': 'Test content 3',
+	'content4': 'Test content 4',
+	'content5': 'Test content 5',
+	'content6': 'Test content 6',
 	'cardset_id': 'bonusCardset',
 	'cardType': 19,
 	'owner': 'bonusUser',
+	'date': new Date(),
 	'centerTextElement': [
 		false,
 		false,
@@ -33,7 +37,6 @@ let transcriptBonusCard = {
 	],
 	'learningGoalLevel': 0,
 	'backgroundStyle': 0,
-	'date': 1513612598530,
 	'learningIndex': '0',
 	'originalAuthorName': {
 		'legacyName': 'Test, Author'

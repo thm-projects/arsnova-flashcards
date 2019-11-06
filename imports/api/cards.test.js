@@ -6,10 +6,10 @@ import { resetDatabase } from 'meteor/xolvio:cleaner';
 import { CreateStubUser } from './createStubUsers';
 import StubCollections from 'meteor/hwillson:stub-collections';
 import { Cardsets } from './cardsets';
-import {TranscriptBonus} from "./transcriptBonus";
 import cardsetStubs from "../tests/stubs/cardsets";
 import cardStub from "../tests/stubs/cards";
 import cloneDeep from 'lodash.clonedeep';
+import { cardThresholds } from "../tests/thresholds/cards";
 
 
 describe('create cards successfully', function () {
@@ -96,67 +96,76 @@ describe('create cards with wrong parameter values', function () {
 		resetDatabase();
 	});
 
+	it('should fail with invalid cardset_id', function () {
+		CreateStubUser('id', ['admin']);
+
+		expect(function () {
+			let cardset_id = "25627";
+
+			Meteor.call('addCard', cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.cardset_id.not-valid', {}, Meteor.user().profile.locale));
+	});
+
 	it('should fail with empty subject', function () {
 		CreateStubUser('id', ['admin']);
 		expect(function () {
 			let subject = '';
 
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.subject.empty', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with alignType values including -1 (allowed 0 - 3)', function () {
 		CreateStubUser('id', ['admin']);
 		expect(function () {
-			let alignType = [0, 0, -1, 0, 0, 0];
+			let alignType = [0, 0, (cardThresholds.alignType.min - 1), 0, 0, 0];
 
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.alignType.min', {threshold: cardThresholds.alignType.max}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with alignType values including 4 (allowed 0 - 3)', function () {
 		CreateStubUser('id', ['admin']);
 		expect(function () {
-			let alignType = [0, 0, 4, 0, 0, 0];
-
+			let alignType = [0, 0, (cardThresholds.alignType.max + 1), 0, 0, 0];
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.alignType.max', {threshold: cardThresholds.alignType.max}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with learningGoalLevel -1 (allowed 0 - 5)', function () {
 		CreateStubUser('id', ['admin']);
 		expect(function () {
-			let learningGoalLevel = -1;
+			let learningGoalLevel = cardThresholds.learningGoalLevel.min - 1;
 
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.learningGoalLevel.min', {threshold: cardThresholds.learningGoalLevel.min}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with learningGoalLevel 6 (allowed 0 - 5)', function () {
 		CreateStubUser('id', ['admin']);
 		expect(function () {
-			let learningGoalLevel = 6;
+			let learningGoalLevel = cardThresholds.learningGoalLevel.max + 1;
 
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.learningGoalLevel.max', {threshold: cardThresholds.learningGoalLevel.max}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with backgroundStyle -1 (allowed 0 - 1)', function () {
 		CreateStubUser('id', ['admin']);
 		expect(function () {
-			let backgroundStyle = -1;
+			let backgroundStyle = cardThresholds.backgroundStyle.min - 1;
 
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.backgroundStyle.min', {threshold: cardThresholds.backgroundStyle.min}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with backgroundStyle 2 (allowed 0 - 1)', function () {
 		CreateStubUser('id', ['admin']);
 		expect(function () {
-			let backgroundStyle = 2;
+			let backgroundStyle = cardThresholds.backgroundStyle.max + 1;
 
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.backgroundStyle.max', {threshold: cardThresholds.backgroundStyle.max}, Meteor.user().profile.locale));
 	});
 });
 
@@ -181,20 +190,20 @@ describe('create cards with wrong permissions', function () {
 		CreateStubUser('id', ['admin', 'blocked']);
 		expect(function () {
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.user.not-authorized', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail when first login', function () {
 		CreateStubUser('id', ['admin', 'blocked']);
 		expect(function () {
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.user.not-authorized', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail when not logged in', function () {
 		expect(function () {
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.user.not-authorized', {}, 'en'));
 		// ****************************************************************
 		// Only used for cleanup
 		CreateStubUser('id', ['admin', 'blocked']);
@@ -221,7 +230,7 @@ describe('create cards with wrong data types', function () {
 		expect(function () {
 			let cardset_id = 1;
 			Meteor.call('addCard', cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.cardset_id.wrong-type', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with wrong data type for subject', function () {
@@ -229,7 +238,7 @@ describe('create cards with wrong data types', function () {
 		expect(function () {
 			let subject = 1;
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.subject.wrong-type', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with wrong data type for content1', function () {
@@ -238,7 +247,7 @@ describe('create cards with wrong data types', function () {
 			let content1 = 1;
 
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.content.wrong-type', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with wrong data type for content2', function () {
@@ -247,7 +256,7 @@ describe('create cards with wrong data types', function () {
 			let content2 = 1;
 
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.content.wrong-type', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with wrong data type for content3', function () {
@@ -256,7 +265,7 @@ describe('create cards with wrong data types', function () {
 			let content3 = 1;
 
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.content.wrong-type', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with wrong data type for content4', function () {
@@ -265,7 +274,7 @@ describe('create cards with wrong data types', function () {
 			let content4 = 1;
 
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.content.wrong-type', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with wrong data type for content5', function () {
@@ -274,7 +283,7 @@ describe('create cards with wrong data types', function () {
 			let content5 = 1;
 
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.content.wrong-type', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with wrong data type for content6', function () {
@@ -283,7 +292,7 @@ describe('create cards with wrong data types', function () {
 			let content6 = 1;
 
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.content.wrong-type', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with wrong data type for centerTextElement', function () {
@@ -292,7 +301,7 @@ describe('create cards with wrong data types', function () {
 			let centerTextElement = 1;
 
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.centerTextElement.wrong-type', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with wrong data type for alignType', function () {
@@ -301,7 +310,7 @@ describe('create cards with wrong data types', function () {
 			let alignType = '1';
 
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.alignType.wrong-type', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with wrong data type for date', function () {
@@ -310,7 +319,7 @@ describe('create cards with wrong data types', function () {
 			let date = 1;
 
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, date, cardStub.normalCard.learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.date.wrong-type', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with wrong data type for learningGoalLevel', function () {
@@ -319,7 +328,7 @@ describe('create cards with wrong data types', function () {
 			let learningGoalLevel = '0';
 
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.learningGoalLevel.wrong-type', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with wrong data type for backgroundStyle', function () {
@@ -328,73 +337,10 @@ describe('create cards with wrong data types', function () {
 			let backgroundStyle = '0';
 
 			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cards.backgroundStyle.wrong-type', {}, Meteor.user().profile.locale));
 	});
 });
 
-describe('addCard when not logged in', function () {
-	beforeEach(() => {
-		resetDatabase();
-	});
-
-	afterEach(() => {
-		resetDatabase();
-	});
-
-	it('should fail when not logged in', function () {
-		expect(function () {
-			Meteor.call('addCard', cardStub.normalCard.cardset_id, cardStub.normalCard.subject, cardStub.normalCard.content1, cardStub.normalCard.content2, cardStub.normalCard.content3, cardStub.normalCard.content4, cardStub.normalCard.content5, cardStub.normalCard.content6, cardStub.normalCard.centerTextElement, cardStub.normalCard.alignType, cardStub.normalCard.date, cardStub.normalCard.learningGoalLevel, cardStub.normalCard.backgroundStyle, cardStub.normalCard.bonusUser);
-		}).to.throw();
-	});
-});
-
-describe('add card with bonus transcript', function () {
-	beforeEach(() => {
-		resetDatabase();
-
-		StubCollections.stub(TranscriptBonus);
-		TranscriptBonus.insert(
-			{
-				'cardset_id': 'bonusCardset',
-				'card_id': 'bonusCard',
-				'user_id': 'bonusUser',
-				'date': 1537650325474,
-				'dates': [1537650325474, 9999999999900],
-				'lectureEnd': '1537650325475',
-				'deadline': 17520,
-				'deadlineEditing': 1539500144030,
-				rating: 5,
-				stars: 5,
-				reasons: []
-			}
-		);
-
-		StubCollections.stub(Cardsets);
-		Cardsets.insert(cardsetStubs.transcriptBonusCardset);
-
-		StubCollections.stub(Cards);
-		Cards.insert(cardStub.transcriptBonusCard);
-	});
-
-	afterEach(() => {
-		Meteor.user.restore();
-		Meteor.userId.restore();
-		StubCollections.restore();
-		resetDatabase();
-	});
-
-	it('should fail to create a card with bonus after deadline ended', function () {
-		CreateStubUser('bonusUser', ['admin']);
-		expect(function () {
-			let bonusUser = {
-				'date_id': 1,
-				'cardset_id': 'bonusCardset'
-			};
-
-			Meteor.call('addCard', cardStub.transcriptBonusCard.cardset_id, cardStub.transcriptBonusCard.subject, cardStub.transcriptBonusCard.content1, cardStub.transcriptBonusCard.content2, cardStub.transcriptBonusCard.content3, cardStub.transcriptBonusCard.content4, cardStub.transcriptBonusCard.content5, cardStub.transcriptBonusCard.content6, cardStub.transcriptBonusCard.centerTextElement, cardStub.transcriptBonusCard.alignType, cardStub.transcriptBonusCard.date, cardStub.transcriptBonusCard.learningGoalLevel, cardStub.transcriptBonusCard.backgroundStyle, bonusUser);
-		}).to.throw();
-	});
-});
 
 describe('deleteCard', function () {
 	beforeEach(() => {
@@ -455,6 +401,6 @@ describe('deleteCard', function () {
 			let cardset_route_id = 'testCardset2';
 			assert.exists(Cards.findOne(card_id));
 			Meteor.call('deleteCard', card_id, cardset_route_id);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.user.not-authorized', {}, 'en'));
 	});
 });

@@ -10,15 +10,15 @@ fi
 # confirm calling pid
 if [ -z "$CALLED_FROM_SCRIPT" ] ; then
     CALLED_FROM_SCRIPT=false
-    source tests/helpers/scriptSettings.sh
+    source errors/helpers/scriptSettings.sh
     echo -e $RED"Script needs to be called by another script"$NC
     exit 0
 fi
 
 if [ -n "$DISPLAY" ] ; then
-     ./node_modules/.bin/chimpy .config/chimp.js --ddp=http://localhost:$PORT --path=$testDir $1 --browser=firefox
+     ./node_modules/.bin/chimpy .thresholds/chimp.js --ddp=http://localhost:$PORT --path=$testDir $1 --browser=firefox
 else
-     xvfb-run --server-args="-ac -screen 0 1920x1080x24" chimp .config/chimp.js --ddp=http://localhost:3000 --path=$testDir $1 --browser=firefox
+     xvfb-run --server-args="-ac -screen 0 1920x1080x24" chimp .thresholds/chimp.js --ddp=http://localhost:3000 --path=$testDir $1 --browser=firefox
 fi
 if [ $? -ne 0 ]; then
     failedTests=$((failedTests+1))

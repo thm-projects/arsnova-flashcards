@@ -1,0 +1,39 @@
+{
+  "errors": {
+    "cards": {
+      "alignType": {
+        "min": "One alignType value is below the threshold min of '__threshold__'",
+        "max": "One alignType value is above the threshold max of '__threshold__'",
+        "wrong-type": " AlignType not a Number"
+      },
+      "cardset_id": {
+        "wrong-type": "Cardset ID is not a String",
+        "not-valid": "Cardset ID is not valid"
+      },
+      "content": {
+        "wrong-type": "Card Side content is not a String"
+      },
+      "centerTextElement": {
+        "wrong-type": "centerTextElement value is not a Boolean"
+      },
+      "date": {
+        "wrong-type": "Date value is not a Date Object"
+      },
+      "learningGoalLevel": {
+        "min": "LearningGoalLevel value is below the min threshold of '__threshold__'",
+        "max": "LearningGoalLevel value is above the max threshold of '__threshold__'",
+        "wrong-type": "LearningGoalLevel value is not a Number"
+      },
+      "transcriptBonus": {
+        "deadline-expired": "Deadline expired"
+      },
+      "subject": {
+        "wrong-type": "Subject s not a String",
+        "empty": "Card subject is empty"
+      }
+    },
+    "user": {
+      "not-authorized": "Not Authorized"
+    }
+  }
+}

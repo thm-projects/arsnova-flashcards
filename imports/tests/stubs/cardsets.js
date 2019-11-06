@@ -1,7 +1,7 @@
 let normalCardset = {
 	'_id': 'testCardset',
 	'name': 'TestCardSet',
-	'description': 'Cardset for tests',
+	'description': 'Cardset for errors',
 	'date': 1537650325474,
 	'dateUpdated': 1539500144049,
 	'editors': [],
@@ -50,7 +50,7 @@ let normalCardset = {
 let transcriptBonusCardset = {
 	'_id': 'bonusCardset',
 	'name': 'BonusCardSet',
-	'description': 'Cardset for tests',
+	'description': 'Cardset for errors',
 	'date': 1537650325474,
 	'dateUpdated': 1539500144049,
 	'editors': [],
@@ -98,8 +98,8 @@ let transcriptBonusCardset = {
 		'cardset_id': 'bonusCardset',
 		'card_id': 'bonusCard',
 		'user_id': 'bonusUser',
-		'date': 1537650325474,
-		'dates': [1537650325474],
+		'date': new Date('December 14, 1995 03:24:00'),
+		'dates': [new Date('December 17, 1995 03:24:00'), new Date('December 17, 1996 03:24:00')],
 		'lectureEnd': '9999999900000',
 		'deadline': 17520,
 		'deadlineEditing': 999,

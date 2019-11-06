@@ -42,7 +42,7 @@ Accounts.validateNewUser((user) => {
 });
 
 Meteor.users.after.insert(function (userId, doc) {
-	// Setup roles for backdoor login, required for acceptance tests
+	// Setup roles for backdoor login, required for acceptance errors
 	if (ServerStyle.isLoginEnabled("backdoor")) {
 		let backdoorRoles = ['firstLogin'];
 		let username = "";

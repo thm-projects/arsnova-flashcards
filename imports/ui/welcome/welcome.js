@@ -77,7 +77,7 @@ Template.welcome.events({
 		}
 	},
 
-	// Backdoor for login in acceptance tests
+	// Backdoor for login in acceptance errors
 	'click #BackdoorLogin': function () {
 		if (ServerStyle.isLoginEnabled("backdoor")) {
 			Meteor.insecureUserLogin($("#TestingBackdoorUsername").val(), function (err, result) {
@@ -124,7 +124,7 @@ Template.welcome.helpers({
 		if (ServerStyle.isLoginEnabled("google")) {
 			loginButtons += '<button id="google" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.google") + '"><span class="flex-content"><i class="fab fa-google" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.google") + '</span></button>';
 		}
-		// Backdoor for login in acceptance tests
+		// Backdoor for login in acceptance errors
 		if (ServerStyle.isLoginEnabled("backdoor")) {
 			let superAdmin = TAPi18n.__("backdoor.superAdmin");
 			let admin = TAPi18n.__("backdoor.admin");

@@ -7,7 +7,7 @@ source $DIRECTORY/helpers/scriptSettings.sh
 
 checkDirectory
 
-# Show a list of a available chimp-tests and let the user choose one
+# Show a list of a available chimp-errors and let the user choose one
 TESTING=0
 while [ "0" -lt "1" ]; do
     COUNTER=0
@@ -20,11 +20,11 @@ while [ "0" -lt "1" ]; do
         ((COUNTER+=1))
         if [[ "$TESTING" -eq "1" && "$SELECTION" -eq "$COUNTER" ]] ; then
                 # Drop and Restore the Test-Database
-		        source tests/loadTestDatabase.sh
+		        source errors/loadTestDatabase.sh
                 # Run chimp
                 getTestName
                 echo -e $GREEN"\nRunning chimp-test: $NC$CHIMPTESTNAME..."
-                source tests/helpers/chimpTest.sh
+                source errors/helpers/chimpTest.sh
         elif [ "$TESTING" -eq "0" ] ; then
             getTestName
             if [ "$COUNTER" -lt "10" ] ; then

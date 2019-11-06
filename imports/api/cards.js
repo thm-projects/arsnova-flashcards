@@ -8,44 +8,65 @@ import {TranscriptBonus} from "./subscriptions/transcriptBonus";
 import {TranscriptBonusList} from "./transcriptBonus";
 import {CardType} from "./cardTypes";
 import {Cards} from "./subscriptions/cards.js";
+import { cardThresholds } from "../tests/thresholds/cards";
+import testHelpers from "../tests/helpers";
 
 Meteor.methods({
 	addCard: function (cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, transcriptBonusUser) {
-		check(cardset_id, String);
-		check(subject, String);
-		Match.Where((subject) => {
-			return subject.trim().length;
-		});
-		check(content1, String);
-		check(content2, String);
-		check(content3, String);
-		check(content4, String);
-		check(content5, String);
-		check(content6, String);
-		check(centerTextElement, [Boolean]);
-		check(alignType, [Number]);
-		check(alignType, Match.Where((alignType) => {
-			_.each(alignType, function (type) {
-				if (type >= 0 && type <= 3) {
-					return true;
-				}
-			});
-		}));
-		check(date, Date);
-		check(learningGoalLevel, Number);
-		check(learningGoalLevel, Match.Where((learningGoalLevel) => {
-			if (learningGoalLevel >= 0 && learningGoalLevel <= 5) {
-				return true;
+		let cardset;
+		if (!Match.test(cardset_id, String)) {
+			throw new Meteor.Error(TAPi18n.__('error.cards.cardset_id.wrong-type', {}, Meteor.user().profile.locale));
+		}
+		if (cardset_id !== "-1") {
+			cardset = Cardsets.findOne(cardset_id);
+			if (!cardset) {
+				throw new Meteor.Error(TAPi18n.__('error.cards.cardset_id.not-valid', {}, Meteor.user().profile.locale));
 			}
-		}));
-		check(backgroundStyle, Number);
-		check(backgroundStyle, Match.Where((backgroundStyle) => {
-			if (backgroundStyle >= 0 && backgroundStyle <= 1) {
-				return true;
+		}
+		if (!Match.test(subject, String)) {
+			throw new Meteor.Error(TAPi18n.__('error.cards.subject.wrong-type', {}, Meteor.user().profile.locale));
+		}
+		if (!subject.trim().length) {
+			throw new Meteor.Error(TAPi18n.__('error.cards.subject.empty', {}, Meteor.user().profile.locale));
+		}
+		let content = [content1, content2, content3, content4, content5, content6];
+		for (let i = 0; i < content.length; i++) {
+			if (!Match.test(content[i], String)) {
+				throw new Meteor.Error(TAPi18n.__('error.cards.content.wrong-type', {}, Meteor.user().profile.locale));
 			}
-		}));
+		}
+		if (!Match.test(centerTextElement, [Boolean])) {
+			throw new Meteor.Error(TAPi18n.__('error.cards.centerTextElement.wrong-type', {}, Meteor.user().profile.locale));
+		}
+		if (!Match.test(alignType, [Number])) {
+			throw new Meteor.Error(TAPi18n.__('error.cards.alignType.wrong-type', {}, Meteor.user().profile.locale));
+		}
+		if (testHelpers.matchAny(alignType, cardThresholds.alignType.min, 0)) {
+			throw new Meteor.Error(TAPi18n.__('error.cards.alignType.min', {threshold: cardThresholds.alignType.min}, Meteor.user().profile.locale));
+		}
+		if (testHelpers.matchAny(alignType, cardThresholds.alignType.max, 4)) {
+			throw new Meteor.Error(TAPi18n.__('error.cards.alignType.max', {threshold: cardThresholds.alignType.max}, Meteor.user().profile.locale));
+		}
+		if (!Match.test(date, Date)) {
+			throw new Meteor.Error(TAPi18n.__('error.cards.date.wrong-type', {}, Meteor.user().profile.locale));
+		}
+		if (!Match.test(learningGoalLevel, Number)) {
+			throw new Meteor.Error(TAPi18n.__('error.cards.learningGoalLevel.wrong-type', {}, Meteor.user().profile.locale));
+		}
+		if (learningGoalLevel < cardThresholds.learningGoalLevel.min) {
+			throw new Meteor.Error(TAPi18n.__('error.cards.learningGoalLevel.min', {threshold: cardThresholds.learningGoalLevel.min}, Meteor.user().profile.locale));
+		} else if (learningGoalLevel > cardThresholds.learningGoalLevel.max) {
+			throw new Meteor.Error(TAPi18n.__('error.cards.learningGoalLevel.max', {threshold: cardThresholds.learningGoalLevel.max}, Meteor.user().profile.locale));
+		}
+		if (!Match.test(backgroundStyle, Number)) {
+			throw new Meteor.Error(TAPi18n.__('error.cards.backgroundStyle.wrong-type', {}, Meteor.user().profile.locale));
+		}
+		if (backgroundStyle < cardThresholds.backgroundStyle.min) {
+			throw new Meteor.Error(TAPi18n.__('error.cards.backgroundStyle.min', {threshold: cardThresholds.learningGoalLevel.min}, Meteor.user().profile.locale));
+		} else if (backgroundStyle > cardThresholds.backgroundStyle.max) {
+			throw new Meteor.Error(TAPi18n.__('error.cards.backgroundStyle.max', {threshold: cardThresholds.learningGoalLevel.max}, Meteor.user().profile.locale));
+		}
 		// Make sure the user is logged in and is authorized
-		let cardset = Cardsets.findOne(cardset_id);
 		let isOwner = false;
 		let cardType;
 		if (cardset_id === "-1") {
@@ -62,7 +83,7 @@ Meteor.methods({
 			}
 			if (transcriptBonusUser) {
 				if (!TranscriptBonusList.canBeSubmittedToLecture(transcriptBonusUser, Number(transcriptBonusUser.date_id))) {
-					throw new Meteor.Error(TAPi18n.__('transcriptForm.server.notFound', {}, Meteor.user().profile.locale));
+					throw new Meteor.Error(TAPi18n.__('error.cards.transcriptBonus.deadline-expired', {}, Meteor.user().profile.locale));
 				}
 			}
 			let card_id = Cards.insert({
@@ -110,7 +131,11 @@ Meteor.methods({
 			}
 			return card_id;
 		} else {
-			throw new Meteor.Error("not-authorized");
+			if (Meteor.userId()) {
+				throw new Meteor.Error(TAPi18n.__('error.user.not-authorized', {}, Meteor.user().profile.locale));
+			} else {
+				throw new Meteor.Error(TAPi18n.__('error.user.not-authorized', {}, 'en'));
+			}
 		}
 	},
 	copyCard: function (sourceCardset_id, targetCardset_id, card_id) {
@@ -209,7 +234,11 @@ Meteor.methods({
 			});
 			return Cardsets.findOne({_id: cardset_route_id}).quantity;
 		} else {
-			throw new Meteor.Error("not-authorized");
+			if (Meteor.userId()) {
+				throw new Meteor.Error(TAPi18n.__('error.user.not-authorized', {}, Meteor.user().profile.locale));
+			} else {
+				throw new Meteor.Error(TAPi18n.__('error.user.not-authorized', {}, 'en'));
+			}
 		}
 	},
 	updateCard: function (card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement,alignType, learningGoalLevel, backgroundStyle, transcriptBonusUser) {

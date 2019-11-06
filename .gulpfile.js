@@ -22,7 +22,7 @@ let jscs = require('gulp-jscs');
 let stylish = require('jshint-stylish');
 
 let paths = [
-	'./{imports,i18n,server,tests}/**/*.js',
+	'./{imports,i18n,server,errors}/**/*.js',
 	'./client/head.js'
 ];
 
