@@ -1,6 +1,7 @@
 {
   "public": {
     "rooturl": "http://localhost:<branch-port>",
+    "plantUMLUrl": "http://localhost:9090",
     "dynamicSettings": "review",
     "backdoorEnabled": true,
     "cas": {

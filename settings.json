@@ -1,6 +1,7 @@
 {
   "public": {
     "rooturl": "http://localhost:3000",
+    "plantUMLUrl": "http://localhost:9090",
     "dynamicSettings": "default",
     "backdoorEnabled": false,
     "cas": {
