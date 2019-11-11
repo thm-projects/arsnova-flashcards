@@ -11,25 +11,45 @@
     <div class="{{#if isFirstTimeVisit}}container{{/if}}">
         <div id="contact" class="col-md-8 col-md-offset-2">
             {{#if isActiveRoute 'about'}}
-                {{> impressumAbout}}
+                {{#if isImprintMode 'linux'}}
+                    {{> linuxImpressumAbout}}
+                {{else}}
+                    {{> cardsImpressumAbout}}
+                {{/if}}
             {{/if}}
             {{#if isActiveRoute 'learning'}}
                 {{> impressumLearning}}
             {{/if}}
             {{#if isActiveRoute 'faq'}}
-                {{> impressumFAQ}}
+                {{#if isImprintMode 'linux'}}
+                    {{> linuxImpressumFAQ}}
+                {{else}}
+                    {{> cardsImpressumFAQ}}
+                {{/if}}
             {{/if}}
             {{#if isActiveRoute 'help'}}
                 {{> help}}
             {{/if}}
             {{#if isActiveRoute 'impressum'}}
-                {{> impressumSupport}}
+                {{#if isImprintMode 'linux'}}
+                    {{> linuxImpressumSupport}}
+                {{else}}
+                    {{> cardsImpressumSupport}}
+                {{/if}}
             {{/if}}
             {{#if isActiveRoute 'agb'}}
-                {{> impressumAGB}}
+                {{#if isImprintMode 'linux'}}
+                    {{> linuxImpressumAGB}}
+                {{else}}
+                    {{> cardsImpressumAGB}}
+                {{/if}}
             {{/if}}
             {{#if isActiveRoute 'datenschutz'}}
-                {{> impressumDatenschutz}}
+                {{#if isImprintMode 'linux'}}
+                    {{> linuxImpressumDatenschutz}}
+                {{else}}
+                    {{> cardsImpressumDatenschutz}}
+                {{/if}}
             {{/if}}
         </div>
     </div>

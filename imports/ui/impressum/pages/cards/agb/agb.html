@@ -1,0 +1,18 @@
+<template name="cardsImpressumAGB">
+    <div class="panel panel-default">
+        <div class="panel-heading info-tab">
+            {{#if isActiveLanguage 'de'}}
+                {{> cardsImpressumAGBHeadingDE}}
+            {{else}}
+                {{> cardsImpressumAGBHeadingEN}}
+            {{/if}}
+        </div>
+        <div class="panel-body info-tab">
+            {{#if isActiveLanguage 'de'}}
+                {{> cardsImpressumAGBContentDE}}
+            {{else}}
+                {{> cardsImpressumAGBContentEN}}
+            {{/if}}
+        </div>
+    </div>
+</template>

@@ -1,0 +1,18 @@
+<template name="linuxImpressumAGB">
+    <div class="panel panel-default">
+        <div class="panel-heading info-tab">
+            {{#if isActiveLanguage 'de'}}
+                {{> linuxImpressumAGBHeadingDE}}
+            {{else}}
+                {{> linuxImpressumAGBHeadingEN}}
+            {{/if}}
+        </div>
+        <div class="panel-body info-tab">
+            {{#if isActiveLanguage 'de'}}
+                {{> linuxImpressumAGBContentDE}}
+            {{else}}
+                {{> linuxImpressumAGBContentEN}}
+            {{/if}}
+        </div>
+    </div>
+</template>
