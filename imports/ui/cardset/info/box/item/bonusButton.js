@@ -20,5 +20,8 @@ Template.cardsetInfoBoxItemBonusButton.helpers({
 	},
 	isProfileCompleted: function () {
 		return Profile.isCompleted();
+	},
+	isRegistrationPeriodActive: function () {
+		return Bonus.isRegistrationPeriodActive(Session.get('activeCardset')._id);
 	}
 });

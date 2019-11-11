@@ -1,21 +1,21 @@
 <template name="cardsetInfoBoxItemBonusButton">
     {{#if isActiveRoute regex='cardsetdetailsid|cardsetcard'}}
         {{#if canJoinBonus}}
-            <tr>
-                <td colspan="2">
-                    <a class="col-xs-12 btn btn-raised btn-block btn-success" data-toggle="modal"
-                       data-target="{{#if isProfileCompleted}}#joinBonusModal{{else}}#profileIncompleteModal{{/if}}"><span class="flex-content"><i class="fas fa-sign-in-alt"></i>&nbsp;{{_
-                            "bonus.info.button.join"}}</span></a>
-                </td>
-            </tr>
+            {{#if isRegistrationPeriodActive}}
+            <button class="col-xs-12 btn btn-lg btn-raised btn-block btn-success" data-toggle="modal"
+               data-target="{{#if isProfileCompleted}}#joinBonusModal{{else}}#profileIncompleteModal{{/if}}"><span
+                    class="flex-content"><i class="fas fa-sign-in-alt"></i>&nbsp;{{_
+                    "bonus.info.button.join"}}</span></button>
+            {{else}}
+                <button class="col-xs-12 btn btn-lg btn-raised btn-block btn-default" disabled><span
+                        class="flex-content"><i class="fas fa-hourglass-end hidden-xs"></i>&nbsp;{{_
+                        "bonus.info.button.expired"}}</span></button>
+            {{/if}}
         {{/if}}
         {{#if isInBonus}}
-            <tr>
-                <td colspan="2">
-                    <a class="col-xs-12 btn btn-raised btn-block btn-danger" data-toggle="modal"
-                       data-target="#leaveBonusModal"><span class="flex-content"><i class="fas fa-sign-out-alt"></i>&nbsp;{{_ "bonus.info.button.leave"}}</span></a>
-                </td>
-            </tr>
+            <button class="col-xs-12 btn btn-lg btn-raised btn-block btn-danger" data-toggle="modal"
+               data-target="#leaveBonusModal"><span class="flex-content"><i class="fas fa-sign-out-alt"></i>&nbsp;{{_
+                    "bonus.info.button.leave"}}</span></button>
         {{/if}}
     {{/if}}
 </template>
