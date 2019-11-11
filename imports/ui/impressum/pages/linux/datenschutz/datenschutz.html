@@ -1,0 +1,18 @@
+<template name="linuxImpressumDatenschutz">
+    <div class="panel panel-default">
+        <div class="panel-heading info-tab">
+            {{#if isActiveLanguage 'de'}}
+                {{> linuxImpressumDatenschutzHeadingDE}}
+            {{else}}
+                {{> linuxImpressumDatenschutzHeadingEN}}
+            {{/if}}
+        </div>
+        <div class="panel-body info-tab">
+            {{#if isActiveLanguage 'de'}}
+                {{> linuxImpressumDatenschutzContentDE}}
+            {{else}}
+                {{> linuxImpressumDatenschutzContentEN}}
+            {{/if}}
+        </div>
+    </div>
+</template>

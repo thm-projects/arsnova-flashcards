@@ -16,8 +16,13 @@ export let Bonus = class Bonus {
 		}
 	}
 
+	static isRegistrationPeriodActive (cardset_id) {
+		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, registrationPeriod: 1}});
+		return moment(cardset.registrationPeriod).endOf('day') > new Date();
+	}
+
 	static canJoinBonus (cardset_id) {
-		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, registrationPeriod: 1, owner: 1, kind: 1}});
+		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1, kind: 1}});
 		if (Roles.userIsInRole(Meteor.userId(), ['firstLogin', 'blocked'])) {
 			return false;
 		}
@@ -26,7 +31,7 @@ export let Bonus = class Bonus {
 			roles.push('standard');
 		}
 		if (Roles.userIsInRole(Meteor.userId(), roles)) {
-			return !this.isInBonus(cardset._id) && moment(cardset.registrationPeriod).endOf('day') > new Date();
+			return !this.isInBonus(cardset._id);
 		} else {
 			return false;
 		}

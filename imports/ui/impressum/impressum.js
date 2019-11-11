@@ -4,13 +4,18 @@ import {Route} from "../../api/route.js";
 import "./impressum.html";
 import "../card/modal/demo.js";
 import "./modal/statistics/statistics.js";
-import "./pages/about/about.js";
-import "./pages/agb/agb.js";
-import "./pages/datenschutz/datenschutz.js";
+import "./pages/cards/about/about.js";
+import "./pages/cards/agb/agb.js";
+import "./pages/cards/datenschutz/datenschutz.js";
+import "./pages/cards/faq/faq.js";
+import "./pages/cards/support/support.js";
+import "./pages/linux/about/about.js";
+import "./pages/linux/agb/agb.js";
+import "./pages/linux/datenschutz/datenschutz.js";
+import "./pages/linux/faq/faq.js";
+import "./pages/linux/support/support.js";
 import "./pages/demo/demo.js";
-import "./pages/faq/faq.js";
 import "./pages/learning/learning.js";
-import "./pages/support/support.js";
 
 /*
  * ############################################################################

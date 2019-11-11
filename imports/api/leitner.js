@@ -571,7 +571,7 @@ Meteor.methods({
 		check(cardset_id, String);
 		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1}});
 		if (cardset !== undefined) {
-			if (Bonus.canJoinBonus(cardset._id) && Profile.isCompleted(Meteor.user())) {
+			if (Bonus.canJoinBonus(cardset._id) && Bonus.isRegistrationPeriodActive(cardset._id) && Profile.isCompleted(Meteor.user())) {
 				Meteor.call('initializeWorkloadData', cardset._id, Meteor.userId());
 				Meteor.call('deleteLeitner', cardset._id);
 				Meteor.call('deleteWozniak', cardset._id);

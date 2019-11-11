@@ -342,6 +342,9 @@ Template.registerHelper("isActiveLanguage", function (language) {
 	return Session.get('activeLanguage') === language;
 });
 
+Template.registerHelper("isImprintMode", function (mode) {
+	return ServerStyle.getConfig().imprint.folder === mode;
+});
 
 Template.registerHelper("getNextCardTime", function () {
 	let workload = Workload.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId()});

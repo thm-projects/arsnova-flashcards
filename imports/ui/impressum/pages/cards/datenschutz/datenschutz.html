@@ -1,0 +1,18 @@
+<template name="cardsImpressumDatenschutz">
+    <div class="panel panel-default">
+        <div class="panel-heading info-tab">
+            {{#if isActiveLanguage 'de'}}
+                {{> cardsImpressumDatenschutzHeadingDE}}
+            {{else}}
+                {{> cardsImpressumDatenschutzHeadingEN}}
+            {{/if}}
+        </div>
+        <div class="panel-body info-tab">
+            {{#if isActiveLanguage 'de'}}
+                {{> cardsImpressumDatenschutzContentDE}}
+            {{else}}
+                {{> cardsImpressumDatenschutzContentEN}}
+            {{/if}}
+        </div>
+    </div>
+</template>

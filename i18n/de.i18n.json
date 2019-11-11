@@ -1126,7 +1126,8 @@
     "info": {
       "button": {
         "join": "Bonus-Lernphase beitreten",
-        "leave": "Bonus-Lernphase verlassen"
+        "leave": "Bonus-Lernphase verlassen",
+        "expired": "Die Anmeldefrist ist abgelaufen"
       }
     },
     "form-join": {

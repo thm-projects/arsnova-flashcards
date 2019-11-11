@@ -1,0 +1,18 @@
+<template name="linuxImpressumAbout">
+    <div class="panel panel-default">
+        <div class="panel-heading info-tab">
+            {{#if isActiveLanguage 'de'}}
+                {{> linuxImpressumAboutHeadingDE}}
+            {{else}}
+                {{> linuxImpressumAboutHeadingEN}}
+            {{/if}}
+        </div>
+        <div class="panel-body info-tab">
+            {{#if isActiveLanguage 'de'}}
+                {{> linuxImpressumAboutContentDE}}
+            {{else}}
+                {{> linuxImpressumAboutContentEN}}
+            {{/if}}
+        </div>
+    </div>
+</template>

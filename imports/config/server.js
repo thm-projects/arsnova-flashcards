@@ -34,6 +34,9 @@ let defaultSettings = {
 	"demo": {
 		"folder": "informatik"
 	},
+	"imprint": {
+		"folder": "cards"
+	},
 	"roles": {
 		"create": {
 			"standard": false,
@@ -79,6 +82,9 @@ let debug = {
 	},
 	"demo": {
 		"folder": "informatik"
+	},
+	"imprint": {
+		"folder": "cards"
 	},
 	"roles": {
 		"create": {
@@ -129,6 +135,9 @@ let linux = {
 	"demo": {
 		"folder": "linux"
 	},
+	"imprint": {
+		"folder": "linux"
+	},
 	"roles": {
 		"create": {
 			"standard": false,
@@ -174,6 +183,9 @@ let review = {
 	},
 	"demo": {
 		"folder": "informatik"
+	},
+	"imprint": {
+		"folder": "cards"
 	},
 	"roles": {
 		"create": {
@@ -223,6 +235,9 @@ let staging = {
 	},
 	"demo": {
 		"folder": "informatik"
+	},
+	"imprint": {
+		"folder": "cards"
 	},
 	"roles": {
 		"create": {
