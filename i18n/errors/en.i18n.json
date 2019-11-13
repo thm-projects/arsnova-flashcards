@@ -32,6 +32,29 @@
         "empty": "Card subject is empty"
       }
     },
+    "cardsets": {
+      "cardType": {
+        "min": "cardType value is below the min threshold of '__threshold__'",
+        "max": "cardType value is above the max threshold of '__threshold__'",
+        "wrong-type": "cardType value is not a Number"
+      },
+      "description": {
+        "wrong-type": "Description is not a String",
+        "empty": "Cardset description is empty"
+      },
+      "ratings": {
+        "wrong-type": "Ratings is not a boolean",
+        "empty": "Cardset ratings is empty"
+      },
+      "name": {
+        "wrong-type": "Name is not a String",
+        "empty": "Cardset name is empty"
+      },
+      "visible": {
+        "wrong-type": "Visible is not a boolean",
+        "empty": "Cardset visible is empty"
+      }
+    },
     "user": {
       "not-authorized": "Not Authorized"
     }

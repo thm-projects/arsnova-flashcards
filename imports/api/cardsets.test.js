@@ -6,6 +6,7 @@ import {resetDatabase} from 'meteor/xolvio:cleaner';
 import {CreateStubUser} from "./createStubUsers";
 import StubCollections from 'meteor/hwillson:stub-collections';
 import cardsetStubs from "../tests/stubs/cardsets";
+import {cardsetThresholds} from "../tests/thresholds/cardsets";
 
 describe('create cardsets successfully', function () {
 	beforeEach(() => {
@@ -149,7 +150,7 @@ describe('create cardsets with wrong parameter values', function () {
 			let cardType = -1;
 
 			Meteor.call('addCardset', cardsetStubs.normalCardset.name, cardsetStubs.normalCardset.description, cardsetStubs.normalCardset.visible, cardsetStubs.normalCardset.ratings, cardsetStubs.normalCardset.kind, cardsetStubs.normalCardset.shuffled, cardsetStubs.normalCardset.cardGroups, cardType, cardsetStubs.normalCardset.difficulty, cardsetStubs.normalCardset.sortType);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cardsets.cardType.min', {threshold: cardsetThresholds.cardType.min}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with cardType 20 (allowed 0 - 19)', function () {
@@ -158,7 +159,7 @@ describe('create cardsets with wrong parameter values', function () {
 			let cardType = 20;
 
 			Meteor.call('addCardset', cardsetStubs.normalCardset.name, cardsetStubs.normalCardset.description, cardsetStubs.normalCardset.visible, cardsetStubs.normalCardset.ratings, cardsetStubs.normalCardset.kind, cardsetStubs.normalCardset.shuffled, cardsetStubs.normalCardset.cardGroups, cardType, cardsetStubs.normalCardset.difficulty, cardsetStubs.normalCardset.sortType);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cardsets.cardType.max', {threshold: cardsetThresholds.cardType.max}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with difficulty -1 (allowed 0 - 3)', function () {
@@ -167,7 +168,7 @@ describe('create cardsets with wrong parameter values', function () {
 			let difficulty = -1;
 
 			Meteor.call('addCardset', cardsetStubs.normalCardset.name, cardsetStubs.normalCardset.description, cardsetStubs.normalCardset.visible, cardsetStubs.normalCardset.ratings, cardsetStubs.normalCardset.kind, cardsetStubs.normalCardset.shuffled, cardsetStubs.normalCardset.cardGroups, cardsetStubs.normalCardset.cardType, difficulty, cardsetStubs.normalCardset.sortType);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cardsets.difficulty.min', {threshold: cardsetThresholds.difficulty.min}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with difficulty 4 (allowed 0 - 3)', function () {
@@ -176,7 +177,7 @@ describe('create cardsets with wrong parameter values', function () {
 			let difficulty = 4;
 
 			Meteor.call('addCardset', cardsetStubs.normalCardset.name, cardsetStubs.normalCardset.description, cardsetStubs.normalCardset.visible, cardsetStubs.normalCardset.ratings, cardsetStubs.normalCardset.kind, cardsetStubs.normalCardset.shuffled, cardsetStubs.normalCardset.cardGroups, cardsetStubs.normalCardset.cardType, difficulty, cardsetStubs.normalCardset.sortType);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cardsets.difficulty.max', {threshold: cardsetThresholds.difficulty.max}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with sortType -1 (allowed 0 - 1)', function () {
@@ -185,7 +186,7 @@ describe('create cardsets with wrong parameter values', function () {
 			let sortType = -1;
 
 			Meteor.call('addCardset', cardsetStubs.normalCardset.name, cardsetStubs.normalCardset.description, cardsetStubs.normalCardset.visible, cardsetStubs.normalCardset.ratings, cardsetStubs.normalCardset.kind, cardsetStubs.normalCardset.shuffled, cardsetStubs.normalCardset.cardGroups, cardsetStubs.normalCardset.cardType, cardsetStubs.normalCardset.difficulty, sortType);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cardsets.sortType.min', {threshold: cardsetThresholds.sortType.min}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with sortType 2 (allowed 0 - 1)', function () {
@@ -194,17 +195,7 @@ describe('create cardsets with wrong parameter values', function () {
 			let sortType = 2;
 
 			Meteor.call('addCardset', cardsetStubs.normalCardset.name, cardsetStubs.normalCardset.description, cardsetStubs.normalCardset.visible, cardsetStubs.normalCardset.ratings, cardsetStubs.normalCardset.kind, cardsetStubs.normalCardset.shuffled, cardsetStubs.normalCardset.cardGroups, cardsetStubs.normalCardset.cardType, cardsetStubs.normalCardset.difficulty, sortType);
-		}).to.throw();
-	});
-
-	it('should fail with not existing cardGroup Id', function () {
-		CreateStubUser('id', ['admin']);
-		expect(function () {
-			let cardGroups = ['abcdefg123'];
-			let shuffled = true;
-
-			Meteor.call('addCardset', cardsetStubs.normalCardset.name, cardsetStubs.normalCardset.description, cardsetStubs.normalCardset.visible, cardsetStubs.normalCardset.ratings, cardsetStubs.normalCardset.kind, shuffled, cardGroups, cardsetStubs.normalCardset.cardType, cardsetStubs.normalCardset.difficulty, cardsetStubs.normalCardset.sortType);
-		}).to.throw();
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cardsets.sortType.max', {threshold: cardsetThresholds.sortType.max}, Meteor.user().profile.locale));
 	});
 });
 
@@ -226,7 +217,7 @@ describe('create cardsets with wrong data types', function () {
 			let name = 1;
 
 			Meteor.call('addCardset', name, cardsetStubs.normalCardset.description, cardsetStubs.normalCardset.visible, cardsetStubs.normalCardset.ratings, cardsetStubs.normalCardset.kind, cardsetStubs.normalCardset.shuffled, cardsetStubs.normalCardset.cardGroups, cardsetStubs.normalCardset.cardType, cardsetStubs.normalCardset.difficulty, cardsetStubs.normalCardset.sortType);
-		}).to.throw('Match error: Expected string, got number');
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cardsets.name.wrong-type', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with wrong data type for description', function () {
@@ -235,7 +226,7 @@ describe('create cardsets with wrong data types', function () {
 			let description = 1;
 
 			Meteor.call('addCardset', cardsetStubs.normalCardset.name, description, cardsetStubs.normalCardset.visible, cardsetStubs.normalCardset.ratings, cardsetStubs.normalCardset.kind, cardsetStubs.normalCardset.shuffled, cardsetStubs.normalCardset.cardGroups, cardsetStubs.normalCardset.cardType, cardsetStubs.normalCardset.difficulty, cardsetStubs.normalCardset.sortType);
-		}).to.throw('Match error: Expected string, got number');
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cardsets.description.wrong-type', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with wrong data type for visible', function () {
@@ -244,7 +235,7 @@ describe('create cardsets with wrong data types', function () {
 			let visible = 'test';
 
 			Meteor.call('addCardset', cardsetStubs.normalCardset.name, cardsetStubs.normalCardset.description, visible, cardsetStubs.normalCardset.ratings, cardsetStubs.normalCardset.kind, cardsetStubs.normalCardset.shuffled, cardsetStubs.normalCardset.cardGroups, cardsetStubs.normalCardset.cardType, cardsetStubs.normalCardset.difficulty, cardsetStubs.normalCardset.sortType);
-		}).to.throw('Match error: Expected boolean, got string');
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cardsets.visible.wrong-type', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with wrong data type for ratings', function () {
@@ -253,7 +244,7 @@ describe('create cardsets with wrong data types', function () {
 			let ratings = 'test';
 
 			Meteor.call('addCardset', cardsetStubs.normalCardset.name, cardsetStubs.normalCardset.description, cardsetStubs.normalCardset.visible, ratings, cardsetStubs.normalCardset.kind, cardsetStubs.normalCardset.shuffled, cardsetStubs.normalCardset.cardGroups, cardsetStubs.normalCardset.cardType, cardsetStubs.normalCardset.difficulty, cardsetStubs.normalCardset.sortType);
-		}).to.throw('Match error: Expected boolean, got string');
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cardsets.ratings.wrong-type', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with wrong data type for kind', function () {
@@ -262,7 +253,7 @@ describe('create cardsets with wrong data types', function () {
 			let kind = 1;
 
 			Meteor.call('addCardset', cardsetStubs.normalCardset.name, cardsetStubs.normalCardset.description, cardsetStubs.normalCardset.visible, cardsetStubs.normalCardset.ratings, kind, cardsetStubs.normalCardset.shuffled, cardsetStubs.normalCardset.cardGroups, cardsetStubs.normalCardset.cardType, cardsetStubs.normalCardset.difficulty, cardsetStubs.normalCardset.sortType);
-		}).to.throw('Match error: Expected string, got number');
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cardsets.kind.wrong-type', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with wrong data type for shuffled', function () {
@@ -271,7 +262,7 @@ describe('create cardsets with wrong data types', function () {
 			let shuffled = 'test';
 
 			Meteor.call('addCardset', cardsetStubs.normalCardset.name, cardsetStubs.normalCardset.description, cardsetStubs.normalCardset.visible, cardsetStubs.normalCardset.ratings, cardsetStubs.normalCardset.kind, shuffled, cardsetStubs.normalCardset.cardGroups, cardsetStubs.normalCardset.cardType, cardsetStubs.normalCardset.difficulty, cardsetStubs.normalCardset.sortType);
-		}).to.throw('Match error: Expected boolean, got string');
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cardsets.shuffled.wrong-type', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with wrong data type for cardGroups', function () {
@@ -290,7 +281,7 @@ describe('create cardsets with wrong data types', function () {
 			let cardType = '1';
 
 			Meteor.call('addCardset', cardsetStubs.normalCardset.name, cardsetStubs.normalCardset.description, cardsetStubs.normalCardset.visible, cardsetStubs.normalCardset.ratings, cardsetStubs.normalCardset.kind, cardsetStubs.normalCardset.shuffled, cardsetStubs.normalCardset.cardGroups, cardType, cardsetStubs.normalCardset.difficulty, cardsetStubs.normalCardset.sortType);
-		}).to.throw('Match error: Expected number, got string');
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cardsets.cardType.wrong-type', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with wrong data type for difficulty', function () {
@@ -299,7 +290,7 @@ describe('create cardsets with wrong data types', function () {
 			let difficulty = '1';
 
 			Meteor.call('addCardset', cardsetStubs.normalCardset.name, cardsetStubs.normalCardset.description, cardsetStubs.normalCardset.visible, cardsetStubs.normalCardset.ratings, cardsetStubs.normalCardset.kind, cardsetStubs.normalCardset.shuffled, cardsetStubs.normalCardset.cardGroups, cardsetStubs.normalCardset.cardType, difficulty, cardsetStubs.normalCardset.sortType);
-		}).to.throw('Match error: Expected number, got string');
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cardsets.difficulty.wrong-type', {}, Meteor.user().profile.locale));
 	});
 
 	it('should fail with wrong data type for sortType', function () {
@@ -308,7 +299,7 @@ describe('create cardsets with wrong data types', function () {
 			let sortType = '1';
 
 			Meteor.call('addCardset', cardsetStubs.normalCardset.name, cardsetStubs.normalCardset.description, cardsetStubs.normalCardset.visible, cardsetStubs.normalCardset.ratings, cardsetStubs.normalCardset.kind, cardsetStubs.normalCardset.shuffled, cardsetStubs.normalCardset.cardGroups, cardsetStubs.normalCardset.cardType, cardsetStubs.normalCardset.difficulty, sortType);
-		}).to.throw('Match error: Expected number, got string');
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.cardsets.sortType.wrong-type', {}, Meteor.user().profile.locale));
 	});
 });
 
@@ -328,20 +319,20 @@ describe('create cardsets with wrong permissions', function () {
 		CreateStubUser('id', ['firstLogin']);
 		expect(function () {
 			Meteor.call('addCardset', cardsetStubs.normalCardset.name, cardsetStubs.normalCardset.description, cardsetStubs.normalCardset.visible, cardsetStubs.normalCardset.ratings, cardsetStubs.normalCardset.kind, cardsetStubs.normalCardset.shuffled, cardsetStubs.normalCardset.cardGroups, cardsetStubs.normalCardset.cardType, cardsetStubs.normalCardset.difficulty, cardsetStubs.normalCardset.sortType);
-		}).to.throw('not-authorized');
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.user.not-authorized', {}, 'en'));
 	});
 
 	it('should fail when having role "firstLogin" as "admin"', function () {
 		CreateStubUser('id', ['firstLogin', 'admin']);
 		expect(function () {
 			Meteor.call('addCardset', cardsetStubs.normalCardset.name, cardsetStubs.normalCardset.description, cardsetStubs.normalCardset.visible, cardsetStubs.normalCardset.ratings, cardsetStubs.normalCardset.kind, cardsetStubs.normalCardset.shuffled, cardsetStubs.normalCardset.cardGroups, cardsetStubs.normalCardset.cardType, cardsetStubs.normalCardset.difficulty, cardsetStubs.normalCardset.sortType);
-		}).to.throw('not-authorized');
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.user.not-authorized', {}, 'en'));
 	});
 
 	it('should fail when not logged in', function () {
 		expect(function () {
 			Meteor.call('addCardset', cardsetStubs.normalCardset.name, cardsetStubs.normalCardset.description, cardsetStubs.normalCardset.visible, cardsetStubs.normalCardset.ratings, cardsetStubs.normalCardset.kind, cardsetStubs.normalCardset.shuffled, cardsetStubs.normalCardset.cardGroups, cardsetStubs.normalCardset.cardType, cardsetStubs.normalCardset.difficulty, cardsetStubs.normalCardset.sortType);
-		}).to.throw('not-authorized');
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.user.not-authorized', {}, 'en'));
 		// *************************************************
 		// Just used to clean up the user after every test
 		CreateStubUser('id', ['firstLogin', 'admin']);
@@ -351,14 +342,14 @@ describe('create cardsets with wrong permissions', function () {
 		CreateStubUser('id', ['editor', 'blocked']);
 		expect(function () {
 			Meteor.call('addCardset', cardsetStubs.normalCardset.name, cardsetStubs.normalCardset.description, cardsetStubs.normalCardset.visible, cardsetStubs.normalCardset.ratings, cardsetStubs.normalCardset.kind, cardsetStubs.normalCardset.shuffled, cardsetStubs.normalCardset.cardGroups, cardsetStubs.normalCardset.cardType, cardsetStubs.normalCardset.difficulty, cardsetStubs.normalCardset.sortType);
-		}).to.throw('not-authorized');
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.user.not-authorized', {}, 'en'));
 	});
 
 	it('should fail to create a bonus transcript cardset without being lecturer or admin', function () {
 		CreateStubUser('id', ['pro']);
 		expect(function () {
 			Meteor.call('addCardset', cardsetStubs.transcriptBonusCardset.name, cardsetStubs.transcriptBonusCardset.description, cardsetStubs.transcriptBonusCardset.visible, cardsetStubs.transcriptBonusCardset.ratings, cardsetStubs.transcriptBonusCardset.kind, cardsetStubs.transcriptBonusCardset.shuffled, cardsetStubs.transcriptBonusCardset.cardGroups, cardsetStubs.transcriptBonusCardset.cardType, cardsetStubs.transcriptBonusCardset.difficulty, cardsetStubs.transcriptBonusCardset.sortType);
-		}).to.throw('not-authorized');
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.user.not-authorized', {}, 'en'));
 	});
 });
 
@@ -374,7 +365,7 @@ describe('addCardset when not logged in', function () {
 	it('should fail when not logged in', function () {
 		expect(function () {
 			Meteor.call('addCardset', cardsetStubs.normalCardset.name, cardsetStubs.normalCardset.description, cardsetStubs.normalCardset.visible, cardsetStubs.normalCardset.ratings, cardsetStubs.normalCardset.kind, cardsetStubs.normalCardset.shuffled, cardsetStubs.normalCardset.cardGroups, cardsetStubs.normalCardset.cardType, cardsetStubs.normalCardset.difficulty, cardsetStubs.normalCardset.sortType);
-		}).to.throw('not-authorized');
+		}).to.throw(Meteor.Error(), TAPi18n.__('error.user.not-authorized', {}, 'en'));
 	});
 });
 

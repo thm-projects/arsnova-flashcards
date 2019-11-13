@@ -13,6 +13,7 @@ import {UserPermissions} from "./permissions";
 import {ServerStyle} from "./styles";
 import {Utilities} from "./utilities";
 import {Cardsets} from "./subscriptions/cardsets.js";
+import {cardsetThresholds} from "../tests/thresholds/cardsets";
 
 Meteor.methods({
 	getSearchCategoriesResult: function (searchValue, filterType) {
@@ -163,35 +164,57 @@ Meteor.methods({
 	 * @param {Number} sortType - Sort the topic content by card content or date created, 0 = content, 1 = date created
 	 */
 	addCardset: function (name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType) {
-		check(name, String);
-		check(description, String);
-		check(visible, Boolean);
-		check(ratings, Boolean);
-		check(kind, String);
-		check(shuffled, Boolean);
-		check(cardType, Number);
-		check(cardType, Match.Where((cardType) => {
-			if (cardType >= 0 && cardType <= 19) {
-				return true;
-			}
-		}));
-		check(difficulty, Number);
-		check(difficulty, Match.Where((difficulty) => {
-			if (difficulty >= 0 && difficulty <= 3) {
-				return true;
-			}
-		}));
-		check(sortType, Number);
-		check(sortType, Match.Where((sortType) => {
-			if (sortType >= 0 && sortType <= 1) {
-				return true;
-			}
-		}));
+		if (!Match.test(name, String)) {
+			throw new Meteor.Error(TAPi18n.__('error.cardsets.name.wrong-type', {}, Meteor.user().profile.locale));
+		}
+		if (!Match.test(description, String)) {
+			throw new Meteor.Error(TAPi18n.__('error.cardsets.description.wrong-type', {}, Meteor.user().profile.locale));
+		}
+		if (!Match.test(visible, Boolean)) {
+			throw new Meteor.Error(TAPi18n.__('error.cardsets.visible.wrong-type', {}, Meteor.user().profile.locale));
+		}
+		if (!Match.test(ratings, Boolean)) {
+			throw new Meteor.Error(TAPi18n.__('error.cardsets.ratings.wrong-type', {}, Meteor.user().profile.locale));
+		}
+		if (!Match.test(kind, String)) {
+			throw new Meteor.Error(TAPi18n.__('error.cardsets.kind.wrong-type', {}, Meteor.user().profile.locale));
+		}
+		if (!Match.test(shuffled, Boolean)) {
+			throw new Meteor.Error(TAPi18n.__('error.cardsets.shuffled.wrong-type', {}, Meteor.user().profile.locale));
+		}
+		if (!Match.test(cardType, Number)) {
+			throw new Meteor.Error(TAPi18n.__('error.cardsets.cardType.wrong-type', {}, Meteor.user().profile.locale));
+		}
+		if (cardType < cardsetThresholds.cardType.min) {
+			throw new Meteor.Error(TAPi18n.__('error.cardsets.cardType.min', {threshold: cardsetThresholds.cardType.min}, Meteor.user().profile.locale));
+		} else if (cardType > cardsetThresholds.cardType.max) {
+			throw new Meteor.Error(TAPi18n.__('error.cardsets.cardType.max', {threshold: cardsetThresholds.cardType.max}, Meteor.user().profile.locale));
+		}
+		if (!Match.test(difficulty, Number)) {
+			throw new Meteor.Error(TAPi18n.__('error.cardsets.difficulty.wrong-type', {}, Meteor.user().profile.locale));
+		}
+		if (difficulty < cardsetThresholds.difficulty.min) {
+			throw new Meteor.Error(TAPi18n.__('error.cardsets.difficulty.min', {threshold: cardsetThresholds.difficulty.min}, Meteor.user().profile.locale));
+		} else if (difficulty > cardsetThresholds.difficulty.max) {
+			throw new Meteor.Error(TAPi18n.__('error.cardsets.difficulty.max', {threshold: cardsetThresholds.difficulty.max}, Meteor.user().profile.locale));
+		}
+		if (!Match.test(sortType, Number)) {
+			throw new Meteor.Error(TAPi18n.__('error.cardsets.sortType.wrong-type', {}, Meteor.user().profile.locale));
+		}
+		if (sortType < cardsetThresholds.sortType.min) {
+			throw new Meteor.Error(TAPi18n.__('error.cardsets.sortType.min', {threshold: cardsetThresholds.sortType.min}, Meteor.user().profile.locale));
+		} else if (sortType > cardsetThresholds.sortType.max) {
+			throw new Meteor.Error(TAPi18n.__('error.cardsets.sortType.max', {threshold: cardsetThresholds.sortType.max}, Meteor.user().profile.locale));
+		}
 		let quantity;
 		let gotWorkload;
 		if (shuffled) {
 			if (!Roles.userIsInRole(Meteor.userId(), ['admin', 'editor', 'lecturer', 'university', 'pro'])) {
-				throw new Meteor.Error("not-authorized");
+				if (Meteor.userId()) {
+					throw new Meteor.Error(TAPi18n.__('error.user.not-authorized', {}, Meteor.user().profile.locale));
+				} else {
+					throw new Meteor.Error(TAPi18n.__('error.user.not-authorized', {}, 'en'));
+				}
 			}
 			if (cardGroups.length) {
 				throw new Meteor.Error("Invalid cardGroups setting");
@@ -205,7 +228,11 @@ Meteor.methods({
 		}
 		// Make sure the user is logged in before inserting a cardset
 		if (!Meteor.userId() || Roles.userIsInRole(Meteor.userId(), ["firstLogin", "blocked"])) {
-			throw new Meteor.Error("not-authorized");
+			if (Meteor.userId()) {
+				throw new Meteor.Error(TAPi18n.__('error.user.not-authorized', {}, Meteor.user().profile.locale));
+			} else {
+				throw new Meteor.Error(TAPi18n.__('error.user.not-authorized', {}, 'en'));
+			}
 		}
 		if (cardType < 0) {
 			cardType = 0;
@@ -215,7 +242,11 @@ Meteor.methods({
 				kind = "edu";
 				visible = true;
 			} else {
-				throw new Meteor.Error("not-authorized");
+				if (Meteor.userId()) {
+					throw new Meteor.Error(TAPi18n.__('error.user.not-authorized', {}, Meteor.user().profile.locale));
+				} else {
+					throw new Meteor.Error(TAPi18n.__('error.user.not-authorized', {}, 'en'));
+				}
 			}
 		}
 		let cardset = Cardsets.insert({
