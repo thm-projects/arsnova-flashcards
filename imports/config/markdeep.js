@@ -42,7 +42,7 @@ let plantUML = {
 		post: "@enduml\\s*[`]{3}"
 	},
 	output: {
-		pre: "== PlantUML\n:plantuml-server-url: " + Meteor.settings.public.plantUMLUrl + " \n[plantuml, PlantUML Diagram, svg]\n----",
+		pre: "== PlantUML\n:plantuml-server-url: " + Meteor.settings.public.plantUMLUrl + " \n[plantuml.plantuml-diagram, PlantUML Diagram, svg]\n----",
 		post: "----"
 	}
 };

@@ -217,4 +217,13 @@
   h2#_plantuml {
     margin-bottom: 5px !important;
   }
+
+  .plantuml-diagram {
+    .lightbox-container {
+      text-align: center;
+    }
+    img {
+      max-width: unset;
+    }
+  }
 }
