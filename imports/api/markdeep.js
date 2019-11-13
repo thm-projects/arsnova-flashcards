@@ -7,6 +7,11 @@ import {CardType} from "./cardTypes";
 import {getAuthorName, getOriginalAuthorName} from "./userdata";
 import {Utilities} from "./utilities";
 import {CardsetVisuals} from "./cardsetVisuals";
+import plantuml from "/client/thirdParty/asciidoctor/plantuml/asciidoctor-plantuml.min.js";
+import Asciidoctor from "/client/thirdParty/asciidoctor/asciidoctor.min.js";
+import {Session} from "meteor/session";
+let asciidoctor = new Asciidoctor();
+plantuml.register(asciidoctor.Extensions);
 
 MeteorMathJax.sourceUrl = config.MathJaxSourceUrl;
 MeteorMathJax.defaultConfig = config.defaultMathJaxConfig;
@@ -83,7 +88,20 @@ export let MarkdeepContent = class MarkdeepContent {
 		return $('<div/>').append(element).html();
 	}
 
+	static convertUML (content) {
+		content = content.replace(new RegExp(config.plantUML.regexp.pre + config.plantUML.regexp.content + config.plantUML.regexp.post, "gs"), function (match) {
+			match = match.replace(new RegExp(config.plantUML.regexp.pre, "gs"), config.plantUML.output.pre);
+			match = match.replace(new RegExp(config.plantUML.regexp.post, "gs"), config.plantUML.output.post);
+			let result = asciidoctor.convert(match);
+			let doc = new DOMParser().parseFromString(result, "text/html");
+			doc.getElementsByTagName("img")[0].style.width = Session.get('currentZoomValue') + "%";
+			return doc.documentElement.innerHTML;
+		});
+		return content;
+	}
+
 	static convert (content) {
+		content = this.convertUML(content);
 		content += "\n\n";
 		content = window.markdeep.format(content, true);
 		content = DOMPurify.sanitize(content, DOMPurifyConfig);

@@ -609,6 +609,11 @@ export let CardVisuals = class CardVisuals {
 		}
 		let newFontSize = Math.round((fontSize * Session.get('currentZoomValue')) / 100);
 		$('.cardContent').css("font-size", newFontSize + "px");
+		this.setPlantUMLZoom();
+	}
+
+	static setPlantUMLZoom () {
+		$('.plantuml-diagram img').css('width', Session.get('currentZoomValue') + "%");
 	}
 
 	static resetCurrentTextZoomValue () {

@@ -35,8 +35,22 @@ let defaultMathJaxConfig = {
 	messageStyle: "none"
 };
 
+let plantUML = {
+	regexp: {
+		pre: "[`]{3}\\s*plantuml\\s*@startuml",
+		content: "(.*?)",
+		post: "@enduml\\s*[`]{3}"
+	},
+	output: {
+		pre: "== PlantUML\n:plantuml-server-url: " + Meteor.settings.public.plantUMLUrl + " \n[plantuml.plantuml-diagram, PlantUML Diagram, svg]\n----",
+		post: "----"
+	}
+};
+
 module.exports = {
 	customMathJaxDefinitions,
 	MathJaxSourceUrl,
-	defaultMathJaxConfig
+	defaultMathJaxConfig,
+	plantUML
 };
+

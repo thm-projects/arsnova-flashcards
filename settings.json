@@ -1,6 +1,7 @@
 {
   "public": {
     "rooturl": "http://localhost:3000",
+    "plantUMLUrl": "http://www.plantuml.com/plantuml",
     "dynamicSettings": "default",
     "backdoorEnabled": false,
     "cas": {
