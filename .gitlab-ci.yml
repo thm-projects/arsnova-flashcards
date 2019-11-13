@@ -7,14 +7,14 @@ variables:
   DB_TEST_DUMP: tests/testDatabaseDump/meteor
 
 stages:
-  - test
+  - codestyle
   - build
-  - chimptest
+  - test
   - review
   - deploy
 
 jshint:
-  stage: test
+  stage: codestyle
   tags:
     - nodejs
   dependencies: []
@@ -24,7 +24,7 @@ jshint:
     - node_modules/jshint/bin/jshint --config .jshintrc ./client/head.js ./server/ ./imports/ ./i18n ./tests
 
 jscs:
-  stage: test
+  stage: codestyle
   tags:
     - nodejs
   dependencies: []
@@ -33,7 +33,7 @@ jscs:
     - node_modules/jscs/bin/jscs --config .jscsrc ./client/head.js ./server/ ./imports/ ./i18n ./tests
 
 sonar:
-  stage: test
+  stage: codestyle
   only:
     - master
     - staging
@@ -75,8 +75,8 @@ build:
     paths:
       - "$BUNDLE_DIR"
 
-chimp:
-  stage: chimptest
+unit_tests:
+  stage: test
   except:
     - staging
     - master
@@ -99,9 +99,16 @@ chimp:
     - mongo --quiet --eval "version();" --host "$MONGO_HOST"
     - cd "$BUNDLE_DIR/programs/server" && npm install
     - cd -
-    - node "$BUNDLE_DIR/main.js" &
-    - sleep 15
-    - ./tests/runTests.sh
+    - ./tests/run_unit_tests.sh
+
+e2e_tests:
+  stage: test
+  except:
+    - staging
+    - master
+  allow_failure: true
+  script:
+    - ./tests/run_e2e_tests.sh
 
 review:
   stage: review

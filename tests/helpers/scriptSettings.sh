@@ -26,12 +26,6 @@ function calledFromScript
     fi
 }
 
-function getTestName
-{
-   CHIMPTESTFILE="$testDir/"*".feature"
-   CHIMPTESTNAME="$(grep -m '1' "" $CHIMPTESTFILE | cut -c 10- | tr -d '\n\r')"
-}
-
 checkDirectory
 calledFromScript
 
@@ -50,3 +44,4 @@ if [ -z "$MONGO_HOST" ]; then
 elif [ -z "$MONGO_PORT" ]; then
 	MONGO_PORT=27017
 fi
+
