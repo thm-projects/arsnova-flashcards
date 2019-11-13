@@ -94,8 +94,12 @@ export let MarkdeepContent = class MarkdeepContent {
 			match = match.replace(new RegExp(config.plantUML.regexp.post, "gs"), config.plantUML.output.post);
 			let result = asciidoctor.convert(match);
 			let doc = new DOMParser().parseFromString(result, "text/html");
-			doc.getElementsByTagName("img")[0].style.width = Session.get('currentZoomValue') + "%";
-			return doc.documentElement.innerHTML;
+			if (doc.getElementsByTagName("img").length) {
+				doc.getElementsByTagName("img")[0].style.width = Session.get('currentZoomValue') + "%";
+				return doc.documentElement.innerHTML;
+			} else {
+				return result;
+			}
 		});
 		return content;
 	}
