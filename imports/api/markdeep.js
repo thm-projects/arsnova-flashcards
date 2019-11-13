@@ -10,6 +10,7 @@ import {CardsetVisuals} from "./cardsetVisuals";
 import plantuml from "/client/thirdParty/asciidoctor/plantuml/asciidoctor-plantuml.min.js";
 import Asciidoctor from "/client/thirdParty/asciidoctor/asciidoctor.min.js";
 import {Session} from "meteor/session";
+import {Route} from "./route";
 let asciidoctor = new Asciidoctor();
 plantuml.register(asciidoctor.Extensions);
 
@@ -94,8 +95,16 @@ export let MarkdeepContent = class MarkdeepContent {
 			match = match.replace(new RegExp(config.plantUML.regexp.post, "gs"), config.plantUML.output.post);
 			let result = asciidoctor.convert(match);
 			let doc = new DOMParser().parseFromString(result, "text/html");
-			doc.getElementsByTagName("img")[0].style.width = Session.get('currentZoomValue') + "%";
-			return doc.documentElement.innerHTML;
+			if (doc.getElementsByTagName("img").length) {
+				if (Route.isPresentation() || Route.isEditMode()) {
+					doc.getElementsByTagName("img")[0].style.width = Session.get('currentZoomValue') + "%";
+				} else {
+					doc.getElementsByTagName("img")[0].style.width = "100%";
+				}
+				return doc.documentElement.innerHTML;
+			} else {
+				return result;
+			}
 		});
 		return content;
 	}
