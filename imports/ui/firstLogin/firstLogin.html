@@ -1,7 +1,12 @@
 <template name="firstLoginContent">
     <div class="col-xs-12">
-        {{> impressumAGB}}
-        {{> impressumDatenschutz}}
+        {{#if isImprintMode 'linux'}}
+            {{> linuxImpressumAGB}}
+            {{> linuxImpressumDatenschutz}}
+        {{else}}
+            {{> cardsImpressumAGB}}
+            {{> linuxImpressumDatenschutz}}
+        {{/if}}
         <div id="first_login" class="panel panel-default">
             <div class="panel-body" id="first_login_content">
                 <div class="form-group">
