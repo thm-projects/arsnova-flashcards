@@ -2,6 +2,7 @@ import ZingTouch from "zingtouch";
 import {Route} from "./route";
 import {Session} from "meteor/session";
 import {CardNavigation} from "./cardNavigation";
+import * as config from "../config/cardNavigation.js";
 
 export let TouchNavigation = class TouchNavigation {
 	static cards () {
@@ -10,7 +11,8 @@ export let TouchNavigation = class TouchNavigation {
 		let region = new ZingTouch.Region(document.getElementById('cardCarousel'), false, false);
 		region.bind(element, gesture, function (event) {
 			if (!$('.input-search').is(":focus") && !$('#lightbox').is(":visible") && !$('.modal').is(":visible")) {
-				if (event.detail.data[0].currentDirection >= 90 && event.detail.data[0].currentDirection <= 270) {
+				let threshold = config.swipeThreshold / 2;
+				if (event.detail.data[0].currentDirection <= (180 + threshold) && event.detail.data[0].currentDirection >= (180 - threshold)) {
 					if (CardNavigation.isVisible()) {
 						if ((Route.isBox() || Route.isMemo())) {
 							if (Session.get('isQuestionSide')) {
@@ -20,7 +22,7 @@ export let TouchNavigation = class TouchNavigation {
 							CardNavigation.skipAnswer();
 						}
 					}
-				} else {
+				} else if ((event.detail.data[0].currentDirection >= 0 && event.detail.data[0].currentDirection <= threshold) || event.detail.data[0].currentDirection >= (360 - threshold)) {
 					if (CardNavigation.isVisible()) {
 						if ((Route.isBox() || Route.isMemo())) {
 							if (Session.get('isQuestionSide')) {
