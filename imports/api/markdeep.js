@@ -11,6 +11,8 @@ import plantuml from "/client/thirdParty/asciidoctor/plantuml/asciidoctor-plantu
 import Asciidoctor from "/client/thirdParty/asciidoctor/asciidoctor.min.js";
 import {Session} from "meteor/session";
 import {Route} from "./route";
+import XRegExp from 'xregexp';
+
 let asciidoctor = new Asciidoctor();
 plantuml.register(asciidoctor.Extensions);
 
@@ -90,9 +92,9 @@ export let MarkdeepContent = class MarkdeepContent {
 	}
 
 	static convertUML (content) {
-		content = content.replace(new RegExp(config.plantUML.regexp.pre + config.plantUML.regexp.content + config.plantUML.regexp.post, "gs"), function (match) {
-			match = match.replace(new RegExp(config.plantUML.regexp.pre, "gs"), config.plantUML.output.pre);
-			match = match.replace(new RegExp(config.plantUML.regexp.post, "gs"), config.plantUML.output.post);
+		content = content.replace(new XRegExp(config.plantUML.regexp.pre + config.plantUML.regexp.content + config.plantUML.regexp.post, "gs"), function (match) {
+			match = match.replace(new XRegExp(config.plantUML.regexp.pre, "gs"), config.plantUML.output.pre);
+			match = match.replace(new XRegExp(config.plantUML.regexp.post, "gs"), config.plantUML.output.post);
 			let result = asciidoctor.convert(match);
 			let doc = new DOMParser().parseFromString(result, "text/html");
 			if (doc.getElementsByTagName("img").length) {

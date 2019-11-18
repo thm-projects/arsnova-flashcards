@@ -395,7 +395,7 @@ export let CardVisuals = class CardVisuals {
 			this.resizeFlashcard();
 		} else {
 			if (document.fullscreenElement === null) {
-				document.body.requestFullscreen();
+				document.documentElement.requestFullscreen();
 			}
 			$(".box").removeClass("disableCardTransition");
 			$("#theme-wrapper").addClass('theme-wrapper-fullscreen');
