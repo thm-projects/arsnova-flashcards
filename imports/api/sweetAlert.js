@@ -19,7 +19,7 @@ export let SweetAlertMessages = class SweetAlertMessages {
 		swal.fire(config.continuePresentation()).then((result) => {
 			if (result.value) {
 				if (document.fullscreenElement === null) {
-					document.body.requestFullscreen();
+					document.documentElement.requestFullscreen();
 				}
 			} else {
 				if (document.fullscreenElement) {
@@ -73,7 +73,7 @@ export let SweetAlertMessages = class SweetAlertMessages {
 				}
 			} else {
 				if (document.fullscreenElement === null) {
-					document.body.requestFullscreen();
+					document.documentElement.requestFullscreen();
 				}
 			}
 		});
