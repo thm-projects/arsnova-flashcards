@@ -103,6 +103,10 @@ export let MarkdeepContent = class MarkdeepContent {
 				} else {
 					doc.getElementsByTagName("img")[0].style.width = "100%";
 				}
+				if (doc.getElementsByTagName("h2").length) {
+					let item = doc.getElementsByTagName("h2")[0];
+					item.parentNode.removeChild(item);
+				}
 				return doc.documentElement.innerHTML;
 			} else {
 				return result;
