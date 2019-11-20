@@ -2,7 +2,7 @@ import {Template} from "meteor/templating";
 import {Dictionary} from "../../../api/dictionary";
 import {Route} from "../../../api/route";
 import {CardIndex} from "../../../api/cardIndex";
-import {Cards} from "../../../api/cards";
+import {Cards} from "../../../api/subscriptions/cards";
 import {Session} from "meteor/session";
 import "./beolingusTranslation.html";
 

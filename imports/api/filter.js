@@ -3,9 +3,10 @@ import {FilterNavigation} from "./filterNavigation";
 import {Session} from "meteor/session";
 import {Route} from "./route";
 import {WordcloudCanvas} from "./wordcloudCanvas";
-import {Leitner, Wozniak} from "./learned";
+import {Leitner} from "./subscriptions/leitner";
+import {Wozniak} from "./subscriptions/wozniak";
 import * as config from "../config/filter.js";
-import {TranscriptBonus} from "./transcriptBonus";
+import {TranscriptBonus} from "./subscriptions/transcriptBonus";
 
 Session.setDefault('maxItemsCounter', config.itemStartingValue);
 Session.setDefault('poolFilter', undefined);

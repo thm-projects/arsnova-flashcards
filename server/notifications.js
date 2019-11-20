@@ -1,4 +1,4 @@
-import {Leitner} from "../imports/api/learned.js";
+import {Leitner} from "../imports/api/subscriptions/leitner.js";
 
 /**
  * Class used for generating text of mail and web-push messages

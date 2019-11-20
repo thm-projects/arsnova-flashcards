@@ -1,5 +1,6 @@
 import "./lastSubmission.html";
-import {TranscriptBonus, TranscriptBonusList} from "../../../../../../../api/transcriptBonus";
+import {TranscriptBonus} from "../../../../../../../api/subscriptions/transcriptBonus";
+import {TranscriptBonusList} from "../../../../../../../api/transcriptBonus";
 
 /*
  * ############################################################################

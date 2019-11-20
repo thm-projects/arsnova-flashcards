@@ -4,7 +4,7 @@ import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {CardType} from "../../../../api/cardTypes";
 import {Bonus} from "../../../../api/bonus";
-import {Cardsets} from "../../../../api/cardsets";
+import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
 import "../modal/leaveBonus.js";
 import "../modal/endBonus.js";

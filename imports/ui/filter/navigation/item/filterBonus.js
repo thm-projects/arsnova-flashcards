@@ -1,7 +1,7 @@
 import "./filterBonus.html";
 import {Template} from "meteor/templating";
 import {Filter} from "../../../../api/filter";
-import {Cardsets} from "../../../../api/cardsets";
+import {Cardsets} from "../../../../api/subscriptions/cardsets";
 
 /*
  * ############################################################################

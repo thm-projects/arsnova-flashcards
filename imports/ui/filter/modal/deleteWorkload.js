@@ -3,7 +3,7 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Workload} from "../../../api/learned";
+import {Workload} from "../../../api/subscriptions/workload";
 import {Filter} from "../../../api/filter";
 import "./deleteWorkload.html";
 

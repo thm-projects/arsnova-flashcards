@@ -3,11 +3,11 @@ import {CardType} from "./cardTypes";
 import {Meteor} from "meteor/meteor";
 import {Route} from "./route.js";
 import {CardNavigation} from "./cardNavigation";
-import {Cardsets} from "./cardsets";
+import {Cardsets} from "./subscriptions/cardsets";
 import {BertAlertVisuals} from "./bertAlertVisuals";
 import {CardVisuals} from "./cardVisuals";
 import {CardIndex} from "./cardIndex";
-import {Cards} from "./cards";
+import {Cards} from "./subscriptions/cards";
 
 const subjectMaxLength = 255;
 const contentMaxLength = 300000;

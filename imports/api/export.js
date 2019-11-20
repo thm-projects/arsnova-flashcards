@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
-import {Cardsets} from "./cardsets.js";
-import {Cards} from "./cards.js";
+import {Cardsets} from "./subscriptions/cardsets.js";
+import {Cards} from "./subscriptions/cards.js";
 import {check} from "meteor/check";
 import {exportAuthorName} from "./userdata";
 

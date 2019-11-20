@@ -1,12 +1,12 @@
 import "./progress.html";
-import {Leitner} from "../../api/learned";
+import {Leitner} from "../../api/subscriptions/leitner.js";
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {getAuthorName} from "../../api/userdata";
 import ResizeSensor from "../../../client/thirdParty/resizeSensor/ResizeSensor";
 import {LeitnerProgress} from "../../api/leitnerProgress";
-import {Cardsets} from "../../api/cardsets";
+import {Cardsets} from "../../api/subscriptions/cardsets";
 import {CardType} from "../../api/cardTypes";
 import {Route} from "../../api/route";
 import {UserPermissions} from "../../api/permissions";

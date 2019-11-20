@@ -2,8 +2,9 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {CardType} from "../../../../api/cardTypes";
-import {Workload, Wozniak} from "../../../../api/learned";
-import {Cardsets} from "../../../../api/cardsets";
+import {Workload} from "../../../../api/subscriptions/workload";
+import {Wozniak} from "../../../../api/subscriptions/wozniak";
+import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import "../modal/chooseFlashcards.js";
 import "../modal/leitner.js";
 import "../modal/wozniak.js";

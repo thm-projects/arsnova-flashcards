@@ -1,8 +1,8 @@
 import {Session} from "meteor/session";
 import "./edit.html";
 import {Route} from "../../../../api/route";
-import {Cards} from "../../../../api/cards";
-import {Cardsets} from "../../../../api/cardsets";
+import {Cards} from "../../../../api/subscriptions/cards";
+import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {CardNavigation} from "../../../../api/cardNavigation";
 /*
  * ############################################################################

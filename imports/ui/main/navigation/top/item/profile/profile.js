@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
-import {Notifications} from "../../../../../../api/notifications";
+import {Notifications} from "../../../../../../api/subscriptions/notifications";
 import "./item/billing.js";
 import "./item/logout.js";
 import "./item/membership.js";

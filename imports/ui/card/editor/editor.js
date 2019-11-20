@@ -1,11 +1,11 @@
 import {Session} from "meteor/session";
 import {CardType} from "../../../api/cardTypes";
 import {Template} from "meteor/templating";
-import {Cardsets} from "../../../api/cardsets";
+import {Cardsets} from "../../../api/subscriptions/cardsets";
 import {CardEditor} from "../../../api/cardEditor.js";
 import {CardVisuals} from "../../../api/cardVisuals";
 import ResizeSensor from "../../../../client/thirdParty/resizeSensor/ResizeSensor";
-import {Cards} from "../../../api/cards";
+import {Cards} from "../../../api/subscriptions/cards";
 import {MarkdeepEditor} from "../../../api/markdeepEditor";
 import "../card.js";
 import "./modal/cancelEdit.js";

@@ -1,5 +1,6 @@
 import {Meteor} from "meteor/meteor";
-import {Leitner, Wozniak} from "./learned.js";
+import {Leitner} from "./subscriptions/leitner";
+import {Wozniak} from "./subscriptions/wozniak";
 import {Filter} from "./filter.js";
 import * as config from "../config/login.js";
 import {UserPermissions} from "./permissions";

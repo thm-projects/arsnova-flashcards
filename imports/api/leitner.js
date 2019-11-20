@@ -1,12 +1,14 @@
 import {Meteor} from "meteor/meteor";
 import {check} from "meteor/check";
-import {Leitner, LeitnerHistory, Workload} from "./learned";
-import {Cardsets} from "./cardsets";
+import {Leitner} from "./subscriptions/leitner";
+import {LeitnerHistory} from "./subscriptions/leitnerHistory";
+import {Workload} from "./subscriptions/workload";
+import {Cardsets} from "./subscriptions/cardsets";
 import {Bonus} from "./bonus";
 import {Profile} from "./profile";
 import {UserPermissions} from "./permissions";
 import {CardType} from "./cardTypes";
-import {Cards} from "./cards";
+import {Cards} from "./subscriptions/cards";
 import * as config from "../config/leitner.js";
 import * as bonusFormConfig from "../config/bonusForm.js";
 import {Utilities} from "./utilities";

@@ -1,21 +1,7 @@
 import {Meteor} from "meteor/meteor";
-import {Mongo} from "meteor/mongo";
 import {check} from "meteor/check";
 import {UserPermissions} from "./permissions";
-
-export const CollegesCourses = new Mongo.Collection("collegesCourses");
-
-if (Meteor.isServer) {
-	let universityFilter = {$ne: null};
-	if (Meteor.settings.public.university.singleUniversity) {
-		universityFilter = Meteor.settings.public.university.default;
-	}
-	Meteor.publish("collegesCourses", function () {
-		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-			return CollegesCourses.find({college: universityFilter});
-		}
-	});
-}
+import {CollegesCourses} from "./subscriptions/collegesCourses.js";
 
 Meteor.methods({
 	"updateCollegesCoursess": function (college, course) {

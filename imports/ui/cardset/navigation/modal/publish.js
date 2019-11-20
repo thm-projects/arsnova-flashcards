@@ -2,7 +2,7 @@
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
-import {Cardsets} from "../../../../api/cardsets";
+import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
 import "./publish.html";
 

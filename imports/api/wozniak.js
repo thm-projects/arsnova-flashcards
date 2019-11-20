@@ -1,11 +1,11 @@
 import {Meteor} from "meteor/meteor";
 import {check} from "meteor/check";
 import {Wozniak} from "./learned";
-import {Cardsets} from "./cardsets";
+import {Cardsets} from "./subscriptions/cardsets";
 import {Bonus} from "./bonus";
 import {UserPermissions} from "./permissions";
 import {CardType} from "./cardTypes";
-import {Cards} from "./cards";
+import {Cards} from "./subscriptions/cards";
 
 Meteor.methods({
 	/** Adds new cards to the learners list for super memo mode

@@ -3,8 +3,9 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Leitner, Wozniak} from "../../api/learned.js";
-import {Cardsets} from "../../api/cardsets";
+import {Leitner} from "../../api/subscriptions/leitner";
+import {Wozniak} from "../../api/subscriptions/wozniak";
+import {Cardsets} from "../../api/subscriptions/cardsets";
 import {CardNavigation} from "../../api/cardNavigation";
 import "./learn.html";
 import {PomodoroTimer} from "../../api/pomodoroTimer";

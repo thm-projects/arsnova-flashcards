@@ -1,14 +1,15 @@
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
-import {Leitner, Wozniak} from "./learned";
-import {Cards} from "./cards";
-import {Cardsets} from "./cardsets";
+import {Leitner} from "./subscriptions/leitner";
+import {Wozniak} from "./subscriptions/wozniak";
+import {Cards} from "./subscriptions/cards";
+import {Cardsets} from "./subscriptions/cardsets";
 import {Route} from "./route";
 import {CardType} from "./cardTypes";
 import {CardNavigation} from "./cardNavigation";
 import {CardVisuals} from "./cardVisuals";
 import {Utilities} from "./utilities";
-import {TranscriptBonus} from "./transcriptBonus";
+import {TranscriptBonus} from "./subscriptions/transcriptBonus";
 
 let cardIndex = [];
 

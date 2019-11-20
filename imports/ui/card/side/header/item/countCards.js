@@ -1,8 +1,8 @@
 import "./countCards.html";
 import {Route} from "../../../../../api/route";
-import {Cards} from "../../../../../api/cards";
+import {Cards} from "../../../../../api/subscriptions/cards";
 import {CardIndex} from "../../../../../api/cardIndex";
-import {Cardsets} from "../../../../../api/cardsets";
+import {Cardsets} from "../../../../../api/subscriptions/cardsets";
 
 /*
  * ############################################################################

@@ -3,7 +3,7 @@ import {Meteor} from "meteor/meteor";
 let firstTimeVisit = 'isFirstTimeVisit';
 import * as icons from "../config/icons.js";
 import * as conf from "../config/routes.js";
-import {Cardsets} from "./cardsets";
+import {Cardsets} from "./subscriptions/cardsets";
 import {ServerStyle} from "./styles";
 import {UserPermissions} from "./permissions";
 import {getAuthorName} from "./userdata";

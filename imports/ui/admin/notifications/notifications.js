@@ -1,8 +1,8 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Cardsets} from "../../../api/cardsets.js";
-import {Notifications} from "../../../api/notifications.js";
+import {Cardsets} from "../../../api/subscriptions/cardsets.js";
+import {Notifications} from "../../../api/subscriptions/notifications";
 import "./notifications.html";
 
 /*

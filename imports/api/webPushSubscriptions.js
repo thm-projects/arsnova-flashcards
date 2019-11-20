@@ -1,9 +1,7 @@
 import {Meteor} from "meteor/meteor";
-import {Mongo} from "meteor/mongo";
 import webPush from 'web-push';
 import {ServerSettings} from "./settings";
-
-export const WebPushSubscriptions = new Mongo.Collection("webPushSubscriptions");
+import {WebPushSubscriptions} from "./subscriptions/webPushNotifications";
 
 export let WebPushNotifications = class WebPushNotifications {
 	/**

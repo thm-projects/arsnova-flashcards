@@ -3,7 +3,8 @@
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Route} from "../../../../api/route";
-import {TranscriptBonus, TranscriptBonusList} from "../../../../api/transcriptBonus";
+import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
+import {TranscriptBonusList} from "../../../../api/transcriptBonus";
 import "../../../cardset/cardset.js";
 import "./card.html";
 

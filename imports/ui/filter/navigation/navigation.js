@@ -3,8 +3,8 @@
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Filter} from "../../../api/filter";
-import {Cards} from "../../../api/cards";
-import {Cardsets} from "../../../api/cardsets";
+import {Cards} from "../../../api/subscriptions/cards";
+import {Cardsets} from "../../../api/subscriptions/cardsets";
 import {CardType} from "../../../api/cardTypes";
 import {Route} from "../../../api/route";
 import "./navigation.html";

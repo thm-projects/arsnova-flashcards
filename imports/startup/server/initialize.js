@@ -1,15 +1,18 @@
 import {Meteor} from "meteor/meteor";
-import {Cards} from "../../api/cards.js";
-import {Cardsets} from "../../api/cardsets.js";
-import {ColorThemes} from "../../api/theme.js";
-import {Learned, Leitner, LeitnerHistory, Wozniak, Workload} from "../../api/learned.js";
-import {AdminSettings} from "../../api/adminSettings";
+import {Cards} from "../../api/subscriptions/cards.js";
+import {Cardsets} from "../../api/subscriptions/cardsets.js";
+import {ColorThemes} from "../../api/subscriptions/colorThemes.js";
+import {Leitner} from "../../api/subscriptions/leitner";
+import {LeitnerHistory} from "../../api/subscriptions/leitnerHistory";
+import {Workload} from "../../api/subscriptions/workload";
+import {Wozniak} from "../../api/subscriptions/wozniak";
+import {AdminSettings} from "../../api/subscriptions/adminSettings";
 import {CronScheduler} from "../../../server/cronjob.js";
-import {Ratings} from "../../api/ratings";
+import {Ratings} from "../../api/subscriptions/ratings";
 import {CardType} from "../../api/cardTypes";
-import {WebPushSubscriptions} from "../../api/webPushSubscriptions";
-import {Paid} from "../../api/paid";
-import {TranscriptBonus} from "../../api/transcriptBonus";
+import {WebPushSubscriptions} from "../../api/subscriptions/webPushNotifications";
+import {Paid} from "../../api/subscriptions/paid";
+import {TranscriptBonus} from "../../api/subscriptions/transcriptBonus";
 import {LeitnerUtilities} from "../../api/leitner";
 import {Utilities} from "../../api/utilities";
 import * as bonusFormConfig from "../../config/bonusForm.js";
@@ -1045,33 +1048,7 @@ Meteor.startup(function () {
 	}
 
 	for (let learned = 0; learned < testNotificationsLearned.length; learned++) {
-		Learned.remove({_id: testNotificationsLearned[learned]._id});
 		Leitner.remove({_id: testNotificationsLearned[learned]._id});
-	}
-
-	let learned = Learned.find({}).fetch();
-	if (learned !== undefined) {
-		for (let i = 0; i < learned.length; i++) {
-			Leitner.insert({
-				card_id: learned[i].card_id,
-				cardset_id: learned[i].cardset_id,
-				user_id: learned[i].user_id,
-				box: learned[i].box,
-				nextDate: learned[i].nextDate,
-				currentDate: learned[i].currentDate,
-				active: learned[i].active
-			});
-			Wozniak.insert({
-				card_id: learned[i].card_id,
-				cardset_id: learned[i].cardset_id,
-				user_id: learned[i].user_id,
-				ef: learned[i].ef,
-				reps: learned[i].reps,
-				interval: learned[i].interval,
-				nextDate: learned[i].nextDate
-			});
-		}
-		Learned.remove({});
 	}
 
 	let hiddenUsers = Meteor.users.find({visible: false}).fetch();

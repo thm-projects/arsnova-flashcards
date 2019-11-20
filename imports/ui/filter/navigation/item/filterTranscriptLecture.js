@@ -1,7 +1,8 @@
 import "./filterTranscriptLecture.html";
 import {Template} from "meteor/templating";
 import {Filter} from "../../../../api/filter";
-import {TranscriptBonus, TranscriptBonusList} from "../../../../api/transcriptBonus";
+import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
+import {TranscriptBonusList} from "../../../../api/transcriptBonus";
 
 /*
  * ############################################################################

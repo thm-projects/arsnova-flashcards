@@ -1,8 +1,8 @@
 //------------------------ IMPORTS
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
-import {Cardsets} from "../../../../../api/cardsets";
-import {Ratings} from "../../../../../api/ratings";
+import {Cardsets} from "../../../../../api/subscriptions/cardsets";
+import {Ratings} from "../../../../../api/subscriptions/ratings";
 import {UserPermissions} from "../../../../../api/permissions";
 import "./ratings.html";
 

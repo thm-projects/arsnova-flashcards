@@ -5,7 +5,7 @@ import {CardType} from "../../../api/cardTypes";
 import {CardNavigation} from "../../../api/cardNavigation";
 import "./item/review.js";
 import "./navigation.html";
-import {Cards} from "../../../api/cards";
+import {Cards} from "../../../api/subscriptions/cards";
 import {CardIndex} from "../../../api/cardIndex";
 Session.setDefault('activeCardSide', undefined);
 Session.setDefault('leitnerHistoryTimestamps', {question: new Date(), answer: new Date()});

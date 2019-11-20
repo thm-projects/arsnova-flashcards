@@ -1,6 +1,6 @@
 import "./delete.html";
 import {Route} from "../../../../api/route";
-import {Cardsets} from "../../../../api/cardsets";
+import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {Template} from "meteor/templating";
 import {CardNavigation} from "../../../../api/cardNavigation";
 

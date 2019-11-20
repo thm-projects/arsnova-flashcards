@@ -1,6 +1,6 @@
 import {Template} from "meteor/templating";
 import {CardType} from "../../../../api/cardTypes";
-import {Cardsets} from "../../../../api/cardsets";
+import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {Route} from "../../../../api/route";
 import {Session} from "meteor/session";
 import {CardNavigation} from "../../../../api/cardNavigation";

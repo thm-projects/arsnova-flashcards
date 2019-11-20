@@ -1,5 +1,5 @@
 import {Meteor} from "meteor/meteor";
-import {AdminSettings} from "../../../api/adminSettings.js";
+import {AdminSettings} from "../../../api/subscriptions/adminSettings.js";
 import "./settings.html";
 import {ServerSettings} from "../../../api/settings";
 
