@@ -1,6 +1,6 @@
 import {WordcloudCanvas} from "../../api/wordcloudCanvas";
 import ResizeSensor from "../../../client/thirdParty/resizeSensor/ResizeSensor";
-import {Cardsets} from "../../api/cardsets.js";
+import {Cardsets} from "../../api/subscriptions/cardsets.js";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import "./help/help.js";

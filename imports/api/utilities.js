@@ -1,5 +1,5 @@
 import {Session} from "meteor/session";
-import {Cardsets} from "./cardsets";
+import {Cardsets} from "./subscriptions/cardsets";
 import {CardType} from "./cardTypes";
 import {ServerStyle} from "./styles";
 

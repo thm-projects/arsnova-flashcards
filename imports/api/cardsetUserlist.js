@@ -1,6 +1,7 @@
 import {Meteor} from "meteor/meteor";
-import {Leitner, Workload} from "./learned.js";
-import {Cardsets} from "./cardsets.js";
+import {Leitner} from "./subscriptions/leitner";
+import {Workload} from "./subscriptions/workload";
+import {Cardsets} from "./subscriptions/cardsets.js";
 import {check} from "meteor/check";
 import {getAuthorName} from "./userdata";
 import {Profile} from "./profile";

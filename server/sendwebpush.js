@@ -1,8 +1,8 @@
 import {Meteor} from "meteor/meteor";
 import {Notifications} from "./notifications.js";
-import {Leitner} from "../imports/api/learned.js";
-import {AdminSettings} from "../imports/api/adminSettings.js";
-import {Cardsets} from "../imports/api/cardsets.js";
+import {Leitner} from "../imports/api/subscriptions/leitner.js";
+import {AdminSettings} from "../imports/api/subscriptions/adminSettings.js";
+import {Cardsets} from "../imports/api/subscriptions/cardsets.js";
 import {ServerStyle} from "../imports/api/styles";
 
 function getDateString(date) {

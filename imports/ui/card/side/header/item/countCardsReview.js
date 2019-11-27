@@ -1,6 +1,7 @@
 import {Session} from "meteor/session";
 import "./countCardsReview.html";
-import {TranscriptBonus, TranscriptBonusList} from "../../../../../api/transcriptBonus";
+import {TranscriptBonus} from "../../../../../api/subscriptions/transcriptBonus";
+import {TranscriptBonusList} from "../../../../../api/transcriptBonus";
 
 
 /*

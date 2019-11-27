@@ -4,7 +4,7 @@ import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
 import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
 import {MarkdeepContent} from "../../../../api/markdeep";
-import {Cards} from "../../../../api/cards";
+import {Cards} from "../../../../api/subscriptions/cards";
 import {CardType} from "../../../../api/cardTypes";
 import "./export.html";
 

@@ -2,13 +2,14 @@
 
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Cards} from "../../../api/cards.js";
-import {Cardsets} from "../../../api/cardsets.js";
+import {Cards} from "../../../api/subscriptions/cards.js";
+import {Cardsets} from "../../../api/subscriptions/cardsets.js";
 import {Filter} from "../../../api/filter";
 import {Route} from "../../../api/route";
 import {FilterNavigation} from "../../../api/filterNavigation";
 import {CardType} from "../../../api/cardTypes";
-import {Leitner, Wozniak} from "../../../api/learned";
+import {Leitner} from "../../../api/subscriptions/leitner";
+import {Wozniak} from "../../../api/subscriptions/wozniak";
 import {MainNavigation} from "../../../api/mainNavigation";
 import {LoginTasks} from "../../../api/login";
 import "./item/card.js";

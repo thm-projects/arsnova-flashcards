@@ -1,11 +1,11 @@
 import "./statistics.html";
 import "./item/cardset.js";
 import "./item/info.js";
-import {TranscriptBonus} from "../../../../../api/transcriptBonus";
+import {TranscriptBonus} from "../../../../../api/subscriptions/transcriptBonus";
 import {Template} from "meteor/templating";
 import {Filter} from "../../../../../api/filter";
 import {FilterNavigation} from "../../../../../api/filterNavigation";
-import {Cardsets} from "../../../../../api/cardsets";
+import {Cardsets} from "../../../../../api/subscriptions/cardsets";
 import {Session} from "meteor/session";
 import {Route} from "../../../../../api/route";
 

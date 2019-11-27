@@ -1,5 +1,5 @@
 import {Session} from "meteor/session";
-import {Cardsets} from "./cardsets";
+import {Cardsets} from "./subscriptions/cardsets";
 import {PomodoroTimer} from "./pomodoroTimer";
 import * as config from "../config/bonusForm.js";
 import * as leitnerConfig from "../config/leitner.js";

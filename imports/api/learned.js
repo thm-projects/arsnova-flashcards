@@ -1,106 +1,19 @@
 import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
-import {Cardsets} from "./cardsets.js";
+import {Cardsets} from "./subscriptions/cardsets.js";
 import {check} from "meteor/check";
 import {UserPermissions} from "./permissions";
 import {getLearners} from "./cardsetUserlist";
 import * as config from "../config/leitner";
 import {LeitnerUtilities} from "./leitner";
+import {Leitner} from "./subscriptions/leitner.js";
+import {LeitnerHistory} from "./subscriptions/leitnerHistory";
+import {Workload} from "./subscriptions/workload";
+import {Wozniak} from "./subscriptions/wozniak";
 
 export const Learned = new Mongo.Collection("learned");
-export const Leitner = new Mongo.Collection("leitner");
-export const LeitnerHistory = new Mongo.Collection("leitnerHistory");
-export const Wozniak = new Mongo.Collection("wozniak");
-export const Workload = new Mongo.Collection("workload");
 
 if (Meteor.isServer) {
-	Meteor.publish("cardsetWorkload", function (cardset_id) {
-		if (this.userId) {
-			if (Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor',
-				'lecturer'
-			])) {
-				return Workload.find({
-					cardset_id: cardset_id,
-					$or: [
-						{user_id: this.userId},
-						{'leitner.bonus': true}
-					]
-				});
-			} else {
-				return Workload.find({
-					cardset_id: cardset_id,
-					user_id: this.userId
-				});
-			}
-		} else {
-			this.ready();
-		}
-	});
-	Meteor.publish("userWorkload", function () {
-		if (this.userId) {
-			return Workload.find({user_id: this.userId});
-		} else {
-			this.ready();
-		}
-	});
-	Meteor.publish("cardsetLeitner", function (cardset_id) {
-		if (this.userId) {
-			return Leitner.find({cardset_id: cardset_id, user_id: this.userId});
-		} else {
-			this.ready();
-		}
-	});
-	Meteor.publish("userCardsetLeitner", function (cardset_id, user_id) {
-		if (this.userId) {
-			if (this.userId === user_id || Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor',
-				'lecturer'
-			])) {
-				return Leitner.find({cardset_id: cardset_id, user_id: user_id});
-			} else {
-				this.ready();
-			}
-		} else {
-			this.ready();
-		}
-	});
-	Meteor.publish("userLeitner", function () {
-		if (this.userId) {
-			return Leitner.find({user_id: this.userId});
-		} else {
-			this.ready();
-		}
-	});
-	Meteor.publish("allLeitner", function () {
-		if (this.userId) {
-			if (Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor'
-			])) {
-				return Leitner.find();
-			}
-		} else {
-			this.ready();
-		}
-	});
-	Meteor.publish("cardsetWozniak", function (cardset_id) {
-		if (this.userId) {
-			return Wozniak.find({cardset_id: cardset_id, user_id: this.userId});
-		} else {
-			this.ready();
-		}
-	});
-	Meteor.publish("userWozniak", function () {
-		if (this.userId) {
-			return Wozniak.find({user_id: this.userId});
-		} else {
-			this.ready();
-		}
-	});
-
 	Meteor.methods({
 		/** Function marks an active leitner card as learned
 		 *  @param {string} cardset_id - The cardset id from the card

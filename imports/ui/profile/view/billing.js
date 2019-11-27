@@ -3,9 +3,9 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Cardsets} from "../../../api/cardsets";
+import {Cardsets} from "../../../api/subscriptions/cardsets";
 import {BertAlertVisuals} from "../../../api/bertAlertVisuals";
-import {Paid} from "../../../api/paid";
+import {Paid} from "../../../api/subscriptions/paid";
 import "./billing.html";
 
 /*

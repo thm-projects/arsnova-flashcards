@@ -8,7 +8,7 @@ import {getUserLanguage} from "../../startup/client/i18n";
 import ResizeSensor from "../../../client/thirdParty/resizeSensor/ResizeSensor";
 import {PomodoroTimer} from "../../api/pomodoroTimer";
 import {NavigatorCheck} from "../../api/navigatorCheck";
-import {AdminSettings} from "../../api/adminSettings";
+import {AdminSettings} from "../../api/subscriptions/adminSettings";
 import {WordcloudCanvas} from "../../api/wordcloudCanvas";
 import {ServerStyle} from "../../api/styles.js";
 import {FirstTimeVisit} from "../../api/firstTimeVisit";

@@ -1,7 +1,7 @@
 //------------------------ IMPORTS
 
 import {Template} from "meteor/templating";
-import {Cardsets} from "../../../api/cardsets";
+import {Cardsets} from "../../../api/subscriptions/cardsets";
 import "./requests.html";
 
 /*

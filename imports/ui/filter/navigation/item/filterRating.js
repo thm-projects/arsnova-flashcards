@@ -1,6 +1,6 @@
 import "./filterRating.html";
 import {Filter} from "../../../../api/filter";
-import {TranscriptBonus} from "../../../../api/transcriptBonus";
+import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
 
 /*
  * ############################################################################

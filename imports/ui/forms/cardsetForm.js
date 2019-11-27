@@ -5,7 +5,7 @@ import "./cardsetForm.html";
 import {CardType} from '../../api/cardTypes.js';
 import {Route} from '../../api/route.js';
 import {BertAlertVisuals} from "../../api/bertAlertVisuals";
-import {Cardsets} from "../../api/cardsets";
+import {Cardsets} from "../../api/subscriptions/cardsets";
 import * as config from "../../config/cardset";
 
 export function isNewCardset() {

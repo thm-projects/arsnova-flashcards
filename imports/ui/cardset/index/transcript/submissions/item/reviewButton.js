@@ -1,7 +1,8 @@
 import "./reviewButton.html";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {TranscriptBonus, TranscriptBonusList} from "../../../../../../api/transcriptBonus";
+import {TranscriptBonus} from "../../../../../../api/subscriptions/transcriptBonus";
+import {TranscriptBonusList} from "../../../../../../api/transcriptBonus";
 import {FilterNavigation} from "../../../../../../api/filterNavigation";
 import {Filter} from "../../../../../../api/filter";
 

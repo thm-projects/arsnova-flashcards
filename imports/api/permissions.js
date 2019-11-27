@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
-import {Cardsets} from "./cardsets";
-import {Paid} from "./paid";
+import {Cardsets} from "./subscriptions/cardsets";
+import {Paid} from "./subscriptions/paid";
 import {ServerStyle} from "./styles.js";
 
 export let UserPermissions = class UserPermissions {

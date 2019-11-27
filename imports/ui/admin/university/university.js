@@ -1,6 +1,6 @@
 import "./university.html";
 import {Meteor} from "meteor/meteor";
-import {CollegesCourses} from "../../../api/colleges_courses.js";
+import {CollegesCourses} from "../../../api/subscriptions/collegesCourses.js";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {BertAlertVisuals} from "../../../api/bertAlertVisuals";

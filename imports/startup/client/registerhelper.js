@@ -1,8 +1,8 @@
 import {Meteor} from "meteor/meteor";
-import {Cardsets} from "../../api/cardsets.js";
-import {Cards} from "../../api/cards.js";
-import {CollegesCourses} from "../../api/colleges_courses.js";
-import {Workload} from "../../api/learned.js";
+import {Cardsets} from "../../api/subscriptions/cardsets.js";
+import {Cards} from "../../api/subscriptions/cards.js";
+import {CollegesCourses} from "../../api/subscriptions/collegesCourses.js";
+import {Workload} from "../../api/subscriptions/workload";
 import {Session} from "meteor/session";
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import {CardType} from "../../api/cardTypes";
@@ -28,7 +28,8 @@ import  * as FilterConfig from "../../config/filter.js";
 import {MainNavigation} from "../../api/mainNavigation";
 import {BarfyStarsConfig} from "../../api/barfyStars.js";
 import {Utilities} from "../../api/utilities";
-import {TranscriptBonus, TranscriptBonusList} from "../../api/transcriptBonus";
+import {TranscriptBonus} from "../../api/subscriptions/transcriptBonus";
+import {TranscriptBonusList} from "../../api/transcriptBonus";
 import {ServerSettings} from "../../api/settings";
 import {CardsetVisuals} from "../../api/cardsetVisuals";
 

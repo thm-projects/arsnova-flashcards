@@ -1,7 +1,8 @@
 //------------------------ IMPORTS
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
-import {Leitner, Wozniak} from "../../../api/learned";
+import {Leitner} from "../../../api/subscriptions/leitner";
+import {Wozniak} from "../../../api/subscriptions/wozniak";
 import "./item/bonus.js";
 import "./item/deleteAllCards.js";
 import "./item/editCardset.js";

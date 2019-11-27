@@ -2,7 +2,8 @@
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
-import {Leitner, Wozniak} from "../../../api/learned";
+import {Leitner} from "../../../api/subscriptions/leitner";
+import {Wozniak} from "../../../api/subscriptions/wozniak";
 import ResizeSensor from "../../../../client/thirdParty/resizeSensor/ResizeSensor";
 import {CardsetVisuals} from "../../../api/cardsetVisuals";
 import {Bonus} from "../../../api/bonus";
