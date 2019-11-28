@@ -70,6 +70,10 @@ Template.filterIndex.events({
 		Filter.setActiveFilter(true, "wordcloud");
 		FilterNavigation.showDropdown();
 	},
+	'click .resultItemHeaderBottomAreaLabels .label-use-case': function () {
+		Filter.setActiveFilter(true, "useCase");
+		FilterNavigation.showDropdown();
+	},
 	'click .resultItemHeaderBottomAreaLabels .label-lecturer-authorized': function () {
 		Filter.setActiveFilter(true, "lecturerAuthorized");
 		FilterNavigation.showDropdown();

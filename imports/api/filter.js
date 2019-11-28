@@ -169,6 +169,13 @@ export let Filter = class Filter {
 						filter.rating = Number(1);
 					}
 					break;
+				case "useCase": {
+					if (content === undefined) {
+						delete filter['useCase.enabled'];
+					} else {
+						filter['useCase.enabled'] = Boolean(content);
+					}
+				}
 			}
 		}
 		switch (FilterNavigation.getRouteId()) {
@@ -322,6 +329,9 @@ export let Filter = class Filter {
 		}
 		if (FilterNavigation.gotLecturerAuthorizedFilter(FilterNavigation.getRouteId()) && activeFilter.lecturerAuthorized !== undefined) {
 			query.lecturerAuthorized = activeFilter.lecturerAuthorized;
+		}
+		if (FilterNavigation.gotUseCaseFilter(FilterNavigation.getRouteId()) && activeFilter['useCase.enabled'] !== undefined) {
+			query['useCase.enabled'] = activeFilter['useCase.enabled'];
 		}
 		if (FilterNavigation.gotKindFilter(FilterNavigation.getRouteId()) && activeFilter.kind !== undefined) {
 			query.kind = {$in: activeFilter.kind};

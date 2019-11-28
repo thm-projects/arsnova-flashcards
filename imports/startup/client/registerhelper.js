@@ -123,6 +123,10 @@ Template.registerHelper('gotLecturerAuthorizedFilter', function () {
 	return FilterNavigation.gotLecturerAuthorizedFilter(FilterNavigation.getRouteId());
 });
 
+Template.registerHelper('gotUseCaseFilter', function () {
+	return FilterNavigation.gotUseCaseFilter(FilterNavigation.getRouteId());
+});
+
 Template.registerHelper('gotKindFilter', function () {
 	return FilterNavigation.gotKindFilter(FilterNavigation.getRouteId());
 });
@@ -406,6 +410,12 @@ Template.registerHelper("getBonusLabel", function (learningActive = false, learn
 Template.registerHelper("isBonusFinished", function (learningActive = false, learningEnd = new Date()) {
 	if (learningActive && learningEnd < new Date()) {
 		return true;
+	}
+});
+
+Template.registerHelper("getUseCaseLabel", function (cardset) {
+	if (cardset.lecturerAuthorized !== undefined && cardset.useCase !== undefined && cardset.useCase.enabled === true) {
+		return '<span class="label label-use-case" title="' + TAPi18n.__('label.useCase.long') + '">' + Icons.labels("useCase") + '</span>';
 	}
 });
 

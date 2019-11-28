@@ -1400,58 +1400,6 @@
     "sortMode0": "Zufällig",
     "sortMode1": "Alphanumerisch"
   },
-  "filter-pool": {
-    "wordcloud": "Community",
-    "wordcloudTrue": "von der Redaktion in die Themen-Wolke aufgenommen",
-    "wordcloudFalse": "von Studierenden für die Community freigegeben",
-    "wordcloudEveryting": "Alle",
-    "lecturerAuthorized": "Prüfung",
-    "lecturerAuthorizedTrue": "Zur Prüfungsvorbereitung geeignet",
-    "lecturerAuthorizedEveryting": "Alle",
-    "from": "Ab",
-    "noResults": "Keine Kartei oder Repetitorium ausgewählt oder Filtern liefert kein Ergebnis.",
-    "sort": "Sortieren ",
-    "reset": "Filter zurücksetzen",
-    "bonus": {
-      "title": "Bonus",
-      "all": "Alle",
-      "bonus": "Mit Lern-Bonus",
-      "transcriptBonus": "Mit Mitschreib-Bonus"
-    },
-    "author": {
-      "tooltip": {
-        "cardset": "Nach Autor/in \"__name__\" filtern",
-        "rep": "Nach Editor/in \"__name__\" filtern"
-      }
-    },
-    "rating": {
-      "title": "Status",
-      "all": "Alle",
-      "notRated": "Nicht bewertet",
-      "accepted": "Akzeptiert",
-      "denied": "Abgelehnt"
-    },
-    "stars": {
-      "title": "Stars",
-      "all": "All",
-      "1": ">= 1",
-      "2": ">= 2",
-      "3": ">= 3",
-      "4": ">= 4",
-      "5": "5"
-    },
-    "transcriptLecture": {
-      "title": "Vorlesungen",
-      "all": "Alle"
-    }
-  },
-  "infinite-scroll": {
-    "remainingShort": "__current__ von __total__",
-    "remainingTranscripts": "__current__ von __total__ Mitschriften",
-    "remainingTranscriptsBonus": "__current__ von __total__ Bonus-Mitschriften",
-    "remainingCardsets": "__current__ von __total__ Karteien",
-    "remainingReps": "__current__ von __total__ Repetitorien"
-  },
   "card": {
     "navigationDisabled": "Karte wird gewechselt…",
     "chooseCardType": "Wähle den Karteityp aus…",

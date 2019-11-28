@@ -72,6 +72,10 @@ export let FilterNavigation = class FilterNavigation {
 		return config.filtersWithLecturerAuthorized.includes(filterType);
 	}
 
+	static gotUseCaseFilter (filterType) {
+		return config.filtersWithUseCase.includes(filterType);
+	}
+
 	static gotKindFilter (filterType) {
 		return config.filtersWithKind.includes(filterType);
 	}
