@@ -778,7 +778,11 @@ Template.registerHelper("getTranscriptLectureNameMaxLength", function () {
 Template.registerHelper("getTranscriptSubmissions", function (data) {
 	if (Route.isMyBonusTranscripts() || Route.isTranscriptBonus()) {
 		let transcriptBonus = TranscriptBonus.findOne({card_id: data._id, user_id: data.owner}, {fields: {user_id: 1, cardset_id: 1}});
-		return TranscriptBonus.find({cardset_id: transcriptBonus.cardset_id, user_id: transcriptBonus.user_id}).count();
+		if (transcriptBonus !== undefined) {
+			return TranscriptBonus.find({cardset_id: transcriptBonus.cardset_id, user_id: transcriptBonus.user_id}).count();
+		} else {
+			return 0;
+		}
 	}
 	if (data.transcriptBonus !== undefined && data.transcriptBonus.stats !== undefined) {
 		return data.transcriptBonus.stats.submissions;
