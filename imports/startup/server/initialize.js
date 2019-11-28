@@ -376,7 +376,7 @@ function setupDatabaseIndex() {
 	Cards._ensureIndex({cardset_id: 1, subject: 1});
 	WebPushSubscriptions._ensureIndex({user_id: 1});
 	Ratings._ensureIndex({cardset_id: 1, user_id: 1});
-	Cardsets._ensureIndex({name: 1, owner: 1, kind: 1, shuffled: 1, cardType: 1, difficulty: 1, wordcloud: 1, learningActive: 1, 'useCase.enabled': 1});
+	Cardsets._ensureIndex({name: 1, owner: 1, kind: 1, shuffled: 1, cardType: 1, difficulty: 1, wordcloud: 1, learningActive: 1});
 	TranscriptBonus._ensureIndex({cardset_id: 1, user_id: 1});
 	Meteor.users._ensureIndex({"profile.birthname": 1, "profile.givenname": 1, "profile.name": 1});
 }
