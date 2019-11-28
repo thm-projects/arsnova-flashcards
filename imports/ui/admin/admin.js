@@ -2,7 +2,7 @@
 
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
-import {Notifications} from "../../api/notifications.js";
+import {Notifications} from "../../api/subscriptions/notifications";
 import {MainNavigation} from "../../api/mainNavigation";
 import "./admin.html";
 import "./dashboard/dashboard.js";

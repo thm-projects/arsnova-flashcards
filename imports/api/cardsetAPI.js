@@ -1,14 +1,12 @@
 import {Meteor} from "meteor/meteor";
 import {Random} from 'meteor/random';
-import {Mongo} from "meteor/mongo";
-import {SimpleSchema} from "meteor/aldeed:simple-schema";
+import {APIAccess} from "./subscriptions/apiAccess";
 import {JsonRoutes} from "meteor/simple:json-routes";
-import {Cards} from "./cards.js";
-import {Cardsets} from "./cardsets.js";
+import {Cards} from "./subscriptions/cards.js";
+import {Cardsets} from "./subscriptions/cardsets.js";
 import {check} from "meteor/check";
 import {UserPermissions} from "./permissions";
 
-export const APIAccess = new Mongo.Collection("apiAccess");
 
 /*
 * function to automatically generate the mongo modifier for an update.
@@ -83,17 +81,6 @@ if (Meteor.isServer) {
 		}
 	});
 }
-
-var APIAccessSchema = new SimpleSchema({
-	cardset_id: {
-		type: String
-	},
-	token: {
-		type: String
-	}
-});
-
-APIAccess.attachSchema(APIAccessSchema);
 
 Meteor.methods({
 	/**

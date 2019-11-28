@@ -3,9 +3,10 @@ import {FilterNavigation} from "./filterNavigation";
 import {Session} from "meteor/session";
 import {Route} from "./route";
 import {WordcloudCanvas} from "./wordcloudCanvas";
-import {Leitner, Wozniak} from "./learned";
+import {Leitner} from "./subscriptions/leitner";
+import {Wozniak} from "./subscriptions/wozniak";
 import * as config from "../config/filter.js";
-import {TranscriptBonus} from "./transcriptBonus";
+import {TranscriptBonus} from "./subscriptions/transcriptBonus";
 
 Session.setDefault('maxItemsCounter', config.itemStartingValue);
 Session.setDefault('poolFilter', undefined);
@@ -168,6 +169,13 @@ export let Filter = class Filter {
 						filter.rating = Number(1);
 					}
 					break;
+				case "useCase": {
+					if (content === undefined) {
+						delete filter['useCase.enabled'];
+					} else {
+						filter['useCase.enabled'] = Boolean(content);
+					}
+				}
 			}
 		}
 		switch (FilterNavigation.getRouteId()) {
@@ -321,6 +329,9 @@ export let Filter = class Filter {
 		}
 		if (FilterNavigation.gotLecturerAuthorizedFilter(FilterNavigation.getRouteId()) && activeFilter.lecturerAuthorized !== undefined) {
 			query.lecturerAuthorized = activeFilter.lecturerAuthorized;
+		}
+		if (FilterNavigation.gotUseCaseFilter(FilterNavigation.getRouteId()) && activeFilter['useCase.enabled'] !== undefined) {
+			query['useCase.enabled'] = activeFilter['useCase.enabled'];
 		}
 		if (FilterNavigation.gotKindFilter(FilterNavigation.getRouteId()) && activeFilter.kind !== undefined) {
 			query.kind = {$in: activeFilter.kind};

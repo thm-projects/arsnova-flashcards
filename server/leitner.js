@@ -1,6 +1,7 @@
 import {Meteor} from "meteor/meteor";
-import {Leitner, Workload} from "../imports/api/learned";
-import {Cardsets} from "../imports/api/cardsets";
+import {Leitner} from "../imports/api/subscriptions/leitner";
+import {Workload} from "../imports/api/subscriptions/workload";
+import {Cardsets} from "../imports/api/subscriptions/cardsets";
 import {MailNotifier} from "./sendmail.js";
 import {WebNotifier} from "./sendwebpush.js";
 import {Bonus} from "../imports/api/bonus";

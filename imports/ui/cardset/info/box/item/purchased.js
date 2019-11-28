@@ -1,7 +1,7 @@
 //------------------------ IMPORTS
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
-import {Paid} from "../../../../../api/paid";
+import {Paid} from "../../../../../api/subscriptions/paid";
 import "./purchased.html";
 
 /*

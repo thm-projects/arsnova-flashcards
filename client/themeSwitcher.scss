@@ -2840,6 +2840,14 @@ $themes: (
       color: $card_type_text !important;
     }
 
+    .label-use-case {
+      background-color: $use_cases_button_background !important;
+      color: $use_cases_button_icon !important;
+      i:hover {
+        color: $use_cases_button_icon !important;
+      }
+    }
+
     .label-lecturer-authorized {
       background-color: $lecturer_authorized_background !important;
       color: $lecturer_authorized_text !important;

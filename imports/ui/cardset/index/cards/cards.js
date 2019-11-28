@@ -1,10 +1,10 @@
 //------------------------ IMPORTS
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
-import {Cards} from "../../../../api/cards";
+import {Cards} from "../../../../api/subscriptions/cards";
 import {CardVisuals} from "../../../../api/cardVisuals";
 import {CardType} from "../../../../api/cardTypes";
-import {Cardsets} from "../../../../api/cardsets";
+import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {Route} from "../../../../api/route";
 import {CardNavigation} from "../../../../api/cardNavigation";
 import "./cards.html";

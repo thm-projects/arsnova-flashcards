@@ -1,5 +1,5 @@
 import WordCloud from "wordcloud";
-import {Cardsets} from "./cardsets.js";
+import {Cardsets} from "./subscriptions/cardsets.js";
 import {Filter} from "./filter.js";
 import {Session} from "meteor/session";
 import * as fakeWordCloud from "../../public/fakeStatistics/wordcloud";

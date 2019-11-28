@@ -1,7 +1,7 @@
 //------------------------ IMPORTS
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Cards} from "../../../../api/cards";
+import {Cards} from "../../../../api/subscriptions/cards";
 import {CardType} from "../../../../api/cardTypes";
 import "./chooseFlashcards.html";
 

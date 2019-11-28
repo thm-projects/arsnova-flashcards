@@ -1,0 +1,37 @@
+{
+  "modal-admin-dialog": {
+    "cardsetTitle": "Admin-Einstellungen für Kartei: __cardset__",
+    "repetitoriumTitle": "Admin-Einstellungen für Repetitorium: __cardset__",
+    "owner": {
+      "title": "__owner__ verwalten",
+      "current": "Derzeitiger __owner__",
+      "id": "__owner__ - ID",
+      "button": "__owner__ wechseln",
+      "message": {
+        "success": "__owner__ wurde erfolgreich gewechselt",
+        "failure": "__owner__ nicht gefunden"
+      }
+    },
+    "wordcloud": {
+      "title": "Wortwolke-Einstellungen",
+      "button": {
+        "add": "Hinzufügen",
+        "remove": "Entfernen"
+      }
+    },
+    "lecturerAuthorized": {
+      "title": "Zur Prüfungsvorbereitung geeignet-Einstellungen",
+      "button": {
+        "add": "Hinzufügen",
+        "remove": "Entfernen"
+      }
+    },
+    "useCases": {
+      "title": "Hauptziele \"Use Cases\"-Einstellungen",
+      "button": {
+        "add": "Hinzufügen",
+        "remove": "Entfernen"
+      }
+    }
+  }
+}

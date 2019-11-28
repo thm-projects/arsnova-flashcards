@@ -1,6 +1,6 @@
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Cards} from "../../../api/cards";
+import {Cards} from "../../../api/subscriptions/cards";
 import {Dictionary} from "../../../api/dictionary";
 import "./deeplTranslation.html";
 import {Route} from "../../../api/route";

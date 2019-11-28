@@ -1,6 +1,7 @@
 import "./transcriptRating.html";
 import {Template} from "meteor/templating";
-import {TranscriptBonus, TranscriptBonusList} from "../../../../../api/transcriptBonus";
+import {TranscriptBonus} from "../../../../../api/subscriptions/transcriptBonus";
+import {TranscriptBonusList} from "../../../../../api/transcriptBonus";
 
 /*
  * ############################################################################
@@ -10,12 +11,20 @@ import {TranscriptBonus, TranscriptBonusList} from "../../../../../api/transcrip
 
 Template.filterIndexItemBottomTranscriptRating.helpers({
 	getBonusTranscriptRating: function (id) {
-		let rating = TranscriptBonus.findOne({card_id: id}).rating;
-		return TranscriptBonusList.getBonusTranscriptRating(rating);
+		let transcriptBonus = TranscriptBonus.findOne({card_id: id});
+		if (transcriptBonus !== undefined) {
+			return TranscriptBonusList.getBonusTranscriptRating(transcriptBonus.rating);
+		} else {
+			return 0;
+		}
 	},
 	getBonusTranscriptTooltip: function (id) {
-		let rating = TranscriptBonus.findOne({card_id: id}).rating;
-		return TranscriptBonusList.getBonusTranscriptTooltip(rating);
+		let transcriptBonus = TranscriptBonus.findOne({card_id: id});
+		if (transcriptBonus !== undefined) {
+			return TranscriptBonusList.getBonusTranscriptTooltip(transcriptBonus.rating);
+		} else {
+			return 0;
+		}
 	},
 	getBonusTranscriptRatingNumber: function (id) {
 		return TranscriptBonus.findOne({card_id: id}).rating;

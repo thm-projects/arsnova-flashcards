@@ -1,8 +1,8 @@
 import {Meteor} from "meteor/meteor";
-import {Cardsets} from "../../api/cardsets.js";
-import {Cards} from "../../api/cards.js";
-import {CollegesCourses} from "../../api/colleges_courses.js";
-import {Workload} from "../../api/learned.js";
+import {Cardsets} from "../../api/subscriptions/cardsets.js";
+import {Cards} from "../../api/subscriptions/cards.js";
+import {CollegesCourses} from "../../api/subscriptions/collegesCourses.js";
+import {Workload} from "../../api/subscriptions/workload";
 import {Session} from "meteor/session";
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import {CardType} from "../../api/cardTypes";
@@ -28,7 +28,8 @@ import  * as FilterConfig from "../../config/filter.js";
 import {MainNavigation} from "../../api/mainNavigation";
 import {BarfyStarsConfig} from "../../api/barfyStars.js";
 import {Utilities} from "../../api/utilities";
-import {TranscriptBonus, TranscriptBonusList} from "../../api/transcriptBonus";
+import {TranscriptBonus} from "../../api/subscriptions/transcriptBonus";
+import {TranscriptBonusList} from "../../api/transcriptBonus";
 import {ServerSettings} from "../../api/settings";
 import {CardsetVisuals} from "../../api/cardsetVisuals";
 
@@ -120,6 +121,10 @@ Template.registerHelper('gotWordcloudFilter', function () {
 
 Template.registerHelper('gotLecturerAuthorizedFilter', function () {
 	return FilterNavigation.gotLecturerAuthorizedFilter(FilterNavigation.getRouteId());
+});
+
+Template.registerHelper('gotUseCaseFilter', function () {
+	return FilterNavigation.gotUseCaseFilter(FilterNavigation.getRouteId());
 });
 
 Template.registerHelper('gotKindFilter', function () {
@@ -405,6 +410,12 @@ Template.registerHelper("getBonusLabel", function (learningActive = false, learn
 Template.registerHelper("isBonusFinished", function (learningActive = false, learningEnd = new Date()) {
 	if (learningActive && learningEnd < new Date()) {
 		return true;
+	}
+});
+
+Template.registerHelper("getUseCaseLabel", function (cardset) {
+	if (cardset.lecturerAuthorized !== undefined && cardset.useCase !== undefined && cardset.useCase.enabled === true) {
+		return '<span class="label label-use-case" title="' + TAPi18n.__('label.useCase.long') + '">' + Icons.labels("useCase") + '</span>';
 	}
 });
 
@@ -767,7 +778,11 @@ Template.registerHelper("getTranscriptLectureNameMaxLength", function () {
 Template.registerHelper("getTranscriptSubmissions", function (data) {
 	if (Route.isMyBonusTranscripts() || Route.isTranscriptBonus()) {
 		let transcriptBonus = TranscriptBonus.findOne({card_id: data._id, user_id: data.owner}, {fields: {user_id: 1, cardset_id: 1}});
-		return TranscriptBonus.find({cardset_id: transcriptBonus.cardset_id, user_id: transcriptBonus.user_id}).count();
+		if (transcriptBonus !== undefined) {
+			return TranscriptBonus.find({cardset_id: transcriptBonus.cardset_id, user_id: transcriptBonus.user_id}).count();
+		} else {
+			return 0;
+		}
 	}
 	if (data.transcriptBonus !== undefined && data.transcriptBonus.stats !== undefined) {
 		return data.transcriptBonus.stats.submissions;

@@ -1,5 +1,5 @@
-import {Cards} from "../../api/cards.js";
-import {Cardsets} from "../../api/cardsets.js";
+import {Cards} from "../../api/subscriptions/cards.js";
+import {Cardsets} from "../../api/subscriptions/cardsets.js";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {CardVisuals} from "../../api/cardVisuals.js";
@@ -12,7 +12,8 @@ import {MainNavigation} from "../../api/mainNavigation";
 import {ServerStyle} from "../../api/styles.js";
 import {LoginTasks} from "../../api/login";
 import {AspectRatio} from "../../api/aspectRatio.js";
-import {Leitner, Wozniak} from "../../api/learned.js";
+import {Leitner} from "../../api/subscriptions/leitner";
+import {Wozniak} from "../../api/subscriptions/wozniak";
 
 let loadingScreenTemplate = 'loadingScreen';
 

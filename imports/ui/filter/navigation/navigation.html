@@ -26,6 +26,9 @@
         {{#if gotLecturerAuthorizedFilter}}
             {{> filterItemFilterLecturerAuthorized}}
         {{/if}}
+        {{#if gotUseCaseFilter}}
+                {{> filterItemFilterUseCase}}
+        {{/if}}
         {{#if gotBonusFilter}}
             {{> filterItemFilterBonus}}
         {{/if}}
@@ -62,6 +65,9 @@
     {{/if}}
     {{#if gotLecturerAuthorizedFilter}}
         {{> filterItemFilterLecturerAuthorized}}
+    {{/if}}
+    {{#if gotUseCaseFilter}}
+        {{> filterItemFilterUseCase}}
     {{/if}}
     {{#if gotBonusFilter}}
         {{> filterItemFilterBonus}}

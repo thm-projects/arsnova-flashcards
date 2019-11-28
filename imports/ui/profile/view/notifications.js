@@ -2,8 +2,8 @@
 
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
-import {Cardsets} from "../../../api/cardsets";
-import {Notifications} from "../../../api/notifications";
+import {Cardsets} from "../../../api/subscriptions/cardsets";
+import {Notifications} from "../../../api/subscriptions/notifications";
 import "./notifications.html";
 
 /*

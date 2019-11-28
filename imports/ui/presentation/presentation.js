@@ -4,15 +4,15 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./presentation.html";
 import {CardNavigation} from "../../api/cardNavigation";
-import {Cardsets} from "../../api/cardsets";
-import {Cards} from "../../api/cards";
+import {Cardsets} from "../../api/subscriptions/cardsets";
+import {Cards} from "../../api/subscriptions/cards";
 import {PomodoroTimer} from "../../api/pomodoroTimer";
 import {Route} from "../../api/route";
 import {MainNavigation} from "../../api/mainNavigation";
 import {NavigatorCheck} from "../../api/navigatorCheck";
 import {FirstTimeVisit} from "../../api/firstTimeVisit";
 import {AspectRatio} from "../../api/aspectRatio";
-import {TranscriptBonus} from "../../api/transcriptBonus";
+import {TranscriptBonus} from "../../api/subscriptions/transcriptBonus";
 import {CardVisuals} from "../../api/cardVisuals";
 
 Session.set('animationPlaying', false);

@@ -1,7 +1,7 @@
 import "./cardTypesList.html";
 import {Template} from "meteor/templating";
 import {CardType} from "../../api/cardTypes";
-import {Cardsets} from "../../api/cardsets";
+import {Cardsets} from "../../api/subscriptions/cardsets";
 import {Filter} from "../../api/filter";
 import {Session} from "meteor/session";
 import {UserPermissions} from "../../api/permissions";

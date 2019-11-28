@@ -1,6 +1,7 @@
-import {Cardsets} from "../../../../api/cardsets";
+import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {Session} from "meteor/session";
-import {TranscriptBonus, TranscriptBonusList} from "../../../../api/transcriptBonus";
+import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
+import {TranscriptBonusList} from "../../../../api/transcriptBonus";
 import {Route} from "../../../../api/route";
 import {Template} from "meteor/templating";
 import {CardType} from "../../../../api/cardTypes";

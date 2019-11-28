@@ -1,0 +1,35 @@
+<template name="cardsetFormAdmin">
+    <div class="modal fade" id="setCardsetFormAdminModal" tabindex="-1" role="dialog"
+         aria-labelledby="setCardsetFormAdminModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-icon">
+                        {{#if isRepetitorienFilterIndex}}
+                            {{{getCardsetIcons true}}}
+                        {{else}}
+                            {{{getCardsetIcons false}}}
+                        {{/if}}
+                    </span>
+                    {{> mainModalItemCloseIcon}}
+                    <h4 id="setCardsetFormAdminModalTitle" class="modal-title">
+                        {{#if isActiveRoute regex='alldecks'}}
+                            {{_ "modal-admin-dialog.cardsetTitle" cardset=getCardsetName}}
+                        {{else}}
+                            {{_ "modal-admin-dialog.repetitoriumTitle" cardset=getCardsetName}}
+                        {{/if}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel panel-default">
+                        {{> cardsetFormAdminItemOwner}}
+                        {{> cardsetFormAdminItemWordcloud}}
+                        {{> cardsetFormAdminItemLecturerAuthorized}}
+                        {{> cardsetFormAdminItemUseCases}}
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

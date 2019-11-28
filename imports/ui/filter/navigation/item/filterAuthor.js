@@ -2,10 +2,10 @@ import "./filterAuthor.html";
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
 import {Filter} from "../../../../api/filter";
-import {Cardsets} from "../../../../api/cardsets";
+import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {getAuthorName} from "../../../../api/userdata";
 import {Route} from "../../../../api/route";
-import {TranscriptBonus} from "../../../../api/transcriptBonus";
+import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
 
 /*
  * ############################################################################

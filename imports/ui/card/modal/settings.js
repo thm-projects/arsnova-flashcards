@@ -2,7 +2,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Route} from "../../../api/route";
 import {CardType} from "../../../api/cardTypes";
-import {Cardsets} from "../../../api/cardsets";
+import {Cardsets} from "../../../api/subscriptions/cardsets";
 import {CardNavigation} from "../../../api/cardNavigation";
 import "./settings.html";
 
