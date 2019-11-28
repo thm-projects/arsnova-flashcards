@@ -13,6 +13,8 @@ import {MainNavigation} from "../../../api/mainNavigation";
 Session.setDefault('useCaseType', 0);
 Session.setDefault('useCaseSelectedCardType', -1);
 Session.setDefault('useCasesModalOpen', false);
+Session.setDefault('useCaseCardsets', undefined);
+Session.setDefault('useCaseTarget', undefined);
 
 /*
  * ############################################################################
@@ -66,6 +68,11 @@ Template.useCasesModal.onRendered(function () {
 			case 8:
 				Router.go('transcriptsBonus');
 				break;
+			case 9:
+				Router.go('cardsetdetailsid', {
+					_id: Session.get('useCaseTarget')
+				});
+				break;
 		}
 	});
 	$('#useCasesModal').on('show.bs.modal', function () {
@@ -73,8 +80,14 @@ Template.useCasesModal.onRendered(function () {
 		Session.set('isNewCardset', true);
 		Session.set('useCaseType', 0);
 		Session.set('useCaseSelectedCardType', -1);
+		Session.set('useCaseTarget', undefined);
 		$('.setCardTypeUseCase').html(TAPi18n.__('card.chooseCardType'));
 		$('.setCardTypeUseCase').val(-1);
+		Meteor.call('getUseCaseCardsets',function (error, result) {
+			if (result) {
+				Session.set('useCaseCardsets', result);
+			}
+		});
 	});
 });
 

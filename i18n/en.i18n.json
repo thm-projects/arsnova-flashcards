@@ -626,41 +626,6 @@
     "browseCardset": "Kartei auswählen",
     "browseCourse": "Repetitorium auswählen"
   },
-  "useCases": {
-    "modal": {
-      "title": "Use Cases",
-      "text": "__greeting__, __firstName__, what would you like to do?",
-      "greeting": {
-        "morning": "Good morning",
-        "afternoon": "Good afternoon",
-        "evening": "Good evening"
-      },
-      "noName": "User",
-      "description": {
-        "personal": {
-          "create": "I want to create a card index with cards of the type:",
-          "cardsets": "I want to see all my card indexes.",
-          "transcripts": "I want to see my transcripts.",
-          "repetitorien": "Ich will Reps verwalten."
-        },
-        "pool": "I want to find a card index on a specific topic.",
-        "repetitorium": "I want to find a Repetitorium (= collection of card indexes) on a specific topic.",
-        "workload": "I want to see my learning workload."
-      },
-      "button": {
-        "cancel": "Thanks, I know my way around",
-        "personal": {
-          "create": "Go",
-          "cardsets": "Go",
-          "transcripts": "Go",
-          "repetitorien": "Go"
-        },
-        "pool": "Go",
-        "repetitorium": "Go",
-        "workload": "Go"
-      }
-    }
-  },
   "cardsetForm": {
     "sortType": {
       "label": "Sortieroption für den Inhalt der Themen:",

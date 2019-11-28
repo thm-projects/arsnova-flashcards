@@ -28,6 +28,10 @@ export let Icons = class Icons {
 				return config.useCasesIcons.myTranscripts;
 			case "myRepositories":
 				return config.useCasesIcons.myRepositories;
+			case "specialCardset":
+				return config.useCasesIcons.specialCardset;
+			case "specialRepetitorium":
+				return config.useCasesIcons.specialRepetitorium;
 		}
 	}
 

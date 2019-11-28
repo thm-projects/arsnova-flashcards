@@ -28,5 +28,12 @@ Meteor.methods({
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
+	},
+
+	getUseCaseCardsets: function () {
+		return Cardsets.find({'useCase.enabled': true}, {
+			sort: {'useCase.priority': 1, name: 1},
+			fields: {description: 0}
+		}).fetch();
 	}
 });

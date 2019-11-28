@@ -624,39 +624,6 @@
     "browseCardset": "Kartei auswählen",
     "browseCourse": "Repetitorium auswählen"
   },
-  "useCases": {
-    "modal": {
-      "text": "__greeting__ __firstName__, wohin geht's?",
-      "greeting": {
-        "morning": "Moin",
-        "afternoon": "Gude",
-        "evening": "’n Abend"
-      },
-      "noName": "Digger",
-      "description": {
-        "personal": {
-          "create": "Ich will eine Kartei anlegen – 'ne Kartenbox.",
-          "cardsets": "Ich will zu meinen Kartensätzen.",
-          "transcripts": "Ich will zu meinen Mitschriften",
-          "repetitorien": "Ich will zu meinen Repetitorien."
-        },
-        "pool": "Ich suche Kartensätze zu einem Thema.",
-        "repetitorium": "Ich suche ein Repetitorium.",
-        "workload": "Ich will mein Lernpensum erfüllen."
-      },
-      "button": {
-        "cancel": "Danke, ich kenne mich aus.",
-        "personal": {
-          "cardsets": "Bring mich zu meinen Karteien!",
-          "transcripts": "Bring mich zu meinen Mitschriften!",
-          "repetitorien": "Bring mich zu meinen Reps!"
-        },
-        "pool": "Bring mich zur Karteien-Suche!",
-        "repetitorium": "Bring mich zur Repetitorien-Suche!",
-        "workload": "Zeig mir, was heute zu lernen ist!"
-      }
-    }
-  },
   "cardsetForm": {
     "sortType": {
       "label": "Sortieroption für Karten desselben Themas",
