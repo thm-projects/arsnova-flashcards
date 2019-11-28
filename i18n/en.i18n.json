@@ -626,69 +626,6 @@
     "browseCardset": "Kartei auswählen",
     "browseCourse": "Repetitorium auswählen"
   },
-  "modal-admin-dialog": {
-    "cardsetTitle": "Admin-Einstellungen für Kartei: __cardset__",
-    "repetitoriumTitle": "Admin-Einstellungen für Repetitorium: __cardset__",
-    "owner": {
-      "title": "__owner__ verwalten",
-      "current": "Derzeitiger __owner__",
-      "id": "__owner__ - ID",
-      "button": "__owner__ wechseln",
-      "message": {
-        "success": "__owner__ wurde erfolgreich gewechselt",
-        "failure": "__owner__ nicht gefunden"
-      }
-    },
-    "wordcloud": {
-      "title": "Wortwolke-Einstellungen",
-      "button": {
-        "add": "Hinzufügen",
-        "remove": "Entfernen"
-      }
-    },
-    "lecturerAuthorized": {
-      "title": "Zur Prüfungsvorbereitung geeignet-Einstellungen",
-      "button": {
-        "add": "Hinzufügen",
-        "remove": "Entfernen"
-      }
-    }
-  },
-  "useCases": {
-    "modal": {
-      "title": "Use Cases",
-      "text": "__greeting__, __firstName__, what would you like to do?",
-      "greeting": {
-        "morning": "Good morning",
-        "afternoon": "Good afternoon",
-        "evening": "Good evening"
-      },
-      "noName": "User",
-      "description": {
-        "personal": {
-          "create": "I want to create a card index with cards of the type:",
-          "cardsets": "I want to see all my card indexes.",
-          "transcripts": "I want to see my transcripts.",
-          "repetitorien": "Ich will Reps verwalten."
-        },
-        "pool": "I want to find a card index on a specific topic.",
-        "repetitorium": "I want to find a Repetitorium (= collection of card indexes) on a specific topic.",
-        "workload": "I want to see my learning workload."
-      },
-      "button": {
-        "cancel": "Thanks, I know my way around",
-        "personal": {
-          "create": "Go",
-          "cardsets": "Go",
-          "transcripts": "Go",
-          "repetitorien": "Go"
-        },
-        "pool": "Go",
-        "repetitorium": "Go",
-        "workload": "Go"
-      }
-    }
-  },
   "cardsetForm": {
     "sortType": {
       "label": "Sortieroption für den Inhalt der Themen:",
@@ -1427,58 +1364,6 @@
     "sortText": "Sortiermodus",
     "sortMode0": "Zufällig",
     "sortMode1": "Alphanumerisch"
-  },
-  "filter-pool": {
-    "wordcloud": "Community",
-    "wordcloudTrue": "von der Redaktion in die Themen-Wolke aufgenommen",
-    "wordcloudFalse": "von Studierenden für die Community freigegeben",
-    "wordcloudEveryting": "Alle",
-    "lecturerAuthorized": "Prüfung",
-    "lecturerAuthorizedTrue": "Zur Prüfungsvorbereitung geeignet",
-    "lecturerAuthorizedEveryting": "Alle",
-    "from": "Ab",
-    "noResults": "Keine Kartei oder Repetitorium ausgewählt oder Filtern liefert kein Ergebnis.",
-    "sort": "Sortieren ",
-    "reset": "Filter zurücksetzen",
-    "bonus": {
-      "title": "Bonus",
-      "all": "Alle",
-      "bonus": "Mit Lern-Bonus",
-      "transcriptBonus": "Mit Mitschreib-Bonus"
-    },
-    "author": {
-      "tooltip": {
-        "cardset": "Nach Autor/in \"__name__\" filtern",
-        "rep": "Nach Editor/in \"__name__\" filtern"
-      }
-    },
-    "rating": {
-      "title": "Status",
-      "all": "Alle",
-      "notRated": "Nicht bewertet",
-      "accepted": "Akzeptiert",
-      "denied": "Abgelehnt"
-    },
-    "stars": {
-      "title": "Stars",
-      "all": "All",
-      "1": ">= 1",
-      "2": ">= 2",
-      "3": ">= 3",
-      "4": ">= 4",
-      "5": "5"
-    },
-    "transcriptLecture": {
-      "title": "Vorlesungen",
-      "all": "Alle"
-    }
-  },
-  "infinite-scroll": {
-    "remainingShort": "__current__ von __total__",
-    "remainingTranscripts": "__current__ von __total__ Mitschriften",
-    "remainingTranscriptsBonus": "__current__ von __total__ Bonus-Mitschriften",
-    "remainingCardsets": "__current__ von __total__ Karteien",
-    "remainingReps": "__current__ von __total__ Repetitorien"
   },
   "card": {
     "navigationDisabled": "Karte wird gewechselt…",

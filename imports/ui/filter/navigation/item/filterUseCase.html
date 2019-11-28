@@ -1,0 +1,29 @@
+<template name="filterItemFilterUseCase">
+    <li class="dropdown cards-filter-element">
+        <a href="#" class="dropdown-toggle useCasedBtn useCaseFilter cards-filter-element"
+           data-toggle="dropdown"
+           role="button"
+           aria-haspopup="true" aria-expanded="false">
+            {{_ "filter-pool.useCase.title"}}
+            {{#if hasUseCaseFilter}}
+                <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+            {{/if}}
+        </a>
+        <ul class="dropdown-menu cards-filter-element">
+            <li class="cards-filter-element">
+                <a href="#" class="noFilterUseCase cards-filter-element">{{_
+                        "filter-pool.useCase.all"}}</a>
+            </li>
+            {{#if gotUseCaseCardsets}}
+                <li class="cards-filter-element">
+                    <a href="#" class="filterUseCase cards-filter-element"
+                       data-id="true">{{_ "filter-pool.useCase.only"}}
+                        {{#if resultsFilterUseCase true}}
+                            <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                        {{/if}}
+                    </a>
+                </li>
+            {{/if}}
+        </ul>
+    </li>
+</template>

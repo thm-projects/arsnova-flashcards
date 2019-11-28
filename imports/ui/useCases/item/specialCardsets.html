@@ -1,0 +1,26 @@
+<template name="useCasesItemSpecialCardsets">
+    {{#if gotSpecialCardset}}
+        {{#each getSpecialCardset}}
+            <tr>
+                <td>
+                    {{this.name}}<br>
+                    {{> cardsetLabels}}
+                    <div class="visible-xs">
+                        {{> useCasesItemSpecialCardsetsButton}}
+                    </div>
+                </td>
+                <td class="hidden-xs">
+                    {{> useCasesItemSpecialCardsetsButton}}
+                </td>
+            </tr>
+        {{/each}}
+    {{/if}}
+</template>
+
+<template name="useCasesItemSpecialCardsetsButton">
+    <button class="btn btn-info btn-raised specialCardset" data-id="{{this._id}}" type="button" data-dismiss="modal"
+            aria-hidden="true"><span class="flex-content">&nbsp;{{#if this.shuffled}}
+        {{{getUseCasesIcon "specialRepetitorium"}}}{{_ "useCases.modal.button.specialCardsets.repetitorium"}}{{else}}
+        {{{getUseCasesIcon "specialCardset"}}}{{_ "useCases.modal.button.specialCardsets.cardset"}}{{/if}}</span>
+    </button>
+</template>

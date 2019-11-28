@@ -1,0 +1,25 @@
+<template name="cardsetFormAdminItemOwner">
+    <div class="panel-heading">{{_ "modal-admin-dialog.owner.title" owner=getAuthorLabel}}</div>
+    <div class="panel-body">
+        <label id="editCardsetUserLabelAdmin">{{_ "modal-admin-dialog.owner.current"
+                                                  owner=getAuthorLabel}}:</label>
+        {{#if userExists}}
+            <a href="/admin/user/{{getOwnerId}}" target="_blank">{{getAuthorName getOwnerId}}</a>
+        {{else}}
+            {{username}} ({{_ "admin.deleted"}})
+        {{/if}}
+        <br>
+        <label id="cardsetOwnerAdminLabel">{{_ "modal-admin-dialog.owner.id"
+                                               owner=getAuthorLabel}}:</label>
+        {{#if userExists}}
+            <input class="form-control" type="text" id="editOwnerAdmin"
+                   value="{{getOwnerId}}">
+        {{else}}
+            {{username}} ({{_ "admin.deleted"}})
+        {{/if}}
+        <button id="cardsetChangeOwnerAdmin" class="btn btn-raised btn-success">
+            {{_ "modal-admin-dialog.owner.button" owner=getAuthorLabel}}</button>
+        <label id="cardsetChangeOwnerAdminLabel" for="cardsetChangeOwnerAdmin"
+               style="visibility: hidden;"></label>
+    </div>
+</template>

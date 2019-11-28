@@ -83,7 +83,9 @@ let useCasesIcons = {
 	"myRepositories": "<i class='fas fa-archive'></i>&nbsp;<i class='fas fa-archive'></i>&nbsp;<i class='fas fa-archive'></i>&nbsp;<i class='fas fa-ellipsis-h'></i>&nbsp;",
 	"myTranscripts": "<i class='fas fa-clipboard'></i>&nbsp;",
 	"create": "<i class='fas fa-archive'></i>&nbsp;<i class='fas fa-plus'></i>&nbsp;",
-	"search": "<i class='fa fas fa-search'></i>&nbsp;"
+	"search": "<i class='fa fas fa-search'></i>&nbsp;",
+	"specialCardset": "<i class='fas fa-archive'></i>&nbsp;",
+	"specialRepetitorium":  "<i class='fas fa-archive'></i>&nbsp;<i class='fas fa-archive'></i>&nbsp;<i class='fas fa-archive'></i>&nbsp;<i class='fas fa-ellipsis-h'></i>&nbsp;"
 };
 
 let transcriptIcons = {

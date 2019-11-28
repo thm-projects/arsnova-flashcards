@@ -1,0 +1,10 @@
+{
+  "label": {
+    "lecturerAuthorized": {
+      "long": "Von der Lehrperson autorisierte Kurs-Kartei"
+    },
+    "useCase": {
+      "long": "Bestandteil der Hauptziele \"Use Cases\""
+    }
+  }
+}
