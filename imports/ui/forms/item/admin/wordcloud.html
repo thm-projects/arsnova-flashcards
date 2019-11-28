@@ -1,0 +1,13 @@
+<template name="cardsetFormAdminItemWordcloud">
+    <div class="panel-heading" id="cardsetWordcloud">{{_
+            "modal-admin-dialog.wordcloud.title"}}</div>
+    <div class="panel-body">
+        {{#if isInWordcloud}}
+            <button id="cardsetRemoveFromWordcloude" class="btn btn-raised btn-danger">
+                {{_ "modal-admin-dialog.wordcloud.button.remove"}}</button>
+        {{else}}
+            <button id="cardsetAddToWordcloude" class="btn btn-raised btn-success">
+                {{_ "modal-admin-dialog.wordcloud.button.add"}}</button>
+        {{/if}}
+    </div>
+</template>
