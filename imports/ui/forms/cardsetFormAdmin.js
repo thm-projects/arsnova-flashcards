@@ -1,6 +1,7 @@
 import "./cardsetFormAdmin.html";
 import "./item/admin/lecturerAuthorized.js";
 import "./item/admin/owner.js";
+import "./item/admin/useCases.js";
 import "./item/admin/wordcloud.js";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";

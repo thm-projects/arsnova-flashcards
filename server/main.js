@@ -18,6 +18,7 @@ import "../imports/api/subscriptions/transcriptBonus.js";
 import "../imports/api/subscriptions/users.js";
 import "../imports/api/subscriptions/workload.js";
 import "../imports/api/subscriptions/wozniak.js";
+import "../imports/api/meteorMethods/useCases.js";
 import "../imports/api/adminSettings.js";
 import "../imports/api/allusers.js";
 import "../imports/api/billing.js";

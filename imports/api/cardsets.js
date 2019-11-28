@@ -237,7 +237,11 @@ Meteor.methods({
 			noDifficulty: !CardType.gotDifficultyLevel(cardType),
 			sortType: sortType,
 			gotWorkload: gotWorkload,
-			lastEditor: Meteor.userId()
+			lastEditor: Meteor.userId(),
+			useCase: {
+				enabled: false,
+				priority: 0
+			}
 		}, {trimStrings: false});
 		Meteor.call('updateCardsetCount', Meteor.userId());
 		return cardset;

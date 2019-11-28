@@ -351,6 +351,15 @@ const CardsetsSchema = new SimpleSchema({
 	lastEditor: {
 		type: String,
 		optional: true
+	},
+	useCase: {
+		type: Object
+	},
+	'useCase.enabled': {
+		type: Boolean
+	},
+	'useCase.priority': {
+		type: Number
 	}
 });
 

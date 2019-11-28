@@ -65,7 +65,11 @@ var initTestNotificationsCardset = function () {
 			"cardGroups": [],
 			"cardType": 0,
 			"difficulty": 1,
-			"noDifficulty": CardType.gotDifficultyLevel(1)
+			"noDifficulty": CardType.gotDifficultyLevel(1),
+			"useCase": {
+				"enabled": false,
+				"priority": 0
+			}
 		}
 	];
 };
@@ -372,7 +376,7 @@ function setupDatabaseIndex() {
 	Cards._ensureIndex({cardset_id: 1, subject: 1});
 	WebPushSubscriptions._ensureIndex({user_id: 1});
 	Ratings._ensureIndex({cardset_id: 1, user_id: 1});
-	Cardsets._ensureIndex({name: 1, owner: 1, kind: 1, shuffled: 1, cardType: 1, difficulty: 1, wordcloud: 1, learningActive: 1});
+	Cardsets._ensureIndex({name: 1, owner: 1, kind: 1, shuffled: 1, cardType: 1, difficulty: 1, wordcloud: 1, learningActive: 1, 'useCase.enabled': 1});
 	TranscriptBonus._ensureIndex({cardset_id: 1, user_id: 1});
 	Meteor.users._ensureIndex({"profile.birthname": 1, "profile.givenname": 1, "profile.name": 1});
 }
@@ -611,6 +615,22 @@ Meteor.startup(function () {
 				$set: {
 					shuffled: false,
 					cardGroups: [""]
+				}
+			}
+		);
+	}
+
+	cardsets = Cardsets.find({useCase: {$exists: false}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					useCase: {
+						enabled: false,
+						priority: 0
+					}
 				}
 			}
 		);
