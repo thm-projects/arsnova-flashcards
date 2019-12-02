@@ -1,4 +1,71 @@
 [{
+  "name": "A1: Linux-Zertifizierung",
+  "description": "Vorstellung des Kurses <q>Linux-Zertifizierung</q> zur Vorbereitung auf der Lernkartei-Plattform Linux.cards",
+  "date": "2019-05-06T04:52:10.648Z",
+  "dateUpdated": "2019-12-02T09:24:15.927Z",
+  "editors": [],
+  "owner": "fGBjd8xcxAgkPYM4B",
+  "visible": true,
+  "ratings": true,
+  "kind": "free",
+  "price": 0,
+  "reviewed": false,
+  "reviewer": "undefined",
+  "request": false,
+  "rating": 0,
+  "raterCount": 0,
+  "quantity": 1,
+  "license": [
+    "by",
+    "nc",
+    "sa"
+  ],
+  "userDeleted": false,
+  "learningActive": false,
+  "maxCards": 0,
+  "daysBeforeReset": 0,
+  "learningStart": "1970-01-01T00:00:00.000Z",
+  "learningEnd": "1970-01-01T00:00:00.000Z",
+  "registrationPeriod": "1970-01-01T00:00:00.000Z",
+  "learningInterval": [],
+  "wordcloud": true,
+  "shuffled": false,
+  "cardType": 18,
+  "difficulty": 0,
+  "noDifficulty": false,
+  "originalAuthorName": {
+    "birthname": "User",
+    "givenname": "Super Admin"
+  },
+  "sortType": 0,
+  "workload": {
+    "bonus": {
+      "count": 0,
+      "minLearned": 75
+    },
+    "normal": {
+      "count": 0
+    },
+    "simulator": {
+      "errorCount": [
+        [
+          100,
+          30,
+          25,
+          20,
+          10
+        ]
+      ]
+    }
+  },
+  "gotWorkload": false,
+  "lecturerAuthorized": false,
+  "useCase": {
+    "enabled": false,
+    "priority": 0
+  },
+  "lastEditor": "fGBjd8xcxAgkPYM4B"
+}, {
   "subject": "Einführung",
   "front": "(#) Linux und Open Source\n\n![[tuxcademy.org](https://www.tuxcademy.org/)](https://arsnova-uploads.mni.thm.de/LinuxEssentials/tuxcademy.png width=150px)\nNicht nur in klassischen Arbeitsfeldern wie Handwerk oder Ingenieurberufen, sondern auch in der IT läuft hierzulande bei der Arbeitssuche ohne Zeugnisse und Zertifikate nicht viel. Das gilt vor allem für den in der professionellen IT immer wichtigeren Linux-Bereich. \n\nIn dieser Einführung finden Sie Informationen, wie Sie sich mit den frei verfügbaren Unterlagen von [tuxcademy.org](https://www.tuxcademy.org/) effizient und nachhaltig auf [LPI-Prüfungen](https://www.lpi.org/) vorbereiten und als Student/in der Informatik an einer hessischen Hochschule die Kosten für eine LPI-Zertifizierung erstattet bekommen. \n\n!!!TIP\n   Für Linux.cards wurde ein [Moodle-Kurs](https://moodle.thm.de/mod/forum/view.php?id=235493) eingerichtet. Sie können im Kursforum Ihre Fragen posten oder auf fehlerhafte Karten (formal und inhaltlich) hinweisen. Der Ersteller der Karten -- Herr André Hanke -- wird die gemeldeten Fehler zeitnah korrigieren.\n\n \n",
   "back": "(##) Förderung\n\n![](https://arsnova.thm.de/blog/wp-content/uploads/2015/07/HMWK-Logo-300x136.png width=130) \n![](https://digll.studiumdigitale.uni-frankfurt.de/files/2019/06/digLL_Logo_small.png width=130)\n\nDas HMWK-Verbundprojekt der hessischen Hochschulen [<q>Digital gestütztes Lehren und Lernen in Hessen</q> (digLL)](https://www.digll-hessen.de/de) fördert im SoSe 2020 Informatik-Studierende an einer hessischen Hochschule beim Erwerb der Linux-Zertifikate des renommierten [Linux Professional Institute](https://www.lpi.org/).\nEs werden die Teilnahmekosten für die LPI-Zertifizierungsprüfungen [»Linux Essentials«](https://www.lpi.org/our-certifications/linux-essentials-overview) und [»LPIC-1: Linux Administrator«](https://www.lpi.org/our-certifications/lpic-1-overview) für zehn Studierende übernommen (ca. 350 € pro Person). Eine Förderung im WiSe 2020/21 für die nächsten Zertifizierungsstufen ist geplant:\n\n![](https://www.lpice.eu/fileadmin/_processed_/csm_LinuxEssentials-01_5aa1669c09.jpg)![](https://www.lpice.eu/fileadmin/_processed_/csm_LPIC-1_Web_a900c6dec1.jpg)![](https://www.lpice.eu/fileadmin/_processed_/csm_LPIC-2_LPIC-2_3596d59f7a.jpg)![](https://www.lpice.eu/fileadmin/_processed_/csm_LPIC-3_300_a8ae5a45f8.jpg)![](https://www.lpice.eu/fileadmin/_processed_/csm_LPIC-3_303_d575b0972c.jpg)![](https://www.lpice.eu/fileadmin/_processed_/csm_LPIC-3_304_34a0df6530.jpg)",
