@@ -66,7 +66,6 @@ Template.cardsetIndexTranscriptSettings.onRendered(function () {
 				for (let k = 0; k < oldLectures.length; k++) {
 					if (lecture.date.getTime() === oldLectures[k].date.getTime()) {
 						lecture.title = oldLectures[k].title;
-						oldLectures = oldLectures.splice(k, 1);
 						break;
 					}
 				}
