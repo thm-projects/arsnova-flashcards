@@ -33,7 +33,7 @@ Meteor.methods({
 	getUseCaseCardsets: function () {
 		return Cardsets.find({'useCase.enabled': true}, {
 			sort: {'useCase.priority': 1, name: 1},
-			fields: {description: 0}
+			fields: {description: 0, 'useCase.enabled': 0}
 		}).fetch();
 	}
 });
