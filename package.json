@@ -5,7 +5,7 @@
     "start": "meteor run"
   },
   "dependencies": {
-    "@babel/runtime": "^7.3.1",
+    "@babel/runtime": "^7.7.2",
     "chart.js": "^2.7.3",
     "dompurify": "^1.0.10",
     "fibers": "^3.1.1",
