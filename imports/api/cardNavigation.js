@@ -9,6 +9,7 @@ import {Cardsets} from "./subscriptions/cardsets";
 import {SweetAlertMessages} from "./sweetAlert";
 import {CardType} from "./cardTypes";
 import {NavigatorCheck} from "./navigatorCheck";
+import * as config from "../config/cardNavigation.js";
 
 let keyEventsUnlocked = true;
 let lastActiveCardString = "lastActiveCard";
@@ -466,7 +467,7 @@ export let CardNavigation = class CardNavigation {
 					case 37:
 						if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
 							CardEditor.setLearningGoalLevelIndex(false);
-						} else if (!Route.isEditMode()) {
+						} else if (!Route.isEditMode() && !(!config.allowIndexWrap && CardNavigation.isFirstCard())) {
 							if (CardNavigation.isVisible() && !Route.isBox() && !Route.isMemo()) {
 								if ($('#leftCarouselControl').click()) {
 									$('#showHintModal').modal('hide');
@@ -485,7 +486,7 @@ export let CardNavigation = class CardNavigation {
 					case 39:
 						if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
 							CardEditor.setLearningGoalLevelIndex();
-						} else if (!Route.isEditMode()) {
+						} else if (!Route.isEditMode() && !(!config.allowIndexWrap && CardNavigation.isLastCard())) {
 							if (CardNavigation.isVisible() && !Route.isBox() && !Route.isMemo()) {
 								if ($('#rightCarouselControl').click()) {
 									$('#showHintModal').modal('hide');
