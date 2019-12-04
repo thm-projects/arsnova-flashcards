@@ -44,6 +44,10 @@ let normalCardset = {
 		'normal': {
 			'count': 0
 		}
+	},
+	'useCase': {
+		'enabled': false,
+		'priority': 0
 	}
 };
 
@@ -104,6 +108,10 @@ let transcriptBonusCardset = {
 		'deadline': 17520,
 		'deadlineEditing': 999,
 		'enabled': true
+	},
+	'useCase': {
+		'enabled': false,
+		'priority': 0
 	}
 };
 module.exports = {

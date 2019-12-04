@@ -1,11 +1,11 @@
 import './cards.js';
 import { Meteor } from 'meteor/meteor';
 import { assert, expect } from 'chai';
-import { Cards } from './cards.js';
+import { Cards } from './subscriptions/cards.js';
 import { resetDatabase } from 'meteor/xolvio:cleaner';
 import { CreateStubUser } from './createStubUsers';
 import StubCollections from 'meteor/hwillson:stub-collections';
-import { Cardsets } from './cardsets';
+import { Cardsets } from './subscriptions/cardsets';
 import cardsetStubs from "../tests/stubs/cardsets";
 import cardStub from "../tests/stubs/cards";
 import cloneDeep from 'lodash.clonedeep';
