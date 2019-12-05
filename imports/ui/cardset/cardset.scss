@@ -497,10 +497,7 @@ th .field-tip {
 }
 
 .markdeepCardsetContent {
-  @media(max-width: 767px) {
-    overflow-y: scroll;
-  }
-
+    overflow-y: auto;
 }
 
 .markdeepCardset:first-child, .markdeepCardsetContent:first-child {
