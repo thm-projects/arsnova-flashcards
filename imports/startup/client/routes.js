@@ -1226,6 +1226,9 @@ var setTheme = function () {
 		themeClass += "default";
 	}
 	let html = $('html');
+	if (Route.isCardset()) {
+		themeId = 'theme-wrapper-cardset';
+	}
 	html.attr('id', themeId);
 	html.attr('class', themeClass);
 
