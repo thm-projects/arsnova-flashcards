@@ -290,6 +290,11 @@ body {
   padding-bottom: 70px;
 }
 
+#theme-wrapper-cardset #main {
+  padding-top: 55px;
+  padding-bottom: 0;
+}
+
 #theme-wrapper #main.container-fluid-editor {
   padding: 90px 60px 30px 60px;
   @media (min-width: 768px) and (max-width: 1440px) {
