@@ -27,15 +27,22 @@
         {{> pomodoroTimerModal}}
     {{/unless}}
     {{#if isActiveRoute regex='demolist|presentationlist|makinglist'}}
-        <button class="btn btn-raised btn-danger"
-                id="{{#if fullscreenActive}}backToPresentationFullscreen{{else}}backToPresentation{{/if}}">
+        {{#if isCardsetIndexSelectMode}}
+            <button class="btn btn-raised btn-danger"
+                    id="backToCardset">
+                <span class="pull-left"><i class="fas fa-arrow-left"></i> </span>
+            </button>
+        {{else}}
+            <button class="btn btn-raised btn-danger"
+                    id="{{#if fullscreenActive}}backToPresentationFullscreen{{else}}backToPresentation{{/if}}">
         <span class="pull-left"><i class="fas fa-arrow-left"></i> {{#if isActiveRoute regex='demolist'}}{{_
                 "presentation.list.backDemo"}}{{else}}{{_ "presentation.list.back"}}{{/if}}</span>
-        </button>
+            </button>
+        {{/if}}
         {{> cardsetList}}
     {{else}}
         {{#if isPresentationTranscriptCardsetRoute}}
-             {{> cardNavigationItemReview}}
+            {{> cardNavigationItemReview}}
         {{/if}}
         {{#unless isMobilePreview}}
             <div class="hidden-xs {{#if isActiveRoute regex='demo'}}row demo-padding{{else}}col-xs-12{{/if}}">

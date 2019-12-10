@@ -78,6 +78,12 @@ Template.presentationView.onDestroyed(function () {
 	Session.set('hideSidebar', false);
 });
 
+Template.presentationView.helpers({
+	isCardsetIndexSelectMode: function () {
+		return Session.get('activeCard') === undefined && Route.isPresentationList();
+	}
+});
+
 Template.presentationView.events({
 	"click #backToPresentation, click #backToPresentationFullscreen": function () {
 		if (Router.current().route.getName() === "demolist") {
@@ -89,6 +95,11 @@ Template.presentationView.events({
 				_id: Router.current().params._id
 			});
 		}
+	},
+	"click #backToCardset": function () {
+		Router.go('cardsetdetailsid', {
+			_id: Router.current().params._id
+		});
 	}
 });
 

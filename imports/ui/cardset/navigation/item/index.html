@@ -1,0 +1,16 @@
+<template name="cardsetNavigationIndex">
+    {{#if this.quantity}}
+        {{#unless gotTranscriptBonusAndIsNotShuffled _id}}
+            <button class="btn btn-sm btn-raised cardsetIndexBtn" title="{{#if this.shuffled}}{{_ "cardsetNavigation.button.index.repetitorium"}}{{else}}{{_ "cardsetNavigation.button.index.cardset"}}{{/if}}">
+                <span class="flex-content">
+                <i class='fas fa-list'></i>
+                &nbsp;{{#if this.shuffled}}
+                    {{_ "cardsetNavigation.button.index.repetitorium"}}
+                {{else}}
+                    {{_ "cardsetNavigation.button.index.cardset"}}
+                {{/if}}
+                </span>
+            </button>
+        {{/unless}}
+    {{/if}}
+</template>
