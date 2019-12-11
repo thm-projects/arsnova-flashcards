@@ -1217,13 +1217,13 @@ var setTheme = function () {
 	let themeId = "";
 	let themeClass = "theme-";
 	if (Meteor.user() || MainNavigation.isGuestLoginActive()) {
-		if (Session.get('fullscreen')) {
+		if (Session.get('fullscreen') && !Route.isPresentationList()) {
 			themeId = 'theme-wrapper-no-nav';
 		} else {
 			themeId = 'theme-wrapper';
 		}
 	} else {
-		if (!Session.get('fullscreen')) {
+		if (!Session.get('fullscreen') && !Route.isPresentationList()) {
 			themeId = 'theme-wrapper-no-nav-welcome';
 		} else {
 			themeId = 'theme-wrapper-no-nav';
