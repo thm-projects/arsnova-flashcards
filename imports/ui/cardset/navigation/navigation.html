@@ -1,6 +1,7 @@
 <template name="cardsetNavigation">
     <div class="cardsetInfoFooter panel-footer">
         {{#if hasCardsetPermission}}
+            {{> cardsetNavigationIndex}}
             {{> cardsetNavigationPresentation}}
             {{#unless isCardsetStudentPreviewActive}}
                 {{> cardsetNavigationNewCard}}

@@ -439,6 +439,10 @@ $themes: (
     $cardset_markdeep_link: map-get($map, "cardset_markdeep_link");
     $cardset_markdeep_placeholder: map-get($map, "cardset_markdeep_placeholder");
     $cardset_footer_navigation_background: map-get($map, "cardset_footer_navigation_background");
+    $cardset_footer_navigation_index_background: map-get($map, "cardset_footer_navigation_index_background");
+    $cardset_footer_navigation_index_text: map-get($map, "cardset_footer_navigation_index_text");
+    $cardset_footer_navigation_index_background_hover: map-get($map, "cardset_footer_navigation_index_background_hover");
+    $cardset_footer_navigation_index_text_hover: map-get($map, "cardset_footer_navigation_index_text_hover");
     $cardset_footer_navigation_presentation_background: map-get($map, "cardset_footer_navigation_presentation_background");
     $cardset_footer_navigation_presentation_text: map-get($map, "cardset_footer_navigation_presentation_text");
     $cardset_footer_navigation_presentation_background_hover: map-get($map, "cardset_footer_navigation_presentation_background_hover");
@@ -1321,6 +1325,16 @@ $themes: (
           color: $primary !important;
         }
       }
+    }
+
+    .cardsetIndexBtn {
+      background-color: $cardset_footer_navigation_index_background !important;
+      color: $cardset_footer_navigation_index_text !important;
+    }
+
+    .cardsetIndexBtn:hover, .cardsetIndexBtn:focus {
+      background-color: $cardset_footer_navigation_index_background_hover !important;
+      color: $cardset_footer_navigation_index_text_hover !important;
     }
 
     .presentationBtn, .setCardAspectRatio {

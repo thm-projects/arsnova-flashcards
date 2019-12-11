@@ -17,6 +17,7 @@ import "./item/presentation.js";
 import "./item/publishCardset.js";
 import "./item/transcripts.js";
 import "./item/workload.js";
+import "./item/index.js";
 import "./navigation.html";
 
 /*

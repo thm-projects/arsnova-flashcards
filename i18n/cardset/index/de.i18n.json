@@ -1,0 +1,10 @@
+{
+  "cardsetIndex": {
+    "button": {
+      "back":  {
+        "cardset": "Zurück zur Kartei",
+        "repetitorium": "Zurück zum Repetitorium"
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "cardsetNavigation": {
+    "button": {
+      "index":  {
+        "cardset": "Kartei-Index",
+        "repetitorium": "Rep-Index"
+      }
+    },
+    "tooltip": {
+      "index":  {
+        "cardset": "Kartei-Index",
+        "repetitorium": "Rep-Index"
+      }
+    }
+  }
+}
