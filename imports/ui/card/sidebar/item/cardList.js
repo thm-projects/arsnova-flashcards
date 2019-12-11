@@ -11,6 +11,7 @@ import {CardIndex} from "../../../../api/cardIndex";
 
 Template.cardSidebarItemCardList.events({
 	"click .selectCard": function () {
+		Session.set('isDirectCardsetIndexView', false);
 		if (Route.isCardset()) {
 			Router.go('cardsetlistid', {
 				_id: Router.current().params._id

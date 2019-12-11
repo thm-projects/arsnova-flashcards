@@ -31,6 +31,11 @@
             <button class="btn btn-raised btn-danger"
                     id="backToCardset">
                 <span class="pull-left"><i class="fas fa-arrow-left"></i> </span>
+                {{#if this.shuffled}}
+                    {{_ "cardsetIndex.button.back.repetitorium"}}
+                {{else}}
+                    {{_ "cardsetIndex.button.back.cardset"}}
+                {{/if}}
             </button>
         {{else}}
             <button class="btn btn-raised btn-danger"

@@ -9,12 +9,16 @@ import {UserPermissions} from "./permissions";
 import {getAuthorName} from "./userdata";
 
 export let Route = class Route {
+	static isCardsetDetails () {
+		return Router.current().route.getName() === 'cardsetdetailsid';
+	}
+
 	/**
 	 * Function checks if route is a Cardset
 	 * @return {Boolean} Return true, when route is a Cardset.
 	 */
 	static isCardset () {
-		return (this.isCardsetList() || Router.current().route.getName() === 'cardsetdetailsid' || Router.current().route.getName() === "cardsetcard" || Router.current().route.getName() === 'admin_cardset');
+		return (this.isCardsetList() || this.isCardsetDetails() || Router.current().route.getName() === "cardsetcard" || Router.current().route.getName() === 'admin_cardset');
 	}
 
 	static isCardsetList () {

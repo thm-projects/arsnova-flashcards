@@ -16,7 +16,7 @@ import {TranscriptBonus} from "../../api/subscriptions/transcriptBonus";
 import {CardVisuals} from "../../api/cardVisuals";
 
 Session.set('animationPlaying', false);
-
+Session.setDefault('isDirectCardsetIndexView', false);
 /*
  * ############################################################################
  * presentation
@@ -80,7 +80,7 @@ Template.presentationView.onDestroyed(function () {
 
 Template.presentationView.helpers({
 	isCardsetIndexSelectMode: function () {
-		return Session.get('activeCard') === undefined && Route.isPresentationList();
+		return Session.get('isDirectCardsetIndexView');
 	}
 });
 
