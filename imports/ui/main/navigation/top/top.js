@@ -17,6 +17,7 @@ import "./item/search.js";
 import "./item/useCases.js";
 import "./item/workload.js";
 import "./item/filter.js";
+import "./item/presentationIndex/presentationIndex.js";
 import "./top.html";
 
 /*

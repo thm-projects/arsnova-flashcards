@@ -1,6 +1,8 @@
 <template name="filterItemSelectCardsetButton">
-                    <span class="btn-group">
+    {{#if publicCardsetIndexEnabled}}
+        <span class="btn-group">
     <a id="browseCardset" class="btn btn-raised btn-success"><span class="flex-content">{{{getCardsetIcons false}}}{{_
             "set-list-learn-empty.browseCardset"}}</span></a>
                     </span>
+    {{/if}}
 </template>

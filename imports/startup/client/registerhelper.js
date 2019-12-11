@@ -187,6 +187,10 @@ Template.registerHelper('getAboutButton', function (isMobile = false) {
 	return ServerStyle.getAboutButton(isMobile);
 });
 
+Template.registerHelper('publicCardsetIndexEnabled', function () {
+	return ServerStyle.gotPublicCardset();
+});
+
 Template.registerHelper('isInBonus', function () {
 	return Bonus.isInBonus(Router.current().params._id, Meteor.userId());
 });

@@ -1,15 +1,19 @@
 <template name="mainNavigationTopItemPublic">
-    <li id="navbar-public"
-        class="dropdown {{#if isPublicRoute}}active{{/if}}">
-        <a href="#" class="dropdown-toggle dropdownMenuContainer"
-           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{{getNavigationName "public"}}}
-        </a>
-        <div id="public-drop" class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <ul>
-                {{> mainNavigationTopItemPublicItemCardsets}}
-                {{> mainNavigationTopItemPublicItemRepetitorien}}
-            </ul>
-        </div>
-    </li>
+    {{#if publicCardsetIndexEnabled}}
+        <li id="navbar-public"
+            class="dropdown {{#if isPublicRoute}}active{{/if}}">
+            <a href="#" class="dropdown-toggle dropdownMenuContainer"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{{getNavigationName "public"}}}
+            </a>
+            <div id="public-drop" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <ul>
+                    {{> mainNavigationTopItemPublicItemCardsets}}
+                    {{> mainNavigationTopItemPublicItemRepetitorien}}
+                </ul>
+            </div>
+        </li>
+    {{else}}
+        {{> mainNavigationTopItemPublicItemRepetitorien}}
+    {{/if}}
 </template>

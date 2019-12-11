@@ -31,6 +31,13 @@ let defaultSettings = {
 	"transcripts": {
 		"enabled": true
 	},
+	"index": {
+		"public": {
+			"cardsets": {
+				"enabled": true
+			}
+		}
+	},
 	"demo": {
 		"folder": "informatik"
 	},
@@ -79,6 +86,13 @@ let debug = {
 	"backgrounds": "default",
 	"transcripts": {
 		"enabled": true
+	},
+	"index": {
+		"public": {
+			"cardsets": {
+				"enabled": true
+			}
+		}
 	},
 	"demo": {
 		"folder": "informatik"
@@ -132,6 +146,13 @@ let linux = {
 	"transcripts": {
 		"enabled": false
 	},
+	"index": {
+		"public": {
+			"cardsets": {
+				"enabled": false
+			}
+		}
+	},
 	"demo": {
 		"folder": "linux"
 	},
@@ -180,6 +201,13 @@ let review = {
 	"backgrounds": "default",
 	"transcripts": {
 		"enabled": true
+	},
+	"index": {
+		"public": {
+			"cardsets": {
+				"enabled": true
+			}
+		}
 	},
 	"demo": {
 		"folder": "informatik"
@@ -232,6 +260,13 @@ let staging = {
 	"backgrounds": "default",
 	"transcripts": {
 		"enabled": true
+	},
+	"index": {
+		"public": {
+			"cardsets": {
+				"enabled": true
+			}
+		}
 	},
 	"demo": {
 		"folder": "informatik"

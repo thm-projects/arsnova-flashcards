@@ -1,67 +1,75 @@
 <template name="mainNavigationTop">
-    {{#unless fullscreenActive}}
-        {{#if canAccessFrontend}}
-            {{#unless isInRole 'firstLogin'}}
-                {{#unless isInRole 'blocked'}}
-                    <nav id="navbar-cards-top" class="navbar navbar-default navbar-fixed-top navbar-cards">
-                        <div class="container">
-                            <div class="visible-xs navbar-header">
-                                <div class="navbar-header-item pull-left top-navigation-name">
-                                    {{{getNavigationName}}}
-                                </div>
-                                <div class="navbar-header-item pull-right navbar-header-collapse-item">
-                                    <button type="button"
-                                            class="navbar-toggle toggle-navbar-collapse needsclick flex-content">
-                                        {{{getNavigationIcon "collapse"}}}
-                                    </button>
-                                </div>
-                                {{#if isImpressum}}
-                                    <div class="navbar-header-item navbar-header-button toggleFooterNavigation needsclick pull-right">
-                                        <a href="">
-                                            {{{getNavigationName "toggleImpressum"}}}
-                                        </a>
+    {{#if isActiveRoute regex='demolist|presentationlist|makinglist'}}
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                {{> mainNavigationTopPresentationIndexItemBack}}
+            </div>
+        </nav>
+    {{else}}
+        {{#unless fullscreenActive}}
+            {{#if canAccessFrontend}}
+                {{#unless isInRole 'firstLogin'}}
+                    {{#unless isInRole 'blocked'}}
+                        <nav id="navbar-cards-top" class="navbar navbar-default navbar-fixed-top navbar-cards">
+                            <div class="container">
+                                <div class="visible-xs navbar-header">
+                                    <div class="navbar-header-item pull-left top-navigation-name">
+                                        {{{getNavigationName}}}
                                     </div>
-                                    <div class="navbar-header-item navbar-header-button pull-right">
-                                        {{> mainNavigationFooterItemStatisticsMobile}}
+                                    <div class="navbar-header-item pull-right navbar-header-collapse-item">
+                                        <button type="button"
+                                                class="navbar-toggle toggle-navbar-collapse needsclick flex-content">
+                                            {{{getNavigationIcon "collapse"}}}
+                                        </button>
                                     </div>
-                                {{/if}}
-                                <div class="navbar-header-item pull-right">
-                                    {{> mainNavigationTopItemConnectionStatus visibility=0}}
-                                </div>
-                                {{#unless isImpressum}}
-                                    {{#unless isPersonalTranscriptsRoute}}
-                                        {{#unless isCardsetTranscriptBonusRoute}}
+                                    {{#if isImpressum}}
+                                        <div class="navbar-header-item navbar-header-button toggleFooterNavigation needsclick pull-right">
+                                            <a href="">
+                                                {{{getNavigationName "toggleImpressum"}}}
+                                            </a>
+                                        </div>
+                                        <div class="navbar-header-item navbar-header-button pull-right">
+                                            {{> mainNavigationFooterItemStatisticsMobile}}
+                                        </div>
+                                    {{/if}}
+                                    <div class="navbar-header-item pull-right">
+                                        {{> mainNavigationTopItemConnectionStatus visibility=0}}
+                                    </div>
+                                    {{#unless isImpressum}}
+                                        {{#unless isPersonalTranscriptsRoute}}
+                                            {{#unless isCardsetTranscriptBonusRoute}}
+                                                {{#if gotCardsetsForFilter}}
+                                                    <div class="navbar-header-item pull-right">
+                                                        {{> mainNavigationTopItemSearchMobile}}
+                                                    </div>
+                                                {{/if}}
+                                            {{/unless}}
+                                        {{/unless}}
+                                    {{/unless}}
+                                    {{#if isFilterIndex}}
+                                        {{#unless isMyTranscriptsRoute}}
                                             {{#if gotCardsetsForFilter}}
                                                 <div class="navbar-header-item pull-right">
-                                                    {{> mainNavigationTopItemSearchMobile}}
+                                                    {{> mainNavigationTopItemFilterMobile}}
                                                 </div>
                                             {{/if}}
                                         {{/unless}}
-                                    {{/unless}}
-                                {{/unless}}
-                                {{#if isFilterIndex}}
-                                    {{#unless isMyTranscriptsRoute}}
-                                        {{#if gotCardsetsForFilter}}
-                                            <div class="navbar-header-item pull-right">
-                                                {{> mainNavigationTopItemFilterMobile}}
-                                            </div>
-                                        {{/if}}
-                                    {{/unless}}
-                                {{/if}}
-                                <div class="navbar-header-item pull-right">
-                                    {{> mainNavigationTopItemUseCasesMobile}}
+                                    {{/if}}
+                                    <div class="navbar-header-item pull-right">
+                                        {{> mainNavigationTopItemUseCasesMobile}}
+                                    </div>
                                 </div>
+                                <div class="visible-xs">
+                                    {{> mainNavigationFooterDropdownContent}}
+                                </div>
+                                {{> mainNavigationTopDropdownContent}}
                             </div>
-                            <div class="visible-xs">
-                                {{> mainNavigationFooterDropdownContent}}
-                            </div>
-                            {{> mainNavigationTopDropdownContent}}
-                        </div>
-                    </nav>
+                        </nav>
+                    {{/unless}}
                 {{/unless}}
-            {{/unless}}
-        {{/if}}
-    {{/unless}}
+            {{/if}}
+        {{/unless}}
+    {{/if}}
 </template>
 
 <template name="mainNavigationTopDropdownContent">
