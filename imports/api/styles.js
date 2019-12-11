@@ -103,6 +103,11 @@ export let ServerStyle = class ServerStyle {
 		}
 	}
 
+	static gotPublicCardset () {
+		let config  = this.getConfig();
+		return config.index.public.cardsets.enabled;
+	}
+
 	static isLoginEnabled (loginType) {
 		let settings = this.getConfig();
 		switch (loginType) {

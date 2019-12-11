@@ -2,6 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {check} from "meteor/check";
 import {UserPermissions} from "../permissions";
 import {Cardsets} from "../subscriptions/cardsets";
+import {ServerStyle} from "../styles";
 
 Meteor.methods({
 	/**
@@ -31,7 +32,11 @@ Meteor.methods({
 	},
 
 	getUseCaseCardsets: function () {
-		return Cardsets.find({'useCase.enabled': true}, {
+		let query = {'useCase.enabled': true};
+		if (!ServerStyle.gotPublicCardset()) {
+			query.shuffled = true;
+		}
+		return Cardsets.find(query, {
 			sort: {'useCase.priority': 1, name: 1},
 			fields: {description: 0, 'useCase.enabled': 0}
 		}).fetch();

@@ -1,16 +1,18 @@
 <template name="useCasesItemPool">
-    {{#if gotPool}}
-        <tr>
-            <td>
-                {{_ "useCases.modal.description.pool"}}
-                <div class="visible-xs">
+    {{#if publicCardsetIndexEnabled}}
+        {{#if gotPool}}
+            <tr>
+                <td>
+                    {{_ "useCases.modal.description.pool"}}
+                    <div class="visible-xs">
+                        {{> useCasesItemPoolButton}}
+                    </div>
+                </td>
+                <td class="hidden-xs">
                     {{> useCasesItemPoolButton}}
-                </div>
-            </td>
-            <td class="hidden-xs">
-                {{> useCasesItemPoolButton}}
-            </td>
-        </tr>
+                </td>
+            </tr>
+        {{/if}}
     {{/if}}
 </template>
 

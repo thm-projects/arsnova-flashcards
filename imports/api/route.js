@@ -360,7 +360,11 @@ export let Route = class Route {
 			case "allRepetitorien":
 				return icons.topNavigation.all.repetitorien +  TAPi18n.__('navbar-collapse.all.repetitorien');
 			case "public":
-				return icons.topNavigation.public.public + TAPi18n.__('navbar-collapse.public.public') + "<span class='caret'></span>";
+				let result = icons.topNavigation.public.public + TAPi18n.__('navbar-collapse.public.public');
+				if (ServerStyle.gotPublicCardset()) {
+					result += "<span class='caret'></span>";
+				}
+				return result;
 			case "publicCardsets":
 			case "home":
 			case "pool":

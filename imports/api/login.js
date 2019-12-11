@@ -5,6 +5,7 @@ import {Filter} from "./filter.js";
 import * as config from "../config/login.js";
 import {UserPermissions} from "./permissions";
 import {Session} from "meteor/session";
+import {ServerStyle} from "./styles";
 
 export let LoginTasks = class LoginTasks {
 
@@ -78,7 +79,11 @@ export let LoginTasks = class LoginTasks {
 							}
 						}
 						if (!redirected) {
-							Router.go('pool');
+							if (ServerStyle.gotPublicCardset()) {
+								Router.go('pool');
+							} else {
+								Router.go('repetitorium');
+							}
 						}
 					}
 				});
