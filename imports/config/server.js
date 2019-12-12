@@ -126,8 +126,8 @@ let linux = {
 		"title": {
 			"first": "Linux",
 			"last": "cards",
-			"slogan_de": "Lernen für die LPIC-Prüfungen",
-			"slogan_en": "Learning for the LPIC exams"
+			"slogan_de": "Lernen für die LPI-Prüfungen",
+			"slogan_en": "Learning for the LPI exams"
 		},
 		"button": {
 			"about":  {
@@ -149,7 +149,7 @@ let linux = {
 	"index": {
 		"public": {
 			"cardsets": {
-				"enabled": false
+				"enabled": true
 			}
 		}
 	},

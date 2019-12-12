@@ -34,7 +34,7 @@
     "about": "Was ist 🍅__lastAppTitle__?",
     "impressum": "Impressum",
     "backButton": "Zurück",
-    "backToStartButton": "Zurück zur Login-Seite"
+    "backToStartButton": "Zurück zur Startseite"
   },
   "landingPage": {
     "login": {
@@ -364,7 +364,7 @@
   "contact": {
     "about": "Über 🍅cards",
     "demo": "Demo",
-    "home": "Login",
+    "home": "Startseite",
     "learning": "Lernen",
     "help": "Hilfe",
     "faq": "FAQ",
