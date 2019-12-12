@@ -40,6 +40,14 @@ export let UserPermissions = class UserPermissions {
 		return (content_owner === Meteor.userId() && UserPermissions.canCreateContent());
 	}
 
+	static isEdu () {
+		return (Roles.userIsInRole(Meteor.userId(), ['university']));
+	}
+
+	static isPro () {
+		return (Roles.userIsInRole(Meteor.userId(), ['pro']));
+	}
+
 	static isLecturer () {
 		return (Roles.userIsInRole(Meteor.userId(), ['lecturer']));
 	}

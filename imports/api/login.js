@@ -79,7 +79,7 @@ export let LoginTasks = class LoginTasks {
 							}
 						}
 						if (!redirected) {
-							if (ServerStyle.gotPublicCardset()) {
+							if (ServerStyle.gotNavigationFeature("public.cardset.enabled")) {
 								Router.go('pool');
 							} else {
 								Router.go('repetitorium');

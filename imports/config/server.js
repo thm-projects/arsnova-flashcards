@@ -1,4 +1,60 @@
+//navigation Features
+// 0 standard
+// 1 edu
+// 2 pro
+// 3 lecturer
+// 4 guest - Only works for public views
+const FREE = 0;
+const EDU = 1;
+const PRO = 2;
+const LECTURER = 3;
+const GUEST = 4;
+
 let defaultSettings = {
+	"navigationFeatures": {
+		"public": {
+			"cardset": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
+			},
+			"repetitorium": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
+			}
+		},
+		"personal": {
+			"cardset": {
+				"enabled": [FREE, EDU, PRO, LECTURER],
+				"filter": [FREE, EDU, PRO, LECTURER],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			},
+			"repetitorium": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			}
+		},
+		"transcript": {
+			"personal": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			},
+			"bonus": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			}
+		}
+	},
 	"login": {
 		"cas": true,
 		"guest": true,
@@ -31,13 +87,6 @@ let defaultSettings = {
 	"transcripts": {
 		"enabled": true
 	},
-	"index": {
-		"public": {
-			"cardsets": {
-				"enabled": true
-			}
-		}
-	},
 	"demo": {
 		"folder": "informatik"
 	},
@@ -55,6 +104,50 @@ let defaultSettings = {
 };
 
 let debug = {
+	"navigationFeatures": {
+		"public": {
+			"cardset": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
+			},
+			"repetitorium": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
+			}
+		},
+		"personal": {
+			"cardset": {
+				"enabled": [FREE, EDU, PRO, LECTURER],
+				"filter": [FREE, EDU, PRO, LECTURER],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			},
+			"repetitorium": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			}
+		},
+		"transcript": {
+			"personal": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			},
+			"bonus": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			}
+		}
+	},
 	"login": {
 		"cas": false,
 		"guest": true,
@@ -87,13 +180,6 @@ let debug = {
 	"transcripts": {
 		"enabled": true
 	},
-	"index": {
-		"public": {
-			"cardsets": {
-				"enabled": true
-			}
-		}
-	},
 	"demo": {
 		"folder": "informatik"
 	},
@@ -114,6 +200,50 @@ let debug = {
 };
 
 let linux = {
+	"navigationFeatures": {
+		"public": {
+			"cardset": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
+			},
+			"repetitorium": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
+			}
+		},
+		"personal": {
+			"cardset": {
+				"enabled": [FREE, EDU, PRO, LECTURER],
+				"filter": [FREE, EDU, PRO, LECTURER],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			},
+			"repetitorium": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			}
+		},
+		"transcript": {
+			"personal": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			},
+			"bonus": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			}
+		}
+	},
 	"login": {
 		"cas": true,
 		"guest": true,
@@ -146,13 +276,6 @@ let linux = {
 	"transcripts": {
 		"enabled": false
 	},
-	"index": {
-		"public": {
-			"cardsets": {
-				"enabled": true
-			}
-		}
-	},
 	"demo": {
 		"folder": "linux"
 	},
@@ -170,6 +293,50 @@ let linux = {
 };
 
 let review = {
+	"navigationFeatures": {
+		"public": {
+			"cardset": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
+			},
+			"repetitorium": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
+			}
+		},
+		"personal": {
+			"cardset": {
+				"enabled": [FREE, EDU, PRO, LECTURER],
+				"filter": [FREE, EDU, PRO, LECTURER],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			},
+			"repetitorium": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			}
+		},
+		"transcript": {
+			"personal": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			},
+			"bonus": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			}
+		}
+	},
 	"login": {
 		"cas": true,
 		"guest": true,
@@ -202,13 +369,6 @@ let review = {
 	"transcripts": {
 		"enabled": true
 	},
-	"index": {
-		"public": {
-			"cardsets": {
-				"enabled": true
-			}
-		}
-	},
 	"demo": {
 		"folder": "informatik"
 	},
@@ -229,6 +389,50 @@ let review = {
 };
 
 let staging = {
+	"navigationFeatures": {
+		"public": {
+			"cardset": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
+			},
+			"repetitorium": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
+			}
+		},
+		"personal": {
+			"cardset": {
+				"enabled": [FREE, EDU, PRO, LECTURER],
+				"filter": [FREE, EDU, PRO, LECTURER],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			},
+			"repetitorium": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			}
+		},
+		"transcript": {
+			"personal": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			},
+			"bonus": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			}
+		}
+	},
 	"login": {
 		"cas": true,
 		"guest": true,
@@ -260,13 +464,6 @@ let staging = {
 	"backgrounds": "default",
 	"transcripts": {
 		"enabled": true
-	},
-	"index": {
-		"public": {
-			"cardsets": {
-				"enabled": true
-			}
-		}
 	},
 	"demo": {
 		"folder": "informatik"

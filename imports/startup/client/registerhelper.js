@@ -187,8 +187,8 @@ Template.registerHelper('getAboutButton', function (isMobile = false) {
 	return ServerStyle.getAboutButton(isMobile);
 });
 
-Template.registerHelper('publicCardsetIndexEnabled', function () {
-	return ServerStyle.gotPublicCardset();
+Template.registerHelper('gotNavigationFeature', function (feature) {
+	return ServerStyle.gotNavigationFeature(feature);
 });
 
 Template.registerHelper('isInBonus', function () {

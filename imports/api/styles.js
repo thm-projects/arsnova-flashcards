@@ -2,7 +2,13 @@ import {Meteor} from "meteor/meteor";
 import * as serverConf from "../config/server.js";
 import * as backgroundsConf from "../config/backgrounds.js";
 import {Session} from "meteor/session";
+import {UserPermissions} from "./permissions";
 
+const FREE = 0;
+const EDU = 1;
+const PRO = 2;
+const LECTURER = 3;
+const GUEST = 4;
 
 export let ServerStyle = class ServerStyle {
 
@@ -103,9 +109,34 @@ export let ServerStyle = class ServerStyle {
 		}
 	}
 
-	static gotPublicCardset () {
-		let config  = this.getConfig();
-		return config.index.public.cardsets.enabled;
+	static gotNavigationFeature (feature) {
+		let featurePath = feature.split('.');
+		if (featurePath.length < 3) {
+			return false;
+		}
+		if (UserPermissions.isAdmin()) {
+			return true;
+		}
+		let userType;
+		if (!Meteor.user() && this.isLoginEnabled("guest")) {
+			userType = GUEST;
+		}
+		if (UserPermissions.isSocialLogin()) {
+			userType = FREE;
+		}
+		if (UserPermissions.isEdu()) {
+			userType = EDU;
+		}
+		if (UserPermissions.isLecturer()) {
+			userType = LECTURER;
+		}
+		if (UserPermissions.isPro()) {
+			userType = PRO;
+		}
+		let navigationFeatures = this.getConfig().navigationFeatures;
+		if (navigationFeatures[featurePath[0]][featurePath[1]][featurePath[2]].length) {
+			return navigationFeatures[featurePath[0]][featurePath[1]][featurePath[2]].includes(userType);
+		}
 	}
 
 	static isLoginEnabled (loginType) {

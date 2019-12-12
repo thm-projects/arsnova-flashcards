@@ -651,7 +651,7 @@ Router.route('/public/cardsets', {
 	},
 	action: function () {
 		if (this.ready()) {
-			if (ServerStyle.gotPublicCardset()) {
+			if (ServerStyle.gotNavigationFeature("public.cardset.enabled")) {
 				this.render();
 			} else {
 				MainNavigation.setLoginTarget(false);
@@ -1177,7 +1177,6 @@ var linksWithNoLoginRequirement = function () {
 	];
 	if (ServerStyle.isLoginEnabled("guest") && MainNavigation.isGuestLoginActive()) {
 		let linksGuest = [
-			'repetitorium',
 			'cardsetdetailsid',
 			'cardsetlist',
 			'cardsetcard',
@@ -1185,8 +1184,11 @@ var linksWithNoLoginRequirement = function () {
 			'presentation',
 			'presentationlist'
 		];
-		if (ServerStyle.gotPublicCardset()) {
+		if (ServerStyle.gotNavigationFeature("public.cardset.enabled")) {
 			linksGuest.push('pool');
+		}
+		if (ServerStyle.gotNavigationFeature("public.repetitorium.enabled")) {
+			linksGuest.push('repetitorium');
 		}
 		return links.concat(linksGuest);
 	} else {

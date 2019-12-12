@@ -1,5 +1,5 @@
 <template name="mainNavigationTopItemPublic">
-    {{#if publicCardsetIndexEnabled}}
+    {{#if (gotNavigationFeature "public.cardset.enabled")}}
         <li id="navbar-public"
             class="dropdown {{#if isPublicRoute}}active{{/if}}">
             <a href="#" class="dropdown-toggle dropdownMenuContainer"

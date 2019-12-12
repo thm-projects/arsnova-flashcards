@@ -1,5 +1,5 @@
 <template name="useCasesItemPool">
-    {{#if publicCardsetIndexEnabled}}
+    {{#if (gotNavigationFeature "public.cardset.enabled")}}
         {{#if gotPool}}
             <tr>
                 <td>

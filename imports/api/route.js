@@ -361,7 +361,7 @@ export let Route = class Route {
 				return icons.topNavigation.all.repetitorien +  TAPi18n.__('navbar-collapse.all.repetitorien');
 			case "public":
 				let result = icons.topNavigation.public.public + TAPi18n.__('navbar-collapse.public.public');
-				if (ServerStyle.gotPublicCardset()) {
+				if (ServerStyle.gotNavigationFeature("public.cardset.enabled")) {
 					result += "<span class='caret'></span>";
 				}
 				return result;
