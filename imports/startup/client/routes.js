@@ -1186,7 +1186,7 @@ var linksWithNoLoginRequirement = function () {
 			'presentationlist'
 		];
 		if (ServerStyle.gotPublicCardset()) {
-			linksGuest.add('pool');
+			linksGuest.push('pool');
 		}
 		return links.concat(linksGuest);
 	} else {
