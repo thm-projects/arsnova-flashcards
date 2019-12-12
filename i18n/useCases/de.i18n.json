@@ -20,19 +20,19 @@
         "workload": "Ich will mein Lernpensum erfüllen."
       },
       "button": {
-        "cancel": "Danke, ich kenne mich aus.",
+        "cancel": "Danke, ich kenne mich aus",
         "personal": {
-          "cardsets": "Bring mich zu meinen Karteien!",
-          "transcripts": "Bring mich zu meinen Mitschriften!",
-          "repetitorien": "Bring mich zu meinen Reps!"
+          "cardsets": "Bring mich zu meinen Karteien",
+          "transcripts": "Bring mich zu meinen Mitschriften",
+          "repetitorien": "Bring mich zu meinen Reps"
         },
         "specialCardsets": {
-          "cardset": "Bring mich zu dieser Kartei!",
-          "repetitorium": "Bring mich zu diesem Rep!"
+          "cardset": "Bring mich dorthin",
+          "repetitorium": "Bring mich dorthin"
         },
-        "pool": "Bring mich zur Karteien-Suche!",
-        "repetitorium": "Bring mich zur Repetitorien-Suche!",
-        "workload": "Zeig mir, was heute zu lernen ist!"
+        "pool": "Bring mich zur Karteien-Suche",
+        "repetitorium": "Bring mich zur Repetitorien-Suche",
+        "workload": "Zeig mir, was heute zu lernen ist"
       }
     }
   }
