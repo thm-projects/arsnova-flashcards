@@ -552,6 +552,10 @@ Template.registerHelper("gotCardsetsForFilter", function () {
 	return Session.get('cardsetIndexResults') > 0;
 });
 
+Template.registerHelper("isLandingPage", function () {
+	return Route.isHome() && (!Meteor.user() && !MainNavigation.isGuestLoginActive());
+});
+
 Template.registerHelper("canAccessFrontend", function () {
 	return Meteor.user() || MainNavigation.isGuestLoginActive();
 });

@@ -9,7 +9,7 @@ import {Route} from "../../../../api/route";
 
 Template.cardSidebarItemEndPresentation.events({
 	"click .endPresentation": function () {
-		if (Route.isMakingOf()) {
+		if (Route.isMakingOf() || Route.isDemo()) {
 			Router.go('home');
 		} else if (Route.isPresentationTranscriptPersonal()) {
 			Router.go('transcriptsPersonal');

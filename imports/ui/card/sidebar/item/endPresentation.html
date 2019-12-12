@@ -1,5 +1,5 @@
 <template name="cardSidebarItemEndPresentation">
         <span class="fas fa-sign-out-alt card-button cardHeaderItem endPresentation pressed"
               data-type="cardNavigation"
-              title="{{_ "card.tooltip.endPresentation"}}"></span>
+              title="{{#if isDemo}}{{_ "card.tooltip.endPresentationDemo"}}{{else}}{{_ "card.tooltip.endPresentation"}}{{/if}}"></span>
 </template>
