@@ -1,5 +1,5 @@
 <template name="mainNavigationTopItemPublic">
-    {{#if (gotNavigationFeature "public.cardset.enabled")}}
+    {{#if gotBothNavigationElements}}
         <li id="navbar-public"
             class="dropdown {{#if isPublicRoute}}active{{/if}}">
             <a href="#" class="dropdown-toggle dropdownMenuContainer"
@@ -14,6 +14,11 @@
             </div>
         </li>
     {{else}}
-        {{> mainNavigationTopItemPublicItemRepetitorien}}
+        {{#if (gotNavigationFeature "public.cardset.enabled" false)}}
+            {{> mainNavigationTopItemPublicItemCardsets standalone=true}}
+        {{/if}}
+        {{#if (gotNavigationFeature "public.repetitorium.enabled" false)}}
+            {{> mainNavigationTopItemPublicItemRepetitorien standalone=true}}
+        {{/if}}
     {{/if}}
 </template>

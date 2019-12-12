@@ -11,19 +11,19 @@ export let UserPermissions = class UserPermissions {
 	}
 
 	static isSocialLogin () {
-		if (!Roles.userIsInRole(Meteor.userId(), ['admin', 'editor', 'university', 'lecturer', 'pro']) && this.isNotBlockedOrFirstLogin()) {
+		if (Meteor.userId() && !Roles.userIsInRole(Meteor.userId(), ['admin', 'editor', 'university', 'lecturer', 'pro']) && this.isNotBlockedOrFirstLogin()) {
 			return true;
 		}
 	}
 
 	static gotBackendAccess () {
-		if (Roles.userIsInRole(Meteor.userId(), ['admin']) && this.isNotBlockedOrFirstLogin()) {
+		if (Meteor.userId() && Roles.userIsInRole(Meteor.userId(), ['admin']) && this.isNotBlockedOrFirstLogin()) {
 			return true;
 		}
 	}
 
 	static isAdmin () {
-		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']) && this.isNotBlockedOrFirstLogin()) {
+		if (Meteor.userId() && Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']) && this.isNotBlockedOrFirstLogin()) {
 			return true;
 		}
 	}
@@ -41,15 +41,15 @@ export let UserPermissions = class UserPermissions {
 	}
 
 	static isEdu () {
-		return (Roles.userIsInRole(Meteor.userId(), ['university']));
+		return (Meteor.userId() && Roles.userIsInRole(Meteor.userId(), ['university']));
 	}
 
 	static isPro () {
-		return (Roles.userIsInRole(Meteor.userId(), ['pro']));
+		return (Meteor.userId() && Roles.userIsInRole(Meteor.userId(), ['pro']));
 	}
 
 	static isLecturer () {
-		return (Roles.userIsInRole(Meteor.userId(), ['lecturer']));
+		return (Meteor.userId() && Roles.userIsInRole(Meteor.userId(), ['lecturer']));
 	}
 
 	static hasCardsetPermission (cardset_id) {

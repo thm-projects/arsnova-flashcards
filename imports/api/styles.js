@@ -3,6 +3,8 @@ import * as serverConf from "../config/server.js";
 import * as backgroundsConf from "../config/backgrounds.js";
 import {Session} from "meteor/session";
 import {UserPermissions} from "./permissions";
+import {MainNavigation} from "./mainNavigation";
+import {Route} from "./route";
 
 const FREE = 0;
 const EDU = 1;
@@ -109,7 +111,33 @@ export let ServerStyle = class ServerStyle {
 		}
 	}
 
-	static gotNavigationFeature (feature) {
+	static gotNavigationFeature (feature, addRoutePath = false) {
+		if (!Meteor.isServer && addRoutePath) {
+			let route = "";
+			if (Route.isPublic()) {
+				route += "public.";
+				if (Route.isPool()) {
+					route += "cardset.";
+				} else {
+					route += "repetitorium.";
+				}
+			} else if (Route.isPersonal()) {
+				route += "personal.";
+				if (Route.isMyCardsets()) {
+					route += "cardset.";
+				} else {
+					route += "repetitorium.";
+				}
+			} else if (Route.isTranscript()) {
+				route += "transcript.";
+				if (Route.isMyTranscripts()) {
+					route += "personal.";
+				} else {
+					route += "bonus.";
+				}
+			}
+			feature = route + feature;
+		}
 		let featurePath = feature.split('.');
 		if (featurePath.length < 3) {
 			return false;
@@ -117,25 +145,32 @@ export let ServerStyle = class ServerStyle {
 		if (UserPermissions.isAdmin()) {
 			return true;
 		}
-		let userType;
-		if (!Meteor.user() && this.isLoginEnabled("guest")) {
-			userType = GUEST;
-		}
-		if (UserPermissions.isSocialLogin()) {
-			userType = FREE;
-		}
-		if (UserPermissions.isEdu()) {
-			userType = EDU;
-		}
+		let userType = -1;
+
 		if (UserPermissions.isLecturer()) {
 			userType = LECTURER;
-		}
-		if (UserPermissions.isPro()) {
+		} else if (UserPermissions.isPro()) {
 			userType = PRO;
+		} else if (UserPermissions.isEdu()) {
+			userType = EDU;
+		} else if (UserPermissions.isSocialLogin()) {
+			userType = FREE;
+		} else {
+			if (Meteor.isServer) {
+				if (!Meteor.user() && this.isLoginEnabled("guest")) {
+					userType = GUEST;
+				}
+			} else {
+				if (!Meteor.user() && MainNavigation.isGuestLoginActive()) {
+					userType = GUEST;
+				}
+			}
 		}
-		let navigationFeatures = this.getConfig().navigationFeatures;
-		if (navigationFeatures[featurePath[0]][featurePath[1]][featurePath[2]].length) {
-			return navigationFeatures[featurePath[0]][featurePath[1]][featurePath[2]].includes(userType);
+		if (userType !== -1) {
+			let navigationFeatures = this.getConfig().navigationFeatures;
+			if (navigationFeatures[featurePath[0]][featurePath[1]][featurePath[2]] !== undefined) {
+				return navigationFeatures[featurePath[0]][featurePath[1]][featurePath[2]].includes(userType);
+			}
 		}
 	}
 

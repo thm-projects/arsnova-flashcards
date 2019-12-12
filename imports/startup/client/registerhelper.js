@@ -187,8 +187,8 @@ Template.registerHelper('getAboutButton', function (isMobile = false) {
 	return ServerStyle.getAboutButton(isMobile);
 });
 
-Template.registerHelper('gotNavigationFeature', function (feature) {
-	return ServerStyle.gotNavigationFeature(feature);
+Template.registerHelper('gotNavigationFeature', function (feature, addRoutePath = false) {
+	return ServerStyle.gotNavigationFeature(feature, addRoutePath);
 });
 
 Template.registerHelper('isInBonus', function () {

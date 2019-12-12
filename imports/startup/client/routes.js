@@ -265,7 +265,12 @@ Router.route('/personal/cardsets', {
 	},
 	action: function () {
 		if (this.ready()) {
-			this.render();
+			if (ServerStyle.gotNavigationFeature("personal.cardset.enabled")) {
+				this.render();
+			} else {
+				MainNavigation.setLoginTarget(false);
+				this.redirect('home');
+			}
 		} else {
 			this.render(loadingScreenTemplate);
 		}
@@ -333,7 +338,12 @@ Router.route('/personal/repetitorien', {
 	},
 	action: function () {
 		if (this.ready()) {
-			this.render();
+			if (ServerStyle.gotNavigationFeature("personal.repetitorium.enabled")) {
+				this.render();
+			} else {
+				MainNavigation.setLoginTarget(false);
+				this.redirect('home');
+			}
 		} else {
 			this.render(loadingScreenTemplate);
 		}
@@ -353,7 +363,12 @@ Router.route('/public/repetitorien', {
 	},
 	action: function () {
 		if (this.ready()) {
-			this.render();
+			if (ServerStyle.gotNavigationFeature("public.repetitorium.enabled")) {
+				this.render();
+			} else {
+				MainNavigation.setLoginTarget(false);
+				this.redirect('home');
+			}
 		} else {
 			this.render(loadingScreenTemplate);
 		}

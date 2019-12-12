@@ -1,10 +1,14 @@
 <template name="mainNavigationTopItemPersonalItemCardsets">
     {{#unless isSmartPhoneAndOwnsNoCards}}
         {{#if canCreateContent}}
-            <li id="navbar-personal-cardsets"
+            <li id="navbar-personal{{#unless standalone}}-cardsets{{/unless}}"
                 class="{{#if isMyCardsetsRoute}}active{{/if}}">
                 <a href="{{pathFor route='create'}}">
-                    {{{getNavigationName "personalCardsets"}}}
+                    {{#if standalone}}
+                        {{{getNavigationName "personal"}}}
+                    {{else}}
+                        {{{getNavigationName "personalCardsets"}}}
+                    {{/if}}
                 </a>
             </li>
         {{/if}}

@@ -4,6 +4,7 @@ import {Meteor} from "meteor/meteor";
 import "./item/personal.js";
 import "./item/bonus.js";
 import "./transcripts.html";
+import {ServerStyle} from "../../../../../../api/styles";
 
 /*
 * ############################################################################
@@ -18,5 +19,8 @@ Template.mainNavigationTopItemTranscripts.helpers({
 				return Meteor.user().count.cardsets === 0 && Meteor.user().count.shuffled === 0 && Meteor.user().count.transcripts === 0;
 			}
 		}
+	},
+	gotBothNavigationElements: function () {
+		return ServerStyle.gotNavigationFeature("transcript.bonus.enabled") && ServerStyle.gotNavigationFeature("transcript.personal.enabled");
 	}
 });

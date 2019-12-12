@@ -1,13 +1,17 @@
 <template name="useCasesItemCreate">
-    {{#if canCreateContent}}
-        <tr class="hidden-xs">
-            <td colspan="2">
-                {{_ "useCases.modal.description.personal.create"}}<br>
-                <div class="dropdown">
-                    {{> useCasesItemCreateDropdown}}
-                </div>
-            </td>
-        </tr>
+    {{#if (gotNavigationFeature "useCases.misc.create" false)}}
+        {{#if (gotNavigationFeature "personal.cardset.enabled" false)}}
+            {{#if canCreateContent}}
+                <tr class="hidden-xs">
+                    <td colspan="2">
+                        {{_ "useCases.modal.description.personal.create"}}<br>
+                        <div class="dropdown">
+                            {{> useCasesItemCreateDropdown}}
+                        </div>
+                    </td>
+                </tr>
+            {{/if}}
+        {{/if}}
     {{/if}}
 </template>
 

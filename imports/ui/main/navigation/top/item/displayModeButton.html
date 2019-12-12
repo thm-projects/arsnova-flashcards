@@ -1,14 +1,18 @@
 <template name="mainNavigationTopItemDisplayMode">
     {{#if gotFeatureSupport 2}}
-        <li class="hidden-xs">
-            {{> mainNavigationTopItemDisplayModeButton}}
-        </li>
+        {{#if (gotNavigationFeature "wordcloud" true)}}
+            <li class="hidden-xs">
+                {{> mainNavigationTopItemDisplayModeButton}}
+            </li>
+        {{/if}}
     {{/if}}
 </template>
 
 <template name="mainNavigationTopItemDisplayModeButton">
-    <button title="{{#if isWordcloudActive}}{{_ "navbar-collapse.tooltip.displayList"}}{{else}}{{_ "navbar-collapse.tooltip.displayWordcloud"}}{{/if}}" class="displayModeBtn btn btn-raised btn-default top-navigation-call-to-action-button"
-       role="button">
+    <button title="{{#if isWordcloudActive}}{{_ "navbar-collapse.tooltip.displayList"}}{{else}}{{_
+            "navbar-collapse.tooltip.displayWordcloud"}}{{/if}}"
+            class="displayModeBtn btn btn-raised btn-default top-navigation-call-to-action-button"
+            role="button">
         {{#if isWordcloudActive}}
             {{{getDisplayModeIcons "list"}}}
         {{else}}

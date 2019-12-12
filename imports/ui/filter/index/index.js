@@ -54,6 +54,7 @@ import "../modal/deleteTranscript.js";
 import "../modal/selectWorkload.js";
 import "./index.html";
 import {Meteor} from "meteor/meteor";
+import {ServerStyle} from "../../../api/styles";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
@@ -155,7 +156,7 @@ Template.filterIndexPool.helpers({
 		}
 	},
 	displayWordcloud: function () {
-		return FilterNavigation.gotDisplayModeButton(FilterNavigation.getRouteId()) && Session.get('filterDisplayWordcloud');
+		return ServerStyle.gotNavigationFeature("public.cardset.wordcloud") && FilterNavigation.gotDisplayModeButton(FilterNavigation.getRouteId()) && Session.get('filterDisplayWordcloud');
 	}
 });
 
@@ -233,7 +234,7 @@ Template.filterIndexCreate.helpers({
 		}
 	},
 	displayWordcloud: function () {
-		return FilterNavigation.gotDisplayModeButton(FilterNavigation.getRouteId()) && Session.get('filterDisplayWordcloud');
+		return ServerStyle.gotNavigationFeature("personal.cardset.wordcloud") && FilterNavigation.gotDisplayModeButton(FilterNavigation.getRouteId()) && Session.get('filterDisplayWordcloud');
 	}
 });
 
@@ -263,7 +264,6 @@ Template.filterIndexRepetitorium.helpers({
 		if (returnType !== 0) {
 			query = Filter.getFilterQuery();
 		}
-
 		switch (returnType) {
 			case 0:
 			case 1:
@@ -279,7 +279,7 @@ Template.filterIndexRepetitorium.helpers({
 		}
 	},
 	displayWordcloud: function () {
-		return FilterNavigation.gotDisplayModeButton(FilterNavigation.getRouteId()) && Session.get('filterDisplayWordcloud');
+		return ServerStyle.gotNavigationFeature("public.repetitorium.wordcloud") && FilterNavigation.gotDisplayModeButton(FilterNavigation.getRouteId()) && Session.get('filterDisplayWordcloud');
 	}
 });
 

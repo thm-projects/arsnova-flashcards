@@ -68,7 +68,7 @@ export let LoginTasks = class LoginTasks {
 									}
 									break;
 								case 2:
-									if (LoginTasks.gotOwnCardsets() > 0 && !redirected) {
+									if (ServerStyle.gotNavigationFeature("personal.cardset.enabled") && LoginTasks.gotOwnCardsets() > 0 && !redirected) {
 										redirected = true;
 										Router.go('create');
 									}
@@ -81,8 +81,10 @@ export let LoginTasks = class LoginTasks {
 						if (!redirected) {
 							if (ServerStyle.gotNavigationFeature("public.cardset.enabled")) {
 								Router.go('pool');
-							} else {
+							} else if (ServerStyle.gotNavigationFeature("public.repetitorium.enabled")) {
 								Router.go('repetitorium');
+							} else {
+								Router.go('help');
 							}
 						}
 					}

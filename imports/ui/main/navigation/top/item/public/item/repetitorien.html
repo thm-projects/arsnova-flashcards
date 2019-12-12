@@ -1,11 +1,11 @@
 <template name="mainNavigationTopItemPublicItemRepetitorien">
-    <li id="navbar-public{{#if (gotNavigationFeature "public.cardset.enabled")}}-repetitorien{{/if}}"
+    <li id="navbar-public{{#unless standalone}}-repetitorien{{/unless}}"
         class="{{#if isRepetitoriumRoute}}active{{/if}}">
         <a href="{{pathFor route='repetitorium'}}">
-            {{#if (gotNavigationFeature "public.cardset.enabled")}}
-                {{{getNavigationName "publicRepetitorien"}}}
-            {{else}}
+            {{#if standalone}}
                 {{{getNavigationName "public"}}}
+            {{else}}
+                {{{getNavigationName "publicRepetitorien"}}}
             {{/if}}
         </a>
     </li>

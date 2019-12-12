@@ -1,19 +1,21 @@
 <template name="useCasesItemSpecialCardsets">
-    {{#if gotSpecialCardset}}
-        {{#each getSpecialCardset}}
-            <tr>
-                <td>
-                    {{this.name}}<br>
-                    {{> cardsetLabels}}
-                    <div class="visible-xs">
+    {{#if (gotNavigationFeature "useCases.misc.specialCardsets" false)}}
+        {{#if gotSpecialCardset}}
+            {{#each getSpecialCardset}}
+                <tr>
+                    <td>
+                        {{this.name}}<br>
+                        {{> cardsetLabels}}
+                        <div class="visible-xs">
+                            {{> useCasesItemSpecialCardsetsButton}}
+                        </div>
+                    </td>
+                    <td class="hidden-xs">
                         {{> useCasesItemSpecialCardsetsButton}}
-                    </div>
-                </td>
-                <td class="hidden-xs">
-                    {{> useCasesItemSpecialCardsetsButton}}
-                </td>
-            </tr>
-        {{/each}}
+                    </td>
+                </tr>
+            {{/each}}
+        {{/if}}
     {{/if}}
 </template>
 
