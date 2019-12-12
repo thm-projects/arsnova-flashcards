@@ -1,12 +1,12 @@
 <template name="mainNavigationFooter">
     {{#unless fullscreenActive}}
         {{#unless canAccessFrontend}}
-                {{#if displayWelcomeNavigation}}
-                    {{> mainNavigationFooterItemInfo}}
-                {{/if}}
+            {{#unless isImpressum}}
+                {{> mainNavigationFooterItemInfo}}
+            {{/unless}}
         {{/unless}}
-        {{#if isImpressum}}
-            <nav id="navbar-cards-footer" class="navbar navbar-default navbar-fixed-bottom navbar-cards {{#if canAccessFrontend}}hidden-xs{{/if}}">
+        {{#if canDisplayFooter}}
+            <nav id="navbar-cards-footer" class="navbar navbar-default navbar-fixed-bottom navbar-cards {{#if isLandingPage}}hidden-xs{{/if}} {{#if canAccessFrontend}}hidden-xs{{/if}}">
                 <div class="container footer-container">
                     <div class="visible-xs navbar-header">
                         <div class="navbar-header-item pull-left">
