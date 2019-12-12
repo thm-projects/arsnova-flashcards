@@ -317,8 +317,6 @@ $themes: (
     $footer_navigation_background: map-get($map, "footer_navigation_background");
     $footer_navigation_background_active: map-get($map, "footer_navigation_background_active");
     $footer_navigation_background_hover: map-get($map, "footer_navigation_background_hover");
-    $footer_home_button_icon: map-get($map, "footer_home_button_icon");
-    $footer_home_button_icon_hover: map-get($map, "footer_home_button_icon_hover");
     $info_content_header_text: map-get($map, "info_content_header_text");
     $info_content_header_background: map-get($map, "info_content_header_background");
     $info_content_body_text: map-get($map, "info_content_body_text");
@@ -910,24 +908,18 @@ $themes: (
     #navbar-cards-footer, #navbar-cards-footer-collapse {
       color: $footer_navigation_text !important;
       background-color: $footer_navigation_background !important;
-      a {
+      a, .fa-home {
         color: $footer_navigation_text !important;
         background-color: $footer_navigation_background !important;
       }
-      a:hover, a:focus {
+
+      a:hover, a:focus, .fa-home:hover {
         color: $footer_navigation_text_hover !important;
         background-color: $footer_navigation_background_hover !important;
       }
-      .active a {
+      .active a, .active .fa-home {
         color: $footer_navigation_text_active !important;
         background-color: $footer_navigation_background_active !important;
-      }
-      .fa-home {
-        color: $footer_home_button_icon !important;
-      }
-
-      #backToStartButton:hover, .fa-home:hover, #backToStartButton:focus, .fa-home:focus {
-        color: $footer_home_button_icon_hover !important;
       }
     }
 

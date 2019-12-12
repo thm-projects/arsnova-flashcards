@@ -158,6 +158,9 @@
             {{> cardSidebarRightNavigation}}
         </span>
     {{/if}}
+    {{#unless canAccessFrontend}}
+        {{> cardSidebarItemEndPresentation}}
+    {{/unless}}
     {{> cardSidebarItemToggleFullscreen}}
     {{> cardSidebarItemZoomText}}
     {{> cardSidebarItemAspectRatio}}

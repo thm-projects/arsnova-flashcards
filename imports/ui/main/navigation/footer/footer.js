@@ -14,6 +14,8 @@ import "./item/learning.js";
 import "./item/statistics.js";
 import "./footer.html";
 import {MainNavigation} from "../../../../api/mainNavigation";
+import {Meteor} from "meteor/meteor";
+import ResizeSensor from "../../../../../client/thirdParty/resizeSensor/ResizeSensor";
 
 /*
  * ############################################################################
@@ -22,8 +24,8 @@ import {MainNavigation} from "../../../../api/mainNavigation";
  */
 
 Template.mainNavigationFooter.helpers({
-	displayWelcomeNavigation: function () {
-		return (Route.isHome());
+	canDisplayFooter: function () {
+		return Route.isImpressum() || (Route.isHome() && (!Meteor.user() && !MainNavigation.isGuestLoginActive()));
 	}
 });
 
@@ -41,5 +43,8 @@ Template.mainNavigationFooter.events({
  */
 
 Template.mainNavigationFooterDropdownContent.onRendered(function () {
+	new ResizeSensor($('#navbar-cards-footer'), function () {
+		MainNavigation.repositionCollapseElements();
+	});
 	MainNavigation.repositionCollapseElements();
 });
