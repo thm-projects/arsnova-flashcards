@@ -126,7 +126,7 @@ let linux = {
 		"title": {
 			"first": "Linux",
 			"last": "cards",
-			"slogan_de": "Lernen für die LPI-Prüfungen",
+			"slogan_de": "LERNEN FÜR DIE LPI-PRÜFUNGEN",
 			"slogan_en": "Learning for the LPI exams"
 		},
 		"button": {
