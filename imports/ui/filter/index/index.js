@@ -68,57 +68,81 @@ Session.setDefault('transcriptViewingMode', 2);
 
 Template.filterIndex.events({
 	'click .resultItemHeaderBottomAreaLabels .label-wordcloud': function () {
-		Filter.setActiveFilter(true, "wordcloud");
-		FilterNavigation.showDropdown();
+		if (ServerStyle.gotNavigationFeature("filter", true)) {
+			Filter.setActiveFilter(true, "wordcloud");
+			FilterNavigation.showDropdown();
+		}
 	},
 	'click .resultItemHeaderBottomAreaLabels .label-use-case': function () {
-		Filter.setActiveFilter(true, "useCase");
-		FilterNavigation.showDropdown();
+		if (ServerStyle.gotNavigationFeature("filter", true)) {
+			Filter.setActiveFilter(true, "useCase");
+			FilterNavigation.showDropdown();
+		}
 	},
 	'click .resultItemHeaderBottomAreaLabels .label-lecturer-authorized': function () {
-		Filter.setActiveFilter(true, "lecturerAuthorized");
-		FilterNavigation.showDropdown();
+		if (ServerStyle.gotNavigationFeature("filter", true)) {
+			Filter.setActiveFilter(true, "lecturerAuthorized");
+			FilterNavigation.showDropdown();
+		}
 	},
 	'click .resultItemHeaderBottomAreaLabels .label-kind': function (event) {
-		Filter.setActiveFilter([$(event.target).data('id')], "kind");
-		FilterNavigation.showDropdown();
+		if (ServerStyle.gotNavigationFeature("filter", true)) {
+			Filter.setActiveFilter([$(event.target).data('id')], "kind");
+			FilterNavigation.showDropdown();
+		}
 	},
 	'click .resultItemHeaderBottomAreaLabels .label-card-type': function (event) {
-		Filter.setActiveFilter(Number($(event.target).data('id')), "cardType");
-		FilterNavigation.showDropdown();
+		if (ServerStyle.gotNavigationFeature("filter", true)) {
+			Filter.setActiveFilter(Number($(event.target).data('id')), "cardType");
+			FilterNavigation.showDropdown();
+		}
 	},
 	'click .resultItemHeaderBottomAreaLabels .label-difficulty': function (event) {
-		Filter.setActiveFilter(Number($(event.target).data('id')), "difficulty");
-		FilterNavigation.showDropdown();
+		if (ServerStyle.gotNavigationFeature("filter", true)) {
+			Filter.setActiveFilter(Number($(event.target).data('id')), "difficulty");
+			FilterNavigation.showDropdown();
+		}
 	},
 	'click .resultItemHeaderBottomAreaLabels .label-bonus': function () {
-		Filter.setActiveFilter(true, "bonusActive");
-		FilterNavigation.showDropdown();
+		if (ServerStyle.gotNavigationFeature("filter", true)) {
+			Filter.setActiveFilter(true, "bonusActive");
+			FilterNavigation.showDropdown();
+		}
 	},
 	'click .resultItemHeaderBottomAreaLabels .label-transcript-bonus': function () {
-		Filter.setActiveFilter(true, "transcriptBonus");
-		FilterNavigation.showDropdown();
+		if (ServerStyle.gotNavigationFeature("filter", true)) {
+			Filter.setActiveFilter(true, "transcriptBonus");
+			FilterNavigation.showDropdown();
+		}
 	},
 	'click .resultItemHeaderAuthor a': function (event) {
-		if (Route.isTranscript() || Route.isTranscriptBonus()) {
-			Filter.setActiveFilter($(event.target).data('id'), "user_id");
-		} else {
-			Filter.setActiveFilter($(event.target).data('id'), "author");
+		if (ServerStyle.gotNavigationFeature("filter", true)) {
+			if (Route.isTranscript() || Route.isTranscriptBonus()) {
+				Filter.setActiveFilter($(event.target).data('id'), "user_id");
+			} else {
+				Filter.setActiveFilter($(event.target).data('id'), "author");
+			}
+			FilterNavigation.showDropdown();
 		}
-		FilterNavigation.showDropdown();
 	},
 	'click .resultItemHeaderBottomAreaLabels .label-transcript-rating': function (event) {
-		Filter.setActiveFilter($(event.target).data('rating'), "rating");
-		FilterNavigation.showDropdown();
+		if (ServerStyle.gotNavigationFeature("filter", true)) {
+			Filter.setActiveFilter($(event.target).data('rating'), "rating");
+			FilterNavigation.showDropdown();
+		}
 	},
 	'click .resultItemHeaderBottomAreaLabels .label-transcript-info': function (event) {
-		Filter.setActiveFilter($(event.target).data('id'), "transcriptLecture");
-		Filter.setActiveFilter($(event.target).data('cardset'), "cardset_id");
-		FilterNavigation.showDropdown();
+		if (ServerStyle.gotNavigationFeature("filter", true)) {
+			Filter.setActiveFilter($(event.target).data('id'), "transcriptLecture");
+			Filter.setActiveFilter($(event.target).data('cardset'), "cardset_id");
+			FilterNavigation.showDropdown();
+		}
 	},
 	'click .resultItemHeaderBottomAreaLabels .label-transcript-rating-stars': function (evt) {
-		Filter.setActiveFilter($(evt.currentTarget).data("stars"), "stars");
-		FilterNavigation.showDropdown();
+		if (ServerStyle.gotNavigationFeature("filter", true)) {
+			Filter.setActiveFilter($(evt.currentTarget).data("stars"), "stars");
+			FilterNavigation.showDropdown();
+		}
 	}
 });
 

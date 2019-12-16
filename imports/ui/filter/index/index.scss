@@ -7,7 +7,7 @@ hr {
   overflow: auto;
 }
 
-.resultItemHeaderBottomAreaLabels .label-group > .label:not(:first-child) {
+.resultItemHeaderBottomAreaLabels.enabled .label-group > .label:not(:first-child) {
   cursor: pointer;
 }
 
