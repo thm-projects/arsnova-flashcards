@@ -33,9 +33,6 @@ Meteor.methods({
 
 	getUseCaseCardsets: function () {
 		let query = {'useCase.enabled': true};
-		if (!ServerStyle.gotNavigationFeature("public.cardset.enabled")) {
-			query.shuffled = true;
-		}
 		return Cardsets.find(query, {
 			sort: {'useCase.priority': 1, name: 1},
 			fields: {description: 0, 'useCase.enabled': 0}
