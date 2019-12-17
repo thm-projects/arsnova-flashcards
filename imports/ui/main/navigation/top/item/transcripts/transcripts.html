@@ -1,19 +1,29 @@
 <template name="mainNavigationTopItemTranscripts">
-    {{#unless isSmartPhoneAndOwnsNoCards}}
-        {{#if canCreateContent}}
-            <li id="navbar-transcripts"
-                class="dropdown {{#if isPersonalTranscriptsRoute}}active{{/if}}">
-                <a href="#" class="dropdown-toggle dropdownMenuContainer"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="hidden-sm">{{{getNavigationName "transcripts"}}}</span><span class="visible-sm">{{{getNavigationName "transcriptsShort"}}}</span>
-                </a>
-                <div id="transcripts-drop" class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <ul>
-                        {{> mainNavigationTopItemTranscriptsItemPersonal}}
-                        {{> mainNavigationTopItemTranscriptsItemBonus}}
-                    </ul>
-                </div>
-            </li>
+    {{#if gotBothNavigationElements}}
+        {{#unless isSmartPhoneAndOwnsNoCards}}
+            {{#if canCreateContent}}
+                <li id="navbar-transcripts"
+                    class="dropdown {{#if isPersonalTranscriptsRoute}}active{{/if}}">
+                    <a href="#" class="dropdown-toggle dropdownMenuContainer"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="hidden-sm">{{{getNavigationName "transcripts"}}}</span><span
+                            class="visible-sm">{{{getNavigationName "transcriptsShort"}}}</span>
+                    </a>
+                    <div id="transcripts-drop" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ul>
+                            {{> mainNavigationTopItemTranscriptsItemPersonal}}
+                            {{> mainNavigationTopItemTranscriptsItemBonus}}
+                        </ul>
+                    </div>
+                </li>
+            {{/if}}
+        {{/unless}}
+    {{else}}
+        {{#if (gotNavigationFeature "transcript.personal.enabled" false)}}
+            {{> mainNavigationTopItemTranscriptsItemPersonal standalone=true}}
         {{/if}}
-    {{/unless}}
+        {{#if (gotNavigationFeature "transcript.bonus.enabled" false)}}
+            {{> mainNavigationTopItemTranscriptsItemBonus standalone=true}}
+        {{/if}}
+    {{/if}}
 </template>

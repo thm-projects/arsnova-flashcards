@@ -4,6 +4,7 @@ import {Meteor} from "meteor/meteor";
 import "./item/cardsets.js";
 import "./item/repetitorien.js";
 import "./personal.html";
+import {ServerStyle} from "../../../../../../api/styles";
 
 /*
 * ############################################################################
@@ -18,5 +19,8 @@ Template.mainNavigationTopItemPersonal.helpers({
 				return Meteor.user().count.cardsets === 0 && Meteor.user().count.shuffled === 0 && Meteor.user().count.transcripts === 0;
 			}
 		}
+	},
+	gotBothNavigationElements: function () {
+		return ServerStyle.gotNavigationFeature("personal.cardset.enabled") && ServerStyle.gotNavigationFeature("personal.repetitorium.enabled");
 	}
 });

@@ -2,7 +2,15 @@ import {Meteor} from "meteor/meteor";
 import * as serverConf from "../config/server.js";
 import * as backgroundsConf from "../config/backgrounds.js";
 import {Session} from "meteor/session";
+import {UserPermissions} from "./permissions";
+import {MainNavigation} from "./mainNavigation";
+import {Route} from "./route";
 
+const FREE = 0;
+const EDU = 1;
+const PRO = 2;
+const LECTURER = 3;
+const GUEST = 4;
 
 export let ServerStyle = class ServerStyle {
 
@@ -103,9 +111,72 @@ export let ServerStyle = class ServerStyle {
 		}
 	}
 
-	static gotPublicCardset () {
-		let config  = this.getConfig();
-		return config.index.public.cardsets.enabled;
+	static gotNavigationFeature (feature, addRoutePath = false) {
+		if (!Meteor.isServer && Router.current() !== null) {
+			if ((Route.isShuffle() || Route.isEditShuffle() || Route.isTranscriptBonus()) && (feature === "wordcloud" || feature === 'filter' || feature === 'search')) {
+				return true;
+			}
+		}
+		if (!Meteor.isServer && addRoutePath) {
+			let route = "";
+			if (Route.isPublic()) {
+				route += "public.";
+				if (Route.isPool()) {
+					route += "cardset.";
+				} else {
+					route += "repetitorium.";
+				}
+			} else if (Route.isPersonal()) {
+				route += "personal.";
+				if (Route.isMyCardsets()) {
+					route += "cardset.";
+				} else {
+					route += "repetitorium.";
+				}
+			} else if (Route.isTranscript()) {
+				route += "transcript.";
+				if (Route.isMyTranscripts()) {
+					route += "personal.";
+				} else {
+					route += "bonus.";
+				}
+			}
+			feature = route + feature;
+		}
+		let featurePath = feature.split('.');
+		if (featurePath.length < 3) {
+			return false;
+		}
+		if (UserPermissions.isAdmin()) {
+			return true;
+		}
+		let userType = -1;
+
+		if (UserPermissions.isLecturer()) {
+			userType = LECTURER;
+		} else if (UserPermissions.isPro()) {
+			userType = PRO;
+		} else if (UserPermissions.isEdu()) {
+			userType = EDU;
+		} else if (UserPermissions.isSocialLogin()) {
+			userType = FREE;
+		} else {
+			if (Meteor.isServer) {
+				if (!Meteor.user() && this.isLoginEnabled("guest")) {
+					userType = GUEST;
+				}
+			} else {
+				if (!Meteor.user() && MainNavigation.isGuestLoginActive()) {
+					userType = GUEST;
+				}
+			}
+		}
+		if (userType !== -1) {
+			let navigationFeatures = this.getConfig().navigationFeatures;
+			if (navigationFeatures[featurePath[0]][featurePath[1]][featurePath[2]] !== undefined) {
+				return navigationFeatures[featurePath[0]][featurePath[1]][featurePath[2]].includes(userType);
+			}
+		}
 	}
 
 	static isLoginEnabled (loginType) {

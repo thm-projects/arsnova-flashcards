@@ -1,4 +1,76 @@
+//navigation Features
+// 0 standard
+// 1 edu
+// 2 pro
+// 3 lecturer
+// 4 guest - Only works for public views
+const FREE = 0;
+const EDU = 1;
+const PRO = 2;
+const LECTURER = 3;
+const GUEST = 4;
+
 let defaultSettings = {
+	"navigationFeatures": { //Excludes Super Admins (Backend) and Editors (Frontend)
+		"useCases": { //Will be only visible if the related navigation item is enabled
+			"misc": {
+				"create": [FREE, EDU, PRO, LECTURER],
+				"workload":	[FREE, EDU, PRO, LECTURER],
+				"transcripts": [FREE, EDU, PRO, LECTURER],
+				"specialCardsets": [FREE, EDU, PRO, LECTURER, GUEST]
+			},
+			"personal": {
+				"cardset": [FREE, EDU, PRO, LECTURER],
+				"repetitorium": [FREE, EDU, PRO, LECTURER]
+			},
+			"public": {
+				"cardset": [FREE, EDU, PRO, LECTURER, GUEST],
+				"repetitorium": [FREE, EDU, PRO, LECTURER, GUEST]
+			}
+		},
+		"public": {
+			"cardset": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
+			},
+			"repetitorium": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
+			}
+		},
+		"personal": { // Excludes GUEST, requires 'roles.create' permission
+			"cardset": {
+				"enabled": [FREE, EDU, PRO, LECTURER],
+				"filter": [FREE, EDU, PRO, LECTURER],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			},
+			"repetitorium": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			}
+		},
+		"transcript": { // Excludes GUEST, requires 'roles.create' permission
+			"personal": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			},
+			"bonus": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			}
+		}
+	},
 	"login": {
 		"cas": true,
 		"guest": true,
@@ -31,13 +103,6 @@ let defaultSettings = {
 	"transcripts": {
 		"enabled": true
 	},
-	"index": {
-		"public": {
-			"cardsets": {
-				"enabled": true
-			}
-		}
-	},
 	"demo": {
 		"folder": "informatik"
 	},
@@ -55,6 +120,66 @@ let defaultSettings = {
 };
 
 let debug = {
+	"navigationFeatures": { //Excludes Super Admins (Backend) and Editors (Frontend)
+		"useCases": { //Will be only visible if the related navigation item is enabled
+			"misc": {
+				"create": [FREE, EDU, PRO, LECTURER],
+				"workload":	[FREE, EDU, PRO, LECTURER],
+				"transcripts": [FREE, EDU, PRO, LECTURER],
+				"specialCardsets": [FREE, EDU, PRO, LECTURER, GUEST]
+			},
+			"personal": {
+				"cardset": [FREE, EDU, PRO, LECTURER],
+				"repetitorium": [FREE, EDU, PRO, LECTURER]
+			},
+			"public": {
+				"cardset": [FREE, EDU, PRO, LECTURER, GUEST],
+				"repetitorium": [FREE, EDU, PRO, LECTURER, GUEST]
+			}
+		},
+		"public": {
+			"cardset": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
+			},
+			"repetitorium": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
+			}
+		},
+		"personal": { // Excludes GUEST, requires 'roles.create' permission
+			"cardset": {
+				"enabled": [FREE, EDU, PRO, LECTURER],
+				"filter": [FREE, EDU, PRO, LECTURER],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			},
+			"repetitorium": {
+				"enabled": [FREE, EDU, PRO, LECTURER],
+				"filter": [FREE, EDU, PRO, LECTURER],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			}
+		},
+		"transcript": { // Excludes GUEST, requires 'roles.create' permission
+			"personal": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			},
+			"bonus": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			}
+		}
+	},
 	"login": {
 		"cas": false,
 		"guest": true,
@@ -87,13 +212,6 @@ let debug = {
 	"transcripts": {
 		"enabled": true
 	},
-	"index": {
-		"public": {
-			"cardsets": {
-				"enabled": true
-			}
-		}
-	},
 	"demo": {
 		"folder": "informatik"
 	},
@@ -114,6 +232,66 @@ let debug = {
 };
 
 let linux = {
+	"navigationFeatures": { //Excludes Super Admins (Backend) and Editors (Frontend)
+		"useCases": { //Will be only visible if the related navigation item is enabled
+			"misc": {
+				"create": [PRO, LECTURER],
+				"workload":	[FREE, EDU, PRO, LECTURER],
+				"transcripts": [PRO, LECTURER],
+				"specialCardsets": [FREE, EDU, PRO, LECTURER, GUEST]
+			},
+			"personal": {
+				"cardset": [PRO, LECTURER],
+				"repetitorium": [PRO, LECTURER]
+			},
+			"public": {
+				"cardset": [PRO, LECTURER],
+				"repetitorium": [PRO, LECTURER]
+			}
+		},
+		"public": {
+			"cardset": {
+				"enabled": [PRO, LECTURER],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
+			},
+			"repetitorium": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [PRO, LECTURER],
+				"search":  [PRO, LECTURER],
+				"wordcloud": [PRO, LECTURER]
+			}
+		},
+		"personal": { // Excludes GUEST, requires 'roles.create' permission
+			"cardset": {
+				"enabled": [PRO, LECTURER],
+				"filter": [FREE, EDU, PRO, LECTURER],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			},
+			"repetitorium": {
+				"enabled": [PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			}
+		},
+		"transcript": { // Excludes GUEST, requires 'roles.create' permission
+			"personal": {
+				"enabled": [PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			},
+			"bonus": {
+				"enabled": [PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			}
+		}
+	},
 	"login": {
 		"cas": true,
 		"guest": true,
@@ -146,13 +324,6 @@ let linux = {
 	"transcripts": {
 		"enabled": false
 	},
-	"index": {
-		"public": {
-			"cardsets": {
-				"enabled": true
-			}
-		}
-	},
 	"demo": {
 		"folder": "linux"
 	},
@@ -170,6 +341,66 @@ let linux = {
 };
 
 let review = {
+	"navigationFeatures": { //Excludes Super Admins (Backend) and Editors (Frontend)
+		"useCases": { //Will be only visible if the related navigation item is enabled
+			"misc": {
+				"create": [FREE, EDU, PRO, LECTURER],
+				"workload":	[FREE, EDU, PRO, LECTURER],
+				"transcripts": [FREE, EDU, PRO, LECTURER],
+				"specialCardsets": [FREE, EDU, PRO, LECTURER, GUEST]
+			},
+			"personal": {
+				"cardset": [FREE, EDU, PRO, LECTURER],
+				"repetitorium": [FREE, EDU, PRO, LECTURER]
+			},
+			"public": {
+				"cardset": [FREE, EDU, PRO, LECTURER, GUEST],
+				"repetitorium": [FREE, EDU, PRO, LECTURER, GUEST]
+			}
+		},
+		"public": {
+			"cardset": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
+			},
+			"repetitorium": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
+			}
+		},
+		"personal": { // Excludes GUEST, requires 'roles.create' permission
+			"cardset": {
+				"enabled": [FREE, EDU, PRO, LECTURER],
+				"filter": [FREE, EDU, PRO, LECTURER],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			},
+			"repetitorium": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			}
+		},
+		"transcript": { // Excludes GUEST, requires 'roles.create' permission
+			"personal": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			},
+			"bonus": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			}
+		}
+	},
 	"login": {
 		"cas": true,
 		"guest": true,
@@ -202,13 +433,6 @@ let review = {
 	"transcripts": {
 		"enabled": true
 	},
-	"index": {
-		"public": {
-			"cardsets": {
-				"enabled": true
-			}
-		}
-	},
 	"demo": {
 		"folder": "informatik"
 	},
@@ -229,6 +453,66 @@ let review = {
 };
 
 let staging = {
+	"navigationFeatures": { //Excludes Super Admins (Backend) and Editors (Frontend)
+		"useCases": { //Will be only visible if the related navigation item is enabled
+			"misc": {
+				"create": [FREE, EDU, PRO, LECTURER],
+				"workload":	[FREE, EDU, PRO, LECTURER],
+				"transcripts": [FREE, EDU, PRO, LECTURER],
+				"specialCardsets": [FREE, EDU, PRO, LECTURER, GUEST]
+			},
+			"personal": {
+				"cardset": [FREE, EDU, PRO, LECTURER],
+				"repetitorium": [FREE, EDU, PRO, LECTURER]
+			},
+			"public": {
+				"cardset": [FREE, EDU, PRO, LECTURER, GUEST],
+				"repetitorium": [FREE, EDU, PRO, LECTURER, GUEST]
+			}
+		},
+		"public": {
+			"cardset": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
+			},
+			"repetitorium": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
+			}
+		},
+		"personal": { // Excludes GUEST, requires 'roles.create' permission
+			"cardset": {
+				"enabled": [FREE, EDU, PRO, LECTURER],
+				"filter": [FREE, EDU, PRO, LECTURER],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			},
+			"repetitorium": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			}
+		},
+		"transcript": { // Excludes GUEST, requires 'roles.create' permission
+			"personal": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			},
+			"bonus": {
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"search":  [FREE, EDU, PRO, LECTURER],
+				"wordcloud": [FREE, EDU, PRO, LECTURER]
+			}
+		}
+	},
 	"login": {
 		"cas": true,
 		"guest": true,
@@ -260,13 +544,6 @@ let staging = {
 	"backgrounds": "default",
 	"transcripts": {
 		"enabled": true
-	},
-	"index": {
-		"public": {
-			"cardsets": {
-				"enabled": true
-			}
-		}
 	},
 	"demo": {
 		"folder": "informatik"

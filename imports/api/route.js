@@ -330,6 +330,8 @@ export let Route = class Route {
 
 	static getNavigationName (name) {
 		let iconName = name; // Fix for browsers such as Vivaldi
+		let result;
+		let caret = "<span class='caret'></span>";
 		switch (iconName) {
 			case "about":
 				return TAPi18n.__('contact.about', {lastAppTitle: ServerStyle.getLastAppTitle()});
@@ -353,16 +355,16 @@ export let Route = class Route {
 			case "learning":
 				return icons.footerNavigation.learning  + TAPi18n.__('contact.learning');
 			case "all":
-				return icons.topNavigation.all.all + TAPi18n.__('navbar-collapse.all.all') + "<span class='caret'></span>";
+				return icons.topNavigation.all.all + TAPi18n.__('navbar-collapse.all.all') + caret;
 			case "allCardsets":
 			case "alldecks":
 				return icons.topNavigation.all.cardsets + TAPi18n.__('navbar-collapse.all.cardsets');
 			case "allRepetitorien":
 				return icons.topNavigation.all.repetitorien +  TAPi18n.__('navbar-collapse.all.repetitorien');
 			case "public":
-				let result = icons.topNavigation.public.public + TAPi18n.__('navbar-collapse.public.public');
-				if (ServerStyle.gotPublicCardset()) {
-					result += "<span class='caret'></span>";
+				result = icons.topNavigation.public.public + TAPi18n.__('navbar-collapse.public.public');
+				if (ServerStyle.gotNavigationFeature("public.cardset.enabled") && ServerStyle.gotNavigationFeature("public.repetitorium.enabled")) {
+					result += caret;
 				}
 				return result;
 			case "publicCardsets":
@@ -373,11 +375,23 @@ export let Route = class Route {
 			case "repetitorium":
 				return icons.topNavigation.public.repetitorien +  TAPi18n.__('navbar-collapse.public.repetitorien');
 			case "personal":
-				return icons.topNavigation.personal.personal + this.getPersonalRouteName(0) + "<span class='caret'></span>";
+				result = icons.topNavigation.personal.personal + this.getPersonalRouteName(0);
+				if (ServerStyle.gotNavigationFeature("personal.cardset.enabled") && ServerStyle.gotNavigationFeature("personal.repetitorium.enabled")) {
+					result += caret;
+				}
+				return result;
 			case "transcripts":
-				return icons.topNavigation.transcripts.transcripts + this.getPersonalRouteName(2) + "<span class='caret'></span>";
+				result = icons.topNavigation.transcripts.transcripts + this.getPersonalRouteName(2);
+				if (ServerStyle.gotNavigationFeature("transcript.bonus.enabled") && ServerStyle.gotNavigationFeature("transcript.personal.enabled")) {
+					result += caret;
+				}
+				return result;
 			case "transcriptsShort":
-				return icons.topNavigation.transcripts.transcripts + this.getPersonalRouteName(5) + "<span class='caret'></span>";
+				result = icons.topNavigation.transcripts.transcripts + this.getPersonalRouteName(5);
+				if (ServerStyle.gotNavigationFeature("transcript.bonus.enabled") && ServerStyle.gotNavigationFeature("transcript.personal.enabled")) {
+					result += caret;
+				}
+				return result;
 			case "transcriptsPersonal":
 				return icons.topNavigation.transcripts.personal + this.getPersonalRouteName(3);
 			case "transcriptsBonus":
@@ -399,12 +413,12 @@ export let Route = class Route {
 				} else {
 					name += getAuthorName(Meteor.userId(), true, true);
 				}
-				return name + "<span class='caret'></span>";
+				return name + caret;
 			case "profileIPad":
 				if (UserPermissions.isAdmin()) {
-					return icons.topNavigation.profile + "<span class='caret'></span>";
+					return icons.topNavigation.profile + caret;
 				} else {
-					return icons.topNavigation.profile + TAPi18n.__('navbar-collapse.myprofile') + "<span class='caret'></span>";
+					return icons.topNavigation.profile + TAPi18n.__('navbar-collapse.myprofile') + caret;
 				}
 				break;
 			case "profileOverview":
