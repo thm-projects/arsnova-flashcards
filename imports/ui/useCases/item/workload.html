@@ -1,16 +1,18 @@
 <template name="useCasesItemWorkload">
-    {{#if gotWorkload}}
-        <tr>
-            <td>
-                {{_ "useCases.modal.description.workload"}}
-                <div class="visible-xs">
+    {{#if (gotNavigationFeature "useCases.misc.workload" false)}}
+        {{#if gotWorkload}}
+            <tr>
+                <td>
+                    {{_ "useCases.modal.description.workload"}}
+                    <div class="visible-xs">
+                        {{> useCasesItemWorkloadButton}}
+                    </div>
+                </td>
+                <td class="hidden-xs">
                     {{> useCasesItemWorkloadButton}}
-                </div>
-            </td>
-            <td class="hidden-xs">
-                {{> useCasesItemWorkloadButton}}
-            </td>
-        </tr>
+                </td>
+            </tr>
+        {{/if}}
     {{/if}}
 </template>
 

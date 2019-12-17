@@ -1,22 +1,28 @@
 <template name="mainNavigationTopItemFilter">
-    <li class="hidden-xs">
-        {{> mainNavigationTopItemFilterDropdown}}
-    </li>
+    {{#if (gotNavigationFeature "filter" true)}}
+        <li class="hidden-xs">
+            {{> mainNavigationTopItemFilterDropdown}}
+        </li>
+    {{/if}}
 </template>
 
 
 <template name="mainNavigationTopItemFilterMobile">
-    <li class="visible-xs">
-        {{> mainNavigationTopItemFilterDropdown}}
-    </li>
+    {{#if (gotNavigationFeature "filter" true)}}
+        <li class="visible-xs">
+            {{> mainNavigationTopItemFilterDropdown}}
+        </li>
+    {{/if}}
 </template>
 
 <template name="mainNavigationTopItemFilterDropdown">
     <div class="search-dropdown-container cards-filter-element">
-        <button title="{{_ "navbar-collapse.tooltip.filter"}}" type="button" class="btn cards-filter-element toggle-filter-dropdown top-navigation-call-to-action-button">
+        <button title="{{_ "navbar-collapse.tooltip.filter"}}" type="button"
+                class="btn cards-filter-element toggle-filter-dropdown top-navigation-call-to-action-button">
             <i class="fas fa-filter cards-filter-element"></i>
         </button>
-        <div class="dropdown-menu navbar-cards-filter-dropdown cards-filter-element" role="menu" aria-labelledby="toggle-filter-dropdown">
+        <div class="dropdown-menu navbar-cards-filter-dropdown cards-filter-element" role="menu"
+             aria-labelledby="toggle-filter-dropdown">
             <ul class="nav navbar-nav nav-tabs-justified hidden-xs cards-filter-element">
                 {{> filterNavigation}}
             </ul>

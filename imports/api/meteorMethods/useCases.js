@@ -33,7 +33,7 @@ Meteor.methods({
 
 	getUseCaseCardsets: function () {
 		let query = {'useCase.enabled': true};
-		if (!ServerStyle.gotPublicCardset()) {
+		if (!ServerStyle.gotNavigationFeature("public.cardset.enabled")) {
 			query.shuffled = true;
 		}
 		return Cardsets.find(query, {

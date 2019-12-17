@@ -2,10 +2,14 @@
     {{#if gotTranscriptsEnabled}}
         {{#unless isSmartPhoneAndOwnsNoCards}}
             {{#if canCreateContent}}
-                <li id="navbar-transcripts-personal"
+                <li id="navbar-transcripts{{#unless standalone}}-personal{{/unless}}"
                     class="{{#if isMyTranscriptsRoute}}active{{/if}}">
                     <a href="{{pathFor route='transcriptsPersonal'}}">
-                        {{{getNavigationName "transcriptsPersonal"}}}
+                        {{#if standalone}}
+                            {{{getNavigationName "transcripts"}}}
+                        {{else}}
+                            {{{getNavigationName "transcriptsPersonal"}}}
+                        {{/if}}
                     </a>
                 </li>
             {{/if}}
