@@ -2,7 +2,6 @@ import {Meteor} from "meteor/meteor";
 import {check} from "meteor/check";
 import {UserPermissions} from "../permissions";
 import {Cardsets} from "../subscriptions/cardsets";
-import {ServerStyle} from "../styles";
 
 Meteor.methods({
 	/**
