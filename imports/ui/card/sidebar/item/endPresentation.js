@@ -1,8 +1,7 @@
 import "./endPresentation.html";
 import {Route} from "../../../../api/route";
-import {Meteor} from "meteor/meteor";
-import {MainNavigation} from "../../../../api/mainNavigation";
 import {CardVisuals} from "../../../../api/cardVisuals";
+import {CardNavigation} from "../../../../api/cardNavigation";
 
 /*
  * ############################################################################
@@ -14,11 +13,7 @@ Template.cardSidebarItemEndPresentation.events({
 	"click .endPresentation": function () {
 		if (Route.isMakingOf() || Route.isDemo()) {
 			CardVisuals.toggleFullscreen(true);
-			if (Meteor.user() || MainNavigation.isGuestLoginActive()) {
-				Router.go('about');
-			} else {
-				Router.go('home');
-			}
+			CardNavigation.exitDemoFullscreenRoute();
 		} else if (Route.isPresentationTranscriptPersonal()) {
 			Router.go('transcriptsPersonal');
 		} else if (Route.isPresentationTranscriptBonus()) {

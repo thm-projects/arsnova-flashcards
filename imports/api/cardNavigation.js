@@ -11,6 +11,8 @@ import {CardType} from "./cardTypes";
 import {NavigatorCheck} from "./navigatorCheck";
 import * as config from "../config/cardNavigation.js";
 import {CardsetNavigation} from "./cardsetNavigation";
+import {MainNavigation} from "./mainNavigation";
+import {ServerStyle} from "./styles";
 import {PDFViewer} from "../util/pdfViewer";
 
 let keyEventsUnlocked = true;
@@ -18,6 +20,18 @@ let lastActiveCardString = "lastActiveCard";
 let isReset = false;
 
 export let CardNavigation = class CardNavigation {
+
+	static exitDemoFullscreen (event) {
+		if (event.target !== event.currentTarget) {
+			return;
+		}
+		if (ServerStyle.exitOnFullscreenBackgroundClick()) {
+			if (Route.isDemo() && !Route.isDemoList() && CardVisuals.isFullscreen()) {
+				CardVisuals.toggleFullscreen(true);
+				CardNavigation.exitDemoFullscreenRoute();
+			}
+		}
+	}
 
 	static selectActiveButton () {
 		for (let i = 1; i <= this.getCardSideNavigationLength(); i++) {
@@ -29,6 +43,14 @@ export let CardNavigation = class CardNavigation {
 			}
 		}
 		this.selectButton();
+	}
+
+	static exitDemoFullscreenRoute () {
+		if (Meteor.user() || MainNavigation.isGuestLoginActive()) {
+			Router.go('about');
+		} else {
+			Router.go('home');
+		}
 	}
 
 	static selectButton (index = 1) {

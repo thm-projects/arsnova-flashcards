@@ -112,7 +112,8 @@ let defaultSettings = {
 	},
 	"demo": {
 		"folder": "informatik",
-		"autoFullscreen": true
+		"autoFullscreen": true,
+		"exitOnFullscreenBackgroundClick": true
 	},
 	"imprint": {
 		"folder": "cards"
@@ -237,8 +238,14 @@ let debug = {
 		"style": "linux"
 	},
 	"demo": {
+<<<<<<< HEAD
 		"folder": "linux",
 		"autoFullscreen": true
+=======
+		"folder": "informatik",
+		"autoFullscreen": true,
+		"exitOnFullscreenBackgroundClick": true
+>>>>>>> Exit the demo presentation if the user clicks on a element that is not part of the navigation
 	},
 	"imprint": {
 		"folder": "linux"
@@ -364,7 +371,8 @@ let linux = {
 	},
 	"demo": {
 		"folder": "linux",
-		"autoFullscreen": true
+		"autoFullscreen": true,
+		"exitOnFullscreenBackgroundClick": true
 	},
 	"imprint": {
 		"folder": "linux"
@@ -490,7 +498,8 @@ let review = {
 	},
 	"demo": {
 		"folder": "informatik",
-		"autoFullscreen": true
+		"autoFullscreen": true,
+		"exitOnFullscreenBackgroundClick": true
 	},
 	"imprint": {
 		"folder": "cards"
@@ -616,7 +625,8 @@ let staging = {
 	},
 	"demo": {
 		"folder": "informatik",
-		"autoFullscreen": true
+		"autoFullscreen": true,
+		"exitOnFullscreenBackgroundClick": true
 	},
 	"imprint": {
 		"folder": "cards"
