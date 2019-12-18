@@ -160,7 +160,7 @@ Template.welcome.onCreated(function () {
 			Route.setFirstTimeVisit();
 		}
 	}
-	if (NavigatorCheck.gotFeatureSupport(1)) {
+	if (NavigatorCheck.gotFeatureSupport(1) && ServerStyle.gotLandingPageWordcloud()) {
 		Session.set('isLandingPagePomodoroActive', AdminSettings.findOne({name: "wordcloudPomodoroSettings"}).enabled);
 	} else {
 		Session.set('isLandingPagePomodoroActive', true);
