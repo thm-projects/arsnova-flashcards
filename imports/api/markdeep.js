@@ -171,7 +171,12 @@ export let MarkdeepContent = class MarkdeepContent {
 		content += TAPi18n.__('cardType') + tableColumn + CardType.getCardTypeName(cardset.cardType) + linebreak;
 		content += TAPi18n.__('difficulty') + tableColumn + TAPi18n.__(difficulty + cardset.difficulty) + linebreak;
 		content += TAPi18n.__('cardset.info.quantity') + tableColumn + cardset.quantity + linebreak;
-		content += TAPi18n.__('cardset.info.license.title') + tableColumn + CardsetVisuals.getLicense(cardset._id, cardset.license, true) + linebreak;
+		if (cardset.shuffled) {
+			content += TAPi18n.__('cardset.info.license.title.cardset') + tableColumn + CardsetVisuals.getLicense(cardset._id, cardset.license, true) + linebreak;
+		} else {
+			content += TAPi18n.__('cardset.info.license.title.repetitorium') + tableColumn + CardsetVisuals.getLicense(cardset._id, cardset.license, true) + linebreak;
+			content += TAPi18n.__('cardset.info.license.title.rep-cardset') + tableColumn + TAPi18n.__('cardset.info.shuffleLicense') + linebreak;
+		}
 		content += TAPi18n.__('cardset.info.release') + tableColumn + Utilities.getMomentsDate(cardset.date, false, 0, false) + linebreak;
 		content += TAPi18n.__('cardset.info.dateUpdated') + tableColumn + Utilities.getMomentsDate(cardset.dateUpdated, false, 0, false) + linebreak;
 		let sideOrder = CardType.getCardTypeCubeSides(cardset.cardType);

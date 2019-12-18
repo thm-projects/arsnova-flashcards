@@ -9,6 +9,7 @@ import "./item/dateUpdated.js";
 import "./item/difficulty.js";
 import "./item/kind.js";
 import "./item/learningMode.js";
+import "./item/licenseRep.js";
 import "./item/license.js";
 import "./item/originalAuthor.js";
 import "./item/price.js";

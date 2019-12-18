@@ -2,7 +2,7 @@
     {{#unless isTranscriptRoute}}
         {{#unless gotTranscriptBonusAndIsNotShuffled this._id}}
             <tr>
-                <td>{{_ "cardset.info.license.title"}}:</td>
+                <td>{{#unless isShuffledCardset _id}}{{_ "cardset.info.license.title.cardset"}}{{else}}{{_ "cardset.info.license.title.rep-cardset"}}{{/unless}}:</td>
                 <td>
                     {{#unless isShuffledCardset _id}}
                         {{#if isActiveRoute "home"}}

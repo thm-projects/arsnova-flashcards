@@ -1178,7 +1178,11 @@
       "bought": "Gekauft",
       "deleted": "Gelöscht",
       "license": {
-        "title": "CC-Lizenz",
+        "title": {
+          "cardset": "CC-Lizenz",
+          "repetitorium": "CC-Lizenz Rep",
+          "rep-cardset": "CC-Lizenz Karteien"
+        },
         "by": "Namensnennung",
         "nc": "Nicht kommerziell",
         "nd": "Keine Bearbeitung",
