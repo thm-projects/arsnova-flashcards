@@ -18,6 +18,10 @@ export let ServerStyle = class ServerStyle {
 		return this.getConfig().welcome.title.first;
 	}
 
+	static gotLandingPageWordcloud () {
+		return this.getConfig().welcome.wordcloud.enabled;
+	}
+
 	static getLastAppTitle () {
 		return this.getConfig().welcome.title.last;
 	}

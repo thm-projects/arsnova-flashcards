@@ -18,13 +18,15 @@
 
 
 <template name="welcomeWordcloudButton">
-    {{#if gotFeatureSupport 1}}
-        <div class="hidden-xs">
-            <div class="toggle-wordcloud" title="{{_ "landingPage.buttons.tooltip.wordcloud"}}">
-                <div class="flex-content">{{{getNavigationIcon "wordcloud"}}}</div>
-                <label>{{_ "landingPage.buttons.wordcloud"}}</label>
+    {{#if gotLandingPageWordcloud}}
+        {{#if gotFeatureSupport 1}}
+            <div class="hidden-xs">
+                <div class="toggle-wordcloud" title="{{_ "landingPage.buttons.tooltip.wordcloud"}}">
+                    <div class="flex-content">{{{getNavigationIcon "wordcloud"}}}</div>
+                    <label>{{_ "landingPage.buttons.wordcloud"}}</label>
+                </div>
             </div>
-        </div>
+        {{/if}}
     {{/if}}
 </template>
 
@@ -44,10 +46,14 @@
                 <br>
                 {{#if isActiveRoute
                       'home'}}
-                    <a data-controller="BarfyStars" data-config='{{getBarfyStarsConfig "images"}}' href="about" id="showAbout" class="{{getBarfyStarsStyle "images"}} visible-xs-inline-block btn btn-raised btn-warning show-more"><span
+                    <a data-controller="BarfyStars" data-config='{{getBarfyStarsConfig "images"}}' href="about"
+                       id="showAbout" class="{{getBarfyStarsStyle
+                            "images"}} visible-xs-inline-block btn btn-raised btn-warning show-more"><span
                             class="flex-content">{{{getAboutButton true}}}</span></a>
 
-                    <a data-controller="BarfyStars" data-config='{{getBarfyStarsConfig "images"}}' href="demo" id="showDemo" class="{{getBarfyStarsStyle "images"}} hidden-xs btn btn-raised btn-warning show-more"><span
+                    <a data-controller="BarfyStars" data-config='{{getBarfyStarsConfig "images"}}' href="demo"
+                       id="showDemo"
+                       class="{{getBarfyStarsStyle "images"}} hidden-xs btn btn-raised btn-warning show-more"><span
                             class="flex-content">{{{getAboutButton false}}}</span></a>
                 {{/if}}
             </div>

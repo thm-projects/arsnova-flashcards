@@ -4,26 +4,26 @@
             {{_ "admin.settings"}}
         </h1>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading panel-heading-mail">
-
-            <h3 class="panel-title">{{_ "pomodoro.backend.settings.title"}}</h3>
-        </div>
-        <div class="panel-body panel-body-mail">
-            <div class="row" style="margin-bottom:10px; margin-left: 5px">
-                <form>
-                    {{#if isWordcloudPomodoroEnabled}}
-                        <a id="disableWordcloudPomodoro" class="btn btn-raised btn-success">
-                            <span class="flex-content">{{_ "pomodoro.backend.settings.button.enabled"}}</span></a>
-                    {{else}}
-                        <a id="enableWordcloudPomodoro" class="btn btn-raised btn-danger">
-                            <span class="flex-content">{{_ "pomodoro.backend.settings.button.disabled"}}</span></a>
-                    {{/if}}
-                </form>
+    {{#if gotLandingPageWordcloud}}
+        <div class="panel panel-default">
+            <div class="panel-heading panel-heading-mail">
+                <h3 class="panel-title">{{_ "pomodoro.backend.settings.title"}}</h3>
+            </div>
+            <div class="panel-body panel-body-mail">
+                <div class="row" style="margin-bottom:10px; margin-left: 5px">
+                    <form>
+                        {{#if isWordcloudPomodoroEnabled}}
+                            <a id="disableWordcloudPomodoro" class="btn btn-raised btn-success">
+                                <span class="flex-content">{{_ "pomodoro.backend.settings.button.enabled"}}</span></a>
+                        {{else}}
+                            <a id="enableWordcloudPomodoro" class="btn btn-raised btn-danger">
+                                <span class="flex-content">{{_ "pomodoro.backend.settings.button.disabled"}}</span></a>
+                        {{/if}}
+                    </form>
+                </div>
             </div>
         </div>
-
-    </div>
+    {{/if}}
     <div class="panel panel-default">
         <div class="panel-heading panel-heading-mail">
 
@@ -35,10 +35,10 @@
                     {{#if isMailEnabled}}
                         <a id="disableMail" class="btn btn-raised btn-success">
                             <span class="flex-content">{{_ "admin.mail-settings.enabled"}}</span></a>
-                        {{else}}
+                    {{else}}
                         <a id="enableMail" class="btn btn-raised btn-danger">
                             <span class="flex-content">{{_ "admin.mail-settings.disabled"}}</span></a>
-                        {{/if}}
+                    {{/if}}
                 </form>
             </div>
         </div>

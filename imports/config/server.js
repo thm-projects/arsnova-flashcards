@@ -93,6 +93,9 @@ let defaultSettings = {
 				"mobile_de": "Erfahre mehr in unserer interaktiven Einführung ……",
 				"mobile_en": "Erfahre mehr über 🍅cards…"
 			}
+		},
+		"wordcloud": {
+			"enabled": true
 		}
 	},
 	"language": {
@@ -202,6 +205,9 @@ let debug = {
 				"mobile_de": "Erfahre mehr in unserer interaktiven Einführung …",
 				"mobile_en": "Learn more about 🍅cards…"
 			}
+		},
+		"wordcloud": {
+			"enabled": true
 		}
 	},
 	"language": {
@@ -314,6 +320,9 @@ let linux = {
 				"mobile_de": "Erfahre mehr in unserer interaktiven Einführung …",
 				"mobile_en": "Learn more about 🍅cards…"
 			}
+		},
+		"wordcloud": {
+			"enabled": false
 		}
 	},
 	"language": {
@@ -423,6 +432,9 @@ let review = {
 				"mobile_de": "Erfahre mehr in unserer interaktiven Demo …",
 				"mobile_en": "Learn more about 🍅cards…"
 			}
+		},
+		"wordcloud": {
+			"enabled": true
 		}
 	},
 	"language": {
@@ -535,6 +547,9 @@ let staging = {
 				"mobile_de": "Erfahre mehr in unserer interaktiven Demo …",
 				"mobile_en": "Learn more about 🍅cards…"
 			}
+		},
+		"wordcloud": {
+			"enabled": true
 		}
 	},
 	"language": {

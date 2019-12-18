@@ -1025,6 +1025,10 @@ Template.registerHelper("isConnected", function () {
 	return Session.get("connectionStatus") === 1;
 });
 
+Template.registerHelper('gotLandingPageWordcloud', function () {
+	return ServerStyle.gotLandingPageWordcloud();
+});
+
 // Adds the "disabled" attribute to Elements if the app is offline
 // use it like this: <button {{disableIfOffline}}>...</button>
 Template.registerHelper("disableIfOffline", function () {
