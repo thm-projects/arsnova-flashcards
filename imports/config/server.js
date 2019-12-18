@@ -111,7 +111,8 @@ let defaultSettings = {
 		"style": "default"
 	},
 	"demo": {
-		"folder": "informatik"
+		"folder": "informatik",
+		"autoFullscreen": true
 	},
 	"imprint": {
 		"folder": "cards"
@@ -236,7 +237,8 @@ let debug = {
 		"style": "linux"
 	},
 	"demo": {
-		"folder": "linux"
+		"folder": "linux",
+		"autoFullscreen": true
 	},
 	"imprint": {
 		"folder": "linux"
@@ -361,7 +363,8 @@ let linux = {
 		"style": "linux"
 	},
 	"demo": {
-		"folder": "linux"
+		"folder": "linux",
+		"autoFullscreen": true
 	},
 	"imprint": {
 		"folder": "linux"
@@ -486,7 +489,8 @@ let review = {
 		"style": "default"
 	},
 	"demo": {
-		"folder": "informatik"
+		"folder": "informatik",
+		"autoFullscreen": true
 	},
 	"imprint": {
 		"folder": "cards"
@@ -611,7 +615,8 @@ let staging = {
 		"style": "default"
 	},
 	"demo": {
-		"folder": "informatik"
+		"folder": "informatik",
+		"autoFullscreen": true
 	},
 	"imprint": {
 		"folder": "cards"
