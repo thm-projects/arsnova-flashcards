@@ -83,8 +83,8 @@ let defaultSettings = {
 		"title": {
 			"first": "",
 			"last": "cards",
-			"slogan_de": "ORGANIZE. LEARN. MEMORIZE.",
-			"slogan_en": "ORGANIZE. LEARN. MEMORIZE."
+			"slogan_de": "ORGANIZE. LEARN. MEMORIZE!",
+			"slogan_en": "ORGANIZE. LEARN. MEMORIZE!"
 		},
 		"button": {
 			"about":  {
@@ -195,8 +195,8 @@ let debug = {
 		"title": {
 			"first": "debug",
 			"last": "cards",
-			"slogan_de": "ORGANIZE. LEARN. MEMORIZE.",
-			"slogan_en": "ORGANIZE. LEARN. MEMORIZE."
+			"slogan_de": "ORGANIZE. LEARN. MEMORIZE!",
+			"slogan_en": "ORGANIZE. LEARN. MEMORIZE!"
 		},
 		"button": {
 			"about":  {
@@ -422,8 +422,8 @@ let review = {
 		"title": {
 			"first": "review",
 			"last": "cards",
-			"slogan_de": "ORGANIZE. LEARN. MEMORIZE.",
-			"slogan_en": "ORGANIZE. LEARN. MEMORIZE."
+			"slogan_de": "ORGANIZE. LEARN. MEMORIZE!",
+			"slogan_en": "ORGANIZE. LEARN. MEMORIZE!"
 		},
 		"button": {
 			"about":  {
@@ -537,8 +537,8 @@ let staging = {
 		"title": {
 			"first": "staging",
 			"last": "cards",
-			"slogan_de": "ORGANIZE. LEARN. MEMORIZE.",
-			"slogan_en": "ORGANIZE. LEARN. MEMORIZE."
+			"slogan_de": "ORGANIZE. LEARN. MEMORIZE!",
+			"slogan_en": "ORGANIZE. LEARN. MEMORIZE!"
 		},
 		"button": {
 			"about":  {
