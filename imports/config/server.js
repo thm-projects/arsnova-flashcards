@@ -238,14 +238,9 @@ let debug = {
 		"style": "linux"
 	},
 	"demo": {
-<<<<<<< HEAD
-		"folder": "linux",
-		"autoFullscreen": true
-=======
 		"folder": "informatik",
 		"autoFullscreen": true,
 		"exitOnFullscreenBackgroundClick": true
->>>>>>> Exit the demo presentation if the user clicks on a element that is not part of the navigation
 	},
 	"imprint": {
 		"folder": "linux"

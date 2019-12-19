@@ -5,6 +5,8 @@ import {AspectRatio} from "../../../../api/aspectRatio";
 import * as config from "../../../../config/firstTimeVisit.js";
 import {CardNavigation} from "../../../../api/cardNavigation";
 import "./demo.html";
+import {PomodoroTimer} from "../../../../api/pomodoroTimer";
+import {ServerStyle} from "../../../../api/styles";
 
 /*
  * ############################################################################
@@ -23,6 +25,11 @@ Template.demo.onRendered(function () {
 	$(".carousel-inner").click(function (event) {
 		CardNavigation.exitDemoFullscreen(event);
 	});
+	if (ServerStyle.gotDemoAutoFullscreen()) {
+		setTimeout(function () {
+			PomodoroTimer.start();
+		}, 250);
+	}
 });
 
 Template.demo.helpers({
