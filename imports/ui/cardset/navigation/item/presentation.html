@@ -2,18 +2,38 @@
     {{#if this.quantity}}
         {{#unless gotTranscriptBonusAndIsNotShuffled _id}}
             <div class="btn-group">
-                <button class="btn btn-sm btn-raised presentationBtn startPresentation" {{disableIfOffline}}><span class="flex-content"><img
-                        src="/img/projector_white.png" class="projectorIconButton"
-                        title="{{_ "presentation.create"}}">&nbsp;{{_ "presentation.create"}}</span>
-                </button>
                 <button type="button"
-                        class="hidden-xs btn btn-raised dropdown-toggle setCardAspectRatio"
-                        data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" {{disableIfOffline}}>
+                        class="visible-xs btn btn-sm btn-raised presentationBtn" {{disableIfOffline}}>
+                    <span class="flex-content"><img
+                            src="/img/projector_white.png" class="projectorIconButton"
+                            title="{{_ "presentation.create"}}">&nbsp;{{_ "presentation.create"}}</span>
+                </button>
+                {{#if got3DMode}}
+                    <button type="button"
+                            class="hidden-xs btn btn-sm btn-raised presentationBtn startPresentation" {{disableIfOffline}}>
+                    <span class="flex-content"><img
+                            src="/img/projector_white.png" class="projectorIconButton"
+                            title="{{_ "presentation.create"}}">&nbsp;{{_ "presentation.create"}}</span>
+                    </button>
+                    <button type="button"
+                            class="hidden-xs btn btn-raised dropdown-toggle setCardAspectRatio"
+                            data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" {{disableIfOffline}}>
                             <span class="flex-content"><span class="caret"></span>
                                 <span class="sr-only"></span></span>
-                </button>
-                <ul class="dropdown-menu aspect-ratio-menu">
+                    </button>
+                {{else}}
+                    <button type="button"
+                            class="hidden-xs btn btn-sm btn-raised presentationBtn setCardAspectRatio"
+                            data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" {{disableIfOffline}}>
+                    <span class="flex-content"><img
+                            src="/img/projector_white.png" class="projectorIconButton"
+                            title="{{_ "presentation.create"}}">&nbsp;{{_ "presentation.create"}}
+                        &nbsp;<span class="caret"></span></span>
+                    </button>
+                {{/if}}
+                <ul class="hidden-xs dropdown-menu aspect-ratio-menu">
                     {{> mainOverlayAspectRatioContent}}
                 </ul>
             </div>
