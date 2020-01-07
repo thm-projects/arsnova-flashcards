@@ -506,7 +506,12 @@ th .field-tip {
 .markdeepCardsetContent {
   overflow-y: auto;
   background-image: url(/img/pomodoro.png);
-  background-size: auto 60%;
+  @media(orientation: portrait) {
+    background-size: 50% auto;
+  }
+  @media(orientation: landscape) {
+    background-size: auto 50%;
+  }
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
