@@ -2,12 +2,11 @@
     {{#if enableIfPublished}}
         {{#if gotLearningModes}}
             {{#if isCardsetOwnerAndLecturer _id}}
-                <div class="hidden-xs btn-group">
+                <div class="hidden-xs btn-group dropup">
                     <button class="btn btn-sm btn-raised bonusBtn" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                         <div class="flex-content">
-                            <i class="fas fa-graduation-cap"></i>&nbsp;{{_ "sidebar-nav.bonus"}} <span
-                                class="caret"></span>
+                            <i class="fas fa-graduation-cap"></i>&nbsp;{{_ "sidebar-nav.bonus"}}&nbsp;<i class="fas fa-caret-up"></i>
                         </div>
                     </button>
                     <ul class="dropdown-menu">

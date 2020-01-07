@@ -6,7 +6,7 @@ export let CardsetVisuals = class CardsetVisuals {
 		let footerOffsetBottom = 25;
 		let markdeepCardsetContent = $('.markdeepCardsetContent');
 		let cardsetInfoFooter = $('.cardsetInfoFooter');
-		markdeepCardsetContent.css('max-height', $(window).height() - (markdeepCardsetContent.offset().top + cardsetInfoFooter.outerHeight() + footerOffsetBottom));
+		markdeepCardsetContent.css('height', $(window).height() - (markdeepCardsetContent.offset().top + cardsetInfoFooter.outerHeight() + footerOffsetBottom));
 	}
 
 	static changeCollapseElement (elementId) {

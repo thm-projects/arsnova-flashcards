@@ -1,11 +1,11 @@
 <template name="cardsetNavigationWorkload">
     {{#if this.quantity}}
         {{#if gotLearningModes}}
-            <div class="btn-group">
+            <div class="btn-group dropup">
                 <button type="button" class="btn btn-sm btn-raised learnBtn"
                         data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                    <span class="flex-content"><i class="fas fa-graduation-cap"></i>&nbsp;{{_ "learn"}}&nbsp;<span class="caret"></span></span>
+                    <span class="flex-content"><i class="fas fa-graduation-cap"></i>&nbsp;{{_ "learn"}}&nbsp;<i class="fas fa-caret-up"></i></span>
                 </button>
                 <ul class="dropdown-menu workload">
                     <li id="learnBox" class="leitnerList" {{disableIfOffline}}><i class="fas fa-graduation-cap"></i> {{_
