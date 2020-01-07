@@ -682,7 +682,7 @@
     "clock": "Uhr",
     "until": "bis",
     "referencesLecture": {
-      "true": "Ja, mit Vorlesung koppeln",
+      "true": "Ja, mit Veranstaltung koppeln",
       "false": "Nein, lose Mitschrift"
     },
     "selectLecture": "Vorlesung auswählen",

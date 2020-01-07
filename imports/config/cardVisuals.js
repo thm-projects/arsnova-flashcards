@@ -48,6 +48,7 @@ let fixedSidebarPosition = [1, 2, 3, 4, 5];
 //5: Wozniak
 let enabled3DModeByDefault = [1, 2, 3, 4, 5];
 let got3DMode = [1, 2, 3, 4, 5];
+let allow3DModeOnSingleSideCardsets = false;
 
 let cubeTransitionTime = 1.5;
 
@@ -60,5 +61,6 @@ module.exports = {
 	fixedSidebarPosition,
 	enabled3DModeByDefault,
 	got3DMode,
+	allow3DModeOnSingleSideCardsets,
 	cubeTransitionTime
 };

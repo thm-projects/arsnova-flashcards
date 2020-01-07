@@ -34,7 +34,7 @@ export let CardVisuals = class CardVisuals {
 
 	static routeGot3DModeSupport () {
 		let mode = 0;
-		if (Route.isPresentation()) {
+		if (Route.isPresentation() || Route.isCardset()) {
 			mode = 1;
 		} else if (Route.isDemo() || Route.isMakingOf()) {
 			mode = 2;
@@ -49,6 +49,37 @@ export let CardVisuals = class CardVisuals {
 	}
 
 	static got3DMode () {
+		if (!config.allow3DModeOnSingleSideCardsets) {
+			let cardset_id = "";
+			if (Route.isDemo()) {
+				cardset_id = "DemoCardset";
+			} else if (Route.isMakingOf()) {
+				cardset_id = "MakingOfCardset";
+			} else {
+				cardset_id = Router.current().params._id;
+			}
+			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {cardGroups: 1, shuffled: 1,cardType: 1}});
+			if (cardset) {
+				let cardTypeWithMultipleSides = false;
+				if (cardset.shuffled) {
+					let cardsetGroup = Cardsets.find({_id: {$in: cardset.cardGroups}}, {fields: {cardType: 1}}).fetch();
+					for (let i = 0; i < cardsetGroup.length; i++) {
+						if (CardType.getCardTypeCubeSides(cardsetGroup[i].cardType).length > 1) {
+							cardTypeWithMultipleSides = true;
+							break;
+						}
+					}
+				} else {
+					if (CardType.getCardTypeCubeSides(cardset.cardType).length > 1) {
+						cardTypeWithMultipleSides = true;
+					}
+				}
+				if (!cardTypeWithMultipleSides) {
+					return false;
+				}
+			}
+		}
+
 		if (Route.isEditMode() && Session.get('mobilePreview'))  {
 			return false;
 		}
