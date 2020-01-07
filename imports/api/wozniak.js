@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {check} from "meteor/check";
-import {Wozniak} from "./learned";
+import {Wozniak} from "./subscriptions/wozniak";
 import {Cardsets} from "./subscriptions/cardsets";
 import {Bonus} from "./bonus";
 import {UserPermissions} from "./permissions";
