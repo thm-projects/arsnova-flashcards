@@ -24,6 +24,11 @@
   padding-left: 0;
 }
 
+#learn-navigation .btn {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .learn-cardHelptext {
   display: inline-block;
   width: 100%;
