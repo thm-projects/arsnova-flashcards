@@ -76,10 +76,10 @@ export let Filter = class Filter {
 				}
 				return Session.get('personalRepetitorienFilter');
 			case 8:
-				if (Session.get('personalTranscriptsFilter') === undefined) {
+				if (Session.get('transcriptsPersonalFilter') === undefined) {
 					this.setDefaultFilter(FilterNavigation.getRouteId());
 				}
-				return Session.get('personalTranscriptsFilter');
+				return Session.get('transcriptsPersonalFilter');
 			case 9:
 				if (Session.get('transcriptsBonusFilter') === undefined) {
 					this.setDefaultFilter(FilterNavigation.getRouteId());

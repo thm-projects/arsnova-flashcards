@@ -59,15 +59,11 @@ let defaultSettings = {
 		"transcript": { // Excludes GUEST, requires 'roles.create' permission
 			"personal": {
 				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
-				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
-				"search":  [FREE, EDU, PRO, LECTURER],
-				"wordcloud": [FREE, EDU, PRO, LECTURER]
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST]
 			},
 			"bonus": {
 				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
-				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
-				"search":  [FREE, EDU, PRO, LECTURER],
-				"wordcloud": [FREE, EDU, PRO, LECTURER]
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST]
 			}
 		}
 	},
@@ -171,15 +167,11 @@ let debug = {
 		"transcript": { // Excludes GUEST, requires 'roles.create' permission
 			"personal": {
 				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
-				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
-				"search":  [FREE, EDU, PRO, LECTURER],
-				"wordcloud": [FREE, EDU, PRO, LECTURER]
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST]
 			},
 			"bonus": {
 				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
-				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
-				"search":  [FREE, EDU, PRO, LECTURER],
-				"wordcloud": [FREE, EDU, PRO, LECTURER]
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST]
 			}
 		}
 	},
@@ -286,15 +278,11 @@ let linux = {
 		"transcript": { // Excludes GUEST, requires 'roles.create' permission
 			"personal": {
 				"enabled": [PRO, LECTURER, GUEST],
-				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
-				"search":  [FREE, EDU, PRO, LECTURER],
-				"wordcloud": [FREE, EDU, PRO, LECTURER]
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST]
 			},
 			"bonus": {
 				"enabled": [PRO, LECTURER, GUEST],
-				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
-				"search":  [FREE, EDU, PRO, LECTURER],
-				"wordcloud": [FREE, EDU, PRO, LECTURER]
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST]
 			}
 		}
 	},
@@ -398,15 +386,11 @@ let review = {
 		"transcript": { // Excludes GUEST, requires 'roles.create' permission
 			"personal": {
 				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
-				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
-				"search":  [FREE, EDU, PRO, LECTURER],
-				"wordcloud": [FREE, EDU, PRO, LECTURER]
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST]
 			},
 			"bonus": {
 				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
-				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
-				"search":  [FREE, EDU, PRO, LECTURER],
-				"wordcloud": [FREE, EDU, PRO, LECTURER]
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST]
 			}
 		}
 	},
@@ -513,15 +497,11 @@ let staging = {
 		"transcript": { // Excludes GUEST, requires 'roles.create' permission
 			"personal": {
 				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
-				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
-				"search":  [FREE, EDU, PRO, LECTURER],
-				"wordcloud": [FREE, EDU, PRO, LECTURER]
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST]
 			},
 			"bonus": {
 				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
-				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
-				"search":  [FREE, EDU, PRO, LECTURER],
-				"wordcloud": [FREE, EDU, PRO, LECTURER]
+				"filter": [FREE, EDU, PRO, LECTURER, GUEST]
 			}
 		}
 	},
