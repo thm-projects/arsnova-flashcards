@@ -47,13 +47,11 @@
                                         {{/unless}}
                                     {{/unless}}
                                     {{#if isFilterIndex}}
-                                        {{#unless isMyTranscriptsRoute}}
-                                            {{#if gotCardsetsForFilter}}
-                                                <div class="navbar-header-item pull-right">
-                                                    {{> mainNavigationTopItemFilterMobile}}
-                                                </div>
-                                            {{/if}}
-                                        {{/unless}}
+                                        {{#if gotCardsetsForFilter}}
+                                            <div class="navbar-header-item pull-right">
+                                                {{> mainNavigationTopItemFilterMobile}}
+                                            </div>
+                                        {{/if}}
                                     {{/if}}
                                     <div class="navbar-header-item pull-right">
                                         {{> mainNavigationTopItemUseCasesMobile}}
@@ -82,11 +80,9 @@
                 {{/if}}
             {{/unless}}
             {{#if isFilterIndex}}
-                {{#unless isMyTranscriptsRoute}}
-                    {{#if gotCardsetsForFilter}}
-                        {{> mainNavigationTopItemFilter}}
-                    {{/if}}
-                {{/unless}}
+                {{#if gotCardsetsForFilter}}
+                    {{> mainNavigationTopItemFilter}}
+                {{/if}}
             {{/if}}
             {{#if gotDisplayModeButton}}
                 {{#if gotCardsetsForFilter}}
