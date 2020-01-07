@@ -504,7 +504,12 @@ th .field-tip {
 }
 
 .markdeepCardsetContent {
-    overflow-y: auto;
+  overflow-y: auto;
+  background-image: url(/img/pomodoro.png);
+  background-size: auto 60%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 .markdeepCardset:first-child, .markdeepCardsetContent:first-child {
