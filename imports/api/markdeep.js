@@ -132,6 +132,18 @@ export let MarkdeepContent = class MarkdeepContent {
 		$('head').append(window.markdeep.stylesheet());
 	}
 
+	static getLinkTarget (event) {
+		let link = $(event.target).attr("href");
+		let targetType = link.substring(link.lastIndexOf("."));
+		if (targetType.substring(1, 4) === "pdf") {
+			event.preventDefault();
+			Session.set('activePDF', link);
+			$('#pdfViewerModal').modal('show');
+		} else {
+			this.anchorTarget(event);
+		}
+	}
+
 	static anchorTarget (event) {
 		let targetName = event.target.getAttribute('href');
 		if (/^#/.test(targetName) === true) {

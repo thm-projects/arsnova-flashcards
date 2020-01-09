@@ -41,6 +41,7 @@ import "./modal/arsnovaClick.js";
 import "./modal/arsnovaLite.js";
 import "./modal/connectionStatus.js";
 import "./modal/underDevelopment.js";
+import "./modal/pdfViewer.js";
 
 Meteor.subscribe("notifications");
 Meteor.subscribe("serverStatistics");
