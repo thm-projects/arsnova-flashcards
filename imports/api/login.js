@@ -84,7 +84,11 @@ export let LoginTasks = class LoginTasks {
 							} else if (ServerStyle.gotNavigationFeature("public.repetitorium.enabled")) {
 								Router.go('repetitorium');
 							} else {
-								Router.go('help');
+								if (Meteor.user() && Roles.userIsInRole(Meteor.userId(), ['firstLogin'])) {
+									Router.go('firstLogin');
+								} else {
+									Router.go('help');
+								}
 							}
 						}
 					}

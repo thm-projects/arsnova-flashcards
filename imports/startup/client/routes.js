@@ -1303,7 +1303,11 @@ var isSignedIn = function () {
 			if (linksWithNoLoginRequirement().includes(Router.current().route.getName())) {
 				MainNavigation.setLoginTarget(false);
 			} else {
-				MainNavigation.setLoginTarget(Router.current().url);
+				if (Router.current().route.getName() !== 'firstLogin' && Router.current().route.getName() !== 'accessDenied') {
+					MainNavigation.setLoginTarget(Router.current().url);
+				} else {
+					MainNavigation.setLoginTarget(false);
+				}
 			}
 		}
 		Router.go('home');
