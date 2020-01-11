@@ -69,7 +69,7 @@ let defaultSettings = {
 	},
 	"login": {
 		"cas": true,
-		"guest": true,
+		"guest": false,
 		"pro": false,
 		"facebook": false,
 		"twitter": false,
@@ -77,7 +77,7 @@ let defaultSettings = {
 	},
 	"welcome": {
 		"title": {
-			"first": "",
+			"first": "THM",
 			"last": "cards",
 			"slogan_de": "ORGANIZE. LEARN. MEMORIZE!",
 			"slogan_en": "ORGANIZE. LEARN. MEMORIZE!"
