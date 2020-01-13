@@ -1380,17 +1380,19 @@
     "chooseCardType": "Wähle den Karteityp aus…",
     "cardType0": {
       "name": "Lerneinheit",
-      "longName": "Lerneinheit: Lernziel | Vertiefung | Fazit | Literatur",
+      "longName": "Lerneinheit: Lernziel | Vertiefung | Fazit | Lerntests | Literatur",
       "content1": "Lernziel",
       "content2": "Fazit",
       "content3": "Literatur ",
       "content4": "Vertiefung",
+      "content5": "Lerntests",
       "placeholders": {
         "subject": "Gib das kurzgefasste Lernziel an!",
         "content1": "",
         "content2": "Gib eine Zusammenfassung des Lernziels! \n\nWenn das Lernziel in einer Prüfung abgefragt wird, sollte hier die erwartete Antwort auf die Prüfungsfrage stehen.",
         "content3": "Liste hier Links und Literatur zur weiteren Vertiefung des Lerninhalts auf! \n\nRecherchiere auch in der THM-Bibliothek! Ein Großteil der Bücher ist online verfügbar.",
-        "content4": "Erläutere hier den Lerngegenstand! \n\nStelle den Lerngegenstand strukturiert und anschaulich dar. Deine Darstellung sollte wie eine gut gemachte Vorlesungsfolie aussehen."
+        "content4": "Erläutere hier den Lerngegenstand! \n\nStelle den Lerngegenstand strukturiert und anschaulich dar. Deine Darstellung sollte wie eine gut gemachte Vorlesungsfolie aussehen.",
+        "content5": "Lerntests."
       },
       "editorLabels": {
         "subject": "Lernziel"

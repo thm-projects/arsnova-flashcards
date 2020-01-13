@@ -80,6 +80,10 @@ let cardTypeCubeSides = [
 			"isAnswerFocus": true
 		},
 		{
+			"contentId": 5,
+			"defaultStyle": "default"
+		},
+		{
 			"contentId": 3,
 			"defaultStyle": "default",
 			"isAnswer": true
