@@ -1,6 +1,11 @@
 <template name="helpContentDECategoryProfileNotifications">
+    {{#if isLinuxHelp}}
+        (##) Nachrichten
 
-    (##) Nachrichten
+        <p>Sorry, Hilfe folgt in Kürze.</p>
+    {{else}}
+        (##) Nachrichten
 
-    <p>Sorry, Hilfe folgt in Kürze.</p>
+        <p>Sorry, Hilfe folgt in Kürze.</p>
+    {{/if}}
 </template>

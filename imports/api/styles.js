@@ -26,6 +26,10 @@ export let ServerStyle = class ServerStyle {
 		return this.getConfig().welcome.title.last;
 	}
 
+	static getHelpStyle () {
+		return this.getConfig().help.style;
+	}
+
 	static getAppSlogan () {
 		let config  = this.getConfig();
 		switch (config.language.client) {

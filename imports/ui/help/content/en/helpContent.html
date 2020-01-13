@@ -1,41 +1,74 @@
 <template name="helpContentEN">
-    {{#if displayHelpCategory "start"}}
-        {{> helpContentENCategoryStart}}
-    {{/if}}
-    {{#if displayHelpCategory "pool"}}
-        {{> helpContentENCategoryPool}}
-    {{/if}}
-    {{#if displayHelpCategory "repetitorium"}}
-        {{> helpContentENCategoryRepetitorium}}
-    {{/if}}
-    {{#if displayHelpCategory "workload"}}
-        {{> helpContentENCategoryWorkload}}
-    {{/if}}
-    {{#if displayHelpCategory "create"}}
-        {{> helpContentENCategoryMyCardsets}}
-    {{/if}}
-    {{#if displayHelpCategory "cardset"}}
-        {{> helpContentENCategoryCardView}}
-    {{/if}}
-    {{#if displayHelpCategory "bonus"}}
-        {{> helpContentENCategoryBonus}}
-    {{/if}}
-    {{#if displayHelpCategory "workloadProgress"}}
-        {{> helpContentENCategoryWorkloadProgress}}
-    {{/if}}
-    {{#if displayHelpCategory "cardEditor"}}
-        {{> helpContentENCategoryCardEditor}}
-    {{/if}}
-    {{#if displayHelpCategory "summativeProgress"}}
-        {{> helpContentENCategorySummativeProgress}}
+    {{#if isLinuxHelp}}
+        {{#if displayHelpCategory "start"}}
+            {{> helpContentENCategoryStart}}
+        {{/if}}
+        {{#if displayHelpCategory "pool"}}
+            {{> helpContentENCategoryPool}}
+        {{/if}}
+        {{#if displayHelpCategory "repetitorium"}}
+            {{> helpContentENCategoryRepetitorium}}
+        {{/if}}
+        {{#if displayHelpCategory "workload"}}
+            {{> helpContentENCategoryWorkload}}
+        {{/if}}
+        {{#if displayHelpCategory "create"}}
+            {{> helpContentENCategoryMyCardsets}}
+        {{/if}}
+        {{#if displayHelpCategory "cardset"}}
+            {{> helpContentENCategoryCardView}}
+        {{/if}}
+        {{#if displayHelpCategory "bonus"}}
+            {{> helpContentENCategoryBonus}}
+        {{/if}}
+        {{#if displayHelpCategory "workloadProgress"}}
+            {{> helpContentENCategoryWorkloadProgress}}
+        {{/if}}
+        {{#if displayHelpCategory "cardEditor"}}
+            {{> helpContentENCategoryCardEditor}}
+        {{/if}}
+        {{#if displayHelpCategory "summativeProgress"}}
+            {{> helpContentENCategorySummativeProgress}}
+        {{/if}}
+    {{else}}
+        {{#if displayHelpCategory "start"}}
+            {{> helpContentENCategoryStart}}
+        {{/if}}
+        {{#if displayHelpCategory "pool"}}
+            {{> helpContentENCategoryPool}}
+        {{/if}}
+        {{#if displayHelpCategory "repetitorium"}}
+            {{> helpContentENCategoryRepetitorium}}
+        {{/if}}
+        {{#if displayHelpCategory "workload"}}
+            {{> helpContentENCategoryWorkload}}
+        {{/if}}
+        {{#if displayHelpCategory "create"}}
+            {{> helpContentENCategoryMyCardsets}}
+        {{/if}}
+        {{#if displayHelpCategory "cardset"}}
+            {{> helpContentENCategoryCardView}}
+        {{/if}}
+        {{#if displayHelpCategory "bonus"}}
+            {{> helpContentENCategoryBonus}}
+        {{/if}}
+        {{#if displayHelpCategory "workloadProgress"}}
+            {{> helpContentENCategoryWorkloadProgress}}
+        {{/if}}
+        {{#if displayHelpCategory "cardEditor"}}
+            {{> helpContentENCategoryCardEditor}}
+        {{/if}}
+        {{#if displayHelpCategory "summativeProgress"}}
+            {{> helpContentENCategorySummativeProgress}}
+        {{/if}}
     {{/if}}
 </template>
 
 <!-- Todos:
 
     {{#if displayHelpCategory "shuffle"}}
-        {{> helpContentENCategoryShuffle}}
-    {{/if}}
+    {{> helpContentENCategoryShuffle}}
+{{/if}}
     {{#if displayHelpCategory "bonusStatistics"}}
         {{> helpContentENCategoryBonusStatistics}}
     {{/if}}

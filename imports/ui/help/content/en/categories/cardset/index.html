@@ -1,6 +1,11 @@
 <template name="helpContentENCategoryCardsetIndex">
+    {{#if isLinuxHelp}}
+        (##) Index
 
-    (##) Index
+        <p>Sorry, Hilfe folgt in Kürze.</p>
+    {{else}}
+        (##) Index
 
-    <p>Sorry, Hilfe folgt in Kürze.</p>
+        <p>Sorry, Hilfe folgt in Kürze.</p>
+    {{/if}}
 </template>

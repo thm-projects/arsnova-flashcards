@@ -1,30 +1,59 @@
 <template name="helpContentDECategoryWozniak">
-    <p>
-        Bei der <b>SuperMemo-Lernmethode von Woźniak</b> werden die Abstände aufgrund deiner Einschätzung,
-        wie leicht oder schwer du dich an die Antwort erinnern kannst, individuell gemäß dem
-        <a href="https://www.supermemo.com/english/ol/sm2.htm" target="_blank">SM-2-Algorithmus</a>
-        neu berechnet.
+    {{#if isLinuxHelp}}
+        <p>
+            Bei der <b>SuperMemo-Lernmethode von Woźniak</b> werden die Abstände aufgrund deiner Einschätzung,
+            wie leicht oder schwer du dich an die Antwort erinnern kannst, individuell gemäß dem
+            <a href="https://www.supermemo.com/english/ol/sm2.htm" target="_blank">SM-2-Algorithmus</a>
+            neu berechnet.
 
 
-        Du vergleichst deine Antwort mit der Antwort auf der Rückseite der Karte und bewertest sie auf
-        einer 6-stufigen Farbskala:
-        <strong>&raquo;Keine Ahnung&laquo;</strong>,
-        <strong>&raquo;Falsch</strong> (ich erinnere mich aber an die richtige Antwort)&laquo;,
-        <strong>&raquo;Falsch, aber</strong> leicht an die richtige Antwort erinnert: ach ja!&laquo;,
-        <strong>&raquo;Richtig, aber</strong> nach längerem Überlegen&laquo;,
-        <strong>&raquo;Richtig</strong> nach kurzem Zögern&laquo;,
-        <strong>&raquo;Perfekt&laquo;</strong>.
+            Du vergleichst deine Antwort mit der Antwort auf der Rückseite der Karte und bewertest sie auf
+            einer 6-stufigen Farbskala:
+            <strong>&raquo;Keine Ahnung&laquo;</strong>,
+            <strong>&raquo;Falsch</strong> (ich erinnere mich aber an die richtige Antwort)&laquo;,
+            <strong>&raquo;Falsch, aber</strong> leicht an die richtige Antwort erinnert: ach ja!&laquo;,
+            <strong>&raquo;Richtig, aber</strong> nach längerem Überlegen&laquo;,
+            <strong>&raquo;Richtig</strong> nach kurzem Zögern&laquo;,
+            <strong>&raquo;Perfekt&laquo;</strong>.
 
-        Anhand deiner Bewertung wird der Zeitpunkt für die nächste Wiederholung der Lernkarte berechnet.
-    </p>
+            Anhand deiner Bewertung wird der Zeitpunkt für die nächste Wiederholung der Lernkarte berechnet.
+        </p>
 
-    <a href="/img/help/de/Wozniak-Skala.png"
-       data-lightbox="img-1" data-title="Leitner-Lernmethode">
-        <img src="/img/help/de/Wozniak-Skala.png"
-             alt="Wozniak-Lernmethode" class="img-responsive center-block"/>
-    </a>
-    <p class="text-center">
-        6-stufige Selbsteinschätzung der Antwortsicherheit.
-    </p>
+        <a href="/img/help/de/Wozniak-Skala.png"
+           data-lightbox="img-1" data-title="Leitner-Lernmethode">
+            <img src="/img/help/de/Wozniak-Skala.png"
+                 alt="Wozniak-Lernmethode" class="img-responsive center-block"/>
+        </a>
+        <p class="text-center">
+            6-stufige Selbsteinschätzung der Antwortsicherheit.
+        </p>
+    {{else}}
+        <p>
+            Bei der <b>SuperMemo-Lernmethode von Woźniak</b> werden die Abstände aufgrund deiner Einschätzung,
+            wie leicht oder schwer du dich an die Antwort erinnern kannst, individuell gemäß dem
+            <a href="https://www.supermemo.com/english/ol/sm2.htm" target="_blank">SM-2-Algorithmus</a>
+            neu berechnet.
 
+
+            Du vergleichst deine Antwort mit der Antwort auf der Rückseite der Karte und bewertest sie auf
+            einer 6-stufigen Farbskala:
+            <strong>&raquo;Keine Ahnung&laquo;</strong>,
+            <strong>&raquo;Falsch</strong> (ich erinnere mich aber an die richtige Antwort)&laquo;,
+            <strong>&raquo;Falsch, aber</strong> leicht an die richtige Antwort erinnert: ach ja!&laquo;,
+            <strong>&raquo;Richtig, aber</strong> nach längerem Überlegen&laquo;,
+            <strong>&raquo;Richtig</strong> nach kurzem Zögern&laquo;,
+            <strong>&raquo;Perfekt&laquo;</strong>.
+
+            Anhand deiner Bewertung wird der Zeitpunkt für die nächste Wiederholung der Lernkarte berechnet.
+        </p>
+
+        <a href="/img/help/de/Wozniak-Skala.png"
+           data-lightbox="img-1" data-title="Leitner-Lernmethode">
+            <img src="/img/help/de/Wozniak-Skala.png"
+                 alt="Wozniak-Lernmethode" class="img-responsive center-block"/>
+        </a>
+        <p class="text-center">
+            6-stufige Selbsteinschätzung der Antwortsicherheit.
+        </p>
+    {{/if}}
 </template>

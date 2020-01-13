@@ -1,6 +1,11 @@
 <template name="helpContentDECategoryProfileRequests">
+    {{#if isLinuxHelp}}
+        (##) Pro-Anfragen / Karteifreigabe
 
-    (##) Pro-Anfragen / Karteifreigabe
+        <p>Sorry, Hilfe folgt in Kürze.</p>
+    {{else}}
+        (##) Pro-Anfragen / Karteifreigabe
 
-    <p>Sorry, Hilfe folgt in Kürze.</p>
+        <p>Sorry, Hilfe folgt in Kürze.</p>
+    {{/if}}
 </template>

@@ -1,21 +1,43 @@
 <template name="helpContentDECategorySummativeProgress">
+    {{#if isLinuxHelp}}
+        (##) Summativer Lernstand
 
-    (##) Summativer Lernstand
+        <a href="/img/help/de/Summativer_Lernstand.jpg" data-lightbox="img-1"
+           data-title="tbd">
+            <img src="/img/help/de/Summativer_Lernstand.jpg" alt="Summative Lernstandsanzeige"
+                 class="img-responsive center-block">
+        </a>
+        <ul class="thm-numbering">
+            <li><strong>Kartenstapel:</strong> Das Balkendiagramm zeigt dir den summativen Lernstand über alle Karteien
+                und
+                Repetitorien deines aktuellen Lernpensums.
+                Die Höhe eines Balkens (y-Achse) steht für die Anzahl der Karten,
+                seine abschnittsweise Färbung für den Schwierigkeitsgrad der Karten.
+                Der Tooltipp zeigt die Details.
+            </li>
 
-    <a href="/img/help/de/Summativer_Lernstand.jpg" data-lightbox="img-1"
-       data-title="tbd">
-        <img src="/img/help/de/Summativer_Lernstand.jpg" alt="Summative Lernstandsanzeige"
-             class="img-responsive center-block">
-    </a>
-    <ul class="thm-numbering">
-        <li><strong>Kartenstapel:</strong> Das Balkendiagramm zeigt dir den summativen Lernstand über alle Karteien und
-            Repetitorien deines aktuellen Lernpensums.
-            Die Höhe eines Balkens (y-Achse) steht für die Anzahl der Karten,
-            seine abschnittsweise Färbung für den Schwierigkeitsgrad der Karten.
-            Der Tooltipp zeigt die Details.
-        </li>
+            <li><strong>Leitner-Fächer:</strong> Siehe die Info-Seite <a href="{{pathFor route='learning'}}">Lernen</a>.
+            </li>
+        </ul>
+    {{else}}
+        (##) Summativer Lernstand
 
-        <li><strong>Leitner-Fächer:</strong> Siehe die Info-Seite <a href="{{pathFor route='learning'}}">Lernen</a>.
-        </li>
-    </ul>
+        <a href="/img/help/de/Summativer_Lernstand.jpg" data-lightbox="img-1"
+           data-title="tbd">
+            <img src="/img/help/de/Summativer_Lernstand.jpg" alt="Summative Lernstandsanzeige"
+                 class="img-responsive center-block">
+        </a>
+        <ul class="thm-numbering">
+            <li><strong>Kartenstapel:</strong> Das Balkendiagramm zeigt dir den summativen Lernstand über alle Karteien
+                und
+                Repetitorien deines aktuellen Lernpensums.
+                Die Höhe eines Balkens (y-Achse) steht für die Anzahl der Karten,
+                seine abschnittsweise Färbung für den Schwierigkeitsgrad der Karten.
+                Der Tooltipp zeigt die Details.
+            </li>
+
+            <li><strong>Leitner-Fächer:</strong> Siehe die Info-Seite <a href="{{pathFor route='learning'}}">Lernen</a>.
+            </li>
+        </ul>
+    {{/if}}
 </template>

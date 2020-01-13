@@ -1,12 +1,23 @@
 <template name="helpContentDECategoryDemo">
+    {{#if isLinuxHelp}}
+        <p>Schau dir die Demo-Kartei an und erfahre,
+            wie du mit 🍅cards (sprich <strong>&laquo;dot cards&raquo;</strong>)
+            das Wissen aus deinem Studium
+            organisierst, lernst, memorierst und in Seminaren präsentierst.</p>
 
-    <p>Schau dir die Demo-Kartei an und erfahre,
-        wie du mit 🍅cards (sprich <strong>&laquo;dot cards&raquo;</strong>)
-        das Wissen aus deinem Studium
-        organisierst, lernst, memorierst und in Seminaren präsentierst.</p>
+        <p>Erfahre, warum die Tomate 🍅 der Punkt in unserem Logo ist
+            und warum sie der Mittelpunkt in deinem Studium sein sollte.</p>
 
-    <p>Erfahre, warum die Tomate 🍅 der Punkt in unserem Logo ist
-        und warum sie der Mittelpunkt in deinem Studium sein sollte.</p>
+        <br>
+    {{else}}
+        <p>Schau dir die Demo-Kartei an und erfahre,
+            wie du mit 🍅cards (sprich <strong>&laquo;dot cards&raquo;</strong>)
+            das Wissen aus deinem Studium
+            organisierst, lernst, memorierst und in Seminaren präsentierst.</p>
 
-    <br>
+        <p>Erfahre, warum die Tomate 🍅 der Punkt in unserem Logo ist
+            und warum sie der Mittelpunkt in deinem Studium sein sollte.</p>
+
+        <br>
+    {{/if}}
 </template>
