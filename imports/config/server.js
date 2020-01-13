@@ -138,13 +138,13 @@ let debug = {
 		},
 		"public": {
 			"cardset": {
-				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"enabled": [EDU, PRO, LECTURER, GUEST],
 				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
 				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
 				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
 			},
 			"repetitorium": {
-				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"enabled": [EDU, PRO, LECTURER, GUEST],
 				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
 				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
 				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]

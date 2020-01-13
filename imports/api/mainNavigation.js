@@ -1,6 +1,7 @@
 import {Session} from "meteor/session";
 import {Route} from "./route";
 import {ServerStyle} from "./styles";
+import {Meteor} from "meteor/meteor";
 
 
 let keyEventsUnlocked = true;
@@ -134,6 +135,16 @@ export let MainNavigation = class MainNavigation {
 			return Session.get(guestLogin) === "true";
 		} else {
 			return false;
+		}
+	}
+
+	static canUseWorkload () {
+		if (ServerStyle.gotNavigationFeature("public.cardset.enabled", false) || ServerStyle.gotNavigationFeature("public.repetitorium.enabled", false)) {
+			return true;
+		} else {
+			if (Meteor.user() && Meteor.user().count !== undefined) {
+				return Meteor.user().count.workload > 0;
+			}
 		}
 	}
 };

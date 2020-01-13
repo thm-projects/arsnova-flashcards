@@ -86,6 +86,9 @@ Template.registerHelper('isMemo', function () {
 	return Route.isMemo();
 });
 
+Template.registerHelper('canUseWorkload', function () {
+	return MainNavigation.canUseWorkload();
+});
 
 Template.registerHelper('gotResetButton', function () {
 	return FilterNavigation.gotResetButton(FilterNavigation.getRouteId());
