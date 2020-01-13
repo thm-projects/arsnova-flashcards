@@ -3,6 +3,8 @@ import "./content/de/helpContent.js";
 import "./content/en/helpContent.js";
 import "./modal/helpModal.js";
 import "./help.html";
+import {Template} from "meteor/templating";
+import {LoginTasks} from "../../api/login";
 
 /*
  * ############################################################################
@@ -20,4 +22,8 @@ Template.help.events({
 	'click #resethelpFilter': function () {
 		Session.set('helpFilter', undefined);
 	}
+});
+
+Template.help.onRendered(function () {
+	LoginTasks.showUseCasesModal();
 });

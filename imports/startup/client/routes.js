@@ -952,6 +952,9 @@ Router.route('/profile/:_id/notifications', {
 Router.route('/profile/:_id/settings', {
 	name: 'profileSettings',
 	template: 'profile',
+	subscriptions: function () {
+		return [Meteor.subscribe('default_db_data')];
+	},
 	data: function () {
 		Session.set('helpFilter', "settings");
 	},

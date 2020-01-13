@@ -1,6 +1,11 @@
 <template name="helpContentENCategoryProfileSettings">
+    {{#if isLinuxHelp}}
+        (##) Profil & Konto
 
-    (##) Profil & Konto
+        <p>Sorry, Hilfe folgt in Kürze.</p>
+    {{else}}
+        (##) Profil & Konto
 
-    <p>Sorry, Hilfe folgt in Kürze.</p>
+        <p>Sorry, Hilfe folgt in Kürze.</p>
+    {{/if}}
 </template>

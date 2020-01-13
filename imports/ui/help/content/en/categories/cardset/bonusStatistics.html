@@ -1,6 +1,11 @@
 <template name="helpContentENCategoryBonusStatistics">
+    {{#if isLinuxHelp}}
+        (##) Bonus-Statistik
 
-    (##) Bonus-Statistik
+        <p>Sorry, Hilfe folgt in Kürze.</p>
+    {{else}}
+        (##) Bonus-Statistik
 
-    <p>Sorry, Hilfe folgt in Kürze.</p>
+        <p>Sorry, Hilfe folgt in Kürze.</p>
+    {{/if}}
 </template>

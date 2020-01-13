@@ -86,6 +86,10 @@ Template.registerHelper('isMemo', function () {
 	return Route.isMemo();
 });
 
+Template.registerHelper('isLinuxHelp', function () {
+	return ServerStyle.getHelpStyle() === "linux";
+});
+
 Template.registerHelper('canUseWorkload', function () {
 	return MainNavigation.canUseWorkload();
 });

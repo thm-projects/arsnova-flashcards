@@ -1,6 +1,11 @@
 <template name="helpContentENCategoryProfileMembership">
+    {{#if isLinuxHelp}}
+        (##) Mitgliedschaft
 
-    (##) Mitgliedschaft
+        <p>Sorry, Hilfe folgt in Kürze.</p>
+    {{else}}
+        (##) Mitgliedschaft
 
-    <p>Sorry, Hilfe folgt in Kürze.</p>
+        <p>Sorry, Hilfe folgt in Kürze.</p>
+    {{/if}}
 </template>

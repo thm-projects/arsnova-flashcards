@@ -90,6 +90,9 @@ $navbar_all_border_width: 3px;
             padding-left: 5px;
           }
         }
+        td:last-child a {
+          padding-right: 5px;
+        }
       }
 
       a {

@@ -761,7 +761,10 @@ $themes: (
     $use_cases_button_icon_hover: map-get($map, "use_cases_button_icon_hover");
     $use_cases_table_header_background: map-get($map, "use_cases_table_header_background");
     $use_cases_table_header_text: map-get($map, "use_cases_table_header_text");
-
+    $use_cases_special_cardsets_button_background: map-get($map, "use_cases_special_cardsets_button_background");
+    $use_cases_special_cardsets_button_text: map-get($map, "use_cases_special_cardsets_button_text");
+    $use_cases_special_cardsets_button_background_hover: map-get($map, "use_cases_special_cardsets_button_background_hover");
+    $use_cases_special_cardsets_button_text_hover: map-get($map, "use_cases_special_cardsets_button_text_hover");
 
     .navbar-toggle {
       background-color: $navbar_collapse_background !important;
@@ -3844,6 +3847,16 @@ $themes: (
     #useCasesModal th {
       background-color: $use_cases_table_header_background !important;
       color: $use_cases_table_header_text !important;
+    }
+
+    #useCasesModal .specialCardset {
+      background-color: $use_cases_special_cardsets_button_background !important;
+      color: $use_cases_special_cardsets_button_text !important;
+    }
+
+    #useCasesModal .specialCardset:hover {
+      background-color: $use_cases_special_cardsets_button_background_hover !important;
+      color: $use_cases_special_cardsets_button_text_hover !important;
     }
 
     //filter
