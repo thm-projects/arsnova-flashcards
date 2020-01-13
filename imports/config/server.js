@@ -138,13 +138,13 @@ let debug = {
 		},
 		"public": {
 			"cardset": {
-				"enabled": [EDU, PRO, LECTURER, GUEST],
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
 				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
 				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
 				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
 			},
 			"repetitorium": {
-				"enabled": [EDU, PRO, LECTURER, GUEST],
+				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
 				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
 				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
 				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
@@ -255,7 +255,7 @@ let linux = {
 				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
 			},
 			"repetitorium": {
-				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
+				"enabled": [EDU, PRO, LECTURER],
 				"filter": [PRO, LECTURER],
 				"search":  [PRO, LECTURER],
 				"wordcloud": [PRO, LECTURER]
