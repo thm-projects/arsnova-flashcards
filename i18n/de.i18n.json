@@ -1389,10 +1389,10 @@
       "placeholders": {
         "subject": "Gib das kurzgefasste Lernziel an!",
         "content1": "",
-        "content2": "Wenn das Lernziel in einer mündlichen Prüfung abgefragt würde, sollte hier die Prüfungsfrage und die erwartete Antwort stehen.",
-        "content3": "Liste hier Links und Literatur zur weiteren Vertiefung des Lerninhalts auf! \n\nRecherchiere auch in der THM-Bibliothek! Fast alle aktuellen Bücher sind als eBook verfügbar.",
+        "content2": "Wenn das »Lernziel« in einer mündlichen Prüfung mit nur einer Frage abgefragt würde, soll hier die Prüfungsfrage und die erwartete Antwort stehen.",
+        "content3": "Liste hier Links und Literatur zur weiteren Vertiefung des Lerngegenstands auf! \n\nRecherchiere auch in der THM-Bibliothek! Fast alle aktuellen Bücher sind als eBook verfügbar.",
         "content4": "Erläutere ausführlich den Lerngegenstand! \n\nStelle ihn strukturiert und anschaulich dar.",
-        "content5": "Formuliere zwei bis drei Multiple-Choice-Fragen, die testen, ob das Lernziel erreicht wurde. \n\nWie gut formulierte MC-Fragen erstellt werden, findest du im Leitfaden der Uni Bremen: http://www.eassessment.uni-bremen.de/mc_leitfaden.php"
+        "content5": "Formuliere zwei bis drei offene Fragen, die testen, ob das »Lernziel« durch Lesen und Memorieren der »Vertiefung« erreicht wurde. \n\nGib keine Antworten vor! Die Antworten sollen frei aus dem Gedächtnis formuliert werden. Ob sie richtig sind, soll allein anhand der »Vertiefung« des Lerngegenstands überprüft werden können."
       },
       "editorLabels": {
         "subject": "Lernziel"
