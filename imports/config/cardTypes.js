@@ -42,11 +42,9 @@ let cardTypesOrder = [
 	{cardType: 11},
 	{cardType: 5},
 	{cardType: 1},
-	{cardType: 10},
 	{cardType: 7},
 	{cardType: 4},
 	{cardType: 8},
-	{cardType: 9},
 	{cardType: 14},
 	{cardType: 18},
 	{cardType: 19}
