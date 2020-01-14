@@ -571,6 +571,21 @@ $themes: (
     $card_navigation_empty_content_opacity_hover: map-get($map, "card_navigation_empty_content_opacity_hover");
     $card_navigation_empty_content_background_hover: map-get($map, "card_navigation_empty_content_background_hover");
     $card_navigation_empty_content_text_hover: map-get($map, "card_navigation_empty_content_text_hover");
+
+    $editor_card_navigation_active_background: map-get($map, "editor_card_navigation_active_background");
+    $editor_card_navigation_active_text: map-get($map, "editor_card_navigation_active_text");
+    $editor_card_navigation_active_background_hover: map-get($map, "editor_card_navigation_active_background_hover");
+    $editor_card_navigation_active_text_hover: map-get($map, "editor_card_navigation_active_text_hover");
+    $editor_card_navigation_background: map-get($map, "editor_card_navigation_background");
+    $editor_card_navigation_text: map-get($map, "editor_card_navigation_text");
+    $editor_card_navigation_background_hover: map-get($map, "editor_card_navigation_background_hover");
+    $editor_card_navigation_text_hover: map-get($map, "editor_card_navigation_text_hover");
+    $editor_card_navigation_empty_content_opacity: map-get($map, "editor_card_navigation_empty_content_opacity");
+    $editor_card_navigation_empty_content_background: map-get($map, "editor_card_navigation_empty_content_background");
+    $editor_card_navigation_empty_content_text: map-get($map, "editor_card_navigation_empty_content_text");
+    $editor_card_navigation_empty_content_opacity_hover: map-get($map, "editor_card_navigation_empty_content_opacity_hover");
+    $editor_card_navigation_empty_content_background_hover: map-get($map, "editor_card_navigation_empty_content_background_hover");
+    $editor_card_navigation_empty_content_text_hover: map-get($map, "editor_card_navigation_empty_content_text_hover");
     //cube colors
     $cube_border: map-get($map, "cube_border");
     //card colors
@@ -3675,6 +3690,39 @@ $themes: (
     .card-navigation-active:hover, .card-navigation-active:focus {
       color: $card_navigation_active_text_hover !important;
       background-color: $card_navigation_active_background_hover !important
+    }
+
+    .cardEditorHeader {
+      .switchCardSide {
+        color: $card_navigation_text !important;
+        background-color: $card_navigation_background !important;
+      }
+
+      .switchCardSide:hover, .switchCardSide:focus {
+        color: $card_navigation_text_hover !important;
+        background-color: $card_navigation_background_hover !important;
+      }
+
+      .switchCardSideEmptyContent {
+        opacity: $editor_card_navigation_empty_content_opacity !important;
+        color: $editor_card_navigation_empty_content_text !important;
+        background-color: $editor_card_navigation_empty_content_background !important;
+      }
+
+      .switchCardSideEmptyContent:hover, .switchCardSideEmptyContent:focus {
+        opacity: $editor_card_navigation_empty_content_opacity_hover !important;
+        color: $editor_card_navigation_empty_content_text_hover !important;
+        background-color: $editor_card_navigation_empty_content_background_hover !important;
+      }
+      .card-navigation-active {
+        color: $editor_card_navigation_active_text !important;
+        background-color: $editor_card_navigation_active_background !important;
+      }
+
+      .card-navigation-active:hover, .card-navigation-active:focus {
+        color: $editor_card_navigation_active_text_hover !important;
+        background-color: $editor_card_navigation_active_background_hover !important
+      }
     }
 
     .modal-icon, .modal-icon .fas, .modal-icon .fab, .modal-icon .far, .modal-icon {
