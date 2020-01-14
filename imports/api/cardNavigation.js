@@ -201,6 +201,7 @@ export let CardNavigation = class CardNavigation {
 
 	static switchCard (updateLearningMode = 0, answeredCard = 0, answer = 0, ratingData = [0]) {
 		let flashcardCarousel = $('#cardCarousel');
+		$('.carousel-inner').removeClass('card-3d-overflow');
 		flashcardCarousel.on('slide.bs.carousel', function () {
 			CardVisuals.resizeFlashcard();
 			CardNavigation.toggleVisibility(false);

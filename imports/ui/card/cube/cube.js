@@ -23,6 +23,11 @@ Template.cardCube.onRendered(function () {
 			Session.set('is3DTransitionActive', 0);
 		});
 	}
+	$('body').addClass('main3DOverflowContainer');
+});
+
+Template.cardCube.onDestroyed(function () {
+	$('body').removeClass('main3DOverflowContainer');
 });
 
 Template.cardCube.helpers({

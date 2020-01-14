@@ -49,6 +49,7 @@ let fixedSidebarPosition = [1, 2, 3, 4, 5];
 let enabled3DModeByDefault = [1, 2, 3, 4, 5];
 let got3DMode = [1, 2, 3, 4, 5];
 let allow3DModeOnSingleSideCardsets = false;
+let allow3DOverflow = true;
 
 let cubeTransitionTime = 1.5;
 
@@ -60,6 +61,7 @@ module.exports = {
 	iFrameMaxHeight,
 	fixedSidebarPosition,
 	enabled3DModeByDefault,
+	allow3DOverflow,
 	got3DMode,
 	allow3DModeOnSingleSideCardsets,
 	cubeTransitionTime

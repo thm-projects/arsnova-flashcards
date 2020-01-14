@@ -248,3 +248,7 @@ $navbar_all_border_width: 3px;
   margin-right: 5px;
   font-size: 16px;
 }
+
+.navbar-cards.navbar-fixed-bottom {
+  z-index: 0 !important;
+}

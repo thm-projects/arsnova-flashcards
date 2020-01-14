@@ -340,6 +340,12 @@ img.cardside {
   bottom: 0;
 }
 
+.card-3d-overflow {
+  position: absolute;
+  overflow: visible;
+  z-index: 1;
+}
+
 .center-align {
   display: table;
   width: 100%;

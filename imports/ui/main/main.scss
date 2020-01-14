@@ -224,6 +224,14 @@ body {
   }
 }
 
+body.editor {
+  overflow: hidden;
+}
+
+.main3DOverflowContainer {
+  overflow: hidden;
+}
+
 .flex-content {
   height: 100% !important;
   display: flex !important;
