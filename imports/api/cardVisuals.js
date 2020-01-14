@@ -100,6 +100,14 @@ export let CardVisuals = class CardVisuals {
 		return Session.get('fullscreen');
 	}
 
+	static allow3DOverflow () {
+		return config.allow3DOverflow;
+	}
+
+	static allow3DOverNavigation () {
+		return config.allow3DOverflow;
+	}
+
 	static checkFullscreen () {
 		let currentRoute = Router.current().route.getName();
 		if (currentRoute === (Route.isPresentation())) {
@@ -112,6 +120,7 @@ export let CardVisuals = class CardVisuals {
 	}
 
 	static resizeFlaschardCustom (aspectRatio) {
+		$('.carousel-inner').removeClass('card-3d-overflow');
 		let flashcard = $('.flashcard');
 		let flashcardHeader = $('.cardHeader');
 		let flashcardBody = $('.cardContent');
@@ -166,6 +175,9 @@ export let CardVisuals = class CardVisuals {
 	}
 
 	static rotateCube (cardSide = "front", disableTransition = false) {
+		if (this.allow3DOverflow()) {
+			$('.carousel-inner').addClass('card-3d-overflow');
+		}
 		let height = $('.flashcard').outerHeight();
 		let cube = $('.scene.active #cube');
 		let transition = "";
