@@ -13,7 +13,7 @@ import "./box/cardset.js";
 import "./box/bonus.js";
 import "./box/bonusTranscript.js";
 import "./info.html";
-import {UserPermissions} from "../../../api/permissions";
+import {ServerStyle} from "../../../api/styles";
 
 /*
  * ############################################################################
@@ -55,10 +55,10 @@ Template.cardsetInfo.helpers({
 		return Bonus.isInBonus(Session.get('activeCardset')._id, Meteor.userId());
 	},
 	canSeeBonusDropdown: function () {
-		return this.learningActive && !UserPermissions.isSocialLogin();
+		return this.learningActive && ServerStyle.gotNavigationFeature("misc.features.bonus");
 	},
 	canSeeBonusTranscriptDropdown: function () {
-		return this.transcriptBonus !== undefined && this.transcriptBonus.enabled && UserPermissions.canCreateContent();
+		return this.transcriptBonus !== undefined && this.transcriptBonus.enabled && ServerStyle.gotNavigationFeature("misc.features.bonus");
 	}
 });
 

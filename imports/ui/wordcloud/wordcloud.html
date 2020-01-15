@@ -62,34 +62,38 @@
                             {{> cardsetInfoBoxContentTwo}}
                             </tbody>
                         </table>
-                        {{#if this.learningActive}}
-                            <br>
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th colspan="2" id="collapseLearningPhaseInfoButton" class="{{#if isBonusFinished this.learningActive this.learningEnd}}finished{{/if}}">{{_
-                                            "set-list.learnphaseInfo"}}</th>
-                                </tr>
-                                </thead>
+                        {{#if gotNavigationFeature "misc.features.bonus"}}
+                            {{#if this.learningActive}}
+                                <br>
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th colspan="2" id="collapseLearningPhaseInfoButton"
+                                            class="{{#if isBonusFinished this.learningActive
+                                                         this.learningEnd}}finished{{/if}}">{{_
+                                                "set-list.learnphaseInfo"}}</th>
+                                    </tr>
+                                    </thead>
 
-                                <tbody>
-                                {{> bonusInfoBoxContent}}
-                                </tbody>
-                            </table>
-                        {{/if}}
-                        {{#if this.transcriptBonus}}
-                            <br>
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th colspan="2" id="collapseBonusTranscriptInfoButton">{{_
-                                            "transcriptForm.info.title"}}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {{> bonusTranscriptInfoBoxContent}}
-                                </tbody>
-                            </table>
+                                    <tbody>
+                                    {{> bonusInfoBoxContent}}
+                                    </tbody>
+                                </table>
+                            {{/if}}
+                            {{#if this.transcriptBonus}}
+                                <br>
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th colspan="2" id="collapseBonusTranscriptInfoButton">{{_
+                                                "transcriptForm.info.title"}}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{> bonusTranscriptInfoBoxContent}}
+                                    </tbody>
+                                </table>
+                            {{/if}}
                         {{/if}}
                     </div>
                 </div>

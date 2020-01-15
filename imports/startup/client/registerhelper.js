@@ -408,7 +408,7 @@ Template.registerHelper("isCardsetAndFixedSidebar", function () {
 });
 
 Template.registerHelper("getBonusLabel", function (learningActive = false, learningEnd = new Date()) {
-	if (learningActive) {
+	if (learningActive && ServerStyle.gotNavigationFeature("misc.features.bonus")) {
 		if (learningEnd < new Date()) {
 			return '<span class="label label-bonus-finished" title="' + TAPi18n.__('cardset.bonus.long') + '">' + TAPi18n.__('cardset.bonus.short') + '</span>';
 		} else {
