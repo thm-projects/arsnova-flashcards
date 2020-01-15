@@ -65,6 +65,11 @@ let defaultSettings = {
 				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
 				"filter": [FREE, EDU, PRO, LECTURER, GUEST]
 			}
+		},
+		"misc": {
+			"features": {
+				"bonus": [FREE, EDU, PRO, LECTURER]
+			}
 		}
 	},
 	"login": {
@@ -175,6 +180,11 @@ let debug = {
 			"bonus": {
 				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
 				"filter": [FREE, EDU, PRO, LECTURER, GUEST]
+			}
+		},
+		"misc": {
+			"features": {
+				"bonus": [FREE, EDU, PRO, LECTURER]
 			}
 		}
 	},
@@ -290,6 +300,11 @@ let linux = {
 				"enabled": [PRO, LECTURER, GUEST],
 				"filter": [FREE, EDU, PRO, LECTURER, GUEST]
 			}
+		},
+		"misc": {
+			"features": {
+				"bonus": [FREE, EDU, PRO, LECTURER]
+			}
 		}
 	},
 	"login": {
@@ -400,6 +415,11 @@ let review = {
 			"bonus": {
 				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
 				"filter": [FREE, EDU, PRO, LECTURER, GUEST]
+			}
+		},
+		"misc": {
+			"features": {
+				"bonus": [FREE, EDU, PRO, LECTURER]
 			}
 		}
 	},
@@ -514,6 +534,11 @@ let staging = {
 			"bonus": {
 				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
 				"filter": [FREE, EDU, PRO, LECTURER, GUEST]
+			}
+		},
+		"misc": {
+			"features": {
+				"bonus": [FREE, EDU, PRO, LECTURER]
 			}
 		}
 	},
