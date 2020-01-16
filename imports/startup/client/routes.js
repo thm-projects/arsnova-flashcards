@@ -50,7 +50,7 @@ Router.route('/home', {
 		return [Meteor.subscribe('wordcloudCardsets'), Meteor.subscribe('userDataLandingPage')];
 	},
 	data: function () {
-		Session.set('helpFilter', "start");
+		Session.set('helpFilter', undefined);
 		return Cardsets.findOne({_id: Session.get('wordcloudItem')});
 	},
 	action: function () {
