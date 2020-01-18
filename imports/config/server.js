@@ -219,15 +219,15 @@ let debug = {
 		"server": "de",
 		"client": "de"
 	},
-	"backgrounds": "default",
+	"backgrounds": "linux",
 	"transcripts": {
 		"enabled": true
 	},
 	"help": {
-		"style": "default"
+		"style": "linux"
 	},
 	"demo": {
-		"folder": "informatik"
+		"folder": "linux"
 	},
 	"imprint": {
 		"folder": "cards"
