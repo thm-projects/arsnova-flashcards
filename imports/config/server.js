@@ -230,7 +230,7 @@ let debug = {
 		"folder": "linux"
 	},
 	"imprint": {
-		"folder": "cards"
+		"folder": "linux"
 	},
 	"roles": {
 		"create": {
