@@ -1033,7 +1033,7 @@
       "din": "DIN-Kartenformat"
     },
     "help": {
-      "title": "Tabs & Buttons",
+      "title": "Tabs & Buttons in der Kartenansicht",
       "button": {
         "confirm": "Okay"
       }
