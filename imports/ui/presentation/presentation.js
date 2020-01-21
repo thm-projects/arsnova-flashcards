@@ -68,8 +68,9 @@ Template.presentationView.onCreated(function () {
 
 Template.presentationView.onRendered(function () {
 	CardNavigation.toggleVisibility(true);
-	if (localStorage.getItem(MainNavigation.getFirstTimePresentationString()) !== "true" && Route.isPresentation() && !NavigatorCheck.isSmartphone() && FirstTimeVisit.isFirstTimePresentationModalEnabled()) {
+	if (localStorage.getItem(MainNavigation.getFirstTimePresentationString()) !== "true" && Route.isPresentationOrDemo() && !NavigatorCheck.isSmartphone() && FirstTimeVisit.isFirstTimePresentationModalEnabled()) {
 		$('#helpModal').modal('show');
+		localStorage.setItem(MainNavigation.getFirstTimePresentationString(), true);
 	}
 });
 
