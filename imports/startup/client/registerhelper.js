@@ -365,21 +365,23 @@ Template.registerHelper("isImprintMode", function (mode) {
 Template.registerHelper("getNextCardTime", function () {
 	let workload = Workload.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId()});
 	let learningEnd = Cardsets.findOne({_id: Router.current().params._id}).learningEnd;
-	if (workload.leitner.nextDate.getTime() > learningEnd.getTime()) {
-		return TAPi18n.__('noMoreCardsBeforeEnd');
+	if (workload !== undefined && workload.leitner !== undefined && workload.leitner.nextDate !== undefined && learningEnd !== undefined) {
+		if (workload.leitner.nextDate.getTime() > learningEnd.getTime()) {
+			return TAPi18n.__('noMoreCardsBeforeEnd');
+		}
+		let nextDate;
+		if (workload.leitner.nextDate.getTime() < new Date().getTime()) {
+			nextDate = moment(new Date()).locale(Session.get('activeLanguage'));
+		} else {
+			nextDate = moment(workload.leitner.nextDate).locale(Session.get('activeLanguage'));
+		}
+		if (nextDate.get('hour') >= Meteor.settings.public.dailyCronjob.executeAtHour) {
+			nextDate.add(1, 'day');
+		}
+		nextDate.hour(Meteor.settings.public.dailyCronjob.executeAtHour);
+		nextDate.minute(0);
+		return TAPi18n.__('noCardsToLearn') + nextDate.format("D. MMMM") + TAPi18n.__('at') + nextDate.format("HH:mm") + TAPi18n.__('released');
 	}
-	let nextDate;
-	if (workload.leitner.nextDate.getTime() < new Date().getTime()) {
-		nextDate = moment(new Date()).locale(Session.get('activeLanguage'));
-	} else {
-		nextDate = moment(workload.leitner.nextDate).locale(Session.get('activeLanguage'));
-	}
-	if (nextDate.get('hour') >= Meteor.settings.public.dailyCronjob.executeAtHour) {
-		nextDate.add(1, 'day');
-	}
-	nextDate.hour(Meteor.settings.public.dailyCronjob.executeAtHour);
-	nextDate.minute(0);
-	return TAPi18n.__('noCardsToLearn') + nextDate.format("D. MMMM") + TAPi18n.__('at') + nextDate.format("HH:mm") + TAPi18n.__('released');
 });
 
 Template.registerHelper("getKindText", function (kind, displayType = 0) {
