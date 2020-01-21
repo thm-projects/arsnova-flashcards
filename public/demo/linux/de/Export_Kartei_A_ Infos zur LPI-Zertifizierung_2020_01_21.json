@@ -1,0 +1,138 @@
+[{
+  "name": "A: Infos zur LPI-Zertifizierung",
+  "description": "(##) Über die Lernkartei-App <q>🍅cards</q>\n\n![ ](https://arsnova-uploads.mni.thm.de/logos/Stifterverband.png width=130)![ ](https://arsnova-uploads.mni.thm.de/logos/DATEV-Stiftung.png width=130) Diese innovative Lern&shy;kar&shy;tei-App ist das zentrale Open-Source-Tool in einem Langzeit-Projekt der Technischen Hochschule Mittelhessen, THM. Der Stifterverband für die Deutsche Wissenschaft und die DATEV-Stiftung Zukunft fördern unser Vorhaben \n»Digital gegen das Bulimie-Lernen: Quizzen im Hörsaal und zu Hause, Podcasts für unterwegs« mit einem [Senior-Fellowship](https://www.stifterverband.org/lehrfellowships/2018/quibeldey-cirkel). \n\n(##) Über die finanzielle Förderung einer LPI-Zertifizierung für hessische Studierende\n\n![ ](https://arsnova.thm.de/blog/wp-content/uploads/2015/07/HMWK-Logo-300x136.png width=130) ![ ](https://digll.studiumdigitale.uni-frankfurt.de/files/2019/06/digLL_Logo_small.png width=130)Das HMWK-Verbundprojekt der hessischen Hochschulen [<q>Digital gestütztes Lehren und Lernen in Hessen</q>](https://www.digll-hessen.de/de)  (digLL) fördert im SoSe 2020 Informatik-Studierende an einer hessischen Hochschule beim Erwerb der Linux-Zertifikate des renommierten [Linux Professional Institute](https://www.lpi.org/) (LPI).\nEs werden die Teilnahmekosten für die LPI-Zertifizierungsprüfungen [»Linux Essentials«](https://www.lpi.org/our-certifications/linux-essentials-overview) und [»LPIC-1: Linux Administrator«](https://www.lpi.org/our-certifications/lpic-1-overview) für zehn Studierende übernommen (ca. 350 € pro Person). Eine Förderung im WiSe 2020/21 für die nächste Zertifizierungsstufe <q>LPIC-2: Linux Engineer</q> ist geplant.\n\n![](https://www.lpice.eu/fileadmin/_processed_/csm_LinuxEssentials-01_5aa1669c09.jpg)![](https://www.lpice.eu/fileadmin/_processed_/csm_LPIC-1_Web_a900c6dec1.jpg)![](https://www.lpice.eu/fileadmin/_processed_/csm_LPIC-2_LPIC-2_3596d59f7a.jpg)\n",
+  "date": "2019-05-06T04:52:10.648Z",
+  "dateUpdated": "2020-01-21T11:54:06.416Z",
+  "editors": [],
+  "owner": "fGBjd8xcxAgkPYM4B",
+  "visible": true,
+  "ratings": true,
+  "kind": "free",
+  "price": 0,
+  "reviewed": false,
+  "reviewer": "undefined",
+  "request": false,
+  "rating": 0,
+  "raterCount": 0,
+  "quantity": 2,
+  "license": [
+    "by",
+    "nc",
+    "nd"
+  ],
+  "userDeleted": false,
+  "learningActive": false,
+  "maxCards": 0,
+  "daysBeforeReset": 0,
+  "learningStart": "1970-01-01T00:00:00.000Z",
+  "learningEnd": "1970-01-01T00:00:00.000Z",
+  "registrationPeriod": "1970-01-01T00:00:00.000Z",
+  "learningInterval": [],
+  "wordcloud": false,
+  "shuffled": false,
+  "cardType": 18,
+  "difficulty": 0,
+  "noDifficulty": false,
+  "originalAuthorName": {
+    "birthname": "User",
+    "givenname": "Super Admin"
+  },
+  "sortType": 0,
+  "workload": {
+    "bonus": {
+      "count": 0,
+      "minLearned": 75
+    },
+    "normal": {
+      "count": 0
+    },
+    "simulator": {
+      "errorCount": [
+        [
+          100,
+          30,
+          25,
+          20,
+          10
+        ]
+      ]
+    }
+  },
+  "gotWorkload": false,
+  "lecturerAuthorized": false,
+  "useCase": {
+    "enabled": false,
+    "priority": 0
+  },
+  "lastEditor": "fGBjd8xcxAgkPYM4B"
+}, {
+  "subject": "B: »🍅cards« – die App für dein Studium",
+  "front": "![](/img/Bildlogo.png width=60%)\n\n![ ](https://arsnova-uploads.mni.thm.de/logos/Stifterverband.png width=140)![ ](https://arsnova-uploads.mni.thm.de/logos/DATEV-Stiftung.png width=140) Diese innovative Lern&shy;kar&shy;tei-App ist das zentrale Open-Source-Tool in einem Langzeit-Projekt der Technischen Hochschule Mittelhessen, THM. Der Stifterverband für die Deutsche Wissenschaft und die DATEV-Stiftung Zukunft fördern unser Vorhaben \n»Digital gegen das Bulimie-Lernen: Quizzen im Hörsaal und zu Hause, Podcasts für unterwegs« mit einem [Senior-Fellowship](https://www.stifterverband.org/lehrfellowships). \n\nDie Förderung ermöglicht uns, 🍅cards inhaltlich und technisch weiter zu entwickeln, siehe unseren [Projektantrag](https://www.stifterverband.org/lehrfellowships/2018/quibeldey-cirkel).",
+  "back": "(##) Die Maxime von 🍅cards\n\n**`Organize`** Das Wissen aus deinem Studium kannst du jederzeit und überall mit wenigen Klicks wiederfinden, auch noch viele Jahre nach deinem Studium, wenn du deine Mitschriften längst entsorgt hast. Eines Tages -- im Job, in einer Teambesprechung -- brauchst du das Wissen aus deinem Studium wieder.\n\n**`Learn`** Die Karten sind multimedial: Du kannst Bilder, Podcasts und Videos einfügen. Du studierst ein MINT-Fach? Schreib mit $\\TeX$ die kompliziertesten mathematischen Formeln und mit Syntax-Highlighting beliebigen Programmcode schnell und sauber auf eine Karte. Du darfst kostenlos die [Open Source Software](https://github.com/thm-projects/arsnova-flashcards) 🍅cards als persönliche Lernumgebung auf deinem Laptop installieren. So kannst du deine Karten auch ohne Internet überall lernen.\n\n![ ](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/ForgettingCurve.svg/701px-ForgettingCurve.svg.png width=200px)\n**`Memorize`** Die Karten deines Lernpensums werden dir zum Memorieren an [kognitionswissenschaftlich berechneten Tagen](https://en.wikipedia.org/wiki/Spaced_repetition) wieder vorgelegt. Das ist die effektivste Lernmethode gegen das [Vergessen](https://de.wikipedia.org/wiki/Vergessenskurve). Push-Nachrichten auf dein Handy oder Mails erinnern dich, das Gelernte in länger werdenden Zeitabständen zu wiederholen.\n\n\n",
+  "hint": "(##) Pomodoro: nicht nur italienisch für »Tomate«\n\n![ ](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Pomodoro-Uhr.png width=115)Francesco Cirillo entwickelte die populäre [Pomodoro-Tech&shy;nik&trade;](https://de.wikipedia.org/wiki/Pomodoro-Technik). Der Name rührt daher, dass Cirillo für seine Zeitmanagement-Technik eine Eieruhr zu Hilfe nahm und diese die Form einer Tomate hatte. Wir haben die Pomodoro-Technik&trade; in eine stylische Analoguhr eingebaut: Eine Pomodoro-Zeiteinheit beträgt 25 Minuten, sie wird dir mit dem orangefarbenen Kreisbogen angezeigt. Der schmale rote Kreisbogen steht für die verstrichene Zeit. Die von der Pomodoro-Technik vorgesehenen Pausen erkennst du am blauen Kreisbogen. Und jetzt kommt der Clou:\n\n!!!\n   Während einer Pause wird dir keine weitere Karte zum Lernen angezeigt. Wir verhindern so, dass du dich überforderst, zum Beispiel beim **Bulimielernen** vor einer Klausur, und du dir durch ununterbrochenes Kartenlernen (die Wissenschaft nennt es **massiertes** Lernen) gesundheitlich schadest und dein Lernen immer ineffektiver wird.",
+  "lecture": "(##) Digitale Kartons: Karteien\n\n![ ](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Box.png width=80px)Es gibt rund **20 studienspezifische Karteitypen**, die beim Anlegen einer Kartei zur Auswahl stehen. \nJede Kartei beinhaltet ausschließlich Karten desselben Typs, es sei denn, sie wurde aus mehreren Karteien unterschiedlichen Typs gemischt wie diese Demo-Kartei. Einige Karteitypen haben eine **Schwierigkeitsstufe (Level)**, die an der Kartenfarbe erkennbar ist: Grün für Basics, Blau für Fortgeschritten und Rot für Experten. \n\nKarteitypen unterscheiden sich in der Anzahl der Kartenseiten: nicht nur Vorder- und Rückseiten sind möglich, sondern auch weitere virtuelle Seiten zur Vertiefung des Lerninhalts oder zur Angabe von Web-Ressourcen und Literatur. Lern-, Entwurfsmuster- und Prüfungskarten haben zusätzlich eine **Lernzielstufe** in Anlehnung an die [Taxonomie von Anderson & Krathwohl](https://thesecondprinciple.com/teaching-essentials/beyond-bloom-cognitive-taxonomy-revised/):  Verstehen, Anwenden, Analysieren, Synthetisieren, Bewerten, Innovieren. Für die Formulierung des Lernziels auf der gewählten Lernzielstufe werden passende Verben im Karten-Editor vorgeschlagen.\n",
+  "top": "(##) Digitale Regale: Repetitorien\n\n![ ](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Repetitorium.png width=250px)\n> \"**Repetitorium** (von lateinisch *repetere:* „wiederholen“) bedeutet die \n> Wiederholung von Wissen und Kenntnissen, meist um eine Prüfung zu bestehen.\"\n>  -- [Wikipedia](https://de.wikipedia.org/wiki/Repetitorium)\n\n![ ](/img/background/zettelkasten_wikipedia_original.jpg width=\"250px\")Ein Repetitorium (Rep) auf 🍅&nbsp;cards fasst **mehrere** Karteien zusammen. Um im Bild zu bleiben: In deinem IKEA-Regal sind das alle Schuhkartons, die inhaltlich zu einem Modul gehören und deshalb zusammen stehen. Im Lernmodus werden die Karten aller Karteien, die zum Rep gehören, gemäß einem Wiederholungs-Algorithmus zum Lernen vorgelegt. Dein Prof kann dir **Bonuspunkte** für das regelmäßige Lernen einer Kartei oder eines Repetitoriums geben.",
+  "bottom": "(##) Digitale Zettel: Karten\n\n![Markdeep-Logo](https://casual-effects.com/image/project/icon-markdeep.png width=100px)Karten kannst du auf  **🍅cards** vielfältig gestalten -- fast wie in Microsoft Word™ oder in Pages™ von Apple. Diese Karte zeigt dir beispielhaft einige Formatierungen mit [Markdeep](http://casual-effects.com/markdeep/), der vereinfachten [Auszeichnungssprache](https://de.wikipedia.org/wiki/Auszeichnungssprache) im **🍅cards**-Editor. Du kannst deinen Text mit etwas Magie (ein paar Tastaturzeichen genügen wie <code>* _ # [ ]  > | ~ $ ˋ</code>) sehr einfach formatieren -- **ohne Maus**. \n\nWas alles mit Markdeep möglich ist,  zeigt die  [Demo-Seite](http://casual-effects.com/markdeep/features.md.html). So geht zum Beispiel auch $\\TeX$, inline: $\\sigma = \\sqrt{ \\frac{1}{N} \\sum_{i=1}^N (x_i -\\mu)^2}$ (Standardabweichung) oder abgesetzt die Maxwell-Faraday-Gleichung:\n\n$$\\oint_{\\partial \\Sigma} \\mathbf{E} \\cdot \\mathrm{d}\\boldsymbol{\\ell}  = - \\frac{d}{dt} \\iint_{\\Sigma} \\mathbf{B} \\cdot \\mathrm{d}\\mathbf{S}$$\n\nDie $\\TeX$-Formel wird mit [MathJax](https://www.mathjax.org/) gerendert.\nMathJax fügt ein Kontextmenü hinzu. Um es anzuzeigen, klicke mit der rechten Maustaste oder halte beim Klicken die <kbd>Strg</kbd>-Taste gedrückt. Probiere es gleich einmal mit der Formel oben aus!\n\n!!! NOTE\n   Eine sorgfältige Gestaltung deiner Karten mit Text, Bildern, Podcasts oder Erklärvideos motiviert und fördert zugleich dein Lernen. Nutze also die Formatierungsoptionen für die Beschriftung deiner Karteien ( -> Etikett am Karton) und für die anschauliche Gestaltung der Lerninhalte deiner Karten. \n\nUnd jetzt kommt der [Entwickler von Markdeep](https://csci.williams.edu/people/faculty/morgan-mcguire/) zu Wort:\n\n> \"Markdeep\n> is a technology for writing plain text documents\n> that will look good in any web browser, whether \n> local or remote. It supports diagrams, calendars, equations, and\n> other  features as extensions of Markdown syntax.\"\n>        -- Morgan McGuire\n\nVideos auf YouTube und Vimeo lassen sich sehr einfach mit einem Einzeiler in die Seite einbinden:\n\n![Figure [Markdown]: Erklärvideo über Markdown, auf dem Markdeep aufbaut](https://youtu.be/hpAJMSS8pvs)\n\nBilder können abgesetzt, rechtsbündig zum Absatz und skaliert eingebunden werden:\n\n![Figure [examplePicture]: Markdeep-Editor vs. Webseite](https://pbs.twimg.com/media/CXzB2rZWsAERiV8.png  width=\"400 pt\")\n\nWie im Bild zu sehen, zeigt dir die Vorschau des Editors -- **synchron** zu deiner Eingabe --, wie deine Textformatierung aussehen wird. \n\nUnd natürlich lassen sich auch **Podcasts** einbinden und im Browser abspielen. Die Syntax ist für alle Medien gleich: \n\n`![Beschriftung](Webadresse)`. \n\nFür einen Podcast also:\n\n````\n![The Personal Best CBC Podcast](https://podcast-a.akamaihd.net/mp3/podcasts/personalbest-GRHHTnR3-20180415.mp3)\n````\n\nDer browsereigene Audio-Player wird aufgerufen:\n\n![The Personal Best CBC Podcast](https://podcast-a.akamaihd.net/mp3/podcasts/personalbest-GRHHTnR3-20180415.mp3)\n\n\n\n!!! ERROR Warum wir Markdeep für die Textformatierung anbieten und nicht einen [WYSIWYG](https://de.wikipedia.org/wiki/WYSIWYG)-Editor?\n    Siehe unsere Antwort zur 5. [FAQ](/faq).",
+  "centerTextElement": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "alignType": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 0,
+  "date": "2019-03-31T13:00:51.841Z",
+  "dateUpdated": "2020-01-10T10:47:18.629Z",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  },
+  "owner": "fGBjd8xcxAgkPYM4B",
+  "lastEditor": "fGBjd8xcxAgkPYM4B"
+}, {
+  "subject": "Lernen für die LPI-Prüfungen",
+  "front": "(#) Linux und Open Source\n\n![[ ](https://www.tuxcademy.org/)](https://arsnova-uploads.mni.thm.de/LinuxEssentials/tuxcademy.png width=150px)\nNicht nur in klassischen Arbeitsfeldern wie Handwerk oder Ingenieurberufen, sondern auch in der IT läuft hierzulande bei der Arbeitssuche ohne Zeugnisse und Zertifikate nicht viel. Das gilt vor allem für den in der professionellen IT immer wichtigeren Linux-Bereich. \n\nIn dieser Einführung finden Sie Informationen, wie Sie sich mit den frei verfügbaren Schulungsunterlagen von [tuxcademy.org](https://www.tuxcademy.org/) effizient und nachhaltig auf [LPI-Prüfungen](https://www.lpi.org/) vorbereiten und als Student/in der Informatik an einer hessischen Hochschule die Kosten für eine LPI-Zertifizierung erstattet bekommen. \n\n!!!TIP\n   Für Linux.cards wurde ein [Moodle-Kurs](https://moodle.thm.de/mod/forum/view.php?id=235493) eingerichtet. Als Student/in der THM können Sie im Kursforum Ihre Fragen posten oder auf fehlerhafte Karten (formal und inhaltlich) hinweisen. Der Ersteller der Karten -- Herr André Hanke -- wird die gemeldeten Fehler zeitnah korrigieren.\n\n \n",
+  "back": "(##) Finanzielle Förderung\n\n![ ](https://arsnova.thm.de/blog/wp-content/uploads/2015/07/HMWK-Logo-300x136.png width=130) ![ ](https://digll.studiumdigitale.uni-frankfurt.de/files/2019/06/digLL_Logo_small.png width=130)Das HMWK-Verbundprojekt der hessischen Hochschulen [<q>Digital gestütztes Lehren und Lernen in Hessen</q> (digLL)](https://www.digll-hessen.de/de) fördert im SoSe 2020 Informatik-Studierende an einer hessischen Hochschule beim Erwerb der Linux-Zertifikate des renommierten [Linux Professional Institute](https://www.lpi.org/) (LPI).\nEs werden die Teilnahmekosten für die LPI-Zertifizierungsprüfungen [»Linux Essentials«](https://www.lpi.org/our-certifications/linux-essentials-overview) und [»LPIC-1: Linux Administrator«](https://www.lpi.org/our-certifications/lpic-1-overview) für zehn Studierende übernommen (ca. 350 € pro Person). Eine Förderung im WiSe 2020/21 für die nächsten Zertifizierungsstufen ist geplant:\n\n![](https://www.lpice.eu/fileadmin/_processed_/csm_LinuxEssentials-01_5aa1669c09.jpg)![](https://www.lpice.eu/fileadmin/_processed_/csm_LPIC-1_Web_a900c6dec1.jpg)![](https://www.lpice.eu/fileadmin/_processed_/csm_LPIC-2_LPIC-2_3596d59f7a.jpg)",
+  "hint": "(##) <q>Linux Essentials</q> -- Prüfung <q>LPI-100</q>\n\n- Berufswahl Open Source und Eintritt in die Linux-Community ![ ](https://www.lpice.eu/fileadmin/_processed_/csm_LinuxEssentials-01_5aa1669c09.jpg width=150 border=1)\n- Sich auf einem Linux-System zurechtfinden\n- Die Macht der Kommandozeile\n- Das Linux-Betriebssystem\n- Sicherheit und Dateiberechtigungen\n\n!!! TIP\n   Das LPI-Zertifikat <q>Linux Essentials</q> ist **keine** Voraussetzung für die höheren LPI-Zertifizierungen. Wer über ausreichende Linux-Kenntnisse verfügt, kann direkt das LPI-Zertifikat <q>LPIC-1</q> angehen. <br><br>**Testen Sie Ihre Linux-Kenntnisse in diesem [Quiz](https://linux.cards/cardset/5Pp7aiSRjjub9eqmr).**<br><br>\n\n(##) <q>LPIC-1</q> mit den Teilprüfungen  <q>LPI-101</q> und <q>LPI-102</q>\n\n![ ](https://www.lpice.eu/fileadmin/_processed_/csm_LPIC-1_Web_a900c6dec1.jpg width=150 border=1) LPIC-1 ist die erste Zertifizierung des <q>LPI Multi-level Linux Professional</q>-Zertifizierungsprogramms.\nMit LPIC-1 weisen Sie Ihre Linux-Kenntnisse nach, einen Rechner mit einem Linux-Betriebssystem installieren und konfigurieren, das Netzwerk einrichten und Wartungsaufgaben auf der Kommandozeile durchführen zu können. \n\nPrüfung 101 | Prüfung 102  \n-------|------\n Systemarchitektur   |  Shells, Skripte erstellen und Datenverwaltung   \n   Linux-Installation und Paketverwaltung  |  Schnittstellen und Oberflächen  \n GNU- und Unix-Befehle  | Administrative Aufgaben  \nGeräte, Linux-Dateisysteme, Filesystem | Essentielle Systemdienste \nHierarchy Standard | Netzwerkgrundlagen & Sicherheit \n  [Themen der Teilprüfungen für LPIC-1]\n\n(###) <q>LPIC-2</q> mit den Teilprüfungen  <q>LPI-201</q> und <q>LPI-202</q>\n\n![ ](https://www.lpice.eu/fileadmin/_processed_/csm_LPIC-2_LPIC-2_3596d59f7a.jpg width=150 border=1)LPIC-2 ist die zweite Zertifizierung des <q>LPI Multi-level Linux Professional</q>-Zertifizierungsprogramms.\nMit LPIC-2 weisen Sie professionelle Linux-Kenntnisse bezüglich der Administration von kleinen bis mittleren gemischten Netzwerken nach.\n\nPrüfung 201 | Prüfung 202  \n-------|------\n Planung von Kapazitäten   |  Domain Name Server    \n   Linux Kernel   |  Web Services  \n System Startup  | File Sharing  \nDateisystem und Geräte | Network Client Management \nFortgeschrittene Verwaltung von Speichergeräten | E-Mail Services \nNetzwerkkonfiguration | System Security \nSystemwartung |  \n[Themen der Teilprüfungen für LPIC-2]\n",
+  "lecture": "(##) <q>LPIC-3</q>\n\n![ ](https://www.lpice.eu/fileadmin/_processed_/csm_LPIC-3_304_34a0df6530.jpg width=150 border=1)Um eine LPIC-3-Zertifizierung zu erwerben, müssen Sie eine aktive LPIC-1- und LPIC-2-Zertifizierung besitzen und mindestens eine der folgenden Spezialprüfungen bestehen:\n\n- Prüfung 300: **Mixed Environment**<br>OpenLDAP-Konfiguration, Samba-Grundlagen,  Samba Share Konfiguration,  Samba-Benutzer und Gruppenverwaltung, Samba Domain Integration, Samba Name Services,  Arbeiten mit Linux- und Windows-Clients\n\n- Prüfung 303: **Security**<br>Verschlüsselung, Zugriffskontrolle, Anwendungssicherheit, Betriebssicherheit, Netzwerksicherheit\n\n- Prüfung 304: **Virtualization and High Availability**<br>Virtualisierung, Hochverfügbarkeits-Cluster-Management, Hochverfügbarkeits-Cluster-Speicherung",
+  "centerTextElement": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "alignType": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2019-05-06T06:01:04.587Z",
+  "dateUpdated": "2020-01-21T11:47:24.913Z",
+  "owner": "fGBjd8xcxAgkPYM4B",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  },
+  "top": "(##) Kriterien für die Übernahme der Zertifizierungskosten\n\nEs werden im SoSe 2020 zehn Studierende an hessischen Hochschulen gefördert. Die Kriterien folgen den Vorgaben für die **Bonusvergabe für das wiederholte Lernen nach Leitner** in den Modulen des THM-Fachbereichs MNI.\n\n![Wiederholtes Kartenlernen nach [Leitner](https://linux.cards/learning)](https://upload.wikimedia.org/wikipedia/commons/c/c4/Leitner_system.svg width=320 border=1)Je nach Zertifizierungsziel müssen Sie sich in die **Bonus-Lernphase** folgender Repetitorien einschreiben:\n\n- [Linux Essentials](https://linux.cards/cardset/qDTp6YT7DWnK2XhFX)\n- [Linux-Administration I](https://linux.cards/cardset/8Mo4LfYBADJ2zgprp)\n- [Linux-Administration II](https://linux.cards/cardset/DxxEwJ7AyfTpE4tS2)\n\nDie Bonus-Lernphase dauert bis zum **30. September 2020**. Der Projektleiter -- Prof. Dr. Klaus Quibeldey-Cirkel -- wird zum Ende der Lernphase Ihren **Lernprozess** (nicht das Lernergebnis) gemäß den Kriterien des Leitner-Wiederholungsplans beurteilen. Genügt Ihr Lernprozess den Kriterien, müssen Sie sich noch einem abschließenden **Online-Assessment** unterziehen, bestehend aus 50 MC-Fragen zum jeweiligen Repetitorium. Die zehn besten Personen können sich im **November 2020** mit Fördermitteln aus dem <q>digLL</q>-Projekt zu einer offiziellen LPI-Zertifizierungsprüfung anmelden.",
+  "bottom": "![Lernstandsanzeige ](https://arsnova.cards/img/help/de/Lernstand.jpg width=70%)\n\n!!!ERROR Kriterien für die Zulassung zum finalen Online-Assessment\n   - Haben Sie im Sinne des Leitner-Plans **verteilt und wiederholt** gelernt, das heißt, befinden sich in der Box <q>gelernt</q> Ihrer Lernstandsanzeige mindesten **50 % aller Karten**? \n   - Haben Sie alle Karten mindestens **zweimal** gelernt, das heißt, sind in der Lernstandsanzeige die ersten beiden Boxen am Ende der Bonus-Lernphase leer?",
+  "lastEditor": "fGBjd8xcxAgkPYM4B"
+}]
