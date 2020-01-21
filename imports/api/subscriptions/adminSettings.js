@@ -15,6 +15,8 @@ if (Meteor.isServer) {
 			} else {
 				return AdminSettings.find({name: {$in: ["seqSettings", 'mailSettings', 'pushSettings']}});
 			}
+		} else {
+			this.ready();
 		}
 	});
 }

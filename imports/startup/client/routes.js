@@ -47,7 +47,7 @@ Router.route('/home', {
 	name: 'home',
 	template: 'welcome',
 	subscriptions: function () {
-		return [Meteor.subscribe('wordcloudCardsets'), Meteor.subscribe('userDataLandingPage')];
+		return [Meteor.subscribe('default_db_data'), Meteor.subscribe('wordcloudCardsets'), Meteor.subscribe('userDataLandingPage')];
 	},
 	data: function () {
 		Session.set('helpFilter', undefined);
@@ -701,7 +701,7 @@ Router.route('/box/:_id', {
 	name: 'box',
 	template: 'learnAlgorithmAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id)];
+		return [Meteor.subscribe('default_db_data'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id)];
 	},
 	data: function () {
 		MarkdeepEditor.changeMobilePreview(true);
@@ -1153,7 +1153,7 @@ Router.route('/admin/settings', {
 	template: 'admin_settings',
 	layoutTemplate: 'admin_main',
 	subscriptions: function () {
-		return [Meteor.subscribe('userData')];
+		return [Meteor.subscribe('default_db_data'), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		Session.set('helpFilter', undefined);

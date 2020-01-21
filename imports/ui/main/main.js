@@ -43,7 +43,6 @@ import "./modal/connectionStatus.js";
 import "./modal/underDevelopment.js";
 
 Meteor.subscribe("notifications");
-Meteor.subscribe("adminSettings");
 Meteor.subscribe("serverStatistics");
 
 Session.setDefault("theme", "default");
