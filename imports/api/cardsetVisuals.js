@@ -5,8 +5,10 @@ export let CardsetVisuals = class CardsetVisuals {
 	static resizeCardsetInfo () {
 		let footerOffsetBottom = 25;
 		let markdeepCardsetContent = $('.markdeepCardsetContent');
-		let cardsetInfoFooter = $('.cardsetInfoFooter');
-		markdeepCardsetContent.css('height', $(window).height() - (markdeepCardsetContent.offset().top + cardsetInfoFooter.outerHeight() + footerOffsetBottom));
+		if (markdeepCardsetContent.length) {
+			let cardsetInfoFooter = $('.cardsetInfoFooter');
+			markdeepCardsetContent.css('height', $(window).height() - (markdeepCardsetContent.offset().top + cardsetInfoFooter.outerHeight() + footerOffsetBottom));
+		}
 	}
 
 	static changeCollapseElement (elementId) {
