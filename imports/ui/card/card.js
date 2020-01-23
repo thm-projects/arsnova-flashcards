@@ -93,9 +93,7 @@ Template.flashcards.onRendered(function () {
 	CardVisuals.setDefaultViewingMode();
 	setTimeout(function () {
 		backgroundClickEvent = $("body").click(function (event) {
-			if (CardVisuals.isFullscreen() && !$(event.target).hasClass('presentation-element') && !$(event.target).parents('.presentation-element').length) {
-				CardNavigation.exitPresentationFullscreen();
-			}
+			CardNavigation.exitPresentationFullscreen(event);
 		});
 	}, 1000);
 });

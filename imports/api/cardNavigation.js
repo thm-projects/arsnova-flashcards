@@ -21,7 +21,35 @@ let isReset = false;
 
 export let CardNavigation = class CardNavigation {
 
-	static exitPresentationFullscreen () {
+	static exitPresentationFullscreen (event) {
+		//Is view in Fullscreen mode
+		if (!CardVisuals.isFullscreen()) {
+			return false;
+		}
+		//Is part of the navigation or card
+		if ($(event.target).hasClass('presentation-element') || $(event.target).parents('.presentation-element').length) {
+			return false;
+		}
+		//Is part of a modal
+		if ($(event.target).hasClass('modal') || $(event.target).parents('.modal').length) {
+			return false;
+		}
+		//Is part of a sweet alert message
+		if ($(event.target).hasClass('swal2-container') || $(event.target).parents('.swal2-container').length) {
+			return false;
+		}
+		//Is part of lightbox
+		if ($(event.target).hasClass('swal2-container') || $(event.target).parents('.swal2-container').length) {
+			return false;
+		}
+		//Is part of the zoom container
+		if ($(event.target).hasClass('zoomSliderContainer') || $(event.target).parents('.zoomSliderContainer').length) {
+			return false;
+		}
+		//Is part of lightbox
+		if ($(event.target).hasClass('lightboxOverlay') || $(event.target).parents('.lightboxOverlay').length) {
+			return false;
+		}
 		if (ServerStyle.exitDemoOnFullscreenBackgroundClick() && Route.isDemo() || Route.isMakingOf()) {
 			this.exitPresentation();
 		} else if (ServerStyle.exitPresentationOnFullscreenBackgroundClick() && Route.isPresentation()) {
