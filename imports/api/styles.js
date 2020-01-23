@@ -26,8 +26,12 @@ export let ServerStyle = class ServerStyle {
 		return this.getConfig().welcome.title.last;
 	}
 
-	static exitOnFullscreenBackgroundClick () {
+	static exitDemoOnFullscreenBackgroundClick () {
 		return this.getConfig().demo.exitOnFullscreenBackgroundClick;
+	}
+
+	static exitPresentationOnFullscreenBackgroundClick () {
+		return this.getConfig().presentation.exitOnFullscreenBackgroundClick;
 	}
 
 	static gotDemoAutoFullscreen () {

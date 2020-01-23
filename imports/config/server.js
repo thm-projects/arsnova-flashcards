@@ -115,6 +115,9 @@ let defaultSettings = {
 		"autoFullscreen": true,
 		"exitOnFullscreenBackgroundClick": true
 	},
+	"presentation": {
+		"exitOnFullscreenBackgroundClick": true
+	},
 	"imprint": {
 		"folder": "cards"
 	},
@@ -240,6 +243,9 @@ let debug = {
 	"demo": {
 		"folder": "informatik",
 		"autoFullscreen": true,
+		"exitOnFullscreenBackgroundClick": true
+	},
+	"presentation": {
 		"exitOnFullscreenBackgroundClick": true
 	},
 	"imprint": {
@@ -369,6 +375,9 @@ let linux = {
 		"autoFullscreen": true,
 		"exitOnFullscreenBackgroundClick": true
 	},
+	"presentation": {
+		"exitOnFullscreenBackgroundClick": true
+	},
 	"imprint": {
 		"folder": "linux"
 	},
@@ -496,6 +505,9 @@ let review = {
 		"autoFullscreen": true,
 		"exitOnFullscreenBackgroundClick": true
 	},
+	"presentation": {
+		"exitOnFullscreenBackgroundClick": true
+	},
 	"imprint": {
 		"folder": "cards"
 	},
@@ -621,6 +633,9 @@ let staging = {
 	"demo": {
 		"folder": "informatik",
 		"autoFullscreen": true,
+		"exitOnFullscreenBackgroundClick": true
+	},
+	"presentation": {
 		"exitOnFullscreenBackgroundClick": true
 	},
 	"imprint": {

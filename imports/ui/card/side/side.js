@@ -48,9 +48,3 @@ Template.cardSide.helpers({
 		}
 	}
 });
-
-Template.cardSide.onRendered(function () {
-	$(".scene.item.active").click(function (event) {
-		CardNavigation.exitDemoFullscreen(event);
-	});
-});

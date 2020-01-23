@@ -21,15 +21,30 @@ let isReset = false;
 
 export let CardNavigation = class CardNavigation {
 
-	static exitDemoFullscreen (event) {
-		if (event.target !== event.currentTarget) {
-			return;
+	static exitPresentationFullscreen () {
+		if (ServerStyle.exitDemoOnFullscreenBackgroundClick() && Route.isDemo() || Route.isMakingOf()) {
+			this.exitPresentation();
+		} else if (ServerStyle.exitPresentationOnFullscreenBackgroundClick() && Route.isPresentation()) {
+			this.exitPresentation();
 		}
-		if (ServerStyle.exitOnFullscreenBackgroundClick()) {
-			if (Route.isDemo() && !Route.isDemoList() && CardVisuals.isFullscreen()) {
-				CardVisuals.toggleFullscreen(true);
-				CardNavigation.exitDemoFullscreenRoute();
-			}
+	}
+
+	static exitPresentation () {
+		if (Route.isMakingOf() || Route.isDemo()) {
+			CardVisuals.toggleFullscreen(true);
+			this.exitDemoFullscreenRoute();
+		} else if (Route.isPresentationTranscriptPersonal()) {
+			Router.go('transcriptsPersonal');
+		} else if (Route.isPresentationTranscriptBonus()) {
+			Router.go('transcriptsBonus');
+		} else if (Route.isPresentationTranscriptBonusCardset() || Route.isPresentationTranscriptReview()) {
+			Router.go('transcriptBonus', {
+				_id: Router.current().params._id
+			});
+		} else {
+			Router.go('cardsetdetailsid', {
+				_id: Router.current().params._id
+			});
 		}
 	}
 

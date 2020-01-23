@@ -68,7 +68,7 @@ Template.flashcards.onCreated(function () {
 	}
 });
 
-
+let backgroundClickEvent;
 Template.flashcards.onRendered(function () {
 	TouchNavigation.cards();
 	$(".box").on('transitionend webkitTransitionEnd oTransitionEnd', function () {
@@ -91,6 +91,19 @@ Template.flashcards.onRendered(function () {
 		CardEditor.setEditorButtonIndex(0);
 	}
 	CardVisuals.setDefaultViewingMode();
+	setTimeout(function () {
+		backgroundClickEvent = $("body").click(function (event) {
+			if (CardVisuals.isFullscreen() && !$(event.target).hasClass('presentation-element') && !$(event.target).parents('.presentation-element').length) {
+				CardNavigation.exitPresentationFullscreen();
+			}
+		});
+	}, 1000);
+});
+
+Template.flashcards.onDestroyed(function () {
+	if (backgroundClickEvent !== undefined) {
+		backgroundClickEvent.off('click');
+	}
 });
 
 Template.flashcards.helpers({
