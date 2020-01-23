@@ -58,6 +58,7 @@ export let CardNavigation = class CardNavigation {
 	}
 
 	static exitPresentation () {
+		CardVisuals.toggleZoomContainer(true);
 		if (Route.isMakingOf() || Route.isDemo()) {
 			CardVisuals.toggleFullscreen(true);
 			this.exitDemoFullscreenRoute();
