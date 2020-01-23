@@ -45,15 +45,28 @@ export let CardNavigation = class CardNavigation {
 		//Is part of the zoom container
 		if ($(event.target).hasClass('zoomSliderContainer') || $(event.target).parents('.zoomSliderContainer').length) {
 			return false;
+		} else if ($(event.target).hasClass('resetTextZoom')) {
+			CardVisuals.resetCurrentTextZoomValue();
+			return false;
+		} else if (CardVisuals.isZoomContainerVisible()) {
+			CardVisuals.toggleZoomContainer(true);
+			return false;
 		}
 		//Is part of lightbox
 		if ($(event.target).hasClass('lightboxOverlay') || $(event.target).parents('.lightboxOverlay').length) {
 			return false;
 		}
-		//Is part of aspect ratio dropdown
-		if ($(event.target).hasClass('aspectRatioContainer') || $(event.target).parents('.aspectRatioContainer').length) {
+		//Is part of aspect ratio container
+		if ($(event.target).hasClass('aspect-ratio-dropdown-button') || $(event.target).parents('.aspect-ratio-dropdown-button').length) {
+			Session.set('aspectRatioMode', $(event.target).attr("data-id"));
+			CardVisuals.resizeFlashcard();
+			CardVisuals.toggleAspectRatioContainer(true);
+			return false;
+		} else if (CardVisuals.isAspectRatioContainerVisible()) {
+			CardVisuals.toggleAspectRatioContainer(true);
 			return false;
 		}
+
 		if (ServerStyle.exitDemoOnFullscreenBackgroundClick() && Route.isDemo() || Route.isMakingOf()) {
 			this.exitPresentation();
 		} else if (ServerStyle.exitPresentationOnFullscreenBackgroundClick() && Route.isPresentation()) {
