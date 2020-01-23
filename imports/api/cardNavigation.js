@@ -50,6 +50,10 @@ export let CardNavigation = class CardNavigation {
 		if ($(event.target).hasClass('lightboxOverlay') || $(event.target).parents('.lightboxOverlay').length) {
 			return false;
 		}
+		//Is part of aspect ratio dropdown
+		if ($(event.target).hasClass('aspectRatioContainer') || $(event.target).parents('.aspectRatioContainer').length) {
+			return false;
+		}
 		if (ServerStyle.exitDemoOnFullscreenBackgroundClick() && Route.isDemo() || Route.isMakingOf()) {
 			this.exitPresentation();
 		} else if (ServerStyle.exitPresentationOnFullscreenBackgroundClick() && Route.isPresentation()) {
@@ -59,6 +63,7 @@ export let CardNavigation = class CardNavigation {
 
 	static exitPresentation () {
 		CardVisuals.toggleZoomContainer(true);
+		CardVisuals.toggleAspectRatioContainer(true);
 		if (Route.isMakingOf() || Route.isDemo()) {
 			CardVisuals.toggleFullscreen(true);
 			this.exitDemoFullscreenRoute();
