@@ -1,0 +1,106 @@
+[{
+  "name": "A3: Interaktion auf 🍅cards: Quizzen & Feedback",
+  "description": "Dieser Kubus beschreibt die Eigenschaften und Funktionen der gamifizierten Quiz-App [arsnova.click](https://arsnova.click) und der Feedback-App [frag.jetzt](https://frag.jetzt).",
+  "date": "2019-04-01T12:27:16.693Z",
+  "dateUpdated": "2020-01-25T11:52:06.497Z",
+  "editors": [],
+  "owner": "jCZ6oHcbZhJaKKodN",
+  "visible": true,
+  "ratings": true,
+  "kind": "free",
+  "price": 0,
+  "reviewed": false,
+  "reviewer": "undefined",
+  "request": false,
+  "rating": 0,
+  "raterCount": 0,
+  "quantity": 1,
+  "license": [
+    "by",
+    "nc",
+    "sa"
+  ],
+  "userDeleted": false,
+  "learningActive": false,
+  "maxCards": 0,
+  "daysBeforeReset": 0,
+  "learningStart": "1970-01-01T00:00:00.000Z",
+  "learningEnd": "1970-01-01T00:00:00.000Z",
+  "registrationPeriod": "1970-01-01T00:00:00.000Z",
+  "learningInterval": [],
+  "wordcloud": false,
+  "shuffled": false,
+  "cardType": 18,
+  "difficulty": 0,
+  "noDifficulty": false,
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  },
+  "workload": {
+    "bonus": {
+      "count": 0,
+      "minLearned": 75
+    },
+    "normal": {
+      "count": 0
+    },
+    "simulator": {
+      "errorCount": [
+        [
+          100,
+          30,
+          25,
+          20,
+          10
+        ]
+      ]
+    }
+  },
+  "sortType": 1,
+  "gotWorkload": false,
+  "lecturerAuthorized": false,
+  "useCase": {
+    "enabled": false,
+    "priority": 0
+  },
+  "lastEditor": "jCZ6oHcbZhJaKKodN"
+}, {
+  "subject": "»arsnova.click« & »frag.jetzt«",
+  "front": "(##) Befrag das Auditorium während du mit 🍅cards vorträgst!\n\n![](https://arsnova-uploads.mni.thm.de/Demo-Kartei/Counting_Fingers.png)\n\nDu kennst [Kahoot!](https://kahoot.com/) ? Unser spielbasiertes <q>Audience-Response-System</q> (ARS) heißt [arsnova.click](https://arsnova.click). Es bietet nicht nur Multiple-Choice, sondern auch Formate wie numerische Schätzfrage und Kurzantwort. Du kannst Emojis, Bilder, Videos, Quelltext und $\\TeX$-Formeln in Frage und Antworten einbinden. Und es können Quiz-Teams im Hörsaal gegeneinander antreten. \n\nRuf »arsnova.click« mit dem linken Rand-Button auf.",
+  "centerTextElement": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "alignType": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "date": "2019-04-01T12:31:16.842Z",
+  "learningGoalLevel": 0,
+  "backgroundStyle": 0,
+  "learningIndex": "0",
+  "learningUnit": "0",
+  "dateUpdated": "2020-01-25T11:49:35.421Z",
+  "back": "(##) Edutainment\n\n![Lernspaß durch Live-Wettbewerb mit Animationen und Sound](https://www.youtube.com/watch?v=InLHgRRkOvI)  ",
+  "bottom": "(##) Infos zu den Befragungstools auf 🍅cards im Projektblog:\n\n*  [arsnova.click](https://arsnova.thm.de/blog/)\n* [frag.jetzt](https://arsnova.thm.de/blog/frag-jetzt/)\n\n(##) Veröffentlichungen:\n\n* Quibeldey-Cirkel K. (2018). <br>[Lehren und Lernen mit Audience Response Systemen](https://arsnova.thm.de/blog/wp-content/uploads/2017/08/Quibeldey-Cirkel.pdf).<br>In: de Witt C., Gloerfeld C. (Hrsg.) Handbuch Mobile Learning (S. 809-839). Springer VS, Wiesbaden.\n\n* Quibeldey-Cirkel, K., Fullarton, C. M. & Hoeck, T. W. (2017).<br>[arsnova.click: a Game-based Audience-Response System for STEM Courses](https://arsnova-uploads.mni.thm.de/Demo-Kartei/arsnova-click_EDULEARN17.pdf).<br>In: L. Gómez Chova, A. López Martínez & I. Candel Torres (Hrsg.), 9th International Conference on Education and New Learning Technologies. EDULEARN17 Proceedings (S. 8107-8111). Barcelona: IATED.\n\n",
+  "hint": "(##) Absoluter Datenschutz\n\n![](https://arsnova.thm.de/blog/wp-content/uploads/2017/01/Bildschirmfoto-2017-01-12-um-16.05.29.png)\n\nWir speichern keine Daten, alle Quizze und Antworten verbleiben in deinem Browser. Diese Innovation (Web Storage) garantiert den Datenschutz gemäß der DSGVO.",
+  "lecture": "(##) Lass auch die <q>Stillen</q> im Auditorium zu Wort kommen!\n\n![ ](https://arsnova.thm.de/blog/wp-content/uploads/2019/11/frag_jetzt.png height=400)Die klassische Vorlesung endet in der Regel mit: »Haben Sie Fragen?«. Und stets meldet sich niemand oder es fragen immer dieselben wenigen. Entweder traut sich im großen Hörsaal niemand oder die Fragen, die man im Verlauf der Vorlesung eigentlich stellen wollte, sind vergessen.\n\nWem dir daran liegt, dass deine Vorlesung reflektiert und hinterfragt wird, brauchst du ein Tool zum anonymen stillen Fragenstellen. Ein solches steht dir mit »frag.jetzt« zur freien Verfügung. Jeder kann Fragen stellen und die Fragen der anderen bewerten, neudeutsch: up oder down voten. \n\nRuf »frag.jetzt« mit dem linken Rand-Button auf!\n",
+  "top": "(##) Bonusvergabe\n\nDie didaktische Besonderheit von »arsnova.click« und »frag.jetzt« ist die Option der Bonusvergabe. Extrinsische Anreize in Form von Bonuspunkten, anrechenbar auf die Abschlussprüfung eines Faches, sind weit verbreitet an Hochschulen. \n\nDas ARSnova-Entwicklungsteam geht hier noch einen Schritt wei­ter: Die Bonusvergabe erfolgt mit »arsnova.click« im Live-Wettbewerb am Anfang einer Vorlesung, um die Vorbereitung zu prüfen, und am Ende der Vorlesung, um die Auf­merk­samkeit hochzuhalten. \n\nMit »frag.jetzt« kannst du besonders gute Fragen, die im Verlauf der Vorlesung gestellt wurden, mit Bonuspunkten belohnen und am Beamer erläutern.\n\n",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  },
+  "owner": "jCZ6oHcbZhJaKKodN",
+  "lastEditor": "jCZ6oHcbZhJaKKodN"
+}]
