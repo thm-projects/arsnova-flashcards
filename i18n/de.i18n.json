@@ -26,7 +26,7 @@
     }
   },
   "cookieconsent": {
-    "message": "Wir ersparen dir lange Erklärungen, warum __firstAppTitle__🍅__lastAppTitle__ Cookies verwendet. Unter anderem würde dieser Hinweis bei jedem Besuch erscheinen. Soviel sei hier gesagt: Wir tracken dich nicht. Wir geben keine Daten zu Werbezwecken heraus. Du kannst dein Konto jederzeit selbst löschen, ohne zu fragen. Alle weiteren rechtlichen Hinweise findest du auf der",
+    "message": "Wir ersparen dir lange Erklärungen, warum __firstAppTitle__🍅__lastAppTitle__ Cookies verwendet. Unter anderem würde dieser Hinweis bei jedem Besuch erscheinen. Soviel sei hier gesagt: Wir geben keine Daten an Dritte heraus. Du kannst dein \uD83C\uDF45__lastAppTitle__-Konto jederzeit selbst löschen, ohne zu fragen. Alle weiteren rechtlichen Hinweise findest du auf der",
     "dismiss": "Danke, ich bin einverstanden.",
     "link": "Datenschutz-Seite."
   },
