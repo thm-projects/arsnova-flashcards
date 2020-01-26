@@ -2,7 +2,7 @@
   "name": "P: Beispiel für eine Notiz-Karte",
   "description": "Diese Notiz dient als Abschlusskarte in der Demo-Kartei.",
   "date": "2018-07-05T04:33:28.173Z",
-  "dateUpdated": "2019-02-24T10:47:34.219Z",
+  "dateUpdated": "2020-01-26T18:13:35.992Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -39,16 +39,36 @@
   "registrationPeriod": "1970-01-01T00:00:00.000Z",
   "workload": {
     "bonus": {
-      "count": 0
+      "count": 0,
+      "minLearned": 75
     },
     "normal": {
       "count": 0
+    },
+    "simulator": {
+      "errorCount": [
+        [
+          100,
+          30,
+          25,
+          20,
+          10
+        ]
+      ]
     }
   },
-  "rating": 0
+  "rating": 0,
+  "sortType": 0,
+  "gotWorkload": false,
+  "lecturerAuthorized": false,
+  "useCase": {
+    "enabled": false,
+    "priority": 0
+  },
+  "lastEditor": "jCZ6oHcbZhJaKKodN"
 }, {
   "subject": "Letzte Karte",
-  "front": " \n\n!!! Note Los geht's!\n   Falls du in der Vollansicht bist, drück die Escape-Taste <kbd>esc</kbd> oder klick auf den Button am rechten Rand. <br><br>Log dich mit deinem **THM-Account** ein und erstelle eigene Karteien für dein Studium. Lerne die Karten **regelmäßig**, so dass du das Wissen aus dem Studium sehr, sehr lange behältst. Schau dir dazu die Infos und Videos auf den Seiten [Lernen](https://informatik.cards/learning) und [FAQ](https://informatik.cards/faq) an!\n",
+  "front": " \n\n!!! Note Los geht's!\n   Falls du in der Vollansicht bist, drück die Escape-Taste <kbd>esc</kbd> oder klick auf den Button am rechten Rand. <br><br>Log dich mit deinem **THM-Account** ein und erstelle eigene Karteien für dein Studium. Lerne die Karten **regelmäßig**, so dass du das Wissen aus dem Studium sehr, sehr lange behältst. Schau dir dazu die Infos und Videos auf den Seiten [Lernen](https://informatik.cards/learning) und [FAQ](https://informatik.cards/faq) an!<br><br>\n",
   "centerTextElement": [
     true,
     false,
@@ -59,10 +79,10 @@
   ],
   "date": "2018-07-05T04:43:37.045Z",
   "learningGoalLevel": 0,
-  "backgroundStyle": 1,
+  "backgroundStyle": 0,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-02-24T10:47:34.200Z",
+  "dateUpdated": "2020-01-26T18:13:35.987Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
@@ -75,5 +95,7 @@
     1,
     1,
     1
-  ]
+  ],
+  "owner": "jCZ6oHcbZhJaKKodN",
+  "lastEditor": "jCZ6oHcbZhJaKKodN"
 }]
