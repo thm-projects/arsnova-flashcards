@@ -2,7 +2,7 @@
   "name": "B: Beispiele für  Karteitypen",
   "description": "Ziel ist ein Beispiel für alle 18 Karteitypen.",
   "date": "2019-03-06T18:49:04.765Z",
-  "dateUpdated": "2019-04-01T09:09:50.633Z",
+  "dateUpdated": "2020-01-27T13:19:38.207Z",
   "editors": [],
   "owner": "jCZ6oHcbZhJaKKodN",
   "visible": false,
@@ -36,15 +36,35 @@
   },
   "workload": {
     "bonus": {
-      "count": 0
+      "count": 0,
+      "minLearned": 75
     },
     "normal": {
       "count": 0
+    },
+    "simulator": {
+      "errorCount": [
+        [
+          100,
+          30,
+          25,
+          20,
+          10
+        ]
+      ]
     }
-  }
+  },
+  "sortType": 0,
+  "gotWorkload": false,
+  "lecturerAuthorized": false,
+  "useCase": {
+    "enabled": false,
+    "priority": 0
+  },
+  "lastEditor": "jCZ6oHcbZhJaKKodN"
 }, {
   "subject": "Karteitypen am Beispiel",
-  "front": "Karteityp | Titel der Beispielkarte\n----------|----------\nLerneinheit | <q>Test-Pyramide</q>\nGlossar | <q>Induktionsbeweis</q>\nQuiz | <q>Die Millionenfrage</q>\nLiteratur | <q>Linux-Standardwerk</q>\nVokabelkartei | <q>Navigiere mit der Tab-Taste zu DeepL</q>\nPrüfung |  <q>Vererbung</q>\nZitatensammlung |  <q>Über das Coden & Testen</q>\nMitschrift |  <q>SWT-Mitschrift vom 08.05.2018</q>\nAnweisungssatz |  <q>Keine Angst vor der Shell</q>\nVortrag |  <q>The Making of 🍅cards</q>\n[Beispiele, die im Folgenden gezeigt werden]\n\n",
+  "front": "Karteityp | Titel der Beispielkarte\n----------|----------\nLerneinheit | <q>Test-Pyramide</q>\nGlossar | <q>Induktionsbeweis</q>\nQuiz | <q>Die Millionenfrage</q>\nLiteratur | <q>Linux-Standardwerk</q>\nVokabelkartei | <q>Navigiere mit der Tab-Taste zu DeepL</q>\nPrüfung |  <q>Vererbung</q>\nZitatensammlung |  <q>Über das Coden & Testen</q>\nAufgabensammlung |  <q>UML-Diagramme mit PlantUML</q>\nMitschrift |  <q>SWT-Mitschrift vom 08.05.2018</q>\nAnweisungssatz |  <q>Keine Angst vor der Shell</q>\nVortrag |  <q>The Making of 🍅cards</q>\n[Beispiele, die auf den folgenden Karten gezeigt werden…]\n\n",
   "centerTextElement": [
     true,
     true,
@@ -66,10 +86,12 @@
   "backgroundStyle": 1,
   "learningIndex": "0",
   "learningUnit": "0",
-  "dateUpdated": "2019-04-01T09:09:50.622Z",
+  "dateUpdated": "2020-01-27T13:19:38.202Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
     "givenname": "Klaus"
-  }
+  },
+  "owner": "jCZ6oHcbZhJaKKodN",
+  "lastEditor": "jCZ6oHcbZhJaKKodN"
 }]
