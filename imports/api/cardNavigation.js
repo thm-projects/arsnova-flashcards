@@ -10,6 +10,7 @@ import {SweetAlertMessages} from "./sweetAlert";
 import {CardType} from "./cardTypes";
 import {NavigatorCheck} from "./navigatorCheck";
 import * as config from "../config/cardNavigation.js";
+import {CardsetNavigation} from "./cardsetNavigation";
 
 let keyEventsUnlocked = true;
 let lastActiveCardString = "lastActiveCard";
@@ -423,6 +424,17 @@ export let CardNavigation = class CardNavigation {
 			if (Session.get('fullscreen') && CardVisuals.isEditorFullscreen() === false) {
 				keyCodes = [9, 27, 32, 37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101];
 			}
+			const F2KEY = 113;
+			if (Route.gotIndexHotkey()) {
+				if (keyCodes.indexOf(F2KEY) === -1) {
+					keyCodes.push(F2KEY);
+				}
+			} else {
+				keyCodes = keyCodes.filter(
+					function (key) {
+						return key !== F2KEY;
+					});
+			}
 			if (keyCodes.indexOf(event.keyCode) > -1) {
 				switch (event.keyCode) {
 					case 9:
@@ -593,6 +605,9 @@ export let CardNavigation = class CardNavigation {
 						if (!Session.get('isQuestionSide')) {
 							$('#memoRate5').click();
 						}
+						break;
+					case F2KEY:
+						CardsetNavigation.goToIndex();
 						break;
 				}
 				event.preventDefault();
