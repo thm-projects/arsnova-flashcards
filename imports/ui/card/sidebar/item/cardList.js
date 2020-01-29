@@ -1,7 +1,7 @@
 import {Session} from "meteor/session";
 import "./cardList.html";
-import {Route} from "../../../../api/route";
 import {CardIndex} from "../../../../api/cardIndex";
+import {CardsetNavigation} from "../../../../api/cardsetNavigation";
 
 /*
  * ############################################################################
@@ -11,20 +11,7 @@ import {CardIndex} from "../../../../api/cardIndex";
 
 Template.cardSidebarItemCardList.events({
 	"click .selectCard": function () {
-		Session.set('isDirectCardsetIndexView', false);
-		if (Route.isCardset()) {
-			Router.go('cardsetlistid', {
-				_id: Router.current().params._id
-			});
-		} else if (Route.isDemo()) {
-			Router.go('demolist');
-		} else if (Route.isMakingOf()) {
-			Router.go('makinglist');
-		}  else {
-			Router.go('presentationlist', {
-				_id: Router.current().params._id
-			});
-		}
+		CardsetNavigation.goToIndex();
 	}
 });
 

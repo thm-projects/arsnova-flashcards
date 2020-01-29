@@ -53,6 +53,10 @@ export let Route = class Route {
 		return Router.current().route.getName() === "demolist";
 	}
 
+	static gotIndexHotkey () {
+		return this.isDemo() || this.isCardset() || this.isPresentation() || this.isMakingOf();
+	}
+
 	static isMakingOf () {
 		return Router.current().route.getName() === "making" || this.isMakingOfList();
 	}
