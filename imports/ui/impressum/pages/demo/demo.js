@@ -2,6 +2,7 @@ import {Template} from "meteor/templating";
 import {Route} from "../../../../api/route";
 import {Session} from "meteor/session";
 import {AspectRatio} from "../../../../api/aspectRatio";
+import * as config from "../../../../config/firstTimeVisit.js";
 import "./demo.html";
 
 /*
@@ -16,6 +17,6 @@ Template.demo.onCreated(function () {
 
 Template.demo.helpers({
 	isFirstTimeVisit: function () {
-		return Route.isFirstTimeVisit();
+		return Route.isFirstTimeVisit() && config.firstTimeVisitDemoTitle;
 	}
 });
