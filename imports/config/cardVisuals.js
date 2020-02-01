@@ -3,12 +3,12 @@ let defaultFontSize = {
 	"portrait": {
 		"mobile": 12,
 		"tablet": {
-			"normal": 16,
+			"normal": 18,
 			"cube": 16
 		},
 		"desktop": {
-			"normal": 24,
-			"cube": 18
+			"normal": 20,
+			"cube": 16
 		}
 	},
 	"landscape": {
@@ -18,8 +18,8 @@ let defaultFontSize = {
 			"cube": 10
 		},
 		"desktop": {
-			"normal": 24,
-			"cube": 18
+			"normal": 20,
+			"cube": 16
 		}
 	}
 };
