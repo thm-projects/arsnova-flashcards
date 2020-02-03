@@ -205,7 +205,7 @@ let debug = {
 		},
 		"button": {
 			"about":  {
-				"default_de": "Erfahre mehr in unserer interaktiven Einführung …",
+				"default_de": "Um was geht es hier auf »Linux.cards«? Eine interaktive Einführung …",
 				"default_en": "Learn more about 🍅cards in our interactive demo …",
 				"mobile_de": "Erfahre mehr in unserer interaktiven Einführung …",
 				"mobile_en": "Learn more about 🍅cards…"
@@ -324,7 +324,7 @@ let linux = {
 		},
 		"button": {
 			"about":  {
-				"default_de": "Erfahre mehr in unserer interaktiven Einführung …",
+				"default_de": "Um was geht es hier auf »Linux.cards«? Eine interaktive Einführung …",
 				"default_en": "Learn more about 🍅cards in our interactive demo …",
 				"mobile_de": "Erfahre mehr in unserer interaktiven Einführung …",
 				"mobile_en": "Learn more about 🍅cards…"
