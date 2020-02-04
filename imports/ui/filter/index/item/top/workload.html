@@ -2,11 +2,11 @@
     <div class="resultItemHeader resultItemHeaderWorkload {{this.gridSize}} collapseButton {{getCardsetBackground
             this.difficulty this.cardType}}">
         {{#if gotWorkload}}
-            <a class="{{getWorkloadType}}" data-toggle="{{#if gotWorkloadForBothTypes}}modal{{/if}}"
+            <button class="btn btn-raised item-workload-btn {{getWorkloadType}}" data-toggle="{{#if gotWorkloadForBothTypes}}modal{{/if}}"
                data-target="{{#if gotWorkloadForBothTypes}}#selectModeToLearnModal{{/if}}"
                data-id="{{this._id}}">
                 {{{getWorkload}}}
-            </a>
+            </button>
         {{else}}
             {{_ "set-list.noCardsToLearn"}}
         {{/if}}
