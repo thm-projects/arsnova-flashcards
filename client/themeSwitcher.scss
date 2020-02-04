@@ -350,7 +350,10 @@ $themes: (
     $item_icon: map-get($map, "item_icon");
     $item_icon_hover: map-get($map, "item_icon_hover");
     $item_author_text: map-get($map, "item_author_text");
-    $item_workload_text: map-get($map, "item_workload_text");
+    $item_workload_button_background: map-get($map, "item_workload_button_background");
+    $item_workload_button_text: map-get($map, "item_workload_button_text");
+    $item_workload_button_background_hover: map-get($map, "item_workload_button_background_hover");
+    $item_workload_button_text_hover: map-get($map, "item_workload_button_text_hover");
     $item_last_editor_text: map-get($map, "item_last_editor_text");
     $item_description_background: map-get($map, "item_description_background");
     $item_description_text: map-get($map, "item_description_text");
@@ -1362,9 +1365,7 @@ $themes: (
       color: $cardset_footer_navigation_presentation_text;
     }
 
-    .panel-footer {
-      background-color: $cardset_footer_navigation_background !important;
-      border-color: $cardset_footer_navigation_background !important;
+    .collapseCardsetInfoContainer {
 
       ul li {
         border-color: $cardset_form_border !important;
@@ -1418,6 +1419,35 @@ $themes: (
       .progressList:hover, .progressList:focus {
         background-color: $cardset_footer_navigation_learn_list_progress_background_hover !important;
         color: $cardset_footer_navigation_learn_list_progress_text_hover !important;
+      }
+
+      .resetLeitnerList {
+        background-color: $cardset_footer_navigation_learn_list_reset_leitner_background !important;
+        color: $cardset_footer_navigation_learn_list_reset_leitner_text !important;
+      }
+
+      .resetLeitnerList:hover, .resetLeitnerList:focus {
+        background-color: $cardset_footer_navigation_learn_list_reset_leitner_background_hover !important;
+        color: $cardset_footer_navigation_learn_list_reset_leitner_text_hover !important;
+      }
+
+      .resetWozniakList {
+        background-color: $cardset_footer_navigation_learn_list_reset_wozniak_background !important;
+        color: $cardset_footer_navigation_learn_list_reset_wozniak_text !important;
+      }
+
+      .resetWozniakList:hover, .resetWozniakList:focus {
+        background-color: $cardset_footer_navigation_learn_list_reset_wozniak_background_hover !important;
+        color: $cardset_footer_navigation_learn_list_reset_wozniak_text_hover !important;
+      }
+    }
+
+    .panel-footer {
+      background-color: $cardset_footer_navigation_background !important;
+      border-color: $cardset_footer_navigation_background !important;
+
+      ul li {
+        border-color: $cardset_form_border !important;
       }
 
       .newCardBtn {
@@ -1498,26 +1528,6 @@ $themes: (
       .manageEditorsList:hover, .manageEditorsList:focus {
         background-color: $cardset_footer_navigation_manage_list_manage_editors_background_hover !important;
         color: $cardset_footer_navigation_manage_list_manage_editors_text_hover !important;
-      }
-
-      .resetLeitnerList {
-        background-color: $cardset_footer_navigation_learn_list_reset_leitner_background !important;
-        color: $cardset_footer_navigation_learn_list_reset_leitner_text !important;
-      }
-
-      .resetLeitnerList:hover, .resetLeitnerList:focus {
-        background-color: $cardset_footer_navigation_learn_list_reset_leitner_background_hover !important;
-        color: $cardset_footer_navigation_learn_list_reset_leitner_text_hover !important;
-      }
-
-      .resetWozniakList {
-        background-color: $cardset_footer_navigation_learn_list_reset_wozniak_background !important;
-        color: $cardset_footer_navigation_learn_list_reset_wozniak_text !important;
-      }
-
-      .resetWozniakList:hover, .resetWozniakList:focus {
-        background-color: $cardset_footer_navigation_learn_list_reset_wozniak_background_hover !important;
-        color: $cardset_footer_navigation_learn_list_reset_wozniak_text_hover !important;
       }
 
       .bonusBtn {
@@ -2719,11 +2729,17 @@ $themes: (
       color: $item_author_text !important;
     }
 
-    .resultItemHeaderWorkload {
-      color: $item_workload_text !important;
+    .item-workload-btn {
+      background-color: $item_workload_button_background !important;
+      color: $item_workload_button_text !important;
     }
 
-    .resultItemHeaderLastEditor {
+    .item-workload-btn:hover, .item-workload-btn:focus  {
+      background-color: $item_workload_button_background_hover !important;
+      color: $item_workload_button_text_hover  !important;
+    }
+
+  .resultItemHeaderLastEditor {
       color: $item_last_editor_text !important;
     }
 
