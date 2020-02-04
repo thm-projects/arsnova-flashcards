@@ -1,29 +1,37 @@
+import MobileDetect from "mobile-detect";
 import * as config from "../config/navigator.js";
+
+let md;
 
 export let NavigatorCheck = class CardVisuals {
 
+	static updateUserAgent () {
+		md = new MobileDetect(window.navigator.userAgent);
+	}
+
 	static isSmartphone () {
-		return (window.screen.width < config.minimumTabletWidth && window.screen.height < config.minimumTabletHeight);
+		this.updateUserAgent();
+		return md.phone() != null;
 	}
 
 	static isTablet () {
-		return (window.screen.width >= config.minimumTabletWidth && window.screen.height >= config.minimumTabletHeight && window.screen.width < config.maximumTabletWidth && window.screen.height < config.maximumTabletHeight);
+		this.updateUserAgent();
+		return md.tablet() != null;
 	}
 
 	static isIOS () {
-		return config.iOSPlatforms.indexOf(navigator.platform) >= 0;
+		this.updateUserAgent();
+		return md.match(config.iOSPlatforms);
 	}
 
 	static isMacOS () {
-		return config.macOSPlatforms.indexOf(navigator.platform) >= 0;
+		this.updateUserAgent();
+		return md.match(config.macOSPlatforms);
 	}
 
 	static isSafari () {
-		return navigator.userAgent.indexOf("Safari") >= 0 && navigator.userAgent.indexOf("Chrome") === -1;
-	}
-
-	static isEdge () {
-		return navigator.userAgent.indexOf("Edge") >= 0;
+		this.updateUserAgent();
+		return md.userAgent() === ("Safari");
 	}
 
 	static isLandscape () {

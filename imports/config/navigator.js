@@ -1,9 +1,5 @@
-let minimumTabletWidth = 768;
-let minimumTabletHeight = 1024;
-let maximumTabletWidth = 1024;
-let maximumTabletHeight = 1366;
-let iOSPlatforms = ['iPhone', 'iPad', 'iPod'];
-let macOSPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'];
+let iOSPlatforms = 'iPhone|iPad|iPod';
+let macOSPlatforms = 'Macintosh|MacIntel|MacPPC|Mac68K';
 
 //  Feature List
 //0: Minute jump clock
@@ -17,12 +13,8 @@ let enabledIOSFeatures = [3];
 let enabledMacOSSafariFeatures = [2, 3, 4, 5];
 
 module.exports = {
-	minimumTabletWidth,
-	minimumTabletHeight,
-	maximumTabletWidth,
-	maximumTabletHeight,
-	iOSPlatforms: iOSPlatforms,
-	macOSPlatforms: macOSPlatforms,
+	iOSPlatforms,
+	macOSPlatforms,
 	enabledIOSFeatures,
 	enabledMacOSSafariFeatures,
 	enabledSmartphoneFeatures
