@@ -6,13 +6,6 @@
             {{#unless isCardsetStudentPreviewActive}}
                 {{> cardsetNavigationNewCard}}
             {{/unless}}
-            {{#if isInBonus}}
-                {{> cardsetNavigationLearning}}
-            {{else}}
-                {{#if currentUser}}
-                    {{> cardsetNavigationWorkload}}
-                {{/if}}
-            {{/if}}
             {{#unless isCardsetStudentPreviewActive}}
                 {{> cardsetNavigationEditRepetitorium}}
                 {{> cardsetNavigationBonus}}
