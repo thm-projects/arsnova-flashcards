@@ -8,9 +8,6 @@ import {Cardsets} from "../../api/subscriptions/cardsets";
 import {Cards} from "../../api/subscriptions/cards";
 import {PomodoroTimer} from "../../api/pomodoroTimer";
 import {Route} from "../../api/route";
-import {MainNavigation} from "../../api/mainNavigation";
-import {NavigatorCheck} from "../../api/navigatorCheck";
-import {FirstTimeVisit} from "../../api/firstTimeVisit";
 import {AspectRatio} from "../../api/aspectRatio";
 import {TranscriptBonus} from "../../api/subscriptions/transcriptBonus";
 import {CardVisuals} from "../../api/cardVisuals";
@@ -68,10 +65,6 @@ Template.presentationView.onCreated(function () {
 
 Template.presentationView.onRendered(function () {
 	CardNavigation.toggleVisibility(true);
-	if (localStorage.getItem(MainNavigation.getFirstTimePresentationString()) !== "true" && Route.isPresentationOrDemo() && !NavigatorCheck.isSmartphone() && FirstTimeVisit.isFirstTimePresentationModalEnabled()) {
-		$('#helpModal').modal('show');
-		localStorage.setItem(MainNavigation.getFirstTimePresentationString(), true);
-	}
 });
 
 Template.presentationView.onDestroyed(function () {

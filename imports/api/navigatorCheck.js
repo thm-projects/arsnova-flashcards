@@ -21,7 +21,7 @@ export let NavigatorCheck = class CardVisuals {
 
 	static isIOS () {
 		this.updateUserAgent();
-		return md.match(config.iOSPlatforms);
+		return md.match(config.iOSPlatforms) || md.versionStr('iOS') != null;
 	}
 
 	static isMacOS () {

@@ -7,6 +7,9 @@ import "./item/review.js";
 import "./navigation.html";
 import {Cards} from "../../../api/subscriptions/cards";
 import {CardIndex} from "../../../api/cardIndex";
+import {MainNavigation} from "../../../api/mainNavigation";
+import {NavigatorCheck} from "../../../api/navigatorCheck";
+import {FirstTimeVisit} from "../../../api/firstTimeVisit";
 Session.setDefault('activeCardSide', undefined);
 Session.setDefault('leitnerHistoryTimestamps', {question: new Date(), answer: new Date()});
 
@@ -34,6 +37,13 @@ Template.cardNavigation.onCreated(function () {
 	}
 	CardNavigation.setActiveCardData(undefined, true);
 	CardNavigation.toggleVisibility(true);
+});
+
+Template.cardNavigation.onRendered(function () {
+	if (localStorage.getItem(MainNavigation.getFirstTimePresentationString()) !== "true" && Route.isPresentationOrDemo() && !NavigatorCheck.isSmartphone() && FirstTimeVisit.isFirstTimePresentationModalEnabled()) {
+		$('#helpModal').modal('show');
+		localStorage.setItem(MainNavigation.getFirstTimePresentationString(), true);
+	}
 });
 
 /*
