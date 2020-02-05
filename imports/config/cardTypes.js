@@ -122,13 +122,11 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"defaultStyle": "default",
-			"defaultTextAlign": "center"
+			"defaultStyle": "default"
 		},
 		{
 			"contentId": 2,
 			"defaultStyle": "default",
-			"defaultTextAlign": "left",
 			"isAnswer": true,
 			"isAnswerFocus": true
 		},
@@ -184,7 +182,6 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 1,
 			"defaultStyle": "default",
-			"defaultTextAlign": "center",
 			"isAnswer": true,
 			"isAnswerFocus": true
 		},
@@ -202,8 +199,7 @@ let cardTypeCubeSides = [
 		},
 		{
 			"contentId": 2,
-			"defaultStyle": "default",
-			"defaultTextAlign": "center"
+			"defaultStyle": "default"
 		},
 		{
 			"contentId": 3,

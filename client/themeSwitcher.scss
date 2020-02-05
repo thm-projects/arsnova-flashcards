@@ -405,6 +405,12 @@ $themes: (
     $card_sidebar_toggle_button_opacity_active: map-get($map, "card_sidebar_toggle_button_opacity_active");
     $card_sidebar_toggle_button_background_active_hover: map-get($map, "card_sidebar_toggle_button_background_active_hover");
     $card_sidebar_toggle_button_text_active_hover: map-get($map, "card_sidebar_toggle_button_text_active_hover");
+    $card_sidebar_toggle_fullscreen_button_background: map-get($map, "card_sidebar_toggle_fullscreen_button_background");
+    $card_sidebar_toggle_fullscreen_button_text: map-get($map, "card_sidebar_toggle_fullscreen_button_text");
+    $card_sidebar_toggle_fullscreen_button_background_hover: map-get($map, "card_sidebar_toggle_fullscreen_button_background_hover");
+    $card_sidebar_toggle_fullscreen_button_text_hover: map-get($map, "card_sidebar_toggle_fullscreen_button_text_hover");
+    $card_sidebar_toggle_fullscreen_button_background_active: map-get($map, "card_sidebar_toggle_fullscreen_button_background_active");
+    $card_sidebar_toggle_fullscreen_button_text_active: map-get($map, "card_sidebar_toggle_fullscreen_button_text_active");
     $card_sidebar_aspect_ratio_background: map-get($map, "card_sidebar_aspect_ratio_background");
     $card_sidebar_aspect_ratio_text: map-get($map, "card_sidebar_aspect_ratio_text");
     $card_sidebar_aspect_ratio_background_hover: map-get($map, "card_sidebar_aspect_ratio_background_hover");
@@ -1045,14 +1051,14 @@ $themes: (
       color: $white;
     }
 
-    .fa-sign-out-alt.pressed, .toggleFullscreen.pressed {
+    .fa-sign-out-alt.pressed {
       background-color: $thm_orange;
       border-color: $thm_orange;
       color: $white;
     }
 
-    .fa-sign-out-alt.pressed:hover, .toggleFullscreen.pressed:hover,
-    .fa-sign-out-alt.pressed:focus, .toggleFullscreen.pressed:focus {
+    .fa-sign-out-alt.pressed:hover
+    .fa-sign-out-alt.pressed:focus {
       background-color: $button_background_hover;
       border-color: $button_background_hover;
       color: $button_text_hover;
@@ -1361,8 +1367,18 @@ $themes: (
     }
 
     .toggleFullscreen {
-      background-color: $cardset_footer_navigation_presentation_background;
-      color: $cardset_footer_navigation_presentation_text;
+      background-color: $card_sidebar_toggle_fullscreen_button_background !important;
+      color: $card_sidebar_toggle_fullscreen_button_text !important;
+    }
+
+    .toggleFullscreen.pressed {
+      background-color: $card_sidebar_toggle_fullscreen_button_background_active !important;
+      color: $card_sidebar_toggle_fullscreen_button_text_active !important;
+    }
+
+    .toggleFullscreen:hover, .toggleFullscreen:focus {
+      background-color: $card_sidebar_toggle_fullscreen_button_background_hover !important;
+      color: $card_sidebar_toggle_fullscreen_button_text_hover !important;
     }
 
     .collapseCardsetInfoContainer {
