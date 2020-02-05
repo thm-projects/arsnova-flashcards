@@ -1,3 +1,8 @@
+let minimumTabletWidth = 768;
+let minimumTabletHeight = 1024;
+let maximumTabletWidth = 1024;
+let maximumTabletHeight = 1366;
+
 let iOSPlatforms = 'iPhone|iPad|iPod';
 let macOSPlatforms = 'Macintosh|MacIntel|MacPPC|Mac68K';
 
@@ -17,5 +22,9 @@ module.exports = {
 	macOSPlatforms,
 	enabledIOSFeatures,
 	enabledMacOSSafariFeatures,
-	enabledSmartphoneFeatures
+	enabledSmartphoneFeatures,
+	minimumTabletWidth,
+	minimumTabletHeight,
+	maximumTabletWidth,
+	maximumTabletHeight
 };
