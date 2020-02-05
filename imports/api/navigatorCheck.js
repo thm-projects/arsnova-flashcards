@@ -11,6 +11,9 @@ export let NavigatorCheck = class CardVisuals {
 
 	static isSmartphone () {
 		this.updateUserAgent();
+		if (window.screen.width < config.minimumTabletWidth && window.screen.height < config.minimumTabletHeight) {
+			return true;
+		}
 		return md.phone() != null;
 	}
 
