@@ -26,9 +26,9 @@
     }
   },
   "cookieconsent": {
-    "message": "We will save you long explanations why  »__firstAppTitle__🍅__lastAppTitle__« uses cookies. Among other things, this notice would appear every time you visit. All legal notices can be found on the",
-    "dismiss": "Of course, I accept that.",
-    "link": "Privacy page."
+    "message": "Wir ersparen dir lange Erklärungen, warum __firstAppTitle__🍅__lastAppTitle__ Cookies verwendet. Unter anderem würde dieser Hinweis bei jedem Besuch erscheinen. Soviel sei hier gesagt: Wir geben keine Daten an Dritte heraus. Du kannst dein \uD83C\uDF45__lastAppTitle__-Konto jederzeit selbst löschen, ohne zu fragen. Alle weiteren rechtlichen Hinweise findest du auf der",
+    "dismiss": "Danke, ich bin einverstanden.",
+    "link": "Datenschutz-Seite."
   },
   "intro": {
     "about": "Was ist 🍅__lastAppTitle__?",
