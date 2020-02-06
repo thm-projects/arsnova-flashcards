@@ -1,7 +1,6 @@
 import "./index.html";
 import {Template} from "meteor/templating";
-import {Session} from "meteor/session";
-import {AspectRatio} from "../../../../api/aspectRatio";
+import {CardsetNavigation} from "../../../../api/cardsetNavigation";
 
 /*
  * ############################################################################
@@ -17,9 +16,6 @@ Template.cardsetNavigationIndex.helpers({
 
 Template.cardsetNavigationIndex.events({
 	"click .cardsetIndexBtn": function () {
-		Session.set('aspectRatioMode', AspectRatio.getDefault());
-		Session.set('activeCardSide', undefined);
-		Session.set('isDirectCardsetIndexView', true);
-		Router.go('presentationlist', {_id: this._id});
+		CardsetNavigation.goToIndex();
 	}
 });

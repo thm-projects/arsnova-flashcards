@@ -15,6 +15,17 @@
             </table>
         </div>
     </div>
+    <span class="hidden-xs">
+        <br>
+        <br>
+    </span>
+    {{#if isInBonus}}
+        {{> cardsetNavigationLearning}}
+    {{else}}
+        {{#if currentUser}}
+            {{> cardsetNavigationWorkload}}
+        {{/if}}
+    {{/if}}
 </template>
 
 <template name="cardsetInfoBoxContentOne">

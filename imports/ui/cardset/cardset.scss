@@ -194,9 +194,11 @@ $padding-card-list-row: 8px;
     float: unset !important;
   }
 }
-
 .panel-footer {
   padding: 0 10px;
+}
+
+.panel-footer, .collapseCardsetInfoContainer {
   .btn-group {
     margin-right: 5px;
     padding: 0;
@@ -224,6 +226,21 @@ $padding-card-list-row: 8px;
     transform: scaleY(-1);
     li {
       transform: scaleY(-1);
+    }
+  }
+}
+
+.collapseCardsetInfoContainer {
+  ul li:first-child {
+    border-top: none;
+  }
+  ul li:last-child {
+    border-top: 2px solid;
+  }
+  .dropdown-menu {
+    transform: scaleY(1);
+    li {
+      transform: scaleY(1);
     }
   }
 }
@@ -560,7 +577,6 @@ th .field-tip {
 @media(max-width: 767px) {
   .dropdown-menu.workload {
     position: absolute;
-    transform: translateX(-50%);
   }
 }
 
@@ -575,6 +591,10 @@ th .field-tip {
 
 .cardsetTitleContainer {
   display: inline-block;
+}
+
+#learnBoxActive, .learnBtn {
+  font-size: 16px;
 }
 
 .projectorIconButton {

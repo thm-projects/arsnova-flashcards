@@ -1,0 +1,99 @@
+[{
+  "name": "B: Tastensteuerung",
+  "description": "🍅cards wurde für das ablenkungsfreie Lernen auf dem Laptop optimiert. Deshalb siehst du eine Karte immer in der Vollansicht und navigierst in der Kartenschau mit der <kbd>Leertaste</kbd>.\n\n![ ](/img/help/de/presentation_key.png width=80%)\n\n* Von einer Kartenseite zur nächsten kommst du mit der Tabtaste <kbd>⇥</kbd>.\n* Lange Texte scrollst du mit den Pfeiltasten <kbd>↓</kbd> <kbd>↑</kbd>. \n* Zur nächsten oder vorherigen Karte springst du mit  <kbd>←</kbd> <kbd>→</kbd>.\n* Zum Inhaltsverzeichnis der Kartei gelangst du mit <kbd>F2</kbd>.\n* Mit <kbd>esc</kbd> verlässt du die Vollansicht.\n* Überall auf 🍅cards findest du Hilfe mit <kbd>F1</kbd>.\n\nWenn du Bilder auf einer Karte in der <q>Lightbox</q> herausstellen willst, klick auf das Bild. \n",
+  "date": "2018-07-08T06:28:46.220Z",
+  "dateUpdated": "2020-02-01T11:04:00.294Z",
+  "editors": [],
+  "owner": "fGBjd8xcxAgkPYM4B",
+  "visible": true,
+  "ratings": true,
+  "kind": "free",
+  "price": 0,
+  "reviewed": false,
+  "reviewer": "undefined",
+  "request": false,
+  "rating": 5,
+  "raterCount": 1,
+  "quantity": 1,
+  "license": [
+    "by",
+    "nc",
+    "sa"
+  ],
+  "userDeleted": false,
+  "learningActive": false,
+  "maxCards": 0,
+  "daysBeforeReset": 0,
+  "learningStart": "1970-01-01T00:00:00.000Z",
+  "learningEnd": "1970-01-01T00:00:00.000Z",
+  "registrationPeriod": "1970-01-01T00:00:00.000Z",
+  "learningInterval": [],
+  "wordcloud": false,
+  "shuffled": false,
+  "cardType": 8,
+  "difficulty": 1,
+  "noDifficulty": true,
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  },
+  "sortType": 0,
+  "gotWorkload": false,
+  "lastEditor": "fGBjd8xcxAgkPYM4B",
+  "useCase": {
+    "enabled": true,
+    "priority": 0
+  },
+  "workload": {
+    "bonus": {
+      "count": 0,
+      "minLearned": 20
+    },
+    "normal": {
+      "count": 0
+    },
+    "simulator": {
+      "errorCount": [
+        [
+          50,
+          20,
+          10,
+          5,
+          2
+        ]
+      ]
+    }
+  },
+  "lecturerAuthorized": false
+}, {
+  "subject": "Ablenkungsfrei lernen",
+  "front": "🍅cards wurde für das ablenkungsfreie Lernen auf dem Laptop optimiert. Deshalb siehst du eine Karte immer in der Vollansicht und navigierst in der Kartenschau mit der <kbd>Leertaste</kbd>.\n\n![ ](/img/help/de/presentation_key.png width=50%)\n\n* Von einer Kartenseite zur nächsten kommst du mit der Tabtaste <kbd>⇥</kbd>.\n* Lange Texte scrollst du mit den Pfeiltasten <kbd>↓</kbd> <kbd>↑</kbd>. \n* Zur nächsten oder vorherigen Karte springst du mit  <kbd>←</kbd> <kbd>→</kbd>.\n* Zum Inhaltsverzeichnis der Kartei gelangst du mit <kbd>F2</kbd>.\n* Mit <kbd>esc</kbd> verlässt du die Vollansicht.\n* Überall auf 🍅cards findest du Hilfe mit <kbd>F1</kbd>.\n\nWenn du Bilder auf einer Karte in der <q>Lightbox</q> herausstellen willst, klick auf das Bild. \n",
+  "centerTextElement": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "alignType": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "learningGoalLevel": 0,
+  "backgroundStyle": 1,
+  "date": "2018-07-08T06:03:49.254Z",
+  "dateUpdated": "2020-02-01T11:00:03.363Z",
+  "owner": "fGBjd8xcxAgkPYM4B",
+  "lastEditor": "fGBjd8xcxAgkPYM4B",
+  "originalAuthorName": {
+    "title": "Dr.",
+    "birthname": "Quibeldey-Cirkel",
+    "givenname": "Klaus"
+  }
+}]
