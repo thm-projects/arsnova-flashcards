@@ -2,7 +2,7 @@
   "name": "A: Infos zur Vorbereitung auf  die LPI-Prüfungen auf »Linux.cards«",
   "description": "(##) Über die Lernkartei-App <q>🍅cards</q>\n\n![ ](https://arsnova-uploads.mni.thm.de/logos/Stifterverband.png width=130)![ ](https://arsnova-uploads.mni.thm.de/logos/DATEV-Stiftung.png width=130) Diese innovative Lern&shy;kar&shy;tei-App ist das zentrale Open-Source-Tool in einem Langzeit-Projekt der Technischen Hochschule Mittelhessen, THM. Der Stifterverband für die Deutsche Wissenschaft und die DATEV-Stiftung Zukunft fördern unser Vorhaben \n»Digital gegen das Bulimie-Lernen: Quizzen im Hörsaal und zu Hause, Podcasts für unterwegs« mit einem [Senior-Fellowship](https://www.stifterverband.org/lehrfellowships/2018/quibeldey-cirkel). \n\n(##) Über die finanzielle Förderung einer LPI-Zertifizierung für hessische Studierende\n\n![ ](https://arsnova.thm.de/blog/wp-content/uploads/2015/07/HMWK-Logo-300x136.png width=130) ![ ](https://digll.studiumdigitale.uni-frankfurt.de/files/2019/06/digLL_Logo_small.png width=130)Das HMWK-Verbundprojekt der hessischen Hochschulen [<q>Digital gestütztes Lehren und Lernen in Hessen</q>](https://www.digll-hessen.de/de)  (digLL) fördert im SoSe 2020 Informatik-Studierende an einer hessischen Hochschule beim Erwerb der Linux-Zertifikate des renommierten [Linux Professional Institute](https://www.lpi.org/) (LPI).\nEs werden die Teilnahmekosten für die LPI-Zertifizierungsprüfungen [»Linux Essentials«](https://www.lpi.org/our-certifications/linux-essentials-overview) und [»LPIC-1: Linux Administrator«](https://www.lpi.org/our-certifications/lpic-1-overview) für zehn Studierende übernommen (ca. 350 € pro Person). Eine Förderung im WiSe 2020/21 für die nächste Zertifizierungsstufe <q>LPIC-2: Linux Engineer</q> ist geplant.\n\n![](https://lpievent.lpice.eu/static/pics/LinuxEssentials-Medium.png)![](https://lpievent.lpice.eu/static/pics/LPIC-1-Medium.png)![](https://lpievent.lpice.eu/static/pics/LPIC-2-Medium.png)\n",
   "date": "2019-05-06T04:52:10.648Z",
-  "dateUpdated": "2020-02-05T19:41:38.896Z",
+  "dateUpdated": "2020-02-06T18:24:07.186Z",
   "editors": [],
   "owner": "fGBjd8xcxAgkPYM4B",
   "visible": true,
@@ -88,9 +88,9 @@
     0
   ],
   "learningGoalLevel": 0,
-  "backgroundStyle": 1,
+  "backgroundStyle": 0,
   "date": "2019-05-06T06:01:04.587Z",
-  "dateUpdated": "2020-02-05T19:41:38.891Z",
+  "dateUpdated": "2020-02-06T18:24:07.182Z",
   "owner": "fGBjd8xcxAgkPYM4B",
   "originalAuthorName": {
     "title": "Dr.",

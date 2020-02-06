@@ -2,7 +2,7 @@
   "name": "C: 🍅cards – ein Lehr- und Lernprojekt der THM",
   "description": "Hinweis auf das 🍅cards-Projekts der THM",
   "date": "2019-05-17T18:15:23.574Z",
-  "dateUpdated": "2020-01-28T09:43:53.840Z",
+  "dateUpdated": "2020-02-06T08:39:45.310Z",
   "editors": [],
   "owner": "fGBjd8xcxAgkPYM4B",
   "visible": true,
@@ -68,7 +68,7 @@
   "lastEditor": "fGBjd8xcxAgkPYM4B"
 }, {
   "subject": "Die App für dein Studium",
-  "front": "![](/img/Bildlogo.png width=30%)\n\n!!!WARNING Bevor du beginnst…\n   Auf [THM.cards](https://thm.cards) beschreiben wir die lernpsychologischen Erkenntnisse, die uns bei der Entwicklung von 🍅cards geleitet haben. Bevor du mit dem Lernen auf Linux.cards beginnst, solltest du dir die [Einführung](https://thm.cards/demo) auf [THM.cards](https://thm.cards) anschauen.<br><br>\n\n!!!TIP Die App für dein Studium und danach\n   Als Student/in der THM steht dir auf [THM.cards](https://thm.cards) die vollständige Funktionalität der Lernkartei-App zur freien Verfügung. Du kannst dort Karteien, Repetitorien und Mitschriften erstellen, beliebig viele Karten schreiben und diese effizient und nachhaltig nach dem Leitner-Plan lernen. Nachrichten aufs Handy oder Mails in deinem Postfach erinnern dich, welche Karten du heute lernen solltest.<br><br>\n",
+  "front": "![](/img/Bildlogo.png width=30%)\n\n!!!WARNING Bevor du beginnst…\n   Auf [THM.cards](https://thm.cards) beschreiben wir die lernpsychologischen Erkenntnisse, die uns bei der Entwicklung von 🍅cards geleitet haben. Bevor du mit dem Lernen auf Linux.cards beginnst, solltest du dir die [Einführung](https://thm.cards/demo) auf THM.cards anschauen.<br><br>\n\n!!!TIP Die App für dein Studium und danach\n   Als Student/in der THM steht dir auf THM.cards die vollständige Funktionalität der Lernkartei-App zur freien Verfügung. Du kannst dort Karteien, Repetitorien und Mitschriften erstellen, beliebig viele Karten schreiben und diese effizient und nachhaltig nach dem Leitner-Plan lernen. Nachrichten aufs Handy oder Mails in deinem Postfach erinnern dich, welche Karten du heute lernen solltest.<br><br>\n",
   "centerTextElement": [
     true,
     true,
@@ -89,7 +89,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "owner": "fGBjd8xcxAgkPYM4B",
-  "dateUpdated": "2020-01-28T09:43:53.832Z",
+  "dateUpdated": "2020-02-06T08:39:45.303Z",
   "originalAuthorName": {
     "title": "Dr.",
     "birthname": "Quibeldey-Cirkel",
