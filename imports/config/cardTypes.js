@@ -222,7 +222,7 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"defaultStyle": "post-it"
+			"defaultStyle": "default"
 		}
 	],
 	//9: To-dos
