@@ -26,17 +26,10 @@ function calledFromScript
     fi
 }
 
-function getTestName
-{
-   CHIMPTESTFILE="$testDir/"*".feature"
-   CHIMPTESTNAME="$(grep -m '1' "" $CHIMPTESTFILE | cut -c 10- | tr -d '\n\r')"
-}
-
 checkDirectory
 calledFromScript
 
 # Default path definitions
-searchDir="tests/features/*/"
 restoreDir="tests/testDatabaseDump/meteor"
 dumpDir="tests/testDatabaseDump/"
 
