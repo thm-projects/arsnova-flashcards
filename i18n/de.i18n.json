@@ -766,7 +766,7 @@
     "editRepetitorium": "Beschreibung bearbeiten",
     "adminEditCardset": "Admin-Einstellungen",
     "editreferences": "Repetitorium zusammenstellen",
-    "name": "Etikett",
+    "name": "Karteiname",
     "nameplaceholder": "Beschriftung der Box in wenigen Worten",
     "descriptionplaceholder": "Worum geht es in dieser Kartei? \n\nDas Etikett des Karteikastens und die Beschreibung des Inhalts werden dir überall auf 🍅__lastAppTitle__ angezeigt.  Die Kartei bleibt privat, das heißt, sie ist für andere nicht sichtbar, solange du sie nicht veröffentlichst.",
     "categoryplaceholder": "Wähle eine Kategorie",
@@ -1516,7 +1516,7 @@
     },
     "cardType8": {
       "name": "Notiz",
-      "longName": "Notiz: 1 Seite",
+      "longName": "Notiz",
       "content1": "Notiz",
       "placeholders": {
         "subject": "Gib das Thema deiner Notiz an!",
@@ -1528,7 +1528,7 @@
     },
     "cardType9": {
       "name": "To-dos",
-      "longName": "To-dos: 1 Seite",
+      "longName": "To-dos",
       "content1": "To-dos",
       "placeholders": {
         "subject": "Gib das Thema oder das Datum der To-dos an!",
@@ -1608,7 +1608,7 @@
     },
     "cardType14": {
       "name": "Vortrag",
-      "longName": "Vortrag: 1 Seite",
+      "longName": "Vortrag",
       "content1": "Vortrag",
       "placeholders": {
         "subject": "Gib das Thema der Folie an!",
@@ -1683,8 +1683,8 @@
       }
     },
     "cardType19": {
-      "name": "Vorlesung",
-      "longName": "Vorlesung mit Bonus fürs Mitschreiben"
+      "name": "Bonus-Kartei für Mitschriften",
+      "longName": "Kartei für die Bonusvergabe von Mitschriften"
     },
     "tooltip": {
       "toggle3D": "3D-Ansicht aktivieren / deaktivieren",
