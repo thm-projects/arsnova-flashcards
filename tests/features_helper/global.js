@@ -1,9 +1,0 @@
-export const threshold = 15000;
-export const thresholdText = " after 15 seconds.";
-export const baseURL = "http://localhost:3000";
-export const createRoute = "/personal/cardsets";
-export const learnRoute = "/learn";
-export const cardsetRoute = "/cardset";
-export const learnBoxRoute = "/box";
-export const superMemoRoute = "/memo";
-export const poolRoute = "/public/cardsets";
