@@ -26,7 +26,6 @@
   "version": "1.0.0",
   "main": "index.js",
   "devDependencies": {
-    "chimpy": "^1.2.0",
     "gulp-jscs": "^3.0.2",
     "gulp-jshint": "^2.1.0",
     "gulp-watch": "^5.0.1",
