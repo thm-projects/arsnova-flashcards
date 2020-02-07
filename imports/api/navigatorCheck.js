@@ -38,7 +38,7 @@ export let NavigatorCheck = class CardVisuals {
 
 	static isSafari () {
 		this.updateUserAgent();
-		return md.userAgent() === ("Safari");
+		return md.version("BlackBerry");
 	}
 
 	static isLandscape () {
