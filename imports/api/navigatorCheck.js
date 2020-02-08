@@ -65,7 +65,7 @@ export let NavigatorCheck = class CardVisuals {
 			} else {
 				return false;
 			}
-		} else if (this.isIOS()) {
+		} else if (this.isIOS() && !this.isChrome()) {
 			return config.enabledIOSFeatures.includes(feature);
 		} else if (this.isMacOSSafari()) {
 			return config.enabledMacOSSafariFeatures.includes(feature);
