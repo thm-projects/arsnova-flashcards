@@ -13,7 +13,7 @@ let macOSPlatforms = 'Macintosh|MacIntel|MacPPC|Mac68K';
 //3: Demo
 //4: 3D-Cube
 //5: 3D-Cube: cancel active transitions
-let enabledSmartphoneFeatures = [0, 1, 2, 3];
+let enabledSmartphoneFeatures = [3];
 let enabledIOSFeatures = [3];
 let enabledMacOSSafariFeatures = [1, 2, 3, 4, 5];
 

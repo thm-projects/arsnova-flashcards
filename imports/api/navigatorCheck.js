@@ -41,6 +41,11 @@ export let NavigatorCheck = class CardVisuals {
 		return md.version("BlackBerry");
 	}
 
+	static isChrome () {
+		this.updateUserAgent();
+		return md.version("Chrome");
+	}
+
 	static isLandscape () {
 		return window.innerWidth > window.innerHeight;
 	}
@@ -52,7 +57,7 @@ export let NavigatorCheck = class CardVisuals {
 	static gotFeatureSupport (feature) {
 		if (this.isSmartphone()) {
 			if (config.enabledSmartphoneFeatures.includes(feature)) {
-				if (this.isIOS()) {
+				if (this.isIOS() && !this.isChrome()) {
 					return config.enabledIOSFeatures.includes(feature);
 				} else {
 					return true;
