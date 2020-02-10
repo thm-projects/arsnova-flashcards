@@ -135,8 +135,8 @@ Meteor.users.after.insert(function (userId, doc) {
 			lastOnAt: new Date(),
 			daysInRow: 0,
 			selectedColorTheme: "default",
-			mailNotification: false,
-			webNotification: false,
+			mailNotification: ServerStyle.newUser("mail"),
+			webNotification: ServerStyle.newUser("web"),
 			"profile.locale": "de"
 		}
 	});

@@ -240,4 +240,13 @@ export let ServerStyle = class ServerStyle {
 		}
 		return list;
 	}
+
+	static newUser (feature) {
+		switch (feature) {
+			case "mail":
+				return this.getConfig().newUser.enabledNotifications.mail;
+			case "web":
+				return this.getConfig().newUser.enabledNotifications.web;
+		}
+	}
 };
