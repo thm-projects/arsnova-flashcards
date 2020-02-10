@@ -2,7 +2,7 @@
   "name": "D: Was, wenn ich nicht an der THM studiere?",
   "description": "Hinweis für Externe",
   "date": "2020-02-01T09:12:27.270Z",
-  "dateUpdated": "2020-02-09T08:46:07.302Z",
+  "dateUpdated": "2020-02-10T12:09:48.981Z",
   "editors": [],
   "owner": "fGBjd8xcxAgkPYM4B",
   "visible": false,
@@ -64,7 +64,7 @@
   "lecturerAuthorized": false
 }, {
   "subject": "Alle sind willkommen",
-  "front": "!!!TIP Melde dich über Facebook, Twitter oder Google an\n   Mit einer Anmeldung kannst du nach dem Wiederholungsplan von Leitner Karten lernen. Wenn du Mitteilungen im Browser erlaubst, profitierst du auch vom Erinnerungsdienst.<br><br>\n\n!!!ERROR\n   Mit dem anonymen Zugang »Ich schau mich nur mal um« ist das wiederholte Kartenlernen nach Leitner nicht möglich.\n\n!!!WARNING\n   Leider kannst du keine finanzielle Förderung erhalten, wenn du nicht an einer hessischen Hochschule studierst.",
+  "front": "(#) Wenn du nicht an der THM studierst…\n\n<br>\n\n!!!TIP Melde dich über Facebook, Twitter oder Google an\n   Mit einer Anmeldung kannst du nach dem Wiederholungsplan von Leitner Karten lernen. Wenn du Mitteilungen im Browser erlaubst, profitierst du auch vom Erinnerungsdienst.<br><br>\n\n!!!ERROR\n   Mit dem anonymen Zugang »Ich schau mich nur mal um« ist das Kartenlernen nach Leitner nicht möglich.\n\n!!!WARNING\n   Leider kannst du keine finanzielle Förderung erhalten, wenn du nicht an einer hessischen Hochschule studierst.",
   "centerTextElement": [
     true,
     true,
@@ -85,7 +85,7 @@
   "learningGoalLevel": 0,
   "backgroundStyle": 1,
   "owner": "fGBjd8xcxAgkPYM4B",
-  "dateUpdated": "2020-02-09T08:46:07.293Z",
+  "dateUpdated": "2020-02-10T12:09:48.976Z",
   "lastEditor": "fGBjd8xcxAgkPYM4B",
   "originalAuthorName": {
     "title": "Dr.",

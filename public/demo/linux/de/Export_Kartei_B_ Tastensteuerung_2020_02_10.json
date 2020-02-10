@@ -2,7 +2,7 @@
   "name": "B: Tastensteuerung",
   "description": "🍅cards wurde für das ablenkungsfreie Lernen auf dem Laptop optimiert. Deshalb siehst du eine Karte immer in der Vollansicht und navigierst in der Kartenschau mit der <kbd>Leertaste</kbd>.\n\n![ ](/img/help/de/presentation_key.png width=80%)\n\n* Von einer Kartenseite zur nächsten kommst du mit der Tabtaste <kbd>⇥</kbd>.\n* Lange Texte scrollst du mit den Pfeiltasten <kbd>↓</kbd> <kbd>↑</kbd>. \n* Zur nächsten oder vorherigen Karte springst du mit  <kbd>←</kbd> <kbd>→</kbd>.\n* Zum Inhaltsverzeichnis der Kartei gelangst du mit <kbd>F2</kbd>.\n* Mit <kbd>esc</kbd> verlässt du die Vollansicht.\n* Überall auf 🍅cards findest du Hilfe mit <kbd>F1</kbd>.\n\nWenn du Bilder auf einer Karte in der <q>Lightbox</q> herausstellen willst, klick auf das Bild. \n",
   "date": "2018-07-08T06:28:46.220Z",
-  "dateUpdated": "2020-02-01T11:04:00.294Z",
+  "dateUpdated": "2020-02-10T12:12:21.459Z",
   "editors": [],
   "owner": "fGBjd8xcxAgkPYM4B",
   "visible": true,
@@ -12,8 +12,8 @@
   "reviewed": false,
   "reviewer": "undefined",
   "request": false,
-  "rating": 5,
-  "raterCount": 1,
+  "rating": 0,
+  "raterCount": 0,
   "quantity": 1,
   "license": [
     "by",
@@ -70,7 +70,7 @@
   "subject": "Ablenkungsfrei lernen",
   "front": "🍅cards wurde für das ablenkungsfreie Lernen auf dem Laptop optimiert. Deshalb siehst du eine Karte immer in der Vollansicht und navigierst in der Kartenschau mit der <kbd>Leertaste</kbd>.\n\n![ ](/img/help/de/presentation_key.png width=50%)\n\n* Von einer Kartenseite zur nächsten kommst du mit der Tabtaste <kbd>⇥</kbd>.\n* Lange Texte scrollst du mit den Pfeiltasten <kbd>↓</kbd> <kbd>↑</kbd>. \n* Zur nächsten oder vorherigen Karte springst du mit  <kbd>←</kbd> <kbd>→</kbd>.\n* Zum Inhaltsverzeichnis der Kartei gelangst du mit <kbd>F2</kbd>.\n* Mit <kbd>esc</kbd> verlässt du die Vollansicht.\n* Überall auf 🍅cards findest du Hilfe mit <kbd>F1</kbd>.\n\nWenn du Bilder auf einer Karte in der <q>Lightbox</q> herausstellen willst, klick auf das Bild. \n",
   "centerTextElement": [
-    false,
+    true,
     false,
     false,
     false,
@@ -78,7 +78,7 @@
     false
   ],
   "alignType": [
-    1,
+    0,
     1,
     1,
     1,
@@ -86,9 +86,9 @@
     1
   ],
   "learningGoalLevel": 0,
-  "backgroundStyle": 1,
+  "backgroundStyle": 0,
   "date": "2018-07-08T06:03:49.254Z",
-  "dateUpdated": "2020-02-01T11:00:03.363Z",
+  "dateUpdated": "2020-02-10T12:11:34.967Z",
   "owner": "fGBjd8xcxAgkPYM4B",
   "lastEditor": "fGBjd8xcxAgkPYM4B",
   "originalAuthorName": {
