@@ -354,7 +354,7 @@ Router.route('/public/repetitorien', {
 	name: 'repetitorium',
 	template: 'filterIndex',
 	subscriptions: function () {
-		return [Meteor.subscribe('repetitoriumCardsets'), Meteor.subscribe('paidCardsets'), Meteor.subscribe('userData')];
+		return [Meteor.subscribe('repetitoriumCardsets'), Meteor.subscribe('paidCardsets'), Meteor.subscribe('userData'), Meteor.subscribe('default_db_data')];
 	},
 	data: function () {
 		Session.set('helpFilter', "repetitorium");
@@ -658,7 +658,7 @@ Router.route('/public/cardsets', {
 	name: 'pool',
 	template: 'filterIndex',
 	subscriptions: function () {
-		return [Meteor.subscribe('poolCardsets'), Meteor.subscribe('paidCardsets'), Meteor.subscribe('userData')];
+		return [Meteor.subscribe('poolCardsets'), Meteor.subscribe('paidCardsets'), Meteor.subscribe('userData'), Meteor.subscribe('default_db_data')];
 	},
 	data: function () {
 		Session.set('helpFilter', "pool");
