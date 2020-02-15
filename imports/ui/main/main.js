@@ -42,6 +42,7 @@ import "./modal/arsnovaLite.js";
 import "./modal/connectionStatus.js";
 import "./modal/underDevelopment.js";
 import "./modal/pdfViewer.js";
+import {PDFViewer} from "../../util/pdfViewer";
 
 Meteor.subscribe("notifications");
 Meteor.subscribe("serverStatistics");
@@ -140,9 +141,14 @@ Template.main.helpers({
 	}
 });
 
+let windowResizeSensor;
 Template.main.onCreated(function () {
 	MarkdeepContent.initializeStylesheet();
 	document.title = ServerStyle.getLastAppTitle();
+	windowResizeSensor = $(window).resize(function () {
+		CardVisuals.resizeFlashcard();
+		PDFViewer.resizeIframe();
+	});
 });
 
 Template.main.onRendered(function () {
@@ -160,6 +166,12 @@ Template.main.onRendered(function () {
 		MainNavigation.closeCollapse();
 	});
 	MainNavigation.initializeNavigation();
+});
+
+Template.main.onDestroyed(function () {
+	if (windowResizeSensor !== undefined) {
+		windowResizeSensor.off('resize');
+	}
 });
 
 Meteor.startup(function () {

@@ -3,7 +3,7 @@ import * as config from "../config/navigator.js";
 
 let md;
 
-export let NavigatorCheck = class CardVisuals {
+export let NavigatorCheck = class NavigatorCheck {
 
 	static updateUserAgent () {
 		md = new MobileDetect(window.navigator.userAgent);
