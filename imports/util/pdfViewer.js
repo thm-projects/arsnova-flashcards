@@ -1,5 +1,10 @@
 import {NavigatorCheck} from "../api/navigatorCheck.js";
+import {CardType} from "../api/cardTypes.js";
+import {Route} from "../api/route.js";
 import * as config from "../config/pdfViewer.js";
+import {Cards} from "../api/subscriptions/cards";
+import {Session} from "meteor/session";
+import XRegExp from 'xregexp';
 
 export let PDFViewer = class PDFViewer {
 	static getDeviceMaxSize () {
@@ -32,6 +37,10 @@ export let PDFViewer = class PDFViewer {
 		$('#pdfViewerModal').modal('hide');
 	}
 
+	static openModal () {
+		$('#pdfViewerModal').modal('show');
+	}
+
 	static resizeIframe () {
 		let pdfModal = $("#pdfViewer");
 		if (pdfModal.length) {
@@ -43,4 +52,36 @@ export let PDFViewer = class PDFViewer {
 	static getViewerLink () {
 		return config.viewerLink;
 	}
+
+	static setLearningAutoTarget (card_id, cardType) {
+		if (Route.isLearningMode() && CardType.gothLearningModePDFAutoTarget(cardType)) {
+			let cubeSides = CardType.getCardTypeCubeSides(cardType);
+			for (let i = 0; i < cubeSides.length; i++) {
+				if (cubeSides[i].gotPDFAutoTarget !== undefined && cubeSides[i].gotPDFAutoTarget === true) {
+					let card = Cards.findOne({_id: card_id}, {
+						fields: {
+							front: 1,
+							back: 1,
+							hint: 1,
+							lecture: 1,
+							bottom: 1,
+							top: 1
+						}
+					});
+					if (card !== undefined) {
+						let content = card[CardType.getContentIDTranslation(cubeSides[i].contentId)];
+						if (content !== undefined && content.length) {
+							let regexp = new XRegExp(config.markdeepPDFRegex);
+							let result = content.match(regexp);
+							if (result !== null && result[1] !== undefined && result[1].length) {
+								Session.set('activePDF', result[1]);
+								this.openModal();
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 };
+

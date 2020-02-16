@@ -14,7 +14,7 @@ Template.mainPdfViewerModal.onRendered(function () {
 	$('#pdfViewerModal').on('hidden.bs.modal', function () {
 		Session.set('activePDF', "");
 	});
-	$('#pdfViewerModal').on('shown.bs.modal', function () {
+	$('#pdfViewerModal').on('show.bs.modal', function () {
 		if (Session.get('activePDF')) {
 			$('#pdfViewerModal .modal-dialog').html('<iframe id="pdfViewer" width="' + PDFViewer.getIframeWidth() + 'px" height="' + PDFViewer.getIframeHeight() + 'px" frameborder="0" src="' + PDFViewer.getViewerLink() + Session.get('activePDF') + '"></iframe>');
 		}

@@ -189,6 +189,10 @@ export let CardType = class CardType {
 		return config.cardTypesWithMarkdeepHelp.includes(cardType);
 	}
 
+	static gothLearningModePDFAutoTarget (cardType) {
+		return config.cardTypesWithLearningModePDFAutoTarget.includes(cardType);
+	}
+
 	static gotCardTypesWithSwapAnswerQuestionButton (cardset_id) {
 		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {shuffled: 1, cardGroups: 1, cardType: 1}});
 		if (cardset !== undefined) {
