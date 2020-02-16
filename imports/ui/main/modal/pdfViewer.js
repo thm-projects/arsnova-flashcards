@@ -16,7 +16,7 @@ Template.mainPdfViewerModal.onRendered(function () {
 	});
 	$('#pdfViewerModal').on('shown.bs.modal', function () {
 		if (Session.get('activePDF')) {
-			$('#pdfViewerModal .modal-dialog').html('<iframe id="pdfViewer" width="' + PDFViewer.getIframeWidth() + 'px" height="' + PDFViewer.getIframeHeight() + 'px" frameborder="0" src="/pdf/web/viewer.html?file=https://cors-anywhere.herokuapp.com/' + Session.get('activePDF') + '"></iframe>');
+			$('#pdfViewerModal .modal-dialog').html('<iframe id="pdfViewer" width="' + PDFViewer.getIframeWidth() + 'px" height="' + PDFViewer.getIframeHeight() + 'px" frameborder="0" src="' + PDFViewer.getViewerLink() + Session.get('activePDF') + '"></iframe>');
 		}
 	});
 });

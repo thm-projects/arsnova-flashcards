@@ -27,8 +27,12 @@ let desktopSize = {
 	width: 0.8
 };
 
+//Viewer doesn't work atm without herokuapp
+let viewerLink = "/pdf/web/viewer.html?file=https://cors-anywhere.herokuapp.com/";
+
 module.exports = {
 	smartphoneSize,
 	tabletSize,
-	desktopSize
+	desktopSize,
+	viewerLink
 };

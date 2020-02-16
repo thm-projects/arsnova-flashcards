@@ -39,4 +39,8 @@ export let PDFViewer = class PDFViewer {
 			pdfModal.width(this.getIframeWidth() + "px");
 		}
 	}
+
+	static getViewerLink () {
+		return config.viewerLink;
+	}
 };
