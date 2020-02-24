@@ -123,6 +123,15 @@ let defaultSettings = {
 			"pro": true,
 			"lecturer": true
 		}
+	},
+	"newUser": {
+		"enabledNotifications": {
+			"mail": true, //Excludes Free Users
+			"web": true
+		}
+	},
+	"leitner": {
+		"randomCardsSelection": false
 	}
 };
 
@@ -238,6 +247,12 @@ let debug = {
 			"edu": true,
 			"pro": true,
 			"lecturer": true
+		}
+	},
+	"newUser": {
+		"enabledNotifications": {
+			"mail": true, //Excludes Free Users
+			"web": true
 		}
 	},
 	"leitner": {
@@ -358,6 +373,15 @@ let linux = {
 			"pro": true,
 			"lecturer": true
 		}
+	},
+	"newUser": {
+		"enabledNotifications": {
+			"mail": true, //Excludes Free Users
+			"web": true
+		}
+	},
+	"leitner": {
+		"randomCardsSelection": false
 	}
 };
 
@@ -473,6 +497,12 @@ let review = {
 			"edu": true,
 			"pro": true,
 			"lecturer": true
+		}
+	},
+	"newUser": {
+		"enabledNotifications": {
+			"mail": true, //Excludes Free Users
+			"web": true
 		}
 	},
 	"leitner": {
@@ -593,6 +623,15 @@ let staging = {
 			"pro": true,
 			"lecturer": true
 		}
+	},
+	"newUser": {
+		"enabledNotifications": {
+			"mail": true,  //Excludes Free Users
+			"web": true
+		}
+	},
+	"leitner": {
+		"randomCardsSelection": false
 	}
 };
 
