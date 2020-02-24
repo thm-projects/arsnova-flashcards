@@ -7,7 +7,23 @@ arsnova🍅cards uses Meteor as application framework. Download and install [Met
 ## Hardware requirements
 - 4 GB RAM
 
-## Initial setup
+## Initial setup (docker - development version)
+1. Make sure you have installed Docker (https://docs.docker.com/install/)
+2. To build the image on your own
+  1. To build it on your own, run `docker build -t <your-tag> .`
+  2. Then run the container with `docker run -d -p <desired-port>:3000 <your-tag>`
+3. Use the image from docker hub
+  1. Simply run `docker run -d -p <desired-port>:3000 arsnova/arsnova-cards:debug`
+4. The app is now available under **localhost:<desired-port>**
+
+## Initial setup (docker - production version)
+1. Make sure you have installed Docker (https://docs.docker.com/install/)\
+2. Make sure you have installed Docker Compose (https://docs.docker.com/compose/install/)
+3. From your project directory run `docker-compose up -d -f .docker/docker-compose.yml`
+  1. If your local port 8080 is already in use, you can change it in `docker-compose.yml`
+4. The app is now available under **localhost:8080**
+
+## Initial setup (native)
 |Step | Linux Terminal Command  |
 |---|---|
 |1. Install [Meteor](https://www.meteor.com/)   | Refer to the link in the step column |
@@ -17,7 +33,7 @@ arsnova🍅cards uses Meteor as application framework. Download and install [Met
 |5. Make sure that you've added a [SSH key](https://git.thm.de/profile/keys) | Refer to the link in the step column |
 |6. Clone the remote repository  | `git clone git@git.thm.de:arsnova/cards.git` |
 |7. Move inside the local repository **"cards folder"**  | `cd cards` |
-|8. Install the npm package dependencies | `meteor npm install` | 
+|8. Install the npm package dependencies | `meteor npm install` |
 
 
 ### Settings (These steps are only required if you want to deploy 🍅cards on a server)
