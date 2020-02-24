@@ -9,7 +9,8 @@ services:
   app:
     image: arsnova/arsnova-cards
     build:
-      context: ./app
+      context: ./../.
+      dockerfile: .docker/app/Dockerfile
     depends_on:
       - mongodb
     environment:
@@ -23,3 +24,7 @@ services:
       - "8080:80"
     depends_on:
       - app
+
+volumes:
+  data:
+    driver: local
