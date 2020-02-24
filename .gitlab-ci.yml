@@ -9,7 +9,6 @@ variables:
 stages:
   - test
   - build
-  - chimptest
   - review
   - deploy
 
@@ -74,34 +73,6 @@ build:
   artifacts:
     paths:
       - "$BUNDLE_DIR"
-
-chimp:
-  stage: chimptest
-  except:
-    - staging
-    - master
-  tags:
-    - nodejs
-  allow_failure: true
-  services:
-    - mongo:latest
-  dependencies:
-    - build
-  variables:
-    PORT: "3000"
-    ROOT_URL: "http://localhost:$PORT"
-    MONGO_HOST: mongo
-    MONGO_PORT: "27017"
-    MONGO_DB: meteor-test
-    MONGO_URL: "mongodb://$MONGO_HOST:$MONGO_PORT/$MONGO_DB"
-  script:
-    - export METEOR_SETTINGS="$(cat settings_review.json)"
-    - mongo --quiet --eval "version();" --host "$MONGO_HOST"
-    - cd "$BUNDLE_DIR/programs/server" && npm install
-    - cd -
-    - node "$BUNDLE_DIR/main.js" &
-    - sleep 15
-    - ./tests/runTests.sh
 
 review:
   stage: review

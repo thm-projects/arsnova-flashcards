@@ -1,4 +1,5 @@
 #useCasesModal {
+  z-index: 10020 !important;
   @media(min-width: 768px) and (max-width: 899px) {
     .dropdown-menu {
       width: 500px !important;

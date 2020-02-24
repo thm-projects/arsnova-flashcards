@@ -27,8 +27,7 @@ export let NavigatorCheck = class CardVisuals {
 
 	static isIOS () {
 		this.updateUserAgent();
-		//Return true if only one of the following tests detects iOS
-		return md.match(config.iOSPlatforms) || this.isTablet();
+		return md.match(config.iOSPlatforms) || this.isTablet(); //we need an Android tablet to check for feature compliance
 	}
 
 	static isMacOS () {
@@ -38,7 +37,7 @@ export let NavigatorCheck = class CardVisuals {
 
 	static isSafari () {
 		this.updateUserAgent();
-		return md.userAgent() === ("Safari");
+		return md.version("BlackBerry"); //don't ask why this is the distinguishing criterion for a Safari
 	}
 
 	static isLandscape () {
