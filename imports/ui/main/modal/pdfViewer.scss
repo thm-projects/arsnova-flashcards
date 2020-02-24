@@ -1,5 +1,6 @@
 #pdfViewerModal {
   text-align: center;
+  z-index: 5000 !important;
 }
 
 #pdfViewerModal .modal-dialog {

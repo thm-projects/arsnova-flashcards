@@ -5,7 +5,7 @@ import {check} from "meteor/check";
 import {UserPermissions} from "./permissions";
 import {getLearners} from "./cardsetUserlist";
 import * as config from "../config/leitner";
-import {LeitnerUtilities} from "./leitner";
+import {LeitnerUtilities} from "../util/leitner";
 import {Leitner} from "./subscriptions/leitner.js";
 import {LeitnerHistory} from "./subscriptions/leitnerHistory";
 import {Workload} from "./subscriptions/workload";

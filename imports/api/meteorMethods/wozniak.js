@@ -1,13 +1,29 @@
 import {Meteor} from "meteor/meteor";
 import {check} from "meteor/check";
-import {Wozniak} from "./subscriptions/wozniak";
-import {Cardsets} from "./subscriptions/cardsets";
-import {Bonus} from "./bonus";
-import {UserPermissions} from "./permissions";
-import {CardType} from "./cardTypes";
-import {Cards} from "./subscriptions/cards";
+import {Wozniak} from "../subscriptions/wozniak";
+import {Cardsets} from "../subscriptions/cardsets";
+import {Bonus} from "../bonus";
+import {UserPermissions} from "../permissions";
+import {CardType} from "../cardTypes";
+import {Cards} from "../subscriptions/cards";
 
 Meteor.methods({
+	markWozniakAutoPDF: function (cardset_id, card_id) {
+		check(cardset_id, String);
+		check(card_id, String);
+
+		Wozniak.update({
+				cardset_id: cardset_id,
+				card_id: card_id,
+				user_id: Meteor.userId()
+			},
+			{
+				$set: {
+					'viewedPDF': true
+				}
+			}
+		);
+	},
 	/** Adds new cards to the learners list for super memo mode
 	 *  @param {string} cardset_id - The ID of the cardset in which the user is learning
 	 *  @returns {Boolean} - Return true once the task is completed
@@ -65,7 +81,8 @@ Meteor.methods({
 					interval: 0,
 					reps: 0,
 					nextDate: nextDate,
-					skipped: 0
+					skipped: 0,
+					viewedPDF: false
 				});
 			});
 			if (newItems.length > 0) {

@@ -29,7 +29,7 @@ import "../imports/api/cardsetUserlist.js";
 import "../imports/api/colleges_courses.js";
 import "../imports/api/import.js";
 import "../imports/api/learned.js";
-import "../imports/api/leitner.js";
+import "../imports/api/meteorMethods/leitner.js";
 import "../imports/api/notifications.js";
 import "../imports/api/paid.js";
 import "../imports/api/ratings.js";
@@ -38,7 +38,7 @@ import "../imports/api/import.js";
 import "../imports/api/userdata.js";
 import "../imports/api/transcriptBonus.js";
 import "../imports/api/webPushSubscriptions.js";
-import "../imports/api/wozniak.js";
+import "../imports/api/meteorMethods/wozniak.js";
 import "./leitner.js";
 
 WebApp.addHtmlAttributeHook(() => ({lang: 'de', charset: 'utf-8'}));

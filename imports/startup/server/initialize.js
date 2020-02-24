@@ -13,7 +13,7 @@ import {CardType} from "../../api/cardTypes";
 import {WebPushSubscriptions} from "../../api/subscriptions/webPushNotifications";
 import {Paid} from "../../api/subscriptions/paid";
 import {TranscriptBonus} from "../../api/subscriptions/transcriptBonus";
-import {LeitnerUtilities} from "../../api/leitner";
+import {LeitnerUtilities} from "../../util/leitner";
 import {Utilities} from "../../api/utilities";
 import * as bonusFormConfig from "../../config/bonusForm.js";
 
@@ -1139,6 +1139,32 @@ Meteor.startup(function () {
 			{
 				$set: {
 					rating: 0
+				}
+			}
+		);
+	}
+
+	leitner = Leitner.find({"viewedPDF": {$exists: false}}).fetch();
+	for (let i = 0; i < leitner.length; i++) {
+		Leitner.update({
+				_id: leitner[i]._id
+			},
+			{
+				$set: {
+					viewedPDF: false
+				}
+			}
+		);
+	}
+
+	wozniak = Wozniak.find({"viewedPDF": {$exists: false}}).fetch();
+	for (let i = 0; i < wozniak.length; i++) {
+		Wozniak.update({
+				_id: wozniak[i]._id
+			},
+			{
+				$set: {
+					viewedPDF: false
 				}
 			}
 		);
