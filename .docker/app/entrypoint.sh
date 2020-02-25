@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 export NODE_ENV=production
 export PORT=3000

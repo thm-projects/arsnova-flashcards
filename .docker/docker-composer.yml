@@ -6,10 +6,10 @@ services:
     volumes:
       - "data:/data/db"
 
-  app:
+  cards:
     image: arsnova/arsnova-cards
     build:
-      context: ./../.
+      context: ..
       dockerfile: .docker/app/Dockerfile
     depends_on:
       - mongodb
@@ -19,11 +19,12 @@ services:
 
   proxy:
     image: arsnova/arsnova-cards-proxy
-    build: ./proxy
+    build:
+      context: ./proxy
     ports:
       - "8080:80"
     depends_on:
-      - app
+      - cards
 
 volumes:
   data:

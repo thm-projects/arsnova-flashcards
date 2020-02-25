@@ -40,6 +40,6 @@ COPY .docker/app/settings_docker.json .
 RUN export METEOR_SETTINGS="`cat settings_docker.json`"
 EXPOSE 3000
 
-COPY .docker/app/entrypoint.sh .
-RUN chmod +x entrypoint.sh
-ENTRYPOINT ["./entrypoint.sh"]
+COPY .docker/app/entrypoint.sh /
+RUN chmod +x /entrypoint.sh
+CMD ["/entrypoint.sh"]
