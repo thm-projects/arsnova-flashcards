@@ -2,8 +2,11 @@
 # ON SCM-ADMIN - ARTIFACT FROM PIPELINE NEEDED!
 FROM node:12 AS METEOR_BASE
 
+ARG BUILD_DIR=$BUILD_DIR
+ARG BUNDLE_DIR=$BUNDLE_DIR
+
 ENV APP_HOME=/usr/app/
-ENV BUILD_DIR=/usr/build/
+ENV DOCKER_BUILD_DIR=/usr/build/
 WORKDIR $APP_HOME
 
 # Install packages
@@ -25,21 +28,22 @@ RUN curl https://install.meteor.com/ | sh
 
 # copy the artifact from gitlab CI
 # WORKS ONLY ON THE THM SCM-BUILDER AND INSIDE OF A PIPELINE
-RUN mkdir -p "$BUILD_DIR/bundle"
-COPY build/bundle "$BUILD_DIR/bundle"
-RUN (cd "$BUILD_DIR" && cd bundle/programs/server && npm install)
+RUN mkdir -p "$DOCKER_BUILD_DIR/bundle"
+COPY "$BUNDLE_DIR" "$DOCKER_BUILD_DIR/bundle"
+RUN (cd "$DOCKER_BUILD_DIR" && cd bundle/programs/server && npm install)
 
 # build optimized images from Alpine
 FROM node:12-alpine
 ENV APP_HOME=/usr/app/
-ENV BUILD_DIR=/usr/build/
+ENV DOCKER_BUILD_DIR=/usr/build/
 WORKDIR $APP_HOME
 
 # copy build artifacts from previous stage
-COPY --from=METEOR_BASE $BUILD_DIR .
-COPY .docker/app/settings_docker.json .
+COPY --from=METEOR_BASE $DOCKER_BUILD_DIR .
+COPY .docker/kaniko/settings_docker.json .
 RUN export METEOR_SETTINGS="`cat settings_docker.json`"
 EXPOSE 3000
 
-COPY .docker/app/entrypoint.sh .
-ENTRYPOINT ["entrypoint.sh"]
+COPY .docker/kaniko/entrypoint.sh /
+RUN chmod +x /entrypoint.sh
+CMD ["/entrypoint.sh"]

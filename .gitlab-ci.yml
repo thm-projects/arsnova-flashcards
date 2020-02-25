@@ -192,11 +192,12 @@ deploy_dockerhub_staging:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
   script:
+    - ls -al /
     - ls -al $BUILD_DIR
     - ls -al $BUNDLE_DIR
     - pwd
-    # - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-    # - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
+    - echo "{\"auths\":{\"$DOCKER_REGISTRY\":{\"username\":\"$DOCKER_REGISTRY_USER\",\"password\":\"$DOCKER_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/.docker/kaniko/Dockerfile --destination $DOCKER_REGISTRY_IMAGE:staging-$CI_COMMIT_TAG
   # only:
   #   - staging
   tags:
