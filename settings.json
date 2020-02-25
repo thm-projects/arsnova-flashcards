@@ -4,6 +4,7 @@
     "plantUMLUrl": "http://www.plantuml.com/plantuml",
     "dynamicSettings": "default",
     "backdoorEnabled": false,
+    "useMatomo": true,
     "cas": {
       "loginUrl": "https://cas.thm.de/cas/login",
       "serviceParam": "service",
@@ -60,6 +61,5 @@
     "MATOMO_URL" : "http://your_matomo_server_url/matomo.php",
     "MATOMO_SITE_ID" : 0,
     "MATOMO_TOKEN" : "<YOUR SECRET MATOMO TOKEN>"
-
   }
 }
