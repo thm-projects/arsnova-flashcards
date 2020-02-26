@@ -196,7 +196,7 @@ deploy_dockerhub_staging:
     - ls -al $BUILD_DIR
     - ls -al $BUNDLE_DIR
     - pwd
-    - echo "{\"auths\":{\"$DOCKER_REGISTRY\":{\"auth\":\"$DOCKER_REGISTRY_TOKEN\"}}}" > /kaniko/.docker/config.json
+    - echo "{\"auths\":{\"$DOCKER_REGISTRY_URL\":{\"auth\":\"$DOCKER_REGISTRY_TOKEN\"}}}" > /kaniko/.docker/config.json
     - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/.docker/kaniko/Dockerfile --destination $DOCKER_REGISTRY_IMAGE:staging
   # only:
   #   - staging
