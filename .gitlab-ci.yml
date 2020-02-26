@@ -186,7 +186,8 @@ deploy_linux:
     - ssh $LINUX_SSH 'touch /home/meteor/deploy.touch'
   environment: production
 
-deploy_dockerhub_staging:
+# PRODUCTION uses Dockerfile in .docker/kaniko - consumer version!
+deploy_dockerhub_production:
   stage: deploy
   image:
     name: gcr.io/kaniko-project/executor:debug
@@ -200,26 +201,11 @@ deploy_dockerhub_staging:
       --build-arg   "BUNDLE_DIR=$BUNDLE_DIR"
       --destination "$DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
   only:
-    - staging
+    - master
   tags:
     - kaniko
   dependencies:
     - build
-
-# deploy_dockerhub_production:
-#   stage: deploy
-#   image:
-#     name: gcr.io/kaniko-project/executor:debug
-#     entrypoint: [""]
-#   script:
-#     # - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-#     # - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
-#   only:
-#     - master
-#   tags:
-#     - kaniko
-#   dependencies:
-#     - build
 
 deploy_dockerhub_manual:
   stage: deploy
@@ -235,6 +221,8 @@ deploy_dockerhub_manual:
       --build-arg   "BUILD_DIR=$BUILD_DIR"
       --build-arg   "BUNDLE_DIR=$BUNDLE_DIR"
       --destination "$DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  except:
+    - master
   tags:
     - kaniko
   dependencies:

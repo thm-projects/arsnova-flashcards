@@ -37,9 +37,10 @@ WORKDIR $APP_HOME
 # copy build artifacts from previous stage
 COPY --from=METEOR_BASE $BUILD_DIR .
 COPY .docker/app/settings_docker.json .
-RUN export METEOR_SETTINGS="`cat settings_docker.json`"
-EXPOSE 3000
 
 COPY .docker/app/entrypoint.sh /
 RUN chmod +x /entrypoint.sh
+
+EXPOSE 3000
+
 CMD ["/entrypoint.sh"]

@@ -7,7 +7,7 @@ services:
       - "data:/data/db"
 
   cards:
-    image: arsnova/cards
+    image: arsnova/cards:master
     depends_on:
       - mongodb
     environment:
@@ -15,7 +15,7 @@ services:
       - ROOT_URL=http://localhost:3000
 
   proxy:
-    image: arsnova/cards-proxy
+    image: arsnova/cards-local-proxy
     ports:
       - "8080:80"
     depends_on:

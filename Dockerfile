@@ -24,6 +24,8 @@ RUN curl https://install.meteor.com/ | sh
 
 # build the meteor app
 COPY . $APP_HOME
-RUN meteor npm install && meteor --allow-superuser lint
+RUN meteor npm install
+# && meteor --allow-superuser lint
 
-CMD ["meteor", "--allow-superuser", "--settings", "settings_debug.json"]
+ENTRYPOINT ["meteor", "--allow-superuser"]
+CMD ["--settings", "settings_debug.json"]
