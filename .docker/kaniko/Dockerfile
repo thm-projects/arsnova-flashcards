@@ -40,7 +40,7 @@ WORKDIR $APP_HOME
 
 # copy build artifacts from previous stage
 COPY --from=METEOR_BASE $DOCKER_BUILD_DIR .
-COPY .docker/kaniko/settings_docker.json .
+COPY .docker/kaniko/settings_kaniko.json .
 
 # copy entrypoint from repository
 COPY .docker/kaniko/entrypoint.sh /

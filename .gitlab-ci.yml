@@ -192,20 +192,15 @@ deploy_dockerhub_staging:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
   script:
-    - pwd
-    - ls -al .
-    - ls -al /
-    - ls -al $BUILD_DIR
-    - ls -al $BUNDLE_DIR
     - echo "{\"auths\":{\"$DOCKER_REGISTRY_URL\":{\"auth\":\"$DOCKER_REGISTRY_TOKEN\"}}}" > /kaniko/.docker/config.json
     - /kaniko/executor
       --context     "$CI_PROJECT_DIR"
       --dockerfile  "$CI_PROJECT_DIR/.docker/kaniko/Dockerfile"
       --build-arg   "BUILD_DIR=$BUILD_DIR"
       --build-arg   "BUNDLE_DIR=$BUNDLE_DIR"
-      --destination "$DOCKER_REGISTRY_IMAGE:staging"
-  # only:
-  #   - staging
+      --destination "$DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  only:
+    - staging
   tags:
     - kaniko
   dependencies:
@@ -225,6 +220,25 @@ deploy_dockerhub_staging:
 #     - kaniko
 #   dependencies:
 #     - build
+
+deploy_dockerhub_manual:
+  stage: deploy
+  when: manual
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  script:
+    - echo "{\"auths\":{\"$DOCKER_REGISTRY_URL\":{\"auth\":\"$DOCKER_REGISTRY_TOKEN\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor
+      --context     "$CI_PROJECT_DIR"
+      --dockerfile  "$CI_PROJECT_DIR/.docker/kaniko/Dockerfile"
+      --build-arg   "BUILD_DIR=$BUILD_DIR"
+      --build-arg   "BUNDLE_DIR=$BUNDLE_DIR"
+      --destination "$DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  tags:
+    - kaniko
+  dependencies:
+    - build
 
 sync_mirror:
   stage: deploy
