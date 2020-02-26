@@ -9,22 +9,6 @@ ENV APP_HOME=/usr/app/
 ENV DOCKER_BUILD_DIR=/usr/build/
 WORKDIR $APP_HOME
 
-# Install packages
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-      curl \
-      g++ \
-      build-essential \
-      mongodb \
-    && \
-    apt-get -y clean && \
-    rm -rf /var/lib/apt/lists/*
-
-# install node build tool
-RUN npm install -g node-gyp
-
-# install meteor
-RUN curl https://install.meteor.com/ | sh
 RUN echo "$BUILD_DIR" > /build.txt
 RUN echo "$BUNDLE_DIR" > /bundle.txt
 
@@ -33,4 +17,4 @@ RUN echo "$BUNDLE_DIR" > /bundle.txt
 RUN mkdir -p "$DOCKER_BUILD_DIR/bundle"
 COPY "$BUNDLE_DIR" "$DOCKER_BUILD_DIR/bundle"
 
-CMD ["/bin/sh"]
+CMD ["/bin/bash"]
