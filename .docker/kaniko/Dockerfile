@@ -44,11 +44,9 @@ COPY .docker/kaniko/settings_kaniko.json .
 
 # copy entrypoint from repository
 COPY .docker/kaniko/entrypoint.sh /
+RUN chmod +x /entrypoint.sh
 
 # expose the node.js standard port
 EXPOSE 3000
 
-# Overwrite CMD for testing purposes
-# RUN chmod +x /entrypoint.sh
-# CMD ["/entrypoint.sh"]
-CMD ["/bin/sh"]
+CMD ["/entrypoint.sh"]
