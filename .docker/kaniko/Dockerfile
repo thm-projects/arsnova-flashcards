@@ -15,6 +15,6 @@ RUN echo "$BUNDLE_DIR" > /bundle.txt
 # copy the artifact from gitlab CI
 # WORKS ONLY ON THE THM SCM-BUILDER AND INSIDE OF A PIPELINE
 RUN mkdir -p "$DOCKER_BUILD_DIR/bundle"
-COPY "$BUNDLE_DIR" "$DOCKER_BUILD_DIR/bundle"
+ADD "$BUNDLE_DIR" "$DOCKER_BUILD_DIR/bundle"
 
 CMD ["/bin/bash"]
