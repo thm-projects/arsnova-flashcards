@@ -186,12 +186,16 @@ deploy_linux:
     - ssh $LINUX_SSH 'touch /home/meteor/deploy.touch'
   environment: production
 
-# PRODUCTION uses Dockerfile in .docker/kaniko - consumer version!
-deploy_dockerhub_production:
+# Base rules for deploying to dockerhub
+.deploy_dockerhub:  &deploy_dockerhub
   stage: deploy
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
+  tags:
+    - kaniko
+  dependencies:
+    - build
   script:
     - echo "{\"auths\":{\"$DOCKER_REGISTRY_URL\":{\"auth\":\"$DOCKER_REGISTRY_TOKEN\"}}}" > /kaniko/.docker/config.json
     - /kaniko/executor
@@ -200,33 +204,21 @@ deploy_dockerhub_production:
       --build-arg   "BUILD_DIR=$BUILD_DIR"
       --build-arg   "BUNDLE_DIR=$BUNDLE_DIR"
       --destination "$DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+
+# PRODUCTION uses Dockerfile in .docker/kaniko - consumer version!
+# Auto deploy when commit on master
+deploy_dockerhub_production:
+  << : *deploy_dockerhub
   only:
     - master
-  tags:
-    - kaniko
-  dependencies:
-    - build
 
+# MANUAL uses Dockerfile in .docker/kaniko - consumer test version!
+# Manual deployment only
 deploy_dockerhub_manual:
-  stage: deploy
+  << : *deploy_dockerhub
   when: manual
-  image:
-    name: gcr.io/kaniko-project/executor:debug
-    entrypoint: [""]
-  script:
-    - echo "{\"auths\":{\"$DOCKER_REGISTRY_URL\":{\"auth\":\"$DOCKER_REGISTRY_TOKEN\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor
-      --context     "$CI_PROJECT_DIR"
-      --dockerfile  "$CI_PROJECT_DIR/.docker/kaniko/Dockerfile"
-      --build-arg   "BUILD_DIR=$BUILD_DIR"
-      --build-arg   "BUNDLE_DIR=$BUNDLE_DIR"
-      --destination "$DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
   except:
     - master
-  tags:
-    - kaniko
-  dependencies:
-    - build
 
 sync_mirror:
   stage: deploy

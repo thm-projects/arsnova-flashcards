@@ -1,7 +1,0 @@
-build
-settings-production.json
-settings-staging.json
-npm-debug.log
-.idea/
-.DS_Store
-node_modules/
