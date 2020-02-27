@@ -5,9 +5,6 @@ variables:
   BUNDLE_DIR: "$BUILD_DIR/bundle"
   REVIEW_SETTINGS: settings_review.json
   DB_TEST_DUMP: tests/testDatabaseDump/meteor
-  KANIKO_CARDS_SETTINGS: .docker/kaniko/settings_kaniko.json
-  KANIKO_LINUX_CARDS_SETTINGS: .docker/kaniko/settings_kaniko_linux.json
-
 
 stages:
   - test
@@ -206,32 +203,48 @@ deploy_linux:
       --dockerfile  "$CI_PROJECT_DIR/.docker/kaniko/Dockerfile"
       --build-arg   "BUILD_DIR=$BUILD_DIR"
       --build-arg   "BUNDLE_DIR=$BUNDLE_DIR"
-      --build-arg   "SETTINGS_FILE=$KANIKO_CARDS_SETTINGS"
-      --destination "$DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
-    - /kaniko/executor
-      --context     "$CI_PROJECT_DIR"
-      --dockerfile  "$CI_PROJECT_DIR/.docker/kaniko/Dockerfile"
-      --build-arg   "BUILD_DIR=$BUILD_DIR"
-      --build-arg   "BUNDLE_DIR=$BUNDLE_DIR"
-      --build-arg   "SETTINGS_FILE=$KANIKO_LINUX_CARDS_SETTINGS"
-      --destination "$LINUX_DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+      --build-arg   "SETTINGS_FILE=$SETTINGS_FILE"
+      --destination "$DESTINATION"
 
-# AUTO uses Dockerfile in .docker/kaniko - consumer version!
-# Auto deploy when commit on master or staging
-deploy_dockerhub_auto:
-  << : *deploy_dockerhub
-  only:
+# define release branches
+.release_branches:
+  only:  &release_branches
     - staging
     - master
 
-# MANUAL uses Dockerfile in .docker/kaniko - consumer test version!
-# Manual deployment only
-deploy_dockerhub_manual:
+# Auto deploy cards when commit on release branch
+deploy_dockerhub_cards_auto:
+  variables:
+    SETTINGS_FILE: .docker/kaniko/settings_kaniko.json
+    DESTINATION: "$DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  << : *deploy_dockerhub
+  only:  *release_branches
+
+# Auto deploy linux when commit on release branch
+deploy_dockerhub_linux_auto:
+  variables:
+    SETTINGS_FILE: .docker/kaniko/settings_kaniko_linux.json
+    DESTINATION: "$LINUX_DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  << : *deploy_dockerhub
+  only:  *release_branches
+
+# Manual deploy cards from any branch
+deploy_dockerhub_cards_manual:
+  variables:
+    SETTINGS_FILE: .docker/kaniko/settings_kaniko.json
+    DESTINATION: "$DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
   << : *deploy_dockerhub
   when: manual
-  except:
-    - staging
-    - master
+  except:  *release_branches
+
+# Manual deploy linux from any branch
+deploy_dockerhub_linux_manual:
+  variables:
+    SETTINGS_FILE: .docker/kaniko/settings_kaniko_linux.json
+    DESTINATION: "$LINUX_DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  << : *deploy_dockerhub
+  when: manual
+  except:  *release_branches
 
 sync_mirror:
   stage: deploy
