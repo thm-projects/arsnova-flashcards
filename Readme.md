@@ -7,21 +7,8 @@ arsnova🍅cards uses Meteor as application framework. Download and install [Met
 ## Hardware requirements
 - 4 GB RAM
 
-## Initial setup (docker - development version)
-1. Make sure you have installed Docker (https://docs.docker.com/install/)
-2. Build the image on your own...
-  2.1. From your project directory run `docker build -t <your-tag> .`
-  2.2. Then run the container with `docker run -d -p <desired-port>:3000 <your-tag>`
-3. ...or use the image from docker hub
-  3.1. Simply run `docker run -d -p <desired-port>:3000 arsnova/arsnova-cards:debug`
-4. The app is now available under **localhost:\<desired-port\>**
-
-## Initial setup (docker - production version)
-1. Make sure you have installed Docker (https://docs.docker.com/install/)\
-2. Make sure you have installed Docker Compose (https://docs.docker.com/compose/install/)
-3. From your project directory run `docker-compose up -d -f .docker/docker-compose.yml`
-  3.1. If your local port 8080 is already in use, you can change it in `docker-compose.yml`
-4. The app is now available under **localhost:8080**
+## Initial setup with Docker
+Instructions for Docker can be found [»here«](docker_readme.md).
 
 ## Initial setup (native)
 |Step | Linux Terminal Command  |
