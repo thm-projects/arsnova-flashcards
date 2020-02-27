@@ -4,7 +4,6 @@ FROM node:12 AS METEOR_BASE
 
 ARG BUILD_DIR=$BUILD_DIR
 ARG BUNDLE_DIR=$BUNDLE_DIR
-ARG SETTINGS_FILE=$SETTINGS_FILE
 
 ENV APP_HOME=/usr/app/
 ENV DOCKER_BUILD_DIR=/usr/build/
@@ -35,13 +34,16 @@ RUN (cd "$DOCKER_BUILD_DIR" && cd bundle/programs/server && npm install)
 
 # build optimized images from Alpine
 FROM node:12-alpine
+
+ARG SETTINGS_FILE=$SETTINGS_FILE
+
 ENV APP_HOME=/usr/app/
 ENV DOCKER_BUILD_DIR=/usr/build/
 WORKDIR $APP_HOME
 
 # copy build artifacts from previous stage
 COPY --from=METEOR_BASE $DOCKER_BUILD_DIR .
-COPY $SETTINGS_FILE ./settings.json
+COPY "$SETTINGS_FILE" settings.json
 
 RUN echo "$SETTINGS_FILE" > /settingsfile.txt
 

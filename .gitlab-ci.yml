@@ -5,8 +5,8 @@ variables:
   BUNDLE_DIR: "$BUILD_DIR/bundle"
   REVIEW_SETTINGS: settings_review.json
   DB_TEST_DUMP: tests/testDatabaseDump/meteor
-  KANIKO_CARDS_SETTINGS: ".docker/kaniko/settings_kaniko.json"
-  KANIKO_LINUX_CARDS_SETTINGS: ".docker/kaniko/settings_kaniko_linux.json"
+  KANIKO_CARDS_SETTINGS: .docker/kaniko/settings_kaniko.json
+  KANIKO_LINUX_CARDS_SETTINGS: .docker/kaniko/settings_kaniko_linux.json
 
 
 stages:
@@ -216,9 +216,9 @@ deploy_linux:
       --build-arg   "SETTINGS_FILE=$KANIKO_LINUX_CARDS_SETTINGS"
       --destination "$LINUX_DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
 
-# PRODUCTION uses Dockerfile in .docker/kaniko - consumer version!
+# AUTO uses Dockerfile in .docker/kaniko - consumer version!
 # Auto deploy when commit on master or staging
-deploy_dockerhub_production:
+deploy_dockerhub_auto:
   << : *deploy_dockerhub
   only:
     - staging
