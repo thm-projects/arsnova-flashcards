@@ -202,3 +202,66 @@ sync_mirror:
     - git push --mirror "$MIRROR_REPO"
   environment: GitHub
 
+# Base rules for deploying to dockerhub
+.deploy_dockerhub:  &deploy_dockerhub
+  stage: deploy
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  tags:
+    - kaniko
+  dependencies:
+    - build
+  script:
+    - echo "{\"auths\":{\"$DOCKER_REGISTRY_URL\":{\"auth\":\"$DOCKER_REGISTRY_TOKEN\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor
+      --context     "$CI_PROJECT_DIR"
+      --dockerfile  "$CI_PROJECT_DIR/.docker/kaniko/Dockerfile"
+      --build-arg   "BUILD_DIR=$BUILD_DIR"
+      --build-arg   "BUNDLE_DIR=$BUNDLE_DIR"
+      --build-arg   "SETTINGS_FILE=$SETTINGS_FILE"
+      --destination "$DESTINATION"
+
+# define release branches
+.release_branches:
+  only:  &release_branches
+    - staging
+    - master
+
+# settings for cards
+.cards_environment:
+  variables:  &cards_environment
+    SETTINGS_FILE: .docker/kaniko/settings_kaniko.json
+    DESTINATION: "$DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+
+# settings for linux.cards
+.linux_environment:
+  variables:  &linux_environment
+    SETTINGS_FILE: .docker/kaniko/settings_kaniko_linux.json
+    DESTINATION: "$LINUX_DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+
+# Auto deploy cards when commit on release branch
+deploy_dockerhub_cards_auto:
+  variables: *cards_environment
+  << : *deploy_dockerhub
+  only:  *release_branches
+
+# Auto deploy linux when commit on release branch
+deploy_dockerhub_linux_auto:
+  variables: *linux_environment
+  << : *deploy_dockerhub
+  only:  *release_branches
+
+# Manual deploy cards from any branch
+deploy_dockerhub_cards_manual:
+  variables: *cards_environment
+  << : *deploy_dockerhub
+  when: manual
+  except:  *release_branches
+
+# Manual deploy linux from any branch
+deploy_dockerhub_linux_manual:
+  variables: *linux_environment
+  << : *deploy_dockerhub
+  when: manual
+  except:  *release_branches
