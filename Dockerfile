@@ -22,10 +22,7 @@ RUN npm install -g node-gyp
 # install meteor
 RUN curl https://install.meteor.com/ | sh
 
-# build the meteor app
-COPY . $APP_HOME
-RUN meteor npm install
-# && meteor --allow-superuser lint
-
-ENTRYPOINT ["meteor", "--allow-superuser"]
-CMD ["--settings", "settings_debug.json"]
+COPY docker_entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["settings_debug.json"]

@@ -35,7 +35,11 @@ No need to clone a repository or to build anything.
 You can build and run the development version of cards with docker. Therefore you can use the standard Dockerfile in the projects root directory.
 1. Clone the project  
 2. From your project directory run `sudo docker build -t <your-tag> .`  
-3. Then run the container with `sudo docker run -d -p <desired-port>:3000 <your-custom-tag>`  
+3. Then run the container with `sudo docker run -it -v $PWD:/usr/app -p <desired-port>:3000 <your-custom-tag>`  
+  3.1. The first time you run this, it may take while  
+  3.2. With the -v argument you share the host project directory with the docker container - this is important because otherwise you would have to rebuild the container after each change  
+  3.3. If you like to start the container detached, use command option `-d` instead of `-it`
+  3.4. You may run the app with a custom `settings.json`-File via `sudo docker run -it -v $PWD:/usr/app -p <desired-port>:3000 <your-custom-tag> <custom-settings-file>`.  
 4. The app is now available under **localhost:\<desired-port\>**  
 
 ## Managing running containers
