@@ -66,7 +66,11 @@ export let PDFViewer = class PDFViewer {
 	}
 
 	static getViewerLink () {
-		return config.viewerLink;
+		if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+			return config.viewerLinkLocalhost;
+		} else {
+			return config.viewerLink;
+		}
 	}
 
 	static setLearningAutoTarget (card_id, cardType) {

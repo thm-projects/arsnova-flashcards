@@ -27,8 +27,8 @@ let desktopSize = {
 	width: 0.8
 };
 
-//Viewer doesn't work atm without herokuapp
 let viewerLink = "/pdf/web/viewer.html?file=https://cors-anywhere.herokuapp.com/";
+let viewerLinkLocalhost = "/pdf/web/viewer.html?file=https://cors-anywhere.herokuapp.com/";
 let markdeepPDFRegex = /\[.*?\]\((.*?\.pdf.*?)\)/;
 
 module.exports = {
@@ -36,5 +36,6 @@ module.exports = {
 	tabletSize,
 	desktopSize,
 	viewerLink,
+	viewerLinkLocalhost,
 	markdeepPDFRegex
 };
