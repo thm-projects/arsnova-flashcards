@@ -5,7 +5,7 @@ import {Cardsets} from "../imports/api/subscriptions/cardsets";
 import {MailNotifier} from "./sendmail.js";
 import {WebNotifier} from "./sendwebpush.js";
 import {Bonus} from "../imports/api/bonus";
-import {LeitnerUtilities} from "../imports/api/leitner";
+import {LeitnerUtilities} from "../imports/util/leitner.js";
 import {ServerSettings} from "../imports/api/settings";
 
 /** Function gets called when the learning-phase ended and excludes the cardset from the leitner algorithm

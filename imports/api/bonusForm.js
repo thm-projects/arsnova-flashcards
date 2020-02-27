@@ -5,7 +5,7 @@ import * as config from "../config/bonusForm.js";
 import * as leitnerConfig from "../config/leitner.js";
 import {Utilities} from "./utilities";
 import {CardType} from "./cardTypes";
-import {LeitnerUtilities} from "./leitner";
+import {LeitnerUtilities} from "../util/leitner";
 import {SweetAlertMessages} from "./sweetAlert";
 
 let leitnerSimulator;

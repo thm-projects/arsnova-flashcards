@@ -1,6 +1,5 @@
 build
-settings-production.json
-settings-staging.json
+!public/pdf/build
 npm-debug.log
 .idea/
 .DS_Store

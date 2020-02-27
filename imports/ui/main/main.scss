@@ -241,11 +241,11 @@ body.editor {
 }
 
 #pomodoroTimerModal {
-  z-index: 4000;
+  z-index: 10000 !important;
 }
 
 #helpModal {
-  z-index: 5000;
+  z-index: 11000 !important;
 }
 
 #first_login_content {
