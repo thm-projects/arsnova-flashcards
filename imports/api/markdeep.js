@@ -12,6 +12,7 @@ import Asciidoctor from "/client/thirdParty/asciidoctor/asciidoctor.min.js";
 import {Session} from "meteor/session";
 import {Route} from "./route";
 import XRegExp from 'xregexp';
+import {PDFViewer} from "../util/pdfViewer";
 
 let asciidoctor = new Asciidoctor();
 plantuml.register(asciidoctor.Extensions);
@@ -130,6 +131,18 @@ export let MarkdeepContent = class MarkdeepContent {
 
 	static initializeStylesheet () {
 		$('head').append(window.markdeep.stylesheet());
+	}
+
+	static getLinkTarget (event) {
+		let link = $(event.target).attr("href");
+		let targetType = link.substring(link.lastIndexOf("."));
+		if (targetType.substring(1, 4) === "pdf") {
+			event.preventDefault();
+			Session.set('activePDF', link);
+			PDFViewer.openModal();
+		} else {
+			this.anchorTarget(event);
+		}
 	}
 
 	static anchorTarget (event) {

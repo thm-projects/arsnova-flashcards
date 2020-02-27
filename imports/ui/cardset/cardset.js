@@ -22,6 +22,7 @@ import "./labels/labels.js";
 import "./index/transcript/transcript.js";
 import "./sidebar/sidebar.js";
 import "./cardset.html";
+import {PDFViewer} from "../../util/pdfViewer";
 
 Meteor.subscribe("notifications");
 
@@ -44,6 +45,7 @@ Template.cardset.onCreated(function () {
 	Session.set('cameFromEditMode', false);
 	CardNavigation.toggleVisibility(true);
 	Session.set('hideSidebar', false);
+	PDFViewer.setAutoPDFTargetStatus(false);
 });
 
 Template.cardset.rendered = function () {

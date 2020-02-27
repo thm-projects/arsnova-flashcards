@@ -11,6 +11,7 @@ import {CardType} from "./cardTypes";
 import {NavigatorCheck} from "./navigatorCheck";
 import * as config from "../config/cardNavigation.js";
 import {CardsetNavigation} from "./cardsetNavigation";
+import {PDFViewer} from "../util/pdfViewer";
 
 let keyEventsUnlocked = true;
 let lastActiveCardString = "lastActiveCard";
@@ -266,6 +267,10 @@ export let CardNavigation = class CardNavigation {
 				_id = cardset_id.cardset_id;
 			}
 			Session.set('activeCardsetName', Cardsets.findOne({_id: _id}).name);
+		}
+		let activeCard = Cards.findOne({_id: Session.get('activeCard')}, {fields: {_id: 1, cardType: 1}});
+		if (activeCard !== undefined) {
+			PDFViewer.setLearningAutoTarget(activeCard._id, activeCard.cardType);
 		}
 	}
 

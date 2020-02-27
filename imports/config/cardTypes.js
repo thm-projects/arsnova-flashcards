@@ -28,6 +28,7 @@ let cardTypesWithCardsetTitleNavigation = [14];
 let cardTypesWithSwapAnswerQuestionButton = [1, 17];
 let cardTypesWithDefaultMobilePreview = [0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 let cardTypesWithMarkdeepHelp = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+let cardTypesWithLearningModePDFAutoTarget = [0];
 let cardTypesWithTranscriptBonus = [19];
 let lecturerExclusiveCardTypes = [19];
 let cardTypesOrder = [
@@ -58,6 +59,9 @@ let defaultTextAlign = 0;
 let defaultCentered = true;
 let swapAnserQuestionCardTypeResult = [];
 
+// gotPDFAutoTarget
+//Requires card type to be listed in cardTypesWithLearningModePDFAutoTarget. Only returns the first pdf markdeep result.
+
 let cardTypeCubeSides = [
 	//0: Lerneinheit
 	[
@@ -84,7 +88,8 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 3,
 			"defaultStyle": "default",
-			"isAnswer": true
+			"isAnswer": true,
+			"gotPDFAutoTarget": true
 		}
 
 	],
@@ -427,6 +432,7 @@ module.exports = {
 	cardTypesWithSwapAnswerQuestionButton,
 	cardTypesWithDefaultMobilePreview,
 	cardTypesWithMarkdeepHelp,
+	cardTypesWithLearningModePDFAutoTarget,
 	cardTypesOrder,
 	defaultTextAlign,
 	defaultCentered,

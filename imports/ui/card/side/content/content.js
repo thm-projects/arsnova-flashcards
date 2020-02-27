@@ -72,6 +72,6 @@ Template.cardContent.helpers({
 
 Template.cardContent.events({
 	'click a': function (event) {
-		MarkdeepContent.anchorTarget(event);
+		MarkdeepContent.getLinkTarget(event);
 	}
 });

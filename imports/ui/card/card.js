@@ -68,8 +68,7 @@ Template.flashcards.onCreated(function () {
 	}
 });
 
-let resizeInterval;
-let windowResizeSensor;
+
 Template.flashcards.onRendered(function () {
 	TouchNavigation.cards();
 	$(".box").on('transitionend webkitTransitionEnd oTransitionEnd', function () {
@@ -88,23 +87,10 @@ Template.flashcards.onRendered(function () {
 	new ResizeSensor($('#cardCarousel'), function () {
 		CardVisuals.resizeFlashcard();
 	});
-	windowResizeSensor = $(window).resize(function () {
-		CardVisuals.resizeFlashcard();
-	});
 	if (Route.isEditMode()) {
 		CardEditor.setEditorButtonIndex(0);
 	}
 	CardVisuals.setDefaultViewingMode();
-});
-
-Template.flashcards.onDestroyed(function () {
-	if (resizeInterval !== undefined) {
-		clearInterval(resizeInterval);
-		resizeInterval = undefined;
-	}
-	if (windowResizeSensor !== undefined) {
-		windowResizeSensor.off('resize');
-	}
 });
 
 Template.flashcards.helpers({

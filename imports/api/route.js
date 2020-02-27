@@ -45,6 +45,10 @@ export let Route = class Route {
 		return Router.current().route.getName() === "editCard" || this.isEditTranscript();
 	}
 
+	static isLearningMode () {
+		return (this.isBox() || this.isMemo());
+	}
+
 	static isDemo () {
 		return Router.current().route.getName() === "demo" || this.isDemoList();
 	}
