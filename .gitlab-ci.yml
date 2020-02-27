@@ -5,6 +5,9 @@ variables:
   BUNDLE_DIR: "$BUILD_DIR/bundle"
   REVIEW_SETTINGS: settings_review.json
   DB_TEST_DUMP: tests/testDatabaseDump/meteor
+  KANIKO_CARDS_SETTINGS: ".docker/kaniko/settings_kaniko.json"
+  KANIKO_LINUX_CARDS_SETTINGS: ".docker/kaniko/settings_kaniko_linux.json"
+
 
 stages:
   - test
@@ -203,14 +206,14 @@ deploy_linux:
       --dockerfile  "$CI_PROJECT_DIR/.docker/kaniko/Dockerfile"
       --build-arg   "BUILD_DIR=$BUILD_DIR"
       --build-arg   "BUNDLE_DIR=$BUNDLE_DIR"
-      --build-arg   "SETTINGS_FILE=.docker/kaniko/settings_kaniko.json"
+      --build-arg   "SETTINGS_FILE=$KANIKO_CARDS_SETTINGS"
       --destination "$DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
     - /kaniko/executor
       --context     "$CI_PROJECT_DIR"
       --dockerfile  "$CI_PROJECT_DIR/.docker/kaniko/Dockerfile"
       --build-arg   "BUILD_DIR=$BUILD_DIR"
       --build-arg   "BUNDLE_DIR=$BUNDLE_DIR"
-      --build-arg   "SETTINGS_FILE=.docker/kaniko/settings_kaniko_linux.json"
+      --build-arg   "SETTINGS_FILE=$KANIKO_LINUX_CARDS_SETTINGS"
       --destination "$LINUX_DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
 
 # PRODUCTION uses Dockerfile in .docker/kaniko - consumer version!

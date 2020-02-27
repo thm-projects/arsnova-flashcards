@@ -43,6 +43,8 @@ WORKDIR $APP_HOME
 COPY --from=METEOR_BASE $DOCKER_BUILD_DIR .
 COPY $SETTINGS_FILE ./settings.json
 
+RUN echo "$SETTINGS_FILE" > /settingsfile.txt
+
 # copy entrypoint from repository
 COPY .docker/kaniko/entrypoint.sh /
 RUN chmod +x /entrypoint.sh
