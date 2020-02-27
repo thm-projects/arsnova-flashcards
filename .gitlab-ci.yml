@@ -186,6 +186,22 @@ deploy_linux:
     - ssh $LINUX_SSH 'touch /home/meteor/deploy.touch'
   environment: production
 
+sync_mirror:
+  stage: deploy
+  tags:
+    - git
+  when: always
+  allow_failure: true
+  dependencies: []
+  script:
+    - eval $(ssh-agent -s)
+    - mkdir ~/.ssh && echo "$SYNC_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+    - ssh-add <(echo "$SYNC_SSH_PRIVATE_KEY")
+    - git clone --bare "$CI_REPOSITORY_URL" mirror.git
+    - cd mirror.git
+    - git push --mirror "$MIRROR_REPO"
+  environment: GitHub
+
 # Base rules for deploying to dockerhub
 .deploy_dockerhub:  &deploy_dockerhub
   stage: deploy
@@ -212,52 +228,40 @@ deploy_linux:
     - staging
     - master
 
-# Auto deploy cards when commit on release branch
-deploy_dockerhub_cards_auto:
-  variables:
+# settings for cards
+.cards_environment:
+  variables:  &cards_environment
     SETTINGS_FILE: .docker/kaniko/settings_kaniko.json
     DESTINATION: "$DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+
+# settings for linux.cards
+.linux_environment:
+  variables:  &linux_environment
+    SETTINGS_FILE: .docker/kaniko/settings_kaniko_linux.json
+    DESTINATION: "$LINUX_DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+
+# Auto deploy cards when commit on release branch
+deploy_dockerhub_cards_auto:
+  variables: *cards_environment
   << : *deploy_dockerhub
   only:  *release_branches
 
 # Auto deploy linux when commit on release branch
 deploy_dockerhub_linux_auto:
-  variables:
-    SETTINGS_FILE: .docker/kaniko/settings_kaniko_linux.json
-    DESTINATION: "$LINUX_DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  variables: *linux_environment
   << : *deploy_dockerhub
   only:  *release_branches
 
 # Manual deploy cards from any branch
 deploy_dockerhub_cards_manual:
-  variables:
-    SETTINGS_FILE: .docker/kaniko/settings_kaniko.json
-    DESTINATION: "$DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  variables: *cards_environment
   << : *deploy_dockerhub
   when: manual
   except:  *release_branches
 
 # Manual deploy linux from any branch
 deploy_dockerhub_linux_manual:
-  variables:
-    SETTINGS_FILE: .docker/kaniko/settings_kaniko_linux.json
-    DESTINATION: "$LINUX_DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  variables: *linux_environment
   << : *deploy_dockerhub
   when: manual
   except:  *release_branches
-
-sync_mirror:
-  stage: deploy
-  tags:
-    - git
-  when: always
-  allow_failure: true
-  dependencies: []
-  script:
-    - eval $(ssh-agent -s)
-    - mkdir ~/.ssh && echo "$SYNC_SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-    - ssh-add <(echo "$SYNC_SSH_PRIVATE_KEY")
-    - git clone --bare "$CI_REPOSITORY_URL" mirror.git
-    - cd mirror.git
-    - git push --mirror "$MIRROR_REPO"
-  environment: GitHub
