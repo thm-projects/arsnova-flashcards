@@ -203,13 +203,22 @@ deploy_linux:
       --dockerfile  "$CI_PROJECT_DIR/.docker/kaniko/Dockerfile"
       --build-arg   "BUILD_DIR=$BUILD_DIR"
       --build-arg   "BUNDLE_DIR=$BUNDLE_DIR"
+      --build-arg   "SETTINGS_FILE=.docker/kaniko/settings_kaniko.json"
       --destination "$DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+    - /kaniko/executor
+      --context     "$CI_PROJECT_DIR"
+      --dockerfile  "$CI_PROJECT_DIR/.docker/kaniko/Dockerfile"
+      --build-arg   "BUILD_DIR=$BUILD_DIR"
+      --build-arg   "BUNDLE_DIR=$BUNDLE_DIR"
+      --build-arg   "SETTINGS_FILE=.docker/kaniko/settings_kaniko_linux.json"
+      --destination "$LINUX_DOCKER_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
 
 # PRODUCTION uses Dockerfile in .docker/kaniko - consumer version!
-# Auto deploy when commit on master
+# Auto deploy when commit on master or staging
 deploy_dockerhub_production:
   << : *deploy_dockerhub
   only:
+    - staging
     - master
 
 # MANUAL uses Dockerfile in .docker/kaniko - consumer test version!
@@ -218,6 +227,7 @@ deploy_dockerhub_manual:
   << : *deploy_dockerhub
   when: manual
   except:
+    - staging
     - master
 
 sync_mirror:
