@@ -89,7 +89,7 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 3,
 			"defaultStyle": "default",
-			"isAnswer": true,
+			"isAnswer": true
 		}
 
 	],
