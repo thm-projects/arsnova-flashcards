@@ -68,7 +68,8 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 1,
 			"defaultStyle": "default",
-			"gotLearningGoalPlaceholder": true
+			"gotLearningGoalPlaceholder": true,
+			"gotPDFAutoTarget": true
 		},
 		{
 			"contentId": 4,
@@ -88,8 +89,7 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 3,
 			"defaultStyle": "default",
-			"isAnswer": true,
-			"gotPDFAutoTarget": true
+			"isAnswer": true
 		}
 
 	],
