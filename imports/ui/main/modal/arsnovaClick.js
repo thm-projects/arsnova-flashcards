@@ -17,7 +17,7 @@ Template.mainModalArsnovaClick.onRendered(function () {
 		$('.showArsnovaClick').addClass('pressed');
 		if (!Session.get('arsnovaClickModalActive')) {
 			Session.set('arsnovaClickModalActive', true);
-			$('#arsnovaClickModal .modal-dialog').html('<iframe id="arsnovaClick" width="600px" height="900px" frameborder="0" src="https://staging.arsnova.click"></iframe>');
+			$('#arsnovaClickModal .modal-dialog').html('<iframe id="arsnovaClick" width="600px" height="900px" frameborder="0" src="https://arsnova.click"></iframe>');
 		}
 	});
 });
