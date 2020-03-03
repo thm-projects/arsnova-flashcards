@@ -33,12 +33,14 @@ export let MarkdeepContent = class MarkdeepContent {
 			imageTitleElement = imageTitleElement.last();
 			let imageTitle = imageTitleElement.text();
 			let imageUrl = $(this).attr('src');
-			imageUrl = imageUrl.replace("http://", "https://");
-			$(this).attr('src', imageUrl);
-			$(this).attr('data-type', 'cardImage');
-			$(this).css('border', $(this).attr('border') + "px solid");
-			let wrapped = $(this).wrap('<div class="lightbox-container"><a href="' + imageUrl + '" class="lightbox-img" title="' + imageTitle + '" target="_blank" data-lightbox="' + item_id + '"></a></div>').parent().prop('outerHTML');
-			$(this).text(wrapped);
+			if (imageUrl !== undefined) {
+				imageUrl = imageUrl.replace("http://", "https://");
+				$(this).attr('src', imageUrl);
+				$(this).attr('data-type', 'cardImage');
+				$(this).css('border', $(this).attr('border') + "px solid");
+				let wrapped = $(this).wrap('<div class="lightbox-container"><a href="' + imageUrl + '" class="lightbox-img" title="' + imageTitle + '" target="_blank" data-lightbox="' + item_id + '"></a></div>').parent().prop('outerHTML');
+				$(this).text(wrapped);
+			}
 		});
 
 		//NOTE:
