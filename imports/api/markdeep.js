@@ -136,7 +136,7 @@ export let MarkdeepContent = class MarkdeepContent {
 	}
 
 	static getLinkTarget (event) {
-		let link = $(event.target).attr("href");
+		let link = $(event.currentTarget).attr("href");
 		let targetType = link.substring(link.lastIndexOf("."));
 		if (targetType.substring(1, 4) === "pdf") {
 			event.preventDefault();
