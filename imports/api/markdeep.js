@@ -13,6 +13,7 @@ import {Session} from "meteor/session";
 import {Route} from "./route";
 import XRegExp from 'xregexp';
 import {PDFViewer} from "../util/pdfViewer";
+import {AdminSettings} from "./subscriptions/adminSettings";
 
 let asciidoctor = new Asciidoctor();
 plantuml.register(asciidoctor.Extensions);
@@ -95,8 +96,14 @@ export let MarkdeepContent = class MarkdeepContent {
 	}
 
 	static convertUML (content) {
+		let url = "";
+		let urlSetting = AdminSettings.findOne({name: "plantUMLServerSettings"});
+		if (urlSetting !== undefined) {
+			url = urlSetting.url;
+		}
+		let preOutput = config.plantUML.output.preUrl + url + config.plantUML.output.postUrl;
 		content = content.replace(new XRegExp(config.plantUML.regexp.pre + config.plantUML.regexp.content + config.plantUML.regexp.post, "gs"), function (match) {
-			match = match.replace(new XRegExp(config.plantUML.regexp.pre, "gs"), config.plantUML.output.pre);
+			match = match.replace(new XRegExp(config.plantUML.regexp.pre, "gs"), preOutput);
 			match = match.replace(new XRegExp(config.plantUML.regexp.post, "gs"), config.plantUML.output.post);
 			let result = asciidoctor.convert(match);
 			let doc = new DOMParser().parseFromString(result, "text/html");
