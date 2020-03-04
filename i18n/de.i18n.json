@@ -23,6 +23,14 @@
       "sendWebError": "Push-Benachrichtigung fehlgeschlagen",
       "sendWebSuccess": "Push-Benachrichtigung erfolgreich",
       "waitingForResponse": "Warte auf Server-Rückmeldung"
+    },
+    "plantUML": {
+      "title": "PlantUML Server",
+      "target": "URL:",
+      "previewTitle": "PlantUML Markdeep Vorschau",
+      "setTargetID": "Ziel-URL setzen:",
+      "setTarget": "Ziel setzen",
+      "setSuccess": "Ziel wurde gesetzt"
     }
   },
   "cookieconsent": {

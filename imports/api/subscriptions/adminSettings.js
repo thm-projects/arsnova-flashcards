@@ -8,15 +8,11 @@ if (Meteor.isServer) {
 	Meteor.publish('pomodoroLandingPage', function () {
 		return AdminSettings.find({name: "wordcloudPomodoroSettings"});
 	});
-	Meteor.publish('default_db_data', function () {
-		if (this.userId && !Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-			if (UserPermissions.gotBackendAccess()) {
-				return AdminSettings.find({});
-			} else {
-				return AdminSettings.find({name: {$in: ["seqSettings", 'mailSettings', 'pushSettings']}});
-			}
+	Meteor.publish('defaultAppData', function () {
+		if (UserPermissions.gotBackendAccess()) {
+			return AdminSettings.find({});
 		} else {
-			this.ready();
+			return AdminSettings.find({name: {$in: ["seqSettings", 'mailSettings', 'pushSettings', 'plantUMLServerSettings']}});
 		}
 	});
 }
