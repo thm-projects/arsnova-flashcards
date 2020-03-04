@@ -9,6 +9,7 @@ import {Wozniak} from "../api/subscriptions/wozniak";
 import XRegExp from 'xregexp';
 
 let isAutoPDFTarget = false;
+const DEFAULTPAGETARGET = 'page=1';
 
 export let PDFViewer = class PDFViewer {
 	static setAutoPDFTargetStatus (status) {
@@ -73,6 +74,19 @@ export let PDFViewer = class PDFViewer {
 		}
 	}
 
+	static enforcePageNumberToURL (pdfLink) {
+		let regexp = new XRegExp(config.pdfLinkOptionsRegex);
+		let result = pdfLink.match(regexp);
+		if (result !== null && result[1] !== undefined) {
+			if (!result[1].length) {
+				pdfLink += `#${DEFAULTPAGETARGET}`;
+			} else if (!result[1].includes('page=') && !result[1].includes('nameddest=')) {
+				pdfLink += `&${DEFAULTPAGETARGET}`;
+			}
+		}
+		return pdfLink;
+	}
+
 	static setLearningAutoTarget (card_id, cardType) {
 		if (Route.isLearningMode() && CardType.gothLearningModePDFAutoTarget(cardType)) {
 			let viewedAutoPDF;
@@ -101,7 +115,7 @@ export let PDFViewer = class PDFViewer {
 								let regexp = new XRegExp(config.markdeepPDFRegex);
 								let result = content.match(regexp);
 								if (result !== null && result[1] !== undefined && result[1].length) {
-									Session.set('activePDF', result[1]);
+									Session.set('activePDF', this.enforcePageNumberToURL(result[1]));
 									this.setAutoPDFTargetStatus(true);
 									this.openModal();
 								}

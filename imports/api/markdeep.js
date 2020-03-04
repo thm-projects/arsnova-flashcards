@@ -140,7 +140,7 @@ export let MarkdeepContent = class MarkdeepContent {
 		let targetType = link.substring(link.lastIndexOf("."));
 		if (targetType.substring(1, 4) === "pdf") {
 			event.preventDefault();
-			Session.set('activePDF', link);
+			Session.set('activePDF', PDFViewer.enforcePageNumberToURL(link));
 			PDFViewer.openModal();
 		} else {
 			this.anchorTarget(event);
