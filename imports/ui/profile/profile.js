@@ -16,7 +16,7 @@ import "./profile.html";
 
 Meteor.subscribe("notifications");
 Meteor.subscribe("colorThemes");
-Meteor.subscribe('default_db_data', function () {
+Meteor.subscribe('defaultAppData', function () {
 	Session.set('data_loaded', true);
 });
 

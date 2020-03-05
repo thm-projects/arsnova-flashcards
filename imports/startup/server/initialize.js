@@ -429,6 +429,13 @@ Meteor.startup(function () {
 		});
 	}
 
+	if (!AdminSettings.findOne({name: "plantUMLServerSettings"})) {
+		AdminSettings.insert({
+			name: "plantUMLServerSettings",
+			url: "https://www.plantuml.com/plantuml"
+		});
+	}
+
 	if (!AdminSettings.findOne({name: "testNotifications"})) {
 		AdminSettings.insert({
 			name: "testNotifications",

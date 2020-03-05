@@ -33,6 +33,12 @@ Template.admin_settings.events({
 			}
 		});
 	},
+	'click #setPlantUMLServerTarget': function (evt, tmpl) {
+		Meteor.call('changePlantUMLServerTarget', tmpl.find('#plantUMLServerTarget').value, function () {
+			$('#setPlantUMLServerTargetInfo').css({'visibility': 'visible', 'color': '#78B925'});
+			$('#setPlantUMLServerTargetInfo').html(TAPi18n.__('admin-settings.plantUML.setSuccess'));
+		});
+	},
 	'click #sendMail': function () {
 		$('#sendMail').attr('disabled','disabled');
 		$('#sendWeb').attr('disabled','disabled');
@@ -92,5 +98,11 @@ Template.admin_settings.helpers({
 			return false;
 		}
 		return true;
+	},
+	getPlantUMLServerTarget: function () {
+		return AdminSettings.findOne({name: "plantUMLServerSettings"}).url;
+	},
+	getPlantUMLPreviewContent: function () {
+		return "\`\`\`plantuml\n@startuml\nAlice -> Bob: Authentication Request\nBob --> Alice: Authentication Response\n\nAlice -> Bob: Another authentication Request\nAlice <-- Bob: another authentication Response\n@enduml\n\`\`\`";
 	}
 });
