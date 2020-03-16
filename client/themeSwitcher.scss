@@ -432,6 +432,14 @@ $themes: (
     $card_sidebar_arsnova_lite_text_hover: map-get($map, "card_sidebar_arsnova_lite_text_hover");
     $card_sidebar_arsnova_lite_background_active: map-get($map, "card_sidebar_arsnova_lite_background_active");
     $card_sidebar_arsnova_lite_text_active: map-get($map, "card_sidebar_arsnova_lite_text_active");
+    $card_sidebar_zoom_background: map-get($map, "card_sidebar_zoom_background");
+    $card_sidebar_zoom_text: map-get($map, "card_sidebar_zoom_text");
+    $card_sidebar_zoom_background_open: map-get($map, "card_sidebar_zoom_background_open");
+    $card_sidebar_zoom_text_open: map-get($map, "card_sidebar_zoom_text_open");
+    $card_sidebar_zoom_background_hover: map-get($map, "card_sidebar_zoom_background_hover");
+    $card_sidebar_zoom_text_hover: map-get($map, "card_sidebar_zoom_text_hover");
+    $card_sidebar_zoom_background_active: map-get($map, "card_sidebar_zoom_background_active");
+    $card_sidebar_zoom_text_active: map-get($map, "card_sidebar_zoom_text_active");
     //cardset sidebar colors
     $cardset_sidebar_preview_background: map-get($map, "cardset_sidebar_preview_background");
     $cardset_sidebar_preview_text: map-get($map, "cardset_sidebar_preview_text");
@@ -619,12 +627,27 @@ $themes: (
     $card_header_second_row: map-get($map, "card_header_second_row");
     $card_header_subject: map-get($map, "card_header_subject");
     $card_header_subject_placeholder: map-get($map, "card_header_subject_placeholder");
-    $card_content_zoom_button_active: map-get($map, "card_content_zoom_button_active");
-    $card_content_zoom_slider_container_background: map-get($map, "card_content_zoom_slider_container_background");
-    $card_content_zoom_slider_container_text: map-get($map, "card_content_zoom_slider_container_text");
-    $card_content_zoom_slider_container_percentage: map-get($map, "card_content_zoom_slider_container_percentage");
-    $card_content_zoom_slider_container_bar: map-get($map, "card_content_zoom_slider_container_bar");
-    $card_content_zoom_slider_container_handle: map-get($map, "card_content_zoom_slider_container_handle");
+    $card_content_zoom_container_button_reset_background: map-get($map, "card_content_zoom_container_button_reset_background");
+    $card_content_zoom_container_button_reset_text: map-get($map, "card_content_zoom_container_button_reset_text");
+    $card_content_zoom_container_button_reset_background_hover: map-get($map, "card_content_zoom_container_button_reset_background_hover");
+    $card_content_zoom_container_button_reset_text_hover: map-get($map, "card_content_zoom_container_button_reset_text_hover");
+    $card_content_zoom_container_background: map-get($map, "card_content_zoom_container_background");
+    $card_content_zoom_container_text: map-get($map, "card_content_zoom_container_text");
+    $card_content_zoom_container_percentage: map-get($map, "card_content_zoom_container_percentage");
+    $card_content_zoom_container_button_plus_background: map-get($map, "card_content_zoom_container_button_plus_background");
+    $card_content_zoom_container_button_plus_text: map-get($map, "card_content_zoom_container_button_plus_text");
+    $card_content_zoom_container_button_plus_background_hover: map-get($map, "card_content_zoom_container_button_plus_background_hover");
+    $card_content_zoom_container_button_plus_text_hover: map-get($map, "card_content_zoom_container_button_plus_text_hover");
+    $card_content_zoom_container_button_plus_background_disabled: map-get($map, "card_content_zoom_container_button_plus_background_disabled");
+    $card_content_zoom_container_button_plus_text_disabled: map-get($map, "card_content_zoom_container_button_plus_text_disabled");
+    $card_content_zoom_container_button_plus_disabled_opacity: map-get($map, "card_content_zoom_container_button_plus_disabled_opacity");
+    $card_content_zoom_container_button_minus_background: map-get($map, "card_content_zoom_container_button_minus_background");
+    $card_content_zoom_container_button_minus_text: map-get($map, "card_content_zoom_container_button_minus_text");
+    $card_content_zoom_container_button_minus_background_hover: map-get($map, "card_content_zoom_container_button_minus_background_hover");
+    $card_content_zoom_container_button_minus_text_hover: map-get($map, "card_content_zoom_container_button_minus_text_hover");
+    $card_content_zoom_container_button_minus_background_disabled: map-get($map, "card_content_zoom_container_button_minus_background_disabled");
+    $card_content_zoom_container_button_minus_text_disabled: map-get($map, "card_content_zoom_container_button_minus_text_disabled");
+    $card_content_zoom_container_button_minus_disabled_opacity: map-get($map, "card_content_zoom_container_button_minus_disabled_opacity");
     //markdeep colors
     $markdeep_inline_code_background: map-get($map, "markdeep_inline_code_background");
     $markdeep_inline_code_text: map-get($map, "markdeep_inline_code_text");
@@ -2565,26 +2588,59 @@ $themes: (
       }
     }
 
-    .zoomText.active {
-      border-color: $card_content_zoom_button_active !important;
-      background-color: $card_content_zoom_button_active !important;
-      color: white !important;
-    }
     .zoomSliderContainer {
-      background-color: $card_content_zoom_slider_container_background !important;
+      background-color: $card_content_zoom_container_background !important;
+      .resetTextZoom {
+        background-color: $card_content_zoom_container_button_reset_background !important;
+        color: $card_content_zoom_container_button_reset_text !important;
+      }
+      .resetTextZoom:hover, .resetTextZoom:active {
+        background-color: $card_content_zoom_container_button_reset_background_hover !important;
+        color: $card_content_zoom_container_button_reset_text_hover !important;
+      }
       .zoomSliderPercentageLabel {
-        color: $card_content_zoom_slider_container_text !important;
+        color: $card_content_zoom_container_text !important;
       }
       .zoomSliderPercentage {
-        color: $card_content_zoom_slider_container_percentage !important;
+        color: $card_content_zoom_container_percentage !important;
       }
-      .zoomSlider {
-        background: $card_content_zoom_slider_container_bar !important;
-        border-color: $card_content_zoom_slider_container_bar !important;
+      .zoomTextIncrease {
+        background-color: $card_content_zoom_container_button_plus_background !important;
+        i {
+          color: $card_content_zoom_container_button_plus_text !important;
+        }
       }
-      .zoomSlider .ui-slider-handle {
-        background: $card_content_zoom_slider_container_handle !important;
-        border-color: $card_content_zoom_slider_container_handle !important;
+      .zoomTextIncrease:hover, .zoomTextIncrease:active {
+        background-color: $card_content_zoom_container_button_plus_background_hover !important;
+        i {
+          color: $card_content_zoom_container_button_plus_text_hover !important;
+        }
+      }
+      .zoomTextIncrease.disabled {
+        opacity: $card_content_zoom_container_button_plus_disabled_opacity !important;
+        background-color: $card_content_zoom_container_button_plus_background_disabled !important;
+        i {
+          color: $card_content_zoom_container_button_plus_text_disabled !important;
+        }
+      }
+      .zoomTextDecrease {
+        background-color: $card_content_zoom_container_button_minus_background !important;
+        i {
+          color: $card_content_zoom_container_button_minus_text !important;
+        }
+      }
+      .zoomTextDecrease:hover, .zoomTextDecrease:active {
+        background-color: $card_content_zoom_container_button_minus_background_hover !important;
+        i {
+          color: $card_content_zoom_container_button_minus_text_hover !important;
+        }
+      }
+      .zoomTextDecrease.disabled {
+        opacity: $card_content_zoom_container_button_minus_disabled_opacity !important;
+        background-color: $card_content_zoom_container_button_minus_background_disabled !important;
+        i {
+          color: $card_content_zoom_container_button_minus_text_disabled !important;
+        }
       }
     }
 
@@ -3444,6 +3500,29 @@ $themes: (
       .showArsnovaLite:hover {
         background-color:$card_sidebar_arsnova_lite_background_hover !important;
         color: $card_sidebar_arsnova_lite_text_hover !important;
+      }
+
+      .zoomTextButton {
+        background-color: $card_sidebar_zoom_background !important;
+        color: $card_sidebar_zoom_text !important;
+      }
+
+      .zoomTextButton.active {
+        border-color: $card_sidebar_zoom_background_active !important;
+        background-color: $card_sidebar_zoom_background_active !important;
+        color: $card_sidebar_zoom_text_active !important;
+      }
+
+      .zoomTextButton.pressed {
+        border-color: $card_sidebar_zoom_background_open !important;
+        background-color: $card_sidebar_zoom_background_open !important;
+        color: $card_sidebar_zoom_text_open !important;
+      }
+
+      .zoomTextButton:hover, .zoomTextButton:focus {
+        border-color: $card_sidebar_zoom_background_hover !important;
+        background-color: $card_sidebar_zoom_background_hover !important;
+        color: $card_sidebar_zoom_text_hover !important;
       }
 
       .editCard {
