@@ -660,27 +660,37 @@ export let CardVisuals = class CardVisuals {
 	}
 
 	static resetCurrentTextZoomValue () {
-		Session.set('currentZoomValue', config.defaultTextZoomValue);
-		$('.zoomSlider').slider("value", config.defaultTextZoomValue);
+		Session.set('currentZoomValue', config.textZoom.default);
+		$('.zoomSlider').slider("value", config.textZoom.default);
 		CardVisuals.setTextZoom();
 	}
 
 	static getDefaultTextZoomValue () {
-		return config.defaultTextZoomValue;
+		return config.textZoom.default;
 	}
 
-	static zoomCardText () {
-		$(".zoomSlider").slider({
-			orientation: "vertical",
-			value: Session.get('currentZoomValue'),
-			min: 50,
-			max: 300,
-			slide: function (event, ui) {
-				Session.set('currentZoomValue',ui.value);
-				CardVisuals.setTextZoom();
-			}
-		});
-		$('.zoomSlider .ui-slider-handle').unbind('keydown');
+	static getMaxTextZoomValue () {
+		return config.textZoom.max;
+	}
+
+	static getMinTextZoomValue () {
+		return config.textZoom.min;
+	}
+
+	static zoomCardText (increase = true) {
+		let currentZoomValue = Session.get('currentZoomValue');
+		if (increase) {
+			currentZoomValue += config.textZoom.increment;
+		} else {
+			currentZoomValue -= config.textZoom.increment;
+		}
+		if (currentZoomValue > config.textZoom.max) {
+			currentZoomValue = config.textZoom.max;
+		} else if (currentZoomValue < config.textZoom.min) {
+			currentZoomValue = config.textZoom.min;
+		}
+		Session.set('currentZoomValue', currentZoomValue);
+		CardVisuals.setTextZoom();
 	}
 
 	static toggleZoomContainer (forceOff = false) {
@@ -696,16 +706,9 @@ export let CardVisuals = class CardVisuals {
 			let cardHeader = $('.cardHeader');
 			let zoomTextButton = $('.zoomTextButton:visible');
 			if (cardHeader.length && zoomTextButton.length) {
-				let topPosition;
-				let rightPosition = $('#flashcardSidebarRight').outerWidth();
-				if (Route.isCardset() && this.isFixedSidebar()) {
-					topPosition = zoomTextButton.offset().top;
-				} else {
-					topPosition = cardHeader.offset().top;
-				}
-				if ((NavigatorCheck.isSmartphone() && !NavigatorCheck.isLandscape()) || (Route.isEditMode() && MarkdeepEditor.getMobilePreview() && Session.get('mobilePreviewRotated'))) {
-					topPosition += ($('.cardContent').height() - zoomSliderContainer.innerHeight());
-				}
+				let sidebarRight = $('#flashcardSidebarRight');
+				let topPosition = sidebarRight.offset().top;
+				let rightPosition = sidebarRight.outerWidth();
 				zoomSliderContainer.css({
 					'top': topPosition + "px",
 					'right': rightPosition + "px"
