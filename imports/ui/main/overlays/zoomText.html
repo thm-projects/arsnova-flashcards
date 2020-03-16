@@ -3,9 +3,15 @@
         <div class="zoomText zoomSliderLabelContainer">
             <label class="zoomText zoomSliderPercentage">{{getPercentage}}</label>
         </div>
-        <div class="zoomText zoomSlider" data-keyboard="false"></div>
+        <button class="zoomText {{reachedMax}} zoomTextIncrease zoomTextButton btn btn-block" {{reachedMax}}>
+            <i class="zoomText fas fa-plus"></i>
+        </button>
+        <button class="zoomText {{reachedMin}} zoomTextDecrease zoomTextButton btn btn-block" {{reachedMin}}>
+              <i class="zoomText fas fa-minus"></i>
+        </button>
+        <br>
         {{#unless isDefaultZoomTextValue}}
-            <div class="zoomText btn btn-raised btn-sm btn-danger resetTextZoom"><span class="flex-content">{{_ "card.tooltip.zoomTextReset"}}</span></div>
+            <div class="zoomText btn btn-raised btn-sm resetTextZoom"><span class="flex-content">{{_ "card.tooltip.zoomTextReset"}}</span></div>
         {{/unless}}
     </div>
 </template>

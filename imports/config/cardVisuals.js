@@ -24,11 +24,16 @@ let defaultFontSize = {
 	}
 };
 
-let defaultTextZoomValue = 100;
+let textZoom = {
+	max: 300,
+	min: 50,
+	increment: 10,
+	default: 100
+};
+
 let iFrameWidthRatio = 16;
 let iFrameHeightRatio = 9;
 let iFrameMaxHeight = 0.8;
-
 
 //If enabled then the sidebar is fixed to the border of the screen (Only for iPad and Desktop)
 //0: Default (Cardset and other views), Currently not supported
@@ -55,7 +60,7 @@ let cubeTransitionTime = 1.5;
 
 module.exports = {
 	defaultFontSize,
-	defaultTextZoomValue,
+	textZoom,
 	iFrameWidthRatio,
 	iFrameHeightRatio,
 	iFrameMaxHeight,

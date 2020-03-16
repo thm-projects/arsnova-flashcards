@@ -1,28 +1,22 @@
 .zoomSliderContainer {
   position: absolute;
   padding: 10px;
-  width: 140px;
+  width: 120px;
   border-radius: 10px;
   z-index: 9000 !important;
   text-align: center;
   //opacity: 0.9;
-  .zoomSlider:hover, .zoomSlider .ui-slider-handle:hover {
-    cursor: grabbing;
-  }
 }
 
-.zoomSlider {
-  height: 200px;
-  margin-left: 55px;
-  text-align: center;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  width: $zoom_slider_width !important;
-  .ui-slider-handle {
-    width: $zoom_slider_handle_width !important;
-    margin-left: $zoom_slider_handle_offset !important;
-    height: $zoom_slider_handle_height !important;
-  }
+.zoomTextButton {
+  height: 50px !important;
+  width: 70px !important;
+  margin: auto;
+}
+
+.zoomTextIncrease {
+  margin-top: 15px !important;
+  margin-bottom: 10px !important;
 }
 
 .zoomSliderLabelContainer {
