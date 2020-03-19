@@ -8,6 +8,7 @@ import {Profile} from "./profile";
 import {Bonus} from "./bonus";
 import {ServerStyle} from "./styles";
 import * as config from "../config/bonusForm.js";
+import {LeitnerHistory} from "./subscriptions/leitnerHistory";
 
 function getLearningStatus(learningEnd) {
 	if (learningEnd.getTime() > new Date().getTime()) {
@@ -98,6 +99,15 @@ export function getLearners(data, cardset_id) {
 			user[0].profile.givenname = TAPi18n.__('leitnerProgress.user.missingName', {}, ServerStyle.getClientLanguage());
 			user[0].email = "";
 		}
+		let lastActivity = data[i].leitner.dateJoinedBonus;
+		let lastHistoryItem = LeitnerHistory.findOne({
+			cardset_id: cardset_id,
+			user_id: data[i].user_id,
+			answer: {$ne: 2}},
+			{sort: {"timestamps.submission": -1}, fields: {_id: 1, timestamps: 1}});
+		if (lastHistoryItem !== undefined && lastHistoryItem.timestamps !== undefined) {
+			lastActivity = lastHistoryItem.timestamps.submission;
+		}
 		if (user[0].profile.name !== undefined) {
 			learningDataArray.push({
 				user_id: user[0]._id,
@@ -112,7 +122,8 @@ export function getLearners(data, cardset_id) {
 				box6: Leitner.find(filter[5]).count(),
 				mailNotification: user[0].mailNotification,
 				webNotification: user[0].webNotification,
-				dateJoinedBonus: data[i].leitner.dateJoinedBonus
+				dateJoinedBonus: data[i].leitner.dateJoinedBonus,
+				lastActivity: lastActivity
 			});
 		}
 	}

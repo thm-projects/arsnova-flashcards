@@ -1821,6 +1821,7 @@
     "cardCount": "Gesamtzahl: __cardCount__ Karten",
     "percentage": "Prozent",
     "dateJoinedBonus": "Lernbeginn",
+    "lastActivity": "Letzte Aktivität",
     "notification": {
       "mail": "E-Mail",
       "push": "Push"
