@@ -9,6 +9,7 @@ import {Bonus} from "./bonus";
 import {ServerStyle} from "./styles";
 import * as config from "../config/bonusForm.js";
 import {LeitnerHistory} from "./subscriptions/leitnerHistory";
+import {Utilities} from "./utilities";
 
 function getLearningStatus(learningEnd) {
 	if (learningEnd.getTime() > new Date().getTime()) {
@@ -141,13 +142,13 @@ Meteor.methods({
 		if (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
 			let content;
 			let colSep = ";"; // Separates columns
-			let infoCol = ";;;;;;;;;;;;"; // Separates columns
+			let infoCol = ";;;;;;;;;;;;;;"; // Separates columns
 			let newLine = "\r\n"; //Adds a new line
 			let infoCardsetCounter = 0;
 			let infoCardsetLength = 6;
 			let infoLearningPhaseCounter = 0;
-			let infoLearningPhaseLength = 9;
-			content = header[6] + colSep + header[7] + colSep + header[8] + colSep + header[10] + colSep;
+			let infoLearningPhaseLength = 10;
+			content = header[6] + colSep + header[7] + colSep + header[8] + colSep + header[10] + colSep + header[11] + colSep + header[12] + colSep;
 			for (let i = 0; i <= 4; i++) {
 				content += header[i] + " [" + cardset.learningInterval[i] + "]" + colSep;
 			}
@@ -167,6 +168,7 @@ Meteor.methods({
 					box6 += " [" + percentage + " %]";
 				}
 				content += learners[k].birthname + colSep + learners[k].givenname + colSep + learners[k].email + colSep + Bonus.getNotificationStatus(learners[k], true) + colSep;
+				content += Utilities.getMomentsDate(learners[k].dateJoinedBonus, false, 0, false) + colSep + Utilities.getMomentsDate(learners[k].lastActivity, false, 0, false) + colSep;
 				content += learners[k].box1 + colSep + learners[k].box2 + colSep + learners[k].box3 + colSep + learners[k].box4 + colSep + learners[k].box5 + colSep + box6 +  colSep + achievedBonus +  colSep;
 				if (infoCardsetCounter <= infoCardsetLength) {
 					content += colSep + cardsetInfo[infoCardsetCounter][0] + colSep + cardsetInfo[infoCardsetCounter++][1];
