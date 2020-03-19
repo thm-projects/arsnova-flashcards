@@ -16,6 +16,15 @@ export let CardVisuals = class CardVisuals {
 		return editorFullScreenActive;
 	}
 
+	static setPresentationContainerSize (height = window.screen.height) {
+		if (!Route.isPresentationList() && !Route.isEditMode()) {
+			if (height === 0) {
+				$('.presentation-container').css('height', 'unset');
+			} else {
+				$('.presentation-container').css('height', height);
+			}
+		}
+	}
 	static isFixedSidebar () {
 		let mode = 0;
 		if (Route.isPresentation()) {

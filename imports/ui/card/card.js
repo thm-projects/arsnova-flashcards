@@ -66,6 +66,7 @@ Template.flashcards.onCreated(function () {
 	if (Session.get('activeCard') === undefined) {
 		CardNavigation.restoreActiveCard();
 	}
+	CardVisuals.setPresentationContainerSize();
 });
 
 let backgroundClickEvent;
@@ -91,17 +92,13 @@ Template.flashcards.onRendered(function () {
 		CardEditor.setEditorButtonIndex(0);
 	}
 	CardVisuals.setDefaultViewingMode();
-	setTimeout(function () {
-		backgroundClickEvent = $("body").click(function (event) {
-			CardNavigation.exitPresentationFullscreen(event);
-		});
-	}, 1000);
 });
 
 Template.flashcards.onDestroyed(function () {
 	if (backgroundClickEvent !== undefined) {
 		backgroundClickEvent.off('click');
 	}
+	CardVisuals.setPresentationContainerSize(0);
 });
 
 Template.flashcards.helpers({
