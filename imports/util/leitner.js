@@ -470,7 +470,10 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						LeitnerHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: workload.leitner.tasks.length - 1}, {
 							$set: {
 								box: box,
-								answer: 2
+								answer: 2,
+								timestamps: {
+									submission: new Date()
+								}
 							}
 						}, {multi: true});
 					}
