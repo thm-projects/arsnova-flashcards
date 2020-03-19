@@ -16,12 +16,15 @@ export let CardVisuals = class CardVisuals {
 		return editorFullScreenActive;
 	}
 
-	static setPresentationContainerSize (height = window.screen.height) {
+	static setExitPresentationContainerSize (height = window.screen.height) {
 		if (!Route.isPresentationList() && !Route.isEditMode()) {
-			if (height === 0) {
-				$('.presentation-container').css('height', 'unset');
+			let presentationContainer = $('.presentation-container');
+			if (height === 0 || !CardVisuals.isFullscreen()) {
+				presentationContainer.css('overflow', 'unset');
+				presentationContainer.css('height', 'unset');
 			} else {
-				$('.presentation-container').css('height', height);
+				presentationContainer.css('overflow', 'hidden');
+				presentationContainer.css('height', height);
 			}
 		}
 	}
@@ -386,6 +389,7 @@ export let CardVisuals = class CardVisuals {
 				this.setMaxIframeHeight();
 				this.setTextZoom();
 				this.setPomodoroTimerSize();
+				this.setExitPresentationContainerSize();
 			}
 		}
 	}
