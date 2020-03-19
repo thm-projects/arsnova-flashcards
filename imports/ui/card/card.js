@@ -92,6 +92,12 @@ Template.flashcards.onRendered(function () {
 		CardEditor.setEditorButtonIndex(0);
 	}
 	CardVisuals.setDefaultViewingMode();
+	setTimeout(function () {
+		backgroundClickEvent = $(".presentation-container").click(function (event) {
+			CardNavigation.exitPresentationFullscreen(event);
+		});
+	}, 1000);
+
 });
 
 Template.flashcards.onDestroyed(function () {

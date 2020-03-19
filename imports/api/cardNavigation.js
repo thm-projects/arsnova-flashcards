@@ -22,6 +22,10 @@ let isReset = false;
 export let CardNavigation = class CardNavigation {
 
 	static exitPresentationFullscreen (event) {
+		//Is not a mobile device
+		if (NavigatorCheck.isSmartphone()) {
+			return false;
+		}
 		//Is view in Fullscreen mode
 		if (!CardVisuals.isFullscreen()) {
 			return false;
