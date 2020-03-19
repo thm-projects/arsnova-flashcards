@@ -10,6 +10,7 @@ import {ServerStyle} from "./styles";
 import * as config from "../config/bonusForm.js";
 import {LeitnerHistory} from "./subscriptions/leitnerHistory";
 import {Utilities} from "./utilities";
+import {UserPermissions} from "./permissions";
 
 function getLearningStatus(learningEnd) {
 	if (learningEnd.getTime() > new Date().getTime()) {
@@ -189,8 +190,47 @@ Meteor.methods({
 	getLearningData: function (cardset_id) {
 		check(cardset_id, String);
 		let cardset = Cardsets.findOne({_id: cardset_id});
-		if (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
+		if (UserPermissions.gotBackendAccess() || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
 			return getLearners(Workload.find({cardset_id: cardset_id, 'leitner.bonus': true}).fetch(), cardset_id);
+		}
+	},
+	getLearningHistoryData: function (user_id, cardset_id) {
+		check(user_id, String);
+		check(cardset_id, String);
+
+		let cardset = Cardsets.findOne({_id: cardset_id});
+		if (UserPermissions.gotBackendAccess() || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
+			let workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id});
+			let result = [];
+			if (workload.leitner !== undefined && workload.leitner.tasks !== undefined) {
+				for (let i = workload.leitner.tasks.length - 1; i >= 0; i--) {
+					let item = {};
+					item.date = workload.leitner.tasks[i];
+					item.workload = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: i}).count();
+					item.known = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: i, answer: 0}).count();
+					item.notKnown = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: i, answer: 1}).count();
+					if (LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: (i - 1), answer: 2}).count() === 0) {
+						item.reason = 0;
+					} else {
+						item.reason = 1;
+					}
+					let lastAnswerDate = LeitnerHistory.findOne({
+						user_id: user_id,
+						cardset_id: cardset_id,
+						task_id: i,
+						answer: {$ne: 2}}, {fields: {timestamps: 1}, sort: {"timestamps.submission": -1}});
+					if (lastAnswerDate !== undefined && lastAnswerDate.timestamps !== undefined) {
+						item.lastAnswerDate = lastAnswerDate.timestamps.submission;
+					}
+					item.gotReset = false;
+					let foundReset = LeitnerHistory.findOne({user_id: user_id, cardset_id: cardset_id, task_id: i, answer: 2});
+					if (foundReset !== undefined) {
+						item.gotReset = true;
+					}
+					result.push(item);
+				}
+			}
+			return result;
 		}
 	},
 	getEditors: function (cardset_id) {

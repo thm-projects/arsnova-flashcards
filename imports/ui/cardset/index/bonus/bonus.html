@@ -3,6 +3,7 @@
         {{> accessDenied}}
     {{else}}
         {{> removeUserFromBonusModal}}
+        {{> bonusUserHistoryModal}}
         <div class="cardsetstats-container">
             <div id="cardsetInfoDetail">
                 <div class="panel panel-default cardsetInfo">
@@ -51,6 +52,7 @@
                         </th>
                         <th>{{_ "leitnerProgress.learned"}}</th>
                         <th>{{_ "leitnerProgress.bonus"}}</th>
+                        <th>{{_ "leitnerProgress.userHistory"}}</th>
                         <th>{{_ "details"}}</th>
                         <th>{{_ "leitnerProgress.manage"}}</th>
                     </tr>
@@ -82,6 +84,17 @@
                             </td>
                             <td>
                                 {{getAchievedBonus}}&nbsp;%{{#if earnedTrophy}}&nbsp;<i class="fas fa-trophy bonusTrophy"></i>{{/if}}
+                            </td>
+                            <td>
+                                <a data-id="{{this.user_id}}"
+                                   data-firstname="{{this.birthname}}"
+                                   data-lastname="{{this.givenname}}" class="showBonusUserHistory" data-toggle="modal"
+                                   href="#bonusUserHistoryModal"><i
+                                        class="far fa-clock"
+                                        data-firstname="{{this.birthname}}"
+                                        data-lastname="{{this.givenname}}"
+                                        data-id="{{this.user_id}}"
+                                        title="{{_ "leitnerProgress.tooltip.userHistory"}}"></i></a>
                             </td>
                             <td>
                                 <a data-id="{{this.user_id}}" class="detailed-stats"><i

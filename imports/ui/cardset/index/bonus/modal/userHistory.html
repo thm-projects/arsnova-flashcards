@@ -1,0 +1,53 @@
+<template name="bonusUserHistoryModal">
+    <div class="modal fade" id="bonusUserHistoryModal" tabindex="-1" role="dialog"
+         aria-labelledby="bonusUserHistoryTitle">
+        {{#if gotUserData}}
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content modal-content-for-buttons">
+                    <div class="modal-header">
+                    <span class="modal-icon">
+                        <i class="fas fa-clock"></i>
+                    </span>
+                        {{> mainModalItemCloseIcon}}
+                        <h4 id="bonusUserHistoryTitle" class="modal-title">
+                            {{getTitle}}
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        {{#if gotHistoryData}}
+                            <table class="table table-striped table-hover table-user-list">
+                                <tbody>
+                                <tr>
+                                    <th>{{_ "leitnerProgress.modal.userHistory.table.date"}}</th>
+                                    <th>{{_ "leitnerProgress.modal.userHistory.table.reason.title"}}</th>
+                                    <th>{{_ "leitnerProgress.modal.userHistory.table.workload.title"}}</th>
+                                    <th>{{_ "leitnerProgress.modal.userHistory.table.known"}}</th>
+                                    <th>{{_ "leitnerProgress.modal.userHistory.table.notKnown"}}</th>
+                                    <th>{{_ "leitnerProgress.modal.userHistory.table.status.title"}}</th>
+                                </tr>
+                                {{#each getWorkloadHistory}}
+                                    <tr>
+                                        <td>{{getMomentsDate this.date}}</td>
+                                        <td>{{getReason}}</td>
+                                        <td>{{getWorkload}}</td>
+                                        <td>{{this.known}}</td>
+                                        <td>{{this.notKnown}}</td>
+                                        <td>{{getStatus}}</td>
+                                    </tr>
+                                {{/each}}
+                                </tbody>
+                            </table>
+                        {{else}}
+                            {{> loadingScreen}}
+                            <br>
+                            <br>
+                        {{/if}}
+                    </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+        {{/if}}
+    </div>
+    <!-- /.modal -->
+</template>
