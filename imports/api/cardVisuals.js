@@ -16,6 +16,18 @@ export let CardVisuals = class CardVisuals {
 		return editorFullScreenActive;
 	}
 
+	static setExitPresentationContainerSize (height = window.screen.height) {
+		if (!Route.isPresentationList() && !Route.isEditMode()) {
+			let presentationContainer = $('.presentation-container');
+			if (height === 0 || !CardVisuals.isFullscreen()) {
+				presentationContainer.css('overflow', 'unset');
+				presentationContainer.css('height', 'unset');
+			} else {
+				presentationContainer.css('overflow', 'hidden');
+				presentationContainer.css('height', height);
+			}
+		}
+	}
 	static isFixedSidebar () {
 		let mode = 0;
 		if (Route.isPresentation()) {
@@ -377,6 +389,7 @@ export let CardVisuals = class CardVisuals {
 				this.setMaxIframeHeight();
 				this.setTextZoom();
 				this.setPomodoroTimerSize();
+				this.setExitPresentationContainerSize();
 			}
 		}
 	}
@@ -693,11 +706,16 @@ export let CardVisuals = class CardVisuals {
 		CardVisuals.setTextZoom();
 	}
 
+	static isZoomContainerVisible () {
+		return Session.get('zoomTextContainerVisible');
+	}
+
 	static toggleZoomContainer (forceOff = false) {
 		let zoomSliderContainer = $('.zoomSliderContainer');
 		if (zoomSliderContainer.length) {
 			if (zoomSliderContainer.css('display') === 'none' && forceOff === false) {
 				zoomSliderContainer.css('display', 'block');
+				this.toggleAspectRatioContainer(true);
 				Session.set('zoomTextContainerVisible', true);
 			} else {
 				zoomSliderContainer.css('display', 'none');
@@ -717,11 +735,16 @@ export let CardVisuals = class CardVisuals {
 		}
 	}
 
+	static isAspectRatioContainerVisible () {
+		return Session.get('aspectRatioContainerVisible');
+	}
+
 	static toggleAspectRatioContainer (forceOff = false) {
 		let aspectRatioContainer = $('.aspectRatioContainer');
 		if (aspectRatioContainer.length) {
 			if (aspectRatioContainer.css('display') === 'none' && forceOff === false) {
 				aspectRatioContainer.css('display', 'block');
+				this.toggleZoomContainer(true);
 				Session.set('aspectRatioContainerVisible', true);
 			} else {
 				aspectRatioContainer.css('display', 'none');

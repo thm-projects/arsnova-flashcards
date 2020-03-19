@@ -11,6 +11,8 @@ import {CardType} from "./cardTypes";
 import {NavigatorCheck} from "./navigatorCheck";
 import * as config from "../config/cardNavigation.js";
 import {CardsetNavigation} from "./cardsetNavigation";
+import {MainNavigation} from "./mainNavigation";
+import {ServerStyle} from "./styles";
 import {PDFViewer} from "../util/pdfViewer";
 
 let keyEventsUnlocked = true;
@@ -18,6 +20,84 @@ let lastActiveCardString = "lastActiveCard";
 let isReset = false;
 
 export let CardNavigation = class CardNavigation {
+
+	static exitPresentationFullscreen (event) {
+		//Is not a mobile device
+		if (NavigatorCheck.isSmartphone()) {
+			return false;
+		}
+		//Is view in Fullscreen mode
+		if (!CardVisuals.isFullscreen()) {
+			return false;
+		}
+		//Is part of the navigation or card
+		if ($(event.target).hasClass('presentation-element') || $(event.target).parents('.presentation-element').length) {
+			return false;
+		}
+		//Is part of a modal
+		if ($(event.target).hasClass('modal') || $(event.target).parents('.modal').length) {
+			return false;
+		}
+		//Is part of a sweet alert message
+		if ($(event.target).hasClass('swal2-container') || $(event.target).parents('.swal2-container').length) {
+			return false;
+		}
+		//Is part of lightbox
+		if ($(event.target).hasClass('swal2-container') || $(event.target).parents('.swal2-container').length) {
+			return false;
+		}
+		//Is part of the zoom container
+		if ($(event.target).hasClass('zoomSliderContainer') || $(event.target).parents('.zoomSliderContainer').length) {
+			return false;
+		} else if ($(event.target).hasClass('resetTextZoom')) {
+			CardVisuals.resetCurrentTextZoomValue();
+			return false;
+		} else if (CardVisuals.isZoomContainerVisible()) {
+			CardVisuals.toggleZoomContainer(true);
+			return false;
+		}
+		//Is part of lightbox
+		if ($(event.target).hasClass('lightboxOverlay') || $(event.target).parents('.lightboxOverlay').length) {
+			return false;
+		}
+		//Is part of aspect ratio container
+		if ($(event.target).hasClass('aspect-ratio-dropdown-button') || $(event.target).parents('.aspect-ratio-dropdown-button').length) {
+			Session.set('aspectRatioMode', $(event.target).attr("data-id"));
+			CardVisuals.resizeFlashcard();
+			CardVisuals.toggleAspectRatioContainer(true);
+			return false;
+		} else if (CardVisuals.isAspectRatioContainerVisible()) {
+			CardVisuals.toggleAspectRatioContainer(true);
+			return false;
+		}
+
+		if (ServerStyle.exitDemoOnFullscreenBackgroundClick() && Route.isDemo() || Route.isMakingOf()) {
+			this.exitPresentation();
+		} else if (ServerStyle.exitPresentationOnFullscreenBackgroundClick() && Route.isPresentation()) {
+			this.exitPresentation();
+		}
+	}
+
+	static exitPresentation () {
+		CardVisuals.toggleZoomContainer(true);
+		CardVisuals.toggleAspectRatioContainer(true);
+		if (Route.isMakingOf() || Route.isDemo()) {
+			CardVisuals.toggleFullscreen(true);
+			this.exitDemoFullscreenRoute();
+		} else if (Route.isPresentationTranscriptPersonal()) {
+			Router.go('transcriptsPersonal');
+		} else if (Route.isPresentationTranscriptBonus()) {
+			Router.go('transcriptsBonus');
+		} else if (Route.isPresentationTranscriptBonusCardset() || Route.isPresentationTranscriptReview()) {
+			Router.go('transcriptBonus', {
+				_id: Router.current().params._id
+			});
+		} else {
+			Router.go('cardsetdetailsid', {
+				_id: Router.current().params._id
+			});
+		}
+	}
 
 	static selectActiveButton () {
 		for (let i = 1; i <= this.getCardSideNavigationLength(); i++) {
@@ -29,6 +109,14 @@ export let CardNavigation = class CardNavigation {
 			}
 		}
 		this.selectButton();
+	}
+
+	static exitDemoFullscreenRoute () {
+		if (Meteor.user() || MainNavigation.isGuestLoginActive()) {
+			Router.go('about');
+		} else {
+			Router.go('home');
+		}
 	}
 
 	static selectButton (index = 1) {
