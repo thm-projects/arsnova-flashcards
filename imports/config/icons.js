@@ -69,12 +69,12 @@ let miscNavigation = {
 };
 
 let aspectRatio = {
-	"53": "<i class='fas fa-id-card'></i>&nbsp;",
-	"169": "<i class='fas fa-desktop'></i>&nbsp;",
-	"1610": "<i class='fas fa-desktop'></i>&nbsp;",
-	"43": "<i class='fas fa-desktop'></i>&nbsp;",
-	"fill": "<i class='fas fa-arrows-alt'></i>&nbsp;",
-	"din": "<i class='fas fa-id-card'></i>&nbsp;"
+	"53": "fas fa-id-card",
+	"169": "fas fa-desktop",
+	"1610": "fas fa-desktop",
+	"43": "fas fa-desktop",
+	"fill": "fas fa-arrows-alt",
+	"din": "fas fa-id-card"
 };
 
 let useCasesIcons = {

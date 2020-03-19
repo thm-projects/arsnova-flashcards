@@ -11,6 +11,7 @@ import {Route} from "../../api/route";
 import {AspectRatio} from "../../api/aspectRatio";
 import {TranscriptBonus} from "../../api/subscriptions/transcriptBonus";
 import {CardVisuals} from "../../api/cardVisuals";
+import {ServerStyle} from "../../api/styles";
 
 Session.set('animationPlaying', false);
 Session.setDefault('isDirectCardsetIndexView', false);
@@ -65,6 +66,9 @@ Template.presentationView.onCreated(function () {
 
 Template.presentationView.onRendered(function () {
 	CardNavigation.toggleVisibility(true);
+	if (!CardVisuals.isFullscreen() && (Route.isDemo() || Route.isMakingOf()) && ServerStyle.gotDemoAutoFullscreen()) {
+		CardVisuals.toggleFullscreen();
+	}
 });
 
 Template.presentationView.onDestroyed(function () {

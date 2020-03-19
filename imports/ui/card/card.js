@@ -68,7 +68,7 @@ Template.flashcards.onCreated(function () {
 	}
 });
 
-
+let backgroundClickEvent;
 Template.flashcards.onRendered(function () {
 	TouchNavigation.cards();
 	$(".box").on('transitionend webkitTransitionEnd oTransitionEnd', function () {
@@ -91,6 +91,18 @@ Template.flashcards.onRendered(function () {
 		CardEditor.setEditorButtonIndex(0);
 	}
 	CardVisuals.setDefaultViewingMode();
+	setTimeout(function () {
+		backgroundClickEvent = $(".presentation-container").click(function (event) {
+			CardNavigation.exitPresentationFullscreen(event);
+		});
+	}, 1000);
+});
+
+Template.flashcards.onDestroyed(function () {
+	if (backgroundClickEvent !== undefined) {
+		backgroundClickEvent.off('click');
+	}
+	CardVisuals.setExitPresentationContainerSize(0);
 });
 
 Template.flashcards.helpers({

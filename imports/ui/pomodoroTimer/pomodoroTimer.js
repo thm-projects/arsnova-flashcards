@@ -94,19 +94,19 @@ Template.pomodoroTimerModal.events({
 		PomodoroTimer.updateSettingsBtn();
 	},
 	'click #startPom': function () {
-		if (Route.requiresUserInputForFullscreen) {
+		if (Route.requiresUserInputForFullscreen() && !CardVisuals.isFullscreen()) {
 			CardVisuals.toggleFullscreen();
 		}
 		PomodoroTimer.start();
 	},
 	'click .closePomodoro': function () {
-		if (Route.requiresUserInputForFullscreen && !Route.isHome()) {
+		if (Route.requiresUserInputForFullscreen && !Route.isHome() && CardVisuals.isFullscreen()) {
 			CardVisuals.toggleFullscreen();
 		}
 		PomodoroTimer.setPresentationPomodoro(true);
 	},
 	'click #cancelPomodoroBtn': function () {
-		if (Route.requiresUserInputForFullscreen) {
+		if (Route.requiresUserInputForFullscreen() && CardVisuals.isFullscreen()) {
 			CardVisuals.toggleFullscreen();
 		}
 		$('#pomodoroTimerModal').modal('hide');
