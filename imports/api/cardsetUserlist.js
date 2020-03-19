@@ -111,7 +111,8 @@ export function getLearners(data, cardset_id) {
 				box5: Leitner.find(filter[4]).count(),
 				box6: Leitner.find(filter[5]).count(),
 				mailNotification: user[0].mailNotification,
-				webNotification: user[0].webNotification
+				webNotification: user[0].webNotification,
+				dateJoinedBonus: data[i].leitner.dateJoinedBonus
 			});
 		}
 	}

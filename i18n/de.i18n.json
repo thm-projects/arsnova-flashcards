@@ -1827,6 +1827,7 @@
     "indexDefault": "Alle __cardsetCount__ Karteien mit __cardCount__ Karten gesamt",
     "cardCount": "Gesamtzahl: __cardCount__ Karten",
     "percentage": "Prozent",
+    "dateJoinedBonus": "Lernbeginn",
     "notification": {
       "mail": "E-Mail",
       "push": "Push"

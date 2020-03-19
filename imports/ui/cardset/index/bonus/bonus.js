@@ -6,6 +6,7 @@ import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import "./modal/removeUser.js";
 import "./bonus.html";
 import {Bonus} from "../../../../api/bonus";
+import {Utilities} from "../../../../api/utilities";
 
 /*
 * ############################################################################
@@ -35,6 +36,9 @@ Template.cardsetLearnActivityStatistic.helpers({
 	},
 	getAchievedBonus: function () {
 		return Bonus.getAchievedBonus(this.box6, Session.get('activeCardset').workload, (this.box1 + this.box2 + this.box3 + this.box4 + this.box5 + this.box6));
+	},
+	getDateJoinedBonus: function () {
+		return Utilities.getMomentsDate(this.dateJoinedBonus);
 	}
 });
 

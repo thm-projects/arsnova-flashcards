@@ -37,6 +37,7 @@
                             <th>{{_ "confirmLearn-form.notification"}}
                             </th>
                         {{/if}}
+                        <th>{{_ "leitnerProgress.dateJoinedBonus"}}</th>
                         <th>{{_ "leitnerProgress.box" number=1}} [{{this.learningInterval.[0]}}]
                         </th>
                         <th>{{_ "leitnerProgress.box" number=2}} [{{this.learningInterval.[1]}}]
@@ -60,6 +61,7 @@
                             {{#if isNotificationEnabled}}
                                 <td>{{{getNotificationStatus this}}}</td>
                             {{/if}}
+                            <td>{{getDateJoinedBonus}}</td>
                             <td>{{this.box1}}</td>
                             <td>{{this.box2}}</td>
                             <td>{{this.box3}}</td>
