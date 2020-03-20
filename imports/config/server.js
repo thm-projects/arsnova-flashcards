@@ -334,11 +334,11 @@ let linux = {
 	},
 	"login": {
 		"cas": true,
-		"guest": true,
+		"guest": false,
 		"pro": false,
-		"facebook": true,
-		"twitter": true,
-		"google": true
+		"facebook": false,
+		"twitter": false,
+		"google": false
 	},
 	"welcome": {
 		"title": {
