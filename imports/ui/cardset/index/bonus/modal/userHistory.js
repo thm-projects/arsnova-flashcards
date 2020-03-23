@@ -10,7 +10,7 @@ import {Utilities} from "../../../../../api/utilities";
 * ############################################################################
 */
 
-Template.bonusUserHistoryModal.onCreated(function () {
+Template.bonusUserHistoryModal.onRendered(function () {
 	$('#bonusUserHistoryModal').on('hidden.bs.modal', function () {
 		Session.set('selectedBonusUser', undefined);
 		Session.set('selectedBonusUserHistoryData', undefined);
@@ -19,7 +19,7 @@ Template.bonusUserHistoryModal.onCreated(function () {
 
 Template.bonusUserHistoryModal.helpers({
 	getTitle: function () {
-		return TAPi18n.__('leitnerProgress.modal.userHistory.title', {firstName: this.firstName, lastName: this.lastName});
+		return TAPi18n.__('leitnerProgress.modal.userHistory.title', {lastName: Session.get('selectedBonusUser').lastName, firstName: Session.get('selectedBonusUser').firstName});
 	},
 	gotUserData: function () {
 		return Session.get('selectedBonusUser') !== undefined && Session.get('selectedBonusUser').user_id !== undefined;

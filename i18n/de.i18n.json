@@ -1848,7 +1848,7 @@
         }
       },
       "userHistory": {
-        "title": "Verlauf von Benutzer __lastName__, __firstName__",
+        "title": "Verlauf von Benutzer __firstName__, __lastName__",
         "table": {
           "id": "ID",
           "date": "Freischaltungstag",
