@@ -4,8 +4,12 @@ import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import "./modal/removeUser.js";
+import "./modal/userHistory.js";
 import "./bonus.html";
 import {Bonus} from "../../../../api/bonus";
+
+Session.setDefault('selectedBonusUser', undefined);
+Session.setDefault('selectedBonusUserHistoryData', undefined);
 
 /*
 * ############################################################################
@@ -54,6 +58,8 @@ Template.cardsetLearnActivityStatistic.events({
 		header[8] = TAPi18n.__('box_export_mail');
 		header[9] = TAPi18n.__('leitnerProgress.bonus');
 		header[10] = TAPi18n.__('confirmLearn-form.notification');
+		header[11] = TAPi18n.__('leitnerProgress.dateJoinedBonus');
+		header[12] = TAPi18n.__('leitnerProgress.lastActivity');
 		Meteor.call("getCSVExport", cardset._id, header, function (error, result) {
 			if (error) {
 				throw new Meteor.Error(error.statusCode, 'Error could not receive content for .csv');
@@ -83,9 +89,26 @@ Template.cardsetLearnActivityStatistic.events({
 		Session.set('helpFilter', "leitner");
 		Router.go('help');
 	},
+	"click .showBonusUserHistory": function (event) {
+		let user = {};
+		user.user_id = $(event.target).data('id');
+		user.firstName = $(event.target).data('firstname');
+		user.lastName = $(event.target).data('lastname');
+		if (user.user_id !== undefined) {
+			Session.set('selectedBonusUser', user);
+			Meteor.call("getLearningHistoryData", user.user_id, Router.current().params._id, function (error, result) {
+				if (error) {
+					throw new Meteor.Error(error.statusCode, 'Error could not receive content for history');
+				}
+				if (result) {
+					Session.set('selectedBonusUserHistoryData', result);
+				}
+			});
+		}
+	},
 	"click .removeBonusUser": function (event) {
 		let user = {};
-		user.user_id = $(event.target).data('user_id');
+		user.user_id = $(event.target).data('id');
 		user.firstName = $(event.target).data('firstname');
 		user.lastName = $(event.target).data('lastname');
 		user.email = $(event.target).data('email');
@@ -97,7 +120,9 @@ Template.cardsetLearnActivityStatistic.events({
 		user.box6 = $(event.target).data('box6');
 		user.mailNotification = $(event.target).data('mailnotification');
 		user.webNotification = $(event.target).data('webnotification');
-		Session.set('removeBonusUser', user);
+		user.dateJoinedBonus = $(event.target).data('datejoinedbonus');
+		user.lastActivity = $(event.target).data('lastactivity');
+		Session.set('selectedBonusUser', user);
 	}
 });
 

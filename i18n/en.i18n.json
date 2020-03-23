@@ -1820,6 +1820,9 @@
     "indexDefault": "Alle __cardsetCount__ Karteien mit __cardCount__ Karten gesamt",
     "cardCount": "Gesamtzahl: __cardCount__ Karten",
     "percentage": "Prozent",
+    "dateJoinedBonus": "Lernbeginn",
+    "lastActivity": "Letzte Aktivität",
+    "userHistory": "Verlauf",
     "notification": {
       "mail": "E-Mail",
       "push": "Push"
@@ -1836,11 +1839,39 @@
           "confirm": "User aus der Bonusphase entfernen",
           "cancel": "Abbrechen"
         }
+      },
+      "userHistory": {
+        "title": "Verlauf von Benutzer __firstName__, __lastName__",
+        "table": {
+          "id": "ID",
+          "date": "Freischaltungstag",
+          "workload": {
+            "title": "Lernpensum",
+            "singular": "__cards__ Karte",
+            "plural": "__cards__ Karten"
+          },
+          "known": "Gewusst",
+          "notKnown": "Nicht gewusst",
+          "status": {
+            "title": "Status",
+            "inProgress": "In Bearbeitung",
+            "notCompleted": "Nich Bearbeitet",
+            "notFullyCompletedSingular": "__cards__ Karte nicht bearbeitet",
+            "notFullyCompletedPlural": "__cards__ Karten nicht bearbeitet",
+            "completed": "Bearbeitet am __lastAnswerDate__"
+          },
+          "reason": {
+            "title": "Grund für Freischaltung",
+            "leitner": "Leitner-Plan",
+            "deadline": "Überschreitungsfrist"
+          }
+        }
       }
     },
     "tooltip": {
       "removeUser": "User aus der Bonusphase entfernen",
-      "graph": "Statistik anzeigen"
+      "graph": "Statistik anzeigen",
+      "userHistory": "Verlauf anzeigen"
     },
     "bertAlert": {
       "userRemoved": "User wurde aus der Bonusphase entfernt"

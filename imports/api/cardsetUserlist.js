@@ -8,6 +8,9 @@ import {Profile} from "./profile";
 import {Bonus} from "./bonus";
 import {ServerStyle} from "./styles";
 import * as config from "../config/bonusForm.js";
+import {LeitnerHistory} from "./subscriptions/leitnerHistory";
+import {Utilities} from "./utilities";
+import {UserPermissions} from "./permissions";
 
 function getLearningStatus(learningEnd) {
 	if (learningEnd.getTime() > new Date().getTime()) {
@@ -98,6 +101,15 @@ export function getLearners(data, cardset_id) {
 			user[0].profile.givenname = TAPi18n.__('leitnerProgress.user.missingName', {}, ServerStyle.getClientLanguage());
 			user[0].email = "";
 		}
+		let lastActivity = data[i].leitner.dateJoinedBonus;
+		let lastHistoryItem = LeitnerHistory.findOne({
+			cardset_id: cardset_id,
+			user_id: data[i].user_id,
+			answer: {$exists: true}},
+			{sort: {"timestamps.submission": -1}, fields: {_id: 1, timestamps: 1}});
+		if (lastHistoryItem !== undefined && lastHistoryItem.timestamps !== undefined) {
+			lastActivity = lastHistoryItem.timestamps.submission;
+		}
 		if (user[0].profile.name !== undefined) {
 			learningDataArray.push({
 				user_id: user[0]._id,
@@ -111,7 +123,9 @@ export function getLearners(data, cardset_id) {
 				box5: Leitner.find(filter[4]).count(),
 				box6: Leitner.find(filter[5]).count(),
 				mailNotification: user[0].mailNotification,
-				webNotification: user[0].webNotification
+				webNotification: user[0].webNotification,
+				dateJoinedBonus: data[i].leitner.dateJoinedBonus,
+				lastActivity: lastActivity
 			});
 		}
 	}
@@ -129,13 +143,13 @@ Meteor.methods({
 		if (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
 			let content;
 			let colSep = ";"; // Separates columns
-			let infoCol = ";;;;;;;;;;;;"; // Separates columns
+			let infoCol = ";;;;;;;;;;;;;;"; // Separates columns
 			let newLine = "\r\n"; //Adds a new line
 			let infoCardsetCounter = 0;
 			let infoCardsetLength = 6;
 			let infoLearningPhaseCounter = 0;
-			let infoLearningPhaseLength = 9;
-			content = header[6] + colSep + header[7] + colSep + header[8] + colSep + header[10] + colSep;
+			let infoLearningPhaseLength = 10;
+			content = header[6] + colSep + header[7] + colSep + header[8] + colSep + header[10] + colSep + header[11] + colSep + header[12] + colSep;
 			for (let i = 0; i <= 4; i++) {
 				content += header[i] + " [" + cardset.learningInterval[i] + "]" + colSep;
 			}
@@ -155,6 +169,7 @@ Meteor.methods({
 					box6 += " [" + percentage + " %]";
 				}
 				content += learners[k].birthname + colSep + learners[k].givenname + colSep + learners[k].email + colSep + Bonus.getNotificationStatus(learners[k], true) + colSep;
+				content += Utilities.getMomentsDate(learners[k].dateJoinedBonus, false, 0, false) + colSep + Utilities.getMomentsDate(learners[k].lastActivity, false, 0, false) + colSep;
 				content += learners[k].box1 + colSep + learners[k].box2 + colSep + learners[k].box3 + colSep + learners[k].box4 + colSep + learners[k].box5 + colSep + box6 +  colSep + achievedBonus +  colSep;
 				if (infoCardsetCounter <= infoCardsetLength) {
 					content += colSep + cardsetInfo[infoCardsetCounter][0] + colSep + cardsetInfo[infoCardsetCounter++][1];
@@ -175,8 +190,48 @@ Meteor.methods({
 	getLearningData: function (cardset_id) {
 		check(cardset_id, String);
 		let cardset = Cardsets.findOne({_id: cardset_id});
-		if (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
+		if (UserPermissions.gotBackendAccess() || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
 			return getLearners(Workload.find({cardset_id: cardset_id, 'leitner.bonus': true}).fetch(), cardset_id);
+		}
+	},
+	getLearningHistoryData: function (user_id, cardset_id) {
+		check(user_id, String);
+		check(cardset_id, String);
+
+		let cardset = Cardsets.findOne({_id: cardset_id});
+		if (UserPermissions.gotBackendAccess() || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
+			let workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id});
+			let result = [];
+			if (workload.leitner !== undefined && workload.leitner.tasks !== undefined) {
+				for (let i = workload.leitner.tasks.length - 1; i >= 0; i--) {
+					let item = {};
+					item.date = workload.leitner.tasks[i];
+					item.workload = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: i}).count();
+					item.known = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: i, answer: 0}).count();
+					item.notKnown = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: i, answer: 1}).count();
+					if (LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: (i - 1), missedDeadline: true}).count() === 0) {
+						item.reason = 0;
+					} else {
+						item.reason = 1;
+					}
+					let lastAnswerDate = LeitnerHistory.findOne({
+						user_id: user_id,
+						cardset_id: cardset_id,
+						task_id: i,
+						answer: {$exists: true}
+					}, {fields: {timestamps: 1}, sort: {"timestamps.submission": -1}});
+					if (lastAnswerDate !== undefined && lastAnswerDate.timestamps !== undefined) {
+						item.lastAnswerDate = lastAnswerDate.timestamps.submission;
+					}
+					item.missedDeadline = false;
+					let foundReset = LeitnerHistory.findOne({user_id: user_id, cardset_id: cardset_id, task_id: i, missedDeadline: true});
+					if (foundReset !== undefined) {
+						item.missedDeadline = true;
+					}
+					result.push(item);
+				}
+			}
+			return result;
 		}
 	},
 	getEditors: function (cardset_id) {

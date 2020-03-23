@@ -224,7 +224,8 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				user_id: user_id,
 				task_id: task_id,
 				box: leitner.box,
-				skipped: 0
+				skipped: 0,
+				missedDeadline: false
 			};
 			if (cardset.shuffled) {
 				newItemObject.original_cardset_id = leitner.original_cardset_id;
@@ -470,10 +471,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						LeitnerHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: workload.leitner.tasks.length - 1}, {
 							$set: {
 								box: box,
-								answer: 2,
-								timestamps: {
-									submission: new Date()
-								}
+								missedDeadline: true
 							}
 						}, {multi: true});
 					}
@@ -499,7 +497,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					LeitnerHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: workload.leitner.tasks.length - 1}, {
 						$set: {
 							box: 1,
-							answer: 2
+							missedDeadline: true
 						}
 					}, {multi: true});
 				}

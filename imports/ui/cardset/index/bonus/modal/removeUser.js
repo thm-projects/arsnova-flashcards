@@ -5,8 +5,6 @@ import "./removeUser.html";
 import {Meteor} from "meteor/meteor";
 import {BertAlertVisuals} from "../../../../../api/bertAlertVisuals";
 
-Session.setDefault('removeBonusUser', undefined);
-
 /*
 * ############################################################################
 * removeUserFromBonusModal
@@ -15,20 +13,20 @@ Session.setDefault('removeBonusUser', undefined);
 
 Template.removeUserFromBonusModal.onCreated(function () {
 	$('#removeUserFromBonusModal').on('hidden.bs.modal', function () {
-		Session.set('removeBonusUser', undefined);
+		Session.set('selectedBonusUser', undefined);
 	});
 });
 
 Template.removeUserFromBonusModal.helpers({
 	userData: function () {
-		return Session.get('removeBonusUser');
+		return Session.get('selectedBonusUser');
 	}
 });
 
 Template.removeUserFromBonusModal.events({
 	"click #removeUserFromBonusConfirm": function () {
-		if (Session.get('removeBonusUser') !== undefined) {
-			Meteor.call('removeUserFromBonus', Router.current().params._id, Session.get('removeBonusUser').user_id, function (error, result) {
+		if (Session.get('selectedBonusUser') !== undefined) {
+			Meteor.call('removeUserFromBonus', Router.current().params._id, Session.get('selectedBonusUser').user_id, function (error, result) {
 				if (error) {
 					throw new Meteor.Error(error.statusCode, 'Error could not receive content for stats');
 				}

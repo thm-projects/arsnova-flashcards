@@ -1177,6 +1177,34 @@ Meteor.startup(function () {
 		);
 	}
 
+	let leitnerHistory = LeitnerHistory.find({"missedDeadline": {$exists: false}}).fetch();
+	for (let i = 0; i < leitnerHistory.length; i++) {
+		if (leitnerHistory[i].answer === 2) {
+			LeitnerHistory.update({
+					_id: leitnerHistory[i]._id
+				},
+				{
+					$set: {
+						missedDeadline: true
+					},
+					$unset: {
+						answer: ""
+					}
+				}
+			);
+		} else {
+			LeitnerHistory.update({
+					_id: leitnerHistory[i]._id
+				},
+				{
+					$set: {
+						missedDeadline: false
+					}
+				}
+			);
+		}
+	}
+
 	Cardsets.remove({cardType: 2});
 	Meteor.users.remove(demoCardsetUser[0]._id);
 	Meteor.users.insert(demoCardsetUser[0]);
