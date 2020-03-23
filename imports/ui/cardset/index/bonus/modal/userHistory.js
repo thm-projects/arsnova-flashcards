@@ -48,7 +48,7 @@ Template.bonusUserHistoryModal.helpers({
 		let completedWorkload = this.known + this.notKnown;
 		if (completedWorkload === this.workload) {
 			return TAPi18n.__('leitnerProgress.modal.userHistory.table.status.completed', {lastAnswerDate: Utilities.getMomentsDate(this.lastAnswerDate, 0, false, false)});
-		} else if (!this.gotReset) {
+		} else if (!this.missedDeadline) {
 			return TAPi18n.__('leitnerProgress.modal.userHistory.table.status.inProgress');
 		} else {
 			if (completedWorkload > 0) {

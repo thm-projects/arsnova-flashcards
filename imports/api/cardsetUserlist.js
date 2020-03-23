@@ -105,7 +105,7 @@ export function getLearners(data, cardset_id) {
 		let lastHistoryItem = LeitnerHistory.findOne({
 			cardset_id: cardset_id,
 			user_id: data[i].user_id,
-			answer: {$ne: 2}},
+			answer: {$exists: true}},
 			{sort: {"timestamps.submission": -1}, fields: {_id: 1, timestamps: 1}});
 		if (lastHistoryItem !== undefined && lastHistoryItem.timestamps !== undefined) {
 			lastActivity = lastHistoryItem.timestamps.submission;
@@ -209,7 +209,7 @@ Meteor.methods({
 					item.workload = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: i}).count();
 					item.known = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: i, answer: 0}).count();
 					item.notKnown = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: i, answer: 1}).count();
-					if (LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: (i - 1), answer: 2}).count() === 0) {
+					if (LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: (i - 1), missedDeadline: true}).count() === 0) {
 						item.reason = 0;
 					} else {
 						item.reason = 1;
@@ -218,14 +218,15 @@ Meteor.methods({
 						user_id: user_id,
 						cardset_id: cardset_id,
 						task_id: i,
-						answer: {$ne: 2}}, {fields: {timestamps: 1}, sort: {"timestamps.submission": -1}});
+						answer: {$exists: true}
+					}, {fields: {timestamps: 1}, sort: {"timestamps.submission": -1}});
 					if (lastAnswerDate !== undefined && lastAnswerDate.timestamps !== undefined) {
 						item.lastAnswerDate = lastAnswerDate.timestamps.submission;
 					}
-					item.gotReset = false;
-					let foundReset = LeitnerHistory.findOne({user_id: user_id, cardset_id: cardset_id, task_id: i, answer: 2});
+					item.missedDeadline = false;
+					let foundReset = LeitnerHistory.findOne({user_id: user_id, cardset_id: cardset_id, task_id: i, missedDeadline: true});
 					if (foundReset !== undefined) {
-						item.gotReset = true;
+						item.missedDeadline = true;
 					}
 					result.push(item);
 				}
