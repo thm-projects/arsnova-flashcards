@@ -2,8 +2,8 @@
     <div class="modal fade" id="bonusUserHistoryModal" tabindex="-1" role="dialog"
          aria-labelledby="bonusUserHistoryTitle">
         {{#if gotUserData}}
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content modal-content-for-buttons">
+            <div class="modal-dialog">
+                <div class="modal-content modal-content-for-buttons">
                     <div class="modal-header">
                     <span class="modal-icon">
                         <i class="fas fa-clock"></i>
@@ -15,7 +15,47 @@
                     </div>
                     <div class="modal-body">
                         {{#if gotHistoryData}}
-                            <table class="table table-striped table-hover table-user-list">
+                            <div class="user-history-title">
+                                <h4>{{_ "leitnerProgress.modal.userHistory.stats.title"}}</h4>
+                            </div>
+                            <table class="table table-striped table-hover table-user-history">
+                                <tbody>
+                                <tr>
+                                    <td>{{_ "leitnerProgress.modal.userHistory.stats.tasks.total"}}:</td>
+                                    <td colspan="3">{{getTaskCount}}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{_ "leitnerProgress.modal.userHistory.stats.tasks.completed"}}:</td>
+                                    <td>{{getTaskCount 0}}</td>
+                                    <td>{{_ "leitnerProgress.modal.userHistory.stats.tasks.notCompleted"}}:</td>
+                                    <td>{{getTaskCount 1}}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{_ "leitnerProgress.modal.userHistory.stats.workload.total"}}:</td>
+                                    <td colspan="3">{{getWorkloadCount 0}}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{_ "leitnerProgress.modal.userHistory.stats.workload.known"}}:</td>
+                                    <td>{{getWorkloadCount 1}}</td>
+                                    <td>{{_ "leitnerProgress.modal.userHistory.stats.workload.notKnown"}}:</td>
+                                    <td>{{getWorkloadCount 2}}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{_ "leitnerProgress.modal.userHistory.stats.duration.total"}}:</td>
+                                    <td colspan="3">{{getTotalDuration}}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{_ "leitnerProgress.modal.userHistory.stats.duration.average"}}:</td>
+                                    <td>{{getAverageDuration}}</td>
+                                    <td>{{_ "leitnerProgress.modal.userHistory.stats.averageKnown"}}:</td>
+                                    <td>{{getAverageScore}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="user-history-title">
+                                <h4>{{_ "leitnerProgress.modal.userHistory.table.title"}}</h4>
+                            </div>
+                            <table class="table table-striped table-hover">
                                 <tbody>
                                 <tr>
                                     <th>{{_ "leitnerProgress.modal.userHistory.table.date"}}</th>
@@ -23,7 +63,9 @@
                                     <th>{{_ "leitnerProgress.modal.userHistory.table.workload.title"}}</th>
                                     <th>{{_ "leitnerProgress.modal.userHistory.table.known"}}</th>
                                     <th>{{_ "leitnerProgress.modal.userHistory.table.notKnown"}}</th>
-                                    <th>{{_ "leitnerProgress.modal.userHistory.table.status.title"}}</th>
+                                    <th class="visible-md visible-lg">{{_
+                                            "leitnerProgress.modal.userHistory.table.status.title"}}</th>
+                                    <th class="visible-lg">{{_ "leitnerProgress.modal.userHistory.table.duration"}}</th>
                                 </tr>
                                 {{#each getWorkloadHistory}}
                                     <tr>
@@ -32,7 +74,8 @@
                                         <td>{{getWorkload}}</td>
                                         <td>{{this.known}}</td>
                                         <td>{{this.notKnown}}</td>
-                                        <td>{{getStatus}}</td>
+                                        <td class="visible-md visible-lg">{{getStatus}}</td>
+                                        <td class="visible-lg">{{getDuration this.duration}}</td>
                                     </tr>
                                 {{/each}}
                                 </tbody>
@@ -43,10 +86,10 @@
                             <br>
                         {{/if}}
                     </div>
+                </div>
+                <!-- /.modal-content -->
             </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
+            <!-- /.modal-dialog -->
         {{/if}}
     </div>
     <!-- /.modal -->

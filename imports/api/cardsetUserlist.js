@@ -228,6 +228,16 @@ Meteor.methods({
 					if (foundReset !== undefined) {
 						item.missedDeadline = true;
 					}
+					item.duration = 0;
+					let history = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: i, answer: {$exists: true}}, {fields: {timestamps: 1}}).fetch();
+					if (history !== undefined) {
+						for (let h = 0; h < history.length; h++) {
+							let submission =  moment(history[h].timestamps.submission);
+							let question = moment(history[h].timestamps.question);
+							let duration = submission.diff(question);
+							item.duration += moment(duration).valueOf();
+						}
+					}
 					result.push(item);
 				}
 			}
