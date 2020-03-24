@@ -117,7 +117,11 @@ Template.bonusUserHistoryModal.helpers({
 				score.push(0);
 			}
 		});
-		return Math.trunc(score.reduce((a,b) => a + b, 0) / score.length) + "%";
+		let average = Math.trunc(score.reduce((a,b) => a + b, 0) / score.length);
+		if (isNaN(average)) {
+			average = 0;
+		}
+		return average + "%";
 	},
 	getReason: function () {
 		if (this.reason === 0) {
