@@ -91,7 +91,9 @@ Template.bonusUserHistoryModal.helpers({
 		let settings = humanizeSettings;
 		let duration = [];
 		historyData.forEach(function (item) {
-			duration.push(item.duration);
+			if (item.duration !== 0) {
+				duration.push(item.duration);
+			}
 		});
 		let avgDuration = duration.reduce((a,b) => a + b, 0) / duration.length;
 		if (avgDuration > 0) {
