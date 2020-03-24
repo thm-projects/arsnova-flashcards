@@ -45,20 +45,29 @@ Template.bonusUserHistoryModal.helpers({
 	},
 	getWorkloadCount: function (type = 0) {
 		let historyData = Session.get('selectedBonusUserHistoryData');
+		let workloadCount = 0;
 		switch (type) {
 			case 0:
 			default:
-				return historyData.map(function (task) {
+				workloadCount = historyData.map(function (task) {
 					return task.known + task.notKnown;
 				}).reduce((a, b) => a + b, 0);
+				break;
 			case 1:
-				return historyData.map(function (task) {
+				workloadCount = historyData.map(function (task) {
 					return task.known;
 				}).reduce((a, b) => a + b, 0);
+				break;
 			case 2:
-				return historyData.map(function (task) {
+				workloadCount = historyData.map(function (task) {
 					return task.notKnown;
 				}).reduce((a, b) => a + b, 0);
+				break;
+		}
+		if (workloadCount === 1) {
+			return TAPi18n.__('leitnerProgress.modal.userHistory.table.workload.singular', {cards: workloadCount});
+		} else if (workloadCount !== 0) {
+			return TAPi18n.__('leitnerProgress.modal.userHistory.table.workload.plural', {cards: workloadCount});
 		}
 	},
 	getTotalDuration: function () {
@@ -68,7 +77,8 @@ Template.bonusUserHistoryModal.helpers({
 			return task.duration;
 		}).reduce((a, b) => a + b, 0);
 		if (duration > 0) {
-			if (duration < 60) {
+			if (duration < 60000) {
+				settings.units = ['s'];
 				return humanizeDuration(duration, settings);
 			} else {
 				settings.units = ['h', 'm'];
@@ -85,7 +95,8 @@ Template.bonusUserHistoryModal.helpers({
 		});
 		let avgDuration = duration.reduce((a,b) => a + b, 0) / duration.length;
 		if (avgDuration > 0) {
-			if (avgDuration < 60) {
+			if (avgDuration < 60000) {
+				settings.units = ['s'];
 				return humanizeDuration(avgDuration, settings);
 			} else {
 				settings.units = ['h', 'm'];
@@ -142,7 +153,8 @@ Template.bonusUserHistoryModal.helpers({
 	getDuration: function (duration = 0) {
 		let settings = humanizeSettings;
 		if (duration > 0) {
-			if (duration < 60) {
+			if (duration < 60000) {
+				settings.units = ['s'];
 				return humanizeDuration(duration, settings);
 			} else {
 				settings.units = ['h', 'm'];

@@ -1843,7 +1843,7 @@
       "userHistory": {
         "title": "Verlauf von Benutzer __firstName__, __lastName__",
         "stats": {
-          "titel": "Statistik",
+          "title": "Statistik",
           "tasks": {
             "total": "Termine",
             "completed": "Bearbeitet",

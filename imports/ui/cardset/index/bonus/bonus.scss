@@ -6,5 +6,14 @@
     .modal-body {
       width: 1200px;
     }
+    .user-history-title {
+      h4 {
+        font-weight: bold;
+      }
+      padding: 2px 10px;
+    }
+    .table-user-history {
+      margin-bottom: 0;
+    }
   }
 }
