@@ -113,7 +113,7 @@ Template.bonusUserHistoryModal.helpers({
 			if (item.known) {
 				let result = item.known / item.workload * 100;
 				score.push(result);
-			} else {
+			} else if (item.notKnown) {
 				score.push(0);
 			}
 		});
