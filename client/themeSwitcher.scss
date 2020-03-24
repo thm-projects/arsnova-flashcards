@@ -308,6 +308,9 @@ $themes: (
     $server_statistics_table_row_background: map-get($map, "server_statistics_table_row_background");
     $server_statistics_table_row_text: map-get($map, "server_statistics_table_row_text");
     $server_statistics_table_row_counter: map-get($map, "server_statistics_table_row_counter");
+    //leitner user history
+    $leitner_user_history_title_background: map-get($map, "leitner_user_history_title_background");
+    $leitner_user_history_title_color: map-get($map, "leitner_user_history_title_color");
     //footer colors
     $footer_welcome_page_info_icon_text: map-get($map, "footer_welcome_page_info_icon_text");
     $footer_welcome_page_info_icon_text_hover: map-get($map, "footer_welcome_page_info_icon_text_hover");
@@ -4095,6 +4098,11 @@ $themes: (
       }
     }
 
+    //leitner user history
+    .user-history-title {
+      background-color: $leitner_user_history_title_background !important;
+      color: $leitner_user_history_title_color !important;
+    }
     .bonusTrophy {
       color: $trophy;
     }
