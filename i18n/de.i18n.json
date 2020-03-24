@@ -1849,7 +1849,26 @@
       },
       "userHistory": {
         "title": "Verlauf von Benutzer __firstName__, __lastName__",
+        "stats": {
+          "titel": "Statistik",
+          "tasks": {
+            "total": "Termine",
+            "completed": "Bearbeitet",
+            "notCompleted": "Nicht Bearbeitet"
+          },
+          "workload": {
+            "total": "Bearbeites Lernpensum",
+            "known": "Gewusst",
+            "notKnown": "Nicht Gewusst"
+          },
+          "duration": {
+            "average": "Ø Bearbeitungszeit",
+            "total": "Gesamte Bearbeitungszeit"
+          },
+          "averageKnown": "Ø Gewusst"
+        },
         "table": {
+          "title": "Verlauf",
           "id": "ID",
           "date": "Freischaltungstag",
           "workload": {

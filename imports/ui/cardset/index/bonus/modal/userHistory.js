@@ -33,6 +33,79 @@ Template.bonusUserHistoryModal.helpers({
 	getWorkloadHistory: function () {
 		return Session.get('selectedBonusUserHistoryData');
 	},
+	getTaskCount: function (reason = undefined) {
+		let historyData = Session.get('selectedBonusUserHistoryData');
+		if (reason === undefined) {
+			return historyData.length;
+		} else {
+			return historyData.filter(task => {
+				return task.reason === reason;
+			}).length;
+		}
+	},
+	getWorkloadCount: function (type = 0) {
+		let historyData = Session.get('selectedBonusUserHistoryData');
+		switch (type) {
+			case 0:
+			default:
+				return historyData.map(function (task) {
+					return task.known + task.notKnown;
+				}).reduce((a, b) => a + b, 0);
+			case 1:
+				return historyData.map(function (task) {
+					return task.known;
+				}).reduce((a, b) => a + b, 0);
+			case 2:
+				return historyData.map(function (task) {
+					return task.notKnown;
+				}).reduce((a, b) => a + b, 0);
+		}
+	},
+	getTotalDuration: function () {
+		let historyData = Session.get('selectedBonusUserHistoryData');
+		let settings = humanizeSettings;
+		let duration = historyData.map(function (task) {
+			return task.duration;
+		}).reduce((a, b) => a + b, 0);
+		if (duration > 0) {
+			if (duration < 60) {
+				return humanizeDuration(duration, settings);
+			} else {
+				settings.units = ['h', 'm'];
+				return humanizeDuration(duration, settings);
+			}
+		}
+	},
+	getAverageDuration: function () {
+		let historyData = Session.get('selectedBonusUserHistoryData');
+		let settings = humanizeSettings;
+		let duration = [];
+		historyData.forEach(function (item) {
+			duration.push(item.duration);
+		});
+		let avgDuration = duration.reduce((a,b) => a + b, 0) / duration.length;
+		if (avgDuration > 0) {
+			if (avgDuration < 60) {
+				return humanizeDuration(avgDuration, settings);
+			} else {
+				settings.units = ['h', 'm'];
+				return humanizeDuration(avgDuration, settings);
+			}
+		}
+	},
+	getAverageScore: function () {
+		let historyData = Session.get('selectedBonusUserHistoryData');
+		let score = [];
+		historyData.forEach(function (item) {
+			if (item.known) {
+				let result = item.known / item.workload * 100;
+				score.push(result);
+			} else {
+				score.push(0);
+			}
+		});
+		return Math.trunc(score.reduce((a,b) => a + b, 0) / score.length) + "%";
+	},
 	getReason: function () {
 		if (this.reason === 0) {
 			return TAPi18n.__('leitnerProgress.modal.userHistory.table.reason.leitner');
