@@ -3,6 +3,9 @@ import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import "./userHistory.html";
 import {Utilities} from "../../../../../api/utilities";
+import humanizeDuration from "humanize-duration";
+
+let humanizeSettings = {language: 'de', conjunction: ' und ', serialComma: false, round: true};
 
 /*
 * ############################################################################
@@ -60,6 +63,17 @@ Template.bonusUserHistoryModal.helpers({
 				}
 			} else {
 				return TAPi18n.__('leitnerProgress.modal.userHistory.table.status.notCompleted');
+			}
+		}
+	},
+	getDuration: function (duration = 0) {
+		let settings = humanizeSettings;
+		if (duration > 0) {
+			if (duration < 60) {
+				return humanizeDuration(duration, settings);
+			} else {
+				settings.units = ['h', 'm'];
+				return humanizeDuration(duration, settings);
 			}
 		}
 	}

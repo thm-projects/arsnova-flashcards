@@ -1871,7 +1871,8 @@
             "title": "Grund für Freischaltung",
             "leitner": "Leitner-Plan",
             "deadline": "Überschreitungsfrist"
-          }
+          },
+          "duration": "Bearbeitungszeit"
         }
       }
     },

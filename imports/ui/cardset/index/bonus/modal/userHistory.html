@@ -2,7 +2,7 @@
     <div class="modal fade" id="bonusUserHistoryModal" tabindex="-1" role="dialog"
          aria-labelledby="bonusUserHistoryTitle">
         {{#if gotUserData}}
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
             <div class="modal-content modal-content-for-buttons">
                     <div class="modal-header">
                     <span class="modal-icon">
@@ -23,7 +23,8 @@
                                     <th>{{_ "leitnerProgress.modal.userHistory.table.workload.title"}}</th>
                                     <th>{{_ "leitnerProgress.modal.userHistory.table.known"}}</th>
                                     <th>{{_ "leitnerProgress.modal.userHistory.table.notKnown"}}</th>
-                                    <th>{{_ "leitnerProgress.modal.userHistory.table.status.title"}}</th>
+                                    <th class="visible-md visible-lg">{{_ "leitnerProgress.modal.userHistory.table.status.title"}}</th>
+                                    <th class="visible-lg">{{_ "leitnerProgress.modal.userHistory.table.duration"}}</th>
                                 </tr>
                                 {{#each getWorkloadHistory}}
                                     <tr>
@@ -32,7 +33,8 @@
                                         <td>{{getWorkload}}</td>
                                         <td>{{this.known}}</td>
                                         <td>{{this.notKnown}}</td>
-                                        <td>{{getStatus}}</td>
+                                        <td class="visible-md visible-lg">{{getStatus}}</td>
+                                        <td class="visible-lg">{{getDuration this.duration}}</td>
                                     </tr>
                                 {{/each}}
                                 </tbody>
