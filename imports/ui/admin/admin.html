@@ -104,6 +104,13 @@
                         </a>
                     </li>
                     <li>
+                        <a class="{{#if isActiveRoute regex='admin_matomoStatistics'}}active{{/if}}"
+                           href="{{pathFor route='admin_mmatomoStatistics'}}">
+                            <i class="far fa-chart-bar"></i>
+                            <span>{{_ "admin.matomoStatistics"}}</span>
+                        </a>
+                    </li>
+                    <li>
                         <a class="{{#if isActiveRoute regex='admin_apiAccess'}}active{{/if}}"
                            href="{{pathFor route='admin_apiAccess'}}">
                             <i class="fas fa-key"></i>

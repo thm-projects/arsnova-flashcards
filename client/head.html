@@ -29,6 +29,7 @@
     <meta name="google-site-verification" content="rN3x14QkdqbdL3gcMmu8uzuqQ7mvfWaWME3bmM0ShNY"/>
     <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+    <script src="../imports/api/tracking.js"></script>
 
     <noscript>
         <div class="noscript">
@@ -49,21 +50,4 @@
             </div>
         </div>
     </noscript>
-
-    <!-- Matomo -->
-    <script type="text/javascript">
-        var _paq = window._paq || [];
-        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-        _paq.push(['trackPageView']);
-        _paq.push(['enableLinkTracking']);
-        (function() {
-            var u="https://arsnova.thm.de/stats/";
-            _paq.push(['setTrackerUrl', u+'piwik.php']);
-            _paq.push(['setSiteId', '5']);
-            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-        })();
-    </script>
-    <!-- End Matomo Code -->
-
 </head>

@@ -4,7 +4,6 @@
     "plantUMLUrl": "http://www.plantuml.com/plantuml",
     "dynamicSettings": "default",
     "backdoorEnabled": false,
-    "useMatomo": true,
     "cas": {
       "loginUrl": "https://cas.thm.de/cas/login",
       "serviceParam": "service",
@@ -23,7 +22,12 @@
     },
     "env": "Sandbox",
     "BT_MERCHANT_ID": "7jspbjz7zk4vkh67",
-    "BT_PUBLIC_KEY": "bf7p9crbdv2359gv"
+    "BT_PUBLIC_KEY": "bf7p9crbdv2359gv",
+    "matomo": {
+      "MATOMO_URL": "http://your_matomo_server_url/matomo.php",
+      "MATOMO_SITE_ID": 0,
+      "MATOMO_TOKEN": "YOUR SECRET MATOMO TOKEN"
+    }
   },
   "private": {
     "BT_PRIVATE_KEY": "b508f71a0e0b01940b0fbe75940debb9",
@@ -38,7 +42,7 @@
   },
   "twitter": {
     "api": "I8LcQC0NetusL9c5F3EFJUXMl",
-    "secret": "2z0kNAtYcSU5lQKk6FDRR60gxuFawB4TM7tWvnU7yKk6EHHpYh"
+    "secret": "2z0kNAtYcSU5lQKk6FDRR60gundefinedxuFawB4TM7tWvnU7yKk6EHHpYh"
   },
   "google": {
     "api": "131328643116-j00jrgjupbbfeft1a9o0p5ling05vsus.apps.googleusercontent.com",
@@ -56,10 +60,5 @@
   "debug": {
     "leitner": false,
     "login": false
-  },
-  "matomo": {
-    "MATOMO_URL" : "http://your_matomo_server_url/matomo.php",
-    "MATOMO_SITE_ID" : 0,
-    "MATOMO_TOKEN" : "<YOUR SECRET MATOMO TOKEN>"
   }
 }

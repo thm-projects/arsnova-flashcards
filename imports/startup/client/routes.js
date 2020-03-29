@@ -1079,6 +1079,24 @@ Router.route('/admin/learningStatistics', {
 	}
 });
 
+Router.route('/admin/matomoStatistics', {
+	name: 'admin_matomoStatistics',
+	template: 'admin_matomoStatistics',
+	layoutTemplate: 'admin_main',
+	action: function () {
+		if (this.ready()) {
+			if (UserPermissions.isAdmin()) {
+				this.render();
+			} else {
+				MainNavigation.setLoginTarget(false);
+				this.redirect('home');
+			}
+		} else {
+			this.render(loadingScreenTemplate);
+		}
+	}
+});
+
 Router.route('/admin/apiAccess', {
 	name: 'admin_apiAccess',
 	template: 'admin_apiAccess',
