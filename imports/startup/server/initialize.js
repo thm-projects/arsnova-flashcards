@@ -1237,9 +1237,9 @@ Meteor.startup(function () {
 					web: {
 						active: user.webNotification,
 						sent: user.webNotification
-					},
-					createdAt: tasks[t]
-				}
+					}
+				},
+				createdAt: tasks[t]
 			});
 
 			LeitnerHistory.update({
@@ -1254,7 +1254,7 @@ Meteor.startup(function () {
 					$unset: {
 						missedDeadline: ""
 					}
-				}
+				}, {multi: true}
 			);
 		}
 

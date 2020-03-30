@@ -11,6 +11,7 @@ import * as config from "../config/bonusForm.js";
 import {LeitnerHistory} from "./subscriptions/leitnerHistory";
 import {Utilities} from "./utilities";
 import {UserPermissions} from "./permissions";
+import {LeitnerTasks} from "./subscriptions/leitnerTasks";
 
 function getLearningStatus(learningEnd) {
 	if (learningEnd.getTime() > new Date().getTime()) {
@@ -200,46 +201,41 @@ Meteor.methods({
 
 		let cardset = Cardsets.findOne({_id: cardset_id});
 		if (UserPermissions.gotBackendAccess() || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
-			let workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id});
+			let highestSession = LeitnerTasks.findOne({user_id: user_id, cardset_id: cardset_id}, {sort: {session: -1}}).session;
+			let leitnerTasks = LeitnerTasks.find({user_id: user_id, cardset_id: cardset_id, session: highestSession}, {sort: {createdAt: -1}}).fetch();
 			let result = [];
-			if (workload.leitner !== undefined && workload.leitner.tasks !== undefined) {
-				for (let i = workload.leitner.tasks.length - 1; i >= 0; i--) {
-					let item = {};
-					item.date = workload.leitner.tasks[i];
-					item.workload = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: i}).count();
-					item.known = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: i, answer: 0}).count();
-					item.notKnown = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: i, answer: 1}).count();
-					if (LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: (i - 1), missedDeadline: true}).count() === 0) {
-						item.reason = 0;
-					} else {
-						item.reason = 1;
-					}
-					let lastAnswerDate = LeitnerHistory.findOne({
-						user_id: user_id,
-						cardset_id: cardset_id,
-						task_id: i,
-						answer: {$exists: true}
-					}, {fields: {timestamps: 1}, sort: {"timestamps.submission": -1}});
-					if (lastAnswerDate !== undefined && lastAnswerDate.timestamps !== undefined) {
-						item.lastAnswerDate = lastAnswerDate.timestamps.submission;
-					}
-					item.missedDeadline = false;
-					let foundReset = LeitnerHistory.findOne({user_id: user_id, cardset_id: cardset_id, task_id: i, missedDeadline: true});
-					if (foundReset !== undefined) {
-						item.missedDeadline = true;
-					}
-					item.duration = 0;
-					let history = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: i, answer: {$exists: true}}, {fields: {timestamps: 1}}).fetch();
-					if (history !== undefined) {
-						for (let h = 0; h < history.length; h++) {
-							let submission =  moment(history[h].timestamps.submission);
-							let question = moment(history[h].timestamps.question);
-							let duration = submission.diff(question);
-							item.duration += moment(duration).valueOf();
-						}
-					}
-					result.push(item);
+			for (let i = 0; i < leitnerTasks.length; i++) {
+				let item = {};
+				item.date = leitnerTasks[i].createdAt;
+				item.workload = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id}).count();
+				item.known = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id, answer: 0}).count();
+				item.notKnown = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id, answer: 1}).count();
+				if (leitnerTasks[i].missedDeadline) {
+					item.reason = 1;
+				} else {
+					item.reason = 0;
 				}
+				item.missedDeadline = leitnerTasks[i].missedDeadline;
+				let lastAnswerDate = LeitnerHistory.findOne({
+					user_id: user_id,
+					cardset_id: cardset_id,
+					task_id: leitnerTasks[i]._id,
+					answer: {$exists: true}
+				}, {fields: {timestamps: 1}, sort: {"timestamps.submission": -1}});
+				if (lastAnswerDate !== undefined && lastAnswerDate.timestamps !== undefined) {
+					item.lastAnswerDate = lastAnswerDate.timestamps.submission;
+				}
+				item.duration = 0;
+				let history = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id, answer: {$exists: true}}, {fields: {timestamps: 1}}).fetch();
+				if (history !== undefined) {
+					for (let h = 0; h < history.length; h++) {
+						let submission =  moment(history[h].timestamps.submission);
+						let question = moment(history[h].timestamps.question);
+						let duration = submission.diff(question);
+						item.duration += moment(duration).valueOf();
+					}
+				}
+				result.push(item);
 			}
 			return result;
 		}
