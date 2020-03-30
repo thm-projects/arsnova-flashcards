@@ -373,6 +373,7 @@ function cleanWorkload() {
 function setupDatabaseIndex() {
 	Leitner._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, active: 1});
 	LeitnerHistory._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, task_id: 1, box: 1, dateAnswered: 1});
+	LeitnerTasks._ensureIndex({user_id: 1, cardset_id: 1, session: 1});
 	Wozniak._ensureIndex({user_id: 1, cardset_id: 1});
 	Workload._ensureIndex({cardset_id: 1, user_id: 1});
 	Cards._ensureIndex({cardset_id: 1, subject: 1});
