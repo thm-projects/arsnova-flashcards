@@ -103,10 +103,6 @@ if (Meteor.isServer) {
 				cardset_id: cardset_id,
 				user_id: Meteor.userId()
 			});
-			LeitnerHistory.remove({
-				cardset_id: cardset_id,
-				user_id: Meteor.userId()
-			});
 			Meteor.call("updateLearnerCount", cardset_id);
 			Meteor.call('updateWorkloadCount', Meteor.userId());
 			LeitnerUtilities.updateLeitnerWorkload(cardset_id, Meteor.userId());

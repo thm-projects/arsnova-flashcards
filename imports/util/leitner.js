@@ -554,4 +554,22 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			});
 		}
 	}
+
+	static getHighestLeitnerTaskSessionID (cardset_id, user_id) {
+		let highestSession = LeitnerTasks.findOne({user_id: user_id, cardset_id: cardset_id}, {sort: {session: -1}});
+		if (highestSession === undefined) {
+			return 0;
+		} else {
+			return highestSession.session;
+		}
+	}
+
+	static getNextLeitnerDeletedUserID (cardset_id, user_id) {
+		let highestDeletedUserID = LeitnerTasks.findOne({user_id: user_id, cardset_id: cardset_id}, {sort: {session: -1}});
+		if (highestDeletedUserID === undefined || highestDeletedUserID.user_id_deleted === undefined) {
+			return 0;
+		} else {
+			return highestDeletedUserID.user_id_deleted + 1;
+		}
+	}
 };
