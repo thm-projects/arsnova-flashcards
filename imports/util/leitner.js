@@ -9,6 +9,7 @@ import {LeitnerHistory} from "../api/subscriptions/leitnerHistory";
 import {Workload} from "../api/subscriptions/workload";
 import {CardIndex} from "../api/cardIndex";
 import {Utilities} from "../api/utilities";
+import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
 
 function gotPriority(array, card_id, priority) {
 	for (let i = 0; i < array.length; i++) {
@@ -203,10 +204,10 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				}
 			}, {multi: true});
 			this.updateLeitnerWorkload(cardset._id, user._id);
-			let task_id = this.updateLeitnerWorkloadTasks(cardset._id, user._id);
+			let task_id = this.updateLeitnerWorkloadTasks(cardset._id, user._id, isNewcomer);
 			this.setLeitnerHistory(cardset, user._id, task_id, cardSelection);
-			Meteor.call('prepareMail', cardset, user, isReset, isNewcomer);
-			Meteor.call('prepareWebpush', cardset, user, isNewcomer);
+			Meteor.call('prepareMail', cardset, user, isReset, isNewcomer, task_id);
+			Meteor.call('prepareWebpush', cardset, user, isNewcomer, task_id);
 		}
 	}
 
@@ -224,8 +225,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				user_id: user_id,
 				task_id: task_id,
 				box: leitner.box,
-				skipped: 0,
-				missedDeadline: false
+				skipped: 0
 			};
 			if (cardset.shuffled) {
 				newItemObject.original_cardset_id = leitner.original_cardset_id;
@@ -237,34 +237,39 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		}
 	}
 
-	static updateLeitnerWorkloadTasks (cardset_id, user_id) {
+	static updateLeitnerWorkloadTasks (cardset_id, user_id, isNewComer) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			let workload = Workload.findOne({cardset_id: cardset_id, user_id: user_id}, {fields: {leitner: 1}});
-			if (workload.leitner.tasks === undefined) {
-				let tasks = [];
-				tasks.push(new Date());
-				Workload.update({
-					cardset_id: cardset_id,
-					user_id: user_id
-				}, {
-					$set: {
-						"leitner.tasks": tasks
-					}
-				});
-			} else {
-				Workload.update({
-					cardset_id: cardset_id,
-					user_id: user_id
-				}, {
-					$push: {
-						"leitner.tasks": new Date()
-					}
-				});
+			let user = Meteor.users.findOne({_id: user_id});
+			let workload = Workload.find({user_id: user_id, cardset_id: cardset_id}).fetch();
+			let highestSession = LeitnerTasks.findOne({user_id: user_id, cardset_id: cardset_id}, {sort: {session: -1}}, {fields: {session: 1}});
+			if (highestSession === undefined) {
+				highestSession = 0;
+			} else if (isNewComer) {
+				highestSession++;
 			}
-			workload = Workload.findOne({cardset_id: cardset_id, user_id: user_id}, {fields: {leitner: 1}});
-			return workload.leitner.tasks.length - 1;
+			return LeitnerTasks.insert({
+				cardset_id: cardset_id,
+				user_id: user_id,
+				session: highestSession,
+				isBonus: workload.leitner.bonus,
+				missedDeadline: false,
+				resetDeadlineMode: config.resetDeadlineMode,
+				wrongAnswerMode: config.wrongAnswerMode,
+				notifications: {
+					mail: {
+						active: user.mailNotification,
+						sent: false,
+						address: user.email
+					},
+					web: {
+						active: user.webNotification,
+						sent: false
+					}
+				},
+				createdAt: new Date()
+			});
 		}
 	}
 
