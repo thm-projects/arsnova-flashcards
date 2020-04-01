@@ -9,6 +9,7 @@ import {LeitnerHistory} from "../api/subscriptions/leitnerHistory";
 import {Workload} from "../api/subscriptions/workload";
 import {CardIndex} from "../api/cardIndex";
 import {Utilities} from "../api/utilities";
+import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
 
 function gotPriority(array, card_id, priority) {
 	for (let i = 0; i < array.length; i++) {
@@ -203,10 +204,10 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				}
 			}, {multi: true});
 			this.updateLeitnerWorkload(cardset._id, user._id);
-			let task_id = this.updateLeitnerWorkloadTasks(cardset._id, user._id);
+			let task_id = this.updateLeitnerWorkloadTasks(cardset._id, user._id, isNewcomer);
 			this.setLeitnerHistory(cardset, user._id, task_id, cardSelection);
-			Meteor.call('prepareMail', cardset, user, isReset, isNewcomer);
-			Meteor.call('prepareWebpush', cardset, user, isNewcomer);
+			Meteor.call('prepareMail', cardset, user, isReset, isNewcomer, task_id);
+			Meteor.call('prepareWebpush', cardset, user, isNewcomer, task_id);
 		}
 	}
 
@@ -224,8 +225,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				user_id: user_id,
 				task_id: task_id,
 				box: leitner.box,
-				skipped: 0,
-				missedDeadline: false
+				skipped: 0
 			};
 			if (cardset.shuffled) {
 				newItemObject.original_cardset_id = leitner.original_cardset_id;
@@ -237,34 +237,42 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		}
 	}
 
-	static updateLeitnerWorkloadTasks (cardset_id, user_id) {
+	static updateLeitnerWorkloadTasks (cardset_id, user_id, isNewcomer) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			let workload = Workload.findOne({cardset_id: cardset_id, user_id: user_id}, {fields: {leitner: 1}});
-			if (workload.leitner.tasks === undefined) {
-				let tasks = [];
-				tasks.push(new Date());
-				Workload.update({
-					cardset_id: cardset_id,
-					user_id: user_id
-				}, {
-					$set: {
-						"leitner.tasks": tasks
-					}
-				});
+			let user = Meteor.users.findOne({_id: user_id});
+			let workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id});
+			let leitnerTask = this.getHighestLeitnerTaskSessionID(cardset_id, user_id);
+			let newSession;
+			if (leitnerTask === undefined || leitnerTask.session === undefined) {
+				newSession = 0;
+			} else if (isNewcomer) {
+				newSession = leitnerTask.session + 1;
 			} else {
-				Workload.update({
-					cardset_id: cardset_id,
-					user_id: user_id
-				}, {
-					$push: {
-						"leitner.tasks": new Date()
-					}
-				});
+				newSession = leitnerTask.session;
 			}
-			workload = Workload.findOne({cardset_id: cardset_id, user_id: user_id}, {fields: {leitner: 1}});
-			return workload.leitner.tasks.length - 1;
+			return LeitnerTasks.insert({
+				cardset_id: cardset_id,
+				user_id: user_id,
+				session: newSession,
+				isBonus: workload.leitner.bonus,
+				missedDeadline: false,
+				resetDeadlineMode: config.resetDeadlineMode,
+				wrongAnswerMode: config.wrongAnswerMode,
+				notifications: {
+					mail: {
+						active: user.mailNotification,
+						sent: false,
+						address: user.email
+					},
+					web: {
+						active: user.webNotification,
+						sent: false
+					}
+				},
+				createdAt: new Date()
+			});
 		}
 	}
 
@@ -466,12 +474,20 @@ export let LeitnerUtilities = class LeitnerUtilities {
 							skipped: 0
 						}
 					}, {multi: true});
-					let workload = Workload.findOne({cardset_id: cardset._id, user_id: user._id});
-					if (workload.leitner.tasks !== undefined) {
-						LeitnerHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: workload.leitner.tasks.length - 1}, {
+					let lastLeitnerTask = this.getHighestLeitnerTaskSessionID(cardset._id, user._id);
+					if (lastLeitnerTask !== undefined) {
+						LeitnerTasks.update({
+							_id: lastLeitnerTask._id
+						}, {
 							$set: {
-								box: box,
-								missedDeadline: true
+								missedDeadline: true,
+								resetDeadlineMode: config.resetDeadlineMode,
+								wrongAnswerMode: config.wrongAnswerMode
+							}
+						});
+						LeitnerHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: lastLeitnerTask._id}, {
+							$set: {
+								box: box
 							}
 						}, {multi: true});
 					}
@@ -492,12 +508,20 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						skipped: 0
 					}
 				}, {multi: true});
-				let workload = Workload.findOne({cardset_id: cardset._id, user_id: user._id});
-				if (workload.leitner.tasks !== undefined) {
-					LeitnerHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: workload.leitner.tasks.length - 1}, {
+				let lastLeitnerTask = this.getHighestLeitnerTaskSessionID(cardset._id, user._id);
+				if (lastLeitnerTask !== undefined) {
+					LeitnerTasks.update({
+						_id: lastLeitnerTask._id
+					}, {
 						$set: {
-							box: 1,
-							missedDeadline: true
+							missedDeadline: true,
+							resetDeadlineMode: config.resetDeadlineMode,
+							wrongAnswerMode: config.wrongAnswerMode
+						}
+					});
+					LeitnerHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: lastLeitnerTask._id}, {
+						$set: {
+							box: 1
 						}
 					}, {multi: true});
 				}
@@ -547,6 +571,19 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					"leitner.nextLowestPriority": nextLowestPriority
 				}
 			});
+		}
+	}
+
+	static getHighestLeitnerTaskSessionID (cardset_id, user_id) {
+		return LeitnerTasks.findOne({user_id: user_id, cardset_id: cardset_id}, {sort: {session: -1}});
+	}
+
+	static getNextLeitnerDeletedUserID () {
+		let highestDeletedUserID = LeitnerTasks.findOne({}, {sort: {user_id_deleted: -1}});
+		if (highestDeletedUserID === undefined || highestDeletedUserID.user_id_deleted === undefined) {
+			return 0;
+		} else {
+			return highestDeletedUserID.user_id_deleted + 1;
 		}
 	}
 };

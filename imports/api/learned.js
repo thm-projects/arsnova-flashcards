@@ -8,6 +8,7 @@ import * as config from "../config/leitner";
 import {LeitnerUtilities} from "../util/leitner";
 import {Leitner} from "./subscriptions/leitner.js";
 import {LeitnerHistory} from "./subscriptions/leitnerHistory";
+import {LeitnerTasks} from "./subscriptions/leitnerTasks";
 import {Workload} from "./subscriptions/workload";
 import {Wozniak} from "./subscriptions/wozniak";
 
@@ -71,9 +72,10 @@ if (Meteor.isServer) {
 						}
 					});
 
-					if (workload.leitner.tasks !== undefined) {
+					let leitnerTask = LeitnerTasks.findOne({cardset_id: currentLearned.cardset_id, user_id: currentLearned.user_id}, {sort: {session: -1}});
+					if (leitnerTask !== undefined) {
 						delete query.active;
-						query.task_id = workload.leitner.tasks.length - 1;
+						query.task_id = leitnerTask._id;
 						LeitnerHistory.update(query, {
 							$set: {
 								box: selectedBox,
@@ -100,10 +102,6 @@ if (Meteor.isServer) {
 				throw new Meteor.Error("not-authorized");
 			}
 			Leitner.remove({
-				cardset_id: cardset_id,
-				user_id: Meteor.userId()
-			});
-			LeitnerHistory.remove({
 				cardset_id: cardset_id,
 				user_id: Meteor.userId()
 			});
