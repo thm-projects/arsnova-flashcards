@@ -140,13 +140,9 @@ Meteor.methods({
 								},
 								{
 									$set: {
-										notifications: {
-											mail: {
-												active: true,
-												sent: true,
-												address: user.email
-											}
-										}
+										'notifications.mail.active': true,
+										'notifications.mail.sent': true,
+										'notifications.mail.address': user.email
 									}
 								}
 							);
@@ -173,12 +169,8 @@ Meteor.methods({
 							},
 							{
 								$set: {
-									notifications: {
-										web: {
-											active: true,
-											sent: true
-										}
-									}
+									'notifications.web.active': true,
+									'notifications.web.sent': true
 								}
 							}
 						);
