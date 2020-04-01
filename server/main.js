@@ -10,6 +10,7 @@ import "../imports/api/subscriptions/collegesCourses.js";
 import "../imports/api/subscriptions/colorThemes.js";
 import "../imports/api/subscriptions/leitner.js";
 import "../imports/api/subscriptions/leitnerHistory.js";
+import "../imports/api/subscriptions/leitnerTasks.js";
 import "../imports/api/subscriptions/notifications.js";
 import "../imports/api/subscriptions/paid.js";
 import "../imports/api/subscriptions/ratings.js";

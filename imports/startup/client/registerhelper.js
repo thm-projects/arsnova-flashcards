@@ -70,6 +70,10 @@ Template.registerHelper('isMakingOf', function () {
 	return Route.isMakingOf();
 });
 
+Template.registerHelper('isCardsetLeitnerStats', function () {
+	return Route.isCardsetLeitnerStats();
+});
+
 Template.registerHelper('isDemo', function () {
 	return Route.isDemo();
 });

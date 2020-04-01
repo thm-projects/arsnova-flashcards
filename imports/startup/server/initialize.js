@@ -4,6 +4,7 @@ import {Cardsets} from "../../api/subscriptions/cardsets.js";
 import {ColorThemes} from "../../api/subscriptions/colorThemes.js";
 import {Leitner} from "../../api/subscriptions/leitner";
 import {LeitnerHistory} from "../../api/subscriptions/leitnerHistory";
+import {LeitnerTasks} from "../../api/subscriptions/leitnerTasks";
 import {Workload} from "../../api/subscriptions/workload";
 import {Wozniak} from "../../api/subscriptions/wozniak";
 import {AdminSettings} from "../../api/subscriptions/adminSettings";
@@ -16,6 +17,7 @@ import {TranscriptBonus} from "../../api/subscriptions/transcriptBonus";
 import {LeitnerUtilities} from "../../util/leitner";
 import {Utilities} from "../../api/utilities";
 import * as bonusFormConfig from "../../config/bonusForm.js";
+import * as leitnerConfig from "../../config/leitner.js";
 
 var initColorThemes = function () {
 	return [{
@@ -371,6 +373,7 @@ function cleanWorkload() {
 function setupDatabaseIndex() {
 	Leitner._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, active: 1});
 	LeitnerHistory._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, task_id: 1, box: 1, dateAnswered: 1});
+	LeitnerTasks._ensureIndex({user_id: 1, cardset_id: 1, session: 1});
 	Wozniak._ensureIndex({user_id: 1, cardset_id: 1});
 	Workload._ensureIndex({cardset_id: 1, user_id: 1});
 	Cards._ensureIndex({cardset_id: 1, subject: 1});
@@ -1203,6 +1206,66 @@ Meteor.startup(function () {
 				}
 			);
 		}
+	}
+
+	// Move old leitner history to new session system
+	workload = Workload.find({"leitner.tasks": {$exists: true}}).fetch();
+	for (let i = 0; i < workload.length; i++) {
+		let user = Meteor.users.findOne(workload[i].user_id);
+
+		let tasks = workload[i].leitner.tasks;
+		for (let t = 0; t < tasks.length; t++) {
+			let missedDeadline = false;
+			let foundReset = LeitnerHistory.findOne({user_id: user._id, cardset_id: workload[i].cardset_id, task_id: t, missedDeadline: true});
+			if (foundReset !== undefined) {
+				missedDeadline = true;
+			}
+			let leitnerTask = LeitnerTasks.insert({
+				cardset_id: workload[i].cardset_id,
+				user_id: workload[i].user_id,
+				session: 0,
+				isBonus: workload[i].leitner.bonus,
+				missedDeadline: missedDeadline,
+				resetDeadlineMode: leitnerConfig.resetDeadlineMode,
+				wrongAnswerMode: leitnerConfig.wrongAnswerMode,
+				notifications: {
+					mail: {
+						active: user.mailNotification,
+						sent: user.mailNotification,
+						address: user.email
+					},
+					web: {
+						active: user.webNotification,
+						sent: user.webNotification
+					}
+				},
+				createdAt: tasks[t]
+			});
+
+			LeitnerHistory.update({
+					user_id: workload[i].user_id,
+					cardset_id: workload[i].cardset_id,
+					task_id: t
+				},
+				{
+					$set: {
+						task_id: leitnerTask
+					},
+					$unset: {
+						missedDeadline: ""
+					}
+				}, {multi: true}
+			);
+		}
+
+		Workload.update({
+				_id: workload[i]._id
+			},
+			{
+				$unset: {
+					"leitner.tasks": ""
+				}
+			});
 	}
 
 	Cardsets.remove({cardType: 2});
