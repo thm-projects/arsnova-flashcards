@@ -474,12 +474,18 @@ export let LeitnerUtilities = class LeitnerUtilities {
 							skipped: 0
 						}
 					}, {multi: true});
-					let workload = Workload.findOne({cardset_id: cardset._id, user_id: user._id});
-					if (workload.leitner.tasks !== undefined) {
-						LeitnerHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: workload.leitner.tasks.length - 1}, {
+					let lastLeitnerTask = this.getHighestLeitnerTaskSessionID(cardset._id, user._id);
+					if (lastLeitnerTask !== undefined) {
+						LeitnerTasks.update({
+							_id: lastLeitnerTask._id
+						}, {
 							$set: {
-								box: box,
 								missedDeadline: true
+							}
+						});
+						LeitnerHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: lastLeitnerTask._id}, {
+							$set: {
+								box: box
 							}
 						}, {multi: true});
 					}
@@ -500,12 +506,18 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						skipped: 0
 					}
 				}, {multi: true});
-				let workload = Workload.findOne({cardset_id: cardset._id, user_id: user._id});
-				if (workload.leitner.tasks !== undefined) {
-					LeitnerHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: workload.leitner.tasks.length - 1}, {
+				let lastLeitnerTask = this.getHighestLeitnerTaskSessionID(cardset._id, user._id);
+				if (lastLeitnerTask !== undefined) {
+					LeitnerTasks.update({
+						_id: lastLeitnerTask._id
+					}, {
 						$set: {
-							box: 1,
 							missedDeadline: true
+						}
+					});
+					LeitnerHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: lastLeitnerTask._id}, {
+						$set: {
+							box: 1
 						}
 					}, {multi: true});
 				}
