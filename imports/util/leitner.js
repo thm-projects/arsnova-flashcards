@@ -480,7 +480,9 @@ export let LeitnerUtilities = class LeitnerUtilities {
 							_id: lastLeitnerTask._id
 						}, {
 							$set: {
-								missedDeadline: true
+								missedDeadline: true,
+								resetDeadlineMode: config.resetDeadlineMode,
+								wrongAnswerMode: config.wrongAnswerMode
 							}
 						});
 						LeitnerHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: lastLeitnerTask._id}, {
@@ -512,7 +514,9 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						_id: lastLeitnerTask._id
 					}, {
 						$set: {
-							missedDeadline: true
+							missedDeadline: true,
+							resetDeadlineMode: config.resetDeadlineMode,
+							wrongAnswerMode: config.wrongAnswerMode
 						}
 					});
 					LeitnerHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: lastLeitnerTask._id}, {
