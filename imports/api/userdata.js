@@ -387,7 +387,6 @@ Meteor.methods({
 		});
 
 		let nextDeletedUserID = LeitnerUtilities.getNextLeitnerDeletedUserID();
-
 		for (let i = 0; i < workload.length; i++) {
 			LeitnerTasks.update({
 					user_id: user_id,

@@ -237,22 +237,25 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		}
 	}
 
-	static updateLeitnerWorkloadTasks (cardset_id, user_id, isNewComer) {
+	static updateLeitnerWorkloadTasks (cardset_id, user_id, isNewcomer) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			let user = Meteor.users.findOne({_id: user_id});
-			let workload = Workload.find({user_id: user_id, cardset_id: cardset_id}).fetch();
-			let highestSession = LeitnerTasks.findOne({user_id: user_id, cardset_id: cardset_id}, {sort: {session: -1}}, {fields: {session: 1}});
-			if (highestSession === undefined) {
-				highestSession = 0;
-			} else if (isNewComer) {
-				highestSession++;
+			let workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id});
+			let leitnerTask = this.getHighestLeitnerTaskSessionID(cardset_id, user_id);
+			let newSession;
+			if (leitnerTask === undefined || leitnerTask.session === undefined) {
+				newSession = 0;
+			} else if (isNewcomer) {
+				newSession = leitnerTask.session + 1;
+			} else {
+				newSession = leitnerTask.session;
 			}
 			return LeitnerTasks.insert({
 				cardset_id: cardset_id,
 				user_id: user_id,
-				session: highestSession,
+				session: newSession,
 				isBonus: workload.leitner.bonus,
 				missedDeadline: false,
 				resetDeadlineMode: config.resetDeadlineMode,
@@ -556,13 +559,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 	}
 
 	static getHighestLeitnerTaskSessionID (cardset_id, user_id) {
-		let highestSession = LeitnerTasks.findOne({user_id: user_id, cardset_id: cardset_id}, {sort: {session: -1}});
-		console.log(highestSession);
-		if (highestSession === undefined) {
-			return 0;
-		} else {
-			return highestSession.session;
-		}
+		return LeitnerTasks.findOne({user_id: user_id, cardset_id: cardset_id}, {sort: {session: -1}});
 	}
 
 	static getNextLeitnerDeletedUserID () {

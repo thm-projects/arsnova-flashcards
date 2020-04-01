@@ -202,8 +202,8 @@ Meteor.methods({
 
 		let cardset = Cardsets.findOne({_id: cardset_id});
 		if (UserPermissions.gotBackendAccess() || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
-			let highestSession = LeitnerUtilities.getHighestLeitnerTaskSessionID(cardset_id, user_id);
-			let leitnerTasks = LeitnerTasks.find({user_id: user_id, cardset_id: cardset_id, session: highestSession}, {sort: {createdAt: -1}}).fetch();
+			let highestSessionTask = LeitnerUtilities.getHighestLeitnerTaskSessionID(cardset_id, user_id);
+			let leitnerTasks = LeitnerTasks.find({user_id: user_id, cardset_id: cardset_id, session: highestSessionTask.session}, {sort: {createdAt: -1}}).fetch();
 			let result = [];
 			for (let i = 0; i < leitnerTasks.length; i++) {
 				let item = {};
