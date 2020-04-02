@@ -1268,6 +1268,29 @@ Meteor.startup(function () {
 			});
 	}
 
+
+	cardsets = Cardsets.find({"fragJetzt": {$exists: false}}).fetch();
+	let fragJetzt = {
+		session: "",
+		override: false
+	};
+	let arsnovaClick = {
+		session: "",
+		override: false
+	};
+	for (let i = 0; i < cardsets.length; i++) {
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					fragJetzt: fragJetzt,
+					arsnovaClick: arsnovaClick
+				}
+			}
+		);
+	}
+
 	Cardsets.remove({cardType: 2});
 	Meteor.users.remove(demoCardsetUser[0]._id);
 	Meteor.users.insert(demoCardsetUser[0]);

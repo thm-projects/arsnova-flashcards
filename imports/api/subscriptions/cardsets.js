@@ -360,7 +360,29 @@ const CardsetsSchema = new SimpleSchema({
 	},
 	'useCase.priority': {
 		type: Number
-	}
+	},
+	fragJetzt: {
+		type: Object,
+		optional: true
+	},
+	'fragJetzt.session': {
+		type: String,
+		optional: true
+	},
+	'fragJetzt.override': {
+		type: Boolean
+	},
+	arsnovaClick: {
+		type: Object,
+		optional: true
+	},
+	'arsnovaClick.session': {
+		type: String,
+		optional: true
+	},
+	'arsnovaClick.override': {
+		type: Boolean
+	},
 });
 
 Cardsets.attachSchema(CardsetsSchema);
