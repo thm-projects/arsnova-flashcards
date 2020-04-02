@@ -768,6 +768,16 @@
     }
   },
   "modal-dialog": {
+    "arsnovaClick": {
+      "name": "arsnova.click",
+      "placeholder": "Quizname",
+      "overrideOnlyEmptySessions": "Nur Karteien ohne Quizname überschreiben"
+    },
+    "fragJetzt": {
+      "name": "frag.jetzt",
+      "placeholder": "Sitzungs-Code",
+      "overrideOnlyEmptySessions": "Nur Karteien ohne Sitzungs-Code überschreiben"
+    },
     "missingFields": "Bitte fülle die folgenden Felder aus",
     "newcarddeck": "Kartei erstellen (Box für Lernkarten)",
     "editcard": "Karte editieren",

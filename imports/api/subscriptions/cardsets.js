@@ -369,7 +369,7 @@ const CardsetsSchema = new SimpleSchema({
 		type: String,
 		optional: true
 	},
-	'fragJetzt.override': {
+	'fragJetzt.overrideOnlyEmptySessions': {
 		type: Boolean
 	},
 	arsnovaClick: {
@@ -380,9 +380,9 @@ const CardsetsSchema = new SimpleSchema({
 		type: String,
 		optional: true
 	},
-	'arsnovaClick.override': {
+	'arsnovaClick.overrideOnlyEmptySessions': {
 		type: Boolean
-	},
+	}
 });
 
 Cardsets.attachSchema(CardsetsSchema);

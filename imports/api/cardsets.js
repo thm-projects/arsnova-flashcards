@@ -161,8 +161,10 @@ Meteor.methods({
 	 * @param {Number} cardType - The type that this cardset allows
 	 * @param {Number} difficulty - The difficulty level of the cardset
 	 * @param {Number} sortType - Sort the topic content by card content or date created, 0 = content, 1 = date created
+	 * @param {Object} fragJetzt - Information of frag.jetzt sessions
+	 * @param {Object} arsnovaClick - Information of arsnova.click sessions
 	 */
-	addCardset: function (name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType) {
+	addCardset: function (name, description, visible, ratings, kind, shuffled, cardGroups, cardType, difficulty, sortType, fragJetzt, arsnovaClick) {
 		check(name, String);
 		check(description, String);
 		check(visible, Boolean);
@@ -172,6 +174,12 @@ Meteor.methods({
 		check(cardType, Number);
 		check(difficulty, Number);
 		check(sortType, Number);
+		check(fragJetzt, Object);
+		check(fragJetzt.session, String);
+		check(fragJetzt.overrideOnlyEmptySessions, Boolean);
+		check(arsnovaClick, Object);
+		check(arsnovaClick.session, String);
+		check(arsnovaClick.overrideOnlyEmptySessions, Boolean);
 		let quantity;
 		let gotWorkload;
 		if (shuffled) {
@@ -241,7 +249,9 @@ Meteor.methods({
 			useCase: {
 				enabled: false,
 				priority: 0
-			}
+			},
+			fragJetzt: fragJetzt,
+			arsnovaClick: arsnovaClick
 		}, {trimStrings: false});
 		Meteor.call('updateCardsetCount', Meteor.userId());
 		return cardset;
@@ -587,14 +597,22 @@ Meteor.methods({
 	 * @param {Number} cardType - The type that this cardset allows
 	 * @param {Number} difficulty - The difficulty level of the cardset
 	 * @param {Number} sortType - Sort the topic content by card content or date created, 0 = content, 1 = date created
+	 * @param {Object} fragJetzt - Information of frag.jetzt sessions
+	 * @param {Object} arsnovaClick - Information of arsnova.click sessions
 	 */
-	updateCardset: function (id, name, description, cardType, difficulty, sortType) {
+	updateCardset: function (id, name, description, cardType, difficulty, sortType, fragJetzt, arsnovaClick) {
 		check(id, String);
 		check(name, String);
 		check(description, String);
 		check(cardType, Number);
 		check(difficulty, Number);
 		check(sortType, Number);
+		check(fragJetzt, Object);
+		check(fragJetzt.session, String);
+		check(fragJetzt.overrideOnlyEmptySessions, Boolean);
+		check(arsnovaClick, Object);
+		check(arsnovaClick.session, String);
+		check(arsnovaClick.overrideOnlyEmptySessions, Boolean);
 		// Make sure only the task owner can make a task private
 		let cardset = Cardsets.findOne(id);
 		if (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner)) {
@@ -629,7 +647,9 @@ Meteor.methods({
 					noDifficulty: !CardType.gotDifficultyLevel(cardType),
 					sortType: sortType,
 					gotWorkload: gotWorkload,
-					lastEditor: Meteor.userId()
+					lastEditor: Meteor.userId(),
+					fragJetzt: fragJetzt,
+					arsnovaClick: arsnovaClick
 				}
 			}, {trimStrings: false});
 			Cards.update({cardset_id: id}, {

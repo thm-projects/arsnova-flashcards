@@ -1272,11 +1272,11 @@ Meteor.startup(function () {
 	cardsets = Cardsets.find({"fragJetzt": {$exists: false}}).fetch();
 	let fragJetzt = {
 		session: "",
-		override: false
+		overrideOnlyEmptySessions: true
 	};
 	let arsnovaClick = {
 		session: "",
-		override: false
+		overrideOnlyEmptySessions: true
 	};
 	for (let i = 0; i < cardsets.length; i++) {
 		Cardsets.update({
