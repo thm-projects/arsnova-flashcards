@@ -20,7 +20,7 @@ Template.mainModalArsnovaClick.onRendered(function () {
 		$('.showArsnovaClick').addClass('pressed');
 		if (!Session.get('arsnovaClickModalActive')) {
 			Session.set('arsnovaClickModalActive', true);
-			$('#arsnovaClickModal .modal-dialog').html(`<iframe id="arsnovaClick" width="600px" height="900px" frameborder="0" src="${config.sessionURL}"></iframe>`);
+			$('#arsnovaClickModal .modal-dialog').html(`<iframe id="arsnovaClick" width="600px" height="900px" frameborder="0" src="${config.getURL(Session.get('arsnovaClickSessionID'))}"></iframe>`);
 			fullscreenModal.resizeIframe("modalContainerClick");
 			fullscreenModal.resizeIframe("arsnovaClick");
 		}

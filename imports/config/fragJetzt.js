@@ -1,7 +1,7 @@
-import {Session} from "meteor/session";
-
-let sessionURL =  `https://frag.jetzt/participant/room/${Session.get('fragJetztSessionID').replace(/\s/g, "")}/comments`;
+function getURL(url) {
+	return `https://frag.jetzt/participant/room/${url.replace(/\s/g, "")}/comments`;
+}
 
 module.exports = {
-	sessionURL
+	getURL
 };

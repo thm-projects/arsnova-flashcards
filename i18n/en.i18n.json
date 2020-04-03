@@ -1183,6 +1183,8 @@
       }
     },
     "info": {
+      "fragJetzt": "frag.jetzt Sitzungs-Code",
+      "arsnovaClick": "arsnova.click Quizname",
       "author": "Autor/in",
       "multipleAuthors": "Mehrere",
       "publisher": "Editor/in",

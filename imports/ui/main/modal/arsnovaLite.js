@@ -18,7 +18,7 @@ Template.mainModalArsnovaLite.onRendered(function () {
 		$('.showArsnovaLite').addClass('pressed');
 		if (!Session.get('arsnovaLiteModalActive')) {
 			Session.set('arsnovaLiteModalActive', true);
-			$('#arsnovaLiteModal .modal-dialog').html(`<iframe id="arsnovaLite" width="600px" height="900px" frameborder="0" src="${config.sessionURL}"></iframe>`);
+			$('#arsnovaLiteModal .modal-dialog').html(`<iframe id="arsnovaLite" width="600px" height="900px" frameborder="0" src="${config.getURL(Session.get('fragJetztSessionID'))}"></iframe>`);
 			fullscreenModal.resizeIframe("modalContainerLite");
 			fullscreenModal.resizeIframe("arsnovaLite");
 		}
