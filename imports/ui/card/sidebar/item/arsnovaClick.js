@@ -18,10 +18,10 @@ Template.cardSidebarItemArsnovaClick.helpers({
 			if (currentCard !== undefined) {
 				let currentCardset = Cardsets.findOne({_id: currentCard.cardset_id}, {fields: {arsnovaClick: true}});
 				if (currentCardset !== undefined) {
-					if (currentCardset.arsnovaClick.session !== undefined) {
+					if (currentCardset.arsnovaClick.session !== undefined && currentCardset.arsnovaClick.session.length) {
 						Session.set('arsnovaClickSessionID', currentCardset.arsnovaClick.session);
 						return true;
-					} else if (this.arsnovaClick.session !== undefined) {
+					} else if (this.arsnovaClick.session !== undefined && this.arsnovaClick.session.length) {
 						Session.set('arsnovaClickSessionID', this.arsnovaClick.session);
 						return true;
 					} else {
