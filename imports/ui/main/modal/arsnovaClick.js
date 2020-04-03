@@ -13,6 +13,7 @@ Template.mainModalArsnovaClick.onRendered(function () {
 	$('#arsnovaClickModal').on('hidden.bs.modal', function () {
 		$('.showArsnovaClick').attr('src', '/img/button/arsnova_click_v2.png');
 		$('.showArsnovaClick').removeClass('pressed');
+		$('#arsnovaClickModal .modal-dialog').html('');
 	});
 	$('#arsnovaClickModal').on('shown.bs.modal', function () {
 		$('.showArsnovaClick').attr('src', '/img/button/arsnova_click_pressed.png');

@@ -4,7 +4,6 @@ import {Template} from "meteor/templating";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {Cards} from "../../../../api/subscriptions/cards";
 
-Session.setDefault('arsnovaClickModalActive', false);
 Session.setDefault('arsnovaClickSessionID', '');
 /*
  * ############################################################################
@@ -43,12 +42,4 @@ Template.cardSidebarItemArsnovaClick.events({
 	"click .showArsnovaClick": function () {
 		$('#arsnovaClickModal').modal('show');
 	}
-});
-
-Template.cardSidebarItemArsnovaClick.onCreated(function () {
-	Session.set('arsnovaClickModalActive', false);
-});
-
-Template.cardSidebarItemArsnovaClick.onDestroyed(function () {
-	Session.set('arsnovaClickModalActive', false);
 });

@@ -4,7 +4,6 @@ import {Template} from "meteor/templating";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {Cards} from "../../../../api/subscriptions/cards";
 
-Session.setDefault('arsnovaLiteModalActive', false);
 Session.setDefault('fragJetztSessionID', '');
 
 /*
@@ -47,10 +46,3 @@ Template.cardSidebarItemArsnovaLite.events({
 	}
 });
 
-Template.cardSidebarItemArsnovaLite.onCreated(function () {
-	Session.set('arsnovaLiteModalActive', false);
-});
-
-Template.cardSidebarItemArsnovaLite.onDestroyed(function () {
-	Session.set('arsnovaLiteModalActive', false);
-});
