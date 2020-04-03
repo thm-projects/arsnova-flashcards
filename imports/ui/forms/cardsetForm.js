@@ -124,7 +124,7 @@ export function saveCardset() {
 	};
 	fragJetzt.session = $('#setFragJetzt').val();
 	arsnovaClick.session = $('#setArsnovaClick').val();
-	if (Route.isRepetitorienFilterIndex() || (Route.isCardset() && this.shuffled)) {
+	if (Route.isRepetitorienFilterIndex() || (Route.isCardset() && Session.get('previousCardsetData').shuffled)) {
 		fragJetzt.overrideOnlyEmptySessions = $('#fragJetztOverride')[0].checked;
 		arsnovaClick.overrideOnlyEmptySessions = $('#arsnovaClickOverride')[0].checked;
 	}
