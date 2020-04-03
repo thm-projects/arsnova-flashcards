@@ -1,6 +1,7 @@
 import {Session} from "meteor/session";
 import "./arsnovaLite.html";
 import {fullscreenModal} from "../../../api/fullscreenModal";
+import * as config from "../../../config/fragJetzt.js";
 
 /*
  * ############################################################################
@@ -16,7 +17,7 @@ Template.mainModalArsnovaLite.onRendered(function () {
 		$('.showArsnovaLite').addClass('pressed');
 		if (!Session.get('arsnovaLiteModalActive')) {
 			Session.set('arsnovaLiteModalActive', true);
-			$('#arsnovaLiteModal .modal-dialog').html(`<iframe id="arsnovaLite" width="600p" height="900px" frameborder="0" src="https://frag.jetzt/participant/room/${Session.get('fragJetztSessionID').replace(/\s/g, "")}/comments"></iframe>`);
+			$('#arsnovaLiteModal .modal-dialog').html(`<iframe id="arsnovaLite" width="600p" height="900px" frameborder="0" src="${config.sessionURL}"></iframe>`);
 			fullscreenModal.resizeIframe("modalContainerLite");
 			fullscreenModal.resizeIframe("arsnovaLite");
 		}
