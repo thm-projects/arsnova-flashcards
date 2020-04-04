@@ -35,6 +35,7 @@ import "./item/bottom/leaveWorkload.js";
 import "./item/bottom/shuffle.js";
 import "./item/bottom/starsRating.js";
 import "./item/bottom/workloadProgress.js";
+import "./item/bottom/workloadHistory.js";
 import "./item/bottom/transcriptRating.js";
 import "./item/collapse/collapse.js";
 import "./item/titleRow/author.js";

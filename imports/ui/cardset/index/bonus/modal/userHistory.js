@@ -3,6 +3,7 @@ import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import "./userHistory.html";
 import {Utilities} from "../../../../../api/utilities";
+import {Route} from "../../../../../api/route";
 import humanizeDuration from "humanize-duration";
 
 let humanizeSettings = {language: 'de', conjunction: ' und ', serialComma: false, round: true};
@@ -22,10 +23,24 @@ Template.bonusUserHistoryModal.onRendered(function () {
 
 Template.bonusUserHistoryModal.helpers({
 	getTitle: function () {
-		return TAPi18n.__('leitnerProgress.modal.userHistory.title', {lastName: Session.get('selectedBonusUser').lastName, firstName: Session.get('selectedBonusUser').firstName});
+		if (Session.get('selectedBonusUserHistoryData') !== undefined) {
+			if (Route.isFilterIndex()) {
+				if (Session.get('selectedBonusUserHistoryData')[0].cardsetShuffled) {
+					return TAPi18n.__('leitnerProgress.modal.userHistory.titleRepetitorium', {repetitorium: Session.get('selectedBonusUserHistoryData')[0].cardsetTitle});
+				} else {
+					return TAPi18n.__('leitnerProgress.modal.userHistory.titleCardset', {cardset: Session.get('selectedBonusUserHistoryData')[0].cardsetTitle});
+				}
+			} else {
+				return TAPi18n.__('leitnerProgress.modal.userHistory.title', {lastName: Session.get('selectedBonusUser').lastName, firstName: Session.get('selectedBonusUser').firstName});
+			}
+		}
 	},
 	gotUserData: function () {
-		return Session.get('selectedBonusUser') !== undefined && Session.get('selectedBonusUser').user_id !== undefined;
+		if (Route.isFilterIndex()) {
+			return true;
+		} else {
+			return Session.get('selectedBonusUser') !== undefined && Session.get('selectedBonusUser').user_id !== undefined;
+		}
 	},
 	gotHistoryData: function () {
 		return Session.get('selectedBonusUserHistoryData') !== undefined;
