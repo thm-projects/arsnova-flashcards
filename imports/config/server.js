@@ -115,7 +115,7 @@ let defaultSettings = {
 		"autoFullscreen": true,
 		"exitOnFullscreenBackgroundClick": true,
 		"fragJetzt": {
-			"session": "",
+			"session": "46091468",
 			"overrideOnlyEmptySessions": true
 		},
 		"arsnovaClick": {
@@ -253,7 +253,7 @@ let debug = {
 		"autoFullscreen": true,
 		"exitOnFullscreenBackgroundClick": true,
 		"fragJetzt": {
-			"session": "",
+			"session": "46091468",
 			"overrideOnlyEmptySessions": true
 		},
 		"arsnovaClick": {
@@ -391,7 +391,7 @@ let linux = {
 		"autoFullscreen": true,
 		"exitOnFullscreenBackgroundClick": true,
 		"fragJetzt": {
-			"session": "",
+			"session": "82871525",
 			"overrideOnlyEmptySessions": true
 		},
 		"arsnovaClick": {
@@ -529,7 +529,7 @@ let review = {
 		"autoFullscreen": true,
 		"exitOnFullscreenBackgroundClick": true,
 		"fragJetzt": {
-			"session": "",
+			"session": "46091468",
 			"overrideOnlyEmptySessions": true
 		},
 		"arsnovaClick": {
@@ -667,7 +667,7 @@ let staging = {
 		"autoFullscreen": true,
 		"exitOnFullscreenBackgroundClick": true,
 		"fragJetzt": {
-			"session": "",
+			"session": "46091468",
 			"overrideOnlyEmptySessions": true
 		},
 		"arsnovaClick": {
