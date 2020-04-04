@@ -1,5 +1,6 @@
 import {Session} from "meteor/session";
 import "./arsnovaClick.html";
+import {fullscreenModal} from "../../../api/fullscreenModal";
 
 /*
  * ############################################################################
@@ -18,6 +19,8 @@ Template.mainModalArsnovaClick.onRendered(function () {
 		if (!Session.get('arsnovaClickModalActive')) {
 			Session.set('arsnovaClickModalActive', true);
 			$('#arsnovaClickModal .modal-dialog').html('<iframe id="arsnovaClick" width="600px" height="900px" frameborder="0" src="https://arsnova.click"></iframe>');
+			fullscreenModal.resizeIframe("modalContainerClick");
+			fullscreenModal.resizeIframe("arsnovaClick");
 		}
 	});
 });
