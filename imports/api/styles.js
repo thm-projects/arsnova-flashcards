@@ -261,4 +261,14 @@ export let ServerStyle = class ServerStyle {
 				return this.getConfig().newUser.enabledNotifications.web;
 		}
 	}
+
+	static getDemoArsnovaClick () {
+		let config  = this.getConfig();
+		return config.demo.arsnovaClick;
+	}
+
+	static getDemoFragJetzt () {
+		let config  = this.getConfig();
+		return config.demo.fragJetzt;
+	}
 };
