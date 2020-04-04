@@ -1,0 +1,12 @@
+<template name="cardsetInfoBoxItemArsnovaClick">
+    {{#if canSeeLink}}
+        <tr>
+            <td>
+                {{_ "cardset.info.arsnovaClick"}}:
+            </td>
+            <td>
+                <a href="{{getLink}}" target="_blank">{{getName}}</a>
+            </td>
+        </tr>
+    {{/if}}
+</template>

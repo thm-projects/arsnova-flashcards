@@ -360,6 +360,28 @@ const CardsetsSchema = new SimpleSchema({
 	},
 	'useCase.priority': {
 		type: Number
+	},
+	fragJetzt: {
+		type: Object,
+		optional: true
+	},
+	'fragJetzt.session': {
+		type: String,
+		optional: true
+	},
+	'fragJetzt.overrideOnlyEmptySessions': {
+		type: Boolean
+	},
+	arsnovaClick: {
+		type: Object,
+		optional: true
+	},
+	'arsnovaClick.session': {
+		type: String,
+		optional: true
+	},
+	'arsnovaClick.overrideOnlyEmptySessions': {
+		type: Boolean
 	}
 });
 

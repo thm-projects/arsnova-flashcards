@@ -113,7 +113,15 @@ let defaultSettings = {
 	"demo": {
 		"folder": "informatik",
 		"autoFullscreen": true,
-		"exitOnFullscreenBackgroundClick": true
+		"exitOnFullscreenBackgroundClick": true,
+		"fragJetzt": {
+			"session": "",
+			"overrideOnlyEmptySessions": true
+		},
+		"arsnovaClick": {
+			"session": "",
+			"overrideOnlyEmptySessions": true
+		}
 	},
 	"presentation": {
 		"exitOnFullscreenBackgroundClick": true
@@ -243,7 +251,15 @@ let debug = {
 	"demo": {
 		"folder": "informatik",
 		"autoFullscreen": true,
-		"exitOnFullscreenBackgroundClick": true
+		"exitOnFullscreenBackgroundClick": true,
+		"fragJetzt": {
+			"session": "",
+			"overrideOnlyEmptySessions": true
+		},
+		"arsnovaClick": {
+			"session": "",
+			"overrideOnlyEmptySessions": true
+		}
 	},
 	"presentation": {
 		"exitOnFullscreenBackgroundClick": true
@@ -373,7 +389,15 @@ let linux = {
 	"demo": {
 		"folder": "linux",
 		"autoFullscreen": true,
-		"exitOnFullscreenBackgroundClick": true
+		"exitOnFullscreenBackgroundClick": true,
+		"fragJetzt": {
+			"session": "",
+			"overrideOnlyEmptySessions": true
+		},
+		"arsnovaClick": {
+			"session": "",
+			"overrideOnlyEmptySessions": true
+		}
 	},
 	"presentation": {
 		"exitOnFullscreenBackgroundClick": true
@@ -503,7 +527,15 @@ let review = {
 	"demo": {
 		"folder": "informatik",
 		"autoFullscreen": true,
-		"exitOnFullscreenBackgroundClick": true
+		"exitOnFullscreenBackgroundClick": true,
+		"fragJetzt": {
+			"session": "",
+			"overrideOnlyEmptySessions": true
+		},
+		"arsnovaClick": {
+			"session": "",
+			"overrideOnlyEmptySessions": true
+		}
 	},
 	"presentation": {
 		"exitOnFullscreenBackgroundClick": true
@@ -633,7 +665,15 @@ let staging = {
 	"demo": {
 		"folder": "informatik",
 		"autoFullscreen": true,
-		"exitOnFullscreenBackgroundClick": true
+		"exitOnFullscreenBackgroundClick": true,
+		"fragJetzt": {
+			"session": "",
+			"overrideOnlyEmptySessions": true
+		},
+		"arsnovaClick": {
+			"session": "",
+			"overrideOnlyEmptySessions": true
+		}
 	},
 	"presentation": {
 		"exitOnFullscreenBackgroundClick": true

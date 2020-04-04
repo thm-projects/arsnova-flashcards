@@ -180,6 +180,18 @@ Meteor.methods({
 				if (data[0].lastEditor === undefined) {
 					data[0].lastEditor = "";
 				}
+				if (data[0].fragJetzt === undefined) {
+					data[0].fragJetzt = {
+						session: "",
+						overrideOnlyEmptySessions: true
+					};
+				}
+				if (data[0].arsnovaClick === undefined) {
+					data[0].arsnovaClick = {
+						session: "",
+						overrideOnlyEmptySessions: true
+					};
+				}
 				let cardset_id = Cardsets.insert({
 					name: data[0].name,
 					description: data[0].description,
@@ -221,7 +233,9 @@ Meteor.methods({
 					useCase: {
 						enabled: false,
 						priority: 0
-					}
+					},
+					fragJetzt: data[0].fragJetzt,
+					arsnovaClick: data[0].arsnovaClick
 				}, {trimStrings: false});
 				if (cardset_id) {
 					data.shift();
@@ -302,6 +316,18 @@ Meteor.methods({
 						if (cardset[0].lastEditor === undefined) {
 							cardset[0].lastEditor = "";
 						}
+						if (cardset[0].fragJetzt === undefined) {
+							cardset[0].fragJetzt = {
+								session: "",
+								overrideOnlyEmptySessions: true
+							};
+						}
+						if (cardset[0].arsnovaClick === undefined) {
+							cardset[0].arsnovaClick = {
+								session: "",
+								overrideOnlyEmptySessions: true
+							};
+						}
 						if (cardset[0].name !== undefined) {
 							totalQuantity += cardset[0].quantity;
 							let cardset_id = Cardsets.insert({
@@ -344,7 +370,9 @@ Meteor.methods({
 								useCase: {
 									enabled: false,
 									priority: 0
-								}
+								},
+								fragJetzt: cardset[0].fragJetzt,
+								arsnovaClick: cardset[0].arsnovaClick
 							}, {trimStrings: false});
 							cardGroups.push(cardset_id);
 							cardset.shift();
@@ -393,7 +421,9 @@ Meteor.methods({
 					useCase: {
 						enabled: false,
 						priority: 0
-					}
+					},
+					fragJetzt: ServerStyle.getDemoFragJetzt(),
+					arsnovaClick: ServerStyle.getDemoArsnovaClick()
 				}, {trimStrings: false});
 			} catch (error) {
 				throw new Meteor.Error(error);

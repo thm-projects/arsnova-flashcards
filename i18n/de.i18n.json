@@ -767,6 +767,16 @@
     }
   },
   "modal-dialog": {
+    "arsnovaClick": {
+      "name": "arsnova.click",
+      "placeholder": "Quizname",
+      "overrideOnlyEmptySessions": "Nur Karteien ohne Quizname überschreiben"
+    },
+    "fragJetzt": {
+      "name": "frag.jetzt",
+      "placeholder": "Sitzungs-Code",
+      "overrideOnlyEmptySessions": "Nur Karteien ohne Sitzungs-Code überschreiben"
+    },
     "missingFields": "Bitte fülle die folgenden Felder aus",
     "newcarddeck": "Kartei anlegen (Kartenbox)",
     "editcard": "Karte editieren",
@@ -1172,6 +1182,8 @@
       }
     },
     "info": {
+      "fragJetzt": "frag.jetzt Sitzungs-Code",
+      "arsnovaClick": "arsnova.click Quizname",
       "author": "Autor/in",
       "multipleAuthors": "Mehrere",
       "publisher": "Editor/in",
@@ -1849,6 +1861,8 @@
       },
       "userHistory": {
         "title": "Verlauf von Benutzer __firstName__, __lastName__",
+        "titleCardset": "Verlauf für Kartei »__cardset__«",
+        "titleRepetitorium": "Verlauf für Repetitorium »__repetitorium__«",
         "stats": {
           "title": "Statistik",
           "tasks": {

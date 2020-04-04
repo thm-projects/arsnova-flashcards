@@ -17,7 +17,7 @@ export let CardVisuals = class CardVisuals {
 	}
 
 	static setExitPresentationContainerSize (height = window.screen.height) {
-		if (!Route.isPresentationList() && !Route.isEditMode()) {
+		if (!Route.isEditMode()) {
 			let presentationContainer = $('.presentation-container');
 			if (height === 0 || !CardVisuals.isFullscreen()) {
 				presentationContainer.css('overflow', 'unset');

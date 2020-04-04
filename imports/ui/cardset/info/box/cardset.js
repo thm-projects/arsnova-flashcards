@@ -17,6 +17,8 @@ import "./item/purchased.js";
 import "./item/ratings.js";
 import "./item/reviewer.js";
 import "./item/wordcloud.js";
+import "./item/fragJetzt.js";
+import "./item/arsnovaClick.js";
 import "./cardset.html";
 import {CardsetVisuals} from "../../../../api/cardsetVisuals";
 
