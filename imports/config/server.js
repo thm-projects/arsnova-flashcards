@@ -253,11 +253,11 @@ let debug = {
 		"autoFullscreen": true,
 		"exitOnFullscreenBackgroundClick": true,
 		"fragJetzt": {
-			"session": "8658658",
+			"session": "",
 			"overrideOnlyEmptySessions": true
 		},
 		"arsnovaClick": {
-			"session": "7676",
+			"session": "",
 			"overrideOnlyEmptySessions": true
 		}
 	},

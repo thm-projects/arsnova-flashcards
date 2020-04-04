@@ -3,6 +3,7 @@ import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {Cards} from "../../../../api/subscriptions/cards";
+import {Route} from "../../../../api/route";
 
 Session.setDefault('arsnovaClickSessionID', '');
 /*
@@ -13,7 +14,13 @@ Session.setDefault('arsnovaClickSessionID', '');
 
 Template.cardSidebarItemArsnovaClick.helpers({
 	gotSessionID: function () {
-		if (this.shuffled && this.arsnovaClick.overrideOnlyEmptySessions) {
+		let cardset;
+		if (Route.isDemo()) {
+			cardset = Cardsets.findOne({shuffled: true, kind: {$in: ['demo']}}, {fields: {shuffled: true, arsnovaClick: true}});
+		} else {
+			cardset = this;
+		}
+		if (cardset.shuffled && cardset.arsnovaClick.overrideOnlyEmptySessions) {
 			let currentCard = Cards.findOne(Session.get('activeCard'));
 			if (currentCard !== undefined) {
 				let currentCardset = Cardsets.findOne({_id: currentCard.cardset_id}, {fields: {arsnovaClick: true}});
@@ -21,16 +28,16 @@ Template.cardSidebarItemArsnovaClick.helpers({
 					if (currentCardset.arsnovaClick.session !== undefined && currentCardset.arsnovaClick.session.length) {
 						Session.set('arsnovaClickSessionID', currentCardset.arsnovaClick.session);
 						return true;
-					} else if (this.arsnovaClick.session !== undefined && this.arsnovaClick.session.length) {
-						Session.set('arsnovaClickSessionID', this.arsnovaClick.session);
+					} else if (cardset.arsnovaClick.session !== undefined && cardset.arsnovaClick.session.length) {
+						Session.set('arsnovaClickSessionID', cardset.arsnovaClick.session);
 						return true;
 					} else {
 						Session.set('arsnovaClickSessionID', '');
 					}
 				}
 			}
-		} else if (this.arsnovaClick.session !== undefined) {
-			Session.set('arsnovaClickSessionID', this.arsnovaClick.session);
+		} else if (cardset.arsnovaClick.session !== undefined && cardset.arsnovaClick.session.length) {
+			Session.set('arsnovaClickSessionID', cardset.arsnovaClick.session);
 			return true;
 		} else {
 			Session.set('arsnovaClickSessionID', '');
