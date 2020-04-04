@@ -1,8 +1,8 @@
-import {NavigatorCheck} from "./navigatorCheck";
+import {NavigatorCheck} from "../api/navigatorCheck";
 import * as config from "../config/pdfViewer";
 
-export let fullscreenModal = class fullscreenModal {
-	static getDeviceMaxSize() {
+export let FullscreenModal = class FullscreenModal {
+	static getDeviceMaxSize () {
 		if (NavigatorCheck.isSmartphone()) {
 			if (NavigatorCheck.isLandscape()) {
 				return config.smartphoneSize.landscape;
@@ -20,15 +20,15 @@ export let fullscreenModal = class fullscreenModal {
 		}
 	}
 
-	static getIframeHeight() {
+	static getIframeHeight () {
 		return window.innerHeight * this.getDeviceMaxSize().height;
 	}
 
-	static getIframeWidth() {
+	static getIframeWidth () {
 		return window.innerWidth * this.getDeviceMaxSize().width;
 	}
 
-	static resizeIframe(modalName) {
+	static resizeIframe (modalName) {
 		let fullscreenModal = $("#" + modalName);
 		if (fullscreenModal.length) {
 			fullscreenModal.height(this.getIframeHeight() + "px");
