@@ -7,13 +7,16 @@
                  </span>
              {{/unless}}
          {{/unless}}
-        {{#if gotTranscriptBonus this._id}}
-            {{#unless this.shuffled}}
-                <span class="label label-count-transcripts" title="{{_ "transcriptForm.info.submissions"}}">
-                    {{getTranscriptSubmissions this}}
-                </span>
-            {{/unless}}
-        {{/if}}
+         {{#if gotTranscriptBonus this._id}}
+             {{#unless this.shuffled }}
+                 {{#if greaterThan0 (getTranscriptSubmissions this)}}
+                    <span class="label label-count-transcripts" title="{{_ "transcriptForm.info.submissions"}}">
+                        {{getTranscriptSubmissions this}}
+                        <i class="fas fa-clipboard-list"></i>
+                    </span>
+                 {{/if}}
+             {{/unless}}
+         {{/if}}
         {{{getUseCaseLabel this}}}
         {{{getLecturerAuthorizedLabel this}}}
         {{{getWordcloudLabel this}}}
@@ -34,3 +37,4 @@
         {{> filterIndexItemBottomStarsRating}}
     </span>
 </template>
+
