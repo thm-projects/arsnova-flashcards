@@ -1121,5 +1121,5 @@ Template.registerHelper("gotTranscriptBonusAndIsNotShuffled", function (cardset_
 Template.registerHelper('markdeep', markdeepHelper.getTemplate());
 
 Template.registerHelper("greaterThan0", function (number) {
-	return number === 0;
+	return number > 0;
 });
