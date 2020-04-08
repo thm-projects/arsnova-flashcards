@@ -1,10 +1,18 @@
 import {Session} from "meteor/session";
 import {CardVisuals} from "./cardVisuals";
 import * as config from "../config/markdeepEditor.js";
+import {ServerStyle} from "./styles";
 
 export let MarkdeepEditor = class MarkdeepEditor {
 	static help () {
-		window.open(config.markdeepHelpLink, "_blank");
+		let cardsetId = ServerStyle.getMarkdeepFormatingPath();
+		if (cardsetId !== undefined && cardsetId.trim().length > 0) {
+			window.open(Router.url('cardsetdetailsid', {
+				_id: cardsetId.trim()
+			}), "_blank");
+		} else {
+			window.open(config.markdeepHelpLink, "_blank");
+		}
 	}
 
 	static center () {

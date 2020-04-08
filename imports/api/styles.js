@@ -271,4 +271,9 @@ export let ServerStyle = class ServerStyle {
 		let config  = this.getConfig();
 		return config.demo.fragJetzt;
 	}
+
+	static getMarkdeepFormatingPath () {
+		let config = this.getConfig();
+		return config.help.markdeepFormatingCardsetID;
+	}
 };
