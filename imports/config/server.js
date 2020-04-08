@@ -108,7 +108,8 @@ let defaultSettings = {
 		"enabled": true
 	},
 	"help": {
-		"style": "default"
+		"style": "default",
+		"markdeepFormatingCardsetID": "AWNnFnzM9rt7fpfZa"
 	},
 	"demo": {
 		"folder": "informatik",
@@ -246,7 +247,8 @@ let debug = {
 		"enabled": true
 	},
 	"help": {
-		"style": "linux"
+		"style": "linux",
+		"markdeepFormatingCardsetID": ""
 	},
 	"demo": {
 		"folder": "informatik",
@@ -384,7 +386,8 @@ let linux = {
 		"enabled": false
 	},
 	"help": {
-		"style": "linux"
+		"style": "linux",
+		"markdeepFormatingCardsetID": ""
 	},
 	"demo": {
 		"folder": "linux",
@@ -522,7 +525,8 @@ let review = {
 		"enabled": true
 	},
 	"help": {
-		"style": "default"
+		"style": "default",
+		"markdeepFormatingCardsetID": ""
 	},
 	"demo": {
 		"folder": "informatik",
@@ -660,7 +664,8 @@ let staging = {
 		"enabled": true
 	},
 	"help": {
-		"style": "default"
+		"style": "default",
+		"markdeepFormatingCardsetID": ""
 	},
 	"demo": {
 		"folder": "informatik",
