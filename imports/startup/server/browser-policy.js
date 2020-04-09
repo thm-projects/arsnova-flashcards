@@ -22,6 +22,8 @@ BrowserPolicy.content.allowOriginForAll('https://www.linguee.de');
 BrowserPolicy.content.allowOriginForAll('https://translate.google.com');
 BrowserPolicy.content.allowOriginForAll('https://www.deepl.com');
 BrowserPolicy.content.allowOriginForAll('https://*.braintreegateway.com');
+BrowserPolicy.content.allowOriginForAll('https://arsnova.thm.de/stats/piwik.js');
+BrowserPolicy.content.allowOriginForAll('https://arsnova.thm.de/stats/piwik.php');
 
 BrowserPolicy.content.allowFrameOrigin('*');
 
