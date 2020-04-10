@@ -1,6 +1,6 @@
 <template name="cardsetInfoBox">
     <div id="collapseCardsetInfoButton"
-       class="col-xs-12 card btn-raised {{getColors}} collapseButton collapsed">
+         class="col-xs-12 card btn-raised {{getColors}} collapseButton collapsed">
         <strong>{{#if this.shuffled}}{{_ "set-list.cardsetInfoRepetitorium"}}{{else}}{{_
                 "set-list.cardsetInfoStatic"}}{{/if}}</strong>
         <i id="collapseCardsetInfoIcon" class="far fa-caret-square-down pull-right"></i>
@@ -19,13 +19,15 @@
         <br>
         <br>
     </span>
-    {{#if isInBonus}}
-        {{> cardsetNavigationLearning}}
-    {{else}}
-        {{#if currentUser}}
-            {{> cardsetNavigationWorkload}}
+    {{#unless isCardsetLeitnerStats}}
+        {{#if isInBonus}}
+            {{> cardsetNavigationLearning}}
+        {{else}}
+            {{#if currentUser}}
+                {{> cardsetNavigationWorkload}}
+            {{/if}}
         {{/if}}
-    {{/if}}
+    {{/unless}}
 </template>
 
 <template name="cardsetInfoBoxContentOne">
@@ -49,4 +51,6 @@
     {{> cardsetInfoBoxItemActiveLearners}}
     {{> cardsetInfoBoxItemRatings}}
     {{> cardsetInfoBoxItemWordcloud}}
+    {{> cardsetInfoBoxItemFragJetzt}}
+    {{> cardsetInfoBoxItemArsnovaClick}}
 </template>

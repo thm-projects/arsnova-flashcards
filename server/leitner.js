@@ -5,8 +5,9 @@ import {Cardsets} from "../imports/api/subscriptions/cardsets";
 import {MailNotifier} from "./sendmail.js";
 import {WebNotifier} from "./sendwebpush.js";
 import {Bonus} from "../imports/api/bonus";
-import {LeitnerUtilities} from "../imports/api/leitner";
+import {LeitnerUtilities} from "../imports/util/leitner.js";
 import {ServerSettings} from "../imports/api/settings";
+import {LeitnerTasks} from "../imports/api/subscriptions/leitnerTasks";
 
 /** Function gets called when the learning-phase ended and excludes the cardset from the leitner algorithm
  *  @param {Object} cardset - The cardset from the active learning-phase
@@ -119,7 +120,7 @@ Meteor.methods({
 			}
 		}
 	},
-	prepareMail: function (cardset, user, isReset = false, isNewcomer = false) {
+	prepareMail: function (cardset, user, isReset = false, isNewcomer = false, task_id = undefined) {
 		if (Meteor.isServer) {
 			if (user.mailNotification && ServerSettings.isMailEnabled() && !isNewcomer && Roles.userIsInRole(user._id, ['admin', 'editor', 'university', 'lecturer', 'pro']) && !Roles.userIsInRole(user._id, ['blocked', 'firstLogin'])) {
 				try {
@@ -133,6 +134,19 @@ Meteor.methods({
 							console.log("===> Sending E-Mail reminder Message");
 						}
 						MailNotifier.prepareMail(cardset, user._id);
+						if (task_id !== undefined) {
+							LeitnerTasks.update({
+									_id: task_id
+								},
+								{
+									$set: {
+										'notifications.mail.active': true,
+										'notifications.mail.sent': true,
+										'notifications.mail.address': user.email
+									}
+								}
+							);
+						}
 					}
 				} catch (error) {
 					console.log("[" + TAPi18n.__('admin-settings.test-notifications.sendMail') + "] " + error);
@@ -140,7 +154,7 @@ Meteor.methods({
 			}
 		}
 	},
-	prepareWebpush: function (cardset, user, isNewcomer = false) {
+	prepareWebpush: function (cardset, user, isNewcomer = false, task_id = undefined) {
 		if (Meteor.isServer) {
 			if (ServerSettings.isPushEnabled() && (Bonus.isInBonus(cardset._id, user._id) || user.webNotification) && !isNewcomer) {
 				try {
@@ -149,6 +163,18 @@ Meteor.methods({
 						console.log("===> Sending Webpush reminder Message");
 					}
 					web.prepareWeb(cardset, user._id);
+					if (task_id !== undefined) {
+						LeitnerTasks.update({
+								_id: task_id
+							},
+							{
+								$set: {
+									'notifications.web.active': true,
+									'notifications.web.sent': true
+								}
+							}
+						);
+					}
 				} catch (error) {
 					console.log("[" + TAPi18n.__('admin-settings.test-notifications.sendWeb') + "] " + error);
 				}

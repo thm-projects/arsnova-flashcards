@@ -68,8 +68,7 @@ Template.flashcards.onCreated(function () {
 	}
 });
 
-let resizeInterval;
-let windowResizeSensor;
+let backgroundClickEvent;
 Template.flashcards.onRendered(function () {
 	TouchNavigation.cards();
 	$(".box").on('transitionend webkitTransitionEnd oTransitionEnd', function () {
@@ -88,23 +87,22 @@ Template.flashcards.onRendered(function () {
 	new ResizeSensor($('#cardCarousel'), function () {
 		CardVisuals.resizeFlashcard();
 	});
-	windowResizeSensor = $(window).resize(function () {
-		CardVisuals.resizeFlashcard();
-	});
 	if (Route.isEditMode()) {
 		CardEditor.setEditorButtonIndex(0);
 	}
 	CardVisuals.setDefaultViewingMode();
+	setTimeout(function () {
+		backgroundClickEvent = $(".presentation-container").click(function (event) {
+			CardNavigation.exitPresentationFullscreen(event);
+		});
+	}, 1000);
 });
 
 Template.flashcards.onDestroyed(function () {
-	if (resizeInterval !== undefined) {
-		clearInterval(resizeInterval);
-		resizeInterval = undefined;
+	if (backgroundClickEvent !== undefined) {
+		backgroundClickEvent.off('click');
 	}
-	if (windowResizeSensor !== undefined) {
-		windowResizeSensor.off('resize');
-	}
+	CardVisuals.setExitPresentationContainerSize(0);
 });
 
 Template.flashcards.helpers({

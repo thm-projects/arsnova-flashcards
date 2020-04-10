@@ -7,6 +7,7 @@ import {Route} from '../../api/route.js';
 import {BertAlertVisuals} from "../../api/bertAlertVisuals";
 import {Cardsets} from "../../api/subscriptions/cardsets";
 import * as config from "../../config/cardset";
+import "./item/sessions.js";
 
 export function isNewCardset() {
 	return Session.get('isNewCardset');
@@ -91,6 +92,20 @@ export function cleanModal() {
 			$('#sortContent').prop('checked', false);
 		}
 	}
+	if (isNewCardset()) {
+		$('#setArsnovaClick').val('');
+		$('#setFragJetzt').val('');
+	} else {
+		$('#setArsnovaClick').val(Session.get('previousCardsetData').arsnovaClick.session);
+		$('#setFragJetzt').val(Session.get('previousCardsetData').fragJetzt.session);
+	}
+	if (isNewCardset() && Route.isRepetitorienFilterIndex()) {
+		$('#arsnovaClickOverride').attr('checked', true);
+		$('#fragJetztOverride').attr('checked', true);
+	} else if (Session.get('previousCardsetData').shuffled) {
+		$('#arsnovaClickOverride').attr('checked', Session.get('previousCardsetData').arsnovaClick.overrideOnlyEmptySessions);
+		$('#fragJetztOverride').attr('checked', Session.get('previousCardsetData').fragJetzt.overrideOnlyEmptySessions);
+	}
 }
 
 export function saveCardset() {
@@ -99,6 +114,20 @@ export function saveCardset() {
 	let error = false;
 	let errorMessage = "<ul>";
 	let sortType = $("input[name='sortType']:checked").val();
+	let fragJetzt = {
+		session: "",
+		overrideOnlyEmptySessions: true
+	};
+	let arsnovaClick = {
+		session: "",
+		overrideOnlyEmptySessions: true
+	};
+	fragJetzt.session = $('#setFragJetzt').val();
+	arsnovaClick.session = $('#setArsnovaClick').val();
+	if (Route.isRepetitorienFilterIndex() || (Route.isCardset() && Session.get('previousCardsetData').shuffled)) {
+		fragJetzt.overrideOnlyEmptySessions = $('#fragJetztOverride')[0].checked;
+		arsnovaClick.overrideOnlyEmptySessions = $('#arsnovaClickOverride')[0].checked;
+	}
 	if (sortType === undefined) {
 		sortType = 0;
 	}
@@ -147,7 +176,7 @@ export function saveCardset() {
 				shuffled = false;
 				cardGroups = [];
 			}
-			Meteor.call("addCardset", name, description, false, true, 'personal', shuffled, cardGroups, Number(cardType), Session.get('difficultyColor'), Number(sortType), function (error, result) {
+			Meteor.call("addCardset", name, description, false, true, 'personal', shuffled, cardGroups, Number(cardType), Session.get('difficultyColor'), Number(sortType), fragJetzt, arsnovaClick, function (error, result) {
 				$('#setCardsetFormModal').modal('hide');
 				if (result) {
 					if (Session.get('importCards') !== undefined) {
@@ -166,7 +195,7 @@ export function saveCardset() {
 			if (Session.get('previousCardsetData').shuffled) {
 				cardType = -1;
 			}
-			Meteor.call("updateCardset", Session.get('previousCardsetData')._id, name, description, Number(cardType), Session.get('difficultyColor'), Number(sortType));
+			Meteor.call("updateCardset", Session.get('previousCardsetData')._id, name, description, Number(cardType), Session.get('difficultyColor'), Number(sortType), fragJetzt, arsnovaClick);
 			if (Number(cardType) !== -1) {
 				Session.set('cardType', Number(cardType));
 			}

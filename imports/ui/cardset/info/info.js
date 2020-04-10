@@ -64,6 +64,6 @@ Template.cardsetInfo.helpers({
 
 Template.cardsetInfo.events({
 	'click a': function (event) {
-		MarkdeepContent.anchorTarget(event);
+		MarkdeepContent.getLinkTarget(event);
 	}
 });

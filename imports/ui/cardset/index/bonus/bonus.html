@@ -37,6 +37,8 @@
                             <th>{{_ "confirmLearn-form.notification"}}
                             </th>
                         {{/if}}
+                        <th>{{_ "leitnerProgress.dateJoinedBonus"}}</th>
+                        <th>{{_ "leitnerProgress.lastActivity"}}</th>
                         <th>{{_ "leitnerProgress.box" number=1}} [{{this.learningInterval.[0]}}]
                         </th>
                         <th>{{_ "leitnerProgress.box" number=2}} [{{this.learningInterval.[1]}}]
@@ -49,6 +51,7 @@
                         </th>
                         <th>{{_ "leitnerProgress.learned"}}</th>
                         <th>{{_ "leitnerProgress.bonus"}}</th>
+                        <th>{{_ "leitnerProgress.userHistory"}}</th>
                         <th>{{_ "details"}}</th>
                         <th>{{_ "leitnerProgress.manage"}}</th>
                     </tr>
@@ -60,6 +63,8 @@
                             {{#if isNotificationEnabled}}
                                 <td>{{{getNotificationStatus this}}}</td>
                             {{/if}}
+                            <td>{{getMomentsDate this.dateJoinedBonus}}</td>
+                            <td>{{getMomentsDate this.lastActivity}}</td>
                             <td>{{this.box1}}</td>
                             <td>{{this.box2}}</td>
                             <td>{{this.box3}}</td>
@@ -78,6 +83,17 @@
                             </td>
                             <td>
                                 {{getAchievedBonus}}&nbsp;%{{#if earnedTrophy}}&nbsp;<i class="fas fa-trophy bonusTrophy"></i>{{/if}}
+                            </td>
+                            <td>
+                                <a data-id="{{this.user_id}}"
+                                   data-firstname="{{this.birthname}}"
+                                   data-lastname="{{this.givenname}}" class="showBonusUserHistory" data-toggle="modal"
+                                   href="#bonusUserHistoryModal"><i
+                                        class="far fa-clock"
+                                        data-firstname="{{this.birthname}}"
+                                        data-lastname="{{this.givenname}}"
+                                        data-id="{{this.user_id}}"
+                                        title="{{_ "leitnerProgress.tooltip.userHistory"}}"></i></a>
                             </td>
                             <td>
                                 <a data-id="{{this.user_id}}" class="detailed-stats"><i
@@ -104,6 +120,7 @@
                                        data-box4="{{this.box4}}"
                                        data-box5="{{this.box5}}" data-box6="{{this.box6}}"
                                        data-mailnotification="{{this.mailNotification}}" data-webnotification="{{this.webNotification}}"
+                                       data-datejoinedbonus="{{getMomentsDate this.dateJoinedBonus}}" data-lastactivity="{{getMomentsDate this.lastActivity}}"
                                     >
                                     </i></a>
                             </td>

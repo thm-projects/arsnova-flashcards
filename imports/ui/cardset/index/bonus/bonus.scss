@@ -1,0 +1,22 @@
+@media (min-width: 1200px) {
+  #bonusUserHistoryModal {
+    .modal-dialog {
+      width:1200px;
+    }
+    .modal-body {
+      width: 1200px;
+    }
+  }
+}
+
+#bonusUserHistoryModal {
+  .user-history-title {
+    h4 {
+      font-weight: bold;
+    }
+    padding: 2px 10px;
+  }
+  .table-user-history {
+    margin-bottom: 0;
+  }
+}

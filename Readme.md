@@ -7,7 +7,10 @@ arsnova🍅cards uses Meteor as application framework. Download and install [Met
 ## Hardware requirements
 - 4 GB RAM
 
-## Initial setup
+## Setup with Docker
+Instructions for Docker can be found [»here«](docker_readme.md).
+
+## Setup (native)
 |Step | Linux Terminal Command  |
 |---|---|
 |1. Install [Meteor](https://www.meteor.com/)   | Refer to the link in the step column |
@@ -17,7 +20,7 @@ arsnova🍅cards uses Meteor as application framework. Download and install [Met
 |5. Make sure that you've added a [SSH key](https://git.thm.de/profile/keys) | Refer to the link in the step column |
 |6. Clone the remote repository  | `git clone git@git.thm.de:arsnova/cards.git` |
 |7. Move inside the local repository **"cards folder"**  | `cd cards` |
-|8. Install the npm package dependencies | `meteor npm install` | 
+|8. Install the npm package dependencies | `meteor npm install` |
 
 
 ### Settings (These steps are only required if you want to deploy 🍅cards on a server)

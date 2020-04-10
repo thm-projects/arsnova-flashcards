@@ -70,6 +70,10 @@ Template.registerHelper('isMakingOf', function () {
 	return Route.isMakingOf();
 });
 
+Template.registerHelper('isCardsetLeitnerStats', function () {
+	return Route.isCardsetLeitnerStats();
+});
+
 Template.registerHelper('isDemo', function () {
 	return Route.isDemo();
 });
@@ -1115,3 +1119,7 @@ Template.registerHelper("gotTranscriptBonusAndIsNotShuffled", function (cardset_
 });
 
 Template.registerHelper('markdeep', markdeepHelper.getTemplate());
+
+Template.registerHelper("greaterThan0", function (number) {
+	return number > 0;
+});

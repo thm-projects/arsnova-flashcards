@@ -69,5 +69,21 @@ Meteor.methods({
 		} else {
 			return false;
 		}
+	},
+	changePlantUMLServerTarget: function (target) {
+		check(target, String);
+
+		if (!UserPermissions.gotBackendAccess()) {
+			throw new Meteor.Error("not-authorized");
+		}
+		AdminSettings.upsert({
+				name: "plantUMLServerSettings"
+			},
+			{
+				$set: {
+					url: target
+				}
+			});
+		return true;
 	}
 });

@@ -192,12 +192,6 @@ $sidebar_subtracted_width_for_not_fixed_version: 5px;
 $sidebar_yOffset_workload_portrait_mobile: 40px;
 $sidebar_yOffset_workload_landscape_mobile: 20px;
 
-//zoom
-$zoom_slider_width: 12px;
-$zoom_slider_handle_width: 70px;
-$zoom_slider_handle_height: 30px;
-$zoom_slider_handle_offset: -25px;
-
 //loading screen
 $loading_screen_size: 250px;
 
@@ -241,11 +235,11 @@ body.editor {
 }
 
 #pomodoroTimerModal {
-  z-index: 4000;
+  z-index: 10000 !important;
 }
 
 #helpModal {
-  z-index: 5000;
+  z-index: 11000 !important;
 }
 
 #first_login_content {
@@ -894,4 +888,8 @@ kbd {
 
 #contact.fullscreen #cardset-list {
   margin-top: 35px;
+}
+
+.modal-fullscreen-in {
+  overflow: hidden !important;
 }

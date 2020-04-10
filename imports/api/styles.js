@@ -26,6 +26,18 @@ export let ServerStyle = class ServerStyle {
 		return this.getConfig().welcome.title.last;
 	}
 
+	static exitDemoOnFullscreenBackgroundClick () {
+		return this.getConfig().demo.exitOnFullscreenBackgroundClick;
+	}
+
+	static exitPresentationOnFullscreenBackgroundClick () {
+		return this.getConfig().presentation.exitOnFullscreenBackgroundClick;
+	}
+
+	static gotDemoAutoFullscreen () {
+		return this.getConfig().demo.autoFullscreen;
+	}
+
 	static getHelpStyle () {
 		return this.getConfig().help.style;
 	}
@@ -248,5 +260,20 @@ export let ServerStyle = class ServerStyle {
 			case "web":
 				return this.getConfig().newUser.enabledNotifications.web;
 		}
+	}
+
+	static getDemoArsnovaClick () {
+		let config  = this.getConfig();
+		return config.demo.arsnovaClick;
+	}
+
+	static getDemoFragJetzt () {
+		let config  = this.getConfig();
+		return config.demo.fragJetzt;
+	}
+
+	static getMarkdeepFormatingPath () {
+		let config = this.getConfig();
+		return config.help.markdeepFormatingCardsetID;
 	}
 };

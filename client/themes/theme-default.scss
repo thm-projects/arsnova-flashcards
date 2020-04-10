@@ -337,7 +337,7 @@
           "welcome_page_login_label": white,
           "welcome_page_login_label_shadow": $thm_gray,
           "placeholder": $thm_orange,
-    ////export to markdeep colors
+    //export to markdeep colors
           "export_to_markdeep_table_header_background": $thm_gray,
           "export_to_markdeep_table_header_text": white,
           "export_to_markdeep_table_row_background": white,
@@ -350,6 +350,9 @@
           "server_statistics_table_row_background": white,
           "server_statistics_table_row_text": $primary_text,
           "server_statistics_table_row_counter": $primary_text,
+    //leitner user history
+          "leitner_user_history_title_background": $thm_gray,
+          "leitner_user_history_title_color": white,
     //footer colors
           "footer_welcome_page_info_icon_text" : white,
           "footer_welcome_page_info_icon_text_hover": $button_background_hover,
@@ -431,7 +434,7 @@
           "card_list_number_background": $thm_green,
           "card_list_number_text": white,
     //card-navigation colors
-          "card_navigation_active_background": $primary,
+          "card_navigation_active_background": $thm_orange,
           "card_navigation_active_text": white,
           "card_navigation_active_background_hover": $primary,
           "card_navigation_active_text_hover": white,
@@ -488,12 +491,31 @@
           "card_header_second_row": $thm_gray,
           "card_header_subject": $thm_gray,
           "card_header_subject_placeholder": $thm_orange,
-          "card_content_zoom_button_active": $thm_orange,
-          "card_content_zoom_slider_container_background": $thm_gray,
-          "card_content_zoom_slider_container_text": white,
-          "card_content_zoom_slider_container_percentage": $thm_orange,
-          "card_content_zoom_slider_container_bar": white,
-          "card_content_zoom_slider_container_handle": $thm_orange,
+
+          "card_content_zoom_container_button_reset_background": $thm_orange,
+          "card_content_zoom_container_button_reset_text": white,
+          "card_content_zoom_container_button_reset_background_hover": $button_background_hover,
+          "card_content_zoom_container_button_reset_text_hover": $button_text_hover,
+
+          "card_content_zoom_container_background": $thm_gray,
+          "card_content_zoom_container_text": white,
+          "card_content_zoom_container_percentage": $thm_orange,
+
+          "card_content_zoom_container_button_plus_background": $thm_green,
+          "card_content_zoom_container_button_plus_text": white,
+          "card_content_zoom_container_button_plus_background_hover": $button_background_hover,
+          "card_content_zoom_container_button_plus_text_hover": $button_text_hover,
+          "card_content_zoom_container_button_plus_background_disabled": $athens_gray_approx,
+          "card_content_zoom_container_button_plus_text_disabled": black,
+          "card_content_zoom_container_button_plus_disabled_opacity": 0.3,
+
+          "card_content_zoom_container_button_minus_background": $thm_red,
+          "card_content_zoom_container_button_minus_text": white,
+          "card_content_zoom_container_button_minus_background_hover": $button_background_hover,
+          "card_content_zoom_container_button_minus_text_hover": $button_text_hover,
+          "card_content_zoom_container_button_minus_background_disabled": $athens_gray_approx,
+          "card_content_zoom_container_button_minus_text_disabled": black,
+          "card_content_zoom_container_button_minus_disabled_opacity": 0.3,
     //card sidebar colors
           "card_sidebar_border": rgba($thm_gray, 0.6),
           "card_sidebar_background" : rgba($mercury_approx, 0.6),
@@ -542,6 +564,14 @@
           "card_sidebar_arsnova_lite_text_hover": $button_text_hover,
           "card_sidebar_arsnova_lite_background_active": $thm_orange,
           "card_sidebar_arsnova_lite_text_active": white,
+          "card_sidebar_zoom_background": none,
+          "card_sidebar_zoom_text": $thm_gray,
+          "card_sidebar_zoom_background_open": $button_background_hover,
+          "card_sidebar_zoom_text_open": $button_text_hover,
+          "card_sidebar_zoom_background_hover": $button_background_hover,
+          "card_sidebar_zoom_text_hover": $button_text_hover,
+          "card_sidebar_zoom_background_active": $thm_orange,
+          "card_sidebar_zoom_text_active": white,
     //cardset sidebar colors
           "cardset_sidebar_preview_background": none,
           "cardset_sidebar_preview_text": $thm_gray,

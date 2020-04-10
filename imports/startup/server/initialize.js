@@ -4,6 +4,7 @@ import {Cardsets} from "../../api/subscriptions/cardsets.js";
 import {ColorThemes} from "../../api/subscriptions/colorThemes.js";
 import {Leitner} from "../../api/subscriptions/leitner";
 import {LeitnerHistory} from "../../api/subscriptions/leitnerHistory";
+import {LeitnerTasks} from "../../api/subscriptions/leitnerTasks";
 import {Workload} from "../../api/subscriptions/workload";
 import {Wozniak} from "../../api/subscriptions/wozniak";
 import {AdminSettings} from "../../api/subscriptions/adminSettings";
@@ -13,9 +14,10 @@ import {CardType} from "../../api/cardTypes";
 import {WebPushSubscriptions} from "../../api/subscriptions/webPushNotifications";
 import {Paid} from "../../api/subscriptions/paid";
 import {TranscriptBonus} from "../../api/subscriptions/transcriptBonus";
-import {LeitnerUtilities} from "../../api/leitner";
+import {LeitnerUtilities} from "../../util/leitner";
 import {Utilities} from "../../api/utilities";
 import * as bonusFormConfig from "../../config/bonusForm.js";
+import * as leitnerConfig from "../../config/leitner.js";
 
 var initColorThemes = function () {
 	return [{
@@ -371,6 +373,7 @@ function cleanWorkload() {
 function setupDatabaseIndex() {
 	Leitner._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, active: 1});
 	LeitnerHistory._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, task_id: 1, box: 1, dateAnswered: 1});
+	LeitnerTasks._ensureIndex({user_id: 1, cardset_id: 1, session: 1});
 	Wozniak._ensureIndex({user_id: 1, cardset_id: 1});
 	Workload._ensureIndex({cardset_id: 1, user_id: 1});
 	Cards._ensureIndex({cardset_id: 1, subject: 1});
@@ -426,6 +429,13 @@ Meteor.startup(function () {
 		AdminSettings.insert({
 			name: "wordcloudPomodoroSettings",
 			enabled: true
+		});
+	}
+
+	if (!AdminSettings.findOne({name: "plantUMLServerSettings"})) {
+		AdminSettings.insert({
+			name: "plantUMLServerSettings",
+			url: "https://www.plantuml.com/plantuml"
 		});
 	}
 
@@ -1139,6 +1149,143 @@ Meteor.startup(function () {
 			{
 				$set: {
 					rating: 0
+				}
+			}
+		);
+	}
+
+	leitner = Leitner.find({"viewedPDF": {$exists: false}}).fetch();
+	for (let i = 0; i < leitner.length; i++) {
+		Leitner.update({
+				_id: leitner[i]._id
+			},
+			{
+				$set: {
+					viewedPDF: false
+				}
+			}
+		);
+	}
+
+	wozniak = Wozniak.find({"viewedPDF": {$exists: false}}).fetch();
+	for (let i = 0; i < wozniak.length; i++) {
+		Wozniak.update({
+				_id: wozniak[i]._id
+			},
+			{
+				$set: {
+					viewedPDF: false
+				}
+			}
+		);
+	}
+
+	let leitnerHistory = LeitnerHistory.find({"missedDeadline": {$exists: false}}).fetch();
+	for (let i = 0; i < leitnerHistory.length; i++) {
+		if (leitnerHistory[i].answer === 2) {
+			LeitnerHistory.update({
+					_id: leitnerHistory[i]._id
+				},
+				{
+					$set: {
+						missedDeadline: true
+					},
+					$unset: {
+						answer: ""
+					}
+				}
+			);
+		} else {
+			LeitnerHistory.update({
+					_id: leitnerHistory[i]._id
+				},
+				{
+					$set: {
+						missedDeadline: false
+					}
+				}
+			);
+		}
+	}
+
+	// Move old leitner history to new session system
+	workload = Workload.find({"leitner.tasks": {$exists: true}}).fetch();
+	for (let i = 0; i < workload.length; i++) {
+		let user = Meteor.users.findOne(workload[i].user_id);
+
+		let tasks = workload[i].leitner.tasks;
+		for (let t = 0; t < tasks.length; t++) {
+			let missedDeadline = false;
+			let foundReset = LeitnerHistory.findOne({user_id: user._id, cardset_id: workload[i].cardset_id, task_id: t, missedDeadline: true});
+			if (foundReset !== undefined) {
+				missedDeadline = true;
+			}
+			let leitnerTask = LeitnerTasks.insert({
+				cardset_id: workload[i].cardset_id,
+				user_id: workload[i].user_id,
+				session: 0,
+				isBonus: workload[i].leitner.bonus,
+				missedDeadline: missedDeadline,
+				resetDeadlineMode: leitnerConfig.resetDeadlineMode,
+				wrongAnswerMode: leitnerConfig.wrongAnswerMode,
+				notifications: {
+					mail: {
+						active: user.mailNotification,
+						sent: user.mailNotification,
+						address: user.email
+					},
+					web: {
+						active: user.webNotification,
+						sent: user.webNotification
+					}
+				},
+				createdAt: tasks[t]
+			});
+
+			LeitnerHistory.update({
+					user_id: workload[i].user_id,
+					cardset_id: workload[i].cardset_id,
+					task_id: t
+				},
+				{
+					$set: {
+						task_id: leitnerTask
+					},
+					$unset: {
+						missedDeadline: ""
+					}
+				}, {multi: true}
+			);
+		}
+
+		Workload.update({
+				_id: workload[i]._id
+			},
+			{
+				$unset: {
+					"leitner.tasks": ""
+				}
+			});
+	}
+
+
+	cardsets = Cardsets.find({"fragJetzt": {$exists: false}}).fetch();
+	let fragJetzt = {
+		session: "",
+		overrideOnlyEmptySessions: true
+	};
+	let arsnovaClick = {
+		session: "",
+		overrideOnlyEmptySessions: true
+	};
+	for (let i = 0; i < cardsets.length; i++) {
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					fragJetzt: fragJetzt,
+					arsnovaClick: arsnovaClick
 				}
 			}
 		);

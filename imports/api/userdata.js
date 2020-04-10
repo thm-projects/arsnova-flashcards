@@ -13,6 +13,8 @@ import {Paid} from "./subscriptions/paid";
 import {TranscriptBonus} from "./subscriptions/transcriptBonus";
 import {Utilities} from "./utilities";
 import {CardType} from "./cardTypes";
+import {LeitnerUtilities} from "../util/leitner";
+import {LeitnerTasks} from "./subscriptions/leitnerTasks";
 
 /**
  * Returns the degree, the givenname and the birthname from the author of a cardset
@@ -373,9 +375,6 @@ Meteor.methods({
 			user_id: user_id
 		});
 
-		LeitnerHistory.remove({
-			user_id: user_id
-		});
 
 		Wozniak.remove({
 			user_id: user_id
@@ -387,7 +386,36 @@ Meteor.methods({
 			user_id: user_id
 		});
 
+		let nextDeletedUserID = LeitnerUtilities.getNextLeitnerDeletedUserID();
 		for (let i = 0; i < workload.length; i++) {
+			LeitnerTasks.update({
+					user_id: user_id,
+					cardset_id: workload[i].cardset_id
+				},
+				{
+					$set: {
+						user_id_deleted: nextDeletedUserID
+					},
+					$unset: {
+						user_id: "",
+						"notifications.mail.address": ""
+					}
+				}, {multi: true}
+			);
+
+			LeitnerHistory.update({
+					user_id: user_id,
+					cardset_id: workload[i].cardset_id
+				},
+				{
+					$set: {
+						user_id_deleted: nextDeletedUserID
+					},
+					$unset: {
+						user_id: ""
+					}
+				}, {multi: true}
+			);
 			Meteor.call("updateLearnerCount", workload[i].cardset_id);
 		}
 

@@ -8,10 +8,6 @@ import {CardVisuals} from "../../../../api/cardVisuals";
  * ############################################################################
  */
 
-Template.cardSidebarItemZoomText.onRendered(function () {
-	CardVisuals.zoomCardText();
-});
-
 Template.cardSidebarItemZoomText.helpers({
 	getButtonColor: function () {
 		if (Session.get('zoomTextContainerVisible')) {

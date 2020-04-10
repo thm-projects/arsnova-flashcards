@@ -108,10 +108,24 @@ let defaultSettings = {
 		"enabled": true
 	},
 	"help": {
-		"style": "default"
+		"style": "default",
+		"markdeepFormatingCardsetID": "AWNnFnzM9rt7fpfZa"
 	},
 	"demo": {
-		"folder": "informatik"
+		"folder": "informatik",
+		"autoFullscreen": true,
+		"exitOnFullscreenBackgroundClick": true,
+		"fragJetzt": {
+			"session": "46091468",
+			"overrideOnlyEmptySessions": true
+		},
+		"arsnovaClick": {
+			"session": "",
+			"overrideOnlyEmptySessions": true
+		}
+	},
+	"presentation": {
+		"exitOnFullscreenBackgroundClick": true
 	},
 	"imprint": {
 		"folder": "cards"
@@ -233,10 +247,24 @@ let debug = {
 		"enabled": true
 	},
 	"help": {
-		"style": "linux"
+		"style": "linux",
+		"markdeepFormatingCardsetID": ""
 	},
 	"demo": {
-		"folder": "linux"
+		"folder": "informatik",
+		"autoFullscreen": true,
+		"exitOnFullscreenBackgroundClick": true,
+		"fragJetzt": {
+			"session": "46091468",
+			"overrideOnlyEmptySessions": true
+		},
+		"arsnovaClick": {
+			"session": "",
+			"overrideOnlyEmptySessions": true
+		}
+	},
+	"presentation": {
+		"exitOnFullscreenBackgroundClick": true
 	},
 	"imprint": {
 		"folder": "linux"
@@ -324,11 +352,11 @@ let linux = {
 	},
 	"login": {
 		"cas": true,
-		"guest": true,
+		"guest": false,
 		"pro": false,
-		"facebook": true,
-		"twitter": true,
-		"google": true
+		"facebook": false,
+		"twitter": false,
+		"google": false
 	},
 	"welcome": {
 		"title": {
@@ -358,10 +386,24 @@ let linux = {
 		"enabled": false
 	},
 	"help": {
-		"style": "linux"
+		"style": "linux",
+		"markdeepFormatingCardsetID": ""
 	},
 	"demo": {
-		"folder": "linux"
+		"folder": "linux",
+		"autoFullscreen": true,
+		"exitOnFullscreenBackgroundClick": true,
+		"fragJetzt": {
+			"session": "82871525",
+			"overrideOnlyEmptySessions": true
+		},
+		"arsnovaClick": {
+			"session": "",
+			"overrideOnlyEmptySessions": true
+		}
+	},
+	"presentation": {
+		"exitOnFullscreenBackgroundClick": true
 	},
 	"imprint": {
 		"folder": "linux"
@@ -483,10 +525,24 @@ let review = {
 		"enabled": true
 	},
 	"help": {
-		"style": "default"
+		"style": "default",
+		"markdeepFormatingCardsetID": ""
 	},
 	"demo": {
-		"folder": "informatik"
+		"folder": "informatik",
+		"autoFullscreen": true,
+		"exitOnFullscreenBackgroundClick": true,
+		"fragJetzt": {
+			"session": "46091468",
+			"overrideOnlyEmptySessions": true
+		},
+		"arsnovaClick": {
+			"session": "",
+			"overrideOnlyEmptySessions": true
+		}
+	},
+	"presentation": {
+		"exitOnFullscreenBackgroundClick": true
 	},
 	"imprint": {
 		"folder": "cards"
@@ -608,10 +664,24 @@ let staging = {
 		"enabled": true
 	},
 	"help": {
-		"style": "default"
+		"style": "default",
+		"markdeepFormatingCardsetID": ""
 	},
 	"demo": {
-		"folder": "informatik"
+		"folder": "informatik",
+		"autoFullscreen": true,
+		"exitOnFullscreenBackgroundClick": true,
+		"fragJetzt": {
+			"session": "46091468",
+			"overrideOnlyEmptySessions": true
+		},
+		"arsnovaClick": {
+			"session": "",
+			"overrideOnlyEmptySessions": true
+		}
+	},
+	"presentation": {
+		"exitOnFullscreenBackgroundClick": true
 	},
 	"imprint": {
 		"folder": "cards"

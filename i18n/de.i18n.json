@@ -23,6 +23,14 @@
       "sendWebError": "Push-Benachrichtigung fehlgeschlagen",
       "sendWebSuccess": "Push-Benachrichtigung erfolgreich",
       "waitingForResponse": "Warte auf Server-Rückmeldung"
+    },
+    "plantUML": {
+      "title": "PlantUML Server",
+      "target": "URL:",
+      "previewTitle": "PlantUML Markdeep Vorschau",
+      "setTargetID": "Ziel-URL setzen:",
+      "setTarget": "Ziel setzen",
+      "setSuccess": "Ziel wurde gesetzt"
     }
   },
   "cookieconsent": {
@@ -759,6 +767,16 @@
     }
   },
   "modal-dialog": {
+    "arsnovaClick": {
+      "name": "arsnova.click",
+      "placeholder": "Quizname",
+      "overrideOnlyEmptySessions": "Nur Karteien ohne Quizname überschreiben"
+    },
+    "fragJetzt": {
+      "name": "frag.jetzt",
+      "placeholder": "Sitzungs-Code",
+      "overrideOnlyEmptySessions": "Nur Karteien ohne Sitzungs-Code überschreiben"
+    },
     "missingFields": "Bitte fülle die folgenden Felder aus",
     "newcarddeck": "Kartei anlegen (Kartenbox)",
     "editcard": "Karte editieren",
@@ -1164,6 +1182,8 @@
       }
     },
     "info": {
+      "fragJetzt": "frag.jetzt Sitzungs-Code",
+      "arsnovaClick": "arsnova.click Quizname",
       "author": "Autor/in",
       "multipleAuthors": "Mehrere",
       "publisher": "Editor/in",
@@ -1348,17 +1368,17 @@
     "name": "Auf welcher Kompetenzstufe ❶ bis ❻ soll geprüft werden?",
     "cardName": "Kompetenzstufe",
     "level1": "❶ »Verstehen«",
-    "level1Placeholder": "Du hast die Kompetenzstufe »Verstehen« gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\nabgrenzen, anordnen, beschreiben, bestimmen, charakterisieren, einordnen, erkennen, erklären, gegenüberstellen.",
+    "level1Placeholder": "Du hast die Kompetenzstufe »Verstehen« gewählt. Formuliere das Kompetenzziel entsprechend mit einem der folgenden Verben: \n\nabgrenzen, anordnen, beschreiben, bestimmen, charakterisieren, einordnen, erkennen, erklären, gegenüberstellen.",
     "level2": "❷ »Anwenden«",
-    "level2Placeholder": "Du hast die Kompetenzstufe »Anwenden« gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\nanwenden, anfertigen, ausführen, abbilden, berechnen, deuten, durchführen, erstellen.",
+    "level2Placeholder": "Du hast die Kompetenzstufe »Anwenden« gewählt. Formuliere das Kompetenzziel entsprechend mit einem der folgenden Verben: \n\nanwenden, anfertigen, ausführen, abbilden, berechnen, deuten, durchführen, erstellen.",
     "level3": "❸ »Analysieren«",
-    "level3Placeholder": "Du hast die Kompetenzstufe »Analysieren« gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\nableiten, analysieren, auswählen, auswerten, Aussagen auf Richtigkeit überprüfen, Bedeutung ermitteln, beweisen, Beziehungen klarlegen, gliedern.",
+    "level3Placeholder": "Du hast die Kompetenzstufe »Analysieren« gewählt. Formuliere das Kompetenzziel entsprechend mit einem der folgenden Verben: \n\nableiten, analysieren, auswählen, auswerten, Aussagen auf Richtigkeit überprüfen, Bedeutung ermitteln, beweisen, Beziehungen klarlegen, gliedern.",
     "level4": "❹ »Synthetisieren«",
-    "level4Placeholder": "Du hast die Kompetenzstufe »Synthetisieren« gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\narrangieren, einordnen, ergänzen, integrieren, planen, Thesen bilden, zusammenfügen, zusammensetzen.",
+    "level4Placeholder": "Du hast die Kompetenzstufe »Synthetisieren« gewählt. Formuliere das Kompetenzziel entsprechend mit einem der folgenden Verben: \n\narrangieren, einordnen, ergänzen, integrieren, planen, Thesen bilden, zusammenfügen, zusammensetzen.",
     "level5": "❺ »Bewerten«",
-    "level5Placeholder": "Du hast die Kompetenzstufe »Bewerten« gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\nabwägen, begründen, beurteilen, beweisen, diskutieren, einschätzen, entscheiden, evaluieren, gewichten.",
+    "level5Placeholder": "Du hast die Kompetenzstufe »Bewerten« gewählt. Formuliere das Kompetenzziel entsprechend mit einem der folgenden Verben: \n\nabwägen, begründen, beurteilen, beweisen, diskutieren, einschätzen, entscheiden, evaluieren, gewichten.",
     "level6": "❻ »Innovieren«",
-    "level6Placeholder": "Du hast die Kompetenzstufe »Innovieren« gewählt. Formuliere die Frage entsprechend mit einem der folgenden Verben: \n\nerfinden, entdecken, entwerfen, entwickeln, erzeugen, konstruieren, konzipieren, kreieren."
+    "level6Placeholder": "Du hast die Kompetenzstufe »Innovieren« gewählt. Formuliere das Kompetenzziel entsprechend mit einem der folgenden Verben: \n\nerfinden, entdecken, entwerfen, entwickeln, erzeugen, konstruieren, konzipieren, kreieren."
   },
   "filter-cards": {
     "filter": "Filtern",
@@ -1819,6 +1839,9 @@
     "indexDefault": "Alle __cardsetCount__ Karteien mit __cardCount__ Karten gesamt",
     "cardCount": "Gesamtzahl: __cardCount__ Karten",
     "percentage": "Prozent",
+    "dateJoinedBonus": "Lernbeginn",
+    "lastActivity": "Letzte Aktivität",
+    "userHistory": "Verlauf",
     "notification": {
       "mail": "E-Mail",
       "push": "Push"
@@ -1835,11 +1858,61 @@
           "confirm": "User aus der Bonusphase entfernen",
           "cancel": "Abbrechen"
         }
+      },
+      "userHistory": {
+        "title": "Verlauf von Benutzer __firstName__, __lastName__",
+        "titleCardset": "Verlauf für Kartei »__cardset__«",
+        "titleRepetitorium": "Verlauf für Repetitorium »__repetitorium__«",
+        "stats": {
+          "title": "Statistik",
+          "tasks": {
+            "total": "Termine",
+            "completed": "Bearbeitet",
+            "notCompleted": "Nicht Bearbeitet"
+          },
+          "workload": {
+            "total": "Bearbeitetes Lernpensum",
+            "known": "Gewusst",
+            "notKnown": "Nicht Gewusst"
+          },
+          "duration": {
+            "average": "Ø Bearbeitungszeit",
+            "total": "Gesamte Bearbeitungszeit"
+          },
+          "averageKnown": "Ø Gewusst"
+        },
+        "table": {
+          "title": "Verlauf",
+          "id": "ID",
+          "date": "Freischaltungstag",
+          "workload": {
+            "title": "Lernpensum",
+            "singular": "__cards__ Karte",
+            "plural": "__cards__ Karten"
+          },
+          "known": "Gewusst",
+          "notKnown": "Nicht gewusst",
+          "status": {
+            "title": "Status",
+            "inProgress": "In Bearbeitung",
+            "notCompleted": "Nich Bearbeitet",
+            "notFullyCompletedSingular": "__cards__ Karte nicht bearbeitet",
+            "notFullyCompletedPlural": "__cards__ Karten nicht bearbeitet",
+            "completed": "Bearbeitet am __lastAnswerDate__"
+          },
+          "reason": {
+            "title": "Grund für Freischaltung",
+            "leitner": "Leitner-Plan",
+            "deadline": "Überschreitungsfrist"
+          },
+          "duration": "Bearbeitungszeit"
+        }
       }
     },
     "tooltip": {
       "removeUser": "User aus der Bonusphase entfernen",
-      "graph": "Statistik anzeigen"
+      "graph": "Statistik anzeigen",
+      "userHistory": "Verlauf anzeigen"
     },
     "bertAlert": {
       "userRemoved": "User wurde aus der Bonusphase entfernt"
