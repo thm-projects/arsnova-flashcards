@@ -54,6 +54,10 @@ Template.registerHelper('isWorkloadRoute', function () {
 });
 
 
+Template.registerHelper('enabledMatomo', function () {
+	return Meteor.settings.public.matomo.USE_MATOMO;
+});
+
 Template.registerHelper('gotTranscriptsEnabled', function () {
 	return ServerStyle.gotTranscriptsEnabled();
 });

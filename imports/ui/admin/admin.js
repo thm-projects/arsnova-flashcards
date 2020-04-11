@@ -13,6 +13,7 @@ import "./notifications/notifications.js";
 import "./university/university.js";
 import "./settings/settings.js";
 import "../learn/progress.js";
+import "./matomo/matomoStatistics.js";
 import {Session} from "meteor/session";
 
 Meteor.subscribe("notifications");
