@@ -29,5 +29,19 @@ window.addEventListener("load", function () {
 			"href": "/datenschutz"
 		}
 	});
+
+	if (Meteor.settings.public.matomo.USE_MATOMO) {
+		var _paq = window._paq || [];
+		/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function () {
+			var u = Meteor.settings.public.matomo.MATOMO_URL;
+			_paq.push(['setTrackerUrl', u + 'piwik.php']);
+			_paq.push(['setSiteId', Meteor.settings.public.matomo.MATOMO_SITE_ID]);
+			var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+			g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'piwik.js'; s.parentNode.insertBefore(g,s);
+		})();
+	}
 });
 // USER INTERFACE IMPORTS -------------------------------------------------

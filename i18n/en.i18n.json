@@ -2027,6 +2027,7 @@
     "disconnected": "No server connection"
   },
   "admin": {
+    "matomoStatistics": "Matomo statistics",
     "allLearnedCardsets": "Nach dem Leitner-Plan gelernte Karten über alle Karteien",
     "learnedCardsets": "Lernstatistik der Kartei",
     "userProgress": "Lernstand für ",

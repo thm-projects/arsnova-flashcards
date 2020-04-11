@@ -21,7 +21,12 @@
     },
     "env": "Sandbox",
     "BT_MERCHANT_ID": "7jspbjz7zk4vkh67",
-    "BT_PUBLIC_KEY": "bf7p9crbdv2359gv"
+    "BT_PUBLIC_KEY": "bf7p9crbdv2359gv",
+    "matomo": {
+      "USE_MATOMO": false,
+      "MATOMO_URL": "http://your_matomo_server_url/matomo.php",
+      "MATOMO_SITE_ID": 0
+    }
   },
   "private": {
     "BT_PRIVATE_KEY": "b508f71a0e0b01940b0fbe75940debb9"
@@ -53,5 +58,8 @@
   "debug": {
     "leitner": true,
     "login": true
+  },
+  "matomo": {
+    "MATOMO_TOKEN": "YOUR SECRET MATOMO TOKEN"
   }
 }
