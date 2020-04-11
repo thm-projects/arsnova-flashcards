@@ -25,8 +25,7 @@
     "matomo": {
       "USE_MATOMO": true,
       "MATOMO_URL": "http://your_matomo_server_url/matomo.php",
-      "MATOMO_SITE_ID": 0,
-      "MATOMO_TOKEN": "YOUR SECRET MATOMO TOKEN"
+      "MATOMO_SITE_ID": 0
     }
   },
   "private": {
@@ -60,5 +59,8 @@
   "debug": {
     "leitner": false,
     "login": false
+  },
+  "matomo": {
+    "MATOMO_TOKEN": "YOUR SECRET MATOMO TOKEN"
   }
 }

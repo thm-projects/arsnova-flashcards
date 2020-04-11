@@ -41,5 +41,6 @@ import "../imports/api/transcriptBonus.js";
 import "../imports/api/webPushSubscriptions.js";
 import "../imports/api/meteorMethods/wozniak.js";
 import "./leitner.js";
+import "../imports/api/meteorMethods/matomo.js";
 
 WebApp.addHtmlAttributeHook(() => ({lang: 'de', charset: 'utf-8'}));

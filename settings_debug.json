@@ -24,9 +24,8 @@
     "BT_PUBLIC_KEY": "bf7p9crbdv2359gv",
     "matomo": {
       "USE_MATOMO": false,
-      "MATOMO_URL": "https://your_matomo_server_url/matomo.php",
-      "MATOMO_SITE_ID": 0,
-      "MATOMO_TOKEN": "YOUR SECRET MATOMO TOKEN"
+      "MATOMO_URL": "http://your_matomo_server_url/matomo.php",
+      "MATOMO_SITE_ID": 0
     }
   },
   "private": {
@@ -59,5 +58,8 @@
   "debug": {
     "leitner": true,
     "login": true
+  },
+  "matomo": {
+    "MATOMO_TOKEN": "YOUR SECRET MATOMO TOKEN"
   }
 }
