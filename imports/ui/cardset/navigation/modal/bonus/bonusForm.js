@@ -10,6 +10,7 @@ import "./item/minLearned.js";
 import "./item/openSimulator.js";
 import "./item/registrationPeriod.js";
 import "./item/startDate.js";
+import "./item/strictWorkloadTimer.js";
 import "./completeProfile/completeProfile.js";
 import "./join/join.js";
 import "./leave/leave.js";

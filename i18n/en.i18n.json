@@ -1167,6 +1167,9 @@
       "intervals": {
         "label": "Wiederholungs-Intervalle in Tagen"
       },
+      "strictWorkloadTimer": {
+        "label": "Strikte Lernzeit"
+      },
       "button": {
         "start": "Bonusphase aktivieren",
         "cancel": "Abbrechen",

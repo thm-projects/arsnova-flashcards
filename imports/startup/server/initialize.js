@@ -1307,6 +1307,19 @@ Meteor.startup(function () {
 		);
 	}
 
+	cardsets = Cardsets.find({"strictWorkloadTimer": {$exists: false}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					strictWorkloadTimer: leitnerConfig.strictWorkloadTimer
+				}
+			}
+		);
+	}
+
 	Cardsets.remove({cardType: 2});
 	Meteor.users.remove(demoCardsetUser[0]._id);
 	Meteor.users.insert(demoCardsetUser[0]);
