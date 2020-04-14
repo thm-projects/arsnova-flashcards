@@ -242,6 +242,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			let user = Meteor.users.findOne({_id: user_id});
+			let cardset = Cardsets.findOne(cardset_id);
 			let workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id});
 			let leitnerTask = this.getHighestLeitnerTaskSessionID(cardset_id, user_id);
 			let newSession;
@@ -271,6 +272,8 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						sent: false
 					}
 				},
+				daysBeforeReset: cardset.daysBeforeReset,
+				pomodoroTimer: cardset.pomodoroTimer,
 				createdAt: new Date()
 			});
 		}
