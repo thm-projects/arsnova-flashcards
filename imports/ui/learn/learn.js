@@ -22,18 +22,32 @@ Session.set('animationPlaying', false);
  * learnAlgorithms
  * ############################################################################
  */
+let workloadTimerInterval;
 
 Template.learnAlgorithms.onCreated(function () {
+	let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {cardType: 1, shuffled: 1, strictWorkloadTimer: 1}});
 	Session.set('activeCard', undefined);
 	Session.set('isQuestionSide', true);
 	Session.set('animationPlaying', false);
-	Session.set('cardType', Cardsets.findOne(Router.current().params._id).cardType);
-	Session.set('shuffled', Cardsets.findOne(Router.current().params._id).shuffled);
+	Session.set('cardType', cardset.cardType);
+	Session.set('shuffled', cardset.shuffled);
 	CardNavigation.toggleVisibility(true);
+	if (cardset.strictWorkloadTimer) {
+		Meteor.call('updateWorkloadTimer', cardset._id);
+		if (workloadTimerInterval === undefined) {
+			workloadTimerInterval = setInterval(function () {
+				Meteor.call('updateWorkloadTimer', cardset._id);
+			}, 60000);
+		}
+	}
 });
 
 Template.learnAlgorithms.onDestroyed(function () {
 	Session.set('activeCard', undefined);
+	if (workloadTimerInterval !== undefined) {
+		clearInterval(workloadTimerInterval);
+		workloadTimerInterval = undefined;
+	}
 });
 
 Template.learnAlgorithms.onRendered(function () {

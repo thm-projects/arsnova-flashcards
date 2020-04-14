@@ -8,6 +8,7 @@ import {Profile} from "../profile";
 import {UserPermissions} from "../permissions";
 import {CardType} from "../cardTypes";
 import {LeitnerUtilities} from "../../util/leitner";
+import {LeitnerTasks} from "../subscriptions/leitnerTasks";
 
 
 Meteor.methods({
@@ -124,6 +125,7 @@ Meteor.methods({
 		}
 	},
 	updateLeitnerCardIndex: function (cardset_id) {
+		check(cardset_id, String);
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
@@ -134,6 +136,47 @@ Meteor.methods({
 			});
 			for (let i = 0; i < activeLearners.length; i++) {
 				LeitnerUtilities.addLeitnerCards(cardset, activeLearners[i].user_id);
+			}
+		}
+	},
+	updateWorkloadTimer: function (cardset_id) {
+		check(cardset_id, String);
+
+		// Allow the user to update the timer a few seconds earlier to prevent close calls deny an update
+		let minimumSecondThreshold = 57;
+
+		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {strictWorkloadTimer: 1}});
+		if (cardset.strictWorkloadTimer) {
+			let leitnerTask = LeitnerTasks.findOne({
+				user_id: Meteor.userId(),
+				cardset_id: cardset_id
+			}, {sort: {createdAt: -1}, fields: {lastCallback: 1, strictWorkloadTimer: 1, workloadTimer: 1}});
+			if (leitnerTask.strictWorkloadTimer) {
+				if (leitnerTask.lastCallback === undefined) {
+					LeitnerTasks.update({
+							_id: leitnerTask._id
+						},
+						{
+							$set: {
+								lastCallback: new Date(),
+								workloadTimer: 0
+							}
+						});
+				} else {
+					if (moment(moment()).diff(moment(leitnerTask.lastCallback), 'seconds') > minimumSecondThreshold) {
+						LeitnerTasks.update({
+								_id: leitnerTask._id
+							},
+							{
+								$set: {
+									lastCallback: new Date()
+								},
+								$inc: {
+									workloadTimer: 1
+								}
+							});
+					}
+				}
 			}
 		}
 	}

@@ -274,6 +274,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				},
 				daysBeforeReset: cardset.daysBeforeReset,
 				pomodoroTimer: cardset.pomodoroTimer,
+				strictWorkloadTimer: cardset.strictWorkloadTimer,
 				createdAt: new Date()
 			});
 		}
