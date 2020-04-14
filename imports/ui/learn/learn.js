@@ -15,6 +15,8 @@ import {MainNavigation} from "../../api/mainNavigation";
 import {CardsetNavigation} from "../../api/cardsetNavigation";
 import {NavigatorCheck} from "../../api/navigatorCheck";
 import {CardVisuals} from "../../api/cardVisuals";
+import {LeitnerTasks} from "../../api/subscriptions/leitnerTasks";
+
 Session.set('animationPlaying', false);
 
 /*
@@ -32,7 +34,7 @@ Template.learnAlgorithms.onCreated(function () {
 	Session.set('cardType', cardset.cardType);
 	Session.set('shuffled', cardset.shuffled);
 	CardNavigation.toggleVisibility(true);
-	if (cardset.strictWorkloadTimer) {
+	if (Route.isBox() && cardset.strictWorkloadTimer) {
 		Meteor.call('updateWorkloadTimer', cardset._id);
 		if (workloadTimerInterval === undefined) {
 			workloadTimerInterval = setInterval(function () {
@@ -53,6 +55,13 @@ Template.learnAlgorithms.onDestroyed(function () {
 Template.learnAlgorithms.onRendered(function () {
 	if (Bonus.isInBonus(Router.current().params._id)) {
 		PomodoroTimer.start();
+		let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {strictWorkloadTimer: 1}});
+		if (Route.isBox() && cardset.strictWorkloadTimer) {
+			let leitnerTask = LeitnerTasks.findOne();
+			if (leitnerTask.workloadTimer !== undefined) {
+				PomodoroTimer.restoreWorkloadTime(leitnerTask.workloadTimer);
+			}
+		}
 	}
 	if (localStorage.getItem(MainNavigation.getFirstTimeLeitnerString()) !== "true" && Route.isBox() && !NavigatorCheck.isSmartphone()) {
 		$('#helpModal').modal('show');

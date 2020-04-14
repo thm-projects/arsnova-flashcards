@@ -803,4 +803,9 @@ export let PomodoroTimer = class PomodoroTimer {
 			$('#pomodoroTimerModal').modal('show');
 		}
 	}
+
+	static restoreWorkloadTime (workloadTimer = 0) {
+		//Update the already passed Pomodoro Time here
+		console.log(`Time to be restored: ${workloadTimer} Minutes`);
+	}
 };
