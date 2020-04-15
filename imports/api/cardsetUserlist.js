@@ -212,18 +212,24 @@ Meteor.methods({
 		let result = [];
 		for (let i = 0; i < leitnerTasks.length; i++) {
 			let item = {};
+			let missedLastDeadline;
 			item.cardsetShuffled = cardset.shuffled;
 			item.cardsetTitle = cardset.name;
 			item.date = leitnerTasks[i].createdAt;
 			item.workload = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id}).count();
 			item.known = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id, answer: 0}).count();
 			item.notKnown = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id, answer: 1}).count();
-			if (leitnerTasks[i].missedDeadline) {
+			item.missedDeadline = leitnerTasks[i].missedDeadline;
+			if (i < leitnerTasks.length - 1) {
+				missedLastDeadline = leitnerTasks[i + 1].missedDeadline;
+			} else {
+				missedLastDeadline = false;
+			}
+			if (missedLastDeadline) {
 				item.reason = 1;
 			} else {
 				item.reason = 0;
 			}
-			item.missedDeadline = leitnerTasks[i].missedDeadline;
 			let lastAnswerDate = LeitnerHistory.findOne({
 				user_id: user_id,
 				cardset_id: cardset_id,
