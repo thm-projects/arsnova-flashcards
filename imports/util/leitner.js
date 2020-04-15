@@ -11,6 +11,9 @@ import {CardIndex} from "../api/cardIndex";
 import {Utilities} from "../api/utilities";
 import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
 
+// Allow the user to update the timer a few seconds earlier to prevent close calls deny an update
+let minimumSecondThreshold = 57;
+
 function gotPriority(array, card_id, priority) {
 	for (let i = 0; i < array.length; i++) {
 		if (array[i].card_id === card_id) {
@@ -588,6 +591,70 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			return 0;
 		} else {
 			return highestDeletedUserID.user_id_deleted + 1;
+		}
+	}
+
+	static updateWorkTimer (leitnerTask, increment) {
+		if (leitnerTask.strictWorkloadTimer) {
+			if (leitnerTask.lastCallback === undefined) {
+				LeitnerTasks.update({
+						_id: leitnerTask._id
+					},
+					{
+						$set: {
+							lastCallback: new Date(),
+							workloadTimer: 0,
+							breakActive: false
+						}
+					});
+			} else {
+				if (moment(moment()).diff(moment(leitnerTask.lastCallback), 'seconds') > minimumSecondThreshold) {
+					LeitnerTasks.update({
+							_id: leitnerTask._id
+						},
+						{
+							$set: {
+								lastCallback: new Date(),
+								breakActive: false
+							},
+							$inc: {
+								workloadTimer: increment
+							}
+						});
+				}
+			}
+		}
+	}
+
+	static updateBreakTimer (leitnerTask, increment) {
+		if (leitnerTask.strictWorkloadTimer) {
+			if (leitnerTask.breakTimer === undefined) {
+				LeitnerTasks.update({
+						_id: leitnerTask._id
+					},
+					{
+						$set: {
+							lastCallback: new Date(),
+							breakTimer: 0,
+							breakActive: true
+						}
+					});
+			} else {
+				if (moment(moment()).diff(moment(leitnerTask.lastCallback), 'seconds') > minimumSecondThreshold) {
+					LeitnerTasks.update({
+							_id: leitnerTask._id
+						},
+						{
+							$set: {
+								lastCallback: new Date(),
+								breakActive: true
+							},
+							$inc: {
+								breakTimer: increment
+							}
+						});
+				}
+			}
 		}
 	}
 };

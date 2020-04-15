@@ -5,7 +5,13 @@
       "workloadTime": "Lernzeit Timer",
       "breakTime": "Pausen Timer",
       "minutes": "__count__ Minute",
-      "minutes_plural": "__count__ Minuten"
+      "minutes_plural": "__count__ Minuten",
+      "status": {
+        "runningWorkload": "Lernzeit Timer aktiv",
+        "runningBreak": "Pausen Timer aktiv",
+        "waitingForBreak": "Warte auf Pause",
+        "waitingForWorkload": "Warte auf Lernzeit"
+      }
     }
   }
 }

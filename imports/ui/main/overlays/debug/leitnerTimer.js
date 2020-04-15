@@ -24,5 +24,8 @@ Template.mainOverlaysDebugLeitnerItem.helpers({
 			time = leitnerTask.breakTimer;
 		}
 		return TAPi18n.__('overlays.debugLeitnerTimer.minutes', {count: time}, ServerStyle.getServerLanguage());
+	},
+	getStatus: function () {
+		return TAPi18n.__('overlays.debugLeitnerTimer.status.runningWorkload', ServerStyle.getServerLanguage());
 	}
 });

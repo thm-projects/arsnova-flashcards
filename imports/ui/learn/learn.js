@@ -36,10 +36,10 @@ Template.learnAlgorithms.onCreated(function () {
 	Session.set('shuffled', cardset.shuffled);
 	CardNavigation.toggleVisibility(true);
 	if (Route.isBox() && cardset.strictWorkloadTimer) {
-		Meteor.call('updateWorkloadTimer', cardset._id);
+		Meteor.call('updateLeitnerTimer', cardset._id);
 		if (workloadTimerInterval === undefined) {
 			workloadTimerInterval = setInterval(function () {
-				Meteor.call('updateWorkloadTimer', cardset._id);
+				Meteor.call('updateLeitnerTimer', cardset._id);
 			}, 60000);
 		}
 	}

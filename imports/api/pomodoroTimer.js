@@ -219,6 +219,9 @@ export let PomodoroTimer = class PomodoroTimer {
 				allowOutsideClick: false
 			}).then(() => {
 				/*and this is what runs when the user clicks the confirm button on the popup. It starts the break, and gets the current time and sets the end from there.*/
+				if (Route.isBox()) {
+					Meteor.call('startLeitnerBreak', Router.current().params._id);
+				}
 				breakRunning = true;
 				Session.set('pomodoroBreakActive', breakRunning);
 				let popTime = new Date();
@@ -292,6 +295,9 @@ export let PomodoroTimer = class PomodoroTimer {
 				allowOutsideClick: false
 			}).then(() => {
 				/*starts the work cycle up again, automatically.*/
+				if (Route.isBox()) {
+					Meteor.call('endLeitnerBreak', Router.current().params._id);
+				}
 				pomRunning = true;
 				let popTime = new Date();
 				endPom = 6 * popTime.getMinutes() + popTime.getSeconds() / 10 + 6 * pomLength;
@@ -649,7 +655,11 @@ export let PomodoroTimer = class PomodoroTimer {
 			workSlider.attr('step', config.defaultPresentationSettings.work.step);
 		} else {
 			workSlider.attr('max', config.defaultSettings.work.max);
-			workSlider.attr('min', config.defaultSettings.work.min);
+			if (Meteor.settings.public.debug.leitnerTimer) {
+				workSlider.attr('min', 1);
+			} else {
+				workSlider.attr('min', config.defaultSettings.work.min);
+			}
 			workSlider.attr('step', config.defaultSettings.work.step);
 		}
 		$('#workSlider').val(pomLength);
@@ -665,7 +675,11 @@ export let PomodoroTimer = class PomodoroTimer {
 			breakSlider.attr('step', config.defaultPresentationSettings.break.step);
 		} else {
 			breakSlider.attr('max', config.defaultSettings.break.max);
-			breakSlider.attr('min', config.defaultSettings.break.min);
+			if (Meteor.settings.public.debug.leitnerTimer) {
+				breakSlider.attr('min', 1);
+			} else {
+				breakSlider.attr('min', config.defaultSettings.break.min);
+			}
 			breakSlider.attr('step', config.defaultSettings.break.step);
 		}
 		breakSlider.val(breakLength);

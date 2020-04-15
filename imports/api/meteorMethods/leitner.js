@@ -10,7 +10,6 @@ import {CardType} from "../cardTypes";
 import {LeitnerUtilities} from "../../util/leitner";
 import {LeitnerTasks} from "../subscriptions/leitnerTasks";
 
-
 Meteor.methods({
 	initializeWorkloadData: function (cardset_id, user_id) {
 		check(cardset_id, String);
@@ -139,44 +138,76 @@ Meteor.methods({
 			}
 		}
 	},
-	updateWorkloadTimer: function (cardset_id) {
+	updateLeitnerTimer: function (cardset_id) {
 		check(cardset_id, String);
 
-		// Allow the user to update the timer a few seconds earlier to prevent close calls deny an update
-		let minimumSecondThreshold = 57;
+		let leitnerTask = LeitnerTasks.findOne({
+			user_id: Meteor.userId(),
+			cardset_id: cardset_id
+		}, {
+			sort: {createdAt: -1}
+		});
+		if (leitnerTask !== undefined && leitnerTask.strictWorkloadTimer === true) {
+			let increment = 1;
+			if (leitnerTask.breakActive === false) {
+				LeitnerUtilities.updateWorkTimer(leitnerTask, increment);
+			} else {
+				LeitnerUtilities.updateBreakTimer(leitnerTask, increment);
+			}
+		}
+	},
+	startLeitnerBreak: function (cardset_id) {
+		check(cardset_id, String);
 
-		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {strictWorkloadTimer: 1}});
-		if (cardset.strictWorkloadTimer) {
-			let leitnerTask = LeitnerTasks.findOne({
-				user_id: Meteor.userId(),
-				cardset_id: cardset_id
-			}, {sort: {createdAt: -1}, fields: {lastCallback: 1, strictWorkloadTimer: 1, workloadTimer: 1}});
-			if (leitnerTask.strictWorkloadTimer) {
-				if (leitnerTask.lastCallback === undefined) {
-					LeitnerTasks.update({
-							_id: leitnerTask._id
-						},
-						{
-							$set: {
-								lastCallback: new Date(),
-								workloadTimer: 0
-							}
-						});
-				} else {
-					if (moment(moment()).diff(moment(leitnerTask.lastCallback), 'seconds') > minimumSecondThreshold) {
-						LeitnerTasks.update({
-								_id: leitnerTask._id
-							},
-							{
-								$set: {
-									lastCallback: new Date()
-								},
-								$inc: {
-									workloadTimer: 1
-								}
-							});
-					}
+		let leitnerTask = LeitnerTasks.findOne({
+			user_id: Meteor.userId(),
+			cardset_id: cardset_id
+		}, {
+			sort: {createdAt: -1}
+		});
+		if (leitnerTask !== undefined && leitnerTask.strictWorkloadTimer === true && leitnerTask.breakActive === false) {
+			let remainingWorkTime = leitnerTask.workloadTimer % leitnerTask.pomodoroTimer.workLength;
+			if (remainingWorkTime === 0 || remainingWorkTime === 1) {
+				if (remainingWorkTime === 1) {
+					leitnerTask.workloadTimer++;
 				}
+				LeitnerTasks.update({
+						_id: leitnerTask._id
+					},
+					{
+						$set: {
+							workloadTimer: leitnerTask.workloadTimer,
+							breakActive: true
+
+						}
+					});
+			}
+		}
+	},
+	endLeitnerBreak: function (cardset_id) {
+		check(cardset_id, String);
+
+		let leitnerTask = LeitnerTasks.findOne({
+			user_id: Meteor.userId(),
+			cardset_id: cardset_id
+		}, {
+			sort: {createdAt: -1}
+		});
+		if (leitnerTask !== undefined && leitnerTask.strictWorkloadTimer === true && leitnerTask.breakActive === true) {
+			let remainingBreakTime = leitnerTask.breakTimer % leitnerTask.pomodoroTimer.breakLength;
+			if (remainingBreakTime === 0 || remainingBreakTime === 1) {
+				if (remainingBreakTime === 1) {
+					leitnerTask.breakTimer++;
+				}
+				LeitnerTasks.update({
+						_id: leitnerTask._id
+					},
+					{
+						$set: {
+							breakTimer: leitnerTask.breakTimer,
+							breakActive: false
+						}
+					});
 			}
 		}
 	}
