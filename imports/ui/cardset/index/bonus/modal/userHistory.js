@@ -54,7 +54,11 @@ Template.bonusUserHistoryModal.helpers({
 			return historyData.length;
 		} else {
 			return historyData.filter(task => {
-				return task.reason === reason;
+				if (reason === 0) {
+					return task.workload === (task.known + task.notKnown);
+				} else {
+					return task.workload !== (task.known + task.notKnown);
+				}
 			}).length;
 		}
 	},
