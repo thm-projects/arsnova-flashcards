@@ -42,9 +42,11 @@ Template.markdeepNavigation.events({
 	},
 	'input #initialLearningTimeInput': function () {
 		let input = $('#initialLearningTimeInput');
-		if (input.val() > config.cardLearningTime.initial.max) {
+		let value = Number(input.val());
+
+		if (value > config.cardLearningTime.initial.max) {
 			input.val(config.cardLearningTime.initial.max);
-		} else if (input.val() < config.cardLearningTime.initial.min) {
+		} else if (value < config.cardLearningTime.initial.min) {
 			input.val(config.cardLearningTime.initial.min);
 		}
 		if (input.val().split('.')[1] !== undefined) {
@@ -53,16 +55,18 @@ Template.markdeepNavigation.events({
 
 		let newValue = -1;
 		let cardTypeVariables = CardType.getCardTypeVariables(Session.get('cardType'));
-		if (input.val() > -1 && input.val() !== cardTypeVariables.learningTime.initial) {
+		if (value > -1 && value !== cardTypeVariables.learningTime.initial) {
 			newValue = input.val();
 		}
 		Session.set('initialLearningTime', newValue);
 	},
 	'input #repeatedLearningTimeInput': function () {
 		let input = $('#repeatedLearningTimeInput');
-		if (input.val() > config.cardLearningTime.repeated.max) {
+		let value = Number(input.val());
+
+		if (value > config.cardLearningTime.repeated.max) {
 			input.val(config.cardLearningTime.repeated.max);
-		} else if (input.val() < config.cardLearningTime.repeated.min) {
+		} else if (value < config.cardLearningTime.repeated.min) {
 			input.val(config.cardLearningTime.repeated.min);
 		}
 
@@ -72,8 +76,8 @@ Template.markdeepNavigation.events({
 
 		let newValue = -1;
 		let cardTypeVariables = CardType.getCardTypeVariables(Session.get('cardType'));
-		if (input.val() > -1 && input.val() !== cardTypeVariables.learningTime.repeated) {
-			newValue = input.val();
+		if (value > -1 && value !== cardTypeVariables.learningTime.repeated) {
+			newValue = value;
 		}
 		Session.set('repeatedLearningTime', newValue);
 	}
