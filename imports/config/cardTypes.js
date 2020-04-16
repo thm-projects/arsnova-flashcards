@@ -62,6 +62,169 @@ let swapAnserQuestionCardTypeResult = [];
 // gotPDFAutoTarget
 //Requires card type to be listed in cardTypesWithLearningModePDFAutoTarget. Only returns the first pdf markdeep result.
 
+let cardTypeVariables = [
+	//0: Lerneinheit
+	{
+		// In Seconds
+		learningTime: {
+			initial: 1800,
+			repeated: 180
+		}
+	},
+	//1: Vokabelkartei
+	{
+		// In Seconds
+		learningTime: {
+			initial: 180,
+			repeated: 30
+		}
+	},
+	//2: Mitschrift
+	{
+		// In Seconds
+		learningTime: {
+			initial: 180,
+			repeated: 30
+		}
+	},
+	//3: Glossar
+	{
+		// In Seconds
+		learningTime: {
+			initial: 180,
+			repeated: 30
+		}
+	},
+	//4: Zitatensammlung
+	{
+		// In Seconds
+		learningTime: {
+			initial: 180,
+			repeated: 30
+		}
+	},
+	//5: Prüfung
+	{
+		// In Seconds
+		learningTime: {
+			initial: 180,
+			repeated: 30
+		}
+	},
+	//6: Anweisungssatz
+	{
+		// In Seconds
+		learningTime: {
+			initial: 180,
+			repeated: 30
+		}
+	},
+	//7: Literatur
+	{
+		// In Seconds
+		learningTime: {
+			initial: 180,
+			repeated: 30
+		}
+	},
+	//8: Notizen
+	{
+		// In Seconds
+		learningTime: {
+			initial: 180,
+			repeated: 30
+		}
+	},
+	//9: To-dos
+	{
+		// In Seconds
+		learningTime: {
+			initial: 180,
+			repeated: 30
+		}
+	},
+	//10: Fotokartei
+	{
+		// In Seconds
+		learningTime: {
+			initial: 180,
+			repeated: 30
+		}
+	},
+	//11: Quiz
+	{
+		// In Seconds
+		learningTime: {
+			initial: 180,
+			repeated: 30
+		}
+	},
+	//12: Entwurfsmuster
+	{
+		// In Seconds
+		learningTime: {
+			initial: 180,
+			repeated: 30
+		}
+	},
+	//13: Formelsammlung
+	{
+		// In Seconds
+		learningTime: {
+			initial: 180,
+			repeated: 30
+		}
+	},
+	//14: Vortrag
+	{
+		// In Seconds
+		learningTime: {
+			initial: 180,
+			repeated: 30
+		}
+	},
+	//15: Aufgabensammlung
+	{
+		// In Seconds
+		learningTime: {
+			initial: 180,
+			repeated: 30
+		}
+	},
+	//16: Zielerreichung
+	{
+		// In Seconds
+		learningTime: {
+			initial: 180,
+			repeated: 30
+		}
+	},
+	//17: Inverses Fragen
+	{
+		// In Seconds
+		learningTime: {
+			initial: 180,
+			repeated: 30
+		}
+	},
+	//18: Cube
+	{
+		// In Seconds
+		learningTime: {
+			initial: 180,
+			repeated: 30
+		}
+	},
+	//19: Vorlesung mit Bonus-Mitschrift
+	{
+		// In Seconds
+		learningTime: {
+			initial: 180,
+			repeated: 30
+		}
+	}
+];
+
 let cardTypeCubeSides = [
 	//0: Lerneinheit
 	[
@@ -439,5 +602,6 @@ module.exports = {
 	swapAnserQuestionCardTypeResult,
 	cardTypeCubeSides,
 	cardTypesWithTranscriptBonus,
-	lecturerExclusiveCardTypes
+	lecturerExclusiveCardTypes,
+	cardTypeVariables
 };

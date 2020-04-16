@@ -12,6 +12,10 @@ export let CardType = class CardType {
 		return config.cardTypeCubeSides[cardType];
 	}
 
+	static getCardTypeVariables (cardType) {
+		return config.cardTypeVariables[cardType];
+	}
+
 	static getCardTypesWithLearningModes () {
 		return config.cardTypesWithLearningModes;
 	}
