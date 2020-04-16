@@ -5,6 +5,7 @@ import {CardVisuals} from "../../../../api/cardVisuals";
 import {Dictionary} from "../../../../api/dictionary";
 import {CardType} from "../../../../api/cardTypes";
 import {Route} from "../../../../api/route";
+import * as config from "../../../../config/markdeepEditor.js";
 import "./navigation.html";
 
 /*
@@ -38,6 +39,47 @@ Template.markdeepNavigation.events({
 	'click .markdeep-translate': function () {
 		Dictionary.setMode(2);
 		$('#cardModalDeepLTranslation').modal('show');
+	},
+	'input #initialLearningTimeInput': function () {
+		let input = $('#initialLearningTimeInput');
+		let value = Number(input.val());
+
+		if (value > config.cardLearningTime.initial.max) {
+			input.val(config.cardLearningTime.initial.max);
+		} else if (value < config.cardLearningTime.initial.min) {
+			input.val(config.cardLearningTime.initial.min);
+		}
+		if (input.val().split('.')[1] !== undefined) {
+			input.val(Number(input.val()).toFixed(1));
+		}
+
+		let newValue = -1;
+		let cardTypeVariables = CardType.getCardTypeVariables(Session.get('cardType'));
+		if (value > -1 && value !== cardTypeVariables.learningTime.initial) {
+			newValue = input.val();
+		}
+		Session.set('initialLearningTime', newValue);
+	},
+	'input #repeatedLearningTimeInput': function () {
+		let input = $('#repeatedLearningTimeInput');
+		let value = Number(input.val());
+
+		if (value > config.cardLearningTime.repeated.max) {
+			input.val(config.cardLearningTime.repeated.max);
+		} else if (value < config.cardLearningTime.repeated.min) {
+			input.val(config.cardLearningTime.repeated.min);
+		}
+
+		if (input.val().split('.')[1] !== undefined) {
+			input.val(Number(input.val()).toFixed(1));
+		}
+
+		let newValue = -1;
+		let cardTypeVariables = CardType.getCardTypeVariables(Session.get('cardType'));
+		if (value > -1 && value !== cardTypeVariables.learningTime.repeated) {
+			newValue = value;
+		}
+		Session.set('repeatedLearningTime', newValue);
 	}
 });
 
@@ -71,6 +113,30 @@ Template.markdeepNavigation.helpers({
 			return CardType.gotMarkdeepHelp(Session.get('cardType'));
 		} else {
 			return true;
+		}
+	},
+	gotLearningTime: function () {
+		return CardType.gotLearningModes(Session.get('cardType'));
+	},
+	getLearningTimeSetting: function (type, value) {
+		return config.cardLearningTime[type][value];
+	},
+	getInitialLearningTime: function () {
+		let value = Session.get('initialLearningTime');
+		if (value === -1) {
+			let cardTypeVariables = CardType.getCardTypeVariables(Session.get('cardType'));
+			return cardTypeVariables.learningTime.initial;
+		} else {
+			return value;
+		}
+	},
+	getRepeatedLearningTime: function () {
+		let value = Session.get('repeatedLearningTime');
+		if (value === -1) {
+			let cardTypeVariables = CardType.getCardTypeVariables(Session.get('cardType'));
+			return cardTypeVariables.learningTime.repeated;
+		} else {
+			return value;
 		}
 	}
 });

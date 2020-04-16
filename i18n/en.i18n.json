@@ -1700,6 +1700,13 @@
       "name": "Vorlesung",
       "longName": "Vorlesung mit Bonus-Mitschriften"
     },
+    "markdeepEditor": {
+      "learningTime": {
+        "initial": "Initiale Lernzeit",
+        "repeated": "Wiederholte Lernzeit",
+        "type": "Minuten"
+      }
+    },
     "tooltip": {
       "contrast": "Setze die Präsentation in den Kontrastmodus",
       "backToCardset": "Zurück zur Karteiansicht",

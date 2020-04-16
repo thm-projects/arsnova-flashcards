@@ -252,7 +252,12 @@ export let CardVisuals = class CardVisuals {
 		this.rotateCube(lastActiveRotation, true);
 		let adjustNavigation = true;
 		if (Route.isEditMode() && !this.isFullscreen()) {
-			$('#contentEditor').css('height', $('.scene').height() - $('#editorButtonGroup').height());
+			let learningTimeHeight = 0;
+			let learningTime = $('.learningTime-group');
+			if (learningTime.length) {
+				learningTimeHeight = learningTime.height();
+			}
+			$('#contentEditor').css('height', $('.scene').height() - $('#editorButtonGroup').height() - learningTimeHeight);
 			adjustNavigation = false;
 		}
 		if (AspectRatio.scale3DCardNavigationWidth()) {
@@ -325,6 +330,11 @@ export let CardVisuals = class CardVisuals {
 				flashcardControls.css('height', newFlashcardSize * flashcardBodyHeight);
 			}
 		}
+		let learningTimeHeight = 0;
+		let learningTime = $('.learningTime-group');
+		if (learningTime.length) {
+			learningTimeHeight = learningTime.height();
+		}
 		if (Session.get('mobilePreview')) {
 			newFlashcardSize -= 48;
 			if (!Session.get('fullscreen') && $(window).width() > 1200 && Session.get('mobilePreviewRotated')) {
@@ -341,9 +351,9 @@ export let CardVisuals = class CardVisuals {
 				flashcard.removeAttr('style');
 				flashcardBody.removeAttr('style');
 			}
-			contentEditor.css('height', newFlashcardSize);
+			contentEditor.css('height', newFlashcardSize - learningTimeHeight);
 		} else {
-			contentEditor.css('height', newFlashcardSize - $('#markdeepNavigation').height());
+			contentEditor.css('height', newFlashcardSize - $('#markdeepNavigation').height() - learningTimeHeight);
 		}
 	}
 
