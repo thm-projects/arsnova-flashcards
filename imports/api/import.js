@@ -54,6 +54,12 @@ function importCards(data, cardset, importType) {
 				item.lastEditor = "";
 			}
 
+			if (item.learningTime === undefined) {
+				item.learningTime = {
+					initial: -1,
+					repeated: -1
+				};
+			}
 			if (importType === 1) {
 				let item = data[i];
 				let subject, front, back, hint, lecture, top, bottom, lastEditor;
@@ -91,6 +97,12 @@ function importCards(data, cardset, importType) {
 				} else {
 					originalAuthorName = item.originalAuthorName;
 				}
+				if (item.learningTime === undefined) {
+					item.learningTime = {
+						initial: -1,
+						repeated: -1
+					};
+				}
 				Cards.insert({
 					subject: subject.trim(),
 					front: front,
@@ -110,7 +122,8 @@ function importCards(data, cardset, importType) {
 					originalAuthorName: originalAuthorName,
 					owner: cardset.owner,
 					cardType: cardset.cardType,
-					lastEditor: lastEditor
+					lastEditor: lastEditor,
+					learningTime: item.learningTime
 				}, {trimStrings: false});
 			} else {
 				Cards.insert({
@@ -132,7 +145,8 @@ function importCards(data, cardset, importType) {
 					dateUpdated: item.dateUpdated,
 					owner: cardset.owner,
 					cardType: cardset.cardType,
-					lastEditor: item.lastEditor
+					lastEditor: item.lastEditor,
+					learningTime: item.learningTime
 				}, {trimStrings: false});
 			}
 		}

@@ -1268,7 +1268,6 @@ Meteor.startup(function () {
 			});
 	}
 
-
 	cardsets = Cardsets.find({"fragJetzt": {$exists: false}}).fetch();
 	let fragJetzt = {
 		session: "",
@@ -1286,6 +1285,23 @@ Meteor.startup(function () {
 				$set: {
 					fragJetzt: fragJetzt,
 					arsnovaClick: arsnovaClick
+				}
+			}
+		);
+	}
+
+	cards = Cards.find({"learningTime": {$exists: false}}).fetch();
+	let learningTime = {
+		initial: -1,
+		repeated: -1
+	};
+	for (let i = 0; i < cards.length; i++) {
+		Cards.update({
+				_id: cards[i]._id
+			},
+			{
+				$set: {
+					learningTime: learningTime
 				}
 			}
 		);
