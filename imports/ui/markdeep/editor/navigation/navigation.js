@@ -50,8 +50,10 @@ Template.markdeepNavigation.events({
 		if (input.val().split('.')[1] !== undefined) {
 			input.val(Number(input.val()).toFixed(1));
 		}
+
 		let newValue = -1;
-		if (input.val() > -1) {
+		let cardTypeVariables = CardType.getCardTypeVariables(Session.get('cardType'));
+		if (input.val() > -1 && input.val() !== cardTypeVariables.learningTime.initial) {
 			newValue = input.val();
 		}
 		Session.set('initialLearningTime', newValue);
@@ -63,11 +65,14 @@ Template.markdeepNavigation.events({
 		} else if (input.val() < config.cardLearningTime.repeated.min) {
 			input.val(config.cardLearningTime.repeated.min);
 		}
-		let newValue = -1;
+
 		if (input.val().split('.')[1] !== undefined) {
 			input.val(Number(input.val()).toFixed(1));
 		}
-		if (input.val() > -1) {
+
+		let newValue = -1;
+		let cardTypeVariables = CardType.getCardTypeVariables(Session.get('cardType'));
+		if (input.val() > -1 && input.val() !== cardTypeVariables.learningTime.repeated) {
 			newValue = input.val();
 		}
 		Session.set('repeatedLearningTime', newValue);
@@ -109,21 +114,14 @@ Template.markdeepNavigation.helpers({
 	gotLearningTime: function () {
 		return CardType.gotLearningModes(Session.get('cardType'));
 	},
-	getPlaceholderInitialLearningTime: function () {
-		let cardTypeVariables = CardType.getCardTypeVariables(Session.get('cardType'));
-		return cardTypeVariables.learningTime.initial;
-	},
-	getPlaceholderRepeatedLearningTime: function () {
-		let cardTypeVariables = CardType.getCardTypeVariables(Session.get('cardType'));
-		return cardTypeVariables.learningTime.repeated;
-	},
 	getLearningTimeSetting: function (type, value) {
 		return config.cardLearningTime[type][value];
 	},
 	getInitialLearningTime: function () {
 		let value = Session.get('initialLearningTime');
 		if (value === -1) {
-			return '';
+			let cardTypeVariables = CardType.getCardTypeVariables(Session.get('cardType'));
+			return cardTypeVariables.learningTime.initial;
 		} else {
 			return value;
 		}
@@ -131,7 +129,8 @@ Template.markdeepNavigation.helpers({
 	getRepeatedLearningTime: function () {
 		let value = Session.get('repeatedLearningTime');
 		if (value === -1) {
-			return '';
+			let cardTypeVariables = CardType.getCardTypeVariables(Session.get('cardType'));
+			return cardTypeVariables.learningTime.repeated;
 		} else {
 			return value;
 		}
