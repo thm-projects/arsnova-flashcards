@@ -40,21 +40,37 @@ Template.markdeepNavigation.events({
 		Dictionary.setMode(2);
 		$('#cardModalDeepLTranslation').modal('show');
 	},
-	'change #initialLearningTimeInput': function () {
+	'input #initialLearningTimeInput': function () {
 		let input = $('#initialLearningTimeInput');
 		if (input.val() > config.cardLearningTime.initial.max) {
 			input.val(config.cardLearningTime.initial.max);
 		} else if (input.val() < config.cardLearningTime.initial.min) {
 			input.val(config.cardLearningTime.initial.min);
 		}
+		if (input.val().split('.')[1] !== undefined) {
+			input.val(Number(input.val()).toFixed(1));
+		}
+		let newValue = -1;
+		if (input.val() > -1) {
+			newValue = input.val();
+		}
+		Session.set('initialLearningTime', newValue);
 	},
-	'change #repeatedLearningTimeInput': function () {
+	'input #repeatedLearningTimeInput': function () {
 		let input = $('#repeatedLearningTimeInput');
 		if (input.val() > config.cardLearningTime.repeated.max) {
 			input.val(config.cardLearningTime.repeated.max);
 		} else if (input.val() < config.cardLearningTime.repeated.min) {
 			input.val(config.cardLearningTime.repeated.min);
 		}
+		let newValue = -1;
+		if (input.val().split('.')[1] !== undefined) {
+			input.val(Number(input.val()).toFixed(1));
+		}
+		if (input.val() > -1) {
+			newValue = input.val();
+		}
+		Session.set('repeatedLearningTime', newValue);
 	}
 });
 
@@ -103,5 +119,21 @@ Template.markdeepNavigation.helpers({
 	},
 	getLearningTimeSetting: function (type, value) {
 		return config.cardLearningTime[type][value];
+	},
+	getInitialLearningTime: function () {
+		let value = Session.get('initialLearningTime');
+		if (value === -1) {
+			return '';
+		} else {
+			return value;
+		}
+	},
+	getRepeatedLearningTime: function () {
+		let value = Session.get('repeatedLearningTime');
+		if (value === -1) {
+			return '';
+		} else {
+			return value;
+		}
 	}
 });

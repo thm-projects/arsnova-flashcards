@@ -287,6 +287,18 @@ var CardsSchema = new SimpleSchema({
 	lastEditor: {
 		type: String,
 		optional: true
+	},
+	learningTime: {
+		type: Object,
+		optional: true
+	},
+	"learningTime.initial": {
+		type: SimpleSchema.decimal,
+		optional: true
+	},
+	"learningTime.repeated": {
+		type: SimpleSchema.decimal,
+		optional: true
 	}
 });
 
