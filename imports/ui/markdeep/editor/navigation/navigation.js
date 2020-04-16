@@ -5,6 +5,7 @@ import {CardVisuals} from "../../../../api/cardVisuals";
 import {Dictionary} from "../../../../api/dictionary";
 import {CardType} from "../../../../api/cardTypes";
 import {Route} from "../../../../api/route";
+import * as config from "../../../../config/markdeepEditor.js";
 import "./navigation.html";
 
 /*
@@ -38,6 +39,22 @@ Template.markdeepNavigation.events({
 	'click .markdeep-translate': function () {
 		Dictionary.setMode(2);
 		$('#cardModalDeepLTranslation').modal('show');
+	},
+	'change #initialLearningTimeInput': function () {
+		let input = $('#initialLearningTimeInput');
+		if (input.val() > config.cardLearningTime.initial.max) {
+			input.val(config.cardLearningTime.initial.max);
+		} else if (input.val() < config.cardLearningTime.initial.min) {
+			input.val(config.cardLearningTime.initial.min);
+		}
+	},
+	'change #repeatedLearningTimeInput': function () {
+		let input = $('#repeatedLearningTimeInput');
+		if (input.val() > config.cardLearningTime.repeated.max) {
+			input.val(config.cardLearningTime.repeated.max);
+		} else if (input.val() < config.cardLearningTime.repeated.min) {
+			input.val(config.cardLearningTime.repeated.min);
+		}
 	}
 });
 
@@ -72,5 +89,19 @@ Template.markdeepNavigation.helpers({
 		} else {
 			return true;
 		}
+	},
+	gotLearningTime: function () {
+		return CardType.gotLearningModes(Session.get('cardType'));
+	},
+	getPlaceholderInitialLearningTime: function () {
+		let cardTypeVariables = CardType.getCardTypeVariables(Session.get('cardType'));
+		return cardTypeVariables.learningTime.initial;
+	},
+	getPlaceholderRepeatedLearningTime: function () {
+		let cardTypeVariables = CardType.getCardTypeVariables(Session.get('cardType'));
+		return cardTypeVariables.learningTime.repeated;
+	},
+	getLearningTimeSetting: function (type, value) {
+		return config.cardLearningTime[type][value];
 	}
 });

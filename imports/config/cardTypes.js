@@ -65,162 +65,162 @@ let swapAnserQuestionCardTypeResult = [];
 let cardTypeVariables = [
 	//0: Lerneinheit
 	{
-		// In Seconds
+		// In Minutes
 		learningTime: {
-			initial: 1800,
-			repeated: 180
+			initial: 30,
+			repeated: 3
 		}
 	},
 	//1: Vokabelkartei
 	{
-		// In Seconds
+		// In Minutes
 		learningTime: {
-			initial: 180,
-			repeated: 30
+			initial: 3,
+			repeated: 0.5
 		}
 	},
 	//2: Mitschrift
 	{
-		// In Seconds
+		// In Minutes
 		learningTime: {
-			initial: 180,
-			repeated: 30
+			initial: 3,
+			repeated: 0.5
 		}
 	},
 	//3: Glossar
 	{
-		// In Seconds
+		// In Minutes
 		learningTime: {
-			initial: 180,
-			repeated: 30
+			initial: 3,
+			repeated: 0.5
 		}
 	},
 	//4: Zitatensammlung
 	{
 		// In Seconds
 		learningTime: {
-			initial: 180,
-			repeated: 30
+			initial: 3,
+			repeated: 0.5
 		}
 	},
 	//5: Prüfung
 	{
-		// In Seconds
+		// In Minutes
 		learningTime: {
-			initial: 180,
-			repeated: 30
+			initial: 3,
+			repeated: 0.5
 		}
 	},
 	//6: Anweisungssatz
 	{
-		// In Seconds
+		// In Minutes
 		learningTime: {
-			initial: 180,
-			repeated: 30
+			initial: 3,
+			repeated: 0.5
 		}
 	},
 	//7: Literatur
 	{
-		// In Seconds
+		// In Minutes
 		learningTime: {
-			initial: 180,
-			repeated: 30
+			initial: 3,
+			repeated: 0.5
 		}
 	},
 	//8: Notizen
 	{
-		// In Seconds
+		// In Minutes
 		learningTime: {
-			initial: 180,
-			repeated: 30
+			initial: 3,
+			repeated: 0.5
 		}
 	},
 	//9: To-dos
 	{
-		// In Seconds
+		// In Minutes
 		learningTime: {
-			initial: 180,
-			repeated: 30
+			initial: 3,
+			repeated: 0.5
 		}
 	},
 	//10: Fotokartei
 	{
-		// In Seconds
+		// In Minutes
 		learningTime: {
-			initial: 180,
-			repeated: 30
+			initial: 3,
+			repeated: 0.5
 		}
 	},
 	//11: Quiz
 	{
-		// In Seconds
+		// In Minutes
 		learningTime: {
-			initial: 180,
-			repeated: 30
+			initial: 3,
+			repeated: 0.5
 		}
 	},
 	//12: Entwurfsmuster
 	{
-		// In Seconds
+		// In Minutes
 		learningTime: {
-			initial: 180,
-			repeated: 30
+			initial: 3,
+			repeated: 0.5
 		}
 	},
 	//13: Formelsammlung
 	{
-		// In Seconds
+		// In Minutes
 		learningTime: {
-			initial: 180,
-			repeated: 30
+			initial: 3,
+			repeated: 0.5
 		}
 	},
 	//14: Vortrag
 	{
-		// In Seconds
+		// In Minutes
 		learningTime: {
-			initial: 180,
-			repeated: 30
+			initial: 3,
+			repeated: 0.5
 		}
 	},
 	//15: Aufgabensammlung
 	{
-		// In Seconds
+		// In Minutes
 		learningTime: {
-			initial: 180,
-			repeated: 30
+			initial: 3,
+			repeated: 0.5
 		}
 	},
 	//16: Zielerreichung
 	{
-		// In Seconds
+		// In Minutes
 		learningTime: {
-			initial: 180,
-			repeated: 30
+			initial: 3,
+			repeated: 0.5
 		}
 	},
 	//17: Inverses Fragen
 	{
-		// In Seconds
+		// In Minutes
 		learningTime: {
-			initial: 180,
-			repeated: 30
+			initial: 3,
+			repeated: 0.5
 		}
 	},
 	//18: Cube
 	{
-		// In Seconds
+		// In Minutes
 		learningTime: {
-			initial: 180,
-			repeated: 30
+			initial: 3,
+			repeated: 0.5
 		}
 	},
 	//19: Vorlesung mit Bonus-Mitschrift
 	{
-		// In Seconds
+		// In Minutes
 		learningTime: {
-			initial: 180,
-			repeated: 30
+			initial: 3,
+			repeated: 0.5
 		}
 	}
 ];

@@ -30,6 +30,10 @@ export let CardEditor = class CardEditor {
 		$('#editorButtonGroup').find('button').each(function () {
 			editorButtons.push('#' + $(this).attr('id'));
 		});
+		if (CardType.gotLearningGoal(Session.get('cardType'))) {
+			editorButtons.push('#initialLearningTimeInput');
+			editorButtons.push('#repeatedLearningTimeInput');
+		}
 		this.setEditorButtonFocus();
 	}
 

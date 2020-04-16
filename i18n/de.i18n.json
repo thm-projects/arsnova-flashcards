@@ -1706,6 +1706,13 @@
       "name": "Bonus-Kartei für Mitschriften",
       "longName": "Kartei für die Bonusvergabe von Mitschriften"
     },
+    "markdeepEditor": {
+      "learningTime": {
+        "initial": "Initiale Lernzeit",
+        "repeated": "Wiederholte Lernzeit",
+        "type": "Minuten"
+      }
+    },
     "tooltip": {
       "toggle3D": "3D-Ansicht aktivieren / deaktivieren",
       "contrast": "Setze die Präsentation in den Kontrastmodus",

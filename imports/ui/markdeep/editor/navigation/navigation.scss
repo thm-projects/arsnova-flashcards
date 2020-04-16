@@ -32,4 +32,17 @@
   .markdeep-translate {
     font-size: 14px !important;
   }
+
+  .learningTime-group {
+    label, input {
+      color: white;
+    }
+    input {
+      width: 70px;
+    }
+    .type-label {
+      float: left;
+      margin-top: 7px;
+    }
+  }
 }
