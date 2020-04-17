@@ -5,6 +5,7 @@ import "../imports/startup/client/registerServiceWorker";
 import "../imports/startup/client/routes.js";
 import "../imports/ui/main/main.js";
 import {Session} from "meteor/session";
+import {Meteor} from "meteor/meteor";
 import {ServerStyle} from "../imports/api/styles.js";
 
 window.addEventListener("load", function () {
@@ -29,6 +30,20 @@ window.addEventListener("load", function () {
 			"href": "/datenschutz"
 		}
 	});
+	if (Meteor.settings.public.matomo.USE_MATOMO) {
+		var siteID = Meteor.settings.public.matomo.MATOMO_SITE_ID;
+		var _paq = window._paq || [];
+		/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function () {
+			var u = "https://arsnova.thm.de/stats/";
+			_paq.push(['setTrackerUrl', u + 'matomo.php']);
+			_paq.push(['setSiteId', siteID]);
+			var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+			g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g,s);
+		})();
+	}
 });
 
 // USER INTERFACE IMPORTS -------------------------------------------------
