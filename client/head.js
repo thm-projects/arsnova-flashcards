@@ -37,7 +37,8 @@ window.addEventListener("load", function () {
 		_paq.push(['trackPageView']);
 		_paq.push(['enableLinkTracking']);
 		(function () {
-			_paq.push(['setTrackerUrl', Meteor.settings.public.matomo.MATOMO_URL + 'matomo.php']);
+			var u = Meteor.settings.public.matomo.MATOMO_URL;
+			_paq.push(['setTrackerUrl', u + 'matomo.php']);
 			_paq.push(['setSiteId', siteID]);
 			var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
 			g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g,s);
