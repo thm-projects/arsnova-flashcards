@@ -33,7 +33,7 @@ wget -qO- https://raw.githubusercontent.com/thm-projects/arsnova-flashcards/mast
 
 ---
 
-**To stop the app temporary, run**
+**To stop the app, run**
 ```bash
 sudo docker-compose -f <path-to-docker-compose-file> stop
 ```
@@ -44,11 +44,11 @@ sudo docker-compose -f <path-to-docker-compose-file> start
 
 ---
 
-**To stop the app persistent, run**
+**To stop the app and remove the containers, run**
 ```bash
 sudo docker-compose -f <path-to-docker-compose-file> down
 ```
-to resume:
+to restart:
 ```bash
 sudo docker-compose -f <path-to-docker-compose-file> up -d
 ```
@@ -57,14 +57,14 @@ sudo docker-compose -f <path-to-docker-compose-file> up -d
 
 **For the Linux Users who run the app in one single step:**
 ```bash
-# temporary stop
+# stop
 wget -qO- <choosen-url>  | sudo docker-compose -f - stop
 # resume with
 wget -qO- <choosen-url>  | sudo docker-compose -f - start
 
-# persistent stop
+# stop and remove the containers
 wget -qO- <choosen-url>  | sudo docker-compose -f - down
-# resume with
+# restart with
 wget -qO- <choosen-url>  | sudo docker-compose -f - up -d
 ```
 
