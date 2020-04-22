@@ -27,24 +27,74 @@ wget -qO- https://raw.githubusercontent.com/thm-projects/arsnova-flashcards/mast
 wget -qO- https://raw.githubusercontent.com/thm-projects/arsnova-flashcards/master/.docker/docker-compose-linux.yml  | sudo docker-compose -f - up -d
 ```
 
-To stop the app temporary, run
+---
+
+**The default port for the app is Port 80. If your Port 80 is already in use, you may configure the forwarded Port in the downloaded docker-compose.yml file.**
+
+---
+
+**To stop the app temporary, run**
 ```bash
 sudo docker-compose -f <path-to-docker-compose-file> stop
 ```
+to resume:
+```bash
+sudo docker-compose -f <path-to-docker-compose-file> start
+```
 
-To stop the app persistent, run
+---
+
+**To stop the app persistent, run**
 ```bash
 sudo docker-compose -f <path-to-docker-compose-file> down
 ```
-
-For the Linux Users who run the app in one single step:
+to resume:
 ```bash
-wget -qO- <choosen-url>  | sudo docker-compose -f - stop
-# or
-wget -qO- <choosen-url>  | sudo docker-compose -f - down
+sudo docker-compose -f <path-to-docker-compose-file> up -d
 ```
 
-**The default port for the app is Port 80. If your Port 80 is already in use, you may configure the forwarded Port in the downloaded docker-compose.yml file.**
+---
+
+**For the Linux Users who run the app in one single step:**
+```bash
+# temporary stop
+wget -qO- <choosen-url>  | sudo docker-compose -f - stop
+# resume with
+wget -qO- <choosen-url>  | sudo docker-compose -f - start
+
+# persistent stop
+wget -qO- <choosen-url>  | sudo docker-compose -f - down
+# resume with
+wget -qO- <choosen-url>  | sudo docker-compose -f - up -d
+```
+
+## Image overview
+There are two stages and two variations for which you could build and run the app. All in all you will find four Dockerfiles in this repository. We will go into what is for what now.
+
+**You can build/run the app in two stages: _production_ and _develop_.**
+
+The production stage will be precomiled and you will not be able to see any changes you make in the code, unless you rebuild the image. This stage is made for **using** the app and not for developing.
+
+The develop stage will be compiled on the fly (in runtime) and you will see changes immediately. This stage is made for **developing** the app. **Beware:** the Database might not be persistent in this stage. It may be dropped when you rebuild or update the image.
+
+**You can build/run the app in two variants: _arsnova.cards_ and _linux.cards_.**
+
+To switch the variant, you may specify the settings file used to build the Image. You may pass it to the container when creating it.
+
+**What are those Dockerfiles for?**
+```
+./Dockerfile
+  # this is the one you will need to build the app locally for development
+
+./.docker/app/Dockerfile
+  # this is the one you will need to build the app locally for production
+
+./.docker/kaniko/Dockerfile
+  # this one is needed for the automated build in the CI - dont change it unless you know what you are doing
+
+./.docker/proxy/Dockerfile
+  # this one is used to build the proxy for the app - it is usually not neccessary to change it
+```
 
 ## Building production images yourself
 1. Clone the project
