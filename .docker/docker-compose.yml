@@ -14,7 +14,7 @@ services:
     depends_on:
       - mongodb
     environment:
-      - MONGO_URL=mongodb://@mongodb:27017/meteor
+      - MONGO_URL=mongodb://mongodb:27017/meteor
       - ROOT_URL=http://localhost:3000
 
   proxy:
@@ -22,7 +22,7 @@ services:
     build:
       context: ./proxy
     ports:
-      - "8080:80"
+      - "80:80"
     depends_on:
       - cards
 
