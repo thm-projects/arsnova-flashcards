@@ -740,10 +740,11 @@ th {
   }
 }
 
-#arsnovaAppModal, #arsnovaClickModal {
+#arsnovaLiteModal, #arsnovaClickModal {
   iframe {
     box-shadow: $default_box_shadow !important;
   }
+  z-index: 10700 !important;
 }
 
 #showLicenseModal {

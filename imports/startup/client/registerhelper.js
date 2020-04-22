@@ -458,18 +458,6 @@ Template.registerHelper("getTranscriptBonusLabel", function (cardset) {
 	}
 });
 
-Template.registerHelper("getFragJetztLabel", function (cardset) {
-	if (cardset.fragJetzt.session !== undefined) {
-		return '<span class="label label-frag-jetzt" onclick="$(\'#arsnovaLiteModal\').modal(\'show\')" title="' + TAPi18n.__('cardset.info.fragJetztLabel.long') + '">' + TAPi18n.__('cardset.info.fragJetztLabel.title') + '</span>';
-	}
-});
-
-Template.registerHelper("getArsnovaClickLabel", function (cardset) {
-	if (cardset.arsnovaClick.session !== undefined) {
-		return '<span class="label label-arsnova-click" onclick="$(\'#arsnovaClickModal\').modal(\'show\')"  title="' + TAPi18n.__('cardset.info.arsnovaClickLabel.long') + '">' + TAPi18n.__('cardset.info.arsnovaClickLabel.title') + '</span>';
-	}
-});
-
 Template.registerHelper("getCardsetIcons", function (isShuffled) {
 	if (isShuffled) {
 		return "<i class='fas fa-archive'></i>&nbsp;<i class='fas fa-archive'></i>&nbsp;<i class='fas fa-archive'></i>&nbsp;<i class='fas fa-ellipsis-h'></i>&nbsp;";
