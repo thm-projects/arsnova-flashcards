@@ -1,5 +1,7 @@
 import {LeitnerProgress} from "../../../api/leitnerProgress";
 import {Template} from "meteor/templating";
+import './item/arsnovaClick.js';
+import './item/fragJetzt.js';
 import "./labels.html";
 
 /*

@@ -2,7 +2,8 @@
   "name": "thmcards",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "start": "meteor run",
+    "debug-bundle": "meteor run --settings settings_debug.json --extra-packages bundle-visualizer --production"
   },
   "dependencies": {
     "@babel/runtime": "^7.9.2",
