@@ -107,6 +107,13 @@ $themes: (
     $transcript_rating_stars_card_label_background:  map-get($map, "transcript_rating_stars_card_label_background");
     $transcript_rating_stars_card_icon:  map-get($map, "transcript_rating_stars_card_icon");
     $transcript_rating_stars_card_icon_rated:  map-get($map, "transcript_rating_stars_card_icon_rated");
+    $frag_jetzt_background: map-get($map, "frag_jetzt_background");
+    $frag_jetzt_text: map_get($map, "frag_jetzt_text");
+    $frag_jetzt_cursor: map_get($map, "frag_jetzt_cursor");
+    $arsnova_click_background: map-get($map, "arsnova_click_background");
+    $arsnova_click_text: map-get($map, "arsnova_click_text");
+    $arsnova_click_cursor: map_get($map, "arsnova_click_cursor");
+
     //barfy stars
     $barfy_stars_particles_1: map-get($map, "barfy_stars_particles_1");
     $barfy_stars_particles_2: map-get($map, "barfy_stars_particles_2");
@@ -3053,6 +3060,18 @@ $themes: (
     .label-count-transcripts {
       background-color: $transcript_counter_background !important;
       color: $transcript_counter_text!important;
+    }
+
+    .label-arsnova-click {
+      background-color: $arsnova_click_background !important;
+      color: $arsnova_click_text !important;
+      cursor: $arsnova_click_cursor;
+    }
+
+    .label-frag-jetzt {
+      background-color: $frag_jetzt_background !important;
+      color: $frag_jetzt_text !important;
+      cursor: $frag_jetzt_cursor;
     }
 
     .moduleRadioButtonLabel {
