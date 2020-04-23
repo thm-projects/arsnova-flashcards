@@ -1,0 +1,31 @@
+<template name="mainOverlaysDebugLeitnerItem">
+    <div class="debugLeitnerTimer">
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th colspan="2">
+                        <strong>{{_ "overlays.debugLeitnerTimer.title"}}</strong>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        {{_ "overlays.debugLeitnerTimer.workloadTime"}}:
+                    </td>
+                    <td>
+                        {{getWorkloadTimer}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{_ "overlays.debugLeitnerTimer.breakTime"}}:
+                    </td>
+                    <td>
+                        {{getBreakTimer}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>

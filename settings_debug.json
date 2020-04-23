@@ -26,6 +26,9 @@
       "USE_MATOMO": false,
       "MATOMO_URL": "http://your_matomo_server_url/matomo.php",
       "MATOMO_SITE_ID": 0
+    },
+    "debug": {
+      "leitnerTimer": true
     }
   },
   "private": {

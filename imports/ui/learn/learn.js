@@ -7,6 +7,7 @@ import {Leitner} from "../../api/subscriptions/leitner";
 import {Wozniak} from "../../api/subscriptions/wozniak";
 import {Cardsets} from "../../api/subscriptions/cardsets";
 import {CardNavigation} from "../../api/cardNavigation";
+import "../main/overlays/debug/leitnerTimer.js";
 import "./learn.html";
 import {PomodoroTimer} from "../../api/pomodoroTimer";
 import {Bonus} from "../../api/bonus";

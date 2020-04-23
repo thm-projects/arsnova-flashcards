@@ -1,0 +1,11 @@
+{
+  "overlays": {
+    "debugLeitnerTimer": {
+      "title": "Leitner Server-Timer debugger",
+      "workloadTime": "Lernzeit Timer",
+      "breakTime": "Pausen Timer",
+      "minutes": "__count__ Minute",
+      "minutes_plural": "__count__ Minuten"
+    }
+  }
+}
