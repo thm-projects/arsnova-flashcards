@@ -25,9 +25,9 @@ Session.set('animationPlaying', false);
  * learnAlgorithms
  * ############################################################################
  */
-let workloadTimerInterval;
 
 Template.learnAlgorithms.onCreated(function () {
+	PomodoroTimer.updateServerTimerStart();
 	let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {cardType: 1, shuffled: 1, strictWorkloadTimer: 1}});
 	Session.set('activeCard', undefined);
 	Session.set('isQuestionSide', true);
@@ -35,32 +35,20 @@ Template.learnAlgorithms.onCreated(function () {
 	Session.set('cardType', cardset.cardType);
 	Session.set('shuffled', cardset.shuffled);
 	CardNavigation.toggleVisibility(true);
-	if (Route.isBox() && cardset.strictWorkloadTimer) {
-		Meteor.call('updateLeitnerTimer', cardset._id);
-		if (workloadTimerInterval === undefined) {
-			workloadTimerInterval = setInterval(function () {
-				Meteor.call('updateLeitnerTimer', cardset._id);
-			}, 60000);
-		}
-	}
 });
 
 Template.learnAlgorithms.onDestroyed(function () {
 	Session.set('activeCard', undefined);
-	if (workloadTimerInterval !== undefined) {
-		clearInterval(workloadTimerInterval);
-		workloadTimerInterval = undefined;
-	}
+	PomodoroTimer.updateServerTimerIntervalStop();
 });
 
 Template.learnAlgorithms.onRendered(function () {
 	if (Bonus.isInBonus(Router.current().params._id)) {
 		PomodoroTimer.start();
-		let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {strictWorkloadTimer: 1}});
-		if (Route.isBox() && cardset.strictWorkloadTimer) {
+		if (Route.isBox()) {
 			let leitnerTask = LeitnerTasks.findOne();
-			if (leitnerTask.workloadTimer !== undefined) {
-				PomodoroTimer.restoreWorkloadTime(leitnerTask.workloadTimer);
+			if (leitnerTask.timer.workload !== undefined) {
+				PomodoroTimer.restoreWorkloadTime(leitnerTask.timer.workload);
 			}
 		}
 	}

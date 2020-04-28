@@ -278,6 +278,11 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				daysBeforeReset: cardset.daysBeforeReset,
 				pomodoroTimer: cardset.pomodoroTimer,
 				strictWorkloadTimer: cardset.strictWorkloadTimer,
+				timer: {
+					workload: 0,
+					break: 0,
+					status: 0
+				},
 				createdAt: new Date()
 			});
 		}
@@ -595,66 +600,57 @@ export let LeitnerUtilities = class LeitnerUtilities {
 	}
 
 	static updateWorkTimer (leitnerTask, increment) {
-		if (leitnerTask.strictWorkloadTimer) {
-			if (leitnerTask.lastCallback === undefined) {
+		if (leitnerTask.timer.lastCallback === undefined) {
+			LeitnerTasks.update({
+					_id: leitnerTask._id
+				},
+				{
+					$set: {
+						'timer.lastCallback': new Date()
+					}
+				});
+		} else {
+			let status = 0;
+			let remainingWorkTime = ++leitnerTask.timer.workload % leitnerTask.pomodoroTimer.workLength;
+			if (remainingWorkTime === 0) {
+				status = 1;
+			}
+			if (moment(moment()).diff(moment(leitnerTask.timer.lastCallback), 'seconds') > minimumSecondThreshold) {
 				LeitnerTasks.update({
 						_id: leitnerTask._id
 					},
 					{
 						$set: {
-							lastCallback: new Date(),
-							workloadTimer: 0,
-							breakActive: false
+							'timer.lastCallback': new Date(),
+							'timer.status': status
+						},
+						$inc: {
+							'timer.workload': increment
 						}
 					});
-			} else {
-				if (moment(moment()).diff(moment(leitnerTask.lastCallback), 'seconds') > minimumSecondThreshold) {
-					LeitnerTasks.update({
-							_id: leitnerTask._id
-						},
-						{
-							$set: {
-								lastCallback: new Date(),
-								breakActive: false
-							},
-							$inc: {
-								workloadTimer: increment
-							}
-						});
-				}
 			}
 		}
 	}
 
 	static updateBreakTimer (leitnerTask, increment) {
-		if (leitnerTask.strictWorkloadTimer) {
-			if (leitnerTask.breakTimer === undefined) {
-				LeitnerTasks.update({
-						_id: leitnerTask._id
-					},
-					{
-						$set: {
-							lastCallback: new Date(),
-							breakTimer: 0,
-							breakActive: true
-						}
-					});
-			} else {
-				if (moment(moment()).diff(moment(leitnerTask.lastCallback), 'seconds') > minimumSecondThreshold) {
-					LeitnerTasks.update({
-							_id: leitnerTask._id
-						},
-						{
-							$set: {
-								lastCallback: new Date(),
-								breakActive: true
-							},
-							$inc: {
-								breakTimer: increment
-							}
-						});
-				}
+		if (moment(moment()).diff(moment(leitnerTask.timer.lastCallback), 'seconds') > minimumSecondThreshold) {
+			let status = 2;
+			let remainingWorkTime = ++leitnerTask.timer.break % leitnerTask.pomodoroTimer.breakLength;
+			if (remainingWorkTime === 0) {
+				status = 3;
 			}
+			LeitnerTasks.update({
+					_id: leitnerTask._id
+				},
+				{
+					$set: {
+						'timer.lastCallback': new Date(),
+						'timer.status': status
+					},
+					$inc: {
+						'timer.break': increment
+					}
+				});
 		}
 	}
 };

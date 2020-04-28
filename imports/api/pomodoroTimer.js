@@ -4,6 +4,7 @@ import {Cardsets} from "./subscriptions/cardsets.js";
 import {Route} from "./route.js";
 import swal from "sweetalert2";
 import * as config from "../config/pomodoroTimer.js";
+import {LeitnerTasks} from "./subscriptions/leitnerTasks";
 
 Session.set('pomodoroBreakActive', false);
 /*This is a ton of script, mostly popups, so strap in for a wild ride!*/
@@ -47,6 +48,8 @@ let isSuccessSoundEnabled;
 let isFailSoundEnabled;
 
 let pomodoroInterval;
+
+let workloadTimerInterval;
 
 export let PomodoroTimer = class PomodoroTimer {
 
@@ -211,6 +214,7 @@ export let PomodoroTimer = class PomodoroTimer {
 					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.break.start.button.confirm');
 				}
 			}
+			this.updateServerTimerIntervalStop();
 			swal.fire({
 				title: dialogue.title,
 				html: dialogue.html,
@@ -221,6 +225,7 @@ export let PomodoroTimer = class PomodoroTimer {
 				/*and this is what runs when the user clicks the confirm button on the popup. It starts the break, and gets the current time and sets the end from there.*/
 				if (Route.isBox()) {
 					Meteor.call('startLeitnerBreak', Router.current().params._id);
+					this.updateServerTimerIntervalStart();
 				}
 				breakRunning = true;
 				Session.set('pomodoroBreakActive', breakRunning);
@@ -288,6 +293,7 @@ export let PomodoroTimer = class PomodoroTimer {
 					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.break.end.button.confirm');
 				}
 			}
+			this.updateServerTimerIntervalStop();
 			swal.fire({
 				title: dialogue.title,
 				html: dialogue.html,
@@ -297,6 +303,7 @@ export let PomodoroTimer = class PomodoroTimer {
 				/*starts the work cycle up again, automatically.*/
 				if (Route.isBox()) {
 					Meteor.call('endLeitnerBreak', Router.current().params._id);
+					PomodoroTimer.updateServerTimerIntervalStart();
 				}
 				pomRunning = true;
 				let popTime = new Date();
@@ -657,10 +664,11 @@ export let PomodoroTimer = class PomodoroTimer {
 			workSlider.attr('max', config.defaultSettings.work.max);
 			if (Meteor.settings.public.debug.leitnerTimer) {
 				workSlider.attr('min', 1);
+				workSlider.attr('step', 1);
 			} else {
 				workSlider.attr('min', config.defaultSettings.work.min);
+				workSlider.attr('step', config.defaultSettings.work.step);
 			}
-			workSlider.attr('step', config.defaultSettings.work.step);
 		}
 		$('#workSlider').val(pomLength);
 		this.updateWorkSlider();
@@ -677,10 +685,11 @@ export let PomodoroTimer = class PomodoroTimer {
 			breakSlider.attr('max', config.defaultSettings.break.max);
 			if (Meteor.settings.public.debug.leitnerTimer) {
 				breakSlider.attr('min', 1);
+				breakSlider.attr('step', 1);
 			} else {
 				breakSlider.attr('min', config.defaultSettings.break.min);
+				breakSlider.attr('step', config.defaultSettings.break.step);
 			}
-			breakSlider.attr('step', config.defaultSettings.break.step);
 		}
 		breakSlider.val(breakLength);
 		this.updateBreakSlider();
@@ -821,5 +830,42 @@ export let PomodoroTimer = class PomodoroTimer {
 	static restoreWorkloadTime (workloadTimer = 0) {
 		//Update the already passed Pomodoro Time here
 		console.log(`Time to be restored: ${workloadTimer} Minutes`);
+	}
+
+	static updateServerTimerStart () {
+		let leitnerTask = LeitnerTasks.findOne({
+			user_id: Meteor.userId(),
+			cardset_id: Router.current().params._id
+		}, {
+			sort: {createdAt: -1}
+		});
+		if (Route.isBox() && leitnerTask !== undefined) {
+			Meteor.call('updateLeitnerTimer', Router.current().params._id);
+			this.updateServerTimerIntervalStart();
+		}
+	}
+
+	static updateServerTimerIntervalStart () {
+		let leitnerTask = LeitnerTasks.findOne({
+			user_id: Meteor.userId(),
+			cardset_id: Router.current().params._id
+		}, {
+			sort: {createdAt: -1}
+		});
+		if (Route.isBox() && leitnerTask !== undefined) {
+			if (workloadTimerInterval === undefined) {
+				workloadTimerInterval = setInterval(function () {
+					Meteor.call('updateLeitnerTimer', Router.current().params._id);
+				}, 60000);
+			}
+		}
+	}
+
+	static updateServerTimerIntervalStop () {
+		Meteor.call('updateLeitnerTimer', Router.current().params._id);
+		if (workloadTimerInterval !== undefined) {
+			clearInterval(workloadTimerInterval);
+			workloadTimerInterval = undefined;
+		}
 	}
 };

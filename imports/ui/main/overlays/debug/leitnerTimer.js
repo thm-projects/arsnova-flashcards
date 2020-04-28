@@ -12,20 +12,32 @@ Template.mainOverlaysDebugLeitnerItem.helpers({
 	getWorkloadTimer: function () {
 		let leitnerTask = LeitnerTasks.findOne({}, {sort: {createdAt: -1}});
 		let time = 0;
-		if (leitnerTask !== undefined && leitnerTask.workloadTimer !== undefined) {
-			time = leitnerTask.workloadTimer;
+		if (leitnerTask !== undefined && leitnerTask.timer.workload !== undefined) {
+			time = leitnerTask.timer.workload;
 		}
 		return TAPi18n.__('overlays.debugLeitnerTimer.minutes', {count: time}, ServerStyle.getServerLanguage());
 	},
 	getBreakTimer: function () {
 		let leitnerTask = LeitnerTasks.findOne({}, {sort: {createdAt: -1}});
 		let time = 0;
-		if (leitnerTask !== undefined && leitnerTask.breakTimer !== undefined) {
-			time = leitnerTask.breakTimer;
+		if (leitnerTask !== undefined && leitnerTask.timer.break !== undefined) {
+			time = leitnerTask.timer.break;
 		}
 		return TAPi18n.__('overlays.debugLeitnerTimer.minutes', {count: time}, ServerStyle.getServerLanguage());
 	},
 	getStatus: function () {
-		return TAPi18n.__('overlays.debugLeitnerTimer.status.runningWorkload', ServerStyle.getServerLanguage());
+		let leitnerTask = LeitnerTasks.findOne({}, {sort: {createdAt: -1}});
+		if (leitnerTask !== undefined && leitnerTask.timer.status !== undefined) {
+			switch (leitnerTask.timer.status) {
+				case 0:
+					return TAPi18n.__('overlays.debugLeitnerTimer.status.runningWorkload', ServerStyle.getServerLanguage());
+				case 1:
+					return TAPi18n.__('overlays.debugLeitnerTimer.status.waitingForBreak', ServerStyle.getServerLanguage());
+				case 2:
+					return TAPi18n.__('overlays.debugLeitnerTimer.status.runningBreak', ServerStyle.getServerLanguage());
+				case 3:
+					return TAPi18n.__('overlays.debugLeitnerTimer.status.waitingForWorkload', ServerStyle.getServerLanguage());
+			}
+		}
 	}
 });

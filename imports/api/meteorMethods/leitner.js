@@ -140,18 +140,17 @@ Meteor.methods({
 	},
 	updateLeitnerTimer: function (cardset_id) {
 		check(cardset_id, String);
-
 		let leitnerTask = LeitnerTasks.findOne({
 			user_id: Meteor.userId(),
 			cardset_id: cardset_id
 		}, {
 			sort: {createdAt: -1}
 		});
-		if (leitnerTask !== undefined && leitnerTask.strictWorkloadTimer === true) {
+		if (leitnerTask !== undefined) {
 			let increment = 1;
-			if (leitnerTask.breakActive === false) {
+			if (leitnerTask.timer.status === 0) {
 				LeitnerUtilities.updateWorkTimer(leitnerTask, increment);
-			} else {
+			} else if (leitnerTask.timer.status === 2) {
 				LeitnerUtilities.updateBreakTimer(leitnerTask, increment);
 			}
 		}
@@ -165,19 +164,19 @@ Meteor.methods({
 		}, {
 			sort: {createdAt: -1}
 		});
-		if (leitnerTask !== undefined && leitnerTask.strictWorkloadTimer === true && leitnerTask.breakActive === false) {
-			let remainingWorkTime = leitnerTask.workloadTimer % leitnerTask.pomodoroTimer.workLength;
+		if (leitnerTask !== undefined) {
+			let remainingWorkTime = leitnerTask.timer.workload % leitnerTask.pomodoroTimer.workLength;
 			if (remainingWorkTime === 0 || remainingWorkTime === 1) {
 				if (remainingWorkTime === 1) {
-					leitnerTask.workloadTimer++;
+					leitnerTask.timer.workload++;
 				}
 				LeitnerTasks.update({
 						_id: leitnerTask._id
 					},
 					{
 						$set: {
-							workloadTimer: leitnerTask.workloadTimer,
-							breakActive: true
+							'timer.workload': leitnerTask.timer.workload,
+							'timer.status': 2
 
 						}
 					});
@@ -193,19 +192,19 @@ Meteor.methods({
 		}, {
 			sort: {createdAt: -1}
 		});
-		if (leitnerTask !== undefined && leitnerTask.strictWorkloadTimer === true && leitnerTask.breakActive === true) {
-			let remainingBreakTime = leitnerTask.breakTimer % leitnerTask.pomodoroTimer.breakLength;
+		if (leitnerTask !== undefined) {
+			let remainingBreakTime = leitnerTask.timer.break % leitnerTask.pomodoroTimer.breakLength;
 			if (remainingBreakTime === 0 || remainingBreakTime === 1) {
 				if (remainingBreakTime === 1) {
-					leitnerTask.breakTimer++;
+					leitnerTask.timer.break++;
 				}
 				LeitnerTasks.update({
 						_id: leitnerTask._id
 					},
 					{
 						$set: {
-							breakTimer: leitnerTask.breakTimer,
-							breakActive: false
+							'timer.break': leitnerTask.timer.break,
+							'timer.status': 0
 						}
 					});
 			}
