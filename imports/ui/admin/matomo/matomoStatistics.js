@@ -21,6 +21,9 @@ Template.admin_matomoStatistics.helpers({
 	},
 	getURL: function () {
 		return Meteor.settings.public.matomo.MATOMO_URL;
+	},
+	getSideID: function () {
+		return Meteor.settings.public.matomo.MATOMO_SITE_ID;
 	}
 });
 
