@@ -2,6 +2,26 @@
   "title": {
     "default": "__app__",
     "cardset": "__app__ Kartei __name__",
-    "repetitorium": "__app__ Rep __name__"
+    "rep": "__app__ Rep __name__",
+    "backend": "__app__ Backend",
+    "filter": {
+      "public": {
+        "cardset": "__app__: Themenpool Karteien",
+        "rep": "__app__: Themenpool Repetitorien"
+      },
+      "workload": "__app__: Lernpensum",
+      "personal": {
+        "cardset": "__app__: Meine Karteien",
+        "rep": "__app__: Meine Repetitorien"
+      },
+      "transcripts": {
+        "personal": "__app__: Meine Mitschriften",
+        "bonus": "__app__: Meine Bonus-Mitschriften"
+      },
+      "all": {
+        "cardset": "__app__: Alle Karteien",
+        "rep": "__app__: Alle Repetitorien"
+      }
+    }
   }
 }
