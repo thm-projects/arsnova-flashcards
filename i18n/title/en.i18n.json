@@ -50,6 +50,19 @@
       "membership": "__app__: Profil Mitgliedschaft ",
       "billing": "__app__: Profil Abrechung",
       "settings": "__app__: Profil & Konto"
+    },
+    "welcome": {
+      "demo": {
+        "presentation": "__app__: Demo",
+        "index": "__app__: Demo-Index"
+      },
+      "about": "__app__: Über .cards",
+      "learn": "__app__: Lernen",
+      "faq": "__app__: FAQ",
+      "help": "__app__: Hilfe",
+      "legalNotice": "__app__: Impressum",
+      "agb": "__app__: AGB",
+      "privacyPolicy": "__app__: Datenschutz"
     }
   }
 }
