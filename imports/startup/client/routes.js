@@ -1050,7 +1050,7 @@ Router.route('/profile/:_id/overview', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('workloadCardsets'), Meteor.subscribe('userWorkload'), Meteor.subscribe('userLeitner')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		document.title = TAPi18n.__('title.profile.overview',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "summativeProgress");
 	},
 	action: function () {
@@ -1068,7 +1068,7 @@ Router.route('/profile/:_id/billing', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('paidCardsets')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		document.title = TAPi18n.__('title.profile.billing',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "billing");
 	},
 	action: function () {
@@ -1086,7 +1086,7 @@ Router.route('/profile/:_id/membership', {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		document.title = TAPi18n.__('title.profile.membership',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "membership");
 	},
 	action: function () {
@@ -1122,7 +1122,7 @@ Router.route('/profile/:_id/settings', {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		document.title = TAPi18n.__('title.profile.settings',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "settings");
 	},
 	action: function () {
