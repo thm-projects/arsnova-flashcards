@@ -1,9 +1,31 @@
 {
   "title": {
     "default": "__app__",
-    "cardset": "__app__ Kartei __name__",
-    "rep": "__app__ Rep __name__",
-    "backend": "__app__ Backend",
+    "progress": "__app__: Lernstand »__name__«",
+    "cardset": {
+      "cardset": "__app__: Kartei »__name__«",
+      "rep": "__app__: Repetitorium »__name__«",
+      "backend": "__app__ Backend",
+      "shuffle": "__app__: Repetitorium »__name__« zusammenstellen",
+      "presentation": "__app__: Kartenschau »__name__«",
+      "index": {
+        "cardset": "__app__: Kartei-Index »__name__«",
+        "rep": "__app__: Rep-Index »__name__«"
+      },
+      "leitner": "__app__: Leitner-Plan »__name__«",
+      "wozniak": "__app__: Woźniak-Plan »__name__«",
+      "stats": {
+        "leitner": "__app__: Lernstatistik aller Teilnehmer »__name__«",
+        "transcripts": "__app__: Bonus-Mitschriften aller Teilnehmer »__name__«"
+      },
+      "newCard": "__app__: Neue Karte »__name__«",
+      "editCard": "__app__: Karte bearbeiten »__name__«"
+    },
+    "transcript": {
+      "presentation": "Mitschriftansicht",
+      "new": "__app__: Neue Mitschrift",
+      "edit": "__app__: Mitschrift bearbeiten"
+    },
     "filter": {
       "public": {
         "cardset": "__app__: Themenpool Karteien",

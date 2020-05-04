@@ -473,11 +473,18 @@ Router.route('/cardset/:_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetUserRating', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id), Meteor.subscribe('userData')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		let cardset = Cardsets.findOne({_id: this.params._id});
+		if (cardset !== undefined) {
+			if (cardset.shuffled) {
+				document.title = TAPi18n.__('title.cardset.rep',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
+			} else {
+				document.title = TAPi18n.__('title.cardset.cardset',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
+			}
+		}
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', "cardset");
 		Session.set('isNewCardset', false);
-		return Cardsets.findOne({_id: this.params._id});
+		return cardset;
 	},
 	action: function () {
 		if (this.ready()) {
@@ -495,12 +502,19 @@ Router.route('/cardset/:_id/card/:card_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetUserRating', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id), Meteor.subscribe('userData')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		let cardset = Cardsets.findOne({_id: this.params._id});
+		if (cardset !== undefined) {
+			if (cardset.shuffled) {
+				document.title = TAPi18n.__('title.cardset.rep',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
+			} else {
+				document.title = TAPi18n.__('title.cardset.cardset',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
+			}
+		}
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', "cardset");
 		Session.set('isNewCardset', false);
 		Session.set('activeCard', this.params.card_id);
-		return Cardsets.findOne({_id: this.params._id});
+		return cardset;
 	},
 	action: function () {
 		if (this.ready()) {
@@ -518,11 +532,14 @@ Router.route('/cardset/:_id/editshuffle', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('editShuffleCardsets', this.params._id), Meteor.subscribe('userData')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		let cardset = Cardsets.findOne({_id: this.params._id});
+		if (cardset !== undefined && cardset.shuffled) {
+			document.title = TAPi18n.__('title.cardset.shuffle',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
+		}
 		Session.set('helpFilter', "shuffle");
 		Filter.resetMaxItemCounter();
 		Session.set('cardsetIndexResults', Cardsets.find().count());
-		return Cardsets.findOne({_id: this.params._id});
+		return cardset;
 	},
 	action: function () {
 		if (this.ready()) {
@@ -540,13 +557,17 @@ Router.route('/cardset/:_id/transcripts/review', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetTranscriptBonusReview', this.params._id, Session.get('transcriptBonusReviewFilter')), Meteor.subscribe('cardsetTranscriptBonusCardsReview', this.params._id, Session.get('transcriptBonusReviewFilter')), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('userDataTranscriptBonus', this.params._id)];
 	},
 	data: function () {
+		let cardset = Cardsets.findOne({_id: this.params._id});
+		if (cardset !== undefined) {
+			document.title = TAPi18n.__('title.cardset.stats.transcripts',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
+		}
 		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		MarkdeepEditor.changeMobilePreview(true);
 		Filter.resetMaxItemCounter();
 		Session.set('helpFilter', "cardset");
 		Session.set('isNewCardset', false);
 		Session.set('cardsetIndexResults', Cards.find().count());
-		return Cardsets.findOne({_id: this.params._id});
+		return cardset;
 	},
 	action: function () {
 		if (this.ready()) {
@@ -564,13 +585,16 @@ Router.route('/cardset/:_id/transcripts', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetTranscriptBonus', this.params._id), Meteor.subscribe('cardsetTranscriptBonusCards', this.params._id), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('userDataTranscriptBonus', this.params._id)];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		let cardset = Cardsets.findOne({_id: this.params._id});
+		if (cardset !== undefined) {
+			document.title = TAPi18n.__('title.cardset.stats.transcripts',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
+		}
 		MarkdeepEditor.changeMobilePreview(true);
 		Filter.resetMaxItemCounter();
 		Session.set('helpFilter', "cardset");
 		Session.set('isNewCardset', false);
 		Session.set('cardsetIndexResults', Cards.find().count());
-		return Cardsets.findOne({_id: this.params._id});
+		return cardset;
 	},
 	action: function () {
 		if (this.ready()) {
@@ -588,9 +612,16 @@ Router.route('/cardset/:_id/editors', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('userData')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		let cardset = Cardsets.findOne({_id: this.params._id});
+		if (cardset !== undefined) {
+			if (cardset.shuffled) {
+				document.title = TAPi18n.__('title.cardset.rep',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
+			} else {
+				document.title = TAPi18n.__('title.cardset.cardset',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
+			}
+		}
 		Session.set('helpFilter', "cardset");
-		return Cardsets.findOne({_id: this.params._id});
+		return cardset;
 	},
 	action: function () {
 		if (this.ready()) {
@@ -608,9 +639,12 @@ Router.route('/cardset/:_id/stats', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('cardsetUserRating', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id)];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		let cardset = Cardsets.findOne({_id: this.params._id});
+		if (cardset !== undefined) {
+			document.title = TAPi18n.__('title.cardset.stats.leitner',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
+		}
 		Session.set('helpFilter', "bonusStatistics");
-		return Cardsets.findOne({_id: this.params._id});
+		return cardset;
 	},
 	action: function () {
 		if (this.ready()) {
@@ -632,10 +666,17 @@ Router.route('/cardsetlist/:_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetUserRating', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id), Meteor.subscribe('userData')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		let cardset = Cardsets.findOne({_id: this.params._id});
+		if (cardset !== undefined) {
+			if (cardset.shuffled) {
+				document.title = TAPi18n.__('title.cardset.index.rep',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
+			} else {
+				document.title = TAPi18n.__('title.cardset.index.cardset',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
+			}
+		}
 		Session.set('helpFilter', "cardsetIndex");
 		Session.set('isNewCardset', false);
-		return Cardsets.findOne({_id: this.params._id});
+		return cardset;
 	},
 	action: function () {
 		if (this.ready()) {
@@ -653,9 +694,12 @@ Router.route('/cardset/:_id/newcard', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetsEditMode', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		let cardset = Cardsets.findOne({_id: this.params._id});
+		if (cardset !== undefined) {
+			document.title = TAPi18n.__('title.cardset.newCard',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
+		}
 		Session.set('helpFilter', "cardEditor");
-		return Cardsets.findOne({_id: this.params._id});
+		return cardset;
 	},
 	action: function () {
 		if (this.ready()) {
@@ -674,7 +718,7 @@ Router.route('/personal/transcripts/new', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetsTranscripts'), Meteor.subscribe('userDataLecturers')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		document.title = TAPi18n.__('title.transcript.new',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		if (ServerStyle.gotTranscriptsEnabled()) {
 			Session.set('helpFilter', "cardEditor");
 		} else {
@@ -697,9 +741,12 @@ Router.route('/cardset/:_id/editcard/:card_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetsEditMode', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		let cardset = Cardsets.findOne({_id: this.params._id});
+		if (cardset !== undefined) {
+			document.title = TAPi18n.__('title.cardset.editCard',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
+		}
 		Session.set('helpFilter', "cardEditor");
-		return Cardsets.findOne({_id: this.params._id});
+		return cardset;
 	},
 	action: function () {
 		if (this.ready()) {
@@ -717,7 +764,7 @@ Router.route('/personal/transcripts/edit/:card_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetsTranscripts'), Meteor.subscribe('transcriptCard', this.params.card_id), Meteor.subscribe('myTranscriptBonus')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		document.title = TAPi18n.__('title.transcript.edit',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		if (ServerStyle.gotTranscriptsEnabled()) {
 			Session.set('helpFilter', "cardEditor");
 		} else {
@@ -765,9 +812,12 @@ Router.route('/progress/:_id/:user_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('userCardsetLeitner', this.params._id, this.params.user_id), Meteor.subscribe('userDataBonus', this.params._id, this.params.user_id)];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		let cardset = Cardsets.findOne({_id: this.params._id});
+		if (cardset !== undefined) {
+			document.title = TAPi18n.__('title.progress',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
+		}
 		Session.set('helpFilter', "workloadProgress");
-		return Cardsets.findOne({_id: this.params._id});
+		return cardset;
 	},
 	action: function () {
 		if (this.ready()) {
@@ -785,11 +835,14 @@ Router.route('/box/:_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id)];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		let cardset = Cardsets.findOne({_id: this.params._id});
+		if (cardset !== undefined) {
+			document.title = TAPi18n.__('title.cardset.leitner',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
+		}
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', undefined);
 		Session.set('aspectRatioMode', AspectRatio.getDefault());
-		return Cardsets.findOne({_id: this.params._id});
+		return cardset;
 	},
 	action: function () {
 		if (this.ready()) {
@@ -807,11 +860,14 @@ Router.route('/memo/:_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		let cardset = Cardsets.findOne({_id: this.params._id});
+		if (cardset !== undefined) {
+			document.title = TAPi18n.__('title.cardset.wozniak',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
+		}
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', undefined);
 		Session.set('aspectRatioMode', AspectRatio.getDefault());
-		return Cardsets.findOne({_id: this.params._id});
+		return cardset;
 	},
 	action: function () {
 		if (this.ready()) {
@@ -829,9 +885,16 @@ Router.route('/presentationlist/:_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('userData')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		let cardset = Cardsets.findOne({_id: this.params._id});
+		if (cardset !== undefined) {
+			if (cardset.shuffled) {
+				document.title = TAPi18n.__('title.cardset.index.rep',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
+			} else {
+				document.title = TAPi18n.__('title.cardset.index.cardset',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
+			}
+		}
 		Session.set('helpFilter', "cardsetIndex");
-		return Cardsets.findOne({_id: this.params._id});
+		return cardset;
 	},
 	action: function () {
 		if (this.ready()) {
@@ -849,7 +912,7 @@ Router.route('/presentation/transcripts/:card_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('transcriptCard', this.params.card_id)];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		document.title = TAPi18n.__('title.transcript.presentation',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		if (ServerStyle.gotTranscriptsEnabled()) {
 			Session.set('helpFilter',undefined);
 			return Cards.findOne(this.params.card_id);
@@ -873,7 +936,7 @@ Router.route('/presentation/transcripts/bonus/:card_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('transcriptCard', this.params.card_id), Meteor.subscribe('myTranscriptBonus'), Meteor.subscribe('cardsetTranscriptMyBonus', this.params.card_id)];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		document.title = TAPi18n.__('title.transcript.presentation',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		if (ServerStyle.gotTranscriptsEnabled()) {
 			Session.set('helpFilter',undefined);
 			return Cards.findOne(this.params.card_id);
@@ -898,7 +961,7 @@ Router.route('/presentation/transcripts/bonus/:_id/:card_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('transcriptCard', this.params.card_id), Meteor.subscribe('cardsetTranscriptBonus', this.params._id)];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		document.title = TAPi18n.__('title.transcript.presentation',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		if (ServerStyle.gotTranscriptsEnabled()) {
 			Session.set('helpFilter',undefined);
 			return Cards.findOne(this.params.card_id);
@@ -922,10 +985,13 @@ Router.route('/presentation/:_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		let cardset = Cardsets.findOne({_id: this.params._id});
+		if (cardset !== undefined) {
+			document.title = TAPi18n.__('title.cardset.presentation',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
+		}
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', undefined);
-		return Cardsets.findOne({_id: this.params._id});
+		return cardset;
 	},
 	action: function () {
 		if (this.ready()) {
