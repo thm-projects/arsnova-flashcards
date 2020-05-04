@@ -2,6 +2,8 @@
   "title": {
     "default": "__app__",
     "progress": "__app__: Lernstand »__name__«",
+    "firstLogin": "__app__: Erstanmeldung",
+    "accessDenied": "__app__: Kein Zugriff",
     "backend": {
       "dashboard": "__app__: Backend Dashboard",
       "user": {

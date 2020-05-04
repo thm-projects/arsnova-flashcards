@@ -40,7 +40,7 @@ Router.route('/firstLogin', {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		document.title = TAPi18n.__('title.firstLogin',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 	},
 	action: function () {
 		if (this.ready()) {
@@ -58,7 +58,7 @@ Router.route('/accessDenied', {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		document.title = TAPi18n.__('title.accessDenied',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 	},
 	action: function () {
 		if (this.ready()) {
