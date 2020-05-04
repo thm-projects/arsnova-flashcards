@@ -2,6 +2,18 @@
   "title": {
     "default": "__app__",
     "progress": "__app__: Lernstand »__name__«",
+    "backend": {
+      "dashboard": "__app__: Backend Dashboard",
+      "user": {
+        "user": "__app__: Backend Benutzer/in",
+        "index": "__app__: Backend Benutzer-Index"
+      },
+      "stats": "__app__: Backend Lernstand-Statistik",
+      "api": "__app__: Backend API-Zugänge",
+      "notifications": "__app__: Backend Benachrichtigungen",
+      "settings": "__app__: Backend Einstellungen",
+      "matomo": "__app__: Backend Matomo Statistiken"
+    },
     "cardset": {
       "cardset": "__app__: Kartei »__name__«",
       "rep": "__app__: Repetitorium »__name__«",

@@ -1161,7 +1161,7 @@ Router.route('/admin/dashboard', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe("serverInventory"), Meteor.subscribe('userData')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.backend',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		document.title = TAPi18n.__('title.backend.dashboard',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
@@ -1186,7 +1186,7 @@ Router.route('/admin/users', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('userData')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.backend',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		document.title = TAPi18n.__('title.backend.user.index',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
@@ -1211,7 +1211,7 @@ Router.route('/admin/user/:_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('userData')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.backend',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		document.title = TAPi18n.__('title.backend.user.user',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 		return Meteor.users.findOne({_id: this.params._id});
 	},
@@ -1237,7 +1237,7 @@ Router.route('/admin/learningStatistics', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('allCardsets'), Meteor.subscribe('allLeitner'), Meteor.subscribe('userData')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.backend',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		document.title = TAPi18n.__('title.backend.stats',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
@@ -1259,7 +1259,7 @@ Router.route('/admin/matomoStatistics', {
 	template: 'admin_matomoStatistics',
 	layoutTemplate: 'admin_main',
 	data: function () {
-		document.title = TAPi18n.__('title.backend',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		document.title = TAPi18n.__('title.backend.matomo',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 	},
 	action: function () {
 		if (this.ready()) {
@@ -1283,7 +1283,7 @@ Router.route('/admin/apiAccess', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('allCardsets'), Meteor.subscribe('userData')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.backend',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		document.title = TAPi18n.__('title.backend.api',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 	},
 	action: function () {
 		if (this.ready()) {
@@ -1307,7 +1307,7 @@ Router.route('/admin/notifications', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('userData')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.backend',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		document.title = TAPi18n.__('title.backend.notifications',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
@@ -1357,7 +1357,7 @@ Router.route('/admin/settings', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('userData')];
 	},
 	data: function () {
-		document.title = TAPi18n.__('title.backend',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+		document.title = TAPi18n.__('title.backend.settings',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
