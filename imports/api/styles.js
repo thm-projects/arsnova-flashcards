@@ -14,6 +14,10 @@ const GUEST = 4;
 
 export let ServerStyle = class ServerStyle {
 
+	static getAppTitle () {
+		return `${this.getFirstAppTitle()}.${this.getLastAppTitle()}`;
+	}
+
 	static getFirstAppTitle () {
 		return this.getConfig().welcome.title.first;
 	}

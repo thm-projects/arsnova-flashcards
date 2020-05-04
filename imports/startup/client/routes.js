@@ -39,6 +39,9 @@ Router.route('/firstLogin', {
 	subscriptions: function () {
 		return [Meteor.subscribe('defaultAppData')];
 	},
+	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+	},
 	action: function () {
 		if (this.ready()) {
 			this.render();
@@ -53,6 +56,9 @@ Router.route('/accessDenied', {
 	template: 'accessDenied',
 	subscriptions: function () {
 		return [Meteor.subscribe('defaultAppData')];
+	},
+	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 	},
 	action: function () {
 		if (this.ready()) {
@@ -70,6 +76,7 @@ Router.route('/home', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('wordcloudCardsets'), Meteor.subscribe('userDataLandingPage')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 		return Cardsets.findOne({_id: Session.get('wordcloudItem')});
 	},
@@ -90,6 +97,7 @@ Router.route('about', {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
@@ -108,6 +116,7 @@ Router.route('learning', {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
@@ -125,6 +134,9 @@ Router.route('help', {
 	subscriptions: function () {
 		return [Meteor.subscribe('defaultAppData')];
 	},
+	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+	},
 	action: function () {
 		if (this.ready()) {
 			this.render();
@@ -141,6 +153,7 @@ Router.route('faq', {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
@@ -159,6 +172,7 @@ Router.route('impressum', {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
@@ -177,6 +191,7 @@ Router.route('demo', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('demoCardsets'), Meteor.subscribe('demoCards')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
@@ -195,6 +210,7 @@ Router.route('demolist', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('demoCardsets'), Meteor.subscribe('demoCards')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "cardsetIndex");
 		return Cardsets.findOne({kind: 'demo', name: "DemoCardset", shuffled: true});
 	},
@@ -214,6 +230,7 @@ Router.route('agb', {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
@@ -232,6 +249,7 @@ Router.route('datenschutz', {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
@@ -250,6 +268,7 @@ Router.route('/all/cardsets', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('allCardsets'), Meteor.subscribe('paidCardsets'), Meteor.subscribe('userData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "pool");
 		Session.set('cardsetIndexResults', Cardsets.find().count());
 		Filter.resetMaxItemCounter();
@@ -275,6 +294,7 @@ Router.route('/all/repetitorien', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('allRepetitorien'), Meteor.subscribe('paidCardsets'), Meteor.subscribe('userData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "pool");
 		Session.set('cardsetIndexResults', Cardsets.find().count());
 		Filter.resetMaxItemCounter();
@@ -300,6 +320,7 @@ Router.route('/personal/cardsets', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('myCardsets')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "create");
 		Session.set('cardsetIndexResults', Cardsets.find().count());
 		Filter.resetMaxItemCounter();
@@ -325,6 +346,7 @@ Router.route('/transcripts/personal', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('myTranscriptCards')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		if (ServerStyle.gotTranscriptsEnabled()) {
 			Session.set('helpFilter', "transcripts");
 			Session.set('cardsetIndexResults', Cards.find().count());
@@ -349,6 +371,7 @@ Router.route('/transcripts/bonus', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('myBonusTranscriptCards'), Meteor.subscribe('myTranscriptBonus'), Meteor.subscribe('cardsetsTranscripts')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		if (ServerStyle.gotTranscriptsEnabled()) {
 			Session.set('helpFilter', "transcripts");
 			Session.set('cardsetIndexResults', Cards.find().count());
@@ -373,6 +396,7 @@ Router.route('/personal/repetitorien', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('personalRepetitorien'), Meteor.subscribe('userData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "create");
 		Session.set('cardsetIndexResults', Cardsets.find().count());
 		Filter.resetMaxItemCounter();
@@ -398,6 +422,7 @@ Router.route('/public/repetitorien', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('repetitoriumCardsets'), Meteor.subscribe('paidCardsets'), Meteor.subscribe('userData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "repetitorium");
 		Session.set('cardsetIndexResults', Cardsets.find().count());
 		Filter.resetMaxItemCounter();
@@ -423,6 +448,7 @@ Router.route('/learn', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('workloadCardsets'), Meteor.subscribe('paidCardsets'), Meteor.subscribe('userWorkload'), Meteor.subscribe('userLeitner'), Meteor.subscribe('userWozniak'), Meteor.subscribe('userData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "workload");
 		Session.set('cardsetIndexResults', Leitner.find().count() + Wozniak.find().count());
 		Filter.resetMaxItemCounter();
@@ -447,6 +473,7 @@ Router.route('/cardset/:_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetUserRating', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id), Meteor.subscribe('userData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', "cardset");
 		Session.set('isNewCardset', false);
@@ -468,6 +495,7 @@ Router.route('/cardset/:_id/card/:card_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetUserRating', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id), Meteor.subscribe('userData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', "cardset");
 		Session.set('isNewCardset', false);
@@ -490,6 +518,7 @@ Router.route('/cardset/:_id/editshuffle', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('editShuffleCardsets', this.params._id), Meteor.subscribe('userData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "shuffle");
 		Filter.resetMaxItemCounter();
 		Session.set('cardsetIndexResults', Cardsets.find().count());
@@ -511,6 +540,7 @@ Router.route('/cardset/:_id/transcripts/review', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetTranscriptBonusReview', this.params._id, Session.get('transcriptBonusReviewFilter')), Meteor.subscribe('cardsetTranscriptBonusCardsReview', this.params._id, Session.get('transcriptBonusReviewFilter')), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('userDataTranscriptBonus', this.params._id)];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		MarkdeepEditor.changeMobilePreview(true);
 		Filter.resetMaxItemCounter();
 		Session.set('helpFilter', "cardset");
@@ -534,6 +564,7 @@ Router.route('/cardset/:_id/transcripts', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetTranscriptBonus', this.params._id), Meteor.subscribe('cardsetTranscriptBonusCards', this.params._id), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('userDataTranscriptBonus', this.params._id)];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		MarkdeepEditor.changeMobilePreview(true);
 		Filter.resetMaxItemCounter();
 		Session.set('helpFilter', "cardset");
@@ -557,6 +588,7 @@ Router.route('/cardset/:_id/editors', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('userData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "cardset");
 		return Cardsets.findOne({_id: this.params._id});
 	},
@@ -576,6 +608,7 @@ Router.route('/cardset/:_id/stats', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('cardsetUserRating', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id)];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "bonusStatistics");
 		return Cardsets.findOne({_id: this.params._id});
 	},
@@ -599,6 +632,7 @@ Router.route('/cardsetlist/:_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetUserRating', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id), Meteor.subscribe('userData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "cardsetIndex");
 		Session.set('isNewCardset', false);
 		return Cardsets.findOne({_id: this.params._id});
@@ -619,6 +653,7 @@ Router.route('/cardset/:_id/newcard', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetsEditMode', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "cardEditor");
 		return Cardsets.findOne({_id: this.params._id});
 	},
@@ -639,6 +674,7 @@ Router.route('/personal/transcripts/new', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetsTranscripts'), Meteor.subscribe('userDataLecturers')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		if (ServerStyle.gotTranscriptsEnabled()) {
 			Session.set('helpFilter', "cardEditor");
 		} else {
@@ -661,6 +697,7 @@ Router.route('/cardset/:_id/editcard/:card_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetsEditMode', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "cardEditor");
 		return Cardsets.findOne({_id: this.params._id});
 	},
@@ -680,6 +717,7 @@ Router.route('/personal/transcripts/edit/:card_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetsTranscripts'), Meteor.subscribe('transcriptCard', this.params.card_id), Meteor.subscribe('myTranscriptBonus')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		if (ServerStyle.gotTranscriptsEnabled()) {
 			Session.set('helpFilter', "cardEditor");
 		} else {
@@ -702,6 +740,7 @@ Router.route('/public/cardsets', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('poolCardsets'), Meteor.subscribe('paidCardsets'), Meteor.subscribe('userData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "pool");
 		Session.set('cardsetIndexResults', Cardsets.find().count());
 	},
@@ -726,6 +765,7 @@ Router.route('/progress/:_id/:user_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('userCardsetLeitner', this.params._id, this.params.user_id), Meteor.subscribe('userDataBonus', this.params._id, this.params.user_id)];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "workloadProgress");
 		return Cardsets.findOne({_id: this.params._id});
 	},
@@ -745,6 +785,7 @@ Router.route('/box/:_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id)];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', undefined);
 		Session.set('aspectRatioMode', AspectRatio.getDefault());
@@ -766,6 +807,7 @@ Router.route('/memo/:_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', undefined);
 		Session.set('aspectRatioMode', AspectRatio.getDefault());
@@ -787,6 +829,7 @@ Router.route('/presentationlist/:_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('userData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "cardsetIndex");
 		return Cardsets.findOne({_id: this.params._id});
 	},
@@ -806,6 +849,7 @@ Router.route('/presentation/transcripts/:card_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('transcriptCard', this.params.card_id)];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		if (ServerStyle.gotTranscriptsEnabled()) {
 			Session.set('helpFilter',undefined);
 			return Cards.findOne(this.params.card_id);
@@ -829,6 +873,7 @@ Router.route('/presentation/transcripts/bonus/:card_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('transcriptCard', this.params.card_id), Meteor.subscribe('myTranscriptBonus'), Meteor.subscribe('cardsetTranscriptMyBonus', this.params.card_id)];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		if (ServerStyle.gotTranscriptsEnabled()) {
 			Session.set('helpFilter',undefined);
 			return Cards.findOne(this.params.card_id);
@@ -853,6 +898,7 @@ Router.route('/presentation/transcripts/bonus/:_id/:card_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('transcriptCard', this.params.card_id), Meteor.subscribe('cardsetTranscriptBonus', this.params._id)];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		if (ServerStyle.gotTranscriptsEnabled()) {
 			Session.set('helpFilter',undefined);
 			return Cards.findOne(this.params.card_id);
@@ -876,6 +922,7 @@ Router.route('/presentation/:_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', undefined);
 		return Cardsets.findOne({_id: this.params._id});
@@ -896,6 +943,7 @@ Router.route('makingofcards', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('makingOfCardsets'), Meteor.subscribe('demoCards')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', undefined);
 		return Cardsets.findOne({kind: 'demo', name: "MakingOfCardset", shuffled: true});
@@ -916,6 +964,7 @@ Router.route('makingofcardslist', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('makingOfCardsets'), Meteor.subscribe('demoCards')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "cardsetIndex");
 		return Cardsets.findOne({kind: 'demo', name: "MakingOfCardset", shuffled: true});
 	},
@@ -935,6 +984,7 @@ Router.route('/profile/:_id/overview', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('workloadCardsets'), Meteor.subscribe('userWorkload'), Meteor.subscribe('userLeitner')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "summativeProgress");
 	},
 	action: function () {
@@ -952,6 +1002,7 @@ Router.route('/profile/:_id/billing', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('paidCardsets')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "billing");
 	},
 	action: function () {
@@ -969,6 +1020,7 @@ Router.route('/profile/:_id/membership', {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "membership");
 	},
 	action: function () {
@@ -986,6 +1038,7 @@ Router.route('/profile/:_id/notifications', {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "notifications");
 	},
 	action: function () {
@@ -1003,6 +1056,7 @@ Router.route('/profile/:_id/settings', {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "settings");
 	},
 	action: function () {
@@ -1020,6 +1074,7 @@ Router.route('/profile/:_id/requests', {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "requests");
 	},
 	action: function () {
@@ -1040,6 +1095,7 @@ Router.route('/admin/dashboard', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe("serverInventory"), Meteor.subscribe('userData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
@@ -1064,6 +1120,7 @@ Router.route('/admin/users', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('userData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
@@ -1088,6 +1145,7 @@ Router.route('/admin/user/:_id', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('userData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 		return Meteor.users.findOne({_id: this.params._id});
 	},
@@ -1113,6 +1171,7 @@ Router.route('/admin/learningStatistics', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('allCardsets'), Meteor.subscribe('allLeitner'), Meteor.subscribe('userData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
@@ -1133,6 +1192,9 @@ Router.route('/admin/matomoStatistics', {
 	name: 'admin_matomoStatistics',
 	template: 'admin_matomoStatistics',
 	layoutTemplate: 'admin_main',
+	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
+	},
 	action: function () {
 		if (this.ready()) {
 			if (UserPermissions.isAdmin()) {
@@ -1153,6 +1215,9 @@ Router.route('/admin/apiAccess', {
 	layoutTemplate: 'admin_main',
 	subscriptions: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('allCardsets'), Meteor.subscribe('userData')];
+	},
+	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 	},
 	action: function () {
 		if (this.ready()) {
@@ -1176,6 +1241,7 @@ Router.route('/admin/notifications', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('userData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
@@ -1200,6 +1266,7 @@ Router.route('/admin/university', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('userData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
@@ -1224,6 +1291,7 @@ Router.route('/admin/settings', {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('userData')];
 	},
 	data: function () {
+		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
 	action: function () {
