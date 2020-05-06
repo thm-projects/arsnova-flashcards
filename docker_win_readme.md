@@ -99,7 +99,8 @@ If you are about to build the resources yourself or if you would like to develop
 ## Developing with Docker
 You can build and run the development version of cards with docker. Therefore you can use the standard Dockerfile in the projects root directory.
 1. Clone the project
-2. From your project directory run `docker-compose up`
+2. From your project directory run `docker-compose up`\
+  2.1. **This process takes a very, very long time on windows (~20min)!** Please be patient...
 3. This will brings up the app under Port 80 - you may change this port in the docker-compose.yml file\
   3.1. The first time you run this, it may take a (long) while\
   3.2. If you like to start the containers detached, use command option `-d`\
