@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+
+  cards-develop:
+    image: cards-develop
+    user: 1000:1000
+    build:
+      context: .
+    volumes:
+      # - data:/home/node/mongo
+      - .:/home/node/app
+    ports:
+      - 8000:3000
+
+
+# volumes:
+#   data:
+#     driver: local

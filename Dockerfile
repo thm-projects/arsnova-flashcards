@@ -2,8 +2,8 @@
 # see .docker dir for production files
 FROM node:12
 
-ENV APP_HOME=/usr/app/
-WORKDIR $APP_HOME
+ENV HOME=/home/node/
+WORKDIR $HOME
 
 # Install packages
 RUN apt-get update && \
@@ -19,10 +19,9 @@ RUN apt-get update && \
 # install node build tool
 RUN npm install -g node-gyp
 
+USER node
 # install meteor
 RUN curl https://install.meteor.com/ | sh
 
-COPY docker_entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/home/node/app/docker_entrypoint.sh"]
 CMD ["settings_debug.json"]
