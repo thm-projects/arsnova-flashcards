@@ -13,7 +13,7 @@ Template.mainOverlaysDebugLeitnerItem.helpers({
 		let leitnerTask = LeitnerTasks.findOne({}, {sort: {createdAt: -1}});
 		let time = 0;
 		if (leitnerTask !== undefined && leitnerTask.timer.workload !== undefined) {
-			time = leitnerTask.timer.workload;
+			time = leitnerTask.timer.workload.current;
 		}
 		return TAPi18n.__('overlays.debugLeitnerTimer.minutes', {count: time}, ServerStyle.getServerLanguage());
 	},
@@ -21,9 +21,25 @@ Template.mainOverlaysDebugLeitnerItem.helpers({
 		let leitnerTask = LeitnerTasks.findOne({}, {sort: {createdAt: -1}});
 		let time = 0;
 		if (leitnerTask !== undefined && leitnerTask.timer.break !== undefined) {
-			time = leitnerTask.timer.break;
+			time = leitnerTask.timer.break.current;
 		}
 		return TAPi18n.__('overlays.debugLeitnerTimer.minutes', {count: time}, ServerStyle.getServerLanguage());
+	},
+	getWorkloadsCompleted: function () {
+		let leitnerTask = LeitnerTasks.findOne({}, {sort: {createdAt: -1}});
+		let completed = 0;
+		if (leitnerTask !== undefined && leitnerTask.timer.workload !== undefined) {
+			completed = leitnerTask.timer.workload.completed;
+		}
+		return completed;
+	},
+	getBreaksCompleted: function () {
+		let leitnerTask = LeitnerTasks.findOne({}, {sort: {createdAt: -1}});
+		let completed = 0;
+		if (leitnerTask !== undefined && leitnerTask.timer.break !== undefined) {
+			completed = leitnerTask.timer.break.completed;
+		}
+		return completed;
 	},
 	getStatus: function () {
 		let leitnerTask = LeitnerTasks.findOne({}, {sort: {createdAt: -1}});

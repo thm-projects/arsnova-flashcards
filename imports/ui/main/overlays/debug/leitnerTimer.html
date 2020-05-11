@@ -25,6 +25,22 @@
                         {{getBreakTimer}}
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        {{_ "overlays.debugLeitnerTimer.workloadsCompleted"}}:
+                    </td>
+                    <td>
+                        {{getWorkloadsCompleted}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {{_ "overlays.debugLeitnerTimer.breaksCompleted"}}:
+                    </td>
+                    <td>
+                        {{getBreaksCompleted}}
+                    </td>
+                </tr>
             </tbody>
         </table>
         <div class="text-info text-center">{{getStatus}}</div>

@@ -10,6 +10,7 @@ import {Workload} from "../api/subscriptions/workload";
 import {CardIndex} from "../api/cardIndex";
 import {Utilities} from "../api/utilities";
 import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
+import {defaultSettings} from "../config/pomodoroTimer";
 
 // Allow the user to update the timer a few seconds earlier to prevent close calls deny an update
 let minimumSecondThreshold = 57;
@@ -279,8 +280,14 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				pomodoroTimer: cardset.pomodoroTimer,
 				strictWorkloadTimer: cardset.strictWorkloadTimer,
 				timer: {
-					workload: 0,
-					break: 0,
+					workload: {
+						current: 0,
+						completed: 0
+					},
+					break: {
+						current: 0,
+						completed: 0
+					},
 					status: 0
 				},
 				createdAt: new Date()
@@ -599,7 +606,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		}
 	}
 
-	static updateWorkTimer (leitnerTask, increment) {
+	static updateWorkTimer (leitnerTask) {
 		if (leitnerTask.timer.lastCallback === undefined) {
 			LeitnerTasks.update({
 					_id: leitnerTask._id
@@ -611,7 +618,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				});
 		} else {
 			let status = 0;
-			let remainingWorkTime = ++leitnerTask.timer.workload % leitnerTask.pomodoroTimer.workLength;
+			let remainingWorkTime = leitnerTask.pomodoroTimer.workLength - ++leitnerTask.timer.workload.current;
 			if (remainingWorkTime === 0) {
 				status = 1;
 			}
@@ -625,17 +632,21 @@ export let LeitnerUtilities = class LeitnerUtilities {
 							'timer.status': status
 						},
 						$inc: {
-							'timer.workload': increment
+							'timer.workload.current': 1
 						}
 					});
 			}
 		}
 	}
 
-	static updateBreakTimer (leitnerTask, increment) {
+	static updateBreakTimer (leitnerTask) {
 		if (moment(moment()).diff(moment(leitnerTask.timer.lastCallback), 'seconds') > minimumSecondThreshold) {
 			let status = 2;
-			let remainingWorkTime = ++leitnerTask.timer.break % leitnerTask.pomodoroTimer.breakLength;
+			let timerGoal = leitnerTask.pomodoroTimer.breakLength;
+			if (leitnerTask.timer.break.completed !== 0 && leitnerTask.timer.break.completed % defaultSettings.longBreak.goal === 0) {
+				timerGoal = defaultSettings.longBreak.length;
+			}
+			let remainingWorkTime = timerGoal - ++leitnerTask.timer.break.current;
 			if (remainingWorkTime === 0) {
 				status = 3;
 			}
@@ -648,7 +659,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						'timer.status': status
 					},
 					$inc: {
-						'timer.break': increment
+						'timer.break.current': 1
 					}
 				});
 		}
