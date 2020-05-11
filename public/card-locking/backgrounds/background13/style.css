@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(2, 5, 38, 1) 100%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  overflow: hidden;
+}
+main {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+}
+
+@keyframes fireBurn {
+  0% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes rotateInfinite {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.animate {
+  animation: fireBurn 2s linear 0s infinite;
+}
+
+.rotateInfinite {
+  animation: rotateInfinite 30s linear 0s infinite;
+}
+
+#fire-block {
+  position: relative;
+}
+
+.fire-particle {
+  position: absolute;
+  border-radius: 50%;
+}
