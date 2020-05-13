@@ -9,7 +9,7 @@ import {UserPermissions} from "../permissions";
 import {CardType} from "../cardTypes";
 import {LeitnerUtilities} from "../../util/leitner";
 import {LeitnerTasks} from "../subscriptions/leitnerTasks";
-import  {defaultSettings} from "../../config/pomodoroTimer.js";
+import {PomodoroTimer} from "../pomodoroTimer";
 
 Meteor.methods({
 	initializeWorkloadData: function (cardset_id, user_id) {
@@ -165,13 +165,13 @@ Meteor.methods({
 			sort: {createdAt: -1}
 		});
 		if (leitnerTask !== undefined) {
-			let remainingWorkTime = leitnerTask.pomodoroTimer.workLength - leitnerTask.timer.workload.current;
-			if (remainingWorkTime <= 0) {
+			if (PomodoroTimer.getRemainingTime(leitnerTask) <= 1) {
 				LeitnerTasks.update({
 						_id: leitnerTask._id
 					},
 					{
 						$set: {
+							'timer.lastCallback': new Date(),
 							'timer.workload.current': 0,
 							'timer.break.current': 0,
 							'timer.status': 2
@@ -194,17 +194,13 @@ Meteor.methods({
 			sort: {createdAt: -1}
 		});
 		if (leitnerTask !== undefined) {
-			let timerGoal = leitnerTask.pomodoroTimer.breakLength;
-			if (leitnerTask.timer.break.completed !== 0 && leitnerTask.timer.break.completed % defaultSettings.longBreak.goal === 0) {
-				timerGoal = defaultSettings.longBreak.length;
-			}
-			let remainingBreakTime = timerGoal - leitnerTask.timer.break.current;
-			if (remainingBreakTime <= 1) {
+			if (PomodoroTimer.getRemainingTime(leitnerTask) <= 1) {
 				LeitnerTasks.update({
 						_id: leitnerTask._id
 					},
 					{
 						$set: {
+							'timer.lastCallback': new Date(),
 							'timer.workload.current': 0,
 							'timer.break.current': 0,
 							'timer.status': 0

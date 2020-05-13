@@ -10,13 +10,12 @@ import {CardNavigation} from "../../api/cardNavigation";
 import "../main/overlays/debug/leitnerTimer.js";
 import "./learn.html";
 import {PomodoroTimer} from "../../api/pomodoroTimer";
-import {Bonus} from "../../api/bonus";
 import {Route} from "../../api/route";
 import {MainNavigation} from "../../api/mainNavigation";
 import {CardsetNavigation} from "../../api/cardsetNavigation";
 import {NavigatorCheck} from "../../api/navigatorCheck";
 import {CardVisuals} from "../../api/cardVisuals";
-import {LeitnerTasks} from "../../api/subscriptions/leitnerTasks";
+import {Bonus} from "../../api/bonus";
 
 Session.set('animationPlaying', false);
 
@@ -27,7 +26,10 @@ Session.set('animationPlaying', false);
  */
 
 Template.learnAlgorithms.onCreated(function () {
-	PomodoroTimer.updateServerTimerStart();
+	if (Route.isBox() && Bonus.isInBonus(Router.current().params._id)) {
+		PomodoroTimer.updateServerTimerStart();
+		PomodoroTimer.start();
+	}
 	let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {cardType: 1, shuffled: 1, strictWorkloadTimer: 1}});
 	Session.set('activeCard', undefined);
 	Session.set('isQuestionSide', true);
@@ -39,19 +41,12 @@ Template.learnAlgorithms.onCreated(function () {
 
 Template.learnAlgorithms.onDestroyed(function () {
 	Session.set('activeCard', undefined);
-	PomodoroTimer.updateServerTimerIntervalStop();
+	if (Route.isBox() && Bonus.isInBonus(Router.current().params._id)) {
+		PomodoroTimer.updateServerTimerIntervalStop();
+	}
 });
 
 Template.learnAlgorithms.onRendered(function () {
-	if (Bonus.isInBonus(Router.current().params._id)) {
-		PomodoroTimer.start();
-		if (Route.isBox()) {
-			let leitnerTask = LeitnerTasks.findOne();
-			if (leitnerTask.timer.workload !== undefined) {
-				PomodoroTimer.restoreWorkloadTime(leitnerTask.timer.workload);
-			}
-		}
-	}
 	if (localStorage.getItem(MainNavigation.getFirstTimeLeitnerString()) !== "true" && Route.isBox() && !NavigatorCheck.isSmartphone()) {
 		$('#helpModal').modal('show');
 	}

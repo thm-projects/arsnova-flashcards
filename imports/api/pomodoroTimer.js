@@ -6,7 +6,11 @@ import swal from "sweetalert2";
 import * as config from "../config/pomodoroTimer.js";
 import {LeitnerTasks} from "./subscriptions/leitnerTasks";
 
-Session.set('pomodoroBreakActive', false);
+if (Meteor.isClient) {
+	Session.set('pomodoroBreakActive', false);
+	Session.setDefault('presentationPomodoroActive', false);
+}
+
 /*This is a ton of script, mostly popups, so strap in for a wild ride!*/
 /*endPom is the angle of the minute hand at which the work period will end.*/
 let defaultEndPom = 0;
@@ -40,7 +44,6 @@ let breakRunning = defaultBreakRunning;
 
 let isClockInBigmode = false;
 let cloudShown = true;
-Session.setDefault('presentationPomodoroActive', false);
 
 //which pomodoro sound
 let isBellSoundEnabled;
@@ -146,18 +149,156 @@ export let PomodoroTimer = class PomodoroTimer {
 		}
 	}
 
-	/*the arcs around the clock get redrawn every second, as do the hands on the clock, thanks to this setInterval function. It runs every second.*/
-	static interval () {
-		/*here, we get the current time, and since there are 360 degrees around a circle, and 60 minutes in an hour, each minute is 360/60 = 6 degrees of rotation. multiply that by the number of minutes and add the seconds and their corresponding degree value and you get a minute hand that moves every second. Similar with the hour hand.*/
-		let d = new Date();
-		this.setMinutePoisition();
-		this.setHourPosition();
+	static startBreakAlert () {
 		let dialogue = {
 			title: "",
 			html: "",
 			cancel: "",
 			confirm: ""
 		};
+		pomRunning = false;
+
+		/*the bell to signify the end of a period*/
+		if (isBellSoundEnabled) {
+			config.bellSound.play();
+		}
+
+		/*a work period just ended, so increase the total pomodoros done by one.*/
+		totalPoms++;
+
+		/*erase all the arcs, because you want the next period to start when the confirm button is clicked, not immediately after the previous period. That gives you time to finish what you were doing without being penalized.*/
+		this.updateArcs();
+		/*the first sweet alert! This is what pops up when you finish a pomodoro. It congradulates the user and lets them start their break when they are ready. There is no option to stop the session in this box, that function is relegated to the second click on the clock, as noted by the title.*/
+		if (Route.isPresentation() || Route.isDemo()) {
+			dialogue.title = TAPi18n.__('pomodoro.sweetAlert.presentation.break.start.title');
+			dialogue.html = TAPi18n.__('pomodoro.sweetAlert.presentation.break.start.text', {
+				pomodoroBreak: breakLength,
+				pomodoroTotal: totalPoms,
+				pomodoro: TAPi18n.__('pomodoro.name', {count: totalPoms})
+			});
+			dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.presentation.break.start.button.confirm');
+		} else {
+			if (Bonus.isInBonus(Router.current().params._id)) {
+				dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.break.start.title');
+				dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.break.start.text', {
+					pomodoroBreak: breakLength,
+					pomodoroTotal: totalPoms,
+					pomodoro: TAPi18n.__('pomodoro.name', {count: totalPoms})
+				});
+				dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.break.start.button.confirm');
+			} else {
+				dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.break.start.title');
+				dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.break.start.text', {
+					pomodoroBreak: breakLength,
+					pomodoroTotal: totalPoms,
+					pomodoro: TAPi18n.__('pomodoro.name', {count: totalPoms})
+				});
+				dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.break.start.button.confirm');
+			}
+		}
+		this.updateServerTimerIntervalStop();
+		swal.fire({
+			title: dialogue.title,
+			html: dialogue.html,
+			type: "success",
+			confirmButtonText: dialogue.confirm,
+			allowOutsideClick: false
+		}).then(() => {
+			/*and this is what runs when the user clicks the confirm button on the popup. It starts the break, and gets the current time and sets the end from there.*/
+			if (Route.isBox()) {
+				Meteor.call('startLeitnerBreak', Router.current().params._id);
+				this.updateServerTimerIntervalStart();
+			}
+			breakRunning = true;
+			Session.set('pomodoroBreakActive', breakRunning);
+			let popTime = new Date();
+			breakBeginAngle = 6 * popTime.getMinutes() + popTime.getSeconds() / 10;
+			endBreak = 6 * popTime.getMinutes() + popTime.getSeconds() / 10 + 6 * breakLength;
+		});
+	}
+
+	static endBreakAlert () {
+		let dialogue = {
+			title: "",
+			html: "",
+			cancel: "",
+			confirm: ""
+		};
+		breakRunning = false;
+		Session.set('pomodoroBreakActive', breakRunning);
+		if (isBellSoundEnabled) {
+			config.bellSound.play();
+		}
+
+		$(".progressArc").attr("d", this.describeArc(0, 0, 0, 0, 0));
+		$(".breakArc").attr("d", this.describeArc(0, 0, 0, 0, 0));
+		/*in the pomodoro productivity set up, every 4 pomodoros you get a 15 minute break. I decided to make it proportional to the user chosen break length. If you just did 3 pomodoros, your next break will be longer, and if you have just completed your 4th break, this sets the break length back to 5mins*/
+		if (Route.isDemo()) {
+			if ((totalPoms + 1) % config.defaultDemoSettings.longBreak.goal === 0) {
+				breakLength = config.defaultDemoSettings.longBreak.length;
+			} else if (totalPoms % config.defaultDemoSettings.longBreak.goal === 0) {
+				breakLength = config.defaultDemoSettings.break.length;
+			}
+		} else if (Route.isPresentation()) {
+			if ((totalPoms + 1) % config.defaultPresentationSettings.longBreak.goal === 0) {
+				breakLength = config.defaultPresentationSettings.longBreak.length;
+			} else if (totalPoms % config.defaultPresentationSettings.longBreak.goal === 0) {
+				breakLength = config.defaultPresentationSettings.break.length;
+			}
+		} else {
+			if ((totalPoms + 1) % config.defaultSettings.longBreak.goal === 0) {
+				breakLength = config.defaultSettings.longBreak.length;
+			} else if (totalPoms % config.defaultSettings.longBreak.goal === 0) {
+				breakLength = config.defaultSettings.break.length;
+			}
+		}
+		if (Route.isPresentation() || Route.isDemo()) {
+			dialogue.title = TAPi18n.__('pomodoro.sweetAlert.presentation.break.end.title');
+			dialogue.html = TAPi18n.__('pomodoro.sweetAlert.presentation.break.end.text', {
+				pomodoroLength: pomLength
+			});
+			dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.presentation.break.end.button.confirm');
+		} else {
+			if (Bonus.isInBonus(Router.current().params._id)) {
+				dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.break.end.title');
+				dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.break.end.text', {
+					pomodoroLength: pomLength
+				});
+				dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.break.end.button.confirm');
+			} else {
+				dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.break.end.title');
+				dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.break.end.text', {
+					pomodoroLength: pomLength
+				});
+				dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.break.end.button.confirm');
+			}
+		}
+		this.updateServerTimerIntervalStop();
+		swal.fire({
+			title: dialogue.title,
+			html: dialogue.html,
+			confirmButtonText: dialogue.confirm,
+			allowOutsideClick: false
+		}).then(() => {
+			/*starts the work cycle up again, automatically.*/
+			if (Route.isBox()) {
+				Meteor.call('endLeitnerBreak', Router.current().params._id);
+				PomodoroTimer.updateServerTimerIntervalStart();
+			}
+			pomRunning = true;
+			let popTime = new Date();
+			endPom = 6 * popTime.getMinutes() + popTime.getSeconds() / 10 + 6 * pomLength;
+			endBreak = endPom + 6 * breakLength;
+			pomBeginAngle = 6 * popTime.getMinutes() + popTime.getSeconds() / 10;
+		});
+	}
+
+	/*the arcs around the clock get redrawn every second, as do the hands on the clock, thanks to this setInterval function. It runs every second.*/
+	static interval () {
+		/*here, we get the current time, and since there are 360 degrees around a circle, and 60 minutes in an hour, each minute is 360/60 = 6 degrees of rotation. multiply that by the number of minutes and add the seconds and their corresponding degree value and you get a minute hand that moves every second. Similar with the hour hand.*/
+		let d = new Date();
+		this.setMinutePoisition();
+		this.setHourPosition();
 		/*this if statement fixes a problem with drawing the arcs once the minute hand passes the hour. drawing the arcs only works if the second point on the circle is greater than the first, which is a problem if say, the beginning of the arc is at 300 degrees and the end passes 0 and ends at 15 degrees. this lets the arc get drawn correctly, and still trigger the end of work period event*/
 		if (d.getMinutes() === 0 && d.getSeconds() < 5) {
 			if (endPom >= 360) {
@@ -173,66 +314,7 @@ export let PomodoroTimer = class PomodoroTimer {
 
 		/*this is the trigger to end the work period. it ends when the polar coodinates of the minute hand match the polar coodinates of the end of the work arc*/
 		if ((6 * d.getMinutes() + d.getSeconds() / 10 >= endPom - 0.1 && 6 * d.getMinutes() + d.getSeconds() / 10 <= endPom + 0.1) && pomRunning) {
-			pomRunning = false;
-
-			/*the bell to signify the end of a period*/
-			if (isBellSoundEnabled) {
-				config.bellSound.play();
-			}
-
-			/*a work period just ended, so increase the total pomodoros done by one.*/
-			totalPoms++;
-
-			/*erase all the arcs, because you want the next period to start when the confirm button is clicked, not immediately after the previous period. That gives you time to finish what you were doing without being penalized.*/
-			this.updateArcs();
-
-			/*the first sweet alert! This is what pops up when you finish a pomodoro. It congradulates the user and lets them start their break when they are ready. There is no option to stop the session in this box, that function is relegated to the second click on the clock, as noted by the title.*/
-			if (Route.isPresentation() || Route.isDemo()) {
-				dialogue.title = TAPi18n.__('pomodoro.sweetAlert.presentation.break.start.title');
-				dialogue.html = TAPi18n.__('pomodoro.sweetAlert.presentation.break.start.text', {
-					pomodoroBreak: breakLength,
-					pomodoroTotal: totalPoms,
-					pomodoro: TAPi18n.__('pomodoro.name', {count: totalPoms})
-				});
-				dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.presentation.break.start.button.confirm');
-			} else {
-				if (Bonus.isInBonus(Router.current().params._id)) {
-					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.break.start.title');
-					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.break.start.text', {
-						pomodoroBreak: breakLength,
-						pomodoroTotal: totalPoms,
-						pomodoro: TAPi18n.__('pomodoro.name', {count: totalPoms})
-					});
-					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.break.start.button.confirm');
-				} else {
-					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.break.start.title');
-					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.break.start.text', {
-						pomodoroBreak: breakLength,
-						pomodoroTotal: totalPoms,
-						pomodoro: TAPi18n.__('pomodoro.name', {count: totalPoms})
-					});
-					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.break.start.button.confirm');
-				}
-			}
-			this.updateServerTimerIntervalStop();
-			swal.fire({
-				title: dialogue.title,
-				html: dialogue.html,
-				type: "success",
-				confirmButtonText: dialogue.confirm,
-				allowOutsideClick: false
-			}).then(() => {
-				/*and this is what runs when the user clicks the confirm button on the popup. It starts the break, and gets the current time and sets the end from there.*/
-				if (Route.isBox()) {
-					Meteor.call('startLeitnerBreak', Router.current().params._id);
-					this.updateServerTimerIntervalStart();
-				}
-				breakRunning = true;
-				Session.set('pomodoroBreakActive', breakRunning);
-				let popTime = new Date();
-				breakBeginAngle = 6 * popTime.getMinutes() + popTime.getSeconds() / 10;
-				endBreak = 6 * popTime.getMinutes() + popTime.getSeconds() / 10 + 6 * breakLength;
-			});
+			this.startBreakAlert();
 		}
 
 		/*this is what runs every second while the break is active. It just draws the break arc and the progress arc behind it.*/
@@ -243,74 +325,7 @@ export let PomodoroTimer = class PomodoroTimer {
 
 		/*this is what triggers when the angle of the minute hand matches the angle of the end of the break arc*/
 		if ((6 * d.getMinutes() + d.getSeconds() / 10 >= endBreak - 0.1 && 6 * d.getMinutes() + d.getSeconds() / 10 <= endBreak + 0.1) && breakRunning) {
-			breakRunning = false;
-			Session.set('pomodoroBreakActive', breakRunning);
-			if (isBellSoundEnabled) {
-				config.bellSound.play();
-			}
-
-			$(".progressArc").attr("d", this.describeArc(0, 0, 0, 0, 0));
-			$(".breakArc").attr("d", this.describeArc(0, 0, 0, 0, 0));
-
-			/*in the pomodoro productivity set up, every 4 pomodoros you get a 15 minute break. I decided to make it proportional to the user chosen break length. If you just did 3 pomodoros, your next break will be longer, and if you have just completed your 4th break, this sets the break length back to 5mins*/
-			if (Route.isDemo()) {
-				if ((totalPoms + 1) % config.defaultDemoSettings.longBreak.goal === 0) {
-					breakLength = config.defaultDemoSettings.longBreak.length;
-				} else if (totalPoms % config.defaultDemoSettings.longBreak.goal === 0) {
-					breakLength = config.defaultDemoSettings.break.length;
-				}
-			} else if (Route.isPresentation()) {
-				if ((totalPoms + 1) % config.defaultPresentationSettings.longBreak.goal === 0) {
-					breakLength = config.defaultPresentationSettings.longBreak.length;
-				} else if (totalPoms % config.defaultPresentationSettings.longBreak.goal === 0) {
-					breakLength = config.defaultPresentationSettings.break.length;
-				}
-			} else {
-				if ((totalPoms + 1) % config.defaultSettings.longBreak.goal === 0) {
-					breakLength = config.defaultSettings.longBreak.length;
-				} else if (totalPoms % config.defaultSettings.longBreak.goal === 0) {
-					breakLength = config.defaultSettings.break.length;
-				}
-			}
-			if (Route.isPresentation() || Route.isDemo()) {
-				dialogue.title = TAPi18n.__('pomodoro.sweetAlert.presentation.break.end.title');
-				dialogue.html = TAPi18n.__('pomodoro.sweetAlert.presentation.break.end.text', {
-					pomodoroLength: pomLength
-				});
-				dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.presentation.break.end.button.confirm');
-			} else {
-				if (Bonus.isInBonus(Router.current().params._id)) {
-					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.break.end.title');
-					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.break.end.text', {
-						pomodoroLength: pomLength
-					});
-					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.break.end.button.confirm');
-				} else {
-					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.break.end.title');
-					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.break.end.text', {
-						pomodoroLength: pomLength
-					});
-					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.break.end.button.confirm');
-				}
-			}
-			this.updateServerTimerIntervalStop();
-			swal.fire({
-				title: dialogue.title,
-				html: dialogue.html,
-				confirmButtonText: dialogue.confirm,
-				allowOutsideClick: false
-			}).then(() => {
-				/*starts the work cycle up again, automatically.*/
-				if (Route.isBox()) {
-					Meteor.call('endLeitnerBreak', Router.current().params._id);
-					PomodoroTimer.updateServerTimerIntervalStart();
-				}
-				pomRunning = true;
-				let popTime = new Date();
-				endPom = 6 * popTime.getMinutes() + popTime.getSeconds() / 10 + 6 * pomLength;
-				endBreak = endPom + 6 * breakLength;
-				pomBeginAngle = 6 * popTime.getMinutes() + popTime.getSeconds() / 10;
-			});
+			this.endBreakAlert();
 		}
 	}
 
@@ -710,7 +725,24 @@ export let PomodoroTimer = class PomodoroTimer {
 		endBreak = defaultEndBreak;
 		pomRunning = defaultPomRunning;
 		breakRunning = defaultBreakRunning;
-		if (((Route.isBox() || Route.isMemo()) && Bonus.isInBonus(Router.current().params._id)) || Route.isCardset()) {
+		if (Route.isBox()) {
+			let leitnerTask = LeitnerTasks.findOne({user_id: Meteor.userId(), cardset_id: Router.current().params._id});
+			if (leitnerTask !== undefined && leitnerTask.pomodoroTimer !== undefined) {
+				goalPoms = leitnerTask.pomodoroTimer.quantity;
+				pomLength = leitnerTask.pomodoroTimer.workLength;
+				breakLength = leitnerTask.pomodoroTimer.breakLength;
+				isBellSoundEnabled = leitnerTask.pomodoroTimer.soundConfig[0];
+				isSuccessSoundEnabled = leitnerTask.pomodoroTimer.soundConfig[1];
+				isFailSoundEnabled = leitnerTask.pomodoroTimer.soundConfig[2];
+			} else {
+				goalPoms = config.defaultSettings.goal;
+				pomLength = config.defaultSettings.work.length;
+				breakLength = config.defaultSettings.break.length;
+				isBellSoundEnabled = config.defaultSettings.sounds.bell;
+				isSuccessSoundEnabled = config.defaultSettings.sounds.success;
+				isFailSoundEnabled = config.defaultSettings.sounds.failure;
+			}
+		} else if (Route.isCardset()) {
 			let cardset = Cardsets.findOne({_id: Router.current().params._id});
 			if (cardset !== undefined && cardset.learningActive) {
 				goalPoms = cardset.pomodoroTimer.quantity;
@@ -761,6 +793,9 @@ export let PomodoroTimer = class PomodoroTimer {
 		pomRunning = true;
 		pomBeginAngle = 6 * curTime.getMinutes() + curTime.getSeconds() / 10;
 		Session.set('presentationPomodoroActive', true);
+		if (Route.isBox() && Bonus.isInBonus(Router.current().params._id)) {
+			this.restoreWorkloadTime(curTime);
+		}
 		/* Method for WelcomePage */
 		this.showPomodoroFullsize();
 	}
@@ -827,9 +862,85 @@ export let PomodoroTimer = class PomodoroTimer {
 		}
 	}
 
-	static restoreWorkloadTime (workloadTimer = 0) {
-		//Update the already passed Pomodoro Time here
-		console.log(`Time to be restored: ${workloadTimer} Minutes`);
+	static getCurrentBreakLength (leitnerTask) {
+		let length = config.defaultSettings.break.length;
+		if (leitnerTask !== undefined) {
+			if (leitnerTask.timer.break.completed !== 0 && (leitnerTask.timer.break.completed) % config.defaultSettings.longBreak.goal === 0) {
+				length = config.defaultSettings.longBreak.length;
+			} else {
+				length = leitnerTask.pomodoroTimer.breakLength;
+			}
+		}
+		return length;
+	}
+
+	static getRemainingTime (leitnerTask, returnPassedTime = false) {
+		if (leitnerTask !== undefined) {
+			switch (leitnerTask.timer.status) {
+				case 0:
+				case 1:
+					if (returnPassedTime) {
+						return leitnerTask.timer.workload.current;
+					} else {
+						return leitnerTask.pomodoroTimer.workLength - leitnerTask.timer.workload.current;
+					}
+					break;
+				case 2:
+				case 3:
+					if (returnPassedTime) {
+						return leitnerTask.timer.break.current;
+					} else {
+						return this.getCurrentBreakLength(leitnerTask) - leitnerTask.timer.break.current;
+					}
+			}
+		} else {
+			return 30;
+		}
+	}
+
+	static restoreWorkloadTime (curTime) {
+		if (Bonus.isInBonus(Router.current().params._id)) {
+			if (Route.isBox()) {
+				let leitnerTask = LeitnerTasks.findOne({}, {sort: {createdAt: -1}});
+				if (leitnerTask !== undefined && leitnerTask.timer !== undefined) {
+					let status = leitnerTask.timer.status;
+					let revertMinutes = this.getRemainingTime(leitnerTask, true);
+					let remainingTime = this.getRemainingTime(leitnerTask);
+					totalPoms = leitnerTask.timer.workload.completed;
+					breakLength = this.getCurrentBreakLength(leitnerTask);
+
+					let curPosition = 6 * curTime.getMinutes() + curTime.getSeconds() / 10;
+					if (status === 0 && remainingTime <= 0) {
+						status = 1;
+					} else if (status === 2 && remainingTime <= 0) {
+						status = 3;
+					}
+
+					switch (status) {
+						case 0:
+							pomRunning = true;
+							breakRunning = false;
+							endPom = (curPosition + 6 * (pomLength - revertMinutes));
+							endBreak = (endPom + 6 * breakLength);
+							pomBeginAngle = curPosition - 6 * revertMinutes;
+							break;
+						case 1:
+							this.startBreakAlert();
+							break;
+						case 2:
+							pomRunning = false;
+							breakRunning = true;
+							breakBeginAngle = curPosition - (6 * revertMinutes);
+							endBreak = curPosition + 6 * (breakLength - revertMinutes);
+							break;
+						case 3:
+							this.endBreakAlert();
+							break;
+					}
+					Session.set('pomodoroBreakActive', breakRunning);
+				}
+			}
+		}
 	}
 
 	static updateServerTimerStart () {
