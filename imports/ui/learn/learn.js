@@ -44,6 +44,7 @@ Template.learnAlgorithms.onDestroyed(function () {
 	if (Route.isBox() && Bonus.isInBonus(Router.current().params._id)) {
 		PomodoroTimer.updateServerTimerIntervalStop();
 	}
+	PomodoroTimer.showPomodoroFullsize();
 });
 
 Template.learnAlgorithms.onRendered(function () {

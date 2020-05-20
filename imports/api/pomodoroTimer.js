@@ -197,6 +197,9 @@ export let PomodoroTimer = class PomodoroTimer {
 			}
 		}
 		this.updateServerTimerIntervalStop();
+		if (Route.isBox() || Route.isMemo()) {
+			this.showPomodoroFullsize();
+		}
 		swal.fire({
 			title: dialogue.title,
 			html: dialogue.html,
@@ -284,6 +287,9 @@ export let PomodoroTimer = class PomodoroTimer {
 			if (Route.isBox()) {
 				Meteor.call('endLeitnerBreak', Router.current().params._id);
 				PomodoroTimer.updateServerTimerIntervalStart();
+			}
+			if (Route.isBox() || Route.isMemo()) {
+				this.showPomodoroNormal();
 			}
 			pomRunning = true;
 			let popTime = new Date();
@@ -384,7 +390,7 @@ export let PomodoroTimer = class PomodoroTimer {
 					});
 					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.presentation.end.button.cancel');
 					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.presentation.end.button.confirm');
-				} else if (Bonus.isInBonus(Router.current().params._id)) {
+				} else if (Bonus.isInBonus(Router.current().params._id) && Route.isBox()) {
 					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.title');
 					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.text', {
 						missingPomodoros: count,
@@ -426,7 +432,7 @@ export let PomodoroTimer = class PomodoroTimer {
 								config.failSound.play();
 							}
 
-							if (Bonus.isInBonus(Router.current().params._id)) {
+							if (Bonus.isInBonus(Router.current().params._id) && Route.isBox()) {
 								dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.confirm.title');
 								dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.confirm.text', {
 									pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
@@ -544,7 +550,7 @@ export let PomodoroTimer = class PomodoroTimer {
 				});
 			}
 		} else {
-			if (!Bonus.isInBonus(Router.current().params._id)) {
+			if (!Bonus.isInBonus(Router.current().params._id) && (!Route.isMemo() || !Route.isBox())) {
 				/*and if you're not currently in a session, this activates the starting pop up*/
 				$("#pomodoroTimerModal").modal();
 			}
@@ -797,7 +803,9 @@ export let PomodoroTimer = class PomodoroTimer {
 			this.restoreWorkloadTime(curTime);
 		}
 		/* Method for WelcomePage */
-		this.showPomodoroFullsize();
+		if (!Route.isBox() && !Route.isMemo()) {
+			this.showPomodoroFullsize();
+		}
 	}
 
 	static isPomodoroRunning () {
@@ -805,8 +813,9 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	static showPomodoroFullsize () {
-		if ($(document).has('#pomodoroTimerNormalContainer').length) {
-			$('.pomodoroTimer').detach().appendTo('#pomodoroTimerOverlay .svg-container');
+		if ($(document).has('#pomodoroTimerNormalContainer').length || (Route.isBox() || Route.isMemo())) {
+			$('#pomodoroTimerOverlay .svg-container').html($('.pomodoroTimer').first().clone());
+
 			isClockInBigmode = true;
 			$('#pomodoroTimerOverlay').css('display', 'block');
 			$('#pomodoroTimerNormalContainer').css('display', 'none');
@@ -814,17 +823,17 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	static showPomodoroNormal () {
-		if ($(document).has('#pomodoroTimerNormalContainer').length) {
-			isClockInBigmode = false;
-			if (document.fullscreenElement) {
+		if ($(document).has('#pomodoroTimerNormalContainer').length || (Route.isBox() || Route.isMemo())) {
+			if (document.fullscreenElement && (!Route.isBox() && !Route.isMemo())) {
 				document.exitFullscreen();
 			}
+			$('#pomodoroTimerNormalContainer').css('display', 'block');
 			$('.modal-backdrop').css('display', 'none');
 			$('#pomodoroTimerOverlay').css('display', 'none');
-			$('#pomodoroTimerNormalContainer').css('display', 'block');
 			$('#pomodoroTimerOverlay .pomodoroClock').css('height', 'unset');
-			this.pomoPosition();
+			isClockInBigmode = false;
 		}
+		this.pomoPosition();
 	}
 
 	/**
@@ -865,7 +874,9 @@ export let PomodoroTimer = class PomodoroTimer {
 	static getCurrentBreakLength (leitnerTask) {
 		let length = config.defaultSettings.break.length;
 		if (leitnerTask !== undefined) {
-			if (leitnerTask.timer.break.completed !== 0 && (leitnerTask.timer.break.completed) % config.defaultSettings.longBreak.goal === 0) {
+			let completed = leitnerTask.timer.workload.completed;
+			let longBreakGoal = config.defaultSettings.longBreak.goal;
+			if (completed !== 0 && completed % longBreakGoal === 0) {
 				length = config.defaultSettings.longBreak.length;
 			} else {
 				length = leitnerTask.pomodoroTimer.breakLength;
@@ -908,7 +919,6 @@ export let PomodoroTimer = class PomodoroTimer {
 					let remainingTime = this.getRemainingTime(leitnerTask);
 					totalPoms = leitnerTask.timer.workload.completed;
 					breakLength = this.getCurrentBreakLength(leitnerTask);
-
 					let curPosition = 6 * curTime.getMinutes() + curTime.getSeconds() / 10;
 					if (status === 0 && remainingTime <= 0) {
 						status = 1;
@@ -918,22 +928,32 @@ export let PomodoroTimer = class PomodoroTimer {
 
 					switch (status) {
 						case 0:
+							leitnerTask.timer.workload.completed++;
+							breakLength = this.getCurrentBreakLength(leitnerTask);
 							pomRunning = true;
 							breakRunning = false;
 							endPom = (curPosition + 6 * (pomLength - revertMinutes));
 							endBreak = (endPom + 6 * breakLength);
 							pomBeginAngle = curPosition - 6 * revertMinutes;
+							this.showPomodoroNormal();
 							break;
 						case 1:
+							pomRunning = false;
+							leitnerTask.timer.workload.completed++;
+							breakLength = this.getCurrentBreakLength(leitnerTask);
 							this.startBreakAlert();
 							break;
 						case 2:
 							pomRunning = false;
 							breakRunning = true;
 							breakBeginAngle = curPosition - (6 * revertMinutes);
-							endBreak = curPosition + 6 * (breakLength - revertMinutes);
+							endBreak = curPosition + 6 * (this.getCurrentBreakLength(leitnerTask) - revertMinutes);
+							this.showPomodoroFullsize();
 							break;
 						case 3:
+							pomRunning = false;
+							breakRunning = false;
+							this.showPomodoroFullsize();
 							this.endBreakAlert();
 							break;
 					}
