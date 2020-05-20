@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
+
+:root {
+            /* color */
+            --background-color-1            :   #ffa5f0;
+            --background-color-2            :   #ffbb00;
+            --pufferfish-outline-color      :   #2a1f17;
+            --pufferfish-body-color-1       :   #f7d8c5;
+            --pufferfish-body-color-2       :   #8f552a;
+            --pufferfish-body-color-3       :   #bc9267;
+            --pufferfish-fin-pectoral-color :   var(--pufferfish-body-color-3);
+            --pufferfish-lips-color         :   var(--pufferfish-body-color-3);
+            --pufferfish-tail-color         :   var(--pufferfish-body-color-3);
+            --pufferfish-spike-color        :   var(--pufferfish-body-color-3);
+
+            /* size */
+            --pufferfish-width              :   200px;
+            --pufferfish-height             :   200px;
+            --pufferfish-lips-width         :   20px;
+            --pufferfish-lips-height        :   10px;
+            --pufferfish-eye-size           :   25px;
+            --pufferfish-fin-pectoral-size  :   25px;
+            --pufferfish-tail-size          :   50px;
+            --pufferfish-spike-size         :   10px;
+
+            /* misc */
+            --thick-border                  :   5px solid var(--pufferfish-outline-color);
+            --thin-border                   :   3px solid var(--pufferfish-outline-color);
+            --pufferfish-bloat-duration     :   10s;
+        }
+        @keyframes bgColorAnimate {
+            0%, 5%, 95%, 100% { background: var(--background-color-1) }
+            40%, 60% { background: var(--background-color-2) }
+        }
+        @keyframes bloatAnim {
+            0%, 5%, 95%, 100% { transform: var(--transform-1) }
+            40%, 60% { transform: var(--transform-2) }
+        }
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Balsamiq Sans', cursive;
+            animation: bgColorAnimate var(--pufferfish-bloat-duration) linear infinite;
+        }
+        main {
+            display: flex;
+            flex-direction: column;
+        }
+        .pufferfish {
+            height: var(--pufferfish-height);
+            width: var(--pufferfish-width);
+        }
+        .pufferfish > * {
+            position: absolute;
+        }
+        .pufferfish__body {
+            background: linear-gradient(to bottom, var(--pufferfish-body-color-2) 0%,
+                var(--pufferfish-body-color-2) 60%,
+                var(--pufferfish-body-color-1) 0%);
+            height: var(--pufferfish-height);
+            width: var(--pufferfish-width);
+            border-radius: 50%;
+            border: var(--thick-border);
+            --transform-1: rotateX(70deg);
+            --transform-2: rotateX(0deg);
+        }
+        .pufferfish__body, .pufferfish__eye, .pufferfish__fin-pectoral,
+        .pufferfish__tail, .pufferfish__lips {
+            transform: var(--transform-1);
+            --custom-animation: bloatAnim;
+            animation-name: var(--custom-animation);
+            animation-duration: var(--pufferfish-bloat-duration);
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+        .pufferfish__eye {
+            border-radius: 50%;
+            height: var(--pufferfish-eye-size);
+            width: var(--pufferfish-eye-size);
+            background: var(--pufferfish-outline-color);
+            border: var(--thin-border);
+            box-shadow: inset -6px -2px 0 5px white;
+            --transform-1: translate(10px, 90px);
+            --transform-2: translate(10px, 70px);
+        }
+        @keyframes finPectoralAnim {
+            40%, 41%, 50%, 60% { transform: var(--transform-2) rotate(0deg) }
+            42%, 46% { transform: var(--transform-2) rotate(20deg) }
+            44%, 48% { transform: var(--transform-2) rotate(-20deg) }
+            0%, 5%, 95%, 100% { transform: var(--transform-1) }
+        }
+        .pufferfish__fin-pectoral {
+            background: var(--pufferfish-fin-pectoral-color);
+            width: var(--pufferfish-fin-pectoral-size);
+            height: var(--pufferfish-fin-pectoral-size);
+            border-radius: 80% 20% 20% 80% / 50%;
+            border: var(--thin-border);
+            transform-origin: center left;
+            --transform-1: translate(50px, 90px);
+            --transform-2: translate(50px, 80px);
+            --custom-animation: finPectoralAnim;
+        }
+        @keyframes tailAnim {
+            0%, 5%, 40%, 60%, 95%, 100% { transform: var(--transform-1) }
+            2%, 45%, 55%{ transform: var(--transform-1) rotate(8deg) }
+            50%, 97% { transform: var(--transform-1) rotate(-8deg) }
+        }
+        .pufferfish__tail {
+            background: var(--pufferfish-tail-color);
+            width: var(--pufferfish-tail-size);
+            height: var(--pufferfish-tail-size);
+            border-radius: 80% 20% 20% 80% / 50%;
+            border: var(--thin-border);
+            transform-origin: center left;
+            --transform-1: translate(190px, 80px);
+            --custom-animation: tailAnim;
+        }
+        @keyframes lipsAnim {
+            0%, 5%, 95%, 100% { transform: var(--transform-1) }
+            40%, 41%, 50%, 60% { transform: var(--transform-2) }
+            98%, 2% { transform: var(--transform-3) }
+        }
+        .pufferfish__lips {
+            background: var(--pufferfish-lips-color);
+            width: var(--pufferfish-lips-width);
+            height: var(--pufferfish-lips-height);
+            border-radius: 50%;
+            border: var(--thin-border);
+            transform-origin: center right;
+            --transform-1: translate(-10px, 93px) rotate(20deg);
+            --transform-2: translate(-10px, 93px) rotate(20deg);
+            --transform-3: translate(-8px, 93px) rotate(20deg);
+            --custom-animation: lipsAnim;
+        }
+        .pufferfish__lips::after {
+            background: var(--pufferfish-lips-color);
+            border-radius: 50%;
+            border: var(--thin-border);
+            content: "";
+            position: absolute;
+            width: var(--pufferfish-lips-width);
+            height: var(--pufferfish-lips-height);
+            transform:  translate(0px, 11px) rotate(-40deg);
+        }
+        @keyframes spikeAnim {
+            0%, 20%, 80%, 100% {
+                opacity: 0;
+                transform: var(--transform-2);
+            }
+            40%, 60% {
+                opacity: 1;
+                transform: var(--transform-1);
+            }
+        }
+        .pufferfish__spikes, .pufferfish__spikes::before, .pufferfish__spikes::after {
+            background: var(--pufferfish-spike-color);
+            width: var(--pufferfish-spike-size);
+            height: var(--pufferfish-spike-size);
+            border-radius: 100% 0% 30% 70% / 30% 0% 100% 70%;
+            animation: spikeAnim var(--pufferfish-bloat-duration) linear infinite;
+            transform: translate(var(--transform-1));
+        }
+        .pufferfish__spikes::before, .pufferfish__spikes::after {
+            content: "";
+            position: absolute;
+        }
+        .pufferfish__spikes {
+            --transform-1: translate(68px, 10px);
+            --transform-2: translate(68px, 30px);
+            box-shadow: 44px -10px var(--pufferfish-spike-color),
+                81px 0px var(--pufferfish-spike-color),
+                108px 20px var(--pufferfish-spike-color);
+        }
+        .pufferfish__spikes::before {
+            --transform-1: translate(26px, 18px) rotate(25deg);
+            --transform-2: translate(26px, 18px) rotate(25deg);
+            box-shadow: 45px -11px var(--pufferfish-spike-color),
+                101px -16px var(--pufferfish-spike-color);
+        }
+        .pufferfish__spikes::after {
+            --transform-1: translate(46px, 48px) rotate(55deg);
+            --transform-2: translate(46px, 48px) rotate(55deg);
+            box-shadow: 33px -36px var(--pufferfish-spike-color),
+                68px -55px var(--pufferfish-spike-color);
+        }
+        @keyframes breatheTextAnim {
+            60%, 100% { content: "Ausatmen" }
+            0%, 59% { content: "Einatmen" }
+            100%, 0%, 12%, 50%, 62% { opacity: 0 }
+            15%, 40%, 65%, 90% { opacity: 1 }
+        }
+        .breathe-text {
+            text-align: center;
+            margin: 0 0 20px 0;
+            width: 240px;
+        }
+        .breathe-text::before {
+            content: "BREATHE IN";
+            font-weight: 900;
+            font-size: 1.2rem;
+            letter-spacing: 8px;
+            animation: breatheTextAnim var(--pufferfish-bloat-duration) linear infinite;
+        }
