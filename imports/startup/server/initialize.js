@@ -1320,6 +1320,41 @@ Meteor.startup(function () {
 		);
 	}
 
+	let leitnerTasks = LeitnerTasks.find({"strictWorkloadTimer": {$exists: false}}).fetch();
+	for (let i = 0; i < leitnerTasks.length; i++) {
+		let cardset = Cardsets.findOne({_id: leitnerTasks[i].cardset_id});
+		let pomodoroTimer = {
+			quantity: 4,
+			workLength: 30,
+			break: 5
+		};
+		if (cardset.pomodoroTimer !== undefined) {
+			pomodoroTimer = cardset.pomodoroTimer;
+		}
+		LeitnerTasks.update({
+				_id: leitnerTasks[i]._id
+			},
+			{
+				$set: {
+					pomodoroTimer: pomodoroTimer,
+					strictWorkloadTimer: false,
+					timer: {
+						workload: {
+							current: 0,
+							completed: 0
+						},
+						break: {
+							current: 0,
+							completed: 0
+						},
+						status: 0,
+						lastCallback: new Date()
+					}
+				}
+			}
+		);
+	}
+
 	Cardsets.remove({cardType: 2});
 	Meteor.users.remove(demoCardsetUser[0]._id);
 	Meteor.users.insert(demoCardsetUser[0]);

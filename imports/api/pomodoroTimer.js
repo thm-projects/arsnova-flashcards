@@ -951,7 +951,7 @@ export let PomodoroTimer = class PomodoroTimer {
 							breakRunning = false;
 							endPom = (curPosition + 6 * (pomLength - revertMinutes));
 							endBreak = (endPom + 6 * breakLength);
-							pomBeginAngle = curPosition - 6 * revertMinutes;
+							pomBeginAngle = curPosition - (6 * revertMinutes);
 							this.showPomodoroNormal();
 							break;
 						case 1:
