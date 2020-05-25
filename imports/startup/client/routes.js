@@ -832,7 +832,7 @@ Router.route('/box/:_id', {
 	name: 'box',
 	template: 'learnAlgorithmAccess',
 	subscriptions: function () {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id)];
+		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('latestLeitnerCardsetTask', this.params._id)];
 	},
 	data: function () {
 		let cardset = Cardsets.findOne({_id: this.params._id});

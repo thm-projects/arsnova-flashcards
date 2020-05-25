@@ -23,7 +23,7 @@ Template.pomodoroTimer.onRendered(function () {
 	if (Route.isPresentation() || Route.isBox() || Route.isMemo() || Route.isDemo()) {
 		CardVisuals.resizeFlashcard();
 	}
-	$('.pomodoroTimer').unbind().on('click', function () {
+	$('.pomodoroTimer').bind().on('click', function () {
 		PomodoroTimer.clickClock();
 	});
 	CardVisuals.setPomodoroTimerSize();
@@ -95,6 +95,8 @@ Template.pomodoroTimerModal.events({
 	},
 	'click #startPom': function () {
 		if (Route.requiresUserInputForFullscreen() && !CardVisuals.isFullscreen()) {
+			CardVisuals.toggleFullscreen();
+		} else if (Route.isHome() && !Meteor.user()) {
 			CardVisuals.toggleFullscreen();
 		}
 		PomodoroTimer.start();

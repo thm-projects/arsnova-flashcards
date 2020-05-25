@@ -73,9 +73,16 @@ let defaultDemoSettings = {
 	}
 };
 
-let bellSound = new Audio('/audio/Schulgong.mp3');
-let failSound = new Audio('/audio/fail.mp3');
-let successSound = new Audio('/audio/success.mp3');
+let bellSound;
+let failSound;
+let successSound;
+
+if (!Meteor.isServer) {
+	bellSound = new Audio('/audio/Schulgong.mp3');
+	failSound = new Audio('/audio/fail.mp3');
+	successSound = new Audio('/audio/success.mp3');
+}
+
 
 module.exports = {
 	defaultSettings,

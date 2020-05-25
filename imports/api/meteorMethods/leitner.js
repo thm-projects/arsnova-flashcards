@@ -8,7 +8,8 @@ import {Profile} from "../profile";
 import {UserPermissions} from "../permissions";
 import {CardType} from "../cardTypes";
 import {LeitnerUtilities} from "../../util/leitner";
-
+import {LeitnerTasks} from "../subscriptions/leitnerTasks";
+import {PomodoroTimer} from "../pomodoroTimer";
 
 Meteor.methods({
 	initializeWorkloadData: function (cardset_id, user_id) {
@@ -124,6 +125,7 @@ Meteor.methods({
 		}
 	},
 	updateLeitnerCardIndex: function (cardset_id) {
+		check(cardset_id, String);
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
@@ -134,6 +136,79 @@ Meteor.methods({
 			});
 			for (let i = 0; i < activeLearners.length; i++) {
 				LeitnerUtilities.addLeitnerCards(cardset, activeLearners[i].user_id);
+			}
+		}
+	},
+	updateLeitnerTimer: function (cardset_id) {
+		check(cardset_id, String);
+		let leitnerTask = LeitnerTasks.findOne({
+			user_id: Meteor.userId(),
+			cardset_id: cardset_id
+		}, {
+			sort: {createdAt: -1}
+		});
+		if (leitnerTask !== undefined) {
+			if (leitnerTask.timer.status === 0) {
+				LeitnerUtilities.updateWorkTimer(leitnerTask);
+			} else if (leitnerTask.timer.status === 2) {
+				LeitnerUtilities.updateBreakTimer(leitnerTask);
+			}
+		}
+	},
+	startLeitnerBreak: function (cardset_id) {
+		check(cardset_id, String);
+
+		let leitnerTask = LeitnerTasks.findOne({
+			user_id: Meteor.userId(),
+			cardset_id: cardset_id
+		}, {
+			sort: {createdAt: -1}
+		});
+		if (leitnerTask !== undefined) {
+			if (PomodoroTimer.getRemainingTime(leitnerTask) <= 1) {
+				LeitnerTasks.update({
+						_id: leitnerTask._id
+					},
+					{
+						$set: {
+							'timer.lastCallback': new Date(),
+							'timer.workload.current': 0,
+							'timer.break.current': 0,
+							'timer.status': 2
+
+						},
+						$inc: {
+							'timer.workload.completed': 1
+						}
+					});
+			}
+		}
+	},
+	endLeitnerBreak: function (cardset_id) {
+		check(cardset_id, String);
+
+		let leitnerTask = LeitnerTasks.findOne({
+			user_id: Meteor.userId(),
+			cardset_id: cardset_id
+		}, {
+			sort: {createdAt: -1}
+		});
+		if (leitnerTask !== undefined) {
+			if (PomodoroTimer.getRemainingTime(leitnerTask) <= 1) {
+				LeitnerTasks.update({
+						_id: leitnerTask._id
+					},
+					{
+						$set: {
+							'timer.lastCallback': new Date(),
+							'timer.workload.current': 0,
+							'timer.break.current': 0,
+							'timer.status': 0
+						},
+						$inc: {
+							'timer.break.completed': 1
+						}
+					});
 			}
 		}
 	}

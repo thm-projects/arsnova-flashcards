@@ -382,6 +382,10 @@ const CardsetsSchema = new SimpleSchema({
 	},
 	'arsnovaClick.overrideOnlyEmptySessions': {
 		type: Boolean
+	},
+	strictWorkloadTimer: {
+		type: Boolean,
+		optional: true
 	}
 });
 

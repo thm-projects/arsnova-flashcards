@@ -1128,10 +1128,6 @@ Template.registerHelper("greaterThan0", function (number) {
 	return number > 0;
 });
 
-
-
-
-
-
-
-
+Template.registerHelper("gotLeitnerTimerDebugEnabled", function () {
+	return Meteor.settings.public.debug.leitnerTimer && Route.isBox() && Bonus.isInBonus(Router.current().params._id);
+});

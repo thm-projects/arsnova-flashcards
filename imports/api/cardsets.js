@@ -400,8 +400,9 @@ Meteor.methods({
 	 * @param {boolean} pomodoroTimerSoundConfig - Which sounds are enabled
 	 * @param {Number} errorCount - Number in percent for not known cards of a simulation
 	 * @param {Number} minLearned - The minimum amount of cards that the user has to learn (box 6) to receive the max bonus in %
+	 * @param {boolean} strictWorkloadTimer - Does this Bonus enforce the minimum amount of pomdori time for the workload?
 	 */
-	activateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig, errorCount, minLearned) {
+	activateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig, errorCount, minLearned, strictWorkloadTimer) {
 		check(id, String);
 		check(maxWorkload, Number);
 		check(daysBeforeReset, Number);
@@ -416,6 +417,7 @@ Meteor.methods({
 		check(pomodoroTimerSoundConfig, [Boolean]);
 		check(errorCount, [[Number]]);
 		check(minLearned, Number);
+		check(strictWorkloadTimer, Boolean);
 
 		let cardset = Cardsets.findOne(id);
 		if (cardset !== undefined && !cardset.learningActive && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
@@ -441,7 +443,8 @@ Meteor.methods({
 					'workload.simulator.errorCount': errorCount,
 					'workload.bonus.minLearned': minLearned,
 					dateUpdated: new Date(),
-					lastEditor: Meteor.userId()
+					lastEditor: Meteor.userId(),
+					strictWorkloadTimer: strictWorkloadTimer
 				}
 			});
 			return cardset._id;
@@ -465,8 +468,9 @@ Meteor.methods({
 	 * @param {boolean} pomodoroTimerSoundConfig - Which sounds are enabled
 	 * @param {Number} errorCount - Number in percent for not known cards of a simulation
 	 * @param {Number} minLearned - The minimum amount of cards that the user has to learn (box 6) to receive the max bonus in %
+	 * @param {boolean} strictWorkloadTimer - Does this Bonus enforce the minimum amount of pomdori time for the workload?
 	 */
-	updateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig, errorCount, minLearned) {
+	updateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig, errorCount, minLearned, strictWorkloadTimer) {
 		check(id, String);
 		check(maxWorkload, Number);
 		check(daysBeforeReset, Number);
@@ -481,6 +485,7 @@ Meteor.methods({
 		check(pomodoroTimerSoundConfig, [Boolean]);
 		check(errorCount, [[Number]]);
 		check(minLearned, Number);
+		check(strictWorkloadTimer, Boolean);
 
 		let cardset = Cardsets.findOne(id);
 		if (cardset !== undefined && cardset.learningActive && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
@@ -505,7 +510,8 @@ Meteor.methods({
 					'workload.simulator.errorCount': errorCount,
 					'workload.bonus.minLearned': minLearned,
 					dateUpdated: new Date(),
-					lastEditor: Meteor.userId()
+					lastEditor: Meteor.userId(),
+					strictWorkloadTimer: strictWorkloadTimer
 				}
 			});
 			return cardset._id;

@@ -10,6 +10,10 @@ import {Workload} from "../api/subscriptions/workload";
 import {CardIndex} from "../api/cardIndex";
 import {Utilities} from "../api/utilities";
 import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
+import {PomodoroTimer} from "../api/pomodoroTimer";
+
+// Allow the user to update the timer a few seconds earlier to prevent close calls deny an update
+let minimumSecondThreshold = 57;
 
 function gotPriority(array, card_id, priority) {
 	for (let i = 0; i < array.length; i++) {
@@ -242,6 +246,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			let user = Meteor.users.findOne({_id: user_id});
+			let cardset = Cardsets.findOne(cardset_id);
 			let workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id});
 			let leitnerTask = this.getHighestLeitnerTaskSessionID(cardset_id, user_id);
 			let newSession;
@@ -270,6 +275,20 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						active: user.webNotification,
 						sent: false
 					}
+				},
+				daysBeforeReset: cardset.daysBeforeReset,
+				pomodoroTimer: cardset.pomodoroTimer,
+				strictWorkloadTimer: cardset.strictWorkloadTimer,
+				timer: {
+					workload: {
+						current: 0,
+						completed: 0
+					},
+					break: {
+						current: 0,
+						completed: 0
+					},
+					status: 0
 				},
 				createdAt: new Date()
 			});
@@ -584,6 +603,61 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			return 0;
 		} else {
 			return highestDeletedUserID.user_id_deleted + 1;
+		}
+	}
+
+	static updateWorkTimer (leitnerTask) {
+		if (leitnerTask.timer.lastCallback === undefined) {
+			LeitnerTasks.update({
+					_id: leitnerTask._id
+				},
+				{
+					$set: {
+						'timer.lastCallback': new Date()
+					}
+				});
+		} else {
+			let status = 0;
+			let remainingWorkTime = leitnerTask.pomodoroTimer.workLength - ++leitnerTask.timer.workload.current;
+			if (remainingWorkTime === 0) {
+				status = 1;
+			}
+			if (moment(moment()).diff(moment(leitnerTask.timer.lastCallback), 'seconds') > minimumSecondThreshold) {
+				LeitnerTasks.update({
+						_id: leitnerTask._id
+					},
+					{
+						$set: {
+							'timer.lastCallback': new Date(),
+							'timer.status': status
+						},
+						$inc: {
+							'timer.workload.current': 1
+						}
+					});
+			}
+		}
+	}
+
+	static updateBreakTimer (leitnerTask) {
+		if (moment(moment()).diff(moment(leitnerTask.timer.lastCallback), 'seconds') > minimumSecondThreshold) {
+			let status = 2;
+			let remainingWorkTime = PomodoroTimer.getCurrentBreakLength(leitnerTask) - ++leitnerTask.timer.break.current;
+			if (remainingWorkTime === 0) {
+				status = 3;
+			}
+			LeitnerTasks.update({
+					_id: leitnerTask._id
+				},
+				{
+					$set: {
+						'timer.lastCallback': new Date(),
+						'timer.status': status
+					},
+					$inc: {
+						'timer.break.current': 1
+					}
+				});
 		}
 	}
 };

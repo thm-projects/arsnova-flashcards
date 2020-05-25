@@ -1,5 +1,8 @@
 <template name="learnAlgorithmAccess">
     {{#if hasPermission}}
+        {{#if gotLeitnerTimerDebugEnabled}}
+            {{> mainOverlaysDebugLeitnerItem}}
+        {{/if}}
         {{#if isInBonusAndProfileIncomplete}}
             {{> accessDenied}}
         {{else}}

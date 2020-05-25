@@ -14,6 +14,8 @@ import {CardsetNavigation} from "./cardsetNavigation";
 import {MainNavigation} from "./mainNavigation";
 import {ServerStyle} from "./styles";
 import {PDFViewer} from "../util/pdfViewer";
+import {Bonus} from "./bonus";
+import {PomodoroTimer} from "./pomodoroTimer";
 
 let keyEventsUnlocked = true;
 let lastActiveCardString = "lastActiveCard";
@@ -452,7 +454,9 @@ export let CardNavigation = class CardNavigation {
 			if (document.fullscreenElement === null && Session.get('fullscreen')) {
 				if (Route.isPresentation()) {
 					SweetAlertMessages.continuePresentation();
-				} else if (Route.isBox() || Route.isMemo()) {
+				} else if ((Route.isBox() && !Bonus.isInBonus(Router.current().params._id)) || Route.isMemo()) {
+					SweetAlertMessages.activateFullscreen();
+				} else if (Route.isBox() && Bonus.isInBonus(Router.current().params._id) && !PomodoroTimer.isTransitionRequest()) {
 					SweetAlertMessages.activateFullscreen();
 				} else {
 					$(".toggleFullscreen").click();
