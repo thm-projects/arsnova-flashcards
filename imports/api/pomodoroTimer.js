@@ -207,6 +207,9 @@ export let PomodoroTimer = class PomodoroTimer {
 			confirmButtonText: dialogue.confirm,
 			allowOutsideClick: false
 		}).then(() => {
+			if (document.fullscreenElement === null) {
+				document.documentElement.requestFullscreen();
+			}
 			/*and this is what runs when the user clicks the confirm button on the popup. It starts the break, and gets the current time and sets the end from there.*/
 			if (Route.isBox()) {
 				Meteor.call('startLeitnerBreak', Router.current().params._id);
@@ -289,6 +292,9 @@ export let PomodoroTimer = class PomodoroTimer {
 			confirmButtonText: dialogue.confirm,
 			allowOutsideClick: false
 		}).then(() => {
+			if (document.fullscreenElement === null) {
+				document.documentElement.requestFullscreen();
+			}
 			/*starts the work cycle up again, automatically.*/
 			if (Route.isBox()) {
 				Meteor.call('endLeitnerBreak', Router.current().params._id);
@@ -429,6 +435,9 @@ export let PomodoroTimer = class PomodoroTimer {
 					if (result.value) {
 						if (Route.isDemo()) {
 							this.setPresentationPomodoro(true);
+						}
+						if ((Route.isBox() || Route.isMemo()) && document.fullscreenElement === null) {
+							document.documentElement.requestFullscreen();
 						}
 					}
 					/*If you give up before you complete your goal you get a failure sound, taken from a show me and my lady have been watching lately, and a failure box. Shame!*/
@@ -821,7 +830,9 @@ export let PomodoroTimer = class PomodoroTimer {
 	static showPomodoroFullsize () {
 		if ($(document).has('#pomodoroTimerNormalContainer').length || (Route.isBox() || Route.isMemo())) {
 			$('#pomodoroTimerOverlay .svg-container').html($('.pomodoroTimer').first().clone());
-
+			$('#pomodoroTimerOverlay .svg-container .pomodoroTimer').bind().on('click', function () {
+				PomodoroTimer.clickClock();
+			});
 			isClockInBigmode = true;
 			$('#pomodoroTimerOverlay').css('display', 'block');
 			$('#pomodoroTimerNormalContainer').css('display', 'none');
@@ -1003,6 +1014,18 @@ export let PomodoroTimer = class PomodoroTimer {
 		if (workloadTimerInterval !== undefined) {
 			clearInterval(workloadTimerInterval);
 			workloadTimerInterval = undefined;
+		}
+	}
+
+	static isTransitionRequest () {
+		let leitnerTask = LeitnerTasks.findOne({
+			user_id: Meteor.userId(),
+			cardset_id: Router.current().params._id
+		}, {
+			sort: {createdAt: -1}
+		});
+		if (leitnerTask !== undefined && (leitnerTask.timer.status === 1 || leitnerTask.timer.status === 3)) {
+			return true;
 		}
 	}
 };

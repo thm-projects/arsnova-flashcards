@@ -10,7 +10,6 @@ import {Workload} from "../api/subscriptions/workload";
 import {CardIndex} from "../api/cardIndex";
 import {Utilities} from "../api/utilities";
 import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
-import {defaultSettings} from "../config/pomodoroTimer";
 import {PomodoroTimer} from "../api/pomodoroTimer";
 
 // Allow the user to update the timer a few seconds earlier to prevent close calls deny an update
