@@ -1328,7 +1328,7 @@ Meteor.startup(function () {
 			workLength: 30,
 			break: 5
 		};
-		if (cardset.pomodoroTimer !== undefined) {
+		if (cardset !== undefined && cardset.pomodoroTimer !== undefined) {
 			pomodoroTimer = cardset.pomodoroTimer;
 		}
 		LeitnerTasks.update({
