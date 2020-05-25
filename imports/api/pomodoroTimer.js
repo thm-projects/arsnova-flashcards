@@ -249,10 +249,16 @@ export let PomodoroTimer = class PomodoroTimer {
 				breakLength = config.defaultPresentationSettings.break.length;
 			}
 		} else {
-			if ((totalPoms + 1) % config.defaultSettings.longBreak.goal === 0) {
-				breakLength = config.defaultSettings.longBreak.length;
-			} else if (totalPoms % config.defaultSettings.longBreak.goal === 0) {
-				breakLength = config.defaultSettings.break.length;
+			if (Bonus.isInBonus(Router.current().params._id)) {
+				let leitnerTask = LeitnerTasks.findOne({}, {sort: {createdAt: -1}});
+				leitnerTask.timer.workload.completed++;
+				breakLength = this.getCurrentBreakLength(leitnerTask);
+			} else {
+				if ((totalPoms + 1) % config.defaultSettings.longBreak.goal === 0) {
+					breakLength = config.defaultSettings.longBreak.length;
+				} else if (totalPoms % config.defaultSettings.longBreak.goal === 0) {
+					breakLength = config.defaultSettings.break.length;
+				}
 			}
 		}
 		if (Route.isPresentation() || Route.isDemo()) {

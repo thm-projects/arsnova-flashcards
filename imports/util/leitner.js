@@ -11,6 +11,7 @@ import {CardIndex} from "../api/cardIndex";
 import {Utilities} from "../api/utilities";
 import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
 import {defaultSettings} from "../config/pomodoroTimer";
+import {PomodoroTimer} from "../api/pomodoroTimer";
 
 // Allow the user to update the timer a few seconds earlier to prevent close calls deny an update
 let minimumSecondThreshold = 57;
@@ -642,11 +643,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 	static updateBreakTimer (leitnerTask) {
 		if (moment(moment()).diff(moment(leitnerTask.timer.lastCallback), 'seconds') > minimumSecondThreshold) {
 			let status = 2;
-			let timerGoal = leitnerTask.pomodoroTimer.breakLength;
-			if (leitnerTask.timer.break.completed !== 0 && leitnerTask.timer.break.completed % defaultSettings.longBreak.goal === 0) {
-				timerGoal = defaultSettings.longBreak.length;
-			}
-			let remainingWorkTime = timerGoal - ++leitnerTask.timer.break.current;
+			let remainingWorkTime = PomodoroTimer.getCurrentBreakLength(leitnerTask) - ++leitnerTask.timer.break.current;
 			if (remainingWorkTime === 0) {
 				status = 3;
 			}
