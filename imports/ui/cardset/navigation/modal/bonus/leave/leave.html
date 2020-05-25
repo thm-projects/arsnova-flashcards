@@ -11,7 +11,9 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <p>{{_ "bonus.form-leave.message"}}</p>
+                    {{#markdeep}}
+                        {{> leaveBonusFormContent}}
+                    {{/markdeep}}
                     <hr>
                 </div>
                 <div class="modal-footer">
