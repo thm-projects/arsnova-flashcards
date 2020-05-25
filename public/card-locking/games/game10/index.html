@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Connect Four in Vue and CSS</title>
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan+2:400,700&display=swap" rel="stylesheet"><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="game">
+
+	<div id="winner-burst" :class="[currentTurnColor, gameOver && 'burst']"></div>
+
+	<div class="flex">
+		<p v-html="message" role="status"></p>
+		<button :disabled="!areThereMoves" @click="startNewGame">New game</button>
+	</div>
+
+	<div id="button-board">
+		<div v-for="i in 8" :data-column="i - 1" @click.stop="dropPiece">
+			<button :data-column="i - 1" @click.stop="dropPiece" @keydown="handleMoveCursor" @mouseover="handleHover" :aria-label="`Drop ${currentTurnColor} piece in column ${i}`" :tabindex="gameOver || isADraw ? '-1' : '0'">
+				<span></span>
+			</button>
+			<div class="slot" :hidden="gameOver || isADraw" aria-hidden="true">
+				<div :class="currentTurnColor">
+					{{ getPieceIcon(currentTurnColor) }}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="board">
+		<template v-for="row, rowNumber in grid">
+			<template v-for="slot, slotNumber in row">
+				<div class="slot shadow" @click="dropPiece" @mouseover="handleSlotHover" :style="slot.color && `animation: drop 0.05s forwards steps(6)`" :data-row="rowNumber" :data-column="slotNumber" :key="`${rowNumber}${slotNumber}`" :aria-label="`${slot.color && slot.color + ' piece' || 'Blank slot'} in column ${slotNumber +1} of 8, row ${rowNumber +1} of 6.` ">
+					<div v-if="slot.color" :class="[slot.color, gameOver && currentTurnColor != slot.color && 'loser']" aria-hidden="true">
+						{{ getPieceIcon(slot.color) }}
+					</div>
+				</div>
+			</template>
+		</template>
+	</div>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>

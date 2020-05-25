@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Cat and Mouse</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="tracker">
+	<!-- I found that mouse tracking doesn't work well with an SVG; the browser changes the window position when hovering over the SVG. The solution was to instead create an invisible element (this one) over the top of the page that tracks the movements, and to use JS to fake the other hover effects.	 -->
+</div>
+
+<div id="text">
+	<p>Move your mouse to <span class="highlight">play&nbsp;with&nbsp;the&nbsp;cat.</span></p>
+	<p>Click the button to <span class="highlight">get&nbsp;back&nbsp;to&nbsp;work.</span></p>
+</div>
+
+<main>
+	<button id="target">
+		Stop<br />playing
+		<img id="cursor" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/240751/mac-osx-arrow-cursor.png" alt="">
+	</button>
+	<!-- SVG created with Affinity Designer -->
+	<svg id="Cat" width="100%" height="100%" viewBox="-80 0 200 199" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;"><rect id="Artboard1" x="0" y="0" width="104.557" height="198.931" style="fill:none;"/><path id="Body" d="M21.605,75.113c2.759,17.247 -5.015,37.589 -6.724,59.831c-1.71,22.241 0.016,62.893 30.999,62.893c0.946,0 1.873,-0.075 2.784,-0.058c34.988,0.655 40.376,-21.661 35.482,-45.091c-5.047,-24.167 -22.908,-35.604 -24.535,-74.071c-1.627,-38.467 -42.011,-28.548 -38.006,-3.504Z"/><path id="Head-main" serif:id="Head main" d="M60.011,27.971c4.811,-11.449 12.131,-28.237 13.564,-27.938c2.015,0.422 6.111,41.652 6.688,47.562c0.027,0.233 0.049,0.467 0.068,0.702l0,0.001l0,0c0.043,0.537 -0.064,1.099 0.064,1.639c4.823,20.225 -6.8,28.68 -39.075,28.68c-32.275,0 -43.354,-10.637 -39.075,-28.68c0.128,-0.541 0.022,-1.102 0.064,-1.64l-0.064,0.001c0,0 5.295,-47.81 7.466,-48.265c1.425,-0.298 8.674,16.308 13.486,27.752c5.404,-1.544 11.553,-2.337 18.078,-2.337c6.783,0 13.168,0.856 18.736,2.523Z"/><g id="Left-eye" serif:id="Left eye"><circle cx="17.962" cy="55.289" r="11.393" style="fill:#fff;"/><g id="Left-eye-pupil" serif:id="Left eye pupil"><circle cx="16.068" cy="53.396" r="9.499"/><circle cx="13.934" cy="48.382" r="2.134" style="fill:#fff;"/></g></g><g id="Right-eye" serif:id="Right eye"><circle cx="64.679" cy="55.289" r="11.393" style="fill:#fff;"/><g id="Right-eye-pupil" serif:id="Right eye pupil"><circle cx="61.777" cy="53.396" r="9.499"/><circle cx="59.643" cy="48.382" r="2.134" style="fill:#fff;"/></g></g><path id="Tail" d="M80.004,178.286c-0.131,0.058 12.828,-18.528 5.347,-42.302c-7.482,-23.774 2.767,-37.597 13.789,-42.67" style="fill:none;stroke:#000;stroke-width:8px;"/><path id="Paw" d="M29.354,99.466c-0.04,-20.799 15.679,-43.724 6.404,-62.895" style="fill:none;stroke:#000;stroke-width:10px;"/></svg>
+</main>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>

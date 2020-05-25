@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Tangram Memory Game</title>
+  <link href="https://fonts.googleapis.com/css?family=Ribeye+Marrow|Montserrat:300" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="./style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<h1>Tangram Memory Game</h1>
+<p>Click cards and find matching tangrams</p>
+<div class="board" id="tangramgrid"></div>
+<svg style="display:none" viewBox="0 0 100 100">
+  <defs>
+    <polygon id="tangram1" points="0 0, 50 50, 0 100" />
+    <polygon id="tangram2" points="50 50, 75 25, 100 50, 75 75" />
+    <polygon id="tangram3" points="0 100, 25 75, 75 75, 50 100"/>
+  </defs>
+</svg>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>

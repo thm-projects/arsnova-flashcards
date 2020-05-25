@@ -7,14 +7,16 @@ import {Leitner} from "../../api/subscriptions/leitner";
 import {Wozniak} from "../../api/subscriptions/wozniak";
 import {Cardsets} from "../../api/subscriptions/cardsets";
 import {CardNavigation} from "../../api/cardNavigation";
+import "../main/overlays/debug/leitnerTimer.js";
 import "./learn.html";
 import {PomodoroTimer} from "../../api/pomodoroTimer";
-import {Bonus} from "../../api/bonus";
 import {Route} from "../../api/route";
 import {MainNavigation} from "../../api/mainNavigation";
 import {CardsetNavigation} from "../../api/cardsetNavigation";
 import {NavigatorCheck} from "../../api/navigatorCheck";
 import {CardVisuals} from "../../api/cardVisuals";
+import {Bonus} from "../../api/bonus";
+
 Session.set('animationPlaying', false);
 
 /*
@@ -24,22 +26,28 @@ Session.set('animationPlaying', false);
  */
 
 Template.learnAlgorithms.onCreated(function () {
+	if (Route.isBox() && Bonus.isInBonus(Router.current().params._id)) {
+		PomodoroTimer.updateServerTimerStart();
+		PomodoroTimer.start();
+	}
+	let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {cardType: 1, shuffled: 1, strictWorkloadTimer: 1}});
 	Session.set('activeCard', undefined);
 	Session.set('isQuestionSide', true);
 	Session.set('animationPlaying', false);
-	Session.set('cardType', Cardsets.findOne(Router.current().params._id).cardType);
-	Session.set('shuffled', Cardsets.findOne(Router.current().params._id).shuffled);
+	Session.set('cardType', cardset.cardType);
+	Session.set('shuffled', cardset.shuffled);
 	CardNavigation.toggleVisibility(true);
 });
 
 Template.learnAlgorithms.onDestroyed(function () {
 	Session.set('activeCard', undefined);
+	if (Route.isBox() && Bonus.isInBonus(Router.current().params._id)) {
+		PomodoroTimer.updateServerTimerIntervalStop();
+	}
+	PomodoroTimer.showPomodoroFullsize();
 });
 
 Template.learnAlgorithms.onRendered(function () {
-	if (Bonus.isInBonus(Router.current().params._id)) {
-		PomodoroTimer.start();
-	}
 	if (localStorage.getItem(MainNavigation.getFirstTimeLeitnerString()) !== "true" && Route.isBox() && !NavigatorCheck.isSmartphone()) {
 		$('#helpModal').modal('show');
 	}

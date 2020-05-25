@@ -1,6 +1,10 @@
 <template name="main">
     <div id="pomodoroTimerOverlay">
-        <div class="svg-container"></div>
+        <div class="svg-container">
+            {{#if isLeitnerWozniakRoute}}
+                {{> pomodoroTimer}}
+            {{/if}}
+        </div>
     </div>
     {{checkIfUserIsSelectingACardset}}
     {{> mainModalConnectionStatus}}

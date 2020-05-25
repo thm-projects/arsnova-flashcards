@@ -1,0 +1,15 @@
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(238, 238, 238);
+  background: radial-gradient(
+    circle,
+    rgba(238, 238, 238, 1) 0%,
+    rgba(186, 195, 193, 1) 75%,
+    rgba(126, 199, 189, 1) 100%
+  );
+}

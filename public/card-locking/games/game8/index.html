@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Emoji Match Game</title>
+  <link href="https://fonts.googleapis.com/css?family=Oswald:300,500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="container" style="opacity:0;">
+
+  <div id="game" class="fs">
+
+    <div id="hintBtn">Hint</div>
+    <div class="foundTxt"></div>
+    <div class="timeTxt">30:00</div>
+    <div class="timePlus">+3 sec</div>
+
+    <div id="btnArea">
+      <div id="b1" class="btn"></div>
+    </div>
+
+    <div class="end">
+      <div class="endTxt"></div>
+      <div id="replayBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+                        <rect width="240" height="240" fill="none"/>
+                        <path fill="#fff" d="M120,50V10L70,60l50,50V70c33.11,0,60,26.9,60,60c0,33.11-26.89,60-60,60c-33.1,0-60-26.89-60-60H40 c0,44.2,35.8,80,80,80s80-35.8,80-80S164.2,50,120,50z"/>
+                    </svg>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>

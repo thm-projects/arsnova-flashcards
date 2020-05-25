@@ -31,7 +31,7 @@ wget -qO- https://raw.githubusercontent.com/thm-projects/arsnova-flashcards/mast
 
 ---
 
-**The default port for the app is Port 80. If your Port 80 is already in use, you may configure the forwarded Port in the downloaded docker-compose.yml file.**
+**The default port for the app is Port 8000. If your Port 8000 is already in use, you may configure the forwarded Port in the downloaded docker-compose.yml file.**
 
 ---
 
@@ -112,14 +112,14 @@ If you are about to build the resources yourself or if you would like to develop
 ## Bringing up the application and self-build images automatically
 1. Clone the project
 2. From your project directory run `sudo docker-compose -f .docker/docker-compose.yml up -d --build`\
-  2.1. If your local port 80 is already in use, you can change it in `.docker/docker-compose.yml`
+  2.1. If your local port 8000 is already in use, you can change it in `.docker/docker-compose.yml`
 3. The app is now available under [localhost](http://localhost)
 
 ## Developing with Docker
 You can build and run the development version of cards with docker. Therefore you can use the standard Dockerfile in the projects root directory.
 1. Clone the project
 2. From your project directory run `docker-compose up`
-3. This will brings up the app under Port 80 - you may change this port in the docker-compose.yml file\
+3. This will brings up the app under Port 8000 - you may change this port in the docker-compose.yml file\
   3.1. The first time you run this, it may take a (long) while\
   3.2. If you like to start the containers detached, use command option `-d`\
   3.3. You may run the app with a custom `settings.json`-File by adding it in the docker-compose file as `command`\

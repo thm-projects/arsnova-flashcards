@@ -1,0 +1,105 @@
+body {
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  background-image: radial-gradient(circle farthest-corner at 100% 0%, #ffa500, 50%, lightblue 90%);
+  background-attachment: fixed;
+}
+
+#sun {
+  position: absolute;
+  z-index: -10;
+  top: 2%;
+  right: 0%;
+  font-size: 5em;
+  -webkit-animation: sunshine 180s infinite alternate;
+          animation: sunshine 180s infinite alternate;
+}
+
+@-webkit-keyframes sunshine {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes sunshine {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+.tree {
+  position: absolute;
+  bottom: 40px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-align: center;
+          align-items: center;
+}
+.tree__1, .tree__2, .tree__3, .tree__5 {
+  width: 0;
+  height: 0;
+  border-radius: 10%;
+}
+.tree__5 {
+  /*added this top branch on last-sw */
+  border: 20px solid transparent;
+  border-bottom: 25px solid #a7ac5c;
+}
+.tree__1 {
+  border: 45px solid transparent;
+  border-bottom: 50px solid #878822;
+  margin-top: -60px;
+}
+.tree__2 {
+  border: 60px solid transparent;
+  border-bottom: 65px solid #4a560c;
+  margin-top: -80px;
+}
+.tree__3 {
+  border: 70px solid transparent;
+  border-bottom: 80px solid #303b2b;
+  margin-top: -100px;
+}
+.tree__4 {
+  /*trunk base*/
+  width: 10px;
+  height: 50px;
+  background: #211610;
+}
+
+#grass {
+  background-image: -webkit-gradient(linear, right top, left top, from(#878822), to(#42aa46));
+  background-image: linear-gradient(to left, #878822, #42aa46);
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 40px;
+}
+
+#bug {
+  -webkit-transform-origin: 0% 100%;
+          transform-origin: 0% 100%;
+  -webkit-transform: rotate(100deg);
+          transform: rotate(100deg);
+  -webkit-animation: walk 200s infinite ease-in-out;
+          animation: walk 200s infinite ease-in-out;
+}
+
+@-webkit-keyframes walk {
+  to {
+    -webkit-transform: translateX(102vw) rotate(90deg);
+            transform: translateX(102vw) rotate(90deg);
+  }
+}
+
+@keyframes walk {
+  to {
+    -webkit-transform: translateX(102vw) rotate(90deg);
+            transform: translateX(102vw) rotate(90deg);
+  }
+}

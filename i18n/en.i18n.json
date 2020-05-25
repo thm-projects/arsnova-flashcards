@@ -1090,7 +1090,6 @@
     },
     "form-join": {
       "title": "Bonus-Lernphase beitreten",
-      "message": "Willst du der Bonus-Lernphase beitreten? Beim Beitritt werden deine Lernstände nach Leitner oder Wozniak zurückgesetzt.",
       "button": {
         "confirm": "Beitreten",
         "cancel": "Abbrechen"
@@ -1098,7 +1097,6 @@
     },
     "form-leave": {
       "title": "Bonus-Lernphase verlassen",
-      "message": "Beim Verlassen der Bonusphase wird dein derzeitiger Lernfortschritt gelöscht. Die Lehrperson kann dir dann keine Bonuspunkte mehr anrechnen.",
       "button": {
         "confirm": "Verlassen",
         "cancel": "Abbrechen"
@@ -1166,6 +1164,9 @@
       },
       "intervals": {
         "label": "Wiederholungs-Intervalle in Tagen"
+      },
+      "strictWorkloadTimer": {
+        "label": "Strikte Lernzeit"
       },
       "button": {
         "start": "Bonusphase aktivieren",

@@ -1,4 +1,5 @@
 import "./join.html";
+import "./content/content.js";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 

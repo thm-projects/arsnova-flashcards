@@ -11,7 +11,9 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <p>{{_ "bonus.form-join.message"}}</p>
+                    {{#markdeep}}
+                        {{> joinBonusFormContent}}
+                    {{/markdeep}}
                     <hr>
                 </div>
                 <div class="modal-footer">

@@ -418,7 +418,7 @@ export let CardVisuals = class CardVisuals {
 	}
 
 	static setPomodoroTimerSize () {
-		let pomodoroTimer = $('.pomodoroClock');
+		let pomodoroTimer = $('#cardCarousel .pomodoroClock');
 		let flashcardHeader = $('.cardHeader');
 		let flashcardHeaderLeft = $('.cardHeaderLeft');
 		if (pomodoroTimer.length && flashcardHeader.length && flashcardHeaderLeft.length) {

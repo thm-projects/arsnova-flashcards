@@ -24,10 +24,14 @@ let wrongAnswerMode = 1;
 // From left to right: box 1 - box 5
 let boxAlgorithm = [0.5, 0.2, 0.15, 0.1, 0.05];
 
+// Record and enforce the minimum time spent on a workload (Current implementation only works for breaks)
+let strictWorkloadTimer = true;
+
 module.exports = {
 	fillUpMissingCards,
 	fillUpFromLeftToRight,
 	boxAlgorithm,
 	resetDeadlineMode,
-	wrongAnswerMode
+	wrongAnswerMode,
+	strictWorkloadTimer
 };
