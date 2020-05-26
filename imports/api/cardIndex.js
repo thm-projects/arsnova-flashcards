@@ -1,3 +1,4 @@
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Leitner} from "./subscriptions/leitner";
@@ -48,7 +49,7 @@ export let CardIndex = class CardIndex {
 		if (Meteor.isServer) {
 			cardIndex = this.defaultIndex(forcedCardset);
 		} else {
-			switch (Router.current().route.getName()) {
+			switch (FlowRouter.getRouteName()) {
 				case "box":
 					cardIndex = this.leitnerIndex();
 					break;
@@ -69,7 +70,7 @@ export let CardIndex = class CardIndex {
 		let cardset;
 		if (!Meteor.isServer && Route.isTranscript()) {
 			if (Route.isPresentationTranscriptReview()) {
-				let query = {cardset_id: Router.current().params._id, rating: 0};
+				let query = {cardset_id: FlowRouter.getParam('_id'), rating: 0};
 				if (Session.get('transcriptBonusReviewFilter') !== undefined && Session.get('transcriptBonusReviewFilter') !== null) {
 					query.card_id = Session.get('transcriptBonusReviewFilter');
 				}
@@ -87,7 +88,7 @@ export let CardIndex = class CardIndex {
 			} else if (!Meteor.isServer && Route.isMakingOf()) {
 				cardset = Cardsets.findOne({kind: 'demo', name: 'MakingOfCardset', shuffled: true});
 			} else if (!forcedCardset) {
-				cardset = Cardsets.findOne(Router.current().params._id);
+				cardset = Cardsets.findOne(FlowRouter.getParam('_id'));
 			} else {
 				cardset = forcedCardset;
 			}
@@ -119,7 +120,7 @@ export let CardIndex = class CardIndex {
 	static leitnerIndex () {
 		let cardIndex = [];
 		let indexCards = Leitner.find({
-			cardset_id: Router.current().params._id,
+			cardset_id: FlowRouter.getParam('_id'),
 			user_id: Meteor.userId(),
 			active: true
 		}, {
@@ -129,7 +130,7 @@ export let CardIndex = class CardIndex {
 		}).fetch();
 		let filter = Utilities.getUniqData(indexCards, 'card_id');
 		if (indexCards.length) {
-			cardIndex = this.defaultIndex(Cardsets.findOne({_id: Router.current().params._id})).filter(function (id) {
+			cardIndex = this.defaultIndex(Cardsets.findOne({_id: FlowRouter.getParam('_id')})).filter(function (id) {
 				return filter.indexOf(id) > -1;
 			});
 		}
@@ -141,7 +142,7 @@ export let CardIndex = class CardIndex {
 		let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 		actualDate.setHours(0, 0, 0, 0);
 		let indexCards = Wozniak.find({
-			cardset_id: Router.current().params._id,
+			cardset_id: FlowRouter.getParam('_id'),
 			user_id: Meteor.userId(),
 			nextDate: {
 				$lte: actualDate
@@ -163,7 +164,7 @@ export let CardIndex = class CardIndex {
 
 	static getCardIndexFilter () {
 		this.initializeIndex();
-		let isLearningMode = (Router.current().route.getName() === "box" || Router.current().route.getName() === "memo");
+		let isLearningMode = (FlowRouter.getRouteName() === "box" || FlowRouter.getRouteName() === "memo");
 		let cardIndexFilter = [];
 		if (Session.get('activeCard') !== undefined) {
 			let activeCardIndex = cardIndex.findIndex(item => item === Session.get('activeCard'));
@@ -223,7 +224,7 @@ export let CardIndex = class CardIndex {
 	static getCardsetCards () {
 		let query = "";
 		if (Route.isPresentationTranscript()) {
-			return Cards.find(Router.current().params.card_id).fetch();
+			return Cards.find(FlowRouter.getParam('card_id')).fetch();
 		} else if (Route.isPresentationTranscriptReview()) {
 			let cardIndexFilter = this.getCardIndexFilter();
 			query = Cards.find({
@@ -241,7 +242,7 @@ export let CardIndex = class CardIndex {
 			} else {
 				query = Cards.find({
 					_id: {$in: cardIndexFilter},
-					cardset_id: Router.current().params._id
+					cardset_id: FlowRouter.getParam('_id')
 				}).fetch();
 			}
 			return this.sortQueryResult(cardIndexFilter, query);
@@ -280,7 +281,7 @@ export let CardIndex = class CardIndex {
 		let id = "-1";
 		if (Route.isEditCard()) {
 			if (Session.get('activeCard') === undefined) {
-				Session.set('activeCard', Router.current().params.card_id);
+				Session.set('activeCard', FlowRouter.getParam('card_id'));
 			}
 			id = Session.get('activeCard');
 		} else {
@@ -288,7 +289,7 @@ export let CardIndex = class CardIndex {
 		}
 		let cardset_id = -1;
 		if (!Route.isTranscript()) {
-			cardset_id = Router.current().params._id;
+			cardset_id = FlowRouter.getParam('_id');
 		}
 		return [{
 			"_id": id,
@@ -322,7 +323,7 @@ export let CardIndex = class CardIndex {
 		actualDate.setHours(0, 0, 0, 0);
 		let learnedCards = Wozniak.find({
 			card_id: {$in: cardIndexFilter},
-			cardset_id: Router.current().params._id,
+			cardset_id: FlowRouter.getParam('_id'),
 			user_id: Meteor.userId(),
 			nextDate: {
 				$lte: actualDate

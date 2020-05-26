@@ -1,4 +1,5 @@
 import {Meteor} from "meteor/meteor";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Cardsets} from "../../api/subscriptions/cardsets.js";
 import {Cards} from "../../api/subscriptions/cards.js";
 import {CollegesCourses} from "../../api/subscriptions/collegesCourses.js";
@@ -207,7 +208,7 @@ Template.registerHelper('gotNavigationFeature', function (feature, addRoutePath 
 });
 
 Template.registerHelper('isInBonus', function () {
-	return Bonus.isInBonus(Router.current().params._id, Meteor.userId());
+	return Bonus.isInBonus(FlowRouter.getParam('_id'), Meteor.userId());
 });
 
 Template.registerHelper('isImpressum', function () {
@@ -219,7 +220,7 @@ Template.registerHelper('gotAspectRatio', function () {
 });
 
 Template.registerHelper('isInBonusAndNotOwner', function () {
-	return Bonus.isInBonus(Router.current().params._id) && (!UserPermissions.isOwner(Cardsets.findOne({_id: Router.current().params._id}).owner) && !UserPermissions.isAdmin());
+	return Bonus.isInBonus(FlowRouter.getParam('_id')) && (!UserPermissions.isOwner(Cardsets.findOne({_id: FlowRouter.getParam('_id')}).owner) && !UserPermissions.isAdmin());
 });
 
 Template.registerHelper('gotFeatureSupport', function (feature) {
@@ -228,7 +229,7 @@ Template.registerHelper('gotFeatureSupport', function (feature) {
 
 Template.registerHelper('getNavigationName', function (name = undefined) {
 	if (name === undefined) {
-		return Route.getNavigationName(Router.current().route.getName());
+		return Route.getNavigationName(FlowRouter.getRouteName());
 	} else {
 		return Route.getNavigationName(name);
 	}
@@ -326,7 +327,7 @@ Template.registerHelper('extendContext', function (key, value) {
 });
 
 Template.registerHelper('isInBonusAndProfileIncomplete', function () {
-	return Bonus.isInBonus(Router.current().params._id) && !Profile.isCompleted();
+	return Bonus.isInBonus(FlowRouter.getParam('_id')) && !Profile.isCompleted();
 });
 
 // Check if user has permission to look at a cardset
@@ -371,8 +372,8 @@ Template.registerHelper("isImprintMode", function (mode) {
 });
 
 Template.registerHelper("getNextCardTime", function () {
-	let workload = Workload.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId()});
-	let learningEnd = Cardsets.findOne({_id: Router.current().params._id}).learningEnd;
+	let workload = Workload.findOne({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId()});
+	let learningEnd = Cardsets.findOne({_id: FlowRouter.getParam('_id')}).learningEnd;
 	if (workload !== undefined && workload.leitner !== undefined && workload.leitner.nextDate !== undefined && learningEnd !== undefined) {
 		if (workload.leitner.nextDate.getTime() > learningEnd.getTime()) {
 			return TAPi18n.__('noMoreCardsBeforeEnd');
@@ -537,7 +538,7 @@ Template.registerHelper("canCopyCard", function (cardset_id) {
 	return (Roles.userIsInRole(Meteor.userId(), ['admin']) || (owner === Meteor.userId())) && Cardsets.find({
 		owner: Meteor.userId(),
 		shuffled: false,
-		_id: {$nin: [Router.current().params._id]}
+		_id: {$nin: [FlowRouter.getParam('_id')]}
 	}).count();
 });
 
@@ -598,16 +599,16 @@ Template.registerHelper("gotAllUnfilteredCardsetsVisible", function () {
 });
 
 Template.registerHelper("isShuffleRoute", function () {
-	return (Router.current().route.getName() === "shuffle" || Router.current().route.getName() === "editshuffle");
+	return (FlowRouter.getRouteName() === "shuffle" || FlowRouter.getRouteName() === "editshuffle");
 });
 
 Template.registerHelper("isCardsetEditor", function (user_id) {
-	return Cardsets.findOne({"_id": Router.current().params._id, "editors": {$in: [user_id]}});
+	return Cardsets.findOne({"_id": FlowRouter.getParam('_id'), "editors": {$in: [user_id]}});
 });
 
 Template.registerHelper("learningActiveAndNotEditor", function () {
-	if (Router.current().params._id) {
-		let cardset = Cardsets.findOne({"_id": Router.current().params._id});
+	if (FlowRouter.getParam('_id')) {
+		let cardset = Cardsets.findOne({"_id": FlowRouter.getParam('_id')});
 		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']) && cardset.learningActive) {
 			return false;
 		}
@@ -616,8 +617,8 @@ Template.registerHelper("learningActiveAndNotEditor", function () {
 });
 
 Template.registerHelper("learningActiveAndEditor", function () {
-	if (Router.current().params._id) {
-		let cardset = Cardsets.findOne({"_id": Router.current().params._id});
+	if (FlowRouter.getParam('_id')) {
+		let cardset = Cardsets.findOne({"_id": FlowRouter.getParam('_id')});
 		if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']) && cardset.learningActive) {
 			return true;
 		}
@@ -633,8 +634,8 @@ Template.registerHelper("isEditor", function () {
 	if (Roles.userIsInRole(Meteor.userId(), ['admin', 'editor'])) {
 		return true;
 	}
-	if (Router.current().params._id) {
-		let cardset = Cardsets.findOne({"_id": Router.current().params._id});
+	if (FlowRouter.getParam('_id')) {
+		let cardset = Cardsets.findOne({"_id": FlowRouter.getParam('_id')});
 		return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId()));
 	}
 });
@@ -644,11 +645,11 @@ Template.registerHelper("canAccessEditor", function () {
 		return true;
 	}
 	if (Route.isTranscript()) {
-		let card = Cards.findOne(Router.current().params.card_id);
+		let card = Cards.findOne(FlowRouter.getParam('card_id'));
 		return card.owner === Meteor.userId();
 	} else {
-		if (Router.current().params._id) {
-			let cardset = Cardsets.findOne(Router.current().params._id);
+		if (FlowRouter.getParam('_id')) {
+			let cardset = Cardsets.findOne(FlowRouter.getParam('_id'));
 			return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId()));
 		}
 	}
@@ -694,8 +695,8 @@ Template.registerHelper("canEditCard", function () {
 });
 
 Template.registerHelper("isLecturerOrPro", function () {
-	this.owner = Cardsets.findOne(Router.current().params._id).owner;
-	if (Roles.userIsInRole(Meteor.userId(), 'lecturer') || Cardsets.findOne(Router.current().params._id).owner != Meteor.userId()) {
+	this.owner = Cardsets.findOne(FlowRouter.getParam('_id')).owner;
+	if (Roles.userIsInRole(Meteor.userId(), 'lecturer') || Cardsets.findOne(FlowRouter.getParam('_id')).owner != Meteor.userId()) {
 		return true;
 	}
 });
@@ -780,7 +781,7 @@ Template.registerHelper("isShuffledCardset", function (cardset_id) {
 // Returns the locale date
 Template.registerHelper("getDate", function () {
 	let date;
-	if (Router.current().route.getName() === "welcome") {
+	if (FlowRouter.getRouteName() === "welcome") {
 		date = Session.get('wordcloudItem')[10];
 	} else {
 		date = this.date;
@@ -819,7 +820,7 @@ Template.registerHelper("getTranscriptSubmissions", function (data) {
 // Returns the locale date
 Template.registerHelper("getDateUpdated", function () {
 	let dateUpdated;
-	if (Router.current().route.getName() === "welcome") {
+	if (FlowRouter.getRouteName() === "welcome") {
 		dateUpdated = Session.get('wordcloudItem')[11];
 	} else {
 		dateUpdated = this.dateUpdated;
@@ -844,7 +845,7 @@ Template.registerHelper("getCourses", function () {
 });
 
 Template.registerHelper("hasCardsetPermission", function () {
-	return UserPermissions.hasCardsetPermission(Router.current().params._id);
+	return UserPermissions.hasCardsetPermission(FlowRouter.getParam('_id'));
 });
 
 Template.registerHelper("isEditCard", function () {
@@ -1129,5 +1130,5 @@ Template.registerHelper("greaterThan0", function (number) {
 });
 
 Template.registerHelper("gotLeitnerTimerDebugEnabled", function () {
-	return Meteor.settings.public.debug.leitnerTimer && Route.isBox() && Bonus.isInBonus(Router.current().params._id);
+	return Meteor.settings.public.debug.leitnerTimer && Route.isBox() && Bonus.isInBonus(FlowRouter.getParam('_id'));
 });

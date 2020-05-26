@@ -1,5 +1,6 @@
 //------------------------ IMPORTS
 import {Meteor} from "meteor/meteor";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Template} from "meteor/templating";
 import {CardType} from "../../../../api/cardTypes";
 import {Workload} from "../../../../api/subscriptions/workload";
@@ -29,31 +30,31 @@ Template.cardsetNavigationWorkload.helpers({
 		}
 	},
 	learningLeitner: function () {
-		let workload = Workload.findOne({cardset_id: Router.current().params._id, user_id: Meteor.userId()});
+		let workload = Workload.findOne({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId()});
 		if (workload !== undefined && workload.leitner !== undefined && workload.leitner.active !== undefined) {
 			return workload.leitner.active;
 		}
 	},
 	learningMemo: function () {
 		return Wozniak.findOne({
-			cardset_id: Router.current().params._id,
+			cardset_id: FlowRouter.getParam('_id'),
 			user_id: Meteor.userId()});
 	}
 });
 
 Template.cardsetNavigationWorkload.events({
 	"click #learnBox": function () {
-		Router.go('box', {
+		FlowRouter.go('box', {
 			_id: this._id
 		});
 	},
 	"click #learnMemo": function () {
-		Router.go('memo', {
+		FlowRouter.go('memo', {
 			_id: this._id
 		});
 	},
 	"click #leitnerProgress": function () {
-		Router.go('progress', {
+		FlowRouter.go('progress', {
 			_id: this._id,
 			user_id: Meteor.userId()
 		});

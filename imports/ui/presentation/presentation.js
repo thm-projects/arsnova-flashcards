@@ -12,6 +12,7 @@ import {AspectRatio} from "../../api/aspectRatio";
 import {TranscriptBonus} from "../../api/subscriptions/transcriptBonus";
 import {CardVisuals} from "../../api/cardVisuals";
 import {ServerStyle} from "../../api/styles";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 Session.set('animationPlaying', false);
 Session.setDefault('isDirectCardsetIndexView', false);
@@ -27,10 +28,10 @@ Template.presentation.onCreated(function () {
 		Session.set('aspectRatioMode', AspectRatio.getDefault());
 	}
 	if (Route.isPresentationTranscriptBonus() || Route.isPresentationTranscriptBonusCardset()) {
-		Session.set('transcriptBonus', TranscriptBonus.findOne({card_id: Router.current().params.card_id}));
+		Session.set('transcriptBonus', TranscriptBonus.findOne({card_id: FlowRouter.getParam('card_id')}));
 	}
 	if (Route.isPresentationTranscriptReview()) {
-		Session.set('transcriptBonus', TranscriptBonus.findOne({cardset_id: Router.current().params._id}));
+		Session.set('transcriptBonus', TranscriptBonus.findOne({cardset_id: FlowRouter.getParam('_id')}));
 	}
 });
 
@@ -42,11 +43,12 @@ Template.presentation.onRendered(function () {
 
 Template.presentation.helpers({
 	gotTranscriptsLeftToReview: function () {
-		return TranscriptBonus.find({cardset_id: Router.current().params._id}).count();
+		return TranscriptBonus.find({cardset_id: FlowRouter.getParam('_id')}).count();
 	}
 });
 
 Template.presentation.onDestroyed(function () {
+	CardVisuals.toggleFullscreen(true);
 	Session.set('transcriptBonus', undefined);
 });
 

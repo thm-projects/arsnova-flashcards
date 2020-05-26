@@ -2,6 +2,7 @@
 
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./firstLogin.html";
 
 /*
@@ -20,7 +21,7 @@ Template.firstLoginContent.events({
 	},
 	'click #acceptFirstLogin': function () {
 		Meteor.call('removeFirstLogin');
-		Router.go('pool');
+		FlowRouter.go('pool');
 		window.scrollTo(0, 0);
 	},
 	'click #cancelFirstLogin': function () {

@@ -5,6 +5,7 @@ import {Session} from "meteor/session";
 import {Route} from "../../../../api/route";
 import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
 import {TranscriptBonusList} from "../../../../api/transcriptBonus";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "../../../cardset/cardset.js";
 import "./card.html";
 
@@ -19,7 +20,7 @@ Template.filterIndexItemCard.events({
 		Session.set('activeCard', $(event.target).data('id'));
 	},
 	'click .editCard': function (event) {
-		Router.go('editTranscript', {card_id: $(event.target).data('id')});
+		FlowRouter.go('editTranscript', {card_id: $(event.target).data('id')});
 	}
 });
 
@@ -40,7 +41,7 @@ Template.filterIndexItemCard.helpers({
 		}
 	},
 	getCardsetID: function () {
-		return Router.current().params._id;
+		return FlowRouter.getParam('_id');
 	},
 	setGridSize: function (gridSize) {
 		let item = JSON.parse(JSON.stringify(this));

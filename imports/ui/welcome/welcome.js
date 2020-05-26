@@ -3,6 +3,7 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Route} from "../../api/route.js";
 import {getUserLanguage} from "../../startup/client/i18n";
 import ResizeSensor from "../../../client/thirdParty/resizeSensor/ResizeSensor";
@@ -16,6 +17,7 @@ import {MainNavigation} from "../../api/mainNavigation";
 import {ExecuteControllers} from 'wtc-controller-element';
 import 'wtc-barfystars';
 import "./welcome.html";
+import {setLoginTarget} from "../../startup/client/routes";
 
 Meteor.subscribe("pomodoroLandingPage");
 Meteor.subscribe("userData");
@@ -36,6 +38,7 @@ Template.welcome.events({
 					throw new Meteor.Error("Facebook login failed");
 				} else {
 					setActiveLanguage();
+					setLoginTarget();
 				}
 			});
 		}
@@ -48,6 +51,7 @@ Template.welcome.events({
 					throw new Meteor.Error("Twitter login failed");
 				} else {
 					setActiveLanguage();
+					setLoginTarget();
 				}
 			});
 		}
@@ -60,6 +64,7 @@ Template.welcome.events({
 					throw new Meteor.Error("Google login failed");
 				} else {
 					setActiveLanguage();
+					setLoginTarget();
 				}
 			});
 		}
@@ -72,6 +77,7 @@ Template.welcome.events({
 					throw new Meteor.Error("CAS login failed");
 				} else {
 					setActiveLanguage();
+					setLoginTarget();
 				}
 			});
 		}
@@ -83,23 +89,16 @@ Template.welcome.events({
 			Meteor.insecureUserLogin($("#TestingBackdoorUsername").val(), function (err, result) {
 				if (result) {
 					setActiveLanguage();
+					setLoginTarget();
 				}
 			});
 		}
 	},
 
-	'click #logout': function () {
-		Meteor.logout(function (err) {
-			if (err) {
-				throw new Meteor.Error("Logout failed");
-			}
-		});
-	},
-
 	'click #guest': function () {
 		MainNavigation.setGuestLogin("true");
 		Session.set('firedUseCaseModal', 1);
-		Router.go('pool');
+		FlowRouter.go('pool');
 	}
 });
 
@@ -155,7 +154,7 @@ Template.welcome.helpers({
 Template.welcome.onCreated(function () {
 	if (Route.isFirstTimeVisit()) {
 		if (FirstTimeVisit.isFirstTimeVisitDemoEnabled()) {
-			Router.go('demo');
+			FlowRouter.go('demo');
 		} else {
 			Route.setFirstTimeVisit();
 		}

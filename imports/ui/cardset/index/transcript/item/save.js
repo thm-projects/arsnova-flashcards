@@ -3,6 +3,7 @@ import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
 import {BertAlertVisuals} from "../../../../../api/bertAlertVisuals";
 import {Session} from "meteor/session";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*
  * ############################################################################
@@ -20,7 +21,7 @@ Template.cardsetIndexTranscriptItemSave.events({
 		let minimumSubmissions = $('#bonusMinimumSubmissions').val();
 		let minimumStars = Session.get('minimumBonusStars');
 		let newLectures = Session.get('transcriptBonusLectures');
-		Meteor.call('updateCardsetTranscriptBonus', Router.current().params._id, Boolean(isEnabled), Number(percentage), lectureEnd, Number(deadlineSubmission), Number(deadlineEditing), newLectures, Number(minimumSubmissions), Number(minimumStars), function (error, result) {
+		Meteor.call('updateCardsetTranscriptBonus', FlowRouter.getParam('_id'), Boolean(isEnabled), Number(percentage), lectureEnd, Number(deadlineSubmission), Number(deadlineEditing), newLectures, Number(minimumSubmissions), Number(minimumStars), function (error, result) {
 			if (result) {
 				BertAlertVisuals.displayBertAlert(TAPi18n.__('transcriptForm.bonus.form.alert.save'), "success", 'growl-top-left');
 			}

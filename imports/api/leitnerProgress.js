@@ -8,6 +8,7 @@ import {Route} from "./route";
 import * as config from "../config/leitnerProgressChart.js";
 import {NavigatorCheck} from "./navigatorCheck";
 import {BonusForm} from "./bonusForm";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 let chart;
 let difficultyGotCards;
@@ -125,7 +126,7 @@ export let LeitnerProgress = class LeitnerProgress {
 		let boxInterval4 = "";
 		let boxInterval5 = "";
 		if (Route.isLeitnerProgress()) {
-			learningInterval = Cardsets.findOne({_id: Router.current().params._id}).learningInterval;
+			learningInterval = Cardsets.findOne({_id: FlowRouter.getParam('_id')}).learningInterval;
 			if (learningInterval[0] <= 1) {
 				boxInterval1 = TAPi18n.__('leitnerProgress.boxIntervalDaily', {}, Session.get('activeLanguage'));
 			} else {
@@ -201,7 +202,7 @@ export let LeitnerProgress = class LeitnerProgress {
 			if (filterCardset !== undefined) {
 				cardset_id = filterCardset;
 			} else {
-				cardset_id = Router.current().params._id;
+				cardset_id = FlowRouter.getParam('_id');
 			}
 			cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, shuffled: 1, cardGroups: 1}});
 			if (cardset !== undefined) {
@@ -216,7 +217,7 @@ export let LeitnerProgress = class LeitnerProgress {
 					}
 				}
 			}
-			user_id = Router.current().params.user_id;
+			user_id = FlowRouter.getParam('user_id');
 		} else {
 			let userFilter = {};
 			if (Route.isLeitnerProgressProfileOverview()) {
@@ -260,7 +261,7 @@ export let LeitnerProgress = class LeitnerProgress {
 	}
 
 	static getCardsetCardCount (countLeitnerCards = false) {
-		let cardset = Cardsets.findOne({_id: Router.current().params._id});
+		let cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')});
 		if (cardset.shuffled) {
 			let cardsetList = [];
 			let cardsetLeitnerCount = 0;

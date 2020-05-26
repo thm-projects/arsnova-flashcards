@@ -1,4 +1,5 @@
 //------------------------ IMPORTS
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {Cards} from "../../../../api/subscriptions/cards";
@@ -23,18 +24,18 @@ Template.cardsetList.onCreated(function () {
 
 Template.cardsetList.helpers({
 	isShuffledCardset: function () {
-		if (Router.current().route.getName() === "demolist") {
+		if (FlowRouter.getRouteName() === "demolist") {
 			return Cardsets.findOne({kind: 'demo', name: "DemoCardset", shuffled: true}).shuffled;
-		} else if (Router.current().route.getName() === "makinglist") {
+		} else if (FlowRouter.getRouteName() === "makinglist") {
 			return Cardsets.findOne({kind: 'demo', name: "MakingOfCardset", shuffled: true}).shuffled;
 		} else {
-			return Cardsets.findOne({_id: Router.current().params._id}).shuffled;
+			return Cardsets.findOne({_id: FlowRouter.getParam('_id')}).shuffled;
 		}
 	},
 	cardsetList: function () {
-		let isDemo = (Router.current().route.getName() === "demolist" || Router.current().route.getName() === "makinglist");
-		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || isDemo) {
-			let cardsetId = Router.current().params._id;
+		let isDemo = (FlowRouter.getRouteName() === "demolist" || FlowRouter.getRouteName() === "makinglist");
+		if (FlowRouter.getRouteName() === "cardsetlistid" || FlowRouter.getRouteName() === "presentationlist" || isDemo) {
+			let cardsetId = FlowRouter.getParam('_id');
 			if (isDemo) {
 				if (Route.isDemo()) {
 					cardsetId = Cardsets.findOne({kind: 'demo', name: "DemoCardset", shuffled: true})._id;
@@ -65,7 +66,7 @@ Template.cardsetList.helpers({
 		return CardVisuals.removeMarkdeepTags(text);
 	},
 	gotCards: function () {
-		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || Router.current().route.getName() === "demolist" || Router.current().route.getName() === "makinglist") {
+		if (FlowRouter.getRouteName() === "cardsetlistid" || FlowRouter.getRouteName() === "presentationlist" || FlowRouter.getRouteName() === "demolist" || FlowRouter.getRouteName() === "makinglist") {
 			if (this.shuffled) {
 				return Cards.find({cardset_id: {$in: this.cardGroups}}).count();
 			} else {
@@ -74,7 +75,7 @@ Template.cardsetList.helpers({
 		}
 	},
 	cardSubject: function () {
-		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || Router.current().route.getName() === "demolist" || Router.current().route.getName() === "makinglist") {
+		if (FlowRouter.getRouteName() === "cardsetlistid" || FlowRouter.getRouteName() === "presentationlist" || FlowRouter.getRouteName() === "demolist" || FlowRouter.getRouteName() === "makinglist") {
 			return _.uniq(Cards.find({
 				cardset_id: this._id
 			}, {
@@ -151,7 +152,7 @@ Template.cardsetList.helpers({
 		}
 	},
 	gotReferences: function () {
-		return Cardsets.findOne({_id: Router.current().params._id}).cardGroups !== [""];
+		return Cardsets.findOne({_id: FlowRouter.getParam('_id')}).cardGroups !== [""];
 	},
 	getText: function () {
 		let cubeSides = CardType.getCardTypeCubeSides(this.cardType);
@@ -177,20 +178,20 @@ Template.cardsetList.events({
 		let cubeSides = CardType.getCardTypeCubeSides($(evt.target).data('card-type'));
 		Session.set('cardType', $(evt.target).data('card-type'));
 		Session.set('activeCardContentId', cubeSides[0].contentId);
-		if (Router.current().route.getName() === "cardsetlistid" || Router.current().route.getName() === "presentationlist" || Router.current().route.getName() === "demolist" || Router.current().route.getName() === "makinglist") {
+		if (FlowRouter.getRouteName() === "cardsetlistid" || FlowRouter.getRouteName() === "presentationlist" || FlowRouter.getRouteName() === "demolist" || FlowRouter.getRouteName() === "makinglist") {
 			Session.set('activeCardSide', undefined);
 			CardNavigation.setActiveCardData($(evt.target).data('id'));
-			if (Router.current().route.getName() === "presentationlist") {
-				Router.go('presentation', {
-					_id: Router.current().params._id
+			if (FlowRouter.getRouteName() === "presentationlist") {
+				FlowRouter.go('presentation', {
+					_id: FlowRouter.getParam('_id')
 				});
-			} else if (Router.current().route.getName() === "demolist") {
-				Router.go('demo');
-			} else if (Router.current().route.getName() === "makinglist") {
-				Router.go('making');
+			} else if (FlowRouter.getRouteName() === "demolist") {
+				FlowRouter.go('demo');
+			} else if (FlowRouter.getRouteName() === "makinglist") {
+				FlowRouter.go('making');
 			} else {
-				Router.go('cardsetcard', {
-					_id: Router.current().params._id,
+				FlowRouter.go('cardsetcard', {
+					_id: FlowRouter.getParam('_id'),
 					card_id: $(evt.target).data('id')
 				});
 			}

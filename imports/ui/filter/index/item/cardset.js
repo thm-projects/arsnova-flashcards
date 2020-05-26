@@ -7,6 +7,7 @@ import "./cardset.html";
 import {MainNavigation} from "../../../../api/mainNavigation";
 import {LoginTasks} from "../../../../api/login";
 import {Route} from "../../../../api/route";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
@@ -20,7 +21,7 @@ Session.set('moduleActive', true);
 Template.filterIndexItemCardset.events({
 	'click .resultName': function (event) {
 		event.preventDefault();
-		Router.go('cardsetdetailsid', {
+		FlowRouter.go('cardsetdetailsid', {
 			_id: $(event.target).data('id')
 		});
 	}
@@ -28,7 +29,7 @@ Template.filterIndexItemCardset.events({
 
 Template.filterIndexItemCardset.helpers({
 	getLink: function (cardset_id) {
-		return ActiveRoute.name('shuffle') ? "#" : ("/cardset/" + cardset_id);
+		return FlowRouter.getRouteName() === 'shuffle' ? "#" : ("/cardset/" + cardset_id);
 	},
 	getName: function () {
 		let shuffled = "";

@@ -1,3 +1,4 @@
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Cards} from "../../api/subscriptions/cards.js";
 import {Cardsets} from "../../api/subscriptions/cardsets.js";
 import {Meteor} from "meteor/meteor";
@@ -15,64 +16,56 @@ import {AspectRatio} from "../../api/aspectRatio.js";
 import {Leitner} from "../../api/subscriptions/leitner";
 import {Wozniak} from "../../api/subscriptions/wozniak";
 
+let mainTemplate = 'main';
+let adminMainTemplate = 'admin_main';
 let loadingScreenTemplate = 'loadingScreen';
 
-Router.route('/', function () {
+FlowRouter.route('/', function () {
 	this.redirect('home');
 });
 
-Router.route('/admin', function () {
+FlowRouter.route('/admin', function () {
 	this.redirect('admin_dashboard');
 });
 
-Router.configure({
-	layoutTemplate: 'admin_main'
-});
-
-Router.configure({
-	layoutTemplate: 'main'
-});
-
-Router.route('/firstLogin', {
+FlowRouter.route('/firstLogin', {
 	name: 'firstLogin',
-	template: 'firstLoginContent',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.firstLogin',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 	},
 	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+		this.render(mainTemplate, 'firstLoginContent');
 	}
 });
 
-Router.route('/accessDenied', {
+FlowRouter.route('/accessDenied', {
 	name: 'accessDenied',
-	template: 'accessDenied',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.accessDenied',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'accessDenied', data);
 	}
 });
 
-Router.route('/home', {
+FlowRouter.route('/home', {
 	name: 'home',
-	template: 'welcome',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('wordcloudCardsets'), Meteor.subscribe('userDataLandingPage')];
 	},
 	data: function () {
@@ -80,133 +73,119 @@ Router.route('/home', {
 		Session.set('helpFilter', undefined);
 		return Cardsets.findOne({_id: Session.get('wordcloudItem')});
 	},
-	action: function () {
-		if (this.ready()) {
-			CardVisuals.toggleFullscreen(true);
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		CardVisuals.toggleFullscreen(true);
+		this.render(mainTemplate, 'welcome', data);
 	}
 });
 
-Router.route('about', {
+FlowRouter.route('/about', {
 	name: 'about',
-	template: 'contact',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.welcome.about',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'contact', data);
 	}
 });
 
-Router.route('learning', {
+FlowRouter.route('/learning', {
 	name: 'learning',
-	template: 'contact',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.welcome.learn',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'contact', data);
 	}
 });
 
-Router.route('help', {
+FlowRouter.route('/help', {
 	name: 'help',
-	template: 'contact',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.welcome.help',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'contact', data);
 	}
 });
 
-Router.route('faq', {
+FlowRouter.route('/faq', {
 	name: 'faq',
-	template: 'contact',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.welcome.faq',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'contact', data);
 	}
 });
 
-Router.route('impressum', {
+FlowRouter.route('/impressum', {
 	name: 'impressum',
-	template: 'contact',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.welcome.legalNotice',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'contact', data);
 	}
 });
 
-Router.route('demo', {
+FlowRouter.route('/demo', {
 	name: 'demo',
-	template: 'demo',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('demoCardsets'), Meteor.subscribe('demoCards')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.welcome.demo.presentation',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'demo', data);
 	}
 });
 
-Router.route('demolist', {
+FlowRouter.route('/demolist', {
 	name: 'demolist',
-	template: 'demo',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('demoCardsets'), Meteor.subscribe('demoCards')];
 	},
 	data: function () {
@@ -214,57 +193,51 @@ Router.route('demolist', {
 		Session.set('helpFilter', "cardsetIndex");
 		return Cardsets.findOne({kind: 'demo', name: "DemoCardset", shuffled: true});
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'demo', data);
 	}
 });
 
-Router.route('agb', {
+FlowRouter.route('/agb', {
 	name: 'agb',
-	template: 'contact',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.welcome.agb',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'contact', data);
 	}
 });
 
-Router.route('datenschutz', {
+FlowRouter.route('/datenschutz', {
 	name: 'datenschutz',
-	template: 'contact',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.welcome.privacyPolicy',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'contact', data);
 	}
 });
 
-Router.route('/all/cardsets', {
+FlowRouter.route('/all/cardsets', {
 	name: 'alldecks',
-	template: 'filterIndex',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('allCardsets'), Meteor.subscribe('paidCardsets'), Meteor.subscribe('userData')];
 	},
 	data: function () {
@@ -273,24 +246,22 @@ Router.route('/all/cardsets', {
 		Session.set('cardsetIndexResults', Cardsets.find().count());
 		Filter.resetMaxItemCounter();
 	},
-	action: function () {
-		if (this.ready()) {
-			if (UserPermissions.isAdmin()) {
-				this.render();
-			} else {
-				MainNavigation.setLoginTarget(false);
-				this.redirect('home');
-			}
+	action: function (params, qs, data) {
+		if (UserPermissions.isAdmin()) {
+			this.render(mainTemplate, 'filterIndex', data);
 		} else {
-			this.render(loadingScreenTemplate);
+			MainNavigation.setLoginTarget(false);
+			this.redirect('home');
 		}
 	}
 });
 
-Router.route('/all/repetitorien', {
+FlowRouter.route('/all/repetitorien', {
 	name: 'allRepetitorien',
-	template: 'filterIndex',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('allRepetitorien'), Meteor.subscribe('paidCardsets'), Meteor.subscribe('userData')];
 	},
 	data: function () {
@@ -299,24 +270,22 @@ Router.route('/all/repetitorien', {
 		Session.set('cardsetIndexResults', Cardsets.find().count());
 		Filter.resetMaxItemCounter();
 	},
-	action: function () {
-		if (this.ready()) {
-			if (UserPermissions.isAdmin()) {
-				this.render();
-			} else {
-				MainNavigation.setLoginTarget(false);
-				this.redirect('home');
-			}
+	action: function (params, qs, data) {
+		if (UserPermissions.isAdmin()) {
+			this.render(mainTemplate, 'filterIndex', data);
 		} else {
-			this.render(loadingScreenTemplate);
+			MainNavigation.setLoginTarget(false);
+			this.redirect('home');
 		}
 	}
 });
 
-Router.route('/personal/cardsets', {
+FlowRouter.route('/personal/cardsets', {
 	name: 'create',
-	template: 'filterIndex',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('myCardsets')];
 	},
 	data: function () {
@@ -325,24 +294,22 @@ Router.route('/personal/cardsets', {
 		Session.set('cardsetIndexResults', Cardsets.find().count());
 		Filter.resetMaxItemCounter();
 	},
-	action: function () {
-		if (this.ready()) {
-			if (ServerStyle.gotNavigationFeature("personal.cardset.enabled")) {
-				this.render();
-			} else {
-				MainNavigation.setLoginTarget(false);
-				this.redirect('home');
-			}
+	action: function (params, qs, data) {
+		if (ServerStyle.gotNavigationFeature("personal.cardset.enabled")) {
+			this.render(mainTemplate, 'filterIndex', data);
 		} else {
-			this.render(loadingScreenTemplate);
+			MainNavigation.setLoginTarget(false);
+			this.redirect('home');
 		}
 	}
 });
 
-Router.route('/transcripts/personal', {
+FlowRouter.route('/transcripts/personal', {
 	name: 'transcriptsPersonal',
-	template: 'filterIndex',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('myTranscriptCards')];
 	},
 	data: function () {
@@ -352,22 +319,20 @@ Router.route('/transcripts/personal', {
 			Session.set('cardsetIndexResults', Cards.find().count());
 			Filter.resetMaxItemCounter();
 		} else {
-			Router.go('home');
+			FlowRouter.go('home');
 		}
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'filterIndex', data);
 	}
 });
 
-Router.route('/transcripts/bonus', {
+FlowRouter.route('/transcripts/bonus', {
 	name: 'transcriptsBonus',
-	template: 'filterIndex',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('myBonusTranscriptCards'), Meteor.subscribe('myTranscriptBonus'), Meteor.subscribe('cardsetsTranscripts')];
 	},
 	data: function () {
@@ -377,22 +342,20 @@ Router.route('/transcripts/bonus', {
 			Session.set('cardsetIndexResults', Cards.find().count());
 			Filter.resetMaxItemCounter();
 		} else {
-			Router.go('home');
+			FlowRouter.go('home');
 		}
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'filterIndex', data);
 	}
 });
 
-Router.route('/personal/repetitorien', {
+FlowRouter.route('/personal/repetitorien', {
 	name: 'personalRepetitorien',
-	template: 'filterIndex',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('personalRepetitorien'), Meteor.subscribe('userData')];
 	},
 	data: function () {
@@ -401,24 +364,22 @@ Router.route('/personal/repetitorien', {
 		Session.set('cardsetIndexResults', Cardsets.find().count());
 		Filter.resetMaxItemCounter();
 	},
-	action: function () {
-		if (this.ready()) {
-			if (ServerStyle.gotNavigationFeature("personal.repetitorium.enabled")) {
-				this.render();
-			} else {
-				MainNavigation.setLoginTarget(false);
-				this.redirect('home');
-			}
+	action: function (params, qs, data) {
+		if (ServerStyle.gotNavigationFeature("personal.repetitorium.enabled")) {
+			this.render(mainTemplate, 'filterIndex', data);
 		} else {
-			this.render(loadingScreenTemplate);
+			MainNavigation.setLoginTarget(false);
+			this.redirect('home');
 		}
 	}
 });
 
-Router.route('/public/repetitorien', {
+FlowRouter.route('/public/repetitorien', {
 	name: 'repetitorium',
-	template: 'filterIndex',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('repetitoriumCardsets'), Meteor.subscribe('paidCardsets'), Meteor.subscribe('userData')];
 	},
 	data: function () {
@@ -427,24 +388,22 @@ Router.route('/public/repetitorien', {
 		Session.set('cardsetIndexResults', Cardsets.find().count());
 		Filter.resetMaxItemCounter();
 	},
-	action: function () {
-		if (this.ready()) {
-			if (ServerStyle.gotNavigationFeature("public.repetitorium.enabled")) {
-				this.render();
-			} else {
-				MainNavigation.setLoginTarget(false);
-				this.redirect('home');
-			}
+	action: function (params, qs, data) {
+		if (ServerStyle.gotNavigationFeature("public.repetitorium.enabled")) {
+			this.render(mainTemplate, 'filterIndex', data);
 		} else {
-			this.render(loadingScreenTemplate);
+			MainNavigation.setLoginTarget(false);
+			this.redirect('home');
 		}
 	}
 });
 
-Router.route('/learn', {
+FlowRouter.route('/learn', {
 	name: 'learn',
-	template: 'filterIndex',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('workloadCardsets'), Meteor.subscribe('paidCardsets'), Meteor.subscribe('userWorkload'), Meteor.subscribe('userLeitner'), Meteor.subscribe('userWozniak'), Meteor.subscribe('userData')];
 	},
 	data: function () {
@@ -453,27 +412,25 @@ Router.route('/learn', {
 		Session.set('cardsetIndexResults', Leitner.find().count() + Wozniak.find().count());
 		Filter.resetMaxItemCounter();
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'filterIndex', data);
 	}
 });
 
-Router.route('/cardset', function () {
+FlowRouter.route('/cardset', function () {
 	this.redirect('learn');
 });
 
-Router.route('/cardset/:_id', {
+FlowRouter.route('/cardset/:_id', {
 	name: 'cardsetdetailsid',
-	template: 'cardsetAccess',
-	subscriptions: function () {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetUserRating', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id), Meteor.subscribe('userData')];
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
 	},
-	data: function () {
-		let cardset = Cardsets.findOne({_id: this.params._id});
+	waitOn: function (params) {
+		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', params._id), Meteor.subscribe('paidCardset', params._id), Meteor.subscribe('cardsetUserRating', params._id), Meteor.subscribe('cardsetWorkload', params._id), Meteor.subscribe('cardsetCards', params._id), Meteor.subscribe('cardsetWozniak', params._id), Meteor.subscribe('userData')];
+	},
+	data: function (params) {
+		let cardset = Cardsets.findOne({_id: params._id});
 		if (cardset !== undefined) {
 			if (cardset.shuffled) {
 				document.title = TAPi18n.__('title.cardset.rep',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
@@ -486,23 +443,21 @@ Router.route('/cardset/:_id', {
 		Session.set('isNewCardset', false);
 		return cardset;
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'cardsetAccess', data);
 	}
 });
 
-Router.route('/cardset/:_id/card/:card_id', {
+FlowRouter.route('/cardset/:_id/card/:card_id', {
 	name: 'cardsetcard',
-	template: 'cardsetAccess',
-	subscriptions: function () {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetUserRating', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id), Meteor.subscribe('userData')];
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
 	},
-	data: function () {
-		let cardset = Cardsets.findOne({_id: this.params._id});
+	waitOn: function (params) {
+		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', params._id), Meteor.subscribe('paidCardset', params._id), Meteor.subscribe('cardsetUserRating', params._id), Meteor.subscribe('cardsetWorkload', params._id), Meteor.subscribe('cardsetCards', params._id), Meteor.subscribe('cardsetWozniak', params._id), Meteor.subscribe('userData')];
+	},
+	data: function (params) {
+		let cardset = Cardsets.findOne({_id: params._id});
 		if (cardset !== undefined) {
 			if (cardset.shuffled) {
 				document.title = TAPi18n.__('title.cardset.rep',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
@@ -513,26 +468,24 @@ Router.route('/cardset/:_id/card/:card_id', {
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', "cardset");
 		Session.set('isNewCardset', false);
-		Session.set('activeCard', this.params.card_id);
+		Session.set('activeCard', params._id);
 		return cardset;
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'cardsetAccess', data);
 	}
 });
 
-Router.route('/cardset/:_id/editshuffle', {
+FlowRouter.route('/cardset/:_id/editshuffle', {
 	name: 'editshuffle',
-	template: 'filterIndexShuffle',
-	subscriptions: function () {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('editShuffleCardsets', this.params._id), Meteor.subscribe('userData')];
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
 	},
-	data: function () {
-		let cardset = Cardsets.findOne({_id: this.params._id});
+	waitOn: function (params) {
+		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('editShuffleCardsets', params._id), Meteor.subscribe('userData')];
+	},
+	data: function (params) {
+		let cardset = Cardsets.findOne({_id: params._id});
 		if (cardset !== undefined && cardset.shuffled) {
 			document.title = TAPi18n.__('title.cardset.shuffle',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
 		}
@@ -541,23 +494,21 @@ Router.route('/cardset/:_id/editshuffle', {
 		Session.set('cardsetIndexResults', Cardsets.find().count());
 		return cardset;
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'filterIndexShuffle', data);
 	}
 });
 
-Router.route('/cardset/:_id/transcripts/review', {
+FlowRouter.route('/cardset/:_id/transcripts/review', {
 	name: 'presentationTranscriptReview',
-	template: 'presentation',
-	subscriptions: function () {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetTranscriptBonusReview', this.params._id, Session.get('transcriptBonusReviewFilter')), Meteor.subscribe('cardsetTranscriptBonusCardsReview', this.params._id, Session.get('transcriptBonusReviewFilter')), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('userDataTranscriptBonus', this.params._id)];
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
 	},
-	data: function () {
-		let cardset = Cardsets.findOne({_id: this.params._id});
+	waitOn: function (params) {
+		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetTranscriptBonusReview', params._id, Session.get('transcriptBonusReviewFilter')), Meteor.subscribe('cardsetTranscriptBonusCardsReview', params._id, Session.get('transcriptBonusReviewFilter')), Meteor.subscribe('cardset', params._id), Meteor.subscribe('paidCardset', params._id), Meteor.subscribe('userDataTranscriptBonus', params._id)];
+	},
+	data: function (params) {
+		let cardset = Cardsets.findOne({_id: params._id});
 		if (cardset !== undefined) {
 			document.title = TAPi18n.__('title.cardset.stats.transcripts',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
 		}
@@ -569,23 +520,21 @@ Router.route('/cardset/:_id/transcripts/review', {
 		Session.set('cardsetIndexResults', Cards.find().count());
 		return cardset;
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'presentation', data);
 	}
 });
 
-Router.route('/cardset/:_id/transcripts', {
+FlowRouter.route('/cardset/:_id/transcripts', {
 	name: 'transcriptBonus',
-	template: 'cardsetIndexTranscript',
-	subscriptions: function () {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetTranscriptBonus', this.params._id), Meteor.subscribe('cardsetTranscriptBonusCards', this.params._id), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('userDataTranscriptBonus', this.params._id)];
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
 	},
-	data: function () {
-		let cardset = Cardsets.findOne({_id: this.params._id});
+	waitOn: function (params) {
+		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetTranscriptBonus', params._id), Meteor.subscribe('cardsetTranscriptBonusCards', params._id), Meteor.subscribe('cardset', params._id), Meteor.subscribe('paidCardset', params._id), Meteor.subscribe('userDataTranscriptBonus', params._id)];
+	},
+	data: function (params) {
+		let cardset = Cardsets.findOne({_id: params._id});
 		if (cardset !== undefined) {
 			document.title = TAPi18n.__('title.cardset.stats.transcripts',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
 		}
@@ -596,23 +545,21 @@ Router.route('/cardset/:_id/transcripts', {
 		Session.set('cardsetIndexResults', Cards.find().count());
 		return cardset;
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'cardsetIndexTranscript', data);
 	}
 });
 
-Router.route('/cardset/:_id/editors', {
+FlowRouter.route('/cardset/:_id/editors', {
 	name: 'cardseteditors',
-	template: 'cardsetManageEditors',
-	subscriptions: function () {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('userData')];
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
 	},
-	data: function () {
-		let cardset = Cardsets.findOne({_id: this.params._id});
+	waitOn: function (params) {
+		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', params._id), Meteor.subscribe('userData')];
+	},
+	data: function (params) {
+		let cardset = Cardsets.findOne({_id: params._id});
 		if (cardset !== undefined) {
 			if (cardset.shuffled) {
 				document.title = TAPi18n.__('title.cardset.rep',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
@@ -623,50 +570,46 @@ Router.route('/cardset/:_id/editors', {
 		Session.set('helpFilter', "cardset");
 		return cardset;
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'cardsetManageEditors', data);
 	}
 });
 
-Router.route('/cardset/:_id/stats', {
+FlowRouter.route('/cardset/:_id/stats', {
 	name: 'cardsetstats',
-	template: 'cardsetLearnActivityStatistic',
-	subscriptions: function () {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('cardsetUserRating', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id)];
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
 	},
-	data: function () {
-		let cardset = Cardsets.findOne({_id: this.params._id});
+	waitOn: function (params) {
+		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', params._id), Meteor.subscribe('cardsetUserRating', params._id), Meteor.subscribe('cardsetWorkload', params._id)];
+	},
+	data: function (params) {
+		let cardset = Cardsets.findOne({_id: params._id});
 		if (cardset !== undefined) {
 			document.title = TAPi18n.__('title.cardset.stats.leitner',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
 		}
 		Session.set('helpFilter', "bonusStatistics");
 		return cardset;
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'cardsetLearnActivityStatistic', data);
 	}
 });
 
-Router.route('/cardsetlist', function () {
+FlowRouter.route('/cardsetlist', function () {
 	this.redirect('create');
 });
 
-Router.route('/cardsetlist/:_id', {
+FlowRouter.route('/cardsetlist/:_id', {
 	name: 'cardsetlistid',
-	template: 'cardsetAccess',
-	subscriptions: function () {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetUserRating', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id), Meteor.subscribe('userData')];
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
 	},
-	data: function () {
-		let cardset = Cardsets.findOne({_id: this.params._id});
+	waitOn: function (params) {
+		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', params._id), Meteor.subscribe('paidCardset', params._id), Meteor.subscribe('cardsetUserRating', params._id), Meteor.subscribe('cardsetWorkload', params._id), Meteor.subscribe('cardsetCards', params._id), Meteor.subscribe('cardsetWozniak', params._id), Meteor.subscribe('userData')];
+	},
+	data: function (params) {
+		let cardset = Cardsets.findOne({_id: params._id});
 		if (cardset !== undefined) {
 			if (cardset.shuffled) {
 				document.title = TAPi18n.__('title.cardset.index.rep',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
@@ -678,43 +621,39 @@ Router.route('/cardsetlist/:_id', {
 		Session.set('isNewCardset', false);
 		return cardset;
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'cardsetAccess', data);
 	}
 });
 
-Router.route('/cardset/:_id/newcard', {
+FlowRouter.route('/cardset/:_id/newcard', {
 	name: 'newCard',
-	template: 'newCard',
-	subscriptions: function () {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetsEditMode', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
 	},
-	data: function () {
-		let cardset = Cardsets.findOne({_id: this.params._id});
+	waitOn: function (params) {
+		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetsEditMode', params._id), Meteor.subscribe('cardsetCards', params._id)];
+	},
+	data: function (params) {
+		let cardset = Cardsets.findOne({_id: params._id});
 		if (cardset !== undefined) {
 			document.title = TAPi18n.__('title.cardset.newCard',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
 		}
 		Session.set('helpFilter', "cardEditor");
 		return cardset;
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'newCard', data);
 	}
 });
 
 
-Router.route('/personal/transcripts/new', {
+FlowRouter.route('/personal/transcripts/new', {
 	name: 'newTranscript',
-	template: 'newCard',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetsTranscripts'), Meteor.subscribe('userDataLecturers')];
 	},
 	data: function () {
@@ -722,68 +661,62 @@ Router.route('/personal/transcripts/new', {
 		if (ServerStyle.gotTranscriptsEnabled()) {
 			Session.set('helpFilter', "cardEditor");
 		} else {
-			Router.go('home');
+			FlowRouter.go('home');
 		}
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'newCard', data);
 	}
 });
 
-Router.route('/cardset/:_id/editcard/:card_id', {
+FlowRouter.route('/cardset/:_id/editcard/:card_id', {
 	name: 'editCard',
-	template: 'editCard',
-	subscriptions: function () {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetsEditMode', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
 	},
-	data: function () {
-		let cardset = Cardsets.findOne({_id: this.params._id});
+	waitOn: function (params) {
+		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetsEditMode', params._id), Meteor.subscribe('cardsetCards', params._id)];
+	},
+	data: function (params) {
+		let cardset = Cardsets.findOne({_id: params._id});
 		if (cardset !== undefined) {
 			document.title = TAPi18n.__('title.cardset.editCard',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
 		}
 		Session.set('helpFilter', "cardEditor");
 		return cardset;
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'editCard', data);
 	}
 });
 
-Router.route('/personal/transcripts/edit/:card_id', {
+FlowRouter.route('/personal/transcripts/edit/:card_id', {
 	name: 'editTranscript',
-	template: 'editCard',
-	subscriptions: function () {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetsTranscripts'), Meteor.subscribe('transcriptCard', this.params.card_id), Meteor.subscribe('myTranscriptBonus')];
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function (params) {
+		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardsetsTranscripts'), Meteor.subscribe('transcriptCard', params.card_id), Meteor.subscribe('myTranscriptBonus')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.transcript.edit',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		if (ServerStyle.gotTranscriptsEnabled()) {
 			Session.set('helpFilter', "cardEditor");
 		} else {
-			Router.go('home');
+			FlowRouter.go('home');
 		}
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'editCard', data);
 	}
 });
 
-Router.route('/public/cardsets', {
+FlowRouter.route('/public/cardsets', {
 	name: 'pool',
-	template: 'filterIndex',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('poolCardsets'), Meteor.subscribe('paidCardsets'), Meteor.subscribe('userData')];
 	},
 	data: function () {
@@ -791,51 +724,47 @@ Router.route('/public/cardsets', {
 		Session.set('helpFilter', "pool");
 		Session.set('cardsetIndexResults', Cardsets.find().count());
 	},
-	action: function () {
-		if (this.ready()) {
-			if (ServerStyle.gotNavigationFeature("public.cardset.enabled")) {
-				this.render();
-			} else {
-				MainNavigation.setLoginTarget(false);
-				this.redirect('home');
-			}
+	action: function (params, qs, data) {
+		if (ServerStyle.gotNavigationFeature("public.cardset.enabled")) {
+			this.render(mainTemplate, 'filterIndex', data);
 		} else {
-			this.render(loadingScreenTemplate);
+			MainNavigation.setLoginTarget(false);
+			this.redirect('home');
 		}
 	}
 });
 
-Router.route('/progress/:_id/:user_id', {
+FlowRouter.route('/progress/:_id/:user_id', {
 	name: 'progress',
-	template: 'progress',
-	subscriptions: function () {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('userCardsetLeitner', this.params._id, this.params.user_id), Meteor.subscribe('userDataBonus', this.params._id, this.params.user_id)];
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
 	},
-	data: function () {
-		let cardset = Cardsets.findOne({_id: this.params._id});
+	waitOn: function (params) {
+		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', params._id), Meteor.subscribe('paidCardset', params._id), Meteor.subscribe('cardsetWorkload', params._id), Meteor.subscribe('userCardsetLeitner', params._id, params.user_id), Meteor.subscribe('userDataBonus', params._id, params.user_id)];
+	},
+	data: function (params) {
+		let cardset = Cardsets.findOne({_id: params._id});
 		if (cardset !== undefined) {
 			document.title = TAPi18n.__('title.progress',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
 		}
 		Session.set('helpFilter', "workloadProgress");
 		return cardset;
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'progress', data);
 	}
 });
 
-Router.route('/box/:_id', {
+FlowRouter.route('/box/:_id', {
 	name: 'box',
-	template: 'learnAlgorithmAccess',
-	subscriptions: function () {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetLeitner', this.params._id), Meteor.subscribe('latestLeitnerCardsetTask', this.params._id)];
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
 	},
-	data: function () {
-		let cardset = Cardsets.findOne({_id: this.params._id});
+	waitOn: function (params) {
+		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', params._id), Meteor.subscribe('paidCardset', params._id), Meteor.subscribe('cardsetWorkload', params._id), Meteor.subscribe('cardsetCards', params._id), Meteor.subscribe('cardsetLeitner', params._id), Meteor.subscribe('latestLeitnerCardsetTask', params._id)];
+	},
+	data: function (params) {
+		let cardset = Cardsets.findOne({_id: params._id});
 		if (cardset !== undefined) {
 			document.title = TAPi18n.__('title.cardset.leitner',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
 		}
@@ -844,23 +773,21 @@ Router.route('/box/:_id', {
 		Session.set('aspectRatioMode', AspectRatio.getDefault());
 		return cardset;
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'learnAlgorithmAccess', data);
 	}
 });
 
-Router.route('/memo/:_id', {
+FlowRouter.route('/memo/:_id', {
 	name: 'memo',
-	template: 'learnAlgorithmAccess',
-	subscriptions: function () {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('cardsetWozniak', this.params._id)];
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
 	},
-	data: function () {
-		let cardset = Cardsets.findOne({_id: this.params._id});
+	waitOn: function (params) {
+		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', params._id), Meteor.subscribe('paidCardset', params._id), Meteor.subscribe('cardsetWorkload', params._id), Meteor.subscribe('cardsetCards', params._id), Meteor.subscribe('cardsetWozniak', params._id)];
+	},
+	data: function (params) {
+		let cardset = Cardsets.findOne({_id: params._id});
 		if (cardset !== undefined) {
 			document.title = TAPi18n.__('title.cardset.wozniak',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
 		}
@@ -869,23 +796,21 @@ Router.route('/memo/:_id', {
 		Session.set('aspectRatioMode', AspectRatio.getDefault());
 		return cardset;
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'learnAlgorithmAccess', data);
 	}
 });
 
-Router.route('/presentationlist/:_id', {
+FlowRouter.route('/presentationlist/:_id', {
 	name: 'presentationlist',
-	template: 'presentation',
-	subscriptions: function () {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id), Meteor.subscribe('userData')];
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
 	},
-	data: function () {
-		let cardset = Cardsets.findOne({_id: this.params._id});
+	waitOn: function (params) {
+		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', params._id), Meteor.subscribe('paidCardset', params._id), Meteor.subscribe('cardsetWorkload', params._id), Meteor.subscribe('cardsetCards', params._id), Meteor.subscribe('userData')];
+	},
+	data: function (params) {
+		let cardset = Cardsets.findOne({_id: params._id});
 		if (cardset !== undefined) {
 			if (cardset.shuffled) {
 				document.title = TAPi18n.__('title.cardset.index.rep',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
@@ -896,96 +821,88 @@ Router.route('/presentationlist/:_id', {
 		Session.set('helpFilter', "cardsetIndex");
 		return cardset;
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'presentation', data);
 	}
 });
 
-Router.route('/presentation/transcripts/:card_id', {
+FlowRouter.route('/presentation/transcripts/:card_id', {
 	name: 'presentationTranscriptPersonal',
-	template: 'presentation',
-	subscriptions: function () {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('transcriptCard', this.params.card_id)];
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
 	},
-	data: function () {
+	waitOn: function (params) {
+		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('transcriptCard', params.card_id)];
+	},
+	data: function (params) {
 		document.title = TAPi18n.__('title.transcript.presentation',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		if (ServerStyle.gotTranscriptsEnabled()) {
 			Session.set('helpFilter',undefined);
-			return Cards.findOne(this.params.card_id);
+			return Cards.findOne(params.card_id);
 		} else {
-			Router.go('home');
+			FlowRouter.go('home');
 		}
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'presentation', data);
 	}
 });
 
-Router.route('/presentation/transcripts/bonus/:card_id', {
+FlowRouter.route('/presentation/transcripts/bonus/:card_id', {
 	name: 'presentationTranscriptBonus',
-	template: 'presentation',
-	subscriptions: function () {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('transcriptCard', this.params.card_id), Meteor.subscribe('myTranscriptBonus'), Meteor.subscribe('cardsetTranscriptMyBonus', this.params.card_id)];
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
 	},
-	data: function () {
+	waitOn: function (params) {
+		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('transcriptCard', params.card_id), Meteor.subscribe('myTranscriptBonus'), Meteor.subscribe('cardsetTranscriptMyBonus', params.card_id)];
+	},
+	data: function (params) {
 		document.title = TAPi18n.__('title.transcript.presentation',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		if (ServerStyle.gotTranscriptsEnabled()) {
 			Session.set('helpFilter',undefined);
-			return Cards.findOne(this.params.card_id);
+			return Cards.findOne(params.card_id);
 		} else {
-			Router.go('home');
+			FlowRouter.go('home');
 		}
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'presentation', data);
 	}
 });
 
 
-Router.route('/presentation/transcripts/bonus/:_id/:card_id', {
+FlowRouter.route('/presentation/transcripts/bonus/:_id/:card_id', {
 	name: 'presentationTranscriptBonusCardset',
-	template: 'presentation',
-	subscriptions: function () {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('transcriptCard', this.params.card_id), Meteor.subscribe('cardsetTranscriptBonus', this.params._id)];
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
 	},
-	data: function () {
+	waitOn: function (params) {
+		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', params._id), Meteor.subscribe('transcriptCard', params.card_id), Meteor.subscribe('cardsetTranscriptBonus', params._id)];
+	},
+	data: function (params) {
 		document.title = TAPi18n.__('title.transcript.presentation',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		if (ServerStyle.gotTranscriptsEnabled()) {
 			Session.set('helpFilter',undefined);
-			return Cards.findOne(this.params.card_id);
+			return Cards.findOne(params.card_id);
 		} else {
-			Router.go('home');
+			FlowRouter.go('home');
 		}
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'presentation', data);
 	}
 });
 
-Router.route('/presentation/:_id', {
+FlowRouter.route('/presentation/:_id', {
 	name: 'presentation',
-	template: 'presentation',
-	subscriptions: function () {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', this.params._id), Meteor.subscribe('paidCardset', this.params._id), Meteor.subscribe('cardsetWorkload', this.params._id), Meteor.subscribe('cardsetCards', this.params._id)];
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
 	},
-	data: function () {
-		let cardset = Cardsets.findOne({_id: this.params._id});
+	waitOn: function (params) {
+		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', params._id), Meteor.subscribe('paidCardset', params._id), Meteor.subscribe('cardsetWorkload', params._id), Meteor.subscribe('cardsetCards', params._id)];
+	},
+	data: function (params) {
+		let cardset = Cardsets.findOne({_id: params._id});
 		if (cardset !== undefined) {
 			document.title = TAPi18n.__('title.cardset.presentation',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
 		}
@@ -993,19 +910,17 @@ Router.route('/presentation/:_id', {
 		Session.set('helpFilter', undefined);
 		return cardset;
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'presentation', data);
 	}
 });
 
-Router.route('makingofcards', {
+FlowRouter.route('/makingofcards', {
 	name: 'making',
-	template: 'makingOfCards',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('makingOfCardsets'), Meteor.subscribe('demoCards')];
 	},
 	data: function () {
@@ -1014,19 +929,17 @@ Router.route('makingofcards', {
 		Session.set('helpFilter', undefined);
 		return Cardsets.findOne({kind: 'demo', name: "MakingOfCardset", shuffled: true});
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'makingOfCards', data);
 	}
 });
 
-Router.route('makingofcardslist', {
+FlowRouter.route('/makingofcardslist', {
 	name: 'makinglist',
-	template: 'makingOfCards',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('makingOfCardsets'), Meteor.subscribe('demoCards')];
 	},
 	data: function () {
@@ -1034,343 +947,299 @@ Router.route('makingofcardslist', {
 		Session.set('helpFilter', "cardsetIndex");
 		return Cardsets.findOne({kind: 'demo', name: "MakingOfCardset", shuffled: true});
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'makingOfCards', data);
 	}
 });
 
-Router.route('/profile/:_id/overview', {
+FlowRouter.route('/profile/:_id/overview', {
 	name: 'profileOverview',
-	template: 'profile',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('workloadCardsets'), Meteor.subscribe('userWorkload'), Meteor.subscribe('userLeitner')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.profile.overview',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "summativeProgress");
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'profile', data);
 	}
 });
-Router.route('/profile/:_id/billing', {
+FlowRouter.route('/profile/:_id/billing', {
 	name: 'profileBilling',
-	template: 'profile',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('paidCardsets')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.profile.billing',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "billing");
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'profile', data);
 	}
 });
-Router.route('/profile/:_id/membership', {
+FlowRouter.route('/profile/:_id/membership', {
 	name: 'profileMembership',
-	template: 'profile',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.profile.membership',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "membership");
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'profile', data);
 	}
 });
-Router.route('/profile/:_id/notifications', {
+FlowRouter.route('/profile/:_id/notifications', {
 	name: 'profileNotifications',
-	template: 'profile',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "notifications");
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'profile', data);
 	}
 });
-Router.route('/profile/:_id/settings', {
+FlowRouter.route('/profile/:_id/settings', {
 	name: 'profileSettings',
-	template: 'profile',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.profile.settings',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "settings");
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'profile', data);
 	}
 });
-Router.route('/profile/:_id/requests', {
+FlowRouter.route('/profile/:_id/requests', {
 	name: 'profileRequests',
-	template: 'profile',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(mainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.default',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "requests");
 	},
-	action: function () {
-		if (this.ready()) {
-			this.render();
-		} else {
-			this.render(loadingScreenTemplate);
-		}
+	action: function (params, qs, data) {
+		this.render(mainTemplate, 'profile', data);
 	}
 });
 
-Router.route('/admin/dashboard', {
+FlowRouter.route('/admin/dashboard', {
 	name: 'admin_dashboard',
-	template: 'admin_dashboard',
-	layoutTemplate: 'admin_main',
-	loadingTemplate: 'admin_dashboard',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(adminMainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe("serverInventory"), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.backend.dashboard',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
-	action: function () {
-		if (this.ready()) {
-			if (UserPermissions.isAdmin()) {
-				this.render();
-			} else {
-				MainNavigation.setLoginTarget(false);
-				this.redirect('home');
-			}
+	action: function (params, qs, data) {
+		if (UserPermissions.isAdmin()) {
+			this.render(adminMainTemplate, 'admin_dashboard', data);
 		} else {
-			this.render(loadingScreenTemplate);
+			MainNavigation.setLoginTarget(false);
+			this.redirect('home');
 		}
 	}
 });
 
-Router.route('/admin/users', {
+FlowRouter.route('/admin/users', {
 	name: 'admin_users',
-	template: 'admin_users',
-	layoutTemplate: 'admin_main',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(adminMainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.backend.user.index',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
-	action: function () {
-		if (this.ready()) {
-			if (UserPermissions.isAdmin()) {
-				this.render();
-			} else {
-				MainNavigation.setLoginTarget(false);
-				this.redirect('home');
-			}
+	action: function (params, qs, data) {
+		if (UserPermissions.isAdmin()) {
+			this.render(adminMainTemplate, 'admin_users', data);
 		} else {
-			this.render(loadingScreenTemplate);
+			MainNavigation.setLoginTarget(false);
+			this.redirect('home');
 		}
 	}
 });
 
-Router.route('/admin/user/:_id', {
+FlowRouter.route('/admin/user/:_id', {
 	name: 'admin_user',
-	template: 'admin_user',
-	layoutTemplate: 'admin_main',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(adminMainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('userData')];
 	},
-	data: function () {
+	data: function (params) {
 		document.title = TAPi18n.__('title.backend.user.user',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
-		return Meteor.users.findOne({_id: this.params._id});
+		return Meteor.users.findOne({_id: params._id});
 	},
-	action: function () {
-		if (this.ready()) {
-			if (UserPermissions.isAdmin()) {
-				this.render();
-			} else {
-				MainNavigation.setLoginTarget(false);
-				this.redirect('home');
-			}
+	action: function (params, qs, data) {
+		if (UserPermissions.isAdmin()) {
+			this.render(adminMainTemplate, 'admin_user', data);
 		} else {
-			this.render(loadingScreenTemplate);
+			MainNavigation.setLoginTarget(false);
+			this.redirect('home');
 		}
 	}
 });
 
-Router.route('/admin/learningStatistics', {
+FlowRouter.route('/admin/learningStatistics', {
 	name: 'admin_learningStatistics',
-	template: 'admin_learningStatistics',
-	layoutTemplate: 'admin_main',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(adminMainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('allCardsets'), Meteor.subscribe('allLeitner'), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.backend.stats',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
-	action: function () {
-		if (this.ready()) {
-			if (UserPermissions.isAdmin()) {
-				this.render();
-			} else {
-				MainNavigation.setLoginTarget(false);
-				this.redirect('home');
-			}
+	action: function (params, qs, data) {
+		if (UserPermissions.isAdmin()) {
+			this.render(adminMainTemplate, 'admin_learningStatistics', data);
 		} else {
-			this.render(loadingScreenTemplate);
+			MainNavigation.setLoginTarget(false);
+			this.redirect('home');
 		}
 	}
 });
 
-Router.route('/admin/matomoStatistics', {
+FlowRouter.route('/admin/matomoStatistics', {
 	name: 'admin_matomoStatistics',
-	template: 'admin_matomoStatistics',
-	layoutTemplate: 'admin_main',
+	whileWaiting: function () {
+		this.render(adminMainTemplate, loadingScreenTemplate);
+	},
 	data: function () {
 		document.title = TAPi18n.__('title.backend.matomo',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 	},
-	action: function () {
-		if (this.ready()) {
-			if (UserPermissions.isAdmin()) {
-				this.render();
-			} else {
-				MainNavigation.setLoginTarget(false);
-				this.redirect('home');
-			}
+	action: function (params, qs, data) {
+		if (UserPermissions.isAdmin()) {
+			this.render('admin_matomoStatistics', data);
 		} else {
-			this.render(loadingScreenTemplate);
+			MainNavigation.setLoginTarget(false);
+			this.redirect(adminMainTemplate, 'home');
 		}
 	}
 });
 
-Router.route('/admin/apiAccess', {
+FlowRouter.route('/admin/apiAccess', {
 	name: 'admin_apiAccess',
-	template: 'admin_apiAccess',
-	layoutTemplate: 'admin_main',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(adminMainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('allCardsets'), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.backend.api',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 	},
-	action: function () {
-		if (this.ready()) {
-			if (UserPermissions.isAdmin()) {
-				this.render();
-			} else {
-				MainNavigation.setLoginTarget(false);
-				this.redirect('home');
-			}
+	action: function (params, qs, data) {
+		if (UserPermissions.isAdmin()) {
+			this.render(adminMainTemplate, 'admin_apiAccess', data);
 		} else {
-			this.render(loadingScreenTemplate);
+			MainNavigation.setLoginTarget(false);
+			this.redirect('home');
 		}
 	}
 });
 
-Router.route('/admin/notifications', {
+FlowRouter.route('/admin/notifications', {
 	name: 'admin_notifications',
-	template: 'admin_notifications',
-	layoutTemplate: 'admin_main',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(adminMainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.backend.notifications',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
-	action: function () {
-		if (this.ready()) {
-			if (UserPermissions.isAdmin()) {
-				this.render();
-			} else {
-				MainNavigation.setLoginTarget(false);
-				this.redirect('home');
-			}
+	action: function (params, qs, data) {
+		if (UserPermissions.isAdmin()) {
+			this.render(adminMainTemplate, 'admin_notifications', data);
 		} else {
-			this.render(loadingScreenTemplate);
+			MainNavigation.setLoginTarget(false);
+			this.redirect('home');
 		}
 	}
 });
 
-Router.route('/admin/university', {
+FlowRouter.route('/admin/university', {
 	name: 'admin_university',
-	template: 'admin_university',
-	layoutTemplate: 'admin_main',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(adminMainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.backend',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
-	action: function () {
-		if (this.ready()) {
-			if (UserPermissions.isAdmin()) {
-				this.render();
-			} else {
-				MainNavigation.setLoginTarget(false);
-				this.redirect('home');
-			}
+	action: function (params, qs, data) {
+		if (UserPermissions.isAdmin()) {
+			this.render(adminMainTemplate, 'admin_university', data);
 		} else {
-			this.render(loadingScreenTemplate);
+			MainNavigation.setLoginTarget(false);
+			this.redirect('home');
 		}
 	}
 });
 
-Router.route('/admin/settings', {
+FlowRouter.route('/admin/settings', {
 	name: 'admin_settings',
-	template: 'admin_settings',
-	layoutTemplate: 'admin_main',
-	subscriptions: function () {
+	whileWaiting: function () {
+		this.render(adminMainTemplate, loadingScreenTemplate);
+	},
+	waitOn: function () {
 		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('userData')];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.backend.settings',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', undefined);
 	},
-	action: function () {
-		if (this.ready()) {
-			WebPushNotifications.subscribeForPushNotification();
-			if (UserPermissions.isAdmin()) {
-				this.render();
-			} else {
-				MainNavigation.setLoginTarget(false);
-				this.redirect('home');
-			}
+	action: function (params, qs, data) {
+		WebPushNotifications.subscribeForPushNotification();
+		if (UserPermissions.isAdmin()) {
+			this.render(adminMainTemplate, 'admin_settings', data);
 		} else {
-			this.render(loadingScreenTemplate);
+			MainNavigation.setLoginTarget(false);
+			this.redirect('home');
 		}
 	}
 });
@@ -1421,7 +1290,6 @@ var setLanguage = function () {
 	let language = ServerStyle.getClientLanguage();
 	Session.set('activeLanguage', language);
 	TAPi18n.setLanguage(language);
-	this.next();
 };
 
 var setTheme = function () {
@@ -1497,7 +1365,6 @@ var setTheme = function () {
 		}
 		body.css('background-image', ServerStyle.getBackground("landing-page"));
 	}
-	this.next();
 };
 
 var isSignedIn = function () {
@@ -1505,50 +1372,45 @@ var isSignedIn = function () {
 	if (!(Meteor.user() || Meteor.loggingIn()) && !MainNavigation.isGuestLoginActive()) {
 		Session.set('theme', "default");
 		if (MainNavigation.getLoginTarget() === undefined) {
-			if (linksWithNoLoginRequirement().includes(Router.current().route.getName())) {
+			if (linksWithNoLoginRequirement().includes(FlowRouter.getRouteName())) {
 				MainNavigation.setLoginTarget(false);
 			} else {
-				if (Router.current().route.getName() !== 'firstLogin' && Router.current().route.getName() !== 'accessDenied') {
-					MainNavigation.setLoginTarget(Router.current().url);
+				if (FlowRouter.getRouteName() !== 'firstLogin' && FlowRouter.getRouteName() !== 'accessDenied') {
+					MainNavigation.setLoginTarget(FlowRouter.current().path);
 				} else {
 					MainNavigation.setLoginTarget(false);
 				}
 			}
 		}
-		Router.go('home');
+		FlowRouter.go('home');
 	} else {
 		Route.setFirstTimeVisit();
 		if (Roles.userIsInRole(Meteor.userId(), ['firstLogin'])) {
-			Router.go('firstLogin');
+			FlowRouter.go('firstLogin');
 		}
 		if (Roles.userIsInRole(Meteor.userId(), ['blocked'])) {
-			Router.go('accessDenied');
+			FlowRouter.go('accessDenied');
 		}
-		this.next();
 	}
 };
 
-var goToCreated = function () {
+export let setLoginTarget = function () {
 	if (Meteor.user() || MainNavigation.isGuestLoginActive()) {
 		if (!Roles.userIsInRole(Meteor.userId(), ['firstLogin', 'blocked']) && MainNavigation.getLoginTarget() !== undefined && MainNavigation.getLoginTarget() !== false && MainNavigation.getLoginTarget() !== "/") {
-			Router.go(MainNavigation.getLoginTarget());
+			FlowRouter.go(MainNavigation.getLoginTarget());
 			MainNavigation.setLoginTarget(false);
 		} else {
 			LoginTasks.setLoginRedirect();
 		}
-	} else {
-		this.next();
 	}
 };
 
-Router.onBeforeAction(setLanguage);
+FlowRouter.triggers.enter([setLanguage, setTheme]);
 
-Router.onBeforeAction(setTheme);
-
-Router.onBeforeAction(isSignedIn, {
+FlowRouter.triggers.enter([isSignedIn], {
 	except: linksWithNoLoginRequirement()
 });
 
-Router.onBeforeAction(goToCreated, {
+FlowRouter.triggers.enter([setLoginTarget], {
 	only: ['home']
 });

@@ -1,4 +1,5 @@
 import {Session} from "meteor/session";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {CardType} from "./cardTypes";
 import {Meteor} from "meteor/meteor";
 import {Route} from "./route.js";
@@ -155,7 +156,7 @@ export let CardEditor = class CardEditor {
 			difficulty = card.difficulty;
 			cardType = card.cardType;
 		} else {
-			let cardset = Cardsets.findOne({_id: Router.current().params._id});
+			let cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')});
 			difficulty = cardset.difficulty;
 			cardType = cardset.cardType;
 		}
@@ -238,22 +239,22 @@ export let CardEditor = class CardEditor {
 		let previousRoute = Session.get('cardEditMode').route;
 		switch (previousRoute) {
 			case "leitner":
-				Router.go('box', {
+				FlowRouter.go('box', {
 					_id: cardset
 				});
 				break;
 			case "wozniak":
-				Router.go('memo', {
+				FlowRouter.go('memo', {
 					_id: cardset
 				});
 				break;
 			case "presentation":
-				Router.go('presentation', {
+				FlowRouter.go('presentation', {
 					_id: cardset
 				});
 				break;
 			default:
-				Router.go('cardsetdetailsid', {
+				FlowRouter.go('cardsetdetailsid', {
 					_id: cardset
 				});
 				break;
@@ -327,7 +328,7 @@ export let CardEditor = class CardEditor {
 			if (Route.isNewCard()) {
 				let cardset_id = "-1";
 				if (!Route.isTranscript()) {
-					cardset_id = Router.current().params._id;
+					cardset_id = FlowRouter.getParam('_id');
 				}
 				Meteor.call("addCard", cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, Number(learningGoalLevel), Number(backgroundStyle), Session.get('transcriptBonus'), Number(initialLearningTime), Number(repeatedLearningTime), function (error, result) {
 					if (result) {
@@ -342,14 +343,14 @@ export let CardEditor = class CardEditor {
 						} else {
 							if (Route.isTranscript()) {
 								if (Session.get('transcriptBonus') !== undefined) {
-									Router.go('transcriptsBonus');
+									FlowRouter.go('transcriptsBonus');
 								} else {
-									Router.go('transcriptsPersonal');
+									FlowRouter.go('transcriptsPersonal');
 								}
 							} else {
 								Session.set('activeCard', result);
-								Router.go('cardsetdetailsid', {
-									_id: Router.current().params._id
+								FlowRouter.go('cardsetdetailsid', {
+									_id: FlowRouter.getParam('_id')
 								});
 							}
 						}
@@ -362,20 +363,20 @@ export let CardEditor = class CardEditor {
 				Meteor.call("updateCard", card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, Number(learningGoalLevel), Number(backgroundStyle), Session.get('transcriptBonus'), Number(initialLearningTime), Number(repeatedLearningTime), function (error, result) {
 					if (result) {
 						BertAlertVisuals.displayBertAlert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
-						Session.set('activeCard', Router.current().params.card_id);
+						Session.set('activeCard', FlowRouter.getParam('card_id'));
 						if (navigationTarget === 1) {
 							if (Route.isTranscript()) {
 								if (Session.get('transcriptBonus') !== undefined) {
-									Router.go('transcriptsBonus');
+									FlowRouter.go('transcriptsBonus');
 								} else {
-									Router.go('transcriptsPersonal');
+									FlowRouter.go('transcriptsPersonal');
 								}
 							} else {
 								if (Session.get('cardEditMode') !== undefined) {
 									CardEditor.goBackToPreviousRoute();
 								} else {
-									Router.go('presentation', {
-										_id: Router.current().params._id
+									FlowRouter.go('presentation', {
+										_id: FlowRouter.getParam('_id')
 									});
 								}
 							}
@@ -384,12 +385,12 @@ export let CardEditor = class CardEditor {
 							CardNavigation.selectButton();
 							window.scrollTo(0, 0);
 							let nextId = CardIndex.getNextCardID(card_id);
-							Router.go('editCard', {
-								_id: Router.current().params._id,
+							FlowRouter.go('editCard', {
+								_id: FlowRouter.getParam('_id'),
 								card_id: nextId
 							});
 							Session.set('activeCard', nextId);
-							CardEditor.loadEditModeContent(Cards.findOne({_id: nextId, cardset_id: Router.current().params._id}));
+							CardEditor.loadEditModeContent(Cards.findOne({_id: nextId, cardset_id: FlowRouter.getParam('_id')}));
 						}
 					}
 					if (error) {

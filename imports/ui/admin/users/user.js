@@ -4,6 +4,7 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/subscriptions/cardsets.js";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./user.html";
 
 
@@ -17,7 +18,7 @@ import "./user.html";
 
 Template.admin_user.helpers({
 	getService: function () {
-		var userId = Router.current().params._id;
+		var userId = FlowRouter.getParam('_id');
 		if (userId !== undefined) {
 			var user = Meteor.users.findOne(userId);
 			if (user !== undefined && user.services !== undefined) {
@@ -264,7 +265,7 @@ Template.admin_user.events({
 	},
 	'click #linkToAdminUserCardset': function (event) {
 		var cardsetid = $(event.currentTarget).data("cardsetid");
-		Router.go('admin_cardset', {_id: cardsetid});
+		FlowRouter.go('admin_cardset', {_id: cardsetid});
 	},
 	'keyup #editUserEmailAdmin': function () {
 		$('#editUserEmailLabelAdmin').css('color', '');

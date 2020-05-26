@@ -3,6 +3,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cards} from "../../../../api/subscriptions/cards";
 import {CardType} from "../../../../api/cardTypes";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./chooseFlashcards.html";
 
 /*
@@ -21,7 +22,7 @@ Template.chooseFlashcards.created = function () {
 
 Template.chooseFlashcards.helpers({
 	getCardCount: function (category, item) {
-		let cardsetFilter = Router.current().params._id;
+		let cardsetFilter = FlowRouter.getParam('_id');
 		if (this.shuffled) {
 			cardsetFilter = {$in: this.cardGroups};
 		}

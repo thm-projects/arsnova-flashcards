@@ -1,6 +1,7 @@
 //------------------------ IMPORTS
 
 import {Template} from "meteor/templating";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
 import {Cards} from "../../../api/subscriptions/cards.js";
 import {Cardsets} from "../../../api/subscriptions/cardsets.js";
@@ -188,7 +189,7 @@ Template.filterIndexPool.helpers({
 Template.filterIndexPool.events({
 	'click #cancelSelection': function () {
 		Session.set('selectingCardsetToLearn', false);
-		Router.go('learn');
+		FlowRouter.go('learn');
 	}
 });
 
@@ -386,14 +387,14 @@ Template.filterIndexShuffle.helpers({
 		}
 	},
 	isActiveCardset: function () {
-		return this._id === Router.current().params._id;
+		return this._id === FlowRouter.getParam('_id');
 	}
 });
 
 Template.filterIndexShuffle.onCreated(function () {
 	Session.set('shuffleFilter', undefined);
 	if (Route.isEditShuffle()) {
-		Session.set("ShuffledCardsets", Cardsets.findOne({_id: Router.current().params._id}).cardGroups);
+		Session.set("ShuffledCardsets", Cardsets.findOne({_id: FlowRouter.getParam('_id')}).cardGroups);
 	} else {
 		Session.set("ShuffledCardsets", []);
 	}

@@ -1,4 +1,5 @@
 import {Meteor} from "meteor/meteor";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Leitner} from "./subscriptions/leitner";
 import {Wozniak} from "./subscriptions/wozniak";
 import {Filter} from "./filter.js";
@@ -58,19 +59,19 @@ export let LoginTasks = class LoginTasks {
 								case 0:
 									if (UserPermissions.gotBackendAccess() && !redirected) {
 										redirected = true;
-										Router.go('alldecks');
+										FlowRouter.go('alldecks');
 									}
 									break;
 								case 1:
 									if (LoginTasks.gotWorkload() > 0 && !redirected) {
 										redirected = true;
-										Router.go('learn');
+										FlowRouter.go('learn');
 									}
 									break;
 								case 2:
 									if (ServerStyle.gotNavigationFeature("personal.cardset.enabled") && LoginTasks.gotOwnCardsets() > 0 && !redirected) {
 										redirected = true;
-										Router.go('create');
+										FlowRouter.go('create');
 									}
 									break;
 							}
@@ -80,14 +81,14 @@ export let LoginTasks = class LoginTasks {
 						}
 						if (!redirected) {
 							if (ServerStyle.gotNavigationFeature("public.cardset.enabled")) {
-								Router.go('pool');
+								FlowRouter.go('pool');
 							} else if (ServerStyle.gotNavigationFeature("public.repetitorium.enabled")) {
-								Router.go('repetitorium');
+								FlowRouter.go('repetitorium');
 							} else {
 								if (Meteor.user() && Roles.userIsInRole(Meteor.userId(), ['firstLogin'])) {
-									Router.go('firstLogin');
+									FlowRouter.go('firstLogin');
 								} else {
-									Router.go('help');
+									FlowRouter.go('help');
 								}
 							}
 						}

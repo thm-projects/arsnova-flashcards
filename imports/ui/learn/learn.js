@@ -16,6 +16,7 @@ import {CardsetNavigation} from "../../api/cardsetNavigation";
 import {NavigatorCheck} from "../../api/navigatorCheck";
 import {CardVisuals} from "../../api/cardVisuals";
 import {Bonus} from "../../api/bonus";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 Session.set('animationPlaying', false);
 
@@ -26,11 +27,11 @@ Session.set('animationPlaying', false);
  */
 
 Template.learnAlgorithms.onCreated(function () {
-	if (Route.isBox() && Bonus.isInBonus(Router.current().params._id)) {
+	if (Route.isBox() && Bonus.isInBonus(FlowRouter.getParam('_id'))) {
 		PomodoroTimer.updateServerTimerStart();
 		PomodoroTimer.start();
 	}
-	let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {cardType: 1, shuffled: 1, strictWorkloadTimer: 1}});
+	let cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')}, {fields: {cardType: 1, shuffled: 1, strictWorkloadTimer: 1}});
 	Session.set('activeCard', undefined);
 	Session.set('isQuestionSide', true);
 	Session.set('animationPlaying', false);
@@ -41,7 +42,7 @@ Template.learnAlgorithms.onCreated(function () {
 
 Template.learnAlgorithms.onDestroyed(function () {
 	Session.set('activeCard', undefined);
-	if (Route.isBox() && Bonus.isInBonus(Router.current().params._id)) {
+	if (Route.isBox() && Bonus.isInBonus(FlowRouter.getParam('_id'))) {
 		PomodoroTimer.updateServerTimerIntervalStop();
 	}
 	PomodoroTimer.showPomodoroFullsize();
@@ -55,40 +56,40 @@ Template.learnAlgorithms.onRendered(function () {
 		$('#helpModal').modal('show');
 	}
 	if (Route.isBox()) {
-		CardsetNavigation.addToLeitner(Router.current().params._id);
+		CardsetNavigation.addToLeitner(FlowRouter.getParam('_id'));
 	}
 	if (Route.isMemo()) {
-		Meteor.call("addWozniakCards", Router.current().params._id);
+		Meteor.call("addWozniakCards", FlowRouter.getParam('_id'));
 	}
 });
 
 Template.learnAlgorithms.helpers({
 	noCards: function () {
-		if (ActiveRoute.name('box')) {
+		if (FlowRouter.getRouteName() === 'box') {
 			return !Leitner.findOne({
-				cardset_id: Router.current().params._id,
+				cardset_id: FlowRouter.getParam('_id'),
 				user_id: Meteor.userId(),
 				box: {$ne: 6}
 			});
 		}
-		if (ActiveRoute.name('memo')) {
+		if (FlowRouter.getRouteName() === 'memo') {
 			return !Wozniak.findOne({});
 		}
 	},
 	isFinished: function () {
-		if (ActiveRoute.name('box')) {
+		if (FlowRouter.getRouteName() === 'box') {
 			return !Leitner.findOne({
-				cardset_id: Router.current().params._id,
+				cardset_id: FlowRouter.getParam('_id'),
 				user_id: Meteor.userId(),
 				active: true
 			});
 		}
-		if (ActiveRoute.name('memo')) {
+		if (FlowRouter.getRouteName() === 'memo') {
 			let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 			actualDate.setHours(0, 0, 0, 0);
 
 			return !Wozniak.findOne({
-				cardset_id: Router.current().params._id,
+				cardset_id: FlowRouter.getParam('_id'),
 				user_id: Meteor.userId(),
 				nextDate: {
 					$lte: actualDate
@@ -166,7 +167,7 @@ Template.learnAnswerOptions.events({
 
 Template.learnBackButton.events({
 	"click #backButton": function () {
-		Router.go('learn', {
+		FlowRouter.go('learn', {
 		});
 	}
 });

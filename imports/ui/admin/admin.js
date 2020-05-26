@@ -4,6 +4,7 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Notifications} from "../../api/subscriptions/notifications";
 import {MainNavigation} from "../../api/mainNavigation";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./admin.html";
 import "./dashboard/dashboard.js";
 import "./users/index.js";
@@ -28,6 +29,7 @@ Template.admin_main.events({
 	'click #logout_admin': function (event) {
 		event.preventDefault();
 		MainNavigation.setLoginTarget(false);
+		FlowRouter.go('home');
 		Meteor.logout();
 	},
 	'click #notificationsBtn_admin': function () {

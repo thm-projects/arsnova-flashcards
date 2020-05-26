@@ -14,6 +14,7 @@ import "./box/bonus.js";
 import "./box/bonusTranscript.js";
 import "./info.html";
 import {ServerStyle} from "../../../api/styles";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*
  * ############################################################################
@@ -43,10 +44,10 @@ Template.cardsetInfo.helpers({
 	},
 	learning: function () {
 		return (Leitner.findOne({
-			cardset_id: Router.current().params._id,
+			cardset_id: FlowRouter.getParam('_id'),
 			user_id: Meteor.userId()
 		}) || Wozniak.findOne({
-			cardset_id: Router.current().params._id,
+			cardset_id: FlowRouter.getParam('_id'),
 			user_id: Meteor.userId(),
 			interval: {$ne: 0}
 		}));

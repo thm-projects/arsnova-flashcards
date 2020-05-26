@@ -4,6 +4,7 @@ import {Template} from "meteor/templating";
 import "./removeUser.html";
 import {Meteor} from "meteor/meteor";
 import {BertAlertVisuals} from "../../../../../api/bertAlertVisuals";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*
 * ############################################################################
@@ -26,7 +27,7 @@ Template.removeUserFromBonusModal.helpers({
 Template.removeUserFromBonusModal.events({
 	"click #removeUserFromBonusConfirm": function () {
 		if (Session.get('selectedBonusUser') !== undefined) {
-			Meteor.call('removeUserFromBonus', Router.current().params._id, Session.get('selectedBonusUser').user_id, function (error, result) {
+			Meteor.call('removeUserFromBonus', FlowRouter.getParam('_id'), Session.get('selectedBonusUser').user_id, function (error, result) {
 				if (error) {
 					throw new Meteor.Error(error.statusCode, 'Error could not receive content for stats');
 				}

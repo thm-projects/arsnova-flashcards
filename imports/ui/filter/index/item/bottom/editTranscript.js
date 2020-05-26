@@ -3,6 +3,7 @@ import {Template} from "meteor/templating";
 import {Route} from "../../../../../api/route";
 import {TranscriptBonus} from "../../../../../api/subscriptions/transcriptBonus";
 import {TranscriptBonusList} from "../../../../../api/transcriptBonus";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*
  * ############################################################################
@@ -23,6 +24,6 @@ Template.filterIndexItemBottomEditTranscript.helpers({
 
 Template.filterIndexItemBottomEditTranscript.events({
 	'click .editCard': function (event) {
-		Router.go('editTranscript', {card_id: $(event.target).data('id')});
+		FlowRouter.go('editTranscript', {card_id: $(event.target).data('id')});
 	}
 });

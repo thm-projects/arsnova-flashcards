@@ -1,4 +1,5 @@
 import "./lastEditor.html";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Template} from "meteor/templating";
 
 /*
@@ -17,7 +18,7 @@ Template.filterIndexItemTopLastEditor.helpers({
 
 Template.filterIndexItemTopLastEditor.events({
 	'click .lastEditorLink': function () {
-		Router.go('admin_user', {
+		FlowRouter.go('admin_user', {
 			_id: this.lastEditor
 		});
 	}

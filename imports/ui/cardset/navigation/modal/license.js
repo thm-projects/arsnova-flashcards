@@ -2,6 +2,7 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./license.html";
 
 /*
@@ -12,7 +13,7 @@ import "./license.html";
 
 Template.selectLicenseForm.onRendered(function () {
 	$('#selectLicenseModal').on('hidden.bs.modal', function () {
-		var cardset = Cardsets.findOne(Router.current().params._id);
+		var cardset = Cardsets.findOne(FlowRouter.getParam('_id'));
 		var license = cardset.license;
 
 		$('#cc-modules > label').removeClass('active');
@@ -68,7 +69,7 @@ Template.selectLicenseForm.events({
 
 Template.selectLicenseForm.helpers({
 	licenseIsActive: function (license) {
-		var cardset = Cardsets.findOne(Router.current().params._id);
+		var cardset = Cardsets.findOne(FlowRouter.getParam('_id'));
 		if (cardset !== undefined) {
 			var licenses = cardset.license;
 

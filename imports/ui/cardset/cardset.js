@@ -1,5 +1,6 @@
 //------------------------ IMPORTS
 import {Meteor} from "meteor/meteor";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/subscriptions/cardsets.js";
@@ -34,14 +35,14 @@ Meteor.subscribe("notifications");
 
 Template.cardset.onCreated(function () {
 	CardVisuals.toggleFullscreen(true);
-	if (Session.get('activeCardset') === undefined || Session.get('activeCardset')._id !== Router.current().params._id) {
-		Session.set('activeCardset', Cardsets.findOne(Router.current().params._id));
+	if (Session.get('activeCardset') === undefined || Session.get('activeCardset')._id !== FlowRouter.getParam('_id')) {
+		Session.set('activeCardset', Cardsets.findOne(FlowRouter.getParam('_id')));
 		Session.set('activeCard', undefined);
 	}
 	if (Number(Session.get('activeCard')) === Number(-1)) {
 		Session.set('activeCard', undefined);
 	}
-	Session.set('shuffled', Cardsets.findOne(Router.current().params._id).shuffled);
+	Session.set('shuffled', Cardsets.findOne(FlowRouter.getParam('_id')).shuffled);
 	Session.set('cameFromEditMode', false);
 	CardNavigation.toggleVisibility(true);
 	Session.set('hideSidebar', false);
@@ -63,7 +64,7 @@ Template.cardset.rendered = function () {
 
 							var nonce = response.nonce;
 
-							Meteor.call('btCreateTransaction', nonce, Router.current().params._id, function (error) {
+							Meteor.call('btCreateTransaction', nonce, FlowRouter.getParam('_id'), function (error) {
 								if (error) {
 									throw new Meteor.Error('transaction-creation-failed');
 								} else {
@@ -108,13 +109,13 @@ Template.cardset.events({
 
 		$('#setCardsetFormModal').on('hidden.bs.modal', function () {
 			Meteor.call("deleteCardset", id);
-			Router.go('create');
+			FlowRouter.go('create');
 		}).modal('hide');
 	},
 	'click #acceptRequest': function () {
 		Meteor.call("acceptProRequest", this._id);
 		BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.request.accepted'), 'success', 'growl-top-left');
-		Router.go('home');
+		FlowRouter.go('home');
 	},
 	'click #declineRequest': function () {
 		var reason = $('#declineRequestReason').val();
@@ -124,17 +125,17 @@ Template.cardset.events({
 			Meteor.call("addNotification", this.owner, "Freischaltung des Kartensatzes " + this.name + " nicht stattgegeben", reason, this._id, TAPi18n.__('set-list.author'));
 			Meteor.call("declineProRequest", this._id);
 			BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.request.declined'), 'info', 'growl-top-left');
-			Router.go('home');
+			FlowRouter.go('home');
 		}
 	},
 	'click #backToCardsetDetailView, cllick #backToCardsetDetailViewFullscreen': function () {
-		Router.go('cardsetdetailsid', {
-			_id: Router.current().params._id
+		FlowRouter.go('cardsetdetailsid', {
+			_id: FlowRouter.getParam('_id')
 		});
 	},
 	'click .projectorIcon': function () {
-		Router.go('presentation', {
-			_id: Router.current().params._id
+		FlowRouter.go('presentation', {
+			_id: FlowRouter.getParam('_id')
 		});
 	}
 });

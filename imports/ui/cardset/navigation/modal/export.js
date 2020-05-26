@@ -6,6 +6,7 @@ import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
 import {MarkdeepContent} from "../../../../api/markdeep";
 import {Cards} from "../../../../api/subscriptions/cards";
 import {CardType} from "../../../../api/cardTypes";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./export.html";
 
 Session.setDefault('exportType', 1);
@@ -85,7 +86,7 @@ Template.cardsetExportForm.events({
  */
 
 Template.cardsetExportFormSideTable.onCreated(function () {
-	let cards = Cards.find({cardset_id: Router.current().params._id}, {fields: {front: 1, back: 1, hint: 1, lecture: 1, top: 1, bottom: 1}}).fetch();
+	let cards = Cards.find({cardset_id: FlowRouter.getParam('_id')}, {fields: {front: 1, back: 1, hint: 1, lecture: 1, top: 1, bottom: 1}}).fetch();
 	let cardSides = CardType.getCardTypeCubeSides(Session.get('activeCardset').cardType);
 	let settings = [];
 	for (let i = 0; i < cardSides.length; i++) {

@@ -1,6 +1,7 @@
 //------------------------ IMPORTS
 
 import {Meteor} from "meteor/meteor";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/subscriptions/cardsets.js";
@@ -59,7 +60,7 @@ Template.flashcards.onCreated(function () {
 	} else if (Route.isMakingOf()) {
 		Session.set('activeCardset', Cardsets.findOne({kind: 'demo', name: 'MakingOfCardset', shuffled: true}));
 	} else {
-		Session.set('activeCardset', Cardsets.findOne({"_id": Router.current().params._id}));
+		Session.set('activeCardset', Cardsets.findOne({"_id": FlowRouter.getParam('_id')}));
 	}
 	Session.set('selectedHint', undefined);
 	Session.set('isQuestionSide', true);
@@ -179,10 +180,10 @@ Template.flashcardsEmpty.helpers({
 		return Route.isCardset();
 	},
 	gotLeitnerWorkload: function () {
-		return Leitner.find({cardset_id: Router.current().params._id, user_id: Meteor.user()}).count();
+		return Leitner.find({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.user()}).count();
 	},
 	gotWozniakWorkload: function () {
-		return Wozniak.find({cardset_id: Router.current().params._id, user_id: Meteor.user()}).count();
+		return Wozniak.find({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.user()}).count();
 	}
 });
 
@@ -209,7 +210,7 @@ Template.flashcardsEnd.onRendered(function () {
 
 Template.copyCard.events({
 	"click .copyCardset": function (evt) {
-		Meteor.call("copyCard", Router.current().params._id, $(evt.target).data('id'), Session.get('activeCard'), function (error, result) {
+		Meteor.call("copyCard", FlowRouter.getParam('_id'), $(evt.target).data('id'), Session.get('activeCard'), function (error, result) {
 			if (result) {
 				$('#showCopyCardModal').modal('hide');
 				$('body').removeClass('modal-open');
@@ -258,6 +259,6 @@ Template.cardSubject.helpers({
 
 Template.flashcardsReviewEnd.events({
 	"click #backToSubmissions": function () {
-		Router.go('transcriptBonus', {_id: Router.current().params._id});
+		FlowRouter.go('transcriptBonus', {_id: FlowRouter.getParam('_id')});
 	}
 });

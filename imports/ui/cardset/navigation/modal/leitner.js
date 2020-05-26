@@ -1,6 +1,7 @@
 //------------------------ IMPORTS
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./leitner.html";
 
 /*
@@ -11,7 +12,7 @@ import "./leitner.html";
 Template.resetLeitnerForm.events({
 	"click #resetLeitnerConfirm": function () {
 		$('#resetLeitnerModal').on('hidden.bs.modal', function () {
-			Meteor.call("deleteLeitner", Router.current().params._id);
+			Meteor.call("deleteLeitner", FlowRouter.getParam('_id'));
 		}).modal('hide');
 	}
 });
