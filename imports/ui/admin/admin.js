@@ -6,15 +6,6 @@ import {Notifications} from "../../api/subscriptions/notifications";
 import {MainNavigation} from "../../api/mainNavigation";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./admin.html";
-import "./dashboard/dashboard.js";
-import "./users/index.js";
-import "./learningStatistics/learningStatistics.js";
-import "./apiAccess/apiAccess.js";
-import "./notifications/notifications.js";
-import "./university/university.js";
-import "./settings/settings.js";
-import "../learn/progress.js";
-import "./matomo/matomoStatistics.js";
 import {Session} from "meteor/session";
 
 Meteor.subscribe("notifications");

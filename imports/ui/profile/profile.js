@@ -4,15 +4,6 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
-import "./view/billing.js";
-import "./view/membership.js";
-import "./view/notifications.js";
-import "./view/requests.js";
-import "./view/settings.js";
-import "./view/leitnerProgress.js";
-import "./view/public.js";
-import "./view/overview.js";
-import "./modal/deleteProfile.js";
 import "./profile.html";
 
 Meteor.subscribe("notifications");

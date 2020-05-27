@@ -2,7 +2,6 @@
 import {Template} from "meteor/templating";
 import {Route} from "../../api/route.js";
 import "./impressum.html";
-import "./modal/statistics/statistics.js";
 import "./pages/cards/about/about.js";
 import "./pages/cards/agb/agb.js";
 import "./pages/cards/datenschutz/datenschutz.js";

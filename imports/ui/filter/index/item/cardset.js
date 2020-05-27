@@ -2,7 +2,6 @@
 
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import "../../../cardset/cardset.js";
 import "./cardset.html";
 import {MainNavigation} from "../../../../api/mainNavigation";
 import {LoginTasks} from "../../../../api/login";

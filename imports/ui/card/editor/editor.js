@@ -9,6 +9,8 @@ import {Cards} from "../../../api/subscriptions/cards";
 import {MarkdeepEditor} from "../../../api/markdeepEditor";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "../card.js";
+import "../../markdeep/editor/content/content.js";
+import "../../markdeep/editor/navigation/navigation.js";
 import "./modal/cancelEdit.js";
 import "./modal/learningUnit.js";
 import "./item/buttonCancel.js";

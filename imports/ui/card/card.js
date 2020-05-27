@@ -17,6 +17,15 @@ import {Wozniak} from "../../api/subscriptions/wozniak";
 import {BertAlertVisuals} from "../../api/bertAlertVisuals";
 import {CardEditor} from "../../api/cardEditor";
 import {TouchNavigation} from "../../api/touchNavigation";
+import "../filter/modal/aboutThisRating.js";
+import "../filter/index/item/bottom/aboutThisRating.js";
+import "../filter/index/item/bottom/transcriptRating.js";
+import "../filter/index/item/bottom/starsRating.js";
+import "../main/modal/arsnovaClick.js";
+import "../main/modal/arsnovaLite.js";
+import "../help/help.js";
+import "../main/overlays/aspectRatio.js";
+import "../main/overlays/zoomText.js";
 import './side/header/header.js';
 import './side/content/content.js';
 import './navigation/navigation.js';
@@ -29,6 +38,7 @@ import "./modal/deleteCard.js";
 import "./modal/copyCard.js";
 import './side/side.js';
 import './cube/cube.js';
+import './sidebar/sidebar.js';
 import "./card.html";
 
 function isActiveCard(card, resetData) {

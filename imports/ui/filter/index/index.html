@@ -1,5 +1,8 @@
 <template name="filterIndex">
+    {{> mainModalArsnovaClick}}
+    {{> mainModalArsnovaLite}}
     {{> showLicense}}
+    {{> bonusUserHistoryModal}}
     {{#unless isCardsetTranscriptBonusRoute}}
         {{> filterItemSelectCardsetToLearnCallout}}
         {{#if gotBackendAccess}}

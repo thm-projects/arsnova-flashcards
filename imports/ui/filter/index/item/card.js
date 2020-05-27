@@ -6,7 +6,6 @@ import {Route} from "../../../../api/route";
 import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
 import {TranscriptBonusList} from "../../../../api/transcriptBonus";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
-import "../../../cardset/cardset.js";
 import "./card.html";
 
 /*

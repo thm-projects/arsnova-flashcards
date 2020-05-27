@@ -1,4 +1,5 @@
 import "./transcript.html";
+import "../../../filter/index/index.js";
 import "./item/cancel.js";
 import "./item/save.js";
 import "./navigation/navigation.js";

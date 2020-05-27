@@ -3,6 +3,7 @@ import {Route} from "../../../../api/route";
 import {Session} from "meteor/session";
 import {AspectRatio} from "../../../../api/aspectRatio";
 import * as config from "../../../../config/firstTimeVisit.js";
+import "../../../presentation/presentation.js";
 import "./demo.html";
 import {PomodoroTimer} from "../../../../api/pomodoroTimer";
 import {ServerStyle} from "../../../../api/styles";

@@ -2,6 +2,10 @@
 
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
+import "../main/modal/arsnovaClick.js";
+import "../main/modal/arsnovaLite.js";
+import "../help/help.js";
+import "../card/card.js";
 import "./presentation.html";
 import {CardNavigation} from "../../api/cardNavigation";
 import {Cardsets} from "../../api/subscriptions/cardsets";
