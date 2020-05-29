@@ -1749,7 +1749,7 @@
       },
       "markdeepEditor": {
         "help": "Öffnet ein neues Fenster und zeigt die Formatierungsoptionen von »Markdeep«",
-        "translate": "Übersetze die Eingabe mit »DeepL«",
+        "translate": "Übersetze die Eingabe mit »Beolingus«",
         "center": "Zentriere den Karteninhalt vertikal",
         "alignLeft": "Text linksbündig ausrichten",
         "mobilePreview": "Zeige die Karte in der Smartphone-Ansicht (iPhone 6/7/8)",
@@ -2330,7 +2330,7 @@
   "markdeep": {
     "editor": {
       "help": "Textformatierung",
-      "translate": "Übersetze die Eingabe  mit »DeepL«"
+      "translate": "Übersetze die Eingabe mit »Beolingus«"
     }
   },
   "access-level": {

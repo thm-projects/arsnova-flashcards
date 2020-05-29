@@ -15,6 +15,12 @@ import "./cards.html";
  * ############################################################################
  */
 
+Template.cardsetList.onCreated(function () {
+	let presentationContainer = $('#main');
+	presentationContainer.css('overflow', 'unset');
+	presentationContainer.css('height', 'unset');
+});
+
 Template.cardsetList.helpers({
 	isShuffledCardset: function () {
 		if (Router.current().route.getName() === "demolist") {
