@@ -38,7 +38,7 @@ Template.markdeepNavigation.events({
 	},
 	'click .markdeep-translate': function () {
 		Dictionary.setMode(2);
-		$('#cardModalDeepLTranslation').modal('show');
+		$('#cardModalBeolingusTranslation').modal('show');
 	},
 	'input #initialLearningTimeInput': function () {
 		let input = $('#initialLearningTimeInput');

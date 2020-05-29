@@ -101,7 +101,7 @@ export let CardEditor = class CardEditor {
 				CardNavigation.cardSideNavigation();
 			} else {
 				if (CardType.gotDictionary(Session.get('cardType')) && (!CardVisuals.isFullscreen() || (CardVisuals.isFullscreen() && CardVisuals.isEditorFullscreen()))) {
-					$('#cardModalDeepLTranslation').modal('show').one('hidden.bs.modal', function () {
+					$('#cardModalBeolingusTranslation').modal('show').one('hidden.bs.modal', function () {
 						CardNavigation.cardSideNavigation();
 					});
 				} else {

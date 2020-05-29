@@ -537,16 +537,16 @@ export let CardNavigation = class CardNavigation {
 					case 9:
 						if (Route.isEditMode()) {
 							if (Session.get('isDeepLModalVisible')) {
-								$('#cardModalDeepLTranslation').modal('hide');
+								$('#cardModalBeolingusTranslation').modal('hide');
 							} else {
 								CardEditor.setEditorButtonFocus();
 							}
 						} else {
 							if (CardType.gotDictionary(Session.get('cardType'))) {
 								if (Session.get('isDeepLModalVisible')) {
-									$('#cardModalDeepLTranslation').modal('hide');
+									$('#cardModalBeolingusTranslation').modal('hide');
 								} else {
-									$('#cardModalDeepLTranslation').modal('show').one('hidden.bs.modal', function () {
+									$('#cardModalBeolingusTranslation').modal('show').one('hidden.bs.modal', function () {
 										CardNavigation.cardSideNavigation();
 									});
 								}
