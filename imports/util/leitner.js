@@ -553,6 +553,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
+			let workload = Workload.findOne({cardset_id: cardset_id, user_id: user_id});
 			let activeLeitnerCards = 0;
 			let nextLeitnerCardDate = new Date();
 			let activeLeitnerCardDate = new Date();
@@ -572,24 +573,39 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				if (!Leitner.find({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}}).count()) {
 					learnedAllLeitnerCards = true;
 				}
-				let workload = Workload.findOne({cardset_id: cardset_id, user_id: user_id});
 				if (workload !== undefined) {
 					nextLowestPriority = workload.leitner.nextLowestPriority;
 				}
 			}
-			Workload.update({
-				cardset_id: cardset_id,
-				user_id: user_id
-			}, {
-				$set: {
-					"leitner.activeCount": activeLeitnerCards,
-					"leitner.active": isLearningLeitner !== undefined,
-					"leitner.finished": learnedAllLeitnerCards,
-					"leitner.nextDate": nextLeitnerCardDate,
-					"leitner.activeDate": activeLeitnerCardDate,
-					"leitner.nextLowestPriority": nextLowestPriority
-				}
-			});
+			if (workload === undefined) {
+				Workload.insert({
+					cardset_id: cardset_id,
+					user_id: user_id,
+					leitner: {
+						bonus: false,
+						activeCount: activeLeitnerCards,
+						active: isLearningLeitner !== undefined,
+						finished: learnedAllLeitnerCards,
+						nextDate: nextLeitnerCardDate,
+						activeDate: activeLeitnerCardDate,
+						nextLowestPriority: nextLowestPriority
+					}
+				});
+			} else {
+				Workload.update({
+					cardset_id: cardset_id,
+					user_id: user_id
+				}, {
+					$set: {
+						"leitner.activeCount": activeLeitnerCards,
+						"leitner.active": isLearningLeitner !== undefined,
+						"leitner.finished": learnedAllLeitnerCards,
+						"leitner.nextDate": nextLeitnerCardDate,
+						"leitner.activeDate": activeLeitnerCardDate,
+						"leitner.nextLowestPriority": nextLowestPriority
+					}
+				});
+			}
 		}
 	}
 
