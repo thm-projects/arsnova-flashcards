@@ -1010,10 +1010,12 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	static updateServerTimerIntervalStop () {
-		Meteor.call('updateLeitnerTimer', Router.current().params._id);
-		if (workloadTimerInterval !== undefined) {
-			clearInterval(workloadTimerInterval);
-			workloadTimerInterval = undefined;
+		if (Route.isBox()) {
+			Meteor.call('updateLeitnerTimer', Router.current().params._id);
+			if (workloadTimerInterval !== undefined) {
+				clearInterval(workloadTimerInterval);
+				workloadTimerInterval = undefined;
+			}
 		}
 	}
 
