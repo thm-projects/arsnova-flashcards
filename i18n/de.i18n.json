@@ -1095,7 +1095,7 @@
       }
     },
     "form-leave": {
-      "title": "Bonus-Lernphase verlassen",
+      "title": "Bonus-Lernphase",
       "button": {
         "confirm": "Verlassen",
         "cancel": "Abbrechen"
