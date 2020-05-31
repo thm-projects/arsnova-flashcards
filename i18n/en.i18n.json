@@ -1089,7 +1089,7 @@
       }
     },
     "form-join": {
-      "title": "Bonus-Lernphase beitreten",
+      "title": "Bonus-Lernphase",
       "button": {
         "confirm": "Beitreten",
         "cancel": "Abbrechen"

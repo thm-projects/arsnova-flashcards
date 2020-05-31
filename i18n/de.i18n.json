@@ -1088,7 +1088,7 @@
       }
     },
     "form-join": {
-      "title": "Bonus-Lernphase beitreten",
+      "title": "Bonus-Lernphase",
       "button": {
         "confirm": "Beitreten",
         "cancel": "Abbrechen"
@@ -1928,7 +1928,7 @@
     "tooltip": {
       "removeUser": "User aus der Bonusphase entfernen",
       "graph": "Statistik anzeigen",
-      "userHistory": "Verlauf anzeigen"
+      "userHistory": "Lernprotokoll"
     },
     "bertAlert": {
       "userRemoved": "User wurde aus der Bonusphase entfernt"
