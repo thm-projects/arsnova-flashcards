@@ -1,3 +1,4 @@
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
 import {Route} from "./route";
 import {CardType} from "./cardTypes";
@@ -68,7 +69,7 @@ export let CardVisuals = class CardVisuals {
 			} else if (Route.isMakingOf()) {
 				cardset_id = "MakingOfCardset";
 			} else {
-				cardset_id = Router.current().params._id;
+				cardset_id = FlowRouter.getParam('_id');
 			}
 			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {cardGroups: 1, shuffled: 1,cardType: 1}});
 			if (cardset) {
@@ -121,7 +122,7 @@ export let CardVisuals = class CardVisuals {
 	}
 
 	static checkFullscreen () {
-		let currentRoute = Router.current().route.getName();
+		let currentRoute = FlowRouter.getRouteName();
 		if (currentRoute === (Route.isPresentation())) {
 			this.toggleFullscreen();
 			Session.set('previousRouteName', currentRoute);
@@ -450,8 +451,8 @@ export let CardVisuals = class CardVisuals {
 			$("#markdeepEditorContent").css("display", '');
 			$(".fullscreen-button").removeClass("pressed");
 			let card_id;
-			if (Router.current().params.card_id) {
-				card_id = Router.current().params.card_id;
+			if (FlowRouter.getParam('card_id')) {
+				card_id = FlowRouter.getParam('card_id');
 			} else {
 				card_id = "-1";
 			}

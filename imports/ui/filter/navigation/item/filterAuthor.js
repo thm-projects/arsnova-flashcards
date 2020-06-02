@@ -6,6 +6,7 @@ import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {getAuthorName} from "../../../../api/userdata";
 import {Route} from "../../../../api/route";
 import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*
  * ############################################################################
@@ -24,7 +25,7 @@ Template.filterItemFilterAuthors.helpers({
 	getAuthors: function () {
 		let userFilter = [];
 		if (Route.isTranscriptBonus()) {
-			userFilter = _.uniq(TranscriptBonus.find({cardset_id: Router.current().params._id}, {fields: {user_id: 1}}).fetch().map(function (x) {
+			userFilter = _.uniq(TranscriptBonus.find({cardset_id: FlowRouter.getParam('_id')}, {fields: {user_id: 1}}).fetch().map(function (x) {
 				return x.user_id;
 			}), true);
 		} else {

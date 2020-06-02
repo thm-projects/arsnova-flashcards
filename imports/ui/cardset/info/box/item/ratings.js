@@ -4,6 +4,7 @@ import {Template} from "meteor/templating";
 import {Cardsets} from "../../../../../api/subscriptions/cardsets";
 import {Ratings} from "../../../../../api/subscriptions/ratings";
 import {UserPermissions} from "../../../../../api/permissions";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./ratings.html";
 
 /*
@@ -38,6 +39,6 @@ Template.cardsetInfoBoxItemRatings.helpers({
 
 Template.cardsetInfoBoxItemRatings.events({
 	'click #rating': function () {
-		Meteor.call("rateCardset", Router.current().params._id, Number($('#rating').data('userrating')));
+		Meteor.call("rateCardset", FlowRouter.getParam('_id'), Number($('#rating').data('userrating')));
 	}
 });

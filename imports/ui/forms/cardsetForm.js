@@ -1,4 +1,5 @@
 import {Meteor} from "meteor/meteor";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./cardsetForm.html";
@@ -24,7 +25,7 @@ export function cleanModal() {
 		Session.set('previousCardsetData', cardset);
 	}
 	if (Route.isCardset()) {
-		Session.set('previousCardsetData', Cardsets.findOne(Router.current().params._id));
+		Session.set('previousCardsetData', Cardsets.findOne(FlowRouter.getParam('_id')));
 	}
 	if (Route.isShuffle()) {
 		$('#setName').val(Session.get("ShuffleTemplate").name);
@@ -184,7 +185,7 @@ export function saveCardset() {
 						Session.set('importCards', undefined);
 					}
 					$('#setCardsetFormModal').on('hidden.bs.modal', function () {
-						Router.go('cardsetdetailsid', {
+						FlowRouter.go('cardsetdetailsid', {
 							_id: result
 						});
 					});
@@ -243,7 +244,7 @@ Template.cardsetFormContent.helpers({
 	},
 	getShuffleName: function () {
 		if (Session.get("ShuffleTemplate") !== undefined) {
-			return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").name : "";
+			return FlowRouter.getRouteName() === 'shuffle' ? Session.get("ShuffleTemplate").name : "";
 		}
 	},
 	learningActive: function () {

@@ -1,4 +1,5 @@
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
 import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
 import {TranscriptBonusList} from "../../../../api/transcriptBonus";
@@ -102,7 +103,7 @@ Template.selectLearningUnit.onCreated(function () {
 		Session.set('isPrivateTranscript', true);
 		Session.set('transcriptBonus', undefined);
 	} else {
-		let bonus = TranscriptBonus.findOne({card_id: Router.current().params.card_id});
+		let bonus = TranscriptBonus.findOne({card_id: FlowRouter.getParam('card_id')});
 		if (bonus !== undefined) {
 			let cardset = Cardsets.findOne({_id: bonus.cardset_id});
 			bonus.name = cardset.name;

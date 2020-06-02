@@ -2,6 +2,7 @@ import "./edit.html";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../../../api/subscriptions/cardsets";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*
  * ############################################################################
@@ -12,7 +13,7 @@ import {Cardsets} from "../../../../../api/subscriptions/cardsets";
 Template.filterIndexItemBottomEdit.events({
 	'click .editShuffle': function (event) {
 		event.preventDefault();
-		Router.go('editshuffle', {
+		FlowRouter.go('editshuffle', {
 			_id: $(event.target).data('id')
 		});
 	},

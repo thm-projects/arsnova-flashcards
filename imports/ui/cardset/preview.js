@@ -3,6 +3,7 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./preview.html";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*
  * ############################################################################
@@ -13,20 +14,20 @@ import "./preview.html";
 
 Template.cardsetPreview.events({
 	"click #buyProBtn": function () {
-		Router.go('profileMembership', {
+		FlowRouter.go('profileMembership', {
 			_id: Meteor.userId()
 		});
 	},
 	"click #showPreviewHelp": function () {
 		event.stopPropagation();
 		Session.set('helpFilter', "previewCardset");
-		Router.go('help');
+		FlowRouter.go('help');
 	}
 });
 
 Template.cardsetPreview.onDestroyed(function () {
-	if (Router.current().params._id) {
-		Meteor.subscribe('cardsetCards', Router.current().params._id);
+	if (FlowRouter.getParam('_id')) {
+		Meteor.subscribe('cardsetCards', FlowRouter.getParam('_id'));
 		Session.set('activeCard', undefined);
 	}
 });

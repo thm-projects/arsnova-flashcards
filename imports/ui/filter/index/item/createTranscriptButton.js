@@ -1,4 +1,5 @@
 import "./createTranscriptButton.html";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*
  * ############################################################################
@@ -8,6 +9,6 @@ import "./createTranscriptButton.html";
 
 Template.filterItemCreateTranscriptButton.events({
 	'click #newTranscript': function () {
-		Router.go('newTranscript');
+		FlowRouter.go('newTranscript');
 	}
 });

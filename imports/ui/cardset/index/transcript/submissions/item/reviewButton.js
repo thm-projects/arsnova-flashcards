@@ -1,4 +1,5 @@
 import "./reviewButton.html";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {TranscriptBonus} from "../../../../../../api/subscriptions/transcriptBonus";
@@ -16,10 +17,10 @@ Session.setDefault('transcriptBonusReviewFilter', undefined);
  */
 
 Template.cardsetIndexTranscriptSubmissionsItemReviewButton.onCreated(function () {
-	let latestExpiredDeadline = TranscriptBonusList.getLatestExpiredDeadline(Router.current().params._id);
+	let latestExpiredDeadline = TranscriptBonusList.getLatestExpiredDeadline(FlowRouter.getParam('_id'));
 	if (latestExpiredDeadline !== undefined) {
 		let query = Filter.getFilterQuery();
-		query.cardset_id = Router.current().params._id;
+		query.cardset_id = FlowRouter.getParam('_id');
 		query.date = {$lt: latestExpiredDeadline};
 		query.rating = 0;
 		Session.set('transcriptBonusReviewCount', TranscriptBonus.find(query).count());
@@ -31,7 +32,7 @@ Template.cardsetIndexTranscriptSubmissionsItemReviewButton.onCreated(function ()
 Template.cardsetIndexTranscriptSubmissionsItemReviewButton.helpers({
 	getInfoText: function () {
 		let query = Filter.getFilterQuery();
-		query.cardset_id = Router.current().params._id;
+		query.cardset_id = FlowRouter.getParam('_id');
 		query.rating = 0;
 		query.card_id = query._id;
 		if (FilterNavigation.isFilterActive()) {
@@ -40,7 +41,7 @@ Template.cardsetIndexTranscriptSubmissionsItemReviewButton.helpers({
 			Session.set('transcriptBonusReviewFilter', undefined);
 		}
 		delete query._id;
-		let latestExpiredDeadline = TranscriptBonusList.getLatestExpiredDeadline(Router.current().params._id);
+		let latestExpiredDeadline = TranscriptBonusList.getLatestExpiredDeadline(FlowRouter.getParam('_id'));
 		query.date = {$lt: latestExpiredDeadline};
 		Session.set('transcriptBonusReviewCount', TranscriptBonus.find(query).count());
 		let text = '';
@@ -73,8 +74,8 @@ Template.cardsetIndexTranscriptSubmissionsItemReviewButton.helpers({
 
 Template.cardsetIndexTranscriptSubmissionsItemReviewButton.events({
 	"click #reviewTranscripts": function () {
-		Router.go('presentationTranscriptReview', {
-			_id: Router.current().params._id
+		FlowRouter.go('presentationTranscriptReview', {
+			_id: FlowRouter.getParam('_id')
 		});
 	}
 });

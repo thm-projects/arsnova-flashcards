@@ -1,5 +1,6 @@
 //------------------------ IMPORTS
 import {Meteor} from "meteor/meteor";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {Bonus} from "../../../../api/bonus";
@@ -25,9 +26,9 @@ Template.cardsetNavigationManage.helpers({
 
 Template.cardsetNavigationManage.events({
 	"click #manageEditors": function () {
-		Router.go('cardseteditors', {_id: Router.current().params._id});
+		FlowRouter.go('cardseteditors', {_id: FlowRouter.getParam('_id')});
 	},
 	"click #leaveCardsetButton": function () {
-		Router.go('pool');
+		FlowRouter.go('pool');
 	}
 });

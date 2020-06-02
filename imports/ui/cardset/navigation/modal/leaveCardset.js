@@ -2,6 +2,7 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import "./leaveCardset.html";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*
  * ############################################################################
@@ -11,7 +12,7 @@ import "./leaveCardset.html";
 
 Template.leaveCardsetForm.events({
 	'click #leaveCardsetConfirm': function () {
-		var id = Router.current().params._id;
+		var id = FlowRouter.getParam('_id');
 
 
 		$('#leaveCardsetModal').modal('hide');
@@ -20,7 +21,7 @@ Template.leaveCardsetForm.events({
 		$('#leaveCardsetModal').on('hidden.bs.modal', function () {
 			Meteor.call("deleteLeitner", id);
 			Meteor.call("deleteWozniak", id);
-			Router.go('home');
+			FlowRouter.go('home');
 		});
 	}
 });

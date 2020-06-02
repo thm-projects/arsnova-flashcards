@@ -1,5 +1,6 @@
 import {CardEditor} from "../../../../api/cardEditor.js";
 import {CardIndex} from "../../../../api/cardIndex";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
 import "./buttonSaveNext.html";
 
@@ -24,6 +25,6 @@ Template.cardEditorItemButtonSaveNext.helpers({
 
 Template.cardEditorItemButtonSaveNext.events({
 	"click #cardSaveNext": function () {
-		CardEditor.saveCard(Router.current().params.card_id, 2);
+		CardEditor.saveCard(FlowRouter.getParam('card_id'), 2);
 	}
 });

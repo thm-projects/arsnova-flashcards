@@ -1,3 +1,4 @@
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
@@ -12,7 +13,7 @@ import "./deleteCard.html";
 
 Template.deleteCardForm.events({
 	'click #deleteCardConfirm': function () {
-		Meteor.call("deleteCard", Session.get('activeCard'), Router.current().params._id, function (error, result) {
+		Meteor.call("deleteCard", Session.get('activeCard'), FlowRouter.getParam('_id'), function (error, result) {
 			if (result !== undefined) {
 				BertAlertVisuals.displayBertAlert(TAPi18n.__('deletecardSuccess'), "success", 'growl-top-left');
 				$('#deleteCardModal').modal('hide');
@@ -21,8 +22,8 @@ Template.deleteCardForm.events({
 					$('.deleteCard').removeClass("pressed");
 					Session.set('activeCard', undefined);
 					if (result === 0) {
-						Router.go('cardsetdetailsid', {
-							_id: Router.current().params._id
+						FlowRouter.go('cardsetdetailsid', {
+							_id: FlowRouter.getParam('_id')
 						});
 					}
 				});

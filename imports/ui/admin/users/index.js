@@ -1,6 +1,7 @@
 //------------------------ IMPORTS
 
 import {Meteor} from "meteor/meteor";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/subscriptions/cardsets.js";
@@ -169,7 +170,7 @@ Template.admin_users.events({
 	},
 	'click #linkToAdminUser': function (event) {
 		var userid = $(event.currentTarget).data("userid");
-		Router.go('admin_user', {_id: userid});
+		FlowRouter.go('admin_user', {_id: userid});
 	}
 });
 

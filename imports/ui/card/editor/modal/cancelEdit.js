@@ -1,3 +1,4 @@
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Route} from "../../../../api/route.js";
@@ -14,19 +15,19 @@ Template.cancelEditForm.events({
 		$('#cancelEditModal').on('hidden.bs.modal', function () {
 			if (Route.isTranscript()) {
 				if (Session.get('transcriptBonus') !== undefined) {
-					Router.go('transcriptsBonus');
+					FlowRouter.go('transcriptsBonus');
 				} else {
-					Router.go('transcriptsPersonal');
+					FlowRouter.go('transcriptsPersonal');
 				}
 			} else {
-				Session.set('activeCard', Router.current().params.card_id);
+				Session.set('activeCard', FlowRouter.getParam('card_id'));
 				if (Route.isNewCard()) {
-					Router.go('cardsetdetailsid', {
-						_id: Router.current().params._id
+					FlowRouter.go('cardsetdetailsid', {
+						_id: FlowRouter.getParam('_id')
 					});
 				} else {
-					Router.go('presentation', {
-						_id: Router.current().params._id
+					FlowRouter.go('presentation', {
+						_id: FlowRouter.getParam('_id')
 					});
 				}
 			}

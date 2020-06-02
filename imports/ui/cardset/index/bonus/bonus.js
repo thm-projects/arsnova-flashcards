@@ -1,5 +1,6 @@
 //------------------------ IMPORTS
 import {Meteor} from "meteor/meteor";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
@@ -18,7 +19,7 @@ Session.setDefault('selectedBonusUserHistoryData', undefined);
 */
 
 Template.cardsetLearnActivityStatistic.onRendered(function () {
-	Session.set('activeCardset', Cardsets.findOne({_id: Router.current().params._id}));
+	Session.set('activeCardset', Cardsets.findOne({_id: FlowRouter.getParam('_id')}));
 });
 
 Template.cardsetLearnActivityStatistic.helpers({
@@ -76,18 +77,18 @@ Template.cardsetLearnActivityStatistic.events({
 		});
 	},
 	"click #backButton": function () {
-		Router.go('cardsetdetailsid', {_id: this._id});
+		FlowRouter.go('cardsetdetailsid', {_id: this._id});
 	},
 	"click .detailed-stats": function (event) {
-		Router.go('progress', {
-			_id: Router.current().params._id,
+		FlowRouter.go('progress', {
+			_id: FlowRouter.getParam('_id'),
 			user_id: $(event.target).data('id')
 		});
 	},
 	"click #showIntervalHelp": function (event) {
 		event.stopPropagation();
 		Session.set('helpFilter', "leitner");
-		Router.go('help');
+		FlowRouter.go('help');
 	},
 	"click .showBonusUserHistory": function (event) {
 		let user = {};
@@ -96,7 +97,7 @@ Template.cardsetLearnActivityStatistic.events({
 		user.lastName = $(event.target).data('lastname');
 		if (user.user_id !== undefined) {
 			Session.set('selectedBonusUser', user);
-			Meteor.call("getLearningHistoryData", user.user_id, Router.current().params._id, function (error, result) {
+			Meteor.call("getLearningHistoryData", user.user_id, FlowRouter.getParam('_id'), function (error, result) {
 				if (error) {
 					throw new Meteor.Error(error.statusCode, 'Error could not receive content for history');
 				}
@@ -128,7 +129,7 @@ Template.cardsetLearnActivityStatistic.events({
 
 Template.cardsetLearnActivityStatistic.created = function () {
 	Session.set("learnerStats", "");
-	Meteor.call("getLearningData", Router.current().params._id, function (error, result) {
+	Meteor.call("getLearningData", FlowRouter.getParam('_id'), function (error, result) {
 		if (error) {
 			throw new Meteor.Error(error.statusCode, 'Error could not receive content for stats');
 		}

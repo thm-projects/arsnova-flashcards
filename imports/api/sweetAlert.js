@@ -1,4 +1,5 @@
 import {Meteor} from "meteor/meteor";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import swal from "sweetalert2";
 import {CardVisuals} from "./cardVisuals";
 import * as config from "../config/sweetAlert.js";
@@ -8,7 +9,7 @@ export let SweetAlertMessages = class SweetAlertMessages {
 	static completeProfile () {
 		swal.fire(config.completeProfile()).then((result) => {
 			if (result.value) {
-				Router.go('profileSettings', {
+				FlowRouter.go('profileSettings', {
 					_id: Meteor.userId()
 				});
 			}
@@ -27,10 +28,10 @@ export let SweetAlertMessages = class SweetAlertMessages {
 				}
 				$('.modal-backdrop').css('display', 'none');
 				if (Route.isPresentationTranscriptPersonal()) {
-					Router.go('transcriptsPersonal');
+					FlowRouter.go('transcriptsPersonal');
 				} else {
-					Router.go('cardsetdetailsid', {
-						_id: Router.current().params._id
+					FlowRouter.go('cardsetdetailsid', {
+						_id: FlowRouter.getParam('_id')
 					});
 				}
 			}
@@ -47,10 +48,10 @@ export let SweetAlertMessages = class SweetAlertMessages {
 				}
 				$('.modal-backdrop').css('display', 'none');
 				if (Route.isPresentationTranscriptPersonal()) {
-					Router.go('transcriptsPersonal');
+					FlowRouter.go('transcriptsPersonal');
 				} else {
-					Router.go('cardsetdetailsid', {
-						_id: Router.current().params._id
+					FlowRouter.go('cardsetdetailsid', {
+						_id: FlowRouter.getParam('_id')
 					});
 				}
 			}
@@ -65,10 +66,10 @@ export let SweetAlertMessages = class SweetAlertMessages {
 				}
 				$('.modal-backdrop').css('display', 'none');
 				if (Route.isPresentationTranscriptPersonal()) {
-					Router.go('transcriptsPersonal');
+					FlowRouter.go('transcriptsPersonal');
 				} else {
-					Router.go('cardsetdetailsid', {
-						_id: Router.current().params._id
+					FlowRouter.go('cardsetdetailsid', {
+						_id: FlowRouter.getParam('_id')
 					});
 				}
 			} else {

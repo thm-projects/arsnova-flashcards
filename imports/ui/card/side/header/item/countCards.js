@@ -3,6 +3,7 @@ import {Route} from "../../../../../api/route";
 import {Cards} from "../../../../../api/subscriptions/cards";
 import {CardIndex} from "../../../../../api/cardIndex";
 import {Cardsets} from "../../../../../api/subscriptions/cardsets";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*
  * ############################################################################
@@ -31,7 +32,7 @@ Template.cardContentItemCountCards.helpers({
 			return count;
 		}
 		if (isPreview) {
-			let cardsetPreview = Cardsets.findOne({_id: Router.current().params._id}, {fields: {_id: 1, cardGroups: 1}});
+			let cardsetPreview = Cardsets.findOne({_id: FlowRouter.getParam('_id')}, {fields: {_id: 1, cardGroups: 1}});
 			if (cardsetPreview !== undefined) {
 				let filterQuery = {
 					$or: [
@@ -42,7 +43,7 @@ Template.cardContentItemCountCards.helpers({
 				return Cards.find(filterQuery).count();
 			}
 		} else {
-			cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {quantity: 1}});
+			cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')}, {fields: {quantity: 1}});
 			if (cardset !== undefined) {
 				count = cardset.quantity;
 			}

@@ -1,4 +1,5 @@
 import {Meteor} from "meteor/meteor";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/subscriptions/cardsets.js";
@@ -425,7 +426,7 @@ Template.admin_notifications.events({
 	},
 	'click #linkToSenderComplaint': function (event) {
 		var sender_id = $(event.currentTarget).data("senderid");
-		Router.go('admin_user', {_id: sender_id});
+		FlowRouter.go('admin_user', {_id: sender_id});
 	},
 	'click #linkToComplaintComplaint': function (event) {
 		var complaint_id = $(event.currentTarget).data("complaintid");
@@ -433,14 +434,14 @@ Template.admin_notifications.events({
 		var user = Meteor.users.findOne({_id: complaint_id});
 
 		if (cardset !== undefined) {
-			Router.go('admin_cardset', {_id: complaint_id});
+			FlowRouter.go('admin_cardset', {_id: complaint_id});
 		} else if (user !== undefined) {
-			Router.go('admin_user', {_id: complaint_id});
+			FlowRouter.go('admin_user', {_id: complaint_id});
 		}
 	},
 	'click #linkToSenderSend': function (event) {
 		var sender_id = $(event.currentTarget).data("senderidsend");
-		Router.go('admin_user', {_id: sender_id});
+		FlowRouter.go('admin_user', {_id: sender_id});
 	},
 	'click #linkToComplaintSend': function (event) {
 		var complaint_id = $(event.currentTarget).data("complaintidsend");
@@ -448,18 +449,18 @@ Template.admin_notifications.events({
 		var user = Meteor.users.findOne({_id: complaint_id});
 
 		if (cardset !== undefined) {
-			Router.go('admin_cardset', {_id: complaint_id});
+			FlowRouter.go('admin_cardset', {_id: complaint_id});
 		} else if (user !== undefined) {
-			Router.go('admin_user', {_id: complaint_id});
+			FlowRouter.go('admin_user', {_id: complaint_id});
 		}
 	},
 	'click #linkToReceiverSend': function (event) {
 		var receiver_id = $(event.currentTarget).data("receiveridsend");
-		Router.go('admin_user', {_id: receiver_id});
+		FlowRouter.go('admin_user', {_id: receiver_id});
 	},
 	'click #linkToSenderLecturer': function (event) {
 		var sender_id = $(event.currentTarget).data("senderidlecturer");
-		Router.go('admin_user', {_id: sender_id});
+		FlowRouter.go('admin_user', {_id: sender_id});
 	}
 });
 

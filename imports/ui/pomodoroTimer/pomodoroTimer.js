@@ -6,6 +6,7 @@ import {Bonus} from "../../api/bonus";
 import {Route} from "../../api/route";
 import {CardVisuals} from "../../api/cardVisuals";
 import {Session} from "meteor/session";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*
  * ############################################################################
@@ -65,7 +66,7 @@ Template.pomodoroTimerModal.onRendered(function () {
 		CardVisuals.setSidebarPosition();
 	});
 	if (Route.requiresUserInputForFullscreen()) {
-		if (Bonus.isInBonus(Router.current().params._id)) {
+		if (Bonus.isInBonus(FlowRouter.getParam('_id'))) {
 			PomodoroTimer.start();
 		} else {
 			if (!PomodoroTimer.isPomodoroRunning()) {

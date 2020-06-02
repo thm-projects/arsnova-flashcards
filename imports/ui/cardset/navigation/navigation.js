@@ -3,6 +3,7 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Leitner} from "../../../api/subscriptions/leitner";
 import {Wozniak} from "../../../api/subscriptions/wozniak";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./item/bonus.js";
 import "./item/deleteAllCards.js";
 import "./item/editCardset.js";
@@ -29,10 +30,10 @@ import "./navigation.html";
 Template.cardsetNavigation.helpers({
 	learning: function () {
 		return (Leitner.findOne({
-			cardset_id: Router.current().params._id,
+			cardset_id: FlowRouter.getParam('_id'),
 			user_id: Meteor.userId()
 		}) || Wozniak.findOne({
-			cardset_id: Router.current().params._id,
+			cardset_id: FlowRouter.getParam('_id'),
 			user_id: Meteor.userId(),
 			interval: {$ne: 0}
 		}));

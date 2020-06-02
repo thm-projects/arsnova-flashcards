@@ -1,5 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Route} from "./route";
 import {CardVisuals} from "./cardVisuals";
 import {CardEditor} from "./cardEditor";
@@ -87,16 +88,16 @@ export let CardNavigation = class CardNavigation {
 			CardVisuals.toggleFullscreen(true);
 			this.exitDemoFullscreenRoute();
 		} else if (Route.isPresentationTranscriptPersonal()) {
-			Router.go('transcriptsPersonal');
+			FlowRouter.go('transcriptsPersonal');
 		} else if (Route.isPresentationTranscriptBonus()) {
-			Router.go('transcriptsBonus');
+			FlowRouter.go('transcriptsBonus');
 		} else if (Route.isPresentationTranscriptBonusCardset() || Route.isPresentationTranscriptReview()) {
-			Router.go('transcriptBonus', {
-				_id: Router.current().params._id
+			FlowRouter.go('transcriptBonus', {
+				_id: FlowRouter.getParam('_id')
 			});
 		} else {
-			Router.go('cardsetdetailsid', {
-				_id: Router.current().params._id
+			FlowRouter.go('cardsetdetailsid', {
+				_id: FlowRouter.getParam('_id')
 			});
 		}
 	}
@@ -115,9 +116,9 @@ export let CardNavigation = class CardNavigation {
 
 	static exitDemoFullscreenRoute () {
 		if (Meteor.user() || MainNavigation.isGuestLoginActive()) {
-			Router.go('about');
+			FlowRouter.go('about');
 		} else {
-			Router.go('home');
+			FlowRouter.go('home');
 		}
 	}
 
@@ -310,11 +311,11 @@ export let CardNavigation = class CardNavigation {
 			CardNavigation.setActiveCardData();
 			Session.set('isQuestionSide', true);
 			if (updateLearningMode === 1) {
-				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, answer, Session.get('leitnerHistoryTimestamps'));
+				Meteor.call('updateLeitner', FlowRouter.getParam('_id'), answeredCard, answer, Session.get('leitnerHistoryTimestamps'));
 			} else if (updateLearningMode === 2) {
-				Meteor.call("updateWozniak", Router.current().params._id, answeredCard, answer);
+				Meteor.call("updateWozniak", FlowRouter.getParam('_id'), answeredCard, answer);
 			} else if (updateLearningMode === 3) {
-				Meteor.call("rateTranscript", Router.current().params._id, answeredCard, answer, ratingData);
+				Meteor.call("rateTranscript", FlowRouter.getParam('_id'), answeredCard, answer, ratingData);
 			}
 			setTimeout(function () {
 				Session.set('activeCardSide', undefined);
@@ -333,7 +334,7 @@ export let CardNavigation = class CardNavigation {
 		if (Route.isPresentation() || Route.isCardset()) {
 			let lastActiveCard = {
 				_id: Session.get('activeCard'),
-				cardset_id: Router.current().params._id
+				cardset_id: FlowRouter.getParam('_id')
 			};
 			localStorage.setItem(lastActiveCardString, JSON.stringify(lastActiveCard));
 		}
@@ -346,13 +347,13 @@ export let CardNavigation = class CardNavigation {
 			} else if (Route.isTranscript()) {
 				Session.set('activeCardsetName', "");
 			} else {
-				Session.set('activeCardsetName', Cardsets.findOne({_id: Router.current().params._id}).name);
+				Session.set('activeCardsetName', Cardsets.findOne({_id: FlowRouter.getParam('_id')}).name);
 			}
 		} else {
 			let _id;
 			cardset_id = Cards.findOne({_id: Session.get('activeCard')}, {fields: {cardset_id: 1}});
-			if (cardset_id === undefined && Router.current().params._id !== undefined) {
-				_id = Router.current().params._id;
+			if (cardset_id === undefined && FlowRouter.getParam('_id') !== undefined) {
+				_id = FlowRouter.getParam('_id');
 			} else {
 				_id = cardset_id.cardset_id;
 			}
@@ -368,7 +369,7 @@ export let CardNavigation = class CardNavigation {
 		if (Route.isPresentation() || Route.isCardset()) {
 			if (localStorage.getItem(lastActiveCardString) !== undefined && localStorage.getItem(lastActiveCardString) !== null) {
 				let lastActiveCard = JSON.parse(localStorage.getItem(lastActiveCardString));
-				if (Router.current().params._id === lastActiveCard.cardset_id && Cards.findOne({_id: lastActiveCard._id})) {
+				if (FlowRouter.getParam('_id') === lastActiveCard.cardset_id && Cards.findOne({_id: lastActiveCard._id})) {
 					Session.set('activeCard', lastActiveCard._id);
 				} else {
 					localStorage.removeItem(lastActiveCardString);
@@ -404,7 +405,7 @@ export let CardNavigation = class CardNavigation {
 	static skipAnswer (scrollRight = true) {
 		if (Route.isBox()) {
 			let skippedCard = $('.carousel-inner > .active').attr('data-id');
-			Meteor.call('skipLeitnerCard', skippedCard, Router.current().params._id);
+			Meteor.call('skipLeitnerCard', skippedCard, FlowRouter.getParam('_id'));
 		}
 		if (scrollRight) {
 			$('.scrollRight').addClass('pressed');
@@ -429,11 +430,11 @@ export let CardNavigation = class CardNavigation {
 			if (updateLearningMode === 1) {
 				let timestamps = Session.get('leitnerHistoryTimestamps');
 				timestamps.submission = new Date();
-				Meteor.call('updateLeitner', Router.current().params._id, answeredCard, answer, timestamps);
+				Meteor.call('updateLeitner', FlowRouter.getParam('_id'), answeredCard, answer, timestamps);
 			} else if (updateLearningMode === 2) {
-				Meteor.call("updateWozniak", Router.current().params._id, answeredCard, answer);
+				Meteor.call("updateWozniak", FlowRouter.getParam('_id'), answeredCard, answer);
 			} else if (updateLearningMode === 3) {
-				Meteor.call("rateTranscript", Router.current().params._id, answeredCard, answer, ratingData);
+				Meteor.call("rateTranscript", FlowRouter.getParam('_id'), answeredCard, answer, ratingData);
 			}
 		} else {
 			this.toggleVisibility(false);
@@ -454,9 +455,9 @@ export let CardNavigation = class CardNavigation {
 			if (document.fullscreenElement === null && Session.get('fullscreen')) {
 				if (Route.isPresentation()) {
 					SweetAlertMessages.continuePresentation();
-				} else if ((Route.isBox() && !Bonus.isInBonus(Router.current().params._id)) || Route.isMemo()) {
+				} else if ((Route.isBox() && !Bonus.isInBonus(FlowRouter.getParam('_id'))) || Route.isMemo()) {
 					SweetAlertMessages.activateFullscreen();
-				} else if (Route.isBox() && Bonus.isInBonus(Router.current().params._id) && !PomodoroTimer.isTransitionRequest()) {
+				} else if (Route.isBox() && Bonus.isInBonus(FlowRouter.getParam('_id')) && !PomodoroTimer.isTransitionRequest()) {
 					SweetAlertMessages.activateFullscreen();
 				} else {
 					$(".toggleFullscreen").click();

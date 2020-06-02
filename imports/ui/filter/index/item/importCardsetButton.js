@@ -4,6 +4,7 @@ import {SweetAlertMessages} from "../../../../api/sweetAlert";
 import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./importCardsetButton.html";
 
 /*
@@ -49,7 +50,7 @@ Template.filterItemImportCardsetButton.events({
 							}
 							if (result) {
 								BertAlertVisuals.displayBertAlert(TAPi18n.__('import.success.cardset'), 'success', 'growl-top-left');
-								Router.go('cardsetdetailsid', {
+								FlowRouter.go('cardsetdetailsid', {
 									_id: result
 								});
 							}

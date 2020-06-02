@@ -2,6 +2,7 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import "./leaveBonus.html";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*
  * ############################################################################
@@ -11,7 +12,7 @@ import "./leaveBonus.html";
 
 Template.leaveLearnPhaseForm.events({
 	'click #leaveLearnPhaseConfirm': function () {
-		var id = Router.current().params._id;
+		var id = FlowRouter.getParam('_id');
 
 
 		$('#leaveModal').modal('hide');
@@ -19,7 +20,7 @@ Template.leaveLearnPhaseForm.events({
 		$('.modal-backdrop').remove();
 		$('#leaveModal').on('hidden.bs.modal', function () {
 			Meteor.call("deleteLeitner", id);
-			Router.go('home');
+			FlowRouter.go('home');
 		});
 	}
 });

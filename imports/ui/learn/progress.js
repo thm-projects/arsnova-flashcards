@@ -3,6 +3,7 @@ import {Leitner} from "../../api/subscriptions/leitner.js";
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {getAuthorName} from "../../api/userdata";
 import ResizeSensor from "../../../client/thirdParty/resizeSensor/ResizeSensor";
 import {LeitnerProgress} from "../../api/leitnerProgress";
@@ -19,10 +20,10 @@ import {UserPermissions} from "../../api/permissions";
 
 Template.graph.helpers({
 	countBox: function (boxId) {
-		if (Router.current().route.getName() === "progress") {
+		if (FlowRouter.getRouteName() === "progress") {
 			return Leitner.find({
-				cardset_id: Router.current().params._id,
-				user_id: Router.current().params.user_id,
+				cardset_id: FlowRouter.getParam('_id'),
+				user_id: FlowRouter.getParam('user_id'),
 				box: boxId
 			}).count();
 		} else {
@@ -33,19 +34,19 @@ Template.graph.helpers({
 		}
 	},
 	getChartTitle: function () {
-		if (Router.current().route.getName() === "progress") {
+		if (FlowRouter.getRouteName() === "progress") {
 			let title = '»' + this.name + '«';
-			if (Meteor.userId() === Router.current().params.user_id) {
+			if (Meteor.userId() === FlowRouter.getParam('user_id')) {
 				return TAPi18n.__('admin.myProgress') + title;
 			} else {
-				return title + ' | ' + TAPi18n.__('admin.userProgress') + ' »' + getAuthorName(Router.current().params.user_id) + '«';
+				return title + ' | ' + TAPi18n.__('admin.userProgress') + ' »' + getAuthorName(FlowRouter.getParam('user_id')) + '«';
 			}
 		} else {
 			return TAPi18n.__('admin.allLearnedCardsets');
 		}
 	},
 	getMaxWorkload: function () {
-		let maxWorkload = Cardsets.findOne({_id: Router.current().params._id}).maxCards;
+		let maxWorkload = Cardsets.findOne({_id: FlowRouter.getParam('_id')}).maxCards;
 		if (maxWorkload === 1) {
 			return TAPi18n.__('bonus.progress.maxWorkload.single', {amount: maxWorkload}, Session.get('activeLanguage'));
 		} else {
@@ -63,7 +64,7 @@ Template.graph.helpers({
 	},
 	isShuffledCardset: function () {
 		if (Route.isLeitnerProgress()) {
-			let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {shuffled: 1}});
+			let cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')}, {fields: {shuffled: 1}});
 			if (cardset !== undefined) {
 				return cardset.shuffled;
 			} else {
@@ -89,22 +90,22 @@ Template.graph.onRendered(function () {
 
 Template.progress.helpers({
 	isStatsOwner: function () {
-		return Meteor.userId() === Router.current().params.user_id;
+		return Meteor.userId() === FlowRouter.getParam('user_id');
 	},
 	gotProgressAccess: function () {
-		return Meteor.userId() === Router.current().params.user_id || UserPermissions.isOwner(Cardsets.findOne({_id: Router.current().params._id}).owner) || UserPermissions.isAdmin();
+		return Meteor.userId() === FlowRouter.getParam('user_id') || UserPermissions.isOwner(Cardsets.findOne({_id: FlowRouter.getParam('_id')}).owner) || UserPermissions.isAdmin();
 	}
 });
 
 Template.progress.events({
 	"click #backButton": function () {
-		if (Meteor.userId() === Router.current().params.user_id) {
-			Router.go('cardsetdetailsid', {
-				_id: Router.current().params._id
+		if (Meteor.userId() === FlowRouter.getParam('user_id')) {
+			FlowRouter.go('cardsetdetailsid', {
+				_id: FlowRouter.getParam('_id')
 			});
 		} else {
-			Router.go('cardsetstats', {
-				_id: Router.current().params._id
+			FlowRouter.go('cardsetstats', {
+				_id: FlowRouter.getParam('_id')
 			});
 		}
 	}
@@ -126,7 +127,7 @@ Template.graphCardsetFilter.helpers({
 	},
 	isShuffledCardset: function () {
 		if (Route.isLeitnerProgress()) {
-			let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {shuffled: 1}});
+			let cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')}, {fields: {shuffled: 1}});
 			if (cardset !== undefined) {
 				return cardset.shuffled;
 			} else {

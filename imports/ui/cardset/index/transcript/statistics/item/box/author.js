@@ -1,4 +1,5 @@
 import "./author.html";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*
  * ############################################################################
@@ -9,7 +10,7 @@ import "./author.html";
 Template.cardsetIndexTranscriptStatisticsItemBoxAuthor.events({
 	'click .info-box-author': function (event) {
 		event.preventDefault();
-		Router.go('admin_user', {
+		FlowRouter.go('admin_user', {
 			_id: $(event.target).data('id')
 		});
 	}

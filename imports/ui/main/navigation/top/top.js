@@ -3,6 +3,7 @@ import {Session} from "meteor/session";
 import {Meteor} from "meteor/meteor";
 import {Filter} from "../../../../api/filter";
 import {MainNavigation} from "../../../../api/mainNavigation";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./item/all/all.js";
 import "./item/backend.js";
 import "./item/connectionStatus.js";
@@ -36,10 +37,10 @@ Template.mainNavigationTop.events({
 		Filter.resetFilters();
 		if (Meteor.user()) {
 			Meteor.logout(function () {
-				Router.go('home');
+				FlowRouter.go('home');
 			});
 		} else {
-			Router.go('home');
+			FlowRouter.go('home');
 		}
 	},
 	'click .toggleFooterNavigation': function (event) {

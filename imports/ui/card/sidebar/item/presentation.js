@@ -1,4 +1,5 @@
 import {Session} from "meteor/session";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {AspectRatio} from "../../../../api/aspectRatio.js";
 import "./presentation.html";
 
@@ -11,6 +12,6 @@ import "./presentation.html";
 Template.cardSidebarItemPresentation.events({
 	"click .startPresentation": function () {
 		Session.set('aspectRatioMode', AspectRatio.getDefault());
-		Router.go('presentation', {_id: Router.current().params._id});
+		FlowRouter.go('presentation', {_id: FlowRouter.getParam('_id')});
 	}
 });

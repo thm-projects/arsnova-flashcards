@@ -25,6 +25,7 @@ import "./item/toggle3D.js";
 import {Route} from "../../../api/route";
 import {Bonus} from "../../../api/bonus";
 import {NavigatorCheck} from "../../../api/navigatorCheck";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*
  * ############################################################################
@@ -39,7 +40,7 @@ Template.flashcardSidebarLeft.onRendered(function () {
 Template.flashcardSidebarLeft.helpers({
 	gotElements: function () {
 		if (Route.isBox() && NavigatorCheck.isSmartphone()) {
-			return !Bonus.isInBonus(Router.current().params._id);
+			return !Bonus.isInBonus(FlowRouter.getParam('_id'));
 		} else {
 			return !Route.isTranscript();
 		}

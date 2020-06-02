@@ -1,4 +1,5 @@
 import "./cardset.html";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Cardsets} from "../../../../../../../api/subscriptions/cardsets";
 
 /*
@@ -16,7 +17,7 @@ Template.cardsetIndexTranscriptStatisticsItemBoxCardset.helpers({
 Template.cardsetIndexTranscriptStatisticsItemBoxCardset.events({
 	'click .info-box-cardset': function (event) {
 		event.preventDefault();
-		Router.go('cardsetdetailsid', {
+		FlowRouter.go('cardsetdetailsid', {
 			_id: $(event.target).data('id')
 		});
 	}

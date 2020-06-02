@@ -15,14 +15,15 @@
  * You should have received a copy of the GNU General Public License
  * along with cards.  If not, see <http://www.gnu.org/licenses/>.*/
 
-let gulp = require('gulp4'),
-	watch = require('gulp-watch');
+let gulp = require('gulp4');
 let jshint = require('gulp-jshint');
 let jscs = require('gulp-jscs');
 let stylish = require('jshint-stylish');
 
 let paths = [
-	'./{imports,i18n,server,tests}/**/*.js',
+	'./{i18n,server,tests}/**/*.js',
+	'./imports/**/*.js',
+	'!./imports/startup/client/routes.js',
 	'./client/head.js'
 ];
 

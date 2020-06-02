@@ -1,4 +1,5 @@
 import {Route} from "../../../../../api/route";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./backToHome.html";
 
 /*
@@ -11,6 +12,6 @@ Template.mainNavigationFooterItemBackToHome.events({
 	'click #backToStartButton': function (event) {
 		event.preventDefault();
 		Route.setFirstTimeVisit();
-		Router.go('home');
+		FlowRouter.go('home');
 	}
 });

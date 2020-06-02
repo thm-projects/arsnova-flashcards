@@ -2,6 +2,7 @@
 
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./selectWorkload.html";
 
 /*
@@ -14,7 +15,7 @@ Template.selectModeForm.events({
 	'click #learnBox': function () {
 		$('#selectModeToLearnModal').on('hidden.bs.modal', function () {
 			Session.set("workloadFullscreenMode", true);
-			Router.go('box', {
+			FlowRouter.go('box', {
 				_id: Session.get("activeCardset")._id
 			});
 		}).modal('hide');
@@ -22,7 +23,7 @@ Template.selectModeForm.events({
 	'click #learnMemo': function () {
 		$('#selectModeToLearnModal').on('hidden.bs.modal', function () {
 			Session.set("workloadFullscreenMode", true);
-			Router.go('memo', {
+			FlowRouter.go('memo', {
 				_id: Session.get("activeCardset")._id
 			});
 		}).modal('hide');

@@ -1,4 +1,5 @@
 import {CardEditor} from "../../../../api/cardEditor.js";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./buttonSaveReturn.html";
 
 /*
@@ -9,6 +10,6 @@ import "./buttonSaveReturn.html";
 
 Template.cardEditorItemButtonSaveReturn.events({
 	"click #cardSaveReturn": function () {
-		CardEditor.saveCard(Router.current().params.card_id, 1);
+		CardEditor.saveCard(FlowRouter.getParam('card_id'), 1);
 	}
 });

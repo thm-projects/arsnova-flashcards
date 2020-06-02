@@ -3,15 +3,7 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import "./view/billing.js";
-import "./view/membership.js";
-import "./view/notifications.js";
-import "./view/requests.js";
-import "./view/settings.js";
-import "./view/leitnerProgress.js";
-import "./view/public.js";
-import "./view/overview.js";
-import "./modal/deleteProfile.js";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./profile.html";
 
 Meteor.subscribe("notifications");
@@ -21,12 +13,12 @@ Meteor.subscribe('defaultAppData', function () {
 });
 
 Template.registerHelper("getUser", function () {
-	var user = Meteor.users.findOne(Router.current().params._id);
+	var user = Meteor.users.findOne(FlowRouter.getParam('_id'));
 	Session.set("stats.js", user);
 	return user;
 });
 Template.registerHelper("isUser", function () {
-	return Router.current().params._id === Meteor.userId();
+	return FlowRouter.getParam('_id') === Meteor.userId();
 });
 
 /*
@@ -37,7 +29,7 @@ Template.registerHelper("isUser", function () {
 
 Template.profile.helpers({
 	isVisible: function () {
-		var userId = Router.current().params._id;
+		var userId = FlowRouter.getParam('_id');
 		if (userId !== undefined) {
 			var user = Meteor.users.findOne(userId);
 			if (user !== undefined) {

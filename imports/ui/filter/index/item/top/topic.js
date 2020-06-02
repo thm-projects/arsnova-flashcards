@@ -5,7 +5,7 @@ import {TranscriptBonusList} from "../../../../../api/transcriptBonus";
 import {Cardsets} from "../../../../../api/subscriptions/cardsets";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 
 /*
@@ -19,22 +19,22 @@ Template.filterIndexItemTopTopic.events({
 		event.preventDefault();
 		if (Route.isTranscript() || Route.isTranscriptBonus()) {
 			if (Route.isMyTranscripts()) {
-				Router.go('presentationTranscriptPersonal', {
+				FlowRouter.go('presentationTranscriptPersonal', {
 					card_id: $(event.target).data('id')
 				});
 			} else if (Route.isMyBonusTranscripts()) {
-				Router.go('presentationTranscriptBonus', {
+				FlowRouter.go('presentationTranscriptBonus', {
 					card_id: $(event.target).data('id')
 				});
 			} else {
 				Session.set('transcriptBonusReviewCount', $(event.target).data('id'));
-				Router.go('presentationTranscriptBonusCardset', {
-					_id: Router.current().params._id,
+				FlowRouter.go('presentationTranscriptBonusCardset', {
+					_id: FlowRouter.getParam('_id'),
 					card_id: $(event.target).data('id')
 				});
 			}
 		} else {
-			Router.go('cardsetdetailsid', {
+			FlowRouter.go('cardsetdetailsid', {
 				_id: $(event.target).data('id')
 			});
 		}
