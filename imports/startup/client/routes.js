@@ -1590,13 +1590,13 @@ var linksWithNoLoginRequirement = function () {
 	}
 };
 
-var setLanguage = function () {
+export let setLanguage = function () {
 	let language = ServerStyle.getClientLanguage();
 	Session.set('activeLanguage', language);
 	TAPi18n.setLanguage(language);
 };
 
-var setTheme = function () {
+export let setTheme = function () {
 	if (Meteor.user()) {
 		// If there is no selectedColorTheme the Session var "theme" will stay NULL.
 		if (Meteor.users.findOne(Meteor.userId())) {

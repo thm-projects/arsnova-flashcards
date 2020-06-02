@@ -28,6 +28,7 @@ import "./modal/pdfViewer.js";
 import "./main.html";
 
 import {PDFViewer} from "../../util/pdfViewer";
+import {setLanguage, setTheme} from "../../startup/client/routes";
 
 Meteor.subscribe("notifications");
 Meteor.subscribe("serverStatistics");
@@ -128,6 +129,8 @@ Template.main.helpers({
 
 let windowResizeSensor;
 Template.main.onCreated(function () {
+	setLanguage();
+	setTheme();
 	MarkdeepContent.initializeStylesheet();
 	document.title = ServerStyle.getLastAppTitle();
 	windowResizeSensor = $(window).resize(function () {
