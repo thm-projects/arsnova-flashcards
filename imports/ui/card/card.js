@@ -26,6 +26,7 @@ import "../main/modal/arsnovaLite.js";
 import "../help/help.js";
 import "../main/overlays/aspectRatio.js";
 import "../main/overlays/zoomText.js";
+import "../presentation/presentation.js";
 import './side/header/header.js';
 import './side/content/content.js';
 import './navigation/navigation.js';

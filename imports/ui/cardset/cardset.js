@@ -25,9 +25,7 @@ import "./labels/labels.js";
 import "./index/transcript/transcript.js";
 import "./sidebar/sidebar.js";
 import "../learn/progress.js";
-import "../filter/index/item/bottom/deadline.js";
-import "../filter/index/item/bottom/starsRating.js";
-import "../filter/index/item/bottom/transcriptRating.js";
+import "../filter/filter.js";
 import "./cardset.html";
 import {PDFViewer} from "../../util/pdfViewer";
 
