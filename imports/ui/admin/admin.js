@@ -4,16 +4,8 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Notifications} from "../../api/subscriptions/notifications";
 import {MainNavigation} from "../../api/mainNavigation";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./admin.html";
-import "./dashboard/dashboard.js";
-import "./users/index.js";
-import "./learningStatistics/learningStatistics.js";
-import "./apiAccess/apiAccess.js";
-import "./notifications/notifications.js";
-import "./university/university.js";
-import "./settings/settings.js";
-import "../learn/progress.js";
-import "./matomo/matomoStatistics.js";
 import {Session} from "meteor/session";
 
 Meteor.subscribe("notifications");
@@ -28,6 +20,7 @@ Template.admin_main.events({
 	'click #logout_admin': function (event) {
 		event.preventDefault();
 		MainNavigation.setLoginTarget(false);
+		FlowRouter.go('home');
 		Meteor.logout();
 	},
 	'click #notificationsBtn_admin': function () {

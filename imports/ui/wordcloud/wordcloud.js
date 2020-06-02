@@ -4,6 +4,7 @@ import {Cardsets} from "../../api/subscriptions/cardsets.js";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import "./help/help.js";
+import "../cardset/info/info.js";
 import "./wordcloud.html";
 import {NavigatorCheck} from "../../api/navigatorCheck";
 import {Route} from "../../api/route";

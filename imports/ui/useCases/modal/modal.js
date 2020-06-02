@@ -1,5 +1,6 @@
 import "./modal.html";
 import {Session} from "meteor/session";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
 import {Route} from "../../../api/route";
@@ -32,7 +33,7 @@ Template.useCasesModal.onRendered(function () {
 				if (Route.isMyCardsets()) {
 					$('#setCardsetFormModal').modal('show');
 				} else {
-					Router.go('create');
+					FlowRouter.go('create');
 				}
 				break;
 			case 2:
@@ -41,7 +42,7 @@ Template.useCasesModal.onRendered(function () {
 						MainNavigation.focusSearchBar();
 					}, 500);
 				} else {
-					Router.go('repetitorium');
+					FlowRouter.go('repetitorium');
 				}
 				break;
 			case 3:
@@ -50,26 +51,26 @@ Template.useCasesModal.onRendered(function () {
 						MainNavigation.focusSearchBar();
 					}, 500);
 				} else {
-					Router.go('pool');
+					FlowRouter.go('pool');
 				}
 				break;
 			case 4:
-				Router.go('learn');
+				FlowRouter.go('learn');
 				break;
 			case 5:
-				Router.go('create');
+				FlowRouter.go('create');
 				break;
 			case 6:
-				Router.go('personalRepetitorien');
+				FlowRouter.go('personalRepetitorien');
 				break;
 			case 7:
-				Router.go('transcriptsPersonal');
+				FlowRouter.go('transcriptsPersonal');
 				break;
 			case 8:
-				Router.go('transcriptsBonus');
+				FlowRouter.go('transcriptsBonus');
 				break;
 			case 9:
-				Router.go('cardsetdetailsid', {
+				FlowRouter.go('cardsetdetailsid', {
 					_id: Session.get('useCaseTarget')
 				});
 				break;

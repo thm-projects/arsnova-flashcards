@@ -1,4 +1,5 @@
 //------------------------ IMPORTS
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Template} from "meteor/templating";
 import "./editRepetitorium.html";
 
@@ -10,6 +11,6 @@ import "./editRepetitorium.html";
 
 Template.cardsetNavigationEditRepetitorium.events({
 	'click #editShuffle': function () {
-		Router.go('editshuffle', {_id: Router.current().params._id});
+		FlowRouter.go('editshuffle', {_id: FlowRouter.getParam('_id')});
 	}
 });

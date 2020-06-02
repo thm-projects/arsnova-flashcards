@@ -8,6 +8,7 @@ import {FilterNavigation} from "../../../../../api/filterNavigation";
 import {Cardsets} from "../../../../../api/subscriptions/cardsets";
 import {Session} from "meteor/session";
 import {Route} from "../../../../../api/route";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*
  * ############################################################################
@@ -33,7 +34,7 @@ Template.cardsetIndexTranscriptStatistics.events({
 Template.cardsetIndexTranscriptStatistics.helpers({
 	transcriptBonus: function () {
 		if (Route.isTranscriptBonus()) {
-			let transcriptBonusUsers = _.uniq(TranscriptBonus.find({cardset_id: Router.current().params._id}, {
+			let transcriptBonusUsers = _.uniq(TranscriptBonus.find({cardset_id: FlowRouter.getParam('_id')}, {
 				fields: {user_id: 1}
 			}).fetch().map(function (x) {
 				return x.user_id;
@@ -41,7 +42,7 @@ Template.cardsetIndexTranscriptStatistics.helpers({
 			let users = Meteor.users.find({_id: {$in: transcriptBonusUsers}}, {sort: {"profile.birthname": 1}, fields: {_id: 1}}).fetch();
 			let list = [];
 			for (let i = 0; i < users.length; i++) {
-				list.push({user_id: users[i]._id, cardset_id: Router.current().params._id});
+				list.push({user_id: users[i]._id, cardset_id: FlowRouter.getParam('_id')});
 			}
 			return list;
 		} else {

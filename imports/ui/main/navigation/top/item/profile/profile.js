@@ -1,6 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Notifications} from "../../../../../../api/subscriptions/notifications";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./item/billing.js";
 import "./item/logout.js";
 import "./item/membership.js";
@@ -17,8 +18,8 @@ import "./profile.html";
 
 Template.mainNavigationTopItemProfile.helpers({
 	isActiveProfile: function () {
-		if (ActiveRoute.name(/^profile/)) {
-			return Router.current().params._id === Meteor.userId();
+		if (FlowRouter.getRouteName() === 'profile') {
+			return FlowRouter.getParam('_id') === Meteor.userId();
 		}
 		return false;
 	},

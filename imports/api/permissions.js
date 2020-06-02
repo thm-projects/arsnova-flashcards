@@ -1,3 +1,4 @@
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "./subscriptions/cardsets";
 import {Paid} from "./subscriptions/paid";
@@ -54,7 +55,7 @@ export let UserPermissions = class UserPermissions {
 
 	static hasCardsetPermission (cardset_id) {
 		if (!Meteor.isServer) {
-			if (Router.current().route.getName() === "demo" || Router.current().route.getName() === "making") {
+			if (FlowRouter.getRouteName() === "demo" || FlowRouter.getRouteName() === "making") {
 				return true;
 			}
 		}

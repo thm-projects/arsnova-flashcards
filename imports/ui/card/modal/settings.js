@@ -4,6 +4,7 @@ import {Route} from "../../../api/route";
 import {CardType} from "../../../api/cardTypes";
 import {Cardsets} from "../../../api/subscriptions/cardsets";
 import {CardNavigation} from "../../../api/cardNavigation";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./settings.html";
 
 /*
@@ -14,11 +15,11 @@ import "./settings.html";
 
 Template.cardSettingsModal.helpers({
 	getText: function () {
-		if (Route.isDemo() || ((Route.isBox() || Route.isMemo()) && Cardsets.findOne({_id: Router.current().params._id}).shuffled)) {
+		if (Route.isDemo() || ((Route.isBox() || Route.isMemo()) && Cardsets.findOne({_id: FlowRouter.getParam('_id')}).shuffled)) {
 			if (Route.isDemo()) {
 				CardType.gotCardTypesWithSwapAnswerQuestionButton(Cardsets.findOne({name: "DemoCardset", shuffled: true})._id);
 			} else {
-				CardType.gotCardTypesWithSwapAnswerQuestionButton(Router.current().params._id);
+				CardType.gotCardTypesWithSwapAnswerQuestionButton(FlowRouter.getParam('_id'));
 			}
 			return TAPi18n.__('swapQuestionAnswer.modal.shuffled', {cardTypes: CardType.getCardTypesWithSwapAnswerQuestionTooltip()});
 		} else {

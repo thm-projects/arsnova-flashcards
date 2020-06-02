@@ -1,5 +1,6 @@
 import "./completeProfile.html";
 import {Meteor} from "meteor/meteor";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*
  * ############################################################################
@@ -12,7 +13,7 @@ Template.profileIncompleteModal.events({
 		$('#profileIncompleteModal').modal('hide');
 		$('body').removeClass('modal-open');
 		$('.modal-backdrop').remove();
-		Router.go('profileSettings', {
+		FlowRouter.go('profileSettings', {
 			_id: Meteor.userId()
 		});
 	},

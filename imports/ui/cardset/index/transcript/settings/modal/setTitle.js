@@ -3,6 +3,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Meteor} from "meteor/meteor";
 import {BertAlertVisuals} from "../../../../../../api/bertAlertVisuals";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*
  * ############################################################################
@@ -27,7 +28,7 @@ Template.cardsetIndexTranscriptSettingsModalSetTitle.events({
 	},
 	'click #save': function () {
 		Session.set('transcriptBonusLectures', Session.get('transcriptBonusTempLectures').map(a => Object.assign({}, a)));
-		Meteor.call('updateCardsetTranscriptBonusLectures', Router.current().params._id, Session.get('transcriptBonusLectures'), function (error, result) {
+		Meteor.call('updateCardsetTranscriptBonusLectures', FlowRouter.getParam('_id'), Session.get('transcriptBonusLectures'), function (error, result) {
 			if (result) {
 				BertAlertVisuals.displayBertAlert(TAPi18n.__('transcriptForm.bonus.form.alert.save'), "success", 'growl-top-left');
 				$('#cardsetIndexTranscriptSettingsModalSetTitle').modal('hide');

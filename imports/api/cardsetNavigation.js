@@ -1,4 +1,5 @@
 import {Meteor} from "meteor/meteor";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {WebPushNotifications} from "./webPushSubscriptions";
 import {Session} from "meteor/session";
 import {Route} from "./route";
@@ -18,17 +19,17 @@ export let CardsetNavigation = class CardsetNavigation {
 			Session.set('aspectRatioMode', AspectRatio.getDefault());
 			Session.set('activeCardSide', undefined);
 			Session.set('isDirectCardsetIndexView', true);
-			Router.go('presentationlist', {_id: Router.current().params._id});
+			FlowRouter.go('presentationlist', {_id: FlowRouter.getParam('_id')});
 		} else if (Route.isDemo()) {
 			Session.set('isDirectCardsetIndexView', false);
-			Router.go('demolist');
+			FlowRouter.go('demolist');
 		} else if (Route.isMakingOf()) {
 			Session.set('isDirectCardsetIndexView', false);
-			Router.go('makinglist');
+			FlowRouter.go('makinglist');
 		}  else {
 			Session.set('isDirectCardsetIndexView', false);
-			Router.go('presentationlist', {
-				_id: Router.current().params._id
+			FlowRouter.go('presentationlist', {
+				_id: FlowRouter.getParam('_id')
 			});
 		}
 	}

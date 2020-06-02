@@ -7,6 +7,7 @@ import {Utilities} from "./utilities";
 import {CardType} from "./cardTypes";
 import {LeitnerUtilities} from "../util/leitner";
 import {SweetAlertMessages} from "./sweetAlert";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 let leitnerSimulator;
 let leitnerSimulatorDays;
@@ -225,7 +226,7 @@ export let BonusForm = class BonusForm {
 
 	static initializeSimulatorData () {
 		this.adjustErrorCount();
-		let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {cardGroups: 1, shuffled: 1, quantity: 1}});
+		let cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')}, {fields: {cardGroups: 1, shuffled: 1, quantity: 1}});
 		if (cardset !== undefined) {
 			if (cardset.shuffled) {
 				leitnerCardCount = 0;

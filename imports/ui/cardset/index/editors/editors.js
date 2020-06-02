@@ -1,5 +1,6 @@
 //------------------------ IMPORTS
 import {Meteor} from "meteor/meteor";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import "./editors.html";
@@ -18,19 +19,19 @@ Template.cardsetManageEditors.helpers({
 
 Template.cardsetManageEditors.events({
 	"click #backButton": function () {
-		Router.go('cardsetdetailsid', {_id: Router.current().params._id});
+		FlowRouter.go('cardsetdetailsid', {_id: FlowRouter.getParam('_id')});
 	},
 	"click .addEditor": function (event) {
-		Meteor.call("addEditor", Router.current().params._id, $(event.target).data('id'));
+		Meteor.call("addEditor", FlowRouter.getParam('_id'), $(event.target).data('id'));
 	},
 	"click .removeEditor": function (event) {
-		Meteor.call("removeEditor", Router.current().params._id, $(event.target).data('id'));
+		Meteor.call("removeEditor", FlowRouter.getParam('_id'), $(event.target).data('id'));
 	}
 });
 
 Template.cardsetManageEditors.created = function () {
 	Session.set("editorsList", "");
-	Meteor.call("getEditors", Router.current().params._id, function (error, result) {
+	Meteor.call("getEditors", FlowRouter.getParam('_id'), function (error, result) {
 		if (error) {
 			throw new Meteor.Error(error.statusCode, 'Error could not receive content for editors');
 		}

@@ -2,6 +2,7 @@ import "./cardset.html";
 import {Cardsets} from "../../../../../../api/subscriptions/cardsets";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*
  * ############################################################################
@@ -11,7 +12,7 @@ import {Session} from "meteor/session";
 
 Template.cardsetIndexTranscriptStatisticsItemCardset.events({
 	'click #exportCSV': function () {
-		var cardset = Cardsets.findOne({_id: Router.current().params._id});
+		var cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')});
 		var hiddenElement = document.createElement('a');
 		var header = [];
 		header[0] = TAPi18n.__('box_export_birth_name');

@@ -4,6 +4,7 @@ import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {Route} from "../../../../api/route";
 import {Session} from "meteor/session";
 import {CardNavigation} from "../../../../api/cardNavigation";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./swapQuestionAnswer.html";
 
 Session.setDefault('swapAnswerQuestion', 0);
@@ -24,7 +25,7 @@ Template.cardSidebarItemSwapQuestionAnswer.onDestroyed(function () {
 });
 
 Template.cardSidebarItemSwapQuestionAnswer.onRendered(function () {
-	if (!Route.isDemo() && CardType.gotCardTypesWithSwapAnswerQuestionButton(Router.current().params._id)) {
+	if (!Route.isDemo() && CardType.gotCardTypesWithSwapAnswerQuestionButton(FlowRouter.getParam('_id'))) {
 		$('#cardSettingsModal').modal('show');
 		$('.carousel-inner .item .cardContent').addClass('blurHideAnswerQuestion');
 		$('#cardSettingsModal').on('hidden.bs.modal', function () {
@@ -42,14 +43,14 @@ Template.cardSidebarItemSwapQuestionAnswer.helpers({
 				shuffled: true
 			})._id);
 		} else {
-			return CardType.gotCardTypesWithSwapAnswerQuestionButton(Router.current().params._id);
+			return CardType.gotCardTypesWithSwapAnswerQuestionButton(FlowRouter.getParam('_id'));
 		}
 	},
 	questionAnswerSwapped: function () {
 		return Session.get('swapAnswerQuestion');
 	},
 	getTooltip: function () {
-		if (Route.isDemo() || Cardsets.findOne({_id: Router.current().params._id}).shuffled) {
+		if (Route.isDemo() || Cardsets.findOne({_id: FlowRouter.getParam('_id')}).shuffled) {
 			return TAPi18n.__('card.tooltip.swapQuestionAnswer.shuffled', {cardTypes: CardType.getCardTypesWithSwapAnswerQuestionTooltip()});
 		} else {
 			return TAPi18n.__('card.tooltip.swapQuestionAnswer.normal');

@@ -136,7 +136,7 @@ export let ServerStyle = class ServerStyle {
 	}
 
 	static gotNavigationFeature (feature, addRoutePath = false) {
-		if (!Meteor.isServer && Router.current() !== null) {
+		if (!Meteor.isServer) {
 			if ((Route.isAll() || Route.isShuffle() || Route.isEditShuffle() || Route.isTranscriptBonus()) && (feature === "wordcloud" || feature === 'filter' || feature === 'search')) {
 				return true;
 			}

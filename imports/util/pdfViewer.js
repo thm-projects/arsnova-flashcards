@@ -7,6 +7,7 @@ import {Session} from "meteor/session";
 import {Leitner} from "../api/subscriptions/leitner";
 import {Wozniak} from "../api/subscriptions/wozniak";
 import XRegExp from 'xregexp';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 let isAutoPDFTarget = false;
 const DEFAULTPAGETARGET = 'page=1';
@@ -45,9 +46,9 @@ export let PDFViewer = class PDFViewer {
 	static closeModal () {
 		if (isAutoPDFTarget) {
 			if (Route.isBox()) {
-				Meteor.call('markLeitnerAutoPDF', Router.current().params._id, Session.get('activeCard'));
+				Meteor.call('markLeitnerAutoPDF', FlowRouter.getParam('_id'), Session.get('activeCard'));
 			} else {
-				Meteor.call('markWozniakAutoPDF', Router.current().params._id, Session.get('activeCard'));
+				Meteor.call('markWozniakAutoPDF', FlowRouter.getParam('_id'), Session.get('activeCard'));
 			}
 		}
 		this.setAutoPDFTargetStatus(false);
@@ -91,9 +92,9 @@ export let PDFViewer = class PDFViewer {
 		if (Route.isLearningMode() && CardType.gothLearningModePDFAutoTarget(cardType)) {
 			let viewedAutoPDF;
 			if (Route.isBox()) {
-				viewedAutoPDF = Leitner.findOne({card_id: card_id, cardset_id: Router.current().params._id, user_id: Meteor.userId(), viewedPDF: true});
+				viewedAutoPDF = Leitner.findOne({card_id: card_id, cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId(), viewedPDF: true});
 			} else {
-				viewedAutoPDF = Wozniak.findOne({card_id: card_id, cardset_id: Router.current().params._id, user_id: Meteor.userId(), viewedPDF: true});
+				viewedAutoPDF = Wozniak.findOne({card_id: card_id, cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId(), viewedPDF: true});
 			}
 			if (viewedAutoPDF === undefined) {
 				let cubeSides = CardType.getCardTypeCubeSides(cardType);

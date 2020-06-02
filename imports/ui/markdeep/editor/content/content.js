@@ -6,6 +6,7 @@ import "./content.html";
 import {Route} from "../../../../api/route";
 import {isNewCardset} from "../../../forms/cardsetForm";
 import {Dictionary} from "../../../../api/dictionary";
+import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 
 /*
  * ############################################################################
@@ -40,7 +41,7 @@ Template.markdeepContent.helpers({
 	},
 	getShuffleDescription: function () {
 		if (Session.get("ShuffleTemplate") !== undefined) {
-			return ActiveRoute.name('shuffle') ? Session.get("ShuffleTemplate").description : "";
+			return FlowRouter.getRouteName() === 'shuffle' ? Session.get("ShuffleTemplate").description : "";
 		}
 	},
 	isNew: function () {

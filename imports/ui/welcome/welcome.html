@@ -1,19 +1,21 @@
 <template name="welcome">
-    {{> pomodoroTimerModal}}
-    {{> welcomeTitle}}
-    <div id="welcome-container">
-        {{> wordcloud}}
-    </div>
-    <div id="welcome-login" class="col-xs-12">
-        <span class="login-container">
-            {{{getLoginButtons}}}
-        </span>
-    </div>
-    <div id="pomodoroTimerNormalContainer" title="{{_ "landingPage.buttons.tooltip.pomodoro"}}">
-        {{> pomodoroTimer}}
-        <label>{{_ "landingPage.buttons.pomodoro"}}</label>
-    </div>
-    {{> welcomeWordcloudButton}}
+    {{#unless currentUser}}
+        {{> pomodoroTimerModal}}
+        {{> welcomeTitle}}
+        <div id="welcome-container">
+            {{> wordcloud}}
+        </div>
+        <div id="welcome-login" class="col-xs-12">
+            <span class="login-container">
+                {{{getLoginButtons}}}
+            </span>
+        </div>
+        <div id="pomodoroTimerNormalContainer" title="{{_ "landingPage.buttons.tooltip.pomodoro"}}">
+            {{> pomodoroTimer}}
+            <label>{{_ "landingPage.buttons.pomodoro"}}</label>
+        </div>
+        {{> welcomeWordcloudButton}}
+    {{/unless}}
 </template>
 
 

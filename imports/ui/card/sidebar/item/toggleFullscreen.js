@@ -1,5 +1,6 @@
 import {Session} from "meteor/session";
 import "./toggleFullscreen.html";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {CardVisuals} from "../../../../api/cardVisuals";
 import {PomodoroTimer} from "../../../../api/pomodoroTimer";
 import {Route} from "../../../../api/route";
@@ -38,7 +39,7 @@ Template.cardSidebarItemToggleFullscreen.events({
 		} else {
 			if (Route.isFirstTimeVisit() && FirstTimeVisit.redirectToHomeAfterFullscreenExit()) {
 				Route.setFirstTimeVisit();
-				Router.go('home');
+				FlowRouter.go('home');
 			}
 		}
 		setTimeout(function () {

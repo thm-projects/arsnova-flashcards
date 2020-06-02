@@ -1,5 +1,6 @@
 //------------------------ IMPORTS
 import {Meteor} from "meteor/meteor";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {CardType} from "../../../../api/cardTypes";
@@ -65,9 +66,9 @@ Template.cardsetNavigationBonus.events({
 		$('#bonusFormModal').modal('show');
 	},
 	"click #showStats": function () {
-		Router.go('cardsetstats', {_id: Router.current().params._id});
+		FlowRouter.go('cardsetstats', {_id: FlowRouter.getParam('_id')});
 	},
 	"click #transcriptBonus": function () {
-		Router.go('transcriptBonus', {_id: Router.current().params._id});
+		FlowRouter.go('transcriptBonus', {_id: FlowRouter.getParam('_id')});
 	}
 });

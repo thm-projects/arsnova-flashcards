@@ -5,6 +5,7 @@ import {Route} from "./route.js";
 import swal from "sweetalert2";
 import * as config from "../config/pomodoroTimer.js";
 import {LeitnerTasks} from "./subscriptions/leitnerTasks";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 if (Meteor.isClient) {
 	Session.set('pomodoroBreakActive', false);
@@ -178,7 +179,7 @@ export let PomodoroTimer = class PomodoroTimer {
 			});
 			dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.presentation.break.start.button.confirm');
 		} else {
-			if (Bonus.isInBonus(Router.current().params._id)) {
+			if (Bonus.isInBonus(FlowRouter.getParam('_id'))) {
 				dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.break.start.title');
 				dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.break.start.text', {
 					pomodoroBreak: breakLength,
@@ -212,7 +213,7 @@ export let PomodoroTimer = class PomodoroTimer {
 			}
 			/*and this is what runs when the user clicks the confirm button on the popup. It starts the break, and gets the current time and sets the end from there.*/
 			if (Route.isBox()) {
-				Meteor.call('startLeitnerBreak', Router.current().params._id);
+				Meteor.call('startLeitnerBreak', FlowRouter.getParam('_id'));
 				this.updateServerTimerIntervalStart();
 			}
 			breakRunning = true;
@@ -252,7 +253,7 @@ export let PomodoroTimer = class PomodoroTimer {
 				breakLength = config.defaultPresentationSettings.break.length;
 			}
 		} else {
-			if (Bonus.isInBonus(Router.current().params._id)) {
+			if (Bonus.isInBonus(FlowRouter.getParam('_id'))) {
 				let leitnerTask = LeitnerTasks.findOne({}, {sort: {createdAt: -1}});
 				leitnerTask.timer.workload.completed++;
 				breakLength = this.getCurrentBreakLength(leitnerTask);
@@ -271,7 +272,7 @@ export let PomodoroTimer = class PomodoroTimer {
 			});
 			dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.presentation.break.end.button.confirm');
 		} else {
-			if (Bonus.isInBonus(Router.current().params._id)) {
+			if (Bonus.isInBonus(FlowRouter.getParam('_id'))) {
 				dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.break.end.title');
 				dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.break.end.text', {
 					pomodoroLength: pomLength
@@ -297,7 +298,7 @@ export let PomodoroTimer = class PomodoroTimer {
 			}
 			/*starts the work cycle up again, automatically.*/
 			if (Route.isBox()) {
-				Meteor.call('endLeitnerBreak', Router.current().params._id);
+				Meteor.call('endLeitnerBreak', FlowRouter.getParam('_id'));
 				PomodoroTimer.updateServerTimerIntervalStart();
 			}
 			if (Route.isBox() || Route.isMemo()) {
@@ -402,7 +403,7 @@ export let PomodoroTimer = class PomodoroTimer {
 					});
 					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.presentation.end.button.cancel');
 					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.presentation.end.button.confirm');
-				} else if (Bonus.isInBonus(Router.current().params._id) && Route.isBox()) {
+				} else if (Bonus.isInBonus(FlowRouter.getParam('_id')) && Route.isBox()) {
 					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.title');
 					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.text', {
 						missingPomodoros: count,
@@ -447,7 +448,7 @@ export let PomodoroTimer = class PomodoroTimer {
 								config.failSound.play();
 							}
 
-							if (Bonus.isInBonus(Router.current().params._id) && Route.isBox()) {
+							if (Bonus.isInBonus(FlowRouter.getParam('_id')) && Route.isBox()) {
 								dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.confirm.title');
 								dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.confirm.text', {
 									pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
@@ -473,9 +474,9 @@ export let PomodoroTimer = class PomodoroTimer {
 								PomodoroTimer.showPomodoroNormal();
 								if ((Route.isBox() || Route.isMemo())) {
 									Session.set('pomodoroBreakActive', false);
-									if (Bonus.isInBonus(Router.current().params._id, Meteor.userId())) {
-										Router.go('cardsetdetailsid', {
-											_id: Router.current().params._id
+									if (Bonus.isInBonus(FlowRouter.getParam('_id'), Meteor.userId())) {
+										FlowRouter.go('cardsetdetailsid', {
+											_id: FlowRouter.getParam('_id')
 										});
 									}
 								}
@@ -493,7 +494,7 @@ export let PomodoroTimer = class PomodoroTimer {
 					});
 					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.presentation.end.button.cancel');
 					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.presentation.end.button.confirm');
-				} else if (Bonus.isInBonus(Router.current().params._id)) {
+				} else if (Bonus.isInBonus(FlowRouter.getParam('_id'))) {
 					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.end.title');
 					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.end.text', {
 						pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
@@ -525,7 +526,7 @@ export let PomodoroTimer = class PomodoroTimer {
 							if (isSuccessSoundEnabled) {
 								config.successSound.play();
 							}
-							if (Bonus.isInBonus(Router.current().params._id)) {
+							if (Bonus.isInBonus(FlowRouter.getParam('_id'))) {
 								dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.end.confirm.title');
 								dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.end.confirm.text', {
 									pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
@@ -552,9 +553,9 @@ export let PomodoroTimer = class PomodoroTimer {
 								PomodoroTimer.showPomodoroNormal();
 								if ((Route.isBox() || Route.isMemo())) {
 									Session.set('pomodoroBreakActive', false);
-									if (Bonus.isInBonus(Router.current().params._id, Meteor.userId())) {
-										Router.go('cardsetdetailsid', {
-											_id: Router.current().params._id
+									if (Bonus.isInBonus(FlowRouter.getParam('_id'), Meteor.userId())) {
+										FlowRouter.go('cardsetdetailsid', {
+											_id: FlowRouter.getParam('_id')
 										});
 									}
 								}
@@ -565,7 +566,7 @@ export let PomodoroTimer = class PomodoroTimer {
 				});
 			}
 		} else {
-			if (!Bonus.isInBonus(Router.current().params._id) && (!Route.isMemo() || !Route.isBox())) {
+			if (!Bonus.isInBonus(FlowRouter.getParam('_id')) && (!Route.isMemo() || !Route.isBox())) {
 				/*and if you're not currently in a session, this activates the starting pop up*/
 				$("#pomodoroTimerModal").modal();
 			}
@@ -747,7 +748,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		pomRunning = defaultPomRunning;
 		breakRunning = defaultBreakRunning;
 		if (Route.isBox()) {
-			let leitnerTask = LeitnerTasks.findOne({user_id: Meteor.userId(), cardset_id: Router.current().params._id});
+			let leitnerTask = LeitnerTasks.findOne({user_id: Meteor.userId(), cardset_id: FlowRouter.getParam('_id')});
 			if (leitnerTask !== undefined && leitnerTask.pomodoroTimer !== undefined) {
 				goalPoms = leitnerTask.pomodoroTimer.quantity;
 				pomLength = leitnerTask.pomodoroTimer.workLength;
@@ -764,7 +765,7 @@ export let PomodoroTimer = class PomodoroTimer {
 				isFailSoundEnabled = config.defaultSettings.sounds.failure;
 			}
 		} else if (Route.isCardset()) {
-			let cardset = Cardsets.findOne({_id: Router.current().params._id});
+			let cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')});
 			if (cardset !== undefined && cardset.learningActive) {
 				goalPoms = cardset.pomodoroTimer.quantity;
 				pomLength = cardset.pomodoroTimer.workLength;
@@ -814,7 +815,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		pomRunning = true;
 		pomBeginAngle = 6 * curTime.getMinutes() + curTime.getSeconds() / 10;
 		Session.set('presentationPomodoroActive', true);
-		if (Route.isBox() && Bonus.isInBonus(Router.current().params._id)) {
+		if (Route.isBox() && Bonus.isInBonus(FlowRouter.getParam('_id'))) {
 			this.restoreWorkloadTime(curTime);
 		}
 		/* Method for WelcomePage */
@@ -927,7 +928,7 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	static restoreWorkloadTime (curTime) {
-		if (Bonus.isInBonus(Router.current().params._id)) {
+		if (Bonus.isInBonus(FlowRouter.getParam('_id'))) {
 			if (Route.isBox()) {
 				let leitnerTask = LeitnerTasks.findOne({}, {sort: {createdAt: -1}});
 				if (leitnerTask !== undefined && leitnerTask.timer !== undefined) {
@@ -983,12 +984,12 @@ export let PomodoroTimer = class PomodoroTimer {
 	static updateServerTimerStart () {
 		let leitnerTask = LeitnerTasks.findOne({
 			user_id: Meteor.userId(),
-			cardset_id: Router.current().params._id
+			cardset_id: FlowRouter.getParam('_id')
 		}, {
 			sort: {createdAt: -1}
 		});
 		if (Route.isBox() && leitnerTask !== undefined) {
-			Meteor.call('updateLeitnerTimer', Router.current().params._id);
+			Meteor.call('updateLeitnerTimer', FlowRouter.getParam('_id'));
 			this.updateServerTimerIntervalStart();
 		}
 	}
@@ -996,14 +997,14 @@ export let PomodoroTimer = class PomodoroTimer {
 	static updateServerTimerIntervalStart () {
 		let leitnerTask = LeitnerTasks.findOne({
 			user_id: Meteor.userId(),
-			cardset_id: Router.current().params._id
+			cardset_id: FlowRouter.getParam('_id')
 		}, {
 			sort: {createdAt: -1}
 		});
 		if (Route.isBox() && leitnerTask !== undefined) {
 			if (workloadTimerInterval === undefined) {
 				workloadTimerInterval = setInterval(function () {
-					Meteor.call('updateLeitnerTimer', Router.current().params._id);
+					Meteor.call('updateLeitnerTimer', FlowRouter.getParam('_id'));
 				}, 60000);
 			}
 		}
@@ -1011,7 +1012,7 @@ export let PomodoroTimer = class PomodoroTimer {
 
 	static updateServerTimerIntervalStop () {
 		if (Route.isBox()) {
-			Meteor.call('updateLeitnerTimer', Router.current().params._id);
+			Meteor.call('updateLeitnerTimer', FlowRouter.getParam('_id'));
 			if (workloadTimerInterval !== undefined) {
 				clearInterval(workloadTimerInterval);
 				workloadTimerInterval = undefined;
@@ -1022,7 +1023,7 @@ export let PomodoroTimer = class PomodoroTimer {
 	static isTransitionRequest () {
 		let leitnerTask = LeitnerTasks.findOne({
 			user_id: Meteor.userId(),
-			cardset_id: Router.current().params._id
+			cardset_id: FlowRouter.getParam('_id')
 		}, {
 			sort: {createdAt: -1}
 		});

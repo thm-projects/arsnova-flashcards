@@ -1,16 +1,17 @@
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
 import {Meteor} from "meteor/meteor";
-let firstTimeVisit = 'isFirstTimeVisit';
 import * as icons from "../config/icons.js";
 import * as conf from "../config/routes.js";
 import {Cardsets} from "./subscriptions/cardsets";
 import {ServerStyle} from "./styles";
 import {UserPermissions} from "./permissions";
 import {getAuthorName} from "./userdata";
+let firstTimeVisit = 'isFirstTimeVisit';
 
 export let Route = class Route {
 	static isCardsetDetails () {
-		return Router.current().route.getName() === 'cardsetdetailsid';
+		return FlowRouter.getRouteName() === 'cardsetdetailsid';
 	}
 
 	/**
@@ -18,11 +19,11 @@ export let Route = class Route {
 	 * @return {Boolean} Return true, when route is a Cardset.
 	 */
 	static isCardset () {
-		return (this.isCardsetList() || this.isCardsetDetails() || Router.current().route.getName() === "cardsetcard" || Router.current().route.getName() === 'admin_cardset');
+		return (this.isCardsetList() || this.isCardsetDetails() || FlowRouter.getRouteName() === "cardsetcard" || FlowRouter.getRouteName() === 'admin_cardset');
 	}
 
 	static isCardsetList () {
-		return Router.current().route.getName() === 'cardsetlistid';
+		return FlowRouter.getRouteName() === 'cardsetlistid';
 	}
 
 	/**
@@ -34,7 +35,7 @@ export let Route = class Route {
 	}
 
 	static isNewCard () {
-		return Router.current().route.getName() === "newCard" || this.isNewTranscript();
+		return FlowRouter.getRouteName() === "newCard" || this.isNewTranscript();
 	}
 
 	static requiresUserInputForFullscreen () {
@@ -42,7 +43,7 @@ export let Route = class Route {
 	}
 
 	static isEditCard () {
-		return Router.current().route.getName() === "editCard" || this.isEditTranscript();
+		return FlowRouter.getRouteName() === "editCard" || this.isEditTranscript();
 	}
 
 	static isLearningMode () {
@@ -50,11 +51,11 @@ export let Route = class Route {
 	}
 
 	static isDemo () {
-		return Router.current().route.getName() === "demo" || this.isDemoList();
+		return FlowRouter.getRouteName() === "demo" || this.isDemoList();
 	}
 
 	static isDemoList () {
-		return Router.current().route.getName() === "demolist";
+		return FlowRouter.getRouteName() === "demolist";
 	}
 
 	static gotIndexHotkey () {
@@ -62,7 +63,7 @@ export let Route = class Route {
 	}
 
 	static isMakingOf () {
-		return Router.current().route.getName() === "making" || this.isMakingOfList();
+		return FlowRouter.getRouteName() === "making" || this.isMakingOfList();
 	}
 
 	static isTranscript () {
@@ -74,36 +75,36 @@ export let Route = class Route {
 	}
 
 	static isPresentationTranscriptPersonal () {
-		return Router.current().route.getName() === "presentationTranscriptPersonal";
+		return FlowRouter.getRouteName() === "presentationTranscriptPersonal";
 	}
 
 	static isPresentationTranscriptReview () {
-		return Router.current().route.getName() === "presentationTranscriptReview";
+		return FlowRouter.getRouteName() === "presentationTranscriptReview";
 	}
 
 	static isPresentationTranscriptBonus () {
-		return Router.current().route.getName() === "presentationTranscriptBonus";
+		return FlowRouter.getRouteName() === "presentationTranscriptBonus";
 	}
 
 	static isPresentationTranscriptBonusCardset () {
-		return Router.current().route.getName() === "presentationTranscriptBonusCardset";
+		return FlowRouter.getRouteName() === "presentationTranscriptBonusCardset";
 	}
 
 	static isNewTranscript () {
-		return Router.current().route.getName() === "newTranscript";
+		return FlowRouter.getRouteName() === "newTranscript";
 	}
 
 	static isEditTranscript () {
-		return Router.current().route.getName() === "editTranscript";
+		return FlowRouter.getRouteName() === "editTranscript";
 	}
 
 	static isMakingOfList () {
-		return Router.current().route.getName() === "makinglist";
+		return FlowRouter.getRouteName() === "makinglist";
 	}
 
 	static isBackend () {
-		if (Router.current().route.getName() !== undefined) {
-			return Router.current().route.getName().substring(0, 5) === "admin";
+		if (FlowRouter.getRouteName() !== undefined) {
+			return FlowRouter.getRouteName().substring(0, 5) === "admin";
 		} else {
 			return false;
 		}
@@ -122,11 +123,11 @@ export let Route = class Route {
 	}
 
 	static isDefaultPresentation () {
-		return Router.current().route.getName() === "presentation";
+		return FlowRouter.getRouteName() === "presentation";
 	}
 
 	static isPresentationList () {
-		return Router.current().route.getName() === "presentationlist";
+		return FlowRouter.getRouteName() === "presentationlist";
 	}
 
 	static isPresentationViewList () {
@@ -146,19 +147,19 @@ export let Route = class Route {
 	 * @return {Boolean} Return true, when the current route is a Box.
 	 */
 	static isBox () {
-		return Router.current().route.getName() === "box";
+		return FlowRouter.getRouteName() === "box";
 	}
 
 	static isLeitnerProgress () {
-		return Router.current().route.getName() === "progress";
+		return FlowRouter.getRouteName() === "progress";
 	}
 
 	static isCardsetLeitnerStats () {
-		return Router.current().route.getName() === "cardsetstats";
+		return FlowRouter.getRouteName() === "cardsetstats";
 	}
 
 	static isLeitnerProgressProfileOverview () {
-		return Router.current().route.getName() === "profileOverview";
+		return FlowRouter.getRouteName() === "profileOverview";
 	}
 
 	/**
@@ -166,51 +167,51 @@ export let Route = class Route {
 	 * @return {Boolean} Return true, when route is a Memo.
 	 */
 	static isMemo () {
-		return Router.current().route.getName() === "memo";
+		return FlowRouter.getRouteName() === "memo";
 	}
 
 	static isHome () {
-		return Router.current().route.getName() === "home";
+		return FlowRouter.getRouteName() === "home";
 	}
 
 	static isMyCardsets () {
-		return Router.current().route.getName() === "create";
+		return FlowRouter.getRouteName() === "create";
 	}
 
 	static isMyTranscripts () {
-		return Router.current().route.getName() === "transcriptsPersonal";
+		return FlowRouter.getRouteName() === "transcriptsPersonal";
 	}
 
 	static isMyBonusTranscripts () {
-		return Router.current().route.getName() === "transcriptsBonus";
+		return FlowRouter.getRouteName() === "transcriptsBonus";
 	}
 
 	static isAllCardsets () {
-		return Router.current().route.getName() === "alldecks";
+		return FlowRouter.getRouteName() === "alldecks";
 	}
 
 	static isWorkload () {
-		return Router.current().route.getName() === "learn";
+		return FlowRouter.getRouteName() === "learn";
 	}
 
 	static isShuffle () {
-		return Router.current().route.getName() === "shuffle";
+		return FlowRouter.getRouteName() === "shuffle";
 	}
 
 	static isEditShuffle () {
-		return Router.current().route.getName() === "editshuffle";
+		return FlowRouter.getRouteName() === "editshuffle";
 	}
 
 	static isRepetitorium () {
-		return Router.current().route.getName() === "repetitorium";
+		return FlowRouter.getRouteName() === "repetitorium";
 	}
 
 	static isTranscriptBonus () {
-		return Router.current().route.getName() === "transcriptBonus";
+		return FlowRouter.getRouteName() === "transcriptBonus";
 	}
 
 	static isPool () {
-		return Router.current().route.getName() === "pool";
+		return FlowRouter.getRouteName() === "pool";
 	}
 
 	static isPublic () {
@@ -222,7 +223,7 @@ export let Route = class Route {
 	}
 
 	static isPersonalRepetitorien () {
-		return Router.current().route.getName() === "personalRepetitorien";
+		return FlowRouter.getRouteName() === "personalRepetitorien";
 	}
 
 	static isAll () {
@@ -230,7 +231,7 @@ export let Route = class Route {
 	}
 
 	static isAllRepetitorien () {
-		return Router.current().route.getName() === "allRepetitorien";
+		return FlowRouter.getRouteName() === "allRepetitorien";
 	}
 
 	static isRepetitorienFilterIndex () {
@@ -260,7 +261,7 @@ export let Route = class Route {
 	}
 
 	static isImpressum () {
-		return conf.impressumRoutes.includes(Router.current().route.getName());
+		return conf.impressumRoutes.includes(FlowRouter.getRouteName());
 	}
 
 	//0 Personal
@@ -444,7 +445,7 @@ export let Route = class Route {
 			case "cardsetdetailsid":
 			case "cardsetcard":
 			case "cardsetlistid":
-				let cardset = Cardsets.findOne({_id: Router.current().params._id}, {fields: {shuffled: 1}});
+				let cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')}, {fields: {shuffled: 1}});
 				if (cardset !== undefined && cardset.shuffled) {
 					return icons.miscNavigation.repetitorium + TAPi18n.__('courseIteration.name');
 				} else {

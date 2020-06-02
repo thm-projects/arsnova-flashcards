@@ -2,6 +2,7 @@ import {Session} from "meteor/session";
 import "./countCardsReview.html";
 import {TranscriptBonus} from "../../../../../api/subscriptions/transcriptBonus";
 import {TranscriptBonusList} from "../../../../../api/transcriptBonus";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 
 /*
@@ -12,7 +13,7 @@ import {TranscriptBonusList} from "../../../../../api/transcriptBonus";
 
 Template.cardContentItemCountCardsReview.helpers({
 	countReview: function () {
-		let latestExpiredDeadline = TranscriptBonusList.getLatestExpiredDeadline(Router.current().params._id);
+		let latestExpiredDeadline = TranscriptBonusList.getLatestExpiredDeadline(FlowRouter.getParam('_id'));
 		let maxIndex = TranscriptBonus.find({
 			cardset_id: Session.get('activeCardset')._id,
 			rating: 0,

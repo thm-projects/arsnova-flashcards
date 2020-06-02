@@ -1,4 +1,5 @@
 import {Template} from "meteor/templating";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
 import {CardType} from "../../../api/cardTypes";
 import {ServerStyle} from "../../../api/styles";
@@ -18,7 +19,7 @@ Template.useCasesItemCreateDropdown.events({
 		$('.setCardTypeUseCase').val(cardType);
 		if (Number(cardType) === 2 && ServerStyle.gotTranscriptsEnabled()) {
 			$('#useCasesModal').modal('hide');
-			Router.go('newTranscript');
+			FlowRouter.go('newTranscript');
 		} else {
 			Session.set('useCaseSelectedCardType', Number(cardType));
 			if (Number(cardType) > -1) {

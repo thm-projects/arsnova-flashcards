@@ -11,7 +11,7 @@ import {Session} from "meteor/session";
 */
 
 
-Template.filterIndexPool.events({
+Template.mainNavigationTopItemTranscriptsItemBonus.events({
 	'click #navbar-transcripts-bonus': function () {
 		Session.set('transcriptViewingMode', 1);
 	}

@@ -5,6 +5,7 @@ import {Leitner} from "../../../../../api/subscriptions/leitner";
 import {Wozniak} from "../../../../../api/subscriptions/wozniak";
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../../../../api/subscriptions/cardsets";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 function getLeitnerCount(cardset) {
 	return Leitner.find({
@@ -34,14 +35,14 @@ Template.filterIndexItemTopWorkload.events({
 	"click .learnLeitner": function (event) {
 		event.preventDefault();
 		Session.set("workloadFullscreenMode", true);
-		Router.go('box', {
+		FlowRouter.go('box', {
 			_id: $(event.target).data('id')
 		});
 	},
 	"click .learnWozniak": function (event) {
 		event.preventDefault();
 		Session.set("workloadFullscreenMode", true);
-		Router.go('memo', {
+		FlowRouter.go('memo', {
 			_id: $(event.target).data('id')
 		});
 	},

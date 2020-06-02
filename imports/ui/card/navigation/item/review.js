@@ -6,6 +6,7 @@ import {CardNavigation} from "../../../../api/cardNavigation";
 import {TranscriptBonusList} from "../../../../api/transcriptBonus";
 import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
 import {Route} from "../../../../api/route";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*
  * ############################################################################
@@ -33,7 +34,7 @@ Template.cardNavigationItemReview.helpers({
 		if (Route.isPresentationTranscriptReview()) {
 			return true;
 		} else {
-			let transcriptBonus = TranscriptBonus.findOne({card_id: Router.current().params.card_id});
+			let transcriptBonus = TranscriptBonus.findOne({card_id: FlowRouter.getParam('card_id')});
 			return TranscriptBonusList.isDeadlineExpired(transcriptBonus, true);
 		}
 	}

@@ -1,6 +1,7 @@
 //------------------------ IMPORTS
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./editors.html";
 
 /*
@@ -15,7 +16,7 @@ Template.leaveEditorsForm.events({
 		$('body').removeClass('modal-open');
 		$('.modal-backdrop').remove();
 		$('#leaveEditorsModal').on('hidden.bs.modal', function () {
-			Meteor.call("leaveEditors", Router.current().params._id);
+			Meteor.call("leaveEditors", FlowRouter.getParam('_id'));
 		});
 	}
 });

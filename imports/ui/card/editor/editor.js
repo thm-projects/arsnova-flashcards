@@ -7,7 +7,10 @@ import {CardVisuals} from "../../../api/cardVisuals";
 import ResizeSensor from "../../../../client/thirdParty/resizeSensor/ResizeSensor";
 import {Cards} from "../../../api/subscriptions/cards";
 import {MarkdeepEditor} from "../../../api/markdeepEditor";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "../card.js";
+import "../../markdeep/editor/content/content.js";
+import "../../markdeep/editor/navigation/navigation.js";
 import "./modal/cancelEdit.js";
 import "./modal/learningUnit.js";
 import "./item/buttonCancel.js";
@@ -78,8 +81,8 @@ Template.editor.onRendered(function () {
  */
 Template.newCard.onCreated(function () {
 	if (!Route.isTranscript()) {
-		Session.set('cardType', Cardsets.findOne({_id: Router.current().params._id}).cardType);
-		Session.set('difficultyColor', Cardsets.findOne({_id: Router.current().params._id}).difficulty);
+		Session.set('cardType', Cardsets.findOne({_id: FlowRouter.getParam('_id')}).cardType);
+		Session.set('difficultyColor', Cardsets.findOne({_id: FlowRouter.getParam('_id')}).difficulty);
 	} else {
 		Session.set('cardType', 2);
 		Session.set('difficultyColor', 0);
@@ -94,12 +97,12 @@ Template.newCard.onCreated(function () {
  */
 Template.editCard.onCreated(function () {
 	if (!Route.isTranscript()) {
-		CardEditor.loadEditModeContent(Cards.findOne({_id: Router.current().params.card_id, cardset_id: Router.current().params._id}));
-		Session.set('cardType', Cardsets.findOne({_id: Router.current().params._id}).cardType);
-		Session.set('difficultyColor', Cardsets.findOne({_id: Router.current().params._id}).difficulty);
+		CardEditor.loadEditModeContent(Cards.findOne({_id: FlowRouter.getParam('card_id'), cardset_id: FlowRouter.getParam('_id')}));
+		Session.set('cardType', Cardsets.findOne({_id: FlowRouter.getParam('_id')}).cardType);
+		Session.set('difficultyColor', Cardsets.findOne({_id: FlowRouter.getParam('_id')}).difficulty);
 	} else {
-		CardEditor.loadEditModeContent(Cards.findOne({_id: Router.current().params.card_id, cardset_id: "-1"}));
-		Session.set('cardType', Cards.findOne({_id: Router.current().params.card_id}).cardType);
-		Session.set('difficultyColor', Cards.findOne({_id: Router.current().params.card_id}).difficulty);
+		CardEditor.loadEditModeContent(Cards.findOne({_id: FlowRouter.getParam('card_id'), cardset_id: "-1"}));
+		Session.set('cardType', Cards.findOne({_id: FlowRouter.getParam('card_id')}).cardType);
+		Session.set('difficultyColor', Cards.findOne({_id: FlowRouter.getParam('card_id')}).difficulty);
 	}
 });

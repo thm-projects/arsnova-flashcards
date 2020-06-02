@@ -1,5 +1,6 @@
 //------------------------ IMPORTS
 import {Meteor} from "meteor/meteor";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {Workload} from "../../../../api/subscriptions/workload";
@@ -22,8 +23,8 @@ Template.cardsetNavigationLearning.helpers({
 
 Template.cardsetNavigationLearning.events({
 	"click #learnBoxActive": function () {
-		Router.go('box', {
-			_id: Router.current().params._id
+		FlowRouter.go('box', {
+			_id: FlowRouter.getParam('_id')
 		});
 	}
 });

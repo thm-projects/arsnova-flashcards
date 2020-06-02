@@ -1,7 +1,7 @@
 import "./back.html";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 
 Template.mainNavigationTopPresentationIndexItemBack.helpers({
@@ -12,19 +12,19 @@ Template.mainNavigationTopPresentationIndexItemBack.helpers({
 
 Template.mainNavigationTopPresentationIndexItemBack.events({
 	"click #backToPresentation, click #backToPresentationFullscreen": function () {
-		if (Router.current().route.getName() === "demolist") {
-			Router.go('demo');
-		} else if (Router.current().route.getName() === "makinglist") {
-			Router.go('making');
+		if (FlowRouter.getRouteName() === "demolist") {
+			FlowRouter.go('demo');
+		} else if (FlowRouter.getRouteName() === "makinglist") {
+			FlowRouter.go('making');
 		} else {
-			Router.go('presentation', {
-				_id: Router.current().params._id
+			FlowRouter.go('presentation', {
+				_id: FlowRouter.getParam('_id')
 			});
 		}
 	},
 	"click #backToCardset": function () {
-		Router.go('cardsetdetailsid', {
-			_id: Router.current().params._id
+		FlowRouter.go('cardsetdetailsid', {
+			_id: FlowRouter.getParam('_id')
 		});
 	}
 });
