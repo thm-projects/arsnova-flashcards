@@ -20,12 +20,14 @@ let mainTemplate = 'main';
 let adminMainTemplate = 'admin_main';
 let loadingScreenTemplate = 'loadingScreen';
 
-FlowRouter.route('/', function () {
-	this.redirect('home');
-});
+FlowRouter.notFound = {
+	action: function() {
+		FlowRouter.go('home');
+	}
+};
 
 FlowRouter.route('/admin', function () {
-	this.redirect('admin_dashboard');
+	FlowRouter.go('admin_dashboard');
 });
 
 FlowRouter.route('/firstLogin', {
@@ -67,7 +69,7 @@ FlowRouter.route('/accessDenied', {
 	}
 });
 
-FlowRouter.route('/home', {
+FlowRouter.route('/', {
 	name: 'home',
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
@@ -299,7 +301,7 @@ FlowRouter.route('/all/cardsets', {
 			this.render(mainTemplate, 'filterIndex', data);
 		} else {
 			MainNavigation.setLoginTarget(false);
-			this.redirect('home');
+			FlowRouter.go('home');
 		}
 	}
 });
@@ -329,7 +331,7 @@ FlowRouter.route('/all/repetitorien', {
 			this.render(mainTemplate, 'filterIndex', data);
 		} else {
 			MainNavigation.setLoginTarget(false);
-			this.redirect('home');
+			FlowRouter.go('home');
 		}
 	}
 });
@@ -357,7 +359,7 @@ FlowRouter.route('/personal/cardsets', {
 			this.render(mainTemplate, 'filterIndex', data);
 		} else {
 			MainNavigation.setLoginTarget(false);
-			this.redirect('home');
+			FlowRouter.go('home');
 		}
 	}
 });
@@ -442,7 +444,7 @@ FlowRouter.route('/personal/repetitorien', {
 			this.render(mainTemplate, 'filterIndex', data);
 		} else {
 			MainNavigation.setLoginTarget(false);
-			this.redirect('home');
+			FlowRouter.go('home');
 		}
 	}
 });
@@ -471,7 +473,7 @@ FlowRouter.route('/public/cardsets', {
 			this.render(mainTemplate, 'filterIndex', data);
 		} else {
 			MainNavigation.setLoginTarget(false);
-			this.redirect('home');
+			FlowRouter.go('home');
 		}
 	}
 });
@@ -501,7 +503,7 @@ FlowRouter.route('/public/repetitorien', {
 			this.render(mainTemplate, 'filterIndex', data);
 		} else {
 			MainNavigation.setLoginTarget(false);
-			this.redirect('home');
+			FlowRouter.go('home');
 		}
 	}
 });
@@ -535,7 +537,7 @@ FlowRouter.route('/learn', {
 });
 
 FlowRouter.route('/cardset', function () {
-	this.redirect('learn');
+	FlowRouter.go('learn');
 });
 
 FlowRouter.route('/cardset/:_id', {
@@ -766,7 +768,7 @@ FlowRouter.route('/cardset/:_id/stats', {
 });
 
 FlowRouter.route('/cardsetlist', function () {
-	this.redirect('create');
+	FlowRouter.go('create');
 });
 
 FlowRouter.route('/cardsetlist/:_id', {
@@ -1334,7 +1336,7 @@ FlowRouter.route('/admin/dashboard', {
 			this.render(adminMainTemplate, 'admin_dashboard', data);
 		} else {
 			MainNavigation.setLoginTarget(false);
-			this.redirect('home');
+			FlowRouter.go('home');
 		}
 	}
 });
@@ -1360,7 +1362,7 @@ FlowRouter.route('/admin/users', {
 			this.render(adminMainTemplate, 'admin_users', data);
 		} else {
 			MainNavigation.setLoginTarget(false);
-			this.redirect('home');
+			FlowRouter.go('home');
 		}
 	}
 });
@@ -1387,7 +1389,7 @@ FlowRouter.route('/admin/user/:_id', {
 			this.render(adminMainTemplate, 'admin_user', data);
 		} else {
 			MainNavigation.setLoginTarget(false);
-			this.redirect('home');
+			FlowRouter.go('home');
 		}
 	}
 });
@@ -1415,7 +1417,7 @@ FlowRouter.route('/admin/learningStatistics', {
 			this.render(adminMainTemplate, 'admin_learningStatistics', data);
 		} else {
 			MainNavigation.setLoginTarget(false);
-			this.redirect('home');
+			FlowRouter.go('home');
 		}
 	}
 });
@@ -1438,7 +1440,7 @@ FlowRouter.route('/admin/matomoStatistics', {
 			this.render('admin_matomoStatistics', data);
 		} else {
 			MainNavigation.setLoginTarget(false);
-			this.redirect(adminMainTemplate, 'home');
+			FlowRouter.go(adminMainTemplate, 'home');
 		}
 	}
 });
@@ -1464,7 +1466,7 @@ FlowRouter.route('/admin/apiAccess', {
 			this.render(adminMainTemplate, 'admin_apiAccess', data);
 		} else {
 			MainNavigation.setLoginTarget(false);
-			this.redirect('home');
+			FlowRouter.go('home');
 		}
 	}
 });
@@ -1490,7 +1492,7 @@ FlowRouter.route('/admin/notifications', {
 			this.render(adminMainTemplate, 'admin_notifications', data);
 		} else {
 			MainNavigation.setLoginTarget(false);
-			this.redirect('home');
+			FlowRouter.go('home');
 		}
 	}
 });
@@ -1516,7 +1518,7 @@ FlowRouter.route('/admin/university', {
 			this.render(adminMainTemplate, 'admin_university', data);
 		} else {
 			MainNavigation.setLoginTarget(false);
-			this.redirect('home');
+			FlowRouter.go('home');
 		}
 	}
 });
@@ -1543,7 +1545,7 @@ FlowRouter.route('/admin/settings', {
 			this.render(adminMainTemplate, 'admin_settings', data);
 		} else {
 			MainNavigation.setLoginTarget(false);
-			this.redirect('home');
+			FlowRouter.go('home');
 		}
 	}
 });
