@@ -20,6 +20,12 @@ let mainTemplate = 'main';
 let adminMainTemplate = 'admin_main';
 let loadingScreenTemplate = 'loadingScreen';
 
+FlowRouter.notFound = {
+	action: function() {
+		FlowRouter.go('home');
+	}
+};
+
 FlowRouter.route('/admin', function () {
 	FlowRouter.go('admin_dashboard');
 });
