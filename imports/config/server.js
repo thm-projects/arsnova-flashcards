@@ -314,7 +314,7 @@ let linux = {
 				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
 			},
 			"repetitorium": {
-				"enabled": [EDU, PRO, LECTURER],
+				"enabled": [EDU, PRO, LECTURER, GUEST],
 				"filter": [PRO, LECTURER],
 				"search":  [PRO, LECTURER],
 				"wordcloud": [PRO, LECTURER]
