@@ -20,12 +20,8 @@ let mainTemplate = 'main';
 let adminMainTemplate = 'admin_main';
 let loadingScreenTemplate = 'loadingScreen';
 
-FlowRouter.route('/', function () {
-	this.redirect('home');
-});
-
 FlowRouter.route('/admin', function () {
-	this.redirect('admin_dashboard');
+	FlowRouter.go('admin_dashboard');
 });
 
 FlowRouter.route('/firstLogin', {
@@ -67,7 +63,7 @@ FlowRouter.route('/accessDenied', {
 	}
 });
 
-FlowRouter.route('/home', {
+FlowRouter.route('/', {
 	name: 'home',
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
