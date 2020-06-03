@@ -77,4 +77,16 @@ export let MarkdeepEditor = class MarkdeepEditor {
 	static getDefaultMobilePreviewOrientation () {
 		return config.mobilePreviewPortraitAsDefault;
 	}
+
+	static toggleAnswerEditor () {
+		Session.set('isAnswerEditorEnabled', !Session.get('isAnswerEditorEnabled'));
+	}
+
+	static setAnswerDropdownSize () {
+		let dropdownButton = $('.answerDropdown');
+		let dropdownMenu = $('.answerDropdown ul');
+		if (dropdownButton.length && dropdownMenu.length) {
+			dropdownMenu.css('max-height', $(window).height() - dropdownButton.height() - dropdownButton.offset().top + 'px');
+		}
+	}
 };

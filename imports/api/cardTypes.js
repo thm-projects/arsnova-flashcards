@@ -189,6 +189,10 @@ export let CardType = class CardType {
 		return config.cardTypesWithDefaultMobilePreview.includes(cardType);
 	}
 
+	static gotAnswerOptions (cardType) {
+		return config.cardTypesWithAnswerOptions.includes(cardType);
+	}
+
 	static gotMarkdeepHelp (cardType) {
 		return config.cardTypesWithMarkdeepHelp.includes(cardType);
 	}

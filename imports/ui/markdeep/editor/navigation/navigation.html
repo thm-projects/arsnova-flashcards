@@ -26,6 +26,11 @@
                 <i class="card-button fas fa-eraser markdeep-background-style {{#if
                         isAlternativeBackgroundStyle}}pressed{{/if}}"
                    title="{{_ "card.tooltip.markdeepEditor.style"}}"></i>
+                {{#if gotAnswerOptions}}
+                    <i class="card-button fas fa-check markdeep-answer-editor {{#if
+                            isAnswerEditorActive}}pressed{{/if}}"
+                       title="{{_ "card.tooltip.markdeepEditor.answerEditor"}}"></i>
+                {{/if}}
                 <i class="card-button fas fa-expand-arrows-alt markdeep-fullscreen {{#if
                         isFullscreenActive}}pressed{{/if}}" title="{{_ "card.tooltip.markdeepEditor.fullscreen"}}"></i>
             {{/if}}
@@ -38,15 +43,19 @@
             </div>
         {{/if}}
         {{#if isEditMode}}
-            {{#if gotLearningTime}}
-                <div class="input-group learningTime-group">
-                    <label class="input-group-addon" id="initialLearningTime">{{_ "card.markdeepEditor.learningTime.initial"}}:</label>
-                    <input id="initialLearningTimeInput" type="number" step="{{getLearningTimeSetting "initial" "step"}}" min="{{getLearningTimeSetting "initial" "min"}}" max="{{getLearningTimeSetting "initial" "max"}}" class="form-control" value="{{getInitialLearningTime}}" aria-describedby="initialLearningTime">
-                    <label class="input-group-addon type-label">{{_ "card.markdeepEditor.learningTime.type"}}</label>
-                    <label class="input-group-addon" id="repeatedLearningTime">{{_ "card.markdeepEditor.learningTime.repeated"}}:</label>
-                    <input id="repeatedLearningTimeInput" type="number" step="{{getLearningTimeSetting "repeated" "step"}}" min="{{getLearningTimeSetting "repeated" "min"}}" max="{{getLearningTimeSetting "repeated" "max"}}" class="form-control" value="{{getRepeatedLearningTime}}" aria-describedby="repeatedLearningTime">
-                    <label class="input-group-addon type-label">{{_ "card.markdeepEditor.learningTime.type"}}</label>
-                </div>
+            {{#if isAnswerEditorActive}}
+                {{> markdeepNavigationItemAnswerEditor}}
+            {{else}}
+                {{#if gotLearningTime}}
+                    <div class="input-group learningTime-group">
+                        <label class="input-group-addon" id="initialLearningTime">{{_ "card.markdeepEditor.learningTime.initial"}}:</label>
+                        <input id="initialLearningTimeInput" type="number" step="{{getLearningTimeSetting "initial" "step"}}" min="{{getLearningTimeSetting "initial" "min"}}" max="{{getLearningTimeSetting "initial" "max"}}" class="form-control" value="{{getInitialLearningTime}}" aria-describedby="initialLearningTime">
+                        <label class="input-group-addon type-label">{{_ "card.markdeepEditor.learningTime.type"}}</label>
+                        <label class="input-group-addon" id="repeatedLearningTime">{{_ "card.markdeepEditor.learningTime.repeated"}}:</label>
+                        <input id="repeatedLearningTimeInput" type="number" step="{{getLearningTimeSetting "repeated" "step"}}" min="{{getLearningTimeSetting "repeated" "min"}}" max="{{getLearningTimeSetting "repeated" "max"}}" class="form-control" value="{{getRepeatedLearningTime}}" aria-describedby="repeatedLearningTime">
+                        <label class="input-group-addon type-label">{{_ "card.markdeepEditor.learningTime.type"}}</label>
+                    </div>
+                {{/if}}
             {{/if}}
         {{/if}}
     </div>

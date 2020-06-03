@@ -708,6 +708,28 @@ $themes: (
     $markdeep_help_text: map-get($map, "markdeep_help_text");
     $markdeep_help_background: map-get($map, "markdeep_help_background");
     $markdeep_help_border: map-get($map, "markdeep_help_border");
+    //markdeep editor answer colors
+    $markdeep_editor_add_answer_background: map-get($map, "markdeep_editor_add_answer_background");
+    $markdeep_editor_add_answer_text: map-get($map, "markdeep_editor_add_answer_text");
+    $markdeep_editor_add_answer_background_hover: map-get($map, "markdeep_editor_add_answer_background_hover");
+    $markdeep_editor_add_answer_text_hover: map-get($map, "markdeep_editor_add_answer_text_hover");
+    $markdeep_editor_remove_answer_background: map-get($map, "markdeep_editor_remove_answer_background");
+    $markdeep_editor_remove_answer_text: map-get($map, "markdeep_editor_remove_answer_text");
+    $markdeep_editor_remove_answer_background_hover: map-get($map, "markdeep_editor_remove_answer_background_hover");
+    $markdeep_editor_remove_answer_text_hover: map-get($map, "markdeep_editor_remove_answer_text_hover");
+    //markdeep editor answer dropdown colors
+    $markdeep_editor_answer_dropdown_background: map-get($map, "markdeep_editor_answer_dropdown_background");
+    $markdeep_editor_answer_dropdown_text: map-get($map, "markdeep_editor_answer_dropdown_text");
+    $markdeep_editor_answer_dropdown_background_hover: map-get($map, "markdeep_editor_answer_dropdown_background_hover");
+    $markdeep_editor_answer_dropdown_text_hover: map-get($map, "markdeep_editor_answer_dropdown_text_hover");
+    $markdeep_editor_answer_dropdown_item_background: map-get($map, "markdeep_editor_answer_dropdown_item_background");
+    $markdeep_editor_answer_dropdown_item_text: map-get($map, "markdeep_editor_answer_dropdown_item_text");
+    $markdeep_editor_answer_dropdown_item_background_hover: map-get($map, "markdeep_editor_answer_dropdown_item_background_hover");
+    $markdeep_editor_answer_dropdown_item_text_hover: map-get($map, "markdeep_editor_answer_dropdown_item_text_hover");
+    $markdeep_editor_answer_dropdown_item_active_background: map-get($map, "markdeep_editor_answer_dropdown_item_active_background");
+    $markdeep_editor_answer_dropdown_item_active_text: map-get($map, "markdeep_editor_answer_dropdown_item_active_text");
+    $markdeep_editor_answer_dropdown_item_active_background_hover: map-get($map, "markdeep_editor_answer_dropdown_item_active_background_hover");
+    $markdeep_editor_answer_dropdown_item_active_text_hover: map-get($map, "markdeep_editor_answer_dropdown_item_active_text_hover");
     //notification colors
     $notification_text_smartphones: map-get($map, "notification_text_smartphones");
     //search colors
@@ -1090,6 +1112,68 @@ $themes: (
       background-color: $button_background_hover !important;
       color: $button_text_hover !important;
       border-color: $button_background_hover !important;
+    }
+
+    //markdeep editor answer colors
+    #markdeepNavigation .markdeep-answer-add {
+      background-color: $markdeep_editor_add_answer_background !important;
+      color: $markdeep_editor_add_answer_text !important;
+    }
+
+    #markdeepNavigation .markdeep-answer-add:hover,#markdeepNavigation .markdeep-answer-add:focus {
+      background-color: $markdeep_editor_add_answer_background_hover !important;
+      color: $markdeep_editor_add_answer_text_hover !important;
+    }
+
+    #markdeepNavigation .markdeep-answer-add.disabled:hover,#markdeepNavigation .markdeep-answer-add.disabled:focus {
+      background-color: $markdeep_editor_add_answer_background !important;
+      color: $markdeep_editor_add_answer_text !important;
+    }
+
+    #markdeepNavigation .markdeep-answer-remove {
+      background-color: $markdeep_editor_remove_answer_background !important;
+      color: $markdeep_editor_remove_answer_text !important;
+    }
+
+    #markdeepNavigation .markdeep-answer-remove:hover,#markdeepNavigation .markdeep-answer-remove:focus {
+      background-color: $markdeep_editor_remove_answer_background_hover !important;
+      color: $markdeep_editor_remove_answer_text_hover !important;
+    }
+
+    #markdeepNavigation .markdeep-answer-remove.disabled:hover,#markdeepNavigation .markdeep-answer-remove.disabled:focus {
+      background-color: $markdeep_editor_remove_answer_background !important;
+      color: $markdeep_editor_remove_answer_text !important;
+    }
+
+    //markdeep editor answer dropdown colors
+    #markdeepNavigation #answerDropdownMenu {
+      background-color: $markdeep_editor_answer_dropdown_background !important;
+      color: $markdeep_editor_answer_dropdown_text !important;
+    }
+
+    #markdeepNavigation #answerDropdownMenu:hover,#markdeepNavigation #answerDropdownMenu:focus {
+      background-color: $markdeep_editor_answer_dropdown_background_hover !important;
+      color: $markdeep_editor_answer_dropdown_text_hover !important;
+    }
+
+    #markdeepNavigation .answerDropdown .answer-item {
+      background-color: $markdeep_editor_answer_dropdown_item_background !important;
+      color: $markdeep_editor_answer_dropdown_item_text !important;
+    }
+
+    #markdeepNavigation .answerDropdown .answer-item:hover, #markdeepNavigation .answerDropdown .answer-item:focus {
+      background-color: $markdeep_editor_answer_dropdown_item_background_hover !important;
+      color: $markdeep_editor_answer_dropdown_item_text_hover !important;
+    }
+
+    #markdeepNavigation .answerDropdown .answer-item.active {
+      background-color: $markdeep_editor_answer_dropdown_item_active_background !important;
+      color: $markdeep_editor_answer_dropdown_item_active_text !important;
+    }
+
+    #markdeepNavigation .answerDropdown .answer-item.active:hover, #markdeepNavigation .answerDropdown .answer-item.active:focus {
+      background-color: $markdeep_editor_answer_dropdown_item_active_background_hover !important;
+      color: $markdeep_editor_answer_dropdown_item_active_text_hover !important;
     }
 
     .material-icons.pressed, .fas.pressed, .fab.pressed, .far.pressed, .card-button.pressed, .material-icons.pressed:hover, .card-button.pressed:hover,

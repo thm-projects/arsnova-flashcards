@@ -6,6 +6,7 @@ import {Dictionary} from "../../../../api/dictionary";
 import {CardType} from "../../../../api/cardTypes";
 import {Route} from "../../../../api/route";
 import * as config from "../../../../config/markdeepEditor.js";
+import "./item/answerEditor.js";
 import "./navigation.html";
 
 /*
@@ -14,6 +15,9 @@ import "./navigation.html";
  * ############################################################################
  */
 Template.markdeepNavigation.events({
+	'click .markdeep-answer-editor': function () {
+		MarkdeepEditor.toggleAnswerEditor();
+	},
 	'click .markdeep-help': function () {
 		MarkdeepEditor.help();
 	},
@@ -84,6 +88,12 @@ Template.markdeepNavigation.events({
 });
 
 Template.markdeepNavigation.helpers({
+	gotAnswerOptions: function () {
+		return CardType.gotAnswerOptions(Session.get('cardType'));
+	},
+	isAnswerEditorActive: function () {
+		return Session.get('isAnswerEditorEnabled');
+	},
 	isMobilePreviewActive: function () {
 		return Session.get('mobilePreview');
 	},

@@ -1,0 +1,29 @@
+<template name="markdeepNavigationItemAnswerEditor">
+    <div class="input-group">
+        <div class="btn-group">
+            <i class="card-button fas fa-plus markdeep-answer-add {{#if disableAddAnswerButton}}disabled{{/if}}"
+               title="{{_ "card.tooltip.markdeepEditor.addAnswer"}}"></i>
+            <i class="card-button fas fa-minus markdeep-answer-remove {{#if disableRemoveAnswerButton}}disabled{{/if}}"
+               title="{{_ "card.tooltip.markdeepEditor.removeAnswer"}}"></i>
+        </div>
+        {{#if gotAnswers}}
+            {{> markdeepNavigationItemAnswerEditorDropdown}}
+        {{/if}}
+    </div>
+</template>
+
+<template name="markdeepNavigationItemAnswerEditorDropdown">
+    <div class="dropdown answerDropdown">
+        <button class="btn btn-default dropdown-toggle" type="button" id="answerDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            {{getAnswerTag getActiveAnswer}}
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="answerDropdownMenu">
+            {{#each getAnswers}}
+                <li class="dropdown-item answer-item {{#if isActiveAnswer @index}}active{{/if}}" data-id="{{@index}}">
+                    {{getAnswerTag @index}}
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</template>

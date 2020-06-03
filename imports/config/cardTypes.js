@@ -31,6 +31,8 @@ let cardTypesWithMarkdeepHelp = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 
 let cardTypesWithLearningModePDFAutoTarget = [0];
 let cardTypesWithTranscriptBonus = [19];
 let lecturerExclusiveCardTypes = [19];
+// SC / MC Questions
+let cardTypesWithAnswerOptions = [0, 5];
 let cardTypesOrder = [
 	{cardType: 0},
 	{cardType: 15},
@@ -596,6 +598,7 @@ module.exports = {
 	cardTypesWithDefaultMobilePreview,
 	cardTypesWithMarkdeepHelp,
 	cardTypesWithLearningModePDFAutoTarget,
+	cardTypesWithAnswerOptions,
 	cardTypesOrder,
 	defaultTextAlign,
 	defaultCentered,

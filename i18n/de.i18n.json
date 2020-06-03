@@ -1720,7 +1720,8 @@
         "initial": "Initiale Lernzeit",
         "repeated": "Wiederholte Lernzeit",
         "type": "Minuten"
-      }
+      },
+      "answerTag": "Antwort __tag__"
     },
     "tooltip": {
       "toggle3D": "3D-Ansicht aktivieren / deaktivieren",
@@ -1764,7 +1765,10 @@
         "rotateMobilePreview": "Drehe die Smartphone-Ansicht (iPhone 6/7/8)",
         "dictionaryBeolingus": "Zeige die »Beolingus«-Übersetzung",
         "style": "Ändere den Hintergrund der Karte (liniert oder blanko). Die Linierung ist für die Smartphone-Ansicht deaktiviert.",
-        "fullscreen": "Mit der Taste ESC (oben links) kommst du wieder in die Normalansicht."
+        "fullscreen": "Mit der Taste ESC (oben links) kommst du wieder in die Normalansicht.",
+        "answerEditor": "Zu Antwort Editor wechseln",
+        "addAnswer": "Antwort hinzufügen",
+        "removeAnswer": "Letzte Antwort entfernen"
       }
     }
   },

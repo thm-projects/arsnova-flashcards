@@ -1,4 +1,5 @@
 #markdeepNavigation {
+  user-select: none;
   .btn-group {
     margin-left: 15px;
   }
@@ -55,6 +56,24 @@
     /* Firefox */
     input[type=number] {
       -moz-appearance: textfield;
+    }
+  }
+
+  .markdeep-answer-add.disabled, .markdeep-answer-remove.disabled {
+    opacity: 25%;
+  }
+
+  .answerDropdown {
+    display: inline;
+
+    .dropdown-menu {
+      padding: 0;
+      overflow-y: auto;
+    }
+
+    .answer-item {
+      padding: 10px;
+      cursor: pointer;
     }
   }
 }
