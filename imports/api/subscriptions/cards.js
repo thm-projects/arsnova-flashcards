@@ -299,6 +299,23 @@ var CardsSchema = new SimpleSchema({
 	"learningTime.repeated": {
 		type: SimpleSchema.decimal,
 		optional: true
+	},
+	answers: {
+		type: Object,
+		optional: true
+	},
+	"answers.rightAnswers": {
+		type: [Number],
+		optional: true
+	},
+	"answers.randomized": {
+		type: Boolean,
+		optional: true
+	},
+	"answers.content": {
+		type: [Object],
+		optional: true,
+		blackbox: true
 	}
 });
 

@@ -13,6 +13,8 @@
                    title="{{_ "card.tooltip.markdeepEditor.rightAnswer"}}"></i>
                 <i class="card-button fas fa-dice markdeep-toggle-randomized-positions {{#if gotRandomizedAnswerPositions}}pressed{{/if}}"
                    title="{{_ "card.tooltip.markdeepEditor.randomizeAnswerPosition"}}"></i>
+                <i class="card-button fas fa-exclamation-circle markdeep-toggle-explanation {{#if isExplanationEditorEnabled}}pressed{{/if}}"
+                   title="{{_ "card.tooltip.markdeepEditor.explanation"}}"></i>
             </div>
         {{/if}}
     </div>
@@ -35,6 +37,10 @@
                         {{#if isRightAnswer @index}}
                             &nbsp;&nbsp;
                             <i class="fas fa-check"></i>
+                        {{/if}}
+                        {{#if gotExplanation @index}}
+                            &nbsp;&nbsp;
+                            <i class="fas fa-exclamation-circle"></i>
                         {{/if}}
                     </li>
                 {{/each}}

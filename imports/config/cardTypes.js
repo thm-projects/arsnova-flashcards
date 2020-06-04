@@ -32,7 +32,7 @@ let cardTypesWithLearningModePDFAutoTarget = [0];
 let cardTypesWithTranscriptBonus = [19];
 let lecturerExclusiveCardTypes = [19];
 // SC / MC Questions
-let cardTypesWithAnswerOptions = [0, 5];
+let cardTypesWithAnswerOptions = [0, 5, 11];
 let cardTypesOrder = [
 	{cardType: 0},
 	{cardType: 15},

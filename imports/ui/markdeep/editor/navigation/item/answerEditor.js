@@ -1,14 +1,6 @@
 import "./answerEditor.html";
 import {MarkdeepEditor} from "../../../../../api/markdeepEditor";
 import {Session} from "meteor/session";
-import {ServerStyle} from "../../../../../api/styles";
-
-let answers = [];
-let rightAnswers = [];
-Session.set('markdeepEditorAnswers', answers);
-Session.set('activeAnswerID', 0);
-Session.set('rightAnswers', rightAnswers);
-Session.set('randomizeAnswerPositions', false);
 
 let answerDropdownResizeSensor;
 
@@ -21,20 +13,25 @@ let answerDropdownResizeSensor;
 Template.markdeepNavigationItemAnswerEditor.events({
 	'click .markdeep-answer-add': function () {
 		if (Session.get('markdeepEditorAnswers').length < 26) {
+			let answers = Session.get('markdeepEditorAnswers');
 			answers.push({
-				content: '',
+				answer: '',
+				explanation: '',
 				type: 0
 			});
 			Session.set('markdeepEditorAnswers', answers);
 		}
+		MarkdeepEditor.focusOnContentEditor();
 	},
 	'click .markdeep-answer-remove': function () {
 		if (Session.get('markdeepEditorAnswers').length > 0) {
+			let answers = Session.get('markdeepEditorAnswers');
 			answers.pop();
 			Session.set('markdeepEditorAnswers', answers);
-			if (Session.get('activeAnswerID') >= Session.get('markdeepEditorAnswers').length) {
+			if (Session.get('activeAnswerID') >= answers.length) {
 				Session.set('activeAnswerID', 0);
 			}
+			let rightAnswers = Session.get('rightAnswers');
 			for (let i = 0; i < rightAnswers.length; i++) {
 				if (rightAnswers[i] >= answers.length) {
 					rightAnswers.splice(i, 1);
@@ -42,10 +39,12 @@ Template.markdeepNavigationItemAnswerEditor.events({
 			}
 			rightAnswers.sort((a, b) => a - b);
 			Session.set('rightAnswers', rightAnswers);
+			MarkdeepEditor.focusOnContentEditor();
 		}
 	},
 	'click .markdeep-toggle-right-answer': function () {
 		let index = Session.get('rightAnswers').indexOf(Session.get('activeAnswerID'));
+		let rightAnswers = Session.get('rightAnswers');
 		if (index >= 0) {
 			rightAnswers.splice(index, 1);
 		} else {
@@ -53,9 +52,15 @@ Template.markdeepNavigationItemAnswerEditor.events({
 		}
 		rightAnswers.sort((a, b) => a - b);
 		Session.set('rightAnswers', rightAnswers);
+		MarkdeepEditor.focusOnContentEditor();
 	},
 	'click .markdeep-toggle-randomized-positions': function () {
 		Session.set('randomizeAnswerPositions', !Session.get('randomizeAnswerPositions'));
+		MarkdeepEditor.focusOnContentEditor();
+	},
+	'click .markdeep-toggle-explanation': function () {
+		Session.set('isExplanationEditorEnabled', !Session.get('isExplanationEditorEnabled'));
+		MarkdeepEditor.focusOnContentEditor();
 	}
 });
 
@@ -74,6 +79,9 @@ Template.markdeepNavigationItemAnswerEditor.helpers({
 	},
 	disableRemoveAnswerButton: function () {
 		return Session.get('markdeepEditorAnswers').length <= 0;
+	},
+	isExplanationEditorEnabled: function () {
+		return Session.get('isExplanationEditorEnabled');
 	}
 });
 
@@ -84,6 +92,7 @@ Template.markdeepNavigationItemAnswerEditor.helpers({
  */
 
 Template.markdeepNavigationItemAnswerEditorDropdown.onRendered(function () {
+	Session.set('activeAnswerID', 0);
 	answerDropdownResizeSensor = $(window).resize(function () {
 		MarkdeepEditor.setAnswerDropdownSize();
 	});
@@ -114,13 +123,18 @@ Template.markdeepNavigationItemAnswerEditorDropdown.helpers({
 		return Session.get('markdeepEditorAnswers');
 	},
 	getAnswerTag: function (index) {
-		index += 10;
-		return TAPi18n.__('card.markdeepEditor.answerTag', {tag: index.toString(36).toUpperCase()}, ServerStyle.getServerLanguage());
+		return MarkdeepEditor.getAnswerTag(index);
 	},
 	isRightAnswer: function (index) {
 		return Session.get('rightAnswers').indexOf(index) >= 0;
 	},
 	gotRandomizedAnswerPositions: function () {
 		return Session.get('randomizeAnswerPositions');
+	},
+	gotExplanation: function (id) {
+		let answer = Session.get('markdeepEditorAnswers')[id];
+		if (answer !== undefined && answer.explanation !== undefined) {
+			return answer.explanation.trim().length > 0;
+		}
 	}
 });

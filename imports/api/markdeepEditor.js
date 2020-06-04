@@ -80,6 +80,7 @@ export let MarkdeepEditor = class MarkdeepEditor {
 
 	static toggleAnswerEditor () {
 		Session.set('isAnswerEditorEnabled', !Session.get('isAnswerEditorEnabled'));
+		this.focusOnContentEditor();
 	}
 
 	static setAnswerDropdownSize () {
@@ -88,5 +89,14 @@ export let MarkdeepEditor = class MarkdeepEditor {
 		if (dropdownButton.length && dropdownMenu.length) {
 			dropdownMenu.css('max-height', $(window).height() - dropdownButton.height() - dropdownButton.offset().top + 'px');
 		}
+	}
+
+	static getAnswerTag (index)  {
+		index += 10;
+		return TAPi18n.__('card.markdeepEditor.answerTag', {tag: index.toString(36).toUpperCase()}, ServerStyle.getServerLanguage());
+	}
+
+	static focusOnContentEditor () {
+		$('#contentEditor').focus();
 	}
 };

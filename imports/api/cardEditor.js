@@ -9,6 +9,7 @@ import {BertAlertVisuals} from "./bertAlertVisuals";
 import {CardVisuals} from "./cardVisuals";
 import {CardIndex} from "./cardIndex";
 import {Cards} from "./subscriptions/cards";
+import {MarkdeepEditor} from "./markdeepEditor";
 
 const subjectMaxLength = 255;
 const contentMaxLength = 300000;
@@ -146,6 +147,11 @@ export let CardEditor = class CardEditor {
 		Session.set('cameFromEditMode', false);
 		Session.set('initialLearningTime', -1);
 		Session.set('repeatedLearningTime', -1);
+		Session.set('markdeepEditorAnswers', []);
+		Session.set('activeAnswerID', 0);
+		Session.set('rightAnswers', []);
+		Session.set('randomizeAnswerPositions', false);
+		Session.set('isExplanationEditorEnabled', false);
 		CardType.setDefaultCenteredText(Session.get('cardType'));
 	}
 
@@ -175,13 +181,34 @@ export let CardEditor = class CardEditor {
 		Session.set('backgroundStyle', card.backgroundStyle);
 		Session.set('initialLearningTime', card.learningTime.initial);
 		Session.set('repeatedLearningTime', card.learningTime.repeated);
+		if (card.answers !== undefined) {
+			if (card.answers.content !== undefined) {
+				Session.set('markdeepEditorAnswers', card.answers.content);
+			} else {
+				Session.set('markdeepEditorAnswers', []);
+			}
+			if (card.answers.rightAnswers !== undefined) {
+				Session.set('rightAnswers', card.answers.rightAnswers);
+			} else {
+				Session.set('rightAnswers', []);
+			}
+			if (card.answers.randomized !== undefined) {
+				Session.set('randomizeAnswerPositions', card.answers.randomized);
+			} else {
+				Session.set('randomizeAnswerPositions', false);
+			}
+		} else {
+			Session.set('markdeepEditorAnswers', []);
+			Session.set('rightAnswers', []);
+			Session.set('randomizeAnswerPositions', false);
+		}
 	}
 
 	static setEditorContent (index) {
 		if (Route.isEditMode()) {
 			editorButtonIndex = this.getCardNavigationNameIndex();
-			$('#contentEditor').focus();
 			$('#contentEditor').attr('tabindex', CardNavigation.getTabIndex(index, true));
+			MarkdeepEditor.focusOnContentEditor();
 		}
 	}
 
@@ -279,7 +306,12 @@ export let CardEditor = class CardEditor {
 		let gotSubject = true;
 		let initialLearningTime = Session.get('initialLearningTime');
 		let repeatedLearningTime = Session.get('repeatedLearningTime');
-
+		let answers = {};
+		if (Session.get('markdeepEditorAnswers').length > 0) {
+			answers.rightAnswers = Session.get('rightAnswers');
+			answers.randomized = Session.get('randomizeAnswerPositions');
+			answers.content = Session.get('markdeepEditorAnswers');
+		}
 		if (!CardType.gotLearningUnit(cardType)) {
 			if (subject === "") {
 				$('#subjectEditor').css('border', '1px solid');
@@ -330,7 +362,7 @@ export let CardEditor = class CardEditor {
 				if (!Route.isTranscript()) {
 					cardset_id = FlowRouter.getParam('_id');
 				}
-				Meteor.call("addCard", cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, Number(learningGoalLevel), Number(backgroundStyle), Session.get('transcriptBonus'), Number(initialLearningTime), Number(repeatedLearningTime), function (error, result) {
+				Meteor.call("addCard", cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, Number(learningGoalLevel), Number(backgroundStyle), Session.get('transcriptBonus'), Number(initialLearningTime), Number(repeatedLearningTime), answers, function (error, result) {
 					if (result) {
 						BertAlertVisuals.displayBertAlert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 						if (navigationTarget === 0) {
@@ -360,7 +392,7 @@ export let CardEditor = class CardEditor {
 					}
 				});
 			} else {
-				Meteor.call("updateCard", card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, Number(learningGoalLevel), Number(backgroundStyle), Session.get('transcriptBonus'), Number(initialLearningTime), Number(repeatedLearningTime), function (error, result) {
+				Meteor.call("updateCard", card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, Number(learningGoalLevel), Number(backgroundStyle), Session.get('transcriptBonus'), Number(initialLearningTime), Number(repeatedLearningTime), answers, function (error, result) {
 					if (result) {
 						BertAlertVisuals.displayBertAlert(TAPi18n.__('savecardSuccess'), "success", 'growl-top-left');
 						Session.set('activeCard', FlowRouter.getParam('card_id'));

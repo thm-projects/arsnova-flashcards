@@ -10,7 +10,7 @@ import {CardType} from "./cardTypes";
 import {Cards} from "./subscriptions/cards.js";
 
 Meteor.methods({
-	addCard: function (cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, transcriptBonusUser, initialLearningTime, repeatedLearningTime) {
+	addCard: function (cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, transcriptBonusUser, initialLearningTime, repeatedLearningTime, answers) {
 		check(cardset_id, String);
 		check(subject, String);
 		check(content1, String);
@@ -26,6 +26,7 @@ Meteor.methods({
 		check(backgroundStyle, Number);
 		check(initialLearningTime, Number);
 		check(repeatedLearningTime, Number);
+		check(answers, Object);
 		// Make sure the user is logged in and is authorized
 		let cardset = Cardsets.findOne(cardset_id);
 		let isOwner = false;
@@ -68,7 +69,8 @@ Meteor.methods({
 				learningTime: {
 					initial: initialLearningTime,
 					repeated: repeatedLearningTime
-				}
+				},
+				answers: answers
 			}, {trimStrings: false});
 			if (transcriptBonusUser) {
 				Meteor.call("addTranscriptBonus", card_id, transcriptBonusUser.cardset_id, Meteor.userId(), Number(transcriptBonusUser.date_id));
@@ -121,6 +123,7 @@ Meteor.methods({
 				let content6 = "";
 				let initialLearningTime = -1;
 				let repeatedLearningTime = -1;
+				let answers = {};
 				if (card.front !== undefined) {
 					content1 = card.front;
 				}
@@ -143,7 +146,10 @@ Meteor.methods({
 					initialLearningTime = card.learningTime.initial;
 					repeatedLearningTime = card.learningTime.repeated;
 				}
-				Meteor.call("addCard", targetCardset_id, card.subject, content1, content2, content3, content4, content5, content6, "0", card.centerTextElement, card.alignType, card.date, card.learningGoalLevel, card.backgroundStyle, Number(initialLearningTime), Number(repeatedLearningTime));
+				if (card.answers !== undefined) {
+					answers = card.answers;
+				}
+				Meteor.call("addCard", targetCardset_id, card.subject, content1, content2, content3, content4, content5, content6, "0", card.centerTextElement, card.alignType, card.date, card.learningGoalLevel, card.backgroundStyle, Number(initialLearningTime), Number(repeatedLearningTime), answers);
 				return true;
 			}
 		} else {
@@ -204,7 +210,7 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 	},
-	updateCard: function (card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement,alignType, learningGoalLevel, backgroundStyle, transcriptBonusUser, initialLearningTime, repeatedLearningTime) {
+	updateCard: function (card_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement,alignType, learningGoalLevel, backgroundStyle, transcriptBonusUser, initialLearningTime, repeatedLearningTime, answers) {
 		check(card_id, String);
 		check(subject, String);
 		check(content1, String);
@@ -219,6 +225,7 @@ Meteor.methods({
 		check(backgroundStyle, Number);
 		check(initialLearningTime, Number);
 		check(repeatedLearningTime, Number);
+		check(answers, Object);
 		let card = Cards.findOne(card_id);
 		let cardset = Cardsets.findOne(card.cardset_id);
 		let isOwner = false;
@@ -268,7 +275,8 @@ Meteor.methods({
 					learningTime: {
 						initial: initialLearningTime,
 						repeated: repeatedLearningTime
-					}
+					},
+					answers: answers
 				}
 			}, {trimStrings: false});
 			Cardsets.update(card.cardset_id, {

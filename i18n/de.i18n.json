@@ -1716,6 +1716,11 @@
       "longName": "Kartei für die Bonusvergabe von Mitschriften"
     },
     "markdeepEditor": {
+      "placeholders": {
+        "noAnswer": "Keine Antwort ausgewählt",
+        "answer": "Inhalt für __tag__",
+        "explanation": "Erläuterung für __tag__"
+      },
       "learningTime": {
         "initial": "Initiale Lernzeit",
         "repeated": "Wiederholte Lernzeit",
@@ -1770,7 +1775,8 @@
         "addAnswer": "Antwort hinzufügen",
         "removeAnswer": "Letzte Antwort entfernen",
         "rightAnswer": "Markiere aktive Antwort als richtig",
-        "randomizeAnswerPosition": "Zufällige Position aller Karten Antworten im Lernmodus"
+        "randomizeAnswerPosition": "Zufällige Position aller Karten Antworten im Lernmodus",
+        "explanation": "Erläuterung für Antwort"
       }
     }
   },
