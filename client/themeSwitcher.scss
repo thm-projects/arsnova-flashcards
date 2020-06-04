@@ -1164,16 +1164,28 @@ $themes: (
     #markdeepNavigation .answerDropdown .answer-item:hover, #markdeepNavigation .answerDropdown .answer-item:focus {
       background-color: $markdeep_editor_answer_dropdown_item_background_hover !important;
       color: $markdeep_editor_answer_dropdown_item_text_hover !important;
+      i {
+        background-color: $markdeep_editor_answer_dropdown_item_background_hover !important;
+        color: $markdeep_editor_answer_dropdown_item_text_hover !important;
+      }
     }
 
     #markdeepNavigation .answerDropdown .answer-item.active {
       background-color: $markdeep_editor_answer_dropdown_item_active_background !important;
       color: $markdeep_editor_answer_dropdown_item_active_text !important;
+      i {
+        background-color: $markdeep_editor_answer_dropdown_item_active_background !important;
+        color: $markdeep_editor_answer_dropdown_item_active_text !important;
+      }
     }
 
     #markdeepNavigation .answerDropdown .answer-item.active:hover, #markdeepNavigation .answerDropdown .answer-item.active:focus {
       background-color: $markdeep_editor_answer_dropdown_item_active_background_hover !important;
       color: $markdeep_editor_answer_dropdown_item_active_text_hover !important;
+      i {
+        background-color: $markdeep_editor_answer_dropdown_item_active_background_hover !important;
+        color: $markdeep_editor_answer_dropdown_item_active_text_hover !important;
+      }
     }
 
     .material-icons.pressed, .fas.pressed, .fab.pressed, .far.pressed, .card-button.pressed, .material-icons.pressed:hover, .card-button.pressed:hover,

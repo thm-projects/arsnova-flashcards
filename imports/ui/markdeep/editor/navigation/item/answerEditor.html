@@ -8,22 +8,37 @@
         </div>
         {{#if gotAnswers}}
             {{> markdeepNavigationItemAnswerEditorDropdown}}
+            <div class="btn-group">
+                <i class="card-button fas fa-check markdeep-toggle-right-answer {{#if isRightAnswer}}pressed{{/if}}"
+                   title="{{_ "card.tooltip.markdeepEditor.rightAnswer"}}"></i>
+                <i class="card-button fas fa-dice markdeep-toggle-randomized-positions {{#if gotRandomizedAnswerPositions}}pressed{{/if}}"
+                   title="{{_ "card.tooltip.markdeepEditor.randomizeAnswerPosition"}}"></i>
+            </div>
         {{/if}}
     </div>
 </template>
 
 <template name="markdeepNavigationItemAnswerEditorDropdown">
-    <div class="dropdown answerDropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="answerDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            {{getAnswerTag getActiveAnswer}}
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="answerDropdownMenu">
-            {{#each getAnswers}}
-                <li class="dropdown-item answer-item {{#if isActiveAnswer @index}}active{{/if}}" data-id="{{@index}}">
-                    {{getAnswerTag @index}}
-                </li>
-            {{/each}}
-        </ul>
+    <div class="btn-group">
+        <div class="dropdown answerDropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="answerDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                {{getAnswerTag getActiveAnswer}}
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="answerDropdownMenu">
+                {{#each getAnswers}}
+                    <li class="dropdown-item answer-item {{#if isActiveAnswer @index}}active{{/if}}" data-id="{{@index}}">
+                        {{getAnswerTag @index}}
+                        {{#if gotRandomizedAnswerPositions}}
+                            <i class="fas fa-dice"></i>
+                        {{/if}}
+                        {{#if isRightAnswer @index}}
+                            &nbsp;&nbsp;
+                            <i class="fas fa-check"></i>
+                        {{/if}}
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
     </div>
 </template>
