@@ -11,32 +11,34 @@
 </template>
 
 <template name="cardset">
-    {{> mainModalArsnovaClick}}
-    {{> mainModalArsnovaLite}}
-    {{> bonusUserHistoryModal}}
-    {{> cardsetInfo}}
-    {{> showLicense}}
-    {{> cardsetForm}}
-    {{> cardsetExportForm}}
-    {{> cardsetImportForm}}
-    {{> cardsetPublishForm}}
-    {{> bonusForm}}
-    {{> cardsetEndLearnForm}}
-    {{> selectLicenseForm}}
-    {{> reportCardsetForm}}
-    {{> deleteCardsForm}}
-    {{> resetLeitnerForm}}
-    {{> resetMemoForm}}
-    {{> leaveLearnPhaseForm}}
-    {{> leaveCardsetForm}}
-    {{> leaveEditorsForm}}
-    {{> chooseFlashcards}}
-    {{> joinBonusForm}}
-    {{> leaveBonusForm}}
-    {{> cardsetSidebar}}
-    {{> profileIncompleteModal}}
-    {{> cardsetLeitnerSimulatorForm}}
-    {{#if hasCardsetPermission}}
-        {{selectedForLearning}}
-    {{/if}}
+    {{#with getCardset}}
+        {{> mainModalArsnovaClick}}
+        {{> mainModalArsnovaLite}}
+        {{> bonusUserHistoryModal}}
+        {{> cardsetInfo}}
+        {{> showLicense}}
+        {{> cardsetForm}}
+        {{> cardsetExportForm}}
+        {{> cardsetImportForm}}
+        {{> cardsetPublishForm}}
+        {{> bonusForm}}
+        {{> cardsetEndLearnForm}}
+        {{> selectLicenseForm}}
+        {{> reportCardsetForm}}
+        {{> deleteCardsForm}}
+        {{> resetLeitnerForm}}
+        {{> resetMemoForm}}
+        {{> leaveLearnPhaseForm}}
+        {{> leaveCardsetForm}}
+        {{> leaveEditorsForm}}
+        {{> chooseFlashcards}}
+        {{> joinBonusForm}}
+        {{> leaveBonusForm}}
+        {{> cardsetSidebar}}
+        {{> profileIncompleteModal}}
+        {{> cardsetLeitnerSimulatorForm}}
+        {{#if hasCardsetPermission}}
+            {{selectedForLearning}}
+        {{/if}}
+    {{/with}}
 </template>

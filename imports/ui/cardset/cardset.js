@@ -85,6 +85,9 @@ Template.cardset.rendered = function () {
 };
 
 Template.cardset.helpers({
+	getCardset: function () {
+		return Cardsets.findOne({_id: FlowRouter.getParam('_id')});
+	},
 	selectedForLearning: function () {
 		if (Session.get('selectingCardsetToLearn')) {
 			CardsetNavigation.addToLeitner(this._id);
