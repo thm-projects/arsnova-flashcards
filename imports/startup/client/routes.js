@@ -919,7 +919,15 @@ FlowRouter.route('/progress/:_id/:user_id', {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
 	waitOn: function (params) {
-		return [Meteor.subscribe('defaultAppData'), Meteor.subscribe('cardset', params._id), Meteor.subscribe('paidCardset', params._id), Meteor.subscribe('cardsetWorkload', params._id), Meteor.subscribe('userCardsetLeitner', params._id, params.user_id), Meteor.subscribe('userDataBonus', params._id, params.user_id)];
+		return [
+			import('../../ui/learn/progress.js'),
+			Meteor.subscribe('defaultAppData'),
+			Meteor.subscribe('cardset', params._id),
+			Meteor.subscribe('paidCardset', params._id),
+			Meteor.subscribe('cardsetWorkload', params._id),
+			Meteor.subscribe('userCardsetLeitner', params._id, params.user_id),
+			Meteor.subscribe('userDataBonus',
+				params._id, params.user_id)];
 	},
 	data: function (params) {
 		let cardset = Cardsets.findOne({_id: params._id});
@@ -1437,7 +1445,7 @@ FlowRouter.route('/admin/matomoStatistics', {
 	},
 	action: function (params, qs, data) {
 		if (UserPermissions.isAdmin()) {
-			this.render('admin_matomoStatistics', data);
+			this.render(adminMainTemplate, 'admin_matomoStatistics', data);
 		} else {
 			MainNavigation.setLoginTarget(false);
 			FlowRouter.go(adminMainTemplate, 'home');

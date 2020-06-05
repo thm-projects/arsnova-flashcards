@@ -6,6 +6,7 @@ import {Ratings} from "../../../../../api/subscriptions/ratings";
 import {UserPermissions} from "../../../../../api/permissions";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./ratings.html";
+import {Route} from "../../../../../api/route";
 
 /*
 * ############################################################################
@@ -33,6 +34,13 @@ Template.cardsetInfoBoxItemRatings.helpers({
 			return userrating.rating;
 		} else {
 			return 0 + " " + TAPi18n.__('cardset.info.notRated');
+		}
+	},
+	getRaterCount: function (raterCount) {
+		if (Route.isCardset()) {
+			return Cardsets.findOne({_id: this._id}).raterCount;
+		} else {
+			return raterCount;
 		}
 	}
 });
