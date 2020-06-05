@@ -25,6 +25,7 @@ import "../cardTypesList/cardTypesList.js";
 import "./modal/connectionStatus.js";
 import "./modal/underDevelopment.js";
 import "./modal/pdfViewer.js";
+import "../accessDenied/accessDenied.js";
 import "./main.html";
 
 import {PDFViewer} from "../../util/pdfViewer";
