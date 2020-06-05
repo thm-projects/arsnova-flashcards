@@ -1892,7 +1892,7 @@
             "notKnown": "Nicht Gewusst"
           },
           "duration": {
-            "average": "Ø Bearbeitungszeit",
+            "average": "Ø Bearbeitungszeit pro Termin",
             "total": "Gesamte Bearbeitungszeit"
           },
           "averageKnown": "Ø Gewusst"
