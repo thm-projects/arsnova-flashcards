@@ -1,3 +1,7 @@
+import "../cardset/labels/labels.js";
+import "../filter/index/item/bottom/deadline.js";
+import "../filter/index/item/bottom/transcriptRating.js";
+import "../filter/index/item/bottom/starsRating.js";
 import "./progress.html";
 import {Leitner} from "../../api/subscriptions/leitner.js";
 import {Template} from "meteor/templating";
