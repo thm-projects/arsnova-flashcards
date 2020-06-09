@@ -26,6 +26,7 @@ import "./modal/connectionStatus.js";
 import "./modal/underDevelopment.js";
 import "./modal/pdfViewer.js";
 import "../accessDenied/accessDenied.js";
+import "../learn/modal/progress.js";
 import "./main.html";
 
 import {PDFViewer} from "../../util/pdfViewer";

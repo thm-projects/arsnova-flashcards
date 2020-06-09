@@ -1,22 +1,76 @@
 import {Chart} from "chart.js";
-import {Cardsets} from "./subscriptions/cardsets";
 import {CardType} from "./cardTypes";
-import {Leitner} from "./subscriptions/leitner.js";
 import {Meteor} from "meteor/meteor";
+import {Mongo} from "meteor/mongo";
 import {Session} from "meteor/session";
-import {Route} from "./route";
 import * as config from "../config/leitnerProgressChart.js";
 import {NavigatorCheck} from "./navigatorCheck";
 import {BonusForm} from "./bonusForm";
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+
+Session.set('workloadProgressUserID', undefined);
+Session.set('workloadProgressCardsetID', undefined);
+Session.set('workloadProgressType', undefined);
 
 let chart;
+let simulatorChart;
 let difficultyGotCards;
+let WorkloadCardsetCollection = new Mongo.Collection(null);
+let WorkloadLeitnerCollection = new Mongo.Collection(null);
 
 export let LeitnerProgress = class LeitnerProgress {
-	static drawGraph () {
-		let ctx = document.getElementById("boxChart").getContext("2d");
-		chart = new Chart(ctx, {
+	static clearTempData () {
+		WorkloadCardsetCollection = new Mongo.Collection(null);
+		WorkloadLeitnerCollection = new Mongo.Collection(null);
+		Session.set('workloadProgressUserID', undefined);
+		Session.set('workloadProgressCardsetID', undefined);
+		Session.set('workloadProgressType', undefined);
+	}
+
+	static setupTempData (cardset_id, user_id, type) {
+		WorkloadCardsetCollection = new Mongo.Collection(null);
+		WorkloadLeitnerCollection = new Mongo.Collection(null);
+		Session.set('workloadProgressType', type);
+		if (type === 'simulator') {
+			Session.set('workloadProgressCardsetID', cardset_id);
+			Session.set('workloadProgressUserID', Meteor.userId());
+		} else {
+			Meteor.call('getTempCardsetData', cardset_id, type, function (err, res) {
+				if (!err) {
+					for (let i = 0; i < res.length; i++) {
+						WorkloadCardsetCollection.insert(res[i]);
+					}
+					Session.set('workloadProgressCardsetID', cardset_id);
+				}
+			});
+			Meteor.call('getTempLeitnerData', cardset_id, user_id, type, function (err, res) {
+				if (!err) {
+					for (let i = 0; i < res.length; i++) {
+						WorkloadLeitnerCollection.insert(res[i]);
+					}
+					Session.set('workloadProgressUserID', user_id);
+				}
+			});
+		}
+	}
+
+	static getCardsetCollection () {
+		return WorkloadCardsetCollection;
+	}
+	static getLeitnerCollection () {
+		return WorkloadLeitnerCollection;
+	}
+
+	static initializeGraph (type) {
+		if (type === 'simulator') {
+			simulatorChart = this.createGraph('boxChartSimulator');
+		} else {
+			chart = this.createGraph('boxChart');
+		}
+	}
+
+	static createGraph (targetID) {
+		let ctx = document.getElementById(targetID).getContext("2d");
+		return new Chart(ctx, {
 			type: 'bar',
 			data: {
 				datasets: this.getGraphData()
@@ -48,19 +102,24 @@ export let LeitnerProgress = class LeitnerProgress {
 		});
 	}
 
-	static updateGraph (filterCardset) {
+	static updateGraph (filterCardset = '-1') {
 		let datasets;
 		if (filterCardset === "-1") {
 			datasets = this.getGraphData();
 		} else {
 			datasets = this.getGraphData(filterCardset);
 		}
-		chart.data.datasets = datasets;
-		chart.update();
+		if (Session.get('workloadProgressType') === 'simulator') {
+			simulatorChart.data.datasets = datasets;
+			simulatorChart.update();
+		} else {
+			chart.data.datasets = datasets;
+			chart.update();
+		}
 	}
 
 	static getGraphData (filterCardset = undefined) {
-		if (Route.isCardset()) {
+		if (Session.get('workloadProgressType') === 'simulator') {
 			return [{
 				backgroundColor: config.chartColors.simulatorBackground,
 				borderColor: config.chartColors.simulator,
@@ -125,8 +184,8 @@ export let LeitnerProgress = class LeitnerProgress {
 		let boxInterval3 = "";
 		let boxInterval4 = "";
 		let boxInterval5 = "";
-		if (Route.isLeitnerProgress()) {
-			learningInterval = Cardsets.findOne({_id: FlowRouter.getParam('_id')}).learningInterval;
+		if (Session.get('workloadProgressType') === 'cardset') {
+			learningInterval = WorkloadCardsetCollection.findOne({_id: Session.get('workloadProgressCardsetID')}).learningInterval;
 			if (learningInterval[0] <= 1) {
 				boxInterval1 = TAPi18n.__('leitnerProgress.boxIntervalDaily', {}, Session.get('activeLanguage'));
 			} else {
@@ -159,8 +218,13 @@ export let LeitnerProgress = class LeitnerProgress {
 		if (returnData) {
 			return [box1Label, box2Label, box3Label, box4Label, box5Label, box6Label];
 		} else {
-			chart.config.data.labels = [box1Label, box2Label, box3Label, box4Label, box5Label, box6Label];
-			chart.update();
+			if (Session.get('workloadProgressType') === 'simulator' && simulatorChart !== undefined) {
+				simulatorChart.config.data.labels = [box1Label, box2Label, box3Label, box4Label, box5Label, box6Label];
+				simulatorChart.update();
+			} else if (chart !== undefined) {
+				chart.config.data.labels = [box1Label, box2Label, box3Label, box4Label, box5Label, box6Label];
+				chart.update();
+			}
 		}
 	}
 
@@ -179,7 +243,7 @@ export let LeitnerProgress = class LeitnerProgress {
 			cardsetFilter.difficulty = difficulty;
 		}
 
-		return Cardsets.find(cardsetFilter, {_id: 1}).map(function (cardset) {
+		return WorkloadCardsetCollection.find(cardsetFilter, {_id: 1}).map(function (cardset) {
 			return cardset._id;
 		});
 	}
@@ -188,23 +252,20 @@ export let LeitnerProgress = class LeitnerProgress {
 		let user_id;
 		let boxCount = 0;
 		let cardset;
-		let cardsets;
+		let uniqueLeitnerObjects;
 		let cardCount = [0, 0, 0, 0, 0, 0];
 		let originalCardsetsIds = [];
 		let cardsetsIds = [];
 		let difficultyFilterResult;
 		difficultyGotCards = false;
-		if (Route.isCardset()) {
-			return 0;
-		}
-		if (Route.isLeitnerProgress() || filterCardset !== undefined) {
+		if (Session.get('workloadProgressType') === 'cardset' || filterCardset !== undefined) {
 			let cardset_id;
 			if (filterCardset !== undefined) {
 				cardset_id = filterCardset;
 			} else {
-				cardset_id = FlowRouter.getParam('_id');
+				cardset_id = Session.get('workloadProgressCardsetID');
 			}
-			cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, shuffled: 1, cardGroups: 1}});
+			cardset = WorkloadCardsetCollection.findOne({_id: cardset_id}, {fields: {_id: 1, shuffled: 1, cardGroups: 1}});
 			if (cardset !== undefined) {
 				difficultyFilterResult = this.prepareDifficultyFilter(difficulty, cardset);
 				if (cardset.shuffled) {
@@ -217,19 +278,19 @@ export let LeitnerProgress = class LeitnerProgress {
 					}
 				}
 			}
-			user_id = FlowRouter.getParam('user_id');
+			user_id = Session.get('workloadProgressUserID');
 		} else {
 			let userFilter = {};
-			if (Route.isLeitnerProgressProfileOverview()) {
+			if (Session.get('workloadProgressType') === 'user') {
 				userFilter.user_id = Meteor.userId();
 			}
-			cardsets = _.uniq(Leitner.find(userFilter, {
+			uniqueLeitnerObjects = _.uniq(WorkloadLeitnerCollection.find(userFilter, {
 				fields: {cardset_id: 1}
 			}).fetch(), function (cardsets) {
 				return cardsets.cardset_id;
 			});
-			for (let i = 0; i < cardsets.length; i++) {
-				cardset = Cardsets.findOne({_id: cardsets[i].cardset_id}, {fields: {_id: 1, shuffled: 1, cardGroups: 1}});
+			for (let i = 0; i < uniqueLeitnerObjects.length; i++) {
+				cardset = WorkloadCardsetCollection.findOne({_id: uniqueLeitnerObjects[i].cardset_id}, {fields: {_id: 1, shuffled: 1, cardGroups: 1}});
 				if (cardset !== undefined) {
 					difficultyFilterResult = this.prepareDifficultyFilter(difficulty, cardset);
 					if (cardset.shuffled) {
@@ -251,7 +312,7 @@ export let LeitnerProgress = class LeitnerProgress {
 		}
 		for (let i = 0; i < 6; i++) {
 			filterQuery.box = (i + 1);
-			boxCount = Leitner.find(filterQuery).count();
+			boxCount = WorkloadLeitnerCollection.find(filterQuery).count();
 			if (boxCount !== 0) {
 				difficultyGotCards = true;
 			}
@@ -261,11 +322,11 @@ export let LeitnerProgress = class LeitnerProgress {
 	}
 
 	static getCardsetCardCount (countLeitnerCards = false) {
-		let cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')});
+		let cardset = WorkloadCardsetCollection.findOne({_id: Session.get('workloadProgressCardsetID')});
 		if (cardset.shuffled) {
 			let cardsetList = [];
 			let cardsetLeitnerCount = 0;
-			let cardsets = Cardsets.find({_id: {$in: cardset.cardGroups}}, {
+			let cardsets = WorkloadCardsetCollection.find({_id: {$in: cardset.cardGroups}}, {
 				fields: {_id: 1, name: 1, cardType: 1, difficulty: 1, quantity: 1, kind: 1},
 				sort: {name: 1}
 			}).fetch();
@@ -289,10 +350,14 @@ export let LeitnerProgress = class LeitnerProgress {
 	}
 
 	static getTotalLeitnerCardCount () {
-		return Leitner.find().count();
+		return WorkloadLeitnerCollection.find().count();
 	}
 
 	static getTotalLeitnerCardCountUser () {
-		return Leitner.find({user_id: Meteor.userId()}).count();
+		return WorkloadLeitnerCollection.find({user_id: Meteor.userId()}).count();
+	}
+
+	static gotData () {
+		return Session.get('workloadProgressUserID') !== undefined && Session.get('workloadProgressCardsetID') !== undefined;
 	}
 };

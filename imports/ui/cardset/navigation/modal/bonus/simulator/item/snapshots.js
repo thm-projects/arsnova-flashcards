@@ -25,7 +25,6 @@ Template.bonusFormSimulatorSnapshots.helpers({
 Template.bonusFormSimulatorSnapshots.events({
 	'click .snapshot-date': function (event) {
 		Session.set('activeSimulatorSnapshotDate', $(event.target).data('id'));
-		BonusForm.initializeSimulatorData();
 		LeitnerProgress.updateGraph();
 	}
 });

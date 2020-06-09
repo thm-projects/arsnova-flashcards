@@ -3,54 +3,41 @@ import "../filter/index/item/bottom/deadline.js";
 import "../filter/index/item/bottom/transcriptRating.js";
 import "../filter/index/item/bottom/starsRating.js";
 import "./progress.html";
-import {Leitner} from "../../api/subscriptions/leitner.js";
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
-import {getAuthorName} from "../../api/userdata";
 import ResizeSensor from "../../../client/thirdParty/resizeSensor/ResizeSensor";
 import {LeitnerProgress} from "../../api/leitnerProgress";
-import {Cardsets} from "../../api/subscriptions/cardsets";
 import {CardType} from "../../api/cardTypes";
-import {Route} from "../../api/route";
-import {UserPermissions} from "../../api/permissions";
 
 /*
  * ############################################################################
- * Graph
+ * Progress
  * ############################################################################
  */
 
-Template.graph.helpers({
+Template.progress.helpers({
+	isProgressType: function (type) {
+		return Session.get('workloadProgressType') === type;
+	},
 	countBox: function (boxId) {
-		if (FlowRouter.getRouteName() === "progress") {
-			return Leitner.find({
-				cardset_id: FlowRouter.getParam('_id'),
-				user_id: FlowRouter.getParam('user_id'),
+		let leitnerCollection = LeitnerProgress.getLeitnerCollection();
+		if (Session.get('workloadProgressType') === 'cardset') {
+			return leitnerCollection.find({
+				cardset_id: Session.get('workloadProgressCardsetID'),
+				user_id: Session.get('workloadProgressUserID'),
 				box: boxId
 			}).count();
 		} else {
-			return Leitner.find({
+			return leitnerCollection.find({
 				user_id: Meteor.userId(),
 				box: boxId
 			}).count();
 		}
 	},
-	getChartTitle: function () {
-		if (FlowRouter.getRouteName() === "progress") {
-			let title = '»' + this.name + '«';
-			if (Meteor.userId() === FlowRouter.getParam('user_id')) {
-				return TAPi18n.__('admin.myProgress') + title;
-			} else {
-				return title + ' | ' + TAPi18n.__('admin.userProgress') + ' »' + getAuthorName(FlowRouter.getParam('user_id')) + '«';
-			}
-		} else {
-			return TAPi18n.__('admin.allLearnedCardsets');
-		}
-	},
 	getMaxWorkload: function () {
-		let maxWorkload = Cardsets.findOne({_id: FlowRouter.getParam('_id')}).maxCards;
+		let cardsetCollection = LeitnerProgress.getCardsetCollection();
+		let maxWorkload = cardsetCollection.findOne({_id: Session.get('workloadProgressCardsetID')}).maxCards;
 		if (maxWorkload === 1) {
 			return TAPi18n.__('bonus.progress.maxWorkload.single', {amount: maxWorkload}, Session.get('activeLanguage'));
 		} else {
@@ -67,51 +54,30 @@ Template.graph.helpers({
 		return LeitnerProgress.getTotalLeitnerCardCountUser();
 	},
 	isShuffledCardset: function () {
-		if (Route.isLeitnerProgress()) {
-			let cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')}, {fields: {shuffled: 1}});
-			if (cardset !== undefined) {
-				return cardset.shuffled;
-			} else {
-				return false;
-			}
-		}
-	}
-});
-
-Template.graph.onRendered(function () {
-	LeitnerProgress.drawGraph();
-	LeitnerProgress.updateGraphLabels();
-	new ResizeSensor($('#boxChart'), function () {
-		LeitnerProgress.updateGraphLabels();
-	});
-});
-
-/*
- * ############################################################################
- * progress
- * ############################################################################
- */
-
-Template.progress.helpers({
-	isStatsOwner: function () {
-		return Meteor.userId() === FlowRouter.getParam('user_id');
-	},
-	gotProgressAccess: function () {
-		return Meteor.userId() === FlowRouter.getParam('user_id') || UserPermissions.isOwner(Cardsets.findOne({_id: FlowRouter.getParam('_id')}).owner) || UserPermissions.isAdmin();
-	}
-});
-
-Template.progress.events({
-	"click #backButton": function () {
-		if (Meteor.userId() === FlowRouter.getParam('user_id')) {
-			FlowRouter.go('cardsetdetailsid', {
-				_id: FlowRouter.getParam('_id')
-			});
+		let cardsetCollection = LeitnerProgress.getCardsetCollection();
+		let cardset = cardsetCollection.findOne({_id: Session.get('workloadProgressCardsetID')}, {fields: {shuffled: 1}});
+		if (cardset !== undefined) {
+			return cardset.shuffled;
 		} else {
-			FlowRouter.go('cardsetstats', {
-				_id: FlowRouter.getParam('_id')
-			});
+			return false;
 		}
+	},
+	getTargetID: function () {
+		if (this.type === 'simulator') {
+			return 'boxChartSimulator';
+		} else {
+			return 'boxChart';
+		}
+	}
+});
+
+Template.progress.onRendered(function () {
+	LeitnerProgress.initializeGraph(this.data.type);
+	LeitnerProgress.updateGraphLabels();
+	if (this.data.type !== 'simulator') {
+		new ResizeSensor($('#boxChart'), function () {
+			LeitnerProgress.updateGraphLabels();
+		});
 	}
 });
 
@@ -126,24 +92,18 @@ Template.graphCardsetFilter.helpers({
 		return LeitnerProgress.getCardsetCardCount(countLeitnerCards);
 	},
 	shuffledData: function () {
-		this.useLeitnerCount = true;
-		return this;
-	},
-	isShuffledCardset: function () {
-		if (Route.isLeitnerProgress()) {
-			let cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')}, {fields: {shuffled: 1}});
-			if (cardset !== undefined) {
-				return cardset.shuffled;
-			} else {
-				return false;
-			}
-		}
+		let cardsetCollection = LeitnerProgress.getCardsetCollection();
+		let cardset = cardsetCollection.findOne({_id: Session.get('workloadProgressCardsetID')});
+		cardset.useLeitnerCount = true;
+		return cardset;
 	},
 	getCardsetCount: function () {
 		let count = 0;
-		for (let i = 0; i < this.cardGroups.length; i++) {
-			let cardset = Cardsets.findOne({_id: this.cardGroups[i]}, {fields: {_id: 1, cardType: 1}});
-			if (CardType.gotLearningModes(cardset.cardType)) {
+		let cardsetCollection = LeitnerProgress.getCardsetCollection();
+		let cardset = cardsetCollection.findOne({_id: Session.get('workloadProgressCardsetID')});
+		for (let i = 0; i < cardset.cardGroups.length; i++) {
+			let cardsetGroupItem = cardsetCollection.findOne({_id: cardset.cardGroups[i]}, {fields: {_id: 1, cardType: 1}});
+			if (CardType.gotLearningModes(cardsetGroupItem.cardType)) {
 				count++;
 			}
 		}

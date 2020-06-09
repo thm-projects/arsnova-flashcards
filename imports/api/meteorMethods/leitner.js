@@ -211,5 +211,36 @@ Meteor.methods({
 					});
 			}
 		}
+	},
+	getTempLeitnerData: function (cardset_id, user_id, type) {
+		check(cardset_id, String);
+		check(user_id, String);
+		check(type, String);
+
+		let options = {
+			fields: {
+				cardset_id: 1,
+				original_cardset_id: 1,
+				user_id: 1,
+				box: 1
+			}
+		};
+		if (type === 'cardset') {
+			if (Meteor.userId() === user_id || Roles.userIsInRole(Meteor.userId(), [
+				'admin',
+				'editor',
+				'lecturer'
+			])) {
+				return Leitner.find({cardset_id: cardset_id, user_id: user_id}, options).fetch();
+			} else {
+				return [];
+			}
+		} else if (type === 'user') {
+			return Leitner.find({user_id: Meteor.userId()}, options).fetch();
+		} else if (UserPermissions.gotBackendAccess()) {
+			return Leitner.find({}, options).fetch();
+		} else {
+			return [];
+		}
 	}
 });
