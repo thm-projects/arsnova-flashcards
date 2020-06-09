@@ -6,6 +6,7 @@ import "../main/modal/arsnovaClick.js";
 import "../main/modal/arsnovaLite.js";
 import "../help/help.js";
 import "../card/card.js";
+import "../cardset/index/cards/cards.js";
 import "./presentation.html";
 import {CardNavigation} from "../../api/cardNavigation";
 import {Cardsets} from "../../api/subscriptions/cardsets";
