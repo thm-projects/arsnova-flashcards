@@ -1721,6 +1721,10 @@ export let setLoginTarget = function () {
 
 FlowRouter.triggers.enter([setLanguage, setTheme]);
 
+FlowRouter.triggers.exit( function (context) {
+	Session.set('previousRouteName', context.route.name);
+});
+
 FlowRouter.triggers.enter([isSignedIn], {
 	except: linksWithNoLoginRequirement()
 });
