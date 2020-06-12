@@ -97,8 +97,8 @@ Template.welcome.events({
 
 	'click #guest': function () {
 		MainNavigation.setGuestLogin("true");
-		Session.set('firedUseCaseModal', 1);
-		FlowRouter.go('pool');
+		setActiveLanguage();
+		setLoginTarget();
 	}
 });
 
