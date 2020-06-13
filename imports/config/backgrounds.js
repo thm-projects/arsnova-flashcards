@@ -7,7 +7,7 @@
 let defaultBackgrounds = {
 	"landing-page": "/img/background/zettelkasten_wikipedia_original.jpg",
 	"internal": "/img/background/Mac-Tastatur.jpg",
-	"demo": "/img/background/zettelkasten_wikipedia_original.jpg",
+	"demo": "none",
 	"presentation": "none",
 	"learning": "none",
 	"backend": "none",
@@ -19,7 +19,7 @@ let defaultBackgrounds = {
 let linuxBackgrounds = {
 	"landing-page": "/img/background/Linux-Regal.jpg",
 	"internal": "/img/background/Mac-Tastatur.jpg",
-	"demo": "/img/background/Linux-Regal.jpg",
+	"demo": "none",
 	"presentation": "none",
 	"learning": "none",
 	"backend": "none",
