@@ -22,6 +22,8 @@ import "./item/help.js";
 import "./item/swapQuestionAnswer.js";
 import "./item/presentation.js";
 import "./item/toggle3D.js";
+import "./item/leitnerGraph.js";
+import "./item/leitnerHistory.js";
 import {Route} from "../../../api/route";
 import {Bonus} from "../../../api/bonus";
 import {NavigatorCheck} from "../../../api/navigatorCheck";

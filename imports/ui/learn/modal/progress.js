@@ -6,9 +6,14 @@ import {Session} from "meteor/session";
 import {getAuthorName} from "../../../api/userdata";
 import {LeitnerProgress} from "../../../api/leitnerProgress";
 
+Session.setDefault("progressModalActive", false);
 
 Template.progressModal.onRendered(function () {
+	$('#progressModal').on('shown.bs.modal', function () {
+		Session.set("progressModalActive", true);
+	});
 	$('#progressModal').on('hidden.bs.modal', function () {
+		Session.set("progressModalActive", false);
 		LeitnerProgress.clearTempData();
 	});
 });
