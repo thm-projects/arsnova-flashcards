@@ -226,11 +226,17 @@ Meteor.methods({
 			}
 		};
 		if (type === 'cardset') {
-			if (Meteor.userId() === user_id || Roles.userIsInRole(Meteor.userId(), [
-				'admin',
-				'editor',
-				'lecturer'
-			])) {
+			let isCardsetOwnerAndLecturer = false;
+			let targetUserIsInBonus = false;
+			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {owner: 1}});
+			if (cardset !== undefined) {
+				isCardsetOwnerAndLecturer = (cardset.owner === Meteor.userId() && UserPermissions.isLecturer());
+			}
+			let workload = Workload.findOne({cardset_id: cardset_id, user_id: user_id});
+			if (workload !== undefined) {
+				targetUserIsInBonus = workload.leitner.bonus;
+			}
+			if (Meteor.userId() === user_id || (UserPermissions.gotBackendAccess() && targetUserIsInBonus) || (isCardsetOwnerAndLecturer && targetUserIsInBonus)) {
 				return Leitner.find({cardset_id: cardset_id, user_id: user_id}, options).fetch();
 			} else {
 				return [];
