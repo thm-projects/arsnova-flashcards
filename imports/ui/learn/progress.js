@@ -88,6 +88,10 @@ Template.progress.onRendered(function () {
  */
 
 Template.graphCardsetFilter.helpers({
+	setModalLabelValue: function (data, isModalLabel = false) {
+		data.isModalLabel = isModalLabel;
+		return data;
+	},
 	getCardsetCardCount: function (countLeitnerCards = false) {
 		return LeitnerProgress.getCardsetCardCount(countLeitnerCards);
 	},

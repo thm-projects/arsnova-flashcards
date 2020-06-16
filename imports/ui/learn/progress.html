@@ -45,7 +45,7 @@
                                 {{_ "leitnerProgress.indexDefault" cardsetCount=(getCardsetCount false) cardCount=(getCardsetCardCount true)}}
                             </div>
                             <div class="col-xs-12 cardset-details">
-                                {{> cardsetLabels shuffledData}}
+                                {{> cardsetLabels (setModalLabelValue shuffledData true)}}
                             </div>
                         </a>
                     </li>
@@ -54,7 +54,7 @@
                             <a href="#">
                                 {{this.name}}
                                 <div class="col-xs-12 cardset-details">
-                                    {{> cardsetLabels}}
+                                    {{> cardsetLabels (setModalLabelValue this true)}}
                                 </div>
                             </a>
                         </li>

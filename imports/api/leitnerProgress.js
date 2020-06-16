@@ -326,10 +326,8 @@ export let LeitnerProgress = class LeitnerProgress {
 		if (cardset.shuffled) {
 			let cardsetList = [];
 			let cardsetLeitnerCount = 0;
-			let cardsets = WorkloadCardsetCollection.find({_id: {$in: cardset.cardGroups}}, {
-				fields: {_id: 1, name: 1, cardType: 1, difficulty: 1, quantity: 1, kind: 1},
-				sort: {name: 1}
-			}).fetch();
+			let cardsets = WorkloadCardsetCollection.find({_id: {$in: cardset.cardGroups}},
+				{sort: {name: 1}}).fetch();
 			for (let i = 0; i < cardsets.length; i++) {
 				if (CardType.gotLearningModes(cardsets[i].cardType)) {
 					if (countLeitnerCards) {
