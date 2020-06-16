@@ -15,6 +15,7 @@ import {LoginTasks} from "../../api/login";
 import {AspectRatio} from "../../api/aspectRatio.js";
 import {Leitner} from "../../api/subscriptions/leitner";
 import {Wozniak} from "../../api/subscriptions/wozniak";
+import {LeitnerProgress} from "../../api/leitnerProgress";
 
 let mainTemplate = 'main';
 let adminMainTemplate = 'admin_main';
@@ -913,35 +914,6 @@ FlowRouter.route('/personal/transcripts/new', {
 	}
 });
 
-FlowRouter.route('/progress/:_id/:user_id', {
-	name: 'progress',
-	whileWaiting: function () {
-		this.render(mainTemplate, loadingScreenTemplate);
-	},
-	waitOn: function (params) {
-		return [
-			import('../../ui/learn/progress.js'),
-			Meteor.subscribe('defaultAppData'),
-			Meteor.subscribe('cardset', params._id),
-			Meteor.subscribe('paidCardset', params._id),
-			Meteor.subscribe('cardsetWorkload', params._id),
-			Meteor.subscribe('userCardsetLeitner', params._id, params.user_id),
-			Meteor.subscribe('userDataBonus',
-				params._id, params.user_id)];
-	},
-	data: function (params) {
-		let cardset = Cardsets.findOne({_id: params._id});
-		if (cardset !== undefined) {
-			document.title = TAPi18n.__('title.progress',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
-		}
-		Session.set('helpFilter', "workloadProgress");
-		return cardset;
-	},
-	action: function (params, qs, data) {
-		this.render(mainTemplate, 'progress', data);
-	}
-});
-
 FlowRouter.route('/box/:_id', {
 	name: 'box',
 	whileWaiting: function () {
@@ -1197,29 +1169,6 @@ FlowRouter.route('/makingofcardslist', {
 	}
 });
 
-FlowRouter.route('/profile/:_id/overview', {
-	name: 'profileOverview',
-	whileWaiting: function () {
-		this.render(mainTemplate, loadingScreenTemplate);
-	},
-	waitOn: function () {
-		return [
-			import('../../ui/profile/profile.js'),
-			import('../../ui/profile/view/overview.js'),
-			Meteor.subscribe('defaultAppData'),
-			Meteor.subscribe('workloadCardsets'),
-			Meteor.subscribe('userWorkload'),
-			Meteor.subscribe('userLeitner')
-		];
-	},
-	data: function () {
-		document.title = TAPi18n.__('title.profile.overview',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
-		Session.set('helpFilter', "summativeProgress");
-	},
-	action: function (params, qs, data) {
-		this.render(mainTemplate, 'profile', data);
-	}
-});
 FlowRouter.route('/profile/:_id/billing', {
 	name: 'profileBilling',
 	whileWaiting: function () {
@@ -1411,8 +1360,6 @@ FlowRouter.route('/admin/learningStatistics', {
 		return [
 			import('../../ui/admin/learningStatistics/learningStatistics.js'),
 			Meteor.subscribe('defaultAppData'),
-			Meteor.subscribe('allCardsets'),
-			Meteor.subscribe('allLeitner'),
 			Meteor.subscribe('userData')
 		];
 	},

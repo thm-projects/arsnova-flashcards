@@ -450,6 +450,20 @@ $themes: (
     $card_sidebar_zoom_text_hover: map-get($map, "card_sidebar_zoom_text_hover");
     $card_sidebar_zoom_background_active: map-get($map, "card_sidebar_zoom_background_active");
     $card_sidebar_zoom_text_active: map-get($map, "card_sidebar_zoom_text_active");
+
+    $card_sidebar_leitner_history_background: map-get($map, "card_sidebar_leitner_history_background");
+    $card_sidebar_leitner_history_text: map-get($map, "card_sidebar_leitner_history_text");
+    $card_sidebar_leitner_history_background_hover: map-get($map, "card_sidebar_leitner_history_background_hover");
+    $card_sidebar_leitner_history_text_hover: map-get($map, "card_sidebar_leitner_history_text_hover");
+    $card_sidebar_leitner_history_background_active: map-get($map, "card_sidebar_leitner_history_background_active");
+    $card_sidebar_leitner_history_text_active: map-get($map, "card_sidebar_leitner_history_text_active");
+
+    $card_sidebar_leitner_graph_background: map-get($map, "card_sidebar_leitner_graph_background");
+    $card_sidebar_leitner_graph_text: map-get($map, "card_sidebar_leitner_graph_text");
+    $card_sidebar_leitner_graph_background_hover: map-get($map, "card_sidebar_leitner_graph_background_hover");
+    $card_sidebar_leitner_graph_text_hover: map-get($map, "card_sidebar_leitner_graph_text_hover");
+    $card_sidebar_leitner_graph_background_active: map-get($map, "card_sidebar_leitner_graph_background_active");
+    $card_sidebar_leitner_graph_text_active: map-get($map, "card_sidebar_leitner_graph_text_active");
     //cardset sidebar colors
     $cardset_sidebar_preview_background: map-get($map, "cardset_sidebar_preview_background");
     $cardset_sidebar_preview_text: map-get($map, "cardset_sidebar_preview_text");
@@ -3545,6 +3559,40 @@ $themes: (
         border-color: $card_sidebar_zoom_background_hover !important;
         background-color: $card_sidebar_zoom_background_hover !important;
         color: $card_sidebar_zoom_text_hover !important;
+      }
+
+      .showLeitnerHistory {
+        background-color: $card_sidebar_leitner_history_background !important;
+        color: $card_sidebar_leitner_history_text !important;
+      }
+
+      .showLeitnerHistory.active {
+        border-color: $card_sidebar_leitner_history_background_active !important;
+        background-color: $card_sidebar_leitner_history_background_active !important;
+        color: $card_sidebar_leitner_history_text_active !important;
+      }
+
+      .showLeitnerHistory:hover, .showLeitnerHistory:focus {
+        border-color: $card_sidebar_leitner_history_background_hover !important;
+        background-color: $card_sidebar_leitner_history_background_hover !important;
+        color: $card_sidebar_leitner_history_text_hover !important;
+      }
+
+      .showLeitnerGraph {
+        background-color: $card_sidebar_leitner_graph_background !important;
+        color: $card_sidebar_leitner_graph_text !important;
+      }
+
+      .showLeitnerGraph.active {
+        border-color: $card_sidebar_leitner_graph_background_active !important;
+        background-color: $card_sidebar_leitner_graph_background_active !important;
+        color: $card_sidebar_leitner_graph_text_active !important;
+      }
+
+      .showLeitnerGraph:hover, .showLeitnerGraph:focus {
+        border-color: $card_sidebar_leitner_graph_background_hover !important;
+        background-color: $card_sidebar_leitner_graph_background_hover !important;
+        color: $card_sidebar_leitner_graph_text_hover !important;
       }
 
       .editCard {

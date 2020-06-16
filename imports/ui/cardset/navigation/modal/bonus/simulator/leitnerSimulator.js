@@ -12,6 +12,7 @@ import "./leitnerSimulator.html";
 import {BonusForm} from "../../../../../../api/bonusForm";
 import {Session} from "meteor/session";
 import {LeitnerProgress} from "../../../../../../api/leitnerProgress";
+import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 
 /*
  * ############################################################################
@@ -19,18 +20,16 @@ import {LeitnerProgress} from "../../../../../../api/leitnerProgress";
  * ############################################################################
  */
 
-Template.cardsetLeitnerSimulatorForm.onCreated(function () {
-	BonusForm.createSnapshotDates();
-});
-
 Template.cardsetLeitnerSimulatorForm.onRendered(function () {
 	$('#cardsetLeitnerSimulatorModal').on('show.bs.modal', function () {
-		BonusForm.createSnapshotDates();
+		LeitnerProgress.setupTempData(FlowRouter.getParam('_id'), '', 'simulator');
 		Session.set('activeSimulatorSnapshotDate', 0);
+		BonusForm.createSnapshotDates();
 		BonusForm.initializeSimulatorWorkload();
 		LeitnerProgress.updateGraph();
 	});
 	$('#cardsetLeitnerSimulatorModal').on('hidden.bs.modal', function () {
+		LeitnerProgress.clearTempData();
 		$('body').addClass('modal-open');
 		$('.modal-backdrop').add();
 	});

@@ -63,7 +63,7 @@
   opacity: 0;
 }
 
-#boxChart {
+#boxChart, #boxChartSimulator {
   height: 500px !important;
 
   @media(max-width: 767px) {
