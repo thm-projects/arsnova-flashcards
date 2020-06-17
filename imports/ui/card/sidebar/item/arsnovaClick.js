@@ -36,7 +36,7 @@ Template.cardSidebarItemArsnovaClick.helpers({
 					}
 				}
 			}
-		} else if (cardset.arsnovaClick.session !== undefined && cardset.arsnovaClick.session.length) {
+		} else if (cardset.arsnovaClick !== undefined && cardset.arsnovaClick.session !== undefined && cardset.arsnovaClick.session.length) {
 			Session.set('arsnovaClickSessionID', cardset.arsnovaClick.session);
 			return true;
 		} else {
