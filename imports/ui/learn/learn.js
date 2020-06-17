@@ -12,6 +12,7 @@ import "../main/modal/arsnovaClick.js";
 import "../main/modal/arsnovaLite.js";
 import "../help/help.js";
 import "../card/card.js";
+import "../cardset/index/bonus/modal/userHistory.js";
 import "./learn.html";
 import {PomodoroTimer} from "../../api/pomodoroTimer";
 import {Route} from "../../api/route";

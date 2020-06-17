@@ -1,10 +1,7 @@
 @media (min-width: 1200px) {
   #bonusUserHistoryModal {
-    .modal-dialog {
-      width:1200px;
-    }
-    .modal-body {
-      width: 1200px;
+    .modal-dialog, .model-body, .modal-content {
+      width:1200px !important;
     }
   }
 }

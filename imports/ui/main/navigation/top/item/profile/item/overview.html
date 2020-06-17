@@ -1,13 +1,9 @@
 <template name="mainNavigationTopItemProfileItemOverview">
     <tr class="{{#if isActiveRoute
                      'profileOverview'}}active{{/if}}">
-        <td><a class="dropdown-item"
-               href="{{pathFor 'profileOverview'
-                               _id=currentUser._id}}"><i
+        <td><a class="dropdown-item profile-overview"><i
                 class="fas fa-trophy"></i></a></td>
-        <td><a class="dropdown-item"
-               href="{{pathFor 'profileOverview'
-                               _id=currentUser._id}}">{{_
+        <td><a class="dropdown-item profile-overview">{{_
                 "profile.activity"}}</a></td>
     </tr>
 </template>

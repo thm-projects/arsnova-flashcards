@@ -18,3 +18,11 @@
     text-overflow: ellipsis !important;
   }
 }
+
+@media (min-width: 1200px) {
+  #progressModal {
+    .modal-dialog, .model-body, .modal-content {
+      width:1200px !important;
+    }
+  }
+}

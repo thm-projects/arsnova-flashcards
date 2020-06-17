@@ -33,6 +33,7 @@ import {TranscriptBonus} from "../../api/subscriptions/transcriptBonus";
 import {TranscriptBonusList} from "../../api/transcriptBonus";
 import {ServerSettings} from "../../api/settings";
 import {CardsetVisuals} from "../../api/cardsetVisuals";
+import {LeitnerProgress} from "../../api/leitnerProgress";
 
 Meteor.subscribe("collegesCourses");
 
@@ -1131,4 +1132,8 @@ Template.registerHelper("greaterThan0", function (number) {
 
 Template.registerHelper("gotLeitnerTimerDebugEnabled", function () {
 	return Meteor.settings.public.debug.leitnerTimer && Route.isBox() && Bonus.isInBonus(FlowRouter.getParam('_id'));
+});
+
+Template.registerHelper("gotLocalLeitnerGraphData", function () {
+	return LeitnerProgress.gotData();
 });

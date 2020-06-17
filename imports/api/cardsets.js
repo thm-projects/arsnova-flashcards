@@ -937,5 +937,70 @@ Meteor.methods({
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
+	},
+	getTempCardsetData: function (cardset_id, type) {
+		check(cardset_id, String);
+		check(type, String);
+
+		let options = {};
+		options.fields = {
+			description: 0,
+			date: 0,
+			dateUpdated: 0,
+			editors: 0,
+			visible: 0,
+			ratings: 0,
+			price: 0,
+			reviewed: 0,
+			reviewer: 0,
+			request: 0,
+			raterCount: 0,
+			userDeleted: 0,
+			originalAuthorName: 0,
+			rating: 0,
+			lastEditor: 0
+		};
+		if (type === 'cardset') {
+			if ((Meteor.userId() || ServerStyle.isLoginEnabled("guest")) && UserPermissions.isNotBlockedOrFirstLogin()) {
+				let cardset = Cardsets.findOne({_id: cardset_id}, options);
+				if (cardset.kind === "personal") {
+					if (!UserPermissions.isOwner(cardset.owner) && !UserPermissions.isAdmin()) {
+						return [];
+					}
+				}
+				if (!Meteor.userId() && cardset.kind === "edu") {
+					return [];
+				}
+				return Cardsets.find({
+					$or: [
+						{_id: cardset._id},
+						{_id: {$in: cardset.cardGroups}}
+					]
+				}, options).fetch();
+			} else {
+				return [];
+			}
+		} else {
+			let query = {};
+			if (!UserPermissions.gotBackendAccess() && type !== 'admin') {
+				query.user_id = Meteor.userId();
+			} else if (type === 'user') {
+				query.user_id = Meteor.userId();
+			}
+			let cardsetIDFilter = _.uniq(Leitner.find(query, {
+				fields: {cardset_id: 1}
+			}).fetch().map(function (x) {
+				return x.cardset_id;
+			}), true);
+			if (UserPermissions.gotBackendAccess() && type === 'admin') {
+				return Cardsets.find({_id: {$in: cardsetIDFilter}}, options).fetch();
+			} else {
+				let shuffledCardsets = Cardsets.find({_id: {$in: cardsetIDFilter}, shuffled: true}, options).fetch();
+				for (let i = 0; i < shuffledCardsets.length; i++) {
+					cardsetIDFilter = cardsetIDFilter.concat(shuffledCardsets[i].cardGroups);
+				}
+				return Cardsets.find({_id: {$in: cardsetIDFilter}}, options).fetch();
+			}
+		}
 	}
 });

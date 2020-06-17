@@ -578,12 +578,26 @@
           "card_sidebar_zoom_text_hover": $button_text_hover,
           "card_sidebar_zoom_background_active": $thm_orange,
           "card_sidebar_zoom_text_active": white,
+
+          "card_sidebar_leitner_history_background": none,
+          "card_sidebar_leitner_history_text": $thm_gray,
+          "card_sidebar_leitner_history_background_hover": $button_background_hover,
+          "card_sidebar_leitner_history_text_hover": $button_text_hover,
+          "card_sidebar_leitner_history_background_active": $thm_green,
+          "card_sidebar_leitner_history_text_active": white,
+
+          "card_sidebar_leitner_graph_background": none,
+          "card_sidebar_leitner_graph_text": $thm_gray,
+          "card_sidebar_leitner_graph_background_hover": $button_background_hover,
+          "card_sidebar_leitner_graph_text_hover": $button_text_hover,
+          "card_sidebar_leitner_graph_background_active": $thm_orange,
+          "card_sidebar_leitner_graph_text_active": white,
     //cardset sidebar colors
           "cardset_sidebar_preview_background": none,
           "cardset_sidebar_preview_text": $thm_gray,
           "cardset_sidebar_preview_background_hover": $button_background_hover,
           "cardset_sidebar_preview_text_hover": $button_text_hover,
-          "cardset_sidebar_preview_background_active": $thm_green,
+          "cardset_sidebar_preview_background_active": $thm_orange,
           "cardset_sidebar_preview_text_active": white,
     //cardset colors
           "cardset_markdeep_background": LightGoldenRodYellow,

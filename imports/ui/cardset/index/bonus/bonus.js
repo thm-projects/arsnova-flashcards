@@ -8,6 +8,7 @@ import "./modal/removeUser.js";
 import "./modal/userHistory.js";
 import "./bonus.html";
 import {Bonus} from "../../../../api/bonus";
+import {LeitnerProgress} from "../../../../api/leitnerProgress";
 
 Session.setDefault('selectedBonusUser', undefined);
 Session.setDefault('selectedBonusUserHistoryData', undefined);
@@ -80,10 +81,8 @@ Template.cardsetLearnActivityStatistic.events({
 		FlowRouter.go('cardsetdetailsid', {_id: this._id});
 	},
 	"click .detailed-stats": function (event) {
-		FlowRouter.go('progress', {
-			_id: FlowRouter.getParam('_id'),
-			user_id: $(event.target).data('id')
-		});
+		LeitnerProgress.setupTempData(FlowRouter.getParam('_id'), $(event.target).data('id'), 'cardset');
+		$('#progressModal').modal('show');
 	},
 	"click #showIntervalHelp": function (event) {
 		event.stopPropagation();

@@ -8,6 +8,8 @@ import humanizeDuration from "humanize-duration";
 
 let humanizeSettings = {language: 'de', conjunction: ' und ', serialComma: false, round: true};
 
+Session.setDefault('bonusUserHistoryModalActive', false);
+
 /*
 * ############################################################################
 * bonusUserHistoryModal
@@ -15,7 +17,11 @@ let humanizeSettings = {language: 'de', conjunction: ' und ', serialComma: false
 */
 
 Template.bonusUserHistoryModal.onRendered(function () {
+	$('#bonusUserHistoryModal').on('shown.bs.modal', function () {
+		Session.set('bonusUserHistoryModalActive', true);
+	});
 	$('#bonusUserHistoryModal').on('hidden.bs.modal', function () {
+		Session.set('bonusUserHistoryModalActive', false);
 		Session.set('selectedBonusUser', undefined);
 		Session.set('selectedBonusUserHistoryData', undefined);
 	});
@@ -24,7 +30,7 @@ Template.bonusUserHistoryModal.onRendered(function () {
 Template.bonusUserHistoryModal.helpers({
 	getTitle: function () {
 		if (Session.get('selectedBonusUserHistoryData') !== undefined) {
-			if (Route.isFilterIndex()) {
+			if (Route.isFilterIndex() || Route.isBox()) {
 				if (Session.get('selectedBonusUserHistoryData')[0].cardsetShuffled) {
 					return TAPi18n.__('leitnerProgress.modal.userHistory.titleRepetitorium', {repetitorium: Session.get('selectedBonusUserHistoryData')[0].cardsetTitle});
 				} else {
@@ -36,7 +42,7 @@ Template.bonusUserHistoryModal.helpers({
 		}
 	},
 	gotUserData: function () {
-		if (Route.isFilterIndex()) {
+		if (Route.isFilterIndex() || Route.isBox()) {
 			return true;
 		} else {
 			return Session.get('selectedBonusUser') !== undefined && Session.get('selectedBonusUser').user_id !== undefined;
