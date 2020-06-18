@@ -234,7 +234,8 @@ let cardTypeCubeSides = [
 			"contentId": 1,
 			"defaultStyle": "default",
 			"gotLearningGoalPlaceholder": true,
-			"gotPDFAutoTarget": true
+			"gotPDFAutoTarget": true,
+			"gotQuestion": true // Displays answers after the markdeep content
 		},
 		{
 			"contentId": 4,
@@ -245,7 +246,7 @@ let cardTypeCubeSides = [
 			"contentId": 2,
 			"defaultStyle": "default",
 			"isAnswer": true,
-			"isAnswerFocus": true
+			"isAnswerFocus": true // Jumps to answer and display answer result before markdeep content
 		},
 		{
 			"contentId": 5,
@@ -329,13 +330,14 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 1,
 			"defaultStyle": "default",
-			"gotLearningGoalPlaceholder": true
+			"gotLearningGoalPlaceholder": true,
+			"gotQuestion": true // Displays answers after the markdeep content
 		},
 		{
 			"contentId": 2,
 			"defaultStyle": "default",
 			"isAnswer": true,
-			"isAnswerFocus": true
+			"isAnswerFocus": true // Jumps to answer and display answer result before markdeep content
 		},
 		{
 			"contentId": 3,

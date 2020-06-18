@@ -16,8 +16,7 @@ Template.markdeepNavigationItemAnswerEditor.events({
 			let answers = Session.get('markdeepEditorAnswers');
 			answers.push({
 				answer: '',
-				explanation: '',
-				type: 0
+				explanation: ''
 			});
 			Session.set('markdeepEditorAnswers', answers);
 		}

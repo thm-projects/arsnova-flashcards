@@ -1,0 +1,57 @@
+<template name="cardAnswers">
+    {{#if gotAnswers}}
+        <dic class="card-answers-table">
+            {{#each getAnswers}}
+                <div class="card-content-answer-element">
+                    <div class="row card-content-answer-header {{getAnswerTypeBackground}}">
+                        <span class="card-content-answer-tag">
+                            <b>{{getAnswerTag @index}}</b>:
+                        </span>
+                            <span class="card-content-answer-icon-group">
+                                {{#if isAnswerSide}}
+                                        {{#if gotExplanation}}
+                                            <span class="fa-stack" data-id="{{@index}}">
+                                                <i class="fas fa-circle fa-stack-1x fa-inverse"></i>
+                                                <i class="fas fa-exclamation-circle fa-stack-1x card-content-explanation-icon"></i>
+                                            </span>
+                                        {{/if}}
+                                        {{#if isRightAnswer}}
+                                            <span class="fa-stack fa-stack-checkbox" data-id="{{@index}}">
+                                                <i class="fas fa-square fa-stack-2x fa-inverse"></i>
+                                                <i class="far fa-square fa-stack-2x card-content-right-answer-icon"></i>
+                                                <i class="fas fa-check fa-stack-1x card-content-right-answer-icon"></i>
+                                            </span>
+                                        {{else}}
+                                            <span class="fa-stack" data-id="{{@index}}">
+                                                <i class="fas fa-circle fa-stack-1x fa-inverse"></i>
+                                                <i class="far fa-times-circle fa-stack-1x card-content-wrong-answer-icon"></i>
+                                            </span>
+                                        {{/if}}
+                                {{else}}
+                                    <span class="fa-stack fa-stack-checkbox" data-id="{{@index}}">
+                                                <i class="fas fa-square fa-stack-2x fa-inverse"></i>
+                                                <i class="far fa-square fa-stack-2x card-content-checkbox-icon"></i>
+                                    </span>
+                                {{/if}}
+                            </span>
+
+                    </div>
+                    <div class="row card-content-answer-container {{getAnswerTypeBackground}}">
+                        {{#markdeep}}
+                            {{this.answer}}
+                        {{/markdeep}}
+                    </div>
+                    {{#if isAnswerSide}}
+                        {{#if gotExplanation}}
+                            <div class="row card-content-answer-explanation-container">
+                                {{#markdeep}}
+                                    {{this.explanation}}
+                                {{/markdeep}}
+                            </div>
+                        {{/if}}
+                    {{/if}}
+                </div>
+            {{/each}}
+        </dic>
+    {{/if}}
+</template>

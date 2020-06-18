@@ -308,7 +308,12 @@ export let CardIndex = class CardIndex {
 			"cardType": Session.get('cardType'),
 			"centerTextElement": Session.get('centerTextElement'),
 			"alignType": Session.get('alignType'),
-			"date": Session.get('cardDate')
+			"date": Session.get('cardDate'),
+			"answers": {
+				"content": Session.get('markdeepEditorAnswers'),
+				"rightAnswers": Session.get('rightAnswers'),
+				"randomized": Session.get('randomizeAnswerPositions')
+			}
 		}];
 	}
 

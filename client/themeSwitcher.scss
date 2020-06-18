@@ -672,6 +672,15 @@ $themes: (
     $card_content_zoom_container_button_minus_background_disabled: map-get($map, "card_content_zoom_container_button_minus_background_disabled");
     $card_content_zoom_container_button_minus_text_disabled: map-get($map, "card_content_zoom_container_button_minus_text_disabled");
     $card_content_zoom_container_button_minus_disabled_opacity: map-get($map, "card_content_zoom_container_button_minus_disabled_opacity");
+
+    $card_right_answer_icon: map-get($map, "card_right_answer_icon");
+    $card_wrong_answer_icon: map-get($map, "card_wrong_answer_icon");
+    $card_explanation_answer_icon: map-get($map, "card_explanation_answer_icon");
+    $card_checkbox_answer_icon: map-get($map, "card_checkbox_answer_icon");
+    $card_answer_background: map-get($map, "card_answer_background");
+    $card_answer_background_right: map-get($map, "card_answer_background_right");
+    $card_answer_background_wrong: map-get($map, "card_answer_background_wrong");
+    $card_answer_explanation_background: map-get($map, "card_answer_explanation_background");
     //markdeep colors
     $markdeep_inline_code_background: map-get($map, "markdeep_inline_code_background");
     $markdeep_inline_code_text: map-get($map, "markdeep_inline_code_text");
@@ -2762,6 +2771,38 @@ $themes: (
           color: $card_content_zoom_container_button_minus_text_disabled !important;
         }
       }
+    }
+
+    .card-content-right-answer-icon {
+      color: $card_right_answer_icon !important;
+    }
+
+    .card-content-wrong-answer-icon {
+      color: $card_wrong_answer_icon !important;
+    }
+
+    .card-content-explanation-icon {
+      color: $card_explanation_answer_icon !important;
+    }
+
+    .card-content-checkbox-icon {
+      color: $card_checkbox_answer_icon !important;
+    }
+
+    .card-content-answer-header, .card-content-answer-container {
+      background-color: $card_answer_background !important;
+    }
+
+    .card-content-answer-header.right, .card-content-answer-container.right {
+      background-color: $card_answer_background_right !important;
+    }
+
+    .card-content-answer-header.wrong, .card-content-answer-container.wrong {
+      background-color: $card_answer_background_wrong !important;
+    }
+
+    .card-content-answer-explanation-container {
+      background-color: $card_answer_explanation_background !important;
     }
 
     #subjectEditor:disabled {

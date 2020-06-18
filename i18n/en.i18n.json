@@ -1769,7 +1769,7 @@
         "addAnswer": "Antwort hinzufügen",
         "removeAnswer": "Letzte Antwort entfernen",
         "rightAnswer": "Markiere aktive Antwort als richtig",
-        "randomizeAnswerPosition": "Zufällige Position aller Karten Antworten im Lernmodus",
+        "randomizeAnswerPosition": "Antworten im Leitner-Plan vermischen",
         "explanation": "Erläuterung für Antwort"
       }
     }

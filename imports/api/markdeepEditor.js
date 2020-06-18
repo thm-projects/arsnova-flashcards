@@ -3,6 +3,8 @@ import {CardVisuals} from "./cardVisuals";
 import * as config from "../config/markdeepEditor.js";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {ServerStyle} from "./styles";
+import {CardType} from "./cardTypes";
+import {CardNavigation} from "./cardNavigation";
 
 export let MarkdeepEditor = class MarkdeepEditor {
 	static help () {
@@ -80,6 +82,10 @@ export let MarkdeepEditor = class MarkdeepEditor {
 
 	static toggleAnswerEditor () {
 		Session.set('isAnswerEditorEnabled', !Session.get('isAnswerEditorEnabled'));
+		if (Session.get('isAnswerEditorEnabled')) {
+			let answerSideID = CardType.getAnswerSideID(Session.get('cardType'));
+			CardNavigation.selectButton(answerSideID);
+		}
 		this.focusOnContentEditor();
 	}
 
@@ -91,9 +97,14 @@ export let MarkdeepEditor = class MarkdeepEditor {
 		}
 	}
 
-	static getAnswerTag (index)  {
+	static getAnswerTag (index, fullString = true)  {
 		index += 10;
-		return TAPi18n.__('card.markdeepEditor.answerTag', {tag: index.toString(36).toUpperCase()}, ServerStyle.getServerLanguage());
+		let tag = index.toString(36).toUpperCase();
+		if (fullString) {
+			return TAPi18n.__('card.markdeepEditor.answerTag', {tag: tag}, ServerStyle.getServerLanguage());
+		} else {
+			return tag;
+		}
 	}
 
 	static focusOnContentEditor () {
