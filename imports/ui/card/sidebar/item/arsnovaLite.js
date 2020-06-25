@@ -22,7 +22,7 @@ Template.cardSidebarItemArsnovaLite.helpers({
 		} else {
 			cardset = this;
 		}
-		if (cardset.shuffled && cardset.fragJetzt.overrideOnlyEmptySessions) {
+		if (cardset !== undefined && cardset.shuffled && cardset.fragJetzt.overrideOnlyEmptySessions) {
 			let currentCard = Cards.findOne(Session.get('activeCard'));
 			if (currentCard !== undefined) {
 				let currentCardset = Cardsets.findOne({_id: currentCard.cardset_id}, {fields: {fragJetzt: true}});
@@ -38,7 +38,7 @@ Template.cardSidebarItemArsnovaLite.helpers({
 					}
 				}
 			}
-		} else if (cardset.fragJetzt.session !== undefined && cardset.fragJetzt.session.length) {
+		} else if (cardset !== undefined && cardset.fragJetzt !== undefined && cardset.fragJetzt.session !== undefined && cardset.fragJetzt.session.length) {
 			Session.set('fragJetztSessionID', cardset.fragJetzt.session);
 			return true;
 		} else {
