@@ -7,7 +7,7 @@
 let defaultBackgrounds = {
 	"landing-page": "/img/background/question-mark-1481601.jpg",
 	"internal": "/img/background/Mac-Tastatur.jpg",
-	"demo": "none",
+	"demo": "/img/background/question-mark-1481601.jpg",
 	"presentation": "none",
 	"learning": "none",
 	"backend": "none",
