@@ -695,6 +695,12 @@ th {
   color: white !important;
 }
 
+.cc-btn:hover {
+  background-color: midnightblue !important;
+  color: white !important;
+  text-decoration: none !important;
+}
+
 .panelIconColumn {
   @media (min-width: 768px) {
     text-align: center;
