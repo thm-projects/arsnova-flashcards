@@ -5,7 +5,7 @@
 
 // Setting "default"
 let defaultBackgrounds = {
-	"landing-page": "/img/background/zettelkasten_wikipedia_original.jpg",
+	"landing-page": "/img/background/question-mark-1481601.jpg",
 	"internal": "/img/background/Mac-Tastatur.jpg",
 	"demo": "none",
 	"presentation": "none",
