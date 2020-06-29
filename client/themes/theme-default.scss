@@ -363,10 +363,10 @@
           "footer_welcome_page_info_icon_text" : white,
           "footer_welcome_page_info_icon_text_hover": $button_background_hover,
           "footer_navigation_text": white,
-          "footer_navigation_text_active": #2ac55f,
+          "footer_navigation_text_active": white,
           "footer_navigation_text_hover": $button_text_hover,
-          "footer_navigation_background": black,
-          "footer_navigation_background_active": black,
+          "footer_navigation_background": grey,
+          "footer_navigation_background_active": grey,
           "footer_navigation_background_hover": $button_background_hover,
     //impressum colors
           "info_content_header_text": white,
@@ -442,11 +442,11 @@
     //card-navigation colors
           "card_navigation_active_background": $thm_orange,
           "card_navigation_active_text": white,
-          "card_navigation_active_background_hover": $primary,
+          "card_navigation_active_background_hover": $button_background_hover,
           "card_navigation_active_text_hover": white,
 
-          "card_navigation_background": $athens_gray_approx,
-          "card_navigation_text": $primary_text,
+          "card_navigation_background": darkgrey,
+          "card_navigation_text": white,
           "card_navigation_background_hover": $button_background_hover,
           "card_navigation_text_hover": $button_text_hover,
 
