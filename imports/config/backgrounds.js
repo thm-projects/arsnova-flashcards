@@ -6,11 +6,11 @@
 // Setting "default"
 let defaultBackgrounds = {
 	"landing-page": "/img/background/question-mark-1481601.jpg",
-	"internal": "/img/background/Mac-Tastatur.jpg",
+	"internal": "/img/background/question-mark-1481601.jpg",
 	"demo": "/img/background/question-mark-1481601.jpg",
-	"presentation": "none",
-	"learning": "none",
-	"backend": "none",
+	"presentation": "/img/background/question-mark-1481601.jpg",
+	"learning": "img/background/question-mark-1481601.jpg",
+	"backend": "/img/background/Mac-Tastatur.jpg",
 	"editor": "none",
 	"transcriptBonus": "none"
 };
