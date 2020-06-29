@@ -89,7 +89,7 @@ let defaultSettings = {
 		},
 		"button": {
 			"about":  {
-				"default_de": "Erfahre mehr in unserer interaktiven Einführung …",
+				"default_de": "Einführung in die Lernkartei-Plattform der THM …",
 				"default_en": "Erfahre mehr über 🍅cards …",
 				"mobile_de": "Erfahre mehr in unserer interaktiven Einführung ……",
 				"mobile_en": "Erfahre mehr über 🍅cards…"
