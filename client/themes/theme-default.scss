@@ -6,7 +6,8 @@
   $thm_blue: blue;
   $thm_orange: darkorange;
   $thm_red: red;
-  $thm_gray: #4A5C66;
+  $thm_gray: grey
+;
   $thm_green: green;
   $athens_gray_approx: rgb(236, 240, 241);
   $white: white;
@@ -505,7 +506,7 @@
 
           "card_content_zoom_container_background": $thm_gray,
           "card_content_zoom_container_text": white,
-          "card_content_zoom_container_percentage": $thm_orange,
+          "card_content_zoom_container_percentage": white,
 
           "card_content_zoom_container_button_plus_background": $thm_green,
           "card_content_zoom_container_button_plus_text": white,
