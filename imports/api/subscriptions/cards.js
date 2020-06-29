@@ -11,6 +11,7 @@ import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {CardEditor} from "../cardEditor";
 
 export const Cards = new Mongo.Collection("cards");
+let disableAnswersOption = {fields: {answers: 0}};
 
 function getPreviewCards(cardset_id) {
 	let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1, cardGroups: 1, kind: 1}});
@@ -42,7 +43,7 @@ function getPreviewCards(cardset_id) {
 	while (cardIdArray.length > limit) {
 		cardIdArray.pop();
 	}
-	return Cards.find({_id: {$in: cardIdArray}});
+	return Cards.find({_id: {$in: cardIdArray}, disableAnswersOption});
 }
 
 if (Meteor.isServer) {
@@ -174,25 +175,41 @@ if (Meteor.isServer) {
 				return Cards.find(filterQuery);
 			} else if (Roles.userIsInRole(this.userId, 'pro')) {
 				if (cardset.owner === this.userId || cardset.kind !== "personal") {
-					return Cards.find(filterQuery);
+					if (cardset.owner === this.userId) {
+						return Cards.find(filterQuery);
+					} else {
+						return Cards.find(filterQuery, disableAnswersOption);
+					}
 				} else {
 					return getPreviewCards(cardset._id);
 				}
 			} else if (Roles.userIsInRole(this.userId, 'university')) {
 				if (cardset.owner === this.userId || cardset.kind === "free" || cardset.kind === "edu" || paidCardsets !== undefined) {
-					return Cards.find(filterQuery);
+					if (cardset.owner === this.userId) {
+						return Cards.find(filterQuery);
+					} else {
+						return Cards.find(filterQuery, disableAnswersOption);
+					}
 				} else {
 					return getPreviewCards(cardset._id);
 				}
 			} else if (this.userId) {
 				if (cardset.owner === this.userId || cardset.kind === "free" || paidCardsets !== undefined) {
-					return Cards.find(filterQuery);
+					if (cardset.owner === this.userId) {
+						return Cards.find(filterQuery);
+					} else {
+						return Cards.find(filterQuery, disableAnswersOption);
+					}
 				} else {
 					return getPreviewCards(cardset._id);
 				}
 			} else {
 				if (cardset.kind === "free") {
-					return Cards.find(filterQuery);
+					if (cardset.owner === this.userId) {
+						return Cards.find(filterQuery);
+					} else {
+						return Cards.find(filterQuery, disableAnswersOption);
+					}
 				} else {
 					return getPreviewCards(cardset._id);
 				}
