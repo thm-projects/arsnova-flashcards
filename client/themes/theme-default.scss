@@ -5,7 +5,7 @@
   $thm_dark_blue: darkblue;
   $thm_blue: blue;
   $thm_orange: darkorange;
-  $thm_red: red;
+  $thm_red: tomato;
   $thm_gray: grey
 ;
   $thm_green: green;
@@ -40,7 +40,7 @@
   $input_textarea_text_active: black;
   $input_textarea_text_inactive: black;
   $item_icon_hover: midnightblue;
-  $default_background: black;
+  $default_background: $thm_gray;
 
   @return (
     //background (Deactivate the image with "none" if you want to use the background-color)
@@ -806,7 +806,7 @@
           "pomodoro_timer_arc_hover": $thm_orange,
           "pomodoro_timer_arc_progress": $thm_red,
           "pomodoro_timer_arc_progress_hover": $thm_red,
-          "pomodoro_timer_arc_break": $thm_dark_blue,
+          "pomodoro_timer_arc_break": #2ac55f,
           "pomodoro_timer_arc_break_hover": $thm_dark_blue,
           "pomodoro_timer_text": white,
           "pomodoro_timer_text_highlight": $thm_orange,
