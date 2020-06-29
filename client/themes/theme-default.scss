@@ -82,13 +82,13 @@
     //global button and label colors
           "demo_background": $thm_green,
           "demo_text": $white,
-          "free_background": $thm_dark_blue,
+          "free_background": tomato,
           "free_text": $white,
           "edu_background": $thm_green,
           "edu_text": $white,
           "pro_background": $thm_orange,
           "pro_text": $white,
-          "private_background": $thm_red,
+          "private_background": red,
           "private_text": $white,
           "danger_background": $thm_orange,
           "danger_text": $white,
@@ -191,8 +191,8 @@
           "navbar_background": black,
           "navbar_text": white,
           "navbar_text_hover": $button_text_hover,
-          "navbar_collapse_background": #2ac55f,
-          "navbar_collapse_text": white,
+          //"navbar_collapse_background": #2ac55f,
+          "navbar_collapse_text": $thm_orange,
           "navbar_collapse_background_hover": $button_background_hover,
           "navbar_collapse_text_hover": $button_text_hover,
     //navbar all
@@ -797,7 +797,7 @@
     //pomodoro colors
           "pomodoro_timer_fullscreen_overlay": rgba(0,0,0, 1),
           "pomodoro_timer_hand_circle": $thm_orange,
-          "pomodoro_timer_hand_circle_hover": white,
+          "pomodoro_timer_hand_circle_hover": $thm_orange,
           "pomodoro_timer_hand_hour": white,
           "pomodoro_timer_hand_hour_hover": midnightblue,
           "pomodoro_timer_hand_min": white,
@@ -807,7 +807,7 @@
           "pomodoro_timer_arc_progress": $thm_red,
           "pomodoro_timer_arc_progress_hover": $thm_red,
           "pomodoro_timer_arc_break": #2ac55f,
-          "pomodoro_timer_arc_break_hover": $thm_dark_blue,
+          "pomodoro_timer_arc_break_hover": #2ac55f,
           "pomodoro_timer_text": white,
           "pomodoro_timer_text_highlight": $thm_orange,
     //sweet alert 2 colors
@@ -873,9 +873,9 @@
           "use_cases_button_icon_hover": white,
           "use_cases_table_header_background": transparent,
           "use_cases_table_header_text": $thm_dark_blue,
-          "use_cases_special_cardsets_button_background": $thm_dark_blue,
+          "use_cases_special_cardsets_button_background": $thm_green,
           "use_cases_special_cardsets_button_text": white,
-          "use_cases_special_cardsets_button_background_hover": $thm_green,
+          "use_cases_special_cardsets_button_background_hover": midnightblue,
           "use_cases_special_cardsets_button_text_hover": white,
 
   );
