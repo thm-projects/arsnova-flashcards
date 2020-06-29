@@ -3079,12 +3079,18 @@ $themes: (
     .label-arsnova-click {
       background-color: $arsnova_click_background !important;
       color: $arsnova_click_text !important;
+      i {
+        color: $arsnova_click_text !important;
+      }
       cursor: $arsnova_click_cursor;
     }
 
     .label-frag-jetzt {
       background-color: $frag_jetzt_background !important;
       color: $frag_jetzt_text !important;
+      i {
+        color: $frag_jetzt_text !important;
+      }
       cursor: $frag_jetzt_cursor;
     }
 
