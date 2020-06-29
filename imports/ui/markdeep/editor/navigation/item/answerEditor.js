@@ -19,6 +19,7 @@ Template.markdeepNavigationItemAnswerEditor.events({
 				explanation: ''
 			});
 			Session.set('markdeepEditorAnswers', answers);
+			Session.set('activeAnswerID', answers.length - 1);
 		}
 		MarkdeepEditor.focusOnContentEditor();
 	},
@@ -27,8 +28,10 @@ Template.markdeepNavigationItemAnswerEditor.events({
 			let answers = Session.get('markdeepEditorAnswers');
 			answers.pop();
 			Session.set('markdeepEditorAnswers', answers);
-			if (Session.get('activeAnswerID') >= answers.length) {
-				Session.set('activeAnswerID', 0);
+			if (Session.get('activeAnswerID') >= answers.length && answers.length !== 0) {
+				Session.set('activeAnswerID', answers.length - 1);
+			} else {
+				Session.set('activeAnswerID', -1);
 			}
 			let rightAnswers = Session.get('rightAnswers');
 			for (let i = 0; i < rightAnswers.length; i++) {
@@ -70,8 +73,8 @@ Template.markdeepNavigationItemAnswerEditor.helpers({
 	isRightAnswer: function () {
 		return Session.get('rightAnswers').indexOf(Session.get('activeAnswerID')) >= 0;
 	},
-	gotAnswers: function () {
-		return Session.get('markdeepEditorAnswers').length;
+	isAnswer: function () {
+		return Session.get('activeAnswerID') >= 0;
 	},
 	disableAddAnswerButton: function () {
 		return Session.get('markdeepEditorAnswers').length >= 26;
@@ -91,7 +94,7 @@ Template.markdeepNavigationItemAnswerEditor.helpers({
  */
 
 Template.markdeepNavigationItemAnswerEditorDropdown.onRendered(function () {
-	Session.set('activeAnswerID', 0);
+	Session.set('activeAnswerID', -1);
 	answerDropdownResizeSensor = $(window).resize(function () {
 		MarkdeepEditor.setAnswerDropdownSize();
 	});

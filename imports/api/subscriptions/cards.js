@@ -316,6 +316,10 @@ var CardsSchema = new SimpleSchema({
 		type: [Object],
 		optional: true,
 		blackbox: true
+	},
+	"answers.question": {
+		type: String,
+		optional: true
 	}
 });
 

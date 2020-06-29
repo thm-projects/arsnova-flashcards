@@ -77,7 +77,7 @@ Template.editor.onRendered(function () {
 Template.editor.onDestroyed(function () {
 	Session.set('isAnswerEditorEnabled', false);
 	Session.set('isExplanationEditorEnabled', false);
-	Session.set('activeAnswerID', 0);
+	Session.set('activeAnswerID', -1);
 });
 
 /*

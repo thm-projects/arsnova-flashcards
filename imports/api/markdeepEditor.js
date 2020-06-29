@@ -98,6 +98,9 @@ export let MarkdeepEditor = class MarkdeepEditor {
 	}
 
 	static getAnswerTag (index, fullString = true)  {
+		if (index < 0) {
+			return TAPi18n.__('card.markdeepEditor.question');
+		}
 		index += 10;
 		let tag = index.toString(36).toUpperCase();
 		if (fullString) {

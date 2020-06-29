@@ -6,34 +6,41 @@
             <i class="card-button fas fa-minus markdeep-answer-remove {{#if disableRemoveAnswerButton}}disabled{{/if}}"
                title="{{_ "card.tooltip.markdeepEditor.removeAnswer"}}"></i>
         </div>
-        {{#if gotAnswers}}
-            {{> markdeepNavigationItemAnswerEditorDropdown}}
+        {{> markdeepNavigationItemAnswerEditorDropdown}}
+        {{#if isAnswer}}
             <div class="btn-group">
                 <i class="card-button fas fa-check markdeep-toggle-right-answer {{#if isRightAnswer}}pressed{{/if}}"
                    title="{{_ "card.tooltip.markdeepEditor.rightAnswer"}}"></i>
-                <i class="card-button fas fa-dice markdeep-toggle-randomized-positions {{#if gotRandomizedAnswerPositions}}pressed{{/if}}"
-                   title="{{_ "card.tooltip.markdeepEditor.randomizeAnswerPosition"}}"></i>
-                <i class="card-button fas fa-exclamation-circle markdeep-toggle-explanation {{#if isExplanationEditorEnabled}}pressed{{/if}}"
+                <i class="card-button fas fa-exclamation-circle markdeep-toggle-explanation {{#if
+                        isExplanationEditorEnabled}}pressed{{/if}}"
                    title="{{_ "card.tooltip.markdeepEditor.explanation"}}"></i>
+
             </div>
         {{/if}}
+        <div class="btn-group">
+            <i class="card-button fas fa-dice markdeep-toggle-randomized-positions {{#if
+                    gotRandomizedAnswerPositions}}pressed{{/if}}"
+               title="{{_ "card.tooltip.markdeepEditor.randomizeAnswerPosition"}}"></i>
+        </div>
     </div>
 </template>
 
 <template name="markdeepNavigationItemAnswerEditorDropdown">
     <div class="btn-group">
         <div class="dropdown answerDropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="answerDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <button class="btn btn-default dropdown-toggle" type="button" id="answerDropdownMenu" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="true">
                 {{getAnswerTag getActiveAnswer}}
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="answerDropdownMenu">
+                <li class="dropdown-item answer-item {{#if isActiveAnswer -1}}active{{/if}}" data-id="-1">
+                    Frage
+                </li>
                 {{#each getAnswers}}
-                    <li class="dropdown-item answer-item {{#if isActiveAnswer @index}}active{{/if}}" data-id="{{@index}}">
+                    <li class="dropdown-item answer-item {{#if isActiveAnswer @index}}active{{/if}}"
+                        data-id="{{@index}}">
                         {{getAnswerTag @index}}
-                        {{#if gotRandomizedAnswerPositions}}
-                            <i class="fas fa-dice"></i>
-                        {{/if}}
                         {{#if isRightAnswer @index}}
                             &nbsp;&nbsp;
                             <i class="fas fa-check"></i>
@@ -41,6 +48,9 @@
                         {{#if gotExplanation @index}}
                             &nbsp;&nbsp;
                             <i class="fas fa-exclamation-circle"></i>
+                        {{/if}}
+                        {{#if gotRandomizedAnswerPositions}}
+                            <i class="fas fa-dice"></i>
                         {{/if}}
                     </li>
                 {{/each}}

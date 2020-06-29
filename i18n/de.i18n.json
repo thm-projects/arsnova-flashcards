@@ -1717,8 +1717,8 @@
     },
     "markdeepEditor": {
       "placeholders": {
-        "noAnswer": "Keine Antwort ausgewählt",
         "answer": "Inhalt für __tag__",
+        "question": "Inhalt für Frage",
         "explanation": "Erläuterung für __tag__"
       },
       "learningTime": {
@@ -1726,7 +1726,8 @@
         "repeated": "Wiederholte Lernzeit",
         "type": "Minuten"
       },
-      "answerTag": "Antwort __tag__"
+      "answerTag": "Antwort __tag__",
+      "question": "Frage"
     },
     "tooltip": {
       "toggle3D": "3D-Ansicht aktivieren / deaktivieren",

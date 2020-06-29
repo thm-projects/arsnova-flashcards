@@ -1,5 +1,8 @@
 <template name="cardAnswers">
     {{#if gotAnswers}}
+        {{#markdeep}}
+            {{this.answers.question}}
+        {{/markdeep}}
         <dic class="card-answers-table">
             {{#each getAnswers}}
                 <div class="card-content-answer-element">

@@ -312,7 +312,8 @@ export let CardIndex = class CardIndex {
 			"answers": {
 				"content": Session.get('markdeepEditorAnswers'),
 				"rightAnswers": Session.get('rightAnswers'),
-				"randomized": Session.get('randomizeAnswerPositions')
+				"randomized": Session.get('randomizeAnswerPositions'),
+				"question": Session.get('cardAnswersQuestion')
 			}
 		}];
 	}

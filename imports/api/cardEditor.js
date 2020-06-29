@@ -148,7 +148,7 @@ export let CardEditor = class CardEditor {
 		Session.set('initialLearningTime', -1);
 		Session.set('repeatedLearningTime', -1);
 		Session.set('markdeepEditorAnswers', []);
-		Session.set('activeAnswerID', 0);
+		Session.set('activeAnswerID', -1);
 		Session.set('rightAnswers', []);
 		Session.set('randomizeAnswerPositions', false);
 		Session.set('isExplanationEditorEnabled', false);
@@ -197,10 +197,15 @@ export let CardEditor = class CardEditor {
 			} else {
 				Session.set('randomizeAnswerPositions', false);
 			}
+			if (card.answers.question !== undefined) {
+				Session.set('cardAnswersQuestion', card.answers.question);
+			} else {
+				Session.set('cardAnswersQuestion', '');
+			}
 		} else {
 			Session.set('markdeepEditorAnswers', []);
 			Session.set('rightAnswers', []);
-			Session.set('randomizeAnswerPositions', false);
+			Session.set('randomizeAnswerPositions', '');
 		}
 	}
 
@@ -311,6 +316,7 @@ export let CardEditor = class CardEditor {
 			answers.rightAnswers = Session.get('rightAnswers');
 			answers.randomized = Session.get('randomizeAnswerPositions');
 			answers.content = Session.get('markdeepEditorAnswers');
+			answers.question = Session.get('cardAnswersQuestion');
 		}
 		if (!CardType.gotLearningUnit(cardType)) {
 			if (subject === "") {
