@@ -15,7 +15,7 @@ window.addEventListener("load", function () {
 				"text": "#ffffff"
 			},
 			"button": {
-				"background": "#FF9F30",
+				"background": "lightgrey",
 				"text": "#4a5c66"
 			}
 		},

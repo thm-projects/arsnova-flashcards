@@ -6,7 +6,8 @@
   $thm_blue: blue;
   $thm_orange: darkorange;
   $thm_red: red;
-  $thm_gray: #4A5C66;
+  $thm_gray: grey
+;
   $thm_green: green;
   $athens_gray_approx: rgb(236, 240, 241);
   $white: white;
@@ -363,14 +364,14 @@
           "footer_welcome_page_info_icon_text" : white,
           "footer_welcome_page_info_icon_text_hover": $button_background_hover,
           "footer_navigation_text": white,
-          "footer_navigation_text_active": #2ac55f,
+          "footer_navigation_text_active": white,
           "footer_navigation_text_hover": $button_text_hover,
-          "footer_navigation_background": black,
-          "footer_navigation_background_active": black,
+          "footer_navigation_background": grey,
+          "footer_navigation_background_active": grey,
           "footer_navigation_background_hover": $button_background_hover,
     //impressum colors
           "info_content_header_text": white,
-          "info_content_header_background": $thm_green,
+          "info_content_header_background": $thm_gray,
           "info_content_body_text": $thm_gray,
           "info_content_body_background": LightGoldenRodYellow,
     //editor navigation colors
@@ -442,11 +443,11 @@
     //card-navigation colors
           "card_navigation_active_background": $thm_orange,
           "card_navigation_active_text": white,
-          "card_navigation_active_background_hover": $primary,
+          "card_navigation_active_background_hover": $button_background_hover,
           "card_navigation_active_text_hover": white,
 
-          "card_navigation_background": $athens_gray_approx,
-          "card_navigation_text": $primary_text,
+          "card_navigation_background": darkgrey,
+          "card_navigation_text": white,
           "card_navigation_background_hover": $button_background_hover,
           "card_navigation_text_hover": $button_text_hover,
 
@@ -505,7 +506,7 @@
 
           "card_content_zoom_container_background": $thm_gray,
           "card_content_zoom_container_text": white,
-          "card_content_zoom_container_percentage": $thm_orange,
+          "card_content_zoom_container_percentage": white,
 
           "card_content_zoom_container_button_plus_background": $thm_green,
           "card_content_zoom_container_button_plus_text": white,
@@ -828,7 +829,7 @@
           "sweet_alert_2_icon_question_border": $thm_gray,
           "sweet_alert_2_icon_question_text": $thm_gray,
     //loading screen
-          "loading_screen_icon": midnightblue,
+          "loading_screen_icon": $thm_orange,
     //wozniak rating buttons
           "wozniak_rating_0_background": red,
           "wozniak_rating_0_text": white,
@@ -855,11 +856,11 @@
           "wozniak_rating_5_text": white,
           "wozniak_rating_5_text_hover": $button_text_hover,
     //landing page
-          "landing_page_wordcloud_button": white,
+          "landing_page_wordcloud_button": darkgrey,
           "landing_page_wordcloud_button_opacity": 1.0,
           "landing_page_wordcloud_button_hover": midnightblue,
           "landing_page_wordcloud_button_opacity_hover": 1,
-          "landing_page_label": white,
+          "landing_page_label": darkgrey,
     //wordcloud
           "wordcloud_background": "unset",
           "wordcloud_border": "unset",
