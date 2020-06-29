@@ -739,7 +739,7 @@ export let CardVisuals = class CardVisuals {
 				let topPosition = sidebarRight.css('margin-top');
 				let rightPosition = sidebarRight.outerWidth();
 				zoomSliderContainer.css({
-					'top': topPosition,
+					'margin-top': topPosition,
 					'right': rightPosition + "px"
 				});
 			}
