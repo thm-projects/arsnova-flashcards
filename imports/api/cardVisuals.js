@@ -736,10 +736,10 @@ export let CardVisuals = class CardVisuals {
 			let zoomTextButton = $('.zoomTextButton:visible');
 			if (cardHeader.length && zoomTextButton.length) {
 				let sidebarRight = $('#flashcardSidebarRight');
-				let topPosition = sidebarRight.offset().top;
+				let topPosition = sidebarRight.css('margin-top');
 				let rightPosition = sidebarRight.outerWidth();
 				zoomSliderContainer.css({
-					'top': topPosition + "px",
+					'top': topPosition,
 					'right': rightPosition + "px"
 				});
 			}
