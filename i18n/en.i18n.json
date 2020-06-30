@@ -1723,7 +1723,11 @@
       },
       "answerTag": "Antwort __tag__",
       "question": "Frage",
-      "enableAnswers": "Freischalten"
+      "enableAnswers": "Freischalten",
+      "notification": {
+        "noAnswers": "Alle Antworten müssen einen Inhalt besitzen",
+        "noRightAnswer": "Es muss mindestens eine richtige Antwort existieren"
+      }
     },
     "tooltip": {
       "contrast": "Setze die Präsentation in den Kontrastmodus",

@@ -1728,7 +1728,11 @@
       },
       "answerTag": "Antwort __tag__",
       "question": "Frage",
-      "enableAnswers": "Freischalten"
+      "enableAnswers": "Freischalten",
+      "notification": {
+        "noAnswers": "Alle Antworten müssen einen Inhalt besitzen",
+        "noRightAnswer": "Es muss mindestens eine richtige Antwort existieren"
+      }
     },
     "tooltip": {
       "toggle3D": "3D-Ansicht aktivieren / deaktivieren",

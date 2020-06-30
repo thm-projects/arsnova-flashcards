@@ -253,12 +253,7 @@ export let CardVisuals = class CardVisuals {
 		this.rotateCube(lastActiveRotation, true);
 		let adjustNavigation = true;
 		if (Route.isEditMode() && !this.isFullscreen()) {
-			let learningTimeHeight = 0;
-			let learningTime = $('.learningTime-group');
-			if (learningTime.length) {
-				learningTimeHeight = learningTime.height();
-			}
-			$('#contentEditor').css('height', $('.scene').height() - $('#editorButtonGroup').height() - learningTimeHeight);
+			$('#contentEditor').css('height', $('.scene').height() - $('#editorButtonGroup').height() - this.getSecondEditorRowHeight());
 			adjustNavigation = false;
 		}
 		if (AspectRatio.scale3DCardNavigationWidth()) {
@@ -275,6 +270,20 @@ export let CardVisuals = class CardVisuals {
 				}
 			}
 		}
+	}
+
+	static getSecondEditorRowHeight () {
+		let secondEditorRowHeight = 0;
+		let learningTime = $('.learningTime-group');
+		if (learningTime.length) {
+			secondEditorRowHeight = learningTime.height();
+		} else {
+			let answerEditor = $('.answerEditor-group');
+			if (answerEditor.length) {
+				secondEditorRowHeight = answerEditor.height();
+			}
+		}
+		return secondEditorRowHeight;
 	}
 
 	static resizeFlaschardLegacy () {
@@ -331,11 +340,6 @@ export let CardVisuals = class CardVisuals {
 				flashcardControls.css('height', newFlashcardSize * flashcardBodyHeight);
 			}
 		}
-		let learningTimeHeight = 0;
-		let learningTime = $('.learningTime-group');
-		if (learningTime.length) {
-			learningTimeHeight = learningTime.height();
-		}
 		if (Session.get('mobilePreview')) {
 			newFlashcardSize -= 48;
 			if (!Session.get('fullscreen') && $(window).width() > 1200 && Session.get('mobilePreviewRotated')) {
@@ -352,9 +356,9 @@ export let CardVisuals = class CardVisuals {
 				flashcard.removeAttr('style');
 				flashcardBody.removeAttr('style');
 			}
-			contentEditor.css('height', newFlashcardSize - learningTimeHeight);
+			contentEditor.css('height', newFlashcardSize - this.getSecondEditorRowHeight());
 		} else {
-			contentEditor.css('height', newFlashcardSize - $('#markdeepNavigation').height() - learningTimeHeight);
+			contentEditor.css('height', newFlashcardSize - $('#markdeepNavigation').height() - this.getSecondEditorRowHeight());
 		}
 	}
 

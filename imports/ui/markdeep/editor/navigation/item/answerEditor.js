@@ -1,6 +1,7 @@
 import "./answerEditor.html";
 import {MarkdeepEditor} from "../../../../../api/markdeepEditor";
 import {Session} from "meteor/session";
+import {CardVisuals} from "../../../../../api/cardVisuals";
 
 let answerDropdownResizeSensor;
 
@@ -9,6 +10,10 @@ let answerDropdownResizeSensor;
  * markdeepNavigationItemAnswerEditor
  * ############################################################################
  */
+
+Template.markdeepNavigationItemAnswerEditor.onRendered(function () {
+	CardVisuals.resizeFlashcard();
+});
 
 Template.markdeepNavigationItemAnswerEditor.events({
 	'click .markdeep-answer-add': function () {
@@ -24,7 +29,7 @@ Template.markdeepNavigationItemAnswerEditor.events({
 		MarkdeepEditor.focusOnContentEditor();
 	},
 	'click .markdeep-answer-remove': function () {
-		if (Session.get('markdeepEditorAnswers').length > 0) {
+		if (Session.get('markdeepEditorAnswers').length > 2) {
 			let answers = Session.get('markdeepEditorAnswers');
 			answers.pop();
 			Session.set('markdeepEditorAnswers', answers);
@@ -90,7 +95,7 @@ Template.markdeepNavigationItemAnswerEditor.helpers({
 		return Session.get('markdeepEditorAnswers').length >= 26;
 	},
 	disableRemoveAnswerButton: function () {
-		return Session.get('markdeepEditorAnswers').length <= 0;
+		return Session.get('markdeepEditorAnswers').length <= 2;
 	},
 	isExplanationEditorEnabled: function () {
 		return Session.get('isExplanationEditorEnabled');

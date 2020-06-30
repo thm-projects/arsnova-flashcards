@@ -19,6 +19,17 @@ let cardNavigationName = ".cardNavigation";
 let learningGoalLevelGroupName = '#learningGoalLevelGroup .active';
 let firstCardNavigationCall = false;
 
+let emptyMarkdeepAnswers = [
+	{
+		content: '',
+		explanation: ''
+	},
+	{
+		content: '',
+		explanation: ''
+	}
+];
+
 export let CardEditor = class CardEditor {
 
 	static initializeEditorButtons () {
@@ -147,7 +158,7 @@ export let CardEditor = class CardEditor {
 		Session.set('cameFromEditMode', false);
 		Session.set('initialLearningTime', -1);
 		Session.set('repeatedLearningTime', -1);
-		Session.set('markdeepEditorAnswers', []);
+		Session.set('markdeepEditorAnswers', emptyMarkdeepAnswers);
 		Session.set('activeAnswerID', -1);
 		Session.set('rightAnswers', []);
 		Session.set('randomizeAnswerPositions', false);
@@ -185,7 +196,7 @@ export let CardEditor = class CardEditor {
 			if (card.answers.content !== undefined) {
 				Session.set('markdeepEditorAnswers', card.answers.content);
 			} else {
-				Session.set('markdeepEditorAnswers', []);
+				Session.set('markdeepEditorAnswers', emptyMarkdeepAnswers);
 			}
 			if (card.answers.rightAnswers !== undefined) {
 				Session.set('rightAnswers', card.answers.rightAnswers);
@@ -203,7 +214,7 @@ export let CardEditor = class CardEditor {
 				Session.set('cardAnswersQuestion', '');
 			}
 		} else {
-			Session.set('markdeepEditorAnswers', []);
+			Session.set('markdeepEditorAnswers', emptyMarkdeepAnswers);
 			Session.set('rightAnswers', []);
 			Session.set('randomizeAnswerPositions', '');
 		}
@@ -312,12 +323,28 @@ export let CardEditor = class CardEditor {
 		let initialLearningTime = Session.get('initialLearningTime');
 		let repeatedLearningTime = Session.get('repeatedLearningTime');
 		let answers = {};
-		if (Session.get('markdeepEditorAnswers').length > 0) {
+		if (CardType.gotAnswerOptions(cardType)) {
 			answers.rightAnswers = Session.get('rightAnswers');
 			answers.randomized = Session.get('randomizeAnswerPositions');
 			answers.content = Session.get('markdeepEditorAnswers');
 			answers.question = Session.get('cardAnswersQuestion');
 			answers.enabled = Session.get('answersEnabled');
+			if (answers.enabled) {
+				let gotValidAnswers = true;
+				for (let i = 0; i < answers.content.length; i++) {
+					if (answers.content[i].answer.trim().length === 0) {
+						gotValidAnswers = false;
+						break;
+					}
+				}
+				if (gotValidAnswers === false) {
+					BertAlertVisuals.displayBertAlert(TAPi18n.__('card.markdeepEditor.notification.noAnswers'), "danger", 'growl-top-left');
+					return;
+				} else if (answers.rightAnswers.length === 0) {
+					BertAlertVisuals.displayBertAlert(TAPi18n.__('card.markdeepEditor.notification.noRightAnswer'), "danger", 'growl-top-left');
+					return;
+				}
+			}
 		}
 		if (!CardType.gotLearningUnit(cardType)) {
 			if (subject === "") {
