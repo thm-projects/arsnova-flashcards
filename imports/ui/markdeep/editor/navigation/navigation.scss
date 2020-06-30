@@ -76,4 +76,40 @@
       cursor: pointer;
     }
   }
+
+  .checkbox-container {
+    label:first-child {
+      border-radius: 5px 0 0 5px !important;
+    }
+
+    label:last-child {
+      border-radius: 0 5px 5px 0 !important;
+    }
+
+    .form-group {
+      margin-top: 10px;
+    }
+
+    .form-group input[type="checkbox"] {
+      display: none;
+    }
+
+    .form-group input[type="checkbox"] + .btn-group > label span {
+      width: 20px;
+    }
+
+    .form-group input[type="checkbox"] + .btn-group > label span:first-child {
+      display: none;
+    }
+    .form-group input[type="checkbox"] + .btn-group > label span:last-child {
+      display: inline-block;
+    }
+
+    .form-group input[type="checkbox"]:checked + .btn-group > label span:first-child {
+      display: inline-block;
+    }
+    .form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
+      display: none;
+    }
+  }
 }

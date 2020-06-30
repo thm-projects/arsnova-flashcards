@@ -317,6 +317,7 @@ export let CardEditor = class CardEditor {
 			answers.randomized = Session.get('randomizeAnswerPositions');
 			answers.content = Session.get('markdeepEditorAnswers');
 			answers.question = Session.get('cardAnswersQuestion');
+			answers.enabled = Session.get('answersEnabled');
 		}
 		if (!CardType.gotLearningUnit(cardType)) {
 			if (subject === "") {

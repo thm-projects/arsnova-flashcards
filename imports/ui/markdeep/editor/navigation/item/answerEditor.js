@@ -63,10 +63,20 @@ Template.markdeepNavigationItemAnswerEditor.events({
 	'click .markdeep-toggle-explanation': function () {
 		Session.set('isExplanationEditorEnabled', !Session.get('isExplanationEditorEnabled'));
 		MarkdeepEditor.focusOnContentEditor();
+	},
+	'click #toggleAnswers': function () {
+		Session.set('answersEnabled', !Session.get('answersEnabled'));
 	}
 });
 
 Template.markdeepNavigationItemAnswerEditor.helpers({
+	gotAnswersEnabled: function () {
+		if (Session.get('answersEnabled')) {
+			return 'checked';
+		} else {
+			return '';
+		}
+	},
 	gotRandomizedAnswerPositions: function () {
 		return Session.get('randomizeAnswerPositions');
 	},

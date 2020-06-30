@@ -1727,7 +1727,8 @@
         "type": "Minuten"
       },
       "answerTag": "Antwort __tag__",
-      "question": "Frage"
+      "question": "Frage",
+      "enableAnswers": "Freischalten"
     },
     "tooltip": {
       "toggle3D": "3D-Ansicht aktivieren / deaktivieren",

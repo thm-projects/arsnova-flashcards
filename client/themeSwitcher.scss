@@ -868,6 +868,14 @@ $themes: (
     $use_cases_special_cardsets_button_background_hover: map-get($map, "use_cases_special_cardsets_button_background_hover");
     $use_cases_special_cardsets_button_text_hover: map-get($map, "use_cases_special_cardsets_button_text_hover");
 
+    //checkbox
+    $checkbox_left_background: map-get($map, "checkbox_left_background");
+    $checkbox_left_text: map-get($map, "checkbox_left_text");
+    $checkbox_left_background_hover: map-get($map, "checkbox_left_background_hover");
+    $checkbox_left_text_hover: map-get($map, "checkbox_left_text_hover");
+    $checkbox_right_background: map-get($map, "checkbox_right_background");
+    $checkbox_right_text: map-get($map, "checkbox_right_text");
+
     .navbar-toggle {
       background-color: $navbar_collapse_background !important;
       color: $navbar_collapse_text !important;
@@ -4315,6 +4323,24 @@ $themes: (
     }
     .bonusTrophy {
       color: $trophy;
+    }
+
+    //checkbox
+    .checkbox-container {
+      label:first-child {
+        background-color: $checkbox_left_background !important;
+        color: $checkbox_left_text !important;
+      }
+
+      label:first-child:hover, label:first-child:focus {
+        background-color: $checkbox_left_background_hover !important;
+        color: $checkbox_left_text_hover !important;
+      }
+
+      label:last-child {
+        background-color: $checkbox_right_background !important;
+        color: $checkbox_right_text !important;
+      }
     }
   }
 }
