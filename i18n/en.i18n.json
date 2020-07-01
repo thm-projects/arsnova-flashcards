@@ -1711,10 +1711,22 @@
       "longName": "Vorlesung mit Bonus-Mitschriften"
     },
     "markdeepEditor": {
+      "placeholders": {
+        "answer": "Inhalt für __tag__",
+        "question": "Inhalt für Frage",
+        "explanation": "Erläuterung für __tag__"
+      },
       "learningTime": {
         "initial": "Initiale Lernzeit",
         "repeated": "Wiederholte Lernzeit",
         "type": "Minuten"
+      },
+      "answerTag": "Antwort __tag__",
+      "question": "Frage",
+      "enableAnswers": "Freischalten",
+      "notification": {
+        "noAnswers": "Alle Antworten müssen einen Inhalt besitzen",
+        "noRightAnswer": "Es muss mindestens eine richtige Antwort existieren"
       }
     },
     "tooltip": {
@@ -1758,7 +1770,13 @@
         "rotateMobilePreview": "Drehe die Smartphone-Ansicht (iPhone 6/7/8)",
         "dictionaryBeolingus": "Zeige die »Beolingus«-Übersetzung",
         "style": "Ändere den Hintergrund der Karte (liniert oder blanko). Die Linierung ist für die Smartphone-Ansicht deaktiviert.",
-        "fullscreen": "Mit der Taste ESC (oben links) kommst du wieder in die Normalansicht."
+        "fullscreen": "Mit der Taste ESC (oben links) kommst du wieder in die Normalansicht.",
+        "answerEditor": "Zu Antwort Editor wechseln",
+        "addAnswer": "Antwort hinzufügen",
+        "removeAnswer": "Letzte Antwort entfernen",
+        "rightAnswer": "Markiere aktive Antwort als richtig",
+        "randomizeAnswerPosition": "Antworten im Leitner-Plan vermischen",
+        "explanation": "Erläuterung für Antwort"
       }
     }
   },

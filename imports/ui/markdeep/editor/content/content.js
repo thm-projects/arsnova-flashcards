@@ -7,6 +7,7 @@ import {Route} from "../../../../api/route";
 import {isNewCardset} from "../../../forms/cardsetForm";
 import {Dictionary} from "../../../../api/dictionary";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
+import {MarkdeepEditor} from "../../../../api/markdeepEditor";
 
 /*
  * ############################################################################
@@ -27,17 +28,59 @@ Template.markdeepContent.events({
 	'input #contentEditor': function () {
 		let content = $('#contentEditor').val();
 		$('#editor').attr('data-content', content);
-		Session.set('content' + Session.get('activeCardContentId'), content);
+		if (Session.get('isAnswerEditorEnabled')) {
+			let answers = Session.get('markdeepEditorAnswers');
+			if (Session.get('isExplanationEditorEnabled')) {
+				answers[Session.get('activeAnswerID')].explanation = content;
+				Session.set('markdeepEditorAnswers', answers);
+			} else if (Session.get('activeAnswerID') < 0) {
+				Session.set('cardAnswersQuestion', content);
+			} else {
+				answers[Session.get('activeAnswerID')].answer = content;
+				Session.set('markdeepEditorAnswers', answers);
+			}
+		} else {
+			Session.set('content' + Session.get('activeCardContentId'), content);
+		}
 		Dictionary.setMode(0);
 	}
 });
 
 Template.markdeepContent.helpers({
+	canUseTextarea: function () {
+		if (Session.get('isAnswerEditorEnabled') && !Session.get('markdeepEditorAnswers').length) {
+			return 'disabled';
+		}
+	},
 	getPlaceholder: function () {
-		return CardType.getPlaceholderText(Session.get('activeCardContentId'), Session.get('cardType'), Session.get('learningGoalLevel'));
+		if (Session.get('isAnswerEditorEnabled')) {
+			if (Session.get('activeAnswerID') >= 0) {
+				if (Session.get('isExplanationEditorEnabled')) {
+					return TAPi18n.__('card.markdeepEditor.placeholders.explanation', {tag: MarkdeepEditor.getAnswerTag(Session.get('activeAnswerID'))});
+				} else {
+					return TAPi18n.__('card.markdeepEditor.placeholders.answer', {tag: MarkdeepEditor.getAnswerTag(Session.get('activeAnswerID'))});
+				}
+			} else {
+				return TAPi18n.__('card.markdeepEditor.placeholders.question');
+			}
+		} else {
+			return CardType.getPlaceholderText(Session.get('activeCardContentId'), Session.get('cardType'), Session.get('learningGoalLevel'));
+		}
 	},
 	getContent: function () {
-		return Session.get('content' + Session.get('activeCardContentId'))	;
+		if (Session.get('isAnswerEditorEnabled')) {
+			if (Session.get('activeAnswerID') < 0) {
+				return Session.get('cardAnswersQuestion');
+			} else {
+				if (Session.get('isExplanationEditorEnabled')) {
+					return Session.get('markdeepEditorAnswers')[Session.get('activeAnswerID')].explanation;
+				} else {
+					return Session.get('markdeepEditorAnswers')[Session.get('activeAnswerID')].answer;
+				}
+			}
+		} else {
+			return Session.get('content' + Session.get('activeCardContentId'));
+		}
 	},
 	getShuffleDescription: function () {
 		if (Session.get("ShuffleTemplate") !== undefined) {

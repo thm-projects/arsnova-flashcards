@@ -141,6 +141,23 @@ export let CardType = class CardType {
 		}
 	}
 
+	static getCubeSideName (id) {
+		switch (id) {
+			case 1:
+				return 'front';
+			case 2:
+				return 'right';
+			case 3:
+				return 'back';
+			case 4:
+				return 'left';
+			case 5:
+				return 'top';
+			case 6:
+				return 'bottom';
+		}
+	}
+
 	static getSideData (cardType, forceSide) {
 		let sides = this.getCardTypeCubeSides(cardType);
 		let id = this.getCubeSideID(forceSide);
@@ -148,7 +165,7 @@ export let CardType = class CardType {
 	}
 
 	static getContentID (card) {
-		if (card.forceSide) {
+		if (card.forceSide !== undefined) {
 			let sideData = this.getSideData(card.cardType, card.forceSide);
 			if (sideData !== undefined) {
 				return sideData.contentId;
@@ -158,6 +175,24 @@ export let CardType = class CardType {
 				return Session.get('activeCardContentId');
 			} else {
 				return this.getCardTypeCubeSides(card.cardType)[0].contentId;
+			}
+		}
+	}
+
+	static isSideWithAnswers (card, isQuestionSide = true) {
+		let sideData;
+		let forceSide = card.forceSide;
+		if (forceSide === undefined && card._id === Session.get('activeCard')) {
+			forceSide = this.getCubeSideName(Session.get('activeCardSide'));
+		} else if (forceSide === undefined) {
+			forceSide = 'front';
+		}
+		sideData = this.getSideData(card.cardType, forceSide);
+		if (sideData !== undefined) {
+			if (isQuestionSide) {
+				return sideData.gotQuestion === true;
+			} else {
+				return sideData.isAnswerFocus === true;
 			}
 		}
 	}
@@ -187,6 +222,10 @@ export let CardType = class CardType {
 
 	static gotDefaultMobilePreview (cardType) {
 		return config.cardTypesWithDefaultMobilePreview.includes(cardType);
+	}
+
+	static gotAnswerOptions (cardType) {
+		return config.cardTypesWithAnswerOptions.includes(cardType);
 	}
 
 	static gotMarkdeepHelp (cardType) {
@@ -343,5 +382,24 @@ export let CardType = class CardType {
 		} else {
 			return TAPi18n.__('card.cardType' + cardType + '.longName');
 		}
+	}
+
+	static sideGotVisibleAnswers (card, side) {
+		if (card !== undefined && card.cardType !== undefined && card.answers !== undefined && card.answers.content !== undefined) {
+			let sideData = this.getSideData(card.cardType, side);
+			if (sideData !== undefined && (sideData.gotQuestion === true || sideData.isAnswerFocus === true) && card.answers.content.length > 0) {
+				return true;
+			}
+		}
+	}
+
+	static getAnswerSideID (cardType) {
+		let sides = this.getCardTypeCubeSides(cardType);
+		for (let i = 0; i < sides.length; i++) {
+			if (sides[i].isAnswerFocus) {
+				return i + 1;
+			}
+		}
+		return 1;
 	}
 };

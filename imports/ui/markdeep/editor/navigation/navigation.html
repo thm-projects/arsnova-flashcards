@@ -1,53 +1,66 @@
 <template name="markdeepNavigation">
     <div id="markdeepNavigation">
-        {{#if gotMarkdeepHelp}}
-            <div class="btn-group">
-            <span class="btn far fa-lightbulb card-button markdeep-help"
+        <div class="editor-navigation-row">
+            {{#if gotMarkdeepHelp}}
+                <div class="btn-group">
+            <span class="btn far fa-lightbulb card-button markdeep-help flex-content"
                   title="{{_ "card.tooltip.markdeepEditor.help"}}">&nbsp;{{_
                     "markdeep.editor.help"}}</span>
-            </div>
-        {{/if}}
-        <div class="btn-group">
-            {{#if isEditMode}}
-                <i class="markdeep-mobile-preview fas fa-mobile-alt card-button {{#if
-                        isMobilePreviewActive}}pressed{{/if}}"
-                   title="{{_ "card.tooltip.markdeepEditor.mobilePreview"}}"></i>
-                {{#if isMobilePreviewActive}}
-                    <i class="markdeep-rotate-mobile-preview fas fa-sync card-button {{#if
-                            isMobilePreviewRotated}}pressed{{/if}}"
-                       title="{{_ "card.tooltip.markdeepEditor.rotateMobilePreview"}}"></i>
-                {{/if}}
-                <i class="card-button material-icons markdeep-center {{#if isCenterTextActive}}pressed{{/if}}"
-                   title="{{_ "card.tooltip.markdeepEditor.center"}}">vertical_align_center</i>
-                {{#if isCenterTextActive}}
-                    <i class="card-button fas fa-align-left {{#if isCenterTextAlignLeft}}pressed{{/if}}"
-                       title="{{_ "card.tooltip.markdeepEditor.alignLeft"}}"></i>
-                {{/if}}
-                <i class="card-button fas fa-eraser markdeep-background-style {{#if
-                        isAlternativeBackgroundStyle}}pressed{{/if}}"
-                   title="{{_ "card.tooltip.markdeepEditor.style"}}"></i>
-                <i class="card-button fas fa-expand-arrows-alt markdeep-fullscreen {{#if
-                        isFullscreenActive}}pressed{{/if}}" title="{{_ "card.tooltip.markdeepEditor.fullscreen"}}"></i>
+                </div>
             {{/if}}
-        </div>
-        {{#if gotDictionary}}
             <div class="btn-group">
+                {{#if isEditMode}}
+                    <i class="markdeep-mobile-preview fas fa-mobile-alt card-button {{#if
+                            isMobilePreviewActive}}pressed{{/if}}"
+                       title="{{_ "card.tooltip.markdeepEditor.mobilePreview"}}"></i>
+                    {{#if isMobilePreviewActive}}
+                        <i class="markdeep-rotate-mobile-preview fas fa-sync card-button {{#if
+                                isMobilePreviewRotated}}pressed{{/if}}"
+                           title="{{_ "card.tooltip.markdeepEditor.rotateMobilePreview"}}"></i>
+                    {{/if}}
+                    <i class="card-button material-icons markdeep-center {{#if isCenterTextActive}}pressed{{/if}}"
+                       title="{{_ "card.tooltip.markdeepEditor.center"}}">vertical_align_center</i>
+                    {{#if isCenterTextActive}}
+                        <i class="card-button fas fa-align-left {{#if isCenterTextAlignLeft}}pressed{{/if}}"
+                           title="{{_ "card.tooltip.markdeepEditor.alignLeft"}}"></i>
+                    {{/if}}
+                    <i class="card-button fas fa-eraser markdeep-background-style {{#if
+                            isAlternativeBackgroundStyle}}pressed{{/if}}"
+                       title="{{_ "card.tooltip.markdeepEditor.style"}}"></i>
+                    {{#if gotAnswerOptions}}
+                        <i class="card-button fas fa-vote-yea markdeep-answer-editor {{#if
+                                isAnswerEditorActive}}pressed{{/if}}"
+                           title="{{_ "card.tooltip.markdeepEditor.answerEditor"}}"></i>
+                    {{/if}}
+                    <i class="card-button fas fa-expand-arrows-alt markdeep-fullscreen {{#if
+                            isFullscreenActive}}pressed{{/if}}" title="{{_ "card.tooltip.markdeepEditor.fullscreen"}}"></i>
+                {{/if}}
+            </div>
+            {{#if gotDictionary}}
+                <div class="btn-group">
                 <span class="btn card-button markdeep-translate {{#if isTranslationActive}}pressed{{/if}}"
                       title="{{_ "card.tooltip.markdeepEditor.translate"}}">&nbsp;{{_
                         "markdeep.editor.translate"}}</span>
-            </div>
-        {{/if}}
-        {{#if isEditMode}}
-            {{#if gotLearningTime}}
-                <div class="input-group learningTime-group">
-                    <label class="input-group-addon" id="initialLearningTime">{{_ "card.markdeepEditor.learningTime.initial"}}:</label>
-                    <input id="initialLearningTimeInput" type="number" step="{{getLearningTimeSetting "initial" "step"}}" min="{{getLearningTimeSetting "initial" "min"}}" max="{{getLearningTimeSetting "initial" "max"}}" class="form-control" value="{{getInitialLearningTime}}" aria-describedby="initialLearningTime">
-                    <label class="input-group-addon type-label">{{_ "card.markdeepEditor.learningTime.type"}}</label>
-                    <label class="input-group-addon" id="repeatedLearningTime">{{_ "card.markdeepEditor.learningTime.repeated"}}:</label>
-                    <input id="repeatedLearningTimeInput" type="number" step="{{getLearningTimeSetting "repeated" "step"}}" min="{{getLearningTimeSetting "repeated" "min"}}" max="{{getLearningTimeSetting "repeated" "max"}}" class="form-control" value="{{getRepeatedLearningTime}}" aria-describedby="repeatedLearningTime">
-                    <label class="input-group-addon type-label">{{_ "card.markdeepEditor.learningTime.type"}}</label>
                 </div>
             {{/if}}
-        {{/if}}
+        </div>
+        <div class="editor-navigation-row">
+            {{#if isEditMode}}
+                {{#if isAnswerEditorActive}}
+                    {{> markdeepNavigationItemAnswerEditor}}
+                {{else}}
+                    {{#if gotLearningTime}}
+                        <div class="input-group learningTime-group">
+                            <label class="input-group-addon" id="initialLearningTime">{{_ "card.markdeepEditor.learningTime.initial"}}:</label>
+                            <input id="initialLearningTimeInput" type="number" step="{{getLearningTimeSetting "initial" "step"}}" min="{{getLearningTimeSetting "initial" "min"}}" max="{{getLearningTimeSetting "initial" "max"}}" class="form-control" value="{{getInitialLearningTime}}" aria-describedby="initialLearningTime">
+                            <label class="input-group-addon type-label">{{_ "card.markdeepEditor.learningTime.type"}}</label>
+                            <label class="input-group-addon" id="repeatedLearningTime">{{_ "card.markdeepEditor.learningTime.repeated"}}:</label>
+                            <input id="repeatedLearningTimeInput" type="number" step="{{getLearningTimeSetting "repeated" "step"}}" min="{{getLearningTimeSetting "repeated" "min"}}" max="{{getLearningTimeSetting "repeated" "max"}}" class="form-control" value="{{getRepeatedLearningTime}}" aria-describedby="repeatedLearningTime">
+                            <label class="input-group-addon type-label">{{_ "card.markdeepEditor.learningTime.type"}}</label>
+                        </div>
+                    {{/if}}
+                {{/if}}
+            {{/if}}
+        </div>
     </div>
 </template>

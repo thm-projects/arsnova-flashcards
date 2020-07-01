@@ -42,12 +42,12 @@
 
 <template name="cardNavigationItem">
     <li class="presentation-element btn-bootstrap-container">
-        <a class="btn btn-block {{#if isFirstButton this.index}}card-navigation-active{{/if}} switchCardSide {{isDisabled this.contentId false}} btn-raised"
+        <a class="btn btn-block {{#if isFirstButton this.index}}card-navigation-active{{/if}} switchCardSide {{isDisabled this.contentId false this.side}} btn-raised"
            type="button"
            data-content-id="{{this.contentId}}"
            data-navigation-id="{{this.index}}" data-side="{{this.side}}"
            data-style="{{this.defaultStyle}}"
-           tabindex="{{getTabIndex this.index}}" data-disabled="{{isDisabled this.contentId true}}">
+           tabindex="{{getTabIndex this.index}}" data-disabled="{{isDisabled this.contentId true this.side}}">
             <div class="flex-content" data-content-id="{{this.contentId}}"
                  data-navigation-id="{{this.index}}" data-side="{{this.side}}"
                  data-style="{{this.defaultStyle}}"
