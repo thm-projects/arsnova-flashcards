@@ -45,10 +45,12 @@ Template.cardAnswers.helpers({
 		}
 	},
 	getAnswerTypeBackground: function () {
-		if (this.type === 1) {
-			return 'right';
-		} else {
-			return 'wrong';
+		if (this.isAnswerSide) {
+			if (this.type === 1) {
+				return 'right';
+			} else {
+				return 'wrong';
+			}
 		}
 	}
 });
