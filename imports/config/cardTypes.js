@@ -31,8 +31,8 @@ let cardTypesWithMarkdeepHelp = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 
 let cardTypesWithLearningModePDFAutoTarget = [0];
 let cardTypesWithTranscriptBonus = [19];
 let lecturerExclusiveCardTypes = [19];
-// SC / MC Questions
-let cardTypesWithAnswerOptions = [0, 5, 11];
+// MC Questions
+let cardTypesWithAnswerOptions = [11];
 let cardTypesOrder = [
 	{cardType: 0},
 	{cardType: 15},
@@ -419,7 +419,8 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"defaultStyle": "default"
+			"defaultStyle": "default",
+			"gotQuestion": true // Displays answers after the markdeep content
 		},
 		{
 			"contentId": 2,
