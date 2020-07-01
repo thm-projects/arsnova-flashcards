@@ -123,7 +123,8 @@ function importCards(data, cardset, importType) {
 					owner: cardset.owner,
 					cardType: cardset.cardType,
 					lastEditor: lastEditor,
-					learningTime: item.learningTime
+					learningTime: item.learningTime,
+					answers: item.answers
 				}, {trimStrings: false});
 			} else {
 				Cards.insert({
@@ -146,7 +147,8 @@ function importCards(data, cardset, importType) {
 					owner: cardset.owner,
 					cardType: cardset.cardType,
 					lastEditor: item.lastEditor,
-					learningTime: item.learningTime
+					learningTime: item.learningTime,
+					answers: item.answers
 				}, {trimStrings: false});
 			}
 		}
