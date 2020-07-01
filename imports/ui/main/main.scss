@@ -900,3 +900,24 @@ kbd {
 .modal-fullscreen-in {
   overflow: hidden !important;
 }
+
+@media (min-width: 1200px) {
+  #progressModal, #bonusUserHistoryModal {
+    .modal-dialog, .model-body, .modal-content {
+      width:1200px;
+    }
+  }
+}
+
+@media (max-width: 1199px) {
+  #progressModal, #bonusUserHistoryModal {
+    .modal-dialog {
+      width: 90%;
+      margin-left: 5%;
+    }
+
+    .model-body, .modal-content {
+      width: 100%;
+    }
+  }
+}
