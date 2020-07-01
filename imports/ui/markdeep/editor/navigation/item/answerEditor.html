@@ -3,7 +3,7 @@
         <div class="btn-group checkbox-container">
             <div class="[ form-group ]">
                 <input type="checkbox" name="fancy-checkbox-default" id="toggleAnswers" autocomplete="off" {{gotAnswersEnabled}}/>
-                <div class="[ btn-group ]">
+                <div class="[ btn-group ] toggleAnswersContainer">
                     <label for="toggleAnswers" class="[ btn btn-default ]">
                         <div class="flex-content">
                             <span class="[ glyphicon glyphicon-ok ]"></span>
@@ -18,13 +18,13 @@
                 </div>
             </div>
         </div>
+        {{> markdeepNavigationItemAnswerEditorDropdown}}
         <div class="btn-group">
             <i class="card-button fas fa-plus markdeep-answer-add {{#if disableAddAnswerButton}}disabled{{/if}}"
                title="{{_ "card.tooltip.markdeepEditor.addAnswer"}}"></i>
             <i class="card-button fas fa-minus markdeep-answer-remove {{#if disableRemoveAnswerButton}}disabled{{/if}}"
                title="{{_ "card.tooltip.markdeepEditor.removeAnswer"}}"></i>
         </div>
-        {{> markdeepNavigationItemAnswerEditorDropdown}}
         {{#if isAnswer}}
             <div class="btn-group">
                 <i class="card-button fas fa-check markdeep-toggle-right-answer {{#if isRightAnswer}}pressed{{/if}}"

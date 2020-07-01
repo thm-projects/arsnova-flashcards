@@ -1,7 +1,11 @@
 #markdeepNavigation {
   user-select: none;
-  .btn-group {
+  .editor-navigation-row .btn-group {
     margin-left: 15px;
+  }
+
+  .editor-navigation-row .btn-group:first-child, .toggleAnswersContainer {
+    margin-left: 0 !important;
   }
 
   .card-button {

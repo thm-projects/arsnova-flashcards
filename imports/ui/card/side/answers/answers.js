@@ -2,12 +2,17 @@ import "./answers.html";
 import {Template} from "meteor/templating";
 import {CardType} from "../../../../api/cardTypes";
 import {MarkdeepEditor} from "../../../../api/markdeepEditor";
+import {Route} from "../../../../api/route";
 
 Template.cardAnswers.helpers({
 	gotAnswers: function () {
 		let gotAnswerSupport = CardType.gotAnswerOptions(this.cardType);
-		if (gotAnswerSupport && this.answers !== undefined && this.answers.content != undefined && this.answers.content.length) {
-			return true;
+		if (gotAnswerSupport) {
+			if (Route.isEditMode()) {
+				return true;
+			} else if (this.answers !== undefined && this.answers.enabled === true) {
+				return true;
+			}
 		}
 	},
 	isAnswerSide: function () {
