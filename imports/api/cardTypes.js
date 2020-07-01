@@ -2,6 +2,7 @@ import {Session} from "meteor/session";
 import {Cardsets} from "./subscriptions/cardsets.js";
 import * as config from "../config/cardTypes.js";
 import {CardNavigation} from "./cardNavigation";
+import {Route} from "./route";
 
 export let CardType = class CardType {
 	static getCardTypesOrder () {
@@ -182,7 +183,7 @@ export let CardType = class CardType {
 	static isSideWithAnswers (card, isQuestionSide = true) {
 		let sideData;
 		let forceSide = card.forceSide;
-		if (forceSide === undefined && card._id === Session.get('activeCard')) {
+		if (forceSide === undefined && ((card._id === Session.get('activeCard')) || (Route.isNewCard() && !Session.get('is3DActive')))) {
 			forceSide = this.getCubeSideName(Session.get('activeCardSide'));
 		} else if (forceSide === undefined) {
 			forceSide = 'front';
