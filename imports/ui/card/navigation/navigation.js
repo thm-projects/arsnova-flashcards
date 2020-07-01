@@ -66,7 +66,7 @@ Template.cardNavigationEnabled.helpers({
 });
 
 Template.cardNavigationEnabled.onRendered(function () {
-	if ((Route.isEditMode() || Route.isDefaultPresentation())  && Session.get('activeCardSide') !== undefined) {
+	if ((Route.isEditMode() || Route.isDefaultPresentation())  && Session.get('activeCardSide') !== undefined && Session.get('activeCardSide') > 0) {
 		CardNavigation.selectButton(Session.get('activeCardSide'));
 	} else {
 		CardNavigation.selectActiveButton();
@@ -152,13 +152,15 @@ Template.cardNavigationItem.helpers({
 	isFirstButton: function (index) {
 		return index === 0;
 	},
-	isDisabled: function (contentId, dataType) {
+	isDisabled: function (contentId, dataType, side) {
 		let card;
 		if (Route.isEditMode()) {
 			card = CardIndex.getEditModeCard()[0];
 		} else {
 			card = Cards.findOne({_id: Session.get('activeCard')}, {
 				fields: {
+					answers: 1,
+					cardType: 1,
 					front: 1,
 					back: 1,
 					hint: 1,
@@ -202,7 +204,7 @@ Template.cardNavigationItem.helpers({
 					}
 					break;
 			}
-			if (string.length === 0) {
+			if (string.length === 0 && !CardType.sideGotVisibleAnswers(card, side)) {
 				if (dataType) {
 					return 1;
 				} else {

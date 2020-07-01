@@ -7,6 +7,7 @@ import {Session} from "meteor/session";
 import {CardType} from "../../../api/cardTypes";
 import './header/header.js';
 import './content/content.js';
+import './answers/answers.js';
 import './side.html';
 import {CardNavigation} from "../../../api/cardNavigation";
 

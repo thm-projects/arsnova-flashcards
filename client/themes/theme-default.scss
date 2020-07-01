@@ -523,6 +523,15 @@
           "card_content_zoom_container_button_minus_background_disabled": $athens_gray_approx,
           "card_content_zoom_container_button_minus_text_disabled": black,
           "card_content_zoom_container_button_minus_disabled_opacity": 0.3,
+
+          "card_right_answer_icon": $thm_green,
+          "card_wrong_answer_icon": $thm_red,
+          "card_explanation_answer_icon": $thm_orange,
+          "card_checkbox_answer_icon": $thm_gray,
+          "card_answer_background": rgba($thm_gray, 0.25),
+          "card_answer_background_right": rgba($thm_green, 0.25),
+          "card_answer_background_wrong": rgba($thm_red, 0.25),
+          "card_answer_explanation_background": rgba($thm_orange, 0.25),
     //card sidebar colors
           "card_sidebar_border": rgba($thm_gray, 0.6),
           "card_sidebar_background" : rgba($mercury_approx, 0.6),
@@ -759,6 +768,28 @@
           "markdeep_help_text": $white,
           "markdeep_help_background": $thm_orange,
           "markdeep_help_border": $thm_orange,
+    //markdeep editor answer colors
+          "markdeep_editor_add_answer_background": $thm_green,
+          "markdeep_editor_add_answer_text": white,
+          "markdeep_editor_add_answer_background_hover": $button_background_hover,
+          "markdeep_editor_add_answer_text_hover": $button_text_hover,
+          "markdeep_editor_remove_answer_background": $thm_red,
+          "markdeep_editor_remove_answer_text": white,
+          "markdeep_editor_remove_answer_background_hover": $button_background_hover,
+          "markdeep_editor_remove_answer_text_hover": $button_text_hover,
+    //markdeep editor answer dropdown colors
+          "markdeep_editor_answer_dropdown_background": $thm_blue,
+          "markdeep_editor_answer_dropdown_text": white,
+          "markdeep_editor_answer_dropdown_background_hover": $button_background_hover,
+          "markdeep_editor_answer_dropdown_text_hover": $button_text_hover,
+          "markdeep_editor_answer_dropdown_item_background": $accent_300,
+          "markdeep_editor_answer_dropdown_item_text": black,
+          "markdeep_editor_answer_dropdown_item_background_hover": $button_background_hover,
+          "markdeep_editor_answer_dropdown_item_text_hover": $button_text_hover,
+          "markdeep_editor_answer_dropdown_item_active_background": $thm_green,
+          "markdeep_editor_answer_dropdown_item_active_text": white,
+          "markdeep_editor_answer_dropdown_item_active_background_hover": $button_background_hover,
+          "markdeep_editor_answer_dropdown_item_active_text_hover": $button_text_hover,
     //notification colors
           "notification_text_smartphones": white,
     //search colors
@@ -877,6 +908,12 @@
           "use_cases_special_cardsets_button_text": white,
           "use_cases_special_cardsets_button_background_hover": midnightblue,
           "use_cases_special_cardsets_button_text_hover": white,
-
+    //checkbox
+          "checkbox_left_background": white,
+          "checkbox_left_text": $primary_text,
+          "checkbox_left_background_hover": $button_background_hover,
+          "checkbox_left_text_hover": $button_text_hover,
+          "checkbox_right_background": $btn_inactive,
+          "checkbox_right_text": white
   );
 }

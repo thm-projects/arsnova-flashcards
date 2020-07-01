@@ -31,6 +31,8 @@ let cardTypesWithMarkdeepHelp = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 
 let cardTypesWithLearningModePDFAutoTarget = [0];
 let cardTypesWithTranscriptBonus = [19];
 let lecturerExclusiveCardTypes = [19];
+// MC Questions
+let cardTypesWithAnswerOptions = [11];
 let cardTypesOrder = [
 	{cardType: 0},
 	{cardType: 15},
@@ -232,7 +234,8 @@ let cardTypeCubeSides = [
 			"contentId": 1,
 			"defaultStyle": "default",
 			"gotLearningGoalPlaceholder": true,
-			"gotPDFAutoTarget": true
+			"gotPDFAutoTarget": true,
+			"gotQuestion": true // Displays answers after the markdeep content
 		},
 		{
 			"contentId": 4,
@@ -243,7 +246,7 @@ let cardTypeCubeSides = [
 			"contentId": 2,
 			"defaultStyle": "default",
 			"isAnswer": true,
-			"isAnswerFocus": true
+			"isAnswerFocus": true // Jumps to answer and display answer result before markdeep content
 		},
 		{
 			"contentId": 5,
@@ -327,13 +330,14 @@ let cardTypeCubeSides = [
 		{
 			"contentId": 1,
 			"defaultStyle": "default",
-			"gotLearningGoalPlaceholder": true
+			"gotLearningGoalPlaceholder": true,
+			"gotQuestion": true // Displays answers after the markdeep content
 		},
 		{
 			"contentId": 2,
 			"defaultStyle": "default",
 			"isAnswer": true,
-			"isAnswerFocus": true
+			"isAnswerFocus": true // Jumps to answer and display answer result before markdeep content
 		},
 		{
 			"contentId": 3,
@@ -415,7 +419,8 @@ let cardTypeCubeSides = [
 	[
 		{
 			"contentId": 1,
-			"defaultStyle": "default"
+			"defaultStyle": "default",
+			"gotQuestion": true // Displays answers after the markdeep content
 		},
 		{
 			"contentId": 2,
@@ -596,6 +601,7 @@ module.exports = {
 	cardTypesWithDefaultMobilePreview,
 	cardTypesWithMarkdeepHelp,
 	cardTypesWithLearningModePDFAutoTarget,
+	cardTypesWithAnswerOptions,
 	cardTypesOrder,
 	defaultTextAlign,
 	defaultCentered,

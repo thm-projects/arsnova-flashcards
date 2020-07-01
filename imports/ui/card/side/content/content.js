@@ -22,6 +22,12 @@ Template.cardContent.onRendered(function () {
 });
 
 Template.cardContent.helpers({
+	isQuestionSide: function () {
+		return CardType.isSideWithAnswers(this);
+	},
+	isAnswerSide: function () {
+		return CardType.isSideWithAnswers(this, false);
+	},
 	isCentered: function () {
 		return CardVisuals.isCentered(CardType.getContentID(this), this.centerTextElement);
 	},

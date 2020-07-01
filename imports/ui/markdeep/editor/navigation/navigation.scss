@@ -1,6 +1,11 @@
 #markdeepNavigation {
-  .btn-group {
+  user-select: none;
+  .editor-navigation-row .btn-group {
     margin-left: 15px;
+  }
+
+  .editor-navigation-row .btn-group:first-child, .toggleAnswersContainer {
+    margin-left: 0 !important;
   }
 
   .card-button {
@@ -55,6 +60,60 @@
     /* Firefox */
     input[type=number] {
       -moz-appearance: textfield;
+    }
+  }
+
+  .markdeep-answer-add.disabled, .markdeep-answer-remove.disabled {
+    opacity: 25%;
+  }
+
+  .answerDropdown {
+    display: inline;
+
+    .dropdown-menu {
+      padding: 0;
+      overflow-y: auto;
+    }
+
+    .dropdown-item {
+      padding: 10px;
+      cursor: pointer;
+    }
+  }
+
+  .checkbox-container {
+    label:first-child {
+      border-radius: 5px 0 0 5px !important;
+    }
+
+    label:last-child {
+      border-radius: 0 5px 5px 0 !important;
+    }
+
+    .form-group {
+      margin-top: 10px;
+    }
+
+    .form-group input[type="checkbox"] {
+      display: none;
+    }
+
+    .form-group input[type="checkbox"] + .btn-group > label span {
+      width: 20px;
+    }
+
+    .form-group input[type="checkbox"] + .btn-group > label span:first-child {
+      display: none;
+    }
+    .form-group input[type="checkbox"] + .btn-group > label span:last-child {
+      display: inline-block;
+    }
+
+    .form-group input[type="checkbox"]:checked + .btn-group > label span:first-child {
+      display: inline-block;
+    }
+    .form-group input[type="checkbox"]:checked + .btn-group > label span:last-child {
+      display: none;
     }
   }
 }

@@ -672,6 +672,15 @@ $themes: (
     $card_content_zoom_container_button_minus_background_disabled: map-get($map, "card_content_zoom_container_button_minus_background_disabled");
     $card_content_zoom_container_button_minus_text_disabled: map-get($map, "card_content_zoom_container_button_minus_text_disabled");
     $card_content_zoom_container_button_minus_disabled_opacity: map-get($map, "card_content_zoom_container_button_minus_disabled_opacity");
+
+    $card_right_answer_icon: map-get($map, "card_right_answer_icon");
+    $card_wrong_answer_icon: map-get($map, "card_wrong_answer_icon");
+    $card_explanation_answer_icon: map-get($map, "card_explanation_answer_icon");
+    $card_checkbox_answer_icon: map-get($map, "card_checkbox_answer_icon");
+    $card_answer_background: map-get($map, "card_answer_background");
+    $card_answer_background_right: map-get($map, "card_answer_background_right");
+    $card_answer_background_wrong: map-get($map, "card_answer_background_wrong");
+    $card_answer_explanation_background: map-get($map, "card_answer_explanation_background");
     //markdeep colors
     $markdeep_inline_code_background: map-get($map, "markdeep_inline_code_background");
     $markdeep_inline_code_text: map-get($map, "markdeep_inline_code_text");
@@ -708,6 +717,28 @@ $themes: (
     $markdeep_help_text: map-get($map, "markdeep_help_text");
     $markdeep_help_background: map-get($map, "markdeep_help_background");
     $markdeep_help_border: map-get($map, "markdeep_help_border");
+    //markdeep editor answer colors
+    $markdeep_editor_add_answer_background: map-get($map, "markdeep_editor_add_answer_background");
+    $markdeep_editor_add_answer_text: map-get($map, "markdeep_editor_add_answer_text");
+    $markdeep_editor_add_answer_background_hover: map-get($map, "markdeep_editor_add_answer_background_hover");
+    $markdeep_editor_add_answer_text_hover: map-get($map, "markdeep_editor_add_answer_text_hover");
+    $markdeep_editor_remove_answer_background: map-get($map, "markdeep_editor_remove_answer_background");
+    $markdeep_editor_remove_answer_text: map-get($map, "markdeep_editor_remove_answer_text");
+    $markdeep_editor_remove_answer_background_hover: map-get($map, "markdeep_editor_remove_answer_background_hover");
+    $markdeep_editor_remove_answer_text_hover: map-get($map, "markdeep_editor_remove_answer_text_hover");
+    //markdeep editor answer dropdown colors
+    $markdeep_editor_answer_dropdown_background: map-get($map, "markdeep_editor_answer_dropdown_background");
+    $markdeep_editor_answer_dropdown_text: map-get($map, "markdeep_editor_answer_dropdown_text");
+    $markdeep_editor_answer_dropdown_background_hover: map-get($map, "markdeep_editor_answer_dropdown_background_hover");
+    $markdeep_editor_answer_dropdown_text_hover: map-get($map, "markdeep_editor_answer_dropdown_text_hover");
+    $markdeep_editor_answer_dropdown_item_background: map-get($map, "markdeep_editor_answer_dropdown_item_background");
+    $markdeep_editor_answer_dropdown_item_text: map-get($map, "markdeep_editor_answer_dropdown_item_text");
+    $markdeep_editor_answer_dropdown_item_background_hover: map-get($map, "markdeep_editor_answer_dropdown_item_background_hover");
+    $markdeep_editor_answer_dropdown_item_text_hover: map-get($map, "markdeep_editor_answer_dropdown_item_text_hover");
+    $markdeep_editor_answer_dropdown_item_active_background: map-get($map, "markdeep_editor_answer_dropdown_item_active_background");
+    $markdeep_editor_answer_dropdown_item_active_text: map-get($map, "markdeep_editor_answer_dropdown_item_active_text");
+    $markdeep_editor_answer_dropdown_item_active_background_hover: map-get($map, "markdeep_editor_answer_dropdown_item_active_background_hover");
+    $markdeep_editor_answer_dropdown_item_active_text_hover: map-get($map, "markdeep_editor_answer_dropdown_item_active_text_hover");
     //notification colors
     $notification_text_smartphones: map-get($map, "notification_text_smartphones");
     //search colors
@@ -836,6 +867,14 @@ $themes: (
     $use_cases_special_cardsets_button_text: map-get($map, "use_cases_special_cardsets_button_text");
     $use_cases_special_cardsets_button_background_hover: map-get($map, "use_cases_special_cardsets_button_background_hover");
     $use_cases_special_cardsets_button_text_hover: map-get($map, "use_cases_special_cardsets_button_text_hover");
+
+    //checkbox
+    $checkbox_left_background: map-get($map, "checkbox_left_background");
+    $checkbox_left_text: map-get($map, "checkbox_left_text");
+    $checkbox_left_background_hover: map-get($map, "checkbox_left_background_hover");
+    $checkbox_left_text_hover: map-get($map, "checkbox_left_text_hover");
+    $checkbox_right_background: map-get($map, "checkbox_right_background");
+    $checkbox_right_text: map-get($map, "checkbox_right_text");
 
     .navbar-toggle {
       background-color: $navbar_collapse_background !important;
@@ -1090,6 +1129,80 @@ $themes: (
       background-color: $button_background_hover !important;
       color: $button_text_hover !important;
       border-color: $button_background_hover !important;
+    }
+
+    //markdeep editor answer colors
+    #markdeepNavigation .markdeep-answer-add {
+      background-color: $markdeep_editor_add_answer_background !important;
+      color: $markdeep_editor_add_answer_text !important;
+    }
+
+    #markdeepNavigation .markdeep-answer-add:hover,#markdeepNavigation .markdeep-answer-add:focus {
+      background-color: $markdeep_editor_add_answer_background_hover !important;
+      color: $markdeep_editor_add_answer_text_hover !important;
+    }
+
+    #markdeepNavigation .markdeep-answer-add.disabled:hover,#markdeepNavigation .markdeep-answer-add.disabled:focus {
+      background-color: $markdeep_editor_add_answer_background !important;
+      color: $markdeep_editor_add_answer_text !important;
+    }
+
+    #markdeepNavigation .markdeep-answer-remove {
+      background-color: $markdeep_editor_remove_answer_background !important;
+      color: $markdeep_editor_remove_answer_text !important;
+    }
+
+    #markdeepNavigation .markdeep-answer-remove:hover,#markdeepNavigation .markdeep-answer-remove:focus {
+      background-color: $markdeep_editor_remove_answer_background_hover !important;
+      color: $markdeep_editor_remove_answer_text_hover !important;
+    }
+
+    #markdeepNavigation .markdeep-answer-remove.disabled:hover,#markdeepNavigation .markdeep-answer-remove.disabled:focus {
+      background-color: $markdeep_editor_remove_answer_background !important;
+      color: $markdeep_editor_remove_answer_text !important;
+    }
+
+    //markdeep editor answer dropdown colors
+    #markdeepNavigation #answerDropdownMenu {
+      background-color: $markdeep_editor_answer_dropdown_background !important;
+      color: $markdeep_editor_answer_dropdown_text !important;
+    }
+
+    #markdeepNavigation #answerDropdownMenu:hover,#markdeepNavigation #answerDropdownMenu:focus {
+      background-color: $markdeep_editor_answer_dropdown_background_hover !important;
+      color: $markdeep_editor_answer_dropdown_text_hover !important;
+    }
+
+    #markdeepNavigation .answerDropdown .answer-item {
+      background-color: $markdeep_editor_answer_dropdown_item_background !important;
+      color: $markdeep_editor_answer_dropdown_item_text !important;
+    }
+
+    #markdeepNavigation .answerDropdown .answer-item:hover, #markdeepNavigation .answerDropdown .answer-item:focus {
+      background-color: $markdeep_editor_answer_dropdown_item_background_hover !important;
+      color: $markdeep_editor_answer_dropdown_item_text_hover !important;
+      i {
+        background-color: $markdeep_editor_answer_dropdown_item_background_hover !important;
+        color: $markdeep_editor_answer_dropdown_item_text_hover !important;
+      }
+    }
+
+    #markdeepNavigation .answerDropdown .answer-item.active {
+      background-color: $markdeep_editor_answer_dropdown_item_active_background !important;
+      color: $markdeep_editor_answer_dropdown_item_active_text !important;
+      i {
+        background-color: $markdeep_editor_answer_dropdown_item_active_background !important;
+        color: $markdeep_editor_answer_dropdown_item_active_text !important;
+      }
+    }
+
+    #markdeepNavigation .answerDropdown .answer-item.active:hover, #markdeepNavigation .answerDropdown .answer-item.active:focus {
+      background-color: $markdeep_editor_answer_dropdown_item_active_background_hover !important;
+      color: $markdeep_editor_answer_dropdown_item_active_text_hover !important;
+      i {
+        background-color: $markdeep_editor_answer_dropdown_item_active_background_hover !important;
+        color: $markdeep_editor_answer_dropdown_item_active_text_hover !important;
+      }
     }
 
     .material-icons.pressed, .fas.pressed, .fab.pressed, .far.pressed, .card-button.pressed, .material-icons.pressed:hover, .card-button.pressed:hover,
@@ -2668,6 +2781,38 @@ $themes: (
       }
     }
 
+    .card-content-right-answer-icon {
+      color: $card_right_answer_icon !important;
+    }
+
+    .card-content-wrong-answer-icon {
+      color: $card_wrong_answer_icon !important;
+    }
+
+    .card-content-explanation-icon {
+      color: $card_explanation_answer_icon !important;
+    }
+
+    .card-content-checkbox-icon {
+      color: $card_checkbox_answer_icon !important;
+    }
+
+    .card-content-answer-header, .card-content-answer-container {
+      background-color: $card_answer_background !important;
+    }
+
+    .card-content-answer-header.right, .card-content-answer-container.right {
+      background-color: $card_answer_background_right !important;
+    }
+
+    .card-content-answer-header.wrong, .card-content-answer-container.wrong {
+      background-color: $card_answer_background_wrong !important;
+    }
+
+    .card-content-answer-explanation-container {
+      background-color: $card_answer_explanation_background !important;
+    }
+
     #subjectEditor:disabled {
       background-color: $athens_gray_approx !important;
     }
@@ -4178,6 +4323,24 @@ $themes: (
     }
     .bonusTrophy {
       color: $trophy;
+    }
+
+    //checkbox
+    .checkbox-container {
+      label:first-child {
+        background-color: $checkbox_left_background !important;
+        color: $checkbox_left_text !important;
+      }
+
+      label:first-child:hover, label:first-child:focus {
+        background-color: $checkbox_left_background_hover !important;
+        color: $checkbox_left_text_hover !important;
+      }
+
+      label:last-child {
+        background-color: $checkbox_right_background !important;
+        color: $checkbox_right_text !important;
+      }
     }
   }
 }

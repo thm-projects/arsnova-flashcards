@@ -3,6 +3,8 @@ import {CardVisuals} from "./cardVisuals";
 import * as config from "../config/markdeepEditor.js";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {ServerStyle} from "./styles";
+import {CardType} from "./cardTypes";
+import {CardNavigation} from "./cardNavigation";
 
 export let MarkdeepEditor = class MarkdeepEditor {
 	static help () {
@@ -76,5 +78,39 @@ export let MarkdeepEditor = class MarkdeepEditor {
 
 	static getDefaultMobilePreviewOrientation () {
 		return config.mobilePreviewPortraitAsDefault;
+	}
+
+	static toggleAnswerEditor () {
+		Session.set('isAnswerEditorEnabled', !Session.get('isAnswerEditorEnabled'));
+		if (Session.get('isAnswerEditorEnabled')) {
+			let answerSideID = CardType.getAnswerSideID(Session.get('cardType'));
+			CardNavigation.selectButton(answerSideID);
+		}
+		this.focusOnContentEditor();
+	}
+
+	static setAnswerDropdownSize () {
+		let dropdownButton = $('.answerDropdown');
+		let dropdownMenu = $('.answerDropdown ul');
+		if (dropdownButton.length && dropdownMenu.length) {
+			dropdownMenu.css('max-height', $(window).height() - dropdownButton.height() - dropdownButton.offset().top + 'px');
+		}
+	}
+
+	static getAnswerTag (index, fullString = true)  {
+		if (index < 0) {
+			return TAPi18n.__('card.markdeepEditor.question');
+		}
+		index += 10;
+		let tag = index.toString(36).toUpperCase();
+		if (fullString) {
+			return TAPi18n.__('card.markdeepEditor.answerTag', {tag: tag}, ServerStyle.getServerLanguage());
+		} else {
+			return tag;
+		}
+	}
+
+	static focusOnContentEditor () {
+		$('#contentEditor').focus();
 	}
 };

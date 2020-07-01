@@ -560,3 +560,53 @@ img.cardside {
 .form-check-deny-reason {
   margin-bottom: 15px;
 }
+
+.card-answers-table {
+  .card-content-answer-element {
+    margin-bottom: 25px;
+    .card-content-answer-header {
+      padding-top: 10px;
+
+      .card-content-answer-tag {
+        font-size: 16px;
+      }
+
+      .card-content-answer-icon-group {
+        font-size: 24px;
+        float: right;
+        .fa-stack {
+          width: 24px;
+          height: 26px;
+          line-height: 26px;
+          margin-right: 10px;
+          margin-top: 0;
+        }
+        .fa-stack:last-child {
+          margin-right: 5px;
+        }
+      }
+
+      .card-content-explanation-icon, .card-content-checkbox-icon {
+        cursor: pointer;
+      }
+    }
+
+    .card-content-answer-header, .card-content-answer-container, .card-content-answer-explanation-container   {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .card-content-answer-explanation-container {
+      background-color: yellow;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+    }
+  }
+  .card-content-answer-element:last-child {
+    margin-bottom: 0;
+  }
+
+  .fa-stack-checkbox {
+    font-size: 14px;
+  }
+}
