@@ -605,11 +605,12 @@ img.cardside {
       border-bottom-right-radius: 15px;
     }
   }
-  .card-content-answer-element:last-child {
-    margin-bottom: 0;
-  }
 
   .fa-stack-checkbox {
     font-size: 14px;
   }
+}
+
+.card-content-container {
+  word-break: break-word;
 }

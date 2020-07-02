@@ -72,10 +72,13 @@ Template.markdeepContent.helpers({
 			if (Session.get('activeAnswerID') < 0) {
 				return Session.get('cardAnswersQuestion');
 			} else {
-				if (Session.get('isExplanationEditorEnabled')) {
-					return Session.get('markdeepEditorAnswers')[Session.get('activeAnswerID')].explanation;
-				} else {
-					return Session.get('markdeepEditorAnswers')[Session.get('activeAnswerID')].answer;
+				let content = Session.get('markdeepEditorAnswers')[Session.get('activeAnswerID')];
+				if (content !== undefined) {
+					if (Session.get('isExplanationEditorEnabled')) {
+						return content.explanation;
+					} else {
+						return content.answer;
+					}
 				}
 			}
 		} else {
