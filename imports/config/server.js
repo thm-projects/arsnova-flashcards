@@ -103,7 +103,6 @@ let defaultSettings = {
 		"server": "de",
 		"client": "de"
 	},
-	"backgrounds": "default",
 	"transcripts": {
 		"enabled": true
 	},
@@ -146,6 +145,15 @@ let defaultSettings = {
 	},
 	"leitner": {
 		"randomCardsSelection": false
+	},
+	"themes": {
+		"defaultID": 0, // The default theme id from the list
+		"list": [
+			{
+				"theme": "arsnova", // The color theme
+				"backgrounds": "arsnova" // The background images found in ./backgrounds.js
+			}
+		] // The list available to the theme switcher dropdown menu
 	}
 };
 
@@ -242,7 +250,6 @@ let debug = {
 		"server": "de",
 		"client": "de"
 	},
-	"backgrounds": "linux",
 	"transcripts": {
 		"enabled": true
 	},
@@ -285,6 +292,15 @@ let debug = {
 	},
 	"leitner": {
 		"randomCardsSelection": false
+	},
+	"themes": {
+		"defaultID": 0, // The default theme id from the list
+		"list": [
+			{
+				"theme": "arsnova", // The color theme
+				"backgrounds": "arsnova" // The background images found in ./backgrounds.js
+			}
+		] // The list available to the theme switcher dropdown menu
 	}
 };
 
@@ -381,7 +397,6 @@ let linux = {
 		"server": "de",
 		"client": "de"
 	},
-	"backgrounds": "linux",
 	"transcripts": {
 		"enabled": false
 	},
@@ -424,6 +439,15 @@ let linux = {
 	},
 	"leitner": {
 		"randomCardsSelection": false
+	},
+	"themes": {
+		"defaultID": 0, // The default theme id from the list
+		"list": [
+			{
+				"theme": "linux", // The color theme
+				"backgrounds": "linux" // The background images found in ./backgrounds.js
+			}
+		] // The list available to the theme switcher dropdown menu
 	}
 };
 
@@ -520,7 +544,6 @@ let review = {
 		"server": "de",
 		"client": "de"
 	},
-	"backgrounds": "default",
 	"transcripts": {
 		"enabled": true
 	},
@@ -563,6 +586,15 @@ let review = {
 	},
 	"leitner": {
 		"randomCardsSelection": false
+	},
+	"themes": {
+		"defaultID": 0, // The default theme id from the list
+		"list": [
+			{
+				"theme": "arsnova", // The color theme
+				"backgrounds": "arsnova" // The background images found in ./backgrounds.js
+			}
+		] // The list available to the theme switcher dropdown menu
 	}
 };
 
@@ -659,7 +691,6 @@ let staging = {
 		"server": "de",
 		"client": "de"
 	},
-	"backgrounds": "default",
 	"transcripts": {
 		"enabled": true
 	},
@@ -702,6 +733,15 @@ let staging = {
 	},
 	"leitner": {
 		"randomCardsSelection": false
+	},
+	"themes": {
+		"defaultID": 0, // The default theme id from the list
+		"list": [
+			{
+				"theme": "arsnova", // The color theme
+				"backgrounds": "arsnova" // The background images found in ./backgrounds.js
+			}
+		] // The list available to the theme switcher dropdown menu
 	}
 };
 
