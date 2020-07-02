@@ -163,6 +163,7 @@ export let CardEditor = class CardEditor {
 		Session.set('rightAnswers', []);
 		Session.set('randomizeAnswerPositions', false);
 		Session.set('isExplanationEditorEnabled', false);
+		Session.set('answersEnabled', false);
 		CardType.setDefaultCenteredText(Session.get('cardType'));
 	}
 
@@ -213,10 +214,16 @@ export let CardEditor = class CardEditor {
 			} else {
 				Session.set('cardAnswersQuestion', '');
 			}
+			if (card.answers.enabled !== undefined) {
+				Session.set('answersEnabled', card.answers.enabled);
+			} else {
+				Session.set('answersEnabled', false);
+			}
 		} else {
 			Session.set('markdeepEditorAnswers', emptyMarkdeepAnswers);
 			Session.set('rightAnswers', []);
-			Session.set('randomizeAnswerPositions', '');
+			Session.set('randomizeAnswerPositions', false);
+			Session.set('answersEnabled', false);
 		}
 	}
 
