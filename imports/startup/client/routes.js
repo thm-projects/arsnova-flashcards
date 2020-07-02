@@ -1558,15 +1558,14 @@ export let setTheme = function () {
 		// If there is no selectedColorTheme the Session var "theme" will stay NULL.
 		if (Meteor.users.findOne(Meteor.userId())) {
 			if (Meteor.users.findOne(Meteor.userId()).selectedColorTheme) {
-				Session.set("theme", Meteor.users.findOne(Meteor.userId()).selectedColorTheme);
+				Session.set("theme", ServerStyle.getDefaultTheme());
 			}
 		}
 	} else {
 		// When user logged out, go back to default Theme
-		Session.set('theme', "default");
+		Session.set("theme", ServerStyle.getDefaultTheme());
 	}
 	let themeId = "";
-	let themeClass = "theme-";
 	if (Meteor.user() || MainNavigation.isGuestLoginActive()) {
 		if (Session.get('fullscreen') && !Route.isPresentationList()) {
 			themeId = 'theme-wrapper-no-nav';
@@ -1580,15 +1579,12 @@ export let setTheme = function () {
 			themeId = 'theme-wrapper-no-nav';
 		}
 	}
-	if (Session.get('theme')) {
-		themeClass += "default";
-	}
 	let html = $('html');
 	if (Route.isCardset()) {
 		themeId = 'theme-wrapper-cardset';
 	}
 	html.attr('id', themeId);
-	html.attr('class', themeClass);
+	html.attr('class', Session.get("theme"));
 
 	//Background
 	let body = $('body');
@@ -1631,7 +1627,7 @@ export let setTheme = function () {
 var isSignedIn = function () {
 	CardVisuals.checkFullscreen();
 	if (!(Meteor.user() || Meteor.loggingIn()) && !MainNavigation.isGuestLoginActive()) {
-		Session.set('theme', "default");
+		Session.set("theme", ServerStyle.getDefaultTheme());
 		if (MainNavigation.getLoginTarget() === undefined) {
 			if (linksWithNoLoginRequirement().includes(FlowRouter.getRouteName())) {
 				MainNavigation.setLoginTarget(false);

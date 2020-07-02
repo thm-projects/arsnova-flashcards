@@ -35,7 +35,7 @@ import {setLanguage, setTheme} from "../../startup/client/routes";
 Meteor.subscribe("notifications");
 Meteor.subscribe("serverStatistics");
 
-Session.setDefault("theme", "default");
+Session.setDefault("theme", ServerStyle.getDefaultTheme());
 Session.setDefault("fullscreen", false);
 Session.setDefault("previousRouteName", undefined);
 Session.setDefault("connectionStatus", 2);

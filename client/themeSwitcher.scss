@@ -1,8 +1,10 @@
-@import "themes/theme-default";
+@import "themes/theme-arsnova";
+@import "themes/theme-linux";
 @import "../imports/ui/main/main.scss";
 
 $themes: (
-        theme-default: map-merge(changing-colors-definitions(), theme-default())
+  arsnova: theme-arsnova(),
+  linux: theme-linux()
 );
 
 @each $theme, $map in $themes {

@@ -1,17 +1,15 @@
-@import "changing-colors-definitions";
-
-@function theme-default() {
+@function theme-linux() {
   //global sass colors
 
   $default_dark_blue: darkblue;
   $default_blue: blue;
   $default_orange: darkorange;
   $default_red: tomato;
-  $default_gray: grey;
+  $default_grey: grey;
   $default_green: green;
   $default_white: white;
 
-  $primary: $default_gray;
+  $primary: $default_grey;
   $primary_text: #212121;
   $secondary_text: $default_white;
 
@@ -26,7 +24,7 @@
   $mountain_mist_approx: rgb(153, 153, 153);
   $orange_pool: $default_orange;
   $btn_inactive: #9e9c9c;
-  $item_separator: $default_gray;
+  $item_separator: $default_grey;
   $footer_hover: rgb(215, 215, 215);
   $hyperlink: blue;
   $accent: $default_green;
@@ -42,7 +40,7 @@
   $input_textarea_text_active: black;
   $input_textarea_text_inactive: black;
   $item_icon_hover: midnightblue;
-  $default_background: $default_gray;
+  $default_background: $default_grey;
 
   @return (
     //background (Deactivate the image with "none" if you want to use the background-color)
@@ -59,7 +57,7 @@
           "thm_blue":$default_blue,
           "thm_orange":$default_orange,
           "thm_red":$default_red,
-          "thm_gray":$default_gray,
+          "thm_gray":$default_grey,
           "thm_green":$default_green,
           "athens_gray_approx":$athens-gray-approx,
           "white":$default_white,
@@ -79,7 +77,7 @@
           "accent_300": $accent_300,
           "background": $background,
           "hyperlink": $hyperlink,
-          "modal_icon": $default_gray,
+          "modal_icon": $default_grey,
           "trophy": $default_orange,
     //global button and label colors
           "demo_background": $default_green,
@@ -137,13 +135,13 @@
           "transcript_rating_about_background": transparent,
           "transcript_rating_about_icon": white,
           "transcript_rating_about_card_background": transparent,
-          "transcript_rating_about_card_icon": $default_gray,
+          "transcript_rating_about_card_icon": $default_grey,
           "transcript_achieved_bonus": $default_orange,
           "transcript_rating_stars_label_background": transparent,
           "transcript_rating_stars_icon": white,
           "transcript_rating_stars_icon_rated": $default_orange,
           "transcript_rating_stars_card_label_background": transparent,
-          "transcript_rating_stars_card_icon": $default_gray,
+          "transcript_rating_stars_card_icon": $default_grey,
           "transcript_rating_stars_card_icon_rated": $default_orange,
           "frag_jetzt_background": teal,
           "frag_jetzt_text": white,
@@ -207,13 +205,13 @@
           "navbar_all_border": $default_orange,
           "navbar_all_border_hover": $default_orange,
           "navbar_all_border_active": $default_orange,
-          "navbar_all_cardsets_background": $default_gray,
+          "navbar_all_cardsets_background": $default_grey,
           "navbar_all_cardsets_background_hover": $button_background_hover,
           "navbar_all_cardsets_background_active": $default_orange,
           "navbar_all_cardsets_text": white,
           "navbar_all_cardsets_text_hover": $button_text_hover,
           "navbar_all_cardsets_text_active": white,
-          "navbar_all_repetitorien_background": $default_gray,
+          "navbar_all_repetitorien_background": $default_grey,
           "navbar_all_repetitorien_background_hover": $button_background_hover,
           "navbar_all_repetitorien_background_active": $default_orange,
           "navbar_all_repetitorien_text": white,
@@ -226,13 +224,13 @@
           "navbar_transcripts_text": white,
           "navbar_transcripts_text_hover": $button_text_hover,
           "navbar_transcripts_text_active": #2ac55f,
-          "navbar_transcripts_personal_background": $default_gray,
+          "navbar_transcripts_personal_background": $default_grey,
           "navbar_transcripts_personal_background_hover": $button_background_hover,
           "navbar_transcripts_personal_background_active": $default_green,
           "navbar_transcripts_personal_text": white,
           "navbar_transcripts_personal_text_hover": $button_text_hover,
           "navbar_transcripts_personal_text_active": white,
-          "navbar_transcripts_bonus_background": $default_gray,
+          "navbar_transcripts_bonus_background": $default_grey,
           "navbar_transcripts_bonus_background_hover": $button_background_hover,
           "navbar_transcripts_bonus_background_active": #2ac55f,
           "navbar_transcripts_bonus_text": white,
@@ -245,19 +243,19 @@
           "navbar_personal_text": white,
           "navbar_personal_text_hover": $button_text_hover,
           "navbar_personal_text_active": #2ac55f,
-          "navbar_personal_transcripts_background": $default_gray,
+          "navbar_personal_transcripts_background": $default_grey,
           "navbar_personal_transcripts_background_hover": $button_background_hover,
           "navbar_personal_transcripts_background_active": $default_green,
           "navbar_personal_transcripts_text": white,
           "navbar_personal_transcripts_text_hover": $button_text_hover,
           "navbar_personal_transcripts_text_active": white,
-          "navbar_personal_cardsets_background": $default_gray,
+          "navbar_personal_cardsets_background": $default_grey,
           "navbar_personal_cardsets_background_hover": $button_background_hover,
           "navbar_personal_cardsets_background_active": $default_green,
           "navbar_personal_cardsets_text": white,
           "navbar_personal_cardsets_text_hover": $button_text_hover,
           "navbar_personal_cardsets_text_active": white,
-          "navbar_personal_repetitorien_background": $default_gray,
+          "navbar_personal_repetitorien_background": $default_grey,
           "navbar_personal_repetitorien_background_hover": $button_background_hover,
           "navbar_personal_repetitorien_background_active": $default_green,
           "navbar_personal_repetitorien_text": white,
@@ -270,13 +268,13 @@
           "navbar_public_text": white,
           "navbar_public_text_hover": $button_text_hover,
           "navbar_public_text_active": #2ac55f,
-          "navbar_public_cardsets_background": $default_gray,
+          "navbar_public_cardsets_background": $default_grey,
           "navbar_public_cardsets_background_hover": $button_background_hover,
           "navbar_public_cardsets_background_active": $default_green,
           "navbar_public_cardsets_text": white,
           "navbar_public_cardsets_text_hover": $button_text_hover,
           "navbar_public_cardsets_text_active": white,
-          "navbar_public_repetitorien_background": $default_gray,
+          "navbar_public_repetitorien_background": $default_grey,
           "navbar_public_repetitorien_background_hover": $button_background_hover,
           "navbar_public_repetitorien_background_active": #2ac55f,
           "navbar_public_repetitorien_text": white,
@@ -290,7 +288,7 @@
           "navbar_learn_text_hover": $button_text_hover,
           "navbar_learn_text_active": #2ac55f,
 
-          "navbar_search_placeholder": $default_gray,
+          "navbar_search_placeholder": $default_grey,
           "navbar_search_button_background": transparent,
           "navbar_search_button_icon": white,
           "navbar_search_button_background_hover": white,
@@ -324,7 +322,7 @@
           "navbar_profile_text": white,
           "navbar_profile_text_hover": $button_text_hover,
           "navbar_profile_text_active": #2ac55f,
-          "navbar_profile_dropdown_background": $default_gray,
+          "navbar_profile_dropdown_background": $default_grey,
           "navbar_profile_dropdown_background_opacity": 0.9,
           "navbar_profile_dropdown_background_hover": $button_background_hover,
           "navbar_profile_dropdown_background_active": #2ac55f,
@@ -344,23 +342,23 @@
           "navbar_websocket_background_hover": $button_background_hover,
     //welcome page colors
           "welcome_page_login_label": white,
-          "welcome_page_login_label_shadow": $default_gray,
+          "welcome_page_login_label_shadow": $default_grey,
           "placeholder": $default_orange,
     //export to markdeep colors
-          "export_to_markdeep_table_header_background": $default_gray,
+          "export_to_markdeep_table_header_background": $default_grey,
           "export_to_markdeep_table_header_text": white,
           "export_to_markdeep_table_row_background": white,
           "export_to_markdeep_table_row_text": $primary_text,
           "export_to_markdeep_table_row_counter": $primary_text,
     //server statistics colors
-          "server_statistics_table_header_background": $default_gray,
+          "server_statistics_table_header_background": $default_grey,
           "server_statistics_table_header_text": white,
           "server_statistics_table_header_counter": white,
           "server_statistics_table_row_background": white,
           "server_statistics_table_row_text": $primary_text,
           "server_statistics_table_row_counter": $primary_text,
     //leitner user history
-          "leitner_user_history_title_background": $default_gray,
+          "leitner_user_history_title_background": $default_grey,
           "leitner_user_history_title_color": white,
     //footer colors
           "footer_welcome_page_info_icon_text" : white,
@@ -373,14 +371,14 @@
           "footer_navigation_background_hover": $button_background_hover,
     //impressum colors
           "info_content_header_text": white,
-          "info_content_header_background": $default_gray,
-          "info_content_body_text": $default_gray,
+          "info_content_header_background": $default_grey,
+          "info_content_body_text": $default_grey,
           "info_content_body_background": LightGoldenRodYellow,
     //editor navigation colors
           "item_selection_border": $item_separator,
     //filter colors
           "filter_navigation_background": WhiteSmoke,
-          "filter_navigation_text": $default_gray,
+          "filter_navigation_text": $default_grey,
           "filter_navigation_icon_active": $default_orange,
           "filter_navigation_background_hover": $button_background_hover,
           "filter_navigation_text_hover": $button_text_hover,
@@ -390,18 +388,18 @@
           "filter_button_icon_active": white,
           "filter_button_background_hover": white,
           "filter_button_icon_hover": black,
-          "filter_border": $default_gray,
+          "filter_border": $default_grey,
     //display mode colors
           "display_mode_background": black,
           "display_mode_text": white,
           "display_mode_background_hover" : white,
           "display_mode_text_hover": black,
     //item lists colors
-          "item_separator_border_bottom": $default_gray,
-          "infinite_scroll_background": $default_gray,
+          "item_separator_border_bottom": $default_grey,
+          "infinite_scroll_background": $default_grey,
           "infinite_scroll_icon": $default_orange,
           "infinite_scroll_text": white,
-          "item_background": $default_gray,
+          "item_background": $default_grey,
           "item_icon": white,
           "item_icon_hover": $item_icon_hover,
           "item_author_text": black,
@@ -411,11 +409,11 @@
           "item_workload_button_text_hover": $button_text_hover,
           "item_last_editor_text": black,
           "item_description_background": LightGoldenRodYellow,
-          "item_description_text": $default_gray,
+          "item_description_text": $default_grey,
           "item_text": white,
           "item_content_link": white,
           "no_results_background": white,
-          "no_results_text": $default_gray,
+          "no_results_text": $default_grey,
     //difficulty colors
           "button_difficulty0_note": darkorange,
           "button_difficulty0": darkorange,
@@ -434,7 +432,7 @@
           "background_difficulty2_lines": rgba(91, 192, 222, 0.3),
           "background_difficulty3_lines": rgba(217, 83, 79, 0.3),
           "background_white": $default_white,
-          "background_white_lines": $default_gray,
+          "background_white_lines": $default_grey,
           "background_post_it": lightgoldenrodyellow,
           "background_post_it_lines": $default_orange,
           "background_pink": lightcoral,
@@ -484,21 +482,21 @@
           "background_hint": WhiteSmoke,
           "background_hint_alternative": LightPink,
           "lecture_presentation_header_lines": $default_orange,
-          "hint_presentation_header_lines": $default_gray,
+          "hint_presentation_header_lines": $default_grey,
           "hint_alternative_presentation_header_lines": $default_red,
-          "hint_text": $default_gray,
-          "hint_text_alternative": $default_gray,
+          "hint_text": $default_grey,
+          "hint_text_alternative": $default_grey,
           "hint_link": $default_orange,
           "hint_link_alternative": $hyperlink,
           "hint_placeholder": $default_green,
           "hint_placeholder_alternative": $default_orange,
           "hint_header_border": $default_orange,
           "hint_header_border_alternative": $default_orange,
-          "navigation_arrows": $default_gray,
-          "card_header_card_number": $default_gray,
-          "card_header_first_row": $default_gray,
-          "card_header_second_row": $default_gray,
-          "card_header_subject": $default_gray,
+          "navigation_arrows": $default_grey,
+          "card_header_card_number": $default_grey,
+          "card_header_first_row": $default_grey,
+          "card_header_second_row": $default_grey,
+          "card_header_subject": $default_grey,
           "card_header_subject_placeholder": $default_orange,
 
           "card_content_zoom_container_button_reset_background": $default_orange,
@@ -506,7 +504,7 @@
           "card_content_zoom_container_button_reset_background_hover": $button_background_hover,
           "card_content_zoom_container_button_reset_text_hover": $button_text_hover,
 
-          "card_content_zoom_container_background": $default_gray,
+          "card_content_zoom_container_background": $default_grey,
           "card_content_zoom_container_text": white,
           "card_content_zoom_container_percentage": white,
 
@@ -529,13 +527,13 @@
           "card_right_answer_icon": $default_green,
           "card_wrong_answer_icon": $default_red,
           "card_explanation_answer_icon": $default_orange,
-          "card_checkbox_answer_icon": $default_gray,
-          "card_answer_background": rgba($default_gray, 0.25),
+          "card_checkbox_answer_icon": $default_grey,
+          "card_answer_background": rgba($default_grey, 0.25),
           "card_answer_background_right": rgba($default_green, 0.25),
           "card_answer_background_wrong": rgba($default_red, 0.25),
           "card_answer_explanation_background": rgba($default_orange, 0.25),
     //card sidebar colors
-          "card_sidebar_border": rgba($default_gray, 0.6),
+          "card_sidebar_border": rgba($default_grey, 0.6),
           "card_sidebar_background" : rgba($mercury_approx, 0.6),
           "card_sidebar_edit_button_background": $default_green,
           "card_sidebar_edit_button_text": white,
@@ -583,7 +581,7 @@
           "card_sidebar_arsnova_lite_background_active": $default_orange,
           "card_sidebar_arsnova_lite_text_active": white,
           "card_sidebar_zoom_background": none,
-          "card_sidebar_zoom_text": $default_gray,
+          "card_sidebar_zoom_text": $default_grey,
           "card_sidebar_zoom_background_open": $button_background_hover,
           "card_sidebar_zoom_text_open": $button_text_hover,
           "card_sidebar_zoom_background_hover": $button_background_hover,
@@ -592,21 +590,21 @@
           "card_sidebar_zoom_text_active": white,
 
           "card_sidebar_leitner_history_background": none,
-          "card_sidebar_leitner_history_text": $default_gray,
+          "card_sidebar_leitner_history_text": $default_grey,
           "card_sidebar_leitner_history_background_hover": $button_background_hover,
           "card_sidebar_leitner_history_text_hover": $button_text_hover,
           "card_sidebar_leitner_history_background_active": $default_green,
           "card_sidebar_leitner_history_text_active": white,
 
           "card_sidebar_leitner_graph_background": none,
-          "card_sidebar_leitner_graph_text": $default_gray,
+          "card_sidebar_leitner_graph_text": $default_grey,
           "card_sidebar_leitner_graph_background_hover": $button_background_hover,
           "card_sidebar_leitner_graph_text_hover": $button_text_hover,
           "card_sidebar_leitner_graph_background_active": $default_orange,
           "card_sidebar_leitner_graph_text_active": white,
     //cardset sidebar colors
           "cardset_sidebar_preview_background": none,
-          "cardset_sidebar_preview_text": $default_gray,
+          "cardset_sidebar_preview_text": $default_grey,
           "cardset_sidebar_preview_background_hover": $button_background_hover,
           "cardset_sidebar_preview_text_hover": $button_text_hover,
           "cardset_sidebar_preview_background_active": $default_orange,
@@ -614,10 +612,10 @@
     //cardset colors
           "cardset_markdeep_background": LightGoldenRodYellow,
           "cardset_markdeep_header_border": $default_orange,
-          "cardset_markdeep_text": $default_gray,
+          "cardset_markdeep_text": $default_grey,
           "cardset_markdeep_link": $default_orange,
           "cardset_markdeep_placeholder": $default_green,
-          "cardset_footer_navigation_background": $default_gray,
+          "cardset_footer_navigation_background": $default_grey,
           "cardset_footer_navigation_index_background": none,
           "cardset_footer_navigation_index_text": black,
           "cardset_footer_navigation_index_background_hover": $button_background_hover,
@@ -738,24 +736,24 @@
           "markdeep_inline_code_background": yellow,
           "markdeep_inline_code_text": black,
           "markdeep_blockquote_background": none,
-          "markdeep_blockquote_text": $default_gray,
-          "markdeep_blockquote_author": $default_gray,
+          "markdeep_blockquote_text": $default_grey,
+          "markdeep_blockquote_author": $default_grey,
           "markdeep_blockquote_quotes": $default_orange,
-          "markdeep_image_border": $default_gray,
+          "markdeep_image_border": $default_grey,
     //transcript bonus colors
           "transcript_bonus_info_text": white,
           "transcript_bonus_info_background": $default_red,
           "transcript_bonus_info_lecture_date_year_text": white,
           "transcript_bonus_info_lecture_date_year_background": $default_orange,
           "transcript_bonus_info_lecture_date_month_text": white,
-          "transcript_bonus_info_lecture_date_month_background": $default_gray,
+          "transcript_bonus_info_lecture_date_month_background": $default_grey,
           "transcript_bonus_info_lecture_date_day_border": white,
           "transcript_bonus_info_lecture_date_day_past_text": white,
           "transcript_bonus_info_lecture_date_day_past_background": rgba($default_red, 0.5),
           "transcript_bonus_info_lecture_date_day_active_text": white,
           "transcript_bonus_info_lecture_date_day_active_background": $default_green,
           "transcript_bonus_info_lecture_date_day_future_text": white,
-          "transcript_bonus_info_lecture_date_day_future_background": rgba($default_gray, 0.5),
+          "transcript_bonus_info_lecture_date_day_future_background": rgba($default_grey, 0.5),
           "transcript_bonus_info_lecture_date_day_hover_text": black,
           "transcript_bonus_info_lecture_date_day_hover_background": LightGoldenRodYellow,
           "transcript_bonus_submission_count_badge_text": white,
@@ -796,10 +794,10 @@
           "notification_text_smartphones": white,
     //search colors
           "search_results_background": LightGoldenRodYellow,
-          "search_results_info_background": $default_gray,
+          "search_results_info_background": $default_grey,
           "search_results_info_text": white,
           "search_results_separator": white,
-          "search_divide:": $default_gray,
+          "search_divide:": $default_grey,
     //form group colors
           "form_group_label": black,
     //cardset form colors
@@ -819,9 +817,9 @@
           "presentation_clock_circle": none,
           "presentation_clock_background": none,
           "presentation_clock_center_circle": red,
-          "presentation_clock_hour_marks": $default_gray,
-          "presentation_clock_hour_arm": $default_gray,
-          "presentation_clock_minute_arm": $default_gray,
+          "presentation_clock_hour_marks": $default_grey,
+          "presentation_clock_hour_arm": $default_grey,
+          "presentation_clock_minute_arm": $default_grey,
           "presentation_clock_second_arm": red,
     //modal colors
           "modal_overlay": rgba(0,0,0, 0.7),
@@ -859,8 +857,8 @@
           "sweet_alert_2_icon_error_text": $default_red,
           "sweet_alert_2_icon_info_border": $default_dark_blue,
           "sweet_alert_2_icon_info_text": $default_dark_blue,
-          "sweet_alert_2_icon_question_border": $default_gray,
-          "sweet_alert_2_icon_question_text": $default_gray,
+          "sweet_alert_2_icon_question_border": $default_grey,
+          "sweet_alert_2_icon_question_text": $default_grey,
     //loading screen
           "loading_screen_icon": $default_orange,
     //wozniak rating buttons

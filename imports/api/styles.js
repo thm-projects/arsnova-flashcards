@@ -1,7 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import * as serverConf from "../config/server.js";
 import * as backgroundsConf from "../config/backgrounds.js";
-import {Session} from "meteor/session";
 import {UserPermissions} from "./permissions";
 import {MainNavigation} from "./mainNavigation";
 import {Route} from "./route";
@@ -87,51 +86,6 @@ export let ServerStyle = class ServerStyle {
 				return serverConf.staging;
 			default:
 				return serverConf.defaultSettings;
-		}
-	}
-
-	static getBackground (type) {
-		if (Session.get('theme') !== "default") {
-			return "none";
-		}
-		let backgrounds;
-		let backgroundSring = "";
-		switch (this.getConfig().backgrounds) {
-			case "linux":
-				backgrounds = backgroundsConf.linuxBackgrounds;
-				break;
-			default:
-				backgrounds = backgroundsConf.defaultBackgrounds;
-		}
-		switch (type) {
-			case "landing-page":
-				backgroundSring = backgrounds["landing-page"];
-				break;
-			case "internal":
-				backgroundSring = backgrounds.internal;
-				break;
-			case "demo":
-				backgroundSring = backgrounds.demo;
-				break;
-			case "presentation":
-				backgroundSring = backgrounds.presentation;
-				break;
-			case "learning":
-				backgroundSring = backgrounds.learning;
-				break;
-			case "backend":
-				backgroundSring = backgrounds.backend;
-				break;
-			case "editor":
-				backgroundSring = backgrounds.editor;
-				break;
-			case "transcriptBonus":
-				backgroundSring = backgrounds.transcriptBonus;
-		}
-		if (backgroundSring === "none") {
-			return backgroundSring;
-		} else {
-			return "url('" + backgroundSring + "')";
 		}
 	}
 
@@ -279,5 +233,47 @@ export let ServerStyle = class ServerStyle {
 	static getMarkdeepFormatingPath () {
 		let config = this.getConfig();
 		return config.help.markdeepFormatingCardsetID;
+	}
+
+	static getDefaultTheme () {
+		let config = this.getConfig().themes;
+		return config.list[config.defaultID].theme;
+	}
+
+	static getBackground (type) {
+		let backgrounds;
+		let backgroundSring = "";
+		let config = this.getConfig().themes;
+		backgrounds = backgroundsConf[config.list[config.defaultID].backgrounds];
+		switch (type) {
+			case "landing-page":
+				backgroundSring = backgrounds["landing-page"];
+				break;
+			case "internal":
+				backgroundSring = backgrounds.internal;
+				break;
+			case "demo":
+				backgroundSring = backgrounds.demo;
+				break;
+			case "presentation":
+				backgroundSring = backgrounds.presentation;
+				break;
+			case "learning":
+				backgroundSring = backgrounds.learning;
+				break;
+			case "backend":
+				backgroundSring = backgrounds.backend;
+				break;
+			case "editor":
+				backgroundSring = backgrounds.editor;
+				break;
+			case "transcriptBonus":
+				backgroundSring = backgrounds.transcriptBonus;
+		}
+		if (backgroundSring === "none") {
+			return backgroundSring;
+		} else {
+			return "url('" + backgroundSring + "')";
+		}
 	}
 };

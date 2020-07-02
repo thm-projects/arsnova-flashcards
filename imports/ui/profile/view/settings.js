@@ -9,6 +9,7 @@ import "../modal/deleteProfile.js";
 import "../view/public.js";
 import "./settings.html";
 import {ServerSettings} from "../../../api/settings";
+import {ServerStyle} from "../../../api/styles";
 
 /*
  * ############################################################################
@@ -61,7 +62,7 @@ Template.profileSettings.helpers({
 Template.profileSettings.onDestroyed(function () {
 	// Go back to last saved Theme
 	if (Meteor.user()) {
-		Session.set("theme", Meteor.user().selectedColorTheme);
+		Session.set("theme", ServerStyle.getDefaultTheme());
 		Session.set("language", Meteor.user().profile.locale);
 	}
 });

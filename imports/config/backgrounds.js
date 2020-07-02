@@ -3,8 +3,8 @@
 // - Set the Background-Image to "none" to enable the Background-Color.
 // - Change the setting "backgrounds" in "/import/config/server.js" to select the background setting that the server should use.
 
-// Setting "default"
-let defaultBackgrounds = {
+// Setting "arsnova"
+let arsnova = {
 	"landing-page": "/img/background/question-mark-1481601.jpg",
 	"internal": "/img/background/question-mark-1481601.jpg",
 	"demo": "/img/background/question-mark-1481601.jpg",
@@ -16,7 +16,7 @@ let defaultBackgrounds = {
 };
 
 // Setting "linux"
-let linuxBackgrounds = {
+let linux = {
 	"landing-page": "/img/background/Linux-Regal.jpg",
 	"internal": "/img/background/Mac-Tastatur.jpg",
 	"demo": "none",
@@ -27,7 +27,20 @@ let linuxBackgrounds = {
 	"transcriptBonus": "none"
 };
 
+// Setting disabled
+let disabled = {
+	"landing-page": "none",
+	"internal": "none",
+	"demo": "none",
+	"presentation": "none",
+	"learning": "none",
+	"backend": "none",
+	"editor": "none",
+	"transcriptBonus": "none"
+};
+
 module.exports = {
-	defaultBackgrounds,
-	linuxBackgrounds
+	arsnova,
+	linux,
+	disabled
 };
