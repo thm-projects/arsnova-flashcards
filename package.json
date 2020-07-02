@@ -3,7 +3,14 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
-    "debug-bundle": "meteor run --settings settings_debug.json --extra-packages bundle-visualizer --production"
+    "debug-bundle": "meteor run --settings settings_debug.json --extra-packages bundle-visualizer --production",
+    "lint": "gulp codeCheck --gulpfile ./.gulpfile.js"
+  },
+  "pre-commit": {
+    "silent": true,
+    "run": [
+      "lint"
+    ]
   },
   "dependencies": {
     "@babel/runtime": "^7.9.2",
@@ -34,7 +41,8 @@
     "gulp-watch": "^5.0.1",
     "gulp4": "^4.0.3",
     "jshint": "^2.11.0",
-    "jshint-stylish": "^2.2.1"
+    "jshint-stylish": "^2.2.1",
+    "pre-commit": "^1.2.2"
   },
   "author": "",
   "license": "ISC",
