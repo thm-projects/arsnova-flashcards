@@ -34,17 +34,18 @@ gulp.task('watch', function () {
 gulp.task('lint', function () {
 	return gulp.src(paths)
 		.pipe(jshint())
-		.pipe(jshint.reporter(stylish));
+		.pipe(jshint.reporter('jshint-stylish'))
+		.pipe(jshint.reporter('fail'));
 });
 
 gulp.task('jscs', function () {
 	return gulp.src(paths)
-		.pipe(jscs())
-		.pipe(jscs.reporter());
+		.pipe(jscs({fix: false}))
+		.pipe(jscs.reporter())
+		.pipe(jscs.reporter('fail'));
 });
 
-gulp.task(
-	'codeCheck',
+gulp.task('codeCheck',
 	gulp.series('lint', 'jscs')
 );
 
