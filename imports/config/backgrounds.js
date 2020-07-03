@@ -18,10 +18,10 @@ let arsnova = {
 // Setting "linux"
 let linux = {
 	"landing-page": "/img/background/Linux-Regal.jpg",
-	"internal": "/img/background/Mac-Tastatur.jpg",
-	"demo": "none",
-	"presentation": "none",
-	"learning": "none",
+	"internal": "/img/background/matrix.jpg",
+	"demo": "/img/background/matrix.jpg",
+	"presentation": "/img/background/matrix.jpg",
+	"learning": "/img/background/matrix.jpg",
 	"backend": "/img/background/matrix.jpg",
 	"editor": "/img/background/matrix.jpg",
 	"transcriptBonus": "none"
