@@ -8,9 +8,7 @@
   },
   "pre-commit": {
     "silent": true,
-    "run": [
-      "lint"
-    ]
+    "run": []
   },
   "dependencies": {
     "@babel/runtime": "^7.9.2",
