@@ -9,9 +9,9 @@ let arsnova = {
 	"internal": "/img/background/question-mark-1481601.jpg",
 	"demo": "/img/background/question-mark-1481601.jpg",
 	"presentation": "/img/background/question-mark-1481601.jpg",
-	"learning": "img/background/question-mark-1481601.jpg",
-	"backend": "/img/background/Mac-Tastatur.jpg",
-	"editor": "none",
+	"learning": "/img/background/question-mark-1481601.jpg",
+	"backend": "/img/background/matrix.jpg",
+	"editor": "/img/background/matrix.jpg",
 	"transcriptBonus": "none"
 };
 
@@ -22,8 +22,8 @@ let linux = {
 	"demo": "none",
 	"presentation": "none",
 	"learning": "none",
-	"backend": "none",
-	"editor": "none",
+	"backend": "/img/background/matrix.jpg",
+	"editor": "/img/background/matrix.jpg",
 	"transcriptBonus": "none"
 };
 
