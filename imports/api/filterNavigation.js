@@ -9,11 +9,17 @@ export let FilterNavigation = class FilterNavigation {
 	static showDropdown (forceOn = true) {
 		if ($('.navbar-cards-filter-dropdown').hasClass('active') && !forceOn) {
 			$('.navbar-cards-filter-dropdown').removeClass('active');
+			$('.toggle-filter-dropdown').removeClass('active');
 		} else {
 			$('.navbar-cards-filter-dropdown').addClass('active');
+			$('.toggle-filter-dropdown').addClass('active');
 			FilterNavigation.setMaxDropdownHeight();
 			MainNavigation.closeCollapse();
 		}
+	}
+
+	static gotAutoOpenFeature () {
+		return config.autoOpenFilter;
 	}
 
 	static gotAuthorFilter (filterType) {

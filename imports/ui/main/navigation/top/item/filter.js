@@ -4,6 +4,19 @@ import "./filter.html";
 
 /*
 * ############################################################################
+* mainNavigationTopItemFilter
+* ############################################################################
+*/
+
+Template.mainNavigationTopItemFilter.onRendered(function () {
+	if (FilterNavigation.gotAutoOpenFeature) {
+		FilterNavigation.showDropdown();
+	}
+});
+
+
+/*
+* ############################################################################
 * mainNavigationTopItemFilterDropdown
 * ############################################################################
 */

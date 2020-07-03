@@ -3,6 +3,8 @@ let itemStartingValue = 5;
 let itemIncrementValue = 20;
 
 //Filter Navigation
+let autoOpenFilter = true;
+
 
 //0: Themen-Pool / Pool
 //1: Kartei anlegen / My Cardsets
@@ -70,5 +72,6 @@ module.exports = {
 	filtersWithProKind,
 	filtersWithRating,
 	filtersWithTranscriptLecture,
-	filtersWithStars
+	filtersWithStars,
+	autoOpenFilter
 };
