@@ -1,9 +1,38 @@
 //------------------------ IMPORTS
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
-import {Cardsets} from "../../../../api/subscriptions/cardsets";
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./license.html";
+import {Session} from "meteor/session";
+
+function cleanUp() {
+	let cardset = Session.get('activeCardset');
+	let license = cardset.license;
+
+	$('#cc-modules > label').removeClass('active');
+	$('#modulesLabel').css('color', '');
+	$('#helpCC-modules').html('');
+
+	if (license.includes('by')) {
+		$('#cc-option0').addClass('active');
+	} else {
+		$('#cc-option0').removeClass('active');
+	}
+	if (license.includes('nc')) {
+		$('#cc-option1').addClass('active');
+	} else {
+		$('#cc-option1').removeClass('active');
+	}
+	if (license.includes('nd')) {
+		$('#cc-option2').addClass('active');
+	} else {
+		$('#cc-option2').removeClass('active');
+	}
+	if (license.includes('sa')) {
+		$('#cc-option3').addClass('active');
+	} else {
+		$('#cc-option3').removeClass('active');
+	}
+}
 
 /*
  * ############################################################################
@@ -13,26 +42,17 @@ import "./license.html";
 
 Template.selectLicenseForm.onRendered(function () {
 	$('#selectLicenseModal').on('hidden.bs.modal', function () {
-		var cardset = Cardsets.findOne(FlowRouter.getParam('_id'));
-		var license = cardset.license;
-
-		$('#cc-modules > label').removeClass('active');
-		$('#modulesLabel').css('color', '');
-		$('#helpCC-modules').html('');
-
-		if (license.includes('by')) {
-			$('#cc-option0').addClass('active');
-		}
-		if (license.includes('nc')) {
-			$('#cc-option1').addClass('active');
-		}
-		if (license.includes('nd')) {
-			$('#cc-option2').addClass('active');
-		}
-		if (license.includes('sa')) {
-			$('#cc-option3').addClass('active');
-		}
+		cleanUp();
 	});
+	$('#selectLicenseModal').on('show.bs.modal', function () {
+		cleanUp();
+	});
+});
+
+Template.selectLicenseForm.helpers({
+	getCardsetTitle: function () {
+		return Session.get('activeCardset').name;
+	}
 });
 
 Template.selectLicenseForm.events({
@@ -57,7 +77,7 @@ Template.selectLicenseForm.events({
 				license.push("sa");
 			}
 
-			Meteor.call('updateLicense', this._id, license);
+			Meteor.call('updateLicense', Session.get('activeCardset')._id, license);
 			$('#selectLicenseModal').modal('hide');
 		}
 	},
@@ -69,7 +89,7 @@ Template.selectLicenseForm.events({
 
 Template.selectLicenseForm.helpers({
 	licenseIsActive: function (license) {
-		var cardset = Cardsets.findOne(FlowRouter.getParam('_id'));
+		var cardset = Session.get('activeCardset');
 		if (cardset !== undefined) {
 			var licenses = cardset.license;
 

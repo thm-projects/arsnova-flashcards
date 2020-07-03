@@ -813,6 +813,8 @@
     "category_required": "Wähle eine Kategorie!",
     "price": "Verkaufspreis",
     "publish": "Zugangskategorie speichern",
+    "publishTitle": "Zugangskategorie für »__title__«",
+    "licenseTitle": "Lizenz für »__title__«",
     "modules": "»Creative Commons«-Rechtemodule",
     "by-desc": "Der Name der Urheberin oder des Urhebers muss genannt werden.",
     "nc-desc": "Das Werk darf nicht für kommerzielle Zwecke verwendet werden.",
@@ -1014,7 +1016,6 @@
     "importcard": "Import",
     "exportcard": "Export",
     "manageEditors": "Bearbeitungsrechte",
-    "publish": "Zugang festlegen",
     "tooltip": "Erstelle mindestens 5 Karten für diese Kartei und vervollständige dein Profil, um die Kartei zu veröffentlichen. Pro-Karteien können nicht wieder zurückgestuft werden!",
     "published": "Veröffentlicht",
     "review": "In Überprüfung",
@@ -1238,6 +1239,8 @@
       }
     },
     "tooltip": {
+      "selectLicense": "Lizenz verwalten",
+      "publish": "Zugang festlegen",
       "editCardset": "Metadaten der Kartei editieren",
       "editRepetitorium": "Thema oder Beschreibung des Repetitoriums editieren",
       "editAdminSettings": "Admin-Einstellungen",

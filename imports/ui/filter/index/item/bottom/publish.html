@@ -1,0 +1,12 @@
+<template name="filterIndexItemBottomPublish">
+    {{#if isCardsetOwner this._id}}
+        {{#if canPublish}}
+            <a class="resultNavigationElement publishCardset hidden-xs hidden-sm"
+               title='{{_ "cardset.tooltip.publish"}}' data-id="{{this._id}}"
+               data-toggle="modal"
+               data-target="#publishModal">
+                <i class="far fa-eye publishCardset" data-id="{{this._id}}"></i>
+            </a>
+        {{/if}}
+    {{/if}}
+</template>

@@ -54,6 +54,8 @@ import "../modal/deleteWorkload.js";
 import "../modal/deleteCardset.js";
 import "../modal/deleteTranscript.js";
 import "../modal/selectWorkload.js";
+import "./item/bottom/publish.js";
+import "../index/item/bottom/license.js";
 import "./index.html";
 import {Meteor} from "meteor/meteor";
 import {ServerStyle} from "../../../api/styles";
