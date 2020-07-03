@@ -22,6 +22,12 @@ export let FilterNavigation = class FilterNavigation {
 		return config.autoOpenFilter;
 	}
 
+	static setAutoOpenFeature () {
+		if (Route.isFilterIndex() && this.gotAutoOpenFeature() && !NavigatorCheck.isSmartphone()) {
+			this.showDropdown();
+		}
+	}
+
 	static gotAuthorFilter (filterType) {
 		return config.filtersWithAuthor.includes(filterType);
 	}

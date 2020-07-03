@@ -157,6 +157,10 @@ Template.filterIndex.helpers({
 });
 
 
+Template.filterIndex.onRendered(function () {
+	FilterNavigation.setAutoOpenFeature();
+});
+
 /*
  * ############################################################################
  * filterIndexPool

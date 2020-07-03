@@ -151,6 +151,7 @@ Template.main.onRendered(function () {
 		}
 		if (!$(event.target).is('.resultItemHeaderAuthor a') && !$(event.target).is('.cards-filter-element') && !$(event.target).parents('.resultItemHeaderBottomAreaLabels').length) {
 			$('.navbar-cards-filter-dropdown').removeClass('active');
+			$('.toggle-filter-dropdown').removeClass('active');
 		}
 	});
 	$("#main").click(function () {
