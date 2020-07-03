@@ -72,6 +72,9 @@ Template.editor.onRendered(function () {
 	new ResizeSensor($('#preview'), function () {
 		CardVisuals.resizeFlashcard();
 	});
+	if (!Session.get('is3DActive')) {
+		$('.carousel-inner').removeClass('card-3d-overflow');
+	}
 });
 
 Template.editor.onDestroyed(function () {
