@@ -16,6 +16,8 @@ import {AspectRatio} from "../../api/aspectRatio.js";
 import {Leitner} from "../../api/subscriptions/leitner";
 import {Wozniak} from "../../api/subscriptions/wozniak";
 import {LeitnerProgress} from "../../api/leitnerProgress";
+import {FilterNavigation} from "../../api/filterNavigation";
+import {NavigatorCheck} from "../../api/navigatorCheck";
 
 let mainTemplate = 'main';
 let adminMainTemplate = 'admin_main';
