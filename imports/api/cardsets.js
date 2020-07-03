@@ -780,12 +780,13 @@ Meteor.methods({
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
+		return true;
 	},
 	makeProRequest: function (cardset_id) {
 		check(cardset_id, String);
 
 		let cardset = Cardsets.findOne(cardset_id);
-		if (UserPermissions.isOwner(cardset.owner)) {
+		if (UserPermissions.isOwner(cardset.owner) || UserPermissions.gotBackendAccess()) {
 			Cardsets.update(cardset._id, {
 				$set: {
 					reviewed: false,
