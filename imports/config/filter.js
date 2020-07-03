@@ -3,6 +3,8 @@ let itemStartingValue = 5;
 let itemIncrementValue = 20;
 
 //Filter Navigation
+let autoOpenFilter = true;
+
 
 //0: Themen-Pool / Pool
 //1: Kartei anlegen / My Cardsets
@@ -18,9 +20,9 @@ let itemIncrementValue = 20;
 let filtersWithResetButton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 let filtersWithDisplayModeButton = [0, 2, 4, 7];
 let filtersWithSortButton = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-let filtersWithDefaultSortName = [3, 5];
+let filtersWithDefaultSortName = [3];
 let filtersWithDefaultSortDateUpdated = [1, 4, 6, 7, 8, 9, 10];
-let filtersWithDefaultSortDateCreated = [0, 2];
+let filtersWithDefaultSortDateCreated = [0, 2, 5];
 let filtersWithAuthor = [0, 2, 3, 4, 5, 6, 10];
 let filtersWithCardType = [0, 1, 3, 4, 5];
 let filtersWithDifficulty = [0, 1, 3, 4, 5];
@@ -70,5 +72,6 @@ module.exports = {
 	filtersWithProKind,
 	filtersWithRating,
 	filtersWithTranscriptLecture,
-	filtersWithStars
+	filtersWithStars,
+	autoOpenFilter
 };
