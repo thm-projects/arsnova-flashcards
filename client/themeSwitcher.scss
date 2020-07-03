@@ -3083,9 +3083,17 @@ $themes: (
       color: $free_text !important;
     }
 
+    .label-free-text {
+      color: $free_background !important;
+    }
+
     .label-edu {
       background-color: $edu_background !important;
       color: $edu_text !important;
+    }
+
+    .label-edu-text {
+      color: $edu_background !important;
     }
 
     .label-pro {
@@ -3093,9 +3101,17 @@ $themes: (
       color: $pro_text !important;
     }
 
+    .label-pro-text {
+      color: $pro_background !important;
+    }
+
     .label-private {
       background-color: $private_background !important;
       color: $private_text !important;
+    }
+
+    .label-private-text {
+      color: $private_background !important;
     }
 
     .label-shuffled {

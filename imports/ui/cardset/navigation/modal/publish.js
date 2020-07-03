@@ -2,12 +2,16 @@
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
+import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
 import "./publish.html";
+
+Session.setDefault('activeKind', 'personal');
 
 function cleanUp() {
 	let cardset = Session.get('activeCardset');
 
+	Session.set('activeKind', cardset.kind);
 	$('#publishKind label').removeClass('active');
 	$('#publishKind  label  input').filter(function () {
 		return this.value === cardset.kind;
@@ -80,7 +84,11 @@ Template.cardsetPublishForm.events({
 			BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.request.alert'), 'success', 'growl-top-left');
 		}
 
-		Meteor.call("publishCardset", Session.get('activeCardset')._id, kind, price, visible);
+		Meteor.call("publishCardset", Session.get('activeCardset')._id, kind, price, visible, function (err, res) {
+			if (res) {
+				Session.set('activeCardset', Cardsets.findOne({_id: Session.get('activeCardset')._id}));
+			}
+		});
 		$('#publishModal').modal('hide');
 	}
 });
@@ -99,7 +107,7 @@ Template.publishKind.helpers({
 		return Session.get('kindWithPrice');
 	},
 	kindIsActive: function (kind) {
-		return kind === this.kind;
+		return kind === Session.get('activeKind');
 	},
 	priceIsSelected: function (price) {
 		return price === this.price ? 'selected' : '';
@@ -107,9 +115,7 @@ Template.publishKind.helpers({
 });
 
 Template.publishKind.events({
-	'change #publishKind': function () {
-		var kind = $('#publishKind input[name=kind]:checked').val();
-		var kindWithPrice = (kind === 'edu' || kind === 'pro');
-		Session.set('kindWithPrice', kindWithPrice);
+	'click .kind-option': function (event) {
+		Session.set('activeKind', $(event.currentTarget).data('id'));
 	}
 });
