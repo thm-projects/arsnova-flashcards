@@ -37,7 +37,7 @@ npm install -g gulp
 npm install
 ```
 
-Then, you can either run the script one time with ```gulp --gulpfile gulpfile.js``` or you can watch the directory with ```gulp watch --gulpfile gulpfile.js```
+Then, you can either run the script one time with ```gulp --gulpfile .gulpfile.js``` or you can watch the directory with ```gulp watch --gulpfile .gulpfile.js```
 
 ### Project structure
 
