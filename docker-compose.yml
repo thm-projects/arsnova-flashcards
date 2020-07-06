@@ -10,7 +10,7 @@ services:
       # - data:/home/node/mongo
       - .:/home/node/app
     ports:
-      - 8000:3000
+      - 3000:3000
 
 
 # volumes:
