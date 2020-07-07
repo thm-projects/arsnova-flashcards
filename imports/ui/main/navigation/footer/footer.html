@@ -32,8 +32,10 @@
 <template name="mainNavigationFooterDropdownContent">
     <div class="collapse navbar-collapse" id="navbar-cards-footer-collapse">
         <ul class="nav navbar-nav">
-            {{> mainNavigationFooterItemBackToHome}}
-            {{> mainNavigationFooterItemDemo}}
+            {{#unless isLandingPage}}
+              {{> mainNavigationFooterItemBackToHome}}
+              {{> mainNavigationFooterItemDemo}}
+            {{/unless}}
             {{> mainNavigationFooterItemAbout}}
             {{> mainNavigationFooterItemLearning}}
             {{> mainNavigationFooterItemFAQ}}
