@@ -96,7 +96,7 @@ let defaultSettings = {
 			}
 		},
 		"wordcloud": {
-			"enabled": true
+			"enabled": false
 		}
 	},
 	"language": {
@@ -243,7 +243,7 @@ let debug = {
 			}
 		},
 		"wordcloud": {
-			"enabled": true
+			"enabled": false
 		}
 	},
 	"language": {
@@ -537,7 +537,7 @@ let review = {
 			}
 		},
 		"wordcloud": {
-			"enabled": true
+			"enabled": false
 		}
 	},
 	"language": {
@@ -684,7 +684,7 @@ let staging = {
 			}
 		},
 		"wordcloud": {
-			"enabled": true
+			"enabled": false
 		}
 	},
 	"language": {
