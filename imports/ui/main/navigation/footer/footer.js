@@ -25,7 +25,7 @@ import ResizeSensor from "../../../../../client/thirdParty/resizeSensor/ResizeSe
 
 Template.mainNavigationFooter.helpers({
 	canDisplayFooter: function () {
-		return Route.isImpressum() || (Route.isHome() && (!Meteor.user() && !MainNavigation.isGuestLoginActive()));
+		return Route.isLandingPageRoutes() || (Route.isHome() && (!Meteor.user() && !MainNavigation.isGuestLoginActive()));
 	}
 });
 

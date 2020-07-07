@@ -213,7 +213,7 @@ Template.registerHelper('isInBonus', function () {
 });
 
 Template.registerHelper('isImpressum', function () {
-	return Route.isImpressum();
+	return Route.isLandingPageRoutes();
 });
 
 Template.registerHelper('gotAspectRatio', function () {
