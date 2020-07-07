@@ -15,9 +15,7 @@ import {LoginTasks} from "../../api/login";
 import {AspectRatio} from "../../api/aspectRatio.js";
 import {Leitner} from "../../api/subscriptions/leitner";
 import {Wozniak} from "../../api/subscriptions/wozniak";
-import {LeitnerProgress} from "../../api/leitnerProgress";
-import {FilterNavigation} from "../../api/filterNavigation";
-import {NavigatorCheck} from "../../api/navigatorCheck";
+import * as RouteNames from "../../util/routeNames";
 
 let mainTemplate = 'main';
 let adminMainTemplate = 'admin_main';
@@ -34,7 +32,7 @@ FlowRouter.route('/admin', function () {
 });
 
 FlowRouter.route('/firstLogin', {
-	name: 'firstLogin',
+	name: RouteNames.firstLogin,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -54,7 +52,7 @@ FlowRouter.route('/firstLogin', {
 });
 
 FlowRouter.route('/accessDenied', {
-	name: 'accessDenied',
+	name: RouteNames.accessDenied,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -73,7 +71,7 @@ FlowRouter.route('/accessDenied', {
 });
 
 FlowRouter.route('/', {
-	name: 'home',
+	name: RouteNames.home,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -96,7 +94,7 @@ FlowRouter.route('/', {
 });
 
 FlowRouter.route('/about', {
-	name: 'about',
+	name: RouteNames.about,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -116,7 +114,7 @@ FlowRouter.route('/about', {
 });
 
 FlowRouter.route('/learning', {
-	name: 'learning',
+	name: RouteNames.learning,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -136,7 +134,7 @@ FlowRouter.route('/learning', {
 });
 
 FlowRouter.route('/help', {
-	name: 'help',
+	name: RouteNames.help,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -155,7 +153,7 @@ FlowRouter.route('/help', {
 });
 
 FlowRouter.route('/faq', {
-	name: 'faq',
+	name: RouteNames.faq,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -175,7 +173,7 @@ FlowRouter.route('/faq', {
 });
 
 FlowRouter.route('/impressum', {
-	name: 'impressum',
+	name: RouteNames.impressum,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -195,7 +193,7 @@ FlowRouter.route('/impressum', {
 });
 
 FlowRouter.route('/demo', {
-	name: 'demo',
+	name: RouteNames.demo,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -217,7 +215,7 @@ FlowRouter.route('/demo', {
 });
 
 FlowRouter.route('/demolist', {
-	name: 'demolist',
+	name: RouteNames.demolist,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -240,7 +238,7 @@ FlowRouter.route('/demolist', {
 });
 
 FlowRouter.route('/agb', {
-	name: 'agb',
+	name: RouteNames.agb,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -260,7 +258,7 @@ FlowRouter.route('/agb', {
 });
 
 FlowRouter.route('/datenschutz', {
-	name: 'datenschutz',
+	name: RouteNames.datenschutz,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -280,7 +278,7 @@ FlowRouter.route('/datenschutz', {
 });
 
 FlowRouter.route('/all/cardsets', {
-	name: 'alldecks',
+	name: RouteNames.alldecks,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -310,7 +308,7 @@ FlowRouter.route('/all/cardsets', {
 });
 
 FlowRouter.route('/all/repetitorien', {
-	name: 'allRepetitorien',
+	name: RouteNames.allRepetitorien,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -340,7 +338,7 @@ FlowRouter.route('/all/repetitorien', {
 });
 
 FlowRouter.route('/personal/cardsets', {
-	name: 'create',
+	name: RouteNames.create,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -368,7 +366,7 @@ FlowRouter.route('/personal/cardsets', {
 });
 
 FlowRouter.route('/transcripts/personal', {
-	name: 'transcriptsPersonal',
+	name: RouteNames.transcriptsPersonal,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -395,12 +393,13 @@ FlowRouter.route('/transcripts/personal', {
 });
 
 FlowRouter.route('/transcripts/bonus', {
-	name: 'transcriptsBonus',
+	name: RouteNames.transcriptsBonus,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
 	waitOn: function () {
 		return [
+			import ('../../ui/cardset/index/transcript/transcript.js'),
 			import('../../ui/filter/filter.js'),
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('myBonusTranscriptCards'),
@@ -424,7 +423,7 @@ FlowRouter.route('/transcripts/bonus', {
 });
 
 FlowRouter.route('/personal/repetitorien', {
-	name: 'personalRepetitorien',
+	name: RouteNames.personalRepetitorien,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -453,7 +452,7 @@ FlowRouter.route('/personal/repetitorien', {
 });
 
 FlowRouter.route('/public/cardsets', {
-	name: 'pool',
+	name: RouteNames.pool,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -482,7 +481,7 @@ FlowRouter.route('/public/cardsets', {
 });
 
 FlowRouter.route('/public/repetitorien', {
-	name: 'repetitorium',
+	name: RouteNames.repetitorium,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -512,7 +511,7 @@ FlowRouter.route('/public/repetitorien', {
 });
 
 FlowRouter.route('/learn', {
-	name: 'learn',
+	name: RouteNames.learn,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -544,7 +543,7 @@ FlowRouter.route('/cardset', function () {
 });
 
 FlowRouter.route('/cardset/:_id', {
-	name: 'cardsetdetailsid',
+	name: RouteNames.cardsetdetailsid,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -581,7 +580,7 @@ FlowRouter.route('/cardset/:_id', {
 });
 
 FlowRouter.route('/cardset/:_id/card/:card_id', {
-	name: 'cardsetcard',
+	name: RouteNames.cardsetcard,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -619,7 +618,7 @@ FlowRouter.route('/cardset/:_id/card/:card_id', {
 });
 
 FlowRouter.route('/cardset/:_id/editshuffle', {
-	name: 'editshuffle',
+	name: RouteNames.editshuffle,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -647,7 +646,7 @@ FlowRouter.route('/cardset/:_id/editshuffle', {
 });
 
 FlowRouter.route('/cardset/:_id/transcripts/review', {
-	name: 'presentationTranscriptReview',
+	name: RouteNames.presentationTranscriptReview,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -681,7 +680,7 @@ FlowRouter.route('/cardset/:_id/transcripts/review', {
 });
 
 FlowRouter.route('/cardset/:_id/transcripts', {
-	name: 'transcriptBonus',
+	name: RouteNames.transcriptBonus,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -714,7 +713,7 @@ FlowRouter.route('/cardset/:_id/transcripts', {
 });
 
 FlowRouter.route('/cardset/:_id/editors', {
-	name: 'cardseteditors',
+	name: RouteNames.cardseteditors,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -744,7 +743,7 @@ FlowRouter.route('/cardset/:_id/editors', {
 });
 
 FlowRouter.route('/cardset/:_id/stats', {
-	name: 'cardsetstats',
+	name: RouteNames.cardsetstats,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -775,7 +774,7 @@ FlowRouter.route('/cardsetlist', function () {
 });
 
 FlowRouter.route('/cardsetlist/:_id', {
-	name: 'cardsetlistid',
+	name: RouteNames.cardsetlistid,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -811,7 +810,7 @@ FlowRouter.route('/cardsetlist/:_id', {
 });
 
 FlowRouter.route('/cardset/:_id/newcard', {
-	name: 'newCard',
+	name: RouteNames.newCard,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -837,7 +836,7 @@ FlowRouter.route('/cardset/:_id/newcard', {
 });
 
 FlowRouter.route('/cardset/:_id/editcard/:card_id', {
-	name: 'editCard',
+	name: RouteNames.editCard,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -863,7 +862,7 @@ FlowRouter.route('/cardset/:_id/editcard/:card_id', {
 });
 
 FlowRouter.route('/personal/transcripts/edit/:card_id', {
-	name: 'editTranscript',
+	name: RouteNames.editTranscript,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -891,7 +890,7 @@ FlowRouter.route('/personal/transcripts/edit/:card_id', {
 
 
 FlowRouter.route('/personal/transcripts/new', {
-	name: 'newTranscript',
+	name: RouteNames.newTranscript,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -917,7 +916,7 @@ FlowRouter.route('/personal/transcripts/new', {
 });
 
 FlowRouter.route('/box/:_id', {
-	name: 'box',
+	name: RouteNames.box,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -949,7 +948,7 @@ FlowRouter.route('/box/:_id', {
 });
 
 FlowRouter.route('/memo/:_id', {
-	name: 'memo',
+	name: RouteNames.memo,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -980,7 +979,7 @@ FlowRouter.route('/memo/:_id', {
 });
 
 FlowRouter.route('/presentationlist/:_id', {
-	name: 'presentationlist',
+	name: RouteNames.presentationlist,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -1013,7 +1012,7 @@ FlowRouter.route('/presentationlist/:_id', {
 });
 
 FlowRouter.route('/presentation/transcripts/:card_id', {
-	name: 'presentationTranscriptPersonal',
+	name: RouteNames.presentationTranscriptPersonal,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -1039,7 +1038,7 @@ FlowRouter.route('/presentation/transcripts/:card_id', {
 });
 
 FlowRouter.route('/presentation/transcripts/bonus/:card_id', {
-	name: 'presentationTranscriptBonus',
+	name: RouteNames.presentationTranscriptBonus,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -1068,7 +1067,7 @@ FlowRouter.route('/presentation/transcripts/bonus/:card_id', {
 
 
 FlowRouter.route('/presentation/transcripts/bonus/:_id/:card_id', {
-	name: 'presentationTranscriptBonusCardset',
+	name: RouteNames.presentationTranscriptBonusCardset,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -1096,7 +1095,7 @@ FlowRouter.route('/presentation/transcripts/bonus/:_id/:card_id', {
 });
 
 FlowRouter.route('/presentation/:_id', {
-	name: 'presentation',
+	name: RouteNames.presentation,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -1125,7 +1124,7 @@ FlowRouter.route('/presentation/:_id', {
 });
 
 FlowRouter.route('/makingofcards', {
-	name: 'making',
+	name: RouteNames.making,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -1149,7 +1148,7 @@ FlowRouter.route('/makingofcards', {
 });
 
 FlowRouter.route('/makingofcardslist', {
-	name: 'makinglist',
+	name: RouteNames.makinglist,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -1172,7 +1171,7 @@ FlowRouter.route('/makingofcardslist', {
 });
 
 FlowRouter.route('/profile/:_id/billing', {
-	name: 'profileBilling',
+	name: RouteNames.profileBilling,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -1193,7 +1192,7 @@ FlowRouter.route('/profile/:_id/billing', {
 	}
 });
 FlowRouter.route('/profile/:_id/membership', {
-	name: 'profileMembership',
+	name: RouteNames.profileMembership,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -1213,7 +1212,7 @@ FlowRouter.route('/profile/:_id/membership', {
 	}
 });
 FlowRouter.route('/profile/:_id/notifications', {
-	name: 'profileNotifications',
+	name: RouteNames.profileNotifications,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -1233,7 +1232,7 @@ FlowRouter.route('/profile/:_id/notifications', {
 	}
 });
 FlowRouter.route('/profile/:_id/settings', {
-	name: 'profileSettings',
+	name: RouteNames.profileSettings,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -1253,7 +1252,7 @@ FlowRouter.route('/profile/:_id/settings', {
 	}
 });
 FlowRouter.route('/profile/:_id/requests', {
-	name: 'profileRequests',
+	name: RouteNames.profileRequests,
 	whileWaiting: function () {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
@@ -1274,7 +1273,7 @@ FlowRouter.route('/profile/:_id/requests', {
 });
 
 FlowRouter.route('/admin/dashboard', {
-	name: 'admin_dashboard',
+	name: RouteNames.admin_dashboard,
 	whileWaiting: function () {
 		this.render(adminMainTemplate, loadingScreenTemplate);
 	},
@@ -1301,7 +1300,7 @@ FlowRouter.route('/admin/dashboard', {
 });
 
 FlowRouter.route('/admin/users', {
-	name: 'admin_users',
+	name: RouteNames.admin_users,
 	whileWaiting: function () {
 		this.render(adminMainTemplate, loadingScreenTemplate);
 	},
@@ -1327,7 +1326,7 @@ FlowRouter.route('/admin/users', {
 });
 
 FlowRouter.route('/admin/user/:_id', {
-	name: 'admin_user',
+	name: RouteNames.admin_user,
 	whileWaiting: function () {
 		this.render(adminMainTemplate, loadingScreenTemplate);
 	},
@@ -1354,7 +1353,7 @@ FlowRouter.route('/admin/user/:_id', {
 });
 
 FlowRouter.route('/admin/learningStatistics', {
-	name: 'admin_learningStatistics',
+	name: RouteNames.admin_learningStatistics,
 	whileWaiting: function () {
 		this.render(adminMainTemplate, loadingScreenTemplate);
 	},
@@ -1380,7 +1379,7 @@ FlowRouter.route('/admin/learningStatistics', {
 });
 
 FlowRouter.route('/admin/matomoStatistics', {
-	name: 'admin_matomoStatistics',
+	name: RouteNames.admin_matomoStatistics,
 	whileWaiting: function () {
 		this.render(adminMainTemplate, loadingScreenTemplate);
 	},
@@ -1403,7 +1402,7 @@ FlowRouter.route('/admin/matomoStatistics', {
 });
 
 FlowRouter.route('/admin/apiAccess', {
-	name: 'admin_apiAccess',
+	name: RouteNames.admin_apiAccess,
 	whileWaiting: function () {
 		this.render(adminMainTemplate, loadingScreenTemplate);
 	},
@@ -1429,7 +1428,7 @@ FlowRouter.route('/admin/apiAccess', {
 });
 
 FlowRouter.route('/admin/notifications', {
-	name: 'admin_notifications',
+	name: RouteNames.admin_notifications,
 	whileWaiting: function () {
 		this.render(adminMainTemplate, loadingScreenTemplate);
 	},
@@ -1455,7 +1454,7 @@ FlowRouter.route('/admin/notifications', {
 });
 
 FlowRouter.route('/admin/university', {
-	name: 'admin_university',
+	name: RouteNames.admin_university,
 	whileWaiting: function () {
 		this.render(adminMainTemplate, loadingScreenTemplate);
 	},
@@ -1481,7 +1480,7 @@ FlowRouter.route('/admin/university', {
 });
 
 FlowRouter.route('/admin/settings', {
-	name: 'admin_settings',
+	name: RouteNames.admin_settings,
 	whileWaiting: function () {
 		this.render(adminMainTemplate, loadingScreenTemplate);
 	},
@@ -1514,27 +1513,26 @@ FlowRouter.route('/admin/settings', {
 
 var linksWithNoLoginRequirement = function () {
 	let links = [
-		'home',
-		'about',
-		'learning',
-		'faq',
-		'help',
-		'impressum',
-		'demo',
-		'demolist',
-		'agb',
-		'datenschutz',
-		'making',
-		'makinglist'
+		RouteNames.home,
+		RouteNames.about,
+		RouteNames.learning,
+		RouteNames.faq,
+		RouteNames.help,
+		RouteNames.impressum,
+		RouteNames.demo,
+		RouteNames.demolist,
+		RouteNames.agb,
+		RouteNames.datenschutz,
+		RouteNames.making,
+		RouteNames.makinglist
 	];
 	if (ServerStyle.isLoginEnabled("guest") && MainNavigation.isGuestLoginActive()) {
 		let linksGuest = [
-			'cardsetdetailsid',
-			'cardsetlist',
-			'cardsetcard',
-			'cardsetlistid',
-			'presentation',
-			'presentationlist'
+			RouteNames.cardsetdetailsid,
+			RouteNames.cardsetcard,
+			RouteNames.cardsetlistid,
+			RouteNames.presentation,
+			RouteNames.presentationlist
 		];
 		if (ServerStyle.gotNavigationFeature("public.cardset.enabled")) {
 			linksGuest.push('pool');
@@ -1675,5 +1673,5 @@ FlowRouter.triggers.enter([isSignedIn], {
 });
 
 FlowRouter.triggers.enter([setLoginTarget], {
-	only: ['home']
+	only: [RouteNames.home]
 });

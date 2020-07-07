@@ -12,7 +12,7 @@ let arsnova = {
 	"learning": "/img/background/question-mark-1481601.jpg",
 	"backend": "/img/background/matrix.jpg",
 	"editor": "/img/background/matrix.jpg",
-	"transcriptBonus": "none"
+	"transcriptBonus": "/img/background/pencil.png"
 };
 
 // Setting "linux"
