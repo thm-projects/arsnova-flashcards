@@ -74,7 +74,7 @@ let defaultSettings = {
 	},
 	"login": {
 		"cas": true,
-		"guest": true,
+		"guest": false,
 		"pro": false,
 		"facebook": false,
 		"twitter": false,

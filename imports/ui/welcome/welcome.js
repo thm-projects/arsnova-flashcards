@@ -15,7 +15,6 @@ import {ServerStyle} from "../../api/styles.js";
 import {FirstTimeVisit} from "../../api/firstTimeVisit";
 import {MainNavigation} from "../../api/mainNavigation";
 import {ExecuteControllers} from 'wtc-controller-element';
-import 'wtc-barfystars';
 import "./welcome.html";
 import {setLoginTarget} from "../../startup/client/routes";
 
