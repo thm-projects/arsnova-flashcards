@@ -200,7 +200,7 @@ export let Route = class Route {
 	}
 
 	static isTranscriptBonus () {
-		return FlowRouter.getRouteName() === RouteNames.transcriptsBonus;
+		return FlowRouter.getRouteName() === RouteNames.transcriptBonus;
 	}
 
 	static isPool () {
