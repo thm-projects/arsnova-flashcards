@@ -399,6 +399,7 @@ FlowRouter.route('/transcripts/bonus', {
 	},
 	waitOn: function () {
 		return [
+			import ('../../ui/cardset/index/transcript/transcript.js'),
 			import('../../ui/filter/filter.js'),
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('myBonusTranscriptCards'),
