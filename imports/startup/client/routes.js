@@ -1512,27 +1512,26 @@ FlowRouter.route('/admin/settings', {
 
 var linksWithNoLoginRequirement = function () {
 	let links = [
-		'home',
-		'about',
-		'learning',
-		'faq',
-		'help',
-		'impressum',
-		'demo',
-		'demolist',
-		'agb',
-		'datenschutz',
-		'making',
-		'makinglist'
+		RouteNames.home,
+		RouteNames.about,
+		RouteNames.learning,
+		RouteNames.faq,
+		RouteNames.help,
+		RouteNames.impressum,
+		RouteNames.demo,
+		RouteNames.demolist,
+		RouteNames.agb,
+		RouteNames.datenschutz,
+		RouteNames.making,
+		RouteNames.makinglist
 	];
 	if (ServerStyle.isLoginEnabled("guest") && MainNavigation.isGuestLoginActive()) {
 		let linksGuest = [
-			'cardsetdetailsid',
-			'cardsetlist',
-			'cardsetcard',
-			'cardsetlistid',
-			'presentation',
-			'presentationlist'
+			RouteNames.cardsetdetailsid,
+			RouteNames.cardsetcard,
+			RouteNames.cardsetlistid,
+			RouteNames.presentation,
+			RouteNames.presentationlist
 		];
 		if (ServerStyle.gotNavigationFeature("public.cardset.enabled")) {
 			linksGuest.push('pool');
@@ -1673,5 +1672,5 @@ FlowRouter.triggers.enter([isSignedIn], {
 });
 
 FlowRouter.triggers.enter([setLoginTarget], {
-	only: ['home']
+	only: [RouteNames.home]
 });
