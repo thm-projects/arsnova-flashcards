@@ -1,64 +1,67 @@
 <template name="welcome">
-    {{#unless currentUser}}
-        {{> pomodoroTimerModal}}
-        {{> welcomeTitle}}
-        <div id="welcome-container">
-            {{> wordcloud}}
-        </div>
-        <div id="welcome-login" class="col-xs-12">
+  {{#unless currentUser}}
+    {{> pomodoroTimerModal}}
+    {{> welcomeTitle}}
+    <div id="welcome-container">
+      {{> wordcloud}}
+    </div>
+    <div id="welcome-login"
+         class="col-xs-12">
             <span class="login-container">
-                {{{getLoginButtons}}}
+              {{{getLoginButtons}}}
             </span>
-        </div>
-        <div id="pomodoroTimerNormalContainer" title="{{_ "landingPage.buttons.tooltip.pomodoro"}}">
-            {{> pomodoroTimer}}
-            <label>{{_ "landingPage.buttons.pomodoro"}}</label>
-        </div>
-        {{> welcomeWordcloudButton}}
-    {{/unless}}
+    </div>
+    <div id="pomodoroTimerNormalContainer"
+         title="{{_ "landingPage.buttons.tooltip.pomodoro"}}">
+      {{> pomodoroTimer}}
+      <label>{{_ "landingPage.buttons.pomodoro"}}</label>
+    </div>
+    {{> welcomeWordcloudButton}}
+  {{/unless}}
 </template>
 
 
 <template name="welcomeWordcloudButton">
-    {{#if gotLandingPageWordcloud}}
-        {{#if gotFeatureSupport 1}}
-            <div class="hidden-xs">
-                <div class="toggle-wordcloud" title="{{_ "landingPage.buttons.tooltip.wordcloud"}}">
-                    <div class="flex-content">{{{getNavigationIcon "wordcloud"}}}</div>
-                    <label>{{_ "landingPage.buttons.wordcloud"}}</label>
-                </div>
-            </div>
-        {{/if}}
+  {{#if gotLandingPageWordcloud}}
+    {{#if gotFeatureSupport 1}}
+      <div class="hidden-xs">
+        <div class="toggle-wordcloud"
+             title="{{_ "landingPage.buttons.tooltip.wordcloud"}}">
+          <div class="flex-content">{{{getNavigationIcon "wordcloud"}}}</div>
+          <label>{{_ "landingPage.buttons.wordcloud"}}</label>
+        </div>
+      </div>
     {{/if}}
+  {{/if}}
 </template>
 
 <template name="welcomeTitle">
-    <div class="col-xs-12" id="welcome">
-        <div class="panel panel-default">
-            <div class="panel-heading {{#if isFirstTimeVisit}}welcome-title-no-padding{{/if}}">
-                <div class="text-center">
-                    <span class="color-cards logo-header-chars">{{getFirstAppTitle}}</span>
-                    <span class="color-dot logo-header-dot"></span>
-                    <span class="color-cards logo-header-chars">{{getLastAppTitle}}</span>
-                </div>
+  <div class="col-xs-12"
+       id="welcome">
+    <div class="panel panel-default">
+      <div class="panel-heading {{#if isFirstTimeVisit}}welcome-title-no-padding{{/if}}">
+        <div class="text-center">
+          <span class="color-cards logo-header-chars">{{getFirstAppTitle}}</span>
+          <span class="color-dot logo-header-dot"></span>
+          <span class="color-cards logo-header-chars">{{getLastAppTitle}}</span>
+        </div>
 
-                <span id="slogan">
+        <span id="slogan">
                     <h2 class="pull-left">{{getAppSlogan}}</h2>
                   </span>
-                <br>
-                {{#if isActiveRoute
-                      'home'}}
-                    <a data-controller="BarfyStars" data-config='{{getBarfyStarsConfig "images"}}' href="about"
-                       id="showAbout" class="{{getBarfyStarsStyle
-                            "images"}} visible-xs-inline-block btn btn-raised btn-warning show-more"><span
-                            class="flex-content">{{{getAboutButton true}}}</span></a>
+        <br>
+        {{#if isActiveRoute 'home'}}
+          <a href="about"
+             id="showAbout"
+             class="visible-xs-inline-block btn btn-raised btn-warning show-more"><span>
+            {{{getAboutButton true}}}</span></a>
 
-                    <a data-controller="BarfyStars" data-config='{{getBarfyStarsConfig "images"}}' href="demo"
-                       id="showDemo"
-                       class="{{getBarfyStarsStyle "images"}} hidden-xs btn btn-raised btn-warning show-more"><span
-                            class="flex-content">{{{getAboutButton false}}}</span></a>
-                {{/if}}
-            </div>
-        </div>
+          <a href="demo"
+             id="showDemo"
+             class="hidden-xs btn btn-raised btn-warning show-more"><span
+            class="flex-content">{{{getAboutButton false}}}</span></a>
+        {{/if}}
+      </div>
     </div>
+  </div>
 </template>
