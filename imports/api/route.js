@@ -7,11 +7,12 @@ import {Cardsets} from "./subscriptions/cardsets";
 import {ServerStyle} from "./styles";
 import {UserPermissions} from "./permissions";
 import {getAuthorName} from "./userdata";
+import * as RouteNames from "../util/routeNames";
 let firstTimeVisit = 'isFirstTimeVisit';
 
 export let Route = class Route {
 	static isCardsetDetails () {
-		return FlowRouter.getRouteName() === 'cardsetdetailsid';
+		return FlowRouter.getRouteName() === RouteNames.cardsetdetailsid;
 	}
 
 	/**
@@ -19,11 +20,11 @@ export let Route = class Route {
 	 * @return {Boolean} Return true, when route is a Cardset.
 	 */
 	static isCardset () {
-		return (this.isCardsetList() || this.isCardsetDetails() || FlowRouter.getRouteName() === "cardsetcard" || FlowRouter.getRouteName() === 'admin_cardset');
+		return (this.isCardsetList() || this.isCardsetDetails() || FlowRouter.getRouteName() === RouteNames.cardsetcard);
 	}
 
 	static isCardsetList () {
-		return FlowRouter.getRouteName() === 'cardsetlistid';
+		return FlowRouter.getRouteName() === RouteNames.cardsetlistid;
 	}
 
 	/**
@@ -35,7 +36,7 @@ export let Route = class Route {
 	}
 
 	static isNewCard () {
-		return FlowRouter.getRouteName() === "newCard" || this.isNewTranscript();
+		return FlowRouter.getRouteName() === RouteNames.newCard || this.isNewTranscript();
 	}
 
 	static requiresUserInputForFullscreen () {
@@ -43,7 +44,7 @@ export let Route = class Route {
 	}
 
 	static isEditCard () {
-		return FlowRouter.getRouteName() === "editCard" || this.isEditTranscript();
+		return FlowRouter.getRouteName() === RouteNames.editCard || this.isEditTranscript();
 	}
 
 	static isLearningMode () {
@@ -51,11 +52,11 @@ export let Route = class Route {
 	}
 
 	static isDemo () {
-		return FlowRouter.getRouteName() === "demo" || this.isDemoList();
+		return FlowRouter.getRouteName() === RouteNames.demo || this.isDemoList();
 	}
 
 	static isDemoList () {
-		return FlowRouter.getRouteName() === "demolist";
+		return FlowRouter.getRouteName() === RouteNames.demolist;
 	}
 
 	static gotIndexHotkey () {
@@ -63,7 +64,7 @@ export let Route = class Route {
 	}
 
 	static isMakingOf () {
-		return FlowRouter.getRouteName() === "making" || this.isMakingOfList();
+		return FlowRouter.getRouteName() === RouteNames.making || this.isMakingOfList();
 	}
 
 	static isTranscript () {
@@ -75,31 +76,31 @@ export let Route = class Route {
 	}
 
 	static isPresentationTranscriptPersonal () {
-		return FlowRouter.getRouteName() === "presentationTranscriptPersonal";
+		return FlowRouter.getRouteName() === RouteNames.presentationTranscriptPersonal;
 	}
 
 	static isPresentationTranscriptReview () {
-		return FlowRouter.getRouteName() === "presentationTranscriptReview";
+		return FlowRouter.getRouteName() === RouteNames.presentationTranscriptReview;
 	}
 
 	static isPresentationTranscriptBonus () {
-		return FlowRouter.getRouteName() === "presentationTranscriptBonus";
+		return FlowRouter.getRouteName() === RouteNames.presentationTranscriptBonus;
 	}
 
 	static isPresentationTranscriptBonusCardset () {
-		return FlowRouter.getRouteName() === "presentationTranscriptBonusCardset";
+		return FlowRouter.getRouteName() === RouteNames.presentationTranscriptBonusCardset;
 	}
 
 	static isNewTranscript () {
-		return FlowRouter.getRouteName() === "newTranscript";
+		return FlowRouter.getRouteName() === RouteNames.newTranscript;
 	}
 
 	static isEditTranscript () {
-		return FlowRouter.getRouteName() === "editTranscript";
+		return FlowRouter.getRouteName() === RouteNames.editTranscript;
 	}
 
 	static isMakingOfList () {
-		return FlowRouter.getRouteName() === "makinglist";
+		return FlowRouter.getRouteName() === RouteNames.makinglist;
 	}
 
 	static isBackend () {
@@ -123,11 +124,11 @@ export let Route = class Route {
 	}
 
 	static isDefaultPresentation () {
-		return FlowRouter.getRouteName() === "presentation";
+		return FlowRouter.getRouteName() === RouteNames.presentation;
 	}
 
 	static isPresentationList () {
-		return FlowRouter.getRouteName() === "presentationlist";
+		return FlowRouter.getRouteName() === RouteNames.presentationlist;
 	}
 
 	static isPresentationViewList () {
@@ -147,19 +148,11 @@ export let Route = class Route {
 	 * @return {Boolean} Return true, when the current route is a Box.
 	 */
 	static isBox () {
-		return FlowRouter.getRouteName() === "box";
-	}
-
-	static isLeitnerProgress () {
-		return FlowRouter.getRouteName() === "progress";
+		return FlowRouter.getRouteName() === RouteNames.box;
 	}
 
 	static isCardsetLeitnerStats () {
-		return FlowRouter.getRouteName() === "cardsetstats";
-	}
-
-	static isLeitnerProgressProfileOverview () {
-		return FlowRouter.getRouteName() === "profileOverview";
+		return FlowRouter.getRouteName() === RouteNames.cardsetstats;
 	}
 
 	/**
@@ -167,51 +160,51 @@ export let Route = class Route {
 	 * @return {Boolean} Return true, when route is a Memo.
 	 */
 	static isMemo () {
-		return FlowRouter.getRouteName() === "memo";
+		return FlowRouter.getRouteName() === RouteNames.memo;
 	}
 
 	static isHome () {
-		return FlowRouter.getRouteName() === "home";
+		return FlowRouter.getRouteName() === RouteNames.home;
 	}
 
 	static isMyCardsets () {
-		return FlowRouter.getRouteName() === "create";
+		return FlowRouter.getRouteName() === RouteNames.create;
 	}
 
 	static isMyTranscripts () {
-		return FlowRouter.getRouteName() === "transcriptsPersonal";
+		return FlowRouter.getRouteName() === RouteNames.transcriptsPersonal;
 	}
 
 	static isMyBonusTranscripts () {
-		return FlowRouter.getRouteName() === "transcriptsBonus";
+		return FlowRouter.getRouteName() === RouteNames.transcriptsBonus;
 	}
 
 	static isAllCardsets () {
-		return FlowRouter.getRouteName() === "alldecks";
+		return FlowRouter.getRouteName() === RouteNames.alldecks;
 	}
 
 	static isWorkload () {
-		return FlowRouter.getRouteName() === "learn";
+		return FlowRouter.getRouteName() === RouteNames.learn;
 	}
 
 	static isShuffle () {
-		return FlowRouter.getRouteName() === "shuffle";
+		return FlowRouter.getRouteName() === RouteNames.shuffle;
 	}
 
 	static isEditShuffle () {
-		return FlowRouter.getRouteName() === "editshuffle";
+		return FlowRouter.getRouteName() === RouteNames.editshuffle;
 	}
 
 	static isRepetitorium () {
-		return FlowRouter.getRouteName() === "repetitorium";
+		return FlowRouter.getRouteName() === RouteNames.repetitorium;
 	}
 
 	static isTranscriptBonus () {
-		return FlowRouter.getRouteName() === "transcriptBonus";
+		return FlowRouter.getRouteName() === RouteNames.transcriptsBonus;
 	}
 
 	static isPool () {
-		return FlowRouter.getRouteName() === "pool";
+		return FlowRouter.getRouteName() === RouteNames.pool;
 	}
 
 	static isPublic () {
@@ -223,7 +216,7 @@ export let Route = class Route {
 	}
 
 	static isPersonalRepetitorien () {
-		return FlowRouter.getRouteName() === "personalRepetitorien";
+		return FlowRouter.getRouteName() === RouteNames.personalRepetitorien;
 	}
 
 	static isAll () {
@@ -231,7 +224,7 @@ export let Route = class Route {
 	}
 
 	static isAllRepetitorien () {
-		return FlowRouter.getRouteName() === "allRepetitorien";
+		return FlowRouter.getRouteName() === RouteNames.allRepetitorien;
 	}
 
 	static isRepetitorienFilterIndex () {
