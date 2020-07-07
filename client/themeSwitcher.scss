@@ -1023,18 +1023,27 @@ $themes: (
     #navbar-cards-footer, #navbar-cards-footer-collapse {
       color: $footer_navigation_text !important;
       background-color: $footer_navigation_background !important;
-      a, .fa-home {
+      a {
         color: $footer_navigation_text !important;
         background-color: $footer_navigation_background !important;
+        .fa-home {
+          color: $footer_navigation_text !important;
+        }
       }
-
-      a:hover, a:focus, .fa-home:hover {
-        color: $footer_navigation_text_hover !important;
-        background-color: $footer_navigation_background_hover !important;
-      }
-      .active a, .active .fa-home {
+      .active a {
         color: $footer_navigation_text_active !important;
         background-color: $footer_navigation_background_active !important;
+        .fa-home {
+          color: $footer_navigation_text_active !important;
+        }
+      }
+
+      a:hover, a:focus {
+        color: $footer_navigation_text_hover !important;
+        background-color: $footer_navigation_background_hover !important;
+        .fa-home {
+          color: $footer_navigation_text_hover !important;
+        }
       }
     }
 

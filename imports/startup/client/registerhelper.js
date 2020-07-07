@@ -47,6 +47,10 @@ Template.registerHelper('isRepetitorium', function () {
 	}
 });
 
+Template.registerHelper('gotCenteredLandingPagePomodoro', function () {
+	return ServerStyle.gotCenteredLandingPagePomodoro();
+});
+
 Template.registerHelper('isCardset', function () {
 	return Route.isCardset();
 });

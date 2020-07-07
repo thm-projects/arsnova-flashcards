@@ -23,15 +23,17 @@
 
 <template name="welcomeWordcloudButton">
   {{#if gotLandingPageWordcloud}}
-    {{#if gotFeatureSupport 1}}
-      <div class="hidden-xs">
-        <div class="toggle-wordcloud"
-             title="{{_ "landingPage.buttons.tooltip.wordcloud"}}">
-          <div class="flex-content">{{{getNavigationIcon "wordcloud"}}}</div>
-          <label>{{_ "landingPage.buttons.wordcloud"}}</label>
-        </div>
-      </div>
-    {{/if}}
+      {{#if gotCenteredLandingPagePomodoro}}
+        {{#if gotFeatureSupport 1}}
+          <div class="hidden-xs">
+            <div class="toggle-wordcloud"
+                 title="{{_ "landingPage.buttons.tooltip.wordcloud"}}">
+              <div class="flex-content">{{{getNavigationIcon "wordcloud"}}}</div>
+              <label>{{_ "landingPage.buttons.wordcloud"}}</label>
+            </div>
+          </div>
+        {{/if}}
+      {{/if}}
   {{/if}}
 </template>
 

@@ -5,24 +5,26 @@
         </h1>
     </div>
     {{#if gotLandingPageWordcloud}}
-        <div class="col-xs-4">
-            <div class="panel panel-default">
-                <div class="panel-heading panel-heading-mail">
-                    <h3 class="panel-title">{{_ "pomodoro.backend.settings.title"}}</h3>
-                </div>
-                <div class="panel-body panel-body-mail">
-                    <form>
-                        {{#if isWordcloudPomodoroEnabled}}
-                            <a id="disableWordcloudPomodoro" class="btn btn-raised btn-success">
-                                <span class="flex-content">{{_ "pomodoro.backend.settings.button.enabled"}}</span></a>
-                        {{else}}
-                            <a id="enableWordcloudPomodoro" class="btn btn-raised btn-danger">
-                                <span class="flex-content">{{_ "pomodoro.backend.settings.button.disabled"}}</span></a>
-                        {{/if}}
-                    </form>
+        {{#if gotCenteredLandingPagePomodoro}}
+            <div class="col-xs-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading panel-heading-mail">
+                        <h3 class="panel-title">{{_ "pomodoro.backend.settings.title"}}</h3>
+                    </div>
+                    <div class="panel-body panel-body-mail">
+                        <form>
+                            {{#if isWordcloudPomodoroEnabled}}
+                                <a id="disableWordcloudPomodoro" class="btn btn-raised btn-success">
+                                    <span class="flex-content">{{_ "pomodoro.backend.settings.button.enabled"}}</span></a>
+                            {{else}}
+                                <a id="enableWordcloudPomodoro" class="btn btn-raised btn-danger">
+                                    <span class="flex-content">{{_ "pomodoro.backend.settings.button.disabled"}}</span></a>
+                            {{/if}}
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        {{/if}}
     {{/if}}
     <div class="col-xs-4">
         <div class="panel panel-default">
