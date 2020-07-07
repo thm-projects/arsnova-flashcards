@@ -19,7 +19,7 @@ let arsnova = {
 	"pool": "none", // Defaults to internal if off
 	"workload": "none", // Defaults to internal if off
 	"personal": "none", // Defaults to internal if off
-	"transcripts": "none", // Defaults to internal if off
+	"transcripts": "/img/background/pencil.png", // Defaults to internal if off
 	"allPool": "none", // Defaults to internal if off
 	"cardset": "none", // Defaults to internal if off
 	"cardsetLeitnerStats": "none", // Defaults to cardset if off
