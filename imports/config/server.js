@@ -97,7 +97,8 @@ let defaultSettings = {
 		},
 		"wordcloud": {
 			"enabled": false
-		}
+		},
+		"centeredLandingPagePomodoro": false
 	},
 	"language": {
 		"server": "de",
@@ -244,7 +245,8 @@ let debug = {
 		},
 		"wordcloud": {
 			"enabled": false
-		}
+		},
+		"centeredLandingPagePomodoro": false
 	},
 	"language": {
 		"server": "de",
@@ -391,7 +393,8 @@ let linux = {
 		},
 		"wordcloud": {
 			"enabled": false
-		}
+		},
+		"centeredLandingPagePomodoro": false
 	},
 	"language": {
 		"server": "de",
@@ -538,7 +541,8 @@ let review = {
 		},
 		"wordcloud": {
 			"enabled": false
-		}
+		},
+		"centeredLandingPagePomodoro": false
 	},
 	"language": {
 		"server": "de",
@@ -685,7 +689,8 @@ let staging = {
 		},
 		"wordcloud": {
 			"enabled": false
-		}
+		},
+		"centeredLandingPagePomodoro": false
 	},
 	"language": {
 		"server": "de",

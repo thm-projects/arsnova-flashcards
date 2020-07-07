@@ -103,6 +103,54 @@ export let Route = class Route {
 		return FlowRouter.getRouteName() === RouteNames.makinglist;
 	}
 
+	static isProfile () {
+		return this.isProfileBilling() || this.isProfileMembership() || this.isProfileSettings() || this.isProfileRequests();
+	}
+
+	static isProfileMembership () {
+		return FlowRouter.getRouteName() === RouteNames.profileMembership;
+	}
+
+	static isProfileBilling () {
+		return FlowRouter.getRouteName() === RouteNames.profileBilling;
+	}
+
+	static isProfileSettings () {
+		return FlowRouter.getRouteName() === RouteNames.profileSettings;
+	}
+
+	static isProfileRequests () {
+		return FlowRouter.getRouteName() === RouteNames.profileRequests;
+	}
+
+	static isAGB () {
+		return FlowRouter.getRouteName() === RouteNames.agb;
+	}
+
+	static isAbout () {
+		return FlowRouter.getRouteName() === RouteNames.about;
+	}
+
+	static isImpressum () {
+		return FlowRouter.getRouteName() === RouteNames.impressum;
+	}
+
+	static isDatenschutz () {
+		return FlowRouter.getRouteName() === RouteNames.datenschutz;
+	}
+
+	static isLearning () {
+		return FlowRouter.getRouteName() === RouteNames.learning;
+	}
+
+	static isFaq () {
+		return FlowRouter.getRouteName() === RouteNames.faq;
+	}
+
+	static isHelp () {
+		return FlowRouter.getRouteName() === RouteNames.help;
+	}
+
 	static isBackend () {
 		if (FlowRouter.getRouteName() !== undefined) {
 			return FlowRouter.getRouteName().substring(0, 5) === "admin";
@@ -253,7 +301,7 @@ export let Route = class Route {
 		localStorage.setItem(firstTimeVisit, "false");
 	}
 
-	static isImpressum () {
+	static isLandingPageRoutes () {
 		return conf.impressumRoutes.includes(FlowRouter.getRouteName());
 	}
 

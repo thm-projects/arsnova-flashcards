@@ -14,7 +14,7 @@
     <div id="pomodoroTimerNormalContainer"
          title="{{_ "landingPage.buttons.tooltip.pomodoro"}}">
       {{> pomodoroTimer}}
-      <label>{{_ "landingPage.buttons.pomodoro"}}</label>
+      <label class="hidden-xs">{{_ "landingPage.buttons.pomodoro"}}</label>
     </div>
     {{> welcomeWordcloudButton}}
   {{/unless}}
@@ -23,15 +23,17 @@
 
 <template name="welcomeWordcloudButton">
   {{#if gotLandingPageWordcloud}}
-    {{#if gotFeatureSupport 1}}
-      <div class="hidden-xs">
-        <div class="toggle-wordcloud"
-             title="{{_ "landingPage.buttons.tooltip.wordcloud"}}">
-          <div class="flex-content">{{{getNavigationIcon "wordcloud"}}}</div>
-          <label>{{_ "landingPage.buttons.wordcloud"}}</label>
-        </div>
-      </div>
-    {{/if}}
+      {{#if gotCenteredLandingPagePomodoro}}
+        {{#if gotFeatureSupport 1}}
+          <div class="hidden-xs">
+            <div class="toggle-wordcloud"
+                 title="{{_ "landingPage.buttons.tooltip.wordcloud"}}">
+              <div class="flex-content">{{{getNavigationIcon "wordcloud"}}}</div>
+              <label>{{_ "landingPage.buttons.wordcloud"}}</label>
+            </div>
+          </div>
+        {{/if}}
+      {{/if}}
   {{/if}}
 </template>
 
@@ -53,7 +55,7 @@
         {{#if isActiveRoute 'home'}}
           <a href="about"
              id="showAbout"
-             class="visible-xs-inline-block btn btn-raised btn-warning show-more"><span>
+             class="visible-xs-inline-block btn btn-raised btn-warning show-more"><span class="flex-content">
             {{{getAboutButton true}}}</span></a>
           <a href="demo"
              id="showDemo"

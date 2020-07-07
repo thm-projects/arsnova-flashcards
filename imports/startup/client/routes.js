@@ -1553,6 +1553,35 @@ export let setLanguage = function () {
 	TAPi18n.setLanguage(language);
 };
 
+function landingPageBackgrounds () {
+	let body = $('body');
+	if (Route.isDemo() | Route.isMakingOf()) {
+		if (Route.isPresentationViewList()) {
+			body.addClass('presentation-list');
+			body.css('background-image', ServerStyle.getBackground("demoIndex"));
+		} else {
+			body.addClass('demo');
+			body.css('background-image', ServerStyle.getBackground("demo"));
+		}
+	} else if (Route.isAGB()) {
+		body.css('background-image', ServerStyle.getBackground("agb"));
+	} else if (Route.isDatenschutz()) {
+		body.css('background-image', ServerStyle.getBackground("datenschutz"));
+	} else if (Route.isImpressum()) {
+		body.css('background-image', ServerStyle.getBackground("impressum"));
+	} else if (Route.isAbout()) {
+		body.css('background-image', ServerStyle.getBackground("about"));
+	} else if (Route.isLearning()) {
+		body.css('background-image', ServerStyle.getBackground("learning"));
+	} else if (Route.isFaq()) {
+		body.css('background-image', ServerStyle.getBackground("faq"));
+	} else if (Route.isHelp()) {
+		body.css('background-image', ServerStyle.getBackground("help"));
+	} else {
+		body.css('background-image', ServerStyle.getBackground("landing-page"));
+	}
+}
+
 export let setTheme = function () {
 	if (Meteor.user()) {
 		// If there is no selectedColorTheme the Session var "theme" will stay NULL.
@@ -1590,34 +1619,66 @@ export let setTheme = function () {
 	let body = $('body');
 	body.removeAttr('class');
 	body.removeAttr('style');
-	if (Route.isPresentationViewList()) {
-		body.addClass('presentation-list');
-		body.css('background-image', ServerStyle.getBackground("presentation"));
-	} else if (Route.isPresentation()) {
-		body.addClass('presentation');
-		body.css('background-image', ServerStyle.getBackground("presentation"));
-	} else if (Route.isBox() || Route.isMemo()) {
-		body.addClass('learning');
-		body.css('background-image', ServerStyle.getBackground("learning"));
-	} else if (Route.isEditMode()) {
-		body.addClass('editor');
-		body.css('background-image', ServerStyle.getBackground("editor"));
-	} else if (Route.isTranscriptBonus()) {
-		body.addClass('transcriptBonus');
-		body.css('background-image', ServerStyle.getBackground("transcriptBonus"));
-	} else if (Route.isDemo() | Route.isMakingOf()) {
-		body.addClass('demo');
-		body.css('background-image', ServerStyle.getBackground("demo"));
+	if (Route.isLandingPageRoutes()) {
+		landingPageBackgrounds();
 	} else if (Meteor.user() || MainNavigation.isGuestLoginActive()) {
 		if (Route.isBackend()) {
 			body.addClass('backend');
 			body.css('background-image', ServerStyle.getBackground("backend"));
 		} else {
 			body.addClass('internal');
-			body.css('background-image', ServerStyle.getBackground("internal"));
+			if (Route.isProfile()) {
+				if (Route.isProfileSettings()) {
+					body.css('background-image', ServerStyle.getBackground("profileSettings"));
+				} else if (Route.isProfileMembership())  {
+					body.css('background-image', ServerStyle.getBackground("profileMembership"));
+				} else if (Route.isProfileRequests()) {
+					body.css('background-image', ServerStyle.getBackground("profileRequests"));
+				} else {
+					body.css('background-image', ServerStyle.getBackground("profileBilling"));
+				}
+			} else if (Route.isPublic()) {
+				body.css('background-image', ServerStyle.getBackground("pool"));
+			} else if (Route.isWorkload()) {
+				body.css('background-image', ServerStyle.getBackground("workload"));
+			} else if (Route.isPersonal()) {
+				body.css('background-image', ServerStyle.getBackground("personal"));
+			} else if (Route.isMyTranscripts() || Route.isMyBonusTranscripts()) {
+				body.css('background-image', ServerStyle.getBackground("transcripts"));
+			} else if (Route.isAll()) {
+				body.css('background-image', ServerStyle.getBackground("allPool"));
+			} else if (Route.isCardset()) {
+				body.css('background-image', ServerStyle.getBackground("cardset"));
+			} else if (Route.isCardsetLeitnerStats()) {
+				body.css('background-image', ServerStyle.getBackground("cardsetLeitnerStats"));
+			} else if (Route.isTranscriptBonus()) {
+				body.css('background-image', ServerStyle.getBackground("cardsetTranscriptBonus"));
+			} else if (Route.isPresentation()) {
+				if (Route.isPresentationViewList()) {
+					body.addClass('presentation-list');
+					body.css('background-image', ServerStyle.getBackground("presentationIndex"));
+				} else {
+					body.addClass('presentation');
+					body.css('background-image', ServerStyle.getBackground("presentation"));
+				}
+			} else if (Route.isBox() || Route.isMemo()) {
+				body.addClass('learning');
+				if (Route.isBox()) {
+					body.css('background-image', ServerStyle.getBackground("leitner"));
+				} else {
+					body.css('background-image', ServerStyle.getBackground("wozniak"));
+				}
+			} else if (Route.isEditMode()) {
+				body.addClass('editor');
+				body.css('background-image', ServerStyle.getBackground("editor"));
+			} else if (Route.isLandingPageRoutes()) {
+				landingPageBackgrounds();
+			} else {
+				body.css('background-image', ServerStyle.getBackground("internal"));
+			}
 		}
 	} else {
-		if (!Route.isImpressum()) {
+		if (!Route.isLandingPageRoutes()) {
 			body.addClass('landing-page');
 		}
 		body.css('background-image', ServerStyle.getBackground("landing-page"));

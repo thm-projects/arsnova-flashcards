@@ -6,6 +6,7 @@ import swal from "sweetalert2";
 import * as config from "../config/pomodoroTimer.js";
 import {LeitnerTasks} from "./subscriptions/leitnerTasks";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import {ServerStyle} from "./styles";
 
 if (Meteor.isClient) {
 	Session.set('pomodoroBreakActive', false);
@@ -859,18 +860,23 @@ export let PomodoroTimer = class PomodoroTimer {
 	 */
 	static pomoPosition () {
 		if (!PomodoroTimer.isClockInBigmode() && !Meteor.userId()) {
-			if ((Session.get('isLandingPagePomodoroActive') || !cloudShown)) {
-				$('.pomodoroTimer').detach().appendTo('#pomodoroTimerWordcloudContainer');
+			if ((Session.get('isLandingPagePomodoroActive') || !cloudShown) && ServerStyle.gotCenteredLandingPagePomodoro()) {
+				if ($("#pomodoroTimerWordcloudContainer").is(':empty')) {
+					$('.pomodoroTimer').detach().appendTo('#pomodoroTimerWordcloudContainer');
+				}
 				$('#pomodoroTimerWordcloudContainer').css('display', 'block');
 				$('#wordcloud-container').css('display', 'none');
 				$('#pomodoroTimerNormalContainer').css('display', 'none');
 			} else {
 				$('#pomodoroTimerNormalContainer').css('display', 'block');
-				$('.pomodoroTimer').detach().prependTo('#pomodoroTimerNormalContainer');
+				if ($("#pomodoroTimerNormalContainer").is(':empty')) {
+					$('.pomodoroTimer').detach().prependTo('#pomodoroTimerNormalContainer');
+				}
 				$('#pomodoroTimerWordcloudContainer').css('display', 'none');
 				$('#wordcloud-container').css('display', 'block');
 				$('.pomodoroClock').removeAttr("style");
 			}
+			Session.set('fullscreen', false);
 		} else {
 			$('#wordcloud-container').css('display', 'block');
 		}
