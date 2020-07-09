@@ -9,6 +9,11 @@ import "./statistics.html";
  * ############################################################################
  */
 
+Template.mainNavigationFooterItemStatistics.onRendered(function () {
+	MainNavigation.repositionCollapseElements();
+});
+
+
 Template.mainNavigationFooterItemStatistics.helpers({
 	serverStatisticsModalActive: function () {
 		return Session.get('serverStatisticsModalActive');
@@ -27,6 +32,10 @@ Template.mainNavigationFooterItemStatistics.events({
  * mainNavigationFooterItemStatisticsMobile
  * ############################################################################
  */
+
+Template.mainNavigationFooterItemStatisticsMobile.onRendered(function () {
+	MainNavigation.repositionCollapseElements();
+});
 
 Template.mainNavigationFooterItemStatisticsMobile.helpers({
 	serverStatisticsModalActive: function () {
