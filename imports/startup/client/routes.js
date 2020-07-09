@@ -210,6 +210,11 @@ FlowRouter.route('/demo', {
 		Session.set('helpFilter', undefined);
 	},
 	action: function (params, qs, data) {
+		if(ServerStyle.gotDemoAutoFullscreen() && !CardVisuals.isFullscreen()) {
+			setTimeout(function () {
+				CardVisuals.toggleFullscreen();
+			}, 1000);
+		}
 		this.render(mainTemplate, 'demo', data);
 	}
 });
