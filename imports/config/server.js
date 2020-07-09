@@ -113,7 +113,7 @@ let defaultSettings = {
 	},
 	"demo": {
 		"folder": "informatik",
-		"autoFullscreen": true,
+		"autoFullscreen": false,
 		"exitOnFullscreenBackgroundClick": true,
 		"fragJetzt": {
 			"session": "61625449",
@@ -261,7 +261,7 @@ let debug = {
 	},
 	"demo": {
 		"folder": "informatik",
-		"autoFullscreen": true,
+		"autoFullscreen": false,
 		"exitOnFullscreenBackgroundClick": true,
 		"fragJetzt": {
 			"session": "61625449",
@@ -409,7 +409,7 @@ let linux = {
 	},
 	"demo": {
 		"folder": "linux",
-		"autoFullscreen": true,
+		"autoFullscreen": false,
 		"exitOnFullscreenBackgroundClick": true,
 		"fragJetzt": {
 			"session": "17162382",
@@ -557,7 +557,7 @@ let review = {
 	},
 	"demo": {
 		"folder": "informatik",
-		"autoFullscreen": true,
+		"autoFullscreen": false,
 		"exitOnFullscreenBackgroundClick": true,
 		"fragJetzt": {
 			"session": "61625449",
@@ -705,7 +705,7 @@ let staging = {
 	},
 	"demo": {
 		"folder": "informatik",
-		"autoFullscreen": true,
+		"autoFullscreen": false,
 		"exitOnFullscreenBackgroundClick": true,
 		"fragJetzt": {
 			"session": "61625449",
