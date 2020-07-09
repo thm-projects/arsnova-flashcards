@@ -10,6 +10,7 @@ button, .btn, #showMoreResults {
   border-radius: $btn-border-radius !important;
   text-decoration: none !important;
   padding: 0 $btn-horizontal-padding !important;
+  margin-top: 20px;
 
   input[type="radio"], input[type="checkbox"] {
     display: none !important;
