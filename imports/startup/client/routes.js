@@ -1553,32 +1553,42 @@ export let setLanguage = function () {
 	TAPi18n.setLanguage(language);
 };
 
-function landingPageBackgrounds () {
+function setBackground (backgroundObject, cssClass = undefined) {
 	let body = $('body');
+	body.removeAttr('class');
+	body.removeAttr('style');
+	if (cssClass !== undefined) {
+		body.addClass(cssClass);
+	}
+	for (let i = 0; i < Object.keys(backgroundObject).length; i++) {
+		let key = Object.keys(backgroundObject)[i];
+		body.css(key, backgroundObject[key]);
+	}
+}
+
+function landingPageBackgrounds () {
 	if (Route.isDemo() | Route.isMakingOf()) {
 		if (Route.isPresentationViewList()) {
-			body.addClass('presentation-list');
-			body.css('background-image', ServerStyle.getBackground("demoIndex"));
+			setBackground(ServerStyle.getBackground("demoIndex"), 'presentation-list');
 		} else {
-			body.addClass('demo');
-			body.css('background-image', ServerStyle.getBackground("demo"));
+			setBackground(ServerStyle.getBackground("demo"), 'demo');
 		}
 	} else if (Route.isAGB()) {
-		body.css('background-image', ServerStyle.getBackground("agb"));
+		setBackground(ServerStyle.getBackground("agb"));
 	} else if (Route.isDatenschutz()) {
-		body.css('background-image', ServerStyle.getBackground("datenschutz"));
+		setBackground(ServerStyle.getBackground("datenschutz"));
 	} else if (Route.isImpressum()) {
-		body.css('background-image', ServerStyle.getBackground("impressum"));
+		setBackground(ServerStyle.getBackground("impressum"));
 	} else if (Route.isAbout()) {
-		body.css('background-image', ServerStyle.getBackground("about"));
+		setBackground(ServerStyle.getBackground("about"));
 	} else if (Route.isLearning()) {
-		body.css('background-image', ServerStyle.getBackground("learning"));
+		setBackground(ServerStyle.getBackground("learning"));
 	} else if (Route.isFaq()) {
-		body.css('background-image', ServerStyle.getBackground("faq"));
+		setBackground(ServerStyle.getBackground("faq"));
 	} else if (Route.isHelp()) {
-		body.css('background-image', ServerStyle.getBackground("help"));
+		setBackground(ServerStyle.getBackground("help"));
 	} else {
-		body.css('background-image', ServerStyle.getBackground("landing-page"));
+		setBackground(ServerStyle.getBackground("landing-page"));
 	}
 }
 
@@ -1616,72 +1626,66 @@ export let setTheme = function () {
 	html.attr('class', Session.get("theme"));
 
 	//Background
-	let body = $('body');
-	body.removeAttr('class');
-	body.removeAttr('style');
 	if (Route.isLandingPageRoutes()) {
 		landingPageBackgrounds();
 	} else if (Meteor.user() || MainNavigation.isGuestLoginActive()) {
 		if (Route.isBackend()) {
-			body.addClass('backend');
-			body.css('background-image', ServerStyle.getBackground("backend"));
+			setBackground(ServerStyle.getBackground("backend"), 'backend');
 		} else {
-			body.addClass('internal');
+			let internal = 'internal';
 			if (Route.isProfile()) {
 				if (Route.isProfileSettings()) {
-					body.css('background-image', ServerStyle.getBackground("profileSettings"));
+					setBackground(ServerStyle.getBackground("profileSettings"), internal);
 				} else if (Route.isProfileMembership())  {
-					body.css('background-image', ServerStyle.getBackground("profileMembership"));
+					setBackground(ServerStyle.getBackground("profileMembership"), internal);
 				} else if (Route.isProfileRequests()) {
-					body.css('background-image', ServerStyle.getBackground("profileRequests"));
+					setBackground(ServerStyle.getBackground("profileRequests"), internal);
 				} else {
-					body.css('background-image', ServerStyle.getBackground("profileBilling"));
+					setBackground(ServerStyle.getBackground("profileBilling"), internal);
 				}
 			} else if (Route.isPublic()) {
-				body.css('background-image', ServerStyle.getBackground("pool"));
+				setBackground(ServerStyle.getBackground("pool"), internal);
 			} else if (Route.isWorkload()) {
-				body.css('background-image', ServerStyle.getBackground("workload"));
+				setBackground(ServerStyle.getBackground("workload"), internal);
 			} else if (Route.isPersonal()) {
-				body.css('background-image', ServerStyle.getBackground("personal"));
+				setBackground(ServerStyle.getBackground("personal"), internal);
 			} else if (Route.isMyTranscripts() || Route.isMyBonusTranscripts()) {
-				body.css('background-image', ServerStyle.getBackground("transcripts"));
+				setBackground(ServerStyle.getBackground("transcripts"), internal);
 			} else if (Route.isAll()) {
-				body.css('background-image', ServerStyle.getBackground("allPool"));
+				setBackground(ServerStyle.getBackground("allPool"), internal);
 			} else if (Route.isCardset()) {
-				body.css('background-image', ServerStyle.getBackground("cardset"));
+				setBackground(ServerStyle.getBackground("cardset"), internal);
 			} else if (Route.isCardsetLeitnerStats()) {
-				body.css('background-image', ServerStyle.getBackground("cardsetLeitnerStats"));
+				setBackground(ServerStyle.getBackground("cardsetLeitnerStats"), internal);
 			} else if (Route.isTranscriptBonus()) {
-				body.css('background-image', ServerStyle.getBackground("cardsetTranscriptBonus"));
+				setBackground(ServerStyle.getBackground("cardsetTranscriptBonus"), internal);
 			} else if (Route.isPresentation()) {
 				if (Route.isPresentationViewList()) {
-					body.addClass('presentation-list');
-					body.css('background-image', ServerStyle.getBackground("presentationIndex"));
+					setBackground(ServerStyle.getBackground("presentationIndex"), 'presentation-list');
 				} else {
-					body.addClass('presentation');
-					body.css('background-image', ServerStyle.getBackground("presentation"));
+					setBackground(ServerStyle.getBackground("presentation"), 'presentation');
 				}
 			} else if (Route.isBox() || Route.isMemo()) {
-				body.addClass('learning');
+				let learning = 'learning';
 				if (Route.isBox()) {
-					body.css('background-image', ServerStyle.getBackground("leitner"));
+					setBackground(ServerStyle.getBackground("leitner"), learning);
 				} else {
-					body.css('background-image', ServerStyle.getBackground("wozniak"));
+					setBackground(ServerStyle.getBackground("wozniak"), learning);
 				}
 			} else if (Route.isEditMode()) {
-				body.addClass('editor');
-				body.css('background-image', ServerStyle.getBackground("editor"));
+				setBackground(ServerStyle.getBackground("editor"), 'editor');
 			} else if (Route.isLandingPageRoutes()) {
-				landingPageBackgrounds();
+				landingPageBackgrounds(ServerStyle.getBackground("internal"), internal);
 			} else {
-				body.css('background-image', ServerStyle.getBackground("internal"));
+				setBackground(ServerStyle.getBackground("internal"), internal);
 			}
 		}
 	} else {
+		let landingPage;
 		if (!Route.isLandingPageRoutes()) {
-			body.addClass('landing-page');
+			landingPage = 'landing-page';
 		}
-		body.css('background-image', ServerStyle.getBackground("landing-page"));
+		setBackground(ServerStyle.getBackground("landing-page"), landingPage);
 	}
 };
 

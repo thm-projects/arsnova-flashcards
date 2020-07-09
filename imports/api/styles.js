@@ -245,14 +245,14 @@ export let ServerStyle = class ServerStyle {
 	}
 
 	static adjustForLandingPageBackground (backgrounds, target = "") {
-		if (target === "none" || target.trim().length === 0)  {
+		if (target['background-image']  === "none" || target['background-image'] .trim().length === 0)  {
 			target = backgrounds["landing-page"];
 		}
 		return target;
 	}
 
 	static adjustForInternalBackground (backgrounds, target = "") {
-		if (target === "none" || target.trim().length === 0)  {
+		if (target['background-image'] === "none" || target['background-image'] .trim().length === 0)  {
 			target = backgrounds.internal;
 		}
 		return target;
@@ -268,102 +268,98 @@ export let ServerStyle = class ServerStyle {
 	static getBackground (type) {
 		let backgrounds;
 		let none = "none";
-		let backgroundSring = "";
+		let backgroundObject = "";
 		let config = this.getConfig().themes;
 		backgrounds = backgroundsConf[config.list[config.defaultID].backgrounds];
 		switch (type) {
 			case "landing-page":
-				backgroundSring = backgrounds["landing-page"];
+				backgroundObject = backgrounds["landing-page"];
 				break;
 			case "demo":
-				backgroundSring = backgrounds.demo;
+				backgroundObject = backgrounds.demo;
 				break;
 			case "demoIndex":
-				backgroundSring = backgrounds.demoIndex;
+				backgroundObject = backgrounds.demoIndex;
 				break;
 			case "internal":
-				backgroundSring = backgrounds.internal;
+				backgroundObject = backgrounds.internal;
 				break;
 			case "pool":
-				backgroundSring = this.adjustForInternalBackground(backgrounds, backgrounds.pool);
+				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.pool);
 				break;
 			case "workload":
-				backgroundSring = this.adjustForInternalBackground(backgrounds, backgrounds.workload);
+				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.workload);
 				break;
 			case "personal":
-				backgroundSring = this.adjustForInternalBackground(backgrounds, backgrounds.personal);
+				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.personal);
 				break;
 			case "transcripts":
-				backgroundSring = this.adjustForInternalBackground(backgrounds, backgrounds.transcripts);
+				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.transcripts);
 				break;
 			case "allPool":
-				backgroundSring = this.adjustForInternalBackground(backgrounds, backgrounds.allPool);
+				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.allPool);
 				break;
 			case "cardset":
-				backgroundSring = this.adjustForInternalBackground(backgrounds, backgrounds.cardset);
+				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.cardset);
 				break;
 			case "cardsetLeitnerStats":
-				backgroundSring = this.adjustForCardsetBackground(backgrounds, backgrounds.cardsetLeitnerStats);
+				backgroundObject = this.adjustForCardsetBackground(backgrounds, backgrounds.cardsetLeitnerStats);
 				break;
 			case "cardsetTranscriptBonus":
-				backgroundSring = this.adjustForCardsetBackground(backgrounds, backgrounds.cardsetTranscriptBonus);
+				backgroundObject = this.adjustForCardsetBackground(backgrounds, backgrounds.cardsetTranscriptBonus);
 				break;
 			case "presentation":
-				backgroundSring = this.adjustForInternalBackground(backgrounds, backgrounds.presentation);
+				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.presentation);
 				break;
 			case "presentationIndex":
-				backgroundSring = this.adjustForInternalBackground(backgrounds, backgrounds.presentationIndex);
+				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.presentationIndex);
 				break;
 			case "leitner":
-				backgroundSring = this.adjustForInternalBackground(backgrounds, backgrounds.leitner);
+				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.leitner);
 				break;
 			case "wozniak":
-				backgroundSring = this.adjustForInternalBackground(backgrounds, backgrounds.wozniak);
+				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.wozniak);
 				break;
 			case "editor":
-				backgroundSring = this.adjustForInternalBackground(backgrounds, backgrounds.editor);
+				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.editor);
 				break;
 			case "profileSettings":
-				backgroundSring = this.adjustForInternalBackground(backgrounds, backgrounds.profileSettings);
+				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.profileSettings);
 				break;
 			case "profileMembership":
-				backgroundSring = this.adjustForInternalBackground(backgrounds, backgrounds.profileMembership);
+				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.profileMembership);
 				break;
 			case "profileBilling":
-				backgroundSring = this.adjustForInternalBackground(backgrounds, backgrounds.profileBilling);
+				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.profileBilling);
 				break;
 			case "profileRequests":
-				backgroundSring = this.adjustForInternalBackground(backgrounds, backgrounds.profileRequests);
+				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.profileRequests);
 				break;
 			case "agb":
-				backgroundSring = this.adjustForLandingPageBackground(backgrounds, backgrounds.agb);
+				backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.agb);
 				break;
 			case "datenschutz":
-				backgroundSring = this.adjustForLandingPageBackground(backgrounds, backgrounds.datenschutz);
+				backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.datenschutz);
 				break;
 			case "faq":
-				backgroundSring = this.adjustForLandingPageBackground(backgrounds, backgrounds.faq);
+				backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.faq);
 				break;
 			case "help":
-				backgroundSring = this.adjustForLandingPageBackground(backgrounds, backgrounds.help);
+				backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.help);
 				break;
 			case "impressum":
-				backgroundSring = this.adjustForLandingPageBackground(backgrounds, backgrounds.impressum);
+				backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.impressum);
 				break;
 			case "about":
-				backgroundSring = this.adjustForLandingPageBackground(backgrounds, backgrounds.about);
+				backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.about);
 				break;
 			case "learning":
-				backgroundSring = this.adjustForLandingPageBackground(backgrounds, backgrounds.learning);
+				backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.learning);
 				break;
 			case "backend":
-				backgroundSring = backgrounds.backend;
+				backgroundObject = backgrounds.backend;
 				break;
 		}
-		if (backgroundSring === none) {
-			return backgroundSring;
-		} else {
-			return "url('" + backgroundSring + "')";
-		}
+		return backgroundObject;
 	}
 };
