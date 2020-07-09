@@ -405,7 +405,11 @@ export let Route = class Route {
 			case "learning":
 				return icons.footerNavigation.learning  + TAPi18n.__('contact.learning');
 			case "all":
-				return icons.topNavigation.all.all + TAPi18n.__('navbar-collapse.all.all') + caret;
+				result = icons.topNavigation.all.all + TAPi18n.__('navbar-collapse.all.all');
+				if (!ServerStyle.gotSimplifiedNav()) {
+					result += caret;
+				}
+				return result;
 			case "allCardsets":
 			case "alldecks":
 				return icons.topNavigation.all.cardsets + TAPi18n.__('navbar-collapse.all.cardsets');
@@ -413,7 +417,7 @@ export let Route = class Route {
 				return icons.topNavigation.all.repetitorien +  TAPi18n.__('navbar-collapse.all.repetitorien');
 			case "public":
 				result = icons.topNavigation.public.public + TAPi18n.__('navbar-collapse.public.public');
-				if (ServerStyle.gotNavigationFeature("public.cardset.enabled") && ServerStyle.gotNavigationFeature("public.repetitorium.enabled")) {
+				if (ServerStyle.gotNavigationFeature("public.cardset.enabled") && ServerStyle.gotNavigationFeature("public.repetitorium.enabled") && !ServerStyle.gotSimplifiedNav()) {
 					result += caret;
 				}
 				return result;
@@ -426,19 +430,19 @@ export let Route = class Route {
 				return icons.topNavigation.public.repetitorien +  TAPi18n.__('navbar-collapse.public.repetitorien');
 			case "personal":
 				result = icons.topNavigation.personal.personal + this.getPersonalRouteName(0);
-				if (ServerStyle.gotNavigationFeature("personal.cardset.enabled") && ServerStyle.gotNavigationFeature("personal.repetitorium.enabled")) {
+				if (ServerStyle.gotNavigationFeature("personal.cardset.enabled") && ServerStyle.gotNavigationFeature("personal.repetitorium.enabled") && !ServerStyle.gotSimplifiedNav()) {
 					result += caret;
 				}
 				return result;
 			case "transcripts":
 				result = icons.topNavigation.transcripts.transcripts + this.getPersonalRouteName(2);
-				if (ServerStyle.gotNavigationFeature("transcript.bonus.enabled") && ServerStyle.gotNavigationFeature("transcript.personal.enabled")) {
+				if (ServerStyle.gotNavigationFeature("transcript.bonus.enabled") && ServerStyle.gotNavigationFeature("transcript.personal.enabled") && !ServerStyle.gotSimplifiedNav()) {
 					result += caret;
 				}
 				return result;
 			case "transcriptsShort":
 				result = icons.topNavigation.transcripts.transcripts + this.getPersonalRouteName(5);
-				if (ServerStyle.gotNavigationFeature("transcript.bonus.enabled") && ServerStyle.gotNavigationFeature("transcript.personal.enabled")) {
+				if (ServerStyle.gotNavigationFeature("transcript.bonus.enabled") && ServerStyle.gotNavigationFeature("transcript.personal.enabled") && !ServerStyle.gotSimplifiedNav()) {
 					result += caret;
 				}
 				return result;

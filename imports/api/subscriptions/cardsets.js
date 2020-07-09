@@ -69,7 +69,11 @@ if (Meteor.isServer) {
 	});
 	Meteor.publish("allCardsets", function () {
 		if (this.userId && UserPermissions.gotBackendAccess()) {
-			return Cardsets.find({shuffled: false});
+			let query = {};
+			if (!ServerStyle.gotSimplifiedNav()) {
+				query.shuffled = false;
+			}
+			return Cardsets.find(query);
 		} else {
 			this.ready();
 		}
@@ -116,7 +120,11 @@ if (Meteor.isServer) {
 	});
 	Meteor.publish("myCardsets", function () {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
-			return Cardsets.find({owner: this.userId, shuffled: false});
+			let query = {owner: this.userId};
+			if (!ServerStyle.gotSimplifiedNav()) {
+				query.shuffled = false;
+			}
+			return Cardsets.find(query);
 		} else {
 			this.ready();
 		}
@@ -129,13 +137,20 @@ if (Meteor.isServer) {
 		}
 	});
 	Meteor.publish("poolCardsets", function () {
+		let query = {};
+		if (!ServerStyle.gotSimplifiedNav()) {
+			query.shuffled = false;
+		}
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
-			return Cardsets.find({kind: {$in: ['free', 'edu', 'pro']}, shuffled: false});
+			query.kind = {$in: ['free', 'edu', 'pro']};
+			return Cardsets.find(query);
 		} else if (UserPermissions.isNotBlockedOrFirstLogin() && ServerStyle.isLoginEnabled("guest")) {
 			if (ServerStyle.isLoginEnabled("pro")) {
-				return Cardsets.find({kind: {$in: ['free', 'pro']}, shuffled: false});
+				query.kind = {$in: ['free', 'pro']};
+				return Cardsets.find(query);
 			} else {
-				return Cardsets.find({kind: {$in: ['free']}, shuffled: false});
+				query.kind = {$in: ['free']};
+				return Cardsets.find(query);
 			}
 		} else {
 			this.ready();

@@ -147,12 +147,22 @@ Template.filterIndex.events({
 			Filter.setActiveFilter($(evt.currentTarget).data("stars"), "stars");
 			FilterNavigation.showDropdown();
 		}
+	},
+	'click .resultItemHeaderBottomAreaLabels .label-shuffled': function () {
+		if (ServerStyle.gotNavigationFeature("filter", true)) {
+			Filter.setActiveFilter(undefined, "cardType");
+			Filter.setActiveFilter(true, "shuffled");
+			FilterNavigation.showDropdown();
+		}
 	}
 });
 
 Template.filterIndex.helpers({
 	isViewActive: function (id) {
 		return Session.get('transcriptViewingMode') === id;
+	},
+	displayedTranscriptNavigation: function () {
+		return Route.isMyBonusTranscripts() || (Route.isMyTranscripts() && ServerStyle.gotSimplifiedNav());
 	}
 });
 

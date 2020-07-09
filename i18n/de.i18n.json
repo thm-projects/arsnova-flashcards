@@ -555,6 +555,8 @@
     "licence": "CC-Lizenz",
     "availability": "Zugang",
     "topic": "Thema der Kartei",
+    "topicTranscript": "Thema der Mitschrift",
+    "topicSimpleNav": "Thema",
     "topicWorkload": "Thema",
     "topicMobile": "Thema",
     "college": "Hochschule",
@@ -623,12 +625,16 @@
     "emptytextlist": "Eine Kartei besteht aus Karten desselben Typs.",
     "emptypooltextlist": "Keine Kartei vorhanden",
     "newset": "Kartei anlegen (Kartenbox)",
+    "newsetSimpleNav": "Karten anlegen",
     "emptytexttranscripts": "Du hast noch keine Mitschrift erstellt. Informiere dich unter »Hilfe«, wie du für das Mitschreiben auf \uD83C\uDF45cards Bonuspunkte erhalten kannst.",
     "emptytexttranscriptBonus": "Keine Abgaben vorhanden."
   },
   "set-list-learn-empty": {
     "emptytextlist": "Zum Lernen wähle ein Thema aus dem Themenpool oder die Karteien eines Repetitoriums.",
     "emptytextlistNoShuffle": "Wähle eine einzelne Kartei aus dem Themenpool aus oder die Karteien eines Repetitoriums.",
+    "simplifiedNav": {
+      "browseCardset": "Inhalt auswählen"
+    },
     "browseCardset": "Kartei auswählen",
     "browseCourse": "Repetitorium auswählen"
   },
@@ -735,7 +741,11 @@
           "cancelRepetitorium": "Zrück zum Repetitorium",
           "settings": "Einstellungen",
           "list": "Abgaben",
-          "statistics": "Übersicht"
+          "statistics": "Übersicht",
+          "simplifiedNav": {
+            "list": "Mitschriften",
+            "statistics": "Bonus Übersicht"
+          }
         },
         "alert": {
           "save": "Änderungen wurden erfolgreich gespeichert"
@@ -779,6 +789,7 @@
     },
     "missingFields": "Bitte fülle die folgenden Felder aus",
     "newcarddeck": "Kartei anlegen (Kartenbox)",
+    "newcarddeckSimpleNav": "Karten anlegen",
     "editcard": "Karte editieren",
     "editcardset": "Kartei editieren",
     "editRepetitorium": "Beschreibung bearbeiten",
@@ -2386,6 +2397,7 @@
   },
   "import": {
     "cardset": "Kartei importieren",
+    "cardsetSimpleNav": "Karten importieren",
     "success": {
       "cardset": "Kartei wurde importiert",
       "cards": "Karten wurden importiert"

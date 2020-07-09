@@ -20,13 +20,22 @@
                                 {{#if isRepetitorienFilterIndexOrShuffle}}
                                     {{_ "courseIteration.modal.new"}}
                                 {{else}}
-                                    {{_ "modal-dialog.newcarddeck"}}
+                                    {{#if gotSimplifiedNav}}
+                                        {{_ "modal-dialog.newcarddeckSimpleNav"}}
+                                    {{else}}
+                                        {{_ "modal-dialog.newcarddeck"}}
+                                    {{/if}}
+
                                 {{/if}}
                             {{else}}
                                 {{#if isRepetitorienFilterIndexOrShuffle}}
                                     {{_ "courseIteration.modal.edit"}}
                                 {{else}}
-                                    {{_ "modal-dialog.editcardset"}}
+                                    {{#if gotSimplifiedNav}}
+                                        {{_ "modal-dialog.editcardset"}}
+                                    {{else}}
+                                        {{_ "modal-dialog.editcardset"}}
+                                    {{/if}}
                                 {{/if}}
                             {{/if}}
                         </h4>
@@ -84,23 +93,25 @@
                             </div>
                         {{/unless}}
                         {{> cardsetFormItemSessions}}
-                        {{#if gotDifficultyLevel}}
-                            <br>
-                            <label id="setDifficultyLabel" class="col-xs-12 control-label" for="setDifficulty">{{#if
-                                    gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
-                                    "difficulty"}}{{/if}}</label>
-                            <div id="setDifficulty" class="cardtext editorElement">
-                                {{> difficultyEditor}}
-                            </div>
-                        {{/if}}
-                        {{#unless gotTranscriptBonus}}
-                            <br>
-                            <label id="setSortTypeyLabel" class="col-xs-12 control-label" for="setSortType">{{_
-                                    "cardsetForm.sortType.label"}}</label>
-                            <div id="setSortType" class="col-xs-12 cardtext editorElement">
-                                <label class="radio-inline"><input type="radio" id="sortDate" name="sortType" value="1">{{_ "cardsetForm.sortType.sortDate"}}</label>
-                                <label class="radio-inline"><input type="radio" id="sortContent" name="sortType" value="0">{{_ "cardsetForm.sortType.sortContent"}}</label>
-                            </div>
+                        {{#unless isSimplifiedNavRep}}
+                            {{#if gotDifficultyLevel}}
+                                <br>
+                                <label id="setDifficultyLabel" class="col-xs-12 control-label" for="setDifficulty">{{#if
+                                        gotNotesForDifficultyLevel}}{{_ "difficultyNotes"}}{{else}}{{_
+                                        "difficulty"}}{{/if}}</label>
+                                <div id="setDifficulty" class="cardtext editorElement">
+                                    {{> difficultyEditor}}
+                                </div>
+                            {{/if}}
+                            {{#unless gotTranscriptBonus}}
+                                <br>
+                                <label id="setSortTypeyLabel" class="col-xs-12 control-label" for="setSortType">{{_
+                                        "cardsetForm.sortType.label"}}</label>
+                                <div id="setSortType" class="col-xs-12 cardtext editorElement">
+                                    <label class="radio-inline"><input type="radio" id="sortDate" name="sortType" value="1">{{_ "cardsetForm.sortType.sortDate"}}</label>
+                                    <label class="radio-inline"><input type="radio" id="sortContent" name="sortType" value="0">{{_ "cardsetForm.sortType.sortContent"}}</label>
+                                </div>
+                            {{/unless}}
                         {{/unless}}
                     {{/unless}}
                 {{/if}}

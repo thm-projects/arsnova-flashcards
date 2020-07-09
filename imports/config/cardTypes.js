@@ -1,3 +1,4 @@
+//-1: Repetitorium, only used for the card type dropdown
 //0: Lerneinheit
 //1: Vokabelkartei
 //2: Mitschrift
@@ -50,7 +51,8 @@ let cardTypesOrder = [
 	{cardType: 8},
 	{cardType: 14},
 	{cardType: 18},
-	{cardType: 19}
+	{cardType: 19},
+	{cardType: -1}
 ];
 
 //0: left

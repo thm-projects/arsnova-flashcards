@@ -7,6 +7,7 @@ import {Leitner} from "./subscriptions/leitner";
 import {Wozniak} from "./subscriptions/wozniak";
 import * as config from "../config/filter.js";
 import {TranscriptBonus} from "./subscriptions/transcriptBonus";
+import {ServerStyle} from "./styles";
 
 Session.setDefault('maxItemsCounter', config.itemStartingValue);
 Session.setDefault('poolFilter', undefined);
@@ -169,13 +170,19 @@ export let Filter = class Filter {
 						filter.rating = Number(1);
 					}
 					break;
-				case "useCase": {
+				case "useCase":
 					if (content === undefined) {
 						delete filter['useCase.enabled'];
 					} else {
 						filter['useCase.enabled'] = Boolean(content);
 					}
-				}
+					break;
+				case "shuffled":
+					if (content === undefined) {
+						delete filter.shuffled;
+					} else {
+						filter.shuffled = true;
+					}
 			}
 		}
 		switch (FilterNavigation.getRouteId()) {
@@ -285,7 +292,7 @@ export let Filter = class Filter {
 		if (FilterNavigation.gotDefaultSortDateCreated(filterType)) {
 			filter.date = -1;
 		}
-		if (!Route.isWorkload()) {
+		if (!Route.isWorkload() && !ServerStyle.gotSimplifiedNav()) {
 			filter.shuffled = Route.isRepetitorienFilterIndex();
 		}
 		if (returnDefault) {
@@ -321,7 +328,7 @@ export let Filter = class Filter {
 		if (FilterNavigation.gotBonusFilter(FilterNavigation.getRouteId()) && activeFilter.learningActive !== undefined) {
 			query.learningActive = activeFilter.learningActive;
 		}
-		if (FilterNavigation.gotBonusFilter(FilterNavigation.getRouteId()) && activeFilter['transcriptBonus.enabled'] !== undefined) {
+		if (FilterNavigation.gotBonusFilter(FilterNavigation.getRouteId()) && activeFilter['transcriptBonus.enabled'] !== undefined && !ServerStyle.gotSimplifiedNav()) {
 			query['transcriptBonus.enabled'] = activeFilter['transcriptBonus.enabled'];
 		}
 		if (FilterNavigation.gotWordCloudFilter(FilterNavigation.getRouteId()) && activeFilter.wordcloud !== undefined) {
@@ -336,7 +343,7 @@ export let Filter = class Filter {
 		if (FilterNavigation.gotKindFilter(FilterNavigation.getRouteId()) && activeFilter.kind !== undefined) {
 			query.kind = {$in: activeFilter.kind};
 		}
-		if (!Route.isWorkload() && activeFilter !== undefined && !Route.isTranscript() && !Route.isTranscriptBonus()) {
+		if (activeFilter.shuffled !== undefined && !Route.isTranscript() && !Route.isTranscriptBonus()) {
 			query.shuffled = activeFilter.shuffled;
 		}
 		if (FilterNavigation.gotRatingFilter(FilterNavigation.getRouteId()) || FilterNavigation.gotTranscriptLectureFilter(FilterNavigation.getRouteId()) || FilterNavigation.gotStarsFilter(FilterNavigation.getRouteId())) {

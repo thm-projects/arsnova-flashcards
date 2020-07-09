@@ -38,7 +38,9 @@ Meteor.methods({
 							}
 						}
 					}
-					query.shuffled = false;
+					if (!ServerStyle.gotSimplifiedNav()) {
+						query.shuffled = false;
+					}
 					break;
 				case 1:
 					if (this.userId) {
@@ -54,7 +56,9 @@ Meteor.methods({
 							query.kind = {$nin: ['demo', 'pro', 'edu', 'server', 'personal']};
 						}
 					}
-					query.shuffled = false;
+					if (!ServerStyle.gotSimplifiedNav()) {
+						query.shuffled = false;
+					}
 					break;
 				case 2:
 					if (this.userId) {
@@ -74,7 +78,9 @@ Meteor.methods({
 					break;
 				case 3:
 					query.owner = Meteor.userId();
-					query.shuffled = false;
+					if (!ServerStyle.gotSimplifiedNav()) {
+						query.shuffled = false;
+					}
 					break;
 				case 4:
 					if (UserPermissions.isAdmin()) {

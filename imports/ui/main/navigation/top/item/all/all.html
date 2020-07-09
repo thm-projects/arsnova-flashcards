@@ -6,12 +6,14 @@
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{{getNavigationName "all"}}}
             </a>
-            <div id="all-drop" class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <ul>
-                    {{> mainNavigationTopItemAllItemCardsets}}
-                    {{> mainNavigationTopItemAllItemRepetitorien}}
-                </ul>
-            </div>
+            {{#unless gotSimplifiedNav}}
+                <div id="all-drop" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul>
+                        {{> mainNavigationTopItemAllItemCardsets}}
+                        {{> mainNavigationTopItemAllItemRepetitorien}}
+                    </ul>
+                </div>
+        {{/unless}}
         </li>
     {{/if}}
 </template>

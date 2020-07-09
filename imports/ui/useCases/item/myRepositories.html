@@ -1,21 +1,23 @@
 <template name="useCasesItemMyRepositories">
-    {{#if (gotNavigationFeature "useCases.personal.repetitorium" false)}}
-        {{#if (gotNavigationFeature "personal.repetitorium.enabled" false)}}
-            {{#if gotCardIndex}}
-                <tr>
-                    <td>
-                        {{_ "useCases.modal.description.personal.repetitorien"}}
-                        <div class="visible-xs">
+    {{#unless gotSimplifiedNav}}
+        {{#if (gotNavigationFeature "useCases.personal.repetitorium" false)}}
+            {{#if (gotNavigationFeature "personal.repetitorium.enabled" false)}}
+                {{#if gotCardIndex}}
+                    <tr>
+                        <td>
+                            {{_ "useCases.modal.description.personal.repetitorien"}}
+                            <div class="visible-xs">
+                                {{> useCasesItemMyRepositoriesButton}}
+                            </div>
+                        </td>
+                        <td class="hidden-xs">
                             {{> useCasesItemMyRepositoriesButton}}
-                        </div>
-                    </td>
-                    <td class="hidden-xs">
-                        {{> useCasesItemMyRepositoriesButton}}
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                {{/if}}
             {{/if}}
         {{/if}}
-    {{/if}}
+    {{/unless}}
 </template>
 
 <template name="useCasesItemMyRepositoriesButton">

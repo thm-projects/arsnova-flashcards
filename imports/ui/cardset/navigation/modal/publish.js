@@ -40,7 +40,9 @@ Template.cardsetPublishForm.onRendered(function () {
 
 Template.cardsetPublishForm.helpers({
 	getCardsetTitle: function () {
-		return Session.get('activeCardset').name;
+		if (Session.get('activeCardset') !== undefined) {
+			return Session.get('activeCardset').name;
+		}
 	}
 });
 
