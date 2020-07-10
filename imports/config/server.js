@@ -667,10 +667,10 @@ let staging = {
 	"login": {
 		"cas": true,
 		"guest": true,
-		"pro": true,
-		"facebook": true,
-		"twitter": true,
-		"google": true
+		"pro": false,
+		"facebook": false,
+		"twitter": false,
+		"google": false
 	},
 	"welcome": {
 		"title": {
@@ -732,7 +732,7 @@ let staging = {
 	},
 	"newUser": {
 		"enabledNotifications": {
-			"mail": true,  //Excludes Free Users
+			"mail": true, //Excludes Free Users
 			"web": true
 		}
 	},
