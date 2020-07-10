@@ -68,9 +68,11 @@
             {{> wordcloud}}
         {{else}}
             {{#if getDecks 1}}
-                {{#each getDecks 2}}
-                    {{> filterIndexItemCardset extendContext 'index' @index}}
-                {{/each}}
+                <div class="filter-result-container">
+                    {{#each getDecks 2}}
+                        {{> filterIndexItemCardset extendContext 'index' @index}}
+                    {{/each}}
+                </div>
                 {{> infiniteScroll}}
             {{else}}
                 {{> noFilterResults}}
@@ -95,9 +97,11 @@
     </span>
     {{#if getCards 0}}
         {{#if getCards 1}}
-            {{#each getCards 2}}
-                {{> filterIndexItemCard extendContext 'index' @index}}
-            {{/each}}
+            <div class="filter-result-container">
+                {{#each getCards 2}}
+                    {{> filterIndexItemCard extendContext 'index' @index}}
+                {{/each}}
+            </div>
             {{> infiniteScroll}}
         {{else}}
             {{> noFilterResults}}
@@ -113,9 +117,11 @@
             {{> filterItemShuffleRepetitoriumCallout}}
             {{#if shuffleList 1}}
                 {{#each shuffleList 2}}
-                    {{#unless isActiveCardset}}
-                        {{> filterIndexItemCardset extendContext 'index' @index}}
-                    {{/unless}}
+                    <div class="filter-result-container">
+                        {{#unless isActiveCardset}}
+                            {{> filterIndexItemCardset extendContext 'index' @index}}
+                        {{/unless}}
+                    </div>
                 {{/each}}
                 {{> infiniteScroll}}
             {{else}}
@@ -137,9 +143,11 @@
             {{> wordcloud}}
         {{else}}
             {{#if cardsetList 1}}
-                {{#each cardsetList 2}}
-                    {{> filterIndexItemCardset extendContext 'index' @index}}
-                {{/each}}
+                <div class="filter-result-container">
+                    {{#each cardsetList 2}}
+                        {{> filterIndexItemCardset extendContext 'index' @index}}
+                    {{/each}}
+                </div>
                 {{> infiniteScroll}}
             {{else}}
                 {{> noFilterResults}}
@@ -165,9 +173,11 @@
             {{> wordcloud}}
         {{else}}
             {{#if cardsetList 1}}
-                {{#each cardsetList 2}}
-                    {{> filterIndexItemCardset extendContext 'index' @index}}
-                {{/each}}
+                <div class="filter-result-container">
+                    {{#each cardsetList 2}}
+                            {{> filterIndexItemCardset extendContext 'index' @index}}
+                    {{/each}}
+                </div>
                 {{> infiniteScroll}}
             {{else}}
                 {{> noFilterResults}}
@@ -185,9 +195,11 @@
     </span>
     {{#if learnList 0}}
         {{#if learnList 1}}
-            {{#each learnList 2}}
-                {{> filterIndexItemCardset extendContext 'index' @index}}
-            {{/each}}
+            <div class="filter-result-container">
+                {{#each learnList 2}}
+                        {{> filterIndexItemCardset extendContext 'index' @index}}
+                {{/each}}
+            </div>
             {{> infiniteScroll}}
         {{else}}
             {{> noFilterResults}}

@@ -1,10 +1,14 @@
 .resultItem {
   padding-left: 0;
   padding-right: 0;
-  margin-bottom: $margin_bottom_item !important;
+  padding-bottom: $padding_bottom_item;
   @media(min-width: 768px) {
-    margin-bottom: $margin_bottom_item !important;
+    padding-bottom: $padding_bottom_item;
   }
+}
+
+#set-list-region .resultItem:last-child {
+  padding-bottom: 0;
 }
 
 .resultsHeader {
@@ -88,7 +92,7 @@
 .resultsHeader {
   padding-top: 5px;
   padding-bottom: 5px;
-  margin-bottom: 0px;
+  margin-bottom: 15px;
   font-size: 16px;
 }
 

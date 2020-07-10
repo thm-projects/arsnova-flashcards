@@ -358,6 +358,7 @@ $themes: (
     $infinite_scroll_background: map-get($map, "infinite_scroll_background");
     $infinite_scroll_icon: map-get($map, "infinite_scroll_icon");
     $infinite_scroll_text: map-get($map, "infinite_scroll_text");
+    $item_spacing_background: map-get($map, "item_spacing_background");
     $item_background: map-get($map, "item_background");
     $item_icon: map-get($map, "item_icon");
     $item_icon_hover: map-get($map, "item_icon_hover");
@@ -2968,6 +2969,10 @@ $themes: (
     }
 
     //cardsetCourseIterations
+    .resultItem {
+      background-color: $item_spacing_background !important;
+    }
+
     .resultItem .card {
       background-color: $item_background !important;
       color: $item_text !important;
