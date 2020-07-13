@@ -5,7 +5,7 @@
   }
   #slogan {
     display: inline-block;
-
+    cursor: default;
     h2 {
       margin: 0;
       padding: 40px;
@@ -64,6 +64,10 @@
       justify-content: left !important;
     }
   }
+}
+
+.color-cards {
+  cursor: default;
 }
 
 .color-dot:before {

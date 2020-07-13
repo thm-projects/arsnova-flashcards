@@ -111,10 +111,8 @@ $themes: (
     $transcript_rating_stars_card_icon_rated:  map-get($map, "transcript_rating_stars_card_icon_rated");
     $frag_jetzt_background: map-get($map, "frag_jetzt_background");
     $frag_jetzt_text: map_get($map, "frag_jetzt_text");
-    $frag_jetzt_cursor: map_get($map, "frag_jetzt_cursor");
     $arsnova_click_background: map-get($map, "arsnova_click_background");
     $arsnova_click_text: map-get($map, "arsnova_click_text");
-    $arsnova_click_cursor: map_get($map, "arsnova_click_cursor");
 
     //barfy stars
     $barfy_stars_particles_1: map-get($map, "barfy_stars_particles_1");
@@ -1980,7 +1978,6 @@ $themes: (
     }
 
     .learnLeitner, .learnWozniak, .learnSelect {
-      cursor: pointer;
       color: $primary !important;
     }
 
@@ -3054,7 +3051,6 @@ $themes: (
     .resultsHeader {
       background-color: $item_background !important;
       color: $item_text !important;
-      cursor: default;
     }
 
     //cardsets
@@ -3260,7 +3256,6 @@ $themes: (
       i {
         color: $arsnova_click_text !important;
       }
-      cursor: $arsnova_click_cursor;
     }
 
     .label-frag-jetzt {
@@ -3269,7 +3264,6 @@ $themes: (
       i {
         color: $frag_jetzt_text !important;
       }
-      cursor: $frag_jetzt_cursor;
     }
 
     .moduleRadioButtonLabel {
@@ -3465,7 +3459,6 @@ $themes: (
       #slogan {
         color: white !important;
         text-shadow: 2px 2px 5px $welcome_page_login_label_shadow !important;
-        cursor: default;
       }
       .panel-heading {
         background-color: transparent !important;
@@ -3506,7 +3499,6 @@ $themes: (
 
     .color-cards {
       color: #2ac55f !important;
-      cursor: default;
     }
 
     //profile
@@ -4263,7 +4255,6 @@ $themes: (
     #useCasesModal th {
       background-color: $use_cases_table_header_background !important;
       color: $use_cases_table_header_text !important;
-      cursor: default;
     }
 
     #useCasesModal .specialCardset {
