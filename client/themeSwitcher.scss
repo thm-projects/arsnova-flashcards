@@ -3054,6 +3054,7 @@ $themes: (
     .resultsHeader {
       background-color: $item_background !important;
       color: $item_text !important;
+      cursor: default;
     }
 
     //cardsets
@@ -3464,6 +3465,7 @@ $themes: (
       #slogan {
         color: white !important;
         text-shadow: 2px 2px 5px $welcome_page_login_label_shadow !important;
+        cursor: default;
       }
       .panel-heading {
         background-color: transparent !important;
@@ -3504,6 +3506,7 @@ $themes: (
 
     .color-cards {
       color: #2ac55f !important;
+      cursor: default;
     }
 
     //profile
@@ -4260,6 +4263,7 @@ $themes: (
     #useCasesModal th {
       background-color: $use_cases_table_header_background !important;
       color: $use_cases_table_header_text !important;
+      cursor: default;
     }
 
     #useCasesModal .specialCardset {

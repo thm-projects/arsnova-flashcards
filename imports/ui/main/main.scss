@@ -881,6 +881,7 @@ kbd {
 .label-group {
   .label {
     margin-right: 2px;
+    cursor: default;
   }
   .label:last-child {
     margin-right: 0;
@@ -891,6 +892,7 @@ kbd {
   display: inline-block;
   padding-top: 4px;
   padding-bottom: 4px;
+  cursor: default;
 }
 
 #contact.fullscreen #cardset-list {
