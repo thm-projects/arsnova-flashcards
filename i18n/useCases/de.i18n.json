@@ -10,8 +10,8 @@
       "noName": "Digger",
       "description": {
         "personal": {
-          "create": "Ich will eine Kartei anlegen – 'ne Kartenbox.",
-          "cardsets": "Ich will zu meinen Kartensätzen.",
+          "create": "Ich will eine Kartei anlegen und Karten schreiben.",
+          "cardsets": "Ich will zu meinen Karteien.",
           "transcripts": "Ich will zu meinen Mitschriften",
           "repetitorien": "Ich will zu meinen Repetitorien."
         },

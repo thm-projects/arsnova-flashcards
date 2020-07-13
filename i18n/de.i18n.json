@@ -768,13 +768,13 @@
   },
   "modal-dialog": {
     "arsnovaClick": {
-      "name": "arsnova.click",
-      "placeholder": "Quizname",
-      "overrideOnlyEmptySessions": "Nur Karteien ohne Quizname überschreiben"
+      "name": "Spiel-basierte Quiz-App",
+      "placeholder": "Gehe zur URL »arsnova.click« und gib hier den Quiz-Namen ein",
+      "overrideOnlyEmptySessions": "Nur Karteien ohne Quiz-Namen überschreiben"
     },
     "fragJetzt": {
-      "name": "frag.jetzt",
-      "placeholder": "Sitzungs-Code",
+      "name": "Feedback-App zum Sammeln von Fragen und Kommentaren",
+      "placeholder": "Gehe zur URL »frag.jetzt« und gib hier den Sitzungs-Code ein",
       "overrideOnlyEmptySessions": "Nur Karteien ohne Sitzungs-Code überschreiben"
     },
     "missingFields": "Bitte fülle die folgenden Felder aus",
