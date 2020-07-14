@@ -259,7 +259,7 @@ export let ServerStyle = class ServerStyle {
 	}
 
 	static adjustForCardsetBackground (backgrounds, target = "") {
-		if (target === "none" || target.trim().length === 0)  {
+		if (target['background-image'] === "none" || target['background-image'] .trim().length === 0)  {
 			target = backgrounds.cardset;
 		}
 		return this.adjustForInternalBackground(backgrounds, target);
