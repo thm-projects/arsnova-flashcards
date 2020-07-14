@@ -6,7 +6,7 @@ import {CollegesCourses} from "../../api/subscriptions/collegesCourses.js";
 import {Workload} from "../../api/subscriptions/workload";
 import {Session} from "meteor/session";
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
-import {CardType} from "../../api/cardTypes";
+import {CardType as CardTypes, CardType} from "../../api/cardTypes";
 import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../../config/dompurify.js";
 import {getAuthorName, getOriginalAuthorName} from "../../api/userdata";
@@ -65,6 +65,22 @@ Template.registerHelper('isCardset', function () {
 
 Template.registerHelper('isWorkloadRoute', function () {
 	return Route.isWorkload();
+});
+
+
+Template.registerHelper('gotArsnovaClick', function (cardType) {
+	if (cardType === undefined) {
+		cardType = Session.get('cardType');
+	}
+	return CardTypes.gotArsnovaClick(cardType);
+});
+
+
+Template.registerHelper('gotFragJetzt', function (cardType) {
+	if (cardType === undefined) {
+		cardType = Session.get('cardType');
+	}
+	return CardTypes.gotFragJetzt(cardType);
 });
 
 

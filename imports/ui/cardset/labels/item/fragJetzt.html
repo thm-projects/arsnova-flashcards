@@ -1,7 +1,9 @@
 <template name="cardsetLabelsItemFragJetzt">
-    {{#if this.fragJetzt.session}}
-        <span class="label label-frag-jetzt" title="{{_ 'cardset.info.fragJetztLabel.long'}}">
-            <i class="fas fa-comments"></i>&nbsp;{{_ 'cardset.info.fragJetztLabel.title'}}
-        </span>
+    {{#if gotFragJetzt this.cardType}}
+        {{#if this.fragJetzt.session}}
+            <span class="label label-frag-jetzt" title="{{_ 'cardset.info.fragJetztLabel.long'}}">
+                <i class="fas fa-comments"></i>&nbsp;{{_ 'cardset.info.fragJetztLabel.title'}}
+            </span>
+        {{/if}}
     {{/if}}
 </template>

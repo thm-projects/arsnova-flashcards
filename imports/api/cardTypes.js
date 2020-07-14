@@ -237,6 +237,14 @@ export let CardType = class CardType {
 		return config.cardTypesWithLearningModePDFAutoTarget.includes(cardType);
 	}
 
+	static gotArsnovaClick (cardType) {
+		return config.cardTypesWithArsnovaClick.includes(cardType);
+	}
+
+	static gotFragJetzt (cardType) {
+		return config.cardTypesWithFragJetzt.includes(cardType);
+	}
+
 	static gotCardTypesWithSwapAnswerQuestionButton (cardset_id) {
 		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {shuffled: 1, cardGroups: 1, cardType: 1}});
 		if (cardset !== undefined) {
