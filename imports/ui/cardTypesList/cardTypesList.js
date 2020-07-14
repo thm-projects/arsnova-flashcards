@@ -16,7 +16,28 @@ import {isNewCardset} from "../forms/cardsetForm";
 
 Template.cardTypesList.helpers({
 	getCardTypes: function () {
-		return CardType.getCardTypesOrder();
+		let cardTypes = CardType.getCardTypesOrder();
+		let filteredCardTypes = [];
+		for (let i = 0; i < cardTypes.length; i++) {
+			switch (cardTypes[i].cardType) {
+				case -1:
+					if (cardTypes[i].enabled && ServerStyle.gotSimplifiedNav()) {
+						filteredCardTypes.push(cardTypes[i]);
+					}
+					break;
+				default:
+					if (this.useCase) {
+						if (cardTypes[i].enabled) {
+							filteredCardTypes.push(cardTypes[i]);
+						}
+					} else {
+						if (cardTypes[i].enabled && !cardTypes[i].useCaseOnly) {
+							filteredCardTypes.push(cardTypes[i]);
+						}
+					}
+			}
+		}
+		return filteredCardTypes;
 	},
 	getCardTypeLongName: function () {
 		return CardType.getCardTypeLongName(this.cardType);

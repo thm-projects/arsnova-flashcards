@@ -35,24 +35,83 @@ let lecturerExclusiveCardTypes = [19];
 // MC Questions
 let cardTypesWithAnswerOptions = [11];
 let cardTypesOrder = [
-	{cardType: 0},
-	{cardType: 15},
-	{cardType: 3},
-	{cardType: 6},
-	{cardType: 13},
-	{cardType: 12},
-	{cardType: 17},
-	{cardType: 16},
-	{cardType: 11},
-	{cardType: 5},
-	{cardType: 1},
-	{cardType: 7},
-	{cardType: 4},
-	{cardType: 8},
-	{cardType: 14},
-	{cardType: 18},
-	{cardType: 19},
-	{cardType: -1}
+	{
+		cardType: 8, //8: Notizen
+		enabled: true
+	},
+	{
+		cardType: 2, //2: Mitschrift
+		enabled: true,
+		useCaseOnly: true
+	},
+	{
+		cardType: 0, //0: Lerneinheit
+		enabled: true
+	},
+	{
+		cardType: 11, //11: Quiz
+		enabled: true
+	},
+	{
+		cardType: 3, //3: Glossar
+		enabled: true
+	},
+	{
+		cardType: 6, //6: Anweisungssatz
+		enabled: true
+	},
+	{
+		cardType: 13, //13: Formelsammlung
+		enabled: true
+	},
+	{
+		cardType: 15, //15: Aufgabensammlung
+		enabled: true
+	},
+	{
+		cardType: 12, //12: Entwurfsmuster
+		enabled: true
+	},
+	{
+		cardType: 1, //1: Vokabelkartei
+		enabled: true
+	},
+	{
+		cardType: 5, //5: Prüfung
+		enabled: true
+	},
+	{
+		cardType: 14, //14: Vortrag
+		enabled: true
+	},
+	{
+		cardType: 18, //18: Cube
+		enabled: true
+	},
+	{
+		cardType: -1, //-1: Repetitorium
+		enabled: true
+	},
+	{
+		cardType: 19, //19: Vorlesung mit Bonus-Mitschrift
+		enabled: true
+	},
+	{
+		cardType: 17, //17: Inverses Fragen
+		enabled: false
+	},
+	{
+		cardType: 16, //16: Zielerreichung
+		enabled: false
+	},
+	{
+		cardType: 7, //7: Literatur
+		enabled: false
+	},
+	{
+		cardType: 4, //4: Zitatensammlung
+		enabled: false
+	}
 ];
 
 //0: left

@@ -37,20 +37,17 @@
     {{else}}
         {{#each getCardTypes}}
             {{#if isRepType this.cardType}}
-                {{#if gotSimplifiedNav}}
-                    {{#if isNotEditCardset}}
+                {{#if isNotEditCardset}}
                         <li>
                             <a href="#" class="cardType" value="-1" data="-1">{{_ "filter-pool.cardType.repetitorium"}}
                             </a>
                         </li>
-                    {{/if}}
                 {{/if}}
             {{else}}
                 {{#if canCreateCardType this.cardType}}
-                    <li class="cardType" value="{{this.cardType}}" data="{{this.cardType}}"><a href="#">{{getCardTypeLongName}}</a></li>
+                        <li class="cardType" value="{{this.cardType}}" data="{{this.cardType}}"><a href="#">{{getCardTypeLongName}}</a></li>
                 {{/if}}
             {{/if}}
-
         {{/each}}
     {{/if}}
 </template>
