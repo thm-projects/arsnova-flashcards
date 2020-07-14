@@ -80,7 +80,7 @@ Template.useCasesModal.onRendered(function () {
 		Session.set('useCasesModalOpen', true);
 		Session.set('isNewCardset', true);
 		Session.set('useCaseType', 0);
-		Session.set('useCaseSelectedCardType', -1);
+		Session.set('useCaseSelectedCardType', -2);
 		Session.set('useCaseTarget', undefined);
 		$('.setCardTypeUseCase').html(TAPi18n.__('card.chooseCardType'));
 		$('.setCardTypeUseCase').val(-1);

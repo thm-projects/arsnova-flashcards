@@ -1,5 +1,5 @@
 import {Mongo} from "meteor/mongo";
-import {Cardsets} from "../subscriptions/cardsets";
+import {Cardsets} from "./cardsets";
 import {Meteor} from "meteor/meteor";
 import {TranscriptBonus} from "./transcriptBonus";
 import {TranscriptBonusList} from "../transcriptBonus";

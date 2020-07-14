@@ -9,12 +9,14 @@
                         <span class="hidden-sm">{{{getNavigationName "transcripts"}}}</span><span
                             class="visible-sm">{{{getNavigationName "transcriptsShort"}}}</span>
                     </a>
-                    <div id="transcripts-drop" class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <ul>
-                            {{> mainNavigationTopItemTranscriptsItemPersonal}}
-                            {{> mainNavigationTopItemTranscriptsItemBonus}}
-                        </ul>
-                    </div>
+                    {{#unless gotSimplifiedNav}}
+                        <div id="transcripts-drop" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <ul>
+                                {{> mainNavigationTopItemTranscriptsItemPersonal}}
+                                {{> mainNavigationTopItemTranscriptsItemBonus}}
+                            </ul>
+                        </div>
+                    {{/unless}}
                 </li>
             {{/if}}
         {{/unless}}

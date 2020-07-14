@@ -1,5 +1,8 @@
 {
   "filter-pool": {
+    "cardType": {
+      "repetitorium": "Repetitorium"
+    },
     "wordcloud": "Community",
     "wordcloudTrue": "von der Redaktion in die Themen-Wolke aufgenommen",
     "wordcloudFalse": "von Studierenden für die Community freigegeben",

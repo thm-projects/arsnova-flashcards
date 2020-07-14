@@ -12,6 +12,7 @@ const GUEST = 4;
 
 let defaultSettings = {
 	"navigationFeatures": { //Excludes Super Admins (Backend) and Editors (Frontend)
+		"simplifiedNav": true, // Removes dropdowns and groups content together
 		"useCases": { //Will be only visible if the related navigation item is enabled
 			"misc": {
 				"create": [FREE, EDU, PRO, LECTURER],
@@ -160,6 +161,7 @@ let defaultSettings = {
 
 let debug = {
 	"navigationFeatures": { //Excludes Super Admins (Backend) and Editors (Frontend)
+		"simplifiedNav": true, // Removes dropdowns and groups content together
 		"useCases": { //Will be only visible if the related navigation item is enabled
 			"misc": {
 				"create": [FREE, EDU, PRO, LECTURER],
@@ -308,6 +310,7 @@ let debug = {
 
 let linux = {
 	"navigationFeatures": { //Excludes Super Admins (Backend) and Editors (Frontend)
+		"simplifiedNav": true, // Removes dropdowns and groups content together
 		"useCases": { //Will be only visible if the related navigation item is enabled
 			"misc": {
 				"create": [PRO, LECTURER],
@@ -456,6 +459,7 @@ let linux = {
 
 let review = {
 	"navigationFeatures": { //Excludes Super Admins (Backend) and Editors (Frontend)
+		"simplifiedNav": true, // Removes dropdowns and groups content together
 		"useCases": { //Will be only visible if the related navigation item is enabled
 			"misc": {
 				"create": [FREE, EDU, PRO, LECTURER],
@@ -604,6 +608,7 @@ let review = {
 
 let staging = {
 	"navigationFeatures": { //Excludes Super Admins (Backend) and Editors (Frontend)
+		"simplifiedNav": true, // Removes dropdowns and groups content together
 		"useCases": { //Will be only visible if the related navigation item is enabled
 			"misc": {
 				"create": [FREE, EDU, PRO, LECTURER],

@@ -1,8 +1,16 @@
 <template name="filterItemSelectCardsetButton">
     {{#if (gotNavigationFeature "public.cardset.enabled" false)}}
         <span class="btn-group">
-    <a id="browseCardset" class="btn btn-raised btn-success"><span class="flex-content">{{{getCardsetIcons false}}}{{_
-            "set-list-learn-empty.browseCardset"}}</span></a>
-                    </span>
+            <a id="browseCardset" class="btn btn-raised btn-success">
+                <span class="flex-content">
+                    {{{getCardsetIcons false}}}
+                    {{#if gotSimplifiedNav}}
+                        {{_ "set-list-learn-empty.simplifiedNav.browseCardset"}}
+                    {{else}}
+                        {{_ "set-list-learn-empty.browseCardset"}}
+                    {{/if}}
+                </span>
+            </a>
+        </span>
     {{/if}}
 </template>

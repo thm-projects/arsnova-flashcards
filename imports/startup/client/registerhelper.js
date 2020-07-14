@@ -39,7 +39,11 @@ Meteor.subscribe("collegesCourses");
 
 Template.registerHelper('isRepetitorium', function () {
 	if (isNewCardset()) {
-		return Route.isRepetitorienFilterIndex();
+		if (ServerStyle.gotSimplifiedNav()) {
+			return Session.get('useRepForm');
+		} else {
+			return Route.isRepetitorienFilterIndex();
+		}
 	} else {
 		if (Session.get('activeCardset') !== undefined) {
 			return Session.get('activeCardset').shuffled;
@@ -49,6 +53,10 @@ Template.registerHelper('isRepetitorium', function () {
 
 Template.registerHelper('gotCenteredLandingPagePomodoro', function () {
 	return ServerStyle.gotCenteredLandingPagePomodoro();
+});
+
+Template.registerHelper('gotSimplifiedNav', function () {
+	return ServerStyle.gotSimplifiedNav();
 });
 
 Template.registerHelper('isCardset', function () {
@@ -307,6 +315,9 @@ Template.registerHelper('isRepetitorienFilterIndex', function () {
 });
 
 Template.registerHelper('isRepetitorienFilterIndexOrShuffle', function () {
+	if (ServerStyle.gotSimplifiedNav() && Route.isMyCardsets() && Session.get('useRepForm') && !isNewCardset()) {
+		return true;
+	}
 	if (Route.isCardset()) {
 		return this.shuffled;
 	}
@@ -773,6 +784,9 @@ Template.registerHelper("getSignalTooltip", function () {
 });
 
 Template.registerHelper("isShuffledCardset", function (cardset_id) {
+	if (ServerStyle.gotSimplifiedNav() && Route.isMyCardsets() && !isNewCardset() && Session.get('useRepForm')) {
+		return true;
+	}
 	if (cardset_id !== undefined) {
 		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {shuffled: 1}});
 		if (cardset !== undefined) {

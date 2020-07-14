@@ -5,7 +5,13 @@
                 {{#unless isIOS}}
                 <span class="btn-group">
                     <label class="btn btn-raised btn-import btn-success {{disableIfOffline}}">
-                        <span class="flex-content">{{{getCardsetIcons false}}}<i class="fas fa-cloud-upload-alt"></i>&nbsp;{{_ "import.cardset"}}</span> <input
+                        <span class="flex-content">{{{getCardsetIcons false}}}<i class="fas fa-cloud-upload-alt"></i>&nbsp;
+                            {{#if gotSimplifiedNav}}
+                                {{_ "import.cardsetSimpleNav"}}
+                            {{else}}
+                                {{_ "import.cardsetSimpleNav"}}
+                            {{/if}}
+                        </span> <input
                             type="{{#if isProfileComplete}}file{{else}}button{{/if}}"
                             accept=".json" id="{{#if
                             isProfileComplete}}importCardset{{else}}importCardsetCompleteProfile{{/if}}"

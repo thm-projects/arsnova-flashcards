@@ -197,6 +197,10 @@ export let ServerStyle = class ServerStyle {
 		return this.getConfig().welcome.centeredLandingPagePomodoro;
 	}
 
+	static gotSimplifiedNav () {
+		return this.getConfig().navigationFeatures.simplifiedNav;
+	}
+
 	static getUserRolesWithCreatePermission () {
 		let usersWithPermission = this.getConfig().roles.create;
 		let list = ['admin', 'editor'];

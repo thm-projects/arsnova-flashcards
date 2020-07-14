@@ -8,12 +8,14 @@
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{{getNavigationName "personal"}}}
                     </a>
-                    <div id="personal-drop" class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <ul>
-                            {{> mainNavigationTopItemPersonalItemCardsets}}
-                            {{> mainNavigationTopItemPersonalItemRepetitorien}}
-                        </ul>
-                    </div>
+                    {{#unless gotSimplifiedNav}}
+                        <div id="personal-drop" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <ul>
+                                {{> mainNavigationTopItemPersonalItemCardsets}}
+                                {{> mainNavigationTopItemPersonalItemRepetitorien}}
+                            </ul>
+                        </div>
+                    {{/unless}}
                 </li>
             {{/if}}
         {{/unless}}

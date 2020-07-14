@@ -9,9 +9,14 @@ import {BertAlertVisuals} from "../../api/bertAlertVisuals";
 import {Cardsets} from "../../api/subscriptions/cardsets";
 import * as config from "../../config/cardset";
 import "./item/sessions.js";
+import {ServerStyle} from "../../api/styles";
 
 export function isNewCardset() {
 	return Session.get('isNewCardset');
+}
+
+export function setNewCardsetSession(status = false) {
+	Session.set('isNewCardset', status);
 }
 
 export function cleanModal() {
@@ -38,12 +43,18 @@ export function cleanModal() {
 	$('#helpSetName').html('');
 
 	if (isNewCardset()) {
-		let _id = -1;
+		let _id = -2;
 		if (Session.get('useCaseType') === 1) {
 			_id = Session.get('useCaseSelectedCardType');
 			Session.set('useCaseType', 0);
 		}
-		$('.setCardTypeDropdownText').html(CardType.getCardTypeLongName(_id));
+		if (_id === -1) {
+			$('.setCardTypeDropdownText').html(TAPi18n.__("filter-pool.cardType.repetitorium"));
+			Session.set('useRepForm', true);
+		} else {
+			$('.setCardTypeDropdownText').html(CardType.getCardTypeLongName(_id));
+			Session.set('useRepForm', false);
+		}
 		$('.setCardType').val(_id);
 	} else {
 		$('.setCardTypeDropdownText').html(CardType.getCardTypeLongName(Session.get('previousCardsetData').cardType));
@@ -139,7 +150,7 @@ export function saveCardset() {
 		$('#setNameLabel').addClass('text-warning');
 		$('#helpSetName').html(TAPi18n.__('modal-dialog.name_required'));
 	}
-	if ($('#setCardsetFormModal .setCardType').val() < 0) {
+	if ($('#setCardsetFormModal .setCardType').val() < -1) {
 		error = true;
 		errorMessage += "<li>" + TAPi18n.__('modal-dialog.cardType') + "</li>";
 		bertDelayMultiplier++;
@@ -174,8 +185,14 @@ export function saveCardset() {
 					cardGroups = Session.get("ShuffledCardsets");
 				}
 			} else {
-				shuffled = false;
-				cardGroups = [];
+				if (ServerStyle.gotSimplifiedNav() && Session.get('useRepForm')) {
+					shuffled = true;
+					cardType = 0;
+					cardGroups = [];
+				} else {
+					shuffled = false;
+					cardGroups = [];
+				}
 			}
 			Meteor.call("addCardset", name, description, false, true, 'personal', shuffled, cardGroups, Number(cardType), Session.get('difficultyColor'), Number(sortType), fragJetzt, arsnovaClick, function (error, result) {
 				$('#setCardsetFormModal').modal('hide');
@@ -231,6 +248,7 @@ Template.cardsetFormContent.onRendered(function () {
 		cleanModal();
 	});
 	$('#setCardsetFormModal').on('hidden.bs.modal', function () {
+		Session.set('useRepForm', false);
 		cleanModal();
 		$('#importCardset').val('');
 		Session.set('importCards', undefined);
@@ -262,6 +280,11 @@ Template.cardsetFormContent.helpers({
 	},
 	gotTranscriptBonus: function () {
 		return CardType.gotTranscriptBonus(Session.get('cardType'));
+	},
+	isSimplifiedNavRep: function () {
+		if (ServerStyle.gotSimplifiedNav() && Route.isMyCardsets()) {
+			return Session.get('useRepForm');
+		}
 	}
 });
 
@@ -277,6 +300,11 @@ Template.cardsetFormContent.events({
 		Session.set('difficultyColor', Session.get('previousCardsetData').difficulty);
 		$('.setCardTypeLabel').removeClass('text-warning');
 		$('#helpSetCardType').html('');
+		if (Number(cardType) === -1) {
+			Session.set('useRepForm', true);
+		} else {
+			Session.set('useRepForm', false);
+		}
 	},
 	'keyup #setName': function () {
 		$('#setNameLabel').removeClass('text-warning');

@@ -10,4 +10,6 @@ import "../cardset/labels/labels.js";
 import "../cardset/info/box/cardset.js";
 import "./navigation/navigation.js";
 import "../forms/cardsetFormAdmin.js";
+import {Session} from "meteor/session";
 
+Session.setDefault('useRepForm', false);

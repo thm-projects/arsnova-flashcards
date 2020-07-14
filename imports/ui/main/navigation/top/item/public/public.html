@@ -6,12 +6,14 @@
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{{getNavigationName "public"}}}
             </a>
-            <div id="public-drop" class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <ul>
-                    {{> mainNavigationTopItemPublicItemCardsets}}
-                    {{> mainNavigationTopItemPublicItemRepetitorien}}
-                </ul>
-            </div>
+            {{#unless gotSimplifiedNav}}
+                <div id="public-drop" class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul>
+                        {{> mainNavigationTopItemPublicItemCardsets}}
+                        {{> mainNavigationTopItemPublicItemRepetitorien}}
+                    </ul>
+                </div>
+            {{/unless}}
         </li>
     {{else}}
         {{#if (gotNavigationFeature "public.cardset.enabled" false)}}
