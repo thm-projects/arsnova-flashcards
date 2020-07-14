@@ -28,11 +28,19 @@ Template.cardTypesList.helpers({
 				default:
 					if (this.useCase) {
 						if (cardTypes[i].enabled) {
-							filteredCardTypes.push(cardTypes[i]);
+							if (ServerStyle.gotTranscriptsEnabled()) {
+								filteredCardTypes.push(cardTypes[i]);
+							} else if (!CardType.isTranscriptModeOnlyCardType(cardTypes[i].cardType)) {
+								filteredCardTypes.push(cardTypes[i]);
+							}
 						}
 					} else {
 						if (cardTypes[i].enabled && !cardTypes[i].useCaseOnly) {
-							filteredCardTypes.push(cardTypes[i]);
+							if (ServerStyle.gotTranscriptsEnabled()) {
+								filteredCardTypes.push(cardTypes[i]);
+							} else if (!CardType.isTranscriptModeOnlyCardType(cardTypes[i].cardType)) {
+								filteredCardTypes.push(cardTypes[i]);
+							}
 						}
 					}
 			}

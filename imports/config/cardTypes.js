@@ -34,6 +34,7 @@ let cardTypesWithTranscriptBonus = [19];
 let lecturerExclusiveCardTypes = [19];
 let cardTypesWithArsnovaClick = [14, 18];
 let cardTypesWithFragJetzt = [14, 18];
+let transcriptModeOnlyCardTypes = [2, 19];
 
 // MC Questions
 let cardTypesWithAnswerOptions = [11];
@@ -675,5 +676,6 @@ module.exports = {
 	cardTypeCubeSides,
 	cardTypesWithTranscriptBonus,
 	lecturerExclusiveCardTypes,
-	cardTypeVariables
+	cardTypeVariables,
+	transcriptModeOnlyCardTypes
 };
