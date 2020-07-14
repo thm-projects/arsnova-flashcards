@@ -166,11 +166,6 @@ Template.filterIndex.helpers({
 	}
 });
 
-
-Template.filterIndex.onRendered(function () {
-	FilterNavigation.setAutoOpenFeature();
-});
-
 /*
  * ############################################################################
  * filterIndexPool
@@ -213,6 +208,8 @@ Template.filterIndexPool.onRendered(function () {
 	if (Session.get('useCaseType') === 3) {
 		MainNavigation.focusSearchBar();
 		Session.set('useCaseType', 0);
+	} else {
+		FilterNavigation.setAutoOpenFeature();
 	}
 	LoginTasks.showUseCasesModal();
 });
@@ -286,6 +283,8 @@ Template.filterIndexCreate.onRendered(function () {
 		if (Session.get('useCaseType') === 1) {
 			$('#setCardsetFormModal').modal('show');
 		}
+	} else {
+		FilterNavigation.setAutoOpenFeature();
 	}
 	LoginTasks.showUseCasesModal();
 });
@@ -329,6 +328,8 @@ Template.filterIndexRepetitorium.onRendered(function () {
 	if (Session.get('useCaseType') === 2) {
 		MainNavigation.focusSearchBar();
 		Session.set('useCaseType', 0);
+	} else {
+		FilterNavigation.setAutoOpenFeature();
 	}
 	LoginTasks.showUseCasesModal();
 });
@@ -415,4 +416,9 @@ Template.filterIndexShuffle.onCreated(function () {
 		Session.set("ShuffledCardsets", []);
 	}
 	Session.set("ShuffledCardsetsExclude", []);
+});
+
+
+Template.filterIndexShuffle.onRendered(function () {
+	FilterNavigation.setAutoOpenFeature();
 });

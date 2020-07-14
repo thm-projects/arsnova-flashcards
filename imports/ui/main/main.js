@@ -147,7 +147,7 @@ Template.main.onRendered(function () {
 	$("html, body").click(function (event) {
 		if (!$(event.target).is('.search-dropdown-container *') && !$(event.target).is('#searchResults *')) {
 			MainNavigation.clearSearch();
-			$('.navbar-cards-search-dropdown').removeClass('active');
+			MainNavigation.closeSearch();
 		}
 		if (!$(event.target).is('.resultItemHeaderAuthor a') && !$(event.target).is('.cards-filter-element') && !$(event.target).parents('.resultItemHeaderBottomAreaLabels').length) {
 			$('.navbar-cards-filter-dropdown').removeClass('active');
