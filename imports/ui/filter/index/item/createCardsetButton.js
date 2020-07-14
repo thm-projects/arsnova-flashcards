@@ -13,6 +13,7 @@ Template.filterItemCreateCardsetButton.events({
 	'click #newCardSet': function () {
 		if (Profile.isCompleted()) {
 			Session.set('isNewCardset', true);
+			Session.set('useRepForm', false);
 			$('#setCardsetFormModal').modal('show');
 		} else {
 			SweetAlertMessages.completeProfile();

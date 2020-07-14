@@ -6,7 +6,7 @@ import {CollegesCourses} from "../../api/subscriptions/collegesCourses.js";
 import {Workload} from "../../api/subscriptions/workload";
 import {Session} from "meteor/session";
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
-import {CardType} from "../../api/cardTypes";
+import {CardType as CardTypes, CardType} from "../../api/cardTypes";
 import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../../config/dompurify.js";
 import {getAuthorName, getOriginalAuthorName} from "../../api/userdata";
@@ -39,7 +39,11 @@ Meteor.subscribe("collegesCourses");
 
 Template.registerHelper('isRepetitorium', function () {
 	if (isNewCardset()) {
-		return Route.isRepetitorienFilterIndex();
+		if (ServerStyle.gotSimplifiedNav()) {
+			return Session.get('useRepForm');
+		} else {
+			return Route.isRepetitorienFilterIndex();
+		}
 	} else {
 		if (Session.get('activeCardset') !== undefined) {
 			return Session.get('activeCardset').shuffled;
@@ -51,12 +55,32 @@ Template.registerHelper('gotCenteredLandingPagePomodoro', function () {
 	return ServerStyle.gotCenteredLandingPagePomodoro();
 });
 
+Template.registerHelper('gotSimplifiedNav', function () {
+	return ServerStyle.gotSimplifiedNav();
+});
+
 Template.registerHelper('isCardset', function () {
 	return Route.isCardset();
 });
 
 Template.registerHelper('isWorkloadRoute', function () {
 	return Route.isWorkload();
+});
+
+
+Template.registerHelper('gotArsnovaClick', function (cardType) {
+	if (cardType === undefined) {
+		cardType = Session.get('cardType');
+	}
+	return CardTypes.gotArsnovaClick(cardType);
+});
+
+
+Template.registerHelper('gotFragJetzt', function (cardType) {
+	if (cardType === undefined) {
+		cardType = Session.get('cardType');
+	}
+	return CardTypes.gotFragJetzt(cardType);
 });
 
 
@@ -307,6 +331,9 @@ Template.registerHelper('isRepetitorienFilterIndex', function () {
 });
 
 Template.registerHelper('isRepetitorienFilterIndexOrShuffle', function () {
+	if (ServerStyle.gotSimplifiedNav() && Route.isMyCardsets() && Session.get('useRepForm') && !isNewCardset()) {
+		return true;
+	}
 	if (Route.isCardset()) {
 		return this.shuffled;
 	}
@@ -773,6 +800,9 @@ Template.registerHelper("getSignalTooltip", function () {
 });
 
 Template.registerHelper("isShuffledCardset", function (cardset_id) {
+	if (ServerStyle.gotSimplifiedNav() && Route.isMyCardsets() && !isNewCardset() && Session.get('useRepForm')) {
+		return true;
+	}
 	if (cardset_id !== undefined) {
 		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {shuffled: 1}});
 		if (cardset !== undefined) {

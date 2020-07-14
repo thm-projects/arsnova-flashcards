@@ -5,6 +5,8 @@ import {Cardsets} from "../../api/subscriptions/cardsets";
 import {Filter} from "../../api/filter";
 import {Session} from "meteor/session";
 import {UserPermissions} from "../../api/permissions";
+import {ServerStyle} from "../../api/styles";
+import {isNewCardset} from "../forms/cardsetForm";
 
 /*
  * ############################################################################
@@ -14,10 +16,44 @@ import {UserPermissions} from "../../api/permissions";
 
 Template.cardTypesList.helpers({
 	getCardTypes: function () {
-		return CardType.getCardTypesOrder();
+		let cardTypes = CardType.getCardTypesOrder();
+		let filteredCardTypes = [];
+		for (let i = 0; i < cardTypes.length; i++) {
+			switch (cardTypes[i].cardType) {
+				case -1:
+					if (cardTypes[i].enabled && ServerStyle.gotSimplifiedNav()) {
+						filteredCardTypes.push(cardTypes[i]);
+					}
+					break;
+				default:
+					if (this.useCase) {
+						if (cardTypes[i].enabled) {
+							if (ServerStyle.gotTranscriptsEnabled()) {
+								filteredCardTypes.push(cardTypes[i]);
+							} else if (!CardType.isTranscriptModeOnlyCardType(cardTypes[i].cardType)) {
+								filteredCardTypes.push(cardTypes[i]);
+							}
+						}
+					} else {
+						if (cardTypes[i].enabled && !cardTypes[i].useCaseOnly) {
+							if (ServerStyle.gotTranscriptsEnabled()) {
+								filteredCardTypes.push(cardTypes[i]);
+							} else if (!CardType.isTranscriptModeOnlyCardType(cardTypes[i].cardType)) {
+								filteredCardTypes.push(cardTypes[i]);
+							}
+						}
+					}
+			}
+		}
+		return filteredCardTypes;
 	},
 	getCardTypeLongName: function () {
 		return CardType.getCardTypeLongName(this.cardType);
+	},
+	gotShuffledCardsets: function () {
+		let query = Filter.getFilterQuery();
+		query.shuffled = true;
+		return Cardsets.find(query).count();
 	},
 	filterCardTypes: function (cardType) {
 		if (Session.get("selectingCardsetToLearn") && !CardType.gotLearningModes(cardType)) {
@@ -30,11 +66,22 @@ Template.cardTypesList.helpers({
 	resultsFilterCardType: function (cardType) {
 		return Filter.getFilterQuery().cardType === cardType;
 	},
+	resultFilterShuffled: function () {
+		return Filter.getFilterQuery().shuffled === true;
+	},
 	canCreateCardType: function (cardType) {
 		if (CardType.gotTranscriptBonus(cardType)) {
 			return (UserPermissions.isLecturer() || UserPermissions.isAdmin());
 		} else {
 			return true;
 		}
+	},
+	isNotEditCardset: function () {
+		if (ServerStyle.gotSimplifiedNav() && isNewCardset()) {
+			return true;
+		}
+	},
+	isRepType: function (cardType) {
+		return cardType === -1;
 	}
 });

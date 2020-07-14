@@ -1,8 +1,16 @@
 <template name="cardsetIndexTranscriptNavigation">
-    {{> cardsetIndexTranscriptNavigationItemStatistics}}
-    {{> cardsetIndexTranscriptNavigationItemSubmissions}}
     {{#if isCardsetTranscriptBonusRoute}}
+        {{> cardsetIndexTranscriptNavigationItemStatistics}}
+        {{> cardsetIndexTranscriptNavigationItemSubmissions}}
         {{> cardsetIndexTranscriptNavigationItemSettings}}
+    {{else}}
+        {{#if gotSimplifiedNav}}
+            {{> cardsetIndexTranscriptNavigationItemSubmissions}}
+            {{> cardsetIndexTranscriptNavigationItemStatistics}}
+        {{else}}
+            {{> cardsetIndexTranscriptNavigationItemStatistics}}
+            {{> cardsetIndexTranscriptNavigationItemSubmissions}}
+        {{/if}}
     {{/if}}
     <br>
 </template>

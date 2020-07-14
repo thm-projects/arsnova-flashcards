@@ -339,7 +339,14 @@ FlowRouter.route('/all/repetitorien', {
 			MainNavigation.setLoginTarget(false);
 			FlowRouter.go('home');
 		}
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			if (ServerStyle.gotSimplifiedNav()) {
+				redirect(RouteNames.alldecks);
+			}
+		}
+	]
 });
 
 FlowRouter.route('/personal/cardsets', {
@@ -376,11 +383,23 @@ FlowRouter.route('/transcripts/personal', {
 		this.render(mainTemplate, loadingScreenTemplate);
 	},
 	waitOn: function () {
-		return [
-			import('../../ui/filter/filter.js'),
-			Meteor.subscribe('defaultAppData'),
-			Meteor.subscribe('myTranscriptCards')
-		];
+		if (ServerStyle.gotSimplifiedNav()) {
+			return [
+				import ('../../ui/cardset/index/transcript/transcript.js'),
+				import('../../ui/filter/filter.js'),
+				Meteor.subscribe('defaultAppData'),
+				Meteor.subscribe('myTranscriptCards'),
+				Meteor.subscribe('myTranscriptBonus'),
+				Meteor.subscribe('cardsetsTranscripts')
+			];
+		} else {
+			return [
+				import ('../../ui/cardset/index/transcript/transcript.js'),
+				import('../../ui/filter/filter.js'),
+				Meteor.subscribe('defaultAppData'),
+				Meteor.subscribe('myTranscriptCards')
+			];
+		}
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.filter.transcripts.personal',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
@@ -424,7 +443,14 @@ FlowRouter.route('/transcripts/bonus', {
 	},
 	action: function (params, qs, data) {
 		this.render(mainTemplate, 'filterIndex', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			if (ServerStyle.gotSimplifiedNav()) {
+				redirect(RouteNames.transcriptsPersonal);
+			}
+		}
+	]
 });
 
 FlowRouter.route('/personal/repetitorien', {
@@ -453,7 +479,14 @@ FlowRouter.route('/personal/repetitorien', {
 			MainNavigation.setLoginTarget(false);
 			FlowRouter.go('home');
 		}
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			if (ServerStyle.gotSimplifiedNav()) {
+				redirect(RouteNames.create);
+			}
+		}
+	]
 });
 
 FlowRouter.route('/public/cardsets', {
@@ -512,7 +545,14 @@ FlowRouter.route('/public/repetitorien', {
 			MainNavigation.setLoginTarget(false);
 			FlowRouter.go('home');
 		}
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			if (ServerStyle.gotSimplifiedNav()) {
+				redirect(RouteNames.pool);
+			}
+		}
+	]
 });
 
 FlowRouter.route('/learn', {

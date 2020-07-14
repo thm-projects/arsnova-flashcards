@@ -1,34 +1,38 @@
 <template name="cardsetFormItemSessions">
-    <label id="setFragJetztLabel" class="col-xs-12 control-label"
-           for="setFragJetzt">{{_ "modal-dialog.fragJetzt.name"}}</label>
-    <div class="col-xs-12">
-        <input class="form-control" type="text" id="setFragJetzt"
-               placeholder="{{_ "modal-dialog.fragJetzt.placeholder"}}"
-               value="{{this.fragJetzt.session}}">
-        <span id="helpSetFragJetzt" class="text-warning"></span>
-    </div>
-    {{#if isRepetitorienFilterIndexOrShuffle}}
+    {{#if gotFragJetzt}}
+        <label id="setFragJetztLabel" class="col-xs-12 control-label"
+               for="setFragJetzt">{{_ "modal-dialog.fragJetzt.name"}}</label>
         <div class="col-xs-12">
-            <div class="form-check fragJetztOverride">
-                <input type="checkbox" class="form-check-input" id="fragJetztOverride">
-                <label class="form-check-label" for="fragJetztOverride">{{_ "modal-dialog.fragJetzt.overrideOnlyEmptySessions"}}</label>
-            </div>
+            <input class="form-control" type="text" id="setFragJetzt"
+                   placeholder="{{_ "modal-dialog.fragJetzt.placeholder"}}"
+                   value="{{this.fragJetzt.session}}">
+            <span id="helpSetFragJetzt" class="text-warning"></span>
         </div>
+        {{#if isShuffledCardset}}
+            <div class="col-xs-12">
+                <div class="form-check fragJetztOverride">
+                    <input type="checkbox" class="form-check-input" id="fragJetztOverride">
+                    <label class="form-check-label" for="fragJetztOverride">{{_ "modal-dialog.fragJetzt.overrideOnlyEmptySessions"}}</label>
+                </div>
+            </div>
+        {{/if}}
     {{/if}}
-    <label id="setArsnovaClickLabel" class="col-xs-12 control-label"
-           for="setArsnovaClick">{{_ "modal-dialog.arsnovaClick.name"}}</label>
-    <div class="col-xs-12">
-        <input class="form-control" type="text" id="setArsnovaClick"
-               placeholder="{{_ "modal-dialog.arsnovaClick.placeholder"}}"
-               value="{{this.arsnovaClick.session}}">
-        <span id="helpSetArsnovaClick" class="text-warning"></span>
-    </div>
-    {{#if isRepetitorienFilterIndexOrShuffle}}
+    {{#if gotArsnovaClick}}
+        <label id="setArsnovaClickLabel" class="col-xs-12 control-label"
+               for="setArsnovaClick">{{_ "modal-dialog.arsnovaClick.name"}}</label>
         <div class="col-xs-12">
-            <div class="form-check arsnovaClickOverride">
-                <input type="checkbox" class="form-check-input" id="arsnovaClickOverride">
-                <label class="form-check-label" for="arsnovaClickOverride">{{_ "modal-dialog.arsnovaClick.overrideOnlyEmptySessions"}}</label>
-            </div>
+            <input class="form-control" type="text" id="setArsnovaClick"
+                   placeholder="{{_ "modal-dialog.arsnovaClick.placeholder"}}"
+                   value="{{this.arsnovaClick.session}}">
+            <span id="helpSetArsnovaClick" class="text-warning"></span>
         </div>
+        {{#if isShuffledCardset}}
+            <div class="col-xs-12">
+                <div class="form-check arsnovaClickOverride">
+                    <input type="checkbox" class="form-check-input" id="arsnovaClickOverride">
+                    <label class="form-check-label" for="arsnovaClickOverride">{{_ "modal-dialog.arsnovaClick.overrideOnlyEmptySessions"}}</label>
+                </div>
+            </div>
+        {{/if}}
     {{/if}}
 </template>

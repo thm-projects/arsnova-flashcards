@@ -556,6 +556,8 @@
     "licence": "CC-Lizenz",
     "availability": "Zugang",
     "topic": "Thema der Kartei",
+    "topicTranscript": "Thema der Mitschrift",
+    "topicSimpleNav": "Thema",
     "topicWorkload": "Thema",
     "topicMobile": "Thema",
     "college": "Hochschule",
@@ -625,12 +627,16 @@
     "emptytextlist": "Du hast noch keine Kartei erstellt. Informiere dich unter »Hilfe«, was du mit einer eigenen Kartei tun kannst.",
     "emptypooltextlist": "Keine Kartei vorhanden",
     "newset": "Kartei erstellen (Box für Lernkarten)",
+    "newsetSimpleNav": "Karten anlegen",
     "emptytexttranscripts": "Du hast noch keine Mitschrift erstellt. Informiere dich unter »Hilfe«, was du mit einer eigenen Mitschrift tun kannst.",
     "emptytexttranscriptBonus": "Keine Abgaben vorhanden."
   },
   "set-list-learn-empty": {
     "emptytextlist": "Zum Lernen wähle ein Thema aus dem Themen-Pool oder die Karteien eines Repetitoriums.",
     "emptytextlistNoShuffle": "Wähle eine einzelne Kartei aus dem Themen-Pool aus oder die Karteien eines Repetitoriums.",
+    "simplifiedNav": {
+      "browseCardset": "Inhalt auswählen"
+    },
     "browseCardset": "Kartei auswählen",
     "browseCourse": "Repetitorium auswählen"
   },
@@ -736,7 +742,11 @@
           "cancelRepetitorium": "Zrück zum Repetitorium",
           "settings": "Einstellungen für die Bonusvergabe",
           "list": "Gekoppelte Abgaben für die Bonusvergabe",
-          "statistics": "Übersicht"
+          "statistics": "Übersicht",
+          "simplifiedNav": {
+            "list": "Mitschriften",
+            "statistics": "Bonus Übersicht"
+          }
         },
         "alert": {
           "save": "Änderungen wurden erfolgreich gespeichert"
@@ -780,6 +790,7 @@
     },
     "missingFields": "Bitte fülle die folgenden Felder aus",
     "newcarddeck": "Kartei erstellen (Box für Lernkarten)",
+    "newcarddeckSimpleNav": "Karten anlegen",
     "editcard": "Karte editieren",
     "editcardset": "Kartei editieren",
     "editRepetitorium": "Repetitorium bearbeiten",
@@ -2380,6 +2391,7 @@
   },
   "import": {
     "cardset": "Kartei importieren",
+    "cardsetSimpleNav": "Karten importieren",
     "success": {
       "cardset": "Kartei wurde importiert",
       "cards": "Karten wurden importiert"

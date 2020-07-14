@@ -18,8 +18,14 @@ Template.filterIndexItemBottomEdit.events({
 		});
 	},
 	'click .editCardset, click .editAdminCardset': function (event) {
+		let cardset = Cardsets.findOne($(event.target).data('id'));
 		Session.set('isNewCardset', false);
-		Session.set('activeCardset', Cardsets.findOne($(event.target).data('id')));
-		Session.set('previousCardsetData', Cardsets.findOne($(event.target).data('id')));
+		if (cardset.shuffled) {
+			Session.set('useRepForm', true);
+		} else {
+			Session.set('useRepForm', false);
+		}
+		Session.set('activeCardset', cardset);
+		Session.set('previousCardsetData', cardset);
 	}
 });

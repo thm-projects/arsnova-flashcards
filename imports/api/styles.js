@@ -197,6 +197,10 @@ export let ServerStyle = class ServerStyle {
 		return this.getConfig().welcome.centeredLandingPagePomodoro;
 	}
 
+	static gotSimplifiedNav () {
+		return this.getConfig().navigationFeatures.simplifiedNav;
+	}
+
 	static getUserRolesWithCreatePermission () {
 		let usersWithPermission = this.getConfig().roles.create;
 		let list = ['admin', 'editor'];
@@ -259,7 +263,7 @@ export let ServerStyle = class ServerStyle {
 	}
 
 	static adjustForCardsetBackground (backgrounds, target = "") {
-		if (target === "none" || target.trim().length === 0)  {
+		if (target['background-image'] === "none" || target['background-image'] .trim().length === 0)  {
 			target = backgrounds.cardset;
 		}
 		return this.adjustForInternalBackground(backgrounds, target);

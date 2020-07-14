@@ -5,6 +5,8 @@ import "./item/personal.js";
 import "./item/bonus.js";
 import "./transcripts.html";
 import {ServerStyle} from "../../../../../../api/styles";
+import * as RouteNames from "../../../../../../util/routeNames.js";
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*
 * ############################################################################
@@ -24,3 +26,12 @@ Template.mainNavigationTopItemTranscripts.helpers({
 		return ServerStyle.gotNavigationFeature("transcript.bonus.enabled") && ServerStyle.gotNavigationFeature("transcript.personal.enabled");
 	}
 });
+
+Template.mainNavigationTopItemTranscripts.events({
+	'click #navbar-transcripts': function () {
+		if (ServerStyle.gotSimplifiedNav()) {
+			FlowRouter.go(RouteNames.transcriptsPersonal);
+		}
+	}
+});
+

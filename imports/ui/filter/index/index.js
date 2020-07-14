@@ -147,18 +147,23 @@ Template.filterIndex.events({
 			Filter.setActiveFilter($(evt.currentTarget).data("stars"), "stars");
 			FilterNavigation.showDropdown();
 		}
+	},
+	'click .resultItemHeaderBottomAreaLabels .label-shuffled': function () {
+		if (ServerStyle.gotNavigationFeature("filter", true)) {
+			Filter.setActiveFilter(undefined, "cardType");
+			Filter.setActiveFilter(true, "shuffled");
+			FilterNavigation.showDropdown();
+		}
 	}
 });
 
 Template.filterIndex.helpers({
 	isViewActive: function (id) {
 		return Session.get('transcriptViewingMode') === id;
+	},
+	displayedTranscriptNavigation: function () {
+		return Route.isMyBonusTranscripts() || (Route.isMyTranscripts() && ServerStyle.gotSimplifiedNav());
 	}
-});
-
-
-Template.filterIndex.onRendered(function () {
-	FilterNavigation.setAutoOpenFeature();
 });
 
 /*
@@ -203,6 +208,8 @@ Template.filterIndexPool.onRendered(function () {
 	if (Session.get('useCaseType') === 3) {
 		MainNavigation.focusSearchBar();
 		Session.set('useCaseType', 0);
+	} else {
+		FilterNavigation.setAutoOpenFeature();
 	}
 	LoginTasks.showUseCasesModal();
 });
@@ -276,6 +283,8 @@ Template.filterIndexCreate.onRendered(function () {
 		if (Session.get('useCaseType') === 1) {
 			$('#setCardsetFormModal').modal('show');
 		}
+	} else {
+		FilterNavigation.setAutoOpenFeature();
 	}
 	LoginTasks.showUseCasesModal();
 });
@@ -319,6 +328,8 @@ Template.filterIndexRepetitorium.onRendered(function () {
 	if (Session.get('useCaseType') === 2) {
 		MainNavigation.focusSearchBar();
 		Session.set('useCaseType', 0);
+	} else {
+		FilterNavigation.setAutoOpenFeature();
 	}
 	LoginTasks.showUseCasesModal();
 });
@@ -405,4 +416,9 @@ Template.filterIndexShuffle.onCreated(function () {
 		Session.set("ShuffledCardsets", []);
 	}
 	Session.set("ShuffledCardsetsExclude", []);
+});
+
+
+Template.filterIndexShuffle.onRendered(function () {
+	FilterNavigation.setAutoOpenFeature();
 });

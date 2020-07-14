@@ -96,6 +96,11 @@ export let MainNavigation = class MainNavigation {
 		Session.set("searchValue", undefined);
 		Session.set('searchCategoriesResult', []);
 	}
+
+	static closeSearch () {
+		$('.navbar-cards-search-dropdown').removeClass('active');
+	}
+
 	static closeCollapse () {
 		$(topNavigationCollapseID).collapse('hide');
 		$(footerNavigationCollapseID).collapse('hide');

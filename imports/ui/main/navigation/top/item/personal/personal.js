@@ -5,6 +5,8 @@ import "./item/cardsets.js";
 import "./item/repetitorien.js";
 import "./personal.html";
 import {ServerStyle} from "../../../../../../api/styles";
+import {FlowRouter} from "meteor/ostrio:flow-router-extra";
+import * as RouteNames from "../../../../../../util/routeNames";
 
 /*
 * ############################################################################
@@ -22,5 +24,13 @@ Template.mainNavigationTopItemPersonal.helpers({
 	},
 	gotBothNavigationElements: function () {
 		return ServerStyle.gotNavigationFeature("personal.cardset.enabled") && ServerStyle.gotNavigationFeature("personal.repetitorium.enabled");
+	}
+});
+
+Template.mainNavigationTopItemPersonal.events({
+	'click #navbar-personal': function () {
+		if (ServerStyle.gotSimplifiedNav()) {
+			FlowRouter.go(RouteNames.create);
+		}
 	}
 });

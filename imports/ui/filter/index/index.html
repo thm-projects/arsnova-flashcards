@@ -37,7 +37,7 @@
         {{/if}}
 
         {{#if isActiveRoute regex='transcriptsPersonal|transcriptsBonus'}}
-            {{#if isActiveRoute regex='transcriptsBonus'}}
+            {{#if displayedTranscriptNavigation}}
                 {{> aboutThisRatingModal}}
                 {{> cardsetIndexTranscriptNavigation}}
                 {{#if isViewActive 1}}
@@ -191,7 +191,9 @@
 <template name="filterIndexWorkload">
     <span class="filter-index-buttons empty-button-placeholder">
         {{> filterItemSelectCardsetButton}}
-        {{> filterItemSelectRepetitoriumButton}}
+        {{#unless gotSimplifiedNav}}
+            {{> filterItemSelectRepetitoriumButton}}
+        {{/unless}}
     </span>
     {{#if learnList 0}}
         {{#if learnList 1}}

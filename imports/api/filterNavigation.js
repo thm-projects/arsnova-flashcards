@@ -11,11 +11,17 @@ export let FilterNavigation = class FilterNavigation {
 			$('.navbar-cards-filter-dropdown').removeClass('active');
 			$('.toggle-filter-dropdown').removeClass('active');
 		} else {
-			$('.navbar-cards-filter-dropdown').addClass('active');
-			$('.toggle-filter-dropdown').addClass('active');
-			FilterNavigation.setMaxDropdownHeight();
-			MainNavigation.closeCollapse();
+			MainNavigation.clearSearch();
+			MainNavigation.closeSearch();
+			this.closeDropdown();
 		}
+	}
+
+	static closeDropdown () {
+		$('.navbar-cards-filter-dropdown').addClass('active');
+		$('.toggle-filter-dropdown').addClass('active');
+		FilterNavigation.setMaxDropdownHeight();
+		MainNavigation.closeCollapse();
 	}
 
 	static gotAutoOpenFeature () {

@@ -4,6 +4,7 @@ import {Search} from "../../../../../api/search.js";
 import {MainNavigation} from "../../../../../api/mainNavigation.js";
 import {Route} from "../../../../../api/route";
 import "./search.html";
+import {FilterNavigation} from "../../../../../api/filterNavigation";
 
 /*
 * ############################################################################
@@ -94,11 +95,12 @@ Template.mainNavigationTopItemSearchDropdown.events({
 	'click .toggle-search-dropdown': function () {
 		if ($('.navbar-cards-search-dropdown').hasClass('active')) {
 			MainNavigation.clearSearch();
-			$('.navbar-cards-search-dropdown').removeClass('active');
+			MainNavigation.closeSearch();
 		} else {
 			$('.navbar-cards-search-dropdown').addClass('active');
 			$('.input-search:visible').focus();
 			MainNavigation.closeCollapse();
+			FilterNavigation.closeDropdown();
 		}
 	}
 });

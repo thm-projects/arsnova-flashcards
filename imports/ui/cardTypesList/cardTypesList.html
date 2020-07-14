@@ -3,22 +3,50 @@
         <li>
             <a href="#" class="noFilterCardType active cards-filter-element" data-id="">{{_ "set-list.everyone"}}</a>
         </li>
-        {{#each getCardTypes}}
-            {{#if filterCardTypes this.cardType}}
-                <li>
-                    <a href="#" class="filterCardType cards-filter-element"
-                       data-id="{{this.cardType}}">{{getCardTypeLongName}}
-                        {{#if resultsFilterCardType this.cardType}}
-                            <span class="fas fa-filter cards-filter-element"></span>
-                        {{/if}}
-                    </a>
-                </li>
-            {{/if}}
-        {{/each}}
+        {{#unless resultFilterShuffled}}
+            {{#each getCardTypes}}
+                {{#if isRepType this.cardType}}
+                    {{#if gotSimplifiedNav}}
+                        {{#unless isShuffleRoute}}
+                            {{#if gotShuffledCardsets}}
+                                <li>
+                                    <a href="#" class="shuffleFilterCardType active cards-filter-element" data-id="">{{_ "filter-pool.cardType.repetitorium"}}
+                                        {{#if resultFilterShuffled}}
+                                            <span class="fas fa-filter cards-filter-element"></span>
+                                        {{/if}}
+                                    </a>
+                                </li>
+                            {{/if}}
+                        {{/unless}}
+                    {{/if}}
+                {{else}}
+                    {{#if filterCardTypes this.cardType}}
+                        <li>
+                            <a href="#" class="filterCardType cards-filter-element"
+                               data-id="{{this.cardType}}">{{getCardTypeLongName}}
+                                {{#if resultsFilterCardType this.cardType}}
+                                    <span class="fas fa-filter cards-filter-element"></span>
+                                {{/if}}
+                            </a>
+                        </li>
+                    {{/if}}
+                {{/if}}
+
+            {{/each}}
+        {{/unless}}
     {{else}}
         {{#each getCardTypes}}
-            {{#if canCreateCardType this.cardType}}
-                <li class="cardType" value="{{this.cardType}}" data="{{this.cardType}}"><a href="#">{{getCardTypeLongName}}</a></li>
+            {{#if isRepType this.cardType}}
+                {{#if isNotEditCardset}}
+                        <li class="cardType" value="-1" data="-1">
+                            <a href="#">{{_ "filter-pool.cardType.repetitorium"}}
+                            </a>
+                        </li>
+                {{/if}}
+            {{else}}
+                {{#if canCreateCardType this.cardType}}
+                        <li class="cardType" value="{{this.cardType}}" data="{{this.cardType}}"><a href="#">{{getCardTypeLongName}}</a></li>
+                {{/if}}
             {{/if}}
         {{/each}}
     {{/if}}

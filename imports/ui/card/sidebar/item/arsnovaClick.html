@@ -1,12 +1,14 @@
 <template name="cardSidebarItemArsnovaClick">
-    {{#if isCardsetOwner this._id}}
-        {{#if gotSessionID}}
-            {{#unless isIOSSafari}}
-                <img class="hidden-xs showArsnovaClick card-button btn cardHeaderItem"
-                     data-type="cardNavigation"
-                     src="/img/button/arsnova_click_v2.png"
-                     title="{{_ "card.tooltip.arsnovaClick"}}">
-            {{/unless}}
+    {{#if gotArsnovaClick}}
+        {{#if isCardsetOwner this._id}}
+            {{#if gotSessionID}}
+                {{#unless isIOSSafari}}
+                    <img class="hidden-xs showArsnovaClick card-button btn cardHeaderItem"
+                         data-type="cardNavigation"
+                         src="/img/button/arsnova_click_v2.png"
+                         title="{{_ "card.tooltip.arsnovaClick"}}">
+                {{/unless}}
+            {{/if}}
         {{/if}}
     {{/if}}
 </template>

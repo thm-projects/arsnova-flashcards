@@ -8,6 +8,7 @@ import {isNewCardset} from "../../../forms/cardsetForm";
 import {Dictionary} from "../../../../api/dictionary";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import {MarkdeepEditor} from "../../../../api/markdeepEditor";
+import {ServerStyle} from "../../../../api/styles";
 
 /*
  * ############################################################################
@@ -95,7 +96,11 @@ Template.markdeepContent.helpers({
 	},
 	isRepetitorium: function () {
 		if (isNewCardset()) {
-			return Route.isRepetitorienFilterIndex();
+			if (ServerStyle.gotSimplifiedNav() && Route.isMyCardsets() && Session.get('useRepForm')) {
+				return true;
+			} else {
+				return Route.isRepetitorienFilterIndex();
+			}
 		} else {
 			if (Session.get('activeCardset') !== undefined) {
 				return Session.get('activeCardset').shuffled;
