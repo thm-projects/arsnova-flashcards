@@ -42,10 +42,10 @@
                 {{/if}}
             </div>
             <div class="resultItemHeaderBottomArea row">
-                <div class="col-xs-12 col-sm-8 col-md-9 collapseButton resultItemHeaderBottomAreaLabels {{#if gotNavigationFeature "filter" true}}enabled{{/if}}">
+                <div class="col-xs-12 col-sm-8 col-md-8 collapseButton resultItemHeaderBottomAreaLabels {{#if gotNavigationFeature "filter" true}}enabled{{/if}}">
                     {{> cardsetLabels}}
                 </div>
-                <div class="col-xs-12 col-sm-4 col-md-3 collapseButton resultItemHeaderBottomAreaButtons">
+                <div class="col-xs-12 col-sm-4 col-md-4 collapseButton resultItemHeaderBottomAreaButtons">
                     {{#unless isSelectingCardsetToLearn}}
                         {{#if isShuffleRoute}}
                             {{> filterIndexItemBottomShuffle}}
@@ -56,6 +56,7 @@
                             {{> filterIndexItemBottomLeaveWorkload}}
                         {{/if}}
                         {{#unless isShuffleRoute}}
+                            {{> filterIndexItemBottomIndex}}
                             {{> filterIndexItemBottomBonusStats}}
                             {{> filterIndexItemBottomEdit}}
                             {{#unless isWorkloadRoute}}

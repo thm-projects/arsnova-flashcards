@@ -412,7 +412,12 @@ export let Route = class Route {
 				return result;
 			case "allCardsets":
 			case "alldecks":
-				return icons.topNavigation.all.cardsets + TAPi18n.__('navbar-collapse.all.cardsets');
+				if (ServerStyle.gotSimplifiedNav()) {
+					return icons.topNavigation.all.all + TAPi18n.__('navbar-collapse.all.all');
+				} else {
+					return icons.topNavigation.all.cardsets + TAPi18n.__('navbar-collapse.all.cardsets');
+				}
+				break;
 			case "allRepetitorien":
 				return icons.topNavigation.all.repetitorien +  TAPi18n.__('navbar-collapse.all.repetitorien');
 			case "public":
@@ -424,7 +429,12 @@ export let Route = class Route {
 			case "publicCardsets":
 			case "home":
 			case "pool":
-				return icons.topNavigation.public.cardsets + TAPi18n.__('navbar-collapse.public.cardsets');
+				if (ServerStyle.gotSimplifiedNav()) {
+					return icons.topNavigation.public.public + TAPi18n.__('navbar-collapse.public.public');
+				} else {
+					return icons.topNavigation.public.cardsets + TAPi18n.__('navbar-collapse.public.cardsets');
+				}
+				break;
 			case "publicRepetitorien":
 			case "repetitorium":
 				return icons.topNavigation.public.repetitorien +  TAPi18n.__('navbar-collapse.public.repetitorien');
@@ -453,7 +463,12 @@ export let Route = class Route {
 			case "personalCardsets":
 			case "myCardsets":
 			case "create":
-				return icons.topNavigation.personal.cardsets + this.getPersonalRouteName(1);
+				if (ServerStyle.gotSimplifiedNav()) {
+					return icons.topNavigation.personal.cardsets + this.getPersonalRouteName(0);
+				} else {
+					return icons.topNavigation.personal.cardsets + this.getPersonalRouteName(1);
+				}
+				break;
 			case "personalRepetitorien":
 				return icons.topNavigation.personal.repetitorien +  this.getPersonalRouteName(6);
 			case "workload":

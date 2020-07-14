@@ -1,0 +1,12 @@
+<template name="filterIndexItemBottomIndex">
+    {{#if canDisplayIndex}}
+        <a class="resultNavigationElement cardsetIndex"
+            title='{{#if this.shuffled}}
+                {{_ "cardsetNavigation.button.index.repetitorium"}}
+            {{else}}
+                {{_ "cardsetNavigation.button.index.cardset"}}
+            {{/if}}' data-id="{{this._id}}">
+            <i class='fas fa-list' data-id="{{this._id}}"></i>
+        </a>
+    {{/if}}
+</template>

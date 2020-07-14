@@ -38,6 +38,7 @@ import "./item/bottom/starsRating.js";
 import "./item/bottom/workloadProgress.js";
 import "./item/bottom/workloadHistory.js";
 import "./item/bottom/transcriptRating.js";
+import "./item/bottom/index.js";
 import "./item/collapse/collapse.js";
 import "./item/titleRow/author.js";
 import "./item/titleRow/date.js";
@@ -164,6 +165,10 @@ Template.filterIndex.helpers({
 	displayedTranscriptNavigation: function () {
 		return Route.isMyBonusTranscripts() || (Route.isMyTranscripts() && ServerStyle.gotSimplifiedNav());
 	}
+});
+
+Template.filterIndex.onRendered(function () {
+	Session.set('filterIndexSelectMode', undefined);
 });
 
 /*

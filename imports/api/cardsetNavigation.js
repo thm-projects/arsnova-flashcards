@@ -15,6 +15,7 @@ export let CardsetNavigation = class CardsetNavigation {
 	}
 
 	static goToIndex () {
+		Session.set('filterIndexSelectMode', undefined);
 		if (Route.isCardset()) {
 			Session.set('aspectRatioMode', AspectRatio.getDefault());
 			Session.set('activeCardSide', undefined);
