@@ -671,7 +671,7 @@ let staging = {
 	},
 	"login": {
 		"cas": true,
-		"guest": true,
+		"guest": false,
 		"pro": false,
 		"facebook": false,
 		"twitter": false,
@@ -679,17 +679,17 @@ let staging = {
 	},
 	"welcome": {
 		"title": {
-			"first": "staging",
+			"first": "THM",
 			"last": "cards",
 			"slogan_de": "ORGANIZE. LEARN. MEMORIZE!",
 			"slogan_en": "ORGANIZE. LEARN. MEMORIZE!"
 		},
 		"button": {
 			"about":  {
-				"default_de": "Erfahre mehr in unserer interaktiven Demo …",
-				"default_en": "Learn more about 🍅cards in our interactive demo …",
-				"mobile_de": "Erfahre mehr in unserer interaktiven Demo …",
-				"mobile_en": "Learn more about 🍅cards…"
+				"default_de": "Einführung in die Lernkartei-Plattform der THM …",
+				"default_en": "Erfahre mehr über 🍅cards …",
+				"mobile_de": "Erfahre mehr über 🍅cards …",
+				"mobile_en": "Erfahre mehr über 🍅cards…"
 			}
 		},
 		"wordcloud": {
@@ -706,7 +706,7 @@ let staging = {
 	},
 	"help": {
 		"style": "default",
-		"markdeepFormatingCardsetID": ""
+		"markdeepFormatingCardsetID": "AWNnFnzM9rt7fpfZa"
 	},
 	"demo": {
 		"folder": "informatik",
