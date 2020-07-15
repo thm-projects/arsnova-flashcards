@@ -7,7 +7,7 @@ let footerNavigation = {
 	"help": "<i class='fas fa-medkit'></i>&nbsp;",
 	"impressum": "<i class='fas fa-gavel'></i>&nbsp;",
 	"learning": "<i class='fas fa-graduation-cap'></i>&nbsp;",
-	"statistics": "<i class='fas fa-folder-open'></i>&nbsp;"
+	"statistics": "<i class='fas fa-archive'></i>&nbsp;"
 };
 
 let landingPageNavigation = {
@@ -24,7 +24,7 @@ let topNavigation = {
 		"repetitorien": "<span class='hidden-xs'><i class='fas fa-archive'></i>&nbsp;<i class='fas fa-archive'></i>&nbsp;<i class='fas fa-archive'></i>&nbsp;<i class='fas fa-ellipsis-h'></i>&nbsp;</span><span class='visible-xs'><i class='fas fa-archive'></i>&nbsp;<i class='fas fa-ellipsis-h'></i>&nbsp;</span>"
 	},
 	"public": {
-		"public": "<i class='fas fa-folder-open'></i>&nbsp;",
+		"public": "<i class='fas fa-archive'></i>&nbsp;",
 		"cardsets": "<i class='fas fa-archive'></i>&nbsp;",
 		"repetitorien": "<span class='hidden-xs'><i class='fas fa-archive'></i>&nbsp;<i class='fas fa-archive'></i>&nbsp;<i class='fas fa-archive'></i>&nbsp;<i class='fas fa-ellipsis-h'></i>&nbsp;</span><span class='visible-xs'><i class='fas fa-archive'></i>&nbsp;<i class='fas fa-ellipsis-h'></i>&nbsp;</span>"
 	},
