@@ -1,10 +1,10 @@
 import {Template} from "meteor/templating";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
-import * as RouteNames from "../../../../../util/routeNames.js";
+import * as RouteNames from "../../../../../../util/routeNames.js";
 import {Session} from "meteor/session";
 import "./index.html";
-import {CardType} from "../../../../../api/cardTypes";
-import {UserPermissions} from "../../../../../api/permissions";
+import {CardType} from "../../../../../../api/cardTypes";
+import {UserPermissions} from "../../../../../../api/permissions";
 
 Template.filterIndexItemBottomIndex.helpers({
 	canDisplayIndex: function () {

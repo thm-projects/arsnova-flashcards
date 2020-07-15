@@ -1,7 +1,7 @@
 import "./shuffle.html";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
-import {Cardsets} from "../../../../../api/subscriptions/cardsets";
+import {Cardsets} from "../../../../../../api/subscriptions/cardsets";
 
 /*
  * ############################################################################

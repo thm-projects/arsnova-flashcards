@@ -1,6 +1,6 @@
 import "./starsRating.html";
 import {Template} from "meteor/templating";
-import {TranscriptBonus} from "../../../../../api/subscriptions/transcriptBonus";
+import {TranscriptBonus} from "../../../../../../api/subscriptions/transcriptBonus";
 
 /*
  * ############################################################################

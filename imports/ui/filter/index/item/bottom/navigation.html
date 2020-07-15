@@ -1,0 +1,39 @@
+<template name="filterIndexItemBottomNavigation">
+    <div class="{{this.gridSize}} collapseButton resultItemHeaderBottomAreaButtons">
+        {{#if isTranscriptRoute}}
+            {{#unless isSelectingCardsetToLearn}}
+                {{#if isMyTranscriptsRoute}}
+                    {{> filterIndexItemBottomEditTranscript}}
+                    {{> filterIndexItemBottomDeleteTranscript}}
+                {{/if}}
+                {{#if isMyBonusTranscriptsRoute}}
+                    {{> filterIndexItemBottomEditTranscript}}
+                    {{> filterIndexItemBottomDeleteTranscript}}
+                {{/if}}
+            {{/unless}}
+        {{else}}
+            {{#unless isSelectingCardsetToLearn}}
+                {{#if isShuffleRoute}}
+                    {{> filterIndexItemBottomShuffle}}
+                {{/if}}
+                {{#if isWorkloadRoute}}
+                    {{> filterIndexItemBottomWorkloadHistory}}
+                    {{> filterIndexItemBottomWorkloadProgress}}
+                    {{> filterIndexItemBottomLeaveWorkload}}
+                {{/if}}
+                {{#unless isShuffleRoute}}
+                    {{> filterIndexItemBottomIndex}}
+                    {{> filterIndexItemBottomBonusStats}}
+                    {{> filterIndexItemBottomEdit}}
+                    {{#unless isWorkloadRoute}}
+                        {{> filterIndexItemBottomPublish}}
+                        {{> filterIndexItemBottomLicense}}
+                        {{> filterIndexItemBottomDelete}}
+                    {{/unless}}
+                    {{> filterIndexItemBottomExport}}
+                {{/unless}}
+                {{> filterIndexItemBottomCollapse}}
+            {{/unless}}
+        {{/if}}
+    </div>
+</template>

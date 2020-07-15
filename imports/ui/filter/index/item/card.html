@@ -22,27 +22,8 @@
                 {{/if}}
             </div>
             <div class="resultItemHeaderBottomArea row">
-                <div class="col-xs-12 col-sm-8 col-md-9 collapseButton resultItemHeaderBottomAreaLabels">
-                    {{> cardsetLabels}}
-                    {{#if isCardsetTranscriptBonusRoute}}
-                        {{> filterIndexItemBottomAboutThisRating}}
-                    {{/if}}
-                    {{#if isMyBonusTranscriptsRoute}}
-                        {{> filterIndexItemBottomAboutThisRating}}
-                    {{/if}}
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-3 collapseButton resultItemHeaderBottomAreaButtons">
-                    {{#unless isSelectingCardsetToLearn}}
-                        {{#if isMyTranscriptsRoute}}
-                            {{> filterIndexItemBottomEditTranscript}}
-                            {{> filterIndexItemBottomDeleteTranscript}}
-                        {{/if}}
-                        {{#if isMyBonusTranscriptsRoute}}
-                            {{> filterIndexItemBottomEditTranscript}}
-                            {{> filterIndexItemBottomDeleteTranscript}}
-                        {{/if}}
-                    {{/unless}}
-                </div>
+                {{> filterIndexItemBottomLabels (setGridSize "col-xs-12 col-sm-8 col-md-9")}}
+                {{> filterIndexItemBottomNavigation (setGridSize "col-xs-12 col-sm-4 col-md-3")}}
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 import "../cardset/labels/labels.js";
-import "../filter/index/item/bottom/deadline.js";
-import "../filter/index/item/bottom/transcriptRating.js";
-import "../filter/index/item/bottom/starsRating.js";
+import "../filter/index/item/bottom/item/deadline.js";
+import "../filter/index/item/bottom/item/transcriptRating.js";
+import "../filter/index/item/bottom/item/starsRating.js";
 import "./progress.html";
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";

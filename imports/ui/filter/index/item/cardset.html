@@ -42,33 +42,8 @@
                 {{/if}}
             </div>
             <div class="resultItemHeaderBottomArea row">
-                <div class="col-xs-12 col-sm-8 col-md-8 collapseButton resultItemHeaderBottomAreaLabels {{#if gotNavigationFeature "filter" true}}enabled{{/if}}">
-                    {{> cardsetLabels}}
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-4 collapseButton resultItemHeaderBottomAreaButtons">
-                    {{#unless isSelectingCardsetToLearn}}
-                        {{#if isShuffleRoute}}
-                            {{> filterIndexItemBottomShuffle}}
-                        {{/if}}
-                        {{#if isWorkloadRoute}}
-                            {{> filterIndexItemBottomWorkloadHistory}}
-                            {{> filterIndexItemBottomWorkloadProgress}}
-                            {{> filterIndexItemBottomLeaveWorkload}}
-                        {{/if}}
-                        {{#unless isShuffleRoute}}
-                            {{> filterIndexItemBottomIndex}}
-                            {{> filterIndexItemBottomBonusStats}}
-                            {{> filterIndexItemBottomEdit}}
-                            {{#unless isWorkloadRoute}}
-                                {{> filterIndexItemBottomPublish}}
-                                {{> filterIndexItemBottomLicense}}
-                                {{> filterIndexItemBottomDelete}}
-                            {{/unless}}
-                            {{> filterIndexItemBottomExport}}
-                        {{/unless}}
-                    {{/unless}}
-                    {{> filterIndexItemBottomCollapse}}
-                </div>
+                {{> filterIndexItemBottomLabels (setGridSize "col-xs-12 col-sm-8 col-md-8")}}
+                {{> filterIndexItemBottomNavigation (setGridSize "col-xs-12 col-sm-4 col-md-4")}}
             </div>
         </div>
         {{> filterIndexItemCollapse}}

@@ -1,6 +1,6 @@
 import "./workloadProgress.html";
 import {Template} from "meteor/templating";
-import {LeitnerProgress} from "../../../../../api/leitnerProgress";
+import {LeitnerProgress} from "../../../../../../api/leitnerProgress";
 
 Template.filterIndexItemBottomWorkloadProgress.events({
 	'click .resultNavigationElement': function (event) {
