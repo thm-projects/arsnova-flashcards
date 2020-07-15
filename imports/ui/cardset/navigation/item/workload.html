@@ -28,6 +28,12 @@
                             data-target="#resetMemoModal" {{disableIfOffline}}><i class="fas fa-trash"></i> {{_
                                 "resetWozniak"}}</li>
                     {{/if}}
+                    {{#if learningBoth}}
+                        <li id="resetWorkload" class="resetWorkloadList"
+                            data-toggle="modal"
+                            data-target="#leaveWorkloadModal" {{disableIfOffline}}><i class="fas fa-sign-out-alt"></i> {{_
+                                "resetWorkload"}}</li>
+                    {{/if}}
                 </ul>
             </div>
         {{/if}}
