@@ -329,7 +329,7 @@ let linux = {
 		},
 		"public": {
 			"cardset": {
-				"enabled": [PRO, LECTURER],
+				"enabled": [EDU, PRO, LECTURER, GUEST],
 				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
 				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
 				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
