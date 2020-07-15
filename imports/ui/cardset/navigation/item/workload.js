@@ -39,6 +39,18 @@ Template.cardsetNavigationWorkload.helpers({
 		return Wozniak.findOne({
 			cardset_id: FlowRouter.getParam('_id'),
 			user_id: Meteor.userId()});
+	},
+	learningBoth: function () {
+		let learningLeitner = false;
+		let learningWozniak = false;
+		let workload = Workload.findOne({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId()});
+		if (workload !== undefined && workload.leitner !== undefined && workload.leitner.active !== undefined) {
+			learningLeitner = workload.leitner.active;
+		}
+		learningWozniak = Wozniak.findOne({
+			cardset_id: FlowRouter.getParam('_id'),
+			user_id: Meteor.userId()});
+		return learningLeitner && learningWozniak;
 	}
 });
 

@@ -260,6 +260,7 @@ $themes: (
     $navbar_search_clear_icon: map-get($map, "navbar_search_clear_icon");
     $navbar_search_result_open_icon: map-get($map, "navbar_search_result_open_icon");
     $navbar_search_result_open_icon_hover: map-get($map, "navbar_search_result_open_icon_hover");
+    $navbar_search_result_divider_background: map-get($map, "navbar_search_result_divider_background");
     $navbar_search_result_open_background: map-get($map, "navbar_search_result_open_background");
     $navbar_search_result_open_background_hover: map-get($map, "navbar_search_result_open_background_hover");
     $navbar_help_background: map-get($map, "navbar_help_background");
@@ -515,6 +516,12 @@ $themes: (
     $cardset_footer_navigation_learn_list_reset_wozniak_text: map-get($map, "cardset_footer_navigation_learn_list_reset_wozniak_text");
     $cardset_footer_navigation_learn_list_reset_wozniak_background_hover: map-get($map, "cardset_footer_navigation_learn_list_reset_wozniak_background_hover");
     $cardset_footer_navigation_learn_list_reset_wozniak_text_hover: map-get($map, "cardset_footer_navigation_learn_list_reset_wozniak_text_hover");
+
+    $cardset_footer_navigation_learn_list_reset_workload_background: map-get($map, "cardset_footer_navigation_learn_list_reset_workload_background");
+    $cardset_footer_navigation_learn_list_reset_workload_text: map-get($map, "cardset_footer_navigation_learn_list_reset_workload_text");
+    $cardset_footer_navigation_learn_list_reset_workload_background_hover: map-get($map, "cardset_footer_navigation_learn_list_reset_workload_background_hover");
+    $cardset_footer_navigation_learn_list_reset_workload_text_hover: map-get($map, "cardset_footer_navigation_learn_list_reset_workload_text_hover");
+
     $cardset_footer_navigation_new_card_background: map-get($map, "cardset_footer_navigation_new_card_background");
     $cardset_footer_navigation_new_card_text: map-get($map, "cardset_footer_navigation_new_card_text");
     $cardset_footer_navigation_new_card_background_hover: map-get($map, "cardset_footer_navigation_new_card_background_hover");
@@ -1626,6 +1633,17 @@ $themes: (
         background-color: $cardset_footer_navigation_learn_list_reset_wozniak_background_hover !important;
         color: $cardset_footer_navigation_learn_list_reset_wozniak_text_hover !important;
       }
+
+
+      .resetWorkloadList {
+        background-color: $cardset_footer_navigation_learn_list_reset_workload_background !important;
+        color: $cardset_footer_navigation_learn_list_reset_workload_text !important;
+      }
+
+      .resetWorkloadList:hover, .resetWorkloadList:focus {
+        background-color: $cardset_footer_navigation_learn_list_reset_workload_background_hover !important;
+        color: $cardset_footer_navigation_learn_list_reset_workload_text_hover !important;
+      }
     }
 
     .panel-footer {
@@ -2216,6 +2234,10 @@ $themes: (
     .open-search-result:hover {
       background-color: $navbar_search_result_open_background_hover !important;
       color: $navbar_search_result_open_icon_hover !important;
+    }
+
+    .search-result-divider {
+      background-color: $navbar_search_result_divider_background !important;
     }
 
     .input-search:hover {

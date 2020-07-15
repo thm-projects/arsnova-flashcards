@@ -5,7 +5,9 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Workload} from "../../../api/subscriptions/workload";
 import {Filter} from "../../../api/filter";
+import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import "./deleteWorkload.html";
+import {Route} from "../../../api/route";
 
 /*
  * ############################################################################
@@ -15,24 +17,34 @@ import "./deleteWorkload.html";
 
 Template.cardsetsConfirmLearnForm.events({
 	'click #learnDelete': function () {
-		$('#bonusFormModal').on('hidden.bs.modal', function () {
-			let workload = Workload.findOne({user_id: Meteor.userId(), cardset_id: Session.get('cardsetId')}, {fields: {_id: 1, 'leitner.bonus': 1}});
+		$('#leaveWorkloadModal').on('hidden.bs.modal', function () {
+			let cardset_id = Session.get('cardsetId');
+			if (Route.isCardset()) {
+				cardset_id = FlowRouter.getParam('_id');
+			}
+			let workload = Workload.findOne({user_id: Meteor.userId(), cardset_id: cardset_id}, {fields: {_id: 1, 'leitner.bonus': 1}});
 			if (workload !== undefined && workload.leitner.bonus === true) {
-				Meteor.call("leaveBonus", Session.get('cardsetId'), function (error, result) {
+				Meteor.call("leaveBonus", cardset_id, function (error, result) {
 					if (result) {
-						Filter.updateWorkloadFilter();
+						if (Route.isFilterIndex()) {
+							Filter.updateWorkloadFilter();
+						}
 					}
 				});
 			} else {
-				Meteor.call("deleteLeitner", Session.get('cardsetId'), function (error, result) {
+				Meteor.call("deleteLeitner", cardset_id, function (error, result) {
 					if (result) {
-						Filter.updateWorkloadFilter();
+						if (Route.isFilterIndex()) {
+							Filter.updateWorkloadFilter();
+						}
 					}
 				});
 			}
-			Meteor.call("deleteWozniak", Session.get('cardsetId'), function (error, result) {
+			Meteor.call("deleteWozniak", cardset_id, function (error, result) {
 				if (result) {
-					Filter.updateWorkloadFilter();
+					if (Route.isFilterIndex()) {
+						Filter.updateWorkloadFilter();
+					}
 				}
 			});
 		}).modal('hide');

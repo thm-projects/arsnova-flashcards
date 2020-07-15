@@ -2002,6 +2002,7 @@
   "learnSelection": "Karten auswählen",
   "resetLearnfile": "Leitner-Statistik löschen",
   "resetWozniak": "Woźniak-Statistik löschen",
+  "resetWorkload": "Aus dem Lernpensum entfernen",
   "statistics": "Kartei-Statistik",
   "report": "Kartei melden",
   "difficulty": "Level",

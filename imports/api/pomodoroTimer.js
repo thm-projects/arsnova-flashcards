@@ -7,6 +7,7 @@ import * as config from "../config/pomodoroTimer.js";
 import {LeitnerTasks} from "./subscriptions/leitnerTasks";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {ServerStyle} from "./styles";
+import {NavigatorCheck} from "./navigatorCheck";
 
 if (Meteor.isClient) {
 	Session.set('pomodoroBreakActive', false);
@@ -860,7 +861,11 @@ export let PomodoroTimer = class PomodoroTimer {
 	 */
 	static pomoPosition () {
 		if (!PomodoroTimer.isClockInBigmode() && !Meteor.userId()) {
-			if ((Session.get('isLandingPagePomodoroActive') || !cloudShown) && ServerStyle.gotCenteredLandingPagePomodoro()) {
+			let centerLandingPagePomodoro = ServerStyle.gotCenteredLandingPagePomodoro();
+			if (NavigatorCheck.isSmartphone()) {
+				centerLandingPagePomodoro = true;
+			}
+			if ((Session.get('isLandingPagePomodoroActive') || !cloudShown) && centerLandingPagePomodoro) {
 				if ($("#pomodoroTimerWordcloudContainer").is(':empty')) {
 					$('.pomodoroTimer').detach().appendTo('#pomodoroTimerWordcloudContainer');
 				}
