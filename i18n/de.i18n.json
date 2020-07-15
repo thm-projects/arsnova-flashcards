@@ -625,7 +625,7 @@
     "emptytextlist": "Eine Kartei besteht aus Karten desselben Typs.",
     "emptypooltextlist": "Keine Kartei vorhanden",
     "newset": "Kartei anlegen (Kartenbox)",
-    "newsetSimpleNav": "Karten anlegen",
+    "newsetSimpleNav": "Kartei anlegen",
     "emptytexttranscripts": "Du hast noch keine Mitschrift erstellt. Informiere dich unter »Hilfe«, wie du für das Mitschreiben auf \uD83C\uDF45cards Bonuspunkte erhalten kannst.",
     "emptytexttranscriptBonus": "Keine Abgaben vorhanden."
   },
@@ -633,7 +633,7 @@
     "emptytextlist": "Zum Lernen wähle ein Thema aus dem Themenpool oder die Karteien eines Repetitoriums.",
     "emptytextlistNoShuffle": "Wähle eine einzelne Kartei aus dem Themenpool aus oder die Karteien eines Repetitoriums.",
     "simplifiedNav": {
-      "browseCardset": "Inhalt auswählen"
+      "browseCardset": "Kartei auswählen"
     },
     "browseCardset": "Kartei auswählen",
     "browseCourse": "Repetitorium auswählen"
@@ -738,13 +738,13 @@
         "button": {
           "save": "Speichern",
           "cancel": "Zurück zur Kartei",
-          "cancelRepetitorium": "Zrück zum Repetitorium",
+          "cancelRepetitorium": "Zurück zum Repetitorium",
           "settings": "Einstellungen",
           "list": "Abgaben",
           "statistics": "Übersicht",
           "simplifiedNav": {
             "list": "Mitschriften",
-            "statistics": "Bonus Übersicht"
+            "statistics": "Bonus-Übersicht"
           }
         },
         "alert": {
@@ -789,7 +789,7 @@
     },
     "missingFields": "Bitte fülle die folgenden Felder aus",
     "newcarddeck": "Kartei anlegen (Kartenbox)",
-    "newcarddeckSimpleNav": "Karten anlegen",
+    "newcarddeckSimpleNav": "Kartei anlegen",
     "editcard": "Karte editieren",
     "editcardset": "Kartei editieren",
     "editRepetitorium": "Beschreibung bearbeiten",
@@ -1204,7 +1204,7 @@
         "title": "arsnova.click"
       },
       "fragJetzt": "frag.jetzt Sitzungs-Code",
-      "arsnovaClick": "arsnova.click Quizname",
+      "arsnovaClick": "arsnova.click Quiz-Name",
       "author": "Autor/in",
       "multipleAuthors": "Mehrere",
       "publisher": "Editor/in",
@@ -1547,7 +1547,7 @@
       "placeholders": {
         "subject": "Werkstitel",
         "content1": "Notiere alle bibliografischen Angaben: vollständiger Titel, Autor/in, Erscheinungsjahr, Verlag oder Webadresse, Art der Publikation etc. Notiere die Angaben in APA-Zizierweise, sodass du sie per Copy-and-Paste in deine Thesis übernehmen kannst. \n\nZur APA-Zitierweise siehe https://www.mentorium.de/zitieren-apa-stil-zitierweise-anleitung-beispiele/. \n\nBinde ein Cover-Bild des Werkes ein. Hol es dir zum Beispiel von Amazon.",
-        "content2": "Nenne die wichtgisten Schlagwörter, mit denen das Werk gefunden werden soll.",
+        "content2": "Nenne die wichtigsten Schlagwörter, mit denen das Werk gefunden werden soll.",
         "content3": "Gib die Webadressen an, wo Rezensionen des Werkes zu finden sind. \n\nGib mindestens eine repräsentative Rezension als vollständiges Zitat hier wieder.",
         "content4": "Die Verlage stellen dir das Inhaltsverzeichnis eines Werkes und seinen Klappentext in der Regel online zur Verfügung. Verweise darauf oder übertrage sie hierher.",
         "content5": "Was immer auch wichtig ist für deine Abschlussarbeiten oder Veröffentlichungen, notiere es hier.",
@@ -1945,7 +1945,7 @@
           "status": {
             "title": "Status",
             "inProgress": "In Bearbeitung",
-            "notCompleted": "Nich Bearbeitet",
+            "notCompleted": "Nicht Bearbeitet",
             "notFullyCompletedSingular": "__cards__ Karte nicht bearbeitet",
             "notFullyCompletedPlural": "__cards__ Karten nicht bearbeitet",
             "completed": "Bearbeitet am __lastAnswerDate__"
@@ -2084,7 +2084,7 @@
     "disconnected": "Keine Serververbindung"
   },
   "admin": {
-    "matomoStatistics": "Matomo Statistiken",
+    "matomoStatistics": "Matomo-Statistiken",
     "allLearnedCardsets": "Nach dem Leitner-Plan gelernte Karten über alle Karteien",
     "learnedCardsets": "Lernstatistik der Kartei",
     "userProgress": "Lernstand für ",
@@ -2397,7 +2397,7 @@
   },
   "import": {
     "cardset": "Kartei importieren",
-    "cardsetSimpleNav": "Karten importieren",
+    "cardsetSimpleNav": "Kartei importieren",
     "success": {
       "cardset": "Kartei wurde importiert",
       "cards": "Karten wurden importiert"
