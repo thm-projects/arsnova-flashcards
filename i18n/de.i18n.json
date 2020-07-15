@@ -1248,6 +1248,8 @@
       }
     },
     "tooltip": {
+      "indexCardset": "Kartei-Index öffnen",
+      "indexRep":  "Repetitorium-Index öffnen",
       "selectLicense": "Lizenz verwalten",
       "publish": "Zugang festlegen",
       "editCardset": "Metadaten der Kartei editieren",

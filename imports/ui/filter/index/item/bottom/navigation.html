@@ -22,7 +22,9 @@
                     {{> filterIndexItemBottomLeaveWorkload}}
                 {{/if}}
                 {{#unless isShuffleRoute}}
-                    {{> filterIndexItemBottomIndex}}
+                    {{#unless isWorkloadRoute}}
+                        {{> filterIndexItemBottomIndex}}
+                    {{/unless}}
                     {{> filterIndexItemBottomBonusStats}}
                     {{> filterIndexItemBottomEdit}}
                     {{#unless isWorkloadRoute}}
@@ -30,7 +32,9 @@
                         {{> filterIndexItemBottomLicense}}
                         {{> filterIndexItemBottomDelete}}
                     {{/unless}}
-                    {{> filterIndexItemBottomExport}}
+                    {{#unless isWorkloadRoute}}
+                        {{> filterIndexItemBottomExport}}
+                    {{/unless}}
                 {{/unless}}
                 {{> filterIndexItemBottomCollapse}}
             {{/unless}}
