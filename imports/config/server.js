@@ -10,6 +10,10 @@ const PRO = 2;
 const LECTURER = 3;
 const GUEST = 4;
 
+const AUTO = 0;
+const MANUAL = 1;
+const CHOOSE = 2;
+
 const defaultRegistrationDomainWhitelist =
 	[
 		'.*\.fra-uas\.de',
@@ -33,6 +37,51 @@ const defaultRegistrationDomainWhitelist =
 	];
 
 let defaultSettings = {
+	"fullscreen": {
+		"settings": {
+			"enabled": [FREE, EDU, LECTURER, PRO],
+			"presentation": [FREE, EDU, LECTURER, PRO],
+			"demo": [FREE, EDU, LECTURER, PRO],
+			"leitner": [FREE, EDU, LECTURER, PRO],
+			"wozniak": [FREE, EDU, LECTURER, PRO]
+		},
+		"defaults": { // Will be used if the user got not access to the fullscreen settings
+			"free": {
+				"presentation": AUTO,
+				"demo": AUTO,
+				"leitner": AUTO,
+				"wozniak": AUTO
+			},
+			"edu": {
+				"presentation": AUTO,
+				"demo": AUTO,
+				"leitner": AUTO,
+				"wozniak": AUTO
+			},
+			"lecturer": {
+				"presentation": CHOOSE,
+				"demo": CHOOSE,
+				"leitner": CHOOSE,
+				"wozniak": CHOOSE
+			},
+			"pro": {
+				"presentation": MANUAL,
+				"demo": MANUAL,
+				"leitner": MANUAL,
+				"wozniak": MANUAL
+			},
+			"guest": {
+				"presentation": CHOOSE,
+				"demo": CHOOSE,
+				"leitner": CHOOSE,
+				"wozniak": CHOOSE
+			},
+			"landingPage": {
+				"pomodoroTimer": MANUAL,
+				"demo": MANUAL
+			}
+		}
+	},
 	"navigationFeatures": { //Excludes Super Admins (Backend) and Editors (Frontend)
 		"simplifiedNav": true, // Removes dropdowns and groups content together
 		"useCases": { //Will be only visible if the related navigation item is enabled
@@ -186,6 +235,51 @@ let defaultSettings = {
 };
 
 let debug = {
+	"fullscreen": {
+		"settings": {
+			"enabled": [FREE, EDU, LECTURER, PRO],
+			"presentation": [FREE, EDU, LECTURER, PRO],
+			"demo": [FREE, EDU, LECTURER, PRO],
+			"leitner": [FREE, EDU, LECTURER, PRO],
+			"wozniak": [FREE, EDU, LECTURER, PRO]
+		},
+		"defaults": { // Will be used if the user got not access to the fullscreen settings
+			"free": {
+				"presentation": AUTO,
+				"demo": AUTO,
+				"leitner": AUTO,
+				"wozniak": AUTO
+			},
+			"edu": {
+				"presentation": AUTO,
+				"demo": AUTO,
+				"leitner": AUTO,
+				"wozniak": AUTO
+			},
+			"lecturer": {
+				"presentation": CHOOSE,
+				"demo": CHOOSE,
+				"leitner": CHOOSE,
+				"wozniak": CHOOSE
+			},
+			"pro": {
+				"presentation": MANUAL,
+				"demo": MANUAL,
+				"leitner": MANUAL,
+				"wozniak": MANUAL
+			},
+			"guest": {
+				"presentation": CHOOSE,
+				"demo": CHOOSE,
+				"leitner": CHOOSE,
+				"wozniak": CHOOSE
+			},
+			"landingPage": {
+				"pomodoroTimer": MANUAL,
+				"demo": MANUAL
+			}
+		}
+	},
 	"navigationFeatures": { //Excludes Super Admins (Backend) and Editors (Frontend)
 		"simplifiedNav": true, // Removes dropdowns and groups content together
 		"useCases": { //Will be only visible if the related navigation item is enabled
@@ -339,6 +433,51 @@ let debug = {
 };
 
 let linux = {
+	"fullscreen": {
+		"settings": {
+			"enabled": [FREE, EDU, LECTURER, PRO],
+			"presentation": [FREE, EDU, LECTURER, PRO],
+			"demo": [FREE, EDU, LECTURER, PRO],
+			"leitner": [FREE, EDU, LECTURER, PRO],
+			"wozniak": [FREE, EDU, LECTURER, PRO]
+		},
+		"defaults": { // Will be used if the user got not access to the fullscreen settings
+			"free": {
+				"presentation": AUTO,
+				"demo": AUTO,
+				"leitner": AUTO,
+				"wozniak": AUTO
+			},
+			"edu": {
+				"presentation": AUTO,
+				"demo": AUTO,
+				"leitner": AUTO,
+				"wozniak": AUTO
+			},
+			"lecturer": {
+				"presentation": CHOOSE,
+				"demo": CHOOSE,
+				"leitner": CHOOSE,
+				"wozniak": CHOOSE
+			},
+			"pro": {
+				"presentation": MANUAL,
+				"demo": MANUAL,
+				"leitner": MANUAL,
+				"wozniak": MANUAL
+			},
+			"guest": {
+				"presentation": CHOOSE,
+				"demo": CHOOSE,
+				"leitner": CHOOSE,
+				"wozniak": CHOOSE
+			},
+			"landingPage": {
+				"pomodoroTimer": MANUAL,
+				"demo": MANUAL
+			}
+		}
+	},
 	"navigationFeatures": { //Excludes Super Admins (Backend) and Editors (Frontend)
 		"simplifiedNav": true, // Removes dropdowns and groups content together
 		"useCases": { //Will be only visible if the related navigation item is enabled
@@ -492,6 +631,51 @@ let linux = {
 };
 
 let review = {
+	"fullscreen": {
+		"settings": {
+			"enabled": [FREE, EDU, LECTURER, PRO],
+			"presentation": [FREE, EDU, LECTURER, PRO],
+			"demo": [FREE, EDU, LECTURER, PRO],
+			"leitner": [FREE, EDU, LECTURER, PRO],
+			"wozniak": [FREE, EDU, LECTURER, PRO]
+		},
+		"defaults": { // Will be used if the user got not access to the fullscreen settings
+			"free": {
+				"presentation": AUTO,
+				"demo": AUTO,
+				"leitner": AUTO,
+				"wozniak": AUTO
+			},
+			"edu": {
+				"presentation": AUTO,
+				"demo": AUTO,
+				"leitner": AUTO,
+				"wozniak": AUTO
+			},
+			"lecturer": {
+				"presentation": CHOOSE,
+				"demo": CHOOSE,
+				"leitner": CHOOSE,
+				"wozniak": CHOOSE
+			},
+			"pro": {
+				"presentation": MANUAL,
+				"demo": MANUAL,
+				"leitner": MANUAL,
+				"wozniak": MANUAL
+			},
+			"guest": {
+				"presentation": CHOOSE,
+				"demo": CHOOSE,
+				"leitner": CHOOSE,
+				"wozniak": CHOOSE
+			},
+			"landingPage": {
+				"pomodoroTimer": MANUAL,
+				"demo": MANUAL
+			}
+		}
+	},
 	"navigationFeatures": { //Excludes Super Admins (Backend) and Editors (Frontend)
 		"simplifiedNav": true, // Removes dropdowns and groups content together
 		"useCases": { //Will be only visible if the related navigation item is enabled
@@ -645,6 +829,51 @@ let review = {
 };
 
 let staging = {
+	"fullscreen": {
+		"settings": {
+			"enabled": [FREE, EDU, LECTURER, PRO],
+			"presentation": [FREE, EDU, LECTURER, PRO],
+			"demo": [FREE, EDU, LECTURER, PRO],
+			"leitner": [FREE, EDU, LECTURER, PRO],
+			"wozniak": [FREE, EDU, LECTURER, PRO]
+		},
+		"defaults": { // Will be used if the user got not access to the fullscreen settings
+			"free": {
+				"presentation": AUTO,
+				"demo": AUTO,
+				"leitner": AUTO,
+				"wozniak": AUTO
+			},
+			"edu": {
+				"presentation": AUTO,
+				"demo": AUTO,
+				"leitner": AUTO,
+				"wozniak": AUTO
+			},
+			"lecturer": {
+				"presentation": CHOOSE,
+				"demo": CHOOSE,
+				"leitner": CHOOSE,
+				"wozniak": CHOOSE
+			},
+			"pro": {
+				"presentation": MANUAL,
+				"demo": MANUAL,
+				"leitner": MANUAL,
+				"wozniak": MANUAL
+			},
+			"guest": {
+				"presentation": CHOOSE,
+				"demo": CHOOSE,
+				"leitner": CHOOSE,
+				"wozniak": CHOOSE
+			},
+			"landingPage": {
+				"pomodoroTimer": MANUAL,
+				"demo": MANUAL
+			}
+		}
+	},
 	"navigationFeatures": { //Excludes Super Admins (Backend) and Editors (Frontend)
 		"simplifiedNav": true, // Removes dropdowns and groups content together
 		"useCases": { //Will be only visible if the related navigation item is enabled
