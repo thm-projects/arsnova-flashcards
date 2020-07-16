@@ -16,7 +16,7 @@ import {FirstTimeVisit} from "../../api/firstTimeVisit";
 import {MainNavigation} from "../../api/mainNavigation";
 import {ExecuteControllers} from 'wtc-controller-element';
 import "./welcome.html";
-import {setLoginTarget} from "../../startup/client/routes";
+import {setLoginTarget} from "../../startup/client/routes/onBeforeAction.js";
 
 Meteor.subscribe("pomodoroLandingPage");
 Meteor.subscribe("userData");

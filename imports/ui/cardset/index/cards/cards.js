@@ -34,7 +34,7 @@ Template.cardsetList.helpers({
 	},
 	cardsetList: function () {
 		let isDemo = (FlowRouter.getRouteName() === "demolist" || FlowRouter.getRouteName() === "makinglist");
-		if (FlowRouter.getRouteName() === "cardsetlistid" || FlowRouter.getRouteName() === "presentationlist" || isDemo) {
+		if (FlowRouter.getRouteName() === "presentationlist" || isDemo) {
 			let cardsetId = FlowRouter.getParam('_id');
 			if (isDemo) {
 				if (Route.isDemo()) {
@@ -66,7 +66,7 @@ Template.cardsetList.helpers({
 		return CardVisuals.removeMarkdeepTags(text);
 	},
 	gotCards: function () {
-		if (FlowRouter.getRouteName() === "cardsetlistid" || FlowRouter.getRouteName() === "presentationlist" || FlowRouter.getRouteName() === "demolist" || FlowRouter.getRouteName() === "makinglist") {
+		if (FlowRouter.getRouteName() === "presentationlist" || FlowRouter.getRouteName() === "demolist" || FlowRouter.getRouteName() === "makinglist") {
 			if (this.shuffled) {
 				return Cards.find({cardset_id: {$in: this.cardGroups}}).count();
 			} else {
@@ -75,7 +75,7 @@ Template.cardsetList.helpers({
 		}
 	},
 	cardSubject: function () {
-		if (FlowRouter.getRouteName() === "cardsetlistid" || FlowRouter.getRouteName() === "presentationlist" || FlowRouter.getRouteName() === "demolist" || FlowRouter.getRouteName() === "makinglist") {
+		if (FlowRouter.getRouteName() === "presentationlist" || FlowRouter.getRouteName() === "demolist" || FlowRouter.getRouteName() === "makinglist") {
 			return _.uniq(Cards.find({
 				cardset_id: this._id
 			}, {
@@ -178,7 +178,7 @@ Template.cardsetList.events({
 		let cubeSides = CardType.getCardTypeCubeSides($(evt.target).data('card-type'));
 		Session.set('cardType', $(evt.target).data('card-type'));
 		Session.set('activeCardContentId', cubeSides[0].contentId);
-		if (FlowRouter.getRouteName() === "cardsetlistid" || FlowRouter.getRouteName() === "presentationlist" || FlowRouter.getRouteName() === "demolist" || FlowRouter.getRouteName() === "makinglist") {
+		if (FlowRouter.getRouteName() === "presentationlist" || FlowRouter.getRouteName() === "demolist" || FlowRouter.getRouteName() === "makinglist") {
 			Session.set('activeCardSide', undefined);
 			CardNavigation.setActiveCardData($(evt.target).data('id'));
 			if (FlowRouter.getRouteName() === "presentationlist") {

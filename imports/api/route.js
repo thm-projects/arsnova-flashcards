@@ -20,11 +20,7 @@ export let Route = class Route {
 	 * @return {Boolean} Return true, when route is a Cardset.
 	 */
 	static isCardset () {
-		return (this.isCardsetList() || this.isCardsetDetails() || FlowRouter.getRouteName() === RouteNames.cardsetcard);
-	}
-
-	static isCardsetList () {
-		return FlowRouter.getRouteName() === RouteNames.cardsetlistid;
+		return (this.isCardsetDetails() || FlowRouter.getRouteName() === RouteNames.cardsetcard);
 	}
 
 	/**
@@ -160,7 +156,7 @@ export let Route = class Route {
 	}
 
 	static isTableOfContent () {
-		return (this.isPresentationList() || this.isCardsetList() || this.isDemoList() | this.isMakingOfList()) ;
+		return (this.isPresentationList() || this.isDemoList() || this.isMakingOfList()) ;
 	}
 
 	/**
@@ -504,7 +500,6 @@ export let Route = class Route {
 				return icons.topNavigation.profileRequests + TAPi18n.__('profile.requests');
 			case "cardsetdetailsid":
 			case "cardsetcard":
-			case "cardsetlistid":
 				let cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')}, {fields: {shuffled: 1}});
 				if (cardset !== undefined && cardset.shuffled) {
 					return icons.miscNavigation.repetitorium + TAPi18n.__('courseIteration.name');

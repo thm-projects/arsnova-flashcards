@@ -27,7 +27,6 @@ let presentationTranscriptReview = 'presentationTranscriptReview';
 let transcriptBonus = 'transcriptBonus';
 let cardseteditors = 'cardseteditors';
 let cardsetstats = 'cardsetstats';
-let cardsetlistid = 'cardsetlistid';
 let newCard = 'newCard';
 let editCard = 'editCard';
 let editTranscript = 'editTranscript';
@@ -86,7 +85,6 @@ module.exports = {
 	transcriptBonus,
 	cardseteditors,
 	cardsetstats,
-	cardsetlistid,
 	newCard,
 	editCard,
 	editTranscript,

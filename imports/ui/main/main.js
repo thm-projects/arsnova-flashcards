@@ -30,7 +30,7 @@ import "../learn/modal/progress.js";
 import "./main.html";
 
 import {PDFViewer} from "../../util/pdfViewer";
-import {setLanguage, setTheme} from "../../startup/client/routes";
+import {setLanguage, setTheme} from "../../startup/client/routes/onBeforeAction.js";
 
 Meteor.subscribe("notifications");
 Meteor.subscribe("serverStatistics");
