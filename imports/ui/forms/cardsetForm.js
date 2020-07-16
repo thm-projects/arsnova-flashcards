@@ -134,8 +134,12 @@ export function saveCardset() {
 		session: "",
 		overrideOnlyEmptySessions: true
 	};
-	fragJetzt.session = $('#setFragJetzt').val();
-	arsnovaClick.session = $('#setArsnovaClick').val();
+	if ($('#setFragJetzt').length) {
+		fragJetzt.session = $('#setFragJetzt').val();
+	}
+	if ($('#setArsnovaClick').length) {
+		arsnovaClick.session = $('#setArsnovaClick').val();
+	}
 	if (Route.isRepetitorienFilterIndex() || (Route.isCardset() && Session.get('previousCardsetData').shuffled)) {
 		fragJetzt.overrideOnlyEmptySessions = $('#fragJetztOverride')[0].checked;
 		arsnovaClick.overrideOnlyEmptySessions = $('#arsnovaClickOverride')[0].checked;
