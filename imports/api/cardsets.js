@@ -8,10 +8,10 @@ import {Wozniak} from "./subscriptions/wozniak";
 import {Notifications} from "./subscriptions/notifications";
 import {Ratings} from "./subscriptions/ratings";
 import {check} from "meteor/check";
-import {CardType} from "./cardTypes";
-import {UserPermissions} from "./permissions";
-import {ServerStyle} from "./styles";
-import {Utilities} from "./utilities";
+import {CardType} from "../util/cardTypes";
+import {UserPermissions} from "../util/permissions";
+import {ServerStyle} from "../util/styles";
+import {Utilities} from "../util/utilities";
 import {Cardsets} from "./subscriptions/cardsets.js";
 
 Meteor.methods({

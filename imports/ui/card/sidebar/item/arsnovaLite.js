@@ -3,7 +3,7 @@ import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {Cards} from "../../../../api/subscriptions/cards";
-import {Route} from "../../../../api/route";
+import {Route} from "../../../../util/route";
 
 Session.setDefault('fragJetztSessionID', '');
 

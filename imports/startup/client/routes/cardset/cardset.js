@@ -2,8 +2,8 @@ import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import * as RouteNames from "../../../../util/routeNames";
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
-import {ServerStyle} from "../../../../api/styles";
-import {MarkdeepEditor} from "../../../../api/markdeepEditor";
+import {ServerStyle} from "../../../../util/styles";
+import {MarkdeepEditor} from "../../../../util/markdeepEditor";
 import {Session} from "meteor/session";
 import * as config from "../../../../config/routes.js";
 

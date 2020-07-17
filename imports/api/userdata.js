@@ -7,12 +7,12 @@ import {Workload} from "./subscriptions/workload";
 import {Wozniak} from "./subscriptions/wozniak";
 import {Ratings} from "./subscriptions/ratings";
 import {check} from "meteor/check";
-import {UserPermissions} from "./permissions";
+import {UserPermissions} from "../util/permissions";
 import {WebPushSubscriptions} from "./subscriptions/webPushNotifications";
 import {Paid} from "./subscriptions/paid";
 import {TranscriptBonus} from "./subscriptions/transcriptBonus";
-import {Utilities} from "./utilities";
-import {CardType} from "./cardTypes";
+import {Utilities} from "../util/utilities";
+import {CardType} from "../util/cardTypes";
 import {LeitnerUtilities} from "../util/leitner";
 import {LeitnerTasks} from "./subscriptions/leitnerTasks";
 

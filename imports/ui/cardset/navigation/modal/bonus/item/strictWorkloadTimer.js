@@ -1,5 +1,5 @@
 import "./strictWorkloadTimer.html";
-import {BonusForm} from "../../../../../../api/bonusForm";
+import {BonusForm} from "../../../../../../util/bonusForm";
 
 /*
 * ############################################################################

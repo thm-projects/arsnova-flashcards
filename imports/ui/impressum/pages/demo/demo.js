@@ -1,12 +1,12 @@
 import {Template} from "meteor/templating";
-import {Route} from "../../../../api/route";
+import {Route} from "../../../../util/route";
 import {Session} from "meteor/session";
-import {AspectRatio} from "../../../../api/aspectRatio";
+import {AspectRatio} from "../../../../util/aspectRatio";
 import * as config from "../../../../config/firstTimeVisit.js";
 import "../../../presentation/presentation.js";
 import "./demo.html";
-import {PomodoroTimer} from "../../../../api/pomodoroTimer";
-import {ServerStyle} from "../../../../api/styles";
+import {PomodoroTimer} from "../../../../util/pomodoroTimer";
+import {ServerStyle} from "../../../../util/styles";
 
 /*
  * ############################################################################

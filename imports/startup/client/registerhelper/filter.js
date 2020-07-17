@@ -1,4 +1,4 @@
-import {FilterNavigation} from "../../../api/filterNavigation";
+import {FilterNavigation} from "../../../util/filterNavigation";
 import {Session} from "meteor/session";
 import * as FilterConfig from "../../../config/filter";
 

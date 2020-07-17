@@ -9,8 +9,8 @@ import "./submissions/submissions.js";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Meteor} from "meteor/meteor";
-import {Bonus} from "../../../../api/bonus";
-import {Filter} from "../../../../api/filter";
+import {Bonus} from "../../../../util/bonus";
+import {Filter} from "../../../../util/filter";
 
 Session.setDefault('transcriptViewingMode', 1);
 

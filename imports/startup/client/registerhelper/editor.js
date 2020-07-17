@@ -1,4 +1,4 @@
-import {Route} from "../../../api/route";
+import {Route} from "../../../util/route";
 import {Session} from "meteor/session";
 
 Template.registerHelper("isMobilePreview", function () {

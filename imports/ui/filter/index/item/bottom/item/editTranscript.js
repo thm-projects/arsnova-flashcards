@@ -1,6 +1,6 @@
 import "./editTranscript.html";
 import {Template} from "meteor/templating";
-import {Route} from "../../../../../../api/route";
+import {Route} from "../../../../../../util/route";
 import {TranscriptBonus} from "../../../../../../api/subscriptions/transcriptBonus";
 import {TranscriptBonusList} from "../../../../../../api/transcriptBonus";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';

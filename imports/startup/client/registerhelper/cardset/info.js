@@ -1,6 +1,6 @@
 import {getAuthorName, getOriginalAuthorName} from "../../../../api/userdata";
 import {Meteor} from "meteor/meteor";
-import {CardsetVisuals} from "../../../../api/cardsetVisuals";
+import {CardsetVisuals} from "../../../../util/cardsetVisuals";
 import DOMPurify from "dompurify";
 import {DOMPurifyConfig} from "../../../../config/dompurify";
 

@@ -1,5 +1,5 @@
 import "./daysBeforeReset.html";
-import {BonusForm} from "../../../../../../api/bonusForm";
+import {BonusForm} from "../../../../../../util/bonusForm";
 
 /*
 * ############################################################################

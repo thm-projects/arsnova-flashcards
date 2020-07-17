@@ -1,4 +1,4 @@
-import {AdminSettings} from "./subscriptions/adminSettings";
+import {AdminSettings} from "../api/subscriptions/adminSettings";
 
 
 export let ServerSettings = class ServerSettings {

@@ -2,9 +2,9 @@ import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import * as RouteNames from "../../../../util/routeNames";
 import * as config from "../../../../config/routes";
 import {Meteor} from "meteor/meteor";
-import {ServerStyle} from "../../../../api/styles";
+import {ServerStyle} from "../../../../util/styles";
 import {Session} from "meteor/session";
-import {CardVisuals} from "../../../../api/cardVisuals";
+import {CardVisuals} from "../../../../util/cardVisuals";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 
 FlowRouter.route('/demo', {

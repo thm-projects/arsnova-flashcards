@@ -3,11 +3,11 @@ import {Session} from "meteor/session";
 import {Meteor} from "meteor/meteor";
 import * as icons from "../config/icons.js";
 import * as conf from "../config/routes.js";
-import {Cardsets} from "./subscriptions/cardsets";
+import {Cardsets} from "../api/subscriptions/cardsets";
 import {ServerStyle} from "./styles";
 import {UserPermissions} from "./permissions";
-import {getAuthorName} from "./userdata";
-import * as RouteNames from "../util/routeNames";
+import {getAuthorName} from "../api/userdata";
+import * as RouteNames from "./routeNames";
 let firstTimeVisit = 'isFirstTimeVisit';
 
 export let Route = class Route {

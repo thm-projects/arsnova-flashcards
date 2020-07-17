@@ -1,8 +1,8 @@
-import {CardType} from "../../../../api/cardTypes";
+import {CardType} from "../../../../util/cardTypes";
 import {isNewCardset} from "../../../../ui/forms/cardsetForm";
-import {ServerStyle} from "../../../../api/styles";
+import {ServerStyle} from "../../../../util/styles";
 import {Session} from "meteor/session";
-import {Route} from "../../../../api/route";
+import {Route} from "../../../../util/route";
 
 Template.registerHelper("getCardsetBackground", function (difficulty, cardType) {
 	if (cardType === -1) {

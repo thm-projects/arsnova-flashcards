@@ -7,8 +7,8 @@ import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import ResizeSensor from "../../../client/thirdParty/resizeSensor/ResizeSensor";
-import {LeitnerProgress} from "../../api/leitnerProgress";
-import {CardType} from "../../api/cardTypes";
+import {LeitnerProgress} from "../../util/leitnerProgress";
+import {CardType} from "../../util/cardTypes";
 
 /*
  * ############################################################################

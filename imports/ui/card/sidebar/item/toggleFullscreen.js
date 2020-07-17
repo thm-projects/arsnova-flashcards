@@ -1,13 +1,13 @@
 import {Session} from "meteor/session";
 import "./toggleFullscreen.html";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
-import {CardVisuals} from "../../../../api/cardVisuals";
-import {PomodoroTimer} from "../../../../api/pomodoroTimer";
-import {Route} from "../../../../api/route";
+import {CardVisuals} from "../../../../util/cardVisuals";
+import {PomodoroTimer} from "../../../../util/pomodoroTimer";
+import {Route} from "../../../../util/route";
 import {Template} from "meteor/templating";
-import {Dictionary} from "../../../../api/dictionary";
-import {FirstTimeVisit} from "../../../../api/firstTimeVisit";
-import {AspectRatio} from "../../../../api/aspectRatio";
+import {Dictionary} from "../../../../util/dictionary";
+import {FirstTimeVisit} from "../../../../util/firstTimeVisit";
+import {AspectRatio} from "../../../../util/aspectRatio";
 
 /*
  * ############################################################################

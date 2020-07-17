@@ -1,12 +1,12 @@
-import {UserPermissions} from "../../../api/permissions";
+import {UserPermissions} from "../../../util/permissions";
 import {Session} from "meteor/session";
 import {Cards} from "../../../api/subscriptions/cards";
 import {Cardsets} from "../../../api/subscriptions/cardsets";
 import {Meteor} from "meteor/meteor";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
-import {Route} from "../../../api/route";
-import {MainNavigation} from "../../../api/mainNavigation";
-import {Bonus} from "../../../api/bonus";
+import {Route} from "../../../util/route";
+import {MainNavigation} from "../../../util/mainNavigation";
+import {Bonus} from "../../../util/bonus";
 
 
 // Check if user has permission to look at a cardset

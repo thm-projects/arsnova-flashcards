@@ -1,8 +1,8 @@
 import WordCloud from "wordcloud";
-import {Cardsets} from "./subscriptions/cardsets.js";
+import {Cardsets} from "../api/subscriptions/cardsets.js";
 import {Filter} from "./filter.js";
 import {Session} from "meteor/session";
-import * as fakeWordCloud from "../../public/fakeStatistics/wordcloud";
+import * as fakeWordCloud from "../../public/fakeStatistics/wordcloud.json";
 import {ReactiveVar} from 'meteor/reactive-var';
 import {Meteor} from "meteor/meteor";
 import {PomodoroTimer} from "./pomodoroTimer";

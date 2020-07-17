@@ -1,5 +1,5 @@
 import "./copy.html";
-import {CardNavigation} from "../../../../api/cardNavigation";
+import {CardNavigation} from "../../../../util/cardNavigation";
 
 /*
  * ############################################################################

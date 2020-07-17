@@ -3,12 +3,12 @@ import {Cardsets} from "./cardsets";
 import {Meteor} from "meteor/meteor";
 import {TranscriptBonus} from "./transcriptBonus";
 import {TranscriptBonusList} from "../transcriptBonus";
-import {UserPermissions} from "../permissions";
-import {ServerStyle} from "../styles";
+import {UserPermissions} from "../../util/permissions";
+import {ServerStyle} from "../../util/styles";
 import {Paid} from "./paid";
-import {CardType} from "../cardTypes";
+import {CardType} from "../../util/cardTypes";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
-import {CardEditor} from "../cardEditor";
+import {CardEditor} from "../../util/cardEditor";
 
 export const Cards = new Mongo.Collection("cards");
 let disableAnswersOption = {fields: {answers: 0}};

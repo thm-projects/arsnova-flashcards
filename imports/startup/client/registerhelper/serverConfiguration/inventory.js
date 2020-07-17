@@ -1,4 +1,4 @@
-import {ServerInventoryTools} from "../../../../api/serverInventoryTools";
+import {ServerInventoryTools} from "../../../../util/serverInventoryTools";
 
 Template.registerHelper("getServerInventory", function (type) {
 	return ServerInventoryTools.getServerInventory(type);

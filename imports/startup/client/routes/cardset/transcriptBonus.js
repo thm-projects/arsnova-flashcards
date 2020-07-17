@@ -4,9 +4,9 @@ import * as config from "../../../../config/routes";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
-import {ServerStyle} from "../../../../api/styles";
-import {MarkdeepEditor} from "../../../../api/markdeepEditor";
-import {Filter} from "../../../../api/filter";
+import {ServerStyle} from "../../../../util/styles";
+import {MarkdeepEditor} from "../../../../util/markdeepEditor";
+import {Filter} from "../../../../util/filter";
 import {Cards} from "../../../../api/subscriptions/cards";
 
 FlowRouter.route('/cardset/:_id/transcripts/review', {

@@ -2,7 +2,7 @@ import "./back.html";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
-import {Route} from "../../../../../../../api/route";
+import {Route} from "../../../../../../../util/route";
 
 Template.mainNavigationTopPresentationIndexItemBack.helpers({
 	isCardsetIndexSelectMode: function () {

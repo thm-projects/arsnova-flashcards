@@ -3,7 +3,7 @@ import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
-import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
+import {BertAlertVisuals} from "../../../../util/bertAlertVisuals";
 import "./publish.html";
 
 Session.setDefault('activeKind', 'personal');

@@ -4,11 +4,11 @@ import {CardType} from "./cardTypes";
 import {Meteor} from "meteor/meteor";
 import {Route} from "./route.js";
 import {CardNavigation} from "./cardNavigation";
-import {Cardsets} from "./subscriptions/cardsets";
+import {Cardsets} from "../api/subscriptions/cardsets";
 import {BertAlertVisuals} from "./bertAlertVisuals";
 import {CardVisuals} from "./cardVisuals";
 import {CardIndex} from "./cardIndex";
-import {Cards} from "./subscriptions/cards";
+import {Cards} from "../api/subscriptions/cards";
 import {MarkdeepEditor} from "./markdeepEditor";
 
 const subjectMaxLength = 255;

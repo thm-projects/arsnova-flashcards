@@ -1,7 +1,7 @@
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
-import {BertAlertVisuals} from "../../../api/bertAlertVisuals";
+import {BertAlertVisuals} from "../../../util/bertAlertVisuals";
 import "./deleteTranscript.html";
 
 /*

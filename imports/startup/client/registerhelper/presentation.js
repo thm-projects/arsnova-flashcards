@@ -1,8 +1,8 @@
 import {Session} from "meteor/session";
-import {CardVisuals} from "../../../api/cardVisuals";
-import {AspectRatio} from "../../../api/aspectRatio";
-import {CardNavigation} from "../../../api/cardNavigation";
-import {Icons} from "../../../api/icons";
+import {CardVisuals} from "../../../util/cardVisuals";
+import {AspectRatio} from "../../../util/aspectRatio";
+import {CardNavigation} from "../../../util/cardNavigation";
+import {Icons} from "../../../util/icons";
 
 Template.registerHelper("isSidebarHidden", function () {
 	return Session.get('hideSidebar');

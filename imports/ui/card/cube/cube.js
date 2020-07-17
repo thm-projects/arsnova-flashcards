@@ -1,9 +1,9 @@
 //------------------------ IMPORTS
 
 import {Template} from "meteor/templating";
-import {CardVisuals} from "../../../api/cardVisuals";
-import {CardNavigation} from "../../../api/cardNavigation";
-import {NavigatorCheck} from "../../../api/navigatorCheck";
+import {CardVisuals} from "../../../util/cardVisuals";
+import {CardNavigation} from "../../../util/cardNavigation";
+import {NavigatorCheck} from "../../../util/navigatorCheck";
 import {Session} from "meteor/session";
 import './cube.html';
 

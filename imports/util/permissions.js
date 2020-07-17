@@ -1,7 +1,7 @@
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Meteor} from "meteor/meteor";
-import {Cardsets} from "./subscriptions/cardsets";
-import {Paid} from "./subscriptions/paid";
+import {Cardsets} from "../api/subscriptions/cardsets";
+import {Paid} from "../api/subscriptions/paid";
 import {ServerStyle} from "./styles.js";
 
 export let UserPermissions = class UserPermissions {

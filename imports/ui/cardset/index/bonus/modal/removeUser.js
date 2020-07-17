@@ -3,7 +3,7 @@ import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import "./removeUser.html";
 import {Meteor} from "meteor/meteor";
-import {BertAlertVisuals} from "../../../../../api/bertAlertVisuals";
+import {BertAlertVisuals} from "../../../../../util/bertAlertVisuals";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*

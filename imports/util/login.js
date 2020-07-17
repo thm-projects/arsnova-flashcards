@@ -1,7 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
-import {Leitner} from "./subscriptions/leitner";
-import {Wozniak} from "./subscriptions/wozniak";
+import {Leitner} from "../api/subscriptions/leitner";
+import {Wozniak} from "../api/subscriptions/wozniak";
 import {Filter} from "./filter.js";
 import * as config from "../config/login.js";
 import {UserPermissions} from "./permissions";

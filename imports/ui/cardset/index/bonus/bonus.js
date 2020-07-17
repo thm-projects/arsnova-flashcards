@@ -7,8 +7,8 @@ import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import "./modal/removeUser.js";
 import "./modal/userHistory.js";
 import "./bonus.html";
-import {Bonus} from "../../../../api/bonus";
-import {LeitnerProgress} from "../../../../api/leitnerProgress";
+import {Bonus} from "../../../../util/bonus";
+import {LeitnerProgress} from "../../../../util/leitnerProgress";
 
 Session.setDefault('selectedBonusUser', undefined);
 Session.setDefault('selectedBonusUserHistoryData', undefined);

@@ -3,10 +3,10 @@ import {Cardsets} from "./subscriptions/cardsets.js";
 import {Leitner} from "./subscriptions/leitner";
 import {Wozniak} from "./subscriptions/wozniak";
 import {check} from "meteor/check";
-import {UserPermissions} from "./permissions";
+import {UserPermissions} from "../util/permissions";
 import {TranscriptBonus} from "./subscriptions/transcriptBonus";
 import {TranscriptBonusList} from "./transcriptBonus";
-import {CardType} from "./cardTypes";
+import {CardType} from "../util/cardTypes";
 import {Cards} from "./subscriptions/cards.js";
 
 Meteor.methods({

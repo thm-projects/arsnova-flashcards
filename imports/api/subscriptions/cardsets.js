@@ -1,11 +1,11 @@
 import {Mongo} from "meteor/mongo";
 import {Meteor} from "meteor/meteor";
-import {ServerStyle} from "../styles";
-import {UserPermissions} from "../permissions";
+import {ServerStyle} from "../../util/styles";
+import {UserPermissions} from "../../util/permissions";
 import {Leitner} from "./leitner";
 import {Workload} from "./workload";
 import {Wozniak} from "./wozniak";
-import {CardType} from "../cardTypes";
+import {CardType} from "../../util/cardTypes";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 
 export const Cardsets = new Mongo.Collection("cardsets");

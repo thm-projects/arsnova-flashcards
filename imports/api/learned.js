@@ -2,7 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 import {Cardsets} from "./subscriptions/cardsets.js";
 import {check} from "meteor/check";
-import {UserPermissions} from "./permissions";
+import {UserPermissions} from "../util/permissions";
 import {getLearners} from "./cardsetUserlist";
 import * as config from "../config/leitner";
 import {LeitnerUtilities} from "../util/leitner";

@@ -1,11 +1,11 @@
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import * as RouteNames from "../../../../util/routeNames";
 import {Meteor} from "meteor/meteor";
-import {ServerStyle} from "../../../../api/styles";
+import {ServerStyle} from "../../../../util/styles";
 import {Session} from "meteor/session";
 import {Leitner} from "../../../../api/subscriptions/leitner";
 import {Wozniak} from "../../../../api/subscriptions/wozniak";
-import {Filter} from "../../../../api/filter";
+import {Filter} from "../../../../util/filter";
 import * as config from "../../../../config/routes";
 
 FlowRouter.route('/learn', {

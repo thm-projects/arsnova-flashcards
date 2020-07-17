@@ -1,6 +1,6 @@
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import {Session} from "meteor/session";
-import {Utilities} from "../../../api/utilities";
+import {Utilities} from "../../../util/utilities";
 
 // Returns the locale date
 Template.registerHelper("getDateUpdated", function () {

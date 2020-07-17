@@ -2,10 +2,10 @@
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
-import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
-import {MarkdeepContent} from "../../../../api/markdeep";
+import {BertAlertVisuals} from "../../../../util/bertAlertVisuals";
+import {MarkdeepContent} from "../../../../util/markdeep";
 import {Cards} from "../../../../api/subscriptions/cards";
-import {CardType} from "../../../../api/cardTypes";
+import {CardType} from "../../../../util/cardTypes";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./export.html";
 

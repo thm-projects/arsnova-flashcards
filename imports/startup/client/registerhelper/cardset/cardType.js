@@ -1,5 +1,5 @@
 import {Session} from "meteor/session";
-import {CardType as CardTypes} from "../../../../api/cardTypes";
+import {CardType as CardTypes} from "../../../../util/cardTypes";
 
 Template.registerHelper('gotArsnovaClick', function (cardType) {
 	if (cardType === undefined) {

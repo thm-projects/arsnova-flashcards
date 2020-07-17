@@ -3,11 +3,11 @@ import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {Cards} from "../../../../api/subscriptions/cards";
-import {CardVisuals} from "../../../../api/cardVisuals";
-import {CardType} from "../../../../api/cardTypes";
+import {CardVisuals} from "../../../../util/cardVisuals";
+import {CardType} from "../../../../util/cardTypes";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
-import {Route} from "../../../../api/route";
-import {CardNavigation} from "../../../../api/cardNavigation";
+import {Route} from "../../../../util/route";
+import {CardNavigation} from "../../../../util/cardNavigation";
 import "./cards.html";
 
 /*

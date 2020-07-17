@@ -2,15 +2,15 @@ import {Meteor} from "meteor/meteor";
 import {Leitner} from "../api/subscriptions/leitner";
 import {Cardsets} from "../api/subscriptions/cardsets";
 import * as bonusFormConfig from "../config/bonusForm";
-import {CardType} from "../api/cardTypes";
+import {CardType} from "./cardTypes";
 import {Cards} from "../api/subscriptions/cards";
 import * as config from "../config/leitner";
 import {LeitnerHistory} from "../api/subscriptions/leitnerHistory";
 import {Workload} from "../api/subscriptions/workload";
-import {CardIndex} from "../api/cardIndex";
-import {Utilities} from "../api/utilities";
+import {CardIndex} from "./cardIndex";
+import {Utilities} from "./utilities";
 import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
-import {PomodoroTimer} from "../api/pomodoroTimer";
+import {PomodoroTimer} from "./pomodoroTimer";
 
 // Allow the user to update the timer a few seconds earlier to prevent close calls deny an update
 let minimumSecondThreshold = 57;

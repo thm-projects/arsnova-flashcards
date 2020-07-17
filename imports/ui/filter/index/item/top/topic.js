@@ -1,5 +1,5 @@
 import "./topic.html";
-import {Route} from "../../../../../api/route";
+import {Route} from "../../../../../util/route";
 import {TranscriptBonus} from "../../../../../api/subscriptions/transcriptBonus";
 import {TranscriptBonusList} from "../../../../../api/transcriptBonus";
 import {Cardsets} from "../../../../../api/subscriptions/cardsets";

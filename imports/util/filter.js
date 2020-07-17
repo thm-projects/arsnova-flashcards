@@ -3,10 +3,10 @@ import {FilterNavigation} from "./filterNavigation";
 import {Session} from "meteor/session";
 import {Route} from "./route";
 import {WordcloudCanvas} from "./wordcloudCanvas";
-import {Leitner} from "./subscriptions/leitner";
-import {Wozniak} from "./subscriptions/wozniak";
+import {Leitner} from "../api/subscriptions/leitner";
+import {Wozniak} from "../api/subscriptions/wozniak";
 import * as config from "../config/filter.js";
-import {TranscriptBonus} from "./subscriptions/transcriptBonus";
+import {TranscriptBonus} from "../api/subscriptions/transcriptBonus";
 import {ServerStyle} from "./styles";
 
 Session.setDefault('maxItemsCounter', config.itemStartingValue);

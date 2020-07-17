@@ -1,10 +1,10 @@
 import {Template} from "meteor/templating";
-import {NavigatorCheck} from "../../../../../../api/navigatorCheck";
+import {NavigatorCheck} from "../../../../../../util/navigatorCheck";
 import {Meteor} from "meteor/meteor";
 import "./item/cardsets.js";
 import "./item/repetitorien.js";
 import "./personal.html";
-import {ServerStyle} from "../../../../../../api/styles";
+import {ServerStyle} from "../../../../../../util/styles";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import * as RouteNames from "../../../../../../util/routeNames";
 

@@ -1,10 +1,10 @@
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import * as RouteNames from "../../../../util/routeNames";
-import {ServerStyle} from "../../../../api/styles";
+import {ServerStyle} from "../../../../util/styles";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Cards} from "../../../../api/subscriptions/cards";
-import {Filter} from "../../../../api/filter";
+import {Filter} from "../../../../util/filter";
 import * as config from "../../../../config/routes";
 
 FlowRouter.route('/transcripts/personal', {

@@ -2,7 +2,7 @@ import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {Meteor} from "meteor/meteor";
-import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
+import {BertAlertVisuals} from "../../../../util/bertAlertVisuals";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./shuffleRepetitoriumCallout.html";
 

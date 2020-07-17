@@ -2,7 +2,7 @@
 import {Meteor} from "meteor/meteor";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Template} from "meteor/templating";
-import {CardType} from "../../../../api/cardTypes";
+import {CardType} from "../../../../util/cardTypes";
 import {Workload} from "../../../../api/subscriptions/workload";
 import {Wozniak} from "../../../../api/subscriptions/wozniak";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";

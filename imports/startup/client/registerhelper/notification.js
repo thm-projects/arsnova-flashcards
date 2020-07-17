@@ -1,4 +1,4 @@
-import {Bonus} from "../../../api/bonus";
+import {Bonus} from "../../../util/bonus";
 
 Template.registerHelper("getNotificationStatus", function (user) {
 	return Bonus.getNotificationStatus(user);

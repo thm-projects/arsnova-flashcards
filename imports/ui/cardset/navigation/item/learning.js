@@ -4,8 +4,8 @@ import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {Workload} from "../../../../api/subscriptions/workload";
-import {CardsetNavigation} from "../../../../api/cardsetNavigation";
-import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
+import {CardsetNavigation} from "../../../../util/cardsetNavigation";
+import {BertAlertVisuals} from "../../../../util/bertAlertVisuals";
 import "./learning.html";
 
 /*

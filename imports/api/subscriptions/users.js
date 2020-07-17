@@ -1,9 +1,9 @@
 import {Meteor} from "meteor/meteor";
-import {UserPermissions} from "../permissions";
+import {UserPermissions} from "../../util/permissions";
 import {Cardsets} from "./cardsets";
 import {TranscriptBonus} from "./transcriptBonus";
 import {Workload} from "./workload";
-import {ServerStyle} from "../styles";
+import {ServerStyle} from "../../util/styles";
 
 if (Meteor.isServer) {
 	Meteor.publish("userDataLecturers", function () {

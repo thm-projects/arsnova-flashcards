@@ -3,7 +3,7 @@ import {Session} from "meteor/session";
 import {Route} from "./route";
 import {CardType} from "./cardTypes";
 import {NavigatorCheck} from "./navigatorCheck";
-import {Cardsets} from "./subscriptions/cardsets";
+import {Cardsets} from "../api/subscriptions/cardsets";
 import {MarkdeepEditor} from "./markdeepEditor";
 import {AspectRatio} from "./aspectRatio.js";
 import * as config from "../config/cardVisuals.js";

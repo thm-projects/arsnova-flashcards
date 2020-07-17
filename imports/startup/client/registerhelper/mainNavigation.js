@@ -1,8 +1,8 @@
 import {Session} from "meteor/session";
-import {ServerStyle} from "../../../api/styles";
-import {Icons} from "../../../api/icons";
-import {MainNavigation} from "../../../api/mainNavigation";
-import {Route} from "../../../api/route";
+import {ServerStyle} from "../../../util/styles";
+import {Icons} from "../../../util/icons";
+import {MainNavigation} from "../../../util/mainNavigation";
+import {Route} from "../../../util/route";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 
 Template.registerHelper("isProLoginActive", function () {

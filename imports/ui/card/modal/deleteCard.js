@@ -2,7 +2,7 @@ import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
-import {BertAlertVisuals} from "../../../api/bertAlertVisuals";
+import {BertAlertVisuals} from "../../../util/bertAlertVisuals";
 import "./deleteCard.html";
 
 /*

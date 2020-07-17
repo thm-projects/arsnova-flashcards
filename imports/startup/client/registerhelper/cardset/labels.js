@@ -1,7 +1,7 @@
-import {ServerStyle} from "../../../../api/styles";
-import {Icons} from "../../../../api/icons";
-import {Route} from "../../../../api/route";
-import {CardType} from "../../../../api/cardTypes";
+import {ServerStyle} from "../../../../util/styles";
+import {Icons} from "../../../../util/icons";
+import {Route} from "../../../../util/route";
+import {CardType} from "../../../../util/cardTypes";
 
 Template.registerHelper("getBonusLabel", function (learningActive = false, learningEnd = new Date()) {
 	if (learningActive && ServerStyle.gotNavigationFeature("misc.features.bonus")) {

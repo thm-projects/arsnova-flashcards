@@ -1,10 +1,10 @@
 import {Session} from "meteor/session";
 import {Bonus} from "./bonus.js";
-import {Cardsets} from "./subscriptions/cardsets.js";
+import {Cardsets} from "../api/subscriptions/cardsets.js";
 import {Route} from "./route.js";
 import swal from "sweetalert2";
 import * as config from "../config/pomodoroTimer.js";
-import {LeitnerTasks} from "./subscriptions/leitnerTasks";
+import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {ServerStyle} from "./styles";
 import {NavigatorCheck} from "./navigatorCheck";

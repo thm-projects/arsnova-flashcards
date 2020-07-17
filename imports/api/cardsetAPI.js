@@ -5,7 +5,7 @@ import {JsonRoutes} from "meteor/simple:json-routes";
 import {Cards} from "./subscriptions/cards.js";
 import {Cardsets} from "./subscriptions/cardsets.js";
 import {check} from "meteor/check";
-import {UserPermissions} from "./permissions";
+import {UserPermissions} from "../util/permissions";
 
 
 /*

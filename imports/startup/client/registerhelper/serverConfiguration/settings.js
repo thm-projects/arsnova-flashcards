@@ -1,5 +1,5 @@
-import {ServerSettings} from "../../../../api/settings";
-import {ServerStyle} from "../../../../api/styles";
+import {ServerSettings} from "../../../../util/settings";
+import {ServerStyle} from "../../../../util/styles";
 
 Template.registerHelper('isMailEnabled', function () {
 	return ServerSettings.isMailEnabled();

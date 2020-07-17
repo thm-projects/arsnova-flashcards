@@ -2,7 +2,7 @@ import './publish.html';
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../../../../api/subscriptions/cardsets";
-import {CardType} from "../../../../../../api/cardTypes";
+import {CardType} from "../../../../../../util/cardTypes";
 
 Template.filterIndexItemBottomPublish.helpers({
 	canPublish: function () {

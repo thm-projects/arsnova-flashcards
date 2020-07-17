@@ -1,5 +1,5 @@
-import {ServerStyle} from "../../../../api/styles";
-import {BarfyStarsConfig} from "../../../../api/barfyStars";
+import {ServerStyle} from "../../../../util/styles";
+import {BarfyStarsConfig} from "../../../../util/barfyStars";
 
 Template.registerHelper('getFirstAppTitle', function () {
 	return ServerStyle.getFirstAppTitle();

@@ -1,11 +1,11 @@
 import {Session} from "meteor/session";
-import {Cardsets} from "./subscriptions/cardsets";
+import {Cardsets} from "../api/subscriptions/cardsets";
 import {PomodoroTimer} from "./pomodoroTimer";
 import * as config from "../config/bonusForm.js";
 import * as leitnerConfig from "../config/leitner.js";
 import {Utilities} from "./utilities";
 import {CardType} from "./cardTypes";
-import {LeitnerUtilities} from "../util/leitner";
+import {LeitnerUtilities} from "./leitner";
 import {SweetAlertMessages} from "./sweetAlert";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 

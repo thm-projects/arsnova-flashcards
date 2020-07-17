@@ -1,7 +1,7 @@
 import {Mongo} from "meteor/mongo";
 import {Meteor} from "meteor/meteor";
-import {ServerStyle} from "../styles";
-import {UserPermissions} from "../permissions";
+import {ServerStyle} from "../../util/styles";
+import {UserPermissions} from "../../util/permissions";
 
 export const Ratings = new Mongo.Collection("ratings");
 

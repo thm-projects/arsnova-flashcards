@@ -1,9 +1,9 @@
-import {BonusForm} from "../../../../api/bonusForm";
+import {BonusForm} from "../../../../util/bonusForm";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {Meteor} from "meteor/meteor";
-import {Bonus} from "../../../../api/bonus";
-import {Profile} from "../../../../api/profile";
+import {Bonus} from "../../../../util/bonus";
+import {Profile} from "../../../../util/profile";
 
 Template.registerHelper("getDefaultMinLearned", function () {
 	return BonusForm.getDefaultMinLearned();

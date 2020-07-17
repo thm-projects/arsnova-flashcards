@@ -8,7 +8,7 @@ import {Cardsets} from "../../../api/subscriptions/cardsets.js";
 import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../../../config/dompurify.js";
 import {getAuthorName} from "../../../api/userdata";
-import {Bonus} from "../../../api/bonus";
+import {Bonus} from "../../../util/bonus";
 import "./index.html";
 import "./user.js";
 

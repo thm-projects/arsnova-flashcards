@@ -1,6 +1,6 @@
-import {Route} from "../../../../api/route";
+import {Route} from "../../../../util/route";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
-import {CardType} from "../../../../api/cardTypes";
+import {CardType} from "../../../../util/cardTypes";
 import {TranscriptBonusList} from "../../../../api/transcriptBonus";
 import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
 

@@ -2,7 +2,7 @@
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
-import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
+import {BertAlertVisuals} from "../../../../util/bertAlertVisuals";
 import {ReactiveVar} from "meteor/reactive-var";
 import "./import.html";
 

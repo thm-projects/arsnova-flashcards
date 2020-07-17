@@ -1,7 +1,7 @@
 import "./accept.html";
-import {CardNavigation} from "../../../../api/cardNavigation";
+import {CardNavigation} from "../../../../util/cardNavigation";
 import {Session} from "meteor/session";
-import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
+import {BertAlertVisuals} from "../../../../util/bertAlertVisuals";
 import {Template} from "meteor/templating";
 import * as config from "../../../../config/transcriptBonus.js";
 Session.setDefault('activeTranscriptStarsRating', config.defaultStarsRating);

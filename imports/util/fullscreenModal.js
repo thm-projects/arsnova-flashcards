@@ -1,4 +1,4 @@
-import {NavigatorCheck} from "../api/navigatorCheck";
+import {NavigatorCheck} from "./navigatorCheck";
 import * as config from "../config/pdfViewer";
 
 export let FullscreenModal = class FullscreenModal {

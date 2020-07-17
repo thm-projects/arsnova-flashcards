@@ -1,5 +1,5 @@
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
-import {MarkdeepContent} from "../../../api/markdeep";
+import {MarkdeepContent} from "../../../util/markdeep";
 
 
 const markdeepHelper = new MeteorMathJax.Helper({

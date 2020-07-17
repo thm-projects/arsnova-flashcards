@@ -1,6 +1,6 @@
 import "./maxWorkload.html";
-import {BonusForm} from "../../../../../../api/bonusForm";
-import {LeitnerProgress} from "../../../../../../api/leitnerProgress";
+import {BonusForm} from "../../../../../../util/bonusForm";
+import {LeitnerProgress} from "../../../../../../util/leitnerProgress";
 
 /*
 * ############################################################################

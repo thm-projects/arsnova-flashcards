@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import webPush from 'web-push';
-import {ServerSettings} from "./settings";
+import {ServerSettings} from "../util/settings";
 import {WebPushSubscriptions} from "./subscriptions/webPushNotifications";
 
 export let WebPushNotifications = class WebPushNotifications {

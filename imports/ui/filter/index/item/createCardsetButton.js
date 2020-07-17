@@ -1,6 +1,6 @@
-import {Profile} from "../../../../api/profile";
+import {Profile} from "../../../../util/profile";
 import {Session} from "meteor/session";
-import {SweetAlertMessages} from "../../../../api/sweetAlert";
+import {SweetAlertMessages} from "../../../../util/sweetAlert";
 import "./createCardsetButton.html";
 
 /*

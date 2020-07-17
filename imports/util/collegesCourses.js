@@ -1,7 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {check} from "meteor/check";
 import {UserPermissions} from "./permissions";
-import {CollegesCourses} from "./subscriptions/collegesCourses.js";
+import {CollegesCourses} from "../api/subscriptions/collegesCourses.js";
 
 Meteor.methods({
 	"updateCollegesCoursess": function (college, course) {

@@ -27,7 +27,7 @@ import "../imports/api/cards.js";
 import "../imports/api/cardsets.js";
 import "../imports/api/cardsetAPI.js";
 import "../imports/api/cardsetUserlist.js";
-import "../imports/api/colleges_courses.js";
+import "../imports/util/collegesCourses.js";
 import "../imports/api/import.js";
 import "../imports/api/learned.js";
 import "../imports/api/meteorMethods/leitner.js";

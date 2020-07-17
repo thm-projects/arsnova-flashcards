@@ -1,9 +1,9 @@
-import {ServerStyle} from "../../../../api/styles";
-import {Route} from "../../../../api/route";
+import {ServerStyle} from "../../../../util/styles";
+import {Route} from "../../../../util/route";
 import {isNewCardset} from "../../../../ui/forms/cardsetForm";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
-import {CardVisuals} from "../../../../api/cardVisuals";
+import {CardVisuals} from "../../../../util/cardVisuals";
 
 Template.registerHelper("isShuffledCardset", function (cardset_id) {
 	if (ServerStyle.gotSimplifiedNav() && Route.isMyCardsets() && !isNewCardset() && Session.get('useRepForm')) {

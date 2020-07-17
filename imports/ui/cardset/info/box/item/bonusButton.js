@@ -1,8 +1,8 @@
 //------------------------ IMPORTS
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
-import {Bonus} from "../../../../../api/bonus";
-import {Profile} from "../../../../../api/profile";
+import {Bonus} from "../../../../../util/bonus";
+import {Profile} from "../../../../../util/profile";
 import "./bonusButton.html";
 
 /*

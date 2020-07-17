@@ -2,11 +2,11 @@ import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import * as RouteNames from "../../../../util/routeNames";
 import * as config from "../../../../config/routes.js";
 import {Meteor} from "meteor/meteor";
-import {ServerStyle} from "../../../../api/styles";
+import {ServerStyle} from "../../../../util/styles";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
-import {Filter} from "../../../../api/filter";
-import {MainNavigation} from "../../../../api/mainNavigation";
+import {Filter} from "../../../../util/filter";
+import {MainNavigation} from "../../../../util/mainNavigation";
 
 FlowRouter.route('/personal/cardsets', {
 	name: RouteNames.create,

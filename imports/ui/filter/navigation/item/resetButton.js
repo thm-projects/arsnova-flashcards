@@ -1,7 +1,7 @@
 import {Template} from "meteor/templating";
-import {FilterNavigation} from "../../../../api/filterNavigation.js";
+import {FilterNavigation} from "../../../../util/filterNavigation.js";
 import "./resetButton.html";
-import {Filter} from "../../../../api/filter";
+import {Filter} from "../../../../util/filter";
 
 /*
  * ############################################################################

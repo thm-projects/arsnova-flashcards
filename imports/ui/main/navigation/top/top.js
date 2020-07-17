@@ -1,8 +1,8 @@
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Meteor} from "meteor/meteor";
-import {Filter} from "../../../../api/filter";
-import {MainNavigation} from "../../../../api/mainNavigation";
+import {Filter} from "../../../../util/filter";
+import {MainNavigation} from "../../../../util/mainNavigation";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./item/all/all.js";
 import "./item/backend.js";

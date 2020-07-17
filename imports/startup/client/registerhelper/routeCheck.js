@@ -1,8 +1,8 @@
-import {Route} from "../../../api/route";
+import {Route} from "../../../util/route";
 import {Meteor} from "meteor/meteor";
-import {MainNavigation} from "../../../api/mainNavigation";
+import {MainNavigation} from "../../../util/mainNavigation";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
-import {ServerStyle} from "../../../api/styles";
+import {ServerStyle} from "../../../util/styles";
 import {Session} from "meteor/session";
 import {isNewCardset} from "../../../ui/forms/cardsetForm";
 

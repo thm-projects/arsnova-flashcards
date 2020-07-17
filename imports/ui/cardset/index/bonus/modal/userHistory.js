@@ -2,8 +2,8 @@
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import "./userHistory.html";
-import {Utilities} from "../../../../../api/utilities";
-import {Route} from "../../../../../api/route";
+import {Utilities} from "../../../../../util/utilities";
+import {Route} from "../../../../../util/route";
 import humanizeDuration from "humanize-duration";
 
 let humanizeSettings = {language: 'de', conjunction: ' und ', serialComma: false, round: true};

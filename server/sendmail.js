@@ -1,12 +1,12 @@
 import {Meteor} from "meteor/meteor";
 import {Email} from "meteor/email";
-import {Bonus} from "../imports/api/bonus.js";
+import {Bonus} from "../imports/util/bonus.js";
 import {Leitner} from "../imports/api/subscriptions/leitner.js";
 import {Notifications} from "./notifications.js";
 import {AdminSettings} from "../imports/api/subscriptions/adminSettings.js";
 import {Cardsets} from "../imports/api/subscriptions/cardsets.js";
 import {getAuthorName} from "../imports/api/userdata";
-import {ServerStyle} from "../imports/api/styles";
+import {ServerStyle} from "../imports/util/styles";
 
 /**
  * Class used for sending the newsletter mail

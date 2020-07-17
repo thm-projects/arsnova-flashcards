@@ -1,10 +1,10 @@
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cards} from "../../../api/subscriptions/cards";
-import {Dictionary} from "../../../api/dictionary";
+import {Dictionary} from "../../../util/dictionary";
 import "./deeplTranslation.html";
-import {Route} from "../../../api/route";
-import {CardIndex} from "../../../api/cardIndex";
+import {Route} from "../../../util/route";
+import {CardIndex} from "../../../util/cardIndex";
 
 Session.setDefault('isDeepLModalVisible', false);
 Session.setDefault('isBeolingusModalVisible', false);

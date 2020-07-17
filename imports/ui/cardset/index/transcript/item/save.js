@@ -1,7 +1,7 @@
 import "./save.html";
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
-import {BertAlertVisuals} from "../../../../../api/bertAlertVisuals";
+import {BertAlertVisuals} from "../../../../../util/bertAlertVisuals";
 import {Session} from "meteor/session";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 

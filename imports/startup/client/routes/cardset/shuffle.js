@@ -3,9 +3,9 @@ import * as RouteNames from "../../../../util/routeNames";
 import * as config from "../../../../config/routes";
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
-import {ServerStyle} from "../../../../api/styles";
+import {ServerStyle} from "../../../../util/styles";
 import {Session} from "meteor/session";
-import {Filter} from "../../../../api/filter";
+import {Filter} from "../../../../util/filter";
 
 FlowRouter.route('/cardset/:_id/editshuffle', {
 	name: RouteNames.editshuffle,

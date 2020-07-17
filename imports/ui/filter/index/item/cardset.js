@@ -3,9 +3,9 @@
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./cardset.html";
-import {MainNavigation} from "../../../../api/mainNavigation";
-import {LoginTasks} from "../../../../api/login";
-import {Route} from "../../../../api/route";
+import {MainNavigation} from "../../../../util/mainNavigation";
+import {LoginTasks} from "../../../../util/login";
+import {Route} from "../../../../util/route";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 Session.setDefault('cardsetId', undefined);

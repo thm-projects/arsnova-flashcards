@@ -1,8 +1,8 @@
 import "./leftRightNavigation.html";
 import {Session} from "meteor/session";
-import {CardNavigation} from "../../../../api/cardNavigation";
-import {CardIndex} from "../../../../api/cardIndex";
-import {Route} from "../../../../api/route";
+import {CardNavigation} from "../../../../util/cardNavigation";
+import {CardIndex} from "../../../../util/cardIndex";
+import {Route} from "../../../../util/route";
 
 /*
  * ############################################################################

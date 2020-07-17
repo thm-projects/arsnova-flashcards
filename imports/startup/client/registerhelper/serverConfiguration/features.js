@@ -1,6 +1,6 @@
-import {ServerStyle} from "../../../../api/styles";
+import {ServerStyle} from "../../../../util/styles";
 import {Meteor} from "meteor/meteor";
-import {NavigatorCheck} from "../../../../api/navigatorCheck";
+import {NavigatorCheck} from "../../../../util/navigatorCheck";
 
 Template.registerHelper('enabledMatomo', function () {
 	return Meteor.settings.public.matomo.USE_MATOMO;

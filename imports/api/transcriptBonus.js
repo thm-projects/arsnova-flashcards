@@ -1,9 +1,9 @@
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "./subscriptions/cardsets";
-import {UserPermissions} from "./permissions";
+import {UserPermissions} from "../util/permissions";
 import {TranscriptBonus} from "./subscriptions/transcriptBonus";
 import {check} from "meteor/check";
-import {Utilities} from "./utilities";
+import {Utilities} from "../util/utilities";
 import * as config from "../config/transcriptBonus.js";
 import * as icons from "../config/icons.js";
 

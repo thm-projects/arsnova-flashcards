@@ -1,4 +1,4 @@
-import {NavigatorCheck} from "../../../api/navigatorCheck";
+import {NavigatorCheck} from "../../../util/navigatorCheck";
 
 Template.registerHelper("isIOSOrSafari", function () {
 	return (NavigatorCheck.isIOS() | NavigatorCheck.isSafari());

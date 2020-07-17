@@ -1,14 +1,14 @@
 import {Session} from "meteor/session";
-import {CardType} from "../../../../api/cardTypes";
+import {CardType} from "../../../../util/cardTypes";
 import {Template} from "meteor/templating";
-import {CardVisuals} from "../../../../api/cardVisuals";
+import {CardVisuals} from "../../../../util/cardVisuals";
 import "./content.html";
-import {Route} from "../../../../api/route";
+import {Route} from "../../../../util/route";
 import {isNewCardset} from "../../../forms/cardsetForm";
-import {Dictionary} from "../../../../api/dictionary";
+import {Dictionary} from "../../../../util/dictionary";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
-import {MarkdeepEditor} from "../../../../api/markdeepEditor";
-import {ServerStyle} from "../../../../api/styles";
+import {MarkdeepEditor} from "../../../../util/markdeepEditor";
+import {ServerStyle} from "../../../../util/styles";
 
 /*
  * ############################################################################

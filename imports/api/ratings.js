@@ -1,7 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "./subscriptions/cardsets.js";
 import {check} from "meteor/check";
-import {UserPermissions} from "./permissions";
+import {UserPermissions} from "../util/permissions";
 import {Ratings} from "./subscriptions/ratings";
 
 Meteor.methods({

@@ -3,7 +3,7 @@ import {Meteor} from "meteor/meteor";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
-import {Bonus} from "../../../../api/bonus";
+import {Bonus} from "../../../../util/bonus";
 import "../modal/editors.js";
 import "../modal/leaveCardset.js";
 import "../modal/report.js";

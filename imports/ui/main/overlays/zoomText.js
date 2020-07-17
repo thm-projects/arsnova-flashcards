@@ -1,5 +1,5 @@
 import {Session} from "meteor/session";
-import {CardVisuals} from "../../../api/cardVisuals";
+import {CardVisuals} from "../../../util/cardVisuals";
 import "./zoomText.html";
 
 /*

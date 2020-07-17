@@ -1,12 +1,12 @@
 import * as RouteNames from "../../../util/routeNames";
-import {ServerStyle} from "../../../api/styles";
-import {MainNavigation} from "../../../api/mainNavigation";
+import {ServerStyle} from "../../../util/styles";
+import {MainNavigation} from "../../../util/mainNavigation";
 import {Session} from "meteor/session";
-import {Route} from "../../../api/route";
+import {Route} from "../../../util/route";
 import {Meteor} from "meteor/meteor";
-import {CardVisuals} from "../../../api/cardVisuals";
+import {CardVisuals} from "../../../util/cardVisuals";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
-import {LoginTasks} from "../../../api/login";
+import {LoginTasks} from "../../../util/login";
 
 
 var linksWithNoLoginRequirement = function () {

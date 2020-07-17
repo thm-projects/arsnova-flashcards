@@ -2,9 +2,9 @@ import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import * as RouteNames from "../../../../util/routeNames";
 import * as config from "../../../../config/routes";
 import {Meteor} from "meteor/meteor";
-import {ServerStyle} from "../../../../api/styles";
-import {UserPermissions} from "../../../../api/permissions";
-import {MainNavigation} from "../../../../api/mainNavigation";
+import {ServerStyle} from "../../../../util/styles";
+import {UserPermissions} from "../../../../util/permissions";
+import {MainNavigation} from "../../../../util/mainNavigation";
 
 FlowRouter.route('/admin/apiAccess', {
 	name: RouteNames.admin_apiAccess,

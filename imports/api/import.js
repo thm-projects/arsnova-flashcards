@@ -2,8 +2,8 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "./subscriptions/cardsets.js";
 import {Cards} from "./subscriptions/cards.js";
 import {check} from "meteor/check";
-import {CardType} from "./cardTypes";
-import {ServerStyle} from "./styles";
+import {CardType} from "../util/cardTypes";
+import {ServerStyle} from "../util/styles";
 
 function importCards(data, cardset, importType) {
 	if (Meteor.isServer) {

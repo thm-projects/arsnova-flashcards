@@ -1,4 +1,4 @@
-import {CardEditor} from "../../../../api/cardEditor.js";
+import {CardEditor} from "../../../../util/cardEditor.js";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./buttonSave.html";
 

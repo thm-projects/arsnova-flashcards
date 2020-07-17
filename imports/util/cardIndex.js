@@ -1,16 +1,16 @@
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
-import {Leitner} from "./subscriptions/leitner";
-import {Wozniak} from "./subscriptions/wozniak";
-import {Cards} from "./subscriptions/cards";
-import {Cardsets} from "./subscriptions/cardsets";
+import {Leitner} from "../api/subscriptions/leitner";
+import {Wozniak} from "../api/subscriptions/wozniak";
+import {Cards} from "../api/subscriptions/cards";
+import {Cardsets} from "../api/subscriptions/cardsets";
 import {Route} from "./route";
 import {CardType} from "./cardTypes";
 import {CardNavigation} from "./cardNavigation";
 import {CardVisuals} from "./cardVisuals";
 import {Utilities} from "./utilities";
-import {TranscriptBonus} from "./subscriptions/transcriptBonus";
+import {TranscriptBonus} from "../api/subscriptions/transcriptBonus";
 
 let cardIndex = [];
 

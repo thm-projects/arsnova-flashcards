@@ -1,10 +1,10 @@
 import {Session} from "meteor/session";
 import "./edit.html";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
-import {Route} from "../../../../api/route";
+import {Route} from "../../../../util/route";
 import {Cards} from "../../../../api/subscriptions/cards";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
-import {CardNavigation} from "../../../../api/cardNavigation";
+import {CardNavigation} from "../../../../util/cardNavigation";
 /*
  * ############################################################################
  * cardSidebarItemEdit

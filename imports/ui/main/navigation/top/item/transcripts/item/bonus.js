@@ -1,6 +1,6 @@
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
-import {NavigatorCheck} from "../../../../../../../api/navigatorCheck";
+import {NavigatorCheck} from "../../../../../../../util/navigatorCheck";
 import "./bonus.html";
 import {Session} from "meteor/session";
 

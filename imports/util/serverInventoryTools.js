@@ -1,5 +1,5 @@
 import {ReactiveVar} from "meteor/reactive-var";
-import * as fakeInventory from "../../public/fakeStatistics/inventory";
+import * as fakeInventory from "../../public/fakeStatistics/inventory.json";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 

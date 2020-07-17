@@ -1,6 +1,6 @@
-import {Cardsets} from "./subscriptions/cardsets";
+import {Cardsets} from "../api/subscriptions/cardsets";
 import {Meteor} from "meteor/meteor";
-import {Workload} from "./subscriptions/workload";
+import {Workload} from "../api/subscriptions/workload";
 import {ServerSettings} from "./settings";
 
 export let Bonus = class Bonus {

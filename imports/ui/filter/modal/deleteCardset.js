@@ -2,8 +2,8 @@
 
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {BertAlertVisuals} from "../../../api/bertAlertVisuals";
-import {Route} from "../../../api/route";
+import {BertAlertVisuals} from "../../../util/bertAlertVisuals";
+import {Route} from "../../../util/route";
 import "./deleteCardset.html";
 
 /*

@@ -5,15 +5,15 @@ import {Template} from "meteor/templating";
 import {Leitner} from "../../../api/subscriptions/leitner";
 import {Wozniak} from "../../../api/subscriptions/wozniak";
 import ResizeSensor from "../../../../client/thirdParty/resizeSensor/ResizeSensor";
-import {CardsetVisuals} from "../../../api/cardsetVisuals";
-import {Bonus} from "../../../api/bonus";
-import {MarkdeepContent} from "../../../api/markdeep";
+import {CardsetVisuals} from "../../../util/cardsetVisuals";
+import {Bonus} from "../../../util/bonus";
+import {MarkdeepContent} from "../../../util/markdeep";
 import "../navigation/navigation.js";
 import "./box/cardset.js";
 import "./box/bonus.js";
 import "./box/bonusTranscript.js";
 import "./info.html";
-import {ServerStyle} from "../../../api/styles";
+import {ServerStyle} from "../../../util/styles";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*

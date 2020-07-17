@@ -1,5 +1,5 @@
 import {Session} from "meteor/session";
-import {Cardsets} from "./subscriptions/cardsets.js";
+import {Cardsets} from "../api/subscriptions/cardsets.js";
 import * as config from "../config/cardTypes.js";
 import {CardNavigation} from "./cardNavigation";
 import {Route} from "./route";

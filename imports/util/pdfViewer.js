@@ -1,6 +1,6 @@
-import {NavigatorCheck} from "../api/navigatorCheck.js";
-import {CardType} from "../api/cardTypes.js";
-import {Route} from "../api/route.js";
+import {NavigatorCheck} from "./navigatorCheck.js";
+import {CardType} from "./cardTypes.js";
+import {Route} from "./route.js";
 import * as config from "../config/pdfViewer.js";
 import {Cards} from "../api/subscriptions/cards";
 import {Session} from "meteor/session";

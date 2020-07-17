@@ -3,7 +3,7 @@ import {Meteor} from "meteor/meteor";
 import {CollegesCourses} from "../../../api/subscriptions/collegesCourses.js";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
-import {BertAlertVisuals} from "../../../api/bertAlertVisuals";
+import {BertAlertVisuals} from "../../../util/bertAlertVisuals";
 
 Meteor.subscribe("collegesCourses");
 

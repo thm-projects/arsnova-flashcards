@@ -3,10 +3,10 @@ import * as RouteNames from "../../../util/routeNames";
 import * as config from "../../../config/routes";
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../../api/subscriptions/cardsets";
-import {ServerStyle} from "../../../api/styles";
-import {MarkdeepEditor} from "../../../api/markdeepEditor";
+import {ServerStyle} from "../../../util/styles";
+import {MarkdeepEditor} from "../../../util/markdeepEditor";
 import {Session} from "meteor/session";
-import {AspectRatio} from "../../../api/aspectRatio";
+import {AspectRatio} from "../../../util/aspectRatio";
 
 FlowRouter.route('/box/:_id', {
 	name: RouteNames.box,

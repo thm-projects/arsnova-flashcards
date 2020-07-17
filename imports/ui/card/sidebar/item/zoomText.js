@@ -1,6 +1,6 @@
 import {Session} from "meteor/session";
 import "./zoomText.html";
-import {CardVisuals} from "../../../../api/cardVisuals";
+import {CardVisuals} from "../../../../util/cardVisuals";
 
 /*
  * ############################################################################

@@ -4,13 +4,13 @@ import {Workload} from "./subscriptions/workload";
 import {Cardsets} from "./subscriptions/cardsets.js";
 import {check} from "meteor/check";
 import {getAuthorName} from "./userdata";
-import {Profile} from "./profile";
-import {Bonus} from "./bonus";
-import {ServerStyle} from "./styles";
+import {Profile} from "../util/profile";
+import {Bonus} from "../util/bonus";
+import {ServerStyle} from "../util/styles";
 import * as config from "../config/bonusForm.js";
 import {LeitnerHistory} from "./subscriptions/leitnerHistory";
-import {Utilities} from "./utilities";
-import {UserPermissions} from "./permissions";
+import {Utilities} from "../util/utilities";
+import {UserPermissions} from "../util/permissions";
 import {LeitnerTasks} from "./subscriptions/leitnerTasks";
 import {LeitnerUtilities} from "../util/leitner";
 
