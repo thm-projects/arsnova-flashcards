@@ -34,6 +34,7 @@ import {setLanguage, setTheme} from "../../startup/client/routes/onBeforeAction.
 
 Meteor.subscribe("notifications");
 Meteor.subscribe("serverStatistics");
+Meteor.subscribe("collegesCourses");
 
 Session.setDefault("theme", ServerStyle.getDefaultTheme());
 Session.setDefault("fullscreen", false);
