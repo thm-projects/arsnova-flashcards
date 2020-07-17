@@ -1,5 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {ServerSettings} from "./settings";
+import "../api/meteorMethods/webPushSubscriptions.js";
 
 export let WebPushNotifications = class WebPushNotifications {
 	/**
