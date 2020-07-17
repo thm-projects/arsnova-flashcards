@@ -1,5 +1,9 @@
 let wordcloudPomodoroSize = 0.6;
+// Default to wordcloud on first load if support
+let defaultToFilterWordcloudOnFirstLoad = false;
+// Threshold for the default
 let defaultToFilterWordcloudThreshold = 100;
+
 
 
 //type
@@ -44,6 +48,7 @@ let wordcloudDefault = {
 
 module.exports = {
 	wordcloudPomodoroSize,
+	defaultToFilterWordcloudOnFirstLoad,
 	defaultToFilterWordcloudThreshold,
 	wordcloudLandingPage,
 	wordcloudDefault,

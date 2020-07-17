@@ -228,7 +228,7 @@ export let WordcloudCanvas = class WordcloudCanvas {
 	static setDefaultView () {
 		if (NavigatorCheck.isSmartphone()) {
 			this.disableWordcloud();
-		} else if (Cardsets.find(Filter.getFilterQuery()).count() >= config.defaultToFilterWordcloudThreshold || Session.get('filterDisplayWordcloud')) {
+		} else if ((config.defaultToFilterWordcloudOnFirstLoad && Cardsets.find(Filter.getFilterQuery()).count() >= config.defaultToFilterWordcloudThreshold) || Session.get('filterDisplayWordcloud')) {
 			this.enableWordcloud();
 		} else {
 			this.disableWordcloud();
