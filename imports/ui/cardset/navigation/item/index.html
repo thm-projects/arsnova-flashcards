@@ -2,9 +2,7 @@
     {{#if gotMultipleCards}}
         {{#unless gotTranscriptBonusAndIsNotShuffled _id}}
             <div class="btn-group">
-                <button class="btn btn-sm btn-raised cardsetIndexBtn"
-                        title="{{#if this.shuffled}}{{_ "cardsetNavigation.button.index.repetitorium"}}{{else}}{{_
-                                "cardsetNavigation.button.index.cardset"}}{{/if}}">
+                <button class="btn btn-sm btn-raised cardsetIndexBtn">
                 <span class="flex-content">
                 <i class='fas fa-list'></i>
                 &nbsp;{{#if this.shuffled}}

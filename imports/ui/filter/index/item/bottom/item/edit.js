@@ -1,7 +1,7 @@
 import "./edit.html";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Cardsets} from "../../../../../api/subscriptions/cardsets";
+import {Cardsets} from "../../../../../../api/subscriptions/cardsets";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*

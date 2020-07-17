@@ -23,21 +23,24 @@ import "./item/selectCardsetButton.js";
 import "./item/selectRepetitoriumButton.js";
 import "./item/shuffleRepetitoriumCallout.js";
 import "./item/selectCardsetToLearnCallout.js";
-import "./item/bottom/aboutThisRating.js";
-import "./item/bottom/bonusStats.js";
-import "./item/bottom/collapse.js";
-import "./item/bottom/deadline.js";
-import "./item/bottom/delete.js";
-import "./item/bottom/deleteTranscript.js";
-import "./item/bottom/edit.js";
-import "./item/bottom/editTranscript.js";
-import "./item/bottom/export.js";
-import "./item/bottom/leaveWorkload.js";
-import "./item/bottom/shuffle.js";
-import "./item/bottom/starsRating.js";
-import "./item/bottom/workloadProgress.js";
-import "./item/bottom/workloadHistory.js";
-import "./item/bottom/transcriptRating.js";
+import "./item/bottom/labels.js";
+import "./item/bottom/navigation.js";
+import "./item/bottom/item/aboutThisRating.js";
+import "./item/bottom/item/bonusStats.js";
+import "./item/bottom/item/collapse.js";
+import "./item/bottom/item/deadline.js";
+import "./item/bottom/item/delete.js";
+import "./item/bottom/item/deleteTranscript.js";
+import "./item/bottom/item/edit.js";
+import "./item/bottom/item/editTranscript.js";
+import "./item/bottom/item/export.js";
+import "./item/bottom/item/leaveWorkload.js";
+import "./item/bottom/item/shuffle.js";
+import "./item/bottom/item/starsRating.js";
+import "./item/bottom/item/workloadProgress.js";
+import "./item/bottom/item/workloadHistory.js";
+import "./item/bottom/item/transcriptRating.js";
+import "./item/bottom/item";
 import "./item/collapse/collapse.js";
 import "./item/titleRow/author.js";
 import "./item/titleRow/date.js";
@@ -54,8 +57,8 @@ import "../modal/deleteWorkload.js";
 import "../modal/deleteCardset.js";
 import "../modal/deleteTranscript.js";
 import "../modal/selectWorkload.js";
-import "./item/bottom/publish.js";
-import "../index/item/bottom/license.js";
+import "./item/bottom/item/publish.js";
+import "./item/bottom/item/license.js";
 import "./index.html";
 import {Meteor} from "meteor/meteor";
 import {ServerStyle} from "../../../api/styles";
@@ -164,6 +167,10 @@ Template.filterIndex.helpers({
 	displayedTranscriptNavigation: function () {
 		return Route.isMyBonusTranscripts() || (Route.isMyTranscripts() && ServerStyle.gotSimplifiedNav());
 	}
+});
+
+Template.filterIndex.onRendered(function () {
+	Session.set('filterIndexSelectMode', undefined);
 });
 
 /*

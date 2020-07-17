@@ -1,7 +1,7 @@
 import "./aboutThisRating.html";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {TranscriptBonus} from "../../../../../api/subscriptions/transcriptBonus";
+import {TranscriptBonus} from "../../../../../../api/subscriptions/transcriptBonus";
 
 Session.set('activeTranscript', undefined);
 /*

@@ -679,7 +679,7 @@ let staging = {
 	},
 	"welcome": {
 		"title": {
-			"first": "THM",
+			"first": "staging",
 			"last": "cards",
 			"slogan_de": "ORGANIZE. LEARN. MEMORIZE!",
 			"slogan_en": "ORGANIZE. LEARN. MEMORIZE!"
