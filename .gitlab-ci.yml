@@ -123,7 +123,6 @@ stop_review:
 
 deploy_staging:
   stage: deploy
-  when: manual
   tags:
     - rsync
   dependencies:
