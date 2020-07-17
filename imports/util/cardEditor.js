@@ -13,6 +13,7 @@ import {MarkdeepEditor} from "./markdeepEditor";
 
 const subjectMaxLength = 255;
 const contentMaxLength = 300000;
+
 let editorButtonIndex = 0;
 let editorButtons = [];
 let cardNavigationName = ".cardNavigation";
@@ -131,15 +132,6 @@ export let CardEditor = class CardEditor {
 			if (editorButtons[editorButtonIndex] === cardNavigationName) {
 				firstCardNavigationCall = true;
 			}
-		}
-	}
-
-	static getMaxTextLength (type) {
-		switch (type) {
-			case 1:
-				return subjectMaxLength;
-			case 2:
-				return contentMaxLength;
 		}
 	}
 

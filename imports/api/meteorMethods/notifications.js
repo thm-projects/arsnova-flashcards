@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {check} from "meteor/check";
-import {Notifications} from "./subscriptions/notifications";
+import {Notifications} from "../subscriptions/notifications";
 
 Meteor.methods({
 	addNotification: function (target, type, text, link_id, receiver) {

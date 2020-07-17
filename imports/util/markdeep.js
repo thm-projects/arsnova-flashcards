@@ -4,7 +4,7 @@ import {DOMPurifyConfig} from "../config/dompurify.js";
 import "/client/thirdParty/markdeep.min.js";
 import * as config from "../config/markdeep.js";
 import {CardType} from "./cardTypes";
-import {getAuthorName, getOriginalAuthorName} from "../api/userdata";
+import {getAuthorName, getOriginalAuthorName} from "./userData";
 import {Utilities} from "./utilities";
 import {CardsetVisuals} from "./cardsetVisuals";
 import plantuml from "/client/thirdParty/asciidoctor/plantuml/asciidoctor-plantuml.min.js";

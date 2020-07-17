@@ -7,7 +7,7 @@ import {CardType} from "../../../../../util/cardTypes";
 import "./center.html";
 import {MarkdeepEditor} from "../../../../../util/markdeepEditor";
 import {TranscriptBonus} from "../../../../../api/subscriptions/transcriptBonus";
-import {TranscriptBonusList} from "../../../../../api/transcriptBonus";
+import {TranscriptBonusList} from "../../../../../util/transcriptBonus";
 
 /*
  * ############################################################################

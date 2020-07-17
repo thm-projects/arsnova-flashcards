@@ -1,8 +1,8 @@
 import {Meteor} from "meteor/meteor";
-import {Cardsets} from "./subscriptions/cardsets.js";
+import {Cardsets} from "../subscriptions/cardsets.js";
 import {check} from "meteor/check";
-import {UserPermissions} from "../util/permissions";
-import {Ratings} from "./subscriptions/ratings";
+import {UserPermissions} from "../../util/permissions";
+import {Ratings} from "../subscriptions/ratings";
 
 Meteor.methods({
 	rateCardset: function (cardset_id, rating) {

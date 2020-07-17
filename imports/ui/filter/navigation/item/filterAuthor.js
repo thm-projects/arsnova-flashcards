@@ -3,7 +3,7 @@ import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
 import {Filter} from "../../../../util/filter";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
-import {getAuthorName} from "../../../../api/userdata";
+import {getAuthorName} from "../../../../util/userData";
 import {Route} from "../../../../util/route";
 import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';

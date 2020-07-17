@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {check} from "meteor/check";
-import {Paid} from "./subscriptions/paid";
+import {Paid} from "../subscriptions/paid";
 
 Meteor.methods({
 	addPaid: function (cardset_id, amount) {

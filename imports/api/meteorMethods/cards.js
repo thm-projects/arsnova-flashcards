@@ -1,13 +1,13 @@
 import {Meteor} from "meteor/meteor";
-import {Cardsets} from "./subscriptions/cardsets.js";
-import {Leitner} from "./subscriptions/leitner";
-import {Wozniak} from "./subscriptions/wozniak";
+import {Cardsets} from "../subscriptions/cardsets.js";
+import {Leitner} from "../subscriptions/leitner";
+import {Wozniak} from "../subscriptions/wozniak";
 import {check} from "meteor/check";
-import {UserPermissions} from "../util/permissions";
-import {TranscriptBonus} from "./subscriptions/transcriptBonus";
-import {TranscriptBonusList} from "./transcriptBonus";
-import {CardType} from "../util/cardTypes";
-import {Cards} from "./subscriptions/cards.js";
+import {UserPermissions} from "../../util/permissions";
+import {TranscriptBonus} from "../subscriptions/transcriptBonus";
+import {TranscriptBonusList} from "../../util/transcriptBonus";
+import {CardType} from "../../util/cardTypes";
+import {Cards} from "../subscriptions/cards.js";
 
 Meteor.methods({
 	addCard: function (cardset_id, subject, content1, content2, content3, content4, content5, content6, centerTextElement, alignType, date, learningGoalLevel, backgroundStyle, transcriptBonusUser, initialLearningTime, repeatedLearningTime, answers) {

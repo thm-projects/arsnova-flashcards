@@ -4,7 +4,7 @@ import * as config from "../../../../config/routes";
 import {Meteor} from "meteor/meteor";
 import {ServerStyle} from "../../../../util/styles";
 import {Session} from "meteor/session";
-import {WebPushNotifications} from "../../../../api/webPushSubscriptions";
+import {WebPushNotifications} from "../../../../util/webPushSubscriptions";
 import {UserPermissions} from "../../../../util/permissions";
 import {MainNavigation} from "../../../../util/mainNavigation";
 

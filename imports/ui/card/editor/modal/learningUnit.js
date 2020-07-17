@@ -2,7 +2,7 @@ import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
 import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
-import {TranscriptBonusList} from "../../../../api/transcriptBonus";
+import {TranscriptBonusList} from "../../../../util/transcriptBonus";
 import {Route} from "../../../../util/route";
 import {Template} from "meteor/templating";
 import {CardType} from "../../../../util/cardTypes";

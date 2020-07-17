@@ -1,18 +1,18 @@
 import {Meteor} from "meteor/meteor";
-import {Cards} from "./subscriptions/cards.js";
-import {TranscriptBonus} from "./subscriptions/transcriptBonus";
-import {TranscriptBonusList} from "./transcriptBonus.js";
-import {Leitner} from "./subscriptions/leitner";
-import {Workload} from "./subscriptions/workload";
-import {Wozniak} from "./subscriptions/wozniak";
-import {Notifications} from "./subscriptions/notifications";
-import {Ratings} from "./subscriptions/ratings";
+import {Cards} from "../subscriptions/cards.js";
+import {TranscriptBonus} from "../subscriptions/transcriptBonus";
+import {TranscriptBonusList} from "../../util/transcriptBonus.js";
+import {Leitner} from "../subscriptions/leitner";
+import {Workload} from "../subscriptions/workload";
+import {Wozniak} from "../subscriptions/wozniak";
+import {Notifications} from "../subscriptions/notifications";
+import {Ratings} from "../subscriptions/ratings";
 import {check} from "meteor/check";
-import {CardType} from "../util/cardTypes";
-import {UserPermissions} from "../util/permissions";
-import {ServerStyle} from "../util/styles";
-import {Utilities} from "../util/utilities";
-import {Cardsets} from "./subscriptions/cardsets.js";
+import {CardType} from "../../util/cardTypes";
+import {UserPermissions} from "../../util/permissions";
+import {ServerStyle} from "../../util/styles";
+import {Utilities} from "../../util/utilities";
+import {Cardsets} from "../subscriptions/cardsets.js";
 
 Meteor.methods({
 	getSearchCategoriesResult: function (searchValue, filterType) {

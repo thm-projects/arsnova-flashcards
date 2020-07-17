@@ -1,7 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {check} from "meteor/check";
-import {UserPermissions} from "../util/permissions";
-import {AdminSettings} from "./subscriptions/adminSettings";
+import {UserPermissions} from "../../util/permissions";
+import {AdminSettings} from "../subscriptions/adminSettings";
 
 Meteor.methods({
 	updateWordcloudPomodoroSettings: function (enableWordcloudPomodoro) {

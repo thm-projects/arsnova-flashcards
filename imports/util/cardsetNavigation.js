@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
-import {WebPushNotifications} from "../api/webPushSubscriptions";
+import {WebPushNotifications} from "./webPushSubscriptions";
 import {Session} from "meteor/session";
 import {Route} from "./route";
 import {AspectRatio} from "./aspectRatio";

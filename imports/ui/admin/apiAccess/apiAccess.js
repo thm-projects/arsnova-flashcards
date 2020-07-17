@@ -2,7 +2,7 @@
 
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
-import {APIAccess} from "../../../api/subscriptions/apiAccess";
+import {APIAccess} from "../../../api/subscriptions/cardsetApiAccess";
 import {Cardsets} from "../../../api/subscriptions/cardsets.js";
 import "./apiAccess.html";
 import {Template} from "meteor/templating";

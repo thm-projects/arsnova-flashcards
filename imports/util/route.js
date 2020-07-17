@@ -6,7 +6,7 @@ import * as conf from "../config/routes.js";
 import {Cardsets} from "../api/subscriptions/cardsets";
 import {ServerStyle} from "./styles";
 import {UserPermissions} from "./permissions";
-import {getAuthorName} from "../api/userdata";
+import {getAuthorName} from "./userData";
 import * as RouteNames from "./routeNames";
 let firstTimeVisit = 'isFirstTimeVisit';
 

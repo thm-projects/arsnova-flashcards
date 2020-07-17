@@ -1,5 +1,5 @@
 import {Meteor} from "meteor/meteor";
-import {Cardsets} from "./subscriptions/cardsets.js";
+import {Cardsets} from "../subscriptions/cardsets.js";
 
 var Future = Npm.require('fibers/future');
 

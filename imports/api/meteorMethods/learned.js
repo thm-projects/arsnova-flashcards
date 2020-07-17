@@ -1,16 +1,16 @@
 import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
-import {Cardsets} from "./subscriptions/cardsets.js";
+import {Cardsets} from "../subscriptions/cardsets.js";
 import {check} from "meteor/check";
-import {UserPermissions} from "../util/permissions";
-import {getLearners} from "./cardsetUserlist";
-import * as config from "../config/leitner";
-import {LeitnerUtilities} from "../util/leitner";
-import {Leitner} from "./subscriptions/leitner.js";
-import {LeitnerHistory} from "./subscriptions/leitnerHistory";
-import {LeitnerTasks} from "./subscriptions/leitnerTasks";
-import {Workload} from "./subscriptions/workload";
-import {Wozniak} from "./subscriptions/wozniak";
+import {UserPermissions} from "../../util/permissions";
+import {CardsetUserlist} from "../../util/cardsetUserlist";
+import * as config from "../../config/leitner";
+import {LeitnerUtilities} from "../../util/leitner";
+import {Leitner} from "../subscriptions/leitner.js";
+import {LeitnerHistory} from "../subscriptions/leitnerHistory";
+import {LeitnerTasks} from "../subscriptions/leitnerTasks";
+import {Workload} from "../subscriptions/workload";
+import {Wozniak} from "../subscriptions/wozniak";
 
 export const Learned = new Mongo.Collection("learned");
 
@@ -232,7 +232,7 @@ if (Meteor.isServer) {
 					}
 				});
 				Meteor.call("updateLearnerCount", cardset._id);
-				return getLearners(Workload.find({cardset_id: cardset._id, 'leitner.bonus': true}).fetch(), cardset._id);
+				return CardsetUserlist.getLearners(Workload.find({cardset_id: cardset._id, 'leitner.bonus': true}).fetch(), cardset._id);
 			} else {
 				throw new Meteor.Error("not-authorized");
 			}

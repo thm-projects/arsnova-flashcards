@@ -4,7 +4,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Route} from "../../../../util/route";
 import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
-import {TranscriptBonusList} from "../../../../api/transcriptBonus";
+import {TranscriptBonusList} from "../../../../util/transcriptBonus";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./card.html";
 

@@ -3,7 +3,7 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "./cardsets";
 import {UserPermissions} from "../../util/permissions";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
-import {TranscriptBonusList} from "../transcriptBonus";
+import {TranscriptBonusList} from "../../util/transcriptBonus";
 
 export const TranscriptBonus = new Mongo.Collection("transcriptBonus");
 

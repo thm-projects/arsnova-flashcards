@@ -1,7 +1,7 @@
 import "./deadline.html";
 import {Template} from "meteor/templating";
 import {TranscriptBonus} from "../../../../../../api/subscriptions/transcriptBonus";
-import {TranscriptBonusList} from "../../../../../../api/transcriptBonus";
+import {TranscriptBonusList} from "../../../../../../util/transcriptBonus";
 
 /*
  * ############################################################################

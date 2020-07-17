@@ -5,7 +5,7 @@ import {Leitner} from "../imports/api/subscriptions/leitner.js";
 import {Notifications} from "./notifications.js";
 import {AdminSettings} from "../imports/api/subscriptions/adminSettings.js";
 import {Cardsets} from "../imports/api/subscriptions/cardsets.js";
-import {getAuthorName} from "../imports/api/userdata";
+import {getAuthorName} from "../imports/api/meteorMethods/userData";
 import {ServerStyle} from "../imports/util/styles";
 
 /**
