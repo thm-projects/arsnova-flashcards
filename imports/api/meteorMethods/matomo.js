@@ -1,4 +1,4 @@
-import {UserPermissions} from "../permissions";
+import {UserPermissions} from "../../util/permissions";
 
 Meteor.methods({
 	getMatomoToken: function () {

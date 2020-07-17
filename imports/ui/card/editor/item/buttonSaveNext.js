@@ -1,5 +1,5 @@
-import {CardEditor} from "../../../../api/cardEditor.js";
-import {CardIndex} from "../../../../api/cardIndex";
+import {CardEditor} from "../../../../util/cardEditor.js";
+import {CardIndex} from "../../../../util/cardIndex";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
 import "./buttonSaveNext.html";

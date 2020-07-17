@@ -126,7 +126,7 @@
         <div class="modal-footer">
             {{#unless isNew}}
                 {{#unless learningActive}}
-                    {{#if isActiveRoute regex='cardsetdetailsid|cardsetlistid'}}
+                    {{#if isActiveRoute regex='cardsetdetailsid'}}
                         <button id="cardSetDelete"
                                 class="btn btn-raised btn-danger btn-block btn-setDelete col-xs-12 col-sm-3">
                         {{#if isRepetitorienFilterIndexOrShuffle}}
@@ -144,7 +144,7 @@
             {{/unless}}
             <button id="cardSetCancel" class="btn btn-raised {{#unless
                     isNew}}{{#if isActiveRoute
-                                 regex='cardsetdetailsid|cardsetlistid'}}cardSetCancel{{/if}}{{/unless}} btn-default btn-block col-xs-12 col-sm-3"
+                                 regex='cardsetdetailsid'}}cardSetCancel{{/if}}{{/unless}} btn-default btn-block col-xs-12 col-sm-3"
                     data-dismiss="modal">{{_
                     "modal-dialog.cancel"}}</button>
             <button id="cardSetSave"

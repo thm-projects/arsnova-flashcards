@@ -1,12 +1,12 @@
 import {Session} from "meteor/session";
-import {CardType} from "../../../api/cardTypes";
+import {CardType} from "../../../util/cardTypes";
 import {Template} from "meteor/templating";
 import {Cardsets} from "../../../api/subscriptions/cardsets";
-import {CardEditor} from "../../../api/cardEditor.js";
-import {CardVisuals} from "../../../api/cardVisuals";
+import {CardEditor} from "../../../util/cardEditor.js";
+import {CardVisuals} from "../../../util/cardVisuals";
 import ResizeSensor from "../../../../client/thirdParty/resizeSensor/ResizeSensor";
 import {Cards} from "../../../api/subscriptions/cards";
-import {MarkdeepEditor} from "../../../api/markdeepEditor";
+import {MarkdeepEditor} from "../../../util/markdeepEditor";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "../card.js";
 import "../../markdeep/editor/content/content.js";
@@ -20,7 +20,7 @@ import "./item/buttonSaveReturn.js";
 import "./item/learningGoalLevel.js";
 import "./item/subject.js";
 import "./editor.html";
-import {Route} from "../../../api/route";
+import {Route} from "../../../util/route";
 
 /*
  * ############################################################################

@@ -218,3 +218,10 @@ input, textarea {
 .resultsHeader {
   cursor: default;
 }
+
+@media (min-width: 1200px) {
+  .resultItemHeaderBottomAreaButtons {
+    padding-left: 0;
+  }
+}
+

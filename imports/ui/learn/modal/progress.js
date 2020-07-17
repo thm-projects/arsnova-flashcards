@@ -3,8 +3,8 @@ import "./progress.html";
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
-import {getAuthorName} from "../../../api/userdata";
-import {LeitnerProgress} from "../../../api/leitnerProgress";
+import {getAuthorName} from "../../../util/userData";
+import {LeitnerProgress} from "../../../util/leitnerProgress";
 
 Session.setDefault("progressModalActive", false);
 

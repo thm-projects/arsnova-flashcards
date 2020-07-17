@@ -1,11 +1,11 @@
 import "./review.html";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {CardVisuals} from "../../../../api/cardVisuals";
-import {CardNavigation} from "../../../../api/cardNavigation";
-import {TranscriptBonusList} from "../../../../api/transcriptBonus";
+import {CardVisuals} from "../../../../util/cardVisuals";
+import {CardNavigation} from "../../../../util/cardNavigation";
+import {TranscriptBonusList} from "../../../../util/transcriptBonus";
 import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
-import {Route} from "../../../../api/route";
+import {Route} from "../../../../util/route";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*

@@ -1,15 +1,15 @@
 import {Session} from "meteor/session";
-import {CardVisuals} from "../../../api/cardVisuals";
-import {Route} from "../../../api/route";
-import {CardType} from "../../../api/cardTypes";
-import {CardNavigation} from "../../../api/cardNavigation";
+import {CardVisuals} from "../../../util/cardVisuals";
+import {Route} from "../../../util/route";
+import {CardType} from "../../../util/cardTypes";
+import {CardNavigation} from "../../../util/cardNavigation";
 import "./item/review.js";
 import "./navigation.html";
 import {Cards} from "../../../api/subscriptions/cards";
-import {CardIndex} from "../../../api/cardIndex";
-import {MainNavigation} from "../../../api/mainNavigation";
-import {NavigatorCheck} from "../../../api/navigatorCheck";
-import {FirstTimeVisit} from "../../../api/firstTimeVisit";
+import {CardIndex} from "../../../util/cardIndex";
+import {MainNavigation} from "../../../util/mainNavigation";
+import {NavigatorCheck} from "../../../util/navigatorCheck";
+import {FirstTimeVisit} from "../../../util/firstTimeVisit";
 Session.setDefault('activeCardSide', undefined);
 Session.setDefault('leitnerHistoryTimestamps', {question: new Date(), answer: new Date()});
 

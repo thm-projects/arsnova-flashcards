@@ -1,7 +1,7 @@
 import "./answerEditor.html";
-import {MarkdeepEditor} from "../../../../../api/markdeepEditor";
+import {MarkdeepEditor} from "../../../../../util/markdeepEditor";
 import {Session} from "meteor/session";
-import {CardVisuals} from "../../../../../api/cardVisuals";
+import {CardVisuals} from "../../../../../util/cardVisuals";
 
 let answerDropdownResizeSensor;
 

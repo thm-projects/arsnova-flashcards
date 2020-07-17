@@ -2,9 +2,9 @@ import {Meteor} from "meteor/meteor";
 import {check} from "meteor/check";
 import {Wozniak} from "../subscriptions/wozniak";
 import {Cardsets} from "../subscriptions/cardsets";
-import {Bonus} from "../bonus";
-import {UserPermissions} from "../permissions";
-import {CardType} from "../cardTypes";
+import {Bonus} from "../../util/bonus";
+import {UserPermissions} from "../../util/permissions";
+import {CardType} from "../../util/cardTypes";
 import {Cards} from "../subscriptions/cards";
 
 Meteor.methods({

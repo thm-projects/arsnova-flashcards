@@ -1,7 +1,7 @@
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./pool.html";
-import {ServerStyle} from "../../../api/styles";
+import {ServerStyle} from "../../../util/styles";
 
 Template.useCasesItemPool.helpers({
 	gotPool: function () {

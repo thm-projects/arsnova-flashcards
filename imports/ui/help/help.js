@@ -4,7 +4,7 @@ import "./content/en/helpContent.js";
 import "./modal/helpModal.js";
 import "./help.html";
 import {Template} from "meteor/templating";
-import {LoginTasks} from "../../api/login";
+import {LoginTasks} from "../../util/login";
 
 /*
  * ############################################################################

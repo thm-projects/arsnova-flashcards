@@ -24,6 +24,7 @@ let paths = [
 	'./{i18n,server,tests}/**/*.js',
 	'./imports/**/*.js',
 	'!./imports/startup/client/routes.js',
+	'!./imports/startup/client/routes/**/*.js',
 	'./client/head.js'
 ];
 

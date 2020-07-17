@@ -2,49 +2,16 @@ import {Mongo} from "meteor/mongo";
 import {Cardsets} from "./cardsets";
 import {Meteor} from "meteor/meteor";
 import {TranscriptBonus} from "./transcriptBonus";
-import {TranscriptBonusList} from "../transcriptBonus";
-import {UserPermissions} from "../permissions";
-import {ServerStyle} from "../styles";
+import {TranscriptBonusList} from "../../util/transcriptBonus";
+import {UserPermissions} from "../../util/permissions";
+import {ServerStyle} from "../../util/styles";
 import {Paid} from "./paid";
-import {CardType} from "../cardTypes";
+import {CardType} from "../../util/cardTypes";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
-import {CardEditor} from "../cardEditor";
+import {disableAnswersOption, getPreviewCards} from "../../util/cards";
 
 export const Cards = new Mongo.Collection("cards");
-let disableAnswersOption = {fields: {answers: 0}};
 
-function getPreviewCards(cardset_id) {
-	let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1, cardGroups: 1, kind: 1}});
-	let filterQuery = {
-		$or: [
-			{cardset_id: cardset._id},
-			{cardset_id: {$in: cardset.cardGroups}}
-		]
-	};
-	let count = Cards.find(filterQuery).count();
-	let cardIdArray = Cards.find(filterQuery, {_id: 1}).map(function (card) {
-		return card._id;
-	});
-	let limit;
-
-	if (count < 10) {
-		limit = 2;
-	} else {
-		limit = 5;
-	}
-
-	let j, x, i;
-	for (i = cardIdArray.length - 1; i > 0; i--) {
-		j = Math.floor(Math.random() * (i + 1));
-		x = cardIdArray[i];
-		cardIdArray[i] = cardIdArray[j];
-		cardIdArray[j] = x;
-	}
-	while (cardIdArray.length > limit) {
-		cardIdArray.pop();
-	}
-	return Cards.find({_id: {$in: cardIdArray}, disableAnswersOption});
-}
 
 if (Meteor.isServer) {
 	Meteor.publish("demoCards", function () {
@@ -220,41 +187,44 @@ if (Meteor.isServer) {
 	});
 }
 
+const subjectMaxLength = 255;
+const contentMaxLength = 300000;
+
 var CardsSchema = new SimpleSchema({
 	subject: {
 		type: String,
 		optional: true,
-		max: CardEditor.getMaxTextLength(1)
+		max: subjectMaxLength
 	},
 	front: {
 		type: String,
 		optional: true,
-		max: CardEditor.getMaxTextLength(2)
+		max: contentMaxLength
 	},
 	back: {
 		type: String,
 		optional: true,
-		max: CardEditor.getMaxTextLength(2)
+		max: contentMaxLength
 	},
 	hint: {
 		type: String,
 		optional: true,
-		max: CardEditor.getMaxTextLength(2)
+		max: contentMaxLength
 	},
 	lecture: {
 		type: String,
 		optional: true,
-		max: CardEditor.getMaxTextLength(2)
+		max: contentMaxLength
 	},
 	top: {
 		type: String,
 		optional: true,
-		max: CardEditor.getMaxTextLength(2)
+		max: contentMaxLength
 	},
 	bottom: {
 		type: String,
 		optional: true,
-		max: CardEditor.getMaxTextLength(2)
+		max: contentMaxLength
 	},
 	cardset_id: {
 		type: String

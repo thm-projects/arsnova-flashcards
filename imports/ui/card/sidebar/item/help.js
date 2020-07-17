@@ -1,5 +1,5 @@
 import {Session} from "meteor/session";
-import {MainNavigation} from "../../../../api/mainNavigation";
+import {MainNavigation} from "../../../../util/mainNavigation";
 import "./help.html";
 
 /*

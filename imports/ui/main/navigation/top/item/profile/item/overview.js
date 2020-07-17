@@ -1,5 +1,5 @@
 import "./overview.html";
-import {LeitnerProgress} from "../../../../../../../api/leitnerProgress";
+import {LeitnerProgress} from "../../../../../../../util/leitnerProgress";
 
 Template.mainNavigationTopItemProfileItemOverview.events({
 	'click .profile-overview': function () {

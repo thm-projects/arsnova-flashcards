@@ -9,9 +9,9 @@ import "./item/snapshots.js";
 import "./item/intervals.js";
 import {Template} from "meteor/templating";
 import "./leitnerSimulator.html";
-import {BonusForm} from "../../../../../../api/bonusForm";
+import {BonusForm} from "../../../../../../util/bonusForm";
 import {Session} from "meteor/session";
-import {LeitnerProgress} from "../../../../../../api/leitnerProgress";
+import {LeitnerProgress} from "../../../../../../util/leitnerProgress";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 
 /*

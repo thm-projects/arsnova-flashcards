@@ -1,6 +1,6 @@
 import "./index.html";
 import {Template} from "meteor/templating";
-import {CardsetNavigation} from "../../../../api/cardsetNavigation";
+import {CardsetNavigation} from "../../../../util/cardsetNavigation";
 
 /*
  * ############################################################################

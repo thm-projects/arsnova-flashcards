@@ -1,6 +1,6 @@
 import {Mongo} from "meteor/mongo";
 import {Meteor} from "meteor/meteor";
-import {UserPermissions} from "../permissions";
+import {UserPermissions} from "../../util/permissions";
 
 export const AdminSettings = new Mongo.Collection("adminSettings");
 

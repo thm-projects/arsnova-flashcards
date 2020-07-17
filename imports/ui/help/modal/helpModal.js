@@ -1,8 +1,8 @@
 import "./helpModal.html";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Route} from "../../../api/route";
-import {MainNavigation} from "../../../api/mainNavigation";
+import {Route} from "../../../util/route";
+import {MainNavigation} from "../../../util/mainNavigation";
 
 /*
  * ############################################################################

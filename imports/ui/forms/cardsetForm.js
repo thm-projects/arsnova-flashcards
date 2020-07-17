@@ -3,13 +3,13 @@ import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import "./cardsetForm.html";
-import {CardType} from '../../api/cardTypes.js';
-import {Route} from '../../api/route.js';
-import {BertAlertVisuals} from "../../api/bertAlertVisuals";
+import {CardType} from '../../util/cardTypes.js';
+import {Route} from '../../util/route.js';
+import {BertAlertVisuals} from "../../util/bertAlertVisuals";
 import {Cardsets} from "../../api/subscriptions/cardsets";
 import * as config from "../../config/cardset";
 import "./item/sessions.js";
-import {ServerStyle} from "../../api/styles";
+import {ServerStyle} from "../../util/styles";
 
 export function isNewCardset() {
 	return Session.get('isNewCardset');

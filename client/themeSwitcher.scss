@@ -1461,6 +1461,10 @@ $themes: (
       border-bottom-color: $hint_header_border_alternative !important;
     }
 
+    #searchResults {
+      background-color: $navbar_search_result_divider_background !important;
+    }
+
     #searchResults a {
       border-bottom-color: $search_results_separator !important;
     }
@@ -2234,10 +2238,6 @@ $themes: (
     .open-search-result:hover {
       background-color: $navbar_search_result_open_background_hover !important;
       color: $navbar_search_result_open_icon_hover !important;
-    }
-
-    .search-result-divider {
-      background-color: $navbar_search_result_divider_background !important;
     }
 
     .input-search:hover {

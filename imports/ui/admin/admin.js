@@ -3,7 +3,7 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Notifications} from "../../api/subscriptions/notifications";
-import {MainNavigation} from "../../api/mainNavigation";
+import {MainNavigation} from "../../util/mainNavigation";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./admin.html";
 import {Session} from "meteor/session";

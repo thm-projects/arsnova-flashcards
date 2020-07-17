@@ -3,19 +3,19 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Route} from "../../api/route";
-import {CardVisuals} from "../../api/cardVisuals";
-import {MarkdeepContent} from "../../api/markdeep";
-import {CardNavigation} from "../../api/cardNavigation";
-import {MainNavigation} from "../../api/mainNavigation";
-import {ServerStyle} from "../../api/styles.js";
-import {AspectRatio} from "../../api/aspectRatio.js";
+import {Route} from "../../util/route";
+import {CardVisuals} from "../../util/cardVisuals";
+import {MarkdeepContent} from "../../util/markdeep";
+import {CardNavigation} from "../../util/cardNavigation";
+import {MainNavigation} from "../../util/mainNavigation";
+import {ServerStyle} from "../../util/styles.js";
+import {AspectRatio} from "../../util/aspectRatio.js";
 import "../impressum/modal/statistics/statistics.js";
 import "../welcome/welcome.js";
 import "../wordcloud/wordcloud.js";
 import "../admin/admin.js";
 import "../pomodoroTimer/pomodoroTimer.js";
-import "../../api/cardIndex.js";
+import "../../util/cardIndex.js";
 import "../loadingScreen/loadingScreen.js";
 import "./item/searchResult.js";
 import "./modal/item/closeIcon.js";
@@ -30,10 +30,11 @@ import "../learn/modal/progress.js";
 import "./main.html";
 
 import {PDFViewer} from "../../util/pdfViewer";
-import {setLanguage, setTheme} from "../../startup/client/routes";
+import {setLanguage, setTheme} from "../../startup/client/routes/onBeforeAction.js";
 
 Meteor.subscribe("notifications");
 Meteor.subscribe("serverStatistics");
+Meteor.subscribe("collegesCourses");
 
 Session.setDefault("theme", ServerStyle.getDefaultTheme());
 Session.setDefault("fullscreen", false);

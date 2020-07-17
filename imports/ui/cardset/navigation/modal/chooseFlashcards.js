@@ -2,7 +2,7 @@
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cards} from "../../../../api/subscriptions/cards";
-import {CardType} from "../../../../api/cardTypes";
+import {CardType} from "../../../../util/cardTypes";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./chooseFlashcards.html";
 

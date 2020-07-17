@@ -1,9 +1,9 @@
 import "./backToCardset.html";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
-import {Route} from "../../../../api/route";
-import {PomodoroTimer} from "../../../../api/pomodoroTimer";
+import {Route} from "../../../../util/route";
+import {PomodoroTimer} from "../../../../util/pomodoroTimer";
 import {Template} from "meteor/templating";
-import {Bonus} from "../../../../api/bonus";
+import {Bonus} from "../../../../util/bonus";
 
 /*
  * ############################################################################

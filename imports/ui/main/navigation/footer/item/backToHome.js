@@ -1,8 +1,8 @@
-import {Route} from "../../../../../api/route";
+import {Route} from "../../../../../util/route";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./backToHome.html";
 import {Template} from "meteor/templating";
-import {MainNavigation} from "../../../../../api/mainNavigation";
+import {MainNavigation} from "../../../../../util/mainNavigation";
 
 /*
  * ############################################################################

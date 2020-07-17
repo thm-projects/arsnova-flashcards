@@ -1,5 +1,5 @@
 import {Template} from "meteor/templating";
-import {Route} from "../../../../api/route";
+import {Route} from "../../../../util/route";
 import "./item/info.js";
 import "./item/about.js";
 import "./item/agb.js";
@@ -13,7 +13,7 @@ import "./item/info.js";
 import "./item/learning.js";
 import "./item/statistics.js";
 import "./footer.html";
-import {MainNavigation} from "../../../../api/mainNavigation";
+import {MainNavigation} from "../../../../util/mainNavigation";
 import {Meteor} from "meteor/meteor";
 import ResizeSensor from "../../../../../client/thirdParty/resizeSensor/ResizeSensor";
 

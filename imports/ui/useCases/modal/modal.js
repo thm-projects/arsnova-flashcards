@@ -3,8 +3,8 @@ import {Session} from "meteor/session";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
-import {Route} from "../../../api/route";
-import {MainNavigation} from "../../../api/mainNavigation";
+import {Route} from "../../../util/route";
+import {MainNavigation} from "../../../util/mainNavigation";
 
 //0 = Nothing
 //1 = CreateCardIndex

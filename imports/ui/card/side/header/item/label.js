@@ -1,4 +1,4 @@
-import {CardType} from "../../../../../api/cardTypes";
+import {CardType} from "../../../../../util/cardTypes";
 import "./label.html";
 
 /*

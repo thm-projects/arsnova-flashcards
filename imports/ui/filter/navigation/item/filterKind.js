@@ -1,8 +1,8 @@
 import {Template} from "meteor/templating";
-import {FilterNavigation} from "../../../../api/filterNavigation";
-import {Filter} from "../../../../api/filter";
-import {MainNavigation} from "../../../../api/mainNavigation";
-import {ServerStyle} from "../../../../api/styles";
+import {FilterNavigation} from "../../../../util/filterNavigation";
+import {Filter} from "../../../../util/filter";
+import {MainNavigation} from "../../../../util/mainNavigation";
+import {ServerStyle} from "../../../../util/styles";
 import "./filterKind.html";
 
 /*

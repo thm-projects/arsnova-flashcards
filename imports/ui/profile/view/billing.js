@@ -4,7 +4,7 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/subscriptions/cardsets";
-import {BertAlertVisuals} from "../../../api/bertAlertVisuals";
+import {BertAlertVisuals} from "../../../util/bertAlertVisuals";
 import {Paid} from "../../../api/subscriptions/paid";
 import "./billing.html";
 

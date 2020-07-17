@@ -3,10 +3,10 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Cardsets} from "../../../../../api/subscriptions/cardsets";
 import {Ratings} from "../../../../../api/subscriptions/ratings";
-import {UserPermissions} from "../../../../../api/permissions";
+import {UserPermissions} from "../../../../../util/permissions";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./ratings.html";
-import {Route} from "../../../../../api/route";
+import {Route} from "../../../../../util/route";
 
 /*
 * ############################################################################

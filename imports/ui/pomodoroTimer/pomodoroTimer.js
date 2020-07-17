@@ -1,10 +1,10 @@
 //------------------------ IMPORTS
 import "./pomodoroTimer.html";
 import {Template} from "meteor/templating";
-import {PomodoroTimer} from "../../api/pomodoroTimer";
-import {Bonus} from "../../api/bonus";
-import {Route} from "../../api/route";
-import {CardVisuals} from "../../api/cardVisuals";
+import {PomodoroTimer} from "../../util/pomodoroTimer";
+import {Bonus} from "../../util/bonus";
+import {Route} from "../../util/route";
+import {CardVisuals} from "../../util/cardVisuals";
 import {Session} from "meteor/session";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 

@@ -1,10 +1,10 @@
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
-import {Search} from "../../../../../api/search.js";
-import {MainNavigation} from "../../../../../api/mainNavigation.js";
-import {Route} from "../../../../../api/route";
+import {Search} from "../../../../../util/search.js";
+import {MainNavigation} from "../../../../../util/mainNavigation.js";
+import {Route} from "../../../../../util/route";
 import "./search.html";
-import {FilterNavigation} from "../../../../../api/filterNavigation";
+import {FilterNavigation} from "../../../../../util/filterNavigation";
 
 /*
 * ############################################################################

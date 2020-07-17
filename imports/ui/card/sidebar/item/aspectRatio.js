@@ -1,4 +1,4 @@
-import {CardVisuals} from "../../../../api/cardVisuals.js";
+import {CardVisuals} from "../../../../util/cardVisuals.js";
 import "./aspectRatio.html";
 
 /*

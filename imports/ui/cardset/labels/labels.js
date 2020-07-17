@@ -1,4 +1,4 @@
-import {LeitnerProgress} from "../../../api/leitnerProgress";
+import {LeitnerProgress} from "../../../util/leitnerProgress";
 import {Template} from "meteor/templating";
 import './item/arsnovaClick.js';
 import './item/fragJetzt.js';

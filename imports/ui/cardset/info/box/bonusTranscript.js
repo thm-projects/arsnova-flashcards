@@ -1,6 +1,6 @@
 //------------------------ IMPORTS
 import {Template} from "meteor/templating";
-import {CardsetVisuals} from "../../../../api/cardsetVisuals";
+import {CardsetVisuals} from "../../../../util/cardsetVisuals";
 import "./item/bonusPointsFAQ.js";
 import "./item/transcript/bonusMaxPoints.js";
 import "./item/transcript/editDeadline.js";

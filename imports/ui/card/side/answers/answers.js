@@ -1,8 +1,8 @@
 import "./answers.html";
 import {Template} from "meteor/templating";
-import {CardType} from "../../../../api/cardTypes";
-import {MarkdeepEditor} from "../../../../api/markdeepEditor";
-import {Route} from "../../../../api/route";
+import {CardType} from "../../../../util/cardTypes";
+import {MarkdeepEditor} from "../../../../util/markdeepEditor";
+import {Route} from "../../../../util/route";
 
 Template.cardAnswers.helpers({
 	gotAnswers: function () {

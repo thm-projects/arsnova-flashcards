@@ -1,7 +1,7 @@
 import "./countCards.html";
-import {Route} from "../../../../../api/route";
+import {Route} from "../../../../../util/route";
 import {Cards} from "../../../../../api/subscriptions/cards";
-import {CardIndex} from "../../../../../api/cardIndex";
+import {CardIndex} from "../../../../../util/cardIndex";
 import {Cardsets} from "../../../../../api/subscriptions/cardsets";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 

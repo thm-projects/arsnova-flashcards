@@ -10,12 +10,12 @@ import {Wozniak} from "../../api/subscriptions/wozniak";
 import {AdminSettings} from "../../api/subscriptions/adminSettings";
 import {CronScheduler} from "../../../server/cronjob.js";
 import {Ratings} from "../../api/subscriptions/ratings";
-import {CardType} from "../../api/cardTypes";
+import {CardType} from "../../util/cardTypes";
 import {WebPushSubscriptions} from "../../api/subscriptions/webPushNotifications";
 import {Paid} from "../../api/subscriptions/paid";
 import {TranscriptBonus} from "../../api/subscriptions/transcriptBonus";
 import {LeitnerUtilities} from "../../util/leitner";
-import {Utilities} from "../../api/utilities";
+import {Utilities} from "../../util/utilities";
 import * as bonusFormConfig from "../../config/bonusForm.js";
 import * as leitnerConfig from "../../config/leitner.js";
 

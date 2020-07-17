@@ -1,9 +1,9 @@
 import "./buttonCancel.html";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Template} from "meteor/templating";
-import {Route} from "../../../../api/route";
+import {Route} from "../../../../util/route";
 import {Session} from "meteor/session";
-import {CardEditor} from "../../../../api/cardEditor";
+import {CardEditor} from "../../../../util/cardEditor";
 
 /*
  * ############################################################################

@@ -1,6 +1,6 @@
 import {LeitnerTasks} from "../../../../api/subscriptions/leitnerTasks";
 import './leitnerTimer.html';
-import {ServerStyle} from "../../../../api/styles";
+import {ServerStyle} from "../../../../util/styles";
 
 /*
  * ############################################################################

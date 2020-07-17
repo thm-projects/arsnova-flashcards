@@ -3,7 +3,7 @@
         <tr>
             <td>{{_ "cardset.info.rating"}}:</td>
             <td>
-                {{#if isActiveRoute regex="cardsetdetailsid|cardsetlistid"}}
+                {{#if isActiveRoute regex="cardsetdetailsid"}}
                     {{#if canRateCardset}}
                         {{> starsRating id="rating" class='star-ratings' rating=this.rating mutable=true}}
                     {{else}}
@@ -19,7 +19,7 @@
                 {{getRaterCount this.raterCount}}
             </td>
         </tr>
-        {{#if isActiveRoute regex="cardsetdetailsid|cardsetlistid"}}
+        {{#if isActiveRoute regex="cardsetdetailsid"}}
             {{#if canRateCardset}}
                 <tr>
                     <td>{{_ "cardset.info.userRating"}}:</td>

@@ -3,13 +3,13 @@ import {check} from "meteor/check";
 import {Leitner} from "../subscriptions/leitner";
 import {Workload} from "../subscriptions/workload";
 import {Cardsets} from "../subscriptions/cardsets";
-import {Bonus} from "../bonus";
-import {Profile} from "../profile";
-import {UserPermissions} from "../permissions";
-import {CardType} from "../cardTypes";
+import {Bonus} from "../../util/bonus";
+import {Profile} from "../../util/profile";
+import {UserPermissions} from "../../util/permissions";
+import {CardType} from "../../util/cardTypes";
 import {LeitnerUtilities} from "../../util/leitner";
 import {LeitnerTasks} from "../subscriptions/leitnerTasks";
-import {PomodoroTimer} from "../pomodoroTimer";
+import {PomodoroTimer} from "../../util/pomodoroTimer";
 
 Meteor.methods({
 	initializeWorkloadData: function (cardset_id, user_id) {

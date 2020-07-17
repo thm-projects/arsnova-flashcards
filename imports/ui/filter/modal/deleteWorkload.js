@@ -4,10 +4,10 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Workload} from "../../../api/subscriptions/workload";
-import {Filter} from "../../../api/filter";
+import {Filter} from "../../../util/filter";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import "./deleteWorkload.html";
-import {Route} from "../../../api/route";
+import {Route} from "../../../util/route";
 
 /*
  * ############################################################################

@@ -1,7 +1,7 @@
 //------------------------ IMPORTS
 
 import {Template} from "meteor/templating";
-import {CardVisuals} from "../../../api/cardVisuals";
+import {CardVisuals} from "../../../util/cardVisuals";
 import "./sidebar.html";
 import "./item/aspectRatio.js";
 import "./item/arsnovaClick.js";
@@ -24,9 +24,9 @@ import "./item/presentation.js";
 import "./item/toggle3D.js";
 import "./item/leitnerGraph.js";
 import "./item/leitnerHistory.js";
-import {Route} from "../../../api/route";
-import {Bonus} from "../../../api/bonus";
-import {NavigatorCheck} from "../../../api/navigatorCheck";
+import {Route} from "../../../util/route";
+import {Bonus} from "../../../util/bonus";
+import {NavigatorCheck} from "../../../util/navigatorCheck";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*

@@ -1,5 +1,5 @@
 import "./left.html";
-import {PomodoroTimer} from "../../../../../api/pomodoroTimer";
+import {PomodoroTimer} from "../../../../../util/pomodoroTimer";
 
 /*
  * ############################################################################

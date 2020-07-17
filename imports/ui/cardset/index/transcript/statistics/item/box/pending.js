@@ -1,5 +1,5 @@
 import "./pending.html";
-import {TranscriptBonusList} from "../../../../../../../api/transcriptBonus";
+import {TranscriptBonusList} from "../../../../../../../util/transcriptBonus";
 
 /*
  * ############################################################################

@@ -1,5 +1,5 @@
 import {Session} from "meteor/session";
-import {CardEditor} from "../../../../api/cardEditor.js";
+import {CardEditor} from "../../../../util/cardEditor.js";
 import "./learningGoalLevel.html";
 
 /*

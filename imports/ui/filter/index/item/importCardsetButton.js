@@ -1,7 +1,7 @@
 import {Session} from "meteor/session";
-import {Profile} from "../../../../api/profile";
-import {SweetAlertMessages} from "../../../../api/sweetAlert";
-import {BertAlertVisuals} from "../../../../api/bertAlertVisuals";
+import {Profile} from "../../../../util/profile";
+import {SweetAlertMessages} from "../../../../util/sweetAlert";
+import {BertAlertVisuals} from "../../../../util/bertAlertVisuals";
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';

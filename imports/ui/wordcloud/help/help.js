@@ -1,5 +1,5 @@
 import {Template} from "meteor/templating";
-import {WordcloudCanvas} from "../../../api/wordcloudCanvas";
+import {WordcloudCanvas} from "../../../util/wordcloudCanvas";
 import "./de/content.js";
 import "./en/content.js";
 import "./help.html";

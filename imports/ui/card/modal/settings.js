@@ -1,9 +1,9 @@
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Route} from "../../../api/route";
-import {CardType} from "../../../api/cardTypes";
+import {Route} from "../../../util/route";
+import {CardType} from "../../../util/cardTypes";
 import {Cardsets} from "../../../api/subscriptions/cardsets";
-import {CardNavigation} from "../../../api/cardNavigation";
+import {CardNavigation} from "../../../util/cardNavigation";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./settings.html";
 

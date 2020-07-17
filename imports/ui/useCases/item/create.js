@@ -1,8 +1,8 @@
 import {Template} from "meteor/templating";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
-import {CardType} from "../../../api/cardTypes";
-import {ServerStyle} from "../../../api/styles";
+import {CardType} from "../../../util/cardTypes";
+import {ServerStyle} from "../../../util/styles";
 import "./create.html";
 
 Template.useCasesItemCreateDropdown.helpers({

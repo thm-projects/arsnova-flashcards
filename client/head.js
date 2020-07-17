@@ -1,11 +1,11 @@
 // STARTUP IMPORTS
 import "../imports/startup/client/i18n.js";
-import "../imports/startup/client/registerhelper.js";
-import "../imports/startup/client/registerServiceWorker";
-import "../imports/startup/client/routes.js";
 import "../imports/ui/main/main.js";
+import "../imports/startup/client/routes/main.js";
+import "../imports/startup/client/registerhelper/main.js";
+import "../imports/startup/client/registerServiceWorker";
 import {Session} from "meteor/session";
-import {ServerStyle} from "../imports/api/styles.js";
+import {ServerStyle} from "../imports/util/styles.js";
 
 window.addEventListener("load", function () {
 	window.cookieconsent.initialise({

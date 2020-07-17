@@ -1,7 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "./cardsets";
 import {Cards} from "./cards";
-import {ServerStyle} from "../styles.js";
+import {ServerStyle} from "../../util/styles.js";
 
 if (Meteor.isServer) {
 	Meteor.publish('serverInventory', function () {

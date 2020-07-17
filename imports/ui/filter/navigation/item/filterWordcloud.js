@@ -1,6 +1,6 @@
 import "./filterWordcloud.html";
 import {Template} from "meteor/templating";
-import {Filter} from "../../../../api/filter";
+import {Filter} from "../../../../util/filter";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 
 /*

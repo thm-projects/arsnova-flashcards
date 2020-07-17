@@ -1,8 +1,8 @@
 import "./delete.html";
-import {Route} from "../../../../api/route";
+import {Route} from "../../../../util/route";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {Template} from "meteor/templating";
-import {CardNavigation} from "../../../../api/cardNavigation";
+import {CardNavigation} from "../../../../util/cardNavigation";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 /*

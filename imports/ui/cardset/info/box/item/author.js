@@ -1,7 +1,7 @@
 //------------------------ IMPORTS
 import "./author.html";
 import {Template} from "meteor/templating";
-import {UserPermissions} from "../../../../../api/permissions";
+import {UserPermissions} from "../../../../../util/permissions";
 import {Session} from "meteor/session";
 
 /*

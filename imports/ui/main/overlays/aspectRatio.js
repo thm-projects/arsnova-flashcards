@@ -1,8 +1,8 @@
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Icons} from "../../../api/icons";
-import {CardVisuals} from "../../../api/cardVisuals.js";
-import {AspectRatio} from "../../../api/aspectRatio.js";
+import {Icons} from "../../../util/icons";
+import {CardVisuals} from "../../../util/cardVisuals.js";
+import {AspectRatio} from "../../../util/aspectRatio.js";
 import "./aspectRatio.html";
 
 
