@@ -13,7 +13,7 @@
     "useCase": {
       "title": "Use Case",
       "all": "Alle",
-      "only": "Bestandteil der Hauptziele"
+      "only": "Hauptziele"
     },
     "from": "Ab",
     "noResults": "Keine Kartei oder Repetitorium ausgewählt oder Filtern liefert kein Ergebnis.",
