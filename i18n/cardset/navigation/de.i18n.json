@@ -2,14 +2,14 @@
   "cardsetNavigation": {
     "button": {
       "index":  {
-        "cardset": "Kartei-Index",
-        "repetitorium": "Rep-Index"
+        "cardset": "Kartenverzeichnis",
+        "repetitorium": "Kartenverzeichnis"
       }
     },
     "tooltip": {
       "index":  {
-        "cardset": "Kartei-Index",
-        "repetitorium": "Rep-Index"
+        "cardset": "Kartenverzeichnis",
+        "repetitorium": "Kartenverzeichnis"
       }
     }
   }

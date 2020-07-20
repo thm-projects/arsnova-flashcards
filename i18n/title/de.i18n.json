@@ -24,7 +24,7 @@
       "shuffle": "__app__: Repetitorium »__name__« zusammenstellen",
       "presentation": "__app__: Kartenschau »__name__«",
       "index": {
-        "cardset": "__app__: Kartei-Index »__name__«",
+        "cardset": "__app__: Kartenverzeichnis »__name__«",
         "rep": "__app__: Rep-Index »__name__«"
       },
       "leitner": "__app__: Leitner-Plan »__name__«",

@@ -20,7 +20,7 @@
       "button": {
         "cancel": "Danke, ich kenne mich aus.",
         "personal": {
-          "cardsets": "Bring mich zu meinen Karten",
+          "cardsets": "Bring mich zu meinen Karteien",
           "transcripts": "Bring mich zu meinen Mitschriften"
         },
         "specialCardsets": {
