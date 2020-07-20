@@ -120,6 +120,13 @@
                         </a>
                     </li>
                     <li>
+                        <a class="{{#if isActiveRoute regex='admin_publicCardsets'}}active{{/if}}"
+                           href="{{pathFor route='admin_publicCardsets'}}">
+                            <i class="far fa-eye"></i>
+                            <span>{{_ "admin.publicCardsets"}}</span>
+                        </a>
+                    </li>
+                    <li>
                         <a class="{{#if isActiveRoute regex='admin_notifications'}}active{{/if}}"
                            href="{{pathFor route='admin_notifications'}}">
                             <i class="fas fa-bell"></i>

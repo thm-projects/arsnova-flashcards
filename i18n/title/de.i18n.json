@@ -14,7 +14,8 @@
       "api": "__app__: Backend API-Zugänge",
       "notifications": "__app__: Backend Benachrichtigungen",
       "settings": "__app__: Backend Einstellungen",
-      "matomo": "__app__: Backend Matomo Statistiken"
+      "matomo": "__app__: Backend Matomo Statistiken",
+      "publicCardsets": "__app__: Backend Karteien veröffentlichen"
     },
     "cardset": {
       "cardset": "__app__: Kartei »__name__«",

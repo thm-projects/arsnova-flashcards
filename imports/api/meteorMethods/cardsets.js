@@ -1009,5 +1009,8 @@ Meteor.methods({
 				return Cardsets.find({_id: {$in: cardsetIDFilter}}, options).fetch();
 			}
 		}
+	},
+	requestToMakeVisible: function (cardset_id) {
+		check(cardset_id, String);
 	}
 });

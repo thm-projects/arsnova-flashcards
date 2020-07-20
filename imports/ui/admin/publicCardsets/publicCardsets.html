@@ -1,0 +1,13 @@
+<template name="admin_publicCardsets">
+    <div class="content-header">
+        <h1>
+            {{_ "admin.publicCardsets"}}
+        </h1>
+    </div>
+
+    <div class="content">
+        <div class="admin_table">
+            {{> reactiveTable collection=publicCardsets settings=tableSettings}}
+        </div>
+    </div>
+</template>

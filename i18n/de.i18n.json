@@ -2087,6 +2087,7 @@
     "disconnected": "Keine Serververbindung"
   },
   "admin": {
+    "publicCardsets": "zu veröffentliche Karteien",
     "matomoStatistics": "Matomo-Statistiken",
     "allLearnedCardsets": "Nach dem Leitner-Plan gelernte Karten über alle Karteien",
     "learnedCardsets": "Lernstatistik der Kartei",
@@ -2313,6 +2314,12 @@
       "title": "Versenden von Push-Benachrichtigungen",
       "enabled": "Aktiviert",
       "disabled": "Deaktiviert"
+    },
+    "public-cardsets": {
+      "user": "Benutzer",
+      "cardset": "Kartei",
+      "confirm": "Bestätigen",
+      "decline": "Ablehnen"
     }
   },
   "access-denied": {

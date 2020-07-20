@@ -51,6 +51,7 @@ let admin_user = 'admin_user';
 let admin_learningStatistics = 'admin_learningStatistics';
 let admin_matomoStatistics = 'admin_matomoStatistics';
 let admin_apiAccess = 'admin_apiAccess';
+let admin_publicCardsets = 'admin_publicCardsets';
 let admin_notifications = 'admin_notifications';
 let admin_university = 'admin_university';
 let admin_settings = 'admin_settings';
@@ -109,6 +110,7 @@ module.exports = {
 	admin_learningStatistics,
 	admin_matomoStatistics,
 	admin_apiAccess,
+	admin_publicCardsets,
 	admin_notifications,
 	admin_university,
 	admin_settings

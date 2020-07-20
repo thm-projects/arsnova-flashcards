@@ -3,6 +3,7 @@ import "./admin/dashboard.js";
 import "./admin/general.js";
 import "./admin/learningStatistics.js";
 import "./admin/matomoStatistics.js";
+import "./admin/publicCardsets.js";
 import "./admin/notifications.js";
 import "./admin/settings.js";
 import "./admin/university.js";
