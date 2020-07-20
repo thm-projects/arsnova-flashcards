@@ -298,8 +298,8 @@
     "personal": {
       "personal": {
         "zero": "anlegen",
-        "one": "Meine Karten",
-        "multiple": "Meine Karten"
+        "one": "Meine Kartei",
+        "multiple": "Meine Karteien"
       },
       "cardsets": {
         "zero": "Kartei anlegen",
@@ -464,9 +464,9 @@
     "wrong-file": "Falsches Dateiformat"
   },
   "download-form": {
-    "popover-content": "Exportiert die Karten als JSON Dateiformat.",
-    "popover-content2": "Exportiert die Karten als Markdeep Dateiformat.",
-    "download-title": "Karten exportieren",
+    "popover-content": "Exportiert die Kartei im JSON-Format",
+    "popover-content2": "Exportiert die Kartei im Markdeep-Format",
+    "download-title": "Kartei exportieren",
     "download-card-title-placeholder": "Markdeep export",
     "download-type": "Dateiformat",
     "download-type1": "🍅__lastAppTitle__",
@@ -494,7 +494,7 @@
     "text": "Willst du diese Karte wirklich löschen?"
   },
   "confirm-form-learn": {
-    "title": "Enfernen",
+    "title": "Entfernen",
     "text": "Wenn du den Vorgang bestätigst, wird die Lernstatistik für diese Kartei gelöscht."
   },
   "confirm-enter-learnphase": {
@@ -622,9 +622,9 @@
     "filter-info-extra-small": "Sortieren & filtern"
   },
   "set-list-empty": {
-    "emptytextlist": "Eine Kartei besteht aus Karten desselben Typs.",
+    "emptytextlist": "Eine »Kartei« (Kartensatz) besteht aus Karten desselben Typs.",
     "emptypooltextlist": "Keine Kartei vorhanden",
-    "newset": "Kartei anlegen (Kartenbox)",
+    "newset": "Kartei anlegen (Kartensatz)",
     "newsetSimpleNav": "Kartei anlegen",
     "emptytexttranscripts": "Du hast noch keine Mitschrift erstellt. Informiere dich unter »Hilfe«, wie du für das Mitschreiben auf \uD83C\uDF45cards Bonuspunkte erhalten kannst.",
     "emptytexttranscriptBonus": "Keine Abgaben vorhanden."
@@ -788,15 +788,15 @@
       "overrideOnlyEmptySessions": "Nur Karteien ohne Sitzungs-Code überschreiben"
     },
     "missingFields": "Bitte fülle die folgenden Felder aus",
-    "newcarddeck": "Kartei anlegen (Kartenbox)",
+    "newcarddeck": "Kartei anlegen (Kartensatz)",
     "newcarddeckSimpleNav": "Kartei anlegen",
     "editcard": "Karte editieren",
-    "editcardset": "Kartei editieren",
+    "editcardset": "Kartei editieren oder löschen",
     "editRepetitorium": "Beschreibung bearbeiten",
     "adminEditCardset": "Admin-Einstellungen",
     "editreferences": "Repetitorium zusammenstellen",
     "name": "Karteiname",
-    "nameplaceholder": "Beschriftung der Box in wenigen Worten",
+    "nameplaceholder": "Beschriftung der Box für die Karten in wenigen Worten",
     "descriptionplaceholder": "Worum geht es in dieser Kartei? \n\nDas Etikett des Karteikastens und die Beschreibung des Inhalts werden dir überall auf 🍅__lastAppTitle__ angezeigt.  Die Kartei bleibt privat, das heißt, sie ist für andere nicht sichtbar, solange du sie nicht veröffentlichst.",
     "categoryplaceholder": "Wähle eine Kategorie",
     "description": "Beschreibung des Inhalts",
@@ -862,7 +862,7 @@
     "moduleShortplaceholder": "Abkürzung des Modultitels",
     "moduleNumplaceholder": "Modulnummer laut Modulhandbuch",
     "moduleLinkplaceholder": "Link zur offiziellen Modulbeschreibung",
-    "deleteCards": "Willst du wirklich alle Karten in der Kartei »__name__« löschen?",
+    "deleteCards": "Willst du alle Karten der Kartei »__name__« löschen? Die Box bleibt.",
     "deleteCard": "Willst du wirklich diese Karte löschen?",
     "cancelEditCard": "Willst du wirklich den Bearbeitungsmodus verlassen? Alle nicht gespeicherten Änderungen werden verworfen.",
     "cancelEditCardTitle": "Bearbeitungsmodus verlassen"
@@ -1248,8 +1248,8 @@
       }
     },
     "tooltip": {
-      "indexCardset": "Kartei-Index öffnen",
-      "indexRep":  "Repetitorium-Index öffnen",
+      "indexCardset": "Kartenverzeichnis öffnen",
+      "indexRep":  "Kartenverzeichnis öffnen",
       "selectLicense": "Lizenz verwalten",
       "publish": "Zugang festlegen",
       "editCardset": "Metadaten der Kartei editieren",
@@ -1548,7 +1548,7 @@
       "content6": "BibTeX",
       "placeholders": {
         "subject": "Werkstitel",
-        "content1": "Notiere alle bibliografischen Angaben: vollständiger Titel, Autor/in, Erscheinungsjahr, Verlag oder Webadresse, Art der Publikation etc. Notiere die Angaben in APA-Zizierweise, sodass du sie per Copy-and-Paste in deine Thesis übernehmen kannst. \n\nZur APA-Zitierweise siehe https://www.mentorium.de/zitieren-apa-stil-zitierweise-anleitung-beispiele/. \n\nBinde ein Cover-Bild des Werkes ein. Hol es dir zum Beispiel von Amazon.",
+        "content1": "Notiere alle bibliografischen Angaben: vollständiger Titel, Autor/in, Erscheinungsjahr, Verlag oder Webadresse, Art der Publikation etc. Notiere die Angaben in APA-Zitierweise, sodass du sie per Copy-and-Paste in deine Thesis übernehmen kannst. \n\nZur APA-Zitierweise siehe https://www.mentorium.de/zitieren-apa-stil-zitierweise-anleitung-beispiele/. \n\nBinde ein Cover-Bild des Werkes ein. Hol es dir zum Beispiel von Amazon.",
         "content2": "Nenne die wichtigsten Schlagwörter, mit denen das Werk gefunden werden soll.",
         "content3": "Gib die Webadressen an, wo Rezensionen des Werkes zu finden sind. \n\nGib mindestens eine repräsentative Rezension als vollständiges Zitat hier wieder.",
         "content4": "Die Verlage stellen dir das Inhaltsverzeichnis eines Werkes und seinen Klappentext in der Regel online zur Verfügung. Verweise darauf oder übertrage sie hierher.",
@@ -1623,7 +1623,7 @@
       "placeholders": {
         "subject": "Wie heißt das Muster ?",
         "content1": "Bevor du beginnst, recherchiere im Netz, was man unter einem Entwurfsmuster versteht und wie man es formal in strukturierter Prosa beschreibt! Erkunde dich dann eingehend über das hier zu beschreibende Muster. \n\nWelches häufig auftretende allgemeine Problem löst das Muster? \n\nBeschreibe das Muster in allen seinen Aspekten – »Problem«, »Kontext«, »Kräfte« und »Lösung« – so ausführlich, dass du die oben ausgewählte Kompetenzstufe »Verstehen«, »Anwenden« usw. anhand deiner Beschreibung erreichen kannst!",
-        "content2": "Beschreibe die Lösung anhand eines Diagramms, in der Softwaretechnik mit der »Unified Modeling Language« (UML). \n\nErkäre an einem Anwendungsbeispiel, wie die Komponenten im Diagramm, ihre Beziehungen und Interaktionen das Problem lösen.",
+        "content2": "Beschreibe die Lösung anhand eines Diagramms, in der Softwaretechnik mit der »Unified Modeling Language« (UML). \n\nErkläre an einem Anwendungsbeispiel, wie die Komponenten im Diagramm, ihre Beziehungen und Interaktionen das Problem lösen.",
         "content3": "In welcher Phase des Entwurfsprozesses und unter welchen Randbedingungen tritt das Problem im Allgemeinen auf?",
         "content4": "Diskutiere die Vor- und Nachteile der Lösung.",
         "content5": "Nenne mindestens zwei Beispiele für Implementierungen des Entwurfsmusters in der industriellen Praxis.",
