@@ -464,16 +464,16 @@
     "wrong-file": "Falsches Dateiformat"
   },
   "download-form": {
-    "popover-content": "Exportiert die Kartei im JSON-Format",
-    "popover-content2": "Exportiert die Kartei im Markdeep-Format",
-    "download-title": "Kartei exportieren",
-    "download-card-title-placeholder": "Markdeep export",
+    "popover-content": "Exportiert alle Karten (nicht die Kartei) im JSON-Format",
+    "popover-content2": "Exportiert alle Karten (nicht die Kartei) im Markdeep-Format",
+    "download-title": "Karten exportieren",
+    "download-card-title-placeholder": "Markdeep-Export",
     "download-type": "Dateiformat",
     "download-type1": "🍅__lastAppTitle__",
     "download-type2": "Markdeep",
     "card-sides-table": {
       "head": {
-        "side": "Seite",
+        "side": "Kartenseite",
         "count": "Anzahl",
         "type": "Typ"
       },
@@ -482,19 +482,19 @@
         "type": {
           "question": "Frage",
           "answer": "Antwort",
-          "main-answer": "Hauptantwort",
+          "main-answer": "Antwort ohne Multiple Choice",
           "misc": ""
         }
       }
     },
-    "download": "Exportieren"
+    "download": "Karten exportieren"
   },
   "confirm-form": {
     "title": "Karte löschen",
     "text": "Willst du diese Karte wirklich löschen?"
   },
   "confirm-form-learn": {
-    "title": "Entfernen",
+    "title": "Aus dem Lernpensum entfernen",
     "text": "Wenn du den Vorgang bestätigst, wird die Lernstatistik für diese Kartei gelöscht."
   },
   "confirm-enter-learnphase": {
@@ -562,7 +562,7 @@
     "college": "Hochschule",
     "course": "Studiengang",
     "author": "Autor/in",
-    "lastEditor": "Letzter Editor/in",
+    "lastEditor": "Editor/in",
     "authorPublisher": "Autor/in | Editor/in",
     "title": "Aktuell werden folgende Karteien angeboten:",
     "everyone": "Alle",
@@ -1022,9 +1022,9 @@
     "view": "Ansicht",
     "viewmap": "Karte",
     "viewlist": "Liste",
-    "createcard": "Neue Karte",
-    "importcard": "Import",
-    "exportcard": "Export",
+    "createcard": "Neue Karte erstellen",
+    "importcard": "Karten importieren",
+    "exportcard": "Karten exportieren",
     "manageEditors": "Bearbeitungsrechte",
     "tooltip": "Erstelle mindestens 5 Karten für diese Kartei und vervollständige dein Profil, um die Kartei zu veröffentlichen. Pro-Karteien können nicht wieder zurückgestuft werden!",
     "published": "Veröffentlicht",
@@ -1190,8 +1190,8 @@
   "cardset": {
     "sidebar": {
       "preview": {
-        "cardset": "Zeige die Student/in Ansicht für diese Kartei",
-        "repetitorium": "Zeige die Student/in Ansicht für dieses Repetitorium"
+        "cardset": "Zeige die Studentenansicht für diese Kartei",
+        "repetitorium": "Zeige die Studentenansicht für dieses Repetitorium"
       }
     },
     "info": {
@@ -2226,7 +2226,7 @@
       "userID": "Benutzer-ID:",
       "date": "Erstelldatum:",
       "info": "Kartei-Informationen",
-      "settings": "Kartesatz-Einstellungen",
+      "settings": "Kartensatz-Einstellungen",
       "name": "Name",
       "description": "Beschreibung",
       "category": "Kategorie",
