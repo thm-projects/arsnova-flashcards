@@ -902,13 +902,20 @@ $themes: (
     $use_cases_special_cardsets_button_background_hover: map-get($map, "use_cases_special_cardsets_button_background_hover");
     $use_cases_special_cardsets_button_text_hover: map-get($map, "use_cases_special_cardsets_button_text_hover");
 
-    //checkbox
+    //answer checkbox
     $checkbox_left_background: map-get($map, "checkbox_left_background");
     $checkbox_left_text: map-get($map, "checkbox_left_text");
     $checkbox_left_background_hover: map-get($map, "checkbox_left_background_hover");
     $checkbox_left_text_hover: map-get($map, "checkbox_left_text_hover");
     $checkbox_right_background: map-get($map, "checkbox_right_background");
     $checkbox_right_text: map-get($map, "checkbox_right_text");
+
+    //profile
+    $profile_fullscreen_checkbox_background: map-get($map, "profile_fullscreen_checkbox_background");
+    $profile_fullscreen_checkbox_border: map-get($map, "profile_fullscreen_checkbox_border");
+    $profile_fullscreen_checkbox_background_active: map-get($map, "profile_fullscreen_checkbox_background_active");
+    $profile_fullscreen_checkbox_border_active: map-get($map, "profile_fullscreen_checkbox_border_active");
+    $profile_fullscreen_checkbox_icon_active: map-get($map, "profile_fullscreen_checkbox_icon_active");
 
     .navbar-toggle {
       background-color: $navbar_collapse_background !important;
@@ -4480,6 +4487,31 @@ $themes: (
       label:last-child {
         background-color: $checkbox_right_background !important;
         color: $checkbox_right_text !important;
+      }
+    }
+
+    //profile
+    .profile-fullscreen-settings .fa-stack {
+      .background {
+        color: $profile_fullscreen_checkbox_background !important;
+      }
+
+      .border {
+        color: $profile_fullscreen_checkbox_border !important;
+      }
+    }
+
+    .profile-fullscreen-settings .fa-stack.checked {
+      .background {
+        color: $profile_fullscreen_checkbox_background_active !important;
+      }
+
+      .border {
+        color: $profile_fullscreen_checkbox_border_active !important;
+      }
+
+      .icon {
+        color: $profile_fullscreen_checkbox_icon_active !important;
       }
     }
   }

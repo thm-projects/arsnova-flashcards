@@ -1,0 +1,77 @@
+<template name="profileViewItemFullscreen">
+    <div class="form-group col-xs-12 profile-fullscreen-settings">
+        <form>
+            <table class="table table-striped">
+                <caption>{{_ "fullscreen.settings.title"}}</caption>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th scope="col">{{_ "fullscreen.settings.table.mode1"}}</th>
+                        <th scope="col">{{_ "fullscreen.settings.table.mode2"}}</th>
+                        <th scope="col">{{_ "fullscreen.settings.table.mode3"}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">{{_ "fullscreen.settings.table.presentation"}}</th>
+                        <td>
+                           {{> profileViewItemFullscreenCheckbox mode=1 group=1}}
+                        </td>
+                        <td>
+                            {{> profileViewItemFullscreenCheckbox mode=2 group=1}}
+                        </td>
+                        <td>
+                            {{> profileViewItemFullscreenCheckbox mode=3 group=1}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{{_ "fullscreen.settings.table.demo"}}</th>
+                        <td>
+                            {{> profileViewItemFullscreenCheckbox mode=1 group=2}}
+                        </td>
+                        <td>
+                            {{> profileViewItemFullscreenCheckbox mode=2 group=2}}
+                        </td>
+                        <td>
+                            {{> profileViewItemFullscreenCheckbox mode=3 group=2}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{{_ "fullscreen.settings.table.leitner"}}</th>
+                        <td>
+                            {{> profileViewItemFullscreenCheckbox mode=1 group=3}}
+                        </td>
+                        <td>
+                            {{> profileViewItemFullscreenCheckbox mode=2 group=3}}
+                        </td>
+                        <td>
+                            {{> profileViewItemFullscreenCheckbox mode=3 group=3}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{{_ "fullscreen.settings.table.wozniak"}}</th>
+                        <td>
+                            {{> profileViewItemFullscreenCheckbox mode=1 group=4}}
+                        </td>
+                        <td>
+                            {{> profileViewItemFullscreenCheckbox mode=2 group=4}}
+                        </td>
+                        <td>
+                            {{> profileViewItemFullscreenCheckbox mode=3 group=4}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</template>
+
+<template name="profileViewItemFullscreenCheckbox">
+    <div class="fa-stack fa-stack-checkbox {{#if gotChecked}}checked{{/if}}">
+        <i class="fas fa-square fa-stack-2x background"></i>
+        <i class="far fa-square fa-stack-2x border"></i>
+        {{#if gotChecked}}
+            <i class="fas fa-check fa-stack-1x icon"></i>
+        {{/if}}
+    </div>
+</template>

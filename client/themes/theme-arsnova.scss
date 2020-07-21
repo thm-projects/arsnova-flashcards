@@ -938,12 +938,18 @@
           "use_cases_special_cardsets_button_text": white,
           "use_cases_special_cardsets_button_background_hover": midnightblue,
           "use_cases_special_cardsets_button_text_hover": white,
-    //checkbox
+    //answer checkbox
           "checkbox_left_background": white,
           "checkbox_left_text": $primary_text,
           "checkbox_left_background_hover": $button_background_hover,
           "checkbox_left_text_hover": $button_text_hover,
           "checkbox_right_background": $btn_inactive,
-          "checkbox_right_text": white
+          "checkbox_right_text": white,
+   //profile
+          "profile_fullscreen_checkbox_background": white,
+          "profile_fullscreen_checkbox_border": $default_grey,
+          "profile_fullscreen_checkbox_background_active": white,
+          "profile_fullscreen_checkbox_border_active": $default_green,
+          "profile_fullscreen_checkbox_icon_active": $default_green,
   );
 }

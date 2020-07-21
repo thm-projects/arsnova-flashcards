@@ -1,0 +1,16 @@
+{
+  "fullscreen": {
+    "settings": {
+      "title": "Vollbildmodus",
+      "table": {
+        "presentation": "Kartenschau",
+        "demo": "Demo",
+        "leitner": "Leitner",
+        "wozniak": "Woźniak",
+        "mode1": "Automatisch",
+        "mode2": "Manuell",
+        "mode3": "Immer fragen"
+      }
+    }
+  }
+}

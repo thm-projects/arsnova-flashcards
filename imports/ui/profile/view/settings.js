@@ -5,6 +5,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {ColorThemes} from "../../../api/subscriptions/colorThemes";
 import {BertAlertVisuals} from "../../../util/bertAlertVisuals";
+import "./item/fullscreen.js";
 import "../modal/deleteProfile.js";
 import "../view/public.js";
 import "./settings.html";
