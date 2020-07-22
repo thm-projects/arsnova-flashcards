@@ -2,10 +2,18 @@ import "./fullscreen.html";
 import {Template} from "meteor/templating";
 import {ReactiveVar} from "meteor/reactive-var";
 
-let presentationMode = new ReactiveVar(1);
-let demoMode = new ReactiveVar(1);
-let leitnerMode = new ReactiveVar(1);
-let wozniakMode = new ReactiveVar(1);
+export let presentationMode = new ReactiveVar();
+export let demoMode = new ReactiveVar();
+export let leitnerMode = new ReactiveVar();
+export let wozniakMode = new ReactiveVar();
+
+Template.profileViewItemFullscreenCheckbox.onCreated(function () {
+	let fullscreenSettings = Meteor.user().fullscreen.settings;
+	presentationMode.set(fullscreenSettings.presentation);
+	demoMode.set(fullscreenSettings.demo);
+	leitnerMode.set(fullscreenSettings.leitner);
+	wozniakMode.set(fullscreenSettings.wozniak);
+});
 
 Template.profileViewItemFullscreenCheckbox.helpers({
 	gotChecked: function () {

@@ -73,6 +73,23 @@ Meteor.methods({
 			}
 		});
 	},
+	updateUserFullscreenSettings: function (presentationMode, demoMode, leitnerMode, wozniakMode) {
+		check(presentationMode, Number);
+		check(demoMode, Number);
+		check(leitnerMode, Number);
+		check(wozniakMode, Number);
+
+		Meteor.users.update(Meteor.userId(), {
+			$set: {
+				"fullscreen.settings": {
+					presentation: presentationMode,
+					demo: demoMode,
+					leitner: leitnerMode,
+					wozniak: wozniakMode
+				}
+			}
+		});
+	},
 	updateUsersGivenName: function (givenname, id) {
 		check(givenname, String);
 		check(id, String);

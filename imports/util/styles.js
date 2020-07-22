@@ -368,4 +368,28 @@ export let ServerStyle = class ServerStyle {
 		}
 		return backgroundObject;
 	}
+
+	static gotFullscreenSettingsAccess (modeFilter = undefined) {
+		let highestRole = UserPermissions.getHighestRole(true);
+		if (UserPermissions.gotBackendAccess() || UserPermissions.isAdmin()) {
+			return true;
+		} else {
+			let config = this.getConfig();
+			let fullscreenSettings = config.fullscreen.settings;
+			if (modeFilter === undefined) {
+				return fullscreenSettings.enabled.includes(highestRole);
+			} else {
+				switch (modeFilter) {
+					case 1:
+						return fullscreenSettings.presentation.includes(highestRole);
+					case 2:
+						return fullscreenSettings.demo.includes(highestRole);
+					case 3:
+						return fullscreenSettings.leitner.includes(highestRole);
+					case 4:
+						return fullscreenSettings.wozniak.includes(highestRole);
+				}
+			}
+		}
+	}
 };

@@ -4,6 +4,42 @@ import {Cardsets} from "../api/subscriptions/cardsets";
 import {Paid} from "../api/subscriptions/paid";
 import {ServerStyle} from "./styles.js";
 
+let roleFree = {
+	string: 'standard',
+	number: 0
+};
+
+let roleEdu = {
+	string: 'university',
+	number: 1
+};
+
+let rolePro = {
+	string: 'pro',
+	number: 2
+};
+
+let roleLecturer = {
+	string: 'lecturer',
+	number: 3
+};
+
+let roleGuest = {
+	string: 'guest',
+	number: 4
+};
+
+let roleEditor = {
+	string: 'editor',
+	number: 5
+};
+
+let roleAdmin = {
+	string: 'admin',
+	number: 6
+};
+
+
 export let UserPermissions = class UserPermissions {
 	static canCreateContent () {
 		if (this.isAdmin() || Roles.userIsInRole(Meteor.userId(), ServerStyle.getUserRolesWithCreatePermission()) && this.isNotBlockedOrFirstLogin()) {
@@ -81,5 +117,68 @@ export let UserPermissions = class UserPermissions {
 			hasRole = true;
 		}
 		return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) || hasRole;
+	}
+
+	static getHighestRole (toNumber = true) {
+		let roles = Meteor.user().roles;
+		let highestRole = roleGuest.string;
+		for (let i = 0; i < roles.length; i++) {
+			switch (roles[i]) {
+				case roleFree.string:
+					if (highestRole === roleGuest.string) {
+						highestRole = roles[i];
+					}
+					break;
+				case roleEdu.string:
+					if (highestRole === roleGuest.string || highestRole === roleFree.string) {
+						highestRole = roles[i];
+					}
+					break;
+				case rolePro.string:
+					if (highestRole === roleGuest.string || highestRole === roleFree.string || highestRole === roleEdu.string) {
+						highestRole = roles[i];
+					}
+					break;
+				case roleLecturer.string:
+					if (highestRole === roleGuest.string || highestRole === roleFree.string || highestRole === roleEdu.string || highestRole === rolePro.string) {
+						highestRole = roles[i];
+					}
+					break;
+				case roleEditor.string:
+					if (highestRole !== roleAdmin.string) {
+						highestRole = roles[i];
+					}
+					break;
+				case roleAdmin.string:
+					highestRole = roles[i];
+					break;
+			}
+		}
+		if (toNumber) {
+			switch (highestRole) {
+				case roleFree.string:
+					highestRole = roleFree.number;
+					break;
+				case roleEdu.string:
+					highestRole = roleEdu.number;
+					break;
+				case rolePro.string:
+					highestRole = rolePro.number;
+					break;
+				case roleLecturer.string:
+					highestRole = roleLecturer.number;
+					break;
+				case roleGuest.string:
+					highestRole = roleGuest.number;
+					break;
+				case roleEditor.string:
+					highestRole = roleEditor.number;
+					break;
+				case roleAdmin.string:
+					highestRole = roleAdmin.number;
+					break;
+			}
+		}
+		return highestRole;
 	}
 };

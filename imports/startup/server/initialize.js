@@ -1355,6 +1355,22 @@ Meteor.startup(function () {
 		);
 	}
 
+	users = Meteor.users.find({"fullscreen.settings": {$exists: false}}).fetch();
+	for (let i = 0; i < users.length; i++) {
+		Meteor.users.update({
+			_id: users[i]._id
+		}, {
+			$set: {
+				"fullscreen.settings": {
+					presentation: 1,
+					demo: 1,
+					leitner: 1,
+					wozniak: 1
+				}
+			}
+		});
+	}
+
 	Cardsets.remove({cardType: 2});
 	Meteor.users.remove(demoCardsetUser[0]._id);
 	Meteor.users.insert(demoCardsetUser[0]);
