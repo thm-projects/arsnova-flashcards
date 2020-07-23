@@ -4,6 +4,7 @@ import * as config from "../../../../config/routes";
 import {ServerStyle} from "../../../../util/styles";
 import {UserPermissions} from "../../../../util/permissions";
 import {MainNavigation} from "../../../../util/mainNavigation";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/admin/matomoStatistics', {
 	name: RouteNames.admin_matomoStatistics,
@@ -25,5 +26,10 @@ FlowRouter.route('/admin/matomoStatistics', {
 			MainNavigation.setLoginTarget(false);
 			FlowRouter.go(config.adminMainTemplate, 'home');
 		}
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });

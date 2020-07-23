@@ -7,6 +7,7 @@ import {Session} from "meteor/session";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {MainNavigation} from "../../../../util/mainNavigation";
 import {Filter} from "../../../../util/filter";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/public/cardsets', {
 	name: RouteNames.pool,
@@ -34,7 +35,12 @@ FlowRouter.route('/public/cardsets', {
 			MainNavigation.setLoginTarget(false);
 			FlowRouter.go('home');
 		}
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });
 
 FlowRouter.route('/public/repetitorien', {
@@ -67,6 +73,7 @@ FlowRouter.route('/public/repetitorien', {
 	},
 	triggersEnter: [
 		(context, redirect) => {
+			Fullscreen.disable();
 			if (ServerStyle.gotSimplifiedNav()) {
 				redirect(RouteNames.pool);
 			}

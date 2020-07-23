@@ -17,6 +17,7 @@ import {ServerStyle} from "./styles";
 import {PDFViewer} from "./pdfViewer";
 import {Bonus} from "./bonus";
 import {PomodoroTimer} from "./pomodoroTimer";
+import {Fullscreen} from "./fullscreen";
 
 let keyEventsUnlocked = true;
 let lastActiveCardString = "lastActiveCard";
@@ -30,7 +31,7 @@ export let CardNavigation = class CardNavigation {
 			return false;
 		}
 		//Is view in Fullscreen mode
-		if (!CardVisuals.isFullscreen()) {
+		if (!Fullscreen.isActive()) {
 			return false;
 		}
 		//Is part of the navigation or card
@@ -85,7 +86,6 @@ export let CardNavigation = class CardNavigation {
 		CardVisuals.toggleZoomContainer(true);
 		CardVisuals.toggleAspectRatioContainer(true);
 		if (Route.isMakingOf() || Route.isDemo()) {
-			CardVisuals.toggleFullscreen(true);
 			this.exitDemoFullscreenRoute();
 		} else if (Route.isPresentationTranscriptPersonal()) {
 			FlowRouter.go('transcriptsPersonal');
@@ -264,7 +264,7 @@ export let CardNavigation = class CardNavigation {
 					++index;
 					++attempts;
 				}
-				if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
+				if (Route.isEditMode() && !Fullscreen.isActive()) {
 					++editorButtonIndex;
 				}
 			}
@@ -285,7 +285,7 @@ export let CardNavigation = class CardNavigation {
 				}
 			}
 		}
-		if (CardEditor.getEditorButtons()[editorButtonIndex] !== CardEditor.getCardNavigationName() && Route.isEditMode() && !CardVisuals.isFullscreen()) {
+		if (CardEditor.getEditorButtons()[editorButtonIndex] !== CardEditor.getCardNavigationName() && Route.isEditMode() && !Fullscreen.isActive()) {
 			CardEditor.setEditorButtonIndex(editorButtonIndex);
 		} else {
 			this.selectButton(index);
@@ -519,7 +519,7 @@ export let CardNavigation = class CardNavigation {
 			if (Route.isDemo()) {
 				keyCodes = [9, 32, 37, 38, 39, 40];
 			}
-			if (Session.get('fullscreen') && CardVisuals.isEditorFullscreen() === false) {
+			if (Session.get('fullscreen') && Fullscreen.isEditorFullscreenActive() === false) {
 				keyCodes = [9, 27, 32, 37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101];
 			}
 			const F2KEY = 113;
@@ -576,7 +576,7 @@ export let CardNavigation = class CardNavigation {
 						}
 						break;
 					case 37:
-						if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
+						if (Route.isEditMode() && !Fullscreen.isActive()) {
 							CardEditor.setLearningGoalLevelIndex(false);
 						} else if (!Route.isEditMode() && !(!config.allowIndexWrap && CardNavigation.isFirstCard())) {
 							if (CardNavigation.isVisible() && !Route.isBox() && !Route.isMemo()) {
@@ -595,7 +595,7 @@ export let CardNavigation = class CardNavigation {
 						CardNavigation.scrollCardContent(false);
 						break;
 					case 39:
-						if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
+						if (Route.isEditMode() && !Fullscreen.isActive()) {
 							CardEditor.setLearningGoalLevelIndex();
 						} else if (!Route.isEditMode() && !(!config.allowIndexWrap && CardNavigation.isLastCard())) {
 							if (CardNavigation.isVisible() && !Route.isBox() && !Route.isMemo()) {

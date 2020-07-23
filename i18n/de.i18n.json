@@ -114,6 +114,7 @@
       }
     },
     "form": {
+      "fullscreen": "Vollbildmodus aktivieren",
       "time": {
         "hour": "1 Stunde",
         "hour_plural": "__count__ Stunden",
@@ -2525,6 +2526,15 @@
       "button": {
         "cancel": "Zurück",
         "confirm": "Vollbildmodus aktivieren"
+      }
+    },
+    "choose": {
+      "title": "Vollbildmodus wählen.",
+      "text": "Welchen Vollbildmodus möchtest du benutzen?",
+      "footer": "<a href='/help' target='_blank'>Hilfe</a>",
+      "button": {
+        "cancel": "Manuell",
+        "confirm": "Automatisch"
       }
     }
   }

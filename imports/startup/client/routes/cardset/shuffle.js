@@ -6,6 +6,7 @@ import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {ServerStyle} from "../../../../util/styles";
 import {Session} from "meteor/session";
 import {Filter} from "../../../../util/filter";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/cardset/:_id/editshuffle', {
 	name: RouteNames.editshuffle,
@@ -32,5 +33,10 @@ FlowRouter.route('/cardset/:_id/editshuffle', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'filterIndexShuffle', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });

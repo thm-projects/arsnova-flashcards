@@ -10,7 +10,9 @@
     {{> mainModalConnectionStatus}}
     {{> mainModalUnderDevelopment}}
     {{> mainItemSearchResult}}
-    {{> mainNavigationTop}}
+    {{#if displayMainNavigation}}
+        {{> mainNavigationTop}}
+    {{/if}}
     {{> useCasesModal}}
     {{> impressumModalStatistics}}
     {{> progressModal}}

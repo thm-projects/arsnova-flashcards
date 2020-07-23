@@ -3,14 +3,17 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../api/subscriptions/cardsets";
 import {Paid} from "../api/subscriptions/paid";
 import {ServerStyle} from "./styles.js";
+import {MainNavigation} from "./mainNavigation";
 
 let roleFree = {
 	string: 'standard',
+	exportString: 'free',
 	number: 0
 };
 
 let roleEdu = {
 	string: 'university',
+	exportString: 'edu',
 	number: 1
 };
 
@@ -39,6 +42,10 @@ let roleAdmin = {
 	number: 6
 };
 
+let roleLandingPage = {
+	string: 'landingPage',
+	number: 7
+};
 
 export let UserPermissions = class UserPermissions {
 	static canCreateContent () {
@@ -120,38 +127,42 @@ export let UserPermissions = class UserPermissions {
 	}
 
 	static getHighestRole (toNumber = true) {
-		let roles = Meteor.user().roles;
 		let highestRole = roleGuest.string;
-		for (let i = 0; i < roles.length; i++) {
-			switch (roles[i]) {
-				case roleFree.string:
-					if (highestRole === roleGuest.string) {
+		if (!MainNavigation.isGuestLoginActive() && !Meteor.user()) {
+			highestRole = roleLandingPage.string;
+		} else {
+			let roles = Meteor.user().roles;
+			for (let i = 0; i < roles.length; i++) {
+				switch (roles[i]) {
+					case roleFree.string:
+						if (highestRole === roleGuest.string) {
+							highestRole = roles[i];
+						}
+						break;
+					case roleEdu.string:
+						if (highestRole === roleGuest.string || highestRole === roleFree.string) {
+							highestRole = roles[i];
+						}
+						break;
+					case rolePro.string:
+						if (highestRole === roleGuest.string || highestRole === roleFree.string || highestRole === roleEdu.string) {
+							highestRole = roles[i];
+						}
+						break;
+					case roleLecturer.string:
+						if (highestRole === roleGuest.string || highestRole === roleFree.string || highestRole === roleEdu.string || highestRole === rolePro.string) {
+							highestRole = roles[i];
+						}
+						break;
+					case roleEditor.string:
+						if (highestRole !== roleAdmin.string) {
+							highestRole = roles[i];
+						}
+						break;
+					case roleAdmin.string:
 						highestRole = roles[i];
-					}
-					break;
-				case roleEdu.string:
-					if (highestRole === roleGuest.string || highestRole === roleFree.string) {
-						highestRole = roles[i];
-					}
-					break;
-				case rolePro.string:
-					if (highestRole === roleGuest.string || highestRole === roleFree.string || highestRole === roleEdu.string) {
-						highestRole = roles[i];
-					}
-					break;
-				case roleLecturer.string:
-					if (highestRole === roleGuest.string || highestRole === roleFree.string || highestRole === roleEdu.string || highestRole === rolePro.string) {
-						highestRole = roles[i];
-					}
-					break;
-				case roleEditor.string:
-					if (highestRole !== roleAdmin.string) {
-						highestRole = roles[i];
-					}
-					break;
-				case roleAdmin.string:
-					highestRole = roles[i];
-					break;
+						break;
+				}
 			}
 		}
 		if (toNumber) {
@@ -176,6 +187,18 @@ export let UserPermissions = class UserPermissions {
 					break;
 				case roleAdmin.string:
 					highestRole = roleAdmin.number;
+					break;
+				case roleLandingPage.string:
+					highestRole = roleLandingPage.number;
+					break;
+			}
+		} else {
+			switch (highestRole) {
+				case roleFree.string:
+					highestRole = roleFree.exportString;
+					break;
+				case roleEdu.string:
+					highestRole = roleEdu.exportString;
 					break;
 			}
 		}

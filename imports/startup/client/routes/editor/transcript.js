@@ -4,6 +4,7 @@ import * as config from "../../../../config/routes";
 import {Meteor} from "meteor/meteor";
 import {ServerStyle} from "../../../../util/styles";
 import {Session} from "meteor/session";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/personal/transcripts/edit/:card_id', {
 	name: RouteNames.editTranscript,
@@ -29,7 +30,12 @@ FlowRouter.route('/personal/transcripts/edit/:card_id', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'editCard', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });
 
 
@@ -56,5 +62,10 @@ FlowRouter.route('/personal/transcripts/new', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'newCard', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });

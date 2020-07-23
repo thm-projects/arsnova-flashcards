@@ -7,7 +7,6 @@ import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import {Route} from "../../../util/route";
 import {MainNavigation} from "../../../util/mainNavigation";
 import {Bonus} from "../../../util/bonus";
-import {ServerStyle} from "../../../util/styles";
 
 
 // Check if user has permission to look at a cardset
@@ -177,8 +176,4 @@ Template.registerHelper("hasCardsetPermission", function () {
 
 Template.registerHelper('isInBonusAndNotOwner', function () {
 	return Bonus.isInBonus(FlowRouter.getParam('_id')) && (!UserPermissions.isOwner(Cardsets.findOne({_id: FlowRouter.getParam('_id')}).owner) && !UserPermissions.isAdmin());
-});
-
-Template.registerHelper('gotFullscreenSettingsAccess', function (modeFilter) {
-	return ServerStyle.gotFullscreenSettingsAccess(modeFilter);
 });

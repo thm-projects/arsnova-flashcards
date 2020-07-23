@@ -4,15 +4,15 @@
 // 2 pro
 // 3 lecturer
 // 4 guest - Only works for public views
-const FREE = 0;
-const EDU = 1;
-const PRO = 2;
-const LECTURER = 3;
-const GUEST = 4;
+export const FREE = 0;
+export const EDU = 1;
+export const PRO = 2;
+export const LECTURER = 3;
+export const GUEST = 4;
 
-const AUTO = 0;
-const MANUAL = 1;
-const CHOOSE = 2;
+export const AUTO_FULLSCREEN = 1;
+export const MANUAL_FULLSCREEN = 2;
+export const CHOOSE_FULLSCREEN = 3;
 
 const defaultRegistrationDomainWhitelist =
 	[
@@ -47,38 +47,38 @@ let defaultSettings = {
 		},
 		"defaults": { // Will be used if the user got not access to the fullscreen settings
 			"free": {
-				"presentation": AUTO,
-				"demo": AUTO,
-				"leitner": AUTO,
-				"wozniak": AUTO
+				"presentation": AUTO_FULLSCREEN,
+				"demo": AUTO_FULLSCREEN,
+				"leitner": AUTO_FULLSCREEN,
+				"wozniak": AUTO_FULLSCREEN
 			},
 			"edu": {
-				"presentation": AUTO,
-				"demo": AUTO,
-				"leitner": AUTO,
-				"wozniak": AUTO
-			},
-			"lecturer": {
-				"presentation": CHOOSE,
-				"demo": CHOOSE,
-				"leitner": CHOOSE,
-				"wozniak": CHOOSE
+				"presentation": AUTO_FULLSCREEN,
+				"demo": AUTO_FULLSCREEN,
+				"leitner": AUTO_FULLSCREEN,
+				"wozniak": AUTO_FULLSCREEN
 			},
 			"pro": {
-				"presentation": MANUAL,
-				"demo": MANUAL,
-				"leitner": MANUAL,
-				"wozniak": MANUAL
+				"presentation": MANUAL_FULLSCREEN,
+				"demo": MANUAL_FULLSCREEN,
+				"leitner": MANUAL_FULLSCREEN,
+				"wozniak": MANUAL_FULLSCREEN
+			},
+			"lecturer": {
+				"presentation": CHOOSE_FULLSCREEN,
+				"demo": CHOOSE_FULLSCREEN,
+				"leitner": CHOOSE_FULLSCREEN,
+				"wozniak": CHOOSE_FULLSCREEN
 			},
 			"guest": {
-				"presentation": CHOOSE,
-				"demo": CHOOSE,
-				"leitner": CHOOSE,
-				"wozniak": CHOOSE
+				"presentation": CHOOSE_FULLSCREEN,
+				"demo": CHOOSE_FULLSCREEN,
+				"leitner": CHOOSE_FULLSCREEN,
+				"wozniak": CHOOSE_FULLSCREEN
 			},
 			"landingPage": {
-				"pomodoroTimer": MANUAL,
-				"demo": MANUAL
+				"pomodoroTimer": MANUAL_FULLSCREEN, // Choose Fullscreen is not supported
+				"demo": MANUAL_FULLSCREEN
 			}
 		}
 	},
@@ -245,38 +245,38 @@ let debug = {
 		},
 		"defaults": { // Will be used if the user got not access to the fullscreen settings
 			"free": {
-				"presentation": AUTO,
-				"demo": AUTO,
-				"leitner": AUTO,
-				"wozniak": AUTO
+				"presentation": AUTO_FULLSCREEN,
+				"demo": AUTO_FULLSCREEN,
+				"leitner": AUTO_FULLSCREEN,
+				"wozniak": AUTO_FULLSCREEN
 			},
 			"edu": {
-				"presentation": AUTO,
-				"demo": AUTO,
-				"leitner": AUTO,
-				"wozniak": AUTO
-			},
-			"lecturer": {
-				"presentation": CHOOSE,
-				"demo": CHOOSE,
-				"leitner": CHOOSE,
-				"wozniak": CHOOSE
+				"presentation": AUTO_FULLSCREEN,
+				"demo": AUTO_FULLSCREEN,
+				"leitner": AUTO_FULLSCREEN,
+				"wozniak": AUTO_FULLSCREEN
 			},
 			"pro": {
-				"presentation": MANUAL,
-				"demo": MANUAL,
-				"leitner": MANUAL,
-				"wozniak": MANUAL
+				"presentation": MANUAL_FULLSCREEN,
+				"demo": MANUAL_FULLSCREEN,
+				"leitner": MANUAL_FULLSCREEN,
+				"wozniak": MANUAL_FULLSCREEN
+			},
+			"lecturer": {
+				"presentation": CHOOSE_FULLSCREEN,
+				"demo": CHOOSE_FULLSCREEN,
+				"leitner": CHOOSE_FULLSCREEN,
+				"wozniak": CHOOSE_FULLSCREEN
 			},
 			"guest": {
-				"presentation": CHOOSE,
-				"demo": CHOOSE,
-				"leitner": CHOOSE,
-				"wozniak": CHOOSE
+				"presentation": CHOOSE_FULLSCREEN,
+				"demo": CHOOSE_FULLSCREEN,
+				"leitner": CHOOSE_FULLSCREEN,
+				"wozniak": CHOOSE_FULLSCREEN
 			},
 			"landingPage": {
-				"pomodoroTimer": MANUAL,
-				"demo": MANUAL
+				"pomodoroTimer": AUTO_FULLSCREEN, // Choose Fullscreen is not supported
+				"demo": MANUAL_FULLSCREEN
 			}
 		}
 	},
@@ -387,7 +387,7 @@ let debug = {
 	},
 	"demo": {
 		"folder": "informatik",
-		"autoFullscreen": false,
+		"autoFullscreen": true,
 		"exitOnFullscreenBackgroundClick": true,
 		"fragJetzt": {
 			"session": "46091468",
@@ -443,38 +443,38 @@ let linux = {
 		},
 		"defaults": { // Will be used if the user got not access to the fullscreen settings
 			"free": {
-				"presentation": AUTO,
-				"demo": AUTO,
-				"leitner": AUTO,
-				"wozniak": AUTO
+				"presentation": AUTO_FULLSCREEN,
+				"demo": AUTO_FULLSCREEN,
+				"leitner": AUTO_FULLSCREEN,
+				"wozniak": AUTO_FULLSCREEN
 			},
 			"edu": {
-				"presentation": AUTO,
-				"demo": AUTO,
-				"leitner": AUTO,
-				"wozniak": AUTO
-			},
-			"lecturer": {
-				"presentation": CHOOSE,
-				"demo": CHOOSE,
-				"leitner": CHOOSE,
-				"wozniak": CHOOSE
+				"presentation": AUTO_FULLSCREEN,
+				"demo": AUTO_FULLSCREEN,
+				"leitner": AUTO_FULLSCREEN,
+				"wozniak": AUTO_FULLSCREEN
 			},
 			"pro": {
-				"presentation": MANUAL,
-				"demo": MANUAL,
-				"leitner": MANUAL,
-				"wozniak": MANUAL
+				"presentation": MANUAL_FULLSCREEN,
+				"demo": MANUAL_FULLSCREEN,
+				"leitner": MANUAL_FULLSCREEN,
+				"wozniak": MANUAL_FULLSCREEN
+			},
+			"lecturer": {
+				"presentation": CHOOSE_FULLSCREEN,
+				"demo": CHOOSE_FULLSCREEN,
+				"leitner": CHOOSE_FULLSCREEN,
+				"wozniak": CHOOSE_FULLSCREEN
 			},
 			"guest": {
-				"presentation": CHOOSE,
-				"demo": CHOOSE,
-				"leitner": CHOOSE,
-				"wozniak": CHOOSE
+				"presentation": CHOOSE_FULLSCREEN,
+				"demo": CHOOSE_FULLSCREEN,
+				"leitner": CHOOSE_FULLSCREEN,
+				"wozniak": CHOOSE_FULLSCREEN
 			},
 			"landingPage": {
-				"pomodoroTimer": MANUAL,
-				"demo": MANUAL
+				"pomodoroTimer": MANUAL_FULLSCREEN, // Choose Fullscreen is not supported
+				"demo": MANUAL_FULLSCREEN
 			}
 		}
 	},
@@ -641,38 +641,38 @@ let review = {
 		},
 		"defaults": { // Will be used if the user got not access to the fullscreen settings
 			"free": {
-				"presentation": AUTO,
-				"demo": AUTO,
-				"leitner": AUTO,
-				"wozniak": AUTO
+				"presentation": AUTO_FULLSCREEN,
+				"demo": AUTO_FULLSCREEN,
+				"leitner": AUTO_FULLSCREEN,
+				"wozniak": AUTO_FULLSCREEN
 			},
 			"edu": {
-				"presentation": AUTO,
-				"demo": AUTO,
-				"leitner": AUTO,
-				"wozniak": AUTO
-			},
-			"lecturer": {
-				"presentation": CHOOSE,
-				"demo": CHOOSE,
-				"leitner": CHOOSE,
-				"wozniak": CHOOSE
+				"presentation": AUTO_FULLSCREEN,
+				"demo": AUTO_FULLSCREEN,
+				"leitner": AUTO_FULLSCREEN,
+				"wozniak": AUTO_FULLSCREEN
 			},
 			"pro": {
-				"presentation": MANUAL,
-				"demo": MANUAL,
-				"leitner": MANUAL,
-				"wozniak": MANUAL
+				"presentation": MANUAL_FULLSCREEN,
+				"demo": MANUAL_FULLSCREEN,
+				"leitner": MANUAL_FULLSCREEN,
+				"wozniak": MANUAL_FULLSCREEN
+			},
+			"lecturer": {
+				"presentation": CHOOSE_FULLSCREEN,
+				"demo": CHOOSE_FULLSCREEN,
+				"leitner": CHOOSE_FULLSCREEN,
+				"wozniak": CHOOSE_FULLSCREEN
 			},
 			"guest": {
-				"presentation": CHOOSE,
-				"demo": CHOOSE,
-				"leitner": CHOOSE,
-				"wozniak": CHOOSE
+				"presentation": CHOOSE_FULLSCREEN,
+				"demo": CHOOSE_FULLSCREEN,
+				"leitner": CHOOSE_FULLSCREEN,
+				"wozniak": CHOOSE_FULLSCREEN
 			},
 			"landingPage": {
-				"pomodoroTimer": MANUAL,
-				"demo": MANUAL
+				"pomodoroTimer": MANUAL_FULLSCREEN, // Choose Fullscreen is not supported
+				"demo": MANUAL_FULLSCREEN
 			}
 		}
 	},
@@ -839,38 +839,38 @@ let staging = {
 		},
 		"defaults": { // Will be used if the user got not access to the fullscreen settings
 			"free": {
-				"presentation": AUTO,
-				"demo": AUTO,
-				"leitner": AUTO,
-				"wozniak": AUTO
+				"presentation": AUTO_FULLSCREEN,
+				"demo": AUTO_FULLSCREEN,
+				"leitner": AUTO_FULLSCREEN,
+				"wozniak": AUTO_FULLSCREEN
 			},
 			"edu": {
-				"presentation": AUTO,
-				"demo": AUTO,
-				"leitner": AUTO,
-				"wozniak": AUTO
-			},
-			"lecturer": {
-				"presentation": CHOOSE,
-				"demo": CHOOSE,
-				"leitner": CHOOSE,
-				"wozniak": CHOOSE
+				"presentation": AUTO_FULLSCREEN,
+				"demo": AUTO_FULLSCREEN,
+				"leitner": AUTO_FULLSCREEN,
+				"wozniak": AUTO_FULLSCREEN
 			},
 			"pro": {
-				"presentation": MANUAL,
-				"demo": MANUAL,
-				"leitner": MANUAL,
-				"wozniak": MANUAL
+				"presentation": MANUAL_FULLSCREEN,
+				"demo": MANUAL_FULLSCREEN,
+				"leitner": MANUAL_FULLSCREEN,
+				"wozniak": MANUAL_FULLSCREEN
+			},
+			"lecturer": {
+				"presentation": CHOOSE_FULLSCREEN,
+				"demo": CHOOSE_FULLSCREEN,
+				"leitner": CHOOSE_FULLSCREEN,
+				"wozniak": CHOOSE_FULLSCREEN
 			},
 			"guest": {
-				"presentation": CHOOSE,
-				"demo": CHOOSE,
-				"leitner": CHOOSE,
-				"wozniak": CHOOSE
+				"presentation": CHOOSE_FULLSCREEN,
+				"demo": CHOOSE_FULLSCREEN,
+				"leitner": CHOOSE_FULLSCREEN,
+				"wozniak": CHOOSE_FULLSCREEN
 			},
 			"landingPage": {
-				"pomodoroTimer": MANUAL,
-				"demo": MANUAL
+				"pomodoroTimer": MANUAL_FULLSCREEN, // Choose Fullscreen is not supported
+				"demo": MANUAL_FULLSCREEN
 			}
 		}
 	},

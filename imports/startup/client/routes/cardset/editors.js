@@ -5,6 +5,7 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {ServerStyle} from "../../../../util/styles";
 import {Session} from "meteor/session";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/cardset/:_id/editors', {
 	name: RouteNames.cardseteditors,
@@ -33,5 +34,10 @@ FlowRouter.route('/cardset/:_id/editors', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'cardsetManageEditors', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });

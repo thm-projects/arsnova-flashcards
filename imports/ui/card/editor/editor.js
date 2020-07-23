@@ -21,6 +21,7 @@ import "./item/learningGoalLevel.js";
 import "./item/subject.js";
 import "./editor.html";
 import {Route} from "../../../util/route";
+import {Fullscreen} from "../../../util/fullscreen";
 
 /*
  * ############################################################################
@@ -39,13 +40,13 @@ Template.editor.helpers({
 		CardVisuals.isTextCentered();
 	},
 	isEditorView: function () {
-		return CardVisuals.isEditorFullscreen() || !CardVisuals.isFullscreen();
+		return Fullscreen.isEditorFullscreenActive() || !Fullscreen.isActive();
 	},
 	isMobilePreviewActive: function () {
 		return Session.get('mobilePreview');
 	},
 	isMobilePreviewActiveAndFullscreen: function () {
-		return CardVisuals.isFullscreen() && Session.get('mobilePreview') && !CardVisuals.isEditorFullscreen();
+		return Fullscreen.isActive() && Session.get('mobilePreview') && !Fullscreen.isEditorFullscreenActive();
 	},
 	isMobilePreviewRotated: function () {
 		return Session.get('mobilePreviewRotated');

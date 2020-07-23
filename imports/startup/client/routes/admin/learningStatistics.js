@@ -6,6 +6,7 @@ import {ServerStyle} from "../../../../util/styles";
 import {Session} from "meteor/session";
 import {UserPermissions} from "../../../../util/permissions";
 import {MainNavigation} from "../../../../util/mainNavigation";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/admin/learningStatistics', {
 	name: RouteNames.admin_learningStatistics,
@@ -30,5 +31,10 @@ FlowRouter.route('/admin/learningStatistics', {
 			MainNavigation.setLoginTarget(false);
 			FlowRouter.go('home');
 		}
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });

@@ -7,20 +7,16 @@ import {Cardsets} from "../api/subscriptions/cardsets";
 import {MarkdeepEditor} from "./markdeepEditor";
 import {AspectRatio} from "./aspectRatio.js";
 import * as config from "../config/cardVisuals.js";
+import {editorFullScreenActive, Fullscreen} from "./fullscreen";
 
-let editorFullScreenActive = false;
 let lastActiveRotation;
 
 export let CardVisuals = class CardVisuals {
 
-	static isEditorFullscreen () {
-		return editorFullScreenActive;
-	}
-
 	static setExitPresentationContainerSize (height = window.screen.height) {
 		if (!Route.isEditMode()) {
 			let presentationContainer = $('.presentation-container');
-			if (height === 0 || !CardVisuals.isFullscreen()) {
+			if (height === 0 || !Fullscreen.isActive()) {
 				presentationContainer.css('overflow', 'unset');
 				presentationContainer.css('height', 'unset');
 			} else {
@@ -109,27 +105,12 @@ export let CardVisuals = class CardVisuals {
 		}
 	}
 
-	static isFullscreen () {
-		return Session.get('fullscreen');
-	}
-
 	static allow3DOverflow () {
 		return config.allow3DOverflow;
 	}
 
 	static allow3DOverNavigation () {
 		return config.allow3DOverflow;
-	}
-
-	static checkFullscreen () {
-		let currentRoute = FlowRouter.getRouteName();
-		if (currentRoute === (Route.isPresentation())) {
-			this.toggleFullscreen();
-			Session.set('previousRouteName', currentRoute);
-		} else if (currentRoute !== Session.get('previousRouteName')) {
-			Session.set('previousRouteName', currentRoute);
-			this.toggleFullscreen(true);
-		}
 	}
 
 	static resizeFlaschardCustom (aspectRatio) {
@@ -252,7 +233,7 @@ export let CardVisuals = class CardVisuals {
 		$('.cube-face-bottom').attr('style', 'transform: rotateX(-90deg) translateZ(' + (flashcard.outerHeight() / 2) + 'px); height: ' + flashcard.outerHeight() + 'px !important; width: ' + flashcard.outerHeight() + 'px !important;');
 		this.rotateCube(lastActiveRotation, true);
 		let adjustNavigation = true;
-		if (Route.isEditMode() && !this.isFullscreen()) {
+		if (Route.isEditMode() && !Fullscreen.isActive()) {
 			$('#contentEditor').css('height', $('.scene').height() - $('#editorButtonGroup').height() - this.getSecondEditorRowHeight());
 			adjustNavigation = false;
 		}
@@ -431,56 +412,6 @@ export let CardVisuals = class CardVisuals {
 			pomodoroTimer.css('height', newTimerSize + "px");
 			pomodoroTimer.css('width', newTimerSize + "px");
 			pomodoroTimer.css('margin-top', -parseInt(flashcardHeader.css('padding-top')) + "px");
-		}
-	}
-
-	/**
-	 * Toggle the card view between fullscreen and normal mode
-	 */
-	static toggleFullscreen (forceOff = false, isEditor = false) {
-		if (forceOff && (!Route.isBox() && !Route.isMemo())) {
-			Session.set("workloadFullscreenMode", false);
-		}
-		Session.set('dictionaryBeolingus', 0);
-		Session.set('dictionaryLinguee', 0);
-		Session.set('dictionaryGoogle', 0);
-		if ((Session.get('fullscreen') || forceOff) && (!Route.isPresentation() && !Route.isBox() && !Route.isMemo()) && !Session.get('workloadFullscreenMode')) {
-			if (document.fullscreenElement) {
-				document.exitFullscreen();
-			}
-			$("#theme-wrapper").removeClass('theme-wrapper-fullscreen');
-			$(".editorElement").css("display", '');
-			$("#preview").css("display", "unset");
-			$("#markdeepNavigation").css("display", '');
-			$("#markdeepEditorContent").css("display", '');
-			$(".fullscreen-button").removeClass("pressed");
-			let card_id;
-			if (FlowRouter.getParam('card_id')) {
-				card_id = FlowRouter.getParam('card_id');
-			} else {
-				card_id = "-1";
-			}
-			$("#collapseLecture-" + card_id).removeClass('in');
-			editorFullScreenActive = false;
-			Session.set('fullscreen', false);
-			this.resizeFlashcard();
-		} else {
-			if (document.fullscreenElement === null) {
-				document.documentElement.requestFullscreen();
-			}
-			$(".box").removeClass("disableCardTransition");
-			$("#theme-wrapper").addClass('theme-wrapper-fullscreen');
-			$(".editorElement").css("display", "none");
-			if (isEditor) {
-				$("#preview").css("display", "none");
-				editorFullScreenActive = true;
-				$(".fullscreen-button").addClass("pressed");
-			} else {
-				$("#markdeepNavigation").css("display", "none");
-				$("#markdeepEditorContent").css("display", 'none');
-			}
-			Session.set('fullscreen', true);
-			this.resizeFlashcard();
 		}
 	}
 

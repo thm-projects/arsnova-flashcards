@@ -522,4 +522,12 @@ export let Route = class Route {
 				return icons.topNavigation.useCases;
 		}
 	}
+
+	static isRouteWithoutMainNavigation () {
+		return (this.isPresentation() && !this.isTableOfContent()) || this.isBox() || this.isMemo();
+	}
+
+	static isRouteWithFullscreenFeature () {
+		return this.isPresentationOrDemo() || this.isBox() || this.isMemo();
+	}
 };

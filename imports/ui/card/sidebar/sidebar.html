@@ -127,6 +127,9 @@
         </span>
     {{/unless}}
     {{> cardSidebarItemEndPresentation}}
+    {{#unless gotFullscreenMode 1}}
+        {{> cardSidebarItemToggleFullscreen}}
+    {{/unless}}
     {{> cardSidebarItemZoomText}}
     {{> cardSidebarItemAspectRatio}}
     {{> cardSidebarToggle3D}}
@@ -158,7 +161,9 @@
         </span>
     {{/if}}
     {{> cardSidebarItemEndPresentation}}
-    {{> cardSidebarItemToggleFullscreen}}
+    {{#unless gotFullscreenMode 1}}
+        {{> cardSidebarItemToggleFullscreen}}
+    {{/unless}}
     {{> cardSidebarItemZoomText}}
     {{> cardSidebarItemAspectRatio}}
     {{> cardSidebarToggle3D}}
@@ -186,6 +191,9 @@
 
 <template name="flashcardSidebarLeitnerRight">
     {{> cardSidebarItemBackToCardset}}
+    {{#unless gotFullscreenMode 1}}
+        {{> cardSidebarItemToggleFullscreen}}
+    {{/unless}}
     {{> cardSidebarItemZoomText}}
     {{> cardSidebarItemAspectRatio}}
     {{> cardSidebarToggle3D}}
@@ -201,6 +209,9 @@
 
 <template name="flashcardSidebarWozniakRight">
     {{> cardSidebarItemBackToCardset}}
+    {{#unless gotFullscreenMode 1}}
+        {{> cardSidebarItemToggleFullscreen}}
+    {{/unless}}
     {{> cardSidebarItemZoomText}}
     {{> cardSidebarItemAspectRatio}}
     {{> cardSidebarToggle3D}}

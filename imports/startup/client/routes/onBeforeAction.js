@@ -90,6 +90,11 @@ function landingPageBackgrounds () {
 }
 
 export let setTheme = function () {
+	if (Route.isRouteWithoutMainNavigation()) {
+		Session.set('displayMainNavigation', false);
+	} else {
+		Session.set('displayMainNavigation', true);
+	}
 	if (Meteor.user()) {
 		// If there is no selectedColorTheme the Session var "theme" will stay NULL.
 		if (Meteor.users.findOne(Meteor.userId())) {
@@ -187,7 +192,6 @@ export let setTheme = function () {
 };
 
 var isSignedIn = function () {
-	CardVisuals.checkFullscreen();
 	if (!(Meteor.user() || Meteor.loggingIn()) && !MainNavigation.isGuestLoginActive()) {
 		Session.set("theme", ServerStyle.getDefaultTheme());
 		if (MainNavigation.getLoginTarget() === undefined) {

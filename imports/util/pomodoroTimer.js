@@ -8,6 +8,7 @@ import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {ServerStyle} from "./styles";
 import {NavigatorCheck} from "./navigatorCheck";
+import {Fullscreen} from "./fullscreen";
 
 if (Meteor.isClient) {
 	Session.set('pomodoroBreakActive', false);
@@ -57,6 +58,8 @@ let pomodoroInterval;
 
 let workloadTimerInterval;
 
+let isFullscreenEnabled;
+
 export let PomodoroTimer = class PomodoroTimer {
 
 	static setCloudShown (value) {
@@ -68,12 +71,19 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	static clockHandler (option) {
-		if (option === 0) {
-			isBellSoundEnabled = !isBellSoundEnabled;
-		} else if (option === 1) {
-			isSuccessSoundEnabled = !isSuccessSoundEnabled;
-		} else if (option === 2) {
-			isFailSoundEnabled = !isFailSoundEnabled;
+		switch (option) {
+			case 0:
+				isBellSoundEnabled = !isBellSoundEnabled;
+				break;
+			case 1:
+				isSuccessSoundEnabled = !isSuccessSoundEnabled;
+				break;
+			case 2:
+				isFailSoundEnabled = !isFailSoundEnabled;
+				break;
+			case 3:
+				isFullscreenEnabled = !isFullscreenEnabled;
+				break;
 		}
 	}
 
@@ -683,6 +693,10 @@ export let PomodoroTimer = class PomodoroTimer {
 		return parseInt($('#breakSlider').val(), 10);
 	}
 
+	static getFullscreenConfig () {
+		return isFullscreenEnabled;
+	}
+
 	static getSoundConfig () {
 		return [isBellSoundEnabled, isSuccessSoundEnabled, isFailSoundEnabled];
 	}
@@ -749,6 +763,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		endBreak = defaultEndBreak;
 		pomRunning = defaultPomRunning;
 		breakRunning = defaultBreakRunning;
+		isFullscreenEnabled = ServerStyle.getDefaultFullscreenMode(6);
 		if (Route.isBox()) {
 			let leitnerTask = LeitnerTasks.findOne({user_id: Meteor.userId(), cardset_id: FlowRouter.getParam('_id')});
 			if (leitnerTask !== undefined && leitnerTask.pomodoroTimer !== undefined) {
@@ -821,8 +836,11 @@ export let PomodoroTimer = class PomodoroTimer {
 			this.restoreWorkloadTime(curTime);
 		}
 		/* Method for WelcomePage */
-		if (!Route.isBox() && !Route.isMemo()) {
+		if (Route.isHome()) {
 			this.showPomodoroFullsize();
+			if (isFullscreenEnabled) {
+				Fullscreen.setMode();
+			}
 		}
 	}
 
@@ -881,7 +899,6 @@ export let PomodoroTimer = class PomodoroTimer {
 				$('#wordcloud-container').css('display', 'block');
 				$('.pomodoroClock').removeAttr("style");
 			}
-			Session.set('fullscreen', false);
 		} else {
 			$('#wordcloud-container').css('display', 'block');
 		}

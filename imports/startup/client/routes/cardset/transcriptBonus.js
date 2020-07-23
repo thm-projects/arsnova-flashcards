@@ -8,6 +8,7 @@ import {ServerStyle} from "../../../../util/styles";
 import {MarkdeepEditor} from "../../../../util/markdeepEditor";
 import {Filter} from "../../../../util/filter";
 import {Cards} from "../../../../api/subscriptions/cards";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/cardset/:_id/transcripts/review', {
 	name: RouteNames.presentationTranscriptReview,
@@ -40,7 +41,12 @@ FlowRouter.route('/cardset/:_id/transcripts/review', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'presentation', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });
 
 FlowRouter.route('/cardset/:_id/transcripts', {
@@ -73,5 +79,10 @@ FlowRouter.route('/cardset/:_id/transcripts', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'cardsetIndexTranscript', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });

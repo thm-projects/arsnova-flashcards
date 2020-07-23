@@ -4,6 +4,7 @@ import * as config from "../../../../config/routes";
 import {Meteor} from "meteor/meteor";
 import {ServerStyle} from "../../../../util/styles";
 import {Session} from "meteor/session";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/profile/:_id/billing', {
 	name: RouteNames.profileBilling,
@@ -24,5 +25,10 @@ FlowRouter.route('/profile/:_id/billing', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'profile', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });

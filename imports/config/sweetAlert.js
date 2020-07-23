@@ -24,6 +24,19 @@ function completeProfile() {
 	};
 }
 
+function chooseFullscreenMode() {
+	return {
+		title: TAPi18n.__('sweetAlert.choose.title'),
+		html: TAPi18n.__('sweetAlert.choose.text'),
+		type: "question",
+		showCancelButton: true,
+		confirmButtonText: TAPi18n.__('sweetAlert.choose.button.confirm'),
+		cancelButtonText: TAPi18n.__('sweetAlert.choose.button.cancel'),
+		allowOutsideClick: false,
+		footer: TAPi18n.__('sweetAlert.choose.footer')
+	};
+}
+
 function activateFullscreen() {
 	return {
 		title: TAPi18n.__('sweetAlert.fullscreen.title'),
@@ -68,5 +81,6 @@ module.exports = {
 	completeProfile,
 	activateFullscreen,
 	exitPresentation,
-	leitnerSimulatorError
+	leitnerSimulatorError,
+	chooseFullscreenMode
 };

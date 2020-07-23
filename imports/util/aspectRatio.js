@@ -1,13 +1,13 @@
 import * as config from "../config/aspectRatio.js";
 import {Route} from "./route";
-import {CardVisuals} from "./cardVisuals";
 import {MarkdeepEditor} from "./markdeepEditor";
 import {NavigatorCheck} from "./navigatorCheck";
+import {Fullscreen} from "./fullscreen";
 
 export let AspectRatio = class AspectRatio {
 
 	static isEnabled () {
-		if ((CardVisuals.isFullscreen() && !MarkdeepEditor.getMobilePreview()) || (Route.isDemo() || Route.isMakingOf())) {
+		if ((Fullscreen.isActive() && !MarkdeepEditor.getMobilePreview()) || (Route.isDemo() || Route.isMakingOf())) {
 			if ((Route.isPresentation() || Route.isPresentationTranscript()) && config.aspectRatioEnabled.includes(0)) {
 				return true;
 			}
