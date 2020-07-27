@@ -13,6 +13,7 @@ import {UserPermissions} from "../../util/permissions";
 import {ServerStyle} from "../../util/styles";
 import {Utilities} from "../../util/utilities";
 import {Cardsets} from "../subscriptions/cardsets.js";
+import {publishCardsets} from "../subscriptions/"
 
 Meteor.methods({
 	getSearchCategoriesResult: function (searchValue, filterType) {
@@ -1010,7 +1011,17 @@ Meteor.methods({
 			}
 		}
 	},
-	requestToMakeVisible: function (cardset_id) {
+	requestToMakeVisible: function (cardset_id, requestedKind) {
 		check(cardset_id, String);
+		check(requestedKind, String);
+	},
+	deletePublishCardset: function (cardsetId) {
+		check(cardsetId, String);
+
+		if (!UserPermissions.gotBackendAccess()) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			publishCardsets.remove(cardsetId);
+		}
 	}
 });

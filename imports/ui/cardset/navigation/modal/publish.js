@@ -4,6 +4,7 @@ import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {BertAlertVisuals} from "../../../../util/bertAlertVisuals";
+import {UserPermissions} from "../../../../util/permissions";
 import "./publish.html";
 
 Session.setDefault('activeKind', 'personal');
@@ -86,14 +87,17 @@ Template.cardsetPublishForm.events({
 		}
 		//marks cardset to be reviewed, to make it public
 		if (kind === 'free' || kind === 'edu') {
-			visible = false;
-			kind = 'personal';
-			let text = "Kartensatz " + Session.get('activeCardset').name + " zur Überprüfung freigegeben";
-			let type = "Kartensatz-Freigabe";
-			let target = "lecturer";
-			Meteor.call("addNotification", target, type, text, Session.get('activeCardset')._id, "lecturer");
-			BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.request.alert'), 'success', 'growl-top-left');
-			Meteor.call('requestToMakeVisible', Session.get('activeCardset')._id);
+			if (!UserPermissions.isAdmin() || !UserPermissions.isLecturer()) {
+				visible = false;
+				let requestedKind = kind;
+				kind = 'personal';
+				let text = "Kartensatz " + Session.get('activeCardset').name + " zur Überprüfung freigegeben";
+				let type = "Kartensatz-Freigabe";
+				let target = "lecturer";
+				Meteor.call("addNotification", target, type, text, Session.get('activeCardset')._id, "lecturer");
+				BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.request.alert'), 'success', 'growl-top-left');
+				Meteor.call('requestToMakeVisible', Session.get('activeCardset')._id, requestedKind);
+			}
 		}
 		Meteor.call("publishCardset", Session.get('activeCardset')._id, kind, price, visible, function (err, res) {
 			if (res) {

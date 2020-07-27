@@ -1,23 +1,24 @@
 import './publicCardsets.html';
-import {APIAccess} from "../../../api/subscriptions/cardsetApiAccess";
 import {Cardsets} from "../../../api/subscriptions/cardsets";
+import {publishCardsets} from "../../../api/subscriptions/publishCardsets";
+import {Session} from "meteor/session";
 
-Meteor.subscribe("public-cardsets");
+Meteor.subscribe("publishCardsets");
 
 Template.admin_publicCardsets.helpers({
 	publicCardsets: function () {
-		var tokenItems = [];
-		var apiAccessTokens = APIAccess.find({});
-		apiAccessTokens.forEach(function (token) {
+		var items = [];
+		var publishCardsetsItems = publishCardsets.find({});
+		publishCardsetsItems.forEach(function (token) {
 			var cardset = Cardsets.findOne({_id: token.cardset_id});
-			tokenItems.push({
+			items.push({
 				"_id": token._id,
 				"cardset_id": token.cardset_id,
 				"cardset": cardset.name,
 				"token": token.token
 			});
 		});
-		return tokenItems;
+		return items;
 	},
 	tableSettings: function () {
 		return {
@@ -44,5 +45,13 @@ Template.admin_publicCardsets.helpers({
 				}
 			]
 		};
+	},
+	'(click) .confirmPublicCardsetsAdmin': function (event) {
+		event.preventDefault();
+	},
+	'(click) .declinePublicCardsetsAdmin': function (event) {
+		event.preventDefault();
+		let cardsetId = Session.get("cardsetId");
+		Meteor.call('deletePublishCardset', cardsetId);
 	}
 });
