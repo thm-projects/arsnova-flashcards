@@ -32,6 +32,7 @@ import "./main.html";
 import {PDFViewer} from "../../util/pdfViewer";
 import {setLanguage, setTheme} from "../../startup/client/routes/onBeforeAction.js";
 import {Fullscreen} from "../../util/fullscreen";
+import {CardsetVisuals} from "../../util/cardsetVisuals";
 
 Meteor.subscribe("notifications");
 Meteor.subscribe("serverStatistics");
@@ -167,6 +168,7 @@ Template.main.onRendered(function () {
 		MainNavigation.closeCollapse();
 	});
 	MainNavigation.initializeNavigation();
+	CardsetVisuals.resizeCardsetInfo();
 });
 
 Template.main.onDestroyed(function () {

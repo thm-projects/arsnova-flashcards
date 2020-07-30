@@ -95,19 +95,23 @@ export let Fullscreen = class Fullscreen {
 	}
 
 	static setMode () {
-		let mode = ServerStyle.getFullscreenMode();
+		if (this.getChooseModeSession() === 1) {
+			this.enable();
+		} else {
+			let mode = ServerStyle.getFullscreenMode();
 
-		switch (mode) {
-			case AUTO_FULLSCREEN:
-				this.enable();
-				break;
-			case MANUAL_FULLSCREEN:
-				break;
-			case CHOOSE_FULLSCREEN:
-				if (this.getChooseMode() === 0) {
-					SweetAlertMessages.chooseFullscreenMode();
-				}
-				break;
+			switch (mode) {
+				case AUTO_FULLSCREEN:
+					this.enable();
+					break;
+				case MANUAL_FULLSCREEN:
+					break;
+				case CHOOSE_FULLSCREEN:
+					if (this.getChooseMode() === 0) {
+						SweetAlertMessages.chooseFullscreenMode();
+					}
+					break;
+			}
 		}
 	}
 

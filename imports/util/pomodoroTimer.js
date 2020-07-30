@@ -220,8 +220,8 @@ export let PomodoroTimer = class PomodoroTimer {
 			confirmButtonText: dialogue.confirm,
 			allowOutsideClick: false
 		}).then(() => {
-			if (document.fullscreenElement === null) {
-				document.documentElement.requestFullscreen();
+			if (Fullscreen.getChooseModeSession() === 1) {
+				Fullscreen.enable();
 			}
 			/*and this is what runs when the user clicks the confirm button on the popup. It starts the break, and gets the current time and sets the end from there.*/
 			if (Route.isBox()) {
@@ -305,8 +305,8 @@ export let PomodoroTimer = class PomodoroTimer {
 			confirmButtonText: dialogue.confirm,
 			allowOutsideClick: false
 		}).then(() => {
-			if (document.fullscreenElement === null) {
-				document.documentElement.requestFullscreen();
+			if (Fullscreen.getChooseModeSession() === 1) {
+				Fullscreen.enable();
 			}
 			/*starts the work cycle up again, automatically.*/
 			if (Route.isBox()) {
@@ -449,9 +449,6 @@ export let PomodoroTimer = class PomodoroTimer {
 						if (Route.isDemo()) {
 							this.setPresentationPomodoro(true);
 						}
-						if ((Route.isBox() || Route.isMemo()) && document.fullscreenElement === null) {
-							document.documentElement.requestFullscreen();
-						}
 					}
 					/*If you give up before you complete your goal you get a failure sound, taken from a show me and my lady have been watching lately, and a failure box. Shame!*/
 					if (!result.value) {
@@ -484,6 +481,9 @@ export let PomodoroTimer = class PomodoroTimer {
 							}).then(() => {
 								this.setPresentationPomodoro(true);
 								PomodoroTimer.showPomodoroNormal();
+								if (Route.isHome()) {
+									Fullscreen.disable();
+								}
 								if ((Route.isBox() || Route.isMemo())) {
 									Session.set('pomodoroBreakActive', false);
 									if (Bonus.isInBonus(FlowRouter.getParam('_id'), Meteor.userId())) {
@@ -563,6 +563,9 @@ export let PomodoroTimer = class PomodoroTimer {
 								confirmButtonText: dialogue.confirm
 							}).then(() => {
 								PomodoroTimer.showPomodoroNormal();
+								if (Route.isHome()) {
+									Fullscreen.disable();
+								}
 								if ((Route.isBox() || Route.isMemo())) {
 									Session.set('pomodoroBreakActive', false);
 									if (Bonus.isInBonus(FlowRouter.getParam('_id'), Meteor.userId())) {
