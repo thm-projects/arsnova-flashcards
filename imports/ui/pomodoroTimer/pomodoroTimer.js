@@ -9,10 +9,10 @@ import {Session} from "meteor/session";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {ReactiveVar} from "meteor/reactive-var";
 
-let soundConfig1;
-let soundConfig2;
-let soundConfig3 ;
-let fullscreenConfig;
+let soundConfig1 = new ReactiveVar();
+let soundConfig2 = new ReactiveVar();
+let soundConfig3 = new ReactiveVar();
+let fullscreenConfig = new ReactiveVar();
 
 /*
  * ############################################################################
@@ -57,10 +57,6 @@ Template.pomodoroTimer.helpers({
  */
 
 Template.pomodoroTimerModal.onCreated(function () {
-	soundConfig1 = new ReactiveVar();
-	soundConfig2 = new ReactiveVar();
-	soundConfig3 = new ReactiveVar();
-	fullscreenConfig = new ReactiveVar();
 	PomodoroTimer.initializeVariables();
 });
 
