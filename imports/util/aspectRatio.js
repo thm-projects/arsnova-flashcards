@@ -20,7 +20,7 @@ export let AspectRatio = class AspectRatio {
 			if (Route.isMemo() && config.aspectRatioEnabled.includes(3)) {
 				return true;
 			}
-			if (Route.isEditCard() && config.aspectRatioEnabled.includes(4)) {
+			if (Route.isEditMode() && config.aspectRatioEnabled.includes(4)) {
 				return true;
 			}
 		}
@@ -39,7 +39,7 @@ export let AspectRatio = class AspectRatio {
 		if (Route.isMemo() && config.scaleCardNavigationWidth.includes(3)) {
 			return true;
 		}
-		if (Route.isEditCard() && config.scaleCardNavigationWidth.includes(4)) {
+		if (Route.isEditMode() && config.scaleCardNavigationWidth.includes(4)) {
 			return true;
 		}
 	}
@@ -57,7 +57,7 @@ export let AspectRatio = class AspectRatio {
 		if (Route.isMemo() && config.scale3DCardNavigationWidth.includes(3)) {
 			return true;
 		}
-		if (Route.isEditCard() && config.scale3DCardNavigationWidth.includes(4)) {
+		if (Route.isEditMode() && config.scale3DCardNavigationWidth.includes(4)) {
 			return true;
 		}
 	}
@@ -91,7 +91,7 @@ export let AspectRatio = class AspectRatio {
 				return config.defaultAspectRatio[3];
 			}
 		}
-		if (Route.isEditCard()) {
+		if (Route.isEditMode()) {
 			if (NavigatorCheck.isIOS()) {
 				return config.defaultAspectRatioTablet[4];
 			} else {
