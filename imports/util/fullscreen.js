@@ -151,7 +151,7 @@ export let Fullscreen = class Fullscreen {
 		Session.set('dictionaryBeolingus', 0);
 		Session.set('dictionaryLinguee', 0);
 		Session.set('dictionaryGoogle', 0);
-		if (document.fullscreenElement === null) {
+		if (document.fullscreenElement === null && !isMarkdeepEditor) {
 			document.documentElement.requestFullscreen();
 		}
 		$(".box").removeClass("disableCardTransition");
