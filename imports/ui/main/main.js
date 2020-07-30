@@ -53,6 +53,12 @@ Session.setDefault('firedUseCaseModal', 0);
 Session.setDefault('isAnswerEditorEnabled', false);
 Session.setDefault('displayMainNavigation', true);
 
+// Session Variables for the Choose Fullscreen Feature
+Session.setDefault('fullscreenPresentationSession', 0);
+Session.setDefault('fullscreenDemoSession', 0);
+Session.setDefault('fullscreenLeitnerSession', 0);
+Session.setDefault('fullscreenWozniakSession', 0);
+
 function connectionStatus() {
 	let stat;
 	if (Meteor.status().status === "connected") {

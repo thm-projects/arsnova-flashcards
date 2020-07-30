@@ -13,6 +13,7 @@ import {presentationMode, demoMode, leitnerMode, wozniakMode} from "./item/fulls
 import {ServerSettings} from "../../../util/settings";
 import {ServerStyle} from "../../../util/styles";
 import {UserPermissions} from "../../../util/permissions";
+import {Fullscreen} from "../../../util/fullscreen";
 
 /*
  * ############################################################################
@@ -265,6 +266,7 @@ Template.profileSettings.events({
 				let leitner = Meteor.user().fullscreen.settings.leitner;
 				let wozniak = Meteor.user().fullscreen.settings.wozniak;
 
+
 				if (ServerStyle.gotFullscreenSettingsAccess(1)) {
 					presentation = presentationMode.get();
 				}
@@ -278,6 +280,19 @@ Template.profileSettings.events({
 					wozniak = wozniakMode.get();
 				}
 
+				// Reset the Chose Mode Session of the User switched to a different mode
+				if (presentation !== 3) {
+					Fullscreen.resetChooseModeSessions(0);
+				}
+				if (demo !== 3) {
+					Fullscreen.resetChooseModeSessions(1);
+				}
+				if (leitner !== 3) {
+					Fullscreen.resetChooseModeSessions(2);
+				}
+				if (wozniak !== 3) {
+					Fullscreen.resetChooseModeSessions(3);
+				}
 				Meteor.call("updateUserFullscreenSettings", presentation, demo, leitner, wozniak);
 			}
 

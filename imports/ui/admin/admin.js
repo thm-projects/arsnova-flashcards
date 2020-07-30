@@ -7,6 +7,7 @@ import {MainNavigation} from "../../util/mainNavigation";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./admin.html";
 import {Session} from "meteor/session";
+import {Fullscreen} from "../../util/fullscreen";
 
 Meteor.subscribe("notifications");
 
@@ -19,6 +20,7 @@ Meteor.subscribe("notifications");
 Template.admin_main.events({
 	'click #logout_admin': function (event) {
 		event.preventDefault();
+		Fullscreen.resetChooseModeSessions();
 		MainNavigation.setLoginTarget(false);
 		FlowRouter.go('home');
 		Meteor.logout();

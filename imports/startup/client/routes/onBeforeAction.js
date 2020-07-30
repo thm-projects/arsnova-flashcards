@@ -4,7 +4,6 @@ import {MainNavigation} from "../../../util/mainNavigation";
 import {Session} from "meteor/session";
 import {Route} from "../../../util/route";
 import {Meteor} from "meteor/meteor";
-import {CardVisuals} from "../../../util/cardVisuals";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import {LoginTasks} from "../../../util/login";
 

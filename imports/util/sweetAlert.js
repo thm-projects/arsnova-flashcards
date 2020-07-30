@@ -40,13 +40,17 @@ export let SweetAlertMessages = class SweetAlertMessages {
 	}
 
 	static chooseFullscreenMode () {
-		swal.fire(config.chooseFullscreenMode()).then((result) => {
-			if (result.value) {
-				Fullscreen.setChooseMode(1);
-			} else {
-				Fullscreen.setChooseMode(2);
-			}
-		});
+		if (Fullscreen.getChooseModeSession() === 0) {
+			swal.fire(config.chooseFullscreenMode()).then((result) => {
+				if (result.value) {
+					Fullscreen.setChooseMode(1);
+					Fullscreen.setChooseModeSession(1);
+				} else {
+					Fullscreen.setChooseMode(2);
+					Fullscreen.setChooseModeSession(2);
+				}
+			});
+		}
 	}
 
 	static activateFullscreen () {
