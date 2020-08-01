@@ -1,6 +1,6 @@
 {
     "name": "Linux🍅cards",
-    "short_name": "Linux🍅cards",
+    "short_name": "🍅cards",
     "description": "Lernen für die LPI-Prüfungen",
     "categories": ["education"],
     "lang": "de",
@@ -14,6 +14,12 @@
                 "src": "/img/linux/android-chrome-512x512.png?v=NmblzEMgK2",
                 "sizes": "512x512",
                 "type": "image/png"
+            },
+            {
+                "src": "/img/linux/maskable_icon.png?v=NmblzEMgK2",
+                "sizes": "1024x1024",
+                "type": "image/png",
+                "purpose": "maskable"
             }
         ],
     "start_url": "/",
