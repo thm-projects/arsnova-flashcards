@@ -1,7 +1,9 @@
 {
     "name": "🍅cards",
     "short_name": "🍅cards",
-    "description": "The mobile app for learning with cards!",
+    "description": "Offers spaced-repetition algorithms and bonus for repetitive learning.",
+    "categories": ["education"],
+    "lang": "de",
     "icons": [
         {
             "src": "/android-chrome-192x192.png?v=3",
@@ -18,6 +20,7 @@
     "theme_color": "#000000",
     "background_color": "#000000",
     "display": "standalone",
+    "orientation": "portrait-primary",
     "gcm_sender_id": "142354287038",
     "gcm_user_visible_only": true
 }

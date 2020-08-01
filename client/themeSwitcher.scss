@@ -2332,15 +2332,15 @@ $themes: (
     //admin
     #wrapper {
       #admin-sidebar-wrapper {
-        background: #9C132D !important;
-        color: white !important;
+        background: $thm_green;
+        color: white;
         .sidebar-nav {
           li {
             a {
               color: white !important;
               &:hover, &:focus, &.active {
-                color: white !important;
-                background: #F5AA01 !important;
+                color: white;
+                background: $thm_orange;
               }
             }
           }
