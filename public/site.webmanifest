@@ -1,27 +1,27 @@
 {
-    "name": "Linux🍅cards",
-    "short_name": "🍅cards",
-    "description": "Lernen für die LPI-Prüfungen",
+    "name": "\ud83c\udf45cards",
+    "short_name": "\ud83c\udf45cards",
+    "description": "Organize. Learn. Memorize.",
     "categories": ["education"],
     "lang": "de",
     "icons": [
-            {
-                "src": "/img/linux/android-chrome-192x192.png?v=NmblzEMgK2",
-                "sizes": "192x192",
-                "type": "image/png"
-            },
-            {
-                "src": "/img/linux/android-chrome-512x512.png?v=NmblzEMgK2",
-                "sizes": "512x512",
-                "type": "image/png"
-            },
-            {
-                "src": "/img/linux/maskable_icon.png?v=NmblzEMgK2",
-                "sizes": "1024x1024",
-                "type": "image/png",
-                "purpose": "maskable"
-            }
-        ],
+        {
+            "src": "/img/thm/android-chrome-192x192.png?v=42",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/img/thm/android-chrome-512x512.png?v=42",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+        "src": "/img/thm/maskable_icon.png?v=NmblzEMgK2",
+        "sizes": "1024x1024",
+        "type": "image/png",
+        "purpose": "maskable"
+        }
+    ],
     "start_url": "/",
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
