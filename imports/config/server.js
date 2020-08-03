@@ -74,6 +74,7 @@ let defaultSettings = {
 		}
 	},
 	"login": {
+		"cards": true,
 		"cas": true,
 		"guest": false,
 		"pro": false,
@@ -223,6 +224,7 @@ let debug = {
 		}
 	},
 	"login": {
+		"cards": true,
 		"cas": false,
 		"guest": true,
 		"pro": true,
@@ -372,6 +374,7 @@ let linux = {
 		}
 	},
 	"login": {
+		"cards": true,
 		"cas": true,
 		"guest": true,
 		"pro": false,
@@ -521,6 +524,7 @@ let review = {
 		}
 	},
 	"login": {
+		"cards": true,
 		"cas": true,
 		"guest": true,
 		"pro": false,
@@ -670,6 +674,7 @@ let staging = {
 		}
 	},
 	"login": {
+		"cards": true,
 		"cas": true,
 		"guest": false,
 		"pro": false,

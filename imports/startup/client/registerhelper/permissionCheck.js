@@ -79,7 +79,7 @@ Template.registerHelper("isCardsetOwnerAndLecturer", function (cardset_id) {
 });
 
 Template.registerHelper("canAccessFrontend", function () {
-	return Meteor.user() || MainNavigation.isGuestLoginActive();
+	return (Meteor.user() || MainNavigation.isGuestLoginActive());
 });
 
 Template.registerHelper("isGuestLogin", function () {

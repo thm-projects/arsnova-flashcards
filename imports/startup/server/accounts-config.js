@@ -128,24 +128,44 @@ Meteor.users.after.insert(function (userId, doc) {
 			});
 		}
 	}
-	Meteor.users.update(doc._id, {
-		$set: {
-			visible: false,
-			lvl: 1,
-			lastOnAt: new Date(),
-			daysInRow: 0,
-			selectedColorTheme: "default",
-			mailNotification: ServerStyle.newUser("mail"),
-			webNotification: ServerStyle.newUser("web"),
-			"profile.locale": "de"
-		}
-	});
+	// Check if user is a local user
+	if (doc.services.password !== undefined) {
+		Meteor.users.update(doc._id, {
+			$set: {
+				visible: false,
+				lvl: 1,
+				lastOnAt: new Date(),
+				daysInRow: 0,
+				selectedColorTheme: "default",
+				mailNotification: ServerStyle.newUser("mail"),
+				webNotification: ServerStyle.newUser("web"),
+				"profile.locale": "de",
+				email: doc.emails[0].address,
+				"profile.name": doc.profile.username
+			}
+		});
+	} else {
+		Meteor.users.update(doc._id, {
+			$set: {
+				visible: false,
+				lvl: 1,
+				lastOnAt: new Date(),
+				daysInRow: 0,
+				selectedColorTheme: "default",
+				mailNotification: ServerStyle.newUser("mail"),
+				webNotification: ServerStyle.newUser("web"),
+				"profile.locale": "de"
+			}
+		});
+	}
 	if (doc.services !== undefined && doc.services.cas !== undefined) {
 		Roles.addUsersToRoles(doc._id, [
 			'standard',
 			'university',
 			'firstLogin'
 		]);
+	} else if (doc.services.password) {
+		Roles.addUsersToRoles(doc._id, ['university']);
 	} else {
 		Roles.addUsersToRoles(doc._id, ['standard', 'firstLogin']);
 	}

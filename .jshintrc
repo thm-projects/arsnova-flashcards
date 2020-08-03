@@ -59,6 +59,7 @@
     "sweetAlert": true,
     "swal": true,
     "Tracker": true,
-    "ZingTouch": true
+    "ZingTouch": true,
+    "AccountsTemplates": true
   }
 }

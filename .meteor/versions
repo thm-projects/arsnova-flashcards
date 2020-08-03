@@ -2,6 +2,7 @@ accounts-base@1.6.0
 accounts-facebook@1.3.2
 accounts-google@1.3.3
 accounts-oauth@1.2.0
+accounts-password@1.6.1
 accounts-twitter@1.4.2
 accounts-ui@1.3.1
 accounts-ui-unstyled@1.4.2
@@ -11,6 +12,7 @@ aldeed:collection2-core@1.2.0
 aldeed:schema-deny@1.1.0
 aldeed:schema-index@1.1.1
 aldeed:simple-schema@1.5.4
+aldeed:template-extension@4.1.0
 allow-deny@1.1.0
 anti:i18n@0.4.3
 aslagle:reactive-table@0.8.45
@@ -101,6 +103,7 @@ mongo-decimal@0.1.1
 mongo-dev-server@1.1.0
 mongo-id@1.0.7
 mrt:mathjax@0.7.1
+npm-bcrypt@0.9.3
 npm-mongo@3.7.0
 oauth@1.3.0
 oauth1@1.3.0
@@ -206,12 +209,15 @@ rzymek:moment-locales@2.9.0
 server-render@0.3.1
 service-configuration@1.0.11
 session@1.2.0
+sha@1.0.9
 shell-server@0.5.0
 simple:json-routes@2.1.0
 simple:katex@1.1.0
 socket-stream-client@0.3.0
+softwarerero:accounts-t9n@1.3.11
 spacebars@1.0.15
 spacebars-compiler@1.1.3
+srp@1.1.0
 standard-minifier-css@1.6.0
 standard-minifier-js@2.6.0
 tap:i18n@1.8.2
@@ -229,6 +235,8 @@ twitter-oauth@1.2.0
 ui@1.0.13
 underscore@1.0.10
 url@1.3.0
+useraccounts:bootstrap@1.14.2
+useraccounts:core@1.14.2
 webapp@1.9.1
 webapp-hashing@1.0.9
 wtfzn:dompurify@0.6.1

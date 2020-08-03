@@ -133,6 +133,10 @@ $themes: (
     $login_google_background_hover: map-get($map, "login_google_background_hover");
     $login_google_icon: map-get($map, "login_google_icon");
     $login_google_icon_hover: map-get($map, "login_google_icon_hover");
+    $login_cards_background: map-get($map, "login_cards_background");
+    $login_cards_background_hover: map-get($map, "login_cards_background_hover");
+    $login_cards_icon: map-get($map, "login_cards_icon");
+    $login_cards_icon_hover: map-get($map, "login_cards_icon_hover");
     $login_cas_background: map-get($map, "login_cas_background");
     $login_cas_background_hover: map-get($map, "login_cas_background_hover");
     $login_cas_icon: map-get($map, "login_cas_icon");
@@ -1284,6 +1288,13 @@ $themes: (
       mask-position: center;
     }
 
+    #cards {
+      background-color: $login_cards_background !important;
+      color: $login_cards_icon !important;
+      .login-button-icon {
+        background-color: $login_cards_icon !important;
+      }
+    }
 
     #cas {
       background-color: $login_cas_background !important;

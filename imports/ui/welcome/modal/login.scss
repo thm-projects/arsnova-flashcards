@@ -1,0 +1,16 @@
+#loginModal {
+  .modal-content {
+    @media (min-width: 768px) {
+      min-width: 600px;
+    }
+  }
+
+  .at-form {
+    margin-top: 0;
+    padding-top: 0;
+
+    .form-control-feedback {
+      top: 35px;
+    }
+  }
+}
