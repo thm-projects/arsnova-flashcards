@@ -62,8 +62,8 @@ AccountsTemplates.addFields([
 	{
 		_id: 'username',
 		type: 'text',
-		displayName: 'user',
-		placeholder: 'user',
+		displayName: 'Benutzerkennung',
+		placeholder: 'Benutzerkennung',
 		required: true,
 		func: function (value) {
 			if (Meteor.isClient) {
@@ -86,15 +86,15 @@ AccountsTemplates.addFields([
 	{
 		_id: 'birthname',
 		type: 'text',
-		displayName: 'Last Name',
-		placeholder: 'Last Name',
+		displayName: 'Nachname',
+		placeholder: 'Nachname',
 		required: false
 	},
 	{
 		_id: 'givenname',
 		type: 'text',
-		displayName: 'First Name',
-		placeholder: 'First Name',
+		displayName: 'Vorname',
+		placeholder: 'Vorname',
 		required: false
 	},
 	mail,

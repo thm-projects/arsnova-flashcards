@@ -60,6 +60,7 @@
     "swal": true,
     "Tracker": true,
     "ZingTouch": true,
-    "AccountsTemplates": true
+    "AccountsTemplates": true,
+    "T9n": true
   }
 }
