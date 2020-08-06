@@ -74,4 +74,5 @@ ostrio:flow-router-extra
 accounts-password
 useraccounts:bootstrap
 aldeed:template-extension
+cmather:handlebars-server
 server-render

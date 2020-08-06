@@ -1,5 +1,19 @@
 {
  "loginModal": {
-   "title": "🍅cards Login"
+   "title": "🍅cards Login",
+   "mails": {
+    "verify": {
+      "subject": "E-Mail Verifizierung",
+      "title": "E-Mail Verifizierung",
+      "intro": "Hallo __name__,",
+      "message": "Mit folgendem Link kannst du deine E-Mail verifizieren: <a href='__url__' target='_blank'>__url__</a>"
+    },
+     "passwordReset": {
+       "subject": "Passwort zurücksetzen",
+       "title": "Passwort zurücksetzen",
+       "intro": "Hallo __name__,",
+       "message": "Mit folgendem Link kannst du dein Passwort zurücksetzen: <a href='__url__' target='_blank'>__url__</a>"
+     }
+   }
  }
 }

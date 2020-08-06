@@ -9,6 +9,9 @@ import "../imports/startup/server/browser-policy.js";
 // Server settings
 import "../imports/config/accounts.js";
 
+// Server only settings
+import "./mailTemplate.js";
+
 //Server methods and subscriptions
 import "../imports/api/meteorMethods/accounts.js";
 import "../imports/api/meteorMethods/adminSettings.js";
