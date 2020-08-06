@@ -17,3 +17,4 @@ Template.loginModal.onDestroyed(function () {
 });
 
 Template['cards-login'].replaces('atForm');
+Template['cards-terms-link'].replaces('atTermsLink');

@@ -53,3 +53,20 @@
         {{/unless}}
     </div>
 </template>
+
+<template name="cards-terms-link">
+    <div class="at-terms-link at-wrap">
+        <p>
+            {{text}}
+            {{#if privacyUrl}}
+                <a href="{{privacyUrl}}" target="_blank" class="{{disabled}}">{{privacyLinkText}}</a>
+            {{/if}}
+            {{#if showTermsAnd}}
+                {{and}}
+            {{/if}}
+            {{#if termsUrl}}
+                <a href="{{termsUrl}}" target="_blank" class="{{disabled}}">{{termsLinkText}}</a>
+            {{/if}}
+        </p>
+    </div>
+</template>
