@@ -1,6 +1,6 @@
 import {accountSubmitHook} from "../util/accounts";
 
-AccountsTemplates.configure({
+let options = {
 	// Behavior
 	confirmPassword: true,
 	enablePasswordChange: true,
@@ -17,6 +17,7 @@ AccountsTemplates.configure({
 	showLabels: true,
 	showPlaceholders: true,
 	showResendVerificationEmailLink: true,
+	showReCaptcha: false,
 
 	// Client-side Validation
 	continuousValidation: true,
@@ -42,4 +43,10 @@ AccountsTemplates.configure({
 			verifyEmailFirst: "Bitte verifiziere zuerst deine E-Mail."
 		}
 	}
-});
+};
+
+if (Meteor.settings.public.reCaptcha.enabled) {
+	options.showReCaptcha = true;
+}
+
+AccountsTemplates.configure(options);
