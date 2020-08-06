@@ -6,6 +6,7 @@ BrowserPolicy.content.allowInlineStyles();
 BrowserPolicy.content.allowFontDataUrl();
 
 BrowserPolicy.content.allowOriginForAll('https://*.google-analytics.com');
+BrowserPolicy.content.allowOriginForAll('https://www.google.com/recaptcha/api.js');
 BrowserPolicy.content.allowOriginForAll('https://*.youtube.com');
 BrowserPolicy.content.allowOriginForAll('https://*.vimeo.com');
 BrowserPolicy.content.allowOriginForAll('https://*.mxpnl.com');
