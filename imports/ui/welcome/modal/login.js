@@ -16,5 +16,4 @@ Template.loginModal.onDestroyed(function () {
 	$(".modal-backdrop").remove();
 });
 
-Template['override-atForm'].replaces('atForm');
-Template['override-atResult'].replaces('atResult');
+Template['cards-login'].replaces('atForm');

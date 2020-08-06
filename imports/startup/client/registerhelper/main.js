@@ -13,6 +13,7 @@ import "./serverConfiguration/welcomePage.js";
 import "./editor.js";
 import "./filter.js";
 import "./leitner.js";
+import "./login.js";
 import "./markdeep.js";
 import "./mainNavigation.js";
 import "./navigatorCheck.js";

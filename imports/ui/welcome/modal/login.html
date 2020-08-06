@@ -22,8 +22,11 @@
     <!-- /.modal -->
 </template>
 
-<template name="override-atForm">
+<template name="cards-login">
     <div class="at-form">
+        {{#if showTitle}}
+            {{> atTitle}}
+        {{/if}}
         {{#if showError}}
             {{> atError}}
         {{/if}}
@@ -39,17 +42,14 @@
         {{#if showTermsLink}}
             {{> atTermsLink}}
         {{/if}}
-        {{#if showSignInLink}}
-            {{> atSigninLink}}
-        {{/if}}
         {{#if showSignUpLink}}
             {{> atSignupLink}}
         {{/if}}
         {{#if showResendVerificationEmailLink}}
             {{> atResendVerificationEmailLink}}
         {{/if}}
+        {{#unless isSignInState}}
+            {{> atSigninLink}}
+        {{/unless}}
     </div>
-</template>
-
-<template name="override-atResult">
 </template>
