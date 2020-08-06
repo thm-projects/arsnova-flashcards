@@ -1,6 +1,14 @@
 {
  "loginModal": {
    "title": "🍅cards Login",
+   "info": {
+     "domains": "Freigegebene Domains"
+   },
+   "errors": {
+     "domains": "Die Domain ist nicht für die Registrierung freigegeben",
+     "nameAlreadyExists": "Die Benutzerkennung existiert bereits",
+     "mailAlreadyExists": "Die E-Mail existiert bereits"
+   },
    "mails": {
     "verify": {
       "subject": "E-Mail Verifizierung",

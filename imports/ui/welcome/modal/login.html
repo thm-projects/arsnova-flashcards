@@ -27,6 +27,16 @@
         {{#if showTitle}}
             {{> atTitle}}
         {{/if}}
+        {{#if isSignUpState}}
+            {{#if getWhitelistedDomains}}
+                <b>{{_ "loginModal.info.domains"}}:</b>
+                <ul>
+                    {{#each getWhitelistedDomains}}
+                        <li>{{this.name}}</li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+        {{/if}}
         {{#if showError}}
             {{> atError}}
         {{/if}}

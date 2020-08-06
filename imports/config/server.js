@@ -74,7 +74,23 @@ let defaultSettings = {
 		}
 	},
 	"login": {
-		"cards": true,
+		"cards": {
+			"enabled": true,
+			"domainWhitelist": [// Disabled if empty
+				{
+					"name": "*.thm.de",
+					"regexp": ".+\.thm\.de"
+				},
+				{
+					"name": "h-da.de",
+					"regexp": "h-da\.de"
+				},
+				{
+					"name": "*.uni-frankfurt.de",
+					"regexp": ".+\.uni-frankfurt\.de"
+				}
+			]
+		},
 		"cas": true,
 		"guest": false,
 		"pro": false,
@@ -224,7 +240,23 @@ let debug = {
 		}
 	},
 	"login": {
-		"cards": true,
+		"cards": {
+			"enabled": true,
+			"domainWhitelist": [// Disabled if empty
+				{
+					"name": "*.thm.de",
+					"regexp": ".+\.thm\.de"
+				},
+				{
+					"name": "h-da.de",
+					"regexp": "h-da\.de"
+				},
+				{
+					"name": "*.uni-frankfurt.de",
+					"regexp": ".+\.uni-frankfurt\.de"
+				}
+			]
+		},
 		"cas": false,
 		"guest": true,
 		"pro": true,
@@ -374,7 +406,23 @@ let linux = {
 		}
 	},
 	"login": {
-		"cards": true,
+		"cards": {
+			"enabled": true,
+			"domainWhitelist": [// Disabled if empty
+				{
+					"name": "*.thm.de",
+					"regexp": ".+\.thm\.de"
+				},
+				{
+					"name": "h-da.de",
+					"regexp": "h-da\.de"
+				},
+				{
+					"name": "*.uni-frankfurt.de",
+					"regexp": ".+\.uni-frankfurt\.de"
+				}
+			]
+		},
 		"cas": true,
 		"guest": true,
 		"pro": false,
@@ -524,7 +572,23 @@ let review = {
 		}
 	},
 	"login": {
-		"cards": true,
+		"cards": {
+			"enabled": true,
+			"domainWhitelist": [// Disabled if empty
+				{
+					"name": "*.thm.de",
+					"regexp": ".+\.thm\.de"
+				},
+				{
+					"name": "h-da.de",
+					"regexp": "h-da\.de"
+				},
+				{
+					"name": "*.uni-frankfurt.de",
+					"regexp": ".+\.uni-frankfurt\.de"
+				}
+			]
+		},
 		"cas": true,
 		"guest": true,
 		"pro": false,
@@ -674,7 +738,23 @@ let staging = {
 		}
 	},
 	"login": {
-		"cards": true,
+		"cards": {
+			"enabled": true,
+			"domainWhitelist": [// Disabled if empty
+				{
+					"name": "*.thm.de",
+					"regexp": ".+\.thm\.de"
+				},
+				{
+					"name": "h-da.de",
+					"regexp": "h-da\.de"
+				},
+				{
+					"name": "*.uni-frankfurt.de",
+					"regexp": ".+\.uni-frankfurt\.de"
+				}
+			]
+		},
 		"cas": true,
 		"guest": false,
 		"pro": false,

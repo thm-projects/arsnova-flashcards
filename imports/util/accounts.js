@@ -1,3 +1,6 @@
+import {ServerStyle} from "./styles";
+import XRegExp from 'xregexp';
+
 export let AccountUtils = class AccountUtils {
 	static exists (username) {
 		return Meteor.users.findOne({username: username}) !== undefined;
@@ -11,6 +14,25 @@ export let AccountUtils = class AccountUtils {
 			}
 		}
 		return false;
+	}
+
+	static getWhitelistedDomains () {
+		return ServerStyle.getConfig().login.cards.domainWhitelist;
+	}
+
+	static isDomainWhitelisted (mail) {
+		let whitelist = ServerStyle.getConfig().login.cards.domainWhitelist;
+		if (whitelist.length) {
+			for (let i = 0; i < whitelist.length; i++) {
+				let result = XRegExp.exec(mail, new XRegExp('.+@' + whitelist[i].regexp));
+				if (result !== undefined && result !== null && result.length) {
+					return true;
+				}
+			}
+			return false;
+		} else {
+			return true;
+		}
 	}
 };
 
@@ -41,18 +63,28 @@ export let accountSubmitHook = function (error, state) {
 mail.func = function (value) {
 	if (Meteor.isClient) {
 		let self = this;
-		Meteor.call("mailExists", value, function (err, mailExists) {
-			if (!mailExists) {
-				self.setSuccess();
+		if (AccountsTemplates.getState() == 'signUp') {
+			if (AccountUtils.isDomainWhitelisted(value)) {
+				Meteor.call("mailExists", value, function (err, mailExists) {
+					if (!mailExists) {
+						self.setSuccess();
+					} else {
+						self.setError(TAPi18n.__('loginModal.errors.mailAlreadyExists'));
+					}
+					self.setValidating(false);
+				});
 			} else {
-				self.setError(mailExists);
+				self.setError(TAPi18n.__('loginModal.errors.domains'));
+				self.setValidating(false);
 			}
+		} else {
+			self.setSuccess();
 			self.setValidating(false);
-		});
+		}
 		return;
 	} else {
 		// Server
-		return AccountUtils.mailExists(value);
+		return AccountUtils.mailExists(value) || !AccountUtils.isDomainWhitelisted(value);
 	}
 };
 
@@ -72,7 +104,7 @@ AccountsTemplates.addFields([
 					if (!userExists) {
 						self.setSuccess();
 					} else {
-						self.setError(userExists);
+						self.setError(TAPi18n.__('loginModal.errors.nameAlreadyExists'));
 					}
 					self.setValidating(false);
 				});
@@ -86,15 +118,15 @@ AccountsTemplates.addFields([
 	{
 		_id: 'birthname',
 		type: 'text',
-		displayName: 'Nachname',
-		placeholder: 'Nachname',
+		displayName: 'Vorname',
+		placeholder: 'Vorname',
 		required: true
 	},
 	{
 		_id: 'givenname',
 		type: 'text',
-		displayName: 'Vorname',
-		placeholder: 'Vorname',
+		displayName: 'Nachname',
+		placeholder: 'Nachname',
 		required: true
 	},
 	mail,
