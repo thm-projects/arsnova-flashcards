@@ -88,14 +88,14 @@ AccountsTemplates.addFields([
 		type: 'text',
 		displayName: 'Nachname',
 		placeholder: 'Nachname',
-		required: false
+		required: true
 	},
 	{
 		_id: 'givenname',
 		type: 'text',
 		displayName: 'Vorname',
 		placeholder: 'Vorname',
-		required: false
+		required: true
 	},
 	mail,
 	pwd

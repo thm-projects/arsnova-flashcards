@@ -8,7 +8,7 @@ AccountsTemplates.configure({
 	overrideLoginErrors: false,
 	sendVerificationEmail: true,
 	enforceEmailVerification: true,
-	lowercaseUsername: true,
+	lowercaseUsername: false,
 	focusFirstInput: true,
 
 	// Appearance
