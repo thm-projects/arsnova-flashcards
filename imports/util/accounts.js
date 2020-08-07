@@ -24,7 +24,7 @@ export let AccountUtils = class AccountUtils {
 		let whitelist = ServerStyle.getConfig().login.cards.domainWhitelist;
 		if (whitelist.length) {
 			for (let i = 0; i < whitelist.length; i++) {
-				let result = XRegExp.exec(mail, new XRegExp('.+@' + whitelist[i].regexp));
+				let result = XRegExp.exec(mail, new XRegExp('.+@' + whitelist[i]));
 				if (result !== undefined && result !== null && result.length) {
 					return true;
 				}

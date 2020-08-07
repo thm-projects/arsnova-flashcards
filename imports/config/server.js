@@ -10,6 +10,28 @@ const PRO = 2;
 const LECTURER = 3;
 const GUEST = 4;
 
+const defaultRegistrationDomainWhitelist =
+	[
+		'.*\.fra-uas\.de',
+		'h-da\.de',
+		'.*\.h-da\.de',
+		'.*\.hs-fulda\.de',
+		'hs-gm\.de',
+		'hs-rm\.de',
+		'\.hs-rm\.de',
+		'kgu\.de',
+		'.*\.thm\.de',
+		'.*\.tu-darmstadt\.de',
+		'uni-frankfurt\.de',
+		'.*\.uni-frankfurt\.de',
+		'.*\..*\.uni-frankfurt\.de',
+		'.*\.uni-giessen\.de',
+		'.*\..*\.uni-giessen\.de',
+		'uni-kassel\.de',
+		'.*\.uni-kassel\.de',
+		'.*\.uni-marburg\.de'
+	];
+
 let defaultSettings = {
 	"navigationFeatures": { //Excludes Super Admins (Backend) and Editors (Frontend)
 		"simplifiedNav": true, // Removes dropdowns and groups content together
@@ -76,20 +98,7 @@ let defaultSettings = {
 	"login": {
 		"cards": {
 			"enabled": true,
-			"domainWhitelist": [// Disabled if empty
-				{
-					"name": "*.thm.de",
-					"regexp": ".+\.thm\.de"
-				},
-				{
-					"name": "h-da.de",
-					"regexp": "h-da\.de"
-				},
-				{
-					"name": "*.uni-frankfurt.de",
-					"regexp": ".+\.uni-frankfurt\.de"
-				}
-			]
+			"domainWhitelist": defaultRegistrationDomainWhitelist
 		},
 		"cas": true,
 		"guest": false,
@@ -242,20 +251,7 @@ let debug = {
 	"login": {
 		"cards": {
 			"enabled": true,
-			"domainWhitelist": [// Disabled if empty
-				{
-					"name": "*.thm.de",
-					"regexp": ".+\.thm\.de"
-				},
-				{
-					"name": "h-da.de",
-					"regexp": "h-da\.de"
-				},
-				{
-					"name": "*.uni-frankfurt.de",
-					"regexp": ".+\.uni-frankfurt\.de"
-				}
-			]
+			"domainWhitelist": defaultRegistrationDomainWhitelist
 		},
 		"cas": false,
 		"guest": true,
@@ -408,20 +404,7 @@ let linux = {
 	"login": {
 		"cards": {
 			"enabled": true,
-			"domainWhitelist": [// Disabled if empty
-				{
-					"name": "*.thm.de",
-					"regexp": ".+\.thm\.de"
-				},
-				{
-					"name": "h-da.de",
-					"regexp": "h-da\.de"
-				},
-				{
-					"name": "*.uni-frankfurt.de",
-					"regexp": ".+\.uni-frankfurt\.de"
-				}
-			]
+			"domainWhitelist": defaultRegistrationDomainWhitelist
 		},
 		"cas": true,
 		"guest": true,
@@ -574,20 +557,7 @@ let review = {
 	"login": {
 		"cards": {
 			"enabled": true,
-			"domainWhitelist": [// Disabled if empty
-				{
-					"name": "*.thm.de",
-					"regexp": ".+\.thm\.de"
-				},
-				{
-					"name": "h-da.de",
-					"regexp": "h-da\.de"
-				},
-				{
-					"name": "*.uni-frankfurt.de",
-					"regexp": ".+\.uni-frankfurt\.de"
-				}
-			]
+			"domainWhitelist": defaultRegistrationDomainWhitelist
 		},
 		"cas": true,
 		"guest": true,
@@ -740,20 +710,7 @@ let staging = {
 	"login": {
 		"cards": {
 			"enabled": true,
-			"domainWhitelist": [// Disabled if empty
-				{
-					"name": "*.thm.de",
-					"regexp": ".+\.thm\.de"
-				},
-				{
-					"name": "h-da.de",
-					"regexp": "h-da\.de"
-				},
-				{
-					"name": "*.uni-frankfurt.de",
-					"regexp": ".+\.uni-frankfurt\.de"
-				}
-			]
+			"domainWhitelist": defaultRegistrationDomainWhitelist
 		},
 		"cas": true,
 		"guest": false,

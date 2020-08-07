@@ -2,7 +2,7 @@
  "loginModal": {
    "title": "🍅cards Login",
    "info": {
-     "domains": "Freigegebene Domains"
+     "domains": "Die Registrierung ist auf hessische Hochschul-Domains beschränkt."
    },
    "errors": {
      "domains": "Die Domain ist nicht für die Registrierung freigegeben",
