@@ -1,5 +1,7 @@
 import {accountSubmitHook} from "../util/accounts";
 
+// Minimum Field lenghts have to be defined in /imports/util/accounts.js
+
 let options = {
 	// Behavior
 	confirmPassword: true,

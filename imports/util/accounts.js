@@ -97,6 +97,8 @@ AccountsTemplates.addFields([
 		displayName: 'Benutzerkennung',
 		placeholder: 'Benutzerkennung',
 		required: true,
+		minLength: 3,
+		errStr: TAPi18n.__('loginModal.errors.nameLength', {length: 3}),
 		func: function (value) {
 			if (Meteor.isClient) {
 				let self = this;
@@ -118,16 +120,18 @@ AccountsTemplates.addFields([
 	{
 		_id: 'birthname',
 		type: 'text',
-		displayName: 'Vorname',
-		placeholder: 'Vorname',
-		required: true
+		displayName: 'Nachname',
+		placeholder: 'Nachname',
+		required: true,
+		minLength: 3
 	},
 	{
 		_id: 'givenname',
 		type: 'text',
-		displayName: 'Nachname',
-		placeholder: 'Nachname',
-		required: true
+		displayName: 'Vorname',
+		placeholder: 'Vorname',
+		required: true,
+		minLength: 3
 	},
 	mail,
 	pwd
