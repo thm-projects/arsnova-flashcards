@@ -76,3 +76,15 @@
         </p>
     </div>
 </template>
+
+
+<template name="email-verified-dialog">
+    {{#if visible}}
+        <div class="accounts-dialog accounts-centered-dialog">
+            {{_ "verifiedModal.text" name=displayName}}
+            <div class="login-button" id="just-verified-dismiss-button">{{_ "verifiedModal.button"}}</div>
+        </div>
+    {{/if}}
+</template>
+
+

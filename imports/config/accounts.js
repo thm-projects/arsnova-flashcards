@@ -37,13 +37,18 @@ let options = {
 	termsUrl: 'agb',
 
 	// Translation modifications need to be inserted here. A normal i18n support is not possible on cards
-	// Use https://github.com/meteor-useraccounts/core/blob/master/Guide.md#i18n as a guide
+	// This file usually just contains the Strings that the official translation doesn't seem to touch
+	// You can get a full list of available translation fields at: https://github.com/meteor-useraccounts/core/blob/master/lib/core.js#L272
 	// Some custom input fields need to be modified at /imports/util/accounts.js
 	// The basic modal title is located in the i18n folder
 	texts: {
 		errors: {
 			verifyEmailFirst: "Bitte verifiziere zuerst deine E-Mail."
-		}
+		},
+		info: {
+			signUpVerifyEmail: "Erfolgreiche Registrierung! Bitte überprüfe deine E-Mail und folge den Anweisungen."
+		},
+		minRequiredLength: "Erforderliche Mindestlänge"
 	}
 };
 

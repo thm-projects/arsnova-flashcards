@@ -23,5 +23,9 @@
        "message": "Mit folgendem Link kannst du dein Passwort zurücksetzen: <a href='__url__' target='_blank'>__url__</a>"
      }
    }
- }
+ },
+  "verifiedModal": {
+    "text": "E-Mail verifiziert. Du bist jetzt eingeloggt als __name__",
+    "button": "Schließen"
+  }
 }
