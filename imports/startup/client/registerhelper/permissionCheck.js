@@ -26,6 +26,12 @@ Template.registerHelper("isLecturer", function () {
 		return true;
 	}
 });
+
+Template.registerHelper("isCardsLogin", function () {
+	return UserPermissions.isCardsLogin();
+});
+
+
 Template.registerHelper("isAdmin", function () {
 	return UserPermissions.isAdmin();
 });
