@@ -81,8 +81,38 @@
 <template name="email-verified-dialog">
     {{#if visible}}
         <div class="accounts-dialog accounts-centered-dialog">
-            {{_ "verifiedModal.text" name=displayName}}
-            <div class="login-button" id="just-verified-dismiss-button">{{_ "verifiedModal.button"}}</div>
+            {{_ "verifiedEmailModal.text" name=displayName}}
+            <div class="login-button" id="just-verified-dismiss-button">{{_ "verifiedEmailModal.button"}}</div>
+        </div>
+    {{/if}}
+</template>
+
+<template name="reset-password-dialog">
+    {{#if inResetPasswordFlow}}
+        <div class="hide-background"></div>
+
+        <form class="accounts-dialog accounts-centered-dialog">
+            <label id="reset-password-new-password-label" for="reset-password-new-password">
+                {{_ "resetPasswordModal.text"}}
+            </label>
+
+            <div class="reset-password-new-password-wrapper">
+                <input id="reset-password-new-password" type="password" autocomplete="new-password" />
+            </div>
+
+            <div class="login-button login-button-form-submit" id="login-buttons-reset-password-button">
+                {{_ "resetPasswordModal.button"}}
+            </div>
+            <a class="accounts-close" id="login-buttons-cancel-reset-password">&times;</a>
+        </form>
+    {{/if}}
+</template>
+
+<template name="just-reset-password-dialog">
+    {{#if visible}}
+        <div class="accounts-dialog accounts-centered-dialog">
+            {{_ "justResetPasswordModal.text" name=displayName}}
+            <div class="login-button" id="just-verified-dismiss-button">{{_ "justResetPasswordModal.button"}}</div>
         </div>
     {{/if}}
 </template>

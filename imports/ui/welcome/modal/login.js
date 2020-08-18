@@ -19,3 +19,5 @@ Template.loginModal.onDestroyed(function () {
 Template['cards-login'].replaces('atForm');
 Template['cards-terms-link'].replaces('atTermsLink');
 Template['email-verified-dialog'].replaces("_justVerifiedEmailDialog");
+Template['reset-password-dialog'].replaces("_resetPasswordDialog");
+Template['just-reset-password-dialog'].replaces("_justResetPasswordDialog");
