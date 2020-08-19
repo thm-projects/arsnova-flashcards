@@ -153,6 +153,27 @@ $themes: (
     $login_backdoor_background_hover: map-get($map, "login_backdoor_background_hover");
     $login_backdoor_icon: map-get($map, "login_backdoor_icon");
     $login_backdoor_icon_hover: map-get($map, "login_backdoor_icon_hover");
+    //login modal
+    $login_modal_verification_ok: map-get($map, "login_modal_verification_ok");
+    $login_modal_verification_error: map-get($map, "login_modal_verification_error");
+    $login_modal_button_submit_background: map-get($map, "login_modal_button_submit_background");
+    $login_modal_button_submit_text: map-get($map, "login_modal_button_submit_text");
+    $login_modal_button_submit_background_hover: map-get($map, "login_modal_button_submit_background_hover");
+    $login_modal_button_submit_text_hover: map-get($map, "login_modal_button_submit_text_hover");
+    $login_modal_info_success_text: map-get($map, "login_modal_info_success_text");
+    $login_modal_info_success_background: map-get($map, "login_modal_info_success_background");
+    $login_modal_info_error_text: map-get($map, "login_modal_info_error_text");
+    $login_modal_info_error_background: map-get($map, "login_modal_info_error_background");
+
+    $login_modal_accounts_info_dismiss_button_background: map-get($map, "login_modal_accounts_info_dismiss_button_background");
+    $login_modal_accounts_info_dismiss_button_text: map-get($map, "login_modal_accounts_info_dismiss_button_text");
+    $login_modal_accounts_info_dismiss_button_background_hover: map-get($map, "login_modal_accounts_info_dismiss_button_background_hover");
+    $login_modal_accounts_info_dismiss_button_text_hover: map-get($map, "login_modal_accounts_info_dismiss_button_text_hover");
+
+    $login_modal_accounts_info_new_password_button_background: map-get($map, "login_modal_accounts_info_new_password_button_background");
+    $login_modal_accounts_info_new_password_button_text: map-get($map, "login_modal_accounts_info_new_password_button_text");
+    $login_modal_accounts_info_new_password_button_background_hover: map-get($map, "login_modal_accounts_info_new_password_button_background_hover");
+    $login_modal_accounts_info_new_password_button_text_hover: map-get($map, "login_modal_accounts_info_new_password_button_text_hover");
     //ratings
     $current_rating: map-get($map, "current_rating");
     $hover_rating: map-get($map, "hover_rating");
@@ -1405,6 +1426,59 @@ $themes: (
       color: $login_backdoor_icon_hover !important;
       .login-button-icon {
         background-color: $login_backdoor_icon_hover !important;
+      }
+    }
+
+    //login modal
+    .at-form {
+      .glyphicon-remove {
+        color: $login_modal_verification_error !important;
+      }
+
+      .glyphicon-ok {
+        color: $login_modal_verification_ok !important;
+      }
+
+      .at-btn.submit {
+        color: $login_modal_button_submit_text !important;
+        background-color: $login_modal_button_submit_background !important;
+      }
+
+      .at-btn.submit:hover {
+        color: $login_modal_button_submit_text_hover !important;
+        background-color: $login_modal_button_submit_background_hover !important;
+      }
+
+      .at-result {
+        color: $login_modal_info_success_text !important;
+        background-color: $login_modal_info_success_background !important;
+      }
+
+      .at-error {
+        color: $login_modal_info_error_text !important;
+        background-color: $login_modal_info_error_background !important;
+      }
+    }
+
+    .accounts-dialog {
+      #just-verified-dismiss-button {
+        color: $login_modal_accounts_info_dismiss_button_text !important;
+        background-color: $login_modal_accounts_info_dismiss_button_background !important;
+      }
+
+      #just-verified-dismiss-button:hover {
+        color: $login_modal_accounts_info_dismiss_button_text_hover !important;
+        background-color: $login_modal_accounts_info_dismiss_button_background_hover !important;
+      }
+
+      #login-buttons-reset-password-button {
+        color: $login_modal_accounts_info_new_password_button_text !important;
+        background-color: $login_modal_accounts_info_new_password_button_background !important;
+      }
+
+      #login-buttons-reset-password-button:hover {
+        color: $login_modal_accounts_info_new_password_button_text_hover !important;
+        background-color: $login_modal_accounts_info_new_password_button_background_hover !important;
       }
     }
 

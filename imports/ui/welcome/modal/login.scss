@@ -1,5 +1,11 @@
 #loginModal {
   .modal-content {
+    cursor: default;
+
+    input {
+      cursor: text;
+    }
+
     @media (min-width: 768px) {
       min-width: 600px;
     }
@@ -15,6 +21,7 @@
 
     .g-recaptcha {
       margin-top: 25px;
+      cursor: pointer;
     }
   }
 }
