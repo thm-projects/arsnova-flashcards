@@ -156,6 +156,7 @@ $themes: (
     //login modal
     $login_modal_verification_ok: map-get($map, "login_modal_verification_ok");
     $login_modal_verification_error: map-get($map, "login_modal_verification_error");
+    $login_modal_verification_error_message: map-get($map, "login_modal_verification_error_message");
     $login_modal_button_submit_background: map-get($map, "login_modal_button_submit_background");
     $login_modal_button_submit_text: map-get($map, "login_modal_button_submit_text");
     $login_modal_button_submit_background_hover: map-get($map, "login_modal_button_submit_background_hover");
@@ -1457,6 +1458,10 @@ $themes: (
       .at-error {
         color: $login_modal_info_error_text !important;
         background-color: $login_modal_info_error_background !important;
+      }
+
+      .help-block {
+        color: $login_modal_verification_error_message !important;
       }
     }
 
