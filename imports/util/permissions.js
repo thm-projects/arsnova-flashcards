@@ -29,6 +29,10 @@ export let UserPermissions = class UserPermissions {
 		}
 	}
 
+	static isCardsLogin () {
+		return Meteor.user().services.password !== undefined;
+	}
+
 	static isNotBlockedOrFirstLogin () {
 		return !Roles.userIsInRole(Meteor.userId(), ['blocked', 'firstLogin']);
 	}

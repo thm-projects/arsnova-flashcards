@@ -3,6 +3,10 @@
     "rooturl": "http://localhost:3000",
     "dynamicSettings": "debug",
     "backdoorEnabled": true,
+    "reCaptcha": {
+      "enabled": false,
+      "siteKey": "YOUR SECRET KEY"
+    },
     "cas": {
       "loginUrl": "https://cas.thm.de/cas/login",
       "serviceParam": "service",
@@ -31,6 +35,9 @@
       "leitnerTimer": true
     }
   },
+  "reCaptcha": {
+    "secretKey": "YOUR SECRET KEY"
+  },
   "private": {
     "BT_PRIVATE_KEY": "b508f71a0e0b01940b0fbe75940debb9"
   },
@@ -56,7 +63,7 @@
   "mail": {
     "senderAddress": "info@arsnova.cards",
     "language": "de",
-    "url": "smtp://postmaster%40sandboxcc4938befa8447ca8c857cdf4b968653.mailgun.org:d07ea9c40ccbb21d268bbda17e9aad9d@smtp.mailgun.org:587"
+    "url": ""
   },
   "debug": {
     "leitner": true,

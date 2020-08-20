@@ -71,4 +71,8 @@ underscore@1.0.10
 yasseraudio:multidatepicker
 atoy40:accounts-cas
 ostrio:flow-router-extra
+accounts-password
+useraccounts:bootstrap
+aldeed:template-extension
+cmather:handlebars-server
 server-render

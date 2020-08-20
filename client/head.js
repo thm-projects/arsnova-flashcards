@@ -1,5 +1,6 @@
 // STARTUP IMPORTS
 import "../imports/startup/client/i18n.js";
+import "../imports/config/accounts.js";
 import "../imports/ui/main/main.js";
 import "../imports/startup/client/routes/main.js";
 import "../imports/startup/client/registerhelper/main.js";

@@ -10,6 +10,28 @@ const PRO = 2;
 const LECTURER = 3;
 const GUEST = 4;
 
+const defaultRegistrationDomainWhitelist =
+	[
+		'.*\.fra-uas\.de',
+		'h-da\.de',
+		'.*\.h-da\.de',
+		'.*\.hs-fulda\.de',
+		'hs-gm\.de',
+		'hs-rm\.de',
+		'\.hs-rm\.de',
+		'kgu\.de',
+		'.*\.thm\.de',
+		'.*\.tu-darmstadt\.de',
+		'uni-frankfurt\.de',
+		'.*\.uni-frankfurt\.de',
+		'.*\..*\.uni-frankfurt\.de',
+		'.*\.uni-giessen\.de',
+		'.*\..*\.uni-giessen\.de',
+		'uni-kassel\.de',
+		'.*\.uni-kassel\.de',
+		'.*\.uni-marburg\.de'
+	];
+
 let defaultSettings = {
 	"navigationFeatures": { //Excludes Super Admins (Backend) and Editors (Frontend)
 		"simplifiedNav": true, // Removes dropdowns and groups content together
@@ -74,6 +96,10 @@ let defaultSettings = {
 		}
 	},
 	"login": {
+		"cards": {
+			"enabled": true,
+			"domainWhitelist": defaultRegistrationDomainWhitelist
+		},
 		"cas": true,
 		"guest": false,
 		"pro": false,
@@ -223,6 +249,10 @@ let debug = {
 		}
 	},
 	"login": {
+		"cards": {
+			"enabled": true,
+			"domainWhitelist": defaultRegistrationDomainWhitelist
+		},
 		"cas": false,
 		"guest": true,
 		"pro": true,
@@ -372,6 +402,10 @@ let linux = {
 		}
 	},
 	"login": {
+		"cards": {
+			"enabled": true,
+			"domainWhitelist": defaultRegistrationDomainWhitelist
+		},
 		"cas": true,
 		"guest": true,
 		"pro": false,
@@ -521,6 +555,10 @@ let review = {
 		}
 	},
 	"login": {
+		"cards": {
+			"enabled": true,
+			"domainWhitelist": defaultRegistrationDomainWhitelist
+		},
 		"cas": true,
 		"guest": true,
 		"pro": false,
@@ -670,6 +708,10 @@ let staging = {
 		}
 	},
 	"login": {
+		"cards": {
+			"enabled": true,
+			"domainWhitelist": defaultRegistrationDomainWhitelist
+		},
 		"cas": true,
 		"guest": false,
 		"pro": false,

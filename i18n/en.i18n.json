@@ -46,6 +46,7 @@
   },
   "landingPage": {
     "login": {
+      "cards": "🍅cards Login",
       "cas": "Login mit THM-Account",
       "guest": "Ich schau mich nur mal um",
       "pro": "Login mit Premium-Account",
@@ -54,6 +55,7 @@
       "twitter": "Login mit Twitter-Account",
       "google": "Login mit Google-Account",
       "tooltip": {
+        "cards": "🍅cards Login",
         "cas": "Du wirst zum CAS-Server der THM weitergeleitet...",
         "guest": "Als Gast kannst du dir »freie« Kartensätze anschauen.",
         "pro": "Wenn du keinen Uni-Account hast, kannst du dich hier für ein Abo registrieren.",

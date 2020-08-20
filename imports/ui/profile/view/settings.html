@@ -32,14 +32,16 @@
                             </div>
                             <hr>
                         {{/unless}}
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">{{_ "panel-body.email"}}</label>
-                            <div class="col-md-8">
-                                <input type="email" class="form-control" id="inputEmail"
-                                       placeholder="{{_ "panel-body.email-desc"}}" value="{{getUser.email}}">
-                                <span id="errorEmail" class="help-block name"></span>
+                        {{#unless isCardsLogin}}
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">{{_ "panel-body.email"}}</label>
+                                <div class="col-md-8">
+                                    <input type="email" class="form-control" id="inputEmail"
+                                           placeholder="{{_ "panel-body.email-desc"}}" value="{{getUser.email}}">
+                                    <span id="errorEmail" class="help-block name"></span>
+                                </div>
                             </div>
-                        </div>
+                        {{/unless}}
                         <div class="form-group hidden" id="inputEmailValidationForm">
                             <label class="col-md-4 control-label">{{_ "panel-body.emailValidation"}} </label>
                             <div class="col-md-8">

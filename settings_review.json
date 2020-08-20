@@ -3,6 +3,10 @@
     "rooturl": "http://localhost:<branch-port>",
     "dynamicSettings": "review",
     "backdoorEnabled": true,
+    "reCaptcha": {
+      "enabled": true,
+      "siteKey": "6Ld7TbsZAAAAABgENtqCuoPjjkmMZtJGcTGwlDFG"
+    },
     "cas": {
       "loginUrl": "https://cas.thm.de/cas/login",
       "serviceParam": "service",
@@ -30,6 +34,9 @@
     "debug": {
       "leitnerTimer": false
     }
+  },
+  "reCaptcha": {
+    "secretKey": "6Ld7TbsZAAAAAFYRvV7UeVQMx_Iba69rkbeCBrfx"
   },
   "private": {
     "BT_PRIVATE_KEY": "b508f71a0e0b01940b0fbe75940debb9"

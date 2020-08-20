@@ -1,5 +1,6 @@
 <template name="welcome">
   {{#unless currentUser}}
+    {{> loginModal}}
     {{> pomodoroTimerModal}}
     {{> welcomeTitle}}
     <div id="welcome-container">

@@ -33,6 +33,11 @@ Meteor.methods({
 	updateUsersEmail: function (email, id) {
 		check(email, String);
 		check(id, String);
+
+		if (!UserPermissions.gotBackendAccess() && UserPermissions.isCardsLogin()) {
+			throw new Meteor.Error("not-authorized");
+		}
+
 		if (!UserPermissions.gotBackendAccess()) {
 			id = Meteor.userId();
 		}

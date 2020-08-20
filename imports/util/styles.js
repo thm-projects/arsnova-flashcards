@@ -160,6 +160,8 @@ export let ServerStyle = class ServerStyle {
 	static isLoginEnabled (loginType) {
 		let settings = this.getConfig();
 		switch (loginType) {
+			case "cards":
+				return settings.login.cards.enabled;
 			case "cas":
 				return settings.login.cas;
 			case "guest":
