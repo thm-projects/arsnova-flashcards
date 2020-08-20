@@ -108,13 +108,16 @@
     {{/if}}
 </template>
 
+<template name="redirectPasswordReset">
+    {{_ "justResetPasswordModal.text" name=displayName}}
+</template>
+
 <template name="just-reset-password-dialog">
     {{#if visible}}
         <div class="accounts-dialog accounts-centered-dialog">
-            {{_ "justResetPasswordModal.text" name=displayName}}
+            {{> redirectPasswordReset displayName}}
             <div class="login-button" id="just-verified-dismiss-button">{{_ "justResetPasswordModal.button"}}</div>
         </div>
     {{/if}}
 </template>
-
 
