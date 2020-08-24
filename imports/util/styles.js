@@ -460,9 +460,6 @@ export let ServerStyle = class ServerStyle {
 			// Landing-Page Demo
 			case 5:
 				return fullscreenDefaults[landingPage].demo;
-			// Landing-Page Pomodoro Timer
-			case 6:
-				return fullscreenDefaults[landingPage].pomodoroTimer;
 		}
 	}
 };

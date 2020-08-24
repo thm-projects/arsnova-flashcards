@@ -766,7 +766,8 @@ export let PomodoroTimer = class PomodoroTimer {
 		endBreak = defaultEndBreak;
 		pomRunning = defaultPomRunning;
 		breakRunning = defaultBreakRunning;
-		isFullscreenEnabled = ServerStyle.getDefaultFullscreenMode(6);
+		// Only used for landing page pomodoro
+		isFullscreenEnabled = true;
 		if (Route.isBox()) {
 			let leitnerTask = LeitnerTasks.findOne({user_id: Meteor.userId(), cardset_id: FlowRouter.getParam('_id')});
 			if (leitnerTask !== undefined && leitnerTask.pomodoroTimer !== undefined) {
@@ -842,7 +843,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		if (Route.isHome()) {
 			this.showPomodoroFullsize();
 			if (isFullscreenEnabled) {
-				Fullscreen.setMode();
+				Fullscreen.enable();
 			}
 		}
 	}
