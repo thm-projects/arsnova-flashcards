@@ -4,6 +4,18 @@ import {displayProfileFullscreenButtons} from "../fullscreen.js";
 import {activeFullscreenSettings} from "../fullscreen.js";
 
 Template.profileViewItemFullscreenCheckbox.helpers({
+	isUnsaved: function () {
+		switch (this.group) {
+			case 1:
+				return activeFullscreenSettings.get('presentation') !== Meteor.user().fullscreen.settings.presentation;
+			case 2:
+				return activeFullscreenSettings.get('demo') !== Meteor.user().fullscreen.settings.demo;
+			case 3:
+				return activeFullscreenSettings.get('leitner') !== Meteor.user().fullscreen.settings.leitner;
+			case 4:
+				return activeFullscreenSettings.get('wozniak') !== Meteor.user().fullscreen.settings.wozniak;
+		}
+	},
 	gotChecked: function () {
 		let mode = 0;
 		switch (this.group) {

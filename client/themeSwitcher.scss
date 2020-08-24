@@ -919,6 +919,9 @@ $themes: (
     //profile
     $profile_fullscreen_checkbox_background: map-get($map, "profile_fullscreen_checkbox_background");
     $profile_fullscreen_checkbox_border: map-get($map, "profile_fullscreen_checkbox_border");
+    $profile_fullscreen_checkbox_background_unsaved: map-get($map, "profile_fullscreen_checkbox_background_unsaved");
+    $profile_fullscreen_checkbox_border_unsaved: map-get($map, "profile_fullscreen_checkbox_border_unsaved");
+    $profile_fullscreen_checkbox_icon_unsaved: map-get($map, "profile_fullscreen_checkbox_icon_unsaved");
     $profile_fullscreen_checkbox_background_active: map-get($map, "profile_fullscreen_checkbox_background_active");
     $profile_fullscreen_checkbox_border_active: map-get($map, "profile_fullscreen_checkbox_border_active");
     $profile_fullscreen_checkbox_icon_active: map-get($map, "profile_fullscreen_checkbox_icon_active");
@@ -4533,7 +4536,23 @@ $themes: (
       }
     }
 
-    .profile-fullscreen-settings .fa-stack.checked {
+    .profile-fullscreen-settings
+
+    .fa-stack.unsaved {
+      .background {
+        color: $profile_fullscreen_checkbox_background_unsaved !important;
+      }
+
+      .border {
+        color: $profile_fullscreen_checkbox_border_unsaved !important;
+      }
+
+      .icon {
+        color: $profile_fullscreen_checkbox_icon_unsaved !important;
+      }
+    }
+
+    .fa-stack.checked {
       .background {
         color: $profile_fullscreen_checkbox_background_active !important;
       }
