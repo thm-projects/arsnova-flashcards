@@ -35,6 +35,7 @@ import "./presentation/index.js";
 import "./presentation/transcript.js";
 import "./presentation/transcriptBonus.js";
 import "./profile/billing.js";
+import "./profile/fullscreen.js";
 import "./profile/membership.js";
 import "./profile/notifications.js";
 import "./profile/requests.js";

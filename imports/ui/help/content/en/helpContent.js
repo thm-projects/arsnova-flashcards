@@ -18,6 +18,7 @@ import "./categories/profile/membership.html";
 import "./categories/profile/notifications.html";
 import "./categories/profile/summativeProgress.html";
 import "./categories/profile/requests.html";
+import "./categories/profile/fullscreen.html";
 import "./categories/profile/settings.html";
 import "./categories/start.html";
 import "./helpContent.html";

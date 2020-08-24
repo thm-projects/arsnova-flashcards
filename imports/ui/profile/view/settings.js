@@ -5,15 +5,12 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {ColorThemes} from "../../../api/subscriptions/colorThemes";
 import {BertAlertVisuals} from "../../../util/bertAlertVisuals";
-import "./item/fullscreen.js";
 import "../modal/deleteProfile.js";
 import "../view/public.js";
 import "./settings.html";
-import {presentationMode, demoMode, leitnerMode, wozniakMode} from "./item/fullscreen";
 import {ServerSettings} from "../../../util/settings";
 import {ServerStyle} from "../../../util/styles";
 import {UserPermissions} from "../../../util/permissions";
-import {Fullscreen} from "../../../util/fullscreen";
 
 /*
  * ############################################################################
@@ -260,42 +257,6 @@ Template.profileSettings.events({
 			Meteor.call("updateUsersGivenName", givenname, user_id);
 			Meteor.call("updateUsersProfileState", true, user_id);
 			Meteor.call("updateUsersNotification", mailNotification, webNotification, user_id);
-			if (ServerStyle.gotFullscreenSettingsAccess()) {
-				let presentation = Meteor.user().fullscreen.settings.presentation;
-				let demo = Meteor.user().fullscreen.settings.demo;
-				let leitner = Meteor.user().fullscreen.settings.leitner;
-				let wozniak = Meteor.user().fullscreen.settings.wozniak;
-
-
-				if (ServerStyle.gotFullscreenSettingsAccess(1)) {
-					presentation = presentationMode.get();
-				}
-				if (ServerStyle.gotFullscreenSettingsAccess(2)) {
-					demo = demoMode.get();
-				}
-				if (ServerStyle.gotFullscreenSettingsAccess(3)) {
-					leitner = leitnerMode.get();
-				}
-				if (ServerStyle.gotFullscreenSettingsAccess(4)) {
-					wozniak = wozniakMode.get();
-				}
-
-				// Reset the Chose Mode Session of the User switched to a different mode
-				if (presentation !== 3) {
-					Fullscreen.resetChooseModeSessions(0);
-				}
-				if (demo !== 3) {
-					Fullscreen.resetChooseModeSessions(1);
-				}
-				if (leitner !== 3) {
-					Fullscreen.resetChooseModeSessions(2);
-				}
-				if (wozniak !== 3) {
-					Fullscreen.resetChooseModeSessions(3);
-				}
-				Meteor.call("updateUserFullscreenSettings", presentation, demo, leitner, wozniak);
-			}
-
 
 			BertAlertVisuals.displayBertAlert(TAPi18n.__('profile.saved'), 'success', 'growl-top-left');
 		} else {
@@ -331,18 +292,6 @@ Template.profileSettings.events({
 		$('#errorName').html('');
 		$('#errorBirthName').html('');
 		$('#errorGivenName').html('');
-		if (ServerStyle.gotFullscreenSettingsAccess(1)) {
-			presentationMode.set(Meteor.user().fullscreen.settings.presentation);
-		}
-		if (ServerStyle.gotFullscreenSettingsAccess(2)) {
-			demoMode.set(Meteor.user().fullscreen.settings.demo);
-		}
-		if (ServerStyle.gotFullscreenSettingsAccess(3)) {
-			leitnerMode.set(Meteor.user().fullscreen.settings.leitner);
-		}
-		if (ServerStyle.gotFullscreenSettingsAccess(4)) {
-			wozniakMode.set(Meteor.user().fullscreen.settings.wozniak);
-		}
 		Session.set("profileSettingsSave", true);
 		Session.set("profileSettingsCancel", true);
 		BertAlertVisuals.displayBertAlert(TAPi18n.__('profile.canceled'), 'danger', 'growl-top-left');
