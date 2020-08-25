@@ -130,7 +130,7 @@ export let UserPermissions = class UserPermissions {
 		let highestRole = roleGuest.string;
 		if (!MainNavigation.isGuestLoginActive() && !Meteor.user()) {
 			highestRole = roleLandingPage.string;
-		} else {
+		} else if (Meteor.user()) {
 			let roles = Meteor.user().roles;
 			for (let i = 0; i < roles.length; i++) {
 				switch (roles[i]) {

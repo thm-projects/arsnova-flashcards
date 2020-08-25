@@ -28,6 +28,9 @@ FlowRouter.route('/profile/:_id/fullscreen', {
 	triggersEnter: [
 		(context, redirect) => {
 			Fullscreen.disable();
+			if (!ServerStyle.gotFullscreenSettingsAccess()) {
+				redirect(RouteNames.home);
+			}
 		}
 	]
 });
