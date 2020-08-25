@@ -97,7 +97,7 @@ let defaultSettings = {
 	},
 	"login": {
 		"cards": {
-			"enabled": true,
+			"enabled": false,
 			"domainWhitelist": defaultRegistrationDomainWhitelist
 		},
 		"cas": true,
@@ -721,7 +721,7 @@ let staging = {
 	},
 	"welcome": {
 		"title": {
-			"first": "staging",
+			"first": "Staging",
 			"last": "cards",
 			"slogan_de": "ORGANIZE. LEARN. MEMORIZE!",
 			"slogan_en": "ORGANIZE. LEARN. MEMORIZE!"
