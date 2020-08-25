@@ -439,8 +439,8 @@ export let ServerStyle = class ServerStyle {
 		}
 	}
 
-	static getDefaultFullscreenMode (mode) {
-		let highestRole = UserPermissions.getHighestRole(false);
+	static getDefaultFullscreenMode (mode, userId) {
+		let highestRole = UserPermissions.getHighestRole(false, userId);
 		let config = this.getConfig();
 		let fullscreenDefaults = config.fullscreen.defaults;
 		let landingPage = 'landingPage';

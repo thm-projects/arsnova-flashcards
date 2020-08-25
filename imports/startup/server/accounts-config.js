@@ -129,7 +129,7 @@ Meteor.users.after.insert(function (userId, doc) {
 		}
 	}
 	// Check if user is a local user
-	if (doc.services.password !== undefined) {
+	if (doc.services !== undefined && doc.services.password !== undefined) {
 		Meteor.users.update(doc._id, {
 			$set: {
 				visible: false,
@@ -164,10 +164,21 @@ Meteor.users.after.insert(function (userId, doc) {
 			'university',
 			'firstLogin'
 		]);
-	} else if (doc.services.password) {
+	} else if (doc.services !== undefined && doc.services.password) {
 		Roles.addUsersToRoles(doc._id, ['university']);
 	} else {
 		Roles.addUsersToRoles(doc._id, ['standard', 'firstLogin']);
 	}
+	let defaultFullscreenSettings = {
+		presentation: ServerStyle.getDefaultFullscreenMode(1, doc._id),
+		demo: ServerStyle.getDefaultFullscreenMode(2, doc._id),
+		leitner: ServerStyle.getDefaultFullscreenMode(3, doc._id),
+		wozniak: ServerStyle.getDefaultFullscreenMode(4, doc._id)
+	};
+	Meteor.users.update(doc._id, {
+		$set: {
+			"fullscreen.settings": defaultFullscreenSettings
+		}
+	});
 	Meteor.call('updateCardsetCount', doc._id);
 });

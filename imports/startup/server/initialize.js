@@ -18,6 +18,7 @@ import {LeitnerUtilities} from "../../util/leitner";
 import {Utilities} from "../../util/utilities";
 import * as bonusFormConfig from "../../config/bonusForm.js";
 import * as leitnerConfig from "../../config/leitner.js";
+import {ServerStyle} from "../../util/styles";
 
 var initColorThemes = function () {
 	return [{
@@ -1357,16 +1358,17 @@ Meteor.startup(function () {
 
 	users = Meteor.users.find({"fullscreen.settings": {$exists: false}}).fetch();
 	for (let i = 0; i < users.length; i++) {
+		let defaultFullscreenSettings = {
+			presentation: ServerStyle.getDefaultFullscreenMode(1, users[i]._id),
+			demo: ServerStyle.getDefaultFullscreenMode(2, users[i]._id),
+			leitner: ServerStyle.getDefaultFullscreenMode(3, users[i]._id),
+			wozniak: ServerStyle.getDefaultFullscreenMode(4, users[i]._id)
+		};
 		Meteor.users.update({
 			_id: users[i]._id
 		}, {
 			$set: {
-				"fullscreen.settings": {
-					presentation: 1,
-					demo: 1,
-					leitner: 1,
-					wozniak: 1
-				}
+				"fullscreen.settings": defaultFullscreenSettings
 			}
 		});
 	}

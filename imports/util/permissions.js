@@ -126,12 +126,17 @@ export let UserPermissions = class UserPermissions {
 		return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) || hasRole;
 	}
 
-	static getHighestRole (toNumber = true) {
+	static getHighestRole (toNumber = true, userId = undefined) {
 		let highestRole = roleGuest.string;
-		if (!MainNavigation.isGuestLoginActive() && !Meteor.user()) {
+		if (!Meteor.isServer && !MainNavigation.isGuestLoginActive() && !Meteor.user()) {
 			highestRole = roleLandingPage.string;
-		} else if (Meteor.user()) {
-			let roles = Meteor.user().roles;
+		} else if (Meteor.isServer || Meteor.user()) {
+			let roles;
+			if (Meteor.isClient) {
+				roles = Meteor.user().roles;
+			} else {
+				roles = Meteor.users.findOne({_id: userId}).roles;
+			}
 			for (let i = 0; i < roles.length; i++) {
 				switch (roles[i]) {
 					case roleFree.string:

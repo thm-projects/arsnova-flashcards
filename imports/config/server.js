@@ -45,7 +45,19 @@ let defaultSettings = {
 			"leitner": [FREE, EDU, LECTURER, PRO],
 			"wozniak": [FREE, EDU, LECTURER, PRO]
 		},
-		"defaults": { // Will be used if the user got not access to the fullscreen settings
+		"defaults": { // Will be used if the user got not access to the fullscreen settings. Admin and editor only get used to setup the account
+			"admin": {
+				"presentation": MANUAL_FULLSCREEN,
+				"demo": MANUAL_FULLSCREEN,
+				"leitner": MANUAL_FULLSCREEN,
+				"wozniak": MANUAL_FULLSCREEN
+			},
+			"editor": {
+				"presentation": MANUAL_FULLSCREEN,
+				"demo": MANUAL_FULLSCREEN,
+				"leitner": MANUAL_FULLSCREEN,
+				"wozniak": MANUAL_FULLSCREEN
+			},
 			"free": {
 				"presentation": AUTO_FULLSCREEN,
 				"demo": AUTO_FULLSCREEN,
@@ -242,7 +254,19 @@ let debug = {
 			"leitner": [FREE, EDU, LECTURER, PRO],
 			"wozniak": [FREE, EDU, LECTURER, PRO]
 		},
-		"defaults": { // Will be used if the user got not access to the fullscreen settings
+		"defaults": { // Will be used if the user got not access to the fullscreen settings. Admin and editor only get used to setup the account
+			"admin": {
+				"presentation": MANUAL_FULLSCREEN,
+				"demo": MANUAL_FULLSCREEN,
+				"leitner": MANUAL_FULLSCREEN,
+				"wozniak": MANUAL_FULLSCREEN
+			},
+			"editor": {
+				"presentation": MANUAL_FULLSCREEN,
+				"demo": MANUAL_FULLSCREEN,
+				"leitner": MANUAL_FULLSCREEN,
+				"wozniak": MANUAL_FULLSCREEN
+			},
 			"free": {
 				"presentation": AUTO_FULLSCREEN,
 				"demo": AUTO_FULLSCREEN,
@@ -439,7 +463,19 @@ let linux = {
 			"leitner": [FREE, EDU, LECTURER, PRO],
 			"wozniak": [FREE, EDU, LECTURER, PRO]
 		},
-		"defaults": { // Will be used if the user got not access to the fullscreen settings
+		"defaults": { // Will be used if the user got not access to the fullscreen settings. Admin and editor only get used to setup the account
+			"admin": {
+				"presentation": MANUAL_FULLSCREEN,
+				"demo": MANUAL_FULLSCREEN,
+				"leitner": MANUAL_FULLSCREEN,
+				"wozniak": MANUAL_FULLSCREEN
+			},
+			"editor": {
+				"presentation": MANUAL_FULLSCREEN,
+				"demo": MANUAL_FULLSCREEN,
+				"leitner": MANUAL_FULLSCREEN,
+				"wozniak": MANUAL_FULLSCREEN
+			},
 			"free": {
 				"presentation": AUTO_FULLSCREEN,
 				"demo": AUTO_FULLSCREEN,
@@ -636,7 +672,19 @@ let review = {
 			"leitner": [FREE, EDU, LECTURER, PRO],
 			"wozniak": [FREE, EDU, LECTURER, PRO]
 		},
-		"defaults": { // Will be used if the user got not access to the fullscreen settings
+		"defaults": { // Will be used if the user got not access to the fullscreen settings. Admin and editor only get used to setup the account
+			"admin": {
+				"presentation": MANUAL_FULLSCREEN,
+				"demo": MANUAL_FULLSCREEN,
+				"leitner": MANUAL_FULLSCREEN,
+				"wozniak": MANUAL_FULLSCREEN
+			},
+			"editor": {
+				"presentation": MANUAL_FULLSCREEN,
+				"demo": MANUAL_FULLSCREEN,
+				"leitner": MANUAL_FULLSCREEN,
+				"wozniak": MANUAL_FULLSCREEN
+			},
 			"free": {
 				"presentation": AUTO_FULLSCREEN,
 				"demo": AUTO_FULLSCREEN,
@@ -833,7 +881,19 @@ let staging = {
 			"leitner": [FREE, EDU, LECTURER, PRO],
 			"wozniak": [FREE, EDU, LECTURER, PRO]
 		},
-		"defaults": { // Will be used if the user got not access to the fullscreen settings
+		"defaults": { // Will be used if the user got not access to the fullscreen settings. Admin and editor only get used to setup the account
+			"admin": {
+				"presentation": MANUAL_FULLSCREEN,
+				"demo": MANUAL_FULLSCREEN,
+				"leitner": MANUAL_FULLSCREEN,
+				"wozniak": MANUAL_FULLSCREEN
+			},
+			"editor": {
+				"presentation": MANUAL_FULLSCREEN,
+				"demo": MANUAL_FULLSCREEN,
+				"leitner": MANUAL_FULLSCREEN,
+				"wozniak": MANUAL_FULLSCREEN
+			},
 			"free": {
 				"presentation": AUTO_FULLSCREEN,
 				"demo": AUTO_FULLSCREEN,
