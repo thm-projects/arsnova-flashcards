@@ -697,9 +697,10 @@ export let CardVisuals = class CardVisuals {
 				Session.set('aspectRatioContainerVisible', false);
 			}
 			let aspectRatioButton = $('.aspect-ratio-button');
-			if (aspectRatioButton.length) {
-				let topPosition = aspectRatioButton.offset().top;
-				let rightPosition = $('#flashcardSidebarRight').width();
+			let flashcardSidebarRight = $('#flashcardSidebarRight');
+			if (aspectRatioButton.length && flashcardSidebarRight.length) {
+				let topPosition = aspectRatioButton.offset().top - flashcardSidebarRight.offset().top + parseInt(flashcardSidebarRight.css('margin-top'), 10);
+				let rightPosition = $('#flashcardSidebarRight').outerWidth();
 				aspectRatioContainer.css({
 					'top': topPosition + "px",
 					'right': rightPosition + "px"
