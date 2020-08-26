@@ -7,7 +7,11 @@ import {Fullscreen} from "./fullscreen";
 export let AspectRatio = class AspectRatio {
 
 	static isEnabled () {
-		if ((Fullscreen.isActive() && !MarkdeepEditor.getMobilePreview()) || (Route.isDemo() || Route.isMakingOf())) {
+		let canDisplayItem = true;
+		if (Route.isEditMode() && !Fullscreen.isActive()) {
+			canDisplayItem = false;
+		}
+		if ((canDisplayItem && !MarkdeepEditor.getMobilePreview()) || (Route.isDemo() || Route.isMakingOf())) {
 			if ((Route.isPresentation() || Route.isPresentationTranscript()) && config.aspectRatioEnabled.includes(0)) {
 				return true;
 			}

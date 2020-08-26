@@ -278,7 +278,7 @@ export let CardVisuals = class CardVisuals {
 		let flashcardHeaderHeight = 0;
 		let flashcardBodyHeight = 0;
 		Session.set('windowWidth', $(window).width());
-		if (NavigatorCheck.isSmartphone() || Session.get('mobilePreview') || Session.get('fullscreen')) {
+		if (NavigatorCheck.isSmartphone() || Session.get('mobilePreview') || (!Route.isEditMode() && !Session.get('fullscreen'))) {
 			if (Session.get('mobilePreview')) {
 				if ($(window).width() >= 1200) {
 					newFlashcardSize = $(window).height() - (flashcard.offset().top  + $('#editorButtonGroup').innerHeight());
