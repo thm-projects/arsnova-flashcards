@@ -114,7 +114,7 @@ Template.main.helpers({
 		return (!Route.isFirstTimeVisit() && Route.isDemo());
 	},
 	getMainContainer: function () {
-		if (AspectRatio.isEnabled() || Route.isPresentation()) {
+		if (AspectRatio.isEnabled() || (Route.isPresentation() || Route.isLearningMode())) {
 			if (Route.isTableOfContent()) {
 				return "container";
 			} else {
