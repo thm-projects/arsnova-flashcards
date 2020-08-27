@@ -23,11 +23,11 @@ let firstCardNavigationCall = false;
 
 let emptyMarkdeepAnswers = [
 	{
-		content: '',
+		answer: '',
 		explanation: ''
 	},
 	{
-		content: '',
+		answer: '',
 		explanation: ''
 	}
 ];
