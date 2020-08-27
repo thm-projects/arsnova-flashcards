@@ -89,7 +89,7 @@ let defaultSettings = {
 				"wozniak": CHOOSE_FULLSCREEN
 			},
 			"landingPage": {
-				"demo": MANUAL_FULLSCREEN
+				"demo": AUTO_FULLSCREEN
 			}
 		}
 	},
@@ -298,7 +298,7 @@ let debug = {
 				"wozniak": CHOOSE_FULLSCREEN
 			},
 			"landingPage": {
-				"demo": MANUAL_FULLSCREEN
+				"demo": AUTO_FULLSCREEN
 			}
 		}
 	},
@@ -507,7 +507,7 @@ let linux = {
 				"wozniak": CHOOSE_FULLSCREEN
 			},
 			"landingPage": {
-				"demo": MANUAL_FULLSCREEN
+				"demo": AUTO_FULLSCREEN
 			}
 		}
 	},
@@ -716,7 +716,7 @@ let review = {
 				"wozniak": CHOOSE_FULLSCREEN
 			},
 			"landingPage": {
-				"demo": MANUAL_FULLSCREEN
+				"demo": AUTO_FULLSCREEN
 			}
 		}
 	},
@@ -925,7 +925,7 @@ let staging = {
 				"wozniak": CHOOSE_FULLSCREEN
 			},
 			"landingPage": {
-				"demo": MANUAL_FULLSCREEN
+				"demo": AUTO_FULLSCREEN
 			}
 		}
 	},
