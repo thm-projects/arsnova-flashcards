@@ -1623,7 +1623,7 @@
       },
       "answerTag": "Antwort __tag__",
       "question": "Frage",
-      "enableAnswers": "In Lernmodus anzeigen",
+      "enableAnswers": "Im Lernmodus anzeigen",
       "notification": {
         "noAnswers": "Alle Antworten müssen einen Inhalt besitzen",
         "noRightAnswer": "Es muss mindestens eine richtige Antwort existieren"

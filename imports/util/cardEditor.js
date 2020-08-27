@@ -332,7 +332,8 @@ export let CardEditor = class CardEditor {
 			if (answers.enabled) {
 				let gotValidAnswers = true;
 				for (let i = 0; i < answers.content.length; i++) {
-					if (answers.content[i].answer.trim().length === 0) {
+					let answer = answers.content[i].answer;
+					if (answer !== undefined && answer.trim().length === 0) {
 						gotValidAnswers = false;
 						break;
 					}

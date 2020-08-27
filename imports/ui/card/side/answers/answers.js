@@ -3,15 +3,23 @@ import {Template} from "meteor/templating";
 import {CardType} from "../../../../util/cardTypes";
 import {MarkdeepEditor} from "../../../../util/markdeepEditor";
 import {Route} from "../../../../util/route";
+import {Session} from "meteor/session";
 
 Template.cardAnswers.helpers({
-	gotAnswers: function () {
-		let gotAnswerSupport = CardType.gotAnswerOptions(this.cardType);
-		if (gotAnswerSupport) {
-			if (Route.isEditMode()) {
-				return true;
-			} else if (this.answers !== undefined && this.answers.enabled === true) {
-				return true;
+	canDisplayAnswers: function () {
+		if (this.answers !== undefined && CardType.gotAnswerOptions(this.cardType)) {
+			let gotAnswerContent = false;
+			for (let i = 0; i < this.answers.content.length; i++) {
+				let answer = this.answers.content[i].answer;
+				if (answer !== undefined && answer.trim().length) {
+					gotAnswerContent = true;
+					break;
+				}
+			}
+			if (Route.isEditMode() || Route.isPresentation()) {
+				return (this.answers.enabled && gotAnswerContent) || Session.get('isAnswerEditorEnabled');
+			} else {
+				return this.answers.enabled && gotAnswerContent;
 			}
 		}
 	},
