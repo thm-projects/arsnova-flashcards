@@ -26,6 +26,12 @@ Template.registerHelper("isLecturer", function () {
 		return true;
 	}
 });
+
+Template.registerHelper("isCardsLogin", function () {
+	return UserPermissions.isCardsLogin();
+});
+
+
 Template.registerHelper("isAdmin", function () {
 	return UserPermissions.isAdmin();
 });
@@ -79,7 +85,7 @@ Template.registerHelper("isCardsetOwnerAndLecturer", function (cardset_id) {
 });
 
 Template.registerHelper("canAccessFrontend", function () {
-	return Meteor.user() || MainNavigation.isGuestLoginActive();
+	return (Meteor.user() || MainNavigation.isGuestLoginActive());
 });
 
 Template.registerHelper("isGuestLogin", function () {

@@ -46,6 +46,7 @@
   },
   "landingPage": {
     "login": {
+      "cards": "🍅cards Login",
       "cas": "Login mit THM-Account",
       "guest": "Ich schau mich nur mal um",
       "pro": "Login mit Premium-Account",
@@ -54,6 +55,7 @@
       "twitter": "Login mit Twitter-Account",
       "google": "Login mit Google-Account",
       "tooltip": {
+        "cards": "🍅cards Login",
         "cas": "Du wirst zum CAS-Server der THM weitergeleitet...",
         "guest": "Als Gast kannst du dir »freie« Kartensätze anschauen.",
         "pro": "Wenn du keinen THM-Account hast, kannst du dich hier für ein Abo registrieren.",
@@ -112,6 +114,7 @@
       }
     },
     "form": {
+      "fullscreen": "Vollbildmodus aktivieren",
       "time": {
         "hour": "1 Stunde",
         "hour_plural": "__count__ Stunden",
@@ -156,130 +159,6 @@
         "button": {
           "start": "Timer starten",
           "cancel": "Abbrechen"
-        }
-      }
-    },
-    "sweetAlert": {
-      "user": {
-        "quit": {
-          "title": "Gib nicht auf!",
-          "text": "Du hast noch <span class=\"pomodoroHighlight\">__missingPomodoros__ __pomodoro__</span> vor dir.<br>Dein Ziel: <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span>!<br><br>Komm schon, du schaffst die verbleibenden <span class=\"pomodoroHighlight\">__remainingMinutes__ Minuten</span> Lernzeit!",
-          "button": {
-            "cancel": "Stopp!",
-            "confirm": "Ich mache weiter!"
-          },
-          "confirm": {
-            "title": "Schade!",
-            "text": "Du hattest dir <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> vorgenommen. <br><br>Manchmal kommt halt was dazwischen.<br>Wir verstehen das. Komm bald wieder zum Lernen zurück!",
-            "button": {
-              "confirm": "Okay"
-            }
-          }
-        },
-        "end": {
-          "title": "Willst du deinen Lernfluss beenden?",
-          "text": "Hey, du hast dein Ziel von <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> geschafft! <br><br>Du hast eine gute Ausdauer entwickelt. Bist du sicher, dass du aufhören willst?",
-          "button": {
-            "cancel": "Ich mache weiter!",
-            "confirm": "Stopp!"
-          },
-          "confirm": {
-            "title": "Großartig!",
-            "text": "Insgesamt <span class=\"pomodoroHighlight\"> __pomodoroTotal__ __pomodoro__</span>. <br>Das sind <span class=\"pomodoroHighlight\"> __pomodoroTime__ Minuten</span> Lernzeit. <br><br>Du bist klasse! Komm bald zurück!",
-            "button": {
-              "confirm": "Danke!"
-            }
-          }
-        },
-        "break": {
-          "start": {
-            "title": "Gut gelernt!",
-            "text": "Du hast <span class=\"pomodoroHighlight\"> __pomodoroTotal__ __pomodoro__</span> Lernzeit geschafft. <br><br>Bist du bereit für erholsame <span class=\"pomodoroHighlight\"> __pomodoroBreak__ Minuten</span>? Du kannst tun, wonach auch immer dir der Sinn steht.",
-            "button": {
-              "confirm": "Ja, ich will jetzt in die Pause!"
-            }
-          },
-          "end": {
-            "title": "Die Pause ist vorbei!",
-            "text": "Bereit für die nächsten <span class=\"pomodoroHighlight\"> __pomodoroLength__ Minuten</span>?",
-            "button": {
-              "confirm": "Lass mich weitermachen!"
-            }
-          }
-        }
-      },
-      "bonus": {
-        "quit": {
-          "title": "Gib nicht so schnell auf! <br>Du riskierst deinen Bonus.",
-          "text": "Du hast noch <span class=\"pomodoroHighlight\">__missingPomodoros__ __pomodoro__</span> vor dir. <br>Dein Ziel: <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> <br><br>Komm schon, du schaffst die verbleibenden <span class=\"pomodoroHighlight\">__remainingMinutes__ Minuten</span> Lernzeit!",
-          "button": {
-            "cancel": "Stopp!",
-            "confirm": "Ich mache weiter!"
-          },
-          "confirm": {
-            "title": "Du hast es leider nicht geschafft.",
-            "text": "Du solltest <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> lernen. <br><br>Manchmal kommt halt was dazwischen. Wir verstehen das. Komm bald wieder zum Lernen zurück!",
-            "button": {
-              "confirm": "Okay!"
-            }
-          }
-        },
-        "end": {
-          "title": "Willst du deinen Lernfluss beenden?",
-          "text": "Hey, du hast das Ziel von <span class=\"pomodoroHighlight\"> __pomodoroGoal__ __pomodoro__</span> geschafft! <br><br>Du hast eine gute Ausdauer entwickelt. Bist du sicher, dass du aufhören willst?",
-          "button": {
-            "cancel": "Ich mache weiter!",
-            "confirm": "Stopp!"
-          },
-          "confirm": {
-            "title": "Großartig!",
-            "text": "Insgesamt <span class=\"pomodoroHighlight\"> __pomodoroTotal__ __pomodoro__</span>. <br>Das sind <span class=\"pomodoroHighlight\"> __pomodoroTime__ Minuten</span> Lernzeit. <br><br>Du bist klasse! Komm bald zurück!",
-            "button": {
-              "confirm": "Danke!"
-            }
-          }
-        },
-        "break": {
-          "start": {
-            "title": "Gut gelernt!",
-            "text": "Du hast <span class=\"pomodoroHighlight\"> __pomodoroTotal__ __pomodoro__</span> Lernzeit geschafft. <br><br>Bist du bereit für erholsame <span class=\"pomodoroHighlight\"> __pomodoroBreak__ Minuten</span> Pause? Du kannst tun, wonach auch immer dir der Sinn steht.",
-            "button": {
-              "confirm": "Ja, ich will in die Pause!"
-            }
-          },
-          "end": {
-            "title": "Die Pause ist vorbei!",
-            "text": "Bereit für die nächsten <span class=\"pomodoroHighlight\"> __pomodoroLength__ Minuten</span>?",
-            "button": {
-              "confirm": "Lass mich weitermachen!"
-            }
-          }
-        }
-      },
-      "presentation": {
-        "end": {
-          "title": "Timer ausschalten?",
-          "text": "",
-          "button": {
-            "cancel": "Nein, laufen lassen.",
-            "confirm": "Ja, ausschalten."
-          }
-        },
-        "break": {
-          "start": {
-            "title": "Pause?",
-            "text": "Bist du bereit für <span class=\"pomodoroHighlight\"> __pomodoroBreak__ Minuten</span> Pause?",
-            "button": {
-              "confirm": "Ja, Zeit für die Pause!"
-            }
-          },
-          "end": {
-            "title": "Die Pause ist vorbei!",
-            "text": "Bereit für die nächsten <span class=\"pomodoroHighlight\"> __pomodoroLength__ Minuten</span>?",
-            "button": {
-              "confirm": "Weiter geht's"
-            }
-          }
         }
       }
     }
@@ -1744,7 +1623,7 @@
       },
       "answerTag": "Antwort __tag__",
       "question": "Frage",
-      "enableAnswers": "Freischalten",
+      "enableAnswers": "Im Lernmodus anzeigen (In Bearbeitung)",
       "notification": {
         "noAnswers": "Alle Antworten müssen einen Inhalt besitzen",
         "noRightAnswer": "Es muss mindestens eine richtige Antwort existieren"
@@ -2475,54 +2354,6 @@
       "title": "Wiederholtes Lernen nach Woźniak",
       "button": {
         "confirm": "Ich hab's verstanden."
-      }
-    }
-  },
-  "sweetAlert": {
-    "completeProfile": {
-      "title": "Profil",
-      "text": "Gib deinen Vor- und Nachnamen und deine E-Mail-Adresse an. Versuche es dann noch einmal. Die Angaben werden für den Erinnerungsdienst von \uD83C\uDF45cards benötigt, siehe unter »Hilfe« → »FAQ 3«.",
-      "footer": "<a href='/datenschutz' target='_blank'>Datenschutzerklärung</a>",
-      "button": {
-        "confirm": "Zum Profil",
-        "cancel": "Abbrechen"
-      }
-    },
-    "leitnerSimulatorError": {
-      "title": "Das Optimale Tagespensum konnte nicht berechnet werden",
-      "text": "Es ist nicht möglich, alle Karten am Ende der Bonus-Lernphase in das letzte Fach (gelernt) zu legen. Bitte verringere die Wiederholungs-Intervalle und versuche es nochmal.",
-      "footer": "<a href='/help' target='_blank'>Hilfe</a>",
-      "button": {
-        "confirm": "Schließen"
-      }
-    },
-    "presentation": {
-      "end": {
-        "title": "Präsentation beenden?",
-        "text": "",
-        "footer": "<a href='/help' target='_blank'>Hilfe</a>",
-        "button": {
-          "cancel": "Nein, es geht weiter.",
-          "confirm": "Ja, beenden."
-        }
-      },
-      "continue": {
-        "title": "Zurück zur Präsentation?",
-        "text": "",
-        "footer": "<a href='/help' target='_blank'>Hilfe</a>",
-        "button": {
-          "cancel": "Nein, Präsentation beenden!",
-          "confirm": "Ja, Präsentation fortsetzen!"
-        }
-      }
-    },
-    "fullscreen": {
-      "title": "Vollbildmodus ist ausgeschaltet.",
-      "text": "Diese Seite erfordert Vollansicht.",
-      "footer": "<a href='/help' target='_blank'>Hilfe</a>",
-      "button": {
-        "cancel": "Zurück",
-        "confirm": "Vollbildmodus aktivieren"
       }
     }
   }

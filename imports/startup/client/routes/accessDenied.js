@@ -3,6 +3,7 @@ import * as RouteNames from "../../../util/routeNames";
 import * as config from "../../../config/routes";
 import {Meteor} from "meteor/meteor";
 import {ServerStyle} from "../../../util/styles";
+import {Fullscreen} from "../../../util/fullscreen";
 
 FlowRouter.route('/accessDenied', {
 	name: RouteNames.accessDenied,
@@ -20,5 +21,10 @@ FlowRouter.route('/accessDenied', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'accessDenied', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });

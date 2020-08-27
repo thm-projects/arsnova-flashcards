@@ -6,6 +6,7 @@ import {Session} from "meteor/session";
 import {Cards} from "../../../../api/subscriptions/cards";
 import {Filter} from "../../../../util/filter";
 import * as config from "../../../../config/routes";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/transcripts/personal', {
 	name: RouteNames.transcriptsPersonal,
@@ -43,7 +44,12 @@ FlowRouter.route('/transcripts/personal', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'filterIndex', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });
 
 FlowRouter.route('/transcripts/bonus', {
@@ -76,6 +82,7 @@ FlowRouter.route('/transcripts/bonus', {
 	},
 	triggersEnter: [
 		(context, redirect) => {
+			Fullscreen.disable();
 			if (ServerStyle.gotSimplifiedNav()) {
 				redirect(RouteNames.transcriptsPersonal);
 			}

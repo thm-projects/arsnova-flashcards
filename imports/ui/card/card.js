@@ -86,9 +86,6 @@ Template.flashcards.onRendered(function () {
 	$(".box").on('transitionend webkitTransitionEnd oTransitionEnd', function () {
 		$(".box").removeClass("disableCardTransition");
 	});
-	if (Session.get("workloadFullscreenMode")) {
-		CardVisuals.toggleFullscreen();
-	}
 	$('#showHintModal').on('hidden.bs.modal', function () {
 		$('#showHint').children().removeClass("pressed");
 		Session.set('selectedHint', undefined);
@@ -177,12 +174,6 @@ Template.flashcardsCarouselContent3D.helpers({
  * ############################################################################
  */
 
-Template.flashcardsEmpty.onCreated(function () {
-	if (Session.get('fullscreen')) {
-		CardVisuals.toggleFullscreen();
-	}
-});
-
 Template.flashcardsEmpty.helpers({
 	isBox: function () {
 		return Route.isBox();
@@ -207,12 +198,6 @@ Template.flashcardsEmpty.onRendered(function () {
  * flashcardsEnd
  * ############################################################################
  */
-
-Template.flashcardsEnd.onCreated(function () {
-	if (Session.get('fullscreen')) {
-		CardVisuals.toggleFullscreen();
-	}
-});
 
 Template.flashcardsEnd.onRendered(function () {
 	$('.carousel-inner').css('min-height', 0);

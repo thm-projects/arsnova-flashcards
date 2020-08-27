@@ -1,15 +1,12 @@
 import {Meteor} from "meteor/meteor";
-import * as serverConf from "../config/server.js";
+import * as serverConf from "../config/serverStyle/exportStyle.js";
 import * as backgroundsConf from "../config/backgrounds.js";
 import {UserPermissions} from "./permissions";
 import {MainNavigation} from "./mainNavigation";
 import {Route} from "./route";
-
-const FREE = 0;
-const EDU = 1;
-const PRO = 2;
-const LECTURER = 3;
-const GUEST = 4;
+import * as RouteNames from "../util/routeNames.js";
+import {FlowRouter} from "meteor/ostrio:flow-router-extra";
+import {EDU, FREE, GUEST, LECTURER, PRO} from "../config/serverStyle/style/global/const";
 
 export let ServerStyle = class ServerStyle {
 
@@ -160,6 +157,8 @@ export let ServerStyle = class ServerStyle {
 	static isLoginEnabled (loginType) {
 		let settings = this.getConfig();
 		switch (loginType) {
+			case "cards":
+				return settings.login.cards.enabled;
 			case "cas":
 				return settings.login.cas;
 			case "guest":
@@ -365,5 +364,102 @@ export let ServerStyle = class ServerStyle {
 				break;
 		}
 		return backgroundObject;
+	}
+
+	static gotFullscreenSettingsAccess (modeFilter = undefined) {
+		let highestRole = UserPermissions.getHighestRole(true);
+		if (UserPermissions.gotBackendAccess() || UserPermissions.isAdmin()) {
+			return true;
+		} else {
+			let config = this.getConfig();
+			let fullscreenSettings = config.fullscreen.settings;
+			if (modeFilter === undefined) {
+				return fullscreenSettings.enabled.includes(highestRole);
+			} else {
+				switch (modeFilter) {
+					case 1:
+						return fullscreenSettings.presentation.includes(highestRole);
+					case 2:
+						return fullscreenSettings.demo.includes(highestRole);
+					case 3:
+						return fullscreenSettings.leitner.includes(highestRole);
+					case 4:
+						return fullscreenSettings.wozniak.includes(highestRole);
+				}
+			}
+		}
+	}
+
+	static getFullscreenMode () {
+		switch (FlowRouter.current().route.name) {
+			// Presentation Triggers
+			case RouteNames.presentation:
+			case RouteNames.presentationlist:
+			case RouteNames.presentationTranscriptBonusCardset:
+			case RouteNames.presentationTranscriptReview:
+			case RouteNames.presentationTranscriptPersonal:
+			case RouteNames.presentationTranscriptBonus:
+				if (this.gotFullscreenSettingsAccess() && this.gotFullscreenSettingsAccess(1)) {
+					return Meteor.user().fullscreen.settings.presentation;
+				} else {
+					return this.getDefaultFullscreenMode(1);
+				}
+				break;
+			// Demo Triggers
+			case RouteNames.demo:
+			case RouteNames.demolist:
+			case RouteNames.making:
+			case RouteNames.makinglist:
+				if (this.gotFullscreenSettingsAccess() && this.gotFullscreenSettingsAccess(2)) {
+					return Meteor.user().fullscreen.settings.demo;
+				} else if (Meteor.user() || MainNavigation.isGuestLoginActive()) {
+					return this.getDefaultFullscreenMode(2);
+				} else {
+					return this.getDefaultFullscreenMode(5);
+				}
+				break;
+			// Leitner Trigger
+			case RouteNames.box:
+				if (this.gotFullscreenSettingsAccess() && this.gotFullscreenSettingsAccess(3)) {
+					return Meteor.user().fullscreen.settings.leitner;
+				} else {
+					return this.getDefaultFullscreenMode(3);
+				}
+				break;
+			// Wozniak Trigger
+			case RouteNames.memo:
+				if (this.gotFullscreenSettingsAccess() && this.gotFullscreenSettingsAccess(4)) {
+					return Meteor.user().fullscreen.settings.wozniak;
+				} else {
+					return this.getDefaultFullscreenMode(4);
+				}
+				break;
+			default:
+				return this.getDefaultFullscreenMode(6);
+		}
+	}
+
+	static getDefaultFullscreenMode (mode, userId) {
+		let highestRole = UserPermissions.getHighestRole(false, userId);
+		let config = this.getConfig();
+		let fullscreenDefaults = config.fullscreen.defaults;
+		let landingPage = 'landingPage';
+		switch (mode) {
+			// Presentation
+			case 1:
+				return fullscreenDefaults[highestRole].presentation;
+			// Demo
+			case 2:
+				return fullscreenDefaults[highestRole].demo;
+			// Leitner
+			case 3:
+				return fullscreenDefaults[highestRole].leitner;
+			// Wozniak
+			case 4:
+				return fullscreenDefaults[highestRole].wozniak;
+			// Landing-Page Demo
+			case 5:
+				return fullscreenDefaults[landingPage].demo;
+		}
 	}
 };

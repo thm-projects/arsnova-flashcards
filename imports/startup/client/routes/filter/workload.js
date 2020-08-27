@@ -7,6 +7,7 @@ import {Leitner} from "../../../../api/subscriptions/leitner";
 import {Wozniak} from "../../../../api/subscriptions/wozniak";
 import {Filter} from "../../../../util/filter";
 import * as config from "../../../../config/routes";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/learn', {
 	name: RouteNames.learn,
@@ -33,5 +34,10 @@ FlowRouter.route('/learn', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'filterIndex', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });

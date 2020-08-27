@@ -64,6 +64,12 @@
                             {{> pomodoroTimerModalContent}}
                         </div>
                     </form>
+                    {{#if isLandingPage}}
+                        <div class="form-group row">
+                            {{> pomodoroTimerModalContentCheckbox item="fullscreenPomodoro" checked=true}}
+                            <label for="fullscreenPomodoro" class="control-label">{{_ "pomodoro.form.fullscreen"}}</label><br>
+                        </div>
+                    {{/if}}
                 </div>
                 <div class="modal-footer">
                     {{#if isActiveRoute regex='demo|presentation'}}
@@ -119,7 +125,7 @@
                     {{_ "pomodoro.form.sounds.title"}}</label>
             </div>
             <div class="form-group row">
-                <input type="checkbox" id="sound1" value="Clock" checked>
+                {{> pomodoroTimerModalContentCheckbox item="sound1" checked=true}}
                 <label for="sound1" class="control-label">{{_ "pomodoro.form.sounds.break"}}</label><br>
                 <audio id="bellPreview" style="width: 260px;" controls controlsList="nodownload noremoteplayback">
                     <source src="/audio/Schulgong.mp3" type="audio/mpeg">
@@ -127,14 +133,14 @@
             </div>
             {{#unless isActiveRoute regex='presentation|demo'}}
                 <div class="form-group row">
-                    <input type="checkbox" id="sound2" value="Complete" checked>
+                    {{> pomodoroTimerModalContentCheckbox item="sound2" checked=true}}
                     <label for="sound2" class="control-label">{{_ "pomodoro.form.sounds.success"}}</label><br>
                     <audio id="successPreview" style="width: 260px" controls controlsList="nodownload noremoteplayback">
                         <source src="/audio/success.mp3" type="audio/mpeg">
                     </audio>
                 </div>
                 <div class="form-group row">
-                    <input type="checkbox" id="sound3" value="Cancel" checked>
+                    {{> pomodoroTimerModalContentCheckbox item="sound3" checked=true}}
                     <label for="sound3" class="control-label">{{_ "pomodoro.form.sounds.abort"}}</label><br>
                     <audio id="failurePreview" style="width: 260px" controls controlsList="nodownload noremoteplayback">
                         <source src="/audio/fail.mp3" type="audio/mpeg">
@@ -142,5 +148,15 @@
                 </div>
             {{/unless}}
         {{/unless}}
+    </div>
+</template>
+
+<template name="pomodoroTimerModalContentCheckbox">
+    <div id="{{this.item}}" class="fa-stack fa-stack-checkbox pomodoro-checkbox {{#if gotChecked this.item}}checked{{/if}}">
+        <i class="fas fa-square fa-stack-2x background"></i>
+        <i class="far fa-square fa-stack-2x border"></i>
+        {{#if gotChecked this.item}}
+            <i class="fas fa-check fa-stack-1x icon"></i>
+        {{/if}}
     </div>
 </template>

@@ -1,10 +1,10 @@
 import {Session} from "meteor/session";
-import {CardVisuals} from "./cardVisuals";
 import * as config from "../config/markdeepEditor.js";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {ServerStyle} from "./styles";
 import {CardType} from "./cardTypes";
 import {CardNavigation} from "./cardNavigation";
+import {Fullscreen} from "./fullscreen";
 
 export let MarkdeepEditor = class MarkdeepEditor {
 	static help () {
@@ -73,7 +73,7 @@ export let MarkdeepEditor = class MarkdeepEditor {
 	}
 
 	static toggleFullscreen () {
-		CardVisuals.toggleFullscreen(false, true);
+		Fullscreen.toggle(true);
 	}
 
 	static getDefaultMobilePreviewOrientation () {

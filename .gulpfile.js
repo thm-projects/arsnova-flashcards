@@ -21,7 +21,7 @@ let jscs = require('gulp-jscs');
 let stylish = require('jshint-stylish');
 
 let paths = [
-	'./{i18n,server,tests}/**/*.js',
+	'./{i18n,tests}/**/*.js',
 	'./imports/**/*.js',
 	'!./imports/startup/client/routes.js',
 	'!./imports/startup/client/routes/**/*.js',

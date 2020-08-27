@@ -7,6 +7,7 @@ import {Session} from "meteor/session";
 import {WebPushNotifications} from "../../../../util/webPushSubscriptions";
 import {UserPermissions} from "../../../../util/permissions";
 import {MainNavigation} from "../../../../util/mainNavigation";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/admin/settings', {
 	name: RouteNames.admin_settings,
@@ -32,5 +33,10 @@ FlowRouter.route('/admin/settings', {
 			MainNavigation.setLoginTarget(false);
 			FlowRouter.go('home');
 		}
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });

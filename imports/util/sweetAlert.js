@@ -4,6 +4,7 @@ import swal from "sweetalert2";
 import {CardVisuals} from "./cardVisuals";
 import * as config from "../config/sweetAlert.js";
 import {Route} from "./route.js";
+import {Fullscreen} from "./fullscreen";
 
 export let SweetAlertMessages = class SweetAlertMessages {
 	static completeProfile () {
@@ -36,6 +37,20 @@ export let SweetAlertMessages = class SweetAlertMessages {
 				}
 			}
 		});
+	}
+
+	static chooseFullscreenMode () {
+		if (Fullscreen.getChooseModeSession() === 0) {
+			swal.fire(config.chooseFullscreenMode()).then((result) => {
+				if (result.value) {
+					Fullscreen.setChooseMode(1);
+					Fullscreen.setChooseModeSession(1);
+				} else {
+					Fullscreen.setChooseMode(2);
+					Fullscreen.setChooseModeSession(2);
+				}
+			});
+		}
 	}
 
 	static activateFullscreen () {

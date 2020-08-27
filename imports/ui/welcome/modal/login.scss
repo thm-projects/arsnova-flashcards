@@ -1,0 +1,27 @@
+#loginModal {
+  .modal-content {
+    cursor: default;
+
+    input {
+      cursor: text;
+    }
+
+    @media (min-width: 768px) {
+      min-width: 600px;
+    }
+  }
+
+  .at-form {
+    margin-top: 0;
+    padding-top: 0;
+
+    .form-control-feedback {
+      top: 35px;
+    }
+
+    .g-recaptcha {
+      margin-top: 25px;
+      cursor: pointer;
+    }
+  }
+}

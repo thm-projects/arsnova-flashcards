@@ -15,8 +15,10 @@ import {ServerStyle} from "../../util/styles.js";
 import {FirstTimeVisit} from "../../util/firstTimeVisit";
 import {MainNavigation} from "../../util/mainNavigation";
 import {ExecuteControllers} from 'wtc-controller-element';
+import "./modal/login.js";
 import "./welcome.html";
 import {setLoginTarget} from "../../startup/client/routes/onBeforeAction.js";
+import {Fullscreen} from "../../util/fullscreen";
 
 Meteor.subscribe("pomodoroLandingPage");
 Meteor.subscribe("userData");
@@ -36,6 +38,7 @@ Template.welcome.events({
 				if (err) {
 					throw new Meteor.Error("Facebook login failed");
 				} else {
+					Fullscreen.resetChooseModeSessions();
 					setActiveLanguage();
 					setLoginTarget();
 				}
@@ -49,6 +52,7 @@ Template.welcome.events({
 				if (err) {
 					throw new Meteor.Error("Twitter login failed");
 				} else {
+					Fullscreen.resetChooseModeSessions();
 					setActiveLanguage();
 					setLoginTarget();
 				}
@@ -62,6 +66,7 @@ Template.welcome.events({
 				if (err) {
 					throw new Meteor.Error("Google login failed");
 				} else {
+					Fullscreen.resetChooseModeSessions();
 					setActiveLanguage();
 					setLoginTarget();
 				}
@@ -75,6 +80,7 @@ Template.welcome.events({
 				if (err) {
 					throw new Meteor.Error("CAS login failed");
 				} else {
+					Fullscreen.resetChooseModeSessions();
 					setActiveLanguage();
 					setLoginTarget();
 				}
@@ -87,6 +93,7 @@ Template.welcome.events({
 		if (ServerStyle.isLoginEnabled("backdoor")) {
 			Meteor.insecureUserLogin($("#TestingBackdoorUsername").val(), function (err, result) {
 				if (result) {
+					Fullscreen.resetChooseModeSessions();
 					setActiveLanguage();
 					setLoginTarget();
 				}
@@ -95,6 +102,7 @@ Template.welcome.events({
 	},
 
 	'click #guest': function () {
+		Fullscreen.resetChooseModeSessions();
 		MainNavigation.setGuestLogin("true");
 		setActiveLanguage();
 		setLoginTarget();
@@ -106,6 +114,9 @@ Template.welcome.helpers({
 		let loginButtons = "<div id='loginButtonRow'>";
 		if (ServerStyle.isLoginEnabled("guest")) {
 			loginButtons += '<button id="guest" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.guest") + '"><span class="flex-content"><i class="far fa-smile" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.guest") + '</span></button>';
+		}
+		if (ServerStyle.isLoginEnabled("cards")) {
+			loginButtons += '<button id="cards" class="btn btn-large btn-raised btn-block" data-toggle="modal" data-target="#loginModal"  title="' + TAPi18n.__("landingPage.login.tooltip.cards") + '"><span class="flex-content"><i class="fas fa-sign-in-alt" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.cards") + '</span></button>';
 		}
 		if (ServerStyle.isLoginEnabled("cas")) {
 			loginButtons += '<button id="cas" class="btn btn-large btn-raised btn-block" title="' + TAPi18n.__("landingPage.login.tooltip.cas") + '"><span class="flex-content"><i class="fas fa-sign-in-alt" style="font-size:150%"></i>&nbsp;' + TAPi18n.__("landingPage.login.cas") + '</span></button>';

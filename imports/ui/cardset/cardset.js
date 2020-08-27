@@ -7,7 +7,6 @@ import {Cardsets} from "../../api/subscriptions/cardsets.js";
 import {CardNavigation} from "../../util/cardNavigation";
 import {BertAlertVisuals} from "../../util/bertAlertVisuals";
 import {CardsetNavigation} from "../../util/cardsetNavigation";
-import {CardVisuals} from "../../util/cardVisuals";
 import {Bonus} from "../../util/bonus";
 import "../main/modal/arsnovaLite.js";
 import "../main/modal/arsnovaClick.js";
@@ -38,7 +37,6 @@ Meteor.subscribe("notifications");
  */
 
 Template.cardset.onCreated(function () {
-	CardVisuals.toggleFullscreen(true);
 	if (Session.get('activeCardset') === undefined || Session.get('activeCardset')._id !== FlowRouter.getParam('_id')) {
 		Session.set('activeCardset', Cardsets.findOne(FlowRouter.getParam('_id')));
 		Session.set('activeCard', undefined);

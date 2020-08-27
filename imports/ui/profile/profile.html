@@ -44,6 +44,16 @@
                 </div>
             {{/if}}
 
+            {{#if isActiveRoute 'profileFullscreen'}}
+                <div id="profileFullscreen">
+                    {{#if isUser}}
+                        {{> profileFullscreen}}
+                    {{else}}
+                        <h3>{{_ "permission"}}</h3>
+                    {{/if}}
+                </div>
+            {{/if}}
+
             {{#if isActiveRoute 'profileRequests'}}
                 <div id="profileRequests">
                     {{#if isUser}}

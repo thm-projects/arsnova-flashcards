@@ -10,6 +10,7 @@ import {CardVisuals} from "./cardVisuals";
 import {CardIndex} from "./cardIndex";
 import {Cards} from "../api/subscriptions/cards";
 import {MarkdeepEditor} from "./markdeepEditor";
+import {Fullscreen} from "./fullscreen";
 
 const subjectMaxLength = 255;
 const contentMaxLength = 300000;
@@ -22,11 +23,11 @@ let firstCardNavigationCall = false;
 
 let emptyMarkdeepAnswers = [
 	{
-		content: '',
+		answer: '',
 		explanation: ''
 	},
 	{
-		content: '',
+		answer: '',
 		explanation: ''
 	}
 ];
@@ -104,7 +105,7 @@ export let CardEditor = class CardEditor {
 	}
 
 	static setEditorButtonFocus () {
-		if (CardVisuals.isFullscreen() && editorButtons[editorButtonIndex] !== cardNavigationName) {
+		if (Fullscreen.isActive() && editorButtons[editorButtonIndex] !== cardNavigationName) {
 			editorButtonIndex = this.getCardNavigationNameIndex();
 			firstCardNavigationCall = true;
 		}
@@ -114,7 +115,7 @@ export let CardEditor = class CardEditor {
 				firstCardNavigationCall = false;
 				CardNavigation.cardSideNavigation();
 			} else {
-				if (CardType.gotDictionary(Session.get('cardType')) && (!CardVisuals.isFullscreen() || (CardVisuals.isFullscreen() && CardVisuals.isEditorFullscreen()))) {
+				if (CardType.gotDictionary(Session.get('cardType')) && (!Fullscreen.isActive() || (CardVisuals.isFullscreen() && Fullscreen.isEditorFullscreenActive()))) {
 					$('#cardModalBeolingusTranslation').modal('show').one('hidden.bs.modal', function () {
 						CardNavigation.cardSideNavigation();
 					});
@@ -122,7 +123,7 @@ export let CardEditor = class CardEditor {
 					CardNavigation.cardSideNavigation();
 				}
 			}
-		} else if (!CardVisuals.isFullscreen()) {
+		} else if (!Fullscreen.isActive()) {
 			$(editorButtons[editorButtonIndex]).focus();
 			if (editorButtonIndex < (editorButtons.length - 1)) {
 				editorButtonIndex++;
@@ -331,7 +332,8 @@ export let CardEditor = class CardEditor {
 			if (answers.enabled) {
 				let gotValidAnswers = true;
 				for (let i = 0; i < answers.content.length; i++) {
-					if (answers.content[i].answer.trim().length === 0) {
+					let answer = answers.content[i].answer;
+					if (answer !== undefined && answer.trim().length === 0) {
 						gotValidAnswers = false;
 						break;
 					}

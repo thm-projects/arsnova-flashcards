@@ -33,6 +33,11 @@ Meteor.methods({
 	updateUsersEmail: function (email, id) {
 		check(email, String);
 		check(id, String);
+
+		if (!UserPermissions.gotBackendAccess() && UserPermissions.isCardsLogin()) {
+			throw new Meteor.Error("not-authorized");
+		}
+
 		if (!UserPermissions.gotBackendAccess()) {
 			id = Meteor.userId();
 		}
@@ -65,6 +70,23 @@ Meteor.methods({
 		Meteor.users.update(id, {
 			$set: {
 				"profile.birthname": birthname
+			}
+		});
+	},
+	updateUserFullscreenSettings: function (presentationMode, demoMode, leitnerMode, wozniakMode) {
+		check(presentationMode, Number);
+		check(demoMode, Number);
+		check(leitnerMode, Number);
+		check(wozniakMode, Number);
+
+		Meteor.users.update(Meteor.userId(), {
+			$set: {
+				"fullscreen.settings": {
+					presentation: presentationMode,
+					demo: demoMode,
+					leitner: leitnerMode,
+					wozniak: wozniakMode
+				}
 			}
 		});
 	},

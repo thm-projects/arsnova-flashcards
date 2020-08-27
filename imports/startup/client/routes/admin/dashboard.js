@@ -6,6 +6,7 @@ import {ServerStyle} from "../../../../util/styles";
 import {Session} from "meteor/session";
 import {UserPermissions} from "../../../../util/permissions";
 import {MainNavigation} from "../../../../util/mainNavigation";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/admin/dashboard', {
 	name: RouteNames.admin_dashboard,
@@ -31,5 +32,10 @@ FlowRouter.route('/admin/dashboard', {
 			MainNavigation.setLoginTarget(false);
 			FlowRouter.go('home');
 		}
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });

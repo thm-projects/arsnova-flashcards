@@ -43,6 +43,7 @@ let makinglist = 'makinglist';
 let profileBilling = 'profileBilling';
 let profileMembership = 'profileMembership';
 let profileNotifications = 'profileNotifications';
+let profileFullscreen = 'profileFullscreen';
 let profileSettings = 'profileSettings';
 let profileRequests = 'profileRequests';
 let admin_dashboard = 'admin_dashboard';
@@ -101,6 +102,7 @@ module.exports = {
 	profileBilling,
 	profileMembership,
 	profileNotifications,
+	profileFullscreen,
 	profileSettings,
 	profileRequests,
 	admin_dashboard,

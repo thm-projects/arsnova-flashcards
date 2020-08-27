@@ -313,7 +313,8 @@ export let CardIndex = class CardIndex {
 				"content": Session.get('markdeepEditorAnswers'),
 				"rightAnswers": Session.get('rightAnswers'),
 				"randomized": Session.get('randomizeAnswerPositions'),
-				"question": Session.get('cardAnswersQuestion')
+				"question": Session.get('cardAnswersQuestion'),
+				"enabled": Session.get('answersEnabled')
 			}
 		}];
 	}

@@ -6,6 +6,7 @@ import {ServerStyle} from "../../../../util/styles";
 import {Session} from "meteor/session";
 import {UserPermissions} from "../../../../util/permissions";
 import {MainNavigation} from "../../../../util/mainNavigation";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/admin/users', {
 	name: RouteNames.admin_users,
@@ -30,7 +31,12 @@ FlowRouter.route('/admin/users', {
 			MainNavigation.setLoginTarget(false);
 			FlowRouter.go('home');
 		}
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });
 
 FlowRouter.route('/admin/user/:_id', {
@@ -57,5 +63,10 @@ FlowRouter.route('/admin/user/:_id', {
 			MainNavigation.setLoginTarget(false);
 			FlowRouter.go('home');
 		}
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });

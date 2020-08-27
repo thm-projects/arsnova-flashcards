@@ -31,6 +31,8 @@ import "./main.html";
 
 import {PDFViewer} from "../../util/pdfViewer";
 import {setLanguage, setTheme} from "../../startup/client/routes/onBeforeAction.js";
+import {Fullscreen} from "../../util/fullscreen";
+import {CardsetVisuals} from "../../util/cardsetVisuals";
 
 Meteor.subscribe("notifications");
 Meteor.subscribe("serverStatistics");
@@ -50,6 +52,13 @@ Session.setDefault('aspectRatioContainerVisible', false);
 Session.setDefault('aspectRatioMode', 0);
 Session.setDefault('firedUseCaseModal', 0);
 Session.setDefault('isAnswerEditorEnabled', false);
+Session.setDefault('displayMainNavigation', true);
+
+// Session Variables for the Choose Fullscreen Feature
+Session.setDefault('fullscreenPresentationSession', 0);
+Session.setDefault('fullscreenDemoSession', 0);
+Session.setDefault('fullscreenLeitnerSession', 0);
+Session.setDefault('fullscreenWozniakSession', 0);
 
 function connectionStatus() {
 	let stat;
@@ -105,7 +114,7 @@ Template.main.helpers({
 		return (!Route.isFirstTimeVisit() && Route.isDemo());
 	},
 	getMainContainer: function () {
-		if (AspectRatio.isEnabled()) {
+		if (AspectRatio.isEnabled() || (Route.isPresentation() || Route.isLearningMode())) {
 			if (Route.isTableOfContent()) {
 				return "container";
 			} else {
@@ -118,7 +127,7 @@ Template.main.helpers({
 		} else if (Route.isHome() && !Meteor.user() && !MainNavigation.isGuestLoginActive()) {
 			return "";
 		} else if (Route.isEditMode() || Route.isCardsetLeitnerStats() || Route.isTranscriptBonus()) {
-			if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
+			if (Route.isEditMode() && !Fullscreen.isActive()) {
 				return "container-fluid-editor";
 			} else {
 				return "container-fluid";
@@ -159,6 +168,7 @@ Template.main.onRendered(function () {
 		MainNavigation.closeCollapse();
 	});
 	MainNavigation.initializeNavigation();
+	CardsetVisuals.resizeCardsetInfo();
 });
 
 Template.main.onDestroyed(function () {

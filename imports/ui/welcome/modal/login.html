@@ -1,0 +1,123 @@
+<template name="loginModal">
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
+         aria-labelledby="loginTitle">
+        <div class="modal-dialog">
+            <div class="modal-content modal-content-for-buttons">
+                <div class="modal-header">
+                    <span class="modal-icon">
+                        <i class="fas fa-sign-in-alt"></i>
+                    </span>
+                    {{> mainModalItemCloseIcon}}
+                    <h4 id="aboutThisRatingTitle" class="modal-title">{{_ "loginModal.title"}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    {{> atForm}}
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>
+
+<template name="cards-login">
+    <div class="at-form">
+        {{#if showTitle}}
+            {{> atTitle}}
+        {{/if}}
+        {{#if isSignUpState}}
+            {{#if getWhitelistedDomains}}
+                <br>
+                <b>{{_ "loginModal.info.domains"}}</b>
+            {{/if}}
+        {{/if}}
+        {{#if showError}}
+            {{> atError}}
+        {{/if}}
+        {{#if showResult}}
+            {{> atResult}}
+        {{/if}}
+        {{#if showMessage}}
+            {{> atMessage}}
+        {{/if}}
+        {{#if showPwdForm}}
+            {{> atPwdForm}}
+        {{/if}}
+        {{#if showTermsLink}}
+            {{> atTermsLink}}
+        {{/if}}
+        {{#if showSignUpLink}}
+            {{> atSignupLink}}
+        {{/if}}
+        {{#if showResendVerificationEmailLink}}
+            {{> atResendVerificationEmailLink}}
+        {{/if}}
+        {{#unless isSignInState}}
+            {{> atSigninLink}}
+        {{/unless}}
+    </div>
+</template>
+
+<template name="cards-terms-link">
+    <div class="at-terms-link at-wrap">
+        <p>
+            {{text}}
+            {{#if privacyUrl}}
+                <a href="{{privacyUrl}}" target="_blank" class="{{disabled}}">{{privacyLinkText}}</a>
+            {{/if}}
+            {{#if showTermsAnd}}
+                {{and}}
+            {{/if}}
+            {{#if termsUrl}}
+                <a href="{{termsUrl}}" target="_blank" class="{{disabled}}">{{termsLinkText}}</a>
+            {{/if}}
+        </p>
+    </div>
+</template>
+
+
+<template name="email-verified-dialog">
+    {{#if visible}}
+        <div class="accounts-dialog accounts-centered-dialog">
+            {{_ "verifiedEmailModal.text" name=displayName}}
+            <div class="login-button" id="just-verified-dismiss-button">{{_ "verifiedEmailModal.button"}}</div>
+        </div>
+    {{/if}}
+</template>
+
+<template name="reset-password-dialog">
+    {{#if inResetPasswordFlow}}
+        <div class="hide-background"></div>
+
+        <form class="accounts-dialog accounts-centered-dialog">
+            <label id="reset-password-new-password-label" for="reset-password-new-password">
+                {{_ "resetPasswordModal.text"}}
+            </label>
+
+            <div class="reset-password-new-password-wrapper">
+                <input id="reset-password-new-password" type="password" autocomplete="new-password" />
+            </div>
+
+            <div class="login-button login-button-form-submit" id="login-buttons-reset-password-button">
+                {{_ "resetPasswordModal.button"}}
+            </div>
+            <a class="accounts-close" id="login-buttons-cancel-reset-password">&times;</a>
+        </form>
+    {{/if}}
+</template>
+
+<template name="redirectPasswordReset">
+    {{_ "justResetPasswordModal.text" name=displayName}}
+</template>
+
+<template name="just-reset-password-dialog">
+    {{#if visible}}
+        <div class="accounts-dialog accounts-centered-dialog">
+            {{> redirectPasswordReset displayName}}
+            <div class="login-button" id="just-verified-dismiss-button">{{_ "justResetPasswordModal.button"}}</div>
+        </div>
+    {{/if}}
+</template>
+

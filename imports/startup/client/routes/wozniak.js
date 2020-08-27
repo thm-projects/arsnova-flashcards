@@ -7,6 +7,7 @@ import {ServerStyle} from "../../../util/styles";
 import {MarkdeepEditor} from "../../../util/markdeepEditor";
 import {Session} from "meteor/session";
 import {AspectRatio} from "../../../util/aspectRatio";
+import {Fullscreen} from "../../../util/fullscreen";
 
 FlowRouter.route('/memo/:_id', {
 	name: RouteNames.memo,
@@ -36,5 +37,10 @@ FlowRouter.route('/memo/:_id', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'learnAlgorithmAccess', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.setMode();
+		}
+	]
 });

@@ -6,6 +6,7 @@ import {ServerStyle} from "../../../../util/styles";
 import {MarkdeepEditor} from "../../../../util/markdeepEditor";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/makingofcards', {
 	name: RouteNames.making,
@@ -28,5 +29,10 @@ FlowRouter.route('/makingofcards', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'makingOfCards', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.setMode();
+		}
+	]
 });

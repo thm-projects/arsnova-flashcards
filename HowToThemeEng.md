@@ -26,7 +26,7 @@
 Backgrounds can be found at `public/img/background`
 
 ## Apply theme color and background to installation
-1. Open the server configuration file `imports/config/server.js`
+1. Open the server configuration file `imports/config/exportStyle.js`
 1. Locate the themes object
 1. Add your new theme name and background to the list
 

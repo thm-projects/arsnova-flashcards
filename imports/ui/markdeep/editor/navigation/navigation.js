@@ -8,6 +8,7 @@ import {Route} from "../../../../util/route";
 import * as config from "../../../../config/markdeepEditor.js";
 import "./item/answerEditor.js";
 import "./navigation.html";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 /*
  * ############################################################################
@@ -110,7 +111,7 @@ Template.markdeepNavigation.helpers({
 		return Session.get('backgroundStyle');
 	},
 	isFullscreenActive: function () {
-		return Session.get('fullscreen');
+		return Fullscreen.isActive();
 	},
 	isTranslationActive: function () {
 		return Session.get('isDeepLModalVisible');

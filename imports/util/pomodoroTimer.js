@@ -8,6 +8,7 @@ import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {ServerStyle} from "./styles";
 import {NavigatorCheck} from "./navigatorCheck";
+import {Fullscreen} from "./fullscreen";
 
 if (Meteor.isClient) {
 	Session.set('pomodoroBreakActive', false);
@@ -57,6 +58,8 @@ let pomodoroInterval;
 
 let workloadTimerInterval;
 
+let isFullscreenEnabled;
+
 export let PomodoroTimer = class PomodoroTimer {
 
 	static setCloudShown (value) {
@@ -68,12 +71,19 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	static clockHandler (option) {
-		if (option === 0) {
-			isBellSoundEnabled = !isBellSoundEnabled;
-		} else if (option === 1) {
-			isSuccessSoundEnabled = !isSuccessSoundEnabled;
-		} else if (option === 2) {
-			isFailSoundEnabled = !isFailSoundEnabled;
+		switch (option) {
+			case 0:
+				isBellSoundEnabled = !isBellSoundEnabled;
+				break;
+			case 1:
+				isSuccessSoundEnabled = !isSuccessSoundEnabled;
+				break;
+			case 2:
+				isFailSoundEnabled = !isFailSoundEnabled;
+				break;
+			case 3:
+				isFullscreenEnabled = !isFullscreenEnabled;
+				break;
 		}
 	}
 
@@ -173,30 +183,30 @@ export let PomodoroTimer = class PomodoroTimer {
 		this.updateArcs();
 		/*the first sweet alert! This is what pops up when you finish a pomodoro. It congradulates the user and lets them start their break when they are ready. There is no option to stop the session in this box, that function is relegated to the second click on the clock, as noted by the title.*/
 		if (Route.isPresentation() || Route.isDemo()) {
-			dialogue.title = TAPi18n.__('pomodoro.sweetAlert.presentation.break.start.title');
-			dialogue.html = TAPi18n.__('pomodoro.sweetAlert.presentation.break.start.text', {
+			dialogue.title = TAPi18n.__('sweetAlert.pomodoro.presentation.break.start.title');
+			dialogue.html = TAPi18n.__('sweetAlert.pomodoro.presentation.break.start.text', {
 				pomodoroBreak: breakLength,
 				pomodoroTotal: totalPoms,
 				pomodoro: TAPi18n.__('pomodoro.name', {count: totalPoms})
 			});
-			dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.presentation.break.start.button.confirm');
+			dialogue.confirm = TAPi18n.__('sweetAlert.pomodoro.presentation.break.start.button.confirm');
 		} else {
 			if (Bonus.isInBonus(FlowRouter.getParam('_id'))) {
-				dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.break.start.title');
-				dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.break.start.text', {
+				dialogue.title = TAPi18n.__('sweetAlert.pomodoro.bonus.break.start.title');
+				dialogue.html = TAPi18n.__('sweetAlert.pomodoro.bonus.break.start.text', {
 					pomodoroBreak: breakLength,
 					pomodoroTotal: totalPoms,
 					pomodoro: TAPi18n.__('pomodoro.name', {count: totalPoms})
 				});
-				dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.break.start.button.confirm');
+				dialogue.confirm = TAPi18n.__('sweetAlert.pomodoro.bonus.break.start.button.confirm');
 			} else {
-				dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.break.start.title');
-				dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.break.start.text', {
+				dialogue.title = TAPi18n.__('sweetAlert.pomodoro.user.break.start.title');
+				dialogue.html = TAPi18n.__('sweetAlert.pomodoro.user.break.start.text', {
 					pomodoroBreak: breakLength,
 					pomodoroTotal: totalPoms,
 					pomodoro: TAPi18n.__('pomodoro.name', {count: totalPoms})
 				});
-				dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.break.start.button.confirm');
+				dialogue.confirm = TAPi18n.__('sweetAlert.pomodoro.user.break.start.button.confirm');
 			}
 		}
 		this.updateServerTimerIntervalStop();
@@ -210,8 +220,8 @@ export let PomodoroTimer = class PomodoroTimer {
 			confirmButtonText: dialogue.confirm,
 			allowOutsideClick: false
 		}).then(() => {
-			if (document.fullscreenElement === null) {
-				document.documentElement.requestFullscreen();
+			if (Fullscreen.getChooseModeSession() === 1) {
+				Fullscreen.enable();
 			}
 			/*and this is what runs when the user clicks the confirm button on the popup. It starts the break, and gets the current time and sets the end from there.*/
 			if (Route.isBox()) {
@@ -268,24 +278,24 @@ export let PomodoroTimer = class PomodoroTimer {
 			}
 		}
 		if (Route.isPresentation() || Route.isDemo()) {
-			dialogue.title = TAPi18n.__('pomodoro.sweetAlert.presentation.break.end.title');
-			dialogue.html = TAPi18n.__('pomodoro.sweetAlert.presentation.break.end.text', {
+			dialogue.title = TAPi18n.__('sweetAlert.pomodoro.presentation.break.end.title');
+			dialogue.html = TAPi18n.__('sweetAlert.pomodoro.presentation.break.end.text', {
 				pomodoroLength: pomLength
 			});
-			dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.presentation.break.end.button.confirm');
+			dialogue.confirm = TAPi18n.__('sweetAlert.pomodoro.presentation.break.end.button.confirm');
 		} else {
 			if (Bonus.isInBonus(FlowRouter.getParam('_id'))) {
-				dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.break.end.title');
-				dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.break.end.text', {
+				dialogue.title = TAPi18n.__('sweetAlert.pomodoro.bonus.break.end.title');
+				dialogue.html = TAPi18n.__('sweetAlert.pomodoro.bonus.break.end.text', {
 					pomodoroLength: pomLength
 				});
-				dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.break.end.button.confirm');
+				dialogue.confirm = TAPi18n.__('sweetAlert.pomodoro.bonus.break.end.button.confirm');
 			} else {
-				dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.break.end.title');
-				dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.break.end.text', {
+				dialogue.title = TAPi18n.__('sweetAlert.pomodoro.user.break.end.title');
+				dialogue.html = TAPi18n.__('sweetAlert.pomodoro.user.break.end.text', {
 					pomodoroLength: pomLength
 				});
-				dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.break.end.button.confirm');
+				dialogue.confirm = TAPi18n.__('sweetAlert.pomodoro.user.break.end.button.confirm');
 			}
 		}
 		this.updateServerTimerIntervalStop();
@@ -295,8 +305,8 @@ export let PomodoroTimer = class PomodoroTimer {
 			confirmButtonText: dialogue.confirm,
 			allowOutsideClick: false
 		}).then(() => {
-			if (document.fullscreenElement === null) {
-				document.documentElement.requestFullscreen();
+			if (Fullscreen.getChooseModeSession() === 1) {
+				Fullscreen.enable();
 			}
 			/*starts the work cycle up again, automatically.*/
 			if (Route.isBox()) {
@@ -398,33 +408,33 @@ export let PomodoroTimer = class PomodoroTimer {
 			/*if you still haven't reached your goal, you are encouraged with an update of how many pomodoros and minutes you have left to reach it.*/
 			if (totalPoms < goalPoms) {
 				if (Route.isPresentation() || Route.isDemo()) {
-					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.presentation.end.title');
-					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.presentation.end.text', {
+					dialogue.title = TAPi18n.__('sweetAlert.pomodoro.presentation.end.title');
+					dialogue.html = TAPi18n.__('sweetAlert.pomodoro.presentation.end.text', {
 						pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
 						pomodoroGoal: goalPoms
 					});
-					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.presentation.end.button.cancel');
-					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.presentation.end.button.confirm');
+					dialogue.cancel = TAPi18n.__('sweetAlert.pomodoro.presentation.end.button.cancel');
+					dialogue.confirm = TAPi18n.__('sweetAlert.pomodoro.presentation.end.button.confirm');
 				} else if (Bonus.isInBonus(FlowRouter.getParam('_id')) && Route.isBox()) {
-					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.title');
-					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.text', {
+					dialogue.title = TAPi18n.__('sweetAlert.pomodoro.bonus.quit.title');
+					dialogue.html = TAPi18n.__('sweetAlert.pomodoro.bonus.quit.text', {
 						missingPomodoros: count,
 						pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
 						pomodoroGoal: goalPoms,
 						remainingMinutes: count * pomLength
 					});
-					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.button.confirm');
-					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.button.cancel');
+					dialogue.confirm = TAPi18n.__('sweetAlert.pomodoro.bonus.quit.button.confirm');
+					dialogue.cancel = TAPi18n.__('sweetAlert.pomodoro.bonus.quit.button.cancel');
 				} else {
-					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.quit.title');
-					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.quit.text', {
+					dialogue.title = TAPi18n.__('sweetAlert.pomodoro.user.quit.title');
+					dialogue.html = TAPi18n.__('sweetAlert.pomodoro.user.quit.text', {
 						missingPomodoros: count,
 						pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
 						pomodoroGoal: goalPoms,
 						remainingMinutes: count * pomLength
 					});
-					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.quit.button.confirm');
-					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.user.quit.button.cancel');
+					dialogue.confirm = TAPi18n.__('sweetAlert.pomodoro.user.quit.button.confirm');
+					dialogue.cancel = TAPi18n.__('sweetAlert.pomodoro.user.quit.button.cancel');
 				}
 				swal.fire({
 					title: dialogue.title,
@@ -439,9 +449,6 @@ export let PomodoroTimer = class PomodoroTimer {
 						if (Route.isDemo()) {
 							this.setPresentationPomodoro(true);
 						}
-						if ((Route.isBox() || Route.isMemo()) && document.fullscreenElement === null) {
-							document.documentElement.requestFullscreen();
-						}
 					}
 					/*If you give up before you complete your goal you get a failure sound, taken from a show me and my lady have been watching lately, and a failure box. Shame!*/
 					if (!result.value) {
@@ -451,19 +458,19 @@ export let PomodoroTimer = class PomodoroTimer {
 							}
 
 							if (Bonus.isInBonus(FlowRouter.getParam('_id')) && Route.isBox()) {
-								dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.confirm.title');
-								dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.confirm.text', {
+								dialogue.title = TAPi18n.__('sweetAlert.pomodoro.bonus.quit.confirm.title');
+								dialogue.html = TAPi18n.__('sweetAlert.pomodoro.bonus.quit.confirm.text', {
 									pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
 									pomodoroGoal: goalPoms
 								});
-								dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.quit.confirm.button.confirm');
+								dialogue.confirm = TAPi18n.__('sweetAlert.pomodoro.bonus.quit.confirm.button.confirm');
 							} else {
-								dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.quit.confirm.title');
-								dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.quit.confirm.text', {
+								dialogue.title = TAPi18n.__('sweetAlert.pomodoro.user.quit.confirm.title');
+								dialogue.html = TAPi18n.__('sweetAlert.pomodoro.user.quit.confirm.text', {
 									pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
 									pomodoroGoal: goalPoms
 								});
-								dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.quit.confirm.button.confirm');
+								dialogue.confirm = TAPi18n.__('sweetAlert.pomodoro.user.quit.confirm.button.confirm');
 							}
 							swal.fire({
 								title: dialogue.title,
@@ -474,6 +481,9 @@ export let PomodoroTimer = class PomodoroTimer {
 							}).then(() => {
 								this.setPresentationPomodoro(true);
 								PomodoroTimer.showPomodoroNormal();
+								if (Route.isHome()) {
+									Fullscreen.disable();
+								}
 								if ((Route.isBox() || Route.isMemo())) {
 									Session.set('pomodoroBreakActive', false);
 									if (Bonus.isInBonus(FlowRouter.getParam('_id'), Meteor.userId())) {
@@ -489,29 +499,29 @@ export let PomodoroTimer = class PomodoroTimer {
 			} else {
 				/*So if you've completed your goal for the session you get this friendlier pop up congradulating you and lightly suggesting you keep working.*/
 				if (Route.isPresentation() || Route.isDemo()) {
-					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.presentation.end.title');
-					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.presentation.end.text', {
+					dialogue.title = TAPi18n.__('sweetAlert.pomodoro.presentation.end.title');
+					dialogue.html = TAPi18n.__('sweetAlert.pomodoro.presentation.end.text', {
 						pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
 						pomodoroGoal: goalPoms
 					});
-					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.presentation.end.button.cancel');
-					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.presentation.end.button.confirm');
+					dialogue.cancel = TAPi18n.__('sweetAlert.pomodoro.presentation.end.button.cancel');
+					dialogue.confirm = TAPi18n.__('sweetAlert.pomodoro.presentation.end.button.confirm');
 				} else if (Bonus.isInBonus(FlowRouter.getParam('_id'))) {
-					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.end.title');
-					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.end.text', {
+					dialogue.title = TAPi18n.__('sweetAlert.pomodoro.bonus.end.title');
+					dialogue.html = TAPi18n.__('sweetAlert.pomodoro.bonus.end.text', {
 						pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
 						pomodoroGoal: goalPoms
 					});
-					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.bonus.end.button.cancel');
-					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.end.button.confirm');
+					dialogue.cancel = TAPi18n.__('sweetAlert.pomodoro.bonus.end.button.cancel');
+					dialogue.confirm = TAPi18n.__('sweetAlert.pomodoro.bonus.end.button.confirm');
 				} else {
-					dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.end.title');
-					dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.end.text', {
+					dialogue.title = TAPi18n.__('sweetAlert.pomodoro.user.end.title');
+					dialogue.html = TAPi18n.__('sweetAlert.pomodoro.user.end.text', {
 						pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
 						pomodoroGoal: goalPoms
 					});
-					dialogue.cancel = TAPi18n.__('pomodoro.sweetAlert.user.end.button.cancel');
-					dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.end.button.confirm');
+					dialogue.cancel = TAPi18n.__('sweetAlert.pomodoro.user.end.button.cancel');
+					dialogue.confirm = TAPi18n.__('sweetAlert.pomodoro.user.end.button.confirm');
 				}
 				swal.fire({
 					title: dialogue.title,
@@ -529,21 +539,21 @@ export let PomodoroTimer = class PomodoroTimer {
 								config.successSound.play();
 							}
 							if (Bonus.isInBonus(FlowRouter.getParam('_id'))) {
-								dialogue.title = TAPi18n.__('pomodoro.sweetAlert.bonus.end.confirm.title');
-								dialogue.html = TAPi18n.__('pomodoro.sweetAlert.bonus.end.confirm.text', {
+								dialogue.title = TAPi18n.__('sweetAlert.pomodoro.bonus.end.confirm.title');
+								dialogue.html = TAPi18n.__('sweetAlert.pomodoro.bonus.end.confirm.text', {
 									pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
 									pomodoroTotal: totalPoms,
 									pomodoroTime: pomLength * totalPoms
 								});
-								dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.bonus.end.confirm.button.confirm');
+								dialogue.confirm = TAPi18n.__('sweetAlert.pomodoro.bonus.end.confirm.button.confirm');
 							} else {
-								dialogue.title = TAPi18n.__('pomodoro.sweetAlert.user.end.confirm.title');
-								dialogue.html = TAPi18n.__('pomodoro.sweetAlert.user.end.confirm.text', {
+								dialogue.title = TAPi18n.__('sweetAlert.pomodoro.user.end.confirm.title');
+								dialogue.html = TAPi18n.__('sweetAlert.pomodoro.user.end.confirm.text', {
 									pomodoro: TAPi18n.__('pomodoro.name', {count: count}),
 									pomodoroTotal: totalPoms,
 									pomodoroTime: pomLength * totalPoms
 								});
-								dialogue.confirm = TAPi18n.__('pomodoro.sweetAlert.user.end.confirm.button.confirm');
+								dialogue.confirm = TAPi18n.__('sweetAlert.pomodoro.user.end.confirm.button.confirm');
 							}
 							swal.fire({
 								title: dialogue.title,
@@ -553,6 +563,9 @@ export let PomodoroTimer = class PomodoroTimer {
 								confirmButtonText: dialogue.confirm
 							}).then(() => {
 								PomodoroTimer.showPomodoroNormal();
+								if (Route.isHome()) {
+									Fullscreen.disable();
+								}
 								if ((Route.isBox() || Route.isMemo())) {
 									Session.set('pomodoroBreakActive', false);
 									if (Bonus.isInBonus(FlowRouter.getParam('_id'), Meteor.userId())) {
@@ -683,6 +696,10 @@ export let PomodoroTimer = class PomodoroTimer {
 		return parseInt($('#breakSlider').val(), 10);
 	}
 
+	static getFullscreenConfig () {
+		return isFullscreenEnabled;
+	}
+
 	static getSoundConfig () {
 		return [isBellSoundEnabled, isSuccessSoundEnabled, isFailSoundEnabled];
 	}
@@ -749,6 +766,8 @@ export let PomodoroTimer = class PomodoroTimer {
 		endBreak = defaultEndBreak;
 		pomRunning = defaultPomRunning;
 		breakRunning = defaultBreakRunning;
+		// Only used for landing page pomodoro
+		isFullscreenEnabled = true;
 		if (Route.isBox()) {
 			let leitnerTask = LeitnerTasks.findOne({user_id: Meteor.userId(), cardset_id: FlowRouter.getParam('_id')});
 			if (leitnerTask !== undefined && leitnerTask.pomodoroTimer !== undefined) {
@@ -821,8 +840,11 @@ export let PomodoroTimer = class PomodoroTimer {
 			this.restoreWorkloadTime(curTime);
 		}
 		/* Method for WelcomePage */
-		if (!Route.isBox() && !Route.isMemo()) {
+		if (Route.isHome()) {
 			this.showPomodoroFullsize();
+			if (isFullscreenEnabled) {
+				Fullscreen.enable();
+			}
 		}
 	}
 
@@ -881,7 +903,6 @@ export let PomodoroTimer = class PomodoroTimer {
 				$('#wordcloud-container').css('display', 'block');
 				$('.pomodoroClock').removeAttr("style");
 			}
-			Session.set('fullscreen', false);
 		} else {
 			$('#wordcloud-container').css('display', 'block');
 		}

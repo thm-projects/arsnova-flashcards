@@ -71,3 +71,9 @@ Template.registerHelper("isUseCasesModalOpen", function () {
 Template.registerHelper("getUseCasesIcon", function (type) {
 	return Icons.useCases(type);
 });
+
+
+Template.registerHelper("displayMainNavigation", function () {
+	return Session.get('displayMainNavigation');
+});
+

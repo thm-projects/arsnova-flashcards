@@ -1,7 +1,7 @@
 import {MeteorMathJax} from 'meteor/mrt:mathjax';
 import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../config/dompurify.js";
-import "/client/thirdParty/markdeep.min.js";
+import "/client/thirdParty/markdeep/markdeep.min.js";
 import * as config from "../config/markdeep.js";
 import {CardType} from "./cardTypes";
 import {getAuthorName, getOriginalAuthorName} from "./userData";

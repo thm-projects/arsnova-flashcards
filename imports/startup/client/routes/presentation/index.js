@@ -5,6 +5,7 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {ServerStyle} from "../../../../util/styles";
 import {Session} from "meteor/session";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 
 FlowRouter.route('/presentationlist/:_id', {
@@ -37,5 +38,10 @@ FlowRouter.route('/presentationlist/:_id', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'presentation', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.setMode();
+		}
+	]
 });

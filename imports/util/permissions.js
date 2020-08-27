@@ -3,6 +3,49 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../api/subscriptions/cardsets";
 import {Paid} from "../api/subscriptions/paid";
 import {ServerStyle} from "./styles.js";
+import {MainNavigation} from "./mainNavigation";
+
+let roleFree = {
+	string: 'standard',
+	exportString: 'free',
+	number: 0
+};
+
+let roleEdu = {
+	string: 'university',
+	exportString: 'edu',
+	number: 1
+};
+
+let rolePro = {
+	string: 'pro',
+	number: 2
+};
+
+let roleLecturer = {
+	string: 'lecturer',
+	number: 3
+};
+
+let roleGuest = {
+	string: 'guest',
+	number: 4
+};
+
+let roleEditor = {
+	string: 'editor',
+	number: 5
+};
+
+let roleAdmin = {
+	string: 'admin',
+	number: 6
+};
+
+let roleLandingPage = {
+	string: 'landingPage',
+	number: 7
+};
 
 export let UserPermissions = class UserPermissions {
 	static canCreateContent () {
@@ -27,6 +70,10 @@ export let UserPermissions = class UserPermissions {
 		if (Meteor.userId() && Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']) && this.isNotBlockedOrFirstLogin()) {
 			return true;
 		}
+	}
+
+	static isCardsLogin () {
+		return Meteor.user().services.password !== undefined;
 	}
 
 	static isNotBlockedOrFirstLogin () {
@@ -77,5 +124,89 @@ export let UserPermissions = class UserPermissions {
 			hasRole = true;
 		}
 		return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) || hasRole;
+	}
+
+	static getHighestRole (toNumber = true, userId = undefined) {
+		let highestRole = roleGuest.string;
+		if (!Meteor.isServer && !MainNavigation.isGuestLoginActive() && !Meteor.user()) {
+			highestRole = roleLandingPage.string;
+		} else if (Meteor.isServer || Meteor.user()) {
+			let roles;
+			if (Meteor.isClient) {
+				roles = Meteor.user().roles;
+			} else {
+				roles = Meteor.users.findOne({_id: userId}).roles;
+			}
+			for (let i = 0; i < roles.length; i++) {
+				switch (roles[i]) {
+					case roleFree.string:
+						if (highestRole === roleGuest.string) {
+							highestRole = roles[i];
+						}
+						break;
+					case roleEdu.string:
+						if (highestRole === roleGuest.string || highestRole === roleFree.string) {
+							highestRole = roles[i];
+						}
+						break;
+					case rolePro.string:
+						if (highestRole === roleGuest.string || highestRole === roleFree.string || highestRole === roleEdu.string) {
+							highestRole = roles[i];
+						}
+						break;
+					case roleLecturer.string:
+						if (highestRole === roleGuest.string || highestRole === roleFree.string || highestRole === roleEdu.string || highestRole === rolePro.string) {
+							highestRole = roles[i];
+						}
+						break;
+					case roleEditor.string:
+						if (highestRole !== roleAdmin.string) {
+							highestRole = roles[i];
+						}
+						break;
+					case roleAdmin.string:
+						highestRole = roles[i];
+						break;
+				}
+			}
+		}
+		if (toNumber) {
+			switch (highestRole) {
+				case roleFree.string:
+					highestRole = roleFree.number;
+					break;
+				case roleEdu.string:
+					highestRole = roleEdu.number;
+					break;
+				case rolePro.string:
+					highestRole = rolePro.number;
+					break;
+				case roleLecturer.string:
+					highestRole = roleLecturer.number;
+					break;
+				case roleGuest.string:
+					highestRole = roleGuest.number;
+					break;
+				case roleEditor.string:
+					highestRole = roleEditor.number;
+					break;
+				case roleAdmin.string:
+					highestRole = roleAdmin.number;
+					break;
+				case roleLandingPage.string:
+					highestRole = roleLandingPage.number;
+					break;
+			}
+		} else {
+			switch (highestRole) {
+				case roleFree.string:
+					highestRole = roleFree.exportString;
+					break;
+				case roleEdu.string:
+					highestRole = roleEdu.exportString;
+					break;
+			}
+		}
+		return highestRole;
 	}
 };

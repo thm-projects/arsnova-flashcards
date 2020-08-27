@@ -7,6 +7,7 @@ import "./item/logout.js";
 import "./item/membership.js";
 import "./item/overview.js";
 import "./item/requests.js";
+import "./item/fullscreen.js";
 import "./item/settings.js";
 import "./profile.html";
 

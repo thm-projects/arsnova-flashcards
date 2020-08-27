@@ -15,8 +15,6 @@ import {PomodoroTimer} from "../../util/pomodoroTimer";
 import {Route} from "../../util/route";
 import {AspectRatio} from "../../util/aspectRatio";
 import {TranscriptBonus} from "../../api/subscriptions/transcriptBonus";
-import {CardVisuals} from "../../util/cardVisuals";
-import {ServerStyle} from "../../util/styles";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 Session.set('animationPlaying', false);
@@ -40,12 +38,6 @@ Template.presentation.onCreated(function () {
 	}
 });
 
-Template.presentation.onRendered(function () {
-	if (!CardVisuals.isFullscreen() && !Route.isDemo() && !Route.isMakingOf()) {
-		CardVisuals.toggleFullscreen();
-	}
-});
-
 Template.presentation.helpers({
 	gotTranscriptsLeftToReview: function () {
 		return TranscriptBonus.find({cardset_id: FlowRouter.getParam('_id')}).count();
@@ -53,7 +45,6 @@ Template.presentation.helpers({
 });
 
 Template.presentation.onDestroyed(function () {
-	CardVisuals.toggleFullscreen(true);
 	Session.set('transcriptBonus', undefined);
 });
 
@@ -75,9 +66,6 @@ Template.presentationView.onCreated(function () {
 
 Template.presentationView.onRendered(function () {
 	CardNavigation.toggleVisibility(true);
-	if (!CardVisuals.isFullscreen() && (Route.isDemo() || Route.isMakingOf()) && ServerStyle.gotDemoAutoFullscreen()) {
-		CardVisuals.toggleFullscreen();
-	}
 });
 
 Template.presentationView.onDestroyed(function () {

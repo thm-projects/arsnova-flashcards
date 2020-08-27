@@ -5,6 +5,7 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {ServerStyle} from "../../../../util/styles";
 import {Session} from "meteor/session";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/cardset/:_id/stats', {
 	name: RouteNames.cardsetstats,
@@ -30,5 +31,10 @@ FlowRouter.route('/cardset/:_id/stats', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'cardsetLearnActivityStatistic', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });

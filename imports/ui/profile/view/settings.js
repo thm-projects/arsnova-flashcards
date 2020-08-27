@@ -10,6 +10,7 @@ import "../view/public.js";
 import "./settings.html";
 import {ServerSettings} from "../../../util/settings";
 import {ServerStyle} from "../../../util/styles";
+import {UserPermissions} from "../../../util/permissions";
 
 /*
  * ############################################################################
@@ -187,17 +188,21 @@ Template.profileSettings.events({
 	},
 	"click #profileSave": function () {
 		// Email validation
-		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-		var email = $('#inputEmail').val();
-		var validEmail = re.test(email);
+		let email = "";
+		let validEmail = true;
+		if (!UserPermissions.isCardsLogin()) {
+			let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+			email = $('#inputEmail').val();
+			validEmail = re.test(email);
 
-		if (validEmail === false) {
-			$('#inputEmail').parent().parent().addClass('has-error');
-			$('#errorEmail').html(TAPi18n.__('panel-body.emailInvalid'));
-		} else {
-			$('#inputEmail').parent().parent().removeClass('has-error');
-			$('#inputEmail').parent().parent().addClass('has-success');
-			$('#errorEmail').html('');
+			if (validEmail === false) {
+				$('#inputEmail').parent().parent().addClass('has-error');
+				$('#errorEmail').html(TAPi18n.__('panel-body.emailInvalid'));
+			} else {
+				$('#inputEmail').parent().parent().removeClass('has-error');
+				$('#inputEmail').parent().parent().addClass('has-success');
+				$('#errorEmail').html('');
+			}
 		}
 
 		// Birth Name validation
@@ -245,11 +250,14 @@ Template.profileSettings.events({
 			$('#inputEmailValidationForm').addClass("hidden");
 			Session.set("profileSettingsSave", true);
 			Session.set("profileSettingsCancel", true);
-			Meteor.call("updateUsersEmail", email, user_id);
+			if (!UserPermissions.isCardsLogin()) {
+				Meteor.call("updateUsersEmail", email, user_id);
+			}
 			Meteor.call("updateUsersBirthName", birthname, user_id);
 			Meteor.call("updateUsersGivenName", givenname, user_id);
 			Meteor.call("updateUsersProfileState", true, user_id);
 			Meteor.call("updateUsersNotification", mailNotification, webNotification, user_id);
+
 			BertAlertVisuals.displayBertAlert(TAPi18n.__('profile.saved'), 'success', 'growl-top-left');
 		} else {
 			BertAlertVisuals.displayBertAlert(TAPi18n.__('profile.error'), 'warning', 'growl-top-left');
@@ -262,7 +270,14 @@ Template.profileSettings.events({
 	},
 	"click #profileCancel": function () {
 		var user = Meteor.users.findOne(Meteor.userId());
-		$('#inputEmail').val(user.email);
+		if (!UserPermissions.isCardsLogin()) {
+			$('#inputEmail').val(user.email);
+			$('#inputEmail').parent().parent().removeClass('has-error');
+			$('#errorEmail').html('');
+			$('#inputEmailValidation').val('');
+			$('#inputEmailValidationForm').addClass("hidden");
+			$('#inputEmail').parent().parent().removeClass('has-success');
+		}
 		$('#inputName').val(user.profile.name);
 		$('#inputBirthName').val(user.profile.birthname);
 		$('#inputGivenName').val(user.profile.givenname);
@@ -271,17 +286,12 @@ Template.profileSettings.events({
 		$('#inputName').parent().parent().removeClass('has-error');
 		$('#inputBirthName').parent().parent().removeClass('has-error');
 		$('#inputGivenName').parent().parent().removeClass('has-error');
-		$('#inputEmail').parent().parent().removeClass('has-error');
 		$('#inputName').parent().parent().removeClass('has-success');
 		$('#inputBirthName').parent().parent().removeClass('has-success');
 		$('#inputGivenName').parent().parent().removeClass('has-success');
-		$('#inputEmail').parent().parent().removeClass('has-success');
 		$('#errorName').html('');
 		$('#errorBirthName').html('');
 		$('#errorGivenName').html('');
-		$('#errorEmail').html('');
-		$('#inputEmailValidation').val('');
-		$('#inputEmailValidationForm').addClass("hidden");
 		Session.set("profileSettingsSave", true);
 		Session.set("profileSettingsCancel", true);
 		BertAlertVisuals.displayBertAlert(TAPi18n.__('profile.canceled'), 'danger', 'growl-top-left');

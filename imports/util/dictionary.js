@@ -1,6 +1,7 @@
 import {Session} from "meteor/session";
 import {Route} from "./route";
 import {CardVisuals} from "./cardVisuals";
+import {Fullscreen} from "./fullscreen";
 
 /*
 Modes:
@@ -32,7 +33,7 @@ export let Dictionary = class Dictionary {
 	static setBlur () {
 		$('.dictionaryFrame').load(function () {
 			$('.dictionaryFrame').blur();
-			if (Route.isEditMode() && !CardVisuals.isFullscreen()) {
+			if (Route.isEditMode() && !Fullscreen.isActive()) {
 				$('#contentEditor').focus();
 			}
 		});
