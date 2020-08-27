@@ -1,12 +1,12 @@
 import {Meteor} from "meteor/meteor";
-import * as serverConf from "../config/server.js";
+import * as serverConf from "../config/serverStyle/exportStyle.js";
 import * as backgroundsConf from "../config/backgrounds.js";
 import {UserPermissions} from "./permissions";
 import {MainNavigation} from "./mainNavigation";
 import {Route} from "./route";
 import * as RouteNames from "../util/routeNames.js";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
-import {FREE, EDU, PRO, LECTURER, GUEST} from "../config/server";
+import {EDU, FREE, GUEST, LECTURER, PRO} from "../config/serverStyle/style/global/const";
 
 export let ServerStyle = class ServerStyle {
 

@@ -1,11 +1,11 @@
 import {ServerStyle} from "./styles";
-import {AUTO_FULLSCREEN, MANUAL_FULLSCREEN, CHOOSE_FULLSCREEN} from "../config/server";
 import {Session} from "meteor/session";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import {CardVisuals} from "./cardVisuals";
 import {SweetAlertMessages} from "./sweetAlert";
 import {Route} from "./route";
 import * as RouteNames from "./routeNames.js";
+import {AUTO_FULLSCREEN, CHOOSE_FULLSCREEN, MANUAL_FULLSCREEN} from "../config/serverStyle/style/global/const";
 
 export let editorFullScreenActive = false;
 
