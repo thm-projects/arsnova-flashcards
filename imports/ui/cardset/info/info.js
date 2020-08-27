@@ -35,6 +35,10 @@ Template.cardsetInfo.onRendered(function () {
 	new ResizeSensor($('#cardsetInfoDetail'), function () {
 		CardsetVisuals.resizeCardsetInfo();
 	});
+	new ResizeSensor($('#navbar-cards-top'), function () {
+		CardsetVisuals.resizeCardsetInfo();
+	});
+
 	CardsetVisuals.resizeCardsetInfo();
 });
 

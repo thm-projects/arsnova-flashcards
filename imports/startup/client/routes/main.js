@@ -35,6 +35,7 @@ import "./presentation/index.js";
 import "./presentation/transcript.js";
 import "./presentation/transcriptBonus.js";
 import "./profile/billing.js";
+import "./profile/fullscreen.js";
 import "./profile/membership.js";
 import "./profile/notifications.js";
 import "./profile/requests.js";
@@ -51,7 +52,7 @@ import {Meteor} from "meteor/meteor";
 import {ServerStyle} from "../../../util/styles";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/subscriptions/cardsets";
-import {CardVisuals} from "../../../util/cardVisuals";
+import {Fullscreen} from "../../../util/fullscreen";
 
 FlowRouter.route('/cardset', function () {
 	FlowRouter.go('learn');
@@ -81,7 +82,11 @@ FlowRouter.route('/', {
 		return Cardsets.findOne({_id: Session.get('wordcloudItem')});
 	},
 	action: function (params, qs, data) {
-		CardVisuals.toggleFullscreen(true);
 		this.render(config.mainTemplate, 'welcome', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });

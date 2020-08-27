@@ -1,13 +1,17 @@
 import * as config from "../config/aspectRatio.js";
 import {Route} from "./route";
-import {CardVisuals} from "./cardVisuals";
 import {MarkdeepEditor} from "./markdeepEditor";
 import {NavigatorCheck} from "./navigatorCheck";
+import {Fullscreen} from "./fullscreen";
 
 export let AspectRatio = class AspectRatio {
 
 	static isEnabled () {
-		if ((CardVisuals.isFullscreen() && !MarkdeepEditor.getMobilePreview()) || (Route.isDemo() || Route.isMakingOf())) {
+		let canDisplayItem = true;
+		if (Route.isEditMode() && !Fullscreen.isActive()) {
+			canDisplayItem = false;
+		}
+		if ((canDisplayItem && !MarkdeepEditor.getMobilePreview()) || (Route.isDemo() || Route.isMakingOf())) {
 			if ((Route.isPresentation() || Route.isPresentationTranscript()) && config.aspectRatioEnabled.includes(0)) {
 				return true;
 			}
@@ -20,7 +24,7 @@ export let AspectRatio = class AspectRatio {
 			if (Route.isMemo() && config.aspectRatioEnabled.includes(3)) {
 				return true;
 			}
-			if (Route.isEditCard() && config.aspectRatioEnabled.includes(4)) {
+			if (Route.isEditMode() && config.aspectRatioEnabled.includes(4)) {
 				return true;
 			}
 		}
@@ -39,7 +43,7 @@ export let AspectRatio = class AspectRatio {
 		if (Route.isMemo() && config.scaleCardNavigationWidth.includes(3)) {
 			return true;
 		}
-		if (Route.isEditCard() && config.scaleCardNavigationWidth.includes(4)) {
+		if (Route.isEditMode() && config.scaleCardNavigationWidth.includes(4)) {
 			return true;
 		}
 	}
@@ -57,7 +61,7 @@ export let AspectRatio = class AspectRatio {
 		if (Route.isMemo() && config.scale3DCardNavigationWidth.includes(3)) {
 			return true;
 		}
-		if (Route.isEditCard() && config.scale3DCardNavigationWidth.includes(4)) {
+		if (Route.isEditMode() && config.scale3DCardNavigationWidth.includes(4)) {
 			return true;
 		}
 	}
@@ -91,7 +95,7 @@ export let AspectRatio = class AspectRatio {
 				return config.defaultAspectRatio[3];
 			}
 		}
-		if (Route.isEditCard()) {
+		if (Route.isEditMode()) {
 			if (NavigatorCheck.isIOS()) {
 				return config.defaultAspectRatioTablet[4];
 			} else {

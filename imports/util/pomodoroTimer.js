@@ -8,6 +8,7 @@ import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {ServerStyle} from "./styles";
 import {NavigatorCheck} from "./navigatorCheck";
+import {Fullscreen} from "./fullscreen";
 
 if (Meteor.isClient) {
 	Session.set('pomodoroBreakActive', false);
@@ -57,6 +58,8 @@ let pomodoroInterval;
 
 let workloadTimerInterval;
 
+let isFullscreenEnabled;
+
 export let PomodoroTimer = class PomodoroTimer {
 
 	static setCloudShown (value) {
@@ -68,12 +71,19 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	static clockHandler (option) {
-		if (option === 0) {
-			isBellSoundEnabled = !isBellSoundEnabled;
-		} else if (option === 1) {
-			isSuccessSoundEnabled = !isSuccessSoundEnabled;
-		} else if (option === 2) {
-			isFailSoundEnabled = !isFailSoundEnabled;
+		switch (option) {
+			case 0:
+				isBellSoundEnabled = !isBellSoundEnabled;
+				break;
+			case 1:
+				isSuccessSoundEnabled = !isSuccessSoundEnabled;
+				break;
+			case 2:
+				isFailSoundEnabled = !isFailSoundEnabled;
+				break;
+			case 3:
+				isFullscreenEnabled = !isFullscreenEnabled;
+				break;
 		}
 	}
 
@@ -210,8 +220,8 @@ export let PomodoroTimer = class PomodoroTimer {
 			confirmButtonText: dialogue.confirm,
 			allowOutsideClick: false
 		}).then(() => {
-			if (document.fullscreenElement === null) {
-				document.documentElement.requestFullscreen();
+			if (Fullscreen.getChooseModeSession() === 1) {
+				Fullscreen.enable();
 			}
 			/*and this is what runs when the user clicks the confirm button on the popup. It starts the break, and gets the current time and sets the end from there.*/
 			if (Route.isBox()) {
@@ -295,8 +305,8 @@ export let PomodoroTimer = class PomodoroTimer {
 			confirmButtonText: dialogue.confirm,
 			allowOutsideClick: false
 		}).then(() => {
-			if (document.fullscreenElement === null) {
-				document.documentElement.requestFullscreen();
+			if (Fullscreen.getChooseModeSession() === 1) {
+				Fullscreen.enable();
 			}
 			/*starts the work cycle up again, automatically.*/
 			if (Route.isBox()) {
@@ -439,9 +449,6 @@ export let PomodoroTimer = class PomodoroTimer {
 						if (Route.isDemo()) {
 							this.setPresentationPomodoro(true);
 						}
-						if ((Route.isBox() || Route.isMemo()) && document.fullscreenElement === null) {
-							document.documentElement.requestFullscreen();
-						}
 					}
 					/*If you give up before you complete your goal you get a failure sound, taken from a show me and my lady have been watching lately, and a failure box. Shame!*/
 					if (!result.value) {
@@ -474,6 +481,9 @@ export let PomodoroTimer = class PomodoroTimer {
 							}).then(() => {
 								this.setPresentationPomodoro(true);
 								PomodoroTimer.showPomodoroNormal();
+								if (Route.isHome()) {
+									Fullscreen.disable();
+								}
 								if ((Route.isBox() || Route.isMemo())) {
 									Session.set('pomodoroBreakActive', false);
 									if (Bonus.isInBonus(FlowRouter.getParam('_id'), Meteor.userId())) {
@@ -553,6 +563,9 @@ export let PomodoroTimer = class PomodoroTimer {
 								confirmButtonText: dialogue.confirm
 							}).then(() => {
 								PomodoroTimer.showPomodoroNormal();
+								if (Route.isHome()) {
+									Fullscreen.disable();
+								}
 								if ((Route.isBox() || Route.isMemo())) {
 									Session.set('pomodoroBreakActive', false);
 									if (Bonus.isInBonus(FlowRouter.getParam('_id'), Meteor.userId())) {
@@ -683,6 +696,10 @@ export let PomodoroTimer = class PomodoroTimer {
 		return parseInt($('#breakSlider').val(), 10);
 	}
 
+	static getFullscreenConfig () {
+		return isFullscreenEnabled;
+	}
+
 	static getSoundConfig () {
 		return [isBellSoundEnabled, isSuccessSoundEnabled, isFailSoundEnabled];
 	}
@@ -749,6 +766,8 @@ export let PomodoroTimer = class PomodoroTimer {
 		endBreak = defaultEndBreak;
 		pomRunning = defaultPomRunning;
 		breakRunning = defaultBreakRunning;
+		// Only used for landing page pomodoro
+		isFullscreenEnabled = true;
 		if (Route.isBox()) {
 			let leitnerTask = LeitnerTasks.findOne({user_id: Meteor.userId(), cardset_id: FlowRouter.getParam('_id')});
 			if (leitnerTask !== undefined && leitnerTask.pomodoroTimer !== undefined) {
@@ -821,8 +840,11 @@ export let PomodoroTimer = class PomodoroTimer {
 			this.restoreWorkloadTime(curTime);
 		}
 		/* Method for WelcomePage */
-		if (!Route.isBox() && !Route.isMemo()) {
+		if (Route.isHome()) {
 			this.showPomodoroFullsize();
+			if (isFullscreenEnabled) {
+				Fullscreen.enable();
+			}
 		}
 	}
 
@@ -881,7 +903,6 @@ export let PomodoroTimer = class PomodoroTimer {
 				$('#wordcloud-container').css('display', 'block');
 				$('.pomodoroClock').removeAttr("style");
 			}
-			Session.set('fullscreen', false);
 		} else {
 			$('#wordcloud-container').css('display', 'block');
 		}

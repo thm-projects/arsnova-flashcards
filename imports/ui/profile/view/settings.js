@@ -257,6 +257,7 @@ Template.profileSettings.events({
 			Meteor.call("updateUsersGivenName", givenname, user_id);
 			Meteor.call("updateUsersProfileState", true, user_id);
 			Meteor.call("updateUsersNotification", mailNotification, webNotification, user_id);
+
 			BertAlertVisuals.displayBertAlert(TAPi18n.__('profile.saved'), 'success', 'growl-top-left');
 		} else {
 			BertAlertVisuals.displayBertAlert(TAPi18n.__('profile.error'), 'warning', 'growl-top-left');

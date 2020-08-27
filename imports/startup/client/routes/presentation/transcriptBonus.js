@@ -5,6 +5,7 @@ import {Meteor} from "meteor/meteor";
 import {ServerStyle} from "../../../../util/styles";
 import {Session} from "meteor/session";
 import {Cards} from "../../../../api/subscriptions/cards";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/presentation/transcripts/bonus/:card_id', {
 	name: RouteNames.presentationTranscriptBonus,
@@ -31,7 +32,12 @@ FlowRouter.route('/presentation/transcripts/bonus/:card_id', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'presentation', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.setMode();
+		}
+	]
 });
 
 
@@ -60,5 +66,10 @@ FlowRouter.route('/presentation/transcripts/bonus/:_id/:card_id', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'presentation', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.setMode();
+		}
+	]
 });

@@ -5,6 +5,7 @@ import {Meteor} from "meteor/meteor";
 import {ServerStyle} from "../../../../util/styles";
 import {UserPermissions} from "../../../../util/permissions";
 import {MainNavigation} from "../../../../util/mainNavigation";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/admin/apiAccess', {
 	name: RouteNames.admin_apiAccess,
@@ -29,5 +30,10 @@ FlowRouter.route('/admin/apiAccess', {
 			MainNavigation.setLoginTarget(false);
 			FlowRouter.go('home');
 		}
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });

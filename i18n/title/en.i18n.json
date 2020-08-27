@@ -65,7 +65,8 @@
       "overview": "__app__: Profil Lernstand",
       "membership": "__app__: Profil Mitgliedschaft ",
       "billing": "__app__: Profil Abrechung",
-      "settings": "__app__: Profil & Konto"
+      "settings": "__app__: Profil & Konto",
+      "fullscreen": "__app__: Vollbildmodus"
     },
     "welcome": {
       "demo": {

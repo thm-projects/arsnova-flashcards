@@ -4,6 +4,7 @@ import * as config from "../../../../config/routes";
 import {Meteor} from "meteor/meteor";
 import {ServerStyle} from "../../../../util/styles";
 import {Session} from "meteor/session";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/agb', {
 	name: RouteNames.agb,
@@ -22,5 +23,10 @@ FlowRouter.route('/agb', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'contact', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });

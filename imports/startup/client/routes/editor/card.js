@@ -5,6 +5,7 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {ServerStyle} from "../../../../util/styles";
 import {Session} from "meteor/session";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/cardset/:_id/newcard', {
 	name: RouteNames.newCard,
@@ -29,7 +30,12 @@ FlowRouter.route('/cardset/:_id/newcard', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'newCard', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });
 
 FlowRouter.route('/cardset/:_id/editcard/:card_id', {
@@ -55,5 +61,10 @@ FlowRouter.route('/cardset/:_id/editcard/:card_id', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'editCard', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });

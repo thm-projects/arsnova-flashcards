@@ -5,8 +5,6 @@ import {AspectRatio} from "../../../../util/aspectRatio";
 import * as config from "../../../../config/firstTimeVisit.js";
 import "../../../presentation/presentation.js";
 import "./demo.html";
-import {PomodoroTimer} from "../../../../util/pomodoroTimer";
-import {ServerStyle} from "../../../../util/styles";
 
 /*
  * ############################################################################
@@ -16,14 +14,6 @@ import {ServerStyle} from "../../../../util/styles";
 
 Template.demo.onCreated(function () {
 	Session.set('aspectRatioMode', AspectRatio.getDefault());
-});
-
-Template.demo.onRendered(function () {
-	if (ServerStyle.gotDemoAutoFullscreen()) {
-		setTimeout(function () {
-			PomodoroTimer.start();
-		}, 250);
-	}
 });
 
 Template.demo.helpers({

@@ -7,6 +7,12 @@ import {Route} from "../../util/route";
 import {CardVisuals} from "../../util/cardVisuals";
 import {Session} from "meteor/session";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import {ReactiveVar} from "meteor/reactive-var";
+
+let soundConfig1 = new ReactiveVar();
+let soundConfig2 = new ReactiveVar();
+let soundConfig3 = new ReactiveVar();
+let fullscreenConfig = new ReactiveVar();
 
 /*
  * ############################################################################
@@ -58,9 +64,10 @@ Template.pomodoroTimerModal.onRendered(function () {
 	$('#pomodoroTimerModal').on('show.bs.modal', function () {
 		PomodoroTimer.initializeVariables();
 		PomodoroTimer.initializeModalContent();
-		if (Route.requiresUserInputForFullscreen() && !CardVisuals.isFullscreen()) {
-			CardVisuals.toggleFullscreen();
-		}
+		soundConfig1.set(PomodoroTimer.getSoundConfig()[0]);
+		soundConfig2.set(PomodoroTimer.getSoundConfig()[1]);
+		soundConfig3.set(PomodoroTimer.getSoundConfig()[2]);
+		fullscreenConfig.set(PomodoroTimer.getFullscreenConfig());
 	});
 	$('#pomodoroTimerModal').on('shown.bs.modal', function () {
 		CardVisuals.setSidebarPosition();
@@ -95,23 +102,12 @@ Template.pomodoroTimerModal.events({
 		PomodoroTimer.updateSettingsBtn();
 	},
 	'click #startPom': function () {
-		if (Route.requiresUserInputForFullscreen() && !CardVisuals.isFullscreen()) {
-			CardVisuals.toggleFullscreen();
-		} else if (Route.isHome() && !Meteor.user()) {
-			CardVisuals.toggleFullscreen();
-		}
 		PomodoroTimer.start();
 	},
 	'click .closePomodoro': function () {
-		if (Route.requiresUserInputForFullscreen && !Route.isHome() && CardVisuals.isFullscreen()) {
-			CardVisuals.toggleFullscreen();
-		}
 		PomodoroTimer.setPresentationPomodoro(true);
 	},
 	'click #cancelPomodoroBtn': function () {
-		if (Route.requiresUserInputForFullscreen() && CardVisuals.isFullscreen()) {
-			CardVisuals.toggleFullscreen();
-		}
 		$('#pomodoroTimerModal').modal('hide');
 		Session.set('presentationPomodoroActive', false);
 	}
@@ -128,6 +124,7 @@ Template.pomodoroTimerModalContent.helpers({
 		return !Route.isCardset() && !Route.isPresentation() && !Route.isDemo();
 	}
 });
+
 Template.pomodoroTimerModalContent.events({
 	'input #pomNumSlider': function () {
 		PomodoroTimer.updatePomNumSlider();
@@ -137,14 +134,45 @@ Template.pomodoroTimerModalContent.events({
 	},
 	'input #breakSlider': function () {
 		PomodoroTimer.updateBreakSlider();
-	},
-	'change #sound1': function () {
+	}
+});
+
+/*
+ * ############################################################################
+ * pomodoroTimerModalContentCheckbox
+ * ############################################################################
+ */
+
+Template.pomodoroTimerModalContentCheckbox.events({
+	'click #sound1': function () {
 		PomodoroTimer.clockHandler(0);
+		soundConfig1.set(PomodoroTimer.getSoundConfig()[0]);
 	},
-	'change #sound2': function () {
+	'click #sound2': function () {
 		PomodoroTimer.clockHandler(1);
+		soundConfig2.set(PomodoroTimer.getSoundConfig()[1]);
 	},
-	'change #sound3': function () {
+	'click #sound3': function () {
 		PomodoroTimer.clockHandler(2);
+		soundConfig3.set(PomodoroTimer.getSoundConfig()[2]);
+	},
+	'click #fullscreenPomodoro': function () {
+		PomodoroTimer.clockHandler(3);
+		fullscreenConfig.set(PomodoroTimer.getFullscreenConfig());
+	}
+});
+
+Template.pomodoroTimerModalContentCheckbox.helpers({
+	gotChecked: function (item) {
+		switch (item) {
+			case "sound1":
+				return soundConfig1.get();
+			case "sound2":
+				return soundConfig2.get();
+			case "sound3":
+				return soundConfig3.get();
+			case "fullscreenPomodoro":
+				return fullscreenConfig.get();
+		}
 	}
 });

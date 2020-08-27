@@ -6,6 +6,7 @@ import {ServerStyle} from "../../../../util/styles";
 import {MarkdeepEditor} from "../../../../util/markdeepEditor";
 import {Session} from "meteor/session";
 import * as config from "../../../../config/routes.js";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/cardset/:_id', {
 	name: RouteNames.cardsetdetailsid,
@@ -41,7 +42,12 @@ FlowRouter.route('/cardset/:_id', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'cardsetAccess', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });
 
 FlowRouter.route('/cardset/:_id/card/:card_id', {
@@ -79,5 +85,10 @@ FlowRouter.route('/cardset/:_id/card/:card_id', {
 	},
 	action: function (params, qs, data) {
 		this.render(config.mainTemplate, 'cardsetAccess', data);
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });

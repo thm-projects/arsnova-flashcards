@@ -1,0 +1,25 @@
+{
+  "fullscreen": {
+    "navigation": "Vollbildmodus",
+    "settings": {
+      "title": "Vollbildmodus Einstellungen",
+      "table": {
+        "presentation": "Kartenschau",
+        "demo": "Demo",
+        "leitner": "Leitner",
+        "wozniak": "Woźniak",
+        "mode1": "Automatisch",
+        "mode2": "Manuell",
+        "mode3": "Für Benutzer-Sitzung auswählen"
+      },
+      "buttons": {
+        "save": "Speichern",
+        "cancel": "Zurücksetzen"
+      },
+      "notifications": {
+        "saved":"Deine Vollbildmodus Änderungen wurden gespeichert!",
+        "canceled": "Deine Vollbildmodus Änderungen wurden verworfen!"
+      }
+    }
+  }
+}

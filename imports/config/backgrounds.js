@@ -1,7 +1,7 @@
 // Background-Image settings for the default theme:
 // - Set the Background-Colors inside the Theme Switcher files.
 // - Set the Background-Image to "none" to enable the Background-Color.
-// - Change the setting "backgrounds" in "/import/config/server.js" to select the background setting that the server should use.
+// - Change the setting "backgrounds" in "/import/config/serverStyle/style/*.js" to select the background setting that the server should use.
 // - Add additional attributes to the object if needed. For example: "background-size": "contain"
 
 

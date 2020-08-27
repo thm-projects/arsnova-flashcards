@@ -8,6 +8,7 @@ import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {Filter} from "../../../../util/filter";
 import {UserPermissions} from "../../../../util/permissions";
 import {MainNavigation} from "../../../../util/mainNavigation";
+import {Fullscreen} from "../../../../util/fullscreen";
 
 FlowRouter.route('/all/cardsets', {
 	name: RouteNames.alldecks,
@@ -36,7 +37,12 @@ FlowRouter.route('/all/cardsets', {
 			MainNavigation.setLoginTarget(false);
 			FlowRouter.go('home');
 		}
-	}
+	},
+	triggersEnter: [
+		(context, redirect) => {
+			Fullscreen.disable();
+		}
+	]
 });
 
 FlowRouter.route('/all/repetitorien', {
@@ -69,6 +75,7 @@ FlowRouter.route('/all/repetitorien', {
 	},
 	triggersEnter: [
 		(context, redirect) => {
+			Fullscreen.disable();
 			if (ServerStyle.gotSimplifiedNav()) {
 				redirect(RouteNames.alldecks);
 			}

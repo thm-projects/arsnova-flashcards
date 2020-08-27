@@ -18,6 +18,7 @@ import {ExecuteControllers} from 'wtc-controller-element';
 import "./modal/login.js";
 import "./welcome.html";
 import {setLoginTarget} from "../../startup/client/routes/onBeforeAction.js";
+import {Fullscreen} from "../../util/fullscreen";
 
 Meteor.subscribe("pomodoroLandingPage");
 Meteor.subscribe("userData");
@@ -37,6 +38,7 @@ Template.welcome.events({
 				if (err) {
 					throw new Meteor.Error("Facebook login failed");
 				} else {
+					Fullscreen.resetChooseModeSessions();
 					setActiveLanguage();
 					setLoginTarget();
 				}
@@ -50,6 +52,7 @@ Template.welcome.events({
 				if (err) {
 					throw new Meteor.Error("Twitter login failed");
 				} else {
+					Fullscreen.resetChooseModeSessions();
 					setActiveLanguage();
 					setLoginTarget();
 				}
@@ -63,6 +66,7 @@ Template.welcome.events({
 				if (err) {
 					throw new Meteor.Error("Google login failed");
 				} else {
+					Fullscreen.resetChooseModeSessions();
 					setActiveLanguage();
 					setLoginTarget();
 				}
@@ -76,6 +80,7 @@ Template.welcome.events({
 				if (err) {
 					throw new Meteor.Error("CAS login failed");
 				} else {
+					Fullscreen.resetChooseModeSessions();
 					setActiveLanguage();
 					setLoginTarget();
 				}
@@ -88,6 +93,7 @@ Template.welcome.events({
 		if (ServerStyle.isLoginEnabled("backdoor")) {
 			Meteor.insecureUserLogin($("#TestingBackdoorUsername").val(), function (err, result) {
 				if (result) {
+					Fullscreen.resetChooseModeSessions();
 					setActiveLanguage();
 					setLoginTarget();
 				}
@@ -96,6 +102,7 @@ Template.welcome.events({
 	},
 
 	'click #guest': function () {
+		Fullscreen.resetChooseModeSessions();
 		MainNavigation.setGuestLogin("true");
 		setActiveLanguage();
 		setLoginTarget();

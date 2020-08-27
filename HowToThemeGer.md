@@ -27,6 +27,6 @@
 Neue Bilder können in `public/img/background` hinzugefügt werden.
    
 ## Themenfarbe und Hintergrund auf die Server Installation anwenden
-1. Öffnen die Server-Konfigurationsdatei `imports/config/server.js`
+1. Öffnen die Server-Konfigurationsdatei `imports/config/exportStyle.js`
 1. Finde das Theme-Objekt
 1. Fügen in der Liste den neuen Theme Namen und Hintergrund hinzu

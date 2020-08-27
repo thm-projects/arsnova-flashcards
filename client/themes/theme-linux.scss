@@ -871,6 +871,12 @@
           "pomodoro_timer_arc_break_hover": #2ac55f,
           "pomodoro_timer_text": white,
           "pomodoro_timer_text_highlight": $default_orange,
+
+          "pomodoro_timer_checkbox_background": white,
+          "pomodoro_timer_checkbox_border": $default_grey,
+          "pomodoro_timer_checkbox_background_active": white,
+          "pomodoro_timer_checkbox_border_active": $default_grey,
+          "pomodoro_timer_checkbox_icon_active": $default_grey,
     //sweet alert 2 colors
           "sweet_alert_2_title": white,
           "sweet_alert_2_text": white,
@@ -887,8 +893,8 @@
           "sweet_alert_2_icon_error_text": $default_red,
           "sweet_alert_2_icon_info_border": $default_dark_blue,
           "sweet_alert_2_icon_info_text": $default_dark_blue,
-          "sweet_alert_2_icon_question_border": $default_grey,
-          "sweet_alert_2_icon_question_text": $default_grey,
+          "sweet_alert_2_icon_question_border": white,
+          "sweet_alert_2_icon_question_text": white,
     //loading screen
           "loading_screen_icon": $default_orange,
     //wozniak rating buttons
@@ -938,12 +944,21 @@
           "use_cases_special_cardsets_button_text": white,
           "use_cases_special_cardsets_button_background_hover": midnightblue,
           "use_cases_special_cardsets_button_text_hover": white,
-    //checkbox
+    //answer checkbox
           "checkbox_left_background": white,
           "checkbox_left_text": $primary_text,
           "checkbox_left_background_hover": $button_background_hover,
           "checkbox_left_text_hover": $button_text_hover,
           "checkbox_right_background": $btn_inactive,
-          "checkbox_right_text": white
+          "checkbox_right_text": white,
+    //profile
+          "profile_fullscreen_checkbox_background": white,
+          "profile_fullscreen_checkbox_border": $default_grey,
+          "profile_fullscreen_checkbox_background_unsaved": white,
+          "profile_fullscreen_checkbox_border_unsaved": $default_orange,
+          "profile_fullscreen_checkbox_icon_unsaved": $default_orange,
+          "profile_fullscreen_checkbox_background_active": white,
+          "profile_fullscreen_checkbox_border_active": $default_green,
+          "profile_fullscreen_checkbox_icon_active": $default_green,
   );
 }
