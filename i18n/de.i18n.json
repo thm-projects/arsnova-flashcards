@@ -47,8 +47,8 @@
   "landingPage": {
     "login": {
       "cards": "Login für hessische Hochschulen",
-      "cas": "Login mit dem CAS-Konto der THM",
-      "guest": "Ich schau mich nur mal etwas um",
+      "cas": "Login mit CAS-Konto der THM",
+      "guest": "Ich schau mich nur mal um",
       "pro": "Login mit Premium-Account",
       "backdoor": "Login mit Rollenauswahl",
       "facebook": "Login mit Facebook-Account",
