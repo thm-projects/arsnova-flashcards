@@ -19,6 +19,7 @@ let options = {
 	showLabels: true,
 	showPlaceholders: true,
 	showResendVerificationEmailLink: true,
+	// The Captcha has to be disabled by default in order for local development support. It will be enabled on the production and staging servers through the settings.json file.
 	showReCaptcha: false,
 
 	// Client-side Validation
