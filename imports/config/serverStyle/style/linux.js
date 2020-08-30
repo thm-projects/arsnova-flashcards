@@ -124,7 +124,7 @@ module.exports = {
 	},
 	"login": {
 		"cards": {
-			"enabled": false,
+			"enabled": true,
 			"domainWhitelist": DEFAULT_REGISTRATION_DOMAIN_WHITELIST
 		},
 		"cas": true,
