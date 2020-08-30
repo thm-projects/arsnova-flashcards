@@ -19,7 +19,7 @@ let options = {
 	showLabels: true,
 	showPlaceholders: true,
 	showResendVerificationEmailLink: true,
-	showReCaptcha: true,
+	showReCaptcha: false,
 
 	// Client-side Validation
 	continuousValidation: true,
