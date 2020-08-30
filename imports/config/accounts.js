@@ -1,6 +1,6 @@
 import {accountSubmitHook} from "../util/accounts";
 
-// Minimum Field lenghts have to be defined in /imports/util/accounts.js
+// Minimum Field lengths have to be defined in /imports/util/accounts.js
 
 let options = {
 	// Behavior
@@ -19,6 +19,7 @@ let options = {
 	showLabels: true,
 	showPlaceholders: true,
 	showResendVerificationEmailLink: true,
+	// The Captcha has to be disabled by default in order for local development support. It will be enabled on the production and staging servers through the settings.json file.
 	showReCaptcha: false,
 
 	// Client-side Validation
@@ -43,10 +44,10 @@ let options = {
 	// The basic modal title is located in the i18n folder
 	texts: {
 		errors: {
-			verifyEmailFirst: "Bitte verifiziere zuerst deine E-Mail."
+			verifyEmailFirst: "Bitte verifiziere zuerst deine Mail-Adresse."
 		},
 		info: {
-			signUpVerifyEmail: "Erfolgreiche Registrierung! Bitte überprüfe deine E-Mail und folge den Anweisungen."
+			signUpVerifyEmail: "Erfolgreiche Registrierung! Bitte überprüfe deine Mailbox und folge den Anweisungen."
 		},
 		minRequiredLength: "Erforderliche Mindestlänge"
 	}
