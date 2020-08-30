@@ -2,23 +2,23 @@
   "fullscreen": {
     "navigation": "Vollbildmodus",
     "settings": {
-      "title": "Vollbildmodus Einstellungen",
+      "title": "Einstellungen für den Vollbildmodus",
       "table": {
         "presentation": "Kartenschau",
-        "demo": "Demo",
-        "leitner": "Leitner",
-        "wozniak": "Woźniak",
-        "mode1": "Automatisch",
-        "mode2": "Manuell",
-        "mode3": "Für Benutzer-Sitzung auswählen"
+        "demo": "Kartei »Einführung«",
+        "leitner": "Lernen nach Leitner-Plan",
+        "wozniak": "Lernen nach Woźniak-Plan",
+        "mode1": "»Automatisch«",
+        "mode2": "»Manuell«",
+        "mode3": "»Manuell für die Sitzung«"
       },
       "buttons": {
         "save": "Speichern",
         "cancel": "Zurücksetzen"
       },
       "notifications": {
-        "saved":"Deine Vollbildmodus Änderungen wurden gespeichert!",
-        "canceled": "Deine Vollbildmodus Änderungen wurden verworfen!"
+        "saved":"Deine Änderungen des Vollbildmodus wurden gespeichert.",
+        "canceled": "Deine Änderungen wurden verworfen."
       }
     }
   }

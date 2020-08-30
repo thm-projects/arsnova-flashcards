@@ -1,31 +1,31 @@
 {
  "loginModal": {
-   "title": "🍅cards Login",
+   "title": "🍅cards-Login",
    "info": {
-     "domains": "Die Registrierung ist auf hessische Hochschul-Domains beschränkt."
+     "domains": "Die Registrierung ist auf die Mail-Domains der hessischen Hochschulen beschränkt."
    },
    "errors": {
-     "domains": "Die Domain ist nicht für die Registrierung freigegeben",
-     "nameAlreadyExists": "Die Benutzerkennung existiert bereits",
-     "mailAlreadyExists": "Die E-Mail existiert bereits"
+     "domains": "Die Mail-Domain ist für eine Registrierung nicht freigegeben.",
+     "nameAlreadyExists": "Die Benutzerkennung existiert bereits.",
+     "mailAlreadyExists": "Die Mail-Adresse wurde bereits registriert."
    },
    "mails": {
     "verify": {
-      "subject": "E-Mail Verifizierung",
-      "title": "E-Mail Verifizierung",
+      "subject": "Registrierung für \uD83C\uDF45cards",
+      "title": "Verifizierung der Mail-Adresse",
       "intro": "Hallo __name__,",
-      "message": "Mit folgendem Link kannst du deine E-Mail verifizieren: <a href='__url__' target='_blank'>__url__</a>"
+      "message": "mit folgendem Link kannst du deine Mail-Adresse verifizieren: <a href='__url__' target='_blank'>__url__</a>."
     },
      "passwordReset": {
        "subject": "Passwort zurücksetzen",
        "title": "Passwort zurücksetzen",
        "intro": "Hallo __name__,",
-       "message": "Mit folgendem Link kannst du dein Passwort zurücksetzen: <a href='__url__' target='_blank'>__url__</a>"
+       "message": "mit folgendem Link kannst du dein Passwort zurücksetzen: <a href='__url__' target='_blank'>__url__</a>."
      }
    }
  },
   "verifiedEmailModal": {
-    "text": "E-Mail verifiziert. Du bist jetzt angemeldet als __name__",
+    "text": "Deine Mail-Adresse wurde verifiziert. Du bist jetzt angemeldet als __name__",
     "button": "Schließen"
   },
   "resetPasswordModal": {
