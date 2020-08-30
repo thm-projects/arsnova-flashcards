@@ -126,7 +126,7 @@
     },
     "completeProfile": {
       "title": "Profil",
-      "text": "Gib deinen Vor- und Nachnamen und deine E-Mail-Adresse an. Versuche es dann noch einmal. Die Angaben werden für den Erinnerungsdienst von \uD83C\uDF45cards benötigt, siehe unter »Hilfe« → »FAQ 3«.",
+      "text": "Gib deinen Vor- und Nachnamen und deine Mail-Adresse an. Versuche es dann noch einmal. Die Angaben werden für den Erinnerungsdienst von \uD83C\uDF45cards benötigt, siehe unter »Hilfe« → »FAQ 3«.",
       "footer": "<a href='/datenschutz' target='_blank'>Datenschutzerklärung</a>",
       "button": {
         "confirm": "Zum Profil",
@@ -134,7 +134,7 @@
       }
     },
     "leitnerSimulatorError": {
-      "title": "Das Optimale Tagespensum konnte nicht berechnet werden",
+      "title": "Das optimale Tagespensum konnte nicht berechnet werden",
       "text": "Es ist nicht möglich, alle Karten am Ende der Bonus-Lernphase in das letzte Fach (gelernt) zu legen. Bitte verringere die Wiederholungs-Intervalle und versuche es nochmal.",
       "footer": "<a href='/help' target='_blank'>Hilfe</a>",
       "button": {
