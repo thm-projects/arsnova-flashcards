@@ -33,7 +33,7 @@
     "button": "Passwort setzen"
   },
   "justResetPasswordModal": {
-    "text": "Das Passwort wurde zurückgesetzt. Du bist nun angemeldet als __name__",
+    "text": "Das Passwort wurde zurückgesetzt. Du bist jetzt angemeldet als __name__",
     "button": "Schließen"
   }
 }
