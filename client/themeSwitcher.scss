@@ -1333,6 +1333,13 @@ $themes: (
         background-color: $login_cards_icon !important;
       }
     }
+    #cards:hover, #cards:focus {
+      background-color: $login_cards_background_hover !important;
+      color: $login_cards_icon_hover !important;
+      .login-button-icon {
+        background-color: $login_cards_icon_hover !important;
+      }
+    }
 
     #cas {
       background-color: $login_cas_background !important;
