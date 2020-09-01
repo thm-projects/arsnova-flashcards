@@ -17,7 +17,11 @@ export let WebPushNotifications = class WebPushNotifications {
 						.then(function (registration) {
 							return registration.pushManager.getSubscription()
 								.then(function () {
-									return registration.pushManager.subscribe({userVisibleOnly: true});
+									return registration.pushManager.subscribe(
+										{
+											userVisibleOnly: true,
+											applicationServerKey: Meteor.settings.public.FCM_VAPID_PUBLIC_KEY
+										});
 								});
 						})
 						.then(function (subscription) {

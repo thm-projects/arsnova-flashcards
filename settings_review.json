@@ -3,6 +3,7 @@
     "rooturl": "http://localhost:<branch-port>",
     "dynamicSettings": "review",
     "backdoorEnabled": true,
+    "FCM_VAPID_PUBLIC_KEY": "YOUR FIREBASE VAPID PUBLIC KEY HERE",
     "reCaptcha": {
       "enabled": true,
       "siteKey": "6Ld7TbsZAAAAABgENtqCuoPjjkmMZtJGcTGwlDFG"
@@ -39,7 +40,9 @@
     "secretKey": "6Ld7TbsZAAAAAFYRvV7UeVQMx_Iba69rkbeCBrfx"
   },
   "private": {
-    "BT_PRIVATE_KEY": "b508f71a0e0b01940b0fbe75940debb9"
+    "BT_PRIVATE_KEY": "b508f71a0e0b01940b0fbe75940debb9",
+    "FCM_VAPID_PRIVATE_KEY": "YOUR FIREBASE VAPID PRIVATE KEY HERE",
+    "FCM_VAPID_MAILTO_ADDRESS": "example@yourdomain.org"
   },
   "admin": {
     "id": []
