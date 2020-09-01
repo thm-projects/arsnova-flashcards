@@ -23,7 +23,11 @@ Meteor.methods({
 	 * @param message the message displayed in the push notification
 	 */
 	sendPushNotificationsToUser: function (userId, message) {
-		webPush.setGCMAPIKey(Meteor.settings.private.FCM_API_KEY);
+		webPush.setVapidDetails(
+			'mailto:' + Meteor.settings.private.FCM_VAPID_MAILTO_ADDRESS,
+			Meteor.settings.public.FCM_VAPID_PUBLIC_KEY,
+			Meteor.settings.private.FCM_VAPID_PRIVATE_KEY
+		);
 		let data = WebPushSubscriptions.findOne({user_id: userId});
 		data.subscriptions.forEach(function (sub) {
 			let subscription = {

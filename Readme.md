@@ -69,10 +69,13 @@ Use one of the following commands inside the repository (cards folder), to start
 6. Create one plan with id "pro" and your preferred price (lowercase for Plan ID, Plan Name's should be "Pro")
 
 
-### Firebase setup (For web notifications)
+### Firebase setup (For push notifications)
 1. [Create a Firebase project](https://console.firebase.google.com/)
-2. Get the FCM api key from Firebase project (project settings > cloud messaging > server key)
-3. Insert the key into `settings.json` (`FCM_API_KEY`)
+2. Get the FCM VAPID public and private key from your Firebase project (project settings > cloud messaging > Web configuration)
+4. Insert the keys and a mailto: Address into your `settings.json` file:
+   * Public key: `public.FCM_VAPID_PUBLIC_KEY`
+   * Private key: `private.FCM_VAPID_PRIVATE_KEY`
+   * mailto: Address: `private.FCM_VAPID_MAILTO_ADDRESS`
 
 ## Contribution guide
 The contribution guide can be found [here](https://git.thm.de/arsnova/cards/blob/staging/CONTRIBUTING.md).
