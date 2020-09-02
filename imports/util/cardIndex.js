@@ -196,6 +196,7 @@ export let CardIndex = class CardIndex {
 				}
 			}
 		}
+
 		if (!Route.isEditMode()) {
 			this.setVisibleCardAnswers(cardIndexFilter);
 		}
@@ -204,7 +205,11 @@ export let CardIndex = class CardIndex {
 	}
 
 	static setVisibleCardAnswers (cardIndexFilter) {
-		Meteor.call('getCardAnswerContent', cardIndexFilter, function (error, result) {
+		let disableAnswers = false;
+		if (Route.isBox()) {
+			disableAnswers = true;
+		}
+		Meteor.call('getCardAnswerContent', cardIndexFilter, FlowRouter.getParam('_id'), disableAnswers, function (error, result) {
 			if (!error) {
 				Session.set('activeCardAnswers', result);
 			}

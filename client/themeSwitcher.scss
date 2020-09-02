@@ -707,6 +707,7 @@ $themes: (
     $card_content_zoom_container_button_minus_text_disabled: map-get($map, "card_content_zoom_container_button_minus_text_disabled");
     $card_content_zoom_container_button_minus_disabled_opacity: map-get($map, "card_content_zoom_container_button_minus_disabled_opacity");
 
+    $card_answer_icon: map-get($map, "card_answer_icon");
     $card_right_answer_icon: map-get($map, "card_right_answer_icon");
     $card_wrong_answer_icon: map-get($map, "card_wrong_answer_icon");
     $card_explanation_answer_icon: map-get($map, "card_explanation_answer_icon");
@@ -2923,6 +2924,10 @@ $themes: (
           color: $card_content_zoom_container_button_minus_text_disabled !important;
         }
       }
+    }
+
+    .card-content-answer-icon {
+      color: $card_answer_icon !important;
     }
 
     .card-content-right-answer-icon {

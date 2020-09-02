@@ -4,10 +4,11 @@ import {CardType} from "../../../../util/cardTypes";
 import {MarkdeepEditor} from "../../../../util/markdeepEditor";
 import {Route} from "../../../../util/route";
 import {Session} from "meteor/session";
+import {AnswerUtilities} from "../../../../util/answers";
 
 Template.cardAnswers.helpers({
 	canDisplayAnswers: function () {
-		if (this.answers !== undefined && CardType.gotAnswerOptions(this.cardType)) {
+		if (this.answers !== undefined && this.answers.content !== undefined && CardType.gotAnswerOptions(this.cardType)) {
 			let gotAnswerContent = false;
 			for (let i = 0; i < this.answers.content.length; i++) {
 				let answer = this.answers.content[i].answer;
@@ -62,6 +63,15 @@ Template.cardAnswers.helpers({
 				return 'wrong';
 			}
 		}
+	},
+	isAnswerSelected: function (answerId) {
+		return Session.get('selectedAnswers').includes(answerId);
+	},
+	gotSelectedByUser: function (index) {
+		let leitnerHistory = AnswerUtilities.getActiveCardHistory();
+		if (leitnerHistory !== undefined && leitnerHistory.mcAnswers !== undefined && leitnerHistory.mcAnswers.user !== undefined) {
+			return leitnerHistory.mcAnswers.user.includes(index);
+		}
 	}
 });
 
@@ -72,5 +82,15 @@ Template.cardAnswers.events({
 			$('.card-content-answer-explanation-container').not(target).slideUp();
 			$(target).slideToggle();
 		}
+	},
+	'click .card-content-answer': function (event) {
+		let selectedAnswers = Session.get('selectedAnswers');
+		let answerId = $(event.currentTarget).data('id');
+		if (selectedAnswers.includes(answerId)) {
+			selectedAnswers.splice(selectedAnswers.indexOf(answerId), 1);
+		} else {
+			selectedAnswers.push(answerId);
+		}
+		Session.set('selectedAnswers', selectedAnswers);
 	}
 });

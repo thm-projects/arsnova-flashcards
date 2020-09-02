@@ -80,6 +80,10 @@ Template.registerHelper("isShuffleRoute", function () {
 	return (FlowRouter.getRouteName() === "shuffle" || FlowRouter.getRouteName() === "editshuffle");
 });
 
+Template.registerHelper("isLeitnerRoute", function () {
+	return Route.isBox();
+});
+
 Template.registerHelper("isLeitnerWozniakRoute", function () {
 	return (Route.isBox() || Route.isMemo());
 });

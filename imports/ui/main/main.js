@@ -60,6 +60,7 @@ Session.setDefault('fullscreenDemoSession', 0);
 Session.setDefault('fullscreenLeitnerSession', 0);
 Session.setDefault('fullscreenWozniakSession', 0);
 Session.setDefault('activeCardAnswers', []);
+Session.setDefault('selectedAnswers', []);
 
 function connectionStatus() {
 	let stat;
