@@ -8,7 +8,7 @@ import {ServerStyle} from "../../util/styles";
 import {Paid} from "./paid";
 import {CardType} from "../../util/cardTypes";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
-import {disableAnswersOption, getPreviewCards} from "../../util/cards";
+import {disableAnswersContent, getPreviewCards} from "../../util/cards";
 
 export const Cards = new Mongo.Collection("cards");
 
@@ -115,6 +115,33 @@ if (Meteor.isServer) {
 			this.ready();
 		}
 	});
+	Meteor.publish("editorCards", function (cardset_id) {
+		if (Meteor.userId()) {
+			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1, cardGroups: 1, kind: 1}});
+			if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
+				let filteredCardGroups = [];
+				for (let i = 0; i < cardset.cardGroups.length; i++) {
+					let tempCardset = Cardsets.findOne({_id: cardset.cardGroups[i]}, {fields: {cardType: 1}});
+					if (tempCardset !== undefined) {
+						if (!CardType.gotTranscriptBonus(tempCardset.cardType)) {
+							filteredCardGroups.push(cardset.cardGroups[i]);
+						}
+					}
+				}
+				let filterQuery = {
+					$or: [
+						{cardset_id: cardset._id},
+						{cardset_id: {$in: filteredCardGroups}}
+					]
+				};
+				return Cards.find(filterQuery);
+			} else {
+				this.ready();
+			}
+		} else {
+			this.ready();
+		}
+	});
 	Meteor.publish("cardsetCards", function (cardset_id) {
 		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1, cardGroups: 1, kind: 1}});
 		if ((this.userId || ServerStyle.isLoginEnabled("guest")) && UserPermissions.isNotBlockedOrFirstLogin() && cardset !== undefined) {
@@ -139,44 +166,28 @@ if (Meteor.isServer) {
 				'editor',
 				'lecturer'
 			])) {
-				return Cards.find(filterQuery);
+				return Cards.find(filterQuery, disableAnswersContent);
 			} else if (Roles.userIsInRole(this.userId, 'pro')) {
 				if (cardset.owner === this.userId || cardset.kind !== "personal") {
-					if (cardset.owner === this.userId) {
-						return Cards.find(filterQuery);
-					} else {
-						return Cards.find(filterQuery, disableAnswersOption);
-					}
+					return Cards.find(filterQuery, disableAnswersContent);
 				} else {
 					return getPreviewCards(cardset._id);
 				}
 			} else if (Roles.userIsInRole(this.userId, 'university')) {
 				if (cardset.owner === this.userId || cardset.kind === "free" || cardset.kind === "edu" || paidCardsets !== undefined) {
-					if (cardset.owner === this.userId) {
-						return Cards.find(filterQuery);
-					} else {
-						return Cards.find(filterQuery, disableAnswersOption);
-					}
+					return Cards.find(filterQuery, disableAnswersContent);
 				} else {
 					return getPreviewCards(cardset._id);
 				}
 			} else if (this.userId) {
 				if (cardset.owner === this.userId || cardset.kind === "free" || paidCardsets !== undefined) {
-					if (cardset.owner === this.userId) {
-						return Cards.find(filterQuery);
-					} else {
-						return Cards.find(filterQuery, disableAnswersOption);
-					}
+					return Cards.find(filterQuery, disableAnswersContent);
 				} else {
 					return getPreviewCards(cardset._id);
 				}
 			} else {
 				if (cardset.kind === "free") {
-					if (cardset.owner === this.userId) {
-						return Cards.find(filterQuery);
-					} else {
-						return Cards.find(filterQuery, disableAnswersOption);
-					}
+					return Cards.find(filterQuery, disableAnswersContent);
 				} else {
 					return getPreviewCards(cardset._id);
 				}

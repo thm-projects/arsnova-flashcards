@@ -59,6 +59,7 @@ Session.setDefault('fullscreenPresentationSession', 0);
 Session.setDefault('fullscreenDemoSession', 0);
 Session.setDefault('fullscreenLeitnerSession', 0);
 Session.setDefault('fullscreenWozniakSession', 0);
+Session.setDefault('activeCardAnswers', []);
 
 function connectionStatus() {
 	let stat;
