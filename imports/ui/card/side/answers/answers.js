@@ -43,6 +43,8 @@ Template.cardAnswers.helpers({
 				content.type = 0;
 			}
 			content.isAnswerSide = isAnswerSide;
+			content._id = this._id;
+			content.side = this.forceSide;
 			answers.push(content);
 		}
 		return answers;
@@ -59,6 +61,16 @@ Template.cardAnswers.helpers({
 			} else {
 				return 'wrong';
 			}
+		}
+	}
+});
+
+Template.cardAnswers.events({
+	'click .toggle-answer-explanation': function (event) {
+		if (!Route.isEditMode()) {
+			let target = $(event.currentTarget).data('target');
+			$('.card-content-answer-explanation-container').not(target).slideUp();
+			$(target).slideToggle();
 		}
 	}
 });
