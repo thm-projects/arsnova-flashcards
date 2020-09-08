@@ -82,6 +82,10 @@ export let MarkdeepEditor = class MarkdeepEditor {
 
 	static toggleAnswerEditor () {
 		Session.set('isAnswerEditorEnabled', !Session.get('isAnswerEditorEnabled'));
+		this.focusOnAnswerSide();
+	}
+
+	static focusOnAnswerSide () {
 		if (Session.get('isAnswerEditorEnabled')) {
 			let answerSideID = CardType.getAnswerSideID(Session.get('cardType'));
 			CardNavigation.selectButton(answerSideID);

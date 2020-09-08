@@ -41,6 +41,7 @@ import './side/side.js';
 import './cube/cube.js';
 import './sidebar/sidebar.js';
 import "./card.html";
+import {MarkdeepEditor} from "../../util/markdeepEditor";
 
 function isActiveCard(card, resetData) {
 	if (Route.isEditMode()) {
@@ -134,6 +135,7 @@ Template.flashcardsCarouselContent.onRendered(function () {
 	CardVisuals.setTextZoom();
 	if (Route.isEditMode() && CardType.gotNoSideContent(Session.get('cardType')) && CardType.gotAnswerOptions(Session.get('cardType'))) {
 		Session.set('isAnswerEditorEnabled', true);
+		MarkdeepEditor.focusOnAnswerSide();
 	}
 });
 
@@ -158,6 +160,7 @@ Template.flashcardsCarouselContent3D.onRendered(function () {
 	CardVisuals.setTextZoom();
 	if (Route.isEditMode() && CardType.gotNoSideContent(Session.get('cardType')) && CardType.gotAnswerOptions(Session.get('cardType'))) {
 		Session.set('isAnswerEditorEnabled', true);
+		MarkdeepEditor.focusOnAnswerSide();
 	}
 });
 
