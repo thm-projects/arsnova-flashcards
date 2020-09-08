@@ -127,7 +127,7 @@ module.exports = {
 			"enabled": true,
 			"domainWhitelist": DEFAULT_REGISTRATION_DOMAIN_WHITELIST
 		},
-		"cas": true,
+		"cas": false,
 		"guest": true,
 		"pro": false,
 		"facebook": false,
