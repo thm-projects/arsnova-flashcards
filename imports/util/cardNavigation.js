@@ -504,10 +504,7 @@ export let CardNavigation = class CardNavigation {
 		CardVisuals.toggleAspectRatioContainer(true);
 		if (!$('.input-search').is(":focus") && !$('#lightbox').is(":visible") && !$('.modal').is(":visible") && keyEventsUnlocked) {
 			keyEventsUnlocked = false;
-			if (Route.isCardset() || Route.isBox() || Route.isMemo()) {
-				keyCodes = [9];
-			}
-			if (Route.isEditMode()) {
+			if (Route.isEditMode() && !(Session.get('fullscreen') && Fullscreen.isEditorFullscreenActive() === false)) {
 				if ($('#subjectEditor').is(":focus")) {
 					keyCodes = [9, 13];
 				} else if ($('.learningGoalLevelButton').is(":focus")) {
@@ -515,11 +512,7 @@ export let CardNavigation = class CardNavigation {
 				} else {
 					keyCodes = [9];
 				}
-			}
-			if (Route.isDemo()) {
-				keyCodes = [9, 32, 37, 38, 39, 40];
-			}
-			if (Session.get('fullscreen') && Fullscreen.isEditorFullscreenActive() === false) {
+			} else if (Route.isPresentationOrDemo() || Route.isLearningMode() || Route.isPresentationTranscript()) {
 				keyCodes = [9, 27, 32, 37, 38, 39, 40, 48, 49, 50, 51, 52, 53, 78, 89, 90, 96, 97, 98, 99, 100, 101];
 			}
 			const F2KEY = 113;
