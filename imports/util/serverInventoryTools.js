@@ -140,6 +140,13 @@ export let ServerInventoryTools = class ServerInventoryTools {
 					return this.splitLargeNumbers(Counts.get('userOnlineCounter'));
 				}
 				break;
+			case "userCounter":
+				if (Meteor.settings.public.welcome.fakeStatistics) {
+					return this.splitLargeNumbers(inventory.curValue.user.total);
+				} else {
+					return this.splitLargeNumbers(Counts.get('userCounter'));
+				}
+				break;
 		}
 	}
 
