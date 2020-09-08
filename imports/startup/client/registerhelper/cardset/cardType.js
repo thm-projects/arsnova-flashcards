@@ -15,3 +15,11 @@ Template.registerHelper('gotFragJetzt', function (cardType) {
 	}
 	return CardTypes.gotFragJetzt(cardType);
 });
+
+
+Template.registerHelper('gotNoSideContent', function (cardType) {
+	if (cardType === undefined) {
+		cardType = Session.get('cardType');
+	}
+	return CardTypes.gotNoSideContent(cardType);
+});

@@ -229,6 +229,10 @@ export let CardType = class CardType {
 		return config.cardTypesWithAnswerOptions.includes(cardType);
 	}
 
+	static gotNoSideContent (cardType) {
+		return config.cardTypesWithNoSideContent.includes(cardType);
+	}
+
 	static gotMarkdeepHelp (cardType) {
 		return config.cardTypesWithMarkdeepHelp.includes(cardType);
 	}

@@ -18,7 +18,9 @@
                 fullscreenActive}}col-lg-6{{/unless}}">
             <h5 class="editorElement editorHeader">{{_ "content"}}</h5>
             {{#unless isMobilePreviewActiveAndFullscreen}}
-                {{> cardNavigation}}
+                {{#unless gotNoSideContent}}
+                    {{> cardNavigation}}
+                {{/unless}}
             {{/unless}}
             {{>markdeepNavigation}}
             {{> markdeepContent}}

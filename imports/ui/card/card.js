@@ -132,6 +132,9 @@ Template.flashcards.helpers({
 Template.flashcardsCarouselContent.onRendered(function () {
 	CardVisuals.resizeFlashcard();
 	CardVisuals.setTextZoom();
+	if (Route.isEditMode() && CardType.gotNoSideContent(Session.get('cardType')) && CardType.gotAnswerOptions(Session.get('cardType'))) {
+		Session.set('isAnswerEditorEnabled', true);
+	}
 });
 
 Template.flashcardsCarouselContent.helpers({
@@ -153,6 +156,9 @@ Template.flashcardsCarouselContent.helpers({
 Template.flashcardsCarouselContent3D.onRendered(function () {
 	CardVisuals.resizeFlashcard();
 	CardVisuals.setTextZoom();
+	if (Route.isEditMode() && CardType.gotNoSideContent(Session.get('cardType')) && CardType.gotAnswerOptions(Session.get('cardType'))) {
+		Session.set('isAnswerEditorEnabled', true);
+	}
 });
 
 Template.flashcardsCarouselContent3D.helpers({
