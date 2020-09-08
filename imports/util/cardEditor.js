@@ -156,7 +156,11 @@ export let CardEditor = class CardEditor {
 		Session.set('rightAnswers', []);
 		Session.set('randomizeAnswerPositions', false);
 		Session.set('isExplanationEditorEnabled', false);
-		Session.set('answersEnabled', false);
+		if (CardType.gotAnswerOptions(Session.get('cardType')) && CardType.gotNoSideContent(Session.get('cardType'))) {
+			Session.set('answersEnabled', true);
+		} else {
+			Session.set('answersEnabled', false);
+		}
 		CardType.setDefaultCenteredText(Session.get('cardType'));
 	}
 
