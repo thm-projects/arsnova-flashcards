@@ -2,7 +2,7 @@ export let BertAlertVisuals = class BertAlertVisuals {
 
 	static displayBertAlert (message, type, style, title) {
 		this.setBertAlertMargin();
-		if (arguments.length === 4) {
+		if (arguments.length >= 4 && title !== undefined) {
 			Bert.alert({
 				title: title + ':',
 				message: message,
