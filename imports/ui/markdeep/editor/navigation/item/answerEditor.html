@@ -1,23 +1,25 @@
 <template name="markdeepNavigationItemAnswerEditor">
     <div class="input-group answerEditor-group">
-        <div class="btn-group checkbox-container">
-            <div class="[ form-group ]">
-                <input type="checkbox" name="fancy-checkbox-default" id="toggleAnswers" autocomplete="off" {{gotAnswersEnabled}}/>
-                <div class="[ btn-group ] toggleAnswersContainer">
-                    <label for="toggleAnswers" class="[ btn btn-default ]">
-                        <div class="flex-content">
-                            <span class="[ glyphicon glyphicon-ok ]"></span>
-                            <span> </span>
-                        </div>
-                    </label>
-                    <label for="toggleAnswers" class="[ btn btn-default active ]">
-                        <div class="flex-content">
-                            {{_ "card.markdeepEditor.enableAnswers"}}
-                        </div>
-                    </label>
+        {{#unless gotNoSideContent}}
+            <div class="btn-group checkbox-container">
+                <div class="[ form-group ]">
+                    <input type="checkbox" name="fancy-checkbox-default" id="toggleAnswers" autocomplete="off" {{gotAnswersEnabled}}/>
+                    <div class="[ btn-group ] toggleAnswersContainer">
+                        <label for="toggleAnswers" class="[ btn btn-default ]">
+                            <div class="flex-content">
+                                <span class="[ glyphicon glyphicon-ok ]"></span>
+                                <span> </span>
+                            </div>
+                        </label>
+                        <label for="toggleAnswers" class="[ btn btn-default active ]">
+                            <div class="flex-content">
+                                {{_ "card.markdeepEditor.enableAnswers"}}
+                            </div>
+                        </label>
+                    </div>
                 </div>
             </div>
-        </div>
+        {{/unless}}
         {{> markdeepNavigationItemAnswerEditorDropdown}}
         <div class="btn-group">
             <i class="card-button fas fa-plus markdeep-answer-add {{#if disableAddAnswerButton}}disabled{{/if}}"

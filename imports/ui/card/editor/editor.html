@@ -40,7 +40,11 @@
                     </div>
                 </div>
             {{else}}
-                {{> flashcards cardset=this}}
+                {{#if gotNoSideContent}}
+                    {{> presentationView}}
+                {{else}}
+                    {{> flashcards cardset=this}}
+                {{/if}}
             {{/if}}
         </div>
     </div>
