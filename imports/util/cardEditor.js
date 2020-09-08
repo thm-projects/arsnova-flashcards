@@ -332,7 +332,11 @@ export let CardEditor = class CardEditor {
 			answers.randomized = Session.get('randomizeAnswerPositions');
 			answers.content = Session.get('markdeepEditorAnswers');
 			answers.question = Session.get('cardAnswersQuestion');
-			answers.enabled = Session.get('answersEnabled');
+			if (CardType.gotAnswerOptions(Session.get('cardType')) && CardType.gotNoSideContent(Session.get('cardType'))) {
+				answers.enabled = true;
+			} else {
+				answers.enabled = Session.get('answersEnabled');
+			}
 			if (answers.enabled) {
 				let gotValidAnswers = true;
 				for (let i = 0; i < answers.content.length; i++) {
