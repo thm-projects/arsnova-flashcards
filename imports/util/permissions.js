@@ -72,8 +72,12 @@ export let UserPermissions = class UserPermissions {
 		}
 	}
 
-	static isCardsLogin () {
-		return Meteor.user().services.password !== undefined;
+	static isCardsLogin (user = undefined) {
+		if (user !== undefined) {
+			return user.services.password !== undefined;
+		} else {
+			return Meteor.user().services.password !== undefined;
+		}
 	}
 
 	static isNotBlockedOrFirstLogin () {

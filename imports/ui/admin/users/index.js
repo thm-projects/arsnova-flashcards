@@ -11,6 +11,7 @@ import {getAuthorName} from "../../../util/userData";
 import {Bonus} from "../../../util/bonus";
 import "./index.html";
 import "./user.js";
+import {UserPermissions} from "../../../util/permissions";
 
 /*
  * ############################################################################
@@ -30,10 +31,27 @@ Template.admin_users.helpers({
 			date = moment(user.createdAt).format("YYYY-MM-DD");
 			let notificationSystems = Bonus.getNotificationStatus(user);
 			let mail;
-			if (user.email !== "" && user.email !== undefined && user._id !== Meteor.userId()) {
-				mail = user.email;
+			let name;
+			let service;
+			if (UserPermissions.isCardsLogin(user)) {
+				if (user.username !== "" && user.username !== undefined) {
+					name = user.username;
+				}
+				if (user.email !== "" && user.email !== undefined) {
+					mail = user.email;
+				}
+				service = ".cards";
+			} else {
+				if (user.profile.name !== "" && user.profile.name !== undefined) {
+					name = user.profile.name;
+				}
+				if (user.email !== "" && user.email !== undefined) {
+					mail = user.email;
+				}
+				let services = _.keys(user.services)[0];
+				service = services.charAt(0).toUpperCase() + services.slice(1);
 			}
-			fields.push({"_id": user._id, username: DOMPurify.sanitize(getAuthorName(user._id, true, false, true),DOMPurifyConfig), "loginid": DOMPurify.sanitize(user.profile.name, DOMPurifyConfig), "dateString": dateString, "date": date, "notificationSystems": notificationSystems, "mail": mail});
+			fields.push({"_id": user._id, username: DOMPurify.sanitize(getAuthorName(user._id, true, false, true),DOMPurifyConfig), "loginid": DOMPurify.sanitize(name, DOMPurifyConfig), "dateString": dateString, "date": date, "notificationSystems": notificationSystems, "mail": mail, "service": service});
 		});
 
 		return fields;
@@ -51,7 +69,13 @@ Template.admin_users.helpers({
 					}
 				},
 				{
-					key: 'loginid', label: TAPi18n.__('admin.user.username'),
+					key: 'loginid', label: TAPi18n.__('admin.user-index.loginid'),
+					fn: function (value) {
+						return value;
+					}
+				},
+				{
+					key: 'service', label: TAPi18n.__('admin.user-index.service'),
 					fn: function (value) {
 						return value;
 					}

@@ -2002,7 +2002,7 @@
     "superAdmin": "Administrator/in",
     "profileIncompleteBackendList": "(Profil nicht vollständig)",
     "pro": "Pro",
-    "university": "THM",
+    "university": "Edu",
     "free": "Frei",
     "private": "Privat",
     "shuffled": "gemischte",
@@ -2159,6 +2159,10 @@
       "front_required": "Bitte Vorderseite ausfüllen!",
       "back_required": "Bitte Rückseite ausfüllen!",
       "text_max": "Es sind maximal 10.000 Zeichen erlaubt!"
+    },
+    "user-index": {
+      "loginid": "Kennung",
+      "service": "Service"
     },
     "user": {
       "header": "Benutzer/in",
