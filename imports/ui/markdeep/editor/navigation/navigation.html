@@ -28,9 +28,11 @@
                             isAlternativeBackgroundStyle}}pressed{{/if}}"
                        title="{{_ "card.tooltip.markdeepEditor.style"}}"></i>
                     {{#if gotAnswerOptions}}
-                        <i class="card-button fas fa-vote-yea markdeep-answer-editor {{#if
-                                isAnswerEditorActive}}pressed{{/if}}"
-                           title="{{_ "card.tooltip.markdeepEditor.answerEditor"}}"></i>
+                        {{#unless gotNoSideContent}}
+                            <i class="card-button fas fa-vote-yea markdeep-answer-editor {{#if
+                                    isAnswerEditorActive}}pressed{{/if}}"
+                               title="{{_ "card.tooltip.markdeepEditor.answerEditor"}}"></i>
+                        {{/unless}}
                     {{/if}}
                     <i class="card-button fas fa-expand-arrows-alt markdeep-fullscreen {{#if
                             isFullscreenActive}}pressed{{/if}}" title="{{_ "card.tooltip.markdeepEditor.fullscreen"}}"></i>

@@ -19,16 +19,17 @@
 //17: Inverses Fragen
 //18: Cube
 //19: Vorlesung mit Bonus-Mitschrift
+//20: Quiz
 let cardTypesWithDictionary = [1];
-let cardTypesWithDifficultyLevel = [0, 1, 3, 5, 6, 7, 11, 12, 13, 15, 17, 18];
-let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12, 13, 15, 16, 17];
+let cardTypesWithDifficultyLevel = [0, 1, 3, 5, 6, 7, 11, 12, 13, 15, 17, 18, 20];
+let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12, 13, 15, 16, 17, 20];
 let cardTypesWithLearningGoal = [0, 5, 12];
 let cardTypesWithLearningUnit = [2];
 let cardTypesWithNotesForDifficultyLevel = [];
 let cardTypesWithCardsetTitleNavigation = [14];
 let cardTypesWithSwapAnswerQuestionButton = [1, 17];
-let cardTypesWithDefaultMobilePreview = [0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-let cardTypesWithMarkdeepHelp = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+let cardTypesWithDefaultMobilePreview = [0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 20];
+let cardTypesWithMarkdeepHelp = [0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20];
 let cardTypesWithLearningModePDFAutoTarget = [0];
 let cardTypesWithTranscriptBonus = [19];
 let lecturerExclusiveCardTypes = [19];
@@ -38,6 +39,8 @@ let transcriptModeOnlyCardTypes = [2, 19];
 
 // MC Questions
 let cardTypesWithAnswerOptions = [11];
+let cardTypesWithNoSideContent = [11];
+
 let cardTypesOrder = [
 	{
 		cardType: 8, //8: Notizen
@@ -53,7 +56,11 @@ let cardTypesOrder = [
 		enabled: true
 	},
 	{
-		cardType: 11, //11: Quiz
+		cardType: 11, //11: MC-Quiz
+		enabled: true
+	},
+	{
+		cardType: 20, //11: Quiz
 		enabled: true
 	},
 	{
@@ -218,7 +225,7 @@ let cardTypeVariables = [
 			repeated: 0.5
 		}
 	},
-	//11: Quiz
+	//11: MC-Quiz
 	{
 		// In Minutes
 		learningTime: {
@@ -283,6 +290,14 @@ let cardTypeVariables = [
 		}
 	},
 	//19: Vorlesung mit Bonus-Mitschrift
+	{
+		// In Minutes
+		learningTime: {
+			initial: 3,
+			repeated: 0.5
+		}
+	},
+	//20: Quiz
 	{
 		// In Minutes
 		learningTime: {
@@ -651,6 +666,20 @@ let cardTypeCubeSides = [
 			"contentId": 6,
 			"defaultStyle": "default"
 		}
+	],
+	//20: Quiz
+	[
+		{
+			"contentId": 1,
+			"defaultStyle": "default",
+			"gotQuestion": true // Displays answers after the markdeep content
+		},
+		{
+			"contentId": 2,
+			"defaultStyle": "default",
+			"isAnswer": true,
+			"isAnswerFocus": true
+		}
 	]
 ];
 
@@ -677,5 +706,6 @@ module.exports = {
 	cardTypesWithTranscriptBonus,
 	lecturerExclusiveCardTypes,
 	cardTypeVariables,
-	transcriptModeOnlyCardTypes
+	transcriptModeOnlyCardTypes,
+	cardTypesWithNoSideContent
 };

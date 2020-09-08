@@ -1477,14 +1477,12 @@
       }
     },
     "cardType11": {
-      "name": "Quiz",
-      "longName": "Quiz: Frage | Antwort",
+      "name": "MC-Quiz",
+      "longName": "MC-Quiz: Frage | Antwort",
       "content1": "Frage",
       "content2": "Antwort",
       "placeholders": {
-        "subject": "Gib das Thema deines Quiz an!",
-        "content1": "Gib hier die Quizfrage ein!",
-        "content2": "Gib hier die richtige Antwort ein!"
+        "subject": "Gib das Thema deines MC-Quiz an!"
       },
       "editorLabels": {
         "subject": "Thema"
@@ -1609,6 +1607,20 @@
     "cardType19": {
       "name": "Bonus-Kartei für Mitschriften",
       "longName": "Kartei für die Bonusvergabe von Mitschriften"
+    },
+    "cardType20": {
+      "name": "Quiz",
+      "longName": "Quiz: Frage | Antwort",
+      "content1": "Frage",
+      "content2": "Antwort",
+      "placeholders": {
+        "subject": "Gib das Thema deines Quiz an!",
+        "content1": "Gib hier die Quizfrage ein!",
+        "content2": "Gib hier die richtige Antwort ein!"
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
     },
     "markdeepEditor": {
       "placeholders": {
@@ -1990,7 +2002,7 @@
     "superAdmin": "Administrator/in",
     "profileIncompleteBackendList": "(Profil nicht vollständig)",
     "pro": "Pro",
-    "university": "THM",
+    "university": "Edu",
     "free": "Frei",
     "private": "Privat",
     "shuffled": "gemischte",
@@ -2147,6 +2159,10 @@
       "front_required": "Bitte Vorderseite ausfüllen!",
       "back_required": "Bitte Rückseite ausfüllen!",
       "text_max": "Es sind maximal 10.000 Zeichen erlaubt!"
+    },
+    "user-index": {
+      "loginid": "Kennung",
+      "service": "Service"
     },
     "user": {
       "header": "Benutzer/in",

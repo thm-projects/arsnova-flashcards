@@ -126,6 +126,7 @@ Template.markdeepNavigationItemAnswerEditorDropdown.onDestroyed(function () {
 Template.markdeepNavigationItemAnswerEditorDropdown.events({
 	'click .dropdown-item': function (event) {
 		Session.set('activeAnswerID', $(event.currentTarget).data('id'));
+		MarkdeepEditor.focusOnContentEditor();
 	}
 });
 

@@ -5,11 +5,13 @@
                 {{#if isAnswerSide}}
                     {{> cardAnswers this}}
                 {{/if}}
-                {{#if gotContent}}
-                    {{#markdeep}}{{getContent}}{{/markdeep}}
-                {{else}}
-                    {{getPlaceholder}}
-                {{/if}}
+                {{#unless gotNoSideContent}}
+                    {{#if gotContent}}
+                        {{#markdeep}}{{getContent}}{{/markdeep}}
+                    {{else}}
+                        {{getPlaceholder}}
+                    {{/if}}
+                {{/unless}}
                 {{#if isQuestionSide}}
                     {{> cardAnswers this}}
                 {{/if}}
