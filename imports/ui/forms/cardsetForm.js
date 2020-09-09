@@ -121,8 +121,6 @@ export function cleanModal() {
 }
 
 export function saveCardset() {
-	let bertDelay = 10000;
-	let bertDelayMultiplier = 0;
 	let error = false;
 	let errorMessage = "<ul>";
 	let sortType = $("input[name='sortType']:checked").val();
@@ -150,27 +148,22 @@ export function saveCardset() {
 	if ($('#setName').val() === "") {
 		error = true;
 		errorMessage += "<li>" + TAPi18n.__('modal-dialog.name') + "</li>";
-		bertDelayMultiplier++;
 		$('#setNameLabel').addClass('text-warning');
 		$('#helpSetName').html(TAPi18n.__('modal-dialog.name_required'));
 	}
 	if ($('#setCardsetFormModal .setCardType').val() < -1) {
 		error = true;
 		errorMessage += "<li>" + TAPi18n.__('modal-dialog.cardType') + "</li>";
-		bertDelayMultiplier++;
 		$('#setCardTypeLabel').addClass('text-warning');
 		$('#helpSetCardType').html(TAPi18n.__('modal-dialog.cardType_required'));
 	}
 	if ($('#contentEditor').val() === "") {
 		error = true;
 		errorMessage += "<li>" + TAPi18n.__('modal-dialog.description') + "</li>";
-		bertDelayMultiplier++;
 		$('#setDescriptionLabel').addClass('text-warning');
 		$('#helpSetDescription').html(TAPi18n.__('modal-dialog.description_required'));
 	}
 	errorMessage += "</ul>";
-	Bert.defaults.hideDelay = bertDelay * bertDelayMultiplier;
-	BertAlertVisuals.displayBertAlert(errorMessage, 'warning', 'growl-top-left');
 	if (!error) {
 		let name, cardType, description, shuffled, cardGroups;
 		name = $('#setName').val();
