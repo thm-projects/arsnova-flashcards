@@ -82,6 +82,7 @@ Template.editor.onDestroyed(function () {
 	Session.set('isAnswerEditorEnabled', false);
 	Session.set('isExplanationEditorEnabled', false);
 	Session.set('activeAnswerID', -1);
+	Session.set('cardAnswersQuestion', '');
 });
 
 /*
