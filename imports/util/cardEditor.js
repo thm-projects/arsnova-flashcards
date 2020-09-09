@@ -414,7 +414,11 @@ export let CardEditor = class CardEditor {
 							CardEditor.resetSessionData();
 							window.scrollTo(0, 0);
 							CardEditor.setEditorButtonIndex(CardEditor.getCardNavigationNameIndex(), false);
-							CardNavigation.selectButton();
+							if (CardType.gotAnswerOptions(Session.get('cardType')) && CardType.gotNoSideContent(Session.get('cardType'))) {
+								MarkdeepEditor.focusOnAnswerSide();
+							} else {
+								CardNavigation.selectButton();
+							}
 						} else {
 							if (Route.isTranscript()) {
 								if (Session.get('transcriptBonus') !== undefined) {
@@ -457,7 +461,11 @@ export let CardEditor = class CardEditor {
 							}
 						} else {
 							CardEditor.setEditorButtonIndex(CardEditor.getCardNavigationNameIndex(), false);
-							CardNavigation.selectButton();
+							if (CardType.gotAnswerOptions(Session.get('cardType')) && CardType.gotNoSideContent(Session.get('cardType'))) {
+								MarkdeepEditor.focusOnAnswerSide();
+							} else {
+								CardNavigation.selectButton();
+							}
 							window.scrollTo(0, 0);
 							let nextId = CardIndex.getNextCardID(card_id);
 							FlowRouter.go('editCard', {
