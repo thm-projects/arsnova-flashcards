@@ -72,26 +72,30 @@ export let CardType = class CardType {
 		let sortQuery = {};
 		sortQuery.subject = 1;
 		if (sortType === 0) {
-			let cubeSides = this.getCardTypeCubeSides(cardType);
-			switch (cubeSides[0].contentId) {
-				case 1:
-					sortQuery.front = 1;
-					break;
-				case 2:
-					sortQuery.back = 1;
-					break;
-				case 3:
-					sortQuery.hint = 1;
-					break;
-				case 4:
-					sortQuery.lecture = 1;
-					break;
-				case 5:
-					sortQuery.top = 1;
-					break;
-				case 6:
-					sortQuery.bottom = 1;
-					break;
+			if (this.gotAnswerOptions(cardType) && this.gotNoSideContent(cardType)) {
+				sortQuery['answers.question'] = 1;
+			} else {
+				let cubeSides = this.getCardTypeCubeSides(cardType);
+				switch (cubeSides[0].contentId) {
+					case 1:
+						sortQuery.front = 1;
+						break;
+					case 2:
+						sortQuery.back = 1;
+						break;
+					case 3:
+						sortQuery.hint = 1;
+						break;
+					case 4:
+						sortQuery.lecture = 1;
+						break;
+					case 5:
+						sortQuery.top = 1;
+						break;
+					case 6:
+						sortQuery.bottom = 1;
+						break;
+				}
 			}
 		} else {
 			sortQuery.date = 1;
