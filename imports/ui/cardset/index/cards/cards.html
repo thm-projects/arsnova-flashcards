@@ -39,7 +39,11 @@
                                         </div>
                                         <div class="col-xs-11 listCard" data-id="{{this._id}}"
                                              data-card-type="{{this.cardType}}">
-                                            {{cleanContent getText}}
+                                            {{#if gotNoSideContent this.cardType}}
+                                                {{cleanContent getQuestion}}
+                                            {{else}}
+                                                {{cleanContent getText}}
+                                            {{/if}}
                                         </div>
                                         <i class="fas fa-chevron-right pull-right" data-id="{{this._id}}"
                                            data-card-type="{{this.cardType}}"></i>

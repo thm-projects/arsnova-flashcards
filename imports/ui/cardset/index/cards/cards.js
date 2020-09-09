@@ -114,7 +114,8 @@ Template.cardsetList.helpers({
 					lecture: 1,
 					top: 1,
 					bottom: 1,
-					cardset_id: 1
+					cardset_id: 1,
+					answers: 1
 				},
 				sort: sortQuery
 			}).count();
@@ -131,7 +132,8 @@ Template.cardsetList.helpers({
 				lecture: 1,
 				top: 1,
 				bottom: 1,
-				cardset_id: 1
+				cardset_id: 1,
+				answers: 1
 			},
 			sort: sortQuery
 		}).fetch();
@@ -153,6 +155,13 @@ Template.cardsetList.helpers({
 	},
 	gotReferences: function () {
 		return Cardsets.findOne({_id: FlowRouter.getParam('_id')}).cardGroups !== [""];
+	},
+	getQuestion: function () {
+		if (this.answers !== undefined && this.answers.question !== undefined) {
+			return this.answers.question;
+		} else {
+			return "";
+		}
 	},
 	getText: function () {
 		let cubeSides = CardType.getCardTypeCubeSides(this.cardType);
