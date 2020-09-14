@@ -2,7 +2,6 @@ import {Meteor} from "meteor/meteor";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Leitner} from "../api/subscriptions/leitner";
 import {Wozniak} from "../api/subscriptions/wozniak";
-import {Filter} from "./filter.js";
 import * as config from "../config/login.js";
 import {UserPermissions} from "./permissions";
 import {Session} from "meteor/session";
@@ -47,7 +46,6 @@ export let LoginTasks = class LoginTasks {
 	}
 
 	static setLoginRedirect () {
-		Filter.resetFilters();
 		Meteor.subscribe("userLeitner", {
 			onReady: function () {
 				Meteor.subscribe("userWozniak", {

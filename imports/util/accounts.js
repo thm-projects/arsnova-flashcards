@@ -1,5 +1,9 @@
 import {ServerStyle} from "./styles";
 import XRegExp from 'xregexp';
+import {LoginTasks} from "./login";
+import {Meteor} from "meteor/meteor";
+import {MainNavigation} from "./mainNavigation";
+import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 
 export let AccountUtils = class AccountUtils {
 	static exists (username) {
@@ -43,8 +47,13 @@ let pwd = AccountsTemplates.removeField('password');
 
 function submitHooks(error, state) {
 	if (state === "signIn") {
-		if (!error && Meteor.isClient) {
-			location.reload();
+		if (!error && Meteor.user()) {
+			if (!Roles.userIsInRole(Meteor.userId(), ['blocked']) && MainNavigation.getLoginTarget() !== undefined && MainNavigation.getLoginTarget() !== false && MainNavigation.getLoginTarget() !== "/") {
+				FlowRouter.go(MainNavigation.getLoginTarget());
+				MainNavigation.setLoginTarget(false);
+			} else {
+				LoginTasks.setLoginRedirect();
+			}
 		}
 	}
 	AccountsTemplates.setState('signIn');
