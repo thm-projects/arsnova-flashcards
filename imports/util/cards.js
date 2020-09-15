@@ -1,7 +1,9 @@
 import {Cardsets} from "../api/subscriptions/cardsets";
 import {Cards} from "../api/subscriptions/cards";
 
-export let disableAnswersOption = {fields: {answers: 0}};
+// Replace once the leitner answer mode is ready
+// export let disableAnswersOption = {fields: {answers: 0}};
+export let disableAnswersOption = {};
 
 export function getPreviewCards(cardset_id) {
 	let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1, cardGroups: 1, kind: 1}});
