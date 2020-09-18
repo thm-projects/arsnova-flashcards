@@ -11,6 +11,7 @@ import {CardIndex} from "./cardIndex";
 import {Cards} from "../api/subscriptions/cards";
 import {MarkdeepEditor} from "./markdeepEditor";
 import {Fullscreen} from "./fullscreen";
+import * as answerConfig from "../config/answers.js";
 
 const subjectMaxLength = 255;
 const contentMaxLength = 300000;
@@ -154,7 +155,7 @@ export let CardEditor = class CardEditor {
 		Session.set('markdeepEditorAnswers', emptyMarkdeepAnswers);
 		Session.set('activeAnswerID', -1);
 		Session.set('rightAnswers', []);
-		Session.set('randomizeAnswerPositions', false);
+		Session.set('randomizeAnswerPositions', answerConfig.randomizeByDefault);
 		Session.set('isExplanationEditorEnabled', false);
 		if (CardType.gotAnswerOptions(Session.get('cardType')) && CardType.gotNoSideContent(Session.get('cardType'))) {
 			Session.set('answersEnabled', true);
@@ -204,7 +205,7 @@ export let CardEditor = class CardEditor {
 			if (card.answers.randomized !== undefined) {
 				Session.set('randomizeAnswerPositions', card.answers.randomized);
 			} else {
-				Session.set('randomizeAnswerPositions', false);
+				Session.set('randomizeAnswerPositions', answerConfig.randomizeByDefault);
 			}
 			if (card.answers.question !== undefined) {
 				Session.set('cardAnswersQuestion', card.answers.question);
@@ -219,7 +220,7 @@ export let CardEditor = class CardEditor {
 		} else {
 			Session.set('markdeepEditorAnswers', emptyMarkdeepAnswers);
 			Session.set('rightAnswers', []);
-			Session.set('randomizeAnswerPositions', false);
+			Session.set('randomizeAnswerPositions', answerConfig.randomizeByDefault);
 			Session.set('answersEnabled', false);
 		}
 	}
