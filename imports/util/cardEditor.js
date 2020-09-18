@@ -339,6 +339,10 @@ export let CardEditor = class CardEditor {
 			}
 			if (answers.enabled) {
 				let gotValidAnswers = true;
+				if (answers.question === undefined || answers.question.trim().length === 0) {
+					BertAlertVisuals.displayBertAlert(TAPi18n.__('card.markdeepEditor.notification.noQuestion'), "danger", 'growl-top-left');
+					return;
+				}
 				for (let i = 0; i < answers.content.length; i++) {
 					let answer = answers.content[i].answer;
 					if (answer !== undefined && answer.trim().length === 0) {
