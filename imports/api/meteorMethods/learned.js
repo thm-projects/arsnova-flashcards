@@ -11,6 +11,7 @@ import {LeitnerHistory} from "../subscriptions/leitnerHistory";
 import {LeitnerTasks} from "../subscriptions/leitnerTasks";
 import {Workload} from "../subscriptions/workload";
 import {Wozniak} from "../subscriptions/wozniak";
+import {CardType} from "../../util/cardTypes";
 
 export const Learned = new Mongo.Collection("learned");
 
@@ -31,7 +32,7 @@ if (Meteor.isServer) {
 			check(card_id, String);
 			check(answer, Boolean);
 
-			var cardset = Cardsets.findOne({_id: cardset_id});
+			let cardset = Cardsets.findOne({_id: cardset_id});
 
 			if (cardset !== undefined) {
 				let query = {};
@@ -44,8 +45,10 @@ if (Meteor.isServer) {
 				let currentLearned = Leitner.findOne(query);
 				if (currentLearned !== undefined) {
 					let selectedBox = currentLearned.box + 1;
+
 					let nextDate = new Date();
 
+					// Move card back as the answer was wrong "not known"
 					if (answer) {
 						if (config.wrongAnswerMode === 1) {
 							if (currentLearned.box > 1) {
@@ -56,10 +59,25 @@ if (Meteor.isServer) {
 						} else {
 							selectedBox = 1;
 						}
+					} else {
+						let cardCardType;
+						if (cardset.shuffled) {
+							let cardCardset = Cardsets.findOne({_id: currentLearned.original_cardset_id});
+							cardCardType = cardCardset.cardType;
+						} else {
+							cardCardType = cardset.cardType;
+						}
+						if (CardType.gotNonRepeatingLeitner(cardCardType)) {
+							//Move to the last box if card Type got no repetition
+							selectedBox = 6;
+						}
 					}
 					let workload = Workload.findOne({cardset_id: currentLearned.cardset_id, user_id: currentLearned.user_id});
 					let lowestPriority = workload.leitner.nextLowestPriority;
 					let newPriority = lowestPriority[selectedBox - 1];
+					if (selectedBox === 6) {
+						lowestPriority = 0;
+					}
 					nextDate = new Date(nextDate.getTime() + cardset.learningInterval[selectedBox - 1] * 86400000);
 
 					Leitner.update(currentLearned._id, {
