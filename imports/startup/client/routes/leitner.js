@@ -8,6 +8,7 @@ import {MarkdeepEditor} from "../../../util/markdeepEditor";
 import {Session} from "meteor/session";
 import {AspectRatio} from "../../../util/aspectRatio";
 import {Fullscreen} from "../../../util/fullscreen";
+import {CardsetNavigation} from "../../../util/cardsetNavigation";
 
 FlowRouter.route('/box/:_id', {
 	name: RouteNames.box,
@@ -15,6 +16,7 @@ FlowRouter.route('/box/:_id', {
 		this.render(config.mainTemplate, config.loadingScreenTemplate);
 	},
 	waitOn: function (params) {
+		CardsetNavigation.addToLeitner(params._id);
 		return [
 			import('../../../ui/learn/learn.js'),
 			Meteor.subscribe('defaultAppData'),

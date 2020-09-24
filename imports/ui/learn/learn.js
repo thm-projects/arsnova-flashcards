@@ -17,7 +17,6 @@ import "./learn.html";
 import {PomodoroTimer} from "../../util/pomodoroTimer";
 import {Route} from "../../util/route";
 import {MainNavigation} from "../../util/mainNavigation";
-import {CardsetNavigation} from "../../util/cardsetNavigation";
 import {NavigatorCheck} from "../../util/navigatorCheck";
 import {CardVisuals} from "../../util/cardVisuals";
 import {Bonus} from "../../util/bonus";
@@ -59,12 +58,6 @@ Template.learnAlgorithms.onRendered(function () {
 	}
 	if (localStorage.getItem(MainNavigation.getFirstTimeWozniakString()) !== "true" && Route.isMemo() && !NavigatorCheck.isSmartphone()) {
 		$('#helpModal').modal('show');
-	}
-	if (Route.isBox()) {
-		CardsetNavigation.addToLeitner(FlowRouter.getParam('_id'));
-	}
-	if (Route.isMemo()) {
-		Meteor.call("addWozniakCards", FlowRouter.getParam('_id'));
 	}
 });
 
