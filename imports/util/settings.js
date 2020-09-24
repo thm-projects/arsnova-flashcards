@@ -3,10 +3,16 @@ import {AdminSettings} from "../api/subscriptions/adminSettings";
 
 export let ServerSettings = class ServerSettings {
 	static isMailEnabled () {
-		return AdminSettings.findOne({name: "mailSettings"}).enabled;
+		let mailSettings = AdminSettings.findOne({name: "mailSettings"});
+		if (mailSettings !== undefined) {
+			return mailSettings.enabled;
+		}
 	}
 
 	static isPushEnabled () {
-		return AdminSettings.findOne({name: "pushSettings"}).enabled;
+		let pushSettings = AdminSettings.findOne({name: "pushSettings"});
+		if (pushSettings !== undefined) {
+			return pushSettings.enabled;
+		}
 	}
 };

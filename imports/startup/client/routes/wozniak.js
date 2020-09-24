@@ -15,6 +15,7 @@ FlowRouter.route('/memo/:_id', {
 		this.render(config.mainTemplate, config.loadingScreenTemplate);
 	},
 	waitOn: function (params) {
+		Meteor.call("addWozniakCards", params._id);
 		return [
 			import('../../../ui/learn/learn.js'),
 			Meteor.subscribe('defaultAppData'),
