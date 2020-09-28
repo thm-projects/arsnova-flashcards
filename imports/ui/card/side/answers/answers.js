@@ -47,6 +47,10 @@ Template.cardAnswers.helpers({
 			content._id = this._id;
 			content.side = this.forceSide;
 			answers.push(content);
+			content.target = i;
+		}
+		if (Route.isBox() && this.answers.randomized === true) {
+			answers = AnswerUtilities.randomizeAnswers(this._id, answers);
 		}
 		return answers;
 	},

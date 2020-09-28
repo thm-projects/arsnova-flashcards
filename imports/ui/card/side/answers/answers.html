@@ -14,38 +14,38 @@
                             <span class="card-content-answer-icon-group">
                                 {{#if isAnswerSide}}
                                     {{#if gotExplanation}}
-                                        <div class="fa-stack toggle-answer-explanation" data-id="{{@index}}" data-target="#explanation-{{@index}}-{{this.side}}-{{this._id}}">
+                                        <div class="fa-stack toggle-answer-explanation" data-id="{{this.target}}" data-target="#explanation-{{@index}}-{{this.side}}-{{this._id}}">
                                             <i class="fas fa-circle fa-stack-1x fa-inverse"></i>
                                             <i class="fas fa-exclamation-circle fa-stack-1x card-content-explanation-icon"></i>
                                         </div>
                                     {{/if}}
                                     {{#if isRightAnswer}}
-                                        <div class="fa-stack fa-stack-checkbox" data-id="{{@index}}">
+                                        <div class="fa-stack fa-stack-checkbox" data-id="{{this.target}}">
                                             <i class="fas fa-square fa-stack-2x fa-inverse"></i>
                                             <i class="far fa-square fa-stack-2x card-content-right-answer-icon"></i>
                                             <i class="fas fa-check fa-stack-1x card-content-right-answer-icon"></i>
                                         </div>
                                     {{else}}
-                                        <div class="fa-stack" data-id="{{@index}}">
+                                        <div class="fa-stack" data-id="{{this.target}}">
                                             <i class="fas fa-circle fa-stack-1x fa-inverse"></i>
                                             <i class="far fa-times-circle fa-stack-1x card-content-wrong-answer-icon"></i>
                                         </div>
                                     {{/if}}
                                     {{#if isLeitnerRoute}}
-                                        <div class="fa-stack fa-stack-checkbox card-content-answer" data-id="{{@index}}">
+                                        <div class="fa-stack fa-stack-checkbox card-content-answer" data-id="{{this.target}}">
                                             <i class="fas fa-square fa-stack-2x fa-inverse"></i>
                                             <i class="far fa-square fa-stack-2x card-content-answer-icon"></i>
-                                            {{#if gotSelectedByUser @index}}
+                                            {{#if gotSelectedByUser this.target}}
                                                     <i class="fas fa-check fa-stack-1x card-content-answer-icon"></i>
                                             {{/if}}
                                         </div>
                                     {{/if}}
                                 {{else}}
                                     {{#if isLeitnerRoute}}
-                                        <div class="fa-stack fa-stack-checkbox card-content-answer interactive" data-id="{{@index}}">
+                                        <div class="fa-stack fa-stack-checkbox card-content-answer interactive" data-id="{{this.target}}">
                                             <i class="fas fa-square fa-stack-2x fa-inverse"></i>
                                             <i class="far fa-square fa-stack-2x card-content-answer-icon"></i>
-                                            {{#if isAnswerSelected @index}}
+                                            {{#if isAnswerSelected this.target}}
                                                 <i class="fas fa-check fa-stack-1x card-content-answer-icon"></i>
                                             {{/if}}
                                         </div>

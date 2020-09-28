@@ -7,8 +7,18 @@ import {LeitnerHistory} from "../api/subscriptions/leitnerHistory";
 import {CardVisuals} from "./cardVisuals";
 import {CardType} from "./cardTypes";
 import {Route} from "./route";
+import shuffle from "knuth-shuffle-seeded";
+
+let randomizedNumber = Math.random();
 
 export let AnswerUtilities = class AnswerUtilities {
+	static setNewRandomizedNumber () {
+		randomizedNumber = Math.random();
+	}
+
+	static randomizeAnswers (cardId, answers) {
+		return shuffle(answers, cardId + randomizedNumber);
+	}
 
 	/**
 	 * Returns the answers of the requested cards
