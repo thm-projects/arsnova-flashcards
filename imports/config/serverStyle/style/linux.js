@@ -209,5 +209,6 @@ module.exports = {
 				"backgrounds": "linux" // The background images found in ./backgrounds.js
 			}
 		] // The list available to the theme switcher dropdown menu
-	}
+	},
+	"landingPage": "http://linux.arsnova.rocks"
 };
