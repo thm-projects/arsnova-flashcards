@@ -5,7 +5,7 @@ import {ServerStyle} from "./styles";
 let visitedLandingPage = "visitedLandingPage";
 
 export let LandingPage = class LandingPage {
-	static getStatus() {
+	static getStatus () {
 		return LandingPage.status;
 	}
 	static checkLandingPageVisit () {
@@ -15,7 +15,7 @@ export let LandingPage = class LandingPage {
 		}
 		return false;
 	}
-	static processParams(landingPageVisited, languageChosen) {
+	static processParams (landingPageVisited, languageChosen) {
 		if (landingPageVisited !== undefined) {
 			// set landing page as visited in the cash
 			localStorage.setItem(visitedLandingPage, landingPageVisited);
@@ -23,11 +23,11 @@ export let LandingPage = class LandingPage {
 			Session.set('activeLanguage', languageChosen);
 		}
 	}
-	static visited() {
+	static visited () {
 		localStorage.setItem(visitedLandingPage, 'yes');
 	}
 	//pings the landing page
-	static isOnline() {
+	static isOnline () {
 		const url = ServerStyle.getConfig().landingPage;
 		if (url !== "") {
 			// http call to the landing page, timeout after 2sec
