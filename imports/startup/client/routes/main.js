@@ -53,13 +53,14 @@ import {ServerStyle} from "../../../util/styles";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/subscriptions/cardsets";
 import {Fullscreen} from "../../../util/fullscreen";
+import {LandingPage} from "../../../util/landingPage";
 
 FlowRouter.route('/cardset', function () {
 	FlowRouter.go('learn');
 });
 
 FlowRouter.notFound = {
-	action: function() {
+	action: function () {
 		FlowRouter.go('home');
 	}
 };
@@ -70,6 +71,11 @@ FlowRouter.route('/', {
 		this.render(config.mainTemplate, config.loadingScreenTemplate);
 	},
 	waitOn: function () {
+		// process query parameter if any present
+		LandingPage.isOnline();
+		let landingPageVisited = FlowRouter.getQueryParam('landing-page-visited');
+		let languageChosen = FlowRouter.getQueryParam('language-choosen');
+		LandingPage.processParams(landingPageVisited, languageChosen);
 		return [
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('wordcloudCardsets'),
@@ -82,6 +88,11 @@ FlowRouter.route('/', {
 		return Cardsets.findOne({_id: Session.get('wordcloudItem')});
 	},
 	action: function (params, qs, data) {
+		// if the landing page was not visited already and its online go there
+		if (LandingPage.checkLandingPageVisit() && LandingPage.getStatus()) {
+			LandingPage.visited();
+			window.location.replace(ServerStyle.getConfig().landingPage);
+		}
 		this.render(config.mainTemplate, 'welcome', data);
 	},
 	triggersEnter: [
