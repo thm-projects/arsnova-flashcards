@@ -3,7 +3,8 @@
     "navigation": {
       "send": "Sende Antwort",
       "locked": "Keine Antwort gewählt",
-      "next": "Nächste Karte"
+      "next": "Nächste Karte",
+      "end": "Sitzung abschließen"
     }
   }
 }
