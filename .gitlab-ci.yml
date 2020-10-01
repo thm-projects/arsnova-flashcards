@@ -3,13 +3,11 @@ variables:
   NODE_ENV: production
   BUILD_DIR: build
   BUNDLE_DIR: "$BUILD_DIR/bundle"
-  REVIEW_SETTINGS: settings_review.json
   DB_TEST_DUMP: tests/testDatabaseDump/meteor
 
 stages:
   - test
   - build
-  - review
   - deploy
 
 jshint:
@@ -61,65 +59,6 @@ build:
   artifacts:
     paths:
       - "$BUNDLE_DIR"
-
-review:
-  stage: review
-  script:
-    # Extract ID by using all digits in branch name till "-" is found
-    - REVIEW_ID=$(echo $CI_BUILD_REF_NAME | cut -f1 -d '-')
-    # Set a variable that points to the app directory
-    - METEOR_HOME=/srv/review-apps/$REVIEW_ID
-    # Make app directory
-    - mkdir -p $METEOR_HOME/app
-    # Copy meteor settings into app directory
-    - cp $REVIEW_SETTINGS $METEOR_HOME/meteor-settings.json
-    # Copy the build app (--delete deletes all previous versions of the app)
-    - rsync -aqv --delete "$BUNDLE_DIR/"* $METEOR_HOME/app
-    # Make directory for mongo db test data dump
-    - mkdir -p $METEOR_HOME/app/dbdump
-    # Copy mongo db test data
-    - rsync -aqv --delete "$DB_TEST_DUMP/"* $METEOR_HOME/dbdump
-    # Call script to setup everything
-    # First parameter is a unique port, second is used to generate the subdomain and the third points to the dbdump directory
-    - /srv/review-apps/review-app-setup.sh $REVIEW_ID $CI_PIPELINE_ID $METEOR_HOME/dbdump
-  environment:
-    name: review/$CI_BUILD_REF_NAME
-    url: http://$CI_PIPELINE_ID.review.arsnova.cards/
-    on_stop: stop_review
-  only:
-    - /^[[:digit:]]+?-/
-  except:
-    - staging
-    - master
-  tags:
-    - cards-review
-  allow_failure: true
-
-stop_review:
-  stage: review
-  script:
-    # Extract ID by using all digits in branch name till "-" is found
-    - REVIEW_ID=$(echo $CI_BUILD_REF_NAME | cut -f1 -d '-')
-    # Set a variable that points to the app directory
-    - METEOR_HOME=/srv/review-apps/$REVIEW_ID
-    - cd $METEOR_HOME
-    - ./appctl.sh stop
-    - cd /srv/review-apps
-    - rm -rf $METEOR_HOME
-  variables:
-    GIT_STRATEGY: none
-  when: manual
-  environment:
-    name: review/$CI_BUILD_REF_NAME
-    action: stop
-  only:
-    - /^[[:digit:]]+?-/
-  except:
-    - staging
-    - master
-  tags:
-    - cards-review
-  allow_failure: true
 
 deploy_staging:
   stage: deploy
