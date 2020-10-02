@@ -5,6 +5,7 @@ BrowserPolicy.content.disallowEval();
 BrowserPolicy.content.allowInlineStyles();
 BrowserPolicy.content.allowFontDataUrl();
 
+BrowserPolicy.content.allowOriginForAll('https://linux.arsnova.rocks');
 BrowserPolicy.content.allowOriginForAll('https://*.google-analytics.com');
 BrowserPolicy.content.allowOriginForAll('https://www.google.com/recaptcha/api.js');
 BrowserPolicy.content.allowOriginForAll('https://www.gstatic.com');
