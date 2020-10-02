@@ -5,6 +5,15 @@
       "locked": "Keine Antwort gewählt",
       "next": "Nächste Karte",
       "end": "Sitzung abschließen"
+    },
+    "tooltip": {
+      "icons": {
+        "right": "Richtige Antwort",
+        "wrong": "Falsche Antwort",
+        "yourAnswer": "Deine Antwort",
+        "markAnswer": "Antwort markieren",
+        "explanation": "Erläuterung anzeigen / verbergen"
+      }
     }
   }
 }
