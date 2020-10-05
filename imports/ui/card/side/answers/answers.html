@@ -14,7 +14,7 @@
                             <span class="card-content-answer-icon-group">
                                 {{#if isAnswerSide}}
                                     {{#if gotExplanation}}
-                                        <div class="fa-stack toggle-answer-explanation card-content-answer explanation" title="{{_ "answers.tooltip.icons.explanation"}}" data-id="{{this.target}}" data-target="#explanation-{{@index}}-{{this.side}}-{{this._id}}">
+                                        <div class="fa-stack toggle-answer-explanation card-content-answer explanation" title="{{_ "answers.tooltip.icons.explanation"}}" data-id="{{this.target}}" data-target="#explanation-{{@index}}-{{this.side}}-{{this.card_id}}">
                                             <i class="fas fa-circle fa-stack-1x card_answer_icon_explanation_text"></i>
                                             <i class="fas fa-info-circle fa-stack-1x card_answer_icon_explanation_background"></i>
                                         </div>
@@ -61,7 +61,7 @@
                         </div>
                         {{#if isAnswerSide}}
                             {{#if gotExplanation}}
-                                <div id="explanation-{{@index}}-{{this.side}}-{{this._id}}" class="row card-content-answer-explanation-container {{#unless isEditMode}}collapse{{/unless}}">
+                                <div id="explanation-{{@index}}-{{this.side}}-{{this.card_id}}" class="row card-content-answer-explanation-container {{#unless isEditMode}}collapse{{/unless}}">
                                     {{#markdeep}}
                                         {{this.explanation}}
                                     {{/markdeep}}

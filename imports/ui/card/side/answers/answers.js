@@ -44,7 +44,7 @@ Template.cardAnswers.helpers({
 				content.type = 0;
 			}
 			content.isAnswerSide = isAnswerSide;
-			content._id = this._id;
+			content.card_id = this._id;
 			content.side = this.forceSide;
 			answers.push(content);
 			content.target = i;
