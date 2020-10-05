@@ -548,11 +548,24 @@
           "card_content_zoom_container_button_minus_text_disabled": black,
           "card_content_zoom_container_button_minus_disabled_opacity": 0.3,
 
-          "card_answer_icon": $default_grey,
-          "card_right_answer_icon": $default_green,
-          "card_wrong_answer_icon": $default_red,
-          "card_explanation_answer_icon": $default_orange,
-          "card_checkbox_answer_icon": $default_grey,
+          "card_answer_icon_user_interactive_text": white,
+          "card_answer_icon_user_interactive_border": $default_grey,
+          "card_answer_icon_user_interactive_background": $default_grey,
+
+          "card_answer_icon_user_result_text": white,
+          "card_answer_icon_user_result_border": $default_grey,
+          "card_answer_icon_user_result_background": $default_grey,
+
+          "card_answer_icon_right_text": $default_green,
+          "card_answer_icon_right_border": $default_green,
+          "card_answer_icon_right_background": white,
+
+          "card_answer_icon_wrong_text": $default_red,
+          "card_answer_icon_wrong_background": white,
+
+          "card_answer_icon_explanation_text": white,
+          "card_answer_icon_explanation_background": $default_orange,
+
           "card_answer_background": rgba($default_grey, 0.25),
           "card_answer_background_right": rgba($default_green, 0.25),
           "card_answer_background_wrong": rgba($default_red, 0.25),

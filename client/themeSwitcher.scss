@@ -707,11 +707,24 @@ $themes: (
     $card_content_zoom_container_button_minus_text_disabled: map-get($map, "card_content_zoom_container_button_minus_text_disabled");
     $card_content_zoom_container_button_minus_disabled_opacity: map-get($map, "card_content_zoom_container_button_minus_disabled_opacity");
 
-    $card_answer_icon: map-get($map, "card_answer_icon");
-    $card_right_answer_icon: map-get($map, "card_right_answer_icon");
-    $card_wrong_answer_icon: map-get($map, "card_wrong_answer_icon");
-    $card_explanation_answer_icon: map-get($map, "card_explanation_answer_icon");
-    $card_checkbox_answer_icon: map-get($map, "card_checkbox_answer_icon");
+    $card_answer_icon_user_interactive_text: map-get($map, "card_answer_icon_user_interactive_text");
+    $card_answer_icon_user_interactive_border: map-get($map, "card_answer_icon_user_interactive_border");
+    $card_answer_icon_user_interactive_background: map-get($map, "card_answer_icon_user_interactive_background");
+
+    $card_answer_icon_user_result_text: map-get($map, "card_answer_icon_user_result_text");
+    $card_answer_icon_user_result_border: map-get($map, "card_answer_icon_user_result_border");
+    $card_answer_icon_user_result_background: map-get($map, "card_answer_icon_user_result_background");
+
+    $card_answer_icon_right_text: map-get($map, "card_answer_icon_right_text");
+    $card_answer_icon_right_border: map-get($map, "card_answer_icon_right_border");
+    $card_answer_icon_right_background: map-get($map, "card_answer_icon_right_background");
+
+    $card_answer_icon_wrong_text: map-get($map, "card_answer_icon_wrong_text");
+    $card_answer_icon_wrong_background: map-get($map, "card_answer_icon_wrong_background");
+
+    $card_answer_icon_explanation_text: map-get($map, "card_answer_icon_explanation_text");
+    $card_answer_icon_explanation_background: map-get($map, "card_answer_icon_explanation_background");
+
     $card_answer_background: map-get($map, "card_answer_background");
     $card_answer_background_right: map-get($map, "card_answer_background_right");
     $card_answer_background_wrong: map-get($map, "card_answer_background_wrong");
@@ -2926,24 +2939,66 @@ $themes: (
       }
     }
 
-    .card-content-answer-icon {
-      color: $card_answer_icon !important;
+    .card-content-answer.interactive {
+      .card_answer_icon_user_interactive_text {
+        color: $card_answer_icon_user_interactive_text !important;
+      }
+
+      .card_answer_icon_user_interactive_border {
+        color: $card_answer_icon_user_interactive_border !important;
+      }
+
+      .card_answer_icon_user_interactive_background {
+        color: $card_answer_icon_user_interactive_background !important;
+      }
     }
 
-    .card-content-right-answer-icon {
-      color: $card_right_answer_icon !important;
+    .card-content-answer.result {
+      .card_answer_icon_user_result_text {
+        color: $card_answer_icon_user_result_text !important;
+      }
+
+      .card_answer_icon_user_result_border {
+        color: $card_answer_icon_user_result_border !important;
+      }
+
+      .card_answer_icon_user_result_background {
+        color: $card_answer_icon_user_result_background !important;
+      }
     }
 
-    .card-content-wrong-answer-icon {
-      color: $card_wrong_answer_icon !important;
+    .card-content-answer.right  {
+      .card_answer_icon_right_text {
+        color: $card_answer_icon_right_text !important;
+      }
+
+      .card_answer_icon_right_border {
+        color: $card_answer_icon_right_border !important;
+      }
+
+      .card_answer_icon_right_background {
+        color: $card_answer_icon_right_background !important;
+      }
     }
 
-    .card-content-explanation-icon {
-      color: $card_explanation_answer_icon !important;
+    .card-content-answer.wrong  {
+      .card_answer_icon_wrong_text {
+        color: $card_answer_icon_wrong_text !important;
+      }
+
+      .card_answer_icon_wrong_background {
+        color: $card_answer_icon_wrong_background !important;
+      }
     }
 
-    .card-content-checkbox-icon {
-      color: $card_checkbox_answer_icon !important;
+    .card-content-answer.explanation  {
+      .card_answer_icon_explanation_text {
+        color: $card_answer_icon_explanation_text !important;
+      }
+
+      .card_answer_icon_explanation_background {
+        color: $card_answer_icon_explanation_background !important;
+      }
     }
 
     .card-content-answer-header, .card-content-answer-container {
