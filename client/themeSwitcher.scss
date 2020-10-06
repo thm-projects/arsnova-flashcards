@@ -824,6 +824,12 @@ $themes: (
     $modal_overlay: map-get($map, "modal_overlay");
     $modal_background: map-get($map, "modal_background");
     $modal_text: map-get($map, "modal_text");
+
+    $modal_checkbox_background: map-get($map, "modal_checkbox_background");
+    $modal_checkbox_border: map-get($map, "modal_checkbox_border");
+    $modal_checkbox_background_active: map-get($map, "modal_checkbox_background_active");
+    $modal_checkbox_border_active: map-get($map, "modal_checkbox_border_active");
+    $modal_checkbox_icon_active: map-get($map, "modal_checkbox_icon_active");
     //pomodoro colors
     $pomodoro_timer_fullscreen_overlay: map-get($map, "pomodoro_timer_fullscreen_overlay");
     $pomodoro_timer_hand_circle: map-get($map, "pomodoro_timer_hand_circle");
@@ -840,12 +846,6 @@ $themes: (
     $pomodoro_timer_arc_break_hover: map-get($map, "pomodoro_timer_arc_break_hover");
     $pomodoro_timer_text: map-get($map, "pomodoro_timer_text");
     $pomodoro_timer_text_highlight: map-get($map, "pomodoro_timer_text_highlight");
-
-    $pomodoro_timer_checkbox_background: map-get($map, "pomodoro_timer_checkbox_background");
-    $pomodoro_timer_checkbox_border: map-get($map, "pomodoro_timer_checkbox_border");
-    $pomodoro_timer_checkbox_background_active: map-get($map, "pomodoro_timer_checkbox_background_active");
-    $pomodoro_timer_checkbox_border_active: map-get($map, "pomodoro_timer_checkbox_border_active");
-    $pomodoro_timer_checkbox_icon_active: map-get($map, "pomodoro_timer_checkbox_icon_active");
     //sweet alert 2 colors
     $sweet_alert_2_title: map-get($map, "sweet_alert_2_title");
     $sweet_alert_2_text: map-get($map, "sweet_alert_2_text");
@@ -4053,6 +4053,32 @@ $themes: (
       }
     }
 
+    .modal-dialog {
+      .modal-checkbox {
+        .background {
+          color: $modal_checkbox_background !important;
+        }
+
+        .border {
+          color:  $modal_checkbox_border !important;
+        }
+      }
+
+      .modal-checkbox.checked {
+        .background {
+          color: $modal_checkbox_background_active !important;
+        }
+
+        .border {
+          color:  $modal_checkbox_border_active !important;
+        }
+
+        .icon {
+          color:  $modal_checkbox_icon_active !important;
+        }
+      }
+    }
+
     //pomodoro
     #pomodoroTimerOverlay {
       background-color: $pomodoro_timer_fullscreen_overlay !important;
@@ -4120,32 +4146,6 @@ $themes: (
 
     .pomodoroHighlight {
       color: $pomodoro_timer_text_highlight !important;
-    }
-
-    #pomodoroTimerModal {
-      .pomodoro-checkbox {
-        .background {
-          color: $pomodoro_timer_checkbox_background !important;
-        }
-
-        .border {
-          color:  $pomodoro_timer_checkbox_border !important;
-        }
-      }
-
-      .pomodoro-checkbox.checked {
-        .background {
-          color: $pomodoro_timer_checkbox_background_active !important;
-        }
-
-        .border {
-          color:  $pomodoro_timer_checkbox_border_active !important;
-        }
-
-        .icon {
-          color:  $pomodoro_timer_checkbox_icon_active !important;
-        }
-      }
     }
 
     //sweet alert 2
