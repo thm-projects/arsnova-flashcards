@@ -1017,6 +1017,7 @@
       "simulator": {
         "buttonModal":  "Tagespensum festlegen",
         "buttonSimulate": "Optimales Tagespensum berechnen",
+        "buttonUpdate": "Aktualisieren",
         "title": "Leitner Simulator",
         "errorRate": {
           "description": "Maximale Anzahl nicht gewusster Karten von __count__ über den gesamten Lernverlauf.",

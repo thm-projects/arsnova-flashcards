@@ -55,11 +55,21 @@ Session.setDefault('firedUseCaseModal', 0);
 Session.setDefault('isAnswerEditorEnabled', false);
 Session.setDefault('displayMainNavigation', true);
 
+// Session Variables for Leitner Simulator Snapshots
+Session.setDefault('activeSimulatorSnapshotDateSubgroup', 0);
+
+// Session Variables for Leitner Progress
+Session.setDefault('workloadProgressUserID', undefined);
+Session.setDefault('workloadProgressCardsetID', undefined);
+Session.setDefault('workloadProgressType', undefined);
+
 // Session Variables for the Choose Fullscreen Feature
 Session.setDefault('fullscreenPresentationSession', 0);
 Session.setDefault('fullscreenDemoSession', 0);
 Session.setDefault('fullscreenLeitnerSession', 0);
 Session.setDefault('fullscreenWozniakSession', 0);
+
+// Session Variables for MC Answers
 Session.setDefault('activeCardAnswers', []);
 Session.setDefault('selectedAnswers', []);
 

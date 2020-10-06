@@ -11,6 +11,7 @@ import {CardIndex} from "./cardIndex";
 import {Utilities} from "./utilities";
 import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
 import {PomodoroTimer} from "./pomodoroTimer";
+import {LeitnerSimulator} from "./leitnerSimulator";
 
 // Allow the user to update the timer a few seconds earlier to prevent close calls deny an update
 let minimumSecondThreshold = 57;
@@ -33,16 +34,17 @@ export let LeitnerUtilities = class LeitnerUtilities {
 	 *  @returns {number} - The amount of valid cards inside the selected box
 	 * */
 	static getCardCount (cardset_id, user_id, box) {
-		if (!Meteor.isServer && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
-			throw new Meteor.Error("not-authorized");
+		let query = {
+			cardset_id: cardset_id,
+			user_id: user_id,
+			box: box,
+			active: false,
+			nextDate: {$lte: this.getCurrentDate()}
+		};
+		if (Meteor.isServer) {
+			return Leitner.find(query).count();
 		} else {
-			return Leitner.find({
-				cardset_id: cardset_id,
-				user_id: user_id,
-				box: box,
-				active: false,
-				nextDate: {$lte: new Date()}
-			}).count();
+			return LeitnerSimulator.leitnerCards().find(query).count();
 		}
 	}
 
@@ -50,13 +52,9 @@ export let LeitnerUtilities = class LeitnerUtilities {
 	 *  @returns {number} - The total amount of valid cards to learn
 	 * */
 	static noCardsLeft (cardCount) {
-		if (!Meteor.isServer && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
-			throw new Meteor.Error("not-authorized");
-		} else {
-			return cardCount.reduce(function (prev, cur) {
-				return prev + cur;
-			});
-		}
+		return cardCount.reduce(function (prev, cur) {
+			return prev + cur;
+		});
 	}
 
 	/** Resets the Leitner data to default values (For an inactive learning-phase).
@@ -86,77 +84,116 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		}
 	}
 
+	static initialzeWorkload (cardset_id, user_id) {
+		let workload;
+		let insertQuery = {
+			cardset_id: cardset_id,
+			user_id: user_id,
+			leitner: {
+				bonus: false,
+				nextLowestPriority: [-1, -1, -1, -1, -1]
+			}
+		};
+		if (Meteor.isServer) {
+			workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id});
+			if (workload === undefined) {
+				Workload.insert(insertQuery);
+			}
+		} else {
+			workload = LeitnerSimulator.workload().findOne({user_id: user_id, cardset_id: cardset_id});
+			if (workload === undefined) {
+				LeitnerSimulator.workload().insert(insertQuery);
+			}
+		}
+	}
+
 	/** Adds new cards to the learners list for leitner box mode
 	 *  @param {string} cardset - The cardset in which the user is learning
 	 *  @param {string} user_id - The id of the user who is currently learning in the specific cardset
 	 *  @returns {Boolean} - Return true once the task is completed
 	 * */
 	static addLeitnerCards (cardset, user_id) {
-		if (!Meteor.isServer) {
-			throw new Meteor.Error("not-authorized");
-		} else {
-			let isNewcomer = true;
+		let isNewcomer = true;
+		if (Meteor.isServer) {
 			Meteor.call('initializeWorkloadData', cardset._id, user_id);
-			let cards;
-			let cardsetFilter = [cardset._id];
-			if (cardset.shuffled) {
-				cardsetFilter = cardset.cardGroups;
-			}
-			let cardsetsWithLearningMode = [];
-			let result;
-			for (let i = 0; i < cardsetFilter.length; i++) {
-				result = Cardsets.findOne({
-					_id: cardsetFilter[i],
-					cardType: {$in: CardType.getCardTypesWithLearningModes()}
-				});
-				if (result !== undefined) {
-					cardsetsWithLearningMode.push(cardsetFilter[i]);
-				}
-			}
-			let existingItems = Leitner.find({
-				cardset_id: cardset._id,
-				user_id: user_id
-			}, {fields: {card_id: 1}}).fetch();
-			let excludedCards = [];
-			existingItems.forEach(function (existingItem) {
-				excludedCards.push(existingItem.card_id);
+		}
+		let cards;
+		let cardsetFilter = [cardset._id];
+		if (cardset.shuffled) {
+			cardsetFilter = cardset.cardGroups;
+		}
+		let cardsetsWithLearningMode = [];
+		let result;
+		for (let i = 0; i < cardsetFilter.length; i++) {
+			result = Cardsets.findOne({
+				_id: cardsetFilter[i],
+				cardType: {$in: CardType.getCardTypesWithLearningModes()}
 			});
+			if (result !== undefined) {
+				cardsetsWithLearningMode.push(cardsetFilter[i]);
+			}
+		}
 
-			if (Leitner.findOne({user_id: user_id, cardset_id: cardset._id}) !== undefined) {
-				isNewcomer = false;
+		let existingItems;
+		let query = {
+			cardset_id: cardset._id,
+			user_id: user_id
+		};
+		let options = {fields: {card_id: 1}};
+		if (Meteor.isServer) {
+			existingItems = Leitner.find(query, options).fetch();
+		} else {
+			existingItems = LeitnerSimulator.leitnerCards().find(query, options).fetch();
+		}
+
+		let excludedCards = [];
+		existingItems.forEach(function (existingItem) {
+			excludedCards.push(existingItem.card_id);
+		});
+
+		if (Meteor.isServer && Leitner.findOne({user_id: user_id, cardset_id: cardset._id}) !== undefined) {
+			isNewcomer = false;
+		}
+		let newItems = [];
+		let newItemObject;
+		let nextDate = new Date();
+		query = {
+			_id: {$nin: excludedCards},
+			cardset_id: {$in: cardsetsWithLearningMode}
+		};
+		options = {fields: {_id: 1, cardset_id: 1}};
+		cards = Cards.find(query, options).fetch();
+		cards.forEach(function (card) {
+			newItemObject = {
+				card_id: card._id,
+				cardset_id: cardset._id,
+				user_id: user_id,
+				box: 1,
+				active: false,
+				nextDate: nextDate,
+				currentDate: nextDate,
+				skipped: 0,
+				priority: 0,
+				viewedPDF: false
+			};
+			if (cardset.shuffled) {
+				newItemObject.original_cardset_id = card.cardset_id;
 			}
-			let newItems = [];
-			let newItemObject;
-			let nextDate = new Date();
-			cards = Cards.find({
-				_id: {$nin: excludedCards},
-				cardset_id: {$in: cardsetsWithLearningMode}
-			}, {fields: {_id: 1, cardset_id: 1}}).fetch();
-			cards.forEach(function (card) {
-				newItemObject = {
-					card_id: card._id,
-					cardset_id: cardset._id,
-					user_id: user_id,
-					box: 1,
-					active: false,
-					nextDate: nextDate,
-					currentDate: nextDate,
-					skipped: 0,
-					priority: 0,
-					viewedPDF: false
-				};
-				if (cardset.shuffled) {
-					newItemObject.original_cardset_id = card.cardset_id;
-				}
-				newItems.push(newItemObject);
-			});
-			if (newItems.length > 0) {
+			newItems.push(newItemObject);
+		});
+
+		if (newItems.length > 0) {
+			if (Meteor.isServer) {
 				Leitner.batchInsert(newItems);
+			} else {
+				LeitnerSimulator.leitnerCards().batchInsert(newItems);
 			}
+		}
+		if (Meteor.isServer) {
 			Meteor.call("updateLearnerCount", cardset._id);
 			Meteor.call('updateWorkloadCount', user_id);
-			return isNewcomer;
 		}
+		return isNewcomer;
 	}
 
 	/** Function selects the next valid cards to learn and notifies the user
@@ -166,50 +203,60 @@ export let LeitnerUtilities = class LeitnerUtilities {
 	 *  @param {boolean} isNewcomer - Did the user just start learning?
 	 * */
 	static setCards (cardset, user, isReset, isNewcomer = false) {
-		if (!Meteor.isServer && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
-			throw new Meteor.Error("not-authorized");
+		if (Meteor.isServer && Meteor.settings.debug.leitner) {
+			console.log("===> Set new active cards for " + user._id);
+		}
+		if (Meteor.isClient) {
+			cardset.maxCards = LeitnerSimulator.getTempMaxWorkload();
+		}
+		let algorithm = this.getBoxAlgorithm();
+		let cardCount = [];
+		//Get all cards that the user can learn right now
+		for (let i = 0; i < algorithm.length; i++) {
+			cardCount[i] = this.getCardCount(cardset._id, user._id, i + 1);
+		}
+
+		if (Meteor.isServer && Meteor.settings.debug.leitner) {
+			console.log("===> Box Card Count: [" + cardCount + "]");
+			console.log("===> Maximum active cards: " + cardset.maxCards);
+		}
+
+		if (this.noCardsLeft(cardCount) === 0) {
+			return;
+		}
+
+		algorithm = this.adjustBoxAlgorithm(cardCount, algorithm);
+
+		let boxActiveCardCap = this.setActiveCardCap(cardset, algorithm);
+		if (config.fillUpMissingCards) {
+			boxActiveCardCap = this.fillUpMissingCards(boxActiveCardCap, cardCount);
+		}
+
+		let cardSelection = this.selectCardsByOrder(cardset, boxActiveCardCap, algorithm, user);
+
+		let query = {
+			cardset_id: cardset._id,
+			user_id: user._id,
+			card_id: {$in: cardSelection}
+		};
+		let params = {
+			$set: {
+				active: true,
+				currentDate: this.getCurrentDate()
+			}
+		};
+		let options = {multi: true};
+
+		if (Meteor.isServer) {
+			Leitner.update(query,params, options);
 		} else {
-			if (Meteor.isServer && Meteor.settings.debug.leitner) {
-				console.log("===> Set new active cards for " + user._id);
-			}
-			let algorithm = this.getBoxAlgorithm();
-			let cardCount = [];
-			//Get all cards that the user can learn right now
-			for (let i = 0; i < algorithm.length; i++) {
-				cardCount[i] = this.getCardCount(cardset._id, user._id, i + 1);
-			}
+			LeitnerSimulator.leitnerCards().update(query, params, options);
+		}
 
-			if (Meteor.isServer && Meteor.settings.debug.leitner) {
-				console.log("===> Box Card Count: [" + cardCount + "]");
-				console.log("===> Maximum active cards: " + cardset.maxCards);
-			}
-
-			if (this.noCardsLeft(cardCount) === 0) {
-				return;
-			}
-
-			algorithm = this.adjustBoxAlgorithm(cardCount, algorithm);
-
-			let boxActiveCardCap = this.setActiveCardCap(cardset, algorithm);
-			if (config.fillUpMissingCards) {
-				boxActiveCardCap = this.fillUpMissingCards(boxActiveCardCap, cardCount);
-			}
-
-			let cardSelection = this.selectCardsByOrder(cardset, boxActiveCardCap, algorithm, user);
-
-			Leitner.update({
-				cardset_id: cardset._id,
-				user_id: user._id,
-				card_id: {$in: cardSelection}
-			}, {
-				$set: {
-					active: true,
-					currentDate: new Date()
-				}
-			}, {multi: true});
-			this.updateLeitnerWorkload(cardset._id, user._id);
-			let task_id = this.updateLeitnerWorkloadTasks(cardset._id, user._id, isNewcomer);
-			this.setLeitnerHistory(cardset, user._id, task_id, cardSelection);
+		this.updateLeitnerWorkload(cardset._id, user._id);
+		let task_id = this.updateLeitnerWorkloadTasks(cardset._id, user._id, isNewcomer);
+		this.setLeitnerHistory(cardset, user._id, task_id, cardSelection);
+		if (Meteor.isServer) {
 			Meteor.call('prepareMail', cardset, user, isReset, isNewcomer, task_id);
 			Meteor.call('prepareWebpush', cardset, user, isNewcomer, task_id);
 		}
@@ -219,7 +266,14 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		if (!Meteor.isServer) {
 			user_id = Meteor.userId();
 		}
-		let leitner = Leitner.find({cardset_id: cardset._id, user_id: user_id, card_id: {$in: cardSelection}}).fetch();
+		let leitner;
+		let query = {cardset_id: cardset._id, user_id: user_id, card_id: {$in: cardSelection}};
+		if (Meteor.isServer) {
+			leitner = Leitner.find(query).fetch();
+		} else {
+			leitner = LeitnerSimulator.leitnerCards().find(query).fetch();
+		}
+
 		let newItems = [];
 		let newItemObject;
 		leitner.forEach(function (leitner) {
@@ -237,61 +291,74 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			newItems.push(newItemObject);
 		});
 		if (newItems.length > 0) {
-			LeitnerHistory.batchInsert(newItems);
+			if (Meteor.isServer) {
+				LeitnerHistory.batchInsert(newItems);
+			} else {
+				LeitnerSimulator.leitnerHistory().batchInsert(newItems);
+			}
 		}
 	}
 
 	static updateLeitnerWorkloadTasks (cardset_id, user_id, isNewcomer) {
-		if (!Meteor.isServer) {
-			throw new Meteor.Error("not-authorized");
+		let user = Meteor.users.findOne({_id: user_id});
+		let cardset = Cardsets.findOne(cardset_id);
+		let workload;
+		let params = {user_id: user_id, cardset_id: cardset_id};
+		if (Meteor.isServer) {
+			workload = Workload.findOne(params);
 		} else {
-			let user = Meteor.users.findOne({_id: user_id});
-			let cardset = Cardsets.findOne(cardset_id);
-			let workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id});
-			let leitnerTask = this.getHighestLeitnerTaskSessionID(cardset_id, user_id);
-			let newSession;
-			if (leitnerTask === undefined || leitnerTask.session === undefined) {
-				newSession = 0;
-			} else if (isNewcomer) {
-				newSession = leitnerTask.session + 1;
-			} else {
-				newSession = leitnerTask.session;
-			}
-			return LeitnerTasks.insert({
-				cardset_id: cardset_id,
-				user_id: user_id,
-				session: newSession,
-				isBonus: workload.leitner.bonus,
-				missedDeadline: false,
-				resetDeadlineMode: config.resetDeadlineMode,
-				wrongAnswerMode: config.wrongAnswerMode,
-				notifications: {
-					mail: {
-						active: user.mailNotification,
-						sent: false,
-						address: user.email
-					},
-					web: {
-						active: user.webNotification,
-						sent: false
-					}
+			workload = LeitnerSimulator.workload().findOne(params);
+		}
+
+		let leitnerTask = this.getHighestLeitnerTaskSessionID(cardset_id, user_id);
+		let newSession;
+		if (leitnerTask === undefined || leitnerTask.session === undefined) {
+			newSession = 0;
+		} else if (isNewcomer) {
+			newSession = leitnerTask.session + 1;
+		} else {
+			newSession = leitnerTask.session;
+		}
+
+		params = {
+			cardset_id: cardset_id,
+			user_id: user_id,
+			session: newSession,
+			isBonus: workload.leitner.bonus,
+			missedDeadline: false,
+			resetDeadlineMode: config.resetDeadlineMode,
+			wrongAnswerMode: config.wrongAnswerMode,
+			notifications: {
+				mail: {
+					active: user.mailNotification,
+					sent: false,
+					address: user.email
 				},
-				daysBeforeReset: cardset.daysBeforeReset,
-				pomodoroTimer: cardset.pomodoroTimer,
-				strictWorkloadTimer: cardset.strictWorkloadTimer,
-				timer: {
-					workload: {
-						current: 0,
-						completed: 0
-					},
-					break: {
-						current: 0,
-						completed: 0
-					},
-					status: 0
+				web: {
+					active: user.webNotification,
+					sent: false
+				}
+			},
+			daysBeforeReset: cardset.daysBeforeReset,
+			pomodoroTimer: cardset.pomodoroTimer,
+			strictWorkloadTimer: cardset.strictWorkloadTimer,
+			timer: {
+				workload: {
+					current: 0,
+					completed: 0
 				},
-				createdAt: new Date()
-			});
+				break: {
+					current: 0,
+					completed: 0
+				},
+				status: 0
+			},
+			createdAt: new Date()
+		};
+		if (Meteor.isServer) {
+			return LeitnerTasks.insert(params);
+		} else {
+			return LeitnerSimulator.leitnerTask().insert(params);
 		}
 	}
 
@@ -401,14 +468,21 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		CardIndex.initializeIndex(cardset);
 		let index = CardIndex.getCardIndex();
 		//Get all cards from a box that match the leitner criteria
+		let options = {fields: {card_id: 1, priority: 1}};
 		for (let l = 0; l < algorithm.length; l++) {
-			let leitnerCards = Leitner.find({
+			let query = {
 				cardset_id: cardset._id,
 				user_id: user._id,
 				box: (l + 1),
 				active: false,
-				nextDate: {$lte: new Date()}
-			}, {fields: {card_id: 1, priority: 1}}).fetch();
+				nextDate: {$lte: this.getCurrentDate()}
+			};
+			let leitnerCards;
+			if (Meteor.isServer) {
+				leitnerCards = Leitner.find(query,options).fetch();
+			} else {
+				leitnerCards = LeitnerSimulator.leitnerCards().find(query,options).fetch();
+			}
 			let filter = Utilities.getUniqData(leitnerCards, 'card_id');
 			let priorities = Utilities.getUniqData(leitnerCards, 'priority');
 			priorities = priorities.sort(function (a,b) {
@@ -442,7 +516,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				}
 			}
 		}
-		if (Meteor.settings.debug.leitner && Meteor.isServer) {
+		if (Meteor.isServer && Meteor.settings.debug.leitner) {
 			console.log("===> Active Card cap for each box after adjustments: [" + boxActiveCardCap + "]");
 			console.log("===> " + nextCards.length + " new active Cards: [" + nextCards + "]");
 		}
@@ -550,67 +624,135 @@ export let LeitnerUtilities = class LeitnerUtilities {
 	}
 
 	static updateLeitnerWorkload (cardset_id, user_id) {
-		if (!Meteor.isServer) {
-			throw new Meteor.Error("not-authorized");
+		let workload;
+		let query = {cardset_id: cardset_id, user_id: user_id};
+		if (Meteor.isServer) {
+			workload = Workload.findOne(query);
 		} else {
-			let workload = Workload.findOne({cardset_id: cardset_id, user_id: user_id});
-			let activeLeitnerCards = 0;
-			let nextLeitnerCardDate = new Date();
-			let activeLeitnerCardDate = new Date();
-			let learnedAllLeitnerCards = false;
-			let nextLowestPriority = [-1, -1, -1, -1, -1];
-			let isLearningLeitner = Leitner.findOne({cardset_id: cardset_id, user_id: user_id});
-			if (isLearningLeitner) {
-				activeLeitnerCards = Leitner.find({cardset_id: cardset_id, user_id: user_id, active: true}).count();
-				let nextLeitnerObject = Leitner.findOne({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}, active: false}, {sort: {nextDate: 1}});
-				if (nextLeitnerObject) {
-					nextLeitnerCardDate = nextLeitnerObject.nextDate;
-				}
-				let activeLeitnerObject = Leitner.findOne({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}, active: true}, {sort: {currentDate: 1}});
-				if (activeLeitnerObject) {
-					activeLeitnerCardDate = activeLeitnerObject.currentDate;
-				}
-				if (!Leitner.find({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}}).count()) {
-					learnedAllLeitnerCards = true;
-				}
-				if (workload !== undefined) {
-					nextLowestPriority = workload.leitner.nextLowestPriority;
-				}
-			}
-			if (workload === undefined) {
-				Workload.insert({
-					cardset_id: cardset_id,
-					user_id: user_id,
-					leitner: {
-						bonus: false,
-						activeCount: activeLeitnerCards,
-						active: isLearningLeitner !== undefined,
-						finished: learnedAllLeitnerCards,
-						nextDate: nextLeitnerCardDate,
-						activeDate: activeLeitnerCardDate,
-						nextLowestPriority: nextLowestPriority
-					}
-				});
+			workload = LeitnerSimulator.workload(query).findOne();
+		}
+
+		let activeLeitnerCards = 0;
+		let nextLeitnerCardDate = new Date();
+		let activeLeitnerCardDate = new Date();
+		let learnedAllLeitnerCards = false;
+		let nextLowestPriority = [-1, -1, -1, -1, -1];
+		let isLearningLeitner;
+		if (Meteor.isServer) {
+			isLearningLeitner = Leitner.findOne(query);
+		} else {
+			isLearningLeitner = LeitnerSimulator.leitnerCards().findOne(query);
+		}
+
+		if (isLearningLeitner) {
+			query = {cardset_id: cardset_id, user_id: user_id, active: true};
+			if (Meteor.isServer) {
+				activeLeitnerCards = Leitner.find(query).count();
 			} else {
-				Workload.update({
-					cardset_id: cardset_id,
-					user_id: user_id
-				}, {
-					$set: {
-						"leitner.activeCount": activeLeitnerCards,
-						"leitner.active": isLearningLeitner !== undefined,
-						"leitner.finished": learnedAllLeitnerCards,
-						"leitner.nextDate": nextLeitnerCardDate,
-						"leitner.activeDate": activeLeitnerCardDate,
-						"leitner.nextLowestPriority": nextLowestPriority
-					}
+				activeLeitnerCards = LeitnerSimulator.leitnerCards().find(query).count();
+			}
+
+			let nextLeitnerObject;
+			query = {cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}, active: false};
+			let options = {sort: {nextDate: 1}};
+			if (Meteor.isServer) {
+				nextLeitnerObject = Leitner.findOne(query, options);
+			} else {
+				// Sort seems to cause an issue with minimongo
+				let results = LeitnerSimulator.leitnerCards().find(query).fetch();
+				results.sort(function (a, b) {
+					return a.nextDate - b.nextDate;
 				});
+				nextLeitnerObject = results[0];
+			}
+
+
+			if (nextLeitnerObject) {
+				nextLeitnerCardDate = nextLeitnerObject.nextDate;
+			}
+			let activeLeitnerObject;
+			query = {cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}, active: true};
+			options = {sort: {currentDate: 1}};
+			if (Meteor.isServer) {
+				activeLeitnerObject = Leitner.findOne(query, options);
+			} else {
+				// Sort seems to cause an issue with minimongo
+				let results = LeitnerSimulator.leitnerCards().find(query).fetch();
+				results.sort(function (a, b) {
+					return a.currentDate - b.currentDate;
+				});
+				activeLeitnerObject = results[0];
+			}
+
+			if (activeLeitnerObject) {
+				activeLeitnerCardDate = activeLeitnerObject.currentDate;
+			}
+
+			let remainingCards;
+			query = {cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}};
+			if (Meteor.isServer) {
+				remainingCards = Leitner.find(query).count();
+			} else {
+				remainingCards = LeitnerSimulator.leitnerCards().find(query).count();
+			}
+			if (remainingCards === 0) {
+				learnedAllLeitnerCards = true;
+			}
+			if (workload !== undefined) {
+				nextLowestPriority = workload.leitner.nextLowestPriority;
+			}
+		}
+		let params;
+		if (workload === undefined) {
+			params = {
+				cardset_id: cardset_id,
+				user_id: user_id,
+				leitner: {
+					bonus: false,
+					activeCount: activeLeitnerCards,
+					active: isLearningLeitner !== undefined,
+					finished: learnedAllLeitnerCards,
+					nextDate: nextLeitnerCardDate,
+					activeDate: activeLeitnerCardDate,
+					nextLowestPriority: nextLowestPriority
+				}
+			};
+			if (Meteor.isServer) {
+				Workload.insert(params);
+			} else {
+				LeitnerSimulator.workload().insert(params);
+			}
+		} else {
+			query = {
+				cardset_id: cardset_id,
+				user_id: user_id
+			};
+			params = {
+				$set: {
+					"leitner.activeCount": activeLeitnerCards,
+					"leitner.active": isLearningLeitner !== undefined,
+					"leitner.finished": learnedAllLeitnerCards,
+					"leitner.nextDate": nextLeitnerCardDate,
+					"leitner.activeDate": activeLeitnerCardDate,
+					"leitner.nextLowestPriority": nextLowestPriority
+				}
+			};
+			if (Meteor.isServer) {
+				Workload.update(query, params);
+			} else {
+				LeitnerSimulator.workload().update(query, params);
 			}
 		}
 	}
 
 	static getHighestLeitnerTaskSessionID (cardset_id, user_id) {
-		return LeitnerTasks.findOne({user_id: user_id, cardset_id: cardset_id}, {sort: {session: -1}});
+		let query = {user_id: user_id, cardset_id: cardset_id};
+		let options = {sort: {session: -1}};
+		if (Meteor.isServer) {
+			return LeitnerTasks.findOne(query, options);
+		} else {
+			return LeitnerSimulator.leitnerTask().findOne(query, options);
+		}
 	}
 
 	static getNextLeitnerDeletedUserID () {
@@ -674,6 +816,14 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						'timer.break.current': 1
 					}
 				});
+		}
+	}
+
+	static getCurrentDate () {
+		if (Meteor.isServer) {
+			return new Date();
+		} else {
+			return LeitnerSimulator.getActiveSimulatorDay().toDate();
 		}
 	}
 };

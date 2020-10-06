@@ -1,0 +1,11 @@
+<template name="bonusFormSimulatorProgress">
+    <div class="hidden-xs hidden-sm">
+        {{#if isCalculating}}
+            {{> loadingScreen}}
+            {{currentDay}}
+        {{else}}
+            {{> progress type="simulator"}}
+            {{> bonusFormSimulatorSnapshots}}
+        {{/if}}
+    </div>
+</template>

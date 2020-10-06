@@ -4,115 +4,16 @@ import {Cardsets} from "../subscriptions/cardsets.js";
 import {check} from "meteor/check";
 import {UserPermissions} from "../../util/permissions";
 import {CardsetUserlist} from "../../util/cardsetUserlist";
-import * as config from "../../config/leitner";
 import {LeitnerUtilities} from "../../util/leitner";
 import {Leitner} from "../subscriptions/leitner.js";
 import {LeitnerHistory} from "../subscriptions/leitnerHistory";
-import {LeitnerTasks} from "../subscriptions/leitnerTasks";
 import {Workload} from "../subscriptions/workload";
 import {Wozniak} from "../subscriptions/wozniak";
-import {CardType} from "../../util/cardTypes";
 
 export const Learned = new Mongo.Collection("learned");
 
 if (Meteor.isServer) {
 	Meteor.methods({
-		/** Function marks an active leitner card as learned
-		 *  @param {string} cardset_id - The cardset id from the card
-		 *  @param {string} card_id - The id from the card
-		 *  @param {boolean} answer - 0 = known, 1 = not known
-		 *  @param {Object} timestamps - Timestamps for viewing the question and viewing the answer
-		 * */
-		updateLeitner: function (cardset_id, card_id, answer, timestamps) {
-			// Make sure the user is logged in
-			if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
-				throw new Meteor.Error("not-authorized");
-			}
-			check(cardset_id, String);
-			check(card_id, String);
-			check(answer, Boolean);
-
-			let cardset = Cardsets.findOne({_id: cardset_id});
-
-			if (cardset !== undefined) {
-				let query = {};
-
-				query.card_id = card_id;
-				query.cardset_id = cardset_id;
-				query.user_id = Meteor.userId();
-				query.active = true;
-
-				let currentLearned = Leitner.findOne(query);
-				if (currentLearned !== undefined) {
-					let selectedBox = currentLearned.box + 1;
-
-					let nextDate = new Date();
-
-					// Move card back as the answer was wrong "not known"
-					if (answer) {
-						if (config.wrongAnswerMode === 1) {
-							if (currentLearned.box > 1) {
-								selectedBox = currentLearned.box - 1;
-							} else {
-								selectedBox = 1;
-							}
-						} else {
-							selectedBox = 1;
-						}
-					} else {
-						let cardCardType;
-						if (cardset.shuffled) {
-							let cardCardset = Cardsets.findOne({_id: currentLearned.original_cardset_id});
-							cardCardType = cardCardset.cardType;
-						} else {
-							cardCardType = cardset.cardType;
-						}
-						if (CardType.gotNonRepeatingLeitner(cardCardType)) {
-							//Move to the last box if card Type got no repetition
-							selectedBox = 6;
-						}
-					}
-					let workload = Workload.findOne({cardset_id: currentLearned.cardset_id, user_id: currentLearned.user_id});
-					let lowestPriority = workload.leitner.nextLowestPriority;
-					let newPriority = lowestPriority[selectedBox - 1];
-					if (selectedBox === 6) {
-						lowestPriority = 0;
-					}
-					nextDate = new Date(nextDate.getTime() + cardset.learningInterval[selectedBox - 1] * 86400000);
-
-					Leitner.update(currentLearned._id, {
-						$set: {
-							box: selectedBox,
-							active: false,
-							nextDate: nextDate,
-							currentDate: new Date(),
-							priority: newPriority
-						}
-					});
-
-					let leitnerTask = LeitnerTasks.findOne({cardset_id: currentLearned.cardset_id, user_id: currentLearned.user_id}, {sort: {session: -1}});
-					if (leitnerTask !== undefined) {
-						delete query.active;
-						query.task_id = leitnerTask._id;
-						LeitnerHistory.update(query, {
-							$set: {
-								box: selectedBox,
-								answer: answer ? 1 : 0,
-								timestamps: timestamps
-							}
-						});
-					}
-
-					lowestPriority[selectedBox - 1] = newPriority - 1;
-					Workload.update({cardset_id: currentLearned.cardset_id, user_id: currentLearned.user_id}, {
-						$set: {
-							"leitner.nextLowestPriority": lowestPriority
-						}
-					});
-				}
-				LeitnerUtilities.updateLeitnerWorkload(cardset_id, Meteor.userId());
-			}
-		},
 		deleteLeitner: function (cardset_id) {
 			check(cardset_id, String);
 

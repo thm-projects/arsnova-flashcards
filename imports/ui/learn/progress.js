@@ -88,6 +88,9 @@ Template.progress.onRendered(function () {
  */
 
 Template.graphCardsetFilter.helpers({
+	setIndex: function (index) {
+		return index + 1;
+	},
 	setModalLabelValue: function (data, isModalLabel = false) {
 		data.isModalLabel = isModalLabel;
 		return data;
@@ -119,12 +122,13 @@ Template.graphCardsetFilter.events({
 		let cardset_id = $(evt.currentTarget).attr("data-id");
 		let count = $(evt.currentTarget).attr("data-count");
 		let cardset_name = $(evt.currentTarget).attr("data-name");
+		Session.set('activeSimulatorSnapshotDateSubgroup', $(evt.currentTarget).attr("data-index"));
 		if (cardset_id === "-1") {
-			$('#setCardsetFilter').html(TAPi18n.__('leitnerProgress.indexDefault', {cardsetCount: cardset_name, cardCount: count}, Session.get('activeLanguage')));
+			$('.setCardsetFilter').html(TAPi18n.__('leitnerProgress.indexDefault', {cardsetCount: cardset_name, cardCount: count}, Session.get('activeLanguage')));
 		} else {
-			$('#setCardsetFilter').html(TAPi18n.__('leitnerProgress.index', {cardset: cardset_name, cardCount: count}, Session.get('activeLanguage')));
+			$('.setCardsetFilter').html(TAPi18n.__('leitnerProgress.index', {cardset: cardset_name, cardCount: count}, Session.get('activeLanguage')));
 		}
-		$('#setCardsetFilter').val(cardset_id);
+		$('.setCardsetFilter').val(cardset_id);
 		LeitnerProgress.updateGraph(cardset_id);
 	}
 });

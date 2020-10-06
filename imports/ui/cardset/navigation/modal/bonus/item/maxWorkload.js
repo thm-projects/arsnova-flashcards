@@ -1,6 +1,6 @@
 import "./maxWorkload.html";
 import {BonusForm} from "../../../../../../util/bonusForm";
-import {LeitnerProgress} from "../../../../../../util/leitnerProgress";
+import {LeitnerSimulator} from "../../../../../../util/leitnerSimulator";
 
 /*
 * ############################################################################
@@ -11,7 +11,6 @@ import {LeitnerProgress} from "../../../../../../util/leitnerProgress";
 Template.bonusFormMaxWorkload.events({
 	"change input": function () {
 		BonusForm.adjustMaxWorkload();
-		BonusForm.initializeSimulatorData();
-		LeitnerProgress.updateGraph();
+		LeitnerSimulator.updateSimulator();
 	}
 });

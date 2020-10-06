@@ -1,7 +1,7 @@
 import "./snapshots.html";
 import {Session} from "meteor/session";
-import {BonusForm} from "../../../../../../../util/bonusForm";
 import {LeitnerProgress} from "../../../../../../../util/leitnerProgress";
+import {LeitnerSimulator} from "../../../../../../../util/leitnerSimulator";
 
 /*
  * ############################################################################
@@ -13,7 +13,7 @@ Session.setDefault('activeSimulatorSnapshotDate', 0);
 
 Template.bonusFormSimulatorSnapshots.helpers({
 	getSnapshots: function () {
-		return BonusForm.getSnapshotDates();
+		return LeitnerSimulator.getSnapshotDates();
 	},
 	isActive: function (index) {
 		if (Session.get('activeSimulatorSnapshotDate') === index) {

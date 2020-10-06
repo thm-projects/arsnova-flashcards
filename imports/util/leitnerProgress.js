@@ -4,12 +4,9 @@ import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 import {Session} from "meteor/session";
 import * as config from "../config/leitnerProgressChart.js";
+import {Cardsets} from "../api/subscriptions/cardsets.js";
 import {NavigatorCheck} from "./navigatorCheck";
-import {BonusForm} from "./bonusForm";
-
-Session.set('workloadProgressUserID', undefined);
-Session.set('workloadProgressCardsetID', undefined);
-Session.set('workloadProgressType', undefined);
+import {LeitnerSimulator} from "./leitnerSimulator";
 
 let chart;
 let simulatorChart;
@@ -33,6 +30,8 @@ export let LeitnerProgress = class LeitnerProgress {
 		if (type === 'simulator') {
 			Session.set('workloadProgressCardsetID', cardset_id);
 			Session.set('workloadProgressUserID', Meteor.userId());
+			WorkloadCardsetCollection.batchInsert(Cardsets.find().fetch());
+			WorkloadLeitnerCollection.batchInsert(LeitnerSimulator.leitnerCards().find().fetch());
 		} else {
 			Meteor.call('getTempCardsetData', cardset_id, type, function (err, res) {
 				if (!err) {
@@ -103,78 +102,68 @@ export let LeitnerProgress = class LeitnerProgress {
 	}
 
 	static updateGraph (filterCardset = '-1') {
-		let datasets;
-		if (filterCardset === "-1") {
-			datasets = this.getGraphData();
-		} else {
-			datasets = this.getGraphData(filterCardset);
-		}
 		if (Session.get('workloadProgressType') === 'simulator') {
-			simulatorChart.data.datasets = datasets;
+			simulatorChart.data.datasets = LeitnerSimulator.getActiveSnapshot();
 			simulatorChart.update();
 		} else {
+			let datasets;
+			if (filterCardset === "-1") {
+				datasets = this.getGraphData();
+			} else {
+				datasets = this.getGraphData(filterCardset);
+			}
 			chart.data.datasets = datasets;
 			chart.update();
 		}
 	}
 
 	static getGraphData (filterCardset = undefined) {
-		if (Session.get('workloadProgressType') === 'simulator') {
-			return [{
-				backgroundColor: config.chartColors.simulatorBackground,
-				borderColor: config.chartColors.simulator,
+		let graphData = [];
+
+		let cardDifficultyCount = this.getCardCount(0, filterCardset);
+		if (difficultyGotCards) {
+			graphData.push({
+				backgroundColor: config.chartColors.difficulty0Background,
+				borderColor: config.chartColors.difficulty0,
 				borderWidth: config.borderWidth,
-				data: BonusForm.getActiveSnapshot(),
-				label: TAPi18n.__('bonus.form.simulator.graphLabel')
-			}];
-		} else {
-			let graphData = [];
-
-			let cardDifficultyCount = this.getCardCount(0, filterCardset);
-			if (difficultyGotCards) {
-				graphData.push({
-					backgroundColor: config.chartColors.difficulty0Background,
-					borderColor: config.chartColors.difficulty0,
-					borderWidth: config.borderWidth,
-					data: cardDifficultyCount,
-					label: TAPi18n.__('difficulty0')
-				});
-			}
-
-			cardDifficultyCount = this.getCardCount(1, filterCardset);
-			if (difficultyGotCards) {
-				graphData.push({
-					backgroundColor: config.chartColors.difficulty1Background,
-					borderColor: config.chartColors.difficulty1,
-					borderWidth: config.borderWidth,
-					data: cardDifficultyCount,
-					label: TAPi18n.__('difficulty1')
-				});
-			}
-
-			cardDifficultyCount = this.getCardCount(2, filterCardset);
-			if (difficultyGotCards) {
-				graphData.push({
-					backgroundColor: config.chartColors.difficulty2Background,
-					borderColor: config.chartColors.difficulty2,
-					borderWidth: config.borderWidth,
-					data: cardDifficultyCount,
-					label: TAPi18n.__('difficulty2')
-				});
-			}
-
-			cardDifficultyCount = this.getCardCount(3, filterCardset);
-			if (difficultyGotCards) {
-				graphData.push({
-					backgroundColor: config.chartColors.difficulty3Background,
-					borderColor: config.chartColors.difficulty3,
-					borderWidth: config.borderWidth,
-					data: cardDifficultyCount,
-					label: TAPi18n.__('difficulty3')
-				});
-			}
-			return graphData;
+				data: cardDifficultyCount,
+				label: TAPi18n.__('difficulty0')
+			});
 		}
+
+		cardDifficultyCount = this.getCardCount(1, filterCardset);
+		if (difficultyGotCards) {
+			graphData.push({
+				backgroundColor: config.chartColors.difficulty1Background,
+				borderColor: config.chartColors.difficulty1,
+				borderWidth: config.borderWidth,
+				data: cardDifficultyCount,
+				label: TAPi18n.__('difficulty1')
+			});
+		}
+
+		cardDifficultyCount = this.getCardCount(2, filterCardset);
+		if (difficultyGotCards) {
+			graphData.push({
+				backgroundColor: config.chartColors.difficulty2Background,
+				borderColor: config.chartColors.difficulty2,
+				borderWidth: config.borderWidth,
+				data: cardDifficultyCount,
+				label: TAPi18n.__('difficulty2')
+			});
+		}
+
+		cardDifficultyCount = this.getCardCount(3, filterCardset);
+		if (difficultyGotCards) {
+			graphData.push({
+				backgroundColor: config.chartColors.difficulty3Background,
+				borderColor: config.chartColors.difficulty3,
+				borderWidth: config.borderWidth,
+				data: cardDifficultyCount,
+				label: TAPi18n.__('difficulty3')
+			});
+		}
+		return graphData;
 	}
 
 	static updateGraphLabels (returnData = false) {
@@ -323,7 +312,7 @@ export let LeitnerProgress = class LeitnerProgress {
 
 	static getCardsetCardCount (countLeitnerCards = false) {
 		let cardset = WorkloadCardsetCollection.findOne({_id: Session.get('workloadProgressCardsetID')});
-		if (cardset.shuffled) {
+		if (cardset !== undefined && cardset.shuffled) {
 			let cardsetList = [];
 			let cardsetLeitnerCount = 0;
 			let cardsets = WorkloadCardsetCollection.find({_id: {$in: cardset.cardGroups}},

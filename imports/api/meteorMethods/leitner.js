@@ -15,17 +15,7 @@ Meteor.methods({
 	initializeWorkloadData: function (cardset_id, user_id) {
 		check(cardset_id, String);
 		check(user_id, String);
-		let workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id});
-		if (workload === undefined) {
-			Workload.insert({
-				cardset_id: cardset_id,
-				user_id: user_id,
-				leitner: {
-					bonus: false,
-					nextLowestPriority: [-1, -1, -1, -1, -1]
-				}
-			});
-		}
+		LeitnerUtilities.initialzeWorkload(cardset_id, user_id);
 	},
 	markLeitnerAutoPDF: function (cardset_id, card_id) {
 		check(cardset_id, String);

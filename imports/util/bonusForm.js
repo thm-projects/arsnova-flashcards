@@ -2,19 +2,7 @@ import {Session} from "meteor/session";
 import {Cardsets} from "../api/subscriptions/cardsets";
 import {PomodoroTimer} from "./pomodoroTimer";
 import * as config from "../config/bonusForm.js";
-import * as leitnerConfig from "../config/leitner.js";
-import {Utilities} from "./utilities";
-import {CardType} from "./cardTypes";
-import {LeitnerUtilities} from "./leitner";
-import {SweetAlertMessages} from "./sweetAlert";
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
-
-let leitnerSimulator;
-let leitnerSimulatorDays;
-let leitnerCardCount;
-let snapshots;
-let snapshotDays;
-let leitnerErrorCount;
+import {LeitnerSimulator} from "./leitnerSimulator";
 
 export let BonusForm = class BonusForm {
 	static cleanModal () {
@@ -87,10 +75,6 @@ export let BonusForm = class BonusForm {
 		}
 	}
 
-	static getCardCount () {
-		return leitnerCardCount;
-	}
-
 	static adjustInterval (isSimulator = false) {
 		let interval, nextInterval;
 		for (let i = 1; i < 5; ++i) {
@@ -105,10 +89,6 @@ export let BonusForm = class BonusForm {
 				nextInterval.val(parseInt(interval.val()) + 1);
 			}
 		}
-	}
-
-	static getErrorCount () {
-		return leitnerErrorCount;
 	}
 
 	static resetErrorCount () {
@@ -129,7 +109,7 @@ export let BonusForm = class BonusForm {
 	static adjustErrorCount () {
 		for (let i = 0; i < 5; i++) {
 			let percentage = Number($('#errorRate' + (i + 1)).val());
-			leitnerErrorCount[i] = Math.round((this.getCardCount() / 100) * percentage);
+			LeitnerSimulator.getErrorCount()[i] = Math.round((this.getCardCount() / 100) * percentage);
 		}
 	}
 
@@ -157,8 +137,14 @@ export let BonusForm = class BonusForm {
 		}
 	}
 
-	static getMaxWorkload () {
-		let maxWorkload = Number($('#maxWorkload').val());
+	static getMaxWorkload (isSimulator) {
+		let maxWorkload;
+		if (isSimulator) {
+			maxWorkload = Number($('#maxWorkloadSimulator').val());
+		} else {
+			maxWorkload = Number($('#maxWorkload').val());
+		}
+
 		if (!maxWorkload) {
 			maxWorkload = Number(config.defaultMaxWorkload);
 		}
@@ -188,187 +174,6 @@ export let BonusForm = class BonusForm {
 			dateStart = config.defaultDateStart;
 		}
 		return dateStart;
-	}
-
-	static resetSimulatorData () {
-		leitnerSimulator = Array.from(Array(6).fill(0));
-		leitnerSimulatorDays = 0;
-		leitnerCardCount = 0;
-		leitnerErrorCount = Array.from(Array(5).fill(0));
-		this.adjustErrorCount();
-		snapshots = [];
-		snapshotDays = [];
-	}
-
-	static createSnapshotDates () {
-		this.resetSimulatorData();
-		let bonusStart = moment(this.getDateStart());
-		let bonusEnd = moment(this.getDateEnd());
-		leitnerSimulatorDays = bonusEnd.diff(bonusStart, 'days');
-		let steps = Math.round(leitnerSimulatorDays / 6);
-		let snapshotDates = [];
-		for (let i = 1; i < 6; i++) {
-			let newDate = moment(bonusStart).add(steps * i,'days');
-			snapshotDays.push(steps * i);
-			snapshotDates.push(Utilities.getMomentsDateShort(newDate));
-		}
-		snapshotDates.push(Utilities.getMomentsDateShort(bonusEnd));
-		Session.set('simulatorSnapshotDates', snapshotDates);
-		this.initializeSimulatorData();
-	}
-
-	static initializeSimulatorWorkload () {
-		for (let i = 1; i <= 5; i++) {
-			$('#bonusFormSimulatorInterval' + i).val(parseInt($('#bonusFormInterval' + i).val()));
-		}
-		$('#maxWorkloadSimulator').val(parseInt($('#maxWorkload').val()));
-	}
-
-	static initializeSimulatorData () {
-		this.adjustErrorCount();
-		let cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')}, {fields: {cardGroups: 1, shuffled: 1, quantity: 1}});
-		if (cardset !== undefined) {
-			if (cardset.shuffled) {
-				leitnerCardCount = 0;
-				for (let i = 0; i < cardset.cardGroups.length; i++) {
-					let cardGroup = Cardsets.findOne({_id: cardset.cardGroups[i]}, {fields: {cardType: 1, quantity: 1}});
-					if (CardType.gotLearningModes(cardGroup.cardType)) {
-						leitnerCardCount += cardGroup.quantity;
-					}
-				}
-			} else {
-				leitnerCardCount = cardset.quantity;
-			}
-		}
-		this.runSimulation(this.getMaxWorkload());
-	}
-
-	static runSimulation (maxCards) {
-		leitnerSimulator = new Array(6).fill(0);
-		leitnerSimulator[0] = leitnerCardCount;
-		let intervals = this.getIntervals(true);
-		let errorCount = this.getErrorCount().slice();
-		snapshots = [];
-		let simulatorTimeout  = [];
-		for (let i = 0; i < intervals.length; i++) {
-			let leitnerSimulatorBox = Array.from(Array(intervals[i]).fill(0));
-			simulatorTimeout.push(leitnerSimulatorBox);
-		}
-		let simulatedCardset = {
-			maxCards: maxCards
-		};
-		for (let d = 0; d < leitnerSimulatorDays; d++) {
-			for (let i = 0; i < simulatorTimeout.length; i++) {
-				let tempCards = simulatorTimeout[i].shift();
-				if (tempCards) {
-					leitnerSimulator[i] += tempCards;
-					if (i === 0) {
-						simulatorTimeout[0].push(0);
-					}
-				}
-			}
-			let algorithm = LeitnerUtilities.getBoxAlgorithm();
-			let activeBoxes = leitnerSimulator.slice(0, 5);
-			let adjustedAlgorithm = LeitnerUtilities.adjustBoxAlgorithm(activeBoxes, algorithm);
-			let boxActiveCardCap = LeitnerUtilities.setActiveCardCap(simulatedCardset, adjustedAlgorithm);
-			if (leitnerConfig.fillUpMissingCards) {
-				boxActiveCardCap = LeitnerUtilities.fillUpMissingCards(boxActiveCardCap, activeBoxes);
-			}
-			for (let i = 0; i < boxActiveCardCap.length; i++) {
-				let tempCards;
-				if (leitnerSimulator[i] < boxActiveCardCap[i]) {
-					tempCards = leitnerSimulator[i];
-					leitnerSimulator[i] = 0;
-				} else {
-					tempCards = boxActiveCardCap[i];
-					leitnerSimulator[i] -= boxActiveCardCap[i];
-				}
-				if (i === (boxActiveCardCap.length - 1)) {
-					leitnerSimulator[leitnerSimulator.length - 1] += tempCards;
-				} else {
-					if (errorCount[i] > 0) {
-						let resetTempCards;
-						if (errorCount[i] < tempCards) {
-							resetTempCards = errorCount[i];
-							tempCards -= errorCount[i];
-							errorCount[i] = 0;
-							simulatorTimeout[i + 1].push(tempCards);
-						} else {
-							resetTempCards = tempCards;
-							errorCount[i] -= tempCards;
-						}
-						if (i > 0) {
-							simulatorTimeout[i - 1].push(resetTempCards);
-						} else {
-							simulatorTimeout[0].push(resetTempCards);
-						}
-					} else {
-						simulatorTimeout[i + 1].push(tempCards);
-					}
-				}
-			}
-			if (snapshotDays.includes(d)) {
-				let simulatorTimeoutCopy = simulatorTimeout.slice();
-				let leitnerSimulatorCopy = leitnerSimulator.slice();
-				for (let i = 0; i < simulatorTimeoutCopy.length; i++) {
-					leitnerSimulatorCopy[i] += simulatorTimeoutCopy[i].reduce((a, b) => a + b, 0);
-				}
-				snapshots.push(leitnerSimulatorCopy);
-			}
-		}
-		for (let i = 0; i < simulatorTimeout.length; i++) {
-			leitnerSimulator[i] += simulatorTimeout[i].reduce((a, b) => a + b, 0);
-		}
-		snapshots.push(leitnerSimulator);
-		return leitnerSimulator[leitnerSimulator.length - 1];
-	}
-
-	static calculateWorkload (maxWorkload, interval = 0, isReverse = false, finetuning = false) {
-		if (maxWorkload > 100) {
-			SweetAlertMessages.leitnerSimulatorError();
-			return;
-		}
-		let result = this.runSimulation(maxWorkload);
-		if (interval === 0 && result === leitnerCardCount) {
-			isReverse = true;
-		}
-		let steps = 5;
-		if (isReverse) {
-			if (result !== leitnerCardCount) {
-				for (let fineTuneSteps = 1; fineTuneSteps < steps + 1; fineTuneSteps++) {
-					result = this.runSimulation(maxWorkload + fineTuneSteps);
-					if (result === leitnerCardCount) {
-						this.setMaxWorkload(maxWorkload + fineTuneSteps, true);
-						this.runSimulation(maxWorkload + fineTuneSteps);
-						break;
-					}
-				}
-			} else {
-				this.calculateWorkload(maxWorkload - steps, interval + 1, isReverse, finetuning);
-			}
-		} else {
-			if (result !== leitnerCardCount) {
-				this.calculateWorkload(maxWorkload + steps, interval + 1, isReverse, finetuning);
-			} else {
-				for (let fineTuneSteps = 1; fineTuneSteps < steps + 1; fineTuneSteps++) {
-					result = this.runSimulation(maxWorkload - fineTuneSteps);
-					if (result !== leitnerCardCount) {
-						fineTuneSteps--;
-						this.setMaxWorkload(maxWorkload - fineTuneSteps, true);
-						this.runSimulation(maxWorkload - fineTuneSteps);
-						break;
-					}
-				}
-			}
-		}
-	}
-
-	static getSnapshotDates () {
-		return Session.get('simulatorSnapshotDates');
-	}
-
-	static getActiveSnapshot () {
-		return snapshots[Session.get('activeSimulatorSnapshotDate')];
 	}
 
 	static getDateEnd () {
@@ -469,5 +274,9 @@ export let BonusForm = class BonusForm {
 		} else {
 			return cardset.workload.bonus.maxPoints;
 		}
+	}
+
+	static getCardCount () {
+		return LeitnerSimulator.getCardCount();
 	}
 };

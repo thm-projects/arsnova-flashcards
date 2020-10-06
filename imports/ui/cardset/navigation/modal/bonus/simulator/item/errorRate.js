@@ -1,6 +1,5 @@
 import "./errorRate.html";
 import {BonusForm} from "../../../../../../../util/bonusForm";
-import {LeitnerProgress} from "../../../../../../../util/leitnerProgress";
 
 /*
  * ############################################################################
@@ -17,7 +16,5 @@ Template.bonusFormSimulatorErrorRate.helpers({
 Template.bonusFormSimulatorErrorRate.events({
 	'change input': function () {
 		BonusForm.adjustErrorCount();
-		BonusForm.initializeSimulatorData();
-		LeitnerProgress.updateGraph();
 	}
 });

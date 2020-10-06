@@ -1,15 +1,17 @@
 <template name="progress">
-    {{#if isProgressType 'cardset'}}
-        {{#if isShuffledCardset}}
+    {{#unless isProgressType 'user'}}
+        {{#unless isProgressType 'admin'}}
+            {{#if isShuffledCardset}}
+                <div class="row">
+                    {{> graphCardsetFilter}}
+                </div>
+            {{/if}}
             <div class="row">
-                {{> graphCardsetFilter}}
+                <div class="col-xs-12 ">{{{getMaxWorkload}}}{{#unless isShuffledCardset}}<span class="hidden-xs">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{_ "leitnerProgress.cardCount" cardCount=(getCardsetCardCount true)}}</span>{{/unless}}</div>
+                {{#unless isShuffledCardset}}<div class="col-xs-12 visible-xs">{{_ "leitnerProgress.cardCount" cardCount=(getCardsetCardCount true)}}</div>{{/unless}}
             </div>
-        {{/if}}
-        <div class="row">
-            <div class="col-xs-12 ">{{{getMaxWorkload}}}{{#unless isShuffledCardset}}<span class="hidden-xs">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{_ "leitnerProgress.cardCount" cardCount=(getCardsetCardCount true)}}</span>{{/unless}}</div>
-            {{#unless isShuffledCardset}}<div class="col-xs-12 visible-xs">{{_ "leitnerProgress.cardCount" cardCount=(getCardsetCardCount true)}}</div>{{/unless}}
-        </div>
-    {{/if}}
+        {{/unless}}
+    {{/unless}}
     {{#if isProgressType 'user'}}
         <div class="col-xs-12">{{_ "leitnerProgress.cardCount" cardCount=getTotalLeitnerCardCountUser}}</div>
     {{/if}}
@@ -25,8 +27,8 @@
     <div id="setLeitnerProgressCardsetFilter">
         <div class="dropdown">
             <div class="btn-group col-xs-12 col-sm-6 col-md-5">
-                <button id="setCardsetFilter" type="button"
-                        class="btn btn-raised btn-default setCardsetFilterDropdown longButton"
+                <button type="button"
+                        class="setCardsetFilter btn btn-raised btn-default setCardsetFilterDropdown longButton"
                         data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"
                         value="-1">{{_ "leitnerProgress.indexDefault" cardsetCount=(getCardsetCount false) cardCount=(getCardsetCardCount true)}}
@@ -39,7 +41,7 @@
                         <span class="sr-only"></span></span>
                 </button>
                 <ul class="dropdown-menu btn-raised longButton">
-                    <li class="cardset" value="-1" data-id="-1" data-count="{{getCardsetCardCount true}}" data-name="{{getCardsetCount}}">
+                    <li class="cardset" value="-1" data-index="0" data-id="-1" data-count="{{getCardsetCardCount true}}" data-name="{{getCardsetCount}}">
                         <a href="#">
                             <div id="activeCardset">
                                 {{_ "leitnerProgress.indexDefault" cardsetCount=(getCardsetCount false) cardCount=(getCardsetCardCount true)}}
@@ -50,7 +52,7 @@
                         </a>
                     </li>
                     {{#each (getCardsetCardCount false)}}
-                        <li class="cardset" value="{{this._id}}" data-id="{{this._id}}" data-count="{{this.quantity}}" data-name="{{this.name}}">
+                        <li class="cardset" value="{{this._id}}" data-index="{{setIndex @index}}" data-id="{{this._id}}" data-count="{{this.quantity}}" data-name="{{this.name}}">
                             <a href="#">
                                 {{this.name}}
                                 <div class="col-xs-12 cardset-details">

@@ -1,6 +1,5 @@
 import "./intervals.html";
 import {BonusForm} from "../../../../../../../util/bonusForm";
-import {LeitnerProgress} from "../../../../../../../util/leitnerProgress";
 
 /*
 * ############################################################################
@@ -11,7 +10,5 @@ import {LeitnerProgress} from "../../../../../../../util/leitnerProgress";
 Template.bonusFormSimulatorIntervals.events({
 	"change input": function () {
 		BonusForm.adjustInterval(true);
-		BonusForm.initializeSimulatorData();
-		LeitnerProgress.updateGraph();
 	}
 });

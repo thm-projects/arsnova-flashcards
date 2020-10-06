@@ -1,15 +1,13 @@
-import "./calculate.html";
+import "./update.html";
 import {LeitnerSimulator} from "../../../../../../../util/leitnerSimulator";
-
 /*
  * ############################################################################
- * bonusFormSimulatorCalculate
+ * bonusFormSimulatorUpdate
  * ############################################################################
  */
 
 Template.bonusFormSimulatorCalculate.events({
-	'click .calculateWorkload': function () {
-		LeitnerSimulator.initializeSimulatorData(false);
-		LeitnerSimulator.calculateWorkload(LeitnerSimulator.getTempMaxWorkload());
+	'click .updateSimulator': function () {
+		LeitnerSimulator.updateSimulator();
 	}
 });
