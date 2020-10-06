@@ -18,6 +18,7 @@ import {PDFViewer} from "./pdfViewer";
 import {Bonus} from "./bonus";
 import {PomodoroTimer} from "./pomodoroTimer";
 import {Fullscreen} from "./fullscreen";
+import {AnswerUtilities} from "./answers";
 
 let keyEventsUnlocked = true;
 let lastActiveCardString = "lastActiveCard";
@@ -325,6 +326,37 @@ export let CardNavigation = class CardNavigation {
 		});
 	}
 
+	static switchCardMc (activeCard) {
+		let flashcardCarousel = $('#cardCarousel');
+		let timestamps = Session.get('leitnerHistoryTimestamps');
+		timestamps.submission = new Date();
+
+		Session.set('selectedAnswers', []);
+		flashcardCarousel.on('slide.bs.carousel', function () {
+			CardVisuals.resizeFlashcard();
+			CardNavigation.toggleVisibility(false);
+			flashcardCarousel.off('slide.bs.carousel');
+		});
+
+		if ($('.carousel-inner > .item').length === 1) {
+			CardNavigation.setActiveCardData();
+			Meteor.call("nextMCCard", activeCard, FlowRouter.getParam('_id'), timestamps);
+		} else {
+			flashcardCarousel.on('slid.bs.carousel', function () {
+				CardNavigation.setActiveCardData();
+				Session.set('isQuestionSide', true);
+				Meteor.call("nextMCCard", activeCard, FlowRouter.getParam('_id'), timestamps);
+				setTimeout(function () {
+					Session.set('activeCardSide', undefined);
+					CardNavigation.toggleVisibility(true);
+					$('html, body').animate({scrollTop: '0px'}, 300);
+					flashcardCarousel.off('slid.bs.carousel');
+				}, 300);
+			});
+		}
+		$('.carousel').carousel('next');
+	}
+
 	static setActiveCardData (_id = undefined, onlyUpdateCardset = false) {
 		if (_id !== undefined) {
 			Session.set('activeCard', _id);
@@ -414,6 +446,7 @@ export let CardNavigation = class CardNavigation {
 			$('.scrollLeft').addClass('pressed');
 			$('.carousel').carousel('prev');
 		}
+		Session.set('selectedAnswers', []);
 		this.toggleVisibility(false);
 		this.switchCard();
 	}
@@ -649,12 +682,16 @@ export let CardNavigation = class CardNavigation {
 						if (!Session.get('isQuestionSide')) {
 							if (Route.isTranscript()) {
 								$('#acceptTranscript').click();
+							} else if (AnswerUtilities.gotLeitnerMcEnabled()) {
+								$('#nextMCCard').click();
 							} else {
 								$('#known').click();
 							}
 						} else {
 							if (Route.isTranscript()) {
 								$('#rateTranscript').click();
+							} else if (AnswerUtilities.gotLeitnerMcEnabled()) {
+								$('#learnSendAnswer').click();
 							} else {
 								$('#learnShowAnswer').click();
 							}

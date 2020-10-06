@@ -9,6 +9,7 @@ import {Session} from "meteor/session";
 import {AspectRatio} from "../../../util/aspectRatio";
 import {Fullscreen} from "../../../util/fullscreen";
 import {CardsetNavigation} from "../../../util/cardsetNavigation";
+import {AnswerUtilities} from "../../../util/answers";
 
 FlowRouter.route('/box/:_id', {
 	name: RouteNames.box,
@@ -25,7 +26,8 @@ FlowRouter.route('/box/:_id', {
 			Meteor.subscribe('cardsetWorkload', params._id),
 			Meteor.subscribe('cardsetCards', params._id),
 			Meteor.subscribe('cardsetLeitner', params._id),
-			Meteor.subscribe('latestLeitnerCardsetTask', params._id)
+			Meteor.subscribe('latestLeitnerCardsetTask', params._id),
+			Meteor.subscribe('latestLeitnerCardsetHistory', params._id),
 		];
 	},
 	data: function (params) {
@@ -33,6 +35,7 @@ FlowRouter.route('/box/:_id', {
 		if (cardset !== undefined) {
 			document.title = TAPi18n.__('title.cardset.leitner',  {app: ServerStyle.getAppTitle(), name: cardset.name}, ServerStyle.getServerLanguage());
 		}
+		AnswerUtilities.setNewRandomizedNumber();
 		MarkdeepEditor.changeMobilePreview(true);
 		Session.set('helpFilter', undefined);
 		Session.set('aspectRatioMode', AspectRatio.getDefault());

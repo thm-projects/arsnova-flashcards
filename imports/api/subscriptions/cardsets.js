@@ -23,22 +23,26 @@ if (Meteor.isServer) {
 	Meteor.publish("cardset", function (cardset_id) {
 		if ((this.userId || ServerStyle.isLoginEnabled("guest")) && UserPermissions.isNotBlockedOrFirstLogin()) {
 			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, kind: 1, owner: 1, cardGroups: 1}});
-			if (cardset.kind === "personal") {
-				if (!UserPermissions.isOwner(cardset.owner) && !UserPermissions.isAdmin()) {
-					this.ready();
-					return;
+			if (cardset !== undefined) {
+				if (cardset.kind === "personal") {
+					if (!UserPermissions.isOwner(cardset.owner) && !UserPermissions.isAdmin()) {
+						this.ready();
+						return;
+					}
 				}
-			}
-			if (!this.userId && cardset.kind === "edu") {
+				if (!Meteor.userId() && cardset.kind === "edu") {
+					this.ready();
+				} else {
+					return Cardsets.find({
+						$or: [
+							{_id: cardset._id},
+							{_id: {$in: cardset.cardGroups}}
+						]
+					});
+				}
+			} else {
 				this.ready();
-				return;
 			}
-			return Cardsets.find({
-				$or: [
-					{_id: cardset._id},
-					{_id: {$in: cardset.cardGroups}}
-				]
-			});
 		} else {
 			this.ready();
 		}

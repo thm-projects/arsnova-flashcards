@@ -3,7 +3,7 @@
                 isCentered}}center-align {{#if isLeftAlign}}left-text-align{{/if}}{{/if}}{{else}}placeholder{{/if}}">
             <div class="card-content-container">
                 {{#if isAnswerSide}}
-                    {{> cardAnswers this}}
+                    {{> cardAnswers (setActiveAnswers this)}}
                 {{/if}}
                 {{#unless gotNoSideContent}}
                     {{#if gotContent}}
@@ -13,7 +13,7 @@
                     {{/if}}
                 {{/unless}}
                 {{#if isQuestionSide}}
-                    {{> cardAnswers this}}
+                    {{> cardAnswers (setActiveAnswers this)}}
                 {{/if}}
             </div>
         </span>

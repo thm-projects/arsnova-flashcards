@@ -188,7 +188,7 @@ export let CardType = class CardType {
 		let sideData;
 		let forceSide = card.forceSide;
 		if (forceSide === undefined && ((card._id === Session.get('activeCard')) || (Route.isNewCard() && !Session.get('is3DActive')))) {
-			forceSide = this.getCubeSideName(Session.get('activeCardSide'));
+			forceSide = this.getCubeSideName(Session.get('activeCardContentId'));
 		} else if (forceSide === undefined) {
 			forceSide = 'front';
 		}
@@ -406,7 +406,9 @@ export let CardType = class CardType {
 	}
 
 	static sideGotVisibleAnswers (card, side) {
-		if (card !== undefined && card.cardType !== undefined && card.answers !== undefined && card.answers.content !== undefined) {
+		if (card !== undefined && card.cardType !== undefined && this.gotAnswerOptions(card.cardType) && this.gotNoSideContent(card.cardType)) {
+			return true;
+		} else if (card.answers !== undefined && card.answers.content !== undefined) {
 			let sideData = this.getSideData(card.cardType, side);
 			if (sideData !== undefined && (sideData.gotQuestion === true || sideData.isAnswerFocus === true) && card.answers.content.length > 0) {
 				return true;
