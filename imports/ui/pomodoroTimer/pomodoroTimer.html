@@ -152,7 +152,7 @@
 </template>
 
 <template name="pomodoroTimerModalContentCheckbox">
-    <div id="{{this.item}}" class="fa-stack fa-stack-checkbox pomodoro-checkbox {{#if gotChecked this.item}}checked{{/if}}">
+    <div id="{{this.item}}" class="fa-stack fa-stack-checkbox modal-checkbox {{#if gotChecked this.item}}checked{{/if}}">
         <i class="fas fa-square fa-stack-2x background"></i>
         <i class="far fa-square fa-stack-2x border"></i>
         {{#if gotChecked this.item}}
