@@ -59,11 +59,11 @@ FlowRouter.route('/cardset', function () {
 	FlowRouter.go('learn');
 });
 
-FlowRouter.notFound = {
+FlowRouter.route('*', {
 	action: function () {
 		FlowRouter.go('home');
 	}
-};
+});
 
 FlowRouter.route('/', {
 	name: RouteNames.home,
