@@ -770,7 +770,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		isFullscreenEnabled = true;
 		if (Route.isBox()) {
 			let leitnerTask = LeitnerTasks.findOne({user_id: Meteor.userId(), cardset_id: FlowRouter.getParam('_id')});
-			if (leitnerTask !== undefined && leitnerTask.pomodoroTimer !== undefined) {
+			if (leitnerTask !== undefined && leitnerTask.pomodoroTimer !== undefined && leitnerTask.pomodoroTimer.soundConfig !== undefined) {
 				goalPoms = leitnerTask.pomodoroTimer.quantity;
 				pomLength = leitnerTask.pomodoroTimer.workLength;
 				breakLength = leitnerTask.pomodoroTimer.breakLength;

@@ -21,6 +21,8 @@ import {NavigatorCheck} from "../../util/navigatorCheck";
 import {CardVisuals} from "../../util/cardVisuals";
 import {Bonus} from "../../util/bonus";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import {CardIndex} from "../../util/cardIndex";
+import {AnswerUtilities} from "../../util/answers";
 
 Session.set('animationPlaying', false);
 
@@ -111,6 +113,10 @@ Template.learnAlgorithms.events({
  * ############################################################################
  */
 
+Template.learnAnswerOptions.onCreated(function () {
+	AnswerUtilities.resetSelectedAnswers();
+});
+
 Template.learnAnswerOptions.onRendered(function () {
 	$('#cardCarousel').on('slide.bs.carousel', function () {
 		Session.set('animationPlaying', true);
@@ -126,18 +132,38 @@ Template.learnAnswerOptions.helpers({
 		return !CardNavigation.isVisible();
 	},
 	gotOneCardLeft: function () {
-		if (Session.get('isQuestionSide')) {
-			return $('.carousel-inner > .item').length === 1;
-		}
+		return $('.carousel-inner > .item').length === 1;
 	},
 	isPomodoroBreakActive: function () {
 		if (Session.get('pomodoroBreakActive') === true) {
 			return "disabled";
 		}
+	},
+	gotMCQuestion: function () {
+		return AnswerUtilities.gotLeitnerMcEnabled();
+	},
+	canSubmitMC: function () {
+		return Session.get('selectedAnswers').length > 0;
 	}
 });
 
 Template.learnAnswerOptions.events({
+	"click #learnSendAnswer": function () {
+		Session.set('isQuestionSide', false);
+		let timestamps = Session.get('leitnerHistoryTimestamps');
+		timestamps.answer = new Date();
+		Session.set('leitnerHistoryTimestamps', timestamps);
+		Meteor.call('setMCAnswers', CardIndex.getCardIndexFilter(), Session.get('activeCard'), FlowRouter.getParam('_id'), Session.get('selectedAnswers'), Session.get('leitnerHistoryTimestamps'), function (error, result) {
+			if (!error) {
+				Session.set('activeCardAnswers', result);
+				CardNavigation.resetNavigation(false);
+				$('html, body').animate({scrollTop: '0px'}, 300);
+			}
+		});
+	},
+	"click #nextMCCard": function () {
+		CardNavigation.switchCardMc(Session.get('activeCard'));
+	},
 	"click #learnShowAnswer": function () {
 		Session.set('isQuestionSide', false);
 		CardNavigation.resetNavigation(false);

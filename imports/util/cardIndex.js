@@ -196,7 +196,24 @@ export let CardIndex = class CardIndex {
 				}
 			}
 		}
+
+		if (!Route.isEditMode()) {
+			this.setVisibleCardAnswers(cardIndexFilter);
+		}
+
 		return cardIndexFilter;
+	}
+
+	static setVisibleCardAnswers (cardIndexFilter) {
+		let disableAnswers = false;
+		if (Route.isBox()) {
+			disableAnswers = true;
+		}
+		Meteor.call('getCardAnswerContent', cardIndexFilter, FlowRouter.getParam('_id'), disableAnswers, function (error, result) {
+			if (!error) {
+				Session.set('activeCardAnswers', result);
+			}
+		});
 	}
 
 	static sortQueryResult (cardIndexFilter, query, isLeitnerOrWozniak = false) {

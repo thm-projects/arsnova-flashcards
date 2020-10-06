@@ -42,6 +42,7 @@ import './cube/cube.js';
 import './sidebar/sidebar.js';
 import "./card.html";
 import {MarkdeepEditor} from "../../util/markdeepEditor";
+import {AnswerUtilities} from "../../util/answers";
 
 function isActiveCard(card, resetData) {
 	if (Route.isEditMode()) {
@@ -106,6 +107,9 @@ Template.flashcards.onRendered(function () {
 			CardNavigation.exitPresentationFullscreen(event);
 		});
 	}, 1000);
+	if (Route.isBox()) {
+		AnswerUtilities.focusOnAnswerIfSubmitted();
+	}
 });
 
 Template.flashcards.onDestroyed(function () {

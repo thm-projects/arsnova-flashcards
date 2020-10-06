@@ -5,6 +5,7 @@ import {Route} from "../../../../util/route.js";
 import {MarkdeepContent} from "../../../../util/markdeep";
 import {Dictionary} from "../../../../util/dictionary";
 import "./content.html";
+import {Session} from "meteor/session";
 
 /*
  * ############################################################################
@@ -73,6 +74,18 @@ Template.cardContent.helpers({
 	},
 	getPlaceholder: function () {
 		return CardType.getPlaceholderText(CardType.getContentID(this), this.cardType, this.learningGoalLevel);
+	},
+	setActiveAnswers: function (card) {
+		if (!Route.isEditMode()) {
+			let activeSessionAnswers = Session.get('activeCardAnswers');
+			for (let i = 0; i < activeSessionAnswers.length; i++) {
+				if (activeSessionAnswers[i]._id === card._id) {
+					card.answers = _.clone(activeSessionAnswers[i].answers);
+					break;
+				}
+			}
+		}
+		return card;
 	}
 });
 
