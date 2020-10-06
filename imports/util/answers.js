@@ -100,7 +100,7 @@ export let AnswerUtilities = class AnswerUtilities {
 			let activeCardId = Session.get('activeCard');
 			if (activeAnswers !== undefined) {
 				activeAnswers.forEach(function (card) {
-					if (card.answers.enabled  === true && card._id === activeCardId) {
+					if (card.answers !== undefined && card.answers.enabled  === true && card._id === activeCardId) {
 						gotMcQuestion = true;
 					}
 				});

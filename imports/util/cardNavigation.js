@@ -335,7 +335,6 @@ export let CardNavigation = class CardNavigation {
 		flashcardCarousel.on('slide.bs.carousel', function () {
 			CardVisuals.resizeFlashcard();
 			CardNavigation.toggleVisibility(false);
-			Session.set('isQuestionSide', true);
 			flashcardCarousel.off('slide.bs.carousel');
 		});
 
@@ -345,6 +344,7 @@ export let CardNavigation = class CardNavigation {
 		} else {
 			flashcardCarousel.on('slid.bs.carousel', function () {
 				CardNavigation.setActiveCardData();
+				Session.set('isQuestionSide', true);
 				Meteor.call("nextMCCard", activeCard, FlowRouter.getParam('_id'), timestamps);
 				setTimeout(function () {
 					Session.set('activeCardSide', undefined);
