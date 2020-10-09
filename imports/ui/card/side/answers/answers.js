@@ -24,6 +24,13 @@ Template.cardAnswers.helpers({
 			}
 		}
 	},
+	canDisplaySubmitCheckbox: function () {
+		if (this.card_id === Session.get('activeCard')) {
+			return Session.get('isQuestionSide');
+		} else {
+			return true;
+		}
+	},
 	isAnswerSide: function () {
 		return this.isAnswerSide;
 	},
@@ -46,8 +53,8 @@ Template.cardAnswers.helpers({
 			content.isAnswerSide = isAnswerSide;
 			content.card_id = this._id;
 			content.side = this.forceSide;
-			answers.push(content);
 			content.target = i;
+			answers.push(content);
 		}
 		if (Route.isBox() && this.answers.randomized === true) {
 			answers = AnswerUtilities.randomizeAnswers(this._id, answers);
