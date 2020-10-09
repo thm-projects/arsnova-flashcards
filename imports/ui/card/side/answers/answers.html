@@ -42,13 +42,15 @@
                                     {{/if}}
                                 {{else}}
                                     {{#if isLeitnerRoute}}
-                                        <div class="fa-stack fa-stack-checkbox card-content-answer interactive" title="{{_ "answers.tooltip.icons.markAnswer"}}" data-id="{{this.target}}">
-                                            <i class="fas fa-square fa-stack-2x card_answer_icon_user_interactive_background"></i>
-                                            <i class="far fa-square fa-stack-2x card_answer_icon_user_interactive_border"></i>
-                                            {{#if isAnswerSelected this.target}}
-                                                <i class="fas fa-check fa-stack-1x card_answer_icon_user_interactive_text"></i>
-                                            {{/if}}
-                                        </div>
+                                        {{#if canDisplaySubmitCheckbox}}
+                                            <div class="fa-stack fa-stack-checkbox card-content-answer interactive" title="{{_ "answers.tooltip.icons.markAnswer"}}" data-id="{{this.target}}">
+                                                <i class="fas fa-square fa-stack-2x card_answer_icon_user_interactive_background"></i>
+                                                <i class="far fa-square fa-stack-2x card_answer_icon_user_interactive_border"></i>
+                                                {{#if isAnswerSelected this.target}}
+                                                    <i class="fas fa-check fa-stack-1x card_answer_icon_user_interactive_text"></i>
+                                                {{/if}}
+                                            </div>
+                                        {{/if}}
                                     {{/if}}
                                 {{/if}}
                             </span>
