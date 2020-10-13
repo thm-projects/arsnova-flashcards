@@ -1,9 +1,7 @@
 <template name="mainNavigationFooterItemFAQ">
-    {{#if canAccessFrontend}}
-        <li class="{{#if isActiveRoute 'faq'}}active{{/if}}">
-            <a id="faq" href="{{pathFor route='faq'}}">
-                {{{getNavigationName "faq"}}}
-            </a>
-        </li>
-    {{/if}}
+    <li class="{{#if isActiveRoute 'faq'}}active{{/if}}">
+        <a id="faq" href="{{pathFor route='faq'}}">
+            {{{getNavigationName "faq"}}}
+        </a>
+    </li>
 </template>
