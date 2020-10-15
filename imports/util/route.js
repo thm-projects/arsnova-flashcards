@@ -11,6 +11,10 @@ import * as RouteNames from "./routeNames";
 let firstTimeVisit = 'isFirstTimeVisit';
 
 export let Route = class Route {
+	static isCardsetGroup () {
+		return this.isCardset() || this.isCardsetDetails() || this.isBox() || this.isMemo() || this.isCardsetLeitnerStats() || this.isEditMode();
+	}
+
 	static isCardsetDetails () {
 		return FlowRouter.getRouteName() === RouteNames.cardsetdetailsid;
 	}

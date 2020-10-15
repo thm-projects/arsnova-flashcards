@@ -1,4 +1,3 @@
-import {Cardsets} from "../../../api/subscriptions/cardsets.js";
 import {Session} from "meteor/session";
 
 // Adds the "disabled" attribute to Elements if the app is offline
@@ -15,6 +14,3 @@ Template.registerHelper("greaterThan0", function (number) {
 	return number > 0;
 });
 
-Template.registerHelper("doesCardsetExist", function (cardset_id) {
-	return Cardsets.findOne({_id: cardset_id}) !== undefined;
-});
