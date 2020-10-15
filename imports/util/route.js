@@ -227,6 +227,10 @@ export let Route = class Route {
 		return FlowRouter.getRouteName() === RouteNames.alldecks;
 	}
 
+	static isNotFound () {
+		return FlowRouter.getRouteName() === RouteNames.notFound;
+	}
+
 	static isWorkload () {
 		return FlowRouter.getRouteName() === RouteNames.learn;
 	}

@@ -1,9 +1,9 @@
 <template name="cardsetAccess">
     {{#if hasPermission}}
-        {{#if learningActive}}
+        {{#if doesCardsetExist this._id}}
             {{> cardset}}
         {{else}}
-            {{> cardset}}
+            {{> notFound}}
         {{/if}}
     {{else}}
         {{> accessDenied}}

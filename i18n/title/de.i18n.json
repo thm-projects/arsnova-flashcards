@@ -6,6 +6,7 @@
     "login": "__app__: Anmeldung",
     "pendingVerification": "__app__: Warte auf Verifizierung der Mail-Adresse",
     "accessDenied": "__app__: Kein Zugriff",
+    "notFound": "__app__: Nicht gefunden",
     "backend": {
       "dashboard": "__app__: Backend Dashboard",
       "user": {

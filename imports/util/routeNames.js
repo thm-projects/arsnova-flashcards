@@ -1,5 +1,6 @@
 let firstLogin = 'firstLogin';
 let accessDenied = 'accessDenied';
+let notFound = 'notFound';
 let home = 'home';
 let about = 'about';
 let learning = 'learning';
@@ -59,6 +60,7 @@ let admin_settings = 'admin_settings';
 module.exports = {
 	firstLogin,
 	accessDenied,
+	notFound,
 	home,
 	about,
 	learning,

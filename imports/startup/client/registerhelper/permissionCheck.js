@@ -85,7 +85,7 @@ Template.registerHelper("isCardsetOwnerAndLecturer", function (cardset_id) {
 });
 
 Template.registerHelper("canAccessFrontend", function () {
-	return (Meteor.user() || MainNavigation.isGuestLoginActive());
+	return (UserPermissions.canAccessFrontend());
 });
 
 Template.registerHelper("isGuestLogin", function () {

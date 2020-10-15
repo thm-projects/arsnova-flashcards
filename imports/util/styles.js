@@ -359,6 +359,13 @@ export let ServerStyle = class ServerStyle {
 			case "learning":
 				backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.learning);
 				break;
+			case "notFound":
+				if (UserPermissions.canAccessFrontend()) {
+					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.notFound);
+				} else {
+					backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.notFound);
+				}
+				break;
 			case "backend":
 				backgroundObject = backgrounds.backend;
 				break;

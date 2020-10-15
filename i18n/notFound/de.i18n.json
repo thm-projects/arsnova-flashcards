@@ -1,0 +1,13 @@
+{
+  "notFound": {
+    "route": {
+      "title": "404 - Seite nicht gefunden",
+      "text": "Sorry, die Seite mit der URL **__url__** existiert nicht."
+    },
+    "cardset": {
+      "title": "404 - Kartei nicht gefunden",
+      "text": "Sorry, die Kartei mit der ID **__id__** existiert nicht."
+    },
+    "button": "Zurück"
+  }
+}

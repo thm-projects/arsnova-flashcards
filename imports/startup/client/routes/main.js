@@ -41,6 +41,7 @@ import "./profile/notifications.js";
 import "./profile/requests.js";
 import "./profile/settings.js";
 import "./accessDenied.js";
+import "./notFound.js";
 import "./firstLogin.js";
 import "./leitner.js";
 import "./onBeforeAction.js";
@@ -57,12 +58,6 @@ import {LandingPage} from "../../../util/landingPage";
 
 FlowRouter.route('/cardset', function () {
 	FlowRouter.go('learn');
-});
-
-FlowRouter.route('*', {
-	action: function () {
-		FlowRouter.go('home');
-	}
 });
 
 FlowRouter.route('/', {

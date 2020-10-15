@@ -92,6 +92,9 @@ let arsnova = {
 	"profileRequests": {
 		"background-image": "none"
 	}, // Defaults to internal if off
+	"notFound": {
+		"background-image": "none"
+	}, // Defaults to internal if logged in, otherwise to landing-page
 	"backend": {
 		"background-image": "url('/img/background/matrix.jpg')"
 	}
@@ -184,6 +187,9 @@ let linux = {
 	"profileRequests": {
 		"background-image": "none"
 	}, // Defaults to internal if off
+	"notFound": {
+		"background-image": "none"
+	}, // Defaults to internal if logged in, otherwise to landing-page
 	"backend": {
 		"background-image": "url('/img/background/matrix.jpg')"
 	}
