@@ -1,7 +1,9 @@
 <template name="accessDenied">
   <div class="text-left col-md-12" id="access-denied-admin">
     <h2>{{_ "access-denied.title"}}</h2>
-    <p>{{_ "access-denied.reason"}}{{currentUser.blockedtext}}</p>
+      {{#markdeep}}
+          {{_ "access-denied.reason"}}{{currentUser.blockedtext}}
+      {{/markdeep}}
     <br/>
     <hr/>
     <button id="logout_access_denied_blocked" type="button" class="btn btn-danger btn-block btn-raised">{{_ "access-denied.button"}}</button>

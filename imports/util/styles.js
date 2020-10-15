@@ -7,6 +7,7 @@ import {Route} from "./route";
 import * as RouteNames from "../util/routeNames.js";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import {EDU, FREE, GUEST, LECTURER, PRO} from "../config/serverStyle/style/global/const";
+import {CardsetNavigation} from "./cardsetNavigation";
 
 export let ServerStyle = class ServerStyle {
 
@@ -270,98 +271,108 @@ export let ServerStyle = class ServerStyle {
 
 	static getBackground (type) {
 		let backgrounds;
-		let none = "none";
 		let backgroundObject = "";
 		let config = this.getConfig().themes;
 		backgrounds = backgroundsConf[config.list[config.defaultID].backgrounds];
-		switch (type) {
-			case "landing-page":
-				backgroundObject = backgrounds["landing-page"];
-				break;
-			case "demo":
-				backgroundObject = backgrounds.demo;
-				break;
-			case "demoIndex":
-				backgroundObject = backgrounds.demoIndex;
-				break;
-			case "internal":
-				backgroundObject = backgrounds.internal;
-				break;
-			case "pool":
-				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.pool);
-				break;
-			case "workload":
-				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.workload);
-				break;
-			case "personal":
-				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.personal);
-				break;
-			case "transcripts":
-				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.transcripts);
-				break;
-			case "allPool":
-				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.allPool);
-				break;
-			case "cardset":
-				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.cardset);
-				break;
-			case "cardsetLeitnerStats":
-				backgroundObject = this.adjustForCardsetBackground(backgrounds, backgrounds.cardsetLeitnerStats);
-				break;
-			case "cardsetTranscriptBonus":
-				backgroundObject = this.adjustForCardsetBackground(backgrounds, backgrounds.cardsetTranscriptBonus);
-				break;
-			case "presentation":
-				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.presentation);
-				break;
-			case "presentationIndex":
-				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.presentationIndex);
-				break;
-			case "leitner":
-				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.leitner);
-				break;
-			case "wozniak":
-				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.wozniak);
-				break;
-			case "editor":
-				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.editor);
-				break;
-			case "profileSettings":
-				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.profileSettings);
-				break;
-			case "profileMembership":
-				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.profileMembership);
-				break;
-			case "profileBilling":
-				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.profileBilling);
-				break;
-			case "profileRequests":
-				backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.profileRequests);
-				break;
-			case "agb":
-				backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.agb);
-				break;
-			case "datenschutz":
-				backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.datenschutz);
-				break;
-			case "faq":
-				backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.faq);
-				break;
-			case "help":
-				backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.help);
-				break;
-			case "impressum":
-				backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.impressum);
-				break;
-			case "about":
-				backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.about);
-				break;
-			case "learning":
-				backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.learning);
-				break;
-			case "backend":
-				backgroundObject = backgrounds.backend;
-				break;
+		if (Route.isCardsetGroup() && !CardsetNavigation.doesCardsetExist(FlowRouter.current().params._id)) {
+			backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.notFound);
+		} else {
+			switch (type) {
+				case "landing-page":
+					backgroundObject = backgrounds["landing-page"];
+					break;
+				case "demo":
+					backgroundObject = backgrounds.demo;
+					break;
+				case "demoIndex":
+					backgroundObject = backgrounds.demoIndex;
+					break;
+				case "internal":
+					backgroundObject = backgrounds.internal;
+					break;
+				case "pool":
+					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.pool);
+					break;
+				case "workload":
+					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.workload);
+					break;
+				case "personal":
+					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.personal);
+					break;
+				case "transcripts":
+					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.transcripts);
+					break;
+				case "allPool":
+					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.allPool);
+					break;
+				case "cardset":
+					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.cardset);
+					break;
+				case "cardsetLeitnerStats":
+					backgroundObject = this.adjustForCardsetBackground(backgrounds, backgrounds.cardsetLeitnerStats);
+					break;
+				case "cardsetTranscriptBonus":
+					backgroundObject = this.adjustForCardsetBackground(backgrounds, backgrounds.cardsetTranscriptBonus);
+					break;
+				case "presentation":
+					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.presentation);
+					break;
+				case "presentationIndex":
+					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.presentationIndex);
+					break;
+				case "leitner":
+					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.leitner);
+					break;
+				case "wozniak":
+					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.wozniak);
+					break;
+				case "editor":
+					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.editor);
+					break;
+				case "profileSettings":
+					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.profileSettings);
+					break;
+				case "profileMembership":
+					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.profileMembership);
+					break;
+				case "profileBilling":
+					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.profileBilling);
+					break;
+				case "profileRequests":
+					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.profileRequests);
+					break;
+				case "agb":
+					backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.agb);
+					break;
+				case "datenschutz":
+					backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.datenschutz);
+					break;
+				case "faq":
+					backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.faq);
+					break;
+				case "help":
+					backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.help);
+					break;
+				case "impressum":
+					backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.impressum);
+					break;
+				case "about":
+					backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.about);
+					break;
+				case "learning":
+					backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.learning);
+					break;
+				case "notFound":
+					if (UserPermissions.canAccessFrontend()) {
+						backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.notFound);
+					} else {
+						backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.notFound);
+					}
+					break;
+				case "backend":
+					backgroundObject = backgrounds.backend;
+					break;
+			}
 		}
 		return backgroundObject;
 	}

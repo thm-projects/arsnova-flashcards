@@ -10,6 +10,7 @@ import {LoginTasks} from "../../../util/login";
 
 var linksWithNoLoginRequirement = function () {
 	let links = [
+		RouteNames.notFound,
 		RouteNames.home,
 		RouteNames.about,
 		RouteNames.learning,
@@ -177,6 +178,8 @@ export let setTheme = function () {
 				setBackground(ServerStyle.getBackground("editor"), 'editor');
 			} else if (Route.isLandingPageRoutes()) {
 				landingPageBackgrounds(ServerStyle.getBackground("internal"), internal);
+			} else if (Route.isNotFound()) {
+				setBackground(ServerStyle.getBackground("notFound"), internal);
 			} else {
 				setBackground(ServerStyle.getBackground("internal"), internal);
 			}

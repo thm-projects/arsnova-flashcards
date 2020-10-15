@@ -4,6 +4,7 @@ import {WebPushNotifications} from "./webPushSubscriptions";
 import {Session} from "meteor/session";
 import {Route} from "./route";
 import {AspectRatio} from "./aspectRatio";
+import {Cardsets} from "../api/subscriptions/cardsets";
 
 export let CardsetNavigation = class CardsetNavigation {
 	/**
@@ -33,5 +34,9 @@ export let CardsetNavigation = class CardsetNavigation {
 				_id: FlowRouter.getParam('_id')
 			});
 		}
+	}
+
+	static doesCardsetExist (cardset_id) {
+		return Cardsets.findOne({_id: cardset_id}) !== undefined;
 	}
 };

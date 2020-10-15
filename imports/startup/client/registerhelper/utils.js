@@ -13,3 +13,4 @@ Template.registerHelper("oddRow", function (index) {
 Template.registerHelper("greaterThan0", function (number) {
 	return number > 0;
 });
+

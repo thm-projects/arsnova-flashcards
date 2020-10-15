@@ -1,0 +1,21 @@
+<template name="notFound">
+    <div class="text-left col-md-12" id="not-found-admin">
+        <h2>
+            {{#if isCardset}}
+                {{_ "notFound.cardset.title"}}
+            {{else}}
+                {{_ "notFound.route.title"}}
+            {{/if}}
+        </h2>
+        {{#markdeep}}
+            {{#if isCardset}}
+                {{_ "notFound.cardset.text" id=(getCardsetId)}}
+            {{else}}
+                {{_ "notFound.route.text" url=(getUrl)}}
+            {{/if}}
+        {{/markdeep}}
+        <br/>
+        <hr/>
+        <button id="back_notFound" type="button" class="btn btn-danger btn-block btn-raised">{{_ "notFound.button"}}</button>
+    </div>
+</template>

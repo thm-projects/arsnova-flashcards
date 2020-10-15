@@ -48,6 +48,10 @@ let roleLandingPage = {
 };
 
 export let UserPermissions = class UserPermissions {
+	static canAccessFrontend () {
+		return Meteor.user() || MainNavigation.isGuestLoginActive();
+	}
+
 	static canCreateContent () {
 		if (this.isAdmin() || Roles.userIsInRole(Meteor.userId(), ServerStyle.getUserRolesWithCreatePermission()) && this.isNotBlockedOrFirstLogin()) {
 			return true;

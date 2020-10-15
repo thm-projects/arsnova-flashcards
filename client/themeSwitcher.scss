@@ -940,6 +940,10 @@ $themes: (
     $profile_fullscreen_checkbox_border_active: map-get($map, "profile_fullscreen_checkbox_border_active");
     $profile_fullscreen_checkbox_icon_active: map-get($map, "profile_fullscreen_checkbox_icon_active");
 
+    //notFound
+    $not_found_background: map-get($map, "not_found_background");
+    $not_found_text: map-get($map, "not_found_text");
+
     .navbar-toggle {
       background-color: $navbar_collapse_background !important;
       color: $navbar_collapse_text !important;
@@ -4631,6 +4635,11 @@ $themes: (
       .icon {
         color: $profile_fullscreen_checkbox_icon_active !important;
       }
+    }
+
+    #not-found-admin {
+      background-color: $not_found_background !important;
+      color: $not_found_text !important;
     }
   }
 }
