@@ -655,6 +655,58 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		}
 	}
 
+	/** Function marks an active leitner card as learned
+	 *  @param {boolean} isAnswerWrong - false = known, true = not known
+	 *  @param {Object} activeLeitner - The active Leitner object that's going to be updated
+	 *  @param {Object} cardset - The cardset related to the activeLeitner object
+	 * */
+	static setNextBoxData (isAnswerWrong, activeLeitner, cardset) {
+		let box = activeLeitner.box + 1;
+		let nextDate = moment();
+		let newPriority;
+		let result = {};
+		let cardType;
+
+		if (cardset.shuffled) {
+			let cardCardset = Cardsets.findOne({_id: activeLeitner.original_cardset_id});
+			cardType = cardCardset.cardType;
+		} else {
+			cardType = cardset.cardType;
+		}
+
+		if (isAnswerWrong) {
+			if (config.wrongAnswerMode === 1) {
+				if (activeLeitner.box > 1) {
+					box = activeLeitner.box - 1;
+				} else {
+					box = 1;
+				}
+			} else {
+				box = 1;
+			}
+		}
+
+		let workload = Workload.findOne({cardset_id: activeLeitner.cardset_id, user_id: activeLeitner.user_id});
+		let lowestPriority = workload.leitner.nextLowestPriority;
+		if (CardType.gotNonRepeatingLeitner(cardType) && !isAnswerWrong) {
+			//Move to the last box if card Type got no repetition
+			box = 6;
+		} else {
+			newPriority = lowestPriority[box - 1];
+			lowestPriority[box - 1] = newPriority - 1;
+		}
+
+		if (box !== 6) {
+			nextDate.add(cardset.learningInterval[box - 1], 'days');
+		}
+
+		result.box = box;
+		result.priority = newPriority;
+		result.nextDate = nextDate.toDate();
+		result.lowestPriorityList = lowestPriority;
+		return result;
+	}
+
 	static updateBreakTimer (leitnerTask) {
 		if (moment(moment()).diff(moment(leitnerTask.timer.lastCallback), 'seconds') > minimumSecondThreshold) {
 			let status = 2;

@@ -312,7 +312,7 @@ export let CardNavigation = class CardNavigation {
 			CardNavigation.setActiveCardData();
 			Session.set('isQuestionSide', true);
 			if (updateLearningMode === 1) {
-				Meteor.call('updateLeitner', FlowRouter.getParam('_id'), answeredCard, answer, Session.get('leitnerHistoryTimestamps'));
+				Meteor.call('setSimpleAnswer', FlowRouter.getParam('_id'), answeredCard, answer, Session.get('leitnerHistoryTimestamps'));
 			} else if (updateLearningMode === 2) {
 				Meteor.call("updateWozniak", FlowRouter.getParam('_id'), answeredCard, answer);
 			} else if (updateLearningMode === 3) {
@@ -463,7 +463,7 @@ export let CardNavigation = class CardNavigation {
 			if (updateLearningMode === 1) {
 				let timestamps = Session.get('leitnerHistoryTimestamps');
 				timestamps.submission = new Date();
-				Meteor.call('updateLeitner', FlowRouter.getParam('_id'), answeredCard, answer, timestamps);
+				Meteor.call('setSimpleAnswer', FlowRouter.getParam('_id'), answeredCard, answer, timestamps);
 			} else if (updateLearningMode === 2) {
 				Meteor.call("updateWozniak", FlowRouter.getParam('_id'), answeredCard, answer);
 			} else if (updateLearningMode === 3) {
