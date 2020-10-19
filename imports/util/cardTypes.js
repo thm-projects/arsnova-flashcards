@@ -310,6 +310,10 @@ export let CardType = class CardType {
 		return config.cardTypesWithLearningModes.includes(cardType);
 	}
 
+	static gotNonRepeatingLeitner (cardType) {
+		return config.cardTypesWithNonRepeatingLeitner.includes(cardType);
+	}
+
 	static gotDifficultyLevel (cardType) {
 		return config.cardTypesWithDifficultyLevel.includes(cardType);
 	}
