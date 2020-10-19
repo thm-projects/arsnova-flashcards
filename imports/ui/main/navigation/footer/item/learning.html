@@ -1,9 +1,7 @@
 <template name="mainNavigationFooterItemLearning">
-    {{#if canAccessFrontend}}
-        <li class="{{#if isActiveRoute 'learning'}}active{{/if}}">
-            <a id="learning" href="{{pathFor route='learning'}}">
-                {{{getNavigationName "learning"}}}
-            </a>
-        </li>
-    {{/if}}
+    <li class="{{#if isActiveRoute 'learning'}}active{{/if}}">
+        <a id="learning" href="{{pathFor route='learning'}}">
+            {{{getNavigationName "learning"}}}
+        </a>
+    </li>
 </template>
