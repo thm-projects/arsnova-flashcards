@@ -36,6 +36,7 @@ import "../imports/api/meteorMethods/useCases.js";
 import "../imports/api/meteorMethods/userData.js";
 import "../imports/api/meteorMethods/webPushSubscriptions.js";
 import "../imports/api/meteorMethods/wozniak.js";
+import "../imports/api/meteorMethods/messageOfTheDay.js";
 import "../imports/api/rest/cardsetApiAccess.js";
 import "../imports/api/subscriptions/adminSettings.js";
 import "../imports/api/subscriptions/cards.js";
@@ -55,6 +56,7 @@ import "../imports/api/subscriptions/users.js";
 import "../imports/api/subscriptions/webPushNotifications.js";
 import "../imports/api/subscriptions/workload.js";
 import "../imports/api/subscriptions/wozniak.js";
+import "../imports/api/subscriptions/messageOfTheDay.js";
 
 // Server only leitner functions
 import "./leitner.js";

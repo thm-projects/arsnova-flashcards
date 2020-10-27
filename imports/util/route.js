@@ -494,6 +494,8 @@ export let Route = class Route {
 					return icons.topNavigation.profile + TAPi18n.__('navbar-collapse.myprofile') + caret;
 				}
 				break;
+			case "news":
+				return icons.topNavigation.news + "<span class='hidden-xs hidden-sm'>&nbsp;" + TAPi18n.__('navbar-collapse.news') + "<span>";
 			case "profileOverview":
 				return icons.topNavigation.profileOverview + TAPi18n.__('profile.activity');
 			case "profileBilling":

@@ -56,6 +56,7 @@ let admin_apiAccess = 'admin_apiAccess';
 let admin_notifications = 'admin_notifications';
 let admin_university = 'admin_university';
 let admin_settings = 'admin_settings';
+let admin_messageOfTheDay = 'admin_messageOfTheDay';
 
 module.exports = {
 	firstLogin,
@@ -115,5 +116,6 @@ module.exports = {
 	admin_apiAccess,
 	admin_notifications,
 	admin_university,
-	admin_settings
+	admin_settings,
+	admin_messageOfTheDay
 };

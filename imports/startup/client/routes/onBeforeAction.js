@@ -6,6 +6,7 @@ import {Route} from "../../../util/route";
 import {Meteor} from "meteor/meteor";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import {LoginTasks} from "../../../util/login";
+import {checkForNewMessages} from "../../../ui/messageOfTheDay/messageOfTheDay";
 
 
 var linksWithNoLoginRequirement = function () {
@@ -230,9 +231,17 @@ export let setLoginTarget = function () {
 	}
 };
 
+export let checkMotds = function () {
+	Meteor.subscribe('MessageOfTheDayFiltered', MainNavigation.isGuestLoginActive(), () => {
+		if (checkForNewMessages()) {
+			$('#messageOfTheDayModal').modal('show');
+		}
+	});
+};
+
 FlowRouter.triggers.enter([setLanguage, setTheme]);
 
-FlowRouter.triggers.exit( function (context) {
+FlowRouter.triggers.exit(function (context) {
 	Session.set('previousRouteName', context.route.name);
 });
 
@@ -243,3 +252,5 @@ FlowRouter.triggers.enter([isSignedIn], {
 FlowRouter.triggers.enter([setLoginTarget], {
 	only: [RouteNames.home]
 });
+
+FlowRouter.triggers.enter([checkMotds]);

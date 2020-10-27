@@ -127,6 +127,13 @@
                         </a>
                     </li>
                     <li>
+                        <a class="{{#if isActiveRoute regex='admin_messageOfTheDay'}}active{{/if}}"
+                           href="{{pathFor route='admin_messageOfTheDay'}}">
+                            <i class="fas fa-envelope-square"></i>
+                            <span>{{_ "admin.messageOfTheDay"}}</span>
+                        </a>
+                    </li>
+                    <li>
                         <a class="{{#if isActiveRoute regex='admin_settings'}}active{{/if}}"
                            href="{{pathFor route='admin_settings'}}">
                             <i class="fas fa-cog"></i>
