@@ -1,0 +1,72 @@
+<template name="messageOfTheDayModal">
+        <div class="modal fade" id="messageOfTheDayModal" tabindex="100" role="dialog"
+             aria-labelledby="messageOfTheDayTitle">
+            <div class="modal-dialog modal-lg" id="dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <span class="modal-icon">
+                            <i class="fas fa-exclamation"> {{_ "messageOfTheDay.title"}}</i>
+                        </span>
+                        {{> mainModalItemCloseIcon}}
+                        <h4 id="modalTitle" class="modal-title"></h4>
+                    </div>
+
+                    <div class="modal-body" id="modalContent">
+                        <table class="table">
+                            <tbody>
+
+                            {{#each getMessages}}
+                                <tr id="{{this._id}}">
+                                    <td>
+                                        <h4>{{#markdeep}}{{this.subject}}{{/markdeep}}</h4>
+                                        <p>{{#markdeep}}{{this.content}}{{/markdeep}}</p>
+                                        <button type="button" id="acceptButton" class="button btn-success btn btn-lg btn-raised">{{_ "messageOfTheDay.confirm"}}</button>
+                                    </td>
+                                </tr>
+                            {{/each}}
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="modalFooter"></div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+</template>
+
+<template name="messagePreviewModal">
+    <div class="modal fade" id="messagePreviewModal" tabindex="100" role="dialog"
+         aria-labelledby="messageOfTheDayTitle">
+        <div class="modal-dialog modal-lg" id="dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                        <span class="modal-icon">
+                            <i class="fas fa-exclamation"> {{_ "admin.motd.previewTitle"}}</i>
+                        </span>
+                    {{> mainModalItemCloseIcon}}
+                    <h4 id="modalTitle" class="modal-title"></h4>
+                </div>
+
+                <div class="modal-body" id="modalContent">
+                    <table class="table">
+                        <tbody>
+                        <h4>{{#markdeep}}{{getSubject}}{{/markdeep}}</h4>
+                        <p>{{#markdeep}}{{getContent}}{{/markdeep}}</p>
+                        <button style="float: right" type="button" id="previewAccept" class="button btn-success btn btn-lg btn-raised">{{_
+                                "admin.motd.previewAccept"}}</button>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="modalFooter"></div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>

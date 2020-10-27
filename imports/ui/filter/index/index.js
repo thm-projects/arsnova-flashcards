@@ -62,6 +62,7 @@ import "./item/bottom/item/license.js";
 import "./index.html";
 import {Meteor} from "meteor/meteor";
 import {ServerStyle} from "../../../util/styles";
+import "../../messageOfTheDay/messageOfTheDay.js";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);

@@ -1,0 +1,39 @@
+<template name="frontendNotification">
+    <li class="dropdown" id="navbar-profile">
+        <a href="#" class="dropdown-toggle dropdownMenuContainer" data-toggle="dropdown">
+            {{{getNavigationName "news"}}}
+        </a>
+        <div class="dropdown-menu" id="profile-drop">
+            <table>
+                {{#each getMessages}}
+
+                    <tr id="messageTR">
+                        <td>
+                            <a class="dropdown-item">
+                                <i class="fas fa-exclamation"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="dropdown-item">
+                                {{this.subject}}
+                            </a>
+                        </td>
+                    </tr>
+
+                {{/each}}
+
+                <tr id="fallbackTR">
+                    <td>
+                        <a class="dropdown-item">
+                        </a>
+                    </td>
+                    <td>
+                        <a class="dropdown-item">
+                            {{_ "navbar-collapse.noNews"}}
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </li>
+</template>

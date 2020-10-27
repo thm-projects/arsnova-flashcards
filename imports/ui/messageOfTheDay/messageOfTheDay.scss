@@ -1,0 +1,26 @@
+#acceptButton {
+  margin-bottom: 10px;
+  float: right;
+}
+
+#messageOfTheDayModal {
+  z-index: 10030 !important;
+  overflow: hidden;
+}
+
+@-moz-document url-prefix() {
+  fieldset { display: table-cell; }
+}
+
+tr {
+    border-top: 1px solid #ddd
+}
+
+#modalFooter {
+  height: 10px;
+}
+
+#modalContent {
+  max-height: 75vh;
+  overflow: auto;
+}

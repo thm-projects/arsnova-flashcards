@@ -164,6 +164,7 @@
     }
   },
   "navbar-collapse": {
+    "noNews": "Keine Neuigkeiten",
     "all": {
       "all": "Alle",
       "cardsets": "Karteien",
@@ -246,7 +247,8 @@
     "frontend": "Frontend",
     "backend": "Backend",
     "none": "Ohne",
-    "info-extra-small": "Hauptmenü ➔"
+    "info-extra-small": "Hauptmenü ➔",
+    "news": "Neuigkeiten"
   },
   "contact": {
     "about": "Über 🍅cards",
@@ -1979,6 +1981,7 @@
     "disconnected": "Keine Serververbindung"
   },
   "admin": {
+    "messageOfTheDay": "Nachricht des Tages",
     "matomoStatistics": "Matomo-Statistiken",
     "allLearnedCardsets": "Nach dem Leitner-Plan gelernte Karten über alle Karteien",
     "learnedCardsets": "Lernstatistik der Kartei",
@@ -2209,6 +2212,29 @@
       "title": "Versenden von Push-Benachrichtigungen",
       "enabled": "Aktiviert",
       "disabled": "Deaktiviert"
+    },
+    "motd": {
+      "create": "neu Erstellen",
+      "title": "Titel",
+      "location": "Wo?",
+      "created": "Erstellt",
+      "published": "Veröffentlicht",
+      "expiration": "Bis",
+      "previewTitle": "Neuigkeiten",
+      "previewAccept": "Gelesen",
+      "editTitle": "Nachricht",
+      "editInputTitle": "Titel",
+      "editInputText": "Inhalt",
+      "editPublish": "Veröffentlichen ab",
+      "editExpiration": "Veröffentlichen bis",
+      "editLocation": "Sichtbar für",
+      "editLoggedIn": "Angemeldet",
+      "editLoggedOut": "Abgemeldet",
+      "editBothLocations": "Überall",
+      "editPreview": "Vorschau",
+      "editSave": "Speichern",
+      "errorText": "Bitte alle Pflichtfelder * ausfüllen!",
+      "mandatory": "Pflichtfelder *"
     }
   },
   "access-denied": {
@@ -2373,5 +2399,9 @@
         "confirm": "Ich hab's verstanden."
       }
     }
+  },
+  "messageOfTheDay": {
+    "title": "Neuigkeiten",
+    "confirm": "Gelesen"
   }
 }

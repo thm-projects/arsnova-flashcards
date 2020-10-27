@@ -1,0 +1,35 @@
+table {
+  background-color: white;
+}
+h5 {
+  color: black;
+}
+label{
+  color: black;
+}
+.modal-content {
+  padding: 10px;
+}
+.activeToggle {
+  background-color: orange !important;
+}
+#motdsPreviewModal{
+  z-index: 30000 !important;
+}
+#publishMessage {
+  float: right;
+}
+#subject {
+  width: 100%;
+}
+
+.paddingGroup {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
+#errorText {
+  color: red;
+  float: right;
+  display: none;
+}

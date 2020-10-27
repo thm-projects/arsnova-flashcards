@@ -20,6 +20,7 @@ import "./item/workload.js";
 import "./item/filter.js";
 import "./item/presentationIndex/presentationIndex.js";
 import "./top.html";
+import "./item/notification/frontendNotification.js";
 
 /*
  * ############################################################################
