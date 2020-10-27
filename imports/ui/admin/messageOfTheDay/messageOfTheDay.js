@@ -68,6 +68,7 @@ Template.admin_messageOfTheDay.events({
 	'click #createMessage': function () {
 		isEdit = false;
 		toggleActiveClass(0);
+		message.clear();
 		message.set('locationType', 0);
 		message.set('publishDate', moment(new Date()).format("YYYY-MM-DD"));
 		$('#motdAddAndEdit').modal('show');
