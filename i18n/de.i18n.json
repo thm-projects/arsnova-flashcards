@@ -2234,7 +2234,11 @@
       "editPreview": "Vorschau",
       "editSave": "Speichern",
       "errorText": "Bitte alle Pflichtfelder * ausfüllen!",
-      "mandatory": "Pflichtfelder *"
+      "mandatory": "* Pflichtfelder ",
+      "confirmDeleteTitle": "Nachricht löschen",
+      "confirmDeleteBody": "Willst du die Nachricht wirklich löschen? Dies kann nicht rückgängig gemacht werden.",
+      "confirmDeleteConfirm": "Bestätigen",
+      "confirmDeleteDismiss": "Abbrechen"
     }
   },
   "access-denied": {

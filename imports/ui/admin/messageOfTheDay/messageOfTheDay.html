@@ -1,6 +1,7 @@
 <template name="admin_messageOfTheDay">
     {{> motdsPreviewModal}}
     {{> motdAddAndEdit}}
+    {{> confirmDeleteMessage}}
     <div class="content-header">
         <h1>
             {{_ "admin.messageOfTheDay"}}
@@ -10,7 +11,7 @@
         {{_ "admin.motd.create"}}
     </button>
     <div class="content reactive-table">
-        <table class="table">
+        <table class="table table-striped">
             <tr>
                 <th>{{_ "admin.motd.title"}}</th>
                 <th>{{_ "admin.motd.location"}}</th>
@@ -27,8 +28,8 @@
                     <td>{{this.dateCreated}}</td>
                     <td>{{this.publishDate}}</td>
                     <td>{{this.expirationDate}}</td>
-                    <td><span id="deleteMessage"><i class='fas fa-ban'></i></span>
-                        <span id="editMessage"><i class="fas fa-edit"></i></span>
+                    <td><span id="editMessage"><i class="fas fa-edit"></i></span>
+                        <span id="deleteMessage"><i class='fas fa-ban'></i></span>
                     </td>
                 </tr>
             {{/each}}
@@ -90,7 +91,7 @@
                 <div id="subject" class="col-lg-6 cardtext editorElement">
                     <form class="form-group subjectEditor">
                         <input value="{{getTitle}}" required class="form-control" id="subjectEditor" name="content"
-                               placeholder="{{_ "admin.motd.editInputTitle"}}*"
+                               placeholder="*{{_ "admin.motd.editInputTitle"}}"
                                tabindex="1"></form>
                     <br>
                 </div>
@@ -100,7 +101,7 @@
                     <div id="markdeepEditorContent">
                         <form>
                     <textarea value="{{getContent}}" required id="contentEditor" class="card" name="content"
-                              placeholder="{{_ "admin.motd.editInputText"}}*"
+                              placeholder="*{{_ "admin.motd.editInputText"}}"
                               data-provide="markdown" rows="10" tabindex="4"></textarea>
                         </form>
                     </div>
@@ -112,7 +113,7 @@
                     <input type="date" class="form-group subjectEditor" id="publishDate"
                            placeholder="Von" value="{{getPublishDate}}">
                     <br>
-                    <label>{{_ "admin.motd.editExpiration"}}*</label>
+                    <label>*{{_ "admin.motd.editExpiration"}}</label>
                     <input type="date" class="form-group subjectEditor" required id="expirationDate"
                            placeholder="Bis" value="{{getExpirationDate}}">
                     <br>
@@ -133,6 +134,37 @@
                     <button id="previewButton" type="button" class="btn btn-raised btn-success">
                         <span>{{_ "admin.motd.editPreview"}}</span>
                     </button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>
+
+<template name="confirmDeleteMessage">
+    <div class="modal fade" id="confirmDeleteMessage" tabindex="-1" role="dialog"
+         aria-labelledby="confirmDeleteMessage">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-icon">
+                        <i class="fas fa-exclamation"></i>
+                    </span>
+                    {{> mainModalItemCloseIcon}}
+                    <h4 id="confirmDeleteMessageTitle" class="modal-title">{{_ "admin.motd.confirmDeleteTitle"}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    {{_ "admin.motd.confirmDeleteBody"}}
+                </div>
+                <div class="modal-footer">
+                    <button id="confirmDeleteConfirm" class="btn btn-raised btn-danger pull-right">{{_
+                            "admin.motd.confirmDeleteConfirm"}}</button>
+                    <button id="confirmDeleteDismiss" class="btn btn-raised btn-default pull-left"
+                            data-dismiss="modal">{{_
+                            "admin.motd.confirmDeleteDismiss"}}</button>
                 </div>
             </div>
             <!-- /.modal-content -->

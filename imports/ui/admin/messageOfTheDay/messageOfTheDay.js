@@ -2,6 +2,7 @@ import "./messageOfTheDay.html";
 import "./messageOfTheDay.scss";
 import {MessageOfTheDay} from "../../../api/subscriptions/messageOfTheDay";
 import {ReactiveDict} from 'meteor/reactive-dict';
+import {Session} from "meteor/session";
 
 let message = new ReactiveDict();
 let isEdit;
@@ -52,8 +53,8 @@ Template.admin_messageOfTheDay.helpers({
 });
 Template.admin_messageOfTheDay.events({
 	'click #deleteMessage': function () {
-		document.getElementById(this._id).remove();
-		Meteor.call('removeMessageOfTheDay', this._id);
+		Session.set('deleteMessageId', this._id);
+		$('#confirmDeleteMessage').modal('show');
 	},
 	'click #editMessage': function () {
 		isEdit = true;
@@ -72,6 +73,14 @@ Template.admin_messageOfTheDay.events({
 		message.set('locationType', 0);
 		message.set('publishDate', moment(new Date()).format("YYYY-MM-DD"));
 		$('#motdAddAndEdit').modal('show');
+	}
+});
+
+Template.confirmDeleteMessage.events({
+	'click #confirmDeleteConfirm': function () {
+		document.getElementById(Session.get('deleteMessageId')).remove();
+		Meteor.call('removeMessageOfTheDay', Session.get('deleteMessageId'));
+		$('#confirmDeleteMessage').modal('hide');
 	}
 });
 

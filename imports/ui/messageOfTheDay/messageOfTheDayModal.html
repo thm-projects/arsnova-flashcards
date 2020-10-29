@@ -13,13 +13,13 @@
                     </div>
 
                     <div class="modal-body" id="modalContent">
-                        <table class="table">
+                        <table class="table table-striped">
                             <tbody>
 
                             {{#each getMessages}}
                                 <tr id="{{this._id}}">
                                     <td>
-                                        <h4>{{#markdeep}}{{this.subject}}{{/markdeep}}</h4>
+                                        <h2>{{#markdeep}}{{this.subject}}{{/markdeep}}</h2>
                                         <p>{{#markdeep}}{{this.content}}{{/markdeep}}</p>
                                         <button type="button" id="acceptButton" class="button btn-success btn btn-lg btn-raised">{{_ "messageOfTheDay.confirm"}}</button>
                                     </td>
