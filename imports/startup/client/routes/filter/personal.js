@@ -18,7 +18,7 @@ FlowRouter.route('/personal/cardsets', {
 		return [
 			import('../../../../ui/filter/filter.js'),
 			Meteor.subscribe('defaultAppData'),
-			Meteor.subscribe('myCardsets')
+			Meteor.subscribe('myCardsets'),
 		];
 	},
 	data: function () {
@@ -53,7 +53,7 @@ FlowRouter.route('/personal/repetitorien', {
 			import('../../../../ui/filter/filter.js'),
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('personalRepetitorien'),
-			Meteor.subscribe('userData')
+			Meteor.subscribe('userData'),
 		];
 	},
 	data: function () {

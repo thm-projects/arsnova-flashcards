@@ -153,7 +153,8 @@ Meteor.methods({
 						selectedColorTheme: "default",
 						mailNotification: false,
 						webNotification: false,
-						"profile.locale": "de"
+						"profile.locale": "de",
+						motd: []
 					}
 				});
 			}
@@ -441,6 +442,17 @@ Meteor.methods({
 		Meteor.users.update(id, {
 			$set: {
 				"selectedColorTheme": selectedColorTheme
+			}
+		});
+	},
+	/** Function saves the given read message of the day ids to the given user
+	 *  @param {string} motds - new Array of motd ids
+	 *  @param {string} id - The id of the user
+	 * */
+	updateMotd: function (motds, id) {
+		Meteor.users.update(id, {
+			$set: {
+				"motds": motds
 			}
 		});
 	}

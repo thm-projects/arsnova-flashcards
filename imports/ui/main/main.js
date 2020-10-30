@@ -29,6 +29,7 @@ import "../accessDenied/accessDenied.js";
 import "../notFound/notFound.js";
 import "../learn/modal/progress.js";
 import "./main.html";
+import "../messageOfTheDay/messageOfTheDay.js";
 
 import {PDFViewer} from "../../util/pdfViewer";
 import {setLanguage, setTheme} from "../../startup/client/routes/onBeforeAction.js";
@@ -156,7 +157,6 @@ Template.main.onCreated(function () {
 });
 
 Template.main.onRendered(function () {
-	Meteor.call("initUser");
 	$("html, body").click(function (event) {
 		if (!$(event.target).is('.search-dropdown-container *') && !$(event.target).is('#searchResults *')) {
 			MainNavigation.clearSearch();

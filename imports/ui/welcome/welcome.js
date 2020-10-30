@@ -16,6 +16,7 @@ import {FirstTimeVisit} from "../../util/firstTimeVisit";
 import {MainNavigation} from "../../util/mainNavigation";
 import {ExecuteControllers} from 'wtc-controller-element';
 import "./modal/login.js";
+import "../messageOfTheDay/messageOfTheDay.js";
 import "./welcome.html";
 import {setLoginTarget} from "../../startup/client/routes/onBeforeAction.js";
 import {Fullscreen} from "../../util/fullscreen";

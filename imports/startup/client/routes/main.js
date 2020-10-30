@@ -7,6 +7,7 @@ import "./admin/notifications.js";
 import "./admin/settings.js";
 import "./admin/university.js";
 import "./admin/user.js";
+import "./admin/messageOfTheDay.js";
 import "./cardset/cardset.js";
 import "./cardset/editors.js";
 import "./cardset/leitnerBonus.js";
@@ -74,7 +75,7 @@ FlowRouter.route('/', {
 		return [
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('wordcloudCardsets'),
-			Meteor.subscribe('userDataLandingPage')
+			Meteor.subscribe('userDataLandingPage'),
 		];
 	},
 	data: function () {
