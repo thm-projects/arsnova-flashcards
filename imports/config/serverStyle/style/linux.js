@@ -210,5 +210,5 @@ module.exports = {
 			}
 		] // The list available to the theme switcher dropdown menu
 	},
-	"landingPage": "https://linux.arsnova.rocks"
+	"landingPage": ""
 };
