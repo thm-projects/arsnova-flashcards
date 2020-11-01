@@ -5,6 +5,6 @@ import {Template} from "meteor/templating";
 
 Template.cardsetFormItemSessions.helpers({
 	isShuffledCardset: function () {
-		return Session.get('useRepForm');
+		return (this.shuffled || Session.get('useRepForm'));
 	}
 });
