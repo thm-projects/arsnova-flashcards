@@ -757,6 +757,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		$('#sound1').prop('checked', isBellSoundEnabled);
 		$('#sound2').prop('checked', isSuccessSoundEnabled);
 		$('#sound3').prop('checked', isFailSoundEnabled);
+		Session.set('pomodoroSoundConfig', [isBellSoundEnabled, isSuccessSoundEnabled, isFailSoundEnabled]);
 	}
 
 	static initializeVariables () {

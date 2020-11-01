@@ -9,9 +9,7 @@ import {Session} from "meteor/session";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {ReactiveVar} from "meteor/reactive-var";
 
-let soundConfig1 = new ReactiveVar();
-let soundConfig2 = new ReactiveVar();
-let soundConfig3 = new ReactiveVar();
+Session.set('pomodoroSoundConfig', [true, true, true]);
 let fullscreenConfig = new ReactiveVar();
 
 /*
@@ -64,9 +62,7 @@ Template.pomodoroTimerModal.onRendered(function () {
 	$('#pomodoroTimerModal').on('show.bs.modal', function () {
 		PomodoroTimer.initializeVariables();
 		PomodoroTimer.initializeModalContent();
-		soundConfig1.set(PomodoroTimer.getSoundConfig()[0]);
-		soundConfig2.set(PomodoroTimer.getSoundConfig()[1]);
-		soundConfig3.set(PomodoroTimer.getSoundConfig()[2]);
+		Session.set('pomodoroSoundConfig', [PomodoroTimer.getSoundConfig()[0], PomodoroTimer.getSoundConfig()[1], PomodoroTimer.getSoundConfig()[2]]);
 		fullscreenConfig.set(PomodoroTimer.getFullscreenConfig());
 	});
 	$('#pomodoroTimerModal').on('shown.bs.modal', function () {
@@ -146,15 +142,21 @@ Template.pomodoroTimerModalContent.events({
 Template.pomodoroTimerModalContentCheckbox.events({
 	'click #sound1': function () {
 		PomodoroTimer.clockHandler(0);
-		soundConfig1.set(PomodoroTimer.getSoundConfig()[0]);
+		let soundConfig = Session.get('pomodoroSoundConfig');
+		soundConfig[0] = PomodoroTimer.getSoundConfig()[0];
+		Session.set('pomodoroSoundConfig', soundConfig);
 	},
 	'click #sound2': function () {
 		PomodoroTimer.clockHandler(1);
-		soundConfig2.set(PomodoroTimer.getSoundConfig()[1]);
+		let soundConfig = Session.get('pomodoroSoundConfig');
+		soundConfig[1] = PomodoroTimer.getSoundConfig()[1];
+		Session.set('pomodoroSoundConfig', soundConfig);
 	},
 	'click #sound3': function () {
 		PomodoroTimer.clockHandler(2);
-		soundConfig3.set(PomodoroTimer.getSoundConfig()[2]);
+		let soundConfig = Session.get('pomodoroSoundConfig');
+		soundConfig[2] = PomodoroTimer.getSoundConfig()[2];
+		Session.set('pomodoroSoundConfig', soundConfig);
 	},
 	'click #fullscreenPomodoro': function () {
 		PomodoroTimer.clockHandler(3);
@@ -166,11 +168,11 @@ Template.pomodoroTimerModalContentCheckbox.helpers({
 	gotChecked: function (item) {
 		switch (item) {
 			case "sound1":
-				return soundConfig1.get();
+				return Session.get('pomodoroSoundConfig')[0];
 			case "sound2":
-				return soundConfig2.get();
+				return Session.get('pomodoroSoundConfig')[1];
 			case "sound3":
-				return soundConfig3.get();
+				return Session.get('pomodoroSoundConfig')[2];
 			case "fullscreenPomodoro":
 				return fullscreenConfig.get();
 		}
