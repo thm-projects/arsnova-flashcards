@@ -115,8 +115,12 @@ export function cleanModal() {
 		$('#arsnovaClickOverride').attr('checked', true);
 		$('#fragJetztOverride').attr('checked', true);
 	} else if (Session.get('previousCardsetData').shuffled) {
-		$('#arsnovaClickOverride').attr('checked', Session.get('previousCardsetData').arsnovaClick.overrideOnlyEmptySessions);
-		$('#fragJetztOverride').attr('checked', Session.get('previousCardsetData').fragJetzt.overrideOnlyEmptySessions);
+		if ($('#arsnovaClickOverride').length && Session.get('previousCardsetData').arsnovaClick !== undefined) {
+			$('#arsnovaClickOverride')[0].checked =  Session.get('previousCardsetData').arsnovaClick.overrideOnlyEmptySessions;
+		}
+		if ($('#fragJetztOverride').length && Session.get('previousCardsetData').fragJetzt !== undefined) {
+			$('#fragJetztOverride')[0].checked =  Session.get('previousCardsetData').fragJetzt.overrideOnlyEmptySessions;
+		}
 	}
 }
 
@@ -139,8 +143,12 @@ export function saveCardset() {
 		arsnovaClick.session = $('#setArsnovaClick').val();
 	}
 	if (Route.isRepetitorienFilterIndex() || (Route.isCardset() && Session.get('previousCardsetData').shuffled)) {
-		fragJetzt.overrideOnlyEmptySessions = $('#fragJetztOverride')[0].checked;
-		arsnovaClick.overrideOnlyEmptySessions = $('#arsnovaClickOverride')[0].checked;
+		if ($('#fragJetztOverride').length) {
+			fragJetzt.overrideOnlyEmptySessions = $('#fragJetztOverride')[0].checked;
+		}
+		if ($('#arsnovaClickOverride').length) {
+			arsnovaClick.overrideOnlyEmptySessions = $('#arsnovaClickOverride')[0].checked;
+		}
 	}
 	if (sortType === undefined) {
 		sortType = 0;
