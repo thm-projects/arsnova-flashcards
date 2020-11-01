@@ -410,7 +410,7 @@ export let BonusForm = class BonusForm {
 	static getMaxBonusPoints () {
 		let maxBonusPoints = Number($('#bonusFormModal #maxBonusPoints').val());
 		if (!maxBonusPoints) {
-			maxBonusPoints = Number(config.defaultMaxWorkload);
+			maxBonusPoints = Number(config.defaultMaxBonusPoints);
 		}
 		return maxBonusPoints;
 	}
