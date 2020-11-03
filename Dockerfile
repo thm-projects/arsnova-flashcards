@@ -2,9 +2,10 @@
 # see .docker dir for production files
 FROM node:12
 
-ARG UID=1000
-ARG GID=1000
+# Get the args from compose - use 1000 as fallback
+ARG UID_GID=1000:1000
 
+# Set up proper home for node
 ENV HOME=/home/node/
 WORKDIR $HOME
 
@@ -19,19 +20,16 @@ RUN apt-get update && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/*
 
-# install node build tool
+# Install node build tool
 RUN npm install -g node-gyp
 
-RUN mkdir -p /home/node/node_modules
-RUN mkdir -p /home/node/local
+# Setup mount points with correct permissions
+RUN mkdir -p /app /home/node
+RUN chown -R $UID_GID /app /home/node
 
-RUN npm config set prefix "/home/node/node_modules"
+# Set proper user for development
+USER $UID_GID
 
-RUN chown -R $UID:$GID /home/node/node_modules /home/node/local /home/node/.config
-
-USER $UID:$GID
-# install meteor
-RUN curl https://install.meteor.com/ | sh
-
-ENTRYPOINT ["/home/node/app/docker_entrypoint.sh"]
+# Set the proper entrypoint
+ENTRYPOINT ["/app/docker_entrypoint.sh"]
 CMD ["settings_debug.json"]

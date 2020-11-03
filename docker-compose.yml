@@ -3,21 +3,19 @@ services:
 
   cards-develop:
     image: cards-develop
-    user: 1000:1000
+    user: "${UID_GID:-1000:1000}"
     build:
       context: .
       dockerfile: Dockerfile
       args:
-        UID: 1000
-        GID: 1000
+        UID_GID: "${UID_GID:-1000:1000}"
     volumes:
-      - node_modules_data:/home/node/node_modules
-      - local_data:/home/node/local
-      - .:/home/node/app
+      - home_data:/home/node
+      - .:/app
+      - /app/.git
     ports:
       - 3000:3000
 
 
 volumes:
-  node_modules_data:
-  local_data:
+  home_data:
