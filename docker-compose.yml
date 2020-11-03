@@ -6,13 +6,18 @@ services:
     user: 1000:1000
     build:
       context: .
+      dockerfile: Dockerfile
+      args:
+        UID: 1000
+        GID: 1000
     volumes:
-      # - data:/home/node/mongo
+      - node_modules_data:/home/node/node_modules
+      - local_data:/home/node/local
       - .:/home/node/app
     ports:
       - 3000:3000
 
 
-# volumes:
-#   data:
-#     driver: local
+volumes:
+  node_modules_data:
+  local_data:
