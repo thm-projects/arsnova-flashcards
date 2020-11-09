@@ -105,7 +105,7 @@ export let CardsetUserlist = class CardsetUserlist {
 			if (lastHistoryItem !== undefined && lastHistoryItem.timestamps !== undefined) {
 				lastActivity = lastHistoryItem.timestamps.submission;
 			}
-			if (user[0].profile.name !== undefined) {
+			if (user[0].profile !== undefined) {
 				learningDataArray.push({
 					user_id: user[0]._id,
 					birthname: user[0].profile.birthname,
