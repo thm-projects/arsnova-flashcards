@@ -407,8 +407,9 @@ Meteor.methods({
 	 * @param {Number} errorCount - Number in percent for not known cards of a simulation
 	 * @param {Number} minLearned - The minimum amount of cards that the user has to learn (box 6) to receive the max bonus in %
 	 * @param {boolean} strictWorkloadTimer - Does this Bonus enforce the minimum amount of pomdori time for the workload?
+	 * @param {Object} forceNotifications - Force mail or push notifications
 	 */
-	activateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig, errorCount, minLearned, strictWorkloadTimer) {
+	activateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig, errorCount, minLearned, strictWorkloadTimer, forceNotifications) {
 		check(id, String);
 		check(maxWorkload, Number);
 		check(daysBeforeReset, Number);
@@ -424,6 +425,8 @@ Meteor.methods({
 		check(errorCount, [[Number]]);
 		check(minLearned, Number);
 		check(strictWorkloadTimer, Boolean);
+		check(forceNotifications.mail, Boolean);
+		check(forceNotifications.push, Boolean);
 
 		let cardset = Cardsets.findOne(id);
 		if (cardset !== undefined && !cardset.learningActive && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
@@ -450,7 +453,8 @@ Meteor.methods({
 					'workload.bonus.minLearned': minLearned,
 					dateUpdated: new Date(),
 					lastEditor: Meteor.userId(),
-					strictWorkloadTimer: strictWorkloadTimer
+					strictWorkloadTimer: strictWorkloadTimer,
+					forceNotifications: forceNotifications
 				}
 			});
 			return cardset._id;
@@ -475,8 +479,9 @@ Meteor.methods({
 	 * @param {Number} errorCount - Number in percent for not known cards of a simulation
 	 * @param {Number} minLearned - The minimum amount of cards that the user has to learn (box 6) to receive the max bonus in %
 	 * @param {boolean} strictWorkloadTimer - Does this Bonus enforce the minimum amount of pomdori time for the workload?
+	 * @param {Object} forceNotifications - Force mail or push notifications
 	 */
-	updateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig, errorCount, minLearned, strictWorkloadTimer) {
+	updateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig, errorCount, minLearned, strictWorkloadTimer, forceNotifications) {
 		check(id, String);
 		check(maxWorkload, Number);
 		check(daysBeforeReset, Number);
@@ -492,6 +497,8 @@ Meteor.methods({
 		check(errorCount, [[Number]]);
 		check(minLearned, Number);
 		check(strictWorkloadTimer, Boolean);
+		check(forceNotifications.mail, Boolean);
+		check(forceNotifications.push, Boolean);
 
 		let cardset = Cardsets.findOne(id);
 		if (cardset !== undefined && cardset.learningActive && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
@@ -517,7 +524,8 @@ Meteor.methods({
 					'workload.bonus.minLearned': minLearned,
 					dateUpdated: new Date(),
 					lastEditor: Meteor.userId(),
-					strictWorkloadTimer: strictWorkloadTimer
+					strictWorkloadTimer: strictWorkloadTimer,
+					forceNotifications: forceNotifications
 				}
 			});
 			return cardset._id;

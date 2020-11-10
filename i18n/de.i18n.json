@@ -460,6 +460,12 @@
       "label": "Maximale Bonuspunkte",
       "content": "__count__ %"
     },
+    "notifications": {
+      "mail": "E-Mail Erinnerung",
+      "push": "Push-Nachricht Erinnerung",
+      "forced": "Aktiviert",
+      "optional": "Freiwillig"
+    },
     "bonusMin": {
       "label": "Gemäß Leitner-Plan »gelernte Karten« für max. Bonus",
       "content": "__count__ %"
@@ -1015,6 +1021,10 @@
       "maxWorkload": {
         "label": "Tagespensum",
         "placeholder": "maximal täglich zu lernende Karten"
+      },
+      "forceNotifications": {
+        "mail": "E-Mail Erinnerungsdienst erzwingen",
+        "push": "Push Erinnerungsdienst erzwingen"
       },
       "simulator": {
         "buttonModal":  "Tagespensum festlegen",

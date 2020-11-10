@@ -76,3 +76,4 @@ useraccounts:bootstrap
 aldeed:template-extension
 cmather:handlebars-server
 server-render
+reactive-dict

@@ -121,8 +121,12 @@ Meteor.methods({
 		}
 	},
 	prepareMail: function (cardset, user, isReset = false, isNewcomer = false, task_id = undefined) {
-		if (Meteor.isServer) {
-			if (user.mailNotification && ServerSettings.isMailEnabled() && !isNewcomer && Roles.userIsInRole(user._id, ['admin', 'editor', 'university', 'lecturer', 'pro']) && !Roles.userIsInRole(user._id, ['blocked', 'firstLogin'])) {
+		if (Meteor.isServer && ServerSettings.isMailEnabled()) {
+			let canSendMail = (user.mailNotification && !isNewcomer && Roles.userIsInRole(user._id, ['admin', 'editor', 'university', 'lecturer', 'pro']) && !Roles.userIsInRole(user._id, ['blocked', 'firstLogin']));
+			if (Bonus.isInBonus(cardset._id, user._id) && cardset.forceNotifications.mail) {
+				canSendMail = true;
+			}
+			if (canSendMail) {
 				try {
 					if (isReset) {
 						if (Meteor.settings.debug.leitner) {
@@ -155,8 +159,12 @@ Meteor.methods({
 		}
 	},
 	prepareWebpush: function (cardset, user, isNewcomer = false, task_id = undefined) {
-		if (Meteor.isServer) {
-			if (ServerSettings.isPushEnabled() && (Bonus.isInBonus(cardset._id, user._id) || user.webNotification) && !isNewcomer) {
+		if (Meteor.isServer && ServerSettings.isPushEnabled()) {
+			let canSendPush = (user.webNotification && !isNewcomer);
+			if (Bonus.isInBonus(cardset._id, user._id) && cardset.forceNotifications.push) {
+				canSendPush = true;
+			}
+			if (canSendPush) {
 				try {
 					let web = new WebNotifier();
 					if (Meteor.settings.debug.leitner) {

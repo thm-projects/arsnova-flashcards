@@ -20,6 +20,12 @@ let defaultDateEnd = moment().add(defaultEndPeriod[0], defaultEndPeriod[1]).form
 // Default error count in percent for the simulator
 let defaultErrorCount = [50, 20, 10, 5, 2];
 
+//Bonus settings
+let defaultForceNotifications = {
+	mail: true,
+	push: true
+};
+
 module.exports = {
 	minWorkloadCap,
 	defaultMaxWorkload,
@@ -36,5 +42,6 @@ module.exports = {
 	defaultEndPeriod,
 	defaultDateEnd,
 	defaultErrorCount,
-	defaultMinLearned
+	defaultMinLearned,
+	defaultForceNotifications
 };
