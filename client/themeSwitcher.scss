@@ -113,7 +113,8 @@ $themes: (
     $frag_jetzt_text: map_get($map, "frag_jetzt_text");
     $arsnova_click_background: map-get($map, "arsnova_click_background");
     $arsnova_click_text: map-get($map, "arsnova_click_text");
-
+    $tooltip_info_background: map-get($map, "tooltip_info_background");
+    $tooltip_info_icon: map-get($map, "tooltip_info_icon");
     //barfy stars
     $barfy_stars_particles_1: map-get($map, "barfy_stars_particles_1");
     $barfy_stars_particles_2: map-get($map, "barfy_stars_particles_2");
@@ -4640,6 +4641,15 @@ $themes: (
     #not-found-admin {
       background-color: $not_found_background !important;
       color: $not_found_text !important;
+    }
+
+    .tippy-button {
+      .background {
+        color: $tooltip_info_background !important;
+      }
+      .icon {
+        color: $tooltip_info_icon !important;
+      }
     }
   }
 }

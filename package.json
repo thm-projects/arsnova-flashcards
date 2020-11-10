@@ -27,6 +27,7 @@
     "plantuml-encoder": "^1.4.0",
     "react": "^15.0.2",
     "sweetalert2": "^8.19.0",
+    "tippy.js": "^6.2.7",
     "web-push": "^3.4.3",
     "wordcloud": "^1.1.1",
     "worker-loader": "^2.0.0",

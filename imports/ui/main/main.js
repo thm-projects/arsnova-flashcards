@@ -35,6 +35,8 @@ import {PDFViewer} from "../../util/pdfViewer";
 import {setLanguage, setTheme} from "../../startup/client/routes/onBeforeAction.js";
 import {Fullscreen} from "../../util/fullscreen";
 import {CardsetVisuals} from "../../util/cardsetVisuals";
+import tippy from "tippy.js";
+import 'tippy.js/animations/scale-extreme.css';
 
 Meteor.subscribe("notifications");
 Meteor.subscribe("serverStatistics");
@@ -172,6 +174,10 @@ Template.main.onRendered(function () {
 	});
 	MainNavigation.initializeNavigation();
 	CardsetVisuals.resizeCardsetInfo();
+	tippy.setDefaultProps({
+		zIndex: 10000,
+		animation: 'scale-extreme'
+	});
 });
 
 Template.main.onDestroyed(function () {
