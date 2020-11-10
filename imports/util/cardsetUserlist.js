@@ -5,6 +5,7 @@ import {Meteor} from "meteor/meteor";
 import {Profile} from "./profile";
 import {LeitnerHistory} from "../api/subscriptions/leitnerHistory";
 import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
+import {Cardsets} from "../api/subscriptions/cardsets";
 import {Leitner} from "../api/subscriptions/leitner";
 
 export let CardsetUserlist = class CardsetUserlist {
@@ -80,70 +81,85 @@ export let CardsetUserlist = class CardsetUserlist {
 
 	static getLearners (data, cardset_id) {
 		let learningDataArray = [];
-		for (let i = 0; i < data.length; i++) {
-			let user = Meteor.users.find({_id: data[i].user_id}).fetch();
+		let cardset = Cardsets.findOne({_id: cardset_id});
+		if (cardset !== undefined) {
+			for (let i = 0; i < data.length; i++) {
+				let user = Meteor.users.find({_id: data[i].user_id}).fetch();
 
-			let filter = [];
-			for (let l = 1; l <= 6; l++) {
-				filter.push({
+				let filter = [];
+				for (let l = 1; l <= 6; l++) {
+					filter.push({
+						cardset_id: cardset_id,
+						user_id: data[i].user_id,
+						box: l
+					});
+				}
+
+				if (user[0].profile.name !== undefined && !Profile.isCompleted(user[0])) {
+					user[0].profile.birthname = user[0].profile.name;
+					user[0].profile.givenname = TAPi18n.__('leitnerProgress.user.missingName', {}, ServerStyle.getClientLanguage());
+					user[0].email = "";
+				}
+				let lastActivity = data[i].leitner.dateJoinedBonus;
+
+				let sessionFilter = 0;
+				let highestTask = LeitnerTasks.findOne({
 					cardset_id: cardset_id,
-					user_id: data[i].user_id,
-					box: l
-				});
-			}
-
-			if (user[0].profile.name !== undefined && !Profile.isCompleted(user[0])) {
-				user[0].profile.birthname = user[0].profile.name;
-				user[0].profile.givenname = TAPi18n.__('leitnerProgress.user.missingName', {}, ServerStyle.getClientLanguage());
-				user[0].email = "";
-			}
-			let lastActivity = data[i].leitner.dateJoinedBonus;
-
-			let sessionFilter = 0;
-			let highestTask = LeitnerTasks.findOne({
-				cardset_id: cardset_id,
-				user_id: data[i].user_id
-			}, {sort: {session: -1}});
-			if (highestTask !== undefined) {
-				sessionFilter = highestTask.session;
-			}
-			let whitelistedTasks = LeitnerTasks.find({
+					user_id: data[i].user_id
+				}, {sort: {session: -1}});
+				if (highestTask !== undefined) {
+					sessionFilter = highestTask.session;
+				}
+				let whitelistedTasks = LeitnerTasks.find({
 					cardset_id: cardset_id,
 					user_id: data[i].user_id,
 					session: sessionFilter
 				}).fetch().map(function (x) {
-				return x._id;
-			});
-
-			let lastHistoryItem = LeitnerHistory.findOne({
-					task_id: {$in: whitelistedTasks},
-					cardset_id: cardset_id,
-					user_id: data[i].user_id,
-					answer: {$exists: true}},
-				{sort: {"timestamps.submission": -1}, fields: {_id: 1, timestamps: 1}});
-			if (lastHistoryItem !== undefined && lastHistoryItem.timestamps !== undefined) {
-				lastActivity = lastHistoryItem.timestamps.submission;
-			}
-
-			if (user[0].profile !== undefined) {
-				learningDataArray.push({
-					user_id: user[0]._id,
-					birthname: user[0].profile.birthname,
-					givenname: user[0].profile.givenname,
-					email: user[0].email,
-					box1: Leitner.find(filter[0]).count(),
-					box2: Leitner.find(filter[1]).count(),
-					box3: Leitner.find(filter[2]).count(),
-					box4: Leitner.find(filter[3]).count(),
-					box5: Leitner.find(filter[4]).count(),
-					box6: Leitner.find(filter[5]).count(),
-					mailNotification: user[0].mailNotification,
-					webNotification: user[0].webNotification,
-					dateJoinedBonus: data[i].leitner.dateJoinedBonus,
-					lastActivity: lastActivity
+					return x._id;
 				});
+
+				let lastHistoryItem = LeitnerHistory.findOne({
+						task_id: {$in: whitelistedTasks},
+						cardset_id: cardset_id,
+						user_id: data[i].user_id,
+						answer: {$exists: true}},
+					{sort: {"timestamps.submission": -1}, fields: {_id: 1, timestamps: 1}});
+				if (lastHistoryItem !== undefined && lastHistoryItem.timestamps !== undefined) {
+					lastActivity = lastHistoryItem.timestamps.submission;
+				}
+
+				let mailNotification = user[0].mailNotification;
+				if (cardset.forceNotifications.mail) {
+					mailNotification = true;
+				}
+
+				let webNotification = user[0].webNotification;
+				if (cardset.forceNotifications.push) {
+					webNotification = true;
+				}
+
+				if (user[0].profile !== undefined) {
+					learningDataArray.push({
+						user_id: user[0]._id,
+						birthname: user[0].profile.birthname,
+						givenname: user[0].profile.givenname,
+						email: user[0].email,
+						box1: Leitner.find(filter[0]).count(),
+						box2: Leitner.find(filter[1]).count(),
+						box3: Leitner.find(filter[2]).count(),
+						box4: Leitner.find(filter[3]).count(),
+						box5: Leitner.find(filter[4]).count(),
+						box6: Leitner.find(filter[5]).count(),
+						mailNotification: mailNotification,
+						webNotification: webNotification,
+						dateJoinedBonus: data[i].leitner.dateJoinedBonus,
+						lastActivity: lastActivity
+					});
+				}
 			}
+			return this.sortByBirthname(learningDataArray);
+		} else {
+			return [];
 		}
-		return this.sortByBirthname(learningDataArray);
 	}
 };

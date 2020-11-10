@@ -1017,8 +1017,8 @@
         "placeholder": "maximal täglich zu lernende Karten"
       },
       "forceNotifications": {
-        "mail": "E-Mail Benachrichtigungen erzwingen",
-        "push": "Push Benachrichtigungen erzwingen"
+        "mail": "E-Mail Erinnerungsdienst erzwingen",
+        "push": "Push Erinnerungsdienst erzwingen"
       },
       "simulator": {
         "buttonModal":  "Tagespensum festlegen",
