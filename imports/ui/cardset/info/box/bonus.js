@@ -8,6 +8,7 @@ import "./item/bonusEnd.js";
 import "./item/bonusMaxPoints.js";
 import "./item/BonusMinLearned.js";
 import "./item/bonusPointsFAQ.js";
+import "./item/bonusNotifications.js";
 import "./item/bonusRegistrationPeriod.js";
 import "./item/bonusStart.js";
 import "./item/bonusStatus.js";

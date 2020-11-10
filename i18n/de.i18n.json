@@ -460,6 +460,12 @@
       "label": "Maximale Bonuspunkte",
       "content": "__count__ %"
     },
+    "notifications": {
+      "mail": "E-Mail Erinnerung",
+      "push": "Push-Nachricht Erinnerung",
+      "forced": "Aktiviert",
+      "optional": "Freiwillig"
+    },
     "bonusMin": {
       "label": "Gemäß Leitner-Plan »gelernte Karten« für max. Bonus",
       "content": "__count__ %"
