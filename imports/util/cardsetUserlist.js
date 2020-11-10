@@ -4,6 +4,7 @@ import * as config from "../config/bonusForm";
 import {Meteor} from "meteor/meteor";
 import {Profile} from "./profile";
 import {LeitnerHistory} from "../api/subscriptions/leitnerHistory";
+import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
 import {Leitner} from "../api/subscriptions/leitner";
 
 export let CardsetUserlist = class CardsetUserlist {
@@ -97,7 +98,25 @@ export let CardsetUserlist = class CardsetUserlist {
 				user[0].email = "";
 			}
 			let lastActivity = data[i].leitner.dateJoinedBonus;
+
+			let sessionFilter = 0;
+			let highestTask = LeitnerTasks.findOne({
+				cardset_id: cardset_id,
+				user_id: data[i].user_id
+			}, {sort: {session: -1}});
+			if (highestTask !== undefined) {
+				sessionFilter = highestTask.session;
+			}
+			let whitelistedTasks = LeitnerTasks.find({
+					cardset_id: cardset_id,
+					user_id: data[i].user_id,
+					session: sessionFilter
+				}).fetch().map(function (x) {
+				return x._id;
+			});
+
 			let lastHistoryItem = LeitnerHistory.findOne({
+					task_id: {$in: whitelistedTasks},
 					cardset_id: cardset_id,
 					user_id: data[i].user_id,
 					answer: {$exists: true}},
@@ -105,6 +124,7 @@ export let CardsetUserlist = class CardsetUserlist {
 			if (lastHistoryItem !== undefined && lastHistoryItem.timestamps !== undefined) {
 				lastActivity = lastHistoryItem.timestamps.submission;
 			}
+
 			if (user[0].profile !== undefined) {
 				learningDataArray.push({
 					user_id: user[0]._id,
