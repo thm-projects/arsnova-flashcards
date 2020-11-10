@@ -123,7 +123,7 @@ Meteor.methods({
 	prepareMail: function (cardset, user, isReset = false, isNewcomer = false, task_id = undefined) {
 		if (Meteor.isServer && ServerSettings.isMailEnabled()) {
 			let canSendMail = (user.mailNotification && !isNewcomer && Roles.userIsInRole(user._id, ['admin', 'editor', 'university', 'lecturer', 'pro']) && !Roles.userIsInRole(user._id, ['blocked', 'firstLogin']));
-			if (Bonus.isInBonus(cardset._id, user._id) && cardset.forceNotifications.mail) {
+			if (Bonus.isInBonus(cardset._id, user._id) && cardset.forceNotifications.mail && (user.email !== undefined && user.email.length)) {
 				canSendMail = true;
 			}
 			if (canSendMail) {
