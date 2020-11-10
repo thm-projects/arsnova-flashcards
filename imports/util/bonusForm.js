@@ -8,6 +8,7 @@ import {CardType} from "./cardTypes";
 import {LeitnerUtilities} from "./leitner";
 import {SweetAlertMessages} from "./sweetAlert";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import {ReactiveDict} from 'meteor/reactive-dict';
 
 let leitnerSimulator;
 let leitnerSimulatorDays;
@@ -15,6 +16,7 @@ let leitnerCardCount;
 let snapshots;
 let snapshotDays;
 let leitnerErrorCount;
+let forceNotifications = new ReactiveDict();
 
 export let BonusForm = class BonusForm {
 	static cleanModal () {
@@ -32,6 +34,8 @@ export let BonusForm = class BonusForm {
 			daysBeforeReset = null;
 			intervals = config.defaultIntervals;
 			errorCount = config.defaultErrorCount;
+			forceNotifications.set('mail', config.defaultForceNotifications.mail);
+			forceNotifications.set('push', config.defaultForceNotifications.push);
 		} else {
 			start = moment(Session.get('activeCardset').learningStart).format(config.dateFormat);
 			nextDay = moment(Session.get('activeCardset').learningStart).add(1, 'day').format(config.dateFormat);
@@ -46,6 +50,8 @@ export let BonusForm = class BonusForm {
 			} else {
 				errorCount = config.defaultErrorCount;
 			}
+			forceNotifications.set('mail', Session.get('activeCardset').forceNotifications.mail);
+			forceNotifications.set('push', Session.get('activeCardset').forceNotifications.push);
 		}
 		$('#maxWorkload').val(maxWorkload);
 		$('#bonusFormModal #daysBeforeReset').val(daysBeforeReset);
@@ -428,7 +434,7 @@ export let BonusForm = class BonusForm {
 	}
 
 	static startBonus () {
-		Meteor.call("activateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), [this.getErrorCountPercentage()], this.getMinLearned(), this.getStrictWorkloadTimer(), function (error, result) {
+		Meteor.call("activateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), [this.getErrorCountPercentage()], this.getMinLearned(), this.getStrictWorkloadTimer(), forceNotifications.all(), function (error, result) {
 			if (result) {
 				Session.set('activeCardset', Cardsets.findOne(result));
 			}
@@ -436,7 +442,7 @@ export let BonusForm = class BonusForm {
 	}
 
 	static updateBonus () {
-		Meteor.call("updateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), [this.getErrorCountPercentage()], this.getMinLearned(), this.getStrictWorkloadTimer(), function (error, result) {
+		Meteor.call("updateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), [this.getErrorCountPercentage()], this.getMinLearned(), this.getStrictWorkloadTimer(), forceNotifications.all(), function (error, result) {
 			if (result) {
 				Session.set('activeCardset', Cardsets.findOne(result));
 			}
@@ -469,5 +475,19 @@ export let BonusForm = class BonusForm {
 		} else {
 			return cardset.workload.bonus.maxPoints;
 		}
+	}
+
+	static forceMailSetting (flip = false) {
+		if (flip) {
+			forceNotifications.set('mail', !forceNotifications.get('mail'));
+		}
+		return forceNotifications.get('mail');
+	}
+
+	static forcePushSetting (flip = false) {
+		if (flip) {
+			forceNotifications.set('push', !forceNotifications.get('push'));
+		}
+		return forceNotifications.get('push');
 	}
 };

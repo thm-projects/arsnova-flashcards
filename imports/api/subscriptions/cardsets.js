@@ -405,6 +405,14 @@ const CardsetsSchema = new SimpleSchema({
 	strictWorkloadTimer: {
 		type: Boolean,
 		optional: true
+	},
+	'forceNotifications.mail': {
+		type: Boolean,
+		optional: true
+	},
+	'forceNotifications.push': {
+		type: Boolean,
+		optional: true
 	}
 });
 

@@ -1321,6 +1321,19 @@ Meteor.startup(function () {
 		);
 	}
 
+	cardsets = Cardsets.find({"forceNotifications": {$exists: false}}).fetch();
+	for (let i = 0; i < cardsets.length; i++) {
+		Cardsets.update({
+				_id: cardsets[i]._id
+			},
+			{
+				$set: {
+					forceNotifications: bonusFormConfig.defaultForceNotifications
+				}
+			}
+		);
+	}
+
 	let leitnerTasks = LeitnerTasks.find({"strictWorkloadTimer": {$exists: false}}).fetch();
 	for (let i = 0; i < leitnerTasks.length; i++) {
 		let cardset = Cardsets.findOne({_id: leitnerTasks[i].cardset_id});

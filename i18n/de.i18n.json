@@ -1016,6 +1016,10 @@
         "label": "Tagespensum",
         "placeholder": "maximal täglich zu lernende Karten"
       },
+      "forceNotifications": {
+        "mail": "E-Mail Benachrichtigungen erzwingen",
+        "push": "Push Benachrichtigungen erzwingen"
+      },
       "simulator": {
         "buttonModal":  "Tagespensum festlegen",
         "buttonSimulate": "Optimales Tagespensum berechnen",
