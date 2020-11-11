@@ -140,7 +140,7 @@ export let UserPermissions = class UserPermissions {
 			highestRole = roleLandingPage.string;
 		} else if (Meteor.isServer || Meteor.user()) {
 			let roles;
-			if (Meteor.isClient && Meteor.user()) {
+			if (Meteor.isClient && Meteor.user() && Meteor.user().roles !== undefined) {
 				roles = Meteor.user().roles;
 			} else {
 				roles = Meteor.users.findOne({_id: userId}).roles;
