@@ -13,13 +13,8 @@ services:
     environment:
       - MONGO_URL=mongodb://mongodb:27017/meteor
       - ROOT_URL=http://localhost:3000
-
-  proxy:
-    image: arsnova/cards-local-proxy
     ports:
-      - "80:80"
-    depends_on:
-      - cards
+      - 3000:3000
 
 volumes:
   data:

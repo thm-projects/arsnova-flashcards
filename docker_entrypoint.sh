@@ -34,11 +34,17 @@ then
   md5sum /app/package-lock.json > /home/node/node_modules/locksum
 fi
 
-echo "----------------"
-echo "Starting cards..."
-echo "The start may take a long time the first time, depending on your Internet speed."
-echo "The output may freeze after \"Started MongoDB\". Please be patient..."
-echo "The app is ready when the output \"Started your app\" is visible."
-echo "----------------"
+echo " " && \
+/bin/echo -e "\e[1;32m===================================\e[0m" && \
+echo " " && \
+echo " " && \
+/bin/echo -e "\e[1;33mStarting  cards...\e[0m" && \
+/bin/echo -e "\e[1;33mThe start may take a \e[1;36mLONG\e[1;33m time the first time, depending on your Internet connection.\e[0m" && \
+/bin/echo -e "\e[1;33mThe output may freeze after \"Started MongoDB\". \e[1;36mPLEASE BE PATIENT...\e[0m" && \
+/bin/echo -e "\e[1;33mThe app is ready when the output \"Started your app\" is visible.\e[0m" && \
+echo " " && \
+echo " " && \
+/bin/echo -e "\e[1;32m===================================\e[0m" && \
+echo " "
 
 meteor --settings $1

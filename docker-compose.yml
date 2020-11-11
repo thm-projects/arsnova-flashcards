@@ -2,7 +2,7 @@ version: "3.7"
 services:
 
   cards-develop:
-    image: cards-develop
+    image: localhost/cards-develop
     user: "${UID_GID:-1000:1000}"
     build:
       context: .
@@ -15,7 +15,6 @@ services:
       - /app/.git
     ports:
       - 3000:3000
-
 
 volumes:
   home_data:
