@@ -1,21 +1,22 @@
 version: "3.7"
 services:
 
-  mongodb:
+  linux-cards-db:
     image: arsnova/linux-cards-db
+    restart: unless-stopped
     volumes:
-      - "data:/data/db"
+      - linux_cards_db:/data/db
 
-  cards:
+  linux-cards:
     image: arsnova/linux-cards:master
+    restart: unless-stopped
     depends_on:
-      - mongodb
+      - linux-cards-db
     environment:
-      - MONGO_URL=mongodb://mongodb:27017/meteor
+      - MONGO_URL=mongodb://linux-cards-db:27017/meteor
       - ROOT_URL=http://localhost:3000
     ports:
       - 3000:3000
 
 volumes:
-  data:
-    driver: local
+  linux_cards_db:

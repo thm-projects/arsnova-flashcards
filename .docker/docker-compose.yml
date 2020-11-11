@@ -1,23 +1,25 @@
 version: "3.7"
 services:
 
-  mongodb:
+  local-cards-db:
     image: mongo:latest
+    restart: unless-stopped
     volumes:
-      - mongo_data:/data/db
+      - local_cards_db:/data/db
 
-  cards:
+  local-cards:
     image: localhost/cards
+    restart: unless-stopped
     build:
       context: ..
       dockerfile: .docker/app/Dockerfile
     depends_on:
-      - mongodb
+      - local-cards-db
     environment:
-      - MONGO_URL=mongodb://mongodb:27017/meteor
+      - MONGO_URL=mongodb://local-cards-db:27017/meteor
       - ROOT_URL=http://localhost:3000
     ports:
       - 3000:3000
 
 volumes:
-  mongo_data:
+  local_cards_db:

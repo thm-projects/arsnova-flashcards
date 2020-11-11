@@ -1,21 +1,22 @@
 version: "3.7"
 services:
 
-  mongodb:
+  cards-db:
     image: mongo:latest
+    restart: unless-stopped
     volumes:
-      - "data:/data/db"
+      - cards_db:/data/db
 
   cards:
     image: arsnova/cards:master
+    restart: unless-stopped
     depends_on:
-      - mongodb
+      - cards-db
     environment:
-      - MONGO_URL=mongodb://mongodb:27017/meteor
+      - MONGO_URL=mongodb://cards-db:27017/meteor
       - ROOT_URL=http://localhost:3000
     ports:
       - 3000:3000
 
 volumes:
-  data:
-    driver: local
+  cards_db:

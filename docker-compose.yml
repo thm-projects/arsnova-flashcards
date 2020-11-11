@@ -1,8 +1,9 @@
 version: "3.7"
 services:
 
-  cards-develop:
-    image: localhost/cards-develop
+  dev-cards:
+    image: localhost/dev-cards
+    restart: unless-stopped
     user: "${UID_GID:-1000:1000}"
     build:
       context: .
@@ -10,11 +11,11 @@ services:
       args:
         UID_GID: "${UID_GID:-1000:1000}"
     volumes:
-      - home_data:/home/node
+      - dev_cards_data:/home/node
       - .:/app
       - /app/.git
     ports:
       - 3000:3000
 
 volumes:
-  home_data:
+  dev_cards_data:
