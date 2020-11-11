@@ -3874,12 +3874,6 @@ $themes: (
           color: $navbar_profile_dropdown_text_active !important;
         }
       }
-      .logout-dropdown:hover, .logout-dropdown:focus {
-        background-color: $navbar_logout_background_hover !important;
-        a {
-          color: $navbar_logout_text_hover !important;
-        }
-      }
     }
 
     //card editor
