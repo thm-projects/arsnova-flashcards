@@ -9,7 +9,7 @@ You must have Docker and Docker Compose installed. In most cases, Docker Compose
 ## Getting started (fast)
 You can start using arsnova.cards or linux.cards locally by just downloading and running a docker-compose file. The app will then be available on [localhost](http://localhost:3000) at port 3000.
 
-Download your docker file:
+Download your docker-compose file:
 - [arsnova.cards](.docker/docker-compose-cards.yml)
 - [linux.cards](.docker/docker-compose-linux.yml)
 
@@ -115,7 +115,7 @@ wget -qO- projects.thm.de/compose-linux-cards  | sudo docker-compose -f - pull
 ---
 
 ## Image overview
-There are two stages and two variations for which you could build and run the app. All in all you will find four Dockerfiles in this repository. We will go into what is for what now.
+There are two stages and two variations for which you could build and run the app. All in all you will find three dockerfiles and four docker-compose in this repository. We will go into what is for what now.
 
 **You can build/run the app in two stages: _production_ and _develop_.**
 
@@ -173,12 +173,12 @@ If you are about to build the resources yourself or if you would like to develop
 3. The app is now available under [localhost](http://localhost:3000)
 
 ## Developing with Docker
-You can build and run the development version of cards with docker. Therefore you can use the standard Dockerfile in the projects root directory.
+You can build and run the development version of cards with docker. Therefore you can use the docker-compose in the projects root directory.
 1. Clone the project
 2. From your project directory run `sudo UID_GID="$(id -u):$(id -g)" docker-compose up -d`\
-  2.1 `UID_GID="$(id -u):$(id -g)"` sets the environments variable `UID_GID` for docker-compose. This is necessary for handling correct permissions. If you do not provide it, it will use `1000` for both as default.
+  2.1 `UID_GID="$(id -u):$(id -g)"` sets the environments variable `UID_GID` for docker-compose. This is necessary for handling correct permissions. If you do not provide it, it will use `1000` for both as default. This default value will most likely fit your system, but not with certainty.
 3. This brings up the app under Port 3000 - you may change this port in the docker-compose.yml file\
   3.1. The first time you run this, it may take a (long) while\
   3.2. If you like to start the containers detached, use command option `-d`. Beware: you then won't see any output from the containers; at least for the first start of the app it is recommended to start the containers in foreground\
   3.3. You may run the app with a custom `settings.json`-File by adding it in the docker-compose file as `command`
-4. The app is now available under **localhost:\<desired-port\>**, standard [localhost:3000](http://localhost:3000).
+4. The app is now available under **localhost:\<desired-port\>**, default [localhost:3000](http://localhost:3000).

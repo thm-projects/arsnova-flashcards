@@ -1,7 +1,7 @@
 {
   "public": {
     "rooturl": "http://localhost:3000",
-    "dynamicSettings": "ARSnova",
+    "dynamicSettings": "default",
     "backdoorEnabled": true,
     "FCM_VAPID_PUBLIC_KEY": "YOUR FIREBASE VAPID PUBLIC KEY HERE",
     "reCaptcha": {

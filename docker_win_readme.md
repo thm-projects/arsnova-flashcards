@@ -27,7 +27,7 @@ No need to clone a repository or to build anything.
 
 ---
 
-**The default port for the app is Port 80. If your Port 80 is already in use, you may configure the forwarded Port in the downloaded docker-compose.yml file.**
+**The default port for the app is Port 3000. If your Port 3000 is already in use, you may configure the forwarded Port in the downloaded docker-compose.yml file.**
 
 ---
 
@@ -51,14 +51,36 @@ to restart:
 docker-compose -f <path-to-docker-compose-file> up -d
 ```
 
+---
+
+**To stop the app and remove the containers and remove the volumes, run**
+```bash
+sudo docker-compose -f <path-to-docker-compose-file> down -v
+```
+to restart:
+```bash
+sudo docker-compose -f <path-to-docker-compose-file> up -d
+```
+
+---
+
+**To pull new image versions, run**
+```bash
+# first stop the app and remove containers as described above, then run
+
+sudo docker-compose -f <path-to-docker-compose-file> pull
+
+# then restart the app as described as above
+```
+
 ## Image overview
-There are two stages and two variations for which you could build and run the app. All in all you will find four Dockerfiles in this repository. We will go into what is for what now.
+There are two stages and two variations for which you could build and run the app. All in all you will find three dockerfiles and four docker-compose in this repository. We will go into what is for what now.
 
 **You can build/run the app in two stages: _production_ and _develop_.**
 
 The production stage will be precomiled and you will not be able to see any changes you make in the code, unless you rebuild the image. This stage is made for **using** the app and not for developing.
 
-The develop stage will be compiled on the fly (in runtime) and you will see changes immediately. This stage is made for **developing** the app. **Beware:** the Database might not be persistent in this stage. It may be dropped when you rebuild or update the image.
+The develop stage will compile the app on the fly and you will see changes immediately. This stage is made for **developing** the app.
 
 **You can build/run the app in two variants: _arsnova.cards_ and _linux.cards_.**
 
