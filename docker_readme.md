@@ -175,7 +175,8 @@ If you are about to build the resources yourself or if you would like to develop
 ## Developing with Docker
 You can build and run the development version of cards with docker. Therefore you can use the standard Dockerfile in the projects root directory.
 1. Clone the project
-2. From your project directory run `docker-compose up`
+2. From your project directory run `sudo UID_GID="$(id -u):$(id -g)" docker-compose up -d`\
+  2.1 `UID_GID="$(id -u):$(id -g)"` sets the environments variable `UID_GID` for docker-compose. This is necessary for handling correct permissions. If you do not provide it, it will use `1000` for both as default.
 3. This brings up the app under Port 3000 - you may change this port in the docker-compose.yml file\
   3.1. The first time you run this, it may take a (long) while\
   3.2. If you like to start the containers detached, use command option `-d`. Beware: you then won't see any output from the containers; at least for the first start of the app it is recommended to start the containers in foreground\
