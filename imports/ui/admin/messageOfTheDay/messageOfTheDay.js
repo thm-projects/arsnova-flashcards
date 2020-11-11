@@ -54,6 +54,7 @@ Template.admin_messageOfTheDay.helpers({
 Template.admin_messageOfTheDay.events({
 	'click #deleteMessage': function () {
 		Session.set('deleteMessageId', this._id);
+		Session.set('messageToBeDeleted', this);
 		$('#confirmDeleteMessage').modal('show');
 	},
 	'click #editMessage': function () {
@@ -177,5 +178,30 @@ Template.motdsPreviewModal.helpers({
 	},
 	getContent: function () {
 		return message.get('content');
+	}
+});
+
+Template.confirmDeleteMessage.helpers({
+	getSubject: function () {
+		return Session.get('messageToBeDeleted').subject;
+	},
+	getLocation: function () {
+		switch (Session.get('messageToBeDeleted').locationType) {
+			case 0:
+				return 'angemeldet';
+			case 1:
+				return 'landing-page';
+			case 2:
+				return 'überall';
+		}
+	},
+	getDateCreated: function () {
+		return Session.get('messageToBeDeleted').dateCreated;
+	},
+	getPublishDate: function () {
+		return Session.get('messageToBeDeleted').publishDate;
+	},
+	getExpirationDate: function () {
+		return Session.get('messageToBeDeleted').expirationDate;
 	}
 });

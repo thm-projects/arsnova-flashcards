@@ -158,6 +158,32 @@
                 </div>
                 <div class="modal-body">
                     {{_ "admin.motd.confirmDeleteBody"}}
+                    <table class="table table-striped">
+                        <tbody>
+
+                            <tr>
+                                <td>Titel: </td>
+                                <td>{{getSubject}}</td>
+                            </tr>
+                            <tr>
+                                <td>Wo?</td>
+                                <td>{{getLocation}}</td>
+                            </tr>
+                            <tr>
+                                <td>Erstellt: </td>
+                                <td>{{getDateCreated}}</td>
+                            </tr>
+                            <tr>
+                                <td>Veröffentlicht: </td>
+                                <td>{{getPublishDate}}</td>
+                            </tr>
+                            <tr>
+                                <td>Bis: </td>
+                                <td>{{getExpirationDate}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
                 </div>
                 <div class="modal-footer">
                     <button id="confirmDeleteConfirm" class="btn btn-raised btn-danger pull-right">{{_
