@@ -1,18 +1,21 @@
 version: "3.7"
 services:
 
-  cards-develop:
-    image: cards-develop
-    user: 1000:1000
+  dev-cards:
+    image: localhost/dev-cards
+    restart: unless-stopped
+    user: "${UID_GID:-1000:1000}"
     build:
       context: .
+      dockerfile: Dockerfile
+      args:
+        UID_GID: "${UID_GID:-1000:1000}"
     volumes:
-      # - data:/home/node/mongo
-      - .:/home/node/app
+      - dev_cards_data:/home/node
+      - .:/app
+      - /app/.git
     ports:
       - 3000:3000
 
-
-# volumes:
-#   data:
-#     driver: local
+volumes:
+  dev_cards_data:

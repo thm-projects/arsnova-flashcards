@@ -1,2 +1,4 @@
-.meteor
+# .meteor
+.git/
+node_modules/
 node_modules

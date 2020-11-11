@@ -3,7 +3,10 @@ build
 npm-debug.log
 .idea/
 .DS_Store
+# the node_modules FOLDER if native installation is used
 node_modules/
+# node_modules LINK if docker installation is used
+node_modules
 .gradle
 gradle
 gradlew

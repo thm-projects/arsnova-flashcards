@@ -1,8 +1,13 @@
 {
   "public": {
     "rooturl": "http://localhost:3000",
-    "dynamicSettings": "debug",
+    "dynamicSettings": "default",
     "backdoorEnabled": true,
+    "FCM_VAPID_PUBLIC_KEY": "YOUR FIREBASE VAPID PUBLIC KEY HERE",
+    "reCaptcha": {
+      "enabled": false,
+      "siteKey": "YOUR SECRET KEY"
+    },
     "cas": {
       "loginUrl": "https://cas.thm.de/cas/login",
       "serviceParam": "service",
@@ -26,10 +31,18 @@
       "USE_MATOMO": false,
       "MATOMO_URL": "http://your_matomo_server_url/matomo.php",
       "MATOMO_SITE_ID": 0
+    },
+    "debug": {
+      "leitnerTimer": true
     }
   },
+  "reCaptcha": {
+    "secretKey": "YOUR SECRET KEY"
+  },
   "private": {
-    "BT_PRIVATE_KEY": "b508f71a0e0b01940b0fbe75940debb9"
+    "BT_PRIVATE_KEY": "b508f71a0e0b01940b0fbe75940debb9",
+    "FCM_VAPID_PRIVATE_KEY": "YOUR FIREBASE VAPID PRIVATE KEY HERE",
+    "FCM_VAPID_MAILTO_ADDRESS": "example@yourdomain.org"
   },
   "admin": {
     "id": []
