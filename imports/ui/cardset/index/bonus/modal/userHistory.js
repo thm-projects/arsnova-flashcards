@@ -59,13 +59,18 @@ Template.bonusUserHistoryModal.helpers({
 		if (reason === undefined) {
 			return historyData.length;
 		} else {
-			return historyData.filter(task => {
+			let filterResult = historyData.filter(task => {
 				if (reason === 0) {
 					return task.workload === (task.known + task.notKnown);
 				} else {
 					return task.workload !== (task.known + task.notKnown);
 				}
-			}).length;
+			});
+			if (historyData.length && reason === 1 && !historyData[0].missedDeadline && ((historyData[0].known + historyData[0].notKnown) !== historyData[0].workload)) {
+				return `${filterResult.length} (${TAPi18n.__('leitnerProgress.modal.userHistory.stats.tasks.inProgress')})`;
+			} else {
+				return filterResult.length;
+			}
 		}
 	},
 	getWorkloadCount: function (type = 0) {

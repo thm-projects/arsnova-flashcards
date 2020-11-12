@@ -38,16 +38,20 @@
         "stats": {
           "title": "Statistik",
           "tasks": {
-            "total": "Termine",
+            "title": "Termine",
+            "total": "Insgesamt",
             "completed": "Bearbeitet",
-            "notCompleted": "Nicht Bearbeitet"
+            "notCompleted": "Nicht Bearbeitet",
+            "inProgress": "Ein Termin ist derzeit in Bearbeitung"
           },
           "workload": {
-            "total": "Bearbeitetes Lernpensum",
+            "title": "Bearbeitetes Lernpensum",
+            "total": "Insgesamt",
             "known": "Gewusst",
             "notKnown": "Nicht Gewusst"
           },
           "duration": {
+            "title": "Bearbeitungszeit",
             "average": "Ø Bearbeitungszeit pro Termin",
             "total": "Gesamte Bearbeitungszeit"
           },
