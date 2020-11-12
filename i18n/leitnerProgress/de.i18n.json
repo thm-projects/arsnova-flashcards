@@ -1,0 +1,97 @@
+{
+  "leitnerProgress": {
+    "box": "Box __number__",
+    "bonus": "Bonuspunkte",
+    "learned": "gelernt",
+    "boxIntervalDaily": "täglich",
+    "boxInterval": "nach __days__ Tagen",
+    "boxNotLearned": "[neu oder vergessen]",
+    "boxNotLearnedShort": "[neu | vergessen]",
+    "index": "__cardset__ mit __cardCount__ Karten",
+    "indexDefault": "Alle __cardsetCount__ Karteien mit __cardCount__ Karten gesamt",
+    "cardCount": "Gesamtzahl: __cardCount__ Karten",
+    "percentage": "Prozent",
+    "dateJoinedBonus": "Lernbeginn",
+    "lastActivity": "Letzte Aktivität",
+    "userHistory": "Verlauf",
+    "notification": {
+      "mail": "E-Mail",
+      "push": "Push"
+    },
+    "user": {
+      "missingName": "Unvollständig"
+    },
+    "manage": "Verwalten",
+    "modal": {
+      "removeUser": {
+        "title": "User aus der Bonusphase entfernen?",
+        "text": "Willst du diesen Datensatz aus der Bonusphase entfernen?",
+        "button": {
+          "confirm": "User aus der Bonusphase entfernen",
+          "cancel": "Abbrechen"
+        }
+      },
+      "userHistory": {
+        "title": "Verlauf von Benutzer __firstName__, __lastName__",
+        "titleCardset": "Verlauf für Kartei »__cardset__«",
+        "titleRepetitorium": "Verlauf für Repetitorium »__repetitorium__«",
+        "stats": {
+          "title": "Statistik",
+          "tasks": {
+            "title": "Termine",
+            "total": "Insgesamt",
+            "completed": "Bearbeitet",
+            "notCompleted": "Nicht Bearbeitet",
+            "inProgress": "Ein Termin ist derzeit in Bearbeitung"
+          },
+          "workload": {
+            "title": "Bearbeitetes Lernpensum",
+            "total": "Insgesamt",
+            "known": "Gewusst",
+            "notKnown": "Nicht Gewusst"
+          },
+          "duration": {
+            "title": "Bearbeitungszeit",
+            "average": "Ø Bearbeitungszeit pro Termin",
+            "total": "Gesamte Bearbeitungszeit"
+          },
+          "averageKnown": "Ø Gewusst"
+        },
+        "table": {
+          "title": "Verlauf",
+          "id": "ID",
+          "date": "Freischaltungstag",
+          "workload": {
+            "title": "Lernpensum",
+            "singular": "__cards__ Karte",
+            "plural": "__cards__ Karten"
+          },
+          "known": "Gewusst",
+          "notKnown": "Nicht gewusst",
+          "status": {
+            "title": "Status",
+            "inProgress": "In Bearbeitung",
+            "notCompleted": "Nicht Bearbeitet",
+            "notFullyCompletedSingular": "__cards__ Karte nicht bearbeitet",
+            "notFullyCompletedPlural": "__cards__ Karten nicht bearbeitet",
+            "completed": "Bearbeitet am __lastAnswerDate__"
+          },
+          "reason": {
+            "title": "Grund für Freischaltung",
+            "leitner": "Leitner-Plan",
+            "deadline": "Überschreitungsfrist"
+          },
+          "duration": "Bearbeitungszeit"
+        }
+      }
+    },
+    "tooltip": {
+      "removeUser": "User aus der Bonusphase entfernen",
+      "graph": "Statistik anzeigen",
+      "userHistory": "Lernprotokoll"
+    },
+    "bertAlert": {
+      "userRemoved": "User wurde aus der Bonusphase entfernt"
+    }
+  }
+}

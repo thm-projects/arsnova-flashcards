@@ -1,0 +1,32 @@
+{
+  "landingPage": {
+    "login": {
+      "cards": "Login für hessische Hochschulen",
+      "cas": "Login mit CAS-Konto der THM",
+      "guest": "Ich schau mich nur mal um",
+      "pro": "Login mit Premium-Account",
+      "backdoor": "Login mit Rollenauswahl",
+      "facebook": "Login mit Facebook-Account",
+      "twitter": "Login mit Twitter-Account",
+      "google": "Login mit Google-Account",
+      "tooltip": {
+        "cards": "Für die Registrierung ist ein Mail-Konto einer hessischen Hochschule erforderlich.",
+        "cas": "Du wirst zum CAS-Server der THM weitergeleitet...",
+        "guest": "Als Gast kannst du dir »freie« Kartensätze anschauen. Mehr leider nicht.",
+        "pro": "Wenn du keinen THM-Account hast, kannst du dich hier für ein Abo registrieren.",
+        "backdoor": "Hintertürchen",
+        "facebook": "Login mit Facebook-Account",
+        "twitter": "Login mit Twitter-Account",
+        "google": "Login mit Google-Account"
+      }
+    },
+    "buttons": {
+      "wordcloud": "Best in \uD83C\uDF45cards",
+      "pomodoro": "Pomodoro-Timer",
+      "tooltip": {
+        "wordcloud": "Schau dir die »Best-of«-Auswahl der \uD83C\uDF45cards-Redaktion an. Ein Klick auf eine Kartei öffnet deren vollständige Beschreibung.",
+        "pomodoro": ""
+      }
+    }
+  }
+}

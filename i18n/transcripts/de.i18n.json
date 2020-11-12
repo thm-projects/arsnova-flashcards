@@ -1,0 +1,133 @@
+{
+  "transcriptForm": {
+    "info": {
+      "title":  "Bonus-Schreibphase",
+      "participants": "Teilnehmer/innen",
+      "submissions": "Eingereichte Mitschriften",
+      "median": "Ø Mitschriften pro Teilnehmer/in",
+      "medianPerDate": "Ø Mitschriften pro Termin",
+      "tooltip": {
+        "lecture": {
+          "past": "Der Termin für die Foto-Abgabefrist ist bereits abgelaufen.",
+          "active": "Der Termin für die Foto-Abgabefrist ist momentan aktiv.",
+          "future": "Der Termin für die Foto-Abgabefrist wurde noch nicht freigeschaltet."
+        }
+      }
+    },
+    "index": {
+      "create": "Mitschrift anlegen",
+      "topic": "Thema der Mitschrift",
+      "topicBonus": "Gekoppelte Mitschrift",
+      "tooltip": {
+        "edit": "Mitschrift bearbeiten",
+        "delete": "Mitschrift löschen"
+      },
+      "modal": {
+        "title": "Mitschrift löschen",
+        "description": "Möchtest du wirklich diese Mitschrift löschen?",
+        "button": {
+          "delete": "Löschen",
+          "cancel": "Abbrechen"
+        }
+      }
+    },
+    "button": {
+      "modal": "Mitschrift koppeln",
+      "save": "Speichern"
+    },
+    "server": {
+      "deadlineExpired": "Die Karte kann nicht mehr bearbeitet werden. Die Bearbeitungszeit ist abgelaufen.",
+      "notFound": "Es wurde keine Vorlesung mit Bonusvergabe gefunden."
+    },
+    "title": "Mitschrift mit einer Vorlesung koppeln?",
+    "description": "Bonus-Mitschriften können nach Ablauf der Abgabe nicht mehr bearbeitet werden.",
+    "placeholder": "Wähle eine Vorlesung mit Bonusvergabe aus…",
+    "lecture": "Vorlesung",
+    "deadline": {
+      "submission": "Foto-Abgabefrist",
+      "editing": "Digitale Nachbearbeitungsfrist"
+    },
+    "clock": "Uhr",
+    "until": "bis",
+    "referencesLecture": {
+      "true": "Ja, mit Veranstaltung koppeln",
+      "false": "Nein, lose Mitschrift"
+    },
+    "selectLecture": "Vorlesung auswählen",
+    "bonus": {
+      "button": "Bonus-Mitschriften",
+      "form": {
+        "modal": {
+          "setTitle": {
+            "title": "Termine & Themen der Vorlesungen",
+            "table": {
+              "header": {
+                "date": "Datum",
+                "title": "Thema"
+              }
+            },
+            "button": {
+              "confirm": "Speichern",
+              "reset": "Zurücksetzen"
+            }
+          }
+        },
+        "setTitle": "Themen der Vorlesungen bearbeiten",
+        "title": "Bonusvergabe konfigurieren",
+        "percentage": "Maximale Bonuspunkte",
+        "enable": "Bonus aktivieren",
+        "minimum": {
+          "submissions": "Mitschriften für max. Bonus",
+          "stars": "Sterne für max. Bonus pro Mitschrift"
+        },
+        "lectureTimeEnd": "Freischaltung",
+        "deadline": {
+          "submission": "Zeit für die Foto-Abgabe",
+          "editing": "Zeit für die digitale Nachbearbeitung"
+        },
+        "lectureDates": "Vorlesungstermine",
+        "clock": "Uhr",
+        "hours": "Stunde",
+        "hours_plural": "Stunden",
+        "button": {
+          "save": "Speichern",
+          "cancel": "Zurück zur Kartei",
+          "cancelRepetitorium": "Zurück zum Repetitorium",
+          "settings": "Einstellungen",
+          "list": "Abgaben",
+          "statistics": "Übersicht",
+          "simplifiedNav": {
+            "list": "Mitschriften",
+            "statistics": "Bonus-Übersicht"
+          }
+        },
+        "alert": {
+          "save": "Änderungen wurden erfolgreich gespeichert"
+        }
+      },
+      "statistics": {
+        "lastSubmission": "Letzte Abgabe",
+        "pending": "Noch nicht bewertet",
+        "accepted": "Akzeptiert",
+        "denied": "Abgelehnt",
+        "bonus": "Erhaltene Bonuspunkte",
+        "export": "Statistik exportieren",
+        "exportName": "Mitschriften_Statistik",
+        "starsTotal": "Gesammelte Sterne",
+        "starsMedian": "Ø Sterne"
+      },
+      "submissions": {
+        "button": {
+          "review": "Mitschriften bewerten",
+          "reviewFilter": "Gefilterte Mitschriften bewerten"
+        },
+        "info": {
+          "nothing": "Es gibt mit dem eingestellten Filter keine unbewerteten Mitschriften.",
+          "found": "Es gibt eine nicht bewertete Mitschrift mit abgelaufener Nachbearbeitungsfrist.",
+          "found_plural": "Es gibt __count__ nicht bewertete Mitschriften mit abgelaufener  Nachbearbeitungsfrist.",
+          "next": "Die nächsten Mitschriften können am __date__ bewertet werden."
+        }
+      }
+    }
+  }
+}

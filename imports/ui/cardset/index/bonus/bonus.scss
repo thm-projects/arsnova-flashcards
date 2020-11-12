@@ -8,4 +8,9 @@
   .table-user-history {
     margin-bottom: 0;
   }
+  @media (min-width: 768px) {
+    .table-user-history-global-stats {
+      table-layout: fixed;
+    }
+  }
 }
