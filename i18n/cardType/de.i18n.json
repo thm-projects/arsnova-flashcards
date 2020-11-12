@@ -1,0 +1,397 @@
+{
+  "card": {
+    "navigationDisabled": "Karte wird gewechselt…",
+    "chooseCardType": "Wähle den Karteityp aus…",
+    "cardType0": {
+      "name": "Lerneinheit",
+      "longName": "Lerneinheit: Lernziel | Vertiefung | Fazit | Lerntest | Literatur",
+      "content1": "Lernziel",
+      "content2": "Fazit",
+      "content3": "Literatur ",
+      "content4": "Vertiefung",
+      "content5": "Lerntest",
+      "placeholders": {
+        "subject": "Gib das kurzgefasste Lernziel an!",
+        "content1": "",
+        "content2": "Wenn das »Lernziel« in einer mündlichen Prüfung mit nur einer Frage abgefragt würde, soll hier die Prüfungsfrage und die erwartete Antwort stehen.",
+        "content3": "Liste hier Links und Literatur zur weiteren Vertiefung des Lerngegenstands auf! \n\nRecherchiere auch in der THM-Bibliothek! Fast alle aktuellen Bücher sind als eBook verfügbar.",
+        "content4": "Erläutere ausführlich den Lerngegenstand! \n\nStelle ihn strukturiert und anschaulich dar.",
+        "content5": "Formuliere zwei bis drei offene Fragen, die testen, ob das »Lernziel« durch Lesen und Memorieren der »Vertiefung« erreicht wurde. \n\nGib keine Antworten vor! Die Antworten sollen frei aus dem Gedächtnis formuliert werden. Ob sie richtig sind, soll allein anhand der »Vertiefung« des Lerngegenstands überprüft werden können."
+      },
+      "editorLabels": {
+        "subject": "Lernziel"
+      }
+    },
+    "cardType1": {
+      "name": "Vokabeln",
+      "longName": "Vokabelkartei: Sprache A | Sprache B",
+      "content1": "Sprache A",
+      "content2": "Sprache B",
+      "placeholders": {
+        "subject": "Gib das Thema oder die Sprachsituation an!",
+        "content1": "Gib den zu übersetzenden Text ein. Mit der Tab-Taste oder dem Button oben rufst du die Übersetzung von »DeepL« auf. Kopiere die Übersetzung und füge sie auf der Rückseite der Karte ein.",
+        "content2": "Du kannst Vokabelkarten in beide Richtungen lernen: Sprache A ⇔ Sprache B. Zur Kontrolle schau dir die Rückübersetzung von »DeepL« an (Tab-Taste drücken)."
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
+    },
+    "cardType2": {
+      "name": "Mitschrift",
+      "longName": "Mitschrift: Fotografierte Mitschrift | Offene Fragen | Nachbearbeitung",
+      "content1": "Fotografierte Mitschrift",
+      "content2": "Offene Fragen",
+      "content3": "Nachbearbeitung",
+      "placeholders": {
+        "subject": "Gib das Thema der heutigen Vorlesung an!",
+        "content1": "Mach jeweils ein Foto pro Seite deiner Mitschrift und lade die Fotos hoch in deine Cloud. Füge sie dann hier per Link ein, siehe die Hinweise auf \"https://www.mail-signatures.com/articles/direct-link-to-hosted-image/\". \n\nÜberarbeite zu Hause deine Mitschrift auf dem Tab »Nachbearbeitung«.",
+        "content2": "Notiere hier, was du während der Vorlesung nicht verstanden hast, und kläre deine Fragen in der Nachbereitungsphase. \n\nSchreibe die offenen Fragen und Hausaufgaben als »Task-Liste« auf! \n\n[] To-do 1 \n  [] To-do 2 \n  [] To-do … \n\nSetze ein »x« in die eckigen Klammern, wenn du die Aufgabe erledigt hast.",
+        "content3": "Überarbeite deine Mitschrift innerhalb der vorgegebenen Frist. Nutze hierfür die Strukturierungs- und Formatierungsoptionen, siehe den Button »Textformatierung«! \n\nKläre die Fragen, die du dir während der Vorlesung notiert hast, und arbeite deine To-do-Liste ab!"
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
+    },
+    "cardType3": {
+      "name": "Glossar",
+      "longName": "Glossar: Fachbegriff | Beschreibung | Literatur",
+      "content1": "Fachbegriff",
+      "content2": "Beschreibung",
+      "content3": "Literatur",
+      "placeholders": {
+        "subject": "Gib das Fachgebiet an!",
+        "content1": "Fachbegriff",
+        "content2": "Definition oder Beschreibung des Fachbegriffs",
+        "content3": "Literatur zur Vertiefung"
+      },
+      "editorLabels": {
+        "subject": "Fachgebiet"
+      }
+    },
+    "cardType4": {
+      "name": "Zitat",
+      "longName": "Zitatensammlung: Zitat | Zitierte Person | Quelle",
+      "content1": "Zitat",
+      "content2": "Zitierte Person",
+      "content3": "Quellenangabe",
+      "placeholders": {
+        "subject": "Gib das Thema des Zitats an!",
+        "content1": "Setze ein wörtliches Zitat in Anführungszeichen, siehe »Textformatierung«.",
+        "content2": "Zitierte Person",
+        "content3": "Quellenangabe"
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
+    },
+    "cardType5": {
+      "name": "Prüfung",
+      "longName": "Prüfung: Prüfungsfrage | Antwort | Begründung",
+      "content1": "Prüfungsfrage",
+      "content2": "Antwort",
+      "content3": "Begründung",
+      "placeholders": {
+        "subject": "Gib das zu prüfende Kompetenzziel an!",
+        "content1": "Prüfungsfrage zum Kompetenzziel",
+        "content2": "Antwort auf die Prüfungsfrage",
+        "content3": "Begründung oder Erläuterung der Antwort"
+      },
+      "editorLabels": {
+        "subject": "Kompetenzziel"
+      }
+    },
+    "cardType6": {
+      "name": "Anweisung",
+      "longName": "Anweisungssatz: Semantik | Syntax | Online-API",
+      "content1": "Syntax",
+      "content2": "Semantik",
+      "content3": "Online-API",
+      "placeholders": {
+        "subject": "Gib den Anwendungskontext der Anweisung an!",
+        "content1": "Wie lautet die Anweisung? \n\nVerwende die Code-Formatierung von »Markdeep«!",
+        "content2": "Was soll die Anweisung bewirken?",
+        "content3": "Gib die Quelle an oder verlinke auf die Online-API der Anweisung!"
+      },
+      "editorLabels": {
+        "subject": "Anwendungskontext"
+      }
+    },
+    "cardType7": {
+      "name": "Fachliteratur",
+      "longName": "Literatur: Werk | Schlagwörter | Rezensionen | Inhalt | Anmerkungen | BibTeX",
+      "content1": "Werk",
+      "content2": "Schlagwörter",
+      "content3": "Rezensionen",
+      "content4": "Inhalt",
+      "content5": "Anmerkungen",
+      "content6": "BibTeX",
+      "placeholders": {
+        "subject": "Werkstitel",
+        "content1": "Notiere alle bibliografischen Angaben: vollständiger Titel, Autor/in, Erscheinungsjahr, Verlag oder Webadresse, Art der Publikation etc. Notiere die Angaben in APA-Zitierweise, sodass du sie per Copy-and-Paste in deine Thesis übernehmen kannst. \n\nZur APA-Zitierweise siehe https://www.mentorium.de/zitieren-apa-stil-zitierweise-anleitung-beispiele/. \n\nBinde ein Cover-Bild des Werkes ein. Hol es dir zum Beispiel von Amazon.",
+        "content2": "Nenne die wichtigsten Schlagwörter, mit denen das Werk gefunden werden soll.",
+        "content3": "Gib die Webadressen an, wo Rezensionen des Werkes zu finden sind. \n\nGib mindestens eine repräsentative Rezension als vollständiges Zitat hier wieder.",
+        "content4": "Die Verlage stellen dir das Inhaltsverzeichnis eines Werkes und seinen Klappentext in der Regel online zur Verfügung. Verweise darauf oder übertrage sie hierher.",
+        "content5": "Was immer auch wichtig ist für deine Abschlussarbeiten oder Veröffentlichungen, notiere es hier.",
+        "content6": "Gib die BibTeX-Datei an (https://de.wikipedia.org/wiki/BibTeX). Generiere sie mit Literaturverwaltungsprogrammen wie Citavi oder Zotero."
+      },
+      "editorLabels": {
+        "subject": "Gib den Titel des Werkes an!"
+      }
+    },
+    "cardType8": {
+      "name": "Notiz",
+      "longName": "Notiz",
+      "content1": "Notiz",
+      "placeholders": {
+        "subject": "Gib das Thema deiner Notiz an!",
+        "content1": "Diese Karte ist einseitig für Notizen konzipiert. Es gibt keine Rückseite."
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
+    },
+    "cardType9": {
+      "name": "To-dos",
+      "longName": "To-dos",
+      "content1": "To-dos",
+      "placeholders": {
+        "subject": "Gib das Thema oder das Datum der To-dos an!",
+        "content1": "Diese Karte ist einseitig für eine Aufgabenliste konzipiert.Es gibt keine Rückseite."
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
+    },
+    "cardType10": {
+      "name": "Fotokartei",
+      "longName": "Fotokartei: Foto | Lizenz",
+      "content1": "Foto",
+      "content2": "Lizenz",
+      "placeholders": {
+        "subject": "Gib das Thema des Fotos an!",
+        "content1": "Diese Karte ist für Fotos aus deiner Cloud konzipiert. \n\nSo verlinkst du die Bilddatei: ![Bilduntertitel](Bildadresse)",
+        "content2": "Wer hat die Rechte am Foto? \n\nUnter welcher Lizenz darf das Foto weitergegeben werden?"
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
+    },
+    "cardType11": {
+      "name": "MC-Quiz",
+      "longName": "MC-Quiz: Frage | Antwort",
+      "content1": "Frage",
+      "content2": "Antwort",
+      "placeholders": {
+        "subject": "Gib das Thema deines MC-Quiz an!"
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
+    },
+    "cardType12": {
+      "name": "Pattern",
+      "longName": "Entwurfsmuster: Problem | Kontext | Kräfte | Lösung | Beispiel | Literatur",
+      "content1": "Problem",
+      "content2": "Lösung",
+      "content3": "Kontext",
+      "content4": "Kräfte",
+      "content5": "Beispiel",
+      "content6": "Literatur",
+      "placeholders": {
+        "subject": "Wie heißt das Muster ?",
+        "content1": "Bevor du beginnst, recherchiere im Netz, was man unter einem Entwurfsmuster versteht und wie man es formal in strukturierter Prosa beschreibt! Erkunde dich dann eingehend über das hier zu beschreibende Muster. \n\nWelches häufig auftretende allgemeine Problem löst das Muster? \n\nBeschreibe das Muster in allen seinen Aspekten – »Problem«, »Kontext«, »Kräfte« und »Lösung« – so ausführlich, dass du die oben ausgewählte Kompetenzstufe »Verstehen«, »Anwenden« usw. anhand deiner Beschreibung erreichen kannst!",
+        "content2": "Beschreibe die Lösung anhand eines Diagramms, in der Softwaretechnik mit der »Unified Modeling Language« (UML). \n\nErkläre an einem Anwendungsbeispiel, wie die Komponenten im Diagramm, ihre Beziehungen und Interaktionen das Problem lösen.",
+        "content3": "In welcher Phase des Entwurfsprozesses und unter welchen Randbedingungen tritt das Problem im Allgemeinen auf?",
+        "content4": "Diskutiere die Vor- und Nachteile der Lösung.",
+        "content5": "Nenne mindestens zwei Beispiele für Implementierungen des Entwurfsmusters in der industriellen Praxis.",
+        "content6": "Liste hier Links und Literatur zur Vertiefung des Entwurfsmusters auf."
+      },
+      "editorLabels": {
+        "subject": "Mustername"
+      }
+    },
+    "cardType13": {
+      "name": "Formel",
+      "longName": "Formelsammlung: Aufgabe | Formel | Lösung | Literatur",
+      "content1": "Aufgabe",
+      "content2": "Formel",
+      "content3": "Lösung",
+      "content4": "Literatur",
+      "placeholders": {
+        "subject": "Wie heißt die Formel ?",
+        "content1": "Beschreibe hier eine typische Aufgabe, die mit Hilfe der Formel zu lösen ist.",
+        "content2": "Formatiere die Formel mit TeX inline ($...$) oder abgesetzt ($$...$$).",
+        "content3": "Beschreibe, wie die Aufgabe mit der Formel gelöst wird.",
+        "content4": "Verlinke auf ausführliche Erläuterungen der Formel im Web."
+      },
+      "editorLabels": {
+        "subject": "Themengebiet"
+      }
+    },
+    "cardType14": {
+      "name": "Vortrag",
+      "longName": "Vortrag",
+      "content1": "Vortrag",
+      "placeholders": {
+        "subject": "Gib das Thema der Folie an!",
+        "content1": ""
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
+    },
+    "cardType15": {
+      "name": "Aufgabe",
+      "longName": "Aufgabensammlung: Aufgabe | Lösung",
+      "content1": "Aufgabe",
+      "content2": "Lösung",
+      "placeholders": {
+        "subject": "Gib das Thema der Aufgabe an!",
+        "content1": "",
+        "content2": ""
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
+    },
+    "cardType16": {
+      "name": "Zielerreichung",
+      "longName": "Zielerreichung: Strategie | Taktiken",
+      "content1": "Strategie",
+      "content2": "Taktiken",
+      "placeholders": {
+        "subject": "Was soll erreicht werden?",
+        "content1": "Strategie, um das Ziel langfristig zu erreichen",
+        "content2": "Maßnahmen, um die Strategie umzusetzen"
+      },
+      "editorLabels": {
+        "subject": "Ziel"
+      }
+    },
+    "cardType17": {
+      "name": "Inverses Fragen",
+      "longName": "Inverses Fragen: Frage A = Antwort B | Frage B = Antwort A",
+      "content1": "Frage A = Antwort B",
+      "content2": "Frage B = Antwort A",
+      "placeholders": {
+        "subject": "Was adressieren die Fragen A und B?",
+        "content1": "Vorwärtsfrage A bzw. die Antwort auf die Rückwärtsfrage B \n\n(Beispiel Entwurfsmuster: Vorwärtsfrage A »Wie sieht das UML-Klassendiagramm des Entwurfsmusters Observer aus?«)",
+        "content2": "Rückwärtsfrage B bzw. die Antwort auf die Vorwärtsfrage A \n\n(Beispiel Entwurfsmuster: Rückwärtsfrage B »Welches Entwurfsmuster beschreibt dieses Klassendiagramm?«)"
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
+    },
+    "cardType18": {
+      "name": "Kubus",
+      "longName": "Kubus: Vorne | Rechts | Hinten | Links | Oben | Unten",
+      "content1": "A",
+      "content2": "B",
+      "content3": "C",
+      "content4": "D",
+      "content5": "E",
+      "content6": "F",
+      "placeholders": {
+        "subject": "Gib das Thema des Würfels an!",
+        "content1": "Vorne",
+        "content2": "Rechts",
+        "content3": "Hinten",
+        "content4": "Links",
+        "content5": "Oben",
+        "content6": "Unten"
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
+    },
+    "cardType19": {
+      "name": "Bonus-Kartei für Mitschriften",
+      "longName": "Kartei für die Bonusvergabe von Mitschriften"
+    },
+    "cardType20": {
+      "name": "Quiz",
+      "longName": "Quiz: Frage | Antwort",
+      "content1": "Frage",
+      "content2": "Antwort",
+      "placeholders": {
+        "subject": "Gib das Thema deines Quiz an!",
+        "content1": "Gib hier die Quizfrage ein!",
+        "content2": "Gib hier die richtige Antwort ein!"
+      },
+      "editorLabels": {
+        "subject": "Thema"
+      }
+    },
+    "markdeepEditor": {
+      "placeholders": {
+        "answer": "Inhalt für __tag__",
+        "question": "Inhalt für Frage",
+        "explanation": "Erläuterung für __tag__"
+      },
+      "learningTime": {
+        "initial": "Initiale Lernzeit",
+        "repeated": "Wiederholte Lernzeit",
+        "type": "Minuten"
+      },
+      "answerTag": "Antwort __tag__",
+      "question": "Frage",
+      "enableAnswers": "Im Lernmodus anzeigen (In Bearbeitung)",
+      "notification": {
+        "noQuestion": "Es muss eine Frage existieren",
+        "noAnswers": "Alle Antworten müssen einen Inhalt besitzen",
+        "noRightAnswer": "Es muss mindestens eine richtige Antwort existieren"
+      }
+    },
+    "tooltip": {
+      "toggle3D": "3D-Ansicht aktivieren / deaktivieren",
+      "contrast": "Setze die Präsentation in den Kontrastmodus",
+      "backToCardset": "Zurück zur Karteiansicht",
+      "endPresentation": "Präsentation beenden",
+      "endPresentationDemo": "Zurück zur Startseite",
+      "fullscreen": "Mit der Taste ESC (oben links) kommst du wieder in die Normalansicht.",
+      "nextCard": "Zur nächsten Karte wechseln __hotkey__",
+      "nextCardHotkey": "(auch mit der Leertaste)",
+      "previousCard": "Zur vorherigen Karte wechseln __hotkey__",
+      "previousCardHotkey": "(auch mit der Pfeiltaste)",
+      "lockSide": "Rückseite mit Vorderseite tauschen",
+      "showIndex": "Zu einer beliebigen Karte wechseln",
+      "edit": "Karte editieren",
+      "delete": "Karte löschen",
+      "dictionaryBeolingus": "Zeige die »Beolingus«-Übersetzung",
+      "dictionaryDeepL": "Zeige die »DeepL«-Übersetzung",
+      "copy": "Erstelle eine Kopie dieser Karte",
+      "zoomText": "Schriftgröße ändern",
+      "zoomTextReset": "Zurücksetzen",
+      "pomodoro": "Zwischen Uhr und Timer wechseln",
+      "showHelp": "Hilfe",
+      "arsnovaClick": "Befrage dein Publikum mit »arsnova.click«, der spielbasierten Variante von ARSnova",
+      "arsnovaLite": "Mit »frag.jetzt« kann dein Publikum Fragen an dich stellen und die Fragen der anderen up und down voten.",
+      "hideSidebar": "Verberge die Rand-Buttons",
+      "showSidebar": "Zeige die Rand-Buttons",
+      "leitnerHistory": "Zeige mein Lernprotokoll",
+      "leitnerGraph": "Zeige meinen Lernstand",
+      "swapQuestionAnswer": {
+        "normal": "Zeige die Rückseite zuerst",
+        "shuffled": "Zeige zuerst die Rückseite für die Karteitypen: __cardTypes__",
+        "listSeparator": ", "
+      },
+      "markdeepEditor": {
+        "help": "Öffnet ein neues Fenster und zeigt die Formatierungsoptionen von »Markdeep«",
+        "translate": "Übersetze die Eingabe mit »Beolingus«",
+        "center": "Zentriere den Karteninhalt vertikal",
+        "alignLeft": "Text linksbündig ausrichten",
+        "mobilePreview": "Zeige die Karte in der Smartphone-Ansicht (iPhone 6/7/8)",
+        "rotateMobilePreview": "Drehe die Smartphone-Ansicht (iPhone 6/7/8)",
+        "dictionaryBeolingus": "Zeige die »Beolingus«-Übersetzung",
+        "style": "Ändere den Hintergrund der Karte (liniert oder blanko). Die Linierung ist für die Smartphone-Ansicht deaktiviert.",
+        "fullscreen": "Mit der Taste ESC (oben links) kommst du wieder in die Normalansicht.",
+        "answerEditor": "Zu Antwort Editor wechseln",
+        "addAnswer": "Antwort hinzufügen",
+        "removeAnswer": "Letzte Antwort entfernen",
+        "rightAnswer": "Markiere aktive Antwort als richtig",
+        "randomizeAnswerPosition": "Antworten im Leitner-Plan vermischen",
+        "explanation": "Erläuterung für Antwort"
+      }
+    }
+  }
+}

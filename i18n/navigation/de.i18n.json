@@ -1,0 +1,89 @@
+{
+  "navbar-collapse": {
+    "noNews": "Keine Neuigkeiten",
+    "all": {
+      "all": "Alle",
+      "cardsets": "Karteien",
+      "repetitorien": "Repetitorien"
+    },
+    "public": {
+      "public": "Themenpool",
+      "cardsets": "Karteien",
+      "repetitorien": "Repetitorien"
+    },
+    "personal": {
+      "personal": {
+        "zero": "anlegen",
+        "one": "Meine Kartei",
+        "multiple": "Meine Karteien"
+      },
+      "cardsets": {
+        "zero": "Kartei anlegen",
+        "one": "Kartei",
+        "multiple": "Karteien"
+      },
+      "repetitorien": {
+        "zero": "Repetitorium anlegen",
+        "one": "Repetitorium",
+        "multiple": "Repetitorien"
+      }
+    },
+    "transcripts": {
+      "zero": "Mitschrift anlegen",
+      "one": "Mitschriften",
+      "multiple": "Mitschriften",
+      "short": {
+        "zero": "Anlegen",
+        "one": "Mitschrift",
+        "multiple": "Mitschriften"
+      },
+      "personal": {
+        "zero": "Mitschrift anlegen",
+        "one": "Meine Mitschrift",
+        "multiple": "Meine Mitschriften"
+      },
+      "bonus": {
+        "zero": "Bonus-Mitschrift anlegen",
+        "one": "Meine Bonus-Mitschrift",
+        "multiple": "Meine Bonus-Mitschriften"
+      }
+    },
+    "learndecks": "Lernpensum",
+    "myprofile": "Konto",
+    "billing": "Abrechnung",
+    "membership": "Mitgliedschaft",
+    "search": {
+      "workload": "Suche nach Karteien oder Repetitorien…",
+      "all": {
+        "cardsets": "Suche nach allen Karteien…",
+        "repetitorien": "Suche nach allen Repetitorien…"
+      },
+      "public": {
+        "cardsets": "Suche nach Karteien…",
+        "repetitorien": "Suche nach Repetitorien…"
+      },
+      "personal": {
+        "cardsets": "Suche nach eigenen Karteien…",
+        "repetitorien": "Suche nach egeinen Repetitorien…"
+      },
+      "item": {
+        "open": {
+          "cardset": "Kartei öffnen",
+          "repetitorium": "Repetitorium öffnen"
+        }
+      }
+    },
+    "tooltip": {
+      "search": "Öffne die Sucheingabe",
+      "useCases": "Zeige mir Abkürzungen zu den Hauptzielen auf \uD83C\uDF45cards",
+      "displayWordcloud": "Zeige die Tabelle als Themenwolke",
+      "displayList": "Zeige die Themenwolke als Tabelle",
+      "filter": "Sortiere oder filter die Themen"
+    },
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "none": "Ohne",
+    "info-extra-small": "Hauptmenü ➔",
+    "news": "News"
+  }
+}

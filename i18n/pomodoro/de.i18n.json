@@ -1,0 +1,85 @@
+{
+  "pomodoro": {
+    "tooltip": "Pomodoro-Timer für dein Zeitmanagement – »Pomodoro« ist italienisch für \uD83C\uDF45",
+    "name": "Pomodoro",
+    "name_plural": "Pomodori",
+    "timer": {
+      "instructions": {
+        "activate": "",
+        "deactivate": ""
+      }
+    },
+    "backend": {
+      "settings": {
+        "title": "Zeige Pomodoro statt Wortwolke auf der Landing-Page",
+        "button": {
+          "enabled": "Aktiviert",
+          "disabled": "Deaktiviert"
+        }
+      }
+    },
+    "cardsetInfo": {
+      "count": {
+        "label": "Zeitmanagement",
+        "content": "__count__ <a href=\"__link__\" data-toggle=\"tooltip\" title=\"__tooltip__\" target=\"_blank\">__pomodoro__ 🍅</a>"
+      },
+      "work": {
+        "label": "Lernzeit pro Pomodoro",
+        "content": "__minutes__"
+      },
+      "break": {
+        "label": "Pausenlänge",
+        "content": "__minutes__"
+      }
+    },
+    "form": {
+      "fullscreen": "Vollbildmodus aktivieren",
+      "time": {
+        "hour": "1 Stunde",
+        "hour_plural": "__count__ Stunden",
+        "minute": "1 Minute",
+        "minute_plural": "__count__ Minuten",
+        "and": " und "
+      },
+      "sounds": {
+        "title": " Klänge",
+        "break": " Pausenton",
+        "success": " Ton, wenn du deine Lernzeit einhältst",
+        "abort": " Ton, wenn du vorzeitig aufhörst"
+      },
+      "link": "/learning#Pomodoro",
+      "tooltip": {
+        "link": "»Pomodoro« (italienisch für Tomate) ist ein Arbeits-Pausen-Zyklus. Standard: 25 Minuten Arbeit, 5 Minuten Pause. Nach 4 Pomodori: 30 Minuten Pause. Klick auf den Link, um mehr über diese populäre Zeitmanagement-Technik zu erfahren!"
+      },
+      "user": {
+        "title": "Wie lange willst du lernen?",
+        "count": "Ich will <span class=\"pomodoroHighlight\">__count__</span> <a href=\"__link__\" data-toggle=\"tooltip\" title=\"__tooltip__\" target=\"_blank\"> <b>__pomodoro__ </b>🍅❓</a> schaffen!",
+        "totalTime": "Reserviere __time__ für den Lernstoff!",
+        "work": " Lernen: <span class=\"pomodoroHighlight\">__minutes__</span> pro Pomodoro",
+        "break": " Pausieren: <span class=\"pomodoroHighlight\">__minutes__</span> pro Pomodoro",
+        "settings": {
+          "title": "Wieviel Zeit planst du fürs Lernen?"
+        },
+        "button": {
+          "start": "Los geht's",
+          "settings": "Einstellungen"
+        }
+      },
+      "bonus": {
+        "count": "Vorgesehene tägliche Lernzeit:  <span class=\"pomodoroHighlight\">__count__</span> <a href=\"__link__\" data-toggle=\"tooltip\" title=\"__tooltip__\" target=\"_blank\"> <b>__pomodoro__</b> 🍅</a>",
+        "totalTime": "Das sind insgesamt __time__ Lernzeit einschließlich der Pausen.",
+        "work": "Vorgesehene Lernzeit pro Pomodoro: <span class=\"pomodoroHighlight\">__minutes__</span>",
+        "break": "Vorgesehene Pausenlänge: <span class=\"pomodoroHighlight\">__minutes__</span>"
+      },
+      "presentation": {
+        "title": "Zeitmanagement",
+        "work": " Ansehen | Präsentieren: <span class=\"pomodoroHighlight\">__minutes__</span>",
+        "break": " Pause: <span class=\"pomodoroHighlight\">__minutes__</span>",
+        "button": {
+          "start": "Timer starten",
+          "cancel": "Abbrechen"
+        }
+      }
+    }
+  }
+}
