@@ -108,7 +108,7 @@ Template.cardsetLearnActivityStatistic.events({
 	},
 	"click .removeBonusUser": function (event) {
 		let user = {};
-		user.user_id = $(event.target).data('id');
+		user.user_id = $(event.target).data('user_id');
 		user.firstName = $(event.target).data('firstname');
 		user.lastName = $(event.target).data('lastname');
 		user.email = $(event.target).data('email');

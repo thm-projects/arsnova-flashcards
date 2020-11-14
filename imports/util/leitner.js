@@ -196,7 +196,9 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			}
 
 			let cardSelection = this.selectCardsByOrder(cardset, boxActiveCardCap, algorithm, user);
-
+			if (Meteor.isServer && Meteor.settings.debug.leitner) {
+				console.log(`===> Active cards BEFORE update ${Leitner.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()}`);
+			}
 			Leitner.update({
 				cardset_id: cardset._id,
 				user_id: user._id,
@@ -207,6 +209,10 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					currentDate: new Date()
 				}
 			}, {multi: true});
+			if (Meteor.isServer && Meteor.settings.debug.leitner) {
+				console.log(`===> Active cards AFTER update ${Leitner.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()}`);
+			}
+
 			this.updateLeitnerWorkload(cardset._id, user._id);
 			let task_id = this.updateLeitnerWorkloadTasks(cardset._id, user._id, isNewcomer);
 			this.setLeitnerHistory(cardset, user._id, task_id, cardSelection);
@@ -484,6 +490,9 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						}
 					}).fetch();
 					idArray = _.pluck(cards, "card_id");
+					if (Meteor.settings.debug.leitner) {
+						console.log(`===> Resetting ${idArray.length} cards [${idArray}]`);
+					}
 					Leitner.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id}, {
 						$set: {
 							box: box,
@@ -493,6 +502,9 @@ export let LeitnerUtilities = class LeitnerUtilities {
 							skipped: 0
 						}
 					}, {multi: true});
+					if (Meteor.settings.debug.leitner) {
+						console.log(`===> ${Leitner.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()} active Cards left after reset\n`);
+					}
 					let lastLeitnerTask = this.getHighestLeitnerTaskSessionID(cardset._id, user._id);
 					if (lastLeitnerTask !== undefined) {
 						LeitnerTasks.update({
@@ -518,6 +530,9 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					}
 				}).fetch();
 				idArray = _.pluck(cards, "card_id");
+				if (Meteor.settings.debug.leitner) {
+					console.log(`===> Resetting ${idArray.length} cards [${idArray}]`);
+				}
 				Leitner.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id}, {
 					$set: {
 						box: 1,
@@ -527,6 +542,9 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						skipped: 0
 					}
 				}, {multi: true});
+				if (Meteor.settings.debug.leitner) {
+					console.log(`===> ${Leitner.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()} active Cards left after reset\n`);
+				}
 				let lastLeitnerTask = this.getHighestLeitnerTaskSessionID(cardset._id, user._id);
 				if (lastLeitnerTask !== undefined) {
 					LeitnerTasks.update({
