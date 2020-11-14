@@ -196,7 +196,9 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			}
 
 			let cardSelection = this.selectCardsByOrder(cardset, boxActiveCardCap, algorithm, user);
-
+			if (Meteor.isServer && Meteor.settings.debug.leitner) {
+				console.log(`===> Active cards BEFORE update ${Leitner.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()}`);
+			}
 			Leitner.update({
 				cardset_id: cardset._id,
 				user_id: user._id,
@@ -207,6 +209,10 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					currentDate: new Date()
 				}
 			}, {multi: true});
+			if (Meteor.isServer && Meteor.settings.debug.leitner) {
+				console.log(`===> Active cards AFTER update ${Leitner.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()}`);
+			}
+
 			this.updateLeitnerWorkload(cardset._id, user._id);
 			let task_id = this.updateLeitnerWorkloadTasks(cardset._id, user._id, isNewcomer);
 			this.setLeitnerHistory(cardset, user._id, task_id, cardSelection);
