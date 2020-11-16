@@ -2,9 +2,19 @@ import {Session} from "meteor/session";
 import {Cardsets} from "../api/subscriptions/cardsets";
 import {CardType} from "./cardTypes";
 import {ServerStyle} from "./styles";
+import {
+	END_RECORDING,
+	END_GROUP,
+	START_GROUP,
+	SKIP_RECORDING,
+	START_RECORDING,
+	TYPE_INITIALIZE, TYPE_MIGRATE, TYPE_CLEANUP
+} from "../config/serverBoot";
 
 let debugServerBoot;
 let lastDebugTime;
+let groupTime;
+let groupCounter = 1;
 
 export let Utilities = class Utilities {
 	static getCalendarString (type = '', minutes = '', displayMode = 0) {
@@ -144,20 +154,69 @@ export let Utilities = class Utilities {
 		}
 	}
 
-	static debugServerBoot (status = 0, item = "") {
+	static debugServerBoot (status = 0, item = "", type = TYPE_INITIALIZE) {
 		if (debugServerBoot === undefined) {
 			debugServerBoot = ServerStyle.debugServerBoot();
 			lastDebugTime = moment();
 		}
 		if (debugServerBoot) {
+			let typeText;
 			switch (status) {
-				case 0:
-					console.log(`Initializing ${item}...`);
+				case START_RECORDING:
+					switch (type) {
+						case TYPE_INITIALIZE:
+							typeText = 'Initializing';
+							break;
+						case TYPE_MIGRATE:
+							typeText = 'Migrating';
+							break;
+						case TYPE_CLEANUP:
+							typeText = 'Remove';
+							break;
+					}
+					console.log(`${String(groupCounter).padStart(2, '0')}: ${typeText} ${item}...`);
 					lastDebugTime = moment();
 					break;
-				case 1:
+				case END_RECORDING:
 					let currentDebugTime = moment();
-					console.log(`Initialization of ${item} completed, took ${moment.duration(currentDebugTime.diff(lastDebugTime)).asMilliseconds()} Milliseconds`);
+					switch (type) {
+						case TYPE_INITIALIZE:
+							typeText = 'Initialization';
+							break;
+						case TYPE_MIGRATE:
+							typeText = 'Migration';
+							break;
+						case TYPE_CLEANUP:
+							typeText = 'Removal';
+							break;
+					}
+					let currentTime = moment.duration(currentDebugTime.diff(lastDebugTime)).asMilliseconds();
+					groupTime += currentTime;
+					console.log(`${String(groupCounter).padStart(2, '0')}: ${typeText} of ${item} completed, took ${currentTime} Milliseconds`);
+					groupCounter++;
+					break;
+				case SKIP_RECORDING:
+					switch (type) {
+						case TYPE_INITIALIZE:
+							typeText = 'initialize';
+							break;
+						case TYPE_MIGRATE:
+							typeText = 'migrate';
+							break;
+						case TYPE_CLEANUP:
+							typeText = 'remove';
+							break;
+					}
+					console.log(`${String(groupCounter).padStart(2, '0')}: Nothing to ${typeText}, skipping.`);
+					groupCounter++;
+					break;
+				case START_GROUP:
+					groupTime = 0;
+					groupCounter = 1;
+					console.log(`##### Starting Step "${item}"`);
+					break;
+				case END_GROUP:
+					console.log(`##### Step "${item}" took ${groupTime} Milliseconds to complete\n`);
 					break;
 			}
 		}
