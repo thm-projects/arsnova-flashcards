@@ -95,11 +95,15 @@ export let MarkdeepContent = class MarkdeepContent {
 		return $('<div/>').append(element).html();
 	}
 
-	static convertUML (content) {
+	static convertUML (content, isMarkdeepExport = false) {
 		let url = "";
-		let urlSetting = AdminSettings.findOne({name: "plantUMLServerSettings"});
-		if (urlSetting !== undefined) {
-			url = urlSetting.url;
+		if (isMarkdeepExport) {
+			url = config.plantUML.exportMarkdeepURL;
+		} else {
+			let urlSetting = AdminSettings.findOne({name: "plantUMLServerSettings"});
+			if (urlSetting !== undefined) {
+				url = urlSetting.url;
+			}
 		}
 		let preOutput = config.plantUML.output.preUrl + url + config.plantUML.output.postUrl;
 		content = content.replace(new XRegExp(config.plantUML.regexp.pre + config.plantUML.regexp.content + config.plantUML.regexp.post, "gs"), function (match) {
@@ -213,7 +217,7 @@ export let MarkdeepContent = class MarkdeepContent {
 				let sideContent = cards[i][CardType.getContentIDTranslation(filteredSides[s].contentId)];
 				if (sideContent !== undefined && sideContent.trim().length > 0) {
 					content += "# " + cards[i].subject + " (" + TAPi18n.__('card.cardType' + cardset.cardType + '.content' + filteredSides[s].contentId) + ")" + newline;
-					content += sideContent + newline;
+					content += this.convertUML(sideContent, true) + newline;
 				}
 			}
 		}
