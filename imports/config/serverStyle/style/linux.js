@@ -4,6 +4,7 @@ import {
 import {AUTO_FULLSCREEN, CHOOSE_FULLSCREEN, EDU, FREE, GUEST, LECTURER, MANUAL_FULLSCREEN, PRO} from "./global/const";
 
 module.exports = {
+	"debugServerBoot": false,
 	"fullscreen": {
 		"settings": {
 			"enabled": [FREE, EDU, LECTURER, PRO],

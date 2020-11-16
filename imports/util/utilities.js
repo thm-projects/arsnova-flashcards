@@ -3,6 +3,9 @@ import {Cardsets} from "../api/subscriptions/cardsets";
 import {CardType} from "./cardTypes";
 import {ServerStyle} from "./styles";
 
+let debugServerBoot;
+let lastDebugTime;
+
 export let Utilities = class Utilities {
 	static getCalendarString (type = '', minutes = '', displayMode = 0) {
 		let today = '[Today]';
@@ -137,6 +140,25 @@ export let Utilities = class Utilities {
 				if (CardType.getCardTypesWithLearningModes().includes(cardset.cardType)) {
 					return true;
 				}
+			}
+		}
+	}
+
+	static debugServerBoot (status = 0, item = "") {
+		if (debugServerBoot === undefined) {
+			debugServerBoot = ServerStyle.debugServerBoot();
+			lastDebugTime = moment();
+		}
+		if (debugServerBoot) {
+			switch (status) {
+				case 0:
+					console.log(`Initializing ${item}...`);
+					lastDebugTime = moment();
+					break;
+				case 1:
+					let currentDebugTime = moment();
+					console.log(`Initialization of ${item} completed, took ${moment.duration(currentDebugTime.diff(lastDebugTime)).asMilliseconds()} Milliseconds`);
+					break;
 			}
 		}
 	}

@@ -67,7 +67,9 @@ Template.cardsetExportForm.events({
 					let settings = Session.get('exportedCardSides');
 					let whitelist = [];
 					for (let i = 0; i < settings.length; i++) {
-						whitelist.push(settings[i].contentId);
+						if (settings[i].active === true && settings[i].count > 0) {
+							whitelist.push(settings[i].contentId);
+						}
 					}
 					let exportData = new Blob([MarkdeepContent.exportContent(JSON.parse(result), Session.get('activeCardset'), whitelist)], {
 						type: "text/html"
