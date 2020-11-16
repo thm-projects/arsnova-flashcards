@@ -473,4 +473,9 @@ export let ServerStyle = class ServerStyle {
 				return fullscreenDefaults[landingPage].demo;
 		}
 	}
+
+	static debugServerBoot () {
+		let config = this.getConfig();
+		return config.debugServerBoot;
+	}
 };

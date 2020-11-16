@@ -30,6 +30,9 @@ var initColorThemes = function () {
 	}];
 };
 
+const START_RECORDING = 0;
+const END_RECORDING = 1;
+
 var initTestNotificationsCardset = function () {
 	return [
 		{
@@ -387,14 +390,32 @@ function setupDatabaseIndex() {
 
 Meteor.startup(function () {
 	const cronScheduler = new CronScheduler();
+	let statusItem = "Color Themes";
+	Utilities.debugServerBoot(START_RECORDING, statusItem);
 	let themes = initColorThemes();
+	Utilities.debugServerBoot(END_RECORDING, statusItem);
+	statusItem = "Test Notifications";
+	Utilities.debugServerBoot(START_RECORDING, statusItem);
 	let testNotificationsCardset = initTestNotificationsCardset();
 	let testNotificationsCards = initTestNotificationsCards();
 	let testNotificationsLearned = initTestNotificationsLearned();
 	let testNotificationsUser = initTestNotificationsUser();
+	Utilities.debugServerBoot(END_RECORDING, statusItem);
+	statusItem = "Demo Cardset";
+	Utilities.debugServerBoot(START_RECORDING, statusItem);
 	let demoCardsetUser = initDemoCardsetUser();
+	Utilities.debugServerBoot(END_RECORDING, statusItem);
+	statusItem = "Database Index";
+	Utilities.debugServerBoot(START_RECORDING, statusItem);
 	setupDatabaseIndex();
+	Utilities.debugServerBoot(END_RECORDING, statusItem);
+	statusItem = "Workload cleanup";
+	Utilities.debugServerBoot(START_RECORDING, statusItem);
 	cleanWorkload();
+	Utilities.debugServerBoot(END_RECORDING, statusItem);
+
+	statusItem = "newsletter template";
+	Utilities.debugServerBoot(START_RECORDING, statusItem);
 	process.env.MAIL_URL = Meteor.settings.mail.url;
 	SSR.compileTemplate("newsletter", Assets.getText("newsletter/newsletter.html"));
 	Template.newsletter.helpers({
@@ -402,6 +423,7 @@ Meteor.startup(function () {
 			return '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
 		}
 	});
+	Utilities.debugServerBoot(END_RECORDING, statusItem);
 
 	if (!AdminSettings.findOne({name: "seqSettings"})) {
 		AdminSettings.insert({
