@@ -67,7 +67,7 @@ Template.cardsetExportForm.events({
 					let settings = Session.get('exportedCardSides');
 					let whitelist = [];
 					for (let i = 0; i < settings.length; i++) {
-						if (settings[i].active === true) {
+						if (settings[i].active === true && settings[i].count > 0) {
 							whitelist.push(settings[i].contentId);
 						}
 					}
