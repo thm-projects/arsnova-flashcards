@@ -213,7 +213,7 @@ export let MarkdeepContent = class MarkdeepContent {
 				let sideContent = cards[i][CardType.getContentIDTranslation(filteredSides[s].contentId)];
 				if (sideContent !== undefined && sideContent.trim().length > 0) {
 					content += "# " + cards[i].subject + " (" + TAPi18n.__('card.cardType' + cardset.cardType + '.content' + filteredSides[s].contentId) + ")" + newline;
-					content += sideContent + newline;
+					content += this.convertUML(sideContent) + newline;
 				}
 			}
 		}
