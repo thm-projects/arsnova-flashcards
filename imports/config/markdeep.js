@@ -45,7 +45,8 @@ let plantUML = {
 		preUrl: "== PlantUML\n:plantuml-server-url: ",
 		postUrl: "\n[plantuml.plantuml-diagram, PlantUML Diagram, svg]\n----",
 		post: "----"
-	}
+	},
+	exportMarkdeepURL: "https://projects.thm.de/plantuml"
 };
 
 module.exports = {
