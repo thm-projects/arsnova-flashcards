@@ -8,7 +8,7 @@ import {
 	START_GROUP,
 	SKIP_RECORDING,
 	START_RECORDING,
-	TYPE_INITIALIZE, TYPE_MIGRATE, TYPE_CLEANUP
+	TYPE_INITIALIZE, TYPE_MIGRATE, TYPE_CLEANUP, PROCESS_RECORDING
 } from "../config/serverBoot";
 
 let debugServerBoot;
@@ -154,13 +154,14 @@ export let Utilities = class Utilities {
 		}
 	}
 
-	static debugServerBoot (status = 0, item = "", type = TYPE_INITIALIZE) {
+	static debugServerBoot (status = 0, item = "", type = TYPE_INITIALIZE, count = 0) {
 		if (debugServerBoot === undefined) {
 			debugServerBoot = ServerStyle.debugServerBoot();
 			lastDebugTime = moment();
 		}
 		if (debugServerBoot) {
 			let typeText;
+			let currentDebugTime = moment();
 			switch (status) {
 				case START_RECORDING:
 					switch (type) {
@@ -178,7 +179,6 @@ export let Utilities = class Utilities {
 					lastDebugTime = moment();
 					break;
 				case END_RECORDING:
-					let currentDebugTime = moment();
 					switch (type) {
 						case TYPE_INITIALIZE:
 							typeText = 'Initialization';
@@ -207,6 +207,7 @@ export let Utilities = class Utilities {
 							typeText = 'remove';
 							break;
 					}
+					groupTime += moment.duration(currentDebugTime.diff(lastDebugTime)).asMilliseconds();
 					console.log(`${String(groupCounter).padStart(2, '0')}: Nothing to ${typeText}, skipping.`);
 					groupCounter++;
 					break;
@@ -217,6 +218,9 @@ export let Utilities = class Utilities {
 					break;
 				case END_GROUP:
 					console.log(`##### Step "${item}" took ${groupTime} Milliseconds to complete\n`);
+					break;
+				case PROCESS_RECORDING:
+					console.log(`${String(groupCounter).padStart(2, '0')}: Found ${count} outdated entries`);
 					break;
 			}
 		}

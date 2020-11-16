@@ -1,14 +1,14 @@
 import {Utilities} from "../../../../util/utilities";
 import * as config from "../../../../config/serverBoot";
 import {AdminSettings} from "../../../../api/subscriptions/adminSettings";
-import {TYPE_MIGRATE} from "../../../../config/serverBoot";
+import {TYPE_INITIALIZE} from "../../../../config/serverBoot";
 
 function adminSettingsStep() {
 	let groupName = "Admin Settings Migration";
 	Utilities.debugServerBoot(config.START_GROUP, groupName);
 
 	let itemName = "AdminSettings seqSettings document";
-	let type = TYPE_MIGRATE;
+	let type = TYPE_INITIALIZE;
 	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
 	let itemNotFoundStatus = !AdminSettings.findOne({name: "seqSettings"});
 	if (itemNotFoundStatus) {

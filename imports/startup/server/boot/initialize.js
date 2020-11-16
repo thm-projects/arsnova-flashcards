@@ -14,10 +14,10 @@ import {LeitnerUtilities} from "../../../util/leitner";
 import {Utilities} from "../../../util/utilities";
 import * as bonusFormConfig from "../../../config/bonusForm.js";
 import * as leitnerConfig from "../../../config/leitner.js";
-import {ServerStyle} from "../../../util/styles";
 import {cleanupStep} from "./steps/cleanupStep";
 import {defaultDataStep} from "./steps/defaultDataStep";
 import {adminSettingsStep} from "./steps/adminSettingsStep";
+import {userMigrationStep} from "./steps/migration/userMigration";
 
 Meteor.startup(function () {
 	const cronScheduler = new CronScheduler();
@@ -25,6 +25,9 @@ Meteor.startup(function () {
 	cleanupStep();
 	defaultDataStep();
 	adminSettingsStep();
+
+	// Migration Steps
+	userMigrationStep();
 
 	let cards = Cards.find({lecture: {$exists: false}}).fetch();
 	for (let i = 0; i < cards.length; i++) {
@@ -607,29 +610,6 @@ Meteor.startup(function () {
 		);
 	}
 
-	let users = Meteor.users.find({selectedLanguage: {$exists: true}}).fetch();
-	for (let i = 0; i < users.length; i++) {
-		Meteor.users.update({
-				_id: users[i]._id
-			},
-			{
-				$set: {
-					"profile.locale": users[i].selectedLanguage
-				},
-				$unset: {
-					selectedLanguage: ""
-				}
-			}
-		);
-	}
-
-	users = Meteor.users.find({}, {fields: {_id: 1}}).fetch();
-	for (let i = 0; i < users.length; i++) {
-		Meteor.call('updateCardsetCount', users[i]._id);
-		Meteor.call('updateTranscriptCount', users[i]._id);
-		Meteor.call('updateWorkloadCount', users[i]._id);
-	}
-
 	cards = Cards.find({cardType: 2}).fetch();
 	for (let i = 0; i < cards.length; i++) {
 		Cards.update({
@@ -896,23 +876,6 @@ Meteor.startup(function () {
 				}
 			}
 		);
-	}
-
-	users = Meteor.users.find({"fullscreen.settings": {$exists: false}}).fetch();
-	for (let i = 0; i < users.length; i++) {
-		let defaultFullscreenSettings = {
-			presentation: ServerStyle.getDefaultFullscreenMode(1, users[i]._id),
-			demo: ServerStyle.getDefaultFullscreenMode(2, users[i]._id),
-			leitner: ServerStyle.getDefaultFullscreenMode(3, users[i]._id),
-			wozniak: ServerStyle.getDefaultFullscreenMode(4, users[i]._id)
-		};
-		Meteor.users.update({
-			_id: users[i]._id
-		}, {
-			$set: {
-				"fullscreen.settings": defaultFullscreenSettings
-			}
-		});
 	}
 
 	cronScheduler.startCron();
