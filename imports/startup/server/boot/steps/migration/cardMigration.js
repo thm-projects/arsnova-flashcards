@@ -9,30 +9,10 @@ function cardMigrationStep() {
 	let groupName = "Card Migration";
 	Utilities.debugServerBoot(config.START_GROUP, groupName);
 
-	let itemName = "Cards lecture field";
+	let itemName = "Cards centerTextElement field";
 	let type = TYPE_MIGRATE;
 	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
-	let cards = Cards.find({lecture: {$exists: false}}).fetch();
-	if (cards.length) {
-		for (let i = 0; i < cards.length; i++) {
-			Cards.update({
-					_id: cards[i]._id
-				},
-				{
-					$set: {
-						lecture: ""
-					}
-				}
-			);
-		}
-		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
-	} else {
-		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
-	}
-
-	itemName = "Cards centerTextElement field";
-	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
-	cards = Cards.find({centerTextElement: {$exists: false}}).fetch();
+	let cards = Cards.find({centerTextElement: {$exists: false}}).fetch();
 	if (cards.length) {
 		for (let i = 0; i < cards.length; i++) {
 			let cardset = Cardsets.findOne({_id: cards[i].cardset_id}, {fields: {_id: 1, cardType: 1}});
@@ -166,7 +146,7 @@ function cardMigrationStep() {
 
 	itemName = "Cards transcripts to have no cardset assigned";
 	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
-	cards = Cards.find({cardType: 2}).fetch();
+	cards = Cards.find({cardType: 2, cardset_id: {$ne: "-1"}}).fetch();
 	if (cards.length) {
 		for (let i = 0; i < cards.length; i++) {
 			Cards.update({

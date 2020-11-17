@@ -35,13 +35,17 @@ function userMigrationStep() {
 
 	itemName = "Users counter fields";
 	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
-	users = Meteor.users.find({}, {fields: {_id: 1}}).fetch();
-	for (let i = 0; i < users.length; i++) {
-		Meteor.call('updateCardsetCount', users[i]._id);
-		Meteor.call('updateTranscriptCount', users[i]._id);
-		Meteor.call('updateWorkloadCount', users[i]._id);
+	users = Meteor.users.find({"count.cardsets": {$exists: false}}, {fields: {_id: 1}}).fetch();
+	if (users.length) {
+		for (let i = 0; i < users.length; i++) {
+			Meteor.call('updateCardsetCount', users[i]._id);
+			Meteor.call('updateTranscriptCount', users[i]._id);
+			Meteor.call('updateWorkloadCount', users[i]._id);
+		}
+		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
+	} else {
+		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
 	}
-	Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
 
 	itemName = "Users fullscreen.settings fields";
 	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);

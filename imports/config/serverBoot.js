@@ -84,7 +84,8 @@ let initTestNotificationsCards = function () {
 			"learningGoalLevel": 0,
 			"backgroundStyle": 0,
 			"owner": "NotificationsTestUser",
-			"cardType": 0
+			"cardType": 0,
+			"date": new Date()
 		},
 		{
 			"_id": "NotificationsTestCard2",
@@ -99,7 +100,8 @@ let initTestNotificationsCards = function () {
 			"learningGoalLevel": 1,
 			"backgroundStyle": 0,
 			"owner": "NotificationsTestUser",
-			"cardType": 0
+			"cardType": 0,
+			"date": new Date()
 		},
 		{
 			"_id": "NotificationsTestCard3",
@@ -114,7 +116,8 @@ let initTestNotificationsCards = function () {
 			"learningGoalLevel": 2,
 			"backgroundStyle": 0,
 			"owner": "NotificationsTestUser",
-			"cardType": 0
+			"cardType": 0,
+			"date": new Date()
 		},
 		{
 			"_id": "NotificationsTestCard4",
@@ -129,7 +132,8 @@ let initTestNotificationsCards = function () {
 			"learningGoalLevel": 3,
 			"backgroundStyle": 0,
 			"owner": "NotificationsTestUser",
-			"cardType": 0
+			"cardType": 0,
+			"date": new Date()
 		},
 		{
 			"_id": "NotificationsTestCard5",
@@ -144,7 +148,8 @@ let initTestNotificationsCards = function () {
 			"learningGoalLevel": 4,
 			"backgroundStyle": 0,
 			"owner": "NotificationsTestUser",
-			"cardType": 0
+			"cardType": 0,
+			"date": new Date()
 		}
 	];
 };
