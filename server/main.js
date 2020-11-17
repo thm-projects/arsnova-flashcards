@@ -3,7 +3,7 @@ import { WebApp } from 'meteor/webapp';
 
 // Server startup files
 import "../imports/startup/server/accounts-config.js";
-import "../imports/startup/server/initialize.js";
+import "../imports/startup/server/boot/initialize.js";
 import "../imports/startup/server/browser-policy.js";
 
 // Server settings
