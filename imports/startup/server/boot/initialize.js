@@ -18,6 +18,7 @@ import {cleanupStep} from "./steps/cleanupStep";
 import {defaultDataStep} from "./steps/defaultDataStep";
 import {adminSettingsStep} from "./steps/adminSettingsStep";
 import {userMigrationStep} from "./steps/migration/userMigration";
+import {cardMigrationStep} from "./steps/migration/cardMigration";
 
 Meteor.startup(function () {
 	const cronScheduler = new CronScheduler();
@@ -28,111 +29,8 @@ Meteor.startup(function () {
 
 	// Migration Steps
 	userMigrationStep();
+	cardMigrationStep();
 
-	let cards = Cards.find({lecture: {$exists: false}}).fetch();
-	for (let i = 0; i < cards.length; i++) {
-		Cards.update({
-				_id: cards[i]._id
-			},
-			{
-				$set: {
-					lecture: ""
-				}
-			}
-		);
-	}
-
-	cards = Cards.find({centerTextElement: {$exists: false}}).fetch();
-	for (let i = 0; i < cards.length; i++) {
-		let cardset = Cardsets.findOne({_id: cards[i].cardset_id}, {fields: {_id: 1, cardType: 1}});
-		if (cardset !== undefined) {
-			Cards.update({
-					_id: cards[i]._id
-				},
-				{
-					$set: {
-						centerTextElement: CardType.setDefaultCenteredText(cardset.cardType, 1)
-					},
-					$unset: {
-						centerText: 1
-					}
-				}
-			);
-		}
-	}
-
-	cards = Cards.find({alignType: {$exists: false}}).fetch();
-	for (let i = 0; i < cards.length; i++) {
-		let cardset = Cardsets.findOne({_id: cards[i].cardset_id}, {fields: {_id: 1, cardType: 1}});
-		if (cardset !== undefined) {
-			Cards.update({
-					_id: cards[i]._id
-				},
-				{
-					$set: {
-						alignType: CardType.setDefaultCenteredText(cardset.cardType, 2)
-					}
-				}
-			);
-		}
-	}
-
-	cards = Cards.find({date: {$exists: false}}).fetch();
-	for (let i = 0; i < cards.length; i++) {
-		Cards.update({
-				_id: cards[i]._id
-			},
-			{
-				$set: {
-					date: new Date()
-				}
-			}
-		);
-	}
-
-	cards = Cards.find({learningGoalLevel: {$exists: false}}).fetch();
-	for (let i = 0; i < cards.length; i++) {
-		Cards.update({
-				_id: cards[i]._id
-			},
-			{
-				$set: {
-					learningGoalLevel: 0
-				}
-			}
-		);
-	}
-
-	cards = Cards.find({backgroundStyle: {$exists: false}}).fetch();
-	for (let i = 0; i < cards.length; i++) {
-		Cards.update({
-				_id: cards[i]._id
-			},
-			{
-				$set: {
-					backgroundStyle: 0
-				}
-			}
-		);
-	}
-
-	cards = Cards.find({originalAuthorName: {$exists: false}}).fetch();
-	for (let i = 0; i < cards.length; i++) {
-		Cards.update({
-				_id: cards[i]._id
-			},
-			{
-				$set: {
-					originalAuthorName: {
-						legacyName: cards[i].originalAuthor
-					}
-				},
-				$unset: {
-					originalAuthor: ""
-				}
-			}
-		);
-	}
 
 	let cardsets = Cardsets.find({wordcloud: {$exists: false}}).fetch();
 	for (let i = 0; i < cardsets.length; i++) {
@@ -610,19 +508,6 @@ Meteor.startup(function () {
 		);
 	}
 
-	cards = Cards.find({cardType: 2}).fetch();
-	for (let i = 0; i < cards.length; i++) {
-		Cards.update({
-				_id: cards[i]._id
-			},
-			{
-				$set: {
-					cardset_id: "-1"
-				}
-			}
-		);
-	}
-
 	let workload = Workload.find({"leitner.active": {$exists: false}}).fetch();
 	for (let i = 0; i < workload.length; i++) {
 		LeitnerUtilities.updateLeitnerWorkload(workload[i].cardset_id, workload[i].user_id);
@@ -795,23 +680,6 @@ Meteor.startup(function () {
 				$set: {
 					fragJetzt: fragJetzt,
 					arsnovaClick: arsnovaClick
-				}
-			}
-		);
-	}
-
-	cards = Cards.find({"learningTime": {$exists: false}}).fetch();
-	let learningTime = {
-		initial: -1,
-		repeated: -1
-	};
-	for (let i = 0; i < cards.length; i++) {
-		Cards.update({
-				_id: cards[i]._id
-			},
-			{
-				$set: {
-					learningTime: learningTime
 				}
 			}
 		);
