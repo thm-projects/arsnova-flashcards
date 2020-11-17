@@ -16,6 +16,7 @@ import {userMigrationStep} from "./steps/migration/userMigration";
 import {cardMigrationStep} from "./steps/migration/cardMigration";
 import {cardsetMigrationStep} from "./steps/migration/cardsetMigration";
 import {leitnerMigrationStep} from "./steps/migration/leitnerMigration";
+import {leitnerHistoryMigrationStep} from "./steps/migration/leitnerHistoryMigration";
 
 Meteor.startup(function () {
 	const cronScheduler = new CronScheduler();
@@ -29,6 +30,7 @@ Meteor.startup(function () {
 	cardMigrationStep();
 	cardsetMigrationStep();
 	leitnerMigrationStep();
+	leitnerHistoryMigrationStep();
 
 	let transcriptBonus = TranscriptBonus.find({deadlineEditing: {$exists: false}}, {fields: {_id: 1, deadline: 1}}).fetch();
 	for (let i = 0; i < transcriptBonus.length; i++) {
@@ -123,34 +125,6 @@ Meteor.startup(function () {
 				}
 			}
 		);
-	}
-
-	let leitnerHistory = LeitnerHistory.find({"missedDeadline": {$exists: false}}).fetch();
-	for (let i = 0; i < leitnerHistory.length; i++) {
-		if (leitnerHistory[i].answer === 2) {
-			LeitnerHistory.update({
-					_id: leitnerHistory[i]._id
-				},
-				{
-					$set: {
-						missedDeadline: true
-					},
-					$unset: {
-						answer: ""
-					}
-				}
-			);
-		} else {
-			LeitnerHistory.update({
-					_id: leitnerHistory[i]._id
-				},
-				{
-					$set: {
-						missedDeadline: false
-					}
-				}
-			);
-		}
 	}
 
 	// Move old leitner history to new session system
