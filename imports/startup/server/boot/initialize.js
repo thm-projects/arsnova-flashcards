@@ -15,6 +15,7 @@ import {adminSettingsStep} from "./steps/adminSettingsStep";
 import {userMigrationStep} from "./steps/migration/userMigration";
 import {cardMigrationStep} from "./steps/migration/cardMigration";
 import {cardsetMigrationStep} from "./steps/migration/cardsetMigration";
+import {leitnerMigrationStep} from "./steps/migration/leitnerMigration";
 
 Meteor.startup(function () {
 	const cronScheduler = new CronScheduler();
@@ -27,19 +28,7 @@ Meteor.startup(function () {
 	userMigrationStep();
 	cardMigrationStep();
 	cardsetMigrationStep();
-
-	let leitner = Leitner.find({skipped: {$exists: true}}).fetch();
-	for (let i = 0; i < leitner.length; i++) {
-		Leitner.update({
-				_id: leitner[i]._id
-			},
-			{
-				$unset: {
-					skipped: ""
-				}
-			}
-		);
-	}
+	leitnerMigrationStep();
 
 	let transcriptBonus = TranscriptBonus.find({deadlineEditing: {$exists: false}}, {fields: {_id: 1, deadline: 1}}).fetch();
 	for (let i = 0; i < transcriptBonus.length; i++) {
@@ -118,19 +107,6 @@ Meteor.startup(function () {
 			{
 				$set: {
 					rating: 0
-				}
-			}
-		);
-	}
-
-	leitner = Leitner.find({"viewedPDF": {$exists: false}}).fetch();
-	for (let i = 0; i < leitner.length; i++) {
-		Leitner.update({
-				_id: leitner[i]._id
-			},
-			{
-				$set: {
-					viewedPDF: false
 				}
 			}
 		);

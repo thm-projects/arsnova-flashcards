@@ -282,37 +282,6 @@ function cardsetMigrationStep() {
 		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
 	}
 
-	itemName = "Leitner original_cardset_id field";
-	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
-	cardsets = Cardsets.find({shuffled: true}, {fields: {_id: 1}}).fetch();
-	if (cardsets.length) {
-		for (let i = 0; i < cardsets.length; i++) {
-			let leitner = Leitner.find({cardset_id: cardsets[i]._id, original_cardset_id: {$exists: false}}, {
-				fields: {
-					_id: 1,
-					card_id: 1
-				}
-			}).fetch();
-			for (let k = 0; k < leitner.length; k++) {
-				let originalCardsetId = Cards.findOne({_id: leitner[k].card_id}).cardset_id;
-				if (originalCardsetId !== undefined) {
-					Leitner.update({
-							_id: leitner[k]._id
-						},
-						{
-							$set: {
-								original_cardset_id: originalCardsetId
-							}
-						}
-					);
-				}
-			}
-		}
-		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
-	} else {
-		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
-	}
-
 	itemName = "Cardsets registrationPeriod field";
 	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
 	cardsets = Cardsets.find({registrationPeriod: {$exists: false}}).fetch();
