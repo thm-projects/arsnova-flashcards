@@ -1,5 +1,4 @@
 import {Meteor} from "meteor/meteor";
-import {Cardsets} from "../../../api/subscriptions/cardsets.js";
 import {Leitner} from "../../../api/subscriptions/leitner";
 import {LeitnerHistory} from "../../../api/subscriptions/leitnerHistory";
 import {LeitnerTasks} from "../../../api/subscriptions/leitnerTasks";
@@ -17,6 +16,7 @@ import {cardMigrationStep} from "./steps/migration/cardMigration";
 import {cardsetMigrationStep} from "./steps/migration/cardsetMigration";
 import {leitnerMigrationStep} from "./steps/migration/leitnerMigration";
 import {leitnerHistoryMigrationStep} from "./steps/migration/leitnerHistoryMigration";
+import {leitnerTaskMigrationStep} from "./steps/migration/leitnerTaskMigration";
 
 Meteor.startup(function () {
 	const cronScheduler = new CronScheduler();
@@ -31,6 +31,7 @@ Meteor.startup(function () {
 	cardsetMigrationStep();
 	leitnerMigrationStep();
 	leitnerHistoryMigrationStep();
+	leitnerTaskMigrationStep();
 
 	let transcriptBonus = TranscriptBonus.find({deadlineEditing: {$exists: false}}, {fields: {_id: 1, deadline: 1}}).fetch();
 	for (let i = 0; i < transcriptBonus.length; i++) {
@@ -185,41 +186,6 @@ Meteor.startup(function () {
 					"leitner.tasks": ""
 				}
 			});
-	}
-
-	let leitnerTasks = LeitnerTasks.find({"strictWorkloadTimer": {$exists: false}}).fetch();
-	for (let i = 0; i < leitnerTasks.length; i++) {
-		let cardset = Cardsets.findOne({_id: leitnerTasks[i].cardset_id});
-		let pomodoroTimer = {
-			quantity: 4,
-			workLength: 30,
-			break: 5
-		};
-		if (cardset !== undefined && cardset.pomodoroTimer !== undefined) {
-			pomodoroTimer = cardset.pomodoroTimer;
-		}
-		LeitnerTasks.update({
-				_id: leitnerTasks[i]._id
-			},
-			{
-				$set: {
-					pomodoroTimer: pomodoroTimer,
-					strictWorkloadTimer: false,
-					timer: {
-						workload: {
-							current: 0,
-							completed: 0
-						},
-						break: {
-							current: 0,
-							completed: 0
-						},
-						status: 0,
-						lastCallback: new Date()
-					}
-				}
-			}
-		);
 	}
 
 	cronScheduler.startCron();
