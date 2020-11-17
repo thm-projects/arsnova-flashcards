@@ -1,5 +1,4 @@
 import {Meteor} from "meteor/meteor";
-import {Wozniak} from "../../../api/subscriptions/wozniak";
 import {CronScheduler} from "../../../../server/cronjob.js";
 import {TranscriptBonus} from "../../../api/subscriptions/transcriptBonus";
 import {cleanupStep} from "./steps/cleanupStep";
@@ -12,6 +11,7 @@ import {leitnerMigrationStep} from "./steps/migration/leitnerMigration";
 import {leitnerHistoryMigrationStep} from "./steps/migration/leitnerHistoryMigration";
 import {leitnerTaskMigrationStep} from "./steps/migration/leitnerTaskMigration";
 import {workloadMigrationStep} from "./steps/migration/workloadMigration";
+import {wozniakMigrationStep} from "./steps/migration/wozniakMigration";
 
 Meteor.startup(function () {
 	const cronScheduler = new CronScheduler();
@@ -28,6 +28,7 @@ Meteor.startup(function () {
 	leitnerHistoryMigrationStep();
 	leitnerTaskMigrationStep();
 	workloadMigrationStep();
+	wozniakMigrationStep();
 
 	let transcriptBonus = TranscriptBonus.find({deadlineEditing: {$exists: false}}, {fields: {_id: 1, deadline: 1}}).fetch();
 	for (let i = 0; i < transcriptBonus.length; i++) {
@@ -56,20 +57,6 @@ Meteor.startup(function () {
 		);
 	}
 
-	let wozniak;
-	wozniak = Wozniak.find({skipped: {$exists: true}}).fetch();
-	for (let i = 0; i < wozniak.length; i++) {
-		Wozniak.update({
-				_id: wozniak[i]._id
-			},
-			{
-				$unset: {
-					skipped: ""
-				}
-			}
-		);
-	}
-
 	transcriptBonus = TranscriptBonus.find({"rating": {$exists: false}}).fetch();
 	for (let i = 0; i < transcriptBonus.length; i++) {
 		TranscriptBonus.update({
@@ -78,19 +65,6 @@ Meteor.startup(function () {
 			{
 				$set: {
 					rating: 0
-				}
-			}
-		);
-	}
-
-	wozniak = Wozniak.find({"viewedPDF": {$exists: false}}).fetch();
-	for (let i = 0; i < wozniak.length; i++) {
-		Wozniak.update({
-				_id: wozniak[i]._id
-			},
-			{
-				$set: {
-					viewedPDF: false
 				}
 			}
 		);
