@@ -157,11 +157,10 @@ export let Utilities = class Utilities {
 	static debugServerBoot (status = 0, item = "", type = TYPE_INITIALIZE, count = 0) {
 		if (debugServerBoot === undefined) {
 			debugServerBoot = ServerStyle.debugServerBoot();
-			lastDebugTime = moment();
+			lastDebugTime = new Date();
 		}
 		if (debugServerBoot) {
 			let typeText;
-			let currentDebugTime = moment();
 			switch (status) {
 				case START_RECORDING:
 					switch (type) {
@@ -176,7 +175,7 @@ export let Utilities = class Utilities {
 							break;
 					}
 					console.log(`${String(groupCounter).padStart(2, '0')}: ${typeText} ${item}...`);
-					lastDebugTime = moment();
+					lastDebugTime = new Date();
 					break;
 				case END_RECORDING:
 					switch (type) {
@@ -190,7 +189,7 @@ export let Utilities = class Utilities {
 							typeText = 'Removal';
 							break;
 					}
-					let currentTime = moment.duration(currentDebugTime.diff(lastDebugTime)).asMilliseconds();
+					let currentTime = new Date() - lastDebugTime;
 					groupTime += currentTime;
 					console.log(`${String(groupCounter).padStart(2, '0')}: ${typeText} of ${item} completed, took ${currentTime} Milliseconds`);
 					groupCounter++;
@@ -207,7 +206,7 @@ export let Utilities = class Utilities {
 							typeText = 'remove';
 							break;
 					}
-					groupTime += moment.duration(currentDebugTime.diff(lastDebugTime)).asMilliseconds();
+					groupTime += new Date() - lastDebugTime;
 					console.log(`${String(groupCounter).padStart(2, '0')}: Nothing to ${typeText}, skipping.`);
 					groupCounter++;
 					break;
