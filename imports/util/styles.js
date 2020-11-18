@@ -6,7 +6,7 @@ import {MainNavigation} from "./mainNavigation";
 import {Route} from "./route";
 import * as RouteNames from "../util/routeNames.js";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
-import {EDU, FREE, GUEST, LECTURER, PRO} from "../config/serverStyle/style/global/const";
+import {EDU, FREE, GUEST, LECTURER, PRO, SERVER_VERSION} from "../config/serverStyle/style/global/const";
 import {CardsetNavigation} from "./cardsetNavigation";
 
 export let ServerStyle = class ServerStyle {
@@ -477,5 +477,9 @@ export let ServerStyle = class ServerStyle {
 	static debugServerBoot () {
 		let config = this.getConfig();
 		return config.debugServerBoot;
+	}
+
+	static getServerVersion () {
+		return SERVER_VERSION;
 	}
 };
