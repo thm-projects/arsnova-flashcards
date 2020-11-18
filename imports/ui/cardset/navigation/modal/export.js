@@ -9,7 +9,7 @@ import {CardType} from "../../../../util/cardTypes";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./export.html";
 
-Session.setDefault('exportType', 1);
+Session.setDefault('exportType', 2);
 Session.set('exportedCardSides', []);
 /*
  * ############################################################################
@@ -20,7 +20,7 @@ Session.set('exportedCardSides', []);
 Template.cardsetExportForm.onRendered(function () {
 	$('#exportModal').on('hidden.bs.modal', function () {
 		$('#uploadError').html('');
-		Session.set('exportType', 1);
+		Session.set('exportType', 2);
 	});
 });
 

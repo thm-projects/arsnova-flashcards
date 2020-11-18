@@ -13,6 +13,20 @@
                 <div class="modal-body">
                     <div id="exportTypeGroup" class="col-xs-12 form-group btn-group" role="group" data-toggle="buttons">
                         <div class="col-xs-6 btn-bootstrap-container">
+                            <label id="exportType2"
+                                   class="btn btn-block btn-default btn-raised export-type {{#if exportType
+                                                                                                 2}}active{{/if}}"
+                                   data-type="2">
+                                {{#if exportType 2}}
+                                    <input type="radio" id="tabFocus" name="cardType" value="2" checked
+                                           data-type="2">
+                                {{else}}
+                                    <input type="radio" name="cardType" value="2" data-type="2">
+                                {{/if}}
+                                <span class="flex-content" data-type="2">{{_ "download-form.download-type2"}}</span>
+                            </label>
+                        </div>
+                        <div class="col-xs-6 btn-bootstrap-container">
                             <label id="exportType1"
                                    class="btn btn-block btn-default btn-raised export-type {{#if exportType
                                                                                                  1}}active{{/if}}"
@@ -25,20 +39,6 @@
                                 {{/if}}
                                 <span class="flex-content" data-type="1">{{_ "download-form.download-type1"
                                                                              lastAppTitle=(getLastAppTitle)}}</span>
-                            </label>
-                        </div>
-                        <div class="col-xs-6 btn-bootstrap-container">
-                            <label id="exportType2"
-                                   class="btn btn-block btn-default btn-raised export-type {{#if exportType
-                                                                                                 2}}active{{/if}}"
-                                   data-type="2">
-                                {{#if exportType 2}}
-                                    <input type="radio" id="tabFocus" name="cardType" value="2" checked
-                                           data-type="2">
-                                {{else}}
-                                    <input type="radio" name="cardType" value="2" data-type="2">
-                                {{/if}}
-                                <span class="flex-content" data-type="2">{{_ "download-form.download-type2"}}</span>
                             </label>
                         </div>
                     </div>
