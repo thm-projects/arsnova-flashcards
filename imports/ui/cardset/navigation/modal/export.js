@@ -93,25 +93,27 @@ Template.cardsetExportFormSideTable.onCreated(function () {
 	let cards = Cards.find({cardset_id: FlowRouter.getParam('_id')}, {fields: {front: 1, back: 1, hint: 1, lecture: 1, top: 1, bottom: 1}}).fetch();
 	let cardSides = CardType.getCardTypeCubeSides(Session.get('activeCardset').cardType);
 	let settings = [];
-	for (let i = 0; i < cardSides.length; i++) {
-		let count = 0;
-		for (let c = 0; c < cards.length; c++) {
-			if (cards[c][CardType.getContentIDTranslation(cardSides[i].contentId)] !== undefined && cards[c][CardType.getContentIDTranslation(cardSides[i].contentId)].trim().length > 0) {
-				count++;
+	if (cardSides !== undefined) {
+		for (let i = 0; i < cardSides.length; i++) {
+			let count = 0;
+			for (let c = 0; c < cards.length; c++) {
+				if (cards[c][CardType.getContentIDTranslation(cardSides[i].contentId)] !== undefined && cards[c][CardType.getContentIDTranslation(cardSides[i].contentId)].trim().length > 0) {
+					count++;
+				}
 			}
+			let active = true;
+			if (count === 0) {
+				active = false;
+			}
+			let newSetting = {
+				active: active,
+				contentId: cardSides[i].contentId,
+				count: count
+			};
+			settings.push(newSetting);
 		}
-		let active = true;
-		if (count === 0) {
-			active = false;
-		}
-		let newSetting = {
-			active: active,
-			contentId: cardSides[i].contentId,
-			count: count
-		};
-		settings.push(newSetting);
+		Session.set('exportedCardSides', settings);
 	}
-	Session.set('exportedCardSides', settings);
 });
 
 Template.cardsetExportFormSideTable.helpers({
