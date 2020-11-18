@@ -8,6 +8,7 @@ import {Cards} from "../../../../api/subscriptions/cards";
 import {CardType} from "../../../../util/cardTypes";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./export.html";
+import {Cardsets} from "../../../../api/subscriptions/cardsets";
 
 Session.setDefault('exportType', 2);
 Session.set('exportedCardSides', []);
@@ -71,6 +72,7 @@ Template.cardsetExportForm.events({
 							whitelist.push(settings[i].contentId);
 						}
 					}
+					Session.set('activeCardset', Cardsets.findOne({_id: FlowRouter.getParam('_id')}));
 					let exportData = new Blob([MarkdeepContent.exportContent(JSON.parse(result), Session.get('activeCardset'), whitelist)], {
 						type: "text/html"
 					});
