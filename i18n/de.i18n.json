@@ -196,6 +196,11 @@
   "set-list": {
     "name": "Name",
     "category": "Zugang",
+    "app": {
+      "title": "Widmung",
+      "version": ".cards Version",
+      "url": "URL"
+    },
     "categoryOptions": "Zugang | Optionen",
     "module": "Modul",
     "description": "Beschreibung",

@@ -14,6 +14,7 @@ import {Route} from "./route";
 import XRegExp from 'xregexp';
 import {PDFViewer} from "./pdfViewer";
 import {AdminSettings} from "../api/subscriptions/adminSettings";
+import {ServerStyle} from "./styles";
 
 let asciidoctor = new Asciidoctor();
 plantuml.register(asciidoctor.Extensions);
@@ -184,9 +185,9 @@ export let MarkdeepContent = class MarkdeepContent {
 		}
 		if (cardset.description.trim().length > 0) {
 			content += "(#) " + cardset.name + newline;
-			content += cardset.description ;
+			content += cardset.description + newline ;
 		}
-		content += "(#) " + cardset.name + newline;
+		content += "(#) " + TAPi18n.__('set-list.cardsetInfoStatic') + newline;
 		content += " | " + linebreak;
 		content += "---|---" + linebreak;
 		content += TAPi18n.__('cardset.info.author') + tableColumn + getAuthorName(cardset.owner, false) + linebreak;
@@ -194,6 +195,9 @@ export let MarkdeepContent = class MarkdeepContent {
 			content += TAPi18n.__('cardset.info.originalAuthor') + tableColumn + getOriginalAuthorName(cardset.originalAuthorName, false) + linebreak;
 		}
 		content += TAPi18n.__('set-list.category') + tableColumn + CardsetVisuals.getKindText(cardset.kind, 1) + linebreak;
+		content += TAPi18n.__('set-list.app.title') + tableColumn + ServerStyle.getAppTitle() + linebreak;
+		content += TAPi18n.__('set-list.app.url') + tableColumn + `[${Meteor.absoluteUrl()}](${Meteor.absoluteUrl()})` + linebreak;
+		content += TAPi18n.__('set-list.app.version') + tableColumn + ServerStyle.getServerVersion() + linebreak;
 		content += TAPi18n.__('cardType') + tableColumn + CardType.getCardTypeName(cardset.cardType) + linebreak;
 		content += TAPi18n.__('difficulty') + tableColumn + TAPi18n.__(difficulty + cardset.difficulty) + linebreak;
 		content += TAPi18n.__('cardset.info.quantity') + tableColumn + cardset.quantity + linebreak;

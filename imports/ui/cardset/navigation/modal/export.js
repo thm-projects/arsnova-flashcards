@@ -8,8 +8,9 @@ import {Cards} from "../../../../api/subscriptions/cards";
 import {CardType} from "../../../../util/cardTypes";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./export.html";
+import {Cardsets} from "../../../../api/subscriptions/cardsets";
 
-Session.setDefault('exportType', 1);
+Session.setDefault('exportType', 2);
 Session.set('exportedCardSides', []);
 /*
  * ############################################################################
@@ -20,7 +21,7 @@ Session.set('exportedCardSides', []);
 Template.cardsetExportForm.onRendered(function () {
 	$('#exportModal').on('hidden.bs.modal', function () {
 		$('#uploadError').html('');
-		Session.set('exportType', 1);
+		Session.set('exportType', 2);
 	});
 });
 
@@ -71,6 +72,7 @@ Template.cardsetExportForm.events({
 							whitelist.push(settings[i].contentId);
 						}
 					}
+					Session.set('activeCardset', Cardsets.findOne({_id: FlowRouter.getParam('_id')}));
 					let exportData = new Blob([MarkdeepContent.exportContent(JSON.parse(result), Session.get('activeCardset'), whitelist)], {
 						type: "text/html"
 					});
@@ -91,25 +93,27 @@ Template.cardsetExportFormSideTable.onCreated(function () {
 	let cards = Cards.find({cardset_id: FlowRouter.getParam('_id')}, {fields: {front: 1, back: 1, hint: 1, lecture: 1, top: 1, bottom: 1}}).fetch();
 	let cardSides = CardType.getCardTypeCubeSides(Session.get('activeCardset').cardType);
 	let settings = [];
-	for (let i = 0; i < cardSides.length; i++) {
-		let count = 0;
-		for (let c = 0; c < cards.length; c++) {
-			if (cards[c][CardType.getContentIDTranslation(cardSides[i].contentId)] !== undefined && cards[c][CardType.getContentIDTranslation(cardSides[i].contentId)].trim().length > 0) {
-				count++;
+	if (cardSides !== undefined) {
+		for (let i = 0; i < cardSides.length; i++) {
+			let count = 0;
+			for (let c = 0; c < cards.length; c++) {
+				if (cards[c][CardType.getContentIDTranslation(cardSides[i].contentId)] !== undefined && cards[c][CardType.getContentIDTranslation(cardSides[i].contentId)].trim().length > 0) {
+					count++;
+				}
 			}
+			let active = true;
+			if (count === 0) {
+				active = false;
+			}
+			let newSetting = {
+				active: active,
+				contentId: cardSides[i].contentId,
+				count: count
+			};
+			settings.push(newSetting);
 		}
-		let active = true;
-		if (count === 0) {
-			active = false;
-		}
-		let newSetting = {
-			active: active,
-			contentId: cardSides[i].contentId,
-			count: count
-		};
-		settings.push(newSetting);
+		Session.set('exportedCardSides', settings);
 	}
-	Session.set('exportedCardSides', settings);
 });
 
 Template.cardsetExportFormSideTable.helpers({
