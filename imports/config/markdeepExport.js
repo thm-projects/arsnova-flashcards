@@ -4,6 +4,13 @@ let exportHeaderStyle = `https://casual-effects.com/markdeep/latest/slate.css?`;
 // content for markdeepCommands style
 let customCSS = `
 /* slate template related fixes start here */
+#md {
+	left: 240px;
+}
+
+.md .longTOC {
+	width: 200px;
+}
 
 /* other css starts here */
 .md {
