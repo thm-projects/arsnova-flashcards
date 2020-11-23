@@ -97,6 +97,12 @@ export let MarkdeepContent = class MarkdeepContent {
 		return $('<div/>').append(element).html();
 	}
 
+	static expandHeader (content) {
+		return content.replaceAll(new XRegExp(exportConfig.headerReplacementRegExp, "gm"), function (match) {
+			return "##" + match;
+		});
+	}
+
 	static convertUML (content, isMarkdeepExport = false) {
 		let url = "";
 		if (isMarkdeepExport) {
@@ -204,7 +210,6 @@ export let MarkdeepContent = class MarkdeepContent {
 		content += TAPi18n.__('set-list.app.version') + tableColumn + ServerStyle.getServerVersion() + linebreak;
 		content += TAPi18n.__('cardType') + tableColumn + CardType.getCardTypeName(cardset.cardType) + linebreak;
 		content += TAPi18n.__('difficulty') + tableColumn + TAPi18n.__(difficulty + cardset.difficulty) + linebreak;
-		content += TAPi18n.__('cardset.info.quantity') + tableColumn + cardset.quantity + linebreak;
 		if (cardset.shuffled) {
 			content += TAPi18n.__('cardset.info.license.title.cardset') + tableColumn + CardsetVisuals.getLicense(cardset._id, cardset.license, true) + linebreak;
 		} else {
@@ -220,12 +225,24 @@ export let MarkdeepContent = class MarkdeepContent {
 				filteredSides.push(sideOrder[i]);
 			}
 		}
+		let totalCardsideCount = CardType.getCardTypeCubeSides(cardset.cardType).length;
 		for (let i = 0; i < cards.length; i++) {
+			let availableSides = [];
 			for (let s = 0; s < filteredSides.length; s++) {
 				let sideContent = cards[i][CardType.getContentIDTranslation(filteredSides[s].contentId)];
 				if (sideContent !== undefined && sideContent.trim().length > 0) {
-					content += "# " + cards[i].subject + " (" + TAPi18n.__('card.cardType' + cardset.cardType + '.content' + filteredSides[s].contentId) + ")" + newline;
-					content += this.convertUML(sideContent, true) + newline;
+					let sideContentData = {
+						content: sideContent,
+						contentId: filteredSides[s].contentId
+					};
+					availableSides.push(sideContentData);
+				}
+			}
+			if (availableSides.length) {
+				content += `# ${cards[i].subject} (${availableSides.length} / ${totalCardsideCount})` + newline;
+				for (let s = 0; s < availableSides.length; s++) {
+					content += `## ${TAPi18n.__('card.cardType' + cardset.cardType + '.content' + availableSides[s].contentId)}` + newline;
+					content += this.convertUML(this.expandHeader(availableSides[s].content), true) + newline;
 				}
 			}
 		}

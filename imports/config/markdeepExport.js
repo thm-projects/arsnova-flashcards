@@ -30,7 +30,10 @@ body{visibility:hidden;white-space:pre;font-family:monospace}</style>
 <script src=\"https://casual-effects.com/markdeep/latest/markdeep.min.js?\" charset=\"utf-8\"></script>
 <script>window.alreadyProcessedMarkdeep||(document.body.style.visibility=\"visible\")</script>`;
 
+let headerReplacementRegExp = `^ *\\#{1,6} +`;
+
 module.exports = {
 	exportHeaderStyle,
-	markdeepCommands
+	markdeepCommands,
+	headerReplacementRegExp
 };
