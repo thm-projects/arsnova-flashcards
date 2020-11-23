@@ -3,6 +3,7 @@ import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../config/dompurify.js";
 import "/client/thirdParty/markdeep/markdeep.min.js";
 import * as config from "../config/markdeep.js";
+import * as exportConfig from "../config/markdeepExport.js";
 import {CardType} from "./cardTypes";
 import {getAuthorName, getOriginalAuthorName} from "./userData";
 import {Utilities} from "./utilities";
@@ -179,6 +180,9 @@ export let MarkdeepContent = class MarkdeepContent {
 		let newline = " \n\n";
 		let tableColumn = "|";
 		let content = '<meta charset=\"utf-8\" lang="de" emacsmode=\"-*- markdown -*-\">' + newline;
+		if (exportConfig.exportHeaderStyle.trim().length) {
+			content += `<link rel="stylesheet" href="${exportConfig.exportHeaderStyle.trim()}">` + newline;
+		}
 		let difficulty = "difficulty";
 		if (CardType.gotNotesForDifficultyLevel(cardset.cardType)) {
 			difficulty = "difficultyNotes";
