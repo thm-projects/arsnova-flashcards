@@ -98,7 +98,7 @@
     "newcarddeck": "Neue Kartei"
   },
   "upload-form": {
-    "popover-content": "Unterstützt wird das Dateiformat JSON.",
+    "popover-content": "Unterstützt wird das Dateiformat JSON. Es werden nur die Karten importiert.",
     "upload-title": "Karten importieren",
     "upload-card-title-placeholder": "Mnemosyne Import",
     "upload-type": "Dateiformat",
