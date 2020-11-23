@@ -1,13 +1,13 @@
 <template name="cardsetExportForm">
     <div class="modal fade" id="exportModal" tabindex="-1" role="dialog" aria-labelledby="exportModalTitle">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                      <span class="modal-icon">
                         <i class="fas fa-cloud-download-alt"></i>
                     </span>
                     {{> mainModalItemCloseIcon}}
-                    <h4 id="exportModalTitle" class="modal-title">{{_ "download-form.download-title"}}
+                    <h4 id="exportModalTitle" class="modal-title">{{_ "download-form.download-title" cardsetName=getActiveCardsetName}}
                     </h4>
                 </div>
                 <div class="modal-body">
@@ -89,25 +89,27 @@
             </tr>
             </thead>
             <tbody>
-            {{#each getCardSides}}
-                <tr>
-                    <td>
-                        <div class="form-check">
-                            <input class="exportCardSide" type="checkbox" data-id={{this.contentId}}
-                                   value="" id="exportMarkdeepSide{{@index}}" {{canBeSelected this.contentId}}>
-                            <label class="form-check-label" for="exportMarkdeepSide{{@index}}">
-                                {{getCardSideName this}}
-                            </label>
-                        </div>
-                    </td>
-                    <td class="exportAnswerSide">
-                        {{getSideType this}}
-                    </td>
-                    <td>
-                        {{_ "download-form.card-sides-table.body.count" count=(getCount this.contentId)}}
-                    </td>
-                </tr>
-            {{/each}}
+            {{#if gotActiveCardset}}
+                {{#each getCardSides}}
+                    <tr>
+                        <td>
+                            <div class="form-check">
+                                <input class="exportCardSide" type="checkbox" data-id={{this.contentId}}
+                                       value="" id="exportMarkdeepSide{{@index}}" {{canBeSelected this.contentId}}>
+                                <label class="form-check-label" for="exportMarkdeepSide{{@index}}">
+                                    {{getCardSideName this}}
+                                </label>
+                            </div>
+                        </td>
+                        <td class="exportAnswerSide">
+                            {{getSideType this}}
+                        </td>
+                        <td>
+                            {{_ "download-form.card-sides-table.body.count" count=(getCount this.contentId)}}
+                        </td>
+                    </tr>
+                {{/each}}
+            {{/if}}
             </tbody>
         </table>
     </div>

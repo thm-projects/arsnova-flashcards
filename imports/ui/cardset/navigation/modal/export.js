@@ -26,6 +26,13 @@ Template.cardsetExportForm.onRendered(function () {
 });
 
 Template.cardsetExportForm.helpers({
+	getActiveCardsetName: function () {
+		if (Session.get('activeCardset') !== undefined) {
+			return Session.get('activeCardset').name;
+		} else {
+			return '';
+		}
+	},
 	uploading: function () {
 		return Template.instance().uploading.get();
 	},
@@ -55,15 +62,21 @@ Template.cardsetExportForm.events({
 	},
 	'click #exportCardsBtn': function () {
 		let name = this.name;
-		Meteor.call('exportCards', this._id, function (error, result) {
-			if (error) {
-				BertAlertVisuals.displayBertAlert(TAPi18n.__('export.cards.failure'), 'danger', 'growl-top-left');
-			} else {
-				if (Session.get('exportType') === 1) {
+		if (Session.get('exportType') === 1) {
+			Meteor.call('exportCardset', Session.get('activeCardset')._id, function (error, result) {
+				if (error) {
+					BertAlertVisuals.displayBertAlert(TAPi18n.__('export.failure.cardset'), 'danger', 'growl-top-left');
+				} else {
 					let exportData = new Blob([result], {
 						type: "application/json"
 					});
-					saveAs(exportData, TAPi18n.__('export.filename.export') + "_" + TAPi18n.__('export.filename.cards') + "_" + name + moment().format('_YYYY_MM_DD') + ".json");
+					saveAs(exportData, TAPi18n.__('export.filename.export') + "_" + TAPi18n.__('export.filename.cardset') + "_" + name + moment().format('_YYYY_MM_DD') + ".json");
+				}
+			});
+		} else {
+			Meteor.call('exportCards', Session.get('activeCardset')._id, function (error, result) {
+				if (error) {
+					BertAlertVisuals.displayBertAlert(TAPi18n.__('export.cards.failure'), 'danger', 'growl-top-left');
 				} else {
 					let settings = Session.get('exportedCardSides');
 					let whitelist = [];
@@ -78,8 +91,8 @@ Template.cardsetExportForm.events({
 					});
 					saveAs(exportData, TAPi18n.__('export.filename.export') + "_" + TAPi18n.__('export.filename.cards') + "_" + name + moment().format('_YYYY_MM_DD') + ".md.html");
 				}
-			}
-		});
+			});
+		}
 	}
 });
 
@@ -90,33 +103,38 @@ Template.cardsetExportForm.events({
  */
 
 Template.cardsetExportFormSideTable.onCreated(function () {
-	let cards = Cards.find({cardset_id: FlowRouter.getParam('_id')}, {fields: {front: 1, back: 1, hint: 1, lecture: 1, top: 1, bottom: 1}}).fetch();
-	let cardSides = CardType.getCardTypeCubeSides(Session.get('activeCardset').cardType);
-	let settings = [];
-	if (cardSides !== undefined) {
-		for (let i = 0; i < cardSides.length; i++) {
-			let count = 0;
-			for (let c = 0; c < cards.length; c++) {
-				if (cards[c][CardType.getContentIDTranslation(cardSides[i].contentId)] !== undefined && cards[c][CardType.getContentIDTranslation(cardSides[i].contentId)].trim().length > 0) {
-					count++;
+	if (Session.get('activeCardset') !== undefined) {
+		let cardSides = CardType.getCardTypeCubeSides(Session.get('activeCardset').cardType);
+		let cards = Cards.find({cardset_id: Session.get('activeCardset')._id}, {fields: {front: 1, back: 1, hint: 1, lecture: 1, top: 1, bottom: 1}}).fetch();
+		let settings = [];
+		if (cardSides !== undefined) {
+			for (let i = 0; i < cardSides.length; i++) {
+				let count = 0;
+				for (let c = 0; c < cards.length; c++) {
+					if (cards[c][CardType.getContentIDTranslation(cardSides[i].contentId)] !== undefined && cards[c][CardType.getContentIDTranslation(cardSides[i].contentId)].trim().length > 0) {
+						count++;
+					}
 				}
+				let active = true;
+				if (count === 0) {
+					active = false;
+				}
+				let newSetting = {
+					active: active,
+					contentId: cardSides[i].contentId,
+					count: count
+				};
+				settings.push(newSetting);
 			}
-			let active = true;
-			if (count === 0) {
-				active = false;
-			}
-			let newSetting = {
-				active: active,
-				contentId: cardSides[i].contentId,
-				count: count
-			};
-			settings.push(newSetting);
+			Session.set('exportedCardSides', settings);
 		}
-		Session.set('exportedCardSides', settings);
 	}
 });
 
 Template.cardsetExportFormSideTable.helpers({
+	gotActiveCardset: function () {
+		return Session.get('activeCardset') !== undefined;
+	},
 	getCardSides: function () {
 		return CardType.getCardTypeCubeSides(Session.get('activeCardset').cardType);
 	},
