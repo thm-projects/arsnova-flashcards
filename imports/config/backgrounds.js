@@ -63,7 +63,7 @@ let arsnova = {
 		"background-image": "none"
 	}, // Defaults to cardset if off
 	"cardsetTranscriptBonus": {
-		"background-image": "none"
+		"background-image": "url('/img/background/matrix.jpg')"
 	}, // Defaults to cardset if off
 	"leitner": {
 		"background-image": "none"
@@ -157,8 +157,7 @@ let linux = {
 		"background-image": "none"
 	}, // Defaults to cardset if off
 	"cardsetTranscriptBonus": {
-		"background-image": "url('/img/background/pencil.png')",
-		"background-size": "contain"
+		"background-image": "url('/img/background/matrix.jpg')"
 	}, // Defaults to cardset if off
 	"leitner": {
 		"background-image": "none"
