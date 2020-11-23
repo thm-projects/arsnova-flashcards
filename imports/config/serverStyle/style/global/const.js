@@ -13,4 +13,4 @@ export const MANUAL_FULLSCREEN = 2;
 export const CHOOSE_FULLSCREEN = 3;
 
 //Server Version
-export const SERVER_VERSION = "3.7.1";
+export const SERVER_VERSION = "3.7.2";
