@@ -18,7 +18,7 @@
                     <div class="collapse navbar-collapse" id="thm-top-navigation">
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="{{pathFor route='home'}}">{{_ "navbar-collapse.frontend"}}</a></li>
-                            <li id="notificationsBtn_admin" class="dropdown">
+                            <!--  <li id="notificationsBtn_admin" class="dropdown">
                                 <a role="button" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fas fa-bell"></i> {{#if countNotifications}}
                                     <span class="badge">{{countNotifications}}</span>{{/if}}
@@ -61,7 +61,7 @@
                                         </a>
                                     </div>
                                 </ul>
-                            </li>
+                            </li> -->
                             {{#if currentUser}}
                                 <li><a href="{{pathFor 'admin_user' _id=currentUser._id}}"
                                        id="usr-profile-admin" data-toggle="collapse"
@@ -96,13 +96,13 @@
                             <span>{{_ "admin.users"}}</span>
                         </a>
                     </li>
-                    <li>
+                    <!--  <li>
                         <a class="{{#if isActiveRoute regex='admin_learningStatistics'}}active{{/if}}"
                            href="{{pathFor route='admin_learningStatistics'}}">
                             <i class="far fa-chart-bar"></i>
                             <span>{{_ "admin.learningStatistics"}}</span>
                         </a>
-                    </li>
+                    </li> -->
                     {{#if enabledMatomo}}
                         <li>
                             <a class="{{#if isActiveRoute regex='admin_matomoStatistics'}}active{{/if}}"
@@ -112,7 +112,7 @@
                             </a>
                         </li>
                     {{/if}}
-                    <li>
+                    <!--  <li>
                         <a class="{{#if isActiveRoute regex='admin_apiAccess'}}active{{/if}}"
                            href="{{pathFor route='admin_apiAccess'}}">
                             <i class="fas fa-key"></i>
@@ -125,7 +125,7 @@
                             <i class="fas fa-bell"></i>
                             <span>{{_ "admin.notifications"}}</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a class="{{#if isActiveRoute regex='admin_messageOfTheDay'}}active{{/if}}"
                            href="{{pathFor route='admin_messageOfTheDay'}}">

@@ -98,7 +98,7 @@
     "newcarddeck": "Neue Kartei"
   },
   "upload-form": {
-    "popover-content": "Unterstützt wird das Dateiformat JSON.",
+    "popover-content": "Unterstützt wird das Dateiformat JSON. Es werden nur die Karten importiert.",
     "upload-title": "Karten importieren",
     "upload-card-title-placeholder": "Mnemosyne Import",
     "upload-type": "Dateiformat",
@@ -111,9 +111,9 @@
     "wrong-file": "Falsches Dateiformat"
   },
   "download-form": {
-    "popover-content": "Exportiert alle Karten (nicht die Kartei) im JSON-Format",
-    "popover-content2": "Exportiert alle Karten (nicht die Kartei) im Markdeep-Format",
-    "download-title": "Karten exportieren",
+    "popover-content": "Exportiert die Kartei im JSON-Format",
+    "popover-content2": "Exportiert die Kartei im Markdeep-Format",
+    "download-title": "Kartei »__cardsetName__« exportieren",
     "download-card-title-placeholder": "Markdeep-Export",
     "download-type": "Dateiformat",
     "download-type1": "🍅__lastAppTitle__",
@@ -134,7 +134,7 @@
         }
       }
     },
-    "download": "Karten exportieren"
+    "download": "Kartei exportieren"
   },
   "confirm-form": {
     "title": "Karte löschen",
@@ -551,7 +551,7 @@
     "viewlist": "Liste",
     "createcard": "Neue Karte erstellen",
     "importcard": "Karten importieren",
-    "exportcard": "Karten exportieren",
+    "exportcard": "Kartei exportieren",
     "manageEditors": "Bearbeitungsrechte",
     "tooltip": "Erstelle mindestens 5 Karten für diese Kartei und vervollständige dein Profil, um die Kartei zu veröffentlichen. Pro-Karteien können nicht wieder zurückgestuft werden!",
     "published": "Veröffentlicht",

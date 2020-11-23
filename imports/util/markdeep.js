@@ -3,6 +3,7 @@ import DOMPurify from 'dompurify';
 import {DOMPurifyConfig} from "../config/dompurify.js";
 import "/client/thirdParty/markdeep/markdeep.min.js";
 import * as config from "../config/markdeep.js";
+import * as exportConfig from "../config/markdeepExport.js";
 import {CardType} from "./cardTypes";
 import {getAuthorName, getOriginalAuthorName} from "./userData";
 import {Utilities} from "./utilities";
@@ -96,6 +97,12 @@ export let MarkdeepContent = class MarkdeepContent {
 		return $('<div/>').append(element).html();
 	}
 
+	static expandHeader (content) {
+		return content.replaceAll(new XRegExp(exportConfig.headerReplacementRegExp, "gm"), function (match) {
+			return "##" + match;
+		});
+	}
+
 	static convertUML (content, isMarkdeepExport = false) {
 		let url = "";
 		if (isMarkdeepExport) {
@@ -179,6 +186,9 @@ export let MarkdeepContent = class MarkdeepContent {
 		let newline = " \n\n";
 		let tableColumn = "|";
 		let content = '<meta charset=\"utf-8\" lang="de" emacsmode=\"-*- markdown -*-\">' + newline;
+		if (exportConfig.exportHeaderStyle.trim().length) {
+			content += `<link rel="stylesheet" href="${exportConfig.exportHeaderStyle.trim()}">` + newline;
+		}
 		let difficulty = "difficulty";
 		if (CardType.gotNotesForDifficultyLevel(cardset.cardType)) {
 			difficulty = "difficultyNotes";
@@ -200,7 +210,6 @@ export let MarkdeepContent = class MarkdeepContent {
 		content += TAPi18n.__('set-list.app.version') + tableColumn + ServerStyle.getServerVersion() + linebreak;
 		content += TAPi18n.__('cardType') + tableColumn + CardType.getCardTypeName(cardset.cardType) + linebreak;
 		content += TAPi18n.__('difficulty') + tableColumn + TAPi18n.__(difficulty + cardset.difficulty) + linebreak;
-		content += TAPi18n.__('cardset.info.quantity') + tableColumn + cardset.quantity + linebreak;
 		if (cardset.shuffled) {
 			content += TAPi18n.__('cardset.info.license.title.cardset') + tableColumn + CardsetVisuals.getLicense(cardset._id, cardset.license, true) + linebreak;
 		} else {
@@ -216,15 +225,27 @@ export let MarkdeepContent = class MarkdeepContent {
 				filteredSides.push(sideOrder[i]);
 			}
 		}
+		let totalCardsideCount = CardType.getCardTypeCubeSides(cardset.cardType).length;
 		for (let i = 0; i < cards.length; i++) {
+			let availableSides = [];
 			for (let s = 0; s < filteredSides.length; s++) {
 				let sideContent = cards[i][CardType.getContentIDTranslation(filteredSides[s].contentId)];
 				if (sideContent !== undefined && sideContent.trim().length > 0) {
-					content += "# " + cards[i].subject + " (" + TAPi18n.__('card.cardType' + cardset.cardType + '.content' + filteredSides[s].contentId) + ")" + newline;
-					content += this.convertUML(sideContent, true) + newline;
+					let sideContentData = {
+						content: sideContent,
+						contentId: filteredSides[s].contentId
+					};
+					availableSides.push(sideContentData);
+				}
+			}
+			if (availableSides.length) {
+				content += `# ${cards[i].subject} (${availableSides.length} / ${totalCardsideCount})` + newline;
+				for (let s = 0; s < availableSides.length; s++) {
+					content += `## ${TAPi18n.__('card.cardType' + cardset.cardType + '.content' + availableSides[s].contentId)}` + newline;
+					content += this.convertUML(this.expandHeader(availableSides[s].content), true) + newline;
 				}
 			}
 		}
-		return content + '<!-- Markdeep: --><style class=\"fallback\">body{visibility:hidden;white-space:pre;font-family:monospace}</style><style>.md h1, .md .nonumberh1 {page-break-before:always} .md .mediumTOC{float: none; page-break-after: always}</style><script src=\"markdeep.min.js\" charset=\"utf-8\"></script><script src=\"https://casual-effects.com/markdeep/latest/markdeep.min.js?\" charset=\"utf-8\"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility=\"visible\")</script>';
+		return content + exportConfig.markdeepCommands.replace(/\n/g, '');
 	}
 };
