@@ -226,6 +226,8 @@ export let MarkdeepContent = class MarkdeepContent {
 			}
 		}
 		let totalCardsideCount = CardType.getCardTypeCubeSides(cardset.cardType).length;
+		let lastCardSubject = '';
+		let duplicateSubjectNumber = 2;
 		for (let i = 0; i < cards.length; i++) {
 			let availableSides = [];
 			for (let s = 0; s < filteredSides.length; s++) {
@@ -239,7 +241,15 @@ export let MarkdeepContent = class MarkdeepContent {
 				}
 			}
 			if (availableSides.length) {
-				content += `# ${cards[i].subject} (${availableSides.length} / ${totalCardsideCount})` + newline;
+				let duplicateSubjectMarker;
+				if (lastCardSubject === cards[i].subject) {
+					duplicateSubjectMarker = ` (${duplicateSubjectNumber++})`;
+				} else {
+					duplicateSubjectMarker = '';
+					duplicateSubjectNumber = 2;
+				}
+				lastCardSubject = cards[i].subject;
+				content += `# ${cards[i].subject}${duplicateSubjectMarker} [${availableSides.length} / ${totalCardsideCount}]` + newline;
 				for (let s = 0; s < availableSides.length; s++) {
 					content += `## ${TAPi18n.__('card.cardType' + cardset.cardType + '.content' + availableSides[s].contentId)}` + newline;
 					content += this.convertUML(this.expandHeader(availableSides[s].content), true) + newline;

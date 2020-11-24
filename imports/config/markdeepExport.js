@@ -5,11 +5,11 @@ let exportHeaderStyle = `https://casual-effects.com/markdeep/latest/slate.css?`;
 let customCSS = `
 /* slate template related fixes start here */
 #md {
-	left: 240px;
+	left: 260px;
 }
 
 .md .longTOC {
-	width: 200px;
+	width: 220px;
 }
 
 /* other css starts here */
