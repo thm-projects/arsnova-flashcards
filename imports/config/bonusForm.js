@@ -1,7 +1,7 @@
 let minWorkloadCap = 1;
 let defaultMaxWorkload = 30;
 
-let minDaysBeforeReset = 3;
+let minDaysBeforeReset = 1;
 let maxDaysBeforeReset = 31;
 let defaultDaysBeforeReset = 7;
 let defaultMinBonusPoints = 1;
