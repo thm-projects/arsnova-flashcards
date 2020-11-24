@@ -1,6 +1,6 @@
 import {Template} from "meteor/templating";
-import {Meteor} from "meteor/meteor";
-import {BertAlertVisuals} from "../../../../../../util/bertAlertVisuals";
+import {Cardsets} from "../../../../../../api/subscriptions/cardsets";
+import {Session} from "meteor/session";
 import "./export.html";
 
 /*
@@ -11,16 +11,10 @@ import "./export.html";
 
 Template.filterIndexItemBottomExport.events({
 	'click .exportCardset': function (event) {
-		let name = $(event.target).data('name');
-		Meteor.call('exportCardset', $(event.target).data('id'), function (error, result) {
-			if (error) {
-				BertAlertVisuals.displayBertAlert(TAPi18n.__('export.failure.cardset'), 'danger', 'growl-top-left');
-			} else {
-				let exportData = new Blob([result], {
-					type: "application/json"
-				});
-				saveAs(exportData, TAPi18n.__('export.filename.export') + "_" + TAPi18n.__('export.filename.cardset') + "_" + name + moment().format('_YYYY_MM_DD') + ".json");
-			}
-		});
+		let cardset = Cardsets.findOne({_id: $(event.target).data('id')});
+		if (cardset !== undefined) {
+			Session.set('activeCardset', cardset);
+			$('#exportModal').modal('show');
+		}
 	}
 });

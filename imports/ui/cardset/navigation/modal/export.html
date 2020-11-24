@@ -51,7 +51,11 @@
                         <br>
                     {{else}}
                         <p>{{_ "download-form.popover-content2"}}</p>
-                        {{> cardsetExportFormSideTable}}
+                        {{#if gotMetaData}}
+                            {{> cardsetExportFormSideTable}}
+                        {{else}}
+                            {{> loadingScreen}}
+                        {{/if}}
                     {{/if}}
                 </div>
                 <div class="modal-footer">

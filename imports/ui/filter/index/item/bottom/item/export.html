@@ -3,9 +3,8 @@
         {{#unless this.shuffled}}
             {{#if isCardsetOwner this._id}}
                 <a class="resultNavigationElement exportCardset" data-id="{{this._id}}"
-                   data-name="{{this.name}}" title='{{_ "admin.cardset.export"}}'><i
-                        class="result fas fa-cloud-download-alt hidden-xs" data-id="{{this._id}}"
-                        data-name="{{this.name}}"></i></a>
+                   data-name="{{this.name}}" title='{{_ "sidebar-nav.exportcard"}}'><i
+                        class="result fas fa-cloud-download-alt hidden-xs" data-id="{{this._id}}"></i></a>
             {{/if}}
         {{/unless}}
     {{/unless}}
