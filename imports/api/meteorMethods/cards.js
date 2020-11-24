@@ -289,5 +289,37 @@ Meteor.methods({
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
+	},
+	getCardMetaData: function (cardset_id) {
+		if (Meteor.user()) {
+			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1, cardType: 1}});
+			if (UserPermissions.isOwner(cardset.owner) || UserPermissions.gotBackendAccess()) {
+				let cardSides = CardType.getCardTypeCubeSides(cardset.cardType);
+				let cards = Cards.find({cardset_id: cardset._id}, {fields: {front: 1, back: 1, hint: 1, lecture: 1, top: 1, bottom: 1}}).fetch();
+				let metaData = [];
+				if (cardSides !== undefined) {
+					for (let i = 0; i < cardSides.length; i++) {
+						let count = 0;
+						for (let c = 0; c < cards.length; c++) {
+							if (cards[c][CardType.getContentIDTranslation(cardSides[i].contentId)] !== undefined && cards[c][CardType.getContentIDTranslation(cardSides[i].contentId)].trim().length > 0) {
+								count++;
+							}
+						}
+						let active = true;
+						if (count === 0) {
+							active = false;
+						}
+						let newSetting = {
+							active: active,
+							contentId: cardSides[i].contentId,
+							count: count
+						};
+						metaData.push(newSetting);
+					}
+				}
+				return metaData;
+			}
+		}
+		return [];
 	}
 });

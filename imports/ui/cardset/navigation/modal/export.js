@@ -2,16 +2,19 @@
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
+import {ReactiveDict} from 'meteor/reactive-dict';
 import {BertAlertVisuals} from "../../../../util/bertAlertVisuals";
 import {MarkdeepContent} from "../../../../util/markdeep";
-import {Cards} from "../../../../api/subscriptions/cards";
 import {CardType} from "../../../../util/cardTypes";
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./export.html";
-import {Cardsets} from "../../../../api/subscriptions/cardsets";
 
 Session.setDefault('exportType', 2);
-Session.set('exportedCardSides', []);
+let cardMetaData = new ReactiveDict();
+
+function getMetaDataArray() {
+	return Object.values(cardMetaData.all());
+}
+
 /*
  * ############################################################################
  * cardsetExportForm
@@ -19,13 +22,24 @@ Session.set('exportedCardSides', []);
  */
 
 Template.cardsetExportForm.onRendered(function () {
+	$('#exportModal').on('show.bs.modal', function () {
+		Meteor.call('getCardMetaData', Session.get('activeCardset')._id, function (err, res) {
+			if (res) {
+				cardMetaData.set(res);
+			}
+		});
+	});
 	$('#exportModal').on('hidden.bs.modal', function () {
 		$('#uploadError').html('');
 		Session.set('exportType', 2);
+		cardMetaData.clear();
 	});
 });
 
 Template.cardsetExportForm.helpers({
+	gotMetaData: function () {
+		return getMetaDataArray().length;
+	},
 	getActiveCardsetName: function () {
 		if (Session.get('activeCardset') !== undefined) {
 			return Session.get('activeCardset').name;
@@ -41,7 +55,7 @@ Template.cardsetExportForm.helpers({
 	},
 	gotCardSidesSelected: function () {
 		if (Session.get('exportType') === 2) {
-			let settings = Session.get('exportedCardSides');
+			let settings = getMetaDataArray();
 			for (let i = 0; i < settings.length; i++) {
 				if (settings[i].active === true && settings[i].count > 0) {
 					return true;
@@ -78,14 +92,13 @@ Template.cardsetExportForm.events({
 				if (error) {
 					BertAlertVisuals.displayBertAlert(TAPi18n.__('export.cards.failure'), 'danger', 'growl-top-left');
 				} else {
-					let settings = Session.get('exportedCardSides');
+					let settings = getMetaDataArray();
 					let whitelist = [];
 					for (let i = 0; i < settings.length; i++) {
 						if (settings[i].active === true && settings[i].count > 0) {
 							whitelist.push(settings[i].contentId);
 						}
 					}
-					Session.set('activeCardset', Cardsets.findOne({_id: FlowRouter.getParam('_id')}));
 					let exportData = new Blob([MarkdeepContent.exportContent(JSON.parse(result), Session.get('activeCardset'), whitelist)], {
 						type: "text/html"
 					});
@@ -102,35 +115,6 @@ Template.cardsetExportForm.events({
  * ############################################################################
  */
 
-Template.cardsetExportFormSideTable.onCreated(function () {
-	if (Session.get('activeCardset') !== undefined) {
-		let cardSides = CardType.getCardTypeCubeSides(Session.get('activeCardset').cardType);
-		let cards = Cards.find({cardset_id: Session.get('activeCardset')._id}, {fields: {front: 1, back: 1, hint: 1, lecture: 1, top: 1, bottom: 1}}).fetch();
-		let settings = [];
-		if (cardSides !== undefined) {
-			for (let i = 0; i < cardSides.length; i++) {
-				let count = 0;
-				for (let c = 0; c < cards.length; c++) {
-					if (cards[c][CardType.getContentIDTranslation(cardSides[i].contentId)] !== undefined && cards[c][CardType.getContentIDTranslation(cardSides[i].contentId)].trim().length > 0) {
-						count++;
-					}
-				}
-				let active = true;
-				if (count === 0) {
-					active = false;
-				}
-				let newSetting = {
-					active: active,
-					contentId: cardSides[i].contentId,
-					count: count
-				};
-				settings.push(newSetting);
-			}
-			Session.set('exportedCardSides', settings);
-		}
-	}
-});
-
 Template.cardsetExportFormSideTable.helpers({
 	gotActiveCardset: function () {
 		return Session.get('activeCardset') !== undefined;
@@ -142,7 +126,7 @@ Template.cardsetExportFormSideTable.helpers({
 		return TAPi18n.__('card.cardType' + Session.get('activeCardset').cardType + '.content' + cardSide.contentId);
 	},
 	getCount: function (contentId) {
-		let settings = Session.get('exportedCardSides');
+		let settings = getMetaDataArray();
 		for (let i = 0; i < settings.length; i++) {
 			if (settings[i].contentId === contentId) {
 				return settings[i].count;
@@ -150,7 +134,7 @@ Template.cardsetExportFormSideTable.helpers({
 		}
 	},
 	canBeSelected: function (contentId) {
-		let settings = Session.get('exportedCardSides');
+		let settings = getMetaDataArray();
 		for (let i = 0; i < settings.length; i++) {
 			if (settings[i].contentId === contentId && settings[i].count > 0) {
 				return "checked";
@@ -178,13 +162,13 @@ Template.cardsetExportFormSideTable.helpers({
 Template.cardsetExportFormSideTable.events({
 	"click .exportCardSide": function (event) {
 		let contentId = $(event.currentTarget).data('id');
-		let settings = Session.get('exportedCardSides');
+		let settings = getMetaDataArray();
 		for (let i = 0; i < settings.length; i++) {
 			if (settings[i].contentId === contentId) {
 				settings[i].active = !settings[i].active;
 				break;
 			}
 		}
-		Session.set('exportedCardSides', settings);
+		cardMetaData.set(settings);
 	}
 });

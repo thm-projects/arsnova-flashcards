@@ -185,39 +185,6 @@ export let MarkdeepContent = class MarkdeepContent {
 		let linebreak = "\n";
 		let newline = " \n\n";
 		let tableColumn = "|";
-		let content = '<meta charset=\"utf-8\" lang="de" emacsmode=\"-*- markdown -*-\">' + newline;
-		if (exportConfig.exportHeaderStyle.trim().length) {
-			content += `<link rel="stylesheet" href="${exportConfig.exportHeaderStyle.trim()}">` + newline;
-		}
-		let difficulty = "difficulty";
-		if (CardType.gotNotesForDifficultyLevel(cardset.cardType)) {
-			difficulty = "difficultyNotes";
-		}
-		if (cardset.description.trim().length > 0) {
-			content += "(#) " + cardset.name + newline;
-			content += cardset.description + newline ;
-		}
-		content += "(#) " + TAPi18n.__('set-list.cardsetInfoStatic') + newline;
-		content += " | " + linebreak;
-		content += "---|---" + linebreak;
-		content += TAPi18n.__('cardset.info.author') + tableColumn + getAuthorName(cardset.owner, false) + linebreak;
-		if (cardset.originalAuthorName !== undefined &&  (cardset.originalAuthorName.birthname !== undefined || cardset.originalAuthorName.legacyName !== undefined)) {
-			content += TAPi18n.__('cardset.info.originalAuthor') + tableColumn + getOriginalAuthorName(cardset.originalAuthorName, false) + linebreak;
-		}
-		content += TAPi18n.__('set-list.category') + tableColumn + CardsetVisuals.getKindText(cardset.kind, 1) + linebreak;
-		content += TAPi18n.__('set-list.app.title') + tableColumn + ServerStyle.getAppTitle() + linebreak;
-		content += TAPi18n.__('set-list.app.url') + tableColumn + `[${Meteor.absoluteUrl()}](${Meteor.absoluteUrl()})` + linebreak;
-		content += TAPi18n.__('set-list.app.version') + tableColumn + ServerStyle.getServerVersion() + linebreak;
-		content += TAPi18n.__('cardType') + tableColumn + CardType.getCardTypeName(cardset.cardType) + linebreak;
-		content += TAPi18n.__('difficulty') + tableColumn + TAPi18n.__(difficulty + cardset.difficulty) + linebreak;
-		if (cardset.shuffled) {
-			content += TAPi18n.__('cardset.info.license.title.cardset') + tableColumn + CardsetVisuals.getLicense(cardset._id, cardset.license, true) + linebreak;
-		} else {
-			content += TAPi18n.__('cardset.info.license.title.repetitorium') + tableColumn + CardsetVisuals.getLicense(cardset._id, cardset.license, true) + linebreak;
-			content += TAPi18n.__('cardset.info.license.title.rep-cardset') + tableColumn + TAPi18n.__('cardset.info.shuffleLicense') + linebreak;
-		}
-		content += TAPi18n.__('cardset.info.release') + tableColumn + Utilities.getMomentsDate(cardset.date, false, 0, false) + linebreak;
-		content += TAPi18n.__('cardset.info.dateUpdated') + tableColumn + Utilities.getMomentsDate(cardset.dateUpdated, false, 0, false) + linebreak;
 		let sideOrder = CardType.getCardTypeCubeSides(cardset.cardType);
 		let filteredSides = [];
 		for (let i = 0; i < sideOrder.length; i++) {
@@ -226,6 +193,10 @@ export let MarkdeepContent = class MarkdeepContent {
 			}
 		}
 		let totalCardsideCount = CardType.getCardTypeCubeSides(cardset.cardType).length;
+		let lastCardSubject = '';
+		let duplicateSubjectNumber = 2;
+		let content = '';
+		let cardCounter = 0;
 		for (let i = 0; i < cards.length; i++) {
 			let availableSides = [];
 			for (let s = 0; s < filteredSides.length; s++) {
@@ -239,13 +210,58 @@ export let MarkdeepContent = class MarkdeepContent {
 				}
 			}
 			if (availableSides.length) {
-				content += `# ${cards[i].subject} (${availableSides.length} / ${totalCardsideCount})` + newline;
+				let duplicateSubjectMarker;
+				if (lastCardSubject === cards[i].subject) {
+					duplicateSubjectMarker = ` (${duplicateSubjectNumber++})`;
+				} else {
+					duplicateSubjectMarker = '';
+					duplicateSubjectNumber = 2;
+				}
+				lastCardSubject = cards[i].subject;
+				content += `# ${cards[i].subject}${duplicateSubjectMarker} [${availableSides.length} / ${totalCardsideCount}]` + newline;
+				cardCounter++;
 				for (let s = 0; s < availableSides.length; s++) {
 					content += `## ${TAPi18n.__('card.cardType' + cardset.cardType + '.content' + availableSides[s].contentId)}` + newline;
 					content += this.convertUML(this.expandHeader(availableSides[s].content), true) + newline;
 				}
 			}
 		}
-		return content + exportConfig.markdeepCommands.replace(/\n/g, '');
+
+		let info = '<meta charset=\"utf-8\" lang="de" emacsmode=\"-*- markdown -*-\">' + newline;
+		if (exportConfig.exportHeaderStyle.trim().length) {
+			info += `<link rel="stylesheet" href="${exportConfig.exportHeaderStyle.trim()}">` + newline;
+		}
+		let difficulty = "difficulty";
+		if (CardType.gotNotesForDifficultyLevel(cardset.cardType)) {
+			difficulty = "difficultyNotes";
+		}
+		if (cardset.description.trim().length > 0) {
+			info += "(#) " + cardset.name + newline;
+			info += cardset.description + newline ;
+		}
+		info += "(#) " + TAPi18n.__('set-list.cardsetInfoStatic') + newline;
+		info += " | " + linebreak;
+		info += "---|---" + linebreak;
+		info += TAPi18n.__('cardset.info.author') + tableColumn + getAuthorName(cardset.owner, false) + linebreak;
+		if (cardset.originalAuthorName !== undefined &&  (cardset.originalAuthorName.birthname !== undefined || cardset.originalAuthorName.legacyName !== undefined)) {
+			info += TAPi18n.__('cardset.info.originalAuthor') + tableColumn + getOriginalAuthorName(cardset.originalAuthorName, false) + linebreak;
+		}
+		info += TAPi18n.__('set-list.category') + tableColumn + CardsetVisuals.getKindText(cardset.kind, 1) + linebreak;
+		info += TAPi18n.__('set-list.app.title') + tableColumn + ServerStyle.getAppTitle() + linebreak;
+		info += TAPi18n.__('set-list.app.url') + tableColumn + `[${Meteor.absoluteUrl()}](${Meteor.absoluteUrl()})` + linebreak;
+		info += TAPi18n.__('set-list.app.version') + tableColumn + ServerStyle.getServerVersion() + linebreak;
+		info += TAPi18n.__('cardType') + tableColumn + CardType.getCardTypeName(cardset.cardType) + linebreak;
+		info += TAPi18n.__('difficulty') + tableColumn + TAPi18n.__(difficulty + cardset.difficulty) + linebreak;
+		info += TAPi18n.__('cardset.info.quantity') + tableColumn + cardCounter + linebreak;
+		if (cardset.shuffled) {
+			info += TAPi18n.__('cardset.info.license.title.cardset') + tableColumn + CardsetVisuals.getLicense(cardset._id, cardset.license, true) + linebreak;
+		} else {
+			info += TAPi18n.__('cardset.info.license.title.repetitorium') + tableColumn + CardsetVisuals.getLicense(cardset._id, cardset.license, true) + linebreak;
+			info += TAPi18n.__('cardset.info.license.title.rep-cardset') + tableColumn + TAPi18n.__('cardset.info.shuffleLicense') + linebreak;
+		}
+		info += TAPi18n.__('cardset.info.release') + tableColumn + Utilities.getMomentsDate(cardset.date, false, 0, false) + linebreak;
+		info += TAPi18n.__('cardset.info.dateUpdated') + tableColumn + Utilities.getMomentsDate(cardset.dateUpdated, false, 0, false) + linebreak;
+
+		return info + content + exportConfig.markdeepCommands.replace(/\n/g, '');
 	}
 };
