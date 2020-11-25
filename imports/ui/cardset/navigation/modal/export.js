@@ -75,7 +75,7 @@ Template.cardsetExportForm.events({
 		Session.set('exportType', 2);
 	},
 	'click #exportCardsBtn': function () {
-		let name = this.name;
+		let name = Session.get('activeCardset').name;
 		if (Session.get('exportType') === 1) {
 			Meteor.call('exportCardset', Session.get('activeCardset')._id, function (error, result) {
 				if (error) {
