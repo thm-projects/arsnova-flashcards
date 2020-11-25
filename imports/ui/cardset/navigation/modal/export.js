@@ -4,7 +4,7 @@ import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
 import {ReactiveDict} from 'meteor/reactive-dict';
 import {BertAlertVisuals} from "../../../../util/bertAlertVisuals";
-import {MarkdeepContent} from "../../../../util/markdeep";
+import {MarkdeepExport} from "../../../../util/markdeepExport.js";
 import {CardType} from "../../../../util/cardTypes";
 import "./export.html";
 
@@ -99,7 +99,7 @@ Template.cardsetExportForm.events({
 							whitelist.push(settings[i].contentId);
 						}
 					}
-					let exportData = new Blob([MarkdeepContent.exportContent(JSON.parse(result), Session.get('activeCardset'), whitelist)], {
+					let exportData = new Blob([MarkdeepExport.convert(JSON.parse(result), Session.get('activeCardset'), whitelist)], {
 						type: "text/html"
 					});
 					saveAs(exportData, TAPi18n.__('export.filename.export') + "_" + TAPi18n.__('export.filename.cards') + "_" + name + moment().format('_YYYY_MM_DD') + ".md.html");
