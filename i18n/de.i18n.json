@@ -127,9 +127,9 @@
       "body": {
         "count": "__count__",
         "type": {
-          "question": "Frage",
-          "answer": "Antwort",
-          "main-answer": "Antwort ohne Multiple Choice",
+          "question": "Frage Seite",
+          "answer": "Antwort Seite",
+          "main-answer": "Hauptantwort Seite",
           "misc": ""
         }
       }
