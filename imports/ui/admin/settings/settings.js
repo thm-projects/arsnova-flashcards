@@ -45,7 +45,6 @@ Template.admin_settings.events({
 		$('#sendInfo').css({'visibility': 'visible', 'color': '#F5AA01'});
 		$('#sendInfo').html(TAPi18n.__('admin-settings.test-notifications.waitingForResponse'));
 		let messageType = $('input[name="testNotificationType"]:checked').data('type');
-		console.log(messageType);
 		Meteor.call('sendTestMail', messageType, function (error) {
 			if (error) {
 				$('#sendInfo').css({'visibility': 'visible', 'color': '#9C132D'});
@@ -63,7 +62,8 @@ Template.admin_settings.events({
 		$('#sendWeb').attr('disabled','disabled');
 		$('#sendInfo').css({'visibility': 'visible', 'color': '#F5AA01'});
 		$('#sendInfo').html(TAPi18n.__('admin-settings.test-notifications.waitingForResponse'));
-		Meteor.call('sendTestWebNotification', function (error) {
+		let messageType = $('input[name="testNotificationType"]:checked').data('type');
+		Meteor.call('sendTestWebNotification', messageType, function (error) {
 			if (error) {
 				$('#sendInfo').css({'visibility': 'visible', 'color': '#9C132D'});
 				$('#sendInfo').html(TAPi18n.__('admin-settings.test-notifications.sendWebError'));

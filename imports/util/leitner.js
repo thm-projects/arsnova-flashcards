@@ -221,7 +221,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				messageType = 2;
 			}
 			Meteor.call('prepareMail', cardset, user, messageType, isNewcomer, task_id);
-			Meteor.call('prepareWebpush', cardset, user, isNewcomer, task_id);
+			Meteor.call('prepareWebpush', cardset, user, isNewcomer, task_id, messageType);
 		}
 	}
 

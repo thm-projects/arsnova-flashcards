@@ -115,7 +115,7 @@ Meteor.methods({
 							LeitnerUtilities.resetCards(cardsets[i], user);
 						} else {
 							Meteor.call('prepareMail', cardsets[i], user, 1);
-							Meteor.call('prepareWebpush', cardsets[i], user);
+							Meteor.call('prepareWebpush', cardsets[i], user, false, undefined, 1);
 							if (Meteor.settings.debug.leitner) {
 								console.log("===> Nothing to do");
 							}
@@ -168,7 +168,7 @@ Meteor.methods({
 			}
 		}
 	},
-	prepareWebpush: function (cardset, user, isNewcomer = false, task_id = undefined) {
+	prepareWebpush: function (cardset, user, isNewcomer = false, task_id = undefined, messageType = 0) {
 		if (Meteor.isServer && ServerSettings.isPushEnabled()) {
 			let canSendPush = (user.webNotification && !isNewcomer);
 			if (Bonus.isInBonus(cardset._id, user._id) && cardset.forceNotifications.push) {
@@ -180,7 +180,7 @@ Meteor.methods({
 					if (Meteor.settings.debug.leitner) {
 						console.log("===> Sending Webpush reminder Message");
 					}
-					web.prepareWeb(cardset, user._id);
+					web.prepareWeb(cardset, user._id, messageType);
 					if (task_id !== undefined) {
 						LeitnerTasks.update({
 								_id: task_id

@@ -46,6 +46,11 @@
         "auto-generated": "Antworte nicht auf diese Mail, sie wurde automatisch erstellt."
       }
     },
+    "webPush": {
+      "new": "»__cardset__« __cards__ Karten bis __deadline__",
+      "reminder": "»__cardset__« __cards__ Karten bis __deadline__",
+      "reset": "»__cardset__« __cards__ Karten bis __deadline__"
+    },
     "title": "Nachrichten",
     "clearAll": "Leeren",
     "viewAll": "Zeige alle Nachrichten",
