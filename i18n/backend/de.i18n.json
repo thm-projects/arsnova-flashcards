@@ -271,6 +271,14 @@
     "test-notifications": {
       "title": "Benachrichtigungen testen",
       "target": "Ziel:",
+      "type": {
+        "label": "Typ:",
+        "options": {
+          "new": "Neu",
+          "reminder": "Erinnerung",
+          "reset": "Reset"
+        }
+      },
       "noTarget": "Kein Ziel gesetzt",
       "setTargetID": "Ziel-ID setzen:",
       "setTarget": "Ziel setzen",

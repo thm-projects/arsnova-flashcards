@@ -45,26 +45,37 @@ export class WebNotifier {
 	 *  @param {Object} cardset - The cardset from the active learning-phase
 	 *  @param {string} user_id - The id of the user
 	 *  @param {string} testUser - id of the test user if the function got called by a test notification
+	 * @param {number} messageType 0 = new, 1 = reminder, 2 = reset
 	 * */
-	prepareWeb (cardset, user_id, testUser = undefined) {
+	prepareWeb (cardset, user_id, testUser = undefined, messageType = 0) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			let notifier = new Notifications();
-			let message = TAPi18n.__('webPushNotifications.content', {cardsetName: cardset.name, cardCount: notifier.getActiveCardsCount(cardset._id, user_id, testUser), deadline: this.getDeadline(cardset, user_id, testUser)}, ServerStyle.getServerLanguage());
+			let message;
+			switch (messageType) {
+				case 1:
+					message = TAPi18n.__('notifications.webPush.reminder', {cardset: cardset.name, cards: notifier.getActiveCardsCount(cardset._id, user_id, testUser), deadline: this.getDeadline(cardset, user_id, testUser)}, ServerStyle.getServerLanguage());
+					break;
+				case 2:
+					message = TAPi18n.__('notifications.webPush.reset', {cardset: cardset.name, cards: notifier.getActiveCardsCount(cardset._id, user_id, testUser), deadline: this.getDeadline(cardset, user_id, testUser)}, ServerStyle.getServerLanguage());
+					break;
+				default:
+					message = TAPi18n.__('notifications.webPush.new', {cardset: cardset.name, cards: notifier.getActiveCardsCount(cardset._id, user_id, testUser), deadline: this.getDeadline(cardset, user_id, testUser)}, ServerStyle.getServerLanguage());
+			}
 			Meteor.call("sendPushNotificationsToUser", user_id, message);
 		}
 	}
 }
 
 Meteor.methods({
-	sendTestWebNotification: function () {
+	sendTestWebNotification: function (messageType = 0) {
 		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
 			throw new Meteor.Error("not-authorized");
 		}
 		let web = new WebNotifier();
 		let settings = AdminSettings.findOne({name: "testNotifications"});
 		let cardset = Cardsets.findOne({_id: settings.testCardsetID});
-		web.prepareWeb(cardset, settings.target, settings.testUserID);
+		web.prepareWeb(cardset, settings.target, settings.testUserID, messageType);
 	}
 });
