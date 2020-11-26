@@ -130,7 +130,7 @@ export class MailNotifier {
 }
 
 Meteor.methods({
-	sendTestMail: function () {
+	sendTestMail: function (messageType = 0) {
 		if (!Roles.userIsInRole(this.userId, ["admin", "editor"])) {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -148,6 +148,6 @@ Meteor.methods({
 			}
 		);
 		let cardset = Cardsets.findOne({_id: settings.testCardsetID});
-		MailNotifier.prepareMail(cardset, settings.testUserID);
+		MailNotifier.prepareMail(cardset, settings.testUserID, messageType);
 	}
 });
