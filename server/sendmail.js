@@ -7,6 +7,7 @@ import {AdminSettings} from "../imports/api/subscriptions/adminSettings.js";
 import {Cardsets} from "../imports/api/subscriptions/cardsets.js";
 import {getAuthorName} from "../imports/util/userData";
 import {ServerStyle} from "../imports/util/styles";
+import * as config from "../imports/config/notifications.js";
 
 /**
  * Class used for sending the newsletter mail
@@ -47,8 +48,7 @@ export class MailNotifier {
 			let bodyTitle;
 			let bodyGreetings;
 			let bodyMessage;
-			let titleColor;
-			let buttonColor;
+			let headerColors;
 
 			switch (messageType) {
 				case 1:
@@ -58,8 +58,7 @@ export class MailNotifier {
 					bodyTitle = TAPi18n.__('notifications.mail.leitner.reminder.body.title', null, ServerStyle.getServerLanguage());
 					bodyGreetings = TAPi18n.__('notifications.mail.leitner.reminder.body.greetings', {user: firstName[0]}, ServerStyle.getServerLanguage());
 					bodyMessage = TAPi18n.__('notifications.mail.leitner.reminder.body.message', {cardset: cardset.name, cards: cards, deadline: deadline}, ServerStyle.getServerLanguage());
-					titleColor = "#FF0000";
-					buttonColor = "#37AE5F";
+					headerColors = config.mailColors.header.leitner.reminder;
 					break;
 				case 2:
 					subject = TAPi18n.__('notifications.mail.leitner.reset.subject', {cardset: cardset.name, cards: cards}, ServerStyle.getServerLanguage());
@@ -68,8 +67,7 @@ export class MailNotifier {
 					bodyTitle = TAPi18n.__('notifications.mail.leitner.reset.body.title', null, ServerStyle.getServerLanguage());
 					bodyGreetings = TAPi18n.__('notifications.mail.leitner.reset.body.greetings', {user: firstName[0]}, ServerStyle.getServerLanguage());
 					bodyMessage = TAPi18n.__('notifications.mail.leitner.reset.body.message', {cardset: cardset.name, cards: cards, deadline: deadline}, ServerStyle.getServerLanguage());
-					titleColor = "#37AE5F";
-					buttonColor = "#FF0000";
+					headerColors = config.mailColors.header.leitner.reset;
 					break;
 				default:
 					subject = TAPi18n.__('notifications.mail.leitner.new.subject', {cardset: cardset.name, cards: cards}, ServerStyle.getServerLanguage());
@@ -78,14 +76,13 @@ export class MailNotifier {
 					bodyTitle = TAPi18n.__('notifications.mail.leitner.new.body.title', null, ServerStyle.getServerLanguage());
 					bodyGreetings = TAPi18n.__('notifications.mail.leitner.new.body.greetings', {user: firstName[0]}, ServerStyle.getServerLanguage());
 					bodyMessage = TAPi18n.__('notifications.mail.leitner.new.body.message', {cardset: cardset.name, cards: cards, deadline: deadline}, ServerStyle.getServerLanguage());
-					titleColor = "#37AE5F";
-					buttonColor = "#FF0000";
+					headerColors = config.mailColors.header.leitner.new;
 			}
-			this.sendMail(this.getMail(user_id), subject, headerTitle, headerButton, bodyTitle, bodyGreetings, bodyMessage,cardset._id, titleColor, buttonColor);
+			this.sendMail(this.getMail(user_id), subject, headerTitle, headerButton, bodyTitle, bodyGreetings, bodyMessage,cardset._id, headerColors);
 		}
 	}
 
-	static sendMail (mail, subject, headerTitle, headerButton, bodyTitle, bodyGreetings, bodyMessage, cardsetId, titleColor, buttonColor) {
+	static sendMail (mail, subject, headerTitle, headerButton, bodyTitle, bodyGreetings, bodyMessage, cardsetId, headerColors) {
 		let faq = TAPi18n.__('contact.faq', null, ServerStyle.getServerLanguage());
 		let datenschutz = TAPi18n.__('contact.datenschutz', null, ServerStyle.getServerLanguage());
 		let agb = TAPi18n.__('contact.agb', null, ServerStyle.getServerLanguage());
@@ -106,8 +103,10 @@ export class MailNotifier {
 					bodyMessage: bodyMessage,
 					id: cardsetId,
 					url: Meteor.settings.public.rooturl,
-					titlecolor: titleColor,
-					btncol: buttonColor,
+					headerBannerBackgroundColor: headerColors.banner.background,
+					headerBannerTextColor: headerColors.banner.text,
+					headerButtonBackgroundColor: headerColors.button.background,
+					headerButtonTextColor: headerColors.button.text,
 					faq: faq,
 					datenschutz: datenschutz,
 					impressum: impressum,
