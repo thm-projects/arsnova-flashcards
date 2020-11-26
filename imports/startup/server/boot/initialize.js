@@ -17,8 +17,8 @@ Meteor.startup(function () {
 	const cronScheduler = new CronScheduler();
 
 	cleanupStep();
-	defaultDataStep();
 	adminSettingsStep();
+	defaultDataStep();
 
 	// Migration Steps
 	userMigrationStep();

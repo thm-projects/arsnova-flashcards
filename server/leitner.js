@@ -114,7 +114,7 @@ Meteor.methods({
 						} else if (missedDeadlineCheck(cardsets[i], activeCard.currentDate)) {
 							LeitnerUtilities.resetCards(cardsets[i], user);
 						} else {
-							Meteor.call('prepareMail', cardsets[i], user);
+							Meteor.call('prepareMail', cardsets[i], user, 1);
 							Meteor.call('prepareWebpush', cardsets[i], user);
 							if (Meteor.settings.debug.leitner) {
 								console.log("===> Nothing to do");
@@ -128,7 +128,7 @@ Meteor.methods({
 			}
 		}
 	},
-	prepareMail: function (cardset, user, isReset = false, isNewcomer = false, task_id = undefined) {
+	prepareMail: function (cardset, user, messageType, isNewcomer = false, task_id = undefined) {
 		if (Meteor.isServer && ServerSettings.isMailEnabled()) {
 			let canSendMail = (user.mailNotification && !isNewcomer && Roles.userIsInRole(user._id, ['admin', 'editor', 'university', 'lecturer', 'pro']) && !Roles.userIsInRole(user._id, ['blocked', 'firstLogin']));
 			if (Bonus.isInBonus(cardset._id, user._id) && cardset.forceNotifications.mail && (user.email !== undefined && user.email.length)) {
@@ -136,29 +136,31 @@ Meteor.methods({
 			}
 			if (canSendMail) {
 				try {
-					if (isReset) {
-						if (Meteor.settings.debug.leitner) {
-							console.log("===> Sending E-Mail reset Message");
+					if (Meteor.settings.debug.leitner) {
+						switch (messageType) {
+							case 1:
+								console.log("===> Sending E-Mail reminder Message");
+								break;
+							case 2:
+								console.log("===> Sending E-Mail reset Message");
+								break;
+							default:
+								console.log("===> Sending new E-Mail Message");
 						}
-						MailNotifier.prepareMailReset(cardset, user._id);
-					} else {
-						if (Meteor.settings.debug.leitner) {
-							console.log("===> Sending E-Mail reminder Message");
-						}
-						MailNotifier.prepareMail(cardset, user._id);
-						if (task_id !== undefined) {
-							LeitnerTasks.update({
-									_id: task_id
-								},
-								{
-									$set: {
-										'notifications.mail.active': true,
-										'notifications.mail.sent': true,
-										'notifications.mail.address': user.email
-									}
+					}
+					MailNotifier.prepareMail(cardset, user._id, messageType);
+					if (task_id !== undefined) {
+						LeitnerTasks.update({
+								_id: task_id
+							},
+							{
+								$set: {
+									'notifications.mail.active': true,
+									'notifications.mail.sent': true,
+									'notifications.mail.address': user.email
 								}
-							);
-						}
+							}
+						);
 					}
 				} catch (error) {
 					console.log("[" + TAPi18n.__('admin-settings.test-notifications.sendMail') + "] " + error);

@@ -78,22 +78,6 @@
   "webPushNotifications": {
     "content": "»__cardsetName__« __cardCount__ Karten bis __deadline__"
   },
-  "notifications": {
-    "title": "Nachrichten",
-    "clearAll": "Leeren",
-    "viewAll": "Zeige alle Nachrichten",
-    "noNotification": "Keine neuen Nachrichten vorhanden",
-    "deleteAll": "Alle löschen",
-    "approved": "Freigegeben",
-    "pending": "Freigabe ausstehend",
-    "progress": "In Bearbeitung",
-    "reporteduser": "Gemeldete Benutzer/innen",
-    "reportedcardset": "Gemeldete Kartei",
-    "reporteduseradmin": "Adminbenachrichtigung (Gemeldete/r Benutzer/in)",
-    "reportedcardsetadmin": "Adminbenachrichtigung (Gemeldete Kartei)",
-    "lecturer": "Dozenten-Anfrage",
-    "admin": "Du bist angemeldet als Korrektor/in!"
-  },
   "input-group": {
     "newcarddeck": "Neue Kartei"
   },
@@ -1155,36 +1139,6 @@
   "first-login": {
     "text": "Ich habe die Allgemeinen Geschäftsbedingungen und die Datenschutzerklärung gemäß der EU-DSGVO (Datenschutz-Grundverordnung der EU) gelesen und bin damit einverstanden.",
     "button": "Akzeptieren"
-  },
-  "mailNotification": {
-    "subjectTitle": "– Heute ",
-    "subjectSingular1": "ist ",
-    "subjectPlural1": "sind ",
-    "subjectSingular2": " Karte ",
-    "subjectPlural2": " Karten ",
-    "subjectSingular3": " ist. ",
-    "subjectPlural3": " sind. ",
-    "subjectCardset": "aus ",
-    "subjectEnd": "zu lernen.",
-    "textEnd": " zu lernen sind. ",
-    "newCards2Singular": " Karte aus ",
-    "newCards2Plural": " Karten aus ",
-    "textIntro": "Hallo __firstName__,",
-    "textIntro1": "es ist an der Zeit, einen Blick auf deine Lernkarten zu werfen! ",
-    "textDate1": "Du hast noch bis <strong>",
-    "textDate2": "</strong> Zeit, um die Karten zu lernen.",
-    "mailCard": "<strong>&raquo;",
-    "mailCard1": "&laquo;</strong> benötigt deine Aufmerksamkeit: In Kürze setzt der Leitner-Algorithmus deine Lernstatistik zurück, wenn du dein Lernpensum nicht erfüllst. ",
-    "subjectEnding": "endet die Lernphase der Kartei ",
-    "textEnding": "heute endet die Lernphase der Kartei ",
-    "subjectReset": "Die zu lernenden Karten werden in Kürze zurückgelegt. ",
-    "textReset": "wegen Inaktivität wurde deine Lernstatistik zurückgesetzt. ",
-    "newCards1": "Der Wiederholungs-Algorithmus hat berechnet, dass ",
-    "service": "Antworte nicht auf diese Mail, sie wurde automatisch erstellt. Du erhältst den Newsletter, weil du dich eingeschrieben hast auf ",
-    "unsubscribe": "Nicht mehr interessiert? Entferne die Kartei oder das Repetitorium aus deinem Lernpensum: Gehe auf die Seite »Lernpensum« und klicke auf das entsprechende Icon. Willst du alle Newsletter abbestellen? Deaktiviere den Erinnerungsdienst unter »Profil & Konto«. Willst du deine Mitgliedschaft beenden? Lösche dein Konto.",
-    "copyright": "Dein 🍅__lastAppTitle__-Tutor",
-    "my-cardset": "Zu den Karten…",
-    "auto-generated": "Antworte nicht auf diese Mail, sie wurde automatisch erstellt."
   },
   "footer": {
     "language": "Wähle deine Sprache",

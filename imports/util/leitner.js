@@ -216,7 +216,11 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			this.updateLeitnerWorkload(cardset._id, user._id);
 			let task_id = this.updateLeitnerWorkloadTasks(cardset._id, user._id, isNewcomer);
 			this.setLeitnerHistory(cardset, user._id, task_id, cardSelection);
-			Meteor.call('prepareMail', cardset, user, isReset, isNewcomer, task_id);
+			let messageType = 0;
+			if (isReset) {
+				messageType = 2;
+			}
+			Meteor.call('prepareMail', cardset, user, messageType, isNewcomer, task_id);
 			Meteor.call('prepareWebpush', cardset, user, isNewcomer, task_id);
 		}
 	}

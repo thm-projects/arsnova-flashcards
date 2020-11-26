@@ -54,7 +54,7 @@
                                         <tr>
                                             <td align="center">
                                                 <h1 style="color: #ffffff; font-size: 16px; mso-line-height-rule:exactly; line-height: 130%">
-                                                    {{title}}
+                                                    {{{headerTitle}}}
                                                 </h1>
                                             </td>
                                         </tr>
@@ -65,7 +65,7 @@
                                                     <tr>
                                                         <td>
                                                             <a href="{{url}}/box/{{id}}"
-                                                               style="color: #ffffff; font-size: 14px; text-decoration: none">{{cardset}}</a>
+                                                               style="color: #ffffff; font-size: 14px; text-decoration: none">{{{headerButton}}}</a>
                                                         </td>
                                                     </tr>
                                                     </tbody>
@@ -78,9 +78,9 @@
                             </tr>
                             <tr>
                                 <td align="left" bgcolor="#ffffff" style="padding: 20px; mso-line-height-rule:exactly; line-height: 130%">
-                                    <h2 style="font-weight: bold; font-size: 16px;">Erinnerung</h2>
-                                    <p>{{name}}</p>
-                                    <p>{{{message}}}<span style="font-weight: bold;">{{bold}}</span>{{{textEnd}}}</p>
+                                    <h2 style="font-weight: bold; font-size: 16px;">{{{bodyTitle}}}</h2>
+                                    <p>{{{bodyGreetings}}}</p>
+                                    <p>{{{bodyMessage}}}</p>
                                 </td>
                             </tr>
                             <tr>

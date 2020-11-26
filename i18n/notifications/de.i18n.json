@@ -1,0 +1,64 @@
+{
+  "notifications": {
+    "mail": {
+      "leitner": {
+        "new": {
+          "subject": "»__cardset__« - Heute sind __cards__ Karten zu lernen.",
+          "header": {
+            "title": "»__cardset__« - Heute sind __cards__ Karten zu lernen.",
+            "button": "Zu den Karten..."
+          },
+          "body": {
+            "title": "Erinnerung",
+            "greetings": "Hallo __user__,",
+            "message": "es ist an der Zeit, einen Blick auf deine Lernkarten zu werfen! Der Wiederholungs-Algorithmus hat berechnet, dass <strong>__cards__ Karten aus »__cardset__«</strong> zu lernen sind. Du hast noch bis <strong>__deadline__</strong> Zeit, um die Karten zu lernen."
+          }
+        },
+        "reminder": {
+          "subject": "»__cardset__« - Heute sind __cards__ Karten zu lernen.",
+          "header": {
+            "title": "»__cardset__« - Heute sind __cards__ Karten zu lernen.",
+            "button": "Zu den Karten..."
+          },
+          "body": {
+            "title": "Erinnerung",
+            "greetings": "Hallo __user__,",
+            "message": "»__cardset__« benötigt deine Aufmerksamkeit: In Kürze setzt der Leitner-Algorithmus deine Lernstatistik zurück, wenn du dein Lernpensum nicht erfüllst. Du hast noch bis <strong>__deadline__</strong> Zeit, um die Karten zu lernen."
+          }
+        },
+        "reset": {
+          "subject": "»__cardset__« - Heute sind __cards__ Karten zu lernen.",
+          "header": {
+            "title": "»__cardset__« - Heute sind __cards__ Karten zu lernen.",
+            "button": "Zu den Karten..."
+          },
+          "body": {
+            "title": "Erinnerung",
+            "greetings": "Hallo __user__,",
+            "message": "es ist an der Zeit, einen Blick auf deine Lernkarten zu werfen! Der Wiederholungs-Algorithmus hat berechnet, dass <strong>__cards__ Karten aus »__cardset__«</strong> zu lernen sind. Du hast noch bis <strong>__deadline__</strong> Zeit, um die Karten zu lernen."
+          }
+        }
+      },
+      "footer": {
+        "service": "Antworte nicht auf diese Mail, sie wurde automatisch erstellt. Du erhältst den Newsletter, weil du dich eingeschrieben hast auf ",
+        "unsubscribe": "Nicht mehr interessiert? Entferne die Kartei oder das Repetitorium aus deinem Lernpensum: Gehe auf die Seite »Lernpensum« und klicke auf das entsprechende Icon. Willst du alle Newsletter abbestellen? Deaktiviere den Erinnerungsdienst unter »Profil & Konto«. Willst du deine Mitgliedschaft beenden? Lösche dein Konto.",
+        "copyright": "Dein 🍅__lastAppTitle__-Tutor",
+        "auto-generated": "Antworte nicht auf diese Mail, sie wurde automatisch erstellt."
+      }
+    },
+    "title": "Nachrichten",
+    "clearAll": "Leeren",
+    "viewAll": "Zeige alle Nachrichten",
+    "noNotification": "Keine neuen Nachrichten vorhanden",
+    "deleteAll": "Alle löschen",
+    "approved": "Freigegeben",
+    "pending": "Freigabe ausstehend",
+    "progress": "In Bearbeitung",
+    "reporteduser": "Gemeldete Benutzer/innen",
+    "reportedcardset": "Gemeldete Kartei",
+    "reporteduseradmin": "Adminbenachrichtigung (Gemeldete/r Benutzer/in)",
+    "reportedcardsetadmin": "Adminbenachrichtigung (Gemeldete Kartei)",
+    "lecturer": "Dozenten-Anfrage",
+    "admin": "Du bist angemeldet als Korrektor/in!"
+  }
+}
