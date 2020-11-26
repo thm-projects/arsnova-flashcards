@@ -72,6 +72,14 @@ function getActiveCard(cardset_id, user) {
 	}
 }
 
+function missedDeadlineCheck(cardset, cardUnlockedDate) {
+	cardUnlockedDate = moment(cardUnlockedDate);
+	cardUnlockedDate.add(cardset.daysBeforeReset, 'days');
+	//Compensate for the 24h cronjob interval
+	cardUnlockedDate.subtract(1, 'hour');
+	return cardUnlockedDate <= moment();
+}
+
 Meteor.methods({
 	/** Function gets called by the leitner Cronjob and checks which users are valid for receiving new cards / getting reset for missing the deadline / in which cardset the learning-phase ended*/
 	updateLeitnerCards: function () {
@@ -103,7 +111,7 @@ Meteor.methods({
 						let user = Meteor.users.findOne(learners[k].user_id);
 						if (!activeCard) {
 							LeitnerUtilities.setCards(cardsets[i], user, false);
-						} else if ((activeCard.currentDate.getTime() + (cardsets[i].daysBeforeReset + 1) * 86400000) < new Date().getTime()) {
+						} else if (missedDeadlineCheck(cardsets[i], activeCard.currentDate)) {
 							LeitnerUtilities.resetCards(cardsets[i], user);
 						} else {
 							Meteor.call('prepareMail', cardsets[i], user);
