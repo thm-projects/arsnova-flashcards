@@ -92,6 +92,14 @@
                                 <label id="targetInfo">{{_ "admin-settings.test-notifications.target"}}</label>
                                 {{getNotificationTargetText}}
                                 <br>
+                                <label id="notificationType">{{_ "admin-settings.test-notifications.type.label"}}</label>
+                                <input type="radio" id="testNotificationTypeNew" name="testNotificationType" data-type="0" checked>
+                                {{_ "admin-settings.test-notifications.type.options.new"}}
+                                <input type="radio" id="testNotificationTypeReminder" name="testNotificationType" data-type="1">
+                                {{_ "admin-settings.test-notifications.type.options.reminder"}}
+                                <input type="radio" id="testNotificationTypeReset" name="testNotificationType" data-type="2">
+                                {{_ "admin-settings.test-notifications.type.options.reset"}}
+                                <br>
                                 {{#if checkNotificationTarget}}
                                     <label id="targetInfo">{{_ "admin-settings.test-notifications.send"}}</label>
                                     <a id="sendMail" class="btn btn-raised btn-success">

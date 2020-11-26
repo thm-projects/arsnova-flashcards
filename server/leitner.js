@@ -72,6 +72,14 @@ function getActiveCard(cardset_id, user) {
 	}
 }
 
+function missedDeadlineCheck(cardset, cardUnlockedDate) {
+	cardUnlockedDate = moment(cardUnlockedDate);
+	cardUnlockedDate.add(cardset.daysBeforeReset, 'days');
+	//Compensate for the 24h cronjob interval
+	cardUnlockedDate.subtract(1, 'hour');
+	return cardUnlockedDate <= moment();
+}
+
 Meteor.methods({
 	/** Function gets called by the leitner Cronjob and checks which users are valid for receiving new cards / getting reset for missing the deadline / in which cardset the learning-phase ended*/
 	updateLeitnerCards: function () {
@@ -103,11 +111,11 @@ Meteor.methods({
 						let user = Meteor.users.findOne(learners[k].user_id);
 						if (!activeCard) {
 							LeitnerUtilities.setCards(cardsets[i], user, false);
-						} else if ((activeCard.currentDate.getTime() + (cardsets[i].daysBeforeReset + 1) * 86400000) < new Date().getTime()) {
+						} else if (missedDeadlineCheck(cardsets[i], activeCard.currentDate)) {
 							LeitnerUtilities.resetCards(cardsets[i], user);
 						} else {
-							Meteor.call('prepareMail', cardsets[i], user);
-							Meteor.call('prepareWebpush', cardsets[i], user);
+							Meteor.call('prepareMail', cardsets[i], user, 1);
+							Meteor.call('prepareWebpush', cardsets[i], user, false, undefined, 1);
 							if (Meteor.settings.debug.leitner) {
 								console.log("===> Nothing to do");
 							}
@@ -120,7 +128,7 @@ Meteor.methods({
 			}
 		}
 	},
-	prepareMail: function (cardset, user, isReset = false, isNewcomer = false, task_id = undefined) {
+	prepareMail: function (cardset, user, messageType, isNewcomer = false, task_id = undefined) {
 		if (Meteor.isServer && ServerSettings.isMailEnabled()) {
 			let canSendMail = (user.mailNotification && !isNewcomer && Roles.userIsInRole(user._id, ['admin', 'editor', 'university', 'lecturer', 'pro']) && !Roles.userIsInRole(user._id, ['blocked', 'firstLogin']));
 			if (Bonus.isInBonus(cardset._id, user._id) && cardset.forceNotifications.mail && (user.email !== undefined && user.email.length)) {
@@ -128,29 +136,31 @@ Meteor.methods({
 			}
 			if (canSendMail) {
 				try {
-					if (isReset) {
-						if (Meteor.settings.debug.leitner) {
-							console.log("===> Sending E-Mail reset Message");
+					if (Meteor.settings.debug.leitner) {
+						switch (messageType) {
+							case 1:
+								console.log("===> Sending E-Mail reminder Message");
+								break;
+							case 2:
+								console.log("===> Sending E-Mail reset Message");
+								break;
+							default:
+								console.log("===> Sending new E-Mail Message");
 						}
-						MailNotifier.prepareMailReset(cardset, user._id);
-					} else {
-						if (Meteor.settings.debug.leitner) {
-							console.log("===> Sending E-Mail reminder Message");
-						}
-						MailNotifier.prepareMail(cardset, user._id);
-						if (task_id !== undefined) {
-							LeitnerTasks.update({
-									_id: task_id
-								},
-								{
-									$set: {
-										'notifications.mail.active': true,
-										'notifications.mail.sent': true,
-										'notifications.mail.address': user.email
-									}
+					}
+					MailNotifier.prepareMail(cardset, user._id, messageType);
+					if (task_id !== undefined) {
+						LeitnerTasks.update({
+								_id: task_id
+							},
+							{
+								$set: {
+									'notifications.mail.active': true,
+									'notifications.mail.sent': true,
+									'notifications.mail.address': user.email
 								}
-							);
-						}
+							}
+						);
 					}
 				} catch (error) {
 					console.log("[" + TAPi18n.__('admin-settings.test-notifications.sendMail') + "] " + error);
@@ -158,7 +168,7 @@ Meteor.methods({
 			}
 		}
 	},
-	prepareWebpush: function (cardset, user, isNewcomer = false, task_id = undefined) {
+	prepareWebpush: function (cardset, user, isNewcomer = false, task_id = undefined, messageType = 0) {
 		if (Meteor.isServer && ServerSettings.isPushEnabled()) {
 			let canSendPush = (user.webNotification && !isNewcomer);
 			if (Bonus.isInBonus(cardset._id, user._id) && cardset.forceNotifications.push) {
@@ -170,7 +180,7 @@ Meteor.methods({
 					if (Meteor.settings.debug.leitner) {
 						console.log("===> Sending Webpush reminder Message");
 					}
-					web.prepareWeb(cardset, user._id);
+					web.prepareWeb(cardset, user._id, messageType);
 					if (task_id !== undefined) {
 						LeitnerTasks.update({
 								_id: task_id
