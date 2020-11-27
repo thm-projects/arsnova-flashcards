@@ -1,4 +1,6 @@
 import {Leitner} from "../imports/api/subscriptions/leitner.js";
+import {Meteor} from "meteor/meteor";
+import {Bonus} from "../imports/util/bonus";
 
 /**
  * Class used for generating text of mail and web-push messages
@@ -8,7 +10,7 @@ export class Notifications {
 	 *  @param {string} user_id - The id of the user
 	 *  @returns {string} - The name of the user
 	 * */
-	getName (user_id) {
+	static getName (user_id) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
@@ -20,13 +22,9 @@ export class Notifications {
 	/** Function returns the amount of cards that the user has to learn from the cardset
 	 *  @param {string} cardset_id - The id of the cardset from which to get the card count from
 	 *  @param {string} user_id - The id of the user
-	 *  @param {string} testUser - id of the test user if the function got called by a test notification
 	 *  @returns {number} - The amount of cards that the user has to learn from the cardset
 	 * */
-	getActiveCardsCount (cardset_id, user_id, testUser = undefined) {
-		if (testUser !== undefined) {
-			user_id = testUser;
-		}
+	static getActiveCardsCount (cardset_id, user_id) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
@@ -35,6 +33,22 @@ export class Notifications {
 				user_id: user_id,
 				active: true
 			}).count();
+		}
+	}
+
+	static getDeadline (cardset, user_id) {
+		let stringFormat = "dddd, Do MMMM HH:mm";
+		let adjustedHours = {
+			hour: Meteor.settings.public.dailyCronjob.executeAtHour,
+			minute: 0
+		};
+		let active = Leitner.findOne({cardset_id: cardset._id, user_id: user_id, active: true});
+		let deadline = moment(active.currentDate).add(cardset.daysBeforeReset, 'days').set(adjustedHours);
+		let cardsetLearningEnd = moment(cardset.learningEnd).set(adjustedHours);
+		if (deadline > cardsetLearningEnd && Bonus.isInBonus(cardset._id, user_id)) {
+			return cardsetLearningEnd.locale("de").format(stringFormat);
+		} else {
+			return deadline.locale("de").format(stringFormat);
 		}
 	}
 }
