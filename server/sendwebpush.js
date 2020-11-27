@@ -1,46 +1,13 @@
 import {Meteor} from "meteor/meteor";
 import {Notifications} from "./notifications.js";
-import {Leitner} from "../imports/api/subscriptions/leitner.js";
 import {AdminSettings} from "../imports/api/subscriptions/adminSettings.js";
 import {Cardsets} from "../imports/api/subscriptions/cardsets.js";
 import {ServerStyle} from "../imports/util/styles";
-
-function getDateString(date) {
-	let dateFormat = "dddd";
-	return moment(date).locale(ServerStyle.getServerLanguage()).format(dateFormat);
-}
 
 /**
  * Class used for generating the text of web-push notifications
  */
 export class WebNotifier {
-
-	/** Function returns the deadline text-message depending on if the deadline goes beyond the cardsets learning-phase
-	 *  @param {Object} cardset - The cardset object for the deadline
-	 *  @param {string} user_id - The id of the user
-	 *  @param {string} testUser - id of the test user if the function got called by a test notification
-	 *  @returns {string} - The deadline text-message
-	 * */
-	getDeadline (cardset, user_id, testUser = undefined) {
-		if (!Meteor.isServer) {
-			throw new Meteor.Error("not-authorized");
-		} else {
-			if (testUser !== undefined) {
-				user_id = testUser;
-			}
-			let active = Leitner.findOne({cardset_id: cardset._id, user_id: user_id, active: true});
-			let deadline = new Date();
-			if (active !== undefined) {
-				deadline = new Date(active.currentDate.getTime() + cardset.daysBeforeReset * 86400000);
-			}
-			if (deadline.getTime() > cardset.learningEnd.getTime()) {
-				return getDateString(cardset.learningEnd);
-			} else {
-				return getDateString(deadline);
-			}
-		}
-	}
-
 	/** Function creates and sends the Web-Push payload message
 	 *  @param {Object} cardset - The cardset from the active learning-phase
 	 *  @param {string} user_id - The id of the user
@@ -51,17 +18,20 @@ export class WebNotifier {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			let notifier = new Notifications();
 			let message;
+			let deadlineUser = user_id;
+			if (testUser !== undefined) {
+				deadlineUser = testUser;
+			}
 			switch (messageType) {
 				case 1:
-					message = TAPi18n.__('notifications.webPush.reminder', {cardset: cardset.name, cards: notifier.getActiveCardsCount(cardset._id, user_id, testUser), deadline: this.getDeadline(cardset, user_id, testUser)}, ServerStyle.getServerLanguage());
+					message = TAPi18n.__('notifications.webPush.reminder', {cardset: cardset.name, cards: Notifications.getActiveCardsCount(cardset._id, deadlineUser), deadline: Notifications.getDeadline(cardset, deadlineUser)}, ServerStyle.getServerLanguage());
 					break;
 				case 2:
-					message = TAPi18n.__('notifications.webPush.reset', {cardset: cardset.name, cards: notifier.getActiveCardsCount(cardset._id, user_id, testUser), deadline: this.getDeadline(cardset, user_id, testUser)}, ServerStyle.getServerLanguage());
+					message = TAPi18n.__('notifications.webPush.reset', {cardset: cardset.name, cards: Notifications.getActiveCardsCount(cardset._id, deadlineUser), deadline: Notifications.getDeadline(cardset, deadlineUser)}, ServerStyle.getServerLanguage());
 					break;
 				default:
-					message = TAPi18n.__('notifications.webPush.new', {cardset: cardset.name, cards: notifier.getActiveCardsCount(cardset._id, user_id, testUser), deadline: this.getDeadline(cardset, user_id, testUser)}, ServerStyle.getServerLanguage());
+					message = TAPi18n.__('notifications.webPush.new', {cardset: cardset.name, cards: Notifications.getActiveCardsCount(cardset._id, deadlineUser), deadline: Notifications.getDeadline(cardset, deadlineUser)}, ServerStyle.getServerLanguage());
 			}
 			Meteor.call("sendPushNotificationsToUser", user_id, message);
 		}
