@@ -1,7 +1,5 @@
 import {Meteor} from "meteor/meteor";
 import {Email} from "meteor/email";
-import {Bonus} from "../imports/util/bonus.js";
-import {Leitner} from "../imports/api/subscriptions/leitner.js";
 import {Notifications} from "./notifications.js";
 import {AdminSettings} from "../imports/api/subscriptions/adminSettings.js";
 import {Cardsets} from "../imports/api/subscriptions/cardsets.js";
@@ -37,10 +35,9 @@ export class MailNotifier {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			let notifier = new Notifications();
 			let firstName = getAuthorName(user_id, false, true);
-			let cards = notifier.getActiveCardsCount(cardset._id, user_id);
-			let deadline = moment(cardset.learningEnd).locale("de").format("dddd, Do MMMM");
+			let cards = Notifications.getActiveCardsCount(cardset._id, user_id);
+			let deadline = Notifications.getDeadline(cardset, user_id);
 
 			let subject;
 			let headerTitle;
@@ -78,7 +75,7 @@ export class MailNotifier {
 					bodyMessage = TAPi18n.__('notifications.mail.leitner.new.body.message', {cardset: cardset.name, cards: cards, deadline: deadline}, ServerStyle.getServerLanguage());
 					headerColors = config.mailColors.header.leitner.new;
 			}
-			this.sendMail(this.getMail(user_id), subject, headerTitle, headerButton, bodyTitle, bodyGreetings, bodyMessage,cardset._id, headerColors);
+			this.sendMail(this.getMail(user_id), subject, headerTitle, headerButton, bodyTitle, bodyGreetings, bodyMessage, cardset._id, headerColors);
 		}
 	}
 

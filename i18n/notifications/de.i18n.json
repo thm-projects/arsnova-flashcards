@@ -11,7 +11,7 @@
           "body": {
             "title": "Erinnerung",
             "greetings": "Hallo __user__,",
-            "message": "es ist an der Zeit, einen Blick auf deine Lernkarten zu werfen! Der Wiederholungs-Algorithmus hat berechnet, dass <strong>__cards__ Karten aus »__cardset__«</strong> zu lernen sind. Du hast noch bis <strong>__deadline__</strong> Zeit, um die Karten zu lernen."
+            "message": "es ist an der Zeit, einen Blick auf deine Lernkarten zu werfen! Der Wiederholungs-Algorithmus hat berechnet, dass <strong>__cards__ Karten aus »__cardset__«</strong> zu lernen sind. Du hast noch bis <strong>__deadline__ Uhr</strong> Zeit, um die Karten zu lernen."
           }
         },
         "reminder": {
@@ -23,7 +23,7 @@
           "body": {
             "title": "Erinnerung",
             "greetings": "Hallo __user__,",
-            "message": "»__cardset__« benötigt deine Aufmerksamkeit: In Kürze setzt der Leitner-Algorithmus deine Lernstatistik zurück, wenn du dein Lernpensum nicht erfüllst. Du hast noch bis <strong>__deadline__</strong> Zeit, um die Karten zu lernen."
+            "message": "»__cardset__« benötigt deine Aufmerksamkeit: In Kürze setzt der Leitner-Algorithmus deine Lernstatistik zurück, wenn du dein Lernpensum nicht erfüllst. Du hast noch bis <strong>__deadline__ Uhr</strong> Zeit, um die Karten zu lernen."
           }
         },
         "reset": {
@@ -35,7 +35,7 @@
           "body": {
             "title": "Erinnerung",
             "greetings": "Hallo __user__,",
-            "message": "es ist an der Zeit, einen Blick auf deine Lernkarten zu werfen! Der Wiederholungs-Algorithmus hat berechnet, dass <strong>__cards__ Karten aus »__cardset__«</strong> zu lernen sind. Du hast noch bis <strong>__deadline__</strong> Zeit, um die Karten zu lernen."
+            "message": "es ist an der Zeit, einen Blick auf deine Lernkarten zu werfen! Der Wiederholungs-Algorithmus hat berechnet, dass <strong>__cards__ Karten aus »__cardset__«</strong> zu lernen sind. Du hast noch bis <strong>__deadline__ Uhr</strong> Zeit, um die Karten zu lernen."
           }
         }
       },
@@ -47,9 +47,9 @@
       }
     },
     "webPush": {
-      "new": "»__cardset__« __cards__ Karten bis __deadline__",
-      "reminder": "»__cardset__« __cards__ Karten bis __deadline__",
-      "reset": "»__cardset__« __cards__ Karten bis __deadline__"
+      "new": "»__cardset__« __cards__ Karten bis __deadline__ Uhr",
+      "reminder": "»__cardset__« __cards__ Karten bis __deadline__ Uhr",
+      "reset": "»__cardset__« __cards__ Karten bis __deadline__ Uhr"
     },
     "title": "Nachrichten",
     "clearAll": "Leeren",
