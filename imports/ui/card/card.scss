@@ -566,7 +566,7 @@ img.cardside {
 
 .card-answers-table {
   .card-content-answer-element {
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     .card-content-answer-header {
       padding-top: 10px;
 
@@ -597,6 +597,9 @@ img.cardside {
     .card-content-answer-header, .card-content-answer-container, .card-content-answer-explanation-container   {
       padding-left: 10px;
       padding-right: 10px;
+      p {
+        margin: 5px 0 5px 0;
+      }
     }
 
     .card-content-answer-explanation-container {
