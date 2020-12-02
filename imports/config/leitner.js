@@ -14,7 +14,7 @@ let fillUpFromLeftToRight = false;
 // 2 = Reset all cards to the previous box
 // 3 = Reset all cards to the first box
 // 4 = Reset all active cards to the current index (Freeze the current learning status)
-let resetDeadlineMode = 1;
+let resetDeadlineMode = 0;
 
 // What should happen if the user answers a card with "Not Known"
 // 0 = Move the card back to the first box
