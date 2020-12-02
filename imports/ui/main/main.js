@@ -66,6 +66,11 @@ Session.setDefault('fullscreenWozniakSession', 0);
 Session.setDefault('activeCardAnswers', []);
 Session.setDefault('selectedAnswers', []);
 
+// Cardset bonus history
+Session.setDefault('selectedBonusUser', undefined);
+Session.setDefault('selectedBonusUserHistoryData', undefined);
+Session.setDefault('hideUserNames', true);
+
 function connectionStatus() {
 	let stat;
 	if (Meteor.status().status === "connected") {

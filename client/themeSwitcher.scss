@@ -115,6 +115,10 @@ $themes: (
     $arsnova_click_text: map-get($map, "arsnova_click_text");
     $tooltip_info_background: map-get($map, "tooltip_info_background");
     $tooltip_info_icon: map-get($map, "tooltip_info_icon");
+    $checkbox_button_background: map-get($map, "checkbox_button_background");
+    $checkbox_button_icon: map-get($map, "checkbox_button_icon");
+    $checkbox_button_background_checked: map-get($map, "checkbox_button_background_checked");
+    $checkbox_button_icon_checked: map-get($map, "checkbox_button_icon_checked");
     //barfy stars
     $barfy_stars_particles_1: map-get($map, "barfy_stars_particles_1");
     $barfy_stars_particles_2: map-get($map, "barfy_stars_particles_2");
@@ -4643,6 +4647,17 @@ $themes: (
       }
       .icon {
         color: $tooltip_info_icon !important;
+      }
+    }
+
+    .btn-group {
+      .groupCheckboxButtonLeft {
+        background-color: $checkbox_button_background !important;
+        color: $checkbox_button_icon !important;
+      }
+      .groupCheckboxButtonLeft.checked {
+        background-color: $checkbox_button_background_checked !important;
+        color: $checkbox_button_icon_checked !important;
       }
     }
   }

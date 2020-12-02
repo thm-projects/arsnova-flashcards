@@ -17,9 +17,13 @@
                         <table class="table table-striped table-hover table-user-list">
                             <tbody>
                             <tr>
-                                <th>{{_ "panel-body.birthname"}}</th>
-                                <th>{{_ "panel-body.givenname"}}</th>
-                                <th>{{_ "panel-body.email"}}</th>
+                                {{#if gotHiddenUserNames}}
+                                    <th>{{_ "leitnerProgress.hiddenUser"}}</th>
+                                {{else}}
+                                    <th>{{_ "panel-body.birthname"}}</th>
+                                    <th>{{_ "panel-body.givenname"}}</th>
+                                    <th>{{_ "panel-body.email"}}</th>
+                                {{/if}}
                                 <th>{{_ "leitnerProgress.lastActivity"}}</th>
                                 <th>{{_ "leitnerProgress.box" number=1}}</th>
                                 <th>{{_ "leitnerProgress.box" number=2}}</th>
@@ -29,9 +33,13 @@
                                 <th>{{_ "leitnerProgress.learned"}}</th>
                             </tr>
                             <tr>
-                                <td>{{this.firstName}}</td>
-                                <td>{{this.lastName}}</td>
-                                <td>{{this.email}}</td>
+                                {{#if gotHiddenUserNames}}
+                                    <td>{{_ "leitnerProgress.hiddenUserPlaceholder" index= index}}</td>
+                                {{else}}
+                                    <td>{{this.firstName}}</td>
+                                    <td>{{this.lastName}}</td>
+                                    <td>{{this.email}}</td>
+                                {{/if}}
                                 <td>{{this.lastActivity}}</td>
                                 <td>{{this.box1}}</td>
                                 <td>{{this.box2}}</td>

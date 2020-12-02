@@ -10,20 +10,27 @@ import "./bonus.html";
 import {Bonus} from "../../../../util/bonus";
 import {LeitnerProgress} from "../../../../util/leitnerProgress";
 
-Session.setDefault('selectedBonusUser', undefined);
-Session.setDefault('selectedBonusUserHistoryData', undefined);
-
 /*
 * ############################################################################
 * cardsetLearnActivityStatistic
 * ############################################################################
 */
 
+Template.cardsetLearnActivityStatistic.onCreated(function () {
+	Session.set('hideUserNames', true);
+});
+
 Template.cardsetLearnActivityStatistic.onRendered(function () {
 	Session.set('activeCardset', Cardsets.findOne({_id: FlowRouter.getParam('_id')}));
 });
 
 Template.cardsetLearnActivityStatistic.helpers({
+	adjustIndex: function (index) {
+		return index + 1;
+	},
+	gotHiddenUserNames: function () {
+		return Session.get('hideUserNames');
+	},
 	getCardsetStats: function () {
 		return Session.get("learnerStats");
 	},
@@ -45,6 +52,9 @@ Template.cardsetLearnActivityStatistic.helpers({
 });
 
 Template.cardsetLearnActivityStatistic.events({
+	"click .showUserNames": function () {
+		Session.set('hideUserNames', !Session.get('hideUserNames'));
+	},
 	"click #exportCSV": function () {
 		var cardset = Cardsets.findOne({_id: this._id});
 		var hiddenElement = document.createElement('a');
@@ -81,6 +91,9 @@ Template.cardsetLearnActivityStatistic.events({
 		FlowRouter.go('cardsetdetailsid', {_id: this._id});
 	},
 	"click .detailed-stats": function (event) {
+		let user = {};
+		user.index = $(event.target).data('index');
+		Session.set('selectedBonusUser', user);
 		LeitnerProgress.setupTempData(FlowRouter.getParam('_id'), $(event.target).data('id'), 'cardset');
 		$('#progressModal').modal('show');
 	},
@@ -92,8 +105,10 @@ Template.cardsetLearnActivityStatistic.events({
 	"click .showBonusUserHistory": function (event) {
 		let user = {};
 		user.user_id = $(event.target).data('id');
+		user.index = $(event.target).data('index');
 		user.firstName = $(event.target).data('firstname');
 		user.lastName = $(event.target).data('lastname');
+
 		if (user.user_id !== undefined) {
 			Session.set('selectedBonusUser', user);
 			Meteor.call("getLearningHistoryData", user.user_id, FlowRouter.getParam('_id'), function (error, result) {
@@ -108,6 +123,7 @@ Template.cardsetLearnActivityStatistic.events({
 	},
 	"click .removeBonusUser": function (event) {
 		let user = {};
+		user.index = $(event.target).data('index');
 		user.user_id = $(event.target).data('user_id');
 		user.firstName = $(event.target).data('firstname');
 		user.lastName = $(event.target).data('lastname');
