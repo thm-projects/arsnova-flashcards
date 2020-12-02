@@ -27,7 +27,13 @@ Template.progressModal.helpers({
 			if (Meteor.userId() === Session.get('workloadProgressUserID')) {
 				return TAPi18n.__('admin.myProgress') + title;
 			} else {
-				return title + ' | ' + TAPi18n.__('admin.userProgress') + ' »' + getAuthorName(Session.get('workloadProgressUserID')) + '«';
+				let userName;
+				if (Session.get('hideUserNames')) {
+					userName = TAPi18n.__('leitnerProgress.hiddenUserPlaceholder', {index: Session.get('selectedBonusUser').index});
+				} else {
+					userName = getAuthorName(Session.get('workloadProgressUserID'));
+				}
+				return title + ' | ' + TAPi18n.__('admin.userProgress') + ' »' + userName + '«';
 			}
 		} else {
 			return TAPi18n.__('admin.allLearnedCardsets');

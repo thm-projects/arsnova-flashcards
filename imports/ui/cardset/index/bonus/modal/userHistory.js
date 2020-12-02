@@ -37,7 +37,12 @@ Template.bonusUserHistoryModal.helpers({
 					return TAPi18n.__('leitnerProgress.modal.userHistory.titleCardset', {cardset: Session.get('selectedBonusUserHistoryData')[0].cardsetTitle});
 				}
 			} else {
-				return TAPi18n.__('leitnerProgress.modal.userHistory.title', {lastName: Session.get('selectedBonusUser').lastName, firstName: Session.get('selectedBonusUser').firstName});
+				if (Session.get('hideUserNames')) {
+					let hiddenUser = TAPi18n.__('leitnerProgress.hiddenUserPlaceholder', {index: Session.get('selectedBonusUser').index});
+					return TAPi18n.__('leitnerProgress.modal.userHistory.titleHiddenUser', {hiddenUser: hiddenUser});
+				} else {
+					return TAPi18n.__('leitnerProgress.modal.userHistory.title', {lastName: Session.get('selectedBonusUser').lastName, firstName: Session.get('selectedBonusUser').firstName});
+				}
 			}
 		}
 	},

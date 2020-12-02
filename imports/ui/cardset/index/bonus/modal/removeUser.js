@@ -19,6 +19,9 @@ Template.removeUserFromBonusModal.onCreated(function () {
 });
 
 Template.removeUserFromBonusModal.helpers({
+	gotHiddenUserNames: function () {
+		return Session.get('hideUserNames');
+	},
 	userData: function () {
 		return Session.get('selectedBonusUser');
 	}

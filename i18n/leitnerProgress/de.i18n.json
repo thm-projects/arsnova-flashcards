@@ -1,5 +1,8 @@
 {
   "leitnerProgress": {
+    "hideUserNames": "Benutzernamen verbergen",
+    "hiddenUser": "Benutzer",
+    "hiddenUserPlaceholder": "Bonus-Teilnehmer __index__",
     "box": "Box __number__",
     "bonus": "Bonuspunkte",
     "learned": "gelernt",
@@ -33,6 +36,7 @@
       },
       "userHistory": {
         "title": "Verlauf von Benutzer __firstName__, __lastName__",
+        "titleHiddenUser": "Verlauf von Benutzer __hiddenUser__",
         "titleCardset": "Verlauf für Kartei »__cardset__«",
         "titleRepetitorium": "Verlauf für Repetitorium »__repetitorium__«",
         "stats": {

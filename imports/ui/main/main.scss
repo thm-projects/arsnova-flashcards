@@ -933,3 +933,16 @@ kbd {
   cursor: pointer;
   font-size: 12px;
 }
+
+.btn-group {
+  .groupCheckboxButtonLeft {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    min-width: 35px;
+  }
+
+  .groupCheckboxButtonRight {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+  }
+}
