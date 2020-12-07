@@ -8,6 +8,10 @@ let customCSS = `
 	left: 260px;
 }
 
+.md img {
+	background-color: white;
+}
+
 .md .longTOC {
 	width: 220px;
 }
