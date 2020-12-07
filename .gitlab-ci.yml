@@ -35,7 +35,7 @@ sonar:
 #    - master
 #    - staging
   tags:
-    - gradle
+    - gradle-node
   allow_failure: true
   dependencies: []
   script:
