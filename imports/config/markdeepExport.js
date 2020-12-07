@@ -1,3 +1,5 @@
+// Increase the export Version number under /imports/config/serverStyle/style/global/const.js
+
 //Leave empty to disable
 let exportHeaderStyle = `https://casual-effects.com/markdeep/latest/slate.css?`;
 
@@ -6,6 +8,10 @@ let customCSS = `
 /* slate template related fixes start here */
 #md {
 	left: 260px;
+}
+
+.md img {
+	background-color: white;
 }
 
 .md .longTOC {

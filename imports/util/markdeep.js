@@ -240,7 +240,7 @@ export let MarkdeepContent = class MarkdeepContent {
 			info += cardset.description + newline ;
 		}
 		info += "(#) " + TAPi18n.__('set-list.cardsetInfoStatic') + newline;
-		info += " | " + linebreak;
+		info +=  `${TAPi18n.__('markdeepExport.infoTable.key')} | ${TAPi18n.__('markdeepExport.infoTable.value')} ${linebreak}`;
 		info += "---|---" + linebreak;
 		info += TAPi18n.__('cardset.info.author') + tableColumn + getAuthorName(cardset.owner, false) + linebreak;
 		if (cardset.originalAuthorName !== undefined &&  (cardset.originalAuthorName.birthname !== undefined || cardset.originalAuthorName.legacyName !== undefined)) {
