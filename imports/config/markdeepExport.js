@@ -1,3 +1,5 @@
+// Increase the export Version number under /imports/config/serverStyle/style/global/const.js
+
 //Leave empty to disable
 let exportHeaderStyle = `https://casual-effects.com/markdeep/latest/slate.css?`;
 
