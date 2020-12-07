@@ -29,6 +29,19 @@ jscs:
     - npm install jscs
     - node_modules/jscs/bin/jscs --config .jscsrc ./client/head.js ./imports/api/ ./imports/config/ ./imports/startup/server/ ./imports/startup/client/i18n.js ./imports/startup/client/registerhelper/ ./imports/startup/client/registerServiceWorker.js ./imports/ui/ ./imports/util/ ./i18n ./tests
 
+sonar:
+  stage: test
+#  only:
+#    - master
+#    - staging
+  tags:
+    - gradle
+  allow_failure: true
+  dependencies: []
+  script:
+    - gradle sonarqube
+
+
 jsdoc:
   stage: build
   tags:
