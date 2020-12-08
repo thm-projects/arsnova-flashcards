@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  analysis:
+    image: local-cards-scanner
+    build:
+      context: ..
+      dockerfile: analysis/Dockerfile
+    volumes:
+      - ..:/cards
+    depends_on:
+      - sonarqube
+    networks:
+      - sonar
+
+  sonarqube:
+    image: sonarqube:7.9.1-community
+    ports:
+      - '9000:9000'
+    environment:
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+    networks:
+      - sonar
+
+networks:
+  sonar:
