@@ -237,7 +237,7 @@ export let MarkdeepContent = class MarkdeepContent {
 		}
 		if (cardset.description.trim().length > 0) {
 			info += "(#) " + cardset.name + newline;
-			info += cardset.description + newline ;
+			info += this.convertUML(cardset.description, true) + newline ;
 		}
 		info += "(#) " + TAPi18n.__('set-list.cardsetInfoStatic') + newline;
 		info +=  `${TAPi18n.__('markdeepExport.infoTable.key')} | ${TAPi18n.__('markdeepExport.infoTable.value')} ${linebreak}`;
