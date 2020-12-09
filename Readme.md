@@ -59,7 +59,7 @@ To run a local code style check with sonarqube, follow these steps:
   `cd analysis`
 2. start the sonarqube server  
   `docker-compose up -d sonarqube`
-3. when sonarqube has started, you may run analysis as often as you want with  
+3. when sonarqube has started, you may run analysis whenever you want with  
   `docker-compose run --rm analysis`
 
 Sonarqube will be accessible at [localhost:9000](http://localhost:9000). You find the cards project after the first successful analysis in the projects section.
