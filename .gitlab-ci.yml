@@ -29,11 +29,12 @@ jscs:
     - npm install jscs
     - node_modules/jscs/bin/jscs --config .jscsrc ./client/head.js ./imports/api/ ./imports/config/ ./imports/startup/server/ ./imports/startup/client/i18n.js ./imports/startup/client/registerhelper/ ./imports/startup/client/registerServiceWorker.js ./imports/ui/ ./imports/util/ ./i18n ./tests
 
-# Since we only have the community edition of Sonarqube,
-# we cannot differentiate between different branches.
-# Therefore, the analysis is only performed on the master branch.
 sonar:
-  stage: test
+  # Because this job runs a long time, make it parallel to the build job
+  # which runs long time as well
+  stage: build
+  # Since we only have the community edition of Sonarqube,
+  # we cannot differentiate between different branches.
   only:
     - master
   tags:
@@ -41,9 +42,9 @@ sonar:
   allow_failure: true
   dependencies: []
   script:
+    #   - gradle sonarqube -Dsonar.host.url=https://scm.thm.de/sonar/ -Dsonar.branch.name=$CI_COMMIT_REF_SLUG
+    #   sonar.branch.name only available for developer version and higher
     - gradle sonarqube -Dsonar.host.url=https://scm.thm.de/sonar/
-#   - gradle sonarqube -Dsonar.host.url=https://scm.thm.de/sonar/ -Dsonar.branch.name=$CI_COMMIT_REF_SLUG
-#   sonar.branch.name only available for developer version and higher
 
 jsdoc:
   stage: build
