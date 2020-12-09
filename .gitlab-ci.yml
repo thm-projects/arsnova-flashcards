@@ -36,7 +36,7 @@ sonar:
   # Since we only have the community edition of Sonarqube,
   # we cannot differentiate between different branches.
   only:
-    - master
+    - staging
   tags:
     - gradle-node
   allow_failure: true
