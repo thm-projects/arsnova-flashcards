@@ -1,0 +1,8 @@
+/client
+/server
+/imports/api/rest
+/imports/api/subscriptions
+/imports/config
+/imports/startup
+/imports/ui
+/imports/util

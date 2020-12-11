@@ -25,6 +25,7 @@ let paths = [
 	'./imports/**/*.js',
 	'!./imports/startup/client/routes.js',
 	'!./imports/startup/client/routes/**/*.js',
+	'!./imports/api/meteorMethods/*.js',
 	'./client/head.js'
 ];
 

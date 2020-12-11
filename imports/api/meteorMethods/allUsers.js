@@ -1,72 +1,67 @@
-import {Meteor} from "meteor/meteor";
-import {check} from "meteor/check";
-import {UserPermissions} from "../../util/permissions";
+import { Meteor } from 'meteor/meteor';
+import { check } from 'meteor/check';
+import { Roles } from 'meteor/alanning:roles';
+import { UserPermissions } from '../../util/permissions';
 
 Meteor.methods({
-	updateUser: function (user_id, visible, email, blockedtext) {
-		check(user_id, String);
-		check(visible, Boolean);
+  updateUser(userId, visible, email, blockedText) {
+    check(userId, String);
+    check(visible, Boolean);
+    check(email, String);
+    check(blockedText, String);
 
-		if (email !== " ") {
-			check(email, String);
-		}
-		if (blockedtext !== null)
-		{
-			check(blockedtext, String);
-		}
+    if (UserPermissions.gotBackendAccess()) {
+      throw new Meteor.Error('not-authorized');
+    }
 
-		if (!!UserPermissions.gotBackendAccess()) {
-			throw new Meteor.Error("not-authorized");
-		}
+    Meteor.users.update(userId, {
+      $set: {
+        visible,
+        email,
+        blockedtext: blockedText,
+      },
+    });
+  },
+  updateRoles(userId, newRole) {
+    check(userId, String);
+    check(newRole, String);
 
-		Meteor.users.update(user_id, {
-			$set: {
-				visible: visible,
-				email: email,
-				blockedtext: blockedtext
-			}
-		});
-	},
-	updateRoles: function (user_id, newRole) {
-		check(user_id, String);
-		check(newRole, String);
+    if (!UserPermissions.gotBackendAccess()) {
+      throw new Meteor.Error('not-authorized');
+    }
 
-		if (!UserPermissions.gotBackendAccess()) {
-			throw new Meteor.Error("not-authorized");
-		}
+    let roles;
 
-		var roles;
+    if (newRole === 'pro' && !Roles.userIsInRole(userId, 'pro')) {
+      Roles.removeUsersFromRoles(userId, 'standard');
+      roles = Roles.getRolesForUser(userId);
+      roles.push('pro');
+    } else if (newRole === 'standard' && !Roles.userIsInRole(userId, 'standard')) {
+      Roles.removeUsersFromRoles(userId, 'pro');
+      roles = Roles.getRolesForUser(userId);
+      roles.push('standard');
+    } else if (newRole === 'blocked' && Roles.userIsInRole(userId, 'admin')) {
+      throw new Meteor.Error('not-authorized');
+    } else if (!Roles.userIsInRole(userId, newRole)) {
+      roles = Roles.getRolesForUser(userId);
+      roles.push(newRole);
+    } else {
+      roles = Roles.getRolesForUser(userId);
+    }
 
-		if (newRole === 'pro' && !Roles.userIsInRole(user_id, 'pro')) {
-			Roles.removeUsersFromRoles(user_id, 'standard');
-			roles = Roles.getRolesForUser(user_id);
-			roles.push('pro');
-		} else if (newRole === 'standard' && !Roles.userIsInRole(user_id, 'standard')) {
-			Roles.removeUsersFromRoles(user_id, 'pro');
-			roles = Roles.getRolesForUser(user_id);
-			roles.push('standard');
-		} else if (newRole === 'blocked' && Roles.userIsInRole(user_id, 'admin')) {
-			throw new Meteor.Error("not-authorized");
-		} else if (!Roles.userIsInRole(user_id, newRole)) {
-			roles = Roles.getRolesForUser(user_id);
-			roles.push(newRole);
-		} else {
-			roles = Roles.getRolesForUser(user_id);
-		}
+    Roles.setUserRoles(userId, roles);
+  },
 
-		Roles.setUserRoles(user_id, roles);
-	},
+  removeRoles(userId, removeRole) {
+    check(userId, String);
+    check(removeRole, String);
 
-	removeRoles: function (user_id, removeRole) {
-		check(user_id, String);
-		check(removeRole, String);
+    if (!UserPermissions.gotBackendAccess()) {
+      throw new Meteor.Error('not-authorized');
+    }
 
-		if (!UserPermissions.gotBackendAccess()) {
-			throw new Meteor.Error("not-authorized");
-		}
-
-		if (Roles.userIsInRole(user_id, removeRole)) {
-			Roles.removeUsersFromRoles(user_id, removeRole);
-		}
-	}
+    if (Roles.userIsInRole(userId, removeRole)) {
+      Roles.removeUsersFromRoles(userId, removeRole);
+    }
+  },
 });

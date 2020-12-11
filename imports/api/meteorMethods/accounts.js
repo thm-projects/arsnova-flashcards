@@ -1,13 +1,17 @@
-import {AccountUtils} from "../../util/accounts";
+import { Meteor } from 'meteor/meteor';
+import { check } from 'meteor/check';
+import { AccountUtils } from '../../util/accounts';
 
 if (Meteor.isServer) {
-	Meteor.methods({
-		"accountExists": function (username) {
-			return AccountUtils.exists(username);
-		},
+  Meteor.methods({
+    accountExists(username) {
+      check(username, String);
+      return AccountUtils.exists(username);
+    },
 
-		"mailExists": function (mail) {
-			return AccountUtils.mailExists(mail);
-		}
-	});
+    mailExists(mail) {
+      check(mail, String);
+      return AccountUtils.mailExists(mail);
+    },
+  });
 }
