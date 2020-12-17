@@ -52,6 +52,18 @@ Use one of the following commands inside the repository (cards folder), to start
 
 3. Open a new terminal in the cards folder and load the Test Database with: `./tests/loadTestDatabase.sh`
 
+## Analyze code style locally
+For the local analysis with docker-compose you'll need docker and docker-compose installed.
+To run a local code style check with sonarqube, follow these steps:
+1. switch into the analysis folder  
+  `cd analysis`
+2. start the sonarqube server  
+  `docker-compose up -d sonarqube`
+3. when sonarqube has started, you may run analysis whenever you want with  
+  `docker-compose run --rm analysis`
+
+Sonarqube will be accessible at [localhost:9000](http://localhost:9000). You find the cards project after the first successful analysis in the projects section.
+
 ## Optional features
 
 ### Authentication setup (For Google+, Facebook and Twitter logins)
