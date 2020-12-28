@@ -101,6 +101,7 @@ The documentation can be found [here](https://staging.arsnova.cards/jsdoc/).
 |[Staging](https://staging.arsnova.cards)| [![build status](https://git.thm.de/arsnova/cards/badges/staging/build.svg)](https://git.thm.de/arsnova/cards/commits/staging)|
 |[Production](https://thm.cards)| [![build status](https://git.thm.de/arsnova/cards/badges/master/build.svg)](https://git.thm.de/arsnova/cards/commits/master)|
 |[Linux](https://linux.cards) |[![build status](https://git.thm.de/arsnova/cards/badges/master/build.svg)](https://git.thm.de/arsnova/cards/commits/master)|
+|SonarQube | [![Quality Gate Status](https://scm.thm.de/sonar/api/project_badges/measure?project=de.thm.arsnova%3Acards&metric=alert_status)](https://scm.thm.de/sonar/dashboard?id=de.thm.arsnova%3Acards) |
 
 ## Credits
 arsnova🍅cards is powered by Technische Hochschule Mittelhessen - University of Applied Sciences.
