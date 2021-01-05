@@ -178,7 +178,7 @@ export let setTheme = function () {
 			} else if (Route.isEditMode()) {
 				setBackground(ServerStyle.getBackground("editor"), 'editor');
 			} else if (Route.isLandingPageRoutes()) {
-				landingPageBackgrounds(ServerStyle.getBackground("internal"), internal);
+				landingPageBackgrounds();
 			} else if (Route.isNotFound()) {
 				setBackground(ServerStyle.getBackground("notFound"), internal);
 			} else {
