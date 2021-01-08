@@ -3,6 +3,7 @@ import * as config from "../../../../../config/serverBoot";
 import {TYPE_MIGRATE} from "../../../../../config/serverBoot";
 import {LeitnerTasks} from "../../../../../api/subscriptions/leitnerTasks";
 import {Cardsets} from "../../../../../api/subscriptions/cardsets";
+import {LeitnerUtilities} from "../../../../../util/leitner";
 
 function leitnerTaskMigrationStep() {
 	let groupName = "LeitnerTasks Migration";
@@ -45,6 +46,18 @@ function leitnerTaskMigrationStep() {
 					}
 				}
 			);
+		}
+		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
+	} else {
+		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
+	}
+
+	itemName = "LeitnerTasks timelineStats field";
+	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
+	leitnerTasks = LeitnerTasks.find({"timelineStats": {$exists: false}}).fetch();
+	if (leitnerTasks.length) {
+		for (let i = 0; i < leitnerTasks.length; i++) {
+			LeitnerUtilities.setCardTimeMedian(leitnerTasks[i]);
 		}
 		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
 	} else {

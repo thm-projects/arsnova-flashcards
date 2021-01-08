@@ -750,4 +750,93 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				});
 		}
 	}
+
+	static setCardTimeMedian (task) {
+		if (Meteor.isServer && task !== undefined) {
+			let query = {
+				task_id: task._id,
+				cardset_id: task.cardset_id,
+				"timestamps.submission": {$exists: true}
+			};
+
+			if (task.user_id !== undefined) {
+				query.user_id = task.user_id;
+			} else {
+				query.user_id_deleted = task.user_id_deleted;
+			}
+
+			let taskHistory = LeitnerHistory.find(query).fetch();
+			let milliseconds = [];
+			let median = 0;
+
+			for (let i = 0; i < taskHistory.length; i++) {
+				milliseconds.push(Math.round((taskHistory[i].timestamps.submission - taskHistory[i].timestamps.question)));
+			}
+
+			if (milliseconds.length) {
+				median = Math.round(Utilities.getMedian(milliseconds));
+			}
+
+			let timelineStats = {
+				milliseconds: milliseconds,
+				median: median
+			};
+
+			LeitnerTasks.update({
+					_id: task._id
+				},
+				{
+					$set: {
+						timelineStats: timelineStats
+					}
+				}
+			);
+
+			//Update Session Stats
+			if (task.user_id !== undefined) {
+				let highestSession = LeitnerTasks.findOne({user_id: task.user_id, cardset_id: task.cardset_id}, {$sort: {session: -1}}).session;
+				if (task.session === highestSession) {
+					Workload.update({
+						user_id: task.user_id,
+						cardset_id: task.cardset_id
+					},
+						{
+							$set: {
+								"leitner.timelineStats": timelineStats
+							}
+						}
+					);
+					let workload = Workload.findOne({
+						user_id: task.user_id,
+						cardset_id: task.cardset_id
+					}, {fields: {"leitner.bonus": 1}});
+
+					//Update bonus stats if user is in a bonus
+					if (workload.leitner.bonus) {
+						let bonusWorkloads = Workload.find({cardset_id: task.cardset_id, "leitner.bonus": true, "leitner.timelineStats": {$exists: true}});
+						let bonusMedianMilliseconds = [];
+						for (let i = 0; i < bonusWorkloads.length; i++) {
+							bonusMedianMilliseconds.push(bonusWorkloads[i].leitner.timelineStats.median);
+						}
+						timelineStats = {
+							milliSeconds: bonusMedianMilliseconds,
+							median: 0
+						};
+						if (bonusMedianMilliseconds.length) {
+							timelineStats.median = Math.round(Utilities.getMedian(milliseconds));
+						}
+						Cardsets.update({
+								cardset_id: task.cardset_id
+							},
+							{
+								$set: {
+									"bonus.timelineStats": timelineStats
+								}
+							}
+						);
+					}
+				}
+			}
+		}
+	}
 };

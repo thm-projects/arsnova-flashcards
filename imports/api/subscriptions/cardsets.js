@@ -413,6 +413,18 @@ const CardsetsSchema = new SimpleSchema({
 	'forceNotifications.push': {
 		type: Boolean,
 		optional: true
+	},
+	'bonus.timelineStats': {
+		type: Object,
+		optional: true
+	},
+	'bonus.timelineStats.seconds': {
+		type: [Number],
+		optional: true
+	},
+	'bonus.timelineStats.median': {
+		type: Number,
+		optional: true
 	}
 });
 
