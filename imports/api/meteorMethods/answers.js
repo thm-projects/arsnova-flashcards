@@ -151,7 +151,7 @@ Meteor.methods({
 					}
 				});
 
-				let leitnerTask = LeitnerTasks.findOne({cardset_id: activeLeitner.cardset_id, user_id: activeLeitner.user_id}, {sort: {session: -1}});
+				let leitnerTask = LeitnerTasks.findOne({cardset_id: activeLeitner.cardset_id, user_id: activeLeitner.user_id}, {sort: {session: -1, createdAt: -1}});
 				if (leitnerTask !== undefined) {
 					delete query.active;
 					query.task_id = leitnerTask._id;
