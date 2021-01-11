@@ -778,7 +778,6 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			}
 
 			let timelineStats = {
-				milliseconds: milliseconds,
 				median: median
 			};
 
@@ -794,12 +793,27 @@ export let LeitnerUtilities = class LeitnerUtilities {
 
 			//Update Session Stats
 			if (task.user_id !== undefined) {
-				let highestSession = LeitnerTasks.findOne({user_id: task.user_id, cardset_id: task.cardset_id}, {$sort: {session: -1}}).session;
+				let highestSession = LeitnerTasks.findOne({user_id: task.user_id, cardset_id: task.cardset_id}, {sort: {session: -1}}).session;
+
 				if (task.session === highestSession) {
+					let tasks = LeitnerTasks.find({user_id: task.user_id, cardset_id: task.cardset_id, session: highestSession,  "timelineStats.median": {$exists: true}}).fetch();
+					let tasksMedianMilliseconds = [];
+					for (let i = 0; i < tasks.length; i++) {
+						if (tasks[i].timelineStats.median > 0) {
+							tasksMedianMilliseconds.push(tasks[i].timelineStats.median);
+						}
+					}
+					timelineStats = {
+						median: 0
+					};
+					if (tasksMedianMilliseconds.length) {
+						timelineStats.median = Math.round(Utilities.getMedian(tasksMedianMilliseconds));
+					}
+
 					Workload.update({
-						user_id: task.user_id,
-						cardset_id: task.cardset_id
-					},
+							user_id: task.user_id,
+							cardset_id: task.cardset_id
+						},
 						{
 							$set: {
 								"leitner.timelineStats": timelineStats
@@ -811,26 +825,45 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						cardset_id: task.cardset_id
 					}, {fields: {"leitner.bonus": 1}});
 
-					//Update bonus stats if user is in a bonus
+					let cardsetMedian = 0;
+					query = {
+						cardset_id: task.cardset_id,
+						"leitner.timelineStats": {$exists: true}
+					};
 					if (workload.leitner.bonus) {
-						let bonusWorkloads = Workload.find({cardset_id: task.cardset_id, "leitner.bonus": true, "leitner.timelineStats": {$exists: true}});
-						let bonusMedianMilliseconds = [];
-						for (let i = 0; i < bonusWorkloads.length; i++) {
-							bonusMedianMilliseconds.push(bonusWorkloads[i].leitner.timelineStats.median);
+						query["leitner.bonus"] = true;
+					} else {
+					}
+
+					let cardsetWorkloads = Workload.find(query).fetch();
+					let cardsetMedianMilliseconds = [];
+					for (let i = 0; i < cardsetWorkloads.length; i++) {
+						if (cardsetWorkloads[i].leitner.timelineStats.median > 0) {
+							cardsetMedianMilliseconds.push(cardsetWorkloads[i].leitner.timelineStats.median);
 						}
-						timelineStats = {
-							milliSeconds: bonusMedianMilliseconds,
-							median: 0
-						};
-						if (bonusMedianMilliseconds.length) {
-							timelineStats.median = Math.round(Utilities.getMedian(milliseconds));
-						}
+					}
+
+					if (cardsetMedianMilliseconds.length) {
+						cardsetMedian = Math.round(Utilities.getMedian(cardsetMedianMilliseconds));
+					}
+
+					if (workload.leitner.bonus) {
 						Cardsets.update({
-								cardset_id: task.cardset_id
+								_id: task.cardset_id
 							},
 							{
 								$set: {
-									"bonus.timelineStats": timelineStats
+									"leitner.timelineStats.median.bonus": cardsetMedian
+								}
+							}
+						);
+					} else {
+						Cardsets.update({
+								_id: task.cardset_id
+							},
+							{
+								$set: {
+									"leitner.timelineStats.median.normal": cardsetMedian
 								}
 							}
 						);

@@ -10,6 +10,8 @@ import {
 	START_RECORDING,
 	TYPE_INITIALIZE, TYPE_MIGRATE, TYPE_CLEANUP, PROCESS_RECORDING
 } from "../config/serverBoot";
+import {humanizeDurationSettings} from "../config/humanizeDuration";
+import humanizeDuration from "humanize-duration";
 
 let debugServerBoot;
 let lastDebugTime;
@@ -229,5 +231,16 @@ export let Utilities = class Utilities {
 	static getMedian (array) {
 		const mid = Math.floor(array.length / 2), numbers = [...array].sort((a, b) => a - b);
 		return array.length % 2 !== 0 ? numbers[mid] : (numbers[mid - 1] + numbers[mid]) / 2;
+	}
+
+	static humanizeDuration (duration) {
+		let settings = humanizeDurationSettings;
+		if (duration < 60000) {
+			settings.units = ['s'];
+			return humanizeDuration(duration, settings);
+		} else {
+			settings.units = ['h', 'm'];
+			return humanizeDuration(duration, settings);
+		}
 	}
 };

@@ -414,15 +414,19 @@ const CardsetsSchema = new SimpleSchema({
 		type: Boolean,
 		optional: true
 	},
-	'bonus.timelineStats': {
+	'leitner.timelineStats': {
 		type: Object,
 		optional: true
 	},
-	'bonus.timelineStats.seconds': {
-		type: [Number],
+	'leitner.timelineStats.median': {
+		type: Object,
 		optional: true
 	},
-	'bonus.timelineStats.median': {
+	'leitner.timelineStats.median.bonus': {
+		type: Number,
+		optional: true
+	},
+	'leitner.timelineStats.median.normal': {
 		type: Number,
 		optional: true
 	}

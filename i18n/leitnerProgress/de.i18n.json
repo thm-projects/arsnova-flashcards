@@ -57,6 +57,7 @@
           "duration": {
             "title": "Bearbeitungszeit",
             "average": "Ø Bearbeitungszeit pro Termin",
+            "cardMedian": "Ø Antworzeit",
             "total": "Gesamte Bearbeitungszeit"
           },
           "averageKnown": "Ø Gewusst"

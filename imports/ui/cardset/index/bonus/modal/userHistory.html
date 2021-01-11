@@ -64,8 +64,12 @@
                                     <tr>
                                         <td>{{_ "leitnerProgress.modal.userHistory.stats.duration.total"}}:</td>
                                         <td>{{getTotalDuration}}</td>
+                                    </tr>
+                                    <tr>
                                         <td>{{_ "leitnerProgress.modal.userHistory.stats.duration.average"}}:</td>
                                         <td>{{getAverageDuration}}</td>
+                                        <td>{{_ "leitnerProgress.modal.userHistory.stats.duration.cardMedian"}}:</td>
+                                        <td>{{getUserCardMedian}}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -85,6 +89,7 @@
                                         <th class="visible-md visible-lg">{{_
                                                 "leitnerProgress.modal.userHistory.table.status.title"}}</th>
                                         <th class="visible-lg">{{_ "leitnerProgress.modal.userHistory.table.duration"}}</th>
+                                        <th class="visible-lg">{{_ "leitnerProgress.modal.userHistory.stats.duration.cardMedian"}}</th>
                                     </tr>
                                     {{#each getWorkloadHistory}}
                                         <tr>
@@ -95,6 +100,7 @@
                                             <td>{{this.notKnown}}</td>
                                             <td class="visible-md visible-lg">{{getStatus}}</td>
                                             <td class="visible-lg">{{getDuration this.duration}}</td>
+                                            <td class="visible-lg">{{humanizeDuration this.cardMedian}}</td>
                                         </tr>
                                     {{/each}}
                                     </tbody>

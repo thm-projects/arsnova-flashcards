@@ -7,6 +7,7 @@ import {LeitnerHistory} from "../api/subscriptions/leitnerHistory";
 import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
 import {Cardsets} from "../api/subscriptions/cardsets";
 import {Leitner} from "../api/subscriptions/leitner";
+import {Workload} from "../api/subscriptions/workload";
 
 export let CardsetUserlist = class CardsetUserlist {
 	static getLearningStatus (learningEnd) {
@@ -139,11 +140,17 @@ export let CardsetUserlist = class CardsetUserlist {
 				}
 
 				if (user[0].profile !== undefined) {
+					let cardMedian = 0;
+					let workload = Workload.findOne({user_id: user[0]._id, cardset_id: cardset_id, "leitner.bonus": true});
+					if (workload !== undefined && workload.leitner.timelineStats !== undefined) {
+						cardMedian = workload.leitner.timelineStats.median;
+					}
 					learningDataArray.push({
 						user_id: user[0]._id,
 						birthname: user[0].profile.birthname,
 						givenname: user[0].profile.givenname,
 						email: user[0].email,
+						cardMedian: cardMedian,
 						box1: Leitner.find(filter[0]).count(),
 						box2: Leitner.find(filter[1]).count(),
 						box3: Leitner.find(filter[2]).count(),

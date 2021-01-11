@@ -87,12 +87,19 @@ Meteor.methods({
 		let highestSessionTask = LeitnerUtilities.getHighestLeitnerTaskSessionID(cardset_id, user_id);
 		let leitnerTasks = LeitnerTasks.find({user_id: user_id, cardset_id: cardset_id, session: highestSessionTask.session}, {sort: {createdAt: -1}}).fetch();
 		let result = [];
+		let workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id, "leitner.bonus": true});
+		let userCardMedian = 0;
+		if (workload !== undefined && workload.leitner.timelineStats !== undefined) {
+			userCardMedian = workload.leitner.timelineStats.median;
+		}
 		for (let i = 0; i < leitnerTasks.length; i++) {
 			let item = {};
 			let missedLastDeadline;
 			item.cardsetShuffled = cardset.shuffled;
 			item.cardsetTitle = cardset.name;
 			item.date = leitnerTasks[i].createdAt;
+			item.userCardMedian = userCardMedian;
+			item.cardMedian = leitnerTasks[i].timelineStats.median;
 			item.workload = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id}).count();
 			item.known = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id, answer: 0}).count();
 			item.notKnown = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id, answer: 1}).count();

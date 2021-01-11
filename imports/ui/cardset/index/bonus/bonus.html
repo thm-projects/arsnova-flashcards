@@ -55,6 +55,7 @@
                         {{/if}}
                         <th>{{_ "leitnerProgress.dateJoinedBonus"}}</th>
                         <th>{{_ "leitnerProgress.lastActivity"}}</th>
+                        <th>{{_ "leitnerProgress.modal.userHistory.stats.duration.cardMedian"}}</th>
                         <th>{{_ "leitnerProgress.box" number=1}} [{{this.learningInterval.[0]}}]
                         </th>
                         <th>{{_ "leitnerProgress.box" number=2}} [{{this.learningInterval.[1]}}]
@@ -85,6 +86,7 @@
                             {{/if}}
                             <td>{{getMomentsDate this.dateJoinedBonus}}</td>
                             <td>{{getMomentsDate this.lastActivity}}</td>
+                            <td>{{humanizeDuration this.cardMedian}}</td>
                             <td>{{this.box1}}</td>
                             <td>{{this.box2}}</td>
                             <td>{{this.box3}}</td>

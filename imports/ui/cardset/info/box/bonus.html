@@ -20,6 +20,9 @@
 </template>
 
 <template name="bonusInfoBoxContent">
+    <tr>
+        <td colspan="2"><strong>{{_ "set-list.bonusSection.settings"}}:</strong></td>
+    </tr>
     {{> cardsetInfoBoxItemBonusStatus}}
     {{> cardsetInfoBoxItemBonusMaxPoints}}
     {{> cardsetInfoBoxItemBonusMinLearned}}
@@ -32,6 +35,13 @@
     {{> cardsetInfoBoxItemBonusDeadline}}
     {{> cardsetInfoBoxItemBonusStart}}
     {{> cardsetInfoBoxItemBonusEnd}}
-    {{> cardsetInfoBoxItemBonusActiveLearners}}
     {{> cardsetInfoBoxItemBonusRegistrationPeriod}}
+    <tr>
+        <td colspan="2">&nbsp;</td>
+    </tr>
+    <tr>
+        <td colspan="2"><strong>{{_ "set-list.bonusSection.stats"}}:</strong></td>
+    </tr>
+    {{> cardsetInfoBoxItemBonusActiveLearners}}
+    {{> cardsetInfoBoxItemBonusCardMedian}}
 </template>

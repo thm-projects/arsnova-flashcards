@@ -451,6 +451,7 @@ Meteor.methods({
 					'pomodoroTimer.soundConfig': pomodoroTimerSoundConfig,
 					'workload.simulator.errorCount': errorCount,
 					'workload.bonus.minLearned': minLearned,
+					'leitner.timelineStats.median.bonus': 0,
 					dateUpdated: new Date(),
 					lastEditor: Meteor.userId(),
 					strictWorkloadTimer: strictWorkloadTimer,

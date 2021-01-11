@@ -4,9 +4,6 @@ import {Template} from "meteor/templating";
 import "./userHistory.html";
 import {Utilities} from "../../../../../util/utilities";
 import {Route} from "../../../../../util/route";
-import humanizeDuration from "humanize-duration";
-
-let humanizeSettings = {language: 'de', conjunction: ' und ', serialComma: false, round: true};
 
 Session.setDefault('bonusUserHistoryModalActive', false);
 
@@ -107,23 +104,13 @@ Template.bonusUserHistoryModal.helpers({
 	},
 	getTotalDuration: function () {
 		let historyData = Session.get('selectedBonusUserHistoryData');
-		let settings = humanizeSettings;
 		let duration = historyData.map(function (task) {
 			return task.duration;
 		}).reduce((a, b) => a + b, 0);
-		if (duration > 0) {
-			if (duration < 60000) {
-				settings.units = ['s'];
-				return humanizeDuration(duration, settings);
-			} else {
-				settings.units = ['h', 'm'];
-				return humanizeDuration(duration, settings);
-			}
-		}
+		return Utilities.humanizeDuration(duration);
 	},
 	getAverageDuration: function () {
 		let historyData = Session.get('selectedBonusUserHistoryData');
-		let settings = humanizeSettings;
 		let duration = [];
 		historyData.forEach(function (item) {
 			if (item.duration !== 0) {
@@ -131,15 +118,11 @@ Template.bonusUserHistoryModal.helpers({
 			}
 		});
 		let avgDuration = duration.reduce((a,b) => a + b, 0) / duration.length;
-		if (avgDuration > 0) {
-			if (avgDuration < 60000) {
-				settings.units = ['s'];
-				return humanizeDuration(avgDuration, settings);
-			} else {
-				settings.units = ['h', 'm'];
-				return humanizeDuration(avgDuration, settings);
-			}
-		}
+		return Utilities.humanizeDuration(avgDuration);
+	},
+	getUserCardMedian: function () {
+		let historyData = Session.get('selectedBonusUserHistoryData');
+		return Utilities.humanizeDuration(historyData[0].userCardMedian);
 	},
 	getAverageScore: function () {
 		let historyData = Session.get('selectedBonusUserHistoryData');
@@ -192,15 +175,6 @@ Template.bonusUserHistoryModal.helpers({
 		}
 	},
 	getDuration: function (duration = 0) {
-		let settings = humanizeSettings;
-		if (duration > 0) {
-			if (duration < 60000) {
-				settings.units = ['s'];
-				return humanizeDuration(duration, settings);
-			} else {
-				settings.units = ['h', 'm'];
-				return humanizeDuration(duration, settings);
-			}
-		}
+		return Utilities.humanizeDuration(duration);
 	}
 });
