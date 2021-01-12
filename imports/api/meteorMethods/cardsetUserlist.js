@@ -2,6 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Leitner} from "../subscriptions/leitner";
 import {Workload} from "../subscriptions/workload";
 import {Cardsets} from "../subscriptions/cardsets.js";
+import {Cards} from "../subscriptions/cards";
 import {check} from "meteor/check";
 import {Bonus} from "../../util/bonus";
 import {LeitnerHistory} from "../subscriptions/leitnerHistory";
@@ -73,6 +74,48 @@ Meteor.methods({
 			return CardsetUserlist.getLearners(Workload.find({cardset_id: cardset_id, 'leitner.bonus': true}).fetch(), cardset_id);
 		}
 	},
+	getLearningTaskHistoryData: function (user_id, cardset_id, task_id) {
+		check(user_id, String);
+		check(cardset_id, String);
+		check(task_id, String);
+
+		let newUserId;
+		let cardset = Cardsets.findOne({_id: cardset_id});
+		if (UserPermissions.gotBackendAccess() || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
+			newUserId = user_id;
+		} else {
+			newUserId = Meteor.userId();
+		}
+
+		let leitnerHistory = LeitnerHistory.find({task_id: task_id, cardset_id: cardset_id, user_id: newUserId, "timestamps.submission": {$exists: true}},
+			{sort: {"timestamps.submission": 1}}).fetch();
+		let cardIds = leitnerHistory.map(function (history) {
+			return history.card_id;
+		});
+		let cards = Cards.find({_id: {$in: cardIds}},{fields:
+				{
+					_id: 1,
+					subject: 1,
+					cardset_id: 1,
+					front: 1,
+					back: 1,
+					top: 1,
+					bottom: 1,
+					hint: 1,
+					lecture: 1,
+					"answers.question": 1,
+					cardType: 1
+				}}).fetch();
+		for (let i = 0; i < leitnerHistory.length; i++) {
+			for (let c = 0; c < cards.length; c++) {
+				if (leitnerHistory[i].card_id === cards[c]._id) {
+					leitnerHistory[i].cardData = cards[c];
+					break;
+				}
+			}
+		}
+		return leitnerHistory;
+	},
 	getLearningHistoryData: function (user, cardset_id) {
 		check(user, String);
 		check(cardset_id, String);
@@ -104,6 +147,9 @@ Meteor.methods({
 			item.known = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id, answer: 0}).count();
 			item.notKnown = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id, answer: 1}).count();
 			item.missedDeadline = leitnerTasks[i].missedDeadline;
+			item.user_id = user_id;
+			item.cardset_id = cardset_id;
+			item.task_id = leitnerTasks[i]._id;
 			if (i < leitnerTasks.length - 1) {
 				missedLastDeadline = leitnerTasks[i + 1].missedDeadline;
 			} else {

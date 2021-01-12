@@ -1,6 +1,7 @@
 //------------------------ IMPORTS
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
+import "./taskHistory.js";
 import "./userHistory.html";
 import {Utilities} from "../../../../../util/utilities";
 import {Route} from "../../../../../util/route";
@@ -129,7 +130,7 @@ Template.bonusUserHistoryModal.helpers({
 		let score = [];
 		historyData.forEach(function (item) {
 			if (item.known) {
-				let result = item.known / item.workload * 100;
+				let result = (item.known / item.workload) * 100;
 				score.push(result);
 			} else if (item.notKnown) {
 				score.push(0);
@@ -176,5 +177,34 @@ Template.bonusUserHistoryModal.helpers({
 	},
 	getDuration: function (duration = 0) {
 		return Utilities.humanizeDuration(duration);
+	},
+	canDisplayTaskHistory: function () {
+		return this.known > 0 || this.notKown > 0;
+	}
+});
+
+Template.bonusUserHistoryModal.events({
+	"click .showBonusTaskHistory": function (event) {
+		let task = {};
+		let taskStats = {};
+		task.user_id = $(event.target).data('user');
+		task.cardset_id = $(event.target).data('cardset');
+		task.task_id = $(event.target).data('task');
+
+		taskStats.known = $(event.target).data('known');
+		taskStats.notKnown = $(event.target).data('notknown');
+		taskStats.workload = $(event.target).data('workload');
+		taskStats.reason = $(event.target).data('reason');
+		taskStats.duration = $(event.target).data('duration');
+		taskStats.cardMedian = $(event.target).data('cardmedian');
+		Session.set('selectedBonusTaskHistoryStats', taskStats);
+		Meteor.call("getLearningTaskHistoryData", task.user_id, task.cardset_id, task.task_id, function (error, result) {
+			if (error) {
+				throw new Meteor.Error(error.statusCode, 'Error could not receive content for task history');
+			}
+			if (result) {
+				Session.set('selectedBonusTaskHistoryData', result);
+			}
+		});
 	}
 });

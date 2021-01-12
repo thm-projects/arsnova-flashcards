@@ -1,4 +1,5 @@
 <template name="bonusUserHistoryModal">
+    {{> bonusTaskHistoryModal}}
     <div class="modal fade" id="bonusUserHistoryModal" tabindex="-1" role="dialog"
          aria-labelledby="bonusUserHistoryTitle">
         {{#if gotUserData}}
@@ -19,7 +20,7 @@
                                 <h4>{{_ "leitnerProgress.modal.userHistory.stats.tasks.title"}}</h4>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover table-user-history table-user-history-global-stats">
+                                <table class="table table-striped table-hover table-user-history table-history-global-stats">
                                     <tbody>
                                     <tr>
                                         <td>{{_ "leitnerProgress.modal.userHistory.stats.tasks.total"}}:</td>
@@ -38,7 +39,7 @@
                                 <h4>{{_ "leitnerProgress.modal.userHistory.stats.workload.title"}}</h4>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover table-user-history table-user-history-global-stats">
+                                <table class="table table-striped table-hover table-user-history table-history-global-stats">
                                     <tbody>
                                     <tr>
                                         <td>{{_ "leitnerProgress.modal.userHistory.stats.workload.total"}}:</td>
@@ -59,7 +60,7 @@
                                 <h4>{{_ "leitnerProgress.modal.userHistory.stats.duration.title"}}</h4>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover table-user-history table-user-history-global-stats">
+                                <table class="table table-striped table-hover table-user-history table-history-global-stats">
                                     <tbody>
                                     <tr>
                                         <td>{{_ "leitnerProgress.modal.userHistory.stats.duration.total"}}:</td>
@@ -90,6 +91,7 @@
                                                 "leitnerProgress.modal.userHistory.table.status.title"}}</th>
                                         <th class="visible-lg">{{_ "leitnerProgress.modal.userHistory.table.duration"}}</th>
                                         <th class="visible-lg">{{_ "leitnerProgress.modal.userHistory.stats.duration.cardMedian"}}</th>
+                                        <th>{{_ "leitnerProgress.taskHistory"}}</th>
                                     </tr>
                                     {{#each getWorkloadHistory}}
                                         <tr>
@@ -101,6 +103,31 @@
                                             <td class="visible-md visible-lg">{{getStatus}}</td>
                                             <td class="visible-lg">{{getDuration this.duration}}</td>
                                             <td class="visible-lg">{{humanizeDuration this.cardMedian}}</td>
+                                            <td>
+                                                {{#if canDisplayTaskHistory}}
+                                                <a class="showBonusTaskHistory" data-toggle="modal" href="#bonusTaskHistoryModal"
+                                                   data-user="{{this.user_id}}"
+                                                   data-cardset="{{this.cardset_id}}"
+                                                   data-task="{{this.task_id}}"
+                                                   data-known="{{this.known}}"
+                                                   data-notknown="{{this.notKnown}}"
+                                                   data-workload="{{this.workload}}"
+                                                   data-reason="{{getReason}}"
+                                                   data-duration="{{this.duration}}"
+                                                   data-cardmedian="{{this.cardMedian}}">
+                                                <i class="far fa-clock" title="{{_ "leitnerProgress.tooltip.taskHistory"}}"
+                                                   data-user="{{this.user_id}}"
+                                                   data-cardset="{{this.cardset_id}}"
+                                                   data-task="{{this.task_id}}"
+                                                   data-known="{{this.known}}"
+                                                   data-notknown="{{this.notKnown}}"
+                                                   data-workload="{{this.workload}}"
+                                                   data-reason="{{getReason}}"
+                                                   data-duration="{{this.duration}}"
+                                                   data-cardmedian="{{this.cardMedian}}"
+                                                ></i></a>
+                                                {{/if}}
+                                            </td>
                                         </tr>
                                     {{/each}}
                                     </tbody>

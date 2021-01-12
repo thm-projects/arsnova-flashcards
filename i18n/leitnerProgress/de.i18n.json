@@ -17,6 +17,7 @@
     "dateJoinedBonus": "Lernbeginn",
     "lastActivity": "Letzte Aktivität",
     "userHistory": "Verlauf",
+    "taskHistory": "Verlauf",
     "notification": {
       "mail": "E-Mail",
       "push": "Push"
@@ -82,18 +83,36 @@
             "completed": "Bearbeitet am __lastAnswerDate__"
           },
           "reason": {
-            "title": "Grund für Freischaltung",
+            "title": "Ereignis",
             "leitner": "Leitner-Plan",
-            "deadline": "Überschreitungsfrist"
+            "deadline": "Überschreitung"
           },
           "duration": "Bearbeitungszeit"
+        }
+      },
+      "taskHistory": {
+        "title": "Freischaltungstag __date__ für »__cardset__« von __firstName__, __lastName__" ,
+        "titleHiddenUser": "Freischaltungstag __date__ für »__cardset__« von __hiddenUser__",
+        "stats": {
+          "title": "Termin"
+        },
+        "table": {
+          "title": "Verlauf",
+          "card": "Karte",
+          "content": "Inhalt",
+          "answer": "Antwort",
+          "timeSpent": "Antwortzeit",
+          "known": "Gewusst",
+          "notKnown": "Nicht gewusst",
+          "submission": "Abgabe"
         }
       }
     },
     "tooltip": {
       "removeUser": "User aus der Bonusphase entfernen",
       "graph": "Statistik anzeigen",
-      "userHistory": "Lernprotokoll"
+      "userHistory": "Lernprotokoll",
+      "taskHistory": "Lernprotokoll"
     },
     "bertAlert": {
       "userRemoved": "User wurde aus der Bonusphase entfernt"
