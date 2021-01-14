@@ -82,15 +82,14 @@
                                 <table class="table table-striped table-hover">
                                     <tbody>
                                     <tr>
-                                        <th>{{_ "leitnerProgress.modal.userHistory.table.date"}}</th>
-                                        <th>{{_ "leitnerProgress.modal.userHistory.table.reason.title"}}</th>
-                                        <th>{{_ "leitnerProgress.modal.userHistory.table.workload.title"}}</th>
-                                        <th>{{_ "leitnerProgress.modal.userHistory.table.known"}}</th>
-                                        <th>{{_ "leitnerProgress.modal.userHistory.table.notKnown"}}</th>
-                                        <th class="visible-md visible-lg">{{_
-                                                "leitnerProgress.modal.userHistory.table.status.title"}}</th>
-                                        <th class="visible-lg">{{_ "leitnerProgress.modal.userHistory.table.duration"}}</th>
-                                        <th class="visible-lg">{{_ "leitnerProgress.modal.userHistory.stats.duration.cardMedian"}}</th>
+                                        <th><a class="sort-bonus-content sort-bonus-user-history" data-content="date">{{_ "leitnerProgress.modal.userHistory.table.date"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "date")}}</th>
+                                        <th><a class="sort-bonus-content sort-bonus-user-history" data-content="reason">{{_ "leitnerProgress.modal.userHistory.table.reason.title"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "reason")}}</th>
+                                        <th><a class="sort-bonus-content sort-bonus-user-history" data-content="workload">{{_ "leitnerProgress.modal.userHistory.table.workload.title"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "workload")}}</th>
+                                        <th><a class="sort-bonus-content sort-bonus-user-history" data-content="known">{{_ "leitnerProgress.modal.userHistory.table.known"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "known")}}</th>
+                                        <th><a class="sort-bonus-content sort-bonus-user-history" data-content="notKnown">{{_ "leitnerProgress.modal.userHistory.table.notKnown"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "notKnown")}}</th>
+                                        <th class="visible-md visible-lg"><a class="sort-bonus-content sort-bonus-user-history" data-content="statusCode">{{_ "leitnerProgress.modal.userHistory.table.status.title"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "statusCode")}}</th>
+                                        <th class="visible-lg"><a class="sort-bonus-content sort-bonus-user-history" data-content="duration">{{_ "leitnerProgress.modal.userHistory.table.duration"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "duration")}}</th>
+                                        <th class="visible-lg"><a class="sort-bonus-content sort-bonus-user-history" data-content="cardMedian">{{_ "leitnerProgress.modal.userHistory.stats.duration.cardMedian"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "cardMedian")}}</th>
                                         <th>{{_ "leitnerProgress.taskHistory"}}</th>
                                     </tr>
                                     {{#each getWorkloadHistory}}
@@ -100,7 +99,7 @@
                                             <td>{{getWorkload}}</td>
                                             <td>{{this.known}}</td>
                                             <td>{{this.notKnown}}</td>
-                                            <td class="visible-md visible-lg">{{getStatus}}</td>
+                                            <td class="visible-md visible-lg">{{this.statusText}}</td>
                                             <td class="visible-lg">{{getDuration this.duration}}</td>
                                             <td class="visible-lg">{{humanizeDuration this.cardMedian}}</td>
                                             <td>

@@ -2,9 +2,12 @@
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import "./taskHistory.js";
+import "../item/sort.js";
 import "./userHistory.html";
+import * as config from "../../../../../config/leitnerHistory.js";
 import {Utilities} from "../../../../../util/utilities";
 import {Route} from "../../../../../util/route";
+import {LeitnerHistoryUtilities} from "../../../../../util/leitnerHistory";
 
 Session.setDefault('bonusUserHistoryModalActive', false);
 
@@ -15,6 +18,9 @@ Session.setDefault('bonusUserHistoryModalActive', false);
 */
 
 Template.bonusUserHistoryModal.onRendered(function () {
+	$('#bonusUserHistoryModal').on('show.bs.modal', function () {
+		Session.set('sortBonusUserHistory', config.defaultUserHistorySortSettings);
+	});
 	$('#bonusUserHistoryModal').on('shown.bs.modal', function () {
 		Session.set('bonusUserHistoryModalActive', true);
 	});
@@ -156,30 +162,17 @@ Template.bonusUserHistoryModal.helpers({
 			return TAPi18n.__('leitnerProgress.modal.userHistory.table.workload.plural', {cards: this.workload});
 		}
 	},
-	getStatus: function () {
-		let completedWorkload = this.known + this.notKnown;
-		if (completedWorkload === this.workload) {
-			return TAPi18n.__('leitnerProgress.modal.userHistory.table.status.completed', {lastAnswerDate: Utilities.getMomentsDate(this.lastAnswerDate, 0, false, false)});
-		} else if (!this.missedDeadline) {
-			return TAPi18n.__('leitnerProgress.modal.userHistory.table.status.inProgress');
-		} else {
-			if (completedWorkload > 0) {
-				let unfinishedWorkload = this.workload - completedWorkload;
-				if (unfinishedWorkload === 1) {
-					return TAPi18n.__('leitnerProgress.modal.userHistory.table.status.notFullyCompletedSingular', {cards: unfinishedWorkload});
-				} else {
-					return TAPi18n.__('leitnerProgress.modal.userHistory.table.status.notFullyCompletedPlural', {cards: unfinishedWorkload});
-				}
-			} else {
-				return TAPi18n.__('leitnerProgress.modal.userHistory.table.status.notCompleted');
-			}
-		}
-	},
 	getDuration: function (duration = 0) {
 		return Utilities.humanizeDuration(duration);
 	},
 	canDisplayTaskHistory: function () {
 		return this.known > 0 || this.notKown > 0;
+	},
+	setSortObject: function (content) {
+		return {
+			type: 1,
+			content: content
+		};
 	}
 });
 
@@ -203,8 +196,19 @@ Template.bonusUserHistoryModal.events({
 				throw new Meteor.Error(error.statusCode, 'Error could not receive content for task history');
 			}
 			if (result) {
-				Session.set('selectedBonusTaskHistoryData', result);
+				Session.set('selectedBonusTaskHistoryData', LeitnerHistoryUtilities.prepareTaskHistoryData(result));
 			}
 		});
+	},
+	"click .sort-bonus-user-history": function (event) {
+		let sortSettings = Session.get('sortBonusUserHistory');
+		if (sortSettings.content !== $(event.target).data('content')) {
+			sortSettings.content = $(event.target).data('content');
+			sortSettings.desc = false;
+		} else {
+			sortSettings.desc = !sortSettings.desc;
+		}
+		Session.set('selectedBonusUserHistoryData', Utilities.sortArray(Session.get('selectedBonusUserHistoryData'), sortSettings.content, sortSettings.desc));
+		Session.set('sortBonusUserHistory', sortSettings);
 	}
 });

@@ -43,31 +43,31 @@
                     <tbody>
                     <tr class="active">
                         {{#if gotHiddenUserNames}}
-                            <th>{{_ "leitnerProgress.hiddenUser"}}</th>
+                            <th><a class="sort-bonus-content sort-bonus-user" data-content="placeholderID">{{_ "leitnerProgress.hiddenUser"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "placeholderID")}}</th>
                         {{else}}
-                            <th>{{_ "panel-body.birthname"}}</th>
-                            <th>{{_ "panel-body.givenname"}}</th>
-                            <th>{{_ "panel-body.email"}}</th>
+                            <th><a class="sort-bonus-content sort-bonus-user" data-content="birthname">{{_ "panel-body.birthname"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "birthname")}}</th>
+                            <th><a class="sort-bonus-content sort-bonus-user" data-content="givenname">{{_ "panel-body.givenname"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "givenname")}}</th>
+                            <th><a class="sort-bonus-content sort-bonus-user" data-content="email">{{_ "panel-body.email"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "email")}}</th>
                         {{/if}}
                         {{#if isNotificationEnabled}}
                             <th>{{_ "confirmLearn-form.notification"}}
                             </th>
                         {{/if}}
-                        <th>{{_ "leitnerProgress.dateJoinedBonus"}}</th>
-                        <th>{{_ "leitnerProgress.lastActivity"}}</th>
-                        <th>{{_ "leitnerProgress.modal.userHistory.stats.duration.cardMedian"}}</th>
-                        <th>{{_ "leitnerProgress.box" number=1}} [{{this.learningInterval.[0]}}]
+                        <th><a class="sort-bonus-content sort-bonus-user" data-content="dateJoinedBonus">{{_ "leitnerProgress.dateJoinedBonus"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "dateJoinedBonus")}}</th>
+                        <th><a class="sort-bonus-content sort-bonus-user" data-content="lastActivity">{{_ "leitnerProgress.lastActivity"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "lastActivity")}}</th>
+                        <th><a class="sort-bonus-content sort-bonus-user" data-content="cardMedian">{{_ "leitnerProgress.modal.userHistory.stats.duration.cardMedian"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "cardMedian")}}</th>
+                        <th><a class="sort-bonus-content sort-bonus-user" data-content="box1">{{_ "leitnerProgress.box" number=1}} [{{this.learningInterval.[0]}}]</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "box1")}}
                         </th>
-                        <th>{{_ "leitnerProgress.box" number=2}} [{{this.learningInterval.[1]}}]
+                        <th><a class="sort-bonus-content sort-bonus-user" data-content="box2">{{_ "leitnerProgress.box" number=2}} [{{this.learningInterval.[1]}}]</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "box2")}}
                         </th>
-                        <th>{{_ "leitnerProgress.box" number=3}} [{{this.learningInterval.[2]}}]
+                        <th><a class="sort-bonus-content sort-bonus-user" data-content="box3">{{_ "leitnerProgress.box" number=3}} [{{this.learningInterval.[2]}}]</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "box3")}}
                         </th>
-                        <th>{{_ "leitnerProgress.box" number=4}} [{{this.learningInterval.[3]}}]
+                        <th><a class="sort-bonus-content sort-bonus-user" data-content="box4">{{_ "leitnerProgress.box" number=4}} [{{this.learningInterval.[3]}}]</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "box4")}}
                         </th>
-                        <th>{{_ "leitnerProgress.box" number=5}} [{{this.learningInterval.[4]}}]
+                        <th><a class="sort-bonus-content sort-bonus-user" data-content="box5">{{_ "leitnerProgress.box" number=5}} [{{this.learningInterval.[4]}}]</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "box5")}}
                         </th>
-                        <th>{{_ "leitnerProgress.learned"}}</th>
-                        <th>{{_ "leitnerProgress.bonus"}}</th>
+                        <th><a class="sort-bonus-content sort-bonus-user" data-content="box6">{{_ "leitnerProgress.learned"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "box6")}}</th>
+                        <th><a class="sort-bonus-content sort-bonus-user" data-content="achievedBonus">{{_ "leitnerProgress.bonus"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "achievedBonus")}}</th>
                         <th>{{_ "leitnerProgress.userHistory"}}</th>
                         <th>{{_ "details"}}</th>
                         <th>{{_ "leitnerProgress.manage"}}</th>
@@ -75,7 +75,7 @@
                     {{#each getCardsetStats}}
                         <tr>
                             {{#if gotHiddenUserNames}}
-                                <td>{{_ "leitnerProgress.hiddenUserPlaceholder" index=(adjustIndex @index)}}</td>
+                                <td>{{this.placeholderName}}</td>
                             {{else}}
                                 <td>{{this.birthname}}</td>
                                 <td>{{this.givenname}}</td>
@@ -95,16 +95,16 @@
                             <td>
                                 {{#if earnedTrophy}}
                                     <span class="green-learning-text">
-                                        {{this.box6}}{{{getPercentage this.box6}}}
+                                        {{this.box6}}{{{getPercentage}}}
                                     </span>
                                 {{else}}
                                     <span class="red-learning-text">
-                                        {{this.box6}}{{{getPercentage this.box6}}}
+                                        {{this.box6}}{{{getPercentage}}}
                                     </span>
                                 {{/if}}
                             </td>
                             <td>
-                                {{getAchievedBonus}}&nbsp;%{{#if earnedTrophy}}&nbsp;<i class="fas fa-trophy bonusTrophy"></i>{{/if}}
+                                {{this.achievedBonus}}&nbsp;%{{#if earnedTrophy}}&nbsp;<i class="fas fa-trophy bonusTrophy"></i>{{/if}}
                             </td>
                             <td>
                                 <a data-id="{{this.user_id}}"

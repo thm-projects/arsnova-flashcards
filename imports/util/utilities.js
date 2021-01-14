@@ -2,6 +2,7 @@ import {Session} from "meteor/session";
 import {Cardsets} from "../api/subscriptions/cardsets";
 import {CardType} from "./cardTypes";
 import {ServerStyle} from "./styles";
+
 import {
 	END_RECORDING,
 	END_GROUP,
@@ -241,6 +242,14 @@ export let Utilities = class Utilities {
 		} else {
 			settings.units = ['h', 'm'];
 			return humanizeDuration(duration, settings);
+		}
+	}
+
+	static sortArray (array, content, desc = false) {
+		if (desc) {
+			return _.sortBy(array, content);
+		} else {
+			return _.sortBy(array, content).reverse();
 		}
 	}
 };

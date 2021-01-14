@@ -1,12 +1,14 @@
 import "./taskHistory.html";
+import "../item/sort.js";
 import {Session} from "meteor/session";
 import {Route} from "../../../../../util/route";
 import {Utilities} from "../../../../../util/utilities";
-import {CardType} from "../../../../../util/cardTypes";
-import {CardVisuals} from "../../../../../util/cardVisuals";
-import * as config from "../../../../../config/leitnerStatistics";
+import * as config from "../../../../../config/leitnerHistory";
 
 Template.bonusTaskHistoryModal.onRendered(function () {
+	$('#bonusTaskHistoryModal').on('show.bs.modal', function () {
+		Session.set('sortBonusUserTaskHistory', config.defaultTaskHistorySortSettings);
+	});
 	$('#bonusTaskHistoryModal').on('shown.bs.modal', function () {
 		Session.set('bonusTaskHistoryModalActive', true);
 	});
@@ -47,46 +49,11 @@ Template.bonusTaskHistoryModal.helpers({
 	getTaskHistoryStats: function () {
 		return Session.get('selectedBonusTaskHistoryStats');
 	},
-	getTime: function () {
-		return this.timestamps.submission - this.timestamps.question;
-	},
 	getAnswer: function () {
 		if (this.answer) {
 			return TAPi18n.__('leitnerProgress.modal.taskHistory.table.notKnown');
 		} else {
 			return TAPi18n.__('leitnerProgress.modal.taskHistory.table.known');
-		}
-	},
-	getQuestion: function () {
-		if (this.cardData.answers !== undefined && this.cardData.answers.question !== undefined) {
-			return this.cardData.answers.question;
-		} else {
-			return "";
-		}
-	},
-	getText: function () {
-		let cubeSides = CardType.getCardTypeCubeSides(this.cardData.cardType);
-		switch (cubeSides[0].contentId) {
-			case 1:
-				return this.cardData.front;
-			case 2:
-				return this.cardData.back;
-			case 3:
-				return this.cardData.hint;
-			case 4:
-				return this.cardData.lecture;
-			case 5:
-				return this.cardData.top;
-			case 6:
-				return this.cardData.bottom;
-		}
-	},
-	cleanContent: function (text) {
-		text = CardVisuals.removeMarkdeepTags(text);
-		if (text.length > config.maxTaskHistoryContentLength) {
-			return text.substr(0, config.maxTaskHistoryContentLength) +  '...';
-		} else {
-			return text;
 		}
 	},
 	getWorkloadCount: function (cards = 0) {
@@ -98,5 +65,25 @@ Template.bonusTaskHistoryModal.helpers({
 	},
 	getScore: function () {
 		return Math.trunc((this.known / this.workload) * 100) + "%";
+	},
+	setSortObject: function (content) {
+		return {
+			type: 2,
+			content: content
+		};
+	}
+});
+
+Template.bonusTaskHistoryModal.events({
+	"click .sort-bonus-user-task-history": function (event) {
+		let sortSettings = Session.get('sortBonusUserTaskHistory');
+		if (sortSettings.content !== $(event.target).data('content')) {
+			sortSettings.content = $(event.target).data('content');
+			sortSettings.desc = false;
+		} else {
+			sortSettings.desc = !sortSettings.desc;
+		}
+		Session.set('selectedBonusTaskHistoryData', Utilities.sortArray(Session.get('selectedBonusTaskHistoryData'), sortSettings.content, sortSettings.desc));
+		Session.set('sortBonusUserTaskHistory', sortSettings);
 	}
 });
