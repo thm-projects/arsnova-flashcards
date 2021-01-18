@@ -47,7 +47,7 @@ Meteor.methods({
 			}, {$set: {
 					timestamps: timestamps
 				}});
-			LeitnerUtilities.setCardTimeMedian(task);
+			LeitnerUtilities.setCardTimelineStats(task);
 		}
 	},
 	setMCAnswers: function (cardIds, activeCardId, cardsetId, userAnswers, timestamps) {
@@ -163,7 +163,7 @@ Meteor.methods({
 							timestamps: timestamps
 						}
 					});
-					LeitnerUtilities.setCardTimeMedian(leitnerTask);
+					LeitnerUtilities.setCardTimelineStats(leitnerTask);
 				}
 
 				Workload.update({cardset_id: activeLeitner.cardset_id, user_id: activeLeitner.user_id}, {

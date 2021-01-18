@@ -85,6 +85,9 @@ Template.cardsetLearnActivityStatistic.events({
 		header[10] = TAPi18n.__('confirmLearn-form.notification');
 		header[11] = TAPi18n.__('leitnerProgress.dateJoinedBonus');
 		header[12] = TAPi18n.__('leitnerProgress.lastActivity');
+		header[13] = TAPi18n.__('leitnerProgress.modal.userHistory.stats.duration.cardArithmeticMean.stats');
+		header[14] = TAPi18n.__('leitnerProgress.modal.userHistory.stats.duration.cardMedian');
+		header[15] = TAPi18n.__('leitnerProgress.modal.userHistory.stats.duration.cardStandardDeviation');
 		Meteor.call("getCSVExport", cardset._id, header, function (error, result) {
 			if (error) {
 				throw new Meteor.Error(error.statusCode, 'Error could not receive content for .csv');

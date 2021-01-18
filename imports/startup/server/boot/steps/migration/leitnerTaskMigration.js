@@ -52,12 +52,12 @@ function leitnerTaskMigrationStep() {
 		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
 	}
 
-	itemName = "LeitnerTasks timelineStats median field";
+	itemName = "LeitnerTasks timelineStats median, arithmeticMean and standardDeviation fields";
 	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
 	leitnerTasks = LeitnerTasks.find({"timelineStats.median": {$exists: false}}).fetch();
 	if (leitnerTasks.length) {
 		for (let i = 0; i < leitnerTasks.length; i++) {
-			LeitnerUtilities.setCardTimeMedian(leitnerTasks[i]);
+			LeitnerUtilities.setCardTimelineStats(leitnerTasks[i]);
 		}
 		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
 	} else {

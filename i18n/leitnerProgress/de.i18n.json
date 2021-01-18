@@ -58,7 +58,12 @@
           "duration": {
             "title": "Bearbeitungszeit",
             "average": "Ø Bearbeitungszeit pro Termin",
-            "cardMedian": "Ø Antworzeit",
+            "cardMedian": "md Antworzeit pro Karte",
+            "cardArithmeticMean": {
+              "stats": "Ø Antworzeit pro Karte",
+              "filter": "Ø Antworzeit"
+            },
+            "cardStandardDeviation": "s Antworzeit pro Karte",
             "total": "Gesamte Bearbeitungszeit"
           },
           "averageKnown": "Ø Gewusst"

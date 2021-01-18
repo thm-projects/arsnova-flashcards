@@ -2,6 +2,7 @@ import {Session} from "meteor/session";
 import {Cardsets} from "../api/subscriptions/cardsets";
 import {CardType} from "./cardTypes";
 import {ServerStyle} from "./styles";
+import {median, mean, std} from "mathjs";
 
 import {
 	END_RECORDING,
@@ -228,10 +229,28 @@ export let Utilities = class Utilities {
 		}
 	}
 
-	//Code from www.w3resource.com
 	static getMedian (array) {
-		const mid = Math.floor(array.length / 2), numbers = [...array].sort((a, b) => a - b);
-		return array.length % 2 !== 0 ? numbers[mid] : (numbers[mid - 1] + numbers[mid]) / 2;
+		if (array.length) {
+			return median(array);
+		} else {
+			return 0;
+		}
+	}
+
+	static getArithmeticMean (array) {
+		if (array.length) {
+			return mean(array);
+		} else {
+			return 0;
+		}
+	}
+
+	static getStandardDeviation (array) {
+		if (array.length) {
+			return std(array);
+		} else {
+			return 0;
+		}
 	}
 
 	static humanizeDuration (duration) {

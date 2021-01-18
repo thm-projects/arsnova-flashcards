@@ -429,6 +429,30 @@ const CardsetsSchema = new SimpleSchema({
 	'leitner.timelineStats.median.normal': {
 		type: Number,
 		optional: true
+	},
+	'leitner.timelineStats.arithmeticMean': {
+		type: Object,
+		optional: true
+	},
+	'leitner.timelineStats.arithmeticMean.bonus': {
+		type: Number,
+		optional: true
+	},
+	'leitner.timelineStats.arithmeticMean.normal': {
+		type: Number,
+		optional: true
+	},
+	'leitner.timelineStats.standardDeviation': {
+		type: Object,
+		optional: true
+	},
+	'leitner.timelineStats.standardDeviation.bonus': {
+		type: Number,
+		optional: true
+	},
+	'leitner.timelineStats.standardDeviation.normal': {
+		type: Number,
+		optional: true
 	}
 });
 

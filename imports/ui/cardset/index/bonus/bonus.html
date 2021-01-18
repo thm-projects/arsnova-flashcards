@@ -55,7 +55,7 @@
                         {{/if}}
                         <th><a class="sort-bonus-content sort-bonus-user" data-content="dateJoinedBonus">{{_ "leitnerProgress.dateJoinedBonus"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "dateJoinedBonus")}}</th>
                         <th><a class="sort-bonus-content sort-bonus-user" data-content="lastActivity">{{_ "leitnerProgress.lastActivity"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "lastActivity")}}</th>
-                        <th><a class="sort-bonus-content sort-bonus-user" data-content="cardMedian">{{_ "leitnerProgress.modal.userHistory.stats.duration.cardMedian"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "cardMedian")}}</th>
+                        <th><a class="sort-bonus-content sort-bonus-user" data-content="cardArithmeticMean">{{_ "leitnerProgress.modal.userHistory.stats.duration.cardArithmeticMean.filter"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "cardArithmeticMean")}}</th>
                         <th><a class="sort-bonus-content sort-bonus-user" data-content="box1">{{_ "leitnerProgress.box" number=1}} [{{this.learningInterval.[0]}}]</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "box1")}}
                         </th>
                         <th><a class="sort-bonus-content sort-bonus-user" data-content="box2">{{_ "leitnerProgress.box" number=2}} [{{this.learningInterval.[1]}}]</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "box2")}}
@@ -86,7 +86,7 @@
                             {{/if}}
                             <td>{{getMomentsDate this.dateJoinedBonus}}</td>
                             <td>{{getMomentsDate this.lastActivity}}</td>
-                            <td>{{humanizeDuration this.cardMedian}}</td>
+                            <td>{{humanizeDuration this.cardArithmeticMean}}</td>
                             <td>{{this.box1}}</td>
                             <td>{{this.box2}}</td>
                             <td>{{this.box3}}</td>

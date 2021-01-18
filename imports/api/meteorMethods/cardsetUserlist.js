@@ -23,13 +23,13 @@ Meteor.methods({
 		if (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
 			let content;
 			let colSep = ";"; // Separates columns
-			let infoCol = ";;;;;;;;;;;;;;"; // Separates columns
+			let infoCol = ";;;;;;;;;;;;;;;;;"; // Separates columns
 			let newLine = "\r\n"; //Adds a new line
 			let infoCardsetCounter = 0;
 			let infoCardsetLength = 6;
 			let infoLearningPhaseCounter = 0;
-			let infoLearningPhaseLength = 10;
-			content = header[6] + colSep + header[7] + colSep + header[8] + colSep + header[10] + colSep + header[11] + colSep + header[12] + colSep;
+			let infoLearningPhaseLength = 15;
+			content = header[6] + colSep + header[7] + colSep + header[8] + colSep + header[10] + colSep + header[11] + colSep + header[12] + colSep + header[13] + colSep + header[14] + colSep + header[15] + colSep;
 			for (let i = 0; i <= 4; i++) {
 				content += header[i] + " [" + cardset.learningInterval[i] + "]" + colSep;
 			}
@@ -50,6 +50,7 @@ Meteor.methods({
 				}
 				content += learners[k].birthname + colSep + learners[k].givenname + colSep + learners[k].email + colSep + Bonus.getNotificationStatus(learners[k], true) + colSep;
 				content += Utilities.getMomentsDate(learners[k].dateJoinedBonus, false, 0, false) + colSep + Utilities.getMomentsDate(learners[k].lastActivity, false, 0, false) + colSep;
+				content += Utilities.humanizeDuration(learners[k].cardArithmeticMean) + colSep + Utilities.humanizeDuration(learners[k].cardMedian) + colSep + Utilities.humanizeDuration(learners[k].cardStandardDeviation) + colSep;
 				content += learners[k].box1 + colSep + learners[k].box2 + colSep + learners[k].box3 + colSep + learners[k].box4 + colSep + learners[k].box5 + colSep + box6 +  colSep + achievedBonus +  colSep;
 				if (infoCardsetCounter <= infoCardsetLength) {
 					content += colSep + cardsetInfo[infoCardsetCounter][0] + colSep + cardsetInfo[infoCardsetCounter++][1];
@@ -137,8 +138,12 @@ Meteor.methods({
 		let result = [];
 		let workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id, "leitner.bonus": true});
 		let userCardMedian = 0;
+		let userCardArithmeticMean = 0;
+		let userCardStandardDeviation = 0;
 		if (workload !== undefined && workload.leitner.timelineStats !== undefined) {
 			userCardMedian = workload.leitner.timelineStats.median;
+			userCardArithmeticMean = workload.leitner.timelineStats.arithmeticMean;
+			userCardStandardDeviation = workload.leitner.timelineStats.standardDeviation;
 		}
 		for (let i = 0; i < leitnerTasks.length; i++) {
 			let item = {};
@@ -147,10 +152,16 @@ Meteor.methods({
 			item.cardsetTitle = cardset.name;
 			item.date = leitnerTasks[i].createdAt;
 			item.userCardMedian = userCardMedian;
+			item.userCardArithmeticMean = userCardArithmeticMean;
+			item.userCardStandardDeviation = userCardStandardDeviation;
 			if (leitnerTasks[i].timelineStats !== undefined) {
 				item.cardMedian = leitnerTasks[i].timelineStats.median;
+				item.cardArithmeticMean = leitnerTasks[i].timelineStats.arithmeticMean;
+				item.cardStandardDeviation = leitnerTasks[i].timelineStats.standardDeviation;
 			} else {
 				item.cardMedian = 0;
+				item.cardArithmeticMean = 0;
+				item.cardStandardDeviation = 0;
 			}
 			item.workload = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id}).count();
 			item.known = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id, answer: 0}).count();

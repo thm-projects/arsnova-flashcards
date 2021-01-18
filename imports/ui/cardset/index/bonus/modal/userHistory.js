@@ -127,6 +127,14 @@ Template.bonusUserHistoryModal.helpers({
 		let avgDuration = duration.reduce((a,b) => a + b, 0) / duration.length;
 		return Utilities.humanizeDuration(avgDuration);
 	},
+	getUserCardsArithmeticMean: function () {
+		let historyData = Session.get('selectedBonusUserHistoryData');
+		return Utilities.humanizeDuration(historyData[0].userCardArithmeticMean);
+	},
+	getUserCardsStandardDeviation: function () {
+		let historyData = Session.get('selectedBonusUserHistoryData');
+		return Utilities.humanizeDuration(historyData[0].userCardStandardDeviation);
+	},
 	getUserCardMedian: function () {
 		let historyData = Session.get('selectedBonusUserHistoryData');
 		return Utilities.humanizeDuration(historyData[0].userCardMedian);
@@ -189,7 +197,9 @@ Template.bonusUserHistoryModal.events({
 		taskStats.workload = $(event.target).data('workload');
 		taskStats.reason = $(event.target).data('reason');
 		taskStats.duration = $(event.target).data('duration');
+		taskStats.cardArithmeticMean = $(event.target).data('cardarithmeticmean');
 		taskStats.cardMedian = $(event.target).data('cardmedian');
+		taskStats.cardStandardDeviation = $(event.target).data('cardstandarddeviation');
 		Session.set('selectedBonusTaskHistoryStats', taskStats);
 		Meteor.call("getLearningTaskHistoryData", task.user_id, task.cardset_id, task.task_id, function (error, result) {
 			if (error) {

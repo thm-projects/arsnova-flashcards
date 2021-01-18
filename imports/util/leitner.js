@@ -751,7 +751,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		}
 	}
 
-	static setCardTimeMedian (task) {
+	static setCardTimelineStats (task) {
 		if (Meteor.isServer && task !== undefined) {
 			let query = {
 				task_id: task._id,
@@ -768,6 +768,8 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			let taskHistory = LeitnerHistory.find(query).fetch();
 			let milliseconds = [];
 			let median = 0;
+			let arithmeticMean = 0;
+			let standardDeviation = 0;
 
 			for (let i = 0; i < taskHistory.length; i++) {
 				milliseconds.push(Math.round((taskHistory[i].timestamps.submission - taskHistory[i].timestamps.question)));
@@ -775,10 +777,14 @@ export let LeitnerUtilities = class LeitnerUtilities {
 
 			if (milliseconds.length) {
 				median = Math.round(Utilities.getMedian(milliseconds));
+				arithmeticMean = Math.round(Utilities.getArithmeticMean(milliseconds));
+				standardDeviation = Math.round(Utilities.getStandardDeviation(milliseconds));
 			}
 
 			let timelineStats = {
-				median: median
+				median: median,
+				arithmeticMean: arithmeticMean,
+				standardDeviation: standardDeviation
 			};
 
 			LeitnerTasks.update({
@@ -797,17 +803,39 @@ export let LeitnerUtilities = class LeitnerUtilities {
 
 				if (task.session === highestSession) {
 					let tasks = LeitnerTasks.find({user_id: task.user_id, cardset_id: task.cardset_id, session: highestSession,  "timelineStats.median": {$exists: true}}).fetch();
-					let tasksMedianMilliseconds = [];
+					let tasksCardsMedianMilliseconds = [];
+					let tasksCardsArithmeticMeanMilliseconds = [];
+					let tasksCardsStandardDeviationMilliseconds = [];
 					for (let i = 0; i < tasks.length; i++) {
 						if (tasks[i].timelineStats.median > 0) {
-							tasksMedianMilliseconds.push(tasks[i].timelineStats.median);
+							tasksCardsMedianMilliseconds.push(tasks[i].timelineStats.median);
+						}
+						if (tasks[i].timelineStats.arithmeticMean > 0) {
+							tasksCardsArithmeticMeanMilliseconds.push(tasks[i].timelineStats.arithmeticMean);
+						}
+						if (tasks[i].timelineStats.standardDeviation > 0) {
+							tasksCardsStandardDeviationMilliseconds.push(tasks[i].timelineStats.standardDeviation);
 						}
 					}
 					timelineStats = {
-						median: 0
+						median: 0,
+						arithmeticMean: 0,
+						standardDeviation: 0
 					};
-					if (tasksMedianMilliseconds.length) {
-						timelineStats.median = Math.round(Utilities.getMedian(tasksMedianMilliseconds));
+					if (tasksCardsMedianMilliseconds.length === 1) {
+						timelineStats.median = tasksCardsMedianMilliseconds[0];
+					} else {
+						timelineStats.median = Math.round(Utilities.getMedian(tasksCardsMedianMilliseconds));
+					}
+					if (tasksCardsArithmeticMeanMilliseconds.length === 1) {
+						timelineStats.arithmeticMean = tasksCardsArithmeticMeanMilliseconds[0];
+					} else {
+						timelineStats.arithmeticMean = Math.round(Utilities.getMedian(tasksCardsArithmeticMeanMilliseconds));
+					}
+					if (tasksCardsStandardDeviationMilliseconds.length === 1) {
+						timelineStats.standardDeviation = tasksCardsStandardDeviationMilliseconds[0];
+					} else {
+						timelineStats.standardDeviation = Math.round(Utilities.getMedian(tasksCardsStandardDeviationMilliseconds));
 					}
 
 					Workload.update({
@@ -826,6 +854,8 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					}, {fields: {"leitner.bonus": 1}});
 
 					let cardsetMedian = 0;
+					let cardsetArithmeticMean = 0;
+					let cardsetStandardDeviation = 0;
 					query = {
 						cardset_id: task.cardset_id,
 						"leitner.timelineStats": {$exists: true}
@@ -836,15 +866,34 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					}
 
 					let cardsetWorkloads = Workload.find(query).fetch();
-					let cardsetMedianMilliseconds = [];
+					let cardsetCardMedianMilliseconds = [];
+					let cardsetCardArithmeticMeanMilliseconds = [];
+					let cardsetCardStandardDeviationMilliseconds = [];
 					for (let i = 0; i < cardsetWorkloads.length; i++) {
 						if (cardsetWorkloads[i].leitner.timelineStats.median > 0) {
-							cardsetMedianMilliseconds.push(cardsetWorkloads[i].leitner.timelineStats.median);
+							cardsetCardMedianMilliseconds.push(cardsetWorkloads[i].leitner.timelineStats.median);
+						}
+						if (cardsetWorkloads[i].leitner.timelineStats.arithmeticMean > 0) {
+							cardsetCardArithmeticMeanMilliseconds.push(cardsetWorkloads[i].leitner.timelineStats.arithmeticMean);
+						}
+						if (cardsetWorkloads[i].leitner.timelineStats.standardDeviation > 0) {
+							cardsetCardStandardDeviationMilliseconds.push(cardsetWorkloads[i].leitner.timelineStats.standardDeviation);
 						}
 					}
-
-					if (cardsetMedianMilliseconds.length) {
-						cardsetMedian = Math.round(Utilities.getMedian(cardsetMedianMilliseconds));
+					if (cardsetCardMedianMilliseconds.length === 1) {
+						cardsetMedian = cardsetCardMedianMilliseconds[0];
+					} else {
+						cardsetMedian = Math.round(Utilities.getMedian(cardsetCardMedianMilliseconds));
+					}
+					if (cardsetCardArithmeticMeanMilliseconds.length === 1) {
+						cardsetArithmeticMean = cardsetCardArithmeticMeanMilliseconds[0];
+					} else {
+						cardsetArithmeticMean = Math.round(Utilities.getMedian(cardsetCardArithmeticMeanMilliseconds));
+					}
+					if (cardsetCardStandardDeviationMilliseconds.length === 1) {
+						cardsetStandardDeviation = cardsetCardStandardDeviationMilliseconds[0];
+					} else {
+						cardsetStandardDeviation = Math.round(Utilities.getMedian(cardsetCardStandardDeviationMilliseconds));
 					}
 
 					if (workload.leitner.bonus) {
@@ -853,7 +902,9 @@ export let LeitnerUtilities = class LeitnerUtilities {
 							},
 							{
 								$set: {
-									"leitner.timelineStats.median.bonus": cardsetMedian
+									"leitner.timelineStats.median.bonus": cardsetMedian,
+									"leitner.timelineStats.arithmeticMean.bonus": cardsetArithmeticMean,
+									"leitner.timelineStats.standardDeviation.bonus": cardsetStandardDeviation
 								}
 							}
 						);
@@ -863,7 +914,9 @@ export let LeitnerUtilities = class LeitnerUtilities {
 							},
 							{
 								$set: {
-									"leitner.timelineStats.median.normal": cardsetMedian
+									"leitner.timelineStats.median.normal": cardsetMedian,
+									"leitner.timelineStats.arithmeticMean.normal": cardsetArithmeticMean,
+									"leitner.timelineStats.standardDeviation.normal": cardsetStandardDeviation
 								}
 							}
 						);

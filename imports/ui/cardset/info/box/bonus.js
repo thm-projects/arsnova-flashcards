@@ -6,6 +6,8 @@ import "./item/bonusButton.js";
 import "./item/bonusDeadline.js";
 import "./item/bonusEnd.js";
 import "./item/bonusCardMedian.js";
+import "./item/bonusCardArithmeticMean.js";
+import "./item/bonusCardStandardDeviation.js";
 import "./item/bonusMaxPoints.js";
 import "./item/BonusMinLearned.js";
 import "./item/bonusPointsFAQ.js";

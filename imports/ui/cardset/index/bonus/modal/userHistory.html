@@ -69,8 +69,14 @@
                                     <tr>
                                         <td>{{_ "leitnerProgress.modal.userHistory.stats.duration.average"}}:</td>
                                         <td>{{getAverageDuration}}</td>
+                                        <td>{{_ "leitnerProgress.modal.userHistory.stats.duration.cardArithmeticMean.stats"}}:</td>
+                                        <td>{{getUserCardsArithmeticMean}}</td>
+                                    </tr>
+                                    <tr>
                                         <td>{{_ "leitnerProgress.modal.userHistory.stats.duration.cardMedian"}}:</td>
                                         <td>{{getUserCardMedian}}</td>
+                                        <td>{{_ "leitnerProgress.modal.userHistory.stats.duration.cardStandardDeviation"}}:</td>
+                                        <td>{{getUserCardsStandardDeviation}}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -89,7 +95,7 @@
                                         <th><a class="sort-bonus-content sort-bonus-user-history" data-content="notKnown">{{_ "leitnerProgress.modal.userHistory.table.notKnown"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "notKnown")}}</th>
                                         <th class="visible-md visible-lg"><a class="sort-bonus-content sort-bonus-user-history" data-content="statusCode">{{_ "leitnerProgress.modal.userHistory.table.status.title"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "statusCode")}}</th>
                                         <th class="visible-lg"><a class="sort-bonus-content sort-bonus-user-history" data-content="duration">{{_ "leitnerProgress.modal.userHistory.table.duration"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "duration")}}</th>
-                                        <th class="visible-lg"><a class="sort-bonus-content sort-bonus-user-history" data-content="cardMedian">{{_ "leitnerProgress.modal.userHistory.stats.duration.cardMedian"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "cardMedian")}}</th>
+                                        <th class="visible-lg"><a class="sort-bonus-content sort-bonus-user-history" data-content="cardArithmeticMean">{{_ "leitnerProgress.modal.userHistory.stats.duration.cardArithmeticMean.filter"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "cardArithmeticMean")}}</th>
                                         <th>{{_ "leitnerProgress.taskHistory"}}</th>
                                     </tr>
                                     {{#each getWorkloadHistory}}
@@ -101,7 +107,7 @@
                                             <td>{{this.notKnown}}</td>
                                             <td class="visible-md visible-lg">{{this.statusText}}</td>
                                             <td class="visible-lg">{{getDuration this.duration}}</td>
-                                            <td class="visible-lg">{{humanizeDuration this.cardMedian}}</td>
+                                            <td class="visible-lg">{{humanizeDuration this.cardArithmeticMean}}</td>
                                             <td>
                                                 {{#if canDisplayTaskHistory}}
                                                 <a class="showBonusTaskHistory" data-toggle="modal" href="#bonusTaskHistoryModal"
@@ -113,7 +119,10 @@
                                                    data-workload="{{this.workload}}"
                                                    data-reason="{{getReason}}"
                                                    data-duration="{{this.duration}}"
-                                                   data-cardmedian="{{this.cardMedian}}">
+                                                   data-cardArithmeticMean="{{this.cardArithmeticMean}}"
+                                                   data-cardMedian="{{this.cardMedian}}"
+                                                   data-cardStandardDeviation="{{this.cardStandardDeviation}}"
+                                                >
                                                 <i class="far fa-clock" title="{{_ "leitnerProgress.tooltip.taskHistory"}}"
                                                    data-user="{{this.user_id}}"
                                                    data-cardset="{{this.cardset_id}}"
@@ -123,7 +132,9 @@
                                                    data-workload="{{this.workload}}"
                                                    data-reason="{{getReason}}"
                                                    data-duration="{{this.duration}}"
-                                                   data-cardmedian="{{this.cardMedian}}"
+                                                   data-cardArithmeticMean="{{this.cardArithmeticMean}}"
+                                                   data-cardMedian="{{this.cardMedian}}"
+                                                   data-cardStandardDeviation="{{this.cardStandardDeviation}}"
                                                 ></i></a>
                                                 {{/if}}
                                             </td>
