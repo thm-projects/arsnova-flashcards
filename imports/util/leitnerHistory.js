@@ -65,7 +65,7 @@ export let LeitnerHistoryUtilities = class LeitnerProgress {
 			taskHistory[i].answerTime = card.timestamps.submission - card.timestamps.question;
 
 			//Set card content
-			if (CardTypes.gotNoSideContent(card.cardType)) {
+			if (CardTypes.gotNoSideContent(card.cardData.cardType)) {
 				if (card.cardData.answers !== undefined && card.cardData.answers.question !== undefined) {
 					taskHistory[i].content = card.cardData.answers.question;
 				} else {

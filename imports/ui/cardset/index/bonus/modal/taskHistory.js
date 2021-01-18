@@ -33,7 +33,16 @@ Template.bonusTaskHistoryModal.helpers({
 				let hiddenUser = TAPi18n.__('leitnerProgress.hiddenUserPlaceholder', {index: Session.get('selectedBonusUser').index});
 				return TAPi18n.__('leitnerProgress.modal.taskHistory.titleHiddenUser', {cardset: Session.get('selectedBonusUserHistoryData')[0].cardsetTitle, hiddenUser: hiddenUser, date: date});
 			} else {
-				return TAPi18n.__('leitnerProgress.modal.taskHistory.title', {cardset: Session.get('selectedBonusUserHistoryData')[0].cardsetTitle, lastName: Session.get('selectedBonusUser').lastName, firstName: Session.get('selectedBonusUser').firstName, date: date});
+				let firstName;
+				let lastName;
+				if (Route.isFilterIndex() || Route.isBox()) {
+					firstName = Meteor.user().profile.givenname;
+					lastName = Meteor.user().profile.birthname;
+				} else {
+					firstName = Session.get('selectedBonusUser').firstName;
+					lastName = Session.get('selectedBonusUser').lastName;
+				}
+				return TAPi18n.__('leitnerProgress.modal.taskHistory.title', {cardset: Session.get('selectedBonusUserHistoryData')[0].cardsetTitle, lastName: lastName, firstName: firstName, date: date});
 			}
 		}
 	},

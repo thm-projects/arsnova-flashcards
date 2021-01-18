@@ -166,7 +166,7 @@ Template.bonusUserHistoryModal.helpers({
 		return Utilities.humanizeDuration(duration);
 	},
 	canDisplayTaskHistory: function () {
-		return this.known > 0 || this.notKown > 0;
+		return this.known > 0 || this.notKnown > 0;
 	},
 	setSortObject: function (content) {
 		return {

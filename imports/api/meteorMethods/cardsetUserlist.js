@@ -110,6 +110,11 @@ Meteor.methods({
 			for (let c = 0; c < cards.length; c++) {
 				if (leitnerHistory[i].card_id === cards[c]._id) {
 					leitnerHistory[i].cardData = cards[c];
+					if (cards[c].answers !== undefined && cards[c].answers.question !== undefined) {
+						leitnerHistory[i].cardData.question = cards[c].answers.question;
+					} else {
+						leitnerHistory[i].cardData.question = "";
+					}
 					break;
 				}
 			}
@@ -142,7 +147,11 @@ Meteor.methods({
 			item.cardsetTitle = cardset.name;
 			item.date = leitnerTasks[i].createdAt;
 			item.userCardMedian = userCardMedian;
-			item.cardMedian = leitnerTasks[i].timelineStats.median;
+			if (leitnerTasks[i].timelineStats !== undefined) {
+				item.cardMedian = leitnerTasks[i].timelineStats.median;
+			} else {
+				item.cardMedian = 0;
+			}
 			item.workload = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id}).count();
 			item.known = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id, answer: 0}).count();
 			item.notKnown = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id, answer: 1}).count();

@@ -78,7 +78,7 @@
                                     <tbody>
                                     <tr>
                                         <th><a class="sort-bonus-content sort-bonus-user-task-history" data-content="cardSubject">{{_ "leitnerProgress.modal.taskHistory.table.card"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "cardSubject")}}</th>
-                                        <th><a class="sort-bonus-content sort-bonus-user-task-history" data-content="content">{{_ "leitnerProgress.modal.taskHistory.table.content"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "content")}}</th>
+                                        <th class="visible-lg"><a class="sort-bonus-content sort-bonus-user-task-history" data-content="content">{{_ "leitnerProgress.modal.taskHistory.table.content"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "content")}}</th>
                                         <th><a class="sort-bonus-content sort-bonus-user-task-history" data-content="answer">{{_ "leitnerProgress.modal.taskHistory.table.answer"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "answer")}}</th>
                                         <th><a class="sort-bonus-content sort-bonus-user-task-history" data-content="answerTime">{{_ "leitnerProgress.modal.taskHistory.table.timeSpent"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "answerTime")}}</th>
                                         <th><a class="sort-bonus-content sort-bonus-user-task-history" data-content="cardSubmission">{{_ "leitnerProgress.modal.taskHistory.table.submission"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "cardSubmission")}}</th>
@@ -86,7 +86,7 @@
                                     {{#each getTaskHistoryData}}
                                         <tr>
                                             <td><a href="/presentation/{{this.cardData.cardset_id}}/{{this.card_id}}" target="_blank">{{this.cardSubject}}</a></td>
-                                            <td>{{this.content}}</td>
+                                            <td class="visible-lg">{{this.content}}</td>
                                             <td>{{getAnswer}}</td>
                                             <td>{{humanizeDuration this.answerTime}}</td>
                                             <td>{{getMomentsDate this.cardSubmission true}}</td>
