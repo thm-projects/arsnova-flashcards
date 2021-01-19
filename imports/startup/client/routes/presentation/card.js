@@ -7,7 +7,6 @@ import {ServerStyle} from "../../../../util/styles";
 import {MarkdeepEditor} from "../../../../util/markdeepEditor";
 import {Session} from "meteor/session";
 import {Fullscreen} from "../../../../util/fullscreen";
-import {AspectRatio} from "../../../../util/aspectRatio";
 
 FlowRouter.route('/presentation/:_id', {
 	name: RouteNames.presentation,

@@ -862,7 +862,6 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					};
 					if (workload.leitner.bonus) {
 						query["leitner.bonus"] = true;
-					} else {
 					}
 
 					let cardsetWorkloads = Workload.find(query).fetch();

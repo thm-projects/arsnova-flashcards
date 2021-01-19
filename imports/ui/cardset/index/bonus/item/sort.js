@@ -4,15 +4,14 @@ import {Session} from "meteor/session";
 function getSettings(type) {
 	let sortSettings;
 	switch (type) {
-		case 0:
-		default:
-			sortSettings = Session.get('sortBonusUsers');
-			break;
 		case 1:
 			sortSettings = Session.get('sortBonusUserHistory');
 			break;
 		case 2:
 			sortSettings = Session.get('sortBonusUserTaskHistory');
+			break;
+		default:
+			sortSettings = Session.get('sortBonusUsers');
 			break;
 	}
 	return sortSettings;
