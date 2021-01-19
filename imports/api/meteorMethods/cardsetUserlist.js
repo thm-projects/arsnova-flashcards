@@ -2,6 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Leitner} from "../subscriptions/leitner";
 import {Workload} from "../subscriptions/workload";
 import {Cardsets} from "../subscriptions/cardsets.js";
+import {Cards} from "../subscriptions/cards";
 import {check} from "meteor/check";
 import {Bonus} from "../../util/bonus";
 import {LeitnerHistory} from "../subscriptions/leitnerHistory";
@@ -22,13 +23,13 @@ Meteor.methods({
 		if (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
 			let content;
 			let colSep = ";"; // Separates columns
-			let infoCol = ";;;;;;;;;;;;;;"; // Separates columns
+			let infoCol = ";;;;;;;;;;;;;;;;;"; // Separates columns
 			let newLine = "\r\n"; //Adds a new line
 			let infoCardsetCounter = 0;
 			let infoCardsetLength = 6;
 			let infoLearningPhaseCounter = 0;
-			let infoLearningPhaseLength = 10;
-			content = header[6] + colSep + header[7] + colSep + header[8] + colSep + header[10] + colSep + header[11] + colSep + header[12] + colSep;
+			let infoLearningPhaseLength = 15;
+			content = header[6] + colSep + header[7] + colSep + header[8] + colSep + header[10] + colSep + header[11] + colSep + header[12] + colSep + header[13] + colSep + header[14] + colSep + header[15] + colSep;
 			for (let i = 0; i <= 4; i++) {
 				content += header[i] + " [" + cardset.learningInterval[i] + "]" + colSep;
 			}
@@ -49,6 +50,7 @@ Meteor.methods({
 				}
 				content += learners[k].birthname + colSep + learners[k].givenname + colSep + learners[k].email + colSep + Bonus.getNotificationStatus(learners[k], true) + colSep;
 				content += Utilities.getMomentsDate(learners[k].dateJoinedBonus, false, 0, false) + colSep + Utilities.getMomentsDate(learners[k].lastActivity, false, 0, false) + colSep;
+				content += Utilities.humanizeDuration(learners[k].cardArithmeticMean) + colSep + Utilities.humanizeDuration(learners[k].cardMedian) + colSep + Utilities.humanizeDuration(learners[k].cardStandardDeviation) + colSep;
 				content += learners[k].box1 + colSep + learners[k].box2 + colSep + learners[k].box3 + colSep + learners[k].box4 + colSep + learners[k].box5 + colSep + box6 +  colSep + achievedBonus +  colSep;
 				if (infoCardsetCounter <= infoCardsetLength) {
 					content += colSep + cardsetInfo[infoCardsetCounter][0] + colSep + cardsetInfo[infoCardsetCounter++][1];
@@ -73,6 +75,53 @@ Meteor.methods({
 			return CardsetUserlist.getLearners(Workload.find({cardset_id: cardset_id, 'leitner.bonus': true}).fetch(), cardset_id);
 		}
 	},
+	getLearningTaskHistoryData: function (user_id, cardset_id, task_id) {
+		check(user_id, String);
+		check(cardset_id, String);
+		check(task_id, String);
+
+		let newUserId;
+		let cardset = Cardsets.findOne({_id: cardset_id});
+		if (UserPermissions.gotBackendAccess() || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
+			newUserId = user_id;
+		} else {
+			newUserId = Meteor.userId();
+		}
+
+		let leitnerHistory = LeitnerHistory.find({task_id: task_id, cardset_id: cardset_id, user_id: newUserId, "timestamps.submission": {$exists: true}},
+			{sort: {"timestamps.submission": 1}}).fetch();
+		let cardIds = leitnerHistory.map(function (history) {
+			return history.card_id;
+		});
+		let cards = Cards.find({_id: {$in: cardIds}},{fields:
+				{
+					_id: 1,
+					subject: 1,
+					cardset_id: 1,
+					front: 1,
+					back: 1,
+					top: 1,
+					bottom: 1,
+					hint: 1,
+					lecture: 1,
+					"answers.question": 1,
+					cardType: 1
+				}}).fetch();
+		for (let i = 0; i < leitnerHistory.length; i++) {
+			for (let c = 0; c < cards.length; c++) {
+				if (leitnerHistory[i].card_id === cards[c]._id) {
+					leitnerHistory[i].cardData = cards[c];
+					if (cards[c].answers !== undefined && cards[c].answers.question !== undefined) {
+						leitnerHistory[i].cardData.question = cards[c].answers.question;
+					} else {
+						leitnerHistory[i].cardData.question = "";
+					}
+					break;
+				}
+			}
+		}
+		return leitnerHistory;
+	},
 	getLearningHistoryData: function (user, cardset_id) {
 		check(user, String);
 		check(cardset_id, String);
@@ -87,16 +136,40 @@ Meteor.methods({
 		let highestSessionTask = LeitnerUtilities.getHighestLeitnerTaskSessionID(cardset_id, user_id);
 		let leitnerTasks = LeitnerTasks.find({user_id: user_id, cardset_id: cardset_id, session: highestSessionTask.session}, {sort: {createdAt: -1}}).fetch();
 		let result = [];
+		let workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id, "leitner.bonus": true});
+		let userCardMedian = 0;
+		let userCardArithmeticMean = 0;
+		let userCardStandardDeviation = 0;
+		if (workload !== undefined && workload.leitner.timelineStats !== undefined) {
+			userCardMedian = workload.leitner.timelineStats.median;
+			userCardArithmeticMean = workload.leitner.timelineStats.arithmeticMean;
+			userCardStandardDeviation = workload.leitner.timelineStats.standardDeviation;
+		}
 		for (let i = 0; i < leitnerTasks.length; i++) {
 			let item = {};
 			let missedLastDeadline;
 			item.cardsetShuffled = cardset.shuffled;
 			item.cardsetTitle = cardset.name;
 			item.date = leitnerTasks[i].createdAt;
+			item.userCardMedian = userCardMedian;
+			item.userCardArithmeticMean = userCardArithmeticMean;
+			item.userCardStandardDeviation = userCardStandardDeviation;
+			if (leitnerTasks[i].timelineStats !== undefined) {
+				item.cardMedian = leitnerTasks[i].timelineStats.median;
+				item.cardArithmeticMean = leitnerTasks[i].timelineStats.arithmeticMean;
+				item.cardStandardDeviation = leitnerTasks[i].timelineStats.standardDeviation;
+			} else {
+				item.cardMedian = 0;
+				item.cardArithmeticMean = 0;
+				item.cardStandardDeviation = 0;
+			}
 			item.workload = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id}).count();
 			item.known = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id, answer: 0}).count();
 			item.notKnown = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id, answer: 1}).count();
 			item.missedDeadline = leitnerTasks[i].missedDeadline;
+			item.user_id = user_id;
+			item.cardset_id = cardset_id;
+			item.task_id = leitnerTasks[i]._id;
 			if (i < leitnerTasks.length - 1) {
 				missedLastDeadline = leitnerTasks[i + 1].missedDeadline;
 			} else {

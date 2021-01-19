@@ -1,4 +1,4 @@
-#bonusUserHistoryModal {
+#bonusUserHistoryModal, #bonusTaskHistoryModal {
   .user-history-title {
     h4 {
       font-weight: bold;
@@ -9,8 +9,17 @@
     margin-bottom: 0;
   }
   @media (min-width: 768px) {
-    .table-user-history-global-stats {
+    .table-history-global-stats {
       table-layout: fixed;
     }
   }
+}
+
+#bonusTaskHistoryModal {
+  z-index: 10001 !important;
+}
+
+.sort-bonus-content {
+  cursor: pointer;
+  text-decoration: none !important;
 }

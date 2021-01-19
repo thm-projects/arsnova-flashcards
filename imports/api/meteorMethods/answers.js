@@ -27,7 +27,7 @@ Meteor.methods({
 		});
 
 		let task = LeitnerTasks.findOne(
-			{cardset_id: cardsetId, user_id: Meteor.userId()}, {fields: {_id: 1}, sort: {session: -1, createdAt: -1}});
+			{cardset_id: cardsetId, user_id: Meteor.userId()}, {sort: {session: -1, createdAt: -1}});
 
 		if (leitner !== undefined && task !== undefined) {
 			Leitner.update({
@@ -47,6 +47,7 @@ Meteor.methods({
 			}, {$set: {
 					timestamps: timestamps
 				}});
+			LeitnerUtilities.setCardTimelineStats(task);
 		}
 	},
 	setMCAnswers: function (cardIds, activeCardId, cardsetId, userAnswers, timestamps) {
@@ -162,6 +163,7 @@ Meteor.methods({
 							timestamps: timestamps
 						}
 					});
+					LeitnerUtilities.setCardTimelineStats(leitnerTask);
 				}
 
 				Workload.update({cardset_id: activeLeitner.cardset_id, user_id: activeLeitner.user_id}, {

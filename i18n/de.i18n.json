@@ -175,6 +175,10 @@
     "create": "Angelegte Karteien"
   },
   "set-list": {
+    "bonusSection": {
+      "settings": "Einstellungen",
+      "stats": "Statistik"
+    },
     "name": "Name",
     "category": "Zugang",
     "app": {

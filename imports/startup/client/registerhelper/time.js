@@ -36,3 +36,7 @@ Template.registerHelper("getMomentsDate", function (date, displayMinutes = false
 Template.registerHelper("getMomentsDateShort", function (date) {
 	return Utilities.getMomentsDateShort(date);
 });
+
+Template.registerHelper("humanizeDuration", function (duration) {
+	return Utilities.humanizeDuration(duration);
+});

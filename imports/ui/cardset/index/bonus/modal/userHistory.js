@@ -1,12 +1,13 @@
 //------------------------ IMPORTS
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
+import "./taskHistory.js";
+import "../item/sort.js";
 import "./userHistory.html";
+import * as config from "../../../../../config/leitnerHistory.js";
 import {Utilities} from "../../../../../util/utilities";
 import {Route} from "../../../../../util/route";
-import humanizeDuration from "humanize-duration";
-
-let humanizeSettings = {language: 'de', conjunction: ' und ', serialComma: false, round: true};
+import {LeitnerHistoryUtilities} from "../../../../../util/leitnerHistory";
 
 Session.setDefault('bonusUserHistoryModalActive', false);
 
@@ -17,6 +18,9 @@ Session.setDefault('bonusUserHistoryModalActive', false);
 */
 
 Template.bonusUserHistoryModal.onRendered(function () {
+	$('#bonusUserHistoryModal').on('show.bs.modal', function () {
+		Session.set('sortBonusUserHistory', config.defaultUserHistorySortSettings);
+	});
 	$('#bonusUserHistoryModal').on('shown.bs.modal', function () {
 		Session.set('bonusUserHistoryModalActive', true);
 	});
@@ -107,23 +111,13 @@ Template.bonusUserHistoryModal.helpers({
 	},
 	getTotalDuration: function () {
 		let historyData = Session.get('selectedBonusUserHistoryData');
-		let settings = humanizeSettings;
 		let duration = historyData.map(function (task) {
 			return task.duration;
 		}).reduce((a, b) => a + b, 0);
-		if (duration > 0) {
-			if (duration < 60000) {
-				settings.units = ['s'];
-				return humanizeDuration(duration, settings);
-			} else {
-				settings.units = ['h', 'm'];
-				return humanizeDuration(duration, settings);
-			}
-		}
+		return Utilities.humanizeDuration(duration);
 	},
 	getAverageDuration: function () {
 		let historyData = Session.get('selectedBonusUserHistoryData');
-		let settings = humanizeSettings;
 		let duration = [];
 		historyData.forEach(function (item) {
 			if (item.duration !== 0) {
@@ -131,22 +125,26 @@ Template.bonusUserHistoryModal.helpers({
 			}
 		});
 		let avgDuration = duration.reduce((a,b) => a + b, 0) / duration.length;
-		if (avgDuration > 0) {
-			if (avgDuration < 60000) {
-				settings.units = ['s'];
-				return humanizeDuration(avgDuration, settings);
-			} else {
-				settings.units = ['h', 'm'];
-				return humanizeDuration(avgDuration, settings);
-			}
-		}
+		return Utilities.humanizeDuration(avgDuration);
+	},
+	getUserCardsArithmeticMean: function () {
+		let historyData = Session.get('selectedBonusUserHistoryData');
+		return Utilities.humanizeDuration(historyData[0].userCardArithmeticMean);
+	},
+	getUserCardsStandardDeviation: function () {
+		let historyData = Session.get('selectedBonusUserHistoryData');
+		return Utilities.humanizeDuration(historyData[0].userCardStandardDeviation);
+	},
+	getUserCardMedian: function () {
+		let historyData = Session.get('selectedBonusUserHistoryData');
+		return Utilities.humanizeDuration(historyData[0].userCardMedian);
 	},
 	getAverageScore: function () {
 		let historyData = Session.get('selectedBonusUserHistoryData');
 		let score = [];
 		historyData.forEach(function (item) {
 			if (item.known) {
-				let result = item.known / item.workload * 100;
+				let result = (item.known / item.workload) * 100;
 				score.push(result);
 			} else if (item.notKnown) {
 				score.push(0);
@@ -172,35 +170,55 @@ Template.bonusUserHistoryModal.helpers({
 			return TAPi18n.__('leitnerProgress.modal.userHistory.table.workload.plural', {cards: this.workload});
 		}
 	},
-	getStatus: function () {
-		let completedWorkload = this.known + this.notKnown;
-		if (completedWorkload === this.workload) {
-			return TAPi18n.__('leitnerProgress.modal.userHistory.table.status.completed', {lastAnswerDate: Utilities.getMomentsDate(this.lastAnswerDate, 0, false, false)});
-		} else if (!this.missedDeadline) {
-			return TAPi18n.__('leitnerProgress.modal.userHistory.table.status.inProgress');
-		} else {
-			if (completedWorkload > 0) {
-				let unfinishedWorkload = this.workload - completedWorkload;
-				if (unfinishedWorkload === 1) {
-					return TAPi18n.__('leitnerProgress.modal.userHistory.table.status.notFullyCompletedSingular', {cards: unfinishedWorkload});
-				} else {
-					return TAPi18n.__('leitnerProgress.modal.userHistory.table.status.notFullyCompletedPlural', {cards: unfinishedWorkload});
-				}
-			} else {
-				return TAPi18n.__('leitnerProgress.modal.userHistory.table.status.notCompleted');
-			}
-		}
-	},
 	getDuration: function (duration = 0) {
-		let settings = humanizeSettings;
-		if (duration > 0) {
-			if (duration < 60000) {
-				settings.units = ['s'];
-				return humanizeDuration(duration, settings);
-			} else {
-				settings.units = ['h', 'm'];
-				return humanizeDuration(duration, settings);
+		return Utilities.humanizeDuration(duration);
+	},
+	canDisplayTaskHistory: function () {
+		return this.known > 0 || this.notKnown > 0;
+	},
+	setSortObject: function (content) {
+		return {
+			type: 1,
+			content: content
+		};
+	}
+});
+
+Template.bonusUserHistoryModal.events({
+	"click .showBonusTaskHistory": function (event) {
+		let task = {};
+		let taskStats = {};
+		task.user_id = $(event.target).data('user');
+		task.cardset_id = $(event.target).data('cardset');
+		task.task_id = $(event.target).data('task');
+
+		taskStats.known = $(event.target).data('known');
+		taskStats.notKnown = $(event.target).data('notknown');
+		taskStats.workload = $(event.target).data('workload');
+		taskStats.reason = $(event.target).data('reason');
+		taskStats.duration = $(event.target).data('duration');
+		taskStats.cardArithmeticMean = $(event.target).data('cardarithmeticmean');
+		taskStats.cardMedian = $(event.target).data('cardmedian');
+		taskStats.cardStandardDeviation = $(event.target).data('cardstandarddeviation');
+		Session.set('selectedBonusTaskHistoryStats', taskStats);
+		Meteor.call("getLearningTaskHistoryData", task.user_id, task.cardset_id, task.task_id, function (error, result) {
+			if (error) {
+				throw new Meteor.Error(error.statusCode, 'Error could not receive content for task history');
 			}
+			if (result) {
+				Session.set('selectedBonusTaskHistoryData', LeitnerHistoryUtilities.prepareTaskHistoryData(result));
+			}
+		});
+	},
+	"click .sort-bonus-user-history": function (event) {
+		let sortSettings = Session.get('sortBonusUserHistory');
+		if (sortSettings.content !== $(event.target).data('content')) {
+			sortSettings.content = $(event.target).data('content');
+			sortSettings.desc = false;
+		} else {
+			sortSettings.desc = !sortSettings.desc;
 		}
+		Session.set('selectedBonusUserHistoryData', Utilities.sortArray(Session.get('selectedBonusUserHistoryData'), sortSettings.content, sortSettings.desc));
+		Session.set('sortBonusUserHistory', sortSettings);
 	}
 });

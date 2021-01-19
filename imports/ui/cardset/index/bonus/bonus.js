@@ -6,9 +6,12 @@ import {Template} from "meteor/templating";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import "./modal/removeUser.js";
 import "./modal/userHistory.js";
+import "./item/sort.js";
 import "./bonus.html";
-import {Bonus} from "../../../../util/bonus";
 import {LeitnerProgress} from "../../../../util/leitnerProgress";
+import {Utilities} from "../../../../util/utilities";
+import {LeitnerHistoryUtilities} from "../../../../util/leitnerHistory";
+import * as leitnerStatisticsConfig from "../../../../config/leitnerHistory";
 
 /*
 * ############################################################################
@@ -18,6 +21,9 @@ import {LeitnerProgress} from "../../../../util/leitnerProgress";
 
 Template.cardsetLearnActivityStatistic.onCreated(function () {
 	Session.set('hideUserNames', true);
+	let settings = leitnerStatisticsConfig.defaultBonusUserSortSettings;
+	settings.content = "placeholderID";
+	Session.set('sortBonusUsers', settings);
 });
 
 Template.cardsetLearnActivityStatistic.onRendered(function () {
@@ -34,26 +40,33 @@ Template.cardsetLearnActivityStatistic.helpers({
 	getCardsetStats: function () {
 		return Session.get("learnerStats");
 	},
-	getPercentage: function (count) {
-		let totalCards = this.box1 + this.box2 + this.box3 + this.box4 + this.box5 + this.box6;
-		let percentage = Math.round(count / totalCards * 100);
-		if (percentage > 0) {
-			return '<span class="cardPercentage">[' + percentage + ' %]</span>';
+	getPercentage: function () {
+		if (this.percentage > 0) {
+			return '<span class="cardPercentage">[' + this.percentage + ' %]</span>';
 		}
 	},
 	earnedTrophy: function () {
-		let totalCards = this.box1 + this.box2 + this.box3 + this.box4 + this.box5 + this.box6;
-		let box6Percentage = (this.box6 / totalCards) * 100;
-		return box6Percentage >= Session.get('activeCardset').workload.bonus.minLearned;
+		return this.percentage >= Session.get('activeCardset').workload.bonus.minLearned;
 	},
-	getAchievedBonus: function () {
-		return Bonus.getAchievedBonus(this.box6, Session.get('activeCardset').workload, (this.box1 + this.box2 + this.box3 + this.box4 + this.box5 + this.box6));
+	setSortObject: function (content) {
+		return {
+			type: 0,
+			content: content
+		};
 	}
 });
 
 Template.cardsetLearnActivityStatistic.events({
 	"click .showUserNames": function () {
 		Session.set('hideUserNames', !Session.get('hideUserNames'));
+
+		let currentSettings = Session.get('sortBonusUsers');
+		if (Session.get('hideUserNames') && (currentSettings.content === "birthname" || currentSettings.content === "givenname" || currentSettings.content === "email")) {
+			currentSettings.content = "placeholderID";
+		} else if (currentSettings.content === "placeholderID") {
+			currentSettings.content = "birthname";
+		}
+		Session.set('sortBonusUsers', currentSettings);
 	},
 	"click #exportCSV": function () {
 		var cardset = Cardsets.findOne({_id: this._id});
@@ -72,6 +85,9 @@ Template.cardsetLearnActivityStatistic.events({
 		header[10] = TAPi18n.__('confirmLearn-form.notification');
 		header[11] = TAPi18n.__('leitnerProgress.dateJoinedBonus');
 		header[12] = TAPi18n.__('leitnerProgress.lastActivity');
+		header[13] = TAPi18n.__('leitnerProgress.modal.userHistory.stats.duration.cardArithmeticMean.stats');
+		header[14] = TAPi18n.__('leitnerProgress.modal.userHistory.stats.duration.cardMedian');
+		header[15] = TAPi18n.__('leitnerProgress.modal.userHistory.stats.duration.cardStandardDeviation');
 		Meteor.call("getCSVExport", cardset._id, header, function (error, result) {
 			if (error) {
 				throw new Meteor.Error(error.statusCode, 'Error could not receive content for .csv');
@@ -116,7 +132,7 @@ Template.cardsetLearnActivityStatistic.events({
 					throw new Meteor.Error(error.statusCode, 'Error could not receive content for history');
 				}
 				if (result) {
-					Session.set('selectedBonusUserHistoryData', result);
+					Session.set('selectedBonusUserHistoryData', LeitnerHistoryUtilities.prepareUserHistoryData(result));
 				}
 			});
 		}
@@ -139,6 +155,17 @@ Template.cardsetLearnActivityStatistic.events({
 		user.dateJoinedBonus = $(event.target).data('datejoinedbonus');
 		user.lastActivity = $(event.target).data('lastactivity');
 		Session.set('selectedBonusUser', user);
+	},
+	"click .sort-bonus-user": function (event) {
+		let sortSettings = Session.get('sortBonusUsers');
+		if (sortSettings.content !== $(event.target).data('content')) {
+			sortSettings.content = $(event.target).data('content');
+			sortSettings.desc = false;
+		} else {
+			sortSettings.desc = !sortSettings.desc;
+		}
+		Session.set('learnerStats', Utilities.sortArray(Session.get('learnerStats'), sortSettings.content, sortSettings.desc));
+		Session.set('sortBonusUsers', sortSettings);
 	}
 });
 
@@ -149,7 +176,7 @@ Template.cardsetLearnActivityStatistic.created = function () {
 			throw new Meteor.Error(error.statusCode, 'Error could not receive content for stats');
 		}
 		if (result) {
-			Session.set("learnerStats", result);
+			Session.set("learnerStats", LeitnerHistoryUtilities.prepareBonusUserData(result));
 		}
 	});
 };
