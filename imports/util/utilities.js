@@ -2,6 +2,8 @@ import {Session} from "meteor/session";
 import {Cardsets} from "../api/subscriptions/cardsets";
 import {CardType} from "./cardTypes";
 import {ServerStyle} from "./styles";
+import {median, mean, std} from "mathjs";
+
 import {
 	END_RECORDING,
 	END_GROUP,
@@ -10,6 +12,8 @@ import {
 	START_RECORDING,
 	TYPE_INITIALIZE, TYPE_MIGRATE, TYPE_CLEANUP, PROCESS_RECORDING
 } from "../config/serverBoot";
+import {humanizeDurationSettings} from "../config/humanizeDuration";
+import humanizeDuration from "humanize-duration";
 
 let debugServerBoot;
 let lastDebugTime;
@@ -222,6 +226,49 @@ export let Utilities = class Utilities {
 					console.log(`${String(groupCounter).padStart(2, '0')}: Found ${count} outdated entries`);
 					break;
 			}
+		}
+	}
+
+	static getMedian (array) {
+		if (array.length) {
+			return median(array);
+		} else {
+			return 0;
+		}
+	}
+
+	static getArithmeticMean (array) {
+		if (array.length) {
+			return mean(array);
+		} else {
+			return 0;
+		}
+	}
+
+	static getStandardDeviation (array) {
+		if (array.length) {
+			return std(array);
+		} else {
+			return 0;
+		}
+	}
+
+	static humanizeDuration (duration) {
+		let settings = humanizeDurationSettings;
+		if (duration < 60000) {
+			settings.units = ['s'];
+			return humanizeDuration(duration, settings);
+		} else {
+			settings.units = ['h', 'm'];
+			return humanizeDuration(duration, settings);
+		}
+	}
+
+	static sortArray (array, content, desc = false) {
+		if (desc) {
+			return _.sortBy(array, content);
+		} else {
+			return _.sortBy(array, content).reverse();
 		}
 	}
 };

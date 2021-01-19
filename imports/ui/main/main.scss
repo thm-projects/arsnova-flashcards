@@ -801,6 +801,10 @@ th {
   z-index: 10000 !important;
 }
 
+.modal {
+  overflow: auto !important;
+}
+
 .modal-content {
   border-radius: 30px !important;
 }
@@ -905,7 +909,7 @@ kbd {
 }
 
 @media (min-width: 1200px) {
-  #progressModal, #bonusUserHistoryModal {
+  #progressModal, #bonusUserHistoryModal, #bonusTaskHistoryModal {
     .modal-dialog, .model-body, .modal-content {
       width:1200px;
     }
@@ -913,7 +917,7 @@ kbd {
 }
 
 @media (max-width: 1199px) {
-  #progressModal, #bonusUserHistoryModal {
+  #progressModal, #bonusUserHistoryModal, #bonusTaskHistoryModal {
     .modal-dialog {
       width: 90%;
       margin-left: 5%;

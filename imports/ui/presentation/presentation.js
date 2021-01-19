@@ -55,10 +55,14 @@ Template.presentation.onDestroyed(function () {
  */
 
 Template.presentationView.onCreated(function () {
-	if (!Route.isDefaultPresentation() && !Route.isDemo()) {
-		Session.set('activeCard', undefined);
-	} else if (Route.isDemo() && Session.get('previousRouteName') !== "demo" && Session.get('previousRouteName') !== "demolist") {
-		Session.set('activeCard', undefined);
+	if (FlowRouter.getParam('card_id')) {
+		Session.set('activeCard', FlowRouter.getParam('card_id'));
+	} else {
+		if (!Route.isDefaultPresentation() && !Route.isDemo()) {
+			Session.set('activeCard', undefined);
+		} else if (Route.isDemo() && Session.get('previousRouteName') !== "demo" && Session.get('previousRouteName') !== "demolist") {
+			Session.set('activeCard', undefined);
+		}
 	}
 	CardNavigation.toggleVisibility(true);
 	PomodoroTimer.setPresentationPomodoro(true);

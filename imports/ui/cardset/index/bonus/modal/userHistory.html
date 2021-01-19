@@ -1,4 +1,5 @@
 <template name="bonusUserHistoryModal">
+    {{> bonusTaskHistoryModal}}
     <div class="modal fade" id="bonusUserHistoryModal" tabindex="-1" role="dialog"
          aria-labelledby="bonusUserHistoryTitle">
         {{#if gotUserData}}
@@ -15,76 +16,87 @@
                     </div>
                     <div class="modal-body">
                         {{#if gotHistoryData}}
-                            <div class="user-history-title">
+                            <div id="userHistoryStatsTitle" class="user-history-title">
                                 <h4>{{_ "leitnerProgress.modal.userHistory.stats.tasks.title"}}</h4>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover table-user-history table-user-history-global-stats">
+                                <table aria-describedby="userHistoryStatsTitle" class="table table-striped table-hover table-user-history table-history-global-stats">
                                     <tbody>
                                     <tr>
-                                        <td>{{_ "leitnerProgress.modal.userHistory.stats.tasks.total"}}:</td>
-                                        <td>{{getTaskCount}}</td>
+                                        <th id="userHistoryStatsTaskCountHeader">{{_ "leitnerProgress.modal.userHistory.stats.tasks.total"}}:</th>
+                                        <td headers="userHistoryStatsTaskCountHeader">{{getTaskCount}}</td>
                                     </tr>
                                     <tr>
-                                        <td>{{_ "leitnerProgress.modal.userHistory.stats.tasks.completed"}}:</td>
-                                        <td>{{getTaskCount 0}}</td>
-                                        <td>{{_ "leitnerProgress.modal.userHistory.stats.tasks.notCompleted"}}:</td>
-                                        <td>{{getTaskCount 1}}</td>
+                                        <th id="userHistoryStatsTaskCountCompletedHeader">{{_ "leitnerProgress.modal.userHistory.stats.tasks.completed"}}:</th>
+                                        <td headers="userHistoryStatsTaskCountCompletedHeader">{{getTaskCount 0}}</td>
+                                        <th id="userHistoryStatsTaskCountNotCompletedHeader">{{_ "leitnerProgress.modal.userHistory.stats.tasks.notCompleted"}}:</th>
+                                        <td headers="userHistoryStatsTaskCountNotCompletedHeader">{{getTaskCount 1}}</td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="user-history-title">
+                            <div id="userHistoryStatsWorkloadTitle" class="user-history-title">
                                 <h4>{{_ "leitnerProgress.modal.userHistory.stats.workload.title"}}</h4>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover table-user-history table-user-history-global-stats">
+                                <table aria-describedby="userHistoryStatsWorkloadTitle" class="table table-striped table-hover table-user-history table-history-global-stats">
                                     <tbody>
                                     <tr>
-                                        <td>{{_ "leitnerProgress.modal.userHistory.stats.workload.total"}}:</td>
-                                        <td>{{getWorkloadCount 0}}</td>
-                                        <td>{{_ "leitnerProgress.modal.userHistory.stats.averageKnown"}}:</td>
-                                        <td>{{getAverageScore}}</td>
+                                        <th id="userHistoryStatsWorkloadCountHeader">{{_ "leitnerProgress.modal.userHistory.stats.workload.total"}}:</th>
+                                        <td headers="userHistoryStatsWorkloadCountHeader">{{getWorkloadCount 0}}</td>
+                                        <th id="userHistoryStatsAverageKnownHeader">{{_ "leitnerProgress.modal.userHistory.stats.averageKnown"}}:</th>
+                                        <td headers="userHistoryStatsAverageKnownHeader">{{getAverageScore}}</td>
                                     </tr>
                                     <tr>
-                                        <td>{{_ "leitnerProgress.modal.userHistory.stats.workload.known"}}:</td>
-                                        <td>{{getWorkloadCount 1}}</td>
-                                        <td>{{_ "leitnerProgress.modal.userHistory.stats.workload.notKnown"}}:</td>
-                                        <td>{{getWorkloadCount 2}}</td>
+                                        <th id="userHistoryStatsWorkloadCountKnownHeader">{{_ "leitnerProgress.modal.userHistory.stats.workload.known"}}:</th>
+                                        <td headers="userHistoryStatsWorkloadCountKnownHeader">{{getWorkloadCount 1}}</td>
+                                        <th id="userHistoryStatsWorkloadCountNotKnownHeader">{{_ "leitnerProgress.modal.userHistory.stats.workload.notKnown"}}:</th>
+                                        <td headers="userHistoryStatsWorkloadCountNotKnownHeader">{{getWorkloadCount 2}}</td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="user-history-title">
+                            <div id="userHistoryStatsDurationTitle" class="user-history-title">
                                 <h4>{{_ "leitnerProgress.modal.userHistory.stats.duration.title"}}</h4>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover table-user-history table-user-history-global-stats">
+                                <table aria-describedby="userHistoryStatsDurationTitle" class="table table-striped table-hover table-user-history table-history-global-stats">
                                     <tbody>
                                     <tr>
-                                        <td>{{_ "leitnerProgress.modal.userHistory.stats.duration.total"}}:</td>
-                                        <td>{{getTotalDuration}}</td>
-                                        <td>{{_ "leitnerProgress.modal.userHistory.stats.duration.average"}}:</td>
-                                        <td>{{getAverageDuration}}</td>
+                                        <th id="userHistoryStatsDurationHeader">{{_ "leitnerProgress.modal.userHistory.stats.duration.total"}}:</th>
+                                        <td headers="userHistoryStatsDurationHeader">{{getTotalDuration}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th id="userHistoryStatsDurationAverageHeader">{{_ "leitnerProgress.modal.userHistory.stats.duration.average"}}:</th>
+                                        <td headers="userHistoryStatsDurationAverageHeader">{{getAverageDuration}}</td>
+                                        <th id="userHistoryStatsCardArithmeticMeanHeader">{{_ "leitnerProgress.modal.userHistory.stats.duration.cardArithmeticMean.stats"}}:</th>
+                                        <td headers="userHistoryStatsCardArithmeticMeanHeader">{{getUserCardsArithmeticMean}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th id="userHistoryStatsCardMedianHeader">{{_ "leitnerProgress.modal.userHistory.stats.duration.cardMedian"}}:</th>
+                                        <td headers="userHistoryStatsCardMedianHeader">{{getUserCardMedian}}</td>
+                                        <th id="userHistoryStatsCardStandardDeviationHeader">{{_ "leitnerProgress.modal.userHistory.stats.duration.cardStandardDeviation"}}:</th>
+                                        <td headers="userHistoryStatsCardStandardDeviationHeader">{{getUserCardsStandardDeviation}}</td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="user-history-title">
+                            <div  id="bonusUserHistoryTable" class="user-history-title">
                                 <h4>{{_ "leitnerProgress.modal.userHistory.table.title"}}</h4>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-striped table-hover">
+                                <table aria-describedby="bonusUserHistoryTable" class="table table-striped table-hover">
                                     <tbody>
                                     <tr>
-                                        <th>{{_ "leitnerProgress.modal.userHistory.table.date"}}</th>
-                                        <th>{{_ "leitnerProgress.modal.userHistory.table.reason.title"}}</th>
-                                        <th>{{_ "leitnerProgress.modal.userHistory.table.workload.title"}}</th>
-                                        <th>{{_ "leitnerProgress.modal.userHistory.table.known"}}</th>
-                                        <th>{{_ "leitnerProgress.modal.userHistory.table.notKnown"}}</th>
-                                        <th class="visible-md visible-lg">{{_
-                                                "leitnerProgress.modal.userHistory.table.status.title"}}</th>
-                                        <th class="visible-lg">{{_ "leitnerProgress.modal.userHistory.table.duration"}}</th>
+                                        <th scope="col"><a class="sort-bonus-content sort-bonus-user-history" data-content="date">{{_ "leitnerProgress.modal.userHistory.table.date"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "date")}}</th>
+                                        <th scope="col"><a class="sort-bonus-content sort-bonus-user-history" data-content="reason">{{_ "leitnerProgress.modal.userHistory.table.reason.title"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "reason")}}</th>
+                                        <th scope="col"><a class="sort-bonus-content sort-bonus-user-history" data-content="workload">{{_ "leitnerProgress.modal.userHistory.table.workload.title"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "workload")}}</th>
+                                        <th scope="col"><a class="sort-bonus-content sort-bonus-user-history" data-content="known">{{_ "leitnerProgress.modal.userHistory.table.known"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "known")}}</th>
+                                        <th scope="col"><a class="sort-bonus-content sort-bonus-user-history" data-content="notKnown">{{_ "leitnerProgress.modal.userHistory.table.notKnown"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "notKnown")}}</th>
+                                        <th scope="col" class="visible-md visible-lg"><a class="sort-bonus-content sort-bonus-user-history" data-content="statusCode">{{_ "leitnerProgress.modal.userHistory.table.status.title"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "statusCode")}}</th>
+                                        <th scope="col" class="visible-lg"><a class="sort-bonus-content sort-bonus-user-history" data-content="duration">{{_ "leitnerProgress.modal.userHistory.table.duration"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "duration")}}</th>
+                                        <th scope="col" class="visible-lg"><a class="sort-bonus-content sort-bonus-user-history" data-content="cardArithmeticMean">{{_ "leitnerProgress.modal.userHistory.stats.duration.cardArithmeticMean.filter"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "cardArithmeticMean")}}</th>
+                                        <th scope="col">{{_ "leitnerProgress.taskHistory"}}</th>
                                     </tr>
                                     {{#each getWorkloadHistory}}
                                         <tr>
@@ -93,8 +105,39 @@
                                             <td>{{getWorkload}}</td>
                                             <td>{{this.known}}</td>
                                             <td>{{this.notKnown}}</td>
-                                            <td class="visible-md visible-lg">{{getStatus}}</td>
+                                            <td class="visible-md visible-lg">{{this.statusText}}</td>
                                             <td class="visible-lg">{{getDuration this.duration}}</td>
+                                            <td class="visible-lg">{{humanizeDuration this.cardArithmeticMean}}</td>
+                                            <td>
+                                                {{#if canDisplayTaskHistory}}
+                                                <a class="showBonusTaskHistory" data-toggle="modal" href="#bonusTaskHistoryModal"
+                                                   data-user="{{this.user_id}}"
+                                                   data-cardset="{{this.cardset_id}}"
+                                                   data-task="{{this.task_id}}"
+                                                   data-known="{{this.known}}"
+                                                   data-notknown="{{this.notKnown}}"
+                                                   data-workload="{{this.workload}}"
+                                                   data-reason="{{getReason}}"
+                                                   data-duration="{{this.duration}}"
+                                                   data-cardArithmeticMean="{{this.cardArithmeticMean}}"
+                                                   data-cardMedian="{{this.cardMedian}}"
+                                                   data-cardStandardDeviation="{{this.cardStandardDeviation}}"
+                                                >
+                                                <em class="far fa-clock" title="{{_ "leitnerProgress.tooltip.taskHistory"}}"
+                                                   data-user="{{this.user_id}}"
+                                                   data-cardset="{{this.cardset_id}}"
+                                                   data-task="{{this.task_id}}"
+                                                   data-known="{{this.known}}"
+                                                   data-notknown="{{this.notKnown}}"
+                                                   data-workload="{{this.workload}}"
+                                                   data-reason="{{getReason}}"
+                                                   data-duration="{{this.duration}}"
+                                                   data-cardArithmeticMean="{{this.cardArithmeticMean}}"
+                                                   data-cardMedian="{{this.cardMedian}}"
+                                                   data-cardStandardDeviation="{{this.cardStandardDeviation}}"
+                                                ></em></a>
+                                                {{/if}}
+                                            </td>
                                         </tr>
                                     {{/each}}
                                     </tbody>

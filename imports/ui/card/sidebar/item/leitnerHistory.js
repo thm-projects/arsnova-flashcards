@@ -3,6 +3,7 @@ import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
+import {LeitnerHistoryUtilities} from "../../../../util/leitnerHistory";
 
 Template.cardSidebarItemLeitnerHistory.helpers({
 	isActive: function () {
@@ -18,7 +19,7 @@ Template.cardSidebarItemLeitnerHistory.events({
 				throw new Meteor.Error(error.statusCode, 'Error could not receive content for history');
 			}
 			if (result) {
-				Session.set('selectedBonusUserHistoryData', result);
+				Session.set('selectedBonusUserHistoryData', LeitnerHistoryUtilities.prepareUserHistoryData(result));
 			}
 		});
 	}

@@ -10,6 +10,7 @@ import {CardNavigation} from "../../util/cardNavigation";
 import {MainNavigation} from "../../util/mainNavigation";
 import {ServerStyle} from "../../util/styles.js";
 import {AspectRatio} from "../../util/aspectRatio.js";
+import * as leitnerStatisticsConfig from "../../config/leitnerHistory.js";
 import "../impressum/modal/statistics/statistics.js";
 import "../welcome/welcome.js";
 import "../wordcloud/wordcloud.js";
@@ -69,6 +70,14 @@ Session.setDefault('selectedAnswers', []);
 // Cardset bonus history
 Session.setDefault('selectedBonusUser', undefined);
 Session.setDefault('selectedBonusUserHistoryData', undefined);
+Session.setDefault('selectedBonusTaskHistoryData', undefined);
+Session.setDefault('selectedBonusTaskHistoryStats', undefined);
+
+// Cardset bonus history sort options
+Session.setDefault('sortBonusUsers', leitnerStatisticsConfig.defaultBonusUserSortSettings);
+Session.setDefault('sortBonusUserHistory', leitnerStatisticsConfig.defaultUserHistorySortSetting);
+Session.setDefault('sortBonusUserTaskHistory', leitnerStatisticsConfig.defaultTaskHistorySortSettings);
+
 Session.setDefault('hideUserNames', true);
 
 function connectionStatus() {
