@@ -109,6 +109,10 @@ Template.cardsetLearnActivityStatistic.events({
 	"click .detailed-stats": function (event) {
 		let user = {};
 		user.index = $(event.target).data('index');
+		user.firstName = $(event.target).data('firstname');
+		user.lastName = $(event.target).data('lastname');
+		user.email = $(event.target).data('email');
+		user.isInBonus = true;
 		Session.set('selectedBonusUser', user);
 		LeitnerProgress.setupTempData(FlowRouter.getParam('_id'), $(event.target).data('id'), 'cardset');
 		$('#progressModal').modal('show');
@@ -124,7 +128,8 @@ Template.cardsetLearnActivityStatistic.events({
 		user.index = $(event.target).data('index');
 		user.firstName = $(event.target).data('firstname');
 		user.lastName = $(event.target).data('lastname');
-
+		user.email = $(event.target).data('email');
+		user.isInBonus = true;
 		if (user.user_id !== undefined) {
 			Session.set('selectedBonusUser', user);
 			Meteor.call("getLearningHistoryData", user.user_id, FlowRouter.getParam('_id'), function (error, result) {
