@@ -2,9 +2,7 @@
   "admin": {
     "messageOfTheDay": "News",
     "matomoStatistics": "Matomo-Statistiken",
-    "allLearnedCardsets": "Nach dem Leitner-Plan gelernte Karten über alle Karteien",
     "learnedCardsets": "Lernstatistik der Kartei",
-    "userProgress": "Lernstand für ",
     "myProgress": "Lernstand ",
     "dashboard": "Dashboard",
     "cardsets": "Karteien",

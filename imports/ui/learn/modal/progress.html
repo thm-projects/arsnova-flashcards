@@ -10,12 +10,52 @@
                         {{> mainModalItemCloseIcon}}
                         <h4 id="progressTitle" class="modal-title">
                             {{#if gotLocalLeitnerGraphData}}
-                                {{getChartTitle}}
+                                {{getTitle}}
                             {{/if}}
                         </h4>
                     </div>
                     <div class="modal-body">
                         {{#if gotLocalLeitnerGraphData}}
+                            <div id="leitnerProgressStatsGeneralTitle" class="user-history-title">
+                                <h4>{{_ "leitnerProgress.table.general.title"}}</h4>
+                            </div>
+                            <div class="table-responsive">
+                                <table aria-describedby="leitnerProgressStatsGeneralTitle" class="table table-striped table-hover table-user-history table-history-global-stats">
+                                    <tbody>
+                                    <tr>
+                                        <th id="leitnerProgressStatsGeneralUserHeader">{{_ "leitnerProgress.table.general.user"}}:</th>
+                                        <td headers="leitnerProgressStatsGeneralUserHeader">{{leitnerProgressStatsGetUserName}}</td>
+                                        {{# unless leitnerProgressStatsHideUserName}}
+                                            <th id="leitnerProgressStatsGeneralEMailHeader">{{_ "leitnerProgress.table.general.eMail"}}:</th>
+                                            <td headers="leitnerProgressStatsGeneralEMailHeader">{{{leitnerProgressStatsGetEMail}}}</td>
+                                        {{/unless}}
+                                    </tr>
+                                    {{#if isCardsetView}}
+                                        <tr>
+                                            <th id="leitnerProgressStatsGeneralCardsetHeader">
+                                                {{#if leitnerProgressStatsIsRep 1}}
+                                                    {{_ "leitnerProgress.table.general.repetitorium"}}:
+                                                {{else}}
+                                                    {{_ "leitnerProgress.table.general.cardset"}}:
+                                                {{/if}}
+                                            </th>
+                                            <td headers="leitnerProgressStatsGeneralCardsetHeader">
+                                                {{leitnerProgressStatsGetCardsetTitle 1}}
+                                            </td>
+                                            <th id="leitnerProgressStatsGeneralBonusHeader">{{_ "leitnerProgress.table.general.isInBonus.title"}}:</th>
+                                            <td headers="leitnerProgressStatsGeneralBonusHeader">
+                                                {{#if leitnerProgressStatsIsInBonus 1}}
+                                                    {{_ "leitnerProgress.table.general.isInBonus.yes"}}
+                                                {{else}}
+                                                    {{_ "leitnerProgress.table.general.isInBonus.no"}}
+                                                {{/if}}
+                                            </td>
+                                        </tr>
+                                    {{/if}}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br>
                             {{> progress type="normal"}}
                         {{else}}
                             {{> loadingScreen}}

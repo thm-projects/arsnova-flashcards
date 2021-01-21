@@ -32,24 +32,6 @@ Template.bonusUserHistoryModal.onRendered(function () {
 });
 
 Template.bonusUserHistoryModal.helpers({
-	getTitle: function () {
-		if (Session.get('selectedBonusUserHistoryData') !== undefined) {
-			if (Route.isFilterIndex() || Route.isBox()) {
-				if (Session.get('selectedBonusUserHistoryData')[0].cardsetShuffled) {
-					return TAPi18n.__('leitnerProgress.modal.userHistory.titleRepetitorium', {repetitorium: Session.get('selectedBonusUserHistoryData')[0].cardsetTitle});
-				} else {
-					return TAPi18n.__('leitnerProgress.modal.userHistory.titleCardset', {cardset: Session.get('selectedBonusUserHistoryData')[0].cardsetTitle});
-				}
-			} else {
-				if (Session.get('hideUserNames')) {
-					let hiddenUser = TAPi18n.__('leitnerProgress.hiddenUserPlaceholder', {index: Session.get('selectedBonusUser').index});
-					return TAPi18n.__('leitnerProgress.modal.userHistory.titleHiddenUser', {hiddenUser: hiddenUser});
-				} else {
-					return TAPi18n.__('leitnerProgress.modal.userHistory.title', {lastName: Session.get('selectedBonusUser').lastName, firstName: Session.get('selectedBonusUser').firstName});
-				}
-			}
-		}
-	},
 	gotUserData: function () {
 		if (Route.isFilterIndex() || Route.isBox()) {
 			return true;

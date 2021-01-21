@@ -48,9 +48,6 @@ Template.learnAlgorithms.onCreated(function () {
 
 Template.learnAlgorithms.onDestroyed(function () {
 	Session.set('activeCard', undefined);
-	if (Route.isBox() && Bonus.isInBonus(FlowRouter.getParam('_id'))) {
-		PomodoroTimer.updateServerTimerIntervalStop();
-	}
 	PomodoroTimer.showPomodoroFullsize();
 });
 

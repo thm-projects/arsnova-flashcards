@@ -29,21 +29,7 @@ Template.bonusTaskHistoryModal.helpers({
 	getTitle: function () {
 		if (Session.get('selectedBonusUserHistoryData') !== undefined) {
 			let date =  Utilities.getMomentsDate(Session.get('selectedBonusUserHistoryData').createdAt, false, 0, false);
-			if (Session.get('hideUserNames') && Route.isCardsetLeitnerStats()) {
-				let hiddenUser = TAPi18n.__('leitnerProgress.hiddenUserPlaceholder', {index: Session.get('selectedBonusUser').index});
-				return TAPi18n.__('leitnerProgress.modal.taskHistory.titleHiddenUser', {cardset: Session.get('selectedBonusUserHistoryData')[0].cardsetTitle, hiddenUser: hiddenUser, date: date});
-			} else {
-				let firstName;
-				let lastName;
-				if (Route.isFilterIndex() || Route.isBox()) {
-					firstName = Meteor.user().profile.givenname;
-					lastName = Meteor.user().profile.birthname;
-				} else {
-					firstName = Session.get('selectedBonusUser').firstName;
-					lastName = Session.get('selectedBonusUser').lastName;
-				}
-				return TAPi18n.__('leitnerProgress.modal.taskHistory.title', {cardset: Session.get('selectedBonusUserHistoryData')[0].cardsetTitle, lastName: lastName, firstName: firstName, date: date});
-			}
+			return TAPi18n.__('leitnerProgress.modal.taskHistory.title', {date: date});
 		}
 	},
 	gotTaskHistoryStats: function () {

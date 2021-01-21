@@ -36,3 +36,73 @@ Template.registerHelper("getNextCardTime", function () {
 		return TAPi18n.__('noCardsToLearn') + nextDate.format("D. MMMM") + TAPi18n.__('at') + nextDate.format("HH:mm") + TAPi18n.__('released');
 	}
 });
+
+Template.registerHelper("leitnerProgressStatsIsRep", function (type = 0) {
+	if (type === 1) {
+		let cardset_id = "";
+		if (Route.isFilterIndex() || Route.isBox()) {
+			cardset_id = Session.get('workloadProgressCardsetID');
+		} else {
+			cardset_id = FlowRouter.getParam('_id');
+		}
+		return Cardsets.findOne({_id: cardset_id}).shuffled;
+	} else if (Session.get('selectedBonusUserHistoryData') !== undefined) {
+		return Session.get('selectedBonusUserHistoryData')[0].cardsetShuffled;
+	}
+});
+
+Template.registerHelper("leitnerProgressStatsGetCardsetTitle", function (type = 0) {
+	if (type === 1) {
+		let cardset_id = "";
+		if (Route.isFilterIndex() || Route.isBox()) {
+			cardset_id = Session.get('workloadProgressCardsetID');
+		} else {
+			cardset_id = FlowRouter.getParam('_id');
+		}
+		return Cardsets.findOne({_id: cardset_id}).name;
+	} else if (Session.get('selectedBonusUserHistoryData') !== undefined) {
+		return Session.get('selectedBonusUserHistoryData')[0].cardsetTitle;
+	}
+});
+
+Template.registerHelper("leitnerProgressStatsIsInBonus", function (type = 0) {
+	if (Route.isFilterIndex() || Route.isBox()) {
+		let cardset_id = "";
+		if (type === 1) {
+			cardset_id = Session.get('workloadProgressCardsetID');
+		} else if (Session.get('selectedBonusUserHistoryData') !== undefined) {
+			cardset_id = Session.get('selectedBonusUserHistoryData')[0].cardset_id;
+		}
+		let workload = Workload.findOne({user_id: Meteor.userId(), cardset_id: cardset_id});
+		if (workload !== undefined) {
+			return workload.leitner.bonus;
+		}
+	} else {
+		return Session.get('selectedBonusUser').isInBonus;
+	}
+});
+
+Template.registerHelper("leitnerProgressStatsHideUserName", function () {
+	return Session.get('hideUserNames') && !(Route.isFilterIndex() || Route.isBox());
+});
+
+Template.registerHelper("leitnerProgressStatsGetEMail", function () {
+	let email = "";
+	if (Route.isFilterIndex() || Route.isBox()) {
+		email = Meteor.user().email;
+	} else {
+		email = Session.get('selectedBonusUser').email;
+	}
+
+	return `<a href="mailto:${email}">${email}</a>`;
+});
+
+Template.registerHelper("leitnerProgressStatsGetUserName", function () {
+	if (Session.get('hideUserNames') && !(Route.isFilterIndex() || Route.isBox())) {
+		return TAPi18n.__('leitnerProgress.hiddenUserPlaceholder', {index: Session.get('selectedBonusUser').index});
+	} else if (Route.isFilterIndex() || Route.isBox()) {
+		return `${Meteor.user().profile.birthname}, ${Meteor.user().profile.givenname}`;
+	} else {
+		return `${Session.get('selectedBonusUser').lastName}, ${Session.get('selectedBonusUser').firstName}`;
+	}
+});
