@@ -136,11 +136,13 @@ Meteor.methods({
 		let highestSessionTask = LeitnerUtilities.getHighestLeitnerTaskSessionID(cardset_id, user_id);
 		let leitnerTasks = LeitnerTasks.find({user_id: user_id, cardset_id: cardset_id, session: highestSessionTask.session}, {sort: {createdAt: -1}}).fetch();
 		let result = [];
-		let workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id, "leitner.bonus": true});
+		let workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id});
+		let isInBonus = false;
 		let userCardMedian = 0;
 		let userCardArithmeticMean = 0;
 		let userCardStandardDeviation = 0;
 		if (workload !== undefined && workload.leitner.timelineStats !== undefined) {
+			isInBonus = workload.leitner.bonus;
 			userCardMedian = workload.leitner.timelineStats.median;
 			userCardArithmeticMean = workload.leitner.timelineStats.arithmeticMean;
 			userCardStandardDeviation = workload.leitner.timelineStats.standardDeviation;
@@ -148,6 +150,7 @@ Meteor.methods({
 		for (let i = 0; i < leitnerTasks.length; i++) {
 			let item = {};
 			let missedLastDeadline;
+			item.isInBonus = isInBonus;
 			item.cardsetShuffled = cardset.shuffled;
 			item.cardsetTitle = cardset.name;
 			item.date = leitnerTasks[i].createdAt;

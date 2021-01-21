@@ -25,8 +25,26 @@
     "user": {
       "missingName": "Unvollständig"
     },
+    "table": {
+      "general": {
+        "title": "Allgemein",
+        "user": "Benutzer",
+        "eMail": "E-Mail",
+        "cardset": "Kartei",
+        "repetitorium": "Repetitorium",
+        "isInBonus": {
+          "title": "Eingeschrieben in Bonus?",
+          "yes": "Ja",
+          "no": "Nein"
+        }
+      }
+    },
     "manage": "Verwalten",
     "modal": {
+      "progress": {
+        "titleAll": "Nach dem Leitner-Plan gelernte Karten über alle Karteien",
+        "titleCardset": "Nach dem Leitner-Plan gelernte Karten"
+      },
       "removeUser": {
         "title": "User aus der Bonusphase entfernen?",
         "text": "Willst du diesen Datensatz aus der Bonusphase entfernen?",
@@ -36,10 +54,7 @@
         }
       },
       "userHistory": {
-        "title": "Verlauf von Benutzer __firstName__, __lastName__",
-        "titleHiddenUser": "Verlauf von Benutzer __hiddenUser__",
-        "titleCardset": "Verlauf für Kartei »__cardset__«",
-        "titleRepetitorium": "Verlauf für Repetitorium »__repetitorium__«",
+        "title": "Lernverlauf",
         "stats": {
           "title": "Statistik",
           "tasks": {
@@ -96,8 +111,7 @@
         }
       },
       "taskHistory": {
-        "title": "Freischaltungstag __date__ für »__cardset__« von __firstName__, __lastName__" ,
-        "titleHiddenUser": "Freischaltungstag __date__ für »__cardset__« von __hiddenUser__",
+        "title": "Lernverlauf für Freischaltungstag »__date__«",
         "stats": {
           "title": "Termin"
         },

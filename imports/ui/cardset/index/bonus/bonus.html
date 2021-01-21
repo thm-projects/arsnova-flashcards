@@ -111,6 +111,7 @@
                                    data-firstname="{{this.birthname}}"
                                    data-lastname="{{this.givenname}}"
                                    data-index="{{adjustIndex @index}}"
+                                   data-email="{{this.email}}"
                                    class="showBonusUserHistory" data-toggle="modal"
                                    href="#bonusUserHistoryModal"><i
                                         class="far fa-clock"
@@ -118,21 +119,28 @@
                                         data-lastname="{{this.givenname}}"
                                         data-id="{{this.user_id}}"
                                         data-index="{{adjustIndex @index}}"
+                                        data-email="{{this.email}}"
                                         title="{{_ "leitnerProgress.tooltip.userHistory"}}"></i></a>
                             </td>
                             <td>
                                 <a data-id="{{this.user_id}}" data-index="{{adjustIndex @index}}"
+                                   data-firstname="{{this.birthname}}"
+                                   data-lastname="{{this.givenname}}"
+                                   data-email="{{this.email}}"
                                    class="detailed-stats"><i
                                         class="far fa-chart-bar"
                                         data-id="{{this.user_id}}"
                                         data-index="{{adjustIndex @index}}"
+                                        data-firstname="{{this.birthname}}"
+                                        data-lastname="{{this.givenname}}"
+                                        data-email="{{this.email}}"
                                         title="{{_ "leitnerProgress.tooltip.graph"}}"></i></a>
                             </td>
                             <td>
                                 <a class="removeBonusUser" data-toggle="modal"
                                         href="#removeUserFromBonusModal" data-user_id="{{this.user_id}}"
-                                        data-firstname="{{this.birthname}}"
-                                        data-lastname="{{this.givenname}}"
+                                        data-firstname="{{this.givenname}}"
+                                        data-lastname="{{this.birthname}}"
                                         data-email="{{this.email}}" data-box1="{{this.box1}}"
                                         data-box2="{{this.box2}}" data-box3="{{this.box3}}"
                                         data-box4="{{this.box4}}"
@@ -141,8 +149,8 @@
                                    data-mailnotification="{{this.mailNotification}}" data-webnotification="{{this.webNotification}}"
                                         title="{{_ "leitnerProgress.tooltip.removeUser"}}">
                                     <i class="fas fa-trash" data-user_id="{{this.user_id}}"
-                                       data-firstname="{{this.birthname}}"
-                                       data-lastname="{{this.givenname}}"
+                                       data-firstname="{{this.givenname}}"
+                                       data-lastname="{{this.birthname}}"
                                        data-email="{{this.email}}" data-box1="{{this.box1}}"
                                        data-box2="{{this.box2}}" data-box3="{{this.box3}}"
                                        data-box4="{{this.box4}}"
