@@ -10,6 +10,8 @@ import {AspectRatio} from "../../../util/aspectRatio";
 import {Fullscreen} from "../../../util/fullscreen";
 import {CardsetNavigation} from "../../../util/cardsetNavigation";
 import {AnswerUtilities} from "../../../util/answers";
+import {Bonus} from "../../../util/bonus";
+import {PomodoroTimer} from "../../../util/pomodoroTimer";
 
 FlowRouter.route('/box/:_id', {
 	name: RouteNames.box,
@@ -47,6 +49,13 @@ FlowRouter.route('/box/:_id', {
 	triggersEnter: [
 		(context, redirect) => {
 			Fullscreen.setMode();
+		}
+	],
+	triggersExit: [
+		(context, redirect) => {
+			if (Bonus.isInBonus(FlowRouter.getParam('_id'))) {
+				PomodoroTimer.updateServerTimerIntervalStop();
+			}
 		}
 	]
 });
