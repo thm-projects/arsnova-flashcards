@@ -17,7 +17,7 @@ function getSettings(type) {
 	return sortSettings;
 }
 
-Template.cardsetLearnActivityStatisticItemSort.helpers({
+Template.learningBonusStasticsItemSort.helpers({
 	isVisible: function () {
 		let sortSettings = getSettings(this.type);
 		return this.content === sortSettings.content;

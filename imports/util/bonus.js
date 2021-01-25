@@ -55,9 +55,9 @@ export let Bonus = class Bonus {
 		let notifications = "";
 		if (ServerSettings.isMailEnabled() && user.mailNotification) {
 			if (isCSVExport) {
-				notifications += TAPi18n.__('leitnerProgress.notification.mail', {}, "de");
+				notifications += TAPi18n.__('learningStatistics.notification.mail', {}, "de");
 			} else {
-				notifications += "<i class='fas fa-envelope'> " + TAPi18n.__('leitnerProgress.notification.mail') + "</i>";
+				notifications += "<i class='fas fa-envelope'> " + TAPi18n.__('learningStatistics.notification.mail') + "</i>";
 			}
 		}
 		if (ServerSettings.isPushEnabled() && user.webNotification) {
@@ -65,9 +65,9 @@ export let Bonus = class Bonus {
 				notifications += " & ";
 			}
 			if (isCSVExport) {
-				notifications += TAPi18n.__('leitnerProgress.notification.push', {}, "de");
+				notifications += TAPi18n.__('learningStatistics.notification.push', {}, "de");
 			} else {
-				notifications += "<i class='fas fa-bell'> " + TAPi18n.__('leitnerProgress.notification.push') + "</i>";
+				notifications += "<i class='fas fa-bell'> " + TAPi18n.__('learningStatistics.notification.push') + "</i>";
 			}
 		}
 		return notifications;

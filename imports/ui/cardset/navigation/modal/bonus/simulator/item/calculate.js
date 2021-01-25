@@ -1,6 +1,6 @@
 import "./calculate.html";
 import {BonusForm} from "../../../../../../../util/bonusForm";
-import {LeitnerProgress} from "../../../../../../../util/leitnerProgress";
+import {LearningStatus} from "../../../../../../../util/learningStatus";
 
 /*
  * ############################################################################
@@ -12,6 +12,6 @@ Template.bonusFormSimulatorCalculate.events({
 	'click .calculateWorkload': function () {
 		BonusForm.adjustErrorCount();
 		BonusForm.calculateWorkload(BonusForm.getMaxWorkload());
-		LeitnerProgress.updateGraph();
+		LearningStatus.updateGraph();
 	}
 });

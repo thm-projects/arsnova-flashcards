@@ -22,7 +22,7 @@ import "./item/help.js";
 import "./item/swapQuestionAnswer.js";
 import "./item/presentation.js";
 import "./item/toggle3D.js";
-import "./item/leitnerGraph.js";
+import "./item/learningStatus.js";
 import "./item/leitnerHistory.js";
 import {Route} from "../../../util/route";
 import {Bonus} from "../../../util/bonus";

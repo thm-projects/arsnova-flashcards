@@ -6,15 +6,15 @@
             </div>
         {{/if}}
         <div class="row">
-            <div class="col-xs-12 ">{{{getMaxWorkload}}}{{#unless isShuffledCardset}}<span class="hidden-xs">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{_ "leitnerProgress.cardCount" cardCount=(getCardsetCardCount true)}}</span>{{/unless}}</div>
-            {{#unless isShuffledCardset}}<div class="col-xs-12 visible-xs">{{_ "leitnerProgress.cardCount" cardCount=(getCardsetCardCount true)}}</div>{{/unless}}
+            <div class="col-xs-12 ">{{{getMaxWorkload}}}{{#unless isShuffledCardset}}<span class="hidden-xs">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{_ "learningStatistics.cardCount" cardCount=(getCardsetCardCount true)}}</span>{{/unless}}</div>
+            {{#unless isShuffledCardset}}<div class="col-xs-12 visible-xs">{{_ "learningStatistics.cardCount" cardCount=(getCardsetCardCount true)}}</div>{{/unless}}
         </div>
     {{/if}}
     {{#if isProgressType 'user'}}
-        <div class="col-xs-12">{{_ "leitnerProgress.cardCount" cardCount=getTotalLeitnerCardCountUser}}</div>
+        <div class="col-xs-12">{{_ "learningStatistics.cardCount" cardCount=getTotalLeitnerCardCountUser}}</div>
     {{/if}}
     {{#if isProgressType 'admin'}}
-        <div class="col-xs-12">{{_ "leitnerProgress.cardCount" cardCount=getTotalLeitnerCardCount}}</div>
+        <div class="col-xs-12">{{_ "learningStatistics.cardCount" cardCount=getTotalLeitnerCardCount}}</div>
     {{/if}}
     <canvas id="{{getTargetID}}" data-box1="{{countBox 1}}"
             data-box2="{{countBox 2}}" data-box3="{{countBox 3}}" data-box4="{{countBox 4}}"
@@ -29,7 +29,7 @@
                         class="btn btn-raised btn-default setCardsetFilterDropdown longButton"
                         data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"
-                        value="-1">{{_ "leitnerProgress.indexDefault" cardsetCount=(getCardsetCount false) cardCount=(getCardsetCardCount true)}}
+                        value="-1">{{_ "learningStatistics.indexDefault" cardsetCount=(getCardsetCount false) cardCount=(getCardsetCardCount true)}}
                 </button>
                 <button type="button"
                         class="btn btn-raised dropdown-toggle setCardsetFilterDropdown setCardTypeDropdownCaret"
@@ -42,7 +42,7 @@
                     <li class="cardset" value="-1" data-id="-1" data-count="{{getCardsetCardCount true}}" data-name="{{getCardsetCount}}">
                         <a href="#">
                             <div id="activeCardset">
-                                {{_ "leitnerProgress.indexDefault" cardsetCount=(getCardsetCount false) cardCount=(getCardsetCardCount true)}}
+                                {{_ "learningStatistics.indexDefault" cardsetCount=(getCardsetCount false) cardCount=(getCardsetCardCount true)}}
                             </div>
                             <div class="col-xs-12 cardset-details">
                                 {{> cardsetLabels (setModalLabelValue shuffledData true)}}

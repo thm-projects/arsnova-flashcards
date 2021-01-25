@@ -368,8 +368,6 @@
       "arsnovaLite": "Mit »frag.jetzt« kann dein Publikum Fragen an dich stellen und die Fragen der anderen up und down voten.",
       "hideSidebar": "Verberge die Rand-Buttons",
       "showSidebar": "Zeige die Rand-Buttons",
-      "leitnerHistory": "Zeige mein Lernprotokoll",
-      "leitnerGraph": "Zeige meinen Lernstand",
       "swapQuestionAnswer": {
         "normal": "Zeige die Rückseite zuerst",
         "shuffled": "Zeige zuerst die Rückseite für die Karteitypen: __cardTypes__",

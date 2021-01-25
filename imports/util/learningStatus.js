@@ -3,7 +3,7 @@ import {CardType} from "./cardTypes";
 import {Meteor} from "meteor/meteor";
 import {Mongo} from "meteor/mongo";
 import {Session} from "meteor/session";
-import * as config from "../config/leitnerProgressChart.js";
+import * as config from "../config/learningStatus.js";
 import {NavigatorCheck} from "./navigatorCheck";
 import {BonusForm} from "./bonusForm";
 
@@ -17,7 +17,7 @@ let difficultyGotCards;
 let WorkloadCardsetCollection = new Mongo.Collection(null);
 let WorkloadLeitnerCollection = new Mongo.Collection(null);
 
-export let LeitnerProgress = class LeitnerProgress {
+export let LearningStatus = class LearningStatus {
 	static clearTempData () {
 		WorkloadCardsetCollection = new Mongo.Collection(null);
 		WorkloadLeitnerCollection = new Mongo.Collection(null);
@@ -187,34 +187,34 @@ export let LeitnerProgress = class LeitnerProgress {
 		if (Session.get('workloadProgressType') === 'cardset') {
 			learningInterval = WorkloadCardsetCollection.findOne({_id: Session.get('workloadProgressCardsetID')}).learningInterval;
 			if (learningInterval[0] <= 1) {
-				boxInterval1 = TAPi18n.__('leitnerProgress.boxIntervalDaily', {}, Session.get('activeLanguage'));
+				boxInterval1 = TAPi18n.__('learningStatistics.boxIntervalDaily', {}, Session.get('activeLanguage'));
 			} else {
-				boxInterval1 = TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[0]}, Session.get('activeLanguage'));
+				boxInterval1 = TAPi18n.__('learningStatistics.boxInterval', {days: learningInterval[0]}, Session.get('activeLanguage'));
 			}
-			boxInterval2 = TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[1]}, Session.get('activeLanguage'));
-			boxInterval3 = TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[2]}, Session.get('activeLanguage'));
-			boxInterval4 = TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[3]}, Session.get('activeLanguage'));
-			boxInterval5 = TAPi18n.__('leitnerProgress.boxInterval', {days: learningInterval[4]}, Session.get('activeLanguage'));
+			boxInterval2 = TAPi18n.__('learningStatistics.boxInterval', {days: learningInterval[1]}, Session.get('activeLanguage'));
+			boxInterval3 = TAPi18n.__('learningStatistics.boxInterval', {days: learningInterval[2]}, Session.get('activeLanguage'));
+			boxInterval4 = TAPi18n.__('learningStatistics.boxInterval', {days: learningInterval[3]}, Session.get('activeLanguage'));
+			boxInterval5 = TAPi18n.__('learningStatistics.boxInterval', {days: learningInterval[4]}, Session.get('activeLanguage'));
 		}
-		let firstBoxDescription = TAPi18n.__('leitnerProgress.boxNotLearned', {}, Session.get('activeLanguage'));
+		let firstBoxDescription = TAPi18n.__('learningStatistics.boxNotLearned', {}, Session.get('activeLanguage'));
 		let box1Label = [], box2Label = [], box3Label = [], box4Label = [], box5Label = [], box6Label;
 		if (!NavigatorCheck.isSmartphone()) {
 			if ($(window).width() < 993) {
-				firstBoxDescription = TAPi18n.__('leitnerProgress.boxNotLearnedShort', {}, Session.get('activeLanguage'));
+				firstBoxDescription = TAPi18n.__('learningStatistics.boxNotLearnedShort', {}, Session.get('activeLanguage'));
 			}
-			box1Label = [TAPi18n.__('leitnerProgress.box', {number: 1}, Session.get('activeLanguage')), boxInterval1, firstBoxDescription];
-			box2Label = [TAPi18n.__('leitnerProgress.box', {number: 2}, Session.get('activeLanguage')), boxInterval2];
-			box3Label = [TAPi18n.__('leitnerProgress.box', {number: 3}, Session.get('activeLanguage')), boxInterval3];
-			box4Label = [TAPi18n.__('leitnerProgress.box', {number: 4}, Session.get('activeLanguage')), boxInterval4];
-			box5Label = [TAPi18n.__('leitnerProgress.box', {number: 5}, Session.get('activeLanguage')), boxInterval5];
+			box1Label = [TAPi18n.__('learningStatistics.box', {number: 1}, Session.get('activeLanguage')), boxInterval1, firstBoxDescription];
+			box2Label = [TAPi18n.__('learningStatistics.box', {number: 2}, Session.get('activeLanguage')), boxInterval2];
+			box3Label = [TAPi18n.__('learningStatistics.box', {number: 3}, Session.get('activeLanguage')), boxInterval3];
+			box4Label = [TAPi18n.__('learningStatistics.box', {number: 4}, Session.get('activeLanguage')), boxInterval4];
+			box5Label = [TAPi18n.__('learningStatistics.box', {number: 5}, Session.get('activeLanguage')), boxInterval5];
 		} else {
-			box1Label = [TAPi18n.__('leitnerProgress.box', {number: 1}, Session.get('activeLanguage'))];
-			box2Label = [TAPi18n.__('leitnerProgress.box', {number: 2}, Session.get('activeLanguage'))];
-			box3Label = [TAPi18n.__('leitnerProgress.box', {number: 3}, Session.get('activeLanguage'))];
-			box4Label = [TAPi18n.__('leitnerProgress.box', {number: 4}, Session.get('activeLanguage'))];
-			box5Label = [TAPi18n.__('leitnerProgress.box', {number: 5}, Session.get('activeLanguage'))];
+			box1Label = [TAPi18n.__('learningStatistics.box', {number: 1}, Session.get('activeLanguage'))];
+			box2Label = [TAPi18n.__('learningStatistics.box', {number: 2}, Session.get('activeLanguage'))];
+			box3Label = [TAPi18n.__('learningStatistics.box', {number: 3}, Session.get('activeLanguage'))];
+			box4Label = [TAPi18n.__('learningStatistics.box', {number: 4}, Session.get('activeLanguage'))];
+			box5Label = [TAPi18n.__('learningStatistics.box', {number: 5}, Session.get('activeLanguage'))];
 		}
-		box6Label = [TAPi18n.__('leitnerProgress.learned', {}, Session.get('activeLanguage'))];
+		box6Label = [TAPi18n.__('learningStatistics.learned', {}, Session.get('activeLanguage'))];
 		if (returnData) {
 			return [box1Label, box2Label, box3Label, box4Label, box5Label, box6Label];
 		} else {

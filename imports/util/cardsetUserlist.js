@@ -63,9 +63,9 @@ export let CardsetUserlist = class CardsetUserlist {
 			[TAPi18n.__('bonus.form.registrationPeriod.label', {}, ServerStyle.getClientLanguage()), moment(cardset.registrationPeriod).locale(ServerStyle.getClientLanguage()).format('LL')],
 			[TAPi18n.__('set-list.bonusSection.stats', {}, ServerStyle.getClientLanguage()), ""],
 			[TAPi18n.__('cardset.info.workload.bonus.count', {}, ServerStyle.getClientLanguage()), cardset.workload.bonus.count],
-			[TAPi18n.__('leitnerProgress.modal.userHistory.stats.duration.cardArithmeticMean.stats', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(cardset.leitner.timelineStats.arithmeticMean.bonus)],
-			[TAPi18n.__('leitnerProgress.modal.userHistory.stats.duration.cardMedian', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(cardset.leitner.timelineStats.median.bonus)],
-			[TAPi18n.__('leitnerProgress.modal.userHistory.stats.duration.cardStandardDeviation', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(cardset.leitner.timelineStats.standardDeviation.bonus)]
+			[TAPi18n.__('learningHistory.stats.duration.cardArithmeticMean.stats', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(cardset.leitner.timelineStats.arithmeticMean.bonus)],
+			[TAPi18n.__('learningHistory.stats.duration.cardMedian', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(cardset.leitner.timelineStats.median.bonus)],
+			[TAPi18n.__('learningHistory.stats.duration.cardStandardDeviation', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(cardset.leitner.timelineStats.standardDeviation.bonus)]
 		];
 	}
 
@@ -104,7 +104,7 @@ export let CardsetUserlist = class CardsetUserlist {
 
 				if (user[0].profile.name !== undefined && !Profile.isCompleted(user[0])) {
 					user[0].profile.birthname = user[0].profile.name;
-					user[0].profile.givenname = TAPi18n.__('leitnerProgress.user.missingName', {}, ServerStyle.getClientLanguage());
+					user[0].profile.givenname = TAPi18n.__('learningStatistics.user.missingName', {}, ServerStyle.getClientLanguage());
 					user[0].email = "";
 				}
 				let lastActivity = data[i].leitner.dateJoinedBonus;

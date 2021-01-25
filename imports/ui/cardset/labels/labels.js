@@ -1,4 +1,4 @@
-import {LeitnerProgress} from "../../../util/leitnerProgress";
+import {LearningStatus} from "../../../util/learningStatus";
 import {Template} from "meteor/templating";
 import './item/arsnovaClick.js';
 import './item/fragJetzt.js';
@@ -13,7 +13,7 @@ import "./labels.html";
 Template.cardsetLabels.helpers({
 	getCardsetCardCount: function () {
 		if (this.useLeitnerCount) {
-			return LeitnerProgress.getCardsetCardCount(true);
+			return LearningStatus.getCardsetCardCount(true);
 		} else {
 			return this.quantity;
 		}

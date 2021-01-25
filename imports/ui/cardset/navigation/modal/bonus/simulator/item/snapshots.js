@@ -1,7 +1,7 @@
 import "./snapshots.html";
 import {Session} from "meteor/session";
 import {BonusForm} from "../../../../../../../util/bonusForm";
-import {LeitnerProgress} from "../../../../../../../util/leitnerProgress";
+import {LearningStatus} from "../../../../../../../util/learningStatus";
 
 /*
  * ############################################################################
@@ -25,6 +25,6 @@ Template.bonusFormSimulatorSnapshots.helpers({
 Template.bonusFormSimulatorSnapshots.events({
 	'click .snapshot-date': function (event) {
 		Session.set('activeSimulatorSnapshotDate', $(event.target).data('id'));
-		LeitnerProgress.updateGraph();
+		LearningStatus.updateGraph();
 	}
 });

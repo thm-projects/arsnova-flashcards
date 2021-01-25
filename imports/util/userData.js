@@ -59,7 +59,7 @@ export function getAuthorName(owner, lastNameFirst = true, onlyFirstName = false
 			}
 		}
 		if (profileIncomplete) {
-			return author.profile.name + " (" + TAPi18n.__('leitnerProgress.user.missingName') + ")";
+			return author.profile.name + " (" + TAPi18n.__('learningStatistics.user.missingName') + ")";
 		} else {
 			return name;
 		}

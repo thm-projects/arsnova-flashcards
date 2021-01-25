@@ -1,40 +1,40 @@
-<template name="removeUserFromBonusModal">
-    <div class="modal fade" id="removeUserFromBonusModal" tabindex="-1" role="dialog"
-         aria-labelledby="removeUserFromBonusTitle">
+<template name="learningStatisticsRemoveBonusUserModal">
+    <div class="modal fade" id="learningStatisticsRemoveBonusUserModal" tabindex="-1" role="dialog"
+         aria-labelledby="learningStatisticsRemoveBonusUserTitle">
         <div class="modal-dialog modal-lg">
             <div class="modal-content modal-content-for-buttons">
                 <div class="modal-header">
                     <span class="modal-icon">
-                        <i class="fas fa-trash"></i>
+                        <i aria-hidden=true class="fas fa-trash"></i>
                     </span>
                     {{> mainModalItemCloseIcon}}
-                    <h4 id="removeUserFromBonusTitle" class="modal-title">{{_ "leitnerProgress.modal.removeUser.title"}}
+                    <h4 id="learningStatisticsRemoveBonusUserTitle" class="modal-title">{{_ "learningStatisticsRemoveBonusUser.title"}}
                     </h4>
                 </div>
                 <div class="modal-body">
-                    {{_ "leitnerProgress.modal.removeUser.text"}}
+                    {{_ "learningStatisticsRemoveBonusUser.text"}}
                     {{#with userData}}
-                        <table class="table table-striped table-hover table-user-list">
+                        <table aria-describedby="learningStatisticsRemoveBonusUserTitle" class="table table-striped table-hover table-user-list">
                             <tbody>
                             <tr>
                                 {{#if gotHiddenUserNames}}
-                                    <th>{{_ "leitnerProgress.hiddenUser"}}</th>
+                                    <th scope="col">{{_ "learningStatistics.hiddenUser"}}</th>
                                 {{else}}
-                                    <th>{{_ "panel-body.birthname"}}</th>
-                                    <th>{{_ "panel-body.givenname"}}</th>
-                                    <th>{{_ "panel-body.email"}}</th>
+                                    <th scope="col">{{_ "panel-body.birthname"}}</th>
+                                    <th scope="col">{{_ "panel-body.givenname"}}</th>
+                                    <th scope="col">{{_ "panel-body.email"}}</th>
                                 {{/if}}
-                                <th>{{_ "leitnerProgress.lastActivity"}}</th>
-                                <th>{{_ "leitnerProgress.box" number=1}}</th>
-                                <th>{{_ "leitnerProgress.box" number=2}}</th>
-                                <th>{{_ "leitnerProgress.box" number=3}}</th>
-                                <th>{{_ "leitnerProgress.box" number=4}}</th>
-                                <th>{{_ "leitnerProgress.box" number=5}}</th>
-                                <th>{{_ "leitnerProgress.learned"}}</th>
+                                <th scope="col">{{_ "learningStatistics.lastActivity"}}</th>
+                                <th scope="col">{{_ "learningStatistics.box" number=1}}</th>
+                                <th scope="col">{{_ "learningStatistics.box" number=2}}</th>
+                                <th scope="col">{{_ "learningStatistics.box" number=3}}</th>
+                                <th scope="col">{{_ "learningStatistics.box" number=4}}</th>
+                                <th scope="col">{{_ "learningStatistics.box" number=5}}</th>
+                                <th scope="col">{{_ "learningStatistics.learned"}}</th>
                             </tr>
                             <tr>
                                 {{#if gotHiddenUserNames}}
-                                    <td>{{_ "leitnerProgress.hiddenUserPlaceholder" index= index}}</td>
+                                    <td>{{_ "learningStatistics.hiddenUserPlaceholder" index= index}}</td>
                                 {{else}}
                                     <td>{{this.firstName}}</td>
                                     <td>{{this.lastName}}</td>
@@ -55,11 +55,11 @@
                 <div class="modal-footer">
                     <button id="removeUserFromBonusConfirm"
                             class="btn btn-raised btn-danger pull-right">{{_
-                            "leitnerProgress.modal.removeUser.button.confirm"}}</button>
+                            "learningStatisticsRemoveBonusUser.button.confirm"}}</button>
                     <button id="removeUserFromBonusCancel"
                             class="btn btn-raised btn-default pull-left"
                             data-dismiss="modal">{{_
-                            "leitnerProgress.modal.removeUser.button.cancel"}}</button>
+                            "learningStatisticsRemoveBonusUser.button.cancel"}}</button>
                 </div>
             </div>
             <!-- /.modal-content -->

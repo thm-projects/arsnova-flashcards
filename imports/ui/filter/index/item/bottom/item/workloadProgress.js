@@ -1,10 +1,10 @@
 import "./workloadProgress.html";
 import {Template} from "meteor/templating";
-import {LeitnerProgress} from "../../../../../../util/leitnerProgress";
+import {LearningStatus} from "../../../../../../util/learningStatus";
 
-Template.filterIndexItemBottomWorkloadProgress.events({
-	'click .resultNavigationElement': function (event) {
-		LeitnerProgress.setupTempData($(event.currentTarget).data('cardset'), ($(event.currentTarget).data('user')), 'cardset');
-		$('#progressModal').modal('show');
+Template.filterIndexItemBottomLearningStatus.events({
+	'click .showLearningStatus': function (event) {
+		LearningStatus.setupTempData($(event.currentTarget).data('cardset'), ($(event.currentTarget).data('user')), 'cardset');
+		$('#learningStatusModal').modal('show');
 	}
 });

@@ -3,34 +3,28 @@ import {Meteor} from "meteor/meteor";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
-import {Cardsets} from "../../../../api/subscriptions/cardsets";
-import "./modal/removeUser.js";
-import "./modal/userHistory.js";
+import {Cardsets} from "../../api/subscriptions/cardsets";
+import "./modal/removeBonusUser.js";
+import "./modal/history.js";
 import "./item/sort.js";
-import "./bonus.html";
-import {LeitnerProgress} from "../../../../util/leitnerProgress";
-import {Utilities} from "../../../../util/utilities";
-import {LeitnerHistoryUtilities} from "../../../../util/leitnerHistory";
-import * as leitnerStatisticsConfig from "../../../../config/leitnerHistory";
+import "./bonusStatistics.html";
+import {LearningStatus} from "../../util/learningStatus";
+import {Utilities} from "../../util/utilities";
+import {LeitnerHistoryUtilities} from "../../util/learningHistory";
+import * as leitnerStatisticsConfig from "../../config/learningHistory";
 
-/*
-* ############################################################################
-* cardsetLearnActivityStatistic
-* ############################################################################
-*/
-
-Template.cardsetLearnActivityStatistic.onCreated(function () {
+Template.learningBonusStastics.onCreated(function () {
 	Session.set('hideUserNames', true);
 	let settings = leitnerStatisticsConfig.defaultBonusUserSortSettings;
 	settings.content = "placeholderID";
 	Session.set('sortBonusUsers', settings);
 });
 
-Template.cardsetLearnActivityStatistic.onRendered(function () {
+Template.learningBonusStastics.onRendered(function () {
 	Session.set('activeCardset', Cardsets.findOne({_id: FlowRouter.getParam('_id')}));
 });
 
-Template.cardsetLearnActivityStatistic.helpers({
+Template.learningBonusStastics.helpers({
 	adjustIndex: function (index) {
 		return index + 1;
 	},
@@ -38,7 +32,7 @@ Template.cardsetLearnActivityStatistic.helpers({
 		return Session.get('hideUserNames');
 	},
 	getCardsetStats: function () {
-		return Session.get("learnerStats");
+		return Session.get("selectedLearningStatistics");
 	},
 	getPercentage: function () {
 		if (this.percentage > 0) {
@@ -56,7 +50,7 @@ Template.cardsetLearnActivityStatistic.helpers({
 	}
 });
 
-Template.cardsetLearnActivityStatistic.events({
+Template.learningBonusStastics.events({
 	"click .showUserNames": function () {
 		Session.set('hideUserNames', !Session.get('hideUserNames'));
 
@@ -72,23 +66,23 @@ Template.cardsetLearnActivityStatistic.events({
 		var cardset = Cardsets.findOne({_id: this._id});
 		var hiddenElement = document.createElement('a');
 		var header = [];
-		header[0] = TAPi18n.__('leitnerProgress.box', {number: 1});
-		header[1] = TAPi18n.__('leitnerProgress.box', {number: 2});
-		header[2] = TAPi18n.__('leitnerProgress.box', {number: 3});
-		header[3] = TAPi18n.__('leitnerProgress.box', {number: 4});
-		header[4] = TAPi18n.__('leitnerProgress.box', {number: 5});
-		header[5] = TAPi18n.__('leitnerProgress.learned');
+		header[0] = TAPi18n.__('learningStatistics.box', {number: 1});
+		header[1] = TAPi18n.__('learningStatistics.box', {number: 2});
+		header[2] = TAPi18n.__('learningStatistics.box', {number: 3});
+		header[3] = TAPi18n.__('learningStatistics.box', {number: 4});
+		header[4] = TAPi18n.__('learningStatistics.box', {number: 5});
+		header[5] = TAPi18n.__('learningStatistics.learned');
 		header[6] = TAPi18n.__('box_export_birth_name');
 		header[7] = TAPi18n.__('box_export_given_name');
 		header[8] = TAPi18n.__('box_export_mail');
-		header[9] = TAPi18n.__('leitnerProgress.bonus');
+		header[9] = TAPi18n.__('learningStatistics.bonus');
 		header[10] = TAPi18n.__('confirmLearn-form.notification');
-		header[11] = TAPi18n.__('leitnerProgress.dateJoinedBonus');
-		header[12] = TAPi18n.__('leitnerProgress.lastActivity');
-		header[13] = TAPi18n.__('leitnerProgress.modal.userHistory.stats.duration.cardArithmeticMean.stats');
-		header[14] = TAPi18n.__('leitnerProgress.modal.userHistory.stats.duration.cardMedian');
-		header[15] = TAPi18n.__('leitnerProgress.modal.userHistory.stats.duration.cardStandardDeviation');
-		Meteor.call("getCSVExport", cardset._id, header, function (error, result) {
+		header[11] = TAPi18n.__('learningStatistics.dateJoinedBonus');
+		header[12] = TAPi18n.__('learningStatistics.lastActivity');
+		header[13] = TAPi18n.__('learningHistory.stats.duration.cardArithmeticMean.stats');
+		header[14] = TAPi18n.__('learningHistory.stats.duration.cardMedian');
+		header[15] = TAPi18n.__('learningHistory.stats.duration.cardStandardDeviation');
+		Meteor.call("getLearningStatisticsCSVExport", cardset._id, header, function (error, result) {
 			if (error) {
 				throw new Meteor.Error(error.statusCode, 'Error could not receive content for .csv');
 			}
@@ -106,23 +100,23 @@ Template.cardsetLearnActivityStatistic.events({
 	"click #backButton": function () {
 		FlowRouter.go('cardsetdetailsid', {_id: this._id});
 	},
-	"click .detailed-stats": function (event) {
+	"click .showLearningStatus": function (event) {
 		let user = {};
 		user.index = $(event.target).data('index');
 		user.firstName = $(event.target).data('firstname');
 		user.lastName = $(event.target).data('lastname');
 		user.email = $(event.target).data('email');
 		user.isInBonus = true;
-		Session.set('selectedBonusUser', user);
-		LeitnerProgress.setupTempData(FlowRouter.getParam('_id'), $(event.target).data('id'), 'cardset');
-		$('#progressModal').modal('show');
+		Session.set('selectedLearningStatisticsUser', user);
+		LearningStatus.setupTempData(FlowRouter.getParam('_id'), $(event.target).data('id'), 'cardset');
+		$('#learningStatusModal').modal('show');
 	},
 	"click #showIntervalHelp": function (event) {
 		event.stopPropagation();
 		Session.set('helpFilter', "leitner");
 		FlowRouter.go('help');
 	},
-	"click .showBonusUserHistory": function (event) {
+	"click .showLearningHistory": function (event) {
 		let user = {};
 		user.user_id = $(event.target).data('id');
 		user.index = $(event.target).data('index');
@@ -131,13 +125,13 @@ Template.cardsetLearnActivityStatistic.events({
 		user.email = $(event.target).data('email');
 		user.isInBonus = true;
 		if (user.user_id !== undefined) {
-			Session.set('selectedBonusUser', user);
-			Meteor.call("getLearningHistoryData", user.user_id, FlowRouter.getParam('_id'), function (error, result) {
+			Session.set('selectedLearningStatisticsUser', user);
+			Meteor.call("getLearningHistory", user.user_id, FlowRouter.getParam('_id'), function (error, result) {
 				if (error) {
 					throw new Meteor.Error(error.statusCode, 'Error could not receive content for history');
 				}
 				if (result) {
-					Session.set('selectedBonusUserHistoryData', LeitnerHistoryUtilities.prepareUserHistoryData(result));
+					Session.set('selectedLearningHistory', LeitnerHistoryUtilities.prepareUserHistoryData(result));
 				}
 			});
 		}
@@ -159,7 +153,7 @@ Template.cardsetLearnActivityStatistic.events({
 		user.webNotification = $(event.target).data('webnotification');
 		user.dateJoinedBonus = $(event.target).data('datejoinedbonus');
 		user.lastActivity = $(event.target).data('lastactivity');
-		Session.set('selectedBonusUser', user);
+		Session.set('selectedLearningStatisticsUser', user);
 	},
 	"click .sort-bonus-user": function (event) {
 		let sortSettings = Session.get('sortBonusUsers');
@@ -169,19 +163,19 @@ Template.cardsetLearnActivityStatistic.events({
 		} else {
 			sortSettings.desc = !sortSettings.desc;
 		}
-		Session.set('learnerStats', Utilities.sortArray(Session.get('learnerStats'), sortSettings.content, sortSettings.desc));
+		Session.set('selectedLearningStatistics', Utilities.sortArray(Session.get('selectedLearningStatistics'), sortSettings.content, sortSettings.desc));
 		Session.set('sortBonusUsers', sortSettings);
 	}
 });
 
-Template.cardsetLearnActivityStatistic.created = function () {
-	Session.set("learnerStats", "");
-	Meteor.call("getLearningData", FlowRouter.getParam('_id'), function (error, result) {
+Template.learningBonusStastics.created = function () {
+	Session.set("selectedLearningStatistics", "");
+	Meteor.call("getLearningStatistics", FlowRouter.getParam('_id'), function (error, result) {
 		if (error) {
 			throw new Meteor.Error(error.statusCode, 'Error could not receive content for stats');
 		}
 		if (result) {
-			Session.set("learnerStats", LeitnerHistoryUtilities.prepareBonusUserData(result));
+			Session.set("selectedLearningStatistics", LeitnerHistoryUtilities.prepareBonusUserData(result));
 		}
 	});
 };

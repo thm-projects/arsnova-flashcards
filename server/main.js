@@ -26,6 +26,7 @@ import "../imports/api/meteorMethods/collegesCourses.js";
 import "../imports/api/meteorMethods/export.js";
 import "../imports/api/meteorMethods/import.js";
 import "../imports/api/meteorMethods/learned.js";
+import "../imports/api/meteorMethods/learningStatistics.js";
 import "../imports/api/meteorMethods/leitner.js";
 import "../imports/api/meteorMethods/matomo.js";
 import "../imports/api/meteorMethods/notifications.js";

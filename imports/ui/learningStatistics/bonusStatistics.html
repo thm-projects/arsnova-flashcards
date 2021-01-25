@@ -1,14 +1,14 @@
-<template name="cardsetLearnActivityStatistic">
+<template name="learningBonusStastics">
     {{#unless isEditor}}
         {{> accessDenied}}
     {{else}}
-        {{> bonusUserHistoryModal}}
-        {{> removeUserFromBonusModal}}
+        {{> learningHistoryModal}}
+        {{> learningStatisticsRemoveBonusUserModal}}
         <div class="cardsetstats-container">
             <div id="cardsetInfoDetail">
                 <div class="panel panel-default cardsetInfo">
                     <div class="panel-body">
-                        <h4>{{this.name}}</h4>
+                        <h4 id="cardsetInfoDetailTitle">{{this.name}}</h4>
                         <hr>
                         <div class="row">
                                     <span class="col-sm-6 collapseCardsetInfoContainer">
@@ -20,57 +20,57 @@
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <button id="exportCSV" class="btn btn-success btn-raised"><span class="flex-content"><i class="fas fa-clipboard-list"></i>&nbsp;<i
-                                class="fas fa-cloud-download-alt"></i>&nbsp;{{_
+                        <button id="exportCSV" class="btn btn-success btn-raised"><span class="flex-content"><i aria-hidden=true class="fas fa-clipboard-list"></i>&nbsp;<i
+                                aria-hidden=true class="fas fa-cloud-download-alt"></i>&nbsp;{{_
                                 "box_export"}}</span></button>
                         <div class="btn-group">
                             <button class="btn btn-default btn-raised showUserNames groupCheckboxButtonLeft {{#if gotHiddenUserNames}}checked{{/if}}"><span class="flex-content">
                                 {{#if gotHiddenUserNames}}
-                                    <i class="fas fa-check"></i>
+                                    <i aria-hidden=true class="fas fa-check"></i>
                                 {{/if}}
                             </span>
                             </button>
                             <button class="btn btn-info btn-raised showUserNames groupCheckboxButtonRight"><span class="flex-content"><i
-                                    class="fas fa-user-secret"></i>&nbsp;{{_
-                                    "leitnerProgress.hideUserNames"}}</span></button>
+                                    aria-hidden=true class="fas fa-user-secret"></i>&nbsp;{{_
+                                    "learningStatistics.hideUserNames"}}</span></button>
                         </div>
 
                     </div>
                 </div>
             </div>
             <div style="overflow-x:auto;">
-                <table class="table table-striped table-hover table-user-list">
+                <table aria-describedby="cardsetInfoDetailTitle" class="table table-striped table-hover table-user-list">
                     <tbody>
                     <tr class="active">
                         {{#if gotHiddenUserNames}}
-                            <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="placeholderID">{{_ "leitnerProgress.hiddenUser"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "placeholderID")}}</th>
+                            <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="placeholderID">{{_ "learningStatistics.hiddenUser"}}</a> {{> learningBonusStasticsItemSort (setSortObject "placeholderID")}}</th>
                         {{else}}
-                            <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="birthname">{{_ "panel-body.birthname"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "birthname")}}</th>
-                            <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="givenname">{{_ "panel-body.givenname"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "givenname")}}</th>
-                            <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="email">{{_ "panel-body.email"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "email")}}</th>
+                            <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="birthname">{{_ "panel-body.birthname"}}</a> {{> learningBonusStasticsItemSort (setSortObject "birthname")}}</th>
+                            <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="givenname">{{_ "panel-body.givenname"}}</a> {{> learningBonusStasticsItemSort (setSortObject "givenname")}}</th>
+                            <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="email">{{_ "panel-body.email"}}</a> {{> learningBonusStasticsItemSort (setSortObject "email")}}</th>
                         {{/if}}
                         {{#if isNotificationEnabled}}
                             <th scope="col">{{_ "confirmLearn-form.notification"}}
                             </th>
                         {{/if}}
-                        <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="dateJoinedBonus">{{_ "leitnerProgress.dateJoinedBonus"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "dateJoinedBonus")}}</th>
-                        <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="lastActivity">{{_ "leitnerProgress.lastActivity"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "lastActivity")}}</th>
-                        <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="cardArithmeticMean">{{_ "leitnerProgress.modal.userHistory.stats.duration.cardArithmeticMean.filter"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "cardArithmeticMean")}}</th>
-                        <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="box1">{{_ "leitnerProgress.box" number=1}} [{{this.learningInterval.[0]}}]</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "box1")}}
+                        <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="dateJoinedBonus">{{_ "learningStatistics.dateJoinedBonus"}}</a> {{> learningBonusStasticsItemSort (setSortObject "dateJoinedBonus")}}</th>
+                        <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="lastActivity">{{_ "learningStatistics.lastActivity"}}</a> {{> learningBonusStasticsItemSort (setSortObject "lastActivity")}}</th>
+                        <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="cardArithmeticMean">{{_ "learningHistory.stats.duration.cardArithmeticMean.filter"}}</a> {{> learningBonusStasticsItemSort (setSortObject "cardArithmeticMean")}}</th>
+                        <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="box1">{{_ "learningStatistics.box" number=1}} [{{this.learningInterval.[0]}}]</a> {{> learningBonusStasticsItemSort (setSortObject "box1")}}
                         </th>
-                        <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="box2">{{_ "leitnerProgress.box" number=2}} [{{this.learningInterval.[1]}}]</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "box2")}}
+                        <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="box2">{{_ "learningStatistics.box" number=2}} [{{this.learningInterval.[1]}}]</a> {{> learningBonusStasticsItemSort (setSortObject "box2")}}
                         </th>
-                        <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="box3">{{_ "leitnerProgress.box" number=3}} [{{this.learningInterval.[2]}}]</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "box3")}}
+                        <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="box3">{{_ "learningStatistics.box" number=3}} [{{this.learningInterval.[2]}}]</a> {{> learningBonusStasticsItemSort (setSortObject "box3")}}
                         </th>
-                        <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="box4">{{_ "leitnerProgress.box" number=4}} [{{this.learningInterval.[3]}}]</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "box4")}}
+                        <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="box4">{{_ "learningStatistics.box" number=4}} [{{this.learningInterval.[3]}}]</a> {{> learningBonusStasticsItemSort (setSortObject "box4")}}
                         </th>
-                        <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="box5">{{_ "leitnerProgress.box" number=5}} [{{this.learningInterval.[4]}}]</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "box5")}}
+                        <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="box5">{{_ "learningStatistics.box" number=5}} [{{this.learningInterval.[4]}}]</a> {{> learningBonusStasticsItemSort (setSortObject "box5")}}
                         </th>
-                        <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="box6">{{_ "leitnerProgress.learned"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "box6")}}</th>
-                        <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="achievedBonus">{{_ "leitnerProgress.bonus"}}</a> {{> cardsetLearnActivityStatisticItemSort (setSortObject "achievedBonus")}}</th>
-                        <th scope="col">{{_ "leitnerProgress.userHistory"}}</th>
-                        <th scope="col">{{_ "details"}}</th>
-                        <th scope="col">{{_ "leitnerProgress.manage"}}</th>
+                        <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="box6">{{_ "learningStatistics.learned"}}</a> {{> learningBonusStasticsItemSort (setSortObject "box6")}}</th>
+                        <th scope="col"><a class="sort-bonus-content sort-bonus-user" data-content="achievedBonus">{{_ "learningStatistics.bonus"}}</a> {{> learningBonusStasticsItemSort (setSortObject "achievedBonus")}}</th>
+                        <th scope="col">{{_ "learningStatistics.history"}}</th>
+                        <th scope="col">{{_ "learningStatistics.status"}}</th>
+                        <th scope="col">{{_ "learningStatistics.manage"}}</th>
                     </tr>
                     {{#each getCardsetStats}}
                         <tr>
@@ -104,7 +104,7 @@
                                 {{/if}}
                             </td>
                             <td>
-                                {{this.achievedBonus}}&nbsp;%{{#if earnedTrophy}}&nbsp;<em class="fas fa-trophy bonusTrophy"></em>{{/if}}
+                                {{this.achievedBonus}}&nbsp;%{{#if earnedTrophy}}&nbsp;<i aria-hidden=true class="fas fa-trophy bonusTrophy"></i>{{/if}}
                             </td>
                             <td>
                                 <a data-id="{{this.user_id}}"
@@ -112,33 +112,33 @@
                                    data-lastname="{{this.givenname}}"
                                    data-index="{{adjustIndex @index}}"
                                    data-email="{{this.email}}"
-                                   class="showBonusUserHistory" data-toggle="modal"
-                                   href="#bonusUserHistoryModal"><i
-                                        class="far fa-clock"
+                                   class="showLearningHistory" data-toggle="modal"
+                                   href="#learningHistoryModal"><i
+                                        aria-hidden=true class="far fa-clock"
                                         data-firstname="{{this.birthname}}"
                                         data-lastname="{{this.givenname}}"
                                         data-id="{{this.user_id}}"
                                         data-index="{{adjustIndex @index}}"
                                         data-email="{{this.email}}"
-                                        title="{{_ "leitnerProgress.tooltip.userHistory"}}"></i></a>
+                                        title="{{_ "learningHistory.tooltip"}}"></i></a>
                             </td>
                             <td>
                                 <a data-id="{{this.user_id}}" data-index="{{adjustIndex @index}}"
                                    data-firstname="{{this.birthname}}"
                                    data-lastname="{{this.givenname}}"
                                    data-email="{{this.email}}"
-                                   class="detailed-stats"><i
-                                        class="far fa-chart-bar"
+                                   class="showLearningStatus"><i
+                                        aria-hidden=true class="far fa-chart-bar"
                                         data-id="{{this.user_id}}"
                                         data-index="{{adjustIndex @index}}"
                                         data-firstname="{{this.birthname}}"
                                         data-lastname="{{this.givenname}}"
                                         data-email="{{this.email}}"
-                                        title="{{_ "leitnerProgress.tooltip.graph"}}"></i></a>
+                                        title="{{_ "learningStatus.tooltip"}}"></i></a>
                             </td>
                             <td>
                                 <a class="removeBonusUser" data-toggle="modal"
-                                        href="#removeUserFromBonusModal" data-user_id="{{this.user_id}}"
+                                        href="#learningStatisticsRemoveBonusUserModal" data-user_id="{{this.user_id}}"
                                         data-firstname="{{this.givenname}}"
                                         data-lastname="{{this.birthname}}"
                                         data-email="{{this.email}}" data-box1="{{this.box1}}"
@@ -147,8 +147,8 @@
                                         data-box5="{{this.box5}}" data-box6="{{this.box6}}"
                                         data-index="{{adjustIndex @index}}"
                                    data-mailnotification="{{this.mailNotification}}" data-webnotification="{{this.webNotification}}"
-                                        title="{{_ "leitnerProgress.tooltip.removeUser"}}">
-                                    <i class="fas fa-trash" data-user_id="{{this.user_id}}"
+                                        title="{{_ "learningStatisticsRemoveBonusUser.tooltip"}}">
+                                    <i aria-hidden=true class="fas fa-trash" data-user_id="{{this.user_id}}"
                                        data-firstname="{{this.givenname}}"
                                        data-lastname="{{this.birthname}}"
                                        data-email="{{this.email}}" data-box1="{{this.box1}}"
@@ -167,7 +167,7 @@
                 </table>
             </div>
             <button class="btn btn-block btn-raised btn-danger" id="backButton">
-                <span class="flex-content"><i class="fas fa-arrow-left"></i> {{_ "backbutton"}}</span>
+                <span class="flex-content"><em class="fas fa-arrow-left"></em> {{_ "backbutton"}}</span>
             </button>
         </div>
     {{/unless}}

@@ -909,7 +909,7 @@ kbd {
 }
 
 @media (min-width: 1200px) {
-  #progressModal, #bonusUserHistoryModal, #bonusTaskHistoryModal {
+  #learningStatusModal, #learningHistoryModal, #learningLogModal {
     .modal-dialog, .model-body, .modal-content {
       width:1200px;
     }
@@ -917,7 +917,7 @@ kbd {
 }
 
 @media (max-width: 1199px) {
-  #progressModal, #bonusUserHistoryModal, #bonusTaskHistoryModal {
+  #learningStatusModal, #learningHistoryModal, #learningLogModal {
     .modal-dialog {
       width: 90%;
       margin-left: 5%;

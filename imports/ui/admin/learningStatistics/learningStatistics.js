@@ -1,14 +1,14 @@
 //------------------------ IMPORTS
 import "../../learn/progress.js";
 import "./learningStatistics.html";
-import {LeitnerProgress} from "../../../util/leitnerProgress";
+import {LearningStatus} from "../../../util/learningStatus";
 import {Template} from "meteor/templating";
 
 Template.admin_learningStatistics.onRendered(function () {
-	LeitnerProgress.setupTempData('', '', 'admin');
+	LearningStatus.setupTempData('', '', 'admin');
 });
 
 
 Template.admin_learningStatistics.onDestroyed(function () {
-	LeitnerProgress.clearTempData();
+	LearningStatus.clearTempData();
 });
