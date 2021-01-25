@@ -27,8 +27,8 @@ Template.learningLogModal.helpers({
 		}
 	},
 	getTitle: function () {
-		if (Session.get('selectedLearningHistory') !== undefined) {
-			let date =  Utilities.getMomentsDate(Session.get('selectedLearningHistory').createdAt, false, 0, false);
+		if (Session.get('selectedLearningLogStats') !== undefined) {
+			let date =  Utilities.getMomentsDate(Session.get('selectedLearningLogStats').taskDate, false, 0, false);
 			return TAPi18n.__('learningLog.title', {date: date});
 		}
 	},
