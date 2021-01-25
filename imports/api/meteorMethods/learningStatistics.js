@@ -121,6 +121,31 @@ Meteor.methods({
 		}
 		return leitnerHistory;
 	},
+	getLastLearningStatusActivity: function (user, cardset_id) {
+		check(user, String);
+		check(cardset_id, String);
+
+		let user_id;
+		let cardset = Cardsets.findOne({_id: cardset_id});
+		if (UserPermissions.gotBackendAccess() || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
+			user_id = user;
+		} else {
+			user_id = Meteor.userId();
+		}
+
+		let highestSessionTask = LeitnerUtilities.getHighestLeitnerTaskSessionID(cardset_id, user_id);
+		let leitnerTasks = LeitnerTasks.find({user_id: user_id, cardset_id: cardset_id, session: highestSessionTask.session}, {sort: {createdAt: -1}}).fetch();
+		let taskIds = leitnerTasks.map(function (task) {
+			return task._id;
+		});
+		let leitnerHistory = LeitnerHistory.findOne({task_id: {$in: taskIds}, cardset_id: cardset_id, user_id: user_id, "timestamps.submission": {$exists: true}},
+			{sort: {"timestamps.submission": -1}});
+		let lastActivity = "";
+		if (leitnerHistory !== undefined) {
+			lastActivity = leitnerHistory.timestamps.submission;
+		}
+		return lastActivity;
+	},
 	getLearningHistory: function (user, cardset_id) {
 		check(user, String);
 		check(cardset_id, String);
@@ -134,6 +159,15 @@ Meteor.methods({
 		}
 		let highestSessionTask = LeitnerUtilities.getHighestLeitnerTaskSessionID(cardset_id, user_id);
 		let leitnerTasks = LeitnerTasks.find({user_id: user_id, cardset_id: cardset_id, session: highestSessionTask.session}, {sort: {createdAt: -1}}).fetch();
+		let taskIds = leitnerTasks.map(function (task) {
+			return task._id;
+		});
+		let leitnerHistory = LeitnerHistory.findOne({task_id: {$in: taskIds}, cardset_id: cardset_id, user_id: user_id, "timestamps.submission": {$exists: true}},
+			{sort: {"timestamps.submission": -1}});
+		let lastActivity = "";
+		if (leitnerHistory !== undefined) {
+			lastActivity = leitnerHistory.timestamps.submission;
+		}
 		let result = [];
 		let workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id});
 		let isInBonus = false;
@@ -149,6 +183,7 @@ Meteor.methods({
 		for (let i = 0; i < leitnerTasks.length; i++) {
 			let item = {};
 			let missedLastDeadline;
+			item.lastActivity = lastActivity;
 			item.isInBonus = isInBonus;
 			item.cardsetShuffled = cardset.shuffled;
 			item.cardsetTitle = cardset.name;

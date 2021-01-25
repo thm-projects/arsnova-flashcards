@@ -73,6 +73,7 @@ Session.setDefault('selectedLearningStatisticsUser', undefined);
 Session.setDefault('selectedLearningHistory', undefined);
 Session.setDefault('selectedLearningLog', undefined);
 Session.setDefault('selectedLearningLogStats', undefined);
+Session.setDefault('lastLearningStatusActivity', undefined);
 
 // Cardset bonus history sort options
 Session.setDefault('sortBonusUsers', leitnerStatisticsConfig.defaultBonusUserSortSettings);

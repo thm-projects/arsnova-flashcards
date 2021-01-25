@@ -109,6 +109,11 @@ Template.learningBonusStastics.events({
 		user.isInBonus = true;
 		Session.set('selectedLearningStatisticsUser', user);
 		LearningStatus.setupTempData(FlowRouter.getParam('_id'), $(event.target).data('id'), 'cardset');
+		Meteor.call('getLastLearningStatusActivity', $(event.target).data('id'), FlowRouter.getParam('_id'), function (err, res) {
+			if (res) {
+				Session.set('lastLearningStatusActivity', res);
+			}
+		});
 		$('#learningStatusModal').modal('show');
 	},
 	"click #showIntervalHelp": function (event) {

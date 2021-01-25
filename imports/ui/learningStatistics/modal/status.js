@@ -13,6 +13,7 @@ Template.learningStatusModal.onRendered(function () {
 	$('#learningStatusModal').on('hidden.bs.modal', function () {
 		Session.set("learningStatusModalActive", false);
 		LearningStatus.clearTempData();
+		Session.set('lastLearningStatusActivity', undefined);
 	});
 });
 

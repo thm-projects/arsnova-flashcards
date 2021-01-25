@@ -356,6 +356,6 @@ export let LearningStatus = class LearningStatus {
 	}
 
 	static gotData () {
-		return Session.get('workloadProgressUserID') !== undefined && Session.get('workloadProgressCardsetID') !== undefined;
+		return Session.get('workloadProgressUserID') !== undefined && Session.get('workloadProgressCardsetID') !== undefined && Session.get('lastLearningStatusActivity') !== undefined;
 	}
 };

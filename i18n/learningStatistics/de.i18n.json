@@ -30,6 +30,8 @@
     "table": {
       "general": {
         "title": "Allgemein",
+        "state": "Stand",
+        "lastActivityMissing": "Noch keine Karte bearbeitet",
         "user": "Benutzer",
         "eMail": "E-Mail",
         "cardset": "Kartei",

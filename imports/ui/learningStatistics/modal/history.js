@@ -176,6 +176,7 @@ Template.learningHistoryModal.events({
 		taskStats.cardArithmeticMean = $(event.target).data('cardarithmeticmean');
 		taskStats.cardMedian = $(event.target).data('cardmedian');
 		taskStats.cardStandardDeviation = $(event.target).data('cardstandarddeviation');
+		taskStats.lastActivity = $(event.target).data('lastActivity');
 		Session.set('selectedLearningLogStats', taskStats);
 		Meteor.call("getLearningLog", task.user_id, task.cardset_id, task.task_id, function (error, result) {
 			if (error) {

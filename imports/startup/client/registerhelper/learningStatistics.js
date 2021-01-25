@@ -4,6 +4,7 @@ import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import {Cardsets} from "../../../api/subscriptions/cardsets";
 import {Workload} from "../../../api/subscriptions/workload";
 import {LearningStatus} from "../../../util/learningStatus";
+import {Utilities} from "../../../util/utilities";
 
 
 Template.registerHelper("gotLearningStatusData", function () {
@@ -79,3 +80,20 @@ Template.registerHelper("learningStatisticsGetUserName", function () {
 		return `${Session.get('selectedLearningStatisticsUser').lastName} ${Session.get('selectedLearningStatisticsUser').firstName}`;
 	}
 });
+
+
+Template.registerHelper("learningStatisticsGetLastActivity", function (type = 0) {
+	let lastActivity = "";
+	if (type === 1) {
+		lastActivity = Session.get('lastLearningStatusActivity');
+	} else if (Session.get('selectedLearningHistory') !== undefined) {
+		lastActivity = Session.get('selectedLearningHistory')[0].lastActivity;
+	}
+	if (lastActivity instanceof Date) {
+		return Utilities.getMomentsDate(lastActivity, true, 0, false);
+	} else {
+		return TAPi18n.__('learningStatistics.table.general.lastActivityMissing');
+	}
+});
+
+

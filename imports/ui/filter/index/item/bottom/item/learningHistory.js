@@ -1,4 +1,4 @@
-import "./workloadHistory.html";
+import "./learningHistory.html";
 import {Session} from "meteor/session";
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";

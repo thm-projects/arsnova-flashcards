@@ -22,8 +22,12 @@
                                 <table aria-describedby="learningLogStatsGeneralTitle" class="table table-striped table-hover table-learning-history table-history-global-stats">
                                     <tbody>
                                     <tr>
+                                        <th id="learningLogStatsGeneralStateHeader">{{_ "learningStatistics.table.general.state"}}:</th>
+                                        <td colspan="3" headers="learningLogStatsGeneralStateHeader">{{learningStatisticsGetLastActivity}}</td>
+                                    </tr>
+                                    <tr>
                                         <th id="learningLogStatsGeneralUserHeader">{{_ "learningStatistics.table.general.user"}}:</th>
-                                        <td headers="learningLogStatsGeneralUserHeader">{{learningStatisticsGetUserName}}</td>
+                                        <td  colspan="{{#if learningStatisticsHideUserName}}3{{else}}1{{/if}}" headers="learningLogStatsGeneralUserHeader">{{learningStatisticsGetUserName}}</td>
                                         {{# unless learningStatisticsHideUserName}}
                                             <th id="learningLogStatsGeneralEMailHeader">{{_ "learningStatistics.table.general.eMail"}}:</th>
                                             <td headers="learningLogStatsGeneralEMailHeader">{{{learningStatisticsGetEMail}}}</td>
