@@ -75,9 +75,9 @@ Template.registerHelper("learningStatisticsGetUserName", function () {
 	if (Session.get('hideUserNames') && !(Route.isFilterIndex() || Route.isBox())) {
 		return TAPi18n.__('learningStatistics.hiddenUserPlaceholder', {index: Session.get('selectedLearningStatisticsUser').index});
 	} else if (Route.isFilterIndex() || Route.isBox()) {
-		return `${Meteor.user().profile.birthname}, ${Meteor.user().profile.givenname}`;
+		return `${Meteor.user().profile.givenname} ${Meteor.user().profile.birthname}`;
 	} else {
-		return `${Session.get('selectedLearningStatisticsUser').lastName} ${Session.get('selectedLearningStatisticsUser').firstName}`;
+		return `${Session.get('selectedLearningStatisticsUser').firstName} ${Session.get('selectedLearningStatisticsUser').lastName}`;
 	}
 });
 

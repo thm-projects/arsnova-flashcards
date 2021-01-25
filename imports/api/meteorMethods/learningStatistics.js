@@ -140,7 +140,7 @@ Meteor.methods({
 		});
 		let leitnerHistory = LeitnerHistory.findOne({task_id: {$in: taskIds}, cardset_id: cardset_id, user_id: user_id, "timestamps.submission": {$exists: true}},
 			{sort: {"timestamps.submission": -1}});
-		let lastActivity = "";
+		let lastActivity = "null";
 		if (leitnerHistory !== undefined) {
 			lastActivity = leitnerHistory.timestamps.submission;
 		}
