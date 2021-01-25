@@ -1,0 +1,204 @@
+<template name="learningHistoryModal">
+    {{> learningLogModal}}
+    <div class="modal fade" id="learningHistoryModal" tabindex="-1" role="dialog"
+         aria-labelledby="learningHistoryTitle">
+        {{#if gotUserData}}
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content modal-lg modal-content-for-buttons">
+                    <div class="modal-header">
+                    <span class="modal-icon">
+                        <i aria-hidden=true class="fas fa-clock"></i>
+                    </span>
+                        {{> mainModalItemCloseIcon}}
+                        <h4 id="learningHistoryTitle" class="modal-title">
+                            {{_ "learningHistory.title"}}
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        {{#if gotHistoryData}}
+                            <div id="learningHistoryStatsGeneralTitle" class="user-history-title">
+                                <h4>{{_ "learningStatistics.table.general.title"}}</h4>
+                            </div>
+                            <div class="table-responsive">
+                                <table aria-describedby="learningHistoryStatsGeneralTitle" class="table table-striped table-hover table-learning-history table-history-global-stats">
+                                    <tbody>
+                                    <tr>
+                                        <th id="learningHistoryStatsGeneralStateHeader">{{_ "learningStatistics.table.general.state"}}:</th>
+                                        <td colspan="3" headers="learningHistoryStatsGeneralStateHeader">{{learningStatisticsGetLastActivity}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th id="learningHistoryStatsGeneralUserHeader">{{_ "learningStatistics.table.general.user"}}:</th>
+                                        <td colspan="{{#if learningStatisticsHideUserName}}3{{else}}1{{/if}}" headers="learningHistoryStatsGeneralUserHeader">{{learningStatisticsGetUserName}}</td>
+                                        {{# unless learningStatisticsHideUserName}}
+                                            <th id="learningHistoryStatsGeneralEMailHeader">{{_ "learningStatistics.table.general.eMail"}}:</th>
+                                            <td headers="learningHistoryStatsGeneralEMailHeader">{{{learningStatisticsGetEMail}}}</td>
+                                        {{/unless}}
+                                    </tr>
+                                    <tr>
+                                        <th id="learningHistoryStatsGeneralCardsetHeader">
+                                            {{#if learningStatisticsIsRep}}
+                                            {{_ "learningStatistics.table.general.repetitorium"}}:
+                                            {{else}}
+                                                {{_ "learningStatistics.table.general.cardset"}}:
+                                            {{/if}}
+                                        </th>
+                                        <td headers="learningHistoryStatsGeneralCardsetHeader">
+                                            {{learningStatisticsGetCardsetTitle}}
+                                        </td>
+                                        <th id="learningHistoryStatsGeneralBonusHeader">{{_ "learningStatistics.table.general.isInBonus.title"}}:</th>
+                                        <td headers="learningHistoryStatsGeneralBonusHeader">
+                                            {{#if learningStatisticsIsInBonus}}
+                                                {{_ "learningStatistics.table.general.isInBonus.yes"}}
+                                            {{else}}
+                                                {{_ "learningStatistics.table.general.isInBonus.no"}}
+                                            {{/if}}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="learningHistoryStatsTitle" class="user-history-title">
+                                <h4>{{_ "learningHistory.stats.tasks.title"}}</h4>
+                            </div>
+                            <div class="table-responsive">
+                                <table aria-describedby="learningHistoryStatsTitle" class="table table-striped table-hover table-learning-history table-history-global-stats">
+                                    <tbody>
+                                    <tr>
+                                        <th id="learningHistoryStatsTaskCountHeader">{{_ "learningHistory.stats.tasks.total"}}:</th>
+                                        <td headers="learningHistoryStatsTaskCountHeader">{{getTaskCount}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th id="learningHistoryStatsTaskCountCompletedHeader">{{_ "learningHistory.stats.tasks.completed"}}:</th>
+                                        <td headers="learningHistoryStatsTaskCountCompletedHeader">{{getTaskCount 0}}</td>
+                                        <th id="learningHistoryStatsTaskCountNotCompletedHeader">{{_ "learningHistory.stats.tasks.notCompleted"}}:</th>
+                                        <td headers="learningHistoryStatsTaskCountNotCompletedHeader">{{getTaskCount 1}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="learningHistoryStatsWorkloadTitle" class="user-history-title">
+                                <h4>{{_ "learningHistory.stats.workload.title"}}</h4>
+                            </div>
+                            <div class="table-responsive">
+                                <table aria-describedby="learningHistoryStatsWorkloadTitle" class="table table-striped table-hover table-learning-history table-history-global-stats">
+                                    <tbody>
+                                    <tr>
+                                        <th id="learningHistoryStatsWorkloadCountHeader">{{_ "learningHistory.stats.workload.total"}}:</th>
+                                        <td headers="learningHistoryStatsWorkloadCountHeader">{{getWorkloadCount 0}}</td>
+                                        <th id="learningHistoryStatsAverageKnownHeader">{{_ "learningHistory.stats.averageKnown"}}:</th>
+                                        <td headers="learningHistoryStatsAverageKnownHeader">{{getAverageScore}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th id="learningHistoryStatsWorkloadCountKnownHeader">{{_ "learningHistory.stats.workload.known"}}:</th>
+                                        <td headers="learningHistoryStatsWorkloadCountKnownHeader">{{getWorkloadCount 1}}</td>
+                                        <th id="learningHistoryStatsWorkloadCountNotKnownHeader">{{_ "learningHistory.stats.workload.notKnown"}}:</th>
+                                        <td headers="learningHistoryStatsWorkloadCountNotKnownHeader">{{getWorkloadCount 2}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="learningHistoryStatsDurationTitle" class="user-history-title">
+                                <h4>{{_ "learningHistory.stats.duration.title"}}</h4>
+                            </div>
+                            <div class="table-responsive">
+                                <table aria-describedby="learningHistoryStatsDurationTitle" class="table table-striped table-hover table-learning-history table-history-global-stats">
+                                    <tbody>
+                                    <tr>
+                                        <th id="learningHistoryStatsDurationHeader">{{_ "learningHistory.stats.duration.total"}}:</th>
+                                        <td headers="learningHistoryStatsDurationHeader">{{getTotalDuration}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th id="learningHistoryStatsDurationAverageHeader">{{_ "learningHistory.stats.duration.average"}}:</th>
+                                        <td headers="learningHistoryStatsDurationAverageHeader">{{getAverageDuration}}</td>
+                                        <th id="learningHistoryStatsCardArithmeticMeanHeader">{{_ "learningHistory.stats.duration.cardArithmeticMean.stats"}}:</th>
+                                        <td headers="learningHistoryStatsCardArithmeticMeanHeader">{{getUserCardsArithmeticMean}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th id="learningHistoryStatsCardMedianHeader">{{_ "learningHistory.stats.duration.cardMedian"}}:</th>
+                                        <td headers="learningHistoryStatsCardMedianHeader">{{getUserCardMedian}}</td>
+                                        <th id="learningHistoryStatsCardStandardDeviationHeader">{{_ "learningHistory.stats.duration.cardStandardDeviation"}}:</th>
+                                        <td headers="learningHistoryStatsCardStandardDeviationHeader">{{getUserCardsStandardDeviation}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div  id="learningHistoryTable" class="user-history-title">
+                                <h4>{{_ "learningHistory.table.title"}}</h4>
+                            </div>
+                            <div class="table-responsive">
+                                <table aria-describedby="learningHistoryTable" class="table table-striped table-hover">
+                                    <tbody>
+                                    <tr>
+                                        <th scope="col"><a class="sort-bonus-content sort-bonus-user-history" data-content="date">{{_ "learningHistory.table.date"}}</a> {{> learningBonusStasticsItemSort (setSortObject "date")}}</th>
+                                        <th scope="col"><a class="sort-bonus-content sort-bonus-user-history" data-content="reason">{{_ "learningHistory.table.reason.title"}}</a> {{> learningBonusStasticsItemSort (setSortObject "reason")}}</th>
+                                        <th scope="col"><a class="sort-bonus-content sort-bonus-user-history" data-content="workload">{{_ "learningHistory.table.workload.title"}}</a> {{> learningBonusStasticsItemSort (setSortObject "workload")}}</th>
+                                        <th scope="col"><a class="sort-bonus-content sort-bonus-user-history" data-content="known">{{_ "learningHistory.table.known"}}</a> {{> learningBonusStasticsItemSort (setSortObject "known")}}</th>
+                                        <th scope="col"><a class="sort-bonus-content sort-bonus-user-history" data-content="notKnown">{{_ "learningHistory.table.notKnown"}}</a> {{> learningBonusStasticsItemSort (setSortObject "notKnown")}}</th>
+                                        <th scope="col" class="visible-md visible-lg"><a class="sort-bonus-content sort-bonus-user-history" data-content="statusCode">{{_ "learningHistory.table.status.title"}}</a> {{> learningBonusStasticsItemSort (setSortObject "statusCode")}}</th>
+                                        <th scope="col" class="visible-lg"><a class="sort-bonus-content sort-bonus-user-history" data-content="duration">{{_ "learningHistory.table.duration"}}</a> {{> learningBonusStasticsItemSort (setSortObject "duration")}}</th>
+                                        <th scope="col" class="visible-lg"><a class="sort-bonus-content sort-bonus-user-history" data-content="cardArithmeticMean">{{_ "learningHistory.stats.duration.cardArithmeticMean.filter"}}</a> {{> learningBonusStasticsItemSort (setSortObject "cardArithmeticMean")}}</th>
+                                        <th scope="col">{{_ "learningStatistics.log"}}</th>
+                                    </tr>
+                                    {{#each getWorkloadHistory}}
+                                        <tr>
+                                            <td>{{getMomentsDate this.date}}</td>
+                                            <td>{{getReason}}</td>
+                                            <td>{{getWorkload}}</td>
+                                            <td>{{this.known}}</td>
+                                            <td>{{this.notKnown}}</td>
+                                            <td class="visible-md visible-lg">{{this.statusText}}</td>
+                                            <td class="visible-lg">{{getDuration this.duration}}</td>
+                                            <td class="visible-lg">{{humanizeDuration this.cardArithmeticMean}}</td>
+                                            <td>
+                                                {{#if canDisplayTaskHistory}}
+                                                <a class="showLearningLog" data-toggle="modal" href="#learningLogModal"
+                                                   data-user="{{this.user_id}}"
+                                                   data-cardset="{{this.cardset_id}}"
+                                                   data-task="{{this.task_id}}"
+                                                   data-known="{{this.known}}"
+                                                   data-notknown="{{this.notKnown}}"
+                                                   data-workload="{{this.workload}}"
+                                                   data-reason="{{getReason}}"
+                                                   data-duration="{{this.duration}}"
+                                                   data-cardArithmeticMean="{{this.cardArithmeticMean}}"
+                                                   data-cardMedian="{{this.cardMedian}}"
+                                                   data-cardStandardDeviation="{{this.cardStandardDeviation}}"
+                                                   data-lastActivity="{{this.lastActivity}}"
+                                                   data-taskDate="{{this.date}}"
+                                                >
+                                                <i aria-hidden=true class="far fa-clock" title="{{_ "learningLog.tooltip"}}"
+                                                   data-user="{{this.user_id}}"
+                                                   data-cardset="{{this.cardset_id}}"
+                                                   data-task="{{this.task_id}}"
+                                                   data-known="{{this.known}}"
+                                                   data-notknown="{{this.notKnown}}"
+                                                   data-workload="{{this.workload}}"
+                                                   data-reason="{{getReason}}"
+                                                   data-duration="{{this.duration}}"
+                                                   data-cardArithmeticMean="{{this.cardArithmeticMean}}"
+                                                   data-cardMedian="{{this.cardMedian}}"
+                                                   data-cardStandardDeviation="{{this.cardStandardDeviation}}"
+                                                   data-lastActivity="{{this.lastActivity}}"
+                                                   data-taskDate="{{this.date}}"
+                                                ></i></a>
+                                                {{/if}}
+                                            </td>
+                                        </tr>
+                                    {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {{else}}
+                            {{> loadingScreen}}
+                            <br>
+                            <br>
+                        {{/if}}
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        {{/if}}
+    </div>
+    <!-- /.modal -->
+</template>

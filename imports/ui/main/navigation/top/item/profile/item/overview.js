@@ -1,9 +1,9 @@
 import "./overview.html";
-import {LeitnerProgress} from "../../../../../../../util/leitnerProgress";
+import {LearningStatus} from "../../../../../../../util/learningStatus";
 
 Template.mainNavigationTopItemProfileItemOverview.events({
 	'click .profile-overview': function () {
-		LeitnerProgress.setupTempData('', '', 'user');
-		$('#progressModal').modal('show');
+		LearningStatus.setupTempData('', '', 'user');
+		$('#learningStatusModal').modal('show');
 	}
 });

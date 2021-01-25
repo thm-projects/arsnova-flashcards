@@ -10,7 +10,7 @@ import {Utilities} from "../../../../../util/utilities";
 Template.cardsetInfoBoxItemBonusCardArithmeticMean.helpers({
 	getBonusCardArithmeticMean: function () {
 		let bonusCardArithmeticMean = 0;
-		if (Session.get('activeCardset').leitner !== undefined && Session.get('activeCardset').leitner.timelineStats !== undefined) {
+		if (Session.get('activeCardset') !== undefined && Session.get('activeCardset').leitner !== undefined && Session.get('activeCardset').leitner.timelineStats !== undefined) {
 			bonusCardArithmeticMean = Session.get('activeCardset').leitner.timelineStats.arithmeticMean.bonus;
 		}
 		return Utilities.humanizeDuration(bonusCardArithmeticMean);

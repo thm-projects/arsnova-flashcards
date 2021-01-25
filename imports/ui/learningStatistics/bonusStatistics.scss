@@ -1,11 +1,11 @@
-#bonusUserHistoryModal, #bonusTaskHistoryModal, #progressModal {
+#learningHistoryModal, #learningLogModal, #learningStatusModal {
   .user-history-title {
     h4 {
       font-weight: bold;
     }
     padding: 2px 10px;
   }
-  .table-user-history {
+  .table-learning-history {
     margin-bottom: 0;
   }
   @media (min-width: 768px) {
@@ -15,11 +15,17 @@
   }
 }
 
-#bonusTaskHistoryModal {
+#learningLogModal {
   z-index: 10001 !important;
 }
 
 .sort-bonus-content {
   cursor: pointer;
   text-decoration: none !important;
+}
+
+.showLearningStatus {
+  margin: 0;
+  padding: 0 !important;
+  cursor: pointer;
 }

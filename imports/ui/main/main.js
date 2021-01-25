@@ -10,7 +10,7 @@ import {CardNavigation} from "../../util/cardNavigation";
 import {MainNavigation} from "../../util/mainNavigation";
 import {ServerStyle} from "../../util/styles.js";
 import {AspectRatio} from "../../util/aspectRatio.js";
-import * as leitnerStatisticsConfig from "../../config/leitnerHistory.js";
+import * as leitnerStatisticsConfig from "../../config/learningHistory.js";
 import "../impressum/modal/statistics/statistics.js";
 import "../welcome/welcome.js";
 import "../wordcloud/wordcloud.js";
@@ -28,7 +28,7 @@ import "./modal/underDevelopment.js";
 import "./modal/pdfViewer.js";
 import "../accessDenied/accessDenied.js";
 import "../notFound/notFound.js";
-import "../learn/modal/progress.js";
+import "../learningStatistics/modal/status.js";
 import "./main.html";
 import "../messageOfTheDay/messageOfTheDay.js";
 
@@ -68,10 +68,12 @@ Session.setDefault('activeCardAnswers', []);
 Session.setDefault('selectedAnswers', []);
 
 // Cardset bonus history
-Session.setDefault('selectedBonusUser', undefined);
-Session.setDefault('selectedBonusUserHistoryData', undefined);
-Session.setDefault('selectedBonusTaskHistoryData', undefined);
-Session.setDefault('selectedBonusTaskHistoryStats', undefined);
+Session.setDefault('selectedLearningStatistics', undefined);
+Session.setDefault('selectedLearningStatisticsUser', undefined);
+Session.setDefault('selectedLearningHistory', undefined);
+Session.setDefault('selectedLearningLog', undefined);
+Session.setDefault('selectedLearningLogStats', undefined);
+Session.setDefault('lastLearningStatusActivity', undefined);
 
 // Cardset bonus history sort options
 Session.setDefault('sortBonusUsers', leitnerStatisticsConfig.defaultBonusUserSortSettings);

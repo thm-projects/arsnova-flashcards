@@ -30,7 +30,7 @@ FlowRouter.route('/cardset/:_id/stats', {
 		return cardset;
 	},
 	action: function (params, qs, data) {
-		this.render(config.mainTemplate, 'cardsetLearnActivityStatistic', data);
+		this.render(config.mainTemplate, 'learningBonusStastics', data);
 	},
 	triggersEnter: [
 		(context, redirect) => {

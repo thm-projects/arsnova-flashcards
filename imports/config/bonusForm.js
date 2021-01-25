@@ -5,7 +5,7 @@ let minDaysBeforeReset = 1;
 let maxDaysBeforeReset = 31;
 let defaultDaysBeforeReset = 7;
 let defaultMinBonusPoints = 1;
-let defaultMaxBonusPoints = 10;
+let defaultMaxBonusPoints = 100;
 
 //Minimum cards learned in % for max Bonus points
 let defaultMinLearned = 20;

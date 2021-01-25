@@ -1,0 +1,11 @@
+{
+  "learningStatisticsRemoveBonusUser": {
+    "title": "User aus der Bonusphase entfernen?",
+    "text": "Willst du diesen Datensatz aus der Bonusphase entfernen?",
+    "tooltip": "User aus der Bonusphase entfernen",
+    "button": {
+      "confirm": "User aus der Bonusphase entfernen",
+      "cancel": "Abbrechen"
+    }
+  }
+}

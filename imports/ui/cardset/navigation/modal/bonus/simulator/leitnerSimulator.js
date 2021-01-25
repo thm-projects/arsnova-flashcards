@@ -11,7 +11,7 @@ import {Template} from "meteor/templating";
 import "./leitnerSimulator.html";
 import {BonusForm} from "../../../../../../util/bonusForm";
 import {Session} from "meteor/session";
-import {LeitnerProgress} from "../../../../../../util/leitnerProgress";
+import {LearningStatus} from "../../../../../../util/learningStatus";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 
 /*
@@ -22,14 +22,14 @@ import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 
 Template.cardsetLeitnerSimulatorForm.onRendered(function () {
 	$('#cardsetLeitnerSimulatorModal').on('show.bs.modal', function () {
-		LeitnerProgress.setupTempData(FlowRouter.getParam('_id'), '', 'simulator');
+		LearningStatus.setupTempData(FlowRouter.getParam('_id'), '', 'simulator');
 		Session.set('activeSimulatorSnapshotDate', 0);
 		BonusForm.createSnapshotDates();
 		BonusForm.initializeSimulatorWorkload();
-		LeitnerProgress.updateGraph();
+		LearningStatus.updateGraph();
 	});
 	$('#cardsetLeitnerSimulatorModal').on('hidden.bs.modal', function () {
-		LeitnerProgress.clearTempData();
+		LearningStatus.clearTempData();
 		$('body').addClass('modal-open');
 		$('.modal-backdrop').add();
 	});

@@ -2,7 +2,7 @@ import "./maxWorkload.html";
 import "../tooltip/de/maxWorkload.html";
 import "../tooltip/en/maxWorkload.html";
 import {BonusForm} from "../../../../../../util/bonusForm";
-import {LeitnerProgress} from "../../../../../../util/leitnerProgress";
+import {LearningStatus} from "../../../../../../util/learningStatus";
 import tippy from "tippy.js";
 import 'tippy.js/dist/tippy.css';
 
@@ -25,6 +25,6 @@ Template.bonusFormMaxWorkload.events({
 	"change input": function () {
 		BonusForm.adjustMaxWorkload();
 		BonusForm.initializeSimulatorData();
-		LeitnerProgress.updateGraph();
+		LearningStatus.updateGraph();
 	}
 });

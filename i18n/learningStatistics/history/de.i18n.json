@@ -1,0 +1,60 @@
+{
+  "learningHistory": {
+    "title": "Lernprotokoll",
+    "tooltip": "Lernprotokoll",
+    "stats": {
+      "title": "Statistik",
+      "tasks": {
+        "title": "Termine",
+        "total": "Insgesamt",
+        "completed": "Bearbeitet",
+        "notCompleted": "Nicht Bearbeitet",
+        "inProgress": "Ein Termin ist derzeit in Bearbeitung"
+      },
+      "workload": {
+        "title": "Bearbeitetes Lernpensum",
+        "total": "Insgesamt",
+        "known": "Gewusst",
+        "notKnown": "Nicht Gewusst"
+      },
+      "duration": {
+        "title": "Bearbeitungszeit",
+        "average": "Ø Bearbeitungszeit pro Termin",
+        "cardMedian": "md Antworzeit pro Karte",
+        "cardArithmeticMean": {
+          "stats": "Ø Antworzeit pro Karte",
+          "filter": "Ø Antworzeit"
+        },
+        "cardStandardDeviation": "s Antworzeit pro Karte",
+        "total": "Gesamte Bearbeitungszeit"
+      },
+      "averageKnown": "Ø Gewusst"
+    },
+    "table": {
+      "title": "Verlauf",
+      "id": "ID",
+      "date": "Freischaltungstag",
+      "workload": {
+        "title": "Lernpensum",
+        "singular": "__cards__ Karte",
+        "plural": "__cards__ Karten"
+      },
+      "known": "Gewusst",
+      "notKnown": "Nicht gewusst",
+      "status": {
+        "title": "Status",
+        "inProgress": "In Bearbeitung",
+        "notCompleted": "Nicht Bearbeitet",
+        "notFullyCompletedSingular": "__cards__ Karte nicht bearbeitet",
+        "notFullyCompletedPlural": "__cards__ Karten nicht bearbeitet",
+        "completed": "Bearbeitet am __lastAnswerDate__"
+      },
+      "reason": {
+        "title": "Ereignis",
+        "leitner": "Leitner-Plan",
+        "deadline": "Überschreitung"
+      },
+      "duration": "Bearbeitungszeit"
+    }
+  }
+}

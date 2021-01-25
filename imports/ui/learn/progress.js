@@ -7,7 +7,7 @@ import {Template} from "meteor/templating";
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import ResizeSensor from "../../../client/thirdParty/resizeSensor/ResizeSensor";
-import {LeitnerProgress} from "../../util/leitnerProgress";
+import {LearningStatus} from "../../util/learningStatus";
 import {CardType} from "../../util/cardTypes";
 
 /*
@@ -21,7 +21,7 @@ Template.progress.helpers({
 		return Session.get('workloadProgressType') === type;
 	},
 	countBox: function (boxId) {
-		let leitnerCollection = LeitnerProgress.getLeitnerCollection();
+		let leitnerCollection = LearningStatus.getLeitnerCollection();
 		if (Session.get('workloadProgressType') === 'cardset') {
 			return leitnerCollection.find({
 				cardset_id: Session.get('workloadProgressCardsetID'),
@@ -36,7 +36,7 @@ Template.progress.helpers({
 		}
 	},
 	getMaxWorkload: function () {
-		let cardsetCollection = LeitnerProgress.getCardsetCollection();
+		let cardsetCollection = LearningStatus.getCardsetCollection();
 		let maxWorkload = cardsetCollection.findOne({_id: Session.get('workloadProgressCardsetID')}).maxCards;
 		if (maxWorkload === 1) {
 			return TAPi18n.__('bonus.progress.maxWorkload.single', {amount: maxWorkload}, Session.get('activeLanguage'));
@@ -45,16 +45,16 @@ Template.progress.helpers({
 		}
 	},
 	getCardsetCardCount: function (countLeitnerCards = false) {
-		return LeitnerProgress.getCardsetCardCount(countLeitnerCards);
+		return LearningStatus.getCardsetCardCount(countLeitnerCards);
 	},
 	getTotalLeitnerCardCount: function () {
-		return LeitnerProgress.getTotalLeitnerCardCount();
+		return LearningStatus.getTotalLeitnerCardCount();
 	},
 	getTotalLeitnerCardCountUser: function () {
-		return LeitnerProgress.getTotalLeitnerCardCountUser();
+		return LearningStatus.getTotalLeitnerCardCountUser();
 	},
 	isShuffledCardset: function () {
-		let cardsetCollection = LeitnerProgress.getCardsetCollection();
+		let cardsetCollection = LearningStatus.getCardsetCollection();
 		let cardset = cardsetCollection.findOne({_id: Session.get('workloadProgressCardsetID')}, {fields: {shuffled: 1}});
 		if (cardset !== undefined) {
 			return cardset.shuffled;
@@ -72,11 +72,11 @@ Template.progress.helpers({
 });
 
 Template.progress.onRendered(function () {
-	LeitnerProgress.initializeGraph(this.data.type);
-	LeitnerProgress.updateGraphLabels();
+	LearningStatus.initializeGraph(this.data.type);
+	LearningStatus.updateGraphLabels();
 	if (this.data.type !== 'simulator') {
 		new ResizeSensor($('#boxChart'), function () {
-			LeitnerProgress.updateGraphLabels();
+			LearningStatus.updateGraphLabels();
 		});
 	}
 });
@@ -93,17 +93,17 @@ Template.graphCardsetFilter.helpers({
 		return data;
 	},
 	getCardsetCardCount: function (countLeitnerCards = false) {
-		return LeitnerProgress.getCardsetCardCount(countLeitnerCards);
+		return LearningStatus.getCardsetCardCount(countLeitnerCards);
 	},
 	shuffledData: function () {
-		let cardsetCollection = LeitnerProgress.getCardsetCollection();
+		let cardsetCollection = LearningStatus.getCardsetCollection();
 		let cardset = cardsetCollection.findOne({_id: Session.get('workloadProgressCardsetID')});
 		cardset.useLeitnerCount = true;
 		return cardset;
 	},
 	getCardsetCount: function () {
 		let count = 0;
-		let cardsetCollection = LeitnerProgress.getCardsetCollection();
+		let cardsetCollection = LearningStatus.getCardsetCollection();
 		let cardset = cardsetCollection.findOne({_id: Session.get('workloadProgressCardsetID')});
 		for (let i = 0; i < cardset.cardGroups.length; i++) {
 			let cardsetGroupItem = cardsetCollection.findOne({_id: cardset.cardGroups[i]}, {fields: {_id: 1, cardType: 1}});
@@ -120,11 +120,11 @@ Template.graphCardsetFilter.events({
 		let count = $(evt.currentTarget).attr("data-count");
 		let cardset_name = $(evt.currentTarget).attr("data-name");
 		if (cardset_id === "-1") {
-			$('#setCardsetFilter').html(TAPi18n.__('leitnerProgress.indexDefault', {cardsetCount: cardset_name, cardCount: count}, Session.get('activeLanguage')));
+			$('#setCardsetFilter').html(TAPi18n.__('learningStatistics.indexDefault', {cardsetCount: cardset_name, cardCount: count}, Session.get('activeLanguage')));
 		} else {
-			$('#setCardsetFilter').html(TAPi18n.__('leitnerProgress.index', {cardset: cardset_name, cardCount: count}, Session.get('activeLanguage')));
+			$('#setCardsetFilter').html(TAPi18n.__('learningStatistics.index', {cardset: cardset_name, cardCount: count}, Session.get('activeLanguage')));
 		}
 		$('#setCardsetFilter').val(cardset_id);
-		LeitnerProgress.updateGraph(cardset_id);
+		LearningStatus.updateGraph(cardset_id);
 	}
 });

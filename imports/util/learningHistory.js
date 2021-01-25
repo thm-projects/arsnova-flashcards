@@ -2,16 +2,16 @@ import {Bonus} from "./bonus";
 import {Session} from "meteor/session";
 import {CardType, CardType as CardTypes} from "./cardTypes";
 import {CardVisuals} from "./cardVisuals";
-import * as config from "../config/leitnerHistory";
+import * as config from "../config/learningHistory";
 import {Utilities} from "./utilities";
 
-export let LeitnerHistoryUtilities = class LeitnerProgress {
+export let LeitnerHistoryUtilities = class LearningHistory {
 	static prepareBonusUserData (bonusUsers) {
 		for (let i = 0; i < bonusUsers.length; i++) {
 			let user = bonusUsers[i];
 			//Set hidden username
 			bonusUsers[i].placeholderID = i + 1;
-			bonusUsers[i].placeholderName = TAPi18n.__('leitnerProgress.hiddenUserPlaceholder', {index: i + 1}, "de");
+			bonusUsers[i].placeholderName = TAPi18n.__('learningStatistics.hiddenUserPlaceholder', {index: i + 1}, "de");
 			//Set bonus percentage
 			let totalCards = user.box1 + user.box2 + user.box3 + user.box4 + user.box5 + user.box6;
 			bonusUsers[i].percentage = Math.round(user.box6 / totalCards * 100);
@@ -29,23 +29,23 @@ export let LeitnerHistoryUtilities = class LeitnerProgress {
 			let completedWorkload = task.known + task.notKnown;
 			if (completedWorkload === task.workload) {
 				userHistory[i].statusCode = task.lastAnswerDate;
-				userHistory[i].statusText = TAPi18n.__('leitnerProgress.modal.userHistory.table.status.completed', {lastAnswerDate: Utilities.getMomentsDate(task.lastAnswerDate, 0, false, false)});
+				userHistory[i].statusText = TAPi18n.__('learningHistory.table.status.completed', {lastAnswerDate: Utilities.getMomentsDate(task.lastAnswerDate, 0, false, false)});
 			} else if (!task.missedDeadline) {
 				userHistory[i].statusCode = -1;
-				userHistory[i].statusText = TAPi18n.__('leitnerProgress.modal.userHistory.table.status.inProgress');
+				userHistory[i].statusText = TAPi18n.__('learningHistory.table.status.inProgress');
 			} else {
 				if (completedWorkload > 0) {
 					let unfinishedWorkload = task.workload - completedWorkload;
 					if (unfinishedWorkload === 1) {
 						userHistory[i].statusCode = -2;
-						userHistory[i].statusText = TAPi18n.__('leitnerProgress.modal.userHistory.table.status.notFullyCompletedSingular', {cards: unfinishedWorkload});
+						userHistory[i].statusText = TAPi18n.__('learningHistory.table.status.notFullyCompletedSingular', {cards: unfinishedWorkload});
 					} else {
 						userHistory[i].statusCode = -3;
-						userHistory[i].statusText = TAPi18n.__('leitnerProgress.modal.userHistory.table.status.notFullyCompletedPlural', {cards: unfinishedWorkload});
+						userHistory[i].statusText = TAPi18n.__('learningHistory.table.status.notFullyCompletedPlural', {cards: unfinishedWorkload});
 					}
 				} else {
 					userHistory[i].statusCode = -4;
-					userHistory[i].statusText = TAPi18n.__('leitnerProgress.modal.userHistory.table.status.notCompleted');
+					userHistory[i].statusText = TAPi18n.__('learningHistory.table.status.notCompleted');
 				}
 			}
 		}
