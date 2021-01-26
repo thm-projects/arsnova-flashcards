@@ -121,9 +121,10 @@ Meteor.methods({
 		}
 		return leitnerHistory;
 	},
-	getLastLearningStatusActivity: function (user, cardset_id) {
+	getLastLearningStatusActivity: function (user, cardset_id, isProfileView) {
 		check(user, String);
 		check(cardset_id, String);
+		check(isProfileView, Boolean);
 
 		let user_id;
 		let cardset = Cardsets.findOne({_id: cardset_id});
@@ -133,12 +134,25 @@ Meteor.methods({
 			user_id = Meteor.userId();
 		}
 
-		let highestSessionTask = LeitnerUtilities.getHighestLeitnerTaskSessionID(cardset_id, user_id);
-		let leitnerTasks = LeitnerTasks.find({user_id: user_id, cardset_id: cardset_id, session: highestSessionTask.session}, {sort: {createdAt: -1}}).fetch();
+		let query = {
+			user_id: user_id
+		};
+		if (!isProfileView) {
+			query.cardset_id = cardset_id;
+		}
+		let highestSessionTask = LeitnerTasks.findOne(query, {sort: {session: -1}});
+		if (highestSessionTask === undefined) {
+			return [];
+		}
+		query.session = highestSessionTask.session;
+		let leitnerTasks = LeitnerTasks.find(query, {sort: {createdAt: -1}}).fetch();
 		let taskIds = leitnerTasks.map(function (task) {
 			return task._id;
 		});
-		let leitnerHistory = LeitnerHistory.findOne({task_id: {$in: taskIds}, cardset_id: cardset_id, user_id: user_id, "timestamps.submission": {$exists: true}},
+		delete query.session;
+		query.task_id = {$in: taskIds};
+		query["timestamps.submission"] = {$exists: true};
+		let leitnerHistory = LeitnerHistory.findOne(query,
 			{sort: {"timestamps.submission": -1}});
 		let lastActivity = "null";
 		if (leitnerHistory !== undefined) {

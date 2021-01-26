@@ -14,7 +14,7 @@ Template.cardSidebarItemLearningStatus.helpers({
 Template.cardSidebarItemLearningStatus.events({
 	'click .showLearningStatus': function () {
 		LearningStatus.setupTempData(FlowRouter.getParam('_id'), Meteor.userId(), 'cardset');
-		Meteor.call('getLastLearningStatusActivity', Meteor.userId(), FlowRouter.getParam('_id'), function (err, res) {
+		Meteor.call('getLastLearningStatusActivity', Meteor.userId(), FlowRouter.getParam('_id'), false, function (err, res) {
 			if (res) {
 				Session.set('lastLearningStatusActivity', res);
 			}
