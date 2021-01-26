@@ -143,7 +143,10 @@ export let UserPermissions = class UserPermissions {
 			if (Meteor.isClient && Meteor.user() && Meteor.user().roles !== undefined) {
 				roles = Meteor.user().roles;
 			} else {
-				roles = Meteor.users.findOne({_id: userId}).roles;
+				let user = Meteor.users.findOne({_id: userId});
+				if (user !== undefined && user.roles !== undefined) {
+					roles = user.roles;
+				}
 			}
 			for (let i = 0; i < roles.length; i++) {
 				switch (roles[i]) {
