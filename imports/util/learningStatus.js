@@ -50,6 +50,11 @@ export let LearningStatus = class LearningStatus {
 					Session.set('workloadProgressUserID', user_id);
 				}
 			});
+			Meteor.call('getLastLearningStatusActivity', Meteor.userId(), "null", true, function (err, res) {
+				if (res) {
+					Session.set('lastLearningStatusActivity', res);
+				}
+			});
 		}
 	}
 
