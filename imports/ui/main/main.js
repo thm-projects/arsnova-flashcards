@@ -163,12 +163,17 @@ Template.main.helpers({
 });
 
 let windowResizeSensor;
+let screenResizeSensor;
 Template.main.onCreated(function () {
 	setLanguage();
 	setTheme();
 	MarkdeepContent.initializeStylesheet();
 	document.title = ServerStyle.getLastAppTitle();
 	windowResizeSensor = $(window).resize(function () {
+		CardVisuals.resizeFlashcard();
+		PDFViewer.resizeIframe();
+	});
+	screenResizeSensor = $(screen).resize(function () {
 		CardVisuals.resizeFlashcard();
 		PDFViewer.resizeIframe();
 	});
@@ -199,6 +204,9 @@ Template.main.onRendered(function () {
 Template.main.onDestroyed(function () {
 	if (windowResizeSensor !== undefined) {
 		windowResizeSensor.off('resize');
+	}
+	if (screenResizeSensor !== undefined) {
+		screenResizeSensor.off('resize');
 	}
 });
 
