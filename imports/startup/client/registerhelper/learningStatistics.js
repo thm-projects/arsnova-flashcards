@@ -61,24 +61,32 @@ Template.registerHelper("learningStatisticsHideUserName", function () {
 });
 
 Template.registerHelper("learningStatisticsGetEMail", function () {
-	let email = "";
-	if (Route.isFilterIndex() || Route.isBox()) {
+	let email = TAPi18n.__('profile.finishProfile');
+	let gotEmail = false;
+	if ((Route.isFilterIndex() || Route.isBox()) && Meteor.user().email !== undefined && Meteor.user().email !== "") {
 		email = Meteor.user().email;
-	} else {
+		gotEmail = true;
+	} else if (Session.get('selectedLearningStatisticsUser') !== undefined && Session.get('selectedLearningStatisticsUser').email !== undefined && Session.get('selectedLearningStatisticsUser') !== "") {
 		email = Session.get('selectedLearningStatisticsUser').email;
+		gotEmail = true;
 	}
-
-	return `<a href="mailto:${email}">${email}</a>`;
+	if (gotEmail) {
+		return `<a href="mailto:${email}">${email}</a>`;
+	} else {
+		return email;
+	}
 });
 
 Template.registerHelper("learningStatisticsGetUserName", function () {
+	let name = TAPi18n.__('profile.finishProfile');
 	if (Session.get('hideUserNames') && !(Route.isFilterIndex() || Route.isBox())) {
 		return TAPi18n.__('learningStatistics.hiddenUserPlaceholder', {index: Session.get('selectedLearningStatisticsUser').index});
-	} else if (Route.isFilterIndex() || Route.isBox()) {
-		return `${Meteor.user().profile.givenname} ${Meteor.user().profile.birthname}`;
-	} else {
-		return `${Session.get('selectedLearningStatisticsUser').firstName} ${Session.get('selectedLearningStatisticsUser').lastName}`;
+	} else if ((Route.isFilterIndex() || Route.isBox()) && Meteor.user().profile.givenname !== undefined && Meteor.user().profile.birthname !== undefined) {
+		name = `${Meteor.user().profile.givenname} ${Meteor.user().profile.birthname}`;
+	} else if (Session.get('selectedLearningStatisticsUser') !== undefined && Session.get('selectedLearningStatisticsUser').firstName !== undefined && Session.get('selectedLearningStatisticsUser').lastName !== undefined) {
+		name = `${Session.get('selectedLearningStatisticsUser').firstName} ${Session.get('selectedLearningStatisticsUser').lastName}`;
 	}
+	return name;
 });
 
 
