@@ -148,36 +148,38 @@ export let UserPermissions = class UserPermissions {
 					roles = user.roles;
 				}
 			}
-			for (let i = 0; i < roles.length; i++) {
-				switch (roles[i]) {
-					case roleFree.string:
-						if (highestRole === roleGuest.string) {
+			if (roles !== undefined) {
+				for (let i = 0; i < roles.length; i++) {
+					switch (roles[i]) {
+						case roleFree.string:
+							if (highestRole === roleGuest.string) {
+								highestRole = roles[i];
+							}
+							break;
+						case roleEdu.string:
+							if (highestRole === roleGuest.string || highestRole === roleFree.string) {
+								highestRole = roles[i];
+							}
+							break;
+						case rolePro.string:
+							if (highestRole === roleGuest.string || highestRole === roleFree.string || highestRole === roleEdu.string) {
+								highestRole = roles[i];
+							}
+							break;
+						case roleLecturer.string:
+							if (highestRole === roleGuest.string || highestRole === roleFree.string || highestRole === roleEdu.string || highestRole === rolePro.string) {
+								highestRole = roles[i];
+							}
+							break;
+						case roleEditor.string:
+							if (highestRole !== roleAdmin.string) {
+								highestRole = roles[i];
+							}
+							break;
+						case roleAdmin.string:
 							highestRole = roles[i];
-						}
-						break;
-					case roleEdu.string:
-						if (highestRole === roleGuest.string || highestRole === roleFree.string) {
-							highestRole = roles[i];
-						}
-						break;
-					case rolePro.string:
-						if (highestRole === roleGuest.string || highestRole === roleFree.string || highestRole === roleEdu.string) {
-							highestRole = roles[i];
-						}
-						break;
-					case roleLecturer.string:
-						if (highestRole === roleGuest.string || highestRole === roleFree.string || highestRole === roleEdu.string || highestRole === rolePro.string) {
-							highestRole = roles[i];
-						}
-						break;
-					case roleEditor.string:
-						if (highestRole !== roleAdmin.string) {
-							highestRole = roles[i];
-						}
-						break;
-					case roleAdmin.string:
-						highestRole = roles[i];
-						break;
+							break;
+					}
 				}
 			}
 		}
