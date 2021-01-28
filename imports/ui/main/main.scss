@@ -909,7 +909,7 @@ kbd {
 }
 
 @media (min-width: 1200px) {
-  #learningStatusModal, #learningHistoryModal, #learningLogModal {
+  #learningStatusModal, #learningHistoryModal, #learningLogModal, #learningStatisticsRemoveBonusUserModal {
     .modal-dialog, .model-body, .modal-content {
       width:1200px;
     }
@@ -917,7 +917,7 @@ kbd {
 }
 
 @media (max-width: 1199px) {
-  #learningStatusModal, #learningHistoryModal, #learningLogModal {
+  #learningStatusModal, #learningHistoryModal, #learningLogModal, #learningStatisticsRemoveBonusUserModal {
     .modal-dialog {
       width: 90%;
       margin-left: 5%;

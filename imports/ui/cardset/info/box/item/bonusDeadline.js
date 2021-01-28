@@ -10,10 +10,6 @@ import "./bonusDeadline.html";
 
 Template.cardsetInfoBoxItemBonusDeadline.helpers({
 	getDeadline: function () {
-		if (this.daysBeforeReset === 1) {
-			return this.daysBeforeReset + " " + TAPi18n.__('panel-body-experience.day');
-		} else {
-			return this.daysBeforeReset + " " + TAPi18n.__('panel-body-experience.day_plural');
-		}
+		return TAPi18n.__('panel-body-experience.day', {count: this.daysBeforeReset});
 	}
 });

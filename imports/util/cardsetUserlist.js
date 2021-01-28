@@ -24,9 +24,8 @@ export let CardsetUserlist = class CardsetUserlist {
 			[TAPi18n.__('set-list.cardsetInfoStatic', {}, ServerStyle.getClientLanguage()), ""],
 			[TAPi18n.__('set-list.name', {}, ServerStyle.getClientLanguage()), cardset.name],
 			[TAPi18n.__('modal-dialog.kind', {}, ServerStyle.getClientLanguage()), cardset.kind],
-			[TAPi18n.__('cardset.info.rating', {}, ServerStyle.getClientLanguage()), cardset.rating],
-			[TAPi18n.__('cardset.info.quantity', {}, ServerStyle.getClientLanguage()), cardset.quantity],
-			[TAPi18n.__('cardset.info.author', {}, ServerStyle.getClientLanguage()), getAuthorName(cardset.owner)],
+			[TAPi18n.__('cardset.info.quantity', {}, ServerStyle.getClientLanguage()), TAPi18n.__('confirmLearn-form.card', {count: cardset.quantity}, ServerStyle.getClientLanguage())],
+			[TAPi18n.__('cardset.info.author', {}, ServerStyle.getClientLanguage()), getAuthorName(cardset.owner, false)],
 			[TAPi18n.__('cardset.info.release', {}, ServerStyle.getClientLanguage()), moment(cardset.date).locale(ServerStyle.getClientLanguage()).format('LL')],
 			[TAPi18n.__('cardset.info.dateUpdated', {}, ServerStyle.getClientLanguage()), moment(cardset.dateUpdated).locale(ServerStyle.getClientLanguage()).format('LL')]
 		];
@@ -56,16 +55,23 @@ export let CardsetUserlist = class CardsetUserlist {
 			[TAPi18n.__('set-list.learnphase', {}, ServerStyle.getClientLanguage()), this.getLearningStatus(cardset.learningEnd)],
 			[TAPi18n.__('set-list.bonusMaxPoints.label', {}, ServerStyle.getClientLanguage()), TAPi18n.__('set-list.bonusMaxPoints.content', {count: this.getCurrentMaxBonusPoints(cardset)}, ServerStyle.getClientLanguage())],
 			[TAPi18n.__('set-list.bonusMin.label', {}, ServerStyle.getClientLanguage()), TAPi18n.__('set-list.bonusMin.content', {count: this.getCurrentMinLearned(cardset)}, ServerStyle.getClientLanguage())],
-			[TAPi18n.__('bonus.form.maxWorkload.label', {}, ServerStyle.getClientLanguage()), cardset.maxCards],
-			[TAPi18n.__('bonus.form.daysBeforeReset.label', {}, ServerStyle.getClientLanguage()), cardset.daysBeforeReset],
+			[TAPi18n.__('bonus.form.maxWorkload.label', {}, ServerStyle.getClientLanguage()), TAPi18n.__('confirmLearn-form.card', {count: cardset.maxCards}, ServerStyle.getClientLanguage())],
+			[TAPi18n.__('bonus.form.daysBeforeReset.label', {}, ServerStyle.getClientLanguage()), TAPi18n.__('panel-body-experience.day', {count: cardset.daysBeforeReset}, ServerStyle.getClientLanguage())],
 			[TAPi18n.__('bonus.form.startDate.label', {}, ServerStyle.getClientLanguage()), moment(cardset.learningStart).locale(ServerStyle.getClientLanguage()).format('LL')],
 			[TAPi18n.__('bonus.form.endDate.label', {}, ServerStyle.getClientLanguage()), moment(cardset.learningEnd).locale(ServerStyle.getClientLanguage()).format('LL')],
 			[TAPi18n.__('bonus.form.registrationPeriod.label', {}, ServerStyle.getClientLanguage()), moment(cardset.registrationPeriod).locale(ServerStyle.getClientLanguage()).format('LL')],
+			['', ''],
 			[TAPi18n.__('set-list.bonusSection.stats', {}, ServerStyle.getClientLanguage()), ""],
-			[TAPi18n.__('cardset.info.workload.bonus.count', {}, ServerStyle.getClientLanguage()), cardset.workload.bonus.count],
-			[TAPi18n.__('learningHistory.stats.duration.cardArithmeticMean.stats', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(cardset.leitner.timelineStats.arithmeticMean.bonus)],
-			[TAPi18n.__('learningHistory.stats.duration.cardMedian', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(cardset.leitner.timelineStats.median.bonus)],
-			[TAPi18n.__('learningHistory.stats.duration.cardStandardDeviation', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(cardset.leitner.timelineStats.standardDeviation.bonus)]
+			[TAPi18n.__('cardset.info.workload.bonus.count', {}, ServerStyle.getClientLanguage()), TAPi18n.__('cardset.info.workload.bonus.user', {count: cardset.workload.bonus.count}, ServerStyle.getClientLanguage())],
+			['', ''],
+			[TAPi18n.__('learningHistory.stats.duration.workingTime.sum', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(cardset.learningStatistics.workingTime.sum.bonus)],
+			[TAPi18n.__('learningHistory.stats.duration.workingTime.arithmeticMean', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(cardset.learningStatistics.workingTime.arithmeticMean.bonus)],
+			[TAPi18n.__('learningHistory.stats.duration.workingTime.median', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(cardset.learningStatistics.workingTime.median.bonus)],
+			[TAPi18n.__('learningHistory.stats.duration.workingTime.standardDeviation', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(cardset.learningStatistics.workingTime.standardDeviation.bonus)],
+			['', ''],
+			[TAPi18n.__('learningHistory.stats.duration.workingTime.arithmeticMean', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(cardset.learningStatistics.answerTime.arithmeticMean.bonus)],
+			[TAPi18n.__('learningHistory.stats.duration.workingTime.median', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(cardset.learningStatistics.answerTime.median.bonus)],
+			[TAPi18n.__('learningHistory.stats.duration.workingTime.standardDeviation', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(cardset.learningStatistics.answerTime.standardDeviation.bonus)]
 		];
 	}
 
@@ -149,11 +155,19 @@ export let CardsetUserlist = class CardsetUserlist {
 					let cardMedian = 0;
 					let cardArithmeticMean = 0;
 					let cardStandardDeviation = 0;
+					let workingTimeSum = 0;
+					let workingTimeArithmeticMean = 0;
+					let workingTimeMedian = 0;
+					let workingTimeStandardDeviation = 0;
 					let workload = Workload.findOne({user_id: user[0]._id, cardset_id: cardset_id, "leitner.bonus": true});
-					if (workload !== undefined && workload.leitner.timelineStats !== undefined) {
-						cardMedian = workload.leitner.timelineStats.median;
-						cardArithmeticMean = workload.leitner.timelineStats.median;
-						cardStandardDeviation = workload.leitner.timelineStats.median;
+					if (workload !== undefined && workload.leitner.learningStatistics !== undefined && workload.leitner.learningStatistics.answerTime !== undefined) {
+						cardMedian = workload.leitner.learningStatistics.answerTime.median;
+						cardArithmeticMean = workload.leitner.learningStatistics.answerTime.arithmeticMean;
+						cardStandardDeviation = workload.leitner.learningStatistics.answerTime.standardDeviation;
+						workingTimeSum = workload.leitner.learningStatistics.workingTime.sum;
+						workingTimeArithmeticMean = workload.leitner.learningStatistics.workingTime.arithmeticMean;
+						workingTimeMedian = workload.leitner.learningStatistics.workingTime.median;
+						workingTimeStandardDeviation = workload.leitner.learningStatistics.workingTime.standardDeviation;
 					}
 					learningDataArray.push({
 						user_id: user[0]._id,
@@ -163,6 +177,10 @@ export let CardsetUserlist = class CardsetUserlist {
 						cardMedian: cardMedian,
 						cardArithmeticMean: cardArithmeticMean,
 						cardStandardDeviation: cardStandardDeviation,
+						workingTimeSum: workingTimeSum,
+						workingTimeArithmeticMean: workingTimeArithmeticMean,
+						workingTimeMedian: workingTimeMedian,
+						workingTimeStandardDeviation: workingTimeStandardDeviation,
 						box1: Leitner.find(filter[0]).count(),
 						box2: Leitner.find(filter[1]).count(),
 						box3: Leitner.find(filter[2]).count(),

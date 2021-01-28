@@ -10,10 +10,6 @@ import "./bonusWorkload.html";
 
 Template.cardsetInfoBoxItemBonusWorkload.helpers({
 	getWorkload: function () {
-		if (this.maxCards === 1) {
-			return this.maxCards + " " + TAPi18n.__('confirmLearn-form.card');
-		} else {
-			return this.maxCards + " " + TAPi18n.__('confirmLearn-form.cards');
-		}
+		return TAPi18n.__('confirmLearn-form.card', {count: this.maxCards});
 	}
 });

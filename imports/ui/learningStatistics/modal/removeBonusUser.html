@@ -2,7 +2,7 @@
     <div class="modal fade" id="learningStatisticsRemoveBonusUserModal" tabindex="-1" role="dialog"
          aria-labelledby="learningStatisticsRemoveBonusUserTitle">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content modal-content-for-buttons">
+            <div class="modal-content modal-lg modal-content-for-buttons">
                 <div class="modal-header">
                     <span class="modal-icon">
                         <span class="fas fa-trash"></span>
@@ -25,12 +25,15 @@
                                     <th scope="col">{{_ "panel-body.email"}}</th>
                                 {{/if}}
                                 <th scope="col">{{_ "learningStatistics.lastActivity"}}</th>
+                                <th scope="col">{{_ "learningStatistics.workingTime"}}</th>
+                                <th scope="col">{{_ "learningStatistics.arithmeticMean"}}</th>
                                 <th scope="col">{{_ "learningStatistics.box" number=1}}</th>
                                 <th scope="col">{{_ "learningStatistics.box" number=2}}</th>
                                 <th scope="col">{{_ "learningStatistics.box" number=3}}</th>
                                 <th scope="col">{{_ "learningStatistics.box" number=4}}</th>
                                 <th scope="col">{{_ "learningStatistics.box" number=5}}</th>
                                 <th scope="col">{{_ "learningStatistics.learned"}}</th>
+                                <th scope="col">{{_ "learningStatistics.bonus"}}</th>
                             </tr>
                             <tr>
                                 {{#if gotHiddenUserNames}}
@@ -41,12 +44,27 @@
                                     <td>{{this.email}}</td>
                                 {{/if}}
                                 <td>{{this.lastActivity}}</td>
+                                <td>{{humanizeDuration this.workingTimeSum}}</td>
+                                <td>{{humanizeDuration this.cardArithmeticMean}}</td>
                                 <td>{{this.box1}}</td>
                                 <td>{{this.box2}}</td>
                                 <td>{{this.box3}}</td>
                                 <td>{{this.box4}}</td>
                                 <td>{{this.box5}}</td>
-                                <td>{{this.box6}}</td>
+                                <td>
+                                    {{#if earnedTrophy}}
+                                        <span class="green-learning-text">
+                                        {{this.box6}}{{{getPercentage}}}
+                                    </span>
+                                    {{else}}
+                                        <span class="red-learning-text">
+                                        {{this.box6}}{{{getPercentage}}}
+                                    </span>
+                                    {{/if}}
+                                </td>
+                                <td>
+                                    {{this.achievedBonus}}&nbsp;%{{#if earnedTrophy}}&nbsp;<span class="fas fa-trophy bonusTrophy"></span>{{/if}}
+                                </td>
                             </tr>
                             </tbody>
                         </table>

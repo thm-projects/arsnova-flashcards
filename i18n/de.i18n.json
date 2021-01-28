@@ -160,8 +160,8 @@
     "mailNotificationCheckbox": "E-Mail",
     "webNotificationCheckbox": "Push-Nachricht",
     "notificationError": "Es muss mindestens eine Benachrichtigungsart ausgewählt werden!",
-    "card": "Karte",
-    "cards": "Karten"
+    "card": "__count__ Karte",
+    "card_plural": "__count__ Karten"
   },
   "confirmEndLearn-form": {
     "title": "Bonus-Lernphase beenden",
@@ -510,9 +510,8 @@
     "total": "Total",
     "twoDaysAgo": "Vorgestern",
     "today": "Heute",
-    "days": "Tage",
-    "day": "Tag",
-    "day_plural": "Tage",
+    "day": "__count__ Tag",
+    "day_plural": "__count__ Tage",
     "yesterday": "Gestern",
     "month": "Wochen",
     "threemonth": "Monate",
@@ -756,10 +755,14 @@
       "undefinedAuthor": "Bitte füll dein Profil aus!",
       "workload": {
         "bonus": {
-          "count": "Eingeschrieben"
+          "count": "Eingeschrieben",
+          "user": "__count__ Benutzer",
+          "user_plural": "__count__ Benutzer"
         },
         "normal": {
-          "count": "Gelernt von"
+          "count": "Gelernt von",
+          "user": "__count__ Benutzer",
+          "user_plural": "__count__ Benutzern"
         }
       }
     },

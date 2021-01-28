@@ -14,7 +14,8 @@ import {CardsetUserlist} from "../../util/cardsetUserlist";
 Meteor.methods({
 	getLearningStatisticsCSVExport: function (cardset_id, header) {
 		check(cardset_id, String);
-		check(header, [String]);
+		check(header[0], [String]);
+		check(header[1], [String]);
 
 		let cardset = Cardsets.findOne({_id: cardset_id});
 		let cardsetInfo = CardsetUserlist.getCardsetInfo(cardset);
@@ -22,17 +23,39 @@ Meteor.methods({
 		if (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
 			let content;
 			let colSep = ";"; // Separates columns
-			let infoCol = ";;;;;;;;;;;;;;;;;"; // Separates columns
+			let infoCol = ""; // Separates columns
+			for (let i = 0; i < header.length + 1; i++) {
+				infoCol += colSep;
+			}
 			let newLine = "\r\n"; //Adds a new line
 			let infoCardsetCounter = 0;
-			let infoCardsetLength = 6;
+			let infoCardsetLength = cardsetInfo.length - 1;
 			let infoLearningPhaseCounter = 0;
-			let infoLearningPhaseLength = 15;
-			content = header[6] + colSep + header[7] + colSep + header[8] + colSep + header[10] + colSep + header[11] + colSep + header[12] + colSep + header[13] + colSep + header[14] + colSep + header[15] + colSep;
-			for (let i = 0; i <= 4; i++) {
-				content += header[i] + " [" + cardset.learningInterval[i] + "]" + colSep;
+			let infoLearningPhaseLength = learningPhaseInfo.length - 1;
+			content = "";
+			for (let i = 0; i <= header.length - 1; i++) {
+				switch (header[i][1]) {
+					case "box1":
+						content += `${header[i][0]} [${cardset.learningInterval[0]}]`;
+						break;
+					case "box2":
+						content += `${header[i][0]} [${cardset.learningInterval[1]}]`;
+						break;
+					case "box3":
+						content += `${header[i][0]} [${cardset.learningInterval[2]}]`;
+						break;
+					case "box4":
+						content += `${header[i][0]} [${cardset.learningInterval[3]}]`;
+						break;
+					case "box5":
+						content += `${header[i][0]} [${cardset.learningInterval[4]}]`;
+						break;
+					default:
+						content += header[i][0];
+				}
+				content += colSep;
 			}
-			content += header[5] + colSep + header[9] + colSep + colSep + cardsetInfo[infoCardsetCounter++][0] + newLine;
+			content += colSep + cardsetInfo[infoCardsetCounter++][0] + newLine;
 			let learners = CardsetUserlist.getLearners(Workload.find({cardset_id: cardset_id, 'leitner.bonus': true}).fetch(), cardset_id);
 			for (let k = 0; k < learners.length; k++) {
 				let totalCards = learners[k].box1 + learners[k].box2 + learners[k].box3 + learners[k].box4 + learners[k].box5 + learners[k].box6;
@@ -47,10 +70,73 @@ Meteor.methods({
 				if (percentage > 0) {
 					box6 += " [" + percentage + " %]";
 				}
-				content += learners[k].birthname + colSep + learners[k].givenname + colSep + learners[k].email + colSep + Bonus.getNotificationStatus(learners[k], true) + colSep;
-				content += Utilities.getMomentsDate(learners[k].dateJoinedBonus, false, 0, false) + colSep + Utilities.getMomentsDate(learners[k].lastActivity, false, 0, false) + colSep;
-				content += Utilities.humanizeDuration(learners[k].cardArithmeticMean) + colSep + Utilities.humanizeDuration(learners[k].cardMedian) + colSep + Utilities.humanizeDuration(learners[k].cardStandardDeviation) + colSep;
-				content += learners[k].box1 + colSep + learners[k].box2 + colSep + learners[k].box3 + colSep + learners[k].box4 + colSep + learners[k].box5 + colSep + box6 +  colSep + achievedBonus +  colSep;
+				for (let i = 0; i <= header.length - 1; i++) {
+					switch (header[i][1]) {
+						case "lastName":
+							content += learners[k].birthname;
+							break;
+						case "firstName":
+							content += learners[k].givenname;
+							break;
+						case "email":
+							content += learners[k].email;
+							break;
+						case "notifications":
+							content += Bonus.getNotificationStatus(learners[k], true);
+							break;
+						case "dateJoined":
+							content += Utilities.getMomentsDate(learners[k].dateJoinedBonus, false, 0, false);
+							break;
+						case "lastActivity":
+							content += Utilities.getMomentsDate(learners[k].lastActivity, false, 0, false);
+							break;
+						case "workingTimeSum":
+							content += Utilities.humanizeDuration(learners[k].workingTimeSum);
+							break;
+						case "workingTimeArithmeticMean":
+							content += Utilities.humanizeDuration(learners[k].workingTimeArithmeticMean);
+							break;
+						case "workingTimeMedian":
+							content += Utilities.humanizeDuration(learners[k].workingTimeMedian);
+							break;
+						case "workingTimeStandardDeviation":
+							content += Utilities.humanizeDuration(learners[k].workingTimeStandardDeviation);
+							break;
+						case "answerTimeArithmeticMean":
+							content += Utilities.humanizeDuration(learners[k].cardArithmeticMean);
+							break;
+						case "answerTimeMedian":
+							content += Utilities.humanizeDuration(learners[k].cardMedian);
+							break;
+						case "answerTimeStandardDeviation":
+							content += Utilities.humanizeDuration(learners[k].cardStandardDeviation);
+							break;
+						case "box1":
+							content += learners[k].box1;
+							break;
+						case "box2":
+							content += learners[k].box2;
+							break;
+						case "box3":
+							content += learners[k].box3;
+							break;
+						case "box4":
+							content += learners[k].box4;
+							break;
+						case "box5":
+							content += learners[k].box5;
+							break;
+						case "learned":
+							content += box6;
+							break;
+						case "achievedBonus":
+							content += achievedBonus;
+							break;
+						default:
+							content += "";
+					}
+					content += colSep;
+				}
 				if (infoCardsetCounter <= infoCardsetLength) {
 					content += colSep + cardsetInfo[infoCardsetCounter][0] + colSep + cardsetInfo[infoCardsetCounter++][1];
 				} else if (infoLearningPhaseCounter <= infoLearningPhaseLength) {
@@ -191,11 +277,17 @@ Meteor.methods({
 		let userCardMedian = 0;
 		let userCardArithmeticMean = 0;
 		let userCardStandardDeviation = 0;
-		if (workload !== undefined && workload.leitner.timelineStats !== undefined) {
+		let userWorkingTimeMedian = 0;
+		let userWorkingTimeArithmeticMean = 0;
+		let userWorkingTimeStandardDeviation = 0;
+		if (workload !== undefined && workload.leitner.learningStatistics !== undefined) {
 			isInBonus = workload.leitner.bonus;
-			userCardMedian = workload.leitner.timelineStats.median;
-			userCardArithmeticMean = workload.leitner.timelineStats.arithmeticMean;
-			userCardStandardDeviation = workload.leitner.timelineStats.standardDeviation;
+			userCardMedian = workload.leitner.learningStatistics.answerTime.median;
+			userCardArithmeticMean = workload.leitner.learningStatistics.answerTime.arithmeticMean;
+			userCardStandardDeviation = workload.leitner.learningStatistics.answerTime.standardDeviation;
+			userWorkingTimeMedian = workload.leitner.learningStatistics.workingTime.median;
+			userWorkingTimeArithmeticMean = workload.leitner.learningStatistics.workingTime.arithmeticMean;
+			userWorkingTimeStandardDeviation = workload.leitner.learningStatistics.workingTime.standardDeviation;
 		}
 		for (let i = 0; i < leitnerTasks.length; i++) {
 			let item = {};
@@ -208,10 +300,13 @@ Meteor.methods({
 			item.userCardMedian = userCardMedian;
 			item.userCardArithmeticMean = userCardArithmeticMean;
 			item.userCardStandardDeviation = userCardStandardDeviation;
-			if (leitnerTasks[i].timelineStats !== undefined) {
-				item.cardMedian = leitnerTasks[i].timelineStats.median;
-				item.cardArithmeticMean = leitnerTasks[i].timelineStats.arithmeticMean;
-				item.cardStandardDeviation = leitnerTasks[i].timelineStats.standardDeviation;
+			item.userWorkingTimeMedian = userWorkingTimeMedian;
+			item.userWorkingTimeArithmeticMean = userWorkingTimeArithmeticMean;
+			item.userWorkingTimeStandardDeviation = userWorkingTimeStandardDeviation;
+			if (leitnerTasks[i].learningStatistics !== undefined) {
+				item.cardMedian = leitnerTasks[i].learningStatistics.answerTime.median;
+				item.cardArithmeticMean = leitnerTasks[i].learningStatistics.answerTime.arithmeticMean;
+				item.cardStandardDeviation = leitnerTasks[i].learningStatistics.answerTime.standardDeviation;
 			} else {
 				item.cardMedian = 0;
 				item.cardArithmeticMean = 0;

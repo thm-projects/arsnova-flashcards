@@ -2,7 +2,7 @@ import {Session} from "meteor/session";
 import {Cardsets} from "../api/subscriptions/cardsets";
 import {CardType} from "./cardTypes";
 import {ServerStyle} from "./styles";
-import {median, mean, std} from "mathjs";
+import {median, mean, std, sum} from "mathjs";
 
 import {
 	END_RECORDING,
@@ -253,15 +253,30 @@ export let Utilities = class Utilities {
 		}
 	}
 
-	static humanizeDuration (duration) {
-		let settings = humanizeDurationSettings;
-		if (duration < 60000) {
-			settings.units = ['s'];
-			return humanizeDuration(duration, settings);
+	static getSum (array) {
+		if (array.length) {
+			return sum(array);
 		} else {
-			settings.units = ['h', 'm'];
-			return humanizeDuration(duration, settings);
+			return 0;
 		}
+	}
+
+	static humanizeDuration (duration = 0, onlyHours = false) {
+		let settings = humanizeDurationSettings;
+		if (onlyHours) {
+			if (duration < 3600000) {
+				settings.units = ['m'];
+			} else {
+				settings.units = ['h'];
+			}
+		} else {
+			if (duration < 60000) {
+				settings.units = ['s'];
+			} else {
+				settings.units = ['h', 'm'];
+			}
+		}
+		return humanizeDuration(duration, settings);
 	}
 
 	static sortArray (array, content, desc = false) {
