@@ -128,7 +128,9 @@ Meteor.methods({
 
 		let user_id;
 		let cardset = Cardsets.findOne({_id: cardset_id});
-		if (UserPermissions.gotBackendAccess() || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
+		if (isProfileView) {
+			user_id = Meteor.userId();
+		} else if (UserPermissions.gotBackendAccess() || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
 			user_id = user;
 		} else {
 			user_id = Meteor.userId();
