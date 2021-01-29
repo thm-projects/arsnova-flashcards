@@ -2,7 +2,7 @@ import {Session} from "meteor/session";
 import {CardType as CardTypes} from "../../../../util/cardTypes";
 
 Template.registerHelper('gotArsnovaClick', function (cardType) {
-	if (this.shuffled) {
+	if (this.shuffled || (this.cardset !== undefined && this.cardset.shuffled)) {
 		return true;
 	}
 	if (cardType === undefined) {
@@ -13,7 +13,7 @@ Template.registerHelper('gotArsnovaClick', function (cardType) {
 
 
 Template.registerHelper('gotFragJetzt', function (cardType) {
-	if (this.shuffled) {
+	if (this.shuffled || (this.cardset !== undefined && this.cardset.shuffled)) {
 		return true;
 	}
 	if (cardType === undefined) {

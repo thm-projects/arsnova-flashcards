@@ -17,6 +17,8 @@ Template.cardSidebarItemArsnovaClick.helpers({
 		let cardset;
 		if (Route.isDemo()) {
 			cardset = Cardsets.findOne({shuffled: true, kind: {$in: ['demo']}}, {fields: {shuffled: true, arsnovaClick: true}});
+		} else if (Route.isBox() || Route.isMemo()) {
+			cardset = this.cardset;
 		} else {
 			cardset = this;
 		}
