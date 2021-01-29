@@ -1,13 +1,11 @@
 <template name="cardSidebarItemArsnovaLite">
     {{#if gotFragJetzt}}
-        {{#if isCardsetOwner this._id}}
-            {{#if gotSessionID}}
-                {{#unless isIOSSafari}}
-                    <span class="hidden-xs fas fa-comments card-button cardHeaderItem showArsnovaLite"
-                          data-type="cardNavigation"
-                          title="{{_ "card.tooltip.arsnovaLite"}}"></span>
-                {{/unless}}
-            {{/if}}
+        {{#if gotSessionID}}
+            {{#unless isIOSSafari}}
+                <span class="hidden-xs fas fa-comments card-button cardHeaderItem showArsnovaLite"
+                      data-type="cardNavigation"
+                      title="{{_ "card.tooltip.arsnovaLite"}}"></span>
+            {{/unless}}
         {{/if}}
     {{/if}}
 </template>
