@@ -50,8 +50,10 @@ export let BonusForm = class BonusForm {
 			} else {
 				errorCount = config.defaultErrorCount;
 			}
-			forceNotifications.set('mail', Session.get('activeCardset').forceNotifications.mail);
-			forceNotifications.set('push', Session.get('activeCardset').forceNotifications.push);
+			if (Session.get('activeCardset').forceNotifications !== undefined) {
+				forceNotifications.set('mail', Session.get('activeCardset').forceNotifications.mail);
+				forceNotifications.set('push', Session.get('activeCardset').forceNotifications.push);
+			}
 		}
 		$('#maxWorkload').val(maxWorkload);
 		$('#bonusFormModal #daysBeforeReset').val(daysBeforeReset);
