@@ -17,7 +17,7 @@
 </template>
 
 <template name="cardNavigationDisabled">
-    <li class="btn-bootstrap-container"><a class="card-navigation-disabled btn btn-raised btn-primary"><span
+    <li aria-hidden="true" class="btn-bootstrap-container"><a class="card-navigation-disabled btn btn-raised btn-primary"><span
             class="flex-content">{{_
             "card.navigationDisabled"}}</span></a></li>
 </template>
@@ -41,7 +41,7 @@
 </template>
 
 <template name="cardNavigationItem">
-    <li class="presentation-element btn-bootstrap-container">
+    <li aria-hidden="true" class="presentation-element btn-bootstrap-container">
         <a class="btn btn-block {{#if isFirstButton this.index}}card-navigation-active{{/if}} switchCardSide {{isDisabled this.contentId false this.side}} btn-raised"
            type="button"
            data-content-id="{{this.contentId}}"
