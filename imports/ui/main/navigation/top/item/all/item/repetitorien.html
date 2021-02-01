@@ -2,7 +2,7 @@
     {{#if isInRole 'admin, editor'}}
         <li id="navbar-all-repetitorien"
             class="{{#if isAllRepetitorienRoute}}active{{/if}}">
-            <a href="{{pathFor route='allRepetitorien'}}">
+            <a rel="noopener noreferrer"   href="{{pathFor route='allRepetitorien'}}">
                 {{{getNavigationName "allRepetitorien"}}}
             </a>
         </li>

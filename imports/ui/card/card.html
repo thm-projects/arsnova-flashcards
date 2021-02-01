@@ -116,7 +116,7 @@
 </template>
 
 <template name="cardSubject">
-    {{#if gotBonusTranscript}}<a class="cardHeaderLink"
+    {{#if gotBonusTranscript}}<a rel="noopener noreferrer" class="cardHeaderLink"
                               href="{{#unless isEditMode}}/cardset/{{getBonusLecture}}{{/unless}}">{{getSubject}}</a>{{else}}{{#unless this.subject}}
         <span class="subjectPlaceholder">{{getSubject}}</span>{{else}}{{getSubject}}{{/unless}}{{/if}}
 </template>

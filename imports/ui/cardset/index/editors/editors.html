@@ -20,12 +20,12 @@
                             <td> {{getRoles this.roles}}</td>
                             <td>
                                 {{#if isCardsetEditor this.id}}
-                                    <a class="btn btn-block btn-raised btn-danger removeEditor"
+                                    <a rel="noopener noreferrer" class="btn btn-block btn-raised btn-danger removeEditor"
                                        data-id="{{this.id}}">
                                         <span class="fas fa-minus"></span> {{_ "admin.cardset.removeFromWordcloud"}}
                                     </a>
                                 {{else}}
-                                    <a class="btn btn-block btn-raised btn-success addEditor"
+                                    <a rel="noopener noreferrer" class="btn btn-block btn-raised btn-success addEditor"
                                        data-id="{{this.id}}">
                                         <span class="fas fa-plus"></span> {{_ "admin.cardset.addToWordcloud"}}
                                     </a>

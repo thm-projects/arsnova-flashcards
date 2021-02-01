@@ -1,7 +1,7 @@
 <template name="filterIndexItemBottomEditTranscript">
     {{#unless isCardsetTranscriptBonusRoute}}
         {{#unless isBonusTranscriptsRouteAndDeadlineExpired}}
-            <a class="resultNavigationElement editCard hidden-xs" {{disableIfOffline}}
+            <a rel="noopener noreferrer"   class="resultNavigationElement editCard hidden-xs" {{disableIfOffline}}
                title='{{_ "transcriptForm.index.tooltip.edit"}}' data-id="{{this._id}}">
                 <span class="fas fa-edit" data-id="{{this._id}}"></span>
             </a>

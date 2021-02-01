@@ -1,6 +1,6 @@
 <template name="frontendNotification">
     <li class="dropdown" id="navbar-profile">
-        <a href="#" class="dropdown-toggle dropdownMenuContainer" data-toggle="dropdown">
+        <a rel="noopener noreferrer"   href="#" class="dropdown-toggle dropdownMenuContainer" data-toggle="dropdown">
             {{{getNavigationName "news"}}}
         </a>
         <div class="dropdown-menu" id="profile-drop">
@@ -9,12 +9,12 @@
 
                     <tr id="messageTR">
                         <td>
-                            <a class="dropdown-item">
+                            <a rel="noopener noreferrer"   class="dropdown-item">
                                 <span class="fas fa-bell"></span>
                             </a>
                         </td>
                         <td>
-                            <a class="dropdown-item">
+                            <a rel="noopener noreferrer"   class="dropdown-item">
                                 {{this.subject}}
                             </a>
                         </td>
@@ -24,11 +24,11 @@
 
                 <tr id="fallbackTR">
                     <td>
-                        <a class="dropdown-item">
+                        <a rel="noopener noreferrer"   class="dropdown-item">
                         </a>
                     </td>
                     <td>
-                        <a class="dropdown-item">
+                        <a rel="noopener noreferrer"   class="dropdown-item">
                             {{_ "navbar-collapse.noNews"}}
                         </a>
                     </td>

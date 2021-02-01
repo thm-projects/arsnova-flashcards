@@ -8,7 +8,7 @@
                         {{#if isActiveRoute "home"}}
                             <span class="info_license showLicense">{{getLicense this._id this.license}}</span>
                         {{else}}
-                            <a class="info_license showLicense" href="#" data-id="{{this._id}}" data-toggle="modal"
+                            <a rel="noopener noreferrer"   class="info_license showLicense" href="#" data-id="{{this._id}}" data-toggle="modal"
                                data-target="#showLicenseModal">{{getLicense this._id this.license}}</a>
                         {{/if}}
                     </td>

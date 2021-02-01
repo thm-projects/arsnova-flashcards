@@ -9,7 +9,7 @@
         </td>
         {{#if canSeeAuthorLink}}
             <td>
-                <a href="{{pathFor 'admin_user' _id=this.owner}}" target="_blank">{{getAuthorName this.owner false}}</a>
+                <a rel="noopener noreferrer"   href="{{pathFor 'admin_user' _id=this.owner}}" target="_blank">{{getAuthorName this.owner false}}</a>
             </td>
         {{else}}
             <td>{{getAuthorName this.owner false}}</td>

@@ -1,6 +1,6 @@
 <template name="filterItemFilterBonus">
     <li class="dropdown cards-filter-element">
-        <a href="#" class="dropdown-toggle bonusFilter cards-filter-element" data-toggle="dropdown"
+        <a rel="noopener noreferrer"   href="#" class="dropdown-toggle bonusFilter cards-filter-element" data-toggle="dropdown"
            role="button"
            aria-haspopup="true" aria-expanded="false">
             {{_ "filter-pool.bonus.title"}}
@@ -10,11 +10,11 @@
         </a>
         <ul class="dropdown-menu cards-filter-element">
             <li class="cards-filter-element">
-                <a href="#" class="noFilterBonus active cards-filter-element" data-id="reset">{{_
+                <a rel="noopener noreferrer"   href="#" class="noFilterBonus active cards-filter-element" data-id="reset">{{_
                         "filter-pool.bonus.all"}}</a>
             </li>
             {{#if gotBonusCardsets}}
-                <li class="cards-filter-element"><a href="#" class="filterActiveBonus cards-filter-element">
+                <li class="cards-filter-element"><a rel="noopener noreferrer"   href="#" class="filterActiveBonus cards-filter-element">
                     {{_ "filter-pool.bonus.bonus"}}
                     {{#if resultsFilterBonus 0}}
                         <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
@@ -22,7 +22,7 @@
                 </a></li>
             {{/if}}
             {{#if gotTranscriptBonusCardsets}}
-                <li class="cards-filter-element"><a href="#" class="filterTranscriptBonus cards-filter-element">
+                <li class="cards-filter-element"><a rel="noopener noreferrer"   href="#" class="filterTranscriptBonus cards-filter-element">
                     {{_ "filter-pool.bonus.transcriptBonus"}}
                     {{#if resultsFilterBonus 1}}
                         <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>

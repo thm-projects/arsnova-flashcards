@@ -32,7 +32,7 @@
                             <br>
                             <br>
                             {{#if canAccessFrontend}}
-                                <a href="/cardset/{{this._id}}" id="cardsetLink">{{this.name}}</a>
+                                <a rel="noopener noreferrer"   href="/cardset/{{this._id}}" id="cardsetLink">{{this.name}}</a>
                             {{else}}
                                 {{this.name}}
                             {{/if}}

@@ -2,7 +2,7 @@
     <label>{{_ "transcriptForm.bonus.form.minimum.stars"}}:&nbsp;
         <span class="transcript-bonus-settings">
             {{#each getBonusTranscriptStars}}
-                <a href="" class="stars-setting" title="{{getBonusTranscriptStarsTooltip @index}}"
+                <a rel="noopener noreferrer"   href="" class="stars-setting" title="{{getBonusTranscriptStarsTooltip @index}}"
                    data-id="{{@index}}"><span
                         class="fas fa-star {{this.status}}"></span></a>
             {{/each}}

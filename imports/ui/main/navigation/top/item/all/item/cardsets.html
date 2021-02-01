@@ -2,7 +2,7 @@
     {{#if isInRole 'admin, editor'}}
         <li id="navbar-all-cardsets"
             class="{{#if isActiveRoute regex='alldecks'}}active{{/if}}">
-            <a href="{{pathFor route='alldecks'}}">
+            <a rel="noopener noreferrer"   href="{{pathFor route='alldecks'}}">
                 {{{getNavigationName "allCardsets"}}}
             </a>
         </li>

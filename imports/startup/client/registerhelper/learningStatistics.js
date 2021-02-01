@@ -71,7 +71,7 @@ Template.registerHelper("learningStatisticsGetEMail", function () {
 		gotEmail = true;
 	}
 	if (gotEmail) {
-		return `<a href="mailto:${email}">${email}</a>`;
+		return `<a rel="noopener noreferrer" href="mailto:${email}">${email}</a>`;
 	} else {
 		return email;
 	}

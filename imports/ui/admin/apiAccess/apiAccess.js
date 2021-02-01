@@ -52,7 +52,7 @@ Template.admin_apiAccess.helpers({
 					label: TAPi18n.__('admin.delete'),
 					sortable: false,
 					fn: function (value) {
-						return new Spacebars.SafeString("<a id='" + value + "' class='deleteApiAccessAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.api.delete') + "' data-toggle='modal' data-target='#admin_deleteApiAccessForm'><span class='fas fa-ban'></span></a>");
+						return new Spacebars.SafeString("<a rel='noopener noreferrer'   id='" + value + "' class='deleteApiAccessAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.api.delete') + "' data-toggle='modal' data-target='#admin_deleteApiAccessForm'><span class='fas fa-ban'></span></a>");
 					}
 				}
 			]

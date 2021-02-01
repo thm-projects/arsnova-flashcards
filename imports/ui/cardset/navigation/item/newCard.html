@@ -3,7 +3,7 @@
         {{#unless isShuffledCardset _id}}
             {{#unless gotTranscriptBonus _id}}
                 <div class="hidden-xs btn-group">
-                    <a type="button" id="newCardBtn" class="btn btn-sm btn-raised newCardBtn"
+                    <a rel="noopener noreferrer"   type="button" id="newCardBtn" class="btn btn-sm btn-raised newCardBtn"
                         {{disableIfOffline}}><span class="flex-content"><span class="fas fa-plus"></span>&nbsp;{{_ "sidebar-nav.createcard"}}</span>
                     </a>
                 </div>

@@ -1,6 +1,6 @@
 <template name="filterIndexItemBottomDeleteTranscript">
     {{#unless isCardsetTranscriptBonusRoute}}
-        <a class="hidden-xs resultNavigationElement deleteCard" {{disableIfOffline}}
+        <a rel="noopener noreferrer"   class="hidden-xs resultNavigationElement deleteCard" {{disableIfOffline}}
            title='{{_ "transcriptForm.index.tooltip.delete"}}'  data-toggle="modal" data-target="#deleteTranscriptModal" data-id="{{this._id}}">
             <span class="result fas fa-trash" data-id="{{this._id}}"></span>
         </a>

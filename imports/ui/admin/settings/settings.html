@@ -14,10 +14,10 @@
                     <div class="panel-body panel-body-mail">
                         <form>
                             {{#if isWordcloudPomodoroEnabled}}
-                                <a id="disableWordcloudPomodoro" class="btn btn-raised btn-success">
+                                <a rel="noopener noreferrer"   id="disableWordcloudPomodoro" class="btn btn-raised btn-success">
                                     <span class="flex-content">{{_ "pomodoro.backend.settings.button.enabled"}}</span></a>
                             {{else}}
-                                <a id="enableWordcloudPomodoro" class="btn btn-raised btn-danger">
+                                <a rel="noopener noreferrer"   id="enableWordcloudPomodoro" class="btn btn-raised btn-danger">
                                     <span class="flex-content">{{_ "pomodoro.backend.settings.button.disabled"}}</span></a>
                             {{/if}}
                         </form>
@@ -35,10 +35,10 @@
             <div class="panel-body panel-body-mail">
                 <form>
                     {{#if isMailEnabled}}
-                        <a id="disableMail" class="btn btn-raised btn-success">
+                        <a rel="noopener noreferrer"   id="disableMail" class="btn btn-raised btn-success">
                             <span class="flex-content">{{_ "admin.mail-settings.enabled"}}</span></a>
                     {{else}}
-                        <a id="enableMail" class="btn btn-raised btn-danger">
+                        <a rel="noopener noreferrer"   id="enableMail" class="btn btn-raised btn-danger">
                             <span class="flex-content">{{_ "admin.mail-settings.disabled"}}</span></a>
                     {{/if}}
                 </form>
@@ -54,10 +54,10 @@
             <div class="panel-body panel-body-mail">
                 <form>
                     {{#if isPushEnabled}}
-                        <a id="disablePush" class="btn btn-raised btn-success">
+                        <a rel="noopener noreferrer"   id="disablePush" class="btn btn-raised btn-success">
                             <span class="flex-content">{{_ "admin.push-settings.enabled"}}</span></a>
                     {{else}}
-                        <a id="enablePush" class="btn btn-raised btn-danger">
+                        <a rel="noopener noreferrer"   id="enablePush" class="btn btn-raised btn-danger">
                             <span class="flex-content">{{_ "admin.push-settings.disabled"}}</span></a>
                     {{/if}}
                 </form>
@@ -79,7 +79,7 @@
                                 <label id="cardsetOwnerAdminLabel">{{_ "admin-settings.test-notifications.setTargetID"}}</label>
                                 <input class="form-control" type="text" id="notificationTarget"
                                        value="">
-                                <a id="setNotificationTarget" class="btn btn-raised btn-success">
+                                <a rel="noopener noreferrer"   id="setNotificationTarget" class="btn btn-raised btn-success">
                                     <span class="flex-content">{{_ "admin-settings.test-notifications.setTarget"}}</span></a>
                                 <label id="setTargetInfo" for="setNotificationTarget"
                                        style="visibility: hidden;"></label>
@@ -102,9 +102,9 @@
                                 <br>
                                 {{#if checkNotificationTarget}}
                                     <label id="targetInfo">{{_ "admin-settings.test-notifications.send"}}</label>
-                                    <a id="sendMail" class="btn btn-raised btn-success">
+                                    <a rel="noopener noreferrer"   id="sendMail" class="btn btn-raised btn-success">
                                         <span class="flex-content">{{_ "admin-settings.test-notifications.sendMail"}}</span></a>
-                                    <a id="sendWeb" class="btn btn-raised btn-success">
+                                    <a rel="noopener noreferrer"   id="sendWeb" class="btn btn-raised btn-success">
                                         <span class="flex-content">{{_ "admin-settings.test-notifications.sendWeb"}}</span></a>
                                     <label id="sendInfo" style="visibility: hidden;"></label>
                                 {{/if}}
@@ -131,7 +131,7 @@
                         <label id="cardsetOwnerAdminLabel">{{_ "admin-settings.plantUML.setTargetID"}}</label>
                         <input class="form-control" type="text" id="plantUMLServerTarget"
                                value="">
-                        <a id="setPlantUMLServerTarget" class="btn btn-raised btn-success">
+                        <a rel="noopener noreferrer"   id="setPlantUMLServerTarget" class="btn btn-raised btn-success">
                             <span class="flex-content">{{_ "admin-settings.plantUML.setTarget"}}</span></a>
                         <label id="setPlantUMLServerTargetInfo" for="setPlantUMLServerTarget"
                                style="visibility: hidden;"></label>

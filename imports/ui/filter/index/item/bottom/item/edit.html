@@ -1,6 +1,6 @@
 <template name="filterIndexItemBottomEdit">
     {{#if isCardsetOwner this._id}}
-        <a class="resultNavigationElement editCardset hidden-xs" {{disableIfOffline}}
+        <a rel="noopener noreferrer"   class="resultNavigationElement editCardset hidden-xs" {{disableIfOffline}}
            title='{{#if isRepetitorienFilterIndex}}{{_
                    "cardset.tooltip.editRepetitorium"}}{{else}}{{_
                    "cardset.tooltip.editCardset"}}{{/if}}' data-id="{{this._id}}"
@@ -10,7 +10,7 @@
         </a>
         {{#unless isTranscriptRoute}}
             {{#if gotBackendAccess}}
-                <a class="resultNavigationElement editAdminCardset hidden-xs"
+                <a rel="noopener noreferrer"   class="resultNavigationElement editAdminCardset hidden-xs"
                    title='{{_ "cardset.tooltip.editAdminSettings"}}' data-id="{{this._id}}"
                    data-toggle="modal"
                    data-target="#setCardsetFormAdminModal">
@@ -18,7 +18,7 @@
                 </a>
             {{/if}}
             {{#if isRepetitorienFilterIndex}}
-                <a class="resultNavigationElement editShuffle"
+                <a rel="noopener noreferrer"   class="resultNavigationElement editShuffle"
                    title='{{_ "set-list.shuffleCardsets"}}' data-id="{{this._id}}">
                     <span class="fas fa-plus editShuffle" data-id="{{this._id}}"></span>
                 </a>

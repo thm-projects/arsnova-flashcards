@@ -2,10 +2,10 @@
     {{#if isProLoginActive}}
             <tr class="{{#if isActiveRoute
                              'profileBilling'}}active{{/if}}">
-                <td><a class="dropdown-item"
+                <td><a rel="noopener noreferrer"   class="dropdown-item"
                        href="/profile/{{currentUser._id}}/billing"><span
                         class="fas fa-credit-card"></span></a></td>
-                <td><a class="dropdown-item"
+                <td><a rel="noopener noreferrer"   class="dropdown-item"
                        href="/profile/{{currentUser._id}}/billing">{{_
                         "profile.billing"}}</a></td>
             </tr>

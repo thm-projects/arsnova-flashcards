@@ -1,6 +1,6 @@
 <template name="filterItemFilterTranscriptLecture">
     <li class="dropdown cards-filter-element">
-        <a href="#" class="dropdown-toggle transcriptLectureBtn cards-filter-element" data-toggle="dropdown" role="button"
+        <a rel="noopener noreferrer"   href="#" class="dropdown-toggle transcriptLectureBtn cards-filter-element" data-toggle="dropdown" role="button"
            aria-haspopup="true" aria-expanded="false">
             {{_ "filter-pool.transcriptLecture.title"}}
             {{#if hasTranscriptLectureFilter}}
@@ -9,11 +9,11 @@
         </a>
         <ul class="dropdown-menu cards-filter-element">
             <li class="cards-filter-element">
-                <a href="#" class="noFilterTranscriptLecture active cards-filter-element" data-id="">{{_ "filter-pool.transcriptLecture.all"}}</a>
+                <a rel="noopener noreferrer"   href="#" class="noFilterTranscriptLecture active cards-filter-element" data-id="">{{_ "filter-pool.transcriptLecture.all"}}</a>
             </li>
             {{#each getTranscriptLectures}}
                     <li class="cards-filter-element">
-                        <a href="#" class="filterTranscriptLecture cards-filter-element"
+                        <a rel="noopener noreferrer"   href="#" class="filterTranscriptLecture cards-filter-element"
                            data-id="{{this.date}}"> {{getLectureName this}}
                             {{#if resultsFilterTranscriptLecture this}}
                                 <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>

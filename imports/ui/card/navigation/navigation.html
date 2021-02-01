@@ -17,7 +17,7 @@
 </template>
 
 <template name="cardNavigationDisabled">
-    <li aria-hidden="true" class="btn-bootstrap-container"><a class="card-navigation-disabled btn btn-raised btn-primary"><span
+    <li aria-hidden="true" class="btn-bootstrap-container"><a rel="noopener noreferrer" class="card-navigation-disabled btn btn-raised btn-primary"><span
             class="flex-content">{{_
             "card.navigationDisabled"}}</span></a></li>
 </template>
@@ -42,7 +42,7 @@
 
 <template name="cardNavigationItem">
     <li aria-hidden="true" class="presentation-element btn-bootstrap-container">
-        <a class="btn btn-block {{#if isFirstButton this.index}}card-navigation-active{{/if}} switchCardSide {{isDisabled this.contentId false this.side}} btn-raised"
+        <a rel="noopener noreferrer" class="btn btn-block {{#if isFirstButton this.index}}card-navigation-active{{/if}} switchCardSide {{isDisabled this.contentId false this.side}} btn-raised"
            type="button"
            data-content-id="{{this.contentId}}"
            data-navigation-id="{{this.index}}" data-side="{{this.side}}"
@@ -63,11 +63,11 @@
     {{#if isNavigationVisible}}
         {{#if isCardsetOrPresentation}}
             {{#unless cardCountOne}}
-                <a id="leftCarouselControl" class="left carousel-control" href="#cardCarousel"
+                <a rel="noopener noreferrer" id="leftCarouselControl" class="left carousel-control" href="#cardCarousel"
                    data-slide="prev">
                     <span class="fas fa-angle-left"></span>
                 </a>
-                <a id="rightCarouselControl" class="right carousel-control" href="#cardCarousel"
+                <a rel="noopener noreferrer" id="rightCarouselControl" class="right carousel-control" href="#cardCarousel"
                    data-slide="next">
                     <span class="fas fa-angle-right"></span>
                 </a>

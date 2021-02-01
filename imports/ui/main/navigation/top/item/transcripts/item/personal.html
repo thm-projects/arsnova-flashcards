@@ -4,7 +4,7 @@
             {{#if canCreateContent}}
                 <li id="navbar-transcripts{{#unless standalone}}-personal{{/unless}}"
                     class="{{#if isMyTranscriptsRoute}}active{{/if}}">
-                    <a href="{{pathFor route='transcriptsPersonal'}}">
+                    <a rel="noopener noreferrer"   href="{{pathFor route='transcriptsPersonal'}}">
                         {{#if standalone}}
                             {{{getNavigationName "transcripts"}}}
                         {{else}}

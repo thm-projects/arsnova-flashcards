@@ -17,7 +17,7 @@
                                     "presentation.start"}}{{else}}{{_ "filter-cards.filter"}}{{/if}}
                             </button>
                         {{/if}}
-                        <a href="#" id="cancelCardFilter" class="btn btn-raised btn-danger" data-dismiss="modal">{{_
+                        <a rel="noopener noreferrer"   href="#" id="cancelCardFilter" class="btn btn-raised btn-danger" data-dismiss="modal">{{_
                                 "declinecard"}}</a>
                         <span class="text">
                             {{_ "filter-cards.infoText"}} {{getCardCount -1 -1}}
@@ -32,7 +32,7 @@
                                                 {{_ "filter-cards.sortText"}}
                                             </span>
                         <span class="cell col-xs-6 poolText panelUnit">
-                                    <a class="btn btn-block btn-raised btn-default btn-sm shuffleButton sortFilter">{{getSortMode}}
+                                    <a rel="noopener noreferrer"   class="btn btn-block btn-raised btn-default btn-sm shuffleButton sortFilter">{{getSortMode}}
                                     </a>
                         </span>
                     </div>
@@ -130,13 +130,13 @@
 
 <template name="chooseFlashcardsButton">
     {{#if inFlashcardFilterSelection category item}}
-        <a class="btn btn-block btn-raised btn-danger btn-sm shuffleButton removeCardFilter"
+        <a rel="noopener noreferrer"   class="btn btn-block btn-raised btn-danger btn-sm shuffleButton removeCardFilter"
            data-category="{{category}}" data-item="{{item}}">
             <span class="fas fa-minus" data-category="{{category}}" data-item="{{item}}"></span> {{_
                 "admin.cardset.removeFromWordcloud"}}
         </a>
     {{else}}
-        <a class="btn btn-block btn-raised btn-success btn-sm shuffleButton addCardFilter"
+        <a rel="noopener noreferrer"   class="btn btn-block btn-raised btn-success btn-sm shuffleButton addCardFilter"
            data-category="{{category}}" data-item="{{item}}">
             <span class="fas fa-plus" data-category="{{category}}" data-item="{{item}}"></span> {{_
                 "admin.cardset.addToWordcloud"}}

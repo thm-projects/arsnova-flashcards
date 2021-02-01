@@ -4,7 +4,7 @@
             <td>{{_ "cardset.info.reviewer"}}:</td>
             {{#if isAdmin}}
                 <td>
-                    <a href="{{pathFor 'admin_user' _id=this.reviewer }}" target="_blank">{{getAuthorName this.reviewer false}}</a>
+                    <a rel="noopener noreferrer"   href="{{pathFor 'admin_user' _id=this.reviewer }}" target="_blank">{{getAuthorName this.reviewer false}}</a>
                 </td>
             {{else}}
                 <td>{{getAuthorName this.reviewer false}}</td>

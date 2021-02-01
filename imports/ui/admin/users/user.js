@@ -101,12 +101,12 @@ Template.admin_user.helpers({
 					sortable: false,
 					cellClass: 'edit',
 					fn: function (value) {
-						return new Spacebars.SafeString("<a id='linkToAdminUserCardset' class='editCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.editcardset') + "' data-cardsetid='" + value + "'><span class='fas fa-edit'></span></a>");
+						return new Spacebars.SafeString("<a rel='noopener noreferrer'   id='linkToAdminUserCardset' class='editCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.editcardset') + "' data-cardsetid='" + value + "'><span class='fas fa-edit'></span></a>");
 					}
 				},
 				{
 					key: 'delete', label: TAPi18n.__('admin.delete'), sortable: false, fn: function () {
-						return new Spacebars.SafeString("<a class='deleteCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecardset') + "' data-toggle='modal' data-target='#cardsetConfirmModalUserAdmin'><span class='fas fa-ban'></span></a>");
+						return new Spacebars.SafeString("<a rel='noopener noreferrer'   class='deleteCardsetAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletecardset') + "' data-toggle='modal' data-target='#cardsetConfirmModalUserAdmin'><span class='fas fa-ban'></span></a>");
 					}
 				}
 			]

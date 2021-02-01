@@ -8,10 +8,10 @@
         </div>
         <div class="panel-body">
             <ul class="nav nav-pills justify-content-center nav-fill">
-                <li class="active"><a class="btn" data-toggle="tab" href="#payment"><span class="flex-content">{{_ "billing.payment.header"}}</span></a></li>
-                <li><a class="btn" data-toggle="tab" href="#balance"><span class="flex-content">{{_ "billing.balance.header"}}</span></a></li>
-                <li><a class="btn" data-toggle="tab" href="#revenue"><span class="flex-content">{{_ "billing.revenue.header"}}</span></a></li>
-                <li><a class="btn" data-toggle="tab" href="#purchases"><span class="flex-content">{{_ "billing.purchases.header"}}</span></a></li>
+                <li class="active"><a rel="noopener noreferrer"   class="btn" data-toggle="tab" href="#payment"><span class="flex-content">{{_ "billing.payment.header"}}</span></a></li>
+                <li><a rel="noopener noreferrer"   class="btn" data-toggle="tab" href="#balance"><span class="flex-content">{{_ "billing.balance.header"}}</span></a></li>
+                <li><a rel="noopener noreferrer"   class="btn" data-toggle="tab" href="#revenue"><span class="flex-content">{{_ "billing.revenue.header"}}</span></a></li>
+                <li><a rel="noopener noreferrer"   class="btn" data-toggle="tab" href="#purchases"><span class="flex-content">{{_ "billing.purchases.header"}}</span></a></li>
             </ul>
 
             <div class="tab-content">
@@ -77,7 +77,7 @@
                     {{#if getRevenue.count}}
                         <div class="list-group">
                             {{#each getRevenue}}
-                                <a href="/cardset/{{cardset_id}}" class="list-group-item">
+                                <a rel="noopener noreferrer"   href="/cardset/{{cardset_id}}" class="list-group-item">
                                     <h4 class="list-group-item-heading">{{getCardsetName cardset_id}}</h4>
                                     <p class="list-group-item-text">{{_ "billing.revenue.boughtFrom"}} {{user_id}} {{_
                                             "billing.revenue.for"}} {{getPrice amount}} {{_
@@ -95,7 +95,7 @@
                     {{#if getInvoices.count}}
                         <div class="list-group">
                             {{#each getInvoices}}
-                                <a href="/cardset/{{cardset_id}}" class="list-group-item">
+                                <a rel="noopener noreferrer"   href="/cardset/{{cardset_id}}" class="list-group-item">
                                     <h4 class="list-group-item-heading">{{getCardsetName cardset_id}}</h4>
                                     <p class="list-group-item-text">{{_ "billing.purchases.boughtFor"}} {{getPrice
                                             amount}} {{_
