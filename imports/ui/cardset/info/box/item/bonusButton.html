@@ -4,17 +4,17 @@
             {{#if isRegistrationPeriodActive}}
             <button class="col-xs-12 btn btn-lg btn-raised btn-block btn-success" data-toggle="modal"
                data-target="{{#if isProfileCompleted}}#joinBonusModal{{else}}#profileIncompleteModal{{/if}}"><span
-                    class="flex-content"><i class="fas fa-sign-in-alt"></i>&nbsp;{{_
+                    class="flex-content"><span class="fas fa-sign-in-alt"></span>&nbsp;{{_
                     "bonus.info.button.join"}}</span></button>
             {{else}}
                 <button class="col-xs-12 btn btn-lg btn-raised btn-block btn-default" disabled><span
-                        class="flex-content"><i class="fas fa-hourglass-end hidden-xs"></i>&nbsp;{{_
+                        class="flex-content"><span class="fas fa-hourglass-end hidden-xs"></span>&nbsp;{{_
                         "bonus.info.button.expired"}}</span></button>
             {{/if}}
         {{/if}}
         {{#if isInBonus}}
             <button class="col-xs-12 btn btn-lg btn-raised btn-block btn-danger" data-toggle="modal"
-               data-target="#leaveBonusModal"><span class="flex-content"><i class="fas fa-sign-out-alt"></i>&nbsp;{{_
+               data-target="#leaveBonusModal"><span class="flex-content"><span class="fas fa-sign-out-alt"></span>&nbsp;{{_
                     "bonus.info.button.leave"}}</span></button>
         {{/if}}
     {{/if}}

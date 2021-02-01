@@ -41,6 +41,6 @@ Template.mainOverlayAspectRatioContent.helpers({
 				aspectRatio = this.replace(":", "");
 
 		}
-		return "<li class='aspect-ratio-dropdown-button aspect-ratio' data-id='" + this + "'> <i class ='" + Icons.aspectRatio(aspectRatio) + "' data-id='" + this + "'></i>&nbsp;" +  TAPi18n.__('presentation.aspectRatio.' + aspectRatio) + "</li>";
+		return "<li class='aspect-ratio-dropdown-button aspect-ratio' data-id='" + this + "'> <span class ='" + Icons.aspectRatio(aspectRatio) + "' data-id='" + this + "'></span>&nbsp;" +  TAPi18n.__('presentation.aspectRatio.' + aspectRatio) + "</li>";
 	}
 });

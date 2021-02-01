@@ -3,8 +3,8 @@
         <span class="transcript-bonus-settings">
             {{#each getBonusTranscriptStars}}
                 <a href="" class="stars-setting" title="{{getBonusTranscriptStarsTooltip @index}}"
-                   data-id="{{@index}}"><i
-                        class="fas fa-star {{this.status}}"></i></a>
+                   data-id="{{@index}}"><span
+                        class="fas fa-star {{this.status}}"></span></a>
             {{/each}}
         </span>
     </label>

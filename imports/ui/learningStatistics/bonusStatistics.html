@@ -20,18 +20,18 @@
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <button id="exportCSV" class="btn btn-success btn-raised"><span class="flex-content"><i aria-hidden=true class="fas fa-clipboard-list"></i>&nbsp;<i
-                                aria-hidden=true class="fas fa-cloud-download-alt"></i>&nbsp;{{_
+                        <button id="exportCSV" class="btn btn-success btn-raised"><span class="flex-content"><span aria-hidden=true class="fas fa-clipboard-list"></span>&nbsp;<span
+                                class="fas fa-cloud-download-alt"></span>&nbsp;{{_
                                 "box_export"}}</span></button>
                         <div class="btn-group">
                             <button class="btn btn-default btn-raised showUserNames groupCheckboxButtonLeft {{#if gotHiddenUserNames}}checked{{/if}}"><span class="flex-content">
                                 {{#if gotHiddenUserNames}}
-                                    <i aria-hidden=true class="fas fa-check"></i>
+                                    <span class="fas fa-check"></span>
                                 {{/if}}
                             </span>
                             </button>
-                            <button class="btn btn-info btn-raised showUserNames groupCheckboxButtonRight"><span class="flex-content"><i
-                                    aria-hidden=true class="fas fa-user-secret"></i>&nbsp;{{_
+                            <button class="btn btn-info btn-raised showUserNames groupCheckboxButtonRight"><span class="flex-content"><span
+                                    class="fas fa-user-secret"></span>&nbsp;{{_
                                     "learningStatistics.hideUserNames"}}</span></button>
                         </div>
 
@@ -104,7 +104,7 @@
                                 {{/if}}
                             </td>
                             <td>
-                                {{this.achievedBonus}}&nbsp;%{{#if earnedTrophy}}&nbsp;<i aria-hidden=true class="fas fa-trophy bonusTrophy"></i>{{/if}}
+                                {{this.achievedBonus}}&nbsp;%{{#if earnedTrophy}}&nbsp;<span class="fas fa-trophy bonusTrophy"></span>{{/if}}
                             </td>
                             <td>
                                 <a data-id="{{this.user_id}}"
@@ -113,28 +113,28 @@
                                    data-index="{{adjustIndex @index}}"
                                    data-email="{{this.email}}"
                                    class="showLearningHistory" data-toggle="modal"
-                                   href="#learningHistoryModal"><i
-                                        aria-hidden=true class="far fa-clock"
+                                   href="#learningHistoryModal"><span
+                                        class="far fa-clock"
                                         data-firstname="{{this.givenname}}"
                                         data-lastname="{{this.birthname}}"
                                         data-id="{{this.user_id}}"
                                         data-index="{{adjustIndex @index}}"
                                         data-email="{{this.email}}"
-                                        title="{{_ "learningHistory.tooltip"}}"></i></a>
+                                        title="{{_ "learningHistory.tooltip"}}"></span></a>
                             </td>
                             <td>
                                 <a data-id="{{this.user_id}}" data-index="{{adjustIndex @index}}"
                                    data-firstname="{{this.givenname}}"
                                    data-lastname="{{this.birthname}}"
                                    data-email="{{this.email}}"
-                                   class="showLearningStatus"><i
-                                        aria-hidden=true class="far fa-chart-bar"
+                                   class="showLearningStatus"><span
+                                        class="far fa-chart-bar"
                                         data-id="{{this.user_id}}"
                                         data-index="{{adjustIndex @index}}"
                                         data-firstname="{{this.givenname}}"
                                         data-lastname="{{this.birthname}}"
                                         data-email="{{this.email}}"
-                                        title="{{_ "learningStatus.tooltip"}}"></i></a>
+                                        title="{{_ "learningStatus.tooltip"}}"></span></a>
                             </td>
                             <td>
                                 <a class="removeBonusUser" data-toggle="modal"
@@ -148,7 +148,7 @@
                                         data-index="{{adjustIndex @index}}"
                                    data-mailnotification="{{this.mailNotification}}" data-webnotification="{{this.webNotification}}"
                                         title="{{_ "learningStatisticsRemoveBonusUser.tooltip"}}">
-                                    <i aria-hidden=true class="fas fa-trash" data-user_id="{{this.user_id}}"
+                                    <span class="fas fa-trash" data-user_id="{{this.user_id}}"
                                        data-firstname="{{this.givenname}}"
                                        data-lastname="{{this.birthname}}"
                                        data-email="{{this.email}}" data-box1="{{this.box1}}"
@@ -159,7 +159,7 @@
                                        data-mailnotification="{{this.mailNotification}}" data-webnotification="{{this.webNotification}}"
                                        data-datejoinedbonus="{{getMomentsDate this.dateJoinedBonus}}" data-lastactivity="{{getMomentsDate this.lastActivity}}"
                                     >
-                                    </i></a>
+                                    </span></a>
                             </td>
                         </tr>
                     {{/each}}

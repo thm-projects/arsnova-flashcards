@@ -7,7 +7,7 @@
                 <div class="modal-content modal-lg modal-content-for-buttons">
                     <div class="modal-header">
                     <span class="modal-icon">
-                        <i aria-hidden=true class="fas fa-clock"></i>
+                        <span class="fas fa-clock"></span>
                     </span>
                         {{> mainModalItemCloseIcon}}
                         <h4 id="learningHistoryTitle" class="modal-title">
@@ -166,7 +166,7 @@
                                                    data-lastActivity="{{this.lastActivity}}"
                                                    data-taskDate="{{this.date}}"
                                                 >
-                                                <i aria-hidden=true class="far fa-clock" title="{{_ "learningLog.tooltip"}}"
+                                                <span class="far fa-clock" title="{{_ "learningLog.tooltip"}}"
                                                    data-user="{{this.user_id}}"
                                                    data-cardset="{{this.cardset_id}}"
                                                    data-task="{{this.task_id}}"
@@ -180,7 +180,7 @@
                                                    data-cardStandardDeviation="{{this.cardStandardDeviation}}"
                                                    data-lastActivity="{{this.lastActivity}}"
                                                    data-taskDate="{{this.date}}"
-                                                ></i></a>
+                                                ></span></a>
                                                 {{/if}}
                                             </td>
                                         </tr>

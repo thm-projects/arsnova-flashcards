@@ -4,7 +4,7 @@
            aria-haspopup="true" aria-expanded="false">
             {{_ "filter-pool.transcriptLecture.title"}}
             {{#if hasTranscriptLectureFilter}}
-                <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
             {{/if}}
         </a>
         <ul class="dropdown-menu cards-filter-element">
@@ -16,7 +16,7 @@
                         <a href="#" class="filterTranscriptLecture cards-filter-element"
                            data-id="{{this.date}}"> {{getLectureName this}}
                             {{#if resultsFilterTranscriptLecture this}}
-                                <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                                <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
                             {{/if}}
                         </a>
                     </li>

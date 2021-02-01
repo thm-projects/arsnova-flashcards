@@ -2,7 +2,7 @@
     {{#if isCardsetOwner _id}}
         <div class="hidden-xs btn-group">
             <button id="editCardset" class="btn btn-sm btn-raised editCardsetBtn" {{disableIfOffline}}>
-                <span class="flex-content"><i class="fas fa-cog"></i>&nbsp;
+                <span class="flex-content"><span class="fas fa-cog"></span>&nbsp;
                     {{#if isRepetitorienFilterIndexOrShuffle}}
                         {{_ "modal-dialog.editRepetitorium"}}
                     {{else}}

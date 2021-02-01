@@ -22,25 +22,25 @@
         {{/unless}}
         {{> markdeepNavigationItemAnswerEditorDropdown}}
         <div class="btn-group">
-            <i class="card-button fas fa-plus markdeep-answer-add {{#if disableAddAnswerButton}}disabled{{/if}}"
-               title="{{_ "card.tooltip.markdeepEditor.addAnswer"}}"></i>
-            <i class="card-button fas fa-minus markdeep-answer-remove {{#if disableRemoveAnswerButton}}disabled{{/if}}"
-               title="{{_ "card.tooltip.markdeepEditor.removeAnswer"}}"></i>
+            <span class="card-button fas fa-plus markdeep-answer-add {{#if disableAddAnswerButton}}disabled{{/if}}"
+               title="{{_ "card.tooltip.markdeepEditor.addAnswer"}}"></span>
+            <span class="card-button fas fa-minus markdeep-answer-remove {{#if disableRemoveAnswerButton}}disabled{{/if}}"
+               title="{{_ "card.tooltip.markdeepEditor.removeAnswer"}}"></span>
         </div>
         {{#if isAnswer}}
             <div class="btn-group">
-                <i class="card-button fas fa-check markdeep-toggle-right-answer {{#if isRightAnswer}}pressed{{/if}}"
-                   title="{{_ "card.tooltip.markdeepEditor.rightAnswer"}}"></i>
-                <i class="card-button fas fa-exclamation-circle markdeep-toggle-explanation {{#if
+                <span class="card-button fas fa-check markdeep-toggle-right-answer {{#if isRightAnswer}}pressed{{/if}}"
+                   title="{{_ "card.tooltip.markdeepEditor.rightAnswer"}}"></span>
+                <span class="card-button fas fa-exclamation-circle markdeep-toggle-explanation {{#if
                         isExplanationEditorEnabled}}pressed{{/if}}"
-                   title="{{_ "card.tooltip.markdeepEditor.explanation"}}"></i>
+                   title="{{_ "card.tooltip.markdeepEditor.explanation"}}"></span>
 
             </div>
         {{/if}}
         <div class="btn-group">
-            <i class="card-button fas fa-dice markdeep-toggle-randomized-positions {{#if
+            <span class="card-button fas fa-dice markdeep-toggle-randomized-positions {{#if
                     gotRandomizedAnswerPositions}}pressed{{/if}}"
-               title="{{_ "card.tooltip.markdeepEditor.randomizeAnswerPosition"}}"></i>
+               title="{{_ "card.tooltip.markdeepEditor.randomizeAnswerPosition"}}"></span>
         </div>
     </div>
 </template>
@@ -63,14 +63,14 @@
                         {{getAnswerTag @index}}
                         {{#if isRightAnswer @index}}
                             &nbsp;&nbsp;
-                            <i class="fas fa-check"></i>
+                            <span class="fas fa-check"></span>
                         {{/if}}
                         {{#if gotExplanation @index}}
                             &nbsp;&nbsp;
-                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="fas fa-exclamation-circle"></span>
                         {{/if}}
                         {{#if gotRandomizedAnswerPositions}}
-                            <i class="fas fa-dice"></i>
+                            <span class="fas fa-dice"></span>
                         {{/if}}
                     </li>
                 {{/each}}

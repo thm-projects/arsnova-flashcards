@@ -145,7 +145,7 @@ Template.admin_notifications.helpers({
 						if (user === undefined) {
 							return TAPi18n.__('admin.optionNotPossible');
 						} else if (Meteor.user()._id !== value) {
-							return new Spacebars.SafeString("<a class='mailToReceiverAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#messageModalNotificationAdmin'><i class='receiver-fa fas fa-envelope'></i></a>");
+							return new Spacebars.SafeString("<a class='mailToReceiverAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#messageModalNotificationAdmin'><span class='receiver-fa fas fa-envelope'></span></a>");
 						}
 					}
 				},
@@ -158,7 +158,7 @@ Template.admin_notifications.helpers({
 						if (object.sender === undefined) {
 							return TAPi18n.__('admin.optionNotPossible');
 						} else if (Meteor.user()._id !== value) {
-							return new Spacebars.SafeString("<a class='mailToSenderAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#messageModalNotificationAdmin'><i class='sender-fa fas fa-envelope'></i></a>");
+							return new Spacebars.SafeString("<a class='mailToSenderAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#messageModalNotificationAdmin'><span class='sender-fa fas fa-envelope'></span></a>");
 						}
 					}
 				},
@@ -168,7 +168,7 @@ Template.admin_notifications.helpers({
 					cellClass: 'delete',
 					sortable: false,
 					fn: function () {
-						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='fas fa-ban'></i></a>");
+						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><span class='fas fa-ban'></span></a>");
 					}
 				}
 			]
@@ -240,7 +240,7 @@ Template.admin_notifications.helpers({
 						if (object.sender === undefined) {
 							return TAPi18n.__('admin.optionNotPossible');
 						} else if (Meteor.user()._id !== value) {
-							return new Spacebars.SafeString("<a class='mailToLecturerAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#notificationLecturerModalAdmin'><i class='fas fa-university'></i></a>");
+							return new Spacebars.SafeString("<a class='mailToLecturerAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#notificationLecturerModalAdmin'><span class='fas fa-university'></span></a>");
 						}
 					}
 				},
@@ -255,7 +255,7 @@ Template.admin_notifications.helpers({
 					cellClass: 'delete',
 					sortable: false,
 					fn: function () {
-						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='fas fa-ban'></i></a>");
+						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><span class='fas fa-ban'></span></a>");
 					}
 				}
 			]
@@ -374,7 +374,7 @@ Template.admin_notifications.helpers({
 					cellClass: 'delete',
 					sortable: false,
 					fn: function () {
-						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='fas fa-ban'></i></a>");
+						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><span class='fas fa-ban'></span></a>");
 					}
 				}
 			]

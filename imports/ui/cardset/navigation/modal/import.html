@@ -4,7 +4,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                      <span class="modal-icon">
-                        <i class="fas fa-archive"></i> <i class="fas fa-cloud-upload-alt"></i>
+                        <span class="fas fa-archive"></span> <span class="fas fa-cloud-upload-alt"></span>
                     </span>
                     {{> mainModalItemCloseIcon}}
                     <h4 id="importModalTitle" class="modal-title">{{_ "upload-form.upload-title"}}
@@ -56,7 +56,7 @@
                         <button id="importCancel" class="btn btn-default btn-raised pull-left" data-dismiss="modal">{{_
                                 "modal-dialog.cancel"}}</button>
                     {{else}}
-                        <p><i class="fas fa-spin fa-sync"></i>{{_ "upload-form.wait"}}</p>
+                        <p><span class="fas fa-spin fa-sync"></span>{{_ "upload-form.wait"}}</p>
                     {{/unless}}
                     <br>
                     <br>

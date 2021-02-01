@@ -79,12 +79,12 @@
                     {{else}}
                         <button type="button" id="settingsBtn" class="btn btn-default btn-raised"
                                 style="float:left;">
-                            <i class="fas fa-cog"></i>
+                            <span class="fas fa-cog"></span>
                             {{_ "pomodoro.form.user.button.settings"}}
                         </button>
                     {{/if}}
                     <button type="button" id="startPom" class="btn btn-success btn-raised" data-dismiss="modal">
-                        <i class="fas fa-rocket"></i>
+                        <span class="fas fa-rocket"></span>
                         {{#if isActiveRoute regex='presentation|demo'}}
                             {{_ "pomodoro.form.presentation.button.start"}}
                         {{else}}
@@ -108,20 +108,20 @@
     <div id="settings" class="pomodoroBackground"
          style="{{#if isHiddenByDefault}}display: none;{{/if}}">
         <div class="form-group row">
-            <label for="workSlider" class="col-xs-12 control-label" style="float:left;"><i class="fas fa-desktop"></i>
+            <label for="workSlider" class="col-xs-12 control-label" style="float:left;"><span class="fas fa-desktop"></span>
                 <span id="workSliderLabel"></span>
             </label>
             <input class="numSlider col-xs-12" type="range" id="workSlider">
         </div>
         <div class="form-group row">
-            <label for="breakSlider" class="col-xs-12 control-label" style="float:left;"><i class="fas fa-coffee"></i>
+            <label for="breakSlider" class="col-xs-12 control-label" style="float:left;"><span class="fas fa-coffee"></span>
                 <span id="breakSliderLabel"></span>
             </label>
             <input class="numSlider col-xs-12" type="range" id="breakSlider">
         </div>
         {{#unless isiOS}}
             <div class="form-group row">
-                <label for="" class="control-label"><i class="fas fa-music"></i>
+                <label for="" class="control-label"><span class="fas fa-music"></span>
                     {{_ "pomodoro.form.sounds.title"}}</label>
             </div>
             <div class="form-group row">
@@ -153,10 +153,10 @@
 
 <template name="pomodoroTimerModalContentCheckbox">
     <div id="{{this.item}}" class="fa-stack fa-stack-checkbox modal-checkbox {{#if gotChecked this.item}}checked{{/if}}">
-        <i class="fas fa-square fa-stack-2x background"></i>
-        <i class="far fa-square fa-stack-2x border"></i>
+        <span class="fas fa-square fa-stack-2x background"></span>
+        <span class="far fa-square fa-stack-2x border"></span>
         {{#if gotChecked this.item}}
-            <i class="fas fa-check fa-stack-1x icon"></i>
+            <span class="fas fa-check fa-stack-1x icon"></span>
         {{/if}}
     </div>
 </template>

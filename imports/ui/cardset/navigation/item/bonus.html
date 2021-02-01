@@ -6,23 +6,23 @@
                     <button class="btn btn-sm btn-raised bonusBtn" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                         <div class="flex-content">
-                            <i class="fas fa-graduation-cap"></i>&nbsp;{{_ "sidebar-nav.bonus"}}&nbsp;<i class="fas fa-caret-up"></i>
+                            <span class="fas fa-graduation-cap"></span>&nbsp;{{_ "sidebar-nav.bonus"}}&nbsp;<span class="fas fa-caret-up"></span>
                         </div>
                     </button>
                     <ul class="dropdown-menu">
                         {{#if learningActive}}
                             <li id="showStats" class="showStatsList">
-                                <i class="fas fa-clipboard-list"></i> {{_ "cardset.tooltip.displayBonusStats"}}
+                                <span class="fas fa-clipboard-list"></span> {{_ "cardset.tooltip.displayBonusStats"}}
                             </li>
                             <li id="manageBonus"
                                 class="manageLearn manageLearningList learnBoxActive">
-                                <i class="fas fa-cog"></i> {{_ "bonus.form.edit.title"}}
+                                <span class="fas fa-cog"></span> {{_ "bonus.form.edit.title"}}
                             </li>
                             <li id="stopBonus"
                                 class="stopLearn stopLearningList learnBoxActive"
                                 data-toggle="modal"
                                 data-target="#confirmEndLearnModal">
-                                <i class="fas fa-exclamation-triangle"></i> {{_ "sidebar-nav.stopLearning"}}
+                                <span class="fas fa-exclamation-triangle"></span> {{_ "sidebar-nav.stopLearning"}}
                             </li>
                         {{else}}
                             <li id="startBonus"

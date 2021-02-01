@@ -10,32 +10,32 @@
             {{/if}}
             <div class="btn-group">
                 {{#if isEditMode}}
-                    <i class="markdeep-mobile-preview fas fa-mobile-alt card-button {{#if
+                    <span class="markdeep-mobile-preview fas fa-mobile-alt card-button {{#if
                             isMobilePreviewActive}}pressed{{/if}}"
-                       title="{{_ "card.tooltip.markdeepEditor.mobilePreview"}}"></i>
+                       title="{{_ "card.tooltip.markdeepEditor.mobilePreview"}}"></span>
                     {{#if isMobilePreviewActive}}
-                        <i class="markdeep-rotate-mobile-preview fas fa-sync card-button {{#if
+                        <span class="markdeep-rotate-mobile-preview fas fa-sync card-button {{#if
                                 isMobilePreviewRotated}}pressed{{/if}}"
-                           title="{{_ "card.tooltip.markdeepEditor.rotateMobilePreview"}}"></i>
+                           title="{{_ "card.tooltip.markdeepEditor.rotateMobilePreview"}}"></span>
                     {{/if}}
-                    <i class="card-button material-icons markdeep-center {{#if isCenterTextActive}}pressed{{/if}}"
-                       title="{{_ "card.tooltip.markdeepEditor.center"}}">vertical_align_center</i>
+                    <span class="card-button material-icons markdeep-center {{#if isCenterTextActive}}pressed{{/if}}"
+                       title="{{_ "card.tooltip.markdeepEditor.center"}}">vertical_align_center</span>
                     {{#if isCenterTextActive}}
-                        <i class="card-button fas fa-align-left {{#if isCenterTextAlignLeft}}pressed{{/if}}"
-                           title="{{_ "card.tooltip.markdeepEditor.alignLeft"}}"></i>
+                        <span class="card-button fas fa-align-left {{#if isCenterTextAlignLeft}}pressed{{/if}}"
+                           title="{{_ "card.tooltip.markdeepEditor.alignLeft"}}"></span>
                     {{/if}}
-                    <i class="card-button fas fa-eraser markdeep-background-style {{#if
+                    <span class="card-button fas fa-eraser markdeep-background-style {{#if
                             isAlternativeBackgroundStyle}}pressed{{/if}}"
-                       title="{{_ "card.tooltip.markdeepEditor.style"}}"></i>
+                       title="{{_ "card.tooltip.markdeepEditor.style"}}"></span>
                     {{#if gotAnswerOptions}}
                         {{#unless gotNoSideContent}}
-                            <i class="card-button fas fa-vote-yea markdeep-answer-editor {{#if
+                            <span class="card-button fas fa-vote-yea markdeep-answer-editor {{#if
                                     isAnswerEditorActive}}pressed{{/if}}"
-                               title="{{_ "card.tooltip.markdeepEditor.answerEditor"}}"></i>
+                               title="{{_ "card.tooltip.markdeepEditor.answerEditor"}}"></span>
                         {{/unless}}
                     {{/if}}
-                    <i class="card-button fas fa-expand-arrows-alt markdeep-fullscreen {{#if
-                            isFullscreenActive}}pressed{{/if}}" title="{{_ "card.tooltip.markdeepEditor.fullscreen"}}"></i>
+                    <span class="card-button fas fa-expand-arrows-alt markdeep-fullscreen {{#if
+                            isFullscreenActive}}pressed{{/if}}" title="{{_ "card.tooltip.markdeepEditor.fullscreen"}}"></span>
                 {{/if}}
             </div>
             {{#if gotDictionary}}

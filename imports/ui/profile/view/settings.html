@@ -109,7 +109,7 @@
                         <button id="profileSave" type="button"
                                 class="btn btn-success btn-raised pull-right"
                             {{disableIfOffline}}>
-                            <i class="far fa-save"></i> {{_ "profile.save"}}
+                            <span class="far fa-save"></span> {{_ "profile.save"}}
                         </button>
                     {{/if}}
                 </form>
@@ -125,7 +125,7 @@
                 <button id="profileDelete" type="button" class="btn btn-danger btn-raised"
                         data-toggle="modal"
                         data-target="#profileDelteConfirmModal" {{disableIfOffline}}>
-                    <i class="fas fa-trash"></i> {{_ "profile.settings.delete"}}
+                    <span class="fas fa-trash"></span> {{_ "profile.settings.delete"}}
                 </button>
             </div>
             {{> profileDeleteConfirmForm}}

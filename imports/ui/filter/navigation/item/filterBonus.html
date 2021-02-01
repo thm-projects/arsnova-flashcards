@@ -5,7 +5,7 @@
            aria-haspopup="true" aria-expanded="false">
             {{_ "filter-pool.bonus.title"}}
             {{#if hasBonusFilter}}
-                <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
             {{/if}}
         </a>
         <ul class="dropdown-menu cards-filter-element">
@@ -17,7 +17,7 @@
                 <li class="cards-filter-element"><a href="#" class="filterActiveBonus cards-filter-element">
                     {{_ "filter-pool.bonus.bonus"}}
                     {{#if resultsFilterBonus 0}}
-                        <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                        <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
                     {{/if}}
                 </a></li>
             {{/if}}
@@ -25,7 +25,7 @@
                 <li class="cards-filter-element"><a href="#" class="filterTranscriptBonus cards-filter-element">
                     {{_ "filter-pool.bonus.transcriptBonus"}}
                     {{#if resultsFilterBonus 1}}
-                        <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                        <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
                     {{/if}}
                 </a></li>
             {{/if}}

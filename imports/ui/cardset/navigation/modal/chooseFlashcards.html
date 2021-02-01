@@ -17,8 +17,7 @@
                                     "presentation.start"}}{{else}}{{_ "filter-cards.filter"}}{{/if}}
                             </button>
                         {{/if}}
-                        <a href="#" id="cancelCardFilter" class="btn btn-raised btn-danger" data-dismiss="modal"
-                           aria-hidden="true">{{_
+                        <a href="#" id="cancelCardFilter" class="btn btn-raised btn-danger" data-dismiss="modal">{{_
                                 "declinecard"}}</a>
                         <span class="text">
                             {{_ "filter-cards.infoText"}} {{getCardCount -1 -1}}
@@ -133,13 +132,13 @@
     {{#if inFlashcardFilterSelection category item}}
         <a class="btn btn-block btn-raised btn-danger btn-sm shuffleButton removeCardFilter"
            data-category="{{category}}" data-item="{{item}}">
-            <i class="fas fa-minus" data-category="{{category}}" data-item="{{item}}"></i> {{_
+            <span class="fas fa-minus" data-category="{{category}}" data-item="{{item}}"></span> {{_
                 "admin.cardset.removeFromWordcloud"}}
         </a>
     {{else}}
         <a class="btn btn-block btn-raised btn-success btn-sm shuffleButton addCardFilter"
            data-category="{{category}}" data-item="{{item}}">
-            <i class="fas fa-plus" data-category="{{category}}" data-item="{{item}}"></i> {{_
+            <span class="fas fa-plus" data-category="{{category}}" data-item="{{item}}"></span> {{_
                 "admin.cardset.addToWordcloud"}}
         </a>
     {{/if}}
