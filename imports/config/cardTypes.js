@@ -24,7 +24,7 @@ let cardTypesWithDictionary = [1];
 let cardTypesWithDifficultyLevel = [0, 1, 3, 5, 6, 7, 11, 12, 13, 15, 17, 18, 20];
 let cardTypesWithLearningModes = [0, 1, 3, 4, 5, 6, 11, 12, 13, 15, 16, 17, 20];
 // Moves the card to box6 (learned) if the user answers it right
-let cardTypesWithNonRepeatingLeitner = [0];
+let cardTypesWithNonRepeatingLeitner = [];
 let cardTypesWithLearningGoal = [0, 5, 12];
 let cardTypesWithLearningUnit = [2];
 let cardTypesWithNotesForDifficultyLevel = [];
