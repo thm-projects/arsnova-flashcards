@@ -1,55 +1,55 @@
 <template name="filterItemFilterDifficulty">
     <li class="dropdown cards-filter-element">
-        <a href="#" class="dropdown-toggle moduleBtn difficultyFilter cards-filter-element"
+        <a rel="noopener noreferrer"   href="#" class="dropdown-toggle moduleBtn difficultyFilter cards-filter-element"
            data-toggle="dropdown"
            role="button"
            aria-haspopup="true" aria-expanded="false">
             {{_ "difficulty"}}
             {{#if hasDifficultyFilter}}
-                <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
             {{/if}}
         </a>
         <ul class="dropdown-menu cards-filter-element">
             <li class="cards-filter-element">
-                <a href="#" class="noFilterDifficulty active cards-filter-element">{{_
+                <a rel="noopener noreferrer"   href="#" class="noFilterDifficulty active cards-filter-element">{{_
                         "set-list.everything"}}</a>
             </li>
             {{#if displayNoDifficultyFilter}}
                 <li class="cards-filter-element">
-                    <a href="#" class="filterNoDifficulty active cards-filter-element">{{_
+                    <a rel="noopener noreferrer"   href="#" class="filterNoDifficulty active cards-filter-element">{{_
                             "difficulty0"}}
                         {{#if hasNoDifficultyFilter}}
-                            <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                            <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
                         {{/if}}
                     </a>
                 </li>
             {{/if}}
             {{#if displayDifficultyFilterNumber 1}}
                 <li class="cards-filter-element">
-                    <a href="#" class="filterDifficulty active cards-filter-element" data-id="1">{{_
+                    <a rel="noopener noreferrer"   href="#" class="filterDifficulty active cards-filter-element" data-id="1">{{_
                             "difficulty1"}}
                         {{#if hasDifficultyFilterNumber 1}}
-                            <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                            <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
                         {{/if}}
                     </a>
                 </li>
             {{/if}}
             {{#if displayDifficultyFilterNumber 2}}
                 <li class="cards-filter-element">
-                    <a href="#" class="filterDifficulty active cards-filter-element" data-id="2">{{_
+                    <a rel="noopener noreferrer"   href="#" class="filterDifficulty active cards-filter-element" data-id="2">{{_
                             "difficulty2"}}
                         {{#if hasDifficultyFilterNumber 2}}
-                            <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                            <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
                         {{/if}}
                     </a>
                 </li>
             {{/if}}
             {{#if displayDifficultyFilterNumber 3}}
                 <li class="cards-filter-element">
-                    <a href="#" class="filterDifficulty active cards-filter-element" data-id="3">{{_
+                    <a rel="noopener noreferrer"   href="#" class="filterDifficulty active cards-filter-element" data-id="3">{{_
                             "difficulty3"}}
                         {{#if hasDifficultyFilterNumber 3}}
-                            <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                            <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
                         {{/if}}
                     </a>
                 </li>

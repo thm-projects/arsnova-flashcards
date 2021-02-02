@@ -1,7 +1,7 @@
 <template name="mainNavigationTopItemPublicItemRepetitorien">
     <li id="navbar-public{{#unless standalone}}-repetitorien{{/unless}}"
         class="{{#if isRepetitoriumRoute}}active{{/if}}">
-        <a href="{{pathFor route='repetitorium'}}">
+        <a rel="noopener noreferrer"   href="{{pathFor route='repetitorium'}}">
             {{#if standalone}}
                 {{{getNavigationName "public"}}}
             {{else}}

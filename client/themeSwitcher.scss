@@ -1263,7 +1263,7 @@ $themes: (
     #markdeepNavigation .answerDropdown .answer-item:hover, #markdeepNavigation .answerDropdown .answer-item:focus {
       background-color: $markdeep_editor_answer_dropdown_item_background_hover !important;
       color: $markdeep_editor_answer_dropdown_item_text_hover !important;
-      i {
+      span {
         background-color: $markdeep_editor_answer_dropdown_item_background_hover !important;
         color: $markdeep_editor_answer_dropdown_item_text_hover !important;
       }
@@ -1272,7 +1272,7 @@ $themes: (
     #markdeepNavigation .answerDropdown .answer-item.active {
       background-color: $markdeep_editor_answer_dropdown_item_active_background !important;
       color: $markdeep_editor_answer_dropdown_item_active_text !important;
-      i {
+      span {
         background-color: $markdeep_editor_answer_dropdown_item_active_background !important;
         color: $markdeep_editor_answer_dropdown_item_active_text !important;
       }
@@ -1281,7 +1281,7 @@ $themes: (
     #markdeepNavigation .answerDropdown .answer-item.active:hover, #markdeepNavigation .answerDropdown .answer-item.active:focus {
       background-color: $markdeep_editor_answer_dropdown_item_active_background_hover !important;
       color: $markdeep_editor_answer_dropdown_item_active_text_hover !important;
-      i {
+      span {
         background-color: $markdeep_editor_answer_dropdown_item_active_background_hover !important;
         color: $markdeep_editor_answer_dropdown_item_active_text_hover !important;
       }
@@ -2396,7 +2396,7 @@ $themes: (
       background-color: $navbar_background !important;
     }
 
-    .clearSearch i {
+    .clearSearch span {
       color: $navbar_search_clear_icon !important;
     }
 
@@ -2910,39 +2910,39 @@ $themes: (
       }
       .zoomTextIncrease {
         background-color: $card_content_zoom_container_button_plus_background !important;
-        i {
+        span {
           color: $card_content_zoom_container_button_plus_text !important;
         }
       }
       .zoomTextIncrease:hover, .zoomTextIncrease:active {
         background-color: $card_content_zoom_container_button_plus_background_hover !important;
-        i {
+        span {
           color: $card_content_zoom_container_button_plus_text_hover !important;
         }
       }
       .zoomTextIncrease.disabled {
         opacity: $card_content_zoom_container_button_plus_disabled_opacity !important;
         background-color: $card_content_zoom_container_button_plus_background_disabled !important;
-        i {
+        span {
           color: $card_content_zoom_container_button_plus_text_disabled !important;
         }
       }
       .zoomTextDecrease {
         background-color: $card_content_zoom_container_button_minus_background !important;
-        i {
+        span {
           color: $card_content_zoom_container_button_minus_text !important;
         }
       }
       .zoomTextDecrease:hover, .zoomTextDecrease:active {
         background-color: $card_content_zoom_container_button_minus_background_hover !important;
-        i {
+        span {
           color: $card_content_zoom_container_button_minus_text_hover !important;
         }
       }
       .zoomTextDecrease.disabled {
         opacity: $card_content_zoom_container_button_minus_disabled_opacity !important;
         background-color: $card_content_zoom_container_button_minus_background_disabled !important;
-        i {
+        span {
           color: $card_content_zoom_container_button_minus_text_disabled !important;
         }
       }
@@ -3203,10 +3203,10 @@ $themes: (
 
     .resultItemHeaderBottomArea {
       background-color: $item_background !important;
-      i {
+      span {
         color: $item_icon;
       }
-      i:hover, .resultItemHeaderRightArea i:focus {
+      span:hover, .resultItemHeaderRightArea span:focus {
         color: $item_icon_hover !important;
       }
     }
@@ -3357,7 +3357,7 @@ $themes: (
     .label-use-case {
       background-color: $use_cases_button_background !important;
       color: $use_cases_button_icon !important;
-      i:hover {
+      span:hover {
         color: $use_cases_button_icon !important;
       }
     }
@@ -3365,7 +3365,7 @@ $themes: (
     .label-lecturer-authorized {
       background-color: $lecturer_authorized_background !important;
       color: $lecturer_authorized_text !important;
-      i:hover {
+      span:hover {
         color: $lecturer_authorized_text !important;
       }
     }
@@ -3373,7 +3373,7 @@ $themes: (
     .label-wordcloud {
       background-color: $wordcloud_label_background !important;
       color: $wordcloud_label_text !important;
-      i:hover {
+      span:hover {
         color: $wordcloud_label_text !important;
       }
     }
@@ -3399,14 +3399,14 @@ $themes: (
 
     .label-transcript-rating-stars, .transcript-bonus-settings {
       background-color: $transcript_rating_stars_label_background !important;
-      i, i:hover {
+      span, span:hover {
         color: $transcript_rating_stars_icon !important;
       }
     }
 
     .card-header-label .label-transcript-rating-stars {
       background-color: $transcript_rating_stars_card_label_background !important;
-      i, i:hover {
+      span, span:hover {
         color: $transcript_rating_stars_card_icon !important;
       }
     }
@@ -3457,7 +3457,7 @@ $themes: (
     .label-arsnova-click {
       background-color: $arsnova_click_background !important;
       color: $arsnova_click_text !important;
-      i {
+      span {
         color: $arsnova_click_text !important;
       }
     }
@@ -3465,7 +3465,7 @@ $themes: (
     .label-frag-jetzt {
       background-color: $frag_jetzt_background !important;
       color: $frag_jetzt_text !important;
-      i {
+      span {
         color: $frag_jetzt_text !important;
       }
     }
@@ -4369,12 +4369,12 @@ $themes: (
       color: $wozniak_rating_5_text_hover !important;
     }
 
-    .toggle-wordcloud i {
+    .toggle-wordcloud span {
       color: $landing_page_wordcloud_button !important;
       opacity: $landing_page_wordcloud_button_opacity !important;
     }
 
-    .toggle-wordcloud i:hover {
+    .toggle-wordcloud span:hover {
       color: $landing_page_wordcloud_button_hover !important;
       opacity: $landing_page_wordcloud_button_opacity_hover !important;
     }

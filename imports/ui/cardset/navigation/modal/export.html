@@ -4,7 +4,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                      <span class="modal-icon">
-                        <i class="fas fa-cloud-download-alt"></i>
+                        <span class="fas fa-cloud-download-alt"></span>
                     </span>
                     {{> mainModalItemCloseIcon}}
                     <h4 id="exportModalTitle" class="modal-title">{{_ "download-form.download-title" cardsetName=getActiveCardsetName}}
@@ -61,7 +61,7 @@
                 <div class="modal-footer">
                     {{#if gotCardSidesSelected}}
                         <button id="exportCardsBtn" class="btn btn-success btn-raised">
-                        <span class="flex-content"><i class="fas fa-cloud-download-alt"></i>&nbsp;{{_ "download-form.download"}}</span>
+                        <span class="flex-content"><span class="fas fa-cloud-download-alt"></span>&nbsp;{{_ "download-form.download"}}</span>
                         </button>
                     {{/if}}
                     <button id="exportCancel" class="btn btn-default btn-raised pull-left" data-dismiss="modal">

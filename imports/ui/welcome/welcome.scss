@@ -100,7 +100,7 @@
   text-align: center;
   right: 25px;
   bottom: $size_navbar_height * 1.75 - 5 !important;
-  i {
+  span {
     font-size: $wordcloud_toggle_button_icon_size !important;
   }
   cursor: pointer;

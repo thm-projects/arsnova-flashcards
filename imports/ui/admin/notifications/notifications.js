@@ -113,7 +113,7 @@ Template.admin_notifications.helpers({
 						if (value === null) {
 							return TAPi18n.__('admin.deletedUser');
 						} else {
-							return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToSenderComplaint' data-senderid='" + object.sender_id + "'>" + value + "</a></span>");
+							return new Spacebars.SafeString("<span name='" + value + "'><a rel='noopener noreferrer' class='getpointer' id='linkToSenderComplaint' data-senderid='" + object.sender_id + "'>" + value + "</a></span>");
 						}
 					}
 				},
@@ -122,7 +122,7 @@ Template.admin_notifications.helpers({
 						if (value === null) {
 							return TAPi18n.__('admin.deletedUser');
 						} else {
-							return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToComplaintComplaint' data-complaintid='" + object.complaint_id + "'>" + value + "</a></span>");
+							return new Spacebars.SafeString("<span name='" + value + "'><a rel='noopener noreferrer' class='getpointer' id='linkToComplaintComplaint' data-complaintid='" + object.complaint_id + "'>" + value + "</a></span>");
 						}
 					}
 				},
@@ -145,7 +145,7 @@ Template.admin_notifications.helpers({
 						if (user === undefined) {
 							return TAPi18n.__('admin.optionNotPossible');
 						} else if (Meteor.user()._id !== value) {
-							return new Spacebars.SafeString("<a class='mailToReceiverAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#messageModalNotificationAdmin'><i class='receiver-fa fas fa-envelope'></i></a>");
+							return new Spacebars.SafeString("<a rel='noopener noreferrer'   class='mailToReceiverAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#messageModalNotificationAdmin'><span class='receiver-fa fas fa-envelope'></span></a>");
 						}
 					}
 				},
@@ -158,7 +158,7 @@ Template.admin_notifications.helpers({
 						if (object.sender === undefined) {
 							return TAPi18n.__('admin.optionNotPossible');
 						} else if (Meteor.user()._id !== value) {
-							return new Spacebars.SafeString("<a class='mailToSenderAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#messageModalNotificationAdmin'><i class='sender-fa fas fa-envelope'></i></a>");
+							return new Spacebars.SafeString("<a rel='noopener noreferrer'   class='mailToSenderAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#messageModalNotificationAdmin'><span class='sender-fa fas fa-envelope'></span></a>");
 						}
 					}
 				},
@@ -168,7 +168,7 @@ Template.admin_notifications.helpers({
 					cellClass: 'delete',
 					sortable: false,
 					fn: function () {
-						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='fas fa-ban'></i></a>");
+						return new Spacebars.SafeString("<a rel='noopener noreferrer'   class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><span class='fas fa-ban'></span></a>");
 					}
 				}
 			]
@@ -226,7 +226,7 @@ Template.admin_notifications.helpers({
 						if (value === null) {
 							return TAPi18n.__('admin.deletedUser');
 						} else {
-							return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToSenderLecturer' data-senderidLecturer='" + object.sender_id + "'>" + value + "</a></span>");
+							return new Spacebars.SafeString("<span name='" + value + "'><a rel='noopener noreferrer'   class='getpointer' id='linkToSenderLecturer' data-senderidLecturer='" + object.sender_id + "'>" + value + "</a></span>");
 						}
 					}
 				},
@@ -240,7 +240,7 @@ Template.admin_notifications.helpers({
 						if (object.sender === undefined) {
 							return TAPi18n.__('admin.optionNotPossible');
 						} else if (Meteor.user()._id !== value) {
-							return new Spacebars.SafeString("<a class='mailToLecturerAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#notificationLecturerModalAdmin'><i class='fas fa-university'></i></a>");
+							return new Spacebars.SafeString("<a rel='noopener noreferrer' class='mailToLecturerAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.notifyuser') + "' data-toggle='modal' data-target='#notificationLecturerModalAdmin'><span class='fas fa-university'></span></a>");
 						}
 					}
 				},
@@ -255,7 +255,7 @@ Template.admin_notifications.helpers({
 					cellClass: 'delete',
 					sortable: false,
 					fn: function () {
-						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='fas fa-ban'></i></a>");
+						return new Spacebars.SafeString("<a rel='noopener noreferrer' class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><span class='fas fa-ban'></span></a>");
 					}
 				}
 			]
@@ -339,7 +339,7 @@ Template.admin_notifications.helpers({
 						if (value === null) {
 							return TAPi18n.__('admin.deletedUser');
 						} else {
-							return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToSenderSend' data-senderidsend='" + object.sender_id + "'>" + value + "</a></span>");
+							return new Spacebars.SafeString("<span name='" + value + "'><a rel='noopener noreferrer' class='getpointer' id='linkToSenderSend' data-senderidsend='" + object.sender_id + "'>" + value + "</a></span>");
 						}
 					}
 				},
@@ -348,7 +348,7 @@ Template.admin_notifications.helpers({
 						if (value === null) {
 							return TAPi18n.__('admin.deletedUser');
 						} else {
-							return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToComplaintSend' data-complaintidsend='" + object.complaint_id + "'>" + value + "</a></span>");
+							return new Spacebars.SafeString("<span name='" + value + "'><a rel='noopener noreferrer' class='getpointer' id='linkToComplaintSend' data-complaintidsend='" + object.complaint_id + "'>" + value + "</a></span>");
 						}
 					}
 				},
@@ -359,7 +359,7 @@ Template.admin_notifications.helpers({
 						if (user === undefined) {
 							return TAPi18n.__('admin.deletedUser');
 						} else {
-							return new Spacebars.SafeString("<span name='" + value + "'><a class='getpointer' id='linkToReceiverSend' data-receiveridsend='" + object.receiver_id + "'>" + value + "</a></span>");
+							return new Spacebars.SafeString("<span name='" + value + "'><a rel='noopener noreferrer' class='getpointer' id='linkToReceiverSend' data-receiveridsend='" + object.receiver_id + "'>" + value + "</a></span>");
 						}
 					}
 				},
@@ -374,7 +374,7 @@ Template.admin_notifications.helpers({
 					cellClass: 'delete',
 					sortable: false,
 					fn: function () {
-						return new Spacebars.SafeString("<a class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><i class='fas fa-ban'></i></a>");
+						return new Spacebars.SafeString("<a rel='noopener noreferrer' class='deleteNotificationAdmin btn btn-xs btn-default' title='" + TAPi18n.__('admin.deletenotification') + "' data-toggle='modal' data-target='#notificationConfirmModalAdmin'><span class='fas fa-ban'></span></a>");
 					}
 				}
 			]

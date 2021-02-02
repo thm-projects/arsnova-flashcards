@@ -41,7 +41,7 @@ export let MarkdeepContent = class MarkdeepContent {
 				$(this).attr('src', imageUrl);
 				$(this).attr('data-type', 'cardImage');
 				$(this).css('border', $(this).attr('border') + "px solid");
-				let wrapped = $(this).wrap('<div class="lightbox-container"><a href="' + imageUrl + '" class="lightbox-img" title="' + imageTitle + '" target="_blank" data-lightbox="' + item_id + '"></a></div>').parent().prop('outerHTML');
+				let wrapped = $(this).wrap('<div class="lightbox-container"><a rel="noopener noreferrer"   href="' + imageUrl + '" class="lightbox-img" title="' + imageTitle + '" target="_blank" data-lightbox="' + item_id + '"></a></div>').parent().prop('outerHTML');
 				$(this).text(wrapped);
 			}
 		});

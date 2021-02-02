@@ -64,6 +64,10 @@ export let LeitnerHistoryUtilities = class LearningHistory {
 			//Set answer time
 			taskHistory[i].answerTime = card.timestamps.submission - card.timestamps.question;
 
+			//Set cardType and cardType name
+			taskHistory[i].cardType = card.cardData.cardType;
+			taskHistory[i].cardTypeName = CardType.getCardTypeName(card.cardData.cardType);
+
 			//Set card content
 			if (CardTypes.gotNoSideContent(card.cardData.cardType)) {
 				if (card.cardData.answers !== undefined && card.cardData.answers.question !== undefined) {
@@ -100,6 +104,7 @@ export let LeitnerHistoryUtilities = class LearningHistory {
 			} else {
 				taskHistory[i].content =  text;
 			}
+			taskHistory[i].subject = `${taskHistory[i].subject}: ${taskHistory[i].content}`;
 		}
 		return taskHistory;
 	}

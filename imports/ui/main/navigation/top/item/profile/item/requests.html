@@ -2,10 +2,10 @@
     {{#if isInRole 'lecturer'}}
         <tr class="{{#if isActiveRoute
                          'profileRequests'}}active{{/if}}">
-            <td><a class="dropdown-item"
-                   href="/profile/{{currentUser._id}}/requests"><i
-                    class="fas fa-check"></i></a></td>
-            <td><a class="dropdown-item"
+            <td><a rel="noopener noreferrer"   class="dropdown-item"
+                   href="/profile/{{currentUser._id}}/requests"><span
+                    class="fas fa-check"></span></a></td>
+            <td><a rel="noopener noreferrer"   class="dropdown-item"
                    href="/profile/{{currentUser._id}}/requests">{{_
                     "profile.requests"}}</a></td>
         </tr>

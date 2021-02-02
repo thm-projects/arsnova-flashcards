@@ -1,55 +1,55 @@
 <template name="filterItemFilterStars">
     <li class="dropdown cards-filter-element">
-        <a href="#" class="dropdown-toggle bonusFilter cards-filter-element" data-toggle="dropdown"
+        <a rel="noopener noreferrer"   href="#" class="dropdown-toggle bonusFilter cards-filter-element" data-toggle="dropdown"
            role="button"
            aria-haspopup="true" aria-expanded="false">
             {{_ "filter-pool.stars.title"}}
             {{#if hasRatingFilter}}
-                <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
             {{/if}}
         </a>
         <ul class="dropdown-menu cards-filter-element">
             <li class="cards-filter-element">
-                <a href="#" class="noFilterStars active cards-filter-element" data-id="reset">{{_
+                <a rel="noopener noreferrer"   href="#" class="noFilterStars active cards-filter-element" data-id="reset">{{_
                         "filter-pool.stars.all"}}</a>
             </li>
             {{#if gotStars 1}}
-                <li class="cards-filter-element" data-stars="1"><a href="#" class="filterStars cards-filter-element" data-stars="1">
+                <li class="cards-filter-element" data-stars="1"><a rel="noopener noreferrer"   href="#" class="filterStars cards-filter-element" data-stars="1">
                     {{_ "filter-pool.stars.1"}}
                     {{#if resultsFilterStars 1}}
-                        <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                        <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
                     {{/if}}
                 </a></li>
             {{/if}}
             {{#if gotStars 2}}
-                <li class="cards-filter-element" data-stars="2"><a href="#" class="filterStars cards-filter-element" data-stars="2">
+                <li class="cards-filter-element" data-stars="2"><a rel="noopener noreferrer"   href="#" class="filterStars cards-filter-element" data-stars="2">
                     {{_ "filter-pool.stars.2"}}
                     {{#if resultsFilterStars 2}}
-                        <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                        <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
                     {{/if}}
                 </a></li>
             {{/if}}
             {{#if gotStars 3}}
-                <li class="cards-filter-element" data-stars="3"><a href="#" class="filterStars cards-filter-element" data-stars="3">
+                <li class="cards-filter-element" data-stars="3"><a rel="noopener noreferrer"   href="#" class="filterStars cards-filter-element" data-stars="3">
                     {{_ "filter-pool.stars.3"}}
                     {{#if resultsFilterStars 3}}
-                        <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                        <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
                     {{/if}}
                 </a></li>
             {{/if}}
             {{#if gotStars 4}}
-                <li class="cards-filter-element" data-stars="4"><a href="#" class="filterStars cards-filter-element" data-stars="4">
+                <li class="cards-filter-element" data-stars="4"><a rel="noopener noreferrer"   href="#" class="filterStars cards-filter-element" data-stars="4">
                     {{_ "filter-pool.stars.4"}}
                     {{#if resultsFilterStars 4}}
-                        <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                        <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
                     {{/if}}
                 </a></li>
             {{/if}}
             {{#if gotStars 5}}
-                <li class="cards-filter-element" data-stars="5"><a href="#" class="filterStars cards-filter-element" data-stars="5">
+                <li class="cards-filter-element" data-stars="5"><a rel="noopener noreferrer"   href="#" class="filterStars cards-filter-element" data-stars="5">
                     {{_ "filter-pool.stars.5"}}
                     {{#if resultsFilterStars 5}}
-                        <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                        <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
                     {{/if}}
                 </a></li>
             {{/if}}

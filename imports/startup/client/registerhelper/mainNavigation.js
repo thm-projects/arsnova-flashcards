@@ -58,9 +58,9 @@ Template.registerHelper('getNavigationName', function (name = undefined) {
 
 Template.registerHelper("getCardsetIcons", function (isShuffled) {
 	if (isShuffled) {
-		return "<i class='fas fa-archive'></i>&nbsp;<i class='fas fa-archive'></i>&nbsp;<i class='fas fa-archive'></i>&nbsp;<i class='fas fa-ellipsis-h'></i>&nbsp;";
+		return "<span class='fas fa-archive'></span>&nbsp;<span class='fas fa-archive'></span>&nbsp;<span class='fas fa-archive'></span>&nbsp;<span class='fas fa-ellipsis-h'></span>&nbsp;";
 	} else {
-		return "<i class='fas fa-archive'></i>&nbsp;";
+		return "<span class='fas fa-archive'></span>&nbsp;";
 	}
 });
 

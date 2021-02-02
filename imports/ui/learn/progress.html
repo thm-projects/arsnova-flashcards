@@ -40,7 +40,7 @@
                 </button>
                 <ul class="dropdown-menu btn-raised longButton">
                     <li class="cardset" value="-1" data-id="-1" data-count="{{getCardsetCardCount true}}" data-name="{{getCardsetCount}}">
-                        <a href="#">
+                        <a rel="noopener noreferrer"   href="#">
                             <div id="activeCardset">
                                 {{_ "learningStatistics.indexDefault" cardsetCount=(getCardsetCount false) cardCount=(getCardsetCardCount true)}}
                             </div>
@@ -51,7 +51,7 @@
                     </li>
                     {{#each (getCardsetCardCount false)}}
                         <li class="cardset" value="{{this._id}}" data-id="{{this._id}}" data-count="{{this.quantity}}" data-name="{{this.name}}">
-                            <a href="#">
+                            <a rel="noopener noreferrer"   href="#">
                                 {{this.name}}
                                 <div class="col-xs-12 cardset-details">
                                     {{> cardsetLabels (setModalLabelValue this true)}}

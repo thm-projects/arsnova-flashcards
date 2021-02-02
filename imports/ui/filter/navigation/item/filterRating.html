@@ -1,39 +1,39 @@
 <template name="filterItemFilterRating">
     <li class="dropdown cards-filter-element">
-        <a href="#" class="dropdown-toggle bonusFilter cards-filter-element" data-toggle="dropdown"
+        <a rel="noopener noreferrer"   href="#" class="dropdown-toggle bonusFilter cards-filter-element" data-toggle="dropdown"
            role="button"
            aria-haspopup="true" aria-expanded="false">
             {{_ "filter-pool.rating.title"}}
             {{#if hasRatingFilter}}
-                <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
             {{/if}}
         </a>
         <ul class="dropdown-menu cards-filter-element">
             <li class="cards-filter-element">
-                <a href="#" class="noFilterRating active cards-filter-element" data-id="reset">{{_
+                <a rel="noopener noreferrer"   href="#" class="noFilterRating active cards-filter-element" data-id="reset">{{_
                         "filter-pool.rating.all"}}</a>
             </li>
             {{#if gotRating 0}}
-                <li class="cards-filter-element" data-rating="0"><a href="#" class="filterRating cards-filter-element" data-rating="0">
+                <li class="cards-filter-element" data-rating="0"><a rel="noopener noreferrer"   href="#" class="filterRating cards-filter-element" data-rating="0">
                     {{_ "filter-pool.rating.notRated"}}
                     {{#if resultsFilterRating 0}}
-                        <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                        <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
                     {{/if}}
                 </a></li>
             {{/if}}
             {{#if gotRating 1}}
-                <li class="cards-filter-element" data-rating="1"><a href="#" class="filterRating cards-filter-element" data-rating="1">
+                <li class="cards-filter-element" data-rating="1"><a rel="noopener noreferrer"   href="#" class="filterRating cards-filter-element" data-rating="1">
                     {{_ "filter-pool.rating.accepted"}}
                     {{#if resultsFilterRating 1}}
-                        <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                        <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
                     {{/if}}
                 </a></li>
             {{/if}}
             {{#if gotRating 2}}
-                <li class="cards-filter-element" data-rating="2"><a href="#" class="filterRating cards-filter-element" data-rating="2">
+                <li class="cards-filter-element" data-rating="2"><a rel="noopener noreferrer"   href="#" class="filterRating cards-filter-element" data-rating="2">
                     {{_ "filter-pool.rating.denied"}}
                     {{#if resultsFilterRating 2}}
-                        <i class="fas fa-filter navigationFilterIcon cards-filter-element"></i>
+                        <span class="fas fa-filter navigationFilterIcon cards-filter-element"></span>
                     {{/if}}
                 </a></li>
             {{/if}}

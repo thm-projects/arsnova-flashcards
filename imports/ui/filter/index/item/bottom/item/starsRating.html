@@ -4,7 +4,7 @@
             <span class="label label-transcript-rating-stars" title="{{getBonusTranscriptStarsTooltip this._id}}"
                   data-stars="{{getBonusTranscriptStarsNumber this._id}}">
                 {{#each getBonusTranscriptStars this._id}}
-                    <i class="fas fa-star {{this.status}}"></i>
+                    <span class="fas fa-star {{this.status}}"></span>
                 {{/each}}
             </span>
         {{/if}}

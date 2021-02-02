@@ -46,7 +46,7 @@ Template.cardsetIndexTranscriptSubmissionsItemReviewButton.helpers({
 		Session.set('transcriptBonusReviewCount', TranscriptBonus.find(query).count());
 		let text = '';
 		if (FilterNavigation.isFilterActive()) {
-			text += '<i class="fas fa-filter navigationFilterIcon"></i>&nbsp;';
+			text += '<span class="fas fa-filter navigationFilterIcon"></span>&nbsp;';
 		}
 		if (Session.get('transcriptBonusReviewCount') === 0) {
 			delete query.date;

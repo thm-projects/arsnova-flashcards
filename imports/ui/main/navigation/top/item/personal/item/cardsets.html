@@ -3,7 +3,7 @@
         {{#if canCreateContent}}
             <li id="navbar-personal{{#unless standalone}}-cardsets{{/unless}}"
                 class="{{#if isMyCardsetsRoute}}active{{/if}}">
-                <a href="{{pathFor route='create'}}">
+                <a rel="noopener noreferrer"   href="{{pathFor route='create'}}">
                     {{#if standalone}}
                         {{{getNavigationName "personal"}}}
                     {{else}}

@@ -1,10 +1,10 @@
 <template name="filterIndexItemBottomDelete">
     {{#if isCardsetOwner this._id}}
-        <a class="resultNavigationElement deleteCardset hidden-xs" {{disableIfOffline}}
+        <a rel="noopener noreferrer"   class="resultNavigationElement deleteCardset hidden-xs" {{disableIfOffline}}
            title='{{#if this.shuffled}}{{_ "courseIteration.confirm-form-delete.title"}}{{else}}{{_ "modal-dialog.delete"}}{{/if}}' data-toggle="modal"
            data-target="#confirmDeleteCardsetModal"
            data-id="{{this._id}}">
-            <i class="result fas fa-trash" data-id="{{this._id}}"></i>
+            <span class="result fas fa-trash" data-id="{{this._id}}"></span>
         </a>
     {{/if}}
 </template>

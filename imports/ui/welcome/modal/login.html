@@ -5,7 +5,7 @@
             <div class="modal-content modal-content-for-buttons">
                 <div class="modal-header">
                     <span class="modal-icon">
-                        <i class="fas fa-sign-in-alt"></i>
+                        <span class="fas fa-sign-in-alt"></span>
                     </span>
                     {{> mainModalItemCloseIcon}}
                     <h4 id="aboutThisRatingTitle" class="modal-title">{{_ "loginModal.title"}}
@@ -30,7 +30,7 @@
         {{#if isSignUpState}}
             {{#if getWhitelistedDomains}}
                 <br>
-                <b>{{_ "loginModal.info.domains"}}</b>
+                <strong> {{_ "loginModal.info.domains"}}</strong>
             {{/if}}
         {{/if}}
         {{#if showError}}
@@ -65,13 +65,13 @@
         <p>
             {{text}}
             {{#if privacyUrl}}
-                <a href="{{privacyUrl}}" target="_blank" class="{{disabled}}">{{privacyLinkText}}</a>
+                <a rel="noopener noreferrer"   href="{{privacyUrl}}" target="_blank" class="{{disabled}}">{{privacyLinkText}}</a>
             {{/if}}
             {{#if showTermsAnd}}
                 {{and}}
             {{/if}}
             {{#if termsUrl}}
-                <a href="{{termsUrl}}" target="_blank" class="{{disabled}}">{{termsLinkText}}</a>
+                <a rel="noopener noreferrer"   href="{{termsUrl}}" target="_blank" class="{{disabled}}">{{termsLinkText}}</a>
             {{/if}}
         </p>
     </div>
@@ -103,7 +103,7 @@
             <div class="login-button login-button-form-submit" id="login-buttons-reset-password-button">
                 {{_ "resetPasswordModal.button"}}
             </div>
-            <a class="accounts-close" id="login-buttons-cancel-reset-password">&times;</a>
+            <a rel="noopener noreferrer"   class="accounts-close" id="login-buttons-cancel-reset-password">&times;</a>
         </form>
     {{/if}}
 </template>

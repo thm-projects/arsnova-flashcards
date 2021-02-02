@@ -3,7 +3,7 @@
         {{#if canCreateContent}}
             <li id="navbar-personal{{#unless standalone}}-repetitorien{{/unless}}"
                 class="{{#if isPersonalRepetitorienRoute}}active{{/if}}">
-                <a href="{{pathFor route='personalRepetitorien'}}">
+                <a rel="noopener noreferrer"   href="{{pathFor route='personalRepetitorien'}}">
                     {{#if standalone}}
                         {{{getNavigationName "personal"}}}
                     {{else}}

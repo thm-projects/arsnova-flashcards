@@ -1,7 +1,7 @@
 <template name="mainNavigationFooterItemHelp">
     {{#if canAccessFrontend}}
         <li class="{{#if isActiveRoute 'help'}}active{{/if}}">
-            <a id="help" href="{{pathFor route='help'}}">
+            <a rel="noopener noreferrer"   id="help" href="{{pathFor route='help'}}">
                 {{{getNavigationName "help"}}}
             </a>
         </li>

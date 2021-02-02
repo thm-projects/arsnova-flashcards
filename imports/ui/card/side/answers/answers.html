@@ -9,34 +9,34 @@
                     <div class="col-xs-12 card-content-answer-element">
                         <div class="row card-content-answer-header {{getAnswerTypeBackground}}">
                         <span class="card-content-answer-tag">
-                            <b>{{getAnswerTag @index}}</b>:
+                            <strong> {{getAnswerTag @index}}</strong> :
                         </span>
                             <span class="card-content-answer-icon-group">
                                 {{#if isAnswerSide}}
                                     {{#if gotExplanation}}
                                         <div class="fa-stack toggle-answer-explanation card-content-answer explanation" title="{{_ "answers.tooltip.icons.explanation"}}" data-id="{{this.target}}" data-target="#explanation-{{@index}}-{{this.side}}-{{this.card_id}}">
-                                            <i class="fas fa-circle fa-stack-1x card_answer_icon_explanation_text"></i>
-                                            <i class="fas fa-info-circle fa-stack-1x card_answer_icon_explanation_background"></i>
+                                            <span class="fas fa-circle fa-stack-1x card_answer_icon_explanation_text"></span>
+                                            <span class="fas fa-info-circle fa-stack-1x card_answer_icon_explanation_background"></span>
                                         </div>
                                     {{/if}}
                                     {{#if isRightAnswer}}
                                         <div class="fa-stack fa-stack-checkbox card-content-answer right" title="{{_ "answers.tooltip.icons.right"}}" data-id="{{this.target}}">
-                                            <i class="fas fa-square fa-stack-2x card_answer_icon_right_background"></i>
-                                            <i class="far fa-square fa-stack-2x card_answer_icon_right_border"></i>
-                                            <i class="fas fa-check fa-stack-1x card_answer_icon_right_text"></i>
+                                            <span class="fas fa-square fa-stack-2x card_answer_icon_right_background"></span>
+                                            <span class="far fa-square fa-stack-2x card_answer_icon_right_border"></span>
+                                            <span class="fas fa-check fa-stack-1x card_answer_icon_right_text"></span>
                                         </div>
                                     {{else}}
                                         <div class="fa-stack card-content-answer wrong" title="{{_ "answers.tooltip.icons.wrong"}}" data-id="{{this.target}}">
-                                            <i class="fas fa-circle fa-stack-1x card_answer_icon_wrong_background"></i>
-                                            <i class="far fa-times-circle fa-stack-1x card_answer_icon_wrong_text"></i>
+                                            <span class="fas fa-circle fa-stack-1x card_answer_icon_wrong_background"></span>
+                                            <span class="far fa-times-circle fa-stack-1x card_answer_icon_wrong_text"></span>
                                         </div>
                                     {{/if}}
                                     {{#if isLeitnerRoute}}
                                         <div class="fa-stack fa-stack-checkbox card-content-answer result" title="{{_ "answers.tooltip.icons.yourAnswer"}}" data-id="{{this.target}}">
-                                            <i class="fas fa-square fa-stack-2x card_answer_icon_user_result_background"></i>
-                                            <i class="far fa-square fa-stack-2x card_answer_icon_user_result_border"></i>
+                                            <span class="fas fa-square fa-stack-2x card_answer_icon_user_result_background"></span>
+                                            <span class="far fa-square fa-stack-2x card_answer_icon_user_result_border"></span>
                                             {{#if gotSelectedByUser this.target}}
-                                                    <i class="fas fa-check fa-stack-1x card_answer_icon_user_result_text"></i>
+                                                    <span class="fas fa-check fa-stack-1x card_answer_icon_user_result_text"></span>
                                             {{/if}}
                                         </div>
                                     {{/if}}
@@ -44,10 +44,10 @@
                                     {{#if isLeitnerRoute}}
                                         {{#if canDisplaySubmitCheckbox}}
                                             <div class="fa-stack fa-stack-checkbox card-content-answer interactive" title="{{_ "answers.tooltip.icons.markAnswer"}}" data-id="{{this.target}}">
-                                                <i class="fas fa-square fa-stack-2x card_answer_icon_user_interactive_background"></i>
-                                                <i class="far fa-square fa-stack-2x card_answer_icon_user_interactive_border"></i>
+                                                <span class="fas fa-square fa-stack-2x card_answer_icon_user_interactive_background"></span>
+                                                <span class="far fa-square fa-stack-2x card_answer_icon_user_interactive_border"></span>
                                                 {{#if isAnswerSelected this.target}}
-                                                    <i class="fas fa-check fa-stack-1x card_answer_icon_user_interactive_text"></i>
+                                                    <span class="fas fa-check fa-stack-1x card_answer_icon_user_interactive_text"></span>
                                                 {{/if}}
                                             </div>
                                         {{/if}}

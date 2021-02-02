@@ -1,7 +1,7 @@
 <template name="mainNavigationTopItemBackend">
     {{#if gotBackendAccess}}
         <li id="navbar-adminpanel" class="hidden-xs">
-            <a href="{{pathFor route='admin_dashboard'}}" id="adminpanel">
+            <a rel="noopener noreferrer"   href="{{pathFor route='admin_dashboard'}}" id="adminpanel">
                 {{{getNavigationName "backend"}}}
             </a>
         </li>

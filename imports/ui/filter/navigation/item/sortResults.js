@@ -14,9 +14,9 @@ Template.filterItemSortResults.helpers({
 		if (filter !== undefined) {
 			switch (filter.name) {
 				case 1:
-					return '<i class="fas fa-sort-alpha-down cards-filter-element"></i>';
+					return '<span class="fas fa-sort-alpha-down cards-filter-element"></span>';
 				case-1:
-					return '<i class="fas fa-sort-alpha-up-alt cards-filter-element"></i>';
+					return '<span class="fas fa-sort-alpha-up-alt cards-filter-element"></span>';
 			}
 		}
 	},
@@ -25,9 +25,9 @@ Template.filterItemSortResults.helpers({
 		if (filter !== undefined) {
 			switch (filter.date) {
 				case 1:
-					return '<i class="fas fa-sort-numeric-down cards-filter-element"></i>';
+					return '<span class="fas fa-sort-numeric-down cards-filter-element"></span>';
 				case-1:
-					return '<i class="fas fa-sort-numeric-up-alt cards-filter-element"></i>';
+					return '<span class="fas fa-sort-numeric-up-alt cards-filter-element"></span>';
 			}
 		}
 	},
@@ -36,9 +36,9 @@ Template.filterItemSortResults.helpers({
 		if (filter !== undefined) {
 			switch (filter.dateUpdated) {
 				case 1:
-					return '<i class="fas fa-sort-numeric-down cards-filter-element"></i>';
+					return '<span class="fas fa-sort-numeric-down cards-filter-element"></span>';
 				case-1:
-					return '<i class="fas fa-sort-numeric-up-alt cards-filter-element"></i>';
+					return '<span class="fas fa-sort-numeric-up-alt cards-filter-element"></span>';
 			}
 		}
 	}

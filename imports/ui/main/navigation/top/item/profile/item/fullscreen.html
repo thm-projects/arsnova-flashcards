@@ -2,10 +2,10 @@
     {{#if gotFullscreenSettingsAccess}}
         <tr class="{{#if isActiveRoute
                          'profileFullscreen'}}active{{/if}}">
-            <td><a class="dropdown-item"
-                   href="/profile/{{currentUser._id}}/fullscreen"><i
-                    class="fas fa-cogs"></i></a></td>
-            <td><a class="dropdown-item"
+            <td><a rel="noopener noreferrer"   class="dropdown-item"
+                   href="/profile/{{currentUser._id}}/fullscreen"><span
+                    class="fas fa-cogs"></span></a></td>
+            <td><a rel="noopener noreferrer"   class="dropdown-item"
                    href="/profile/{{currentUser._id}}/fullscreen">{{_
                     "fullscreen.navigation"}}</a></td>
         </tr>

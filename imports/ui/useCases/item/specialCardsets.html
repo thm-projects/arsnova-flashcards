@@ -21,7 +21,7 @@
 
 <template name="useCasesItemSpecialCardsetsButton">
     <button class="btn btn-raised specialCardset" data-id="{{this._id}}" type="button" data-dismiss="modal"
-            aria-hidden="true"><span class="flex-content">&nbsp;{{#if this.shuffled}}
+            ><span class="flex-content">&nbsp;{{#if this.shuffled}}
         {{{getUseCasesIcon "specialRepetitorium"}}}{{_ "useCases.modal.button.specialCardsets.repetitorium"}}{{else}}
         {{{getUseCasesIcon "specialCardset"}}}{{_ "useCases.modal.button.specialCardsets.cardset"}}{{/if}}</span>
     </button>

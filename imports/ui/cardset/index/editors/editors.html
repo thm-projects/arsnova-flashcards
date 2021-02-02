@@ -20,14 +20,14 @@
                             <td> {{getRoles this.roles}}</td>
                             <td>
                                 {{#if isCardsetEditor this.id}}
-                                    <a class="btn btn-block btn-raised btn-danger removeEditor"
+                                    <a rel="noopener noreferrer" class="btn btn-block btn-raised btn-danger removeEditor"
                                        data-id="{{this.id}}">
-                                        <i class="fas fa-minus"></i> {{_ "admin.cardset.removeFromWordcloud"}}
+                                        <span class="fas fa-minus"></span> {{_ "admin.cardset.removeFromWordcloud"}}
                                     </a>
                                 {{else}}
-                                    <a class="btn btn-block btn-raised btn-success addEditor"
+                                    <a rel="noopener noreferrer" class="btn btn-block btn-raised btn-success addEditor"
                                        data-id="{{this.id}}">
-                                        <i class="fas fa-plus"></i> {{_ "admin.cardset.addToWordcloud"}}
+                                        <span class="fas fa-plus"></span> {{_ "admin.cardset.addToWordcloud"}}
                                     </a>
                                 {{/if}}
                             </td>
@@ -37,7 +37,7 @@
                 </table>
             </div>
             <button class="btn btn-block btn-raised btn-danger" id="backButton">
-                <span class="pull-left"><i class="fas fa-arrow-left"></i> {{_ "backbutton"}}</span>
+                <span class="pull-left"><span class="fas fa-arrow-left"></span> {{_ "backbutton"}}</span>
             </button>
         </div>
     {{/unless}}

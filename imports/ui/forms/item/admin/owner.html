@@ -4,7 +4,7 @@
         <label id="editCardsetUserLabelAdmin">{{_ "modal-admin-dialog.owner.current"
                                                   owner=getAuthorLabel}}:</label>
         {{#if userExists}}
-            <a href="/admin/user/{{getOwnerId}}" target="_blank">{{getAuthorName getOwnerId}}</a>
+            <a rel="noopener noreferrer"   href="/admin/user/{{getOwnerId}}" target="_blank">{{getAuthorName getOwnerId}}</a>
         {{else}}
             {{username}} ({{_ "admin.deleted"}})
         {{/if}}

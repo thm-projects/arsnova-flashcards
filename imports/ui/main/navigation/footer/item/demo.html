@@ -1,7 +1,7 @@
 <template name="mainNavigationFooterItemDemo">
     {{#if gotFeatureSupport 3}}
         <li class="{{#if isActiveRoute 'demo'}}active{{/if}}">
-            <a id="demo" href="{{pathFor route='demo'}}">
+            <a rel="noopener noreferrer"   id="demo" href="{{pathFor route='demo'}}">
                 {{{getNavigationName "demo"}}}
             </a>
         </li>

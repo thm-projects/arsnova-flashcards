@@ -2,7 +2,7 @@
     {{#if isMailEnabled}}
         <tr>
             <td>
-                <i class='fas fa-envelope'></i>&nbsp;{{_ "set-list.notifications.mail"}}:
+                <span class='fas fa-envelope'></span>&nbsp;{{_ "set-list.notifications.mail"}}:
             </td>
             <td>
                 {{getStatus 0}}
@@ -12,7 +12,7 @@
     {{#if isPushEnabled}}
         <tr>
             <td>
-                <i class='fas fa-bell'></i>&nbsp;{{_ "set-list.notifications.push"}}:
+                <span class='fas fa-bell'></span>&nbsp;{{_ "set-list.notifications.push"}}:
             </td>
             <td>
                 {{getStatus 1}}

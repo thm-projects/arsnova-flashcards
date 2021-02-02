@@ -2,10 +2,10 @@
     {{#if isMailEnabled}}
         <div class="form-group row">
             <div id="forceMailNotifications" class="fa-stack fa-stack-checkbox modal-checkbox {{#if gotMailChecked}}checked{{/if}}">
-                <i class="fas fa-square fa-stack-2x background"></i>
-                <i class="far fa-square fa-stack-2x border"></i>
+                <span class="fas fa-square fa-stack-2x background"></span>
+                <span class="far fa-square fa-stack-2x border"></span>
                 {{#if gotMailChecked}}
-                    <i class="fas fa-check fa-stack-1x icon"></i>
+                    <span class="fas fa-check fa-stack-1x icon"></span>
                 {{/if}}
             </div>
             <label>{{_ "bonus.form.forceNotifications.mail"}}</label>
@@ -14,10 +14,10 @@
     {{#if isPushEnabled}}
         <div class="form-group row">
             <div id="forcePushNotifications" class="fa-stack fa-stack-checkbox modal-checkbox {{#if gotPushChecked}}checked{{/if}}">
-                <i class="fas fa-square fa-stack-2x background"></i>
-                <i class="far fa-square fa-stack-2x border"></i>
+                <span class="fas fa-square fa-stack-2x background"></span>
+                <span class="far fa-square fa-stack-2x border"></span>
                 {{#if gotPushChecked}}
-                    <i class="fas fa-check fa-stack-1x icon"></i>
+                    <span class="fas fa-check fa-stack-1x icon"></span>
                 {{/if}}
             </div>
             <label>{{_ "bonus.form.forceNotifications.push"}}</label>

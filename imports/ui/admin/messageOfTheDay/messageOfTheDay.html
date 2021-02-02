@@ -28,8 +28,8 @@
                     <td>{{this.dateCreated}}</td>
                     <td>{{this.publishDate}}</td>
                     <td>{{this.expirationDate}}</td>
-                    <td><span id="editMessage"><i class="fas fa-edit"></i></span>
-                        <span id="deleteMessage" class="pull-right"><i class='fas fa-ban'></i></span>
+                    <td><span id="editMessage"><span class="fas fa-edit"></span></span>
+                        <span id="deleteMessage" class="pull-right"><span class='fas fa-ban'></span></span>
                     </td>
                 </tr>
             {{/each}}
@@ -47,7 +47,7 @@
 
                 <div class="modal-header">
                         <span class="modal-icon">
-                            <i class="fas fa-bell"> {{_ "admin.motd.previewTitle"}}</i>
+                            <span class="fas fa-bell"> {{_ "admin.motd.previewTitle"}}</span>
                         </span>
                     {{> mainModalItemCloseIcon}}
                     <h4 id="modalTitle" class="modal-title"></h4>
@@ -82,7 +82,7 @@
 
                 <div class="modal-header">
                     <span class="modal-icon">
-                            <i class="fas fa-envelope-square"> {{_ "admin.motd.editTitle"}}</i>
+                            <span class="fas fa-envelope-square"> {{_ "admin.motd.editTitle"}}</span>
                         </span>
                     {{> mainModalItemCloseIcon}}
                     <h4 id="modalTitle" class="modal-title"></h4>
@@ -150,7 +150,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <span class="modal-icon">
-                        <i class="fas fa-bell"></i>
+                        <span class="fas fa-bell"></span>
                     </span>
                     {{> mainModalItemCloseIcon}}
                     <h4 id="confirmDeleteMessageTitle" class="modal-title">{{_ "admin.motd.confirmDeleteTitle"}}

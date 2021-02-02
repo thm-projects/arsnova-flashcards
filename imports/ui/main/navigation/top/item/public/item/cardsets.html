@@ -1,7 +1,7 @@
 <template name="mainNavigationTopItemPublicItemCardsets">
     <li id="navbar-public{{#unless standalone}}-cardsets{{/unless}}"
         class="{{#if isPoolRoute}}active{{/if}}">
-        <a href="{{pathFor route='pool'}}">
+        <a rel="noopener noreferrer"   href="{{pathFor route='pool'}}">
             {{#if standalone}}
                 {{{getNavigationName "public"}}}
             {{else}}
