@@ -66,6 +66,14 @@ Template.learningLogModal.helpers({
 			type: 2,
 			content: content
 		};
+	},
+	getBoxProgress: function (box) {
+		switch (box) {
+			case 6:
+				return TAPi18n.__('learningStatistics.learned');
+			default:
+				return TAPi18n.__('learningStatistics.box', {number: box});
+		}
 	}
 });
 

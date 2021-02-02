@@ -7,8 +7,9 @@
     },
     "table": {
       "title": "Verlauf",
-      "card": "Karte",
       "content": "Inhalt",
+      "cardType": "Karteityp",
+      "progress": "Lernstand",
       "answer": "Antwort",
       "timeSpent": "Antwortzeit",
       "known": "Gewusst",

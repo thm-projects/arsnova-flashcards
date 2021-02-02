@@ -122,18 +122,20 @@
                                 <table aria-describedby="learningLogTable" class="table table-striped table-hover">
                                     <tbody>
                                     <tr>
-                                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user-task-history" data-content="cardSubject">{{_ "learningLog.table.card"}}</a> {{> learningBonusStasticsItemSort (setSortObject "cardSubject")}}</th>
-                                        <th scope="col" class="visible-lg"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user-task-history" data-content="content">{{_ "learningLog.table.content"}}</a> {{> learningBonusStasticsItemSort (setSortObject "content")}}</th>
-                                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user-task-history" data-content="answer">{{_ "learningLog.table.answer"}}</a> {{> learningBonusStasticsItemSort (setSortObject "answer")}}</th>
-                                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user-task-history" data-content="answerTime">{{_ "learningLog.table.timeSpent"}}</a> {{> learningBonusStasticsItemSort (setSortObject "answerTime")}}</th>
-                                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user-task-history" data-content="cardSubmission">{{_ "learningLog.table.submission"}}</a> {{> learningBonusStasticsItemSort (setSortObject "cardSubmission")}}</th>
+                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-bonus-user-task-history" data-content="cardSubject">{{_ "learningLog.table.content"}}</a> {{> learningBonusStasticsItemSort (setSortObject "cardSubject")}}</th>
+                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-bonus-user-task-history" data-content="cardTypeName">{{_ "learningLog.table.cardType"}}</a> {{> learningBonusStasticsItemSort (setSortObject "cardTypeName")}}</th>
+                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-bonus-user-task-history" data-content="answer">{{_ "learningLog.table.answer"}}</a> {{> learningBonusStasticsItemSort (setSortObject "answer")}}</th>
+                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-bonus-user-task-history" data-content="answerTime">{{_ "learningLog.table.timeSpent"}}</a> {{> learningBonusStasticsItemSort (setSortObject "answerTime")}}</th>
+                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-bonus-user-task-history" data-content="box">{{_ "learningLog.table.progress"}}</a> {{> learningBonusStasticsItemSort (setSortObject "box")}}</th>
+                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-bonus-user-task-history" data-content="cardSubmission">{{_ "learningLog.table.submission"}}</a> {{> learningBonusStasticsItemSort (setSortObject "cardSubmission")}}</th>
                                     </tr>
                                     {{#each getTaskHistoryData}}
                                         <tr>
-                                            <td><a rel="noopener noreferrer"   href="/presentation/{{this.cardData.cardset_id}}/{{this.card_id}}" target="_blank">{{this.cardSubject}}</a></td>
-                                            <td class="visible-lg">{{this.content}}</td>
+                                            <td><a rel="noopener noreferrer" href="/presentation/{{this.cardData.cardset_id}}/{{this.card_id}}" target="_blank">{{this.cardSubject}}: {{this.content}}</a></td>
+                                            <td>{{this.cardTypeName}}</td>
                                             <td>{{getAnswer}}</td>
                                             <td>{{humanizeDuration this.answerTime}}</td>
+                                            <td>{{{getBoxProgress this.box}}}</td>
                                             <td>{{getMomentsDate this.cardSubmission true}}</td>
                                         </tr>
                                     {{/each}}
