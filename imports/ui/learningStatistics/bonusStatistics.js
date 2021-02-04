@@ -66,22 +66,26 @@ Template.learningBonusStastics.events({
 		var cardset = Cardsets.findOne({_id: this._id});
 		var hiddenElement = document.createElement('a');
 		var header = [];
-		header[0] = TAPi18n.__('learningStatistics.box', {number: 1});
-		header[1] = TAPi18n.__('learningStatistics.box', {number: 2});
-		header[2] = TAPi18n.__('learningStatistics.box', {number: 3});
-		header[3] = TAPi18n.__('learningStatistics.box', {number: 4});
-		header[4] = TAPi18n.__('learningStatistics.box', {number: 5});
-		header[5] = TAPi18n.__('learningStatistics.learned');
-		header[6] = TAPi18n.__('box_export_birth_name');
-		header[7] = TAPi18n.__('box_export_given_name');
-		header[8] = TAPi18n.__('box_export_mail');
-		header[9] = TAPi18n.__('learningStatistics.bonus');
-		header[10] = TAPi18n.__('confirmLearn-form.notification');
-		header[11] = TAPi18n.__('learningStatistics.dateJoinedBonus');
-		header[12] = TAPi18n.__('learningStatistics.lastActivity');
-		header[13] = TAPi18n.__('learningHistory.stats.duration.cardArithmeticMean.stats');
-		header[14] = TAPi18n.__('learningHistory.stats.duration.cardMedian');
-		header[15] = TAPi18n.__('learningHistory.stats.duration.cardStandardDeviation');
+		header.push([TAPi18n.__('box_export_birth_name'), "lastName"]);
+		header.push([TAPi18n.__('box_export_given_name'), "firstName"]);
+		header.push([TAPi18n.__('box_export_mail'), "email"]);
+		header.push([TAPi18n.__('confirmLearn-form.notification'), "notifications"]);
+		header.push([TAPi18n.__('learningStatistics.dateJoinedBonus'), "dateJoined"]);
+		header.push([TAPi18n.__('learningStatistics.lastActivity'), "lastActivity"]);
+		header.push([TAPi18n.__('learningHistory.stats.duration.workingTime.sum'), "workingTimeSum"]);
+		header.push([TAPi18n.__('learningHistory.stats.duration.workingTime.arithmeticMean'), "workingTimeArithmeticMean"]);
+		header.push([TAPi18n.__('learningHistory.stats.duration.workingTime.median'), "workingTimeMedian"]);
+		header.push([TAPi18n.__('learningHistory.stats.duration.workingTime.standardDeviation'), "workingTimeStandardDeviation"]);
+		header.push([TAPi18n.__('learningHistory.stats.duration.answerTime.arithmeticMean'), "answerTimeArithmeticMean"]);
+		header.push([TAPi18n.__('learningHistory.stats.duration.answerTime.median'), "answerTimeMedian"]);
+		header.push([TAPi18n.__('learningHistory.stats.duration.answerTime.standardDeviation'), "answerTimeStandardDeviation"]);
+		header.push([TAPi18n.__('learningStatistics.box', {number: 1}), "box1"]);
+		header.push([TAPi18n.__('learningStatistics.box', {number: 2}), "box2"]);
+		header.push([TAPi18n.__('learningStatistics.box', {number: 3}), "box3"]);
+		header.push([TAPi18n.__('learningStatistics.box', {number: 4}), "box4"]);
+		header.push([TAPi18n.__('learningStatistics.box', {number: 5}), "box5"]);
+		header.push([TAPi18n.__('learningStatistics.learned'), "learned"]);
+		header.push([TAPi18n.__('learningStatistics.bonus'), "achievedBonus"]);
 		Meteor.call("getLearningStatisticsCSVExport", cardset._id, header, function (error, result) {
 			if (error) {
 				throw new Meteor.Error(error.statusCode, 'Error could not receive content for .csv');
@@ -158,6 +162,10 @@ Template.learningBonusStastics.events({
 		user.webNotification = $(event.target).data('webnotification');
 		user.dateJoinedBonus = $(event.target).data('datejoinedbonus');
 		user.lastActivity = $(event.target).data('lastactivity');
+		user.workingTimeSum = $(event.target).data('workingtimesum');
+		user.cardArithmeticMean = $(event.target).data('cardarithmeticmean');
+		user.percentage = $(event.target).data('percentage');
+		user.achievedBonus = $(event.target).data('achievedbonus');
 		Session.set('selectedLearningStatisticsUser', user);
 	},
 	"click .sort-bonus-user": function (event) {

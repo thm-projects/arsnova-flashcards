@@ -91,23 +91,34 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div id="learningLogStatsDurationTitle" class="user-history-title">
-                                    <h4>{{_ "learningHistory.stats.duration.title"}}</h4>
+                                <div id="learningLogStatsDurationWorkingTimeTitle" class="user-history-title">
+                                    <h4>{{_ "learningHistory.stats.duration.workingTime.title"}}</h4>
                                 </div>
                                 <div class="table-responsive">
                                     <table aria-describedby="learningLogStatsDurationTitle" class="table table-striped table-hover table-history-global-stats">
                                         <tbody>
                                         <tr>
-                                            <th id="learningLogStatsDurationHeader">{{_ "learningHistory.stats.duration.total"}}:</th>
-                                            <td headers="learningLogStatsDurationHeader">{{humanizeDuration this.duration}}</td>
-                                            <th id="learningLogStatsCardArithmeticMeanHeader">{{_ "learningHistory.stats.duration.cardArithmeticMean.stats"}}:</th>
+                                            <th id="learningLogStatsDurationHeader">{{_ "learningHistory.stats.duration.workingTime.sum"}}:</th>
+                                            <td headers="learningLogStatsDurationHeader" colspan="3">{{humanizeDuration this.duration}}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="learningLogStatsDurationAnswerTimeTitle" class="user-history-title">
+                                    <h4>{{_ "learningHistory.stats.duration.answerTime.title"}}</h4>
+                                </div>
+                                <div class="table-responsive">
+                                    <table aria-describedby="learningLogStatsDurationAnswerTimeTitle" class="table table-striped table-hover table-history-global-stats">
+                                        <tbody>
+                                        <tr>
+                                            <th id="learningLogStatsCardArithmeticMeanHeader">{{_ "learningHistory.stats.duration.answerTime.arithmeticMean"}}:</th>
                                             <td headers="learningLogStatsCardArithmeticMeanHeader">{{humanizeDuration this.cardArithmeticMean}}</td>
+                                            <th id="learningLogStatsCardMedianHeader">{{_ "learningHistory.stats.duration.answerTime.median"}}:</th>
+                                            <td headers="learningLogStatsCardMedianHeader">{{humanizeDuration this.cardMedian}}</td>
                                         </tr>
                                         <tr>
-                                            <th id="learningLogStatsCardMedianHeader">{{_ "learningHistory.stats.duration.cardMedian"}}:</th>
-                                            <td headers="learningLogStatsCardMedianHeader">{{humanizeDuration this.cardMedian}}</td>
-                                            <th id="learningLogStatsCardStandardDeviationHeader">{{_ "learningHistory.stats.duration.cardStandardDeviation"}}:</th>
-                                            <td headers="learningLogStatsCardStandardDeviationHeader">{{humanizeDuration this.cardStandardDeviation}}</td>
+                                            <th id="learningLogStatsCardStandardDeviationHeader">{{_ "learningHistory.stats.duration.answerTime.standardDeviation"}}:</th>
+                                            <td headers="learningLogStatsCardStandardDeviationHeader" colspan="3">{{humanizeDuration this.cardStandardDeviation}}</td>
                                         </tr>
                                         </tbody>
                                     </table>

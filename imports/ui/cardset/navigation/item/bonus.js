@@ -47,12 +47,7 @@ Template.cardsetNavigationBonus.events({
 			} else {
 				cardCount = 1;
 			}
-			let cardCountMessage = "";
-			if (cardCount === 1) {
-				cardCountMessage = cardCount + " " + TAPi18n.__('confirmLearn-form.card');
-			} else {
-				cardCountMessage = cardCount + " " + TAPi18n.__('confirmLearn-form.cards');
-			}
+			let cardCountMessage = TAPi18n.__('confirmLearn-form.card', {count: cardCount});
 			Bert.defaults.hideDelay = 10000;
 			BertAlertVisuals.displayBertAlert(TAPi18n.__('bertAlert.publishBonus.message', {cardcount: cardCountMessage, edu: Meteor.settings.public.university.default}), 'warning', 'growl-top-left');
 		}

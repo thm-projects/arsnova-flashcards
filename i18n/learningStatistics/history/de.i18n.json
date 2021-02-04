@@ -18,15 +18,19 @@
         "notKnown": "Nicht Gewusst"
       },
       "duration": {
-        "title": "Bearbeitungszeit",
-        "average": "Ø Bearbeitungszeit pro Termin",
-        "cardMedian": "md Antworzeit pro Karte",
-        "cardArithmeticMean": {
-          "stats": "Ø Antworzeit pro Karte",
-          "filter": "Ø Antworzeit"
+        "workingTime": {
+          "title": "Gesamtbearbeitungszeit",
+          "arithmeticMean": "Ø Gesamtbearbeitungszeit",
+          "median": "md Gesamtbearbeitungszeit",
+          "standardDeviation": "s Gesamtbearbeitungszeit",
+          "sum": "Gesamtbearbeitungszeit"
         },
-        "cardStandardDeviation": "s Antworzeit pro Karte",
-        "total": "Gesamte Bearbeitungszeit"
+        "answerTime": {
+          "title": "Antwortzeit pro Karte",
+          "arithmeticMean": "Ø Antworzeit pro Karte",
+          "median": "md Antworzeit pro Karte",
+          "standardDeviation": "s Antworzeit pro Karte"
+        }
       },
       "averageKnown": "Ø Gewusst"
     },

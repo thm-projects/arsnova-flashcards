@@ -3,7 +3,8 @@ import * as config from "../../../../../config/serverBoot";
 import {TYPE_MIGRATE} from "../../../../../config/serverBoot";
 import {LeitnerTasks} from "../../../../../api/subscriptions/leitnerTasks";
 import {Cardsets} from "../../../../../api/subscriptions/cardsets";
-import {LeitnerUtilities} from "../../../../../util/leitner";
+import {LearningStatisticsUtilities} from "../../../../../util/learningStatistics";
+import {Workload} from "../../../../../api/subscriptions/workload";
 
 function leitnerTaskMigrationStep() {
 	let groupName = "LeitnerTasks Migration";
@@ -52,12 +53,24 @@ function leitnerTaskMigrationStep() {
 		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
 	}
 
-	itemName = "LeitnerTasks timelineStats median, arithmeticMean and standardDeviation fields";
+	itemName = "Remove timelineStats fields";
 	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
-	leitnerTasks = LeitnerTasks.find({"timelineStats.median": {$exists: false}}).fetch();
+	leitnerTasks = LeitnerTasks.find({"timelineStats": {$exists: true}}).count();
+	if (leitnerTasks > 0) {
+		LeitnerTasks.update({}, {$unset: {"timelineStats": ""}}, {multi: true});
+		Workload.update({}, {$unset: {"leitner.timelineStats": ""}}, {multi: true});
+		Cardsets.update({}, {$unset: {"leitner.timelineStats": ""}}, {multi: true});
+		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
+	} else {
+		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
+	}
+
+	itemName = "LearningStatistics median, arithmeticMean and standardDeviation fields";
+	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
+	leitnerTasks = LeitnerTasks.find({"learningStatistics": {$exists: false}}).fetch();
 	if (leitnerTasks.length) {
 		for (let i = 0; i < leitnerTasks.length; i++) {
-			LeitnerUtilities.setCardTimelineStats(leitnerTasks[i]);
+			LearningStatisticsUtilities.setGlobalStatistics(leitnerTasks[i]);
 		}
 		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
 	} else {
