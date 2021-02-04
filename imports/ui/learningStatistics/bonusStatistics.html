@@ -55,7 +55,8 @@
                         {{/if}}
                         <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="dateJoinedBonus">{{_ "learningStatistics.dateJoinedBonus"}}</a> {{> learningBonusStasticsItemSort (setSortObject "dateJoinedBonus")}}</th>
                         <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="lastActivity">{{_ "learningStatistics.lastActivity"}}</a> {{> learningBonusStasticsItemSort (setSortObject "lastActivity")}}</th>
-                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="cardArithmeticMean">{{_ "learningHistory.stats.duration.cardArithmeticMean.filter"}}</a> {{> learningBonusStasticsItemSort (setSortObject "cardArithmeticMean")}}</th>
+                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="workingTimeSum">{{_ "learningStatistics.workingTime"}}</a> {{> learningBonusStasticsItemSort (setSortObject "workingTimeSum")}}</th>
+                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="cardArithmeticMean">{{_ "learningStatistics.arithmeticMean"}}</a> {{> learningBonusStasticsItemSort (setSortObject "cardArithmeticMean")}}</th>
                         <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="box1">{{_ "learningStatistics.box" number=1}} [{{this.learningInterval.[0]}}]</a> {{> learningBonusStasticsItemSort (setSortObject "box1")}}
                         </th>
                         <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="box2">{{_ "learningStatistics.box" number=2}} [{{this.learningInterval.[1]}}]</a> {{> learningBonusStasticsItemSort (setSortObject "box2")}}
@@ -86,6 +87,7 @@
                             {{/if}}
                             <td>{{getMomentsDate this.dateJoinedBonus}}</td>
                             <td>{{getMomentsDate this.lastActivity}}</td>
+                            <td>{{humanizeDuration this.workingTimeSum}}</td>
                             <td>{{humanizeDuration this.cardArithmeticMean}}</td>
                             <td>{{this.box1}}</td>
                             <td>{{this.box2}}</td>
@@ -138,26 +140,44 @@
                             </td>
                             <td>
                                 <a rel="noopener noreferrer"   class="removeBonusUser" data-toggle="modal"
-                                        href="#learningStatisticsRemoveBonusUserModal" data-user_id="{{this.user_id}}"
-                                        data-firstname="{{this.givenname}}"
-                                        data-lastname="{{this.birthname}}"
-                                        data-email="{{this.email}}" data-box1="{{this.box1}}"
-                                        data-box2="{{this.box2}}" data-box3="{{this.box3}}"
-                                        data-box4="{{this.box4}}"
-                                        data-box5="{{this.box5}}" data-box6="{{this.box6}}"
-                                        data-index="{{adjustIndex @index}}"
-                                   data-mailnotification="{{this.mailNotification}}" data-webnotification="{{this.webNotification}}"
-                                        title="{{_ "learningStatisticsRemoveBonusUser.tooltip"}}">
+                                   href="#learningStatisticsRemoveBonusUserModal"
+                                   data-user_id="{{this.user_id}}"
+                                   data-firstname="{{this.givenname}}"
+                                   data-lastname="{{this.birthname}}"
+                                   data-email="{{this.email}}"
+                                   data-box1="{{this.box1}}"
+                                   data-box2="{{this.box2}}"
+                                   data-box3="{{this.box3}}"
+                                   data-box4="{{this.box4}}"
+                                   data-box5="{{this.box5}}"
+                                   data-box6="{{this.box6}}"
+                                   data-index="{{adjustIndex @index}}"
+                                   data-mailnotification="{{this.mailNotification}}"
+                                   data-webnotification="{{this.webNotification}}"
+                                   data-workingtimesum="{{this.workingTimeSum}}"
+                                   data-cardarithmeticmean="{{this.cardArithmeticMean}}"
+                                   data-achievedbonus="{{this.achievedBonus}}"
+                                   data-percentage="{{this.percentage}}"
+                                   title="{{_ "learningStatisticsRemoveBonusUser.tooltip"}}">
                                     <span class="fas fa-trash" data-user_id="{{this.user_id}}"
-                                       data-firstname="{{this.givenname}}"
-                                       data-lastname="{{this.birthname}}"
-                                       data-email="{{this.email}}" data-box1="{{this.box1}}"
-                                       data-box2="{{this.box2}}" data-box3="{{this.box3}}"
-                                       data-box4="{{this.box4}}"
-                                       data-box5="{{this.box5}}" data-box6="{{this.box6}}"
-                                       data-index="{{adjustIndex @index}}"
-                                       data-mailnotification="{{this.mailNotification}}" data-webnotification="{{this.webNotification}}"
-                                       data-datejoinedbonus="{{getMomentsDate this.dateJoinedBonus}}" data-lastactivity="{{getMomentsDate this.lastActivity}}"
+                                          data-firstname="{{this.givenname}}"
+                                          data-lastname="{{this.birthname}}"
+                                          data-email="{{this.email}}"
+                                          data-box1="{{this.box1}}"
+                                          data-box2="{{this.box2}}"
+                                          data-box3="{{this.box3}}"
+                                          data-box4="{{this.box4}}"
+                                          data-box5="{{this.box5}}"
+                                          data-box6="{{this.box6}}"
+                                          data-index="{{adjustIndex @index}}"
+                                          data-workingtimesum="{{this.workingTimeSum}}"
+                                          data-cardarithmeticmean="{{this.cardArithmeticMean}}"
+                                          data-mailnotification="{{this.mailNotification}}"
+                                          data-webnotification="{{this.webNotification}}"
+                                          data-datejoinedbonus="{{getMomentsDate this.dateJoinedBonus}}"
+                                          data-lastactivity="{{getMomentsDate this.lastActivity}}"
+                                          data-achievedbonus="{{this.achievedBonus}}"
+                                          data-percentage="{{this.percentage}}"
                                     >
                                     </span></a>
                             </td>

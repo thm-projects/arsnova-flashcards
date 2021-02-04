@@ -92,17 +92,6 @@ Template.learningHistoryModal.helpers({
 		}).reduce((a, b) => a + b, 0);
 		return Utilities.humanizeDuration(duration);
 	},
-	getAverageDuration: function () {
-		let historyData = Session.get('selectedLearningHistory');
-		let duration = [];
-		historyData.forEach(function (item) {
-			if (item.duration !== 0) {
-				duration.push(item.duration);
-			}
-		});
-		let avgDuration = duration.reduce((a,b) => a + b, 0) / duration.length;
-		return Utilities.humanizeDuration(avgDuration);
-	},
 	getUserCardsArithmeticMean: function () {
 		let historyData = Session.get('selectedLearningHistory');
 		return Utilities.humanizeDuration(historyData[0].userCardArithmeticMean);
@@ -114,6 +103,18 @@ Template.learningHistoryModal.helpers({
 	getUserCardMedian: function () {
 		let historyData = Session.get('selectedLearningHistory');
 		return Utilities.humanizeDuration(historyData[0].userCardMedian);
+	},
+	getUserWorkingTimeMedian: function () {
+		let historyData = Session.get('selectedLearningHistory');
+		return Utilities.humanizeDuration(historyData[0].userWorkingTimeMedian);
+	},
+	getUserWorkingTimeStandardDeviation: function () {
+		let historyData = Session.get('selectedLearningHistory');
+		return Utilities.humanizeDuration(historyData[0].userWorkingTimeStandardDeviation);
+	},
+	getUserWorkingTimeArithmeticMean: function () {
+		let historyData = Session.get('selectedLearningHistory');
+		return Utilities.humanizeDuration(historyData[0].userWorkingTimeArithmeticMean);
 	},
 	getAverageScore: function () {
 		let historyData = Session.get('selectedLearningHistory');

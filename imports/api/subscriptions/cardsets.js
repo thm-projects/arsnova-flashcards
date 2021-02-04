@@ -418,39 +418,75 @@ const CardsetsSchema = new SimpleSchema({
 		type: Object,
 		optional: true
 	},
-	'leitner.timelineStats.median': {
+	'learningStatistics.answerTime': {
 		type: Object,
 		optional: true
 	},
-	'leitner.timelineStats.median.bonus': {
-		type: Number,
-		optional: true
-	},
-	'leitner.timelineStats.median.normal': {
-		type: Number,
-		optional: true
-	},
-	'leitner.timelineStats.arithmeticMean': {
+	'learningStatistics.answerTime.median': {
 		type: Object,
 		optional: true
 	},
-	'leitner.timelineStats.arithmeticMean.bonus': {
+	'learningStatistics.answerTime.median.bonus': {
 		type: Number,
 		optional: true
 	},
-	'leitner.timelineStats.arithmeticMean.normal': {
+	'learningStatistics.answerTime.median.normal': {
 		type: Number,
 		optional: true
 	},
-	'leitner.timelineStats.standardDeviation': {
+	'learningStatistics.answerTime.arithmeticMean': {
 		type: Object,
 		optional: true
 	},
-	'leitner.timelineStats.standardDeviation.bonus': {
+	'learningStatistics.answerTime.arithmeticMean.bonus': {
 		type: Number,
 		optional: true
 	},
-	'leitner.timelineStats.standardDeviation.normal': {
+	'learningStatistics.answerTime.arithmeticMean.normal': {
+		type: Number,
+		optional: true
+	},
+	'learningStatistics.answerTime.standardDeviation': {
+		type: Object,
+		optional: true
+	},
+	'learningStatistics.answerTime.standardDeviation.bonus': {
+		type: Number,
+		optional: true
+	},
+	'learningStatistics.answerTime.standardDeviation.normal': {
+		type: Number,
+		optional: true
+	},
+	'learningStatistics.workingTime.sum.bonus': {
+		type: Number,
+		optional: true
+	},
+	'learningStatistics.workingTime.sum.normal': {
+		type: Number,
+		optional: true
+	},
+	'learningStatistics.workingTime.median.bonus': {
+		type: Number,
+		optional: true
+	},
+	'learningStatistics.workingTime.median.normal': {
+		type: Number,
+		optional: true
+	},
+	'learningStatistics.workingTime.arithmeticMean.bonus': {
+		type: Number,
+		optional: true
+	},
+	'learningStatistics.workingTime.arithmeticMean.normal': {
+		type: Number,
+		optional: true
+	},
+	'learningStatistics.workingTime.standardDeviation.bonus': {
+		type: Number,
+		optional: true
+	},
+	'learningStatistics.workingTime.standardDeviation.normal': {
 		type: Number,
 		optional: true
 	}

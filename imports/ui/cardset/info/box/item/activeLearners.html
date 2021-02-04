@@ -3,7 +3,7 @@
         {{#unless gotTranscriptBonusAndIsNotShuffled this._id}}
             <tr>
                 <td>{{_ "cardset.info.workload.normal.count"}}:</td>
-                <td>{{getActiveLearnerCount this}}</td>
+                <td>{{_ "cardset.info.workload.normal.user" count=(getActiveLearnerCount this)}}</td>
             </tr>
         {{/unless}}
     {{/unless}}

@@ -5,6 +5,8 @@
     "hiddenUser": "Benutzer",
     "hiddenUserPlaceholder": "Bonus-Teilnehmer __index__",
     "box": "Box __number__",
+    "workingTime": "Bearbeitungszeit",
+    "arithmeticMean": "Ø Antworzeit",
     "bonus": "Bonuspunkte",
     "learned": "Gelernt",
     "boxIntervalDaily": "täglich",

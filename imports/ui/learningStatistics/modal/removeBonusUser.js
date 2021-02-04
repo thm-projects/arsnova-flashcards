@@ -18,6 +18,14 @@ Template.learningStatisticsRemoveBonusUserModal.helpers({
 	},
 	userData: function () {
 		return Session.get('selectedLearningStatisticsUser');
+	},
+	getPercentage: function () {
+		if (this.percentage > 0) {
+			return '<span class="cardPercentage">[' + this.percentage + ' %]</span>';
+		}
+	},
+	earnedTrophy: function () {
+		return this.percentage >= Session.get('activeCardset').workload.bonus.minLearned;
 	}
 });
 

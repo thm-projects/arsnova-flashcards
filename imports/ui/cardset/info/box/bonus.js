@@ -19,6 +19,10 @@ import "./item/bonusWorkload.js";
 import "./item/pomodoroBreakTime.js";
 import "./item/pomodoroCount.js";
 import "./item/pomodoroWorkTime.js";
+import "./item/bonusWorkingTimeArithmeticMean.js";
+import "./item/bonusWorkingTimeMedian.js";
+import "./item/bonusWorkingTimeStandardDeviation.js";
+import "./item/bonusWorkingTimeSum.js";
 import "./bonus.html";
 
 /*

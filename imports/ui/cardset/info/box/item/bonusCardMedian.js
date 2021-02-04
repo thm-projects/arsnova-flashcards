@@ -10,8 +10,8 @@ import {Utilities} from "../../../../../util/utilities";
 Template.cardsetInfoBoxItemBonusCardMedian.helpers({
 	getBonusCardMedian: function () {
 		let bonusCardMedian = 0;
-		if (Session.get('activeCardset') !== undefined && Session.get('activeCardset').leitner !== undefined && Session.get('activeCardset').leitner.timelineStats !== undefined) {
-			bonusCardMedian = Session.get('activeCardset').leitner.timelineStats.median.bonus;
+		if (Session.get('activeCardset') !== undefined && Session.get('activeCardset').learningStatistics !== undefined && Session.get('activeCardset').learningStatistics.answerTime !== undefined) {
+			bonusCardMedian = Session.get('activeCardset').learningStatistics.answerTime.median.bonus;
 		}
 		return Utilities.humanizeDuration(bonusCardMedian);
 	}

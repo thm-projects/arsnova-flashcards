@@ -8,6 +8,7 @@ import {LeitnerTasks} from "../subscriptions/leitnerTasks";
 import {LeitnerHistory} from "../subscriptions/leitnerHistory";
 import {Workload} from "../subscriptions/workload";
 import {LeitnerUtilities} from "../../util/leitner";
+import {LearningStatisticsUtilities} from "../../util/learningStatistics";
 
 Meteor.methods({
 	getCardAnswerContent: function (cardIds, cardsetId, disableAnswers) {
@@ -47,7 +48,7 @@ Meteor.methods({
 			}, {$set: {
 					timestamps: timestamps
 				}});
-			LeitnerUtilities.setCardTimelineStats(task);
+			LearningStatisticsUtilities.setGlobalStatistics(task);
 		}
 	},
 	setMCAnswers: function (cardIds, activeCardId, cardsetId, userAnswers, timestamps) {
@@ -163,7 +164,7 @@ Meteor.methods({
 							timestamps: timestamps
 						}
 					});
-					LeitnerUtilities.setCardTimelineStats(leitnerTask);
+					LearningStatisticsUtilities.setGlobalStatistics(leitnerTask);
 				}
 
 				Workload.update({cardset_id: activeLeitner.cardset_id, user_id: activeLeitner.user_id}, {
