@@ -27,8 +27,8 @@ let desktopSize = {
 	width: 0.8
 };
 
-let viewerLink = "/pdf/web/viewer.html?file=https://cors-anywhere.herokuapp.com/";
-let viewerLinkLocalhost = "/pdf/web/viewer.html?file=https://cors-anywhere.herokuapp.com/";
+let viewerLink = "/pdf/web/viewer.html?file=";
+let viewerLinkLocalhost = "/pdf/web/viewer.html?file=";
 let markdeepPDFRegex = /\[.*?\]\((.*?\.pdf.*?)\)/;
 let pdfLinkOptionsRegex = /.*?\.pdf(.*)/;
 
