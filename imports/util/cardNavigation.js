@@ -11,6 +11,7 @@ import {SweetAlertMessages} from "./sweetAlert";
 import {CardType} from "./cardTypes";
 import {NavigatorCheck} from "./navigatorCheck";
 import * as config from "../config/cardNavigation.js";
+import * as pdfViewerConfig from "../config/pdfViewer.js";
 import {CardsetNavigation} from "./cardsetNavigation";
 import {MainNavigation} from "./mainNavigation";
 import {ServerStyle} from "./styles";
@@ -391,9 +392,11 @@ export let CardNavigation = class CardNavigation {
 			}
 			Session.set('activeCardsetName', Cardsets.findOne({_id: _id}).name);
 		}
-		let activeCard = Cards.findOne({_id: Session.get('activeCard')}, {fields: {_id: 1, cardType: 1}});
-		if (activeCard !== undefined) {
-			PDFViewer.setLearningAutoTarget(activeCard._id, activeCard.cardType);
+		if (pdfViewerConfig.enabled) {
+			let activeCard = Cards.findOne({_id: Session.get('activeCard')}, {fields: {_id: 1, cardType: 1}});
+			if (activeCard !== undefined) {
+				PDFViewer.setLearningAutoTarget(activeCard._id, activeCard.cardType);
+			}
 		}
 	}
 
