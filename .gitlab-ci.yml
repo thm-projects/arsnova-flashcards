@@ -155,6 +155,7 @@ sync_mirror:
     - kaniko
   dependencies:
     - build
+  allow_failure: true
   script:
     - echo "{\"auths\":{\"$DOCKER_REGISTRY_URL\":{\"auth\":\"$DOCKER_REGISTRY_TOKEN\"}}}" > /kaniko/.docker/config.json
     - /kaniko/executor
