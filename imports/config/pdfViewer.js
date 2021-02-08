@@ -27,7 +27,7 @@ let desktopSize = {
 	width: 0.8
 };
 
-let enabled = false;
+let enabled = true;
 let viewerLink = "/pdf/web/viewer.html?file=";
 let viewerLinkLocalhost = "/pdf/web/viewer.html?file=";
 let markdeepPDFRegex = /\[.*?\]\((.*?\.pdf.*?)\)/;
