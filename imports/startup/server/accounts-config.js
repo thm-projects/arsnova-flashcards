@@ -109,9 +109,6 @@ Meteor.users.after.insert(function (userId, doc) {
 				break;
 			case "firstLogin":
 				username = "firstLogin";
-				firstName = "";
-				lastName = "";
-				eMail = "";
 				backdoorRoles = ['university', 'firstLogin'];
 				isTestUser = true;
 				break;

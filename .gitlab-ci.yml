@@ -169,7 +169,6 @@ sync_mirror:
 # define release branches
 .release_branches:
   only:  &release_branches
-    - staging
     - master
 
 # settings for cards

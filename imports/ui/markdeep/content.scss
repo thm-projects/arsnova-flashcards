@@ -65,6 +65,7 @@
   }
 
   blockquote {
+    font-size: 100% !important;
     border-left: 0;
     font-family: cursive;
     font-weight: normal;
@@ -100,6 +101,7 @@
     box-sizing: unset;
     display: block;
     margin: 1em auto;
+    padding: 0 0;
   }
 
   pre.listing.backtick {
@@ -185,10 +187,6 @@
     font-weight: bold !important;
   }
 
-  blockquote {
-    font-size: 100% !important;
-  }
-
   q:before {
     content: "»";
   }
@@ -215,10 +213,6 @@
     -webkit-hyphens: auto !important;
     -ms-hyphens: auto !important;
     hyphens: auto !important;
-  }
-
-  p {
-    padding: 0px 0px;
   }
 
   .plantuml-diagram {

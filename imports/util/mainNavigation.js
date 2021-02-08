@@ -68,12 +68,8 @@ export let MainNavigation = class MainNavigation {
 			keyEventsUnlocked = false;
 			if (keyCodes.indexOf(event.keyCode) > -1) {
 				event.preventDefault();
-				switch (event.keyCode) {
-					case 112:
-						if (Session.get('helpFilter') !== undefined || Route.isPresentationOrDemo() || Route.isBox() || Route.isMemo()) {
-							this.toggleHelp();
-						}
-						break;
+				if (event.keyCode === 112 && (Session.get('helpFilter') !== undefined || Route.isPresentationOrDemo() || Route.isBox() || Route.isMemo())) {
+					this.toggleHelp();
 				}
 			}
 		}

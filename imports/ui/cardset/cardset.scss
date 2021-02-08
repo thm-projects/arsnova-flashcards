@@ -194,11 +194,9 @@ $padding-card-list-row: 8px;
     float: unset !important;
   }
 }
+
 .panel-footer {
   padding: 0 10px;
-}
-
-.panel-footer, .collapseCardsetInfoContainer {
   .btn-group {
     margin-right: 5px;
     padding: 0;
@@ -231,10 +229,29 @@ $padding-card-list-row: 8px;
 }
 
 .collapseCardsetInfoContainer {
+  .btn-group {
+    margin-right: 5px;
+    padding: 0;
+  }
+  .btn {
+    padding: 8px 15px;
+  }
+
+  .panel-body {
+    margin-top: 15px;
+  }
+
+  ul li {
+    cursor: pointer;
+    padding: 10px;
+    width: 250px;
+    border-top: 2px solid;
+  }
   ul li:first-child {
     border-top: none;
   }
   ul li:last-child {
+    border-top: none;
     border-top: 2px solid;
   }
   .dropdown-menu {
@@ -242,6 +259,14 @@ $padding-card-list-row: 8px;
     li {
       transform: scaleY(1);
     }
+  }
+  display: block;
+  min-height: 58px;
+  a:hover {
+    text-decoration: underline !important;
+  }
+  @media(max-width: 767px) {
+    min-height: 35px;
   }
 }
 
@@ -350,17 +375,6 @@ $padding-card-list-row: 8px;
 #collapseLearningPhaseInfo {
   a {
     display: inline;
-  }
-}
-
-.collapseCardsetInfoContainer {
-  display: block;
-  min-height: 58px;
-  a:hover {
-    text-decoration: underline !important;
-  }
-  @media(max-width: 767px) {
-    min-height: 35px;
   }
 }
 
@@ -499,22 +513,20 @@ th .field-tip {
   padding-bottom: 15px;
 }
 
-.markdeepCardsetTitle, .markdeepCardsetContent {
-  padding: $padding_cardset_content_vertical $padding_cardset_content_horizontal !important;
-  font-size: $font_size_cardset_content !important;
-   @media(max-width: 767px) {
-     padding: $padding_cardset_content_vertical_mobile $padding_cardset_content_horizontal_mobile !important;
-   }
-}
-
 .markdeepCardsetTitle {
   padding: 5pt 0 5pt 25pt !important;
+  font-size: $font_size_cardset_content !important;
   @media(max-width: 767px) {
     padding: 5pt !important;
   }
 }
 
 .markdeepCardsetContent {
+  padding: $padding_cardset_content_vertical $padding_cardset_content_horizontal !important;
+  font-size: $font_size_cardset_content !important;
+  @media(max-width: 767px) {
+    padding: $padding_cardset_content_vertical_mobile $padding_cardset_content_horizontal_mobile !important;
+  }
   overflow-y: auto;
   background-image: url(/img/pomodoro.png);
   @media(orientation: portrait) {

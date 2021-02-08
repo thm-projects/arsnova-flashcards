@@ -556,11 +556,7 @@ Template.notificationLecturerFormAdmin.helpers({
 		var isRequest = Session.get('lecturerrequest');
 		var user_id = Session.get('request_id');
 
-		if (!isRequest && Roles.userIsInRole(user_id, 'lecturer') || !isRequest) {
-			return false;
-		} else {
-			return true;
-		}
+		return !(!isRequest && Roles.userIsInRole(user_id, 'lecturer') || !isRequest);
 	},
 	getRequesttext: function () {
 		var text = Session.get('requesttext');
