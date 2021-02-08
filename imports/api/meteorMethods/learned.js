@@ -80,16 +80,13 @@ if (Meteor.isServer) {
 
 			if (grade < 3) {
 				reps = 0;
-				interval = 0;
 			} else {
 				ef = ef + (0.1 - (5 - grade) * (0.08 + (5 - grade) * 0.02));
 				if (ef < 1.3) {
 					ef = 1.3;
 				}
 				reps = reps + 1;
-				if (grade === 3) {
-					interval = 0;
-				} else {
+				if (grade !== 3) {
 					switch (reps) {
 						case 1:
 							interval = 1;
