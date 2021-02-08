@@ -22,30 +22,28 @@ Template.cardTypesList.helpers({
 		} else {
 			let filteredCardTypes = [];
 			for (let i = 0; i < cardTypes.length; i++) {
-				switch (cardTypes[i].cardType) {
-					case -1:
-						if (cardTypes[i].enabled && ServerStyle.gotSimplifiedNav()) {
-							filteredCardTypes.push(cardTypes[i]);
-						}
-						break;
-					default:
-						if (this.useCase) {
-							if (cardTypes[i].enabled) {
-								if (ServerStyle.gotTranscriptsEnabled()) {
-									filteredCardTypes.push(cardTypes[i]);
-								} else if (!CardType.isTranscriptModeOnlyCardType(cardTypes[i].cardType)) {
-									filteredCardTypes.push(cardTypes[i]);
-								}
-							}
-						} else {
-							if (cardTypes[i].enabled && !cardTypes[i].useCaseOnly) {
-								if (ServerStyle.gotTranscriptsEnabled()) {
-									filteredCardTypes.push(cardTypes[i]);
-								} else if (!CardType.isTranscriptModeOnlyCardType(cardTypes[i].cardType)) {
-									filteredCardTypes.push(cardTypes[i]);
-								}
+				if (cardTypes[i].cardType === -1) {
+					if (cardTypes[i].enabled && ServerStyle.gotSimplifiedNav()) {
+						filteredCardTypes.push(cardTypes[i]);
+					}
+				} else {
+					if (this.useCase) {
+						if (cardTypes[i].enabled) {
+							if (ServerStyle.gotTranscriptsEnabled()) {
+								filteredCardTypes.push(cardTypes[i]);
+							} else if (!CardType.isTranscriptModeOnlyCardType(cardTypes[i].cardType)) {
+								filteredCardTypes.push(cardTypes[i]);
 							}
 						}
+					} else {
+						if (cardTypes[i].enabled && !cardTypes[i].useCaseOnly) {
+							if (ServerStyle.gotTranscriptsEnabled()) {
+								filteredCardTypes.push(cardTypes[i]);
+							} else if (!CardType.isTranscriptModeOnlyCardType(cardTypes[i].cardType)) {
+								filteredCardTypes.push(cardTypes[i]);
+							}
+						}
+					}
 				}
 			}
 			return filteredCardTypes;

@@ -13,11 +13,7 @@ import "./filterKind.html";
 
 Template.filterItemFilterKind.helpers({
 	displayKindFilters: function () {
-		if (MainNavigation.isGuestLoginActive() && !ServerStyle.isLoginEnabled("pro")) {
-			return false;
-		} else {
-			return true;
-		}
+		return !(MainNavigation.isGuestLoginActive() && !ServerStyle.isLoginEnabled("pro"));
 	},
 	getPersonalKindTag: function () {
 		return Filter.getPersonalKindTag();

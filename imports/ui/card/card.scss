@@ -158,7 +158,7 @@ img.cardside {
   @media(max-width: 767px) {
     padding: ($card_header_padding / 2) ($card_header_padding / 2) 0 ($card_header_padding / 2);
   }
-  height: 100%;;
+  height: 100%;
   text-align: center;
   @media(min-width: 768px) {
     line-height: $line_height_card_header !important;
