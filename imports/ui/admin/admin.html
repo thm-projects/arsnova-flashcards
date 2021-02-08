@@ -18,50 +18,6 @@
                     <div class="collapse navbar-collapse" id="thm-top-navigation">
                         <ul class="nav navbar-nav navbar-right">
                             <li><a rel="noopener noreferrer" href="{{pathFor route='home'}}">{{_ "navbar-collapse.frontend"}}</a></li>
-                            <!--  <li id="notificationsBtn_admin" class="dropdown">
-                                <a rel="noopener noreferrer" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                                    <span class="fas fa-bell"></span> {{#if countNotifications}}
-                                    <span class="badge">{{countNotifications}}</span>{{/if}}
-                                </a>
-
-                                <ul class="dropdown-menu notifications" role="menu"
-                                    aria-labelledby="dLabel">
-                                    <div class="notification-heading">
-                                        <h4 class="menu-title">{{_ "notifications.title"}}</h4>
-                                        {{#if getNotifications.count}}
-                                            <button id="clearBtn_admin" type="button"
-                                                    class="btn btn-default pull-right">{{_
-                                                    "notifications.clearAll"}}</button>
-                                        {{/if}}
-                                    </div>
-                                    <li class="divider"></li>
-                                    {{#if getNotifications.count}}
-                                        <div class="notifications-wrapper">
-                                            {{#each getNotifications}}
-                                                <a rel="noopener noreferrer" href="{{getLink _id}}" class="content">
-                                                    <div class="notification-item">
-                                                        <h4 class="item-title">{{getType type}}</h4>
-                                                        <p class="item-info">{{text}}</p>
-                                                    </div>
-                                                </a>
-                                            {{/each}}
-                                        </div>
-                                    {{else}}
-                                        <div class="notification-heading">
-                                            <h4 class="menu-title">{{_ "notifications.noNotification"}}</h4>
-                                        </div>
-                                    {{/if}}
-                                    <li class="divider"></li>
-                                    <div class="notification-footer">
-                                        <a rel="noopener noreferrer" href="{{pathFor route='admin_notifications'}}" type="button"
-                                           class="btn btn-info"
-                                           data-toggle="collapse" data-target="#thm-top-navigation">
-                                            {{_ "notifications.viewAll"}} <span
-                                                class="fas fa-arrow-alt-circle-right"></span>
-                                        </a>
-                                    </div>
-                                </ul>
-                            </li> -->
                             {{#if currentUser}}
                                 <li><a rel="noopener noreferrer" href="{{pathFor 'admin_user' _id=currentUser._id}}"
                                        id="usr-profile-admin" data-toggle="collapse"
@@ -96,13 +52,6 @@
                             <span>{{_ "admin.users"}}</span>
                         </a>
                     </li>
-                    <!--  <li>
-                        <a rel="noopener noreferrer" class="{{#if isActiveRoute regex='admin_learningStatistics'}}active{{/if}}"
-                           href="{{pathFor route='admin_learningStatistics'}}">
-                            <span class="far fa-chart-bar"></span>
-                            <span>{{_ "admin.learningStatistics"}}</span>
-                        </a>
-                    </li> -->
                     {{#if enabledMatomo}}
                         <li>
                             <a rel="noopener noreferrer" class="{{#if isActiveRoute regex='admin_matomoStatistics'}}active{{/if}}"
@@ -112,20 +61,6 @@
                             </a>
                         </li>
                     {{/if}}
-                    <!--  <li>
-                        <a rel="noopener noreferrer" class="{{#if isActiveRoute regex='admin_apiAccess'}}active{{/if}}"
-                           href="{{pathFor route='admin_apiAccess'}}">
-                            <span class="fas fa-key"></span>
-                            <span>{{_ "admin.api.access"}}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a rel="noopener noreferrer" class="{{#if isActiveRoute regex='admin_notifications'}}active{{/if}}"
-                           href="{{pathFor route='admin_notifications'}}">
-                            <span class="fas fa-bell"></span>
-                            <span>{{_ "admin.notifications"}}</span>
-                        </a>
-                    </li> -->
                     <li>
                         <a rel="noopener noreferrer" class="{{#if isActiveRoute regex='admin_messageOfTheDay'}}active{{/if}}"
                            href="{{pathFor route='admin_messageOfTheDay'}}">
