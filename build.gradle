@@ -12,7 +12,7 @@ sonarqube {
 		property "sonar.language", "js"
 		property "sonar.sources", "./"
 		// See https://github.com/SonarSource/sonar-javascript/issues/552.
-		property "sonar.exclusions", "**/node_modules/**, client/thirdParty/**, public/**, imports/config/**"
+		property "sonar.exclusions", "**/node_modules/**, client/thirdParty/**, public/**, imports/config/**, private/**"
 		property "sonar.host.url", "https://scm.thm.de/sonar/"
 	}
 }
