@@ -194,11 +194,9 @@ $padding-card-list-row: 8px;
     float: unset !important;
   }
 }
-.panel-footer {
-  padding: 0 10px;
-}
 
 .panel-footer {
+  padding: 0 10px;
   .btn-group {
     margin-right: 5px;
     padding: 0;
@@ -249,21 +247,11 @@ $padding-card-list-row: 8px;
     width: 250px;
     border-top: 2px solid;
   }
-
-  ul li:last-child {
-    border-top: none;
-  }
-
-  .dropdown-menu {
-    transform: scaleY(-1);
-    li {
-      transform: scaleY(-1);
-    }
-  }
   ul li:first-child {
     border-top: none;
   }
   ul li:last-child {
+    border-top: none;
     border-top: 2px solid;
   }
   .dropdown-menu {
@@ -525,14 +513,6 @@ th .field-tip {
   padding-bottom: 15px;
 }
 
-.markdeepCardsetContent {
-  padding: $padding_cardset_content_vertical $padding_cardset_content_horizontal !important;
-  font-size: $font_size_cardset_content !important;
-   @media(max-width: 767px) {
-     padding: $padding_cardset_content_vertical_mobile $padding_cardset_content_horizontal_mobile !important;
-   }
-}
-
 .markdeepCardsetTitle {
   padding: 5pt 0 5pt 25pt !important;
   font-size: $font_size_cardset_content !important;
@@ -542,6 +522,11 @@ th .field-tip {
 }
 
 .markdeepCardsetContent {
+  padding: $padding_cardset_content_vertical $padding_cardset_content_horizontal !important;
+  font-size: $font_size_cardset_content !important;
+  @media(max-width: 767px) {
+    padding: $padding_cardset_content_vertical_mobile $padding_cardset_content_horizontal_mobile !important;
+  }
   overflow-y: auto;
   background-image: url(/img/pomodoro.png);
   @media(orientation: portrait) {
