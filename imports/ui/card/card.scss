@@ -256,8 +256,6 @@ img.cardside {
   @media(max-width: 767px) {
     padding: $padding_card_content_vertical_mobile $padding_card_content_horizontal_mobile !important;
   }
-}
-.cardContent {
   box-sizing: border-box;
   width: 100%;
   vertical-align: bottom;

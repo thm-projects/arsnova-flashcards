@@ -1307,6 +1307,9 @@ $themes: (
     }
 
     #markdeepNavigation {
+      background: $primary !important;
+      border: 1px solid $primary !important;
+
       .material-icons.pressed, .fas.pressed, .fab.pressed, .far.pressed, .card-button.pressed, .material-icons.pressed:hover,
       .material-icons.pressed:focus, .card-button.pressed:focus {
         background-color: $thm_orange;
@@ -1649,10 +1652,6 @@ $themes: (
     .filterCardsHeader {
       background-color: $primary !important;
       color: $secondary-text !important;
-    }
-
-    .cardsetHeaderBottom {
-      background-color: $accent !important;
     }
 
     #pool-category-region {
@@ -2127,14 +2126,6 @@ $themes: (
       background-color: $primary !important;
     }
 
-    #markdeepNavigation {
-      background: $primary !important;
-    }
-
-    #markdeepNavigation {
-      border: 1px solid $primary !important;
-    }
-
     .learnLeitner, .learnWozniak, .learnSelect {
       color: $primary !important;
     }
@@ -2153,6 +2144,7 @@ $themes: (
 
     .cardset-list-badge {
       color: $primary !important;
+      background-color: $white !important;
     }
 
     .cardset-list-badge-transcript {
@@ -2585,12 +2577,6 @@ $themes: (
       }
     }
 
-    .mobilePreviewContent {
-      .box-difficultyLined0 {
-        background: $background_difficulty0 !important;
-      }
-    }
-
     .box-difficultyLinedNote0 {
       background: repeating-linear-gradient(
                       to bottom,
@@ -2600,12 +2586,6 @@ $themes: (
                       $background_difficulty0_lines_note 37px
       ) local !important;
       @media(max-width: 767px) {
-        background: $background_difficulty0_note !important;
-      }
-    }
-
-    .mobilePreviewContent {
-      .box-difficultyLinedNote0 {
         background: $background_difficulty0_note !important;
       }
     }
@@ -2655,12 +2635,6 @@ $themes: (
       }
     }
 
-    .mobilePreviewContent {
-      .box-difficultyLined1 {
-        background: $background_difficulty1 !important;
-      }
-    }
-
     .box-difficultyBlank0 {
       background-color: $background_difficulty0 !important;
     }
@@ -2690,12 +2664,6 @@ $themes: (
       }
     }
 
-    .mobilePreviewContent {
-      .box-difficultyLined2 {
-        background: $background_difficulty2 !important;
-      }
-    }
-
     .box-difficultyBlank2 {
       background-color: $background_difficulty2 !important;
     }
@@ -2721,12 +2689,6 @@ $themes: (
       }
     }
 
-    .mobilePreviewContent {
-      .box-difficultyLined3 {
-        background: $background_difficulty3 !important;
-      }
-    }
-
     .box-difficultyBlank3 {
       background: $background_difficulty3 !important;
     }
@@ -2746,21 +2708,9 @@ $themes: (
       }
     }
 
-    .mobilePreviewContent {
-      .box-white-header {
-        background: linear-gradient(to top, $background_white_lines 0px, $background_white_lines 2px, $background_white 3px, $background_white 100%) !important;
-      }
-    }
-
     .box-hint-header {
       background: linear-gradient(to top, $hint_presentation_header_lines 0px, $hint_presentation_header_lines 4px, $background_hint 5px, $background_hint 100%) !important;
       @media(max-width: 767px) {
-        background: linear-gradient(to top, $hint_presentation_header_lines 0px, $hint_presentation_header_lines 2px, $background_hint 3px, $background_hint 100%) !important;
-      }
-    }
-
-    .mobilePreviewContent {
-      .box-hint-header {
         background: linear-gradient(to top, $hint_presentation_header_lines 0px, $hint_presentation_header_lines 2px, $background_hint 3px, $background_hint 100%) !important;
       }
     }
@@ -2772,21 +2722,9 @@ $themes: (
       }
     }
 
-    .mobilePreviewContent {
-      .box-hint-alternative-header {
-        background: linear-gradient(to top, $hint_alternative_presentation_header_lines 0px, $hint_alternative_presentation_header_lines 2px, $background_hint_alternative 3px, $background_hint_alternative 100%) !important;
-      }
-    }
-
     .box-pink-header {
       background: linear-gradient(to top, $background_pink_lines 0px, $background_pink_lines 4px, $background_pink 5px, $background_pink 100%) !important;
       @media(max-width: 767px) {
-        background: linear-gradient(to top, $background_pink_lines 0px, $background_pink_lines 2px, $background_pink 3px, $background_pink 100%) !important;
-      }
-    }
-
-    .mobilePreviewContent {
-      .box-pink-header {
         background: linear-gradient(to top, $background_pink_lines 0px, $background_pink_lines 2px, $background_pink 3px, $background_pink 100%) !important;
       }
     }
@@ -2798,21 +2736,9 @@ $themes: (
       }
     }
 
-    .mobilePreviewContent {
-      .box-post-it-header {
-        background: linear-gradient(to top, $background_post_it_lines 0px, $background_post_it_lines 2px, $background_post_it 3px, $background_post_it 100%) !important;
-      }
-    }
-
     .box-lecture-header {
       background: linear-gradient(to top, $lecture_presentation_header_lines 0px, $lecture_presentation_header_lines 4px, $background_lecture 5px, $background_lecture 100%) !important;
       @media(max-width: 767px) {
-        background: linear-gradient(to top, $lecture_presentation_header_lines 0px, $lecture_presentation_header_lines 2px, $background_lecture 3px, $background_lecture 100%) !important;
-      }
-    }
-
-    .mobilePreviewContent {
-      .box-lecture-header {
         background: linear-gradient(to top, $lecture_presentation_header_lines 0px, $lecture_presentation_header_lines 2px, $background_lecture 3px, $background_lecture 100%) !important;
       }
     }
@@ -2824,21 +2750,9 @@ $themes: (
       }
     }
 
-    .mobilePreviewContent {
-      .box-difficultyBlank0-header, .box-difficultyLined0-header {
-        background: linear-gradient(to top, $background_difficulty0_lines 0px, $background_difficulty0_lines 2px, $background_difficulty0 3px, $background_difficulty0 100%) !important;
-      }
-    }
-
     .box-difficultyBlankNote0-header, .box-difficultyLinedNote0-header {
       background: linear-gradient(to top, $background_difficulty0_lines_note 0px, $background_difficulty0_lines_note 4px, $background_difficulty0_note 5px, $background_difficulty0_note 100%) !important;
       @media(max-width: 767px) {
-        background: linear-gradient(to top, $background_difficulty0_lines_note 0px, $background_difficulty0_lines_note 2px, $background_difficulty0_note 3px, $background_difficulty0_note 100%) !important;
-      }
-    }
-
-    .mobilePreviewContent {
-      .box-difficultyBlankNote0-header, .box-difficultyLinedNote0-header {
         background: linear-gradient(to top, $background_difficulty0_lines_note 0px, $background_difficulty0_lines_note 2px, $background_difficulty0_note 3px, $background_difficulty0_note 100%) !important;
       }
     }
@@ -2850,12 +2764,6 @@ $themes: (
       }
     }
 
-    .mobilePreviewContent {
-      .box-difficultyBlank1-header, .box-difficultyLined1-header {
-        background: linear-gradient(to top, $background_difficulty1_lines 0px, $background_difficulty1_lines 2px, $background_difficulty1 3px, $background_difficulty1 100%) !important;
-      }
-    }
-
     .box-difficultyBlank2-header, .box-difficultyLined2-header {
       background: linear-gradient(to top, $background_difficulty2_lines 0px, $background_difficulty2_lines 4px, $background_difficulty2 5px, $background_difficulty2 100%) !important;
       @media(max-width: 767px) {
@@ -2863,21 +2771,9 @@ $themes: (
       }
     }
 
-    .mobilePreviewContent {
-      .box-difficultyBlank2-header, .box-difficultyLined2-header {
-        background: linear-gradient(to top, $background_difficulty2_lines 0px, $background_difficulty2_lines 2px, $background_difficulty2 3px, $background_difficulty2 100%) !important;
-      }
-    }
-
     .box-difficultyBlank3-header, .box-difficultyLined3-header {
       background: linear-gradient(to top, $background_difficulty3_lines 0px, $background_difficulty3_lines 4px, $background_difficulty3 5px, $background_difficulty3 100%) !important;
       @media(max-width: 767px) {
-        background: linear-gradient(to top, $background_difficulty3_lines 0px, $background_difficulty3_lines 2px, $background_difficulty3 3px, $background_difficulty3 100%) !important;
-      }
-    }
-
-    .mobilePreviewContent {
-      .box-difficultyBlank3-header, .box-difficultyLined3-header {
         background: linear-gradient(to top, $background_difficulty3_lines 0px, $background_difficulty3_lines 2px, $background_difficulty3 3px, $background_difficulty3 100%) !important;
       }
     }
@@ -3165,10 +3061,6 @@ $themes: (
       color: $thm_green !important;
     }
 
-    .cardset-list-badge {
-      background-color: $white !important;
-    }
-
     //cardsetCourseIterations
     .resultItem {
       background-color: $item_spacing_background !important;
@@ -3397,13 +3289,6 @@ $themes: (
       color: $transcript_rating_about_card_icon !important;
     }
 
-    .label-transcript-rating-stars, .transcript-bonus-settings {
-      background-color: $transcript_rating_stars_label_background !important;
-      span, span:hover {
-        color: $transcript_rating_stars_icon !important;
-      }
-    }
-
     .card-header-label .label-transcript-rating-stars {
       background-color: $transcript_rating_stars_card_label_background !important;
       span, span:hover {
@@ -3416,13 +3301,11 @@ $themes: (
       }
     }
 
-    .transcript-bonus-statistics-info {
-      .fa-star, .fa-star:hover {
-        color: $transcript_rating_stars_icon_rated !important;
-      }
-    }
-
     .label-transcript-rating-stars, .transcript-bonus-settings  {
+      background-color: $transcript_rating_stars_label_background !important;
+      span, span:hover {
+        color: $transcript_rating_stars_icon !important;
+      }
       .fa-star.rated, .fa-star.rated:hover {
         color: $transcript_rating_stars_icon_rated !important;
       }
@@ -3858,7 +3741,7 @@ $themes: (
       @media(max-width: 767px) {
         opacity: 1 !important;
       }
-      tr, tr {
+      tr {
         background-color: $navbar_profile_dropdown_background !important;
         a {
           color: $navbar_profile_dropdown_text !important;
@@ -3883,6 +3766,54 @@ $themes: (
     //card editor
     .mobilePreviewContent {
       background-color: $background_mobile_preview !important;
+      .box-difficultyLined0 {
+        background: $background_difficulty0 !important;
+      }
+      .box-difficultyLinedNote0 {
+        background: $background_difficulty0_note !important;
+      }
+      .box-difficultyLined1 {
+        background: $background_difficulty1 !important;
+      }
+      .box-difficultyLined2 {
+        background: $background_difficulty2 !important;
+      }
+      .box-difficultyLined3 {
+        background: $background_difficulty3 !important;
+      }
+      .box-white-header {
+        background: linear-gradient(to top, $background_white_lines 0px, $background_white_lines 2px, $background_white 3px, $background_white 100%) !important;
+      }
+      .box-hint-header {
+        background: linear-gradient(to top, $hint_presentation_header_lines 0px, $hint_presentation_header_lines 2px, $background_hint 3px, $background_hint 100%) !important;
+      }
+      .box-hint-alternative-header {
+        background: linear-gradient(to top, $hint_alternative_presentation_header_lines 0px, $hint_alternative_presentation_header_lines 2px, $background_hint_alternative 3px, $background_hint_alternative 100%) !important;
+      }
+      .box-pink-header {
+        background: linear-gradient(to top, $background_pink_lines 0px, $background_pink_lines 2px, $background_pink 3px, $background_pink 100%) !important;
+      }
+      .box-post-it-header {
+        background: linear-gradient(to top, $background_post_it_lines 0px, $background_post_it_lines 2px, $background_post_it 3px, $background_post_it 100%) !important;
+      }
+      .box-lecture-header {
+        background: linear-gradient(to top, $lecture_presentation_header_lines 0px, $lecture_presentation_header_lines 2px, $background_lecture 3px, $background_lecture 100%) !important;
+      }
+      .box-difficultyBlank0-header, .box-difficultyLined0-header {
+        background: linear-gradient(to top, $background_difficulty0_lines 0px, $background_difficulty0_lines 2px, $background_difficulty0 3px, $background_difficulty0 100%) !important;
+      }
+      .box-difficultyBlankNote0-header, .box-difficultyLinedNote0-header {
+        background: linear-gradient(to top, $background_difficulty0_lines_note 0px, $background_difficulty0_lines_note 2px, $background_difficulty0_note 3px, $background_difficulty0_note 100%) !important;
+      }
+      .box-difficultyBlank1-header, .box-difficultyLined1-header {
+        background: linear-gradient(to top, $background_difficulty1_lines 0px, $background_difficulty1_lines 2px, $background_difficulty1 3px, $background_difficulty1 100%) !important;
+      }
+      .box-difficultyBlank2-header, .box-difficultyLined2-header {
+        background: linear-gradient(to top, $background_difficulty2_lines 0px, $background_difficulty2_lines 2px, $background_difficulty2 3px, $background_difficulty2 100%) !important;
+      }
+      .box-difficultyBlank3-header, .box-difficultyLined3-header {
+        background: linear-gradient(to top, $background_difficulty3_lines 0px, $background_difficulty3_lines 2px, $background_difficulty3 3px, $background_difficulty3 100%) !important;
+      }
     }
 
     //card sidebar
@@ -4309,7 +4240,7 @@ $themes: (
       }
     }
 
-    .modal-icon, .modal-icon .fas, .modal-icon .fab, .modal-icon .far, .modal-icon {
+    .modal-icon, .modal-icon .fas, .modal-icon .fab, .modal-icon .far {
       color: $modal_icon !important;
     }
 
@@ -4555,6 +4486,9 @@ $themes: (
     }
     //transcript bonus user statistics colors
     .transcript-bonus-statistics-info {
+      .fa-star, .fa-star:hover {
+        color: $transcript_rating_stars_icon_rated !important;
+      }
       th {
         background-color: $transcript_bonus_statistics_info_name_background !important;
       }

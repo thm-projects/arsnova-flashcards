@@ -198,7 +198,7 @@ $padding-card-list-row: 8px;
   padding: 0 10px;
 }
 
-.panel-footer, .collapseCardsetInfoContainer {
+.panel-footer {
   .btn-group {
     margin-right: 5px;
     padding: 0;
@@ -231,6 +231,35 @@ $padding-card-list-row: 8px;
 }
 
 .collapseCardsetInfoContainer {
+  .btn-group {
+    margin-right: 5px;
+    padding: 0;
+  }
+  .btn {
+    padding: 8px 15px;
+  }
+
+  .panel-body {
+    margin-top: 15px;
+  }
+
+  ul li {
+    cursor: pointer;
+    padding: 10px;
+    width: 250px;
+    border-top: 2px solid;
+  }
+
+  ul li:last-child {
+    border-top: none;
+  }
+
+  .dropdown-menu {
+    transform: scaleY(-1);
+    li {
+      transform: scaleY(-1);
+    }
+  }
   ul li:first-child {
     border-top: none;
   }
@@ -242,6 +271,14 @@ $padding-card-list-row: 8px;
     li {
       transform: scaleY(1);
     }
+  }
+  display: block;
+  min-height: 58px;
+  a:hover {
+    text-decoration: underline !important;
+  }
+  @media(max-width: 767px) {
+    min-height: 35px;
   }
 }
 
@@ -350,17 +387,6 @@ $padding-card-list-row: 8px;
 #collapseLearningPhaseInfo {
   a {
     display: inline;
-  }
-}
-
-.collapseCardsetInfoContainer {
-  display: block;
-  min-height: 58px;
-  a:hover {
-    text-decoration: underline !important;
-  }
-  @media(max-width: 767px) {
-    min-height: 35px;
   }
 }
 
@@ -499,7 +525,7 @@ th .field-tip {
   padding-bottom: 15px;
 }
 
-.markdeepCardsetTitle, .markdeepCardsetContent {
+.markdeepCardsetContent {
   padding: $padding_cardset_content_vertical $padding_cardset_content_horizontal !important;
   font-size: $font_size_cardset_content !important;
    @media(max-width: 767px) {
@@ -509,6 +535,7 @@ th .field-tip {
 
 .markdeepCardsetTitle {
   padding: 5pt 0 5pt 25pt !important;
+  font-size: $font_size_cardset_content !important;
   @media(max-width: 767px) {
     padding: 5pt !important;
   }

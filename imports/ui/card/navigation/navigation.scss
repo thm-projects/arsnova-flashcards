@@ -24,6 +24,7 @@
 
 .cardEditorHeader .cardNavigation {
    margin-top: 0;
+  margin-bottom: 0;
  }
 
 .cardNavigation a {
@@ -31,10 +32,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: block;
-}
-
-.cardEditorHeader .cardNavigation {
-  margin-bottom: 0;
 }
 
 .cardNavigation .btn {

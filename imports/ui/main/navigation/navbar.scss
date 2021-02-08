@@ -34,6 +34,13 @@ $navbar_all_border_width: 3px;
 }
 
 .navbar-cards {
+  .top-navigation-call-to-action-button {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+  }
+  .navbar-header-collapse-item {
+    margin-right: 5px;
+  }
   .hidden-on-iPad {
     @media (min-width: 768px) and (max-width: 1199px) {
       display: none !important;
@@ -226,15 +233,6 @@ $navbar_all_border_width: 3px;
   margin-left: 5px;
 }
 
-.navbar-cards {
-  .top-navigation-call-to-action-button {
-    margin-left: 5px !important;
-    margin-right: 5px !important;
-  }
-  .navbar-header-collapse-item {
-    margin-right: 5px;
-  }
-}
 
 .footer-container {
   @media (max-width: 1169px) {
