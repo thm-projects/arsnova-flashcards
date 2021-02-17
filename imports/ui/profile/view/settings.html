@@ -41,11 +41,10 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">
                                     {{#if gotMultipleRoles (getRoles (getUser.roles) true)}}
-                                        {{_ "panel-body.role_plural"}}
+                                        {{_ "panel-body.role_plural"}}:
                                     {{else}}
-                                        {{_ "panel-body.role"}}
+                                        {{_ "panel-body.role"}}:
                                     {{/if}}
-                                    :
                                 </label>
                                 <div class="col-md-8 control-data">
                                     {{getRoles (getUser.roles) false}}
