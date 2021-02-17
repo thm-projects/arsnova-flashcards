@@ -472,6 +472,9 @@
   },
   "panel-body": {
     "name": "Login-Kennung",
+    "role": "Benutzerrolle",
+    "role_plural": "Benutzerrollen",
+    "dateJoined": "Beigetreten",
     "name-desc": "Login-Kennung (nicht öffentlich)",
     "title": "Titel",
     "title-desc": "nur für Lehrende",

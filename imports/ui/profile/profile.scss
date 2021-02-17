@@ -143,6 +143,23 @@ label.col-md-4.control-label {
   margin-top: 6px;
 }
 
+.profile-info {
+  .form-group {
+    margin-top: 14px;
+  }
+
+  .control-label {
+    margin-top: 0 !important;
+    padding-top: 5px !important;
+  }
+
+  .control-data {
+    color: black;
+    text-align: left;
+    cursor: default;
+  }
+}
+
 h3.panel-title, h4.panel-title {
   color: black;
   font-weight: bold;

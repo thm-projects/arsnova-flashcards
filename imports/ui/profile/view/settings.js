@@ -19,6 +19,9 @@ import {UserPermissions} from "../../../util/permissions";
  */
 
 Template.profileSettings.helpers({
+	gotMultipleRoles: function (count) {
+		return count >= 2;
+	},
 	/** Function returns all colorThemes from the databse */
 	getColorThemes: function () {
 		return ColorThemes.find();
