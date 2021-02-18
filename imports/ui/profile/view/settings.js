@@ -19,6 +19,13 @@ import {UserPermissions} from "../../../util/permissions";
  */
 
 Template.profileSettings.helpers({
+	getProfileName: function (casName, cardsName) {
+		if (casName !== undefined && casName.length > 0) {
+			return casName;
+		} else {
+			return cardsName;
+		}
+	},
 	gotMultipleRoles: function (count) {
 		return count >= 2;
 	},
