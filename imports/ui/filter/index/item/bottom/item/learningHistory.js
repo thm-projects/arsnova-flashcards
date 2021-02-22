@@ -2,6 +2,7 @@ import "./learningHistory.html";
 import {Session} from "meteor/session";
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
+import {LeitnerHistoryUtilities} from "../../../../../../util/learningHistory";
 
 Template.filterIndexItemBottomLearningHistory.events({
 	"click .showLearningHistory": function (event) {
@@ -12,7 +13,7 @@ Template.filterIndexItemBottomLearningHistory.events({
 					throw new Meteor.Error(error.statusCode, 'Error could not receive content for history');
 				}
 				if (result) {
-					Session.set('selectedLearningHistory', result);
+					Session.set('selectedLearningHistory', LeitnerHistoryUtilities.prepareUserHistoryData(result));
 				}
 			});
 		}
