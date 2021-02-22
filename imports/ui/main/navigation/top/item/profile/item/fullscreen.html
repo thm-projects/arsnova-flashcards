@@ -3,8 +3,10 @@
         <tr class="{{#if isActiveRoute
                          'profileFullscreen'}}active{{/if}}">
             <td><a rel="noopener noreferrer"   class="dropdown-item"
-                   href="/profile/{{currentUser._id}}/fullscreen"><span
-                    class="fas fa-cogs"></span></a></td>
+                   href="/profile/{{currentUser._id}}/fullscreen"><span class="fa-stack fa-sm">
+  <i class="fa fa-expand fa-stack-2x"></i>
+  <i class="fa fa-cog fa-stack-1x"></i>
+</span></a></td>
             <td><a rel="noopener noreferrer"   class="dropdown-item"
                    href="/profile/{{currentUser._id}}/fullscreen">{{_
                     "fullscreen.navigation"}}</a></td>
