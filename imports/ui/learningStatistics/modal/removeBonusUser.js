@@ -31,7 +31,7 @@ Template.learningStatisticsRemoveBonusUserModal.helpers({
 
 Template.learningStatisticsRemoveBonusUserModal.events({
 	"click #removeUserFromBonusConfirm": function () {
-		if (Session.get('selectedBonusUser') !== undefined) {
+		if (Session.get('selectedLearningStatisticsUser') !== undefined) {
 			Meteor.call('removeUserFromBonus', FlowRouter.getParam('_id'), Session.get('selectedLearningStatisticsUser').user_id, function (error, result) {
 				if (error) {
 					throw new Meteor.Error(error.statusCode, 'Error could not receive content for stats');
