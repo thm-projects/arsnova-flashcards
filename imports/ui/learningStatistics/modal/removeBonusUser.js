@@ -38,7 +38,11 @@ Template.learningStatisticsRemoveBonusUserModal.events({
 					throw new Meteor.Error(error.statusCode, 'Error could not receive content for stats');
 				}
 				if (result) {
-					Session.set("selectedLearningStatistics", LeitnerHistoryUtilities.prepareBonusUserData(result));
+					//Flush the list before refilling it
+					Session.set("selectedLearningStatistics", []);
+					setTimeout(function () {
+						Session.set("selectedLearningStatistics", LeitnerHistoryUtilities.prepareBonusUserData(result));
+					}, 250);
 					BertAlertVisuals.displayBertAlert(TAPi18n.__('learningStatistics.bertAlert.userRemoved'), 'success', 'growl-top-left');
 				}
 			});
