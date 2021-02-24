@@ -5,6 +5,7 @@ import "./removeBonusUser.html";
 import {Meteor} from "meteor/meteor";
 import {BertAlertVisuals} from "../../../util/bertAlertVisuals";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import {LeitnerHistoryUtilities} from "../../../util/learningHistory";
 
 Template.learningStatisticsRemoveBonusUserModal.onCreated(function () {
 	$('#learningStatisticsRemoveBonusUserModal').on('hidden.bs.modal', function () {
@@ -31,13 +32,17 @@ Template.learningStatisticsRemoveBonusUserModal.helpers({
 
 Template.learningStatisticsRemoveBonusUserModal.events({
 	"click #removeUserFromBonusConfirm": function () {
-		if (Session.get('selectedBonusUser') !== undefined) {
+		if (Session.get('selectedLearningStatisticsUser') !== undefined) {
 			Meteor.call('removeUserFromBonus', FlowRouter.getParam('_id'), Session.get('selectedLearningStatisticsUser').user_id, function (error, result) {
 				if (error) {
 					throw new Meteor.Error(error.statusCode, 'Error could not receive content for stats');
 				}
 				if (result) {
-					Session.set("selectedLearningStatistics", result);
+					//Flush the list before refilling it
+					Session.set("selectedLearningStatistics", []);
+					setTimeout(function () {
+						Session.set("selectedLearningStatistics", LeitnerHistoryUtilities.prepareBonusUserData(result));
+					}, 250);
 					BertAlertVisuals.displayBertAlert(TAPi18n.__('learningStatistics.bertAlert.userRemoved'), 'success', 'growl-top-left');
 				}
 			});

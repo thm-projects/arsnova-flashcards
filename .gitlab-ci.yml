@@ -77,7 +77,8 @@ build:
     paths:
       - "$BUNDLE_DIR"
 
-deploy_staging:
+# Do not deploy to staging while the wpw2 projects deploys to staging
+.deploy_staging:
   stage: deploy
   tags:
     - rsync
