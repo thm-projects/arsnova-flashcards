@@ -5,6 +5,7 @@ import "./removeBonusUser.html";
 import {Meteor} from "meteor/meteor";
 import {BertAlertVisuals} from "../../../util/bertAlertVisuals";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import {LeitnerHistoryUtilities} from "../../../util/learningHistory";
 
 Template.learningStatisticsRemoveBonusUserModal.onCreated(function () {
 	$('#learningStatisticsRemoveBonusUserModal').on('hidden.bs.modal', function () {
@@ -37,7 +38,7 @@ Template.learningStatisticsRemoveBonusUserModal.events({
 					throw new Meteor.Error(error.statusCode, 'Error could not receive content for stats');
 				}
 				if (result) {
-					Session.set("selectedLearningStatistics", result);
+					Session.set("selectedLearningStatistics", LeitnerHistoryUtilities.prepareBonusUserData(result));
 					BertAlertVisuals.displayBertAlert(TAPi18n.__('learningStatistics.bertAlert.userRemoved'), 'success', 'growl-top-left');
 				}
 			});
