@@ -97,6 +97,9 @@ let arsnova = {
 	}, // Defaults to internal if logged in, otherwise to landing-page
 	"backend": {
 		"background-image": "url('/img/background/matrix.jpg')"
+	},
+	"wordcloud": {
+		"background-image": "url('/img/background/Tafel.jpg')"
 	}
 };
 
@@ -191,6 +194,9 @@ let linux = {
 	}, // Defaults to internal if logged in, otherwise to landing-page
 	"backend": {
 		"background-image": "url('/img/background/matrix.jpg')"
+	},
+	"wordcloud": {
+		"background-image": "url('/img/background/Night.jpg')"
 	}
 };
 

@@ -35,7 +35,6 @@ Template.wordcloud.onRendered(function () {
 });
 
 
-
 /*
  * ############################################################################
  * wordcloudModal
