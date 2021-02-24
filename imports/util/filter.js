@@ -328,7 +328,7 @@ export let Filter = class Filter {
 		if (FilterNavigation.gotBonusFilter(FilterNavigation.getRouteId()) && activeFilter.learningActive !== undefined) {
 			query.learningActive = activeFilter.learningActive;
 		}
-		if (FilterNavigation.gotBonusFilter(FilterNavigation.getRouteId()) && activeFilter['transcriptBonus.enabled'] !== undefined && !ServerStyle.gotSimplifiedNav()) {
+		if (FilterNavigation.gotBonusFilter(FilterNavigation.getRouteId()) && activeFilter['transcriptBonus.enabled'] !== undefined) {
 			query['transcriptBonus.enabled'] = activeFilter['transcriptBonus.enabled'];
 		}
 		if (FilterNavigation.gotWordCloudFilter(FilterNavigation.getRouteId()) && activeFilter.wordcloud !== undefined) {
