@@ -33,11 +33,12 @@ import "./main.html";
 import "../messageOfTheDay/messageOfTheDay.js";
 
 import {PDFViewer} from "../../util/pdfViewer";
-import {setLanguage, setTheme} from "../../startup/client/routes/onBeforeAction.js";
+import {setLanguage} from "../../startup/client/routes/onBeforeAction.js";
 import {Fullscreen} from "../../util/fullscreen";
 import {CardsetVisuals} from "../../util/cardsetVisuals";
 import tippy from "tippy.js";
 import 'tippy.js/animations/scale-extreme.css';
+import {BackgroundChanger} from "../../util/backgroundChanger";
 
 Meteor.subscribe("notifications");
 Meteor.subscribe("serverStatistics");
@@ -166,7 +167,7 @@ let windowResizeSensor;
 let screenResizeSensor;
 Template.main.onCreated(function () {
 	setLanguage();
-	setTheme();
+	BackgroundChanger.setTheme();
 	MarkdeepContent.initializeStylesheet();
 	document.title = ServerStyle.getLastAppTitle();
 	windowResizeSensor = $(window).resize(function () {

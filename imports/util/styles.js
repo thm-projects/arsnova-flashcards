@@ -44,7 +44,7 @@ export let ServerStyle = class ServerStyle {
 	}
 
 	static getAppSlogan () {
-		let config  = this.getConfig();
+		let config = this.getConfig();
 		switch (config.language.client) {
 			case "de":
 				return this.getConfig().welcome.title.slogan_de;
@@ -54,7 +54,7 @@ export let ServerStyle = class ServerStyle {
 	}
 
 	static getAboutButton (isMobile = false) {
-		let config  = this.getConfig();
+		let config = this.getConfig();
 		if (isMobile) {
 			switch (config.language.client) {
 				case "de":
@@ -229,12 +229,12 @@ export let ServerStyle = class ServerStyle {
 	}
 
 	static getDemoArsnovaClick () {
-		let config  = this.getConfig();
+		let config = this.getConfig();
 		return config.demo.arsnovaClick;
 	}
 
 	static getDemoFragJetzt () {
-		let config  = this.getConfig();
+		let config = this.getConfig();
 		return config.demo.fragJetzt;
 	}
 
@@ -249,21 +249,21 @@ export let ServerStyle = class ServerStyle {
 	}
 
 	static adjustForLandingPageBackground (backgrounds, target = "") {
-		if (target['background-image']  === "none" || target['background-image'] .trim().length === 0)  {
+		if (target['background-image'] === "none" || target['background-image'].trim().length === 0) {
 			target = backgrounds["landing-page"];
 		}
 		return target;
 	}
 
 	static adjustForInternalBackground (backgrounds, target = "") {
-		if (target['background-image'] === "none" || target['background-image'] .trim().length === 0)  {
+		if (target['background-image'] === "none" || target['background-image'].trim().length === 0) {
 			target = backgrounds.internal;
 		}
 		return target;
 	}
 
 	static adjustForCardsetBackground (backgrounds, target = "") {
-		if (target['background-image'] === "none" || target['background-image'] .trim().length === 0)  {
+		if (target['background-image'] === "none" || target['background-image'].trim().length === 0) {
 			target = backgrounds.cardset;
 		}
 		return this.adjustForInternalBackground(backgrounds, target);
@@ -279,88 +279,42 @@ export let ServerStyle = class ServerStyle {
 		} else {
 			switch (type) {
 				case "landing-page":
-					backgroundObject = backgrounds["landing-page"];
-					break;
 				case "demo":
-					backgroundObject = backgrounds.demo;
-					break;
 				case "demoIndex":
-					backgroundObject = backgrounds.demoIndex;
-					break;
 				case "internal":
-					backgroundObject = backgrounds.internal;
+				case "backend":
+				case "wordcloud":
+					backgroundObject = backgrounds[type];
 					break;
 				case "pool":
-					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.pool);
-					break;
 				case "workload":
-					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.workload);
-					break;
 				case "personal":
-					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.personal);
-					break;
 				case "transcripts":
-					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.transcripts);
-					break;
 				case "allPool":
-					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.allPool);
-					break;
 				case "cardset":
-					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.cardset);
+				case "presentation":
+				case "presentationIndex":
+				case "leitner":
+				case "wozniak":
+				case "editor":
+				case "profileSettings":
+				case "profileMembership":
+				case "profileBilling":
+				case "profileRequests":
+					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds[type]);
 					break;
 				case "cardsetLeitnerStats":
-					backgroundObject = this.adjustForCardsetBackground(backgrounds, backgrounds.cardsetLeitnerStats);
-					break;
 				case "cardsetTranscriptBonus":
-					backgroundObject = this.adjustForCardsetBackground(backgrounds, backgrounds.cardsetTranscriptBonus);
-					break;
-				case "presentation":
-					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.presentation);
-					break;
-				case "presentationIndex":
-					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.presentationIndex);
-					break;
-				case "leitner":
-					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.leitner);
-					break;
-				case "wozniak":
-					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.wozniak);
-					break;
-				case "editor":
-					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.editor);
-					break;
-				case "profileSettings":
-					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.profileSettings);
-					break;
-				case "profileMembership":
-					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.profileMembership);
-					break;
-				case "profileBilling":
-					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.profileBilling);
-					break;
-				case "profileRequests":
-					backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.profileRequests);
+					backgroundObject = this.adjustForCardsetBackground(backgrounds, backgrounds[type]);
 					break;
 				case "agb":
-					backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.agb);
-					break;
 				case "datenschutz":
-					backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.datenschutz);
-					break;
 				case "faq":
-					backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.faq);
-					break;
 				case "help":
-					backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.help);
-					break;
 				case "impressum":
-					backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.impressum);
-					break;
 				case "about":
-					backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.about);
-					break;
 				case "learning":
-					backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.learning);
+					backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds[type]);
 					break;
 				case "notFound":
 					if (UserPermissions.canAccessFrontend()) {
@@ -368,9 +322,6 @@ export let ServerStyle = class ServerStyle {
 					} else {
 						backgroundObject = this.adjustForLandingPageBackground(backgrounds, backgrounds.notFound);
 					}
-					break;
-				case "backend":
-					backgroundObject = backgrounds.backend;
 					break;
 			}
 		}

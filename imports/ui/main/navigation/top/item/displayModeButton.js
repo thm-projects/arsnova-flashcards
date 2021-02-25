@@ -4,6 +4,8 @@ import {Filter} from "../../../../../util/filter";
 import {Route} from "../../../../../util/route";
 import {WordcloudCanvas} from "../../../../../util/wordcloudCanvas";
 import ResizeSensor from "../../../../../../client/thirdParty/resizeSensor/ResizeSensor";
+import {BackgroundChanger} from "../../../../../util/backgroundChanger";
+
 Session.setDefault('filterDisplayWordcloud', false);
 
 /*
@@ -36,9 +38,11 @@ Template.mainNavigationTopItemDisplayModeButton.events({
 		if (Session.get('filterDisplayWordcloud')) {
 			Filter.resetMaxItemCounter();
 			WordcloudCanvas.disableWordcloud();
+			BackgroundChanger.setTheme();
 		} else {
 			Filter.resetMaxItemCounter();
 			WordcloudCanvas.enableWordcloud();
+			BackgroundChanger.changeToStyle("wordcloud");
 		}
 	}
 });
