@@ -1,7 +1,7 @@
 //------------------------ IMPORTS
 
 import {Meteor} from "meteor/meteor";
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import {FlowRouter} from 'meteor/ostrio:flow-router-extra';
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/subscriptions/cardsets.js";
@@ -43,6 +43,8 @@ import './sidebar/sidebar.js';
 import "./card.html";
 import {MarkdeepEditor} from "../../util/markdeepEditor";
 import {AnswerUtilities} from "../../util/answers";
+import {ExecuteControllers} from 'wtc-controller-element';
+import {BarfyStars, Particle, ACTIONS} from 'wtc-barfystars';
 
 function isActiveCard(card, resetData) {
 	if (Route.isEditMode()) {
@@ -214,6 +216,10 @@ Template.flashcardsEmpty.onRendered(function () {
 
 Template.flashcardsEnd.onRendered(function () {
 	$('.carousel-inner').css('min-height', 0);
+	//Check, that all modules are imported and loaded
+	if (BarfyStars && ACTIONS && Particle) {
+		ExecuteControllers.instanciateAll();
+	}
 });
 
 
