@@ -45,6 +45,7 @@ import {MarkdeepEditor} from "../../util/markdeepEditor";
 import {AnswerUtilities} from "../../util/answers";
 import {ExecuteControllers} from 'wtc-controller-element';
 import {BarfyStars, Particle, ACTIONS} from 'wtc-barfystars';
+import {BarfyStarsConfig} from "../../util/barfyStars";
 
 function isActiveCard(card, resetData) {
 	if (Route.isEditMode()) {
@@ -218,7 +219,20 @@ Template.flashcardsEnd.onRendered(function () {
 	$('.carousel-inner').css('min-height', 0);
 	//Check, that all modules are imported and loaded
 	if (BarfyStars && ACTIONS && Particle) {
+		$('#main').prepend('<div style="text-align: center"><a href="#" data-controller="BarfyStars" data-config=\'' +
+			JSON.stringify(BarfyStarsConfig.getConfig("images")) +
+			'\' class="confettiEmitter ' +
+			BarfyStarsConfig.getStyle("images") +
+			'">t</a></div>');
 		ExecuteControllers.instanciateAll();
+		const elements = $('#main > div > a.confettiEmitter');
+		let animationTimes = 3;
+		let timer = setInterval(function () {
+			if (--animationTimes < 1) {
+				clearInterval(timer);
+			}
+			elements.hover();
+		}, 1250);
 	}
 });
 
