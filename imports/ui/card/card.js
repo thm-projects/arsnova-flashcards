@@ -219,21 +219,34 @@ Template.flashcardsEnd.onRendered(function () {
 	$('.carousel-inner').css('min-height', 0);
 	//Check, that all modules are imported and loaded
 	if (BarfyStars && ACTIONS && Particle) {
-		$('#main').prepend('<div style="text-align: center"><a href="#" data-controller="BarfyStars" data-config=\'' +
-			JSON.stringify(BarfyStarsConfig.getConfig("images")) +
+		const obj = BarfyStarsConfig.getConfig("images");
+		obj.action = 'callback';
+		const main = $('#main');
+		main.prepend('<div style="text-align: center"><a href="#" data-controller="BarfyStars" data-config=\'' +
+			JSON.stringify(obj) +
 			'\' class="confettiEmitter ' +
 			BarfyStarsConfig.getStyle("images") +
-			'">t</a></div>');
+			'"></a></div>');
+		main.css('overflow', 'hidden').css('height', '100%');
+		$(document.body).css('height', '100%');
 		ExecuteControllers.instanciateAll();
-		const elements = $('#main > div > a.confettiEmitter');
+		const elements = $('#main > div > div > a.confettiEmitter');
 		let animationTimes = 3;
 		let timer = setInterval(function () {
 			if (--animationTimes < 1) {
 				clearInterval(timer);
 			}
-			elements.hover();
+			if (elements.length > 0) {
+				elements[0].data.controller.addParticles();
+			}
 		}, 1250);
 	}
+});
+
+Template.flashcardsEnd.onDestroyed(function () {
+	$('#main > div > div > a.confettiEmitter').parent().parent().remove();
+	$('#main').css('overflow', '').css('height', '');
+	$(document.body).css('height', '');
 });
 
 
