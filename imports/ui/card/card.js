@@ -239,7 +239,7 @@ Template.flashcardsEnd.onRendered(function () {
 			if (elements.length > 0) {
 				elements[0].data.controller.addParticles();
 			}
-		}, 1250);
+		}, 2500);
 	}
 });
 
