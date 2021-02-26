@@ -46,6 +46,7 @@ import {AnswerUtilities} from "../../util/answers";
 import {ExecuteControllers} from 'wtc-controller-element';
 import {BarfyStars, Particle, ACTIONS} from 'wtc-barfystars';
 import {BarfyStarsConfig} from "../../util/barfyStars";
+import * as config from "../../config/learningStatus";
 
 function isActiveCard(card, resetData) {
 	if (Route.isEditMode()) {
@@ -217,34 +218,56 @@ Template.flashcardsEmpty.onRendered(function () {
 
 Template.flashcardsEnd.onRendered(function () {
 	$('.carousel-inner').css('min-height', 0);
-	//Check, that all modules are imported and loaded
+	config.flashCardsEndFanfare.play();
+	//Check that all modules are imported and loaded
 	if (BarfyStars && ACTIONS && Particle) {
+		//Set mode to callback, do not allow hover mode
 		const obj = BarfyStarsConfig.getConfig("images");
 		obj.action = 'callback';
+		//Add the confetti at the end of #main
 		const main = $('#main');
-		main.prepend('<div style="text-align: center"><a href="#" data-controller="BarfyStars" data-config=\'' +
+		main.append('<div style="text-align: center"><a href="#" data-config=\'' +
 			JSON.stringify(obj) +
 			'\' class="confettiEmitter ' +
 			BarfyStarsConfig.getStyle("images") +
 			'"></a></div>');
+		//Change overflow property (confetti forces scrollbar => hide them instead)
 		main.css('overflow', 'hidden').css('height', '100%');
 		$(document.body).css('height', '100%');
-		ExecuteControllers.instanciateAll();
+		//Initialize confetti controller
+		const initElem = $('#main > div > a.confettiEmitter');
+		initElem.each((index) => {
+			const dom = initElem[index];
+			//Do not instanciate if already instanciated
+			if (!(dom.data && dom.data.controller)) {
+				ExecuteControllers.instanciate(dom, 'BarfyStars');
+			}
+		});
+		//Do confetti animation
 		const elements = $('#main > div > div > a.confettiEmitter');
 		let animationTimes = 2;
-		let timer = setInterval(function () {
+		let timer = 0;
+		const playAnimation = function () {
 			if (--animationTimes < 1) {
 				clearInterval(timer);
 			}
 			if (elements.length > 0) {
 				elements[0].data.controller.addParticles();
 			}
-		}, 2500);
+		};
+		playAnimation();
+		if (animationTimes > 0) {
+			this.timer = timer = setInterval(playAnimation, 2500);
+		}
 	}
 });
 
 Template.flashcardsEnd.onDestroyed(function () {
+	//Stop confetti animation if running
+	clearInterval(this.timer);
+	//Remove confetti containers
 	$('#main > div > div > a.confettiEmitter').parent().parent().remove();
+	//Reset state of #main
 	$('#main').css('overflow', '').css('height', '');
 	$(document.body).css('height', '');
 });
