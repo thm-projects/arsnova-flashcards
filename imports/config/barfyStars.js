@@ -8,7 +8,7 @@ let defaultSettings = {
 
 let images = {
 	"scaleInitial": 2.0,
-	"momentum": 7,
+	"momentum": 7.5,
 	"numParticles": 60
 };
 

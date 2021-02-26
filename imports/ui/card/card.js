@@ -232,7 +232,13 @@ Template.flashcardsEnd.onRendered(function () {
 			BarfyStarsConfig.getStyle("images") +
 			'"></a></div>');
 		//Change overflow property (confetti forces scrollbar => hide them instead)
-		main.css('overflow', 'hidden').css('height', '100%');
+		main.css({
+			'overflow': 'hidden',
+			'height': '100%',
+			'display': 'flex',
+			'flex-direction': 'column',
+			'justify-content': 'center'
+		});
 		$(document.body).css('height', '100%');
 		//Initialize confetti controller
 		const initElem = $('#main > div > a.confettiEmitter');
@@ -268,7 +274,13 @@ Template.flashcardsEnd.onDestroyed(function () {
 	//Remove confetti containers
 	$('#main > div > div > a.confettiEmitter').parent().parent().remove();
 	//Reset state of #main
-	$('#main').css('overflow', '').css('height', '');
+	$('#main').css({
+		'overflow': '',
+		'height': '',
+		'display': '',
+		'flex-direction': '',
+		'justify-content': ''
+	});
 	$(document.body).css('height', '');
 });
 
