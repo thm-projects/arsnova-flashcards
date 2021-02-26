@@ -615,3 +615,34 @@ img.cardside {
 .card-content-container {
   word-break: break-word;
 }
+
+@media screen and (min-width: 800px) {
+  .flashEndContainer {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.95;
+  }
+}
+
+.flashEndContainer .flashcard {
+  text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+  .flashEndContainer {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.95;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .flashEndContainer {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.95;
+  }
+}

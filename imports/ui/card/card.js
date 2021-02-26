@@ -231,7 +231,7 @@ Template.flashcardsEnd.onRendered(function () {
 		$(document.body).css('height', '100%');
 		ExecuteControllers.instanciateAll();
 		const elements = $('#main > div > div > a.confettiEmitter');
-		let animationTimes = 3;
+		let animationTimes = 2;
 		let timer = setInterval(function () {
 			if (--animationTimes < 1) {
 				clearInterval(timer);

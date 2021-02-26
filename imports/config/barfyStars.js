@@ -9,7 +9,7 @@ let defaultSettings = {
 let images = {
 	"scaleInitial": 2.0,
 	"momentum": 7,
-	"numParticles": 130
+	"numParticles": 60
 };
 
 module.exports = {
