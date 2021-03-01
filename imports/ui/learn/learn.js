@@ -65,6 +65,9 @@ Template.learnAlgorithms.onCreated(function () {
 	}
 	for (const [key, value] of Object.entries(cardsets)) {
 		const tempCardset = Cardsets.findOne({_id: key}, {fields: {difficulty: 1}});
+		if (!tempCardset) {
+			continue;
+		}
 		cardDifficulties[tempCardset.difficulty] += value;
 	}
 

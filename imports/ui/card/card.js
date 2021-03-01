@@ -221,9 +221,13 @@ Template.flashcardsEnd.onRendered(function () {
 	config.flashCardsEndFanfare.play();
 	//Check that all modules are imported and loaded
 	if (BarfyStars && ACTIONS && Particle) {
+		//Get particles by card difficulties
+		const cardDifficulties = Session.get('cardDifficulties');
+		Session.set('cardDifficulties', undefined);
 		//Set mode to callback, do not allow hover mode
 		const obj = BarfyStarsConfig.getConfig("images");
 		obj.action = 'callback';
+		obj.numParticles = cardDifficulties.reduce((acc, elem) => acc + elem, 0);
 		//Add the confetti at the end of #main
 		const main = $('#main');
 		main.append('<div style="text-align: center"><a href="#" data-config=\'' +
@@ -249,36 +253,35 @@ Template.flashcardsEnd.onRendered(function () {
 				ExecuteControllers.instanciate(dom, 'BarfyStars');
 			}
 		});
-		//Do confetti animation
-		const particles = Session.get('cardDifficulties');
-		Session.set('cardDifficulties', undefined);
-		console.log(particles);
+		//Setup confetti animation
 		const elements = $('#main > div > div > a.confettiEmitter');
 		//Update gravity with Screen height
 		const momentum = elements[0].offsetTop > 500 ? 8.5 : 7;
 		for (let i = 0; i < elements.length; i++) {
 			elements[i].data.controller.momentum = momentum;
 		}
-		let animationTimes = 2;
-		let timer = 0;
+		//Maps difficulty to particle index
+		const mapping = ['BSParticle--5', 'BSParticle--2', 'BSParticle--1', 'BSParticle--3'];
 		const playAnimation = function () {
-			if (--animationTimes < 1) {
-				clearInterval(timer);
-			}
-			if (elements.length > 0) {
+			if (elements.length > 0 && obj.numParticles > 0) {
 				elements[0].data.controller.addParticles();
+				const emittedParticles = $('a.confettiEmitter > *');
+				let particleIndex = 3;
+				for (let i = 0; i < emittedParticles.length; i++) {
+					while (cardDifficulties[particleIndex] <= 0 && particleIndex > 0) {
+						particleIndex -= 1;
+					}
+					cardDifficulties[particleIndex] -= 1;
+					emittedParticles[i].classList.remove('BSParticle--5', 'BSParticle--4', 'BSParticle--3', 'BSParticle--2', 'BSParticle--1');
+					emittedParticles[i].classList.add(mapping[particleIndex]);
+				}
 			}
 		};
-		playAnimation();
-		if (animationTimes > 0) {
-			this.timer = timer = setInterval(playAnimation, 2500);
-		}
+		setTimeout(playAnimation, 2500);
 	}
 });
 
 Template.flashcardsEnd.onDestroyed(function () {
-	//Stop confetti animation if running
-	clearInterval(this.timer);
 	//Remove confetti containers
 	$('#main > div > div > a.confettiEmitter').parent().parent().remove();
 	//Reset state of #main
