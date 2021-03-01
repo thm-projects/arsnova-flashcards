@@ -33,25 +33,42 @@ Session.set('animationPlaying', false);
  */
 
 Template.learnAlgorithms.onCreated(function () {
-	if (Route.isBox() && Bonus.isInBonus(FlowRouter.getParam('_id'))) {
+	const id = FlowRouter.getParam('_id');
+	if (Route.isBox() && Bonus.isInBonus(id)) {
 		PomodoroTimer.updateServerTimerStart();
 		PomodoroTimer.start();
 	}
-	let cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')}, {
+	let cardset = Cardsets.findOne({_id: id}, {
 		fields: {
 			cardType: 1,
 			shuffled: 1,
-			strictWorkloadTimer: 1
+			strictWorkloadTimer: 1,
+			difficulty: 1
 		}
 	});
 	const leitner = Leitner.find({active: true}, {
 		fields: {
-			card_id: 1,
 			original_cardset_id: 1,
 			cardset_id: 1
 		}
-	}).map(card => card.card_id);
-	console.log(leitner);
+	}).map(card => card.original_cardset_id ? card.original_cardset_id : card.cardset_id);
+
+	const cardsets = leitner.reduce((acc, elem) => {
+		acc[elem] = (acc[elem] || 0) + 1;
+		return acc;
+	}, {});
+
+	const cardDifficulties = [0, 0, 0, 0];
+	if (cardsets[id]) {
+		cardDifficulties[cardset.difficulty] = cardsets[id];
+		delete cardsets[id];
+	}
+	for (const [key, value] of Object.entries(cardsets)) {
+		const tempCardset = Cardsets.findOne({_id: key}, {fields: {difficulty: 1}});
+		cardDifficulties[tempCardset.difficulty] += value;
+	}
+
+	Session.set('cardDifficulties', cardDifficulties);
 	Session.set('activeCard', undefined);
 	Session.set('isQuestionSide', true);
 	Session.set('animationPlaying', false);

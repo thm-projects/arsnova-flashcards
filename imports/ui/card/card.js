@@ -250,6 +250,9 @@ Template.flashcardsEnd.onRendered(function () {
 			}
 		});
 		//Do confetti animation
+		const particles = Session.get('cardDifficulties');
+		Session.set('cardDifficulties', undefined);
+		console.log(particles);
 		const elements = $('#main > div > div > a.confettiEmitter');
 		//Update gravity with Screen height
 		const momentum = elements[0].offsetTop > 500 ? 8.5 : 7;
