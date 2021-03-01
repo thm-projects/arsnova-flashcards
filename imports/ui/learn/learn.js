@@ -20,7 +20,7 @@ import {MainNavigation} from "../../util/mainNavigation";
 import {NavigatorCheck} from "../../util/navigatorCheck";
 import {CardVisuals} from "../../util/cardVisuals";
 import {Bonus} from "../../util/bonus";
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import {FlowRouter} from 'meteor/ostrio:flow-router-extra';
 import {CardIndex} from "../../util/cardIndex";
 import {AnswerUtilities} from "../../util/answers";
 
@@ -37,7 +37,21 @@ Template.learnAlgorithms.onCreated(function () {
 		PomodoroTimer.updateServerTimerStart();
 		PomodoroTimer.start();
 	}
-	let cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')}, {fields: {cardType: 1, shuffled: 1, strictWorkloadTimer: 1}});
+	let cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')}, {
+		fields: {
+			cardType: 1,
+			shuffled: 1,
+			strictWorkloadTimer: 1
+		}
+	});
+	const leitner = Leitner.find({active: true}, {
+		fields: {
+			card_id: 1,
+			original_cardset_id: 1,
+			cardset_id: 1
+		}
+	}).map(card => card.card_id);
+	console.log(leitner);
 	Session.set('activeCard', undefined);
 	Session.set('isQuestionSide', true);
 	Session.set('animationPlaying', false);
@@ -188,7 +202,6 @@ Template.learnAnswerOptions.events({
 
 Template.learnBackButton.events({
 	"click #backButton": function () {
-		FlowRouter.go('learn', {
-		});
+		FlowRouter.go('learn', {});
 	}
 });
