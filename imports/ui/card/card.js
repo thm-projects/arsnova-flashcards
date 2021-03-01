@@ -277,11 +277,15 @@ Template.flashcardsEnd.onRendered(function () {
 				}
 			}
 		};
-		setTimeout(playAnimation, 2500);
+		this.task = setTimeout(playAnimation, 2500);
 	}
 });
 
 Template.flashcardsEnd.onDestroyed(function () {
+	//Remove task when exiting the template before playing the animation
+	if (this.task) {
+		clearTimeout(this.task);
+	}
 	//Remove confetti containers
 	$('#main > div > div > a.confettiEmitter').parent().parent().remove();
 	//Reset state of #main
