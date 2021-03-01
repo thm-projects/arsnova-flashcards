@@ -245,12 +245,17 @@ Template.flashcardsEnd.onRendered(function () {
 		initElem.each((index) => {
 			const dom = initElem[index];
 			//Do not instanciate if already instanciated
-			if (!(dom.data && dom.data.controller)) {
+			if (!(dom.data && dom.data.instanciated)) {
 				ExecuteControllers.instanciate(dom, 'BarfyStars');
 			}
 		});
 		//Do confetti animation
 		const elements = $('#main > div > div > a.confettiEmitter');
+		//Update gravity with Screen height
+		const momentum = elements[0].offsetTop > 500 ? 8.5 : 7;
+		for (let i = 0; i < elements.length; i++) {
+			elements[i].data.controller.momentum = momentum;
+		}
 		let animationTimes = 2;
 		let timer = 0;
 		const playAnimation = function () {
