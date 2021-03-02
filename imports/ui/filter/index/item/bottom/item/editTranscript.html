@@ -1,10 +1,8 @@
 <template name="filterIndexItemBottomEditTranscript">
-    {{#unless isCardsetTranscriptBonusRoute}}
-        {{#unless isBonusTranscriptsRouteAndDeadlineExpired}}
-            <a rel="noopener noreferrer"   class="resultNavigationElement editCard hidden-xs" {{disableIfOffline}}
-               title='{{_ "transcriptForm.index.tooltip.edit"}}' data-id="{{this._id}}">
-                <span class="fas fa-edit" data-id="{{this._id}}"></span>
-            </a>
-        {{/unless}}
+    {{#unless isTranscriptBonusCardAndDeadlineExpired this._id}}
+        <a rel="noopener noreferrer"   class="resultNavigationElement editCard hidden-xs" {{disableIfOffline}}
+           title='{{_ "transcriptForm.index.tooltip.edit"}}' data-id="{{this._id}}">
+            <span class="fas fa-edit" data-id="{{this._id}}"></span>
+        </a>
     {{/unless}}
 </template>

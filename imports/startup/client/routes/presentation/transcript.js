@@ -7,7 +7,7 @@ import {Session} from "meteor/session";
 import {Cards} from "../../../../api/subscriptions/cards";
 import {Fullscreen} from "../../../../util/fullscreen";
 
-FlowRouter.route('/presentation/transcripts/:card_id', {
+FlowRouter.route('/presentation-transcripts/:card_id', {
 	name: RouteNames.presentationTranscriptPersonal,
 	whileWaiting: function () {
 		this.render(config.mainTemplate, config.loadingScreenTemplate);

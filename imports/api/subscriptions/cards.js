@@ -37,12 +37,18 @@ if (Meteor.isServer) {
 	});
 	Meteor.publish("myTranscriptCards", function () {
 		if (this.userId) {
-			let bonusTranscripts = TranscriptBonus.find({owner: this.user_id}).fetch();
 			let cardFilter = [];
-			for (let i = 0; i < bonusTranscripts.length; i++) {
-				cardFilter.push(bonusTranscripts[i].card_id);
+			let query = {owner: this.userId, cardType: 2, cardset_id: "-1"};
+
+			if (!ServerStyle.gotSimplifiedNav()) {
+				let bonusTranscripts = TranscriptBonus.find({owner: this.user_id}).fetch();
+				for (let i = 0; i < bonusTranscripts.length; i++) {
+					cardFilter.push(bonusTranscripts[i].card_id);
+				}
+				query._id = {$nin: cardFilter};
 			}
-			return Cards.find({_id: {$nin: cardFilter}, owner: this.userId, cardType: 2, cardset_id: "-1"});
+
+			return Cards.find(query);
 		} else {
 			this.ready();
 		}

@@ -92,6 +92,9 @@ Template.registerHelper('isImpressum', function () {
 	return Route.isLandingPageRoutes();
 });
 
+Template.registerHelper('isTranscriptBonusRoute', function () {
+	return Route.isTranscriptBonus();
+});
 
 Template.registerHelper('isTranscriptRoute', function () {
 	return Route.isTranscript();

@@ -1,5 +1,5 @@
 <template name="filterIndexItemBottomStarsRating">
-    {{#if isBonusTranscriptsRoute}}
+    {{#if isTranscriptBonusCard this._id}}
         {{#if gotAccepted this._id}}
             <span class="label label-transcript-rating-stars" title="{{getBonusTranscriptStarsTooltip this._id}}"
                   data-stars="{{getBonusTranscriptStarsNumber this._id}}">

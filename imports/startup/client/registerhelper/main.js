@@ -25,6 +25,7 @@ import "./presentation.js";
 import "./roles.js";
 import "./routeCheck.js";
 import "./time.js";
+import "./transcripts.js";
 import "./user.js";
 import "./utils.js";
 
