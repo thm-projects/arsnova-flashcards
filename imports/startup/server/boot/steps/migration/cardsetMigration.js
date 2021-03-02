@@ -449,53 +449,6 @@ function cardsetMigrationStep() {
 		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
 	}
 
-	itemName = "Cardsets transcriptBonus";
-	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
-	cardsets = Cardsets.find({transcriptBonus: {$exists: true}}, {fields: {_id: 1, transcriptBonus: 1}}).fetch();
-	if (cardsets.length) {
-		for (let i = 0; i < cardsets.length; i++) {
-			if (cardsets[i].transcriptBonus.deadlineEditing === undefined) {
-				Cardsets.update({
-						_id: cardsets[i]._id
-					},
-					{
-						$set: {
-							"transcriptBonus.deadlineEditing": cardsets[i].transcriptBonus.deadline
-						}
-					}
-				);
-			}
-			if (cardsets[i].transcriptBonus.minimumSubmissions === undefined) {
-				Cardsets.update({
-						_id: cardsets[i]._id
-					},
-					{
-						$set: {
-							"transcriptBonus.minimumSubmissions": cardsets[i].transcriptBonus.dates.length
-						}
-					}
-				);
-			}
-			if (cardsets[i].transcriptBonus.minimumStars === undefined || cardsets[i].transcriptBonus.minimumStars > 5) {
-				Cardsets.update({
-						_id: cardsets[i]._id
-					},
-					{
-						$set: {
-							"transcriptBonus.minimumStars": 3
-						}
-					}
-				);
-			}
-			if (cardsets[i].transcriptBonus.stats === undefined) {
-				Meteor.call('updateTranscriptBonusStats', cardsets[i]._id);
-			}
-		}
-		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
-	} else {
-		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
-	}
-
 	itemName = "Cardsets cards owner";
 	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
 	cardsets = Cardsets.find().fetch();
