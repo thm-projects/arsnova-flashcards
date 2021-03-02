@@ -16,7 +16,7 @@ let aspectRatios = ['16:10', '16:9', '4:3', 'fill'];
 //2: Leitner
 //3: Wozniak
 //4: Editor-Fullscreen
-let defaultAspectRatio = ['16:10', '16:10', '16:10', '16:10', 'fill'];
+let defaultAspectRatio = ['16:10', '4:3', '4:3', '4:3', 'fill'];
 let defaultAspectRatioTablet = ['fill', 'fill', 'fill', 'fill', 'fill'];
 
 //Scale the width of the top card navigation to match the card width
