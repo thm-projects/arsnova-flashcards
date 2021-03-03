@@ -13,7 +13,7 @@ checkDirectory
 # Checking version of Test-Database dump
 if curl --output /dev/null --silent --head -faill "$URL"; then
   echo -e $GREEN"Checking online version..."$NC
-  curl -z "$FILE" "$URL" --output "$FILE"
+  curl -z "$FILE" "$URL" --output "$FILE" --create-dirs
 else
   echo -e $RED"Can't find online Test-Database."$NC
 fi
