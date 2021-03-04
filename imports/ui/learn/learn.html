@@ -24,10 +24,7 @@
         </div>
     {{else}}
         {{#if isFinished}}
-            <div class="hidden-xs hidden-sm container">
-                {{> flashcardsEnd}}
-            </div>
-            <div class="visible-xs visible-sm">
+            <div class="container">
                 {{> flashcardsEnd}}
             </div>
         {{else}}
@@ -55,14 +52,17 @@
                     {{#if gotMCQuestion}}
                         {{#if canSubmitMC}}
                             <div class="btn-group btn-bootstrap-container" role="group">
-                                <button id="learnSendAnswer" class="btn btn-success btn-block btn-raised answer send-answer"
-                                        title="{{_ "answers.navigation.send"}}" {{isPomodoroBreakActive}}>{{_ "answers.navigation.send"}}
+                                <button id="learnSendAnswer"
+                                        class="btn btn-success btn-block btn-raised answer send-answer"
+                                        title="{{_ "answers.navigation.send"}}" {{isPomodoroBreakActive}}>{{_
+                                        "answers.navigation.send"}}
                                     <span class="hidden-xs">( {{_ "key" key='y'}} )</span></button>
                             </div>
                         {{else}}
                             <div class="btn-group btn-bootstrap-container" role="group">
                                 <button class="btn btn-default btn-block btn-raised answer"
-                                        title="{{_ "answers.navigation.locked"}}" {{isPomodoroBreakActive}} disabled>{{_ "answers.navigation.locked"}}
+                                        title="{{_ "answers.navigation.locked"}}" {{isPomodoroBreakActive}} disabled>{{_
+                                        "answers.navigation.locked"}}
                                 </button>
                             </div>
                         {{/if}}
@@ -89,8 +89,10 @@
                         {{#if gotMCQuestion}}
                             <div class="btn-group btn-bootstrap-container" role="group">
                                 <button class="btn btn-raised btn-success answer card-success" id="nextMCCard"
-                                        title="{{#if gotOneCardLeft}}{{_ "answers.navigation.end"}}{{else}}{{_ "answers.navigation.next"}}{{/if}}" {{isPomodoroBreakActive}}>
-                                {{#if gotOneCardLeft}}{{_ "answers.navigation.end"}}{{else}}{{_ "answers.navigation.next"}}{{/if}}
+                                        title="{{#if gotOneCardLeft}}{{_ "answers.navigation.end"}}{{else}}{{_
+                                                "answers.navigation.next"}}{{/if}}" {{isPomodoroBreakActive}}>
+                                    {{#if gotOneCardLeft}}{{_ "answers.navigation.end"}}{{else}}{{_
+                                            "answers.navigation.next"}}{{/if}}
                                     <span class="hidden-xs">( {{_ "key" key='y'}} )</span></button>
                             </div>
                         {{else}}
@@ -164,7 +166,7 @@
             {{/if}}
         {{else}}
             <div class="btn-group btn-group-raised btn-group-justified disabledAnswer">
-                <a rel="noopener noreferrer"   href="#" class="btn btn-raised answer show-answer">&nbsp;</a>
+                <a rel="noopener noreferrer" href="#" class="btn btn-raised answer show-answer">&nbsp;</a>
             </div>
         {{/unless}}
     </div>
@@ -172,7 +174,7 @@
 
 <template name="learnBackButton">
     <br>
-    <button class="btn btn-block btn-raised btn-danger" id="backButton">
+    <button class="btn btn-raised btn-danger" id="backButton">
         <span class="pull-left"><span class="fas fa-arrow-left"></span> {{_ "backbuttonWorkload"}}</span>
     </button>
 </template>
