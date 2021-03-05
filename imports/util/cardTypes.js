@@ -3,6 +3,7 @@ import {Cardsets} from "../api/subscriptions/cardsets.js";
 import * as config from "../config/cardTypes.js";
 import {CardNavigation} from "./cardNavigation";
 import {Route} from "./route";
+import {NavigatorCheck} from "./navigatorCheck";
 
 export let CardType = class CardType {
 	static getCardTypesOrder () {
@@ -11,6 +12,10 @@ export let CardType = class CardType {
 
 	static getCardTypeCubeSides (cardType) {
 		return config.cardTypeCubeSides[cardType];
+	}
+
+	static hasCardTwoSides (feature, cardType) {
+		return NavigatorCheck.gotFeatureSupport(feature) && config.cardTypeCubeSides[cardType].length === 2;
 	}
 
 	static getCardTypeVariables (cardType) {
