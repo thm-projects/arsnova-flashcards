@@ -1,0 +1,14 @@
+<template name="flipCard">
+    <div class="scene item active" data-id="{{_id}}">
+        <div class="flip-card flashcard active">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    {{> cardSide (forceSide "front")}}
+                </div>
+                <div class="flip-card-back">
+                    {{> cardSide (forceSide "right")}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -171,6 +171,8 @@ export let CardNavigation = class CardNavigation {
 					Session.set('is3DTransitionActive', 1);
 				}
 				CardVisuals.rotateCube(cardSide, disableTransition);
+			} else if (CardType.hasCardTwoSides(6, Session.get('cardType'))) {
+				CardVisuals.flipCard(navigationId - 1);
 			}
 		}
 	}

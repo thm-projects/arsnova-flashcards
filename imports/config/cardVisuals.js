@@ -58,6 +58,9 @@ let allow3DOverflow = true;
 
 let cubeTransitionTime = 1.5;
 
+let allowFlipCardOverflow = true;
+let flipTransitionTime = 2;
+
 let fadeInOutTime = 'slow';
 
 module.exports = {
@@ -72,5 +75,7 @@ module.exports = {
 	got3DMode,
 	allow3DModeOnSingleSideCardsets,
 	cubeTransitionTime,
+	allowFlipCardOverflow,
+	flipTransitionTime,
 	fadeInOutTime
 };

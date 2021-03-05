@@ -109,6 +109,10 @@ export let CardVisuals = class CardVisuals {
 		return config.allow3DOverflow;
 	}
 
+	static allowFlipCardOverflow () {
+		return config.allowFlipCardOverflow;
+	}
+
 	static allow3DOverNavigation () {
 		return config.allow3DOverflow;
 	}
@@ -167,6 +171,44 @@ export let CardVisuals = class CardVisuals {
 		$('.aspect-ratio-dropdown-button').removeClass('active');
 		$('.aspect-ratio-dropdown-button[data-id="' + aspectRatio + '"]').addClass('active');
 	}
+
+	static changeFlipCardClasses (removeClasses = true) {
+		let flipCardFront = $('.flip-card-front > .item > .presentation-element');
+		let flipCardBack = $('.flip-card-back > .item > .presentation-element');
+
+		if (removeClasses) {
+			flipCardFront.removeClass('flashcard');
+			flipCardBack.removeClass('flashcard');
+			flipCardFront.attr('style', '');
+			flipCardBack.attr('style', '');
+		} else {
+			flipCardFront.addClass('flashcard');
+			flipCardBack.addClass('flashcard');
+		}
+		this.resizeFlashcard();
+	}
+
+	static flipCard (navigationId, disableTransition = false) {
+		if (this.allowFlipCardOverflow()) {
+			$('.carousel-inner').addClass('flip-card-overflow');
+		}
+		let flipCard = $('.flip-card .flip-card-inner');
+		let transition = "";
+		let display = "";
+		if (disableTransition) {
+			transition =  " transition: transform 0s !important; ";
+		} else {
+			transition =  " transition: transform " + config.flipTransitionTime + "s !important; ";
+		}
+		let transform = "";
+		if (navigationId == 1) {
+			transform = "transform: rotateX(180deg);";
+		} else {
+			transform = "transform: ;";
+		}
+		flipCard.attr('style', transform + transition);
+	}
+
 
 	static rotateCube (cardSide = "front", disableTransition = false) {
 		if (this.allow3DOverflow()) {
