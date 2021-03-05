@@ -119,6 +119,7 @@ export let CardVisuals = class CardVisuals {
 
 	static resizeFlaschardCustom (aspectRatio) {
 		$('.carousel-inner').removeClass('card-3d-overflow');
+		$('.carousel-inner').removeClass('flip-card-overflow');
 		let flashcard = $('.flashcard');
 		let flashcardHeader = $('.cardHeader');
 		let flashcardBody = $('.cardContent');
