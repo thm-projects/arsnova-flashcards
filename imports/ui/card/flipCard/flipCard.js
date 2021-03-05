@@ -17,6 +17,7 @@ Template.flipCard.onRendered(function () {
 
 Template.flipCard.onDestroyed(function () {
 	$('body').removeClass('main3DOverflowContainer');
+	$('.carousel-inner').removeClass('flip-card-overflow');
 	CardVisuals.changeFlipCardClasses(false);
 });
 
