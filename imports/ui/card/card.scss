@@ -615,3 +615,12 @@ img.cardside {
 .card-content-container {
   word-break: break-word;
 }
+
+.flashEndContainer {
+  opacity: 0.95;
+}
+
+.flashEndContainer .flashcard {
+  text-align: center;
+  border-radius: 10px;
+}

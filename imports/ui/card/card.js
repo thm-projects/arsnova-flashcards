@@ -1,7 +1,7 @@
 //------------------------ IMPORTS
 
 import {Meteor} from "meteor/meteor";
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import {FlowRouter} from 'meteor/ostrio:flow-router-extra';
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {Cardsets} from "../../api/subscriptions/cardsets.js";
@@ -40,9 +40,14 @@ import "./modal/copyCard.js";
 import './side/side.js';
 import './cube/cube.js';
 import './sidebar/sidebar.js';
+import './flipCard/flipCard.js';
 import "./card.html";
 import {MarkdeepEditor} from "../../util/markdeepEditor";
 import {AnswerUtilities} from "../../util/answers";
+import {ExecuteControllers} from 'wtc-controller-element';
+import {BarfyStars, Particle, ACTIONS} from 'wtc-barfystars';
+import {BarfyStarsConfig} from "../../util/barfyStars";
+import * as config from "../../config/learningStatus";
 
 function isActiveCard(card, resetData) {
 	if (Route.isEditMode()) {
@@ -58,6 +63,10 @@ function isActiveCard(card, resetData) {
 			return true;
 		}
 	}
+}
+
+function hasCardTwoSides(card) {
+	return CardType.hasCardTwoSides(6, card.cardType);
 }
 
 /*
@@ -150,6 +159,12 @@ Template.flashcardsCarouselContent.helpers({
 	setCardStatus: function () {
 		this.isActive = isActiveCard(this, true);
 		return this;
+	},
+	isActiveCard: function () {
+		return isActiveCard(this, false);
+	},
+	hasCardTwoSides: function () {
+		return hasCardTwoSides(this);
 	}
 });
 
@@ -214,6 +229,85 @@ Template.flashcardsEmpty.onRendered(function () {
 
 Template.flashcardsEnd.onRendered(function () {
 	$('.carousel-inner').css('min-height', 0);
+	config.flashCardsEndFanfare.play();
+	//Check that all modules are imported and loaded
+	if (BarfyStars && ACTIONS && Particle) {
+		//Get particles by card difficulties
+		const cardDifficulties = Session.get('cardDifficulties');
+		Session.set('cardDifficulties', undefined);
+		//Set mode to callback, do not allow hover mode
+		const obj = BarfyStarsConfig.getConfig("images");
+		obj.action = 'callback';
+		obj.numParticles = cardDifficulties.reduce((acc, elem) => acc + elem, 0);
+		//Add the confetti at the end of #main
+		const main = $('#main');
+		main.append('<div style="text-align: center"><a href="#" data-config=\'' +
+			JSON.stringify(obj) +
+			'\' class="confettiEmitter ' +
+			BarfyStarsConfig.getStyle("images") +
+			'"></a></div>');
+		//Change overflow property (confetti forces scrollbar => hide them instead)
+		main.css({
+			'overflow': 'hidden',
+			'height': '100%',
+			'display': 'flex',
+			'flex-direction': 'column',
+			'justify-content': 'center'
+		});
+		$(document.body).css('height', '100%');
+		//Initialize confetti controller
+		const initElem = $('#main > div > a.confettiEmitter');
+		initElem.each((index) => {
+			const dom = initElem[index];
+			//Do not instanciate if already instanciated
+			if (!(dom.data && dom.data.instanciated)) {
+				ExecuteControllers.instanciate(dom, 'BarfyStars');
+			}
+		});
+		//Setup confetti animation
+		const elements = $('#main > div > div > a.confettiEmitter');
+		//Update gravity with Screen height
+		const momentum = elements[0].offsetTop > 500 ? 8.5 : 7;
+		for (let i = 0; i < elements.length; i++) {
+			elements[i].data.controller.momentum = momentum;
+		}
+		//Maps difficulty to particle index
+		const mapping = ['BSParticle--5', 'BSParticle--2', 'BSParticle--1', 'BSParticle--3'];
+		const playAnimation = function () {
+			if (elements.length > 0 && obj.numParticles > 0) {
+				elements[0].data.controller.addParticles();
+				const emittedParticles = $('a.confettiEmitter > *');
+				let particleIndex = 3;
+				for (let i = 0; i < emittedParticles.length; i++) {
+					while (cardDifficulties[particleIndex] <= 0 && particleIndex > 0) {
+						particleIndex -= 1;
+					}
+					cardDifficulties[particleIndex] -= 1;
+					emittedParticles[i].classList.remove('BSParticle--5', 'BSParticle--4', 'BSParticle--3', 'BSParticle--2', 'BSParticle--1');
+					emittedParticles[i].classList.add(mapping[particleIndex]);
+				}
+			}
+		};
+		this.task = setTimeout(playAnimation, 2500);
+	}
+});
+
+Template.flashcardsEnd.onDestroyed(function () {
+	//Remove task when exiting the template before playing the animation
+	if (this.task) {
+		clearTimeout(this.task);
+	}
+	//Remove confetti containers
+	$('#main > div > div > a.confettiEmitter').parent().parent().remove();
+	//Reset state of #main
+	$('#main').css({
+		'overflow': '',
+		'height': '',
+		'display': '',
+		'flex-direction': '',
+		'justify-content': ''
+	});
+	$(document.body).css('height', '');
 });
 
 

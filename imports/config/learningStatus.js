@@ -12,7 +12,14 @@ let chartColors = {
 	simulatorBackground: 'rgba(140, 20, 252, 0.2)'
 };
 
+let flashCardsEndFanfare;
+
+if (Meteor.isClient) {
+	flashCardsEndFanfare = new Audio("/audio/fanfare.mp3");
+}
+
 module.exports = {
 	borderWidth,
-	chartColors
+	chartColors,
+	flashCardsEndFanfare
 };

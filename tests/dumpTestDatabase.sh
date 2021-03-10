@@ -7,19 +7,11 @@ source $DIRECTORY/helpers/scriptSettings.sh
 
 checkDirectory
 
-declare -a BLACKLISTEDFILES=("colorThemes.bson" "cronHistory.bson" "webPushSubscriptions.bson" "roles.bson"
-"meteor_accounts_loginServiceConfiguration.bson" "meteor_oauth_pendingCredentials.bson"
-"meteor_oauth_pendingRequestTokens.bson" "collegesCourses.bson" "courseIterations.bson" "notifications.bson")
-
 #Dump the Test-Database
 echo -e $GREEN"Dumping the Test-Database..." $NC
-if ! mongodump --forceTableScan --quiet -h "$MONGO_HOST" --port "$MONGO_PORT" -d "$MONGO_DB" -o $dumpDir 1> /dev/null; then
+if ! mongodump --quiet --archive="./tests/testDatabaseDump/debug.cards-database.gz" -h "$MONGO_HOST" --port "$MONGO_PORT" -d "$MONGO_DB" --gzip 1> /dev/null; then
 	echo -e $RED"mongodump failed!" $NC
 	exit 2
 fi
-rm $restoreDir/*.json
-for files in "${BLACKLISTEDFILES[@]}"; do
-    rm $restoreDir"/$files"
-done
 echo -e $GREEN"Dumped Test-Database." $NC
 exit 0

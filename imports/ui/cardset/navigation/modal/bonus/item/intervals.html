@@ -1,6 +1,21 @@
 <template name="bonusFormIntervals">
     <div class="form-group row">
-        <label class="col-md-3 control-label">{{_ "bonus.form.intervals.label"}}</label>
+        <div id="bonus-intervals-tooltip" class="tippy-tooltip" style="display: none;">
+            {{#markdeep}}
+                {{#if isActiveLanguage 'de'}}
+                    {{> bonusFormIntervalsToolTipDE}}
+                {{else}}
+                    {{> bonusFormIntervalsToolTipEN}}
+                {{/if}}
+            {{/markdeep}}
+        </div>
+        <label class="col-md-3 control-label">{{_ "bonus.form.intervals.label"}}
+            <span id="bonus-intervals-info" class="fa-stack fa-1x tippy-button">
+                <span class="fas fa-circle fa-stack-2x background"></span>
+                <span class="fas fa-info fa-stack-1x icon"></span>
+            </span>
+
+        </label>
         <div class="col-md-9 form-inline">
             <input type="number" min="1" max="999" data-bind="value:replyNumber"
                    onkeypress="return  (event.charCode === 8 || event.charCode === 0) ? null : event.charCode >= 48 && event.charCode <= 57"
