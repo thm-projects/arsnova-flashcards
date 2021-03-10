@@ -8,7 +8,7 @@ arsnova🍅cards uses Meteor as application framework. Download and install [Met
 - 4 GB RAM
 
 ## Setup with Docker
-Instructions for Docker can be found [»here«](docker_readme.md).
+Instructions for Docker can be found [»here«](.docker/docker_readme.md).
 
 ## Setup (native)
 |Step | Linux Terminal Command  |

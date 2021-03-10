@@ -3,17 +3,17 @@
 # Make the meteor executable available
 export PATH=$HOME/.meteor:$PATH
 
-cd app
+cd $HOME/app
 
 # Install deps if this is first time start or if package-lock has changed
-if [[ ! -f /home/node/locksum/locksum ]] || [[ ! $(md5sum /home/node/app/package-lock.json) == $(cat /home/node/locksum/locksum) ]]
+if [[ ! -f $HOME/locksum/locksum ]] || [[ ! $(md5sum $HOME/app/package-lock.json) == $(cat $HOME/locksum/locksum) ]]
 then
   echo "----------------"
   echo "This is the first time you starting cards or the package lock has changed."
   echo "Going to install npm dependecies..."
   echo "----------------"
   meteor npm ci
-  md5sum /home/node/app/package-lock.json > /home/node/locksum/locksum
+  md5sum $HOME/app/package-lock.json > $HOME/locksum/locksum
 fi
 
 /bin/echo -e \
@@ -32,4 +32,4 @@ depending on your Internet connection.\e[0m\n\
 \e[1;32m===================================\e[0m\n\
 "
 
-MONGO_URL="mongodb://mongo:27017/meteor" meteor --settings $1
+MONGO_URL="mongodb://mongo/meteor" meteor --settings $1

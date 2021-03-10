@@ -7,7 +7,7 @@ services:
     user: "${UID_GID:-1000:1000}"
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: .docker/develop/Dockerfile
       args:
         UID_GID: "${UID_GID:-1000:1000}"
     volumes:
@@ -19,6 +19,8 @@ services:
       - app_meteor_local:/home/node/app/.meteor/local
       # cache lock sum
       - locksum:/home/node/locksum
+      # set entrypoint
+      - .docker/develop/docker_entrypoint.sh:/entrypoint.sh
     ports:
       - 3000:3000
     depends_on:
