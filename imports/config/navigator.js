@@ -16,7 +16,7 @@ let macOSPlatforms = 'Macintosh|MacIntel|MacPPC|Mac68K';
 //6: Flipcards
 //7: Fade In/Fade Out
 let enabledSmartphoneFeatures = [3, 6, 7];
-let enabledIOSFeatures = [0, 3, 6, 7];
+let enabledIOSFeatures = [3, 6, 7];
 let enabledMacOSSafariFeatures = [1, 2, 3, 6, 7];
 
 module.exports = {
