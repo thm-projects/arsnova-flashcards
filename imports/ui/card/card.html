@@ -33,7 +33,15 @@
 
 <template name="flashcardsCarouselContent">
     {{#each getCards}}
-        {{> cardSide setCardStatus}}
+        {{#if isActiveCard}}
+            {{#if hasCardTwoSides}}
+                {{> flipCard setCardStatus}}
+            {{else}}
+                {{>cardSide setCardStatus}}
+            {{/if}}
+        {{else}}
+            {{> cardSide setCardStatus}}
+        {{/if}}
     {{/each}}
 </template>
 

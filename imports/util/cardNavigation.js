@@ -171,6 +171,8 @@ export let CardNavigation = class CardNavigation {
 					Session.set('is3DTransitionActive', 1);
 				}
 				CardVisuals.rotateCube(cardSide, disableTransition);
+			} else if (CardType.hasCardTwoSides(6, Session.get('cardType'))) {
+				CardVisuals.flipCard(navigationId - 1);
 			}
 		}
 	}
@@ -310,6 +312,7 @@ export let CardNavigation = class CardNavigation {
 	static switchCard (updateLearningMode = 0, answeredCard = 0, answer = 0, ratingData = [0]) {
 		let flashcardCarousel = $('#cardCarousel');
 		$('.carousel-inner').removeClass('card-3d-overflow');
+		$('.carousel-inner').removeClass('flip-card-overflow');
 		flashcardCarousel.on('slide.bs.carousel', function () {
 			CardVisuals.resizeFlashcard();
 			CardNavigation.toggleVisibility(false);

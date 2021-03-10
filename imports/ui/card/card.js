@@ -40,6 +40,7 @@ import "./modal/copyCard.js";
 import './side/side.js';
 import './cube/cube.js';
 import './sidebar/sidebar.js';
+import './flipCard/flipCard.js';
 import "./card.html";
 import {MarkdeepEditor} from "../../util/markdeepEditor";
 import {AnswerUtilities} from "../../util/answers";
@@ -62,6 +63,10 @@ function isActiveCard(card, resetData) {
 			return true;
 		}
 	}
+}
+
+function hasCardTwoSides(card) {
+	return CardType.hasCardTwoSides(6, card.cardType);
 }
 
 /*
@@ -154,6 +159,12 @@ Template.flashcardsCarouselContent.helpers({
 	setCardStatus: function () {
 		this.isActive = isActiveCard(this, true);
 		return this;
+	},
+	isActiveCard: function () {
+		return isActiveCard(this, false);
+	},
+	hasCardTwoSides: function () {
+		return hasCardTwoSides(this);
 	}
 });
 
