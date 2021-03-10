@@ -692,7 +692,7 @@
         "placeholder": ""
       },
       "intervals": {
-        "label": "Wiederholungs-Intervalle in Tagen"
+        "label": "Wiederholungs-Intervalle"
       },
       "strictWorkloadTimer": {
         "label": "Strikte Lernzeit"

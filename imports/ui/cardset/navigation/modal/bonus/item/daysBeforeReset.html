@@ -1,6 +1,21 @@
 <template name="bonusFormDaysBeforeReset">
     <div class="form-group row">
-        <label class="col-md-3 control-label">{{_ "bonus.form.daysBeforeReset.label"}}</label>
+        <div id="bonus-reset-tooltip" class="tippy-tooltip" style="display: none;">
+            {{#markdeep}}
+                {{#if isActiveLanguage 'de'}}
+                    {{> bonusFormDaysBeforeResetToolTipDE}}
+                {{else}}
+                    {{> bonusFormDaysBeforeResetToolTipEN}}
+                {{/if}}
+            {{/markdeep}}
+        </div>
+        <label class="col-md-3 control-label">{{_ "bonus.form.daysBeforeReset.label"}}
+            <span id="bonus-reset-info" class="fa-stack fa-1x tippy-button">
+                <span class="fas fa-circle fa-stack-2x background"></span>
+                <span class="fas fa-info fa-stack-1x icon"></span>
+            </span>
+
+        </label>
         <div class="col-md-9">
             <input type="number" min="1" max="100" data-bind="value:replyNumber"
                    onkeypress="return  (event.charCode === 8 || event.charCode === 0) ? null : event.charCode >= 48 && event.charCode <= 57"
