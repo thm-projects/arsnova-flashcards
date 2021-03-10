@@ -2,13 +2,15 @@ arsnova🍅cards
 ---
 The [Progressive Web App](https://en.wikipedia.org/wiki/Progressive_web_app) arsnova🍅cards offers students a modern and intuitive access to one of the most successful and evidence based learning methods, i.e., [spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition).
 
-arsnova🍅cards uses Meteor as application framework. Download and install [Meteor](https://www.meteor.com/) to get the app running in your local development environment.
+arsnova🍅cards uses Meteor as application framework. For local development, you can choose the native or the containerized version with Docker.
 
 ## Hardware requirements
 - 4 GB RAM
 
 ## Setup with Docker
-Instructions for Docker can be found [»here«](.docker/docker_readme.md).
+**This is the recommended method!**
+
+**Instructions for starting cards with Docker can be found [»here«](.docker/docker_readme.md).**
 
 ## Setup (native)
 |Step | Linux Terminal Command  |

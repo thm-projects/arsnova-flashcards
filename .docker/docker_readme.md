@@ -20,15 +20,6 @@ sudo docker-compose -f <path-to-downloaded-file> up -d
 
 No need to clone a repository or to build anything.
 
-As a Linux User, you can also download and run the app in one step by streaming the compose file:
-```bash
-# for arsnova.cards
-wget -qO- projects.thm.de/compose-arsnova-cards  | sudo docker-compose -f - up -d
-
-# for linux.cards
-wget -qO- projects.thm.de/compose-linux-cards  | sudo docker-compose -f - up -d
-```
-
 ---
 
 **The default port for the app is Port 3000. If your Port 3000 is already in use, you may configure the forwarded Port in the downloaded docker-compose.yml file.**
@@ -38,20 +29,11 @@ wget -qO- projects.thm.de/compose-linux-cards  | sudo docker-compose -f - up -d
 **To stop the app, run**
 ```bash
 sudo docker-compose -f <path-to-docker-compose-file> stop
-
-# or when you have streamed the compose file:
-wget -qO- projects.thm.de/compose-arsnova-cards  | sudo docker-compose -f - stop
-# or
-wget -qO- projects.thm.de/compose-linux-cards  | sudo docker-compose -f - stop
 ```
+
 to resume:
 ```bash
 sudo docker-compose -f <path-to-docker-compose-file> start
-
-# or when you have streamed the compose file:
-wget -qO- projects.thm.de/compose-arsnova-cards  | sudo docker-compose -f - start
-# or
-wget -qO- projects.thm.de/compose-linux-cards  | sudo docker-compose -f - start
 ```
 
 ---
@@ -59,20 +41,11 @@ wget -qO- projects.thm.de/compose-linux-cards  | sudo docker-compose -f - start
 **To stop the app and remove the containers, run**
 ```bash
 sudo docker-compose -f <path-to-docker-compose-file> down
-
-# or when you have streamed the compose file:
-wget -qO- projects.thm.de/compose-arsnova-cards  | sudo docker-compose -f - down
-# or
-wget -qO- projects.thm.de/compose-linux-cards  | sudo docker-compose -f - down
 ```
+
 to restart:
 ```bash
 sudo docker-compose -f <path-to-docker-compose-file> up -d
-
-# or when you have streamed the compose file:
-wget -qO- projects.thm.de/compose-arsnova-cards  | sudo docker-compose -f - up -d
-# or
-wget -qO- projects.thm.de/compose-linux-cards  | sudo docker-compose -f - up -d
 ```
 
 ---
@@ -80,20 +53,11 @@ wget -qO- projects.thm.de/compose-linux-cards  | sudo docker-compose -f - up -d
 **To stop the app and remove the containers and remove the volumes, run**
 ```bash
 sudo docker-compose -f <path-to-docker-compose-file> down -v
-
-# or when you have streamed the compose file:
-wget -qO- projects.thm.de/compose-arsnova-cards  | sudo docker-compose -f - down -v
-# or
-wget -qO- projects.thm.de/compose-linux-cards  | sudo docker-compose -f - down -v
 ```
+
 to restart:
 ```bash
 sudo docker-compose -f <path-to-docker-compose-file> up -d
-
-# or when you have streamed the compose file:
-wget -qO- projects.thm.de/compose-arsnova-cards  | sudo docker-compose -f - up -d
-# or
-wget -qO- projects.thm.de/compose-linux-cards  | sudo docker-compose -f - up -d
 ```
 
 ---
@@ -103,11 +67,6 @@ wget -qO- projects.thm.de/compose-linux-cards  | sudo docker-compose -f - up -d
 # first stop the app and remove containers as described above, then run
 
 sudo docker-compose -f <path-to-docker-compose-file> pull
-
-# or when you have streamed the compose file:
-wget -qO- projects.thm.de/compose-arsnova-cards  | sudo docker-compose -f - pull
-# or
-wget -qO- projects.thm.de/compose-linux-cards  | sudo docker-compose -f - pull
 
 # then restart the app as described as above
 ```
@@ -131,7 +90,7 @@ To switch the variant, you may specify the settings file used to build the Image
 
 **What are those Dockerfiles for?**
 ```bash
-./Dockerfile
+./.docker/develop/Dockerfile
   # this Dockerfile is used to build the app locally for development
 
 ./.docker/app/Dockerfile
@@ -158,8 +117,16 @@ To switch the variant, you may specify the settings file used to build the Image
 
 ---
 
-## Self Build resources
-If you are about to build the resources yourself or if you would like to develop on cards, you have to know git. Please make sure, you have at least passed the git webinar before proceeding.
+## Developing with Docker
+You can build and run the development version of cards with docker. Therefore you can use the docker-compose in the projects root directory.
+1. Clone the project
+2. From your project directory run `sudo UID_GID="$(id -u):$(id -g)" docker-compose up -d`\
+2.1 `UID_GID="$(id -u):$(id -g)"` sets the environments variable `UID_GID` for docker-compose. This is necessary for handling correct permissions. If you do not provide it, it will use `1000` for both as default. This default value will most likely fit your system, but not with certainty.
+3. This brings up the app under Port 3000 - you may change this port in the docker-compose.yml file\
+3.1. The first time you run this, it may take a (long) while\
+3.2. If you like to start the containers detached, use command option `-d`. Beware: you then won't see any output from the containers; at least for the first start of the app it is recommended to start the containers in foreground\
+3.3. You may run the app with a custom `settings.json`-File by adding it in the docker-compose file as `command`
+4. The app is now available under **localhost:\<desired-port\>**, default [localhost:3000](http://localhost:3000).
 
 ## Building production images yourself
 1. Clone the project
@@ -171,14 +138,3 @@ If you are about to build the resources yourself or if you would like to develop
   2.1. If your local port 3000 is already in use, you can change it in `.docker/docker-compose.yml`\
   2.2. You may also start the containers detached by using the `-d` option. Beware: you then won't see any output from the containers; at least for the first start of the app it is recommended to start the containers in foreground
 3. The app is now available under [localhost](http://localhost:3000)
-
-## Developing with Docker
-You can build and run the development version of cards with docker. Therefore you can use the docker-compose in the projects root directory.
-1. Clone the project
-2. From your project directory run `sudo UID_GID="$(id -u):$(id -g)" docker-compose up -d`\
-  2.1 `UID_GID="$(id -u):$(id -g)"` sets the environments variable `UID_GID` for docker-compose. This is necessary for handling correct permissions. If you do not provide it, it will use `1000` for both as default. This default value will most likely fit your system, but not with certainty.
-3. This brings up the app under Port 3000 - you may change this port in the docker-compose.yml file\
-  3.1. The first time you run this, it may take a (long) while\
-  3.2. If you like to start the containers detached, use command option `-d`. Beware: you then won't see any output from the containers; at least for the first start of the app it is recommended to start the containers in foreground\
-  3.3. You may run the app with a custom `settings.json`-File by adding it in the docker-compose file as `command`
-4. The app is now available under **localhost:\<desired-port\>**, default [localhost:3000](http://localhost:3000).

@@ -20,3 +20,4 @@ services:
 
 volumes:
   linux_cards_db:
+    name: linux_cards_db
