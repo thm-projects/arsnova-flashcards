@@ -15,7 +15,6 @@ RUN apt-get update && \
       curl \
       g++ \
       build-essential \
-      mongodb \
     && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/*
@@ -24,12 +23,14 @@ RUN apt-get update && \
 RUN npm install -g node-gyp
 
 # Setup mount points with correct permissions
-RUN mkdir -p /app /home/node
-RUN chown -R $UID_GID /app /home/node
+RUN mkdir -p /home/node/locksum /home/node/.meteor /home/node/app/.meteor/local /home/node/app/node_modules
+RUN chown -R $UID_GID /home/node
 
 # Set proper user for development
 USER $UID_GID
 
+RUN curl https://install.meteor.com/ | sh
+
 # Set the proper entrypoint
-ENTRYPOINT ["/app/docker_entrypoint.sh"]
+ENTRYPOINT ["/home/node/app/docker_entrypoint.sh"]
 CMD ["settings_debug.json"]

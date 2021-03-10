@@ -2,7 +2,7 @@ version: "3.7"
 services:
 
   dev-cards:
-    image: localhost/dev-cards
+    image: dev-cards
     restart: unless-stopped
     user: "${UID_GID:-1000:1000}"
     build:
@@ -11,11 +11,27 @@ services:
       args:
         UID_GID: "${UID_GID:-1000:1000}"
     volumes:
-      - dev_cards_data:/home/node
-      - .:/app
-      - /app/.git
+      # share code
+      - .:/home/node/app
+      # overwrite node modules
+      - node_modules:/home/node/app/node_modules
+      # overwrite meteor locals
+      - app_meteor_local:/home/node/app/.meteor/local
+      # cache lock sum
+      - locksum:/home/node/locksum
     ports:
       - 3000:3000
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - mongo_data:/data/db
 
 volumes:
-  dev_cards_data:
+  node_modules:
+  app_meteor_local:
+  locksum:
+  mongo_data:
