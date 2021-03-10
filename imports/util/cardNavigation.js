@@ -137,22 +137,35 @@ export let CardNavigation = class CardNavigation {
 		}
 	}
 
+	static setSwitchCardSide (contentId, navigationId, cardStyle) {
+		CardVisuals.toggleZoomContainer(true);
+		CardVisuals.toggleAspectRatioContainer(true);
+		CardVisuals.isTextCentered();
+		Session.set('dictionaryBeolingus', 0);
+		Session.set('dictionaryLinguee', 0);
+		Session.set('dictionaryGoogle', 0);
+		Session.set('activeCardStyle', cardStyle);
+		Session.set('activeCardContentId', contentId);
+		this.setActiveNavigationButton(navigationId);
+		CardEditor.setEditorContent(navigationId);
+	}
+
 	static switchCardSide (contentId, navigationId, cardStyle, cardSide, disableTransition = false) {
 		let allowTrigger = true;
 		if (!NavigatorCheck.gotFeatureSupport(5) && Session.get('is3DTransitionActive') && Session.get('is3DActive')) {
 			allowTrigger = false;
 		}
 		if (allowTrigger) {
-			CardVisuals.toggleZoomContainer(true);
-			CardVisuals.toggleAspectRatioContainer(true);
-			CardVisuals.isTextCentered();
-			Session.set('dictionaryBeolingus', 0);
-			Session.set('dictionaryLinguee', 0);
-			Session.set('dictionaryGoogle', 0);
-			Session.set('activeCardStyle', cardStyle);
-			Session.set('activeCardContentId', contentId);
-			this.setActiveNavigationButton(navigationId);
-			CardEditor.setEditorContent(navigationId);
+			let enableFirstLoad = Session.get('activeCardContentId') === contentId;
+			if (!Session.get('is3DActive') && !CardType.hasCardTwoSides(7, Session.get('cardType')) && !enableFirstLoad) {
+				let fadeInOutTime = config.fadeInOutTime;
+				$('.card-content-container').fadeOut(fadeInOutTime, function () {
+					CardNavigation.setSwitchCardSide(contentId, navigationId, cardStyle);
+					$('.card-content-container').fadeIn(fadeInOutTime);
+				});
+			} else {
+				this.setSwitchCardSide(contentId, navigationId, cardStyle);
+			}
 			if (Session.get('is3DActive')) {
 				if (!NavigatorCheck.gotFeatureSupport(5)) {
 					Session.set('is3DTransitionActive', 1);
