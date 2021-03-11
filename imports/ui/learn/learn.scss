@@ -74,3 +74,163 @@
 .learnLeitner, .learnWozniak, .learnSelect {
   cursor: pointer;
 }
+
+.owl-carousel-tab-list {
+  position: absolute;
+  width: 100%;
+  margin: auto;
+  text-align: center;;
+  padding: 15px 40px 0 40px;
+  border-radius: 15px;
+  opacity: 0.8;
+}
+
+.nav-header .nav-pills {
+  display: flex;
+  justify-content: center;
+}
+
+.lockScreenCarouselWrapper {
+  width: 75%;
+  left: 12.5%;
+  position: absolute;
+  z-index: 3300;
+  margin: auto;
+  transition: all 1s;
+  overflow: hidden;
+}
+
+.lockScreenCarouselWrapper.active {
+  bottom: 0 !important;
+}
+
+.owl-carousel > .owl-stage-outer {
+  height: 100%;
+}
+
+/* fix blank or flashing items on carousel */
+.owl-carousel .item {
+  position: relative;
+  width: 100% !important;
+  -webkit-backface-visibility: hidden;
+  cursor: pointer;
+}
+
+.owl-stage .item {
+  padding-top: 15px;
+  padding-right: 1%;
+  padding-left: 1%;
+}
+
+.owl-stage .item img:hover {
+  transition: 0.5s;
+  transform: scale(1.1);
+  filter: contrast(135%) brightness(115%);
+  -webkit-box-shadow: 0px 7px 21px -2px rgba(255,255,255,0.7);
+  -moz-box-shadow: 0px 7px 21px -2px rgba(255,255,255,0.7);
+  box-shadow: 0px 7px 21px -2px rgba(255,255,255,0.7);
+}
+
+.owl-carousel > .owl-dots {
+  height: 0;
+}
+
+.owl-nav > button {
+  margin-top: -26px;
+  position: absolute;
+  top: 50%;
+  height: unset !important;
+  border-radius: unset !important;
+}
+
+.owl-nav i {
+  font-size: 52px;
+}
+
+.owl-nav .owl-prev {
+  left: -30px;
+}
+
+.owl-nav .owl-next {
+  right: -30px;
+}
+
+#gameBackgroundModal {
+  z-index: 3100 !important;
+  padding: 0 !important;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+#gameBackgroundModal > .loadingScreenContainer {
+  position: absolute;
+  top: 0;
+}
+
+#gameBackgroundModal > .modal-dialog {
+  margin: 0 !important;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#gameModal {
+  z-index: 3200 !important;
+  padding: 0 !important;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+#gameModal > .loadingScreenContainer {
+  position: absolute;
+  top: 0;
+}
+
+#gameModal > .modal-dialog {
+  margin: 0 !important;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.owl-nav .owl-prev > .fa {
+  animation: nextarrowLeft 2s infinite;
+}
+
+.owl-nav .owl-next > .fa {
+  animation: nextarrow 2s infinite;
+}
+
+.lockScreenCarouselWrapper li.nav-item > a {
+  opacity: 0.5;
+  width: 120px;
+  text-align: center;
+}
+
+.lockScreenCarouselWrapper li.nav-item.active > a {
+  opacity: 1;
+}
+
+@keyframes nextarrow {
+  0%, 100% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(50%);
+  }
+}
+
+@keyframes nextarrowLeft {
+  0%, 100% {
+    transform: translateX(0%)
+  }
+  50% {
+    transform: translateX(-50%)
+  }
+}

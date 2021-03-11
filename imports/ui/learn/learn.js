@@ -23,6 +23,9 @@ import {Bonus} from "../../util/bonus";
 import {FlowRouter} from 'meteor/ostrio:flow-router-extra';
 import {CardIndex} from "../../util/cardIndex";
 import {AnswerUtilities} from "../../util/answers";
+import "./overlays/backgroundOverlay.js";
+import "./overlays/gameOverlay.js";
+import {LockScreen} from "../../util/lockScreen";
 
 Session.set('animationPlaying', false);
 
@@ -81,6 +84,9 @@ Template.learnAlgorithms.onCreated(function () {
 });
 
 Template.learnAlgorithms.onDestroyed(function () {
+	//Pomodoro fix
+	LockScreen.changeToGameUI(false);
+	LockScreen.hideGameUI();
 	Session.set('activeCard', undefined);
 	PomodoroTimer.showPomodoroFullsize();
 });
@@ -135,8 +141,24 @@ Template.learnAlgorithms.events({
 		if (($(evt.target).data('type') !== "cardNavigation")) {
 			$('html, body').animate({scrollTop: '0px'}, 300);
 		}
+	},
+	"click #game": function () {
+		LockScreen.setBackgroundOverlayActive(false);
+	},
+	"click #background": function () {
+		LockScreen.setBackgroundOverlayActive(true);
+	},
+	"mouseenter .lockScreenCarouselWrapper": function () {
+		LockScreen.showNavbarForGamesAndBackgrounds(true);
+	},
+	"mouseleave .lockScreenCarouselWrapper": function () {
+		LockScreen.showNavbarForGamesAndBackgrounds(false);
+	},
+	"click .lockScreenCarouselWrapper a.nav-link": function () {
+		LockScreen.showNavbarForGamesAndBackgrounds(true);
 	}
 });
+
 
 /*
  * ############################################################################

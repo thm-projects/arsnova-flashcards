@@ -949,6 +949,16 @@ $themes: (
     $not_found_background: map-get($map, "not_found_background");
     $not_found_text: map-get($map, "not_found_text");
 
+
+    //gamesAndBackgrounds
+    $games_and_backgrounds_overlay_background: map-get($map, "games_and_backgrounds_overlay_background");
+    $games_and_backgrounds_overlay_button_background: map-get($map, "games_and_backgrounds_overlay_button_background");
+    $games_and_backgrounds_overlay_button_color: map-get($map, "games_and_backgrounds_overlay_button_color");
+    $games_and_backgrounds_overlay_button_active_color: map-get($map, "games_and_backgrounds_overlay_button_active_color");
+    $games_and_backgrounds_overlay_carousel_button_color: map-get($map, "games_and_backgrounds_overlay_carousel_button_color");
+    $games_and_backgrounds_default_background: map-get($map, "games_and_backgrounds_default_background");
+    $games_and_backgrounds_loading_background: map-get($map, "games_and_backgrounds_loading_background");
+
     .navbar-toggle {
       background-color: $navbar_collapse_background !important;
       color: $navbar_collapse_text !important;
@@ -1299,7 +1309,7 @@ $themes: (
       color: $white;
     }
 
-    .fa-sign-out-alt.pressed:hover
+    .fa-sign-out-alt.pressed:hover,
     .fa-sign-out-alt.pressed:focus {
       background-color: $button_background_hover;
       border-color: $button_background_hover;
@@ -4593,6 +4603,54 @@ $themes: (
         background-color: $checkbox_button_background_checked !important;
         color: $checkbox_button_icon_checked !important;
       }
+    }
+    :root {
+      --games-and-backgrounds-default-background: $games_and_backgrounds_default_background;
+    }
+
+    .owl-nav > button {
+      background-color: $games_and_backgrounds_overlay_background !important;
+    }
+
+    .lockScreenCarouselWrapper li.nav-item > a {
+      color: $games_and_backgrounds_overlay_button_color !important;
+      background-color: $games_and_backgrounds_overlay_button_background !important;
+    }
+
+    .lockScreenCarouselWrapper li.nav-item.active > a {
+      color: $games_and_backgrounds_overlay_button_active_color !important;
+    }
+
+    .lockScreenCarouselWrapper li.nav-item > a:hover {
+      background-color: $games_and_backgrounds_overlay_button_background !important;
+    }
+
+    .owl-carousel-tab-list {
+      background: $games_and_backgrounds_overlay_background !important;
+    }
+
+    .owl-nav .owl-prev > .fa {
+      color: $games_and_backgrounds_overlay_carousel_button_color !important;
+    }
+
+    .owl-nav .owl-next > .fa {
+      color: $games_and_backgrounds_overlay_carousel_button_color !important;
+    }
+
+    #gameModal > .modal-dialog {
+      background-color: $games_and_backgrounds_default_background !important;
+    }
+
+    #gameModal {
+      background-color: $games_and_backgrounds_loading_background !important;
+    }
+
+    #gameBackgroundModal > .modal-dialog {
+      background-color: $games_and_backgrounds_default_background !important;
+    }
+
+    #gameBackgroundModal {
+      background-color: $games_and_backgrounds_loading_background !important;
     }
   }
 }

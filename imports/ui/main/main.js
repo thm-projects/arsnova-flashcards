@@ -39,6 +39,7 @@ import {CardsetVisuals} from "../../util/cardsetVisuals";
 import tippy from "tippy.js";
 import 'tippy.js/animations/scale-extreme.css';
 import {BackgroundChanger} from "../../util/backgroundChanger";
+import {LockScreen} from "../../util/lockScreen";
 
 Meteor.subscribe("notifications");
 Meteor.subscribe("serverStatistics");
@@ -173,10 +174,12 @@ Template.main.onCreated(function () {
 	windowResizeSensor = $(window).resize(function () {
 		CardVisuals.resizeFlashcard();
 		PDFViewer.resizeIframe();
+		LockScreen.resize();
 	});
 	screenResizeSensor = $(screen).resize(function () {
 		CardVisuals.resizeFlashcard();
 		PDFViewer.resizeIframe();
+		LockScreen.resize();
 	});
 });
 

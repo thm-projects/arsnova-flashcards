@@ -1,0 +1,32 @@
+<template name="learnAlgorithmsGamesOverlayPreview">
+    <div class="item" id="game{{id}}">
+        {{#if preview}}
+            <img src="/games/game{{id}}/{{preview}}" alt>
+        {{else}}
+            <img src="/games/game{{id}}/preview.png" alt>
+        {{/if}}
+        {{#if isActiveLanguage 'de'}}
+            <p>{{name.de}}</p>
+        {{else}}
+            <p>{{name.en}}</p>
+        {{/if}}
+    </div>
+</template>
+
+<template name="learnAlgorithmsGamesModal">
+    <div class="modal fade modal-fullscreen-in" id="gameModal" tabindex="-1" role="dialog">
+        <div class="loadingScreenContainer">
+            <span class="fas fa-spinner fa-spin"></span>
+        </div>
+        <div class="modal-dialog">
+        </div>
+    </div>
+</template>
+
+<template name="learnAlgorithmsGamesOverlay">
+    <div class="owl-carousel" id="divGameOverlay">
+        {{#each getGames}}
+            {{> learnAlgorithmsGamesOverlayPreview}}
+        {{/each}}
+    </div>
+</template>
