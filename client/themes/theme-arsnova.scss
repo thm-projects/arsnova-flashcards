@@ -983,5 +983,13 @@
     //notFound
           "not_found_background": white,
           "not_found_text": $primary_text,
+    //gamesAndBackgrounds
+          "games_and_backgrounds_overlay_background": $default_orange,
+          "games_and_backgrounds_overlay_button_background": $default_orange,
+          "games_and_backgrounds_overlay_button_color": black,
+          "games_and_backgrounds_overlay_button_active_color": white,
+          "games_and_backgrounds_overlay_carousel_button_color": black,
+          "games_and_backgrounds_default_background": black,
+          "games_and_backgrounds_loading_background": black,
   );
 }
