@@ -41,6 +41,7 @@ import "./item/bottom/item/learningStatus.js";
 import "./item/bottom/item/learningHistory.js";
 import "./item/bottom/item/transcriptRating.js";
 import "./item/bottom/item";
+import "./item/bottom/item/wordcloudButton";
 import "./item/collapse/collapse.js";
 import "./item/titleRow/author.js";
 import "./item/titleRow/date.js";

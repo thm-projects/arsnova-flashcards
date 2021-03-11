@@ -2,7 +2,9 @@
     {{#if displayHelpModal}}
         {{> wordcloudHelpModal}}
     {{/if}}
-    {{> wordcloudModal}}
+    {{#unless isFilterIndexRoute}}
+        {{> wordcloudModal}}
+    {{/unless}}
     <div id="wordcloud-container" class="col-xs-12">
         <canvas id="wordcloud-canvas" class="needsclick"></canvas>
         <div id="wordcloud-hover-box"></div>
@@ -14,7 +16,7 @@
 <template name="wordcloudModal">
     <div class="modal fade" id="wordcloudModal" role="dialog">
         {{#each getContent}}
-            <div class="modal-dialog" aria-labelledby="wordcloudTitle">
+            <div class="modal-dialog modal-lg" aria-labelledby="wordcloudTitle">
                 <div class="modal-content hintContent">
                     <div class="modal-header">
                         <span class="modal-icon">
@@ -32,7 +34,8 @@
                             <br>
                             <br>
                             {{#if canAccessFrontend}}
-                                <a rel="noopener noreferrer"   href="/cardset/{{this._id}}" id="cardsetLink">{{this.name}}</a>
+                                <a rel="noopener noreferrer" href="/cardset/{{this._id}}"
+                                   id="cardsetLink">{{this.name}}</a>
                             {{else}}
                                 {{this.name}}
                             {{/if}}
