@@ -5,10 +5,11 @@ import {Route} from "./route.js";
 import swal from "sweetalert2";
 import * as config from "../config/pomodoroTimer.js";
 import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import {FlowRouter} from 'meteor/ostrio:flow-router-extra';
 import {ServerStyle} from "./styles";
 import {NavigatorCheck} from "./navigatorCheck";
 import {Fullscreen} from "./fullscreen";
+import {LockScreen} from "./lockScreen";
 
 if (Meteor.isClient) {
 	Session.set('pomodoroBreakActive', false);
@@ -233,6 +234,7 @@ export let PomodoroTimer = class PomodoroTimer {
 			let popTime = new Date();
 			breakBeginAngle = 6 * popTime.getMinutes() + popTime.getSeconds() / 10;
 			endBreak = 6 * popTime.getMinutes() + popTime.getSeconds() / 10 + 6 * breakLength;
+			LockScreen.startBreakAnimation();
 		});
 	}
 
@@ -299,12 +301,14 @@ export let PomodoroTimer = class PomodoroTimer {
 			}
 		}
 		this.updateServerTimerIntervalStop();
+		LockScreen.endBreakAnimation();
 		swal.fire({
 			title: dialogue.title,
 			html: dialogue.html,
 			confirmButtonText: dialogue.confirm,
 			allowOutsideClick: false
 		}).then(() => {
+			LockScreen.hideGameUI();
 			if (Fullscreen.getChooseModeSession() === 1) {
 				Fullscreen.enable();
 			}
@@ -352,6 +356,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		if (breakRunning) {
 			$(".progressArc").attr("d", this.describeArc(50, 50, 44, breakBeginAngle, endBreak));
 			$(".breakArc").attr("d", this.describeArc(50, 50, 44, 6 * d.getMinutes() + d.getSeconds() / 10, endBreak));
+			LockScreen.checkAnimationActive();
 		}
 
 		/*this is what triggers when the angle of the minute hand matches the angle of the end of the break arc*/
@@ -479,6 +484,7 @@ export let PomodoroTimer = class PomodoroTimer {
 								allowOutsideClick: false,
 								confirmButtonText: dialogue.confirm
 							}).then(() => {
+								LockScreen.endBreakAnimation();
 								this.setPresentationPomodoro(true);
 								PomodoroTimer.showPomodoroNormal();
 								if (Route.isHome()) {
@@ -562,6 +568,7 @@ export let PomodoroTimer = class PomodoroTimer {
 								allowOutsideClick: false,
 								confirmButtonText: dialogue.confirm
 							}).then(() => {
+								LockScreen.endBreakAnimation();
 								PomodoroTimer.showPomodoroNormal();
 								if (Route.isHome()) {
 									Fullscreen.disable();

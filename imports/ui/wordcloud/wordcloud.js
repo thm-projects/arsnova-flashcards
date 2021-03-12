@@ -82,3 +82,4 @@ Template.wordcloudModal.onRendered(function () {
 		$('#wordcloud-hover-box').css('display', 'none');
 	});
 });
+

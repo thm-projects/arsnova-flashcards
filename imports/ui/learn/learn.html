@@ -29,6 +29,24 @@
             </div>
         {{else}}
             {{> pomodoroTimerModal}}
+            {{> learnAlgorithmsGamesModal}}
+            {{> learnAlgorithmsBackgroundModal}}
+            <div class="lockScreenCarouselWrapper hidden">
+                <div class="nav-header">
+                    <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link itemInactive" id="background" data-toggle="tab" href="#backgrounds" role="tab" aria-controls="pills-background" aria-selected="true">Hintergründe</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link itemInactive" id="game" data-toggle="tab" href="#games" role="tab" aria-controls="pills-games" aria-selected="false">Spiele</a>
+                        </li>
+                    </ul>
+                </div>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane owl-carousel-tab-list fade " id="backgrounds" role="tabpanel" aria-labelledby="background">{{> learnAlgorithmsBackgroundOverlay}}</div>
+                <div class="tab-pane owl-carousel-tab-list fade " id="games" role="tabpanel" aria-labelledby="game"> {{> learnAlgorithmsGamesOverlay}}</div>
+            </div>
+            </div>
             <div class="col-xs-12 hidden-xs">
                 {{> learnAnswerOptions}}
                 {{> cardNavigation}}

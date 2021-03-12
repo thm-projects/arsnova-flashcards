@@ -1,0 +1,33 @@
+<template name="learnAlgorithmsBackgroundOverlayPreview">
+    <div class="item" id="background{{id}}">
+        {{#if preview}}
+            <img src="/gameBackgrounds/background{{id}}/{{preview}}" alt>
+        {{else}}
+            <img src="/gameBackgrounds/background{{id}}/preview.png" alt>
+        {{/if}}
+        {{#if isActiveLanguage 'de'}}
+            <p>{{name.de}}</p>
+        {{else}}
+            <p>{{name.en}}</p>
+        {{/if}}
+    </div>
+</template>
+
+
+<template name="learnAlgorithmsBackgroundModal">
+    <div class="modal fade modal-fullscreen-in" id="gameBackgroundModal" tabindex="-1" role="dialog">
+        <div class="loadingScreenContainer">
+            <span class="fas fa-spinner fa-spin"></span>
+        </div>
+        <div class="modal-dialog">
+        </div>
+    </div>
+</template>
+
+<template name="learnAlgorithmsBackgroundOverlay">
+    <div class="owl-carousel" id="divBackgroundOverlay">
+        {{#each getBackgrounds}}
+            {{> learnAlgorithmsBackgroundOverlayPreview}}
+        {{/each}}
+    </div>
+</template>
