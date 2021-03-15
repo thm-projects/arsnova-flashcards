@@ -430,73 +430,131 @@ $themes: (
     //card sidebar colors
     $card_sidebar_border: map-get($map, "card_sidebar_border");
     $card_sidebar_background: map-get($map, "card_sidebar_background");
+
     $card_sidebar_edit_button_background: map-get($map, "card_sidebar_edit_button_background");
+    $card_sidebar_edit_button_border: map-get($map, "card_sidebar_edit_button_border");
     $card_sidebar_edit_button_text: map-get($map, "card_sidebar_edit_button_text");
     $card_sidebar_edit_button_background_hover: map-get($map, "card_sidebar_edit_button_background_hover");
+    $card_sidebar_edit_button_border_hover: map-get($map, "card_sidebar_edit_button_border_hover");
     $card_sidebar_edit_button_text_hover: map-get($map, "card_sidebar_edit_button_text_hover");
+
     $card_sidebar_delete_button_background: map-get($map, "card_sidebar_delete_button_background");
+    $card_sidebar_delete_button_border: map-get($map, "card_sidebar_delete_button_border");
     $card_sidebar_delete_button_text: map-get($map, "card_sidebar_delete_button_text");
     $card_sidebar_delete_button_background_hover: map-get($map, "card_sidebar_delete_button_background_hover");
+    $card_sidebar_delete_button_border_hover: map-get($map, "card_sidebar_delete_button_border_hover");
     $card_sidebar_delete_button_text_hover: map-get($map, "card_sidebar_delete_button_text_hover");
+
     $card_sidebar_toggle_button_background: map-get($map, "card_sidebar_toggle_button_background");
+    $card_sidebar_toggle_button_border: map-get($map, "card_sidebar_toggle_button_border");
     $card_sidebar_toggle_button_text: map-get($map, "card_sidebar_toggle_button_text");
     $card_sidebar_toggle_button_opacity: map-get($map, "card_sidebar_toggle_button_opacity");
     $card_sidebar_toggle_button_background_hover: map-get($map, "card_sidebar_toggle_button_background_hover");
+    $card_sidebar_toggle_button_border_hover: map-get($map, "card_sidebar_toggle_button_border_hover");
     $card_sidebar_toggle_button_text_hover: map-get($map, "card_sidebar_toggle_button_text_hover");
     $card_sidebar_toggle_button_background_active: map-get($map, "card_sidebar_toggle_button_background_active");
+    $card_sidebar_toggle_button_border_active: map-get($map, "card_sidebar_toggle_button_border_active");
     $card_sidebar_toggle_button_text_active: map-get($map, "card_sidebar_toggle_button_text_active");
     $card_sidebar_toggle_button_opacity_active: map-get($map, "card_sidebar_toggle_button_opacity_active");
     $card_sidebar_toggle_button_background_active_hover: map-get($map, "card_sidebar_toggle_button_background_active_hover");
+    $card_sidebar_toggle_button_border_active_hover: map-get($map, "card_sidebar_toggle_button_border_active_hover");
     $card_sidebar_toggle_button_text_active_hover: map-get($map, "card_sidebar_toggle_button_text_active_hover");
+
     $card_sidebar_toggle_fullscreen_button_background: map-get($map, "card_sidebar_toggle_fullscreen_button_background");
+    $card_sidebar_toggle_fullscreen_button_border: map-get($map, "card_sidebar_toggle_fullscreen_button_border");
     $card_sidebar_toggle_fullscreen_button_text: map-get($map, "card_sidebar_toggle_fullscreen_button_text");
     $card_sidebar_toggle_fullscreen_button_background_hover: map-get($map, "card_sidebar_toggle_fullscreen_button_background_hover");
+    $card_sidebar_toggle_fullscreen_button_border_hover: map-get($map, "card_sidebar_toggle_fullscreen_button_border_hover");
     $card_sidebar_toggle_fullscreen_button_text_hover: map-get($map, "card_sidebar_toggle_fullscreen_button_text_hover");
     $card_sidebar_toggle_fullscreen_button_background_active: map-get($map, "card_sidebar_toggle_fullscreen_button_background_active");
+    $card_sidebar_toggle_fullscreen_button_border_active: map-get($map, "card_sidebar_toggle_fullscreen_button_border_active");
     $card_sidebar_toggle_fullscreen_button_text_active: map-get($map, "card_sidebar_toggle_fullscreen_button_text_active");
+
     $card_sidebar_aspect_ratio_background: map-get($map, "card_sidebar_aspect_ratio_background");
+    $card_sidebar_aspect_ratio_border: map-get($map, "card_sidebar_aspect_ratio_border");
     $card_sidebar_aspect_ratio_text: map-get($map, "card_sidebar_aspect_ratio_text");
     $card_sidebar_aspect_ratio_background_hover: map-get($map, "card_sidebar_aspect_ratio_background_hover");
+    $card_sidebar_aspect_ratio_border_hover: map-get($map, "card_sidebar_aspect_ratio_border_hover");
     $card_sidebar_aspect_ratio_text_hover: map-get($map, "card_sidebar_aspect_ratio_text_hover");
     $card_sidebar_aspect_ratio_dropdown_background: map-get($map, "card_sidebar_aspect_ratio_dropdown_background");
     $card_sidebar_aspect_ratio_dropdown_text: map-get($map, "card_sidebar_aspect_ratio_dropdown_text");
     $card_sidebar_aspect_ratio_dropdown_border: map-get($map, "card_sidebar_aspect_ratio_dropdown_border");
     $card_sidebar_aspect_ratio_dropdown_background_hover: map-get($map, "card_sidebar_aspect_ratio_dropdown_background_hover");
+    $card_sidebar_aspect_ratio_dropdown_border_hover: map-get($map, "card_sidebar_aspect_ratio_dropdown_border_hover");
     $card_sidebar_aspect_ratio_dropdown_text_hover: map-get($map, "card_sidebar_aspect_ratio_dropdown_text_hover");
     $card_sidebar_aspect_ratio_dropdown_background_active: map-get($map, "card_sidebar_aspect_ratio_dropdown_background_active");
+    $card_sidebar_aspect_ratio_dropdown_border_active: map-get($map, "card_sidebar_aspect_ratio_dropdown_border_active");
     $card_sidebar_aspect_ratio_dropdown_text_active: map-get($map, "card_sidebar_aspect_ratio_dropdown_text_active");
     $card_sidebar_aspect_ratio_dropdown_background_active_hover: map-get($map, "card_sidebar_aspect_ratio_dropdown_background_active_hover");
+    $card_sidebar_aspect_ratio_dropdown_border_active_hover: map-get($map, "card_sidebar_aspect_ratio_dropdown_border_active_hover");
     $card_sidebar_aspect_ratio_dropdown_text_active_hover: map-get($map, "card_sidebar_aspect_ratio_dropdown_text_active_hover");
     $card_sidebar_aspect_ratio_menu_background: map-get($map, "card_sidebar_aspect_ratio_menu_background");
     $card_sidebar_aspect_ratio_menu_separator: map-get($map, "card_sidebar_aspect_ratio_menu_separator");
+
     $card_sidebar_arsnova_lite_background: map-get($map, "card_sidebar_arsnova_lite_background");
+    $card_sidebar_arsnova_lite_border: map-get($map, "card_sidebar_arsnova_lite_border");
     $card_sidebar_arsnova_lite_text: map-get($map, "card_sidebar_arsnova_lite_text");
     $card_sidebar_arsnova_lite_background_hover: map-get($map, "card_sidebar_arsnova_lite_background_hover");
+    $card_sidebar_arsnova_lite_border_hover: map-get($map, "card_sidebar_arsnova_lite_border_hover");
     $card_sidebar_arsnova_lite_text_hover: map-get($map, "card_sidebar_arsnova_lite_text_hover");
     $card_sidebar_arsnova_lite_background_active: map-get($map, "card_sidebar_arsnova_lite_background_active");
+    $card_sidebar_arsnova_lite_border_active: map-get($map, "card_sidebar_arsnova_lite_border_active");
     $card_sidebar_arsnova_lite_text_active: map-get($map, "card_sidebar_arsnova_lite_text_active");
+
     $card_sidebar_zoom_background: map-get($map, "card_sidebar_zoom_background");
+    $card_sidebar_zoom_border: map-get($map, "card_sidebar_zoom_border");
     $card_sidebar_zoom_text: map-get($map, "card_sidebar_zoom_text");
     $card_sidebar_zoom_background_open: map-get($map, "card_sidebar_zoom_background_open");
+    $card_sidebar_zoom_border_open: map-get($map, "card_sidebar_zoom_border_open");
     $card_sidebar_zoom_text_open: map-get($map, "card_sidebar_zoom_text_open");
     $card_sidebar_zoom_background_hover: map-get($map, "card_sidebar_zoom_background_hover");
+    $card_sidebar_zoom_border_hover: map-get($map, "card_sidebar_zoom_border_hover");
     $card_sidebar_zoom_text_hover: map-get($map, "card_sidebar_zoom_text_hover");
     $card_sidebar_zoom_background_active: map-get($map, "card_sidebar_zoom_background_active");
+    $card_sidebar_zoom_border_active: map-get($map, "card_sidebar_zoom_border_active");
     $card_sidebar_zoom_text_active: map-get($map, "card_sidebar_zoom_text_active");
 
     $card_sidebar_leitner_history_background: map-get($map, "card_sidebar_leitner_history_background");
+    $card_sidebar_leitner_history_border: map-get($map, "card_sidebar_leitner_history_border");
     $card_sidebar_leitner_history_text: map-get($map, "card_sidebar_leitner_history_text");
     $card_sidebar_leitner_history_background_hover: map-get($map, "card_sidebar_leitner_history_background_hover");
+    $card_sidebar_leitner_history_border_hover: map-get($map, "card_sidebar_leitner_history_border_hover");
     $card_sidebar_leitner_history_text_hover: map-get($map, "card_sidebar_leitner_history_text_hover");
     $card_sidebar_leitner_history_background_active: map-get($map, "card_sidebar_leitner_history_background_active");
+    $card_sidebar_leitner_history_border_active: map-get($map, "card_sidebar_leitner_history_border_active");
     $card_sidebar_leitner_history_text_active: map-get($map, "card_sidebar_leitner_history_text_active");
 
     $card_sidebar_leitner_graph_background: map-get($map, "card_sidebar_leitner_graph_background");
+    $card_sidebar_leitner_graph_border: map-get($map, "card_sidebar_leitner_graph_border");
     $card_sidebar_leitner_graph_text: map-get($map, "card_sidebar_leitner_graph_text");
     $card_sidebar_leitner_graph_background_hover: map-get($map, "card_sidebar_leitner_graph_background_hover");
+    $card_sidebar_leitner_graph_border_hover: map-get($map, "card_sidebar_leitner_graph_border_hover");
     $card_sidebar_leitner_graph_text_hover: map-get($map, "card_sidebar_leitner_graph_text_hover");
     $card_sidebar_leitner_graph_background_active: map-get($map, "card_sidebar_leitner_graph_background_active");
+    $card_sidebar_leitner_graph_border_active: map-get($map, "card_sidebar_leitner_graph_border_active");
     $card_sidebar_leitner_graph_text_active: map-get($map, "card_sidebar_leitner_graph_text_active");
+
+    $card_sidebar_pomodoro_timer_background: map-get($map, "card_sidebar_pomodoro_timer_background");
+    $card_sidebar_pomodoro_timer_border: map-get($map, "card_sidebar_pomodoro_timer_border");
+    $card_sidebar_pomodoro_timer_background_hover: map-get($map, "card_sidebar_pomodoro_timer_background_hover");
+    $card_sidebar_pomodoro_timer_border_hover: map-get($map, "card_sidebar_pomodoro_timer_border_hover");
+    $card_sidebar_pomodoro_timer_background_active: map-get($map, "card_sidebar_pomodoro_timer_background_active");
+    $card_sidebar_pomodoro_timer_border_active: map-get($map, "card_sidebar_pomodoro_timer_border_active");
+    $card_sidebar_pomodoro_timer_background_active_hover: map-get($map, "card_sidebar_pomodoro_timer_background_active_hover");
+    $card_sidebar_pomodoro_timer_border_active_hover: map-get($map, "card_sidebar_pomodoro_timer_border_active_hover");
+
+    $card_sidebar_toggle_3d_background: map-get($map, "card_sidebar_toggle_3d_background");
+    $card_sidebar_toggle_3d_border: map-get($map, "card_sidebar_toggle_3d_border");
+    $card_sidebar_toggle_3d_text: map-get($map, "card_sidebar_toggle_3d_text");
+    $card_sidebar_toggle_3d_background_hover: map-get($map, "card_sidebar_toggle_3d_background_hover");
+    $card_sidebar_toggle_3d_border_hover: map-get($map, "card_sidebar_toggle_3d_border_hover");
+    $card_sidebar_toggle_3d_text_hover: map-get($map, "card_sidebar_toggle_3d_text_hover");
+    $card_sidebar_toggle_3d_background_active: map-get($map, "card_sidebar_toggle_3d_background_active");
+    $card_sidebar_toggle_3d_border_active: map-get($map, "card_sidebar_toggle_3d_border_active");
+    $card_sidebar_toggle_3d_text_active: map-get($map, "card_sidebar_toggle_3d_text_active");
+    $card_sidebar_toggle_3d_background_active_hover: map-get($map, "card_sidebar_toggle_3d_background_active_hover");
+    $card_sidebar_toggle_3d_border_active_hover: map-get($map, "card_sidebar_toggle_3d_border_active_hover");
+    $card_sidebar_toggle_3d_text_active_hover: map-get($map, "card_sidebar_toggle_3d_text_active_hover");
     //cardset sidebar colors
     $cardset_sidebar_preview_background: map-get($map, "cardset_sidebar_preview_background");
     $cardset_sidebar_preview_text: map-get($map, "cardset_sidebar_preview_text");
@@ -1694,16 +1752,19 @@ $themes: (
 
     .toggleFullscreen {
       background-color: $card_sidebar_toggle_fullscreen_button_background !important;
+      border-color: $card_sidebar_toggle_fullscreen_button_border !important;
       color: $card_sidebar_toggle_fullscreen_button_text !important;
     }
 
     .toggleFullscreen.pressed {
       background-color: $card_sidebar_toggle_fullscreen_button_background_active !important;
+      border-color: $card_sidebar_toggle_fullscreen_button_border_active !important;
       color: $card_sidebar_toggle_fullscreen_button_text_active !important;
     }
 
     .toggleFullscreen:hover, .toggleFullscreen:focus {
       background-color: $card_sidebar_toggle_fullscreen_button_background_hover !important;
+      border-color: $card_sidebar_toggle_fullscreen_button_border_hover !important;
       color: $card_sidebar_toggle_fullscreen_button_text_hover !important;
     }
 
@@ -3833,130 +3894,189 @@ $themes: (
 
       .aspect-ratio-button {
         background-color: $card_sidebar_aspect_ratio_background !important;
+        border-color: $card_sidebar_aspect_ratio_border !important;
         color:$card_sidebar_aspect_ratio_text !important;
       }
 
       .aspect-ratio-button:hover {
         background-color:$card_sidebar_aspect_ratio_background_hover !important;
+        border-color: $card_sidebar_aspect_ratio_border_hover !important;
         color: $card_sidebar_aspect_ratio_text_hover !important;
       }
 
       .showArsnovaLite {
         background-color: $card_sidebar_arsnova_lite_background !important;
+        border-color: $card_sidebar_arsnova_lite_border !important;
         color:$card_sidebar_arsnova_lite_text !important;
       }
 
       .showArsnovaLite.pressed {
         background-color: $card_sidebar_arsnova_lite_background_active !important;
+        border-color: $card_sidebar_arsnova_lite_border_active !important;
         color:$card_sidebar_arsnova_lite_text_active !important;
       }
 
       .showArsnovaLite:hover {
         background-color:$card_sidebar_arsnova_lite_background_hover !important;
+        border-color: $card_sidebar_arsnova_lite_border_hover !important;
         color: $card_sidebar_arsnova_lite_text_hover !important;
       }
 
       .zoomTextButton {
         background-color: $card_sidebar_zoom_background !important;
+        border-color: $card_sidebar_zoom_border !important;
         color: $card_sidebar_zoom_text !important;
       }
 
       .zoomTextButton.active {
-        border-color: $card_sidebar_zoom_background_active !important;
         background-color: $card_sidebar_zoom_background_active !important;
+        border-color: $card_sidebar_zoom_border_active !important;
         color: $card_sidebar_zoom_text_active !important;
       }
 
       .zoomTextButton.pressed {
-        border-color: $card_sidebar_zoom_background_open !important;
         background-color: $card_sidebar_zoom_background_open !important;
+        border-color: $card_sidebar_zoom_border_open !important;
         color: $card_sidebar_zoom_text_open !important;
       }
 
       .zoomTextButton:hover, .zoomTextButton:focus {
-        border-color: $card_sidebar_zoom_background_hover !important;
         background-color: $card_sidebar_zoom_background_hover !important;
+        border-color: $card_sidebar_zoom_border_hover !important;
         color: $card_sidebar_zoom_text_hover !important;
       }
 
       .showLeitnerHistory {
         background-color: $card_sidebar_leitner_history_background !important;
+        border-color: $card_sidebar_leitner_history_border !important;
         color: $card_sidebar_leitner_history_text !important;
       }
 
       .showLeitnerHistory.active {
-        border-color: $card_sidebar_leitner_history_background_active !important;
         background-color: $card_sidebar_leitner_history_background_active !important;
+        border-color: $card_sidebar_leitner_history_border_active !important;
         color: $card_sidebar_leitner_history_text_active !important;
       }
 
       .showLeitnerHistory:hover, .showLeitnerHistory:focus {
-        border-color: $card_sidebar_leitner_history_background_hover !important;
         background-color: $card_sidebar_leitner_history_background_hover !important;
+        border-color: $card_sidebar_leitner_history_border_hover !important;
         color: $card_sidebar_leitner_history_text_hover !important;
       }
 
       .showLeitnerGraph {
         background-color: $card_sidebar_leitner_graph_background !important;
+        border-color: $card_sidebar_leitner_graph_border !important;
         color: $card_sidebar_leitner_graph_text !important;
       }
 
       .showLeitnerGraph.active {
-        border-color: $card_sidebar_leitner_graph_background_active !important;
         background-color: $card_sidebar_leitner_graph_background_active !important;
+        border-color: $card_sidebar_leitner_graph_border_active !important;
         color: $card_sidebar_leitner_graph_text_active !important;
       }
 
       .showLeitnerGraph:hover, .showLeitnerGraph:focus {
-        border-color: $card_sidebar_leitner_graph_background_hover !important;
         background-color: $card_sidebar_leitner_graph_background_hover !important;
+        border-color: $card_sidebar_leitner_graph_border_hover !important;
         color: $card_sidebar_leitner_graph_text_hover !important;
       }
 
       .editCard {
         background-color: $card_sidebar_edit_button_background !important;
+        border-color: $card_sidebar_edit_button_border !important;
         color: $card_sidebar_edit_button_text !important;
       }
 
       .editCard:hover {
         background-color: $card_sidebar_edit_button_background_hover !important;
+        border-color: $card_sidebar_edit_button_border_hover !important;
         color: $card_sidebar_edit_button_text_hover !important;
       }
 
       .deleteCard {
         background-color: $card_sidebar_delete_button_background !important;
+        border-color: $card_sidebar_delete_button_border !important;
         color: $card_sidebar_delete_button_text !important;
       }
 
       .deleteCard:hover {
         background-color: $card_sidebar_delete_button_background_hover !important;
+        border-color: $card_sidebar_delete_button_border_hover !important;
         color: $card_sidebar_delete_button_text_hover !important;
       }
 
       .toggleSidebar {
         background-color: $card_sidebar_toggle_button_background !important;
+        border-color: $card_sidebar_toggle_button_border !important;
         color: $card_sidebar_toggle_button_text !important;
         opacity: $card_sidebar_toggle_button_opacity !important;
       }
 
       .toggleSidebar:hover {
         background-color: $card_sidebar_toggle_button_background_hover !important;
+        border-color:  $card_sidebar_toggle_button_border_hover !important;
         color: $card_sidebar_toggle_button_text_hover !important;
         opacity: 1 !important;
       }
 
       .toggleSidebar.active {
         background-color: $card_sidebar_toggle_button_background_active !important;
+        border-color: $card_sidebar_toggle_button_border_active !important;
         color: $card_sidebar_toggle_button_text_active !important;
         opacity: $card_sidebar_toggle_button_opacity_active !important;
       }
 
       .toggleSidebar.active:hover {
         background-color: $card_sidebar_toggle_button_background_active_hover !important;
+        border-color: $card_sidebar_toggle_button_border_active_hover !important;
         color: $card_sidebar_toggle_button_text_active_hover !important;
         opacity: 1 !important;
       }
 
+      .showPomodoroButton {
+        background-color: $card_sidebar_pomodoro_timer_background !important;
+        border-color: $card_sidebar_pomodoro_timer_border !important;
+      }
+
+      .showPomodoroButton:hover {
+        background-color: $card_sidebar_pomodoro_timer_background_hover !important;
+        border-color: $card_sidebar_pomodoro_timer_border_hover !important;
+      }
+
+      .showPomodoroButton.pressed {
+        background-color: $card_sidebar_pomodoro_timer_background_active !important;
+        border-color: $card_sidebar_pomodoro_timer_border_active !important;
+      }
+
+      .showPomodoroButton.pressed:hover {
+        background-color: $card_sidebar_pomodoro_timer_background_active_hover !important;
+        border-color: $card_sidebar_pomodoro_timer_border_active_hover !important;
+      }
+
+      .toggle3D {
+        background-color: $card_sidebar_toggle_3d_background !important;
+        border-color: $card_sidebar_toggle_3d_border !important;
+        color: $card_sidebar_toggle_3d_text !important;
+      }
+
+      .toggle3D:hover {
+        background-color: $card_sidebar_toggle_3d_background_hover !important;
+        border-color: $card_sidebar_toggle_3d_border_hover !important;
+        color: $card_sidebar_toggle_3d_text_hover !important;
+      }
+
+      .toggle3D.pressed {
+        background-color: $card_sidebar_toggle_3d_background_active !important;
+        border-color: $card_sidebar_toggle_3d_border_active !important;
+        color: $card_sidebar_toggle_3d_text_active !important;
+      }
+
+      .toggle3D.pressed:hover {
+        background-color: $card_sidebar_toggle_3d_background_active_hover !important;
+        border-color: $card_sidebar_toggle_3d_border_active_hover !important;
+        color: $card_sidebar_toggle_3d_text_active_hover !important;
+      }
       //cardset
       .preview {
         background-color: $cardset_sidebar_preview_background !important;
@@ -4388,21 +4508,24 @@ $themes: (
     }
     .aspect-ratio-dropdown-button {
       background-color: $card_sidebar_aspect_ratio_dropdown_background !important;
-      color:$card_sidebar_aspect_ratio_dropdown_text !important;
       border-color: $card_sidebar_aspect_ratio_dropdown_border !important;
+      color:$card_sidebar_aspect_ratio_dropdown_text !important;
     }
 
     .aspect-ratio-dropdown-button:hover {
       background-color:$card_sidebar_aspect_ratio_dropdown_background_hover !important;
+      border-color: $card_sidebar_aspect_ratio_dropdown_border_hover !important;
       color: $card_sidebar_aspect_ratio_dropdown_text_hover !important;
     }
     .aspect-ratio-dropdown-button.active {
       background-color: $card_sidebar_aspect_ratio_dropdown_background_active !important;
+      border-color: $card_sidebar_aspect_ratio_dropdown_border_active !important;
       color:$card_sidebar_aspect_ratio_dropdown_text_active !important;
     }
 
     .aspect-ratio-dropdown-button.active:hover {
       background-color:$card_sidebar_aspect_ratio_dropdown_background_active_hover !important;
+      border-color: $card_sidebar_aspect_ratio_dropdown_border_active_hover !important;
       color: $card_sidebar_aspect_ratio_dropdown_text_active_hover !important;
     }
 
