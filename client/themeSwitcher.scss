@@ -119,6 +119,11 @@ $themes: (
     $checkbox_button_icon: map-get($map, "checkbox_button_icon");
     $checkbox_button_background_checked: map-get($map, "checkbox_button_background_checked");
     $checkbox_button_icon_checked: map-get($map, "checkbox_button_icon_checked");
+    $active_licenses_background: map-get($map, "active_licenses_background");
+    $active_licenses_text: map-get($map, "active_licenses_text");
+    //license
+    $background_license_icon: map-get($map, "background_license_icon");
+    $foreground_license_icon: map-get($map, "foreground_license_icon");
     //barfy stars
     $barfy_stars_particles_1: map-get($map, "barfy_stars_particles_1");
     $barfy_stars_particles_2: map-get($map, "barfy_stars_particles_2");
@@ -3409,6 +3414,11 @@ $themes: (
       color: $transcript_counter_text!important;
     }
 
+    .label-active-licenses {
+      background-color: $active_licenses_background !important;
+      color: $active_licenses_text !important;
+    }
+
     .label-arsnova-click {
       background-color: $arsnova_click_background !important;
       color: $arsnova_click_text !important;
@@ -4779,6 +4789,17 @@ $themes: (
 
     .notThingToLearn {
       color: $no_remaining_daily_workload !important;
+    }
+
+
+    //license icons
+    .license-icon-background {
+      color: $background_license_icon !important;
+      transform: scale(0.8);
+    }
+
+    .license-icon-foreground {
+      color: $foreground_license_icon !important;
     }
   }
 }

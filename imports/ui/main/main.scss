@@ -970,3 +970,9 @@ kbd {
 ::-webkit-scrollbar-thumb:hover {
   background: tomato;
 }
+
+.label-active-licenses, #selectLicense {
+  .fa-stack {
+    width: 15px;
+  }
+}

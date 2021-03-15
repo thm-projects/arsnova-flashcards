@@ -1,0 +1,12 @@
+<template name="cardsetLabelsItemLicense">
+    {{#if isLicenseSet this.license}}
+        <span class="label label-active-licenses">
+            {{#each getLicenseClass this.license }}
+                <span class="fa-stack license-label-container">
+                    <span class="fas fa-circle fa-stack-1x license-icon-background"></span>
+                    <span class="fab fa-creative-commons-{{class}} fa-stack-1x license-icon-foreground" title="{{name}}"></span>
+                </span>
+            {{/each}}
+        </span>
+    {{/if}}
+</template>
