@@ -5,7 +5,18 @@
                 <button id="selectLicense" class="btn btn-sm btn-raised selectLicenseBtn"
                         data-toggle="modal"
                         data-target="#selectLicenseModal" {{disableIfOffline}}>
-                    <span class="flex-content"><span class="far fa-closed-captioning"></span>&nbsp;{{_ "sidebar-nav.license"}}</span>
+                    <span class="flex-content">
+                        {{#if isLicenseSet}}
+                            {{#each getAllLicenses}}
+                                <span class="fa-stack license-label-container">
+                                    <span class="fas fa-circle fa-stack-1x license-icon-background"></span>
+                                    <span class="fab fa-creative-commons-{{this}} fa-stack-1x license-icon-foreground"></span>
+                                </span>
+                            {{/each}}
+                        {{else}}
+                            <span class="far fa-closed-captioning"></span>
+                        {{/if}}
+                        &nbsp;{{_ "sidebar-nav.license"}}</span>
                 </button>
             </div>
         {{/unless}}

@@ -3,6 +3,8 @@ import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import "./license.html";
 import {Session} from "meteor/session";
+import {Cardsets} from "../../../../api/subscriptions/cardsets";
+
 
 function cleanUp() {
 	let cardset = Session.get('activeCardset');
@@ -64,7 +66,7 @@ Template.selectLicenseForm.events({
 			$('#helpCC-modules').html(TAPi18n.__('modal-dialog.wrongCombination'));
 			$('#helpCC-modules').css('color', '#b94a48');
 		} else {
-			var license = [];
+			let license = [];
 
 			if ($("#cc-option0").hasClass('active')) {
 				license.push("by");
@@ -79,7 +81,11 @@ Template.selectLicenseForm.events({
 				license.push("sa");
 			}
 
-			Meteor.call('updateLicense', Session.get('activeCardset')._id, license);
+			Meteor.call('updateLicense', Session.get('activeCardset')._id, license, function (err, res) {
+				if (!err || res) {
+					Session.set('activeCardset', Cardsets.findOne({_id: Session.get('activeCardset')._id}));
+				}
+			});
 			$('#selectLicenseModal').modal('hide');
 		}
 	},

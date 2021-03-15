@@ -19,7 +19,10 @@
                                     {{#if getLicenseType 'by'}}
                                         <div class="row">
                                             <div class="col-xs-2">
-                                                <img src="/img/by.large.png" alt="Namensnennung"/>
+                                                 <span class="fa-stack">
+                                                    <i class="fas fa-circle fa-stack-1x license-icon-background"></i>
+                                                    <i class="fab fa-creative-commons-by fa-stack-1x license-icon-foreground"></i>
+                                                </span>
                                             </div>
                                             <div class="col-xs-10"><p>{{_ "modal-dialog.by-desc"}}</p></div>
                                         </div>
@@ -27,7 +30,10 @@
                                     {{#if getLicenseType 'nc'}}
                                         <div class="row">
                                             <div class="col-xs-2">
-                                                <img src="/img/nc-eu.large.png" alt="Nicht kommerziell"/>
+                                                <span class="fa-stack">
+                                                    <i class="fas fa-circle fa-stack-1x license-icon-background"></i>
+                                                    <i class="fab fa-creative-commons-nc-eu fa-stack-1x license-icon-foreground"></i>
+                                                </span>
                                             </div>
                                             <div class="col-xs-10"><p>{{_ "modal-dialog.nc-desc"}}</p></div>
                                         </div>
@@ -35,7 +41,10 @@
                                     {{#if getLicenseType 'nd'}}
                                         <div class="row">
                                             <div class="col-xs-2">
-                                                <img src="/img/nd.large.png" alt="Keine Bearbeitung"/>
+                                                <span class="fa-stack">
+                                                    <i class="fas fa-circle fa-stack-1x license-icon-background"></i>
+                                                    <i class="fab fa-creative-commons-nd fa-stack-1x license-icon-foreground"></i>
+                                                </span>
                                             </div>
                                             <div class="col-xs-10"><p>{{_ "modal-dialog.nd-desc"}}</p></div>
                                         </div>
@@ -43,8 +52,10 @@
                                     {{#if getLicenseType 'sa'}}
                                         <div class="row">
                                             <div class="col-xs-2">
-                                                <img src="/img/sa.large.png"
-                                                     alt="Weitergabe unter gleichen Bedingungen"/>
+                                                  <span class="fa-stack">
+                                                    <i class="fas fa-circle fa-stack-1x license-icon-background"></i>
+                                                    <i class="fab fa-creative-commons-sa fa-stack-1x license-icon-foreground"></i>
+                                                </span>
                                             </div>
                                             <div class="col-xs-10"><p>{{_ "modal-dialog.sa-desc"}}</p></div>
                                         </div>
@@ -52,7 +63,10 @@
                                 {{else}}
                                     <div class="row">
                                         <div class="col-xs-2">
-                                            <img src="/img/zero.large.png" alt="Keine Lizenz"/>
+                                             <span class="fa-stack">
+                                                    <i class="fas fa-circle fa-stack-1x license-icon-background"></i>
+                                                    <i class="fab fa-creative-commons-zero fa-stack-1x license-icon-foreground"></i>
+                                             </span>
                                         </div>
                                         <div class="col-xs-10"><p>{{_ "modal-dialog.zero-desc"}}</p></div>
                                     </div>
