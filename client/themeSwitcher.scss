@@ -404,6 +404,7 @@ $themes: (
     $item_content_link: map-get($map, "item_content_link");
     $no_results_background: map-get($map, "no_results_background");
     $no_results_text: map-get($map, "no_results_text");
+    $no_remaining_daily_workload: map-get($map, "no_remaining_daily_workload");
     //difficulty colors
     $button_difficulty0_note: map-get($map, "button_difficulty0_note");
     $button_difficulty0: map-get($map, "button_difficulty0");
@@ -4651,6 +4652,10 @@ $themes: (
 
     #gameBackgroundModal {
       background-color: $games_and_backgrounds_loading_background !important;
+    }
+
+    .notThingToLearn {
+      color: $no_remaining_daily_workload !important;
     }
   }
 }
