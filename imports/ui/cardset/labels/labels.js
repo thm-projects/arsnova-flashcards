@@ -2,6 +2,7 @@ import {LearningStatus} from "../../../util/learningStatus";
 import {Template} from "meteor/templating";
 import './item/arsnovaClick.js';
 import './item/fragJetzt.js';
+import './item/license';
 import "./labels.html";
 
 /*
