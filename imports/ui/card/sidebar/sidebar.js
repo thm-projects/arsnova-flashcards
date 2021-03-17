@@ -24,6 +24,7 @@ import "./item/presentation.js";
 import "./item/toggle3D.js";
 import "./item/learningStatus.js";
 import "./item/leitnerHistory.js";
+import "./item/errorReporting.js";
 import {Route} from "../../../util/route";
 import {Bonus} from "../../../util/bonus";
 import {NavigatorCheck} from "../../../util/navigatorCheck";

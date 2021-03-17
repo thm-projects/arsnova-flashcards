@@ -12,14 +12,20 @@ let chartColors = {
 	simulatorBackground: 'rgba(140, 20, 252, 0.2)'
 };
 
-let flashCardsEndFanfare;
+let flashCardsEndApplause;
+let flashCardsEndDailyWorkload;
+let flashCardsEndAdditionalBonuspoints;
 
 if (Meteor.isClient) {
-	flashCardsEndFanfare = new Audio("/audio/fanfare.mp3");
+	flashCardsEndApplause = new Audio("/audio/applause.mp3");
+	flashCardsEndDailyWorkload = new Audio("/audio/dailyWorkload.mp3");
+	flashCardsEndAdditionalBonuspoints = new Audio("/audio/additionalBonuspoints.mp3");
 }
 
 module.exports = {
 	borderWidth,
 	chartColors,
-	flashCardsEndFanfare
+	flashCardsEndApplause,
+	flashCardsEndDailyWorkload,
+	flashCardsEndAdditionalBonuspoints
 };

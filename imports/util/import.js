@@ -1,6 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {Cards} from "../api/subscriptions/cards";
 import {Cardsets} from "../api/subscriptions/cardsets";
+import {CardType} from "./cardTypes";
 
 export function importCards(data, cardset, importType) {
 	if (Meteor.isServer) {
@@ -163,6 +164,13 @@ export function importCards(data, cardset, importType) {
 		}, {fields: {_id: 1}}).fetch();
 		for (let i = 0; i < cardsets.length; i++) {
 			Meteor.call('updateLeitnerCardIndex', cardsets[i]._id);
+		}
+		if (CardType.getCardTypesWithLearningModes().findIndex(elem => elem === cardset.cardType) >= 0) {
+			Meteor.call("updateCurrentBonusPoints", cardset._id);
+			Cardsets.find({
+				learningActive: true,
+				cardGroups: cardset._id
+			}).forEach(cardsetElem => Meteor.call("updateCurrentBonusPoints", cardsetElem._id));
 		}
 		return cardset._id;
 	}

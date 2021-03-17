@@ -13,6 +13,8 @@ import {UserPermissions} from "../../util/permissions";
 import {ServerStyle} from "../../util/styles";
 import {Utilities} from "../../util/utilities";
 import {Cardsets} from "../subscriptions/cardsets.js";
+import {LeitnerTasks} from "../subscriptions/leitnerTasks";
+import {Bonus} from "../../util/bonus";
 
 Meteor.methods({
 	getSearchCategoriesResult: function (searchValue, filterType) {
@@ -294,6 +296,12 @@ Meteor.methods({
 			TranscriptBonus.remove({
 				cardset_id: id
 			});
+			if (CardType.getCardTypesWithLearningModes().findIndex(elem => elem === cardset.cardType) >= 0) {
+				Cardsets.find({
+					learningActive: true,
+					cardGroups: cardset._id
+				}).forEach(cardsetElem => Meteor.call("updateCurrentBonusPoints", cardsetElem._id));
+			}
 			Meteor.call('updateCardsetCount', Meteor.userId());
 		} else {
 			throw new Meteor.Error("not-authorized");
@@ -342,6 +350,13 @@ Meteor.methods({
 			Wozniak.remove({
 				cardset_id: id
 			});
+			if (CardType.getCardTypesWithLearningModes().findIndex(elem => elem === cardset.cardType) >= 0) {
+				Meteor.call("updateCurrentBonusPoints", cardset._id);
+				Cardsets.find({
+					learningActive: true,
+					cardGroups: cardset._id
+				}).forEach(cardsetElem => Meteor.call("updateCurrentBonusPoints", cardsetElem._id));
+			}
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -681,6 +696,13 @@ Meteor.methods({
 				}
 			}, {trimStrings: false});
 			Meteor.call('updateShuffledCardsetQuantity', cardset._id);
+			if (CardType.getCardTypesWithLearningModes().findIndex(elem => elem === cardType) > -1) {
+				Meteor.call("updateCurrentBonusPoints", cardset._id);
+				Cardsets.find({
+					learningActive: true,
+					cardGroups: cardset._id
+				}).forEach(cardsetElem => Meteor.call("updateCurrentBonusPoints", cardsetElem._id));
+			}
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -728,10 +750,76 @@ Meteor.methods({
 				});
 			}
 			Meteor.call("updateLeitnerCardIndex", cardset._id);
+			Meteor.call("updateCurrentBonusPoints", cardset._id);
 			return true;
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
+	},
+	updateCurrentBonusPoints: function (cardset_id) {
+		check(cardset_id, String);
+		if (!Meteor.isServer) {
+			return;
+		}
+		const cardset = Cardsets.findOne(cardset_id);
+		//Only update bonus points in learning bonus cardsets
+		if (!cardset.learningActive) {
+			return;
+		}
+		//Get Users
+		const users = Workload.find({
+				cardset_id: cardset_id,
+				"leitner.bonus": true
+			},
+			{
+				fields: {user_id: 1, _id: 0}
+			}).map(elem => elem.user_id);
+		//If no user is in this bonus cardset, return
+		if (!users.length) {
+			return;
+		}
+		const box6Counts = {};
+		users.forEach(user => box6Counts[user] = 0);
+		//Count users their box 6 cards
+		Leitner.find({
+				cardset_id: cardset_id,
+				box: 6
+			},
+			{
+				fields: {_id: 0, user_id: 1}
+			}).forEach(card => ++box6Counts[card.user_id]);
+		//Get the amount of learnable questions
+		let amountOfLearnableCards;
+		if (!cardset.shuffled) {
+			amountOfLearnableCards = cardset.quantity;
+		} else {
+			//if shuffled, it could contain non learnable questions
+			amountOfLearnableCards = Leitner.find({
+				user_id: users[0],
+				cardset_id: cardset_id
+			}).count();
+		}
+		//Calculate bonus points & update
+		users.forEach(user => {
+			const task_id = LeitnerTasks.findOne({
+					cardset_id: cardset_id,
+					user_id: user
+				},
+				{
+					sort: {createdAt: -1},
+					fields: {_id: 1}
+				})._id;
+			const bonusPoints = Bonus.getAchievedBonus(box6Counts[user], cardset.workload, amountOfLearnableCards);
+			LeitnerTasks.update(
+				{
+					_id: task_id
+				},
+				{
+					$set: {
+						"bonusPoints.atEnd": bonusPoints
+					}
+				});
+		});
 	},
 	updateShuffledCardsetQuantity: function (cardset_id) {
 		check(cardset_id, String);

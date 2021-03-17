@@ -11,6 +11,7 @@ import {CardsetNavigation} from "../../../../util/cardsetNavigation";
 
 Template.cardSidebarItemCardList.events({
 	"click .selectCard": function () {
+		Session.set('showOnlyErrorReports', false);
 		CardsetNavigation.goToIndex();
 	}
 });

@@ -1,0 +1,45 @@
+{
+  "modal-card": {
+    "errorReporting": {
+      "header": "Fehler melden",
+      "headerReview": "Fehler Detailansicht",
+      "cardSide": "Kartenseite",
+      "cardsetButton": "Kartei",
+      "cardButton": "Karte",
+      "cardSideButton": "Kartenseite",
+      "discoveredError": "Entdeckte Fehler",
+      "spellingMistake": "Rechtschreibfehler",
+      "missingPicture": "Bild fehlt",
+      "layoutMistake": "Layout defekt",
+      "brokenLink": "Link defekt",
+      "otherError": "Sonstige Fehler oder Anmerkungen",
+      "otherErrorText": "Welche Fehler sind Dir noch aufgefallen?",
+      "send": "Fehler melden",
+      "save": "Status aktualisieren",
+      "thankYou": "Vielen Dank!",
+      "thankYouText": "Vielen Dank für Dein Feedback!",
+      "thankYouButton": "Weiter",
+      "noErrorChecked": "Kein Fehler ausgewählt",
+      "noErrorCheckedText": "Du musst mindestens einen Fehler ankreuzen oder einen Text eingeben.",
+      "loadedError": "Dein gemeldeter Fehler wurde geladen!"
+    },
+    "overviewErrorReports": {
+      "header": "Übersicht der Fehler",
+      "unresolvedErrors": "Nicht bearbeitete Fehler",
+      "resolvedErrors": "Bearbeitete Fehler",
+      "openError": "offen",
+      "closedError": "abgeschlossen",
+      "table": {
+        "side": "Kartenseite",
+        "error": "Fehler",
+        "author": "Gemeldet von",
+        "status": "Status",
+        "noErrors": "Es liegen keine gemeldeten Fehler vor."
+      }
+    },
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "ok": "OK",
+    "close": "Schließen"
+  }
+}

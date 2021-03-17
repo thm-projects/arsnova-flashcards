@@ -20,6 +20,7 @@ import {Bonus} from "./bonus";
 import {PomodoroTimer} from "./pomodoroTimer";
 import {Fullscreen} from "./fullscreen";
 import {AnswerUtilities} from "./answers";
+import {ErrorReporting} from "./errorReporting";
 
 let keyEventsUnlocked = true;
 let lastActiveCardString = "lastActiveCard";
@@ -341,6 +342,7 @@ export let CardNavigation = class CardNavigation {
 				flashcardCarousel.off('slid.bs.carousel');
 			}, 300);
 		});
+		ErrorReporting.loadErrorReportingModal();
 	}
 
 	static switchCardMc (activeCard) {
@@ -372,6 +374,7 @@ export let CardNavigation = class CardNavigation {
 			});
 		}
 		$('.carousel').carousel('next');
+		ErrorReporting.loadErrorReportingModal();
 	}
 
 	static setActiveCardData (_id = undefined, onlyUpdateCardset = false) {

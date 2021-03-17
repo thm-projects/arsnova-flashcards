@@ -11,6 +11,7 @@ import {CardIndex} from "./cardIndex";
 import {Utilities} from "./utilities";
 import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
 import {PomodoroTimer} from "./pomodoroTimer";
+import {Bonus} from "./bonus";
 
 // Allow the user to update the timer a few seconds earlier to prevent close calls deny an update
 let minimumSecondThreshold = 57;
@@ -26,6 +27,32 @@ function gotPriority(array, card_id, priority) {
 }
 
 export let LeitnerUtilities = class LeitnerUtilities {
+	static setEndBonusPoints (cardset, leitnerTask, result) {
+		if (cardset.learningActive && result.box === 6) {
+			const [learnable, box6] = Leitner.find({
+					cardset_id: cardset._id,
+					user_id: Meteor.userId()
+				},
+				{
+					fields: {_id: 0, box: 1}
+				}).fetch()
+				.reduce((acc, card) => {
+					acc[0]++;
+					if (card.box === 6) {
+						acc[1]++;
+					}
+					return acc;
+				}, [0, 0]);
+			const bonusPoints = Bonus.getAchievedBonus(box6, cardset.workload, learnable);
+			LeitnerTasks.update({_id: leitnerTask._id},
+				{
+					$set: {
+						"bonusPoints.atEnd": bonusPoints
+					}
+				});
+		}
+	}
+
 	/** Function returns the amount of cards inside a box that are valid to learn
 	 *  @param {string} cardset_id - The id of the cardset with active learners
 	 *  @param {string} user_id - The id of the user
@@ -267,7 +294,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			} else {
 				newSession = leitnerTask.session;
 			}
-			return LeitnerTasks.insert({
+			let obj = {
 				cardset_id: cardset_id,
 				user_id: user_id,
 				session: newSession,
@@ -301,7 +328,29 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					status: 0
 				},
 				createdAt: new Date()
-			});
+			};
+			if (workload.leitner.bonus) {
+				let learnable = 0, box6 = 0;
+				Leitner.find({
+						cardset_id: cardset_id,
+						user_id: user_id
+					},
+					{
+						fields: {_id: 0, box: 1}
+					})
+					.forEach(elem => {
+						learnable++;
+						if (elem.box === 6) {
+							box6++;
+						}
+					});
+				const bonusPoints = Bonus.getAchievedBonus(box6, cardset.workload, learnable);
+				obj.bonusPoints = {
+					atStart: bonusPoints,
+					atEnd: bonusPoints
+				};
+			}
+			return LeitnerTasks.insert(obj);
 		}
 	}
 
