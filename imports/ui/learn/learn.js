@@ -26,6 +26,7 @@ import {AnswerUtilities} from "../../util/answers";
 import "./overlays/backgroundOverlay.js";
 import "./overlays/gameOverlay.js";
 import {LockScreen} from "../../util/lockScreen";
+import * as answerConfig from "../../config/answers";
 
 Session.set('animationPlaying', false);
 
@@ -199,20 +200,57 @@ Template.learnAnswerOptions.helpers({
 		return Session.get('selectedAnswers').length > 0;
 	}
 });
-
 Template.learnAnswerOptions.events({
 	"click #learnSendAnswer": function () {
 		Session.set('isQuestionSide', false);
 		let timestamps = Session.get('leitnerHistoryTimestamps');
 		timestamps.answer = new Date();
 		Session.set('leitnerHistoryTimestamps', timestamps);
-		Meteor.call('setMCAnswers', CardIndex.getCardIndexFilter(), Session.get('activeCard'), FlowRouter.getParam('_id'), Session.get('selectedAnswers'), Session.get('leitnerHistoryTimestamps'), function (error, result) {
-			if (!error) {
-				Session.set('activeCardAnswers', result);
-				CardNavigation.resetNavigation(false);
-				$('html, body').animate({scrollTop: '0px'}, 300);
-			}
-		});
+		Meteor.call('setMCAnswers',
+			CardIndex.getCardIndexFilter(),
+			Session.get('activeCard'),
+			FlowRouter.getParam('_id'),
+			Session.get('selectedAnswers'),
+			Session.get('leitnerHistoryTimestamps'),
+			function (error, result) {
+				if (!error) {
+					Session.set('activeCardAnswers', result);
+					let selectedAnswer = Session.get('selectedAnswers');
+					let rightAnswers;
+					result.forEach(function (answers) {
+						if (answers._id === Session.get('activeCard')) {
+							rightAnswers = answers.answers.rightAnswers;
+						}
+					});
+					if (rightAnswers.length !== selectedAnswer.length) {
+						answerConfig.fail.play();
+						CardNavigation.resetNavigation(false);
+						$('html, body').animate({scrollTop: '0px'}, 300);
+						return;
+					}
+					let rightAnswerNotSelected = false;
+					rightAnswers.forEach(function (answer) {
+						let flag = false;
+						selectedAnswer.forEach(function (selected) {
+							if (selected === answer) {
+								flag = true;
+							}
+						});
+						if (!flag) {
+							rightAnswerNotSelected = true;
+						}
+					});
+					if (rightAnswerNotSelected) {
+						answerConfig.fail.play();
+						CardNavigation.resetNavigation(false);
+						$('html, body').animate({scrollTop: '0px'}, 300);
+					} else {
+						answerConfig.success.play();
+						CardNavigation.resetNavigation(false);
+						$('html, body').animate({scrollTop: '0px'}, 300);
+					}
+				}
+			});
 	},
 	"click #nextMCCard": function () {
 		CardNavigation.switchCardMc(Session.get('activeCard'));
