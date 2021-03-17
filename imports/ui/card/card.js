@@ -49,6 +49,10 @@ import {ExecuteControllers} from 'wtc-controller-element';
 import {BarfyStars, Particle, ACTIONS} from 'wtc-barfystars';
 import {BarfyStarsConfig} from "../../util/barfyStars";
 import * as config from "../../config/learningStatus";
+import "./modal/trophyModal";
+import {backgroundTrophyAnimation} from "./modal/backgroundTrophyAnimation";
+import {LeitnerTasks} from "../../api/subscriptions/leitnerTasks";
+import {Workload} from "../../api/subscriptions/workload";
 
 function isActiveCard(card, resetData) {
 	if (Route.isEditMode()) {
@@ -68,6 +72,102 @@ function isActiveCard(card, resetData) {
 
 function hasCardTwoSides(card) {
 	return CardType.hasCardTwoSides(6, card.cardType);
+}
+
+function getMaximalBonusPoints() {
+	const cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')});
+	if (cardset.learningActive && cardset.workload.bonus.maxPoints !== 0) {
+		return cardset.workload.bonus.maxPoints;
+	}
+	return null;
+}
+
+function isBonusSession(moreThanOne = false) {
+	const cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')}, {fields: {learningActive: 1}});
+	const workload = Workload.findOne({
+			cardset_id: FlowRouter.getParam('_id'),
+			user_id: Meteor.userId()
+		},
+		{
+			fields: {_id: 1, "leitner.bonus": 1}
+		});
+	if (!!(cardset && cardset.learningActive && workload && workload.leitner.bonus)) {
+		if (moreThanOne) {
+			const task = LeitnerTasks.findOne({
+					user_id: Meteor.userId(),
+					cardset_id: FlowRouter.getParam('_id')
+				},
+				{
+					sort: {createdAt: -1},
+					fields: {bonusPoints: 1}
+				});
+			if (task.bonusPoints.atEnd > 0) {
+				return true;
+			}
+		} else {
+			return true;
+		}
+	}
+}
+
+function getCurrentBonusPoints() {
+	const task = LeitnerTasks.findOne({
+			cardset_id: FlowRouter.getParam('_id'),
+			user_id: Meteor.userId()
+		},
+		{
+			sort: {createdAt: -1},
+			fields: {bonusPoints: 1}
+		});
+	return [task.bonusPoints.atEnd, task.bonusPoints.atStart < task.bonusPoints.atEnd];
+}
+
+function showTropy(currentCount, maxCount, canShowTrophy = false, canShowLight = false) {
+	if (canShowTrophy) {
+		$('#trophyModal').removeClass('hidden');
+	} else if (canShowLight) {
+		const factor = (currentCount + 1) * 10 / maxCount;
+		const seconds = factor.toFixed(1) + 's';
+		$('.trophy, .action .confetti, .action .confetti.two, ' +
+			'.action .confetti.three, .action .confetti.four, ' +
+			'.action .confetti--purple, .action .confetti--purple.two, ' +
+			'.action .confetti--purple.three, .action .confetti--purple.four').css('animation-delay', seconds);
+		const btnSeconds = (factor + 5).toFixed(1) + 's';
+		$('.buttonNextTrophy').css('animation-delay', btnSeconds);
+		$('#trophyModalLight').removeClass('hidden');
+	}
+	$('#maxBonus').html('' + maxCount);
+	let bar = document.querySelector('.progress-bar'),
+		counter = document.querySelector('.count'),
+		i = 0,
+		target = 100;
+	let throttle = 0.7; // 0-1
+	(function draw() {
+		const current = Math.round(i * maxCount / 100.0);
+		if (current > currentCount && maxCount !== currentCount) {
+			if (canShowLight) {
+				setTimeout(function () {
+					$('#trophyModalLight').modal('show');
+				}, 1000);
+			}
+			return;
+		}
+		if (i <= target) {
+			requestAnimationFrame(draw);
+			let r = Math.random();
+			bar.style.width = i + '%';
+			counter.innerHTML = "" + current;
+			if (r < throttle) { // Simulate d/l speed and uneven bitrate
+				i = i + r;
+			}
+			if (i >= 100 && maxCount === currentCount && canShowTrophy) {
+				this.confettiRain = backgroundTrophyAnimation('confetti');
+				setTimeout(function () {
+					$('#trophyModal').modal('show');
+				}, 1000);
+			}
+		}
+	})();
 }
 
 /*
@@ -199,6 +299,71 @@ Template.flashcardsCarouselContent3D.helpers({
 
 /*
  * ############################################################################
+ * flashcardsEndScreenSlider
+ * ############################################################################
+ */
+
+Template.flashcardsEndScreenSlider.helpers({
+	isBonusSession: isBonusSession
+});
+
+Template.flashcardsEndScreenSlider.onRendered(function () {
+	if (isBonusSession()) {
+		setTimeout(() => {
+			const max = getMaximalBonusPoints(), current = getCurrentBonusPoints();
+			if (max !== null && current[0] === max && current[1]) {
+				showTropy(current[0], max, true);
+			} else if (current[0] > 0) {
+				showTropy(current[0], max, false, current[1]);
+			}
+		});
+		//delay this timeout, so that the other template finished working
+	}
+});
+
+Template.flashcardsEndScreenSlider.onDestroyed(function () {
+	if (this.confettiRain) {
+		this.confettiRain.stop();
+	}
+});
+
+/*
+ * ############################################################################
+ * flashcardsEndScreenText
+ * ############################################################################
+ */
+
+Template.flashcardsEndScreenText.helpers({
+	isBonusSession: isBonusSession,
+	hasEarnedBonusPoints: () => getCurrentBonusPoints()[1],
+	getEarnedBonusPointsText: function () {
+		const max = getMaximalBonusPoints(), current = getCurrentBonusPoints();
+		if (max !== null && max === current[0]) {
+			return TAPi18n.__("endScreen.achievedAllPrefix") +
+				max +
+				TAPi18n.__("endScreen.achievedAllSuffix");
+		}
+		const task = LeitnerTasks.findOne({
+				cardset_id: FlowRouter.getParam('_id'),
+				user_id: Meteor.userId()
+			},
+			{
+				sort: {createdAt: -1},
+				fields: {bonusPoints: 1}
+			});
+		const diff = task.bonusPoints.atEnd - task.bonusPoints.atStart;
+		if (diff === 1) {
+			return TAPi18n.__("endScreen.achievedOne");
+		} else {
+			return TAPi18n.__("endScreen.achievedMorePrefix") +
+				task.bonusPoints.atEnd +
+				TAPi18n.__("endScreen.achievedMoreSuffix");
+		}
+	}
+});
+
+/*
+ * ############################################################################
  * flashcardsEmpty
  * ############################################################################
  */
@@ -211,15 +376,22 @@ Template.flashcardsEmpty.helpers({
 		return Route.isCardset();
 	},
 	gotLeitnerWorkload: function () {
-		return Leitner.find({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.user()}).count();
+		return Leitner.find({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId()}).count();
 	},
 	gotWozniakWorkload: function () {
-		return Wozniak.find({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.user()}).count();
+		return Wozniak.find({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId()}).count();
 	}
 });
 
 Template.flashcardsEmpty.onRendered(function () {
 	$('.carousel-inner').css('min-height', 0);
+	$('#main').addClass('mainCenterAll');
+	$(document.body).addClass('bodyMaxHeight');
+});
+
+Template.flashcardsEmpty.onDestroyed(function () {
+	$('#main').removeClass('mainCenterAll');
+	$(document.body).removeClass('bodyMaxHeight');
 });
 
 /*
@@ -229,8 +401,24 @@ Template.flashcardsEmpty.onRendered(function () {
  */
 
 Template.flashcardsEnd.onRendered(function () {
+	if (isBonusSession()) {
+		const max = getMaximalBonusPoints(), current = getCurrentBonusPoints();
+		if (max !== null && current[0] === max && current[1]) {
+			config.flashCardsEndApplause.play();
+		} else {
+			if (current[1]) {
+				config.flashCardsEndAdditionalBonuspoints.play();
+			} else {
+				config.flashCardsEndDailyWorkload.play();
+			}
+		}
+	} else {
+		config.flashCardsEndDailyWorkload.play();
+	}
 	$('.carousel-inner').css('min-height', 0);
-	config.flashCardsEndFanfare.play();
+	const main = $('#main');
+	main.addClass('mainCenterAll');
+	$(document.body).addClass('bodyMaxHeight');
 	//Check that all modules are imported and loaded
 	if (BarfyStars && ACTIONS && Particle) {
 		//Get particles by card difficulties
@@ -241,20 +429,11 @@ Template.flashcardsEnd.onRendered(function () {
 		obj.action = 'callback';
 		obj.numParticles = cardDifficulties.reduce((acc, elem) => acc + elem, 0);
 		//Add the confetti at the end of #main
-		const main = $('#main');
 		main.append('<div style="text-align: center"><a href="#" data-config=\'' +
 			JSON.stringify(obj) +
 			'\' class="confettiEmitter ' +
 			BarfyStarsConfig.getStyle("images") +
 			'"></a></div>');
-		//Change overflow property (confetti forces scrollbar => hide them instead)
-		main.css({
-			'overflow': 'hidden',
-			'height': '100%',
-			'display': 'flex',
-			'flex-direction': 'column',
-			'justify-content': 'center'
-		});
 		$(document.body).css('height', '100%');
 		//Initialize confetti controller
 		const initElem = $('#main > div > a.confettiEmitter');
@@ -301,14 +480,8 @@ Template.flashcardsEnd.onDestroyed(function () {
 	//Remove confetti containers
 	$('#main > div > div > a.confettiEmitter').parent().parent().remove();
 	//Reset state of #main
-	$('#main').css({
-		'overflow': '',
-		'height': '',
-		'display': '',
-		'flex-direction': '',
-		'justify-content': ''
-	});
-	$(document.body).css('height', '');
+	$('#main').removeClass('mainCenterAll');
+	$(document.body).removeClass('bodyMaxHeight');
 });
 
 

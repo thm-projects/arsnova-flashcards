@@ -64,12 +64,12 @@ Meteor.methods({
 		});
 
 		if (activeLeitner !== undefined && activeLeitner.submitted !== true) {
-			let task = LeitnerTasks.findOne(
+			let leitnerTask = LeitnerTasks.findOne(
 				{cardset_id: cardsetId, user_id: Meteor.userId()}, {fields: {_id: 1}, sort: {session: -1, createdAt: -1}});
 
 			let card = Cards.findOne({_id: activeCardId});
 			let cardset = Cardsets.findOne({_id: activeLeitner.cardset_id});
-			if (task !== undefined && card !== undefined && cardset !== undefined) {
+			if (leitnerTask !== undefined && card !== undefined && cardset !== undefined) {
 				userAnswers = userAnswers.sort();
 
 				let isAnswerWrong = false;
@@ -93,7 +93,7 @@ Meteor.methods({
 					card_id: activeCardId,
 					user_id: Meteor.userId(),
 					cardset_id: cardsetId,
-					task_id: task._id
+					task_id: leitnerTask._id
 				}, {$set: {
 						timestamps: timestamps,
 						answer: isAnswerWrong ? 1 : 0,
@@ -106,6 +106,7 @@ Meteor.methods({
 						"leitner.nextLowestPriority": result.lowestPriorityList
 					}
 				});
+				LeitnerUtilities.setEndBonusPoints(cardset, leitnerTask, result);
 				return AnswerUtilities.getAnswerContent(cardIds, cardsetId, true);
 			} else {
 				throw new Meteor.Error("Leitner Task not found");
@@ -167,6 +168,7 @@ Meteor.methods({
 					LearningStatisticsUtilities.setGlobalStatistics(leitnerTask);
 				}
 
+				LeitnerUtilities.setEndBonusPoints(cardset, leitnerTask, result);
 				Workload.update({cardset_id: activeLeitner.cardset_id, user_id: activeLeitner.user_id}, {
 					$set: {
 						"leitner.nextLowestPriority": result.lowestPriorityList

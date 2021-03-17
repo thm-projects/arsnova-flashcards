@@ -1037,6 +1037,9 @@ $themes: (
     $games_and_backgrounds_default_background: map-get($map, "games_and_backgrounds_default_background");
     $games_and_backgrounds_loading_background: map-get($map, "games_and_backgrounds_loading_background");
 
+    //flashcardsEndProgressbar
+    $flashcards_end_progressbar_background: map-get($map, "flashcards_end_progressbar_background");
+
     .navbar-toggle {
       background-color: $navbar_collapse_background !important;
       color: $navbar_collapse_text !important;
@@ -4822,6 +4825,11 @@ $themes: (
 
     .license-icon-foreground {
       color: $foreground_license_icon !important;
+    }
+
+    //flashcardsEndProgressbar
+    .flashcard .progress-bar  {
+      background-color: $flashcards_end_progressbar_background !important;
     }
 
     // user feedback modal
