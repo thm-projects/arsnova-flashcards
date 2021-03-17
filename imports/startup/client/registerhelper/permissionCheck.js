@@ -149,18 +149,7 @@ Template.registerHelper("canDeleteCard", function () {
 });
 
 Template.registerHelper("canEditCard", function () {
-	if (UserPermissions.isAdmin()) {
-		return true;
-	}
-	if (Session.get('activeCard') !== undefined) {
-		let card = Cards.findOne({_id: Session.get('activeCard')}, {fields: {_id: 1, cardset_id: 1}});
-		if (card !== undefined) {
-			let cardset = Cardsets.findOne({_id: card.cardset_id});
-			if (cardset !== undefined) {
-				return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId()));
-			}
-		}
-	}
+	return UserPermissions.canEditCard();
 });
 
 Template.registerHelper("isLecturerOrPro", function () {

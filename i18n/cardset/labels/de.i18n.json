@@ -5,6 +5,10 @@
     },
     "useCase": {
       "long": "Eins der Hauptziele auf \uD83C\uDF45cards"
+    },
+    "errorReporting": {
+      "long": "Es liegen nicht bearbeitete Fehler vor.",
+      "title": "Fehler"
     }
   }
 }

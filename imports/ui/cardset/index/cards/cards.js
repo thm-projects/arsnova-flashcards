@@ -9,6 +9,7 @@ import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {Route} from "../../../../util/route";
 import {CardNavigation} from "../../../../util/cardNavigation";
 import "./cards.html";
+import {ErrorReporting} from "../../../../util/errorReporting";
 
 /*
  * ############################################################################
@@ -179,6 +180,15 @@ Template.cardsetList.helpers({
 			case 6:
 				return this.bottom;
 		}
+	},
+	hasCardUnresolvedErrors: function (card_id) {
+		return ErrorReporting.hasCardUnresolvedErrors(card_id);
+	},
+	getErrorCountFromCard: function (card_id) {
+		return ErrorReporting.getErrorCountFromCard(card_id);
+	},
+	isErrorReportingCardView: function (card_id) {
+		return !Session.get('showOnlyErrorReports') || (Session.get('showOnlyErrorReports') && ErrorReporting.hasCardUnresolvedErrors(card_id));
 	}
 });
 

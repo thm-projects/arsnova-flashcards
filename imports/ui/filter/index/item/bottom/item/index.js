@@ -15,6 +15,7 @@ Template.filterIndexItemBottomIndex.helpers({
 Template.filterIndexItemBottomIndex.events({
 	'click .cardsetIndex': function (event) {
 		Session.set('filterIndexSelectMode', FlowRouter.current().route.name);
+		Session.set('showOnlyErrorReports', false);
 		FlowRouter.go(RouteNames.presentationlist, {_id: $(event.target).data('id')});
 	}
 });

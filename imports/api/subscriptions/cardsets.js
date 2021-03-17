@@ -489,7 +489,12 @@ const CardsetsSchema = new SimpleSchema({
 	'learningStatistics.workingTime.standardDeviation.normal': {
 		type: Number,
 		optional: true
+	},
+	unresolvedErrors: {
+		type: Number,
+		optional: true
 	}
+
 });
 
 Cardsets.attachSchema(CardsetsSchema);

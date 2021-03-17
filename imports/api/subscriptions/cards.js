@@ -322,7 +322,12 @@ var CardsSchema = new SimpleSchema({
 	"answers.enabled": {
 		type: Boolean,
 		optional: true
+	},
+	unresolvedErrors: {
+		type: Number,
+		optional: true
 	}
+
 });
 
 Cards.attachSchema(CardsSchema);

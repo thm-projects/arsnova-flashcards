@@ -153,6 +153,8 @@
           "checkbox_button_icon": $primary_text,
           "checkbox_button_background_checked": white,
           "checkbox_button_icon_checked": black,
+          "error_reporting_label_background": rgb(139, 0, 0),
+          "error_reporting_label_text": $default_white,
           "active_licenses_background": $default_white,
           "active_licenses_text": white,
     //license colors
@@ -670,6 +672,11 @@
           "card_sidebar_zoom_border_active": $default_orange,
           "card_sidebar_zoom_text_active": white,
 
+          "card_sidebar_error_reporting_button_background": white,
+          "card_sidebar_error_reporting_button_text": $default_grey,
+          "card_sidebar_error_reporting_button_background_hover": $button_background_hover,
+          "card_sidebar_error_reporting_button_text_hover": $button_text_hover,
+
           "card_sidebar_leitner_history_background": none,
           "card_sidebar_leitner_history_border": $default_grey,
           "card_sidebar_leitner_history_text": $default_grey,
@@ -942,6 +949,11 @@
           "modal_checkbox_background_active": white,
           "modal_checkbox_border_active": $default_grey,
           "modal_checkbox_icon_active": $default_grey,
+
+          "modal_feedback_button_card_side_background": $default_white,
+          "modal_feedback_button_card_side_text": $default_orange,
+          "modal_feedback_button_card_side_background_active": $default_orange,
+          "modal_feedback_button_card_side_text_active": $default_white,
     //pomodoro colors
           "pomodoro_timer_fullscreen_overlay": rgba(0,0,0, 1),
           "pomodoro_timer_hand_circle": $default_orange,
