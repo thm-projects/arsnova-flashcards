@@ -37,6 +37,7 @@ import "./modal/beolingusTranslation.js";
 import "./modal/deeplTranslation.js";
 import "./modal/deleteCard.js";
 import "./modal/copyCard.js";
+import "./modal/errorReporting.js";
 import './side/side.js';
 import './cube/cube.js';
 import './sidebar/sidebar.js';

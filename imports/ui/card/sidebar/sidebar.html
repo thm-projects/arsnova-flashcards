@@ -92,6 +92,7 @@
     {{#if hasCardsetPermission}}
         {{> cardSidebarItemCardList}}
     {{/if}}
+    {{> cardSidebarItemErrorReporting}}
     {{> flashcardSidebarDictionary}}
     {{> cardSidebarItemDelete}}
 </template>
@@ -113,6 +114,7 @@
     </span>
     {{> cardSidebarItemCardList}}
     {{> cardSidebarItemPomodoroButton}}
+    {{> cardSidebarItemErrorReporting}}
     {{> flashcardSidebarDictionary}}
     {{> cardSidebarItemArsnovaClick}}
     {{> cardSidebarItemArsnovaLite}}
@@ -183,6 +185,7 @@
     {{> cardSidebarItemSwapQuestionAnswer}}
     {{> cardSidebarItemLearningStatus}}
     {{> cardSidebarItemLearningHistory}}
+    {{> cardSidebarItemErrorReporting}}
     {{> flashcardSidebarDictionary}}
     {{> cardSidebarItemArsnovaClick}}
     {{> cardSidebarItemArsnovaLite}}
@@ -203,6 +206,7 @@
 <template name="flashcardSidebarWozniakLeft">
     {{> cardSidebarItemPomodoroButton}}
     {{> cardSidebarItemSwapQuestionAnswer}}
+    {{> cardSidebarItemErrorReporting}}
     {{> flashcardSidebarDictionary}}
     {{> cardSidebarItemArsnovaClick}}
     {{> cardSidebarItemArsnovaLite}}

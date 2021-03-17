@@ -24,6 +24,7 @@ import "../imports/api/meteorMethods/cardsets.js";
 import "../imports/api/meteorMethods/cardsetUserlist.js";
 import "../imports/api/meteorMethods/collegesCourses.js";
 import "../imports/api/meteorMethods/export.js";
+import "../imports/api/meteorMethods/errorReporting.js";
 import "../imports/api/meteorMethods/import.js";
 import "../imports/api/meteorMethods/learned.js";
 import "../imports/api/meteorMethods/learningStatistics.js";
