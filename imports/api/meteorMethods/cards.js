@@ -93,6 +93,13 @@ Meteor.methods({
 				for (let i = 0; i < cardsets.length; i++) {
 					Meteor.call('updateLeitnerCardIndex', cardsets[i]._id);
 				}
+				if (CardType.getCardTypesWithLearningModes().findIndex(elem => elem === cardset.cardType) >= 0) {
+					Meteor.call("updateCurrentBonusPoints", cardset_id);
+					Cardsets.find({
+						learningActive: true,
+						cardGroups: cardset_id
+					}).forEach(cardsetElem => Meteor.call("updateCurrentBonusPoints", cardsetElem._id));
+				}
 			} else {
 				Meteor.call('updateTranscriptCount', Meteor.userId());
 			}
@@ -195,6 +202,13 @@ Meteor.methods({
 				});
 
 				Meteor.call('updateShuffledCardsetQuantity', cardset._id);
+				if (CardType.getCardTypesWithLearningModes().findIndex(elem => elem === cardset.cardType) >= 0) {
+					Meteor.call("updateCurrentBonusPoints", cardset._id);
+					Cardsets.find({
+						learningActive: true,
+						cardGroups: cardset._id
+					}).forEach(cardsetElem => Meteor.call("updateCurrentBonusPoints", cardsetElem._id));
+				}
 			} else {
 				Meteor.call('updateTranscriptCount', Meteor.userId());
 			}

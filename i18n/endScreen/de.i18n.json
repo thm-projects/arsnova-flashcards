@@ -1,0 +1,13 @@
+{
+  "endScreen": {
+    "trophyPrefix": "Du hast",
+    "trophy": " von maximal ",
+    "trophySuffix": "Bonuspunkten erreicht!",
+    "achievedOne": "Du hast in diesem Lernpensum einen weiteren Bonuspunkt erhalten!",
+    "achievedMorePrefix": "Du hast in diesem Lernpensum ",
+    "achievedMoreSuffix": " weitere Bonuspunkte erhalten!",
+    "achievedAllPrefix": "Du hast in diesem Lernpensum dein Lernziel von ",
+    "achievedAllSuffix": " Bonuspunkten erreicht und damit die Bonus-Lernphase abgeschlossen!",
+    "leaveTrophyModal": "Weiter"
+  }
+}
