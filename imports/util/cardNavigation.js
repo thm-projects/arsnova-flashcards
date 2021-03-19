@@ -390,7 +390,7 @@ export let CardNavigation = class CardNavigation {
 			};
 			localStorage.setItem(lastActiveCardString, JSON.stringify(lastActiveCard));
 		}
-		let cardset_id;
+		let cardset;
 		if (Session.get('activeCard') === -1 || Session.get('activeCard') === undefined || Route.isPresentationTranscript()) {
 			if (Route.isDemo()) {
 				Session.set('activeCardsetName', Cardsets.findOne({name: "DemoCardset", shuffled: true}).name);
@@ -403,11 +403,13 @@ export let CardNavigation = class CardNavigation {
 			}
 		} else {
 			let _id;
-			cardset_id = Cards.findOne({_id: Session.get('activeCard')}, {fields: {cardset_id: 1}});
-			if (cardset_id === undefined && FlowRouter.getParam('_id') !== undefined) {
-				_id = FlowRouter.getParam('_id');
-			} else {
-				_id = cardset_id.cardset_id;
+			cardset = Cards.findOne({_id: Session.get('activeCard')}, {fields: {cardset_id: 1}});
+			if (cardset !== undefined) {
+				if (FlowRouter.getParam('_id') !== undefined) {
+					_id = FlowRouter.getParam('_id');
+				} else {
+					_id = cardset.cardset_id;
+				}
 			}
 			Session.set('activeCardsetName', Cardsets.findOne({_id: _id}).name);
 		}

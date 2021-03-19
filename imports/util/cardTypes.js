@@ -415,12 +415,14 @@ export let CardType = class CardType {
 	}
 
 	static sideGotVisibleAnswers (card, side) {
-		if (card !== undefined && card.cardType !== undefined && this.gotAnswerOptions(card.cardType) && this.gotNoSideContent(card.cardType)) {
-			return true;
-		} else if (card.answers !== undefined && card.answers.content !== undefined) {
-			let sideData = this.getSideData(card.cardType, side);
-			if (sideData !== undefined && (sideData.gotQuestion === true || sideData.isAnswerFocus === true) && card.answers.content.length > 0) {
+		if (card !== undefined) {
+			if (card.cardType !== undefined && this.gotAnswerOptions(card.cardType) && this.gotNoSideContent(card.cardType)) {
 				return true;
+			} else if (card.answers !== undefined && card.answers.content !== undefined) {
+				let sideData = this.getSideData(card.cardType, side);
+				if (sideData !== undefined && (sideData.gotQuestion === true || sideData.isAnswerFocus === true) && card.answers.content.length > 0) {
+					return true;
+				}
 			}
 		}
 	}

@@ -33,7 +33,7 @@ export let CardIndex = class CardIndex {
 				Session.set('activeCard', -1);
 			}
 		}
-		if (Session.get('activeCard') === undefined && result[0] !== undefined) {
+		if (Session.get('activeCard') === undefined && result !== undefined && result.length) {
 			CardNavigation.setActiveCardData(result[0]._id);
 		}
 		Session.set('activeIndexCards', CardVisuals.setTypeAndDifficulty(result));

@@ -30,8 +30,8 @@ Meteor.methods({
 						reasons: []
 					}
 				});
+				Meteor.call('updateTranscriptBonusStats', cardset._id);
 			}
-			Meteor.call('updateTranscriptBonusStats', cardset._id);
 		}
 	},
 	updateTranscriptBonusStats: function (cardset_id) {
