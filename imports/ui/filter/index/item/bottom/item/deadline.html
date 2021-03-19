@@ -1,5 +1,5 @@
 <template name="filterIndexItemBottomDeadline">
-    {{#if isBonusTranscriptsRoute}}
+    {{#if isTranscriptBonusCard this._id}}
          <span class="hidden-xs hidden-sm label label-transcript-info"  title="{{getBonusLectureDeadline}}" data-id="{{getLectureDate}}" data-cardset="{{getCardset}}">
              {{getBonusLectureDeadline 2}}
          </span>

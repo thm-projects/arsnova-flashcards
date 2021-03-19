@@ -7,7 +7,7 @@ import {Session} from "meteor/session";
 import {Cards} from "../../../../api/subscriptions/cards";
 import {Fullscreen} from "../../../../util/fullscreen";
 
-FlowRouter.route('/presentation/transcripts/bonus/:card_id', {
+FlowRouter.route('/presentation-transcripts-bonus/:card_id', {
 	name: RouteNames.presentationTranscriptBonus,
 	whileWaiting: function () {
 		this.render(config.mainTemplate, config.loadingScreenTemplate);
@@ -41,7 +41,7 @@ FlowRouter.route('/presentation/transcripts/bonus/:card_id', {
 });
 
 
-FlowRouter.route('/presentation/transcripts/bonus/:_id/:card_id', {
+FlowRouter.route('/presentation-transcripts-bonus/:_id/:card_id', {
 	name: RouteNames.presentationTranscriptBonusCardset,
 	whileWaiting: function () {
 		this.render(config.mainTemplate, config.loadingScreenTemplate);

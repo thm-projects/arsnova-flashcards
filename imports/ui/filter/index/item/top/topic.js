@@ -6,6 +6,8 @@ import {Cardsets} from "../../../../../api/subscriptions/cardsets";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import RouteName from "../../../../../util/routeNames";
+import {ServerStyle} from "../../../../../util/styles";
 
 
 /*
@@ -19,16 +21,28 @@ Template.filterIndexItemTopTopic.events({
 		event.preventDefault();
 		if (Route.isTranscript() || Route.isTranscriptBonus()) {
 			if (Route.isMyTranscripts()) {
-				FlowRouter.go('presentationTranscriptPersonal', {
-					card_id: $(event.target).data('id')
-				});
+				if (ServerStyle.gotSimplifiedNav()) {
+					if (TranscriptBonus.findOne({card_id: $(event.target).data('id')})) {
+						FlowRouter.go(RouteName.presentationTranscriptBonus, {
+							card_id: $(event.target).data('id')
+						});
+					} else {
+						FlowRouter.go(RouteName.presentationTranscriptPersonal, {
+							card_id: $(event.target).data('id')
+						});
+					}
+				} else {
+					FlowRouter.go(RouteName.presentationTranscriptPersonal, {
+						card_id: $(event.target).data('id')
+					});
+				}
 			} else if (Route.isMyBonusTranscripts()) {
-				FlowRouter.go('presentationTranscriptBonus', {
+				FlowRouter.go(RouteName.presentationTranscriptBonus, {
 					card_id: $(event.target).data('id')
 				});
 			} else {
 				Session.set('transcriptBonusReviewCount', $(event.target).data('id'));
-				FlowRouter.go('presentationTranscriptBonusCardset', {
+				FlowRouter.go(RouteName.presentationTranscriptBonusCardset, {
 					_id: FlowRouter.getParam('_id'),
 					card_id: $(event.target).data('id')
 				});

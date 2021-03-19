@@ -1,9 +1,9 @@
 <template name="filterIndexItemTopTopic">
     <div class="resultItemHeader {{this.gridSize}} collapseButton {{getCardsetBackground this.difficulty
                                                                                          this.cardType}}">
-        <a rel="noopener noreferrer"   href="#" id="cardsetLink{{this.index}}"
+        <a rel="noopener noreferrer" href="#" id="cardsetLink{{this.index}}"
            class="col-xs-12 resultName" data-id="{{this._id}}">
-            {{#if isBonusTranscriptsRoute}}
+            {{#if isTranscriptBonusCard this._id}}
                 {{getBonusLectureName}}
             {{else}}
                 {{#if isTranscriptRoute}}

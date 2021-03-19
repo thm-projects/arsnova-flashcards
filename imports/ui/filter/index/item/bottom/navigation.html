@@ -2,14 +2,8 @@
     <div class="{{this.gridSize}} collapseButton resultItemHeaderBottomAreaButtons">
         {{#if isTranscriptRoute}}
             {{#unless isSelectingCardsetToLearn}}
-                {{#if isMyTranscriptsRoute}}
-                    {{> filterIndexItemBottomEditTranscript}}
-                    {{> filterIndexItemBottomDeleteTranscript}}
-                {{/if}}
-                {{#if isMyBonusTranscriptsRoute}}
-                    {{> filterIndexItemBottomEditTranscript}}
-                    {{> filterIndexItemBottomDeleteTranscript}}
-                {{/if}}
+                {{> filterIndexItemBottomEditTranscript}}
+                {{> filterIndexItemBottomDeleteTranscript}}
             {{/unless}}
         {{else}}
             {{#unless isSelectingCardsetToLearn}}
