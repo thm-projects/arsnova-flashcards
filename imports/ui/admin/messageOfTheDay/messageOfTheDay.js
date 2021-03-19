@@ -32,10 +32,10 @@ Template.admin_messageOfTheDay.helpers({
 	getMessages: function () {
 		let messages =  [];
 		messages = MessageOfTheDay.find().fetch();
-		messages.forEach(message => {
-			message.dateCreated = moment(message.dateCreated).format("YYYY-MM-DD");
-			message.publishDate = moment(message.publishDate).format("YYYY-MM-DD");
-			message.expirationDate = moment(message.expirationDate).format("YYYY-MM-DD");
+		messages.forEach(motd => {
+			motd.dateCreated = moment(motd.dateCreated).format("YYYY-MM-DD");
+			motd.publishDate = moment(motd.publishDate).format("YYYY-MM-DD");
+			motd.expirationDate = moment(motd.expirationDate).format("YYYY-MM-DD");
 		});
 		return messages;
 	},

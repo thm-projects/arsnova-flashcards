@@ -55,7 +55,7 @@ function leitnerMigrationStep() {
 	let cardsets = Cardsets.find({shuffled: true}, {fields: {_id: 1}}).fetch();
 	if (cardsets.length) {
 		for (let i = 0; i < cardsets.length; i++) {
-			let leitner = Leitner.find({cardset_id: cardsets[i]._id, original_cardset_id: {$exists: false}}, {
+			leitner = Leitner.find({cardset_id: cardsets[i]._id, original_cardset_id: {$exists: false}}, {
 				fields: {
 					_id: 1,
 					card_id: 1

@@ -30,9 +30,9 @@ Template.profileMembership.rendered = function () {
 						BertAlertVisuals.displayBertAlert(TAPi18n.__('membership.upgrade.progress'), 'info', 'growl-top-left');
 						var nonce = response.nonce;
 						var plan = Session.get('plan');
-						Meteor.call('btSubscribe', nonce, plan, function (error) {
-							if (error) {
-								throw new Meteor.Error(error.message, 'error');
+						Meteor.call('btSubscribe', nonce, plan, function (subscribeError) {
+							if (subscribeError) {
+								throw new Meteor.Error(subscribeError.message, 'error');
 							} else {
 								BertAlertVisuals.displayBertAlert(TAPi18n.__('membership.upgrade.subscribed'), 'success', 'growl-top-left');
 							}

@@ -2,7 +2,7 @@ import "./messageOfTheDayModal.html";
 import {MessageOfTheDay} from "../../api/subscriptions/messageOfTheDay";
 import {ReactiveDict} from "meteor/reactive-dict";
 
-let messages = [];
+let tempMessages = [];
 
 Template.messageOfTheDayModal.onDestroyed(function () {
 	$(".modal-backdrop").remove();
@@ -66,7 +66,7 @@ Template.messageOfTheDayModal.helpers({
 	getMessages: function () {
 		if (Meteor.userId()) {
 			// get all messages that are already published and not expired and for logged in users
-			messages = MessageOfTheDay.find({$and: [
+			tempMessages = MessageOfTheDay.find({$and: [
 					{expirationDate: {$gte: new Date()}},
 					{publishDate: {$lte: new Date()}}
 				]}).fetch();
@@ -74,25 +74,25 @@ Template.messageOfTheDayModal.helpers({
 			let motds = usersMotds();
 			// if they are empty return messages unfiltered
 			if (motds === undefined) {
-				messages = [];
+				tempMessages = [];
 			} else {
 				// filter out already seen messages
-				messages = filterOut(messages, motds);
+				tempMessages = filterOut(tempMessages, motds);
 				// get local entry for motds or empty array
 				const localMessages = JSON.parse(localStorage.getItem('motd') || '[]');
-				messages = filterOut(messages, localMessages);
+				tempMessages = filterOut(tempMessages, localMessages);
 			}
 		} else {
 			// get all messages that are already published and not expired and for the landing page
-			messages = MessageOfTheDay.find({$and: [
+			tempMessages = MessageOfTheDay.find({$and: [
 					{expirationDate: {$gte: new Date()}},
 					{publishDate: {$lte: new Date()}}
 				]}).fetch();
 			// get local entry for motds or empty array
 			const localMessages = JSON.parse(localStorage.getItem('motd') || '[]');
-			messages = filterOut(messages, localMessages);
+			tempMessages = filterOut(tempMessages, localMessages);
 		}
-		return messages;
+		return tempMessages;
 	}
 });
 
@@ -100,10 +100,10 @@ Template.messageOfTheDayModal.events({
 	'click #acceptButton': function () {
 		if (Meteor.userId()) {
 			// get users motds
-			let motds = usersMotds();
-			motds.push(this._id);
+			let userMotds = usersMotds();
+			userMotds.push(this._id);
 			// updates user entry
-			Meteor.call('updateMotd', motds, Meteor.userId());
+			Meteor.call('updateMotd', userMotds, Meteor.userId());
 		}
 		//get his saved messages of the day or empty array
 		let motds = JSON.parse(localStorage.getItem('motd') || '[]');
@@ -114,17 +114,17 @@ Template.messageOfTheDayModal.events({
 		// filter out all double entries
 		let tmp = [];
 		let tmpCounter = 0;
-		for (let i = 0; i < messages.length; i++) {
-			if (messages[i]._id !== this._id) {
-				tmp[tmpCounter] = messages[i];
+		for (let i = 0; i < tempMessages.length; i++) {
+			if (tempMessages[i]._id !== this._id) {
+				tmp[tmpCounter] = tempMessages[i];
 				tmpCounter++;
 			}
 		}
-		messages = tmp;
+		tempMessages = tmp;
 		// removes message from the dom
 		document.getElementById(this._id).remove();
 		// close modal after last element
-		if (messages.length === 0) {
+		if (tempMessages.length === 0) {
 			document.getElementById('messageOfTheDayModal').remove();
 			$(".modal-backdrop").remove();
 		}
@@ -155,11 +155,11 @@ Template.messagePreviewModal.events({
 	'click #previewAccept': function () {
 		if (Meteor.userId()) {
 			// get users motds
-			let motds = usersMotds();
-			if (!(motds.includes(messageReactive.get('_id')))) {
-				motds.push(messageReactive.get('_id'));
+			let userMotds = usersMotds();
+			if (!(userMotds.includes(messageReactive.get('_id')))) {
+				userMotds.push(messageReactive.get('_id'));
 				// updates user entry
-				Meteor.call('updateMotd', motds, Meteor.userId());
+				Meteor.call('updateMotd', userMotds, Meteor.userId());
 			}
 		}
 		//get his saved messages of the day or empty array

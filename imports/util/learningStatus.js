@@ -249,8 +249,8 @@ export let LearningStatus = class LearningStatus {
 			cardsetFilter.difficulty = difficulty;
 		}
 
-		return WorkloadCardsetCollection.find(cardsetFilter, {_id: 1}).map(function (cardset) {
-			return cardset._id;
+		return WorkloadCardsetCollection.find(cardsetFilter, {_id: 1}).map(function (workloadCardset) {
+			return workloadCardset._id;
 		});
 	}
 
