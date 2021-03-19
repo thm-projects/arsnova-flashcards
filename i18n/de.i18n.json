@@ -634,8 +634,8 @@
     },
     "progress": {
       "maxWorkload": {
-        "single": "Tägliches Lernpensum: max. __amount__ Karte",
-        "plural": "Tägliches Lernpensum: max. __amount__ Karten"
+        "single": "Maximales tägliches Lernpensum: max. __amount__ Karte",
+        "plural": "Maximales tägliches Lernpensum: max. __amount__ Karten"
       }
     },
     "form": {
@@ -646,16 +646,16 @@
         "title": "Bonus-Lernphase konfigurieren"
       },
       "maxWorkload": {
-        "label": "Tagespensum",
-        "placeholder": "maximal täglich zu lernende Karten"
+        "label": "Maximales Tagespensum",
+        "placeholder": "Maximal täglich zu lernende Karten"
       },
       "forceNotifications": {
         "mail": "E-Mail Erinnerungsdienst erzwingen",
         "push": "Push Erinnerungsdienst erzwingen"
       },
       "simulator": {
-        "buttonModal":  "Tagespensum festlegen",
-        "buttonSimulate": "Optimales Tagespensum berechnen",
+        "buttonModal":  "Maximales Tagespensum festlegen",
+        "buttonSimulate": "Optimales maximales Tagespensum berechnen",
         "title": "Leitner Simulator",
         "errorRate": {
           "description": "Maximale Anzahl nicht gewusster Karten von __count__ über den gesamten Lernverlauf.",
