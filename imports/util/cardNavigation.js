@@ -391,12 +391,12 @@ export let CardNavigation = class CardNavigation {
 			localStorage.setItem(lastActiveCardString, JSON.stringify(lastActiveCard));
 		}
 		let cardset_id;
-		if (Session.get('activeCard') === -1 || Session.get('activeCard') === undefined || Route.isTranscript()) {
+		if (Session.get('activeCard') === -1 || Session.get('activeCard') === undefined || Route.isPresentationTranscript()) {
 			if (Route.isDemo()) {
 				Session.set('activeCardsetName', Cardsets.findOne({name: "DemoCardset", shuffled: true}).name);
 			} else if (Route.isMakingOf()) {
 				Session.set('activeCardsetName', Cardsets.findOne({name: "MakingOfCardset", shuffled: true}).name);
-			} else if (Route.isTranscript()) {
+			} else if (Route.isPresentationTranscript()) {
 				Session.set('activeCardsetName', "");
 			} else {
 				Session.set('activeCardsetName', Cardsets.findOne({_id: FlowRouter.getParam('_id')}).name);

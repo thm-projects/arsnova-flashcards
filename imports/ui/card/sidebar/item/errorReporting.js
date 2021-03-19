@@ -14,6 +14,7 @@ Template.cardSidebarItemErrorReporting.events({
 	"click .errorReporting": function () {
 		$('.errorReporting').addClass("pressed");
 		Session.set('errorReportingMode', false);
+		ErrorReporting.adjustActiveCardSide();
 		$('#showErrorReportingModal').modal('show');
 	}
 });

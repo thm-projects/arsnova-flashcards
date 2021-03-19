@@ -12,6 +12,11 @@ Meteor.methods({
 		check(cardSide, Number);
 		check(errorTypes, Array);
 		check(errorContent, String);
+
+		if (isNaN(cardSide)) {
+			cardSide = 0;
+		}
+
 		if (Meteor.isServer) {
 			ErrorReporting.insert({
 					user_id: user_id,
