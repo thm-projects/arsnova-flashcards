@@ -42,6 +42,10 @@ export let ErrorReporting = class ErrorReporting {
 		$('#otherErrorTextarea').prop("disabled", disabled);
 	}
 
+	static adjustActiveCardSide () {
+		this.setActiveCardSide(CardNavigation.getCardSideNavigationIndex() - 1, Session.get('errorReportingMode'));
+	}
+
 	static setActiveCardSide (activeIndex, disabled = false) {
 		let count = CardNavigation.getCardSideNavigationLength();
 		let labelId = "";
