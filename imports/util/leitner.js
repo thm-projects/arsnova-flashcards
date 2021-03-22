@@ -1,15 +1,15 @@
 import {Meteor} from "meteor/meteor";
-import {Leitner} from "../api/subscriptions/leitner";
+import {LeitnerCardStats} from "../api/subscriptions/leitner/leitnerCardStats";
 import {Cardsets} from "../api/subscriptions/cardsets";
 import * as bonusFormConfig from "../config/bonusForm";
 import {CardType} from "./cardTypes";
 import {Cards} from "../api/subscriptions/cards";
 import * as config from "../config/leitner";
-import {LeitnerHistory} from "../api/subscriptions/leitnerHistory";
-import {Workload} from "../api/subscriptions/workload";
+import {LeitnerPerformanceHistory} from "../api/subscriptions/leitner/leitnerPerformanceHistory";
+import {LeitnerLearningWorkload} from "../api/subscriptions/leitner/leitnerLearningWorkload";
 import {CardIndex} from "./cardIndex";
 import {Utilities} from "./utilities";
-import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
+import {LeitnerActivationDay} from "../api/subscriptions/leitner/leitnerActivationDay";
 import {PomodoroTimer} from "./pomodoroTimer";
 import {Bonus} from "./bonus";
 
@@ -29,7 +29,7 @@ function gotPriority(array, card_id, priority) {
 export let LeitnerUtilities = class LeitnerUtilities {
 	static setEndBonusPoints (cardset, leitnerTask, result) {
 		if (cardset.learningActive && result.box === 6) {
-			const [learnable, box6] = Leitner.find({
+			const [learnable, box6] = LeitnerCardStats.find({
 					cardset_id: cardset._id,
 					user_id: Meteor.userId()
 				},
@@ -44,7 +44,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					return acc;
 				}, [0, 0]);
 			const bonusPoints = Bonus.getAchievedBonus(box6, cardset.workload, learnable);
-			LeitnerTasks.update({_id: leitnerTask._id},
+			LeitnerActivationDay.update({_id: leitnerTask._id},
 				{
 					$set: {
 						"bonusPoints.atEnd": bonusPoints
@@ -63,7 +63,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		if (!Meteor.isServer && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			return Leitner.find({
+			return LeitnerCardStats.find({
 				cardset_id: cardset_id,
 				user_id: user_id,
 				box: box,
@@ -140,7 +140,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					cardsetsWithLearningMode.push(cardsetFilter[i]);
 				}
 			}
-			let existingItems = Leitner.find({
+			let existingItems = LeitnerCardStats.find({
 				cardset_id: cardset._id,
 				user_id: user_id
 			}, {fields: {card_id: 1}}).fetch();
@@ -149,7 +149,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				excludedCards.push(existingItem.card_id);
 			});
 
-			if (Leitner.findOne({user_id: user_id, cardset_id: cardset._id}) !== undefined) {
+			if (LeitnerCardStats.findOne({user_id: user_id, cardset_id: cardset._id}) !== undefined) {
 				isNewcomer = false;
 			}
 			let newItems = [];
@@ -178,7 +178,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				newItems.push(newItemObject);
 			});
 			if (newItems.length > 0) {
-				Leitner.batchInsert(newItems);
+				LeitnerCardStats.batchInsert(newItems);
 			}
 			Meteor.call("updateLearnerCount", cardset._id);
 			Meteor.call('updateWorkloadCount', user_id);
@@ -224,9 +224,9 @@ export let LeitnerUtilities = class LeitnerUtilities {
 
 			let cardSelection = this.selectCardsByOrder(cardset, boxActiveCardCap, algorithm, user);
 			if (Meteor.isServer && Meteor.settings.debug.leitner) {
-				console.log(`===> Active cards BEFORE update ${Leitner.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()}`);
+				console.log(`===> Active cards BEFORE update ${LeitnerCardStats.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()}`);
 			}
-			Leitner.update({
+			LeitnerCardStats.update({
 				cardset_id: cardset._id,
 				user_id: user._id,
 				card_id: {$in: cardSelection}
@@ -237,7 +237,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				}
 			}, {multi: true});
 			if (Meteor.isServer && Meteor.settings.debug.leitner) {
-				console.log(`===> Active cards AFTER update ${Leitner.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()}`);
+				console.log(`===> Active cards AFTER update ${LeitnerCardStats.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()}`);
 			}
 
 			this.updateLeitnerWorkload(cardset._id, user._id);
@@ -256,7 +256,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		if (!Meteor.isServer) {
 			user_id = Meteor.userId();
 		}
-		let leitner = Leitner.find({cardset_id: cardset._id, user_id: user_id, card_id: {$in: cardSelection}}).fetch();
+		let leitner = LeitnerCardStats.find({cardset_id: cardset._id, user_id: user_id, card_id: {$in: cardSelection}}).fetch();
 		let newItems = [];
 		let newItemObject;
 		leitner.forEach(function (leitnerItem) {
@@ -274,7 +274,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			newItems.push(newItemObject);
 		});
 		if (newItems.length > 0) {
-			LeitnerHistory.batchInsert(newItems);
+			LeitnerPerformanceHistory.batchInsert(newItems);
 		}
 	}
 
@@ -284,7 +284,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		} else {
 			let user = Meteor.users.findOne({_id: user_id});
 			let cardset = Cardsets.findOne(cardset_id);
-			let workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id});
+			let workload = LeitnerLearningWorkload.findOne({user_id: user_id, cardset_id: cardset_id});
 			let leitnerTask = this.getHighestLeitnerTaskSessionID(cardset_id, user_id);
 			let newSession;
 			if (leitnerTask === undefined || leitnerTask.session === undefined) {
@@ -331,7 +331,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			};
 			if (workload.leitner.bonus) {
 				let learnable = 0, box6 = 0;
-				Leitner.find({
+				LeitnerCardStats.find({
 						cardset_id: cardset_id,
 						user_id: user_id
 					},
@@ -350,7 +350,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					atEnd: bonusPoints
 				};
 			}
-			return LeitnerTasks.insert(obj);
+			return LeitnerActivationDay.insert(obj);
 		}
 	}
 
@@ -461,7 +461,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		let index = CardIndex.getCardIndex();
 		//Get all cards from a box that match the leitner criteria
 		for (let l = 0; l < algorithm.length; l++) {
-			let leitnerCards = Leitner.find({
+			let leitnerCards = LeitnerCardStats.find({
 				cardset_id: cardset._id,
 				user_id: user._id,
 				box: (l + 1),
@@ -537,7 +537,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						}
 					}
 					query.box = i;
-					let cards = Leitner.find(query, {
+					let cards = LeitnerCardStats.find(query, {
 						fields: {
 							card_id: 1
 						}
@@ -546,7 +546,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					if (Meteor.settings.debug.leitner) {
 						console.log(`===> Resetting ${idArray.length} cards [${idArray}]`);
 					}
-					Leitner.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id}, {
+					LeitnerCardStats.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id}, {
 						$set: {
 							box: box,
 							active: false,
@@ -556,11 +556,11 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						}
 					}, {multi: true});
 					if (Meteor.settings.debug.leitner) {
-						console.log(`===> ${Leitner.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()} active Cards left after reset\n`);
+						console.log(`===> ${LeitnerCardStats.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()} active Cards left after reset\n`);
 					}
 					let lastLeitnerTask = this.getHighestLeitnerTaskSessionID(cardset._id, user._id);
 					if (lastLeitnerTask !== undefined) {
-						LeitnerTasks.update({
+						LeitnerActivationDay.update({
 							_id: lastLeitnerTask._id
 						}, {
 							$set: {
@@ -569,7 +569,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 								wrongAnswerMode: config.wrongAnswerMode
 							}
 						});
-						LeitnerHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: lastLeitnerTask._id}, {
+						LeitnerPerformanceHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: lastLeitnerTask._id}, {
 							$set: {
 								box: box
 							}
@@ -577,7 +577,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					}
 				}
 			} else {
-				let cards = Leitner.find(query, {
+				let cards = LeitnerCardStats.find(query, {
 					fields: {
 						card_id: 1
 					}
@@ -586,7 +586,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				if (Meteor.settings.debug.leitner) {
 					console.log(`===> Resetting ${idArray.length} cards [${idArray}]`);
 				}
-				Leitner.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id}, {
+				LeitnerCardStats.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id}, {
 					$set: {
 						box: 1,
 						active: false,
@@ -596,11 +596,11 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					}
 				}, {multi: true});
 				if (Meteor.settings.debug.leitner) {
-					console.log(`===> ${Leitner.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()} active Cards left after reset\n`);
+					console.log(`===> ${LeitnerCardStats.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()} active Cards left after reset\n`);
 				}
 				let lastLeitnerTask = this.getHighestLeitnerTaskSessionID(cardset._id, user._id);
 				if (lastLeitnerTask !== undefined) {
-					LeitnerTasks.update({
+					LeitnerActivationDay.update({
 						_id: lastLeitnerTask._id
 					}, {
 						$set: {
@@ -609,7 +609,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 							wrongAnswerMode: config.wrongAnswerMode
 						}
 					});
-					LeitnerHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: lastLeitnerTask._id}, {
+					LeitnerPerformanceHistory.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id, task_id: lastLeitnerTask._id}, {
 						$set: {
 							box: 1
 						}
@@ -624,24 +624,24 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			let workload = Workload.findOne({cardset_id: cardset_id, user_id: user_id});
+			let workload = LeitnerLearningWorkload.findOne({cardset_id: cardset_id, user_id: user_id});
 			let activeLeitnerCards = 0;
 			let nextLeitnerCardDate = new Date();
 			let activeLeitnerCardDate = new Date();
 			let learnedAllLeitnerCards = false;
 			let nextLowestPriority = [-1, -1, -1, -1, -1];
-			let isLearningLeitner = Leitner.findOne({cardset_id: cardset_id, user_id: user_id});
+			let isLearningLeitner = LeitnerCardStats.findOne({cardset_id: cardset_id, user_id: user_id});
 			if (isLearningLeitner) {
-				activeLeitnerCards = Leitner.find({cardset_id: cardset_id, user_id: user_id, active: true}).count();
-				let nextLeitnerObject = Leitner.findOne({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}, active: false}, {sort: {nextDate: 1}});
+				activeLeitnerCards = LeitnerCardStats.find({cardset_id: cardset_id, user_id: user_id, active: true}).count();
+				let nextLeitnerObject = LeitnerCardStats.findOne({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}, active: false}, {sort: {nextDate: 1}});
 				if (nextLeitnerObject) {
 					nextLeitnerCardDate = nextLeitnerObject.nextDate;
 				}
-				let activeLeitnerObject = Leitner.findOne({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}, active: true}, {sort: {currentDate: 1}});
+				let activeLeitnerObject = LeitnerCardStats.findOne({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}, active: true}, {sort: {currentDate: 1}});
 				if (activeLeitnerObject) {
 					activeLeitnerCardDate = activeLeitnerObject.currentDate;
 				}
-				if (!Leitner.find({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}}).count()) {
+				if (!LeitnerCardStats.find({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}}).count()) {
 					learnedAllLeitnerCards = true;
 				}
 				if (workload !== undefined) {
@@ -649,7 +649,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				}
 			}
 			if (workload === undefined) {
-				Workload.insert({
+				LeitnerLearningWorkload.insert({
 					cardset_id: cardset_id,
 					user_id: user_id,
 					leitner: {
@@ -663,7 +663,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					}
 				});
 			} else {
-				Workload.update({
+				LeitnerLearningWorkload.update({
 					cardset_id: cardset_id,
 					user_id: user_id
 				}, {
@@ -681,11 +681,11 @@ export let LeitnerUtilities = class LeitnerUtilities {
 	}
 
 	static getHighestLeitnerTaskSessionID (cardset_id, user_id) {
-		return LeitnerTasks.findOne({user_id: user_id, cardset_id: cardset_id}, {sort: {session: -1}});
+		return LeitnerActivationDay.findOne({user_id: user_id, cardset_id: cardset_id}, {sort: {session: -1}});
 	}
 
 	static getNextLeitnerDeletedUserID () {
-		let highestDeletedUserID = LeitnerTasks.findOne({}, {sort: {user_id_deleted: -1}});
+		let highestDeletedUserID = LeitnerActivationDay.findOne({}, {sort: {user_id_deleted: -1}});
 		if (highestDeletedUserID === undefined || highestDeletedUserID.user_id_deleted === undefined) {
 			return 0;
 		} else {
@@ -695,7 +695,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 
 	static updateWorkTimer (leitnerTask) {
 		if (leitnerTask.timer.lastCallback === undefined) {
-			LeitnerTasks.update({
+			LeitnerActivationDay.update({
 					_id: leitnerTask._id
 				},
 				{
@@ -710,7 +710,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				status = 1;
 			}
 			if (moment(moment()).diff(moment(leitnerTask.timer.lastCallback), 'seconds') > minimumSecondThreshold) {
-				LeitnerTasks.update({
+				LeitnerActivationDay.update({
 						_id: leitnerTask._id
 					},
 					{
@@ -757,7 +757,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			}
 		}
 
-		let workload = Workload.findOne({cardset_id: activeLeitner.cardset_id, user_id: activeLeitner.user_id});
+		let workload = LeitnerLearningWorkload.findOne({cardset_id: activeLeitner.cardset_id, user_id: activeLeitner.user_id});
 		let lowestPriority = workload.leitner.nextLowestPriority;
 		if (CardType.gotNonRepeatingLeitner(cardType) && !isAnswerWrong) {
 			//Move to the last box if card Type got no repetition
@@ -785,7 +785,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			if (remainingWorkTime === 0) {
 				status = 3;
 			}
-			LeitnerTasks.update({
+			LeitnerActivationDay.update({
 					_id: leitnerTask._id
 				},
 				{

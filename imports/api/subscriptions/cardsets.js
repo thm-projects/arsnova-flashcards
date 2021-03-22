@@ -2,8 +2,8 @@ import {Mongo} from "meteor/mongo";
 import {Meteor} from "meteor/meteor";
 import {ServerStyle} from "../../util/styles";
 import {UserPermissions} from "../../util/permissions";
-import {Leitner} from "./leitner";
-import {Workload} from "./workload";
+import {LeitnerCardStats} from "./leitner/leitnerCardStats";
+import {LeitnerLearningWorkload} from "./leitner/leitnerLearningWorkload";
 import {Wozniak} from "./wozniak";
 import {CardType} from "../../util/cardTypes";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
@@ -95,10 +95,10 @@ if (Meteor.isServer) {
 	});
 	Meteor.publish("workloadCardsets", function () {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
-			let workload = Workload.find({user_id: this.userId}, {fields: {cardset_id: 1}}).fetch();
+			let workload = LeitnerLearningWorkload.find({user_id: this.userId}, {fields: {cardset_id: 1}}).fetch();
 			let filter = [];
 			for (let i = 0, workloadLength = workload.length; i < workloadLength; i++) {
-				if ((Leitner.find({cardset_id: workload[i].cardset_id}).count() !== 0) || (Wozniak.find({cardset_id: workload[i].cardset_id}).count() !== 0)) {
+				if ((LeitnerCardStats.find({cardset_id: workload[i].cardset_id}).count() !== 0) || (Wozniak.find({cardset_id: workload[i].cardset_id}).count() !== 0)) {
 					filter.push(workload[i].cardset_id);
 				}
 			}
@@ -293,25 +293,32 @@ const CardsetsSchema = new SimpleSchema({
 		type: Boolean
 	},
 	learningActive: {
-		type: Boolean
+		type: Boolean,
+		optional: true
 	},
 	maxCards: {
-		type: Number
+		type: Number,
+		optional: true
 	},
 	daysBeforeReset: {
-		type: Number
+		type: Number,
+		optional: true
 	},
 	learningStart: {
-		type: Date
+		type: Date,
+		optional: true
 	},
 	learningEnd: {
-		type: Date
+		type: Date,
+		optional: true
 	},
 	learningInterval: {
-		type: [Number]
+		type: [Number],
+		optional: true
 	},
 	registrationPeriod: {
-		type: Date
+		type: Date,
+		optional: true
 	},
 	wordcloud: {
 		type: Boolean
@@ -349,6 +356,20 @@ const CardsetsSchema = new SimpleSchema({
 		type: Object,
 		optional: true,
 		blackbox: true
+	},
+	learnerCount: {
+		type: Object,
+		optional: true
+	},
+	'learnerCount.bonus': {
+		type: Number,
+		optional: true,
+		defaultValue: 0
+	},
+	'learnerCount.normal': {
+		type: Number,
+		optional: true,
+		defaultValue: 0
 	},
 	learners: {
 		type: Number,
@@ -498,7 +519,6 @@ const CardsetsSchema = new SimpleSchema({
 		type: Number,
 		optional: true
 	}
-
 });
 
 Cardsets.attachSchema(CardsetsSchema);

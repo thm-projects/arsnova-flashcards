@@ -3,11 +3,11 @@ import {getAuthorName} from "./userData";
 import * as config from "../config/bonusForm";
 import {Meteor} from "meteor/meteor";
 import {Profile} from "./profile";
-import {LeitnerHistory} from "../api/subscriptions/leitnerHistory";
-import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
+import {LeitnerPerformanceHistory} from "../api/subscriptions/leitner/leitnerPerformanceHistory";
+import {LeitnerActivationDay} from "../api/subscriptions/leitner/leitnerActivationDay";
 import {Cardsets} from "../api/subscriptions/cardsets";
-import {Leitner} from "../api/subscriptions/leitner";
-import {Workload} from "../api/subscriptions/workload";
+import {LeitnerCardStats} from "../api/subscriptions/leitner/leitnerCardStats";
+import {LeitnerLearningWorkload} from "../api/subscriptions/leitner/leitnerLearningWorkload";
 import {Utilities} from "./utilities";
 
 export let CardsetUserlist = class CardsetUserlist {
@@ -116,14 +116,14 @@ export let CardsetUserlist = class CardsetUserlist {
 				let lastActivity = data[i].leitner.dateJoinedBonus;
 
 				let sessionFilter = 0;
-				let highestTask = LeitnerTasks.findOne({
+				let highestTask = LeitnerActivationDay.findOne({
 					cardset_id: cardset_id,
 					user_id: data[i].user_id
 				}, {sort: {session: -1}});
 				if (highestTask !== undefined) {
 					sessionFilter = highestTask.session;
 				}
-				let whitelistedTasks = LeitnerTasks.find({
+				let whitelistedTasks = LeitnerActivationDay.find({
 					cardset_id: cardset_id,
 					user_id: data[i].user_id,
 					session: sessionFilter
@@ -131,7 +131,7 @@ export let CardsetUserlist = class CardsetUserlist {
 					return x._id;
 				});
 
-				let lastHistoryItem = LeitnerHistory.findOne({
+				let lastHistoryItem = LeitnerPerformanceHistory.findOne({
 						task_id: {$in: whitelistedTasks},
 						cardset_id: cardset_id,
 						user_id: data[i].user_id,
@@ -159,7 +159,7 @@ export let CardsetUserlist = class CardsetUserlist {
 					let workingTimeArithmeticMean = 0;
 					let workingTimeMedian = 0;
 					let workingTimeStandardDeviation = 0;
-					let workload = Workload.findOne({user_id: user[0]._id, cardset_id: cardset_id, "leitner.bonus": true});
+					let workload = LeitnerLearningWorkload.findOne({user_id: user[0]._id, cardset_id: cardset_id, "leitner.bonus": true});
 					if (workload !== undefined && workload.leitner.learningStatistics !== undefined && workload.leitner.learningStatistics.answerTime !== undefined) {
 						cardMedian = workload.leitner.learningStatistics.answerTime.median;
 						cardArithmeticMean = workload.leitner.learningStatistics.answerTime.arithmeticMean;
@@ -181,12 +181,12 @@ export let CardsetUserlist = class CardsetUserlist {
 						workingTimeArithmeticMean: workingTimeArithmeticMean,
 						workingTimeMedian: workingTimeMedian,
 						workingTimeStandardDeviation: workingTimeStandardDeviation,
-						box1: Leitner.find(filter[0]).count(),
-						box2: Leitner.find(filter[1]).count(),
-						box3: Leitner.find(filter[2]).count(),
-						box4: Leitner.find(filter[3]).count(),
-						box5: Leitner.find(filter[4]).count(),
-						box6: Leitner.find(filter[5]).count(),
+						box1: LeitnerCardStats.find(filter[0]).count(),
+						box2: LeitnerCardStats.find(filter[1]).count(),
+						box3: LeitnerCardStats.find(filter[2]).count(),
+						box4: LeitnerCardStats.find(filter[3]).count(),
+						box5: LeitnerCardStats.find(filter[4]).count(),
+						box6: LeitnerCardStats.find(filter[5]).count(),
 						mailNotification: mailNotification,
 						webNotification: webNotification,
 						dateJoinedBonus: data[i].leitner.dateJoinedBonus,

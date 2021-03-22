@@ -1,12 +1,12 @@
 import {Mongo} from "meteor/mongo";
 import {Meteor} from "meteor/meteor";
 
-export const Leitner = new Mongo.Collection("leitner");
+export const LeitnerCardStats = new Mongo.Collection("leitnerCardStats");
 
 if (Meteor.isServer) {
 	Meteor.publish("cardsetLeitner", function (cardset_id) {
 		if (this.userId) {
-			return Leitner.find({cardset_id: cardset_id, user_id: this.userId});
+			return LeitnerCardStats.find({cardset_id: cardset_id, user_id: this.userId});
 		} else {
 			this.ready();
 		}
@@ -18,7 +18,7 @@ if (Meteor.isServer) {
 				'editor',
 				'lecturer'
 			])) {
-				return Leitner.find({cardset_id: cardset_id, user_id: user_id});
+				return LeitnerCardStats.find({cardset_id: cardset_id, user_id: user_id});
 			} else {
 				this.ready();
 			}
@@ -28,7 +28,7 @@ if (Meteor.isServer) {
 	});
 	Meteor.publish("userLeitner", function () {
 		if (this.userId) {
-			return Leitner.find({user_id: this.userId});
+			return LeitnerCardStats.find({user_id: this.userId});
 		} else {
 			this.ready();
 		}
@@ -39,7 +39,7 @@ if (Meteor.isServer) {
 				'admin',
 				'editor'
 			])) {
-				return Leitner.find();
+				return LeitnerCardStats.find();
 			}
 		} else {
 			this.ready();

@@ -12,7 +12,7 @@ import {Route} from "../../util/route.js";
 import {CardType} from "../../util/cardTypes";
 import {Cards} from "../../api/subscriptions/cards";
 import {CardNavigation} from "../../util/cardNavigation";
-import {Leitner} from "../../api/subscriptions/leitner";
+import {LeitnerCardStats} from "../../api/subscriptions/leitner/leitnerCardStats";
 import {Wozniak} from "../../api/subscriptions/wozniak";
 import {BertAlertVisuals} from "../../util/bertAlertVisuals";
 import {CardEditor} from "../../util/cardEditor";
@@ -51,8 +51,8 @@ import {BarfyStarsConfig} from "../../util/barfyStars";
 import * as config from "../../config/learningStatus";
 import "./modal/trophyModal";
 import {backgroundTrophyAnimation} from "./modal/backgroundTrophyAnimation";
-import {LeitnerTasks} from "../../api/subscriptions/leitnerTasks";
-import {Workload} from "../../api/subscriptions/workload";
+import {LeitnerActivationDay} from "../../api/subscriptions/leitner/leitnerActivationDay";
+import {LeitnerLearningWorkload} from "../../api/subscriptions/leitner/leitnerLearningWorkload";
 
 function isActiveCard(card, resetData) {
 	if (Route.isEditMode()) {
@@ -84,7 +84,7 @@ function getMaximalBonusPoints() {
 
 function isBonusSession(moreThanOne = false) {
 	const cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')}, {fields: {learningActive: 1}});
-	const workload = Workload.findOne({
+	const workload = LeitnerLearningWorkload.findOne({
 			cardset_id: FlowRouter.getParam('_id'),
 			user_id: Meteor.userId()
 		},
@@ -93,7 +93,7 @@ function isBonusSession(moreThanOne = false) {
 		});
 	if (!!(cardset && cardset.learningActive && workload && workload.leitner.bonus)) {
 		if (moreThanOne) {
-			const task = LeitnerTasks.findOne({
+			const task = LeitnerActivationDay.findOne({
 					user_id: Meteor.userId(),
 					cardset_id: FlowRouter.getParam('_id')
 				},
@@ -111,7 +111,7 @@ function isBonusSession(moreThanOne = false) {
 }
 
 function getCurrentBonusPoints() {
-	const task = LeitnerTasks.findOne({
+	const task = LeitnerActivationDay.findOne({
 			cardset_id: FlowRouter.getParam('_id'),
 			user_id: Meteor.userId()
 		},
@@ -343,7 +343,7 @@ Template.flashcardsEndScreenText.helpers({
 				max +
 				TAPi18n.__("endScreen.achievedAllSuffix");
 		}
-		const task = LeitnerTasks.findOne({
+		const task = LeitnerActivationDay.findOne({
 				cardset_id: FlowRouter.getParam('_id'),
 				user_id: Meteor.userId()
 			},
@@ -376,7 +376,7 @@ Template.flashcardsEmpty.helpers({
 		return Route.isCardset();
 	},
 	gotLeitnerWorkload: function () {
-		return Leitner.find({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId()}).count();
+		return LeitnerCardStats.find({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId()}).count();
 	},
 	gotWozniakWorkload: function () {
 		return Wozniak.find({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId()}).count();

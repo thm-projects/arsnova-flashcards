@@ -1,13 +1,14 @@
-import {Utilities} from "../../../../../util/utilities";
-import * as config from "../../../../../config/serverBoot";
-import {TYPE_MIGRATE} from "../../../../../config/serverBoot";
-import {LeitnerTasks} from "../../../../../api/subscriptions/leitnerTasks";
-import {Cardsets} from "../../../../../api/subscriptions/cardsets";
-import {LearningStatisticsUtilities} from "../../../../../util/learningStatistics";
-import {Workload} from "../../../../../api/subscriptions/workload";
-import {LeitnerHistory} from "../../../../../api/subscriptions/leitnerHistory";
-import {Bonus} from "../../../../../util/bonus";
+import {Utilities} from "../../../../../../../util/utilities";
+import * as config from "../../../../../../../config/serverBoot";
+import {TYPE_MIGRATE} from "../../../../../../../config/serverBoot";
+import {Cardsets} from "../../../../../../../api/subscriptions/cardsets";
+import {LearningStatisticsUtilities} from "../../../../../../../util/learningStatistics";
+import {Bonus} from "../../../../../../../util/bonus";
+import {LeitnerTasks} from "../../../../../../../api/subscriptions/legacyLeitner/leitnerTasks";
+import {Workload} from "../../../../../../../api/subscriptions/legacyLeitner/workload";
+import {LeitnerHistory} from "../../../../../../../api/subscriptions/legacyLeitner/leitnerHistory";
 
+// Deprecated. New Migrations will take place in learningStatistics/leitner/activationDay
 function leitnerTaskMigrationStep() {
 	let groupName = "LeitnerTasks Migration";
 	Utilities.debugServerBoot(config.START_GROUP, groupName);
@@ -72,7 +73,7 @@ function leitnerTaskMigrationStep() {
 	leitnerTasks = LeitnerTasks.find({"learningStatistics": {$exists: false}}).fetch();
 	if (leitnerTasks.length) {
 		for (let i = 0; i < leitnerTasks.length; i++) {
-			LearningStatisticsUtilities.setGlobalStatistics(leitnerTasks[i]);
+			LearningStatisticsUtilities.setPerformanceStats(leitnerTasks[i]);
 		}
 		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
 	} else {

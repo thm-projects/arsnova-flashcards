@@ -4,15 +4,16 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {AdminSettings} from "../../../../api/subscriptions/adminSettings";
 import {Cards} from "../../../../api/subscriptions/cards";
-import {Leitner} from "../../../../api/subscriptions/leitner";
+import {LeitnerCardStats} from "../../../../api/subscriptions/leitner/leitnerCardStats";
 import {ColorThemes} from "../../../../api/subscriptions/colorThemes";
-import {LeitnerHistory} from "../../../../api/subscriptions/leitnerHistory";
-import {LeitnerTasks} from "../../../../api/subscriptions/leitnerTasks";
+import {LeitnerPerformanceHistory} from "../../../../api/subscriptions/leitner/leitnerPerformanceHistory";
+import {LeitnerActivationDay} from "../../../../api/subscriptions/leitner/leitnerActivationDay";
 import {Wozniak} from "../../../../api/subscriptions/wozniak";
-import {Workload} from "../../../../api/subscriptions/workload";
+import {LeitnerLearningWorkload} from "../../../../api/subscriptions/leitner/leitnerLearningWorkload";
 import {WebPushSubscriptions} from "../../../../api/subscriptions/webPushNotifications";
 import {Ratings} from "../../../../api/subscriptions/ratings";
 import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
+import {LeitnerLearningPhase} from "../../../../api/subscriptions/leitner/leitnerLearningPhase";
 
 function themeData() {
 	let themes = config.initColorThemes();
@@ -52,7 +53,7 @@ function notificationData() {
 	}
 
 	for (let learned = 0; learned < testNotificationsLearned.length; learned++) {
-		Leitner.remove({_id: testNotificationsLearned[learned]._id});
+		LeitnerCardStats.remove({_id: testNotificationsLearned[learned]._id});
 	}
 
 	let hiddenUsers = Meteor.users.find({visible: false}).fetch();
@@ -71,7 +72,7 @@ function notificationData() {
 	}
 
 	for (let learned = 0; learned < testNotificationsLearned.length; learned++) {
-		Leitner.insert(testNotificationsLearned[learned]);
+		LeitnerCardStats.insert(testNotificationsLearned[learned]);
 	}
 }
 
@@ -82,11 +83,12 @@ function demoData() {
 }
 
 function setupDatabaseIndex() {
-	Leitner._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, active: 1});
-	LeitnerHistory._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, task_id: 1, box: 1, dateAnswered: 1});
-	LeitnerTasks._ensureIndex({user_id: 1, cardset_id: 1, session: 1});
+	LeitnerLearningPhase._ensureIndex({cardset_id: 1, isActive: 1, isBonus: 1});
+	LeitnerLearningWorkload._ensureIndex({cardset_id: 1, user_id: 1, learning_phase_id: 1, isActive: 1, isBonus: 1});
+	LeitnerCardStats._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, learning_phase_id: 1, isActive: 1});
+	LeitnerActivationDay._ensureIndex({user_id: 1, cardset_id: 1, learning_phase_id: 1});
+	LeitnerPerformanceHistory._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, activation_day_id: 1, learning_phase_id: 1, box: 1, dateAnswered: 1});
 	Wozniak._ensureIndex({user_id: 1, cardset_id: 1});
-	Workload._ensureIndex({cardset_id: 1, user_id: 1});
 	Cards._ensureIndex({cardset_id: 1, subject: 1});
 	WebPushSubscriptions._ensureIndex({user_id: 1});
 	Ratings._ensureIndex({cardset_id: 1, user_id: 1});

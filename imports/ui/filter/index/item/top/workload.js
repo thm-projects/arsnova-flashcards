@@ -1,14 +1,14 @@
 import "./workload.html";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Leitner} from "../../../../../api/subscriptions/leitner";
+import {LeitnerCardStats} from "../../../../../api/subscriptions/leitner/leitnerCardStats";
 import {Wozniak} from "../../../../../api/subscriptions/wozniak";
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../../../../api/subscriptions/cardsets";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 function getLeitnerCount(cardset) {
-	return Leitner.find({
+	return LeitnerCardStats.find({
 		cardset_id: cardset._id,
 		user_id: Meteor.userId(),
 		active: true

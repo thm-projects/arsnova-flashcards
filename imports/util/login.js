@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
-import {Leitner} from "../api/subscriptions/leitner";
+import {LeitnerCardStats} from "../api/subscriptions/leitner/leitnerCardStats";
 import {Wozniak} from "../api/subscriptions/wozniak";
 import * as config from "../config/login.js";
 import {UserPermissions} from "./permissions";
@@ -12,7 +12,7 @@ export let LoginTasks = class LoginTasks {
 	static gotWorkload () {
 		let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 		actualDate.setHours(0, 0, 0, 0);
-		return Leitner.find({
+		return LeitnerCardStats.find({
 			user_id: Meteor.userId(),
 			active: true
 		}).count() + Wozniak.find({

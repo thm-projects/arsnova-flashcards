@@ -1,6 +1,6 @@
 import {Cardsets} from "../api/subscriptions/cardsets";
 import {Meteor} from "meteor/meteor";
-import {Workload} from "../api/subscriptions/workload";
+import {LeitnerLearningWorkload} from "../api/subscriptions/leitner/leitnerLearningWorkload";
 import {ServerSettings} from "./settings";
 
 export let Bonus = class Bonus {
@@ -8,7 +8,7 @@ export let Bonus = class Bonus {
 		if (user_id === undefined) {
 			user_id = Meteor.userId();
 		}
-		let workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id}, {fields: {'leitner.bonus': 1}});
+		let workload = LeitnerLearningWorkload.findOne({user_id: user_id, cardset_id: cardset_id}, {fields: {'leitner.bonus': 1}});
 		if (workload !== undefined && workload.leitner !== undefined && workload.leitner.bonus !== undefined) {
 			return workload.leitner.bonus === true;
 		} else {

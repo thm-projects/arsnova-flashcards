@@ -9,7 +9,7 @@ import {Filter} from "../../../util/filter";
 import {Route} from "../../../util/route";
 import {FilterNavigation} from "../../../util/filterNavigation";
 import {CardType} from "../../../util/cardTypes";
-import {Leitner} from "../../../api/subscriptions/leitner";
+import {LeitnerCardStats} from "../../../api/subscriptions/leitner/leitnerCardStats";
 import {Wozniak} from "../../../api/subscriptions/wozniak";
 import {MainNavigation} from "../../../util/mainNavigation";
 import {LoginTasks} from "../../../util/login";
@@ -370,7 +370,7 @@ Template.filterIndexWorkload.helpers({
 		}
 		switch (returnType) {
 			case 0:
-				return (Leitner.find({user_id: Meteor.userId()}).count() > 0 || Wozniak.find({user_id: Meteor.userId()}).count() > 0);
+				return (LeitnerCardStats.find({user_id: Meteor.userId()}).count() > 0 || Wozniak.find({user_id: Meteor.userId()}).count() > 0);
 			case 1:
 				return Cardsets.find(query, {
 					sort: Filter.getSortFilter(),

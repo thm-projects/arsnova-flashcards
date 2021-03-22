@@ -3,7 +3,7 @@ import {Meteor} from "meteor/meteor";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Template} from "meteor/templating";
 import {CardType} from "../../../../util/cardTypes";
-import {Workload} from "../../../../api/subscriptions/workload";
+import {LeitnerLearningWorkload} from "../../../../api/subscriptions/leitner/leitnerLearningWorkload";
 import {Wozniak} from "../../../../api/subscriptions/wozniak";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import "../modal/chooseFlashcards.js";
@@ -30,7 +30,7 @@ Template.cardsetNavigationWorkload.helpers({
 		}
 	},
 	learningLeitner: function () {
-		let workload = Workload.findOne({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId()});
+		let workload = LeitnerLearningWorkload.findOne({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId()});
 		if (workload !== undefined && workload.leitner !== undefined && workload.leitner.active !== undefined) {
 			return workload.leitner.active;
 		}
@@ -43,7 +43,7 @@ Template.cardsetNavigationWorkload.helpers({
 	learningBoth: function () {
 		let learningLeitner = false;
 		let learningWozniak = false;
-		let workload = Workload.findOne({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId()});
+		let workload = LeitnerLearningWorkload.findOne({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId()});
 		if (workload !== undefined && workload.leitner !== undefined && workload.leitner.active !== undefined) {
 			learningLeitner = workload.leitner.active;
 		}

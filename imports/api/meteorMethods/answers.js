@@ -1,12 +1,12 @@
 import {Meteor} from "meteor/meteor";
 import {check} from "meteor/check";
-import {Leitner} from "../subscriptions/leitner";
+import {LeitnerCardStats} from "../subscriptions/leitner/leitnerCardStats";
 import {Cards} from "../subscriptions/cards";
 import {Cardsets} from "../subscriptions/cardsets";
 import {AnswerUtilities} from "../../util/answers";
-import {LeitnerTasks} from "../subscriptions/leitnerTasks";
-import {LeitnerHistory} from "../subscriptions/leitnerHistory";
-import {Workload} from "../subscriptions/workload";
+import {LeitnerActivationDay} from "../subscriptions/leitner/leitnerActivationDay";
+import {LeitnerPerformanceHistory} from "../subscriptions/leitner/leitnerPerformanceHistory";
+import {LeitnerLearningWorkload} from "../subscriptions/leitner/leitnerLearningWorkload";
 import {LeitnerUtilities} from "../../util/leitner";
 import {LearningStatisticsUtilities} from "../../util/learningStatistics";
 
@@ -19,7 +19,7 @@ Meteor.methods({
 		return AnswerUtilities.getAnswerContent(cardIds, cardsetId, disableAnswers);
 	},
 	nextMCCard: function (activeCardId, cardsetId, timestamps) {
-		let leitner = Leitner.findOne({
+		let leitner = LeitnerCardStats.findOne({
 			card_id: activeCardId,
 			user_id: Meteor.userId(),
 			cardset_id: cardsetId,
@@ -27,11 +27,11 @@ Meteor.methods({
 			active: true
 		});
 
-		let task = LeitnerTasks.findOne(
+		let task = LeitnerActivationDay.findOne(
 			{cardset_id: cardsetId, user_id: Meteor.userId()}, {sort: {session: -1, createdAt: -1}});
 
 		if (leitner !== undefined && task !== undefined) {
-			Leitner.update({
+			LeitnerCardStats.update({
 				card_id: activeCardId,
 				user_id: Meteor.userId(),
 				cardset_id: cardsetId,
@@ -40,7 +40,7 @@ Meteor.methods({
 					active: false
 				}});
 
-			LeitnerHistory.update({
+			LeitnerPerformanceHistory.update({
 				card_id: activeCardId,
 				user_id: Meteor.userId(),
 				cardset_id: cardsetId,
@@ -48,7 +48,7 @@ Meteor.methods({
 			}, {$set: {
 					timestamps: timestamps
 				}});
-			LearningStatisticsUtilities.setGlobalStatistics(task);
+			LearningStatisticsUtilities.setPerformanceStats(task);
 		}
 	},
 	setMCAnswers: function (cardIds, activeCardId, cardsetId, userAnswers, timestamps) {
@@ -57,14 +57,14 @@ Meteor.methods({
 		check(cardsetId, String);
 		check(userAnswers, [Number]);
 
-		let activeLeitner = Leitner.findOne({
+		let activeLeitner = LeitnerCardStats.findOne({
 			card_id: activeCardId,
 			user_id: Meteor.userId(),
 			cardset_id: cardsetId
 		});
 
 		if (activeLeitner !== undefined && activeLeitner.submitted !== true) {
-			let leitnerTask = LeitnerTasks.findOne(
+			let leitnerTask = LeitnerActivationDay.findOne(
 				{cardset_id: cardsetId, user_id: Meteor.userId()}, {fields: {_id: 1}, sort: {session: -1, createdAt: -1}});
 
 			let card = Cards.findOne({_id: activeCardId});
@@ -75,7 +75,7 @@ Meteor.methods({
 				let isAnswerWrong = AnswerUtilities.isAnswerWrong(card.answers.rightAnswers, userAnswers);
 				let result = LeitnerUtilities.setNextBoxData(isAnswerWrong, activeLeitner, cardset);
 
-				Leitner.update({
+				LeitnerCardStats.update({
 					_id: activeLeitner._id
 				}, {$set: {
 						box: result.box,
@@ -84,7 +84,7 @@ Meteor.methods({
 						priority: result.priority,
 						submitted: true
 					}});
-				LeitnerHistory.update({
+				LeitnerPerformanceHistory.update({
 					card_id: activeCardId,
 					user_id: Meteor.userId(),
 					cardset_id: cardsetId,
@@ -96,7 +96,7 @@ Meteor.methods({
 						"mcAnswers.card": card.answers.rightAnswers
 					}});
 
-				Workload.update({cardset_id: activeLeitner.cardset_id, user_id: activeLeitner.user_id}, {
+				LeitnerLearningWorkload.update({cardset_id: activeLeitner.cardset_id, user_id: activeLeitner.user_id}, {
 					$set: {
 						"leitner.nextLowestPriority": result.lowestPriorityList
 					}
@@ -135,11 +135,11 @@ Meteor.methods({
 			query.user_id = Meteor.userId();
 			query.active = true;
 
-			let activeLeitner = Leitner.findOne(query);
+			let activeLeitner = LeitnerCardStats.findOne(query);
 			if (activeLeitner !== undefined) {
 				let result = LeitnerUtilities.setNextBoxData(isAnswerWrong, activeLeitner, cardset);
 
-				Leitner.update(activeLeitner._id, {
+				LeitnerCardStats.update(activeLeitner._id, {
 					$set: {
 						box: result.box,
 						active: false,
@@ -149,22 +149,22 @@ Meteor.methods({
 					}
 				});
 
-				let leitnerTask = LeitnerTasks.findOne({cardset_id: activeLeitner.cardset_id, user_id: activeLeitner.user_id}, {sort: {session: -1, createdAt: -1}});
+				let leitnerTask = LeitnerActivationDay.findOne({cardset_id: activeLeitner.cardset_id, user_id: activeLeitner.user_id}, {sort: {session: -1, createdAt: -1}});
 				if (leitnerTask !== undefined) {
 					delete query.active;
 					query.task_id = leitnerTask._id;
-					LeitnerHistory.update(query, {
+					LeitnerPerformanceHistory.update(query, {
 						$set: {
 							box: result.box,
 							answer: isAnswerWrong ? 1 : 0,
 							timestamps: timestamps
 						}
 					});
-					LearningStatisticsUtilities.setGlobalStatistics(leitnerTask);
+					LearningStatisticsUtilities.setPerformanceStats(leitnerTask);
 				}
 
 				LeitnerUtilities.setEndBonusPoints(cardset, leitnerTask, result);
-				Workload.update({cardset_id: activeLeitner.cardset_id, user_id: activeLeitner.user_id}, {
+				LeitnerLearningWorkload.update({cardset_id: activeLeitner.cardset_id, user_id: activeLeitner.user_id}, {
 					$set: {
 						"leitner.nextLowestPriority": result.lowestPriorityList
 					}

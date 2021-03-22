@@ -1,10 +1,11 @@
-import {Utilities} from "../../../../../util/utilities";
-import * as config from "../../../../../config/serverBoot";
-import {TYPE_MIGRATE} from "../../../../../config/serverBoot";
-import {Leitner} from "../../../../../api/subscriptions/leitner";
-import {Cardsets} from "../../../../../api/subscriptions/cardsets";
-import {Cards} from "../../../../../api/subscriptions/cards";
+import {Utilities} from "../../../../../../../util/utilities";
+import * as config from "../../../../../../../config/serverBoot";
+import {TYPE_MIGRATE} from "../../../../../../../config/serverBoot";
+import {Cardsets} from "../../../../../../../api/subscriptions/cardsets";
+import {Cards} from "../../../../../../../api/subscriptions/cards";
+import {Leitner} from "../../../../../../../api/subscriptions/legacyLeitner/leitner";
 
+// Deprecated. New Migrations will take place in learningStatistics/leitner/cardStats
 function leitnerMigrationStep() {
 	let groupName = "Leitner Migration";
 	Utilities.debugServerBoot(config.START_GROUP, groupName);

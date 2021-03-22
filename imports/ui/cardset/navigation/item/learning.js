@@ -3,7 +3,7 @@ import {Meteor} from "meteor/meteor";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
-import {Workload} from "../../../../api/subscriptions/workload";
+import {LeitnerLearningWorkload} from "../../../../api/subscriptions/leitner/leitnerLearningWorkload";
 import {CardsetNavigation} from "../../../../util/cardsetNavigation";
 import {BertAlertVisuals} from "../../../../util/bertAlertVisuals";
 import "./learning.html";
@@ -16,7 +16,7 @@ import "./learning.html";
 
 Template.cardsetNavigationLearning.helpers({
 	notEmpty: function () {
-		let workload = Workload.findOne({cardset_id: Session.get('activeCardset')._id, user_id: Meteor.userId()});
+		let workload = LeitnerLearningWorkload.findOne({cardset_id: Session.get('activeCardset')._id, user_id: Meteor.userId()});
 		return workload.leitner.activeCount;
 	}
 });
@@ -38,7 +38,7 @@ Template.cardsetNavigationLearning.onRendered(function () {
 		Bert.defaults.hideDelay = 10000;
 		let bertType = "success";
 		if (Session.get('activeCardset').learningEnd.getTime() > new Date().getTime()) {
-			let workload = Workload.findOne({cardset_id: Session.get('activeCardset')._id, user_id: Meteor.userId()});
+			let workload = LeitnerLearningWorkload.findOne({cardset_id: Session.get('activeCardset')._id, user_id: Meteor.userId()});
 			let text = "";
 			if (workload.leitner.activeCount) {
 				let deadline = new Date(workload.leitner.activeDate.getTime() + Session.get('activeCardset').daysBeforeReset * 86400000);

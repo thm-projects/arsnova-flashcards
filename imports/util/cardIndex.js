@@ -1,7 +1,7 @@
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
-import {Leitner} from "../api/subscriptions/leitner";
+import {LeitnerCardStats} from "../api/subscriptions/leitner/leitnerCardStats";
 import {Wozniak} from "../api/subscriptions/wozniak";
 import {Cards} from "../api/subscriptions/cards";
 import {Cardsets} from "../api/subscriptions/cardsets";
@@ -119,7 +119,7 @@ export let CardIndex = class CardIndex {
 
 	static leitnerIndex () {
 		let leitnerCardIndex = [];
-		let indexCards = Leitner.find({
+		let indexCards = LeitnerCardStats.find({
 			cardset_id: FlowRouter.getParam('_id'),
 			user_id: Meteor.userId(),
 			active: true
@@ -278,7 +278,7 @@ export let CardIndex = class CardIndex {
 	static getLeitnerCards () {
 		let cards = [];
 		let cardIndexFilter = this.getCardIndexFilter();
-		let learnedCards = Leitner.find({
+		let learnedCards = LeitnerCardStats.find({
 			card_id: {$in: cardIndexFilter},
 			cardset_id: Session.get('activeCardset')._id,
 			user_id: Meteor.userId(),

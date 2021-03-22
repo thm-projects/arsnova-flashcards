@@ -3,7 +3,7 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Leitner} from "../../api/subscriptions/leitner";
+import {LeitnerCardStats} from "../../api/subscriptions/leitner/leitnerCardStats";
 import {Wozniak} from "../../api/subscriptions/wozniak";
 import {Cardsets} from "../../api/subscriptions/cardsets";
 import {CardNavigation} from "../../util/cardNavigation";
@@ -49,7 +49,7 @@ Template.learnAlgorithms.onCreated(function () {
 			difficulty: 1
 		}
 	});
-	const leitner = Leitner.find({active: true}, {
+	const leitner = LeitnerCardStats.find({active: true}, {
 		fields: {
 			original_cardset_id: 1,
 			cardset_id: 1
@@ -103,7 +103,7 @@ Template.learnAlgorithms.onRendered(function () {
 Template.learnAlgorithms.helpers({
 	noCards: function () {
 		if (FlowRouter.getRouteName() === 'box') {
-			return !Leitner.findOne({
+			return !LeitnerCardStats.findOne({
 				cardset_id: FlowRouter.getParam('_id'),
 				user_id: Meteor.userId(),
 				box: {$ne: 6}
@@ -115,7 +115,7 @@ Template.learnAlgorithms.helpers({
 	},
 	isFinished: function () {
 		if (FlowRouter.getRouteName() === 'box') {
-			return !Leitner.findOne({
+			return !LeitnerCardStats.findOne({
 				cardset_id: FlowRouter.getParam('_id'),
 				user_id: Meteor.userId(),
 				active: true
