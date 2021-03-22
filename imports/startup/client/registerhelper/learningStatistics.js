@@ -2,7 +2,7 @@ import {Route} from "../../../util/route";
 import {Session} from "meteor/session";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import {Cardsets} from "../../../api/subscriptions/cardsets";
-import {Workload} from "../../../api/subscriptions/workload";
+import {LeitnerLearningWorkload} from "../../../api/subscriptions/leitner/leitnerLearningWorkload";
 import {LearningStatus} from "../../../util/learningStatus";
 import {Utilities} from "../../../util/utilities";
 
@@ -47,7 +47,7 @@ Template.registerHelper("learningStatisticsIsInBonus", function (type = 0) {
 		} else if (Session.get('selectedLearningHistory') !== undefined) {
 			cardset_id = Session.get('selectedLearningHistory')[0].cardset_id;
 		}
-		let workload = Workload.findOne({user_id: Meteor.userId(), cardset_id: cardset_id});
+		let workload = LeitnerLearningWorkload.findOne({user_id: Meteor.userId(), cardset_id: cardset_id});
 		if (workload !== undefined) {
 			return workload.leitner.bonus;
 		}

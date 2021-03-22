@@ -1,16 +1,17 @@
-import {Utilities} from "../../../../../util/utilities";
-import * as config from "../../../../../config/serverBoot";
-import {TYPE_MIGRATE} from "../../../../../config/serverBoot";
-import {Workload} from "../../../../../api/subscriptions/workload";
-import {LeitnerUtilities} from "../../../../../util/leitner";
-import {Leitner} from "../../../../../api/subscriptions/leitner";
+import {Utilities} from "../../../../../../../util/utilities";
+import * as config from "../../../../../../../config/serverBoot";
+import {TYPE_MIGRATE} from "../../../../../../../config/serverBoot";
+import {LeitnerUtilities} from "../../../../../../../util/leitner";
 import {Meteor} from "meteor/meteor";
-import {LeitnerHistory} from "../../../../../api/subscriptions/leitnerHistory";
-import {LeitnerTasks} from "../../../../../api/subscriptions/leitnerTasks";
-import * as leitnerConfig from "../../../../../config/leitner";
-import {Cardsets} from "../../../../../api/subscriptions/cardsets";
-import {Bonus} from "../../../../../util/bonus";
+import * as leitnerConfig from "../../../../../../../config/leitner";
+import {Cardsets} from "../../../../../../../api/subscriptions/cardsets";
+import {Bonus} from "../../../../../../../util/bonus";
+import {Workload} from "../../../../../../../api/subscriptions/legacyLeitner/workload";
+import {Leitner} from "../../../../../../../api/subscriptions/legacyLeitner/leitner";
+import {LeitnerHistory} from "../../../../../../../api/subscriptions/legacyLeitner/leitnerHistory";
+import {LeitnerTasks} from "../../../../../../../api/subscriptions/legacyLeitner/leitnerTasks";
 
+// Deprecated. New Migrations will take place in learningStatistics/leitner/learningWorkload
 function workloadMigrationStep() {
 	let groupName = "Workload Migration";
 	Utilities.debugServerBoot(config.START_GROUP, groupName);

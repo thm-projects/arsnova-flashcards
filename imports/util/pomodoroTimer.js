@@ -4,7 +4,7 @@ import {Cardsets} from "../api/subscriptions/cardsets.js";
 import {Route} from "./route.js";
 import swal from "sweetalert2";
 import * as config from "../config/pomodoroTimer.js";
-import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
+import {LeitnerActivationDay} from "../api/subscriptions/leitner/leitnerActivationDay";
 import {FlowRouter} from 'meteor/ostrio:flow-router-extra';
 import {ServerStyle} from "./styles";
 import {NavigatorCheck} from "./navigatorCheck";
@@ -268,7 +268,7 @@ export let PomodoroTimer = class PomodoroTimer {
 			}
 		} else {
 			if (Bonus.isInBonus(FlowRouter.getParam('_id'))) {
-				let leitnerTask = LeitnerTasks.findOne({}, {sort: {createdAt: -1}});
+				let leitnerTask = LeitnerActivationDay.findOne({}, {sort: {createdAt: -1}});
 				leitnerTask.timer.workload.completed++;
 				breakLength = this.getCurrentBreakLength(leitnerTask);
 			} else {
@@ -777,7 +777,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		// Only used for landing page pomodoro
 		isFullscreenEnabled = true;
 		if (Route.isBox()) {
-			let leitnerTask = LeitnerTasks.findOne({user_id: Meteor.userId(), cardset_id: FlowRouter.getParam('_id')});
+			let leitnerTask = LeitnerActivationDay.findOne({user_id: Meteor.userId(), cardset_id: FlowRouter.getParam('_id')});
 			if (leitnerTask !== undefined && leitnerTask.pomodoroTimer !== undefined && leitnerTask.pomodoroTimer.soundConfig !== undefined) {
 				goalPoms = leitnerTask.pomodoroTimer.quantity;
 				pomLength = leitnerTask.pomodoroTimer.workLength;
@@ -970,7 +970,7 @@ export let PomodoroTimer = class PomodoroTimer {
 	static restoreWorkloadTime (curTime) {
 		if (Bonus.isInBonus(FlowRouter.getParam('_id'))) {
 			if (Route.isBox()) {
-				let leitnerTask = LeitnerTasks.findOne({}, {sort: {createdAt: -1}});
+				let leitnerTask = LeitnerActivationDay.findOne({}, {sort: {createdAt: -1}});
 				if (leitnerTask !== undefined && leitnerTask.timer !== undefined) {
 					let status = leitnerTask.timer.status;
 					let revertMinutes = this.getRemainingTime(leitnerTask, true);
@@ -1022,7 +1022,7 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	static updateServerTimerStart () {
-		let leitnerTask = LeitnerTasks.findOne({
+		let leitnerTask = LeitnerActivationDay.findOne({
 			user_id: Meteor.userId(),
 			cardset_id: FlowRouter.getParam('_id')
 		}, {
@@ -1035,7 +1035,7 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	static updateServerTimerIntervalStart () {
-		let leitnerTask = LeitnerTasks.findOne({
+		let leitnerTask = LeitnerActivationDay.findOne({
 			user_id: Meteor.userId(),
 			cardset_id: FlowRouter.getParam('_id')
 		}, {
@@ -1061,7 +1061,7 @@ export let PomodoroTimer = class PomodoroTimer {
 	}
 
 	static isTransitionRequest () {
-		let leitnerTask = LeitnerTasks.findOne({
+		let leitnerTask = LeitnerActivationDay.findOne({
 			user_id: Meteor.userId(),
 			cardset_id: FlowRouter.getParam('_id')
 		}, {

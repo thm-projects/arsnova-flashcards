@@ -2,8 +2,8 @@ import {Meteor} from "meteor/meteor";
 import {Cards} from "../subscriptions/cards.js";
 import {TranscriptBonus} from "../subscriptions/transcriptBonus";
 import {TranscriptBonusList} from "../../util/transcriptBonus.js";
-import {Leitner} from "../subscriptions/leitner";
-import {Workload} from "../subscriptions/workload";
+import {LeitnerCardStats} from "../subscriptions/leitner/leitnerCardStats";
+import {LeitnerLearningWorkload} from "../subscriptions/leitner/leitnerLearningWorkload";
 import {Wozniak} from "../subscriptions/wozniak";
 import {Notifications} from "../subscriptions/notifications";
 import {Ratings} from "../subscriptions/ratings";
@@ -13,7 +13,7 @@ import {UserPermissions} from "../../util/permissions";
 import {ServerStyle} from "../../util/styles";
 import {Utilities} from "../../util/utilities";
 import {Cardsets} from "../subscriptions/cardsets.js";
-import {LeitnerTasks} from "../subscriptions/leitnerTasks";
+import {LeitnerActivationDay} from "../subscriptions/leitner/leitnerActivationDay";
 import {Bonus} from "../../util/bonus";
 
 Meteor.methods({
@@ -278,7 +278,7 @@ Meteor.methods({
 				cardset_id: id
 			});
 			Meteor.call('updateShuffledCardsetQuantity', id);
-			Leitner.remove({
+			LeitnerCardStats.remove({
 				cardset_id: id
 			});
 			Wozniak.remove({
@@ -290,7 +290,7 @@ Meteor.methods({
 			Ratings.remove({
 				cardset_id: id
 			});
-			Workload.remove({
+			LeitnerLearningWorkload.remove({
 				cardset_id: id
 			});
 			TranscriptBonus.remove({
@@ -344,7 +344,7 @@ Meteor.methods({
 			}
 
 			Meteor.call('updateShuffledCardsetQuantity', cardset._id);
-			Leitner.remove({
+			LeitnerCardStats.remove({
 				cardset_id: id
 			});
 			Wozniak.remove({
@@ -377,12 +377,12 @@ Meteor.methods({
 					lastEditor: Meteor.userId()
 				}
 			});
-			let users = Workload.find({
+			let users = LeitnerLearningWorkload.find({
 				cardset_id: cardset._id,
 				'leitner.bonus': true
 			}, {fields: {user_id: 1}}).fetch();
 			for (let i = 0; i < users.length; i++) {
-				Workload.update({
+				LeitnerLearningWorkload.update({
 						cardset_id: cardset._id,
 						user_id: users[i].user_id
 					},
@@ -392,7 +392,7 @@ Meteor.methods({
 						}
 					}
 				);
-				Leitner.remove({
+				LeitnerCardStats.remove({
 					cardset_id: cardset._id,
 					user_id: users[i].user_id
 				});
@@ -740,7 +740,7 @@ Meteor.methods({
 			});
 			let removedCards = Cards.find({cardset_id: {$in: removedCardsets}}).fetch();
 			for (let i = 0; i < removedCards.length; i++) {
-				Leitner.remove({
+				LeitnerCardStats.remove({
 					cardset_id: cardset._id,
 					card_id: removedCards[i]._id
 				});
@@ -767,7 +767,7 @@ Meteor.methods({
 			return;
 		}
 		//Get Users
-		const users = Workload.find({
+		const users = LeitnerLearningWorkload.find({
 				cardset_id: cardset_id,
 				"leitner.bonus": true
 			},
@@ -781,7 +781,7 @@ Meteor.methods({
 		const box6Counts = {};
 		users.forEach(user => box6Counts[user] = 0);
 		//Count users their box 6 cards
-		Leitner.find({
+		LeitnerCardStats.find({
 				cardset_id: cardset_id,
 				box: 6
 			},
@@ -794,14 +794,14 @@ Meteor.methods({
 			amountOfLearnableCards = cardset.quantity;
 		} else {
 			//if shuffled, it could contain non learnable questions
-			amountOfLearnableCards = Leitner.find({
+			amountOfLearnableCards = LeitnerCardStats.find({
 				user_id: users[0],
 				cardset_id: cardset_id
 			}).count();
 		}
 		//Calculate bonus points & update
 		users.forEach(user => {
-			const task_id = LeitnerTasks.findOne({
+			const task_id = LeitnerActivationDay.findOne({
 					cardset_id: cardset_id,
 					user_id: user
 				},
@@ -810,7 +810,7 @@ Meteor.methods({
 					fields: {_id: 1}
 				})._id;
 			const bonusPoints = Bonus.getAchievedBonus(box6Counts[user], cardset.workload, amountOfLearnableCards);
-			LeitnerTasks.update(
+			LeitnerActivationDay.update(
 				{
 					_id: task_id
 				},
@@ -1093,7 +1093,7 @@ Meteor.methods({
 			} else if (type === 'user') {
 				query.user_id = Meteor.userId();
 			}
-			let cardsetIDFilter = _.uniq(Leitner.find(query, {
+			let cardsetIDFilter = _.uniq(LeitnerCardStats.find(query, {
 				fields: {cardset_id: 1}
 			}).fetch().map(function (x) {
 				return x.cardset_id;

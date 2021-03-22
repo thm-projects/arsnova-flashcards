@@ -1,13 +1,13 @@
 import {Meteor} from "meteor/meteor";
-import {Workload} from "../subscriptions/workload";
+import {LeitnerLearningWorkload} from "../subscriptions/leitner/leitnerLearningWorkload";
 import {Cardsets} from "../subscriptions/cardsets.js";
 import {Cards} from "../subscriptions/cards";
 import {check} from "meteor/check";
 import {Bonus} from "../../util/bonus";
-import {LeitnerHistory} from "../subscriptions/leitnerHistory";
+import {LeitnerPerformanceHistory} from "../subscriptions/leitner/leitnerPerformanceHistory";
 import {Utilities} from "../../util/utilities";
 import {UserPermissions} from "../../util/permissions";
-import {LeitnerTasks} from "../subscriptions/leitnerTasks";
+import {LeitnerActivationDay} from "../subscriptions/leitner/leitnerActivationDay";
 import {LeitnerUtilities} from "../../util/leitner";
 import {CardsetUserlist} from "../../util/cardsetUserlist";
 
@@ -56,7 +56,7 @@ Meteor.methods({
 				content += colSep;
 			}
 			content += colSep + cardsetInfo[infoCardsetCounter++][0] + newLine;
-			let learners = CardsetUserlist.getLearners(Workload.find({cardset_id: cardset_id, 'leitner.bonus': true}).fetch(), cardset_id);
+			let learners = CardsetUserlist.getLearners(LeitnerLearningWorkload.find({cardset_id: cardset_id, 'leitner.bonus': true}).fetch(), cardset_id);
 			for (let k = 0; k < learners.length; k++) {
 				let totalCards = learners[k].box1 + learners[k].box2 + learners[k].box3 + learners[k].box4 + learners[k].box5 + learners[k].box6;
 				let achievedBonus = Bonus.getAchievedBonus(learners[k].box6, cardset.workload, totalCards);
@@ -157,7 +157,7 @@ Meteor.methods({
 		check(cardset_id, String);
 		let cardset = Cardsets.findOne({_id: cardset_id});
 		if (UserPermissions.gotBackendAccess() || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
-			return CardsetUserlist.getLearners(Workload.find({cardset_id: cardset_id, 'leitner.bonus': true}).fetch(), cardset_id);
+			return CardsetUserlist.getLearners(LeitnerLearningWorkload.find({cardset_id: cardset_id, 'leitner.bonus': true}).fetch(), cardset_id);
 		}
 	},
 	getLearningLog: function (user_id, cardset_id, task_id) {
@@ -173,7 +173,7 @@ Meteor.methods({
 			newUserId = Meteor.userId();
 		}
 
-		let leitnerHistory = LeitnerHistory.find({task_id: task_id, cardset_id: cardset_id, user_id: newUserId, "timestamps.submission": {$exists: true}},
+		let leitnerHistory = LeitnerPerformanceHistory.find({task_id: task_id, cardset_id: cardset_id, user_id: newUserId, "timestamps.submission": {$exists: true}},
 			{sort: {"timestamps.submission": 1}}).fetch();
 		let cardIds = leitnerHistory.map(function (history) {
 			return history.card_id;
@@ -229,12 +229,12 @@ Meteor.methods({
 		let lastActivity = "null";
 		if (!isProfileView) {
 			query.cardset_id = cardset_id;
-			let highestSessionTask = LeitnerTasks.findOne(query, {sort: {session: -1}});
+			let highestSessionTask = LeitnerActivationDay.findOne(query, {sort: {session: -1}});
 			if (highestSessionTask === undefined) {
 				return lastActivity;
 			}
 			query.session = highestSessionTask.session;
-			let leitnerTasks = LeitnerTasks.find(query, {sort: {createdAt: -1}}).fetch();
+			let leitnerTasks = LeitnerActivationDay.find(query, {sort: {createdAt: -1}}).fetch();
 			let taskIds = leitnerTasks.map(function (task) {
 				return task._id;
 			});
@@ -242,7 +242,7 @@ Meteor.methods({
 			query.task_id = {$in: taskIds};
 		}
 		query["timestamps.submission"] = {$exists: true};
-		let leitnerHistory = LeitnerHistory.findOne(query,
+		let leitnerHistory = LeitnerPerformanceHistory.findOne(query,
 			{sort: {"timestamps.submission": -1}});
 		if (leitnerHistory !== undefined) {
 			lastActivity = leitnerHistory.timestamps.submission;
@@ -261,18 +261,18 @@ Meteor.methods({
 			user_id = Meteor.userId();
 		}
 		let highestSessionTask = LeitnerUtilities.getHighestLeitnerTaskSessionID(cardset_id, user_id);
-		let leitnerTasks = LeitnerTasks.find({user_id: user_id, cardset_id: cardset_id, session: highestSessionTask.session}, {sort: {createdAt: -1}}).fetch();
+		let leitnerTasks = LeitnerActivationDay.find({user_id: user_id, cardset_id: cardset_id, session: highestSessionTask.session}, {sort: {createdAt: -1}}).fetch();
 		let taskIds = leitnerTasks.map(function (task) {
 			return task._id;
 		});
-		let leitnerHistory = LeitnerHistory.findOne({task_id: {$in: taskIds}, cardset_id: cardset_id, user_id: user_id, "timestamps.submission": {$exists: true}},
+		let leitnerHistory = LeitnerPerformanceHistory.findOne({task_id: {$in: taskIds}, cardset_id: cardset_id, user_id: user_id, "timestamps.submission": {$exists: true}},
 			{sort: {"timestamps.submission": -1}});
 		let lastActivity = "";
 		if (leitnerHistory !== undefined) {
 			lastActivity = leitnerHistory.timestamps.submission;
 		}
 		let result = [];
-		let workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id});
+		let workload = LeitnerLearningWorkload.findOne({user_id: user_id, cardset_id: cardset_id});
 		let isInBonus = false;
 		let userCardMedian = 0;
 		let userCardArithmeticMean = 0;
@@ -312,9 +312,9 @@ Meteor.methods({
 				item.cardArithmeticMean = 0;
 				item.cardStandardDeviation = 0;
 			}
-			item.workload = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id}).count();
-			item.known = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id, answer: 0}).count();
-			item.notKnown = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id, answer: 1}).count();
+			item.workload = LeitnerPerformanceHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id}).count();
+			item.known = LeitnerPerformanceHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id, answer: 0}).count();
+			item.notKnown = LeitnerPerformanceHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id, answer: 1}).count();
 			item.missedDeadline = leitnerTasks[i].missedDeadline;
 			item.user_id = user_id;
 			item.cardset_id = cardset_id;
@@ -329,7 +329,7 @@ Meteor.methods({
 			} else {
 				item.reason = 0;
 			}
-			let lastAnswerDate = LeitnerHistory.findOne({
+			let lastAnswerDate = LeitnerPerformanceHistory.findOne({
 				user_id: user_id,
 				cardset_id: cardset_id,
 				task_id: leitnerTasks[i]._id,
@@ -339,7 +339,7 @@ Meteor.methods({
 				item.lastAnswerDate = lastAnswerDate.timestamps.submission;
 			}
 			item.duration = 0;
-			let history = LeitnerHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id, answer: {$exists: true}}, {fields: {timestamps: 1}}).fetch();
+			let history = LeitnerPerformanceHistory.find({user_id: user_id, cardset_id: cardset_id, task_id: leitnerTasks[i]._id, answer: {$exists: true}}, {fields: {timestamps: 1}}).fetch();
 			if (history !== undefined) {
 				for (let h = 0; h < history.length; h++) {
 					let submission =  moment(history[h].timestamps.submission);

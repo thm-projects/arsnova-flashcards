@@ -1,9 +1,9 @@
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../subscriptions/cardsets.js";
 import {Cards} from "../subscriptions/cards.js";
-import {Leitner} from "../subscriptions/leitner";
-import {LeitnerHistory} from "../subscriptions/leitnerHistory";
-import {Workload} from "../subscriptions/workload";
+import {LeitnerCardStats} from "../subscriptions/leitner/leitnerCardStats";
+import {LeitnerPerformanceHistory} from "../subscriptions/leitner/leitnerPerformanceHistory";
+import {LeitnerLearningWorkload} from "../subscriptions/leitner/leitnerLearningWorkload";
 import {Wozniak} from "../subscriptions/wozniak";
 import {Ratings} from "../subscriptions/ratings";
 import {check} from "meteor/check";
@@ -14,7 +14,7 @@ import {TranscriptBonus} from "../subscriptions/transcriptBonus";
 import {Utilities} from "../../util/utilities";
 import {CardType} from "../../util/cardTypes";
 import {LeitnerUtilities} from "../../util/leitner";
-import {LeitnerTasks} from "../subscriptions/leitnerTasks";
+import {LeitnerActivationDay} from "../subscriptions/leitner/leitnerActivationDay";
 import {ServerStyle} from "../../util/styles";
 
 Meteor.methods({
@@ -308,7 +308,7 @@ Meteor.methods({
 			}
 		});
 
-		Leitner.remove({
+		LeitnerCardStats.remove({
 			user_id: user_id
 		});
 
@@ -317,15 +317,15 @@ Meteor.methods({
 			user_id: user_id
 		});
 
-		let workload = Workload.find({user_id: user_id}, {fields: {cardset_id: 1}}).fetch();
+		let workload = LeitnerLearningWorkload.find({user_id: user_id}, {fields: {cardset_id: 1}}).fetch();
 
-		Workload.remove({
+		LeitnerLearningWorkload.remove({
 			user_id: user_id
 		});
 
 		let nextDeletedUserID = LeitnerUtilities.getNextLeitnerDeletedUserID();
 		for (let i = 0; i < workload.length; i++) {
-			LeitnerTasks.update({
+			LeitnerActivationDay.update({
 					user_id: user_id,
 					cardset_id: workload[i].cardset_id
 				},
@@ -340,7 +340,7 @@ Meteor.methods({
 				}, {multi: true}
 			);
 
-			LeitnerHistory.update({
+			LeitnerPerformanceHistory.update({
 					user_id: user_id,
 					cardset_id: workload[i].cardset_id
 				},
@@ -444,7 +444,7 @@ Meteor.methods({
 				},
 				{
 					$set: {
-						"count.workload": Leitner.find({user_id: user_id}).count() + Wozniak.find({user_id: user_id}).count()
+						"count.workload": LeitnerCardStats.find({user_id: user_id}).count() + Wozniak.find({user_id: user_id}).count()
 					}
 				}
 			);

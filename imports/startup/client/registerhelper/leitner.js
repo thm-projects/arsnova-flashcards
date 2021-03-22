@@ -2,7 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Route} from "../../../util/route";
 import {Bonus} from "../../../util/bonus";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
-import {Workload} from "../../../api/subscriptions/workload";
+import {LeitnerLearningWorkload} from "../../../api/subscriptions/leitner/leitnerLearningWorkload";
 import {Cardsets} from "../../../api/subscriptions/cardsets";
 import {Session} from "meteor/session";
 
@@ -11,7 +11,7 @@ Template.registerHelper("gotLeitnerTimerDebugEnabled", function () {
 });
 
 Template.registerHelper("getNextCardTime", function () {
-	let workload = Workload.findOne({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId()});
+	let workload = LeitnerLearningWorkload.findOne({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId()});
 	let learningEnd = Cardsets.findOne({_id: FlowRouter.getParam('_id')}).learningEnd;
 	if (workload !== undefined && workload.leitner !== undefined && workload.leitner.nextDate !== undefined && learningEnd !== undefined) {
 		if (workload.leitner.nextDate.getTime() > learningEnd.getTime()) {

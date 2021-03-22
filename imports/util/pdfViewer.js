@@ -4,7 +4,7 @@ import {Route} from "./route.js";
 import * as config from "../config/pdfViewer.js";
 import {Cards} from "../api/subscriptions/cards";
 import {Session} from "meteor/session";
-import {Leitner} from "../api/subscriptions/leitner";
+import {LeitnerCardStats} from "../api/subscriptions/leitner/leitnerCardStats";
 import {Wozniak} from "../api/subscriptions/wozniak";
 import XRegExp from 'xregexp';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
@@ -92,7 +92,7 @@ export let PDFViewer = class PDFViewer {
 		if (Route.isLearningMode() && CardType.gothLearningModePDFAutoTarget(cardType)) {
 			let viewedAutoPDF;
 			if (Route.isBox()) {
-				viewedAutoPDF = Leitner.findOne({card_id: card_id, cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId(), viewedPDF: true});
+				viewedAutoPDF = LeitnerCardStats.findOne({card_id: card_id, cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId(), viewedPDF: true});
 			} else {
 				viewedAutoPDF = Wozniak.findOne({card_id: card_id, cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId(), viewedPDF: true});
 			}

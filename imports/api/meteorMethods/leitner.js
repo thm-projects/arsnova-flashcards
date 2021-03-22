@@ -1,23 +1,23 @@
 import {Meteor} from "meteor/meteor";
 import {check} from "meteor/check";
-import {Leitner} from "../subscriptions/leitner";
-import {Workload} from "../subscriptions/workload";
+import {LeitnerCardStats} from "../subscriptions/leitner/leitnerCardStats";
+import {LeitnerLearningWorkload} from "../subscriptions/leitner/leitnerLearningWorkload";
 import {Cardsets} from "../subscriptions/cardsets";
 import {Bonus} from "../../util/bonus";
 import {Profile} from "../../util/profile";
 import {UserPermissions} from "../../util/permissions";
 import {CardType} from "../../util/cardTypes";
 import {LeitnerUtilities} from "../../util/leitner";
-import {LeitnerTasks} from "../subscriptions/leitnerTasks";
+import {LeitnerActivationDay} from "../subscriptions/leitner/leitnerActivationDay";
 import {PomodoroTimer} from "../../util/pomodoroTimer";
 
 Meteor.methods({
 	initializeWorkloadData: function (cardset_id, user_id) {
 		check(cardset_id, String);
 		check(user_id, String);
-		let workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id});
+		let workload = LeitnerLearningWorkload.findOne({user_id: user_id, cardset_id: cardset_id});
 		if (workload === undefined) {
-			Workload.insert({
+			LeitnerLearningWorkload.insert({
 				cardset_id: cardset_id,
 				user_id: user_id,
 				leitner: {
@@ -31,7 +31,7 @@ Meteor.methods({
 		check(cardset_id, String);
 		check(card_id, String);
 
-		Leitner.update({
+		LeitnerCardStats.update({
 				cardset_id: cardset_id,
 				card_id: card_id,
 				user_id: Meteor.userId()
@@ -51,7 +51,7 @@ Meteor.methods({
 				Meteor.call('initializeWorkloadData', cardset._id, Meteor.userId());
 				Meteor.call('deleteLeitner', cardset._id);
 				Meteor.call('deleteWozniak', cardset._id);
-				Workload.update({
+				LeitnerLearningWorkload.update({
 						cardset_id: cardset._id,
 						user_id: Meteor.userId()
 					},
@@ -67,7 +67,7 @@ Meteor.methods({
 	},
 	leaveBonus: function (cardset_id) {
 		check(cardset_id, String);
-		let workload = Workload.findOne({user_id: Meteor.userId(), cardset_id: cardset_id}, {
+		let workload = LeitnerLearningWorkload.findOne({user_id: Meteor.userId(), cardset_id: cardset_id}, {
 			fields: {
 				_id: 1,
 				user_id: 1,
@@ -75,7 +75,7 @@ Meteor.methods({
 			}
 		});
 		if (workload !== undefined) {
-			Workload.update({
+			LeitnerLearningWorkload.update({
 					cardset_id: workload.cardset_id,
 					user_id: Meteor.userId()
 				},
@@ -130,7 +130,7 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		} else {
 			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, cardGroups: 1, shuffled: 1}});
-			let activeLearners = Leitner.find({cardset_id: cardset._id}, {fields: {user_id: 1}}).fetch();
+			let activeLearners = LeitnerCardStats.find({cardset_id: cardset._id}, {fields: {user_id: 1}}).fetch();
 			activeLearners = _.uniq(activeLearners, false, function (d) {
 				return d.user_id;
 			});
@@ -141,7 +141,7 @@ Meteor.methods({
 	},
 	updateLeitnerTimer: function (cardset_id) {
 		check(cardset_id, String);
-		let leitnerTask = LeitnerTasks.findOne({
+		let leitnerTask = LeitnerActivationDay.findOne({
 			user_id: Meteor.userId(),
 			cardset_id: cardset_id
 		}, {
@@ -158,7 +158,7 @@ Meteor.methods({
 	startLeitnerBreak: function (cardset_id) {
 		check(cardset_id, String);
 
-		let leitnerTask = LeitnerTasks.findOne({
+		let leitnerTask = LeitnerActivationDay.findOne({
 			user_id: Meteor.userId(),
 			cardset_id: cardset_id
 		}, {
@@ -166,7 +166,7 @@ Meteor.methods({
 		});
 		if (leitnerTask !== undefined) {
 			if (PomodoroTimer.getRemainingTime(leitnerTask) <= 1) {
-				LeitnerTasks.update({
+				LeitnerActivationDay.update({
 						_id: leitnerTask._id
 					},
 					{
@@ -187,7 +187,7 @@ Meteor.methods({
 	endLeitnerBreak: function (cardset_id) {
 		check(cardset_id, String);
 
-		let leitnerTask = LeitnerTasks.findOne({
+		let leitnerTask = LeitnerActivationDay.findOne({
 			user_id: Meteor.userId(),
 			cardset_id: cardset_id
 		}, {
@@ -195,7 +195,7 @@ Meteor.methods({
 		});
 		if (leitnerTask !== undefined) {
 			if (PomodoroTimer.getRemainingTime(leitnerTask) <= 1) {
-				LeitnerTasks.update({
+				LeitnerActivationDay.update({
 						_id: leitnerTask._id
 					},
 					{
@@ -232,19 +232,19 @@ Meteor.methods({
 			if (cardset !== undefined) {
 				isCardsetOwnerAndLecturer = (cardset.owner === Meteor.userId() && UserPermissions.isLecturer());
 			}
-			let workload = Workload.findOne({cardset_id: cardset_id, user_id: user_id});
+			let workload = LeitnerLearningWorkload.findOne({cardset_id: cardset_id, user_id: user_id});
 			if (workload !== undefined) {
 				targetUserIsInBonus = workload.leitner.bonus;
 			}
 			if (Meteor.userId() === user_id || (UserPermissions.gotBackendAccess() && targetUserIsInBonus) || (isCardsetOwnerAndLecturer && targetUserIsInBonus)) {
-				return Leitner.find({cardset_id: cardset_id, user_id: user_id}, options).fetch();
+				return LeitnerCardStats.find({cardset_id: cardset_id, user_id: user_id}, options).fetch();
 			} else {
 				return [];
 			}
 		} else if (type === 'user') {
-			return Leitner.find({user_id: Meteor.userId()}, options).fetch();
+			return LeitnerCardStats.find({user_id: Meteor.userId()}, options).fetch();
 		} else if (UserPermissions.gotBackendAccess()) {
-			return Leitner.find({}, options).fetch();
+			return LeitnerCardStats.find({}, options).fetch();
 		} else {
 			return [];
 		}

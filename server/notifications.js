@@ -1,4 +1,4 @@
-import {Leitner} from "../imports/api/subscriptions/leitner.js";
+import {LeitnerCardStats} from "../imports/api/subscriptions/leitner/leitnerCardStats.js";
 import {Meteor} from "meteor/meteor";
 import {Bonus} from "../imports/util/bonus";
 
@@ -28,7 +28,7 @@ export class Notifications {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			return Leitner.find({
+			return LeitnerCardStats.find({
 				cardset_id: cardset_id,
 				user_id: user_id,
 				active: true
@@ -42,7 +42,7 @@ export class Notifications {
 			hour: Meteor.settings.public.dailyCronjob.executeAtHour,
 			minute: 0
 		};
-		let active = Leitner.findOne({cardset_id: cardset._id, user_id: user_id, active: true});
+		let active = LeitnerCardStats.findOne({cardset_id: cardset._id, user_id: user_id, active: true});
 		let deadline = moment(active.currentDate).add(cardset.daysBeforeReset, 'days').set(adjustedHours);
 		let cardsetLearningEnd = moment(cardset.learningEnd).set(adjustedHours);
 		if (deadline > cardsetLearningEnd && Bonus.isInBonus(cardset._id, user_id)) {

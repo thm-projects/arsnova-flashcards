@@ -1,9 +1,9 @@
-import {Leitner} from "../api/subscriptions/leitner";
+import {LeitnerCardStats} from "../api/subscriptions/leitner/leitnerCardStats";
 import {Cards} from "../api/subscriptions/cards";
 import {Session} from "meteor/session";
-import {LeitnerTasks} from "../api/subscriptions/leitnerTasks";
+import {LeitnerActivationDay} from "../api/subscriptions/leitner/leitnerActivationDay";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
-import {LeitnerHistory} from "../api/subscriptions/leitnerHistory";
+import {LeitnerPerformanceHistory} from "../api/subscriptions/leitner/leitnerPerformanceHistory";
 import {CardVisuals} from "./cardVisuals";
 import {CardType} from "./cardTypes";
 import {Route} from "./route";
@@ -42,7 +42,7 @@ export let AnswerUtilities = class AnswerUtilities {
 		let cards = Cards.find({_id: {$in: cardIds}}, {fields: {_id: 1, answers: 1}}).fetch();
 
 		if (disableAnswers) {
-			let cardsWithVisibleAnswers = Leitner.find({
+			let cardsWithVisibleAnswers = LeitnerCardStats.find({
 					user_id: Meteor.userId(),
 					cardset_id: cardsetId,
 					card_id: {$in: cardIds}},
@@ -71,7 +71,7 @@ export let AnswerUtilities = class AnswerUtilities {
 	}
 
 	static getActiveCardStatus () {
-		return Leitner.findOne({
+		return LeitnerCardStats.findOne({
 			user_id: Meteor.userId(),
 			cardset_id: FlowRouter.getParam("_id"),
 			card_id: Session.get('activeCard')
@@ -79,12 +79,12 @@ export let AnswerUtilities = class AnswerUtilities {
 	}
 
 	static getActiveCardHistory () {
-		let leitnerTask = LeitnerTasks.findOne({
+		let leitnerTask = LeitnerActivationDay.findOne({
 			user_id: Meteor.userId(),
 			cardset_id: FlowRouter.getParam("_id")
 		}, {sort: {session: -1, createdAt: -1}, fields: {_id: 1}});
 		if (leitnerTask !== undefined) {
-			return LeitnerHistory.findOne({
+			return LeitnerPerformanceHistory.findOne({
 				user_id: Meteor.userId(),
 				card_id: Session.get('activeCard'),
 				task_id: leitnerTask._id,

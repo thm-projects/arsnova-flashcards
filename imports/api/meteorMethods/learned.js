@@ -5,9 +5,9 @@ import {check} from "meteor/check";
 import {UserPermissions} from "../../util/permissions";
 import {CardsetUserlist} from "../../util/cardsetUserlist";
 import {LeitnerUtilities} from "../../util/leitner";
-import {Leitner} from "../subscriptions/leitner.js";
-import {LeitnerHistory} from "../subscriptions/leitnerHistory";
-import {Workload} from "../subscriptions/workload";
+import {LeitnerCardStats} from "../subscriptions/leitner/leitnerCardStats.js";
+import {LeitnerPerformanceHistory} from "../subscriptions/leitner/leitnerPerformanceHistory";
+import {LeitnerLearningWorkload} from "../subscriptions/leitner/leitnerLearningWorkload";
 import {Wozniak} from "../subscriptions/wozniak";
 
 export const Learned = new Mongo.Collection("learned");
@@ -20,14 +20,14 @@ if (Meteor.isServer) {
 			if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				throw new Meteor.Error("not-authorized");
 			}
-			Leitner.remove({
+			LeitnerCardStats.remove({
 				cardset_id: cardset_id,
 				user_id: Meteor.userId()
 			});
 			Meteor.call("updateLearnerCount", cardset_id);
 			Meteor.call('updateWorkloadCount', Meteor.userId());
 			LeitnerUtilities.updateLeitnerWorkload(cardset_id, Meteor.userId());
-			Workload.update({
+			LeitnerLearningWorkload.update({
 				cardset_id: cardset_id,
 				user_id: Meteor.userId()
 			}, {
@@ -120,8 +120,8 @@ if (Meteor.isServer) {
 			if (!Meteor.isServer) {
 				throw new Meteor.Error("not-authorized");
 			} else {
-				let learnersTotal = Workload.find({cardset_id: cardset_id}).count();
-				let learnersBonus = Workload.find({cardset_id: cardset_id, 'leitner.bonus': true}).count();
+				let learnersTotal = LeitnerLearningWorkload.find({cardset_id: cardset_id}).count();
+				let learnersBonus = LeitnerLearningWorkload.find({cardset_id: cardset_id, 'leitner.bonus': true}).count();
 				Cardsets.update(cardset_id, {
 					$set: {
 						"workload.bonus.count": learnersBonus,
@@ -139,7 +139,7 @@ if (Meteor.isServer) {
 			check(user_id, String);
 			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1}});
 			if (cardset !== undefined && (UserPermissions.isOwner(cardset.owner) || UserPermissions.isAdmin())) {
-				Workload.update({
+				LeitnerLearningWorkload.update({
 					user_id: user_id,
 					cardset_id: cardset_id
 				}, {
@@ -148,7 +148,7 @@ if (Meteor.isServer) {
 					}
 				});
 				Meteor.call("updateLearnerCount", cardset._id);
-				return CardsetUserlist.getLearners(Workload.find({cardset_id: cardset._id, 'leitner.bonus': true}).fetch(), cardset._id);
+				return CardsetUserlist.getLearners(LeitnerLearningWorkload.find({cardset_id: cardset._id, 'leitner.bonus': true}).fetch(), cardset._id);
 			} else {
 				throw new Meteor.Error("not-authorized");
 			}
@@ -157,7 +157,7 @@ if (Meteor.isServer) {
 			check(card_id, String);
 			check(cardset_id, String);
 			if (Meteor.user()) {
-				LeitnerHistory.update({
+				LeitnerPerformanceHistory.update({
 					user_id: Meteor.userId(),
 					cardset_id: cardset_id,
 					card_id: card_id

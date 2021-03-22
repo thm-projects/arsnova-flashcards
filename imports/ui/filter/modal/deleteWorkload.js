@@ -3,7 +3,7 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Workload} from "../../../api/subscriptions/workload";
+import {LeitnerLearningWorkload} from "../../../api/subscriptions/leitner/leitnerLearningWorkload";
 import {Filter} from "../../../util/filter";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import "./deleteWorkload.html";
@@ -22,7 +22,7 @@ Template.cardsetsConfirmLearnForm.events({
 			if (Route.isCardset()) {
 				cardset_id = FlowRouter.getParam('_id');
 			}
-			let workload = Workload.findOne({user_id: Meteor.userId(), cardset_id: cardset_id}, {fields: {_id: 1, 'leitner.bonus': 1}});
+			let workload = LeitnerLearningWorkload.findOne({user_id: Meteor.userId(), cardset_id: cardset_id}, {fields: {_id: 1, 'leitner.bonus': 1}});
 			if (workload !== undefined && workload.leitner.bonus === true) {
 				Meteor.call("leaveBonus", cardset_id, function (error, result) {
 					if (result) {

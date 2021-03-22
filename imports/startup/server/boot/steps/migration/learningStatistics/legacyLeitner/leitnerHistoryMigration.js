@@ -1,8 +1,9 @@
-import {Utilities} from "../../../../../util/utilities";
-import * as config from "../../../../../config/serverBoot";
-import {TYPE_MIGRATE} from "../../../../../config/serverBoot";
-import {LeitnerHistory} from "../../../../../api/subscriptions/leitnerHistory";
+import {Utilities} from "../../../../../../../util/utilities";
+import * as config from "../../../../../../../config/serverBoot";
+import {TYPE_MIGRATE} from "../../../../../../../config/serverBoot";
+import {LeitnerHistory} from "../../../../../../../api/subscriptions/legacyLeitner/leitnerHistory";
 
+// Deprecated. New Migrations will take place in learningStatistics/leitner/performanceHistory
 function leitnerHistoryMigrationStep() {
 	let groupName = "LeitnerHistory Migration";
 	Utilities.debugServerBoot(config.START_GROUP, groupName);
