@@ -1,6 +1,6 @@
 //------------------------ IMPORTS
 import {Template} from "meteor/templating";
-import {LeitnerCardStats} from "../../../../../api/subscriptions/leitner/leitnerCardStats";
+import {LeitnerUserCardStats} from "../../../../../api/subscriptions/leitner/leitnerUserCardStats";
 import {Wozniak} from "../../../../../api/subscriptions/wozniak";
 import "./learningMode.html";
 
@@ -15,7 +15,7 @@ Template.cardsetInfoBoxItemLearningMode.helpers({
 		let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 		actualDate.setHours(0, 0, 0, 0);
 		let count = 0;
-		if (LeitnerCardStats.find({cardset_id: this._id, user_id: Meteor.userId(), active: true}).count()) {
+		if (LeitnerUserCardStats.find({cardset_id: this._id, user_id: Meteor.userId(), active: true}).count()) {
 			count += 1;
 		}
 		if (Wozniak.find({

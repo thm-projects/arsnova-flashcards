@@ -1,5 +1,5 @@
 import {Meteor} from "meteor/meteor";
-import {LeitnerCardStats} from "../api/subscriptions/leitner/leitnerCardStats";
+import {LeitnerUserCardStats} from "../api/subscriptions/leitner/leitnerUserCardStats";
 import {Cardsets} from "../api/subscriptions/cardsets";
 import * as bonusFormConfig from "../config/bonusForm";
 import {CardType} from "./cardTypes";
@@ -29,7 +29,7 @@ function gotPriority(array, card_id, priority) {
 export let LeitnerUtilities = class LeitnerUtilities {
 	static setEndBonusPoints (cardset, leitnerTask, result) {
 		if (cardset.learningActive && result.box === 6) {
-			const [learnable, box6] = LeitnerCardStats.find({
+			const [learnable, box6] = LeitnerUserCardStats.find({
 					cardset_id: cardset._id,
 					user_id: Meteor.userId()
 				},
@@ -63,7 +63,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		if (!Meteor.isServer && (!Meteor.userId() || Roles.userIsInRole(this.userId, 'blocked'))) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			return LeitnerCardStats.find({
+			return LeitnerUserCardStats.find({
 				cardset_id: cardset_id,
 				user_id: user_id,
 				box: box,
@@ -140,7 +140,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					cardsetsWithLearningMode.push(cardsetFilter[i]);
 				}
 			}
-			let existingItems = LeitnerCardStats.find({
+			let existingItems = LeitnerUserCardStats.find({
 				cardset_id: cardset._id,
 				user_id: user_id
 			}, {fields: {card_id: 1}}).fetch();
@@ -149,7 +149,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				excludedCards.push(existingItem.card_id);
 			});
 
-			if (LeitnerCardStats.findOne({user_id: user_id, cardset_id: cardset._id}) !== undefined) {
+			if (LeitnerUserCardStats.findOne({user_id: user_id, cardset_id: cardset._id}) !== undefined) {
 				isNewcomer = false;
 			}
 			let newItems = [];
@@ -178,7 +178,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				newItems.push(newItemObject);
 			});
 			if (newItems.length > 0) {
-				LeitnerCardStats.batchInsert(newItems);
+				LeitnerUserCardStats.batchInsert(newItems);
 			}
 			Meteor.call("updateLearnerCount", cardset._id);
 			Meteor.call('updateWorkloadCount', user_id);
@@ -224,9 +224,9 @@ export let LeitnerUtilities = class LeitnerUtilities {
 
 			let cardSelection = this.selectCardsByOrder(cardset, boxActiveCardCap, algorithm, user);
 			if (Meteor.isServer && Meteor.settings.debug.leitner) {
-				console.log(`===> Active cards BEFORE update ${LeitnerCardStats.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()}`);
+				console.log(`===> Active cards BEFORE update ${LeitnerUserCardStats.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()}`);
 			}
-			LeitnerCardStats.update({
+			LeitnerUserCardStats.update({
 				cardset_id: cardset._id,
 				user_id: user._id,
 				card_id: {$in: cardSelection}
@@ -237,7 +237,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				}
 			}, {multi: true});
 			if (Meteor.isServer && Meteor.settings.debug.leitner) {
-				console.log(`===> Active cards AFTER update ${LeitnerCardStats.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()}`);
+				console.log(`===> Active cards AFTER update ${LeitnerUserCardStats.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()}`);
 			}
 
 			this.updateLeitnerWorkload(cardset._id, user._id);
@@ -256,7 +256,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		if (!Meteor.isServer) {
 			user_id = Meteor.userId();
 		}
-		let leitner = LeitnerCardStats.find({cardset_id: cardset._id, user_id: user_id, card_id: {$in: cardSelection}}).fetch();
+		let leitner = LeitnerUserCardStats.find({cardset_id: cardset._id, user_id: user_id, card_id: {$in: cardSelection}}).fetch();
 		let newItems = [];
 		let newItemObject;
 		leitner.forEach(function (leitnerItem) {
@@ -331,7 +331,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			};
 			if (workload.leitner.bonus) {
 				let learnable = 0, box6 = 0;
-				LeitnerCardStats.find({
+				LeitnerUserCardStats.find({
 						cardset_id: cardset_id,
 						user_id: user_id
 					},
@@ -461,7 +461,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		let index = CardIndex.getCardIndex();
 		//Get all cards from a box that match the leitner criteria
 		for (let l = 0; l < algorithm.length; l++) {
-			let leitnerCards = LeitnerCardStats.find({
+			let leitnerCards = LeitnerUserCardStats.find({
 				cardset_id: cardset._id,
 				user_id: user._id,
 				box: (l + 1),
@@ -537,7 +537,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						}
 					}
 					query.box = i;
-					let cards = LeitnerCardStats.find(query, {
+					let cards = LeitnerUserCardStats.find(query, {
 						fields: {
 							card_id: 1
 						}
@@ -546,7 +546,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					if (Meteor.settings.debug.leitner) {
 						console.log(`===> Resetting ${idArray.length} cards [${idArray}]`);
 					}
-					LeitnerCardStats.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id}, {
+					LeitnerUserCardStats.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id}, {
 						$set: {
 							box: box,
 							active: false,
@@ -556,7 +556,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						}
 					}, {multi: true});
 					if (Meteor.settings.debug.leitner) {
-						console.log(`===> ${LeitnerCardStats.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()} active Cards left after reset\n`);
+						console.log(`===> ${LeitnerUserCardStats.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()} active Cards left after reset\n`);
 					}
 					let lastLeitnerTask = this.getHighestLeitnerTaskSessionID(cardset._id, user._id);
 					if (lastLeitnerTask !== undefined) {
@@ -577,7 +577,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					}
 				}
 			} else {
-				let cards = LeitnerCardStats.find(query, {
+				let cards = LeitnerUserCardStats.find(query, {
 					fields: {
 						card_id: 1
 					}
@@ -586,7 +586,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				if (Meteor.settings.debug.leitner) {
 					console.log(`===> Resetting ${idArray.length} cards [${idArray}]`);
 				}
-				LeitnerCardStats.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id}, {
+				LeitnerUserCardStats.update({card_id: {$in: idArray}, cardset_id: cardset._id, user_id: user._id}, {
 					$set: {
 						box: 1,
 						active: false,
@@ -596,7 +596,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					}
 				}, {multi: true});
 				if (Meteor.settings.debug.leitner) {
-					console.log(`===> ${LeitnerCardStats.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()} active Cards left after reset\n`);
+					console.log(`===> ${LeitnerUserCardStats.find({cardset_id: cardset._id, user_id: user._id, active: true}).count()} active Cards left after reset\n`);
 				}
 				let lastLeitnerTask = this.getHighestLeitnerTaskSessionID(cardset._id, user._id);
 				if (lastLeitnerTask !== undefined) {
@@ -630,18 +630,18 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			let activeLeitnerCardDate = new Date();
 			let learnedAllLeitnerCards = false;
 			let nextLowestPriority = [-1, -1, -1, -1, -1];
-			let isLearningLeitner = LeitnerCardStats.findOne({cardset_id: cardset_id, user_id: user_id});
+			let isLearningLeitner = LeitnerUserCardStats.findOne({cardset_id: cardset_id, user_id: user_id});
 			if (isLearningLeitner) {
-				activeLeitnerCards = LeitnerCardStats.find({cardset_id: cardset_id, user_id: user_id, active: true}).count();
-				let nextLeitnerObject = LeitnerCardStats.findOne({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}, active: false}, {sort: {nextDate: 1}});
+				activeLeitnerCards = LeitnerUserCardStats.find({cardset_id: cardset_id, user_id: user_id, active: true}).count();
+				let nextLeitnerObject = LeitnerUserCardStats.findOne({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}, active: false}, {sort: {nextDate: 1}});
 				if (nextLeitnerObject) {
 					nextLeitnerCardDate = nextLeitnerObject.nextDate;
 				}
-				let activeLeitnerObject = LeitnerCardStats.findOne({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}, active: true}, {sort: {currentDate: 1}});
+				let activeLeitnerObject = LeitnerUserCardStats.findOne({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}, active: true}, {sort: {currentDate: 1}});
 				if (activeLeitnerObject) {
 					activeLeitnerCardDate = activeLeitnerObject.currentDate;
 				}
-				if (!LeitnerCardStats.find({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}}).count()) {
+				if (!LeitnerUserCardStats.find({cardset_id: cardset_id, user_id: user_id, box: {$ne: 6}}).count()) {
 					learnedAllLeitnerCards = true;
 				}
 				if (workload !== undefined) {

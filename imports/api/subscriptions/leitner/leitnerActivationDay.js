@@ -1,4 +1,5 @@
 import {Mongo} from "meteor/mongo";
+import {SimpleSchema} from "meteor/aldeed:simple-schema";
 
 export const LeitnerActivationDay = new Mongo.Collection("leitnerActivationDay");
 
@@ -11,3 +12,47 @@ if (Meteor.isServer) {
 		}
 	});
 }
+
+const LeitnerActivationDaySchema = new SimpleSchema({
+	cardset_id: {
+		type: String
+	},
+	user_id: {
+		type: String
+	},
+	learning_phase_id: {
+		type: String
+	},
+	workload_id: {
+		type: String
+	},
+	resetDeadlineMode: {
+		type: Number
+	},
+	wrongAnswerMode: {
+		type: Number
+	},
+	notifications: {
+		type: Object,
+		blackbox: true
+	},
+	strictWorkloadTimer: {
+		type: Boolean
+	},
+	timer: {
+		type: Object,
+		blackbox: true
+	},
+	performanceStats: {
+		type: Object,
+		blackbox: true
+	},
+	createdAt: {
+		type: Date
+	},
+	missedDeadline: {
+		type: Boolean
+	}
+});
+
+LeitnerActivationDay.attachSchema(LeitnerActivationDaySchema);

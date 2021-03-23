@@ -4,7 +4,7 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {AdminSettings} from "../../../../api/subscriptions/adminSettings";
 import {Cards} from "../../../../api/subscriptions/cards";
-import {LeitnerCardStats} from "../../../../api/subscriptions/leitner/leitnerCardStats";
+import {LeitnerUserCardStats} from "../../../../api/subscriptions/leitner/leitnerUserCardStats";
 import {ColorThemes} from "../../../../api/subscriptions/colorThemes";
 import {LeitnerPerformanceHistory} from "../../../../api/subscriptions/leitner/leitnerPerformanceHistory";
 import {LeitnerActivationDay} from "../../../../api/subscriptions/leitner/leitnerActivationDay";
@@ -29,7 +29,7 @@ function themeData() {
 function notificationData() {
 	let testNotificationsCardset = config.initTestNotificationsCardset();
 	let testNotificationsCards = config.initTestNotificationsCards();
-	let testNotificationsLearned = config.initTestNotificationsLearned();
+	let initTestNotificationsLeitnerUserCardStats = config.initTestNotificationsLeitnerUserCardStats();
 	let testNotificationsUser = config.initTestNotificationsUser();
 
 	Cardsets.remove({_id: testNotificationsCardset[0]._id});
@@ -52,8 +52,8 @@ function notificationData() {
 		Cards.remove({_id: testNotificationsCards[card]._id});
 	}
 
-	for (let learned = 0; learned < testNotificationsLearned.length; learned++) {
-		LeitnerCardStats.remove({_id: testNotificationsLearned[learned]._id});
+	for (let learned = 0; learned < initTestNotificationsLeitnerUserCardStats.length; learned++) {
+		LeitnerUserCardStats.remove({_id: initTestNotificationsLeitnerUserCardStats[learned]._id});
 	}
 
 	let hiddenUsers = Meteor.users.find({visible: false}).fetch();
@@ -71,8 +71,8 @@ function notificationData() {
 		Cards.insert(testNotificationsCards[card]);
 	}
 
-	for (let learned = 0; learned < testNotificationsLearned.length; learned++) {
-		LeitnerCardStats.insert(testNotificationsLearned[learned]);
+	for (let learned = 0; learned < initTestNotificationsLeitnerUserCardStats.length; learned++) {
+		LeitnerUserCardStats.insert(initTestNotificationsLeitnerUserCardStats[learned]);
 	}
 }
 
@@ -85,7 +85,7 @@ function demoData() {
 function setupDatabaseIndex() {
 	LeitnerLearningPhase._ensureIndex({cardset_id: 1, isActive: 1, isBonus: 1});
 	LeitnerLearningWorkload._ensureIndex({cardset_id: 1, user_id: 1, learning_phase_id: 1, isActive: 1, isBonus: 1});
-	LeitnerCardStats._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, learning_phase_id: 1, isActive: 1});
+	LeitnerUserCardStats._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, learning_phase_id: 1, isActive: 1});
 	LeitnerActivationDay._ensureIndex({user_id: 1, cardset_id: 1, learning_phase_id: 1});
 	LeitnerPerformanceHistory._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, activation_day_id: 1, learning_phase_id: 1, box: 1, dateAnswered: 1});
 	Wozniak._ensureIndex({user_id: 1, cardset_id: 1});

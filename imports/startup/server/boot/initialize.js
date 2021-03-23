@@ -15,7 +15,6 @@ import {transcriptBonusMigrationStep} from "./steps/migration/transcriptBonusMig
 import {leitnerLearningWorkload} from "./steps/migration/learningStatistics/leitner/leitnerLearningWorkload";
 import {leitnerCardStats} from "./steps/migration/learningStatistics/leitner/leitnerCardStats";
 import {leitnerActivationDay} from "./steps/migration/learningStatistics/leitner/leitnerActivationDay";
-import {leitnerPerformanceHistory} from "./steps/migration/learningStatistics/leitner/leitnerPerformanceHistory";
 import {leitnerLearningPhase} from "./steps/migration/learningStatistics/leitner/leitnerLearningPhase";
 
 Meteor.startup(function () {
@@ -41,7 +40,6 @@ Meteor.startup(function () {
 	leitnerLearningWorkload();
 	leitnerCardStats();
 	leitnerActivationDay();
-	leitnerPerformanceHistory();
 
 	//cronjob
 	cronScheduler.startCron();

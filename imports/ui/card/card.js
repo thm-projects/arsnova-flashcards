@@ -12,7 +12,7 @@ import {Route} from "../../util/route.js";
 import {CardType} from "../../util/cardTypes";
 import {Cards} from "../../api/subscriptions/cards";
 import {CardNavigation} from "../../util/cardNavigation";
-import {LeitnerCardStats} from "../../api/subscriptions/leitner/leitnerCardStats";
+import {LeitnerUserCardStats} from "../../api/subscriptions/leitner/leitnerUserCardStats";
 import {Wozniak} from "../../api/subscriptions/wozniak";
 import {BertAlertVisuals} from "../../util/bertAlertVisuals";
 import {CardEditor} from "../../util/cardEditor";
@@ -376,7 +376,7 @@ Template.flashcardsEmpty.helpers({
 		return Route.isCardset();
 	},
 	gotLeitnerWorkload: function () {
-		return LeitnerCardStats.find({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId()}).count();
+		return LeitnerUserCardStats.find({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId()}).count();
 	},
 	gotWozniakWorkload: function () {
 		return Wozniak.find({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId()}).count();

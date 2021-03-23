@@ -1,7 +1,7 @@
 //------------------------ IMPORTS
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
-import {LeitnerCardStats} from "../../../api/subscriptions/leitner/leitnerCardStats";
+import {LeitnerUserCardStats} from "../../../api/subscriptions/leitner/leitnerUserCardStats";
 import {Wozniak} from "../../../api/subscriptions/wozniak";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./item/bonus.js";
@@ -29,7 +29,7 @@ import "./navigation.html";
 
 Template.cardsetNavigation.helpers({
 	learning: function () {
-		return (LeitnerCardStats.findOne({
+		return (LeitnerUserCardStats.findOne({
 			cardset_id: FlowRouter.getParam('_id'),
 			user_id: Meteor.userId()
 		}) || Wozniak.findOne({

@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {check} from "meteor/check";
-import {LeitnerCardStats} from "../subscriptions/leitner/leitnerCardStats";
+import {LeitnerUserCardStats} from "../subscriptions/leitner/leitnerUserCardStats";
 import {Cards} from "../subscriptions/cards";
 import {Cardsets} from "../subscriptions/cardsets";
 import {AnswerUtilities} from "../../util/answers";
@@ -19,7 +19,7 @@ Meteor.methods({
 		return AnswerUtilities.getAnswerContent(cardIds, cardsetId, disableAnswers);
 	},
 	nextMCCard: function (activeCardId, cardsetId, timestamps) {
-		let leitner = LeitnerCardStats.findOne({
+		let leitner = LeitnerUserCardStats.findOne({
 			card_id: activeCardId,
 			user_id: Meteor.userId(),
 			cardset_id: cardsetId,
@@ -31,7 +31,7 @@ Meteor.methods({
 			{cardset_id: cardsetId, user_id: Meteor.userId()}, {sort: {session: -1, createdAt: -1}});
 
 		if (leitner !== undefined && task !== undefined) {
-			LeitnerCardStats.update({
+			LeitnerUserCardStats.update({
 				card_id: activeCardId,
 				user_id: Meteor.userId(),
 				cardset_id: cardsetId,
@@ -57,7 +57,7 @@ Meteor.methods({
 		check(cardsetId, String);
 		check(userAnswers, [Number]);
 
-		let activeLeitner = LeitnerCardStats.findOne({
+		let activeLeitner = LeitnerUserCardStats.findOne({
 			card_id: activeCardId,
 			user_id: Meteor.userId(),
 			cardset_id: cardsetId
@@ -75,7 +75,7 @@ Meteor.methods({
 				let isAnswerWrong = AnswerUtilities.isAnswerWrong(card.answers.rightAnswers, userAnswers);
 				let result = LeitnerUtilities.setNextBoxData(isAnswerWrong, activeLeitner, cardset);
 
-				LeitnerCardStats.update({
+				LeitnerUserCardStats.update({
 					_id: activeLeitner._id
 				}, {$set: {
 						box: result.box,
@@ -135,11 +135,11 @@ Meteor.methods({
 			query.user_id = Meteor.userId();
 			query.active = true;
 
-			let activeLeitner = LeitnerCardStats.findOne(query);
+			let activeLeitner = LeitnerUserCardStats.findOne(query);
 			if (activeLeitner !== undefined) {
 				let result = LeitnerUtilities.setNextBoxData(isAnswerWrong, activeLeitner, cardset);
 
-				LeitnerCardStats.update(activeLeitner._id, {
+				LeitnerUserCardStats.update(activeLeitner._id, {
 					$set: {
 						box: result.box,
 						active: false,

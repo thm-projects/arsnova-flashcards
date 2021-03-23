@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../subscriptions/cardsets.js";
-import {LeitnerCardStats} from "../subscriptions/leitner/leitnerCardStats";
+import {LeitnerUserCardStats} from "../subscriptions/leitner/leitnerUserCardStats";
 import {Wozniak} from "../subscriptions/wozniak";
 import {check} from "meteor/check";
 import {UserPermissions} from "../../util/permissions";
@@ -213,7 +213,7 @@ Meteor.methods({
 				Meteor.call('updateTranscriptCount', Meteor.userId());
 			}
 
-			LeitnerCardStats.remove({
+			LeitnerUserCardStats.remove({
 				card_id: card_id
 			});
 			Wozniak.remove({

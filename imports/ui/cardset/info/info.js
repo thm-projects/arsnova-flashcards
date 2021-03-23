@@ -2,7 +2,7 @@
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
-import {LeitnerCardStats} from "../../../api/subscriptions/leitner/leitnerCardStats";
+import {LeitnerUserCardStats} from "../../../api/subscriptions/leitner/leitnerUserCardStats";
 import {Wozniak} from "../../../api/subscriptions/wozniak";
 import ResizeSensor from "../../../../client/thirdParty/resizeSensor/ResizeSensor";
 import {CardsetVisuals} from "../../../util/cardsetVisuals";
@@ -47,7 +47,7 @@ Template.cardsetInfo.helpers({
 		return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true && this.owner !== Meteor.userId());
 	},
 	learning: function () {
-		return (LeitnerCardStats.findOne({
+		return (LeitnerUserCardStats.findOne({
 			cardset_id: FlowRouter.getParam('_id'),
 			user_id: Meteor.userId()
 		}) || Wozniak.findOne({

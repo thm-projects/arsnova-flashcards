@@ -3,7 +3,7 @@ import {FilterNavigation} from "./filterNavigation";
 import {Session} from "meteor/session";
 import {Route} from "./route";
 import {WordcloudCanvas} from "./wordcloudCanvas";
-import {LeitnerCardStats} from "../api/subscriptions/leitner/leitnerCardStats";
+import {LeitnerUserCardStats} from "../api/subscriptions/leitner/leitnerUserCardStats";
 import {Wozniak} from "../api/subscriptions/wozniak";
 import * as config from "../config/filter.js";
 import {TranscriptBonus} from "../api/subscriptions/transcriptBonus";
@@ -228,7 +228,7 @@ export let Filter = class Filter {
 
 	static workloadFilter () {
 		let learnCardsets = [];
-		let leitnerCards = LeitnerCardStats.find({
+		let leitnerCards = LeitnerUserCardStats.find({
 			user_id: Meteor.userId()
 		}, {fields: {cardset_id: 1}});
 

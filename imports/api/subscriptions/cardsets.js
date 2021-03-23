@@ -2,7 +2,7 @@ import {Mongo} from "meteor/mongo";
 import {Meteor} from "meteor/meteor";
 import {ServerStyle} from "../../util/styles";
 import {UserPermissions} from "../../util/permissions";
-import {LeitnerCardStats} from "./leitner/leitnerCardStats";
+import {LeitnerUserCardStats} from "./leitner/leitnerUserCardStats";
 import {LeitnerLearningWorkload} from "./leitner/leitnerLearningWorkload";
 import {Wozniak} from "./wozniak";
 import {CardType} from "../../util/cardTypes";
@@ -98,7 +98,7 @@ if (Meteor.isServer) {
 			let workload = LeitnerLearningWorkload.find({user_id: this.userId}, {fields: {cardset_id: 1}}).fetch();
 			let filter = [];
 			for (let i = 0, workloadLength = workload.length; i < workloadLength; i++) {
-				if ((LeitnerCardStats.find({cardset_id: workload[i].cardset_id}).count() !== 0) || (Wozniak.find({cardset_id: workload[i].cardset_id}).count() !== 0)) {
+				if ((LeitnerUserCardStats.find({cardset_id: workload[i].cardset_id}).count() !== 0) || (Wozniak.find({cardset_id: workload[i].cardset_id}).count() !== 0)) {
 					filter.push(workload[i].cardset_id);
 				}
 			}

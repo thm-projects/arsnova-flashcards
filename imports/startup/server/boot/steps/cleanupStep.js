@@ -1,5 +1,5 @@
 import {Meteor} from "meteor/meteor";
-import {LeitnerCardStats} from "../../../../api/subscriptions/leitner/leitnerCardStats";
+import {LeitnerUserCardStats} from "../../../../api/subscriptions/leitner/leitnerUserCardStats";
 import {Wozniak} from "../../../../api/subscriptions/wozniak";
 import {LeitnerLearningWorkload} from "../../../../api/subscriptions/leitner/leitnerLearningWorkload";
 import {Ratings} from "../../../../api/subscriptions/ratings";
@@ -18,7 +18,7 @@ function removeDeletedUsers() {
 		userFilter.push(users[i]._id);
 	}
 	if (userFilter.length === Meteor.users.find({}).count()) {
-		LeitnerCardStats.remove({
+		LeitnerUserCardStats.remove({
 			user_id: {$nin: userFilter}
 		});
 
@@ -57,7 +57,7 @@ function cleanWorkload() {
 	for (let i = 0; i < cardsetsLength; i++) {
 		filter.push(cardsets[i]._id);
 	}
-	LeitnerCardStats.remove({
+	LeitnerUserCardStats.remove({
 		cardset_id: {$in: filter}
 	});
 
