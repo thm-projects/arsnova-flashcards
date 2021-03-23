@@ -46,7 +46,7 @@ import "../imports/api/subscriptions/cardsetApiAccess.js";
 import "../imports/api/subscriptions/cardsets.js";
 import "../imports/api/subscriptions/collegesCourses.js";
 import "../imports/api/subscriptions/colorThemes.js";
-import "../imports/api/subscriptions/leitner/leitnerCardStats.js";
+import "../imports/api/subscriptions/leitner/leitnerUserCardStats.js";
 import "../imports/api/subscriptions/leitner/leitnerPerformanceHistory.js";
 import "../imports/api/subscriptions/leitner/leitnerActivationDay.js";
 import "../imports/api/subscriptions/notifications.js";

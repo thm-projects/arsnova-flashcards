@@ -1,5 +1,5 @@
 import {Meteor} from "meteor/meteor";
-import {LeitnerCardStats} from "../subscriptions/leitner/leitnerCardStats";
+import {LeitnerUserCardStats} from "../subscriptions/leitner/leitnerUserCardStats";
 import {Cardsets} from "../subscriptions/cardsets.js";
 import {check} from "meteor/check";
 
@@ -36,7 +36,7 @@ Meteor.methods({
 					$push: {editors: user_id}
 				});
 		}
-		LeitnerCardStats.remove({
+		LeitnerUserCardStats.remove({
 			cardset_id: cardset._id,
 			user_id: user_id
 		});

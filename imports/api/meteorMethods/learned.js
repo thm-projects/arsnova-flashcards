@@ -5,7 +5,7 @@ import {check} from "meteor/check";
 import {UserPermissions} from "../../util/permissions";
 import {CardsetUserlist} from "../../util/cardsetUserlist";
 import {LeitnerUtilities} from "../../util/leitner";
-import {LeitnerCardStats} from "../subscriptions/leitner/leitnerCardStats.js";
+import {LeitnerUserCardStats} from "../subscriptions/leitner/leitnerUserCardStats.js";
 import {LeitnerPerformanceHistory} from "../subscriptions/leitner/leitnerPerformanceHistory";
 import {LeitnerLearningWorkload} from "../subscriptions/leitner/leitnerLearningWorkload";
 import {Wozniak} from "../subscriptions/wozniak";
@@ -20,7 +20,7 @@ if (Meteor.isServer) {
 			if (!Meteor.userId() || Roles.userIsInRole(this.userId, ["firstLogin", "blocked"])) {
 				throw new Meteor.Error("not-authorized");
 			}
-			LeitnerCardStats.remove({
+			LeitnerUserCardStats.remove({
 				cardset_id: cardset_id,
 				user_id: Meteor.userId()
 			});

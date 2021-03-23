@@ -6,7 +6,7 @@ import {Profile} from "./profile";
 import {LeitnerPerformanceHistory} from "../api/subscriptions/leitner/leitnerPerformanceHistory";
 import {LeitnerActivationDay} from "../api/subscriptions/leitner/leitnerActivationDay";
 import {Cardsets} from "../api/subscriptions/cardsets";
-import {LeitnerCardStats} from "../api/subscriptions/leitner/leitnerCardStats";
+import {LeitnerUserCardStats} from "../api/subscriptions/leitner/leitnerUserCardStats";
 import {LeitnerLearningWorkload} from "../api/subscriptions/leitner/leitnerLearningWorkload";
 import {Utilities} from "./utilities";
 
@@ -181,12 +181,12 @@ export let CardsetUserlist = class CardsetUserlist {
 						workingTimeArithmeticMean: workingTimeArithmeticMean,
 						workingTimeMedian: workingTimeMedian,
 						workingTimeStandardDeviation: workingTimeStandardDeviation,
-						box1: LeitnerCardStats.find(filter[0]).count(),
-						box2: LeitnerCardStats.find(filter[1]).count(),
-						box3: LeitnerCardStats.find(filter[2]).count(),
-						box4: LeitnerCardStats.find(filter[3]).count(),
-						box5: LeitnerCardStats.find(filter[4]).count(),
-						box6: LeitnerCardStats.find(filter[5]).count(),
+						box1: LeitnerUserCardStats.find(filter[0]).count(),
+						box2: LeitnerUserCardStats.find(filter[1]).count(),
+						box3: LeitnerUserCardStats.find(filter[2]).count(),
+						box4: LeitnerUserCardStats.find(filter[3]).count(),
+						box5: LeitnerUserCardStats.find(filter[4]).count(),
+						box6: LeitnerUserCardStats.find(filter[5]).count(),
 						mailNotification: mailNotification,
 						webNotification: webNotification,
 						dateJoinedBonus: data[i].leitner.dateJoinedBonus,

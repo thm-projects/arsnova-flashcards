@@ -1,6 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import {check} from "meteor/check";
-import {LeitnerCardStats} from "../subscriptions/leitner/leitnerCardStats";
+import {LeitnerUserCardStats} from "../subscriptions/leitner/leitnerUserCardStats";
 import {LeitnerLearningWorkload} from "../subscriptions/leitner/leitnerLearningWorkload";
 import {Cardsets} from "../subscriptions/cardsets";
 import {Bonus} from "../../util/bonus";
@@ -31,7 +31,7 @@ Meteor.methods({
 		check(cardset_id, String);
 		check(card_id, String);
 
-		LeitnerCardStats.update({
+		LeitnerUserCardStats.update({
 				cardset_id: cardset_id,
 				card_id: card_id,
 				user_id: Meteor.userId()
@@ -130,7 +130,7 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		} else {
 			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, cardGroups: 1, shuffled: 1}});
-			let activeLearners = LeitnerCardStats.find({cardset_id: cardset._id}, {fields: {user_id: 1}}).fetch();
+			let activeLearners = LeitnerUserCardStats.find({cardset_id: cardset._id}, {fields: {user_id: 1}}).fetch();
 			activeLearners = _.uniq(activeLearners, false, function (d) {
 				return d.user_id;
 			});
@@ -237,14 +237,14 @@ Meteor.methods({
 				targetUserIsInBonus = workload.leitner.bonus;
 			}
 			if (Meteor.userId() === user_id || (UserPermissions.gotBackendAccess() && targetUserIsInBonus) || (isCardsetOwnerAndLecturer && targetUserIsInBonus)) {
-				return LeitnerCardStats.find({cardset_id: cardset_id, user_id: user_id}, options).fetch();
+				return LeitnerUserCardStats.find({cardset_id: cardset_id, user_id: user_id}, options).fetch();
 			} else {
 				return [];
 			}
 		} else if (type === 'user') {
-			return LeitnerCardStats.find({user_id: Meteor.userId()}, options).fetch();
+			return LeitnerUserCardStats.find({user_id: Meteor.userId()}, options).fetch();
 		} else if (UserPermissions.gotBackendAccess()) {
-			return LeitnerCardStats.find({}, options).fetch();
+			return LeitnerUserCardStats.find({}, options).fetch();
 		} else {
 			return [];
 		}

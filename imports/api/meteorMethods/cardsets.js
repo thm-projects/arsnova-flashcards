@@ -2,7 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Cards} from "../subscriptions/cards.js";
 import {TranscriptBonus} from "../subscriptions/transcriptBonus";
 import {TranscriptBonusList} from "../../util/transcriptBonus.js";
-import {LeitnerCardStats} from "../subscriptions/leitner/leitnerCardStats";
+import {LeitnerUserCardStats} from "../subscriptions/leitner/leitnerUserCardStats";
 import {LeitnerLearningWorkload} from "../subscriptions/leitner/leitnerLearningWorkload";
 import {Wozniak} from "../subscriptions/wozniak";
 import {Notifications} from "../subscriptions/notifications";
@@ -278,7 +278,7 @@ Meteor.methods({
 				cardset_id: id
 			});
 			Meteor.call('updateShuffledCardsetQuantity', id);
-			LeitnerCardStats.remove({
+			LeitnerUserCardStats.remove({
 				cardset_id: id
 			});
 			Wozniak.remove({
@@ -344,7 +344,7 @@ Meteor.methods({
 			}
 
 			Meteor.call('updateShuffledCardsetQuantity', cardset._id);
-			LeitnerCardStats.remove({
+			LeitnerUserCardStats.remove({
 				cardset_id: id
 			});
 			Wozniak.remove({
@@ -392,7 +392,7 @@ Meteor.methods({
 						}
 					}
 				);
-				LeitnerCardStats.remove({
+				LeitnerUserCardStats.remove({
 					cardset_id: cardset._id,
 					user_id: users[i].user_id
 				});
@@ -740,7 +740,7 @@ Meteor.methods({
 			});
 			let removedCards = Cards.find({cardset_id: {$in: removedCardsets}}).fetch();
 			for (let i = 0; i < removedCards.length; i++) {
-				LeitnerCardStats.remove({
+				LeitnerUserCardStats.remove({
 					cardset_id: cardset._id,
 					card_id: removedCards[i]._id
 				});
@@ -781,7 +781,7 @@ Meteor.methods({
 		const box6Counts = {};
 		users.forEach(user => box6Counts[user] = 0);
 		//Count users their box 6 cards
-		LeitnerCardStats.find({
+		LeitnerUserCardStats.find({
 				cardset_id: cardset_id,
 				box: 6
 			},
@@ -794,7 +794,7 @@ Meteor.methods({
 			amountOfLearnableCards = cardset.quantity;
 		} else {
 			//if shuffled, it could contain non learnable questions
-			amountOfLearnableCards = LeitnerCardStats.find({
+			amountOfLearnableCards = LeitnerUserCardStats.find({
 				user_id: users[0],
 				cardset_id: cardset_id
 			}).count();
@@ -1093,7 +1093,7 @@ Meteor.methods({
 			} else if (type === 'user') {
 				query.user_id = Meteor.userId();
 			}
-			let cardsetIDFilter = _.uniq(LeitnerCardStats.find(query, {
+			let cardsetIDFilter = _.uniq(LeitnerUserCardStats.find(query, {
 				fields: {cardset_id: 1}
 			}).fetch().map(function (x) {
 				return x.cardset_id;

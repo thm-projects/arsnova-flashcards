@@ -1,4 +1,4 @@
-import {LeitnerCardStats} from "../api/subscriptions/leitner/leitnerCardStats";
+import {LeitnerUserCardStats} from "../api/subscriptions/leitner/leitnerUserCardStats";
 import {Cards} from "../api/subscriptions/cards";
 import {Session} from "meteor/session";
 import {LeitnerActivationDay} from "../api/subscriptions/leitner/leitnerActivationDay";
@@ -42,7 +42,7 @@ export let AnswerUtilities = class AnswerUtilities {
 		let cards = Cards.find({_id: {$in: cardIds}}, {fields: {_id: 1, answers: 1}}).fetch();
 
 		if (disableAnswers) {
-			let cardsWithVisibleAnswers = LeitnerCardStats.find({
+			let cardsWithVisibleAnswers = LeitnerUserCardStats.find({
 					user_id: Meteor.userId(),
 					cardset_id: cardsetId,
 					card_id: {$in: cardIds}},
@@ -71,7 +71,7 @@ export let AnswerUtilities = class AnswerUtilities {
 	}
 
 	static getActiveCardStatus () {
-		return LeitnerCardStats.findOne({
+		return LeitnerUserCardStats.findOne({
 			user_id: Meteor.userId(),
 			cardset_id: FlowRouter.getParam("_id"),
 			card_id: Session.get('activeCard')

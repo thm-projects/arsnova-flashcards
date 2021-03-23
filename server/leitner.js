@@ -1,5 +1,5 @@
 import {Meteor} from "meteor/meteor";
-import {LeitnerCardStats} from "../imports/api/subscriptions/leitner/leitnerCardStats";
+import {LeitnerUserCardStats} from "../imports/api/subscriptions/leitner/leitnerUserCardStats";
 import {LeitnerLearningWorkload} from "../imports/api/subscriptions/leitner/leitnerLearningWorkload";
 import {Cardsets} from "../imports/api/subscriptions/cardsets";
 import {MailNotifier} from "./sendmail.js";
@@ -18,8 +18,8 @@ function disableLearning(cardset) {
 	} else {
 		let users = LeitnerLearningWorkload.find({cardset_id: cardset._id, 'leitner.bonus': true}, {fields: {user_id: 1}}).fetch();
 		for (let i = 0; i < users.length; i++) {
-			if (LeitnerCardStats.findOne({cardset_id: cardset._id, user_id: users[i].user_id, active: true}) !== undefined) {
-				LeitnerCardStats.update({cardset_id: cardset._id, user_id: users[i].user_id}, {
+			if (LeitnerUserCardStats.findOne({cardset_id: cardset._id, user_id: users[i].user_id, active: true}) !== undefined) {
+				LeitnerUserCardStats.update({cardset_id: cardset._id, user_id: users[i].user_id}, {
 					$set: {
 						active: false
 					}
@@ -37,7 +37,7 @@ function getLearners(cardset_id) {
 	if (!Meteor.isServer) {
 		throw new Meteor.Error("not-authorized");
 	} else {
-		var data = LeitnerCardStats.find({cardset_id: cardset_id}).fetch();
+		var data = LeitnerUserCardStats.find({cardset_id: cardset_id}).fetch();
 		return _.uniq(data, false, function (d) {
 			return d.user_id;
 		});
@@ -64,7 +64,7 @@ function getActiveCard(cardset_id, user) {
 	if (!Meteor.isServer) {
 		throw new Meteor.Error("not-authorized");
 	} else {
-		return LeitnerCardStats.findOne({
+		return LeitnerUserCardStats.findOne({
 			cardset_id: cardset_id,
 			user_id: user,
 			active: true
@@ -91,7 +91,7 @@ Meteor.methods({
 			let currentCardsetWithLearners = 1;
 			if (Meteor.settings.debug.leitner) {
 				for (let i = 0; i < cardsets.length; i++) {
-					if (LeitnerCardStats.findOne({cardset_id: cardsets[i]._id})) {
+					if (LeitnerUserCardStats.findOne({cardset_id: cardsets[i]._id})) {
 						cardsetCount++;
 					}
 				}

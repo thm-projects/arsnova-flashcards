@@ -1,7 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../subscriptions/cardsets.js";
 import {Cards} from "../subscriptions/cards.js";
-import {LeitnerCardStats} from "../subscriptions/leitner/leitnerCardStats";
+import {LeitnerUserCardStats} from "../subscriptions/leitner/leitnerUserCardStats";
 import {LeitnerPerformanceHistory} from "../subscriptions/leitner/leitnerPerformanceHistory";
 import {LeitnerLearningWorkload} from "../subscriptions/leitner/leitnerLearningWorkload";
 import {Wozniak} from "../subscriptions/wozniak";
@@ -308,7 +308,7 @@ Meteor.methods({
 			}
 		});
 
-		LeitnerCardStats.remove({
+		LeitnerUserCardStats.remove({
 			user_id: user_id
 		});
 
@@ -444,7 +444,7 @@ Meteor.methods({
 				},
 				{
 					$set: {
-						"count.workload": LeitnerCardStats.find({user_id: user_id}).count() + Wozniak.find({user_id: user_id}).count()
+						"count.workload": LeitnerUserCardStats.find({user_id: user_id}).count() + Wozniak.find({user_id: user_id}).count()
 					}
 				}
 			);

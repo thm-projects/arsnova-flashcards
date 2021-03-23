@@ -154,57 +154,47 @@ let initTestNotificationsCards = function () {
 	];
 };
 
-let initTestNotificationsLearned = function () {
+let initTestNotificationsLeitnerUserCardStats = function () {
 	return [
 		{
 			"_id": "NotificationsTestLearned1",
 			"cardset_id": "NotificationsTestCardset",
 			"card_id": "NotificationsTestCard1",
 			"user_id": "NotificationsTestUser",
-			"box": 1,
-			"active": true,
-			"nextDate": new Date(),
-			"currentDate": new Date()
+			"learning_phase_id": "NotificationsTestLearningPhase",
+			"workload_id": "NotificationsTestWorkload"
 		},
 		{
 			"_id": "NotificationsTestLearned2",
 			"cardset_id": "NotificationsTestCardset",
 			"card_id": "NotificationsTestCard2",
 			"user_id": "NotificationsTestUser",
-			"box": 1,
-			"active": true,
-			"nextDate": new Date(),
-			"currentDate": new Date()
+			"learning_phase_id": "NotificationsTestLearningPhase",
+			"workload_id": "NotificationsTestWorkload"
 		},
 		{
 			"_id": "NotificationsTestLearned3",
 			"cardset_id": "NotificationsTestCardset",
 			"card_id": "NotificationsTestCard3",
 			"user_id": "NotificationsTestUser",
-			"box": 1,
-			"active": true,
-			"nextDate": new Date(),
-			"currentDate": new Date()
+			"learning_phase_id": "NotificationsTestLearningPhase",
+			"workload_id": "NotificationsTestWorkload"
 		},
 		{
 			"_id": "NotificationsTestLearned4",
 			"cardset_id": "NotificationsTestCardset",
 			"card_id": "NotificationsTestCard4",
 			"user_id": "NotificationsTestUser",
-			"box": 1,
-			"active": true,
-			"nextDate": new Date(),
-			"currentDate": new Date()
+			"learning_phase_id": "NotificationsTestLearningPhase",
+			"workload_id": "NotificationsTestWorkload"
 		},
 		{
 			"_id": "NotificationsTestLearned5",
 			"cardset_id": "NotificationsTestCardset",
 			"card_id": "NotificationsTestCard5",
 			"user_id": "NotificationsTestUser",
-			"box": 1,
-			"active": true,
-			"nextDate": new Date(),
-			"currentDate": new Date()
+			"learning_phase_id": "NotificationsTestLearningPhase",
+			"workload_id": "NotificationsTestWorkload"
 		}
 	];
 };
@@ -320,7 +310,7 @@ module.exports = {
 	initColorThemes,
 	initTestNotificationsCardset,
 	initTestNotificationsCards,
-	initTestNotificationsLearned,
+	initTestNotificationsLeitnerUserCardStats,
 	initTestNotificationsUser,
 	initDemoCardsetUser
 };
