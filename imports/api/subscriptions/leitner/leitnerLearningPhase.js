@@ -1,8 +1,28 @@
 import {Mongo} from "meteor/mongo";
+import {Meteor} from "meteor/meteor";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import * as config from "../../../config/bonusForm";
+import {ServerStyle} from "../../../util/styles";
+import {UserPermissions} from "../../../util/permissions";
 
 export const LeitnerLearningPhase = new Mongo.Collection("leitnerLearningPhase");
+
+if (Meteor.isServer) {
+	Meteor.publish("learningPhaseActiveBonus", function () {
+		if ((this.userId || ServerStyle.isLoginEnabled("guest")) && UserPermissions.isNotBlockedOrFirstLogin()) {
+			return LeitnerLearningPhase.find({isActive: true, isBonus: true});
+		} else {
+			this.ready();
+		}
+	});
+	Meteor.publish("learningPhaseBonus", function () {
+		if ((this.userId || ServerStyle.isLoginEnabled("guest")) && UserPermissions.isNotBlockedOrFirstLogin()) {
+			return LeitnerLearningPhase.find({isBonus: true});
+		} else {
+			this.ready();
+		}
+	});
+}
 
 const LeitnerLearningPhaseSchema = new SimpleSchema({
 	cardset_id: {

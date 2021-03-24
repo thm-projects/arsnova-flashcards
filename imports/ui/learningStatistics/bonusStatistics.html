@@ -53,25 +53,27 @@
                             <th scope="col">{{_ "confirmLearn-form.notification"}}
                             </th>
                         {{/if}}
-                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="dateJoinedBonus">{{_ "learningStatistics.dateJoinedBonus"}}</a> {{> learningBonusStasticsItemSort (setSortObject "dateJoinedBonus")}}</th>
-                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="lastActivity">{{_ "learningStatistics.lastActivity"}}</a> {{> learningBonusStasticsItemSort (setSortObject "lastActivity")}}</th>
-                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="workingTimeSum">{{_ "learningStatistics.workingTime"}}</a> {{> learningBonusStasticsItemSort (setSortObject "workingTimeSum")}}</th>
-                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="cardArithmeticMean">{{_ "learningStatistics.arithmeticMean"}}</a> {{> learningBonusStasticsItemSort (setSortObject "cardArithmeticMean")}}</th>
-                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="box1">{{_ "learningStatistics.box" number=1}} [{{this.learningInterval.[0]}}]</a> {{> learningBonusStasticsItemSort (setSortObject "box1")}}
-                        </th>
-                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="box2">{{_ "learningStatistics.box" number=2}} [{{this.learningInterval.[1]}}]</a> {{> learningBonusStasticsItemSort (setSortObject "box2")}}
-                        </th>
-                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="box3">{{_ "learningStatistics.box" number=3}} [{{this.learningInterval.[2]}}]</a> {{> learningBonusStasticsItemSort (setSortObject "box3")}}
-                        </th>
-                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="box4">{{_ "learningStatistics.box" number=4}} [{{this.learningInterval.[3]}}]</a> {{> learningBonusStasticsItemSort (setSortObject "box4")}}
-                        </th>
-                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="box5">{{_ "learningStatistics.box" number=5}} [{{this.learningInterval.[4]}}]</a> {{> learningBonusStasticsItemSort (setSortObject "box5")}}
-                        </th>
-                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="box6">{{_ "learningStatistics.learned"}}</a> {{> learningBonusStasticsItemSort (setSortObject "box6")}}</th>
-                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="achievedBonus">{{_ "learningStatistics.bonus"}}</a> {{> learningBonusStasticsItemSort (setSortObject "achievedBonus")}}</th>
-                        <th scope="col">{{_ "learningStatistics.history"}}</th>
-                        <th scope="col">{{_ "learningStatistics.status"}}</th>
-                        <th scope="col">{{_ "learningStatistics.manage"}}</th>
+                        {{#with getActiveBonusLearningPhase this._id}}
+                            <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="dateJoinedBonus">{{_ "learningStatistics.dateJoinedBonus"}}</a> {{> learningBonusStasticsItemSort (setSortObject "dateJoinedBonus")}}</th>
+                            <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="lastActivity">{{_ "learningStatistics.lastActivity"}}</a> {{> learningBonusStasticsItemSort (setSortObject "lastActivity")}}</th>
+                            <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="workingTimeSum">{{_ "learningStatistics.workingTime"}}</a> {{> learningBonusStasticsItemSort (setSortObject "workingTimeSum")}}</th>
+                            <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="cardArithmeticMean">{{_ "learningStatistics.arithmeticMean"}}</a> {{> learningBonusStasticsItemSort (setSortObject "cardArithmeticMean")}}</th>
+                            <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="box1">{{_ "learningStatistics.box" number=1}} [{{this.intervals.[0]}}]</a> {{> learningBonusStasticsItemSort (setSortObject "box1")}}
+                            </th>
+                            <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="box2">{{_ "learningStatistics.box" number=2}} [{{this.intervals.[1]}}]</a> {{> learningBonusStasticsItemSort (setSortObject "box2")}}
+                            </th>
+                            <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="box3">{{_ "learningStatistics.box" number=3}} [{{this.intervals.[2]}}]</a> {{> learningBonusStasticsItemSort (setSortObject "box3")}}
+                            </th>
+                            <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="box4">{{_ "learningStatistics.box" number=4}} [{{this.intervals.[3]}}]</a> {{> learningBonusStasticsItemSort (setSortObject "box4")}}
+                            </th>
+                            <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="box5">{{_ "learningStatistics.box" number=5}} [{{this.intervals.[4]}}]</a> {{> learningBonusStasticsItemSort (setSortObject "box5")}}
+                            </th>
+                            <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="box6">{{_ "learningStatistics.learned"}}</a> {{> learningBonusStasticsItemSort (setSortObject "box6")}}</th>
+                            <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="achievedBonus">{{_ "learningStatistics.bonus"}}</a> {{> learningBonusStasticsItemSort (setSortObject "achievedBonus")}}</th>
+                            <th scope="col">{{_ "learningStatistics.history"}}</th>
+                            <th scope="col">{{_ "learningStatistics.status"}}</th>
+                            <th scope="col">{{_ "learningStatistics.manage"}}</th>
+                        {{/with}}
                     </tr>
                     {{#each getCardsetStats}}
                         <tr>
@@ -109,11 +111,13 @@
                                 {{this.achievedBonus}}&nbsp;%{{#if earnedTrophy}}&nbsp;<span class="fas fa-trophy bonusTrophy"></span>{{/if}}
                             </td>
                             <td>
-                                <a rel="noopener noreferrer"   data-id="{{this.user_id}}"
+                                <a rel="noopener noreferrer"
+                                   data-id="{{this.user_id}}"
                                    data-firstname="{{this.givenname}}"
                                    data-lastname="{{this.birthname}}"
                                    data-index="{{adjustIndex @index}}"
                                    data-email="{{this.email}}"
+                                   data-workloadid="{{this.workload_id}}"
                                    class="showLearningHistory" data-toggle="modal"
                                    href="#learningHistoryModal"><span
                                         class="far fa-clock"
@@ -122,13 +126,17 @@
                                         data-id="{{this.user_id}}"
                                         data-index="{{adjustIndex @index}}"
                                         data-email="{{this.email}}"
+                                        data-workloadid="{{this.workload_id}}"
                                         title="{{_ "learningHistory.tooltip"}}"></span></a>
                             </td>
                             <td>
-                                <a rel="noopener noreferrer"   data-id="{{this.user_id}}" data-index="{{adjustIndex @index}}"
+                                <a rel="noopener noreferrer"
+                                   data-id="{{this.user_id}}"
+                                   data-index="{{adjustIndex @index}}"
                                    data-firstname="{{this.givenname}}"
                                    data-lastname="{{this.birthname}}"
                                    data-email="{{this.email}}"
+                                   data-workloadid="{{this.workload_id}}"
                                    class="showLearningStatus"><span
                                         class="far fa-chart-bar"
                                         data-id="{{this.user_id}}"
@@ -136,10 +144,11 @@
                                         data-firstname="{{this.givenname}}"
                                         data-lastname="{{this.birthname}}"
                                         data-email="{{this.email}}"
+                                        data-workloadid="{{this.workload_id}}"
                                         title="{{_ "learningStatus.tooltip"}}"></span></a>
                             </td>
                             <td>
-                                <a rel="noopener noreferrer"   class="removeBonusUser" data-toggle="modal"
+                                <a rel="noopener noreferrer" class="removeBonusUser" data-toggle="modal"
                                    href="#learningStatisticsRemoveBonusUserModal"
                                    data-user_id="{{this.user_id}}"
                                    data-firstname="{{this.givenname}}"
@@ -158,8 +167,10 @@
                                    data-cardarithmeticmean="{{this.cardArithmeticMean}}"
                                    data-achievedbonus="{{this.achievedBonus}}"
                                    data-percentage="{{this.percentage}}"
+                                   data-workloadid="{{this.workload_id}}"
                                    title="{{_ "learningStatisticsRemoveBonusUser.tooltip"}}">
-                                    <span class="fas fa-trash" data-user_id="{{this.user_id}}"
+                                    <span class="fas fa-trash"
+                                          data-user_id="{{this.user_id}}"
                                           data-firstname="{{this.givenname}}"
                                           data-lastname="{{this.birthname}}"
                                           data-email="{{this.email}}"
@@ -178,6 +189,7 @@
                                           data-lastactivity="{{getMomentsDate this.lastActivity}}"
                                           data-achievedbonus="{{this.achievedBonus}}"
                                           data-percentage="{{this.percentage}}"
+                                          data-workloadid="{{this.workload_id}}"
                                     >
                                     </span></a>
                             </td>

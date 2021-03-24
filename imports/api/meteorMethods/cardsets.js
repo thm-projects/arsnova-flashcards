@@ -15,6 +15,7 @@ import {Utilities} from "../../util/utilities";
 import {Cardsets} from "../subscriptions/cardsets.js";
 import {LeitnerActivationDay} from "../subscriptions/leitner/leitnerActivationDay";
 import {Bonus} from "../../util/bonus";
+import {LeitnerLearningPhaseUtilities} from "../../util/learningPhase";
 
 Meteor.methods({
 	getSearchCategoriesResult: function (searchValue, filterType) {
@@ -809,7 +810,7 @@ Meteor.methods({
 					sort: {createdAt: -1},
 					fields: {_id: 1}
 				})._id;
-			const bonusPoints = Bonus.getAchievedBonus(box6Counts[user], cardset.workload, amountOfLearnableCards);
+			const bonusPoints = Bonus.getAchievedBonus(box6Counts[user], LeitnerLearningPhaseUtilities.getActiveBonus(cardset._id).bonusPoints, amountOfLearnableCards);
 			LeitnerActivationDay.update(
 				{
 					_id: task_id

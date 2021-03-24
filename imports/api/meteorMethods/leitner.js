@@ -10,6 +10,7 @@ import {CardType} from "../../util/cardTypes";
 import {LeitnerUtilities} from "../../util/leitner";
 import {LeitnerActivationDay} from "../subscriptions/leitner/leitnerActivationDay";
 import {PomodoroTimer} from "../../util/pomodoroTimer";
+import {LeitnerLearningPhase} from "../subscriptions/leitner/leitnerLearningPhase";
 
 Meteor.methods({
 	initializeWorkloadData: function (cardset_id, user_id) {
@@ -212,9 +213,32 @@ Meteor.methods({
 			}
 		}
 	},
-	getTempLeitnerData: function (cardset_id, user_id, type) {
+	getTempLearningPhaseData: function (cardset_id, user_id, workload_id) {
 		check(cardset_id, String);
 		check(user_id, String);
+		check(workload_id, String);
+
+		let query = {};
+		if (cardset_id !== "null") {
+			query.cardset_id = cardset_id;
+		}
+		if (user_id !== "null") {
+			query.user_id = user_id;
+		}
+		if (workload_id !== "null") {
+			query._id = workload_id;
+		}
+		let workload = LeitnerLearningWorkload.findOne(query);
+		if (workload !== undefined) {
+			return LeitnerLearningPhase.find({_id: workload.learning_phase_id}).fetch();
+		} else {
+			return [];
+		}
+	},
+	getTempLeitnerData: function (cardset_id, user_id, workload_id, type) {
+		check(cardset_id, String);
+		check(user_id, String);
+		check(workload_id, String);
 		check(type, String);
 
 		let options = {
@@ -222,7 +246,8 @@ Meteor.methods({
 				cardset_id: 1,
 				original_cardset_id: 1,
 				user_id: 1,
-				box: 1
+				box: 1,
+				learning_phase_id: 1
 			}
 		};
 		if (type === 'cardset') {
@@ -232,19 +257,25 @@ Meteor.methods({
 			if (cardset !== undefined) {
 				isCardsetOwnerAndLecturer = (cardset.owner === Meteor.userId() && UserPermissions.isLecturer());
 			}
-			let workload = LeitnerLearningWorkload.findOne({cardset_id: cardset_id, user_id: user_id});
+			let workload = LeitnerLearningWorkload.findOne({_id: workload_id, cardset_id: cardset_id, user_id: user_id});
 			if (workload !== undefined) {
-				targetUserIsInBonus = workload.leitner.bonus;
+				targetUserIsInBonus = workload.isBonus;
 			}
 			if (Meteor.userId() === user_id || (UserPermissions.gotBackendAccess() && targetUserIsInBonus) || (isCardsetOwnerAndLecturer && targetUserIsInBonus)) {
-				return LeitnerUserCardStats.find({cardset_id: cardset_id, user_id: user_id}, options).fetch();
+				return LeitnerUserCardStats.find({cardset_id: cardset_id, user_id: user_id, workload_id: workload._id}, options).fetch();
 			} else {
 				return [];
 			}
 		} else if (type === 'user') {
-			return LeitnerUserCardStats.find({user_id: Meteor.userId()}, options).fetch();
+			let activeWorkloads = LeitnerLearningWorkload.find({user_id: Meteor.userId(), isActive: true}).map(function (workload) {
+				return workload._id;
+			});
+			return LeitnerUserCardStats.find({workload_id: {$in: activeWorkloads}, user_id: Meteor.userId()}, options).fetch();
 		} else if (UserPermissions.gotBackendAccess()) {
-			return LeitnerUserCardStats.find({}, options).fetch();
+			let activeWorkloads = LeitnerLearningWorkload.find({isActive: true}).map(function (workload) {
+				return workload._id;
+			});
+			return LeitnerUserCardStats.find({workload_id: {$in: activeWorkloads}}, options).fetch();
 		} else {
 			return [];
 		}

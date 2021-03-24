@@ -8,6 +8,7 @@ import "../cardset/info/info.js";
 import "./wordcloud.html";
 import {NavigatorCheck} from "../../util/navigatorCheck";
 import {Route} from "../../util/route";
+import {LeitnerLearningPhase} from "../../api/subscriptions/leitner/leitnerLearningPhase";
 
 /*
  * ############################################################################
@@ -66,6 +67,9 @@ Template.wordcloudModal.helpers({
 			case "demo":
 				return "btn-demo";
 		}
+	},
+	activeLearningPhaseBonus: function (cardset_id) {
+		return LeitnerLearningPhase.findOne({cardset_id: cardset_id, isActive: true, isBonus: true});
 	}
 });
 

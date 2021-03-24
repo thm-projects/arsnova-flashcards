@@ -136,7 +136,7 @@ function workloadMigrationStep() {
 							}
 							return acc;
 						}, [0, 0]);
-					const currentBonus = Bonus.getAchievedBonus(box6, cardsetWorkload, learnable);
+					const currentBonus = Bonus.getAchievedBonus(box6, cardsetWorkload.bonus, learnable);
 					LeitnerTasks.update({
 							_id: leitnerTask
 						},

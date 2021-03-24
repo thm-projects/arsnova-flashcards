@@ -4,7 +4,6 @@ import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {CardType} from "../../../../util/cardTypes";
-import {Bonus} from "../../../../util/bonus";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {BertAlertVisuals} from "../../../../util/bertAlertVisuals";
 import "../modal/leaveBonus.js";
@@ -32,9 +31,6 @@ Template.cardsetNavigationBonus.helpers({
 		} else {
 			return CardType.gotLearningModes(this.cardType);
 		}
-	},
-	isInBonus: function () {
-		return Bonus.isInBonus(Session.get('activeCardset')._id, Meteor.userId());
 	}
 });
 

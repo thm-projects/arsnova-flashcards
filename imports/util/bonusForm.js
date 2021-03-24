@@ -9,6 +9,7 @@ import {LeitnerUtilities} from "./leitner";
 import {SweetAlertMessages} from "./sweetAlert";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {ReactiveDict} from 'meteor/reactive-dict';
+import {LeitnerLearningPhaseUtilities} from "./learningPhase";
 
 let leitnerSimulator;
 let leitnerSimulatorDays;
@@ -36,24 +37,27 @@ export let BonusForm = class BonusForm {
 			errorCount = config.defaultErrorCount;
 			forceNotifications.set('mail', config.defaultForceNotifications.mail);
 			forceNotifications.set('push', config.defaultForceNotifications.push);
+			$('#strictWorkloadTimer').prop('checked', config.defaultStrictWorkloadTimer);
 		} else {
-			start = moment(Session.get('activeCardset').learningStart).format(config.dateFormat);
-			nextDay = moment(Session.get('activeCardset').learningStart).add(1, 'day').format(config.dateFormat);
-			end = moment(Session.get('activeCardset').learningEnd).format(config.dateFormat);
-			registrationPeriod = moment(Session.get('activeCardset').registrationPeriod).format(config.dateFormat);
-			maxWorkload = Session.get('activeCardset').maxCards;
-			daysBeforeReset = Session.get('activeCardset').daysBeforeReset;
-			intervals = Session.get('activeCardset').learningInterval;
+			let learningPhase = LeitnerLearningPhaseUtilities.getActiveBonus(Session.get('activeCardset')._id);
+			start = moment(learningPhase.start).format(config.dateFormat);
+			nextDay = moment(learningPhase.start).add(1, 'day').format(config.dateFormat);
+			end = moment(learningPhase.end).format(config.dateFormat);
+			registrationPeriod = moment(learningPhase.registrationPeriod).format(config.dateFormat);
+			maxWorkload = learningPhase.maxCards;
+			daysBeforeReset = learningPhase.daysBeforeReset;
+			intervals = learningPhase.intervals;
 			dateBonusStart.attr("min", start);
-			if (Session.get('activeCardset').workload !== undefined && Session.get('activeCardset').workload.simulator !== undefined) {
-				errorCount = Session.get('activeCardset').workload.simulator.errorCount[0];
+			if (learningPhase.simulator !== undefined) {
+				errorCount = learningPhase.simulator.errorCount[0];
 			} else {
 				errorCount = config.defaultErrorCount;
 			}
-			if (Session.get('activeCardset').forceNotifications !== undefined) {
-				forceNotifications.set('mail', Session.get('activeCardset').forceNotifications.mail);
-				forceNotifications.set('push', Session.get('activeCardset').forceNotifications.push);
+			if (learningPhase.forceNotifications !== undefined) {
+				forceNotifications.set('mail', learningPhase.forceNotifications.mail);
+				forceNotifications.set('push', learningPhase.forceNotifications.push);
 			}
+			$('#strictWorkloadTimer').prop('checked', learningPhase.strictWorkloadTimer);
 		}
 		$('#maxWorkload').val(maxWorkload);
 		$('#bonusFormModal #daysBeforeReset').val(daysBeforeReset);
@@ -70,7 +74,6 @@ export let BonusForm = class BonusForm {
 		dateRegistrationPeriodExpires.attr("min", nextDay);
 		dateRegistrationPeriodExpires.attr("max", end);
 		dateRegistrationPeriodExpires.val(registrationPeriod);
-		$('#strictWorkloadTimer').prop('checked', Session.get('activeCardset').strictWorkloadTimer);
 	}
 
 	static adjustRegistrationPeriod () {
@@ -471,11 +474,11 @@ export let BonusForm = class BonusForm {
 		return config.defaultMinBonusPoints;
 	}
 
-	static getCurrentMaxBonusPoints (cardset) {
-		if (cardset.workload === undefined || cardset.workload.bonus === undefined) {
+	static getCurrentMaxBonusPoints (learningPhase) {
+		if (learningPhase.bonusPoints === undefined || learningPhase.bonusPoints.maxPoints === undefined) {
 			return this.getDefaultMaxBonusPoints();
 		} else {
-			return cardset.workload.bonus.maxPoints;
+			return learningPhase.bonusPoints.maxPoints;
 		}
 	}
 
