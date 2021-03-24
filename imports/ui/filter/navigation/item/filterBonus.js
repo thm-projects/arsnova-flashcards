@@ -2,6 +2,7 @@ import "./filterBonus.html";
 import {Template} from "meteor/templating";
 import {Filter} from "../../../../util/filter";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
+import {LeitnerLearningPhase} from "../../../../api/subscriptions/leitner/leitnerLearningPhase";
 
 /*
  * ############################################################################
@@ -12,26 +13,30 @@ import {Cardsets} from "../../../../api/subscriptions/cardsets";
 Template.filterItemFilterBonus.helpers({
 	hasBonusFilter: function () {
 		let query = Filter.getFilterQuery();
-		return (query.learningActive !== undefined) || (query['transcriptBonus.enabled'] === true);
+		return (query._id !== undefined) || (query['transcriptBonus.enabled'] === true);
 	},
 	resultsFilterBonus: function (bonusType) {
 		let query = Filter.getFilterQuery();
 		switch (bonusType) {
 			case 0:
-				return (query.learningActive !== undefined);
+				return (query._id !== undefined);
 			case 1:
 				return (query['transcriptBonus.enabled'] === true);
 		}
 	},
 	gotBonusCardsets: function () {
 		let query = Filter.getFilterQuery();
-		query.learningActive = true;
 		delete query['transcriptBonus.enabled'];
-		return Cardsets.findOne(query);
+		delete query._id;
+		let cardsetIDs = Cardsets.find(query).fetch().map(function (cardset) {
+			return cardset._id;
+		});
+		return LeitnerLearningPhase.findOne({cardset_id: {$in: cardsetIDs}});
 	},
 	gotTranscriptBonusCardsets: function () {
 		let query = Filter.getFilterQuery();
 		delete query.learningActive;
+		delete query._id;
 		query['transcriptBonus.enabled'] = true;
 		return Cardsets.findOne(query);
 	}

@@ -118,6 +118,12 @@ Template.filterIndex.events({
 			FilterNavigation.showDropdown();
 		}
 	},
+	'click .resultItemHeaderBottomAreaLabels .label-bonus-finished': function () {
+		if (ServerStyle.gotNavigationFeature("filter", true)) {
+			Filter.setActiveFilter(true, "bonusActive");
+			FilterNavigation.showDropdown();
+		}
+	},
 	'click .resultItemHeaderBottomAreaLabels .label-transcript-bonus': function () {
 		if (ServerStyle.gotNavigationFeature("filter", true)) {
 			Filter.setActiveFilter(true, "transcriptBonus");

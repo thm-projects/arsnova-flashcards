@@ -163,29 +163,30 @@ Template.learningHistoryModal.helpers({
 
 Template.learningHistoryModal.events({
 	"click .showLearningLog": function (event) {
-		let task = {};
-		let taskStats = {};
-		task.user_id = $(event.target).data('user');
-		task.cardset_id = $(event.target).data('cardset');
-		task.task_id = $(event.target).data('task');
+		let activation_day = {};
+		let activationDayStats = {};
+		activation_day.user_id = $(event.target).data('user');
+		activation_day.cardset_id = $(event.target).data('cardset');
+		activation_day._id = $(event.target).data('activationday');
 
-		taskStats.known = $(event.target).data('known');
-		taskStats.notKnown = $(event.target).data('notknown');
-		taskStats.workload = $(event.target).data('workload');
-		taskStats.reason = $(event.target).data('reason');
-		taskStats.duration = $(event.target).data('duration');
-		taskStats.cardArithmeticMean = $(event.target).data('cardarithmeticmean');
-		taskStats.cardMedian = $(event.target).data('cardmedian');
-		taskStats.cardStandardDeviation = $(event.target).data('cardstandarddeviation');
-		taskStats.lastActivity = $(event.target).data('lastactivity');
-		taskStats.taskDate = $(event.target).data('taskdate');
-		Session.set('selectedLearningLogStats', taskStats);
-		Meteor.call("getLearningLog", task.user_id, task.cardset_id, task.task_id, function (error, result) {
+		activationDayStats.known = $(event.target).data('known');
+		activationDayStats.notKnown = $(event.target).data('notknown');
+		activationDayStats.workload = $(event.target).data('workload');
+		activationDayStats.reason = $(event.target).data('reason');
+		activationDayStats.duration = $(event.target).data('duration');
+		activationDayStats.cardArithmeticMean = $(event.target).data('cardarithmeticmean');
+		activationDayStats.cardMedian = $(event.target).data('cardmedian');
+		activationDayStats.cardStandardDeviation = $(event.target).data('cardstandarddeviation');
+		activationDayStats.lastActivity = $(event.target).data('lastactivity');
+		activationDayStats.createdAt = $(event.target).data('createdat');
+		activationDayStats.workload_id = $(event.target).data('workloadid');
+		Session.set('selectedLearningLogStats', activationDayStats);
+		Meteor.call("getLearningLog", activation_day.user_id, activation_day.cardset_id, activation_day._id, activationDayStats.workload_id, function (error, result) {
 			if (error) {
 				throw new Meteor.Error(error.statusCode, 'Error could not receive content for task history');
 			}
 			if (result) {
-				Session.set('selectedLearningLog', LeitnerHistoryUtilities.prepareTaskHistoryData(result));
+				Session.set('selectedLearningLog', LeitnerHistoryUtilities.prepareActivationDateHistoryData(result));
 			}
 		});
 	},

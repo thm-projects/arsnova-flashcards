@@ -12,6 +12,7 @@ import {Utilities} from "./utilities";
 import {LeitnerActivationDay} from "../api/subscriptions/leitner/leitnerActivationDay";
 import {PomodoroTimer} from "./pomodoroTimer";
 import {Bonus} from "./bonus";
+import {LeitnerLearningPhaseUtilities} from "./learningPhase";
 
 // Allow the user to update the timer a few seconds earlier to prevent close calls deny an update
 let minimumSecondThreshold = 57;
@@ -43,7 +44,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					}
 					return acc;
 				}, [0, 0]);
-			const bonusPoints = Bonus.getAchievedBonus(box6, cardset.workload, learnable);
+			const bonusPoints = Bonus.getAchievedBonus(box6, LeitnerLearningPhaseUtilities.getActiveBonus(cardset._id), learnable);
 			LeitnerActivationDay.update({_id: leitnerTask._id},
 				{
 					$set: {
@@ -344,7 +345,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 							box6++;
 						}
 					});
-				const bonusPoints = Bonus.getAchievedBonus(box6, cardset.workload, learnable);
+				const bonusPoints = Bonus.getAchievedBonus(box6, LeitnerLearningPhaseUtilities.getActiveBonus(cardset._id), learnable);
 				obj.bonusPoints = {
 					atStart: bonusPoints,
 					atEnd: bonusPoints

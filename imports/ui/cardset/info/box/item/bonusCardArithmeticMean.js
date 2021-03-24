@@ -1,5 +1,4 @@
 import "./bonusCardArithmeticMean.html";
-import {Session} from "meteor/session";
 import {Utilities} from "../../../../../util/utilities";
 /*
 * ############################################################################
@@ -10,8 +9,8 @@ import {Utilities} from "../../../../../util/utilities";
 Template.cardsetInfoBoxItemBonusCardArithmeticMean.helpers({
 	getBonusCardArithmeticMean: function () {
 		let bonusCardArithmeticMean = 0;
-		if (Session.get('activeCardset') !== undefined && Session.get('activeCardset').learningStatistics !== undefined && Session.get('activeCardset').learningStatistics.answerTime !== undefined) {
-			bonusCardArithmeticMean = Session.get('activeCardset').learningStatistics.answerTime.arithmeticMean.bonus;
+		if (this.performanceStats !== undefined && this.performanceStats.answerTime !== undefined) {
+			bonusCardArithmeticMean = this.performanceStats.answerTime.arithmeticMean.bonus;
 		}
 		return Utilities.humanizeDuration(bonusCardArithmeticMean);
 	}

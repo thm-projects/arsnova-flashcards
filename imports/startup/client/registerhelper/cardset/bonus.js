@@ -21,8 +21,8 @@ Template.registerHelper("getDefaultMinBonusPoints", function () {
 	return BonusForm.getDefaultMinBonusPoints();
 });
 
-Template.registerHelper("getCurrentMaxBonusPoints", function (cardset) {
-	return BonusForm.getCurrentMaxBonusPoints(cardset);
+Template.registerHelper("getCurrentMaxBonusPoints", function (learningPhase) {
+	return BonusForm.getCurrentMaxBonusPoints(learningPhase);
 });
 
 

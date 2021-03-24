@@ -13,6 +13,7 @@ import "./serverConfiguration/welcomePage.js";
 import "./editor.js";
 import "./filter.js";
 import "./fullscreen.js";
+import "./learningPhase.js";
 import "./learningStatistics.js";
 import "./leitner.js";
 import "./login.js";

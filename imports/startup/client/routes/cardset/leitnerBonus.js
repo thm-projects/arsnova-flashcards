@@ -19,6 +19,7 @@ FlowRouter.route('/cardset/:_id/stats', {
 			Meteor.subscribe('cardset', params._id),
 			Meteor.subscribe('cardsetUserRating', params._id),
 			Meteor.subscribe('cardsetWorkload', params._id),
+			Meteor.subscribe('learningPhaseBonus'),
 			Meteor.subscribe('frontendUserData')
 		];
 	},

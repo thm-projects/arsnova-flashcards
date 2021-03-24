@@ -49,7 +49,7 @@ Template.registerHelper("learningStatisticsIsInBonus", function (type = 0) {
 		}
 		let workload = LeitnerLearningWorkload.findOne({user_id: Meteor.userId(), cardset_id: cardset_id});
 		if (workload !== undefined) {
-			return workload.leitner.bonus;
+			return workload.isBonus;
 		}
 	} else {
 		return Session.get('selectedLearningStatisticsUser').isInBonus;

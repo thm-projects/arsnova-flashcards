@@ -17,7 +17,8 @@ FlowRouter.route('/cardset/:_id/editors', {
 			import('../../../../ui/cardset/cardset.js'),
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('cardset', params._id),
-			Meteor.subscribe('frontendUserData')
+			Meteor.subscribe('frontendUserData'),
+			Meteor.subscribe('learningPhaseActiveBonus')
 		];
 	},
 	data: function (params) {

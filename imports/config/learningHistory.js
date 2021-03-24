@@ -5,7 +5,7 @@ let defaultBonusUserSortSettings = {
 	desc: false
 };
 let defaultUserHistorySortSettings = {
-	content: "date",
+	content: "createdAt",
 	desc: false
 };
 let defaultTaskHistorySortSettings = {

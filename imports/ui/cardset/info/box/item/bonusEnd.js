@@ -10,6 +10,6 @@ import "./bonusEnd.html";
 
 Template.cardsetInfoBoxItemBonusEnd.helpers({
 	getDateEnd: function () {
-		return moment(this.learningEnd).format("DD.MM.YYYY");
+		return moment(this.end).format("DD.MM.YYYY");
 	}
 });

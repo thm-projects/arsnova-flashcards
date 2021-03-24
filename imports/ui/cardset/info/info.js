@@ -15,6 +15,7 @@ import "./box/bonusTranscript.js";
 import "./info.html";
 import {ServerStyle} from "../../../util/styles";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import {LeitnerLearningPhaseUtilities} from "../../../util/learningPhase";
 
 /*
  * ############################################################################
@@ -59,8 +60,8 @@ Template.cardsetInfo.helpers({
 	isInBonus: function () {
 		return Bonus.isInBonus(Session.get('activeCardset')._id, Meteor.userId());
 	},
-	canSeeBonusDropdown: function () {
-		return this.learningActive && ServerStyle.gotNavigationFeature("misc.features.bonus");
+	canSeeBonusDropdown: function (cardset_id) {
+		return LeitnerLearningPhaseUtilities.isBonusActive(cardset_id) && ServerStyle.gotNavigationFeature("misc.features.bonus");
 	},
 	canSeeBonusTranscriptDropdown: function () {
 		return this.transcriptBonus !== undefined && this.transcriptBonus.enabled && ServerStyle.gotNavigationFeature("misc.features.bonus");

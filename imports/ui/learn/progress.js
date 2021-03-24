@@ -36,8 +36,8 @@ Template.progress.helpers({
 		}
 	},
 	getMaxWorkload: function () {
-		let cardsetCollection = LearningStatus.getCardsetCollection();
-		let maxWorkload = cardsetCollection.findOne({_id: Session.get('workloadProgressCardsetID')}).maxCards;
+		let learningPhaseCollection = LearningStatus.getLearningPhaseCollection();
+		let maxWorkload = learningPhaseCollection.findOne({cardset_id: Session.get('workloadProgressCardsetID')}).maxCards;
 		if (maxWorkload === 1) {
 			return TAPi18n.__('bonus.progress.maxWorkload.single', {amount: maxWorkload}, Session.get('activeLanguage'));
 		} else {

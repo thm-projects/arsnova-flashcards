@@ -12,15 +12,18 @@ Template.cardSidebarItemLearningHistory.helpers({
 });
 
 Template.cardSidebarItemLearningHistory.events({
-	"click .showLearningHistory": function () {
+	"click .showLearningHistory": function (event) {
 		$('#learningHistoryModal').modal('show');
-		Meteor.call("getLearningHistory", Meteor.userId(), FlowRouter.getParam('_id'), function (error, result) {
-			if (error) {
-				throw new Meteor.Error(error.statusCode, 'Error could not receive content for history');
-			}
-			if (result) {
-				Session.set('selectedLearningHistory', LeitnerHistoryUtilities.prepareUserHistoryData(result));
-			}
-		});
+		let workload_id = $(event.target).data('workloadId');
+		if (workload_id !== undefined) {
+			Meteor.call("getLearningHistory", Meteor.userId(), FlowRouter.getParam('_id'), workload_id, function (error, result) {
+				if (error) {
+					throw new Meteor.Error(error.statusCode, 'Error could not receive content for history');
+				}
+				if (result) {
+					Session.set('selectedLearningHistory', LeitnerHistoryUtilities.prepareUserHistoryData(result));
+				}
+			});
+		}
 	}
 });

@@ -37,15 +37,15 @@ export let Bonus = class Bonus {
 		}
 	}
 
-	static getAchievedBonus (box6, workload, total) {
-		let box6Goal = (total / 100) * workload.bonus.minLearned;
+	static getAchievedBonus (box6, bonusPoints, total) {
+		let box6Goal = (total / 100) * bonusPoints.minLearned;
 		let bonusPointSteps = box6 / 10;
-		if (workload.bonus.maxPoints !== 0) {
-			bonusPointSteps = box6Goal / workload.bonus.maxPoints;
+		if (bonusPoints.maxPoints !== 0) {
+			bonusPointSteps = box6Goal / bonusPoints.maxPoints;
 		}
 		let achievedBonus = Math.round(box6 / bonusPointSteps) ;
-		if (achievedBonus > workload.bonus.maxPoints) {
-			return workload.bonus.maxPoints;
+		if (achievedBonus > bonusPoints.maxPoints) {
+			return bonusPoints.maxPoints;
 		} else {
 			return achievedBonus;
 		}

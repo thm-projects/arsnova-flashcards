@@ -10,7 +10,7 @@
                         </div>
                     </button>
                     <ul class="dropdown-menu">
-                        {{#if learningActive}}
+                        {{#if isBonusActive _id undefined}}
                             <li id="showStats" class="showStatsList">
                                 <span class="fas fa-clipboard-list"></span> {{_ "cardset.tooltip.displayBonusStats"}}
                             </li>

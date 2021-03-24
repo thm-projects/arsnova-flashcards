@@ -5,6 +5,7 @@ import {CardType} from "../../../../util/cardTypes";
 import {Cards} from "../../../../api/subscriptions/cards";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
+import {LeitnerLearningPhaseUtilities} from "../../../../util/learningPhase";
 
 function getCardErrorCount(card_id) {
 	let errorCount = 0;
@@ -14,9 +15,10 @@ function getCardErrorCount(card_id) {
 	return errorCount;
 }
 
-Template.registerHelper("getBonusLabel", function (learningActive = false, learningEnd = new Date()) {
-	if (learningActive && ServerStyle.gotNavigationFeature("misc.features.bonus")) {
-		if (learningEnd < new Date()) {
+Template.registerHelper("getBonusLabel", function (cardset_id) {
+	let learningPhase = LeitnerLearningPhaseUtilities.getActiveBonus(cardset_id);
+	if (learningPhase !== undefined && ServerStyle.gotNavigationFeature("misc.features.bonus")) {
+		if (LeitnerLearningPhaseUtilities.isBonusActive("", learningPhase)) {
 			return '<span class="label label-bonus-finished" title="' + TAPi18n.__('cardset.bonus.long') + '">' + TAPi18n.__('cardset.bonus.short') + '</span>';
 		} else {
 			return '<span class="label label-bonus" title="' + TAPi18n.__('cardset.bonus.long') + '">' + TAPi18n.__('cardset.bonus.short') + '</span>';

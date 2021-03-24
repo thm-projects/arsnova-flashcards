@@ -121,7 +121,7 @@ function leitnerTaskMigrationStep() {
 						box6++;
 					}
 				});
-			const endBonusPoints = Bonus.getAchievedBonus(box6, currentCacheEntry.cardset.workload, learnable);
+			const endBonusPoints = Bonus.getAchievedBonus(box6, currentCacheEntry.cardset.workload.bonus, learnable);
 			const extendedUserId = elem.user_id + elem.session;
 			//The cache only works if all data is migrated at once
 			const startBonusPoints = currentCacheEntry.playerBonusPointCache[extendedUserId] || 0;

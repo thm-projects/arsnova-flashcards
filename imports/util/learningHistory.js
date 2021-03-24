@@ -4,6 +4,7 @@ import {CardType, CardType as CardTypes} from "./cardTypes";
 import {CardVisuals} from "./cardVisuals";
 import * as config from "../config/learningHistory";
 import {Utilities} from "./utilities";
+import {LeitnerLearningPhaseUtilities} from "./learningPhase";
 
 export let LeitnerHistoryUtilities = class LearningHistory {
 	static prepareBonusUserData (bonusUsers) {
@@ -17,7 +18,7 @@ export let LeitnerHistoryUtilities = class LearningHistory {
 			bonusUsers[i].percentage = Math.round(user.box6 / totalCards * 100);
 
 			//Set achieved bonus
-			bonusUsers[i].achievedBonus = Bonus.getAchievedBonus(user.box6, Session.get('activeCardset').workload, (user.box1 + user.box2 + user.box3 + user.box4 + user.box5 + user.box6));
+			bonusUsers[i].achievedBonus = Bonus.getAchievedBonus(user.box6, LeitnerLearningPhaseUtilities.getActiveBonus(Session.get('activeCardset')._id).bonusPoints, (user.box1 + user.box2 + user.box3 + user.box4 + user.box5 + user.box6));
 		}
 		return bonusUsers;
 	}
@@ -25,17 +26,17 @@ export let LeitnerHistoryUtilities = class LearningHistory {
 	static prepareUserHistoryData (userHistory) {
 		//Set status
 		for (let i = 0; i < userHistory.length; i++) {
-			let task = userHistory[i];
-			let completedWorkload = task.known + task.notKnown;
-			if (completedWorkload === task.workload) {
-				userHistory[i].statusCode = task.lastAnswerDate;
-				userHistory[i].statusText = TAPi18n.__('learningHistory.table.status.completed', {lastAnswerDate: Utilities.getMomentsDate(task.lastAnswerDate, 0, false, false)});
-			} else if (!task.missedDeadline) {
+			let activationDate = userHistory[i];
+			let completedWorkload = activationDate.known + activationDate.notKnown;
+			if (completedWorkload === activationDate.workload) {
+				userHistory[i].statusCode = activationDate.lastActivity;
+				userHistory[i].statusText = TAPi18n.__('learningHistory.table.status.completed', {lastAnswerDate: Utilities.getMomentsDate(activationDate.lastActivity, 0, false, false)});
+			} else if (!activationDate.missedDeadline) {
 				userHistory[i].statusCode = -1;
 				userHistory[i].statusText = TAPi18n.__('learningHistory.table.status.inProgress');
 			} else {
 				if (completedWorkload > 0) {
-					let unfinishedWorkload = task.workload - completedWorkload;
+					let unfinishedWorkload = activationDate.workload - completedWorkload;
 					if (unfinishedWorkload === 1) {
 						userHistory[i].statusCode = -2;
 						userHistory[i].statusText = TAPi18n.__('learningHistory.table.status.notFullyCompletedSingular', {cards: unfinishedWorkload});
@@ -51,7 +52,7 @@ export let LeitnerHistoryUtilities = class LearningHistory {
 		}
 		return userHistory;
 	}
-	static prepareTaskHistoryData (taskHistory) {
+	static prepareActivationDateHistoryData (taskHistory) {
 		for (let i = 0; i < taskHistory.length; i++) {
 			let card = taskHistory[i];
 
