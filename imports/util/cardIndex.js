@@ -33,7 +33,7 @@ export let CardIndex = class CardIndex {
 				Session.set('activeCard', -1);
 			}
 		}
-		if (Session.get('activeCard') === undefined && result[0] !== undefined) {
+		if (Session.get('activeCard') === undefined && result !== undefined && result.length) {
 			CardNavigation.setActiveCardData(result[0]._id);
 		}
 		Session.set('activeIndexCards', CardVisuals.setTypeAndDifficulty(result));
@@ -64,7 +64,7 @@ export let CardIndex = class CardIndex {
 	}
 
 	static defaultIndex (forcedCardset = undefined) {
-		let cardIndex = [];
+		let defaultCardIndex = [];
 		let sortQuery;
 		let indexCards = [];
 		let cardset;
@@ -74,11 +74,11 @@ export let CardIndex = class CardIndex {
 				if (Session.get('transcriptBonusReviewFilter') !== undefined && Session.get('transcriptBonusReviewFilter') !== null) {
 					query.card_id = Session.get('transcriptBonusReviewFilter');
 				}
-				let indexCards = TranscriptBonus.find(query,{sort: {date: 1, user_id: 1}, fields: {card_id: 1}}).fetch();
+				indexCards = TranscriptBonus.find(query,{sort: {date: 1, user_id: 1}, fields: {card_id: 1}}).fetch();
 				indexCards.forEach(function (indexCard) {
-					cardIndex.push(indexCard.card_id);
+					defaultCardIndex.push(indexCard.card_id);
 				});
-				return cardIndex;
+				return defaultCardIndex;
 			} else {
 				return 0;
 			}
@@ -103,22 +103,22 @@ export let CardIndex = class CardIndex {
 						sort: sortQuery, fields: {_id: 1}
 					});
 					indexCards.forEach(function (indexCard) {
-						cardIndex.push(indexCard._id);
+						defaultCardIndex.push(indexCard._id);
 					});
 				});
 			} else {
 				sortQuery = CardType.getSortQuery(cardset.cardType, cardset.sortType);
 				indexCards = Cards.find({cardset_id: cardset._id}, {sort: sortQuery, fields: {_id: 1}});
 				indexCards.forEach(function (indexCard) {
-					cardIndex.push(indexCard._id);}
+					defaultCardIndex.push(indexCard._id);}
 				);
 			}
-			return cardIndex;
+			return defaultCardIndex;
 		}
 	}
 
 	static leitnerIndex () {
-		let cardIndex = [];
+		let leitnerCardIndex = [];
 		let indexCards = Leitner.find({
 			cardset_id: FlowRouter.getParam('_id'),
 			user_id: Meteor.userId(),
@@ -130,15 +130,15 @@ export let CardIndex = class CardIndex {
 		}).fetch();
 		let filter = Utilities.getUniqData(indexCards, 'card_id');
 		if (indexCards.length) {
-			cardIndex = this.defaultIndex(Cardsets.findOne({_id: FlowRouter.getParam('_id')})).filter(function (id) {
+			leitnerCardIndex = this.defaultIndex(Cardsets.findOne({_id: FlowRouter.getParam('_id')})).filter(function (id) {
 				return filter.indexOf(id) > -1;
 			});
 		}
-		return cardIndex;
+		return leitnerCardIndex;
 	}
 
 	static wozniakIndex () {
-		let cardIndex = [];
+		let wozniakCardIndex = [];
 		let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 		actualDate.setHours(0, 0, 0, 0);
 		let indexCards = Wozniak.find({
@@ -157,9 +157,9 @@ export let CardIndex = class CardIndex {
 			}
 		}).fetch();
 		indexCards.forEach(function (indexCard) {
-			cardIndex.push(indexCard.card_id);
+			wozniakCardIndex.push(indexCard.card_id);
 		});
-		return cardIndex;
+		return wozniakCardIndex;
 	}
 
 	static getCardIndexFilter () {
@@ -364,13 +364,13 @@ export let CardIndex = class CardIndex {
 	}
 
 	static getNextCardID (card_id) {
-		let cardIndex = this.getCardIndex();
-		let index = cardIndex.findIndex(item => item === card_id);
+		let tempCardIndex = this.getCardIndex();
+		let index = tempCardIndex.findIndex(item => item === card_id);
 		++index;
-		if (index >= cardIndex.length) {
-			return cardIndex[0];
+		if (index >= tempCardIndex.length) {
+			return tempCardIndex[0];
 		} else {
-			return cardIndex[index];
+			return tempCardIndex[index];
 		}
 	}
 
@@ -378,8 +378,7 @@ export let CardIndex = class CardIndex {
 		if (Route.isTranscript() && !Route.isPresentationTranscriptReview()) {
 			return 0;
 		} else {
-			let cardIndex = this.getCardIndex();
-			return cardIndex.findIndex(item => item === card_id) + 1;
+			return this.getCardIndex().findIndex(item => item === card_id) + 1;
 		}
 	}
 };

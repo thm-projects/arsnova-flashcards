@@ -1,6 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {Cards} from "../api/subscriptions/cards";
 import {Cardsets} from "../api/subscriptions/cardsets";
+import {CardType} from "./cardTypes";
 
 export function importCards(data, cardset, importType) {
 	if (Meteor.isServer) {
@@ -58,28 +59,28 @@ export function importCards(data, cardset, importType) {
 				};
 			}
 			if (importType === 1) {
-				let item = data[i];
+				let cardItem = data[i];
 				let subject, front, back, hint, lecture, top, bottom, lastEditor;
 				try {
 					// If the string is UTF-8, this will work and not throw an error.
-					subject = decodeURIComponent(encodeURIComponent(item.subject));
-					front = decodeURIComponent(encodeURIComponent(item.front));
-					back = decodeURIComponent(encodeURIComponent(item.back));
-					hint = decodeURIComponent(encodeURIComponent(item.hint));
-					lecture = decodeURIComponent(encodeURIComponent(item.lecture));
-					top = decodeURIComponent(encodeURIComponent(item.top));
-					bottom = decodeURIComponent(encodeURIComponent(item.bottom));
-					lastEditor = decodeURIComponent(encodeURIComponent(item.lastEditor));
+					subject = decodeURIComponent(encodeURIComponent(cardItem.subject));
+					front = decodeURIComponent(encodeURIComponent(cardItem.front));
+					back = decodeURIComponent(encodeURIComponent(cardItem.back));
+					hint = decodeURIComponent(encodeURIComponent(cardItem.hint));
+					lecture = decodeURIComponent(encodeURIComponent(cardItem.lecture));
+					top = decodeURIComponent(encodeURIComponent(cardItem.top));
+					bottom = decodeURIComponent(encodeURIComponent(cardItem.bottom));
+					lastEditor = decodeURIComponent(encodeURIComponent(cardItem.lastEditor));
 				} catch (e) {
 					// If it isn't, an error will be thrown, and we can assume that we have an ISO string.
-					subject = item.subject;
-					front = item.front;
-					back = item.back;
-					hint = item.hint;
-					lecture = item.lecture;
-					top = item.top;
-					bottom = item.bottom;
-					lastEditor = item.lastEditor;
+					subject = cardItem.subject;
+					front = cardItem.front;
+					back = cardItem.back;
+					hint = cardItem.hint;
+					lecture = cardItem.lecture;
+					top = cardItem.top;
+					bottom = cardItem.bottom;
+					lastEditor = cardItem.lastEditor;
 				}
 
 				let hlcodeReplacement = "\n```\n";
@@ -87,15 +88,15 @@ export function importCards(data, cardset, importType) {
 				front = front.replace(regex, hlcodeReplacement);
 				back = back.replace(regex, hlcodeReplacement);
 				let originalAuthorName;
-				if (item.originalAuthor !== undefined) {
+				if (cardItem.originalAuthor !== undefined) {
 					originalAuthorName = {
-						legacyName: item.originalAuthor
+						legacyName: cardItem.originalAuthor
 					};
 				} else {
-					originalAuthorName = item.originalAuthorName;
+					originalAuthorName = cardItem.originalAuthorName;
 				}
-				if (item.learningTime === undefined) {
-					item.learningTime = {
+				if (cardItem.learningTime === undefined) {
+					cardItem.learningTime = {
 						initial: -1,
 						repeated: -1
 					};
@@ -110,18 +111,18 @@ export function importCards(data, cardset, importType) {
 					lecture: lecture,
 					top: top,
 					bottom: bottom,
-					centerTextElement: item.centerTextElement,
-					alignType: item.alignType,
-					learningGoalLevel: item.learningGoalLevel,
-					backgroundStyle: item.backgroundStyle,
-					date: item.date,
-					dateUpdated: item.dateUpdated,
+					centerTextElement: cardItem.centerTextElement,
+					alignType: cardItem.alignType,
+					learningGoalLevel: cardItem.learningGoalLevel,
+					backgroundStyle: cardItem.backgroundStyle,
+					date: cardItem.date,
+					dateUpdated: cardItem.dateUpdated,
 					originalAuthorName: originalAuthorName,
 					owner: cardset.owner,
 					cardType: cardset.cardType,
 					lastEditor: lastEditor,
-					learningTime: item.learningTime,
-					answers: item.answers
+					learningTime: cardItem.learningTime,
+					answers: cardItem.answers
 				}, {trimStrings: false});
 			} else {
 				Cards.insert({
@@ -163,6 +164,13 @@ export function importCards(data, cardset, importType) {
 		}, {fields: {_id: 1}}).fetch();
 		for (let i = 0; i < cardsets.length; i++) {
 			Meteor.call('updateLeitnerCardIndex', cardsets[i]._id);
+		}
+		if (CardType.getCardTypesWithLearningModes().findIndex(elem => elem === cardset.cardType) >= 0) {
+			Meteor.call("updateCurrentBonusPoints", cardset._id);
+			Cardsets.find({
+				learningActive: true,
+				cardGroups: cardset._id
+			}).forEach(cardsetElem => Meteor.call("updateCurrentBonusPoints", cardsetElem._id));
 		}
 		return cardset._id;
 	}

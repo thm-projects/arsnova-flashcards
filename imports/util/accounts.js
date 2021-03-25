@@ -5,15 +5,20 @@ import {Meteor} from "meteor/meteor";
 import {MainNavigation} from "./mainNavigation";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 
+
+// Move the predefined fields at the end
+let mail = AccountsTemplates.removeField('email');
+let pwd = AccountsTemplates.removeField('password');
+
 export let AccountUtils = class AccountUtils {
 	static exists (username) {
 		return Meteor.users.findOne({username: username}) !== undefined;
 	}
 
-	static mailExists (mail) {
+	static mailExists (mailAddress) {
 		let result = Meteor.users.find({"services.password": {$exists: true}}).fetch();
 		for (let i = 0; i < result.length; i++) {
-			if (result[i].emails[0].address === mail) {
+			if (result[i].emails[0].address === mailAddress) {
 				return true;
 			}
 		}
@@ -24,11 +29,11 @@ export let AccountUtils = class AccountUtils {
 		return ServerStyle.getConfig().login.cards.domainWhitelist;
 	}
 
-	static isDomainWhitelisted (mail) {
+	static isDomainWhitelisted (mailAddress) {
 		let whitelist = ServerStyle.getConfig().login.cards.domainWhitelist;
 		if (whitelist.length) {
 			for (let i = 0; i < whitelist.length; i++) {
-				let result = XRegExp.exec(mail, new XRegExp('.+@' + whitelist[i]));
+				let result = XRegExp.exec(mailAddress, new XRegExp('.+@' + whitelist[i]));
 				if (result !== undefined && result !== null && result.length) {
 					return true;
 				}
@@ -39,11 +44,6 @@ export let AccountUtils = class AccountUtils {
 		}
 	}
 };
-
-
-// Move the predefined fields at the end
-let mail = AccountsTemplates.removeField('email');
-let pwd = AccountsTemplates.removeField('password');
 
 function submitHooks(error, state) {
 	if (state === "signIn") {

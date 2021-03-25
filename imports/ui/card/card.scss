@@ -624,3 +624,327 @@ img.cardside {
   text-align: center;
   border-radius: 10px;
 }
+
+.card-error-label, .errorReportEntry {
+  cursor: pointer;
+}
+
+.mainCenterAll {
+  overflow: hidden !important;
+  height: 100% !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bodyMaxHeight {
+  height: 100%;
+}
+
+// Trophy
+
+@keyframes trophy {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+}
+
+@keyframes fly--up {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-20vw);
+  }
+  100% {
+    transform: translateY(-15vw);
+    opacity: 0;
+  }
+}
+
+@keyframes fly--down {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(20vw);
+  }
+  100% {
+    transform: translateY(15vw);
+    opacity: 0;
+  }
+}
+
+@keyframes fly--left {
+  0% {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    transform: translateX(-35vw);
+  }
+  100% {
+    transform: translateX(-180px);
+    opacity: 0;
+  }
+}
+
+@keyframes fly--right {
+  0% {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  80% {
+    transform: translateX(35vw);
+  }
+  100% {
+    transform: translateX(180px);
+    opacity: 0;
+  }
+}
+
+@keyframes fly--up--left {
+  0% {
+    transform: rotate(135deg) translate(0vw,0vw);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(135deg) translate(-3vw,20vw);
+    opacity: 0;
+  }
+}
+
+@keyframes fly--up--right {
+  0% {
+    transform: rotate(45deg);
+    opacity: 0;
+  }
+  45% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(45deg) translate(-3vw,-20vw);
+    opacity: 0;
+  }
+}
+
+@keyframes fly--down--left {
+  0% {
+    transform: rotate(45deg) translate(0vw,0vw);
+    opacity: 0;
+  }
+  45% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(45deg) translate(-3vw,20vw);
+    opacity: 0;
+  }
+}
+
+@keyframes fly--down--right {
+  0% {
+    transform: rotate(135deg) translate(0vw,0vw);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(135deg) translate(0vw,-20vw);
+    opacity: 0;
+  }
+}
+
+@keyframes trophyMessageAnimation {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#trophyModal, #trophyModalLight {
+  display: -webkit-inline-flex;
+  background-color: black !important;
+  display: grid;
+}
+
+.trophy {
+  z-index: 10000;
+  background-color: #fff;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  border-radius: 100%;
+  animation: trophy 6s forwards;
+  animation-delay: 10s;
+}
+
+#trophyModal .trophy {
+  background-color: unset;
+}
+
+.action {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 300px;
+  height: 25vw;
+  max-width: 300px;
+  width: 25vw;
+  %confetti {
+    z-index: -1;
+    position: absolute;
+    height: 9%;
+    width: 3%;
+    border-radius: 10px;
+    animation-fill-mode: forwards;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    transform-origin: center;
+    opacity: 0;
+  }
+  .confetti {
+    @extend %confetti;
+    top: 0;
+    left: calc(50% - 5px);
+    background-color: #ffea00;
+    animation-name: fly--up;
+    animation-delay: 10s;
+    &.two {
+      top: auto;
+      bottom: 0;
+      animation-name: fly--down;
+      animation-delay: 10s;
+    }
+    &.three,
+    &.four {
+      top: calc(50% - 5px);
+      left: calc(50% - 25px);
+      height: 4%;
+      width: 25%;
+      animation-name: fly--left;
+      animation-delay: 10s;
+    }
+    &.four {
+      animation-name: fly--right;
+      animation-delay: 10s;
+    }
+    &--purple {
+      @extend %confetti;
+      background-color: #6200ea;
+      animation-name: fly--up--left;
+      transform: rotate(135deg);
+      animation-delay: 10s;
+      left: 15%;
+      top: 15%;
+      &.two {
+        animation-name: fly--up--right;
+        animation-delay: 10s;
+        left: auto;
+        right: 15%;
+        transform: rotate(45deg);
+      }
+      &.three {
+        top: auto;
+        bottom: 20%;
+        transform: rotate(45deg);
+        animation-name: fly--down--left;
+        animation-delay: 10s;
+      }
+      &.four {
+        top: auto;
+        bottom: 20%;
+        left: auto;
+        right: 20%;
+        transform: rotate(135deg);
+        animation-name: fly--down--right;
+        animation-delay: 10s;
+      }
+    }
+  }
+}
+
+.fillBoxTrophyText {
+  font-weight: bold;
+}
+
+.progress-bar {
+  position: relative;
+  left: 0;
+  height: 15px;
+}
+
+.done {
+  top: 0;
+  height: 100%;
+  width: 100%;
+  transition: all .33s ease;
+}
+
+.contentMessageTrophy {
+  position: relative;
+  margin-bottom: 20%;
+}
+
+#confetti{
+  z-index: 9999;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.buttonNextTrophy {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  z-index: 10000;
+  opacity: 0;
+  animation: btnOpacity 3s forwards;
+  animation-delay: 15s;
+  width: 7%;
+  min-width: 70px;
+}
+
+#trophyModalLight > .modal-dialog {
+  height: 100%;
+}
+
+@keyframes btnOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

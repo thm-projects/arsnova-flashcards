@@ -2,6 +2,17 @@ import {ServerStyle} from "../../../../util/styles";
 import {Icons} from "../../../../util/icons";
 import {Route} from "../../../../util/route";
 import {CardType} from "../../../../util/cardTypes";
+import {Cards} from "../../../../api/subscriptions/cards";
+import {Cardsets} from "../../../../api/subscriptions/cardsets";
+import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
+
+function getCardErrorCount(card_id) {
+	let errorCount = 0;
+	Cards.find({_id: card_id}, {unresolvedErrors: 1}).forEach(card => {
+		errorCount = card.unresolvedErrors;
+	});
+	return errorCount;
+}
 
 Template.registerHelper("getBonusLabel", function (learningActive = false, learningEnd = new Date()) {
 	if (learningActive && ServerStyle.gotNavigationFeature("misc.features.bonus")) {
@@ -31,9 +42,21 @@ Template.registerHelper("getWordcloudLabel", function (cardset) {
 	}
 });
 
-Template.registerHelper("getTranscriptBonusLabel", function (cardset) {
-	if ((cardset.transcriptBonus !== undefined && cardset.transcriptBonus.enabled) || Route.isMyBonusTranscripts() || Route.isTranscriptBonus() || Route.isPresentationTranscriptBonus() || Route.isPresentationTranscriptBonusCardset() || Route.isPresentationTranscriptReview()) {
+Template.registerHelper("getTranscriptBonusLabel", function (target) {
+	if (Route.isMyTranscripts() || Route.isMyBonusTranscripts()) {
+		let transcriptBonus = TranscriptBonus.findOne({card_id: target._id});
+		if (transcriptBonus !== undefined) {
+			target = Cardsets.findOne({_id: transcriptBonus.cardset_id});
+		}
+	}
+	if ((target.transcriptBonus !== undefined && target.transcriptBonus.enabled) || Route.isMyBonusTranscripts() || Route.isTranscriptBonus() || Route.isPresentationTranscriptBonus() || Route.isPresentationTranscriptBonusCardset() || Route.isPresentationTranscriptReview()) {
 		return '<span class="label label-transcript-bonus" title="' + TAPi18n.__('cardset.transcriptBonus.long') + '">' + TAPi18n.__('cardset.transcriptBonus.short') + '</span>';
+	}
+});
+
+Template.registerHelper("getErrorReportingLabel", function (card_id) {
+	if (getCardErrorCount(card_id) > 0) {
+		return '<span class="label label-error-reporting card-error-label" title="' + TAPi18n.__('label.errorReporting.long') + '">' + TAPi18n.__('label.errorReporting.title') + ' (' + getCardErrorCount(card_id) + ')' + '</span>';
 	}
 });
 

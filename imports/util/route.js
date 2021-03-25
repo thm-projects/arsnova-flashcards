@@ -68,7 +68,7 @@ export let Route = class Route {
 	}
 
 	static isTranscript () {
-		return this.isMyTranscripts() || this.isMyBonusTranscripts() || this.isNewTranscript() || this.isEditTranscript() || this.isPresentationTranscript() || this.isPresentationTranscriptBonus() || this.isPresentationTranscriptBonusCardset() || this.isPresentationTranscriptReview();
+		return this.isMyTranscripts() || this.isMyBonusTranscripts() || this.isNewTranscript() || this.isEditTranscript() || this.isPresentationTranscript() || this.isPresentationTranscriptBonus() || this.isPresentationTranscriptBonusCardset() || this.isPresentationTranscriptReview() || this.isTranscriptBonus();
 	}
 
 	static isPresentationTranscript () {
@@ -480,13 +480,13 @@ export let Route = class Route {
 			case "backend":
 				return icons.topNavigation.backend + "<span class='hidden-on-iPad'>" + TAPi18n.__('navbar-collapse.backend') + "</span>";
 			case "profile":
-				let name = icons.topNavigation.profile;
+				let profileName = icons.topNavigation.profile;
 				if (Meteor.user().profile.birthname === undefined || Meteor.user().profile.birthname === "") {
-					name += TAPi18n.__('profile.finishProfile');
+					profileName += TAPi18n.__('profile.finishProfile');
 				} else {
-					name += getAuthorName(Meteor.userId(), true, true);
+					profileName += getAuthorName(Meteor.userId(), true, true);
 				}
-				return name + caret;
+				return profileName + caret;
 			case "profileIPad":
 				if (UserPermissions.isAdmin()) {
 					return icons.topNavigation.profile + caret;

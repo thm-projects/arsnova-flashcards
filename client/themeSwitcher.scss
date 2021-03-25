@@ -121,6 +121,8 @@ $themes: (
     $checkbox_button_icon_checked: map-get($map, "checkbox_button_icon_checked");
     $active_licenses_background: map-get($map, "active_licenses_background");
     $active_licenses_text: map-get($map, "active_licenses_text");
+    $error_reporting_label_background: map-get($map, "error_reporting_label_background");
+    $error_reporting_label_text: map-get($map, "error_reporting_label_text");
     //license
     $background_license_icon: map-get($map, "background_license_icon");
     $foreground_license_icon: map-get($map, "foreground_license_icon");
@@ -520,6 +522,11 @@ $themes: (
     $card_sidebar_zoom_border_active: map-get($map, "card_sidebar_zoom_border_active");
     $card_sidebar_zoom_text_active: map-get($map, "card_sidebar_zoom_text_active");
 
+    $card_sidebar_error_reporting_button_background: map-get($map, "card_sidebar_error_reporting_button_background");
+    $card_sidebar_error_reporting_button_text: map-get($map, "card_sidebar_error_reporting_button_text");
+    $card_sidebar_error_reporting_button_background_hover: map-get($map, "card_sidebar_error_reporting_button_background_hover");
+    $card_sidebar_error_reporting_button_text_hover: map-get($map, "card_sidebar_error_reporting_button_text_hover");
+
     $card_sidebar_leitner_history_background: map-get($map, "card_sidebar_leitner_history_background");
     $card_sidebar_leitner_history_border: map-get($map, "card_sidebar_leitner_history_border");
     $card_sidebar_leitner_history_text: map-get($map, "card_sidebar_leitner_history_text");
@@ -899,6 +906,13 @@ $themes: (
     $modal_checkbox_background_active: map-get($map, "modal_checkbox_background_active");
     $modal_checkbox_border_active: map-get($map, "modal_checkbox_border_active");
     $modal_checkbox_icon_active: map-get($map, "modal_checkbox_icon_active");
+
+    //error reporting
+    $modal_feedback_button_card_side_background: map-get($map, "modal_feedback_button_card_side_background");
+    $modal_feedback_button_card_side_text: map-get($map, "modal_feedback_button_card_side_text");
+    $modal_feedback_button_card_side_background_active: map-get($map, "modal_feedback_button_card_side_background_active");
+    $modal_feedback_button_card_side_text_active: map-get($map, "modal_feedback_button_card_side_text_active");
+
     //pomodoro colors
     $pomodoro_timer_fullscreen_overlay: map-get($map, "pomodoro_timer_fullscreen_overlay");
     $pomodoro_timer_hand_circle: map-get($map, "pomodoro_timer_hand_circle");
@@ -1022,6 +1036,9 @@ $themes: (
     $games_and_backgrounds_overlay_carousel_button_color: map-get($map, "games_and_backgrounds_overlay_carousel_button_color");
     $games_and_backgrounds_default_background: map-get($map, "games_and_backgrounds_default_background");
     $games_and_backgrounds_loading_background: map-get($map, "games_and_backgrounds_loading_background");
+
+    //flashcardsEndProgressbar
+    $flashcards_end_progressbar_background: map-get($map, "flashcards_end_progressbar_background");
 
     .navbar-toggle {
       background-color: $navbar_collapse_background !important;
@@ -3435,6 +3452,14 @@ $themes: (
       }
     }
 
+    .label-error-reporting {
+      background-color: $error_reporting_label_background !important;
+      color: $error_reporting_label_text !important;
+      span {
+        color: $error_reporting_label_text !important;
+      }
+    }
+
     .moduleRadioButtonLabel {
       color: $white !important;
     }
@@ -4800,6 +4825,41 @@ $themes: (
 
     .license-icon-foreground {
       color: $foreground_license_icon !important;
+    }
+
+    //flashcardsEndProgressbar
+    .flashcard .progress-bar  {
+      background-color: $flashcards_end_progressbar_background !important;
+    }
+
+    // user feedback modal
+    #showErrorReportingModal {
+      .btn-orange.active {
+        background: $modal_feedback_button_card_side_background_active !important;
+        color: $modal_feedback_button_card_side_text_active !important;
+      }
+      .btn-orange {
+        background: $modal_feedback_button_card_side_background !important;
+        color: $modal_feedback_button_card_side_text !important;
+      }
+    }
+
+    .cardListNumber.errorReport {
+      background-color: $error_reporting_label_background !important;
+      color: $error_reporting_label_text !important;
+    }
+
+
+    .errorReporting {
+      border-color: $card_sidebar_error_reporting_button_text !important;
+      background-color: $card_sidebar_error_reporting_button_background !important;
+      color: $card_sidebar_error_reporting_button_text !important;
+    }
+
+    .errorReporting:hover{
+      border-color: $card_sidebar_error_reporting_button_background_hover !important;
+      background-color: $card_sidebar_error_reporting_button_background_hover !important;
+      color: $card_sidebar_error_reporting_button_text_hover !important;
     }
   }
 }

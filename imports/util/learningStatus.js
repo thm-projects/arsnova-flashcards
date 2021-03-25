@@ -6,6 +6,7 @@ import {Session} from "meteor/session";
 import * as config from "../config/learningStatus.js";
 import {NavigatorCheck} from "./navigatorCheck";
 import {BonusForm} from "./bonusForm";
+import {Route} from "./route";
 
 Session.set('workloadProgressUserID', undefined);
 Session.set('workloadProgressCardsetID', undefined);
@@ -248,8 +249,8 @@ export let LearningStatus = class LearningStatus {
 			cardsetFilter.difficulty = difficulty;
 		}
 
-		return WorkloadCardsetCollection.find(cardsetFilter, {_id: 1}).map(function (cardset) {
-			return cardset._id;
+		return WorkloadCardsetCollection.find(cardsetFilter, {_id: 1}).map(function (workloadCardset) {
+			return workloadCardset._id;
 		});
 	}
 
@@ -361,6 +362,11 @@ export let LearningStatus = class LearningStatus {
 	}
 
 	static gotData () {
-		return Session.get('workloadProgressUserID') !== undefined && Session.get('workloadProgressCardsetID') !== undefined && Session.get('lastLearningStatusActivity') !== undefined;
+		let result = Session.get('workloadProgressUserID') !== undefined && Session.get('workloadProgressCardsetID') !== undefined;
+		if (!Route.isCardset()) {
+			return result && Session.get('lastLearningStatusActivity') !== undefined;
+		} else {
+			return result;
+		}
 	}
 };

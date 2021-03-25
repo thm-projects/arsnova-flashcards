@@ -1,5 +1,13 @@
 <template name="cardsetLabels">
     <span class="label-group">
+         {{#if isMyTranscriptsRoute}}
+             {{#if isTranscriptBonusCard this._id}}
+                 <span class="label label-count-transcripts" title="{{_ "transcriptForm.info.submissions"}}">
+                     {{getBonusTranscriptCount this._id}}
+                     <span class="fas fa-clipboard-list"></span>
+                 </span>
+             {{/if}}
+         {{/if}}
          {{#unless gotTranscriptBonusAndIsNotShuffled this._id}}
              {{#unless gotTranscriptBonusAndIsNotShuffled this.cardset_id}}
                  <span class="label label-count-cards" title="{{_ "cardset.info.quantity"}}">
@@ -21,7 +29,7 @@
         {{{getLecturerAuthorizedLabel this}}}
         {{{getWordcloudLabel this}}}
         {{#unless isTranscriptRoute}}
-            {{#unless isBonusTranscriptsRoute}}
+            {{#unless isTranscriptBonusCard this._id}}
                 {{{getKind this.kind 0}}}
                 {{{getShuffleLabel this.shuffled}}}
             {{/unless}}
@@ -38,6 +46,7 @@
         {{> filterIndexItemBottomStarsRating}}
         {{> cardsetLabelsItemFragJetzt this}}
         {{> cardsetLabelsItemArsnovaClick this}}
+        {{> cardsetLabelsItemErrorReporting this}}
     </span>
 </template>
 

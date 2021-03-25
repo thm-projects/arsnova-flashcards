@@ -84,6 +84,12 @@ Session.setDefault('sortBonusUserTaskHistory', leitnerStatisticsConfig.defaultTa
 
 Session.setDefault('hideUserNames', true);
 
+// Error Reports
+Session.setDefault('activeErrorReport', undefined);
+Session.setDefault('errorReportingCard', undefined);
+Session.setDefault('errorReportingMode', false);
+Session.setDefault('showOnlyErrorReports', false);
+
 function connectionStatus() {
 	let stat;
 	if (Meteor.status().status === "connected") {

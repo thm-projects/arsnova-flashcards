@@ -9,6 +9,7 @@ import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {Route} from "../../../../util/route";
 import {CardNavigation} from "../../../../util/cardNavigation";
 import "./cards.html";
+import {ErrorReporting} from "../../../../util/errorReporting";
 
 /*
  * ############################################################################
@@ -75,27 +76,15 @@ Template.cardsetList.helpers({
 		}
 	},
 	cardSubject: function () {
-		if (FlowRouter.getRouteName() === "presentationlist" || FlowRouter.getRouteName() === "demolist" || FlowRouter.getRouteName() === "makinglist") {
-			return _.uniq(Cards.find({
-				cardset_id: this._id
-			}, {
-				cardset_id: 1,
-				subject: 1,
-				sort: {subject: 1}
-			}).fetch(), function (card) {
-				return card.subject;
-			});
-		} else {
-			return _.uniq(Cards.find({
-				cardset_id: this._id
-			}, {
-				cardset_id: 1,
-				subject: 1,
-				sort: {subject: 1}
-			}).fetch(), function (card) {
-				return card.subject;
-			});
-		}
+		return _.uniq(Cards.find({
+			cardset_id: this._id
+		}, {
+			cardset_id: 1,
+			subject: 1,
+			sort: {subject: 1}
+		}).fetch(), function (card) {
+			return card.subject;
+		});
 	},
 	cardList: function (countCards) {
 		let sortQuery;
@@ -179,6 +168,15 @@ Template.cardsetList.helpers({
 			case 6:
 				return this.bottom;
 		}
+	},
+	hasCardUnresolvedErrors: function (card_id) {
+		return ErrorReporting.hasCardUnresolvedErrors(card_id);
+	},
+	getErrorCountFromCard: function (card_id) {
+		return ErrorReporting.getErrorCountFromCard(card_id);
+	},
+	isErrorReportingCardView: function (card_id) {
+		return !Session.get('showOnlyErrorReports') || (Session.get('showOnlyErrorReports') && ErrorReporting.hasCardUnresolvedErrors(card_id));
 	}
 });
 

@@ -4,6 +4,8 @@ import {Cardsets} from "../api/subscriptions/cardsets";
 import {Paid} from "../api/subscriptions/paid";
 import {ServerStyle} from "./styles.js";
 import {MainNavigation} from "./mainNavigation";
+import {Session} from "meteor/session";
+import {Cards} from "../api/subscriptions/cards";
 
 let roleFree = {
 	string: 'standard',
@@ -132,6 +134,21 @@ export let UserPermissions = class UserPermissions {
 			hasRole = true;
 		}
 		return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId())) || hasRole;
+	}
+
+	static canEditCard () {
+		if (UserPermissions.isAdmin()) {
+			return true;
+		}
+		if (Session.get('activeCard') !== undefined) {
+			let card = Cards.findOne({_id: Session.get('activeCard')}, {fields: {_id: 1, cardset_id: 1}});
+			if (card !== undefined) {
+				let cardset = Cardsets.findOne({_id: card.cardset_id});
+				if (cardset !== undefined) {
+					return (cardset.owner === Meteor.userId() || cardset.editors.includes(Meteor.userId()));
+				}
+			}
+		}
 	}
 
 	static getHighestRole (toNumber = true, userId = undefined) {

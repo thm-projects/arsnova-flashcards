@@ -2,9 +2,6 @@
 
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Route} from "../../../../util/route";
-import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
-import {TranscriptBonusList} from "../../../../util/transcriptBonus";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./card.html";
 
@@ -30,14 +27,6 @@ Template.filterIndexItemCard.helpers({
 			shuffled = TAPi18n.__('admin.shuffled') + " ";
 		}
 		return shuffled;
-	},
-	isBonusTranscriptsRouteAndDeadlineExpired: function () {
-		if (Route.isMyBonusTranscripts() || Route.isTranscriptBonus()) {
-			let bonusTranscript = TranscriptBonus.findOne({card_id: this._id});
-			if (bonusTranscript !== undefined) {
-				return TranscriptBonusList.isDeadlineExpired(bonusTranscript, true);
-			}
-		}
 	},
 	getCardsetID: function () {
 		return FlowRouter.getParam('_id');

@@ -277,6 +277,15 @@ Meteor.methods({
 
 		for (let i = 0; i < allPrivateUserCardsets.length; i++) {
 			Meteor.call('updateShuffledCardsetQuantity', allPrivateUserCardsets[i]._id);
+			if (CardType.getCardTypesWithLearningModes().includes(allPrivateUserCardsets[i].cardType)) {
+				const shuffledCardsets = Cardsets.find({
+					learningActive: true,
+					cardGroups: allPrivateUserCardsets[i]._id
+				});
+				for (let j = 0; j < shuffledCardsets.length; j++) {
+					Meteor.call("updateCurrentBonusPoints", shuffledCardsets[j]._id);
+				}
+			}
 		}
 
 		Cardsets.update({editors: {$in: [user_id]}}, {

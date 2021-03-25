@@ -78,7 +78,7 @@ build:
       - "$BUNDLE_DIR"
 
 # Do not deploy to staging while the wpw2 projects deploys to staging
-.deploy_staging:
+.deploy_staging_template: &deploy_staging_template
   stage: deploy
   tags:
     - rsync
@@ -94,6 +94,17 @@ build:
     - rsync -rltgoDqv --delete -e "ssh" "build/jsdoc" "$NEW_STAGING_SSH_URL"
     - ssh $NEW_STAGING_SSH 'touch /home/meteor/deploy.touch'
   environment: staging
+
+deploy_staging:
+  << : *deploy_staging_template
+  only:
+    - staging
+
+deploy_other:
+  << : *deploy_staging_template
+  when: manual
+  except:
+    - staging
 
 deploy_production:
   stage: deploy

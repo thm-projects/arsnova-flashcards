@@ -587,8 +587,10 @@ export let CardVisuals = class CardVisuals {
 							}
 						});
 					}
-					cards[i].cardType = cardsetData.cardType;
-					cards[i].difficulty = cardsetData.difficulty;
+					if (cardsetData !== undefined) {
+						cards[i].cardType = cardsetData.cardType;
+						cards[i].difficulty = cardsetData.difficulty;
+					}
 				}
 				return cards;
 			}

@@ -20,6 +20,7 @@ import {Bonus} from "./bonus";
 import {PomodoroTimer} from "./pomodoroTimer";
 import {Fullscreen} from "./fullscreen";
 import {AnswerUtilities} from "./answers";
+import {ErrorReporting} from "./errorReporting";
 
 let keyEventsUnlocked = true;
 let lastActiveCardString = "lastActiveCard";
@@ -341,6 +342,7 @@ export let CardNavigation = class CardNavigation {
 				flashcardCarousel.off('slid.bs.carousel');
 			}, 300);
 		});
+		ErrorReporting.loadErrorReportingModal();
 	}
 
 	static switchCardMc (activeCard) {
@@ -372,6 +374,7 @@ export let CardNavigation = class CardNavigation {
 			});
 		}
 		$('.carousel').carousel('next');
+		ErrorReporting.loadErrorReportingModal();
 	}
 
 	static setActiveCardData (_id = undefined, onlyUpdateCardset = false) {
@@ -387,26 +390,28 @@ export let CardNavigation = class CardNavigation {
 			};
 			localStorage.setItem(lastActiveCardString, JSON.stringify(lastActiveCard));
 		}
-		let cardset_id;
-		if (Session.get('activeCard') === -1 || Session.get('activeCard') === undefined || Route.isTranscript()) {
+		let cardset;
+		if (Session.get('activeCard') === -1 || Session.get('activeCard') === undefined || Route.isPresentationTranscript()) {
 			if (Route.isDemo()) {
 				Session.set('activeCardsetName', Cardsets.findOne({name: "DemoCardset", shuffled: true}).name);
 			} else if (Route.isMakingOf()) {
 				Session.set('activeCardsetName', Cardsets.findOne({name: "MakingOfCardset", shuffled: true}).name);
-			} else if (Route.isTranscript()) {
+			} else if (Route.isPresentationTranscript()) {
 				Session.set('activeCardsetName', "");
 			} else {
 				Session.set('activeCardsetName', Cardsets.findOne({_id: FlowRouter.getParam('_id')}).name);
 			}
 		} else {
-			let _id;
-			cardset_id = Cards.findOne({_id: Session.get('activeCard')}, {fields: {cardset_id: 1}});
-			if (cardset_id === undefined && FlowRouter.getParam('_id') !== undefined) {
-				_id = FlowRouter.getParam('_id');
-			} else {
-				_id = cardset_id.cardset_id;
+			let cardset_id;
+			cardset = Cards.findOne({_id: Session.get('activeCard')}, {fields: {cardset_id: 1}});
+			if (cardset !== undefined) {
+				if (FlowRouter.getParam('_id') !== undefined) {
+					cardset_id = FlowRouter.getParam('_id');
+				} else {
+					cardset_id = cardset.cardset_id;
+				}
 			}
-			Session.set('activeCardsetName', Cardsets.findOne({_id: _id}).name);
+			Session.set('activeCardsetName', Cardsets.findOne({_id: cardset_id}).name);
 		}
 		if (pdfViewerConfig.enabled) {
 			let activeCard = Cards.findOne({_id: Session.get('activeCard')}, {fields: {_id: 1, cardType: 1}});

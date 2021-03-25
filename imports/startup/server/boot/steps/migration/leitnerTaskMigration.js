@@ -5,6 +5,8 @@ import {LeitnerTasks} from "../../../../../api/subscriptions/leitnerTasks";
 import {Cardsets} from "../../../../../api/subscriptions/cardsets";
 import {LearningStatisticsUtilities} from "../../../../../util/learningStatistics";
 import {Workload} from "../../../../../api/subscriptions/workload";
+import {LeitnerHistory} from "../../../../../api/subscriptions/leitnerHistory";
+import {Bonus} from "../../../../../util/bonus";
 
 function leitnerTaskMigrationStep() {
 	let groupName = "LeitnerTasks Migration";
@@ -72,6 +74,66 @@ function leitnerTaskMigrationStep() {
 		for (let i = 0; i < leitnerTasks.length; i++) {
 			LearningStatisticsUtilities.setGlobalStatistics(leitnerTasks[i]);
 		}
+		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
+	} else {
+		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
+	}
+
+	itemName = "BonusPoints atStart and atEnd fields";
+	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
+	leitnerTasks = LeitnerTasks.find({
+			isBonus: true,
+			$or: [
+				{"bonusPoints.atStart": {$exists: false}},
+				{"bonusPoints.atEnd": {$exists: false}}
+			]
+		},
+		{
+			sort: {createdAt: 1},
+			fields: {_id: 1, user_id: 1, cardset_id: 1, session: 1}
+		}).fetch();
+	//This method works only, if all data is migrated at once
+	if (leitnerTasks.length) {
+		const cache = {};
+		leitnerTasks.forEach(elem => {
+			const cardset_id = elem.cardset_id;
+			if (!cache[cardset_id]) {
+				cache[cardset_id] = {
+					cardset: Cardsets.findOne(cardset_id),
+					playerBonusPointCache: {}
+				};
+			}
+			const currentCacheEntry = cache[cardset_id];
+			if (!currentCacheEntry.cardset) {
+				return;
+			}
+			let learnable = 0, box6 = 0;
+			LeitnerHistory.find({
+					task_id: elem._id
+				},
+				{
+					fields: {box: 1, _id: 0}
+				}).fetch()
+				.forEach(leitnerObj => {
+					learnable++;
+					if (leitnerObj.box === 6) {
+						box6++;
+					}
+				});
+			const endBonusPoints = Bonus.getAchievedBonus(box6, currentCacheEntry.cardset.workload, learnable);
+			const extendedUserId = elem.user_id + elem.session;
+			//The cache only works if all data is migrated at once
+			const startBonusPoints = currentCacheEntry.playerBonusPointCache[extendedUserId] || 0;
+			currentCacheEntry.playerBonusPointCache[extendedUserId] = endBonusPoints;
+			LeitnerTasks.update({_id: elem._id}, {
+				$set: {
+					bonusPoints: {
+						atStart: startBonusPoints,
+						atEnd: endBonusPoints
+					}
+				}
+			});
+		});
 		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
 	} else {
 		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);

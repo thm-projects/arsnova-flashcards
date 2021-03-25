@@ -7,9 +7,12 @@
         {{#if isInBonus}}
             {{{getBonusLabel true this.learningEnd}}}<br>
         {{/if}}
-        {{{getTranscriptBonusLabel this}}}<br>
-        {{> filterIndexItemBottomTranscriptRating}}<br>
-        {{> filterIndexItemBottomStarsRating}}
-        {{> filterIndexItemBottomAboutThisRating}}
+        {{#if isBonusTranscriptsRoute}}
+            {{{getTranscriptBonusLabel this}}}<br>
+            {{> filterIndexItemBottomTranscriptRating}}<br>
+            {{> filterIndexItemBottomStarsRating}}
+            {{> filterIndexItemBottomAboutThisRating}}
+        {{/if}}
+        {{{getErrorReportingLabel this._id}}}
     </span>
 </template>

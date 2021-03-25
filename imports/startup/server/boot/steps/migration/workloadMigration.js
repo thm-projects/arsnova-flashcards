@@ -8,6 +8,8 @@ import {Meteor} from "meteor/meteor";
 import {LeitnerHistory} from "../../../../../api/subscriptions/leitnerHistory";
 import {LeitnerTasks} from "../../../../../api/subscriptions/leitnerTasks";
 import * as leitnerConfig from "../../../../../config/leitner";
+import {Cardsets} from "../../../../../api/subscriptions/cardsets";
+import {Bonus} from "../../../../../util/bonus";
 
 function workloadMigrationStep() {
 	let groupName = "Workload Migration";
@@ -65,9 +67,15 @@ function workloadMigrationStep() {
 			let user = Meteor.users.findOne(workload[i].user_id);
 
 			let tasks = workload[i].leitner.tasks;
+			let lastCount = 0;
 			for (let t = 0; t < tasks.length; t++) {
 				let missedDeadline = false;
-				let foundReset = LeitnerHistory.findOne({user_id: user._id, cardset_id: workload[i].cardset_id, task_id: t, missedDeadline: true});
+				let foundReset = LeitnerHistory.findOne({
+					user_id: user._id,
+					cardset_id: workload[i].cardset_id,
+					task_id: t,
+					missedDeadline: true
+				});
 				if (foundReset !== undefined) {
 					missedDeadline = true;
 				}
@@ -107,6 +115,40 @@ function workloadMigrationStep() {
 						}
 					}, {multi: true}
 				);
+				if (workload[i].leitner.bonus) {
+					const cardsetWorkload = Cardsets.findOne({
+							_id: workload[i].cardset_id
+						},
+						{
+							fields: {_id: 0, workload: 1}
+						}).workload;
+					const [learnable, box6] = LeitnerHistory.find({
+							task_id: leitnerTask
+						},
+						{
+							fields: {_id: 0, box: 1}
+						}).fetch()
+						.reduce((acc, leitnerObj) => {
+							acc[0]++;
+							if (leitnerObj.box === 6) {
+								acc[1]++;
+							}
+							return acc;
+						}, [0, 0]);
+					const currentBonus = Bonus.getAchievedBonus(box6, cardsetWorkload, learnable);
+					LeitnerTasks.update({
+							_id: leitnerTask
+						},
+						{
+							$set: {
+								bonusPoints: {
+									atStart: lastCount,
+									atEnd: currentBonus
+								}
+							}
+						});
+					lastCount = currentBonus;
+				}
 			}
 
 			Workload.update({
