@@ -73,12 +73,7 @@ Meteor.methods({
 				userAnswers = userAnswers.sort();
 
 				let isAnswerWrong = false;
-				if (_.difference(userAnswers, card.answers.rightAnswers).length > 0 || userAnswers.length !== card.answers.rightAnswers.length) {
-					isAnswerWrong = true;
-				}
-
-
-				let result = LeitnerUtilities.setNextBoxData(isAnswerWrong, activeLeitner, cardset);
+				let result = LeitnerUtilities.setNextBoxData(AnswerUtilities.isAnswerCorrect(card.answers.rightAnswers, userAnswers), activeLeitner, cardset);
 
 				Leitner.update({
 					_id: activeLeitner._id

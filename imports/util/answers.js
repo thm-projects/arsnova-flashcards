@@ -8,8 +8,10 @@ import {CardVisuals} from "./cardVisuals";
 import {CardType} from "./cardTypes";
 import {Route} from "./route";
 import shuffle from "knuth-shuffle-seeded";
+import "/imports/api/meteorMethods/answers";
 
 let randomizedNumber = Math.random();
+
 
 export let AnswerUtilities = class AnswerUtilities {
 	static setNewRandomizedNumber () {
@@ -19,6 +21,14 @@ export let AnswerUtilities = class AnswerUtilities {
 	static randomizeAnswers (cardId, answers) {
 		return shuffle(answers, cardId + randomizedNumber);
 	}
+
+	static isAnswerCorrect (correctAnswers, selectedAnswers) {
+		let isAnswerWrong = true;
+		if (_.difference(selectedAnswers, correctAnswers).length > 0 || selectedAnswers.length !== correctAnswers.length) {
+			return isAnswerWrong;
+		}
+	}
+
 
 	/**
 	 * Returns the answers of the requested cards

@@ -27,6 +27,7 @@ import "./overlays/backgroundOverlay.js";
 import "./overlays/gameOverlay.js";
 import {LockScreen} from "../../util/lockScreen";
 import * as answerConfig from "../../config/answers";
+import {cubeTransitionTime, flipTransitionTime} from "../../config/cardVisuals";
 
 Session.set('animationPlaying', false);
 
@@ -222,33 +223,29 @@ Template.learnAnswerOptions.events({
 							rightAnswers = answers.answers.rightAnswers;
 						}
 					});
-					if (rightAnswers.length !== selectedAnswer.length) {
-						answerConfig.fail.play();
-						CardNavigation.resetNavigation(false);
-						$('html, body').animate({scrollTop: '0px'}, 300);
-						return;
-					}
-					let rightAnswerNotSelected = false;
-					rightAnswers.forEach(function (answer) {
-						let flag = false;
-						selectedAnswer.forEach(function (selected) {
-							if (selected === answer) {
-								flag = true;
-							}
-						});
-						if (!flag) {
-							rightAnswerNotSelected = true;
+					if (AnswerUtilities.isAnswerCorrect(rightAnswers, selectedAnswer) === true) {
+						if (Session.get('is3DActive')) {
+							setTimeout(function () {
+								answerConfig.fail.play();
+							}, cubeTransitionTime * 1000);
+						} else {
+							setTimeout(function () {
+								answerConfig.fail.play();
+							}, flipTransitionTime * 1000);
 						}
-					});
-					if (rightAnswerNotSelected) {
-						answerConfig.fail.play();
-						CardNavigation.resetNavigation(false);
-						$('html, body').animate({scrollTop: '0px'}, 300);
 					} else {
-						answerConfig.success.play();
-						CardNavigation.resetNavigation(false);
-						$('html, body').animate({scrollTop: '0px'}, 300);
+						if (Session.get('is3DActive')) {
+							setTimeout(function () {
+								answerConfig.success.play();
+							}, cubeTransitionTime * 1000);
+						} else {
+							setTimeout(function () {
+								answerConfig.success.play();
+							}, flipTransitionTime * 1000);
+						}
 					}
+					CardNavigation.resetNavigation(false);
+					$('html, body').animate({scrollTop: '0px'}, 300);
 				}
 			});
 	},
