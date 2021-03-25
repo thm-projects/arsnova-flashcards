@@ -28,6 +28,8 @@ import "./overlays/gameOverlay.js";
 import {LockScreen} from "../../util/lockScreen";
 import * as answerConfig from "../../config/answers";
 import {cubeTransitionTime, flipTransitionTime} from "../../config/cardVisuals";
+import {CardType} from "../../util/cardTypes";
+import {Cards} from "../../api/subscriptions/cards";
 
 Session.set('animationPlaying', false);
 
@@ -218,31 +220,28 @@ Template.learnAnswerOptions.events({
 					Session.set('activeCardAnswers', result);
 					let selectedAnswer = Session.get('selectedAnswers');
 					let rightAnswers;
+					let transition;
+
+					if (Session.get('is3DActive')) {
+						transition = cubeTransitionTime * 1000;
+					} else if ((CardType.hasCardTwoSides(true, Session.get('cardType')))) {
+						transition = flipTransitionTime * 1000;
+					} else {
+						transition = 0;
+					}
 					result.forEach(function (answers) {
 						if (answers._id === Session.get('activeCard')) {
 							rightAnswers = answers.answers.rightAnswers;
 						}
 					});
-					if (AnswerUtilities.isAnswerCorrect(rightAnswers, selectedAnswer) === true) {
-						if (Session.get('is3DActive')) {
-							setTimeout(function () {
-								answerConfig.fail.play();
-							}, cubeTransitionTime * 1000);
-						} else {
-							setTimeout(function () {
-								answerConfig.fail.play();
-							}, flipTransitionTime * 1000);
-						}
+					if (AnswerUtilities.isAnswerCorrect(rightAnswers, selectedAnswer)) {
+						setTimeout(function () {
+							answerConfig.fail.play();
+						}, transition);
 					} else {
-						if (Session.get('is3DActive')) {
-							setTimeout(function () {
-								answerConfig.success.play();
-							}, cubeTransitionTime * 1000);
-						} else {
-							setTimeout(function () {
-								answerConfig.success.play();
-							}, flipTransitionTime * 1000);
-						}
+						setTimeout(function () {
+							answerConfig.success.play();
+						}, transition);
 					}
 					CardNavigation.resetNavigation(false);
 					$('html, body').animate({scrollTop: '0px'}, 300);
