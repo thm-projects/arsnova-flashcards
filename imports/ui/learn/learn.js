@@ -29,7 +29,6 @@ import {LockScreen} from "../../util/lockScreen";
 import * as answerConfig from "../../config/answers";
 import {cubeTransitionTime, flipTransitionTime} from "../../config/cardVisuals";
 import {CardType} from "../../util/cardTypes";
-import {Cards} from "../../api/subscriptions/cards";
 
 Session.set('animationPlaying', false);
 
