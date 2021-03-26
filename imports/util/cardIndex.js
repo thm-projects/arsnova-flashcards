@@ -209,7 +209,12 @@ export let CardIndex = class CardIndex {
 		if (Route.isBox()) {
 			disableAnswers = true;
 		}
-		Meteor.call('getCardAnswerContent', cardIndexFilter, FlowRouter.getParam('_id'), disableAnswers, function (error, result) {
+
+		let cardsetId = "";
+		if (!Route.isDemo() && Route.isMakingOf()) {
+			cardsetId = FlowRouter.getParam('_id');
+		}
+		Meteor.call('getCardAnswerContent', cardIndexFilter, cardsetId, disableAnswers, function (error, result) {
 			if (!error) {
 				Session.set('activeCardAnswers', result);
 			}
