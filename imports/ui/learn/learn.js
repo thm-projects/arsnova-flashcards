@@ -199,20 +199,26 @@ Template.learnAnswerOptions.helpers({
 		return Session.get('selectedAnswers').length > 0;
 	}
 });
-
 Template.learnAnswerOptions.events({
 	"click #learnSendAnswer": function () {
 		Session.set('isQuestionSide', false);
 		let timestamps = Session.get('leitnerHistoryTimestamps');
 		timestamps.answer = new Date();
 		Session.set('leitnerHistoryTimestamps', timestamps);
-		Meteor.call('setMCAnswers', CardIndex.getCardIndexFilter(), Session.get('activeCard'), FlowRouter.getParam('_id'), Session.get('selectedAnswers'), Session.get('leitnerHistoryTimestamps'), function (error, result) {
-			if (!error) {
-				Session.set('activeCardAnswers', result);
-				CardNavigation.resetNavigation(false);
-				$('html, body').animate({scrollTop: '0px'}, 300);
-			}
-		});
+		Meteor.call('setMCAnswers',
+			CardIndex.getCardIndexFilter(),
+			Session.get('activeCard'),
+			FlowRouter.getParam('_id'),
+			Session.get('selectedAnswers'),
+			Session.get('leitnerHistoryTimestamps'),
+			function (error, result) {
+				if (!error) {
+					Session.set('activeCardAnswers', result);
+					AnswerUtilities.playSound(result, Session.get('selectedAnswers'));
+					CardNavigation.resetNavigation(false);
+					$('html, body').animate({scrollTop: '0px'}, 300);
+				}
+			});
 	},
 	"click #nextMCCard": function () {
 		CardNavigation.switchCardMc(Session.get('activeCard'));
