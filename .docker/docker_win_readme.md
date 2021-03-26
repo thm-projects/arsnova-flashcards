@@ -17,7 +17,7 @@ Supported Windows 10 Versions:
 
 You must have turned on virtualization, you can check that in the task manager:
 
-##### BILD HIER
+![Screenshot-TaskManager.PNG](./readme_img/Screenshot-TaskManager.PNG)
 
 If virtualization is not activated, it may be necessary to activate the virtualization in the firmware of your computer. With Intel e.g. `Intel-VT` or with AMD `AMD-V`.
 
@@ -35,7 +35,7 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 
 Now restart your computer.
 
-Now you have to update wo WSL2. Therefore download the update according to your architecture:
+Now you have to update wo WSL 2. Therefore download the update according to your architecture:
 
 | arch | download |
 | --- | --- |
@@ -85,7 +85,7 @@ Now it's time to start your Linux Distro! If you have Ubuntu installed, just sta
 
 First time you start the Distro, you will be asked for a username and a password. Just take them as you like.
 
-Stop here. After starting your Distro, it will now appear in the list of wsl images. Check that your Distro is really running with WSL2 by running following command as administrator in the PowerShell:
+Stop here. After starting your Distro, it will now appear in the list of wsl images. Check that your Distro is really running with WSL 2 by running following command as administrator in the PowerShell:
 
 ```bash
 wsl -l -v
@@ -115,13 +115,13 @@ Then start the Ubuntu app again.
 
 ## Install Docker Desktop
 
-Now it is time to install Docker. Since Docker Desktop can use WSL2 as engine, Docker Desktop is available for all Windows 10 versions - including Windows 10 Home Edition. That's good news!
+Now it is time to install Docker. Since Docker Desktop can use WSL 2 as engine, Docker Desktop is available for all Windows 10 versions - including Windows 10 Home Edition. That's good news!
 
 Download the Docker Desktop App from Docker Hub: [https://hub.docker.com/editions/community/docker-ce-desktop-windows/](https://hub.docker.com/editions/community/docker-ce-desktop-windows/).
 
 Start the installation process by double clicking the downloaded file. Check the option `Install required Windows components for WSL 2`:
 
-##### BILD EINFÜGEN
+![Screenshot-Docker-Install-1.PNG](./readme_img/Screenshot-Docker-Install-1.PNG)
 
 Now start the installation - that may take a while.
 
@@ -129,11 +129,11 @@ After installation has finished, start the Docker Desktop App. The first start m
 
 Your Docker Desktop is ready when it says that there are no containers running:
 
-##### BILD
+![Screenshot-Docker-Install-2.PNG](./readme_img/Screenshot-Docker-Install-2.PNG)
 
 Go to settings and check that Docker Desktop is really using WSL 2 as engine:
 
-##### BILD
+![Screenshot-Docker-Install-3.PNG](./readme_img/Screenshot-Docker-Install-3.PNG)
 
 The box `Use the WSL 2 based engine` should be checked. Now lets go ahead.
 
@@ -148,13 +148,15 @@ Everything that has to do with development should be done in the Distro for reas
 
 In your file browser, go to `\\wsl$\`.
 
-##### BILD
+![Screenshot-Docker-Usage-1.PNG](./readme_img/Screenshot-Docker-Usage-1.PNG)
 
-Here is an overview of your WSL machines. Get on your machine. You can mount your machine as a network drive with a right click, then you will always have it in the navigation bar.
+Here is an overview of your WSL machines. Get on your machine (e.g. `Ubuntu-20.04`). You can mount your machine as a network drive with a right click, then you will always have it in the navigation bar.
 
-After cloning a repository all the files will be here, preferably in your home directory under `/home/<your-username>`.
+After cloning a repository all the files will be here, preferably in your home directory under `/home/<your-username>/<repository>`.
 
-High-performance work is only possible if you store the files in this file system! You cannot work efficiently with a shared Windows volume!
+![Screenshot-Docker-Usage-2.PNG](./readme_img/Screenshot-Docker-Usage-2.PNG)
+
+Efficient work is only possible if you store your files in this file system! You cannot work efficiently with a shared Windows volume!
 
 ## Using git
 
@@ -196,7 +198,13 @@ ext install ms-vscode-remote.remote-wsl
 
 Then inside your Distro, switch into your working directory (e.g. `~/cards`) and run `code .` (the period is important!).
 
-If you launch this command the first time, it may take a while as it installs the functionality inside the Distro. Then it opens up VS Code on your Windoes host machine and you can start developing.
+If you launch this command the first time, it may take a while as it installs the functionality inside the Distro. Then it opens up VS Code on your Windoes host machine and you can start developing:
+
+![Screenshot-VSCode.PNG](./readme_img/Screenshot-VSCode.PNG)
+
+Alternatively, after starting .cards for the first time, you can also call up VSCode via Docker Desktop:
+
+![Screenshot-Docker-VSCode.PNG](./readme_img/Screenshot-Docker-VSCode.PNG)
 
 ### Your favorite IDE
 

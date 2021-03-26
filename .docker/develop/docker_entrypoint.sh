@@ -23,8 +23,8 @@ fi
 \n\
 \n\
 \e[1;33mStarting  cards...\e[0m\n\
-\e[1;33mThe start may take a \e[1;36mLONG\e[1;33m time the first time,\n\
-depending on your Internet connection.\e[0m\n\
+\e[1;33mThe start may take a \e[1;36mLONG\e[1;33m time the first time,\e[0m\n\
+\e[1;33mdepending on your Internet connection.\e[0m\n\
 \e[1;36mPLEASE BE PATIENT...\e[0m\n\
 \e[1;33mThe app is ready when the output \"Started your app\" is visible.\e[0m\n\
 \n\
