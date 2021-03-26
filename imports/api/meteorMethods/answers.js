@@ -72,8 +72,8 @@ Meteor.methods({
 			if (leitnerTask !== undefined && card !== undefined && cardset !== undefined) {
 				userAnswers = userAnswers.sort();
 
-				let isAnswerWrong = false;
-				let result = LeitnerUtilities.setNextBoxData(AnswerUtilities.isAnswerCorrect(card.answers.rightAnswers, userAnswers), activeLeitner, cardset);
+				let isAnswerWrong = AnswerUtilities.isAnswerWrong(card.answers.rightAnswers, userAnswers);
+				let result = LeitnerUtilities.setNextBoxData(isAnswerWrong, activeLeitner, cardset);
 
 				Leitner.update({
 					_id: activeLeitner._id
@@ -92,7 +92,7 @@ Meteor.methods({
 				}, {$set: {
 						timestamps: timestamps,
 						answer: isAnswerWrong ? 1 : 0,
-						"mcAnswers.user": userAnswers,
+						"mcAnswers.user": userAnswers.sort(),
 						"mcAnswers.card": card.answers.rightAnswers
 					}});
 

@@ -26,9 +26,6 @@ import {AnswerUtilities} from "../../util/answers";
 import "./overlays/backgroundOverlay.js";
 import "./overlays/gameOverlay.js";
 import {LockScreen} from "../../util/lockScreen";
-import * as answerConfig from "../../config/answers";
-import {cubeTransitionTime, flipTransitionTime} from "../../config/cardVisuals";
-import {CardType} from "../../util/cardTypes";
 
 Session.set('animationPlaying', false);
 
@@ -217,31 +214,7 @@ Template.learnAnswerOptions.events({
 			function (error, result) {
 				if (!error) {
 					Session.set('activeCardAnswers', result);
-					let selectedAnswer = Session.get('selectedAnswers');
-					let rightAnswers;
-					let transition;
-
-					if (Session.get('is3DActive')) {
-						transition = cubeTransitionTime * 1000;
-					} else if ((CardType.hasCardTwoSides(true, Session.get('cardType')))) {
-						transition = flipTransitionTime * 1000;
-					} else {
-						transition = 0;
-					}
-					result.forEach(function (answers) {
-						if (answers._id === Session.get('activeCard')) {
-							rightAnswers = answers.answers.rightAnswers;
-						}
-					});
-					if (AnswerUtilities.isAnswerCorrect(rightAnswers, selectedAnswer)) {
-						setTimeout(function () {
-							answerConfig.fail.play();
-						}, transition);
-					} else {
-						setTimeout(function () {
-							answerConfig.success.play();
-						}, transition);
-					}
+					AnswerUtilities.playSound(result, Session.get('selectedAnswers'));
 					CardNavigation.resetNavigation(false);
 					$('html, body').animate({scrollTop: '0px'}, 300);
 				}
