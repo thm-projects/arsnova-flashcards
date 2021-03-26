@@ -34,9 +34,9 @@ Template.profileBilling.onRendered(function () {
 
 						BertAlertVisuals.displayBertAlert(TAPi18n.__('billing.payment.progress'), 'info', 'growl-top-left');
 						var nonce = response.nonce;
-						Meteor.call('btUpdatePaymentMethod', nonce, function (error) {
-							if (error) {
-								throw new Meteor.Error(error.message, 'error');
+						Meteor.call('btUpdatePaymentMethod', nonce, function (updatePaymentError) {
+							if (updatePaymentError) {
+								throw new Meteor.Error(updatePaymentError.message, 'error');
 							} else {
 								BertAlertVisuals.displayBertAlert(TAPi18n.__('billing.payment.saveMsg'), 'success', 'growl-top-left');
 								$('#savePaymentBtn').prop("disabled", false);
@@ -62,10 +62,10 @@ Template.profileBilling.onRendered(function () {
 
 						var nonce = response.nonce;
 
-						Meteor.call('btCreateCredit', nonce, function (error, success) {
-							if (error) {
+						Meteor.call('btCreateCredit', nonce, function (createCreditError, createCreditSuccess) {
+							if (createCreditError) {
 								throw new Meteor.Error('transaction-creation-failed');
-							} else if (success !== undefined && success.name === "authorizationError") {
+							} else if (createCreditSuccess !== undefined && createCreditSuccess.name === "authorizationError") {
 								BertAlertVisuals.displayBertAlert(TAPi18n.__('billing.balance.failed'), 'danger', 'growl-top-left');
 							} else {
 								Meteor.call("resetUsersBalance", Meteor.userId());

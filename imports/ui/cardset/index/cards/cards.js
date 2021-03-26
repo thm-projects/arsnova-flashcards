@@ -76,27 +76,15 @@ Template.cardsetList.helpers({
 		}
 	},
 	cardSubject: function () {
-		if (FlowRouter.getRouteName() === "presentationlist" || FlowRouter.getRouteName() === "demolist" || FlowRouter.getRouteName() === "makinglist") {
-			return _.uniq(Cards.find({
-				cardset_id: this._id
-			}, {
-				cardset_id: 1,
-				subject: 1,
-				sort: {subject: 1}
-			}).fetch(), function (card) {
-				return card.subject;
-			});
-		} else {
-			return _.uniq(Cards.find({
-				cardset_id: this._id
-			}, {
-				cardset_id: 1,
-				subject: 1,
-				sort: {subject: 1}
-			}).fetch(), function (card) {
-				return card.subject;
-			});
-		}
+		return _.uniq(Cards.find({
+			cardset_id: this._id
+		}, {
+			cardset_id: 1,
+			subject: 1,
+			sort: {subject: 1}
+		}).fetch(), function (card) {
+			return card.subject;
+		});
 	},
 	cardList: function (countCards) {
 		let sortQuery;

@@ -66,8 +66,8 @@ Template.cardset.rendered = function () {
 
 							var nonce = response.nonce;
 
-							Meteor.call('btCreateTransaction', nonce, FlowRouter.getParam('_id'), function (error) {
-								if (error) {
+							Meteor.call('btCreateTransaction', nonce, FlowRouter.getParam('_id'), function (transactionError) {
+								if (transactionError) {
 									throw new Meteor.Error('transaction-creation-failed');
 								} else {
 									BertAlertVisuals.displayBertAlert(TAPi18n.__('cardset.money.bought'), 'success', 'growl-top-left');

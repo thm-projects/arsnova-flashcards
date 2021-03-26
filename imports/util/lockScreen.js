@@ -186,8 +186,8 @@ export let LockScreen = class LockScreen {
 			margin: 10,
 			nav: true,
 			navText: [
-				"<i class='fa fa-caret-left'></i>",
-				"<i class='fa fa-caret-right'></i>"
+				"<span class='fa fa-caret-left'></span>",
+				"<span class='fa fa-caret-right'></span>"
 			],
 			autoplay: false,
 			autoplayHoverPause: false,

@@ -203,21 +203,21 @@ export let WordcloudCanvas = class WordcloudCanvas {
 				cloud = Cardsets.find({wordcloud: true}, {fields: {name: 1, quantity: 1}}).fetch();
 			}
 		}
-		cloud.forEach(function (cloud) {
-			if (cloud.quantity > biggestCardsetSize) {
-				biggestCardsetSize = cloud.quantity;
+		cloud.forEach(function (cloudItem) {
+			if (cloudItem.quantity > biggestCardsetSize) {
+				biggestCardsetSize = cloudItem.quantity;
 			}
 		});
 
-		cloud.forEach(function (cloud) {
-			let name = cloud.name;
+		cloud.forEach(function (cloudItem) {
+			let name = cloudItem.name;
 
 			if (name.length > 30) {
 				name = name.substring(0, 30) + "…";
 			}
-			let quantitiy = cloud.quantity / biggestCardsetSize * 4;
+			let quantitiy = cloudItem.quantity / biggestCardsetSize * 4;
 			quantitiy = (quantitiy > minimumSize ? quantitiy : minimumSize);
-			list.push([name, Number(quantitiy), cloud._id, cloud.color]);
+			list.push([name, Number(quantitiy), cloudItem._id, cloudItem.color]);
 		});
 		list.sort(function (a, b) {
 			return (b[0].length * b[1]) - (a[0].length * a[1]);

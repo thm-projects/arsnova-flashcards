@@ -259,17 +259,17 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		let leitner = Leitner.find({cardset_id: cardset._id, user_id: user_id, card_id: {$in: cardSelection}}).fetch();
 		let newItems = [];
 		let newItemObject;
-		leitner.forEach(function (leitner) {
+		leitner.forEach(function (leitnerItem) {
 			newItemObject = {
-				card_id: leitner.card_id,
+				card_id: leitnerItem.card_id,
 				cardset_id: cardset._id,
 				user_id: user_id,
 				task_id: task_id,
-				box: leitner.box,
+				box: leitnerItem.box,
 				skipped: 0
 			};
 			if (cardset.shuffled) {
-				newItemObject.original_cardset_id = leitner.original_cardset_id;
+				newItemObject.original_cardset_id = leitnerItem.original_cardset_id;
 			}
 			newItems.push(newItemObject);
 		});

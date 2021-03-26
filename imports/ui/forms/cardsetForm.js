@@ -199,16 +199,16 @@ export function saveCardset() {
 					cardGroups = [];
 				}
 			}
-			Meteor.call("addCardset", name, description, false, true, 'personal', shuffled, cardGroups, Number(cardType), Session.get('difficultyColor'), Number(sortType), fragJetzt, arsnovaClick, function (error, result) {
+			Meteor.call("addCardset", name, description, false, true, 'personal', shuffled, cardGroups, Number(cardType), Session.get('difficultyColor'), Number(sortType), fragJetzt, arsnovaClick, function (addCardsetError, addCardsetResult) {
 				$('#setCardsetFormModal').modal('hide');
-				if (result) {
+				if (addCardsetResult) {
 					if (Session.get('importCards') !== undefined) {
-						Meteor.call('importCards', Session.get('importCards'), result, 0);
+						Meteor.call('importCards', Session.get('importCards'), addCardsetResult, 0);
 						Session.set('importCards', undefined);
 					}
 					$('#setCardsetFormModal').on('hidden.bs.modal', function () {
 						FlowRouter.go('cardsetdetailsid', {
-							_id: result
+							_id: addCardsetResult
 						});
 					});
 				}

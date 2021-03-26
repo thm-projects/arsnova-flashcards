@@ -8,8 +8,12 @@ import {CardVisuals} from "./cardVisuals";
 import {CardType} from "./cardTypes";
 import {Route} from "./route";
 import shuffle from "knuth-shuffle-seeded";
+import "/imports/api/meteorMethods/answers";
+import {cubeTransitionTime, flipTransitionTime} from "../config/cardVisuals";
+import * as answerConfig from "../config/answers";
 
 let randomizedNumber = Math.random();
+
 
 export let AnswerUtilities = class AnswerUtilities {
 	static setNewRandomizedNumber () {
@@ -19,6 +23,14 @@ export let AnswerUtilities = class AnswerUtilities {
 	static randomizeAnswers (cardId, answers) {
 		return shuffle(answers, cardId + randomizedNumber);
 	}
+
+	static isAnswerWrong (correctAnswers, selectedAnswers) {
+		let isAnswerWrong = true;
+		if (_.difference(selectedAnswers.sort(), correctAnswers.sort()).length > 0 || selectedAnswers.length !== correctAnswers.length) {
+			return isAnswerWrong;
+		}
+	}
+
 
 	/**
 	 * Returns the answers of the requested cards
@@ -106,6 +118,33 @@ export let AnswerUtilities = class AnswerUtilities {
 				});
 			}
 			return gotMcQuestion;
+		}
+	}
+
+	static playSound (correctAnswers, selectedAnswers) {
+		let cardAnswers = [];
+		let transition;
+
+		if (Session.get('is3DActive')) {
+			transition = cubeTransitionTime * 1000;
+		} else if ((CardType.hasCardTwoSides(true, Session.get('cardType')))) {
+			transition = flipTransitionTime * 1000;
+		} else {
+			transition = 0;
+		}
+		correctAnswers.forEach(function (answers) {
+			if (answers._id === Session.get('activeCard')) {
+				cardAnswers = answers.answers.rightAnswers;
+			}
+		});
+		if (AnswerUtilities.isAnswerWrong(cardAnswers, selectedAnswers)) {
+			setTimeout(function () {
+				answerConfig.fail.play();
+			}, transition);
+		} else {
+			setTimeout(function () {
+				answerConfig.success.play();
+			}, transition);
 		}
 	}
 };

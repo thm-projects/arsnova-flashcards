@@ -49,19 +49,19 @@ Template.cardsetIndexTranscriptSettings.onRendered(function () {
 	let settings = {
 		numberOfMonths: [1,config.numberOfDisplayedMonths],
 		onSelect: function () {
-			let dates = $('#transcript-calendar').multiDatesPicker('getDates', 'object');
-			let minimumSubmissions = $('#bonusMinimumSubmissions');
-			if (minimumSubmissions.val() > dates.length) {
-				minimumSubmissions.val(dates.length);
-				$('#minSubmissionsValue').html(dates.length);
-				adjustStarsSlider(dates.length);
+			let selectedDates = $('#transcript-calendar').multiDatesPicker('getDates', 'object');
+			let bonusMinimumSubmissions = $('#bonusMinimumSubmissions');
+			if (bonusMinimumSubmissions.val() > selectedDates.length) {
+				bonusMinimumSubmissions.val(selectedDates.length);
+				$('#minSubmissionsValue').html(selectedDates.length);
+				adjustStarsSlider(selectedDates.length);
 			}
-			minimumSubmissions.attr("max", dates.length);
+			bonusMinimumSubmissions.attr("max", selectedDates.length);
 			let lectures = [];
 			let oldLectures = Session.get('transcriptBonusLectures');
-			for (let i = 0; i < dates.length; i++) {
+			for (let i = 0; i < selectedDates.length; i++) {
 				let lecture = {
-					date: dates[i]
+					date: selectedDates[i]
 				};
 				for (let k = 0; k < oldLectures.length; k++) {
 					if (lecture.date.getTime() === oldLectures[k].date.getTime()) {

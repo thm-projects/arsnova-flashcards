@@ -1,7 +1,6 @@
 import {Meteor} from "meteor/meteor";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import swal from "sweetalert2";
-import {CardVisuals} from "./cardVisuals";
 import * as config from "../config/sweetAlert.js";
 import {Route} from "./route.js";
 import {Fullscreen} from "./fullscreen";
@@ -56,7 +55,7 @@ export let SweetAlertMessages = class SweetAlertMessages {
 	static activateFullscreen () {
 		swal.fire(config.activateFullscreen()).then((result) => {
 			if (result.value) {
-				CardVisuals.toggleFullscreen();
+				Fullscreen.enable();
 			} else {
 				if (document.fullscreenElement) {
 					document.exitFullscreen();

@@ -68,11 +68,11 @@ Meteor.methods({
 					options: {
 						makeDefault: true
 					}
-				}, function (error, result) {
-					if (error) {
-						btUpdatePayment.return(error);
+				}, function (createError, createResult) {
+					if (createError) {
+						btUpdatePayment.return(createError);
 					} else {
-						btUpdatePayment.return(result);
+						btUpdatePayment.return(createResult);
 					}
 				});
 			}
@@ -102,13 +102,13 @@ Meteor.methods({
 						submitForSettlement: true, // Payment is submitted for settlement immediatelly
 						storeInVaultOnSuccess: true // Store customer in Braintree's Vault
 					}
-				}, function (error, response) {
-					if (error) {
-						btCreateTransaction.return(error);
+				}, function (saleError, saleResponse) {
+					if (saleError) {
+						btCreateTransaction.return(saleError);
 					} else {
 						Meteor.call('addPaid', cardset_id, cardset.price);
 						Meteor.call('increaseUsersBalance', cardset.owner, cardset.reviewer, cardset.price);
-						btCreateTransaction.return(response.clientToken);
+						btCreateTransaction.return(saleResponse.clientToken);
 					}
 				});
 			}
@@ -140,11 +140,11 @@ Meteor.methods({
 						submitForSettlement: true, // Payment is submitted for settlement immediatelly
 						storeInVaultOnSuccess: true // Store customer in Braintree's Vault
 					}
-				}, function (error, response) {
-					if (error) {
-						btCreateCredit.return(error);
+				}, function (creditError, creditResponse) {
+					if (creditError) {
+						btCreateCredit.return(creditError);
 					} else {
-						btCreateCredit.return(response.clientToken);
+						btCreateCredit.return(creditResponse.clientToken);
 					}
 				});
 			}
@@ -168,26 +168,26 @@ Meteor.methods({
 					customerId = btCustomer.customer.id;
 				}
 				// Setup a subscription for our customer.
-				Meteor.call('btCreateSubscription', customerId, plan, function (error, response) {
-					if (error) {
-						thisCustomer.return(error);
+				Meteor.call('btCreateSubscription', customerId, plan, function (subscriptionError, subscriptionResponse) {
+					if (subscriptionError) {
+						thisCustomer.return(subscriptionError);
 					} else {
 						try {
 							var customerSubscription = {
 								customerId: customerId,
 								subscription: {
 									plan: plan,
-									status: response.subscription.status,
-									billingDate: response.subscription.nextBillingDate
+									status: subscriptionResponse.subscription.status,
+									billingDate: subscriptionResponse.subscription.nextBillingDate
 								},
 								visible: true
 							};
 							// Perform an update on this user.
 							Meteor.users.update(Meteor.user(), {
 								$set: customerSubscription
-							}, function (error) {
-								if (error) {
-									thisCustomer.return(error);
+							}, function (userUpdateError) {
+								if (userUpdateError) {
+									thisCustomer.return(userUpdateError);
 								} else {
 									// Once the subscription data has been added, return to Future.
 									thisCustomer.return(Meteor.user());
@@ -225,18 +225,18 @@ Meteor.methods({
 				};
 				var btCustomer = new Future();
 				// Calling the Braintree API to create our customer!
-				gateway.customer.create(customerData, function (error, result) {
-					if (error) {
-						btCustomer.return(error);
+				gateway.customer.create(customerData, function (customerCreateError, customerCreateResult) {
+					if (customerCreateError) {
+						btCustomer.return(customerCreateError);
 					} else {
 						// If customer is successfuly created on Braintree servers,
 						// we will now add customer ID to our User
 						Meteor.users.update(user._id, {
 							$set: {
-								customerId: result.customer.id
+								customerId: customerCreateResult.customer.id
 							}
 						});
-						btCustomer.return(result);
+						btCustomer.return(customerCreateResult);
 					}
 				});
 				return btCustomer.wait();
@@ -272,11 +272,11 @@ Meteor.methods({
 				};
 
 				// create subscription
-				gateway.subscription.create(subscriptionRequest, function (error, result) {
-					if (error) {
-						btSubscription.return(error);
+				gateway.subscription.create(subscriptionRequest, function (subscriptionCreateError, subscriptionCreateResult) {
+					if (subscriptionCreateError) {
+						btSubscription.return(subscriptionCreateError);
 					} else {
-						btSubscription.return(result);
+						btSubscription.return(subscriptionCreateResult);
 					}
 				});
 			}
@@ -321,20 +321,20 @@ Meteor.methods({
 				btCancelSubscription.return(error);
 			} else {
 				// cancel the active subscription
-				gateway.subscription.cancel(customerSubscription.id, function (error) {
-					if (error) {
-						btCancelSubscription.return(error);
+				gateway.subscription.cancel(customerSubscription.id, function (subscriptionCancelError) {
+					if (subscriptionCancelError) {
+						btCancelSubscription.return(subscriptionCancelError);
 					} else {
 						Meteor.users.update(Meteor.userId(), {
 							$set: {
 								"subscription.status": "Canceled",
 								"subscription.ends": customerSubscription.paidThroughDate
 							}
-						}, function (error, response) {
-							if (error) {
-								btCancelSubscription.return(error);
+						}, function (userUpdateError, userUpdateResponse) {
+							if (userUpdateError) {
+								btCancelSubscription.return(userUpdateError);
 							} else {
-								btCancelSubscription.return(response);
+								btCancelSubscription.return(userUpdateResponse);
 							}
 						});
 
