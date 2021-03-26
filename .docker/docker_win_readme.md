@@ -1,7 +1,11 @@
 arsnova🍅cards - Installing Docker under Windows via WSL 2
 ---
 
-The official installation guide for **Windows Subsystem for Linux** (WSL) can be found here: [https://docs.microsoft.com/en-us/windows/wsl/install-win10](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+arsnova🍅cards will never run as efficiently under Windows as under Linux. If you still want to use Windows, use the following method to get the best performance out of Docker for Windows.
+
+You get the best results when you use Docker with the WSL 2 engine. Not Hyper-V, not Virtualbox and not Windows Containers. If you use a method other than WSL 2 you will experience serious performance problems.
+
+Hint: the official installation guide for **Windows Subsystem for Linux** (WSL) can be found here: [https://docs.microsoft.com/en-us/windows/wsl/install-win10](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
 
 ## Prerequisites
 
@@ -11,7 +15,11 @@ Supported Windows 10 Versions:
 - For x64 systems: Version 1903 or higher, with Build 18362 or higher.
 - For ARM64 systems: Version 2004 or higher, with Build 19041 or higher.
 
-If you get an error during the installation that virtualization is not activated, it may be necessary to activate the virtualization in the firmware of your computer. With Intel e.g. `Intel-VT` or with AMD `AMD-V`.
+You must have turned on virtualization, you can check that in the task manager:
+
+##### BILD HIER
+
+If virtualization is not activated, it may be necessary to activate the virtualization in the firmware of your computer. With Intel e.g. `Intel-VT` or with AMD `AMD-V`.
 
 ## Installing WSL 2
 
@@ -27,16 +35,17 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 
 Now restart your computer.
 
-Download the update according to your architecture:
+Now you have to update wo WSL2. Therefore download the update according to your architecture:
 
 | arch | download |
 | --- | --- |
 | x64 | https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi |
 | arm64 | https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi |
 
-Install the upgrade by double clicking the downloaded file.
+Install the update by double clicking the downloaded file.
 
-Set the WSL 2 as default by running following command as administrator in the PowerShell:
+Now set the WSL 2 as default for new Images by running following command as administrator in the PowerShell:
+
 ```bash
 wsl --set-default-version 2
 ```
@@ -70,104 +79,129 @@ Add-AppxPackage .\Ubuntu.appx
 
 Restart your computer after installation has finished.
 
-## Installing Docker in your WSL 2 Distro
+## Check and update your WSL 2 Distro
 
 Now it's time to start your Linux Distro! If you have Ubuntu installed, just start the `Ubuntu` App from your start menu.
 
 First time you start the Distro, you will be asked for a username and a password. Just take them as you like.
 
-You now are logged in to Ubuntu. First of all, update your sources:
+Stop here. After starting your Distro, it will now appear in the list of wsl images. Check that your Distro is really running with WSL2 by running following command as administrator in the PowerShell:
+
+```bash
+wsl -l -v
 ```
+
+Under `Version` it must say `2` for your Distro. If it says `1` you have to convert it by running following command as administrator in the PowerShell:
+```bash
+# wsl --set-version <distro_name> <version>
+wsl --set-version Ubuntu-20.04 2
+```
+
+No lets go ahead.
+
+You now are logged in to Ubuntu. First of all, update your packages:
+```bash
 sudo apt update
 sudo apt -y dist-upgrade
 sudo apt -y autoremove
 ```
 
-Then install Docker as described in the official sources: [https://docs.docker.com/engine/install/ubuntu/](https://docs.docker.com/engine/install/ubuntu/).
-
+Shutdown your WSL by running following command as administrator in the PowerShell:
 ```bash
-sudo apt -y install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg \
-    lsb-release
-
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-
-# following for x64 arch
-echo \
-  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-# following for arm64 arch
-echo \
-  "deb [arch=arm64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-sudo apt update
-sudo apt -y install docker-ce docker-ce-cli containerd.io
-
-sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-
-sudo chmod +x /usr/local/bin/docker-compose
-```
-
-Now make shure the docker daemon is autostarting with WSL. Run `sudo visudo` and add the following line:
-```
-%sudo ALL=(ALL) NOPASSWD: /usr/bin/dockerd
-```
-
-Save and close. Then run `nano ~/.bashrc` and add the following block:
-```
-RUNNING=`ps aux | grep dockerd | grep -v grep`
-if [ -z "$RUNNING" ]; then
-    sudo dockerd >> ~/dockerd.log 2>&1 &
-    disown
-fi
-```
-
-Save and close. Now disconnect from your WSL. From PowerShell shutdown the WSL by running:
-```
 wsl --shutdown
 ```
 
-Start the Ubuntu app and check that docker and docker-compose are running without issues:
-```
-sudo docker version
-sudo docker-compose version
-```
+Then start the Ubuntu app again.
+
+## Install Docker Desktop
+
+Now it is time to install Docker. Since Docker Desktop can use WSL2 as engine, Docker Desktop is available for all Windows 10 versions - including Windows 10 Home Edition. That's good news!
+
+Download the Docker Desktop App from Docker Hub: [https://hub.docker.com/editions/community/docker-ce-desktop-windows/](https://hub.docker.com/editions/community/docker-ce-desktop-windows/).
+
+Start the installation process by double clicking the downloaded file. Check the option `Install required Windows components for WSL 2`:
+
+##### BILD EINFÜGEN
+
+Now start the installation - that may take a while.
+
+After installation has finished, start the Docker Desktop App. The first start may take a while as it installs the Docker Engine in your Distro.
+
+Your Docker Desktop is ready when it says that there are no containers running:
+
+##### BILD
+
+Go to settings and check that Docker Desktop is really using WSL 2 as engine:
+
+##### BILD
+
+The box `Use the WSL 2 based engine` should be checked. Now lets go ahead.
+
+
+## Prepare for development
+
+**IMPORTANT:** WSL 2 uses its own file system on which all files for development should be located. Otherwise, every action between the Windows and Linux file systems will have to be translated and you will experience serious performance problems.
+
+Everything that has to do with development should be done in the Distro for reasons of performance. This also means that you should use git within the Distro and not on your Windows host system. And that in turn means that your codebase should definitely be in the distro.
 
 ## Get access to the WSL file system
 
 In your file browser, go to `\\wsl$\`.
 
+##### BILD
+
 Here is an overview of your WSL machines. Get on your machine. You can mount your machine as a network drive with a right click, then you will always have it in the navigation bar.
 
-You should store all your files for development in this drive, preferably in your home directory under `/home/<your-username>`.
+After cloning a repository all the files will be here, preferably in your home directory under `/home/<your-username>`.
 
 High-performance work is only possible if you store the files in this file system! You cannot work efficiently with a shared Windows volume!
 
-You should call all your git commands from inside the WSL.
+## Using git
 
-If you want to work on the code with your IDE on your host, use the network drive.
+You should call all your git commands from inside the Ubuntu Distro.
 
-## Troubleshooting
+To get started, create a ssh key by running
 
-If you get an error `cannot connect to docker daemon` make shure, your Distro uses WSL 2! Check this by running the following from PowerShell:
-```
-wsl -l -v
-```
-
-If it says `Version 1` you can upgrade it by running `wsl --set-version <name> 2`.
-
----
----
----
-
-## FROM HERE OLD STUFF ... TO BE REVIEWED
-
-**If you are about to clone the repository** you should disable EOL-conversions in git. Otherwise git for windows will convert all LF endings to CRLF endings. This will end up in images which can not be run.
 ```bash
-git config --global core.autocrlf false
+ssh-keygen -t ed25519 -C "your-email-address"
 ```
+
+And add the created public key (default location: `~/.ssh/id_ed25519.pub`) to your GitLab Account. To print the public key to your console run:
+
+```bash
+# the default location
+cat ~/.ssh/id_ed25519.pub
+```
+
+You may clone the repository now:
+```bash
+# the official repo
+git clone git@git.thm.de:arsnova/cards.git
+# you may of course clone your fork this way
+```
+
+## Working with WSL 2
+
+After cloning your code base you might want to work with it.
+
+### VS CODE
+
+If your are using Visual Studio Code, you may install the `Remote - WSL` Plugin: [https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl).
+
+Therefore launch VS Code Quick Open (Ctrl+P), paste the following command, and press enter:
+
+```bash
+ext install ms-vscode-remote.remote-wsl
+```
+
+Then inside your Distro, switch into your working directory (e.g. `~/cards`) and run `code .` (the period is important!).
+
+If you launch this command the first time, it may take a while as it installs the functionality inside the Distro. Then it opens up VS Code on your Windoes host machine and you can start developing.
+
+### Your favorite IDE
+
+If you want to work on the code with your favorite IDE other than VS Code on your host, you have to use the network drive as described above.
+
+## Starting arsnova🍅cards
+
+You are all done. You may now follow the instruction from the arsnova🍅cards docker installation manual: [»here«](./docker_readme.md). It goes without saying, but all commands in the arsnova🍅cards docker installation manual must then of course be executed in the distro.

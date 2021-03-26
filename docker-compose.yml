@@ -14,7 +14,7 @@ services:
       # share code
       - .:/home/node/app
       # overwrite node modules
-      - node_modules:/home/node/app/node_modules
+      # - node_modules:/home/node/app/node_modules
       # overwrite meteor locals
       - app_meteor_local:/home/node/app/.meteor/local
       # cache lock sum
@@ -33,7 +33,7 @@ services:
       - mongo_data:/data/db
 
 volumes:
-  node_modules:
+  # node_modules:
   app_meteor_local:
   locksum:
   mongo_data:

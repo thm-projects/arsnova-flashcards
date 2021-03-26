@@ -4,7 +4,7 @@ arsnova🍅cards - Docker Instructions
 ## Prerequisites
 You must have Docker and Docker Compose installed. In most cases, Docker Compose is already included in Docker. Get it from [»here«](https://docs.docker.com/install). When using docker, make sure, you are **not** connected to any VPN.
 
-**We strongly recommend that you use Linux.** If you still want to use Windows, follow these instructions: [🍅cards on Docker for Windows](./docker_win_readme.md).
+**We strongly recommend that you use Linux.** If you still want to use Windows, follow these instructions: [🍅cards on Docker for Windows](./docker_win_readme.md). But be warned: despite many optimizations, cards doesn't run nearly as fast on Windows as it does on Linux!
 
 ## Getting started (fast)
 You can start using arsnova.cards or linux.cards locally by just downloading and running a docker-compose file. The app will then be available on [localhost](http://localhost:3000) at port 3000.
