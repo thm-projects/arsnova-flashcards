@@ -40,6 +40,7 @@ import tippy from "tippy.js";
 import 'tippy.js/animations/scale-extreme.css';
 import {BackgroundChanger} from "../../util/backgroundChanger";
 import {LockScreen} from "../../util/lockScreen";
+import {SweetAlertMessages} from "../../util/sweetAlert";
 
 Meteor.subscribe("notifications");
 Meteor.subscribe("serverStatistics");
@@ -232,3 +233,6 @@ Meteor.startup(function () {
 	});
 });
 
+document.addEventListener('fullscreenerror', () => {
+	SweetAlertMessages.activateFullscreen();
+});

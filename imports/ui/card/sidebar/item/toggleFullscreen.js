@@ -1,3 +1,4 @@
+import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import "./toggleFullscreen.html";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
@@ -31,7 +32,7 @@ Template.cardSidebarItemToggleFullscreen.events({
 			Session.set('aspectRatioMode', AspectRatio.getDefault());
 
 			if (Fullscreen.isActive()) {
-				if (!Meteor.isUser() && Route.isFirstTimeVisit() && FirstTimeVisit.redirectToHomeAfterFullscreenExit()) {
+				if (!Meteor.userId() && Route.isFirstTimeVisit() && FirstTimeVisit.redirectToHomeAfterFullscreenExit()) {
 					Route.setFirstTimeVisit();
 					FlowRouter.go('home');
 				}
