@@ -24,16 +24,18 @@ If virtualization is not activated, it may be necessary to activate the virtuali
 ## Installing WSL 2
 
 Enable the WSL Feature by running following command as administrator in the PowerShell:
+
 ```bash
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 ```
 
 Enable the Virtual Machine Platform by running following command as administrator in the PowerShell:
+
 ```bash
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ```
 
-Now restart your computer.
+Restart your computer.
 
 Now you have to update wo WSL 2. Therefore download the update according to your architecture:
 
@@ -61,6 +63,7 @@ Restart your computer after installation has finished.
 If you don't want to use the Microsoft Store, you can also install distributions manually.
 
 We recommend Ubuntu as Linux Distribution. Download the WSL Ubuntu package according to your architecture by running following command as administrator in the PowerShell:
+
 ```bash
 # fisrt, switch to your home directory
 cd ~
@@ -73,7 +76,8 @@ Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004arm -OutFile Ubuntu.appx -Use
 ```
 
 When the download is finished, install the Distro by running following command as administrator in the PowerShell:
-```
+
+```bash
 Add-AppxPackage .\Ubuntu.appx
 ```
 
@@ -92,6 +96,7 @@ wsl -l -v
 ```
 
 Under `Version` it must say `2` for your Distro. If it says `1` you have to convert it by running following command as administrator in the PowerShell:
+
 ```bash
 # wsl --set-version <distro_name> <version>
 wsl --set-version Ubuntu-20.04 2
@@ -100,6 +105,7 @@ wsl --set-version Ubuntu-20.04 2
 No lets go ahead.
 
 You now are logged in to Ubuntu. First of all, update your packages:
+
 ```bash
 sudo apt update
 sudo apt -y dist-upgrade
@@ -107,6 +113,7 @@ sudo apt -y autoremove
 ```
 
 Shutdown your WSL by running following command as administrator in the PowerShell:
+
 ```bash
 wsl --shutdown
 ```
@@ -140,7 +147,7 @@ The box `Use the WSL 2 based engine` should be checked. Now lets go ahead.
 
 ## Prepare for development
 
-**IMPORTANT:** WSL 2 uses its own file system on which all files for development should be located. Otherwise, every action between the Windows and Linux file systems will have to be translated and you will experience serious performance problems.
+**IMPORTANT:** WSL 2 uses its own file system on which all files for development should be located. Otherwise, every action between the Windows and Linux file systems will have to be translated and you will experience serious performance problems. In addition, some features such as hot reloading would otherwise not work.
 
 Everything that has to do with development should be done in the Distro for reasons of performance. This also means that you should use git within the Distro and not on your Windows host system. And that in turn means that your codebase should definitely be in the distro.
 
@@ -198,7 +205,7 @@ ext install ms-vscode-remote.remote-wsl
 
 Then inside your Distro, switch into your working directory (e.g. `~/cards`) and run `code .` (the period is important!).
 
-If you launch this command the first time, it may take a while as it installs the functionality inside the Distro. Then it opens up VS Code on your Windoes host machine and you can start developing:
+If you launch this command the first time, it may take a while as it installs the functionality inside the Distro. Then it opens up VS Code on your Windows host machine and you can start developing:
 
 ![Screenshot-VSCode.PNG](./readme_img/Screenshot-VSCode.PNG)
 
@@ -208,8 +215,8 @@ Alternatively, after starting .cards for the first time, you can also call up VS
 
 ### Your favorite IDE
 
-If you want to work on the code with your favorite IDE other than VS Code on your host, you have to use the network drive as described above.
+If you want to work on the code with your favorite IDE other than VS Code on your host, you have to use the network drive as described above. Do not store the code on the Windows host, but in the Ubuntu Distro!
 
 ## Starting arsnova🍅cards
 
-You are all done. You may now follow the instruction from the arsnova🍅cards docker installation manual: [»here«](./docker_readme.md). It goes without saying, but all commands in the arsnova🍅cards docker installation manual must then of course be executed in the distro.
+You are all done. You may now follow the instruction from the arsnova🍅cards docker installation manual: [»here«](./docker_readme.md). It goes without saying, but all commands in the arsnova🍅cards docker installation manual must then of course be executed in the Distro.
