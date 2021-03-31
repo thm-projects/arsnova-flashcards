@@ -1,8 +1,8 @@
 <template name="cardsetLabelsItemErrorReporting">
-    {{#if hasCardsetUnresolvedErrors this._id}}
+    {{#if cardsetErrorCount}}
         <span class="label show-error label-error-reporting" title="{{_ 'label.errorReporting.long'}}" data-id="{{this._id}}">
             <span class="fas fa-bullhorn" data-id="{{this._id}}"></span>
-            {{_ 'label.errorReporting.title'}} ({{getErrorCountFromCardset this._id}})
+            {{_ 'label.errorReporting.title'}} ({{cardsetErrorCount}})
         </span>
     {{/if}}
 </template>
