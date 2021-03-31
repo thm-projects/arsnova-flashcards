@@ -1,6 +1,7 @@
 import "./index.html";
 import {Template} from "meteor/templating";
 import {CardsetNavigation} from "../../../../util/cardsetNavigation";
+import {Session} from "meteor/session";
 
 /*
  * ############################################################################
@@ -16,6 +17,7 @@ Template.cardsetNavigationIndex.helpers({
 
 Template.cardsetNavigationIndex.events({
 	"click .cardsetIndexBtn": function () {
+		Session.set('showOnlyErrorReports', false);
 		CardsetNavigation.goToIndex();
 	}
 });
