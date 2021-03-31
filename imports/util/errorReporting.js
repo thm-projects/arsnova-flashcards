@@ -1,7 +1,6 @@
 import {CardNavigation} from "./cardNavigation";
 import {Session} from "meteor/session";
 import {Cards} from "../api/subscriptions/cards";
-import {Cardsets} from "../api/subscriptions/cardsets";
 
 export let ErrorReporting = class ErrorReporting {
 
@@ -83,14 +82,6 @@ export let ErrorReporting = class ErrorReporting {
 			unresolvedErrors = card.unresolvedErrors > 0;
 		});
 		return unresolvedErrors;
-	}
-
-	static getErrorCountFromCardset (cardset_id) {
-		let errorCount = 0;
-		Cardsets.find({_id: cardset_id}, {unresolvedErrors: 1}).forEach(cardset => {
-			errorCount = cardset.unresolvedErrors;
-		});
-		return errorCount;
 	}
 
 	static getErrorCountFromCard (card_id) {
