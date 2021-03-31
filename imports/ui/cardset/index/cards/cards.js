@@ -86,28 +86,59 @@ Template.cardsetList.helpers({
 			return card.subject;
 		});
 	},
+	canDisplayCardsetGroup:  function () {
+		if (Session.get('showOnlyErrorReports')) {
+			let groupUnresolvedErrorCount = Cards.find({
+				cardset_id: this._id,
+				unresolvedErrors: {$gt: 0}
+			}).count();
+			return groupUnresolvedErrorCount > 0;
+		} else {
+			return true;
+		}
+	},
+	canDisplaySubjectGroup:  function () {
+		if (Session.get('showOnlyErrorReports')) {
+			let groupUnresolvedErrorCount = Cards.find({
+				subject: this.subject,
+				cardset_id: this.cardset_id,
+				unresolvedErrors: {$gt: 0}
+			}).count();
+			return groupUnresolvedErrorCount > 0;
+		} else {
+			return true;
+		}
+	},
 	cardList: function (countCards) {
 		let sortQuery;
 		let cardset = Cardsets.findOne({_id: this.cardset_id}, {fields: {cardType: 1, sortType: 1}});
 		sortQuery = CardType.getSortQuery(cardset.cardType, cardset.sortType);
 		if (countCards) {
-			return Cards.find({
-				cardset_id: this.cardset_id,
-				subject: this.subject
-			}, {
-				fields: {
-					_id: 1,
-					front: 1,
-					back: 1,
-					hint: 1,
-					lecture: 1,
-					top: 1,
-					bottom: 1,
-					cardset_id: 1,
-					answers: 1
-				},
-				sort: sortQuery
-			}).count();
+			if (Session.get('showOnlyErrorReports')) {
+				return Cards.find({
+					cardset_id: this.cardset_id,
+					subject: this.subject,
+					unresolvedErrors: {$gt: 0}
+				}).count();
+			} else {
+				return Cards.find({
+					cardset_id: this.cardset_id,
+					subject: this.subject
+				}, {
+					fields: {
+						_id: 1,
+						front: 1,
+						back: 1,
+						hint: 1,
+						lecture: 1,
+						top: 1,
+						bottom: 1,
+						cardset_id: 1,
+						answers: 1
+					},
+					sort: sortQuery
+				}).count();
+			}
 		}
 		let cards = Cards.find({
 			cardset_id: this.cardset_id,
