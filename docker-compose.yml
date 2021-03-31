@@ -2,20 +2,38 @@ version: "3.7"
 services:
 
   dev-cards:
-    image: localhost/dev-cards
+    image: dev-cards
     restart: unless-stopped
     user: "${UID_GID:-1000:1000}"
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: .docker/develop/Dockerfile
       args:
         UID_GID: "${UID_GID:-1000:1000}"
     volumes:
-      - dev_cards_data:/home/node
-      - .:/app
-      - /app/.git
+      # share code
+      - .:/home/node/app
+      # overwrite meteor locals
+      - app_meteor_local:/home/node/app/.meteor/local
+      # cache lock sum
+      - locksum:/home/node/locksum
+      # set entrypoint
+      - .docker/develop/docker_entrypoint.sh:/entrypoint.sh
     ports:
       - 3000:3000
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - mongo_data:/data/db
 
 volumes:
-  dev_cards_data:
+  app_meteor_local:
+    name: dev_cards_meteor
+  locksum:
+    name: dev_cards_locksum
+  mongo_data:
+    name: dev_cards_mongo

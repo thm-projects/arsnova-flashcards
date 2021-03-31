@@ -6,7 +6,7 @@ FROM node:12
 ARG UID_GID=1000:1000
 
 # Set up proper home for node
-ENV HOME=/home/node/
+ENV HOME=/home/node
 WORKDIR $HOME
 
 # Install packages
@@ -15,7 +15,6 @@ RUN apt-get update && \
       curl \
       g++ \
       build-essential \
-      mongodb \
     && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/*
@@ -24,12 +23,14 @@ RUN apt-get update && \
 RUN npm install -g node-gyp
 
 # Setup mount points with correct permissions
-RUN mkdir -p /app /home/node
-RUN chown -R $UID_GID /app /home/node
+RUN mkdir -p $HOME/locksum $HOME/.meteor $HOME/app/.meteor/local $HOME/app/node_modules
+RUN chown -R $UID_GID $HOME
 
 # Set proper user for development
 USER $UID_GID
 
+RUN curl https://install.meteor.com/ | sh
+
 # Set the proper entrypoint
-ENTRYPOINT ["/app/docker_entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["settings_debug.json"]
