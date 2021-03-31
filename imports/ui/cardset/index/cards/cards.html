@@ -2,63 +2,67 @@
     <div id="cardset-list">
         {{#if gotCards}}
             {{#each cardsetList}}
-                {{#if isShuffledCardset this._id}}
-                    <div class="cardListName btn-raised {{getColors}}">
-                        {{this.name}}
-                        {{#unless isActiveRoute regex='demo|demolist|making|makinglist'}}
-                            <span class="cardListOwner hidden-xs">
-                                {{getAuthorName this.owner}}
+                {{#if canDisplayCardsetGroup}}
+                    {{#if isShuffledCardset this._id}}
+                        <div class="cardListName btn-raised {{getColors}}">
+                            {{this.name}}
+                            {{#unless isActiveRoute regex='demo|demolist|making|makinglist'}}
+                                <span class="cardListOwner hidden-xs">
+                                    {{getAuthorName this.owner}}
+                                </span>
+                            {{/unless}}
+                            <br>
+                            <span class="badge" title="{{_ "cardset.info.quantity"}}">
+                                {{this.quantity}}
                             </span>
-                        {{/unless}}
-                        <br>
-                        <span class="badge" title="{{_ "cardset.info.quantity"}}">
-                            {{this.quantity}}
-                        </span>
-                        {{{getCardTypeLabel this.cardType}}}
-                        {{{getDifficultyLabel this.cardType this.difficulty}}}
-                    </div>
-                {{/if}}
-                {{#each cardSubject}}
-                    <div class="cardListSubject">
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>
-                                    <span>{{this.subject}}</span>
-                                    <span class="badge cardset-list-badge">{{cardList true}}</span>
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {{#each cardList false}}
-                                {{#if isErrorReportingCardView this._id}}
-                                    <tr class="cardListRow">
-                                        <td class="{{getCardsetBackground this.difficulty this.cardType}}"
-                                            data-id="{{this._id}}" data-card-type="{{this.cardType}}">
-                                            <div class="cardListNumber {{#if hasCardUnresolvedErrors this._id}}errorReport{{/if}}" data-id="{{this._id}}">
-                                                {{getPriority @index}}
-                                            </div>
-                                            <div class="col-xs-11 listCard" data-id="{{this._id}}"
-                                                 data-card-type="{{this.cardType}}">
-                                                {{#if hasCardUnresolvedErrors this._id}}
-                                                    ({{getErrorCountFromCard this._id}})
-                                                {{/if}}
-                                                {{#if gotNoSideContent this.cardType}}
-                                                    {{cleanContent getQuestion}}
-                                                {{else}}
-                                                    {{cleanContent getText}}
-                                                {{/if}}
-                                            </div>
-                                            <span class="fas fa-chevron-right pull-right" data-id="{{this._id}}"
-                                               data-card-type="{{this.cardType}}"></span>
-                                        </td>
+                            {{{getCardTypeLabel this.cardType}}}
+                            {{{getDifficultyLabel this.cardType this.difficulty}}}
+                        </div>
+                    {{/if}}
+                    {{#each cardSubject}}
+                        {{#if canDisplaySubjectGroup}}
+                            <div class="cardListSubject">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            <span>{{this.subject}}</span>
+                                            <span class="badge cardset-list-badge">{{cardList true}}</span>
+                                        </th>
                                     </tr>
-                                {{/if}}
-                            {{/each}}
-                            </tbody>
-                        </table>
-                    </div>
-                {{/each}}
+                                    </thead>
+                                    <tbody>
+                                    {{#each cardList false}}
+                                        {{#if isErrorReportingCardView this._id}}
+                                            <tr class="cardListRow">
+                                                <td class="{{getCardsetBackground this.difficulty this.cardType}}"
+                                                    data-id="{{this._id}}" data-card-type="{{this.cardType}}">
+                                                    <div class="cardListNumber {{#if hasCardUnresolvedErrors this._id}}errorReport{{/if}}" data-id="{{this._id}}">
+                                                        {{getPriority @index}}
+                                                    </div>
+                                                    <div class="col-xs-11 listCard" data-id="{{this._id}}"
+                                                         data-card-type="{{this.cardType}}">
+                                                        {{#if hasCardUnresolvedErrors this._id}}
+                                                            ({{getErrorCountFromCard this._id}})
+                                                        {{/if}}
+                                                        {{#if gotNoSideContent this.cardType}}
+                                                            {{cleanContent getQuestion}}
+                                                        {{else}}
+                                                            {{cleanContent getText}}
+                                                        {{/if}}
+                                                    </div>
+                                                    <span class="fas fa-chevron-right pull-right" data-id="{{this._id}}"
+                                                       data-card-type="{{this.cardType}}"></span>
+                                                </td>
+                                            </tr>
+                                        {{/if}}
+                                    {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {{/if}}
+                    {{/each}}
+                {{/if}}
             {{/each}}
         {{else}}
             <table class="table table-bordered table-hover">

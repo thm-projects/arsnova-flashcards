@@ -20,3 +20,4 @@ services:
 
 volumes:
   cards_db:
+    name: cards_db
