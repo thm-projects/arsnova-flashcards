@@ -208,6 +208,9 @@ Template.cardsetList.helpers({
 	},
 	isErrorReportingCardView: function (card_id) {
 		return !Session.get('showOnlyErrorReports') || (Session.get('showOnlyErrorReports') && ErrorReporting.hasCardUnresolvedErrors(card_id));
+	},
+	isErrorReportingFilterActive: function () {
+		return Session.get('showOnlyErrorReports');
 	}
 });
 
