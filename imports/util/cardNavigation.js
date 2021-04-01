@@ -396,7 +396,7 @@ export let CardNavigation = class CardNavigation {
 				Session.set('activeCardsetName', Cardsets.findOne({name: "DemoCardset", shuffled: true}).name);
 			} else if (Route.isMakingOf()) {
 				Session.set('activeCardsetName', Cardsets.findOne({name: "MakingOfCardset", shuffled: true}).name);
-			} else if (Route.isPresentationTranscript()) {
+			} else if (Route.isPresentationTranscript() || Route.isNewTranscript() || Route.isEditTranscript()) {
 				Session.set('activeCardsetName', "");
 			} else {
 				Session.set('activeCardsetName', Cardsets.findOne({_id: FlowRouter.getParam('_id')}).name);

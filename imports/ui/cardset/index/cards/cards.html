@@ -38,13 +38,14 @@
                                                 <td class="{{getCardsetBackground this.difficulty this.cardType}}"
                                                     data-id="{{this._id}}" data-card-type="{{this.cardType}}">
                                                     <div class="cardListNumber {{#if hasCardUnresolvedErrors this._id}}errorReport{{/if}}" data-id="{{this._id}}">
-                                                        {{getPriority @index}}
+                                                        {{#if isErrorReportingFilterActive}}
+                                                            ({{getErrorCountFromCard this._id}})
+                                                        {{else}}
+                                                            {{getPriority @index}}
+                                                        {{/if}}
                                                     </div>
                                                     <div class="col-xs-11 listCard" data-id="{{this._id}}"
                                                          data-card-type="{{this.cardType}}">
-                                                        {{#if hasCardUnresolvedErrors this._id}}
-                                                            ({{getErrorCountFromCard this._id}})
-                                                        {{/if}}
                                                         {{#if gotNoSideContent this.cardType}}
                                                             {{cleanContent getQuestion}}
                                                         {{else}}

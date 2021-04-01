@@ -4,6 +4,7 @@ import {CardType} from "../../../../../util/cardTypes";
 import {Utilities} from "../../../../../util/utilities";
 import * as config from "../../../../../config/serverBoot";
 import {TYPE_MIGRATE} from "../../../../../config/serverBoot";
+import * as cardsetConfig from "../../../../../config/cardset";
 
 function cardMigrationStep() {
 	let groupName = "Card Migration";
@@ -149,15 +150,18 @@ function cardMigrationStep() {
 	cards = Cards.find({cardType: 2, cardset_id: {$ne: "-1"}}).fetch();
 	if (cards.length) {
 		for (let i = 0; i < cards.length; i++) {
-			Cards.update({
-					_id: cards[i]._id
-				},
-				{
-					$set: {
-						cardset_id: "-1"
+			let cardset = Cardsets.findOne({_id: cards[i].cardset_id});
+			if (cardset !== undefined && !cardsetConfig.kindsOwnedByServer.includes(cardset.kind)) {
+				Cards.update({
+						_id: cards[i]._id
+					},
+					{
+						$set: {
+							cardset_id: "-1"
+						}
 					}
-				}
-			);
+				);
+			}
 		}
 		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
 	} else {
