@@ -52,9 +52,9 @@
         "link": "»Pomodoro« (italienisch für Tomate) ist ein Arbeits-Pausen-Zyklus. Standard: 25 Minuten Arbeit, 5 Minuten Pause. Nach 4 Pomodori: 30 Minuten Pause. Klick auf den Link, um mehr über diese populäre Zeitmanagement-Technik zu erfahren!"
       },
       "user": {
-        "title": "Wie lange willst du lernen?",
-        "count": "Ich will <span class=\"pomodoroHighlight\">__count__</span> <a href=\"__link__\" data-toggle=\"tooltip\" title=\"__tooltip__\" target=\"_blank\"> <b>__pomodoro__ </b>🍅❓</a> schaffen!",
-        "totalTime": "Reserviere __time__ für den Lernstoff!",
+        "title": "Wie lange möchtest du lernen?",
+        "count": "Ich möchte <span class=\"pomodoroHighlight\">__count__</span> <a href=\"__link__\" data-toggle=\"tooltip\" title=\"__tooltip__\" target=\"_blank\"> <b>__pomodoro__ </b>🍅❓</a> schaffen!",
+        "totalTime": "Reserviere dir __time__ zum Lernen!",
         "work": " Lernen: <span class=\"pomodoroHighlight\">__minutes__</span> pro Pomodoro",
         "break": " Pausieren: <span class=\"pomodoroHighlight\">__minutes__</span> pro Pomodoro",
         "settings": {
