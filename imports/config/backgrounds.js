@@ -297,6 +297,7 @@ let disabled = {
 	}
 };
 
+<<<<<<< HEAD
 // Setting "dark"
 // source of dark image: http://iheartbackgrounds.weebly.com/uploads/1/7/4/2/17420453/1639678_orig.jpg
 let dark = {
@@ -308,6 +309,18 @@ let dark = {
 	},
 	"demoIndex": {
 		"background-image": "url('/img/background/dark.jpg')"
+=======
+// Setting "linux"
+let dark = {
+	"landing-page": {
+		"background-image": "url('/img/background/Linux-Regal.jpg')"
+	},
+	"demo": {
+		"background-image": "url('/img/background/matrix.jpg')"
+	},
+	"demoIndex": {
+		"background-image": "url('/img/background/matrix.jpg')"
+>>>>>>> e0842d17 (:fire: Add new dark theme)
 	},
 	"about": {
 		"background-image": "none"
@@ -331,7 +344,11 @@ let dark = {
 		"background-image": "none"
 	}, // Defaults to landing-page if off
 	"internal": {
+<<<<<<< HEAD
 		"background-image": "url('/img/background/dark.jpg')"
+=======
+		"background-image": "url('/img/background/matrix.jpg')"
+>>>>>>> e0842d17 (:fire: Add new dark theme)
 	},
 	"pool": {
 		"background-image": "none"
@@ -355,7 +372,11 @@ let dark = {
 		"background-image": "none"
 	}, // Defaults to cardset if off
 	"cardsetTranscriptBonus": {
+<<<<<<< HEAD
 		"background-image": "url('/img/background/dark.jpg')"
+=======
+		"background-image": "url('/img/background/matrix.jpg')"
+>>>>>>> e0842d17 (:fire: Add new dark theme)
 	}, // Defaults to cardset if off
 	"leitner": {
 		"background-image": "none"
@@ -370,7 +391,11 @@ let dark = {
 		"background-image": "none"
 	}, // Defaults to internal if off
 	"editor": {
+<<<<<<< HEAD
 		"background-image": "url('/img/background/dark.jpg')"
+=======
+		"background-image": "url('/img/background/matrix.jpg')"
+>>>>>>> e0842d17 (:fire: Add new dark theme)
 	}, // Defaults to internal if off
 	"profileMembership": {
 		"background-image": "none"
