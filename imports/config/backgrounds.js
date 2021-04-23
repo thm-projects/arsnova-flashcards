@@ -229,15 +229,16 @@ let disabled = {
 };
 
 // Setting "linux"
+// source of dark image: http://iheartbackgrounds.weebly.com/uploads/1/7/4/2/17420453/1639678_orig.jpg
 let dark = {
 	"landing-page": {
-		"background-image": "url('/img/background/Linux-Regal.jpg')"
+		"background-image": "url('/img/background/dark.jpg')"
 	},
 	"demo": {
-		"background-image": "url('/img/background/matrix.jpg')"
+		"background-image": "url('/img/background/dark.jpg')"
 	},
 	"demoIndex": {
-		"background-image": "url('/img/background/matrix.jpg')"
+		"background-image": "url('/img/background/dark.jpg')"
 	},
 	"about": {
 		"background-image": "none"
@@ -261,7 +262,7 @@ let dark = {
 		"background-image": "none"
 	}, // Defaults to landing-page if off
 	"internal": {
-		"background-image": "url('/img/background/matrix.jpg')"
+		"background-image": "url('/img/background/dark.jpg')"
 	},
 	"pool": {
 		"background-image": "none"
@@ -285,7 +286,7 @@ let dark = {
 		"background-image": "none"
 	}, // Defaults to cardset if off
 	"cardsetTranscriptBonus": {
-		"background-image": "url('/img/background/matrix.jpg')"
+		"background-image": "url('/img/background/dark.jpg')"
 	}, // Defaults to cardset if off
 	"leitner": {
 		"background-image": "none"
@@ -300,7 +301,7 @@ let dark = {
 		"background-image": "none"
 	}, // Defaults to internal if off
 	"editor": {
-		"background-image": "url('/img/background/matrix.jpg')"
+		"background-image": "url('/img/background/dark.jpg')"
 	}, // Defaults to internal if off
 	"profileMembership": {
 		"background-image": "none"
@@ -318,7 +319,7 @@ let dark = {
 		"background-image": "none"
 	}, // Defaults to internal if logged in, otherwise to landing-page
 	"backend": {
-		"background-image": "url('/img/background/matrix.jpg')"
+		"background-image": "url('/img/background/dark.jpg')"
 	},
 	"wordcloud": {
 		"background-image": "url('/img/background/Night.jpg')"

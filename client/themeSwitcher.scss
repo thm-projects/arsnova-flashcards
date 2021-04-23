@@ -4490,6 +4490,8 @@ $themes: (
         th {
           background-color: $export_to_markdeep_table_header_background !important;
           color: $export_to_markdeep_table_header_text !important;
+          border-bottom: 1px solid rgba(0,0,0,.3) !important;
+          border-top: 1px solid rgba(0,0,0,.3) !important;
         }
 
         td {
