@@ -1445,6 +1445,8 @@ $themes: (
       mask-position: center;
     }
 
+
+
     #cards {
       background-color: $login_cards_background !important;
       color: $login_cards_icon !important;
@@ -4580,6 +4582,11 @@ $themes: (
 
     #useCasesModal th {
       background-color: $use_cases_table_header_background !important;
+      color: $use_cases_table_header_text !important;
+    }
+
+    #useCasesModal td {
+      background-color: $modal_background !important;
       color: $use_cases_table_header_text !important;
     }
 

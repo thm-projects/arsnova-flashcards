@@ -1,4 +1,4 @@
-@function theme-dark() {
+@function theme-linux() {
   //global sass colors
 
   $default_dark_blue: darkblue;
@@ -834,7 +834,7 @@
           "cardset_footer_navigation_manage_list_leave_cardset_text": white,
           "cardset_footer_navigation_manage_list_leave_cardset_background_hover": $button_background_hover,
           "cardset_footer_navigation_manage_list_leave_cardset_text_hover": $button_text_hover,
-          "cardset_footer_navigation_manage_list_leave_editors_background": $default_orange,
+          "cardset_foo$use_cases_table_header_textter_navigation_manage_list_leave_editors_background": $default_orange,
           "cardset_footer_navigation_manage_list_leave_editors_text": white,
           "cardset_footer_navigation_manage_list_leave_editors_background_hover": $button_background_hover,
           "cardset_footer_navigation_manage_list_leave_editors_text_hover": $button_text_hover,
@@ -1032,7 +1032,7 @@
           "use_cases_button_background_hover": white,
           "use_cases_button_icon_hover": black,
           "use_cases_table_header_background": transparent,
-          "use_cases_table_header_text": $default_dark_blue,
+          "use_cases_table_header_text": $default_orange,
           "use_cases_special_cardsets_button_background": $default_green,
           "use_cases_special_cardsets_button_text": white,
           "use_cases_special_cardsets_button_background_hover": midnightblue,

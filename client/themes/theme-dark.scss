@@ -1,4 +1,4 @@
-@function theme-linux() {
+@function theme-dark() {
   //global sass colors
 
   $default_dark_blue: darkblue;
@@ -6,11 +6,11 @@
   $default_orange: darkorange;
   $default_red: tomato;
   $default_grey: grey;
-  $default_green: green;
+  $default_green: #27632a;
   $default_white: white;
 
   $primary: $default_grey;
-  $primary_text: #212121;
+  $primary_text: #cdcdcd;
   $secondary_text: $default_white;
 
   $athens_gray_approx: rgb(236, 240, 241);
@@ -941,8 +941,8 @@
           "presentation_clock_second_arm": red,
     //modal colors
           "modal_overlay": rgba(0,0,0, 0.7),
-          "modal_background": whitesmoke,
-          "modal_text": black,
+          "modal_background": #121212,
+          "modal_text": whitesmoke,
 
           "modal_checkbox_background": white,
           "modal_checkbox_border": $default_grey,
@@ -1032,7 +1032,7 @@
           "use_cases_button_background_hover": white,
           "use_cases_button_icon_hover": black,
           "use_cases_table_header_background": transparent,
-          "use_cases_table_header_text": $default_dark_blue,
+          "use_cases_table_header_text": $default_orange,
           "use_cases_special_cardsets_button_background": $default_green,
           "use_cases_special_cardsets_button_text": white,
           "use_cases_special_cardsets_button_background_hover": midnightblue,
