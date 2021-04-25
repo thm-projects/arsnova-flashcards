@@ -193,11 +193,11 @@
           "login_guest_icon_hover": $button_text_hover,
           "login_pro_background": $default_orange,
           "login_pro_background_hover": $button_background_hover,
-          "login_pro_icon": white,
+          "login_pro_icon": black,
           "login_pro_icon_hover": $button_text_hover,
-          "login_backdoor_background": $primary,
+          "login_backdoor_background": $default_grey,
           "login_backdoor_background_hover": $button_background_hover,
-          "login_backdoor_icon": white,
+          "login_backdoor_icon": black,
           "login_backdoor_icon_hover": $button_text_hover,
     //login modal
           "login_modal_verification_ok": $default_green,
@@ -402,8 +402,8 @@
           "footer_navigation_text": white,
           "footer_navigation_text_active": white,
           "footer_navigation_text_hover": $button_text_hover,
-          "footer_navigation_background": grey,
-          "footer_navigation_background_active": grey,
+          "footer_navigation_background": #585858,
+          "footer_navigation_background_active": #585858,
           "footer_navigation_background_hover": $button_background_hover,
     //impressum colors
           "info_content_header_text": white,
@@ -917,7 +917,7 @@
           "search_results_separator": white,
           "search_divide:": $default_grey,
     //form group colors
-          "form_group_label": black,
+          "form_group_label": white,
     //cardset form colors
           "cardset_form_list_background": $athens_gray_approx,
           "cardset_form_list_text": black,
