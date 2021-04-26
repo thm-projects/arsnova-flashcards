@@ -20,6 +20,7 @@ $themes: (
     $background_backend: map-get($map, "background_backend");
     $background_editor: map-get($map, "background_editor");
     $background_transcript_bonus: map-get($map, "background_transcript_bonus");
+    $default_background: map-get($map, "default_background");
     //global colors
     $thm_dark_blue: map-get($map, "thm_dark_blue");
     $thm_blue: map-get($map, "thm_blue");
@@ -1041,6 +1042,10 @@ $themes: (
 
     //flashcardsEndProgressbar
     $flashcards_end_progressbar_background: map-get($map, "flashcards_end_progressbar_background");
+
+    a {
+      color: $hyperlink;
+    }
 
     .navbar-toggle {
       background-color: $navbar_collapse_background !important;
@@ -3059,6 +3064,7 @@ $themes: (
 
     .markdeepCardsetContent {
       color: $cardset_markdeep_text !important;
+      background-color: $default_background !important;
       a {
         color: $cardset_markdeep_link !important;
       }
@@ -3067,6 +3073,7 @@ $themes: (
       }
       .markdeepCardsetHeader {
         border-color: $cardset_markdeep_header_border !important;
+        background-color: $default_background !important;
       }
     }
 
@@ -3427,7 +3434,7 @@ $themes: (
 
     .label-count-cards {
       background-color: $card_counter_background !important;
-      color: $card_counter_text!important;
+      color: $card_counter_text !important;
     }
 
     .label-count-transcripts {

@@ -5,9 +5,10 @@
   $default_blue: blue;
   $default_orange: darkorange;
   $default_red: tomato;
-  $default_grey: grey;
+  $default_grey: #424242;
   $default_green: #27632a;
   $default_white: white;
+  $default_black: #121212;
 
   $primary: $default_grey;
   $primary_text: #cdcdcd;
@@ -26,7 +27,7 @@
   $btn_inactive: #9e9c9c;
   $item_separator: $default_grey;
   $footer_hover: rgb(215, 215, 215);
-  $hyperlink: blue;
+  $hyperlink: #FF7452;
   $accent: $default_green;
   $divider: gray;
   $accent_300: #f0efef;
@@ -40,7 +41,7 @@
   $input_textarea_text_active: black;
   $input_textarea_text_inactive: black;
   $item_icon_hover: midnightblue;
-  $default_background: $default_grey;
+  $default_background: $default_black;
 
   @return (
     //background (Deactivate the image with "none" if you want to use the background-color)
@@ -52,6 +53,7 @@
           "background_backend" : $default_background,
           "background_editor": $default_background,
           "background_transcript_bonus": $default_background,
+          "default_background": $default_background,
     //global colors
           "thm_dark_blue":$default_dark_blue,
           "thm_blue":$default_blue,
@@ -123,7 +125,7 @@
           "lecturer_authorized_text": white,
           "wordcloud_label_background": $default_orange,
           "wordcloud_label_text": white,
-          "card_counter_background": $btn_inactive,
+          "card_counter_background": darken($default_grey, 5),
           "card_counter_text": white,
           "transcript_counter_background": $default_orange,
           "transcript_counter_text": white,
@@ -362,7 +364,7 @@
           "navbar_profile_dropdown_background_opacity": 0.9,
           "navbar_profile_dropdown_background_hover": $button_background_hover,
           "navbar_profile_dropdown_background_active": #2ac55f,
-          "navbar_profile_dropdown_text": white,
+          "navbar_profile_dropdown_text": orangered,
           "navbar_profile_dropdown_text_hover": $button_text_hover,
           "navbar_profile_dropdown_text_active": white,
 
@@ -435,11 +437,11 @@
           "infinite_scroll_background": $default_grey,
           "infinite_scroll_icon": $default_orange,
           "infinite_scroll_text": white,
-          "item_spacing_background": rgba(black, 0.5),
+          "item_spacing_background": rgba($default_grey, 0.1),
           "item_background": $default_grey,
           "item_icon": white,
           "item_icon_hover": $item_icon_hover,
-          "item_author_text": black,
+          "item_author_text": whitesmoke,
           "item_workload_button_background": $default_green,
           "item_workload_button_text": white,
           "item_workload_button_background_hover": $button_background_hover,
@@ -461,7 +463,7 @@
           "button_difficulty_inactive": $wild_sand_approx,
           "background_difficulty0_note": ivory,
           "background_difficulty0": LightGoldenRodYellow,
-          "background_difficulty1": honeydew,
+          "background_difficulty1": $default_black,
           "background_difficulty2": lightcyan,
           "background_difficulty3": mistyrose,
           "background_difficulty0_lines_note": #F8E1AE,
@@ -941,7 +943,7 @@
           "presentation_clock_second_arm": red,
     //modal colors
           "modal_overlay": rgba(0,0,0, 0.7),
-          "modal_background": #121212,
+          "modal_background": $default_black,
           "modal_text": whitesmoke,
 
           "modal_checkbox_background": white,
