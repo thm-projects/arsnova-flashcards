@@ -3092,12 +3092,15 @@ $themes: (
     }
 
     .bs-callout {
-      border-color: #eee !important;
+      border-color: grey!important;
     }
 
     .bs-callout-info {
-      background-color: $white !important;
+      background-color: #424242 !important;
       border-left-color: $thm_orange !important;
+    }
+    .bs-callout-info span {
+      color: $white !important;
     }
 
     #publishKind, #publishKindAdmin {
