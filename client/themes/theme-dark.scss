@@ -13,6 +13,7 @@
   $primary: $default_grey;
   $primary_text: #cdcdcd;
   $secondary_text: $default_white;
+  $primary_h2: lighten($primary_text, 10);
 
   $athens_gray_approx: rgb(236, 240, 241);
   $bilbao_approx: rgb(50, 129, 20);
@@ -30,7 +31,7 @@
   $hyperlink: #FF7452;
   $accent: $default_green;
   $divider: gray;
-  $accent_300: #f0efef;
+  $accent_300: lighten($default_black, 10);
   $background: yellow;
   $button_background_hover: midnightblue;
   $button_text_hover: white;
@@ -75,6 +76,7 @@
           "accent": $accent,
           "primary_text": $primary_text,
           "secondary_text": $secondary_text,
+          "primary_h2": $primary_h2,
           "divider": $divider,
           "accent_300": $accent_300,
           "background": $background,
@@ -410,8 +412,8 @@
     //impressum colors
           "info_content_header_text": white,
           "info_content_header_background": $default_grey,
-          "info_content_body_text": $default_grey,
-          "info_content_body_background": LightGoldenRodYellow,
+          "info_content_body_text": $primary_text,
+          "info_content_body_background": $default_black,
     //editor navigation colors
           "item_selection_border": $item_separator,
     //filter colors
@@ -462,12 +464,12 @@
           "button_difficulty3": red,
           "button_difficulty_inactive": $wild_sand_approx,
           "background_difficulty0_note": ivory,
-          "background_difficulty0": LightGoldenRodYellow,
+          "background_difficulty0": lighten($default_black, 5),
           "background_difficulty1": $default_black,
-          "background_difficulty2": lightcyan,
-          "background_difficulty3": mistyrose,
+          "background_difficulty2": darken($default_black, 5),
+          "background_difficulty3": darken($default_black, 10),
           "background_difficulty0_lines_note": #F8E1AE,
-          "background_difficulty0_lines": PaleGoldenRod,
+          "background_difficulty0_lines": lighten($default_black, 5),
           "background_difficulty1_lines": rgba(92, 184, 92, 0.3),
           "background_difficulty2_lines": rgba(91, 192, 222, 0.3),
           "background_difficulty3_lines": rgba(217, 83, 79, 0.3),
@@ -515,7 +517,7 @@
           "editor_card_navigation_empty_content_background_hover":  $default_orange,
           "editor_card_navigation_empty_content_text_hover": white,
     //cube colors
-          "cube_border": lightgray,
+          "cube_border": darken($default_black, 5),
     //card colors
           "background_mobile_preview": $btn_inactive,
           "background_lecture": LightGoldenRodYellow,
@@ -536,7 +538,7 @@
           "card_header_card_number": $default_grey,
           "card_header_first_row": $default_grey,
           "card_header_second_row": $default_grey,
-          "card_header_subject": $default_grey,
+          "card_header_subject": $primary_h2,
           "card_header_subject_placeholder": $default_orange,
 
           "card_content_zoom_container_button_reset_background": $default_orange,
@@ -589,7 +591,7 @@
     //card sidebar colors
     //card sidebar colors
           "card_sidebar_border": rgba($default_grey, 0.6),
-          "card_sidebar_background" : rgba($mercury_approx, 0.6),
+          "card_sidebar_background" : $default_black,
 
           "card_sidebar_edit_button_background": $default_green,
           "card_sidebar_edit_button_border": $default_green,
@@ -630,10 +632,10 @@
           "card_sidebar_toggle_fullscreen_button_border_active": $default_orange,
           "card_sidebar_toggle_fullscreen_button_text_active": white,
 
-          "card_sidebar_aspect_ratio_background": white,
+          "card_sidebar_aspect_ratio_background": $default_black,
           "card_sidebar_aspect_ratio_border": $default_grey,
-          "card_sidebar_aspect_ratio_text": $default_blue,
-          "card_sidebar_aspect_ratio_background_hover": $button_background_hover,
+          "card_sidebar_aspect_ratio_text": $hyperlink,
+          "card_sidebar_aspect_ratio_background_hover": darken($hyperlink, 15),
           "card_sidebar_aspect_ratio_border_hover": $default_grey,
           "card_sidebar_aspect_ratio_text_hover": $button_text_hover,
           "card_sidebar_aspect_ratio_dropdown_background": none,
@@ -724,10 +726,10 @@
           "cardset_sidebar_preview_background_active": $default_orange,
           "cardset_sidebar_preview_text_active": white,
     //cardset colors
-          "cardset_markdeep_background": LightGoldenRodYellow,
+          "cardset_markdeep_background": $default_black,
           "cardset_markdeep_header_border": $default_orange,
-          "cardset_markdeep_text": $default_grey,
-          "cardset_markdeep_link": $default_orange,
+          "cardset_markdeep_text": $primary_text,
+          "cardset_markdeep_link": $hyperlink,
           "cardset_markdeep_placeholder": $default_green,
           "cardset_footer_navigation_background": $default_grey,
           "cardset_footer_navigation_index_background": none,

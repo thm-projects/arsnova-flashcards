@@ -42,6 +42,7 @@ $themes: (
     $accent: map-get($map, "accent");
     $primary_text: map-get($map, "primary_text");
     $secondary_text: map-get($map, "secondary_text");
+    $primary_h2: map-get($map, "primary_h2");
     $divider: map-get($map, "divider");
     $accent_300: map-get($map, "accent_300");
     $background: map-get($map, "background");
@@ -3077,6 +3078,10 @@ $themes: (
       }
     }
 
+    #cardsetTitle {
+      color: $primary_h2 !important;
+    }
+
     .cardListName {
       color: $white !important;
     }
@@ -3766,6 +3771,17 @@ $themes: (
 
     //markdeep colors
     .md {
+
+      color: $primary_text;
+
+      .nonumberh2, h2 {
+        color: $primary_h2;
+      }
+
+      a {
+        color: $hyperlink !important;
+      }
+
       code {
         color: $markdeep_inline_code_text !important;
         background-color: $markdeep_inline_code_background !important;
@@ -4730,7 +4746,7 @@ $themes: (
       }
     }
 
-    .profile-fullscreen-settings
+    // .profile-fullscreen-settings
 
     .fa-stack.unsaved {
       .background {
