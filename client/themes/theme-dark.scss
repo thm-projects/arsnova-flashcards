@@ -678,11 +678,12 @@
           "card_sidebar_zoom_border_active": $default_orange,
           "card_sidebar_zoom_text_active": white,
 
-          "card_sidebar_error_reporting_button_background": white,
-          "card_sidebar_error_reporting_button_text": $default_grey,
+          "card_sidebar_error_reporting_button_background": $default_grey,
+          "card_sidebar_error_reporting_button_text": $default_white,
+          "card_sidebar_error_reporting_button_border": $default_grey,
           "card_sidebar_error_reporting_button_background_hover": $button_background_hover,
           "card_sidebar_error_reporting_button_text_hover": $button_text_hover,
-
+          
           "card_sidebar_leitner_history_background": none,
           "card_sidebar_leitner_history_border": $default_grey,
           "card_sidebar_leitner_history_text": $default_grey,
@@ -866,11 +867,11 @@
           "markdeep_image_border": $default_grey,
     //transcript bonus colors
           "transcript_bonus_info_text": white,
-          "transcript_bonus_info_background": $default_red,
+          "transcript_bonus_info_background": $default_dark_red,
           "transcript_bonus_info_lecture_date_year_text": white,
           "transcript_bonus_info_lecture_date_year_background": $default_orange,
           "transcript_bonus_info_lecture_date_month_text": white,
-          "transcript_bonus_info_lecture_date_month_background": $default_grey,
+          "transcript_bonus_info_lecture_date_month_background": $default_black,
           "transcript_bonus_info_lecture_date_day_border": white,
           "transcript_bonus_info_lecture_date_day_past_text": white,
           "transcript_bonus_info_lecture_date_day_past_background": rgba($default_red, 0.5),
@@ -925,8 +926,8 @@
     //form group colors
           "form_group_label": white,
     //cardset form colors
-          "cardset_form_list_background": $athens_gray_approx,
-          "cardset_form_list_text": black,
+          "cardset_form_list_background": $default_grey,
+          "cardset_form_list_text": white,
           "cardset_form_border": black,
           "cardset_form_list_background_hover": $button_background_hover,
           "cardset_form_list_text_hover": $button_text_hover,
@@ -1077,14 +1078,25 @@
 }
 h1, .nonumberh1 {
         color: white !important;
-  }
+}
 .cardHeaderSmallText{
       color: lighten(#4A5C66, 30) !important;
-  }
-  .dark .md img {
+}
+.dark .md img {
       background-color: white !important;
       padding: 5px !important;
-  }
-  .dark .md blockquote.fancyquote::before, .dark .md blockquote .fancyquote::after {
+}
+.dark .md blockquote.fancyquote::before, .dark .md blockquote .fancyquote::after {
       font-size: inherit !important;
-    }
+}
+.card-block table>tbody, .table-striped > tbody > tr:nth-of-type(2n+1) {
+          background-color: darken(#424242, 10)  !important;
+}
+.card-block {
+      background-color: darken(#424242, 10) !important;
+      color: white !important;
+}
+#collapseLearningPhaseInfoButton {
+      background-color: #b24531 !important;
+}
+            

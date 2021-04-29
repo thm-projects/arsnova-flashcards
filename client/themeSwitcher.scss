@@ -531,6 +531,7 @@ $themes: (
     $card_sidebar_error_reporting_button_text: map-get($map, "card_sidebar_error_reporting_button_text");
     $card_sidebar_error_reporting_button_background_hover: map-get($map, "card_sidebar_error_reporting_button_background_hover");
     $card_sidebar_error_reporting_button_text_hover: map-get($map, "card_sidebar_error_reporting_button_text_hover");
+    $card_sidebar_error_reporting_button_border : map-get($map, "card_sidebar_error_reporting_button_border");
 
     $card_sidebar_leitner_history_background: map-get($map, "card_sidebar_leitner_history_background");
     $card_sidebar_leitner_history_border: map-get($map, "card_sidebar_leitner_history_border");
@@ -4889,7 +4890,7 @@ $themes: (
 
 
     .errorReporting {
-      border-color: $card_sidebar_error_reporting_button_text !important;
+      border-color: $card_sidebar_error_reporting_button_border !important;
       background-color: $card_sidebar_error_reporting_button_background !important;
       color: $card_sidebar_error_reporting_button_text !important;
     }
