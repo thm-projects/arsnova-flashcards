@@ -776,7 +776,7 @@
           "cardset_footer_navigation_learn_list_reset_workload_background_hover": $button_background_hover,
           "cardset_footer_navigation_learn_list_reset_workload_text_hover": $button_text_hover,
 
-          "cardset_footer_navigation_new_card_background": $default_orange,
+          "cardset_footer_navigation_new_card_background": darken($default_orange, 15),
           "cardset_footer_navigation_new_card_text": white,
           "cardset_footer_navigation_new_card_background_hover": $button_background_hover,
           "cardset_footer_navigation_new_card_text_hover": $button_text_hover,
@@ -848,7 +848,7 @@
           "cardset_footer_navigation_export_cards_text": black,
           "cardset_footer_navigation_export_cards_background_hover": $button_background_hover,
           "cardset_footer_navigation_export_cards_text_hover": $button_text_hover,
-          "cardset_footer_navigation_delete_all_cards_background": $default_red,
+          "cardset_footer_navigation_delete_all_cards_background": $default_dark_red,
           "cardset_footer_navigation_delete_all_cards_text": white,
           "cardset_footer_navigation_delete_all_cards_background_hover": $button_background_hover,
           "cardset_footer_navigation_delete_all_cards_text_hover": $button_text_hover,
@@ -1073,4 +1073,11 @@
     //flashcardsEndProgressbar
           "flashcards_end_progressbar_background": darkorange,
   );
+  
 }
+h1, .nonumberh1 {
+        color: white !important;
+  }
+.cardHeaderSmallText{
+      color: lighten(#4A5C66, 30) !important;
+  }
