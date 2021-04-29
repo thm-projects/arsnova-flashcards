@@ -490,7 +490,7 @@
           "card_navigation_active_background_hover": $button_background_hover,
           "card_navigation_active_text_hover": white,
 
-          "card_navigation_background": darkgrey,
+          "card_navigation_background": $default_grey,
           "card_navigation_text": white,
           "card_navigation_background_hover": $button_background_hover,
           "card_navigation_text_hover": $button_text_hover,
@@ -860,7 +860,7 @@
           "markdeep_inline_code_background": yellow,
           "markdeep_inline_code_text": black,
           "markdeep_blockquote_background": none,
-          "markdeep_blockquote_text": $default_grey,
+          "markdeep_blockquote_text": darken($default_white, 10),
           "markdeep_blockquote_author": $default_grey,
           "markdeep_blockquote_quotes": $default_orange,
           "markdeep_image_border": $default_grey,
@@ -1081,3 +1081,10 @@ h1, .nonumberh1 {
 .cardHeaderSmallText{
       color: lighten(#4A5C66, 30) !important;
   }
+  .dark .md img {
+      background-color: white !important;
+      padding: 5px !important;
+  }
+  .dark .md blockquote.fancyquote::before, .dark .md blockquote .fancyquote::after {
+      font-size: inherit !important;
+    }
