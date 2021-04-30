@@ -37,8 +37,8 @@
   $background: yellow;
   $button_background_hover: $default_grey;
   $button_text_hover: white;
-  $input_textarea_border_active: $default_orange;
-  $input_textarea_border_inactive: $divider;
+  $input_textarea_border_active: $default_dark_orange;
+  $input_textarea_border_inactive: lighten($default_black, 15);
   $input_textarea_background_active: lighten($default_black, 4);
   $input_textarea_background_inactive: lighten($default_black, 2);
   $input_textarea_text_active: lighten($primary_text, 4);
@@ -60,7 +60,7 @@
     //global colors
           "thm_dark_blue":$default_dark_blue,
           "thm_blue":$default_blue,
-          "thm_orange":$default_orange,
+          "thm_orange":$default_dark_orange,
           "thm_red":$default_red,
           "thm_gray":$default_grey,
           "thm_green":$default_green,
@@ -385,7 +385,7 @@
     //welcome page colors
           "welcome_page_login_label": white,
           "welcome_page_login_label_shadow": $default_grey,
-          "placeholder": $default_orange,
+          "placeholder": lighten($default_orange, 10),
     //export to markdeep colors
           "export_to_markdeep_table_header_background": $default_grey,
           "export_to_markdeep_table_header_text": white,
@@ -514,7 +514,7 @@
           "editor_card_navigation_text_hover": $button_text_hover,
 
           "editor_card_navigation_empty_content_opacity": 1,
-          "editor_card_navigation_empty_content_background": $default_orange,
+          "editor_card_navigation_empty_content_background": $default_dark_orange,
           "editor_card_navigation_empty_content_text": white,
           "editor_card_navigation_empty_content_opacity_hover": 1,
           "editor_card_navigation_empty_content_background_hover":  $default_orange,
@@ -899,7 +899,7 @@
     //markdeep editor colors
           "markdeep_help_text": $default_white,
           "markdeep_help_background": $default_dark_orange,
-          "markdeep_help_border": $default_orange,
+          "markdeep_help_border": $default_dark_orange,
     //markdeep editor answer colors
           "markdeep_editor_add_answer_background": $default_green,
           "markdeep_editor_add_answer_text": white,
