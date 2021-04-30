@@ -813,6 +813,12 @@ $themes: (
     $card_answer_explanation_background: map-get($map, "card_answer_explanation_background");
     //markdeep colors
     $markdeep_inline_code_background: map-get($map, "markdeep_inline_code_background");
+    $markdeep_inline_code_title: map-get($map, "markdeep_inline_code_title");
+    $markdeep_inline_code_keyword: map-get($map, "markdeep_inline_code_keyword");
+    $markdeep_inline_code_params: map-get($map, "markdeep_inline_code_params");
+    $markdeep_inline_code_number: map-get($map, "markdeep_inline_code_number");
+    $markdeep_inline_code_comment: map-get($map, "markdeep_inline_code_comment");
+    $markdeep_inline_code_string: map-get($map, "markdeep_inline_code_string");
     $markdeep_inline_code_text: map-get($map, "markdeep_inline_code_text");
     $markdeep_blockquote_background: map-get($map, "markdeep_blockquote_background");
     $markdeep_blockquote_text: map-get($map, "markdeep_blockquote_text");
@@ -3812,6 +3818,30 @@ $themes: (
 
       img {
         border-color: $markdeep_image_border !important;
+      }
+
+      pre.tilde{
+        background-color: $markdeep_inline_code_background !important;
+        border-top-color: lighten($markdeep_inline_code_background, 2) !important;
+        border-bottom-color: lighten($markdeep_inline_code_background, 2) !important;
+        .hljs-title {
+          color: $markdeep_inline_code_title !important;
+        }
+        .hljs-keyword {
+          color: $markdeep_inline_code_keyword !important;
+        }
+        .hljs-params {
+          color: $markdeep_inline_code_params !important
+        }
+        .hljs-number {
+          color: $markdeep_inline_code_number !important
+        }
+        .hljs-comment {
+          color: $markdeep_inline_code_comment !important
+        }
+        .hljs-string {
+          color: $markdeep_inline_code_string !important
+        }
       }
     }
     //transcript bonus colors
