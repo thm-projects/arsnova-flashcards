@@ -4,6 +4,7 @@
   $default_dark_blue: darkblue;
   $default_blue: blue;
   $default_orange: darkorange;
+  $default_dark_orange: darken(darkorange, 15);
   $default_red: tomato;
   $default_dark_red: #b24531;
   $default_grey: #424242;
@@ -93,9 +94,9 @@
           "edu_text": $default_white,
           "pro_background": darken($default_orange, 15),
           "pro_text": $default_white,
-          "private_background": red,
+          "private_background": $default_grey,
           "private_text": $default_white,
-          "danger_background": $default_orange,
+          "danger_background": $default_dark_orange,
           "danger_text": $default_white,
           "info_background": $default_dark_blue,
           "info_text": $default_white,
@@ -459,11 +460,11 @@
           "no_remaining_daily_workload": $primary_text,
     //difficulty colors
           "button_difficulty0_note": darkorange,
-          "button_difficulty0": darkorange,
-          "button_difficulty1": green,
-          "button_difficulty2": blue,
-          "button_difficulty3": red,
-          "button_difficulty_inactive": $wild_sand_approx,
+          "button_difficulty0": $default_dark_orange,
+          "button_difficulty1": darken(green, 10),
+          "button_difficulty2": $default_dark_blue,
+          "button_difficulty3": $default_dark_red,
+          "button_difficulty_inactive": $default_white,
           "background_difficulty0_note": ivory,
           "background_difficulty0": lighten($default_black, 5),
           "background_difficulty1": $default_black,
@@ -891,7 +892,7 @@
           "transcript_bonus_statistics_info_details_achieved_text": black,
     //markdeep editor colors
           "markdeep_help_text": $default_white,
-          "markdeep_help_background": $default_orange,
+          "markdeep_help_background": $default_dark_orange,
           "markdeep_help_border": $default_orange,
     //markdeep editor answer colors
           "markdeep_editor_add_answer_background": $default_green,
@@ -1099,4 +1100,6 @@ h1, .nonumberh1 {
 #collapseLearningPhaseInfoButton {
       background-color: #b24531 !important;
 }
-            
+.listCard{
+      color: white !important;
+} 

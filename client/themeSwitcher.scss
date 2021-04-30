@@ -3315,7 +3315,8 @@ $themes: (
     }
 
     .label-edu-text {
-      color: $edu_background !important;
+      background-color: $edu_background !important;
+      color: $edu_text !important;
     }
 
     .label-pro {
@@ -3324,7 +3325,8 @@ $themes: (
     }
 
     .label-pro-text {
-      color: $pro_background !important;
+      background-color: $pro_background !important;
+      color: $pro_text !important;
     }
 
     .label-private {
@@ -3333,7 +3335,8 @@ $themes: (
     }
 
     .label-private-text {
-      color: $private_background !important;
+      color: $private_text !important;
+      background-color: $private_background !important;
     }
 
     .label-shuffled {
