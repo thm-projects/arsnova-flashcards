@@ -86,7 +86,7 @@
           "modal_icon": $default_grey,
           "trophy": $default_orange,
     //global button and label colors
-          "demo_background": $default_green,
+          "demo_background": $default_black,
           "demo_text": $default_white,
           "free_background": $default_dark_red,
           "free_text": $default_white,
@@ -486,7 +486,7 @@
           "card_list_number_background": $default_green,
           "card_list_number_text": white,
     //card-navigation colors
-          "card_navigation_active_background": $default_orange,
+          "card_navigation_active_background": $default_dark_orange,
           "card_navigation_active_text": white,
           "card_navigation_active_background_hover": $button_background_hover,
           "card_navigation_active_text_hover": white,
@@ -610,8 +610,8 @@
           "card_sidebar_delete_button_border_hover": $button_background_hover,
           "card_sidebar_delete_button_text_hover": $button_text_hover,
 
-          "card_sidebar_toggle_button_background": darken($default_orange, 10),
-          "card_sidebar_toggle_button_border": darken($default_orange, 10),
+          "card_sidebar_toggle_button_background": $default_dark_orange,
+          "card_sidebar_toggle_button_border": $default_dark_orange,
           "card_sidebar_toggle_button_text": white,
           "card_sidebar_toggle_button_opacity": 1,
           "card_sidebar_toggle_button_background_hover": $button_background_hover,
@@ -631,8 +631,8 @@
           "card_sidebar_toggle_fullscreen_button_background_hover": $button_background_hover,
           "card_sidebar_toggle_fullscreen_button_border_hover": $button_background_hover,
           "card_sidebar_toggle_fullscreen_button_text_hover": $button_text_hover,
-          "card_sidebar_toggle_fullscreen_button_background_active": $default_orange,
-          "card_sidebar_toggle_fullscreen_button_border_active": $default_orange,
+          "card_sidebar_toggle_fullscreen_button_background_active": $default_dark_orange,
+          "card_sidebar_toggle_fullscreen_button_border_active": $default_dark_orange,
           "card_sidebar_toggle_fullscreen_button_text_active": white,
 
           "card_sidebar_aspect_ratio_background": $default_black,
@@ -1087,7 +1087,10 @@ h1, .nonumberh1 {
         color: white !important;
 }
 .cardHeaderSmallText{
-      color: lighten(#4A5C66, 30) !important;
+      color: darkorange !important;
+}
+.cardHeaderSmallerText {
+      color: darkorange !important;
 }
 .dark .md img {
       background-color: white !important;
@@ -1109,3 +1112,12 @@ h1, .nonumberh1 {
 .listCard{
       color: white !important;
 } 
+.md table th{
+      background-color: darken(darkorange, 15) !important;
+      border-color: #121212 !important;
+}
+.md table td {
+      border-color: #121212 !important;
+      background-color: #424242 !important;
+
+}
