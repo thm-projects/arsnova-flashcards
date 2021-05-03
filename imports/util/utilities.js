@@ -286,4 +286,37 @@ export let Utilities = class Utilities {
 			return _.sortBy(array, content).reverse();
 		}
 	}
+
+	static setActiveLanguage () {
+		Session.set('activeLanguage', "de");
+		TAPi18n.setLanguage(Session.get('activeLanguage')).done(function () {
+			console.log("trigger");
+			Session.set('loadedTranslation', true);
+			Utilities.triggerCookieConsent();
+		});
+	}
+
+	static triggerCookieConsent () {
+		window.cookieconsent.initialise({
+			"palette": {
+				"popup": {
+					"background": "#4A5C66",
+					"text": "#ffffff"
+				},
+				"button": {
+					"background": "lightgrey",
+					"text": "#4a5c66"
+				}
+			},
+			"theme": "edgeless",
+			"position": "bottom-right",
+
+			"content": {
+				"message": TAPi18n.__('cookieconsent.message', {firstAppTitle: ServerStyle.getFirstAppTitle(), lastAppTitle: ServerStyle.getLastAppTitle()}, (Session.get('activeLanguage'))),
+				"dismiss": TAPi18n.__('cookieconsent.dismiss', {}, (Session.get('activeLanguage'))),
+				"link": TAPi18n.__('cookieconsent.link', {}, (Session.get('activeLanguage'))),
+				"href": "/datenschutz"
+			}
+		});
+	}
 };

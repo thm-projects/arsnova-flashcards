@@ -41,6 +41,7 @@ import 'tippy.js/animations/scale-extreme.css';
 import {BackgroundChanger} from "../../util/backgroundChanger";
 import {LockScreen} from "../../util/lockScreen";
 import {SweetAlertMessages} from "../../util/sweetAlert";
+import {Utilities} from "../../util/utilities";
 
 Meteor.subscribe("notifications");
 Meteor.subscribe("serverStatistics");
@@ -91,6 +92,9 @@ Session.setDefault('errorReportingCard', undefined);
 Session.setDefault('errorReportingMode', false);
 Session.setDefault('showOnlyErrorReports', false);
 
+//Language Sessions
+Session.setDefault('loadedTranslation', false);
+
 function connectionStatus() {
 	let stat;
 	if (Meteor.status().status === "connected") {
@@ -128,6 +132,9 @@ Template.main.events({
 });
 
 Template.main.helpers({
+	loadedTranslation: function () {
+		return Session.get('loadedTranslation');
+	},
 	checkIfUserIsSelectingACardset: function () {
 		if (!Route.isCardset() && !Route.isRepetitorium() && !Route.isPool()) {
 			Session.set('selectingCardsetToLearn', false);
@@ -222,6 +229,9 @@ Template.main.onDestroyed(function () {
 });
 
 Meteor.startup(function () {
+	Session.set('loadedTranslation', false);
+	Meteor.absoluteUrl.defaultOptions.rootUrl = Meteor.settings.public.rooturl;
+
 	CardNavigation.fullscreenExitEvents();
 	$(document).on('keydown', function (event) {
 		MainNavigation.keyEvents(event);
@@ -231,6 +241,8 @@ Meteor.startup(function () {
 		MainNavigation.enableKeyEvents();
 		CardNavigation.enableKeyEvents();
 	});
+
+	Utilities.setActiveLanguage();
 });
 
 document.addEventListener('fullscreenerror', () => {
