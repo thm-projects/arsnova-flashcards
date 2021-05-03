@@ -1,26 +1,30 @@
 <template name="main">
-    <div id="pomodoroTimerOverlay">
-        <div class="svg-container">
-            {{#if isLeitnerWozniakRoute}}
-                {{> pomodoroTimer}}
-            {{/if}}
+    {{#if loadedTranslation}}
+        <div id="pomodoroTimerOverlay">
+            <div class="svg-container">
+                {{#if isLeitnerWozniakRoute}}
+                    {{> pomodoroTimer}}
+                {{/if}}
+            </div>
         </div>
-    </div>
-    {{checkIfUserIsSelectingACardset}}
-    {{> mainModalConnectionStatus}}
-    {{> mainModalUnderDevelopment}}
-    {{> mainItemSearchResult}}
-    {{#if displayMainNavigation}}
-        {{> mainNavigationTop}}
+        {{checkIfUserIsSelectingACardset}}
+        {{> mainModalConnectionStatus}}
+        {{> mainModalUnderDevelopment}}
+        {{> mainItemSearchResult}}
+        {{#if displayMainNavigation}}
+            {{> mainNavigationTop}}
+        {{/if}}
+        {{> messageOfTheDayModal}}
+        {{> messagePreviewModal}}
+        {{> useCasesModal}}
+        {{> impressumModalStatistics}}
+        {{> learningStatusModal}}
+        {{> mainPdfViewerModal}}
+        <div id="main" class="{{getMainContainer}}">
+            {{> yield}}
+        </div>
+        {{> mainNavigationFooter}}
+    {{else}}
+        {{> loadingScreen}}
     {{/if}}
-    {{> messageOfTheDayModal}}
-    {{> messagePreviewModal}}
-    {{> useCasesModal}}
-    {{> impressumModalStatistics}}
-    {{> learningStatusModal}}
-    {{> mainPdfViewerModal}}
-    <div id="main" class="{{getMainContainer}}">
-        {{> yield}}
-    </div>
-    {{> mainNavigationFooter}}
 </template>
