@@ -33,7 +33,6 @@ import "./main.html";
 import "../messageOfTheDay/messageOfTheDay.js";
 
 import {PDFViewer} from "../../util/pdfViewer";
-import {setLanguage} from "../../startup/client/routes/onBeforeAction.js";
 import {Fullscreen} from "../../util/fullscreen";
 import {CardsetVisuals} from "../../util/cardsetVisuals";
 import tippy from "tippy.js";
@@ -93,7 +92,7 @@ Session.setDefault('errorReportingMode', false);
 Session.setDefault('showOnlyErrorReports', false);
 
 //Language Sessions
-Session.setDefault('loadedTranslation', false);
+Session.setDefault('loadedCardsSettings', false);
 
 function connectionStatus() {
 	let stat;
@@ -132,8 +131,8 @@ Template.main.events({
 });
 
 Template.main.helpers({
-	loadedTranslation: function () {
-		return Session.get('loadedTranslation');
+	loadedCardsSettings: function () {
+		return Session.get('loadedCardsSettings');
 	},
 	checkIfUserIsSelectingACardset: function () {
 		if (!Route.isCardset() && !Route.isRepetitorium() && !Route.isPool()) {
@@ -180,8 +179,20 @@ Template.main.helpers({
 
 let windowResizeSensor;
 let screenResizeSensor;
-Template.main.onCreated(function () {
-	setLanguage();
+
+Meteor.startup(function () {
+	Session.set('loadedCardsSettings', false);
+	Meteor.absoluteUrl.defaultOptions.rootUrl = Meteor.settings.public.rooturl;
+
+	CardNavigation.fullscreenExitEvents();
+	$(document).on('keydown', function (event) {
+		MainNavigation.keyEvents(event);
+		CardNavigation.keyEvents(event);
+	});
+	$(document).on('keyup', function () {
+		MainNavigation.enableKeyEvents();
+		CardNavigation.enableKeyEvents();
+	});
 	BackgroundChanger.setTheme();
 	MarkdeepContent.initializeStylesheet();
 	document.title = ServerStyle.getLastAppTitle();
@@ -194,6 +205,12 @@ Template.main.onCreated(function () {
 		CardVisuals.resizeFlashcard();
 		PDFViewer.resizeIframe();
 		LockScreen.resize();
+	});
+});
+
+Template.main.onCreated(function () {
+	Meteor.subscribe('personalUserData', function () {
+		Utilities.setActiveLanguage();
 	});
 });
 
@@ -226,23 +243,6 @@ Template.main.onDestroyed(function () {
 	if (screenResizeSensor !== undefined) {
 		screenResizeSensor.off('resize');
 	}
-});
-
-Meteor.startup(function () {
-	Session.set('loadedTranslation', false);
-	Meteor.absoluteUrl.defaultOptions.rootUrl = Meteor.settings.public.rooturl;
-
-	CardNavigation.fullscreenExitEvents();
-	$(document).on('keydown', function (event) {
-		MainNavigation.keyEvents(event);
-		CardNavigation.keyEvents(event);
-	});
-	$(document).on('keyup', function () {
-		MainNavigation.enableKeyEvents();
-		CardNavigation.enableKeyEvents();
-	});
-
-	Utilities.setActiveLanguage();
 });
 
 document.addEventListener('fullscreenerror', () => {
