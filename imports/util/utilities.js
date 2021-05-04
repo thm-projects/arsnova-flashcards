@@ -291,8 +291,10 @@ export let Utilities = class Utilities {
 		let language = ServerStyle.getClientLanguage();
 		Session.set('activeLanguage', language);
 		TAPi18n.setLanguage(language).done(function () {
-			Session.set('loadedCardsSettings', true);
-			Utilities.triggerCookieConsent();
+			if (Session.get('loadedCardsSettings') !== true) {
+				Utilities.triggerCookieConsent();
+				Session.set('loadedCardsSettings', true);
+			}
 		});
 	}
 
