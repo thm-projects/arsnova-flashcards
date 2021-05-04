@@ -288,10 +288,10 @@ export let Utilities = class Utilities {
 	}
 
 	static setActiveLanguage () {
-		Session.set('activeLanguage', "de");
-		TAPi18n.setLanguage(Session.get('activeLanguage')).done(function () {
-			console.log("trigger");
-			Session.set('loadedTranslation', true);
+		let language = ServerStyle.getClientLanguage();
+		Session.set('activeLanguage', language);
+		TAPi18n.setLanguage(language).done(function () {
+			Session.set('loadedCardsSettings', true);
 			Utilities.triggerCookieConsent();
 		});
 	}
