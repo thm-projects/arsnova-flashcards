@@ -35,8 +35,8 @@
   $divider: gray;
   $accent_300: lighten($default_black, 10);
   $background: yellow;
-  $button_background_hover: $default_grey;
-  $button_text_hover: white;
+  $button_background_hover: $default_orange;
+  $button_text_hover: #1C1C1C;
   $input_textarea_border_active: $default_dark_orange;
   $input_textarea_border_inactive: lighten($default_black, 15);
   $input_textarea_background_active: lighten($default_black, 4);
@@ -503,9 +503,9 @@
           "card_navigation_empty_content_background_hover":  $button_background_hover,
           "card_navigation_empty_content_text_hover": white,
 
-          "editor_card_navigation_active_background": $default_dark_blue,
+          "editor_card_navigation_active_background": $default_dark_orange,
           "editor_card_navigation_active_text": white,
-          "editor_card_navigation_active_background_hover": $default_green,
+          "editor_card_navigation_active_background_hover": $default_orange,
           "editor_card_navigation_active_text_hover": white,
 
           "editor_card_navigation_background": $default_green,
@@ -522,7 +522,7 @@
     //cube colors
           "cube_border": darken($default_black, 5),
     //card colors
-          "background_mobile_preview": $btn_inactive,
+          "background_mobile_preview": lighten($default_background, 3),
           "background_lecture": LightGoldenRodYellow,
           "background_hint": WhiteSmoke,
           "background_hint_alternative": LightPink,

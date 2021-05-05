@@ -1064,6 +1064,10 @@ $themes: (
       color: $primary_text;
     }*/
 
+    .mobilePreviewFrame {
+      border-color: $default_background;
+    }
+
     .navbar-toggle {
       background-color: $navbar_collapse_background !important;
       color: $navbar_collapse_text !important;
@@ -2681,7 +2685,7 @@ $themes: (
     }
 
     .box, .boxPreview, .box-static {
-      background-color: $white !important;
+      background-color: $default_background !important;
     }
 
     .box-difficultyLined0 {
