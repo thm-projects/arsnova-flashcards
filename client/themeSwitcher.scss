@@ -1056,6 +1056,14 @@ $themes: (
       color: $hyperlink;
     }
 
+    /*audio::-webkit-media-controls-panel, video::-webkit-media-controls-panel {
+      background-color: $default_background;
+    }
+
+    audio::-webkit-media-controls-mute-button, audio::-webkit-media-controls-play-button {
+      color: $primary_text;
+    }*/
+
     .navbar-toggle {
       background-color: $navbar_collapse_background !important;
       color: $navbar_collapse_text !important;

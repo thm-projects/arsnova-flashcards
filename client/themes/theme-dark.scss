@@ -958,11 +958,11 @@
           "modal_background": $default_black,
           "modal_text": whitesmoke,
 
-          "modal_checkbox_background": white,
-          "modal_checkbox_border": $default_grey,
-          "modal_checkbox_background_active": white,
-          "modal_checkbox_border_active": $default_grey,
-          "modal_checkbox_icon_active": $default_grey,
+          "modal_checkbox_background": $default_black,
+          "modal_checkbox_border": lighten($default_black, 5),
+          "modal_checkbox_background_active": $default_black,
+          "modal_checkbox_border_active": lighten($default_black, 5),
+          "modal_checkbox_icon_active": $default_white,
 
           "modal_feedback_button_card_side_background": $default_white,
           "modal_feedback_button_card_side_text": $default_orange,
