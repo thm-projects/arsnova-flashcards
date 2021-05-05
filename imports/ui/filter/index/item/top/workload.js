@@ -6,13 +6,21 @@ import {Wozniak} from "../../../../../api/subscriptions/wozniak";
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../../../../api/subscriptions/cardsets";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import {LeitnerLearningWorkloadUtilities} from "../../../../../util/learningWorkload";
 
 function getLeitnerCount(cardset) {
-	return LeitnerUserCardStats.find({
-		cardset_id: cardset._id,
-		user_id: Meteor.userId(),
-		active: true
-	}).count();
+	let learningWorkload = LeitnerLearningWorkloadUtilities.getActiveWorkload(cardset._id, Meteor.userId());
+	if (learningWorkload !== undefined) {
+		return LeitnerUserCardStats.find({
+			learning_phase_id: learningWorkload.learning_phase_id,
+			workload_id: learningWorkload._id,
+			cardset_id: cardset._id,
+			user_id: Meteor.userId(),
+			isActive: true
+		}).count();
+	} else {
+		return 0;
+	}
 }
 
 function getWozniakCount(cardset) {

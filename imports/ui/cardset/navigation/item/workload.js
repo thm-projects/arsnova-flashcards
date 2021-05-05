@@ -10,6 +10,9 @@ import "../modal/chooseFlashcards.js";
 import "../modal/leitner.js";
 import "../modal/wozniak.js";
 import "./workload.html";
+import {LeitnerLearningWorkloadUtilities} from "../../../../util/learningWorkload";
+import {LearningStatus} from "../../../../util/learningStatus";
+import {Session} from "meteor/session";
 
 /*
  * ############################################################################
@@ -30,10 +33,11 @@ Template.cardsetNavigationWorkload.helpers({
 		}
 	},
 	learningLeitner: function () {
-		let workload = LeitnerLearningWorkload.findOne({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId()});
-		if (workload !== undefined && workload.leitner !== undefined && workload.leitner.active !== undefined) {
-			return workload.leitner.active;
-		}
+		return LeitnerLearningWorkload.findOne({
+			cardset_id: FlowRouter.getParam('_id'),
+			user_id: Meteor.userId(),
+			isActive: true
+		});
 	},
 	learningMemo: function () {
 		return Wozniak.findOne({
@@ -66,9 +70,15 @@ Template.cardsetNavigationWorkload.events({
 		});
 	},
 	"click #leitnerProgress": function () {
-		FlowRouter.go('progress', {
-			_id: this._id,
-			user_id: Meteor.userId()
-		});
+		let workload = LeitnerLearningWorkloadUtilities.getActiveWorkload(FlowRouter.getParam('_id'));
+		if (workload !== undefined) {
+			LearningStatus.setupTempData(FlowRouter.getParam('_id'), Meteor.userId(), workload._id, 'cardset');
+			Meteor.call('getLastLearningStatusActivity', Meteor.userId(), FlowRouter.getParam('_id'), workload._id, false, function (err, res) {
+				if (res) {
+					Session.set('lastLearningStatusActivity', res);
+				}
+			});
+			$('#learningStatusModal').modal('show');
+		}
 	}
 });

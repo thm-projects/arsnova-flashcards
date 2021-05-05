@@ -49,11 +49,11 @@ Template.cardsetNavigationBonus.events({
 		}
 	},
 	"click #startBonus": function () {
-		Session.set('isNewBonus', true);
+		Session.set('displayContentOfNewLearningPhaseBonus', true);
 		$('#bonusFormModal').modal('show');
 	},
 	"click #manageBonus": function () {
-		Session.set('isNewBonus', false);
+		Session.set('displayContentOfNewLearningPhaseBonus', false);
 		$('#bonusFormModal').modal('show');
 	},
 	"click #showStats": function () {

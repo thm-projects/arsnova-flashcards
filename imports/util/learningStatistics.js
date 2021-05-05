@@ -134,7 +134,8 @@ export let LearningStatisticsUtilities = class LearningStatisticsUtilities {
 					},
 					{
 						$set: {
-							"performanceStats": newPerformanceStats
+							"performanceStats": newPerformanceStats,
+							updatedAt: new Date()
 						}
 					}
 				);

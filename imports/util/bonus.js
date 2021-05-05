@@ -8,17 +8,16 @@ export let Bonus = class Bonus {
 		if (user_id === undefined) {
 			user_id = Meteor.userId();
 		}
-		let workload = LeitnerLearningWorkload.findOne({user_id: user_id, cardset_id: cardset_id}, {fields: {'leitner.bonus': 1}});
-		if (workload !== undefined && workload.leitner !== undefined && workload.leitner.bonus !== undefined) {
-			return workload.leitner.bonus === true;
+		let leitnerWorkload = LeitnerLearningWorkload.findOne({
+			user_id: user_id,
+			cardset_id: cardset_id,
+			isActive: true
+		}, {fields: {isBonus: 1}});
+		if (leitnerWorkload !== undefined) {
+			return leitnerWorkload.isBonus;
 		} else {
 			return false;
 		}
-	}
-
-	static isRegistrationPeriodActive (cardset_id) {
-		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, registrationPeriod: 1}});
-		return moment(cardset.registrationPeriod).endOf('day') > new Date();
 	}
 
 	static canJoinBonus (cardset_id) {
@@ -34,6 +33,13 @@ export let Bonus = class Bonus {
 			return !this.isInBonus(cardset._id);
 		} else {
 			return false;
+		}
+	}
+
+	static isRegistrationPeriodActive (cardset_id) {
+		let cardset = Cardsets.findOne({_id: cardset_id});
+		if (cardset.bonusStatus !== undefined) {
+			return cardset.bonusStatus === 1 || cardset.bonusStatus === 2;
 		}
 	}
 

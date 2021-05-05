@@ -2,26 +2,26 @@ import {Meteor} from "meteor/meteor";
 import {Route} from "../../../util/route";
 import {Bonus} from "../../../util/bonus";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
-import {LeitnerLearningWorkload} from "../../../api/subscriptions/leitner/leitnerLearningWorkload";
-import {Cardsets} from "../../../api/subscriptions/cardsets";
 import {Session} from "meteor/session";
+import {LeitnerLearningWorkloadUtilities} from "../../../util/learningWorkload";
+import {LeitnerLearningPhaseUtilities} from "../../../util/learningPhase";
 
 Template.registerHelper("gotLeitnerTimerDebugEnabled", function () {
 	return Meteor.settings.public.debug.leitnerTimer && Route.isBox() && Bonus.isInBonus(FlowRouter.getParam('_id'));
 });
 
 Template.registerHelper("getNextCardTime", function () {
-	let workload = LeitnerLearningWorkload.findOne({cardset_id: FlowRouter.getParam('_id'), user_id: Meteor.userId()});
-	let learningEnd = Cardsets.findOne({_id: FlowRouter.getParam('_id')}).learningEnd;
-	if (workload !== undefined && workload.leitner !== undefined && workload.leitner.nextDate !== undefined && learningEnd !== undefined) {
-		if (workload.leitner.nextDate.getTime() > learningEnd.getTime()) {
+	let leitnerLearningWorkload = LeitnerLearningWorkloadUtilities.getActiveWorkload(FlowRouter.getParam('_id'), Meteor.userId());
+	let leitnerLearningPhase = LeitnerLearningPhaseUtilities.getActiveLearningPhase(undefined, undefined, leitnerLearningWorkload.learning_phase_id);
+	if (leitnerLearningPhase !== undefined) {
+		if (leitnerLearningWorkload.nextActivationDate.getTime() > leitnerLearningPhase.end.getTime()) {
 			return TAPi18n.__('noMoreCardsBeforeEnd');
 		}
 		let nextDate;
-		if (workload.leitner.nextDate.getTime() < new Date().getTime()) {
+		if (leitnerLearningWorkload.nextActivationDate.getTime() < new Date().getTime()) {
 			nextDate = moment(new Date()).locale(Session.get('activeLanguage'));
 		} else {
-			nextDate = moment(workload.leitner.nextDate).locale(Session.get('activeLanguage'));
+			nextDate = moment(leitnerLearningWorkload.nextActivationDate).locale(Session.get('activeLanguage'));
 		}
 		if (nextDate.get('hour') >= Meteor.settings.public.dailyCronjob.executeAtHour) {
 			nextDate.add(1, 'day');

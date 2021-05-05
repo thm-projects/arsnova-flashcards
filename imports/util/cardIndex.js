@@ -122,7 +122,7 @@ export let CardIndex = class CardIndex {
 		let indexCards = LeitnerUserCardStats.find({
 			cardset_id: FlowRouter.getParam('_id'),
 			user_id: Meteor.userId(),
-			active: true
+			isActive: true
 		}, {
 			fields: {
 				card_id: 1
@@ -211,7 +211,7 @@ export let CardIndex = class CardIndex {
 		}
 
 		let cardsetId = "";
-		if (!Route.isDemo() && Route.isMakingOf()) {
+		if (!Route.isDemo() && !Route.isMakingOf()) {
 			cardsetId = FlowRouter.getParam('_id');
 		}
 		Meteor.call('getCardAnswerContent', cardIndexFilter, cardsetId, disableAnswers, function (error, result) {
@@ -282,7 +282,7 @@ export let CardIndex = class CardIndex {
 			card_id: {$in: cardIndexFilter},
 			cardset_id: Session.get('activeCardset')._id,
 			user_id: Meteor.userId(),
-			active: true
+			isActive: true
 		}, {fields: {card_id: 1}}).fetch();
 		learnedCards = this.sortQueryResult(cardIndexFilter, learnedCards, true);
 		learnedCards.forEach(function (learnedCard) {

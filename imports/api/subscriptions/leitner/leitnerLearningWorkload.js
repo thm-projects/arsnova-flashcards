@@ -5,33 +5,23 @@ import {SimpleSchema} from "meteor/aldeed:simple-schema";
 export const LeitnerLearningWorkload = new Mongo.Collection("leitnerLearningWorkload");
 
 if (Meteor.isServer) {
-	Meteor.publish("cardsetWorkload", function (cardset_id) {
-		if (this.userId) {
-			if (Roles.userIsInRole(this.userId, [
-				'admin',
-				'editor',
-				'lecturer'
-			])) {
-				return LeitnerLearningWorkload.find({
-					cardset_id: cardset_id,
-					$or: [
-						{user_id: this.userId},
-						{'leitner.bonus': true}
-					]
-				});
-			} else {
-				return LeitnerLearningWorkload.find({
-					cardset_id: cardset_id,
-					user_id: this.userId
-				});
-			}
+	Meteor.publish("latestLeitnerCardsetWorkload", function (cardset_id) {
+		if (Meteor.userId()) {
+			return LeitnerLearningWorkload.find({
+				cardset_id: cardset_id,
+				user_id: Meteor.userId(),
+				isActive: true
+			});
 		} else {
 			this.ready();
 		}
 	});
 	Meteor.publish("userWorkload", function () {
-		if (this.userId) {
-			return LeitnerLearningWorkload.find({user_id: this.userId});
+		if (Meteor.userId()) {
+			return LeitnerLearningWorkload.find({
+				user_id: Meteor.userId(),
+				isActive: true
+			});
 		} else {
 			this.ready();
 		}

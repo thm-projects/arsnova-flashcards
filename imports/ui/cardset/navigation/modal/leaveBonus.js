@@ -19,7 +19,7 @@ Template.leaveLearnPhaseForm.events({
 		$('body').removeClass('modal-open');
 		$('.modal-backdrop').remove();
 		$('#leaveModal').on('hidden.bs.modal', function () {
-			Meteor.call("deleteLeitner", id);
+			Meteor.call("leaveBonus", id);
 			FlowRouter.go('home');
 		});
 	}

@@ -25,7 +25,7 @@ export let BonusForm = class BonusForm {
 		let dateBonusStart = $('#bonusFormModal #dateBonusStart');
 		let dateBonusEnd = $('#bonusFormModal #dateBonusEnd');
 		let dateRegistrationPeriodExpires = $('#bonusFormModal #dateRegistrationPeriod');
-		if (Session.get('isNewBonus')) {
+		if (Session.get('displayContentOfNewLearningPhaseBonus')) {
 			start = config.defaultDateStart;
 			dateBonusStart.attr("min", config.defaultDateStart);
 			nextDay = moment().add(1, 'day').format(config.dateFormat);
@@ -439,19 +439,11 @@ export let BonusForm = class BonusForm {
 	}
 
 	static startBonus () {
-		Meteor.call("activateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), [this.getErrorCountPercentage()], this.getMinLearned(), this.getStrictWorkloadTimer(), forceNotifications.all(), function (error, result) {
-			if (result) {
-				Session.set('activeCardset', Cardsets.findOne(result));
-			}
-		});
+		Meteor.call("activateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), this.getErrorCountPercentage(), this.getMinLearned(), this.getStrictWorkloadTimer(), forceNotifications.all());
 	}
 
 	static updateBonus () {
-		Meteor.call("updateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), [this.getErrorCountPercentage()], this.getMinLearned(), this.getStrictWorkloadTimer(), forceNotifications.all(), function (error, result) {
-			if (result) {
-				Session.set('activeCardset', Cardsets.findOne(result));
-			}
-		});
+		Meteor.call("updateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), this.getErrorCountPercentage(), this.getMinLearned(), this.getStrictWorkloadTimer(), forceNotifications.all());
 	}
 
 	static getDefaultMinLearned () {

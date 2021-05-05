@@ -8,7 +8,7 @@
                         <span class="fas fa-graduation-cap"></span>
                     </span>
                     {{> mainModalItemCloseIcon}}
-                    <h4 id="bonusFormModalTitle" class="modal-title">{{#if isNewBonus}}{{_
+                    <h4 id="bonusFormModalTitle" class="modal-title">{{#if displayContentOfNewLearningPhaseBonus}}{{_
                             "bonus.form.new.title"}}{{else}}{{_ "bonus.form.edit.title"}}{{/if}}
                     </h4>
                 </div>
@@ -34,7 +34,7 @@
                     <button id="resetBonus" class="btn btn-danger btn-raised pull-left">{{_
                             "bonus.form.button.reset"}}</button>
                     <button id="startBonus"
-                            class="btn btn-success btn-raised pull-right">{{#if isNewBonus}}{{_
+                            class="btn btn-success btn-raised pull-right">{{#if displayContentOfNewLearningPhaseBonus}}{{_
                             "bonus.form.button.start"}}{{else}}{{_
                             "bonus.form.button.update"}}{{/if}}</button>
                 </div>

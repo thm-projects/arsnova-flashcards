@@ -8,7 +8,7 @@ import {Wozniak} from "../api/subscriptions/wozniak";
 import * as config from "../config/filter.js";
 import {TranscriptBonus} from "../api/subscriptions/transcriptBonus";
 import {ServerStyle} from "./styles";
-import {LeitnerLearningPhase} from "../api/subscriptions/leitner/leitnerLearningPhase";
+import {BONUS_STATUS} from "../config/cardset.js";
 
 Session.setDefault('maxItemsCounter', config.itemStartingValue);
 Session.setDefault('poolFilter', undefined);
@@ -327,9 +327,12 @@ export let Filter = class Filter {
 			query.noDifficulty = activeFilter.noDifficulty;
 		}
 		if (FilterNavigation.gotBonusFilter(FilterNavigation.getRouteId()) && activeFilter.learningActive !== undefined) {
-			query._id = {$in: LeitnerLearningPhase.find({isBonus: true, isActive: true}).fetch().map(function (learningPhase) {
-					return learningPhase.cardset_id;
-				})};
+			query.bonusStatus = query.bonusStatus = {$in: [
+					BONUS_STATUS.PLANNED,
+					BONUS_STATUS.ONGOING_OPEN,
+					BONUS_STATUS.ONGOING_CLOSED,
+					BONUS_STATUS.FINISHED
+				]};
 		}
 		if (FilterNavigation.gotBonusFilter(FilterNavigation.getRouteId()) && activeFilter['transcriptBonus.enabled'] !== undefined) {
 			query['transcriptBonus.enabled'] = activeFilter['transcriptBonus.enabled'];

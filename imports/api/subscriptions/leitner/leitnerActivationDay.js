@@ -1,12 +1,23 @@
 import {Mongo} from "meteor/mongo";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
+import {LeitnerLearningWorkloadUtilities} from "../../../util/learningWorkload";
 
 export const LeitnerActivationDay = new Mongo.Collection("leitnerActivationDay");
 
 if (Meteor.isServer) {
-	Meteor.publish("latestLeitnerCardsetTask", function (cardset_id) {
+	Meteor.publish("latestLeitnerCardsetActivationDay", function (cardset_id) {
 		if (Meteor.userId()) {
-			return LeitnerActivationDay.find({cardset_id: cardset_id, user_id: Meteor.userId()}, {sort: {createdAt: -1, session: -1}, limit: 1});
+			let leitnerLearningWorkload = LeitnerLearningWorkloadUtilities.getActiveWorkload(cardset_id, Meteor.userId());
+			if (leitnerLearningWorkload !== undefined) {
+				return LeitnerActivationDay.find({
+					learning_phase_id: leitnerLearningWorkload.learning_phase_id,
+					workload_id: leitnerLearningWorkload._id,
+					cardset_id: cardset_id,
+					user_id: Meteor.userId()
+				}, {sort: {createdAt: -1}, limit: 1});
+			} else {
+				this.ready();
+			}
 		} else {
 			this.ready();
 		}

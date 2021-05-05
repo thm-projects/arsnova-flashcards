@@ -270,10 +270,16 @@ Meteor.methods({
 		}
 
 		let result = [];
-		let workload = LeitnerLearningWorkload.findOne({_id: workload_id, user_id: user_id, cardset_id: cardset_id});
-		if (workload !== undefined) {
+		let leitnerLearningWorkload = LeitnerLearningWorkload.findOne({
+			_id: workload_id,
+			user_id: user_id,
+			cardset_id: cardset_id
+		});
+		if (leitnerLearningWorkload !== undefined) {
 			let leitnerHistory = LeitnerPerformanceHistory.findOne({
-					workload_id: workload._id, "timestamps.submission": {$exists: true}},
+					learning_phase_id: leitnerLearningWorkload.learning_phase_id,
+					workload_id: leitnerLearningWorkload._id,
+					"timestamps.submission": {$exists: true}},
 				{sort: {"timestamps.submission": -1}});
 			let lastActivity = "";
 			if (leitnerHistory !== undefined) {
@@ -286,21 +292,23 @@ Meteor.methods({
 			let userWorkingTimeMedian = 0;
 			let userWorkingTimeArithmeticMean = 0;
 			let userWorkingTimeStandardDeviation = 0;
-			if (workload.performanceStats !== undefined) {
-				isInBonus = workload.isBonus;
-				userCardMedian = workload.performanceStats.answerTime.median;
-				userCardArithmeticMean = workload.performanceStats.answerTime.arithmeticMean;
-				userCardStandardDeviation = workload.performanceStats.answerTime.standardDeviation;
-				userWorkingTimeMedian = workload.performanceStats.workingTime.median;
-				userWorkingTimeArithmeticMean = workload.performanceStats.workingTime.arithmeticMean;
-				userWorkingTimeStandardDeviation = workload.performanceStats.workingTime.standardDeviation;
+			if (leitnerLearningWorkload.performanceStats !== undefined) {
+				isInBonus = leitnerLearningWorkload.isBonus;
+				userCardMedian = leitnerLearningWorkload.performanceStats.answerTime.median;
+				userCardArithmeticMean = leitnerLearningWorkload.performanceStats.answerTime.arithmeticMean;
+				userCardStandardDeviation = leitnerLearningWorkload.performanceStats.answerTime.standardDeviation;
+				userWorkingTimeMedian = leitnerLearningWorkload.performanceStats.workingTime.median;
+				userWorkingTimeArithmeticMean = leitnerLearningWorkload.performanceStats.workingTime.arithmeticMean;
+				userWorkingTimeStandardDeviation = leitnerLearningWorkload.performanceStats.workingTime.standardDeviation;
 			}
 			let leitnerActivationDays = LeitnerActivationDay.find({
-				workload_id: workload._id}, {sort: {createdAt: -1}}).fetch();
+				learning_phase_id: leitnerLearningWorkload.learning_phase_id,
+				workload_id: leitnerLearningWorkload._id
+			}, {sort: {createdAt: -1}}).fetch();
 			for (let i = 0; i < leitnerActivationDays.length; i++) {
 				let item = {};
 				let missedLastDeadline;
-				item.workload_id = workload._id;
+				item.workload_id = leitnerLearningWorkload._id;
 				item.lastActivity = lastActivity;
 				item.isInBonus = isInBonus;
 				item.cardsetShuffled = cardset.shuffled;
@@ -322,13 +330,21 @@ Meteor.methods({
 					item.cardStandardDeviation = 0;
 				}
 				item.workload = LeitnerPerformanceHistory.find({
+					learning_phase_id: leitnerLearningWorkload.learning_phase_id,
+					workload_id: leitnerLearningWorkload._id,
 					user_id: user_id,
 					cardset_id: cardset_id,
 					activation_day_id: leitnerActivationDays[i]._id}).count();
-				item.known = LeitnerPerformanceHistory.find({user_id: user_id,
+				item.known = LeitnerPerformanceHistory.find({
+					learning_phase_id: leitnerLearningWorkload.learning_phase_id,
+					workload_id: leitnerLearningWorkload._id,
+					user_id: user_id,
 					cardset_id: cardset_id,
 					activation_day_id: leitnerActivationDays[i]._id, answer: 0}).count();
-				item.notKnown = LeitnerPerformanceHistory.find({user_id: user_id,
+				item.notKnown = LeitnerPerformanceHistory.find({
+					learning_phase_id: leitnerLearningWorkload.learning_phase_id,
+					workload_id: leitnerLearningWorkload._id,
+					user_id: user_id,
 					cardset_id: cardset_id,
 					activation_day_id: leitnerActivationDays[i]._id, answer: 1}).count();
 				item.missedDeadline = leitnerActivationDays[i].missedDeadline;
@@ -346,6 +362,8 @@ Meteor.methods({
 					item.reason = 0;
 				}
 				let lastAnswerDate = LeitnerPerformanceHistory.findOne({
+					learning_phase_id: leitnerLearningWorkload.learning_phase_id,
+					workload_id: leitnerLearningWorkload._id,
 					user_id: user_id,
 					cardset_id: cardset_id,
 					activation_day_id: leitnerActivationDays[i]._id,
@@ -356,6 +374,8 @@ Meteor.methods({
 				}
 				item.duration = 0;
 				let performanceHistory = LeitnerPerformanceHistory.find({
+					learning_phase_id: leitnerLearningWorkload.learning_phase_id,
+					workload_id: leitnerLearningWorkload._id,
 					user_id: user_id,
 					cardset_id: cardset_id,
 					activation_day_id: leitnerActivationDays[i]._id,

@@ -22,6 +22,10 @@ function leitnerCardStats() {
 				newLeitnerObject.nextPossibleActivationDate = leitnerObject.nextDate;
 				newLeitnerObject.activatedSinceDate = leitnerObject.currentDate;
 				newLeitnerObject.workload_id = leitnerLearningWorkload._id;
+				if (leitnerObject.submitted !== undefined) {
+					newLeitnerObject.submittedAnswer = leitnerObject.submitted;
+					delete newLeitnerObject.submitted;
+				}
 				delete newLeitnerObject.active;
 				delete newLeitnerObject.nextDate;
 				delete newLeitnerObject.currentDate;

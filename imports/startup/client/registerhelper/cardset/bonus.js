@@ -69,3 +69,11 @@ Template.registerHelper('isInBonusAndProfileIncomplete', function () {
 Template.registerHelper('isInBonus', function () {
 	return Bonus.isInBonus(FlowRouter.getParam('_id'), Meteor.userId());
 });
+
+Template.registerHelper('gotArchivedOrActiveBonus', function (bonusStatus) {
+	return bonusStatus !== 0;
+});
+
+Template.registerHelper('gotActiveBonus', function (bonusStatus) {
+	return bonusStatus !== 0 && bonusStatus !== 5;
+});

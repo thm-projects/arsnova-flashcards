@@ -38,14 +38,14 @@ Template.bonusForm.onRendered(function () {
 });
 
 Template.bonusForm.helpers({
-	isNewBonus: function () {
-		return Session.get('isNewBonus');
+	displayContentOfNewLearningPhaseBonus: function () {
+		return Session.get('displayContentOfNewLearningPhaseBonus');
 	}
 });
 
 Template.bonusForm.events({
 	"click #startBonus": function () {
-		if (Session.get('isNewBonus')) {
+		if (Session.get('displayContentOfNewLearningPhaseBonus')) {
 			BonusForm.startBonus();
 		} else {
 			BonusForm.updateBonus();

@@ -9,7 +9,6 @@ import {Filter} from "../../../util/filter";
 import {Route} from "../../../util/route";
 import {FilterNavigation} from "../../../util/filterNavigation";
 import {CardType} from "../../../util/cardTypes";
-import {LeitnerUserCardStats} from "../../../api/subscriptions/leitner/leitnerUserCardStats";
 import {Wozniak} from "../../../api/subscriptions/wozniak";
 import {MainNavigation} from "../../../util/mainNavigation";
 import {LoginTasks} from "../../../util/login";
@@ -64,6 +63,7 @@ import "./index.html";
 import {Meteor} from "meteor/meteor";
 import {ServerStyle} from "../../../util/styles";
 import "../../messageOfTheDay/messageOfTheDay.js";
+import {LeitnerLearningWorkload} from "../../../api/subscriptions/leitner/leitnerLearningWorkload";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
@@ -376,14 +376,28 @@ Template.filterIndexWorkload.helpers({
 		}
 		switch (returnType) {
 			case 0:
-				return (LeitnerUserCardStats.find({user_id: Meteor.userId()}).count() > 0 || Wozniak.find({user_id: Meteor.userId()}).count() > 0);
+				return (LeitnerLearningWorkload.find({
+					user_id: Meteor.userId(),
+					isActive: true
+				}).count() > 0 || Wozniak.find({user_id: Meteor.userId()}).count() > 0);
 			case 1:
 				return Cardsets.find(query, {
 					sort: Filter.getSortFilter(),
 					limit: Filter.getMaxItemCounter()
 				}).count();
 			case 2:
-				return Cardsets.find(query, {sort: Filter.getSortFilter(), limit: Filter.getMaxItemCounter()});
+				let results = Cardsets.find(query, {sort: Filter.getSortFilter(), limit: Filter.getMaxItemCounter()});
+				let filteredResults = [];
+				results.forEach(function (cardset) {
+					if (LeitnerLearningWorkload.find({
+						cardset_id: cardset._id,
+						user_id: Meteor.userId(),
+						isActive: true
+					}).count() > 0 || Wozniak.find({cardset_id: cardset._id, user_id: Meteor.userId()}).count() > 0) {
+						filteredResults.push(cardset);
+					}
+				});
+				return filteredResults;
 		}
 	}
 });
