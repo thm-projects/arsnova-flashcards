@@ -131,9 +131,6 @@ Template.main.events({
 });
 
 Template.main.helpers({
-	loadedCardsSettings: function () {
-		return Session.get('loadedCardsSettings');
-	},
 	checkIfUserIsSelectingACardset: function () {
 		if (!Route.isCardset() && !Route.isRepetitorium() && !Route.isPool()) {
 			Session.set('selectingCardsetToLearn', false);
