@@ -61,8 +61,8 @@ function leitnerActivationDay() {
 					});
 				}
 			});
-			LeitnerTasks.remove({}, {multi: true});
-			LeitnerHistory.remove({}, {multi: true});
+			LeitnerTasks.remove({});
+			LeitnerHistory.remove({});
 		}
 
 		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);

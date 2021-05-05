@@ -1,21 +1,33 @@
 import {Mongo} from "meteor/mongo";
 import {Meteor} from "meteor/meteor";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
+import {LeitnerLearningWorkloadUtilities} from "../../../util/learningWorkload";
+import {LeitnerLearningWorkload} from "./leitnerLearningWorkload";
 
 export const LeitnerBonusCardStats = new Mongo.Collection("leitnerBonusCardStats");
 export const LeitnerUserCardStats = new Mongo.Collection("leitnerUserCardStats");
 
 if (Meteor.isServer) {
-	Meteor.publish("cardsetLeitner", function (cardset_id) {
-		if (this.userId) {
-			return LeitnerUserCardStats.find({cardset_id: cardset_id, user_id: this.userId});
+	Meteor.publish("latestLeitnerCardsetCards", function (cardset_id) {
+		if (Meteor.userId()) {
+			let leitnerLearningWorkload = LeitnerLearningWorkloadUtilities.getActiveWorkload(cardset_id, Meteor.userId());
+			if (leitnerLearningWorkload !== undefined) {
+				return LeitnerUserCardStats.find({
+					learning_phase_id: leitnerLearningWorkload.learning_phase_id,
+					workload_id: leitnerLearningWorkload._id,
+					cardset_id: cardset_id,
+					user_id: Meteor.userId()
+				});
+			} else {
+				this.ready();
+			}
 		} else {
 			this.ready();
 		}
 	});
 	Meteor.publish("userCardsetLeitner", function (cardset_id, user_id) {
-		if (this.userId) {
-			if (this.userId === user_id || Roles.userIsInRole(this.userId, [
+		if (Meteor.userId()) {
+			if (Meteor.userId() === user_id || Roles.userIsInRole(Meteor.userId(), [
 				'admin',
 				'editor',
 				'lecturer'
@@ -29,14 +41,21 @@ if (Meteor.isServer) {
 		}
 	});
 	Meteor.publish("userLeitner", function () {
-		if (this.userId) {
-			return LeitnerUserCardStats.find({user_id: this.userId});
+		if (Meteor.userId()) {
+			let leitnerWorkloadIDs = LeitnerLearningWorkload.find({
+				user_id: Meteor.userId(),
+				isActive: true
+			}).fetch().map(workload => workload._id);
+			return LeitnerUserCardStats.find({
+				user_id: Meteor.userId(),
+				workload_id: {$in: leitnerWorkloadIDs}
+			});
 		} else {
 			this.ready();
 		}
 	});
 	Meteor.publish("allLeitner", function () {
-		if (this.userId) {
+		if (Meteor.userId()) {
 			if (Roles.userIsInRole(this.userId, [
 				'admin',
 				'editor'
@@ -75,7 +94,11 @@ const LeitnerUserCardStatsSchema = new SimpleSchema({
 	},
 	isActive: {
 		type: Boolean,
-		defaultValue: true
+		defaultValue: false
+	},
+	submittedAnswer: {
+		type: Boolean,
+		defaultValue: false
 	},
 	nextPossibleActivationDate: {
 		type: Date,

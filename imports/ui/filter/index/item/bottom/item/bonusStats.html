@@ -1,5 +1,5 @@
 <template name="filterIndexItemBottomBonusStats">
-    {{#if this.learningActive}}
+    {{#if isBonusActive this._id}}
         {{#if isCardsetOwner this._id}}
             <a rel="noopener noreferrer"   class="resultNavigationElement bonusLeitnerProgress" data-id="{{this._id}}"
                title="{{_

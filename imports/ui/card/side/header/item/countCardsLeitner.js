@@ -14,7 +14,7 @@ Template.cardContentItemCountCardsLeitner.helpers({
 		var maxIndex = LeitnerUserCardStats.find({
 			cardset_id: Session.get('activeCardset')._id,
 			user_id: Meteor.userId(),
-			active: true
+			isActive: true
 		}).count();
 		Session.set('maxIndex', maxIndex);
 		return maxIndex;

@@ -95,6 +95,8 @@ Session.setDefault('showOnlyErrorReports', false);
 //Language Sessions
 Session.setDefault('loadedCardsSettings', false);
 
+//Learning phase bonus form
+Session.setDefault('displayContentOfNewLearningPhaseBonus', true);
 function connectionStatus() {
 	let stat;
 	if (Meteor.status().status === "connected") {

@@ -1,15 +1,32 @@
 import {Mongo} from "meteor/mongo";
 import {LeitnerActivationDay} from "./leitnerActivationDay";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
+import {LeitnerLearningWorkloadUtilities} from "../../../util/learningWorkload";
 
 export const LeitnerPerformanceHistory = new Mongo.Collection("leitnerPerformanceHistory");
 
 if (Meteor.isServer) {
-	Meteor.publish("latestLeitnerCardsetHistory", function (cardset_id) {
+	Meteor.publish("latestLeitnerCardsetPerformanceHistory", function (cardset_id) {
 		if (Meteor.userId()) {
-			let task = LeitnerActivationDay.findOne({cardset_id: cardset_id, user_id: Meteor.userId()}, {sort: {createdAt: -1, session: -1}, fields: {_id: 1}});
-			if (task !== undefined) {
-				return LeitnerPerformanceHistory.find({cardset_id: cardset_id, user_id: Meteor.userId(), task_id: task._id});
+			let leitnerLearningWorkload = LeitnerLearningWorkloadUtilities.getActiveWorkload(cardset_id, Meteor.userId());
+			if (leitnerLearningWorkload !== undefined) {
+				let activation_day = LeitnerActivationDay.findOne({
+						learning_phase_id: leitnerLearningWorkload.learning_phase_id,
+						workload_id: leitnerLearningWorkload._id,
+						cardset_id: cardset_id,
+						user_id: Meteor.userId()
+					}, {sort: {createdAt: -1}, fields: {_id: 1}});
+				if (activation_day !== undefined) {
+					return LeitnerPerformanceHistory.find({
+						learning_phase_id: leitnerLearningWorkload.learning_phase_id,
+						workload_id: leitnerLearningWorkload._id,
+						activation_day_id: activation_day._id,
+						cardset_id: cardset_id,
+						user_id: Meteor.userId()
+					});
+				} else {
+					this.ready();
+				}
 			} else {
 				this.ready();
 			}
@@ -61,6 +78,16 @@ const LeitnerPerformanceHistorySchema = new SimpleSchema({
 		type: Object,
 		optional: true,
 		blackbox: true
+	},
+	mcAnswers: {
+		type: Object,
+		optional: true
+	},
+	"mcAnswers.user": {
+		type: [Number]
+	},
+	"mcAnswers.card": {
+		type: [Number]
 	}
 });
 

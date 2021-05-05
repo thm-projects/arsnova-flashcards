@@ -4,27 +4,34 @@ import {LeitnerUserCardStats} from "../subscriptions/leitner/leitnerUserCardStat
 import {LeitnerLearningWorkload} from "../subscriptions/leitner/leitnerLearningWorkload";
 import {Cardsets} from "../subscriptions/cardsets";
 import {Bonus} from "../../util/bonus";
-import {Profile} from "../../util/profile";
 import {UserPermissions} from "../../util/permissions";
 import {CardType} from "../../util/cardTypes";
 import {LeitnerUtilities} from "../../util/leitner";
 import {LeitnerActivationDay} from "../subscriptions/leitner/leitnerActivationDay";
 import {PomodoroTimer} from "../../util/pomodoroTimer";
 import {LeitnerLearningPhase} from "../subscriptions/leitner/leitnerLearningPhase";
+import {LeitnerLearningPhaseUtilities} from "../../util/learningPhase";
+import {LeitnerLearningWorkloadUtilities} from "../../util/learningWorkload";
 
 Meteor.methods({
-	initializeWorkloadData: function (cardset_id, user_id) {
+	initializeLeitnerWorkloadData: function (learning_phase_id, cardset_id, user_id) {
+		check(learning_phase_id, String);
 		check(cardset_id, String);
 		check(user_id, String);
-		let workload = LeitnerLearningWorkload.findOne({user_id: user_id, cardset_id: cardset_id});
-		if (workload === undefined) {
+		let leitnerWorkload = LeitnerLearningWorkload.findOne({
+			user_id: user_id,
+			cardset_id: cardset_id,
+			isActive: true
+		});
+		if (leitnerWorkload === undefined) {
 			LeitnerLearningWorkload.insert({
+				learning_phase_id: learning_phase_id,
+				createdAt: new Date(),
+				updatedAt: new Date(),
 				cardset_id: cardset_id,
 				user_id: user_id,
-				leitner: {
-					bonus: false,
-					nextLowestPriority: [-1, -1, -1, -1, -1]
-				}
+				nextLowestPriority: [-1, -1, -1, -1, -1],
+				gotFinished: false
 			});
 		}
 	},
@@ -43,51 +50,6 @@ Meteor.methods({
 				}
 			}
 		);
-	},
-	joinBonus: function (cardset_id) {
-		check(cardset_id, String);
-		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1}});
-		if (cardset !== undefined) {
-			if (Bonus.canJoinBonus(cardset._id) && Bonus.isRegistrationPeriodActive(cardset._id) && Profile.isCompleted(Meteor.user())) {
-				Meteor.call('initializeWorkloadData', cardset._id, Meteor.userId());
-				Meteor.call('deleteLeitner', cardset._id);
-				Meteor.call('deleteWozniak', cardset._id);
-				LeitnerLearningWorkload.update({
-						cardset_id: cardset._id,
-						user_id: Meteor.userId()
-					},
-					{
-						$set: {
-							'leitner.bonus': true,
-							'leitner.dateJoinedBonus': new Date()
-						}
-					}
-				);
-			}
-		}
-	},
-	leaveBonus: function (cardset_id) {
-		check(cardset_id, String);
-		let workload = LeitnerLearningWorkload.findOne({user_id: Meteor.userId(), cardset_id: cardset_id}, {
-			fields: {
-				_id: 1,
-				user_id: 1,
-				cardset_id: 1
-			}
-		});
-		if (workload !== undefined) {
-			LeitnerLearningWorkload.update({
-					cardset_id: workload.cardset_id,
-					user_id: Meteor.userId()
-				},
-				{
-					$set: {
-						'leitner.bonus': false
-					}
-				}
-			);
-		}
-		Meteor.call('deleteLeitner', cardset_id);
 	},
 	/** Function adds a new user as learning
 	 *  @param {string} cardset_id - The ID of the cardset in which the user is learning
@@ -118,8 +80,18 @@ Meteor.methods({
 					}
 					let isNewcomer = LeitnerUtilities.addLeitnerCards(cardset, Meteor.userId());
 					cardset = LeitnerUtilities.defaultCardsetLeitnerData(cardset);
-					if (isNewcomer && (!Bonus.isInBonus(cardset._id, Meteor.userId()) || cardset.learningEnd.getTime() > new Date().getTime())) {
-						LeitnerUtilities.setCards(cardset, Meteor.user(), false, isNewcomer);
+					let leitnerLearningWorkload = LeitnerLearningWorkloadUtilities.getActiveWorkload(cardset._id, Meteor.userId());
+					if (leitnerLearningWorkload !== undefined) {
+						let leitnerLearningPhase = LeitnerLearningPhaseUtilities.getActiveLearningPhase(undefined, undefined, leitnerLearningWorkload.learning_phase_id);
+						if (leitnerLearningPhase !== undefined) {
+							if (isNewcomer && (!Bonus.isInBonus(cardset._id, Meteor.userId()) || leitnerLearningPhase.end.getTime() > new Date().getTime())) {
+								LeitnerUtilities.setCards(leitnerLearningPhase, leitnerLearningWorkload, cardset, Meteor.user(), false, isNewcomer);
+							}
+						} else {
+							throw new Meteor.Error("Couldn't find active leitner learning phase");
+						}
+					} else {
+						throw new Meteor.Error("Couldn't find active leitner learning workload");
 					}
 				}
 			}
@@ -131,12 +103,11 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		} else {
 			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, cardGroups: 1, shuffled: 1}});
-			let activeLearners = LeitnerUserCardStats.find({cardset_id: cardset._id}, {fields: {user_id: 1}}).fetch();
-			activeLearners = _.uniq(activeLearners, false, function (d) {
-				return d.user_id;
-			});
-			for (let i = 0; i < activeLearners.length; i++) {
-				LeitnerUtilities.addLeitnerCards(cardset, activeLearners[i].user_id);
+			let leitnerWorkloadFilter = LeitnerLearningWorkload.find({cardset_id: cardset_id, isActive: true}).fetch().map(workload => workload._id);
+			let activeLearners = LeitnerUserCardStats.find({workload_id: {$in: leitnerWorkloadFilter}, cardset_id: cardset._id}, {fields: {user_id: 1}}).fetch();
+			activeLearners = _.uniq(activeLearners, false, d => d.user_id);
+			for (const item of activeLearners) {
+				LeitnerUtilities.addLeitnerCards(cardset, item.user_id);
 			}
 		}
 	},

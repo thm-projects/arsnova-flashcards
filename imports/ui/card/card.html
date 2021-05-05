@@ -87,16 +87,12 @@
                     <div class="item active">
                         <div class="box flashcard emptyCard">
                             {{#if isActiveRoute 'box'}}
-                                {{#if gotLeitnerWorkload}}
-                                    {{> flashcardsEndScreenSlider}}
-                                    <h4>{{_ "bonus.message.learnedEverything"}}</h4>
-                                    {{> flashcardsEndScreenText}}
-                                {{/if}}
+                                {{> flashcardsEndScreenSlider}}
+                                <h4>{{_ "bonus.message.learnedEverything"}}</h4>
+                                {{> flashcardsEndScreenText}}
                             {{/if}}
                             {{#if isActiveRoute 'memo'}}
-                                {{#if gotWozniakWorkload}}
-                                    <h4>{{_ "wozniak.empty.text"}}</h4>
-                                {{/if}}
+                                <h4>{{_ "wozniak.empty.text"}}</h4>
                             {{/if}}
                             {{> learnBackButton}}
                         </div>

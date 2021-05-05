@@ -1,3 +1,4 @@
+import {Meteor} from "meteor/meteor";
 import {LeitnerUserCardStats} from "../api/subscriptions/leitner/leitnerUserCardStats";
 import {Cards} from "../api/subscriptions/cards";
 import {Session} from "meteor/session";
@@ -11,6 +12,7 @@ import shuffle from "knuth-shuffle-seeded";
 import "/imports/api/meteorMethods/answers";
 import {cubeTransitionTime, flipTransitionTime} from "../config/cardVisuals";
 import * as answerConfig from "../config/answers";
+import {LeitnerLearningWorkloadUtilities} from "./learningWorkload";
 
 let randomizedNumber = Math.random();
 
@@ -39,29 +41,37 @@ export let AnswerUtilities = class AnswerUtilities {
 	 * @param disableAnswers Doesn't return explanations and right answers if enabled
 	 */
 	static getAnswerContent (cardIds, cardsetId, disableAnswers = false) {
-		let cards = Cards.find({_id: {$in: cardIds}}, {fields: {_id: 1, answers: 1}}).fetch();
+		let cards = Cards.find({_id: {$in: cardIds}
+		}, {fields: {_id: 1, answers: 1}}).fetch();
 
+		//Only used if the user is inside a learning mode
 		if (disableAnswers) {
-			let cardsWithVisibleAnswers = LeitnerUserCardStats.find({
-					user_id: Meteor.userId(),
-					cardset_id: cardsetId,
-					card_id: {$in: cardIds}},
-				{fields: {card_id: 1, submitted: 1}}).fetch().map(function (x) {
-				if (x.submitted === true) {
-					return x.card_id;
-				}
-			});
-
-			cards.forEach(function (card) {
-				if (card.answers !== undefined && card.answers.rightAnswers !== undefined && !cardsWithVisibleAnswers.includes(card._id)) {
-					card.answers.rightAnswers = [];
-					card.answers.content.forEach(function (content) {
-						if (content.explanation !== undefined) {
-							content.explanation = "";
-						}
+			let leitnerLearningWorkload = LeitnerLearningWorkloadUtilities.getActiveWorkload(cardsetId, Meteor.userId());
+			if (leitnerLearningWorkload !== undefined) {
+				let cardsWithVisibleAnswers = LeitnerUserCardStats.find({
+						learning_phase_id: leitnerLearningWorkload.learning_phase_id,
+						workload_id: leitnerLearningWorkload._id,
+						user_id: Meteor.userId(),
+						cardset_id: cardsetId,
+						card_id: {$in: cardIds},
+						submittedAnswer: true
+					},
+					{fields: {card_id: 1}}).fetch().map(function (leitnerCard) {
+						return leitnerCard.card_id;
 					});
-				}
-			});
+				cards.forEach(function (card) {
+					if (card.answers !== undefined && card.answers.rightAnswers !== undefined && !cardsWithVisibleAnswers.includes(card._id)) {
+						card.answers.rightAnswers = [];
+						card.answers.content.forEach(function (content) {
+							if (content.explanation !== undefined) {
+								content.explanation = "";
+							}
+						});
+					}
+				});
+			} else {
+				throw new Meteor.Error("Leitner workload not found");
+			}
 		}
 		return cards;
 	}
@@ -79,22 +89,27 @@ export let AnswerUtilities = class AnswerUtilities {
 	}
 
 	static getActiveCardHistory () {
-		let leitnerTask = LeitnerActivationDay.findOne({
+		let leitnerWorkload = LeitnerLearningWorkloadUtilities.getActiveWorkload(FlowRouter.getParam("_id"), Meteor.userId());
+		let leitnerActivationDay = LeitnerActivationDay.findOne({
+			learning_phase_id: leitnerWorkload.learning_phase_id,
+			workload_id: leitnerWorkload._id,
 			user_id: Meteor.userId(),
-			cardset_id: FlowRouter.getParam("_id")
-		}, {sort: {session: -1, createdAt: -1}, fields: {_id: 1}});
-		if (leitnerTask !== undefined) {
+			cardset_id: leitnerWorkload.cardset_id
+		}, {sort: {createdAt: -1}, fields: {_id: 1}});
+		if (leitnerActivationDay !== undefined) {
 			return LeitnerPerformanceHistory.findOne({
+				learning_phase_id: leitnerWorkload.learning_phase_id,
+				workload_id: leitnerWorkload._id,
 				user_id: Meteor.userId(),
 				card_id: Session.get('activeCard'),
-				task_id: leitnerTask._id,
-				cardset_id: FlowRouter.getParam("_id")});
+				activation_day_id: leitnerActivationDay._id,
+				cardset_id: leitnerWorkload.cardset_id});
 		}
 	}
 
 	static focusOnAnswerIfSubmitted () {
-		let leitner = this.getActiveCardStatus();
-		if (leitner !== undefined && leitner.submitted !== undefined && leitner.submitted === true && leitner.active !== undefined && leitner.active === true) {
+		let leitnerCard = this.getActiveCardStatus();
+		if (leitnerCard !== undefined && leitnerCard.submittedAnswer !== undefined && leitnerCard.submittedAnswer === true && leitnerCard.isActive !== undefined && leitnerCard.isActive === true) {
 			let answerSideId = CardType.getAnswerSideID(Session.get('cardType'));
 			if (Session.get('is3DActive')) {
 				CardVisuals.rotateCube(CardType.getCubeSideName(answerSideId), true);

@@ -5,7 +5,7 @@ import {CardType} from "../../../../util/cardTypes";
 import {Cards} from "../../../../api/subscriptions/cards";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
-import {LeitnerLearningPhaseUtilities} from "../../../../util/learningPhase";
+import {BONUS_STATUS} from "../../../../config/cardset.js";
 
 function getCardErrorCount(card_id) {
 	let errorCount = 0;
@@ -16,12 +16,14 @@ function getCardErrorCount(card_id) {
 }
 
 Template.registerHelper("getBonusLabel", function (cardset_id) {
-	let learningPhase = LeitnerLearningPhaseUtilities.getActiveBonus(cardset_id);
-	if (learningPhase !== undefined && ServerStyle.gotNavigationFeature("misc.features.bonus")) {
-		if (LeitnerLearningPhaseUtilities.isBonusActive("", learningPhase)) {
-			return '<span class="label label-bonus-finished" title="' + TAPi18n.__('cardset.bonus.long') + '">' + TAPi18n.__('cardset.bonus.short') + '</span>';
-		} else {
-			return '<span class="label label-bonus" title="' + TAPi18n.__('cardset.bonus.long') + '">' + TAPi18n.__('cardset.bonus.short') + '</span>';
+	let cardset = Cardsets.findOne({_id: cardset_id});
+	if (cardset !== undefined && ServerStyle.gotNavigationFeature("misc.features.bonus")) {
+		switch (cardset.bonusStatus) {
+			case BONUS_STATUS.ONGOING_OPEN:
+			case BONUS_STATUS.ONGOING_CLOSED:
+				return `<span class="label label-bonus-finished" title="${TAPi18n.__('cardset.bonus.long')}">${TAPi18n.__('cardset.bonus.short')}</span>`;
+			case BONUS_STATUS.FINISHED:
+				return `<span class="label label-bonus" title="${TAPi18n.__('cardset.bonus.long')}">${TAPi18n.__('cardset.bonus.short')}</span>`;
 		}
 	}
 });

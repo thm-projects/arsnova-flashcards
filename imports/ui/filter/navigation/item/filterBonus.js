@@ -2,7 +2,7 @@ import "./filterBonus.html";
 import {Template} from "meteor/templating";
 import {Filter} from "../../../../util/filter";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
-import {LeitnerLearningPhase} from "../../../../api/subscriptions/leitner/leitnerLearningPhase";
+import {BONUS_STATUS} from "../../../../config/cardset";
 
 /*
  * ############################################################################
@@ -28,10 +28,13 @@ Template.filterItemFilterBonus.helpers({
 		let query = Filter.getFilterQuery();
 		delete query['transcriptBonus.enabled'];
 		delete query._id;
-		let cardsetIDs = Cardsets.find(query).fetch().map(function (cardset) {
-			return cardset._id;
-		});
-		return LeitnerLearningPhase.findOne({cardset_id: {$in: cardsetIDs}});
+		query.bonusStatus = {$in: [
+			BONUS_STATUS.PLANNED,
+			BONUS_STATUS.ONGOING_OPEN,
+			BONUS_STATUS.ONGOING_CLOSED,
+			BONUS_STATUS.FINISHED
+		]};
+		return Cardsets.find(query).count();
 	},
 	gotTranscriptBonusCardsets: function () {
 		let query = Filter.getFilterQuery();

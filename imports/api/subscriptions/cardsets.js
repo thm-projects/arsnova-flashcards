@@ -2,7 +2,6 @@ import {Mongo} from "meteor/mongo";
 import {Meteor} from "meteor/meteor";
 import {ServerStyle} from "../../util/styles";
 import {UserPermissions} from "../../util/permissions";
-import {LeitnerUserCardStats} from "./leitner/leitnerUserCardStats";
 import {LeitnerLearningWorkload} from "./leitner/leitnerLearningWorkload";
 import {Wozniak} from "./wozniak";
 import {CardType} from "../../util/cardTypes";
@@ -95,33 +94,14 @@ if (Meteor.isServer) {
 	});
 	Meteor.publish("workloadCardsets", function () {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
-			let workload = LeitnerLearningWorkload.find({user_id: this.userId}, {fields: {cardset_id: 1}}).fetch();
-			let filter = [];
-			for (let i = 0, workloadLength = workload.length; i < workloadLength; i++) {
-				if ((LeitnerUserCardStats.find({cardset_id: workload[i].cardset_id}).count() !== 0) || (Wozniak.find({cardset_id: workload[i].cardset_id}).count() !== 0)) {
-					filter.push(workload[i].cardset_id);
-				}
-			}
-			let cardsets = [];
-			let cardset;
-			for (let i = 0, filterLength = filter.length; i < filterLength; i++) {
-				cardset = Cardsets.findOne({_id: filter[i]}, {
-					fields: {
-						_id: 1,
-						shuffled: 1,
-						cardGroups: 1
-					}
-				});
-				if (cardset !== undefined) {
-					cardsets.push(filter[i]);
-					if (cardset.shuffled) {
-						for (let k = 0, cardGroupsLength = cardset.cardGroups.length; k < cardGroupsLength; k++) {
-							cardsets.push(cardset.cardGroups[k]);
-						}
-					}
-				}
-			}
-			return Cardsets.find({_id: {$in: cardsets}});
+			let cardsetFilter = LeitnerLearningWorkload.find({
+				user_id: Meteor.userId(),
+				isActive: true
+			}).fetch().map(leitner => leitner.cardset_id);
+			cardsetFilter.concat(Wozniak.find({
+				user_id: Meteor.userId()
+			}).fetch().map(wozniak => wozniak.cardset_id));
+			return Cardsets.find({_id: {$in: cardsetFilter}});
 		} else {
 			this.ready();
 		}
@@ -518,6 +498,10 @@ const CardsetsSchema = new SimpleSchema({
 	unresolvedErrors: {
 		type: Number,
 		optional: true
+	},
+	bonusStatus: {
+		type: Number,
+		defaultValue: 0
 	}
 });
 

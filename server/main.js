@@ -13,6 +13,7 @@ import "../imports/config/accounts.js";
 import "./mailTemplate.js";
 
 //Server methods and subscriptions
+import "../imports/api/meteorMethods/leitner/leitnerLearningPhase.js";
 import "../imports/api/meteorMethods/answers.js";
 import "../imports/api/meteorMethods/accounts.js";
 import "../imports/api/meteorMethods/adminSettings.js";

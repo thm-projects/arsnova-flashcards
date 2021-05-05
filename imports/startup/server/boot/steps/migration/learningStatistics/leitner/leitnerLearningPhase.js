@@ -4,6 +4,7 @@ import {TYPE_MIGRATE} from "../../../../../../../config/serverBoot";
 import {Cardsets} from "../../../../../../../api/subscriptions/cardsets";
 import * as bonusConfig from "../../../../../../../config/bonusForm";
 import {LeitnerLearningPhase} from "../../../../../../../api/subscriptions/leitner/leitnerLearningPhase";
+import {LeitnerLearningPhaseUtilities} from "../../../../../../../util/learningPhase";
 
 function leitnerLearningPhase() {
 	let groupName = "leitnerLearningPhase Migration";
@@ -66,7 +67,8 @@ function leitnerLearningPhase() {
 				},
 				{
 					$set: {
-						learnerCount: learnerCount
+						learnerCount: learnerCount,
+						bonusStatus: LeitnerLearningPhaseUtilities.convertOldLeitnerBonusStatus(cardset)
 					},
 					$unset: {
 						learningActive: 1,

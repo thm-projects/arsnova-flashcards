@@ -4,19 +4,42 @@ import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import * as config from "../../../config/bonusForm";
 import {ServerStyle} from "../../../util/styles";
 import {UserPermissions} from "../../../util/permissions";
+import {LeitnerLearningWorkloadUtilities} from "../../../util/learningWorkload";
 
 export const LeitnerLearningPhase = new Mongo.Collection("leitnerLearningPhase");
 
 if (Meteor.isServer) {
+	Meteor.publish("latestLeitnerCardsetLearningPhase", function (cardset_id) {
+		if ((Meteor.userId() || ServerStyle.isLoginEnabled("guest")) && UserPermissions.isNotBlockedOrFirstLogin()) {
+			let leitnerLearningWorkload = LeitnerLearningWorkloadUtilities.getActiveWorkload(cardset_id, Meteor.userId());
+			if (leitnerLearningWorkload !== undefined) {
+				return LeitnerLearningPhase.find({
+					_id: leitnerLearningWorkload.learning_phase_id,
+					isActive: true
+				});
+			} else {
+				this.ready();
+			}
+		} else {
+			this.ready();
+		}
+	});
+	Meteor.publish("learningPhaseActiveCardsetBonus", function (cardset_id) {
+		if ((Meteor.userId() || ServerStyle.isLoginEnabled("guest")) && UserPermissions.isNotBlockedOrFirstLogin()) {
+			return LeitnerLearningPhase.find({cardset_id: cardset_id, isActive: true, isBonus: true});
+		} else {
+			this.ready();
+		}
+	});
 	Meteor.publish("learningPhaseActiveBonus", function () {
-		if ((this.userId || ServerStyle.isLoginEnabled("guest")) && UserPermissions.isNotBlockedOrFirstLogin()) {
+		if ((Meteor.userId() || ServerStyle.isLoginEnabled("guest")) && UserPermissions.isNotBlockedOrFirstLogin()) {
 			return LeitnerLearningPhase.find({isActive: true, isBonus: true});
 		} else {
 			this.ready();
 		}
 	});
 	Meteor.publish("learningPhaseBonus", function () {
-		if ((this.userId || ServerStyle.isLoginEnabled("guest")) && UserPermissions.isNotBlockedOrFirstLogin()) {
+		if ((Meteor.userId() || ServerStyle.isLoginEnabled("guest")) && UserPermissions.isNotBlockedOrFirstLogin()) {
 			return LeitnerLearningPhase.find({isBonus: true});
 		} else {
 			this.ready();

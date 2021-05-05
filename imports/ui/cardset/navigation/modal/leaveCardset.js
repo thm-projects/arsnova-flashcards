@@ -19,7 +19,7 @@ Template.leaveCardsetForm.events({
 		$('body').removeClass('modal-open');
 		$('.modal-backdrop').remove();
 		$('#leaveCardsetModal').on('hidden.bs.modal', function () {
-			Meteor.call("deleteLeitner", id);
+			Meteor.call("disableLeitner", id);
 			Meteor.call("deleteWozniak", id);
 			FlowRouter.go('home');
 		});
