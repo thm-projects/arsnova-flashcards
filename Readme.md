@@ -13,6 +13,9 @@ arsnova🍅cards uses Meteor as application framework. For local development, yo
 **Instructions for starting cards with Docker can be found [»here«](.docker/docker_readme.md).**
 
 ## Setup (native)
+
+> Requirements: Node.js 12.22.21 and MongoDB 4.4.4 (If used with a separated database)
+
 |Step | Linux Terminal Command  |
 |---|---|
 |1. Install [Meteor](https://www.meteor.com/)   | Refer to the link in the step column |

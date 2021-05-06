@@ -6,6 +6,10 @@ Template.registerHelper("disableIfOffline", function () {
 	return Session.get("connectionStatus") === 1 ? "" : "disabled";
 });
 
+Template.registerHelper("loadedCardsSettings", function () {
+	return Session.get('loadedCardsSettings');
+});
+
 Template.registerHelper("oddRow", function (index) {
 	return (index % 2 === 1);
 });
@@ -13,4 +17,3 @@ Template.registerHelper("oddRow", function (index) {
 Template.registerHelper("greaterThan0", function (number) {
 	return number > 0;
 });
-

@@ -8,6 +8,7 @@ import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import {LoginTasks} from "../../../util/login";
 import {checkForNewMessages} from "../../../ui/messageOfTheDay/messageOfTheDay";
 import {BackgroundChanger} from "../../../util/backgroundChanger";
+import {Utilities} from "../../../util/utilities";
 
 
 var linksWithNoLoginRequirement = function () {
@@ -44,12 +45,6 @@ var linksWithNoLoginRequirement = function () {
 		MainNavigation.setGuestLogin("false");
 		return links;
 	}
-};
-
-export let setLanguage = function () {
-	let language = ServerStyle.getClientLanguage();
-	Session.set('activeLanguage', language);
-	TAPi18n.setLanguage(language);
 };
 
 var isSignedIn = function () {
@@ -97,7 +92,7 @@ export let checkMotds = function () {
 	});
 };
 
-FlowRouter.triggers.enter([setLanguage, BackgroundChanger.setTheme]);
+FlowRouter.triggers.enter([Utilities.setActiveLanguage, BackgroundChanger.setTheme]);
 
 FlowRouter.triggers.exit(function (context) {
 	Session.set('previousRouteName', context.route.name);
