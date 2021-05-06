@@ -3473,7 +3473,7 @@ $themes: (
       color: $transcript_counter_text!important;
     }
 
-    .label-active-licenses {
+    .label-active-licenses, .label-active-licenses:hover {
       background-color: $active_licenses_background !important;
       color: $active_licenses_text !important;
     }

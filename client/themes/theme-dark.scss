@@ -43,7 +43,7 @@
   $input_textarea_background_inactive: lighten($default_black, 2);
   $input_textarea_text_active: lighten($primary_text, 4);
   $input_textarea_text_inactive: lighten($primary_text, 2);
-  $item_icon_hover: $hyperlink;
+  $item_icon_hover: #FFCCBC;
   $default_background: $default_black;
 
   @return (
@@ -161,7 +161,7 @@
           "checkbox_button_icon_checked": black,
           "error_reporting_label_background": rgb(139, 0, 0),
           "error_reporting_label_text": $default_white,
-          "active_licenses_background": $default_white,
+          "active_licenses_background": lighten($default_grey, 10),
           "active_licenses_text": white,
     //license colors
           "background_license_icon": $default_white,
