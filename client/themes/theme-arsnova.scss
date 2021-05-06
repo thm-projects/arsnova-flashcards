@@ -160,6 +160,7 @@
           "active_licenses_text": white,
           "error_reporting_label_background": rgb(139, 0, 0),
           "error_reporting_label_text": $default_white,
+          "form_check_label_color": #5f5f5f,
     //license colors
           "background_license_icon": $default_white,
           "foreground_license_icon": black,
@@ -389,6 +390,7 @@
           "export_to_markdeep_table_row_background": white,
           "export_to_markdeep_table_row_text": $primary_text,
           "export_to_markdeep_table_row_counter": $primary_text,
+          "export_to_markdeep_export_type_color": #d3d3d3,
     //server statistics colors
           "server_statistics_table_header_background": $default_grey,
           "server_statistics_table_header_text": white,
@@ -734,6 +736,7 @@
           "cardset_markdeep_text": $default_grey,
           "cardset_markdeep_link": $default_orange,
           "cardset_markdeep_placeholder": $default_green,
+          "cardset_markdeep_content_background": LightGoldenRodYellow,
           "cardset_footer_navigation_background": $default_grey,
           "cardset_footer_navigation_index_background": none,
           "cardset_footer_navigation_index_text": black,

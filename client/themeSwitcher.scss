@@ -127,6 +127,7 @@ $themes: (
     $active_licenses_text: map-get($map, "active_licenses_text");
     $error_reporting_label_background: map-get($map, "error_reporting_label_background");
     $error_reporting_label_text: map-get($map, "error_reporting_label_text");
+    $form_check_label_color: map-get($map, "form_check_label_color");
     //license
     $background_license_icon: map-get($map, "background_license_icon");
     $foreground_license_icon: map-get($map, "foreground_license_icon");
@@ -351,6 +352,7 @@ $themes: (
     $export_to_markdeep_table_row_background: map-get($map, "export_to_markdeep_table_row_background");
     $export_to_markdeep_table_row_text: map-get($map, "export_to_markdeep_table_row_text");
     $export_to_markdeep_table_row_counter: map-get($map, "export_to_markdeep_table_row_counter");
+    $export_to_markdeep_export_type_color: map-get($map, "export_to_markdeep_export_type_color");
     //server statistics colors
     $server_statistics_table_header_background: map-get($map, "server_statistics_table_header_background");
     $server_statistics_table_header_text: map-get($map, "server_statistics_table_header_text");
@@ -587,6 +589,7 @@ $themes: (
     $cardset_markdeep_text: map-get($map, "cardset_markdeep_text");
     $cardset_markdeep_link: map-get($map, "cardset_markdeep_link");
     $cardset_markdeep_placeholder: map-get($map, "cardset_markdeep_placeholder");
+    $cardset_markdeep_content_background: map-get($map, "cardset_markdeep_content_background");
     $cardset_footer_navigation_background: map-get($map, "cardset_footer_navigation_background");
     $cardset_footer_navigation_index_background: map-get($map, "cardset_footer_navigation_index_background");
     $cardset_footer_navigation_index_text: map-get($map, "cardset_footer_navigation_index_text");
@@ -3113,7 +3116,7 @@ $themes: (
 
     .markdeepCardsetContent {
       color: $cardset_markdeep_text !important;
-      background-color: $default_background !important;
+      background-color: $cardset_markdeep_content_background !important;
       a {
         color: $cardset_markdeep_link !important;
       }
@@ -3536,7 +3539,7 @@ $themes: (
 
     //courseIterations
     .form-check-label {
-      color: #5f5f5f !important;
+      color: $form_check_label_color !important;
     }
 
     //filter
@@ -4688,10 +4691,10 @@ $themes: (
       color: $use_cases_table_header_text !important;
     }
 
-    #useCasesModal td {
+    /*#useCasesModal td {
       background-color: $modal_background !important;
       color: $use_cases_table_header_text !important;
-    }
+    }*/
 
     #useCasesModal .specialCardset {
       background-color: $use_cases_special_cardsets_button_background !important;

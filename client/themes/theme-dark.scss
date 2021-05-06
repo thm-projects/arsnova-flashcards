@@ -161,6 +161,7 @@
           "checkbox_button_icon_checked": black,
           "error_reporting_label_background": rgb(139, 0, 0),
           "error_reporting_label_text": $default_white,
+          "form_check_label_color": $primary_text,
           "active_licenses_background": lighten($default_grey, 10),
           "active_licenses_text": white,
     //license colors
@@ -389,9 +390,10 @@
     //export to markdeep colors
           "export_to_markdeep_table_header_background": $default_grey,
           "export_to_markdeep_table_header_text": white,
-          "export_to_markdeep_table_row_background": white,
+          "export_to_markdeep_table_row_background": $default_black,
           "export_to_markdeep_table_row_text": $primary_text,
           "export_to_markdeep_table_row_counter": $primary_text,
+          "export_to_markdeep_export_type_color": $default_grey,
     //server statistics colors
           "server_statistics_table_header_background": $default_grey,
           "server_statistics_table_header_text": white,
@@ -735,6 +737,7 @@
           "cardset_markdeep_text": $primary_text,
           "cardset_markdeep_link": $hyperlink,
           "cardset_markdeep_placeholder": $default_green,
+          "cardset_markdeep_content_background": $default_background,
           "cardset_footer_navigation_background": $default_grey,
           "cardset_footer_navigation_index_background": none,
           "cardset_footer_navigation_index_text": black,
