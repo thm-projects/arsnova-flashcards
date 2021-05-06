@@ -203,7 +203,7 @@ module.exports = {
 		"randomCardsSelection": false
 	},
 	"themes": {
-		"defaultID": 1, // The default theme id from the list
+		"default": "arsnova", // The default theme from the list
 		"list": [
 			{
 				"theme": "arsnova", // The color theme
