@@ -924,6 +924,7 @@ $themes: (
     $modal_feedback_button_card_side_text: map-get($map, "modal_feedback_button_card_side_text");
     $modal_feedback_button_card_side_background_active: map-get($map, "modal_feedback_button_card_side_background_active");
     $modal_feedback_button_card_side_text_active: map-get($map, "modal_feedback_button_card_side_text_active");
+    $modal_border_color: map-get($map, "modal_border_color");
 
     //pomodoro colors
     $pomodoro_timer_fullscreen_overlay: map-get($map, "pomodoro_timer_fullscreen_overlay");
@@ -1274,6 +1275,14 @@ $themes: (
     button:disabled {
       color: $disabled_text !important;
       background-color: $disabled_background !important;
+    }
+
+    .modal-body {
+      table tr {
+        th, td {
+          border-color: $modal_border_color !important;
+        }
+      }
     }
 
     .modal-body .form-group {
