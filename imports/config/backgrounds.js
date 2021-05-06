@@ -297,7 +297,7 @@ let disabled = {
 	}
 };
 
-// Setting "linux"
+// Setting "dark"
 // source of dark image: http://iheartbackgrounds.weebly.com/uploads/1/7/4/2/17420453/1639678_orig.jpg
 let dark = {
 	"landing-page": {
@@ -346,66 +346,6 @@ let dark = {
 		"background-image": "none"
 	}, // Defaults to internal if off
 	"allPool": {
-		"background-image": "none"
-	},
-	"pool": {
-		"background-image": "none"
-	}, // Defaults to internal if off
-	"workload": {
-		"background-image": "none"
-	}, // Defaults to internal if off
-	"personal": {
-		"background-image": "none"
-	}, // Defaults to internal if off
-	"transcripts": {
-		"background-image": "none"
-	}, // Defaults to internal if off
-	"allPool": {
-		"background-image": "none"
-	}, // Defaults to internal if off
-	"cardset": {
-		"background-image": "none"
-	}, // Defaults to internal if off
-	"cardsetLeitnerStats": {
-		"background-image": "none"
-	}, // Defaults to cardset if off
-	"cardsetTranscriptBonus": {
-		"background-image": "none"
-	}, // Defaults to cardset if off
-	"leitner": {
-		"background-image": "none"
-	}, // Defaults to internal if off
-	"wozniak": {
-		"background-image": "none"
-	}, // Defaults to internal if off
-	"presentation": {
-		"background-image": "none"
-	}, // Defaults to internal if off
-	"presentationIndex": {
-		"background-image": "none"
-	}, // Defaults to internal if off
-	"editor": {
-		"background-image": "none"
-	}, // Defaults to internal if off
-	"profileMembership": {
-		"background-image": "none"
-	}, // Defaults to internal if off
-	"profileBilling": {
-		"background-image": "none"
-	}, // Defaults to internal if off
-	"profileSettings": {
-		"background-image": "none"
-	}, // Defaults to internal if off
-	"profileRequests": {
-		"background-image": "none"
-	}, // Defaults to internal if off
-	"notFound": {
-		"background-image": "none"
-	}, // Defaults to internal if logged in, otherwise to landing-page
-	"backend": {
-		"background-image": "none"
-	},
-	"wordcloud": {
 		"background-image": "none"
 	}, // Defaults to internal if off
 	"cardset": {
