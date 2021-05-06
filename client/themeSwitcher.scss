@@ -1066,7 +1066,14 @@ $themes: (
       color: $primary_text;
     }*/
 
-    #profile-info {
+    #profile-info, .profile-info {
+      div, .control-label, .checkbox-inline {
+        color: $primary_text !important;
+      }
+      label.btn {
+        box-shadow: white !important;
+
+      }
       .panel-body {
         background-color: $profile_fullscreen_background !important;
         color: $primary_text !important;
@@ -1074,7 +1081,7 @@ $themes: (
       .panel-heading {
         background-color: $profile_fullscreen_title_background !important;
         color: $primary_text !important;
-        h3 {
+        h2, h3, h4 {
           color: $primary_text !important;
         }
       }
