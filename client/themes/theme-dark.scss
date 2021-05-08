@@ -1086,44 +1086,20 @@
           "games_and_backgrounds_loading_background": black,
     //flashcardsEndProgressbar
           "flashcards_end_progressbar_background": darkorange,
+
+    //Change of card.scss
+          "card_header_text": $default_dark_orange,
+          "md_table_background": darken($default_dark_orange, 15),
+          "md_table_border": #121212,
+          "md_table_td_background": #424242,
+          "md_table_td_nth_child_background": #424242,
+          "md_table_td_border": #121212,
+          "listCard_color": white,
+          "collapseLearningPhaseInfoButton_background": #b24531,
+          "card_block_background": darken(#424242, 10),
+          "card_block_color": white,
+          "card_block_table_body": darken(#424242, 10),
+
   );
   
-}
-h1, .nonumberh1 {
-        color: white !important;
-}
-.cardHeaderSmallText{
-      color: darkorange !important;
-}
-.cardHeaderSmallerText {
-      color: darkorange !important;
-}
-.dark .md img {
-      background-color: white !important;
-      padding: 5px !important;
-}
-.dark .md blockquote.fancyquote::before, .dark .md blockquote .fancyquote::after {
-      font-size: inherit !important;
-}
-.card-block table>tbody, .table-striped > tbody > tr:nth-of-type(2n+1) {
-          background-color: darken(#424242, 10)  !important;
-}
-.card-block {
-      background-color: darken(#424242, 10) !important;
-      color: white !important;
-}
-#collapseLearningPhaseInfoButton {
-      background-color: #b24531 !important;
-}
-.listCard{
-      color: white !important;
-} 
-.md table th{
-      background-color: darken(darkorange, 15) !important;
-      border-color: #121212 !important;
-}
-.md table td {
-      border-color: #121212 !important;
-      background-color: #424242 !important;
-
 }

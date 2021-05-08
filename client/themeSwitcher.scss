@@ -1058,6 +1058,57 @@ $themes: (
     //flashcardsEndProgressbar
     $flashcards_end_progressbar_background: map-get($map, "flashcards_end_progressbar_background");
 
+    //card.scss changes
+        $card_header_text: map-get($map, "card_header_text");
+        $card_block_table_body: map-get($map, "card_block_table_body");
+        $card_block_background: map-get($map, "card_block_background");
+        $card_block_color: map-get($map, "card_block_color");
+        $collapseLearningPhaseInfoButton_background: map-get($map, "collapseLearningPhaseInfoButton_background");
+        $listCard_color: map-get($map, "listCard_color");
+        $md_table_background: map-get($map, "md_table_background");
+        $md_table_border: map-get($map, "md_table_border");
+        $md_table_td_background: map-get($map, "md_table_td_background");
+        $md_table_td_border: map-get($map, "md_table_td_border");
+        $md_table_td_nth_child_background: map-get($map, "md_table_td_nth_child_background");
+
+    h1, .nonumberh1 {
+            color: white !important;
+    }
+    .cardHeaderSmallText{
+       color: $card_header_text !important;
+    }
+    .cardHeaderSmallerText {
+          color:  $card_header_text !important;
+    }
+    .dark .md blockquote.fancyquote::before, .dark .md blockquote .fancyquote::after {
+          font-size: inherit !important;
+    }
+
+    .card-block table>tbody, .table-striped > tbody > tr:nth-of-type(2n+1) {
+              background-color: $card_block_table_body !important;
+    }
+    .card-block {
+          background-color: $card_block_background !important;
+          color: $card_block_color !important;
+    }
+    #collapseLearningPhaseInfoButton {
+          background-color: $collapseLearningPhaseInfoButton_background !important;
+    }
+    .listCard{
+          color: $listCard_color !important;
+    }
+    .md table th{
+          background-color: $md_table_background !important;
+          border-color: $md_table_border !important;
+    }
+    .md table td {
+          border-color: $md_table_td_border !important;
+          background-color: $md_table_td_background !important;
+    }
+    .md table.table tr:nth-child(2n) {
+              background-color: $md_table_td_nth_child_background !important;
+        }
+
     a {
       color: $hyperlink;
     }
