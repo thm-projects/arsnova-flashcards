@@ -98,7 +98,7 @@
           "private_text": $default_white,
           "danger_background": $default_dark_orange,
           "danger_text": $default_white,
-          "info_background": $default_dark_blue,
+          "info_background": $default_dark_orange,
           "info_text": $default_white,
           "success_background": $default_green,
           "success_text": $default_white,
@@ -485,7 +485,7 @@
           "background_pink": lightcoral,
           "background_pink_lines": crimson,
     //card list
-          "card_list_number_background": $default_green,
+          "card_list_number_background": lighten($default_grey, 5),
           "card_list_number_text": white,
     //card-navigation colors
           "card_navigation_active_background": $default_dark_orange,
@@ -894,11 +894,12 @@
           "transcript_bonus_submission_count_badge_text": white,
           "transcript_bonus_submission_count_badge_background": $default_orange,
     //transcript bonus statistics info colors
-          "transcript_bonus_statistics_info_name_background": LightGoldenRodYellow,
-          "transcript_bonus_statistics_info_details_background": white,
-          "transcript_bonus_statistics_info_details_text": black,
-          "transcript_bonus_statistics_info_details_achieved_background": LightGoldenRodYellow,
-          "transcript_bonus_statistics_info_details_achieved_text": black,
+          "transcript_bonus_statistics_info_name_background": $default_black,
+          "transcript_bonus_statistics_info_details_background": $default_black,
+          "transcript_bonus_statistics_info_details_text": white,
+          "transcript_bonus_statistics_info_details_achieved_background": $default_black,
+          "transcript_bonus_statistics_info_details_achieved_text": white,
+          "transcript_bonus_statistics_info_details_border_color": $default_grey,
     //markdeep editor colors
           "markdeep_help_text": $default_white,
           "markdeep_help_background": $default_dark_orange,
@@ -1099,6 +1100,7 @@
           "card_block_background": darken(#424242, 10),
           "card_block_color": white,
           "card_block_table_body": darken(#424242, 10),
+          "card_block_table_hover": darken(#424242, 10),
 
   );
   
