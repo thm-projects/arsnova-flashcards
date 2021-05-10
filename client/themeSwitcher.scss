@@ -1021,6 +1021,8 @@ $themes: (
     $use_cases_special_cardsets_button_text: map-get($map, "use_cases_special_cardsets_button_text");
     $use_cases_special_cardsets_button_background_hover: map-get($map, "use_cases_special_cardsets_button_background_hover");
     $use_cases_special_cardsets_button_text_hover: map-get($map, "use_cases_special_cardsets_button_text_hover");
+    $table_user_list_background: map-get($map, "table_user_list_background");
+    $table_user_list_text: map-get($map, "table_user_list_text");
 
     //answer checkbox
     $checkbox_left_background: map-get($map, "checkbox_left_background");
@@ -1072,6 +1074,8 @@ $themes: (
         $md_table_td_border: map-get($map, "md_table_td_border");
         $md_table_td_nth_child_background: map-get($map, "md_table_td_nth_child_background");
         $card_block_table_hover: map-get($map, "card_block_table_hover");
+        $cardsetInfo_panel_body_background : map-get($map, "cardsetInfo_panel_body_background");
+        $panel_body_h4: map-get($map, "panel_body_h4");
 
     h1, .nonumberh1 {
             color: white !important;
@@ -1087,6 +1091,9 @@ $themes: (
     }
 
     .card-block table>tbody, .table-striped > tbody > tr:nth-of-type(2n+1) {
+      background-color: $card_block_table_body !important;
+    }
+    .table-striped > tbody > tr th {
       background-color: $card_block_table_body !important;
     }
     .card-block table>tbody > tr:hover{
@@ -1113,7 +1120,15 @@ $themes: (
     .md table.table tr:nth-child(2n) {
       background-color: $md_table_td_nth_child_background !important;
     }
-
+    .cardsetInfo .panel-body{
+      background-color: $cardsetInfo_panel_body_background !important;
+    }
+    .panel-body h4{
+      color: $panel_body_h4 !important;
+    }
+    .table-hover > tbody > tr:hover {
+     background-color: $table_user_list_background !important;
+    }
     a {
       color: $hyperlink;
     }
@@ -1228,7 +1243,8 @@ $themes: (
     }
 
     .table-user-list {
-      background-color: $white !important;
+      background-color: $table_user_list_background !important;
+      color: $table_user_list_text !important;
     }
 
     #thm-top-navigation, .mobile-nav-items  {

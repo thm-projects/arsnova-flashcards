@@ -1056,6 +1056,8 @@
           "use_cases_special_cardsets_button_text": white,
           "use_cases_special_cardsets_button_background_hover": midnightblue,
           "use_cases_special_cardsets_button_text_hover": white,
+          "table_user_list_background": darken($default_grey, 10),
+          "table_user_list_text": $default_white,
     //answer checkbox
           "checkbox_left_background": white,
           "checkbox_left_text": $primary_text,
@@ -1101,6 +1103,8 @@
           "card_block_color": white,
           "card_block_table_body": darken(#424242, 10),
           "card_block_table_hover": darken(#424242, 10),
+          "cardsetInfo_panel_body_background": $default_black,
+          "panel_body_h4": white,
 
   );
   
