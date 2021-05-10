@@ -929,6 +929,7 @@ $themes: (
     $modal_feedback_button_card_side_background_active: map-get($map, "modal_feedback_button_card_side_background_active");
     $modal_feedback_button_card_side_text_active: map-get($map, "modal_feedback_button_card_side_text_active");
     $modal_border_color: map-get($map, "modal_border_color");
+    $modal_background_color: map-get($map, "modal_background_color");
 
     //pomodoro colors
     $pomodoro_timer_fullscreen_overlay: map-get($map, "pomodoro_timer_fullscreen_overlay");
@@ -1356,6 +1357,7 @@ $themes: (
       table tr {
         th, td {
           border-color: $modal_border_color !important;
+          background-color: $modal_background_color !important;
         }
       }
     }
@@ -3427,7 +3429,8 @@ $themes: (
     }
 
     .label-free-text {
-      color: $free_background !important;
+      color: $free_text !important;
+      background-color: darken($free_background, 10) !important;
     }
 
     .label-edu {
@@ -3436,7 +3439,7 @@ $themes: (
     }
 
     .label-edu-text {
-      background-color: $edu_background !important;
+      background-color: darken($edu_background, 10) !important;
       color: $edu_text !important;
     }
 
@@ -3446,7 +3449,7 @@ $themes: (
     }
 
     .label-pro-text {
-      background-color: $pro_background !important;
+      background-color: darken($pro_background, 10) !important;
       color: $pro_text !important;
     }
 
@@ -3457,7 +3460,7 @@ $themes: (
 
     .label-private-text {
       color: $private_text !important;
-      background-color: $private_background !important;
+      background-color: darken($private_background, 10) !important;
     }
 
     .label-shuffled {
