@@ -1053,10 +1053,10 @@
           "use_cases_button_icon_hover": black,
           "use_cases_table_header_background": transparent,
           "use_cases_table_header_text": $default_orange,
-          "use_cases_special_cardsets_button_background": $default_green,
+          "use_cases_special_cardsets_button_background": $default_dark_orange,
           "use_cases_special_cardsets_button_text": white,
-          "use_cases_special_cardsets_button_background_hover": midnightblue,
-          "use_cases_special_cardsets_button_text_hover": white,
+          "use_cases_special_cardsets_button_background_hover": $default_orange,
+          "use_cases_special_cardsets_button_text_hover": black,
           "table_user_list_background": darken($default_grey, 10),
           "table_user_list_text": $default_white,
     //answer checkbox
@@ -1108,5 +1108,4 @@
           "panel_body_h4": white,
 
   );
-  
 }
