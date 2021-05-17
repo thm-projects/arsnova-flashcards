@@ -13,6 +13,7 @@
  //DarkTheme Colors
  
  $darkTheme_white: rgb(220, 220, 220);
+ $darkTheme_grey1: rgb(50, 50, 50);
  $darkTheme_grey2: rgb(100, 100, 100);
  $darkTheme_orange:rgb(225, 120, 0);
 
@@ -50,7 +51,7 @@
   $divider: gray;
   $accent_300: #f0efef;
   $background: yellow;
-  $button_background_hover: midnightblue;
+  $button_background_hover: rgb(25, 53, 112);
   $button_text_hover: white;
   $input_textarea_border_active: $default_orange;
   $input_textarea_border_inactive: $divider;
@@ -58,7 +59,7 @@
   $input_textarea_background_inactive: #F0F0F0;
   $input_textarea_text_active: black;
   $input_textarea_text_inactive: black;
-  $item_icon_hover: midnightblue;
+  $item_icon_hover: rgb(149, 222, 240);
   $default_background: $default_grey;
 
   @return (
@@ -174,8 +175,8 @@
           "checkbox_button_icon_checked": black,
           "error_reporting_label_background": rgb(139, 0, 0),
           "error_reporting_label_text": $default_white,
-          "active_licenses_background": $darkTheme_white,
-          "active_licenses_text": white,
+          "active_licenses_background": rgb(145, 145, 145),
+          "active_licenses_text": rgb(145, 145, 145),
     //license colors
           "background_license_icon": $default_white,
           "foreground_license_icon": black,
@@ -246,7 +247,7 @@
           "navbar_text": white,
           "navbar_text_hover": $button_text_hover,
           "navbar_collapse_background": none,
-          "navbar_collapse_text": $default_orange,
+          "navbar_collapse_text": $darkTheme_orange,
           "navbar_collapse_background_hover": $button_background_hover,
           "navbar_collapse_text_hover": $button_text_hover,
     //navbar all
@@ -255,19 +256,19 @@
           "navbar_all_background_active": black,
           "navbar_all_text": white,
           "navbar_all_text_hover": $button_text_hover,
-          "navbar_all_text_active": $default_orange,
-          "navbar_all_border": $default_orange,
-          "navbar_all_border_hover": $default_orange,
-          "navbar_all_border_active": $default_orange,
+          "navbar_all_text_active": $darkTheme-orange,
+          "navbar_all_border": $darkTheme-orange,
+          "navbar_all_border_hover": $darkTheme-orange,
+          "navbar_all_border_active": $darkTheme-orange,
           "navbar_all_cardsets_background": $default_grey,
           "navbar_all_cardsets_background_hover": $button_background_hover,
-          "navbar_all_cardsets_background_active": $default_orange,
+          "navbar_all_cardsets_background_active": $darkTheme-orange,
           "navbar_all_cardsets_text": white,
           "navbar_all_cardsets_text_hover": $button_text_hover,
           "navbar_all_cardsets_text_active": white,
           "navbar_all_repetitorien_background": $default_grey,
           "navbar_all_repetitorien_background_hover": $button_background_hover,
-          "navbar_all_repetitorien_background_active": $default_orange,
+          "navbar_all_repetitorien_background_active": $darkTheme-orange,
           "navbar_all_repetitorien_text": white,
           "navbar_all_repetitorien_text_hover": $button_text_hover,
           "navbar_all_repetitorien_text_active": white,
@@ -432,9 +433,9 @@
     //editor navigation colors
           "item_selection_border": $item_separator,
     //filter colors
-          "filter_navigation_background": WhiteSmoke,
-          "filter_navigation_text": $default_grey,
-          "filter_navigation_icon_active": $default_orange,
+          "filter_navigation_background": $darkTheme_grey1,
+          "filter_navigation_text": white,
+          "filter_navigation_icon_active": $darkTheme_orange,
           "filter_navigation_background_hover": $button_background_hover,
           "filter_navigation_text_hover": $button_text_hover,
           "filter_button_background": black,
@@ -443,7 +444,7 @@
           "filter_button_icon_active": black,
           "filter_button_background_hover": white,
           "filter_button_icon_hover": black,
-          "filter_border": $default_grey,
+          "filter_border": white,
     //display mode colors
           "display_mode_background": black,
           "display_mode_text": white,
@@ -498,7 +499,7 @@
           "card_list_number_background": $default_green,
           "card_list_number_text": white,
     //card-navigation colors
-          "card_navigation_active_background": $default_orange,
+          "card_navigation_active_background": $darkTheme-orange,
           "card_navigation_active_text": white,
           "card_navigation_active_background_hover": $button_background_hover,
           "card_navigation_active_text_hover": white,
