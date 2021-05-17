@@ -1,10 +1,12 @@
 @import "themes/theme-arsnova";
 @import "themes/theme-linux";
+@import "themes/theme-dark";
 @import "../imports/ui/main/main.scss";
 
 $themes: (
   arsnova: theme-arsnova(),
-  linux: theme-linux()
+  linux: theme-linux(),
+  dark: theme-dark()
 );
 
 @each $theme, $map in $themes {
