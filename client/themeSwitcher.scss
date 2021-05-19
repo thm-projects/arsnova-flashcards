@@ -1068,12 +1068,15 @@ $themes: (
         $card_block_background: map-get($map, "card_block_background");
         $card_block_color: map-get($map, "card_block_color");
         $collapseLearningPhaseInfoButton_background: map-get($map, "collapseLearningPhaseInfoButton_background");
+        $collapseLearningPhaseInfoButton_color: map-get($map, "collapseLearningPhaseInfoButton_color");
         $listCard_color: map-get($map, "listCard_color");
         $md_table_background: map-get($map, "md_table_background");
         $md_table_border: map-get($map, "md_table_border");
         $md_table_td_background: map-get($map, "md_table_td_background");
         $md_table_td_border: map-get($map, "md_table_td_border");
+        $md_table_body_hover_color: map-get($map, "$table_body_hover_color");
         $md_table_td_nth_child_background: map-get($map, "md_table_td_nth_child_background");
+        $md_hyperlink: map-get($map, "md_hyperlink");
         $card_block_table_hover: map-get($map, "card_block_table_hover");
         $cardsetInfo_panel_body_background : map-get($map, "cardsetInfo_panel_body_background");
         $panel_body_h4: map-get($map, "panel_body_h4");
@@ -1106,6 +1109,7 @@ $themes: (
     }
     #collapseLearningPhaseInfoButton {
       background-color: $collapseLearningPhaseInfoButton_background !important;
+      color: $collapseLearningPhaseInfoButton_color !important;
     }
     .listCard{
       color: $listCard_color !important;
@@ -1128,12 +1132,12 @@ $themes: (
       color: $panel_body_h4 !important;
     }
     .table-hover > tbody > tr:hover {
-     background-color: $table_user_list_background !important;
+     background-color: $md_table_body_hover_color !important;
     }
+
     a {
       color: $hyperlink;
     }
-
     /*audio::-webkit-media-controls-panel, video::-webkit-media-controls-panel {
       background-color: $default_background;
     }
@@ -3928,14 +3932,14 @@ $themes: (
     //markdeep colors
     .md {
 
-      color: $primary_text;
+      color: $primary_text; //grey ist standartd
 
       .nonumberh2, h2 {
         color: $primary_h2;
       }
 
       a {
-        color: $hyperlink !important;
+        color: $md_hyperlink !important;
       }
 
       code {
