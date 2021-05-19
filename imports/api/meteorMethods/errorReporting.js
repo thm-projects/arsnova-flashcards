@@ -43,16 +43,17 @@ Meteor.methods({
 		check(errorContent, String);
 		if (Meteor.isServer) {
 			ErrorReporting.update({_id: error_id},
-				{$set: {
-					updatedAt: new Date(),
-					status: 0,
-					cardSide: cardSide,
-					error: {
-						type: errorTypes,
-						content: errorContent
+				{
+					$set: {
+						updatedAt: new Date(),
+						status: 0,
+						cardSide: cardSide,
+						error: {
+							type: errorTypes,
+							content: errorContent
+						}
 					}
-				}
-			});
+				});
 			Meteor.call("updateUnresolvedErrors", cardset_id, card_id);
 		}
 	},
@@ -63,11 +64,12 @@ Meteor.methods({
 		check(status, Number);
 		if (Meteor.isServer) {
 			ErrorReporting.update({_id: error_id},
-				{$set: {
-					updatedAt: new Date(),
-					status: status
-				}
-			});
+				{
+					$set: {
+						updatedAt: new Date(),
+						status: status
+					}
+				});
 			Meteor.call("updateUnresolvedErrors", cardset_id, card_id);
 		}
 	},
@@ -77,12 +79,27 @@ Meteor.methods({
 			Cardsets.update({_id: cardset_id}, {$set: {unresolvedErrors: countCardset}});
 			let countCard = ErrorReporting.find({card_id: card_id, status: 0}).count();
 			Cards.update({_id: card_id}, {$set: {unresolvedErrors: countCard}});
+			let cardset = Cardsets.findOne({_id: cardset_id});
+			if (cardset.shuffled) {
+			} else {
+				let reps = Cardsets.find({
+					cardgroups: {$in: cardset_id}
+				}).fetch().map(function (cardset) {
+					return cardset._id;
+				});
+				reps.forEach(function (cardset) {
+					let countRepErrors = ErrorReporting.find({cardset_id: cardset, status: 0}).count();
+					Cardsets.update({_id: cardset.cardset_id}, {$set: {unresolvedErrors: countRepErrors}});
+					let countCard = ErrorReporting.find({card_id: cardset, status: 0}).count();
+					Cards.update({_id: card_id}, {$set: {unresolvedErrors: countCard}});
+				});
+			}
 		}
 	},
 	getCardErrors: function (card_id) {
 		return ErrorReporting.find({card_id: card_id}, {sort: {status: 1}}).fetch();
 	},
 	getCardErrorsFromUser: function (card_id, user_id) {
-		return ErrorReporting.find({card_id: card_id,user_id: user_id, status: 0}).fetch();
+		return ErrorReporting.find({card_id: card_id, user_id: user_id, status: 0}).fetch();
 	}
 });
