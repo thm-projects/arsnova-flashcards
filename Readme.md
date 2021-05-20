@@ -1,18 +1,18 @@
 arsnova🍅cards
 
-##Teilprüfung Nr. 1:
+## Teilprüfung Nr. 1:
 
-###Startseite:
+### Startseite:
 ![startseite](screenshots_abgabe_1/Startseite.png)
-###Wegweiser:
+### Wegweiser:
 ![startseite](screenshots_abgabe_1/Wegweiser.png)
-###Themenpool:
+### Themenpool:
 ![startseite](screenshots_abgabe_1/Themenpool.png)
-###Kartei WBS:
+### Kartei WBS:
 ![startseite](screenshots_abgabe_1/Kartei_WBS.png)
 
 ---
-##Autoren der Prüfungen:
+## Autoren der Prüfungen:
 - **Claudio-Marius von Egan-Krieger**
 - **Florian Maximilian Dörr**
 ---
