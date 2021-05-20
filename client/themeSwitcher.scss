@@ -3783,6 +3783,14 @@ $themes: (
       background-color: $button_difficulty3 !important;
     }
 
+    // make uppercase buttons for material ui, only in dark theme
+    @if $theme == 'dark' {
+      .cardsetInfoFooter .btn {
+        text-transform: uppercase !important;
+        letter-spacing: .5px !important;
+      }
+    }
+
     #setCardsetFormModal, #showSelectLearningUnitModal, #setLeitnerProgressCardsetFilter, #useCasesModal {
       ul > li {
         background-color: $cardset_form_list_background !important;
