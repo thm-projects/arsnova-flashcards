@@ -3792,6 +3792,12 @@ $themes: (
     }
 
     #setCardsetFormModal, #showSelectLearningUnitModal, #setLeitnerProgressCardsetFilter, #useCasesModal, #appThemeSelector {
+      @if $theme == 'dark' {
+        .cardsetInfoFooter .btn {
+          text-transform: uppercase !important;
+          letter-spacing: .5px !important;
+        }
+      }
       ul > li {
         background-color: $cardset_form_list_background !important;
         border-bottom-color: $cardset_form_border !important;
