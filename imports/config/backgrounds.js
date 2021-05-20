@@ -234,10 +234,10 @@ let dark = {
 		"background-image": "url('/img/background/Linux-Regal.jpg')"
 	},
 	"demo": {
-		"background-image": "url('/img/background/darktheme-background.svg')"
+		"background-image": "url('/img/background/darktheme-background2.svg')"
 	},
 	"demoIndex": {
-		"background-image": "url('/img/background/darktheme-background.svg')"
+		"background-image": "url('/img/background/darktheme-background2.svg')"
 	},
 	"about": {
 		"background-image": "none"
@@ -261,7 +261,7 @@ let dark = {
 		"background-image": "none"
 	}, // Defaults to landing-page if off
 	"internal": {
-		"background-image": "url('/img/background/darktheme-background.svg')"
+		"background-image": "url('/img/background/darktheme-background2.svg')"
 	},
 	"pool": {
 		"background-image": "none"

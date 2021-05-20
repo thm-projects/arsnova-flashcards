@@ -14,23 +14,23 @@
  
  $darkTheme_white: rgb(220, 220, 220);
  $darkTheme_grey1: rgb(50, 50, 50);
- $darkTheme_grey2: rgb(100, 100, 100);
- $darkTheme_orange:rgb(225, 120, 0);
+ $darkTheme_grey2: #333333;
+ $darkTheme_orange:rgb(185, 105, 0);
 
- $darkTheme_backgrounddifficulty0: rgb(180, 180, 110);
- $darkTheme_backgrounddifficulty1: rgb(165, 195, 160);
- $darkTheme_backgrounddifficulty2: rgb(146, 178, 184);
- $darkTheme_backgrounddifficulty3: rgb(200, 170, 165);
+ $darkTheme_backgrounddifficulty0: rgb(41, 41, 26);
+ $darkTheme_backgrounddifficulty1: rgb(26, 34, 25);
+ $darkTheme_backgrounddifficulty2: #16191b;
+ $darkTheme_backgrounddifficulty3: rgb(43, 31, 26);
  
- $darkTheme_label_difficulty0: rgb(160, 90, 0);
- $darkTheme_label_difficulty1: rgb(0, 100, 0);
+ $darkTheme_label_difficulty0: rgb(128, 72, 0);
+ $darkTheme_label_difficulty1: rgb(0, 65, 0);
  $darkTheme_label_difficulty2: rgb(0, 0, 190);
  $darkTheme_label_difficulty3: rgb(170, 0, 0);
 
 
 
   $primary: $default_grey;
-  $primary_text: #212121;
+  $primary_text: $darkTheme_white;
   $secondary_text: $default_white;
 
   $athens_gray_approx: rgb(236, 240, 241);
@@ -43,10 +43,10 @@
   $storm_dust_approx: rgb(102, 102, 102);
   $mountain_mist_approx: rgb(153, 153, 153);
   $orange_pool: $default_orange;
-  $btn_inactive: #3d3d3d;
+  $btn_inactive: #232323;
   $item_separator: $default_grey;
   $footer_hover: rgb(215, 215, 215);
-  $hyperlink: rgb(0, 0, 220);
+  $hyperlink: #E3E3E3;
   $accent: $default_green;
   $divider: gray;
   $accent_300: #f0efef;
@@ -102,7 +102,7 @@
     //global button and label colors
           "demo_background": $default_green,
           "demo_text": $default_white,
-          "free_background": rgb(196, 72, 51),
+          "free_background": rgb(130, 45, 30),
           "free_text": $default_white,
           "edu_background": $default_green,
           "edu_text": $default_white,
@@ -128,7 +128,7 @@
           "bonus_finished_text": $default_white,
           "bonus_transcript_background": $default_orange,
           "bonus_transcript_text": $default_white,
-          "card_type_background": rgb(120, 0, 175),
+          "card_type_background": rgb(65, 0, 95),
           "card_type_text": white,
           "button_background_hover": $button_background_hover,
           "button_text_hover": $button_text_hover,
@@ -175,7 +175,7 @@
           "checkbox_button_icon_checked": black,
           "error_reporting_label_background": rgb(139, 0, 0),
           "error_reporting_label_text": $default_white,
-          "active_licenses_background": rgb(145, 145, 145),
+          "active_licenses_background": #646464,
           "active_licenses_text": rgb(145, 145, 145),
     //license colors
           "background_license_icon": $default_white,
@@ -434,17 +434,17 @@
           "item_selection_border": $item_separator,
     //filter colors
           "filter_navigation_background": $darkTheme_grey1,
-          "filter_navigation_text": white,
+          "filter_navigation_text": $darkTheme_white,
           "filter_navigation_icon_active": $darkTheme_orange,
           "filter_navigation_background_hover": $button_background_hover,
           "filter_navigation_text_hover": $button_text_hover,
           "filter_button_background": black,
-          "filter_button_icon": white,
-          "filter_button_background_active": white,
+          "filter_button_icon": $darkTheme_white,
+          "filter_button_background_active": $darkTheme_white,
           "filter_button_icon_active": black,
           "filter_button_background_hover": white,
           "filter_button_icon_hover": black,
-          "filter_border": white,
+          "filter_border": $darkTheme_white,
     //display mode colors
           "display_mode_background": black,
           "display_mode_text": white,
@@ -455,19 +455,19 @@
           "infinite_scroll_background": $darkTheme_grey2,
           "infinite_scroll_icon": $darkTheme_orange,
           "infinite_scroll_text": white,
-          "item_spacing_background": rgba(black, 0.3),
+          "item_spacing_background": rgba(black, 0.5),
           "item_background": $darkTheme_grey2,
           "item_icon": white,
           "item_icon_hover": $item_icon_hover,
-          "item_author_text": black,
+          "item_author_text": $darkTheme_white,
           "item_workload_button_background": $default_green,
           "item_workload_button_text": white,
           "item_workload_button_background_hover": $button_background_hover,
           "item_workload_button_text_hover": $button_text_hover,
-          "item_last_editor_text": black,
+          "item_last_editor_text": $darkTheme_white,
           "item_description_background": LightGoldenRodYellow,
           "item_description_text": $default_grey,
-          "item_text": white,
+          "item_text": $darkTheme_white,
           "item_content_link": white,
           "no_results_background": white,
           "no_results_text": $default_grey,
@@ -489,7 +489,7 @@
           "background_difficulty1_lines": rgba(92, 184, 92, 0.3),
           "background_difficulty2_lines": rgba(91, 192, 222, 0.3),
           "background_difficulty3_lines": rgba(217, 83, 79, 0.3),
-          "background_white": $darkTheme_white,
+          "background_white": #1C151D,
           "background_white_lines": $default_grey,
           "background_post_it": lightgoldenrodyellow,
           "background_post_it_lines": $default_orange,
