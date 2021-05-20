@@ -1073,6 +1073,7 @@ $themes: (
         $md_table_background: map-get($map, "md_table_background");
         $md_table_border: map-get($map, "md_table_border");
         $md_table_td_background: map-get($map, "md_table_td_background");
+        $md_table_td_hover: map-get($map, "md_table_td_hover");
         $md_table_td_border: map-get($map, "md_table_td_border");
         $md_table_body_hover_color: map-get($map, "$table_body_hover_color");
         $md_table_td_nth_child_background: map-get($map, "md_table_td_nth_child_background");
@@ -1122,6 +1123,11 @@ $themes: (
       border-color: $md_table_td_border !important;
       background-color: $md_table_td_background !important;
     }
+
+    .md td:hover {
+      color: $md_table_td_hover !important;
+    }
+
     .md table.table tr:nth-child(2n) {
       background-color: $md_table_td_nth_child_background !important;
     }
@@ -2708,6 +2714,9 @@ $themes: (
     #navbar-logout a:hover, #navbar-logout a:focus {
       background-color: $navbar_logout_background_hover !important;
       color: $navbar_logout_text_hover !important;
+      .fas{
+        color: $navbar_logout_text_hover;
+      }
     }
 
     //access_denied

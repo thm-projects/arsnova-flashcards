@@ -4,11 +4,11 @@
   $default_dark_blue: darkblue;
   $default_blue: blue;
   $default_orange: darkorange;
-  $default_dark_orange: darken(darkorange, 15);
-  $default_red: tomato;
+  $default_dark_orange: darken($default_orange, 15);
+  $default_red: #c62828;
   $default_dark_red: #b24531;
   $default_grey: #424242;
-  $default_green: #27632a;
+  $default_green: #2E7D32;
   $default_white: white;
   $default_black: #121212;
 
@@ -131,7 +131,7 @@
           "wordcloud_label_text": white,
           "card_counter_background": darken($default_grey, 5),
           "card_counter_text": white,
-          "transcript_counter_background": $default_orange,
+          "transcript_counter_background": $default_dark_orange,
           "transcript_counter_text": white,
           "transcript_rating_label_background": white,
           "transcript_rating_label_text": black,
@@ -151,7 +151,7 @@
           "transcript_rating_stars_card_icon_rated": $default_orange,
           "frag_jetzt_background": teal,
           "frag_jetzt_text": white,
-          "arsnova_click_background": #ff8a56,
+          "arsnova_click_background": #d32f2f,
           "arsnova_click_text": white,
           "tooltip_info_background": #0099e5,
           "tooltip_info_icon": white,
@@ -343,7 +343,7 @@
           "navbar_search_result_open_background_hover": $button_background_hover,
 
           "navbar_help_background": black,
-          "navbar_help_background_hover": white,
+          "navbar_help_background_hover": $button_background_hover,
           "navbar_help_background_active": black,
           "navbar_help_text": white,
           "navbar_help_text_hover": black,
@@ -374,7 +374,7 @@
           "navbar_profile_dropdown_text_active": white,
 
           "navbar_logout_background": black !important,
-          "navbar_logout_background_hover": white,
+          "navbar_logout_background_hover": $button_background_hover,
           "navbar_logout_text": white !important,
           "navbar_logout_text_hover": black !important,
 
@@ -1049,7 +1049,7 @@
     //useCases
           "use_cases_button_background": transparent,
           "use_cases_button_icon": white,
-          "use_cases_button_background_hover": white,
+          "use_cases_button_background_hover": $button_background_hover,
           "use_cases_button_icon_hover": black,
           "use_cases_table_header_background": transparent,
           "use_cases_table_header_text": $default_orange,
@@ -1096,6 +1096,7 @@
           "md_table_background": darken($default_dark_orange, 15),
           "md_table_border": #121212,
           "md_table_td_background": lighten($default_black, 5),
+          "md_table_td_hover": white,
           "md_table_td_nth_child_background": #424242,
           "md_table_td_border": #121212,
           "md_table_body_hover_color": gray,
