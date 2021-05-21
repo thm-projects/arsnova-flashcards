@@ -206,8 +206,8 @@ module.exports = {
 		"defaultID": 0, // The default theme id from the list
 		"list": [
 			{
-				"theme": "arsnova", // The color theme
-				"backgrounds": "arsnova" // The background images found in ./backgrounds.js
+				"theme": "dark", // The color theme
+				"backgrounds": "dark" // The background images found in ./backgrounds.js
 			}
 		] // The list available to the theme switcher dropdown menu
 	},
