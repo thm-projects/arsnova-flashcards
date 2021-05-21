@@ -3680,7 +3680,7 @@ $themes: (
     }
 
     #TestingBackdoorUsername {
-      background-color: $white !important;
+      background-color: rgb(220, 220, 220) !important;
       color: $primary_text !important;
     }
 
@@ -3695,6 +3695,8 @@ $themes: (
 
     .color-cards {
       color: #2ac55f !important;
+      background-color: black !important;
+      background-color: transparent !important;
     }
 
     //profile
@@ -4581,6 +4583,10 @@ $themes: (
     #useCasesModal th {
       background-color: $use_cases_table_header_background !important;
       color: $use_cases_table_header_text !important;
+    }
+
+    #useCasesModal tr {
+      background-color: $use_cases_table_header_background !important;
     }
 
     #useCasesModal .specialCardset {

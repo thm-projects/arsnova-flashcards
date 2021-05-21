@@ -14,14 +14,24 @@
  
  $darkTheme_white: rgb(220, 220, 220);
  $darkTheme_grey1: rgb(50, 50, 50);
- $darkTheme_grey2: #333333;
+ $darkTheme_grey2: #2B2B2B;
+ $darkTheme_modalBackground: #131313;
  $darkTheme_orange:rgb(185, 105, 0);
+ $darkTheme_green: rgb(0, 65, 0);
+$darkTheme_orange2: rgb(145, 82, 0);
+$darkTheme_ligtred: rgb(145, 42, 2);
 
+$darkTheme_backgrounddifficulty0: #0f0f0f;
+$darkTheme_backgrounddifficulty1: #0f0f0f;
+$darkTheme_backgrounddifficulty2: #0f0f0f;
+$darkTheme_backgrounddifficulty3: #0f0f0f;
+/*
  $darkTheme_backgrounddifficulty0: rgb(41, 41, 26);
  $darkTheme_backgrounddifficulty1: rgb(26, 34, 25);
  $darkTheme_backgrounddifficulty2: #16191b;
  $darkTheme_backgrounddifficulty3: rgb(43, 31, 26);
- 
+ */
+
  $darkTheme_label_difficulty0: rgb(128, 72, 0);
  $darkTheme_label_difficulty1: rgb(0, 65, 0);
  $darkTheme_label_difficulty2: rgb(0, 0, 190);
@@ -29,8 +39,8 @@
 
 
 
-  $primary: $default_grey;
-  $primary_text: $darkTheme_white;
+  $primary: $darkTheme_grey2;
+  $primary_text: black;
   $secondary_text: $default_white;
 
   $athens_gray_approx: rgb(236, 240, 241);
@@ -60,7 +70,7 @@
   $input_textarea_text_active: black;
   $input_textarea_text_inactive: black;
   $item_icon_hover: rgb(149, 222, 240);
-  $default_background: $default_grey;
+  $default_background: $darkTheme_grey2;
 
   @return (
     //background (Deactivate the image with "none" if you want to use the background-color)
@@ -104,19 +114,19 @@
           "demo_text": $default_white,
           "free_background": rgb(130, 45, 30),
           "free_text": $default_white,
-          "edu_background": $default_green,
+          "edu_background": $darkTheme_green,
           "edu_text": $default_white,
-          "pro_background": $default_orange,
+          "pro_background": $darkTheme_orange2,
           "pro_text": $default_white,
           "private_background": red,
           "private_text": $default_white,
-          "danger_background": $default_orange,
-          "danger_text": $default_white,
+          "danger_background": $darkTheme_orange2,
+          "danger_text": white,
           "info_background": $default_dark_blue,
           "info_text": $default_white,
           "success_background": $default_green,
           "success_text": $default_white,
-          "warning_background": $default_red,
+          "warning_background": $darkTheme_ligtred,
           "warning_text": $default_white,
           "disabled_background": $btn_inactive,
           "disabled_text": $mercury_approx,
@@ -126,7 +136,7 @@
           "bonus_text": $default_white,
           "bonus_finished_background": darkslategray,
           "bonus_finished_text": $default_white,
-          "bonus_transcript_background": $default_orange,
+          "bonus_transcript_background": #81462C,
           "bonus_transcript_text": $default_white,
           "card_type_background": rgb(65, 0, 95),
           "card_type_text": white,
@@ -143,7 +153,7 @@
           "lecturer_authorized_text": white,
           "wordcloud_label_background": rgb(185, 105, 0),
           "wordcloud_label_text": white,
-          "card_counter_background": $btn_inactive,
+          "card_counter_background": #2b4a68,
           "card_counter_text": white,
           "transcript_counter_background": $default_orange,
           "transcript_counter_text": white,
@@ -199,19 +209,19 @@
           "login_google_background_hover": $button_background_hover,
           "login_google_icon": white,
           "login_google_icon_hover": $button_text_hover,
-          "login_cards_background": #2ac55f,
+          "login_cards_background": $darkTheme_green,
           "login_cards_background_hover": $button_background_hover,
-          "login_cards_icon": black,
+          "login_cards_icon": white,
           "login_cards_icon_hover": $button_text_hover,
           "login_cas_background": #2ac55f,
           "login_cas_background_hover": $button_background_hover,
           "login_cas_icon": black,
           "login_cas_icon_hover": $button_text_hover,
-          "login_guest_background": white,
+          "login_guest_background": $darkTheme_white,
           "login_guest_background_hover": $button_background_hover,
           "login_guest_icon": black,
           "login_guest_icon_hover": $button_text_hover,
-          "login_pro_background": $default_orange,
+          "login_pro_background": $darkTheme_orange2,
           "login_pro_background_hover": $button_background_hover,
           "login_pro_icon": white,
           "login_pro_icon_hover": $button_text_hover,
@@ -398,7 +408,7 @@
           "navbar_websocket_background_hover": $button_background_hover,
     //welcome page colors
           "welcome_page_login_label": white,
-          "welcome_page_login_label_shadow": $default_grey,
+          "welcome_page_login_label_shadow": $darkTheme_grey2,
           "placeholder": $default_orange,
     //export to markdeep colors
           "export_to_markdeep_table_header_background": $default_grey,
@@ -422,13 +432,13 @@
           "footer_navigation_text": white,
           "footer_navigation_text_active": white,
           "footer_navigation_text_hover": $button_text_hover,
-          "footer_navigation_background": grey,
-          "footer_navigation_background_active": grey,
+          "footer_navigation_background": $darkTheme_grey1,
+          "footer_navigation_background_active": $darkTheme_grey1,
           "footer_navigation_background_hover": $button_background_hover,
     //impressum colors
           "info_content_header_text": white,
-          "info_content_header_background": $default_grey,
-          "info_content_body_text": $default_grey,
+          "info_content_header_background": $darkTheme_grey2,
+          "info_content_body_text": $darkTheme_grey2,
           "info_content_body_background": LightGoldenRodYellow,
     //editor navigation colors
           "item_selection_border": $item_separator,
@@ -489,7 +499,7 @@
           "background_difficulty1_lines": rgba(92, 184, 92, 0.3),
           "background_difficulty2_lines": rgba(91, 192, 222, 0.3),
           "background_difficulty3_lines": rgba(217, 83, 79, 0.3),
-          "background_white": #1C151D,
+          "background_white": #0f0f0f,
           "background_white_lines": $default_grey,
           "background_post_it": lightgoldenrodyellow,
           "background_post_it_lines": $default_orange,
@@ -939,13 +949,13 @@
     //form group colors
           "form_group_label": black,
     //cardset form colors
-          "cardset_form_list_background": $athens_gray_approx,
-          "cardset_form_list_text": black,
-          "cardset_form_border": black,
+          "cardset_form_list_background": $darkTheme_grey1,
+          "cardset_form_list_text": $darkTheme_white,
+          "cardset_form_border":  $darkTheme_white,
           "cardset_form_list_background_hover": $button_background_hover,
           "cardset_form_list_text_hover": $button_text_hover,
-          "cardset_form_list_background_active": $athens_gray_approx,
-          "cardset_form_list_text_active": black,
+          "cardset_form_list_background_active": $darkTheme_grey2,
+          "cardset_form_list_text_active": $darkTheme_white,
     //cookie consent colors
           "cookie_consent_link": white,
     //under development modal colors
@@ -960,9 +970,9 @@
           "presentation_clock_minute_arm": $default_grey,
           "presentation_clock_second_arm": red,
     //modal colors
-          "modal_overlay": rgba(0,0,0, 0.7),
-          "modal_background": whitesmoke,
-          "modal_text": black,
+          "modal_overlay": rgba(0,0,0, 0.9),
+          "modal_background": $darkTheme_modalBackground,
+          "modal_text": $darkTheme_white,
 
           "modal_checkbox_background": white,
           "modal_checkbox_border": $default_grey,
@@ -1040,7 +1050,7 @@
           "landing_page_wordcloud_button_opacity": 1.0,
           "landing_page_wordcloud_button_hover": midnightblue,
           "landing_page_wordcloud_button_opacity_hover": 1,
-          "landing_page_label": darkgrey,
+          "landing_page_label": $darkTheme_white,
     //wordcloud
           "wordcloud_background": "unset",
           "wordcloud_border": "unset",
@@ -1052,8 +1062,8 @@
           "use_cases_button_background_hover": white,
           "use_cases_button_icon_hover": black,
           "use_cases_table_header_background": transparent,
-          "use_cases_table_header_text": $default_dark_blue,
-          "use_cases_special_cardsets_button_background": $default_green,
+          "use_cases_table_header_text": $darkTheme_white,
+          "use_cases_special_cardsets_button_background": $darkTheme_green,
           "use_cases_special_cardsets_button_text": white,
           "use_cases_special_cardsets_button_background_hover": midnightblue,
           "use_cases_special_cardsets_button_text_hover": white,

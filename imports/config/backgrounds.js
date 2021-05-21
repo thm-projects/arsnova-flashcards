@@ -231,7 +231,7 @@ let disabled = {
 // Setting "dark"
 let dark = {
 	"landing-page": {
-		"background-image": "url('/img/background/Linux-Regal.jpg')"
+		"background-image": "url('/img/background/universe.jpg')"
 	},
 	"demo": {
 		"background-image": "url('/img/background/darktheme-background2.svg')"
@@ -261,7 +261,7 @@ let dark = {
 		"background-image": "none"
 	}, // Defaults to landing-page if off
 	"internal": {
-		"background-image": "url('/img/background/darktheme-background2.svg')"
+		"background-image": "url('/img/background/Large-Triangles.svg')"
 	},
 	"pool": {
 		"background-image": "none"
