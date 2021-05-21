@@ -297,8 +297,108 @@ let disabled = {
 	}
 };
 
+// Setting "dark"
+let dark = {
+	"landing-page": {
+		"background-image": "url('/img/background/universe.jpg')"
+	},
+	"demo": {
+		"background-image": "url('/img/background/darktheme-background2.svg')"
+	},
+	"demoIndex": {
+		"background-image": "url('/img/background/darktheme-background2.svg')"
+	},
+	"about": {
+		"background-image": "none"
+	}, // Defaults to landing-page if off
+	"learning": {
+		"background-image": "none"
+	}, // Defaults to landing-page if off
+	"faq": {
+		"background-image": "none"
+	}, // Defaults to landing-page if off
+	"help": {
+		"background-image": "none"
+	}, // Defaults to landing-page if off
+	"impressum": {
+		"background-image": "none"
+	}, // Defaults to landing-page if off
+	"agb": {
+		"background-image": "none"
+	}, // Defaults to landing-page if off
+	"datenschutz": {
+		"background-image": "none"
+	}, // Defaults to landing-page if off
+	"internal": {
+		"background-image": "url('/img/background/Large-Triangles.svg')"
+	},
+	"pool": {
+		"background-image": "none"
+	}, // Defaults to internal if off
+	"workload": {
+		"background-image": "none"
+	}, // Defaults to internal if off
+	"personal": {
+		"background-image": "none"
+	}, // Defaults to internal if off
+	"transcripts": {
+		"background-image": "none"
+	}, // Defaults to internal if off
+	"allPool": {
+		"background-image": "none"
+	}, // Defaults to internal if off
+	"cardset": {
+		"background-image": "none"
+	}, // Defaults to internal if off
+	"cardsetLeitnerStats": {
+		"background-image": "none"
+	}, // Defaults to cardset if off
+	"cardsetTranscriptBonus": {
+		"background-image": "url('/img/background/matrix.jpg')"
+	}, // Defaults to cardset if off
+	"leitner": {
+		"background-image": "none"
+	}, // Defaults to internal if off
+	"wozniak": {
+		"background-image": "none"
+	}, // Defaults to internal if off
+	"presentation": {
+		"background-image": "none"
+	}, // Defaults to internal if off
+	"presentationIndex": {
+		"background-image": "none"
+	}, // Defaults to internal if off
+	"editor": {
+		"background-image": "url('/img/background/matrix.jpg')"
+	}, // Defaults to internal if off
+	"profileMembership": {
+		"background-image": "none"
+	}, // Defaults to internal if off
+	"profileBilling": {
+		"background-image": "none"
+	}, // Defaults to internal if off
+	"profileSettings": {
+		"background-image": "none"
+	}, // Defaults to internal if off
+	"profileRequests": {
+		"background-image": "none"
+	}, // Defaults to internal if off
+	"notFound": {
+		"background-image": "none"
+	}, // Defaults to internal if logged in, otherwise to landing-page
+	"backend": {
+		"background-image": "url('/img/background/matrix.jpg')"
+	},
+	"wordcloud": {
+		"background-image": "url('/img/background/Night.jpg')"
+	}
+};
+
+
+
 module.exports = {
 	arsnova,
 	linux,
+	dark,
 	disabled
 };
