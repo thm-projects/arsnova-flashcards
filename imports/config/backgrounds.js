@@ -303,10 +303,10 @@ let dark = {
 		"background-image": "url('/img/background/universe.jpg')"
 	},
 	"demo": {
-		"background-image": "url('/img/background/darktheme-background2.svg')"
+		"background-image": "url('/img/background/Large-Triangles.svg')"
 	},
 	"demoIndex": {
-		"background-image": "url('/img/background/darktheme-background2.svg')"
+		"background-image": "url('/img/background/Large-Triangles.svg')"
 	},
 	"about": {
 		"background-image": "none"
@@ -369,7 +369,7 @@ let dark = {
 		"background-image": "none"
 	}, // Defaults to internal if off
 	"editor": {
-		"background-image": "url('/img/background/matrix.jpg')"
+		"background-image": "url('/img/background/Large-Triangles.svg.jpg')"
 	}, // Defaults to internal if off
 	"profileMembership": {
 		"background-image": "none"
@@ -387,7 +387,7 @@ let dark = {
 		"background-image": "none"
 	}, // Defaults to internal if logged in, otherwise to landing-page
 	"backend": {
-		"background-image": "url('/img/background/matrix.jpg')"
+		"background-image": "url('/img/background/Large-Triangles.svg.jpg')"
 	},
 	"wordcloud": {
 		"background-image": "url('/img/background/Night.jpg')"
