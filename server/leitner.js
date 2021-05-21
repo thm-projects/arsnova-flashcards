@@ -180,7 +180,7 @@ Meteor.methods({
 					if (Meteor.settings.debug.leitner) {
 						console.log("===> Sending Webpush reminder Message");
 					}
-					web.prepareWeb(cardset, user._id, messageType);
+					web.prepareWeb(cardset, user._id, undefined, messageType);
 					if (task_id !== undefined) {
 						LeitnerTasks.update({
 								_id: task_id

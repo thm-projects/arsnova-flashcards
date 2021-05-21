@@ -1,7 +1,7 @@
-arsnova🍅cards - Installing Docker under Windows via WSL 2
+arsnova🍅cards - Installing Docker on Windows via WSL 2
 ---
 
-arsnova🍅cards will never run as efficiently under Windows as under Linux. If you still want to use Windows, use the following method to get the best performance out of Docker for Windows.
+arsnova🍅cards will never run as efficiently on Windows as on Linux. If you still want to use Windows, use the following method to get the best performance out of Docker for Windows.
 
 You get the best results when you use Docker with the WSL 2 engine. Not Hyper-V, not Virtualbox and not Windows Containers. If you use a method other than WSL 2 you will experience serious performance problems.
 
@@ -37,7 +37,7 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 
 Restart your computer.
 
-Now you have to update wo WSL 2. Therefore download the update according to your architecture:
+Now you have to update to WSL 2. Therefore download the update according to your architecture:
 
 | arch | download |
 | --- | --- |
@@ -71,7 +71,7 @@ cd ~
 # for x64
 Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004 -OutFile Ubuntu.appx -UseBasicParsing
 
-# for amd64
+# for arm64
 Invoke-WebRequest -Uri https://aka.ms/wslubuntu2004arm -OutFile Ubuntu.appx -UseBasicParsing
 ```
 
@@ -95,7 +95,7 @@ Stop here. After starting your Distro, it will now appear in the list of wsl ima
 wsl -l -v
 ```
 
-Under `Version` it must say `2` for your Distro. If it says `1` you have to convert it by running following command as administrator in the PowerShell:
+At `Version` it must say `2` for your Distro. If it says `1` you have to convert it by running following command as administrator in the PowerShell:
 
 ```bash
 # wsl --set-version <distro_name> <version>
