@@ -13,6 +13,8 @@
  //DarkTheme Colors
  
  $darkTheme_white: rgb(220, 220, 220);
+ $darkTheme_white2: rgb(199, 199, 199);
+
  $darkTheme_grey1: rgb(50, 50, 50);
  $darkTheme_grey2: #2B2B2B;
  $darkTheme_grey3: #131313;
@@ -59,7 +61,7 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
   $btn_inactive: #232323;
   $item_separator: $default_grey;
   $footer_hover: rgb(215, 215, 215);
-  $hyperlink: #E3E3E3;
+  $hyperlink: #ffaf53;
   $accent: $default_green;
   $divider: gray;
   $accent_300: #f0efef;
@@ -128,7 +130,7 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "info_background": $darkTheme_lila,
           "info_text": $default_white,
           "success_background": $darkTheme_green,
-          "success_text": $default_white,
+          "success_text": white,
           "warning_background": $darkTheme_ligthred,
           "warning_text": $default_white,
           "disabled_background": $btn_inactive,
@@ -669,7 +671,7 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "card_sidebar_aspect_ratio_text_hover": $button_text_hover,
           "card_sidebar_aspect_ratio_dropdown_background": none,
           "card_sidebar_aspect_ratio_dropdown_border": $default_grey,
-          "card_sidebar_aspect_ratio_dropdown_text": $default_grey,
+          "card_sidebar_aspect_ratio_dropdown_text": black,
           "card_sidebar_aspect_ratio_dropdown_background_hover": $button_background_hover,
           "card_sidebar_aspect_ratio_dropdown_border_hover": $default_grey,
           "card_sidebar_aspect_ratio_dropdown_text_hover": $button_text_hover,
@@ -679,7 +681,7 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "card_sidebar_aspect_ratio_dropdown_background_active_hover": $button_background_hover,
           "card_sidebar_aspect_ratio_dropdown_border_active_hover": $default_grey,
           "card_sidebar_aspect_ratio_dropdown_text_active_hover": $button_text_hover,
-          "card_sidebar_aspect_ratio_menu_background": white,
+          "card_sidebar_aspect_ratio_menu_background": #c7c7c7,
           "card_sidebar_aspect_ratio_menu_separator": $default_grey,
 
           "card_sidebar_arsnova_lite_background": none,
@@ -760,7 +762,7 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "cardset_markdeep_text": $default_white,
           "cardset_markdeep_link": $darkTheme_linkTable,
           "cardset_markdeep_placeholder": $default_green,
-          "cardset_footer_navigation_background": $default_grey,
+          "cardset_footer_navigation_background": #3d3d3d,
           "cardset_footer_navigation_index_background": none,
           "cardset_footer_navigation_index_text": black,
           "cardset_footer_navigation_index_background_hover": $button_background_hover,

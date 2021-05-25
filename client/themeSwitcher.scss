@@ -1801,6 +1801,9 @@ $themes: (
         background-color: rgb(50, 50, 50) !important;
         color: white !important;
       }
+      td:hover {
+        background-color: transparent !important;
+      }
     }
 
     .collapseCardsetInfoContainer {
@@ -2126,8 +2129,8 @@ $themes: (
     }
 
     .btn.btn-raised{
-      background-color: $success_background !important;
-      color: white !important;
+      background-color: rgb(199,199,199) !important;
+      color: black !important;
 
     }
 
@@ -3784,6 +3787,10 @@ $themes: (
     //markdeep colors
     .md {
 
+      p{
+        color: $white !important;
+      }
+
       a{
         color: $cardset_markdeep_link !important;
       }
@@ -4579,6 +4586,7 @@ $themes: (
       background-color: $card_sidebar_aspect_ratio_menu_background !important;
       border-color: $card_sidebar_aspect_ratio_menu_separator !important;
     }
+
     .aspect-ratio-dropdown-button {
       background-color: $card_sidebar_aspect_ratio_dropdown_background !important;
       border-color: $card_sidebar_aspect_ratio_dropdown_border !important;
@@ -4926,12 +4934,17 @@ $themes: (
       }
       td:hover{
         background-color: rgb(25, 53, 112) !important;
+        color: $white !important;
       }
       tr:nth-child(even) {
         background-color: rgb(50, 50, 50) !important;
         color: $white !important;
       }
 
+    }
+
+    .admonition{
+      color: $white !important;
     }
 
   }
