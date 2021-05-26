@@ -1,7 +1,7 @@
 import {
 	DEFAULT_REGISTRATION_DOMAIN_WHITELIST
 } from "./global/config";
-import {AUTO_FULLSCREEN, CHOOSE_FULLSCREEN, EDU, FREE, GUEST, LECTURER, MANUAL_FULLSCREEN, PRO} from "./global/const";
+import { AUTO_FULLSCREEN, CHOOSE_FULLSCREEN, EDU, FREE, GUEST, LECTURER, MANUAL_FULLSCREEN, PRO } from "./global/const";
 
 module.exports = {
 	"debugServerBoot": true,
@@ -66,7 +66,7 @@ module.exports = {
 		"useCases": { //Will be only visible if the related navigation item is enabled
 			"misc": {
 				"create": [FREE, EDU, PRO, LECTURER],
-				"workload":	[FREE, EDU, PRO, LECTURER],
+				"workload": [FREE, EDU, PRO, LECTURER],
 				"transcripts": [FREE, EDU, PRO, LECTURER],
 				"specialCardsets": [FREE, EDU, PRO, LECTURER, GUEST]
 			},
@@ -83,13 +83,13 @@ module.exports = {
 			"cardset": {
 				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
 				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
-				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"search": [FREE, EDU, PRO, LECTURER, GUEST],
 				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
 			},
 			"repetitorium": {
 				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
 				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
-				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"search": [FREE, EDU, PRO, LECTURER, GUEST],
 				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
 			}
 		},
@@ -97,13 +97,13 @@ module.exports = {
 			"cardset": {
 				"enabled": [FREE, EDU, PRO, LECTURER],
 				"filter": [FREE, EDU, PRO, LECTURER],
-				"search":  [FREE, EDU, PRO, LECTURER],
+				"search": [FREE, EDU, PRO, LECTURER],
 				"wordcloud": [FREE, EDU, PRO, LECTURER]
 			},
 			"repetitorium": {
 				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
 				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
-				"search":  [FREE, EDU, PRO, LECTURER],
+				"search": [FREE, EDU, PRO, LECTURER],
 				"wordcloud": [FREE, EDU, PRO, LECTURER]
 			}
 		},
@@ -143,7 +143,7 @@ module.exports = {
 			"slogan_en": "ORGANIZE. LEARN. MEMORIZE!"
 		},
 		"button": {
-			"about":  {
+			"about": {
 				"default_de": "Einführung in die Lernkartei-Plattform der THM …",
 				"default_en": "Erfahre mehr über 🍅cards …",
 				"mobile_de": "Erfahre mehr über 🍅cards …",
@@ -203,11 +203,15 @@ module.exports = {
 		"randomCardsSelection": false
 	},
 	"themes": {
-		"defaultID": 0, // The default theme id from the list
+		"default": "arsnova", // The default theme from the list
 		"list": [
 			{
 				"theme": "arsnova", // The color theme
 				"backgrounds": "arsnova" // The background images found in ./backgrounds.js
+			},
+			{
+				"theme": "dark", // The color theme
+				"backgrounds": "dark" // The background images found in ./backgrounds.js
 			}
 		] // The list available to the theme switcher dropdown menu
 	},

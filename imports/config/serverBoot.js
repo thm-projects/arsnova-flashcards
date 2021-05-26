@@ -244,7 +244,6 @@ let initTestNotificationsUser = function () {
 			"lvl": 17,
 			"lastOnAt": (new Date().setFullYear(2017, 9, 5)),
 			"daysInRow": 0,
-			"selectedColorTheme": "default",
 			"mailNotification": true,
 			"webNotification": false,
 			"profile": {
@@ -294,7 +293,6 @@ let initDemoCardsetUser = function () {
 			"lvl": 0,
 			"lastOnAt": (new Date().setFullYear(2017, 9, 5)),
 			"daysInRow": 0,
-			"selectedColorTheme": "default",
 			"mailNotification": true,
 			"webNotification": false,
 			"profile": {
