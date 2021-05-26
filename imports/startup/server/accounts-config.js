@@ -133,7 +133,6 @@ Meteor.users.after.insert(function (userId, doc) {
 				lvl: 1,
 				lastOnAt: new Date(),
 				daysInRow: 0,
-				selectedColorTheme: "default",
 				mailNotification: ServerStyle.newUser("mail"),
 				webNotification: ServerStyle.newUser("web"),
 				"profile.locale": "de",
@@ -148,7 +147,6 @@ Meteor.users.after.insert(function (userId, doc) {
 				lvl: 1,
 				lastOnAt: new Date(),
 				daysInRow: 0,
-				selectedColorTheme: "default",
 				mailNotification: ServerStyle.newUser("mail"),
 				webNotification: ServerStyle.newUser("web"),
 				"profile.locale": "de"

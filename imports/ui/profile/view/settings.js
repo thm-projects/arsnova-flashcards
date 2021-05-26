@@ -3,7 +3,6 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {ColorThemes} from "../../../api/subscriptions/colorThemes";
 import {BertAlertVisuals} from "../../../util/bertAlertVisuals";
 import "../modal/deleteProfile.js";
 import "../view/public.js";
@@ -11,6 +10,7 @@ import "./settings.html";
 import {ServerSettings} from "../../../util/settings";
 import {ServerStyle} from "../../../util/styles";
 import {UserPermissions} from "../../../util/permissions";
+import {ThemeChanger} from "../../../util/themeChanger";
 
 /*
  * ############################################################################
@@ -28,16 +28,6 @@ Template.profileSettings.helpers({
 	},
 	gotMultipleRoles: function (count) {
 		return count >= 2;
-	},
-	/** Function returns all colorThemes from the databse */
-	getColorThemes: function () {
-		return ColorThemes.find();
-	},
-	/** Function returns "selected" when the value of the selectedColorTheme and the input _id are the same */
-	getSelectedColorThemes: function () {
-		if (this._id === Meteor.users.findOne(Meteor.userId()).selectedColorTheme) {
-			return "selected";
-		}
 	},
 	/** Function returns "selected" when the value of the selectedLanguage and the input _id are the same */
 	getSelectedLanguage: function (id) {
@@ -66,6 +56,27 @@ Template.profileSettings.helpers({
 	},
 	isDisabledSaveLanguage: function () {
 		return Session.get("languageSettings");
+	},
+	gotMultipleThemes: function () {
+		return ServerStyle.getAppThemes().length > 1;
+	},
+	getAppThemes: function () {
+		return ServerStyle.getAppThemes();
+	},
+	getActiveTheme: function () {
+		let activeTheme = ServerStyle.getActiveTheme();
+		return TAPi18n.__(`themes.list.${activeTheme.theme}`);
+	},
+	getAppThemeName: function (theme) {
+		let string = TAPi18n.__(`themes.list.${theme}`);
+		if (theme === ServerStyle.getDefaultThemeID()) {
+			string += ` ${TAPi18n.__(`themes.profile.default`)}`;
+		}
+		let savedTheme = ServerStyle.getSavedTheme();
+		if (savedTheme !== undefined && theme === savedTheme.theme) {
+			string += ` ${TAPi18n.__(`themes.profile.saved`)}`;
+		}
+		return string;
 	}
 });
 
@@ -73,7 +84,7 @@ Template.profileSettings.helpers({
 Template.profileSettings.onDestroyed(function () {
 	// Go back to last saved Theme
 	if (Meteor.user()) {
-		Session.set("theme", ServerStyle.getDefaultTheme());
+		Session.set("theme", ServerStyle.getActiveTheme());
 		Session.set("language", Meteor.user().profile.locale);
 	}
 });
@@ -86,6 +97,10 @@ Template.profileSettings.onCreated(function () {
 });
 
 Template.profileSettings.events({
+	"click .themeSelection": function (event) {
+		Session.set("theme", $(event.target).data('id'));
+		ThemeChanger.displayTheme();
+	},
 	"click #profilepublicoption1": function () {
 		Meteor.call("updateUsersVisibility", true, Meteor.userId());
 	},
@@ -267,6 +282,10 @@ Template.profileSettings.events({
 			Meteor.call("updateUsersGivenName", givenname, user_id);
 			Meteor.call("updateUsersProfileState", true, user_id);
 			Meteor.call("updateUsersNotification", mailNotification, webNotification, user_id);
+			if (ServerStyle.getAppThemes().length > 1) {
+				Meteor.call("updateUserTheme", Session.get("theme"));
+				$('#appThemeSelector').addClass('has-success');
+			}
 
 			BertAlertVisuals.displayBertAlert(TAPi18n.__('profile.saved'), 'success', 'growl-top-left');
 		} else {
@@ -299,11 +318,13 @@ Template.profileSettings.events({
 		$('#inputName').parent().parent().removeClass('has-success');
 		$('#inputBirthName').parent().parent().removeClass('has-success');
 		$('#inputGivenName').parent().parent().removeClass('has-success');
+		$('#appThemeSelector').removeClass('has-success');
 		$('#errorName').html('');
 		$('#errorBirthName').html('');
 		$('#errorGivenName').html('');
 		Session.set("profileSettingsSave", true);
 		Session.set("profileSettingsCancel", true);
+		ThemeChanger.setTheme();
 		BertAlertVisuals.displayBertAlert(TAPi18n.__('profile.canceled'), 'danger', 'growl-top-left');
 	}
 });
