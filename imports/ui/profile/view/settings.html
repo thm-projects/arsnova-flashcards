@@ -94,8 +94,42 @@
                                 <span id="errorGivenName" class="help-block name"></span>
                             </div>
                         </div>
+                        {{#if gotMultipleThemes}}
+                            <div id="appThemeSelector" class="form-group">
+                                <label id="setCardTypeLabel" class="col-md-4 control-label" for="setAppTheme">{{_
+                                        "themes.profile.label"}}:</label>
+                                <form>
+                                    <div class="dropdown">
+                                        <div class="btn-group col-xs-12 col-md-8">
+                                            <button type="button"
+                                                    class="btn btn-raised btn-default setAppTheme setAppThemeDropdown longButton"
+                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false"
+                                                    value="{{cardType}}">
+                                                <span class="setAppThemeDropdownText">{{getActiveTheme}}</span>
+                                            </button>
+                                            <button type="button"
+                                                    class="btn btn-raised dropdown-toggle setAppThemeDropdown setAppThemeDropdownCaret"
+                                                    data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                            <span class="flex-content"><span class="caret"></span>
+                                            <span class="sr-only"></span></span>
+                                            </button>
+                                            <ul class="dropdown-menu btn-raised longButton">
+                                                {{#each getAppThemes}}
+                                                    <li class="themeSelection" value="{{this.theme}}" data-id="{{this.theme}}">
+                                                        <a rel="noopener noreferrer" href="#" data-id="{{this.theme}}">{{getAppThemeName this.theme}}</a>
+                                                    </li>
+                                                {{/each}}
+                                            </ul>
+                                            <span id="helpSetAppTheme" class="text-warning"></span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        {{/if}}
                         {{#if isNotificationEnabled}}
-                            <div class="form-group">
+                            <div id="notificationFormGroup" class="form-group">
                                 <label class="col-md-4 control-label">{{_ "confirmLearn-form.notification"}}:</label>
                                 <form>
                                     <fieldset>

@@ -15,6 +15,7 @@ import {Utilities} from "../../util/utilities";
 import {CardType} from "../../util/cardTypes";
 import {LeitnerUtilities} from "../../util/leitner";
 import {LeitnerTasks} from "../subscriptions/leitnerTasks";
+import {ServerStyle} from "../../util/styles";
 
 Meteor.methods({
 	updateUsersVisibility: function (visible, id) {
@@ -118,6 +119,16 @@ Meteor.methods({
 			}
 		});
 	},
+	updateUserTheme: function (theme) {
+		if (ServerStyle.getAppThemes().length > 1) {
+			check(theme, String);
+			Meteor.users.update(Meteor.userId(), {
+				$set: {
+					savedTheme: theme
+				}
+			});
+		}
+	},
 	updateUsersProfileState: function (completed, id) {
 		check(completed, Boolean);
 		check(id, String);
@@ -150,7 +161,6 @@ Meteor.methods({
 						lvl: 1,
 						lastOnAt: new Date(),
 						daysInRow: 0,
-						selectedColorTheme: "default",
 						mailNotification: false,
 						webNotification: false,
 						"profile.locale": "de",
@@ -439,20 +449,6 @@ Meteor.methods({
 				}
 			);
 		}
-	},
-	/** Function saves the given colorTheme to the given user
-	 *  @param {string} selectedColorTheme - The id of the selected color theme
-	 *  @param {string} id - The id of the user
-	 * */
-	updateColorTheme: function (selectedColorTheme, id) {
-		check(selectedColorTheme, String);
-		check(id, String);
-
-		Meteor.users.update(id, {
-			$set: {
-				"selectedColorTheme": selectedColorTheme
-			}
-		});
 	},
 	/** Function saves the given read message of the day ids to the given user
 	 *  @param {string} motds - new Array of motd ids

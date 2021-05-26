@@ -37,7 +37,7 @@ import {Fullscreen} from "../../util/fullscreen";
 import {CardsetVisuals} from "../../util/cardsetVisuals";
 import tippy from "tippy.js";
 import 'tippy.js/animations/scale-extreme.css';
-import {BackgroundChanger} from "../../util/backgroundChanger";
+import {ThemeChanger} from "../../util/themeChanger";
 import {LockScreen} from "../../util/lockScreen";
 import {SweetAlertMessages} from "../../util/sweetAlert";
 import {Utilities} from "../../util/utilities";
@@ -46,7 +46,7 @@ Meteor.subscribe("notifications");
 Meteor.subscribe("serverStatistics");
 Meteor.subscribe("collegesCourses");
 
-Session.setDefault("theme", ServerStyle.getDefaultTheme());
+Session.setDefault("theme", ServerStyle.getDefaultThemeID());
 Session.setDefault("fullscreen", false);
 Session.setDefault("previousRouteName", undefined);
 Session.setDefault("connectionStatus", 2);
@@ -190,7 +190,7 @@ Meteor.startup(function () {
 		MainNavigation.enableKeyEvents();
 		CardNavigation.enableKeyEvents();
 	});
-	BackgroundChanger.setTheme();
+	ThemeChanger.setTheme();
 	MarkdeepContent.initializeStylesheet();
 	document.title = ServerStyle.getLastAppTitle();
 	windowResizeSensor = $(window).resize(function () {
