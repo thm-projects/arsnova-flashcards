@@ -316,6 +316,10 @@ $themes: (
     $navbar_backend_background_hover: map-get($map, "navbar_backend_background_hover");
     $navbar_backend_text: map-get($map, "navbar_backend_text");
     $navbar_backend_text_hover: map-get($map, "navbar_backend_text_hover");
+    $navbar_theme_background: map-get($map, "navbar_theme_background");
+    $navbar_theme_background_hover: map-get($map, "navbar_theme_background_hover");
+    $navbar_theme_text: map-get($map, "navbar_theme_text");
+    $navbar_theme_text_hover: map-get($map, "navbar_theme_text_hover");
     $navbar_notifications_background: map-get($map, "navbar_notifications_background");
     $navbar_notifications_background_hover: map-get($map, "navbar_notifications_background_hover");
     $navbar_notifications_text: map-get($map, "navbar_notifications_text");
@@ -328,13 +332,13 @@ $themes: (
     $navbar_profile_text_active: map-get($map, "navbar_profile_text_active");
     $navbar_logout_background: map-get($map, "navbar_profile_background");
     $navbar_logout_background_hover: map-get($map, "navbar_logout_background_hover");
-    $navbar_profile_dropdown_background: map-get($map, "navbar_profile_dropdown_background");
-    $navbar_profile_dropdown_background_opacity: map-get($map, "navbar_profile_dropdown_background_opacity");
-    $navbar_profile_dropdown_background_hover: map-get($map, "navbar_profile_dropdown_background_hover");
-    $navbar_profile_dropdown_background_active: map-get($map, "navbar_profile_dropdown_background_active");
-    $navbar_profile_dropdown_text: map-get($map, "navbar_profile_dropdown_text");
-    $navbar_profile_dropdown_text_hover: map-get($map, "navbar_profile_dropdown_text_hover");
-    $navbar_profile_dropdown_text_active: map-get($map, "navbar_profile_dropdown_text_active");
+    $navbar_dropdown_background: map-get($map, "navbar_dropdown_background");
+    $navbar_dropdown_background_opacity: map-get($map, "navbar_dropdown_background_opacity");
+    $navbar_dropdown_background_hover: map-get($map, "navbar_dropdown_background_hover");
+    $navbar_dropdown_background_active: map-get($map, "navbar_dropdown_background_active");
+    $navbar_dropdown_text: map-get($map, "navbar_dropdown_text");
+    $navbar_dropdown_text_hover: map-get($map, "navbar_dropdown_text_hover");
+    $navbar_dropdown_text_active: map-get($map, "navbar_dropdown_text_active");
     $navbar_logout_text: map-get($map, "navbar_logout_text");
     $navbar_logout_text_hover: map-get($map, "navbar_logout_text_hover");
     $navbar_websocket_connected: map-get($map, "navbar_websocket_connected");
@@ -2671,6 +2675,15 @@ $themes: (
       color: $navbar_help_text_active !important;
     }
 
+    #navbar-theme-top > a {
+      background-color: $navbar_theme_background !important;
+      color: $navbar_theme_text !important;
+    }
+    #navbar-theme-top > a:hover, #navbar-theme-top > a:focus {
+      background-color: $navbar_theme_background_hover !important;
+      color: $navbar_theme_text_hover !important;
+    }
+
     #navbar-adminpanel a {
       background-color: $navbar_backend_background !important;
       color: $navbar_backend_text !important;
@@ -3782,7 +3795,7 @@ $themes: (
       color: $white !important;
       background-color: $button_difficulty3 !important;
     }
-
+    
     // make uppercase buttons for material ui, only in dark theme
     @if $theme == 'dark' {
       .cardsetInfoFooter .btn {
@@ -3791,7 +3804,7 @@ $themes: (
       }
     }
 
-    #setCardsetFormModal, #showSelectLearningUnitModal, #setLeitnerProgressCardsetFilter, #useCasesModal {
+    #setCardsetFormModal, #showSelectLearningUnitModal, #setLeitnerProgressCardsetFilter, #useCasesModal, #appThemeSelector {
       ul > li {
         background-color: $cardset_form_list_background !important;
         border-bottom-color: $cardset_form_border !important;
@@ -4072,31 +4085,31 @@ $themes: (
         stroke: $presentation_clock_second_arm !important;
       }
     }
-    #profile-drop {
-      background-color: $navbar_profile_dropdown_background !important;
-      color: $navbar_profile_dropdown_text !important;
-      opacity: $navbar_profile_dropdown_background_opacity !important;
+    .navbar-drop {
+      background-color: $navbar_dropdown_background !important;
+      color: $navbar_dropdown_text !important;
+      opacity: $navbar_dropdown_background_opacity !important;
       @media(max-width: 767px) {
         opacity: 1 !important;
       }
       tr {
-        background-color: $navbar_profile_dropdown_background !important;
+        background-color: $navbar_dropdown_background !important;
         a {
-          color: $navbar_profile_dropdown_text !important;
+          color: $navbar_dropdown_text !important;
         }
 
       }
       tr:hover, tr:focus {
-        background-color: $navbar_profile_dropdown_background_hover !important;
+        background-color: $navbar_dropdown_background_hover !important;
         a {
-          color: $navbar_profile_dropdown_text_hover !important;
+          color: $navbar_dropdown_text_hover !important;
         }
 
       }
       .active {
-        background-color: $navbar_profile_dropdown_background_active !important;
+        background-color: $navbar_dropdown_background_active !important;
         a {
-          color: $navbar_profile_dropdown_text_active !important;
+          color: $navbar_dropdown_text_active !important;
         }
       }
     }

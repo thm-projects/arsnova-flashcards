@@ -351,6 +351,11 @@
           "navbar_backend_text": white,
           "navbar_backend_text_hover": white,
 
+          "navbar_theme_background": black,
+          "navbar_theme_background_hover": $button_background_hover,
+          "navbar_theme_text": white,
+          "navbar_theme_text_hover": $button_text_hover,
+
           "navbar_notifications_background": black,
           "navbar_notifications_background_hover": $button_background_hover,
           "navbar_notifications_text": white,
@@ -362,13 +367,14 @@
           "navbar_profile_text": white,
           "navbar_profile_text_hover": $button_text_hover,
           "navbar_profile_text_active": #2ac55f,
-          "navbar_profile_dropdown_background": $default_grey,
-          "navbar_profile_dropdown_background_opacity": 0.9,
-          "navbar_profile_dropdown_background_hover": $button_background_hover,
-          "navbar_profile_dropdown_background_active": #2ac55f,
-          "navbar_profile_dropdown_text": white,
-          "navbar_profile_dropdown_text_hover": $button_text_hover,
-          "navbar_profile_dropdown_text_active": white,
+
+          "navbar_dropdown_background": $default_grey,
+          "navbar_dropdown_background_opacity": 0.9,
+          "navbar_dropdown_background_hover": $button_background_hover,
+          "navbar_dropdown_background_active": #2ac55f,
+          "navbar_dropdown_text": white,
+          "navbar_dropdown_text_hover": $button_text_hover,
+          "navbar_dropdown_text_active": white,
 
           "navbar_logout_background": black !important,
           "navbar_logout_background_hover": white,

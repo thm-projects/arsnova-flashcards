@@ -12,6 +12,8 @@ import "./item/impressum.js";
 import "./item/info.js";
 import "./item/learning.js";
 import "./item/statistics.js";
+import "./item/theme.js";
+import "./item/themeIcon.js";
 import "./footer.html";
 import {MainNavigation} from "../../../../util/mainNavigation";
 import {Meteor} from "meteor/meteor";
