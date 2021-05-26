@@ -203,7 +203,7 @@ module.exports = {
 		"randomCardsSelection": false
 	},
 	"themes": {
-		"defaultID": 0, // The default theme id from the list
+		"default": "linux", // The default theme from the list
 		"list": [
 			{
 				"theme": "linux", // The color theme
