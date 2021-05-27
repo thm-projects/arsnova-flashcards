@@ -4,9 +4,9 @@ import {Session} from "meteor/session";
 import {Meteor} from "meteor/meteor";
 import {MainNavigation} from "./mainNavigation";
 
-export let ThemeChanger = class ThemeChanger {
+export let ThemeSwitcher = class ThemeSwitcher {
 	static changeToBackgroundStyle (name, cssClass = undefined) {
-		ThemeChanger.setBackground(ServerStyle.getBackground(name), cssClass);
+		ThemeSwitcher.setBackground(ServerStyle.getBackground(name), cssClass);
 	}
 
 	static setBackground (backgroundObject, cssClass = undefined) {
@@ -26,26 +26,26 @@ export let ThemeChanger = class ThemeChanger {
 	static landingPageBackgrounds () {
 		if (Route.isDemo() || Route.isMakingOf()) {
 			if (Route.isPresentationViewList()) {
-				ThemeChanger.changeToBackgroundStyle("demoIndex", "presentation-list");
+				ThemeSwitcher.changeToBackgroundStyle("demoIndex", "presentation-list");
 			} else {
-				ThemeChanger.changeToBackgroundStyle("demo", "demo");
+				ThemeSwitcher.changeToBackgroundStyle("demo", "demo");
 			}
 		} else if (Route.isAGB()) {
-			ThemeChanger.changeToBackgroundStyle("agb");
+			ThemeSwitcher.changeToBackgroundStyle("agb");
 		} else if (Route.isDatenschutz()) {
-			ThemeChanger.changeToBackgroundStyle("datenschutz");
+			ThemeSwitcher.changeToBackgroundStyle("datenschutz");
 		} else if (Route.isImpressum()) {
-			ThemeChanger.changeToBackgroundStyle("impressum");
+			ThemeSwitcher.changeToBackgroundStyle("impressum");
 		} else if (Route.isAbout()) {
-			ThemeChanger.changeToBackgroundStyle("about");
+			ThemeSwitcher.changeToBackgroundStyle("about");
 		} else if (Route.isLearning()) {
-			ThemeChanger.changeToBackgroundStyle("learning");
+			ThemeSwitcher.changeToBackgroundStyle("learning");
 		} else if (Route.isFaq()) {
-			ThemeChanger.changeToBackgroundStyle("faq");
+			ThemeSwitcher.changeToBackgroundStyle("faq");
 		} else if (Route.isHelp()) {
-			ThemeChanger.changeToBackgroundStyle("help");
+			ThemeSwitcher.changeToBackgroundStyle("help");
 		} else {
-			ThemeChanger.changeToBackgroundStyle("landing-page");
+			ThemeSwitcher.changeToBackgroundStyle("landing-page");
 		}
 	}
 
@@ -65,11 +65,8 @@ export let ThemeChanger = class ThemeChanger {
 				Session.set("theme", defaultThemeID);
 				Meteor.call("updateUserTheme", defaultThemeID);
 			}
-		} else {
-			// When user logged out, go back to default Theme
-			Session.set("theme", ServerStyle.getDefaultThemeID());
 		}
-		ThemeChanger.displayTheme();
+		ThemeSwitcher.displayTheme();
 	}
 
 	static displayTheme () {
@@ -99,59 +96,59 @@ export let ThemeChanger = class ThemeChanger {
 	static setBackgroundStyle () {
 		//Background
 		if (Route.isLandingPageRoutes()) {
-			ThemeChanger.landingPageBackgrounds();
+			ThemeSwitcher.landingPageBackgrounds();
 		} else if (Meteor.user() || MainNavigation.isGuestLoginActive()) {
 			if (Route.isBackend()) {
-				ThemeChanger.changeToBackgroundStyle("backend", "backend");
+				ThemeSwitcher.changeToBackgroundStyle("backend", "backend");
 			} else {
 				let internal = 'internal';
 				if (Route.isProfile()) {
 					if (Route.isProfileSettings()) {
-						ThemeChanger.changeToBackgroundStyle("profileSettings", internal);
+						ThemeSwitcher.changeToBackgroundStyle("profileSettings", internal);
 					} else if (Route.isProfileMembership()) {
-						ThemeChanger.changeToBackgroundStyle("profileMembership", internal);
+						ThemeSwitcher.changeToBackgroundStyle("profileMembership", internal);
 					} else if (Route.isProfileRequests()) {
-						ThemeChanger.changeToBackgroundStyle("profileRequests", internal);
+						ThemeSwitcher.changeToBackgroundStyle("profileRequests", internal);
 					} else {
-						ThemeChanger.changeToBackgroundStyle("profileBilling", internal);
+						ThemeSwitcher.changeToBackgroundStyle("profileBilling", internal);
 					}
 				} else if (Route.isPublic()) {
-					ThemeChanger.changeToBackgroundStyle("pool", internal);
+					ThemeSwitcher.changeToBackgroundStyle("pool", internal);
 				} else if (Route.isWorkload()) {
-					ThemeChanger.changeToBackgroundStyle("workload", internal);
+					ThemeSwitcher.changeToBackgroundStyle("workload", internal);
 				} else if (Route.isPersonal()) {
-					ThemeChanger.changeToBackgroundStyle("personal", internal);
+					ThemeSwitcher.changeToBackgroundStyle("personal", internal);
 				} else if (Route.isMyTranscripts() || Route.isMyBonusTranscripts()) {
-					ThemeChanger.changeToBackgroundStyle("transcripts", internal);
+					ThemeSwitcher.changeToBackgroundStyle("transcripts", internal);
 				} else if (Route.isAll()) {
-					ThemeChanger.changeToBackgroundStyle("allPool", internal);
+					ThemeSwitcher.changeToBackgroundStyle("allPool", internal);
 				} else if (Route.isCardset()) {
-					ThemeChanger.changeToBackgroundStyle("cardset", internal);
+					ThemeSwitcher.changeToBackgroundStyle("cardset", internal);
 				} else if (Route.isCardsetLeitnerStats()) {
-					ThemeChanger.changeToBackgroundStyle("cardsetLeitnerStats", internal);
+					ThemeSwitcher.changeToBackgroundStyle("cardsetLeitnerStats", internal);
 				} else if (Route.isTranscriptBonus()) {
-					ThemeChanger.changeToBackgroundStyle("cardsetTranscriptBonus", internal);
+					ThemeSwitcher.changeToBackgroundStyle("cardsetTranscriptBonus", internal);
 				} else if (Route.isPresentation()) {
 					if (Route.isPresentationViewList()) {
-						ThemeChanger.changeToBackgroundStyle("presentationIndex", "presentation-list");
+						ThemeSwitcher.changeToBackgroundStyle("presentationIndex", "presentation-list");
 					} else {
-						ThemeChanger.changeToBackgroundStyle("presentation", "presentation");
+						ThemeSwitcher.changeToBackgroundStyle("presentation", "presentation");
 					}
 				} else if (Route.isBox() || Route.isMemo()) {
 					let learning = 'learning';
 					if (Route.isBox()) {
-						ThemeChanger.changeToBackgroundStyle("leitner", learning);
+						ThemeSwitcher.changeToBackgroundStyle("leitner", learning);
 					} else {
-						ThemeChanger.changeToBackgroundStyle("wozniak", learning);
+						ThemeSwitcher.changeToBackgroundStyle("wozniak", learning);
 					}
 				} else if (Route.isEditMode()) {
-					ThemeChanger.changeToBackgroundStyle("editor", "editor");
+					ThemeSwitcher.changeToBackgroundStyle("editor", "editor");
 				} else if (Route.isLandingPageRoutes()) {
-					ThemeChanger.landingPageBackgrounds();
+					ThemeSwitcher.landingPageBackgrounds();
 				} else if (Route.isNotFound()) {
-					ThemeChanger.changeToBackgroundStyle("notFound", internal);
+					ThemeSwitcher.changeToBackgroundStyle("notFound", internal);
 				} else {
-					ThemeChanger.changeToBackgroundStyle("internal", "internal");
+					ThemeSwitcher.changeToBackgroundStyle("internal", "internal");
 				}
 			}
 		} else {
@@ -159,7 +156,7 @@ export let ThemeChanger = class ThemeChanger {
 			if (!Route.isLandingPageRoutes()) {
 				landingPage = 'landing-page';
 			}
-			ThemeChanger.changeToBackgroundStyle("landing-page", landingPage);
+			ThemeSwitcher.changeToBackgroundStyle("landing-page", landingPage);
 		}
 	}
 };

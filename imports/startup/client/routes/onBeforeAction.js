@@ -7,7 +7,7 @@ import {Meteor} from "meteor/meteor";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import {LoginTasks} from "../../../util/login";
 import {checkForNewMessages} from "../../../ui/messageOfTheDay/messageOfTheDay";
-import {ThemeChanger} from "../../../util/themeChanger";
+import {ThemeSwitcher} from "../../../util/themeSwitcher";
 import {Utilities} from "../../../util/utilities";
 
 
@@ -91,7 +91,7 @@ export let checkMotds = function () {
 	});
 };
 
-FlowRouter.triggers.enter([Utilities.setActiveLanguage, ThemeChanger.setTheme]);
+FlowRouter.triggers.enter([Utilities.setActiveLanguage, ThemeSwitcher.setTheme]);
 
 FlowRouter.triggers.exit(function (context) {
 	Session.set('previousRouteName', context.route.name);
