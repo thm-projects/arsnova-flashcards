@@ -24,6 +24,7 @@ import "./permissionCheck.js";
 import "./presentation.js";
 import "./roles.js";
 import "./routeCheck.js";
+import "./themeSwitcher.js";
 import "./time.js";
 import "./transcripts.js";
 import "./user.js";
