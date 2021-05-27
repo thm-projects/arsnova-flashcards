@@ -37,7 +37,7 @@ import {Fullscreen} from "../../util/fullscreen";
 import {CardsetVisuals} from "../../util/cardsetVisuals";
 import tippy from "tippy.js";
 import 'tippy.js/animations/scale-extreme.css';
-import {ThemeChanger} from "../../util/themeChanger";
+import {ThemeSwitcher} from "../../util/themeSwitcher";
 import {LockScreen} from "../../util/lockScreen";
 import {SweetAlertMessages} from "../../util/sweetAlert";
 import {Utilities} from "../../util/utilities";
@@ -190,7 +190,7 @@ Meteor.startup(function () {
 		MainNavigation.enableKeyEvents();
 		CardNavigation.enableKeyEvents();
 	});
-	ThemeChanger.setTheme();
+	ThemeSwitcher.setTheme();
 	MarkdeepContent.initializeStylesheet();
 	document.title = ServerStyle.getLastAppTitle();
 	windowResizeSensor = $(window).resize(function () {

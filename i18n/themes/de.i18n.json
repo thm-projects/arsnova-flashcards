@@ -1,5 +1,8 @@
 {
   "themes": {
+    "footer": {
+      "label": "Theme"
+    },
     "profile": {
       "label": "Theme",
       "default": "(Voreinstellung)",
