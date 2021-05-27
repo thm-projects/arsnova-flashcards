@@ -354,6 +354,11 @@
           "navbar_backend_text": white,
           "navbar_backend_text_hover": white,
 
+          "navbar_theme_background": black,
+          "navbar_theme_background_hover": $button_background_hover,
+          "navbar_theme_text": whitesmoke,
+          "navbar_theme_text_hover": $button_text_hover,
+
           "navbar_notifications_background": black,
           "navbar_notifications_background_hover": $button_background_hover,
           "navbar_notifications_text": white,
@@ -365,13 +370,13 @@
           "navbar_profile_text": white,
           "navbar_profile_text_hover": $button_text_hover,
           "navbar_profile_text_active": #2ac55f,
-          "navbar_profile_dropdown_background": $default_black,
-          "navbar_profile_dropdown_background_opacity": 0.9,
-          "navbar_profile_dropdown_background_hover": $button_background_hover,
-          "navbar_profile_dropdown_background_active": #2ac55f,
-          "navbar_profile_dropdown_text": $hyperlink,
-          "navbar_profile_dropdown_text_hover": $button_text_hover,
-          "navbar_profile_dropdown_text_active": white,
+          "navbar_dropdown_background": $default_black,
+          "navbar_dropdown_background_opacity": 0.9,
+          "navbar_dropdown_background_hover": $button_background_hover,
+          "navbar_dropdown_background_active": #2ac55f,
+          "navbar_dropdown_text": $hyperlink,
+          "navbar_dropdown_text_hover": $button_text_hover,
+          "navbar_dropdown_text_active": white,
 
           "navbar_logout_background": black !important,
           "navbar_logout_background_hover": $button_background_hover,
@@ -936,6 +941,8 @@
           "search_divide:": $default_grey,
     //form group colors
           "form_group_label": white,
+          "theme_dropdown_background": lighten($default_black, 10),
+          "theme_dropdown_text": $input_textarea_text_inactive,
     //cardset form colors
           "cardset_form_list_background": $default_black,
           "cardset_form_list_text": $primary_text,

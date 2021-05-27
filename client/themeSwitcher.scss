@@ -428,6 +428,8 @@ $themes: (
     $button_difficulty1: map-get($map, "button_difficulty1");
     $button_difficulty2: map-get($map, "button_difficulty2");
     $button_difficulty3: map-get($map, "button_difficulty3");
+    $theme_dropdown_background: map-get($map, "theme_dropdown_background");
+    $theme_dropdown_text: map-get($map, "theme_dropdown_text");
     $button_difficulty_inactive: map-get($map, "button_difficulty_inactive");
     $background_difficulty0_note: map-get($map, "background_difficulty0_note");
     $background_difficulty0: map-get($map, "background_difficulty0");
@@ -3802,6 +3804,11 @@ $themes: (
         text-transform: uppercase !important;
         letter-spacing: .5px !important;
       }
+    }
+
+    .setAppThemeDropdown {
+      background-color: $theme_dropdown_background !important;
+      color: $theme_dropdown_text !important;
     }
 
     #setCardsetFormModal, #showSelectLearningUnitModal, #setLeitnerProgressCardsetFilter, #useCasesModal, #appThemeSelector {
