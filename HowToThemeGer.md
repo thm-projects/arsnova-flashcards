@@ -26,7 +26,8 @@
    
 Neue Bilder können in `public/img/background` hinzugefügt werden.
    
-## Themenfarbe und Hintergrund auf die Server Installation anwenden
-1. Öffnen die Server-Konfigurationsdatei `imports/config/exportStyle.js`
-1. Finde das Theme-Objekt
+## Themen Farbe und Hintergrundbilder zu dem Theme Switcher hinzufügen
+1. Öffnen die Server-Konfigurationsdateien im Ordner `imports/config/serverStyle/style`
+1. Finde das "themes" Objekt
 1. Fügen in der Liste den neuen Theme Namen und Hintergrund hinzu
+1. Füge in den Übersetzungsdateien unter `i18n/themes/` innerhalb der Variable "list" den Namen des Themes so wie die Übersetzung hinzu
