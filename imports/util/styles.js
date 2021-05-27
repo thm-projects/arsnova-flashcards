@@ -249,7 +249,7 @@ export let ServerStyle = class ServerStyle {
 	}
 
 	static getSavedTheme () {
-		if (Meteor.user().savedTheme !== undefined) {
+		if (Meteor.user() && Meteor.user().savedTheme !== undefined) {
 			let config = this.getConfig().themes;
 			return config.list.filter(object => {
 				return object.theme === Meteor.user().savedTheme;

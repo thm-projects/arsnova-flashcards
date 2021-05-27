@@ -104,6 +104,9 @@
                 {{> mainNavigationTopItemAll}}
                 {{> mainNavigationTopItemBackend}}
             {{/unless}}
+            {{#if isGuestLogin}}
+                {{> mainNavigationTopItemTheme}}
+            {{/if}}
             {{> frontendNotification}}
             {{> mainNavigationTopItemConnectionStatus visibility=1}}
             {{#unless isGuestLogin}}

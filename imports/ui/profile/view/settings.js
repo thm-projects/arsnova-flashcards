@@ -10,7 +10,7 @@ import "./settings.html";
 import {ServerSettings} from "../../../util/settings";
 import {ServerStyle} from "../../../util/styles";
 import {UserPermissions} from "../../../util/permissions";
-import {ThemeChanger} from "../../../util/themeChanger";
+import {ThemeSwitcher} from "../../../util/themeSwitcher";
 
 /*
  * ############################################################################
@@ -56,27 +56,6 @@ Template.profileSettings.helpers({
 	},
 	isDisabledSaveLanguage: function () {
 		return Session.get("languageSettings");
-	},
-	gotMultipleThemes: function () {
-		return ServerStyle.getAppThemes().length > 1;
-	},
-	getAppThemes: function () {
-		return ServerStyle.getAppThemes();
-	},
-	getActiveTheme: function () {
-		let activeTheme = ServerStyle.getActiveTheme();
-		return TAPi18n.__(`themes.list.${activeTheme.theme}`);
-	},
-	getAppThemeName: function (theme) {
-		let string = TAPi18n.__(`themes.list.${theme}`);
-		if (theme === ServerStyle.getDefaultThemeID()) {
-			string += ` ${TAPi18n.__(`themes.profile.default`)}`;
-		}
-		let savedTheme = ServerStyle.getSavedTheme();
-		if (savedTheme !== undefined && theme === savedTheme.theme) {
-			string += ` ${TAPi18n.__(`themes.profile.saved`)}`;
-		}
-		return string;
 	}
 });
 
@@ -98,8 +77,8 @@ Template.profileSettings.onCreated(function () {
 
 Template.profileSettings.events({
 	"click .themeSelection": function (event) {
-		Session.set("theme", $(event.target).data('id'));
-		ThemeChanger.displayTheme();
+		Session.set("theme", $(event.currentTarget).data('id'));
+		ThemeSwitcher.displayTheme();
 	},
 	"click #profilepublicoption1": function () {
 		Meteor.call("updateUsersVisibility", true, Meteor.userId());
@@ -324,7 +303,7 @@ Template.profileSettings.events({
 		$('#errorGivenName').html('');
 		Session.set("profileSettingsSave", true);
 		Session.set("profileSettingsCancel", true);
-		ThemeChanger.setTheme();
+		ThemeSwitcher.setTheme();
 		BertAlertVisuals.displayBertAlert(TAPi18n.__('profile.canceled'), 'danger', 'growl-top-left');
 	}
 });
