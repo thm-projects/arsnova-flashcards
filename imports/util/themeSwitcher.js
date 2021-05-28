@@ -3,6 +3,10 @@ import {Route} from "./route";
 import {Session} from "meteor/session";
 import {Meteor} from "meteor/meteor";
 import {MainNavigation} from "./mainNavigation";
+import localStorageConfig from "../config/localStorage";
+import {ReactiveVar} from 'meteor/reactive-var';
+
+let savedThemeID = new ReactiveVar();
 
 export let ThemeSwitcher = class ThemeSwitcher {
 	static changeToBackgroundStyle (name, cssClass = undefined) {
@@ -49,24 +53,50 @@ export let ThemeSwitcher = class ThemeSwitcher {
 		}
 	}
 
+	static getSavedThemeID () {
+		if (Meteor.user() && Meteor.user().savedTheme !== undefined) {
+			savedThemeID.set(Meteor.user().savedTheme);
+		} else {
+			savedThemeID.set(localStorage.getItem(localStorageConfig.savedTheme));
+		}
+		let config = ServerStyle.getConfig().themes;
+		let result = config.list.filter(object => {
+			return object.theme === savedThemeID.get();
+		})[0];
+		if (result !== undefined) {
+			return result.theme;
+		}
+	}
+
 	static setTheme () {
 		if (Route.isRouteWithoutMainNavigation()) {
 			Session.set('displayMainNavigation', false);
 		} else {
 			Session.set('displayMainNavigation', true);
 		}
-		if (ServerStyle.getAppThemes().length > 1 && Meteor.user()) {
+		if (ServerStyle.getAppThemes().length > 1) {
 			//Check if the user got a saved theme or if the saved theme is still available
-			let savedTheme = ServerStyle.getSavedTheme();
-			if (savedTheme !== undefined) {
-				Session.set("theme", savedTheme.theme);
+			let savedThemeID = ThemeSwitcher.getSavedThemeID();
+			if (savedThemeID !== undefined) {
+				Session.set("theme", savedThemeID);
 			} else {
 				let defaultThemeID = ServerStyle.getDefaultThemeID();
 				Session.set("theme", defaultThemeID);
-				Meteor.call("updateUserTheme", defaultThemeID);
+				if (Meteor.user()) {
+					Meteor.call("updateUserTheme", defaultThemeID);
+				} else {
+					ThemeSwitcher.saveGuestTheme(defaultThemeID);
+				}
 			}
 		}
 		ThemeSwitcher.displayTheme();
+	}
+
+	static saveGuestTheme (theme) {
+		Session.set("theme", theme);
+		localStorage.setItem(localStorageConfig.savedTheme, theme);
+		savedThemeID.set(theme);
+		this.displayTheme();
 	}
 
 	static displayTheme () {

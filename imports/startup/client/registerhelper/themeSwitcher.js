@@ -1,4 +1,5 @@
 import {ServerStyle} from "../../../util/styles";
+import {ThemeSwitcher} from "../../../util/themeSwitcher";
 
 Template.registerHelper("gotMultipleThemes", function () {
 	return ServerStyle.getAppThemes().length > 1;
@@ -18,8 +19,8 @@ Template.registerHelper("getAppThemeName", function (theme) {
 	if (theme === ServerStyle.getDefaultThemeID()) {
 		string += `&nbsp;<span class="hidden-xs">${TAPi18n.__(`themes.profile.default`)}</span>`;
 	}
-	let savedTheme = ServerStyle.getSavedTheme();
-	if (savedTheme !== undefined && theme === savedTheme.theme) {
+	let savedThemeID = ThemeSwitcher.getSavedThemeID();
+	if (savedThemeID !== undefined && theme === savedThemeID) {
 		string += `&nbsp;<span class="hidden-xs">${TAPi18n.__(`themes.profile.saved`)}</span>`;
 	}
 	return string;
