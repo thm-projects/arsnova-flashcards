@@ -203,11 +203,15 @@ module.exports = {
 		"randomCardsSelection": false
 	},
 	"themes": {
-		"default": "arsnova", // The default theme from the list
+		"default": "dark", // The default theme from the list
 		"list": [
 			{
 				"theme": "arsnova", // The color theme
 				"backgrounds": "arsnova" // The background images found in ./backgrounds.js
+			},
+			{
+				"theme": "linux", // The color theme
+				"backgrounds": "linux" // The background images found in ./backgrounds.js
 			},
 			{
 				"theme": "dark", // The color theme
