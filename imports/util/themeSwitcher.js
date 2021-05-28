@@ -65,6 +65,8 @@ export let ThemeSwitcher = class ThemeSwitcher {
 				Session.set("theme", defaultThemeID);
 				Meteor.call("updateUserTheme", defaultThemeID);
 			}
+		} else {
+			Session.set("theme", ServerStyle.getDefaultThemeID());
 		}
 		ThemeSwitcher.displayTheme();
 	}
