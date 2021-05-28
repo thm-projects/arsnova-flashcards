@@ -37,6 +37,7 @@ $themes: (
     $slate_gray_approx: map-get($map, "slate_gray_approx");
     $alto_approx: map-get($map, "alto_approx");
     $storm_dust_approx: map-get($map, "storm_dust_approx");
+    $slogan: map-get($map, "slogan");
     $mountain_mist_approx: map-get($map, "mountain_mist_approx");
     $primary: map-get($map, "primary");
     $accent: map-get($map, "accent");
@@ -128,6 +129,14 @@ $themes: (
     $error_reporting_label_background: map-get($map, "error_reporting_label_background");
     $error_reporting_label_text: map-get($map, "error_reporting_label_text");
     $form_check_label_color: map-get($map, "form_check_label_color");
+
+    $cc_windows_background: map-get($map, "cc_windows_background");
+    $cc_windows_background_text: map-get($map, "cc_windows_background_text");
+    $cc_btn_background: map-get($map, "cc_btn_background");
+    $cc_btn_text: map-get($map, "cc_btn_text");
+    $cc_btn_background_hover: map-get($map, "cc_btn_background_hover");
+    $cc_btn_text_hover: map-get($map, "cc_btn_text_hover");
+
     //license
     $background_license_icon: map-get($map, "background_license_icon");
     $foreground_license_icon: map-get($map, "foreground_license_icon");
@@ -1274,6 +1283,20 @@ $themes: (
       }
     }
 
+    .cc-window {
+      background-color: $cc_windows_background !important;
+      color: $cc_windows_background_text !important;
+      .cc-btn {
+        background-color: $cc_btn_background !important;
+        color: $cc_btn_text !important;
+      }
+      .cc-btn:hover {
+        background-color: $cc_btn_background_hover !important;
+        color: $cc_btn_text_hover !important;
+        text-decoration: none !important;
+      }
+    }
+
     .block {
       background-color: $white !important;
     }
@@ -1284,7 +1307,7 @@ $themes: (
     }
 
     .btn-raised.btn-info {
-      color: $info_text;
+      color: $info_text !important;
       background-color: $info_background;
     }
 
@@ -1460,6 +1483,12 @@ $themes: (
     .fa-home {
       color: $thm_gray !important;
     }
+
+    /*@if $theme == 'dark' {
+      [class*="fa-"] {
+        color: darken($item_icon, 7) !important;
+      }
+    }*/
 
     #markdeepNavigation .fas, #markdeepNavigation .fab, #markdeepNavigation .far, #markdeepNavigation .markdeep-center, #markdeepNavigation .markdeep-fullscreen, .card-button {
       color: white ;
@@ -3867,7 +3896,7 @@ $themes: (
         background-color: transparent !important;
       }
       #slogan {
-        color: white !important;
+        color: $slogan !important;
         text-shadow: 2px 2px 5px $welcome_page_login_label_shadow !important;
       }
       .panel-heading {

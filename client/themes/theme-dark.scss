@@ -9,7 +9,7 @@
   $default_dark_red: #b24531;
   $default_grey: #424242;
   $default_green: #2E7D32;
-  $default_white: white;
+  $default_white: whitesmoke;
   $default_black: #121212;
 
   $primary: $default_grey;
@@ -93,13 +93,13 @@
           "edu_background": $default_green,
           "edu_text": $default_white,
           "pro_background": darken($default_orange, 15),
-          "pro_text": $default_white,
+          "pro_text": white,
           "private_background": $default_grey,
           "private_text": $default_white,
           "danger_background": $default_dark_orange,
           "danger_text": $default_white,
           "info_background": $default_dark_orange,
-          "info_text": $default_white,
+          "info_text": white,
           "success_background": $default_green,
           "success_text": $default_white,
           "warning_background": $default_dark_red,
@@ -113,7 +113,7 @@
           "bonus_finished_background": darkslategray,
           "bonus_finished_text": $default_white,
           "bonus_transcript_background": darken($default_orange,15),
-          "bonus_transcript_text": $default_white,
+          "bonus_transcript_text": white,
           "card_type_background": darkviolet,
           "card_type_text": white,
           "button_background_hover": $button_background_hover,
@@ -194,7 +194,7 @@
           "login_cas_background_hover": $button_background_hover,
           "login_cas_icon": black,
           "login_cas_icon_hover": $button_text_hover,
-          "login_guest_background": white,
+          "login_guest_background": grey,
           "login_guest_background_hover": $button_background_hover,
           "login_guest_icon": black,
           "login_guest_icon_hover": $button_text_hover,
@@ -202,6 +202,7 @@
           "login_pro_background_hover": $button_background_hover,
           "login_pro_icon": black,
           "login_pro_icon_hover": $button_text_hover,
+          "slogan": $default_dark_orange,
           "login_backdoor_background": grey,
           "login_backdoor_background_hover": $button_background_hover,
           "login_backdoor_icon": black,
@@ -390,7 +391,7 @@
           "navbar_websocket_background_hover": $button_background_hover,
     //welcome page colors
           "welcome_page_login_label": white,
-          "welcome_page_login_label_shadow": $default_grey,
+          "welcome_page_login_label_shadow": rgba(0, 0, 0, 0.7),
           "placeholder": lighten($default_orange, 10),
     //export to markdeep colors
           "export_to_markdeep_table_header_background": $default_grey,
@@ -450,7 +451,7 @@
           "infinite_scroll_text": white,
           "item_spacing_background": rgba($default_grey, 0.1),
           "item_background": $default_grey,
-          "item_icon": white,
+          "item_icon": darken($default_white, 7),
           "item_icon_hover": $item_icon_hover,
           "item_author_text": whitesmoke,
           "item_workload_button_background": $default_green,
@@ -997,6 +998,13 @@
           "pomodoro_timer_arc_break_hover": #2ac55f,
           "pomodoro_timer_text": white,
           "pomodoro_timer_text_highlight": $default_orange,
+    //CC
+          "cc_windows_background": $default_black,
+          "cc_windows_background_text": $primary_text,
+          "cc_btn_background": lighten($default_black, 10),
+          "cc_btn_text": $primary_text,
+          "cc_btn_background_hover": $button_background_hover,
+          "cc_btn_text_hover": black,
     //sweet alert 2 colors
           "sweet_alert_2_title": white,
           "sweet_alert_2_text": white,
