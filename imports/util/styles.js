@@ -248,15 +248,6 @@ export let ServerStyle = class ServerStyle {
 		return this.getConfig().themes.default;
 	}
 
-	static getSavedTheme () {
-		if (Meteor.user() && Meteor.user().savedTheme !== undefined) {
-			let config = this.getConfig().themes;
-			return config.list.filter(object => {
-				return object.theme === Meteor.user().savedTheme;
-			})[0];
-		}
-	}
-
 	static getActiveTheme () {
 		let config = this.getConfig().themes;
 		return config.list.filter(object => {

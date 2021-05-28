@@ -63,7 +63,7 @@ Template.profileSettings.helpers({
 Template.profileSettings.onDestroyed(function () {
 	// Go back to last saved Theme
 	if (Meteor.user()) {
-		Session.set("theme", ServerStyle.getActiveTheme());
+		Session.set("theme", ThemeSwitcher.getSavedThemeID());
 		Session.set("language", Meteor.user().profile.locale);
 	}
 });
