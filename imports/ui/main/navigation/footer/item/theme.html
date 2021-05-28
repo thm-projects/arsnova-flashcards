@@ -1,23 +1,25 @@
 <template name="mainNavigationFooterItemTheme">
-    {{#if gotMultipleThemes}}
-        <li id="navbar-theme-footer" class="navbar-theme dropup">
-            <a rel="noopener noreferrer" id="switchThemeMenu" href="#" class="dropdown-toggle"
-                   type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="fas fa-palette"></span>&nbsp;{{_ "themes.footer.label"}}
-            </a>
-            <div class="dropdown-menu navbar-drop dropdown-menu-right" aria-labelledby="switchThemeMenu">
-                <table>
-                    {{#each getAppThemes}}
-                        <tr>
-                            <td class="themeSelection" data-id="{{this.theme}}">
-                                <a rel="noopener noreferrer" href="#" data-id="{{this.theme}}">{{{getAppThemeName this.theme}}}</a>
-                            </td>
-                        </tr>
-                    {{/each}}
-                </table>
-            </div>
-        </li>
-    {{/if}}
+    {{#unless canAccessFrontend}}
+        {{#if gotMultipleThemes}}
+            <li id="navbar-theme-footer" class="navbar-theme dropup">
+                <a rel="noopener noreferrer" id="switchThemeMenu" href="#" class="dropdown-toggle"
+                       type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="fas fa-palette"></span>&nbsp;{{_ "themes.footer.label"}}
+                </a>
+                <div class="dropdown-menu navbar-drop dropdown-menu-right" aria-labelledby="switchThemeMenu">
+                    <table>
+                        {{#each getAppThemes}}
+                            <tr>
+                                <td class="themeSelection" data-id="{{this.theme}}">
+                                    <a rel="noopener noreferrer" href="#" data-id="{{this.theme}}">{{{getAppThemeName this.theme}}}</a>
+                                </td>
+                            </tr>
+                        {{/each}}
+                    </table>
+                </div>
+            </li>
+        {{/if}}
+    {{/unless}}
 </template>
 
 
