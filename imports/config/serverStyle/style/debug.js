@@ -208,6 +208,10 @@ module.exports = {
 			{
 				"theme": "arsnova", // The color theme
 				"backgrounds": "arsnova" // The background images found in ./backgrounds.js
+			},
+			{
+				"theme": "linux", // The color theme
+				"backgrounds": "linux" // The background images found in ./backgrounds.js
 			}
 		] // The list available to the theme switcher dropdown menu
 	},
