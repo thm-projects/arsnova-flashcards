@@ -1407,14 +1407,16 @@ $themes: (
       }
     }
 
+
+
     /* unfortunately the success button is used on the 'wegweiser' top buttons. To not mess up all the success buttons and keep them identical to the .specialCardset buttons this is used :( */
     @if $theme == 'dark' {
-      #useCasesModal .btn-success {
+      #useCasesModal .btn {
         background-color: $use_cases_special_cardsets_button_background !important;
         color: $use_cases_special_cardsets_button_text !important;
       }
 
-      #useCasesModal .btn-success:hover {
+      #useCasesModal .btn:hover {
         background-color: $use_cases_special_cardsets_button_background_hover !important;
         color: $use_cases_special_cardsets_button_text_hover !important;
       }
