@@ -401,11 +401,11 @@
           "export_to_markdeep_table_row_counter": $primary_text,
           "export_to_markdeep_export_type_color": $default_grey,
     //server statistics colors
-          "server_statistics_table_header_background": $default_grey,
-          "server_statistics_table_header_text": white,
-          "server_statistics_table_header_counter": white,
-          "server_statistics_table_row_background": white,
-          "server_statistics_table_row_text": $primary_text,
+          "server_statistics_table_header_background": darken($default_grey, 10),
+          "server_statistics_table_header_text": whitesmoke,
+          "server_statistics_table_header_counter": whitesmoke,
+          "server_statistics_table_row_background": $default_grey,
+          "server_statistics_table_row_text": whitesmoke,
           "server_statistics_table_row_counter": $primary_text,
     //leitner user history
           "leitner_user_history_title_background": $default_grey,

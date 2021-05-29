@@ -4784,6 +4784,7 @@ $themes: (
     //server statistics colors
     #impressumStatisticsModal {
       tr {
+        border-color: $server_statistics_table_row_background !important;
         th {
           background-color: $server_statistics_table_header_background !important;
         }
