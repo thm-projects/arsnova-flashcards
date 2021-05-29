@@ -2,7 +2,7 @@ version: "3.7"
 services:
 
   local-cards-db:
-    image: mongo:latest
+    image: mongo:4
     restart: unless-stopped
     volumes:
       - local_cards_db:/data/db

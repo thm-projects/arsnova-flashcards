@@ -19,7 +19,7 @@
   }
 }
 
-#setCardsetFormModal, #showSelectLearningUnitModal, #setLeitnerProgressCardsetFilter, #useCasesModal .dropdown {
+#setCardsetFormModal, #showSelectLearningUnitModal, #setLeitnerProgressCardsetFilter, #useCasesModal .dropdown, #appThemeSelector .dropdown, #switchThemeMenuIconContainer {
   ul > li {
     padding-top: $size_cardset_form_list_padding !important;
     padding-bottom: $size_cardset_form_list_padding !important;
@@ -28,6 +28,7 @@
     a {
       font-size: $font_size_cardset_form_list !important;
       font-weight: $font_weight_cardset_form_list !important;
+      text-decoration: none;
     }
   }
   ul > li:last-child {

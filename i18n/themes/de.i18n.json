@@ -1,0 +1,16 @@
+{
+  "themes": {
+    "footer": {
+      "label": "Theme"
+    },
+    "profile": {
+      "label": "Theme",
+      "default": "(Voreinstellung)",
+      "saved": "(Gespeichert)"
+    },
+    "list": {
+      "arsnova": "ARSnova.cards",
+      "linux": "Linux.cards"
+    }
+  }
+}

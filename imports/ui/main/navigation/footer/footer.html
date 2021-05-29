@@ -3,6 +3,7 @@
         {{#unless canAccessFrontend}}
             {{#unless isImpressum}}
                 {{> mainNavigationFooterItemInfo}}
+                {{> mainNavigationFooterItemThemeIcon}}
             {{/unless}}
         {{/unless}}
         {{#if canDisplayFooter}}
@@ -44,6 +45,7 @@
             {{> mainNavigationFooterItemAGB}}
             {{> mainNavigationFooterItemDatenschutz}}
             {{> mainNavigationFooterItemStatistics}}
+            {{> mainNavigationFooterItemTheme}}
         </ul>
     </div>
 </template>
