@@ -333,6 +333,10 @@ $padding-card-list-row: 8px;
   float: none;
 }
 
+.infoBoxTable{
+  margin-bottom: 1px;
+}
+
 .infoBoxTable tr {
   td:first-child {
     padding-left: 15px !important;
@@ -528,7 +532,7 @@ th .field-tip {
     padding: $padding_cardset_content_vertical_mobile $padding_cardset_content_horizontal_mobile !important;
   }
   overflow-y: auto;
-  background-image: url(/img/pomodoro.png);
+  //background-image: url(/img/pomodoro.png);
   @media(orientation: portrait) {
     background-size: 50% auto;
   }

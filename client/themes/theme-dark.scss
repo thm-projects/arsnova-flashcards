@@ -13,13 +13,18 @@
  //DarkTheme Colors
  
  $darkTheme_white: rgb(220, 220, 220);
+ $darkTheme_white2: rgb(199, 199, 199);
+
  $darkTheme_grey1: rgb(50, 50, 50);
  $darkTheme_grey2: #2B2B2B;
+ $darkTheme_grey3: #131313;
  $darkTheme_modalBackground: #131313;
  $darkTheme_orange:rgb(185, 105, 0);
  $darkTheme_green: rgb(0, 65, 0);
 $darkTheme_orange2: rgb(145, 82, 0);
-$darkTheme_ligtred: rgb(145, 42, 2);
+$darkTheme_ligthred: rgb(145, 42, 2);
+$darkTheme_lila: rgb(52, 20, 104);
+$darkTheme_linkTable: #ffaf53;
 
 $darkTheme_backgrounddifficulty0: #0f0f0f;
 $darkTheme_backgrounddifficulty1: #0f0f0f;
@@ -56,7 +61,7 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
   $btn_inactive: #232323;
   $item_separator: $default_grey;
   $footer_hover: rgb(215, 215, 215);
-  $hyperlink: #E3E3E3;
+  $hyperlink: #ffaf53;
   $accent: $default_green;
   $divider: gray;
   $accent_300: #f0efef;
@@ -122,17 +127,17 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "private_text": $default_white,
           "danger_background": $darkTheme_orange2,
           "danger_text": white,
-          "info_background": $default_dark_blue,
+          "info_background": $darkTheme_lila,
           "info_text": $default_white,
-          "success_background": $default_green,
-          "success_text": $default_white,
-          "warning_background": $darkTheme_ligtred,
+          "success_background": $darkTheme_green,
+          "success_text": white,
+          "warning_background": $darkTheme_ligthred,
           "warning_text": $default_white,
           "disabled_background": $btn_inactive,
           "disabled_text": $mercury_approx,
           "shuffled_background": rgb(150, 35, 35),
           "shuffled_text": white,
-          "bonus_background": $default_red,
+          "bonus_background": $darkTheme_ligthred,
           "bonus_text": $default_white,
           "bonus_finished_background": darkslategray,
           "bonus_finished_text": $default_white,
@@ -155,7 +160,7 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "wordcloud_label_text": white,
           "card_counter_background": #2b4a68,
           "card_counter_text": white,
-          "transcript_counter_background": $default_orange,
+          "transcript_counter_background": $darkTheme_orange2,
           "transcript_counter_text": white,
           "transcript_rating_label_background": white,
           "transcript_rating_label_text": black,
@@ -437,9 +442,9 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "footer_navigation_background_hover": $button_background_hover,
     //impressum colors
           "info_content_header_text": white,
-          "info_content_header_background": $darkTheme_grey2,
-          "info_content_body_text": $darkTheme_grey2,
-          "info_content_body_background": LightGoldenRodYellow,
+          "info_content_header_background": $darkTheme_grey3,
+          "info_content_body_text": $default_white,
+          "info_content_body_background": $darkTheme_grey2,
     //editor navigation colors
           "item_selection_border": $item_separator,
     //filter colors
@@ -494,11 +499,11 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "background_difficulty1": $darkTheme_backgrounddifficulty1,
           "background_difficulty2": $darkTheme_backgrounddifficulty2,
           "background_difficulty3": $darkTheme_backgrounddifficulty3,
-          "background_difficulty0_lines_note": #F8E1AE,
-          "background_difficulty0_lines": PaleGoldenRod,
-          "background_difficulty1_lines": rgba(92, 184, 92, 0.3),
-          "background_difficulty2_lines": rgba(91, 192, 222, 0.3),
-          "background_difficulty3_lines": rgba(217, 83, 79, 0.3),
+          "background_difficulty0_lines_note": transparent,
+          "background_difficulty0_lines": $darkTheme_backgrounddifficulty0,
+          "background_difficulty1_lines": $darkTheme_backgrounddifficulty0,
+          "background_difficulty2_lines": $darkTheme_backgrounddifficulty0,
+          "background_difficulty3_lines": $darkTheme_backgrounddifficulty0,
           "background_white": #0f0f0f,
           "background_white_lines": $default_grey,
           "background_post_it": lightgoldenrodyellow,
@@ -564,7 +569,7 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "card_header_card_number": $default_grey,
           "card_header_first_row": $default_grey,
           "card_header_second_row": $default_grey,
-          "card_header_subject": $default_grey,
+          "card_header_subject": $default_white,
           "card_header_subject_placeholder": $default_orange,
 
           "card_content_zoom_container_button_reset_background": $default_orange,
@@ -666,7 +671,7 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "card_sidebar_aspect_ratio_text_hover": $button_text_hover,
           "card_sidebar_aspect_ratio_dropdown_background": none,
           "card_sidebar_aspect_ratio_dropdown_border": $default_grey,
-          "card_sidebar_aspect_ratio_dropdown_text": $default_grey,
+          "card_sidebar_aspect_ratio_dropdown_text": black,
           "card_sidebar_aspect_ratio_dropdown_background_hover": $button_background_hover,
           "card_sidebar_aspect_ratio_dropdown_border_hover": $default_grey,
           "card_sidebar_aspect_ratio_dropdown_text_hover": $button_text_hover,
@@ -676,7 +681,7 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "card_sidebar_aspect_ratio_dropdown_background_active_hover": $button_background_hover,
           "card_sidebar_aspect_ratio_dropdown_border_active_hover": $default_grey,
           "card_sidebar_aspect_ratio_dropdown_text_active_hover": $button_text_hover,
-          "card_sidebar_aspect_ratio_menu_background": white,
+          "card_sidebar_aspect_ratio_menu_background": #c7c7c7,
           "card_sidebar_aspect_ratio_menu_separator": $default_grey,
 
           "card_sidebar_arsnova_lite_background": none,
@@ -752,50 +757,50 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "cardset_sidebar_preview_background_active": $default_orange,
           "cardset_sidebar_preview_text_active": white,
     //cardset colors
-          "cardset_markdeep_background": LightGoldenRodYellow,
+          "cardset_markdeep_background": $darkTheme_grey3,
           "cardset_markdeep_header_border": $default_orange,
-          "cardset_markdeep_text": $default_grey,
-          "cardset_markdeep_link": $default_orange,
+          "cardset_markdeep_text": $default_white,
+          "cardset_markdeep_link": $darkTheme_linkTable,
           "cardset_markdeep_placeholder": $default_green,
-          "cardset_footer_navigation_background": $default_grey,
+          "cardset_footer_navigation_background": #3d3d3d,
           "cardset_footer_navigation_index_background": none,
           "cardset_footer_navigation_index_text": black,
           "cardset_footer_navigation_index_background_hover": $button_background_hover,
           "cardset_footer_navigation_index_text_hover": $button_text_hover,
-          "cardset_footer_navigation_presentation_background": $default_dark_blue,
+          "cardset_footer_navigation_presentation_background": $darkTheme_lila,
           "cardset_footer_navigation_presentation_text": white,
           "cardset_footer_navigation_presentation_background_hover": $button_background_hover,
           "cardset_footer_navigation_presentation_text_hover": $button_text_hover,
-          "cardset_footer_navigation_learn_background": $default_green,
+          "cardset_footer_navigation_learn_background": $darkTheme_green,
           "cardset_footer_navigation_learn_text": white,
           "cardset_footer_navigation_learn_background_hover": $button_background_hover,
           "cardset_footer_navigation_learn_text_hover": $button_text_hover,
-          "cardset_footer_navigation_learn_list_leitner_background": none,
-          "cardset_footer_navigation_learn_list_leitner_text": black,
+          "cardset_footer_navigation_learn_list_leitner_background": $darkTheme_grey1,
+          "cardset_footer_navigation_learn_list_leitner_text": white,
           "cardset_footer_navigation_learn_list_leitner_background_hover": $button_background_hover,
           "cardset_footer_navigation_learn_list_leitner_text_hover": $button_text_hover,
-          "cardset_footer_navigation_learn_list_wozniak_background": none,
-          "cardset_footer_navigation_learn_list_wozniak_text": black,
+          "cardset_footer_navigation_learn_list_wozniak_background":  $darkTheme_grey1,
+          "cardset_footer_navigation_learn_list_wozniak_text": white,
           "cardset_footer_navigation_learn_list_wozniak_background_hover": $button_background_hover,
           "cardset_footer_navigation_learn_list_wozniak_text_hover": $button_text_hover,
-          "cardset_footer_navigation_learn_list_choose_background": none,
-          "cardset_footer_navigation_learn_list_choose_text": black,
+          "cardset_footer_navigation_learn_list_choose_background": $darkTheme_grey1,
+          "cardset_footer_navigation_learn_list_choose_text": white,
           "cardset_footer_navigation_learn_list_choose_background_hover": $button_background_hover,
           "cardset_footer_navigation_learn_list_choose_text_hover": $button_text_hover,
-          "cardset_footer_navigation_learn_list_progress_background": none,
-          "cardset_footer_navigation_learn_list_progress_text": black,
+          "cardset_footer_navigation_learn_list_progress_background": $darkTheme_grey1,
+          "cardset_footer_navigation_learn_list_progress_text": white,
           "cardset_footer_navigation_learn_list_progress_background_hover": $button_background_hover,
           "cardset_footer_navigation_learn_list_progress_text_hover": $button_text_hover,
-          "cardset_footer_navigation_learn_list_reset_leitner_background": $default_orange,
+          "cardset_footer_navigation_learn_list_reset_leitner_background": $darkTheme_orange2,
           "cardset_footer_navigation_learn_list_reset_leitner_text": white,
           "cardset_footer_navigation_learn_list_reset_leitner_background_hover": $button_background_hover,
           "cardset_footer_navigation_learn_list_reset_leitner_text_hover": $button_text_hover,
-          "cardset_footer_navigation_learn_list_reset_wozniak_background": $default_orange,
+          "cardset_footer_navigation_learn_list_reset_wozniak_background": $darkTheme_orange2,
           "cardset_footer_navigation_learn_list_reset_wozniak_text": white,
           "cardset_footer_navigation_learn_list_reset_wozniak_background_hover": $button_background_hover,
           "cardset_footer_navigation_learn_list_reset_wozniak_text_hover": $button_text_hover,
 
-          "cardset_footer_navigation_learn_list_reset_workload_background": $default_orange,
+          "cardset_footer_navigation_learn_list_reset_workload_background": $darkTheme_orange2,
           "cardset_footer_navigation_learn_list_reset_workload_text": white,
           "cardset_footer_navigation_learn_list_reset_workload_background_hover": $button_background_hover,
           "cardset_footer_navigation_learn_list_reset_workload_text_hover": $button_text_hover,
@@ -890,7 +895,7 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "markdeep_image_border": $default_grey,
     //transcript bonus colors
           "transcript_bonus_info_text": white,
-          "transcript_bonus_info_background": $default_red,
+          "transcript_bonus_info_background": $darkTheme_ligthred,
           "transcript_bonus_info_lecture_date_year_text": white,
           "transcript_bonus_info_lecture_date_year_background": $default_orange,
           "transcript_bonus_info_lecture_date_month_text": white,
@@ -942,12 +947,12 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "notification_text_smartphones": white,
     //search colors
           "search_results_background": LightGoldenRodYellow,
-          "search_results_info_background": $default_grey,
+          "search_results_info_background": $darkTheme_grey1,
           "search_results_info_text": white,
           "search_results_separator": white,
           "search_divide:": $default_grey,
     //form group colors
-          "form_group_label": black,
+          "form_group_label": white,
     //cardset form colors
           "cardset_form_list_background": $darkTheme_grey1,
           "cardset_form_list_text": $darkTheme_white,
