@@ -5,7 +5,6 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Route} from "../../util/route.js";
-import {getUserLanguage} from "../../startup/client/i18n";
 import ResizeSensor from "../../../client/thirdParty/resizeSensor/ResizeSensor";
 import {PomodoroTimer} from "../../util/pomodoroTimer";
 import {NavigatorCheck} from "../../util/navigatorCheck";
@@ -20,15 +19,10 @@ import "../messageOfTheDay/messageOfTheDay.js";
 import "./welcome.html";
 import {setLoginTarget} from "../../startup/client/routes/onBeforeAction.js";
 import {Fullscreen} from "../../util/fullscreen";
+import {Utilities} from "../../util/utilities";
 
 Meteor.subscribe("pomodoroLandingPage");
 Meteor.subscribe("userData");
-
-function setActiveLanguage() {
-	let language = getUserLanguage();
-	TAPi18n.setLanguage(language);
-	Session.set('activeLanguage', language);
-}
 
 //------------------------ LOGIN EVENT
 
@@ -40,7 +34,7 @@ Template.welcome.events({
 					throw new Meteor.Error("Facebook login failed");
 				} else {
 					Fullscreen.resetChooseModeSessions();
-					setActiveLanguage();
+					Utilities.setActiveLanguage();
 					setLoginTarget();
 				}
 			});
@@ -54,7 +48,7 @@ Template.welcome.events({
 					throw new Meteor.Error("Twitter login failed");
 				} else {
 					Fullscreen.resetChooseModeSessions();
-					setActiveLanguage();
+					Utilities.setActiveLanguage();
 					setLoginTarget();
 				}
 			});
@@ -68,7 +62,7 @@ Template.welcome.events({
 					throw new Meteor.Error("Google login failed");
 				} else {
 					Fullscreen.resetChooseModeSessions();
-					setActiveLanguage();
+					Utilities.setActiveLanguage();
 					setLoginTarget();
 				}
 			});
@@ -82,7 +76,7 @@ Template.welcome.events({
 					throw new Meteor.Error("CAS login failed");
 				} else {
 					Fullscreen.resetChooseModeSessions();
-					setActiveLanguage();
+					Utilities.setActiveLanguage();
 					setLoginTarget();
 				}
 			});
@@ -95,7 +89,7 @@ Template.welcome.events({
 			Meteor.insecureUserLogin($("#TestingBackdoorUsername").val(), function (err, result) {
 				if (result) {
 					Fullscreen.resetChooseModeSessions();
-					setActiveLanguage();
+					Utilities.setActiveLanguage();
 					setLoginTarget();
 				}
 			});
@@ -105,7 +99,7 @@ Template.welcome.events({
 	'click #guest': function () {
 		Fullscreen.resetChooseModeSessions();
 		MainNavigation.setGuestLogin("true");
-		setActiveLanguage();
+		Utilities.setActiveLanguage();
 		setLoginTarget();
 	}
 });

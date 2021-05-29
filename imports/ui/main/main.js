@@ -33,20 +33,20 @@ import "./main.html";
 import "../messageOfTheDay/messageOfTheDay.js";
 
 import {PDFViewer} from "../../util/pdfViewer";
-import {setLanguage} from "../../startup/client/routes/onBeforeAction.js";
 import {Fullscreen} from "../../util/fullscreen";
 import {CardsetVisuals} from "../../util/cardsetVisuals";
 import tippy from "tippy.js";
 import 'tippy.js/animations/scale-extreme.css';
-import {BackgroundChanger} from "../../util/backgroundChanger";
+import {ThemeSwitcher} from "../../util/themeSwitcher";
 import {LockScreen} from "../../util/lockScreen";
 import {SweetAlertMessages} from "../../util/sweetAlert";
+import {Utilities} from "../../util/utilities";
 
 Meteor.subscribe("notifications");
 Meteor.subscribe("serverStatistics");
 Meteor.subscribe("collegesCourses");
 
-Session.setDefault("theme", ServerStyle.getDefaultTheme());
+Session.setDefault("theme", ServerStyle.getDefaultThemeID());
 Session.setDefault("fullscreen", false);
 Session.setDefault("previousRouteName", undefined);
 Session.setDefault("connectionStatus", 2);
@@ -90,6 +90,9 @@ Session.setDefault('activeErrorReport', undefined);
 Session.setDefault('errorReportingCard', undefined);
 Session.setDefault('errorReportingMode', false);
 Session.setDefault('showOnlyErrorReports', false);
+
+//Language Sessions
+Session.setDefault('loadedCardsSettings', false);
 
 function connectionStatus() {
 	let stat;
@@ -173,9 +176,21 @@ Template.main.helpers({
 
 let windowResizeSensor;
 let screenResizeSensor;
-Template.main.onCreated(function () {
-	setLanguage();
-	BackgroundChanger.setTheme();
+
+Meteor.startup(function () {
+	Session.set('loadedCardsSettings', false);
+	Meteor.absoluteUrl.defaultOptions.rootUrl = Meteor.settings.public.rooturl;
+
+	CardNavigation.fullscreenExitEvents();
+	$(document).on('keydown', function (event) {
+		MainNavigation.keyEvents(event);
+		CardNavigation.keyEvents(event);
+	});
+	$(document).on('keyup', function () {
+		MainNavigation.enableKeyEvents();
+		CardNavigation.enableKeyEvents();
+	});
+	ThemeSwitcher.setTheme();
 	MarkdeepContent.initializeStylesheet();
 	document.title = ServerStyle.getLastAppTitle();
 	windowResizeSensor = $(window).resize(function () {
@@ -187,6 +202,12 @@ Template.main.onCreated(function () {
 		CardVisuals.resizeFlashcard();
 		PDFViewer.resizeIframe();
 		LockScreen.resize();
+	});
+});
+
+Template.main.onCreated(function () {
+	Meteor.subscribe('personalUserData', function () {
+		Utilities.setActiveLanguage();
 	});
 });
 
@@ -219,18 +240,6 @@ Template.main.onDestroyed(function () {
 	if (screenResizeSensor !== undefined) {
 		screenResizeSensor.off('resize');
 	}
-});
-
-Meteor.startup(function () {
-	CardNavigation.fullscreenExitEvents();
-	$(document).on('keydown', function (event) {
-		MainNavigation.keyEvents(event);
-		CardNavigation.keyEvents(event);
-	});
-	$(document).on('keyup', function () {
-		MainNavigation.enableKeyEvents();
-		CardNavigation.enableKeyEvents();
-	});
 });
 
 document.addEventListener('fullscreenerror', () => {

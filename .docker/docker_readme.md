@@ -123,11 +123,11 @@ You can build and run the development version of cards with docker. Therefore yo
 2. From your project directory run `sudo UID_GID="$(id -u):$(id -g)" docker-compose up -d`\
 2.1 You can view the log output with the command `docker-compose logs -f`
 2.1 `UID_GID="$(id -u):$(id -g)"` sets the environments variable `UID_GID` for docker-compose. This is necessary for handling correct permissions. If you do not provide it, it will use `1000` for both as default. This default value will most likely fit your system, but not with certainty.
-3. This brings up the app under Port 3000 - you may change this port in the docker-compose.yml file\
+3. This brings up the app on Port 3000 - you may change this port in the docker-compose.yml file\
 3.1. The first time you run this, it may take a (long) while\
 3.2. If you like to start the containers detached, use command option `-d`\
 3.3. You may run the app with a custom `settings.json`-File by adding it in the docker-compose file as `command`
-4. The app is now available under **localhost:\<desired-port\>**, default [localhost:3000](http://localhost:3000).
+4. The app is now available on **localhost:\<desired-port\>**, default [localhost:3000](http://localhost:3000).
 
 ## Building production images yourself
 1. Clone the project
@@ -138,4 +138,4 @@ You can build and run the development version of cards with docker. Therefore yo
 2. From your project directory run `sudo docker-compose -f .docker/docker-compose.yml up --build`\
   2.1. If your local port 3000 is already in use, you can change it in `.docker/docker-compose.yml`\
   2.2. You may also start the containers detached by using the `-d` option. Beware: you then won't see any output from the containers; at least for the first start of the app it is recommended to start the containers in foreground
-3. The app is now available under [localhost](http://localhost:3000)
+3. The app is now available on [localhost](http://localhost:3000)

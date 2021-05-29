@@ -2,9 +2,10 @@ import "./login.html";
 import "../../../util/accounts.js";
 import {Template} from "meteor/templating";
 import {LoginTasks} from "../../../util/login";
+import {ServerStyle} from "../../../util/styles";
 
 Template.loginModal.onCreated(function () {
-	T9n.setLanguage('de');
+	T9n.setLanguage(ServerStyle.getClientLanguage());
 });
 
 Template.loginModal.onRendered(function () {

@@ -106,8 +106,8 @@ if (Meteor.isServer) {
 		}
 	});
 	Meteor.publish("personalUserData", function () {
-		if (this.userId) {
-			return Meteor.users.find({_id: this.userId});
+		if (Meteor.userId) {
+			return Meteor.users.find({_id: Meteor.userId});
 		} else {
 			this.ready();
 		}

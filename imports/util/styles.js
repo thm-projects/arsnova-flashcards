@@ -8,6 +8,7 @@ import * as RouteNames from "../util/routeNames.js";
 import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 import {EDU, FREE, GUEST, LECTURER, PRO, SERVER_VERSION} from "../config/serverStyle/style/global/const";
 import {CardsetNavigation} from "./cardsetNavigation";
+import {Session} from "meteor/session";
 
 export let ServerStyle = class ServerStyle {
 
@@ -243,9 +244,20 @@ export let ServerStyle = class ServerStyle {
 		return config.help.markdeepFormatingCardsetID;
 	}
 
-	static getDefaultTheme () {
+	static getDefaultThemeID () {
+		return this.getConfig().themes.default;
+	}
+
+	static getActiveTheme () {
 		let config = this.getConfig().themes;
-		return config.list[config.defaultID].theme;
+		return config.list.filter(object => {
+			return object.theme === Session.get('theme');
+		})[0];
+	}
+
+	static getAppThemes () {
+		let config = this.getConfig().themes;
+		return config.list;
 	}
 
 	static adjustForLandingPageBackground (backgrounds, target = "") {
@@ -272,8 +284,7 @@ export let ServerStyle = class ServerStyle {
 	static getBackground (type) {
 		let backgrounds;
 		let backgroundObject = "";
-		let config = this.getConfig().themes;
-		backgrounds = backgroundsConf[config.list[config.defaultID].backgrounds];
+		backgrounds = backgroundsConf[this.getActiveTheme().backgrounds];
 		if (Route.isCardsetGroup() && !CardsetNavigation.doesCardsetExist(FlowRouter.current().params._id)) {
 			backgroundObject = this.adjustForInternalBackground(backgrounds, backgrounds.notFound);
 		} else {
