@@ -18,7 +18,7 @@ jshint:
   script:
     - echo "{}" > package.json
     - npm install jshint@^2.9.0
-    - node_modules/jshint/bin/jshint --config .jshintrc ./client/head.js ./imports/api/ ./imports/config/ ./imports/startup/server/ ./imports/startup/client/i18n.js ./imports/startup/client/registerhelper/ ./imports/startup/client/registerServiceWorker.js ./imports/ui/ ./imports/util/ ./i18n ./tests
+    - node_modules/jshint/bin/jshint --config .jshintrc ./client/head.js ./imports/api/ ./imports/config/ ./imports/startup/server/ ./imports/startup/client/registerhelper/ ./imports/startup/client/registerServiceWorker.js ./imports/ui/ ./imports/util/ ./i18n ./tests
 
 jscs:
   stage: test
@@ -27,7 +27,7 @@ jscs:
   dependencies: []
   script:
     - npm install jscs
-    - node_modules/jscs/bin/jscs --config .jscsrc ./client/head.js ./imports/api/ ./imports/config/ ./imports/startup/server/ ./imports/startup/client/i18n.js ./imports/startup/client/registerhelper/ ./imports/startup/client/registerServiceWorker.js ./imports/ui/ ./imports/util/ ./i18n ./tests
+    - node_modules/jscs/bin/jscs --config .jscsrc ./client/head.js ./imports/api/ ./imports/config/ ./imports/startup/server/ ./imports/startup/client/registerhelper/ ./imports/startup/client/registerServiceWorker.js ./imports/ui/ ./imports/util/ ./i18n ./tests
 
 sonar:
   # Because this job runs a long time, make it parallel to the build job

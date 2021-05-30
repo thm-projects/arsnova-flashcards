@@ -1,19 +1,19 @@
 |english|german| .cards 3.0 (german) | code | database|
 |-------|------|---------------------|------|---------|
 | card |Karte |Karte |card | cards |
-| cardset | Kartei | Kartensatz | cardset | cardsets |
+| card set | Kartei | Kartensatz | cardset | cardsets |
 | repetitorium | Repetitorium | Gemischter Kartensatz | repetitorium / cardset.shuffled | cardsets |
 | transcript | lose Mitschrift | -  | transcritp | cards |
 | transcript bonus | gekoppelte Mitschrift | - | transcript | transcriptBonus |
 | leitner | Leitner | Lernkartei | leitner / box | leitner |
-| wozniak | Wozniak |  Memo | wozniak / memo | wozniak |
+| woźniak | Woźniak |  Memo | wozniak / memo | wozniak |
 | learning log | Lernverlauf | - | learningLog | leitnerHistory|
 | learning history | Lernprotokoll | - | learningHistory | leitnerHistory |
-| task | Freischaltungstag | Termin / Aufgabe | task | leitnerTasks |
-| workload | Lernpensum | workload | workload | workload |
+| activation date | Freischaltungstag | Termin / Aufgabe | task | leitnerTasks |
+| learning workload | Lernpensum | workload | workload | workload |
 | card type | Karteityp | Kartentyp | cardType | - |
 | user | Account | Benutzer | user | users |
-| cardset index | Kartenverzeichnis | - |cardsetIndex | - |
+| card set index | Karteiverzeichnis | - |cardsetIndex | - |
 | wordcloud | Wortkwolke | - | wordcloud | wordcloud |
 | ratings | Bewertung | Bewertung | rating | ratings |
 | presentation | Kartenschau | - | presentation | - |

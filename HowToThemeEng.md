@@ -25,9 +25,10 @@
    
 Backgrounds can be found at `public/img/background`
 
-## Apply theme color and background to installation
-1. Open the server configuration file `imports/config/exportStyle.js`
-1. Locate the themes object
-1. Add your new theme name and background to the list
+## Add themes color and background images to the Theme Switcher
+1. open the server configuration files in the folder `imports/config/serverStyle/style`
+1. find the "themes" object
+1. Add the new theme name and background to the list
+1. add in the translation files under `i18n/themes/` inside the variable "list" the name of the theme as well as the translation
 
 

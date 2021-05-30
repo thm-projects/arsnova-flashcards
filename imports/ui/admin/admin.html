@@ -1,91 +1,95 @@
 <template name="admin_main">
-    {{#if gotBackendAccess}}
-        <nav id="backendNavigation" class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
+    {{#unless loadedCardsSettings}}
+        {{> loadingScreen}}
+    {{else}}
+        {{#if gotBackendAccess}}
+            <nav id="backendNavigation" class="navbar navbar-default navbar-fixed-top">
                 <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                data-target="#thm-top-navigation" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                    data-target="#thm-top-navigation" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
 
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="thm-top-navigation">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a rel="noopener noreferrer" href="{{pathFor route='home'}}">{{_ "navbar-collapse.frontend"}}</a></li>
-                            {{#if currentUser}}
-                                <li><a rel="noopener noreferrer" href="{{pathFor 'admin_user' _id=currentUser._id}}"
-                                       id="usr-profile-admin" data-toggle="collapse"
-                                       data-target="#thm-top-navigation">
-                                    {{getUsername}}</a></li>
-                            {{/if}}
-                            <li><a rel="noopener noreferrer" href="#" id="logout_admin"><span
-                                    class="fas fa-sign-out-alt" style="font-size:150%; color:orange"></span></a>
-                            </li>
-                        </ul>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="thm-top-navigation">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a rel="noopener noreferrer" href="{{pathFor route='home'}}">{{_ "navbar-collapse.frontend"}}</a></li>
+                                {{#if currentUser}}
+                                    <li><a rel="noopener noreferrer" href="{{pathFor 'admin_user' _id=currentUser._id}}"
+                                           id="usr-profile-admin" data-toggle="collapse"
+                                           data-target="#thm-top-navigation">
+                                        {{getUsername}}</a></li>
+                                {{/if}}
+                                <li><a rel="noopener noreferrer" href="#" id="logout_admin"><span
+                                        class="fas fa-sign-out-alt" style="font-size:150%; color:orange"></span></a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
 
-        <div id="wrapper">
-            <!-- Sidebar -->
-            <div id="admin-sidebar-wrapper">
+            <div id="wrapper">
+                <!-- Sidebar -->
+                <div id="admin-sidebar-wrapper">
 
-                <ul class="sidebar-nav">
-                    <li>
-                        <a rel="noopener noreferrer" class="{{#if isActiveRoute regex='admin_dashboard'}}active{{/if}}"
-                           href="{{pathFor route='admin_dashboard'}}">
-                            <span class="fas fa-tachometer-alt"></span>
-                            <span>{{_ "admin.dashboard"}}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a rel="noopener noreferrer" class="{{#if isActiveRoute regex='admin_users|admin_user'}}active{{/if}}"
-                           href="{{pathFor route='admin_users'}}">
-                            <span class="fas fa-users"></span>
-                            <span>{{_ "admin.users"}}</span>
-                        </a>
-                    </li>
-                    {{#if enabledMatomo}}
+                    <ul class="sidebar-nav">
                         <li>
-                            <a rel="noopener noreferrer" class="{{#if isActiveRoute regex='admin_matomoStatistics'}}active{{/if}}"
-                               href="{{pathFor route='admin_matomoStatistics'}}">
-                                <span class="far fa-chart-bar"></span>
-                                <span>{{_ "admin.matomoStatistics"}}</span>
+                            <a rel="noopener noreferrer" class="{{#if isActiveRoute regex='admin_dashboard'}}active{{/if}}"
+                               href="{{pathFor route='admin_dashboard'}}">
+                                <span class="fas fa-tachometer-alt"></span>
+                                <span>{{_ "admin.dashboard"}}</span>
                             </a>
                         </li>
-                    {{/if}}
-                    <li>
-                        <a rel="noopener noreferrer" class="{{#if isActiveRoute regex='admin_messageOfTheDay'}}active{{/if}}"
-                           href="{{pathFor route='admin_messageOfTheDay'}}">
-                            <span class="fas fa-envelope-square"></span>
-                            <span>{{_ "admin.messageOfTheDay"}}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a rel="noopener noreferrer" class="{{#if isActiveRoute regex='admin_settings'}}active{{/if}}"
-                           href="{{pathFor route='admin_settings'}}">
-                            <span class="fas fa-cog"></span>
-                            <span>{{_ "admin.settings"}}</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /#sidebar-wrapper -->
+                        <li>
+                            <a rel="noopener noreferrer" class="{{#if isActiveRoute regex='admin_users|admin_user'}}active{{/if}}"
+                               href="{{pathFor route='admin_users'}}">
+                                <span class="fas fa-users"></span>
+                                <span>{{_ "admin.users"}}</span>
+                            </a>
+                        </li>
+                        {{#if enabledMatomo}}
+                            <li>
+                                <a rel="noopener noreferrer" class="{{#if isActiveRoute regex='admin_matomoStatistics'}}active{{/if}}"
+                                   href="{{pathFor route='admin_matomoStatistics'}}">
+                                    <span class="far fa-chart-bar"></span>
+                                    <span>{{_ "admin.matomoStatistics"}}</span>
+                                </a>
+                            </li>
+                        {{/if}}
+                        <li>
+                            <a rel="noopener noreferrer" class="{{#if isActiveRoute regex='admin_messageOfTheDay'}}active{{/if}}"
+                               href="{{pathFor route='admin_messageOfTheDay'}}">
+                                <span class="fas fa-envelope-square"></span>
+                                <span>{{_ "admin.messageOfTheDay"}}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a rel="noopener noreferrer" class="{{#if isActiveRoute regex='admin_settings'}}active{{/if}}"
+                               href="{{pathFor route='admin_settings'}}">
+                                <span class="fas fa-cog"></span>
+                                <span>{{_ "admin.settings"}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /#sidebar-wrapper -->
 
-            <div id='admin-content-wrapper'>
-                {{> yield}}
+                <div id='admin-content-wrapper'>
+                    {{> yield}}
+                </div>
             </div>
-        </div>
-    {{else}}
-        <div class="container">
-            {{> accessDenied}}
-        </div>
-    {{/if}}
+        {{else}}
+            <div class="container">
+                {{> accessDenied}}
+            </div>
+        {{/if}}
+    {{/unless}}
 </template>
