@@ -6,13 +6,20 @@ arsnova🍅cards uses Meteor as application framework. For local development, yo
 
 ## Screenshots Hü
 > Landing Page
+
 ![Screenshot](private/ScreensHü/LandingPage.png)
 
 > Wegweiser
 
+![Screenshot](private/ScreensHü/Wegweiser.png)
+
 > Themenpool
 
+![Screenshot](private/ScreensHü/Themenpool.png)
+
 > WBS Karte
+
+![Screenshot](private/ScreensHü/KarteWBS.png)
 
 
 
