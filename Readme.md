@@ -4,7 +4,7 @@ The [Progressive Web App](https://en.wikipedia.org/wiki/Progressive_web_app) ars
 
 arsnova🍅cards uses Meteor as application framework. For local development, you can choose the native or the containerized version with Docker.
 
-## Screenshots Hü
+## Screenshots 1. Teilprüfung
 > Landing Page
 
 ![Screenshot](private/ScreensHü/LandingPage.png)
