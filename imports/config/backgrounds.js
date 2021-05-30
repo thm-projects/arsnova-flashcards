@@ -354,7 +354,7 @@ let dark = {
 		"background-image": "none"
 	}, // Defaults to cardset if off
 	"cardsetTranscriptBonus": {
-		"background-image": "url('/img/background/matrix.jpg')"
+		"background-image": "url('/img/background/Large-Triangles.svg.jpg')"
 	}, // Defaults to cardset if off
 	"leitner": {
 		"background-image": "none"

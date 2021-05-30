@@ -18,9 +18,11 @@ import "./item/search.js";
 import "./item/useCases.js";
 import "./item/workload.js";
 import "./item/filter.js";
+import "./item/theme.js";
 import "./item/presentationIndex/presentationIndex.js";
 import "./top.html";
 import "./item/notification/frontendNotification.js";
+import {ServerStyle} from "../../../../util/styles";
 
 /*
  * ############################################################################
@@ -36,6 +38,7 @@ Template.mainNavigationTop.events({
 		Session.set('firedUseCaseModal', false);
 		MainNavigation.setGuestLogin("false");
 		Filter.resetFilters();
+		Session.set("theme", ServerStyle.getDefaultThemeID());
 		if (Meteor.user()) {
 			Meteor.logout(function () {
 				FlowRouter.go('home');
