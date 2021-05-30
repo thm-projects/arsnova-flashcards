@@ -10,7 +10,8 @@
     },
     "list": {
       "arsnova": "ARSnova.cards",
-      "linux": "Linux.cards"
+      "linux": "Linux.cards",
+      "dark": "dark.cards"
     }
   }
 }

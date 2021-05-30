@@ -212,6 +212,9 @@ module.exports = {
 			{
 				"theme": "linux", // The color theme
 				"backgrounds": "linux" // The background images found in ./backgrounds.js
+			},{
+				"theme": "dark", // The color theme
+				"backgrounds": "dark" // The background images found in ./backgrounds.js
 			}
 		] // The list available to the theme switcher dropdown menu
 	},

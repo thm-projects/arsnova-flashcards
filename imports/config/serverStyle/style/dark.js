@@ -4,7 +4,7 @@ import {
 import {AUTO_FULLSCREEN, CHOOSE_FULLSCREEN, EDU, FREE, GUEST, LECTURER, MANUAL_FULLSCREEN, PRO} from "./global/const";
 
 module.exports = {
-	"debugServerBoot": false,
+	"debugServerBoot": true,
 	"fullscreen": {
 		"settings": {
 			"enabled": [FREE, EDU, LECTURER, PRO],
@@ -101,8 +101,8 @@ module.exports = {
 				"wordcloud": [FREE, EDU, PRO, LECTURER]
 			},
 			"repetitorium": {
-				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
-				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
+				"enabled": [FREE, EDU, PRO, LECTURER],
+				"filter": [FREE, EDU, PRO, LECTURER],
 				"search":  [FREE, EDU, PRO, LECTURER],
 				"wordcloud": [FREE, EDU, PRO, LECTURER]
 			}
@@ -128,25 +128,25 @@ module.exports = {
 			"enabled": true,
 			"domainWhitelist": DEFAULT_REGISTRATION_DOMAIN_WHITELIST
 		},
-		"cas": true,
+		"cas": false,
 		"guest": true,
-		"pro": false,
+		"pro": true,
 		"facebook": false,
 		"twitter": false,
 		"google": false
 	},
 	"welcome": {
 		"title": {
-			"first": "review",
+			"first": "dark",
 			"last": "cards",
 			"slogan_de": "ORGANIZE. LEARN. MEMORIZE!",
 			"slogan_en": "ORGANIZE. LEARN. MEMORIZE!"
 		},
 		"button": {
 			"about":  {
-				"default_de": "Erfahre mehr in unserer interaktiven Demo …",
+				"default_de": "Um was es geht: eine interaktive Einführung …",
 				"default_en": "Learn more about 🍅cards in our interactive demo …",
-				"mobile_de": "Erfahre mehr in unserer interaktiven Demo …",
+				"mobile_de": "Erfahre mehr in unserer interaktiven Einführung …",
 				"mobile_en": "Learn more about 🍅cards…"
 			}
 		},
@@ -163,12 +163,12 @@ module.exports = {
 		"enabled": true
 	},
 	"help": {
-		"style": "default",
+		"style": "linux",
 		"markdeepFormatingCardsetID": ""
 	},
 	"demo": {
 		"folder": "informatik",
-		"autoFullscreen": false,
+		"autoFullscreen": true,
 		"exitOnFullscreenBackgroundClick": true,
 		"fragJetzt": {
 			"session": "46091468",
@@ -183,7 +183,7 @@ module.exports = {
 		"exitOnFullscreenBackgroundClick": true
 	},
 	"imprint": {
-		"folder": "cards"
+		"folder": "linux"
 	},
 	"roles": {
 		"create": {
@@ -203,7 +203,7 @@ module.exports = {
 		"randomCardsSelection": false
 	},
 	"themes": {
-		"default": "arsnova", // The default theme from the list
+		"default": "dark", // The default theme from the list
 		"list": [
 			{
 				"theme": "arsnova", // The color theme

@@ -11,6 +11,10 @@ $themes: (
 
 @each $theme, $map in $themes {
   .#{$theme} {
+    $table_background: map-get($map, "table_background");
+    $table_background2:  map-get($map, "table_background2"); 
+    $default_text:  map-get($map, "default_text"); 
+
     //background
     $background_landing_page: map-get($map, "background_landing_page");
     $background_internal: map-get($map, "background_internal");
@@ -1803,7 +1807,7 @@ $themes: (
     .infoBox{
       tr{
         background-color: rgb(50, 50, 50) !important;
-        color: white !important;
+        color: $default_text !important;
       }
       td:hover {
         background-color: transparent !important;
@@ -1814,7 +1818,7 @@ $themes: (
 
       tr{
         background-color: rgb(50, 50, 50) !important;
-        color: white !important;
+        color: rgb(199, 199, 199) !important;
       }
 
       ul li {
@@ -2133,7 +2137,7 @@ $themes: (
     }
 
     .btn.btn-raised{
-      background-color: rgb(199,199,199) !important;
+      background-color: $login_guest_background !important;
       color: black !important;
 
     }
@@ -3095,7 +3099,7 @@ $themes: (
     //cardset
     .markdeepCardset {
       background-color: $cardset_markdeep_background !important;
-      color: white !important;
+      color: $cardset_markdeep_text !important;
     }
 
     .markdeepCardsetContent {
@@ -3696,7 +3700,7 @@ $themes: (
         background-color: transparent !important;
       }
       #slogan {
-        color: white !important;
+        color: $login_cards_icon !important;
         text-shadow: 2px 2px 5px $welcome_page_login_label_shadow !important;
       }
       .panel-heading {
@@ -3723,7 +3727,7 @@ $themes: (
     }
 
     #TestingBackdoorUsername {
-      background-color: rgb(220, 220, 220) !important;
+      background-color: $login_guest_background !important;
       color: $primary_text !important;
     }
 
@@ -3801,7 +3805,7 @@ $themes: (
     .md {
 
       p{
-        color: $white !important;
+        color: $cardset_markdeep_text !important;
       }
 
       a{
@@ -4929,35 +4933,37 @@ $themes: (
     }
     
     .nonumberh1{
-      color: $white !important;
+      color: $default_text  !important;
     }
 
     .nonumberh2{
-      color: $white !important;
+      color: $default_text  !important;
     }
 
     table{
       th{
         background-color: #131313 !important;
-        color: $white !important;
+        color: $default_text !important;
       }
       tr{
-        background-color: rgb(68, 68, 68) !important;
-        color: $white !important;
+        background-color: $table_background !important;
+//        background-color: rgb(68, 68, 68) !important;
+        color: $default_text  !important;
       }
       td:hover{
         background-color: rgb(25, 53, 112) !important;
-        color: $white !important;
+        color: $default_text  !important;
       }
       tr:nth-child(even) {
-        background-color: rgb(50, 50, 50) !important;
-        color: $white !important;
+        // background-color: rgb(50, 50, 50) !important;
+        background-color: $table_background2 !important;
+        color: $default_text  !important;
       }
 
     }
 
     .admonition{
-      color: $white !important;
+      color: $default_text  !important;
     }
 
   }
