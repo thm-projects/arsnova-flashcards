@@ -137,8 +137,8 @@ if (Meteor.isServer) {
 				let learnersBonus = LeitnerLearningWorkload.find({cardset_id: cardset_id, isActive: true, isBonus: true}).count();
 				Cardsets.update(cardset_id, {
 					$set: {
-						"workload.bonus.count": learnersBonus,
-						"workload.normal.count": (learnersTotal - learnersBonus)
+						"learnerCount.bonus": learnersBonus,
+						"learnerCount.normal": (learnersTotal - learnersBonus)
 					}
 				});
 			}
