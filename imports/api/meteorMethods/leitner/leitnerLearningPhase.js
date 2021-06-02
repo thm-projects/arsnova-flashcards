@@ -13,6 +13,7 @@ import * as config from "../../../config/bonusForm.js";
 import * as pomodoroConfig from "../../../config/pomodoroTimer.js";
 import {LeitnerLearningWorkloadUtilities} from "../../../util/learningWorkload";
 import {LeitnerPerformanceHistory} from "../../subscriptions/leitner/leitnerPerformanceHistory";
+import {LearningStatisticsUtilities} from "../../../util/learningStatistics";
 
 Meteor.methods({
 	initializePrivateLearningPhase: function (cardset_id, user_id) {
@@ -411,6 +412,7 @@ Meteor.methods({
 
 					Meteor.call("updateLearnerCount", cardset._id);
 					Meteor.call('updateWorkloadCount', user_id);
+					LearningStatisticsUtilities.updateLearningPhaseStats(leitnerWorkload.learning_phase_id);
 				} else {
 					throw new Meteor.Error("Could not find active bonus workload");
 				}

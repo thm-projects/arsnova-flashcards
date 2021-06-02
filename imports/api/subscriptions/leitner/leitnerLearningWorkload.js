@@ -66,11 +66,6 @@ const LeitnerLearningWorkloadSchema = new SimpleSchema({
 		type: Date,
 		defaultValue: new Date()
 	},
-	performanceStats: {
-		type: Object,
-		blackbox: true,
-		optional: true
-	},
 	nextLowestPriority: {
 		type: [Number],
 		optional: true
@@ -78,6 +73,42 @@ const LeitnerLearningWorkloadSchema = new SimpleSchema({
 	gotFinished: {
 		type: Boolean,
 		defaultValue: false
+	},
+	'performanceStats.answerTime': {
+		type: Object,
+		optional: true
+	},
+	'performanceStats.answerTime.median': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.answerTime.arithmeticMean': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.answerTime.standardDeviation': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.workingTime': {
+		type: Object,
+		optional: true
+	},
+	'performanceStats.workingTime.sum': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.workingTime.median': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.workingTime.arithmeticMean': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.workingTime.standardDeviation': {
+		type: Number,
+		optional: true
 	}
 });
 

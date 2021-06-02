@@ -133,70 +133,34 @@ const LeitnerLearningPhaseSchema = new SimpleSchema({
 		optional: true
 	},
 	'performanceStats.answerTime.median': {
-		type: Object,
-		optional: true
-	},
-	'performanceStats.answerTime.median.bonus': {
-		type: Number,
-		optional: true
-	},
-	'performanceStats.answerTime.median.normal': {
 		type: Number,
 		optional: true
 	},
 	'performanceStats.answerTime.arithmeticMean': {
-		type: Object,
-		optional: true
-	},
-	'performanceStats.answerTime.arithmeticMean.bonus': {
-		type: Number,
-		optional: true
-	},
-	'performanceStats.answerTime.arithmeticMean.normal': {
 		type: Number,
 		optional: true
 	},
 	'performanceStats.answerTime.standardDeviation': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.workingTime': {
 		type: Object,
 		optional: true
 	},
-	'performanceStats.answerTime.standardDeviation.bonus': {
+	'performanceStats.workingTime.sum': {
 		type: Number,
 		optional: true
 	},
-	'performanceStats.answerTime.standardDeviation.normal': {
+	'performanceStats.workingTime.median': {
 		type: Number,
 		optional: true
 	},
-	'performanceStats.workingTime.sum.bonus': {
+	'performanceStats.workingTime.arithmeticMean': {
 		type: Number,
 		optional: true
 	},
-	'performanceStats.workingTime.sum.normal': {
-		type: Number,
-		optional: true
-	},
-	'performanceStats.workingTime.median.bonus': {
-		type: Number,
-		optional: true
-	},
-	'performanceStats.workingTime.median.normal': {
-		type: Number,
-		optional: true
-	},
-	'performanceStats.workingTime.arithmeticMean.bonus': {
-		type: Number,
-		optional: true
-	},
-	'performanceStats.workingTime.arithmeticMean.normal': {
-		type: Number,
-		optional: true
-	},
-	'performanceStats.workingTime.standardDeviation.bonus': {
-		type: Number,
-		optional: true
-	},
-	'performanceStats.workingTime.standardDeviation.normal': {
+	'performanceStats.workingTime.standardDeviation': {
 		type: Number,
 		optional: true
 	},

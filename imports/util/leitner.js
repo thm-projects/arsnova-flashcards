@@ -717,63 +717,59 @@ export let LeitnerUtilities = class LeitnerUtilities {
 	}
 
 	static updateLeitnerWorkload (cardset_id, user_id, leitnerLearningWorkload) {
-		if (!Meteor.isServer) {
-			throw new Meteor.Error("not-authorized");
-		} else {
-			let nextLeitnerCardDate = new Date();
-			let activeLeitnerCardDate = new Date();
-			let learnedAllLeitnerCards = false;
+		let nextLeitnerCardDate = new Date();
+		let activeLeitnerCardDate = new Date();
+		let learnedAllLeitnerCards = false;
 
-			let activeLeitnerCards = LeitnerUserCardStats.find({
-				learning_phase_id: leitnerLearningWorkload.learning_phase_id,
-				workload_id: leitnerLearningWorkload._id,
-				cardset_id: cardset_id,
-				user_id: user_id,
-				isActive: true}).count();
+		let activeLeitnerCards = LeitnerUserCardStats.find({
+			learning_phase_id: leitnerLearningWorkload.learning_phase_id,
+			workload_id: leitnerLearningWorkload._id,
+			cardset_id: cardset_id,
+			user_id: user_id,
+			isActive: true}).count();
 
-			let nextLeitnerObject = LeitnerUserCardStats.findOne({
-				learning_phase_id: leitnerLearningWorkload.learning_phase_id,
-				workload_id: leitnerLearningWorkload._id,
-				cardset_id: cardset_id,
-				user_id: user_id,
-				box: {$ne: 6},
-				isActive: false}, {sort: {nextPossibleActivationDate: 1}});
-			if (nextLeitnerObject) {
-				nextLeitnerCardDate = nextLeitnerObject.nextPossibleActivationDate;
-			}
-
-			let activeLeitnerObject = LeitnerUserCardStats.findOne({
-				learning_phase_id: leitnerLearningWorkload.learning_phase_id,
-				workload_id: leitnerLearningWorkload._id,
-				cardset_id: cardset_id,
-				user_id: user_id,
-				box: {$ne: 6},
-				isActive: true}, {sort: {activatedSinceDate: 1}});
-			if (activeLeitnerObject) {
-				activeLeitnerCardDate = activeLeitnerObject.activatedSinceDate;
-			}
-
-			if (!LeitnerUserCardStats.find({
-				learning_phase_id: leitnerLearningWorkload.learning_phase_id,
-				workload_id: leitnerLearningWorkload._id,
-				cardset_id: cardset_id,
-				user_id: user_id,
-				box: {$ne: 6}}).count()) {
-				learnedAllLeitnerCards = true;
-			}
-			LeitnerLearningWorkload.update({
-				cardset_id: cardset_id,
-				user_id: user_id
-			}, {
-				$set: {
-					activeCardCount: activeLeitnerCards,
-					gotFinished: learnedAllLeitnerCards,
-					nextActivationDate: nextLeitnerCardDate,
-					activationDate: activeLeitnerCardDate,
-					updatedAt: new Date()
-				}
-			});
+		let nextLeitnerObject = LeitnerUserCardStats.findOne({
+			learning_phase_id: leitnerLearningWorkload.learning_phase_id,
+			workload_id: leitnerLearningWorkload._id,
+			cardset_id: cardset_id,
+			user_id: user_id,
+			box: {$ne: 6},
+			isActive: false}, {sort: {nextPossibleActivationDate: 1}});
+		if (nextLeitnerObject) {
+			nextLeitnerCardDate = nextLeitnerObject.nextPossibleActivationDate;
 		}
+
+		let activeLeitnerObject = LeitnerUserCardStats.findOne({
+			learning_phase_id: leitnerLearningWorkload.learning_phase_id,
+			workload_id: leitnerLearningWorkload._id,
+			cardset_id: cardset_id,
+			user_id: user_id,
+			box: {$ne: 6},
+			isActive: true}, {sort: {activatedSinceDate: 1}});
+		if (activeLeitnerObject) {
+			activeLeitnerCardDate = activeLeitnerObject.activatedSinceDate;
+		}
+
+		if (!LeitnerUserCardStats.find({
+			learning_phase_id: leitnerLearningWorkload.learning_phase_id,
+			workload_id: leitnerLearningWorkload._id,
+			cardset_id: cardset_id,
+			user_id: user_id,
+			box: {$ne: 6}}).count()) {
+			learnedAllLeitnerCards = true;
+		}
+		LeitnerLearningWorkload.update({
+			cardset_id: cardset_id,
+			user_id: user_id
+		}, {
+			$set: {
+				activeCardCount: activeLeitnerCards,
+				gotFinished: learnedAllLeitnerCards,
+				nextActivationDate: nextLeitnerCardDate,
+				activationDate: activeLeitnerCardDate,
+				updatedAt: new Date()
+			}
+		});
 	}
 
 	static updateWorkTimer (leitnerTask) {

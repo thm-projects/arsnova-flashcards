@@ -38,6 +38,20 @@ function leitnerLearningPhase() {
 						};
 					}
 				}
+				let newPerformanceStats = {
+					answerTime: {
+						median: cardset.learningStatistics.answerTime.median.bonus,
+						arithmeticMean: cardset.learningStatistics.answerTime.arithmeticMean.bonus,
+						standardDeviation: cardset.learningStatistics.answerTime.standardDeviation.bonus
+					},
+					workingTime: {
+						sum: cardset.learningStatistics.workingTime.sum.bonus,
+						median: cardset.learningStatistics.workingTime.median.bonus,
+						arithmeticMean: cardset.learningStatistics.workingTime.arithmeticMean.bonus,
+						standardDeviation: cardset.learningStatistics.workingTime.standardDeviation.bonus
+					}
+
+				};
 				let newLearningPhaseObject = {
 					cardset_id: cardset._id,
 					isActive: true,
@@ -57,7 +71,7 @@ function leitnerLearningPhase() {
 					},
 					strictTimer: cardset.strictWorkloadTimer,
 					forceNotifications: cardset.forceNotifications,
-					performanceStats: cardset.learningStatistics,
+					performanceStats: newPerformanceStats,
 					simulator: simulator
 				};
 				LeitnerLearningPhase.insert(newLearningPhaseObject);

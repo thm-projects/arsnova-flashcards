@@ -73,7 +73,7 @@ function leitnerTaskMigrationStep() {
 	leitnerTasks = LeitnerTasks.find({"learningStatistics": {$exists: false}}).fetch();
 	if (leitnerTasks.length) {
 		for (let i = 0; i < leitnerTasks.length; i++) {
-			LearningStatisticsUtilities.setPerformanceStats(leitnerTasks[i]);
+			LearningStatisticsUtilities.updateAllStats(leitnerTasks[i]);
 		}
 		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
 	} else {

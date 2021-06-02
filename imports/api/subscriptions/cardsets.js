@@ -423,78 +423,6 @@ const CardsetsSchema = new SimpleSchema({
 		type: Object,
 		optional: true
 	},
-	'learningStatistics.answerTime': {
-		type: Object,
-		optional: true
-	},
-	'learningStatistics.answerTime.median': {
-		type: Object,
-		optional: true
-	},
-	'learningStatistics.answerTime.median.bonus': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.answerTime.median.normal': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.answerTime.arithmeticMean': {
-		type: Object,
-		optional: true
-	},
-	'learningStatistics.answerTime.arithmeticMean.bonus': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.answerTime.arithmeticMean.normal': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.answerTime.standardDeviation': {
-		type: Object,
-		optional: true
-	},
-	'learningStatistics.answerTime.standardDeviation.bonus': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.answerTime.standardDeviation.normal': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.workingTime.sum.bonus': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.workingTime.sum.normal': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.workingTime.median.bonus': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.workingTime.median.normal': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.workingTime.arithmeticMean.bonus': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.workingTime.arithmeticMean.normal': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.workingTime.standardDeviation.bonus': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.workingTime.standardDeviation.normal': {
-		type: Number,
-		optional: true
-	},
 	unresolvedErrors: {
 		type: Number,
 		optional: true
@@ -502,6 +430,46 @@ const CardsetsSchema = new SimpleSchema({
 	bonusStatus: {
 		type: Number,
 		defaultValue: 0
+	},
+	'performanceStats.answerTime': {
+		type: Object,
+		optional: true
+	},
+	'performanceStats.answerTime.median': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.answerTime.arithmeticMean': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.answerTime.standardDeviation': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.workingTime': {
+		type: Object,
+		optional: true
+	},
+	'performanceStats.workingTime.sum': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.workingTime.median': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.workingTime.arithmeticMean': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.workingTime.standardDeviation': {
+		type: Number,
+		optional: true
+	},
+	learningStatistics: {
+		type: Object,
+		optional: true
 	}
 });
 
