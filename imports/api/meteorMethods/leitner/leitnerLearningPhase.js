@@ -297,7 +297,8 @@ Meteor.methods({
 						_id: cardset._id
 					}, {$set: {
 							dateUpdated: new Date(),
-							lastEditor: Meteor.userId()
+							lastEditor: Meteor.userId(),
+							bonusStatus: LeitnerLearningPhaseUtilities.setLeitnerBonusStatus(LeitnerLearningPhase.findOne({_id: learningPhase._id}))
 						}}
 				);
 				return learningPhase._id;
