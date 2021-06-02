@@ -10,7 +10,7 @@ Template.cardsetInfoBoxItemBonusCardArithmeticMean.helpers({
 	getBonusCardArithmeticMean: function () {
 		let bonusCardArithmeticMean = 0;
 		if (this.performanceStats !== undefined && this.performanceStats.answerTime !== undefined) {
-			bonusCardArithmeticMean = this.performanceStats.answerTime.arithmeticMean.bonus;
+			bonusCardArithmeticMean = this.performanceStats.answerTime.arithmeticMean;
 		}
 		return Utilities.humanizeDuration(bonusCardArithmeticMean);
 	}

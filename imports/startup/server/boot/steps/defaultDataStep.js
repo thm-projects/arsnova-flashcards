@@ -87,7 +87,7 @@ function setupDatabaseIndex() {
 	LeitnerLearningWorkload._ensureIndex({cardset_id: 1, user_id: 1, learning_phase_id: 1, isActive: 1, isBonus: 1});
 	LeitnerUserCardStats._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, learning_phase_id: 1, isActive: 1});
 	LeitnerActivationDay._ensureIndex({user_id: 1, cardset_id: 1, learning_phase_id: 1});
-	LeitnerPerformanceHistory._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, activation_day_id: 1, learning_phase_id: 1, box: 1, dateAnswered: 1});
+	LeitnerPerformanceHistory._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, activation_day_id: 1, learning_phase_id: 1, box: 1});
 	Wozniak._ensureIndex({user_id: 1, cardset_id: 1});
 	Cards._ensureIndex({cardset_id: 1, subject: 1});
 	WebPushSubscriptions._ensureIndex({user_id: 1});

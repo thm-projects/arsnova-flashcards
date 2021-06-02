@@ -10,7 +10,7 @@ Template.cardsetInfoBoxItemBonusWorkingTimeStandardDeviation.helpers({
 	getBonusWorkingTimeStandardDeviation: function () {
 		let bonusWorkingTimeStandardDeviation = 0;
 		if (this.performanceStats !== undefined && this.performanceStats.workingTime !== undefined) {
-			bonusWorkingTimeStandardDeviation = this.performanceStats.workingTime.standardDeviation.bonus;
+			bonusWorkingTimeStandardDeviation = this.performanceStats.workingTime.standardDeviation;
 		}
 		return Utilities.humanizeDuration(bonusWorkingTimeStandardDeviation);
 	}

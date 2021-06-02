@@ -54,9 +54,41 @@ const LeitnerActivationDaySchema = new SimpleSchema({
 		type: Object,
 		blackbox: true
 	},
-	performanceStats: {
+	'performanceStats.answerTime': {
 		type: Object,
-		blackbox: true
+		optional: true
+	},
+	'performanceStats.answerTime.median': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.answerTime.arithmeticMean': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.answerTime.standardDeviation': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.workingTime': {
+		type: Object,
+		optional: true
+	},
+	'performanceStats.workingTime.sum': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.workingTime.median': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.workingTime.arithmeticMean': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.workingTime.standardDeviation': {
+		type: Number,
+		optional: true
 	},
 	createdAt: {
 		type: Date

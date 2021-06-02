@@ -10,7 +10,7 @@ Template.cardsetInfoBoxItemBonusCardStandardDeviation.helpers({
 	getBonusCardStandardDeviation: function () {
 		let bonusCardStandardDeviation = 0;
 		if (this.performanceStats !== undefined && this.performanceStats.answerTime !== undefined) {
-			bonusCardStandardDeviation = this.performanceStats.answerTime.standardDeviation.bonus;
+			bonusCardStandardDeviation = this.performanceStats.answerTime.standardDeviation;
 		}
 		return Utilities.humanizeDuration(bonusCardStandardDeviation);
 	}

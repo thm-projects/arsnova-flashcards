@@ -62,7 +62,7 @@ Meteor.methods({
 				}, {$set: {
 						timestamps: timestamps
 					}});
-				LearningStatisticsUtilities.setPerformanceStats(leitnerActivationDay);
+				LearningStatisticsUtilities.updateAllStats(leitnerActivationDay);
 			}
 		} else {
 			throw new Meteor.Error("Leitner workload not found");
@@ -205,6 +205,7 @@ Meteor.methods({
 						}, {sort: {createdAt: -1}});
 						if (leitnerActivationDay !== undefined) {
 							delete query.isActive;
+							delete query.submittedAnswer;
 							query.activation_day_id = leitnerActivationDay._id;
 							LeitnerPerformanceHistory.update(query, {
 								$set: {
@@ -213,7 +214,7 @@ Meteor.methods({
 									timestamps: timestamps
 								}
 							});
-							LearningStatisticsUtilities.setPerformanceStats(leitnerActivationDay);
+							LearningStatisticsUtilities.updateAllStats(leitnerActivationDay);
 						}
 
 						LeitnerUtilities.setEndBonusPoints(cardset, leitnerActivationDay, result);
