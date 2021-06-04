@@ -945,6 +945,9 @@ $themes: (
     $modal_feedback_button_card_side_text_active: map-get($map, "modal_feedback_button_card_side_text_active");
     $modal_border_color: map-get($map, "modal_border_color");
     $modal_background_color: map-get($map, "modal_background_color");
+    $error_reporting_table_background_color: map-get($map, "error_reporting_table_background_color");
+    $error_reporting_table_background_color_hover: map-get($map, "error_reporting_table_background_color_hover");
+
 
     //pomodoro colors
     $pomodoro_timer_fullscreen_overlay: map-get($map, "pomodoro_timer_fullscreen_overlay");
@@ -1159,6 +1162,7 @@ $themes: (
     a {
       color: $hyperlink;
     }
+
     /*audio::-webkit-media-controls-panel, video::-webkit-media-controls-panel {
       background-color: $default_background;
     }
@@ -5153,6 +5157,13 @@ $themes: (
       border-color: $card_sidebar_error_reporting_button_background_hover !important;
       background-color: $card_sidebar_error_reporting_button_background_hover !important;
       color: $card_sidebar_error_reporting_button_text_hover !important;
+    }
+
+    #unresolvedErrorReportsTable > table > tbody > tr{
+    background: $error_reporting_table_background_color !important;
+    }
+    #unresolvedErrorReportsTable > table > tbody > tr:hover{
+    background: $error_reporting_table_background_color_hover !important;
     }
   }
 }

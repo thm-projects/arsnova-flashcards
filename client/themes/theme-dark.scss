@@ -599,7 +599,7 @@
           "card_answer_background_right": rgba($default_green, 0.25),
           "card_answer_background_wrong": rgba($default_red, 0.25),
           "card_answer_explanation_background": rgba($default_orange, 0.25),
-    //card sidebar colors
+
     //card sidebar colors
           "card_sidebar_border": rgba($default_grey, 0.6),
           "card_sidebar_background" : $default_black,
@@ -1126,5 +1126,8 @@
           "cardsetInfo_panel_body_background": $default_black,
           "panel_body_h4": white,
 
+      //Error reporting
+        "error_reporting_table_background_color": $default_black,
+        "error_reporting_table_background_color_hover": lighten($default_black, 5),
   );
 }
