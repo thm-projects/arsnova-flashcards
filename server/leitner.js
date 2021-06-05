@@ -234,10 +234,11 @@ Meteor.methods({
 					}
 				}
 			}
+			// für jeden owner in der map
 			for (const key in map) {
 				if (Object.hasOwnProperty.call(map, key)) {
-					const cardSet = map[key];
-					Meteor.call('prepareMail', cardSet, cardSet.owner, 0);
+					//const cardSets = map[key];
+					//Meteor.call('prepareMail', cardSet, cardSet.owner, 0);
 				}
 			}
 		}
