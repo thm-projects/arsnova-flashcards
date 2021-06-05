@@ -18,6 +18,16 @@ export class CronScheduler {
 				Meteor.call("updateLeitnerCards");
 			}
 		});
+		SyncedCron.add({
+			name: "errorCron",
+			schedule: (parser) => {
+				//return parser.recur().on(Meteor.settings.public.dailyCronjob.executeAtHour).hour();
+				return parser.text('every 30 seconds');
+			},
+			job: () => {
+				Meteor.call("prepareErrorMail");
+			}
+		});
 		SyncedCron.start();
 	}
 }

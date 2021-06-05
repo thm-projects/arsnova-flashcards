@@ -1,13 +1,14 @@
-import {Meteor} from "meteor/meteor";
-import {Leitner} from "../imports/api/subscriptions/leitner";
-import {Workload} from "../imports/api/subscriptions/workload";
-import {Cardsets} from "../imports/api/subscriptions/cardsets";
-import {MailNotifier} from "./sendmail.js";
-import {WebNotifier} from "./sendwebpush.js";
-import {Bonus} from "../imports/util/bonus";
-import {LeitnerUtilities} from "../imports/util/leitner.js";
-import {ServerSettings} from "../imports/util/settings";
-import {LeitnerTasks} from "../imports/api/subscriptions/leitnerTasks";
+import { Meteor } from "meteor/meteor";
+import { Leitner } from "../imports/api/subscriptions/leitner";
+import { Workload } from "../imports/api/subscriptions/workload";
+import { Cardsets } from "../imports/api/subscriptions/cardsets";
+import { MailNotifier } from "./sendmail.js";
+import { WebNotifier } from "./sendwebpush.js";
+import { Bonus } from "../imports/util/bonus";
+import { LeitnerUtilities } from "../imports/util/leitner.js";
+import { ServerSettings } from "../imports/util/settings";
+import { LeitnerTasks } from "../imports/api/subscriptions/leitnerTasks";
+import { ErrorReporting } from "../imports/api/subscriptions/errorReporting";
 
 /** Function gets called when the learning-phase ended and excludes the cardset from the leitner algorithm
  *  @param {Object} cardset - The cardset from the active learning-phase
@@ -16,14 +17,14 @@ function disableLearning(cardset) {
 	if (!Meteor.isServer) {
 		throw new Meteor.Error("not-authorized");
 	} else {
-		let users = Workload.find({cardset_id: cardset._id, 'leitner.bonus': true}, {fields: {user_id: 1}}).fetch();
+		let users = Workload.find({ cardset_id: cardset._id, 'leitner.bonus': true }, { fields: { user_id: 1 } }).fetch();
 		for (let i = 0; i < users.length; i++) {
-			if (Leitner.findOne({cardset_id: cardset._id, user_id: users[i].user_id, active: true}) !== undefined) {
-				Leitner.update({cardset_id: cardset._id, user_id: users[i].user_id}, {
+			if (Leitner.findOne({ cardset_id: cardset._id, user_id: users[i].user_id, active: true }) !== undefined) {
+				Leitner.update({ cardset_id: cardset._id, user_id: users[i].user_id }, {
 					$set: {
 						active: false
 					}
-				}, {multi: true});
+				}, { multi: true });
 			}
 		}
 	}
@@ -37,7 +38,7 @@ function getLearners(cardset_id) {
 	if (!Meteor.isServer) {
 		throw new Meteor.Error("not-authorized");
 	} else {
-		var data = Leitner.find({cardset_id: cardset_id}).fetch();
+		var data = Leitner.find({ cardset_id: cardset_id }).fetch();
 		return _.uniq(data, false, function (d) {
 			return d.user_id;
 		});
@@ -51,7 +52,7 @@ function getCardsets() {
 	if (!Meteor.isServer) {
 		throw new Meteor.Error("not-authorized");
 	} else {
-		return Cardsets.find({kind: {$nin: ['server']}}).fetch();
+		return Cardsets.find({ kind: { $nin: ['server'] } }).fetch();
 	}
 }
 
@@ -80,6 +81,26 @@ function missedDeadlineCheck(cardset, cardUnlockedDate) {
 	return cardUnlockedDate <= moment();
 }
 
+function getErrorReportings() {
+	if (!Meteor.isServer) {
+		throw new Meteor.Error("not-authorized");
+	} else {
+		return ErrorReporting.find({
+			status: 0
+		}, { sort: { cardset_id: 1 } });
+	}
+}
+
+function getCardsetById(cardset_id) {
+	if (!Meteor.isServer) {
+		throw new Meteor.Error("not-authorized");
+	} else {
+		return Cardsets.findOne({
+			_id: cardset_id
+		});
+	}
+}
+
 Meteor.methods({
 	/** Function gets called by the leitner Cronjob and checks which users are valid for receiving new cards / getting reset for missing the deadline / in which cardset the learning-phase ended*/
 	updateLeitnerCards: function () {
@@ -91,7 +112,7 @@ Meteor.methods({
 			let currentCardsetWithLearners = 1;
 			if (Meteor.settings.debug.leitner) {
 				for (let i = 0; i < cardsets.length; i++) {
-					if (Leitner.findOne({cardset_id: cardsets[i]._id})) {
+					if (Leitner.findOne({ cardset_id: cardsets[i]._id })) {
 						cardsetCount++;
 					}
 				}
@@ -151,8 +172,8 @@ Meteor.methods({
 					MailNotifier.prepareMail(cardset, user._id, messageType);
 					if (task_id !== undefined) {
 						LeitnerTasks.update({
-								_id: task_id
-							},
+							_id: task_id
+						},
 							{
 								$set: {
 									'notifications.mail.active': true,
@@ -183,8 +204,8 @@ Meteor.methods({
 					web.prepareWeb(cardset, user._id, undefined, messageType);
 					if (task_id !== undefined) {
 						LeitnerTasks.update({
-								_id: task_id
-							},
+							_id: task_id
+						},
 							{
 								$set: {
 									'notifications.web.active': true,
@@ -195,6 +216,28 @@ Meteor.methods({
 					}
 				} catch (error) {
 					console.log("[" + TAPi18n.__('admin-settings.test-notifications.sendWeb') + "] " + error);
+				}
+			}
+		}
+	},
+	prepareErrorMail: () => {
+		if (Meteor.isServer) {
+			const reportings = getErrorReportings();
+			const map = {};
+			for (const reporting of reportings) {
+				const cardSet = getCardsetById(reporting.cardset_id);
+				if (cardSet) {
+					if (cardSet.owner in map) {
+						map[cardSet.owner].push(cardSet);
+					} else {
+						map[cardSet.owner] = [cardSet];
+					}
+				}
+			}
+			for (const key in map) {
+				if (Object.hasOwnProperty.call(map, key)) {
+					const cardSet = map[key];
+					Meteor.call('prepareMail', cardSet, cardSet.owner, 0);
 				}
 			}
 		}
