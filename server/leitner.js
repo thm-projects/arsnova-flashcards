@@ -8,7 +8,6 @@ import { Bonus } from "../imports/util/bonus";
 import { LeitnerUtilities } from "../imports/util/leitner.js";
 import { ServerSettings } from "../imports/util/settings";
 import { LeitnerTasks } from "../imports/api/subscriptions/leitnerTasks";
-import { ErrorReporting } from "../imports/api/subscriptions/errorReporting";
 
 /** Function gets called when the learning-phase ended and excludes the cardset from the leitner algorithm
  *  @param {Object} cardset - The cardset from the active learning-phase
@@ -79,26 +78,6 @@ function missedDeadlineCheck(cardset, cardUnlockedDate) {
 	//Compensate for the 24h cronjob interval
 	cardUnlockedDate.subtract(1, 'hour');
 	return cardUnlockedDate <= moment();
-}
-
-function getErrorReportings() {
-	if (!Meteor.isServer) {
-		throw new Meteor.Error("not-authorized");
-	} else {
-		return ErrorReporting.find({
-			status: 0
-		}, { sort: { cardset_id: 1 } });
-	}
-}
-
-function getCardsetById(cardset_id) {
-	if (!Meteor.isServer) {
-		throw new Meteor.Error("not-authorized");
-	} else {
-		return Cardsets.findOne({
-			_id: cardset_id
-		});
-	}
 }
 
 Meteor.methods({
@@ -216,29 +195,6 @@ Meteor.methods({
 					}
 				} catch (error) {
 					console.log("[" + TAPi18n.__('admin-settings.test-notifications.sendWeb') + "] " + error);
-				}
-			}
-		}
-	},
-	prepareErrorMail: () => {
-		if (Meteor.isServer) {
-			const reportings = getErrorReportings();
-			const map = {};
-			for (const reporting of reportings) {
-				const cardSet = getCardsetById(reporting.cardset_id);
-				if (cardSet) {
-					if (cardSet.owner in map) {
-						map[cardSet.owner].push(cardSet);
-					} else {
-						map[cardSet.owner] = [cardSet];
-					}
-				}
-			}
-			// für jeden owner in der map
-			for (const key in map) {
-				if (Object.hasOwnProperty.call(map, key)) {
-					//const cardSets = map[key];
-					//Meteor.call('prepareMail', cardSet, cardSet.owner, 0);
 				}
 			}
 		}

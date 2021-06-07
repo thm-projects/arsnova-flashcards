@@ -63,4 +63,7 @@ import "../imports/api/subscriptions/messageOfTheDay.js";
 // Server only leitner functions
 import "./leitner.js";
 
+// Error reportings functions
+import './errorReportings.js';
+
 WebApp.addHtmlAttributeHook(() => ({lang: 'de', charset: 'utf-8'}));

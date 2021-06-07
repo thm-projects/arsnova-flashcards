@@ -79,6 +79,63 @@ export class MailNotifier {
 		}
 	}
 
+	static prepareErrorReportingsMail(cardsets) {
+		if (!Meteor.isServer) {
+			throw new Meteor.Error("not-authorized");
+		} else {
+			const user_id = cardsets[0].owner;
+			// let firstName = getAuthorName(user_id, false, true);
+			//let cards = Notifications.getActiveCardsCount(cardset._id, user_id);
+			//let deadline = Notifications.getDeadline(cardset, user_id);
+
+			let subject;
+			let headerTitle;
+			let headerButton;
+			let bodyTitle;
+			let bodyGreetings;
+			let bodyMessage;
+			let headerColors;
+
+			subject = "We got error reportings!";
+			headerTitle = "hi!";
+			headerButton = "button";
+			bodyTitle = "body title";
+			bodyGreetings = "greetings!";
+			bodyMessage = "body message";
+			headerColors = config.mailColors.header.leitner.reminder;
+
+			/*switch (messageType) {
+				case 1:
+					subject = TAPi18n.__('notifications.mail.leitner.reminder.subject', {cardset: cardset.name, cards: cards}, ServerStyle.getServerLanguage());
+					headerTitle = TAPi18n.__('notifications.mail.leitner.reminder.header.title', {cardset: cardset.name, cards: cards}, ServerStyle.getServerLanguage());
+					headerButton = TAPi18n.__('notifications.mail.leitner.reminder.header.button', {cards: cards}, ServerStyle.getServerLanguage());
+					bodyTitle = TAPi18n.__('notifications.mail.leitner.reminder.body.title', null, ServerStyle.getServerLanguage());
+					bodyGreetings = TAPi18n.__('notifications.mail.leitner.reminder.body.greetings', {user: firstName[0]}, ServerStyle.getServerLanguage());
+					bodyMessage = TAPi18n.__('notifications.mail.leitner.reminder.body.message', {cardset: cardset.name, cards: cards, deadline: deadline}, ServerStyle.getServerLanguage());
+					headerColors = config.mailColors.header.leitner.reminder;
+					break;
+				case 2:
+					subject = TAPi18n.__('notifications.mail.leitner.reset.subject', {cardset: cardset.name, cards: cards}, ServerStyle.getServerLanguage());
+					headerTitle = TAPi18n.__('notifications.mail.leitner.reset.header.title', {cardset: cardset.name, cards: cards}, ServerStyle.getServerLanguage());
+					headerButton = TAPi18n.__('notifications.mail.leitner.reset.header.button', {cards: cards}, ServerStyle.getServerLanguage());
+					bodyTitle = TAPi18n.__('notifications.mail.leitner.reset.body.title', null, ServerStyle.getServerLanguage());
+					bodyGreetings = TAPi18n.__('notifications.mail.leitner.reset.body.greetings', {user: firstName[0]}, ServerStyle.getServerLanguage());
+					bodyMessage = TAPi18n.__('notifications.mail.leitner.reset.body.message', {cardset: cardset.name, cards: cards, deadline: deadline}, ServerStyle.getServerLanguage());
+					headerColors = config.mailColors.header.leitner.reset;
+					break;
+				default:
+					subject = TAPi18n.__('notifications.mail.leitner.new.subject', {cardset: cardset.name, cards: cards}, ServerStyle.getServerLanguage());
+					headerTitle = TAPi18n.__('notifications.mail.leitner.new.header.title', {cardset: cardset.name, cards: cards}, ServerStyle.getServerLanguage());
+					headerButton = TAPi18n.__('notifications.mail.leitner.new.header.button', {cards: cards}, ServerStyle.getServerLanguage());
+					bodyTitle = TAPi18n.__('notifications.mail.leitner.new.body.title', null, ServerStyle.getServerLanguage());
+					bodyGreetings = TAPi18n.__('notifications.mail.leitner.new.body.greetings', {user: firstName[0]}, ServerStyle.getServerLanguage());
+					bodyMessage = TAPi18n.__('notifications.mail.leitner.new.body.message', {cardset: cardset.name, cards: cards, deadline: deadline}, ServerStyle.getServerLanguage());
+					headerColors = config.mailColors.header.leitner.new;
+			}*/
+			this.sendMail(this.getMail(user_id), subject, headerTitle, headerButton, bodyTitle, bodyGreetings, bodyMessage, undefined, headerColors);
+		}
+	}
+
 	static sendMail (mail, subject, headerTitle, headerButton, bodyTitle, bodyGreetings, bodyMessage, cardsetId, headerColors) {
 		let faq = TAPi18n.__('contact.faq', null, ServerStyle.getServerLanguage());
 		let datenschutz = TAPi18n.__('contact.datenschutz', null, ServerStyle.getServerLanguage());
@@ -91,8 +148,9 @@ export class MailNotifier {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
+			console.log(mail);
 			if (mail) {
-				var html = SSR.render("newsletter", {
+				const html = SSR.render("newsletter", {
 					headerTitle: headerTitle,
 					headerButton: headerButton,
 					bodyTitle: bodyTitle,
