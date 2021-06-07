@@ -49,6 +49,7 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		} else {
 			let leitnerLearningPhase = LeitnerLearningPhase.find({isActive: true}).fetch();
+			let cronjobStartDate = moment();
 			if (Meteor.settings.debug.leitner) {
 				console.log(`Found ${leitnerLearningPhase.length} active leitner learning phases.`);
 			}
@@ -70,17 +71,24 @@ Meteor.methods({
 						console.log(`Found ${leitnerWorkloads.length} active workloads for learning phase: [${learningPhase._id}] in cardset [${cardset.name}]`);
 					}
 					leitnerWorkloads.forEach(workload => {
-						let user = Meteor.users.findOne({_id: workload.user_id});
-						//Check if the user learned all cards in his workload
-						if (workload.activeCardCount === 0) {
-							LeitnerUtilities.setCards(learningPhase, workload, cardset, user, false);
-						} else if (missedDeadlineCheck(learningPhase, workload.activationDate)) {
-							LeitnerUtilities.resetCards(learningPhase, workload, cardset, user);
-						} else {
-							Meteor.call('prepareMail', cardset, user, 1);
-							Meteor.call('prepareWebpush', cardset, user, false, undefined, 1);
-							if (Meteor.settings.debug.leitner) {
-								console.log("===> Nothing to do");
+						let workloadCreatedDate = moment(workload.createdAt);
+						//Check if user joined the learning phase on the same day as the cronjob gets executed
+						if (!workloadCreatedDate.isSame(cronjobStartDate, 'date')) {
+							console.log(workloadCreatedDate.get('date'));
+							console.log(cronjobStartDate.get('date'));
+							console.log(workloadCreatedDate.isSame(cronjobStartDate, 'date'));
+							let user = Meteor.users.findOne({_id: workload.user_id});
+							//Check if the user learned all cards in his workload
+							if (workload.activeCardCount === 0) {
+								LeitnerUtilities.setCards(learningPhase, workload, cardset, user, false);
+							} else if (missedDeadlineCheck(learningPhase, workload.activationDate)) {
+								LeitnerUtilities.resetCards(learningPhase, workload, cardset, user);
+							} else {
+								Meteor.call('prepareMail', cardset, user, 1);
+								Meteor.call('prepareWebpush', cardset, user, false, undefined, 1);
+								if (Meteor.settings.debug.leitner) {
+									console.log("===> Nothing to do");
+								}
 							}
 						}
 					});
