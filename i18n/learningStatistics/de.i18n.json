@@ -1,6 +1,7 @@
 {
   "learningStatistics": {
     "archived": "(Archiviert)",
+    "delete": "Löschen",
     "tooltip": "",
     "hideUserNames": "Benutzernamen verbergen",
     "hiddenUser": "Benutzer",

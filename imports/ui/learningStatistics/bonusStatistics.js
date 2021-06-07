@@ -5,9 +5,11 @@ import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
 import {Cardsets} from "../../api/subscriptions/cardsets";
 import "./modal/removeBonusUser.js";
+import "./modal/deleteArchivedBonus.js";
 import "./modal/history.js";
 import "./item/sort.js";
 import "./bonusStatistics.html";
+import "../cardset/navigation/modal/bonus/bonusForm.js";
 import {LearningStatus} from "../../util/learningStatus";
 import {Utilities} from "../../util/utilities";
 import {LeitnerHistoryUtilities} from "../../util/learningHistory";
@@ -67,6 +69,10 @@ Template.learningBonusStastics.helpers({
 });
 
 Template.learningBonusStastics.events({
+	"click #manageBonus": function () {
+		Session.set('displayContentOfNewLearningPhaseBonus', false);
+		$('#bonusFormModal').modal('show');
+	},
 	"click .learningPhaseDropdownItem": function (event) {
 		Session.set('selectedLearningPhaseID', $(event.target).data('id'));
 		Meteor.call("getLearningStatistics", FlowRouter.getParam('_id'), Session.get('selectedLearningPhaseID'), function (error, result) {

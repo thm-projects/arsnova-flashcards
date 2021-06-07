@@ -4,6 +4,8 @@
     {{else}}
         {{> learningHistoryModal}}
         {{> learningStatisticsRemoveBonusUserModal}}
+        {{> bonusForm}}
+        {{> learningStatisticsDeleteArchivedBonusModal}}
         <div class="cardsetstats-container">
             <div id="cardsetInfoDetail">
                 <div class="panel panel-default cardsetInfo">
@@ -60,6 +62,12 @@
                                 </div>
                             </div>
                         {{/if}}
+                        <div class="btn-group pull-right">
+                            <button id="manageBonus"
+                                    class="btn btn-warning btn-raised learnBoxActive">
+                                <span class="fas fa-cog"></span> {{_ "bonus.form.edit.title"}}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

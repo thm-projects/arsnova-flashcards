@@ -215,6 +215,48 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 	},
+	deleteArchivedBonus: function (id) {
+		check(id, String);
+
+		let learningPhase = LeitnerLearningPhase.findOne({_id: id, isActive: false, isBonus: true});
+		if (learningPhase !== undefined) {
+			let cardset = Cardsets.findOne({_id: learningPhase.cardset_id});
+			if (cardset !== undefined && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
+				LeitnerLearningWorkload.remove({
+					learning_phase_id: learningPhase._id
+				});
+				LeitnerActivationDay.remove({
+					learning_phase_id: learningPhase._id
+				});
+				LeitnerUserCardStats.remove({
+					learning_phase_id: learningPhase._id
+				});
+				LeitnerPerformanceHistory.remove({
+					learning_phase_id: learningPhase._id
+				});
+				LeitnerLearningPhase.remove({
+					_id: learningPhase._id
+				});
+				let remainingBonusPhases = LeitnerLearningPhase.find({cardset_id: learningPhase.cardset_id, isBonus: true}).count();
+				if (remainingBonusPhases === 0) {
+					Cardsets.update({
+						_id: learningPhase.cardset_id
+					}, {
+						$set: {
+							dateUpdated: new Date(),
+							lastEditor: Meteor.userId(),
+							bonusStatus: 0
+						}
+					});
+				}
+				return remainingBonusPhases;
+			} else {
+				throw new Meteor.Error("not-authorized");
+			}
+		} else {
+			throw new Meteor.Error("Can't find inactive learning phase bonus");
+		}
+	},
 	/**
 	 * Updates the settings of a learning phase for the selected cardset.
 	 * @param {String} id - ID of the cardset for which the learning phase is to be activated.

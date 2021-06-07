@@ -22,7 +22,7 @@ Meteor.methods({
 		let content;
 		let cardset = Cardsets.findOne({_id: cardset_id});
 		let cardsetInfo = CardsetUserlist.getCardsetInfo(cardset);
-		let learningPhaseInfo = CardsetUserlist.getLearningPhaseInfo(cardset);
+		let learningPhaseInfo = CardsetUserlist.getLearningPhaseInfo(cardset, learning_phase_id);
 		if (Roles.userIsInRole(Meteor.userId(), ["admin", "editor"]) || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
 			let learningPhase = LeitnerLearningPhaseUtilities.getLearningPhase(learning_phase_id);
 			if (learningPhase.isBonus && learningPhase.cardset_id === cardset._id) {
@@ -63,7 +63,7 @@ Meteor.methods({
 				let learners = CardsetUserlist.getLearners(LeitnerLearningWorkload.find({learning_phase_id: learningPhase._id, isBonus: true}).fetch(), cardset_id, learning_phase_id);
 				for (let k = 0; k < learners.length; k++) {
 					let totalCards = learners[k].box1 + learners[k].box2 + learners[k].box3 + learners[k].box4 + learners[k].box5 + learners[k].box6;
-					let achievedBonus = Bonus.getAchievedBonus(learners[k].box6, LeitnerLearningPhaseUtilities.getActiveBonus(cardset._id).bonusPoints, totalCards);
+					let achievedBonus = Bonus.getAchievedBonus(learners[k].box6, learningPhase.bonusPoints, totalCards);
 					if (achievedBonus > 0) {
 						achievedBonus += " %";
 					} else {

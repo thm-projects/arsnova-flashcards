@@ -9,8 +9,8 @@ Template.registerHelper("getDefaultMinLearned", function () {
 	return BonusForm.getDefaultMinLearned();
 });
 
-Template.registerHelper("getCurrentMinLearned", function (cardset) {
-	return BonusForm.getCurrentMinLearned(cardset);
+Template.registerHelper("getCurrentMinLearned", function (learningPhase) {
+	return BonusForm.getCurrentMinLearned(learningPhase);
 });
 
 Template.registerHelper("getDefaultMaxBonusPoints", function () {
@@ -77,3 +77,4 @@ Template.registerHelper('gotArchivedOrActiveBonus', function (bonusStatus) {
 Template.registerHelper('gotActiveBonus', function (bonusStatus) {
 	return bonusStatus !== 0 && bonusStatus !== 5;
 });
+
