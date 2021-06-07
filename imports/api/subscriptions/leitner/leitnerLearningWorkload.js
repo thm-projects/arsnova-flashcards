@@ -26,6 +26,15 @@ if (Meteor.isServer) {
 			this.ready();
 		}
 	});
+	Meteor.publish("allUserWorkload", function () {
+		if (Meteor.userId()) {
+			return LeitnerLearningWorkload.find({
+				user_id: Meteor.userId()
+			});
+		} else {
+			this.ready();
+		}
+	});
 }
 
 const LeitnerLearningWorkloadSchema = new SimpleSchema({

@@ -6,7 +6,6 @@ import {Template} from "meteor/templating";
 import {CardType} from "../../../../util/cardTypes";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {BertAlertVisuals} from "../../../../util/bertAlertVisuals";
-import "../modal/leaveBonus.js";
 import "../modal/endBonus.js";
 import "../modal/bonus/simulator/leitnerSimulator.js";
 import "./bonus.html";
