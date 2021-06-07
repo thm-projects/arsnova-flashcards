@@ -34,7 +34,32 @@
                                     class="fas fa-user-secret"></span>&nbsp;{{_
                                     "learningStatistics.hideUserNames"}}</span></button>
                         </div>
-
+                        {{#if gotMultipleLearningPhases}}
+                            <div id="archivedLearningPhaseDropdown" class="pull-right btn-group">
+                                <div class="dropdown">
+                                    <div class="btn-group">
+                                        <button id="setActiveLearningPhase" type="button"
+                                                class="btn btn-raised btn-default setActiveLearningPhaseDropdown longButton"
+                                                data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false"
+                                                value="-1">{{getSelectedLearningPhaseData}}
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-raised dropdown-toggle setActiveLearningPhaseDropdown setCardTypeDropdownCaret"
+                                                data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                    <span class="flex-content"><span class="caret"></span>
+                        <span class="sr-only"></span></span>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-right btn-raised longButton">
+                                            {{#each getLearningPhases}}
+                                                <li class="learningPhaseDropdownItem" data-id="{{this._id}}">{{getMomentsDate this.createdAt false 0 false}} {{#unless this.isActive}}&nbsp;{{_ "learningStatistics.archived"}}{{/unless}}</li>
+                                            {{/each}}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/if}}
                     </div>
                 </div>
             </div>

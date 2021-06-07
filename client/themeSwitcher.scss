@@ -3845,10 +3845,9 @@ $themes: (
       color: $theme_dropdown_text !important;
     }
 
-    #setCardsetFormModal, #showSelectLearningUnitModal, #setLeitnerProgressCardsetFilter, #useCasesModal, #appThemeSelector {
+    #setCardsetFormModal, #showSelectLearningUnitModal, #setLeitnerProgressCardsetFilter, #useCasesModal, #appThemeSelector, #archivedLearningPhaseDropdown {
       ul > li {
         background-color: $cardset_form_list_background !important;
-        border-bottom-color: $cardset_form_border !important;
         a {
           color: $cardset_form_list_text !important;
         }

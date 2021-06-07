@@ -15,7 +15,7 @@ export let LeitnerLearningPhaseUtilities = class LeitnerLearningPhaseUtilities {
 	}
 
 	static getNewestBonus (cardset_id) {
-		return LeitnerLearningPhase.findOne({cardset_id: cardset_id, isBonus: true}, {$sort: {createdAt: -1}});
+		return LeitnerLearningPhase.findOne({cardset_id: cardset_id, isBonus: true}, {sort: {createdAt: -1}});
 	}
 
 	static isBonusActive (cardset_id, learningPhase = undefined) {

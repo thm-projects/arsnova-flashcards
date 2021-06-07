@@ -29,3 +29,11 @@
   padding: 0 !important;
   cursor: pointer;
 }
+
+#archivedLearningPhaseDropdown {
+  ul, li {
+    width: unset !important;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
