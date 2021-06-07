@@ -1,5 +1,7 @@
 import {LeitnerLearningPhase} from "../api/subscriptions/leitner/leitnerLearningPhase";
 import {LeitnerLearningWorkloadUtilities} from "./learningWorkload";
+import {Route} from "./route";
+import {Session} from "meteor/session";
 
 export let LeitnerLearningPhaseUtilities = class LeitnerLearningPhaseUtilities {
 	static getActiveLearningPhase (cardset_id, user_id, learning_phase_id = undefined) {
@@ -11,7 +13,15 @@ export let LeitnerLearningPhaseUtilities = class LeitnerLearningPhaseUtilities {
 	}
 
 	static getActiveBonus (cardset_id) {
-		return LeitnerLearningPhase.findOne({cardset_id: cardset_id, isBonus: true, isActive: true});
+		let query = {cardset_id: cardset_id, isBonus: true};
+
+		//Return selected learning phase if viewing the bonus Stats
+		if (Meteor.isClient && Route.isCardsetLeitnerStats()) {
+			query._id = Session.get('selectedLearningPhaseID');
+		} else {
+			query.isActive = true;
+		}
+		return LeitnerLearningPhase.findOne(query);
 	}
 
 	static getNewestBonus (cardset_id) {

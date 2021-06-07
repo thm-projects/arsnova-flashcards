@@ -450,11 +450,11 @@ export let BonusForm = class BonusForm {
 		return config.defaultMinLearned;
 	}
 
-	static getCurrentMinLearned (cardset) {
-		if (cardset.workload === undefined) {
+	static getCurrentMinLearned (learningPhase) {
+		if (learningPhase.bonusPoints === undefined) {
 			return config.defaultMinLearned;
 		} else {
-			return cardset.workload.bonus.minLearned;
+			return learningPhase.bonusPoints.minLearned;
 		}
 	}
 

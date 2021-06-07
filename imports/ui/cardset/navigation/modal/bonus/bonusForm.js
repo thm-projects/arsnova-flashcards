@@ -58,5 +58,8 @@ Template.bonusForm.events({
 		BonusForm.cleanModal();
 		PomodoroTimer.initializeVariables();
 		PomodoroTimer.initializeModalContent();
+	},
+	"click #deleteArchivedBonus": function () {
+		$('#learningStatisticsDeleteArchivedBonusModal').modal("show");
 	}
 });
