@@ -59,6 +59,7 @@ import "../modal/deleteTranscript.js";
 import "../modal/selectWorkload.js";
 import "./item/bottom/item/publish.js";
 import "./item/bottom/item/license.js";
+import "../../cardset/navigation/modal/bonus/leave/leave.js";
 import "./index.html";
 import {Meteor} from "meteor/meteor";
 import {ServerStyle} from "../../../util/styles";
@@ -389,11 +390,13 @@ Template.filterIndexWorkload.helpers({
 				let results = Cardsets.find(query, {sort: Filter.getSortFilter(), limit: Filter.getMaxItemCounter()});
 				let filteredResults = [];
 				results.forEach(function (cardset) {
-					if (LeitnerLearningWorkload.find({
+					let workload = LeitnerLearningWorkload.findOne({
 						cardset_id: cardset._id,
 						user_id: Meteor.userId(),
-						isActive: true
-					}).count() > 0 || Wozniak.find({cardset_id: cardset._id, user_id: Meteor.userId()}).count() > 0) {
+						isActive: true});
+					if (workload !== undefined || Wozniak.find({cardset_id: cardset._id, user_id: Meteor.userId()}).count() > 0) {
+						cardset.workload_id = workload._id;
+						cardset.isBonus = workload.isBonus;
 						filteredResults.push(cardset);
 					}
 				});

@@ -1,6 +1,7 @@
 <template name="filterIndexItemBottomLeaveWorkload">
     <a rel="noopener noreferrer"   class="resultNavigationElement deleteLearned" {{disableIfOffline}}
-       title='{{_ "confirm-form-learn.title"}}' data-toggle="modal" data-target="#leaveWorkloadModal"
+       title='{{_ "confirm-form-learn.title"}}' data-toggle="modal" data-target="
+       {{#if isInBonus}}#leaveBonusModal{{else}}#leaveWorkloadModal{{/if}}"
        data-id="{{this._id}}">
         <span class="fas fa-sign-out-alt" data-id="{{this._id}}"></span>
     </a>
