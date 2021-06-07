@@ -13,6 +13,7 @@ import {Utilities} from "../../util/utilities";
 import {LeitnerHistoryUtilities} from "../../util/learningHistory";
 import * as leitnerStatisticsConfig from "../../config/learningHistory";
 import {LeitnerLearningPhaseUtilities} from "../../util/learningPhase";
+import {LeitnerLearningPhase} from "../../api/subscriptions/leitner/leitnerLearningPhase";
 
 Template.learningBonusStastics.onCreated(function () {
 	Session.set('hideUserNames', true);
@@ -26,6 +27,20 @@ Template.learningBonusStastics.onRendered(function () {
 });
 
 Template.learningBonusStastics.helpers({
+	gotMultipleLearningPhases: function () {
+		return LeitnerLearningPhase.find({cardset_id: FlowRouter.getParam('_id'), isBonus: true}).count() > 1;
+	},
+	getLearningPhases: function () {
+		return LeitnerLearningPhase.find({cardset_id: FlowRouter.getParam('_id'), isBonus: true}).fetch();
+	},
+	getSelectedLearningPhaseData: function () {
+		let learningPhase = LeitnerLearningPhase.findOne({_id: Session.get('selectedLearningPhaseID')});
+		let string = Utilities.getMomentsDate(learningPhase.createdAt, false, 0, false);
+		if (!learningPhase.isActive) {
+			string += " " + TAPi18n.__('learningStatistics.archived');
+		}
+		return string;
+	},
 	adjustIndex: function (index) {
 		return index + 1;
 	},
@@ -52,6 +67,17 @@ Template.learningBonusStastics.helpers({
 });
 
 Template.learningBonusStastics.events({
+	"click .learningPhaseDropdownItem": function (event) {
+		Session.set('selectedLearningPhaseID', $(event.target).data('id'));
+		Meteor.call("getLearningStatistics", FlowRouter.getParam('_id'), Session.get('selectedLearningPhaseID'), function (error, result) {
+			if (error) {
+				throw new Meteor.Error(error.statusCode, 'Error could not receive content for stats');
+			}
+			if (result) {
+				Session.set("selectedLearningStatistics", LeitnerHistoryUtilities.prepareBonusUserData(result));
+			}
+		});
+	},
 	"click .showUserNames": function () {
 		Session.set('hideUserNames', !Session.get('hideUserNames'));
 
