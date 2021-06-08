@@ -19,6 +19,7 @@ import "./item/createCardsetButton.js";
 import "./item/createTranscriptButton.js";
 import "./item/createRepetitoriumButton.js";
 import "./item/importCardsetButton.js";
+import "./item/createErrorListingButton.js";
 import "./item/selectCardsetButton.js";
 import "./item/selectRepetitoriumButton.js";
 import "./item/shuffleRepetitoriumCallout.js";

@@ -1,0 +1,20 @@
+<template name="filterMyErrorsButton">
+    {{#if canCreateContent}}
+    {{#unless isSmartphone}}
+    {{#unless isSelectingCardsetToLearn}}
+    <span class="btn-group">
+                <button id="myErrors" type="button"
+                        class="btn btn-raised btn-success" {{disableIfOffline}} {{disableIfShuffle}}>
+                    <span class="flex-content">&nbsp;{{{getCardsetIcons false}}}
+                        {{#if gotSimplifiedNav}}
+                            {{_ "set-list-empty.newsetSimpleNav"}}
+                        {{else}}
+                            {{_ "set-list-empty.newset"}}
+                        {{/if}}
+                    </span>
+                </button>
+                </span>
+    {{/unless}}
+    {{/unless}}
+    {{/if}}
+</template>

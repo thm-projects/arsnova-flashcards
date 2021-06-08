@@ -3702,6 +3702,21 @@ $themes: (
       }
     }
 
+    .label-error-reporting:hover {
+      color: $button_text_hover !important;
+      background: $button_background_hover !important;
+      span {
+        color: $button_text_hover !important;
+      }
+    }
+
+    #set-list-region > div.filter-result-container > div:nth-child(1) > div.resultItemHeaderWrapper.col-xs-12 > div.resultItemHeaderBottomArea.row > div.col-xs-12.col-sm-8.col-md-8.collapseButton.resultItemHeaderBottomAreaLabels.enabled > span > span.label.show-error.label-error-reporting:hover {
+      color: $button_text_hover !important;
+      span {
+        color: $button_text_hover !important;
+      }
+    }
+
     .moduleRadioButtonLabel {
       color: $white !important;
     }
