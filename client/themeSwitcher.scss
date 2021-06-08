@@ -3696,6 +3696,7 @@ $themes: (
     .label-error-reporting {
       background-color: $error_reporting_label_background !important;
       color: $error_reporting_label_text !important;
+      border-radius: 7px !important;
       span {
         color: $error_reporting_label_text !important;
       }
