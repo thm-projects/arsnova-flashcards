@@ -117,6 +117,7 @@ export function defaultDataStep() {
 	itemName = "newsletter template";
 	Utilities.debugServerBoot(config.START_RECORDING, itemName);
 	process.env.MAIL_URL = Meteor.settings.mail.url;
+	SSR.compileTemplate("errors", Assets.getText("newsletter/errors.html"));
 	SSR.compileTemplate("newsletter", Assets.getText("newsletter/newsletter.html"));
 	Template.newsletter.helpers({
 		getDocType: function () {

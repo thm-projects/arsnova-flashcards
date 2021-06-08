@@ -22,7 +22,7 @@ export class CronScheduler {
 			name: "errorCron",
 			schedule: (parser) => {
 				//Use this line on a local server to trigger the cronjob every 30 seconds
-				//return parser.text('every 30 seconds');
+				// return parser.text('every 30 seconds');
 				return parser.recur().on(Meteor.settings.public.dailyCronjob.executeAtHour).hour();
 			},
 			job: () => {
