@@ -2,6 +2,10 @@
 //import {Session} from "meteor/session";
 //import {SweetAlertMessages} from "../../../../util/sweetAlert";
 import "./createErrorListingButton.html";
+import {Template} from "meteor/templating";
+import { ReactiveVar } from "meteor/reactive-var";
+
+const hasErrors = new ReactiveVar(false);
 
 /*
  * ############################################################################
@@ -22,7 +26,9 @@ Template.filterMyErrorsButton.events({
 });
 
 Template.filterMyErrorsButton.helpers({
-	hasErrorReportings: function () {
-		return Meteor.call("hasErrorReportings", Meteor.userId());
-	}
+	hasErrorReportings: () => hasErrors.get()
+});
+
+Template.filterMyErrorsButton.onCreated(() => {
+	Meteor.call("hasErrorReportings", (err, result) => hasErrors.set(result));
 });

@@ -1,22 +1,18 @@
 <template name="filterMyErrorsButton">
     {{#if hasErrorReportings}}
-    {{#if canCreateContent}}
-    {{#unless isSmartphone}}
-    {{#unless isSelectingCardsetToLearn}}
-    <span class="btn-group">
-                <button id="myErrors" type="button"
-                        class="btn btn-raised btn-success" {{disableIfOffline}} {{disableIfShuffle}}>
-                    <span class="flex-content">&nbsp;{{{getCardsetIcons false}}}
-                        
-                            {{_ 'modal-card.overviewErrorReports.unresolvedErrors'}}
-                        
-                          
-                       
+        {{#if canCreateContent}}
+            {{#unless isSmartphone}}
+                {{#unless isSelectingCardsetToLearn}}
+                    <span class="btn-group">
+                        <button id="myErrors" type="button"
+                                class="btn btn-raised btn-success" {{disableIfOffline}} {{disableIfShuffle}}>
+                            <span class="flex-content">&nbsp;{{{getCardsetIcons false}}}
+                                {{_ 'modal-card.overviewErrorReports.unresolvedErrors'}}
+                            </span>
+                        </button>
                     </span>
-                </button>
-                </span>
-    {{/unless}}
-    {{/unless}}
-    {{/if}}
+                {{/unless}}
+            {{/unless}}
+        {{/if}}
     {{/if}}
 </template>
