@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="CONTENT-TYPE" content="text/html" charset="UTF-8">
     <title>Error-Reportings-Mail</title>
-    <!--<style type="text/css">
+    <style type="text/css">
         @media only screen and (max-width: 640px) {
             .deviceWidth {
                 width: 400px !important;
@@ -17,7 +17,7 @@
                 padding: 0;
             }
         }
-    </style>-->
+    </style>
 </head>
 <body bgcolor="#dfe5e6" marginleft="0" marginright="0" marginwidth="0" marginheight="0"
       style="font-family: Roboto, Helvetica, Verdana, Arial, sans-serif; font-size: 14px; mso-line-height-rule:exactly; line-height: 130%">
@@ -78,7 +78,7 @@
                                             {{#each cardset in cardsets}}
                                                 <tr>
                                                     <td style="vertical-align: top; text-align: left;"><a href="{{url}}/cardset/{{cardset._id}}">{{cardset.name}}</a></td>
-                                                    <td style="vertical-align: top; text-align: left;"><a href="{{url}}/cardset/{{cardset._id}}/card/{{cardset.card._id}}">{{cardset.card.subject}}</a></td>
+                                                    <td style="vertical-align: top; text-align: left;">{{cardset.card.subject}}</td>
                                                     <td style="vertical-align: top; text-align: left; width: 20%;">{{cardset.reporting.error.content}}</td>
                                                 </tr>
                                             {{/each}}
