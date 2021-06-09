@@ -68,7 +68,7 @@ Template.errorReportingModal.events({
 				getErrorContent());
 			swal.fire({
 				title: TAPi18n.__('modal-card.errorReporting.thankYou'),
-				html: TAPi18n.__('modal-card.errorReporting.thankYouText'),
+				html: TAPi18n.__('modal-card.errorReporting.informCreator'),
 				type: "success",
 				allowOutsideClick: false,
 				confirmButtonText: "Weiter"
