@@ -20,3 +20,9 @@ Template.filterMyErrorsButton.events({
 		}*/
 	}
 });
+
+Template.filterMyErrorsButton.helpers({
+	hasErrorReportings: function () {
+		return Meteor.call("hasErrorReportings", Meteor.userId());
+	}
+});

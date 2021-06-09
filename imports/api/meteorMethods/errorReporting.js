@@ -84,5 +84,14 @@ Meteor.methods({
 	},
 	getCardErrorsFromUser: function (card_id, user_id) {
 		return ErrorReporting.find({card_id: card_id,user_id: user_id, status: 0}).fetch();
+	},
+
+	hasErrorReportings: function (owner) {
+		const reportings = ErrorReporting.find({status: 0}).fetch();
+		for (const reporting of reportings) {
+			console.log(!Cards.findOne({_id: reporting.card_id, owner}), owner);
+			if (Cards.findOne({_id: reporting.card_id, owner}) !== undefined) { return true; }
+		}
+		return false;
 	}
 });

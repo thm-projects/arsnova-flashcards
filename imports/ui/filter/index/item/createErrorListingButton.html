@@ -1,4 +1,5 @@
 <template name="filterMyErrorsButton">
+    {{#if hasErrorReportings}}
     {{#if canCreateContent}}
     {{#unless isSmartphone}}
     {{#unless isSelectingCardsetToLearn}}
@@ -6,15 +7,16 @@
                 <button id="myErrors" type="button"
                         class="btn btn-raised btn-success" {{disableIfOffline}} {{disableIfShuffle}}>
                     <span class="flex-content">&nbsp;{{{getCardsetIcons false}}}
-                        {{#if gotSimplifiedNav}}
+                        
                             {{_ 'modal-card.overviewErrorReports.unresolvedErrors'}}
-                        {{else}}
-                            {{_ 'modal-card.overviewErrorReports.unresolvedErrors'}}
-                        {{/if}}
+                        
+                          
+                       
                     </span>
                 </button>
                 </span>
     {{/unless}}
     {{/unless}}
+    {{/if}}
     {{/if}}
 </template>
