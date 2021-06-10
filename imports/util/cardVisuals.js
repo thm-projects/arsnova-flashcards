@@ -195,7 +195,6 @@ export let CardVisuals = class CardVisuals {
 		}
 		let flipCard = $('.flip-card .flip-card-inner');
 		let transition = "";
-		let display = "";
 		if (disableTransition) {
 			transition =  " transition: transform 0s !important; ";
 		} else {

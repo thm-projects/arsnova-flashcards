@@ -49,7 +49,7 @@ FlowRouter.route('/personal/transcripts/new', {
 			import('../../../../ui/card/editor/editor.js'),
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('cardsetsTranscripts'),
-			Meteor.subscribe('userDataLecturers')
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function () {

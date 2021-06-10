@@ -17,7 +17,7 @@ FlowRouter.route('/admin/notifications', {
 		return [
 			import('../../../../ui/admin/notifications/notifications.js'),
 			Meteor.subscribe('defaultAppData'),
-			Meteor.subscribe('userData')
+			Meteor.subscribe('backendUserData')
 		];
 	},
 	data: function () {

@@ -34,6 +34,7 @@ Template.cardsetFormAdminItemOwner.events({
 					$('#cardsetChangeOwnerAdminLabel').html(TAPi18n.__('modal-admin-dialog.owner.message.success', {owner: TAPi18n.__('modal-dialog.cardsetowner')}));
 					Session.set('activeCardset', Cardsets.findOne(Session.get('activeCardset')._id));
 				}
+				Meteor.subscribe('frontendUserData');
 			});
 		}
 	}
