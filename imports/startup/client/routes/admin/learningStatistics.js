@@ -17,7 +17,7 @@ FlowRouter.route('/admin/learningStatistics', {
 		return [
 			import('../../../../ui/admin/learningStatistics/learningStatistics.js'),
 			Meteor.subscribe('defaultAppData'),
-			Meteor.subscribe('userData')
+			Meteor.subscribe('backendUserData')
 		];
 	},
 	data: function () {

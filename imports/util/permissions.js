@@ -72,6 +72,12 @@ export let UserPermissions = class UserPermissions {
 		}
 	}
 
+	static gotFrontendAccess () {
+		if (Meteor.userId() || ServerStyle.isLoginEnabled("guest")) {
+			return true;
+		}
+	}
+
 	static isAdmin () {
 		if (Meteor.userId() && Roles.userIsInRole(Meteor.userId(), ['admin', 'editor']) && this.isNotBlockedOrFirstLogin()) {
 			return true;

@@ -53,7 +53,7 @@ FlowRouter.route('/personal/repetitorien', {
 			import('../../../../ui/filter/filter.js'),
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('personalRepetitorien'),
-			Meteor.subscribe('userData'),
+			Meteor.subscribe('frontendUserData'),
 		];
 	},
 	data: function () {

@@ -1,44 +1,76 @@
 import {Meteor} from "meteor/meteor";
 import {UserPermissions} from "../../util/permissions";
+import * as config from "../../config/userData.js";
+import * as cardsetConfig from "../../config/cardset.js";
 import {Cardsets} from "./cardsets";
 import {TranscriptBonus} from "./transcriptBonus";
-import {Workload} from "./workload";
 import {ServerStyle} from "../../util/styles";
 
 if (Meteor.isServer) {
-	Meteor.publish("userDataLecturers", function () {
-		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
-			return Meteor.users.find({roles: {$in: ["lecturer"]}},
+	Meteor.publish("landingPageUserData", function () {
+		if (ServerStyle.gotLandingPageWordcloud()) {
+			let userIDFilter = [];
+
+			//Get wordcloud user data
+			let query = {wordcloud: true};
+
+			const publicCardsets = Cardsets.find(query, {fields: {shuffled: 1, owner: 1, lastEditor: 1, cardGroups: 1}}).fetch();
+			publicCardsets.forEach(function (cardset) {
+				userIDFilter.push(cardset.owner);
+				if (userIDFilter.lastEditor !== undefined) {
+					userIDFilter.push(cardset.lastEditor);
+				}
+			});
+			return Meteor.users.find({_id: {$in: userIDFilter}},
 				{
-					fields: {
-						'profile.name': 1,
-						'profile.birthname': 1,
-						'profile.givenname': 1,
-						'profile.title': 1
-					}
+					fields: config.VISIBLE_FIELDS.frontend
 				});
 		} else {
 			this.ready();
 		}
 	});
-	Meteor.publish("userDataLandingPage", function () {
-		let cardsets = Cardsets.find({wordcloud: true}, {fields: {owner: 1}}).fetch();
-		let owners = [];
-		for (let i = 0; i < cardsets.length; i++) {
-			owners.push(cardsets[i].owner);
-		}
-		return Meteor.users.find({_id: {$in: owners}},
-			{
-				fields: {
-					'profile.name': 1,
-					'profile.birthname': 1,
-					'profile.givenname': 1,
-					'profile.title': 1
+
+	Meteor.publish("frontendUserData", function () {
+		if (UserPermissions.gotFrontendAccess()) {
+			let userIDFilter = [];
+
+			//Get users of public card sets
+			let query = {
+				owner: {$nin: config.SERVER_USERS}
+			};
+			if (!UserPermissions.isAdmin()) {
+				query.kind = {$in: cardsetConfig.kindsVisibleToThePublic};
+			}
+
+			const publicCardsets = Cardsets.find(query, {fields: {shuffled: 1, owner: 1, lastEditor: 1, cardGroups: 1}}).fetch();
+			publicCardsets.forEach(function (cardset) {
+				if (cardset.shuffled) {
+					const referencedCardsets = Cardsets.find({
+						_id: {$in: cardset.cardGroups}
+					}, {fields: {owner: 1, lastEditor: 1}});
+					referencedCardsets.forEach(function (item) {
+						userIDFilter.push(item.owner);
+						if (userIDFilter.lastEditor !== undefined) {
+							userIDFilter.push(item.lastEditor);
+						}
+					});
+				}
+				userIDFilter.push(cardset.owner);
+				if (userIDFilter.lastEditor !== undefined) {
+					userIDFilter.push(cardset.lastEditor);
 				}
 			});
+			return Meteor.users.find({_id: {$in: userIDFilter}},
+				{
+					fields: config.VISIBLE_FIELDS.frontend
+				});
+		} else {
+			this.ready();
+		}
 	});
-	Meteor.publish("userDataTranscriptBonus", function (cardset_id) {
-		if (this.userId) {
+
+	Meteor.publish("transcriptBonusUserData", function (cardset_id) {
+		if (Meteor.userId()) {
 			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1}});
 			if (UserPermissions.isAdmin() || UserPermissions.isOwner(cardset.owner)) {
 				let bonusTranscripts = TranscriptBonus.find({cardset_id: cardset._id}).fetch();
@@ -48,12 +80,7 @@ if (Meteor.isServer) {
 				}
 				return Meteor.users.find({_id: {$in: userFilter}},
 					{
-						fields: {
-							'profile.name': 1,
-							'profile.birthname': 1,
-							'profile.givenname': 1,
-							'profile.title': 1
-						}
+						fields: config.VISIBLE_FIELDS.frontend
 					});
 			} else {
 				this.ready();
@@ -62,45 +89,15 @@ if (Meteor.isServer) {
 			this.ready();
 		}
 	});
-	Meteor.publish("userDataBonus", function (cardset_id, user_id) {
-		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
-			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1}});
-			let workload = Workload.findOne({cardset_id: cardset_id, user_id: user_id}, {fields: {_id: 1, leitner: 1}});
-			if (UserPermissions.isAdmin()) {
-				return Meteor.users.find({_id: user_id});
-			} else if (cardset.owner === this.userId && workload.leitner.bonus) {
-				return Meteor.users.find({_id: user_id, visible: true},
-					{
-						fields: {
-							'profile.name': 1,
-							'profile.birthname': 1,
-							'profile.givenname': 1,
-							'profile.title': 1
-						}
-					});
-			} else {
-				this.ready();
-			}
-		} else {
-			this.ready();
-		}
-	});
-	Meteor.publish("userData", function () {
-		if ((this.userId || ServerStyle.isLoginEnabled("guest")) && UserPermissions.isNotBlockedOrFirstLogin()) {
-			if (UserPermissions.isAdmin()) {
-				let hiddenUsers = [this.userId, "NotificationsTestCardset", ".cards"];
-				return Meteor.users.find({_id: {$nin: hiddenUsers}});
-			} else {
-				return Meteor.users.find({_id: {$ne: this.userId}, visible: true},
-					{
-						fields: {
-							'profile.name': 1,
-							'profile.birthname': 1,
-							'profile.givenname': 1,
-							'profile.title': 1
-						}
-					});
-			}
+
+	Meteor.publish("backendUserData", function () {
+		if (UserPermissions.gotBackendAccess()) {
+			return Meteor.users.find({
+					_id: {$nin: config.SERVER_USERS}
+				},
+				{
+					fields: config.VISIBLE_FIELDS.backend
+				});
 		} else {
 			this.ready();
 		}

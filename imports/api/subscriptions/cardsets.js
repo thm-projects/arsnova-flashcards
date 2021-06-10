@@ -17,8 +17,12 @@ if (Meteor.isServer) {
 	Meteor.publish("makingOfCardsets", function () {
 		return Cardsets.find({kind: {$in: ['demo']}});
 	});
-	Meteor.publish("wordcloudCardsets", function () {
-		return Cardsets.find({wordcloud: true});
+	Meteor.publish("landingPageCardsets", function () {
+		if (ServerStyle.gotLandingPageWordcloud()) {
+			return Cardsets.find({wordcloud: true});
+		} else {
+			this.ready();
+		}
 	});
 	Meteor.publish("cardset", function (cardset_id) {
 		if ((this.userId || ServerStyle.isLoginEnabled("guest")) && UserPermissions.isNotBlockedOrFirstLogin()) {
