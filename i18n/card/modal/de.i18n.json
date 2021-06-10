@@ -22,7 +22,7 @@
       "noErrorChecked": "Kein Fehler ausgewählt",
       "noErrorCheckedText": "Du musst mindestens einen Fehler ankreuzen oder einen Text eingeben.",
       "loadedError": "Dein gemeldeter Fehler wurde geladen!",
-      "informCreator": "Der/die Verfasser/-in der Karte wird über den gemeldeten Fehler informiert."
+      "informCreator": "  wird über den gemeldeten Fehler informiert."
     },
     "overviewErrorReports": {
       "header": "Übersicht der Fehler",
