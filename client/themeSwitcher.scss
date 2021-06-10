@@ -1310,6 +1310,15 @@ $themes: (
       background-color: $success_background;
     }
 
+    #myErrors {
+      background-color: $error_reporting_label_background !important;
+      color: $error_reporting_label_text !important;
+    }
+    #myErrors:hover {
+      background-color: $button_background_hover !important;
+      color: $button_text_hover !important;
+    }
+
     .btn-raised.btn-info {
       color: $info_text !important;
       background-color: $info_background;

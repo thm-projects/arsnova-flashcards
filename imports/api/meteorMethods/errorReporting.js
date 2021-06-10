@@ -109,5 +109,12 @@ Meteor.methods({
 			}
 		}
 		return userReportings;
+	},
+	getCardCreator: (card_id) => {
+		if (Meteor.isServer) {
+			const card = Cards.findOne({_id: card_id});
+			const user = Meteor.users.findOne({_id: card.owner});
+			return user.profile.givenname;
+		}
 	}
 });

@@ -68,12 +68,14 @@ Template.errorReportingModal.events({
 			Meteor.call("sendErrorReport", Meteor.userId(), Session.get('activeCardset')._id,
 				Session.get('activeCard'), getCardSide(), getErrorTypes(),
 				getErrorContent());
-			swal.fire({
-				title: TAPi18n.__('modal-card.errorReporting.thankYou'),
-				html: TAPi18n.__('modal-card.errorReporting.informCreator'),
-				type: "success",
-				allowOutsideClick: false,
-				confirmButtonText: "Weiter"
+			Meteor.call("getCardCreator", Session.get('activeCard'), (err, result) => {
+				swal.fire({
+					title: TAPi18n.__('modal-card.errorReporting.thankYou'),
+					html:  result + " " + TAPi18n.__('modal-card.errorReporting.informCreator'),
+					type: "success",
+					allowOutsideClick: false,
+					confirmButtonText: "Weiter"
+				});
 			});
 			ErrorReporting.loadErrorReportingModal();
 		}
