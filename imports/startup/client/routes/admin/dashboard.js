@@ -18,7 +18,7 @@ FlowRouter.route('/admin/dashboard', {
 			import('../../../../ui/admin/dashboard/dashboard.js'),
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe("serverInventory"),
-			Meteor.subscribe('userData')
+			Meteor.subscribe('backendUserData')
 		];
 	},
 	data: function () {

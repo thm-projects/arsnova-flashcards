@@ -21,7 +21,7 @@ FlowRouter.route('/all/cardsets', {
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('allCardsets'),
 			Meteor.subscribe('paidCardsets'),
-			Meteor.subscribe('userData')
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function () {
@@ -56,7 +56,7 @@ FlowRouter.route('/all/repetitorien', {
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('allRepetitorien'),
 			Meteor.subscribe('paidCardsets'),
-			Meteor.subscribe('userData')
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function () {

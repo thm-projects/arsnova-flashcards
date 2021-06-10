@@ -17,7 +17,7 @@ FlowRouter.route('/admin/university', {
 		return [
 			import('../../../../ui/admin/university/university.js'),
 			Meteor.subscribe('defaultAppData'),
-			Meteor.subscribe('userData')
+			Meteor.subscribe('backendUserData')
 		];
 	},
 	data: function () {

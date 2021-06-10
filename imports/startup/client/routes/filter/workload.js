@@ -23,7 +23,7 @@ FlowRouter.route('/learn', {
 			Meteor.subscribe('userWorkload'),
 			Meteor.subscribe('userLeitner'),
 			Meteor.subscribe('userWozniak'),
-			Meteor.subscribe('userData')
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function () {

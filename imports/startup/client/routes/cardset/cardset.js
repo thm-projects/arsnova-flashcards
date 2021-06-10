@@ -23,7 +23,7 @@ FlowRouter.route('/cardset/:_id', {
 			Meteor.subscribe('cardsetWorkload', params._id),
 			Meteor.subscribe('cardsetCards', params._id),
 			Meteor.subscribe('cardsetWozniak', params._id),
-			Meteor.subscribe('userData')
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function (params) {
@@ -65,7 +65,7 @@ FlowRouter.route('/cardset/:_id/card/:card_id', {
 			Meteor.subscribe('cardsetWorkload', params._id),
 			Meteor.subscribe('cardsetCards', params._id),
 			Meteor.subscribe('cardsetWozniak', params._id),
-			Meteor.subscribe('userData')
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function (params) {
