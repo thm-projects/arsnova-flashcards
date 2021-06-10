@@ -1,5 +1,6 @@
 <template name="filterMyErrorsButton">
     {{#if hasErrorReportings}}
+        {{> overviewErrorReportsModal}}
         {{#if canCreateContent}}
             {{#unless isSmartphone}}
                 {{#unless isSelectingCardsetToLearn}}

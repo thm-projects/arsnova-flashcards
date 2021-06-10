@@ -95,5 +95,19 @@ Meteor.methods({
 			}
 		}
 		return false;
+	},
+	getErrorReportingForUser: () => {
+		const userReportings = [];
+		if (Meteor.isServer) {
+			const reportings = ErrorReporting.find({status: 0});
+			for (const reporting of reportings) {
+				const card = Cards.findOne({_id: reporting.card_id, owner: this.userId});
+				if (card !== undefined) {
+					reporting.cardName = card.subject;
+					userReportings.push(reporting);
+				}
+			}
+		}
+		return userReportings;
 	}
 });

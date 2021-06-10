@@ -1,11 +1,7 @@
-//import {Profile} from "../../../../util/profile";
-//import {Session} from "meteor/session";
-//import {SweetAlertMessages} from "../../../../util/sweetAlert";
 import "./createErrorListingButton.html";
-import {Template} from "meteor/templating";
-import { ReactiveVar } from "meteor/reactive-var";
-
-const hasErrors = new ReactiveVar(false);
+import {Template} from 'meteor/templating';
+import {Session} from "meteor/session";
+import "../../../card/modal/errorReportingTable";
 
 /*
  * ############################################################################
@@ -15,20 +11,19 @@ const hasErrors = new ReactiveVar(false);
 
 Template.filterMyErrorsButton.events({
 	'click #myErrors': function () {
-		/* if (Profile.isCompleted()) {
-			Session.set('isNewCardset', true);
-			Session.set('useRepForm', false);
-			$('#setCardsetFormModal').modal('show');
-		} else {
-			SweetAlertMessages.completeProfile();
-		}*/
+		Session.set('cardType', undefined);
+		Meteor.call("getErrorReportingForUser", (_, reportings) => {
+			Session.set("errorReportingCard", reportings);
+			$('#showOverviewErrorReportsModal').modal('show');
+		});
 	}
 });
 
 Template.filterMyErrorsButton.helpers({
-	hasErrorReportings: () => hasErrors.get()
+	hasErrorReportings: () => Session.get("errorReportingCard") && Session.get("errorReportingCard").length > 0,
+	getErrorReport: () => Session.get("errorReportingCard")
 });
 
 Template.filterMyErrorsButton.onCreated(() => {
-	Meteor.call("hasErrorReportings", (err, result) => hasErrors.set(result));
+	Meteor.call("getErrorReportingForUser", (_, reportings) => Session.set("errorReportingCard", reportings));
 });
