@@ -17,7 +17,7 @@ FlowRouter.route('/admin/apiAccess', {
 			import('../../../../ui/admin/apiAccess/apiAccess.js'),
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('allCardsets'),
-			Meteor.subscribe('userData')
+			Meteor.subscribe('backendUserData')
 		];
 	},
 	data: function () {

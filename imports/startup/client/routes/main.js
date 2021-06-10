@@ -74,8 +74,8 @@ FlowRouter.route('/', {
 		LandingPage.processParams(landingPageVisited, languageChosen);
 		return [
 			Meteor.subscribe('defaultAppData'),
-			Meteor.subscribe('wordcloudCardsets'),
-			Meteor.subscribe('userDataLandingPage'),
+			Meteor.subscribe('landingPageCardsets'),
+			Meteor.subscribe('landingPageUserData'),
 		];
 	},
 	data: function () {

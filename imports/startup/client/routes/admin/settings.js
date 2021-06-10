@@ -18,7 +18,7 @@ FlowRouter.route('/admin/settings', {
 		return [
 			import('../../../../ui/admin/settings/settings.js'),
 			Meteor.subscribe('defaultAppData'),
-			Meteor.subscribe('userData')
+			Meteor.subscribe('backendUserData')
 		];
 	},
 	data: function () {

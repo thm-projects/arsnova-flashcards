@@ -17,7 +17,7 @@ FlowRouter.route('/admin/users', {
 		return [
 			import('../../../../ui/admin/users/index.js'),
 			Meteor.subscribe('defaultAppData'),
-			Meteor.subscribe('userData')
+			Meteor.subscribe('backendUserData')
 		];
 	},
 	data: function () {
@@ -48,7 +48,7 @@ FlowRouter.route('/admin/user/:_id', {
 		return [
 			import('../../../../ui/admin/users/user.js'),
 			Meteor.subscribe('defaultAppData'),
-			Meteor.subscribe('userData')
+			Meteor.subscribe('backendUserData')
 		];
 	},
 	data: function (params) {

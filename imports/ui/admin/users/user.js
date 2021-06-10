@@ -6,6 +6,7 @@ import {Session} from "meteor/session";
 import {Cardsets} from "../../../api/subscriptions/cardsets.js";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import "./user.html";
+import {UserPermissions} from "../../../util/permissions";
 
 
 /*
@@ -22,9 +23,15 @@ Template.admin_user.helpers({
 		if (userId !== undefined) {
 			var user = Meteor.users.findOne(userId);
 			if (user !== undefined && user.services !== undefined) {
-				var service = _.keys(user.services)[0];
-				service = service.charAt(0).toUpperCase() + service.slice(1);
-				return service;
+				if (UserPermissions.isCardsLogin(user)) {
+					return '.cards';
+				} else {
+					if (user.services !== undefined && user.services.cas !== undefined) {
+						return 'CAS';
+					} else {
+						return 'Social';
+					}
+				}
 			}
 		}
 		return null;
