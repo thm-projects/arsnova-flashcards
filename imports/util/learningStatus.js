@@ -386,7 +386,7 @@ export let LearningStatus = class LearningStatus {
 
 	static gotData () {
 		let result = Session.get('workloadProgressUserID') !== undefined && Session.get('workloadProgressCardsetID') !== undefined;
-		if (!Route.isCardset()) {
+		if (!Route.isCardset() && !Route.isCardsetLeitnerStats()) {
 			return result && Session.get('lastLearningStatusActivity') !== undefined;
 		} else {
 			return result;

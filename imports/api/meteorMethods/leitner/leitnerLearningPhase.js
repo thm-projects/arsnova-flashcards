@@ -351,6 +351,29 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		}
 	},
+	updateArchivedBonus: function (learning_phase_id, maxBonusPoints, minLearned) {
+		check(learning_phase_id, String);
+		check(maxBonusPoints, Number);
+		check(minLearned, Number);
+
+		let learningPhase = LeitnerLearningPhase.findOne({_id: learning_phase_id, isActive: false, isBonus: true});
+		if (learningPhase !== undefined) {
+			LeitnerLearningPhase.update({
+					_id: learningPhase._id
+				},
+				{$set: {
+						updatedAt: new Date(),
+						lastEditor: Meteor.userId(),
+						bonusPoints: {
+							minLearned: minLearned,
+							maxPoints: Math.floor(maxBonusPoints)
+						}
+					}
+				});
+		} else {
+			throw new Meteor.Error("Can't find archived learning phase bonus");
+		}
+	},
 	updateCurrentBonusPoints: function (cardset_id) {
 		check(cardset_id, String);
 		if (!Meteor.isServer) {
