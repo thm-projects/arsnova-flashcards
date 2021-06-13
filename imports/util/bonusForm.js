@@ -22,11 +22,12 @@ let forceNotifications = new ReactiveDict();
 
 export let BonusForm = class BonusForm {
 	static cleanModal () {
-		let start, nextDay, end, intervals, maxWorkload, daysBeforeReset, registrationPeriod, errorCount, maxBonus, minLearned;
+		let title, start, nextDay, end, intervals, maxWorkload, daysBeforeReset, registrationPeriod, errorCount, maxBonus, minLearned;
 		let dateBonusStart = $('#bonusFormModal #dateBonusStart');
 		let dateBonusEnd = $('#bonusFormModal #dateBonusEnd');
 		let dateRegistrationPeriodExpires = $('#bonusFormModal #dateRegistrationPeriod');
 		if (Session.get('displayContentOfNewLearningPhaseBonus')) {
+			title = '';
 			start = config.defaultDateStart;
 			dateBonusStart.attr("min", config.defaultDateStart);
 			nextDay = moment().add(1, 'day').format(config.dateFormat);
@@ -43,6 +44,9 @@ export let BonusForm = class BonusForm {
 			$('#strictWorkloadTimer').prop('checked', config.defaultStrictWorkloadTimer);
 		} else {
 			let learningPhase = LeitnerLearningPhaseUtilities.getActiveBonus(Session.get('activeCardset')._id);
+			if (learningPhase.title !== undefined) {
+				title = learningPhase.title;
+			}
 			start = moment(learningPhase.start).format(config.dateFormat);
 			nextDay = moment(learningPhase.start).add(1, 'day').format(config.dateFormat);
 			end = moment(learningPhase.end).format(config.dateFormat);
@@ -72,6 +76,7 @@ export let BonusForm = class BonusForm {
 			errorRate.val(errorCount[i]);
 			errorRate.attr("placeholder", errorCount[i]);
 		}
+		$('#bonusFormModal #bonusTitle').val(title);
 		dateBonusStart.attr("min", start);
 		dateBonusStart.val(start);
 		dateBonusEnd.attr("min", nextDay);
@@ -149,6 +154,10 @@ export let BonusForm = class BonusForm {
 			let percentage = Number($('#errorRate' + (i + 1)).val());
 			leitnerErrorCount[i] = Math.round((this.getCardCount() / 100) * percentage);
 		}
+	}
+
+	static getTitel ()  {
+		return $('#bonusFormModal #bonusTitle').val();
 	}
 
 	static getErrorCountPercentage () {
@@ -446,7 +455,7 @@ export let BonusForm = class BonusForm {
 	}
 
 	static startBonus () {
-		Meteor.call("activateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), this.getErrorCountPercentage(), this.getMinLearned(), this.getStrictWorkloadTimer(), forceNotifications.all(), function (err) {
+		Meteor.call("activateBonus", Session.get('activeCardset')._id, this.getTitel(), this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), this.getErrorCountPercentage(), this.getMinLearned(), this.getStrictWorkloadTimer(), forceNotifications.all(), function (err) {
 			if (!err) {
 				$('#bonusFormModal').modal('hide');
 				$('body').removeClass('modal-open');
@@ -456,7 +465,7 @@ export let BonusForm = class BonusForm {
 	}
 
 	static updateBonus () {
-		Meteor.call("updateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), this.getErrorCountPercentage(), this.getMinLearned(), this.getStrictWorkloadTimer(), forceNotifications.all(), function (err) {
+		Meteor.call("updateBonus", Session.get('activeCardset')._id, this.getTitel(), this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), this.getErrorCountPercentage(), this.getMinLearned(), this.getStrictWorkloadTimer(), forceNotifications.all(), function (err) {
 			if (!err) {
 				$('#bonusFormModal').modal('hide');
 				$('body').removeClass('modal-open');
@@ -466,7 +475,7 @@ export let BonusForm = class BonusForm {
 	}
 
 	static updateArchivedBonus () {
-		Meteor.call("updateArchivedBonus", Session.get('selectedLearningPhaseID'), this.getMaxBonusPoints(), this.getMinLearned(), function (err) {
+		Meteor.call("updateArchivedBonus", Session.get('selectedLearningPhaseID'), this.getTitel(), this.getMaxBonusPoints(), this.getMinLearned(), function (err) {
 			if (!err) {
 				Meteor.call("getLearningStatistics", FlowRouter.getParam('_id'), Session.get('selectedLearningPhaseID'), function (error, result) {
 					if (error) {

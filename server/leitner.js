@@ -74,9 +74,6 @@ Meteor.methods({
 						let workloadCreatedDate = moment(workload.createdAt);
 						//Check if user joined the learning phase on the same day as the cronjob gets executed
 						if (!workloadCreatedDate.isSame(cronjobStartDate, 'date')) {
-							console.log(workloadCreatedDate.get('date'));
-							console.log(cronjobStartDate.get('date'));
-							console.log(workloadCreatedDate.isSame(cronjobStartDate, 'date'));
 							let user = Meteor.users.findOne({_id: workload.user_id});
 							//Check if the user learned all cards in his workload
 							if (workload.activeCardCount === 0) {

@@ -4,6 +4,7 @@ import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {Meteor} from "meteor/meteor";
 import {Bonus} from "../../../../util/bonus";
 import {Profile} from "../../../../util/profile";
+import {Utilities} from "../../../../util/utilities";
 
 Template.registerHelper("getDefaultMinLearned", function () {
 	return BonusForm.getDefaultMinLearned();
@@ -78,3 +79,6 @@ Template.registerHelper('gotActiveBonus', function (bonusStatus) {
 	return bonusStatus !== 0 && bonusStatus !== 5;
 });
 
+Template.registerHelper('getLearningPhaseTitle', function (learningPhase) {
+	return Utilities.getLearningPhaseTitle(learningPhase);
+});

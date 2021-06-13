@@ -26,6 +26,11 @@ Template.registerHelper("getNextCardTime", function () {
 		if (nextDate.get('hour') >= Meteor.settings.public.dailyCronjob.executeAtHour) {
 			nextDate.add(1, 'day');
 		}
+		let workloadCreatedDate = moment(leitnerLearningWorkload.createdAt);
+		//Check if user joined the learning phase on the same day as the cronjob gets executed
+		if (workloadCreatedDate.isSame(moment(), 'date')) {
+			nextDate.add(1, 'day');
+		}
 		nextDate.hour(Meteor.settings.public.dailyCronjob.executeAtHour);
 		nextDate.minute(0);
 		return TAPi18n.__('noCardsToLearn') + nextDate.format("D. MMMM") + TAPi18n.__('at') + nextDate.format("HH:mm") + TAPi18n.__('released');

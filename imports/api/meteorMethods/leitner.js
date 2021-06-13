@@ -113,17 +113,26 @@ Meteor.methods({
 	},
 	updateLeitnerTimer: function (cardset_id) {
 		check(cardset_id, String);
-		let leitnerTask = LeitnerActivationDay.findOne({
+
+		let activeLearningWorkload = LeitnerLearningWorkload.findOne({
+			user_id: Meteor.userId(),
+			cardset_id: cardset_id,
+			isActive: true
+		});
+		let leitnerActivationDay = LeitnerActivationDay.findOne({
+			learning_phase_id: activeLearningWorkload.learning_phase_id,
+			workload_id: activeLearningWorkload.workload_id,
 			user_id: Meteor.userId(),
 			cardset_id: cardset_id
 		}, {
 			sort: {createdAt: -1}
 		});
-		if (leitnerTask !== undefined) {
-			if (leitnerTask.timer.status === 0) {
-				LeitnerUtilities.updateWorkTimer(leitnerTask);
-			} else if (leitnerTask.timer.status === 2) {
-				LeitnerUtilities.updateBreakTimer(leitnerTask);
+
+		if (leitnerActivationDay !== undefined) {
+			if (leitnerActivationDay.timer.status === 0) {
+				LeitnerUtilities.updateWorkTimer(leitnerActivationDay);
+			} else if (leitnerActivationDay.timer.status === 2) {
+				LeitnerUtilities.updateBreakTimer(leitnerActivationDay);
 			}
 		}
 	},

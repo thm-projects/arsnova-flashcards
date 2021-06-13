@@ -675,6 +675,10 @@
       "minLearned": {
         "label": "Gelernte Karten für max. Bonus"
       },
+      "title": {
+        "label": "Titel",
+        "placeholder": "Der Titel für die Bonusphase (Optional)"
+      },
       "daysBeforeReset": {
         "label": "Überschreitungsfrist",
         "placeholder": "in Tagen, danach fallen alle aktiven Karten in Box 1"
