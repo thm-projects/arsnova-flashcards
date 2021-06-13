@@ -1,6 +1,5 @@
 import {Session} from "meteor/session";
 import {Bonus} from "./bonus.js";
-import {Cardsets} from "../api/subscriptions/cardsets.js";
 import {Route} from "./route.js";
 import swal from "sweetalert2";
 import * as config from "../config/pomodoroTimer.js";
@@ -10,6 +9,7 @@ import {ServerStyle} from "./styles";
 import {NavigatorCheck} from "./navigatorCheck";
 import {Fullscreen} from "./fullscreen";
 import {LockScreen} from "./lockScreen";
+import {LeitnerLearningPhase} from "../api/subscriptions/leitner/leitnerLearningPhase";
 
 if (Meteor.isClient) {
 	Session.set('pomodoroBreakActive', false);
@@ -635,7 +635,7 @@ export let PomodoroTimer = class PomodoroTimer {
 	static updateSettingsBtn () {
 		if (Route.isPresentation() || Route.isDemo()) {
 			$("#modalTitle").html(TAPi18n.__('pomodoro.form.presentation.title'));
-		} else if (!Route.isCardset()) {
+		} else if (!Route.isCardset() && !Route.isCardsetLeitnerStats()) {
 			$("#settings").toggle();
 			$("#goalDiv").toggle();
 			if ($("#modalTitle").html() === TAPi18n.__('pomodoro.form.user.title')) {
@@ -682,7 +682,7 @@ export let PomodoroTimer = class PomodoroTimer {
 			$('#breakSliderLabel').html(TAPi18n.__('pomodoro.form.presentation.break', {
 				minutes: minuteString
 			}));
-		} else if (Route.isCardset()) {
+		} else if (Route.isCardset() || Route.isCardsetLeitnerStats()) {
 			$('#breakSliderLabel').html(TAPi18n.__('pomodoro.form.bonus.break', {
 				minutes: minuteString
 			}));
@@ -757,7 +757,7 @@ export let PomodoroTimer = class PomodoroTimer {
 		breakSlider.val(breakLength);
 		this.updateBreakSlider();
 		this.updateSettingsBtn();
-		if (!Route.isCardset() && !Route.isPresentation() && !Route.isDemo()) {
+		if (!Route.isCardset() && !Route.isPresentation() && !Route.isDemo() && !Route.isCardsetLeitnerStats()) {
 			$("#settings").css('display', 'none');
 			$("#goalDiv").css('display', 'block');
 		}
@@ -777,14 +777,14 @@ export let PomodoroTimer = class PomodoroTimer {
 		// Only used for landing page pomodoro
 		isFullscreenEnabled = true;
 		if (Route.isBox()) {
-			let leitnerTask = LeitnerActivationDay.findOne({user_id: Meteor.userId(), cardset_id: FlowRouter.getParam('_id')});
-			if (leitnerTask !== undefined && leitnerTask.pomodoroTimer !== undefined && leitnerTask.pomodoroTimer.soundConfig !== undefined) {
-				goalPoms = leitnerTask.pomodoroTimer.quantity;
-				pomLength = leitnerTask.pomodoroTimer.workLength;
-				breakLength = leitnerTask.pomodoroTimer.breakLength;
-				isBellSoundEnabled = leitnerTask.pomodoroTimer.soundConfig[0];
-				isSuccessSoundEnabled = leitnerTask.pomodoroTimer.soundConfig[1];
-				isFailSoundEnabled = leitnerTask.pomodoroTimer.soundConfig[2];
+			let leitnerActivationDay = LeitnerActivationDay.findOne({user_id: Meteor.userId(), cardset_id: FlowRouter.getParam('_id')});
+			if (leitnerActivationDay !== undefined && leitnerActivationDay.pomodoroTimer !== undefined && leitnerActivationDay.pomodoroTimer.soundConfig !== undefined) {
+				goalPoms = leitnerActivationDay.pomodoroTimer.quantity;
+				pomLength = leitnerActivationDay.pomodoroTimer.workLength;
+				breakLength = leitnerActivationDay.pomodoroTimer.breakLength;
+				isBellSoundEnabled = leitnerActivationDay.pomodoroTimer.soundConfig[0];
+				isSuccessSoundEnabled = leitnerActivationDay.pomodoroTimer.soundConfig[1];
+				isFailSoundEnabled = leitnerActivationDay.pomodoroTimer.soundConfig[2];
 			} else {
 				goalPoms = config.defaultSettings.goal;
 				pomLength = config.defaultSettings.work.length;
@@ -793,15 +793,15 @@ export let PomodoroTimer = class PomodoroTimer {
 				isSuccessSoundEnabled = config.defaultSettings.sounds.success;
 				isFailSoundEnabled = config.defaultSettings.sounds.failure;
 			}
-		} else if (Route.isCardset()) {
-			let cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')});
-			if (cardset !== undefined && cardset.learningActive) {
-				goalPoms = cardset.pomodoroTimer.quantity;
-				pomLength = cardset.pomodoroTimer.workLength;
-				breakLength = cardset.pomodoroTimer.breakLength;
-				isBellSoundEnabled = cardset.pomodoroTimer.soundConfig[0];
-				isSuccessSoundEnabled = cardset.pomodoroTimer.soundConfig[1];
-				isFailSoundEnabled = cardset.pomodoroTimer.soundConfig[2];
+		} else if (Route.isCardset() || Route.isCardsetLeitnerStats()) {
+			let learningPhase = LeitnerLearningPhase.findOne({cardset_id: FlowRouter.getParam('_id'), isActive: true});
+			if (learningPhase !== undefined) {
+				goalPoms = learningPhase.pomodoroTimer.quantity;
+				pomLength = learningPhase.pomodoroTimer.workLength;
+				breakLength = learningPhase.pomodoroTimer.breakLength;
+				isBellSoundEnabled = learningPhase.pomodoroTimer.soundConfig[0];
+				isSuccessSoundEnabled = learningPhase.pomodoroTimer.soundConfig[1];
+				isFailSoundEnabled = learningPhase.pomodoroTimer.soundConfig[2];
 			} else {
 				goalPoms = config.defaultSettings.goal;
 				pomLength = config.defaultSettings.work.length;

@@ -50,9 +50,6 @@ Template.bonusForm.events({
 		} else {
 			BonusForm.updateBonus();
 		}
-		$('#bonusFormModal').modal('hide');
-		$('body').removeClass('modal-open');
-		$('.modal-backdrop').remove();
 	},
 	"click #resetBonus": function () {
 		BonusForm.cleanModal();
@@ -61,5 +58,8 @@ Template.bonusForm.events({
 	},
 	"click #deleteArchivedBonus": function () {
 		$('#learningStatisticsDeleteArchivedBonusModal').modal("show");
+	},
+	'click #updateArchivedBonus': function () {
+		BonusForm.updateArchivedBonus();
 	}
 });
