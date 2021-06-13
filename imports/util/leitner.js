@@ -759,8 +759,10 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			learnedAllLeitnerCards = true;
 		}
 		LeitnerLearningWorkload.update({
+			_id: leitnerLearningWorkload._id,
 			cardset_id: cardset_id,
-			user_id: user_id
+			user_id: user_id,
+			isActive: true
 		}, {
 			$set: {
 				activeCardCount: activeLeitnerCards,
@@ -772,10 +774,10 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		});
 	}
 
-	static updateWorkTimer (leitnerTask) {
-		if (leitnerTask.timer.lastCallback === undefined) {
+	static updateWorkTimer (leitnerActivationDay) {
+		if (leitnerActivationDay.timer.lastCallback === undefined) {
 			LeitnerActivationDay.update({
-					_id: leitnerTask._id
+					_id: leitnerActivationDay._id
 				},
 				{
 					$set: {
@@ -784,13 +786,13 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				});
 		} else {
 			let status = 0;
-			let remainingWorkTime = leitnerTask.pomodoroTimer.workLength - ++leitnerTask.timer.workload.current;
+			let remainingWorkTime = leitnerActivationDay.pomodoroTimer.workLength - ++leitnerActivationDay.timer.workload.current;
 			if (remainingWorkTime === 0) {
 				status = 1;
 			}
-			if (moment(moment()).diff(moment(leitnerTask.timer.lastCallback), 'seconds') > minimumSecondThreshold) {
+			if (moment(moment()).diff(moment(leitnerActivationDay.timer.lastCallback), 'seconds') > minimumSecondThreshold) {
 				LeitnerActivationDay.update({
-						_id: leitnerTask._id
+						_id: leitnerActivationDay._id
 					},
 					{
 						$set: {

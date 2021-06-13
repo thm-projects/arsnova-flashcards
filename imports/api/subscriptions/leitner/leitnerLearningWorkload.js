@@ -84,40 +84,38 @@ const LeitnerLearningWorkloadSchema = new SimpleSchema({
 		defaultValue: false
 	},
 	'performanceStats.answerTime': {
-		type: Object,
-		optional: true
+		type: Object
 	},
 	'performanceStats.answerTime.median': {
 		type: Number,
-		optional: true
+		defaultValue: 0
 	},
 	'performanceStats.answerTime.arithmeticMean': {
 		type: Number,
-		optional: true
+		defaultValue: 0
 	},
 	'performanceStats.answerTime.standardDeviation': {
 		type: Number,
-		optional: true
+		defaultValue: 0
 	},
 	'performanceStats.workingTime': {
-		type: Object,
-		optional: true
+		type: Object
 	},
 	'performanceStats.workingTime.sum': {
 		type: Number,
-		optional: true
+		defaultValue: 0
 	},
 	'performanceStats.workingTime.median': {
 		type: Number,
-		optional: true
+		defaultValue: 0
 	},
 	'performanceStats.workingTime.arithmeticMean': {
 		type: Number,
-		optional: true
+		defaultValue: 0
 	},
 	'performanceStats.workingTime.standardDeviation': {
 		type: Number,
-		optional: true
+		defaultValue: 0
 	}
 });
 

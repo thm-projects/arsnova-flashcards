@@ -37,7 +37,7 @@ Template.learningBonusStastics.helpers({
 	},
 	getSelectedLearningPhaseData: function () {
 		let learningPhase = LeitnerLearningPhase.findOne({_id: Session.get('selectedLearningPhaseID')});
-		let string = Utilities.getMomentsDate(learningPhase.createdAt, false, 0, false);
+		let string = Utilities.getLearningPhaseTitle(learningPhase);
 		if (!learningPhase.isActive) {
 			string += " " + TAPi18n.__('learningStatistics.archived');
 		}

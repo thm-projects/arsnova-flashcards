@@ -56,7 +56,7 @@
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-right btn-raised longButton">
                                             {{#each getLearningPhases}}
-                                                <li class="learningPhaseDropdownItem" data-id="{{this._id}}">{{getMomentsDate this.createdAt false 0 false}} {{#unless this.isActive}}&nbsp;{{_ "learningStatistics.archived"}}{{/unless}}</li>
+                                                <li class="learningPhaseDropdownItem" data-id="{{this._id}}">{{getLearningPhaseTitle this}} {{#unless this.isActive}}&nbsp;{{_ "learningStatistics.archived"}}{{/unless}}</li>
                                             {{/each}}
                                         </ul>
                                     </div>

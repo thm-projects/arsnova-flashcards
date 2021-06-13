@@ -13,13 +13,13 @@ import {BONUS_STATUS} from "../../../../config/cardset";
 Template.filterItemFilterBonus.helpers({
 	hasBonusFilter: function () {
 		let query = Filter.getFilterQuery();
-		return (query._id !== undefined) || (query['transcriptBonus.enabled'] === true);
+		return (query.bonusStatus !== undefined) || (query['transcriptBonus.enabled'] === true);
 	},
 	resultsFilterBonus: function (bonusType) {
 		let query = Filter.getFilterQuery();
 		switch (bonusType) {
 			case 0:
-				return (query._id !== undefined);
+				return (query.bonusStatus !== undefined);
 			case 1:
 				return (query['transcriptBonus.enabled'] === true);
 		}

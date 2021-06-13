@@ -51,7 +51,7 @@ const LeitnerLearningPhaseSchema = new SimpleSchema({
 	cardset_id: {
 		type: String
 	},
-	name: {
+	title: {
 		type: String,
 		optional: true
 	},

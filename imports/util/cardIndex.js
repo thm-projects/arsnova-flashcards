@@ -214,11 +214,19 @@ export let CardIndex = class CardIndex {
 		if (!Route.isDemo() && !Route.isMakingOf()) {
 			cardsetId = FlowRouter.getParam('_id');
 		}
-		Meteor.call('getCardAnswerContent', cardIndexFilter, cardsetId, disableAnswers, function (error, result) {
-			if (!error) {
-				Session.set('activeCardAnswers', result);
+		let gotValidIndexFilter = true;
+		cardIndexFilter.forEach(function (item) {
+			if (item === undefined || item.length === 0) {
+				gotValidIndexFilter = false;
 			}
 		});
+		if (gotValidIndexFilter) {
+			Meteor.call('getCardAnswerContent', cardIndexFilter, cardsetId, disableAnswers, function (error, result) {
+				if (!error) {
+					Session.set('activeCardAnswers', result);
+				}
+			});
+		}
 	}
 
 	static sortQueryResult (cardIndexFilter, query, isLeitnerOrWozniak = false) {

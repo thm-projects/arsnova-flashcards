@@ -11,6 +11,7 @@ import {LeitnerLearningPhase} from "../../subscriptions/leitner/leitnerLearningP
 import {Profile} from "../../../util/profile";
 import * as config from "../../../config/bonusForm.js";
 import * as pomodoroConfig from "../../../config/pomodoroTimer.js";
+import * as bonusFormConfig from "../../../config/bonusForm";
 import {LeitnerLearningWorkloadUtilities} from "../../../util/learningWorkload";
 import {LeitnerPerformanceHistory} from "../../subscriptions/leitner/leitnerPerformanceHistory";
 import {LearningStatisticsUtilities} from "../../../util/learningStatistics";
@@ -112,6 +113,7 @@ Meteor.methods({
 	/**
 	 * Activate the learning phase for the selected cardset.
 	 * @param {String} id - ID of the cardset for which the learning phase is to be activated.
+	 * @param {String} title - Optional title for the learning phase
 	 * @param {Number} maxWorkload - Maximum number of daily learnable cards
 	 * @param {Number} daysBeforeReset - Maximum overrun in days
 	 * @param {Date} dateStart - Start date of the learnin gphase
@@ -128,91 +130,97 @@ Meteor.methods({
 	 * @param {boolean} strictWorkloadTimer - Does this Bonus enforce the minimum amount of pomdori time for the workload?
 	 * @param {Object} forceNotifications - Force mail or push notifications
 	 */
-	activateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig, errorCount, minLearned, strictWorkloadTimer, forceNotifications) {
+	activateBonus: function (id, title, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig, errorCount, minLearned, strictWorkloadTimer, forceNotifications) {
 		check(id, String);
-		check(maxWorkload, Number);
-		check(daysBeforeReset, Number);
-		check(dateStart, Date);
-		check(dateEnd, Date);
-		check(intervals, [Number]);
-		check(registrationPeriod, Date);
-		check(maxBonusPoints, Number);
-		check(pomodoroTimerQuantity, Number);
-		check(pomodoroTimerWorkLength, Number);
-		check(pomodoroTimerBreakLength, Number);
-		check(pomodoroTimerSoundConfig, [Boolean]);
-		check(errorCount, [Number]);
-		check(minLearned, Number);
-		check(strictWorkloadTimer, Boolean);
-		check(forceNotifications.mail, Boolean);
-		check(forceNotifications.push, Boolean);
-
-		let cardset = Cardsets.findOne(id);
-		if (cardset !== undefined  && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
-			let learningPhase = LeitnerLearningPhase.findOne({isBonus: true, isActive: true, cardset_id: cardset._id});
-			if (learningPhase === undefined) {
-				intervals = intervals.sort(
-					function (a, b) {
-						return a - b;
-					}
-				);
-
-				let learningPhaseID = LeitnerLearningPhase.insert({
-					cardset_id: cardset._id,
-					isActive: true,
-					isBonus: true,
-					createdAt: new Date(),
-					updatedAt: new Date(),
-					lastEditor: Meteor.userId(),
-					daysBeforeReset: daysBeforeReset,
-					start: dateStart,
-					end: dateEnd,
-					registrationPeriod: registrationPeriod,
-					intervals: intervals,
-					maxCards: maxWorkload,
-					bonusPoints: {
-						minLearned: minLearned,
-						maxPoints: Math.floor(maxBonusPoints)
-					},
-					simulator: {
-						errorCount: errorCount
-					},
-					forceNotifications: forceNotifications,
-					strictTimer: strictWorkloadTimer,
-					learningStatistics: {
-						answerTime: {
-							arithmeticMean: 0,
-							median: 0,
-							standardDeviation: 0
-						}
-					},
-					pomodoroTimer: {
-						quantity: pomodoroTimerQuantity,
-						workLength: pomodoroTimerWorkLength,
-						breakLength: pomodoroTimerBreakLength,
-						soundConfig: pomodoroTimerSoundConfig
-					}
-				});
-
-				Cardsets.update({
-					_id: cardset._id
-				}, {$set: {
-						dateUpdated: new Date(),
-						lastEditor: Meteor.userId(),
-						bonusStatus: LeitnerLearningPhaseUtilities.setLeitnerBonusStatus(LeitnerLearningPhase.findOne({
-							_id: learningPhaseID,
-							isBonus: true,
-							isActive: true,
-							cardset_id: cardset._id
-						}))
-					}}
-				);
-				return learningPhaseID;
-			} else {
-				throw new Meteor.Error("Active learning phase bonus already exists");
-			}
+		check(title, String);
+		if (title.length > bonusFormConfig.maxTitleLength) {
+			throw new Meteor.Error(`Title surpasses a length of ${bonusFormConfig.maxTitleLength}`);
 		} else {
-			throw new Meteor.Error("not-authorized");
+			check(maxWorkload, Number);
+			check(daysBeforeReset, Number);
+			check(dateStart, Date);
+			check(dateEnd, Date);
+			check(intervals, [Number]);
+			check(registrationPeriod, Date);
+			check(maxBonusPoints, Number);
+			check(pomodoroTimerQuantity, Number);
+			check(pomodoroTimerWorkLength, Number);
+			check(pomodoroTimerBreakLength, Number);
+			check(pomodoroTimerSoundConfig, [Boolean]);
+			check(errorCount, [Number]);
+			check(minLearned, Number);
+			check(strictWorkloadTimer, Boolean);
+			check(forceNotifications.mail, Boolean);
+			check(forceNotifications.push, Boolean);
+
+			let cardset = Cardsets.findOne(id);
+			if (cardset !== undefined  && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
+				let learningPhase = LeitnerLearningPhase.findOne({isBonus: true, isActive: true, cardset_id: cardset._id});
+				if (learningPhase === undefined) {
+					intervals = intervals.sort(
+						function (a, b) {
+							return a - b;
+						}
+					);
+
+					let learningPhaseID = LeitnerLearningPhase.insert({
+						cardset_id: cardset._id,
+						title: title,
+						isActive: true,
+						isBonus: true,
+						createdAt: new Date(),
+						updatedAt: new Date(),
+						lastEditor: Meteor.userId(),
+						daysBeforeReset: daysBeforeReset,
+						start: dateStart,
+						end: dateEnd,
+						registrationPeriod: registrationPeriod,
+						intervals: intervals,
+						maxCards: maxWorkload,
+						bonusPoints: {
+							minLearned: minLearned,
+							maxPoints: Math.floor(maxBonusPoints)
+						},
+						simulator: {
+							errorCount: errorCount
+						},
+						forceNotifications: forceNotifications,
+						strictTimer: strictWorkloadTimer,
+						learningStatistics: {
+							answerTime: {
+								arithmeticMean: 0,
+								median: 0,
+								standardDeviation: 0
+							}
+						},
+						pomodoroTimer: {
+							quantity: pomodoroTimerQuantity,
+							workLength: pomodoroTimerWorkLength,
+							breakLength: pomodoroTimerBreakLength,
+							soundConfig: pomodoroTimerSoundConfig
+						}
+					});
+
+					Cardsets.update({
+							_id: cardset._id
+						}, {$set: {
+								dateUpdated: new Date(),
+								lastEditor: Meteor.userId(),
+								bonusStatus: LeitnerLearningPhaseUtilities.setLeitnerBonusStatus(LeitnerLearningPhase.findOne({
+									_id: learningPhaseID,
+									isBonus: true,
+									isActive: true,
+									cardset_id: cardset._id
+								}))
+							}}
+					);
+					return learningPhaseID;
+				} else {
+					throw new Meteor.Error("Active learning phase bonus already exists");
+				}
+			} else {
+				throw new Meteor.Error("not-authorized");
+			}
 		}
 	},
 	deleteArchivedBonus: function (id) {
@@ -260,6 +268,7 @@ Meteor.methods({
 	/**
 	 * Updates the settings of a learning phase for the selected cardset.
 	 * @param {String} id - ID of the cardset for which the learning phase is to be activated.
+	 * @param {String} title - Optional title for the learning phase
 	 * @param {Number} maxWorkload - Maximum number of daily learnable cards
 	 * @param {Number} daysBeforeReset - Maximum overrun in days
 	 * @param {Date} dateStart - Start date of the learnin gphase
@@ -276,102 +285,114 @@ Meteor.methods({
 	 * @param {boolean} strictWorkloadTimer - Does this Bonus enforce the minimum amount of pomdori time for the workload?
 	 * @param {Object} forceNotifications - Force mail or push notifications
 	 */
-	updateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig, errorCount, minLearned, strictWorkloadTimer, forceNotifications) {
+	updateBonus: function (id, title, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig, errorCount, minLearned, strictWorkloadTimer, forceNotifications) {
 		check(id, String);
-		check(maxWorkload, Number);
-		check(daysBeforeReset, Number);
-		check(dateStart, Date);
-		check(dateEnd, Date);
-		check(intervals, [Number]);
-		check(registrationPeriod, Date);
-		check(maxBonusPoints, Number);
-		check(pomodoroTimerQuantity, Number);
-		check(pomodoroTimerWorkLength, Number);
-		check(pomodoroTimerBreakLength, Number);
-		check(pomodoroTimerSoundConfig, [Boolean]);
-		check(errorCount, [Number]);
-		check(minLearned, Number);
-		check(strictWorkloadTimer, Boolean);
-		check(forceNotifications.mail, Boolean);
-		check(forceNotifications.push, Boolean);
+		check(title, String);
+		if (title.length > bonusFormConfig.maxTitleLength) {
+			throw new Meteor.Error(`Title surpasses a length of ${bonusFormConfig.maxTitleLength}`);
+		} else {
+			check(maxWorkload, Number);
+			check(daysBeforeReset, Number);
+			check(dateStart, Date);
+			check(dateEnd, Date);
+			check(intervals, [Number]);
+			check(registrationPeriod, Date);
+			check(maxBonusPoints, Number);
+			check(pomodoroTimerQuantity, Number);
+			check(pomodoroTimerWorkLength, Number);
+			check(pomodoroTimerBreakLength, Number);
+			check(pomodoroTimerSoundConfig, [Boolean]);
+			check(errorCount, [Number]);
+			check(minLearned, Number);
+			check(strictWorkloadTimer, Boolean);
+			check(forceNotifications.mail, Boolean);
+			check(forceNotifications.push, Boolean);
 
-		let cardset = Cardsets.findOne(id);
-		if (cardset !== undefined && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
-			let learningPhase = LeitnerLearningPhase.findOne({cardset_id: cardset._id, isActive: true, isBonus: true});
+			let cardset = Cardsets.findOne(id);
+			if (cardset !== undefined && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
+				let learningPhase = LeitnerLearningPhase.findOne({cardset_id: cardset._id, isActive: true, isBonus: true});
+				if (learningPhase !== undefined) {
+					intervals = intervals.sort(
+						function (a, b) {
+							return a - b;
+						}
+					);
+
+					LeitnerLearningPhase.update({
+							_id: learningPhase._id
+						},
+						{$set: {
+								updatedAt: new Date(),
+								lastEditor: Meteor.userId(),
+								title: title,
+								daysBeforeReset: daysBeforeReset,
+								start: dateStart,
+								end: dateEnd,
+								registrationPeriod: registrationPeriod,
+								intervals: intervals,
+								maxCards: maxWorkload,
+								bonusPoints: {
+									minLearned: minLearned,
+									maxPoints: Math.floor(maxBonusPoints)
+								},
+								simulator: {
+									errorCount: errorCount
+								},
+								forceNotifications: forceNotifications,
+								strictTimer: strictWorkloadTimer,
+								pomodoroTimer: {
+									quantity: pomodoroTimerQuantity,
+									workLength: pomodoroTimerWorkLength,
+									breakLength: pomodoroTimerBreakLength,
+									soundConfig: pomodoroTimerSoundConfig
+								}
+							}
+						});
+
+					Cardsets.update({
+							_id: cardset._id
+						}, {$set: {
+								dateUpdated: new Date(),
+								lastEditor: Meteor.userId(),
+								bonusStatus: LeitnerLearningPhaseUtilities.setLeitnerBonusStatus(LeitnerLearningPhase.findOne({_id: learningPhase._id}))
+							}}
+					);
+					return learningPhase._id;
+				} else {
+					throw new Meteor.Error("Can't find active learning phase bonus");
+				}
+			} else {
+				throw new Meteor.Error("not-authorized");
+			}
+		}
+	},
+	updateArchivedBonus: function (learning_phase_id, title, maxBonusPoints, minLearned) {
+		check(learning_phase_id, String);
+		check(title, String);
+		if (title.length > bonusFormConfig.maxTitleLength) {
+			throw new Meteor.Error(`Title surpasses a length of ${bonusFormConfig.maxTitleLength}`);
+		} else {
+			check(maxBonusPoints, Number);
+			check(minLearned, Number);
+
+			let learningPhase = LeitnerLearningPhase.findOne({_id: learning_phase_id, isActive: false, isBonus: true});
 			if (learningPhase !== undefined) {
-				intervals = intervals.sort(
-					function (a, b) {
-						return a - b;
-					}
-				);
-
 				LeitnerLearningPhase.update({
 						_id: learningPhase._id
 					},
 					{$set: {
 							updatedAt: new Date(),
 							lastEditor: Meteor.userId(),
-							daysBeforeReset: daysBeforeReset,
-							start: dateStart,
-							end: dateEnd,
-							registrationPeriod: registrationPeriod,
-							intervals: intervals,
-							maxCards: maxWorkload,
+							title: title,
 							bonusPoints: {
 								minLearned: minLearned,
 								maxPoints: Math.floor(maxBonusPoints)
-							},
-							simulator: {
-								errorCount: errorCount
-							},
-							forceNotifications: forceNotifications,
-							strictTimer: strictWorkloadTimer,
-							pomodoroTimer: {
-								quantity: pomodoroTimerQuantity,
-								workLength: pomodoroTimerWorkLength,
-								breakLength: pomodoroTimerBreakLength,
-								soundConfig: pomodoroTimerSoundConfig
 							}
 						}
-				});
-
-				Cardsets.update({
-						_id: cardset._id
-					}, {$set: {
-							dateUpdated: new Date(),
-							lastEditor: Meteor.userId(),
-							bonusStatus: LeitnerLearningPhaseUtilities.setLeitnerBonusStatus(LeitnerLearningPhase.findOne({_id: learningPhase._id}))
-						}}
-				);
-				return learningPhase._id;
+					});
 			} else {
-				throw new Meteor.Error("Can't find active learning phase bonus");
+				throw new Meteor.Error("Can't find archived learning phase bonus");
 			}
-		} else {
-			throw new Meteor.Error("not-authorized");
-		}
-	},
-	updateArchivedBonus: function (learning_phase_id, maxBonusPoints, minLearned) {
-		check(learning_phase_id, String);
-		check(maxBonusPoints, Number);
-		check(minLearned, Number);
-
-		let learningPhase = LeitnerLearningPhase.findOne({_id: learning_phase_id, isActive: false, isBonus: true});
-		if (learningPhase !== undefined) {
-			LeitnerLearningPhase.update({
-					_id: learningPhase._id
-				},
-				{$set: {
-						updatedAt: new Date(),
-						lastEditor: Meteor.userId(),
-						bonusPoints: {
-							minLearned: minLearned,
-							maxPoints: Math.floor(maxBonusPoints)
-						}
-					}
-				});
-		} else {
-			throw new Meteor.Error("Can't find archived learning phase bonus");
 		}
 	},
 	updateCurrentBonusPoints: function (cardset_id) {

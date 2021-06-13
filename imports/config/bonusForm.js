@@ -10,6 +10,7 @@ let defaultMaxBonusPoints = 100;
 //Minimum cards learned in % for max Bonus points
 let defaultMinLearned = 20;
 
+let maxTitleLength = 30;
 let dateFormat = "YYYY-MM-DD";
 let defaultRegistrationPeriod = [31, 'days'];
 let defaultDateRegistrationPeriod = moment().add(defaultRegistrationPeriod[0], defaultRegistrationPeriod[1]).format(dateFormat);
@@ -30,6 +31,7 @@ let defaultForceNotifications = {
 };
 
 module.exports = {
+	maxTitleLength,
 	minWorkloadCap,
 	defaultMaxWorkload,
 	minDaysBeforeReset,

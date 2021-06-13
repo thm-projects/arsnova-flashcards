@@ -21,6 +21,14 @@ let groupTime;
 let groupCounter = 1;
 
 export let Utilities = class Utilities {
+	static getLearningPhaseTitle (learningPhase) {
+		if (learningPhase.title !== undefined && learningPhase.title.length) {
+			return learningPhase.title;
+		} else {
+			return this.getMomentsDate(learningPhase.createdAt, false, 0, false);
+		}
+	}
+
 	static getCalendarString (type = '', minutes = '', displayMode = 0) {
 		let today = '[Today]';
 		let yesterday = '[Yesterday]';

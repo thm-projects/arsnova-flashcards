@@ -34,9 +34,18 @@ export let CardsetUserlist = class CardsetUserlist {
 
 	static getLearningPhaseInfo (cardset, learning_phase_id) {
 		let learningPhase = LeitnerLearningPhase.findOne({_id: learning_phase_id});
-		return [
+		let learningPhaseInfoStart = [
 			["", ""],
-			[TAPi18n.__('set-list.learnphaseInfo', {}, ServerStyle.getClientLanguage()), ""],
+			[TAPi18n.__('set-list.learnphaseInfo', {}, ServerStyle.getClientLanguage()), ""]
+		];
+		let learningPhaseInfoTitle = [];
+		if (learningPhase.title !== undefined && learningPhase.title.length) {
+			learningPhaseInfoTitle = [
+				[TAPi18n.__('bonus.form.title.label', {}, ServerStyle.getClientLanguage()), learningPhase.title]
+			];
+		}
+		let learningPhaseInfoText = [
+			["", ""],
 			[TAPi18n.__('set-list.bonusSection.settings', {}, ServerStyle.getClientLanguage()), ""],
 			[TAPi18n.__('set-list.learnphase', {}, ServerStyle.getClientLanguage()), this.getLearningStatus(learningPhase.end)],
 			[TAPi18n.__('set-list.bonusMaxPoints.label', {}, ServerStyle.getClientLanguage()), TAPi18n.__('set-list.bonusMaxPoints.content', {count: BonusForm.getCurrentMaxBonusPoints(learningPhase)}, ServerStyle.getClientLanguage())],
@@ -59,6 +68,11 @@ export let CardsetUserlist = class CardsetUserlist {
 			[TAPi18n.__('learningHistory.stats.duration.workingTime.median', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(learningPhase.performanceStats.answerTime.median)],
 			[TAPi18n.__('learningHistory.stats.duration.workingTime.standardDeviation', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(learningPhase.performanceStats.answerTime.standardDeviation)]
 		];
+		if (learningPhaseInfoTitle.length) {
+			return _.union(learningPhaseInfoStart, learningPhaseInfoTitle, learningPhaseInfoText);
+		} else {
+			return _.union(learningPhaseInfoStart, learningPhaseInfoText);
+		}
 	}
 
 	static sortByBirthname (data) {

@@ -95,6 +95,11 @@ const LeitnerActivationDaySchema = new SimpleSchema({
 	},
 	missedDeadline: {
 		type: Boolean
+	},
+	pomodoroTimer: {
+		type: Object,
+		optional: true,
+		blackbox: true
 	}
 });
 

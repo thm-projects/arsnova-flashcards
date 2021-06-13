@@ -12,6 +12,7 @@ import "./item/registrationPeriod.js";
 import "./item/startDate.js";
 import "./item/strictWorkloadTimer.js";
 import "./item/forceNotifications.js";
+import "./item/title.js";
 import "./completeProfile/completeProfile.js";
 import "./join/join.js";
 import "./leave/leave.js";
