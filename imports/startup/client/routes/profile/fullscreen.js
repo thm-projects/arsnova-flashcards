@@ -15,7 +15,8 @@ FlowRouter.route('/profile/:_id/fullscreen', {
 		return [
 			import('../../../../ui/profile/profile.js'),
 			import('../../../../ui/profile/view/fullscreen/fullscreen.js'),
-			Meteor.subscribe('defaultAppData')
+			Meteor.subscribe('defaultAppData'),
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function () {

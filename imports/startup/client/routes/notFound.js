@@ -13,7 +13,8 @@ FlowRouter.route('*', {
 	waitOn: function () {
 		return [
 			import('../../../ui/notFound/notFound.js'),
-			Meteor.subscribe('defaultAppData')
+			Meteor.subscribe('defaultAppData'),
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function () {

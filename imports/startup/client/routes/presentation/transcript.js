@@ -16,7 +16,8 @@ FlowRouter.route('/presentation-transcripts/:card_id', {
 		return [
 			import('../../../../ui/presentation/presentation.js'),
 			Meteor.subscribe('defaultAppData'),
-			Meteor.subscribe('transcriptCard', params.card_id)
+			Meteor.subscribe('transcriptCard', params.card_id),
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function (params) {
