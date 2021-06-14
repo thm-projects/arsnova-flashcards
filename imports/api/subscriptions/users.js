@@ -5,6 +5,7 @@ import * as cardsetConfig from "../../config/cardset.js";
 import {Cardsets} from "./cardsets";
 import {TranscriptBonus} from "./transcriptBonus";
 import {ServerStyle} from "../../util/styles";
+import {ErrorReporting} from "./errorReporting";
 
 if (Meteor.isServer) {
 	Meteor.publish("landingPageUserData", function () {
@@ -60,6 +61,12 @@ if (Meteor.isServer) {
 					userIDFilter.push(cardset.lastEditor);
 				}
 			});
+
+			//Get users of error reports
+			ErrorReporting.find({}, {fields: {user_id: 1}}).fetch().map(function (errorReport) {
+				return userIDFilter.push(errorReport.user_id);
+			});
+
 			return Meteor.users.find({_id: {$in: userIDFilter}},
 				{
 					fields: config.VISIBLE_FIELDS.frontend
