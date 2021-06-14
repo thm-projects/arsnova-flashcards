@@ -21,7 +21,8 @@
       "thankYouButton": "Weiter",
       "noErrorChecked": "Kein Fehler ausgewählt",
       "noErrorCheckedText": "Du musst mindestens einen Fehler ankreuzen oder einen Text eingeben.",
-      "loadedError": "Dein gemeldeter Fehler wurde geladen!"
+      "loadedError": "Dein gemeldeter Fehler wurde geladen!",
+      "confirmErrorText": "Bist Du dir sicher, dass du den Fehler melden und den Karteiersteller benachrichtigen möchtest?"
     },
     "overviewErrorReports": {
       "header": "Übersicht der Fehler",

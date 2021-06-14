@@ -8,7 +8,7 @@ import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
 
 function getCardErrorCount(card_id) {
 	let errorCount = 0;
-	Cards.find({_id: card_id}, {unresolvedErrors: 1}).forEach(card => {
+	Cards.find({_id: card_id}).forEach(card => {
 		errorCount = card.unresolvedErrors;
 	});
 	return errorCount;
