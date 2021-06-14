@@ -16,6 +16,8 @@
       "otherErrorText": "Welche Fehler sind Dir noch aufgefallen?",
       "send": "Fehler melden",
       "save": "Status aktualisieren",
+      "areYouSure": "Bist Du sicher?",
+      "areYouSureBody": "Der Kartenautor ($1) wird über deine Meldung informiert.",
       "thankYou": "Vielen Dank!",
       "thankYouText": "Vielen Dank für Dein Feedback!",
       "thankYouButton": "Weiter",

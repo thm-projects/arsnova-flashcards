@@ -1,11 +1,11 @@
 import "./errorReporting.html";
-import {Meteor} from "meteor/meteor";
-import {Template} from 'meteor/templating';
+import { Meteor } from "meteor/meteor";
+import { Template } from 'meteor/templating';
 import swal from "sweetalert2";
-import {Session} from "meteor/session";
-import {CardNavigation} from "../../../util/cardNavigation";
-import {CardType} from "../../../util/cardTypes";
-import {ErrorReporting} from "../../../util/errorReporting";
+import { Session } from "meteor/session";
+import { CardNavigation } from "../../../util/cardNavigation";
+import { CardType } from "../../../util/cardTypes";
+import { ErrorReporting } from "../../../util/errorReporting";
 import "./errorReportingTable";
 
 function getCardSide() {
@@ -65,19 +65,32 @@ Template.errorReportingModal.events({
 		if (checkInput()) {
 			$('#showErrorReportingModal').modal('hide');
 			$('.errorReporting').removeClass("pressed");
-			Meteor.call("sendErrorReport", Meteor.userId(), Session.get('activeCardset')._id,
-				Session.get('activeCard'), getCardSide(), getErrorTypes(),
-				getErrorContent());
 			Meteor.call("getCardCreator", Session.get('activeCard'), (err, result) => {
 				swal.fire({
-					title: TAPi18n.__('modal-card.errorReporting.thankYou'),
-					html:  result + " " + TAPi18n.__('modal-card.errorReporting.informCreator'),
-					type: "success",
+					title: TAPi18n.__('modal-card.errorReporting.areYouSure'),
+					html: TAPi18n.__('modal-card.errorReporting.areYouSureBody').replace("$1", result),
+					showCancelButton: true,
+					type: "question",
 					allowOutsideClick: false,
-					confirmButtonText: "Weiter"
+					confirmButtonText: "Weiter",
+					cancelButtonText: TAPi18n.__('modal-card.cancel')
+				}).then(value => {
+					console.log(value);
+					if (value.dismiss === undefined) {
+						Meteor.call("sendErrorReport", Meteor.userId(), Session.get('activeCardset')._id,
+							Session.get('activeCard'), getCardSide(), getErrorTypes(),
+							getErrorContent());
+						swal.fire({
+							title: TAPi18n.__('modal-card.errorReporting.thankYou'),
+							html: result + " " + TAPi18n.__('modal-card.errorReporting.informCreator'),
+							type: "success",
+							allowOutsideClick: false,
+							confirmButtonText: "Weiter"
+						});
+						ErrorReporting.loadErrorReportingModal();
+					}
 				});
 			});
-			ErrorReporting.loadErrorReportingModal();
 		}
 	},
 	'click #saveErrorReport': function () {
