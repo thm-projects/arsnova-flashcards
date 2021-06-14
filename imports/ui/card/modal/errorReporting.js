@@ -75,7 +75,6 @@ Template.errorReportingModal.events({
 					confirmButtonText: "Weiter",
 					cancelButtonText: TAPi18n.__('modal-card.cancel')
 				}).then(value => {
-					console.log(value);
 					if (value.dismiss === undefined) {
 						Meteor.call("sendErrorReport", Meteor.userId(), Session.get('activeCardset')._id,
 							Session.get('activeCard'), getCardSide(), getErrorTypes(),
