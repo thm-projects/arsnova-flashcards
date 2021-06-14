@@ -63,8 +63,8 @@ if (Meteor.isServer) {
 			});
 
 			//Get users of error reports
-			ErrorReporting.find({}, {fields: {user_id: 1}}).fetch().map(function (errorReport) {
-				return userIDFilter.push(errorReport.user_id);
+			ErrorReporting.find({}, {fields: {user_id: 1}}).fetch().map(errorReport => {
+				userIDFilter.push(errorReport.user_id);
 			});
 
 			return Meteor.users.find({_id: {$in: userIDFilter}},
