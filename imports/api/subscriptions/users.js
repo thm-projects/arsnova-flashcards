@@ -62,6 +62,7 @@ if (Meteor.isServer) {
 				}
 			});
 
+
 			//Get users of error reports
 			ErrorReporting.find({}, {fields: {user_id: 1}}).fetch().map(errorReport => {
 				userIDFilter.push(errorReport.user_id);

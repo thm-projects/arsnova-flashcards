@@ -15,7 +15,8 @@ FlowRouter.route('/profile/:_id/notifications', {
 		return [
 			import('../../../../ui/profile/profile.js'),
 			import('../../../../ui/profile/view/notifications.js'),
-			Meteor.subscribe('defaultAppData')
+			Meteor.subscribe('defaultAppData'),
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function () {
