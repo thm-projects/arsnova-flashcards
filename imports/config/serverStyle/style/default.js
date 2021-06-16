@@ -135,6 +135,11 @@ module.exports = {
 		"twitter": false,
 		"google": false
 	},
+	"error": {
+		"errorReporting": {
+			"gitlabLink": "https://git.thm.de/arsnova/cards/-/issues"
+		}
+	},
 	"welcome": {
 		"title": {
 			"first": "THM",
