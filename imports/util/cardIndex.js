@@ -1,7 +1,7 @@
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
-import {Leitner} from "../api/subscriptions/leitner";
+import {LeitnerUserCardStats} from "../api/subscriptions/leitner/leitnerUserCardStats";
 import {Wozniak} from "../api/subscriptions/wozniak";
 import {Cards} from "../api/subscriptions/cards";
 import {Cardsets} from "../api/subscriptions/cardsets";
@@ -119,10 +119,10 @@ export let CardIndex = class CardIndex {
 
 	static leitnerIndex () {
 		let leitnerCardIndex = [];
-		let indexCards = Leitner.find({
+		let indexCards = LeitnerUserCardStats.find({
 			cardset_id: FlowRouter.getParam('_id'),
 			user_id: Meteor.userId(),
-			active: true
+			isActive: true
 		}, {
 			fields: {
 				card_id: 1
@@ -211,14 +211,22 @@ export let CardIndex = class CardIndex {
 		}
 
 		let cardsetId = "";
-		if (!Route.isDemo() && Route.isMakingOf()) {
+		if (!Route.isDemo() && !Route.isMakingOf()) {
 			cardsetId = FlowRouter.getParam('_id');
 		}
-		Meteor.call('getCardAnswerContent', cardIndexFilter, cardsetId, disableAnswers, function (error, result) {
-			if (!error) {
-				Session.set('activeCardAnswers', result);
+		let gotValidIndexFilter = true;
+		cardIndexFilter.forEach(function (item) {
+			if (item === undefined || item.length === 0) {
+				gotValidIndexFilter = false;
 			}
 		});
+		if (gotValidIndexFilter) {
+			Meteor.call('getCardAnswerContent', cardIndexFilter, cardsetId, disableAnswers, function (error, result) {
+				if (!error) {
+					Session.set('activeCardAnswers', result);
+				}
+			});
+		}
 	}
 
 	static sortQueryResult (cardIndexFilter, query, isLeitnerOrWozniak = false) {
@@ -278,11 +286,11 @@ export let CardIndex = class CardIndex {
 	static getLeitnerCards () {
 		let cards = [];
 		let cardIndexFilter = this.getCardIndexFilter();
-		let learnedCards = Leitner.find({
+		let learnedCards = LeitnerUserCardStats.find({
 			card_id: {$in: cardIndexFilter},
 			cardset_id: Session.get('activeCardset')._id,
 			user_id: Meteor.userId(),
-			active: true
+			isActive: true
 		}, {fields: {card_id: 1}}).fetch();
 		learnedCards = this.sortQueryResult(cardIndexFilter, learnedCards, true);
 		learnedCards.forEach(function (learnedCard) {

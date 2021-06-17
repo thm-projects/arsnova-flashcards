@@ -9,6 +9,8 @@ import {LeitnerUtilities} from "./leitner";
 import {SweetAlertMessages} from "./sweetAlert";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {ReactiveDict} from 'meteor/reactive-dict';
+import {LeitnerLearningPhaseUtilities} from "./learningPhase";
+import {LeitnerHistoryUtilities} from "./learningHistory";
 
 let leitnerSimulator;
 let leitnerSimulatorDays;
@@ -20,11 +22,12 @@ let forceNotifications = new ReactiveDict();
 
 export let BonusForm = class BonusForm {
 	static cleanModal () {
-		let start, nextDay, end, intervals, maxWorkload, daysBeforeReset, registrationPeriod, errorCount;
+		let title, start, nextDay, end, intervals, maxWorkload, daysBeforeReset, registrationPeriod, errorCount, maxBonus, minLearned;
 		let dateBonusStart = $('#bonusFormModal #dateBonusStart');
 		let dateBonusEnd = $('#bonusFormModal #dateBonusEnd');
 		let dateRegistrationPeriodExpires = $('#bonusFormModal #dateRegistrationPeriod');
-		if (Session.get('isNewBonus')) {
+		if (Session.get('displayContentOfNewLearningPhaseBonus')) {
+			title = '';
 			start = config.defaultDateStart;
 			dateBonusStart.attr("min", config.defaultDateStart);
 			nextDay = moment().add(1, 'day').format(config.dateFormat);
@@ -36,24 +39,34 @@ export let BonusForm = class BonusForm {
 			errorCount = config.defaultErrorCount;
 			forceNotifications.set('mail', config.defaultForceNotifications.mail);
 			forceNotifications.set('push', config.defaultForceNotifications.push);
+			maxBonus = config.defaultMaxBonusPoints;
+			minLearned = config.defaultMinLearned;
+			$('#strictWorkloadTimer').prop('checked', config.defaultStrictWorkloadTimer);
 		} else {
-			start = moment(Session.get('activeCardset').learningStart).format(config.dateFormat);
-			nextDay = moment(Session.get('activeCardset').learningStart).add(1, 'day').format(config.dateFormat);
-			end = moment(Session.get('activeCardset').learningEnd).format(config.dateFormat);
-			registrationPeriod = moment(Session.get('activeCardset').registrationPeriod).format(config.dateFormat);
-			maxWorkload = Session.get('activeCardset').maxCards;
-			daysBeforeReset = Session.get('activeCardset').daysBeforeReset;
-			intervals = Session.get('activeCardset').learningInterval;
+			let learningPhase = LeitnerLearningPhaseUtilities.getActiveBonus(Session.get('activeCardset')._id);
+			if (learningPhase.title !== undefined) {
+				title = learningPhase.title;
+			}
+			start = moment(learningPhase.start).format(config.dateFormat);
+			nextDay = moment(learningPhase.start).add(1, 'day').format(config.dateFormat);
+			end = moment(learningPhase.end).format(config.dateFormat);
+			registrationPeriod = moment(learningPhase.registrationPeriod).format(config.dateFormat);
+			maxWorkload = learningPhase.maxCards;
+			daysBeforeReset = learningPhase.daysBeforeReset;
+			intervals = learningPhase.intervals;
 			dateBonusStart.attr("min", start);
-			if (Session.get('activeCardset').workload !== undefined && Session.get('activeCardset').workload.simulator !== undefined) {
-				errorCount = Session.get('activeCardset').workload.simulator.errorCount[0];
+			if (learningPhase.simulator !== undefined) {
+				errorCount = learningPhase.simulator.errorCount[0];
 			} else {
 				errorCount = config.defaultErrorCount;
 			}
-			if (Session.get('activeCardset').forceNotifications !== undefined) {
-				forceNotifications.set('mail', Session.get('activeCardset').forceNotifications.mail);
-				forceNotifications.set('push', Session.get('activeCardset').forceNotifications.push);
+			if (learningPhase.forceNotifications !== undefined) {
+				forceNotifications.set('mail', learningPhase.forceNotifications.mail);
+				forceNotifications.set('push', learningPhase.forceNotifications.push);
 			}
+			$('#strictWorkloadTimer').prop('checked', learningPhase.strictWorkloadTimer);
+			maxBonus = learningPhase.bonusPoints.maxPoints;
+			minLearned = learningPhase.bonusPoints.minLearned;
 		}
 		$('#maxWorkload').val(maxWorkload);
 		$('#bonusFormModal #daysBeforeReset').val(daysBeforeReset);
@@ -63,6 +76,7 @@ export let BonusForm = class BonusForm {
 			errorRate.val(errorCount[i]);
 			errorRate.attr("placeholder", errorCount[i]);
 		}
+		$('#bonusFormModal #bonusTitle').val(title);
 		dateBonusStart.attr("min", start);
 		dateBonusStart.val(start);
 		dateBonusEnd.attr("min", nextDay);
@@ -70,7 +84,8 @@ export let BonusForm = class BonusForm {
 		dateRegistrationPeriodExpires.attr("min", nextDay);
 		dateRegistrationPeriodExpires.attr("max", end);
 		dateRegistrationPeriodExpires.val(registrationPeriod);
-		$('#strictWorkloadTimer').prop('checked', Session.get('activeCardset').strictWorkloadTimer);
+		$('#bonusFormModal #maxBonusPoints').val(maxBonus);
+		$('#bonusFormModal #minLearned').val(minLearned);
 	}
 
 	static adjustRegistrationPeriod () {
@@ -139,6 +154,10 @@ export let BonusForm = class BonusForm {
 			let percentage = Number($('#errorRate' + (i + 1)).val());
 			leitnerErrorCount[i] = Math.round((this.getCardCount() / 100) * percentage);
 		}
+	}
+
+	static getTitel ()  {
+		return $('#bonusFormModal #bonusTitle').val();
 	}
 
 	static getErrorCountPercentage () {
@@ -436,17 +455,39 @@ export let BonusForm = class BonusForm {
 	}
 
 	static startBonus () {
-		Meteor.call("activateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), [this.getErrorCountPercentage()], this.getMinLearned(), this.getStrictWorkloadTimer(), forceNotifications.all(), function (error, result) {
-			if (result) {
-				Session.set('activeCardset', Cardsets.findOne(result));
+		Meteor.call("activateBonus", Session.get('activeCardset')._id, this.getTitel(), this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), this.getErrorCountPercentage(), this.getMinLearned(), this.getStrictWorkloadTimer(), forceNotifications.all(), function (err) {
+			if (!err) {
+				$('#bonusFormModal').modal('hide');
+				$('body').removeClass('modal-open');
+				$('.modal-backdrop').remove();
 			}
 		});
 	}
 
 	static updateBonus () {
-		Meteor.call("updateBonus", Session.get('activeCardset')._id, this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), [this.getErrorCountPercentage()], this.getMinLearned(), this.getStrictWorkloadTimer(), forceNotifications.all(), function (error, result) {
-			if (result) {
-				Session.set('activeCardset', Cardsets.findOne(result));
+		Meteor.call("updateBonus", Session.get('activeCardset')._id, this.getTitel(), this.getMaxWorkload(), this.getDaysBeforeReset(), this.getDateStart(), this.getDateEnd(), this.getIntervals(), this.getRegistrationPeriod(), this.getMaxBonusPoints(), PomodoroTimer.getGoalPoms(), PomodoroTimer.getPomLength(), PomodoroTimer.getBreakLength(), PomodoroTimer.getSoundConfig(), this.getErrorCountPercentage(), this.getMinLearned(), this.getStrictWorkloadTimer(), forceNotifications.all(), function (err) {
+			if (!err) {
+				$('#bonusFormModal').modal('hide');
+				$('body').removeClass('modal-open');
+				$('.modal-backdrop').remove();
+			}
+		});
+	}
+
+	static updateArchivedBonus () {
+		Meteor.call("updateArchivedBonus", Session.get('selectedLearningPhaseID'), this.getTitel(), this.getMaxBonusPoints(), this.getMinLearned(), function (err) {
+			if (!err) {
+				Meteor.call("getLearningStatistics", FlowRouter.getParam('_id'), Session.get('selectedLearningPhaseID'), function (error, result) {
+					if (error) {
+						throw new Meteor.Error(error.statusCode, 'Error could not receive content for stats');
+					}
+					if (result) {
+						Session.set("selectedLearningStatistics", LeitnerHistoryUtilities.prepareBonusUserData(result));
+						$('#bonusFormModal').modal('hide');
+						$('body').removeClass('modal-open');
+						$('.modal-backdrop').remove();
+					}
+				});
 			}
 		});
 	}
@@ -455,11 +496,11 @@ export let BonusForm = class BonusForm {
 		return config.defaultMinLearned;
 	}
 
-	static getCurrentMinLearned (cardset) {
-		if (cardset.workload === undefined) {
+	static getCurrentMinLearned (learningPhase) {
+		if (learningPhase.bonusPoints === undefined) {
 			return config.defaultMinLearned;
 		} else {
-			return cardset.workload.bonus.minLearned;
+			return learningPhase.bonusPoints.minLearned;
 		}
 	}
 
@@ -471,11 +512,11 @@ export let BonusForm = class BonusForm {
 		return config.defaultMinBonusPoints;
 	}
 
-	static getCurrentMaxBonusPoints (cardset) {
-		if (cardset.workload === undefined || cardset.workload.bonus === undefined) {
+	static getCurrentMaxBonusPoints (learningPhase) {
+		if (learningPhase.bonusPoints === undefined || learningPhase.bonusPoints.maxPoints === undefined) {
 			return this.getDefaultMaxBonusPoints();
 		} else {
-			return cardset.workload.bonus.maxPoints;
+			return learningPhase.bonusPoints.maxPoints;
 		}
 	}
 

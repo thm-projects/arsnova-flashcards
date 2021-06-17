@@ -13,10 +13,12 @@ import tippy from "tippy.js";
 Template.bonusFormDaysBeforeReset.onRendered(function () {
 	const template = document.getElementById('bonus-reset-tooltip');
 
-	tippy('#bonus-reset-info', {
-		content: template.innerHTML,
-		allowHTML: true
-	});
+	if (template !== null) {
+		tippy('#bonus-reset-info', {
+			content: template.innerHTML,
+			allowHTML: true
+		});
+	}
 });
 
 

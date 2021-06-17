@@ -1,9 +1,9 @@
 import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../subscriptions/cardsets.js";
 import {Cards} from "../subscriptions/cards.js";
-import {Leitner} from "../subscriptions/leitner";
-import {LeitnerHistory} from "../subscriptions/leitnerHistory";
-import {Workload} from "../subscriptions/workload";
+import {LeitnerUserCardStats} from "../subscriptions/leitner/leitnerUserCardStats";
+import {LeitnerPerformanceHistory} from "../subscriptions/leitner/leitnerPerformanceHistory";
+import {LeitnerLearningWorkload} from "../subscriptions/leitner/leitnerLearningWorkload";
 import {Wozniak} from "../subscriptions/wozniak";
 import {Ratings} from "../subscriptions/ratings";
 import {check} from "meteor/check";
@@ -13,8 +13,9 @@ import {Paid} from "../subscriptions/paid";
 import {TranscriptBonus} from "../subscriptions/transcriptBonus";
 import {Utilities} from "../../util/utilities";
 import {CardType} from "../../util/cardTypes";
-import {LeitnerUtilities} from "../../util/leitner";
-import {LeitnerTasks} from "../subscriptions/leitnerTasks";
+import {LeitnerActivationDay} from "../subscriptions/leitner/leitnerActivationDay";
+import {LeitnerLearningPhase} from "../subscriptions/leitner/leitnerLearningPhase";
+import {DELETED_USER_ID} from "../../config/userData.js";
 import {ServerStyle} from "../../util/styles";
 
 Meteor.methods({
@@ -258,103 +259,67 @@ Meteor.methods({
 			user_id = Meteor.userId();
 		}
 
-		let cardsets = Cardsets.find({
-			owner: user_id,
-			kind: 'personal'
-		});
-
-		cardsets.forEach(function (cardset) {
-			Cards.remove({
-				cardset_id: cardset._id
-			});
-		});
-
-		Cardsets.update({owner: user_id}, {
-			$set: {
-				userDeleted: true
-			}
-		}, {multi: true});
-
-		let allPrivateUserCardsets = Cardsets.find({
-			owner: user_id,
-			kind: 'personal'
-		}).fetch();
-
-		Cardsets.remove({
-			owner: user_id,
-			kind: 'personal'
-		});
-
-		for (let i = 0; i < allPrivateUserCardsets.length; i++) {
-			Meteor.call('updateShuffledCardsetQuantity', allPrivateUserCardsets[i]._id);
-			if (CardType.getCardTypesWithLearningModes().includes(allPrivateUserCardsets[i].cardType)) {
-				const shuffledCardsets = Cardsets.find({
-					learningActive: true,
-					cardGroups: allPrivateUserCardsets[i]._id
-				});
-				for (let j = 0; j < shuffledCardsets.length; j++) {
-					Meteor.call("updateCurrentBonusPoints", shuffledCardsets[j]._id);
-				}
-			}
-		}
-
+		//Remove user from editors array (Currently unused inside the app)
 		Cardsets.update({editors: {$in: [user_id]}}, {
 			$pull: {editors: user_id}
 		});
 
-		Meteor.users.update(user_id, {
-			$set: {
-				"services.resume.loginTokens": []
+		// Delete all cardsets and cards that aren't available to the public
+		let cardsetFilter = Cardsets.find({
+			owner: user_id,
+			kind: 'personal'
+		}).fetch().map(cardset => {
+			return cardset._id;
+		});
+		cardsetFilter.forEach(function (cardset_id) {
+			if (Cardsets.findOne({
+				cardGroups: {$in: [cardset_id]},
+				kind: {$nin: ['personal']}
+			}) === undefined) {
+				Cardsets.remove({_id: cardset_id});
+				Cards.remove({cardset_id_id: cardset_id});
+				LeitnerLearningWorkload.remove({cardset_id: cardset_id});
+				LeitnerLearningPhase.remove({cardset_id: cardset_id});
+				LeitnerUserCardStats.remove({cardset_id: cardset_id});
+				LeitnerPerformanceHistory.remove({cardset_id: cardset_id});
+				LeitnerActivationDay.remove({cardset_id: cardset_id});
+				Ratings.remove({cardset_id: cardset_id});
+				Paid.remove({cardset_id: cardset_id});
+				WebPushSubscriptions.remove({cardset_id: cardset_id});
+				TranscriptBonus.remove({cardset_id: cardset_id});
 			}
 		});
 
-		Leitner.remove({
-			user_id: user_id
-		});
-
-
+		// Delete remaining user data
 		Wozniak.remove({
 			user_id: user_id
 		});
 
-		let workload = Workload.find({user_id: user_id}, {fields: {cardset_id: 1}}).fetch();
+		let learningWorkloads = LeitnerLearningWorkload.find({user_id: user_id}, {fields: {cardset_id: 1}}).fetch();
 
-		Workload.remove({
-			user_id: user_id
+		learningWorkloads.forEach(workload => {
+			if (workload.isBonus === false) {
+				LeitnerLearningPhase.remove({
+					_id: workload.learning_phase_id
+				});
+			}
+			LeitnerLearningWorkload.remove({
+				_id: workload._id
+			});
+			LeitnerUserCardStats.remove({
+				learning_phase_id: workload.learning_phase_id,
+				workload_id: workload._id
+			});
+			LeitnerActivationDay.remove({
+				learning_phase_id: workload.learning_phase_id,
+				workload_id: workload._id
+			});
+			LeitnerPerformanceHistory.remove({
+				learning_phase_id: workload.learning_phase_id,
+				workload_id: workload._id
+			});
+			Meteor.call("updateLearnerCount", workload.cardset_id);
 		});
-
-		let nextDeletedUserID = LeitnerUtilities.getNextLeitnerDeletedUserID();
-		for (let i = 0; i < workload.length; i++) {
-			LeitnerTasks.update({
-					user_id: user_id,
-					cardset_id: workload[i].cardset_id
-				},
-				{
-					$set: {
-						user_id_deleted: nextDeletedUserID
-					},
-					$unset: {
-						user_id: "",
-						"notifications.mail.address": ""
-					}
-				}, {multi: true}
-			);
-
-			LeitnerHistory.update({
-					user_id: user_id,
-					cardset_id: workload[i].cardset_id
-				},
-				{
-					$set: {
-						user_id_deleted: nextDeletedUserID
-					},
-					$unset: {
-						user_id: ""
-					}
-				}, {multi: true}
-			);
-			Meteor.call("updateLearnerCount", workload[i].cardset_id);
-		}
 
 		Ratings.remove({
 			user_id: user_id
@@ -367,6 +332,8 @@ Meteor.methods({
 		Paid.remove({
 			user_id: user_id
 		});
+
+		//Delete users transcript bonus
 		Cards.remove({
 			user_id: user_id,
 			cardType: {$in: CardType.getCardTypesWithTranscriptBonus()}
@@ -383,6 +350,24 @@ Meteor.methods({
 				}
 			}
 		}
+
+		//Mark all public cardsets
+		Cardsets.update({
+			owner: user_id
+		}, {
+			$set: {
+				owner: DELETED_USER_ID
+			}
+
+		});
+		Cards.update({
+			owner: user_id
+		}, {
+			$set: {
+				owner: DELETED_USER_ID
+			}
+
+		});
 		Meteor.users.remove(user_id);
 	},
 	removeFirstLogin: function () {
@@ -439,12 +424,17 @@ Meteor.methods({
 	updateWorkloadCount: function (user_id) {
 		check(user_id, String);
 		if (Meteor.isServer) {
+			let activeWorkloadArray = LeitnerLearningWorkload.find({user_id: user_id, isActive: true}).fetch().map(function (workload) {
+				return workload._id;
+			});
 			Meteor.users.update({
 					_id: user_id
 				},
 				{
 					$set: {
-						"count.workload": Leitner.find({user_id: user_id}).count() + Wozniak.find({user_id: user_id}).count()
+						"count.workload": LeitnerUserCardStats.find(
+							{workload_id: {$in: activeWorkloadArray},
+								user_id: user_id}).count() + Wozniak.find({user_id: user_id}).count()
 					}
 				}
 			);

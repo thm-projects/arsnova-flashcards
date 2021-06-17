@@ -2,6 +2,7 @@ import "./filterBonus.html";
 import {Template} from "meteor/templating";
 import {Filter} from "../../../../util/filter";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
+import {BONUS_STATUS} from "../../../../config/cardset";
 
 /*
  * ############################################################################
@@ -12,26 +13,33 @@ import {Cardsets} from "../../../../api/subscriptions/cardsets";
 Template.filterItemFilterBonus.helpers({
 	hasBonusFilter: function () {
 		let query = Filter.getFilterQuery();
-		return (query.learningActive !== undefined) || (query['transcriptBonus.enabled'] === true);
+		return (query.bonusStatus !== undefined) || (query['transcriptBonus.enabled'] === true);
 	},
 	resultsFilterBonus: function (bonusType) {
 		let query = Filter.getFilterQuery();
 		switch (bonusType) {
 			case 0:
-				return (query.learningActive !== undefined);
+				return (query.bonusStatus !== undefined);
 			case 1:
 				return (query['transcriptBonus.enabled'] === true);
 		}
 	},
 	gotBonusCardsets: function () {
 		let query = Filter.getFilterQuery();
-		query.learningActive = true;
 		delete query['transcriptBonus.enabled'];
-		return Cardsets.findOne(query);
+		delete query._id;
+		query.bonusStatus = {$in: [
+			BONUS_STATUS.PLANNED,
+			BONUS_STATUS.ONGOING_OPEN,
+			BONUS_STATUS.ONGOING_CLOSED,
+			BONUS_STATUS.FINISHED
+		]};
+		return Cardsets.find(query).count();
 	},
 	gotTranscriptBonusCardsets: function () {
 		let query = Filter.getFilterQuery();
 		delete query.learningActive;
+		delete query._id;
 		query['transcriptBonus.enabled'] = true;
 		return Cardsets.findOne(query);
 	}

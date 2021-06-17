@@ -12,7 +12,7 @@ import "./leitner.html";
 Template.resetLeitnerForm.events({
 	"click #resetLeitnerConfirm": function () {
 		$('#resetLeitnerModal').on('hidden.bs.modal', function () {
-			Meteor.call("deleteLeitner", FlowRouter.getParam('_id'));
+			Meteor.call("disableLeitner", FlowRouter.getParam('_id'));
 		}).modal('hide');
 	}
 });

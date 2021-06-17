@@ -7,6 +7,7 @@ import {getAuthorName} from "../../../../util/userData";
 import {Route} from "../../../../util/route";
 import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import {DELETED_USER_ID} from '../../../../config/userData';
 
 /*
  * ############################################################################
@@ -35,7 +36,13 @@ Template.filterItemFilterAuthors.helpers({
 				return x.owner;
 			}), true);
 		}
-		return Meteor.users.find({_id: {$in: userFilter}}, {fields: {_id: 1, profile: 1}, sort: {"profile.birthname": 1, "profile.name": 1}}).fetch();
+		let result = Meteor.users.find({_id: {$in: userFilter}}, {fields: {_id: 1, profile: 1}, sort: {"profile.birthname": 1, "profile.name": 1}}).fetch();
+		if (userFilter.includes(DELETED_USER_ID)) {
+			result.push({
+				_id: DELETED_USER_ID
+			});
+		}
+		return result;
 	},
 	getAuthorName: function (profile) {
 		return getAuthorName(profile._id, true, false,false, profile);

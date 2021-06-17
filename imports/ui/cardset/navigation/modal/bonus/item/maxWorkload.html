@@ -1,29 +1,31 @@
 <template name="bonusFormMaxWorkload">
-    <div class="form-group row">
-        <div id="bonus-workload-tooltip" class="tippy-tooltip" style="display: none;">
-            {{#markdeep}}
-                {{#if isActiveLanguage 'de'}}
-                    {{> bonusFormMaxWorkloadToolTipDE}}
-                {{else}}
-                    {{> bonusFormMaxWorkloadToolTipEN}}
-                {{/if}}
-            {{/markdeep}}
-        </div>
-        <label class="col-md-3 control-label">
-                {{_ "bonus.form.maxWorkload.label"}}
-            <span id="bonus-workload-info" class="fa-stack fa-1x tippy-button">
-                <span class="fas fa-circle fa-stack-2x background"></span>
-                <span class="fas fa-info fa-stack-1x icon"></span>
-            </span>
+    {{#if this.isActive}}
+        <div class="form-group row">
+            <div id="bonus-workload-tooltip" class="tippy-tooltip" style="display: none;">
+                {{#markdeep}}
+                    {{#if isActiveLanguage 'de'}}
+                        {{> bonusFormMaxWorkloadToolTipDE}}
+                    {{else}}
+                        {{> bonusFormMaxWorkloadToolTipEN}}
+                    {{/if}}
+                {{/markdeep}}
+            </div>
+            <label class="col-md-3 control-label">
+                    {{_ "bonus.form.maxWorkload.label"}}
+                <span id="bonus-workload-info" class="fa-stack fa-1x tippy-button">
+                    <span class="fas fa-circle fa-stack-2x background"></span>
+                    <span class="fas fa-info fa-stack-1x icon"></span>
+                </span>
 
-        </label>
-        <div class="col-md-9">
-            <input type="number" min="1" max="100" data-bind="value:replyNumber"
-                   onkeypress="return  (event.charCode === 8 || event.charCode === 0) ? null : event.charCode >= 48 && event.charCode <= 57"
-                   class="form-control" id="maxWorkload"
-                   placeholder="{{_ "bonus.form.maxWorkload.placeholder"}}" value="">
-            <span id="errorMaxCards" class="help-block name"></span>
+            </label>
+            <div class="col-md-9">
+                    <input type="number" min="1" max="100" data-bind="value:replyNumber"
+                           onkeypress="return  (event.charCode === 8 || event.charCode === 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                           class="form-control" id="maxWorkload"
+                           placeholder="{{_ "bonus.form.maxWorkload.placeholder"}}" value="">
+                    <span id="errorMaxCards" class="help-block name"></span>
+            </div>
         </div>
-    </div>
+    {{/if}}
 </template>
 

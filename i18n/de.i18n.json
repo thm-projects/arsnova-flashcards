@@ -166,7 +166,7 @@
   "confirmEndLearn-form": {
     "title": "Bonus-Lernphase beenden",
     "warnTitle": "Du bist im Begriff, die Bonus-Lernphase zu beenden!",
-    "warning": "Wenn du den Vorgang fortsetzt, wird die Lernphase beendet. Nach dem Beenden der Lernphase ist keine Bonus-Auswertung mehr möglich! Willst du wirklich fortfahren?",
+    "warning": "Wenn du den Vorgang fortsetzt, wird die Lernphase beendet und Archiviert. Eine Archivierung kann nicht rückgängig gemacht werden!",
     "cancel": "Abbrechen",
     "confirm": "Bestätigen"
   },
@@ -674,6 +674,10 @@
       },
       "minLearned": {
         "label": "Gelernte Karten für max. Bonus"
+      },
+      "title": {
+        "label": "Titel",
+        "placeholder": "Der Titel für die Bonusphase (Optional)"
       },
       "daysBeforeReset": {
         "label": "Überschreitungsfrist",

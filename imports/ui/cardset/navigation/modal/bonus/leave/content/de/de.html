@@ -1,6 +1,8 @@
 <template name="leaveBonusFormContentDe">
     Beim Verlassen der Bonus-Lernphase wird dein Lernprotokoll gelöscht.
     Die Lehrperson kann dir dann keine Bonuspunkte mehr anrechnen.
-    <br><br>
+    {{#unless isProfileSettingsRoute}}
+        <br><br>
     <strong> Willst du die Bonus-Lernphase verlassen?</strong>
+    {{/unless}}
 </template>

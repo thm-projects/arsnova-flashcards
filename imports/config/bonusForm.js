@@ -10,6 +10,7 @@ let defaultMaxBonusPoints = 100;
 //Minimum cards learned in % for max Bonus points
 let defaultMinLearned = 20;
 
+let maxTitleLength = 30;
 let dateFormat = "YYYY-MM-DD";
 let defaultRegistrationPeriod = [31, 'days'];
 let defaultDateRegistrationPeriod = moment().add(defaultRegistrationPeriod[0], defaultRegistrationPeriod[1]).format(dateFormat);
@@ -20,6 +21,9 @@ let defaultDateEnd = moment().add(defaultEndPeriod[0], defaultEndPeriod[1]).form
 // Default error count in percent for the simulator
 let defaultErrorCount = [50, 20, 10, 5, 2];
 
+// Not yet implemented
+let defaultStrictWorkloadTimer = true;
+
 //Bonus settings
 let defaultForceNotifications = {
 	mail: true,
@@ -27,6 +31,7 @@ let defaultForceNotifications = {
 };
 
 module.exports = {
+	maxTitleLength,
 	minWorkloadCap,
 	defaultMaxWorkload,
 	minDaysBeforeReset,
@@ -43,5 +48,6 @@ module.exports = {
 	defaultDateEnd,
 	defaultErrorCount,
 	defaultMinLearned,
-	defaultForceNotifications
+	defaultForceNotifications,
+	defaultStrictWorkloadTimer
 };

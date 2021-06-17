@@ -1,5 +1,4 @@
 import "./bonusWorkingTimeStandardDeviation.html";
-import {Session} from "meteor/session";
 import {Utilities} from "../../../../../util/utilities";
 /*
 * ############################################################################
@@ -10,8 +9,8 @@ import {Utilities} from "../../../../../util/utilities";
 Template.cardsetInfoBoxItemBonusWorkingTimeStandardDeviation.helpers({
 	getBonusWorkingTimeStandardDeviation: function () {
 		let bonusWorkingTimeStandardDeviation = 0;
-		if (Session.get('activeCardset') !== undefined && Session.get('activeCardset').learningStatistics !== undefined && Session.get('activeCardset').learningStatistics.workingTime !== undefined) {
-			bonusWorkingTimeStandardDeviation = Session.get('activeCardset').learningStatistics.workingTime.standardDeviation.bonus;
+		if (this.performanceStats !== undefined && this.performanceStats.workingTime !== undefined) {
+			bonusWorkingTimeStandardDeviation = this.performanceStats.workingTime.standardDeviation;
 		}
 		return Utilities.humanizeDuration(bonusWorkingTimeStandardDeviation);
 	}

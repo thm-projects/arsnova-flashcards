@@ -16,6 +16,7 @@ FlowRouter.route('/profile/:_id/settings', {
 			import('../../../../ui/profile/profile.js'),
 			import('../../../../ui/profile/view/settings.js'),
 			Meteor.subscribe('defaultAppData'),
+			Meteor.subscribe('allUserWorkload'),
 			Meteor.subscribe('frontendUserData')
 		];
 	},
