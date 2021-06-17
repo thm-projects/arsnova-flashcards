@@ -4,7 +4,7 @@ import {
 import {AUTO_FULLSCREEN, CHOOSE_FULLSCREEN, EDU, FREE, GUEST, LECTURER, MANUAL_FULLSCREEN, PRO} from "./global/const";
 
 module.exports = {
-	"debugServerBoot": false,
+	"debugServerBoot": true,
 	"fullscreen": {
 		"settings": {
 			"enabled": [FREE, EDU, LECTURER, PRO],
@@ -134,6 +134,11 @@ module.exports = {
 		"facebook": false,
 		"twitter": false,
 		"google": false
+	},
+	"error": {
+		"errorReporting": {
+			"gitlabLink": "https://git.thm.de/arsnova/cards/-/issues"
+		}
 	},
 	"welcome": {
 		"title": {

@@ -1,0 +1,10 @@
+{
+  "learningStatisticsDeleteArchivedBonus": {
+    "title": "Archivierte Bonus-Lernphase löschen (__name__)",
+    "text": "Möchtest du diese archivierte Lernphase und alle dazugehörigen Statistiken löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "button": {
+      "confirm": "Löschen",
+      "cancel": "Abbrechen"
+    }
+  }
+}

@@ -15,10 +15,12 @@ import 'tippy.js/dist/tippy.css';
 Template.bonusFormMaxWorkload.onRendered(function () {
 	const template = document.getElementById('bonus-workload-tooltip');
 
-	tippy('#bonus-workload-info', {
-		content: template.innerHTML,
-		allowHTML: true
-	});
+	if (template !== null) {
+		tippy('#bonus-workload-info', {
+			content: template.innerHTML,
+			allowHTML: true
+		});
+	}
 });
 
 Template.bonusFormMaxWorkload.events({

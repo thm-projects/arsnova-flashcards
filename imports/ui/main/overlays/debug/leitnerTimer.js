@@ -1,4 +1,4 @@
-import {LeitnerTasks} from "../../../../api/subscriptions/leitnerTasks";
+import {LeitnerActivationDay} from "../../../../api/subscriptions/leitner/leitnerActivationDay";
 import './leitnerTimer.html';
 import {ServerStyle} from "../../../../util/styles";
 
@@ -10,7 +10,7 @@ import {ServerStyle} from "../../../../util/styles";
 
 Template.mainOverlaysDebugLeitnerItem.helpers({
 	getWorkloadTimer: function () {
-		let leitnerTask = LeitnerTasks.findOne({}, {sort: {createdAt: -1}});
+		let leitnerTask = LeitnerActivationDay.findOne({}, {sort: {createdAt: -1}});
 		let time = 0;
 		if (leitnerTask !== undefined && leitnerTask.timer.workload !== undefined) {
 			time = leitnerTask.timer.workload.current;
@@ -18,7 +18,7 @@ Template.mainOverlaysDebugLeitnerItem.helpers({
 		return TAPi18n.__('overlays.debugLeitnerTimer.minutes', {count: time}, ServerStyle.getServerLanguage());
 	},
 	getBreakTimer: function () {
-		let leitnerTask = LeitnerTasks.findOne({}, {sort: {createdAt: -1}});
+		let leitnerTask = LeitnerActivationDay.findOne({}, {sort: {createdAt: -1}});
 		let time = 0;
 		if (leitnerTask !== undefined && leitnerTask.timer.break !== undefined) {
 			time = leitnerTask.timer.break.current;
@@ -26,7 +26,7 @@ Template.mainOverlaysDebugLeitnerItem.helpers({
 		return TAPi18n.__('overlays.debugLeitnerTimer.minutes', {count: time}, ServerStyle.getServerLanguage());
 	},
 	getWorkloadsCompleted: function () {
-		let leitnerTask = LeitnerTasks.findOne({}, {sort: {createdAt: -1}});
+		let leitnerTask = LeitnerActivationDay.findOne({}, {sort: {createdAt: -1}});
 		let completed = 0;
 		if (leitnerTask !== undefined && leitnerTask.timer.workload !== undefined) {
 			completed = leitnerTask.timer.workload.completed;
@@ -34,7 +34,7 @@ Template.mainOverlaysDebugLeitnerItem.helpers({
 		return completed;
 	},
 	getBreaksCompleted: function () {
-		let leitnerTask = LeitnerTasks.findOne({}, {sort: {createdAt: -1}});
+		let leitnerTask = LeitnerActivationDay.findOne({}, {sort: {createdAt: -1}});
 		let completed = 0;
 		if (leitnerTask !== undefined && leitnerTask.timer.break !== undefined) {
 			completed = leitnerTask.timer.break.completed;
@@ -42,7 +42,7 @@ Template.mainOverlaysDebugLeitnerItem.helpers({
 		return completed;
 	},
 	getStatus: function () {
-		let leitnerTask = LeitnerTasks.findOne({}, {sort: {createdAt: -1}});
+		let leitnerTask = LeitnerActivationDay.findOne({}, {sort: {createdAt: -1}});
 		if (leitnerTask !== undefined && leitnerTask.timer.status !== undefined) {
 			switch (leitnerTask.timer.status) {
 				case 0:

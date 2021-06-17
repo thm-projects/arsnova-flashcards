@@ -10,8 +10,8 @@ import "./BonusMinLearned.html";
 
 Template.cardsetInfoBoxItemBonusMinLearned.helpers({
 	getMinLearned: function () {
-		if (this.workload.bonus.minLearned !== undefined) {
-			return this.workload.bonus.minLearned;
+		if (this.bonusPoints.minLearned !== undefined) {
+			return this.bonusPoints.minLearned;
 		} else {
 			return 0;
 		}

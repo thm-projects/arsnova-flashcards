@@ -1,80 +1,42 @@
 import {Meteor} from "meteor/meteor";
-import {Leitner} from "../imports/api/subscriptions/leitner";
-import {Workload} from "../imports/api/subscriptions/workload";
+import {LeitnerLearningWorkload} from "../imports/api/subscriptions/leitner/leitnerLearningWorkload";
 import {Cardsets} from "../imports/api/subscriptions/cardsets";
 import {MailNotifier} from "./sendmail.js";
 import {WebNotifier} from "./sendwebpush.js";
 import {Bonus} from "../imports/util/bonus";
 import {LeitnerUtilities} from "../imports/util/leitner.js";
 import {ServerSettings} from "../imports/util/settings";
-import {LeitnerTasks} from "../imports/api/subscriptions/leitnerTasks";
+import {LeitnerActivationDay} from "../imports/api/subscriptions/leitner/leitnerActivationDay";
+import {LeitnerLearningPhase} from "../imports/api/subscriptions/leitner/leitnerLearningPhase";
+import {LeitnerLearningPhaseUtilities} from "../imports/util/learningPhase";
 
 /** Function gets called when the learning-phase ended and excludes the cardset from the leitner algorithm
- *  @param {Object} cardset - The cardset from the active learning-phase
+ *  @param {Object} learningPhase - The the active learning-phase
  * */
-function disableLearning(cardset) {
+function disableLearningPhaseAndWorkloads(learningPhase) {
 	if (!Meteor.isServer) {
 		throw new Meteor.Error("not-authorized");
 	} else {
-		let users = Workload.find({cardset_id: cardset._id, 'leitner.bonus': true}, {fields: {user_id: 1}}).fetch();
-		for (let i = 0; i < users.length; i++) {
-			if (Leitner.findOne({cardset_id: cardset._id, user_id: users[i].user_id, active: true}) !== undefined) {
-				Leitner.update({cardset_id: cardset._id, user_id: users[i].user_id}, {
-					$set: {
-						active: false
-					}
-				}, {multi: true});
+		LeitnerLearningPhase.update({
+			_id: learningPhase._id
+		}, {
+			$set: {
+				isActive: false
 			}
-		}
-	}
-}
-
-/** Function returns all users who are currently registered as learning
- *  @param {string} cardset_id - The id of the cardset that got learners
- *  @returns {Object} - A list of users who are currently learning
- * */
-function getLearners(cardset_id) {
-	if (!Meteor.isServer) {
-		throw new Meteor.Error("not-authorized");
-	} else {
-		var data = Leitner.find({cardset_id: cardset_id}).fetch();
-		return _.uniq(data, false, function (d) {
-			return d.user_id;
 		});
+		LeitnerLearningWorkload.update({
+			learning_phase_id: learningPhase._id
+		}, {
+			$set: {
+				isActive: false
+			}
+		}, {multi: true});
 	}
 }
 
-/** Function returns all cardsets with learners
- *  @returns {Object} - The cardsets with active learners
- * */
-function getCardsets() {
-	if (!Meteor.isServer) {
-		throw new Meteor.Error("not-authorized");
-	} else {
-		return Cardsets.find({kind: {$nin: ['server']}}).fetch();
-	}
-}
-
-/** Function returns the cards marked as active from an user who is learning
- *  @param {string} cardset_id - The id of the cardset with active learners
- *  @param {Object} user - The user from the cardset who is currently learning
- *  @returns {Object} - The cards from an user that are currently marked as active
- * */
-function getActiveCard(cardset_id, user) {
-	if (!Meteor.isServer) {
-		throw new Meteor.Error("not-authorized");
-	} else {
-		return Leitner.findOne({
-			cardset_id: cardset_id,
-			user_id: user,
-			active: true
-		});
-	}
-}
-
-function missedDeadlineCheck(cardset, cardUnlockedDate) {
+function missedDeadlineCheck(learningPhase, cardUnlockedDate) {
 	cardUnlockedDate = moment(cardUnlockedDate);
-	cardUnlockedDate.add(cardset.daysBeforeReset, 'days');
+	cardUnlockedDate.add(learningPhase.daysBeforeReset, 'days');
 	//Compensate for the 24h cronjob interval
 	cardUnlockedDate.subtract(1, 'hour');
 	return cardUnlockedDate <= moment();
@@ -86,52 +48,58 @@ Meteor.methods({
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			let cardsets = getCardsets();
-			let cardsetCount = 0;
-			let currentCardsetWithLearners = 1;
+			let leitnerLearningPhase = LeitnerLearningPhase.find({isActive: true}).fetch();
+			let cronjobStartDate = moment();
 			if (Meteor.settings.debug.leitner) {
-				for (let i = 0; i < cardsets.length; i++) {
-					if (Leitner.findOne({cardset_id: cardsets[i]._id})) {
-						cardsetCount++;
-					}
-				}
+				console.log(`Found ${leitnerLearningPhase.length} active leitner learning phases.`);
 			}
-			for (let i = 0; i < cardsets.length; i++) {
-				let learners = getLearners(cardsets[i]._id);
-				let learnerCount = learners.length;
-				if (Meteor.settings.debug.leitner && learnerCount > 0) {
-					console.log("\nCardset " + currentCardsetWithLearners++ + " of " + cardsetCount + ": [" + cardsets[i].name + ", " + cardsets[i]._id + "]");
-				}
-				for (let k = 0; k < learners.length; k++) {
-					if (!Bonus.isInBonus(cardsets[i]._id, learners[k].user_id) || cardsets[i].learningEnd.getTime() > new Date().getTime()) {
-						if (Meteor.settings.debug.leitner) {
-							console.log("=>User " + (k + 1) + " of " + learnerCount + ": " + learners[k].user_id);
+			leitnerLearningPhase.forEach(learningPhase => {
+				//Set the bonusStats for the associated card set
+				if (learningPhase.isBonus) {
+					Cardsets.update({
+						_id: learningPhase.cardset_id
+					}, {
+						$set: {
+							bonusStatus: LeitnerLearningPhaseUtilities.setLeitnerBonusStatus(learningPhase)
 						}
-						let activeCard = getActiveCard(cardsets[i]._id, learners[k].user_id);
-						let user = Meteor.users.findOne(learners[k].user_id);
-						if (!activeCard) {
-							LeitnerUtilities.setCards(cardsets[i], user, false);
-						} else if (missedDeadlineCheck(cardsets[i], activeCard.currentDate)) {
-							LeitnerUtilities.resetCards(cardsets[i], user);
-						} else {
-							Meteor.call('prepareMail', cardsets[i], user, 1);
-							Meteor.call('prepareWebpush', cardsets[i], user, false, undefined, 1);
-							if (Meteor.settings.debug.leitner) {
-								console.log("===> Nothing to do");
+					});
+				}
+				if (learningPhase.end.getTime() > new Date().getTime()) {
+					let cardset = Cardsets.findOne({_id: learningPhase.cardset_id});
+					let leitnerWorkloads = LeitnerLearningWorkload.find({learning_phase_id: learningPhase._id}).fetch();
+					if (Meteor.settings.debug.leitner) {
+						console.log(`Found ${leitnerWorkloads.length} active workloads for learning phase: [${learningPhase._id}] in cardset [${cardset.name}]`);
+					}
+					leitnerWorkloads.forEach(workload => {
+						let workloadCreatedDate = moment(workload.createdAt);
+						//Check if user joined the learning phase on the same day as the cronjob gets executed
+						if (!workloadCreatedDate.isSame(cronjobStartDate, 'date')) {
+							let user = Meteor.users.findOne({_id: workload.user_id});
+							//Check if the user learned all cards in his workload
+							if (workload.activeCardCount === 0) {
+								LeitnerUtilities.setCards(learningPhase, workload, cardset, user, false);
+							} else if (missedDeadlineCheck(learningPhase, workload.activationDate)) {
+								LeitnerUtilities.resetCards(learningPhase, workload, cardset, user);
+							} else {
+								Meteor.call('prepareMail', cardset, user, 1);
+								Meteor.call('prepareWebpush', cardset, user, false, undefined, 1);
+								if (Meteor.settings.debug.leitner) {
+									console.log("===> Nothing to do");
+								}
 							}
 						}
-					}
+					});
+				} else {
+					disableLearningPhaseAndWorkloads(learningPhase._id);
 				}
-				if (cardsets[i].learningActive && cardsets[i].learningEnd.getTime() < new Date().getTime()) {
-					disableLearning(cardsets[i]);
-				}
-			}
+			});
 		}
 	},
-	prepareMail: function (cardset, user, messageType, isNewcomer = false, task_id = undefined) {
+	prepareMail: function (cardset, user, messageType, isNewcomer = false, activation_day_id = undefined) {
 		if (Meteor.isServer && ServerSettings.isMailEnabled()) {
 			let canSendMail = (user.mailNotification && !isNewcomer && Roles.userIsInRole(user._id, ['admin', 'editor', 'university', 'lecturer', 'pro']) && !Roles.userIsInRole(user._id, ['blocked', 'firstLogin']));
-			if (Bonus.isInBonus(cardset._id, user._id) && cardset.forceNotifications.mail && (user.email !== undefined && user.email.length)) {
+			let learningPhase = LeitnerLearningPhaseUtilities.getActiveLearningPhase(cardset._id, user.user_id);
+			if (Bonus.isInBonus(cardset._id, user._id) && learningPhase !== undefined && learningPhase.forceNotifications.mail && (user.email !== undefined && user.email.length) && !isNewcomer) {
 				canSendMail = true;
 			}
 			if (canSendMail) {
@@ -148,10 +116,10 @@ Meteor.methods({
 								console.log("===> Sending new E-Mail Message");
 						}
 					}
-					MailNotifier.prepareMail(cardset, user._id, messageType);
-					if (task_id !== undefined) {
-						LeitnerTasks.update({
-								_id: task_id
+					MailNotifier.prepareMail(cardset, user._id, learningPhase, messageType);
+					if (activation_day_id !== undefined) {
+						LeitnerActivationDay.update({
+								_id: activation_day_id
 							},
 							{
 								$set: {
@@ -163,15 +131,16 @@ Meteor.methods({
 						);
 					}
 				} catch (error) {
-					console.log("[" + TAPi18n.__('admin-settings.test-notifications.sendMail') + "] " + error);
+					console.log(`[${TAPi18n.__('admin-settings.test-notifications.sendMail')}] ${error}`);
 				}
 			}
 		}
 	},
-	prepareWebpush: function (cardset, user, isNewcomer = false, task_id = undefined, messageType = 0) {
+	prepareWebpush: function (cardset, user, isNewcomer = false, activation_day_id = undefined, messageType = 0) {
 		if (Meteor.isServer && ServerSettings.isPushEnabled()) {
 			let canSendPush = (user.webNotification && !isNewcomer);
-			if (Bonus.isInBonus(cardset._id, user._id) && cardset.forceNotifications.push) {
+			let learningPhase = LeitnerLearningPhaseUtilities.getActiveLearningPhase(cardset._id, user.user_id);
+			if (Bonus.isInBonus(cardset._id, user._id) && learningPhase !== undefined && learningPhase.forceNotifications.push && !isNewcomer) {
 				canSendPush = true;
 			}
 			if (canSendPush) {
@@ -180,10 +149,10 @@ Meteor.methods({
 					if (Meteor.settings.debug.leitner) {
 						console.log("===> Sending Webpush reminder Message");
 					}
-					web.prepareWeb(cardset, user._id, undefined, messageType);
-					if (task_id !== undefined) {
-						LeitnerTasks.update({
-								_id: task_id
+					web.prepareWeb(cardset, user._id, learningPhase,undefined, messageType);
+					if (activation_day_id !== undefined) {
+						LeitnerActivationDay.update({
+								_id: activation_day_id
 							},
 							{
 								$set: {
@@ -194,7 +163,7 @@ Meteor.methods({
 						);
 					}
 				} catch (error) {
-					console.log("[" + TAPi18n.__('admin-settings.test-notifications.sendWeb') + "] " + error);
+					console.log(`[${TAPi18n.__('admin-settings.test-notifications.sendWeb')}] ${error}`);
 				}
 			}
 		}

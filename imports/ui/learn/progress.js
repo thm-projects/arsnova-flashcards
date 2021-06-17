@@ -36,13 +36,16 @@ Template.progress.helpers({
 		}
 	},
 	getMaxWorkload: function () {
-		let cardsetCollection = LearningStatus.getCardsetCollection();
-		let maxWorkload = cardsetCollection.findOne({_id: Session.get('workloadProgressCardsetID')}).maxCards;
-		if (maxWorkload === 1) {
-			return TAPi18n.__('bonus.progress.maxWorkload.single', {amount: maxWorkload}, Session.get('activeLanguage'));
-		} else {
-			return TAPi18n.__('bonus.progress.maxWorkload.plural', {amount: maxWorkload}, Session.get('activeLanguage'));
+		let learningPhaseCollection = LearningStatus.getLearningPhaseCollection();
+		let maxWorkload = learningPhaseCollection.findOne({cardset_id: Session.get('workloadProgressCardsetID')});
+		if (maxWorkload !== undefined && maxWorkload.maxCards !== undefined) {
+			if (maxWorkload.maxCards === 1) {
+				return TAPi18n.__('bonus.progress.maxWorkload.single', {amount: maxWorkload.maxCards}, Session.get('activeLanguage'));
+			} else {
+				return TAPi18n.__('bonus.progress.maxWorkload.plural', {amount: maxWorkload.maxCards}, Session.get('activeLanguage'));
+			}
 		}
+		return '';
 	},
 	getCardsetCardCount: function (countLeitnerCards = false) {
 		return LearningStatus.getCardsetCardCount(countLeitnerCards);

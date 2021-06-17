@@ -182,6 +182,10 @@ export let ServerStyle = class ServerStyle {
 		return this.getConfig().language.client;
 	}
 
+	static getGitlabLink () {
+		return this.getConfig().error.errorReporting.gitlabLink;
+	}
+
 	static getDemoFolder () {
 		return this.getConfig().demo.folder;
 	}

@@ -6,6 +6,7 @@ import {Meteor} from "meteor/meteor";
 import {BertAlertVisuals} from "../../../util/bertAlertVisuals";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import {LeitnerHistoryUtilities} from "../../../util/learningHistory";
+import {LeitnerLearningPhaseUtilities} from "../../../util/learningPhase";
 
 Template.learningStatisticsRemoveBonusUserModal.onCreated(function () {
 	$('#learningStatisticsRemoveBonusUserModal').on('hidden.bs.modal', function () {
@@ -26,7 +27,7 @@ Template.learningStatisticsRemoveBonusUserModal.helpers({
 		}
 	},
 	earnedTrophy: function () {
-		return this.percentage >= Session.get('activeCardset').workload.bonus.minLearned;
+		return this.percentage >= LeitnerLearningPhaseUtilities.getActiveBonus(Session.get('activeCardset')._id).bonusPoints.minLearned;
 	}
 });
 

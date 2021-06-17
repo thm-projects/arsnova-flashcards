@@ -18,7 +18,8 @@ FlowRouter.route('/demo', {
 			import('../../../../ui/impressum/pages/demo/demo.js'),
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('demoCardsets'),
-			Meteor.subscribe('demoCards')
+			Meteor.subscribe('demoCards'),
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function () {

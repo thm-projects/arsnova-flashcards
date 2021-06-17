@@ -1,6 +1,6 @@
 import {Session} from "meteor/session";
 import "./countCardsLeitner.html";
-import {Leitner} from "../../../../../api/subscriptions/leitner.js";
+import {LeitnerUserCardStats} from "../../../../../api/subscriptions/leitner/leitnerUserCardStats.js";
 
 
 /*
@@ -11,10 +11,10 @@ import {Leitner} from "../../../../../api/subscriptions/leitner.js";
 
 Template.cardContentItemCountCardsLeitner.helpers({
 	countLeitner: function () {
-		var maxIndex = Leitner.find({
+		var maxIndex = LeitnerUserCardStats.find({
 			cardset_id: Session.get('activeCardset')._id,
 			user_id: Meteor.userId(),
-			active: true
+			isActive: true
 		}).count();
 		Session.set('maxIndex', maxIndex);
 		return maxIndex;

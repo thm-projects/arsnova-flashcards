@@ -21,7 +21,8 @@ FlowRouter.route('/all/cardsets', {
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('allCardsets'),
 			Meteor.subscribe('paidCardsets'),
-			Meteor.subscribe('frontendUserData')
+			Meteor.subscribe('frontendUserData'),
+			Meteor.subscribe('learningPhaseActiveBonus')
 		];
 	},
 	data: function () {

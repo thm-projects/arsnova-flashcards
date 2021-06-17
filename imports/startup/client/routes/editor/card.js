@@ -17,7 +17,8 @@ FlowRouter.route('/cardset/:_id/newcard', {
 			import('../../../../ui/card/editor/editor.js'),
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('cardsetsEditMode', params._id),
-			Meteor.subscribe('editorCards', params._id)
+			Meteor.subscribe('editorCards', params._id),
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function (params) {
