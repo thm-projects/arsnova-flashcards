@@ -16,7 +16,8 @@ FlowRouter.route('/profile/:_id/billing', {
 			import('../../../../ui/profile/profile.js'),
 			import('../../../../ui/profile/view/billing.js'),
 			Meteor.subscribe('defaultAppData'),
-			Meteor.subscribe('paidCardsets')
+			Meteor.subscribe('paidCardsets'),
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function () {

@@ -30,6 +30,7 @@ FlowRouter.route('/box/:_id', {
 			Meteor.subscribe('cardsetLeitner', params._id),
 			Meteor.subscribe('latestLeitnerCardsetTask', params._id),
 			Meteor.subscribe('latestLeitnerCardsetHistory', params._id),
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function (params) {

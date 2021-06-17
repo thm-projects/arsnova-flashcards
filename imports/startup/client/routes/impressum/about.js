@@ -14,7 +14,8 @@ FlowRouter.route('/about', {
 	waitOn: function () {
 		return [
 			import("../../../../ui/impressum/impressum.js"),
-			Meteor.subscribe('defaultAppData')
+			Meteor.subscribe('defaultAppData'),
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function () {

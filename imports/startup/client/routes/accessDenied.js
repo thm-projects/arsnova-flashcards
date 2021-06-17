@@ -13,7 +13,8 @@ FlowRouter.route('/accessDenied', {
 	waitOn: function () {
 		return [
 			import('../../../ui/accessDenied/accessDenied.js'),
-			Meteor.subscribe('defaultAppData')
+			Meteor.subscribe('defaultAppData'),
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function () {
