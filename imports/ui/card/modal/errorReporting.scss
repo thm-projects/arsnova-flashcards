@@ -26,6 +26,17 @@
   }
 }
 
-#cardSidesGroup li.btn-bootstrap-container {
-  padding-bottom: 4px !important;
-}
+@media(max-width: 767px) {
+  #cardSidesGroup {
+    li.btn-bootstrap-container {
+      padding-left: 15px !important;
+      padding-right: 15px !important;
+      width: 100%;
+      align-self: center !important;
+      padding-bottom: 5px !important;
+    }
+    flex-direction: column;
+    align-items: center !important;
+    display: flex !important;
+  }
+} 
