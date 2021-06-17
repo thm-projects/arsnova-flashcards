@@ -23,7 +23,8 @@ FlowRouter.route('/cardset/:_id/transcripts/review', {
 			Meteor.subscribe('cardsetTranscriptBonusCardsReview', params._id, Session.get('transcriptBonusReviewFilter')),
 			Meteor.subscribe('cardset', params._id),
 			Meteor.subscribe('paidCardset', params._id),
-			Meteor.subscribe('transcriptBonusUserData', params._id)
+			Meteor.subscribe('transcriptBonusUserData', params._id),
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function (params) {

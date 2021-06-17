@@ -18,7 +18,8 @@ FlowRouter.route('/makingofcards', {
 			import('../../../../ui/presentation/presentation.js'),
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('makingOfCardsets'),
-			Meteor.subscribe('demoCards')
+			Meteor.subscribe('demoCards'),
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function () {

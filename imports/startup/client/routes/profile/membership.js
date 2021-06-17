@@ -15,7 +15,8 @@ FlowRouter.route('/profile/:_id/membership', {
 		return [
 			import('../../../../ui/profile/profile.js'),
 			import('../../../../ui/profile/view/membership.js'),
-			Meteor.subscribe('defaultAppData')
+			Meteor.subscribe('defaultAppData'),
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function () {

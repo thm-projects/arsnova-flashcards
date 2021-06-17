@@ -14,7 +14,8 @@ FlowRouter.route('/firstLogin', {
 		return [
 			import('../../../ui/firstLogin/firstLogin.js'),
 			import("../../../ui/impressum/impressum.js"),
-			Meteor.subscribe('defaultAppData')
+			Meteor.subscribe('defaultAppData'),
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function () {
