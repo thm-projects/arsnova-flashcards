@@ -58,22 +58,37 @@ Template.errorReportingModal.helpers({
 	}
 });
 
+
 Template.errorReportingModal.events({
 	'click #sendErrorReport': function () {
 		if (checkInput()) {
-			$('#showErrorReportingModal').modal('hide');
-			$('.errorReporting').removeClass("pressed");
-			Meteor.call("sendErrorReport", Meteor.userId(), Session.get('activeCardset')._id,
-				Session.get('activeCard'), getCardSide(), getErrorTypes(),
-				getErrorContent());
 			swal.fire({
-				title: TAPi18n.__('modal-card.errorReporting.thankYou'),
-				html: TAPi18n.__('modal-card.errorReporting.thankYouText'),
-				type: "success",
+				title: TAPi18n.__('modal-card.errorReporting.confirmErrorText'),
+				showCancelButton: true,
+				showConfirmButton: true,
+				background: '#2b2b2b',
+				width: '70%',
+				confirmButtonText: 'Fehler melden',
+				cancelButtonText: 'Abbrechen',
 				allowOutsideClick: false,
-				confirmButtonText: "Weiter"
-			});
-			ErrorReporting.loadErrorReportingModal();
+				reverseButtons: true
+			}).then(result => {
+				if (result.value) {
+					$('#showErrorReportingModal').modal('hide');
+					$('.errorReporting').removeClass("pressed");
+					Meteor.call("sendErrorReport", Meteor.userId(), Session.get('activeCardset')._id,
+						Session.get('activeCard'), getCardSide(), getErrorTypes(),
+						getErrorContent());
+					swal.fire({
+						title: TAPi18n.__('modal-card.errorReporting.thankYou'),
+						html: TAPi18n.__('modal-card.errorReporting.thankYouText'),
+						type: "success",
+						allowOutsideClick: false,
+						confirmButtonText: "Weiter"
+					});
+					ErrorReporting.loadErrorReportingModal();
+				}
+			})			
 		}
 	},
 	'click #saveErrorReport': function () {
