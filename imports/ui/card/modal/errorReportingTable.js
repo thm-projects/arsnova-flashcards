@@ -3,10 +3,11 @@ import {ErrorReporting } from "../../../util/errorReporting";
 import {UserPermissions} from "../../../util/permissions";
 import {Template} from 'meteor/templating';
 import {Session} from "meteor/session";
+import {ReactiveVar } from "meteor/reactive-var";
 
 const sorting = new ReactiveVar({
 	sortCardSideAscending: true,
-	sortCardNameAscending: true
+	sortCardErrorAscending: true
 });
 
 Template.overviewErrorReportsModal.onRendered(function () {
@@ -29,14 +30,25 @@ Template.overviewErrorReportsTable.events({
 			$('#showErrorReportingModal').modal('show');
 		}
 	},
-	'click #overviewErrorReportsTableSide' : function () {
+	'click #overviewErrorReportsTableSide': () => {
 		let elements = Session.get("errorReportingCard");
 		const newSorting = sorting.get();
 		newSorting.sortCardSideAscending = !newSorting.sortCardSideAscending;
 		sorting.set(newSorting);
 		Session.set("errorReportingCard", elements.sort((a, b) => {
-			if(a.cardSide < b.cardSide) return newSorting.sortCardSideAscending ? 1 : -1;
-			if(a.cardSide > b.cardSide) return newSorting.sortCardSideAscending ? -1 : 1;
+			if (a.cardSide < b.cardSide) { return newSorting.sortCardSideAscending ? 1 : -1; }
+			if (a.cardSide > b.cardSide) { return newSorting.sortCardSideAscending ? -1 : 1; }
+			return 0;
+		}));
+	},
+	'click #overviewErrorReportsTableError': () => {
+		let elements = Session.get("errorReportingCard");
+		const newSorting = sorting.get();
+		newSorting.sortCardErrorAscending = !newSorting.sortCardErrorAscending;
+		sorting.set(newSorting);
+		Session.set("errorReportingCard", elements.sort((a, b) => {
+			if (b.error.content.localeCompare(a.error.content) === 1) { return newSorting.sortCardErrorAscending ? 1 : -1; }
+			if (b.error.content.localeCompare(a.error.content) === -1) { return newSorting.sortCardErrorAscending ? -1 : 1; }
 			return 0;
 		}));
 	}
@@ -81,9 +93,9 @@ Template.overviewErrorReportsTable.helpers({
 	},
 	getErrorReport: () => Session.get("errorReportingCard"),
 	getSortingArrow: () => {
-		const newSorting = sorting.get(); 
+		const newSorting = sorting.get();
 		const up = '<i class="fas fa-sort-up"></i>';
 		const down = '<i class="fas fa-sort-down"></i>';
 		return newSorting.sortCardSideAscending ? up : down;
-	} 
+	}
 });
