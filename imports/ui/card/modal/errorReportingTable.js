@@ -1,8 +1,13 @@
 import "./errorReportingTable.html";
-import { ErrorReporting } from "../../../util/errorReporting";
+import {ErrorReporting } from "../../../util/errorReporting";
 import {UserPermissions} from "../../../util/permissions";
 import {Template} from 'meteor/templating';
 import {Session} from "meteor/session";
+
+const sorting = new ReactiveVar({
+	sortCardSideAscending: true,
+	sortCardNameAscending: true
+});
 
 Template.overviewErrorReportsModal.onRendered(function () {
 	$('#showOverviewErrorReportsModal').on('hidden.bs.modal', function () {
@@ -23,6 +28,17 @@ Template.overviewErrorReportsTable.events({
 			ErrorReporting.loadErrorReportingModal(this);
 			$('#showErrorReportingModal').modal('show');
 		}
+	},
+	'click #overviewErrorReportsTableSide' : function () {
+		let elements = Session.get("errorReportingCard");
+		const newSorting = sorting.get();
+		newSorting.sortCardSideAscending = !newSorting.sortCardSideAscending;
+		sorting.set(newSorting);
+		Session.set("errorReportingCard", elements.sort((a, b) => {
+			if(a.cardSide < b.cardSide) return newSorting.sortCardSideAscending ? 1 : -1;
+			if(a.cardSide > b.cardSide) return newSorting.sortCardSideAscending ? -1 : 1;
+			return 0;
+		}));
 	}
 });
 
@@ -63,5 +79,11 @@ Template.overviewErrorReportsTable.helpers({
 			return TAPi18n.__('modal-card.overviewErrorReports.closedError');
 		}
 	},
-	getErrorReport: () => Session.get("errorReportingCard")
+	getErrorReport: () => Session.get("errorReportingCard"),
+	getSortingArrow: () => {
+		const newSorting = sorting.get(); 
+		const up = '<i class="fas fa-sort-up"></i>';
+		const down = '<i class="fas fa-sort-down"></i>';
+		return newSorting.sortCardSideAscending ? up : down;
+	} 
 });
