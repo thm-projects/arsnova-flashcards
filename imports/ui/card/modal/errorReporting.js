@@ -58,6 +58,7 @@ Template.errorReportingModal.helpers({
 	}
 });
 
+
 Template.errorReportingModal.events({
 	'click #sendErrorReport': function () {
 		if (checkInput()) {
@@ -73,7 +74,22 @@ Template.errorReportingModal.events({
 				allowOutsideClick: false,
 				confirmButtonText: "Weiter"
 			});
-			ErrorReporting.loadErrorReportingModal();
+			ErrorReporting.loadErrorReportingModal();			
+		}
+	},
+	'click #confirmErrorReport': function () {
+		if (checkInput()) {
+			swal.fire({
+				title: TAPi18n.__('modal-card.errorReporting.confirmErrorText'), 
+				showCancelButton: true,
+				showConfirmButton: true,
+				background: '#2b2b2b',
+				width: '70%',
+				confirmButtonText: 'Fehler melden',
+				cancelButtonText: 'Abbrechen',
+				allowOutsideClick: false,
+				reverseButtons: true
+			});
 		}
 	},
 	'click #saveErrorReport': function () {

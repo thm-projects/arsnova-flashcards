@@ -3509,6 +3509,10 @@ $themes: (
 
     .label-error-reporting {
       box-sizing: border-box;
+      border-color: rgb(70, 0, 0);
+      border-width: 2px;
+      border-style: groove;
+      
       border-radius: 10px 10px 10px 10px;
       background-color: $error_reporting_label_background !important;
       color: $error_reporting_label_text !important;
