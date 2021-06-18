@@ -19,6 +19,8 @@
  $darkTheme_grey1: rgb(50, 50, 50);
  $darkTheme_grey2: #2B2B2B;
  $darkTheme_grey3: #131313;
+ $darkTheme_grey4: #242424;
+
  $darkTheme_modalBackground: #131313;
  $darkTheme_orange:rgb(185, 105, 0);
  $darkTheme_green: rgb(0, 65, 0);
@@ -51,7 +53,7 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
 
   $athens_gray_approx: rgb(236, 240, 241);
   $bilbao_approx: rgb(50, 129, 20);
-  $mercury_approx: rgb(223, 229, 230);
+  $mercury_approx: rgb(152, 153, 153);
   $la_palma_approx: rgb(61, 156, 25);
   $wild_sand_approx: rgb(245, 245, 245);
   $slate_gray_approx: rgb(74, 92, 102);
@@ -71,10 +73,10 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
   $button_text_hover: white;
   $input_textarea_border_active: $default_orange;
   $input_textarea_border_inactive: $divider;
-  $input_textarea_background_active: lightgoldenrodyellow;
-  $input_textarea_background_inactive: #F0F0F0;
-  $input_textarea_text_active: black;
-  $input_textarea_text_inactive: black;
+  $input_textarea_background_active: $darkTheme_grey4;
+  $input_textarea_background_inactive: $darkTheme_grey1;
+  $input_textarea_text_active: $darkTheme_white2;
+  $input_textarea_text_inactive: $darkTheme_white2;
   $item_icon_hover: rgb(149, 222, 240);
   $default_background: $darkTheme_grey2;
 
@@ -190,6 +192,7 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "checkbox_button_background_checked": white,
           "checkbox_button_icon_checked": black,
           "error_reporting_label_background": rgb(139, 0, 0),
+          "error_reporting_label_background_hover": rgb(82, 0, 0),
           "error_reporting_label_text": $default_white,
           "active_licenses_background": #4d4d4d,
           "active_licenses_text": rgb(145, 145, 145),
@@ -575,7 +578,7 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "card_header_card_number": $default_grey,
           "card_header_first_row": $default_grey,
           "card_header_second_row": $default_grey,
-          "card_header_subject": $default_white,
+          "card_header_subject": $darkTheme_white2,
           "card_header_subject_placeholder": $default_orange,
 
           "card_content_zoom_container_button_reset_background": $default_orange,
@@ -596,11 +599,11 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "card_content_zoom_container_button_plus_disabled_opacity": 0.3,
 
           "card_content_zoom_container_button_minus_background": $default_red,
-          "card_content_zoom_container_button_minus_text": white,
+          "card_content_zoom_container_button_minus_text": $darkTheme_white2,
           "card_content_zoom_container_button_minus_background_hover": $button_background_hover,
           "card_content_zoom_container_button_minus_text_hover": $button_text_hover,
           "card_content_zoom_container_button_minus_background_disabled": $athens_gray_approx,
-          "card_content_zoom_container_button_minus_text_disabled": black,
+          "card_content_zoom_container_button_minus_text_disabled": $darkTheme_white2,
           "card_content_zoom_container_button_minus_disabled_opacity": 0.3,
 
           "card_answer_icon_user_interactive_text": white,
@@ -627,18 +630,18 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "card_answer_explanation_background": rgba($default_orange, 0.25),
     //card sidebar colors
     //card sidebar colors
-          "card_sidebar_border": rgba($default_grey, 0.6),
+          "card_sidebar_border": rgba($darkTheme_grey2, 0.6),
           "card_sidebar_background" : rgba($mercury_approx, 0.6),
 
           "card_sidebar_edit_button_background": $default_green,
-          "card_sidebar_edit_button_border": $default_green,
+          "card_sidebar_edit_button_border": $darkTheme_grey0,
           "card_sidebar_edit_button_text": white,
           "card_sidebar_edit_button_background_hover": $button_background_hover,
           "card_sidebar_edit_button_border_hover": $button_background_hover,
           "card_sidebar_edit_button_text_hover": $button_text_hover,
 
           "card_sidebar_delete_button_background": $default_red,
-          "card_sidebar_delete_button_border": $default_red,
+          "card_sidebar_delete_button_border": $darkTheme_grey0,
           "card_sidebar_delete_button_text": white,
           "card_sidebar_delete_button_background_hover": $button_background_hover,
           "card_sidebar_delete_button_border_hover": $button_background_hover,
@@ -659,14 +662,14 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "card_sidebar_toggle_button_border_active_hover": $button_background_hover,
           "card_sidebar_toggle_button_text_active_hover": $button_text_hover,
 
-          "card_sidebar_toggle_fullscreen_button_background": white,
-          "card_sidebar_toggle_fullscreen_button_border": white,
+          "card_sidebar_toggle_fullscreen_button_background": #c7c7c7,
+          "card_sidebar_toggle_fullscreen_button_border": $darkTheme_grey0,
           "card_sidebar_toggle_fullscreen_button_text": $primary,
           "card_sidebar_toggle_fullscreen_button_background_hover": $button_background_hover,
           "card_sidebar_toggle_fullscreen_button_border_hover": $button_background_hover,
           "card_sidebar_toggle_fullscreen_button_text_hover": $button_text_hover,
-          "card_sidebar_toggle_fullscreen_button_background_active": $default_orange,
-          "card_sidebar_toggle_fullscreen_button_border_active": $default_orange,
+          "card_sidebar_toggle_fullscreen_button_background_active": #c7c7c7,
+          "card_sidebar_toggle_fullscreen_button_border_active": $darkTheme_grey0,
           "card_sidebar_toggle_fullscreen_button_text_active": white,
 
           "card_sidebar_aspect_ratio_background": white,
@@ -691,30 +694,30 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "card_sidebar_aspect_ratio_menu_separator": $default_grey,
 
           "card_sidebar_arsnova_lite_background": none,
-          "card_sidebar_arsnova_lite_border": $default_grey,
-          "card_sidebar_arsnova_lite_text": $default_blue,
+          "card_sidebar_arsnova_lite_border": $darkTheme_grey0,
+          "card_sidebar_arsnova_lite_text": $darkTheme_grey0,
           "card_sidebar_arsnova_lite_background_hover": $button_background_hover,
           "card_sidebar_arsnova_lite_border_hover": $button_background_hover,
           "card_sidebar_arsnova_lite_text_hover": $button_text_hover,
-          "card_sidebar_arsnova_lite_background_active": $default_orange,
-          "card_sidebar_arsnova_lite_border_active": $default_orange,
-          "card_sidebar_arsnova_lite_text_active": white,
+          "card_sidebar_arsnova_lite_background_active": #c7c7c7,
+          "card_sidebar_arsnova_lite_border_active": $darkTheme_grey0,
+          "card_sidebar_arsnova_lite_text_active": $darkTheme_grey0,
 
-          "card_sidebar_zoom_background": none,
-          "card_sidebar_zoom_border": $default_grey,
-          "card_sidebar_zoom_text": $default_grey,
+          "card_sidebar_zoom_background": #c7c7c7,
+          "card_sidebar_zoom_border": $darkTheme_grey0,
+          "card_sidebar_zoom_text": $darkTheme_grey0,
           "card_sidebar_zoom_background_open": $button_background_hover,
           "card_sidebar_zoom_border_open": $button_background_hover,
           "card_sidebar_zoom_text_open": $button_text_hover,
           "card_sidebar_zoom_background_hover": $button_background_hover,
           "card_sidebar_zoom_border_hover": $button_background_hover,
           "card_sidebar_zoom_text_hover": $button_text_hover,
-          "card_sidebar_zoom_background_active": $default_orange,
-          "card_sidebar_zoom_border_active": $default_orange,
-          "card_sidebar_zoom_text_active": white,
+          "card_sidebar_zoom_background_active": #c7c7c7,
+          "card_sidebar_zoom_border_active": $darkTheme_grey0,
+          "card_sidebar_zoom_text_active": $darkTheme_grey0,
 
-          "card_sidebar_error_reporting_button_background": white,
-          "card_sidebar_error_reporting_button_text": $default_grey,
+          "card_sidebar_error_reporting_button_background": #c7c7c7,
+          "card_sidebar_error_reporting_button_text": $darkTheme_grey0,
           "card_sidebar_error_reporting_button_background_hover": $button_background_hover,
           "card_sidebar_error_reporting_button_text_hover": $button_text_hover,
 
@@ -738,12 +741,12 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "card_sidebar_leitner_graph_border_active": $default_orange,
           "card_sidebar_leitner_graph_text_active": white,
 
-          "card_sidebar_pomodoro_timer_background": white,
-          "card_sidebar_pomodoro_timer_border": $default_grey,
+          "card_sidebar_pomodoro_timer_background": #c7c7c7,
+          "card_sidebar_pomodoro_timer_border": $darkTheme_grey0,
           "card_sidebar_pomodoro_timer_background_hover": $button_background_hover,
           "card_sidebar_pomodoro_timer_border_hover": $button_background_hover,
-          "card_sidebar_pomodoro_timer_background_active": $default_grey,
-          "card_sidebar_pomodoro_timer_border_active": $default_grey,
+          "card_sidebar_pomodoro_timer_background_active": #c7c7c7,
+          "card_sidebar_pomodoro_timer_border_active": $darkTheme_grey0,
           "card_sidebar_pomodoro_timer_background_active_hover": $button_background_hover,
           "card_sidebar_pomodoro_timer_border_active_hover": $button_background_hover,
 
@@ -751,10 +754,12 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "card_sidebar_toggle_3d_border": $default_grey,
           "card_sidebar_toggle_3d_background_hover": $button_background_hover,
           "card_sidebar_toggle_3d_border_hover": $button_background_hover,
-          "card_sidebar_toggle_3d_background_active": $default_grey,
-          "card_sidebar_toggle_3d_border_active": $default_grey,
+          "card_sidebar_toggle_3d_background_active": #c7c7c7,
+          "card_sidebar_toggle_3d_border_active": $darkTheme_grey0,
           "card_sidebar_toggle_3d_background_active_hover": $button_background_hover,
           "card_sidebar_toggle_3d_border_active_hover": $button_background_hover,
+          "card_sidebar_toggle_3d_text_active": $darkTheme_grey0,
+          "card_sidebar_toggle_3d_text_hover": white,
     //cardset sidebar colors
           "cardset_sidebar_preview_background": none,
           "cardset_sidebar_preview_text": $default_grey,
@@ -958,7 +963,7 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "search_results_separator": white,
           "search_divide:": $default_grey,
     //form group colors
-          "form_group_label": white,
+          "form_group_label": $darkTheme_white2,
     //cardset form colors
           "cardset_form_list_background": $darkTheme_grey1,
           "cardset_form_list_text": $darkTheme_white,
@@ -991,10 +996,10 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "modal_checkbox_border_active": $default_grey,
           "modal_checkbox_icon_active": $default_grey,
 
-          "modal_feedback_button_card_side_background": $default_white,
-          "modal_feedback_button_card_side_text": $default_orange,
-          "modal_feedback_button_card_side_background_active": $default_orange,
-          "modal_feedback_button_card_side_text_active": $default_white,
+          "modal_feedback_button_card_side_background": $darkTheme_grey1,
+          "modal_feedback_button_card_side_text": $darkTheme_white2,
+          "modal_feedback_button_card_side_background_active": $darkTheme_orange2,
+          "modal_feedback_button_card_side_text_active": $darkTheme_white2,
     //pomodoro colors
           "pomodoro_timer_fullscreen_overlay": rgba(0,0,0, 1),
           "pomodoro_timer_hand_circle": $default_orange,
@@ -1012,13 +1017,13 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "pomodoro_timer_text": white,
           "pomodoro_timer_text_highlight": $default_orange,
     //sweet alert 2 colors
-          "sweet_alert_2_title": white,
-          "sweet_alert_2_text": white,
+          "sweet_alert_2_title": $darkTheme_white2,
+          "sweet_alert_2_text": $darkTheme_white2,
           "sweet_alert_2_modal_background": $default_green,
-          "sweet_alert_2_button_confirm_background": $default_red,
-          "sweet_alert_2_button_confirm_text": $default_white,
-          "sweet_alert_2_button_cancel_background": $default_orange,
-          "sweet_alert_2_button_cancel_text": $default_white,
+          "sweet_alert_2_button_confirm_background": $darkTheme_green,
+          "sweet_alert_2_button_confirm_text": $darkTheme_white2,
+          "sweet_alert_2_button_cancel_background": $darkTheme_white2,
+          "sweet_alert_2_button_cancel_text": $darkTheme_grey3,
           "sweet_alert_2_icon_success_border": $default_orange,
           "sweet_alert_2_icon_success_text": $default_orange,
           "sweet_alert_2_icon_warning_border": $default_orange,
@@ -1027,8 +1032,8 @@ $darkTheme_backgrounddifficulty3: #0f0f0f;
           "sweet_alert_2_icon_error_text": $default_red,
           "sweet_alert_2_icon_info_border": $default_dark_blue,
           "sweet_alert_2_icon_info_text": $default_dark_blue,
-          "sweet_alert_2_icon_question_border": white,
-          "sweet_alert_2_icon_question_text": white,
+          "sweet_alert_2_icon_question_border": $darkTheme_white2,
+          "sweet_alert_2_icon_question_text": $darkTheme_white2,
     //loading screen
           "loading_screen_icon": $default_orange,
     //wozniak rating buttons
