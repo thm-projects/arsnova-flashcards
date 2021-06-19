@@ -5190,5 +5190,21 @@ $themes: (
     #unresolvedErrorReportsTable > table > tbody > tr:hover{
     background: $error_reporting_table_background_color_hover !important;
     }
+    #unresolvedErrorReportsTable{
+      i {
+        color: $thm_orange !important;
+      }
+      thead {
+        color : $thm_orange !important;
+      }
+      #overviewErrorReportsTableSide:hover, #overviewErrorReportsTableError:hover, #overviewErrorReportsTableAuthor:hover, #overviewErrorReportsTableStatus:hover{
+        cursor: pointer;
+        color: $hyperlink !important;
+        i {
+          color: $hyperlink !important;
+        }
+      }
+    }
+  
   }
 }

@@ -71,7 +71,6 @@ Template.overviewErrorReportsTable.events({
 		newSorting.sortCardStatusAscending = !newSorting.sortCardStatusAscending;
 		sorting.set(newSorting);
 		Session.set("errorReportingCard", elements.sort((a, b) => {
-			console.log(a.status + " " + b.status);
 			if (a.status.toString().localeCompare(b.status.toString()) < 0) { return newSorting.sortCardStatusAscending ? 1 : -1; }
 			if (a.status.toString().localeCompare(b.status.toString()) > 0) { return newSorting.sortCardStatusAscending ? -1 : 1; }
 			return 0;
