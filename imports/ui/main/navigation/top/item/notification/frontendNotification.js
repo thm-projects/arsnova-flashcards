@@ -8,7 +8,6 @@ const OwnErrorReportings = new Mongo.Collection("errorReporting");
 
 function getErrorMessage(reporting) {
 	let errors = '<ul>';
-	console.log(reporting);
 	if (reporting.error.type.includes(0)) {
 		errors += `<li>${TAPi18n.__('modal-card.errorReporting.spellingMistake')}</li>`;
 	}
@@ -35,7 +34,8 @@ Template.frontendNotification.helpers({
 				{expirationDate: {$gte: new Date()}}
 			]}).fetch();
 		for (const reporting of OwnErrorReportings.find({}).fetch()) {
-			messages.push({subject: TAPi18n.__('modal-card.errorReporting.errorNotificationHeader') + Cards.findOne({_id: reporting.card_id}).subject, content: `<div>
+			const card = Cards.findOne({_id: reporting.card_id});
+			messages.push({subject: TAPi18n.__('modal-card.errorReporting.errorNotificationHeader') + (card ? card.subject : ""), content: `<div>
 			${TAPi18n.__('modal-card.errorReporting.reportedErrorsNotification')}
 			${getErrorMessage(reporting)}
 			<a target="_self" rel="noopener noreferrer" href="/cardset/${reporting.cardset_id}">${TAPi18n.__('modal-card.errorReporting.openCardNotification')}</a>
@@ -56,4 +56,7 @@ Template.frontendNotification.events({
 	}
 });
 
-Tracker.autorun(() => Meteor.subscribe("ownError"));
+Tracker.autorun(() => {
+	Meteor.subscribe("ownError");
+	Meteor.subscribe("ownCards");
+});
