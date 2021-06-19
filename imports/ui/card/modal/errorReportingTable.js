@@ -47,8 +47,8 @@ Template.overviewErrorReportsTable.events({
 		newSorting.sortCardErrorAscending = !newSorting.sortCardErrorAscending;
 		sorting.set(newSorting);
 		Session.set("errorReportingCard", elements.sort((a, b) => {
-			if (b.error.content.localeCompare(a.error.content) === 1) { return newSorting.sortCardErrorAscending ? 1 : -1; }
-			if (b.error.content.localeCompare(a.error.content) === -1) { return newSorting.sortCardErrorAscending ? -1 : 1; }
+			if (b.error.content.localeCompare(a.error.content) < 0) { return newSorting.sortCardErrorAscending ? 1 : -1; }
+			if (b.error.content.localeCompare(a.error.content) > 0) { return newSorting.sortCardErrorAscending ? -1 : 1; }
 			return 0;
 		}));
 	}
