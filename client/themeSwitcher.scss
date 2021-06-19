@@ -1895,7 +1895,7 @@ $themes: (
         color: $hint_placeholder_alternative !important;
       }
     }
-
+    
     .modal-content .close {
       color: $thm_orange !important;
     }
@@ -4452,11 +4452,6 @@ $themes: (
       .modal.fade.in {
         background-color: $modal_overlay !important;
       }
-      .modal-content {
-        background-color: $modal_background !important;
-        color: $modal_text !important;
-      }
-
       //under development modal
       .underDevelopmentContent {
         .modal-header {
@@ -4466,7 +4461,10 @@ $themes: (
         background-color: $under_development_modal_background !important;
       }
     }
-
+    .modal-content {
+      background-color: $modal_background !important;
+      color: $modal_text !important;
+    }
     .modal-dialog {
       .modal-checkbox {
         .background {
@@ -5031,6 +5029,19 @@ $themes: (
       }
     }
 
+    //.profile-dropdown Menu
+    .dropdown-menu {
+     background-color: $navbar_dropdown_background !important;
+      color: $navbar_dropdown_text !important;
+    }
+    #messageTR {
+      border-color: $navbar_all_border !important;
+    }
+    #messageTR:hover {
+      background-color: $navbar_dropdown_background_hover !important;
+      color: $navbar_dropdown_text_hover !important;
+    }
+   
     // .profile-fullscreen-settings
 
     .fa-stack.unsaved {
