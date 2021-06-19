@@ -9,7 +9,7 @@ const sorting = new ReactiveVar({
 	sortCardSideAscending: true,
 	sortCardErrorAscending: true,
 	sortCardAuthorAscending: true,
-	sortCardStatusAscending: true,
+	sortCardStatusAscending: true
 });
 
 Template.overviewErrorReportsModal.onRendered(function () {
@@ -60,13 +60,20 @@ Template.overviewErrorReportsTable.events({
 		newSorting.sortCardAuthorAscending = !newSorting.sortCardAuthorAscending;
 		sorting.set(newSorting);
 		Session.set("errorReportingCard", elements.sort((a, b) => {
-			console.log(a.user_id !== b.user_id);
-			if (a.user_id !== b.user_id) { 
-				 return newSorting.sortCardAuthorAscending ? 1 : -1; 
-			}
-			if (a.user_id === b.user_id) { 
-				return newSorting.sortCardAuthorAscending ? -1 : +1; 
-			}
+			if (a.user_id !== b.user_id) { return newSorting.sortCardAuthorAscending ? 1 : -1; }
+			if (a.user_id === b.user_id) { return newSorting.sortCardAuthorAscending ? -1 : 1; }
+			return 0;
+		}));
+	},
+	'click #overviewErrorReportsTableStatus': () => {
+		let elements = Session.get("errorReportingCard");
+		const newSorting = sorting.get();
+		newSorting.sortCardStatusAscending = !newSorting.sortCardStatusAscending;
+		sorting.set(newSorting);
+		Session.set("errorReportingCard", elements.sort((a, b) => {
+			console.log(a.status + " " + b.status);
+			if (a.status.toString().localeCompare(b.status.toString()) < 0) { return newSorting.sortCardStatusAscending ? 1 : -1; }
+			if (a.status.toString().localeCompare(b.status.toString()) > 0) { return newSorting.sortCardStatusAscending ? -1 : 1; }
 			return 0;
 		}));
 	}
@@ -114,13 +121,11 @@ Template.overviewErrorReportsTable.helpers({
 		const newSorting = sorting.get();
 		const up = '<i class="fas fa-sort-up"></i>';
 		const down = '<i class="fas fa-sort-down"></i>';
-		switch(x) {
-			case 0: return newSorting.sortCardSideAscending ? up : down;
-			case 1: return newSorting.sortCardErrorAscending ? up : down;
-			case 2: return newSorting.sortCardAuthorAscending ? up : down;
-			case 3: return newSorting.sortCardStatusAscending ? up : down;
-			default: return "";
-		}
-		
+		switch (x) {
+		case 0: return newSorting.sortCardSideAscending ? up : down;
+		case 1: return newSorting.sortCardErrorAscending ? up : down;
+		case 2: return newSorting.sortCardAuthorAscending ? up : down;
+		case 3: return newSorting.sortCardStatusAscending ? up : down;
+		default: return "";}
 	}
 });
