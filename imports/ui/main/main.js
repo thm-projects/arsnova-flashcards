@@ -75,6 +75,7 @@ Session.setDefault('selectedLearningStatistics', undefined);
 Session.setDefault('selectedLearningStatisticsUser', undefined);
 Session.setDefault('selectedLearningHistory', undefined);
 Session.setDefault('selectedLearningLog', undefined);
+Session.setDefault('selectedLearningCardStats', undefined);
 Session.setDefault('selectedLearningLogStats', undefined);
 Session.setDefault('lastLearningStatusActivity', undefined);
 Session.setDefault('selectedLearningPhaseID', undefined);
@@ -82,7 +83,8 @@ Session.setDefault('selectedLearningPhaseID', undefined);
 // Cardset bonus history sort options
 Session.setDefault('sortBonusUsers', leitnerStatisticsConfig.defaultBonusUserSortSettings);
 Session.setDefault('sortBonusUserHistory', leitnerStatisticsConfig.defaultUserHistorySortSetting);
-Session.setDefault('sortBonusUserTaskHistory', leitnerStatisticsConfig.defaultTaskHistorySortSettings);
+Session.setDefault('sortBonusUserTaskHistory', leitnerStatisticsConfig.defaultActivationDayHistorySortSettings);
+Session.setDefault('sortUserCardStats', leitnerStatisticsConfig.defaultCardStatsSortSettings);
 
 Session.setDefault('hideUserNames', true);
 

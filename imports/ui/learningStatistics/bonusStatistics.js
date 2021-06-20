@@ -7,6 +7,7 @@ import {Cardsets} from "../../api/subscriptions/cardsets";
 import "./modal/removeBonusUser.js";
 import "./modal/deleteArchivedBonus.js";
 import "./modal/history.js";
+import "./modal/cardStatus.js";
 import "./item/sort.js";
 import "./bonusStatistics.html";
 import "../cardset/navigation/modal/bonus/bonusForm.js";
@@ -157,6 +158,28 @@ Template.learningBonusStastics.events({
 		event.stopPropagation();
 		Session.set('helpFilter', "leitner");
 		FlowRouter.go('help');
+	},
+	"click .showLearningCardStats": function (event) {
+		let user = {};
+		user.user_id = $(event.currentTarget).data('id');
+		user.index = $(event.currentTarget).data('index');
+		user.firstName = $(event.currentTarget).data('firstname');
+		user.lastName = $(event.currentTarget).data('lastname');
+		user.email = $(event.currentTarget).data('email');
+		user.workload_id = $(event.currentTarget).data('workloadid');
+		user.learning_phase_id = $(event.currentTarget).data('learningphaseid');
+		user.isInBonus = true;
+		if (user.user_id !== undefined) {
+			Session.set('selectedLearningStatisticsUser', user);
+			Meteor.call("getLearningCardStats", user.user_id, FlowRouter.getParam('_id'), user.learning_phase_id, function (error, result) {
+				if (error) {
+					throw new Meteor.Error(error.statusCode, 'Error could not receive content for card stats');
+				}
+				if (result) {
+					Session.set('selectedLearningCardStats', LeitnerHistoryUtilities.prepareCardStatsData(result));
+				}
+			});
+		}
 	},
 	"click .showLearningHistory": function (event) {
 		let user = {};

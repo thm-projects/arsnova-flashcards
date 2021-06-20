@@ -4,6 +4,7 @@ import {TYPE_MIGRATE} from "../../../../../../../config/serverBoot";
 import {Leitner} from "../../../../../../../api/subscriptions/legacyLeitner/leitner";
 import {LeitnerLearningWorkload} from "../../../../../../../api/subscriptions/leitner/leitnerLearningWorkload";
 import {LeitnerUserCardStats} from "../../../../../../../api/subscriptions/leitner/leitnerUserCardStats";
+import {LearningCardStats} from "../../../../../../../util/learningCardStatus";
 
 function leitnerCardStats() {
 	let groupName = "leitnerCardStats Migration";
@@ -33,6 +34,7 @@ function leitnerCardStats() {
 				if (isNaN(newLeitnerObject.priority)) {
 					newLeitnerObject.priority = 0;
 				}
+				newLeitnerObject.stats = LearningCardStats.calculateUserCardStats(newLeitnerObject.card_id, newLeitnerObject.workload_id, newLeitnerObject.user_id);
 				LeitnerUserCardStats.insert(newLeitnerObject);
 			}
 			Leitner.remove({_id: leitnerObject._id});

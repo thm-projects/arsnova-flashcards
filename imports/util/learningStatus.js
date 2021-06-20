@@ -352,27 +352,31 @@ export let LearningStatus = class LearningStatus {
 
 	static getCardsetCardCount (countLeitnerCards = false) {
 		let cardset = WorkloadCardsetCollection.findOne({_id: Session.get('workloadProgressCardsetID')});
-		if (cardset.shuffled) {
-			let cardsetList = [];
-			let cardsetLeitnerCount = 0;
-			let cardsets = WorkloadCardsetCollection.find({_id: {$in: cardset.cardGroups}},
-				{sort: {name: 1}}).fetch();
-			for (let i = 0; i < cardsets.length; i++) {
-				if (CardType.gotLearningModes(cardsets[i].cardType)) {
-					if (countLeitnerCards) {
-						cardsetLeitnerCount += cardsets[i].quantity;
-					} else {
-						cardsetList.push(cardsets[i]);
+		if (cardset !== undefined) {
+			if (cardset.shuffled) {
+				let cardsetList = [];
+				let cardsetLeitnerCount = 0;
+				let cardsets = WorkloadCardsetCollection.find({_id: {$in: cardset.cardGroups}},
+					{sort: {name: 1}}).fetch();
+				for (let i = 0; i < cardsets.length; i++) {
+					if (CardType.gotLearningModes(cardsets[i].cardType)) {
+						if (countLeitnerCards) {
+							cardsetLeitnerCount += cardsets[i].quantity;
+						} else {
+							cardsetList.push(cardsets[i]);
+						}
 					}
 				}
-			}
-			if (countLeitnerCards) {
-				return cardsetLeitnerCount;
+				if (countLeitnerCards) {
+					return cardsetLeitnerCount;
+				} else {
+					return cardsetList;
+				}
 			} else {
-				return cardsetList;
+				return cardset.quantity;
 			}
 		} else {
-			return cardset.quantity;
+			return 0;
 		}
 	}
 

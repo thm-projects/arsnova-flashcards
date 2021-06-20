@@ -11,6 +11,7 @@ import {LeitnerUtilities} from "../../util/leitner";
 import {LearningStatisticsUtilities} from "../../util/learningStatistics";
 import {LeitnerLearningWorkloadUtilities} from "../../util/learningWorkload";
 import {LeitnerLearningPhaseUtilities} from "../../util/learningPhase";
+import {LearningCardStats} from "../../util/learningCardStatus";
 
 Meteor.methods({
 	getCardAnswerContent: function (cardIds, cardsetId, disableAnswers) {
@@ -101,16 +102,6 @@ Meteor.methods({
 						userAnswers = userAnswers.sort();
 						let isAnswerWrong = AnswerUtilities.isAnswerWrong(card.answers.rightAnswers, userAnswers);
 						let result = LeitnerUtilities.setNextBoxData(isAnswerWrong, activeLeitnerCard, cardset, leitnerLearningPhase, leitnerLearningWorkload);
-						LeitnerUserCardStats.update({
-							learning_phase_id: leitnerLearningPhase._id,
-							workload_id: leitnerLearningWorkload._id,
-							_id: activeLeitnerCard._id
-						}, {$set: {
-								box: result.box,
-								nextPossibleActivationDate: result.nextPossibleActivationDate,
-								priority: result.priority,
-								submittedAnswer: true
-							}});
 						LeitnerPerformanceHistory.update({
 							learning_phase_id: leitnerLearningPhase._id,
 							workload_id: leitnerLearningWorkload._id,
@@ -123,6 +114,18 @@ Meteor.methods({
 								answer: isAnswerWrong ? 1 : 0,
 								"mcAnswers.user": userAnswers.sort(),
 								"mcAnswers.card": card.answers.rightAnswers
+							}});
+
+						LeitnerUserCardStats.update({
+							learning_phase_id: leitnerLearningPhase._id,
+							workload_id: leitnerLearningWorkload._id,
+							_id: activeLeitnerCard._id
+						}, {$set: {
+								box: result.box,
+								nextPossibleActivationDate: result.nextPossibleActivationDate,
+								priority: result.priority,
+								submittedAnswer: true,
+								stats: LearningCardStats.calculateUserCardStats(activeCardId, leitnerLearningWorkload._id, Meteor.userId())
 							}});
 
 						LeitnerLearningWorkload.update({
@@ -186,17 +189,6 @@ Meteor.methods({
 					if (activeLeitnerCard !== undefined) {
 						let result = LeitnerUtilities.setNextBoxData(isAnswerWrong, activeLeitnerCard, cardset, leitnerLearningPhase, leitnerLearningWorkload);
 
-						LeitnerUserCardStats.update(activeLeitnerCard._id, {
-							$set: {
-								box: result.box,
-								isActive: false,
-								submittedAnswer: true,
-								nextPossibleActivationDate: result.nextPossibleActivationDate,
-								activatedSinceDate: new Date(),
-								priority: result.priority
-							}
-						});
-
 						let leitnerActivationDay = LeitnerActivationDay.findOne({
 							learning_phase_id: leitnerLearningWorkload.learning_phase_id,
 							workload_id: leitnerLearningWorkload.workload_id,
@@ -214,6 +206,19 @@ Meteor.methods({
 									timestamps: timestamps
 								}
 							});
+
+							LeitnerUserCardStats.update(activeLeitnerCard._id, {
+								$set: {
+									box: result.box,
+									isActive: false,
+									submittedAnswer: true,
+									nextPossibleActivationDate: result.nextPossibleActivationDate,
+									activatedSinceDate: new Date(),
+									priority: result.priority,
+									stats: LearningCardStats.calculateUserCardStats(activeLeitnerCard.card_id, leitnerLearningWorkload._id, Meteor.userId())
+								}
+							});
+
 							LearningStatisticsUtilities.updateAllStats(leitnerActivationDay);
 						}
 

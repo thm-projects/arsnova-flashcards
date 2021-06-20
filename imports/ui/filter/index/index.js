@@ -36,6 +36,7 @@ import "./item/bottom/item/export.js";
 import "./item/bottom/item/leaveWorkload.js";
 import "./item/bottom/item/shuffle.js";
 import "./item/bottom/item/starsRating.js";
+import "./item/bottom/item/learningCardStats.js";
 import "./item/bottom/item/learningStatus.js";
 import "./item/bottom/item/learningHistory.js";
 import "./item/bottom/item/transcriptRating.js";

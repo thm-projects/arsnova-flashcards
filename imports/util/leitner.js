@@ -189,7 +189,15 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					activatedSinceDate: nextPossibleActivationDate,
 					skipped: 0,
 					priority: 0,
-					viewedPDF: false
+					viewedPDF: false,
+					stats: {
+						answers: {
+							known: 0,
+							notKnown: 0,
+							total: 0
+						},
+						totalTime: 0
+					}
 				};
 				if (cardset.shuffled) {
 					newItemObject.original_cardset_id = card.cardset_id;

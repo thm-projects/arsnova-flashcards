@@ -7,7 +7,7 @@ import * as config from "../../../config/learningHistory";
 
 Template.learningLogModal.onRendered(function () {
 	$('#learningLogModal').on('show.bs.modal', function () {
-		Session.set('sortBonusUserTaskHistory', config.defaultTaskHistorySortSettings);
+		Session.set('sortBonusUserTaskHistory', config.defaultActivationDayHistorySortSettings);
 	});
 	$('#learningLogModal').on('shown.bs.modal', function () {
 		Session.set('learningLogModalActive', true);
