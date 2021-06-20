@@ -3,6 +3,7 @@
         {{> accessDenied}}
     {{else}}
         {{> learningHistoryModal}}
+        {{> learningCardStatusModal}}
         {{> learningStatisticsRemoveBonusUserModal}}
         {{> bonusForm}}
         {{> cardsetLeitnerSimulatorForm}}
@@ -106,6 +107,7 @@
                             <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user" data-content="achievedBonus">{{_ "learningStatistics.bonus"}}</a> {{> learningBonusStasticsItemSort (setSortObject "achievedBonus")}}</th>
                             <th scope="col">{{_ "learningStatistics.history"}}</th>
                             <th scope="col">{{_ "learningStatistics.status"}}</th>
+                            <th scope="col">{{_ "learningStatistics.cardStats"}}</th>
                             <th scope="col">{{_ "learningStatistics.manage"}}</th>
                         {{/with}}
                     </tr>
@@ -180,6 +182,27 @@
                                         data-email="{{this.email}}"
                                         data-workloadid="{{this.workload_id}}"
                                         title="{{_ "learningStatus.tooltip"}}"></span></a>
+                            </td>
+                            <td>
+                                <a rel="noopener noreferrer"
+                                   data-id="{{this.user_id}}"
+                                   data-firstname="{{this.givenname}}"
+                                   data-lastname="{{this.birthname}}"
+                                   data-index="{{adjustIndex @index}}"
+                                   data-email="{{this.email}}"
+                                   data-learningphaseid="{{this.learning_phase_id}}"
+                                   class="showLearningCardStats" data-toggle="modal"
+                                   href="#learningCardStatusModal">
+                                    <span class="fa fa-list-alt"
+                                          data-firstname="{{this.givenname}}"
+                                          data-lastname="{{this.birthname}}"
+                                          data-id="{{this.user_id}}"
+                                          data-index="{{adjustIndex @index}}"
+                                          data-email="{{this.email}}"
+                                          data-learningphaseid="{{this.learning_phase_id}}"
+                                          title="{{_ "learningCardStats.tooltip"}}">
+                                    </span>
+                                </a>
                             </td>
                             <td>
                                 <a rel="noopener noreferrer" class="removeBonusUser" data-toggle="modal"

@@ -22,7 +22,11 @@ Meteor.methods({
 		check(user_id, String);
 		let cardset = Cardsets.findOne({_id: cardset_id});
 		if (cardset !== undefined) {
-			let learningWorkload = LeitnerLearningWorkload.findOne({user_id: user_id, cardset_id: cardset_id, isActive: true});
+			let learningWorkload = LeitnerLearningWorkload.findOne({
+				user_id: user_id,
+				cardset_id: cardset_id,
+				isActive: true
+			});
 			if (learningWorkload === undefined) {
 				let learningPhaseID = LeitnerLearningPhase.insert({
 					cardset_id: cardset._id,
@@ -61,9 +65,10 @@ Meteor.methods({
 						workLength: pomodoroConfig.defaultSettings.work,
 						breakLength: pomodoroConfig.defaultSettings.break,
 						soundConfig: pomodoroConfig.defaultSettings.sounds
-					}});
+					}
+				});
 				Meteor.call('initializeLeitnerWorkloadData', learningPhaseID, cardset_id, user_id);
-			}  else {
+			} else {
 				throw new Meteor.Error('Active learning phase already exists');
 			}
 		} else {
@@ -83,7 +88,8 @@ Meteor.methods({
 			if (learningPhase !== undefined) {
 				LeitnerLearningPhase.update({
 					_id: learningPhase._id
-				}, {$set: {
+				}, {
+					$set: {
 						isActive: false,
 						updatedAt: new Date(),
 						lastEditor: Meteor.userId()
@@ -91,7 +97,8 @@ Meteor.methods({
 				});
 				LeitnerLearningWorkload.update({
 					learning_phase_id: learningPhase._id
-				}, {$set: {
+				}, {
+					$set: {
 						isActive: false,
 						updatedAt: new Date()
 					}
@@ -154,8 +161,12 @@ Meteor.methods({
 			check(forceNotifications.push, Boolean);
 
 			let cardset = Cardsets.findOne(id);
-			if (cardset !== undefined  && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
-				let learningPhase = LeitnerLearningPhase.findOne({isBonus: true, isActive: true, cardset_id: cardset._id});
+			if (cardset !== undefined && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
+				let learningPhase = LeitnerLearningPhase.findOne({
+					isBonus: true,
+					isActive: true,
+					cardset_id: cardset._id
+				});
 				if (learningPhase === undefined) {
 					intervals = intervals.sort(
 						function (a, b) {
@@ -203,7 +214,8 @@ Meteor.methods({
 
 					Cardsets.update({
 							_id: cardset._id
-						}, {$set: {
+						}, {
+							$set: {
 								dateUpdated: new Date(),
 								lastEditor: Meteor.userId(),
 								bonusStatus: LeitnerLearningPhaseUtilities.setLeitnerBonusStatus(LeitnerLearningPhase.findOne({
@@ -212,7 +224,8 @@ Meteor.methods({
 									isActive: true,
 									cardset_id: cardset._id
 								}))
-							}}
+							}
+						}
 					);
 					return learningPhaseID;
 				} else {
@@ -245,7 +258,10 @@ Meteor.methods({
 				LeitnerLearningPhase.remove({
 					_id: learningPhase._id
 				});
-				let remainingBonusPhases = LeitnerLearningPhase.find({cardset_id: learningPhase.cardset_id, isBonus: true}).count();
+				let remainingBonusPhases = LeitnerLearningPhase.find({
+					cardset_id: learningPhase.cardset_id,
+					isBonus: true
+				}).count();
 				if (remainingBonusPhases === 0) {
 					Cardsets.update({
 						_id: learningPhase.cardset_id
@@ -310,7 +326,11 @@ Meteor.methods({
 
 			let cardset = Cardsets.findOne(id);
 			if (cardset !== undefined && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
-				let learningPhase = LeitnerLearningPhase.findOne({cardset_id: cardset._id, isActive: true, isBonus: true});
+				let learningPhase = LeitnerLearningPhase.findOne({
+					cardset_id: cardset._id,
+					isActive: true,
+					isBonus: true
+				});
 				if (learningPhase !== undefined) {
 					intervals = intervals.sort(
 						function (a, b) {
@@ -321,7 +341,8 @@ Meteor.methods({
 					LeitnerLearningPhase.update({
 							_id: learningPhase._id
 						},
-						{$set: {
+						{
+							$set: {
 								updatedAt: new Date(),
 								lastEditor: Meteor.userId(),
 								title: title,
@@ -351,11 +372,13 @@ Meteor.methods({
 
 					Cardsets.update({
 							_id: cardset._id
-						}, {$set: {
+						}, {
+							$set: {
 								dateUpdated: new Date(),
 								lastEditor: Meteor.userId(),
 								bonusStatus: LeitnerLearningPhaseUtilities.setLeitnerBonusStatus(LeitnerLearningPhase.findOne({_id: learningPhase._id}))
-							}}
+							}
+						}
 					);
 					return learningPhase._id;
 				} else {
@@ -380,7 +403,8 @@ Meteor.methods({
 				LeitnerLearningPhase.update({
 						_id: learningPhase._id
 					},
-					{$set: {
+					{
+						$set: {
 							updatedAt: new Date(),
 							lastEditor: Meteor.userId(),
 							title: title,
@@ -531,14 +555,16 @@ Meteor.methods({
 					if (leitnerPrivateWorkload !== undefined) {
 						LeitnerLearningWorkload.update({
 							_id: leitnerPrivateWorkload._id
-						}, {$set: {
+						}, {
+							$set: {
 								isActive: false,
 								updatedAt: new Date()
 							}
 						});
 						LeitnerLearningPhase.update({
 							_id: leitnerPrivateWorkload.learning_phase_id
-						}, {$set: {
+						}, {
+							$set: {
 								isActive: false,
 								updatedAt: new Date(),
 								lastEditor: Meteor.userId()

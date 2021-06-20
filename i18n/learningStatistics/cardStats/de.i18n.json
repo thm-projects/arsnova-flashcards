@@ -1,0 +1,18 @@
+{
+  "learningCardStats": {
+    "title": "Karten Statistik",
+    "tooltip": "Karten Statistik",
+    "stats": {
+      "title": "Karten Statistik"
+    },
+    "table": {
+      "title": "Verlauf",
+      "content": "Inhalt",
+      "cardType": "Karteityp",
+      "progress": "Lernstand",
+      "totalAnswers": "Antworten",
+      "totalTime": "Gesamtbearbeitungszeit",
+      "known": "Gewusst"
+    }
+  }
+}

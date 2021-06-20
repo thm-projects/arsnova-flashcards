@@ -30,8 +30,8 @@ Meteor.startup(function () {
 	// Leitner 2.0 Migration Steps
 	leitnerLearningPhase();
 	leitnerLearningWorkload();
-	leitnerCardStats();
 	leitnerActivationDay();
+	leitnerCardStats();
 
 	//cronjob
 	cronScheduler.startCron();

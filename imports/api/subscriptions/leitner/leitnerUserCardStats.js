@@ -115,6 +115,24 @@ const LeitnerUserCardStatsSchema = new SimpleSchema({
 	viewedPDF: {
 		type: Boolean,
 		defaultValue: false
+	},
+	stats: {
+		type: Object
+	},
+	'stats.answers': {
+		type: Object
+	},
+	'stats.answers.known': {
+		type: Number,
+		defaultValue: 0
+	},
+	'stats.answers.notKnown': {
+		type: Number,
+		defaultValue: 0
+	},
+	'stats.totalTime': {
+		type: Number,
+		defaultValue: 0
 	}
 });
 

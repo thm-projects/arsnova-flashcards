@@ -25,17 +25,18 @@ Template.registerHelper("learningStatisticsIsRep", function (type = 0) {
 	}
 });
 
-Template.registerHelper("learningStatisticsGetCardsetTitle", function (type = 0) {
-	if (type === 1) {
-		let cardset_id = "";
-		if (Route.isFilterIndex() || Route.isBox()) {
-			cardset_id = Session.get('workloadProgressCardsetID');
-		} else {
-			cardset_id = FlowRouter.getParam('_id');
-		}
-		return Cardsets.findOne({_id: cardset_id}).name;
-	} else if (Session.get('selectedLearningHistory') !== undefined) {
-		return Session.get('selectedLearningHistory')[0].cardsetTitle;
+Template.registerHelper("learningStatisticsGetCardsetTitle", function () {
+	let cardset_id = "";
+	if (Route.isFilterIndex() || Route.isBox()) {
+		cardset_id = Session.get('workloadProgressCardsetID');
+	} else {
+		cardset_id = FlowRouter.getParam('_id');
+	}
+	const cardset = Cardsets.findOne({_id: cardset_id});
+	if (cardset !== undefined) {
+		return cardset.name;
+	} else {
+		return '';
 	}
 });
 
@@ -92,10 +93,19 @@ Template.registerHelper("learningStatisticsGetUserName", function () {
 
 Template.registerHelper("learningStatisticsGetLastActivity", function (type = 0) {
 	let lastActivity = "";
-	if (type === 1) {
-		lastActivity = Session.get('lastLearningStatusActivity');
-	} else if (Session.get('selectedLearningHistory') !== undefined) {
-		lastActivity = Session.get('selectedLearningHistory')[0].lastActivity;
+	switch (type) {
+		case 1:
+			lastActivity = Session.get('lastLearningStatusActivity');
+			break;
+		case 2:
+			if (Session.get('selectedLearningCardStats') !== undefined && Session.get('selectedLearningCardStats').length) {
+				lastActivity = Session.get('selectedLearningCardStats')[0].lastActivity;
+			}
+			break;
+		default:
+			if (Session.get('selectedLearningHistory') !== undefined && Session.get('selectedLearningHistory').length) {
+				lastActivity = Session.get('selectedLearningHistory')[0].lastActivity;
+			}
 	}
 	if (lastActivity instanceof Date) {
 		return Utilities.getMomentsDate(lastActivity, true, 0, false);

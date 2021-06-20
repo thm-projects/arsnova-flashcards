@@ -10,6 +10,7 @@ import {UserPermissions} from "../../util/permissions";
 import {LeitnerActivationDay} from "../subscriptions/leitner/leitnerActivationDay";
 import {CardsetUserlist} from "../../util/cardsetUserlist";
 import {LeitnerLearningPhaseUtilities} from "../../util/learningPhase";
+import {LeitnerUserCardStats} from "../subscriptions/leitner/leitnerUserCardStats";
 
 Meteor.methods({
 
@@ -164,6 +165,80 @@ Meteor.methods({
 		let cardset = Cardsets.findOne({_id: cardset_id});
 		if (UserPermissions.gotBackendAccess() || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
 			return CardsetUserlist.getLearners(LeitnerLearningWorkload.find({learning_phase_id: learning_phase_id, isBonus: true}).fetch(), cardset_id, learning_phase_id);
+		}
+	},
+	getLearningCardStats: function (user_id, cardset_id, learning_phase_id) {
+		check(user_id, String);
+		check(cardset_id, String);
+		check(learning_phase_id, String);
+
+		let newUserId;
+		let cardset = Cardsets.findOne({_id: cardset_id});
+		if (UserPermissions.gotBackendAccess() || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
+			newUserId = user_id;
+		} else {
+			newUserId = Meteor.userId();
+		}
+
+		let leitnerCardStats = LeitnerUserCardStats.find({
+			learning_phase_id: learning_phase_id,
+			user_id: newUserId
+		}).fetch();
+
+		if (leitnerCardStats !== undefined && leitnerCardStats.length) {
+			let query = {
+				user_id: user_id,
+				cardset_id: cardset_id
+			};
+
+			if (leitnerCardStats.workload_id !== "null") {
+				query.workload_id = leitnerCardStats[0].workload_id;
+			}
+			let lastActivity = "null";
+			query["timestamps.submission"] = {$exists: true};
+
+			let leitnerHistory = LeitnerPerformanceHistory.findOne(query,
+				{sort: {"timestamps.submission": -1}});
+			if (leitnerHistory !== undefined) {
+				lastActivity = leitnerHistory.timestamps.submission;
+			}
+
+			let cardIds = leitnerCardStats.map(function (cardStats) {
+				return cardStats.card_id;
+			});
+			let cards = Cards.find({_id: {$in: cardIds}},{fields:
+					{
+						_id: 1,
+						subject: 1,
+						cardset_id: 1,
+						front: 1,
+						back: 1,
+						top: 1,
+						bottom: 1,
+						hint: 1,
+						lecture: 1,
+						"answers.question": 1,
+						cardType: 1
+					}}).fetch();
+			for (let i = 0; i < leitnerCardStats.length; i++) {
+				leitnerCardStats[i].isUser = true;
+				leitnerCardStats[i].cardsetTitle = cardset.name;
+				leitnerCardStats[i].lastActivity = lastActivity;
+				for (let c = 0; c < cards.length; c++) {
+					if (leitnerCardStats[i].card_id === cards[c]._id) {
+						leitnerCardStats[i].cardData = cards[c];
+						if (cards[c].answers !== undefined && cards[c].answers.question !== undefined) {
+							leitnerCardStats[i].cardData.question = cards[c].answers.question;
+						} else {
+							leitnerCardStats[i].cardData.question = "";
+						}
+						break;
+					}
+				}
+			}
+			return leitnerCardStats;
+		} else {
+			return [];
 		}
 	},
 	getLearningLog: function (user_id, cardset_id, activation_day_id, workload_id) {
