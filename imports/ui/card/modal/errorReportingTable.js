@@ -12,6 +12,30 @@ const sorting = new ReactiveVar({
 	sortCardStatusAscending: true
 });
 
+function getErrorMessage(error) {
+	let errorMessage = "zzz";
+	if(error.error.type) {
+		switch(error.error.type[0]){
+			case 0: 
+				errorMessage = TAPi18n.__('modal-card.errorReporting.spellingMistake')
+				break;
+			case 1:
+				errorMessage = TAPi18n.__('modal-card.errorReporting.missingPicture');
+				break;
+			case 2:
+				errorMessage = TAPi18n.__('modal-card.errorReporting.layoutMistake');
+				break;
+			case 3:
+				errorMessage = TAPi18n.__('modal-card.errorReporting.brokenLink');
+				break;
+			default:
+				errorMessage = TAPi18n.__('modal-card.errorReporting.otherError');
+				break;
+		}
+	}
+	return errorMessage;
+}
+
 Template.overviewErrorReportsModal.onRendered(function () {
 	$('#showOverviewErrorReportsModal').on('hidden.bs.modal', function () {
 		Session.set('errorReportingMode', false);
@@ -49,8 +73,8 @@ Template.overviewErrorReportsTable.events({
 		newSorting.sortCardErrorAscending = !newSorting.sortCardErrorAscending;
 		sorting.set(newSorting);
 		Session.set("errorReportingCard", elements.sort((a, b) => {
-			if (b.error.content.localeCompare(a.error.content) < 0) { return newSorting.sortCardErrorAscending ? 1 : -1; }
-			if (b.error.content.localeCompare(a.error.content) > 0) { return newSorting.sortCardErrorAscending ? -1 : 1; }
+			if (getErrorMessage(b).localeCompare(getErrorMessage(a)) < 0) { return newSorting.sortCardErrorAscending ? 1 : -1; }
+			if (getErrorMessage(b).localeCompare(getErrorMessage(a)) > 0) { return newSorting.sortCardErrorAscending ? -1 : 1; }
 			return 0;
 		}));
 	},
@@ -60,9 +84,9 @@ Template.overviewErrorReportsTable.events({
 		newSorting.sortCardAuthorAscending = !newSorting.sortCardAuthorAscending;
 		sorting.set(newSorting);
 		Session.set("errorReportingCard", elements.sort((a, b) => {
-			if (a.user_id === b.user_id) { return 1; }
+			if (a.user_id === b.user_id) { return 0; }
 			if (a.user_id !== b.user_id) { return -1; }
-			return 0;
+			return 1;
 		}));
 	},
 	'click #overviewErrorReportsTableStatus': () => {

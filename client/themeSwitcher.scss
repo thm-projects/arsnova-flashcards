@@ -5207,6 +5207,7 @@ $themes: (
       }
       thead {
         color : $thm_orange !important;
+        user-select: none;
       }
       #overviewErrorReportsTableSide:hover, #overviewErrorReportsTableError:hover, #overviewErrorReportsTableAuthor:hover, #overviewErrorReportsTableStatus:hover{
         cursor: pointer;
