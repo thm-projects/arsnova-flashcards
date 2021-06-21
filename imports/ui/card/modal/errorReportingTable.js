@@ -14,10 +14,10 @@ const sorting = new ReactiveVar({
 
 function getErrorMessage(error) {
 	let errorMessage = "zzz";
-	if(error.error.type) {
-		switch(error.error.type[0]){
-			case 0: 
-				errorMessage = TAPi18n.__('modal-card.errorReporting.spellingMistake')
+	if (error.error.type) {
+		switch (error.error.type[0]){
+			case 0:
+				errorMessage = TAPi18n.__('modal-card.errorReporting.spellingMistake');
 				break;
 			case 1:
 				errorMessage = TAPi18n.__('modal-card.errorReporting.missingPicture');
