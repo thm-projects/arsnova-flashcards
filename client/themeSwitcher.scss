@@ -5036,10 +5036,15 @@ $themes: (
     }
     #messageTR {
       border-color: $navbar_all_border !important;
+      a {
+        color: $navbar_text !important;
+      }
     }
     #messageTR:hover {
-      background-color: $navbar_dropdown_background_hover !important;
-      color: $navbar_dropdown_text_hover !important;
+      background-color: $navbar_all_background_hover !important;
+      a {
+        color: $navbar_text_hover !important;
+      }
     }
    
     // .profile-fullscreen-settings
