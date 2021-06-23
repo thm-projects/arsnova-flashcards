@@ -4,6 +4,7 @@
     {{> wordcloudModal}}
     {{> showLicense}}
     {{> learningHistoryModal}}
+    {{> learningCardStatusModal}}
     {{> selectLicenseForm}}
     {{> cardsetPublishForm}}
     {{> cardsetExportForm}}
@@ -27,6 +28,7 @@
         {{#if isActiveRoute 'learn'}}
             {{> selectModeForm}}
             {{> cardsetsConfirmLearnForm}}
+            {{> leaveBonusForm}}
             {{> filterIndexWorkload}}
         {{/if}}
 

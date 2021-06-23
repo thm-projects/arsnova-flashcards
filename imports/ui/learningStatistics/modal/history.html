@@ -144,19 +144,19 @@
                                 <table aria-describedby="learningHistoryTable" class="table table-striped table-hover">
                                     <tbody>
                                     <tr>
-                                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user-history" data-content="date">{{_ "learningHistory.table.date"}}</a> {{> learningBonusStasticsItemSort (setSortObject "date")}}</th>
-                                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user-history" data-content="reason">{{_ "learningHistory.table.reason.title"}}</a> {{> learningBonusStasticsItemSort (setSortObject "reason")}}</th>
-                                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user-history" data-content="workload">{{_ "learningHistory.table.workload.title"}}</a> {{> learningBonusStasticsItemSort (setSortObject "workload")}}</th>
-                                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user-history" data-content="known">{{_ "learningHistory.table.known"}}</a> {{> learningBonusStasticsItemSort (setSortObject "known")}}</th>
-                                        <th scope="col"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user-history" data-content="notKnown">{{_ "learningHistory.table.notKnown"}}</a> {{> learningBonusStasticsItemSort (setSortObject "notKnown")}}</th>
-                                        <th scope="col" class="visible-md visible-lg"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user-history" data-content="statusCode">{{_ "learningHistory.table.status.title"}}</a> {{> learningBonusStasticsItemSort (setSortObject "statusCode")}}</th>
-                                        <th scope="col" class="visible-lg"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user-history" data-content="duration">{{_ "learningHistory.table.duration"}}</a> {{> learningBonusStasticsItemSort (setSortObject "duration")}}</th>
-                                        <th scope="col" class="visible-lg"><a rel="noopener noreferrer"   class="sort-bonus-content sort-bonus-user-history" data-content="cardArithmeticMean">{{_ "learningStatistics.arithmeticMean"}}</a> {{> learningBonusStasticsItemSort (setSortObject "cardArithmeticMean")}}</th>
+                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-bonus-user-history" data-content="createdAt">{{_ "learningHistory.table.date"}}</a> {{> learningBonusStasticsItemSort (setSortObject "createdAt")}}</th>
+                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-bonus-user-history" data-content="reason">{{_ "learningHistory.table.reason.title"}}</a> {{> learningBonusStasticsItemSort (setSortObject "reason")}}</th>
+                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-bonus-user-history" data-content="workload">{{_ "learningHistory.table.workload.title"}}</a> {{> learningBonusStasticsItemSort (setSortObject "workload")}}</th>
+                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-bonus-user-history" data-content="known">{{_ "learningHistory.table.known"}}</a> {{> learningBonusStasticsItemSort (setSortObject "known")}}</th>
+                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-bonus-user-history" data-content="notKnown">{{_ "learningHistory.table.notKnown"}}</a> {{> learningBonusStasticsItemSort (setSortObject "notKnown")}}</th>
+                                        <th scope="col" class="visible-md visible-lg"><a rel="noopener noreferrer" class="sort-bonus-content sort-bonus-user-history" data-content="statusCode">{{_ "learningHistory.table.status.title"}}</a> {{> learningBonusStasticsItemSort (setSortObject "statusCode")}}</th>
+                                        <th scope="col" class="visible-lg"><a rel="noopener noreferrer" class="sort-bonus-content sort-bonus-user-history" data-content="duration">{{_ "learningHistory.table.duration"}}</a> {{> learningBonusStasticsItemSort (setSortObject "duration")}}</th>
+                                        <th scope="col" class="visible-lg"><a rel="noopener noreferrer" class="sort-bonus-content sort-bonus-user-history" data-content="cardArithmeticMean">{{_ "learningStatistics.arithmeticMean"}}</a> {{> learningBonusStasticsItemSort (setSortObject "cardArithmeticMean")}}</th>
                                         <th scope="col">{{_ "learningStatistics.log"}}</th>
                                     </tr>
                                     {{#each getWorkloadHistory}}
                                         <tr>
-                                            <td>{{getMomentsDate this.date}}</td>
+                                            <td>{{getMomentsDate this.createdAt}}</td>
                                             <td>{{getReason}}</td>
                                             <td>{{getWorkload}}</td>
                                             <td>{{this.known}}</td>
@@ -169,7 +169,7 @@
                                                 <a rel="noopener noreferrer"   class="showLearningLog" data-toggle="modal" href="#learningLogModal"
                                                    data-user="{{this.user_id}}"
                                                    data-cardset="{{this.cardset_id}}"
-                                                   data-task="{{this.task_id}}"
+                                                   data-activationDay="{{this.activation_day_id}}"
                                                    data-known="{{this.known}}"
                                                    data-notknown="{{this.notKnown}}"
                                                    data-workload="{{this.workload}}"
@@ -179,12 +179,13 @@
                                                    data-cardMedian="{{this.cardMedian}}"
                                                    data-cardStandardDeviation="{{this.cardStandardDeviation}}"
                                                    data-lastActivity="{{this.lastActivity}}"
-                                                   data-taskDate="{{this.date}}"
+                                                   data-createdAt="{{this.createdAt}}"
+                                                   data-workloadid="{{this.workload_id}}"
                                                 >
                                                 <span class="far fa-clock" title="{{_ "learningLog.tooltip"}}"
                                                    data-user="{{this.user_id}}"
                                                    data-cardset="{{this.cardset_id}}"
-                                                   data-task="{{this.task_id}}"
+                                                   data-activationDay="{{this.activation_day_id}}"
                                                    data-known="{{this.known}}"
                                                    data-notknown="{{this.notKnown}}"
                                                    data-workload="{{this.workload}}"
@@ -194,7 +195,8 @@
                                                    data-cardMedian="{{this.cardMedian}}"
                                                    data-cardStandardDeviation="{{this.cardStandardDeviation}}"
                                                    data-lastActivity="{{this.lastActivity}}"
-                                                   data-taskDate="{{this.date}}"
+                                                   data-createdAt="{{this.createdAt}}"
+                                                   data-workloadid="{{this.workload_id}}"
                                                 ></span></a>
                                                 {{/if}}
                                             </td>

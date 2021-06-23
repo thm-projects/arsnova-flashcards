@@ -2,11 +2,12 @@ import "./errorReporting.html";
 import { Meteor } from "meteor/meteor";
 import { Template } from 'meteor/templating';
 import swal from "sweetalert2";
-import { Session } from "meteor/session";
-import { CardNavigation } from "../../../util/cardNavigation";
-import { CardType } from "../../../util/cardTypes";
-import { ErrorReporting } from "../../../util/errorReporting";
 import "./errorReportingTable";
+import {Session} from "meteor/session";
+import {CardNavigation} from "../../../util/cardNavigation";
+import {CardType} from "../../../util/cardTypes";
+import {ErrorReporting} from "../../../util/errorReporting";
+import {ServerStyle} from "../../../util/styles";
 
 function getCardSide() {
 	return parseInt($('input[name="cardSide"]:checked').val());
@@ -57,6 +58,9 @@ Template.registerHelper("getErrorReport", () => Session.get("errorReportingCard"
 Template.errorReportingModal.helpers({
 	isErrorReviewMode: function () {
 		return Session.get('errorReportingMode');
+	},
+	getLink: function () {
+		return ServerStyle.getGitlabLink();
 	}
 });
 

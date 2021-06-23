@@ -9,7 +9,6 @@ import {Filter} from "../../../util/filter";
 import {Route} from "../../../util/route";
 import {FilterNavigation} from "../../../util/filterNavigation";
 import {CardType} from "../../../util/cardTypes";
-import {Leitner} from "../../../api/subscriptions/leitner";
 import {Wozniak} from "../../../api/subscriptions/wozniak";
 import {MainNavigation} from "../../../util/mainNavigation";
 import {LoginTasks} from "../../../util/login";
@@ -38,6 +37,7 @@ import "./item/bottom/item/export.js";
 import "./item/bottom/item/leaveWorkload.js";
 import "./item/bottom/item/shuffle.js";
 import "./item/bottom/item/starsRating.js";
+import "./item/bottom/item/learningCardStats.js";
 import "./item/bottom/item/learningStatus.js";
 import "./item/bottom/item/learningHistory.js";
 import "./item/bottom/item/transcriptRating.js";
@@ -61,10 +61,12 @@ import "../modal/deleteTranscript.js";
 import "../modal/selectWorkload.js";
 import "./item/bottom/item/publish.js";
 import "./item/bottom/item/license.js";
+import "../../cardset/navigation/modal/bonus/leave/leave.js";
 import "./index.html";
 import {Meteor} from "meteor/meteor";
 import {ServerStyle} from "../../../util/styles";
 import "../../messageOfTheDay/messageOfTheDay.js";
+import {LeitnerLearningWorkload} from "../../../api/subscriptions/leitner/leitnerLearningWorkload";
 
 Session.setDefault('cardsetId', undefined);
 Session.set('moduleActive', true);
@@ -114,6 +116,12 @@ Template.filterIndex.events({
 		}
 	},
 	'click .resultItemHeaderBottomAreaLabels .label-bonus': function () {
+		if (ServerStyle.gotNavigationFeature("filter", true)) {
+			Filter.setActiveFilter(true, "bonusActive");
+			FilterNavigation.showDropdown();
+		}
+	},
+	'click .resultItemHeaderBottomAreaLabels .label-bonus-finished': function () {
 		if (ServerStyle.gotNavigationFeature("filter", true)) {
 			Filter.setActiveFilter(true, "bonusActive");
 			FilterNavigation.showDropdown();
@@ -371,14 +379,30 @@ Template.filterIndexWorkload.helpers({
 		}
 		switch (returnType) {
 			case 0:
-				return (Leitner.find({user_id: Meteor.userId()}).count() > 0 || Wozniak.find({user_id: Meteor.userId()}).count() > 0);
+				return (LeitnerLearningWorkload.find({
+					user_id: Meteor.userId(),
+					isActive: true
+				}).count() > 0 || Wozniak.find({user_id: Meteor.userId()}).count() > 0);
 			case 1:
 				return Cardsets.find(query, {
 					sort: Filter.getSortFilter(),
 					limit: Filter.getMaxItemCounter()
 				}).count();
 			case 2:
-				return Cardsets.find(query, {sort: Filter.getSortFilter(), limit: Filter.getMaxItemCounter()});
+				let results = Cardsets.find(query, {sort: Filter.getSortFilter(), limit: Filter.getMaxItemCounter()});
+				let filteredResults = [];
+				results.forEach(function (cardset) {
+					let workload = LeitnerLearningWorkload.findOne({
+						cardset_id: cardset._id,
+						user_id: Meteor.userId(),
+						isActive: true});
+					if (workload !== undefined || Wozniak.find({cardset_id: cardset._id, user_id: Meteor.userId()}).count() > 0) {
+						cardset.workload_id = workload._id;
+						cardset.isBonus = workload.isBonus;
+						filteredResults.push(cardset);
+					}
+				});
+				return filteredResults;
 		}
 	}
 });

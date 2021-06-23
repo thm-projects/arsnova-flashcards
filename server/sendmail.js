@@ -6,6 +6,7 @@ import {Cardsets} from "../imports/api/subscriptions/cardsets.js";
 import {getAuthorName} from "../imports/util/userData";
 import {ServerStyle} from "../imports/util/styles";
 import * as config from "../imports/config/notifications.js";
+import {LeitnerLearningWorkloadUtilities} from "../imports/util/learningWorkload";
 
 /**
  * Class used for sending the newsletter mail
@@ -29,15 +30,17 @@ export class MailNotifier {
 	 * Prepares the notification mail for a cardset
 	 * @param {cardset} cardset - The cardset
 	 * @param {string} user_id - id of user
-	 * @param {number} messageType 0 = new, 1 = reminder, 2 = reset
+	 * @param {Object} learningPhase - The active learning phase
+	 * 	 * @param {number} messageType 0 = new, 1 = reminder, 2 = reset
 	 */
-	static prepareMail (cardset, user_id, messageType= 0) {
+	static prepareMail (cardset, user_id, learningPhase, messageType= 0) {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
 			let firstName = getAuthorName(user_id, false, true);
-			let cards = Notifications.getActiveCardsCount(cardset._id, user_id);
-			let deadline = Notifications.getDeadline(cardset, user_id);
+			let leitnerWorkload = LeitnerLearningWorkloadUtilities.getActiveWorkload(cardset._id, user_id);
+			let cards = Notifications.getActiveCardsCount(leitnerWorkload, user_id);
+			let deadline = Notifications.getDeadline(learningPhase, leitnerWorkload, user_id);
 
 			let subject;
 			let headerTitle;

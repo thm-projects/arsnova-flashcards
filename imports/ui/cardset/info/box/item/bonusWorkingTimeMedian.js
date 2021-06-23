@@ -1,5 +1,4 @@
 import "./bonusWorkingTimeMedian.html";
-import {Session} from "meteor/session";
 import {Utilities} from "../../../../../util/utilities";
 /*
 * ############################################################################
@@ -10,8 +9,8 @@ import {Utilities} from "../../../../../util/utilities";
 Template.cardsetInfoBoxItemBonusWorkingTimeMedian.helpers({
 	getBonusWorkingTimeMedian: function () {
 		let bonusWorkingTimeMedian = 0;
-		if (Session.get('activeCardset') !== undefined && Session.get('activeCardset').learningStatistics !== undefined && Session.get('activeCardset').learningStatistics.workingTime !== undefined) {
-			bonusWorkingTimeMedian = Session.get('activeCardset').learningStatistics.workingTime.median.bonus;
+		if (this.performanceStats !== undefined && this.performanceStats.workingTime !== undefined) {
+			bonusWorkingTimeMedian = this.performanceStats.workingTime.median;
 		}
 		return Utilities.humanizeDuration(bonusWorkingTimeMedian);
 	}

@@ -3,6 +3,8 @@
     "errorReporting": {
       "header": "Fehler melden",
       "headerReview": "Fehler Detailansicht",
+      "headerText": "Bei unseren Karten haben sich Fehler eingeschlichen? Dann kannst du uns das über dieses Formular mitteilen. Du möchtest gar keinen Fehler auf dieser Karte sondern einen auf der Plattform melden? Dann klicke ",
+      "here": "»hier«.",
       "cardSide": "Kartenseite",
       "cardsetButton": "Kartei",
       "cardButton": "Karte",

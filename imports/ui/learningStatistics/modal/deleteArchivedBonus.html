@@ -1,0 +1,32 @@
+<template name="learningStatisticsDeleteArchivedBonusModal">
+    <div class="modal fade" id="learningStatisticsDeleteArchivedBonusModal" tabindex="-1" role="dialog"
+         aria-labelledby="learningStatisticsDeleteArchivedBonusTitle">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content modal-lg modal-content-for-buttons">
+                <div class="modal-header">
+                    <span class="modal-icon">
+                        <span class="fas fa-trash"></span>
+                    </span>
+                    {{> mainModalItemCloseIcon}}
+                    <h4 id="learningStatisticsDeleteArchivedBonusTitle" class="modal-title">{{getBonusName}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    {{_ "learningStatisticsDeleteArchivedBonus.text"}}
+                </div>
+                <div class="modal-footer">
+                    <button id="deleteArchivedBonusConfirm"
+                            class="btn btn-raised btn-danger pull-right">{{_
+                            "learningStatisticsDeleteArchivedBonus.button.confirm"}}</button>
+                    <button id="deleteArchivedBonusCancel"
+                            class="btn btn-raised btn-default pull-left"
+                            data-dismiss="modal">{{_
+                            "learningStatisticsDeleteArchivedBonus.button.cancel"}}</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</template>

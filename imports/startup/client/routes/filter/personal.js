@@ -19,6 +19,7 @@ FlowRouter.route('/personal/cardsets', {
 			import('../../../../ui/filter/filter.js'),
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('myCardsets'),
+			Meteor.subscribe('learningPhaseActiveBonus')
 		];
 	},
 	data: function () {

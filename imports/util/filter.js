@@ -3,11 +3,12 @@ import {FilterNavigation} from "./filterNavigation";
 import {Session} from "meteor/session";
 import {Route} from "./route";
 import {WordcloudCanvas} from "./wordcloudCanvas";
-import {Leitner} from "../api/subscriptions/leitner";
+import {LeitnerUserCardStats} from "../api/subscriptions/leitner/leitnerUserCardStats";
 import {Wozniak} from "../api/subscriptions/wozniak";
 import * as config from "../config/filter.js";
 import {TranscriptBonus} from "../api/subscriptions/transcriptBonus";
 import {ServerStyle} from "./styles";
+import {BONUS_STATUS} from "../config/cardset.js";
 
 Session.setDefault('maxItemsCounter', config.itemStartingValue);
 Session.setDefault('poolFilter', undefined);
@@ -228,7 +229,7 @@ export let Filter = class Filter {
 
 	static workloadFilter () {
 		let learnCardsets = [];
-		let leitnerCards = Leitner.find({
+		let leitnerCards = LeitnerUserCardStats.find({
 			user_id: Meteor.userId()
 		}, {fields: {cardset_id: 1}});
 
@@ -326,7 +327,12 @@ export let Filter = class Filter {
 			query.noDifficulty = activeFilter.noDifficulty;
 		}
 		if (FilterNavigation.gotBonusFilter(FilterNavigation.getRouteId()) && activeFilter.learningActive !== undefined) {
-			query.learningActive = activeFilter.learningActive;
+			query.bonusStatus = query.bonusStatus = {$in: [
+					BONUS_STATUS.PLANNED,
+					BONUS_STATUS.ONGOING_OPEN,
+					BONUS_STATUS.ONGOING_CLOSED,
+					BONUS_STATUS.FINISHED
+				]};
 		}
 		if (FilterNavigation.gotBonusFilter(FilterNavigation.getRouteId()) && activeFilter['transcriptBonus.enabled'] !== undefined) {
 			query['transcriptBonus.enabled'] = activeFilter['transcriptBonus.enabled'];

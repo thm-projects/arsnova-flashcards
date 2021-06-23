@@ -19,8 +19,9 @@ FlowRouter.route('/presentation/:_id', {
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('cardset', params._id),
 			Meteor.subscribe('paidCardset', params._id),
-			Meteor.subscribe('cardsetWorkload', params._id),
+			Meteor.subscribe('latestLeitnerCardsetWorkload', params._id),
 			Meteor.subscribe('cardsetCards', params._id),
+			Meteor.subscribe('learningPhaseBonus'),
 			Meteor.subscribe('frontendUserData')
 		];
 	},
@@ -54,7 +55,7 @@ FlowRouter.route('/presentation/:_id/:card_id', {
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('cardset', params._id),
 			Meteor.subscribe('paidCardset', params._id),
-			Meteor.subscribe('cardsetWorkload', params._id),
+			Meteor.subscribe('latestLeitnerCardsetWorkload', params._id),
 			Meteor.subscribe('cardsetCards', params._id)
 		];
 	},

@@ -14,6 +14,14 @@
                             {{_ "modal-card.errorReporting.header"}}
                         {{/if}}
                     </h4>
+                    <h5 id="showErrorReportingTitle" class="modal-title">
+                        {{#if isErrorReviewMode}}
+                            {{_ "modal-card.errorReporting.headerReview"}}
+                        {{else}}
+                            {{_ "modal-card.errorReporting.headerText"}}
+                            <a href="{{getLink}}" target="_blank">{{_ "modal-card.errorReporting.here"}}</a>
+                        {{/if}}
+                    </h5>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
