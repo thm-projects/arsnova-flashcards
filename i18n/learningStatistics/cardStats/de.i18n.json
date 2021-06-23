@@ -1,7 +1,9 @@
 {
   "learningCardStats": {
     "title": "Karten Statistik",
+    "titleBonus": "Karten Statistik für Bonus",
     "tooltip": "Karten Statistik",
+    "tooltipBonus": "Karten Statistik über gesamten Bonus",
     "stats": {
       "title": "Karten Statistik"
     },
@@ -11,6 +13,9 @@
       "cardType": "Karteityp",
       "progress": "Lernstand",
       "totalAnswers": "Antworten",
+      "answeredBy": "Beantwortet von",
+      "user": "__count__ Benutzer",
+      "user_plural": "__count__ Benutzern",
       "totalTime": "Gesamtbearbeitungszeit",
       "known": "Gewusst"
     }

@@ -69,9 +69,12 @@
                                     <tr>
                                         <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="cardSubject">{{_ "learningCardStats.table.content"}}</a> {{> learningBonusStasticsItemSort (setSortObject "cardSubject")}}</th>
                                         <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="cardTypeName">{{_ "learningCardStats.table.cardType"}}</a> {{> learningBonusStasticsItemSort (setSortObject "cardTypeName")}}</th>
-                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="box">{{_ "learningCardStats.table.progress"}}</a> {{> learningBonusStasticsItemSort (setSortObject "box")}}</th>
+                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="box">{{#unless isUser}}Ø&nbsp;{{/unless}}{{_ "learningCardStats.table.progress"}}</a> {{> learningBonusStasticsItemSort (setSortObject "box")}}</th>
                                         <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="percent">{{_ "learningCardStats.table.known"}}</a> {{> learningBonusStasticsItemSort (setSortObject "percent")}}</th>
                                         <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="totalAnswers">{{_ "learningCardStats.table.totalAnswers"}}</a> {{> learningBonusStasticsItemSort (setSortObject "totalAnswers")}}</th>
+                                        {{#unless isUser}}
+                                            <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="answeredBy">{{_ "learningCardStats.table.answeredBy"}}</a> {{> learningBonusStasticsItemSort (setSortObject "answeredBy")}}</th>
+                                        {{/unless}}
                                         <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="totalTime">{{_ "learningCardStats.table.totalTime"}}</a> {{> learningBonusStasticsItemSort (setSortObject "totalTime")}}</th>
                                     </tr>
                                     {{#each getCardStatsData}}
@@ -81,6 +84,9 @@
                                             <td>{{{getBoxProgress this.box}}}</td>
                                             <td>{{getKnownPercent}}</td>
                                             <td>{{this.totalAnswers}}</td>
+                                            {{#unless isUser}}
+                                                <td>{{_ "learningCardStats.table.user" count=this.answeredBy}}</td>
+                                            {{/unless}}
                                             <td>{{{humanizeDuration this.totalTime}}}</td>
                                         </tr>
                                     {{/each}}

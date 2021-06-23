@@ -22,10 +22,12 @@ Template.learningCardStatusModal.helpers({
 		return true;
 	},
 	isUser: function () {
-		return Session.get('selectedLearningCardStats') !== undefined && Session.get('selectedLearningCardStats').length && Session.get('selectedLearningCardStats')[0].isUser;
+		return Session.get('selectedLearningCardStats') !== undefined && Session.get('selectedLearningCardStats').length && !Session.get('selectedLearningCardStats')[0].isBonusStats;
 	},
 	getTitle: function () {
-		if (Session.get('selectedLearningCardStats') !== undefined) {
+		if (Session.get('selectedLearningCardStats') !== undefined && Session.get('selectedLearningCardStats').length && Session.get('selectedLearningCardStats')[0].isBonusStats) {
+			return TAPi18n.__('learningCardStats.titleBonus');
+		} else {
 			return TAPi18n.__('learningCardStats.title');
 		}
 	},

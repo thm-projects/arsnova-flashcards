@@ -9,7 +9,7 @@ Template.cardSidebarItemLearningCardStats.events({
 		let workload = LeitnerLearningWorkloadUtilities.getActiveWorkload(FlowRouter.getParam('_id'));
 		if (workload !== undefined) {
 			Session.set('workloadProgressCardsetID', workload.cardset_id);
-			Meteor.call("getLearningCardStats", Meteor.userId(), workload.cardset_id, workload.learning_phase_id, function (error, result) {
+			Meteor.call("getLearningCardStats", Meteor.userId(), workload.cardset_id, workload.learning_phase_id, false, function (error, result) {
 				if (error) {
 					throw new Meteor.Error(error.statusCode, 'Error could not receive content for card stats');
 				}
