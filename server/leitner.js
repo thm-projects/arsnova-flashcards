@@ -77,8 +77,8 @@ Meteor.methods({
 						console.log(`Found ${leitnerWorkloads.length} active workloads for learning phase: [${learningPhase._id}]${bonusText} in cardset [${cardset.name}]`);
 					}
 					leitnerWorkloads.forEach(workload => {
-						//Check if workload is enabled for active private learning phases
-						if (workload.isActive === false && !learningPhase.isBonus) {
+						//Check if workload isActive matches learningPhase is Active. Both should be always the same.
+						if (workload.isActive === false) {
 							LeitnerLearningWorkload.update({
 								_id: workload._id,
 							}, {
