@@ -4,12 +4,8 @@ import {TYPE_MIGRATE} from "../../../../../config/serverBoot";
 import {Cardsets} from "../../../../../api/subscriptions/cardsets";
 import {Ratings} from "../../../../../api/subscriptions/ratings";
 import {CardType} from "../../../../../util/cardTypes";
-import {Workload} from "../../../../../api/subscriptions/workload";
-import {Leitner} from "../../../../../api/subscriptions/leitner";
 import {Meteor} from "meteor/meteor";
 import {Cards} from "../../../../../api/subscriptions/cards";
-import * as bonusFormConfig from "../../../../../config/bonusForm";
-import * as leitnerConfig from "../../../../../config/leitner";
 
 function cardsetMigrationStep() {
 	let groupName = "Cardset Migration";
@@ -230,147 +226,12 @@ function cardsetMigrationStep() {
 		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
 	}
 
-	itemName = "Cardsets workload collection";
-	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
-	cardsets = Cardsets.find({learningActive: true}, {fields: {_id: 1, name: 1, learningActive: 1}}).fetch();
-	if (cardsets.length) {
-		for (let i = 0; i < cardsets.length; i++) {
-			if (Workload.find({cardset_id: cardsets[i]._id}).count() === 0) {
-				let learnerData = [];
-				let userData = {};
-				let usersLeitner = Leitner.find({cardset_id: cardsets[i]._id}, {
-					fields: {
-						user_id: 1,
-						cardset_id: 1
-					}
-				}).fetch();
-				let users = _.uniq(usersLeitner, false, function (d) {
-					return d.user_id;
-				});
-				for (let k = 0; k < users.length; k++) {
-					userData = {
-						cardset_id: cardsets[i]._id,
-						user_id: users[k].user_id,
-						leitner: {
-							bonus: true,
-							dateJoinedBonus: new Date()
-						}
-					};
-					learnerData.push(userData);
-				}
-				if (learnerData.length > 0) {
-					Workload.batchInsert(learnerData);
-				}
-			}
-			Meteor.call("updateLearnerCount", cardsets[i]._id);
-		}
-		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
-	} else {
-		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
-	}
-
-
 	itemName = "Cardsets leitner card index";
 	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
 	cardsets = Cardsets.find({shuffled: true}).fetch();
 	if (cardsets.length) {
 		for (let i = 0; i < cardsets.length; i++) {
 			Meteor.call('updateLeitnerCardIndex', cardsets[i]._id);
-		}
-		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
-	} else {
-		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
-	}
-
-	itemName = "Cardsets registrationPeriod field";
-	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
-	cardsets = Cardsets.find({registrationPeriod: {$exists: false}}).fetch();
-	if (cardsets.length) {
-		for (let i = 0; i < cardsets.length; i++) {
-			Cardsets.update({
-					_id: cardsets[i]._id
-				},
-				{
-					$set: {
-						registrationPeriod: cardsets[i].learningEnd
-					}
-				}
-			);
-		}
-		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
-	} else {
-		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
-	}
-
-	itemName = "Cardsets pomodoroTimer field";
-	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
-	cardsets = Cardsets.find({pomodoroTimer: {$exists: false}, learningActive: true}).fetch();
-	if (cardsets.length) {
-		for (let i = 0; i < cardsets.length; i++) {
-			Cardsets.update({
-					_id: cardsets[i]._id
-				},
-				{
-					$set: {
-						'pomodoroTimer.quantity': 3,
-						'pomodoroTimer.workLength': 25,
-						'pomodoroTimer.breakLength': 5,
-						'pomodoroTimer.soundConfig': [true, true, true]
-					}
-				}
-			);
-		}
-		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
-	} else {
-		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
-	}
-
-	itemName = "Cardsets workload.bonus.count field";
-	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
-	cardsets = Cardsets.find({'workload.bonus.count': {$exists: false}}, {fields: {_id: 1}}).fetch();
-	if (cardsets.length) {
-		for (let i = 0; i < cardsets.length; i++) {
-			Meteor.call('updateLearnerCount', cardsets[i]._id);
-		}
-		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
-	} else {
-		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
-	}
-
-	itemName = "Cardsets workload.bonus.minLearned field";
-	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
-	cardsets = Cardsets.find({'workload.bonus.minLearned': {$exists: false}}, {fields: {_id: 1}}).fetch();
-	if (cardsets.length) {
-		for (let i = 0; i < cardsets.length; i++) {
-			Cardsets.update({
-					_id: cardsets[i]._id
-				},
-				{
-					$set: {
-						"workload.bonus.minLearned": bonusFormConfig.defaultMinLearned
-					}
-				}
-			);
-		}
-		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
-	} else {
-		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
-	}
-
-	itemName = "Cardsets workload.bonus.minLearned field";
-	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
-	cardsets = Cardsets.find({learners: {$exists: true}}, {fields: {_id: 1}}).fetch();
-	if (cardsets.length) {
-		for (let i = 0; i < cardsets.length; i++) {
-			Cardsets.update({
-					_id: cardsets[i]._id
-				},
-				{
-					$unset: {
-						learners: ""
-					}
-				}
-			);
 		}
 		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
 	} else {
@@ -471,55 +332,6 @@ function cardsetMigrationStep() {
 		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
 	}
 
-	itemName = "Cardsets got Workload";
-	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
-	cardsets = Cardsets.find({}, {fields: {_id: 1, cardGroups: 1, shuffled: 1, cardType: 1}}).fetch();
-	if (cardsets.length) {
-		for (let i = 0; i < cardsets.length; i++) {
-			let gotWorkload = false;
-			if (cardsets[i].shuffled) {
-				if (Utilities.checkIfRepGotWorkloadCardset(cardsets[i])) {
-					gotWorkload = true;
-				}
-			} else {
-				gotWorkload = CardType.getCardTypesWithLearningModes().includes(cardsets[i].cardType);
-			}
-
-			Cardsets.update({
-					_id: cardsets[i]._id
-				},
-				{
-					$set: {
-						"gotWorkload": gotWorkload
-					}
-				}
-			);
-		}
-		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
-	} else {
-		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
-	}
-
-	itemName = "Cardsets workload.simulator.errorCount field";
-	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
-	cardsets = Cardsets.find({'workload.simulator.errorCount': {$exists: false}}).fetch();
-	if (cardsets.length) {
-		for (let i = 0; i < cardsets.length; i++) {
-			Cardsets.update({
-					_id: cardsets[i]._id
-				},
-				{
-					$set: {
-						'workload.simulator.errorCount': [bonusFormConfig.defaultErrorCount]
-					}
-				}
-			);
-		}
-		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
-	} else {
-		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
-	}
-
 	itemName = "Cardsets transcriptBonus.dates field";
 	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
 	cardsets = Cardsets.find({'transcriptBonus.dates': {$exists: true}}).fetch();
@@ -570,46 +382,6 @@ function cardsetMigrationStep() {
 					$set: {
 						fragJetzt: fragJetzt,
 						arsnovaClick: arsnovaClick
-					}
-				}
-			);
-		}
-		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
-	} else {
-		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
-	}
-
-	itemName = "Cardsets strictWorkloadTimer field";
-	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
-	cardsets = Cardsets.find({"strictWorkloadTimer": {$exists: false}}).fetch();
-	if (cardsets.length) {
-		for (let i = 0; i < cardsets.length; i++) {
-			Cardsets.update({
-					_id: cardsets[i]._id
-				},
-				{
-					$set: {
-						strictWorkloadTimer: leitnerConfig.strictWorkloadTimer
-					}
-				}
-			);
-		}
-		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
-	} else {
-		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
-	}
-
-	itemName = "Cardsets forceNotifications field";
-	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
-	cardsets = Cardsets.find({"forceNotifications": {$exists: false}}).fetch();
-	if (cardsets.length) {
-		for (let i = 0; i < cardsets.length; i++) {
-			Cardsets.update({
-					_id: cardsets[i]._id
-				},
-				{
-					$set: {
-						forceNotifications: bonusFormConfig.defaultForceNotifications
 					}
 				}
 			);

@@ -10,6 +10,6 @@ import "./bonusStart.html";
 
 Template.cardsetInfoBoxItemBonusStart.helpers({
 	getDateStart: function () {
-		return moment(this.learningStart).format("DD.MM.YYYY");
+		return moment(this.start).format("DD.MM.YYYY");
 	}
 });

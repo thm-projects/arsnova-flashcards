@@ -1,4 +1,5 @@
 <template name="bonusFormStartDate">
+    {{#if this.isActive}}
     <div class="form-group row">
         <label class="col-md-3 control-label">{{_ "bonus.form.startDate.label"}}</label>
         <div class="col-md-9">
@@ -6,4 +7,5 @@
                    placeholder="{{_ "bonus.form.startDate.placeholder"}}" value="">
         </div>
     </div>
+    {{/if}}
 </template>

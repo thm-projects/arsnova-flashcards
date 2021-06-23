@@ -2,8 +2,7 @@ import {Mongo} from "meteor/mongo";
 import {Meteor} from "meteor/meteor";
 import {ServerStyle} from "../../util/styles";
 import {UserPermissions} from "../../util/permissions";
-import {Leitner} from "./leitner";
-import {Workload} from "./workload";
+import {LeitnerLearningWorkload} from "./leitner/leitnerLearningWorkload";
 import {Wozniak} from "./wozniak";
 import {CardType} from "../../util/cardTypes";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
@@ -95,33 +94,14 @@ if (Meteor.isServer) {
 	});
 	Meteor.publish("workloadCardsets", function () {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
-			let workload = Workload.find({user_id: this.userId}, {fields: {cardset_id: 1}}).fetch();
-			let filter = [];
-			for (let i = 0, workloadLength = workload.length; i < workloadLength; i++) {
-				if ((Leitner.find({cardset_id: workload[i].cardset_id}).count() !== 0) || (Wozniak.find({cardset_id: workload[i].cardset_id}).count() !== 0)) {
-					filter.push(workload[i].cardset_id);
-				}
-			}
-			let cardsets = [];
-			let cardset;
-			for (let i = 0, filterLength = filter.length; i < filterLength; i++) {
-				cardset = Cardsets.findOne({_id: filter[i]}, {
-					fields: {
-						_id: 1,
-						shuffled: 1,
-						cardGroups: 1
-					}
-				});
-				if (cardset !== undefined) {
-					cardsets.push(filter[i]);
-					if (cardset.shuffled) {
-						for (let k = 0, cardGroupsLength = cardset.cardGroups.length; k < cardGroupsLength; k++) {
-							cardsets.push(cardset.cardGroups[k]);
-						}
-					}
-				}
-			}
-			return Cardsets.find({_id: {$in: cardsets}});
+			let cardsetFilter = LeitnerLearningWorkload.find({
+				user_id: Meteor.userId(),
+				isActive: true
+			}).fetch().map(leitner => leitner.cardset_id);
+			cardsetFilter.concat(Wozniak.find({
+				user_id: Meteor.userId()
+			}).fetch().map(wozniak => wozniak.cardset_id));
+			return Cardsets.find({_id: {$in: cardsetFilter}});
 		} else {
 			this.ready();
 		}
@@ -293,25 +273,32 @@ const CardsetsSchema = new SimpleSchema({
 		type: Boolean
 	},
 	learningActive: {
-		type: Boolean
+		type: Boolean,
+		optional: true
 	},
 	maxCards: {
-		type: Number
+		type: Number,
+		optional: true
 	},
 	daysBeforeReset: {
-		type: Number
+		type: Number,
+		optional: true
 	},
 	learningStart: {
-		type: Date
+		type: Date,
+		optional: true
 	},
 	learningEnd: {
-		type: Date
+		type: Date,
+		optional: true
 	},
 	learningInterval: {
-		type: [Number]
+		type: [Number],
+		optional: true
 	},
 	registrationPeriod: {
-		type: Date
+		type: Date,
+		optional: true
 	},
 	wordcloud: {
 		type: Boolean
@@ -349,6 +336,20 @@ const CardsetsSchema = new SimpleSchema({
 		type: Object,
 		optional: true,
 		blackbox: true
+	},
+	learnerCount: {
+		type: Object,
+		optional: true
+	},
+	'learnerCount.bonus': {
+		type: Number,
+		optional: true,
+		defaultValue: 0
+	},
+	'learnerCount.normal': {
+		type: Number,
+		optional: true,
+		defaultValue: 0
 	},
 	learners: {
 		type: Number,
@@ -422,83 +423,54 @@ const CardsetsSchema = new SimpleSchema({
 		type: Object,
 		optional: true
 	},
-	'learningStatistics.answerTime': {
-		type: Object,
-		optional: true
-	},
-	'learningStatistics.answerTime.median': {
-		type: Object,
-		optional: true
-	},
-	'learningStatistics.answerTime.median.bonus': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.answerTime.median.normal': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.answerTime.arithmeticMean': {
-		type: Object,
-		optional: true
-	},
-	'learningStatistics.answerTime.arithmeticMean.bonus': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.answerTime.arithmeticMean.normal': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.answerTime.standardDeviation': {
-		type: Object,
-		optional: true
-	},
-	'learningStatistics.answerTime.standardDeviation.bonus': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.answerTime.standardDeviation.normal': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.workingTime.sum.bonus': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.workingTime.sum.normal': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.workingTime.median.bonus': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.workingTime.median.normal': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.workingTime.arithmeticMean.bonus': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.workingTime.arithmeticMean.normal': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.workingTime.standardDeviation.bonus': {
-		type: Number,
-		optional: true
-	},
-	'learningStatistics.workingTime.standardDeviation.normal': {
-		type: Number,
-		optional: true
-	},
 	unresolvedErrors: {
 		type: Number,
 		optional: true
+	},
+	bonusStatus: {
+		type: Number,
+		defaultValue: 0
+	},
+	'performanceStats.answerTime': {
+		type: Object,
+		optional: true
+	},
+	'performanceStats.answerTime.median': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.answerTime.arithmeticMean': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.answerTime.standardDeviation': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.workingTime': {
+		type: Object,
+		optional: true
+	},
+	'performanceStats.workingTime.sum': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.workingTime.median': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.workingTime.arithmeticMean': {
+		type: Number,
+		optional: true
+	},
+	'performanceStats.workingTime.standardDeviation': {
+		type: Number,
+		optional: true
+	},
+	learningStatistics: {
+		type: Object,
+		optional: true
 	}
-
 });
 
 Cardsets.attachSchema(CardsetsSchema);

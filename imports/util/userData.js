@@ -1,4 +1,5 @@
 import {Meteor} from "meteor/meteor";
+import {DELETED_USER_ID} from "../config/userData";
 
 /**
  * Returns the degree, the givenname and the birthname from the author of a cardset
@@ -12,6 +13,11 @@ import {Meteor} from "meteor/meteor";
 export function getAuthorName(owner, lastNameFirst = true, onlyFirstName = false, backendList = false, profile = undefined) {
 	let author = {};
 	let profileIncomplete = false;
+
+	if (owner === DELETED_USER_ID) {
+		return TAPi18n.__('user.deleted');
+	}
+
 	if (profile === undefined) {
 		author = Meteor.users.findOne({"_id": owner});
 	} else {
@@ -64,7 +70,7 @@ export function getAuthorName(owner, lastNameFirst = true, onlyFirstName = false
 			return name;
 		}
 	} else {
-		return TAPi18n.__('admin.deletedUser');
+		return TAPi18n.__('user.deleted');
 	}
 }
 

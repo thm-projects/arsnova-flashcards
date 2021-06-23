@@ -1,7 +1,7 @@
 import {Meteor} from "meteor/meteor";
-import {Leitner} from "../../../../api/subscriptions/leitner";
+import {LeitnerUserCardStats} from "../../../../api/subscriptions/leitner/leitnerUserCardStats";
 import {Wozniak} from "../../../../api/subscriptions/wozniak";
-import {Workload} from "../../../../api/subscriptions/workload";
+import {LeitnerLearningWorkload} from "../../../../api/subscriptions/leitner/leitnerLearningWorkload";
 import {Ratings} from "../../../../api/subscriptions/ratings";
 import {WebPushSubscriptions} from "../../../../api/subscriptions/webPushNotifications";
 import {Paid} from "../../../../api/subscriptions/paid";
@@ -18,7 +18,7 @@ function removeDeletedUsers() {
 		userFilter.push(users[i]._id);
 	}
 	if (userFilter.length === Meteor.users.find({}).count()) {
-		Leitner.remove({
+		LeitnerUserCardStats.remove({
 			user_id: {$nin: userFilter}
 		});
 
@@ -26,9 +26,9 @@ function removeDeletedUsers() {
 			user_id: {$nin: userFilter}
 		});
 
-		let workload = Workload.find({user_id: {$nin: userFilter}}, {fields: {cardset_id: 1}}).fetch();
+		let workload = LeitnerLearningWorkload.find({user_id: {$nin: userFilter}}, {fields: {cardset_id: 1}}).fetch();
 
-		Workload.remove({
+		LeitnerLearningWorkload.remove({
 			user_id: {$nin: userFilter}
 		});
 
@@ -57,7 +57,7 @@ function cleanWorkload() {
 	for (let i = 0; i < cardsetsLength; i++) {
 		filter.push(cardsets[i]._id);
 	}
-	Leitner.remove({
+	LeitnerUserCardStats.remove({
 		cardset_id: {$in: filter}
 	});
 
@@ -65,7 +65,7 @@ function cleanWorkload() {
 		cardset_id: {$in: filter}
 	});
 
-	Workload.remove({
+	LeitnerLearningWorkload.remove({
 		cardset_id: {$in: filter}
 	});
 }

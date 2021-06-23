@@ -17,6 +17,7 @@ FlowRouter.route('/presentation-transcripts/:card_id', {
 			import('../../../../ui/presentation/presentation.js'),
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('transcriptCard', params.card_id),
+			Meteor.subscribe('learningPhaseBonus'),
 			Meteor.subscribe('frontendUserData')
 		];
 	},

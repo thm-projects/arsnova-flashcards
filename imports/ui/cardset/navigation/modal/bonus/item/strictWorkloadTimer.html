@@ -1,8 +1,10 @@
 <template name="bonusFormStrictWorkloadTimer">
-    <div class="form-group row hidden">
-        <label class="col-md-3 control-label">{{_ "bonus.form.strictWorkloadTimer.label"}}</label>
-        <div class="col-md-9">
-            <input type="checkbox" id="strictWorkloadTimer" value="true" checked>
+    {{#if this.isActive}}
+        <div class="form-group row hidden">
+            <label class="col-md-3 control-label">{{_ "bonus.form.strictWorkloadTimer.label"}}</label>
+            <div class="col-md-9">
+                <input type="checkbox" id="strictWorkloadTimer" value="true" checked>
+            </div>
         </div>
-    </div>
+    {{/if}}
 </template>

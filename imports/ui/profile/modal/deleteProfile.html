@@ -15,6 +15,11 @@
                 </div>
                 <div class="modal-body">
                     <p>{{_ "confirm-form-profile.text" lastAppTitle=(getLastAppTitle)}}</p>
+                    {{#if isInBonus}}
+                        {{#markdeep}}
+                            {{> leaveBonusFormContent}}
+                        {{/markdeep}}
+                    {{/if}}
                     <br/>
                     <p>{{_ "confirm-form-profile.text2" lastAppTitle=(getLastAppTitle)}}</p>
                     <hr/>
