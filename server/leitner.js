@@ -86,6 +86,7 @@ Meteor.methods({
 									isActive: true
 								}
 							});
+							workload.isActive = true;
 						}
 
 						let workloadCreatedDate = moment(workload.createdAt);
