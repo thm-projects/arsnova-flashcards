@@ -152,6 +152,10 @@ const LeitnerUserCardStatsSchema = new SimpleSchema({
 	'stats.workingTime.standardDeviation': {
 		type: Number,
 		defaultValue: 0
+	},
+	'assignedCounter': {
+		type: Number,
+		defaultValue: 0
 	}
 });
 

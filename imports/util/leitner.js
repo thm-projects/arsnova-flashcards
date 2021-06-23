@@ -202,7 +202,8 @@ export let LeitnerUtilities = class LeitnerUtilities {
 							arithmeticMean: 0,
 							standardDeviation: 0
 						}
-					}
+					},
+					assignedCounter: 0
 				};
 				if (cardset.shuffled) {
 					newItemObject.original_cardset_id = card.cardset_id;
@@ -276,6 +277,9 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					isActive: true,
 					submittedAnswer: false,
 					activatedSinceDate: new Date()
+				},
+				$inc: {
+					assignedCounter: 1
 				}
 			}, {multi: true});
 			if (Meteor.isServer && Meteor.settings.debug.leitner) {

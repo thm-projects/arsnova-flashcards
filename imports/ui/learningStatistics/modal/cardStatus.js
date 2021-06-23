@@ -29,7 +29,7 @@ Template.learningCardStatusModal.helpers({
 		}
 	},
 	gotCardStatsData: function () {
-		return Session.get('selectedLearningCardStats') !== undefined && Session.get('selectedLearningCardStats')[0].card_id !== undefined;
+		return Session.get('selectedLearningCardStats') !== undefined && Session.get('selectedLearningCardStats').length && Session.get('selectedLearningCardStats')[0].card_id !== undefined;
 	},
 	getCardStatsData: function () {
 		return Session.get('selectedLearningCardStats');
@@ -49,6 +49,26 @@ Template.learningCardStatusModal.helpers({
 	},
 	getKnownPercent: function () {
 		return this.percent + " %";
+	},
+	getAssignedCards: function () {
+		let cardStatsData = Session.get('selectedLearningCardStats');
+		return cardStatsData[0].cardInteractionStats.assigned.count;
+	},
+	getAnsweredCards: function () {
+		let cardStatsData = Session.get('selectedLearningCardStats');
+		return cardStatsData[0].cardInteractionStats.answered.count;
+	},
+	getAssignedCardsPercentage: function () {
+		let cardStatsData = Session.get('selectedLearningCardStats');
+		return cardStatsData[0].cardInteractionStats.assigned.percentage;
+	},
+	getAnsweredCardsPercentage: function () {
+		let cardStatsData = Session.get('selectedLearningCardStats');
+		return cardStatsData[0].cardInteractionStats.answered.percentage;
+	},
+	getTotalCards: function () {
+		let cardStatsData = Session.get('selectedLearningCardStats');
+		return cardStatsData[0].cardInteractionStats.total;
 	}
 });
 
