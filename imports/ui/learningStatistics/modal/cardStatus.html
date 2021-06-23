@@ -75,7 +75,7 @@
                                         {{#unless isUser}}
                                             <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="answeredBy">{{_ "learningCardStats.table.answeredBy"}}</a> {{> learningBonusStasticsItemSort (setSortObject "answeredBy")}}</th>
                                         {{/unless}}
-                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="workingTimeMedian">Ø&nbsp;{{_ "learningCardStats.table.totalTime"}}</a> {{> learningBonusStasticsItemSort (setSortObject "workingTimeMedian")}}</th>
+                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="workingTimeMedian">Ø&nbsp;{{_ "learningCardStats.table.medianTime"}}</a> {{> learningBonusStasticsItemSort (setSortObject "workingTimeMedian")}}</th>
                                         <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="workingTimeSum">{{_ "learningCardStats.table.totalTime"}}</a> {{> learningBonusStasticsItemSort (setSortObject "workingTimeSum")}}</th>
                                     </tr>
                                     {{#each getCardStatsData}}
