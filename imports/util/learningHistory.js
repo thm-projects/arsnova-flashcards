@@ -73,11 +73,7 @@ export let LeitnerHistoryUtilities = class LearningHistory {
 			} else {
 				cardStats[i].content =  text;
 			}
-			cardStats[i].subject = `${cardStats[i].subject}: ${cardStats[i].content}`;
-
-			//Remove unused data
-			delete cardStats[i].cardData;
-			delete cardStats[i].stats;
+			cardStats[i].cardSubject = `${cardStats[i].cardSubject}: ${cardStats[i].content}`;
 		}
 		return Utilities.sortArray(cardStats, config.defaultCardStatsSettings.content, config.defaultCardStatsSettings.desc);
 	}
@@ -180,7 +176,7 @@ export let LeitnerHistoryUtilities = class LearningHistory {
 			} else {
 				activationDayHistory[i].content =  text;
 			}
-			activationDayHistory[i].subject = `${activationDayHistory[i].subject}: ${activationDayHistory[i].content}`;
+			activationDayHistory[i].cardSubject = `${activationDayHistory[i].cardSubject}: ${activationDayHistory[i].content}`;
 		}
 		return Utilities.sortArray(activationDayHistory, config.defaultActivationDayHistorySortSettings.content, config.defaultActivationDayHistorySortSettings.desc);
 	}
