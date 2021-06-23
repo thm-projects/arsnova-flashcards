@@ -299,7 +299,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				messageType = 2;
 			}
 			Meteor.call('prepareMail', cardset, user, messageType, isNewcomer, activation_day_id);
-			Meteor.call('prepareWebpush', cardset, user, isNewcomer, activation_day_id, messageType);
+			Meteor.call('prepareWebpush', cardset, user, messageType, isNewcomer, activation_day_id);
 		}
 	}
 
@@ -585,7 +585,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 			}
 			let query = {
 				learning_phase_id: workload.learning_phase_id,
-				workload: workload._id,
+				workload_id: workload._id,
 				cardset_id: workload.cardset_id,
 				user_id: user._id,
 				box: {$ne: 6}
@@ -619,7 +619,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					LeitnerUserCardStats.update({
 						card_id: {$in: idArray},
 						learning_phase_id: workload.learning_phase_id,
-						workload: workload._id,
+						workload_id: workload._id,
 						cardset_id: workload.cardset_id,
 						user_id: user._id
 					}, {
@@ -634,14 +634,14 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					if (Meteor.settings.debug.leitner) {
 						console.log(`===> ${LeitnerUserCardStats.find({
 							learning_phase_id: workload.learning_phase_id,
-							workload: workload._id,
+							workload_id: workload._id,
 							cardset_id: workload.cardset_id,
 							user_id: user._id,
 							isActive: true}).count()} active Cards left after reset\n`);
 					}
 					let latestActivationDate = LeitnerActivationDay.findOne({
 						learning_phase_id: workload.learning_phase_id,
-						workload: workload._id,
+						workload_id: workload._id,
 						cardset_id: workload.cardset_id,
 						user_id: user._id
 					}, {$sort: {createdAt: -1}});
@@ -657,7 +657,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					LeitnerPerformanceHistory.update({
 						card_id: {$in: idArray},
 						learning_phase_id: workload.learning_phase_id,
-						workload: workload._id,
+						workload_id: workload._id,
 						cardset_id: workload.cardset_id,
 						user_id: user._id,
 						activation_day_id: latestActivationDate._id
@@ -680,7 +680,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				LeitnerUserCardStats.update({
 					card_id: {$in: idArray},
 					learning_phase_id: workload.learning_phase_id,
-					workload: workload._id,
+					workload_id: workload._id,
 					cardset_id: workload.cardset_id,
 					user_id: user._id
 				}, {
@@ -695,7 +695,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				if (Meteor.settings.debug.leitner) {
 					console.log(`===> ${LeitnerUserCardStats.find({
 						learning_phase_id: workload.learning_phase_id,
-						workload: workload._id,
+						workload_id: workload._id,
 						cardset_id: workload.cardset_id,
 						user_id: user._id,
 						isActive: true
@@ -703,7 +703,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				}
 				let latestActivationDate = LeitnerActivationDay.findOne({
 					learning_phase_id: workload.learning_phase_id,
-					workload: workload._id,
+					workload_id: workload._id,
 					cardset_id: workload.cardset_id,
 					user_id: user._id
 				}, {$sort: {createdAt: -1}});
@@ -719,7 +719,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 				LeitnerPerformanceHistory.update({
 					card_id: {$in: idArray},
 					learning_phase_id: workload.learning_phase_id,
-					workload: workload._id,
+					workload_id: workload._id,
 					cardset_id: workload.cardset_id,
 					user_id: user._id,
 					activation_day_id: latestActivationDate._id
