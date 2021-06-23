@@ -101,13 +101,13 @@
                                             <td>{{this.cardTypeName}}</td>
                                             <td>{{{getBoxProgress this.box}}}</td>
                                             <td>{{this.totalAnswers}}</td>
-                                            <td>{{getKnownPercent}}</td>
+                                            <td>{{this.percent}}&nbsp;%</td>
                                             <td>{{this.skipped}}</td>
                                             {{#if this.isBonusStats}}
                                                 <td>{{_ "learningCardStats.table.user" count=this.answeredBy}}</td>
                                             {{/if}}
-                                            <td>{{humanizeDuration this.workingTimeMedian}}</td>
-                                            <td>{{humanizeDuration this.workingTimeSum}}</td>
+                                            <td>{{this.workingTimeMedianString}}</td>
+                                            <td>{{this.workingTimeSumString}}</td>
                                         </tr>
                                     {{/each}}
                                     </tbody>

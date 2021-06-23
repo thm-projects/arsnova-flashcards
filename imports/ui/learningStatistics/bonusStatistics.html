@@ -131,10 +131,10 @@
                             {{#if isNotificationEnabled}}
                                 <td>{{{getNotificationStatus this}}}</td>
                             {{/if}}
-                            <td>{{getMomentsDate this.dateJoinedBonus}}</td>
-                            <td>{{getMomentsDate this.lastActivity}}</td>
-                            <td>{{humanizeDuration this.workingTimeSum}}</td>
-                            <td>{{humanizeDuration this.cardArithmeticMean}}</td>
+                            <td>{{this.dateJoinedBonusString}}</td>
+                            <td>{{this.lastActivityString}}</td>
+                            <td>{{this.workingTimeSumString}}</td>
+                            <td>{{this.cardArithmeticMeanString}}</td>
                             <td>{{this.box1}}</td>
                             <td>{{this.box2}}</td>
                             <td>{{this.box3}}</td>

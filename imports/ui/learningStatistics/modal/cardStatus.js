@@ -47,9 +47,6 @@ Template.learningCardStatusModal.helpers({
 			return TAPi18n.__('learningStatistics.box', {number: box});
 		}
 	},
-	getKnownPercent: function () {
-		return this.percent + " %";
-	},
 	getAssignedCards: function () {
 		let cardStatsData = Session.get('selectedLearningCardStats');
 		return cardStatsData[0].cardInteractionStats.assigned.count;
