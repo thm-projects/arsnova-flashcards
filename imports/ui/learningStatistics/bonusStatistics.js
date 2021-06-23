@@ -159,6 +159,16 @@ Template.learningBonusStastics.events({
 		Session.set('helpFilter', "leitner");
 		FlowRouter.go('help');
 	},
+	"click #showBonusCardStats": function () {
+		Meteor.call("getLearningCardStats", "null", FlowRouter.getParam('_id'), Session.get('selectedLearningPhaseID'), true, function (error, result) {
+			if (error) {
+				throw new Meteor.Error(error.statusCode, 'Error could not receive content for card stats');
+			}
+			if (result) {
+				Session.set('selectedLearningCardStats', LeitnerHistoryUtilities.prepareCardStatsData(result));
+			}
+		});
+	},
 	"click .showLearningCardStats": function (event) {
 		let user = {};
 		user.user_id = $(event.currentTarget).data('id');
@@ -171,7 +181,7 @@ Template.learningBonusStastics.events({
 		user.isInBonus = true;
 		if (user.user_id !== undefined) {
 			Session.set('selectedLearningStatisticsUser', user);
-			Meteor.call("getLearningCardStats", user.user_id, FlowRouter.getParam('_id'), user.learning_phase_id, function (error, result) {
+			Meteor.call("getLearningCardStats", user.user_id, FlowRouter.getParam('_id'), user.learning_phase_id, false, function (error, result) {
 				if (error) {
 					throw new Meteor.Error(error.statusCode, 'Error could not receive content for card stats');
 				}

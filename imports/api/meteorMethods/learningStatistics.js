@@ -167,33 +167,87 @@ Meteor.methods({
 			return CardsetUserlist.getLearners(LeitnerLearningWorkload.find({learning_phase_id: learning_phase_id, isBonus: true}).fetch(), cardset_id, learning_phase_id);
 		}
 	},
-	getLearningCardStats: function (user_id, cardset_id, learning_phase_id) {
+	getLearningCardStats: function (user_id, cardset_id, learning_phase_id, isBonusStats) {
 		check(user_id, String);
 		check(cardset_id, String);
 		check(learning_phase_id, String);
+		check(isBonusStats, Boolean);
 
 		let newUserId;
 		let cardset = Cardsets.findOne({_id: cardset_id});
+		let gotAdminAccess = false;
 		if (UserPermissions.gotBackendAccess() || (Meteor.userId() === cardset.owner || cardset.editors.includes(Meteor.userId()))) {
-			newUserId = user_id;
-		} else {
-			newUserId = Meteor.userId();
+			gotAdminAccess = true;
 		}
 
-		let leitnerCardStats = LeitnerUserCardStats.find({
-			learning_phase_id: learning_phase_id,
-			user_id: newUserId
-		}).fetch();
+		let leitnerCardStats;
+		if (isBonusStats && gotAdminAccess) {
+			leitnerCardStats = LeitnerUserCardStats.aggregate(
+				[
+					{
+						$match: {
+							learning_phase_id: learning_phase_id
+						}
+					},
+					{
+						$group: {
+							_id: "$card_id",
+							box: {$avg: "$box"},
+							known: {$sum: "$stats.answers.known"},
+							notKnown: {$sum: "$stats.answers.notKnown"},
+							totalTime: {$sum: "$stats.totalTime"},
+							answeredBy: {
+								$push: {
+									$cond: {
+										if: {
+											$or: [
+												{$gt: ["$stats.answers.known", 0]},
+												{$gt: ["$stats.answers.notKnown", 0]}
+											]
+										}, then: "$user_id", else: "$$REMOVE"
+									}
+								}
+							}
+						}
+					},
+					{
+						$project: {
+							card_id: "$_id",
+							box: {$round: "$box"},
+							stats: {
+								answers: {known: "$known", notKnown: "$notKnown"},
+								totalTime: "$totalTime"
+							},
+							answeredBy: {$size: "$answeredBy"}
+						}
+					}
+			]);
+		} else {
+			if (gotAdminAccess) {
+				newUserId = user_id;
+			} else {
+				newUserId = Meteor.userId();
+			}
+			leitnerCardStats = LeitnerUserCardStats.find({
+				learning_phase_id: learning_phase_id,
+				user_id: newUserId
+			}).fetch();
+		}
 
 		if (leitnerCardStats !== undefined && leitnerCardStats.length) {
 			let query = {
-				user_id: user_id,
 				cardset_id: cardset_id
 			};
 
-			if (leitnerCardStats.workload_id !== "null") {
-				query.workload_id = leitnerCardStats[0].workload_id;
+			if (isBonusStats) {
+				query.learning_phase_id = learning_phase_id;
+			} else {
+				if (leitnerCardStats.workload_id !== "null") {
+					query.workload_id = leitnerCardStats[0].workload_id;
+					query.user_id = newUserId;
+				}
 			}
+
 			let lastActivity = "null";
 			query["timestamps.submission"] = {$exists: true};
 
@@ -221,7 +275,7 @@ Meteor.methods({
 						cardType: 1
 					}}).fetch();
 			for (let i = 0; i < leitnerCardStats.length; i++) {
-				leitnerCardStats[i].isUser = true;
+				leitnerCardStats[i].isBonusStats = isBonusStats;
 				leitnerCardStats[i].cardsetTitle = cardset.name;
 				leitnerCardStats[i].lastActivity = lastActivity;
 				for (let c = 0; c < cards.length; c++) {

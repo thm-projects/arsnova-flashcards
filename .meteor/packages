@@ -77,3 +77,4 @@ aldeed:template-extension
 cmather:handlebars-server
 server-render@0.3.1
 reactive-dict@1.3.0
+sakulstra:aggregate
