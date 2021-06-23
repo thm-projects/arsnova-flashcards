@@ -40,7 +40,7 @@
                         {{#each getErrorReport}}
                             <tr class="{{#if canEditCard}}errorReportEntry{{/if}}" data-error-id="{{this._id}}">
                                 <td>{{#if hasSide}}{{getSide this.cardSide}}{{else}}{{this.cardName}}{{/if}}</td>
-                                <td style="max-width: 40vh;">{{{getErrors this._id}}}</td>
+                                <td>{{{getErrors this._id}}}</td>
                                 <td>{{getAuthorName this.user_id}}</td>
                                 <td>{{getStatus this.status}}</td>
                             </tr>
@@ -50,4 +50,8 @@
             </div>
         </div>
     </div>
+</template>
+
+<template name="testFlo">
+    <p style="color: white">Halloasdjaisdaoisdioasdhiashf</p>
 </template>
