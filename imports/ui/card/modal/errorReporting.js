@@ -7,6 +7,7 @@ import {CardNavigation} from "../../../util/cardNavigation";
 import {CardType} from "../../../util/cardTypes";
 import {ErrorReporting} from "../../../util/errorReporting";
 import {UserPermissions} from "../../../util/permissions";
+import {ServerStyle} from "../../../util/styles";
 
 function getCardSide() {
 	return parseInt($('input[name="cardSide"]:checked').val());
@@ -55,6 +56,9 @@ function checkInput() {
 Template.errorReportingModal.helpers({
 	isErrorReviewMode: function () {
 		return Session.get('errorReportingMode');
+	},
+	getLink: function () {
+		return ServerStyle.getGitlabLink();
 	}
 });
 

@@ -24,8 +24,14 @@ export let LeitnerHistoryUtilities = class LearningHistory {
 			//Set totalAnswers
 			cardStats[i].totalAnswers = cardStats[i].stats.answers.known + cardStats[i].stats.answers.notKnown;
 
-			//Set totalTime
-			cardStats[i].totalTime = cardStats[i].stats.totalTime;
+			//Set skipped answers
+			cardStats[i].skipped = cardStats[i].stats.answers.skipped;
+
+			//Set times
+			cardStats[i].workingTimeSum = cardStats[i].stats.workingTime.sum;
+			cardStats[i].workingTimeMedian = cardStats[i].stats.workingTime.median;
+			cardStats[i].workingTimeArithmeticMean = cardStats[i].stats.workingTime.arithmeticMean;
+			cardStats[i].workingTimeStandardDeviation = cardStats[i].stats.workingTime.standardDeviation;
 
 			//Set cardType and cardType name
 			cardStats[i].cardType = card.cardData.cardType;
@@ -67,7 +73,7 @@ export let LeitnerHistoryUtilities = class LearningHistory {
 			} else {
 				cardStats[i].content =  text;
 			}
-			cardStats[i].subject = `${cardStats[i].subject}: ${cardStats[i].content}`;
+			cardStats[i].cardSubject = `${cardStats[i].cardSubject}: ${cardStats[i].content}`;
 		}
 		return Utilities.sortArray(cardStats, config.defaultCardStatsSettings.content, config.defaultCardStatsSettings.desc);
 	}
@@ -170,7 +176,7 @@ export let LeitnerHistoryUtilities = class LearningHistory {
 			} else {
 				activationDayHistory[i].content =  text;
 			}
-			activationDayHistory[i].subject = `${activationDayHistory[i].subject}: ${activationDayHistory[i].content}`;
+			activationDayHistory[i].cardSubject = `${activationDayHistory[i].cardSubject}: ${activationDayHistory[i].content}`;
 		}
 		return Utilities.sortArray(activationDayHistory, config.defaultActivationDayHistorySortSettings.content, config.defaultActivationDayHistorySortSettings.desc);
 	}
