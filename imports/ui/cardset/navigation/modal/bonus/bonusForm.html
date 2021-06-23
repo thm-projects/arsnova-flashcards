@@ -3,41 +3,51 @@
          aria-labelledby="bonusFormModalTitle">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <span class="modal-icon">
-                        <span class="fas fa-graduation-cap"></span>
-                    </span>
-                    {{> mainModalItemCloseIcon}}
-                    <h4 id="bonusFormModalTitle" class="modal-title">{{#if isNewBonus}}{{_
-                            "bonus.form.new.title"}}{{else}}{{_ "bonus.form.edit.title"}}{{/if}}
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form">
-                        {{> bonusFormMaxWorkload}}
-                        {{> bonusFormDaysBeforeReset}}
-                        {{> bonusFormIntervals}}
-                        {{> bonusFormStartDate}}
-                        {{> bonusFormEndDate}}
-                        {{> bonusFormRegistrationPeriod}}
-                        {{> bonusFormMaxPoints}}
-                        {{> bonusFormMinLearned}}
-                        {{> bonusFormStrictWorkloadTimer}}
-                        {{> bonusFormOpenSimulator}}
-                        {{> bonusFormForceNotifications}}
-                        {{> pomodoroTimerModalContent}}
+                {{#with getActiveBonusLearningPhase this._id true}}
+                    <div class="modal-header">
+                        <span class="modal-icon">
+                            <span class="fas fa-graduation-cap"></span>
+                        </span>
+                        {{> mainModalItemCloseIcon}}
+                        <h4 id="bonusFormModalTitle" class="modal-title">{{#if displayContentOfNewLearningPhaseBonus}}{{_
+                                "bonus.form.new.title"}}{{else}}{{_ "bonus.form.edit.title"}}&nbsp;{{#unless this.isActive}}{{_ "learningStatistics.archived"}}{{/unless}}{{/if}}
+                        </h4>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button id="cancelBonus" class="btn btn-default btn-raised pull-left"
-                            data-dismiss="modal">{{_ "bonus.form.button.cancel"}}</button>
-                    <button id="resetBonus" class="btn btn-danger btn-raised pull-left">{{_
-                            "bonus.form.button.reset"}}</button>
-                    <button id="startBonus"
-                            class="btn btn-success btn-raised pull-right">{{#if isNewBonus}}{{_
-                            "bonus.form.button.start"}}{{else}}{{_
-                            "bonus.form.button.update"}}{{/if}}</button>
-                </div>
+                    <div class="modal-body">
+                        <div class="form">
+                                {{> bonusFormTitle}}
+                                {{> bonusFormMaxWorkload}}
+                                {{> bonusFormDaysBeforeReset}}
+                                {{> bonusFormIntervals}}
+                                {{> bonusFormStartDate}}
+                                {{> bonusFormEndDate}}
+                                {{> bonusFormRegistrationPeriod}}
+                                {{> bonusFormMaxPoints}}
+                                {{> bonusFormMinLearned}}
+                                {{> bonusFormStrictWorkloadTimer}}
+                                {{> bonusFormOpenSimulator}}
+                                {{> bonusFormForceNotifications}}
+                                {{#if this.isActive}}
+                                    {{> pomodoroTimerModalContent}}
+                                {{/if}}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        {{#if this.isActive}}
+                            <button id="cancelBonus" class="btn btn-default btn-raised pull-left"
+                                    data-dismiss="modal">{{_ "bonus.form.button.cancel"}}</button>
+                            <button id="resetBonus" class="btn btn-danger btn-raised pull-left">{{_
+                                    "bonus.form.button.reset"}}</button>
+                            <button id="startBonus"
+                                    class="btn btn-success btn-raised pull-right">{{#if displayContentOfNewLearningPhaseBonus}}{{_
+                                    "bonus.form.button.start"}}{{else}}{{_
+                                    "bonus.form.button.update"}}{{/if}}</button>
+                        {{else}}
+                            <button id="deleteArchivedBonus" class="btn btn-warning btn-raised pull-left">{{_ "learningStatistics.delete"}}</button>
+                            <button id="updateArchivedBonus" class="btn btn-success btn-raised pull-right">{{_ "bonus.form.button.update"}}</button>
+                        {{/if}}
+                    </div>
+                {{/with}}
             </div>
         </div>
     </div><!-- /form group -->

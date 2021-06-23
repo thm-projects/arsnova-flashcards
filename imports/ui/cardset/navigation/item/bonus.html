@@ -10,10 +10,12 @@
                         </div>
                     </button>
                     <ul class="dropdown-menu">
-                        {{#if learningActive}}
+                        {{#if gotArchivedOrActiveBonus bonusStatus}}
                             <li id="showStats" class="showStatsList">
                                 <span class="fas fa-clipboard-list"></span> {{_ "cardset.tooltip.displayBonusStats"}}
                             </li>
+                        {{/if}}
+                        {{#if gotActiveBonus bonusStatus}}
                             <li id="manageBonus"
                                 class="manageLearn manageLearningList learnBoxActive">
                                 <span class="fas fa-cog"></span> {{_ "bonus.form.edit.title"}}

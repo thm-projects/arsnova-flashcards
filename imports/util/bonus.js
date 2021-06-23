@@ -1,6 +1,6 @@
 import {Cardsets} from "../api/subscriptions/cardsets";
 import {Meteor} from "meteor/meteor";
-import {Workload} from "../api/subscriptions/workload";
+import {LeitnerLearningWorkload} from "../api/subscriptions/leitner/leitnerLearningWorkload";
 import {ServerSettings} from "./settings";
 
 export let Bonus = class Bonus {
@@ -8,17 +8,16 @@ export let Bonus = class Bonus {
 		if (user_id === undefined) {
 			user_id = Meteor.userId();
 		}
-		let workload = Workload.findOne({user_id: user_id, cardset_id: cardset_id}, {fields: {'leitner.bonus': 1}});
-		if (workload !== undefined && workload.leitner !== undefined && workload.leitner.bonus !== undefined) {
-			return workload.leitner.bonus === true;
+		let leitnerWorkload = LeitnerLearningWorkload.findOne({
+			user_id: user_id,
+			cardset_id: cardset_id,
+			isActive: true
+		}, {fields: {isBonus: 1}});
+		if (leitnerWorkload !== undefined) {
+			return leitnerWorkload.isBonus;
 		} else {
 			return false;
 		}
-	}
-
-	static isRegistrationPeriodActive (cardset_id) {
-		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, registrationPeriod: 1}});
-		return moment(cardset.registrationPeriod).endOf('day') > new Date();
 	}
 
 	static canJoinBonus (cardset_id) {
@@ -37,15 +36,22 @@ export let Bonus = class Bonus {
 		}
 	}
 
-	static getAchievedBonus (box6, workload, total) {
-		let box6Goal = (total / 100) * workload.bonus.minLearned;
+	static isRegistrationPeriodActive (cardset_id) {
+		let cardset = Cardsets.findOne({_id: cardset_id});
+		if (cardset.bonusStatus !== undefined) {
+			return cardset.bonusStatus === 1 || cardset.bonusStatus === 2;
+		}
+	}
+
+	static getAchievedBonus (box6, bonusPoints, total) {
+		let box6Goal = (total / 100) * bonusPoints.minLearned;
 		let bonusPointSteps = box6 / 10;
-		if (workload.bonus.maxPoints !== 0) {
-			bonusPointSteps = box6Goal / workload.bonus.maxPoints;
+		if (bonusPoints.maxPoints !== 0) {
+			bonusPointSteps = box6Goal / bonusPoints.maxPoints;
 		}
 		let achievedBonus = Math.round(box6 / bonusPointSteps) ;
-		if (achievedBonus > workload.bonus.maxPoints) {
-			return workload.bonus.maxPoints;
+		if (achievedBonus > bonusPoints.maxPoints) {
+			return bonusPoints.maxPoints;
 		} else {
 			return achievedBonus;
 		}

@@ -15,10 +15,12 @@ import tippy from "tippy.js";
 Template.bonusFormIntervals.onRendered(function () {
 	const template = document.getElementById('bonus-intervals-tooltip');
 
-	tippy('#bonus-intervals-info', {
-		content: template.innerHTML,
-		allowHTML: true
-	});
+	if (template !== null) {
+		tippy('#bonus-intervals-info', {
+			content: template.innerHTML,
+			allowHTML: true
+		});
+	}
 });
 
 

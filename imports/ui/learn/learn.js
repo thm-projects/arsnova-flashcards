@@ -3,7 +3,7 @@
 import {Meteor} from "meteor/meteor";
 import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
-import {Leitner} from "../../api/subscriptions/leitner";
+import {LeitnerUserCardStats} from "../../api/subscriptions/leitner/leitnerUserCardStats";
 import {Wozniak} from "../../api/subscriptions/wozniak";
 import {Cardsets} from "../../api/subscriptions/cardsets";
 import {CardNavigation} from "../../util/cardNavigation";
@@ -13,6 +13,7 @@ import "../main/modal/arsnovaLite.js";
 import "../help/help.js";
 import "../card/card.js";
 import "../learningStatistics/modal/history.js";
+import "../learningStatistics/modal/cardStatus.js";
 import "./learn.html";
 import {PomodoroTimer} from "../../util/pomodoroTimer";
 import {Route} from "../../util/route";
@@ -26,6 +27,7 @@ import {AnswerUtilities} from "../../util/answers";
 import "./overlays/backgroundOverlay.js";
 import "./overlays/gameOverlay.js";
 import {LockScreen} from "../../util/lockScreen";
+import {LeitnerLearningWorkloadUtilities} from "../../util/learningWorkload";
 
 Session.set('animationPlaying', false);
 
@@ -36,12 +38,12 @@ Session.set('animationPlaying', false);
  */
 
 Template.learnAlgorithms.onCreated(function () {
-	const id = FlowRouter.getParam('_id');
-	if (Route.isBox() && Bonus.isInBonus(id)) {
+	const cardset_id = FlowRouter.getParam('_id');
+	if (Route.isBox() && Bonus.isInBonus(cardset_id)) {
 		PomodoroTimer.updateServerTimerStart();
 		PomodoroTimer.start();
 	}
-	let cardset = Cardsets.findOne({_id: id}, {
+	let cardset = Cardsets.findOne({_id: cardset_id}, {
 		fields: {
 			cardType: 1,
 			shuffled: 1,
@@ -49,22 +51,28 @@ Template.learnAlgorithms.onCreated(function () {
 			difficulty: 1
 		}
 	});
-	const leitner = Leitner.find({active: true}, {
+	const letinerWorkload = LeitnerLearningWorkloadUtilities.getActiveWorkload(cardset_id, Meteor.userId());
+	const leitnerCards = LeitnerUserCardStats.find({
+		learning_phase_id: letinerWorkload.learning_phase_id,
+		workload_id: letinerWorkload._id,
+		cardset_id: letinerWorkload.cardset_id,
+		isActive: true
+	}, {
 		fields: {
 			original_cardset_id: 1,
 			cardset_id: 1
 		}
 	}).map(card => card.original_cardset_id ? card.original_cardset_id : card.cardset_id);
 
-	const cardsets = leitner.reduce((acc, elem) => {
+	const cardsets = leitnerCards.reduce((acc, elem) => {
 		acc[elem] = (acc[elem] || 0) + 1;
 		return acc;
 	}, {});
 
 	const cardDifficulties = [0, 0, 0, 0];
-	if (cardsets[id]) {
-		cardDifficulties[cardset.difficulty] = cardsets[id];
-		delete cardsets[id];
+	if (cardsets[cardset_id]) {
+		cardDifficulties[cardset.difficulty] = cardsets[cardset_id];
+		delete cardsets[cardset_id];
 	}
 	for (const [key, value] of Object.entries(cardsets)) {
 		const tempCardset = Cardsets.findOne({_id: key}, {fields: {difficulty: 1}});
@@ -103,8 +111,11 @@ Template.learnAlgorithms.onRendered(function () {
 Template.learnAlgorithms.helpers({
 	noCards: function () {
 		if (FlowRouter.getRouteName() === 'box') {
-			return !Leitner.findOne({
-				cardset_id: FlowRouter.getParam('_id'),
+			let leitnerWorkload = LeitnerLearningWorkloadUtilities.getActiveWorkload(FlowRouter.getParam('_id'), Meteor.userId());
+			return !LeitnerUserCardStats.findOne({
+				learning_phase_id: leitnerWorkload.learning_phase_id,
+				workload_id: leitnerWorkload._id,
+				cardset_id: leitnerWorkload.cardset_id,
 				user_id: Meteor.userId(),
 				box: {$ne: 6}
 			});
@@ -115,11 +126,14 @@ Template.learnAlgorithms.helpers({
 	},
 	isFinished: function () {
 		if (FlowRouter.getRouteName() === 'box') {
-			return !Leitner.findOne({
-				cardset_id: FlowRouter.getParam('_id'),
+			let leitnerWorkload = LeitnerLearningWorkloadUtilities.getActiveWorkload(FlowRouter.getParam('_id'), Meteor.userId());
+			return LeitnerUserCardStats.find({
+				learning_phase_id: leitnerWorkload.learning_phase_id,
+				workload_id: leitnerWorkload._id,
+				cardset_id: leitnerWorkload.cardset_id,
 				user_id: Meteor.userId(),
-				active: true
-			});
+				isActive: true
+			}).count() === 0;
 		}
 		if (FlowRouter.getRouteName() === 'memo') {
 			let actualDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);

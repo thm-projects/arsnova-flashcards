@@ -12,7 +12,7 @@ import {Bonus} from "../../../util/bonus";
 import "./index.html";
 import "./user.js";
 import {UserPermissions} from "../../../util/permissions";
-import * as config from "../../../config/userData.js";
+import {DELETED_USER_ID, NOTIFICATIONS_USER_ID, CARDS_USER_ID} from "../../../config/userData";
 
 /*
  * ############################################################################
@@ -22,7 +22,7 @@ import * as config from "../../../config/userData.js";
 
 Template.admin_users.helpers({
 	userListAdmin: function () {
-		var users = Meteor.users.find({_id: {$nin: config.SERVER_USERS}});
+		var users = Meteor.users.find({_id: {$nin: [DELETED_USER_ID, NOTIFICATIONS_USER_ID, CARDS_USER_ID]}});
 		var fields = [];
 		var dateString = null;
 		var date = null;

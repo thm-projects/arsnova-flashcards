@@ -10,7 +10,7 @@ import "./bonusStatus.html";
 
 Template.cardsetInfoBoxItemBonusStatus.helpers({
 	getLearningStatus: function () {
-		if (this.learningEnd.getTime() > new Date().getTime()) {
+		if (this.end.getTime() > new Date().getTime()) {
 			return TAPi18n.__('set-list.activeLearnphase');
 		} else {
 			return TAPi18n.__('set-list.inactiveLearnphase');

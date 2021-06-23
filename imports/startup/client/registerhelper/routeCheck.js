@@ -165,3 +165,7 @@ Template.registerHelper('isRepetitorienFilterIndexOrShuffle', function () {
 	}
 	return Route.isRepetitorienFilterIndex() || Route.isShuffle() || Route.isEditShuffle();
 });
+
+Template.registerHelper('isProfileSettingsRoute', function () {
+	return Route.isProfileSettings();
+});

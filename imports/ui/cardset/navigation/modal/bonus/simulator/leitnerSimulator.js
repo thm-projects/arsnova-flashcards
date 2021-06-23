@@ -22,7 +22,7 @@ import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 
 Template.cardsetLeitnerSimulatorForm.onRendered(function () {
 	$('#cardsetLeitnerSimulatorModal').on('show.bs.modal', function () {
-		LearningStatus.setupTempData(FlowRouter.getParam('_id'), '', 'simulator');
+		LearningStatus.setupTempData(FlowRouter.getParam('_id'), '', '', 'simulator');
 		Session.set('activeSimulatorSnapshotDate', 0);
 		BonusForm.createSnapshotDates();
 		BonusForm.initializeSimulatorWorkload();

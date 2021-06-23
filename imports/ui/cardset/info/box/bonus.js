@@ -23,17 +23,31 @@ import "./item/bonusWorkingTimeArithmeticMean.js";
 import "./item/bonusWorkingTimeMedian.js";
 import "./item/bonusWorkingTimeStandardDeviation.js";
 import "./item/bonusWorkingTimeSum.js";
+import "./item/bonusTitle.js";
 import "./bonus.html";
 
 /*
 * ############################################################################
-* bonusPhaseInfoBox
+* bonusInfoBox
 * ############################################################################
 */
+
 
 Template.bonusInfoBox.events({
 	"click #collapseLearningPhaseInfoButton": function (event) {
 		event.preventDefault();
 		CardsetVisuals.changeCollapseElement("#collapseLearningPhaseInfo");
+	}
+});
+
+/*
+* ############################################################################
+* bonusInfoBoxContent
+* ############################################################################
+*/
+
+Template.bonusInfoBoxContent.helpers({
+	gotBonusTitle: function () {
+		return this.title !== undefined && this.title.length;
 	}
 });

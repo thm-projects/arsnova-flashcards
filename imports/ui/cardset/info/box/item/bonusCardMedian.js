@@ -1,5 +1,4 @@
 import "./bonusCardMedian.html";
-import {Session} from "meteor/session";
 import {Utilities} from "../../../../../util/utilities";
 /*
 * ############################################################################
@@ -10,8 +9,8 @@ import {Utilities} from "../../../../../util/utilities";
 Template.cardsetInfoBoxItemBonusCardMedian.helpers({
 	getBonusCardMedian: function () {
 		let bonusCardMedian = 0;
-		if (Session.get('activeCardset') !== undefined && Session.get('activeCardset').learningStatistics !== undefined && Session.get('activeCardset').learningStatistics.answerTime !== undefined) {
-			bonusCardMedian = Session.get('activeCardset').learningStatistics.answerTime.median.bonus;
+		if (this.performanceStats !== undefined && this.performanceStats.answerTime !== undefined) {
+			bonusCardMedian = this.performanceStats.answerTime.median;
 		}
 		return Utilities.humanizeDuration(bonusCardMedian);
 	}

@@ -4,13 +4,14 @@ import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {Meteor} from "meteor/meteor";
 import {Bonus} from "../../../../util/bonus";
 import {Profile} from "../../../../util/profile";
+import {Utilities} from "../../../../util/utilities";
 
 Template.registerHelper("getDefaultMinLearned", function () {
 	return BonusForm.getDefaultMinLearned();
 });
 
-Template.registerHelper("getCurrentMinLearned", function (cardset) {
-	return BonusForm.getCurrentMinLearned(cardset);
+Template.registerHelper("getCurrentMinLearned", function (learningPhase) {
+	return BonusForm.getCurrentMinLearned(learningPhase);
 });
 
 Template.registerHelper("getDefaultMaxBonusPoints", function () {
@@ -21,8 +22,8 @@ Template.registerHelper("getDefaultMinBonusPoints", function () {
 	return BonusForm.getDefaultMinBonusPoints();
 });
 
-Template.registerHelper("getCurrentMaxBonusPoints", function (cardset) {
-	return BonusForm.getCurrentMaxBonusPoints(cardset);
+Template.registerHelper("getCurrentMaxBonusPoints", function (learningPhase) {
+	return BonusForm.getCurrentMaxBonusPoints(learningPhase);
 });
 
 
@@ -68,4 +69,16 @@ Template.registerHelper('isInBonusAndProfileIncomplete', function () {
 
 Template.registerHelper('isInBonus', function () {
 	return Bonus.isInBonus(FlowRouter.getParam('_id'), Meteor.userId());
+});
+
+Template.registerHelper('gotArchivedOrActiveBonus', function (bonusStatus) {
+	return bonusStatus !== 0;
+});
+
+Template.registerHelper('gotActiveBonus', function (bonusStatus) {
+	return bonusStatus !== 0 && bonusStatus !== 5;
+});
+
+Template.registerHelper('getLearningPhaseTitle', function (learningPhase) {
+	return Utilities.getLearningPhaseTitle(learningPhase);
 });
