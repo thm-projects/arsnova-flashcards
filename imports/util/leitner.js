@@ -580,9 +580,6 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			if (Meteor.settings.debug.leitner) {
-				console.log("===> Reset cards");
-			}
 			let query = {
 				learning_phase_id: workload.learning_phase_id,
 				workload_id: workload._id,
@@ -613,9 +610,6 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						}
 					}).fetch();
 					idArray = _.pluck(cards, "card_id");
-					if (Meteor.settings.debug.leitner) {
-						console.log(`===> Resetting ${idArray.length} cards [${idArray}]`);
-					}
 					LeitnerUserCardStats.update({
 						card_id: {$in: idArray},
 						learning_phase_id: workload.learning_phase_id,
@@ -627,46 +621,48 @@ export let LeitnerUtilities = class LeitnerUtilities {
 							box: box,
 							isActive: false,
 							nextPossibleActivationDate: new Date(),
-							activatedSinceDate: new Date(),
-							skipped: 0
+							activatedSinceDate: new Date()
 						}
 					}, {multi: true});
-					if (Meteor.settings.debug.leitner) {
-						console.log(`===> ${LeitnerUserCardStats.find({
-							learning_phase_id: workload.learning_phase_id,
-							workload_id: workload._id,
-							cardset_id: workload.cardset_id,
-							user_id: user._id,
-							isActive: true}).count()} active Cards left after reset\n`);
-					}
-					let latestActivationDate = LeitnerActivationDay.findOne({
-						learning_phase_id: workload.learning_phase_id,
-						workload_id: workload._id,
-						cardset_id: workload.cardset_id,
-						user_id: user._id
-					}, {$sort: {createdAt: -1}});
-					LeitnerActivationDay.update({
-						_id: latestActivationDate._id
-					}, {
-						$set: {
-							missedDeadline: true,
-							resetDeadlineMode: config.resetDeadlineMode,
-							wrongAnswerMode: config.wrongAnswerMode
-						}
-					});
-					LeitnerPerformanceHistory.update({
-						card_id: {$in: idArray},
+				}
+				if (Meteor.settings.debug.leitner) {
+					console.log(`===> Resetting ${idArray.length} cards [${idArray}]`);
+				}
+				if (Meteor.settings.debug.leitner) {
+					console.log(`===> ${LeitnerUserCardStats.find({
 						learning_phase_id: workload.learning_phase_id,
 						workload_id: workload._id,
 						cardset_id: workload.cardset_id,
 						user_id: user._id,
-						activation_day_id: latestActivationDate._id
-					}, {
-						$set: {
-							box: box
-						}
-					}, {multi: true});
+						isActive: true}).count()} active Cards left after reset\n`);
 				}
+				let latestActivationDate = LeitnerActivationDay.findOne({
+					learning_phase_id: workload.learning_phase_id,
+					workload_id: workload._id,
+					cardset_id: workload.cardset_id,
+					user_id: user._id
+				}, {$sort: {createdAt: -1}});
+				LeitnerActivationDay.update({
+					_id: latestActivationDate._id
+				}, {
+					$set: {
+						missedDeadline: true,
+						resetDeadlineMode: config.resetDeadlineMode,
+						wrongAnswerMode: config.wrongAnswerMode
+					}
+				});
+				LeitnerPerformanceHistory.update({
+					card_id: {$in: idArray},
+					learning_phase_id: workload.learning_phase_id,
+					workload_id: workload._id,
+					cardset_id: workload.cardset_id,
+					user_id: user._id,
+					activation_day_id: latestActivationDate._id
+				}, {
+					$set: {
+						box: box
+					}
+				}, {multi: true});
 			} else {
 				let cards = LeitnerUserCardStats.find(query, {
 					fields: {
@@ -739,47 +735,33 @@ export let LeitnerUtilities = class LeitnerUtilities {
 		let learnedAllLeitnerCards = false;
 
 		let activeLeitnerCards = LeitnerUserCardStats.find({
-			learning_phase_id: leitnerLearningWorkload.learning_phase_id,
 			workload_id: leitnerLearningWorkload._id,
-			cardset_id: cardset_id,
-			user_id: user_id,
 			isActive: true}).count();
 
 		let nextLeitnerObject = LeitnerUserCardStats.findOne({
-			learning_phase_id: leitnerLearningWorkload.learning_phase_id,
 			workload_id: leitnerLearningWorkload._id,
-			cardset_id: cardset_id,
-			user_id: user_id,
 			box: {$ne: 6},
 			isActive: false}, {sort: {nextPossibleActivationDate: 1}});
 		if (nextLeitnerObject) {
-			nextLeitnerCardDate = nextLeitnerObject.nextPossibleActivationDate;
+			nextLeitnerCardDate = new Date(nextLeitnerObject.nextPossibleActivationDate);
 		}
 
 		let activeLeitnerObject = LeitnerUserCardStats.findOne({
-			learning_phase_id: leitnerLearningWorkload.learning_phase_id,
 			workload_id: leitnerLearningWorkload._id,
-			cardset_id: cardset_id,
-			user_id: user_id,
 			box: {$ne: 6},
 			isActive: true}, {sort: {activatedSinceDate: 1}});
 		if (activeLeitnerObject) {
-			activeLeitnerCardDate = activeLeitnerObject.activatedSinceDate;
+			activeLeitnerCardDate = new Date(activeLeitnerObject.activatedSinceDate);
 		}
 
 		if (!LeitnerUserCardStats.find({
-			learning_phase_id: leitnerLearningWorkload.learning_phase_id,
 			workload_id: leitnerLearningWorkload._id,
-			cardset_id: cardset_id,
-			user_id: user_id,
 			box: {$ne: 6}}).count()) {
 			learnedAllLeitnerCards = true;
 		}
+
 		LeitnerLearningWorkload.update({
-			_id: leitnerLearningWorkload._id,
-			cardset_id: cardset_id,
-			user_id: user_id,
-			isActive: true
+			_id: leitnerLearningWorkload._id
 		}, {
 			$set: {
 				activeCardCount: activeLeitnerCards,

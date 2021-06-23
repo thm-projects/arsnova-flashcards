@@ -55,7 +55,11 @@ Meteor.methods({
 			}
 			leitnerLearningPhase.forEach(learningPhase => {
 				//Set the bonusStats for the associated card set
+				let bonusText = '';
+				let canExecuteNormalCronjobRun = true;
 				if (learningPhase.isBonus) {
+					bonusText = '(Bonus)';
+					canExecuteNormalCronjobRun = moment(learningPhase.end).isAfter(cronjobStartDate);
 					Cardsets.update({
 						_id: learningPhase.cardset_id
 					}, {
@@ -67,12 +71,23 @@ Meteor.methods({
 
 				cronjobStartDate = moment(cronjobStartDate);
 				let cardset = Cardsets.findOne({_id: learningPhase.cardset_id});
-				if (moment(learningPhase.end).isAfter(cronjobStartDate)) {
+				if (canExecuteNormalCronjobRun) {
 					let leitnerWorkloads = LeitnerLearningWorkload.find({learning_phase_id: learningPhase._id}).fetch();
 					if (Meteor.settings.debug.leitner) {
-						console.log(`Found ${leitnerWorkloads.length} active workloads for learning phase: [${learningPhase._id}] in cardset [${cardset.name}]`);
+						console.log(`Found ${leitnerWorkloads.length} active workloads for learning phase: [${learningPhase._id}]${bonusText} in cardset [${cardset.name}]`);
 					}
 					leitnerWorkloads.forEach(workload => {
+						//Check if workload is enabled for active private learning phases
+						if (workload.isActive === false && !learningPhase.isBonus) {
+							LeitnerLearningWorkload.update({
+								_id: workload._id,
+							}, {
+								$set: {
+									isActive: true
+								}
+							});
+						}
+
 						let workloadCreatedDate = moment(workload.createdAt);
 						//Check if user joined the learning phase on the same day as the cronjob gets executed
 						if (!workloadCreatedDate.isSame(cronjobStartDate, 'date')) {
@@ -81,7 +96,7 @@ Meteor.methods({
 							if (workload.activeCardCount === 0) {
 								LeitnerUtilities.setCards(learningPhase, workload, cardset, user, false);
 							} else if (missedDeadlineCheck(learningPhase, workload.activationDate)) {
-								console.log(`===> Missed deadline for workload [${workload._id}] in cardset [${cardset.name}]: Resetting cards.`);
+								console.log(`===> Missed deadline for workload [${workload._id}]${bonusText} in cardset [${cardset.name}]: Resetting cards.\n`);
 								LeitnerUtilities.resetCards(learningPhase, workload, cardset, user);
 							} else {
 								let activationDay = LeitnerActivationDay.findOne({
@@ -90,18 +105,18 @@ Meteor.methods({
 								Meteor.call('prepareMail', cardset, user, 1, false, activationDay._id);
 								Meteor.call('prepareWebpush', cardset, user, 1, false, activationDay._id);
 								if (Meteor.settings.debug.leitner) {
-									console.log(`===> Nothing to do for workload [${workload._id}] in cardset [${cardset.name}]: Sending reminder messages.`);
+									console.log(`===> Nothing to do for workload [${workload._id}]${bonusText} in cardset [${cardset.name}]: Sending reminder messages.\n`);
 								}
 							}
 						} else {
 							if (Meteor.settings.debug.leitner) {
-								console.log(`===> Skipped workload [${workload._id}] in cardset [${cardset.name}]: Join Date matches cronjob Date.`);
+								console.log(`===> Skipped workload [${workload._id}]${bonusText} in cardset [${cardset.name}]: Join Date matches cronjob Date.\n`);
 							}
 						}
 					});
 				} else {
 					if (Meteor.settings.debug.leitner) {
-						console.log(`Disable learning phase: [${learningPhase._id}] in cardset [${cardset.name}]`);
+						console.log(`Disable learning phase: [${learningPhase._id}]${bonusText} in cardset [${cardset.name}]\n`);
 					}
 					disableLearningPhaseAndWorkloads(learningPhase._id);
 				}
