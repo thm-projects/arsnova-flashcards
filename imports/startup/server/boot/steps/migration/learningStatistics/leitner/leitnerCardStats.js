@@ -62,6 +62,25 @@ function leitnerCardStats() {
 	} else {
 		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
 	}
+
+	itemName = "leitnerUserCardStats update assignedCounter";
+	type = TYPE_MIGRATE;
+	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
+	leitnerUserCardStats = LeitnerUserCardStats.find({'assignedCounter': {$exists: false}}).fetch();
+	if (leitnerUserCardStats.length) {
+		leitnerUserCardStats.forEach((leitnerUserCardStatsObject) => {
+			LeitnerUserCardStats.update({
+				_id: leitnerUserCardStatsObject._id
+			}, {
+				$set: {
+					assignedCounter: leitnerUserCardStatsObject.stats.answers.known + leitnerUserCardStatsObject.stats.answers.notKnown
+				}
+			});
+		});
+		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
+	} else {
+		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
+	}
 	Utilities.debugServerBoot(config.END_GROUP, groupName);
 }
 

@@ -13,52 +13,69 @@
                         </h4>
                     </div>
                     <div class="modal-body">
-                        <div id="learningCardStatusStatsGeneralTitle" class="user-history-title">
-                            <h4>{{_ "learningStatistics.table.general.title"}}</h4>
-                        </div>
-                        <div class="table-responsive">
-                            <table aria-describedby="learningCardStatusStatsGeneralTitle" class="table table-striped table-hover table-learning-history table-history-global-stats">
-                                <tbody>
-                                <tr>
-                                    <th id="learningCardStatusStatsGeneralStateHeader">{{_ "learningStatistics.table.general.state"}}:</th>
-                                    <td colspan="3" headers="learningCardStatusStatsGeneralStateHeader">{{learningStatisticsGetLastActivity 2}}</td>
-                                </tr>
-                                {{#if isUser}}
-                                    <tr>
-                                        <th id="learningCardStatusStatsGeneralUserHeader">{{_ "learningStatistics.table.general.user"}}:</th>
-                                        <td colspan="{{#if learningStatisticsHideUserName}}3{{else}}1{{/if}}" headers="learningCardStatusStatsGeneralUserHeader">{{learningStatisticsGetUserName}}</td>
-                                        {{# unless learningStatisticsHideUserName}}
-                                            <th id="learningCardStatusStatsGeneralEMailHeader">{{_ "learningStatistics.table.general.eMail"}}:</th>
-                                            <td headers="learningCardStatusStatsGeneralEMailHeader">{{{learningStatisticsGetEMail}}}</td>
-                                        {{/unless}}
-                                    </tr>
-                                {{/if}}
-                                <tr>
-                                    <th id="learningCardStatusStatsGeneralCardsetHeader">
-                                        {{#if learningStatisticsIsRep}}
-                                            {{_ "learningStatistics.table.general.repetitorium"}}:
-                                        {{else}}
-                                            {{_ "learningStatistics.table.general.cardset"}}:
-                                        {{/if}}
-                                    </th>
-                                    <td headers="learningCardStatusStatsGeneralCardsetHeader" colspan="{{#if isUser}}1{{else}}3{{/if}}">
-                                        {{learningStatisticsGetCardsetTitle}}
-                                    </td>
-                                        {{#if isUser}}
-                                            <th id="learningCardStatusStatsGeneralBonusHeader">{{_ "learningStatistics.table.general.isInBonus.title"}}:</th>
-                                            <td headers="learningCardStatusStatsGeneralBonusHeader">
-                                                {{#if learningStatisticsIsInBonus}}
-                                                    {{_ "learningStatistics.table.general.isInBonus.yes"}}
-                                                {{else}}
-                                                    {{_ "learningStatistics.table.general.isInBonus.no"}}
-                                                {{/if}}
-                                            </td>
-                                        {{/if}}
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
                         {{#if gotCardStatsData}}
+                            <div id="learningCardStatusStatsGeneralTitle" class="user-history-title">
+                                <h4>{{_ "learningStatistics.table.general.title"}}</h4>
+                            </div>
+                            <div class="table-responsive">
+                                <table aria-describedby="learningCardStatusStatsGeneralTitle" class="table table-striped table-hover table-learning-history table-history-global-stats">
+                                    <tbody>
+                                    <tr>
+                                        <th id="learningCardStatusStatsGeneralStateHeader">{{_ "learningStatistics.table.general.state"}}:</th>
+                                        <td colspan="3" headers="learningCardStatusStatsGeneralStateHeader">{{learningStatisticsGetLastActivity 2}}</td>
+                                    </tr>
+                                    {{#if isUser}}
+                                        <tr>
+                                            <th id="learningCardStatusStatsGeneralUserHeader">{{_ "learningStatistics.table.general.user"}}:</th>
+                                            <td colspan="{{#if learningStatisticsHideUserName}}3{{else}}1{{/if}}" headers="learningCardStatusStatsGeneralUserHeader">{{learningStatisticsGetUserName}}</td>
+                                            {{# unless learningStatisticsHideUserName}}
+                                                <th id="learningCardStatusStatsGeneralEMailHeader">{{_ "learningStatistics.table.general.eMail"}}:</th>
+                                                <td headers="learningCardStatusStatsGeneralEMailHeader">{{{learningStatisticsGetEMail}}}</td>
+                                            {{/unless}}
+                                        </tr>
+                                    {{/if}}
+                                    <tr>
+                                        <th id="learningCardStatusStatsGeneralCardsetHeader">
+                                            {{#if learningStatisticsIsRep}}
+                                                {{_ "learningStatistics.table.general.repetitorium"}}:
+                                            {{else}}
+                                                {{_ "learningStatistics.table.general.cardset"}}:
+                                            {{/if}}
+                                        </th>
+                                        <td headers="learningCardStatusStatsGeneralCardsetHeader" colspan="{{#if isUser}}1{{else}}3{{/if}}">
+                                            {{learningStatisticsGetCardsetTitle}}
+                                        </td>
+                                            {{#if isUser}}
+                                                <th id="learningCardStatusStatsGeneralBonusHeader">{{_ "learningStatistics.table.general.isInBonus.title"}}:</th>
+                                                <td headers="learningCardStatusStatsGeneralBonusHeader">
+                                                    {{#if learningStatisticsIsInBonus}}
+                                                        {{_ "learningStatistics.table.general.isInBonus.yes"}}
+                                                    {{else}}
+                                                        {{_ "learningStatistics.table.general.isInBonus.no"}}
+                                                    {{/if}}
+                                                </td>
+                                            {{/if}}
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div id="learningCardStatsCounterTitle" class="user-history-title">
+                                    <h4>{{_ "learningHistory.stats.counter.title"}}</h4>
+                                </div>
+                                <div class="table-responsive">
+                                    <table aria-describedby="learningCardStatsCounterTitle" class="table table-striped table-hover table-learning-history table-history-global-stats">
+                                        <tbody>
+                                            <tr>
+                                                <th id="learningCardStatsAssignedCardsHeader" colspan="2">{{#unless isUser}}Ø&nbsp;{{/unless}}{{_ "learningHistory.stats.counter.assigned"}}:</th>
+                                                <td headers="learningCardStatsAssignedCardsHeader" colspan="2">{{_ "learningHistory.stats.counter.cards" cards=getAssignedCards totalCards=getTotalCards percent=getAssignedCardsPercentage}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th id="learningHCardStatsAnsweredCardsHeader" colspan="2">{{#unless isUser}}Ø&nbsp;{{/unless}}{{_ "learningHistory.stats.counter.answered"}}:</th>
+                                                <td headers="learningCardStatsAnsweredCardsHeader" colspan="2">{{_ "learningHistory.stats.counter.cards" cards=getAnsweredCards totalCards=getTotalCards percent=getAnsweredCardsPercentage}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                             <div id="learningCardStatusTable" class="user-history-title">
                                 <h4>{{_ "learningLog.table.title"}}</h4>
                             </div>
@@ -84,13 +101,13 @@
                                             <td>{{this.cardTypeName}}</td>
                                             <td>{{{getBoxProgress this.box}}}</td>
                                             <td>{{this.totalAnswers}}</td>
-                                            <td>{{getKnownPercent}}</td>
+                                            <td>{{this.percent}}&nbsp;%</td>
                                             <td>{{this.skipped}}</td>
                                             {{#if this.isBonusStats}}
                                                 <td>{{_ "learningCardStats.table.user" count=this.answeredBy}}</td>
                                             {{/if}}
-                                            <td>{{humanizeDuration this.workingTimeMedian}}</td>
-                                            <td>{{humanizeDuration this.workingTimeSum}}</td>
+                                            <td>{{this.workingTimeMedianString}}</td>
+                                            <td>{{this.workingTimeSumString}}</td>
                                         </tr>
                                     {{/each}}
                                     </tbody>

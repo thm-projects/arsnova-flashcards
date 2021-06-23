@@ -62,12 +62,13 @@ export let LeitnerLearningPhaseUtilities = class LeitnerLearningPhaseUtilities {
 	 * 4 - Active bonus (finished)
 	 * 5 - Archived bonus
 	 * @param learningPhase - The bonus learning phase of the card set
+	 * @param date - The date to use for the comparison
 	 */
-	static setLeitnerBonusStatus (learningPhase) {
+	static setLeitnerBonusStatus (learningPhase, date = new Date()) {
 		if (learningPhase.isActive) {
-			if (learningPhase.start < new Date()) {
-				if (learningPhase.end > new Date()) {
-					if (learningPhase.registrationPeriod > new Date()) {
+			if (learningPhase.start < date) {
+				if (learningPhase.end > date) {
+					if (learningPhase.registrationPeriod > date) {
 						return 2;
 					} else {
 						return 3;
