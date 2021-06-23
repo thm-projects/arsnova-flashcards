@@ -20,7 +20,8 @@ FlowRouter.route('/public/cardsets', {
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('poolCardsets'),
 			Meteor.subscribe('paidCardsets'),
-			Meteor.subscribe('frontendUserData')
+			Meteor.subscribe('frontendUserData'),
+			Meteor.subscribe('learningPhaseActiveBonus')
 		];
 	},
 	data: function () {

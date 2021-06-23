@@ -19,6 +19,7 @@ FlowRouter.route('/presentation-transcripts-bonus/:card_id', {
 			Meteor.subscribe('transcriptCard', params.card_id),
 			Meteor.subscribe('myTranscriptBonus'),
 			Meteor.subscribe('cardsetTranscriptMyBonus', params.card_id),
+			Meteor.subscribe('learningPhaseBonus'),
 			Meteor.subscribe('frontendUserData')
 		];
 	},

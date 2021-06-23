@@ -2,7 +2,7 @@
 import {Meteor} from "meteor/meteor";
 import {Session} from "meteor/session";
 import {Template} from "meteor/templating";
-import {Leitner} from "../../../api/subscriptions/leitner";
+import {LeitnerUserCardStats} from "../../../api/subscriptions/leitner/leitnerUserCardStats";
 import {Wozniak} from "../../../api/subscriptions/wozniak";
 import ResizeSensor from "../../../../client/thirdParty/resizeSensor/ResizeSensor";
 import {CardsetVisuals} from "../../../util/cardsetVisuals";
@@ -15,6 +15,7 @@ import "./box/bonusTranscript.js";
 import "./info.html";
 import {ServerStyle} from "../../../util/styles";
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import {LeitnerLearningPhaseUtilities} from "../../../util/learningPhase";
 
 /*
  * ############################################################################
@@ -47,7 +48,7 @@ Template.cardsetInfo.helpers({
 		return (Roles.userIsInRole(Meteor.userId(), 'lecturer') && this.request === true && this.owner !== Meteor.userId());
 	},
 	learning: function () {
-		return (Leitner.findOne({
+		return (LeitnerUserCardStats.findOne({
 			cardset_id: FlowRouter.getParam('_id'),
 			user_id: Meteor.userId()
 		}) || Wozniak.findOne({
@@ -59,8 +60,8 @@ Template.cardsetInfo.helpers({
 	isInBonus: function () {
 		return Bonus.isInBonus(Session.get('activeCardset')._id, Meteor.userId());
 	},
-	canSeeBonusDropdown: function () {
-		return this.learningActive && ServerStyle.gotNavigationFeature("misc.features.bonus");
+	canSeeBonusDropdown: function (cardset_id) {
+		return LeitnerLearningPhaseUtilities.isBonusActive(cardset_id) && ServerStyle.gotNavigationFeature("misc.features.bonus");
 	},
 	canSeeBonusTranscriptDropdown: function () {
 		return this.transcriptBonus !== undefined && this.transcriptBonus.enabled && ServerStyle.gotNavigationFeature("misc.features.bonus");

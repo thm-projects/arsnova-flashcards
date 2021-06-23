@@ -66,7 +66,7 @@
                             </tbody>
                         </table>
                         {{#if gotNavigationFeature "misc.features.bonus"}}
-                            {{#if this.learningActive}}
+                            {{#with activeLearningPhaseBonus this._id}}
                                 <br>
                                 <table class="table">
                                     <thead>
@@ -82,7 +82,7 @@
                                     {{> bonusInfoBoxContent}}
                                     </tbody>
                                 </table>
-                            {{/if}}
+                            {{/with}}
                             {{#if this.transcriptBonus}}
                                 <br>
                                 <table class="table">

@@ -5,7 +5,7 @@ import {LearningStatus} from "../../../util/learningStatus";
 import {Template} from "meteor/templating";
 
 Template.admin_learningStatistics.onRendered(function () {
-	LearningStatus.setupTempData('', '', 'admin');
+	LearningStatus.setupTempData('', '', '', 'admin');
 });
 
 

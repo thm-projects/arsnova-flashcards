@@ -3,7 +3,7 @@ import * as RouteNames from "../../../../util/routeNames";
 import {Meteor} from "meteor/meteor";
 import {ServerStyle} from "../../../../util/styles";
 import {Session} from "meteor/session";
-import {Leitner} from "../../../../api/subscriptions/leitner";
+import {LeitnerUserCardStats} from "../../../../api/subscriptions/leitner/leitnerUserCardStats";
 import {Wozniak} from "../../../../api/subscriptions/wozniak";
 import {Filter} from "../../../../util/filter";
 import * as config from "../../../../config/routes";
@@ -23,13 +23,14 @@ FlowRouter.route('/learn', {
 			Meteor.subscribe('userWorkload'),
 			Meteor.subscribe('userLeitner'),
 			Meteor.subscribe('userWozniak'),
-			Meteor.subscribe('frontendUserData')
+			Meteor.subscribe('frontendUserData'),
+			Meteor.subscribe('learningPhaseActiveBonus')
 		];
 	},
 	data: function () {
 		document.title = TAPi18n.__('title.filter.workload',  {app: ServerStyle.getAppTitle()}, ServerStyle.getServerLanguage());
 		Session.set('helpFilter', "workload");
-		Session.set('cardsetIndexResults', Leitner.find().count() + Wozniak.find().count());
+		Session.set('cardsetIndexResults', LeitnerUserCardStats.find().count() + Wozniak.find().count());
 		Filter.resetMaxItemCounter();
 	},
 	action: function (params, qs, data) {

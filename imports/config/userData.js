@@ -1,4 +1,8 @@
-const SERVER_USERS = ['NotificationsTestUser', '.cards'];
+const DELETED_USER_ID = 'DeletedUser';
+const CARDS_USER_ID = '.cards';
+const NOTIFICATIONS_USER_ID = 'NotificationsTestUser';
+
+const SERVER_USERS = [NOTIFICATIONS_USER_ID, CARDS_USER_ID];
 
 const VISIBLE_FIELDS = {
 	frontend: {
@@ -28,5 +32,8 @@ const VISIBLE_FIELDS = {
 
 module.exports = {
 	SERVER_USERS,
-	VISIBLE_FIELDS
+	VISIBLE_FIELDS,
+	DELETED_USER_ID,
+	NOTIFICATIONS_USER_ID,
+	CARDS_USER_ID
 };

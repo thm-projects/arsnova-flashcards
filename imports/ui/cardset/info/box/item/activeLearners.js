@@ -10,8 +10,8 @@ import "./activeLearners.html";
 
 Template.cardsetInfoBoxItemActiveLearners.helpers({
 	getActiveLearnerCount: function (cardset) {
-		if (cardset.workload !== undefined && cardset.workload.normal !== undefined && cardset.workload.bonus !== undefined) {
-			return cardset.workload.normal.count + cardset.workload.bonus.count;
+		if (cardset !== undefined && cardset.learnerCount !== undefined) {
+			return cardset.learnerCount.bonus + cardset.learnerCount.normal;
 		} else {
 			return 0;
 		}

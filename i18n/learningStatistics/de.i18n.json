@@ -1,5 +1,7 @@
 {
   "learningStatistics": {
+    "archived": "(Archiviert)",
+    "delete": "Löschen",
     "tooltip": "",
     "hideUserNames": "Benutzernamen verbergen",
     "hiddenUser": "Benutzer",
@@ -19,6 +21,7 @@
     "percentage": "Prozent",
     "dateJoinedBonus": "Lernbeginn",
     "lastActivity": "Letzte Aktivität",
+    "cardStats": "Karten",
     "history": "Protokoll",
     "log": "Verlauf",
     "status": "Lernstand",

@@ -117,7 +117,7 @@ Template.pomodoroTimerModal.events({
 
 Template.pomodoroTimerModalContent.helpers({
 	isHiddenByDefault: function () {
-		return !Route.isCardset() && !Route.isPresentation() && !Route.isDemo();
+		return !Route.isCardset() && !Route.isPresentation() && !Route.isDemo() && !Route.isCardsetLeitnerStats();
 	}
 });
 
