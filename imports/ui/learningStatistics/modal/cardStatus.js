@@ -18,9 +18,6 @@ Template.learningCardStatusModal.onRendered(function () {
 });
 
 Template.learningCardStatusModal.helpers({
-	gotUserData: function () {
-		return true;
-	},
 	isUser: function () {
 		return Session.get('selectedLearningCardStats') !== undefined && Session.get('selectedLearningCardStats').length && !Session.get('selectedLearningCardStats')[0].isBonusStats;
 	},

@@ -130,7 +130,26 @@ const LeitnerUserCardStatsSchema = new SimpleSchema({
 		type: Number,
 		defaultValue: 0
 	},
-	'stats.totalTime': {
+	'stats.answers.skipped': {
+		type: Number,
+		defaultValue: 0
+	},
+	'stats.workingTime': {
+		type: Object
+	},
+	'stats.workingTime.sum': {
+		type: Number,
+		defaultValue: 0
+	},
+	'stats.workingTime.median': {
+		type: Number,
+		defaultValue: 0
+	},
+	'stats.workingTime.arithmeticMean': {
+		type: Number,
+		defaultValue: 0
+	},
+	'stats.workingTime.standardDeviation': {
 		type: Number,
 		defaultValue: 0
 	}

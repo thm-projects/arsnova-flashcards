@@ -43,6 +43,25 @@ function leitnerCardStats() {
 	} else {
 		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
 	}
+
+	itemName = "leitnerUserCardStats update working time stats";
+	type = TYPE_MIGRATE;
+	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
+	let leitnerUserCardStats = LeitnerUserCardStats.find({'stats.workingTime': {$exists: false}}).fetch();
+	if (leitnerUserCardStats.length) {
+		leitnerUserCardStats.forEach((leitnerUserCardStatsObject) => {
+			LeitnerUserCardStats.update({
+				_id: leitnerUserCardStatsObject._id
+			}, {
+				$set: {
+					stats: LearningCardStats.calculateUserCardStats(leitnerUserCardStatsObject.card_id, leitnerUserCardStatsObject.workload_id, leitnerUserCardStatsObject.user_id)
+				}
+			});
+		});
+		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
+	} else {
+		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
+	}
 	Utilities.debugServerBoot(config.END_GROUP, groupName);
 }
 

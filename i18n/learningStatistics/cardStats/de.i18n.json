@@ -16,6 +16,8 @@
       "answeredBy": "Beantwortet von",
       "user": "__count__ Benutzer",
       "user_plural": "__count__ Benutzern",
+      "skipped": "Übersprungen",
+      "medianTime": "Bearbeitungszeit",
       "totalTime": "Gesamtbearbeitungszeit",
       "known": "Gewusst"
     }

@@ -195,7 +195,11 @@ Meteor.methods({
 							box: {$avg: "$box"},
 							known: {$sum: "$stats.answers.known"},
 							notKnown: {$sum: "$stats.answers.notKnown"},
-							totalTime: {$sum: "$stats.totalTime"},
+							skipped: {$sum: "$stats.answers.skipped"},
+							workingTimeSum: {$sum: "$stats.workingTime.sum"},
+							workingTimeMedian: {$push: "$stats.workingTime.median"},
+							workingTimeArithmeticMean: {$push: "$stats.workingTime.arithmeticMean"},
+							workingTimeStandardDeviation: {$push: "$stats.workingTime.standardDeviation"},
 							answeredBy: {
 								$push: {
 									$cond: {
@@ -215,13 +219,27 @@ Meteor.methods({
 							card_id: "$_id",
 							box: {$round: "$box"},
 							stats: {
-								answers: {known: "$known", notKnown: "$notKnown"},
-								totalTime: "$totalTime"
+								answers: {
+									known: "$known",
+									notKnown: "$notKnown",
+									skipped: "$skipped"
+								},
+								workingTime: {
+									sum: "$workingTimeSum",
+									median: "$workingTimeMedian",
+									arithmeticMean: "$workingTimeArithmeticMean",
+									standardDeviation: "$workingTimeStandardDeviation"
+								}
 							},
 							answeredBy: {$size: "$answeredBy"}
 						}
 					}
 			]);
+			leitnerCardStats.forEach(function (cardStats) {
+				cardStats.stats.workingTime.median = (Math.round(Utilities.getMedian(cardStats.stats.workingTime.median)));
+				cardStats.stats.workingTime.arithmeticMean = (Math.round(Utilities.getArithmeticMean(cardStats.stats.workingTime.arithmeticMean)));
+				cardStats.stats.workingTime.standardDeviation = (Math.round(Utilities.getStandardDeviation(cardStats.stats.workingTime.standardDeviation)));
+			});
 		} else {
 			if (gotAdminAccess) {
 				newUserId = user_id;

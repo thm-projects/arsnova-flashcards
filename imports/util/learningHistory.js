@@ -24,8 +24,14 @@ export let LeitnerHistoryUtilities = class LearningHistory {
 			//Set totalAnswers
 			cardStats[i].totalAnswers = cardStats[i].stats.answers.known + cardStats[i].stats.answers.notKnown;
 
-			//Set totalTime
-			cardStats[i].totalTime = cardStats[i].stats.totalTime;
+			//Set skipped answers
+			cardStats[i].skipped = cardStats[i].stats.answers.skipped;
+
+			//Set times
+			cardStats[i].workingTimeSum = cardStats[i].stats.workingTime.sum;
+			cardStats[i].workingTimeMedian = cardStats[i].stats.workingTime.median;
+			cardStats[i].workingTimeArithmeticMean = cardStats[i].stats.workingTime.arithmeticMean;
+			cardStats[i].workingTimeStandardDeviation = cardStats[i].stats.workingTime.standardDeviation;
 
 			//Set cardType and cardType name
 			cardStats[i].cardType = card.cardData.cardType;
@@ -68,6 +74,10 @@ export let LeitnerHistoryUtilities = class LearningHistory {
 				cardStats[i].content =  text;
 			}
 			cardStats[i].subject = `${cardStats[i].subject}: ${cardStats[i].content}`;
+
+			//Remove unused data
+			delete cardStats[i].cardData;
+			delete cardStats[i].stats;
 		}
 		return Utilities.sortArray(cardStats, config.defaultCardStatsSettings.content, config.defaultCardStatsSettings.desc);
 	}
