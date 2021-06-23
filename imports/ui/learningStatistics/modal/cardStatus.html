@@ -1,7 +1,6 @@
 <template name="learningCardStatusModal">
     <div class="modal fade" id="learningCardStatusModal" tabindex="-1" role="dialog"
          aria-labelledby="learningCardStatusTitle">
-        {{#if gotUserData}}
             <div class="modal-dialog modal-lg">
                 <div class="modal-content modal-lg modal-content-for-buttons">
                     <div class="modal-header">
@@ -70,24 +69,28 @@
                                         <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="cardSubject">{{_ "learningCardStats.table.content"}}</a> {{> learningBonusStasticsItemSort (setSortObject "cardSubject")}}</th>
                                         <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="cardTypeName">{{_ "learningCardStats.table.cardType"}}</a> {{> learningBonusStasticsItemSort (setSortObject "cardTypeName")}}</th>
                                         <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="box">{{#unless isUser}}Ø&nbsp;{{/unless}}{{_ "learningCardStats.table.progress"}}</a> {{> learningBonusStasticsItemSort (setSortObject "box")}}</th>
-                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="percent">{{_ "learningCardStats.table.known"}}</a> {{> learningBonusStasticsItemSort (setSortObject "percent")}}</th>
                                         <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="totalAnswers">{{_ "learningCardStats.table.totalAnswers"}}</a> {{> learningBonusStasticsItemSort (setSortObject "totalAnswers")}}</th>
+                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="percent">{{_ "learningCardStats.table.known"}}</a> {{> learningBonusStasticsItemSort (setSortObject "percent")}}</th>
+                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="skipped">{{_ "learningCardStats.table.skipped"}}</a> {{> learningBonusStasticsItemSort (setSortObject "skipped")}}</th>
                                         {{#unless isUser}}
                                             <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="answeredBy">{{_ "learningCardStats.table.answeredBy"}}</a> {{> learningBonusStasticsItemSort (setSortObject "answeredBy")}}</th>
                                         {{/unless}}
-                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="totalTime">{{_ "learningCardStats.table.totalTime"}}</a> {{> learningBonusStasticsItemSort (setSortObject "totalTime")}}</th>
+                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="workingTimeMedian">Ø&nbsp;{{_ "learningCardStats.table.totalTime"}}</a> {{> learningBonusStasticsItemSort (setSortObject "workingTimeMedian")}}</th>
+                                        <th scope="col"><a rel="noopener noreferrer" class="sort-bonus-content sort-card-status" data-content="workingTimeSum">{{_ "learningCardStats.table.totalTime"}}</a> {{> learningBonusStasticsItemSort (setSortObject "workingTimeSum")}}</th>
                                     </tr>
                                     {{#each getCardStatsData}}
                                         <tr>
                                             <td><a rel="noopener noreferrer" href="/presentation/{{this.cardData.cardset_id}}/{{this.card_id}}" target="_blank">{{this.cardSubject}}: {{this.content}}</a></td>
                                             <td>{{this.cardTypeName}}</td>
                                             <td>{{{getBoxProgress this.box}}}</td>
-                                            <td>{{getKnownPercent}}</td>
                                             <td>{{this.totalAnswers}}</td>
-                                            {{#unless isUser}}
+                                            <td>{{getKnownPercent}}</td>
+                                            <td>{{this.skipped}}</td>
+                                            {{#if this.isBonusStats}}
                                                 <td>{{_ "learningCardStats.table.user" count=this.answeredBy}}</td>
-                                            {{/unless}}
-                                            <td>{{{humanizeDuration this.totalTime}}}</td>
+                                            {{/if}}
+                                            <td>{{humanizeDuration this.workingTimeMedian}}</td>
+                                            <td>{{humanizeDuration this.workingTimeSum}}</td>
                                         </tr>
                                     {{/each}}
                                     </tbody>
@@ -103,7 +106,6 @@
                 <!-- /.modal-content -->
             </div>
             <!-- /.modal-dialog -->
-        {{/if}}
     </div>
     <!-- /.modal -->
 </template>

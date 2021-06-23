@@ -194,9 +194,14 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						answers: {
 							known: 0,
 							notKnown: 0,
-							total: 0
+							skipped: 0
 						},
-						totalTime: 0
+						workingTime: {
+							sum: 0,
+							median: 0,
+							arithmeticMean: 0,
+							standardDeviation: 0
+						}
 					}
 				};
 				if (cardset.shuffled) {
