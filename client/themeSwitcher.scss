@@ -3707,8 +3707,16 @@ $themes: (
     .label-frag-jetzt {
       background-color: $frag_jetzt_background !important;
       color: $frag_jetzt_text !important;
+      border-radius: 7px !important;
       span {
         color: $frag_jetzt_text !important;
+      }
+    }
+    .label-frag-jetzt:hover {
+      color: $button_text_hover !important;
+      background: $button_background_hover !important;
+      span {
+        color: $button_text_hover !important;
       }
     }
 
