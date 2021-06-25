@@ -1,5 +1,6 @@
 {{{getDocType}}}
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta http-equiv="CONTENT-TYPE" content="text/html" charset="UTF-8">
     <title>Error-Reportings-Mail</title>
@@ -17,124 +18,147 @@
                 padding: 0;
             }
         }
+
+        #message ul {
+            padding-left: 0px;
+            margin-top: 0px;
+        }
     </style>
 </head>
-<body bgcolor="#dfe5e6" marginleft="0" marginright="0" marginwidth="0" marginheight="0"
-      style="font-family: Roboto, Helvetica, Verdana, Arial, sans-serif; font-size: 14px; mso-line-height-rule:exactly; line-height: 130%">
-<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
-    <tbody>
-    <tr>
-        <td align="center">
-            <table cellspacing="0" cellpadding="0" border="0" bgcolor="#F5F5F5" width="70%" class="deviceWidth">
-                <tbody>
-                <tr>
-                    <td style="padding: 20px">
-                        <!--header-->
-                        <table width="100%">
-                            <tbody>
-                            <tr>
-                                <td align="right">
-                                    <a href="{{url}}"><img src="{{url}}/img/Bildlogo_klein.png" alt=".cards-Logo" height="50"></a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <!--content-->
-                        <table cellspacing="0" cellpadding="0" border="0" width="100%">
-                            <tbody>
-                            <tr>
-                                <td align="center"
-                                    style="background-color: {{headerBannerBackgroundColor}}; padding: 10px 20px; mso-line-height-rule:exactly; line-height: 130%">
-                                    <table>
-                                        <tbody>
-                                        <tr>
-                                            <td align="center">
-                                                <h1 style="color: {{headerBannerTextColor}}; font-size: 16px; mso-line-height-rule:exactly; line-height: 130%">
-                                                    {{{headerTitle}}}
-                                                </h1>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="left" bgcolor="#ffffff" style="padding: 20px; mso-line-height-rule:exactly; line-height: 130%">
-                                    <h2 style="font-weight: bold; font-size: 16px;">{{{bodyTitle}}}</h2>
-                                    <p>{{{bodyText}}}</p>
-                                    <table style="padding-top: 20px; border-spacing: 10px; width: 100%;">
-                                        <thead>
-                                            <tr>
-                                                <th align="left">Name der Kartei</th>
-                                                <th align="left">Name der Karte</th>
-                                                <th align="left" style="width: 20%;">Fehlernachricht</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {{#each cardset in cardsets}}
-                                                <tr>
-                                                    <td style="vertical-align: top; text-align: left;"><a href="{{url}}/cardset/{{cardset._id}}">{{cardset.name}}</a></td>
-                                                    <td style="vertical-align: top; text-align: left;">{{cardset.card.subject}}</td>
-                                                    <td style="vertical-align: top; text-align: left; width: 20%;">{{cardset.reporting.error.content}}</td>
-                                                </tr>
-                                            {{/each}}
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td bgcolor="#dddddd" height="1px">
-                                    <!--spacer-->
-                                </td>
-                            </tr>
-                            <tr>
-                                <td bgcolor="#dddddd" height="1px">
-                                    <!--spacer-->
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="padding: 20px; mso-line-height-rule:exactly; line-height: 130%">
-                        <!--footer-->
-                        <table cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 12px">
-                            <tbody>
-                            <tr>
-                                <td align="center">
-                                    <a style="color: #337ab7; text-decoration:none" href="{{url}}/faq">{{faq}}</a> |
-                                    <a style="color: #337ab7; text-decoration:none" href="{{url}}/datenschutz">{{datenschutz}}</a> |
-                                    <a style="color: #337ab7; text-decoration:none" href="{{url}}/agb">{{agb}}</a> |
-                                    <a style="color: #337ab7; text-decoration:none" href="{{url}}/impressum">{{impressum}}</a>
 
+<body bgcolor="#dfe5e6" marginleft="0" marginright="0" marginwidth="0" marginheight="0"
+    style="font-family: Roboto, Helvetica, Verdana, Arial, sans-serif; font-size: 14px; mso-line-height-rule:exactly; line-height: 130%">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
+        <tbody>
+            <tr>
+                <td align="center">
+                    <table cellspacing="0" cellpadding="0" border="0" bgcolor="#F5F5F5" width="70%" class="deviceWidth">
+                        <tbody>
+                            <tr>
+                                <td style="padding: 20px">
+                                    <!--header-->
+                                    <table width="100%">
+                                        <tbody>
+                                            <tr>
+                                                <td align="right">
+                                                    <a href="{{url}}"><img src="{{url}}/img/Bildlogo_klein.png"
+                                                            alt=".cards-Logo" height="50"></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </td>
                             </tr>
                             <tr>
-                                <td align="left" style="mso-line-height-rule:exactly; line-height: 130%">
-                                    <p>{{service}} <a href="{{url}}/home"
-                                                      style="color: #337ab7; text-decoration:none">{{firstAppTitle}}
-                                        .{{lastAppTitle}}</a>. {{unsubscribe}}</p>
+                                <td>
+                                    <!--content-->
+                                    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                                        <tbody>
+                                            <tr>
+                                                <td align="center"
+                                                    style="background-color: {{headerBannerBackgroundColor}}; padding: 10px 20px; mso-line-height-rule:exactly; line-height: 130%">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td align="center">
+                                                                    <h1
+                                                                        style="color: {{headerBannerTextColor}}; font-size: 16px; mso-line-height-rule:exactly; line-height: 130%">
+                                                                        {{{headerTitle}}}
+                                                                    </h1>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" bgcolor="#ffffff"
+                                                    style="padding: 20px; mso-line-height-rule:exactly; line-height: 130%">
+                                                    <h2 style="font-weight: bold; font-size: 16px;">{{{bodyTitle}}}</h2>
+                                                    <p>{{{bodyText}}}</p>
+                                                    <table
+                                                        style="padding-top: 20px; border-spacing: 10px; width: 100%;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th align="left">Name der Kartei</th>
+                                                                <th align="left">Name der Karte</th>
+                                                                <th align="left" style="width: 20%;">Fehlernachricht
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {{#each cardset in cardsets}}
+                                                            <tr>
+                                                                <td style="vertical-align: top; text-align: left;"><a
+                                                                        href="{{url}}/cardset/{{cardset._id}}">{{cardset.name}}</a>
+                                                                </td>
+                                                                <td style="vertical-align: top; text-align: left;">
+                                                                    {{cardset.card.subject}}</td>
+                                                                <td style="vertical-align: top; text-align: left; width: 20%;"
+                                                                    id="message">{{{cardset.reporting.error.content}}}
+                                                                </td>
+                                                            </tr>
+                                                            {{/each}}
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td bgcolor="#dddddd" height="1px">
+                                                    <!--spacer-->
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td bgcolor="#dddddd" height="1px">
+                                                    <!--spacer-->
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </td>
                             </tr>
                             <tr>
-                                <td align="center">
-                                    <p>{{copyright}}</p>
+                                <td style="padding: 20px; mso-line-height-rule:exactly; line-height: 130%">
+                                    <!--footer-->
+                                    <table cellspacing="0" cellpadding="0" border="0" width="100%"
+                                        style="font-size: 12px">
+                                        <tbody>
+                                            <tr>
+                                                <td align="center">
+                                                    <a style="color: #337ab7; text-decoration:none"
+                                                        href="{{url}}/faq">{{faq}}</a> |
+                                                    <a style="color: #337ab7; text-decoration:none"
+                                                        href="{{url}}/datenschutz">{{datenschutz}}</a> |
+                                                    <a style="color: #337ab7; text-decoration:none"
+                                                        href="{{url}}/agb">{{agb}}</a> |
+                                                    <a style="color: #337ab7; text-decoration:none"
+                                                        href="{{url}}/impressum">{{impressum}}</a>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left"
+                                                    style="mso-line-height-rule:exactly; line-height: 130%">
+                                                    <p>{{service}} <a href="{{url}}/home"
+                                                            style="color: #337ab7; text-decoration:none">{{firstAppTitle}}
+                                                            .{{lastAppTitle}}</a>. {{unsubscribe}}</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center">
+                                                    <p>{{copyright}}</p>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </td>
                             </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </td>
-    </tr>
-    </tbody>
-</table>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </body>
+
 </html>
