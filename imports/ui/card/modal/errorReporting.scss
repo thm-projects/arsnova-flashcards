@@ -29,11 +29,17 @@
 @media(max-width: 767px) {
   #cardSidesGroup {
     li.btn-bootstrap-container {
+      label {
+        height: 50px !important;
+        span {
+          font-weight: 600;
+        }
+      }
       padding-left: 15px !important;
       padding-right: 15px !important;
-      width: 100%;
+      width: 90%;
       align-self: center !important;
-      padding-bottom: 5px !important;
+      padding-bottom: 20px !important;
     }
     flex-direction: column;
     align-items: center !important;
