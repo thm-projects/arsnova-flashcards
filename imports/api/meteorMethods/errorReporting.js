@@ -13,6 +13,8 @@ Meteor.methods({
 		check(errorTypes, Array);
 		check(errorContent, String);
 
+		const realCardsetId = Cards.findOne({_id: card_id}).cardset_id || cardset_id;
+
 		if (isNaN(cardSide)) {
 			cardSide = 0;
 		}
@@ -20,7 +22,7 @@ Meteor.methods({
 		if (Meteor.isServer) {
 			ErrorReporting.insert({
 				user_id: user_id,
-				cardset_id: cardset_id,
+				cardset_id: realCardsetId,
 				card_id: card_id,
 				createdAt: new Date(),
 				status: 0,
@@ -31,7 +33,7 @@ Meteor.methods({
 				}
 			}
 			);
-			Meteor.call("updateUnresolvedErrors", cardset_id, card_id);
+			Meteor.call("updateUnresolvedErrors", realCardsetId, card_id);
 		}
 	},
 	updateErrorReport: function (error_id, cardset_id, card_id, cardSide, errorTypes, errorContent) {
@@ -42,6 +44,7 @@ Meteor.methods({
 		check(errorTypes, Array);
 		check(errorContent, String);
 		if (Meteor.isServer) {
+			const realCardsetId = Cards.findOne({_id: card_id}).cardset_id || cardset_id;
 			ErrorReporting.update({_id: error_id},
 				{
 					$set: {
@@ -54,7 +57,7 @@ Meteor.methods({
 						}
 					}
 				});
-			Meteor.call("updateUnresolvedErrors", cardset_id, card_id);
+			Meteor.call("updateUnresolvedErrors", realCardsetId, card_id);
 		}
 	},
 	updateErrorReportStatus: function (error_id, cardset_id, card_id, status) {
@@ -63,6 +66,7 @@ Meteor.methods({
 		check(card_id, String);
 		check(status, Number);
 		if (Meteor.isServer) {
+			const realCardsetId = Cards.findOne({_id: card_id}).cardset_id || cardset_id;
 			ErrorReporting.update({_id: error_id},
 				{
 					$set: {
@@ -70,41 +74,39 @@ Meteor.methods({
 						status: status
 					}
 				});
-			Meteor.call("updateUnresolvedErrors", cardset_id, card_id);
+			Meteor.call("updateUnresolvedErrors", realCardsetId, card_id);
 		}
 	},
 	updateUnresolvedErrors: function (cardset_id, card_id, top_cardset) {
-		if (Meteor.isServer) {
-			const cardset_ids = [cardset_id];
-			const cardsets = Cardsets.find({cardGroups: {$all: [cardset_id]}}).fetch();
-			for (const set of cardsets) {
+		if (Meteor.isServer && cardset_id && card_id) {
+			const cardSet = Cardsets.findOne({_id: cardset_id});
+			const cardGroups = cardSet ? cardSet.cardGroups || [] : [];
+
+			const toCountCardsets = [cardset_id].concat(cardGroups);
+			const countCardset = ErrorReporting.find({cardset_id: {$in: toCountCardsets}, status: 0}).count();
+			Cardsets.update({_id: cardset_id}, {$set: {unresolvedErrors: countCardset}});
+
+			const childCardSet = Cards.findOne({_id: card_id}).cardset_id;
+			const toUpdateCardsets = childCardSet ? [childCardSet] : [];
+
+			const parentCardsets = Cardsets.find({cardGroups: {$all: [cardset_id]}}).fetch();
+			for (const set of parentCardsets) {
 				if (set._id !== cardset_id) {
-					cardset_ids.push(set._id);
-				}
-			}
-			const countCardsets = (Cardsets.findOne({_id: cardset_id}).cardGroups || []).concat(cardset_ids);
-			if (card_id !== "") {
-				const realCardset = Cards.findOne({_id: card_id}).cardset_id;
-				if (realCardset && realCardset !== cardset_id) {
-					cardset_ids.push(realCardset);
+					toUpdateCardsets.push(set._id);
 				}
 			}
 
+			toUpdateCardsets.splice(toUpdateCardsets.indexOf(cardset_id), 1);
 			if (top_cardset) {
-				cardset_ids.splice(cardset_ids.indexOf(top_cardset), 1);
+				toUpdateCardsets.splice(toUpdateCardsets.indexOf(top_cardset), 1);
 			}
-			const countCardset = ErrorReporting.find({cardset_id: {$in: countCardsets}, status: 0}).count();
-			for (const id of cardset_ids) {
-				if (id === cardset_id) {
-					Cardsets.update({_id: id}, {$set: {unresolvedErrors: countCardset}});
-				} else {
-					Meteor.call("updateUnresolvedErrors", id, card_id, cardset_id);
-				}
+
+			for (const id of toUpdateCardsets) {
+				Meteor.call("updateUnresolvedErrors", id, card_id, cardset_id, cardset_id);
 			}
-			if (card_id !== "") {
-				const countCard = ErrorReporting.find({card_id: card_id, status: 0}).count();
-				Cards.update({_id: card_id}, {$set: {unresolvedErrors: countCard}});
-			}
+
+			const countCard = ErrorReporting.find({card_id: card_id, status: 0}).count();
+			Cards.update({_id: card_id}, {$set: {unresolvedErrors: countCard}});
 		}
 	},
 	getCardErrors: function (card_id) {
