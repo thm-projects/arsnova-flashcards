@@ -59,14 +59,21 @@ class Card {
    estimatedLearningTime
 }
 
-class Workload {
+class LeitnerLearningPhase {
+	isBonus
+    isActive
+    start
+    end
+}
+
+class LeitnerLearningWorkload {
    owner
    isBonus
    nextActivationDay
    activeCardsCount
 }
 
-class LeitnerTask <<USP>> {
+class LeitnerActivationDay <<USP>> {
    sessionGroup
    notificationStats
    pomodoroSettings
@@ -76,13 +83,13 @@ class LeitnerTask <<USP>> {
    learningStandardDeviation
 }
 
-class LeitnerHistory <<USP>> {
+class LeitnerPerformanceHistory <<USP>> {
    movedBox
    answer
    timeSpentOnCard
 }
 
-class Leitner <<USP>> {
+class LeitnerUserCardStats <<USP>> {
   currentBox
   nextUnlockDate
   viewedAutoPDF
@@ -126,14 +133,15 @@ class purchaseHistory {
 
 Cardset *-right- Card: contains >
 
-Workload "0..*" -up- "1" Cardset: refers to >
-Leitner "2..*" -up- "1" Workload: belongs to >
-Leitner "1" -up- "1" Card: refers to >
+LeitnerLearningPhase "0..*" -up- "1" Cardset: refers to >
+LeitnerUserCardStats "2..*" -up- "1" LeitnerLearningWorkload: belongs to >
+LeitnerUserCardStats "1" -up- "1" Card: refers to >
 Woźniak "1" -right- "1" Card: belongs to >
 TranscriptBonus "0..*" -down- "1" Cardset: refers to >
-Card "1" -down- "1" TranscriptBonus: refers to > 
-LeitnerTask "1..*" -up- "1" Workload: belongs to >
-LeitnerHistory "0..*" -up- "1" Leitner: keeps history of >
+Card "1" -down- "1" TranscriptBonus: refers to >
+LeitnerLearningWorkload "0..*" -up- "1" LeitnerLearningPhase: belongs to >
+LeitnerActivationDay "1..*" -up- "1" LeitnerLearningWorkload: belongs to >
+LeitnerPerformanceHistory "0..*" -up- "1" LeitnerUserCardStats: keeps history of >
 Rating "0..*" -right- "1" Cardset: rates >
 ErrorReport "0..*" -down- "1" Card: reports error to >
 purchaseHistory "0..*" -left "1" Cardset: keeps purchase history of >
@@ -144,7 +152,7 @@ legend right
  | Project-Website | [[https://arsnova.thm.de]] |
  | «USP» | Alleinstellungsmerkmale von arsnova.cards |
  | Repository | [[https://git.thm.de/cards]] |
- | Version | 3.14 |
+ | Version | 3.2 |
  | Staging Server | [[https://staging.arsnova.cards]] |
  | RUP-Phase| Elaboration|
  | UML-Tool| PlantUML v1.2021.0|
@@ -152,7 +160,7 @@ legend right
  | Date created| 14.12.2020 |
  | Creator | Janek Berg|
  | Mail| janek.berg@mni.thm.de |
- | Last modified | 30.04.2021 |
+ | Last modified | 26.06.2021 |
  | Last editor | Curtis Adam |
  | Mail| curtis.adam@mni.thm.de |
 end legend
