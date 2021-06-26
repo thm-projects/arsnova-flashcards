@@ -4,6 +4,7 @@ import {AdminSettings} from "../imports/api/subscriptions/adminSettings.js";
 import {Cardsets} from "../imports/api/subscriptions/cardsets.js";
 import {ServerStyle} from "../imports/util/styles";
 import {LeitnerLearningWorkloadUtilities} from "../imports/util/learningWorkload";
+import {LeitnerLearningPhase} from "../imports/api/subscriptions/leitner/leitnerLearningPhase";
 
 /**
  * Class used for generating the text of web-push notifications
@@ -25,7 +26,7 @@ export class WebNotifier {
 			if (testUser !== undefined) {
 				deadlineUser = testUser;
 			}
-			let leitnerWorkload = LeitnerLearningWorkloadUtilities.getActiveWorkload(cardset._id, user_id);
+			let leitnerWorkload = LeitnerLearningWorkloadUtilities.getActiveWorkload(cardset._id, deadlineUser);
 			switch (messageType) {
 				case 1:
 					message = TAPi18n.__('notifications.webPush.reminder', {
@@ -64,6 +65,7 @@ Meteor.methods({
 		let web = new WebNotifier();
 		let settings = AdminSettings.findOne({name: "testNotifications"});
 		let cardset = Cardsets.findOne({_id: settings.testCardsetID});
-		web.prepareWeb(cardset, settings.target, settings.testUserID, messageType);
+		const learningPhase = LeitnerLearningPhase.findOne({cardset_id: cardset._id});
+		web.prepareWeb(cardset, settings.target, learningPhase, settings.testUserID, messageType);
 	}
 });

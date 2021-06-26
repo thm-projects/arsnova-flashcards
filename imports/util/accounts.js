@@ -43,6 +43,21 @@ export let AccountUtils = class AccountUtils {
 			return true;
 		}
 	}
+
+	static isAllowedToReceiveNotifications (mailAddress) {
+		let blacklist = ServerStyle.getNotificationsBlacklist();
+		if (blacklist.length) {
+			for (let i = 0; i < blacklist.length; i++) {
+				let result = XRegExp.exec(mailAddress, new XRegExp('.+@' + blacklist[i]));
+				if (result !== undefined && result !== null && result.length) {
+					return false;
+				}
+			}
+			return true;
+		} else {
+			return true;
+		}
+	}
 };
 
 function submitHooks(error, state) {

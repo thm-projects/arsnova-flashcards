@@ -9,6 +9,7 @@ import {ServerSettings} from "../imports/util/settings";
 import {LeitnerActivationDay} from "../imports/api/subscriptions/leitner/leitnerActivationDay";
 import {LeitnerLearningPhase} from "../imports/api/subscriptions/leitner/leitnerLearningPhase";
 import {LeitnerLearningPhaseUtilities} from "../imports/util/learningPhase";
+import {AccountUtils} from "../imports/util/accounts";
 
 /** Function gets called when the learning-phase ended and excludes the cardset from the leitner algorithm
  *  @param {Object} learningPhase - The the active learning-phase
@@ -125,7 +126,7 @@ Meteor.methods({
 		}
 	},
 	prepareMail: function (cardset, user, messageType = 0, isNewcomer = false, activation_day_id = undefined) {
-		if (Meteor.isServer && ServerSettings.isMailEnabled()) {
+		if (Meteor.isServer && ServerSettings.isMailEnabled() && AccountUtils.isAllowedToReceiveNotifications(user.email)) {
 			let canSendMail = (user.mailNotification && !isNewcomer && Roles.userIsInRole(user._id, ['admin', 'editor', 'university', 'lecturer', 'pro']) && !Roles.userIsInRole(user._id, ['blocked', 'firstLogin']));
 			let activationDay = LeitnerActivationDay.findOne({_id: activation_day_id});
 			let learningPhase = LeitnerLearningPhase.findOne({_id: activationDay.learning_phase_id});
@@ -164,10 +165,13 @@ Meteor.methods({
 					console.log(`[${TAPi18n.__('admin-settings.test-notifications.sendMail')}] ${error}`);
 				}
 			}
+			return true;
+		} else {
+			return false;
 		}
 	},
 	prepareWebpush: function (cardset, user, messageType = 0, isNewcomer = false, activation_day_id = undefined) {
-		if (Meteor.isServer && ServerSettings.isPushEnabled()) {
+		if (Meteor.isServer && ServerSettings.isPushEnabled() && AccountUtils.isAllowedToReceiveNotifications(user.email)) {
 			let canSendPush = (user.webNotification && !isNewcomer);
 			let activationDay = LeitnerActivationDay.findOne({_id: activation_day_id});
 			let learningPhase = LeitnerLearningPhase.findOne({_id: activationDay.learning_phase_id});
@@ -197,6 +201,9 @@ Meteor.methods({
 					console.log(`[${TAPi18n.__('admin-settings.test-notifications.sendWeb')}] ${error}`);
 				}
 			}
+			return true;
+		} else {
+			return false;
 		}
 	}
 });
