@@ -20,3 +20,8 @@ export const DEFAULT_REGISTRATION_DOMAIN_WHITELIST =
 		'.*\.uni-kassel\.de',
 		'.*\.uni-marburg\.de'
 	];
+
+//Mostly used to prevent the staging server from sending notifications to test database users
+export const DEFAULT_NOTIFICATIONS_BLACKLIST = [
+	'example\.com'
+];
