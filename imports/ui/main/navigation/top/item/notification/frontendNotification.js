@@ -33,7 +33,7 @@ Template.frontendNotification.helpers({
 				{publishDate: {$lte: new Date()}},
 				{expirationDate: {$gte: new Date()}}
 			]}).fetch();
-		for (const reporting of OwnErrorReportings.find({}).fetch()) {
+		for (const reporting of OwnErrorReportings.find({},{sort: {createdAt: -1}}).fetch()) {
 			const card = Cards.findOne({_id: reporting.card_id});
 			messages.push({subject: TAPi18n.__('modal-card.errorReporting.errorNotificationHeader') + (card ? card.subject : ""), content: `<div>
 			${TAPi18n.__('modal-card.errorReporting.reportedErrorsNotification')}

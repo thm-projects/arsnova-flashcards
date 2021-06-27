@@ -4,13 +4,22 @@ import {UserPermissions} from "../../../util/permissions";
 import {Template} from 'meteor/templating';
 import {Session} from "meteor/session";
 import {ReactiveVar } from "meteor/reactive-var";
+import {getAuthorName} from "../../../util/userData";
 
 const sorting = new ReactiveVar({
-	sortCardSideAscending: true,
-	sortCardErrorAscending: true,
-	sortCardAuthorAscending: true,
-	sortCardStatusAscending: true
+	sortCardSideAscending: undefined,
+	sortCardErrorAscending: undefined,
+	sortCardAuthorAscending: undefined,
+	sortCardStatusAscending: undefined
 });
+
+function resetSorting(toSort) {
+	for (const key in sorting.get()) {
+		if (Object.hasOwnProperty.call(sorting.get(), key) && key !== toSort) {
+			sorting.get()[key] = undefined;
+		}
+	}
+}
 
 function getErrorMessage(error) {
 	let errorMessage = "zzz";
@@ -51,26 +60,35 @@ Template.overviewErrorReportsModal.events({
 
 Template.overviewErrorReportsTable.events({
 	'click .errorReportEntry': function () {
-		if (UserPermissions.canEditCard()) {
+		if (UserPermissions.canEditCard() && Session.get("cardType")) {
 			ErrorReporting.loadErrorReportingModal(this);
 			$('#showErrorReportingModal').modal('show');
+		} else {
+			window.location.pathname = `/cardset/${this.cardset_id}`;
 		}
 	},
 	'click #overviewErrorReportsTableSide': () => {
 		let elements = Session.get("errorReportingCard");
 		const newSorting = sorting.get();
-		newSorting.sortCardSideAscending = !newSorting.sortCardSideAscending;
+		newSorting.sortCardSideAscending = newSorting.sortCardSideAscending ? !newSorting.sortCardSideAscending : true;
+		resetSorting("sortCardSideAscending");
 		sorting.set(newSorting);
 		Session.set("errorReportingCard", elements.sort((a, b) => {
-			if (a.cardSide < b.cardSide) { return newSorting.sortCardSideAscending ? 1 : -1; }
-			if (a.cardSide > b.cardSide) { return newSorting.sortCardSideAscending ? -1 : 1; }
+			if (a.cardSide || b.cardSide) {
+				if (a.cardSide < b.cardSide) { return newSorting.sortCardSideAscending ? 1 : -1; }
+				if (a.cardSide > b.cardSide) { return newSorting.sortCardSideAscending ? -1 : 1; }
+			} else {
+				if (a.cardName.localeCompare(b.cardName) > 0) { return newSorting.sortCardSideAscending ? 1 : -1; }
+				if (a.cardName.localeCompare(b.cardName) < 0) { return newSorting.sortCardSideAscending ? -1 : 1; }
+			}
 			return 0;
 		}));
 	},
 	'click #overviewErrorReportsTableError': () => {
 		let elements = Session.get("errorReportingCard");
 		const newSorting = sorting.get();
-		newSorting.sortCardErrorAscending = !newSorting.sortCardErrorAscending;
+		newSorting.sortCardErrorAscending = newSorting.sortCardErrorAscending ? !newSorting.sortCardErrorAscending : true;
+		resetSorting("sortCardErrorAscending");
 		sorting.set(newSorting);
 		Session.set("errorReportingCard", elements.sort((a, b) => {
 			if (getErrorMessage(b).localeCompare(getErrorMessage(a)) < 0) { return newSorting.sortCardErrorAscending ? 1 : -1; }
@@ -81,18 +99,27 @@ Template.overviewErrorReportsTable.events({
 	'click #overviewErrorReportsTableAuthor': () => {
 		let elements = Session.get("errorReportingCard");
 		const newSorting = sorting.get();
-		newSorting.sortCardAuthorAscending = !newSorting.sortCardAuthorAscending;
+		newSorting.sortCardAuthorAscending = newSorting.sortCardAuthorAscending ? !newSorting.sortCardAuthorAscending : true;
+		resetSorting("sortCardAuthorAscending");
 		sorting.set(newSorting);
 		Session.set("errorReportingCard", elements.sort((a, b) => {
-			if (a.user_id === b.user_id) { return 0; }
-			if (a.user_id !== b.user_id) { return -1; }
-			return 1;
+			const aName = getAuthorName(a.user_id);
+			const bName = getAuthorName(b.user_id);
+			if (aName !== bName) {
+				if (aName.localeCompare(bName) < 0) {
+					return newSorting.sortCardAuthorAscending ? 1 : -1;
+				} else {
+					return newSorting.sortCardAuthorAscending ? -1 : 1;
+				}
+			}
+			return 0;
 		}));
 	},
 	'click #overviewErrorReportsTableStatus': () => {
 		let elements = Session.get("errorReportingCard");
 		const newSorting = sorting.get();
-		newSorting.sortCardStatusAscending = !newSorting.sortCardStatusAscending;
+		newSorting.sortCardStatusAscending = newSorting.sortCardStatusAscending ? !newSorting.sortCardStatusAscending : true;
+		resetSorting("sortCardStatusAscending");
 		sorting.set(newSorting);
 		Session.set("errorReportingCard", elements.sort((a, b) => {
 			if (a.status.toString().localeCompare(b.status.toString()) < 0) { return newSorting.sortCardStatusAscending ? 1 : -1; }
@@ -142,13 +169,14 @@ Template.overviewErrorReportsTable.helpers({
 	getErrorReport: () => Session.get("errorReportingCard"),
 	getSortingArrow: (x) => {
 		const newSorting = sorting.get();
+		const neutral = '<i class="fas fa-sort"></i>';
 		const up = '<i class="fas fa-sort-up"></i>';
 		const down = '<i class="fas fa-sort-down"></i>';
 		switch (x) {
-		case 0: return newSorting.sortCardSideAscending ? up : down;
-		case 1: return newSorting.sortCardErrorAscending ? up : down;
-		case 2: return newSorting.sortCardAuthorAscending ? up : down;
-		case 3: return newSorting.sortCardStatusAscending ? up : down;
-		default: return "";}
+		case 0: return newSorting.sortCardSideAscending ? up : newSorting.sortCardSideAscending === undefined ? neutral : down;
+		case 1: return newSorting.sortCardErrorAscending ? up : newSorting.sortCardErrorAscending === undefined ? neutral : down;
+		case 2: return newSorting.sortCardAuthorAscending ? up : newSorting.sortCardAuthorAscending === undefined ? neutral : down;
+		case 3: return newSorting.sortCardStatusAscending ? up : newSorting.sortCardStatusAscending === undefined ? neutral : down;
+		default: return neutral;}
 	}
 });
