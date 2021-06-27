@@ -21,9 +21,11 @@ FlowRouter.route('/memo/:_id', {
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('cardset', params._id),
 			Meteor.subscribe('paidCardset', params._id),
-			Meteor.subscribe('cardsetWorkload', params._id),
+			Meteor.subscribe('latestLeitnerCardsetWorkload', params._id),
 			Meteor.subscribe('cardsetCards', params._id),
-			Meteor.subscribe('cardsetWozniak', params._id)
+			Meteor.subscribe('cardsetWozniak', params._id),
+			Meteor.subscribe('learningPhaseBonus'),
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function (params) {

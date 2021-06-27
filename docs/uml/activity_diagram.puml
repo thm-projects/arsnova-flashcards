@@ -1,0 +1,264 @@
+@startuml
+skinparam shadowing true
+skinparam LegendBackgroundColor Strategy
+skinparam LegendBorderThickness 0
+skinparam LegendFontSize 24
+skinparam defaultFontSize 16
+skinparam ArrowColor DarkSlateGray
+skinparam FooterFontSize 30
+skinparam FooterFontColor black
+
+|#Moccasin|lecturer|
+start
+note right: <i>precondition: lecturer and student</i>\n<i>have logged in to their account</i>
+if() then (bonus-learning with cards)
+   partition #Lavender "create bonus-learning-phase" {
+   : open own repetitorium or card set;
+   : click button\n"learning bonus";
+   : click button "activate\nbonus-learning-phase";
+   fork
+       : set deadline for\nactivation days;
+   fork again
+       : set start and end date;
+   fork again
+       : set registration deadline;
+   fork again
+       if() then (enforce\nnotifications)
+           : activate forced notifications;
+       else (don't enforce\nnotifications)
+       endif
+   fork again
+       : set maximum amount\nof bonus points;
+   fork again
+       : set necessary amount\nof cards in last box for maximal bonus;
+   fork again
+       if() then (detailed configuration of daily workload)
+           repeat : choose interval for Leitner boxes;
+           if() then(automated calculation)
+               : calculate optimal\nworkload based on data;
+           else (set manually)
+               : set number of cards\nto be learned each day;
+           endif
+           : set an exemplary failure rate and calculate\npossible distribution of cards among Leitner boxes;
+           repeat while ()  is (configuration is not okay) not (configuration is okay)
+       else (simple configuration of daily load)
+           : set number of cards\nto be learned each day;
+       endif
+   fork again
+       : choose number of Pomodori;
+   fork again
+       : choose length of\nPomodori and breaks;
+   fork again
+       : configure Pomodoro notification sounds;
+   end fork
+   : click "activate bonus-phase";
+   }
+
+   |#Khaki|student|
+
+   partition #Lavender "join bonus-learning" {
+   : choose repetitorium or\ncard set with learning bonus;
+   if () then (get additional\ninformation)
+       : read information about bonus phase;
+   else (skip information)
+   endif
+   if() then(is student)
+       else(isn't student)
+           end
+   endif
+   : click "join bonus-learning-phase";
+           note right: repetitories or\ncard sets with "THM-label"\nare only accessible for students.
+               : read and accept information about bonus-learning;
+               if () then (sign-in-window\nis closed)
+                   end
+               else (sign-in-window is open)
+               endif
+   }
+
+   partition #Lavender "learn cards" {
+   : navigate to workload;
+   : choose card set or\nrepetitorium;
+   if () then (doesn't have\nbonus-option)
+       end
+   else (has bonus)
+       repeat
+       while() is (check learning statistics)
+           if() then (learning history)
+               : view learning history;
+           else (learning status)
+               : view learning status in Leitner system;
+           endif
+       endwhile (don't check learning statistics)
+       : start learning by clicking\n"to be learned today";
+           if() then (bonus-learning-\nphase is over)
+               (A)
+           else (bonus-learning-\nphase is still active)
+           endif
+           if() then (cards for today available)
+               if() then (first time)
+                       : read and accept information about Leitner-System;
+                   else (not the first time)
+                   endif
+                   repeat : read card and remember answer;
+                       : check the answer;
+                       if() then (deepen the\n card)
+                           : read additional sides of card;
+                       else (skip deepening)
+                       endif
+                       : choose if you knew the answer;
+                   repeat while () is (cards left) not (no cards left)
+           else (no cards available for today)
+           endif
+       repeat while ()
+       -[hidden]->
+   endif
+
+   }
+
+   |lecturer|
+   (A)
+   partition #Lavender "evaluate students learning" {
+   : open statistics about bonus-phase;
+   : search for entry of desired student;
+   if() then(percentage of learned cards is okay)
+       if() then(box 1 and 2 are empty)
+           : check learning history of student;
+           if() then(student learned\nregularly and long enough)
+               : check card-distribution among Leitner-boxes;
+               if() then (card-distribution is okay)
+                   : read the calculated bonus points for the student;
+                   note: These points should be externally written down\nand be credited towards the exam.
+               else (card-distribution is not okay)
+                   end
+               endif
+           else (student didn't learn regularly\nenough or sessions were too short)
+               end
+           endif
+       else (box 1 and 2 are not empty)
+           end
+       endif
+   else (percentage of learned cards is not okay)
+       end
+   endif
+   }
+   stop
+else (bonus for transcripts)
+   |lecturer|
+   partition #LightCyan "create card set for transcripts" {
+       : create transcript of format "card set for transcript bonus";
+       fork
+           : add a name and a description;
+       fork again
+           : select difficulty level;
+       end fork
+   }
+
+   partition #LightCyan "configure transcript bonus" {
+       : click button "bonus-transcripts";
+       : go to settings;
+       fork
+           : set maximum amount\nof bonus points;
+       fork again
+           : set minimum number of transcripts\nrequired for maximal bonus;
+       fork again
+           : set required stars per transcripts\nfor maximal bonus;
+       fork again
+           : set time limit\nfor photo-upload;
+       fork again
+           : set time limit\nfor digital reworking;
+       fork again
+           : choose release-time\non the day of the lecture;
+       fork again
+           repeat :add date of\nlecture in calendar
+           repeat while() is (not all dates\nare entered) not (all dates entered)
+       end fork
+       : choose "activate bonus" and save changes;
+   }
+
+   |student|
+   partition #LightCyan "create and submit transcripts" {
+       if() then(is student)
+           : go to transcripts;
+           note left: Transcripts are only\navailable for students.
+           repeat : click "create transcript";
+           if() then (timeframe of final\nlecture is over)
+                       (B)
+                   else (timeframe of final\nlecture is not over)
+                   endif
+           if() then (lecture with transcript\nis available)
+               : click "link with lecture" and\nselect the corresponding lecture;
+               note left: A lecture will only\nappear as an option\nif the user is within the\ndefined time window of it.
+               fork
+               : link the uploaded photograph;
+               fork again
+               : note open questions;
+               fork again
+               : write reworked digital version;
+               end fork
+               : click "save and return";
+           else (no transcript available\nat point of time)
+           endif
+           repeat while()
+           -[hidden]->
+       else(isn't student)
+           end
+       endif
+
+   }
+
+   |lecturer|
+   (B)
+   partition #LightCyan "evaluate bonus points for transcripts" {
+       : open card set of transcript bonus;
+       : click "bonus-transcripts";
+       : go to overview;
+       : pick the overview card of a student;
+       : read the bonus points calculated for the student;
+       note: These points should be externally written\ndown and be credited towards the exam.
+   }
+   stop
+
+   : end of timeframe for transcripts of a single lecture;
+   note left: This should be the UML Time-Event drawn\nas an hourglass shape, but PlantUML\ndoes not seem to support this element.
+   partition #LightCyan "evaluate transcripts of a lecture" {
+       : open card set of transcript bonus;
+       : click "bonus-transcripts";
+       : go to "submissions";
+       : click "evaluate filtered transcripts";
+       repeat
+       : view the card and evaluate its quality;
+       note left: This evaluation is based on the lecturers\ncriteria such as completeness, correctness\nof content and overall quality.
+       if() then (accept the transcript)
+           : rate the transcript with 1-5 stars;
+           : click "accept transcript";
+       else (reject the transcript)
+           : select reason for rejection;
+           : click "reject transcript";
+       endif
+       repeat while() is (not all submitted transcripts evaluated) not (no submissions left)
+   }
+   end
+endif
+
+left header
+<font size=28 color=black>**cards | activity diagram for bonus option**</font>
+endheader
+
+legend right
+ |= \n          <img:https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/whatsapp/186/tomato_1f345.png> |= \n [[https://arsnova.cards arsnova.cards]] \n\n Technische Hochschule Mittelhessen - THM \n University of Applied Sciences |
+ | Projekt-Website | [[https://arsnova.thm.de]] |
+ | Repository | [[https://git.thm.de/cards]] |
+ | Version | 3.2 |
+ | Staging Server | [[https://staging.arsnova.cards]] |
+ | RUP-Phase| Elaboration|
+ | UML-Tool| PlantUML v1.2021.0|
+ | Modellversion| 1.3|
+ | Erstelldatum| 04.01.2021|
+ | Ersteller| Janek Berg|
+ | Mail| janek.berg@mni.thm.de |
+ | Letzte Änderung| 26.06.2021|
+ | Letzter Bearbeiter| Curtis Adam |
+ | Mail| curtis.adam@mni.thm.de |
+end legend
+left footer <font size=46>The following use-cases are integrated in this activity diagram:</font>\n- Activate bonus-option for transcripts or bonus-learning with specific cards (lecturer)\n- Create a card set (lecturer)\n- Choose format fitting to content of card set (lecturer)\n- Create transcript (student)\n- Link uploaded photograph (student)\n- Add open questions (student)\n- Add reworked version of transcript (student)\n - Link transcript to lecture to earn bonus points (student)\n- Learn with card sets and repetitories based on the method of Leitner or Woźniak paired with the Pomodoro-technique (student)
+@enduml

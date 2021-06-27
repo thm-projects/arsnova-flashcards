@@ -21,7 +21,9 @@ FlowRouter.route('/transcripts/personal', {
 				Meteor.subscribe('defaultAppData'),
 				Meteor.subscribe('myTranscriptCards'),
 				Meteor.subscribe('myTranscriptBonus'),
-				Meteor.subscribe('cardsetsTranscripts')
+				Meteor.subscribe('cardsetsTranscripts'),
+				Meteor.subscribe('learningPhaseActiveBonus'),
+				Meteor.subscribe('frontendUserData')
 			];
 		} else {
 			return [

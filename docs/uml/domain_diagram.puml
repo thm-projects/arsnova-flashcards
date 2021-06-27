@@ -1,16 +1,18 @@
 @startuml
+hide methods
+hide empty members
+hide circle
 
 skinparam class {
-	BackgroundColor PaleGreen
-	BorderColor Green
-	ArrowColor black
-	FontSize 28
-	BackgroundColor<<USP>> Pink
-	BorderColor<<USP>> HotPink
+  BackgroundColor PaleGreen
+  BorderColor Green
+  ArrowColor black
+  FontSize 28
+  BackgroundColor<<USP>> Pink
+  BorderColor<<USP>> HotPink
 }
 
 skinparam backgroundColor Linen
-skinparam linetype ortho
 skinparam shadowing true
 skinparam minClassWidth 150
 skinparam LegendBackgroundColor Strategy
@@ -19,117 +21,147 @@ skinparam LegendFontSize 24
 skinparam defaultFontSize 20
 skinparam Padding 5
 skinparam Nodesep 100
-skinparam ArrowThickness 2
+skinparam ArrowThickness 3
 skinparam ArrowColor DarkSlateGray
+skinparam FooterFontSize 30
+skinparam FooterFontColor black
 
-hide methods
-hide empty members
-hide circle
+package "cards | domain model" <<Frame>> {
 
-package "arsnova.cards | domain diagram" <<Frame>> {
 
-class CardIndex <<USP>> {
-	title
-	description
-	type
-	difficultyLevel
-	accessType
-	usageLicense
-	rating
-}
-
-together {
-    class Transcript
-    class Lecture <<USP>>
+class Cardset {
+   name
+   description
+   creator
+   cardType
+   difficulty
+   accessType
+   license
+   rating
+   price
+   pomodoroSettings
+   isRepetitorium
+   fragJetztCode
+   arsnovaClickQuizName
+   learningPhaseSettings
 }
 
 class Card {
-	title
-	numberOfSides
-	content
-	learningObjective
-	comments
+   subject
+   content1
+   content2
+   content3
+   content4
+   content5
+   content6
+   multipleChoiceAnswers
+   isTranscript
+   estimatedLearningTime
 }
-class TopicPool {
-    searchResult
-    filterCriteria
+
+class LeitnerLearningPhase {
+	isBonus
+    isActive
+    start
+    end
 }
-class Repetitorium <<USP>> {
-    title
-    description
-    accessType
+
+class LeitnerLearningWorkload {
+   owner
+   isBonus
+   nextActivationDay
+   activeCardsCount
+}
+
+class LeitnerActivationDay <<USP>> {
+   sessionGroup
+   notificationStats
+   pomodoroSettings
+   timeSpentLearning
+   learningMedian
+   learningArithmeticMean
+   learningStandardDeviation
+}
+
+class LeitnerPerformanceHistory <<USP>> {
+   movedBox
+   answer
+   timeSpentOnCard
+}
+
+class LeitnerUserCardStats <<USP>> {
+  currentBox
+  nextUnlockDate
+  viewedAutoPDF
+  isActive
+  priority
+}
+
+class TranscriptBonus <<USP>> {
+	lectureDate
+    unlockTime
     rating
- }
-
-together {
-    class LearningLoad
-    class LeitnerPlan {
-        totalNumberOfCardsToBeLearned
-        dailyNumberOfCardsToBeLearned
-        startTime
-        endTime
-        resetModeForUnKnownCards
-        reminderService
-    }
-    class LeitnerSimulator <<USP>>
-    class PomodoroTimer <<USP>> {
-        learningDuration
-        breakDuration
-        numberOfPomodori
-    }
-    class LearningStatusDisplay
-    class Bonus <<USP>> {
-        bonusPoints
-        bonusRegister
-    }
-    class LearningBonus  <<USP>>
-    class Transcript  <<USP>>
-    class TranscriptBonus  <<USP>> {
-        lectureDates
-        minimumNumberOfTranscripts
-        deadlineForPostprocessing
-    }
+    submissionDeadline
+    editingDeadline
+    reasonForDenial
+    stars
 }
 
-UseCase -left- TopicPool :defines shortcut to >
-TopicCloud -right- TopicPool :visualizes >
-TopicPool o-right- Repetitorium
-Repetitorium o-left- CardIndex
-Card  -left-* CardIndex
-note bottom: \nMore than a dozen study-specific \ncard-index types are planned, among others:\n\n - learning unit\n - command set \n - formula collection\n - design patterns\n - exam questions\n - quotations\n - subject bibliography\n - vocabulary\n
-CardIndex -down-o TopicPool
+class Woźniak {
+	repetitionCounter
+    interval
+    efficiencyScore
+    nextUnlockDate
+	viewedAutoPDF
+}
 
-Transcript -right-|> Card
-Transcript -up- "0..1"Lecture :coupled with >
-LearningStatusDisplay -left- LearningLoad
-LearningLoad -up- LeitnerPlan
-LeitnerPlan -up- PomodoroTimer
-LeitnerSimulator -up- LeitnerPlan :determines \nplanning \ndata >
-LearningLoad -up- LearningBonus
-LearningBonus -right-|> Bonus
-TranscriptBonus -down-|> Bonus
-CardIndex "1"-right- "1" Bonus
-Repetitorium "1" -right- "1" Bonus
-Lecture -left- TranscriptBonus
-Lecture -left-|> CardIndex
+class Rating {
+   rating
+   reviewer
+}
 
+class ErrorReport {
+   error
+   side
+   reporter
+}
+
+class purchaseHistory {
+	buyer
+    price
+}
+
+Cardset *-right- Card: contains >
+
+LeitnerLearningPhase "0..*" -up- "1" Cardset: refers to >
+LeitnerUserCardStats "2..*" -up- "1" LeitnerLearningWorkload: belongs to >
+LeitnerUserCardStats "1" -up- "1" Card: refers to >
+Woźniak "1" -right- "1" Card: belongs to >
+TranscriptBonus "0..*" -down- "1" Cardset: refers to >
+Card "1" -down- "1" TranscriptBonus: refers to >
+LeitnerLearningWorkload "0..*" -up- "1" LeitnerLearningPhase: belongs to >
+LeitnerActivationDay "1..*" -up- "1" LeitnerLearningWorkload: belongs to >
+LeitnerPerformanceHistory "0..*" -up- "1" LeitnerUserCardStats: keeps history of >
+Rating "0..*" -right- "1" Cardset: rates >
+ErrorReport "0..*" -down- "1" Card: reports error to >
+purchaseHistory "0..*" -left "1" Cardset: keeps purchase history of >
 }
 
 legend right
-  |= \n          <img:https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/whatsapp/186/tomato_1f345.png> |= \n [[https://arsnova.cards arsnova.cards]] \n\n Technische Hochschule Mittelhessen – THM \n University of Applied Sciences |
-  | Projekt-Website | [[https://arsnova.thm.de]] |
-  | «USP» | Alleinstellungsmerkmale von arsnova.cards |
-  | Repository | [[https://git.thm.de/cards]] |
-  | Staging Server | [[https://staging.arsnova.cards]] |
-  | RUP-Phase| Inception|
-  | UML-Tool| PlantUML v1.2019.5|
-  | Modellversion| 1.1 |
-  | Erstelldatum| 29.05.2019 |
-  | Ersteller| Sergej Lopatin|
-  | Mail| sergej.lopatin@mni.thm.de |
-  | Letzte Änderung| 31.05.2019 |
-  | Letzter Bearbeiter| Dr. Klaus Quibeldey-Cirkel |
-  | Mail| klaus.quibeldey-cirkel@mni.thm.de |
+ |= \n          <img:https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/whatsapp/186/tomato_1f345.png> |= \n [[https://arsnova.cards arsnova.cards]] \n\n Technische Hochschule Mittelhessen - THM \n University of Applied Sciences |
+ | Project-Website | [[https://arsnova.thm.de]] |
+ | «USP» | Alleinstellungsmerkmale von arsnova.cards |
+ | Repository | [[https://git.thm.de/cards]] |
+ | Version | 3.2 |
+ | Staging Server | [[https://staging.arsnova.cards]] |
+ | RUP-Phase| Elaboration|
+ | UML-Tool| PlantUML v1.2021.0|
+ | Model version| 1.3 |
+ | Date created| 14.12.2020 |
+ | Creator | Janek Berg|
+ | Mail| janek.berg@mni.thm.de |
+ | Last modified | 26.06.2021 |
+ | Last editor | Curtis Adam |
+ | Mail| curtis.adam@mni.thm.de |
 end legend
-
 @enduml

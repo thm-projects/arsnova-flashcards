@@ -22,6 +22,7 @@ import "./item/help.js";
 import "./item/swapQuestionAnswer.js";
 import "./item/presentation.js";
 import "./item/toggle3D.js";
+import "./item/learningCardStats.js";
 import "./item/learningStatus.js";
 import "./item/leitnerHistory.js";
 import "./item/errorReporting.js";

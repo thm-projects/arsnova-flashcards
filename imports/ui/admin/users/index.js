@@ -12,6 +12,7 @@ import {Bonus} from "../../../util/bonus";
 import "./index.html";
 import "./user.js";
 import {UserPermissions} from "../../../util/permissions";
+import {DELETED_USER_ID, NOTIFICATIONS_USER_ID, CARDS_USER_ID} from "../../../config/userData";
 
 /*
  * ############################################################################
@@ -21,7 +22,7 @@ import {UserPermissions} from "../../../util/permissions";
 
 Template.admin_users.helpers({
 	userListAdmin: function () {
-		var users = Meteor.users.find({_id: {$nin: ['NotificationsTestUser']}});
+		var users = Meteor.users.find({_id: {$nin: [DELETED_USER_ID, NOTIFICATIONS_USER_ID, CARDS_USER_ID]}});
 		var fields = [];
 		var dateString = null;
 		var date = null;
@@ -48,8 +49,11 @@ Template.admin_users.helpers({
 				if (user.email !== "" && user.email !== undefined) {
 					mail = user.email;
 				}
-				let services = _.keys(user.services)[0];
-				service = services.charAt(0).toUpperCase() + services.slice(1);
+				if (user.services !== undefined && user.services.cas !== undefined) {
+					service = 'CAS';
+				} else {
+					service = 'Social';
+				}
 			}
 			fields.push({"_id": user._id, username: DOMPurify.sanitize(getAuthorName(user._id, true, false, true),DOMPurifyConfig), "loginid": DOMPurify.sanitize(name, DOMPurifyConfig), "dateString": dateString, "date": date, "notificationSystems": notificationSystems, "mail": mail, "service": service});
 		});

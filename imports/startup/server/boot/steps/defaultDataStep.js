@@ -4,15 +4,16 @@ import {Meteor} from "meteor/meteor";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {AdminSettings} from "../../../../api/subscriptions/adminSettings";
 import {Cards} from "../../../../api/subscriptions/cards";
-import {Leitner} from "../../../../api/subscriptions/leitner";
+import {LeitnerUserCardStats} from "../../../../api/subscriptions/leitner/leitnerUserCardStats";
 import {ColorThemes} from "../../../../api/subscriptions/colorThemes";
-import {LeitnerHistory} from "../../../../api/subscriptions/leitnerHistory";
-import {LeitnerTasks} from "../../../../api/subscriptions/leitnerTasks";
+import {LeitnerPerformanceHistory} from "../../../../api/subscriptions/leitner/leitnerPerformanceHistory";
+import {LeitnerActivationDay} from "../../../../api/subscriptions/leitner/leitnerActivationDay";
 import {Wozniak} from "../../../../api/subscriptions/wozniak";
-import {Workload} from "../../../../api/subscriptions/workload";
+import {LeitnerLearningWorkload} from "../../../../api/subscriptions/leitner/leitnerLearningWorkload";
 import {WebPushSubscriptions} from "../../../../api/subscriptions/webPushNotifications";
 import {Ratings} from "../../../../api/subscriptions/ratings";
 import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
+import {LeitnerLearningPhase} from "../../../../api/subscriptions/leitner/leitnerLearningPhase";
 
 function themeData() {
 	let themes = config.initColorThemes();
@@ -28,51 +29,63 @@ function themeData() {
 function notificationData() {
 	let testNotificationsCardset = config.initTestNotificationsCardset();
 	let testNotificationsCards = config.initTestNotificationsCards();
-	let testNotificationsLearned = config.initTestNotificationsLearned();
+	let initTestNotificationsLeitnerUserCardStats = config.initTestNotificationsLeitnerUserCardStats();
 	let testNotificationsUser = config.initTestNotificationsUser();
+	let testNotificationLearningPhase = config.initTestNotifcationLeitnerLearningPhase();
+	let testNotificationLearningWorkload = config.initTestNotifcationLeitnerLearningWorkload();
 
-	Cardsets.remove({_id: testNotificationsCardset[0]._id});
-	Cardsets.insert(testNotificationsCardset[0]);
+	//Steps for Test notifications
+	testNotificationsCardset.forEach(cardset => {
+		Cardsets.remove({_id: cardset._id});
+		Cardsets.insert(cardset);
+	});
 
-	Meteor.users.remove({_id: testNotificationsUser[0]._id});
-	Meteor.users.insert(testNotificationsUser[0]);
-	AdminSettings.update({
-			name: "testNotifications"
-		},
-		{
-			$set: {
-				testCardsetID: testNotificationsCardset[0]._id,
-				testUserID: testNotificationsUser[0]._id
+	testNotificationsUser.forEach(user => {
+		Meteor.users.remove({_id: user._id});
+		Meteor.users.insert(user);
+		AdminSettings.update({
+				name: "testNotifications"
+			},
+			{
+				$set: {
+					testCardsetID: testNotificationsCardset[0]._id,
+					testUserID: user._id
+				}
 			}
-		}
-	);
+		);
+	});
 
-	for (let card = 0; card < testNotificationsCards.length; card++) {
-		Cards.remove({_id: testNotificationsCards[card]._id});
-	}
+	testNotificationLearningPhase.forEach(learningPhase => {
+		LeitnerLearningPhase.remove({_id: learningPhase._id});
+		LeitnerLearningPhase.insert(learningPhase);
+	});
 
-	for (let learned = 0; learned < testNotificationsLearned.length; learned++) {
-		Leitner.remove({_id: testNotificationsLearned[learned]._id});
-	}
+	testNotificationLearningWorkload.forEach(workload => {
+		LeitnerLearningWorkload.remove({_id: workload._id});
+		LeitnerLearningWorkload.insert(workload);
+	});
 
+	testNotificationsCards.forEach(card => {
+		Cards.remove({_id: card._id});
+		Cards.insert(card);
+	});
+
+	initTestNotificationsLeitnerUserCardStats.forEach(cardStats => {
+		LeitnerUserCardStats.remove({_id: cardStats._id});
+		LeitnerUserCardStats.insert(cardStats);
+	});
+
+	// Make user profiles visible if one of their cards is published
 	let hiddenUsers = Meteor.users.find({visible: false}).fetch();
-	for (let i = 0; i < hiddenUsers.length; i++) {
-		if (Cardsets.findOne({owner: hiddenUsers[i]._id, kind: {$ne: "personal"}})) {
-			Meteor.users.update(hiddenUsers[i]._id, {
+	hiddenUsers.forEach(hiddenUser => {
+		if (Cardsets.findOne({owner: hiddenUser._id, kind: {$ne: "personal"}})) {
+			Meteor.users.update(hiddenUser._id, {
 				$set: {
 					visible: true
 				}
 			});
 		}
-	}
-
-	for (let card = 0; card < testNotificationsCards.length; card++) {
-		Cards.insert(testNotificationsCards[card]);
-	}
-
-	for (let learned = 0; learned < testNotificationsLearned.length; learned++) {
-		Leitner.insert(testNotificationsLearned[learned]);
-	}
+	});
 }
 
 function demoData() {
@@ -82,11 +95,12 @@ function demoData() {
 }
 
 function setupDatabaseIndex() {
-	Leitner._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, active: 1});
-	LeitnerHistory._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, task_id: 1, box: 1, dateAnswered: 1});
-	LeitnerTasks._ensureIndex({user_id: 1, cardset_id: 1, session: 1});
+	LeitnerLearningPhase._ensureIndex({cardset_id: 1, isActive: 1, isBonus: 1});
+	LeitnerLearningWorkload._ensureIndex({cardset_id: 1, user_id: 1, learning_phase_id: 1, isActive: 1, isBonus: 1});
+	LeitnerUserCardStats._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, learning_phase_id: 1, isActive: 1});
+	LeitnerActivationDay._ensureIndex({user_id: 1, cardset_id: 1, learning_phase_id: 1});
+	LeitnerPerformanceHistory._ensureIndex({user_id: 1, cardset_id: 1, original_cardset_id: 1, activation_day_id: 1, learning_phase_id: 1, box: 1});
 	Wozniak._ensureIndex({user_id: 1, cardset_id: 1});
-	Workload._ensureIndex({cardset_id: 1, user_id: 1});
 	Cards._ensureIndex({cardset_id: 1, subject: 1});
 	WebPushSubscriptions._ensureIndex({user_id: 1});
 	Ratings._ensureIndex({cardset_id: 1, user_id: 1});

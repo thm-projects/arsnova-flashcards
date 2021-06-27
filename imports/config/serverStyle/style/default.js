@@ -4,7 +4,8 @@ import {
 import {AUTO_FULLSCREEN, CHOOSE_FULLSCREEN, EDU, FREE, GUEST, LECTURER, MANUAL_FULLSCREEN, PRO} from "./global/const";
 
 module.exports = {
-	"debugServerBoot": false,
+	"debugServerBoot": true,
+	"notificationsBlacklist": [],
 	"fullscreen": {
 		"settings": {
 			"enabled": [FREE, EDU, LECTURER, PRO],
@@ -66,7 +67,7 @@ module.exports = {
 		"useCases": { //Will be only visible if the related navigation item is enabled
 			"misc": {
 				"create": [FREE, EDU, PRO, LECTURER],
-				"workload":	[FREE, EDU, PRO, LECTURER],
+				"workload": [FREE, EDU, PRO, LECTURER],
 				"transcripts": [FREE, EDU, PRO, LECTURER],
 				"specialCardsets": [FREE, EDU, PRO, LECTURER, GUEST]
 			},
@@ -83,13 +84,13 @@ module.exports = {
 			"cardset": {
 				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
 				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
-				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"search": [FREE, EDU, PRO, LECTURER, GUEST],
 				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
 			},
 			"repetitorium": {
 				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
 				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
-				"search":  [FREE, EDU, PRO, LECTURER, GUEST],
+				"search": [FREE, EDU, PRO, LECTURER, GUEST],
 				"wordcloud": [FREE, EDU, PRO, LECTURER, GUEST]
 			}
 		},
@@ -97,13 +98,13 @@ module.exports = {
 			"cardset": {
 				"enabled": [FREE, EDU, PRO, LECTURER],
 				"filter": [FREE, EDU, PRO, LECTURER],
-				"search":  [FREE, EDU, PRO, LECTURER],
+				"search": [FREE, EDU, PRO, LECTURER],
 				"wordcloud": [FREE, EDU, PRO, LECTURER]
 			},
 			"repetitorium": {
 				"enabled": [FREE, EDU, PRO, LECTURER, GUEST],
 				"filter": [FREE, EDU, PRO, LECTURER, GUEST],
-				"search":  [FREE, EDU, PRO, LECTURER],
+				"search": [FREE, EDU, PRO, LECTURER],
 				"wordcloud": [FREE, EDU, PRO, LECTURER]
 			}
 		},
@@ -135,6 +136,11 @@ module.exports = {
 		"twitter": false,
 		"google": false
 	},
+	"error": {
+		"errorReporting": {
+			"gitlabLink": "https://git.thm.de/arsnova/cards/-/issues"
+		}
+	},
 	"welcome": {
 		"title": {
 			"first": "THM",
@@ -143,7 +149,7 @@ module.exports = {
 			"slogan_en": "ORGANIZE. LEARN. MEMORIZE!"
 		},
 		"button": {
-			"about":  {
+			"about": {
 				"default_de": "Einführung in die Lernkartei-Plattform der THM …",
 				"default_en": "Erfahre mehr über 🍅cards …",
 				"mobile_de": "Erfahre mehr über 🍅cards …",

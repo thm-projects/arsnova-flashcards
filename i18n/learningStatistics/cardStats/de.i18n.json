@@ -1,0 +1,25 @@
+{
+  "learningCardStats": {
+    "title": "Karten Statistik",
+    "titleBonus": "Karten Statistik für Bonus",
+    "tooltip": "Karten Statistik",
+    "tooltipBonus": "Karten Statistik über gesamten Bonus",
+    "stats": {
+      "title": "Karten Statistik"
+    },
+    "table": {
+      "title": "Karten",
+      "content": "Inhalt",
+      "cardType": "Karteityp",
+      "progress": "Lernstand",
+      "totalAnswers": "Antworten",
+      "answeredBy": "Beantwortet von",
+      "user": "__count__ Benutzer",
+      "user_plural": "__count__ Benutzern",
+      "skipped": "Übersprungen",
+      "medianTime": "Bearbeitungszeit",
+      "totalTime": "Gesamtbearbeitungszeit",
+      "known": "Gewusst"
+    }
+  }
+}

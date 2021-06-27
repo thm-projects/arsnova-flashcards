@@ -18,7 +18,8 @@ FlowRouter.route('/cardset/:_id/editshuffle', {
 			import('../../../../ui/cardset/cardset.js'),
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('editShuffleCardsets', params._id),
-			Meteor.subscribe('userData')
+			Meteor.subscribe('frontendUserData'),
+			Meteor.subscribe('learningPhaseActiveBonus')
 		];
 	},
 	data: function (params) {

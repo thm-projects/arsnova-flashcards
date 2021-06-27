@@ -2,8 +2,8 @@ import {Meteor} from "meteor/meteor";
 import {Cards} from "../subscriptions/cards.js";
 import {TranscriptBonus} from "../subscriptions/transcriptBonus";
 import {TranscriptBonusList} from "../../util/transcriptBonus.js";
-import {Leitner} from "../subscriptions/leitner";
-import {Workload} from "../subscriptions/workload";
+import {LeitnerUserCardStats} from "../subscriptions/leitner/leitnerUserCardStats";
+import {LeitnerLearningWorkload} from "../subscriptions/leitner/leitnerLearningWorkload";
 import {Wozniak} from "../subscriptions/wozniak";
 import {Notifications} from "../subscriptions/notifications";
 import {Ratings} from "../subscriptions/ratings";
@@ -13,8 +13,9 @@ import {UserPermissions} from "../../util/permissions";
 import {ServerStyle} from "../../util/styles";
 import {Utilities} from "../../util/utilities";
 import {Cardsets} from "../subscriptions/cardsets.js";
-import {LeitnerTasks} from "../subscriptions/leitnerTasks";
-import {Bonus} from "../../util/bonus";
+import {LeitnerLearningPhase} from "../subscriptions/leitner/leitnerLearningPhase";
+import {LeitnerActivationDay} from "../subscriptions/leitner/leitnerActivationDay";
+import {LeitnerPerformanceHistory} from "../subscriptions/leitner/leitnerPerformanceHistory";
 
 Meteor.methods({
 	getSearchCategoriesResult: function (searchValue, filterType) {
@@ -278,9 +279,6 @@ Meteor.methods({
 				cardset_id: id
 			});
 			Meteor.call('updateShuffledCardsetQuantity', id);
-			Leitner.remove({
-				cardset_id: id
-			});
 			Wozniak.remove({
 				cardset_id: id
 			});
@@ -290,7 +288,19 @@ Meteor.methods({
 			Ratings.remove({
 				cardset_id: id
 			});
-			Workload.remove({
+			LeitnerLearningPhase.remove({
+				cardset_id: id
+			});
+			LeitnerLearningWorkload.remove({
+				cardset_id: id
+			});
+			LeitnerUserCardStats.remove({
+				cardset_id: id
+			});
+			LeitnerActivationDay.remove({
+				cardset_id: id
+			});
+			LeitnerPerformanceHistory.remove({
 				cardset_id: id
 			});
 			TranscriptBonus.remove({
@@ -344,7 +354,7 @@ Meteor.methods({
 			}
 
 			Meteor.call('updateShuffledCardsetQuantity', cardset._id);
-			Leitner.remove({
+			LeitnerUserCardStats.remove({
 				cardset_id: id
 			});
 			Wozniak.remove({
@@ -357,196 +367,6 @@ Meteor.methods({
 					cardGroups: cardset._id
 				}).forEach(cardsetElem => Meteor.call("updateCurrentBonusPoints", cardsetElem._id));
 			}
-		} else {
-			throw new Meteor.Error("not-authorized");
-		}
-	},
-	/**
-	 * Deactivate the learning phase for the selected cardset.
-	 * @param {String} id - ID of the cardset for which the learning phase is to be deactivated.
-	 */
-	deactivateBonus: function (id) {
-		check(id, String);
-
-		let cardset = Cardsets.findOne(id);
-		if (cardset !== undefined && cardset.learningActive && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
-			Cardsets.update(id, {
-				$set: {
-					learningActive: false,
-					dateUpdated: new Date(),
-					lastEditor: Meteor.userId()
-				}
-			});
-			let users = Workload.find({
-				cardset_id: cardset._id,
-				'leitner.bonus': true
-			}, {fields: {user_id: 1}}).fetch();
-			for (let i = 0; i < users.length; i++) {
-				Workload.update({
-						cardset_id: cardset._id,
-						user_id: users[i].user_id
-					},
-					{
-						$set: {
-							'leitner.bonus': false
-						}
-					}
-				);
-				Leitner.remove({
-					cardset_id: cardset._id,
-					user_id: users[i].user_id
-				});
-				Wozniak.remove({
-					cardset_id: cardset._id,
-					user_id: users[i].user_id
-				});
-			}
-		} else {
-			throw new Meteor.Error("not-authorized");
-		}
-	},
-	/**
-	 * Activate the learning phase for the selected cardset.
-	 * @param {String} id - ID of the cardset for which the learning phase is to be activated.
-	 * @param {Number} maxWorkload - Maximum number of daily learnable cards
-	 * @param {Number} daysBeforeReset - Maximum overrun in days
-	 * @param {Date} dateStart - Start date of the learnin gphase
-	 * @param {Date} dateEnd - End date of the learning phase
-	 * @param {Number} intervals - Learning interval in days
-	 * @param {Date} registrationPeriod - Period in which new users can join the bonus phase
-	 * @param {Number} maxBonusPoints - The maximum achieveable bonus points
-	 * @param {Number} pomodoroTimerQuantity - The amount of pomodoro runs for bonus users
-	 * @param {Number} pomodoroTimerWorkLength - How many minutes are bonus users supposed to work
-	 * @param {Number} pomodoroTimerBreakLength - How long is the break
-	 * @param {boolean} pomodoroTimerSoundConfig - Which sounds are enabled
-	 * @param {Number} errorCount - Number in percent for not known cards of a simulation
-	 * @param {Number} minLearned - The minimum amount of cards that the user has to learn (box 6) to receive the max bonus in %
-	 * @param {boolean} strictWorkloadTimer - Does this Bonus enforce the minimum amount of pomdori time for the workload?
-	 * @param {Object} forceNotifications - Force mail or push notifications
-	 */
-	activateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig, errorCount, minLearned, strictWorkloadTimer, forceNotifications) {
-		check(id, String);
-		check(maxWorkload, Number);
-		check(daysBeforeReset, Number);
-		check(dateStart, Date);
-		check(dateEnd, Date);
-		check(intervals, [Number]);
-		check(registrationPeriod, Date);
-		check(maxBonusPoints, Number);
-		check(pomodoroTimerQuantity, Number);
-		check(pomodoroTimerWorkLength, Number);
-		check(pomodoroTimerBreakLength, Number);
-		check(pomodoroTimerSoundConfig, [Boolean]);
-		check(errorCount, [[Number]]);
-		check(minLearned, Number);
-		check(strictWorkloadTimer, Boolean);
-		check(forceNotifications.mail, Boolean);
-		check(forceNotifications.push, Boolean);
-
-		let cardset = Cardsets.findOne(id);
-		if (cardset !== undefined && !cardset.learningActive && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
-			intervals = intervals.sort(
-				function (a, b) {
-					return a - b;
-				}
-			);
-			Cardsets.update(id, {
-				$set: {
-					learningActive: true,
-					maxCards: maxWorkload,
-					daysBeforeReset: daysBeforeReset,
-					learningStart: dateStart,
-					learningEnd: dateEnd,
-					learningInterval: intervals,
-					registrationPeriod: registrationPeriod,
-					"workload.bonus.maxPoints": Math.floor(maxBonusPoints),
-					'pomodoroTimer.quantity': pomodoroTimerQuantity,
-					'pomodoroTimer.workLength': pomodoroTimerWorkLength,
-					'pomodoroTimer.breakLength': pomodoroTimerBreakLength,
-					'pomodoroTimer.soundConfig': pomodoroTimerSoundConfig,
-					'workload.simulator.errorCount': errorCount,
-					'workload.bonus.minLearned': minLearned,
-					'leitner.timelineStats.arithmeticMean.bonus': 0,
-					'leitner.timelineStats.median.bonus': 0,
-					'leitner.timelineStats.standardDeviation.bonus': 0,
-					dateUpdated: new Date(),
-					lastEditor: Meteor.userId(),
-					strictWorkloadTimer: strictWorkloadTimer,
-					forceNotifications: forceNotifications
-				}
-			});
-			return cardset._id;
-		} else {
-			throw new Meteor.Error("not-authorized");
-		}
-	},
-	/**
-	 * Updates the settings of a learning phase for the selected cardset.
-	 * @param {String} id - ID of the cardset for which the learning phase is to be activated.
-	 * @param {Number} maxWorkload - Maximum number of daily learnable cards
-	 * @param {Number} daysBeforeReset - Maximum overrun in days
-	 * @param {Date} dateStart - Start date of the learnin gphase
-	 * @param {Date} dateEnd - End date of the learning phase
-	 * @param {Number} intervals - Learning interval in days
-	 * @param {Date} registrationPeriod - Period in which new users can join the bonus phase
-	 * @param {Number} maxBonusPoints - The maximum achieveable bonus points
-	 * @param {Number} pomodoroTimerQuantity - The amount of pomodoro runs for bonus users
-	 * @param {Number} pomodoroTimerWorkLength - How many minutes are bonus users supposed to work
-	 * @param {Number} pomodoroTimerBreakLength - How long is the break
-	 * @param {boolean} pomodoroTimerSoundConfig - Which sounds are enabled
-	 * @param {Number} errorCount - Number in percent for not known cards of a simulation
-	 * @param {Number} minLearned - The minimum amount of cards that the user has to learn (box 6) to receive the max bonus in %
-	 * @param {boolean} strictWorkloadTimer - Does this Bonus enforce the minimum amount of pomdori time for the workload?
-	 * @param {Object} forceNotifications - Force mail or push notifications
-	 */
-	updateBonus: function (id, maxWorkload, daysBeforeReset, dateStart, dateEnd, intervals, registrationPeriod, maxBonusPoints, pomodoroTimerQuantity, pomodoroTimerWorkLength, pomodoroTimerBreakLength, pomodoroTimerSoundConfig, errorCount, minLearned, strictWorkloadTimer, forceNotifications) {
-		check(id, String);
-		check(maxWorkload, Number);
-		check(daysBeforeReset, Number);
-		check(dateStart, Date);
-		check(dateEnd, Date);
-		check(intervals, [Number]);
-		check(registrationPeriod, Date);
-		check(maxBonusPoints, Number);
-		check(pomodoroTimerQuantity, Number);
-		check(pomodoroTimerWorkLength, Number);
-		check(pomodoroTimerBreakLength, Number);
-		check(pomodoroTimerSoundConfig, [Boolean]);
-		check(errorCount, [[Number]]);
-		check(minLearned, Number);
-		check(strictWorkloadTimer, Boolean);
-		check(forceNotifications.mail, Boolean);
-		check(forceNotifications.push, Boolean);
-
-		let cardset = Cardsets.findOne(id);
-		if (cardset !== undefined && cardset.learningActive && (UserPermissions.gotBackendAccess() || UserPermissions.isOwner(cardset.owner))) {
-			intervals = intervals.sort(
-				function (a, b) {
-					return a - b;
-				}
-			);
-			Cardsets.update(id, {
-				$set: {
-					maxCards: maxWorkload,
-					daysBeforeReset: daysBeforeReset,
-					learningStart: dateStart,
-					learningEnd: dateEnd,
-					learningInterval: intervals,
-					registrationPeriod: registrationPeriod,
-					"workload.bonus.maxPoints": Math.floor(maxBonusPoints),
-					'pomodoroTimer.quantity': pomodoroTimerQuantity,
-					'pomodoroTimer.workLength': pomodoroTimerWorkLength,
-					'pomodoroTimer.breakLength': pomodoroTimerBreakLength,
-					'pomodoroTimer.soundConfig': pomodoroTimerSoundConfig,
-					'workload.simulator.errorCount': errorCount,
-					'workload.bonus.minLearned': minLearned,
-					dateUpdated: new Date(),
-					lastEditor: Meteor.userId(),
-					strictWorkloadTimer: strictWorkloadTimer,
-					forceNotifications: forceNotifications
-				}
-			});
-			return cardset._id;
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
@@ -740,7 +560,11 @@ Meteor.methods({
 			});
 			let removedCards = Cards.find({cardset_id: {$in: removedCardsets}}).fetch();
 			for (let i = 0; i < removedCards.length; i++) {
-				Leitner.remove({
+				LeitnerUserCardStats.remove({
+					cardset_id: cardset._id,
+					card_id: removedCards[i]._id
+				});
+				LeitnerPerformanceHistory.remove({
 					cardset_id: cardset._id,
 					card_id: removedCards[i]._id
 				});
@@ -755,71 +579,6 @@ Meteor.methods({
 		} else {
 			throw new Meteor.Error("not-authorized");
 		}
-	},
-	updateCurrentBonusPoints: function (cardset_id) {
-		check(cardset_id, String);
-		if (!Meteor.isServer) {
-			return;
-		}
-		const cardset = Cardsets.findOne(cardset_id);
-		//Only update bonus points in learning bonus cardsets
-		if (!cardset.learningActive) {
-			return;
-		}
-		//Get Users
-		const users = Workload.find({
-				cardset_id: cardset_id,
-				"leitner.bonus": true
-			},
-			{
-				fields: {user_id: 1, _id: 0}
-			}).map(elem => elem.user_id);
-		//If no user is in this bonus cardset, return
-		if (!users.length) {
-			return;
-		}
-		const box6Counts = {};
-		users.forEach(user => box6Counts[user] = 0);
-		//Count users their box 6 cards
-		Leitner.find({
-				cardset_id: cardset_id,
-				box: 6
-			},
-			{
-				fields: {_id: 0, user_id: 1}
-			}).forEach(card => ++box6Counts[card.user_id]);
-		//Get the amount of learnable questions
-		let amountOfLearnableCards;
-		if (!cardset.shuffled) {
-			amountOfLearnableCards = cardset.quantity;
-		} else {
-			//if shuffled, it could contain non learnable questions
-			amountOfLearnableCards = Leitner.find({
-				user_id: users[0],
-				cardset_id: cardset_id
-			}).count();
-		}
-		//Calculate bonus points & update
-		users.forEach(user => {
-			const task_id = LeitnerTasks.findOne({
-					cardset_id: cardset_id,
-					user_id: user
-				},
-				{
-					sort: {createdAt: -1},
-					fields: {_id: 1}
-				})._id;
-			const bonusPoints = Bonus.getAchievedBonus(box6Counts[user], cardset.workload, amountOfLearnableCards);
-			LeitnerTasks.update(
-				{
-					_id: task_id
-				},
-				{
-					$set: {
-						"bonusPoints.atEnd": bonusPoints
-					}
-				});
-		});
 	},
 	updateShuffledCardsetQuantity: function (cardset_id) {
 		check(cardset_id, String);
@@ -1093,7 +852,7 @@ Meteor.methods({
 			} else if (type === 'user') {
 				query.user_id = Meteor.userId();
 			}
-			let cardsetIDFilter = _.uniq(Leitner.find(query, {
+			let cardsetIDFilter = _.uniq(LeitnerUserCardStats.find(query, {
 				fields: {cardset_id: 1}
 			}).fetch().map(function (x) {
 				return x.cardset_id;

@@ -154,57 +154,140 @@ let initTestNotificationsCards = function () {
 	];
 };
 
-let initTestNotificationsLearned = function () {
+let initTestNotifcationLeitnerLearningWorkload = function () {
+	return [
+		{
+			"_id": "NotificationsTestWorkload",
+			"nextLowestPriority": [
+				-1,
+				-1,
+				-1,
+				-1,
+				-1
+			],
+			"user_id": "NotificationsTestUser",
+			"cardset_id": "NotificationsTestCardset",
+			"isBonus": false,
+			"isActive": true,
+			"activeCardCount": 30,
+			"activationDate": new Date(),
+			"nextActivationDate": new Date(),
+			"gotFinished": false,
+			"performanceStats": {
+				"answerTime": {
+					"median": 0,
+					"arithmeticMean": 0,
+					"standardDeviation": 0
+				},
+				"workingTime": {
+					"sum": 0,
+					"median": 0,
+					"arithmeticMean": 0,
+					"standardDeviation": 0
+				}
+			},
+			"learning_phase_id": "NotificationsTestLearningPhase",
+			"createdAt": new Date(),
+			"updatedAt": new Date()
+		}
+	];
+};
+let initTestNotifcationLeitnerLearningPhase = function () {
+	return [
+		{
+			"_id": "NotificationsTestLearningPhase",
+			"cardset_id": "NotificationsTestCardset",
+			"isBonus": false,
+			"isActive": true,
+			"createdAt": new Date(),
+			"updatedAt": new Date(),
+			"daysBeforeReset": 7,
+			"intervals": [
+				1,
+				3,
+				7,
+				28,
+				84
+			],
+			"maxCards": 30,
+			"bonusPoints": {
+				"minLearned": 20,
+				"maxPoints": 100
+			},
+			"strictWorkloadTimer": true,
+			"forceNotifications": {
+				"mail": true,
+				"push": true
+			},
+			"simulator": {
+				"errorCount": [
+					50,
+					20,
+					10,
+					5,
+					2
+				]
+			}
+		}
+	];
+};
+
+let initTestNotificationsLeitnerUserCardStats = function () {
 	return [
 		{
 			"_id": "NotificationsTestLearned1",
 			"cardset_id": "NotificationsTestCardset",
 			"card_id": "NotificationsTestCard1",
 			"user_id": "NotificationsTestUser",
-			"box": 1,
-			"active": true,
-			"nextDate": new Date(),
-			"currentDate": new Date()
+			"learning_phase_id": "NotificationsTestLearningPhase",
+			"workload_id": "NotificationsTestWorkload",
+			"nextPossibleActivationDate": new Date(),
+			"activatedSinceDate": new Date(),
+			"isActive": true
 		},
 		{
 			"_id": "NotificationsTestLearned2",
 			"cardset_id": "NotificationsTestCardset",
 			"card_id": "NotificationsTestCard2",
 			"user_id": "NotificationsTestUser",
-			"box": 1,
-			"active": true,
-			"nextDate": new Date(),
-			"currentDate": new Date()
+			"learning_phase_id": "NotificationsTestLearningPhase",
+			"workload_id": "NotificationsTestWorkload",
+			"nextPossibleActivationDate": new Date(),
+			"activatedSinceDate": new Date(),
+			"isActive": true
 		},
 		{
 			"_id": "NotificationsTestLearned3",
 			"cardset_id": "NotificationsTestCardset",
 			"card_id": "NotificationsTestCard3",
 			"user_id": "NotificationsTestUser",
-			"box": 1,
-			"active": true,
-			"nextDate": new Date(),
-			"currentDate": new Date()
+			"learning_phase_id": "NotificationsTestLearningPhase",
+			"workload_id": "NotificationsTestWorkload",
+			"nextPossibleActivationDate": new Date(),
+			"activatedSinceDate": new Date(),
+			"isActive": true
 		},
 		{
 			"_id": "NotificationsTestLearned4",
 			"cardset_id": "NotificationsTestCardset",
 			"card_id": "NotificationsTestCard4",
 			"user_id": "NotificationsTestUser",
-			"box": 1,
-			"active": true,
-			"nextDate": new Date(),
-			"currentDate": new Date()
+			"learning_phase_id": "NotificationsTestLearningPhase",
+			"workload_id": "NotificationsTestWorkload",
+			"nextPossibleActivationDate": new Date(),
+			"activatedSinceDate": new Date(),
+			"isActive": true
 		},
 		{
 			"_id": "NotificationsTestLearned5",
 			"cardset_id": "NotificationsTestCardset",
 			"card_id": "NotificationsTestCard5",
 			"user_id": "NotificationsTestUser",
-			"box": 1,
-			"active": true,
-			"nextDate": new Date(),
-			"currentDate": new Date()
+			"learning_phase_id": "NotificationsTestLearningPhase",
+			"workload_id": "NotificationsTestWorkload",
+			"nextPossibleActivationDate": new Date(),
+			"activatedSinceDate": new Date(),
+			"isActive": true
 		}
 	];
 };
@@ -320,7 +403,9 @@ module.exports = {
 	initColorThemes,
 	initTestNotificationsCardset,
 	initTestNotificationsCards,
-	initTestNotificationsLearned,
+	initTestNotificationsLeitnerUserCardStats,
 	initTestNotificationsUser,
-	initDemoCardsetUser
+	initDemoCardsetUser,
+	initTestNotifcationLeitnerLearningPhase,
+	initTestNotifcationLeitnerLearningWorkload
 };

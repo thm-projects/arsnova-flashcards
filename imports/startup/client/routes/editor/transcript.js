@@ -17,7 +17,8 @@ FlowRouter.route('/personal/transcripts/edit/:card_id', {
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('cardsetsTranscripts'),
 			Meteor.subscribe('transcriptCard', params.card_id),
-			Meteor.subscribe('myTranscriptBonus')
+			Meteor.subscribe('myTranscriptBonus'),
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function () {
@@ -49,7 +50,7 @@ FlowRouter.route('/personal/transcripts/new', {
 			import('../../../../ui/card/editor/editor.js'),
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('cardsetsTranscripts'),
-			Meteor.subscribe('userDataLecturers')
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function () {

@@ -12,6 +12,7 @@ import "./item/registrationPeriod.js";
 import "./item/startDate.js";
 import "./item/strictWorkloadTimer.js";
 import "./item/forceNotifications.js";
+import "./item/title.js";
 import "./completeProfile/completeProfile.js";
 import "./join/join.js";
 import "./leave/leave.js";
@@ -38,25 +39,28 @@ Template.bonusForm.onRendered(function () {
 });
 
 Template.bonusForm.helpers({
-	isNewBonus: function () {
-		return Session.get('isNewBonus');
+	displayContentOfNewLearningPhaseBonus: function () {
+		return Session.get('displayContentOfNewLearningPhaseBonus');
 	}
 });
 
 Template.bonusForm.events({
 	"click #startBonus": function () {
-		if (Session.get('isNewBonus')) {
+		if (Session.get('displayContentOfNewLearningPhaseBonus')) {
 			BonusForm.startBonus();
 		} else {
 			BonusForm.updateBonus();
 		}
-		$('#bonusFormModal').modal('hide');
-		$('body').removeClass('modal-open');
-		$('.modal-backdrop').remove();
 	},
 	"click #resetBonus": function () {
 		BonusForm.cleanModal();
 		PomodoroTimer.initializeVariables();
 		PomodoroTimer.initializeModalContent();
+	},
+	"click #deleteArchivedBonus": function () {
+		$('#learningStatisticsDeleteArchivedBonusModal').modal("show");
+	},
+	'click #updateArchivedBonus': function () {
+		BonusForm.updateArchivedBonus();
 	}
 });

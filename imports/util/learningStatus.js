@@ -15,26 +15,38 @@ Session.set('workloadProgressType', undefined);
 let chart;
 let simulatorChart;
 let difficultyGotCards;
+let WorkloadLearningPhaseCollection = new Mongo.Collection(null);
 let WorkloadCardsetCollection = new Mongo.Collection(null);
-let WorkloadLeitnerCollection = new Mongo.Collection(null);
+let WorkloadUserCardStatsCollection = new Mongo.Collection(null);
 
 export let LearningStatus = class LearningStatus {
 	static clearTempData () {
+		WorkloadLearningPhaseCollection = new Mongo.Collection(null);
 		WorkloadCardsetCollection = new Mongo.Collection(null);
-		WorkloadLeitnerCollection = new Mongo.Collection(null);
+		WorkloadUserCardStatsCollection = new Mongo.Collection(null);
 		Session.set('workloadProgressUserID', undefined);
 		Session.set('workloadProgressCardsetID', undefined);
 		Session.set('workloadProgressType', undefined);
 	}
 
-	static setupTempData (cardset_id, user_id, type) {
+	static setupTempData (cardset_id, user_id, workload_id, type) {
+		WorkloadLearningPhaseCollection = new Mongo.Collection(null);
 		WorkloadCardsetCollection = new Mongo.Collection(null);
-		WorkloadLeitnerCollection = new Mongo.Collection(null);
+		WorkloadUserCardStatsCollection = new Mongo.Collection(null);
 		Session.set('workloadProgressType', type);
 		if (type === 'simulator') {
 			Session.set('workloadProgressCardsetID', cardset_id);
 			Session.set('workloadProgressUserID', Meteor.userId());
 		} else {
+			if (workload_id !== undefined) {
+				Meteor.call('getTempLearningPhaseData', cardset_id, user_id, workload_id, function (err, res) {
+					if (!err) {
+						for (let i = 0; i < res.length; i++) {
+							WorkloadLearningPhaseCollection.insert(res[i]);
+						}
+					}
+				});
+			}
 			Meteor.call('getTempCardsetData', cardset_id, type, function (err, res) {
 				if (!err) {
 					for (let i = 0; i < res.length; i++) {
@@ -43,15 +55,21 @@ export let LearningStatus = class LearningStatus {
 					Session.set('workloadProgressCardsetID', cardset_id);
 				}
 			});
-			Meteor.call('getTempLeitnerData', cardset_id, user_id, type, function (err, res) {
+			Meteor.call('getTempLeitnerData', cardset_id, user_id, workload_id, type, function (err, res) {
 				if (!err) {
 					for (let i = 0; i < res.length; i++) {
-						WorkloadLeitnerCollection.insert(res[i]);
+						WorkloadUserCardStatsCollection.insert(res[i]);
 					}
 					Session.set('workloadProgressUserID', user_id);
 				}
 			});
-			Meteor.call('getLastLearningStatusActivity', Meteor.userId(), "null", true, function (err, res) {
+
+			let workload = "null";
+			if (workload_id !== undefined) {
+				workload = workload_id;
+			}
+
+			Meteor.call('getLastLearningStatusActivity', Meteor.userId(), "null", workload, true, function (err, res) {
 				if (res) {
 					Session.set('lastLearningStatusActivity', res);
 				}
@@ -59,11 +77,16 @@ export let LearningStatus = class LearningStatus {
 		}
 	}
 
+	static getLearningPhaseCollection () {
+		return WorkloadLearningPhaseCollection;
+	}
+
 	static getCardsetCollection () {
 		return WorkloadCardsetCollection;
 	}
+
 	static getLeitnerCollection () {
-		return WorkloadLeitnerCollection;
+		return WorkloadUserCardStatsCollection;
 	}
 
 	static initializeGraph (type) {
@@ -191,7 +214,7 @@ export let LearningStatus = class LearningStatus {
 		let boxInterval4 = "";
 		let boxInterval5 = "";
 		if (Session.get('workloadProgressType') === 'cardset') {
-			learningInterval = WorkloadCardsetCollection.findOne({_id: Session.get('workloadProgressCardsetID')}).learningInterval;
+			learningInterval = WorkloadLearningPhaseCollection.findOne({cardset_id: Session.get('workloadProgressCardsetID')}).intervals;
 			if (learningInterval[0] <= 1) {
 				boxInterval1 = TAPi18n.__('learningStatistics.boxIntervalDaily', {}, Session.get('activeLanguage'));
 			} else {
@@ -290,7 +313,7 @@ export let LearningStatus = class LearningStatus {
 			if (Session.get('workloadProgressType') === 'user') {
 				userFilter.user_id = Meteor.userId();
 			}
-			uniqueLeitnerObjects = _.uniq(WorkloadLeitnerCollection.find(userFilter, {
+			uniqueLeitnerObjects = _.uniq(WorkloadUserCardStatsCollection.find(userFilter, {
 				fields: {cardset_id: 1}
 			}).fetch(), function (cardsets) {
 				return cardsets.cardset_id;
@@ -318,7 +341,7 @@ export let LearningStatus = class LearningStatus {
 		}
 		for (let i = 0; i < 6; i++) {
 			filterQuery.box = (i + 1);
-			boxCount = WorkloadLeitnerCollection.find(filterQuery).count();
+			boxCount = WorkloadUserCardStatsCollection.find(filterQuery).count();
 			if (boxCount !== 0) {
 				difficultyGotCards = true;
 			}
@@ -329,41 +352,45 @@ export let LearningStatus = class LearningStatus {
 
 	static getCardsetCardCount (countLeitnerCards = false) {
 		let cardset = WorkloadCardsetCollection.findOne({_id: Session.get('workloadProgressCardsetID')});
-		if (cardset.shuffled) {
-			let cardsetList = [];
-			let cardsetLeitnerCount = 0;
-			let cardsets = WorkloadCardsetCollection.find({_id: {$in: cardset.cardGroups}},
-				{sort: {name: 1}}).fetch();
-			for (let i = 0; i < cardsets.length; i++) {
-				if (CardType.gotLearningModes(cardsets[i].cardType)) {
-					if (countLeitnerCards) {
-						cardsetLeitnerCount += cardsets[i].quantity;
-					} else {
-						cardsetList.push(cardsets[i]);
+		if (cardset !== undefined) {
+			if (cardset.shuffled) {
+				let cardsetList = [];
+				let cardsetLeitnerCount = 0;
+				let cardsets = WorkloadCardsetCollection.find({_id: {$in: cardset.cardGroups}},
+					{sort: {name: 1}}).fetch();
+				for (let i = 0; i < cardsets.length; i++) {
+					if (CardType.gotLearningModes(cardsets[i].cardType)) {
+						if (countLeitnerCards) {
+							cardsetLeitnerCount += cardsets[i].quantity;
+						} else {
+							cardsetList.push(cardsets[i]);
+						}
 					}
 				}
-			}
-			if (countLeitnerCards) {
-				return cardsetLeitnerCount;
+				if (countLeitnerCards) {
+					return cardsetLeitnerCount;
+				} else {
+					return cardsetList;
+				}
 			} else {
-				return cardsetList;
+				return cardset.quantity;
 			}
 		} else {
-			return cardset.quantity;
+			return 0;
 		}
 	}
 
 	static getTotalLeitnerCardCount () {
-		return WorkloadLeitnerCollection.find().count();
+		return WorkloadUserCardStatsCollection.find().count();
 	}
 
 	static getTotalLeitnerCardCountUser () {
-		return WorkloadLeitnerCollection.find({user_id: Meteor.userId()}).count();
+		return WorkloadUserCardStatsCollection.find({user_id: Meteor.userId()}).count();
 	}
 
 	static gotData () {
 		let result = Session.get('workloadProgressUserID') !== undefined && Session.get('workloadProgressCardsetID') !== undefined;
-		if (!Route.isCardset()) {
+		if (!Route.isCardset() && !Route.isCardsetLeitnerStats()) {
 			return result && Session.get('lastLearningStatusActivity') !== undefined;
 		} else {
 			return result;

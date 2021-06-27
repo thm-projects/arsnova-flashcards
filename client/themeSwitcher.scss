@@ -558,6 +558,16 @@ $themes: (
     $card_sidebar_leitner_graph_border_active: map-get($map, "card_sidebar_leitner_graph_border_active");
     $card_sidebar_leitner_graph_text_active: map-get($map, "card_sidebar_leitner_graph_text_active");
 
+    $card_sidebar_leitner_card_stats_background: map-get($map, "card_sidebar_leitner_card_stats_background");
+    $card_sidebar_leitner_card_stats_border: map-get($map, "card_sidebar_leitner_card_stats_border");
+    $card_sidebar_leitner_card_stats_text: map-get($map, "card_sidebar_leitner_card_stats_text");
+    $card_sidebar_leitner_card_stats_background_hover: map-get($map, "card_sidebar_leitner_card_stats_background_hover");
+    $card_sidebar_leitner_card_stats_border_hover: map-get($map, "card_sidebar_leitner_card_stats_border_hover");
+    $card_sidebar_leitner_card_stats_text_hover: map-get($map, "card_sidebar_leitner_card_stats_text_hover");
+    $card_sidebar_leitner_card_stats_background_active: map-get($map, "card_sidebar_leitner_card_stats_background_active");
+    $card_sidebar_leitner_card_stats_border_active: map-get($map, "card_sidebar_leitner_card_stats_border_active");
+    $card_sidebar_leitner_card_stats_text_active: map-get($map, "card_sidebar_leitner_card_stats_text_active");
+
     $card_sidebar_pomodoro_timer_background: map-get($map, "card_sidebar_pomodoro_timer_background");
     $card_sidebar_pomodoro_timer_border: map-get($map, "card_sidebar_pomodoro_timer_border");
     $card_sidebar_pomodoro_timer_background_hover: map-get($map, "card_sidebar_pomodoro_timer_background_hover");
@@ -3660,10 +3670,9 @@ $themes: (
       background-color: $button_difficulty3 !important;
     }
 
-    #setCardsetFormModal, #showSelectLearningUnitModal, #setLeitnerProgressCardsetFilter, #useCasesModal, #appThemeSelector {
+    #setCardsetFormModal, #showSelectLearningUnitModal, #setLeitnerProgressCardsetFilter, #useCasesModal, #appThemeSelector, #archivedLearningPhaseDropdown {
       ul > li {
         background-color: $cardset_form_list_background !important;
-        border-bottom-color: $cardset_form_border !important;
         a {
           color: $cardset_form_list_text !important;
         }
@@ -4093,10 +4102,28 @@ $themes: (
         color: $card_sidebar_leitner_graph_text_active !important;
       }
 
+      .showLearningCardStats {
+        background-color: $card_sidebar_leitner_card_stats_background !important;
+        border-color: $card_sidebar_leitner_card_stats_border !important;
+        color: $card_sidebar_leitner_card_stats_text !important;
+      }
+
       .showLeitnerGraph:hover, .showLeitnerGraph:focus {
         background-color: $card_sidebar_leitner_graph_background_hover !important;
         border-color: $card_sidebar_leitner_graph_border_hover !important;
         color: $card_sidebar_leitner_graph_text_hover !important;
+      }
+
+      .showLearningCardStats.active {
+        background-color: $card_sidebar_leitner_card_stats_background_active !important;
+        border-color: $card_sidebar_leitner_card_stats_border_active !important;
+        color: $card_sidebar_leitner_card_stats_text_active !important;
+      }
+
+      .showLearningCardStats:hover, .showLeitnerGraph:focus {
+        background-color: $card_sidebar_leitner_card_stats_background_hover !important;
+        border-color: $card_sidebar_leitner_card_stats_border_hover !important;
+        color: $card_sidebar_leitner_card_stats_text_hover !important;
       }
 
       .editCard {

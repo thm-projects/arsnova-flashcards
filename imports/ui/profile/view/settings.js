@@ -5,6 +5,7 @@ import {Template} from "meteor/templating";
 import {Session} from "meteor/session";
 import {BertAlertVisuals} from "../../../util/bertAlertVisuals";
 import "../modal/deleteProfile.js";
+import "../../cardset/navigation/modal/bonus/leave/leave.js";
 import "../view/public.js";
 import "./settings.html";
 import {ServerSettings} from "../../../util/settings";

@@ -25,11 +25,13 @@ FlowRouter.route('/box/:_id', {
 			Meteor.subscribe('defaultAppData'),
 			Meteor.subscribe('cardset', params._id),
 			Meteor.subscribe('paidCardset', params._id),
-			Meteor.subscribe('cardsetWorkload', params._id),
 			Meteor.subscribe('cardsetCards', params._id),
-			Meteor.subscribe('cardsetLeitner', params._id),
-			Meteor.subscribe('latestLeitnerCardsetTask', params._id),
-			Meteor.subscribe('latestLeitnerCardsetHistory', params._id),
+			Meteor.subscribe('latestLeitnerCardsetWorkload', params._id),
+			Meteor.subscribe('latestLeitnerCardsetCards', params._id),
+			Meteor.subscribe('latestLeitnerCardsetActivationDay', params._id),
+			Meteor.subscribe('latestLeitnerCardsetPerformanceHistory', params._id),
+			Meteor.subscribe('latestLeitnerCardsetLearningPhase', params._id),
+			Meteor.subscribe('frontendUserData')
 		];
 	},
 	data: function (params) {
