@@ -31,49 +31,61 @@ function notificationData() {
 	let testNotificationsCards = config.initTestNotificationsCards();
 	let initTestNotificationsLeitnerUserCardStats = config.initTestNotificationsLeitnerUserCardStats();
 	let testNotificationsUser = config.initTestNotificationsUser();
+	let testNotificationLearningPhase = config.initTestNotifcationLeitnerLearningPhase();
+	let testNotificationLearningWorkload = config.initTestNotifcationLeitnerLearningWorkload();
 
-	Cardsets.remove({_id: testNotificationsCardset[0]._id});
-	Cardsets.insert(testNotificationsCardset[0]);
+	//Steps for Test notifications
+	testNotificationsCardset.forEach(cardset => {
+		Cardsets.remove({_id: cardset._id});
+		Cardsets.insert(cardset);
+	});
 
-	Meteor.users.remove({_id: testNotificationsUser[0]._id});
-	Meteor.users.insert(testNotificationsUser[0]);
-	AdminSettings.update({
-			name: "testNotifications"
-		},
-		{
-			$set: {
-				testCardsetID: testNotificationsCardset[0]._id,
-				testUserID: testNotificationsUser[0]._id
+	testNotificationsUser.forEach(user => {
+		Meteor.users.remove({_id: user._id});
+		Meteor.users.insert(user);
+		AdminSettings.update({
+				name: "testNotifications"
+			},
+			{
+				$set: {
+					testCardsetID: testNotificationsCardset[0]._id,
+					testUserID: user._id
+				}
 			}
-		}
-	);
+		);
+	});
 
-	for (let card = 0; card < testNotificationsCards.length; card++) {
-		Cards.remove({_id: testNotificationsCards[card]._id});
-	}
+	testNotificationLearningPhase.forEach(learningPhase => {
+		LeitnerLearningPhase.remove({_id: learningPhase._id});
+		LeitnerLearningPhase.insert(learningPhase);
+	});
 
-	for (let learned = 0; learned < initTestNotificationsLeitnerUserCardStats.length; learned++) {
-		LeitnerUserCardStats.remove({_id: initTestNotificationsLeitnerUserCardStats[learned]._id});
-	}
+	testNotificationLearningWorkload.forEach(workload => {
+		LeitnerLearningWorkload.remove({_id: workload._id});
+		LeitnerLearningWorkload.insert(workload);
+	});
 
+	testNotificationsCards.forEach(card => {
+		Cards.remove({_id: card._id});
+		Cards.insert(card);
+	});
+
+	initTestNotificationsLeitnerUserCardStats.forEach(cardStats => {
+		LeitnerUserCardStats.remove({_id: cardStats._id});
+		LeitnerUserCardStats.insert(cardStats);
+	});
+
+	// Make user profiles visible if one of their cards is published
 	let hiddenUsers = Meteor.users.find({visible: false}).fetch();
-	for (let i = 0; i < hiddenUsers.length; i++) {
-		if (Cardsets.findOne({owner: hiddenUsers[i]._id, kind: {$ne: "personal"}})) {
-			Meteor.users.update(hiddenUsers[i]._id, {
+	hiddenUsers.forEach(hiddenUser => {
+		if (Cardsets.findOne({owner: hiddenUser._id, kind: {$ne: "personal"}})) {
+			Meteor.users.update(hiddenUser._id, {
 				$set: {
 					visible: true
 				}
 			});
 		}
-	}
-
-	for (let card = 0; card < testNotificationsCards.length; card++) {
-		Cards.insert(testNotificationsCards[card]);
-	}
-
-	for (let learned = 0; learned < initTestNotificationsLeitnerUserCardStats.length; learned++) {
-		LeitnerUserCardStats.insert(initTestNotificationsLeitnerUserCardStats[learned]);
-	}
+	});
 }
 
 function demoData() {

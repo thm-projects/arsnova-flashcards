@@ -45,6 +45,8 @@ export class Notifications {
 			minute: 0
 		};
 		let activeLeitnerCard = LeitnerUserCardStats.findOne({
+			learning_phase_id: leitnerWorkload.learning_phase_id,
+			workload_id: leitnerWorkload._id,
 			cardset_id: leitnerWorkload.cardset_id,
 			user_id: user_id,
 			isActive: true

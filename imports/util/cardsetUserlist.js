@@ -10,6 +10,7 @@ import {LeitnerLearningPhaseUtilities} from "./learningPhase";
 import {LeitnerLearningWorkload} from "../api/subscriptions/leitner/leitnerLearningWorkload";
 import {LeitnerLearningPhase} from "../api/subscriptions/leitner/leitnerLearningPhase";
 import {BonusForm} from "./bonusForm";
+import {LearningStatisticsUtilities} from "./learningStatistics";
 
 export let CardsetUserlist = class CardsetUserlist {
 	static getLearningStatus (learningEnd) {
@@ -34,6 +35,7 @@ export let CardsetUserlist = class CardsetUserlist {
 
 	static getLearningPhaseInfo (cardset, learning_phase_id) {
 		let learningPhase = LeitnerLearningPhase.findOne({_id: learning_phase_id});
+		const cardInteractionStats = LearningStatisticsUtilities.getCardInteractionStats(learning_phase_id, "", true);
 		let learningPhaseInfoStart = [
 			["", ""],
 			[TAPi18n.__('set-list.learnphaseInfo', {}, ServerStyle.getClientLanguage()), ""]
@@ -66,7 +68,10 @@ export let CardsetUserlist = class CardsetUserlist {
 			['', ''],
 			[TAPi18n.__('learningHistory.stats.duration.workingTime.arithmeticMean', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(learningPhase.performanceStats.answerTime.arithmeticMean)],
 			[TAPi18n.__('learningHistory.stats.duration.workingTime.median', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(learningPhase.performanceStats.answerTime.median)],
-			[TAPi18n.__('learningHistory.stats.duration.workingTime.standardDeviation', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(learningPhase.performanceStats.answerTime.standardDeviation)]
+			[TAPi18n.__('learningHistory.stats.duration.workingTime.standardDeviation', {}, ServerStyle.getClientLanguage()), Utilities.humanizeDuration(learningPhase.performanceStats.answerTime.standardDeviation)],
+			['', ''],
+			["Ø " + TAPi18n.__('learningHistory.stats.counter.assigned', {}, ServerStyle.getClientLanguage()), TAPi18n.__('learningHistory.stats.counter.cards', {cards: cardInteractionStats.assigned.count, totalCards: cardInteractionStats.total, percent: cardInteractionStats.assigned.percentage}, ServerStyle.getClientLanguage())],
+			["Ø " + TAPi18n.__('learningHistory.stats.counter.answered', {}, ServerStyle.getClientLanguage()), TAPi18n.__('learningHistory.stats.counter.cards', {cards: cardInteractionStats.answered.count, totalCards: cardInteractionStats.total, percent: cardInteractionStats.answered.percentage}, ServerStyle.getClientLanguage())]
 		];
 		if (learningPhaseInfoTitle.length) {
 			return _.union(learningPhaseInfoStart, learningPhaseInfoTitle, learningPhaseInfoText);

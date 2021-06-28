@@ -11,7 +11,13 @@ import {LeitnerHistoryUtilities} from "../../../util/learningHistory";
 Template.learningStatisticsDeleteArchivedBonusModal.helpers({
 	getBonusName: function () {
 		let learningPhase = LeitnerLearningPhase.findOne({_id: Session.get('selectedLearningPhaseID')});
-		return TAPi18n.__("learningStatisticsDeleteArchivedBonus.title", {name: Utilities.getMomentsDate(learningPhase.createdAt, false, 0, false)});
+		let name;
+		if (learningPhase.title !== undefined && learningPhase.title.trim().length) {
+			name = learningPhase.title;
+		} else {
+			name = Utilities.getMomentsDate(learningPhase.createdAt, false, 0, false);
+		}
+		return TAPi18n.__("learningStatisticsDeleteArchivedBonus.title", {name: name});
 	}
 });
 

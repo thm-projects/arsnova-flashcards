@@ -4,6 +4,7 @@ import {Utilities} from "./utilities";
 import {LeitnerActivationDay} from "../api/subscriptions/leitner/leitnerActivationDay";
 import {LeitnerLearningPhase} from "../api/subscriptions/leitner/leitnerLearningPhase";
 import {Cardsets} from "../api/subscriptions/cardsets";
+import {LeitnerUserCardStats} from "../api/subscriptions/leitner/leitnerUserCardStats";
 
 
 export let LearningStatisticsUtilities = class LearningStatisticsUtilities {
@@ -149,6 +150,75 @@ export let LearningStatisticsUtilities = class LearningStatisticsUtilities {
 				}
 			}
 		);
+	}
+
+	static getCardInteractionStats (learning_phase_id, user_id, isBonusStats = false) {
+		let query = {
+			learning_phase_id: learning_phase_id
+		};
+
+		if (!isBonusStats) {
+			query.user_id = user_id;
+		}
+		let totalCards;
+		let assignedCards;
+		let answeredCards;
+		if (isBonusStats) {
+			let counterArray = [];
+
+			let usersArray = _.uniq(LeitnerUserCardStats.find(query, {
+				fields: {user_id: 1}
+			}).fetch(), function (cardStats) {
+				return cardStats.user_id;
+			});
+
+			if (usersArray.length) {
+				query.user_id = usersArray[0].user_id;
+				totalCards = LeitnerUserCardStats.find(query).count();
+			}
+
+			query.assignedCounter = {$gt: 0};
+			usersArray.forEach(function (cardStats) {
+				query.user_id = cardStats.user_id;
+				counterArray.push(LeitnerUserCardStats.find(query).count());
+			});
+			assignedCards = Math.round(Utilities.getMedian(counterArray));
+
+			delete query.assignedCounter;
+			counterArray = [];
+			query.$or = [
+				{'stats.answers.known': {$gt: 0}},
+				{'stats.answers.notKnown': {$gt: 0}}
+			];
+			usersArray.forEach(function (cardStats) {
+				query.user_id = cardStats.user_id;
+				counterArray.push(LeitnerUserCardStats.find(query).count());
+			});
+			answeredCards = Math.round(Utilities.getMedian(counterArray));
+		} else {
+			totalCards = LeitnerUserCardStats.find(query).count();
+
+			query.assignedCounter = {$gt: 0};
+			assignedCards = LeitnerUserCardStats.find(query).count();
+
+			delete query.assignedCounter;
+			query.$or = [
+				{'stats.answers.known': {$gt: 0}},
+				{'stats.answers.notKnown': {$gt: 0}}
+			];
+			answeredCards = LeitnerUserCardStats.find(query).count();
+		}
+		return {
+			assigned: {
+				count: assignedCards,
+				percentage: Math.round((assignedCards / totalCards) * 100)
+			},
+			answered: {
+				count: answeredCards,
+				percentage: Math.round((answeredCards / totalCards) * 100)
+			},
+			total: totalCards
+		};
 	}
 
 	static updateLearningPhaseStats (learning_phase_id) {

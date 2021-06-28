@@ -248,7 +248,7 @@ legend right
  |= \n          <img:https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/whatsapp/186/tomato_1f345.png> |= \n [[https://arsnova.cards arsnova.cards]] \n\n Technische Hochschule Mittelhessen - THM \n University of Applied Sciences |
  | Projekt-Website | [[https://arsnova.thm.de]] |
  | Repository | [[https://git.thm.de/cards]] |
- | Version | 3.14 |
+ | Version | 3.2 |
  | Staging Server | [[https://staging.arsnova.cards]] |
  | RUP-Phase| Elaboration|
  | UML-Tool| PlantUML v1.2021.0|
@@ -256,7 +256,7 @@ legend right
  | Erstelldatum| 04.01.2021|
  | Ersteller| Janek Berg|
  | Mail| janek.berg@mni.thm.de |
- | Letzte Änderung| 30.04.2021|
+ | Letzte Änderung| 26.06.2021|
  | Letzter Bearbeiter| Curtis Adam |
  | Mail| curtis.adam@mni.thm.de |
 end legend

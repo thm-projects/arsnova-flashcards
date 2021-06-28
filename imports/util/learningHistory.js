@@ -74,6 +74,10 @@ export let LeitnerHistoryUtilities = class LearningHistory {
 				cardStats[i].content =  text;
 			}
 			cardStats[i].cardSubject = `${cardStats[i].cardSubject}: ${cardStats[i].content}`;
+
+			//Convert dates and time to readable format
+			cardStats[i].workingTimeMedianString = Utilities.humanizeDuration(cardStats[i].workingTimeMedian);
+			cardStats[i].workingTimeSumString = Utilities.humanizeDuration(cardStats[i].workingTimeSum);
 		}
 		return Utilities.sortArray(cardStats, config.defaultCardStatsSettings.content, config.defaultCardStatsSettings.desc);
 	}
@@ -90,6 +94,12 @@ export let LeitnerHistoryUtilities = class LearningHistory {
 
 			//Set achieved bonus
 			bonusUsers[i].achievedBonus = Bonus.getAchievedBonus(user.box6, LeitnerLearningPhaseUtilities.getActiveBonus(Session.get('activeCardset')._id).bonusPoints, (user.box1 + user.box2 + user.box3 + user.box4 + user.box5 + user.box6));
+
+			//Convert dates and time to readable format
+			bonusUsers[i].dateJoinedBonusString = Utilities.getMomentsDate(bonusUsers[i].dateJoinedBonus);
+			bonusUsers[i].lastActivityString = Utilities.getMomentsDate(bonusUsers[i].lastActivity);
+			bonusUsers[i].workingTimeSumString = Utilities.humanizeDuration(bonusUsers[i].workingTimeSum);
+			bonusUsers[i].cardArithmeticMeanString = Utilities.humanizeDuration(bonusUsers[i].cardArithmeticMean);
 		}
 		return Utilities.sortArray(bonusUsers, config.defaultBonusUserSortSettings.content, config.defaultBonusUserSortSettings.desc);
 	}

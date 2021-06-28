@@ -5,6 +5,7 @@ import {AUTO_FULLSCREEN, CHOOSE_FULLSCREEN, EDU, FREE, GUEST, LECTURER, MANUAL_F
 
 module.exports = {
 	"debugServerBoot": true,
+	"notificationsBlacklist": [],
 	"fullscreen": {
 		"settings": {
 			"enabled": [FREE, EDU, LECTURER, PRO],

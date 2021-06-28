@@ -564,6 +564,10 @@ Meteor.methods({
 					cardset_id: cardset._id,
 					card_id: removedCards[i]._id
 				});
+				LeitnerPerformanceHistory.remove({
+					cardset_id: cardset._id,
+					card_id: removedCards[i]._id
+				});
 				Wozniak.remove({
 					cardset_id: cardset._id,
 					card_id: removedCards[i]._id

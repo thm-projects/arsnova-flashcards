@@ -11,6 +11,7 @@ import {LeitnerActivationDay} from "../subscriptions/leitner/leitnerActivationDa
 import {CardsetUserlist} from "../../util/cardsetUserlist";
 import {LeitnerLearningPhaseUtilities} from "../../util/learningPhase";
 import {LeitnerUserCardStats} from "../subscriptions/leitner/leitnerUserCardStats";
+import {LearningStatisticsUtilities} from "../../util/learningStatistics";
 
 Meteor.methods({
 
@@ -292,7 +293,11 @@ Meteor.methods({
 						"answers.question": 1,
 						cardType: 1
 					}}).fetch();
+
+			const cardInteractionStats = LearningStatisticsUtilities.getCardInteractionStats(learning_phase_id, newUserId, isBonusStats);
+
 			for (let i = 0; i < leitnerCardStats.length; i++) {
+				leitnerCardStats[i].cardInteractionStats = cardInteractionStats;
 				leitnerCardStats[i].isBonusStats = isBonusStats;
 				leitnerCardStats[i].cardsetTitle = cardset.name;
 				leitnerCardStats[i].lastActivity = lastActivity;
@@ -452,9 +457,13 @@ Meteor.methods({
 				learning_phase_id: leitnerLearningWorkload.learning_phase_id,
 				workload_id: leitnerLearningWorkload._id
 			}, {sort: {createdAt: -1}}).fetch();
+
+			const cardInteractionStats = LearningStatisticsUtilities.getCardInteractionStats(leitnerLearningWorkload.learning_phase_id, user_id, false);
+
 			for (let i = 0; i < leitnerActivationDays.length; i++) {
 				let item = {};
 				let missedLastDeadline;
+				item.cardInteractionStats = cardInteractionStats;
 				item.workload_id = leitnerLearningWorkload._id;
 				item.lastActivity = lastActivity;
 				item.isInBonus = isInBonus;

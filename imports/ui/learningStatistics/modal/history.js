@@ -158,6 +158,26 @@ Template.learningHistoryModal.helpers({
 			type: 1,
 			content: content
 		};
+	},
+	getAssignedCards: function () {
+		let historyData = Session.get('selectedLearningHistory');
+		return historyData[0].cardInteractionStats.assigned.count;
+	},
+	getAnsweredCards: function () {
+		let historyData = Session.get('selectedLearningHistory');
+		return historyData[0].cardInteractionStats.answered.count;
+	},
+	getAssignedCardsPercentage: function () {
+		let historyData = Session.get('selectedLearningHistory');
+		return historyData[0].cardInteractionStats.assigned.percentage;
+	},
+	getAnsweredCardsPercentage: function () {
+		let historyData = Session.get('selectedLearningHistory');
+		return historyData[0].cardInteractionStats.answered.percentage;
+	},
+	getTotalCards: function () {
+		let historyData = Session.get('selectedLearningHistory');
+		return historyData[0].cardInteractionStats.total;
 	}
 });
 
