@@ -9,6 +9,7 @@ import {ServerSettings} from "../imports/util/settings";
 import {LeitnerActivationDay} from "../imports/api/subscriptions/leitner/leitnerActivationDay";
 import {LeitnerLearningPhase} from "../imports/api/subscriptions/leitner/leitnerLearningPhase";
 import {LeitnerLearningPhaseUtilities} from "../imports/util/learningPhase";
+import {AccountUtils} from "../imports/util/accounts";
 
 /** Function gets called when the learning-phase ended and excludes the cardset from the leitner algorithm
  *  @param {Object} learningPhase - The the active learning-phase
@@ -49,28 +50,46 @@ Meteor.methods({
 			throw new Meteor.Error("not-authorized");
 		} else {
 			let leitnerLearningPhase = LeitnerLearningPhase.find({isActive: true}).fetch();
-			let cronjobStartDate = moment();
+			let cronjobStartDate = new Date();
 			if (Meteor.settings.debug.leitner) {
 				console.log(`Found ${leitnerLearningPhase.length} active leitner learning phases.`);
 			}
 			leitnerLearningPhase.forEach(learningPhase => {
 				//Set the bonusStats for the associated card set
+				let bonusText = '';
+				let canExecuteNormalCronjobRun = true;
 				if (learningPhase.isBonus) {
+					bonusText = '(Bonus)';
+					canExecuteNormalCronjobRun = moment(learningPhase.end).isAfter(cronjobStartDate);
 					Cardsets.update({
 						_id: learningPhase.cardset_id
 					}, {
 						$set: {
-							bonusStatus: LeitnerLearningPhaseUtilities.setLeitnerBonusStatus(learningPhase)
+							bonusStatus: LeitnerLearningPhaseUtilities.setLeitnerBonusStatus(learningPhase, cronjobStartDate)
 						}
 					});
 				}
-				if (learningPhase.end.getTime() > new Date().getTime()) {
-					let cardset = Cardsets.findOne({_id: learningPhase.cardset_id});
+
+				cronjobStartDate = moment(cronjobStartDate);
+				let cardset = Cardsets.findOne({_id: learningPhase.cardset_id});
+				if (canExecuteNormalCronjobRun) {
 					let leitnerWorkloads = LeitnerLearningWorkload.find({learning_phase_id: learningPhase._id}).fetch();
 					if (Meteor.settings.debug.leitner) {
-						console.log(`Found ${leitnerWorkloads.length} active workloads for learning phase: [${learningPhase._id}] in cardset [${cardset.name}]`);
+						console.log(`Found ${leitnerWorkloads.length} active workloads for learning phase: [${learningPhase._id}]${bonusText} in cardset [${cardset.name}]`);
 					}
 					leitnerWorkloads.forEach(workload => {
+						//Check if workload isActive matches learningPhase is Active. Both should be always the same.
+						if (workload.isActive === false) {
+							LeitnerLearningWorkload.update({
+								_id: workload._id,
+							}, {
+								$set: {
+									isActive: true
+								}
+							});
+							workload.isActive = true;
+						}
+
 						let workloadCreatedDate = moment(workload.createdAt);
 						//Check if user joined the learning phase on the same day as the cronjob gets executed
 						if (!workloadCreatedDate.isSame(cronjobStartDate, 'date')) {
@@ -79,26 +98,38 @@ Meteor.methods({
 							if (workload.activeCardCount === 0) {
 								LeitnerUtilities.setCards(learningPhase, workload, cardset, user, false);
 							} else if (missedDeadlineCheck(learningPhase, workload.activationDate)) {
+								console.log(`===> Missed deadline for workload [${workload._id}]${bonusText} in cardset [${cardset.name}]: Resetting cards.\n`);
 								LeitnerUtilities.resetCards(learningPhase, workload, cardset, user);
 							} else {
-								Meteor.call('prepareMail', cardset, user, 1);
-								Meteor.call('prepareWebpush', cardset, user, false, undefined, 1);
+								let activationDay = LeitnerActivationDay.findOne({
+									workload_id: workload._id
+								}, {sort: {createdAt: -1}});
+								Meteor.call('prepareMail', cardset, user, 1, false, activationDay._id);
+								Meteor.call('prepareWebpush', cardset, user, 1, false, activationDay._id);
 								if (Meteor.settings.debug.leitner) {
-									console.log("===> Nothing to do");
+									console.log(`===> Nothing to do for workload [${workload._id}]${bonusText} in cardset [${cardset.name}]: Sending reminder messages.\n`);
 								}
+							}
+						} else {
+							if (Meteor.settings.debug.leitner) {
+								console.log(`===> Skipped workload [${workload._id}]${bonusText} in cardset [${cardset.name}]: Join Date matches cronjob Date.\n`);
 							}
 						}
 					});
 				} else {
+					if (Meteor.settings.debug.leitner) {
+						console.log(`Disable learning phase: [${learningPhase._id}]${bonusText} in cardset [${cardset.name}]\n`);
+					}
 					disableLearningPhaseAndWorkloads(learningPhase._id);
 				}
 			});
 		}
 	},
-	prepareMail: function (cardset, user, messageType, isNewcomer = false, activation_day_id = undefined) {
-		if (Meteor.isServer && ServerSettings.isMailEnabled()) {
+	prepareMail: function (cardset, user, messageType = 0, isNewcomer = false, activation_day_id = undefined) {
+		if (Meteor.isServer && ServerSettings.isMailEnabled() && AccountUtils.isAllowedToReceiveNotifications(user.email)) {
 			let canSendMail = (user.mailNotification && !isNewcomer && Roles.userIsInRole(user._id, ['admin', 'editor', 'university', 'lecturer', 'pro']) && !Roles.userIsInRole(user._id, ['blocked', 'firstLogin']));
-			let learningPhase = LeitnerLearningPhaseUtilities.getActiveLearningPhase(cardset._id, user.user_id);
+			let activationDay = LeitnerActivationDay.findOne({_id: activation_day_id});
+			let learningPhase = LeitnerLearningPhase.findOne({_id: activationDay.learning_phase_id});
 			if (Bonus.isInBonus(cardset._id, user._id) && learningPhase !== undefined && learningPhase.forceNotifications.mail && (user.email !== undefined && user.email.length) && !isNewcomer) {
 				canSendMail = true;
 			}
@@ -134,12 +165,16 @@ Meteor.methods({
 					console.log(`[${TAPi18n.__('admin-settings.test-notifications.sendMail')}] ${error}`);
 				}
 			}
+			return true;
+		} else {
+			return false;
 		}
 	},
-	prepareWebpush: function (cardset, user, isNewcomer = false, activation_day_id = undefined, messageType = 0) {
-		if (Meteor.isServer && ServerSettings.isPushEnabled()) {
+	prepareWebpush: function (cardset, user, messageType = 0, isNewcomer = false, activation_day_id = undefined) {
+		if (Meteor.isServer && ServerSettings.isPushEnabled() && AccountUtils.isAllowedToReceiveNotifications(user.email)) {
 			let canSendPush = (user.webNotification && !isNewcomer);
-			let learningPhase = LeitnerLearningPhaseUtilities.getActiveLearningPhase(cardset._id, user.user_id);
+			let activationDay = LeitnerActivationDay.findOne({_id: activation_day_id});
+			let learningPhase = LeitnerLearningPhase.findOne({_id: activationDay.learning_phase_id});
 			if (Bonus.isInBonus(cardset._id, user._id) && learningPhase !== undefined && learningPhase.forceNotifications.push && !isNewcomer) {
 				canSendPush = true;
 			}
@@ -166,6 +201,9 @@ Meteor.methods({
 					console.log(`[${TAPi18n.__('admin-settings.test-notifications.sendWeb')}] ${error}`);
 				}
 			}
+			return true;
+		} else {
+			return false;
 		}
 	}
 });

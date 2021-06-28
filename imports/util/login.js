@@ -14,7 +14,7 @@ export let LoginTasks = class LoginTasks {
 		actualDate.setHours(0, 0, 0, 0);
 		return LeitnerUserCardStats.find({
 			user_id: Meteor.userId(),
-			active: true
+			isActive: true
 		}).count() + Wozniak.find({
 			user_id: Meteor.userId(), nextDate: {
 				$lte: actualDate

@@ -448,4 +448,9 @@ export let ServerStyle = class ServerStyle {
 	static getServerVersion () {
 		return SERVER_VERSION;
 	}
+
+	static getNotificationsBlacklist () {
+		let config = this.getConfig();
+		return config.notificationsBlacklist;
+	}
 };

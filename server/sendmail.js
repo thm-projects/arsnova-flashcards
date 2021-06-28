@@ -7,6 +7,7 @@ import {getAuthorName} from "../imports/util/userData";
 import {ServerStyle} from "../imports/util/styles";
 import * as config from "../imports/config/notifications.js";
 import {LeitnerLearningWorkloadUtilities} from "../imports/util/learningWorkload";
+import {LeitnerLearningPhase} from "../imports/api/subscriptions/leitner/leitnerLearningPhase";
 
 /**
  * Class used for sending the newsletter mail
@@ -227,7 +228,8 @@ Meteor.methods({
 				}
 			}
 		);
-		let cardset = Cardsets.findOne({_id: settings.testCardsetID});
-		MailNotifier.prepareMail(cardset, settings.testUserID, messageType);
+		const cardset = Cardsets.findOne({_id: settings.testCardsetID});
+		const learningPhase = LeitnerLearningPhase.findOne({cardset_id: cardset._id});
+		MailNotifier.prepareMail(cardset, settings.testUserID, learningPhase, messageType);
 	}
 });

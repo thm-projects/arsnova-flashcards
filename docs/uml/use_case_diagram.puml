@@ -118,7 +118,7 @@ legend right
  | Project-Website | [[https://arsnova.cards]] |
  | «USP» | Alleinstellungsmerkmale von arsnova.cards |
  | Repository | [[https://git.thm.de/cards]] |
- | Version | 3.14 |
+ | Version | 3.2 |
  | Staging Server | [[https://staging.arsnova.cards]] |
  | RUP-Phase| Inception|
  | UML-Tool| PlantUML v1.2021.0|
@@ -126,7 +126,7 @@ legend right
  | Date created| 30.11.2020|
  | Creator| Janek Berg|
  | Mail| janek.berg@mni.thm.de |
- | Last modified| 29.04.2021|
+ | Last modified| 26.06.2021|
  | Last editor| Curtis Adam |
  | Mail| curtis.adam@mni.thm.de |
 end legend

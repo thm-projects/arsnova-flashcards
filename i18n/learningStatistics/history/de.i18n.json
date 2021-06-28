@@ -32,6 +32,13 @@
           "standardDeviation": "s Antworzeit pro Karte"
         }
       },
+      "counter": {
+        "title": "Karten Zuweisung",
+        "assigned": "Anzahl mindestens einmalig zugewiesener Karten",
+        "answered": "Anzahl mindestens einmalig beantworteter Karten",
+        "cards": "__cards__ von __totalCards__ Karten [__percent__ %]"
+      },
+      "answeredOnce": "",
       "averageKnown": "Ø Gewusst"
     },
     "table": {

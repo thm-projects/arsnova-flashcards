@@ -53,6 +53,9 @@ Template.learningBonusStastics.helpers({
 	getCardsetStats: function () {
 		return Session.get("selectedLearningStatistics");
 	},
+	gotCardsetStats: function () {
+		return Session.get("selectedLearningStatistics") !== undefined && Session.get("selectedLearningStatistics").length;
+	},
 	getPercentage: function () {
 		if (this.percentage > 0) {
 			return '<span class="cardPercentage">[' + this.percentage + ' %]</span>';

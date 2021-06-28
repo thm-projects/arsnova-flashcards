@@ -24,9 +24,11 @@
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <button id="exportCSV" class="btn btn-success btn-raised"><span class="flex-content"><span aria-hidden=true class="fas fa-clipboard-list"></span>&nbsp;<span
-                                class="fas fa-cloud-download-alt"></span>&nbsp;{{_
-                                "box_export"}}</span></button>
+                        {{#if gotCardsetStats}}
+                            <button id="exportCSV" class="btn btn-success btn-raised"><span class="flex-content"><span aria-hidden=true class="fas fa-clipboard-list"></span>&nbsp;<span
+                                    class="fas fa-cloud-download-alt"></span>&nbsp;{{_
+                                    "box_export"}}</span></button>
+                        {{/if}}
                         <div class="btn-group">
                             <button class="btn btn-default btn-raised showUserNames groupCheckboxButtonLeft {{#if gotHiddenUserNames}}checked{{/if}}"><span class="flex-content">
                                 {{#if gotHiddenUserNames}}
@@ -38,10 +40,12 @@
                                     class="fas fa-user-secret"></span>&nbsp;{{_
                                     "learningStatistics.hideUserNames"}}</span></button>
                         </div>
-                        <button id="showBonusCardStats" class="btn btn-default btn-raised" data-toggle="modal" href="#learningCardStatusModal">
-                            <span class="flex-content"><span aria-hidden=true class="fa fa-list-alt"></span>&nbsp;{{_
-                                "learningCardStats.titleBonus"}}</span>
-                        </button>
+                        {{#if gotCardsetStats}}
+                            <button id="showBonusCardStats" class="btn btn-default btn-raised" data-toggle="modal" href="#learningCardStatusModal">
+                                <span class="flex-content"><span aria-hidden=true class="fa fa-list-alt"></span>&nbsp;{{_
+                                    "learningCardStats.titleBonus"}}</span>
+                            </button>
+                        {{/if}}
                         {{#if gotMultipleLearningPhases}}
                             <div id="archivedLearningPhaseDropdown" class="pull-right btn-group">
                                 <div class="dropdown">
@@ -127,10 +131,10 @@
                             {{#if isNotificationEnabled}}
                                 <td>{{{getNotificationStatus this}}}</td>
                             {{/if}}
-                            <td>{{getMomentsDate this.dateJoinedBonus}}</td>
-                            <td>{{getMomentsDate this.lastActivity}}</td>
-                            <td>{{humanizeDuration this.workingTimeSum}}</td>
-                            <td>{{humanizeDuration this.cardArithmeticMean}}</td>
+                            <td>{{this.dateJoinedBonusString}}</td>
+                            <td>{{this.lastActivityString}}</td>
+                            <td>{{this.workingTimeSumString}}</td>
+                            <td>{{this.cardArithmeticMeanString}}</td>
                             <td>{{this.box1}}</td>
                             <td>{{this.box2}}</td>
                             <td>{{this.box3}}</td>
