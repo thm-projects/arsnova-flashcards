@@ -34,7 +34,7 @@ export let LearningCardStats = class LearningCardStats {
 			if (history.timestamps !== undefined) {
 				let workingTime;
 				if (history.timestamps.submission === undefined) {
-					workingTime = history.timestamps.answers.getTime() - history.timestamps.question.getTime();
+					workingTime = history.timestamps.answer.getTime() - history.timestamps.question.getTime();
 				} else {
 					workingTime = history.timestamps.submission.getTime() - history.timestamps.question.getTime();
 				}
