@@ -64,6 +64,7 @@ Meteor.methods({
 						timestamps: timestamps
 					}});
 				LearningStatisticsUtilities.updateAllStats(leitnerActivationDay);
+				LeitnerUtilities.updateLeitnerWorkload(cardsetId, Meteor.userId(), leitnerLearningWorkload);
 			}
 		} else {
 			throw new Meteor.Error("Leitner workload not found");

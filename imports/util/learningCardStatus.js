@@ -32,7 +32,13 @@ export let LearningCardStats = class LearningCardStats {
 
 			// Cards which got marked as notKnown by the deadline event don't have a timestamp object
 			if (history.timestamps !== undefined) {
-				workingTimeArray.push(Number(history.timestamps.submission - history.timestamps.question));
+				let workingTime;
+				if (history.timestamps.submission === undefined) {
+					workingTime = history.timestamps.answers.getTime() - history.timestamps.question.getTime();
+				} else {
+					workingTime = history.timestamps.submission.getTime() - history.timestamps.question.getTime();
+				}
+				workingTimeArray.push(workingTime);
 			}
 		});
 		stats.workingTime.sum = Math.round(Utilities.getSum(workingTimeArray));
