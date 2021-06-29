@@ -12,6 +12,7 @@ import {CardsetUserlist} from "../../util/cardsetUserlist";
 import {LeitnerLearningPhaseUtilities} from "../../util/learningPhase";
 import {LeitnerUserCardStats} from "../subscriptions/leitner/leitnerUserCardStats";
 import {LearningStatisticsUtilities} from "../../util/learningStatistics";
+import {LeitnerLearningPhase} from "../subscriptions/leitner/leitnerLearningPhase";
 
 Meteor.methods({
 
@@ -428,6 +429,13 @@ Meteor.methods({
 			cardset_id: cardset_id
 		});
 		if (leitnerLearningWorkload !== undefined) {
+			let learningPhaseIsActive = true;
+			let leitnerLearningPhase = LeitnerLearningPhase.findOne({
+				_id: leitnerLearningWorkload.learning_phase_id
+			});
+			if (leitnerLearningPhase.end < new Date()) {
+				learningPhaseIsActive = false;
+			}
 			let leitnerHistory = LeitnerPerformanceHistory.findOne({
 					learning_phase_id: leitnerLearningWorkload.learning_phase_id,
 					workload_id: leitnerLearningWorkload._id,
@@ -463,6 +471,7 @@ Meteor.methods({
 			for (let i = 0; i < leitnerActivationDays.length; i++) {
 				let item = {};
 				let missedLastDeadline;
+				item.learningPhaseIsActive = learningPhaseIsActive;
 				item.cardInteractionStats = cardInteractionStats;
 				item.workload_id = leitnerLearningWorkload._id;
 				item.lastActivity = lastActivity;

@@ -133,13 +133,6 @@ Template.learningHistoryModal.helpers({
 		}
 		return average + "%";
 	},
-	getReason: function () {
-		if (this.reason === 0) {
-			return TAPi18n.__('learningHistory.table.reason.leitner');
-		} else {
-			return TAPi18n.__('learningHistory.table.reason.deadline');
-		}
-	},
 	getWorkload: function () {
 		if (this.workload === 1) {
 			return TAPi18n.__('learningHistory.table.workload.singular', {cards: this.workload});

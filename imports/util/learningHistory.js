@@ -105,33 +105,45 @@ export let LeitnerHistoryUtilities = class LearningHistory {
 	}
 
 	static prepareUserHistoryData (userHistory) {
-		//Set status
-		for (let i = 0; i < userHistory.length; i++) {
-			let activationDate = userHistory[i];
+		let completedPreviousWorkload = true;
+		//Set status and reason for activation
+		let latestActivationDate = userHistory[0];
+		userHistory.reverse();
+		for (let activationDate of userHistory) {
+			if (completedPreviousWorkload) {
+				activationDate.activationReasonText = TAPi18n.__('learningHistory.table.reason.leitner');
+			} else {
+				activationDate.activationReasonText = TAPi18n.__('learningHistory.table.reason.deadline');
+			}
 			let completedWorkload = activationDate.known + activationDate.notKnown;
 			if (completedWorkload === activationDate.workload) {
-				userHistory[i].statusCode = activationDate.lastActivity;
-				userHistory[i].statusText = TAPi18n.__('learningHistory.table.status.completed', {lastAnswerDate: Utilities.getMomentsDate(activationDate.lastActivity, 0, false, false)});
-			} else if (!activationDate.missedDeadline) {
-				userHistory[i].statusCode = -1;
-				userHistory[i].statusText = TAPi18n.__('learningHistory.table.status.inProgress');
+				activationDate.statusCode = activationDate.lastActivity;
+				activationDate.statusText = TAPi18n.__('learningHistory.table.status.completed', {lastAnswerDate: Utilities.getMomentsDate(activationDate.lastActivity, 0, false, false)});
+				completedPreviousWorkload = true;
 			} else {
-				if (completedWorkload > 0) {
-					let unfinishedWorkload = activationDate.workload - completedWorkload;
-					if (unfinishedWorkload === 1) {
-						userHistory[i].statusCode = -2;
-						userHistory[i].statusText = TAPi18n.__('learningHistory.table.status.notFullyCompletedSingular', {cards: unfinishedWorkload});
-					} else {
-						userHistory[i].statusCode = -3;
-						userHistory[i].statusText = TAPi18n.__('learningHistory.table.status.notFullyCompletedPlural', {cards: unfinishedWorkload});
-					}
+				//Is this the newest element?
+				if (latestActivationDate.createdAt === activationDate.createdAt && activationDate.learningPhaseIsActive) {
+					activationDate.statusCode = -1;
+					activationDate.statusText = TAPi18n.__('learningHistory.table.status.inProgress');
 				} else {
-					userHistory[i].statusCode = -4;
-					userHistory[i].statusText = TAPi18n.__('learningHistory.table.status.notCompleted');
+					if (completedWorkload > 0) {
+						let unfinishedWorkload = activationDate.workload - completedWorkload;
+						if (unfinishedWorkload === 1) {
+							activationDate.statusCode = -2;
+							activationDate.statusText = TAPi18n.__('learningHistory.table.status.notFullyCompletedSingular', {cards: unfinishedWorkload});
+						} else {
+							activationDate.statusCode = -3;
+							activationDate.statusText = TAPi18n.__('learningHistory.table.status.notFullyCompletedPlural', {cards: unfinishedWorkload});
+						}
+					} else {
+						activationDate.statusCode = -4;
+						activationDate.statusText = TAPi18n.__('learningHistory.table.status.notCompleted');
+					}
 				}
+				completedPreviousWorkload = false;
 			}
 		}
-		return Utilities.sortArray(userHistory, config.defaultUserHistorySortSettings.content, config.defaultUserHistorySortSettings.desc);
+		return Utilities.sortArray(userHistory.reverse(), config.defaultUserHistorySortSettings.content, config.defaultUserHistorySortSettings.desc);
 	}
 	static prepareActivationDateHistoryData (activationDayHistory) {
 		for (let i = 0; i < activationDayHistory.length; i++) {
