@@ -6,6 +6,7 @@ import {Cardsets} from "../../../../../../../api/subscriptions/cardsets";
 import {LeitnerLearningPhase} from "../../../../../../../api/subscriptions/leitner/leitnerLearningPhase";
 import {Leitner} from "../../../../../../../api/subscriptions/legacyLeitner/leitner";
 import {LeitnerLearningWorkload} from "../../../../../../../api/subscriptions/leitner/leitnerLearningWorkload";
+import {LeitnerUtilities} from "../../../../../../../util/leitner";
 
 function leitnerLearningWorkload() {
 	let groupName = "leitnerLearningWorkload Migration";
@@ -63,6 +64,44 @@ function leitnerLearningWorkload() {
 	} else {
 		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
 	}
+
+	itemName = "leitnerLearningWorkload add version field";
+	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
+	leitnerWorkload = LeitnerLearningWorkload.find({version: {$exists: false}}).fetch();
+	if (leitnerWorkload.length) {
+		leitnerWorkload.forEach((workload) => {
+			LeitnerLearningWorkload.update({
+				_id: workload._id
+			}, {
+				$set: {
+					version: 0
+				}
+			});
+		});
+		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
+	} else {
+		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
+	}
+
+	itemName = "leitnerLearningWorkload recalculate active card count";
+	Utilities.debugServerBoot(config.START_RECORDING, itemName, type);
+	leitnerWorkload = LeitnerLearningWorkload.find({version: {$lt: 1}}).fetch();
+	if (leitnerWorkload.length) {
+		leitnerWorkload.forEach((workload) => {
+			LeitnerLearningWorkload.update({
+				_id: workload._id
+			}, {
+				$set: {
+					version: 1
+				}
+			});
+			LeitnerUtilities.updateLeitnerWorkload(workload.cardset_id, workload.user_id, workload);
+		});
+		Utilities.debugServerBoot(config.END_RECORDING, itemName, type);
+	} else {
+		Utilities.debugServerBoot(config.SKIP_RECORDING, itemName, type);
+	}
+
 	Utilities.debugServerBoot(config.END_GROUP, groupName);
 }
 

@@ -42,17 +42,6 @@ Meteor.methods({
 			}, {sort: {createdAt: -1}});
 
 			if (activeLeitnerCard !== undefined && leitnerActivationDay !== undefined) {
-				LeitnerUserCardStats.update({
-					learning_phase_id: leitnerLearningWorkload.learning_phase_id,
-					workload_id: leitnerLearningWorkload._id,
-					card_id: activeCardId,
-					user_id: Meteor.userId(),
-					cardset_id: cardsetId,
-					submittedAnswer: true
-				}, {$set: {
-						isActive: false
-					}});
-
 				LeitnerPerformanceHistory.update({
 					learning_phase_id: leitnerLearningWorkload.learning_phase_id,
 					workload_id: leitnerLearningWorkload._id,
@@ -63,7 +52,20 @@ Meteor.methods({
 				}, {$set: {
 						timestamps: timestamps
 					}});
+
+				LeitnerUserCardStats.update({
+					learning_phase_id: leitnerLearningWorkload.learning_phase_id,
+					workload_id: leitnerLearningWorkload._id,
+					card_id: activeCardId,
+					user_id: Meteor.userId(),
+					cardset_id: cardsetId,
+					submittedAnswer: true
+				}, {$set: {
+						isActive: false,
+						stats: LearningCardStats.calculateUserCardStats(activeLeitnerCard.card_id, leitnerLearningWorkload._id, Meteor.userId())
+					}});
 				LearningStatisticsUtilities.updateAllStats(leitnerActivationDay);
+				LeitnerUtilities.updateLeitnerWorkload(cardsetId, Meteor.userId(), leitnerLearningWorkload);
 			}
 		} else {
 			throw new Meteor.Error("Leitner workload not found");

@@ -1,6 +1,7 @@
 import {Mongo} from "meteor/mongo";
 import {Meteor} from "meteor/meteor";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
+import {LEITNER_LEARNING_WORKLOAD_VERSION} from "../../../config/serverStyle/style/global/const";
 
 export const LeitnerLearningWorkload = new Mongo.Collection("leitnerLearningWorkload");
 
@@ -116,6 +117,10 @@ const LeitnerLearningWorkloadSchema = new SimpleSchema({
 	'performanceStats.workingTime.standardDeviation': {
 		type: Number,
 		defaultValue: 0
+	},
+	version: {
+		type: Number,
+		defaultValue: LEITNER_LEARNING_WORKLOAD_VERSION
 	}
 });
 
