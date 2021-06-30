@@ -577,6 +577,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 	 *  @param {Object} user - The user from the cardset who is currently learning
 	 * */
 	static resetCards (learningPhase, workload, cardset, user) {
+		let totalResetCardsIDsArray = [];
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
@@ -610,6 +611,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 						}
 					}).fetch();
 					idArray = _.pluck(cards, "card_id");
+					totalResetCardsIDsArray = totalResetCardsIDsArray.concat(idArray);
 					LeitnerUserCardStats.update({
 						card_id: {$in: idArray},
 						learning_phase_id: workload.learning_phase_id,
@@ -626,7 +628,7 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					}, {multi: true});
 				}
 				if (Meteor.settings.debug.leitner) {
-					console.log(`===> Resetting ${idArray.length} cards [${idArray}]`);
+					console.log(`===> Resetting ${totalResetCardsIDsArray.length} cards [${totalResetCardsIDsArray}]`);
 				}
 				if (Meteor.settings.debug.leitner) {
 					console.log(`===> ${LeitnerUserCardStats.find({
@@ -670,8 +672,9 @@ export let LeitnerUtilities = class LeitnerUtilities {
 					}
 				}).fetch();
 				idArray = _.pluck(cards, "card_id");
+				totalResetCardsIDsArray = totalResetCardsIDsArray.concat(idArray);
 				if (Meteor.settings.debug.leitner) {
-					console.log(`===> Resetting ${idArray.length} cards [${idArray}]`);
+					console.log(`===> Resetting ${totalResetCardsIDsArray.length} cards [${totalResetCardsIDsArray}]`);
 				}
 				LeitnerUserCardStats.update({
 					card_id: {$in: idArray},
