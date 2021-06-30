@@ -174,7 +174,7 @@
                                     {{#each getWorkloadHistory}}
                                         <tr>
                                             <td>{{getMomentsDate this.createdAt}}</td>
-                                            <td>{{getReason}}</td>
+                                            <td>{{this.activationReasonText}}</td>
                                             <td>{{getWorkload}}</td>
                                             <td>{{this.known}}</td>
                                             <td>{{this.notKnown}}</td>
