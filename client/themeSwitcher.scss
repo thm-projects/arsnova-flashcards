@@ -2751,6 +2751,11 @@ $themes: (
       background-color: $navbar_backend_background_hover !important;
       color: $navbar_backend_text_hover !important;
     }
+    #navbar-adminpanel:hover {
+      span {
+        color: $button_text_hover !important;
+      }
+    }
 
     #notificationsBtn > .dropdown-toggle {
       background-color: $navbar_notifications_background !important;
@@ -3712,13 +3717,6 @@ $themes: (
         color: $frag_jetzt_text !important;
       }
     }
-    .label-frag-jetzt:hover {
-      color: $button_text_hover !important;
-      background: $button_background_hover !important;
-      span {
-        color: $button_text_hover !important;
-      }
-    }
 
     .label-error-reporting {
       background-color: $error_reporting_label_background !important;
@@ -3737,11 +3735,12 @@ $themes: (
       }
     }
 
-    #set-list-region > div.filter-result-container > div:nth-child(1) > div.resultItemHeaderWrapper.col-xs-12 > div.resultItemHeaderBottomArea.row > div.col-xs-12.col-sm-8.col-md-8.collapseButton.resultItemHeaderBottomAreaLabels.enabled > span > span.label.show-error.label-error-reporting:hover {
-      color: $button_text_hover !important;
+    .label.show-error.label-error-reporting:hover, .label.label-frag-jetzt:hover {
       span {
         color: $button_text_hover !important;
       }
+      color: $button_text_hover !important;
+      background: $button_background_hover !important;
     }
 
     .moduleRadioButtonLabel {
