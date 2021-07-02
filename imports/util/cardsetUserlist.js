@@ -106,15 +106,6 @@ export let CardsetUserlist = class CardsetUserlist {
 				for (const item of data) {
 					let user = Meteor.users.findOne({_id: item.user_id});
 					if (user !== undefined) {
-						let filter = [];
-						for (let l = 1; l <= 6; l++) {
-							filter.push({
-								cardset_id: cardset_id,
-								user_id: user._id,
-								box: l
-							});
-						}
-
 						if (user.profile.name !== undefined && !Profile.isCompleted(user)) {
 							user.profile.birthname = user.profile.name;
 							user.profile.givenname = TAPi18n.__('learningStatistics.user.missingName', {}, ServerStyle.getClientLanguage());
@@ -124,6 +115,16 @@ export let CardsetUserlist = class CardsetUserlist {
 
 
 						let userWorkload = LeitnerLearningWorkload.findOne({user_id: user._id, learning_phase_id: learningPhase._id});
+						let filter = [];
+						for (let l = 1; l <= 6; l++) {
+							filter.push({
+								learning_phase_id: learningPhase._id,
+								workload_id: userWorkload._id,
+								cardset_id: cardset_id,
+								user_id: user._id,
+								box: l
+							});
+						}
 						if (userWorkload !== undefined) {
 							let lastHistoryItem = LeitnerPerformanceHistory.findOne({
 									workload_id: userWorkload._id,

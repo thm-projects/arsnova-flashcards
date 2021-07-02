@@ -78,7 +78,9 @@ Template.learningBonusStastics.events({
 		$('#bonusFormModal').modal('show');
 	},
 	"click .learningPhaseDropdownItem": function (event) {
-		Session.set('selectedLearningPhaseID', $(event.target).data('id'));
+		Session.set('selectedLearningPhaseID', $(event.currentTarget).data('id'));
+		//Flush the list before refilling it
+		Session.set("selectedLearningStatistics", []);
 		Meteor.call("getLearningStatistics", FlowRouter.getParam('_id'), Session.get('selectedLearningPhaseID'), function (error, result) {
 			if (error) {
 				throw new Meteor.Error(error.statusCode, 'Error could not receive content for stats');
