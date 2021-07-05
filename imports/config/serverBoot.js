@@ -1,5 +1,6 @@
 // Shared debug commands for the server console
 import {CardType} from "../util/cardTypes";
+import {TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE} from "./serverStyle/style/global/const";
 
 const START_RECORDING = 0;
 const END_RECORDING = 1;
@@ -186,7 +187,7 @@ let initTestNotifcationLeitnerLearningWorkload = function () {
 					"standardDeviation": 0
 				}
 			},
-			"learning_phase_id": "NotificationsTestLearningPhase",
+			"learning_phase_id": TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE,
 			"createdAt": new Date(),
 			"updatedAt": new Date()
 		}
@@ -195,7 +196,7 @@ let initTestNotifcationLeitnerLearningWorkload = function () {
 let initTestNotifcationLeitnerLearningPhase = function () {
 	return [
 		{
-			"_id": "NotificationsTestLearningPhase",
+			"_id": TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE,
 			"cardset_id": "NotificationsTestCardset",
 			"isBonus": false,
 			"isActive": true,
@@ -239,7 +240,7 @@ let initTestNotificationsLeitnerUserCardStats = function () {
 			"cardset_id": "NotificationsTestCardset",
 			"card_id": "NotificationsTestCard1",
 			"user_id": "NotificationsTestUser",
-			"learning_phase_id": "NotificationsTestLearningPhase",
+			"learning_phase_id": TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE,
 			"workload_id": "NotificationsTestWorkload",
 			"nextPossibleActivationDate": new Date(),
 			"activatedSinceDate": new Date(),
@@ -250,7 +251,7 @@ let initTestNotificationsLeitnerUserCardStats = function () {
 			"cardset_id": "NotificationsTestCardset",
 			"card_id": "NotificationsTestCard2",
 			"user_id": "NotificationsTestUser",
-			"learning_phase_id": "NotificationsTestLearningPhase",
+			"learning_phase_id": TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE,
 			"workload_id": "NotificationsTestWorkload",
 			"nextPossibleActivationDate": new Date(),
 			"activatedSinceDate": new Date(),
@@ -261,7 +262,7 @@ let initTestNotificationsLeitnerUserCardStats = function () {
 			"cardset_id": "NotificationsTestCardset",
 			"card_id": "NotificationsTestCard3",
 			"user_id": "NotificationsTestUser",
-			"learning_phase_id": "NotificationsTestLearningPhase",
+			"learning_phase_id": TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE,
 			"workload_id": "NotificationsTestWorkload",
 			"nextPossibleActivationDate": new Date(),
 			"activatedSinceDate": new Date(),
@@ -272,7 +273,7 @@ let initTestNotificationsLeitnerUserCardStats = function () {
 			"cardset_id": "NotificationsTestCardset",
 			"card_id": "NotificationsTestCard4",
 			"user_id": "NotificationsTestUser",
-			"learning_phase_id": "NotificationsTestLearningPhase",
+			"learning_phase_id": TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE,
 			"workload_id": "NotificationsTestWorkload",
 			"nextPossibleActivationDate": new Date(),
 			"activatedSinceDate": new Date(),
@@ -283,7 +284,7 @@ let initTestNotificationsLeitnerUserCardStats = function () {
 			"cardset_id": "NotificationsTestCardset",
 			"card_id": "NotificationsTestCard5",
 			"user_id": "NotificationsTestUser",
-			"learning_phase_id": "NotificationsTestLearningPhase",
+			"learning_phase_id": TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE,
 			"workload_id": "NotificationsTestWorkload",
 			"nextPossibleActivationDate": new Date(),
 			"activatedSinceDate": new Date(),

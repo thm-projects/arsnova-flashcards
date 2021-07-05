@@ -17,3 +17,6 @@ export const SERVER_VERSION = "3.2";
 
 //Leitner Versions
 export const LEITNER_LEARNING_WORKLOAD_VERSION = 1;
+
+//Test Notifications Learning Phases
+export const  TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE = "NotificationsTestLearningPhase";
