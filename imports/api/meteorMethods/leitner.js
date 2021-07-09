@@ -62,7 +62,7 @@ Meteor.methods({
 				throw new Meteor.Error("not-authorized");
 			} else {
 				let cardset = Cardsets.findOne({_id: cardset_id});
-				if (cardset !== undefined) {
+				if (cardset !== undefined && cardset.kind !== 'server' && cardset.kind !== 'demo') {
 					if (cardset.shuffled) {
 						let counter = 0;
 						for (let i = 0; i < cardset.cardGroups.length; i++) {

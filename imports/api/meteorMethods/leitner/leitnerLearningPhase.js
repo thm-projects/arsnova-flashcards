@@ -537,7 +537,7 @@ Meteor.methods({
 	joinBonus: function (cardset_id) {
 		check(cardset_id, String);
 		let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1}});
-		if (cardset !== undefined) {
+		if (cardset !== undefined && cardset.kind !== 'server' && cardset.kind !== 'demo') {
 			if (Bonus.canJoinBonus(cardset._id) && Bonus.isRegistrationPeriodActive(cardset._id) && Profile.isCompleted(Meteor.user())) {
 				let learningPhase = LeitnerLearningPhase.findOne({
 					cardset_id: cardset._id,
