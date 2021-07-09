@@ -26,7 +26,7 @@ if (Meteor.isServer) {
 	Meteor.publish("cardset", function (cardset_id) {
 		if ((this.userId || ServerStyle.isLoginEnabled("guest")) && UserPermissions.isNotBlockedOrFirstLogin()) {
 			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, kind: 1, owner: 1, cardGroups: 1}});
-			if (cardset !== undefined) {
+			if (cardset !== undefined && cardset.kind !== 'server' && cardset.kind !== 'demo') {
 				if (cardset.kind === "personal") {
 					if (!UserPermissions.isOwner(cardset.owner) && !UserPermissions.isAdmin()) {
 						this.ready();
@@ -53,7 +53,7 @@ if (Meteor.isServer) {
 	Meteor.publish("cardsetsEditMode", function (cardset_id) {
 		if (this.userId && UserPermissions.isNotBlockedOrFirstLogin()) {
 			let cardset = Cardsets.findOne({_id: cardset_id}, {fields: {_id: 1, owner: 1}});
-			if (cardset.owner === Meteor.userId() || UserPermissions.isAdmin()) {
+			if (cardset !== undefined && cardset.kind !== 'server'  && cardset.kind !== 'demo' && (cardset.owner === Meteor.userId() || UserPermissions.isAdmin())) {
 				return Cardsets.find({
 					$or: [
 						{_id: cardset_id},
@@ -77,7 +77,7 @@ if (Meteor.isServer) {
 	Meteor.publish("allCardsets", function () {
 		if (this.userId && UserPermissions.gotBackendAccess()) {
 			let query = {};
-			query.kind = {$nin: ['server']};
+			query.kind = {$nin: ['server', 'demo']};
 			if (!ServerStyle.gotSimplifiedNav()) {
 				query.shuffled = false;
 			}
@@ -88,7 +88,7 @@ if (Meteor.isServer) {
 	});
 	Meteor.publish("allRepetitorien", function () {
 		let query = {};
-		query.kind = {$nin: ['server']};
+		query.kind = {$nin: ['server', 'demo']};
 		query.shuffled = true;
 		if (this.userId && UserPermissions.gotBackendAccess()) {
 			return Cardsets.find(query);
