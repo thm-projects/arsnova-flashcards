@@ -121,7 +121,7 @@ Meteor.methods({
 					if (Meteor.settings.debug.leitner) {
 						console.log(`Disable learning phase: [${learningPhase._id}]${bonusText} in cardset [${cardset.name}]\n`);
 					}
-					disableLearningPhaseAndWorkloads(learningPhase._id);
+					disableLearningPhaseAndWorkloads(learningPhase);
 				}
 			});
 		}
