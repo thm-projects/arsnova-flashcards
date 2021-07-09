@@ -34,7 +34,7 @@ Meteor.methods({
 		let user_id = this.userId;
 		if (!Meteor.userId() || Roles.userIsInRole(user_id, 'blocked') || Bonus.isInBonus(cardset._id, Meteor.userId()) || !UserPermissions.hasCardsetPermission(cardset_id)) {
 			throw new Meteor.Error("not-authorized");
-		} else {
+		} else if (cardset.kind !== 'server' && cardset.kind !== 'demo') {
 			if (cardset.shuffled) {
 				let counter = 0;
 				for (let i = 0; i < cardset.cardGroups.length; i++) {
