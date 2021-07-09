@@ -14,8 +14,9 @@ import {TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE} from "../imports/config/serve
 
 /** Function gets called when the learning-phase ended and excludes the cardset from the leitner algorithm
  *  @param {Object} learningPhase - The the active learning-phase
+ *  param {Date} cronjobStartDate - The time at which the cronjob started
  * */
-function disableLearningPhaseAndWorkloads(learningPhase) {
+function disableLearningPhaseAndWorkloads(learningPhase, cronjobStartDate) {
 	if (!Meteor.isServer) {
 		throw new Meteor.Error("not-authorized");
 	} else {
@@ -33,6 +34,14 @@ function disableLearningPhaseAndWorkloads(learningPhase) {
 				isActive: false
 			}
 		}, {multi: true});
+		learningPhase = LeitnerLearningPhase.findOne({_id: learningPhase._id});
+		Cardsets.update({
+			_id: learningPhase.cardset_id
+		}, {
+			$set: {
+				bonusStatus: LeitnerLearningPhaseUtilities.setLeitnerBonusStatus(learningPhase, cronjobStartDate)
+			}
+		});
 	}
 }
 
@@ -121,7 +130,7 @@ Meteor.methods({
 					if (Meteor.settings.debug.leitner) {
 						console.log(`Disable learning phase: [${learningPhase._id}]${bonusText} in cardset [${cardset.name}]\n`);
 					}
-					disableLearningPhaseAndWorkloads(learningPhase._id);
+					disableLearningPhaseAndWorkloads(learningPhase, cronjobStartDate);
 				}
 			});
 		}
