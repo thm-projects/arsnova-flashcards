@@ -77,6 +77,7 @@ if (Meteor.isServer) {
 	Meteor.publish("allCardsets", function () {
 		if (this.userId && UserPermissions.gotBackendAccess()) {
 			let query = {};
+			query.kind = {$nin: ['server']};
 			if (!ServerStyle.gotSimplifiedNav()) {
 				query.shuffled = false;
 			}
@@ -86,8 +87,11 @@ if (Meteor.isServer) {
 		}
 	});
 	Meteor.publish("allRepetitorien", function () {
+		let query = {};
+		query.kind = {$nin: ['server']};
+		query.shuffled = true;
 		if (this.userId && UserPermissions.gotBackendAccess()) {
-			return Cardsets.find({shuffled: true});
+			return Cardsets.find(query);
 		} else {
 			this.ready();
 		}
