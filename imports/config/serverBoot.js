@@ -1,6 +1,6 @@
 // Shared debug commands for the server console
 import {CardType} from "../util/cardTypes";
-import {TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE} from "./serverStyle/style/global/const";
+import {TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE, TEST_NOTIFICATIONS_CARDSET} from "./serverStyle/style/global/const";
 
 const START_RECORDING = 0;
 const END_RECORDING = 1;
@@ -26,7 +26,7 @@ let initColorThemes = function () {
 let initTestNotificationsCardset = function () {
 	return [
 		{
-			"_id": "NotificationsTestCardset",
+			"_id": TEST_NOTIFICATIONS_CARDSET,
 			"name": "Notifications Test",
 			"description": "This cardset tests the E-Mail and web notifications of 🍅cards.",
 			"date": (new Date().setFullYear(2017, 9, 5)),
@@ -78,7 +78,7 @@ let initTestNotificationsCards = function () {
 			"front": "Front of NotificationsTest: Card Nr. 1",
 			"back": "Back of NotificationsTest: Card Nr. 1",
 			"hint": "Hint of NotificationsTest: Card Nr. 1",
-			"cardset_id": "NotificationsTestCardset",
+			"cardset_id": TEST_NOTIFICATIONS_CARDSET,
 			"lecture": "",
 			"centerTextElement": [false, false, false, false, false, false],
 			"alignType": [1, 1, 1, 1, 1, 1],
@@ -94,7 +94,7 @@ let initTestNotificationsCards = function () {
 			"front": "Front of NotificationsTest: Card Nr. 2",
 			"back": "Back of NotificationsTest: Card Nr. 2",
 			"hint": "Hint of NotificationsTest: Card Nr. 2",
-			"cardset_id": "NotificationsTestCardset",
+			"cardset_id": TEST_NOTIFICATIONS_CARDSET,
 			"lecture": "",
 			"centerTextElement": [false, false, false, false, false, false],
 			"alignType": [1, 1, 1, 1, 1, 1],
@@ -110,7 +110,7 @@ let initTestNotificationsCards = function () {
 			"front": "Front of NotificationsTest: Card Nr. 3",
 			"back": "Back of NotificationsTest: Card Nr. 3",
 			"hint": "Hint of NotificationsTest: Card Nr. 3",
-			"cardset_id": "NotificationsTestCardset",
+			"cardset_id": TEST_NOTIFICATIONS_CARDSET,
 			"lecture": "",
 			"centerTextElement": [false, false, false, false, false, false],
 			"alignType": [1, 1, 1, 1, 1, 1],
@@ -126,7 +126,7 @@ let initTestNotificationsCards = function () {
 			"front": "Front of NotificationsTest: Card Nr. 4",
 			"back": "Back of NotificationsTest: Card Nr. 4",
 			"hint": "Hint of NotificationsTest: Card Nr. 4",
-			"cardset_id": "NotificationsTestCardset",
+			"cardset_id": TEST_NOTIFICATIONS_CARDSET,
 			"lecture": "",
 			"centerTextElement": [false, false, false, false, false, false],
 			"alignType": [1, 1, 1, 1, 1, 1],
@@ -142,7 +142,7 @@ let initTestNotificationsCards = function () {
 			"front": "Front of NotificationsTest: Card Nr. 5",
 			"back": "Back of NotificationsTest: Card Nr. 5",
 			"hint": "Hint of NotificationsTest: Card Nr. 5",
-			"cardset_id": "NotificationsTestCardset",
+			"cardset_id": TEST_NOTIFICATIONS_CARDSET,
 			"lecture": "",
 			"centerTextElement": [false, false, false, false, false, false],
 			"alignType": [1, 1, 1, 1, 1, 1],
@@ -167,7 +167,7 @@ let initTestNotifcationLeitnerLearningWorkload = function () {
 				-1
 			],
 			"user_id": "NotificationsTestUser",
-			"cardset_id": "NotificationsTestCardset",
+			"cardset_id": TEST_NOTIFICATIONS_CARDSET,
 			"isBonus": false,
 			"isActive": true,
 			"activeCardCount": 30,
@@ -197,7 +197,7 @@ let initTestNotifcationLeitnerLearningPhase = function () {
 	return [
 		{
 			"_id": TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE,
-			"cardset_id": "NotificationsTestCardset",
+			"cardset_id": TEST_NOTIFICATIONS_CARDSET,
 			"isBonus": false,
 			"isActive": true,
 			"createdAt": new Date(),
@@ -237,7 +237,7 @@ let initTestNotificationsLeitnerUserCardStats = function () {
 	return [
 		{
 			"_id": "NotificationsTestLearned1",
-			"cardset_id": "NotificationsTestCardset",
+			"cardset_id": TEST_NOTIFICATIONS_CARDSET,
 			"card_id": "NotificationsTestCard1",
 			"user_id": "NotificationsTestUser",
 			"learning_phase_id": TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE,
@@ -248,7 +248,7 @@ let initTestNotificationsLeitnerUserCardStats = function () {
 		},
 		{
 			"_id": "NotificationsTestLearned2",
-			"cardset_id": "NotificationsTestCardset",
+			"cardset_id": TEST_NOTIFICATIONS_CARDSET,
 			"card_id": "NotificationsTestCard2",
 			"user_id": "NotificationsTestUser",
 			"learning_phase_id": TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE,
@@ -259,7 +259,7 @@ let initTestNotificationsLeitnerUserCardStats = function () {
 		},
 		{
 			"_id": "NotificationsTestLearned3",
-			"cardset_id": "NotificationsTestCardset",
+			"cardset_id": TEST_NOTIFICATIONS_CARDSET,
 			"card_id": "NotificationsTestCard3",
 			"user_id": "NotificationsTestUser",
 			"learning_phase_id": TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE,
@@ -270,7 +270,7 @@ let initTestNotificationsLeitnerUserCardStats = function () {
 		},
 		{
 			"_id": "NotificationsTestLearned4",
-			"cardset_id": "NotificationsTestCardset",
+			"cardset_id": TEST_NOTIFICATIONS_CARDSET,
 			"card_id": "NotificationsTestCard4",
 			"user_id": "NotificationsTestUser",
 			"learning_phase_id": TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE,
@@ -281,7 +281,7 @@ let initTestNotificationsLeitnerUserCardStats = function () {
 		},
 		{
 			"_id": "NotificationsTestLearned5",
-			"cardset_id": "NotificationsTestCardset",
+			"cardset_id": TEST_NOTIFICATIONS_CARDSET,
 			"card_id": "NotificationsTestCard5",
 			"user_id": "NotificationsTestUser",
 			"learning_phase_id": TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE,

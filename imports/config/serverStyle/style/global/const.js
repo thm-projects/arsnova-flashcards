@@ -20,3 +20,4 @@ export const LEITNER_LEARNING_WORKLOAD_VERSION = 1;
 
 //Test Notifications Learning Phases
 export const  TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE = "NotificationsTestLearningPhase";
+export const  TEST_NOTIFICATIONS_CARDSET = "NotificationsTestCardset";
