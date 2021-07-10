@@ -10,7 +10,7 @@ import {LeitnerActivationDay} from "../imports/api/subscriptions/leitner/leitner
 import {LeitnerLearningPhase} from "../imports/api/subscriptions/leitner/leitnerLearningPhase";
 import {LeitnerLearningPhaseUtilities} from "../imports/util/learningPhase";
 import {AccountUtils} from "../imports/util/accounts";
-import {TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE} from "../imports/config/serverStyle/style/global/const";
+import {TEST_NOTIFICATIONS_CARDSET} from "../imports/config/serverStyle/style/global/const";
 
 /** Function gets called when the learning-phase ended and excludes the cardset from the leitner algorithm
  *  @param {Object} learningPhase - The the active learning-phase
@@ -59,7 +59,9 @@ Meteor.methods({
 		if (!Meteor.isServer) {
 			throw new Meteor.Error("not-authorized");
 		} else {
-			let leitnerLearningPhase = LeitnerLearningPhase.find({_id: {$nin: [TEST_NOTIFICATIONS_LEITNER_LEARNING_PHASE]}, isActive: true}).fetch();
+			let leitnerLearningPhase = LeitnerLearningPhase.find({
+				cardset_id: {$nin: [TEST_NOTIFICATIONS_CARDSET]
+				}, isActive: true}).fetch();
 			let cronjobStartDate = new Date();
 			if (Meteor.settings.debug.leitner) {
 				console.log(`Found ${leitnerLearningPhase.length} active leitner learning phases.`);
