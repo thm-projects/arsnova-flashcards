@@ -1,4 +1,3 @@
-import {ServerStyle} from "../../../../util/styles";
 import {Icons} from "../../../../util/icons";
 import {Route} from "../../../../util/route";
 import {CardType} from "../../../../util/cardTypes";
@@ -6,6 +5,7 @@ import {Cards} from "../../../../api/subscriptions/cards";
 import {Cardsets} from "../../../../api/subscriptions/cardsets";
 import {TranscriptBonus} from "../../../../api/subscriptions/transcriptBonus";
 import {BONUS_STATUS} from "../../../../config/cardset.js";
+import {FlowRouter} from "meteor/ostrio:flow-router-extra";
 
 function getCardErrorCount(card_id) {
 	let errorCount = 0;
@@ -15,10 +15,15 @@ function getCardErrorCount(card_id) {
 	return errorCount;
 }
 
-Template.registerHelper("getBonusLabel", function (cardset_id) {
-	let cardset = Cardsets.findOne({_id: cardset_id});
-	if (cardset !== undefined && ServerStyle.gotNavigationFeature("misc.features.bonus")) {
-		switch (cardset.bonusStatus) {
+Template.registerHelper("getBonusLabel", function (bonusStatus, isCardLabel = false) {
+	if (isCardLabel) {
+		let cardset = Cardsets.findOne({_id: FlowRouter.getParam('_id')});
+		if (cardset !== undefined) {
+			bonusStatus = cardset.bonusStatus;
+		}
+	}
+	if (bonusStatus !== undefined) {
+		switch (bonusStatus) {
 			case BONUS_STATUS.ONGOING_OPEN:
 			case BONUS_STATUS.ONGOING_CLOSED:
 				return `<span class="label label-bonus-finished" title="${TAPi18n.__('cardset.bonus.long')}">${TAPi18n.__('cardset.bonus.short')}</span>`;
