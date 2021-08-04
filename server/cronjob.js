@@ -6,7 +6,7 @@ import {SyncedCron} from "meteor/percolate:synced-cron";
  */
 export class CronScheduler {
 	/** Function starts a Cronjob which executs the leitner algorithm */
-	startCron () {
+	startCron() {
 		SyncedCron.add({
 			name: "leitnerCron",
 			schedule: function (parser) {
@@ -16,6 +16,17 @@ export class CronScheduler {
 			},
 			job: function () {
 				Meteor.call("updateLeitnerCards");
+			}
+		});
+		SyncedCron.add({
+			name: "errorCron",
+			schedule: (parser) => {
+				//Use this line on a local server to trigger the cronjob every 30 seconds
+				// return parser.text('every 30 seconds');
+				return parser.recur().on(Meteor.settings.public.dailyCronjob.executeAtHour).hour();
+			},
+			job: () => {
+				Meteor.call("prepareErrorMail");
 			}
 		});
 		SyncedCron.start();

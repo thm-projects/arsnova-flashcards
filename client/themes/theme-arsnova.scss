@@ -12,6 +12,7 @@
   $primary: $default_grey;
   $primary_text: #212121;
   $secondary_text: $default_white;
+  $primary_h2: #555;
 
   $athens_gray_approx: rgb(236, 240, 241);
   $bilbao_approx: rgb(50, 129, 20);
@@ -52,6 +53,7 @@
           "background_backend" : $default_background,
           "background_editor": $default_background,
           "background_transcript_bonus": $default_background,
+          "default_background": $default_background,
     //global colors
           "thm_dark_blue":$default_dark_blue,
           "thm_blue":$default_blue,
@@ -73,6 +75,7 @@
           "accent": $accent,
           "primary_text": $primary_text,
           "secondary_text": $secondary_text,
+          "primary_h2": $primary_h2,
           "divider": $divider,
           "accent_300": $accent_300,
           "background": $background,
@@ -157,6 +160,7 @@
           "active_licenses_text": white,
           "error_reporting_label_background": rgb(139, 0, 0),
           "error_reporting_label_text": $default_white,
+          "form_check_label_color": #5f5f5f,
     //license colors
           "background_license_icon": $default_white,
           "foreground_license_icon": black,
@@ -392,6 +396,7 @@
           "export_to_markdeep_table_row_background": white,
           "export_to_markdeep_table_row_text": $primary_text,
           "export_to_markdeep_table_row_counter": $primary_text,
+          "export_to_markdeep_export_type_color": #d3d3d3,
     //server statistics colors
           "server_statistics_table_header_background": $default_grey,
           "server_statistics_table_header_text": white,
@@ -679,6 +684,7 @@
 
           "card_sidebar_error_reporting_button_background": white,
           "card_sidebar_error_reporting_button_text": $default_grey,
+          "card_sidebar_error_reporting_button_border": white,
           "card_sidebar_error_reporting_button_background_hover": $button_background_hover,
           "card_sidebar_error_reporting_button_text_hover": $button_text_hover,
 
@@ -746,6 +752,7 @@
           "cardset_markdeep_text": $default_grey,
           "cardset_markdeep_link": $default_orange,
           "cardset_markdeep_placeholder": $default_green,
+          "cardset_markdeep_content_background": LightGoldenRodYellow,
           "cardset_footer_navigation_background": $default_grey,
           "cardset_footer_navigation_index_background": none,
           "cardset_footer_navigation_index_text": black,
@@ -872,6 +879,12 @@
     //markdeep colors
           "markdeep_inline_code_background": yellow,
           "markdeep_inline_code_text": black,
+          "markdeep_inline_code_title": #000,
+          "markdeep_inline_code_keyword": #02E,
+          "markdeep_inline_code_params": #5c2699,
+          "markdeep_inline_code_number": #A0C,
+          "markdeep_inline_code_comment": #006a00,
+          "markdeep_inline_code_string": #c41a16,
           "markdeep_blockquote_background": none,
           "markdeep_blockquote_text": $default_grey,
           "markdeep_blockquote_author": $default_grey,
@@ -901,6 +914,7 @@
           "transcript_bonus_statistics_info_details_text": black,
           "transcript_bonus_statistics_info_details_achieved_background": LightGoldenRodYellow,
           "transcript_bonus_statistics_info_details_achieved_text": black,
+          "transcript_bonus_statistics_info_details_border_color": white,
     //markdeep editor colors
           "markdeep_help_text": $default_white,
           "markdeep_help_background": $default_orange,
@@ -937,6 +951,8 @@
           "search_divide:": $default_grey,
     //form group colors
           "form_group_label": black,
+          "theme_dropdown_background": #EEEEEE,
+          "theme_dropdown_text": black,
     //cardset form colors
           "cardset_form_list_background": $athens_gray_approx,
           "cardset_form_list_text": black,
@@ -973,6 +989,8 @@
           "modal_feedback_button_card_side_text": $default_orange,
           "modal_feedback_button_card_side_background_active": $default_orange,
           "modal_feedback_button_card_side_text_active": $default_white,
+          "modal_border_color": #ddd,
+          "modal_background_color": $default_white,
     //pomodoro colors
           "pomodoro_timer_fullscreen_overlay": rgba(0,0,0, 1),
           "pomodoro_timer_hand_circle": $default_orange,
@@ -989,6 +1007,14 @@
           "pomodoro_timer_arc_break_hover": #2ac55f,
           "pomodoro_timer_text": white,
           "pomodoro_timer_text_highlight": $default_orange,
+          "slogan": white,
+    //CC
+          "cc_windows_background": rgb(74, 92, 102),
+          "cc_windows_background_text": white,
+          "cc_btn_background": #d3d3d3,
+          "cc_btn_text": #5f6e77,
+          "cc_btn_background_hover": midnightblue,
+          "cc_btn_text_hover": white,
     //sweet alert 2 colors
           "sweet_alert_2_title": white,
           "sweet_alert_2_text": white,
@@ -1056,6 +1082,8 @@
           "use_cases_special_cardsets_button_text": white,
           "use_cases_special_cardsets_button_background_hover": midnightblue,
           "use_cases_special_cardsets_button_text_hover": white,
+          "table_user_list_background": white,
+          "table_user_list_text": black,
     //answer checkbox
           "checkbox_left_background": white,
           "checkbox_left_text": $primary_text,
@@ -1064,6 +1092,8 @@
           "checkbox_right_background": $btn_inactive,
           "checkbox_right_text": white,
    //profile
+          "profile_fullscreen_title_background": #eeeeee,
+          "profile_fullscreen_background": white,
           "profile_fullscreen_checkbox_background": white,
           "profile_fullscreen_checkbox_border": $default_grey,
           "profile_fullscreen_checkbox_background_unsaved": white,
@@ -1085,5 +1115,30 @@
           "games_and_backgrounds_loading_background": black,
     //flashcardsEndProgressbar
           "flashcards_end_progressbar_background": darkorange,
+
+  //Change of card.scss
+        "card_header_text": #4a5c66,
+        "md_table_background": #ff9f30,
+        "md_table_border": gray,
+        "md_table_td_background": none,
+        "md_table_td_nth_child_background": #eeeeee,
+        "md_table_td_border": gray,
+        "md_table_body_hover_color": yellow,
+        "md_hyperlink": $default_orange,
+        "listCard_color": black,
+        "collapseLearningPhaseInfoButton_background": #2f4f4f,
+        "collapseLearningPhaseInfoButton_color": white,
+        "card_block_background": white,
+        "card_block_color": black,
+        "card_block_table_body": none,
+        "card_block_table_hover": white,
+        "cardsetInfo_panel_body_background": white,
+        "panel_body_h4": black,
+
+   //Error reporting
+        "error_reporting_table_background_color": white,
+        "error_reporting_table_background_color_hover": white,
+
+
   );
 }

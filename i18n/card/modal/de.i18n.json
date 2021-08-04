@@ -18,12 +18,18 @@
       "otherErrorText": "Welche Fehler sind Dir noch aufgefallen?",
       "send": "Fehler melden",
       "save": "Status aktualisieren",
+      "areYouSure": "Bist Du sicher?",
+      "areYouSureBody": "Der Kartenautor ($1) wird über deine Meldung informiert.",
       "thankYou": "Vielen Dank!",
       "thankYouText": "Vielen Dank für Dein Feedback!",
       "thankYouButton": "Weiter",
       "noErrorChecked": "Kein Fehler ausgewählt",
       "noErrorCheckedText": "Du musst mindestens einen Fehler ankreuzen oder einen Text eingeben.",
-      "loadedError": "Dein gemeldeter Fehler wurde geladen!"
+      "loadedError": "Dein gemeldeter Fehler wurde geladen!",
+      "informCreator": "  wird über den gemeldeten Fehler informiert.",
+      "errorNotificationHeader": "Fehler auf Karte ",
+      "reportedErrorsNotification": "Folgende Fehler wurden gemeldet:",
+      "openCardNotification": "Kartei öffnen"
     },
     "overviewErrorReports": {
       "header": "Übersicht der Fehler",
