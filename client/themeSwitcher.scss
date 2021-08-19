@@ -1003,6 +1003,9 @@ $themes: (
     $sweet_alert_2_icon_question_text: map-get($map, "sweet_alert_2_icon_question_text");
     //loading screen
     $loading_screen_icon: map-get($map, "loading_screen_icon");
+    //admin-table
+    $admin-table-background-color: map-get($map, "admin-table-background-color");
+    $admin-table-text-color: map-get($map, "admin-table-text-color");
     //wozniak rating buttons
     $wozniak_rating_0_background: map-get($map, "wozniak_rating_0_background");
     $wozniak_rating_0_background_hover: map-get($map, "wozniak_rating_0_background_hover");
@@ -1166,7 +1169,7 @@ $themes: (
       color: $panel_body_h4 !important;
     }
     .table-hover > tbody > tr:hover {
-     background-color: $md_table_body_hover_color !important;
+     background-color: $default_background !important;
     }
 
     a {
@@ -1516,9 +1519,14 @@ $themes: (
     }*/
 
     #markdeepNavigation .fas, #markdeepNavigation .fab, #markdeepNavigation .far, #markdeepNavigation .markdeep-center, #markdeepNavigation .markdeep-fullscreen, .card-button {
-      color: white ;
+      color: $thm_gray ;
       border-color: $thm_gray;
-      background-color: $thm_gray;
+      background-color: white;
+    }
+
+    .panel, .panel-body {
+      background: $admin-table-background-color !important;
+      color: $admin-table-text-color;
     }
 
     #markdeepNavigation .markdeep-help {
@@ -2401,7 +2409,7 @@ $themes: (
     }
 
     .info {
-      color: $primary !important;
+      color: $primary-text !important;
     }
 
     .navbar.navbar-default .dropdown-menu li > a:hover, .navbar.navbar-default .dropdown-menu li > a:focus {
@@ -2744,7 +2752,7 @@ $themes: (
     }
 
     #navbar-adminpanel a {
-      background-color: $navbar_backend_background !important;
+      background-color: black !important;
       color: $navbar_backend_text !important;
     }
     #navbar-adminpanel a:hover, #navbar-adminpanel a:focus {
@@ -2812,10 +2820,6 @@ $themes: (
           li {
             a {
               color: white !important;
-              &:hover, &:focus, &.active {
-                color: white;
-                background: $thm_orange;
-              }
             }
           }
         }
@@ -2829,15 +2833,21 @@ $themes: (
             color: white !important;
           }
         }
+
+        .input-group-addon {
+          color: $admin-table-text-color !important;
+        }
         .content {
           .admin_table {
-            background-color: #f9f9f9 !important;
-            border-color: white !important;
+            background-color: $admin-table-background-color;
+            color: $admin-table-text-color;
+            border-color: white;
             .clearfix {
-              border-bottom-color: #ddd !important;
+              border-bottom-color: #ddd;
             }
             table {
-              border-bottom-color: #ddd !important;
+              border-bottom-color: #ddd;
+
             }
           }
           .dashboard-box {
@@ -2861,6 +2871,10 @@ $themes: (
           }
         }
       }
+    }
+
+    .table-hover > tbody > tr:hover > td:hover{
+      background: none !important;
     }
 
     @media(min-width: 768px) {
@@ -4463,7 +4477,7 @@ $themes: (
       }
       //cardset
       .preview {
-        background-color: $cardset_sidebar_preview_background !important;
+        background-color: $admin-table-background-color !important;
         color:$cardset_sidebar_preview_text !important;
       }
 

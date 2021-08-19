@@ -669,9 +669,9 @@
           "card_sidebar_arsnova_lite_border_active": $default_orange,
           "card_sidebar_arsnova_lite_text_active": white,
 
-          "card_sidebar_zoom_background": none,
+          "card_sidebar_zoom_background": $default_grey,
           "card_sidebar_zoom_border": $default_grey,
-          "card_sidebar_zoom_text": $default_grey,
+          "card_sidebar_zoom_text": white,
           "card_sidebar_zoom_background_open": $button_background_hover,
           "card_sidebar_zoom_border_open": $button_background_hover,
           "card_sidebar_zoom_text_open": $button_text_hover,
@@ -1035,6 +1035,9 @@
           "sweet_alert_2_icon_question_text": white,
     //loading screen
           "loading_screen_icon": $default_orange,
+    //admin-table
+          "admin-table-background-color": white,
+          "admin-table-text-color": $primary_text,
     //wozniak rating buttons
           "wozniak_rating_0_background": red,
           "wozniak_rating_0_text": white,

@@ -595,9 +595,9 @@
           "card_answer_icon_explanation_text": white,
           "card_answer_icon_explanation_background": $default_orange,
 
-          "card_answer_background": rgba($default_grey, 0.25),
-          "card_answer_background_right": rgba($default_green, 0.25),
-          "card_answer_background_wrong": rgba($default_red, 0.25),
+          "card_answer_background": rgba($default_white,0.5),
+          "card_answer_background_right": lighten($default_green, 0.25),
+          "card_answer_background_wrong": lighten($default_red, 0.25),
           "card_answer_explanation_background": rgba($default_orange, 0.25),
 
     //card sidebar colors
@@ -674,7 +674,7 @@
           "card_sidebar_arsnova_lite_border_active": $default_orange,
           "card_sidebar_arsnova_lite_text_active": white,
 
-          "card_sidebar_zoom_background": none,
+          "card_sidebar_zoom_background": $default_grey,
           "card_sidebar_zoom_border": $default_grey,
           "card_sidebar_zoom_text": white,
           "card_sidebar_zoom_background_open": $button_background_hover,
@@ -692,7 +692,7 @@
           "card_sidebar_error_reporting_button_border": $default_grey,
           "card_sidebar_error_reporting_button_background_hover": $button_background_hover,
           "card_sidebar_error_reporting_button_text_hover": $button_text_hover,
-          
+
           "card_sidebar_leitner_history_background": none,
           "card_sidebar_leitner_history_border": $default_grey,
           "card_sidebar_leitner_history_text": $default_grey,
@@ -880,7 +880,7 @@
           "markdeep_blockquote_text": darken($default_white, 10),
           "markdeep_blockquote_author": $default_grey,
           "markdeep_blockquote_quotes": $default_orange,
-          "markdeep_image_border": $default_grey,
+          "markdeep_image_border": $default_white,
     //transcript bonus colors
           "transcript_bonus_info_text": white,
           "transcript_bonus_info_background": $default_dark_red,
@@ -960,11 +960,11 @@
     //presentation colors
           "presentation_clock_circle": none,
           "presentation_clock_background": none,
-          "presentation_clock_center_circle": red,
-          "presentation_clock_hour_marks": $default_grey,
-          "presentation_clock_hour_arm": $default_grey,
-          "presentation_clock_minute_arm": $default_grey,
-          "presentation_clock_second_arm": red,
+          "presentation_clock_center_circle": $default_dark_red,
+          "presentation_clock_hour_marks": $default_orange,
+          "presentation_clock_hour_arm": $default_white,
+          "presentation_clock_minute_arm": $default_white,
+          "presentation_clock_second_arm": $default_dark_red,
     //modal colors
           "modal_overlay": rgba(0,0,0, 0.7),
           "modal_background": $default_black,
@@ -1025,6 +1025,10 @@
           "sweet_alert_2_icon_question_text": white,
     //loading screen
           "loading_screen_icon": $default_orange,
+    //admin-table
+          "admin-table-background-color": $primary,
+          "admin-table-text-color": $primary_text,
+
     //wozniak rating buttons
           "wozniak_rating_0_background": red,
           "wozniak_rating_0_text": white,
@@ -1130,4 +1134,5 @@
         "error_reporting_table_background_color": $default_black,
         "error_reporting_table_background_color_hover": lighten($default_black, 5),
   );
+
 }

@@ -10,8 +10,9 @@
     <button id="createMessage" class="btn btn-raised btn-success">
         {{_ "admin.motd.create"}}
     </button>
-    <div class="content reactive-table">
-        <table class="table table-striped">
+    <div class="content box-admin">
+        <table class="table table-light">
+            <thead>
             <tr>
                 <th>{{_ "admin.motd.title"}}</th>
                 <th>{{_ "admin.motd.location"}}</th>
@@ -19,6 +20,7 @@
                 <th>{{_ "admin.motd.published"}}</th>
                 <th>{{_ "admin.motd.expiration"}}</th>
             </tr>
+            </thead>
             <tbody>
 
             {{#each getMessages}}
