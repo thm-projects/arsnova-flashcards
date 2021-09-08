@@ -1,20 +1,6 @@
 arsnova🍅cards
 
-## Teilprüfung Nr. 1:
 
-### Startseite:
-![startseite](screenshots_abgabe_1/Startseite.png)
-### Wegweiser:
-![startseite](screenshots_abgabe_1/Wegweiser.png)
-### Themenpool:
-![startseite](screenshots_abgabe_1/Themenpool.png)
-### Kartei WBS:
-![startseite](screenshots_abgabe_1/Kartei_WBS.png)
-
----
-## Autoren der Prüfungen:
-- **Claudio-Marius von Egan-Krieger**
-- **Florian Maximilian Dörr**
 ---
 The [Progressive Web App](https://en.wikipedia.org/wiki/Progressive_web_app) arsnova🍅cards offers students a modern and intuitive access to one of the most successful and evidence based learning methods, i.e., [spaced repetition](https://en.wikipedia.org/wiki/Spaced_repetition).
 
