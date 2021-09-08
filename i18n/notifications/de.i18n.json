@@ -44,6 +44,11 @@
         "unsubscribe": "Nicht mehr interessiert? Entferne die Kartei oder das Repetitorium aus deinem Lernpensum: Gehe auf die Seite »Lernpensum« und klicke auf das entsprechende Icon. Willst du alle Newsletter abbestellen? Deaktiviere den Erinnerungsdienst unter »Profil & Konto«. Willst du deine Mitgliedschaft beenden? Lösche dein Konto.",
         "copyright": "Dein 🍅__lastAppTitle__-Tutor",
         "auto-generated": "Antworte nicht auf diese Mail, sie wurde automatisch erstellt."
+      },
+      "error": {
+        "subject": "Es liegen Fehlermeldungen zu Deinen Karten vor.",
+        "bodyTitle": "Es wurden insgesamt __count__ Fehler gemeldet.",
+        "bodyText": "Hier hast Du eine Übersicht an offenen Fehlern:"
       }
     },
     "webPush": {

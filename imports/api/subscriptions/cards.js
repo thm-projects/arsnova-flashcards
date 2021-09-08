@@ -35,6 +35,13 @@ if (Meteor.isServer) {
 			this.ready();
 		}
 	});
+	Meteor.publish("ownCards", function () {
+		if (this.userId) {
+			return Cards.find({owner: this.userId});
+		} else {
+			this.ready();
+		}
+	});
 	Meteor.publish("myTranscriptCards", function () {
 		if (this.userId) {
 			let cardFilter = [];
