@@ -1,12 +1,12 @@
 import "./errorReporting.html";
-import {Meteor} from "meteor/meteor";
-import {Template} from 'meteor/templating';
+import { Meteor } from "meteor/meteor";
+import { Template } from 'meteor/templating';
 import swal from "sweetalert2";
+import "./errorReportingTable";
 import {Session} from "meteor/session";
 import {CardNavigation} from "../../../util/cardNavigation";
 import {CardType} from "../../../util/cardTypes";
 import {ErrorReporting} from "../../../util/errorReporting";
-import {UserPermissions} from "../../../util/permissions";
 import {ServerStyle} from "../../../util/styles";
 
 function getCardSide() {
@@ -53,6 +53,8 @@ function checkInput() {
 	}
 }
 
+Template.registerHelper("getErrorReport", () => Session.get("errorReportingCard"));
+
 Template.errorReportingModal.helpers({
 	isErrorReviewMode: function () {
 		return Session.get('errorReportingMode');
@@ -67,17 +69,31 @@ Template.errorReportingModal.events({
 		if (checkInput()) {
 			$('#showErrorReportingModal').modal('hide');
 			$('.errorReporting').removeClass("pressed");
-			Meteor.call("sendErrorReport", Meteor.userId(), Session.get('activeCardset')._id,
-				Session.get('activeCard'), getCardSide(), getErrorTypes(),
-				getErrorContent());
-			swal.fire({
-				title: TAPi18n.__('modal-card.errorReporting.thankYou'),
-				html: TAPi18n.__('modal-card.errorReporting.thankYouText'),
-				type: "success",
-				allowOutsideClick: false,
-				confirmButtonText: "Weiter"
+			Meteor.call("getCardCreator", Session.get('activeCard'), (err, result) => {
+				swal.fire({
+					title: TAPi18n.__('modal-card.errorReporting.areYouSure'),
+					html: TAPi18n.__('modal-card.errorReporting.areYouSureBody').replace("$1", result),
+					showCancelButton: true,
+					type: "question",
+					allowOutsideClick: false,
+					confirmButtonText: "Weiter",
+					cancelButtonText: TAPi18n.__('modal-card.cancel')
+				}).then(value => {
+					if (value.dismiss === undefined) {
+						Meteor.call("sendErrorReport", Meteor.userId(), Session.get('activeCardset')._id,
+							Session.get('activeCard'), getCardSide(), getErrorTypes(),
+							getErrorContent());
+						swal.fire({
+							title: TAPi18n.__('modal-card.errorReporting.thankYou'),
+							html: result + " " + TAPi18n.__('modal-card.errorReporting.informCreator'),
+							type: "success",
+							allowOutsideClick: false,
+							confirmButtonText: "Weiter"
+						});
+						ErrorReporting.loadErrorReportingModal();
+					}
+				});
 			});
-			ErrorReporting.loadErrorReportingModal();
 		}
 	},
 	'click #saveErrorReport': function () {
@@ -145,66 +161,5 @@ Template.setCardSideForError.helpers({
 Template.changeErrorStatus.helpers({
 	isErrorReportingMode: function () {
 		return Session.get('errorReportingMode');
-	}
-});
-
-Template.overviewErrorReportsModal.onRendered(function () {
-	$('#showOverviewErrorReportsModal').on('hidden.bs.modal', function () {
-		Session.set('errorReportingMode', false);
-		ErrorReporting.loadErrorReportingModal();
-	});
-});
-
-Template.overviewErrorReportsModal.events({
-	'click #closeOverviewErrorReports': function () {
-		$('#showOverviewErrorReportsModal').modal('hide');
-	}
-});
-
-Template.overviewErrorReportsTable.events({
-	'click .errorReportEntry': function () {
-		if (UserPermissions.canEditCard()) {
-			ErrorReporting.loadErrorReportingModal(this);
-			$('#showErrorReportingModal').modal('show');
-		}
-	}
-});
-
-Template.overviewErrorReportsTable.helpers({
-	getSide: function (cardSide) {
-		return TAPi18n.__(`card.cardType${Session.get('cardType')}.content${cardSide + 1}`);
-	},
-	getErrorReport: function () {
-		return Session.get('errorReportingCard');
-	},
-	getErrors: function (error_id) {
-		let errors = '<ul>';
-		Session.get('errorReportingCard').forEach(error => {
-			if (error._id === error_id) {
-				if (error.error.type.includes(0)) {
-					errors += `<li>${TAPi18n.__('modal-card.errorReporting.spellingMistake')}</li>`;
-				}
-				if (error.error.type.includes(1)) {
-					errors += `<li>${TAPi18n.__('modal-card.errorReporting.missingPicture')}</li>`;
-				}
-				if (error.error.type.includes(2)) {
-					errors += `<li>${TAPi18n.__('modal-card.errorReporting.layoutMistake')}</li>`;
-				}
-				if (error.error.type.includes(3)) {
-					errors += `<li>${TAPi18n.__('modal-card.errorReporting.brokenLink')}</li>`;
-				}
-				if (error.error.content.length) {
-					errors += `<li>${TAPi18n.__('modal-card.errorReporting.otherError')}:<br>${error.error.content}</li>`;
-				}
-			}
-		});
-		return errors += '</ul>';
-	},
-	getStatus: function (status) {
-		if (status === 0) {
-			return TAPi18n.__('modal-card.overviewErrorReports.openError');
-		} else {
-			return TAPi18n.__('modal-card.overviewErrorReports.closedError');
-		}
 	}
 });
