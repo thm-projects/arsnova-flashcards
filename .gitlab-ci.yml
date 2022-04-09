@@ -65,7 +65,7 @@ build:
   image: local-nodejs-meteor:12_2.2
   dependencies: []
   script:
-    - test -d package-metadata && mv package-metadata ~/.meteor/
+    - test -d package-metadata && rm -rf ~/.meteor/package-metadata && mv package-metadata ~/.meteor/
     - meteor npm install
     - meteor build --server-only --architecture os.linux.x86_64 --directory "$BUILD_DIR"
     - mv ~/.meteor/package-metadata "$CI_PROJECT_DIR/"
