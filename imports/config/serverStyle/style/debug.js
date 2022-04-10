@@ -127,10 +127,10 @@ module.exports = {
 	},
 	"login": {
 		"cards": {
-			"enabled": true,
+			"enabled": false,
 			"domainWhitelist": DEFAULT_REGISTRATION_DOMAIN_WHITELIST
 		},
-		"cas": false,
+		"cas": true,
 		"guest": true,
 		"pro": true,
 		"facebook": false,
