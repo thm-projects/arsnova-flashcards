@@ -127,7 +127,7 @@ module.exports = {
 	},
 	"login": {
 		"cards": {
-			"enabled": false,
+			"enabled": true,
 			"domainWhitelist": DEFAULT_REGISTRATION_DOMAIN_WHITELIST
 		},
 		"cas": true,
@@ -210,7 +210,7 @@ module.exports = {
 		"randomCardsSelection": false
 	},
 	"themes": {
-		"default": "dark", // The default theme from the list
+		"default": "linux", // The default theme from the list
 		"list": [
 			{
 				"theme": "arsnova", // The color theme
