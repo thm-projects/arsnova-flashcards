@@ -20,7 +20,7 @@
     "fibers": "^4.0.3",
     "humanize-duration": "^3.27.1",
     "ink-docstrap": "^1.3.2",
-    "jquery": "^3.6.0",
+    "jquery": "^1.9.1",
     "jscs": "^3.0.7",
     "knuth-shuffle-seeded": "^1.0.6",
     "mathjs": "^9.5.2",
