@@ -1,10 +1,12 @@
 @import "themes/theme-arsnova";
 @import "themes/theme-linux";
+@import "themes/theme-dark";
 @import "../imports/ui/main/main.scss";
 
 $themes: (
   arsnova: theme-arsnova(),
-  linux: theme-linux()
+  linux: theme-linux(),
+  dark: theme-dark(),
 );
 
 @each $theme, $map in $themes {
@@ -18,6 +20,7 @@ $themes: (
     $background_backend: map-get($map, "background_backend");
     $background_editor: map-get($map, "background_editor");
     $background_transcript_bonus: map-get($map, "background_transcript_bonus");
+    $default_background: map-get($map, "default_background");
     //global colors
     $thm_dark_blue: map-get($map, "thm_dark_blue");
     $thm_blue: map-get($map, "thm_blue");
@@ -34,11 +37,13 @@ $themes: (
     $slate_gray_approx: map-get($map, "slate_gray_approx");
     $alto_approx: map-get($map, "alto_approx");
     $storm_dust_approx: map-get($map, "storm_dust_approx");
+    $slogan: map-get($map, "slogan");
     $mountain_mist_approx: map-get($map, "mountain_mist_approx");
     $primary: map-get($map, "primary");
     $accent: map-get($map, "accent");
     $primary_text: map-get($map, "primary_text");
     $secondary_text: map-get($map, "secondary_text");
+    $primary_h2: map-get($map, "primary_h2");
     $divider: map-get($map, "divider");
     $accent_300: map-get($map, "accent_300");
     $background: map-get($map, "background");
@@ -123,6 +128,15 @@ $themes: (
     $active_licenses_text: map-get($map, "active_licenses_text");
     $error_reporting_label_background: map-get($map, "error_reporting_label_background");
     $error_reporting_label_text: map-get($map, "error_reporting_label_text");
+    $form_check_label_color: map-get($map, "form_check_label_color");
+
+    $cc_windows_background: map-get($map, "cc_windows_background");
+    $cc_windows_background_text: map-get($map, "cc_windows_background_text");
+    $cc_btn_background: map-get($map, "cc_btn_background");
+    $cc_btn_text: map-get($map, "cc_btn_text");
+    $cc_btn_background_hover: map-get($map, "cc_btn_background_hover");
+    $cc_btn_text_hover: map-get($map, "cc_btn_text_hover");
+
     //license
     $background_license_icon: map-get($map, "background_license_icon");
     $foreground_license_icon: map-get($map, "foreground_license_icon");
@@ -351,6 +365,7 @@ $themes: (
     $export_to_markdeep_table_row_background: map-get($map, "export_to_markdeep_table_row_background");
     $export_to_markdeep_table_row_text: map-get($map, "export_to_markdeep_table_row_text");
     $export_to_markdeep_table_row_counter: map-get($map, "export_to_markdeep_table_row_counter");
+    $export_to_markdeep_export_type_color: map-get($map, "export_to_markdeep_export_type_color");
     //server statistics colors
     $server_statistics_table_header_background: map-get($map, "server_statistics_table_header_background");
     $server_statistics_table_header_text: map-get($map, "server_statistics_table_header_text");
@@ -422,6 +437,8 @@ $themes: (
     $button_difficulty1: map-get($map, "button_difficulty1");
     $button_difficulty2: map-get($map, "button_difficulty2");
     $button_difficulty3: map-get($map, "button_difficulty3");
+    $theme_dropdown_background: map-get($map, "theme_dropdown_background");
+    $theme_dropdown_text: map-get($map, "theme_dropdown_text");
     $button_difficulty_inactive: map-get($map, "button_difficulty_inactive");
     $background_difficulty0_note: map-get($map, "background_difficulty0_note");
     $background_difficulty0: map-get($map, "background_difficulty0");
@@ -433,6 +450,7 @@ $themes: (
     $background_difficulty1_lines: map-get($map, "background_difficulty1_lines");
     $background_difficulty2_lines: map-get($map, "background_difficulty2_lines");
     $background_difficulty3_lines: map-get($map, "background_difficulty3_lines");
+    $background_grey: map-get($map, "background_grey");
     $background_white: map-get($map, "background_white");
     $background_white_lines: map-get($map, "background_white_lines");
     $background_post_it: map-get($map, "background_post_it");
@@ -530,6 +548,7 @@ $themes: (
     $card_sidebar_error_reporting_button_text: map-get($map, "card_sidebar_error_reporting_button_text");
     $card_sidebar_error_reporting_button_background_hover: map-get($map, "card_sidebar_error_reporting_button_background_hover");
     $card_sidebar_error_reporting_button_text_hover: map-get($map, "card_sidebar_error_reporting_button_text_hover");
+    $card_sidebar_error_reporting_button_border : map-get($map, "card_sidebar_error_reporting_button_border");
 
     $card_sidebar_leitner_history_background: map-get($map, "card_sidebar_leitner_history_background");
     $card_sidebar_leitner_history_border: map-get($map, "card_sidebar_leitner_history_border");
@@ -595,6 +614,7 @@ $themes: (
     $cardset_markdeep_text: map-get($map, "cardset_markdeep_text");
     $cardset_markdeep_link: map-get($map, "cardset_markdeep_link");
     $cardset_markdeep_placeholder: map-get($map, "cardset_markdeep_placeholder");
+    $cardset_markdeep_content_background: map-get($map, "cardset_markdeep_content_background");
     $cardset_footer_navigation_background: map-get($map, "cardset_footer_navigation_background");
     $cardset_footer_navigation_index_background: map-get($map, "cardset_footer_navigation_index_background");
     $cardset_footer_navigation_index_text: map-get($map, "cardset_footer_navigation_index_text");
@@ -821,6 +841,12 @@ $themes: (
     $card_answer_explanation_background: map-get($map, "card_answer_explanation_background");
     //markdeep colors
     $markdeep_inline_code_background: map-get($map, "markdeep_inline_code_background");
+    $markdeep_inline_code_title: map-get($map, "markdeep_inline_code_title");
+    $markdeep_inline_code_keyword: map-get($map, "markdeep_inline_code_keyword");
+    $markdeep_inline_code_params: map-get($map, "markdeep_inline_code_params");
+    $markdeep_inline_code_number: map-get($map, "markdeep_inline_code_number");
+    $markdeep_inline_code_comment: map-get($map, "markdeep_inline_code_comment");
+    $markdeep_inline_code_string: map-get($map, "markdeep_inline_code_string");
     $markdeep_inline_code_text: map-get($map, "markdeep_inline_code_text");
     $markdeep_blockquote_background: map-get($map, "markdeep_blockquote_background");
     $markdeep_blockquote_text: map-get($map, "markdeep_blockquote_text");
@@ -851,6 +877,7 @@ $themes: (
     $transcript_bonus_statistics_info_details_text: map-get($map, "transcript_bonus_statistics_info_details_text");
     $transcript_bonus_statistics_info_details_achieved_background: map-get($map, "transcript_bonus_statistics_info_details_achieved_background");
     $transcript_bonus_statistics_info_details_achieved_text: map-get($map, "transcript_bonus_statistics_info_details_achieved_text");
+    $transcript_bonus_statistics_info_details_border_color: map-get($map, "transcript_bonus_statistics_info_details_border_color");
     //markdeep editor colors
     $markdeep_help_text: map-get($map, "markdeep_help_text");
     $markdeep_help_background: map-get($map, "markdeep_help_background");
@@ -926,6 +953,11 @@ $themes: (
     $modal_feedback_button_card_side_text: map-get($map, "modal_feedback_button_card_side_text");
     $modal_feedback_button_card_side_background_active: map-get($map, "modal_feedback_button_card_side_background_active");
     $modal_feedback_button_card_side_text_active: map-get($map, "modal_feedback_button_card_side_text_active");
+    $modal_border_color: map-get($map, "modal_border_color");
+    $modal_background_color: map-get($map, "modal_background_color");
+    $error_reporting_table_background_color: map-get($map, "error_reporting_table_background_color");
+    $error_reporting_table_background_color_hover: map-get($map, "error_reporting_table_background_color_hover");
+
 
     //pomodoro colors
     $pomodoro_timer_fullscreen_overlay: map-get($map, "pomodoro_timer_fullscreen_overlay");
@@ -971,6 +1003,9 @@ $themes: (
     $sweet_alert_2_icon_question_text: map-get($map, "sweet_alert_2_icon_question_text");
     //loading screen
     $loading_screen_icon: map-get($map, "loading_screen_icon");
+    //admin-table
+    $admin-table-background-color: map-get($map, "admin-table-background-color");
+    $admin-table-text-color: map-get($map, "admin-table-text-color");
     //wozniak rating buttons
     $wozniak_rating_0_background: map-get($map, "wozniak_rating_0_background");
     $wozniak_rating_0_background_hover: map-get($map, "wozniak_rating_0_background_hover");
@@ -1018,6 +1053,8 @@ $themes: (
     $use_cases_special_cardsets_button_text: map-get($map, "use_cases_special_cardsets_button_text");
     $use_cases_special_cardsets_button_background_hover: map-get($map, "use_cases_special_cardsets_button_background_hover");
     $use_cases_special_cardsets_button_text_hover: map-get($map, "use_cases_special_cardsets_button_text_hover");
+    $table_user_list_background: map-get($map, "table_user_list_background");
+    $table_user_list_text: map-get($map, "table_user_list_text");
 
     //answer checkbox
     $checkbox_left_background: map-get($map, "checkbox_left_background");
@@ -1028,6 +1065,8 @@ $themes: (
     $checkbox_right_text: map-get($map, "checkbox_right_text");
 
     //profile
+    $profile_fullscreen_title_background: map-get($map, "profile_fullscreen_title_background");
+    $profile_fullscreen_background: map-get($map, "profile_fullscreen_background");
     $profile_fullscreen_checkbox_background: map-get($map, "profile_fullscreen_checkbox_background");
     $profile_fullscreen_checkbox_border: map-get($map, "profile_fullscreen_checkbox_border");
     $profile_fullscreen_checkbox_background_unsaved: map-get($map, "profile_fullscreen_checkbox_background_unsaved");
@@ -1053,6 +1092,118 @@ $themes: (
 
     //flashcardsEndProgressbar
     $flashcards_end_progressbar_background: map-get($map, "flashcards_end_progressbar_background");
+
+    //card.scss changes
+        $card_header_text: map-get($map, "card_header_text");
+        $card_block_table_body: map-get($map, "card_block_table_body");
+        $card_block_background: map-get($map, "card_block_background");
+        $card_block_color: map-get($map, "card_block_color");
+        $collapseLearningPhaseInfoButton_background: map-get($map, "collapseLearningPhaseInfoButton_background");
+        $collapseLearningPhaseInfoButton_color: map-get($map, "collapseLearningPhaseInfoButton_color");
+        $listCard_color: map-get($map, "listCard_color");
+        $md_table_background: map-get($map, "md_table_background");
+        $md_table_border: map-get($map, "md_table_border");
+        $md_table_td_background: map-get($map, "md_table_td_background");
+        $md_table_td_hover: map-get($map, "md_table_td_hover");
+        $md_table_td_border: map-get($map, "md_table_td_border");
+        $md_table_body_hover_color: map-get($map, "$table_body_hover_color");
+        $md_table_td_nth_child_background: map-get($map, "md_table_td_nth_child_background");
+        $md_hyperlink: map-get($map, "md_hyperlink");
+        $card_block_table_hover: map-get($map, "card_block_table_hover");
+        $cardsetInfo_panel_body_background : map-get($map, "cardsetInfo_panel_body_background");
+        $panel_body_h4: map-get($map, "panel_body_h4");
+
+    h1, .nonumberh1 {
+            color: white !important;
+    }
+    .cardHeaderSmallText{
+       color: $card_header_text !important;
+    }
+    .cardHeaderSmallerText {
+          color:  $card_header_text !important;
+    }
+    .dark .md blockquote.fancyquote::before, .dark .md blockquote .fancyquote::after {
+          font-size: inherit !important;
+    }
+
+    .card-block table>tbody, .table-striped > tbody > tr:nth-of-type(2n+1) {
+      background-color: $card_block_table_body !important;
+    }
+    .table-striped > tbody > tr th {
+      background-color: $card_block_table_body !important;
+    }
+    .card-block table>tbody > tr:hover{
+        background-color: $card_block_table_hover !important;
+    }
+    .card-block {
+      background-color: $card_block_background !important;
+      color: $card_block_color !important;
+    }
+    #collapseLearningPhaseInfoButton {
+      background-color: $collapseLearningPhaseInfoButton_background !important;
+      color: $collapseLearningPhaseInfoButton_color !important;
+    }
+    .listCard{
+      color: $listCard_color !important;
+    }
+    .md table th{
+      background-color: $md_table_background !important;
+      border-color: $md_table_border !important;
+    }
+    .md table td {
+      border-color: $md_table_td_border !important;
+      background-color: $md_table_td_background !important;
+    }
+
+    .md td:hover {
+      color: $md_table_td_hover !important;
+    }
+
+    .md table.table tr:nth-child(2n) {
+      background-color: $md_table_td_nth_child_background !important;
+    }
+    .cardsetInfo .panel-body{
+      background-color: $cardsetInfo_panel_body_background !important;
+    }
+    .panel-body h4{
+      color: $panel_body_h4 !important;
+    }
+    .table-hover > tbody > tr:hover {
+     background-color: $default_background !important;
+    }
+
+    a {
+      color: $hyperlink;
+    }
+
+    /*audio::-webkit-media-controls-panel, video::-webkit-media-controls-panel {
+      background-color: $default_background;
+    }
+
+    audio::-webkit-media-controls-mute-button, audio::-webkit-media-controls-play-button {
+      color: $primary_text;
+    }*/
+
+    #profile-info, .profile-info {
+      div, .control-label, .checkbox-inline {
+        color: $primary_text !important;
+      }
+      .panel-body {
+        background-color: $profile_fullscreen_background !important;
+        color: $primary_text !important;
+      }
+      .panel-heading {
+        background-color: $profile_fullscreen_title_background !important;
+        color: $primary_text !important;
+        h2, h3, h4 {
+          color: $primary_text !important;
+        }
+      }
+    }
+
+    .mobilePreviewFrame {
+      border-color: $default_background;
+    }
 
     .navbar-toggle {
       background-color: $navbar_collapse_background !important;
@@ -1135,7 +1286,8 @@ $themes: (
     }
 
     .table-user-list {
-      background-color: $white !important;
+      background-color: $table_user_list_background !important;
+      color: $table_user_list_text !important;
     }
 
     #thm-top-navigation, .mobile-nav-items  {
@@ -1148,6 +1300,20 @@ $themes: (
       }
     }
 
+    .cc-window {
+      background-color: $cc_windows_background !important;
+      color: $cc_windows_background_text !important;
+      .cc-btn {
+        background-color: $cc_btn_background !important;
+        color: $cc_btn_text !important;
+      }
+      .cc-btn:hover {
+        background-color: $cc_btn_background_hover !important;
+        color: $cc_btn_text_hover !important;
+        text-decoration: none !important;
+      }
+    }
+
     .block {
       background-color: $white !important;
     }
@@ -1157,8 +1323,17 @@ $themes: (
       background-color: $success_background;
     }
 
+    #myErrors {
+      background-color: $error_reporting_label_background !important;
+      color: $error_reporting_label_text !important;
+    }
+    #myErrors:hover {
+      background-color: $button_background_hover !important;
+      color: $button_text_hover !important;
+    }
+
     .btn-raised.btn-info {
-      color: $info_text;
+      color: $info_text !important;
       background-color: $info_background;
     }
 
@@ -1243,6 +1418,44 @@ $themes: (
       background-color: $disabled_background !important;
     }
 
+    /* only show if dark theme is used as it is messed up otherwise :( */
+    @if $theme == 'dark' {
+      #learningHistoryModal {
+        div.table-responsive {
+          background-color: $modal_background_color !important;
+        }
+        table tr {
+          th, td {
+            border-color: $modal_border_color !important;
+            background-color: $modal_background_color !important;
+          }
+        }
+      }
+    }
+
+
+
+    /* unfortunately the success button is used on the 'wegweiser' top buttons. To not mess up all the success buttons and keep them identical to the .specialCardset buttons this is used :( */
+    @if $theme == 'dark' {
+      #useCasesModal .btn {
+        background-color: $use_cases_special_cardsets_button_background !important;
+        color: $use_cases_special_cardsets_button_text !important;
+      }
+
+      #useCasesModal .btn:hover {
+        background-color: $use_cases_special_cardsets_button_background_hover !important;
+        color: $use_cases_special_cardsets_button_text_hover !important;
+      }
+    }
+
+    .modal-body {
+      table tr {
+        th, td {
+          border-color: $modal_border_color !important;
+        }
+      }
+    }
+
     .modal-body .form-group {
       label {
         color: $form_group_label;
@@ -1299,10 +1512,21 @@ $themes: (
       color: $thm_gray !important;
     }
 
+    /*@if $theme == 'dark' {
+      [class*="fa-"] {
+        color: darken($item_icon, 7) !important;
+      }
+    }*/
+
     #markdeepNavigation .fas, #markdeepNavigation .fab, #markdeepNavigation .far, #markdeepNavigation .markdeep-center, #markdeepNavigation .markdeep-fullscreen, .card-button {
       color: $thm_gray ;
       border-color: $thm_gray;
-      background-color: $white;
+      background-color: white;
+    }
+
+    .panel, .panel-body {
+      background: $admin-table-background-color !important;
+      color: $admin-table-text-color;
     }
 
     #markdeepNavigation .markdeep-help {
@@ -1456,6 +1680,8 @@ $themes: (
       -webkit-mask-position: center;
       mask-position: center;
     }
+
+
 
     #cards {
       background-color: $login_cards_background !important;
@@ -1687,7 +1913,7 @@ $themes: (
         color: $hint_placeholder_alternative !important;
       }
     }
-
+    
     .modal-content .close {
       color: $thm_orange !important;
     }
@@ -1763,6 +1989,9 @@ $themes: (
       .cardsetInfo {
         a {
           color: $primary !important;
+        }
+        .btn-group {
+          background-color: red;
         }
       }
     }
@@ -2180,7 +2409,7 @@ $themes: (
     }
 
     .info {
-      color: $primary !important;
+      color: $primary-text !important;
     }
 
     .navbar.navbar-default .dropdown-menu li > a:hover, .navbar.navbar-default .dropdown-menu li > a:focus {
@@ -2523,12 +2752,17 @@ $themes: (
     }
 
     #navbar-adminpanel a {
-      background-color: $navbar_backend_background !important;
+      background-color: black !important;
       color: $navbar_backend_text !important;
     }
     #navbar-adminpanel a:hover, #navbar-adminpanel a:focus {
       background-color: $navbar_backend_background_hover !important;
       color: $navbar_backend_text_hover !important;
+    }
+    #navbar-adminpanel:hover {
+      span {
+        color: $button_text_hover !important;
+      }
     }
 
     #notificationsBtn > .dropdown-toggle {
@@ -2565,6 +2799,9 @@ $themes: (
     #navbar-logout a:hover, #navbar-logout a:focus {
       background-color: $navbar_logout_background_hover !important;
       color: $navbar_logout_text_hover !important;
+      .fas{
+        color: $navbar_logout_text_hover;
+      }
     }
 
     //access_denied
@@ -2583,10 +2820,6 @@ $themes: (
           li {
             a {
               color: white !important;
-              &:hover, &:focus, &.active {
-                color: white;
-                background: $thm_orange;
-              }
             }
           }
         }
@@ -2600,15 +2833,21 @@ $themes: (
             color: white !important;
           }
         }
+
+        .input-group-addon {
+          color: $admin-table-text-color !important;
+        }
         .content {
           .admin_table {
-            background-color: #f9f9f9 !important;
-            border-color: white !important;
+            background-color: $admin-table-background-color;
+            color: $admin-table-text-color;
+            border-color: white;
             .clearfix {
-              border-bottom-color: #ddd !important;
+              border-bottom-color: #ddd;
             }
             table {
-              border-bottom-color: #ddd !important;
+              border-bottom-color: #ddd;
+
             }
           }
           .dashboard-box {
@@ -2632,6 +2871,10 @@ $themes: (
           }
         }
       }
+    }
+
+    .table-hover > tbody > tr:hover > td:hover{
+      background: none !important;
     }
 
     @media(min-width: 768px) {
@@ -2678,7 +2921,7 @@ $themes: (
     }
 
     .box, .boxPreview, .box-static {
-      background-color: $white !important;
+      background-color: $default_background !important;
     }
 
     .box-difficultyLined0 {
@@ -2708,7 +2951,7 @@ $themes: (
     }
 
     .box-white {
-      background-color: $background_white !important;
+      background-color: $background_grey !important;
     }
 
     .box-pink {
@@ -3078,6 +3321,7 @@ $themes: (
 
     .markdeepCardsetContent {
       color: $cardset_markdeep_text !important;
+      background-color: $cardset_markdeep_content_background !important;
       a {
         color: $cardset_markdeep_link !important;
       }
@@ -3086,7 +3330,12 @@ $themes: (
       }
       .markdeepCardsetHeader {
         border-color: $cardset_markdeep_header_border !important;
+        background-color: $default_background !important;
       }
+    }
+
+    #cardsetTitle {
+      color: $primary_h2 !important;
     }
 
     .cardListName {
@@ -3104,12 +3353,15 @@ $themes: (
     }
 
     .bs-callout {
-      border-color: #eee !important;
+      border-color: grey!important;
     }
 
     .bs-callout-info {
-      background-color: $white !important;
+      background-color: #424242 !important;
       border-left-color: $thm_orange !important;
+    }
+    .bs-callout-info span {
+      color: $white !important;
     }
 
     #publishKind, #publishKindAdmin {
@@ -3308,7 +3560,8 @@ $themes: (
     }
 
     .label-free-text {
-      color: $free_background !important;
+      color: $free_text !important;
+      background-color: darken($free_background, 10) !important;
     }
 
     .label-edu {
@@ -3317,7 +3570,8 @@ $themes: (
     }
 
     .label-edu-text {
-      color: $edu_background !important;
+      background-color: darken($edu_background, 10) !important;
+      color: $edu_text !important;
     }
 
     .label-pro {
@@ -3326,7 +3580,8 @@ $themes: (
     }
 
     .label-pro-text {
-      color: $pro_background !important;
+      background-color: darken($pro_background, 10) !important;
+      color: $pro_text !important;
     }
 
     .label-private {
@@ -3335,7 +3590,8 @@ $themes: (
     }
 
     .label-private-text {
-      color: $private_background !important;
+      color: $private_text !important;
+      background-color: darken($private_background, 10) !important;
     }
 
     .label-shuffled {
@@ -3446,7 +3702,7 @@ $themes: (
 
     .label-count-cards {
       background-color: $card_counter_background !important;
-      color: $card_counter_text!important;
+      color: $card_counter_text !important;
     }
 
     .label-count-transcripts {
@@ -3470,6 +3726,7 @@ $themes: (
     .label-frag-jetzt {
       background-color: $frag_jetzt_background !important;
       color: $frag_jetzt_text !important;
+      border-radius: 7px !important;
       span {
         color: $frag_jetzt_text !important;
       }
@@ -3478,9 +3735,26 @@ $themes: (
     .label-error-reporting {
       background-color: $error_reporting_label_background !important;
       color: $error_reporting_label_text !important;
+      border-radius: 7px !important;
       span {
         color: $error_reporting_label_text !important;
       }
+    }
+
+    .label-error-reporting:hover {
+      color: $button_text_hover !important;
+      background: $button_background_hover !important;
+      span {
+        color: $button_text_hover !important;
+      }
+    }
+
+    .label.show-error.label-error-reporting:hover, .label.label-frag-jetzt:hover {
+      span {
+        color: $button_text_hover !important;
+      }
+      color: $button_text_hover !important;
+      background: $button_background_hover !important;
     }
 
     .moduleRadioButtonLabel {
@@ -3489,7 +3763,7 @@ $themes: (
 
     //courseIterations
     .form-check-label {
-      color: #5f5f5f !important;
+      color: $form_check_label_color !important;
     }
 
     //filter
@@ -3617,6 +3891,19 @@ $themes: (
       color: $white !important;
       background-color: $button_difficulty3 !important;
     }
+    
+    // make uppercase buttons for material ui, only in dark theme
+    @if $theme == 'dark' {
+      .cardsetInfoFooter .btn {
+        text-transform: uppercase !important;
+        letter-spacing: .5px !important;
+      }
+    }
+
+    .setAppThemeDropdown {
+      background-color: $theme_dropdown_background !important;
+      color: $theme_dropdown_text !important;
+    }
 
     #setCardsetFormModal, #showSelectLearningUnitModal, #setLeitnerProgressCardsetFilter, #useCasesModal, #appThemeSelector, #archivedLearningPhaseDropdown {
       ul > li {
@@ -3673,7 +3960,7 @@ $themes: (
         background-color: transparent !important;
       }
       #slogan {
-        color: white !important;
+        color: $slogan !important;
         text-shadow: 2px 2px 5px $welcome_page_login_label_shadow !important;
       }
       .panel-heading {
@@ -3701,7 +3988,7 @@ $themes: (
 
     #TestingBackdoorUsername {
       background-color: $white !important;
-      color: $primary_text !important;
+      color: black !important;
     }
 
     #TestingBackdoorUsername option:hover, #TestingBackdoorUsername option:focus {
@@ -3774,6 +4061,17 @@ $themes: (
 
     //markdeep colors
     .md {
+
+      color: $primary_text; //grey ist standartd
+
+      .nonumberh2, h2 {
+        color: $primary_h2;
+      }
+
+      a {
+        color: $md_hyperlink !important;
+      }
+
       code {
         color: $markdeep_inline_code_text !important;
         background-color: $markdeep_inline_code_background !important;
@@ -3799,6 +4097,30 @@ $themes: (
 
       img {
         border-color: $markdeep_image_border !important;
+      }
+
+      pre.tilde{
+        background-color: $markdeep_inline_code_background !important;
+        border-top-color: lighten($markdeep_inline_code_background, 2) !important;
+        border-bottom-color: lighten($markdeep_inline_code_background, 2) !important;
+        .hljs-title {
+          color: $markdeep_inline_code_title !important;
+        }
+        .hljs-keyword {
+          color: $markdeep_inline_code_keyword !important;
+        }
+        .hljs-params {
+          color: $markdeep_inline_code_params !important
+        }
+        .hljs-number {
+          color: $markdeep_inline_code_number !important
+        }
+        .hljs-comment {
+          color: $markdeep_inline_code_comment !important
+        }
+        .hljs-string {
+          color: $markdeep_inline_code_string !important
+        }
       }
     }
     //transcript bonus colors
@@ -4155,7 +4477,7 @@ $themes: (
       }
       //cardset
       .preview {
-        background-color: $cardset_sidebar_preview_background !important;
+        background-color: $admin-table-background-color !important;
         color:$cardset_sidebar_preview_text !important;
       }
 
@@ -4178,11 +4500,6 @@ $themes: (
       .modal.fade.in {
         background-color: $modal_overlay !important;
       }
-      .modal-content {
-        background-color: $modal_background !important;
-        color: $modal_text !important;
-      }
-
       //under development modal
       .underDevelopmentContent {
         .modal-header {
@@ -4192,7 +4509,10 @@ $themes: (
         background-color: $under_development_modal_background !important;
       }
     }
-
+    .modal-content {
+      background-color: $modal_background !important;
+      color: $modal_text !important;
+    }
     .modal-dialog {
       .modal-checkbox {
         .background {
@@ -4526,6 +4846,8 @@ $themes: (
         th {
           background-color: $export_to_markdeep_table_header_background !important;
           color: $export_to_markdeep_table_header_text !important;
+          border-bottom: 1px solid rgba(0,0,0,.3) !important;
+          border-top: 1px solid rgba(0,0,0,.3) !important;
         }
 
         td {
@@ -4542,6 +4864,7 @@ $themes: (
     //server statistics colors
     #impressumStatisticsModal {
       tr {
+        border-color: $server_statistics_table_row_background !important;
         th {
           background-color: $server_statistics_table_header_background !important;
         }
@@ -4620,6 +4943,11 @@ $themes: (
       background-color: $use_cases_table_header_background !important;
       color: $use_cases_table_header_text !important;
     }
+
+    /*#useCasesModal td {
+      background-color: $modal_background !important;
+      color: $use_cases_table_header_text !important;
+    }*/
 
     #useCasesModal .specialCardset {
       background-color: $use_cases_special_cardsets_button_background !important;
@@ -4749,7 +5077,25 @@ $themes: (
       }
     }
 
-    .profile-fullscreen-settings
+    //.profile-dropdown Menu
+    .dropdown-menu {
+     background-color: $navbar_dropdown_background !important;
+      color: $navbar_dropdown_text !important;
+    }
+    #messageTR {
+      border-color: $navbar_all_border !important;
+      a {
+        color: $navbar_text !important;
+      }
+    }
+    #messageTR:hover {
+      background-color: $navbar_all_background_hover !important;
+      a {
+        color: $navbar_text_hover !important;
+      }
+    }
+   
+    // .profile-fullscreen-settings
 
     .fa-stack.unsaved {
       .background {
@@ -4891,7 +5237,7 @@ $themes: (
 
 
     .errorReporting {
-      border-color: $card_sidebar_error_reporting_button_text !important;
+      border-color: $card_sidebar_error_reporting_button_border !important;
       background-color: $card_sidebar_error_reporting_button_background !important;
       color: $card_sidebar_error_reporting_button_text !important;
     }
@@ -4901,5 +5247,29 @@ $themes: (
       background-color: $card_sidebar_error_reporting_button_background_hover !important;
       color: $card_sidebar_error_reporting_button_text_hover !important;
     }
+
+    #unresolvedErrorReportsTable > table > tbody > tr{
+    background: $error_reporting_table_background_color !important;
+    }
+    #unresolvedErrorReportsTable > table > tbody > tr:hover{
+    background: $error_reporting_table_background_color_hover !important;
+    }
+    #unresolvedErrorReportsTable{
+      i {
+        color: $thm_orange !important;
+      }
+      thead {
+        color : $thm_orange !important;
+        user-select: none;
+      }
+      #overviewErrorReportsTableSide:hover, #overviewErrorReportsTableError:hover, #overviewErrorReportsTableAuthor:hover, #overviewErrorReportsTableStatus:hover{
+        cursor: pointer;
+        color: $hyperlink !important;
+        i {
+          color: $hyperlink !important;
+        }
+      }
+    }
+  
   }
 }
