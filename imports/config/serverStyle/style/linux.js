@@ -130,7 +130,7 @@ module.exports = {
 			"domainWhitelist": DEFAULT_REGISTRATION_DOMAIN_WHITELIST
 		},
 		"cas": true,
-		"guest": true,
+		"guest": false,
 		"pro": false,
 		"facebook": false,
 		"twitter": false,
@@ -218,7 +218,12 @@ module.exports = {
 			{
 				"theme": "arsnova", // The color theme
 				"backgrounds": "arsnova" // The background images found in ./backgrounds.js
+			},
+			{
+				"theme": "dark", // The color theme
+				"backgrounds": "dark" // The background images found in ./backgrounds.js
 			}
+
 		] // The list available to the theme switcher dropdown menu
 	},
 	"landingPage": ""
