@@ -15,7 +15,7 @@
   $primary: $default_grey;
   $primary_text: #cdcdcd;
   $secondary_text: $default_white;
-  $primary_h2: lighten($primary_text, 10);
+  $primary_h2: $default_white;
 
   $athens_gray_approx: rgb(236, 240, 241);
   $bilbao_approx: rgb(50, 129, 20);
@@ -549,7 +549,7 @@
           "card_header_card_number": $default_grey,
           "card_header_first_row": $default_grey,
           "card_header_second_row": $default_grey,
-          "card_header_subject": $primary_h2,
+          "card_header_subject": white,
           "card_header_subject_placeholder": $default_orange,
 
           "card_content_zoom_container_button_reset_background": $default_orange,
@@ -1134,5 +1134,4 @@
         "error_reporting_table_background_color": $default_black,
         "error_reporting_table_background_color_hover": lighten($default_black, 5),
   );
-
 }
