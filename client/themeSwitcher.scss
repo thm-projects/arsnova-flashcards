@@ -1113,9 +1113,9 @@ $themes: (
         $cardsetInfo_panel_body_background : map-get($map, "cardsetInfo_panel_body_background");
         $panel_body_h4: map-get($map, "panel_body_h4");
 
-    h1, .nonumberh1 {
+    /*h1, .nonumberh1 {
             color: white !important;
-    }
+    } */
     .cardHeaderSmallText{
        color: $card_header_text !important;
     }
