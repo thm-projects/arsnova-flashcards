@@ -2950,9 +2950,9 @@ $themes: (
       }
     }
 
-    .box-white {
-      background-color: $background_grey !important;
-    }
+   /* .box-white {
+      background-color: whitesmoke;
+    } */
 
     .box-pink {
       background-color: $background_pink !important;
@@ -3061,12 +3061,12 @@ $themes: (
       background: darken($background_difficulty3_lines, 15%) !important;
     }
 
-    .box-white-header {
+    /*.box-white-header {
       background: linear-gradient(to top, $background_white_lines 0px, $background_white_lines 4px, $background_white 5px, $background_white 100%) !important;
       @media(max-width: 767px) {
         background: linear-gradient(to top, $background_white_lines 0px, $background_white_lines 2px, $background_white 3px, $background_white 100%) !important;
       }
-    }
+    } */
 
     .box-hint-header {
       background: linear-gradient(to top, $hint_presentation_header_lines 0px, $hint_presentation_header_lines 4px, $background_hint 5px, $background_hint 100%) !important;
@@ -4232,9 +4232,9 @@ $themes: (
       .box-difficultyLined3 {
         background: $background_difficulty3 !important;
       }
-      .box-white-header {
-        background: linear-gradient(to top, $background_white_lines 0px, $background_white_lines 2px, $background_white 3px, $background_white 100%) !important;
-      }
+      /*.box-white-header {
+        background: linear-gradient(to top, $background_white_lines 0px, $background_white_lines 2px, $background_white 0px, $background_white 5%) !important;
+      } */
       .box-hint-header {
         background: linear-gradient(to top, $hint_presentation_header_lines 0px, $hint_presentation_header_lines 2px, $background_hint 3px, $background_hint 100%) !important;
       }
@@ -5270,6 +5270,5 @@ $themes: (
         }
       }
     }
-  
   }
 }
