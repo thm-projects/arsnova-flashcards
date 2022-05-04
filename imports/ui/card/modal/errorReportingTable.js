@@ -60,7 +60,8 @@ Template.overviewErrorReportsModal.events({
 
 Template.overviewErrorReportsTable.events({
 	'click .errorReportEntry': function () {
-		if (UserPermissions.canEditCard() && Session.get("cardType")) {
+		const cardType = Session.get("cardType");
+		if (UserPermissions.canEditCard() && cardType !== undefined && cardType !== null) {
 			ErrorReporting.loadErrorReportingModal(this);
 			$('#showErrorReportingModal').modal('show');
 		} else {
